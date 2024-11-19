@@ -1,6 +1,7 @@
 'use client'
 
-import { ReactNode, useState } from 'react'
+import type { ReactNode} from 'react';
+import { useState } from 'react'
 
 import budget from '../_data/budget.yaml'
 import RessourcesAllocationTable from './RessourcesAllocationTable'

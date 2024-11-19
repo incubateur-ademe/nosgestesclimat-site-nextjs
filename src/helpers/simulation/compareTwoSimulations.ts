@@ -1,6 +1,6 @@
 import { defaultMetric } from '@/constants/metric'
-import { Simulation } from '@/publicodes-state/types'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { Simulation } from '@/publicodes-state/types'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 /**
  * Takes two Simulations and returns true if they are different, false otherwise.

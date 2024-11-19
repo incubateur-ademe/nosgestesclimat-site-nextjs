@@ -2,9 +2,10 @@
 
 import Link from '@/components/Link'
 import NosGestesTransportsBanner from '@/components/blog/NosGestesTransportsBanner'
-import MarkdownToJsx, { MarkdownToJSX } from 'markdown-to-jsx'
+import type { MarkdownToJSX } from 'markdown-to-jsx';
+import MarkdownToJsx from 'markdown-to-jsx'
 import Image from 'next/image'
-import { ComponentProps } from 'react'
+import type { ComponentProps } from 'react'
 import ButtonLink from '../inputs/ButtonLink'
 
 type MarkdownProps = ComponentProps<typeof MarkdownToJsx> & {

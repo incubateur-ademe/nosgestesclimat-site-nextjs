@@ -8,9 +8,9 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useSaveNorthstarRating } from '@/hooks/northstar/useSaveNorthstarRating'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { NorthStarType, NorthStarValue } from '@/types/northstar'
+import type { NorthStarType, NorthStarValue } from '@/types/northstar'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {

@@ -11,7 +11,7 @@ import {
 import { getSubcatsOfCategory } from '@/helpers/publicodes/getSubcatsOfCategory'
 import { useRule, useSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
 import QuestionsWithoutSubcategory from './category/QuestionsWithoutSubcategory'
 import Subcategory from './category/Subcategory'

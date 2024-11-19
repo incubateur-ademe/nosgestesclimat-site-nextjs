@@ -2,9 +2,10 @@
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { NorthStarType } from '@/types/northstar'
+import type { NorthStarType } from '@/types/northstar'
 import { motion } from 'framer-motion'
-import { JSX, useEffect, useRef, useState } from 'react'
+import type { JSX} from 'react';
+import { useEffect, useRef, useState } from 'react'
 import Trans from '../translation/Trans'
 import Northstar from './Northstar'
 

@@ -4,7 +4,7 @@ import { carboneMetric, eauMetric } from '@/constants/metric'
 import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { Metric } from '@/publicodes-state/types'
+import type { Metric } from '@/publicodes-state/types'
 
 type Props = {
   metric: Metric

@@ -5,7 +5,7 @@ import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useActions, useRule, useSimulation } from '@/publicodes-state'
-import { Metric } from '@/publicodes-state/types'
+import type { Metric } from '@/publicodes-state/types'
 
 type Props = {
   metric?: Metric

@@ -1,4 +1,4 @@
-import { JSX, PropsWithChildren } from 'react'
+import type { JSX, PropsWithChildren } from 'react'
 
 import { twMerge } from 'tailwind-merge'
 import Separator from './Separator'

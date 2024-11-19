@@ -1,6 +1,6 @@
 import { defaultMetric } from '@/constants/metric'
 import { useEngine, useSimulation } from '@/publicodes-state'
-import { Metric } from '@/publicodes-state/types'
+import type { Metric } from '@/publicodes-state/types'
 import { useMemo } from 'react'
 
 type Props = {

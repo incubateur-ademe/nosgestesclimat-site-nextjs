@@ -6,10 +6,11 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import i18nConfig from '@/i18nConfig'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import NextLink from 'next/link'
-import {
+import type {
   HTMLAttributes,
   MouseEventHandler,
-  PropsWithChildren,
+  PropsWithChildren} from 'react';
+import {
   useContext,
   useMemo,
 } from 'react'

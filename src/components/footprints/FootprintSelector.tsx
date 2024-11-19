@@ -2,8 +2,9 @@
 import { carboneMetric, eauMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { Metrics } from '@incubateur-ademe/nosgestesclimat'
-import Select, { Options, components } from 'react-select'
+import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
+import type { Options} from 'react-select';
+import Select, { components } from 'react-select'
 import Trans from '../translation/Trans'
 
 interface OptionType {

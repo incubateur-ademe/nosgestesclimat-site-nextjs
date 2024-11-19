@@ -1,8 +1,8 @@
 'use client'
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { TransPropsWithInterpolation } from '@/types/translation'
-import { ReactElement } from 'react'
+import type { TransPropsWithInterpolation } from '@/types/translation'
+import type { ReactElement } from 'react'
 import { Trans } from 'react-i18next'
 
 export default function TransClient({

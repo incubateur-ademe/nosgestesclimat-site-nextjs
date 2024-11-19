@@ -1,5 +1,5 @@
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { Situation } from '../types'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { Situation } from '../types'
 
 type Props = {
   dottedName: DottedName

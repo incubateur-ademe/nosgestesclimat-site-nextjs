@@ -1,13 +1,13 @@
 import getSomme from '@/publicodes-state/helpers/getSomme'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import { sortBy } from '@/utils/sortBy'
-import {
+import type {
   DottedName,
   NGCRule,
   NGCRuleNode,
   NGCRules,
 } from '@incubateur-ademe/nosgestesclimat'
-import { EvaluatedNode, PublicodesExpression } from 'publicodes'
+import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { filterIrrelevantActions } from './filterIrrelevantActions'
 import { getIsActionDisabled } from './getIsActionDisabled'
 

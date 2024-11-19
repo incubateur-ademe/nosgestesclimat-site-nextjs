@@ -1,4 +1,4 @@
-import { Group } from '@/types/groups'
+import type { Group } from '@/types/groups'
 
 export const linkToGroupCreation = '/amis/creer/vos-informations'
 

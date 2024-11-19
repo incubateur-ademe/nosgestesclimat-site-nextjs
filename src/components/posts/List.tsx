@@ -1,4 +1,4 @@
-import { Post } from '@/types/posts'
+import type { Post } from '@/types/posts'
 import { twMerge } from 'tailwind-merge'
 import Item from './list/Item'
 

@@ -5,8 +5,8 @@ import { ORGANISATION_TYPES } from '@/constants/organisations/organisationTypes'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { Organisation } from '@/types/organisations'
-import { FieldErrors, UseFormRegister } from 'react-hook-form'
+import type { Organisation } from '@/types/organisations'
+import type { FieldErrors, UseFormRegister } from 'react-hook-form'
 
 type Values = {
   name: string

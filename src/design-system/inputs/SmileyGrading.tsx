@@ -1,7 +1,7 @@
 'use client'
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { NorthStarValue } from '@/types/northstar'
+import type { NorthStarValue } from '@/types/northstar'
 import Emoji from '../utils/Emoji'
 import Button from './Button'
 

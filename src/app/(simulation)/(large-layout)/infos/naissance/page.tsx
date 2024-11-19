@@ -6,7 +6,8 @@ import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, FormEvent, useCallback, useContext } from 'react'
+import type { ChangeEvent, FormEvent} from 'react';
+import { useCallback, useContext } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
 import Navigation from '../_components/Navigation'
 

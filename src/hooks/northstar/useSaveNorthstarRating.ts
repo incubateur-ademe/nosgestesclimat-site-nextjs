@@ -1,6 +1,6 @@
 import { SERVER_URL } from '@/constants/urls'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { NorthStarValue } from '@/types/northstar'
+import type { NorthStarValue } from '@/types/northstar'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 

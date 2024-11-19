@@ -17,7 +17,8 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { useEffect, useRef, useState } from 'react'
-import { SubmitHandler, useForm as useReactHookForm } from 'react-hook-form'
+import type { SubmitHandler} from 'react-hook-form';
+import { useForm as useReactHookForm } from 'react-hook-form'
 
 type Inputs = {
   name: string
