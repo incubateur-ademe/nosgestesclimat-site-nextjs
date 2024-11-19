@@ -1,8 +1,11 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
-export default function Mobilise() {
+export default async function Mobilise() {
+  const { t } = await getServerTranslation()
+
   return (
     <div className="flex flex-col items-center px-4 py-20 md:mx-auto md:max-w-5xl">
       <h2 className="mb-10 text-center text-2xl md:max-w-[430px] md:text-3xl">
@@ -34,8 +37,10 @@ export default function Mobilise() {
 
         <div className="order-first py-8 md:order-last">
           <Image
-            src="/images/illustrations/people-playing.svg"
-            alt=""
+            src="/images/illustrations/comparer-empreinte-carbone-et-eau-entre-amis.svg"
+            alt={t(
+              "Un groupe d'amis comparant leurs empreintes carbone et eau"
+            )}
             width={500}
             height={500}
           />
@@ -45,8 +50,10 @@ export default function Mobilise() {
       <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:gap-24">
         <div className="py-14">
           <Image
-            src="/images/illustrations/people-with-paperboard.svg"
-            alt=""
+            src="/images/illustrations/reflechir-impacts-de-son-empreinte.svg"
+            alt={t(
+              'Un groupe de personnes en train de réfléchir aux impacts de leur empreinte carbone et eau'
+            )}
             width={500}
             height={500}
           />

@@ -2,9 +2,11 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import ColorLine from '@/design-system/layout/ColorLine'
 import Separator from '@/design-system/layout/Separator'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
-export default function TwoFootprints() {
+export default async function TwoFootprints() {
+  const { t } = await getServerTranslation()
   return (
     <div className="my-16 flex flex-col items-center px-4 md:mx-auto md:my-20 md:max-w-5xl">
       <div className="relative mb-16 pb-4 md:mb-20">
@@ -16,9 +18,9 @@ export default function TwoFootprints() {
 
       {/* Displayed on desktop only */}
       <Image
-        src="/images/misc/two-footprint.png"
+        src="/images/misc/graphiques-empreinte-carbone-eau.png"
         className="hidden md:block"
-        alt=""
+        alt={t("Deux représentations graphiques de l'empreinte carbone et eau")}
         width={600}
         height={800}
       />
@@ -29,7 +31,7 @@ export default function TwoFootprints() {
             {/* Displayed on mobile only */}
             <div className="-mb-10 flex justify-center md:hidden">
               <Image
-                src="/images/misc/carbon-footprint.png"
+                src="/images/misc/graphique-empreinte-carbone.png"
                 alt=""
                 width={300}
                 height={300}
@@ -65,7 +67,7 @@ export default function TwoFootprints() {
             {/* Displayed on mobile only */}
             <div className="-mb-10 flex justify-center md:hidden">
               <Image
-                src="/images/misc/water-footprint.png"
+                src="/images/misc/graphique-empreinte-eau.png"
                 alt=""
                 width={300}
                 height={300}

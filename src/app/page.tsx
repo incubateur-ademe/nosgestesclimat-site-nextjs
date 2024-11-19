@@ -3,6 +3,7 @@ import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/Trans'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
@@ -21,8 +22,10 @@ const InteractiveIllustration = dynamic(
     ssr: false,
     loading: () => (
       <Image
-        src="/images/illustrations/girl-typing.svg"
-        alt=""
+        src="/images/illustrations/empreinte-carbone-eau-objets-du-quotidien.svg"
+        alt={t(
+          "Une fille tapant sur son ordinateur, entouré d'objets aux empreintes carbone et eau variées."
+        )}
         width={580}
         height={580}
       />
