@@ -40,7 +40,7 @@ export default async function UnderstandToActWaterFootprint() {
             'Les 3 réflexes à adopter pour une garde-robe économe en eau'
           ),
           href: '/blog/reflexes-textile-econome-empreinte-eau',
-          imageSrc: '/images/blog/textile-econome-eau.jpg',
+          imageSrc: '/images/blog/seo/textile-econome-eau.jpg',
           imageAlt: t('Une garde-robe économe en eau'),
         },
         {
@@ -49,7 +49,7 @@ export default async function UnderstandToActWaterFootprint() {
             "L'empreinte eau : pourquoi et comment avons-nous travaillé"
           ),
           href: '/blog/empreinte-eau-pourquoi-comment',
-          imageSrc: '/images/blog/seo/textile-econome-eau.jpg',
+          imageSrc: '/images/blog/seo/champ-coton-empreinte-eau.jpg',
           imageAlt: t(
             "Un champ de coton, illustrant le calcul de l'empreinte eau"
           ),
