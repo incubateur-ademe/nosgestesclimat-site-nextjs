@@ -32,7 +32,10 @@ export default function Footer({ className = '' }) {
   const pathname = usePathname()
   const locale = useLocale()
 
-  const isHomePage = pathname === '/' || pathname === `/${locale}`
+  const isHomePage =
+    pathname === '/' ||
+    pathname === `/${locale}` ||
+    pathname.includes('/empreinte-eau')
   return (
     <footer
       className={twMerge(
@@ -51,6 +54,14 @@ export default function Footer({ className = '' }) {
               className="text-default no-underline hover:underline">
               <strong>
                 <Trans>À propos</Trans>
+              </strong>
+            </InlineLink>
+
+            <InlineLink
+              href="/empreinte-eau"
+              className="text-default no-underline hover:underline">
+              <strong>
+                <Trans>Empreinte eau</Trans>
               </strong>
             </InlineLink>
 
