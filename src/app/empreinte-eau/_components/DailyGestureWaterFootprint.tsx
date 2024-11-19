@@ -1,9 +1,19 @@
 import DailyGestures from '@/components/landing-pages/DailyGestures'
 import Trans from '@/components/translation/Trans'
+import { trackingActionClickPageBottom } from '@/constants/tracking/actions'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import {
+  getLandingClickCTAResults,
+  getLandingClickCTAResume,
+  getLandingClickCTAStart,
+} from '@/helpers/tracking/landings'
+import { headers } from 'next/headers'
 
 export default async function DailyGestureWaterFootprint() {
   const { t } = await getServerTranslation()
+
+  const headersList = headers()
+  const pathname = headersList.get('x-pathname') || '/'
 
   const gesturesKeysForTranslation = {
     alimentation: t('Alimentation'),
@@ -41,6 +51,17 @@ export default async function DailyGestureWaterFootprint() {
           </p>
         </>
       }
+      trackingEvents={{
+        start: getLandingClickCTAStart(pathname, trackingActionClickPageBottom),
+        resume: getLandingClickCTAResume(
+          pathname,
+          trackingActionClickPageBottom
+        ),
+        results: getLandingClickCTAResults(
+          pathname,
+          trackingActionClickPageBottom
+        ),
+      }}
       gestures={{
         [gesturesKeysForTranslation.alimentation]: {
           imageSrc: '/images/illustrations/empreinte-alimentation.svg',

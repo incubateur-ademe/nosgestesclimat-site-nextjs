@@ -1,9 +1,16 @@
 import DynamicCTAButton from '@/components/cta/DynamicCTAButton'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/Trans'
+import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import {
+  getLandingClickCTAResults,
+  getLandingClickCTAResume,
+  getLandingClickCTAStart,
+} from '@/helpers/tracking/landings'
+import { headers } from 'next/headers'
 import Image from 'next/image'
 import DailyGestureWaterFootprint from './_components/DailyGestureWaterFootprint'
 import DidYouKnowWaterFootprint from './_components/DidYouKnowWaterFootprint'
@@ -32,6 +39,9 @@ export async function generateMetadata() {
 
 export default async function WaterFootprintLandingPage() {
   const { t } = await getServerTranslation()
+
+  const headersList = headers()
+  const pathname = headersList.get('x-pathname') || '/'
 
   return (
     <>
@@ -77,7 +87,22 @@ export default async function WaterFootprintLandingPage() {
               </Trans>
             </p>
             <div className="flex w-full justify-center md:justify-start">
-              <DynamicCTAButton />
+              <DynamicCTAButton
+                trackingEvents={{
+                  start: getLandingClickCTAStart(
+                    pathname,
+                    trackingActionClickCTA
+                  ),
+                  resume: getLandingClickCTAResume(
+                    pathname,
+                    trackingActionClickCTA
+                  ),
+                  results: getLandingClickCTAResults(
+                    pathname,
+                    trackingActionClickCTA
+                  ),
+                }}
+              />
             </div>
           </div>
         }

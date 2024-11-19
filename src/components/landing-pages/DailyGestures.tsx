@@ -10,10 +10,16 @@ export default function DailyGestures({
   title,
   description,
   gestures,
+  trackingEvents,
 }: {
   title: ReactNode
   description: ReactNode
   gestures: GesturesType
+  trackingEvents: {
+    start: string[]
+    resume: string[]
+    results: string[]
+  }
 }) {
   return (
     <div className="mx-auto mb-20 mt-16 w-full max-w-full px-4 text-center md:my-20 md:max-w-[850px] md:px-0">
@@ -28,7 +34,7 @@ export default function DailyGestures({
       </div>
 
       <div className="mt-10 text-center">
-        <DynamicCTAButton />
+        <DynamicCTAButton trackingEvents={trackingEvents} />
       </div>
     </div>
   )

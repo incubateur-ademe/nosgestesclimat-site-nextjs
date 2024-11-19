@@ -1,9 +1,20 @@
 import DailyGestures from '@/components/landing-pages/DailyGestures'
 import Trans from '@/components/translation/Trans'
+import { trackingActionClickPageBottom } from '@/constants/tracking/actions'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import {
+  getLandingClickCTAResults,
+  getLandingClickCTAResume,
+  getLandingClickCTAStart,
+} from '@/helpers/tracking/landings'
+import { headers } from 'next/headers'
 
 export default async function DailyGestureCarbonFootprint() {
   const { t } = await getServerTranslation()
+
+  const headersList = headers()
+  const pathname = headersList.get('x-pathname') || '/'
+
   const gesturesKeysForTranslation = {
     transport: t('Transport'),
     alimentation: t('Alimentation'),
@@ -33,6 +44,17 @@ export default async function DailyGestureCarbonFootprint() {
           </p>
         </>
       }
+      trackingEvents={{
+        start: getLandingClickCTAStart(pathname, trackingActionClickPageBottom),
+        resume: getLandingClickCTAResume(
+          pathname,
+          trackingActionClickPageBottom
+        ),
+        results: getLandingClickCTAResults(
+          pathname,
+          trackingActionClickPageBottom
+        ),
+      }}
       gestures={{
         [gesturesKeysForTranslation.transport]: {
           imageSrc: '/images/illustrations/empreinte-carbone-velo.svg',
