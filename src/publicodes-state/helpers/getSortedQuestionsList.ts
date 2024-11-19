@@ -1,5 +1,5 @@
 import { getSubcatsOfCategory } from '@/helpers/publicodes/getSubcatsOfCategory'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   questions: DottedName[]

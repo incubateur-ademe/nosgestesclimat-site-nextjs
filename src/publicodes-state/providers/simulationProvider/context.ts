@@ -1,12 +1,12 @@
 'use client'
-import {
+import type {
   DottedName,
   NGCRuleNode,
   NGCRules,
 } from '@incubateur-ademe/nosgestesclimat'
-import { EvaluatedNode, PublicodesExpression } from 'publicodes'
+import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { createContext } from 'react'
-import {
+import type {
   Engine,
   Metric,
   MissingVariables,

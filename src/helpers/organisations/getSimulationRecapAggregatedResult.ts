@@ -1,5 +1,5 @@
 import { carboneMetric, eauMetric } from '@/constants/metric'
-import { SimulationRecap } from '@/types/organisations'
+import type { SimulationRecap } from '@/types/organisations'
 
 export function getSimulationRecapAggregatedResult(
   simulationRecaps: SimulationRecap[]

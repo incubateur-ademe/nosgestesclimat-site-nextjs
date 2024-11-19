@@ -1,8 +1,8 @@
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr.json'
 import Engine from 'publicodes'
 import getSomme from '../helpers/getSomme'
-import { Situation } from '../types'
+import type { Situation } from '../types'
 
 const engine = new Engine(rules)
 

@@ -1,4 +1,4 @@
-import { LocalStorage } from '@/publicodes-state/types'
+import type { LocalStorage } from '@/publicodes-state/types'
 import { useEffect } from 'react'
 
 type Props = {

@@ -1,6 +1,6 @@
 import { roundValue } from '@/utils/roundValue'
 import { formatValue } from 'publicodes'
-import { ElementType } from 'react'
+import type { ElementType } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Badge from '../layout/Badge'
 import Card from '../layout/Card'

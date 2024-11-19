@@ -6,7 +6,7 @@ import Card from '@/design-system/layout/Card'
 import { fixSituationWithPartialMosaic } from '@/helpers/personas/fixSituationWithPartialMosaic'
 import { getPersonaFoldedSteps } from '@/helpers/personas/getPersonaFoldedSteps'
 import { useDisposableEngine, useSimulation, useUser } from '@/publicodes-state'
-import {
+import type {
   DottedName,
   Persona as PersonaType,
 } from '@incubateur-ademe/nosgestesclimat'

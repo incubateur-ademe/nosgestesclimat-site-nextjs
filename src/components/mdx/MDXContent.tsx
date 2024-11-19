@@ -1,7 +1,7 @@
 import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
-import { MDXProps } from 'mdx/types'
+import type { MDXProps } from 'mdx/types'
 import { currentLocale } from 'next-i18n-router'
-import { JSX } from 'react'
+import type { JSX } from 'react'
 
 type Props = {
   contentFr: (props: MDXProps) => JSX.Element

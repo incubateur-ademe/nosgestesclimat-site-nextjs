@@ -1,7 +1,7 @@
 import Link from '@/components/Link'
 import Card from '@/design-system/layout/Card'
 import { getFormattedDate } from '@/helpers/date/getFormattedDate'
-import { Post } from '@/types/posts'
+import type { Post } from '@/types/posts'
 import { currentLocale } from 'next-i18n-router'
 import Image from 'next/image'
 

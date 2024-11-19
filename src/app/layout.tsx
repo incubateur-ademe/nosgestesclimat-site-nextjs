@@ -7,7 +7,7 @@ import { currentLocale } from 'next-i18n-router'
 import dynamic from 'next/dynamic'
 import localFont from 'next/font/local'
 import Script from 'next/script'
-import { PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
 

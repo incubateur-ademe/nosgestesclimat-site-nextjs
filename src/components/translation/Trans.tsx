@@ -1,4 +1,4 @@
-import { TransPropsWithInterpolation } from '@/types/translation'
+import type { TransPropsWithInterpolation } from '@/types/translation'
 import TransClient from './trans/TransClient'
 import TransServer from './trans/TransServer'
 

@@ -5,8 +5,8 @@ import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprin
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
-import { AnswerType } from '@/types/quiz'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { AnswerType } from '@/types/quiz'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   choices: DottedName[]

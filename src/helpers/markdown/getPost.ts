@@ -1,4 +1,4 @@
-import { Post } from '@/types/posts'
+import type { Post } from '@/types/posts'
 import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'

@@ -1,6 +1,6 @@
 import { getCurrentLangInfos } from '@/locales/translation'
-import { TranslationFunctionType } from '@/types/translation'
-import { NodeValue } from '@incubateur-ademe/nosgestesclimat'
+import type { TranslationFunctionType } from '@/types/translation'
+import type { NodeValue } from '@incubateur-ademe/nosgestesclimat'
 
 const getRawUnitDigitsArray = ({
   value,

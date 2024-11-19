@@ -1,4 +1,4 @@
-import { SimulationRecap } from '@/types/organisations'
+import type { SimulationRecap } from '@/types/organisations'
 
 type Props = {
   simulationRecaps: SimulationRecap[]

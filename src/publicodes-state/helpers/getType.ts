@@ -1,5 +1,5 @@
-import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
-import { EvaluatedNode } from 'publicodes'
+import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
+import type { EvaluatedNode } from 'publicodes'
 
 type Props = {
   dottedName: DottedName

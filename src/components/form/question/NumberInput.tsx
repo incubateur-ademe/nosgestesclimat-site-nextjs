@@ -1,7 +1,9 @@
 import Trans from '@/components/translation/Trans'
 import { useLocale } from '@/hooks/useLocale'
-import { HTMLAttributes, SyntheticEvent, useEffect, useRef } from 'react'
-import { NumberFormatValues, NumericFormat } from 'react-number-format'
+import type { HTMLAttributes, SyntheticEvent} from 'react';
+import { useEffect, useRef } from 'react'
+import type { NumberFormatValues} from 'react-number-format';
+import { NumericFormat } from 'react-number-format'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {

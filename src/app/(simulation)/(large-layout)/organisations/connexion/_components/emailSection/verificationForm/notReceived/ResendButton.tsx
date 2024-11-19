@@ -9,7 +9,7 @@ import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { UseMutateAsyncFunction } from '@tanstack/react-query'
+import type { UseMutateAsyncFunction } from '@tanstack/react-query'
 import React, { useEffect, useRef, useState } from 'react'
 
 type Props = {

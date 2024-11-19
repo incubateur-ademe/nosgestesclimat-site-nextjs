@@ -1,6 +1,7 @@
 'use client'
 
-import { PropsWithChildren, createContext, useState } from 'react'
+import type { PropsWithChildren} from 'react';
+import { createContext, useState } from 'react'
 
 type InfosContextType = {
   postalCode: string

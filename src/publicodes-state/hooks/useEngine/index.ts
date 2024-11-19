@@ -1,9 +1,9 @@
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import getSomme from '@/publicodes-state/helpers/getSomme'
-import { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback, useContext } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
-import { Metric } from '../../types'
+import type { Metric } from '../../types'
 
 /**
  * A hook that make available some basic functions on the engine (and the engine itself).

@@ -3,7 +3,7 @@
 import { useIsClient } from '@/hooks/useIsClient'
 import { getIsIframe } from '@/utils/getIsIframe'
 import { usePathname } from 'next/navigation'
-import { PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react'
 
 export default function Main({
   children,

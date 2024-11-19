@@ -1,8 +1,8 @@
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { PropsWithChildren } from 'react'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { PropsWithChildren } from 'react'
 
 type Props = { params: { root: DottedName } }
 
