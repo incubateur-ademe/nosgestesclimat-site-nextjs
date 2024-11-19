@@ -11,7 +11,6 @@ import {
   getLandingClickCTAResume,
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
-import { headers } from 'next/headers'
 import Image from 'next/image'
 import DailyGestureCarbonFootprint from './_components/DailyGestureCarbonFootprint'
 import DidYouKnowCarbon from './_components/DidYouKnowCarbonFootprint'
@@ -37,9 +36,6 @@ export async function generateMetadata() {
 }
 
 export default function CarbonFootprintLandingPage() {
-  const headersList = headers()
-  const pathname = headersList.get('x-pathname') || '/'
-
   return (
     <>
       <JSONLD
@@ -91,15 +87,15 @@ export default function CarbonFootprintLandingPage() {
               <DynamicCTAButton
                 trackingEvents={{
                   start: getLandingClickCTAStart(
-                    pathname,
+                    '/empreinte-carbone',
                     trackingActionClickCTA
                   ),
                   resume: getLandingClickCTAResume(
-                    pathname,
+                    '/empreinte-carbone',
                     trackingActionClickCTA
                   ),
                   results: getLandingClickCTAResults(
-                    pathname,
+                    '/empreinte-carbone',
                     trackingActionClickCTA
                   ),
                 }}
@@ -124,7 +120,7 @@ export default function CarbonFootprintLandingPage() {
 
         <DailyGestureCarbonFootprint />
 
-        <UnderstandToActCarbonFootprint />
+        <UnderstandToActCarbonFootprint pathname={'/empreinte-carbone'} />
 
         <MotivationSectionCarbonFootprint />
 

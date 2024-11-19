@@ -1,9 +1,10 @@
-import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import ColorLine from '@/design-system/layout/ColorLine'
 import Separator from '@/design-system/layout/Separator'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
+import LearnMoreCarbonLink from './twoFootprints/LearnMoreCarbonLink'
+import LearnMoreWaterLink from './twoFootprints/LearnMoreWaterLink'
 
 export default async function TwoFootprints() {
   const { t } = await getServerTranslation()
@@ -57,9 +58,7 @@ export default async function TwoFootprints() {
             </Trans>
           </p>
 
-          <Link href="/empreinte-carbone" className="text-[13px] md:text-base">
-            <Trans>En savoir plus sur l'empreinte carbone</Trans>
-          </Link>
+          <LearnMoreCarbonLink />
         </div>
 
         <div className="flex flex-col">
@@ -94,9 +93,7 @@ export default async function TwoFootprints() {
             </Trans>
           </p>
 
-          <Link href="/empreinte-eau" className="text-[13px] md:text-base">
-            <Trans>En savoir plus sur l'empreinte eau</Trans>
-          </Link>
+          <LearnMoreWaterLink />
         </div>
       </div>
     </div>

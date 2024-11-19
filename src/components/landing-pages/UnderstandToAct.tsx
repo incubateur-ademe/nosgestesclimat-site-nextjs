@@ -3,7 +3,6 @@ import PostThumbnail from '@/design-system/cms/PostThumbnail'
 import ColorLine from '@/design-system/layout/ColorLine'
 import { getLandingClickPostThumbnail } from '@/helpers/tracking/landings'
 import type { LandingPagePostType } from '@/types/landing-page'
-import { headers } from 'next/headers'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/Trans'
@@ -12,14 +11,13 @@ export default function UnderstandToAct({
   title,
   description,
   posts,
+  pathname,
 }: {
   title?: ReactNode
   description?: ReactNode
   posts: Omit<LandingPagePostType, 'trackingEvent'>[]
+  pathname: string
 }) {
-  const headersList = headers()
-  const pathname = headersList.get('x-pathname') || '/'
-
   return (
     <div className="relative w-full bg-heroLightBackground py-16 md:py-20">
       <div className="mx-auto flex max-w-full flex-col gap-4 px-4 md:max-w-5xl md:px-0">

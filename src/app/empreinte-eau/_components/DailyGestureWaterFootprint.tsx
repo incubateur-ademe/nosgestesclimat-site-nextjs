@@ -7,13 +7,9 @@ import {
   getLandingClickCTAResume,
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
-import { headers } from 'next/headers'
 
 export default async function DailyGestureWaterFootprint() {
   const { t } = await getServerTranslation()
-
-  const headersList = headers()
-  const pathname = headersList.get('x-pathname') || '/'
 
   const gesturesKeysForTranslation = {
     alimentation: t('Alimentation'),
@@ -52,13 +48,16 @@ export default async function DailyGestureWaterFootprint() {
         </>
       }
       trackingEvents={{
-        start: getLandingClickCTAStart(pathname, trackingActionClickPageBottom),
+        start: getLandingClickCTAStart(
+          '/empreinte-eau',
+          trackingActionClickPageBottom
+        ),
         resume: getLandingClickCTAResume(
-          pathname,
+          '/empreinte-eau',
           trackingActionClickPageBottom
         ),
         results: getLandingClickCTAResults(
-          pathname,
+          '/empreinte-eau',
           trackingActionClickPageBottom
         ),
       }}

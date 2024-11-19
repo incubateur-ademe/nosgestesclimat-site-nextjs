@@ -3,6 +3,7 @@ export function getLandingCategory(pathname: string) {
     case '/empreinte-eau':
       return 'LP eau'
     case '/empreinte-carbone':
+      console.log('empreinte-carbone')
       return 'LP carbone'
     case '/':
     default:

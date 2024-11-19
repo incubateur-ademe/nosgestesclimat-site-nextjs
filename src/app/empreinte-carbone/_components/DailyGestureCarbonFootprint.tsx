@@ -7,13 +7,9 @@ import {
   getLandingClickCTAResume,
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
-import { headers } from 'next/headers'
 
 export default async function DailyGestureCarbonFootprint() {
   const { t } = await getServerTranslation()
-
-  const headersList = headers()
-  const pathname = headersList.get('x-pathname') || '/'
 
   const gesturesKeysForTranslation = {
     transport: t('Transport'),
@@ -45,13 +41,16 @@ export default async function DailyGestureCarbonFootprint() {
         </>
       }
       trackingEvents={{
-        start: getLandingClickCTAStart(pathname, trackingActionClickPageBottom),
+        start: getLandingClickCTAStart(
+          '/empreinte-carbone',
+          trackingActionClickPageBottom
+        ),
         resume: getLandingClickCTAResume(
-          pathname,
+          '/empreinte-carbone',
           trackingActionClickPageBottom
         ),
         results: getLandingClickCTAResults(
-          pathname,
+          '/empreinte-carbone',
           trackingActionClickPageBottom
         ),
       }}

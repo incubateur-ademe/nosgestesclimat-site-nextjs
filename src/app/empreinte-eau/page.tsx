@@ -10,7 +10,6 @@ import {
   getLandingClickCTAResume,
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
-import { headers } from 'next/headers'
 import Image from 'next/image'
 import DailyGestureWaterFootprint from './_components/DailyGestureWaterFootprint'
 import DidYouKnowWaterFootprint from './_components/DidYouKnowWaterFootprint'
@@ -39,9 +38,6 @@ export async function generateMetadata() {
 
 export default async function WaterFootprintLandingPage() {
   const { t } = await getServerTranslation()
-
-  const headersList = headers()
-  const pathname = headersList.get('x-pathname') || '/'
 
   return (
     <>
@@ -90,15 +86,15 @@ export default async function WaterFootprintLandingPage() {
               <DynamicCTAButton
                 trackingEvents={{
                   start: getLandingClickCTAStart(
-                    pathname,
+                    '/empreinte-eau',
                     trackingActionClickCTA
                   ),
                   resume: getLandingClickCTAResume(
-                    pathname,
+                    '/empreinte-eau',
                     trackingActionClickCTA
                   ),
                   results: getLandingClickCTAResults(
-                    pathname,
+                    '/empreinte-eau',
                     trackingActionClickCTA
                   ),
                 }}
@@ -125,7 +121,7 @@ export default async function WaterFootprintLandingPage() {
 
         <DailyGestureWaterFootprint />
 
-        <UnderstandToActWaterFootprint />
+        <UnderstandToActWaterFootprint pathname={'/empreinte-eau'} />
 
         <MotivationSectionWaterFootprint />
 
