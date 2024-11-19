@@ -6,7 +6,7 @@ export default function DidYouKnowMainLanding() {
     <DidYouKnowSlider
       slides={[
         {
-          illustration: '/images/icons/computer.svg',
+          illustration: '/images/icons/icone-ordinateur.svg',
           content: (
             <Trans>
               L'empreinte carbone moyenne d'un français est de{' '}
@@ -19,7 +19,7 @@ export default function DidYouKnowMainLanding() {
           highlight: <Trans>Et la vôtre ?</Trans>,
         },
         {
-          illustration: '/images/icons/jeans.svg',
+          illustration: '/images/icons/icone-jeans.svg',
           content: (
             <Trans>
               La production d'un jean nécessite près de{' '}
@@ -29,7 +29,7 @@ export default function DidYouKnowMainLanding() {
           highlight: <Trans>Considérable, non ?</Trans>,
         },
         {
-          illustration: '/images/icons/water-drop.svg',
+          illustration: '/images/icons/icone-goutte.svg',
           content: (
             <Trans>
               L'empreinte eau moyenne d'un français se compte{' '}
@@ -42,7 +42,7 @@ export default function DidYouKnowMainLanding() {
           highlight: <Trans>Et la vôtre ?</Trans>,
         },
         {
-          illustration: '/images/icons/plane.svg',
+          illustration: '/images/icons/icone-avion.svg',
           content: (
             <Trans>
               Un aller-retour Paris-Athènes en avion représente{' '}
