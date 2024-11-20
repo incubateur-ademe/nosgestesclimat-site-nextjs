@@ -61,11 +61,7 @@ export default async function WaterFootprintLandingPage() {
 
       <LandingPage
         heroTitle={
-          <h1 className="mb-0 text-2xl leading-8 md:text-5xl md:leading-[3rem]">
-            <Trans>
-              Chaque goutte compte : découvrez votre empreinte eau !
-            </Trans>
-          </h1>
+          <Trans>Chaque goutte compte : découvrez votre empreinte eau !</Trans>
         }
         heroDescription={
           <div className="flex flex-col items-start gap-6">

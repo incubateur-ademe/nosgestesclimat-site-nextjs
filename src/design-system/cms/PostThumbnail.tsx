@@ -1,5 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import Image from 'next/image'
+import type { ReactNode } from 'react'
 import Badge from '../layout/Badge'
 
 export default function PostThumbnail({
@@ -9,8 +10,8 @@ export default function PostThumbnail({
   imageAlt,
   href,
 }: {
-  title: string
-  category: string
+  title: ReactNode
+  category: ReactNode
   imageSrc: string
   imageAlt: string
   href: string
