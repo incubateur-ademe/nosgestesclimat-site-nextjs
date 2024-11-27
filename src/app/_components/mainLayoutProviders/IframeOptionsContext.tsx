@@ -81,6 +81,13 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
   }, [isIframe])
 
   useEffect(() => {
+    if (isIframe) {
+      // Add class to body to modify the style of the page on iframe mode
+      document.body.classList.add('iframe-mode')
+    }
+  }, [isIframe])
+
+  useEffect(() => {
     if (isIframeOnlySimulation) {
       // Add class to body that hides the header and the footer
       document.body.classList.add('iframeOnlySimulation')
