@@ -7,6 +7,7 @@ import type { ReactNode } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import DynamicCTAButton from '../cta/DynamicCTAButton'
+import Trans from '../translation/Trans'
 
 export default function DidYouKnowSlider({
   slides,
@@ -45,7 +46,7 @@ export default function DidYouKnowSlider({
 
               <div className="w-full flex-1">
                 <h3 className="text-center text-xl md:text-left md:text-3xl">
-                  Le saviez vous ?
+                  <Trans>Le saviez vous ?</Trans>
                 </h3>
 
                 <Separator className="mx-auto my-4 md:mx-0" />

@@ -19,7 +19,7 @@ export default function ModelInfo() {
                   l’Agence de l’Environnement et de la Maîtrise de l’Énergie
                 </strong>{' '}
                 dans le calculateur de Nos Gestes Climat : données,
-                perspectives,
+                perspectives, leviers d'action.
               </Trans>
             }
             link={{
