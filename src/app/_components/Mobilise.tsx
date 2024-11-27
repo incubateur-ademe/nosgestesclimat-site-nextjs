@@ -50,9 +50,9 @@ export default async function Mobilise() {
       <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:gap-24">
         <div className="py-14">
           <Image
-            src="/images/illustrations/reflechir-impacts-de-son-empreinte.svg"
+            src="/images/illustrations/reflechir-impacts-de-son-empreinte-en-entreprise.svg"
             alt={t(
-              'Un groupe de personnes en train de réfléchir aux impacts de leur empreinte carbone et eau'
+              'un groupe de personnes en train de réfléchir à leurs impacts et leur bilan carbone et eau'
             )}
             width={500}
             height={500}
