@@ -50,9 +50,10 @@ export default async function Tutoriel() {
 
         <AutresQuestions />
 
+        {/* Check if body has the "iframe-mode" class name and if so add the static class to the footer */}
         <div
           className={twMerge(
-            'fixed bottom-0 left-0 right-0 z-50 border-t-2 border-primary-200 bg-gray-100 py-3'
+            'tutorial-footer fixed bottom-0 left-0 right-0 z-50 border-t-2 border-primary-200 bg-gray-100 py-3'
           )}>
           <div
             className={twMerge(
