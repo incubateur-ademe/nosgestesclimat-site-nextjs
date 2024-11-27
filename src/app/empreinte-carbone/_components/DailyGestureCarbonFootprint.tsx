@@ -16,7 +16,7 @@ export default async function DailyGestureCarbonFootprint() {
       title={<Trans>Les actions pour réduire son empreinte carbone </Trans>}
       description={
         <>
-          <p>
+          <p className="mb-0">
             <Trans>
               Pour un mode de vie plus durable, certaines actions{' '}
               <strong className="text-primary-600">

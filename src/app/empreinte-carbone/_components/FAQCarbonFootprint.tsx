@@ -268,27 +268,12 @@ export default async function FAQCarbonFootprint() {
           answer: (
             <>
               <p>
-                <Trans>Empreinte eau et empreinte carbone se répondent. </Trans>
-              </p>
-
-              <p>
                 <Trans>
                   La Chine et les États-Unis sont les deux plus grands émetteurs
                   de gaz à effet de serre en raison de leur forte dépendance aux
                   énergies fossiles (charbon, pétrole, gaz), de leurs industries
                   énergivores ainsi que de la croissance rapide de leurs
                   secteurs de transport et de production manufacturière.
-                </Trans>
-              </p>
-
-              <p>
-                <Trans>
-                  Par ailleurs, l’empreinte humaine sur les sols
-                  (artificialisation, cultures intensives, déforestation) a
-                  réduit fortement leur capacité à absorber et retenir les eaux
-                  pluviales. Elle s’évapore trop vite, et n’alimente plus autant
-                  les cours d’eau, lacs et nappes phréatiques, qui
-                  progressivement s’épuisent.
                 </Trans>
               </p>
 
