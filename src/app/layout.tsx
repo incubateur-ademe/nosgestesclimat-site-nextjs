@@ -12,8 +12,7 @@ import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
 
 const ClientErrorContent = dynamic(
-  () => import('@/components/error/ErrorContent'),
-  { ssr: false }
+  () => import('@/components/error/ErrorContent')
 )
 
 export const marianne = localFont({
