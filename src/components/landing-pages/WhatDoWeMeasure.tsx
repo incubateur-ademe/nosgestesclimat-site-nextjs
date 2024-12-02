@@ -3,15 +3,20 @@
 import type { WhatDoWeMeasureListItem } from '@/types/landing-page'
 import type { ReactNode } from 'react'
 import 'slick-carousel/slick/slick.css'
+import { twMerge } from 'tailwind-merge'
 
 export default function WhatDoWeMeasure({
   title,
   listItems,
   description,
+  shouldDescriptionBeBeforeList,
+  shouldUseDescriptionMaxWidth,
 }: {
   title: ReactNode
   listItems: WhatDoWeMeasureListItem[]
   description: ReactNode
+  shouldDescriptionBeBeforeList?: boolean
+  shouldUseDescriptionMaxWidth?: boolean
 }) {
   return (
     <div className="mb-16 flex max-w-full flex-col gap-10 md:mx-auto md:mb-20 md:max-w-5xl md:px-0">
@@ -19,7 +24,19 @@ export default function WhatDoWeMeasure({
         {title}
       </h2>
 
-      <ul className="hidden grid-cols-1 gap-5 md:grid md:grid-cols-2 lg:grid-cols-5">
+      <section
+        className={twMerge(
+          'mx-auto w-[800px] max-w-full px-4 text-sm md:px-0 md:text-lg',
+          shouldDescriptionBeBeforeList ? '' : 'hidden'
+        )}>
+        {description}
+      </section>
+
+      <ul
+        className={twMerge(
+          `order hidden grid-cols-1 gap-5 md:grid md:grid-cols-2 lg:grid-cols-${listItems.length}`,
+          shouldUseDescriptionMaxWidth ? 'max-w-[800px]' : ''
+        )}>
         {listItems.map(({ icon, title }, index) => (
           <li
             key={`list-item-${title}-${index}`}
@@ -44,7 +61,11 @@ export default function WhatDoWeMeasure({
           ))}
         </div>
       </div>
-      <section className="mx-auto w-[800px] max-w-full px-4 text-sm md:px-0 md:text-lg">
+      <section
+        className={twMerge(
+          'mx-auto w-[800px] max-w-full px-4 text-sm md:px-0 md:text-lg',
+          shouldDescriptionBeBeforeList ? 'hidden' : ''
+        )}>
         {description}
       </section>
     </div>
