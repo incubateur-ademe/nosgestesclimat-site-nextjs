@@ -40,7 +40,7 @@ export default async function WaterFootprintLandingPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'Organization',
-            url: 'https://nosgestesclimat.fr/',
+            url: 'https://nosgestesclimat.fr',
             name: 'Nos Gestes Climat',
             logo: 'https://nosgestesclimat.fr/_next/image?url=%2Fimages%2Fmisc%2Fpetit-logo%403x.png&w=640&q=75',
           },
@@ -61,14 +61,10 @@ export default async function WaterFootprintLandingPage() {
 
       <LandingPage
         heroTitle={
-          <h1 className="mb-0 text-2xl leading-8 md:text-5xl md:leading-[3rem]">
-            <Trans>
-              Chaque goutte compte : découvrez votre empreinte eau !
-            </Trans>
-          </h1>
+          <Trans>Chaque goutte compte : découvrez votre empreinte eau !</Trans>
         }
         heroDescription={
-          <div className="flex flex-col items-start gap-6">
+          <div className="flex flex-col items-start gap-4 md:gap-6">
             <p className="mb-0">
               <Trans>
                 Calculez votre{' '}
