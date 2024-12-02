@@ -1,7 +1,8 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { PropsWithChildren, ReactNode, useState } from 'react'
+import type { PropsWithChildren, ReactNode} from 'react';
+import { useState } from 'react'
 import Button from './Button'
 
 type Props = {

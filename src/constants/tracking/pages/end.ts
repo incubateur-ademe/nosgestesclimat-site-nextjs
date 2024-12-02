@@ -1,8 +1,8 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
-import { NorthStarType, NorthStarValue } from '@/types/northstar'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { NorthStarType, NorthStarValue } from '@/types/northstar'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 // Figma comment #57
 export const endClickPoll = ['trackEvent', 'Fin', 'Click Poll']
@@ -85,4 +85,16 @@ export const endClickDomesticWater = [
   'trackEvent',
   'Fin',
   'Click Eau domestique',
+]
+
+export const endClickJagisFirstBlock = [
+  'trackEvent',
+  'Fin',
+  'Click Jagis premier bloc',
+]
+
+export const endClickJagisSecondBlock = [
+  'trackEvent',
+  'Fin',
+  'Click Jagis second bloc',
 ]

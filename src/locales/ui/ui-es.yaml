@@ -347,7 +347,7 @@ entries:
   Terminer: Acabado
   Vous avez terminé le test !: Has completado la prueba
   Une capture du mode Groupe Nos Gestes Climat.: Una captura del Grupo Nos Gestes Climat.
-  FAQ: PREGUNTAS FRECUENTES
+  FAQ: Preguntas frecuentes
   Créé par {{name}}: Creado por {{name}}
   Les actions phares: Acciones clave
   Quitter: Deja
@@ -1207,3 +1207,226 @@ entries:
   Toute contribution est la bienvenue !: Todas las contribuciones son bienvenidas
   Une idée ? Une correction ? Une remarque ?: ¿Alguna idea? ¿Una corrección? ¿Un comentario?
   L'empreinte climat, qu'est-ce que c'est ?: ¿Qué es la huella climática?
+  Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte eau.: ¿Conoces tu huella climática? Haz el test y descubre cómo puedes reducir tu huella hídrica.
+  L’empreinte eau d'un jean est de 30 000 litres d'eau.: La huella hídrica de un par de vaqueros es de 30.000 litros de agua.
+  'Une baguette de pain : 40 litres d’eau.': 'Una barra de pan: 40 litros de agua.'
+  Qu'est-ce que l'empreinte eau ?: ¿Qué es la huella hídrica?
+  L’eau est <2>au cœur de nos vies</2> et de notre consommation quotidienne, bien <6>au-delà de ce que nous voyons à la maison</6>. Chaque jour, des milliers de litres d’eau sont utilisés pour produire les aliments que nous mangeons, les vêtements que nous portons et l’énergie que nous consommons.: El agua está en <2>el centro de nuestras vidas</2> y de nuestro consumo diario, <6>mucho más allá de lo que vemos en casa</6>. Cada día se utilizan miles de litros de agua para producir los alimentos que comemos, la ropa que vestimos y la energía que consumimos.
+  Le lexique pour tout comprendre à l'empreinte eau: Un glosario para entender la huella hídrica
+  La méthodologie AWARE que nous utilisons pour calculer l’empreinte eau se concentre sur les prélèvements d’eau, à savoir l’eau bleue. Elle ne tient pas compte de l’eau grise.: La metodología AWARE que utilizamos para calcular la huella hídrica se centra en las extracciones de agua, es decir, el agua azul. No tiene en cuenta las aguas grises.
+  Sur le site Nos Gestes Climat, le calcul de l'empreinte eau se fait simultanément avec le calcul de l'empreinte carbone.: En la página web de Nos Gestes Climat, la huella hídrica se calcula al mismo tiempo que la huella de carbono.
+  Adopter une alimentation moins gourmande en eau, en consommant moins de viande et en privilégiant les produits locaux et de saison, a également un impact significatif. Enfin, en évitant le gaspillage et en achetant des produits fabriqués de manière durable, on peut contribuer à la préservation des ressources hydriques tout en limitant notre empreinte environnementale.: Adoptar una dieta menos intensiva en agua, comiendo menos carne y favoreciendo los productos locales y de temporada, también tiene un impacto significativo. Por último, si evitamos el despilfarro y compramos productos producidos de forma sostenible, podemos ayudar a preservar los recursos hídricos al tiempo que limitamos nuestra huella ambiental.
+  La production d’aliments pour les animaux d’élevage: Producción de piensos para animales de granja
+  "Ce n’est pas parce qu’elle n’est pas incluse qu’elle n’est pas importante ! Régulièrement, de nombreux territoires français sont soumis à des restrictions d’eau liées à des périodes de sécheresse. Il est important de réduire sa consommation d'eau domestique pour mieux partager cette ressource vitale et limiter les pressions sur les réserves locales. ": 'Que no esté incluido no significa que no sea importante Muchas zonas de Francia sufren regularmente restricciones de agua debido a los periodos de sequía. Es importante reducir el consumo doméstico de agua para compartir mejor este recurso vital y limitar la presión sobre las reservas locales. '
+  La culture des fruits, légumes et céréales que nous mangeons: Cultivar las frutas, hortalizas y cereales que comemos
+  Les activités humaines perturbent le cycle de l’eau et compromettent l’accès à l’eau potable, entraînant conflits, perte de biodiversité et déplacements de populations.: Las actividades humanas alteran el ciclo del agua y comprometen el acceso al agua potable, lo que provoca conflictos, pérdida de biodiversidad y desplazamiento de poblaciones.
+  <0>L’empreinte eau</0> correspond à l’ensemble de l’eau douce utilisée pour produire, distribuer et traiter en fin de vie des produits, biens ou services, que nous consommons au quotidien.: <0>La huella hídrica</0> es la cantidad total de agua dulce utilizada para producir, distribuir y tratar al final de su vida útil los productos, bienes y servicios que consumimos cada día.
+  La production d’électricité: Producción de electricidad
+  Il existe plusieurs méthodes pour calculer une empreinte eau. Chacune présente des avantages, et aucune à ce stade ne permet de saisir toute la complexité de la question des impacts de l’humain sur le cycle de l’eau. Notre choix s’est porté sur <2>la méthode AWARE</2>, qui permet de valoriser à sa juste mesure le stress hydrique des régions concernées par les consommations d’eau. C’est la méthode recommandée par la convention européenne, et plébiscitée par l’ADEME pour ses calculs d’ACV.: Existen varios métodos para calcular la huella hídrica. Cada uno tiene sus ventajas, pero ninguno capta por ahora toda la complejidad de la cuestión del impacto humano en el ciclo del agua. Hemos optado por <2>el método AWARE</2>, que proporciona una evaluación precisa del estrés hídrico en las regiones afectadas por el consumo de agua. Es el método recomendado por la Convención Europea y ampliamente utilizado por ADEME para sus cálculos de ACV.
+  'Un jean : environ 30 000 litres d’eau, principalement pour la culture du coton.': Un par de vaqueros consume unos 30.000 litros de agua, principalmente para el cultivo del algodón.
+  Bien que l’eau soit abondante sur Terre, seule 1 % de l’eau est douce et accessible pour la consommation humaine.: Aunque el agua es abundante en la Tierra, sólo el 1% de ella es dulce y accesible para el consumo humano.
+  'Un kilo de pommes de terre : 330 litres d’eau.': 'Un kilo de patatas: 330 litros de agua.'
+  L'extraction des matériaux pour le numérique: Extracción de materiales para aplicaciones digitales
+  Passer le test: Realización de la prueba
+  'Un hamburger de bœuf : environ 380 litres d’eau.': 'Una hamburguesa de ternera: unos 380 litros de agua.'
+  Eau verte : eau de pluie absorbée par les sols, utilisée pour les cultures sans irrigation artificielle.: 'Agua verde: agua de lluvia absorbida por el suelo y utilizada para cultivar sin riego artificial.'
+  Comprendre pour agir: Comprender para actuar
+  Considérable, non ?: Considerable, ¿no?
+  cuisiner: Cocinar con productos locales de temporada
+  Accès à l'eau: Acceso al agua
+  Comment calculer l’empreinte eau ?: ¿Cómo se calcula la huella hídrica?
+  À la différence de l’empreinte carbone, nous ne disposons pas encore de données consolidées à l’échelle de la France, ni d’objectifs à atteindre. Mais nous avons déjà une vision assez juste des conséquences de notre accaparement de cette précieuse ressource pour l’ensemble du vivant. Nous pouvons agir collectivement pour réduire notre empreinte eau.: A diferencia de la huella de carbono, aún no disponemos de datos consolidados para Francia, ni de objetivos a los que aspirar. Pero ya tenemos una imagen bastante precisa de las consecuencias de nuestro acaparamiento de este recurso precioso para todos los seres vivos. Podemos actuar colectivamente para reducir nuestra huella hídrica.
+  Avec les pressions croissantes exercées par les activités humaines et le changement climatique, la gestion durable de l’eau est devenue <2>un défi planétaire</2>. Que ce soit pour l’agriculture, l’industrie ou l’usage domestique, cette ressource limitée fait face à des menaces importantes. <5>Réduire notre consommation d’eau</5> et adopter des pratiques responsables est donc <9>nécessaire pour préserver les ressources</9> et répondre aux défis environnementaux mondiaux.: Con la creciente presión de las actividades humanas y el cambio climático, la gestión sostenible del agua se ha convertido en <2>un reto mundial</2>. Ya sea para la agricultura, la industria o el uso doméstico, este recurso limitado se enfrenta a grandes amenazas. <5>Reducir nuestro consumo de agua</5> y adoptar prácticas responsables es, por tanto, <9>necesario para preservar los recursos</9> y hacer frente a los retos medioambientales mundiales.
+  Cette consommation d’eau, pourtant très importante, est <2>invisible à l’œil nu</2> mais son impact est bien réel.: Este consumo de agua, aunque muy significativo, es <2>invisible a simple vista</2>, pero su impacto es muy real.
+  'Attention : l’empreinte eau ne tient pas compte de la consommation d’eau domestique (douche, toilettes, cuisine, arrosage) !': 'Atención: la huella hídrica no tiene en cuenta el consumo doméstico de agua (duchas, inodoros, cocina, riego)'
+  "Chaque geste compte pour garantir un accès durable à l'eau pour tous. ": 'Cada gesto cuenta para garantizar un acceso sostenible al agua para todos. '
+  Calculateur d'empreinte eau personnelle - Nos Gestes Climat: Calculadora de la huella hídrica personal - Nos Gestes Climat
+  Calculez votre empreinte eau et découvrez les litres qui se cachent dans votre consommation du quotidien.: Calcula tu huella hídrica y descubre los litros que esconde tu consumo diario.
+  Ainsi, en calculant votre empreinte carbone, vous obtenez également une estimation de votre empreinte eau pour une vision complète de votre impact.: Así, al calcular su huella de carbono, también obtiene una estimación de su huella hídrica para tener una visión completa de su impacto.
+  Au travers du calculateur Nos Gestes Climat, nous calculons la quantité d’eau consommée par chacun de vos usages (achat d’un produit ou aliment, utilisation d’un service, consommations d’énergies).: Con la calculadora Nos Gestes Climat, calculamos la cantidad de agua consumida por cada uno de tus usos (compra de un producto o alimento, utilización de un servicio, consumo de energía).
+  Une fois utilisée, cette eau est dépolluée puis renvoyée dans les cours d'eau locaux.: Una vez utilizada, el agua se limpia y se devuelve a los cursos de agua locales.
+  Les pratiques agricoles intensives et les rejets industriels contaminent les ressources en eau, menacent les écosystèmes et notre santé.: Las prácticas agrícolas intensivas y los residuos industriales están contaminando los recursos hídricos, amenazando los ecosistemas y nuestra salud.
+  Eau bleue : eau de surface et souterraine prélevée pour l’irrigation, la production industrielle ou l'énergie.: 'Aguas azules: aguas superficiales y subterráneas extraídas para el riego, la producción industrial o la energía.'
+  'Il existe plusieurs distinctions, qui permettent de valoriser les différences qualitatives d’impact de l’humain sur le cycle de l’eau. La couleur de l’eau en est une majeure :': 'Hay varias distinciones que ponen de relieve las diferencias cualitativas del impacto humano en el ciclo del agua. El color del agua es una de las principales:'
+  'Empreinte eau et empreinte carbone se répondent. ': 'La huella hídrica y la huella de carbono van de la mano. '
+  Économiser l’eau, un enjeu de développement durable: Ahorrar agua, una cuestión de desarrollo sostenible
+  fabric: 'Favorecer los materiales sostenibles (lino, cáñamo, lana, y si es algodón: reciclado)'
+  Empreinte eau et empreinte carbone sont complémentaires, et les comprendre permet d’agir en faveur d’une gestion <2>plus durable des ressources naturelles</2> de la planète.: La huella hídrica y la huella de carbono son complementarias, y comprenderlas nos permite actuar en favor de una gestión <2>más sostenible de los recursos naturales</2> del planeta.
+  'Voici quelques exemples de gestes qui auront un impact important sur votre consommation eau indirecte :': 'He aquí algunos ejemplos de acciones que tendrán un impacto significativo en su consumo indirecto de agua:'
+  Mieux comprendre <2>notre impact sur les ressources en eau</2> est essentiel pour pouvoir agir efficacement. À travers une série d’articles, nous vous proposons des conseils pratiques, des idées inspirantes et des informations clés pour <6>réduire votre empreinte eau</6>.: Comprender <2>nuestro impacto en los recursos hídricos</2> es esencial si queremos tomar medidas eficaces. A través de una serie de artículos, le ofrecemos consejos prácticos, ideas inspiradoras e información clave para ayudarle a <6>reducir su huella hídrica</6>.
+  Impressionnant, non ?: Impresionante, ¿verdad?
+  'Voici quelques exemples d’empreinte eau pour des produits courants :': 'He aquí algunos ejemplos de huellas hídricas de productos comunes:'
+  De l’eau se cache derrière toutes nos consommations, dans des proportions que nous ne soupçonnons pas toujours !: El agua se esconde detrás de todo lo que consumimos, en proporciones de las que no siempre nos damos cuenta
+  La culture du coton de nos vêtements: Cultivar el algodón de nuestra ropa
+  Eau grise : quantité d’eau nécessaire pour diluer les polluants générés par la production d’un bien ou service.: 'Aguas grises: cantidad de agua necesaria para diluir los contaminantes generados por la producción de un bien o servicio.'
+  eau-du-robinet: Prefiero el agua del grifo
+  L’eau domestique, celle qui sort de vos robinets pour la douche, la cuisine, le ménage... n'est pas incluse dans l'empreinte eau car elle est en grande majorité restituée dans le même bassin versant après traitement.: El agua doméstica, la que sale de los grifos para ducharse, cocinar, limpiar, etc., no se incluye en la huella hídrica porque la mayor parte se devuelve a la misma cuenca de captación tras su tratamiento.
+  Il faut 75 litres d’eau pour produire un oeuf.: Se necesitan 75 litros de agua para producir un huevo.
+  "L'empreinte eau : pourquoi et comment avons-nous travaillé": 'La huella hídrica: por qué y cómo trabajamos'
+  L’empreinte eau aboutit-elle aux mêmes conclusions que l’empreinte carbone ?: ¿Lleva la huella hídrica a las mismas conclusiones que la huella de carbono?
+  L’empreinte eau, ces litres qu’on ne voit pas !: La huella hídrica, ¡los litros que no vemos!
+  'L’empreinte eau d’un français est de plusieurs milliers de litres par jour : entre 4 et 8000, en moyenne.': 'La huella hídrica de un francés es de varios miles de litros al día: entre 4 y 8.000 de media.'
+  Vos questions sur l'empreinte eau: Sus preguntas sobre la huella hídrica
+  La production d’un ordinateur nécessite 195 000 litres d’eau.: Se necesitan 195.000 litros de agua para producir un ordenador.
+  Lire l'article sur le lexique pour tout comprendre à l'empreinte eau, nouvelle page: Lea el artículo sobre el glosario para entender la huella hídrica, nueva página
+  Lire la suite: Seguir leyendo
+  second-hand: Favorecer los productos de segunda mano
+  'Les gestes du quotidien pour préserver nos ressources en eau Les gestes du quotidien pour préserver nos ressources en eau ': 'Acciones cotidianas para preservar nuestros recursos hídricos Acciones cotidianas para preservar nuestros recursos hídricos '
+  L’empreinte eau, <2>calculée en milliers de litres par jour</2>, tient compte de <5>l’eau nécessaire</5> à la production, la distribution et au traitement des biens et services consommés. Ce calcul prend également en considération<7>le stress hydrique</7>et pondère les consommations d’eau en fonction de <10>la rareté de la ressource</10> dans les territoires concernés. Ainsi, un litre d’eau utilisé en France n’aura pas la même valeur qu’un litre d’eau utilisé au Maroc.: La huella hídrica, <2>calculada en miles de litros diarios</2>, tiene en cuenta el <5>agua necesaria</5> para producir, distribuir y procesar los bienes y servicios consumidos. El cálculo también tiene en cuenta<7>el estrés hídrico y</7>pondera el consumo de agua en función de <10>la escasez de recursos hídricos</10> en las regiones afectadas. Por ejemplo, un litro de agua utilizado en Francia no tendrá el mismo valor que un litro de agua utilizado en Marruecos.
+  viande: Reducir el consumo de carne
+  Ressources en eau douce limitées: Recursos limitados de agua dulce
+  'Un kilo de riz : 14 000 litres d’eau.': 'Un kilo de arroz: 14.000 litros de agua.'
+  'Une tasse de café : 64 litres d’eau, de la culture à la transformation.': 'Una taza de café: 64 litros de agua, desde el cultivo hasta la elaboración.'
+  Que calcule-t-on dans l’empreinte eau ?: ¿Qué se calcula en la huella hídrica?
+  Lire l'article sur la méthode AWARE, nouvelle page: Lea el artículo sobre el método AWARE, nueva página
+  Quelle est l'empreinte eau moyenne d'un habitant français ?: ¿Cuál es la huella hídrica media de un francés?
+  Pollution des eaux: Contaminación del agua
+  'Un litre de lait : environ 330 litres d’eau.': 'Un litro de leche: unos 330 litros de agua.'
+  Qu'est-ce que l'eau verte, l'eau bleue et l'eau grise ?: ¿Qué es el agua verde, el agua azul y el agua gris?
+  Quels sont les exemples d'empreinte eau de certains produits ?: ¿Cuáles son algunos ejemplos de la huella hídrica de determinados productos?
+  'Une tablette de chocolat (150g) : 235 litres d’eau.': 'Una tableta de chocolate (150 g): 235 litros de agua.'
+  Pour réduire son empreinte eau, il est nécessaire de changer nos habitudes quotidiennes.: Para reducir nuestra huella hídrica, tenemos que cambiar nuestros hábitos cotidianos.
+  Pourquoi l'eau domestique n'est-elle pas incluse dans l'empreinte eau ?: ¿Por qué no se incluye el agua doméstica en la huella hídrica?
+  'Une hausse de 1 degré de la température du globe entraîne une hausse de 7% du taux d’humidité dans l’atmosphère. L’eau s’évapore plus, plus vite, et les phénomènes climatiques violents s’intensifient. Des régions s’assèchent, quand d’autres sont inondées. ': 'Un aumento de 1 grado de la temperatura global provoca un incremento del 7% de la humedad atmosférica. El agua se evapora más, más rápidamente, y los fenómenos climáticos violentos se intensifican. Algunas regiones se secan y otras se inundan. '
+  'Pour aller plus loin : <2>Le lexique pour tout comprendre à l’empreinte eau</2>': 'Si quiere ver más: <2>Glosario de términos para entender mejor la huella hídrica</2>'
+  textile-durables: Opta por ropa sostenible
+  'Un œuf : 75 litres d’eau.': 'Un huevo: 75 litros de agua.'
+  Par ailleurs, l’empreinte humaine sur les sols (artificialisation, cultures intensives, déforestation) a réduit fortement leur capacité à absorber et retenir les eaux pluviales. Elle s’évapore trop vite, et n’alimente plus autant les cours d’eau, lacs et nappes phréatiques, qui progressivement s’épuisent.: Además, la huella humana en los suelos (artificialización, agricultura intensiva, deforestación) ha reducido mucho su capacidad de absorber y retener el agua de lluvia. Se evapora con demasiada rapidez y ya no alimenta en la misma medida los ríos, los lagos y las aguas subterráneas, que se agotan poco a poco.
+  Les gestes du quotidien pour préserver nos ressources en eau: Acciones cotidianas para preservar nuestros recursos hídricos
+  L’empreinte eau, <2>calculée en milliers de litres par jour</2>, tient compte de <5>l’eau nécessaire</5> à la production, la distribution et au traitement des biens et services consommés. Ce calcul prend également en considération <8>le stress hydrique</8> et pondère les consommations d’eau en fonction de <12>la rareté de la ressource</12> dans les territoires concernés. Ainsi, un litre d’eau utilisé en France n’aura pas la même valeur qu’un litre d’eau utilisé au Maroc.: La huella hídrica, <2>calculada en miles de litros diarios</2>, tiene en cuenta el <5>agua necesaria</5> para producir, distribuir y procesar los bienes y servicios consumidos. El cálculo también tiene en cuenta <8>el estrés hídrico</8> y pondera el consumo de agua en función de <12>la escasez de recursos hídricos</12> en las regiones afectadas. Así, un litro de agua consumido en Francia no tendrá el mismo valor que un litro de agua consumido en Marruecos.
+  Qu'est-ce que l'empreinte eau ?: ¿Qué es la huella hídrica?
+  Calculez votre <2>empreinte eau</2> et découvrez <5>les litres qui se cachent</5> dans votre consommation du quotidien.: Calcula tu <2>huella hídrica</2> y descubre <5>los litros que esconde</5> tu consumo diario.
+  '<0>Une tablette de chocolat (150g)</0> : 235 litres d’eau ;': '<0>Una tableta de chocolate (150 g)</0>: 235 litros de agua ;'
+  '<0>Une tasse de café</0> : 64 litres d’eau, de la culture à la transformation ;': '<0>Una taza de café</0>: 64 litros de agua, desde el cultivo hasta la elaboración ;'
+  '<0>Un hamburger de bœuf</0> : environ 380 litres d’eau ;': '<0>Una hamburguesa de ternera</0>: aproximadamente 380 litros de agua ;'
+  <0>Eau bleue</0> : eau de surface et souterraine prélevée pour l’irrigation, la production industrielle ou l'énergie ;: '<0>Aguas azules</0>: aguas superficiales y subterráneas extraídas para el riego, la producción industrial o la energía;'
+  <0>Eau grise</0> : quantité d’eau nécessaire pour diluer les polluants générés par la production d’un bien ou service.: '<0>Aguas grises</0>: cantidad de agua necesaria para diluir los contaminantes generados por la producción de un bien o servicio.'
+  '<0>Un kilo de pommes de terre</0> : 330 litres d’eau ;': '<0>Un kilo de patatas</0>: 330 litros de agua;'
+  '<0>Un litre de lait</0> : environ 330 litres d’eau ;': '<0>Un litro de leche</0>: unos 330 litros de agua;'
+  '<0>Un kilo de riz</0> : 14 000 litres d’eau ;': '<0>Un kilo de arroz</0>: 14.000 litros de agua;'
+  '<0>Un jean</0> : environ 30 000 litres d’eau, principalement pour la culture du coton ;': <0>Un par de vaqueros</0> consume unos 30.000 litros de agua, principalmente para el cultivo del algodón;
+  <0>Eau verte</0> : eau de pluie absorbée par les sols, utilisée pour les cultures sans irrigation artificielle ;: '<0>Agua verde</0>: agua de lluvia absorbida por el suelo y utilizada para cultivar sin riego artificial;'
+  '<0>Une baguette de pain</0> : 40 litres d’eau.': '<0>Una barra de pan</0>: 40 litros de agua.'
+  '<0>Un œuf</0> : 75 litres d’eau ;': '<0>Un huevo</0>: 75 litros de agua ;'
+  L’empreinte eau, <2>calculée en milliers de litres par jour</2>, tient compte de <5>l’eau nécessaire</5> à la production, la distribution et au traitement des biens et services consommés. Ce calcul prend également en considération <8>le stress hydrique</8> et pondère les consommations d’eau en fonction de <12>la rareté de la ressource</12> dans les territoires concernés.: La huella hídrica, <2>calculada en miles de litros al día</2>, tiene en cuenta el <5>agua necesaria</5> para producir, distribuir y procesar los bienes y servicios consumidos. Este cálculo también tiene en cuenta <8>el estrés hídrico</8> y pondera el consumo de agua en función de <12>la escasez del recurso</12> en las zonas afectadas.
+  L’eau est <2>au cœur de nos vies</2> et de notre consommation quotidienne, bien <6>au-delà de ce que nous observons à la maison</6>. Chaque jour, des milliers de litres d’eau sont utilisés pour produire les aliments que nous mangeons, les vêtements que nous portons et l’énergie que nous consommons.: El agua está en <2>el centro de nuestras vidas</2> y de nuestro consumo diario, <6>mucho más allá de lo que vemos en casa</6>. Cada día se utilizan miles de litros de agua para producir los alimentos que comemos, la ropa que vestimos y la energía que consumimos.
+  Empreinte eau et <2>empreinte carbone</2> sont complémentaires, et les comprendre permet d’agir en faveur d’une gestion <6>plus durable des ressources naturelles</6> de la planète.: La huella hídrica y la <2>huella de carbono</2> son complementarias, y comprenderlas nos permite actuar en favor de una gestión <6>más sostenible</6> de los <6>recursos naturales</6> del planeta.
+  Vêtements: Ropa
+  Privilégier les produits d'occasion: Favorecer los productos de segunda mano
+  Préférer l'eau du robinet: Prefiero el agua del grifo
+  Réduire la consommation de viande: Reducir el consumo de carne
+  Cuisiner avec des produits locaux et de saison: Cocinar con productos locales de temporada
+  Opter pour des vêtements durables: Opta por ropa sostenible
+  'Privilégier les matériaux durables (lin, chanvre, laine, et si coton : recyclé': 'Privilegiar los materiales sostenibles (lino, cáñamo, lana, y si es algodón: reciclado)'
+  Empreinte eau: Huella hídrica
+  Voir les nouveautés: Novedades
+  Un modèle de calcul fiable: Un modelo de cálculo fiable
+  Voiture: Coche
+  Café: Café
+  Un calculateur, deux empreintes: Un ordenador, dos huellas
+  Accélérons l’impact collectif avec Nos Gestes Climat !: ¡Aceleremos nuestro impacto colectivo con Nos Gestes Climat!
+  <0>L’empreinte eau</0> mesure la quantité totale d’eau utilisée pour produire les biens et services que nous consommons. Contrairement à l’eau domestique, <4>elle inclut l’eau invisible</4> nécessaire pour cultiver nos aliments, fabriquer nos vêtements et produire de l’énergie.: <0>La huella hídrica</0> mide la cantidad total de agua utilizada para producir los bienes y servicios que consumimos. A diferencia del agua doméstica, <4>incluye el agua invisible</4> necesaria para cultivar nuestros alimentos, confeccionar nuestra ropa y producir energía.
+  Connaissez-vous votre empreinte écologique ?: ¿Conoce su huella ecológica?
+  Les lignes de code, les données et même une grande partie des réflexions méthodologiques derrière le calculateur sont toutes <2>accessibles</2>, ce qui permet à qui veut de <5>contribuer et améliorer l’outil</5>.: Las líneas de código, los datos e incluso gran parte del pensamiento metodológico que hay detrás de la calculadora son <2>accesibles</2>, lo que permite a cualquiera <5>contribuir y mejorar la herramienta</5>.
+  <0>L’empreinte carbone</0> représente la quantité de gaz à effet de serre émise par les activités humaines. Le calculateur d’empreinte carbone aide à <4>repérer les usages</4> qui contribuent le plus au changement climatique et à <8>choisir les actions</8> les plus efficaces pour réduire son impact.: <0>La huella de carbono</0> representa la cantidad de gases de efecto invernadero emitidos por las actividades humanas. La calculadora de la huella de carbono te ayuda a <4>identificar los usos</4> que más contribuyen al cambio climático y a <8>elegir las acciones</8> más eficaces para reducir tu impacto.
+  'Retrouvez toute l’expertise de <2>l’Agence de l’Environnement et de la Maîtrise de l’Énergie</2> dans le calculateur de Nos Gestes Climat : données, perspectives,': "Descubra toda la experiencia de <2>la Agence de l'Environnement et de la Maîtrise de l'Énergie</2> en la calculadora de Nos Gestes Climat: datos, perspectivas,"
+  S’engager collectivement autour des enjeux du climat: Compromiso colectivo en favor del clima
+  Un aller-retour Paris-Athènes en avion représente <2>800 kg de CO2e</2>.: Un viaje de ida y vuelta de París a Atenas en avión representa <2>800 kg de CO2e</2>.
+  Impressionnant, non ?: Impresionante, ¿verdad?
+  <0>2 millions de personnes</0> ont déjà calculé leur empreinte !: ¡<0>2 millones de personas</0> ya han calculado su huella!
+  Chemisier: Blusa
+  Un calculateur libre et documenté: Una calculadora gratuita y documentada
+  Découvrir la documentation: Descubra la documentación
+  Défiez votre entourage: Desafía a los que te rodean
+  L'empreinte carbone: Huella de carbono
+  Considérable, non ?: Considerable, ¿no?
+  'L’empreinte carbone : une empreinte parmi d’autres !': 'La huella de carbono: ¡una huella entre muchas!'
+  Mobilisez votre entourage pour la planète !: Haz que tus amigos y familiares se impliquen en ayudar al planeta
+  La production d'un jean nécessite près de <2>30 000 litres d'eau</2>.: Se necesitan casi <2>30.000 litros de agua</2> para producir un par de vaqueros.
+  Calculez votre <1>empreinte carbone</1> et votre <4>empreinte eau</4> en <7>seulement 10 minutes</7>.: Calcula tu <1>huella de carbono</1> y de <4>agua</4> <7>en sólo 10 minutos</7>.
+  Le lexique pour tout comprendre à l'eau: Un glosario para entenderlo todo sobre el agua
+  Et la vôtre ?: ¿Y la tuya?
+  'Entreprises, collectivités, associations, écoles ou festivals : <2>engagez votre organisation dans une démarche durable</2> avec une campagne Nos Gestes Climat. Sensibilisez vos parties prenantes à l’empreinte carbone et à l’empreinte eau <6>grâce à nos outils clés en main</6>.': 'Empresas, ayuntamientos, asociaciones, escuelas o festivales: <2>comprometa a su organización con un enfoque sostenible</2> mediante una campaña Nos Gestes Climat. Sensibilice a sus interlocutores sobre su huella de carbono y de agua <6>con nuestras herramientas llave en mano</6>.'
+  Décryptez les défis environnementaux: Descifrar los retos medioambientales
+  Basé sur les données de l’ADEME: Basado en datos de ADEME
+  En savoir plus sur l'empreinte eau: Más información sobre nuestra huella hídrica
+  Ils parlent de nous: Hablan de nosotros
+  'Transports : les modes à fuir, ceux à chérir': 'Transporte: modos a evitar, modos a apreciar'
+  En savoir plus sur l'empreinte carbone: Más información sobre nuestra huella de carbono
+  Ordinateur: Ordenador
+  L'empreinte eau moyenne d'un français se compte <2>milliers de litres par jour</2>.: La huella hídrica de un francés medio es de <2>miles de litros al día</2>.
+  Créez un groupe avec vos proches et <2>lancez-vous dans un défi collectif</2> pour réduire votre empreinte. Comparez vos résultats, suivez vos progrès et voyez qui parvient à réduire le plus ses émissions de carbone ou sa consommation d’eau.: Crea un grupo con tus amigos y <2>acepta un reto colectivo</2> para reducir tu huella. Compara tus resultados, sigue tus progresos y comprueba quién consigue reducir más sus emisiones de carbono o su consumo de agua.
+  <0>2 millions de personnes</0> ont déjà passé calculé leur empreinte !: ¡<0>2 millones de personas</0> ya han calculado su huella!
+  L'empreinte carbone moyenne d'un français est de <2>9,1 tonnes de CO2e par an</2>.: La huella de carbono media de un francés es de <2>9,1 toneladas de CO2e al año</2>.
+  Chez Nos Gestes Climat, nous croyons au pouvoir de <2>l’action collective</2> pour relever les défis environnementaux. Notre mission est de<5>sensibiliser</5> et d’accompagner chacun, citoyens, entreprises et collectivités, à mieux comprendre son empreinte écologique, carbone ou eau, <8>identifier les gestes</8> pour la réduire et <12>entraîner leur entourage</12> dans ce mouvement.: En Nos Gestes Climat creemos en el poder de la <2>acción colectiva</2> para hacer frente a los retos medioambientales. Nuestra misión es<5>sensibilizar</5> y ayudar a todos -ciudadanos, empresas y autoridades locales- a comprender mejor su huella ecológica, de carbono o de agua, a <8>identificar las medidas</8> que pueden tomar para reducirla y a <12>implicar a quienes les rodean</12> en este movimiento.
+  L'empreinte eau: Huella hídrica
+  Lancez une campagne dans votre organisation: Lance una campaña en su organización
+  Un coup de pouce pour agir ?: ¿Una ayuda para pasar a la acción?
+  Aides financières: Ayuda financiera
+  Créer mon compte: Crear mi cuenta
+  Bons plans: Buenos planes
+  Logo de J'agis: Logotipo de J'agis
+  Que faire pour réduire mon empreinte ?: ¿Qué puedo hacer para reducir mi huella?
+  Découvrez toutes les aides financières auxquelles vous avez droit: Infórmese de todas las ayudas económicas a las que tiene derecho
+  Idées: Ideas
+  À partir de votre bilan, <1>J’agis</1> vous propose des actions concrètes et adaptées à vos envies et à vos moyens: Basándose en su evaluación, <1>J'agis</1> le propondrá acciones prácticas adaptadas a sus necesidades y recursos
+  Une erreur est survenue. <2>Cliquez sur ce lien pour naviguer vers J'agis.</2>: Se ha producido un error. <2>Haga clic en este enlace para navegar a Estoy tomando medidas.</2>
+  Créer mon compte {isPending && <Loader className="ml-2" />}: <Loader className="ml-2" />Crear mi cuenta {isPending && }
+  Mes groupes: Mis grupos
+  Groupes: Grupos
+  'Voici quelques exemples d’empreinte eau pour des <2>produits courants</2>:': 'He aquí algunos ejemplos de huellas hídricas de <2>productos comunes</2>:'
+  'Chaque goutte compte : découvrez votre empreinte eau !': 'Cada gota cuenta: ¡descubre tu huella hídrica!'
+  L’empreinte eau aboutit-elle aux mêmes conclusions que l’empreinte carbone ?: ¿Lleva la huella hídrica a las mismas conclusiones que la huella de carbono?
+  Une hausse de 1 degré de la température du globe entraîne <2>une hausse de 7% du taux d’humidité</2> dans l’atmosphère. L’eau s’évapore plus, plus vite, et les phénomènes climatiques violents s’intensifient. <6>Des régions s’assèchent, quand d’autres sont inondées.</6>: Un aumento de 1 grado de la temperatura global provoca <2>un incremento del 7% de la humedad</2> atmosférica. El agua se evapora más, más rápidamente, y los fenómenos climáticos violentos se intensifican. <6>Algunas regiones se secan y otras se inundan.</6>
+  La méthodologie AWARE que nous utilisons pour calculer l’empreinte eau se concentre sur les prélèvements d’eau, à savoir <2>l’eau bleue</2>. Elle ne tient pas compte de l’eau grise.: La metodología AWARE que utilizamos para calcular la huella hídrica se centra en las extracciones de agua, es decir, <2>el agua azul</2>. No tiene en cuenta las aguas grises.
+  'Empreinte eau : comprendre, évaluer, économiser l’eau': 'Huella hídrica: comprender, evaluar y ahorrar agua'
+  <0>Chaque geste compte</0> pour garantir un accès durable à l'eau pour tous.: <0>Cada gesto cuenta</0> para garantizar un acceso sostenible al agua para todos.
+  "<0>Eau bleue</0> : eau de surface et souterraine prélevée pour l’irrigation, la production industrielle ou l'énergie ;": '<0>Aguas azules</0>: aguas superficiales y subterráneas extraídas para el riego, la producción industrial o la energía;'
+  Un homme perplexe réfléchissant à l'empreinte eau du tee-shirt qu'il tient: Un hombre perplejo reflexiona sobre la huella hídrica de la camiseta que lleva en la mano
+  'L’empreinte eau d’un français est de plusieurs milliers de litres par jour : <2>entre 4 et 8000</2>, en moyenne.': 'La huella hídrica de un francés es de varios miles de litros al día: <2>entre 4 y 8.000 de</2> media.'
+  Ainsi, en calculant votre empreinte carbone, vous obtenez également <2>une estimation de votre empreinte eau</2> pour une vision complète de votre impact.: Así, al calcular su huella de carbono, también obtiene <2>una estimación de su huella hídrica</2> para tener una visión completa de su impacto.
+  À la différence de l’empreinte carbone, nous ne disposons pas encore de données consolidées à l’échelle de la France, ni d’objectifs à atteindre. Mais nous avons déjà une vision assez juste des conséquences de notre accaparement de cette précieuse ressource <2>pour l’ensemble du vivant</2>. Nous pouvons agir collectivement pour réduire notre empreinte eau.: A diferencia de la huella de carbono, aún no disponemos de datos consolidados para Francia, ni de objetivos a los que aspirar. Pero ya tenemos una imagen bastante precisa de las consecuencias de nuestro acaparamiento de este recurso precioso <2>para todos los seres vivos</2>. Podemos actuar colectivamente para reducir nuestra huella hídrica.
+  Par ailleurs, <2>l’empreinte humaine sur les sols</2> (artificialisation, cultures intensives, déforestation) a réduit fortement leur capacité à absorber et retenir les eaux pluviales. Elle s’évapore trop vite, et n’alimente plus autant les cours d’eau, lacs et nappes phréatiques, qui progressivement s’épuisent.: Además, <2>la huella humana en los suelos</2> (artificialización, agricultura intensiva, deforestación) ha reducido mucho su capacidad de absorber y retener el agua de lluvia. Se evapora con demasiada rapidez y ya no alimenta en la misma medida los ríos, los lagos y las aguas subterráneas, que se agotan poco a poco.
+  '<0>Eau verte</0> : eau de pluie absorbée par les sols, utilisée pour les cultures sans irrigation artificielle ;': '<0>Agua verde</0>: agua de lluvia absorbida por el suelo y utilizada para cultivar sin riego artificial;'
+  '<0>Eau grise</0> : quantité d’eau nécessaire pour diluer les polluants générés par la production d’un bien ou service.': '<0>Aguas grises</0>: cantidad de agua necesaria para diluir los contaminantes generados por la producción de un bien o servicio.'
+  Pour réduire son empreinte eau, il est nécessaire de <2>changer nos habitudes quotidiennes</2>.: Para reducir nuestra huella hídrica, tenemos que <2>cambiar nuestros hábitos cotidianos</2>.
+  Une fois utilisée, cette eau est <2>dépolluée</2> puis <5>renvoyée</5> dans les cours d'eau locaux.: Una vez utilizada, el agua se <2>limpia</2> y <5>se devuelve a</5> los cursos de agua locales.
+  Ce n’est pas parce qu’elle n’est pas incluse qu’elle n’est pas importante ! Régulièrement, de nombreux territoires français sont soumis à <2>des restrictions d’eau liées à des périodes de sécheresse</2>. Il est important de réduire sa consommation d'eau domestique pour mieux partager cette <5>ressource vitale</5> et limiter les pressions sur les réserves locales.: Que no esté incluido no significa que no sea importante Muchas zonas de Francia sufren regularmente <2>restricciones de agua debido a los periodos de sequía</2>. Es importante reducir el consumo doméstico de agua para compartir mejor este <5>recurso vital</5> y limitar la presión sobre las reservas locales.
+  Découvrez les litres d’eau cachés derrière chacun de vos repas, vêtements, appareils… Adoptez des actions concrètes pour réduire votre empreinte eau: Descubre los litros de agua que se esconden detrás de cada una de tus comidas, ropa, electrodomésticos, etc. Adopta medidas concretas para reducir tu huella hídrica
+  Adopter <2>une alimentation moins gourmande en eau</2>, en consommant moins de viande et en privilégiant <5>les produits locaux et de saison</5>, a également un impact significatif. Enfin, en évitant <8>le gaspillage</8> et en achetant des produits fabriqués de manière durable, on peut contribuer à la préservation des ressources hydriques tout en limitant <11>notre empreinte environnementale</11>.: Adoptar <2>una dieta menos intensiva en agua</2>, comiendo menos carne y favoreciendo los <5>productos locales y de temporada</5>, también tiene un impacto significativo. Por último, si evitamos el <8>despilfarro</8> y compramos productos producidos de forma sostenible, podemos ayudar a preservar los recursos hídricos al tiempo que limitamos <11>nuestra huella ambiental</11>.
+  Il existe plusieurs méthodes pour calculer une empreinte eau. Chacune présente des avantages, et aucune à ce stade ne permet de saisir toute la complexité de la question des impacts de l’humain sur le cycle de l’eau. Notre choix s’est porté sur la méthode AWARE , qui permet de valoriser à sa juste mesure le stress hydrique des régions concernées par les consommations d’eau. C’est la méthode recommandée par la convention européenne, et plébiscitée par l’ADEME pour ses calculs d’ACV.: Existen varios métodos para calcular la huella hídrica. Cada uno tiene sus ventajas, pero ninguno capta por ahora toda la complejidad de la cuestión del impacto humano en el ciclo del agua. Hemos elegido el método AWARE, que proporciona una evaluación precisa del estrés hídrico en las regiones afectadas por el consumo de agua. Es el método recomendado por la Convención Europea, y es ampliamente utilizado por ADEME para sus cálculos de ACV.
+  Au travers <2>du calculateur Nos Gestes Climat</2>, nous calculons <5>la quantité d’eau consommée par chacun de vos usages</5> (achat d’un produit ou aliment, utilisation d’un service, consommations d’énergies).: Con <2>la calculadora Nos Gestes Climat</2>, calculamos <5>la cantidad de agua consumida por cada uno de tus usos</5> (compra de un producto o alimento, utilización de un servicio, consumo de energía).
+  <0>L’eau domestique</0>, celle qui sort de vos robinets pour la douche, la cuisine, le ménage... n'est pas incluse dans l'empreinte eau car elle est en grande majorité <3>restituée dans le même bassin versant</3> après traitement.: <0>El agua doméstica</0>, la que sale de los grifos para ducharse, cocinar, limpiar... no se incluye en la huella hídrica porque la mayor parte se <3>devuelve a la misma cuenca</3> tras su tratamiento.
+  Un ordinateur, illustrant la consommation d'eau par le numérique: Un ordenador, ilustración digital del consumo de agua
+  Une pomme, symbolisant le lien entre eau et agriculture: Una manzana, símbolo del vínculo entre el agua y la agricultura
+  Un tee-shirt, symbolisant la consommation d'eau pour l'industrie textile: Una camiseta que simboliza el consumo de agua en la industria textil
+  Un mouton, liant empreinte eau et élevage: Una oveja, vinculando huella hídrica y ganadería
+  Une balance indiquant la quantité d'eau nécessaire pour produire un ordinateur: Una escala que muestra la cantidad de agua necesaria para producir un ordenador
+  Un éclair, symbolisant la production d'électricité: Un rayo, símbolo de la producción de electricidad
+  Un homme réfléchissant à l'empreinte eau du tee-shirt qu'il tient: Un hombre reflexiona sobre la huella del agua de la camiseta que lleva en la mano
+  Libre et documenté: Gratuito y documentado
+  <0>2 millions de personnes</0> ont déjà <3></3>calculé leur empreinte !: <3></3>¡<0>2 millones de personas</0> ya han calculado su huella!
+  Calculez votre empreinte carbone et eau en 10 minutes !: Calcule su huella de carbono y de agua en 10 minutos
+  2 millions de personnes ont déjà calculé leur empreinte sur le climat avec le calculateur Nos Gestes Climat ! Et vous, qu'attendez-vous pour faire le test ?: 2 millones de personas ya han calculado su huella climática con la calculadora Nos Gestes Climat ¿Y tú? ¿A qué esperas?
+  Calculez votre <2>empreinte carbone</2> et votre <4>empreinte eau</4> en <8>seulement 10 minutes</8>.: Calcula tu <2>huella de carbono</2> y de <4>agua</4> <8>en sólo 10 minutos</8>.
+  Une garde-robe économe en eau: Un armario que ahorra agua
+  La production d’un ordinateur nécessite 195 000 litres d’eau.: Se necesitan 195.000 litros de agua para producir un ordenador.
+  L’empreinte eau d'un jean est de 30 000 litres d'eau.: La huella hídrica de un par de vaqueros es de 30.000 litros de agua.
+  Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau: Un campo regado, ilustración del léxico para entender la huella hídrica
+  Un champ de coton, illustrant le calcul de l'empreinte eau: Un campo de algodón, ilustrativo del cálculo de la huella hídrica
+  Un homme dans un magasin réfléchissant à l'empreinte eau du tee-shirt qu'il tient: Un hombre en una tienda pensando en la huella hídrica de la camiseta que lleva en la mano
+  Un épi de maïs et un avocat, illustrant le fait d'économiser l'eau dans l'alimentation: Una mazorca de maíz y un aguacate, que ilustran la importancia de ahorrar agua en la dieta
+  Une fille dans un magasin hésitant entre un pull en coton et un pull en lin, illustrant le fait de réduire l'utilisation d'eau des vêtements: Una chica en una tienda duda entre un jersey de algodón y otro de lino, lo que ilustra cómo reducir el uso de agua en la ropa
+  'Privilégier les matériaux durables (lin, chanvre, laine, et si coton : recyclé)': 'Favorecer los materiales sostenibles (lino, cáñamo, lana, y si es algodón: reciclado)'
+  Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone: Un evento por el clima, que ilustra las acciones para reducir la propia huella de carbono
+  Un groupe d'amis comparant leurs empreintes carbone et eau: Un grupo de amigos compara sus huellas de carbono e hídrica
+  Un groupe de personnes en conférence, illustrant l'engagement collectif pour le climat: Un grupo de personas en una conferencia, ilustrando su compromiso colectivo con el clima
+  Une fille tapant sur son ordinateur, entouré d'objets aux empreintes écologiques variées.: Una chica teclea en su ordenador, rodeada de objetos con diversas huellas ecológicas.
+  un groupe de personnes en train de réfléchir à leurs impacts et leur bilan carbone et eau: un grupo de personas que reflexionan sobre su impacto y su huella de carbono e hídrica
+  Une fille tapant sur son ordinateur, entouré d'objets aux empreintes carbone et eau variées.: Una chica teclea en su ordenador, rodeada de objetos con diversas huellas de carbono y agua.
+  Deux mini-vans, illustrant l'empreinte carbone des transports: Dos monovolúmenes que ilustran la huella de carbono del transporte
+  Calculez votre <2>empreinte carbone</2> et votre <6>empreinte eau</6> en <9>seulement 10 minutes</9>.: Calcula tu <2>huella de carbono</2> y de <6>agua</6> <9>en sólo 10 minutos</9>.
+  Deux représentations graphiques de l'empreinte carbone et eau: Dos representaciones gráficas de las huellas de carbono e hídrica
+  "Retrouvez toute l’expertise de <2>l’Agence de l’Environnement et de la Maîtrise de l’Énergie</2> dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action.": "Descubra la experiencia de <2>la Agence de l'Environnement et de la Maîtrise de l'Énergie</2> en la calculadora de Nos Gestes Climat: datos, perspectivas, palancas para la acción."
+  Chez Nos Gestes Climat, nous croyons au pouvoir de <2>l’action collective</2> pour relever les défis environnementaux. Notre mission est de <6>sensibiliser</6> et d’accompagner chacun, citoyens, entreprises et collectivités, à mieux comprendre son empreinte écologique, carbone ou eau, <9>identifier les gestes</9> pour la réduire et <13>entraîner leur entourage</13> dans ce mouvement.: En Nos Gestes Climat creemos en el poder de la <2>acción colectiva</2> para hacer frente a los retos medioambientales. Nuestra misión es <6>sensibilizar</6> y ayudar a todos -ciudadanos, empresas y autoridades locales- a conocer mejor su huella ecológica, de carbono y de agua, a <9>identificar las medidas</9> que pueden tomar para reducirla y a <13>implicar</13> en este movimiento <13>a quienes les rodean</13>.
+  Le saviez vous ?: ¿Lo sabías?

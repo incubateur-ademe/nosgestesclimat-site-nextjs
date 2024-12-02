@@ -1,6 +1,6 @@
-import { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import Engine from 'publicodes'
-import { Situation } from '../types'
+import type { Situation } from '../types'
 import { safeEvaluateHelper } from './safeEvaluateHelper'
 
 type Props = {

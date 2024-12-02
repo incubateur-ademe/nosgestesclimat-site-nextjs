@@ -1,7 +1,8 @@
 import { GROUP_URL } from '@/constants/urls'
-import { Group, Participant } from '@/types/groups'
+import type { Group, Participant } from '@/types/groups'
 import { unformatSituation } from '@/utils/formatDataForDB'
-import { UseQueryResult, useQuery } from '@tanstack/react-query'
+import type { UseQueryResult } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 export function useFetchGroup(

@@ -2,8 +2,9 @@
 
 import { useCurrentSimulation } from '@/publicodes-state'
 
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { PropsWithChildren, useContext } from 'react'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { PropsWithChildren} from 'react';
+import { useContext } from 'react'
 import { SimulationContext } from '../simulationProvider/context'
 import FormContext from './context'
 import useCurrent from './useCurrent'

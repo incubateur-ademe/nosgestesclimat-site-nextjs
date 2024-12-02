@@ -11,7 +11,7 @@ import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
+import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import Trans from './Trans'
 
 type Props = {

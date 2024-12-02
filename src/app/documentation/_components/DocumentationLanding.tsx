@@ -6,8 +6,9 @@ import { useRules } from '@/hooks/useRules'
 
 import Link from '@/components/Link'
 import LightBulbIcon from '@/components/icons/LightBulbIcon'
+import SquareImageContainer from '@/components/images/SquareImageContainer'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
 import { useRef } from 'react'
 import SearchBar from './SearchBar'
@@ -42,10 +43,9 @@ export default function DocumentationLanding() {
 
   return (
     <div className="mt-4">
-      <Title title={<Trans>Documentation</Trans>} />
-
       <div className="flex flex-wrap gap-8 md:flex-nowrap">
         <div>
+          <Title title={<Trans>Documentation</Trans>} />
           <p>
             <Trans>
               Le calculateur Nos Gestes Climat est basé sur le modèle de calcul
@@ -67,9 +67,9 @@ export default function DocumentationLanding() {
             </Link>
           </div>
         </div>
-
+        {/* Displayed on mobile only */}
         <Image
-          className="-mt-8 ml-auto w-48 md:-mt-16 md:w-full"
+          className="ml-auto h-auto w-48 md:hidden md:w-full"
           src="/images/illustrations/girl-reading-newspaper.png"
           width="400"
           height="300"
@@ -77,6 +77,18 @@ export default function DocumentationLanding() {
             'Un femme lisant le journal au coin du feu avec un chien assoupi.'
           )}
         />
+        {/* Displayed on desktop only */}
+        <SquareImageContainer className="hidden max-w-96 md:flex">
+          <Image
+            className="ml-auto h-auto w-48 md:w-full"
+            src="/images/illustrations/girl-reading-newspaper.png"
+            width="400"
+            height="300"
+            alt={t(
+              'Un femme lisant le journal au coin du feu avec un chien assoupi.'
+            )}
+          />
+        </SquareImageContainer>
       </div>
 
       <SearchBar rules={rules} />

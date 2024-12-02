@@ -5,7 +5,7 @@ import ChevronRight from '@/components/icons/ChevronRight'
 import Trans from '@/components/translation/Trans'
 import { classementClickOrganisation } from '@/constants/tracking/pages/classements'
 import { getLinkToPollDashboard } from '@/helpers/navigation/pollPages'
-import { PollInfo } from '@/types/organisations'
+import type { PollInfo } from '@/types/organisations'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {

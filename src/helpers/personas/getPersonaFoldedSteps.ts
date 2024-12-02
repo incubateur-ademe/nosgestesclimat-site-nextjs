@@ -1,6 +1,6 @@
-import { Engine, Entries, Situation } from '@/publicodes-state/types'
-import { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
-import { EvaluatedNode, PublicodesExpression } from 'publicodes'
+import type { Engine, Entries, Situation } from '@/publicodes-state/types'
+import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
+import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { fixSituationWithPartialMosaic } from './fixSituationWithPartialMosaic'
 
 type Props = {

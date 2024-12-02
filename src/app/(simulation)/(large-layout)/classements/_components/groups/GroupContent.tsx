@@ -1,4 +1,4 @@
-import { Group } from '@/types/groups'
+import type { Group } from '@/types/groups'
 import CreateFirstGroupSection from './CreateFirstGroupSection'
 import ServerErrorSection from './ServerErrorSection'
 import GroupList from './createOtherGroupsSection/GroupList'

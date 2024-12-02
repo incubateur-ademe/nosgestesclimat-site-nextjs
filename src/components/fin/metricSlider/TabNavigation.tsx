@@ -5,7 +5,7 @@ import { carboneMetric, eauMetric } from '@/constants/metric'
 import Badge from '@/design-system/layout/Badge'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
-import { Metric } from '@/publicodes-state/types'
+import type { Metric } from '@/publicodes-state/types'
 import { twMerge } from 'tailwind-merge'
 import HeadingButtons from './heading/HeadingButtons'
 

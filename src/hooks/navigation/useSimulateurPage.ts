@@ -1,6 +1,6 @@
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { Simulation } from '@/publicodes-state/types'
+import type { Simulation } from '@/publicodes-state/types'
 import { useRouter } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
 import { useClientTranslation } from '../useClientTranslation'
@@ -98,7 +98,7 @@ export function useSimulateurPage() {
     }
 
     // else we return the tutoriel page label
-    return t('Passer le test →')
+    return t('Passer le test')
   }, [progression, t])
 
   return {
