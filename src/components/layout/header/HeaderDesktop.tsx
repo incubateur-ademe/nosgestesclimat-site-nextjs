@@ -24,8 +24,8 @@ import { twMerge } from 'tailwind-merge'
 import NavLink from './NavLink'
 import OrganisationLink from './_components/OrganisationLink'
 import ProfileIcon from './_components/ProfileIcon'
-import CTAButton from './headerDesktop/CTAButton'
 import DebugIndicator from './headerDesktop/DebugIndicator'
+import CTAButton from './headerDesktop/MenuCTAButton'
 
 type Props = {
   isSticky: boolean

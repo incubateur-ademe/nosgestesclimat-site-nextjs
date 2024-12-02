@@ -1,9 +1,15 @@
 import DynamicCTAButton from '@/components/cta/DynamicCTAButton'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/Trans'
+import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import {
+  getLandingClickCTAResults,
+  getLandingClickCTAResume,
+  getLandingClickCTAStart,
+} from '@/helpers/tracking/landings'
 import Image from 'next/image'
 import DailyGestureWaterFootprint from './_components/DailyGestureWaterFootprint'
 import DidYouKnowWaterFootprint from './_components/DidYouKnowWaterFootprint'
@@ -77,7 +83,22 @@ export default async function WaterFootprintLandingPage() {
               </Trans>
             </p>
             <div className="flex w-full justify-center md:justify-start">
-              <DynamicCTAButton />
+              <DynamicCTAButton
+                trackingEvents={{
+                  start: getLandingClickCTAStart(
+                    '/empreinte-eau',
+                    trackingActionClickCTA
+                  ),
+                  resume: getLandingClickCTAResume(
+                    '/empreinte-eau',
+                    trackingActionClickCTA
+                  ),
+                  results: getLandingClickCTAResults(
+                    '/empreinte-eau',
+                    trackingActionClickCTA
+                  ),
+                }}
+              />
             </div>
           </div>
         }
@@ -100,7 +121,7 @@ export default async function WaterFootprintLandingPage() {
 
         <DailyGestureWaterFootprint />
 
-        <UnderstandToActWaterFootprint />
+        <UnderstandToActWaterFootprint pathname={'/empreinte-eau'} />
 
         <MotivationSectionWaterFootprint />
 

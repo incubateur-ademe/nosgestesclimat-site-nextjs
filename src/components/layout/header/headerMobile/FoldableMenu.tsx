@@ -11,7 +11,7 @@ import { Suspense } from 'react'
 import NavLink from '../NavLink'
 import OrganisationLink from '../_components/OrganisationLink'
 import ProfileIcon from '../_components/ProfileIcon'
-import CTAButton from '../headerDesktop/CTAButton'
+import CTAButton from '../headerDesktop/MenuCTAButton'
 
 export default function FoldableMenu() {
   const { user } = useUser()
