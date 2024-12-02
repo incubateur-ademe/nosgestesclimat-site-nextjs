@@ -42,6 +42,7 @@ export default async function CollectivelyCommit() {
             alt={t(
               "Un groupe de personnes en conférence, illustrant l'engagement collectif pour le climat"
             )}
+            className="mb-10"
             width={600}
             height={600}
           />

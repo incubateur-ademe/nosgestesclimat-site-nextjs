@@ -9,7 +9,7 @@ export default function ModelInfo() {
           <Trans>Un modèle de calcul fiable</Trans>
         </h2>
 
-        <div className="flex flex-col gap-10 md:flex-row">
+        <div className="flex flex-col gap-16 md:flex-row md:gap-10">
           <TitleDescLinkBlock
             title={<Trans>Basé sur les données de l’ADEME</Trans>}
             description={
