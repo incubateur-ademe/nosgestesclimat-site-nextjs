@@ -64,7 +64,7 @@ export default async function WaterFootprintLandingPage() {
           <Trans>Chaque goutte compte : découvrez votre empreinte eau !</Trans>
         }
         heroDescription={
-          <div className="flex flex-col items-start gap-6">
+          <div className="flex flex-col items-start gap-4 md:gap-6">
             <p className="mb-0">
               <Trans>
                 Calculez votre{' '}

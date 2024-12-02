@@ -1,4 +1,5 @@
 import DynamicCTAButton from '@/components/cta/DynamicCTAButton'
+import Partners from '@/components/landing-pages/Partners'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/Trans'
 import LandingPage from '@/design-system/layout/LandingPage'
@@ -12,7 +13,6 @@ import DecryptChallenges from './_components/DecryptChallenges'
 import DidYouKnowMainLanding from './_components/DidYouKnowMainLanding'
 import Mobilise from './_components/Mobilise'
 import ModelInfo from './_components/ModelInfo'
-import Partners from './_components/Partners'
 import TheySpeakAboutUs from './_components/TheySpeakAboutUs'
 import TwoFootprints from './_components/TwoFootprints'
 
