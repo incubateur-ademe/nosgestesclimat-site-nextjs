@@ -58,9 +58,9 @@ export default async function FAQCarbonFootprint() {
 
               <p>
                 <Trans>
-                  Le carbone, CO2e, est le principal gaz à effet de serre, mais
-                  il y en a d’autres : méthane, protoxyde d’azote par exemple.
-                  C’est pourquoi on parle “d’équivalent carbone”.
+                  Le dioxyde de carbone, CO2, est le principal gaz à effet de
+                  serre, mais il y en a d’autres : méthane, protoxyde d’azote
+                  par exemple. C’est pourquoi on parle “d’équivalent carbone”.
                 </Trans>
               </p>
 

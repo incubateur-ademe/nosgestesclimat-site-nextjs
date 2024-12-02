@@ -67,7 +67,7 @@ export default async function DailyGestureCarbonFootprint() {
               'Réaliser des travaux d’isolation de son logement (pour les propriétaires)'
             ),
             t(
-              'Privilégier les modes de chauffage peu émetteurs de Co2 (électricité, bois, biomasse)'
+              'Privilégier les modes de chauffage peu émetteurs de CO2 (électricité, bois, biomasse)'
             ),
           ],
         },
