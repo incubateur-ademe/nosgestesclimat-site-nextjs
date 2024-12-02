@@ -704,5 +704,13 @@ module.exports = {
     'focus:ring-servicessocietaux-800',
     'focus:ring-offset-2',
   ],
-  plugins: [],
+  plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        '.iframe-mode .tutorial-footer': {
+          '@apply static bg-transparent border-t-0 mb-8': {},
+        },
+      })
+    },
+  ],
 }
