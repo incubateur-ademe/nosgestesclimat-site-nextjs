@@ -26,7 +26,6 @@ import TwoFootprints from './_components/TwoFootprints'
 const InteractiveIllustration = dynamic(
   () => import('./_components/InteractiveIllustration'),
   {
-    ssr: false,
     loading: () => (
       <Image
         src="/images/illustrations/empreinte-carbone-eau-objets-du-quotidien.svg"

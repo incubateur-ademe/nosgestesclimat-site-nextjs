@@ -706,5 +706,13 @@ module.exports = {
     'grid-cols-5',
     'grid-cols-4',
   ],
-  plugins: [],
+  plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        '.iframe-mode .tutorial-footer': {
+          '@apply static bg-transparent border-t-0 mb-8': {},
+        },
+      })
+    },
+  ],
 }
