@@ -17,7 +17,7 @@ export default async function CollectivelyCommit() {
             <Trans>
               Chez Nos Gestes Climat, nous croyons au pouvoir de{' '}
               <strong className="text-primary-600">l’action collective</strong>{' '}
-              pour relever les défis environnementaux. Notre mission est de
+              pour relever les défis environnementaux. Notre mission est de{' '}
               <strong className="text-primary-600">sensibiliser</strong> et
               d’accompagner chacun, citoyens, entreprises et collectivités, à
               mieux comprendre son empreinte écologique, carbone ou eau,{' '}
@@ -42,6 +42,7 @@ export default async function CollectivelyCommit() {
             alt={t(
               "Un groupe de personnes en conférence, illustrant l'engagement collectif pour le climat"
             )}
+            className="mb-10"
             width={600}
             height={600}
           />

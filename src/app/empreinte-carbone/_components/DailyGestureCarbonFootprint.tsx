@@ -23,7 +23,7 @@ export default async function DailyGestureCarbonFootprint() {
       title={<Trans>Les actions pour réduire son empreinte carbone </Trans>}
       description={
         <>
-          <p>
+          <p className="mb-0">
             <Trans>
               Pour un mode de vie plus durable, certaines actions{' '}
               <strong className="text-primary-600">
@@ -88,7 +88,7 @@ export default async function DailyGestureCarbonFootprint() {
               'Réaliser des travaux d’isolation de son logement (pour les propriétaires)'
             ),
             t(
-              'Privilégier les modes de chauffage peu émetteurs de Co2 (électricité, bois, biomasse)'
+              'Privilégier les modes de chauffage peu émetteurs de CO2 (électricité, bois, biomasse)'
             ),
           ],
         },

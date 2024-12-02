@@ -31,7 +31,7 @@ const InteractiveIllustration = dynamic(
       <Image
         src="/images/illustrations/empreinte-carbone-eau-objets-du-quotidien.svg"
         alt={t(
-          "Une fille tapant sur son ordinateur, entouré d'objets aux empreintes carbone et eau variées."
+          "Une fille tapant sur son ordinateur, entouré d'objets aux empreintes écologiques variées."
         )}
         width={580}
         height={580}
@@ -65,7 +65,7 @@ export default async function Homepage() {
           {
             '@context': 'https://schema.org',
             '@type': 'Organization',
-            url: 'https://nosgestesclimat.fr/',
+            url: 'https://nosgestesclimat.fr',
             name: 'Nos Gestes Climat',
             logo: 'https://nosgestesclimat.fr/_next/image?url=%2Fimages%2Fmisc%2Fpetit-logo%403x.png&w=640&q=75',
           },

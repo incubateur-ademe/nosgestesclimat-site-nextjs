@@ -43,7 +43,7 @@ export default function CarbonFootprintLandingPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'Organization',
-            url: 'https://nosgestesclimat.fr/',
+            url: 'https://nosgestesclimat.fr',
             name: 'Nos Gestes Climat',
             logo: 'https://nosgestesclimat.fr/_next/image?url=%2Fimages%2Fmisc%2Fpetit-logo%403x.png&w=640&q=75',
           },

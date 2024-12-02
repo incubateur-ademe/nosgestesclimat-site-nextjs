@@ -2,7 +2,7 @@ export const carbonFAQJsonLd = [
   {
     question: "Qu'est-ce que le carbone et pourquoi est-il important ?",
     answer:
-      "<div><p>Le carbone est un élément chimique nécessaire à la vie sur Terre. Il se trouve dans les végétaux, dans le sol, dans les océans et dans l'atmosphère principalement sous forme de dioxyde de carbone (CO2e).</p><p>Le carbone, CO2e, est le principal gaz à effet de serre, mais il y en a d'autres : méthane, protoxyde d'azote par exemple. C'est pourquoi on parle \"d'équivalent carbone\".</p><p className=\"mb-0\">Ces émissions bouleversent le climat, contribuant au réchauffement global et à ses conséquences dévastatrices : montée du niveau des océans, multiplication des catastrophes naturelles et extinction d'une partie du vivant.</p></div>",
+      "<div><p>Le carbone est un élément chimique nécessaire à la vie sur Terre. Il se trouve dans les végétaux, dans le sol, dans les océans et dans l'atmosphère principalement sous forme de dioxyde de carbone (CO2).</p><p>Le dioxyde de carbone, CO2, est le principal gaz à effet de serre, mais il y en a d'autres : méthane, protoxyde d'azote par exemple. C'est pourquoi on parle \"d'équivalent carbone\".</p><p className=\"mb-0\">Ces émissions bouleversent le climat, contribuant au réchauffement global et à ses conséquences dévastatrices : montée du niveau des océans, multiplication des catastrophes naturelles et extinction d'une partie du vivant.</p></div>",
   },
   {
     question: "Comment définir l'empreinte carbone ?",

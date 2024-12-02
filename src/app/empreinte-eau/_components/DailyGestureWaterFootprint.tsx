@@ -39,7 +39,7 @@ export default async function DailyGestureWaterFootprint() {
             </Trans>
           </p>
 
-          <p>
+          <p className="mb-0">
             <Trans>
               Voici quelques exemples de gestes qui auront un impact important
               sur votre consommation eau indirecte :
