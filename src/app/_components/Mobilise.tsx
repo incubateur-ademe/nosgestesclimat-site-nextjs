@@ -2,7 +2,7 @@ import Trans from '@/components/translation/Trans'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 import CreateGroupLink from './mobilise/CreateGroupLink'
-import CreateOrganisation from './mobilise/CreateOrganisation'
+import CreateOrganisationLink from './mobilise/CreateOrganisationLink'
 
 export default async function Mobilise() {
   const { t } = await getServerTranslation()
@@ -77,7 +77,7 @@ export default async function Mobilise() {
             </Trans>
           </p>
 
-          <CreateOrganisation />
+          <CreateOrganisationLink />
         </div>
       </div>
     </div>
