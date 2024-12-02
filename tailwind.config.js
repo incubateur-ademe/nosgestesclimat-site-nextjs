@@ -703,8 +703,6 @@ module.exports = {
     'focus:ring-divers-800',
     'focus:ring-servicessocietaux-800',
     'focus:ring-offset-2',
-    'grid-cols-5',
-    'grid-cols-4',
   ],
   plugins: [
     function ({ addComponents }) {
