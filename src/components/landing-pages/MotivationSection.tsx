@@ -33,11 +33,13 @@ export default function MotivationSection({
                 className="flex flex-col gap-2 text-center">
                 <div className="flex justify-center">{item.icon}</div>
 
-                <h3 className="mb-0 text-base font-bold md:text-lg">
+                <h3 className="mb-0 text-sm font-bold md:text-lg">
                   {item.title}
                 </h3>
 
-                <div className="text-xs md:text-base">{item.description}</div>
+                <div className="text-[13px] md:text-base">
+                  {item.description}
+                </div>
               </li>
             ))}
           </ul>

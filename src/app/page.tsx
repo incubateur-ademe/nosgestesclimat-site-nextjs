@@ -1,30 +1,36 @@
 import DynamicCTAButton from '@/components/cta/DynamicCTAButton'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/Trans'
+import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import {
+  getLandingClickCTAResults,
+  getLandingClickCTAResume,
+  getLandingClickCTAStart,
+} from '@/helpers/tracking/landings'
 import dynamic from 'next/dynamic'
+import { headers } from 'next/headers'
 import Image from 'next/image'
+import Partners from '../components/landing-pages/Partners'
 import CollectivelyCommit from './_components/CollectivelyCommit'
 import DecryptChallenges from './_components/DecryptChallenges'
 import DidYouKnowMainLanding from './_components/DidYouKnowMainLanding'
 import Mobilise from './_components/Mobilise'
 import ModelInfo from './_components/ModelInfo'
-import Partners from './_components/Partners'
 import TheySpeakAboutUs from './_components/TheySpeakAboutUs'
 import TwoFootprints from './_components/TwoFootprints'
 
 const InteractiveIllustration = dynamic(
   () => import('./_components/InteractiveIllustration'),
   {
-    ssr: false,
     loading: () => (
       <Image
         src="/images/illustrations/empreinte-carbone-eau-objets-du-quotidien.svg"
         alt={t(
-          "Une fille tapant sur son ordinateur, entouré d'objets aux empreintes carbone et eau variées."
+          "Une fille tapant sur son ordinateur, entouré d'objets aux empreintes écologiques variées."
         )}
         width={580}
         height={580}
@@ -48,6 +54,9 @@ export async function generateMetadata() {
 }
 
 export default async function Homepage() {
+  const headersList = headers()
+  const pathname = headersList.get('x-pathname') || '/'
+
   return (
     <>
       <JSONLD
@@ -55,7 +64,7 @@ export default async function Homepage() {
           {
             '@context': 'https://schema.org',
             '@type': 'Organization',
-            url: 'https://nosgestesclimat.fr/',
+            url: 'https://nosgestesclimat.fr',
             name: 'Nos Gestes Climat',
             logo: 'https://nosgestesclimat.fr/_next/image?url=%2Fimages%2Fmisc%2Fpetit-logo%403x.png&w=640&q=75',
           },
@@ -96,7 +105,23 @@ export default async function Homepage() {
             </p>
 
             <div className="order-1 mt-10 flex flex-col items-center gap-6 md:order-2 md:mt-0 md:max-w-[300px] md:items-start">
-              <DynamicCTAButton className="w-full" />
+              <DynamicCTAButton
+                trackingEvents={{
+                  start: getLandingClickCTAStart(
+                    pathname,
+                    trackingActionClickCTA
+                  ),
+                  resume: getLandingClickCTAResume(
+                    pathname,
+                    trackingActionClickCTA
+                  ),
+                  results: getLandingClickCTAResults(
+                    pathname,
+                    trackingActionClickCTA
+                  ),
+                }}
+                className="w-full"
+              />
 
               {/* Displayed on desktop only */}
               <p className="hidden md:block">

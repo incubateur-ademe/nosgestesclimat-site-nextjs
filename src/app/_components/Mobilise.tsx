@@ -1,7 +1,8 @@
 import Trans from '@/components/translation/Trans'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
+import CreateGroupLink from './mobilise/CreateGroupLink'
+import CreateOrganisationLink from './mobilise/CreateOrganisationLink'
 
 export default async function Mobilise() {
   const { t } = await getServerTranslation()
@@ -30,9 +31,7 @@ export default async function Mobilise() {
             </Trans>
           </p>
 
-          <ButtonLink href="/amis">
-            <Trans>Créer un groupe</Trans>
-          </ButtonLink>
+          <CreateGroupLink />
         </div>
 
         <div className="order-first py-8 md:order-last">
@@ -50,9 +49,9 @@ export default async function Mobilise() {
       <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:gap-24">
         <div className="py-14">
           <Image
-            src="/images/illustrations/reflechir-impacts-de-son-empreinte.svg"
+            src="/images/illustrations/reflechir-impacts-de-son-empreinte-en-entreprise.svg"
             alt={t(
-              'Un groupe de personnes en train de réfléchir aux impacts de leur empreinte carbone et eau'
+              'un groupe de personnes en train de réfléchir à leurs impacts et leur bilan carbone et eau'
             )}
             width={500}
             height={500}
@@ -78,9 +77,7 @@ export default async function Mobilise() {
             </Trans>
           </p>
 
-          <ButtonLink color="secondary" href="/organisations">
-            <Trans>Créer une campagne</Trans>
-          </ButtonLink>
+          <CreateOrganisationLink />
         </div>
       </div>
     </div>

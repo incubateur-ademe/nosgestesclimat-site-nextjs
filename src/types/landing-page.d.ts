@@ -19,4 +19,5 @@ export type LandingPagePostType = {
   imageSrc: string
   imageAlt: string
   href: string
+  trackingEvent: string[]
 }
