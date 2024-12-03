@@ -64,7 +64,6 @@ jobs:
           build: yarn run e2e:generate
           browser: chrome
           parallel: true
-          record: true
           group: 'Test - e2e'
           spec: cypress/e2e/integration/**/*.cy.js
         env:

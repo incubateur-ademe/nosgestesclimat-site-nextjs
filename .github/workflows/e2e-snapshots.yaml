@@ -56,7 +56,6 @@ jobs:
           install: true
           browser: chrome
           parallel: true
-          record: true
           group: 'Test - snapshots'
           spec: cypress/e2e/snapshots/**/*.cy.js
         env:
