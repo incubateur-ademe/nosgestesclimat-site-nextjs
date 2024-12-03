@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import { getUpdatedDefaultAdditionalQuestions } from '@/helpers/polls/getUpdatedDefaultAdditionalQuestions'
-import type { PollUpdateDto } from '@/hooks/organisations/polls/useUpdatePoll'
+import type { PollToUpdate } from '@/hooks/organisations/polls/useUpdatePoll'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Organisation, OrganisationPoll } from '@/types/organisations'
 import type { ReactNode } from 'react'
@@ -17,8 +17,8 @@ type Props = {
     OrganisationPoll,
     'customAdditionalQuestions' | 'defaultAdditionalQuestions'
   >
-  onChange: (dto: PollUpdateDto) => void
-  onChangeCustomQuestions: (changes: PollUpdateDto) => void
+  onChange: (pollToUpdate: PollToUpdate) => void
+  onChangeCustomQuestions: (changes: PollToUpdate) => void
   description?: string | ReactNode
 }
 

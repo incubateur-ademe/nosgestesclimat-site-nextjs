@@ -7,7 +7,7 @@ import type {
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 
-type OrganisationUpdateDto = {
+type OrganisationToUpdate = {
   name?: string
   type?: OrganisationTypeEnum | null
   numberOfCollaborators?: number | null
@@ -36,7 +36,7 @@ export function useUpdateOrganisation() {
       email?: string
       code?: string
     }) => {
-      const dto: OrganisationUpdateDto = {
+      const organisationToUpdate: OrganisationToUpdate = {
         ...(formData.name ? { name: formData.name } : {}),
         ...(formData.organisationType
           ? { type: formData.organisationType }
@@ -67,12 +67,16 @@ export function useUpdateOrganisation() {
       }
 
       return axios
-        .put<Organisation>(`${ORGANISATION_URL}/${organisationIdOrSlug}`, dto, {
-          withCredentials: true,
-          params: {
-            code,
-          },
-        })
+        .put<Organisation>(
+          `${ORGANISATION_URL}/${organisationIdOrSlug}`,
+          organisationToUpdate,
+          {
+            withCredentials: true,
+            params: {
+              code,
+            },
+          }
+        )
         .then((response) => response.data)
     },
     onSuccess: () => {

@@ -4,7 +4,7 @@ import type { Organisation } from '@/types/organisations'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
-type OrganisationCreateDto = {
+type OrganisationToCreate = {
   name: string
   type?: OrganisationTypeEnum | null
   numberOfCollaborators?: number
@@ -20,9 +20,9 @@ type OrganisationCreateDto = {
 
 export function useCreateOrganisation() {
   return useMutation({
-    mutationFn: (dto: OrganisationCreateDto) =>
+    mutationFn: (organisationToCreate: OrganisationToCreate) =>
       axios
-        .post<Organisation>(ORGANISATION_URL, dto, {
+        .post<Organisation>(ORGANISATION_URL, organisationToCreate, {
           withCredentials: true,
         })
         .then((response) => response.data),
