@@ -55,8 +55,6 @@ jobs:
         with:
           install: true
           browser: chrome
-          parallel: true
-          group: 'Test - snapshots'
           spec: cypress/e2e/snapshots/**/*.cy.js
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

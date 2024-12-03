@@ -63,8 +63,6 @@ jobs:
         with:
           build: yarn run e2e:generate
           browser: chrome
-          parallel: true
-          group: 'Test - e2e'
           spec: cypress/e2e/integration/**/*.cy.js
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
