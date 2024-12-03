@@ -5,7 +5,6 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 export default defineConfig({
-  projectId: 'bkkrae',
   viewportWidth: 1920,
   viewportHeight: 960,
   env: {
