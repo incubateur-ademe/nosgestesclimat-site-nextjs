@@ -1,13 +1,13 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
-import type { PollUpdateDto } from '@/hooks/organisations/polls/useUpdatePoll'
+import type { PollToUpdate } from '@/hooks/organisations/polls/useUpdatePoll'
 import { useEffect } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
 type Props = {
   nameValue: string
-  updatePoll: (dto: PollUpdateDto) => void
+  updatePoll: (pollToUpdate: PollToUpdate) => void
   updatePollStatus: string
 }
 

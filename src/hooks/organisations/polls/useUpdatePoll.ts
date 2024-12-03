@@ -7,7 +7,7 @@ import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useParams } from 'next/navigation'
 
-export type PollUpdateDto = {
+export type PollToUpdate = {
   name?: string
   expectedNumberOfParticipants?: number
   defaultAdditionalQuestions?: PollDefaultAdditionalQuestion[]
@@ -19,11 +19,11 @@ export function useUpdatePoll() {
 
   return useMutation({
     mutationKey: ['organisations', orgaSlug, 'polls', pollSlug],
-    mutationFn: (dto: PollUpdateDto) =>
+    mutationFn: (pollToUpdate: PollToUpdate) =>
       axios
         .put<OrganisationPoll>(
           `${ORGANISATION_URL}/${orgaSlug}/polls/${pollSlug}`,
-          dto,
+          pollToUpdate,
           {
             withCredentials: true,
           }

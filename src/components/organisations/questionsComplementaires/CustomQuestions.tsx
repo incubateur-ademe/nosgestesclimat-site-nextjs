@@ -1,5 +1,5 @@
 import Trans from '@/components/translation/Trans'
-import type { PollUpdateDto } from '@/hooks/organisations/polls/useUpdatePoll'
+import type { PollToUpdate } from '@/hooks/organisations/polls/useUpdatePoll'
 import type { Organisation, OrganisationPoll } from '@/types/organisations'
 import CustomQuestion from './customQuestions/CustomQuestion'
 
@@ -9,7 +9,7 @@ type Props = {
     OrganisationPoll,
     'customAdditionalQuestions' | 'defaultAdditionalQuestions'
   >
-  onChange: (changes: PollUpdateDto) => void
+  onChange: (changes: PollToUpdate) => void
 }
 
 export default function CustomQuestions({

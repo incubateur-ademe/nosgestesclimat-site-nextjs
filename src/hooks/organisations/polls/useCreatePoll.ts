@@ -4,7 +4,7 @@ import type { OrganisationPoll } from '@/types/organisations'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
-type PollCreateDto = {
+type PollToCreate = {
   name: string
   expectedNumberOfParticipants?: number
   defaultAdditionalQuestions?: PollDefaultAdditionalQuestion[]
@@ -14,11 +14,11 @@ type PollCreateDto = {
 export function useCreatePoll(organisationIdOrSlug: string) {
   return useMutation({
     mutationKey: ['organisations', organisationIdOrSlug, 'polls'],
-    mutationFn: (dto: PollCreateDto) =>
+    mutationFn: (pollToCreate: PollToCreate) =>
       axios
         .post<OrganisationPoll>(
           `${ORGANISATION_URL}/${organisationIdOrSlug}/polls`,
-          dto,
+          pollToCreate,
           {
             withCredentials: true,
           }
