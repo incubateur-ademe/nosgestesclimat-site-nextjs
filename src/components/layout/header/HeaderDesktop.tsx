@@ -88,7 +88,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex h-full items-center gap-3">
             <PRIndicator />
 
             <DebugIndicator />
