@@ -4,7 +4,7 @@ import { trackingIframe } from '@/constants/tracking/misc'
 import { useIsClient } from '@/hooks/useIsClient'
 import { getIsIframe } from '@/utils/getIsIframe'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import type { PropsWithChildren} from 'react';
+import type { PropsWithChildren } from 'react'
 import { createContext, useEffect, useState } from 'react'
 
 export const IframeOptionsContext = createContext<{
@@ -79,6 +79,13 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
     setIsIframeOnlySimulation(Boolean(urlParams.get('onlySimulation')))
 
     setIframeLang(urlParams.get('lang'))
+  }, [isIframe])
+
+  useEffect(() => {
+    if (isIframe) {
+      // Add class to body to modify the style of the page on iframe mode
+      document.body.classList.add('iframe-mode')
+    }
   }, [isIframe])
 
   useEffect(() => {

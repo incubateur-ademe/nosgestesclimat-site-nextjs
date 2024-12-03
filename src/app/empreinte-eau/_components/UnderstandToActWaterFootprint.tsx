@@ -2,11 +2,16 @@ import UnderstandToAct from '@/components/landing-pages/UnderstandToAct'
 import Trans from '@/components/translation/Trans'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
-export default async function UnderstandToActWaterFootprint() {
+export default async function UnderstandToActWaterFootprint({
+  pathname,
+}: {
+  pathname: string
+}) {
   const { t } = await getServerTranslation()
 
   return (
     <UnderstandToAct
+      pathname={pathname}
       description={
         <p className="mb-0">
           <Trans>

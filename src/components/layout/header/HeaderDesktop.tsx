@@ -24,8 +24,8 @@ import { twMerge } from 'tailwind-merge'
 import NavLink from './NavLink'
 import OrganisationLink from './_components/OrganisationLink'
 import ProfileIcon from './_components/ProfileIcon'
-import CTAButton from './headerDesktop/CTAButton'
 import DebugIndicator from './headerDesktop/DebugIndicator'
+import CTAButton from './headerDesktop/MenuCTAButton'
 
 type Props = {
   isSticky: boolean
@@ -43,7 +43,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
     <header
       className={twMerge(
         '!hidden h-20 items-center lg:!block',
-        isSticky ? 'visible sticky top-0 z-50' : ''
+        isSticky ? 'sticky top-0 z-50' : ''
       )}>
       <div className="absolute bottom-0 left-0 right-0 top-0 flex h-20 w-full items-center border-b bg-white shadow-sm">
         <div className="mx-auto flex h-full w-full max-w-5xl items-center justify-between gap-6">
@@ -88,7 +88,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex h-full items-center gap-3">
             <PRIndicator />
 
             <DebugIndicator />

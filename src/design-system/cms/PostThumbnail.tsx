@@ -1,5 +1,9 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import Image from 'next/image'
+import type { ReactNode } from 'react'
 import Badge from '../layout/Badge'
 
 export default function PostThumbnail({
@@ -8,17 +12,20 @@ export default function PostThumbnail({
   imageSrc,
   imageAlt,
   href,
+  trackingEvent,
 }: {
-  title: string
-  category: string
+  title: ReactNode
+  category: ReactNode
   imageSrc: string
   imageAlt: string
   href: string
+  trackingEvent: string[]
 }) {
   return (
     <a
       href={href}
-      className="flex rounded-xl bg-white !no-underline !duration-500 md:flex-col md:transition-transform md:hover:translate-y-[-6px]">
+      className="flex rounded-xl bg-white !no-underline !duration-500 md:flex-col md:transition-transform md:hover:translate-y-[-6px]"
+      onClick={() => trackEvent(trackingEvent)}>
       <div className="relative min-h-[134px] w-1/3 min-w-28 md:mb-4 md:min-h-[240px] md:w-auto">
         <Image
           src={imageSrc}

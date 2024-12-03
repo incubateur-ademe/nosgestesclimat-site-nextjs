@@ -1,10 +1,5 @@
 'use client'
 
-import {
-  homeClickCtaCommencer,
-  homeClickCtaReprendre,
-  homeClickCtaResultats,
-} from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useIsClient } from '@/hooks/useIsClient'
@@ -14,7 +9,17 @@ import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/Trans'
 
-export default function DynamicCTAButton() {
+export default function DynamicCTAButton({
+  className,
+  trackingEvents,
+}: {
+  className?: string
+  trackingEvents: {
+    start: string[]
+    resume: string[]
+    results: string[]
+  }
+}) {
   const { progression } = useCurrentSimulation()
 
   const isClient = useIsClient()
@@ -27,25 +32,27 @@ export default function DynamicCTAButton() {
   return (
     <ButtonLink
       size="xl"
-      className={`transition-all duration-300 hover:bg-primary-900 ${
-        isClient ? 'opacity-100' : 'opacity-0'
-      }`}
+      className={twMerge(
+        'transition-all duration-300 hover:bg-primary-900',
+        isClient ? 'opacity-100' : 'opacity-0',
+        className
+      )}
       href={getLinkToSimulateurPage()}
       data-cypress-id="do-the-test-link"
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
       onClick={() => {
         if (progression === 1) {
-          trackEvent(homeClickCtaResultats)
+          trackEvent(trackingEvents?.results)
           return
         }
 
         if (progression > 0) {
-          trackEvent(homeClickCtaReprendre)
+          trackEvent(trackingEvents?.resume)
           return
         }
 
-        trackEvent(homeClickCtaCommencer)
+        trackEvent(trackingEvents?.start)
       }}>
       <span
         className={twMerge(

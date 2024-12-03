@@ -1,6 +1,12 @@
 import DailyGestures from '@/components/landing-pages/DailyGestures'
 import Trans from '@/components/translation/Trans'
+import { trackingActionClickPageBottom } from '@/constants/tracking/actions'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import {
+  getLandingClickCTAResults,
+  getLandingClickCTAResume,
+  getLandingClickCTAStart,
+} from '@/helpers/tracking/landings'
 
 export default async function DailyGestureWaterFootprint() {
   const { t } = await getServerTranslation()
@@ -33,7 +39,7 @@ export default async function DailyGestureWaterFootprint() {
             </Trans>
           </p>
 
-          <p>
+          <p className="mb-0">
             <Trans>
               Voici quelques exemples de gestes qui auront un impact important
               sur votre consommation eau indirecte :
@@ -41,6 +47,20 @@ export default async function DailyGestureWaterFootprint() {
           </p>
         </>
       }
+      trackingEvents={{
+        start: getLandingClickCTAStart(
+          '/empreinte-eau',
+          trackingActionClickPageBottom
+        ),
+        resume: getLandingClickCTAResume(
+          '/empreinte-eau',
+          trackingActionClickPageBottom
+        ),
+        results: getLandingClickCTAResults(
+          '/empreinte-eau',
+          trackingActionClickPageBottom
+        ),
+      }}
       gestures={{
         [gesturesKeysForTranslation.alimentation]: {
           imageSrc: '/images/illustrations/empreinte-alimentation.svg',

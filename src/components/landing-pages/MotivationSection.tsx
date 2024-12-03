@@ -8,7 +8,7 @@ export default function MotivationSection({
 }: {
   title: ReactNode
   description: ReactNode
-  motivationItems: {
+  motivationItems?: {
     title: ReactNode
     icon: ReactNode
     description: ReactNode
@@ -25,21 +25,25 @@ export default function MotivationSection({
           {description}
         </div>
 
-        <ul className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
-          {motivationItems.map((item, index) => (
-            <li
-              key={`motivation-item-${index}`}
-              className="flex flex-col gap-2 text-center">
-              <div className="flex justify-center">{item.icon}</div>
+        {motivationItems && (
+          <ul className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
+            {motivationItems.map((item, index) => (
+              <li
+                key={`motivation-item-${index}`}
+                className="flex flex-col gap-2 text-center">
+                <div className="flex justify-center">{item.icon}</div>
 
-              <h3 className="mb-0 text-base font-bold md:text-lg">
-                {item.title}
-              </h3>
+                <h3 className="mb-0 text-sm font-bold md:text-lg">
+                  {item.title}
+                </h3>
 
-              <div className="text-xs md:text-base">{item.description}</div>
-            </li>
-          ))}
-        </ul>
+                <div className="text-[13px] md:text-base">
+                  {item.description}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   )

@@ -14,9 +14,10 @@ export type GesturesType = {
 }
 
 export type LandingPagePostType = {
-  category: string
-  title: string
+  category: ReactNode
+  title: ReactNode
   imageSrc: string
   imageAlt: string
   href: string
+  trackingEvent: string[]
 }
