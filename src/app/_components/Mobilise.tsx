@@ -1,7 +1,8 @@
 import Trans from '@/components/translation/Trans'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
+import CreateGroupLink from './mobilise/CreateGroupLink'
+import CreateOrganisationLink from './mobilise/CreateOrganisationLink'
 
 export default async function Mobilise() {
   const { t } = await getServerTranslation()
@@ -30,9 +31,7 @@ export default async function Mobilise() {
             </Trans>
           </p>
 
-          <ButtonLink href="/amis">
-            <Trans>Créer un groupe</Trans>
-          </ButtonLink>
+          <CreateGroupLink />
         </div>
 
         <div className="order-first py-8 md:order-last">
@@ -78,9 +77,7 @@ export default async function Mobilise() {
             </Trans>
           </p>
 
-          <ButtonLink color="secondary" href="/organisations">
-            <Trans>Créer une campagne</Trans>
-          </ButtonLink>
+          <CreateOrganisationLink />
         </div>
       </div>
     </div>

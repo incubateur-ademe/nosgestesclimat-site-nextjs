@@ -2,9 +2,15 @@ import DynamicCTAButton from '@/components/cta/DynamicCTAButton'
 import Partners from '@/components/landing-pages/Partners'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/Trans'
+import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import {
+  getLandingClickCTAResults,
+  getLandingClickCTAResume,
+  getLandingClickCTAStart,
+} from '@/helpers/tracking/landings'
 import Image from 'next/image'
 import DailyGestureCarbonFootprint from './_components/DailyGestureCarbonFootprint'
 import DidYouKnowCarbon from './_components/DidYouKnowCarbonFootprint'
@@ -78,7 +84,22 @@ export default function CarbonFootprintLandingPage() {
               </Trans>
             </p>
             <div className="flex w-full justify-center md:justify-start">
-              <DynamicCTAButton />
+              <DynamicCTAButton
+                trackingEvents={{
+                  start: getLandingClickCTAStart(
+                    '/empreinte-carbone',
+                    trackingActionClickCTA
+                  ),
+                  resume: getLandingClickCTAResume(
+                    '/empreinte-carbone',
+                    trackingActionClickCTA
+                  ),
+                  results: getLandingClickCTAResults(
+                    '/empreinte-carbone',
+                    trackingActionClickCTA
+                  ),
+                }}
+              />{' '}
             </div>
           </div>
         }
@@ -99,7 +120,7 @@ export default function CarbonFootprintLandingPage() {
 
         <DailyGestureCarbonFootprint />
 
-        <UnderstandToActCarbonFootprint />
+        <UnderstandToActCarbonFootprint pathname={'/empreinte-carbone'} />
 
         <MotivationSectionCarbonFootprint />
 

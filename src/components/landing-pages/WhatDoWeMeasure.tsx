@@ -5,6 +5,25 @@ import type { ReactNode } from 'react'
 import 'slick-carousel/slick/slick.css'
 import { twMerge } from 'tailwind-merge'
 
+const getGridColsClassname = (numberItems: number) => {
+  switch (numberItems) {
+    case 1:
+      return 'lg:grid-cols-1'
+    case 2:
+      return 'lg:grid-cols-2'
+    case 3:
+      return 'lg:grid-cols-3'
+    case 4:
+      return 'lg:grid-cols-4'
+    case 5:
+      return 'lg:grid-cols-5'
+    case 6:
+      return 'lg:grid-cols-6'
+    default:
+      return ''
+  }
+}
+
 export default function WhatDoWeMeasure({
   title,
   listItems,
@@ -34,7 +53,7 @@ export default function WhatDoWeMeasure({
 
       <ul
         className={twMerge(
-          `order hidden grid-cols-1 gap-5 md:grid md:grid-cols-2 lg:grid-cols-${listItems.length}`,
+          `order hidden grid-cols-1 gap-5 md:grid md:grid-cols-2 ${getGridColsClassname(listItems.length)}`,
           shouldUseDescriptionMaxWidth ? 'max-w-[800px]' : ''
         )}>
         {listItems.map(({ icon, title }, index) => (

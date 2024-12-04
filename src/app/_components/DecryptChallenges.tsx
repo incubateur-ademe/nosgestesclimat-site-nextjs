@@ -7,6 +7,7 @@ export default async function DecryptChallenges() {
 
   return (
     <UnderstandToAct
+      pathname={'/'}
       title={<Trans>Décryptez les défis environnementaux</Trans>}
       posts={[
         {
