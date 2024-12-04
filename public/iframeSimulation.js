@@ -15,24 +15,27 @@ const possibleOptions = [
   { key: 'pr' },
 ]
 
-const optionFragments = possibleOptions.map(({ key, legacy }) => {
-  const value = script.dataset[key] || script.dataset[legacy]
-
-  return value != null ? `&${key === 'pr' ? 'PR' : key}=${value}` : ''
-})
-
 const lang = script.dataset.lang
 
-const src = `${hostname}/${
-  lang ? lang + '/' : ''
-}simulateur/bilan/?iframe&integratorUrl=${integratorUrl}${optionFragments.join(
-  ''
-)}`
+const url = new URL(hostname)
+
+url.pathname = `/${lang ? lang + '/' : ''}simulateur/bilan`
+
+url.searchParams.append('iframe', true)
+url.searchParams.append('integratorUrl', integratorUrl)
+
+possibleOptions.forEach(({ key, legacy }) => {
+  const value = script.dataset[key] || script.dataset[legacy]
+
+  if (value) {
+    url.searchParams.append(key === 'pr' ? 'PR' : key, value)
+  }
+})
 
 const iframe = document.createElement('iframe')
 
 const iframeAttributes = {
-  src,
+  src: url.toString(),
   allowfullscreen: true,
   webkitallowfullscreen: true,
   mozallowfullscreen: true,
