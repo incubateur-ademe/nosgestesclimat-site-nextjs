@@ -11,20 +11,21 @@ const possibleOptions = [
   { key: 'shareData', legacy: 'partagedatafinsimulation' },
 ]
 
-const optionFragments = possibleOptions.map(({ key, legacy }) => {
+const url = new URL(hostname)
+
+url.searchParams.append('iframe', 'true')
+url.searchParams.append('integratorUrl', integratorUrl)
+
+possibleOptions.forEach(({ key, legacy }) => {
   const value = script.dataset[key] || script.dataset[legacy]
 
-  return value != null ? `&${key}=${value}` : ''
+  url.searchParams.append(key, value)
 })
-
-const src = `${hostname}/?iframe&integratorUrl=${integratorUrl}${optionFragments.join(
-  ''
-)}`
 
 const iframe = document.createElement('iframe')
 
 const iframeAttributes = {
-  src,
+  src: url.toString(),
   allowfullscreen: true,
   webkitallowfullscreen: true,
   mozallowfullscreen: true,

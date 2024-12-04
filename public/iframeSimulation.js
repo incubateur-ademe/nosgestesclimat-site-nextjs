@@ -21,7 +21,7 @@ const url = new URL(hostname)
 
 url.pathname = `/${lang ? lang + '/' : ''}simulateur/bilan`
 
-url.searchParams.append('iframe', true)
+url.searchParams.append('iframe', 'true')
 url.searchParams.append('integratorUrl', integratorUrl)
 
 possibleOptions.forEach(({ key, legacy }) => {
