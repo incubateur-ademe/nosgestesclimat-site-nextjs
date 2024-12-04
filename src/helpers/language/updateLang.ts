@@ -4,13 +4,9 @@ import { updateLangCookie } from './updateLangCookie'
 export function updateLang({
   newLocale,
   currentLocale,
-  currentPathname,
-  searchParams,
 }: {
   newLocale: string
   currentLocale: string
-  currentPathname: string
-  searchParams: string
 }) {
   if (!i18nConfig.locales.includes(newLocale)) {
     console.error('Unauthorized locale:', newLocale)
@@ -20,15 +16,13 @@ export function updateLang({
   // set cookie for next-i18n-router
   updateLangCookie(newLocale)
 
+  const url = new URL(window.location.href)
+
   if (currentLocale === i18nConfig.defaultLocale) {
-    window.location.href =
-      '/' +
-      newLocale +
-      currentPathname +
-      (searchParams.length > 0 ? `?${searchParams}` : '')
+    url.pathname = `/${newLocale}/${url.pathname}`
   } else {
-    window.location.href =
-      currentPathname.replace(`/${currentLocale}`, `/${newLocale}`) +
-      (searchParams.length > 0 ? `?${searchParams}` : '')
+    url.pathname = url.pathname.replace(`/${currentLocale}`, `/${newLocale}`)
   }
+
+  window.location.href = url.toString()
 }

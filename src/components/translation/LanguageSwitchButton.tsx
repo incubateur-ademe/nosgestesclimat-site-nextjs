@@ -9,15 +9,13 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import i18nConfig from '@/i18nConfig'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { useCallback, useEffect } from 'react'
 
 export default function LanguageSwitchButton() {
   const { t } = useClientTranslation()
 
   const currentPathname = usePathname()
-
-  const searchParams = useSearchParams().toString()
 
   const currentLocale = useCurrentLocale(i18nConfig)
 
@@ -38,11 +36,9 @@ export default function LanguageSwitchButton() {
       updateLang({
         newLocale,
         currentLocale: currentLocale ?? '',
-        currentPathname,
-        searchParams,
       })
     },
-    [currentLocale, currentPathname, searchParams]
+    [currentLocale]
   )
 
   return (
