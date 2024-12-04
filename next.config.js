@@ -93,9 +93,10 @@ const sentryConfig = [
 
     // Suppresses source map uploading logs during build
     silent: true,
-    org: 'betagouv',
+    org: 'incubateur-ademe',
     project: 'nosgestesclimat-nextjs',
     url: 'https://sentry.incubateur.net/',
+    authToken: process.env.SENTRY_AUTH_TOKEN,
   },
   {
     // For all available options, see:
