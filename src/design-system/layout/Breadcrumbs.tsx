@@ -20,7 +20,7 @@ export default function Breadcrumbs({
 }) {
   return (
     <section className={twMerge('h-[75px] w-full', className)}>
-      <nav className="mx-auto flex h-full w-full items-center gap-4 overflow-x-scroll">
+      <nav className="mx-auto flex h-full w-full items-center gap-4 overflow-x-scroll sm:overflow-x-hidden">
         {items.map(({ href, label, isActive, isDisabled }, index) => (
           <Fragment key={`breadcrumb-item-${index}`}>
             <Link
