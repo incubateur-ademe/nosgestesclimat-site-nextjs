@@ -1,5 +1,4 @@
 import Route404 from '@/components/layout/404'
-import Footer from '@/components/layout/Footer'
 import Main from '@/design-system/layout/Main'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
@@ -23,7 +22,6 @@ export default function NotFound() {
       <Main>
         <Route404 />
       </Main>
-      <Footer className="bg-white" />
     </>
   )
 }
