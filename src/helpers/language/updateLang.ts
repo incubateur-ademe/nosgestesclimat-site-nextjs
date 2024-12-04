@@ -12,6 +12,11 @@ export function updateLang({
   currentPathname: string
   searchParams: string
 }) {
+  if (!i18nConfig.locales.includes(newLocale)) {
+    console.error('Unauthorized locale:', newLocale)
+    return
+  }
+
   // set cookie for next-i18n-router
   updateLangCookie(newLocale)
 
