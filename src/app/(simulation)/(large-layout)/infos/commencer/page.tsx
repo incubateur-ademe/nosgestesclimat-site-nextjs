@@ -143,7 +143,7 @@ export default function Commencer() {
               pollToAdd: pollSlug || undefined,
             })
 
-            // We try to go to the simulateur page. If the test is finished we will save the simulation and then go to the end page
+            // We try to go to the calculateur page. If the test is finished we will save the simulation and then go to the end page
             setShouldNavigate(true)
           }}>
           {buttonLabels[status]}

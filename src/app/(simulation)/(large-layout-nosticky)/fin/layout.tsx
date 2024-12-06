@@ -8,10 +8,10 @@ export async function generateMetadata() {
 
   return getMetadataObject({
     title: t(
-      "Vos résultats, simulateur d'empreinte climat - Nos Gestes Climat"
+      "Vos résultats, calculateur d'empreinte climat - Nos Gestes Climat"
     ),
     description: t(
-      "Vos résultats de tests de notre simulateur d'empreinte carbone."
+      "Vos résultats de tests de notre calculateur d'empreinte carbone."
     ),
     robots: noIndexObject,
     alternates: {

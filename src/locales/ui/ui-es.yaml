@@ -126,7 +126,7 @@ entries:
   model.modern: El modelo se basa en <2>publicodes</2>, un lenguaje diseñado por el Estado para expresar algoritmos de interés público.
   model.modern.lock: Le modèle est basé sur <2>publicodes</2>, un langage conçu par l'État pour exprimer des algorithmes d'intérêt public.
   meta.publicodes.pages.Documentation.intro: El simulador Nos Gestes Climat se basa en el modelo de cálculo del mismo nombre, compuesto por un conjunto de bloques de construcción. Esta documentación le permite acceder de forma transparente a todas las variables del cálculo.
-  meta.publicodes.pages.Documentation.intro.lock: Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques. Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul.
+  meta.publicodes.pages.Documentation.intro.lock: Le calculateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques. Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul.
   model.modern4: El modelo de cálculo está incrustado directamente en el cliente, por lo que el cálculo tiene lugar allí, en su navegador, y no en nuestros servidores. Los datos recogidos son tan descriptivos de la vida de los usuarios, y por tanto tan sensibles en términos de privacidad, que hacer los cálculos en el servidor <2>y almacenarlos</2> supondría un riesgo demasiado alto.
   model.modern4.lock: Le modèle de calcul est directement embarqué chez le client, le calcul a lieu là dans votre navigateur, pas sur nos serveurs. Les données collectées sont si descriptives de la vie des utilisateurs, donc sensibles en termes de vie privée, que faire les calculs côté serveur <2>et les stocker</2> poserait un risque trop élevé.
   model.modern2: Totalmente configurable, desde las preguntas formuladas al usuario hasta las hipótesis del modelo de cálculo, puede ser reutilizado <2>libremente</2> por cualquier tipo de jugador.
@@ -142,7 +142,7 @@ entries:
   model.modern3: ⬇️ A continuación puede ver la influencia de 3 parámetros de cálculo en los resultados finales.
   model.modern3.lock: ⬇️ Ci-dessous, vous pouvez voir l'influence de 3 paramètres de calcul sur les résultats finaux.
   publicodes.Personas.description: 'Los hemos definido para que representen la diversidad de los casos de uso del simulador<1>: ¡cualquier parecido con una persona existente o pasada sería pura coincidencia!</1>En ningún caso podemos decir que sean representativos de la distribución de la población francesa: no se trata de ceñirse a las estadísticas de población, sino de encontrar entre nuestros diez personajes al menos uno que represente cada uso importante y diferenciador del simulador. Así pues, para cada personaje hemos variado lo siguiente<3><0>Su sexo: aunque no influye en la huella, sería sorprendente que sólo hubiera personas "femeninas"</0><1>La edad y la situación personal y profesional: al menos un estudiante, un jubilado, un adulto en casa y un trabajador</1><2>El tamaño de su hogar: desde una persona hasta una familia numerosa</2><3>Dónde viven: en zonas urbanas, rurales y suburbanas, en el norte, en el sur, en llanuras, en montañas y en una isla</3><4>Dónde viven: de pisos a casas, de edificios nuevos a antiguos</4><5>Medios de transporte: a pie, en coche, en ferry o en avión</5><6>Su dieta: al menos un vegano, un vegetariano, una persona que sólo come pescado y un amante de la carne roja</6><7>Sus hábitos de compra: de segunda mano a nuevo, del comprador compulsivo al que no compra casi nada</7><8>Su forma de ir de vacaciones: medio de transporte, alojamiento, hay para todos los gustos</8><9>Sus aficiones: cultura, deporte, bienestar..</9></3>'
-  publicodes.Personas.description.lock: 'Nous les avons définis pour qu’ils représentent la diversité des cas d’usage du simulateur.<1>Toute ressemblance avec une personne existant ou ayant existé serait purement fortuite !</1>En aucune mesure, on ne peut dire qu’ils sont représentatifs de la distribution de la population française : il ne s’agit pas de coller aux statistiques de la population, mais de retrouver parmi nos dix personas au moins un qui représente chaque usage majeur et différenciant pour le simulateur. Ainsi, nous avons fait varier pour chacun d’entre eux :<3><0>Leur genre : même s’il n’influe pas sur l’empreinte, il serait étonnant de n’avoir que des personas “femmes”</0><1>Leur âge et situation personnelle / professionnelle : au moins un étudiant, un retraité, un adulte au foyer, un actif</1><2>La taille de leur foyer : de 1 personne à famille nombreuse</2><3>Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans le nord, dans le sud, les plaines, la montagne et sur une île</3><4>Leur logement : de l’appartement à la maison, du neuf à l’ancien</4><5>Leurs modes de transport : de la marche à la voiture en passant par le ferry et l’avion</5><6>Leur régime alimentaire : au moins un végétalien, un végétarien, une personne ne mangeant que du poisson, et un amateur de viande rouge</6><7>Leur tendance à l’achat : du tout occasion au tout neuf, de l’acheteur compulsif à celui ou celle qui n’achète presque rien</7><8>Leur façon de partir en vacances : mode de transport, hébergement, on trouve de tout</8><9>Leurs loisirs : de la culture, du sport, du bien-être…</9></3>'
+  publicodes.Personas.description.lock: 'Nous les avons définis pour qu’ils représentent la diversité des cas d’usage du calculateur.<1>Toute ressemblance avec une personne existant ou ayant existé serait purement fortuite !</1>En aucune mesure, on ne peut dire qu’ils sont représentatifs de la distribution de la population française : il ne s’agit pas de coller aux statistiques de la population, mais de retrouver parmi nos dix personas au moins un qui représente chaque usage majeur et différenciant pour le calculateur. Ainsi, nous avons fait varier pour chacun d’entre eux :<3><0>Leur genre : même s’il n’influe pas sur l’empreinte, il serait étonnant de n’avoir que des personas “femmes”</0><1>Leur âge et situation personnelle / professionnelle : au moins un étudiant, un retraité, un adulte au foyer, un actif</1><2>La taille de leur foyer : de 1 personne à famille nombreuse</2><3>Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans le nord, dans le sud, les plaines, la montagne et sur une île</3><4>Leur logement : de l’appartement à la maison, du neuf à l’ancien</4><5>Leurs modes de transport : de la marche à la voiture en passant par le ferry et l’avion</5><6>Leur régime alimentaire : au moins un végétalien, un végétarien, une personne ne mangeant que du poisson, et un amateur de viande rouge</6><7>Leur tendance à l’achat : du tout occasion au tout neuf, de l’acheteur compulsif à celui ou celle qui n’achète presque rien</7><8>Leur façon de partir en vacances : mode de transport, hébergement, on trouve de tout</8><9>Leurs loisirs : de la culture, du sport, du bien-être…</9></3>'
   model.stats: El modelo incluye ahora <1></1> reglas de cálculo. Entre ellas, <3></3> reglas son preguntas que deben formularse al usuario para calcular un resultado preciso.
   model.stats.lock: Le modèle comprend aujourd'hui <1></1> règles de calcul. Parmi elles, <3></3> règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.
   publicodes.Contribution.bugQuestion: 🐛 ¿Tienes un error que te impide utilizar Nos Gestes Climat?
@@ -281,7 +281,7 @@ entries:
   Créer et passer mon test: Crear y realizar mi prueba
   Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.: ¿Borrar los datos de grupo guardados? Sólo se borrarán los datos de tus miembros. Esta acción es irreversible.
   publicodes.Personas.maj: Para garantizar que siguen representando la diversidad de casos de uso del simulador de huella de carbono, los editamos cada vez que se añade o modifica el simulador, de acuerdo con las siguientes reglas:<1><0>Cada respuesta posible se asigna al menos a una persona</0><1>Al menos una persona no responde a la pregunta (por lo que se le asigna el valor por defecto dado en el simulador).</1></1>
-  publicodes.Personas.maj.lock: Pour qu’ils ou elles continuent de représenter la diversité des cas d’usage du simulateur d’empreinte carbone, nous les éditons à chaque ajout ou modification de ce dernier, en respectant les règles suivantes :<1><0>Chaque réponse possible est attribuée à au moins un persona</0><1>Au moins un persona ne répond rien à la question (il lui est donc attribué la valeur par défaut donnée dans le simulateur).</1></1>
+  publicodes.Personas.maj.lock: Pour qu’ils ou elles continuent de représenter la diversité des cas d’usage du calculateur d’empreinte carbone, nous les éditons à chaque ajout ou modification de ce dernier, en respectant les règles suivantes :<1><0>Chaque réponse possible est attribuée à au moins un persona</0><1>Au moins un persona ne répond rien à la question (il lui est donc attribué la valeur par défaut donnée dans le calculateur).</1></1>
   Cette page vous permet de naviguer dans les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.: Esta página le permite navegar por los itinerarios de Nos Gestes Climat como si fuera uno de los perfiles típicos que hemos enumerado.
   Modifier mes réponses: Modificar mis respuestas
   Voir plus d'informations: Más información
@@ -343,7 +343,7 @@ entries:
   publicodes.Tutoriel.slide6.lock: <0>Prendre la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter une TV...</0><1>L'empreinte de notre consommation individuelle, c'est la somme de toutes ces activités qui font notre vie moderne.</1>
   publicodes.Tutoriel.slide2.p1: 'Con una unidad de nombre bárbaro: el equivalente en CO₂. <2></2> Dióxido de carbono , ya lo conoces: lo exhalamos todo el día, pero no influye en el clima.'
   publicodes.Tutoriel.slide2.p1.lock: "Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone <2></2>, vous le connaissez : on l'expire toute la journée, mais sans influence sur le climat."
-  Les personas nous servent à tester le simulateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: Los personajes nos permiten probar el simulador desde todos los ángulos y comprobar que se adapta a todas las situaciones de la vida de los habitantes de la Francia metropolitana. Su presencia nos obliga a reflexionar sobre todos los casos de uso, a proyectarnos en realidades diferentes y a incluir estas realidades en nuestros rediseños del recorrido de prueba y de las acciones propuestas al final del mismo.
+  Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: Los personajes nos permiten probar el simulador desde todos los ángulos y comprobar que se adapta a todas las situaciones de la vida de los habitantes de la Francia metropolitana. Su presencia nos obliga a reflexionar sobre todos los casos de uso, a proyectarnos en realidades diferentes y a incluir estas realidades en nuestros rediseños del recorrido de prueba y de las acciones propuestas al final del mismo.
   Terminer: Acabado
   Vous avez terminé le test !: Has completado la prueba
   Une capture du mode Groupe Nos Gestes Climat.: Una captura del Grupo Nos Gestes Climat.
@@ -382,7 +382,7 @@ entries:
   Découvrez nos pistes pour agir dès aujourd’hui pour le climat.: Averigua cómo puedes actuar hoy por el clima.
   Votre groupe a été supprimé. Vous allez être redirigé vers la page d'accueil du mode groupe.: Tu grupo ha sido eliminado. Serás redirigido a la página de inicio del modo grupo.
   Cette opération est définitive et vous ne pourrez plus accéder aux résultats du groupe.: Esta operación es definitiva y ya no podrás acceder a los resultados del grupo.
-  Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Nuestro simulador se basa en un modelo de datos, con todos los cálculos documentados; los datos mostrados están directamente asociados a su prueba.
+  Notre calculateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Nuestro simulador se basa en un modelo de datos, con todos los cálculos documentados; los datos mostrados están directamente asociados a su prueba.
   N'hésitez pas à consulter notre <2>FAQ</2> avant de nous écrire, vous y trouverez sans doute la réponse à votre question !: 'No dude en consultar nuestras <2>FAQ</2> antes de escribirnos: ¡seguro que encuentra allí la respuesta a su pregunta!'
   Pour toute autre remarque ou question, vous pouvez nous envoyer un message via le formulaire de contact ci-dessous.: Si tiene algún otro comentario o pregunta, envíenos un mensaje mediante el siguiente formulario de contacto.
   Pour en savoir plus sur cette règle de notre modèle, lancer le calcul en cliquant sur le bouton ci-dessous.: Para saber más sobre esta regla en nuestro modelo, ejecute el cálculo haciendo clic en el botón de abajo.
@@ -485,7 +485,7 @@ entries:
   Question complémentaires: Preguntas adicionales
   Paramètres: Parámetros
   Connaissez-vous votre empreinte sur le climat ?: ¿Conoce su huella climática?
-  Apportez votre pierre au simulateur de référence: Contribuya al simulador de referencia
+  Apportez votre pierre au calculateur de référence: Contribuya al simulador de referencia
   Qui peut consulter les résultats de mon organisation ?: ¿Quién puede ver los resultados de mi organización?
   Vous pouvez modifier vos informations personnelles. Le lien du sondage de votre organisation ne changera pas.: Puede modificar sus datos personales. El enlace a la encuesta de su organización no cambiará.
   Partagez le test à votre réseau et suivez vos statistiques.: Comparte la prueba con tu red y haz un seguimiento de tus estadísticas.
@@ -538,7 +538,7 @@ entries:
   L'empreinte climat, qu'est-ce que c'est ?: ¿Qué es la huella climática?
   Faites le test en: Realice la prueba
   Classements: Clasificaciones
-  Découvrez le simulateur, ouvrir dans un nouvel onglet: Descubrir el simulador, abrir en una nueva pestaña
+  Découvrez le calculateur, ouvrir dans un nouvel onglet: Descubrir el simulador, abrir en una nueva pestaña
   Chaque participation est représentée par une barre verticale. Votre score est affiché en rose.: Cada entrada está representada por una barra vertical. Su puntuación se muestra en rosa.
   Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Descubrir los talleres ABC, abrir en una nueva pestaña
   Nos Gestes Climat dans votre entreprise, association, école...: Nos Gestes Climat en tu empresa, asociación o escuela...
@@ -616,12 +616,12 @@ entries:
   Nosgestesclimat.fr n'est pas affilié au site {{ parent }}..lock: Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.
   Nous pourrons vous contacter en cas de problème lors de votre inscription: Podemos ponernos en contacto con usted si hay algún problema con su inscripción
   Oups ! Une erreur est survenue: ¡Uy! Se ha producido un error
-  Découvrir le simulateur: Descubra el simulador
+  Découvrir le calculateur: Descubra el simulador
   Découvrez les conseils de l'ADEME, ouvrir dans un nouvel onglet: Más información sobre los consejos de ADEME, abrir en una pestaña nueva
   Vous avez déjà participé à ce sondage.: Ya ha participado en esta encuesta.
   Vous avez déja participé à ce sondage.: Ya ha participado en esta encuesta.
   En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.: Al hacer clic en el botón Aceptar, autoriza a {{ parent }} a recuperar su huella climática.
-  Le simulateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.: El simulador de la huella de carbono individual te ayuda a comprender cuáles de nuestros usos contribuyen más al cambio climático y a saber qué acciones tendrían mayor impacto para reducirlo.
+  Le calculateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.: El simulador de la huella de carbono individual te ayuda a comprender cuáles de nuestros usos contribuyen más al cambio climático y a saber qué acciones tendrían mayor impacto para reducirlo.
   (Données consultables à partir de 3 participants, dans un souci d'anonymat): (Pueden consultarse los datos de 3 o más participantes, para garantizar el anonimato)
   Oups, nous n'avons pas trouvé les résultats de cette organisation: No hemos podido encontrar los resultados de esta organización
   Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <em>pas</em> le détail question par question (vos km en voiture, les m² de votre logement...).: Estos son sus resultados para las categorías principales (transporte, alimentación, etc.), pero <em>no</em> los detalles pregunta por pregunta (el kilometraje de su coche, los metros cuadrados de su vivienda, etc.).
@@ -652,7 +652,7 @@ entries:
   Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat: Su calculadora personal de la huella de carbono - Nos Gestes Climat
   l’équipe de nosgestesclimat.fr: el equipo de nosgestesclimat.fr
   l’équipe de nosgestesclimat.fr.lock: l’équipe de nosgestesclimat.fr
-  Documentation, votre simulateur d'empreinte carbone - Nos Gestes Climat: Documentación, su simulador de huella de carbono - Nos Gestes Climat
+  Documentation, votre calculateur d'empreinte carbone - Nos Gestes Climat: Documentación, su simulador de huella de carbono - Nos Gestes Climat
   écartez celles qui vous semblent trop ambitieuses ou déplacées.: descartar las que parezcan demasiado ambiciosas o inapropiadas.
   Nos Statistiques d'utilisation - Nos Gestes Climat: Nuestras estadísticas de uso - Nos Gestes Climat
   Invitez d'autres personnes à rejoindre votre groupe: Invita a otras personas a unirse a tu grupo
@@ -669,7 +669,7 @@ entries:
   Découvrez les nouveautés du site Nos Gestes Climat.: Descubra las novedades en el sitio web de Nos Gestes Climat.
   Nos statistiques "phares" - Nos Gestes Climat: Nuestras estadísticas clave - Nos Gestes Climat
   'Découvrez les ambassadeurs de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.': 'Descubra a los embajadores de Nos Gestes Climat: organizaciones, autoridades locales, medios de comunicación, personas influyentes, etc.'
-  Découvrez comment nous utilisons vos données personnelles pour vous proposer un simulateur de bilan carbone personnel.: Descubra cómo utilizamos sus datos personales para ofrecerle un simulador personal de la huella de carbono.
+  Découvrez comment nous utilisons vos données personnelles pour vous proposer un calculateur de bilan carbone personnel.: Descubra cómo utilizamos sus datos personales para ofrecerle un simulador personal de la huella de carbono.
   Liste des questions - Nos Gestes Climat: Lista de preguntas - Nos Gestes Climat
   En participant vous acceptez que vos résultats sont partagés anonymement avec cette organisation.: Al participar, acepta que sus resultados se compartan de forma anónima con esta organización.
   Rejoindre un groupe - Nos Gestes Climat: Únete a un grupo - Nos Gestes Climat
@@ -692,7 +692,7 @@ entries:
   Invitez vos proches pour comparer vos résultats. Cela prend: Invita a amigos y familiares a comparar tus resultados. Se necesita
   Organisations, calculer votre empreinte carbone - Nos Gestes Climat: Organizaciones, calculen su huella de carbono - Nos Gestes Climat
   Un calcul statistique du **chauffage** résidentiel français moyen: Cálculo estadístico de la factura media de calefacción de las viviendas francesas
-  Découvrez le modèle de données de notre simulateur d'empreinte climat: Descubra el modelo de datos de nuestro simulador de huella climática
+  Découvrez le modèle de données de notre calculateur d'empreinte climat: Descubra el modelo de datos de nuestro simulador de huella climática
   Mentions légales du site Nos Gestes Climat.: Información legal sobre el sitio web de Nos Gestes Climat.
   Calculer votre empreinte carbone avec vos amis - Nos Gestes Climat: Calcula tu huella de carbono con tus amigos - Nos Gestes Climat
   Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver: En breve recibirá un correo electrónico nuestro que le permitirá encontrarlo
@@ -703,7 +703,7 @@ entries:
   Informations relatives à l'accessibilité de Nos Gestes Climat.: Información sobre la accesibilidad de Nos Gestes Climat.
   Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat: Acciones tras la simulación de su huella climática - Nos Gestes Climat
   Diffusez Nos Gestes Climat dans votre organisation.: Difunda nuestros Gestes Climat en su organización.
-  Découvrez les personas d'utilisateurs types qui nous servent à tester le simulateur sous toutes ses coutures.: Descubra los usuarios típicos que utilizamos para probar el simulador desde todos los ángulos.
+  Découvrez les personas d'utilisateurs types qui nous servent à tester le calculateur sous toutes ses coutures.: Descubra los usuarios típicos que utilizamos para probar el simulador desde todos los ángulos.
   'Je ne trouve pas réponse à ma question ': 'No encuentro la respuesta a mi pregunta '
   Ambassadeurs - Nos Gestes Climat: Embajadores - Nos Gestes Climat
   Contactez l'équipe de Nos Gestes Climat.: Póngase en contacto con el equipo de Nos Gestes Climat.
@@ -713,7 +713,7 @@ entries:
   Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.: Calcula tu huella climática en sólo 10 minutos. Descubre las acciones que realmente importan para el clima.
   Documentation Contexte Sondage - Nos Gestes Climat: Documentación Encuesta de fondo - Nos Gestes Climat
   article du blog - Nos Gestes Climat: entrada del blog - Nos Gestes Climat
-  Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Calcula tu huella de carbono en grupo y compárala con la de tus amigos y familiares utilizando el simulador personal de huella de carbono Nos Gestes Climat.
+  Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat.: Calcula tu huella de carbono en grupo y compárala con la de tus amigos y familiares utilizando el simulador personal de huella de carbono Nos Gestes Climat.
   Informations relatives à Nos Gestes Climat.: Información sobre Nos Gestes Climat.
   Un modèle inédit d'empreinte des **déchets**: Un modelo innovador de huella de residuos
   L'empreinte climat, qu'est-ce que c'est ?: ¿Qué es la huella climática?
@@ -727,23 +727,23 @@ entries:
   Les constantes de **services publics et marchands** calculées à partir des travaux du SDES: Servicios públicos y comerciales** constantes calculadas a partir de los trabajos del SDES
   Découvrez les articles de blog du site Nos Gestes Climat.: Descubra los artículos del blog en la página web de Nos Gestes Climat.
   Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.: Encuentre las respuestas a las preguntas más frecuentes sobre Nos Gestes Climat.
-  Vos résultats de tests de notre simulateur d'empreinte carbone.: Los resultados de las pruebas de nuestro simulador de huella de carbono.
+  Vos résultats de tests de notre calculateur d'empreinte carbone.: Los resultados de las pruebas de nuestro simulador de huella de carbono.
   Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.: Consulta las novedades y últimas noticias de Nos Gestes Climat.
-  Simulateur d’empreinte climat - Nos Gestes Climat: Simulador de la huella climática - Nos Gestes Climat
+  Calculateur d’empreinte climat - Nos Gestes Climat: Simulador de la huella climática - Nos Gestes Climat
   Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.: Acceda a servicios a medida para sensibilizar a sus socios dentro de su organización.
   Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**: La mayor huella media, el inevitable **coche individual**
   Comparez vos résultats avec votre famille ou un groupe d’amis.: Compara tus resultados con los de tu familia o un grupo de amigos.
   Observez nos l'évolution de nos deux mesures d'impact principales.: Eche un vistazo a nuestras dos principales medidas de impacto.
-  Supprimez vos données de groupe enregistrées dans le simulateur Nos Gestes Climat.: Borra los datos de tu grupo guardados en el simulador Nos Gestes Climat.
+  Supprimez vos données de groupe enregistrées dans le calculateur Nos Gestes Climat.: Borra los datos de tu grupo guardados en el simulador Nos Gestes Climat.
   Nos personas d'utilisateurs types - Nos Gestes Climat: Nuestros usuarios tipo - Nos Gestes Climat
-  Vos résultats, simulateur d'empreinte climat - Nos Gestes Climat: Tus resultados, simulador de huella climática - Nos Gestes Climat
+  Vos résultats, calculateur d'empreinte climat - Nos Gestes Climat: Tus resultados, simulador de huella climática - Nos Gestes Climat
   Organisations, mon espace - Nos Gestes Climat: Organizaciones, mi espacio - Nos Gestes Climat
   Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.: Averigüe qué puede hacer para reducir su huella de carbono.
-  Diffuser notre simulateur d'empreinte climat - Nos Gestes Climat: Distribuir nuestro simulador de huella climática - Nos Gestes Climat
+  Diffuser notre calculateur d'empreinte climat - Nos Gestes Climat: Distribuir nuestro simulador de huella climática - Nos Gestes Climat
   'Actions : comment réduire votre empreinte climat ? - Nos Gestes Climat': 'Acciones: ¿cómo puedes reducir tu huella climática? - Nos Gestes Climat'
   Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.: Explore y modifique la información que ha introducido en la vía nosgestesclimat.
   Oups, vous êtes bien sur Nos Gestes Climat, mais cette page n'existe pas.: Oops, estás en Nos Gestes Climat, pero esta página no existe.
-  Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Únete a tu grupo para calcular tu huella de carbono y compararla con la de tus amigos y familiares mediante el simulador personal de huella de carbono Nos Gestes Climat.
+  Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat.: Únete a tu grupo para calcular tu huella de carbono y compararla con la de tus amigos y familiares mediante el simulador personal de huella de carbono Nos Gestes Climat.
   Mes classements: Mi clasificación
   Mon empreinte: Mi huella
   Votre empreinte carbone: Su huella de carbono
@@ -842,7 +842,7 @@ entries:
   'Recevez des conseils pour réduire votre empreinte :': 'Obtenga consejos sobre cómo reducir su huella :'
   Voir tous les gestes {title}: Ver todos los gestos {title}
   C’est l’objectif à atteindre pour espérer limiter le réchauffement climatique à 2 degrés.: Este es el objetivo que debemos alcanzar si esperamos limitar el calentamiento global a 2 grados.
-  Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Nuestro simulador se basa en un modelo de datos, con todos los cálculos documentados; los datos mostrados están directamente asociados a su prueba.
+  Notre calculateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Nuestro simulador se basa en un modelo de datos, con todos los cálculos documentados; los datos mostrados están directamente asociados a su prueba.
   Il est quasiment impossible de vivre à moins de 2 tonnes dans notre société actuellement. <2>L’État, le secteur privé et les citoyens</2> devront tous contribuer pour atteindre cet objectif.: En nuestra sociedad actual es prácticamente imposible vivir con menos de 2 toneladas. Tanto el <2>Estado como el sector privado y los ciudadanos</2> tendrán que contribuir a alcanzar este objetivo.
   Les hérissons sont menacé⋅e⋅s par le changement climatique et la perte de biodiversité. L'augmentation des températures et les conditions climatiques extrêmes perturbent leur habitat naturel, rendant difficile la recherche de nourriture et la reproduction.: Los erizos están amenazados⋅e⋅s por el cambio climático y la pérdida de biodiversidad. El aumento de las temperaturas y las condiciones meteorológicas extremas están alterando su hábitat natural, lo que les dificulta encontrar alimento y reproducirse.
   Maintenant que vous avez fait votre bilan carbone et que vous avez pris conscience de votre empreinte, vous pouvez découvrir <2>l’ensemble des gestes</2> qui vous permettront d’atteindre progressivement l’objectif de 2 tonnes.: Ahora que ya has realizado tu huella de carbono y eres consciente de ella, puedes informarte sobre los <2>pasos</2> que puedes dar para alcanzar gradualmente el objetivo de las 2 toneladas.
@@ -982,10 +982,10 @@ entries:
   Un groupe d'amis jouant à un jeu de société.: Un grupo de amigos jugando a un juego de mesa.
   Nous améliorons le site en continu à partir de <2>vos retours</2>. Découvrez la tambouille interne de Nos Gestes Climat.: Mejoramos constantemente el sitio gracias a <2>sus comentarios</2>. Descubra el funcionamiento interno de Nos Gestes Climat.
   Un femme lisant le journal au coin du feu avec un chien assoupi.: Una mujer leyendo el periódico junto al fuego con un perro adormilado.
-  Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.: El simulador Nos Gestes Climat se basa en el modelo de cálculo del mismo nombre, compuesto por un conjunto de bloques de construcción.
+  Le calculateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.: El simulador Nos Gestes Climat se basa en el modelo de cálculo del mismo nombre, compuesto por un conjunto de bloques de construcción.
   Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul. À lire tranquillement au coin du feu.: Esta documentación le permite acceder de forma transparente a todas las variables que intervienen en el cálculo. Léala a fuego.
   Groupe de personnes devant un paperboard: Grupo de personas delante de un rotafolio
-  Ce simulateur vous permet d'évaluer votre empreinte carbone individuelle annuelle totale et par grandes catégories (alimentation, transport, logement, divers, services sociétaux), de la situer par rapport aux objectifs climatiques et surtout de passer à l'action à votre niveau avec des gestes personnalisés en fonction de vos réponses.: Este simulador le permite evaluar su huella de carbono individual total para el año y por categorías principales (alimentación, transporte, vivienda, varios, servicios sociales), situarla en relación con los objetivos climáticos y, sobre todo, actuar a su propio nivel con acciones personalizadas basadas en sus respuestas.
+  Ce calculateur vous permet d'évaluer votre empreinte carbone individuelle annuelle totale et par grandes catégories (alimentation, transport, logement, divers, services sociétaux), de la situer par rapport aux objectifs climatiques et surtout de passer à l'action à votre niveau avec des gestes personnalisés en fonction de vos réponses.: Este simulador le permite evaluar su huella de carbono individual total para el año y por categorías principales (alimentación, transporte, vivienda, varios, servicios sociales), situarla en relación con los objetivos climáticos y, sobre todo, actuar a su propio nivel con acciones personalizadas basadas en sus respuestas.
   (Peut durer quelques dizaines de secondes pour les campagnes avec un grand nombre de participants ! Merci pour votre patience): (¡Puede tardar unas decenas de segundos en las campañas con un gran número de participantes! Gracias por su paciencia)
   Organisations et campagnes: Organizaciones y campañas
   moins: menos
@@ -1019,7 +1019,7 @@ entries:
   Et une illustration: Y una ilustración
   Créer un groupe et calculer votre empreinte carbone - Nos Gestes Climat: Crea un grupo y calcula tu huella de carbono - Nos Gestes Climat
   La simulation et les calculs se font dans votre navigateur Web, donc les réponses aux questions restent chez vous, nous n'en collectons aucune.: La simulación y los cálculos se realizan en tu navegador web, por lo que las respuestas a las preguntas permanecen contigo, no recopilamos ninguna de ellas.
-  Cependant, nous suivons quelques informations sur votre utilisation de ce simulateur, telles que les pages consultées et le temps passé, dans l'unique but de l'améliorer.: Sin embargo, sí rastreamos cierta información sobre su uso de este simulador, como las páginas consultadas y el tiempo empleado, con el único objetivo de mejorarlo.
+  Cependant, nous suivons quelques informations sur votre utilisation de ce calculateur, telles que les pages consultées et le temps passé, dans l'unique but de l'améliorer.: Sin embargo, sí rastreamos cierta información sobre su uso de este simulador, como las páginas consultadas y el tiempo empleado, con el único objetivo de mejorarlo.
   Pour faire joli et le reconnaitre !: Para que quede bonito y reconocible
   En particulier, nous suivons l'adresse de la page de fin de simulation, qui contient le total de votre empreinte et sa répartition en grande catégories (transport, logement, etc.): En concreto, rastreamos la dirección de la página al final de la simulación, que contiene su huella total y su desglose en las principales categorías (transporte, vivienda, etc.)
   Choisissez un nom pour ce groupe: Elija un nombre para este grupo
@@ -1033,7 +1033,7 @@ entries:
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Nada en el horizonte <1></1>La página que busca no existe.
   Données qualitatives: Datos cualitativos
   Modes "Groupes": Modos de grupo
-  partages du simulateur: compartir el simulador
+  partages du calculateur: compartir el simulador
   Acquisition: Adquisición
   Récupération des données: Recuperación de datos
   visites depuis le lancement: visitas desde el lanzamiento
@@ -1200,6 +1200,7 @@ entries:
   tonnes CO₂e / an: toneladas CO₂e / año
   t CO₂e / an: t CO₂e / año
   / an: / año
+  Notre calculateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.: Nuestra calculadora individual de la huella de carbono nos ayuda a comprender cuáles de nuestros usos contribuyen más al cambio climático y a saber qué acciones tendrían mayor impacto para reducirlo.
   Les 8 manières d’améliorer l'empreinte eau de mon assiette: 8 formas de mejorar la huella hídrica de mi plato
   Comment agir ?: ¿Qué podemos hacer?
   Connaissez-vous votre empreinte sur le climat ?: ¿Conoce su huella climática?

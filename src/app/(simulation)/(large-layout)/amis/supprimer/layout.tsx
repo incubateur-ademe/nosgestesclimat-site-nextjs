@@ -8,7 +8,7 @@ export async function generateMetadata() {
   return getMetadataObject({
     title: t('Supprimer mes données de groupe - Nos Gestes Climat'),
     description: t(
-      'Supprimez vos données de groupe enregistrées dans le simulateur Nos Gestes Climat.'
+      'Supprimez vos données de groupe enregistrées dans le calculateur Nos Gestes Climat.'
     ),
     alternates: {
       canonical: '/amis/supprimer',
