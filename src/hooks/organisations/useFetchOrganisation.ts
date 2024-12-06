@@ -1,38 +1,21 @@
-import { SERVER_URL } from '@/constants/urls'
-import { useUser } from '@/publicodes-state'
+import { ORGANISATION_URL } from '@/constants/urls'
 import type { Organisation } from '@/types/organisations'
-import type { UseQueryResult } from '@tanstack/react-query'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useParams } from 'next/navigation'
 
-export default function useFetchOrganisation({
-  email,
-}: {
-  email: string
-}): UseQueryResult<Organisation> {
-  const { orgaSlug: orgaSlugParam } = useParams()
-
-  const { user } = useUser()
-
-  const orgaSlug = orgaSlugParam ?? user?.organisation?.slug
+export default function useFetchOrganisation() {
+  const { orgaSlug: organisationIdOrSlug } = useParams()
 
   return useQuery({
-    queryKey: ['organisation-validate-jwt', email, orgaSlug],
+    queryKey: ['organisations', organisationIdOrSlug],
     queryFn: () =>
       axios
-        .post(
-          `${SERVER_URL}/organisations/fetch-organisation`,
-          {
-            email,
-            slug: orgaSlug,
-          },
-          {
-            withCredentials: true,
-          }
-        )
+        .get<Organisation>(`${ORGANISATION_URL}/${organisationIdOrSlug}`, {
+          withCredentials: true,
+        })
         .then((res) => res.data),
     retry: false,
-    enabled: !!email,
+    enabled: !!organisationIdOrSlug,
   })
 }

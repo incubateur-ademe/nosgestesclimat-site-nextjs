@@ -2,19 +2,16 @@ import Arrow from '@/components/fin/metricSlider/carboneTotalChart/Arrow'
 import Trans from '@/components/translation/Trans'
 import { carboneMetric } from '@/constants/metric'
 import InlineLink from '@/design-system/inputs/InlineLink'
-import type { SimulationRecap } from '@/types/organisations'
+import type { Simulation } from '@/types/organisations'
 import isMobile from 'is-mobile'
 import RepartitionChart from './RepartitionChart'
 
 type Props = {
-  simulationRecaps: SimulationRecap[]
+  simulations: Simulation[]
   maxValue: number
 }
 
-export default function MainFootprintChart({
-  simulationRecaps,
-  maxValue,
-}: Props) {
+export default function MainFootprintChart({ simulations, maxValue }: Props) {
   const shouldUseAbbreviation = isMobile()
   return (
     <section className="mb-12">
@@ -50,9 +47,9 @@ export default function MainFootprintChart({
 
         <RepartitionChart
           maxValue={maxValue}
-          items={simulationRecaps.map(({ computedResults, isCurrentUser }) => ({
+          items={simulations.map(({ computedResults, user }) => ({
             value: computedResults[carboneMetric].bilan,
-            shouldBeHighlighted: isCurrentUser,
+            shouldBeHighlighted: !!user,
           }))}
           id="bilan"
         />

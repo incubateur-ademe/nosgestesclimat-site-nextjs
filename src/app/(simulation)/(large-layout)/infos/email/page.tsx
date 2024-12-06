@@ -4,9 +4,7 @@ import Trans from '@/components/translation/Trans'
 import { EMAIL_PAGE } from '@/constants/infosPages'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import Title from '@/design-system/layout/Title'
-import { fetchHasUserAlreadyParticipated } from '@/helpers/organisations/fetchHasUserAlreadyParticipated'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
-import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
@@ -14,6 +12,7 @@ import { trackPageView } from '@/utils/matomo/trackEvent'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
+import { useFetchPublicPoll } from '../../../../../hooks/organisations/polls/useFetchPublicPoll'
 import Navigation from '../_components/Navigation'
 
 type Inputs = {
@@ -43,7 +42,7 @@ export default function Email() {
 
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
 
-  const { pollSlug } = useOrganisationQueryParams()
+  const { data: poll } = useFetchPublicPoll()
 
   // We track a page view with the format of the shared link (/o/organisation/poll)
   useEffect(() => {
@@ -67,13 +66,7 @@ export default function Email() {
         return
       }
 
-      const result = await fetchHasUserAlreadyParticipated({
-        pollSlug: pollSlug ?? '',
-        userId: user?.userId,
-        email,
-      })
-
-      if (result?.hasUserAlreadyParticipated) {
+      if (poll?.simulations.hasParticipated) {
         setError('email', {
           message: t('Vous avez déjà participé à ce sondage.'),
           type: 'manual',
@@ -87,15 +80,7 @@ export default function Email() {
       // Go to next page
       router.push(getLinkToNextInfosPage({ curPage: EMAIL_PAGE }))
     },
-    [
-      pollSlug,
-      user?.userId,
-      updateEmail,
-      router,
-      getLinkToNextInfosPage,
-      setError,
-      t,
-    ]
+    [poll, updateEmail, router, getLinkToNextInfosPage, setError, t]
   )
 
   return (

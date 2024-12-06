@@ -1,27 +1,40 @@
-import type { SimulationRecap } from '@/types/organisations'
+import { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
+import { SimulationAdditionalQuestionAnswerType } from '@/constants/organisations/simulationAdditionalQuestionAnswerType'
+import type { Simulation } from '@/types/organisations'
 import dayjs from 'dayjs'
 
 export function getAgeFilterOptions({
-  filteredSimulationRecaps,
+  filteredSimulations,
 }: {
-  filteredSimulationRecaps: SimulationRecap[]
+  filteredSimulations: Simulation[]
 }) {
+  const simulationsBirthdate = filteredSimulations.reduce(
+    (acc: string[], simulation) => {
+      const birthdate = simulation.additionalQuestionsAnswers.find(
+        ({ type, key }) =>
+          type === SimulationAdditionalQuestionAnswerType.default &&
+          key === PollDefaultAdditionalQuestion.birthdate
+      )?.answer
+
+      if (birthdate) {
+        acc.push(birthdate)
+      }
+
+      return acc
+    },
+    []
+  )
+
   // Renvoie un tableau d'objets avec une valeur et un label
   // pour chaque tranche d'âge depuis "nés avant 1960" puis par dizaine : 1960-69 / 1970-1979...
   const currentYear = new Date().getFullYear()
   const firstYear = 1960
 
-  const simulationsRecapUnder1960 = filteredSimulationRecaps.filter(
-    (simulation) => {
-      if (!simulation.defaultAdditionalQuestionsAnswers?.birthdate) return false
+  const simulationsRecapUnder1960 = simulationsBirthdate.filter((birthdate) => {
+    const birthYear = dayjs(birthdate).year()
 
-      const birthYear = dayjs(
-        simulation.defaultAdditionalQuestionsAnswers?.birthdate
-      ).year()
-
-      return birthYear < firstYear
-    }
-  )
+    return birthYear < firstYear
+  })
 
   const ageOptions = []
 
@@ -34,13 +47,9 @@ export function getAgeFilterOptions({
   }
 
   for (let i = firstYear; i < currentYear; i += 10) {
-    const simulationsRecapMatchingAge = filteredSimulationRecaps.filter(
-      (simulation) => {
-        const birthYear = dayjs(
-          simulation.defaultAdditionalQuestionsAnswers?.birthdate
-        ).year()
-
-        if (!birthYear || isNaN(birthYear)) return false
+    const simulationsRecapMatchingAge = simulationsBirthdate.filter(
+      (birthdate) => {
+        const birthYear = dayjs(birthdate).year()
 
         return birthYear >= i - 10 && birthYear < i
       }

@@ -4,15 +4,10 @@ import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useOrgaCreationGuard } from '@/hooks/navigation/useOrgaCreationGuard'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
-import { useUser } from '@/publicodes-state'
 import CreationForm from './_components/CreationForm'
 
 export default function CreationPage() {
-  const { user } = useUser()
-
-  const { isError, data: organisation } = useFetchOrganisation({
-    email: user?.organisation?.administratorEmail ?? '',
-  })
+  const { isError, data: organisation } = useFetchOrganisation()
 
   const { isGuardInit, isGuardRedirecting } = useOrgaCreationGuard({
     isError,

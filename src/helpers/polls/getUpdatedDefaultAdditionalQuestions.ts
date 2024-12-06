@@ -1,6 +1,8 @@
+import { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
+
 type Props = {
-  defaultAdditionalQuestions: string[]
-  questionKey: string
+  defaultAdditionalQuestions: PollDefaultAdditionalQuestion[]
+  questionKey: PollDefaultAdditionalQuestion
   value: boolean
 }
 
@@ -9,8 +11,7 @@ export function getUpdatedDefaultAdditionalQuestions({
   questionKey,
   value,
 }: Props) {
-  const updatedDefaultAdditionalQuestions =
-    [...defaultAdditionalQuestions] ?? ([] as string[])
+  const updatedDefaultAdditionalQuestions = [...defaultAdditionalQuestions]
 
   if (value && !updatedDefaultAdditionalQuestions.includes(questionKey)) {
     updatedDefaultAdditionalQuestions.push(questionKey)
@@ -26,8 +27,8 @@ export function getUpdatedDefaultAdditionalQuestions({
 
   // Always return an array with the same order, postalCode first if it is present, then birthdate
   updatedDefaultAdditionalQuestions.sort((a, b) => {
-    if (a === 'postalCode') return -1
-    if (b === 'postalCode') return 1
+    if (a === PollDefaultAdditionalQuestion.postalCode) return -1
+    if (b === PollDefaultAdditionalQuestion.postalCode) return 1
     return 0
   })
 

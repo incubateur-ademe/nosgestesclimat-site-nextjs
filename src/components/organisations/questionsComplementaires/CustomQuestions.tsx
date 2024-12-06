@@ -1,18 +1,22 @@
 import Trans from '@/components/translation/Trans'
-import type { OrganisationPoll, UpdatePollProps } from '@/types/organisations'
+import type { PollToUpdate } from '@/hooks/organisations/polls/useUpdatePoll'
+import type { Organisation, OrganisationPoll } from '@/types/organisations'
 import CustomQuestion from './customQuestions/CustomQuestion'
 
 type Props = {
-  poll:
-    | Pick<
-        OrganisationPoll,
-        'customAdditionalQuestions' | 'defaultAdditionalQuestions'
-      >
-    | undefined
-  onChange: (changes: UpdatePollProps) => void
+  organisation: Organisation
+  poll: Pick<
+    OrganisationPoll,
+    'customAdditionalQuestions' | 'defaultAdditionalQuestions'
+  >
+  onChange: (changes: PollToUpdate) => void
 }
 
-export default function CustomQuestions({ poll, onChange }: Props) {
+export default function CustomQuestions({
+  poll,
+  onChange,
+  organisation,
+}: Props) {
   if (poll?.customAdditionalQuestions?.length === 0) {
     return null
   }
@@ -28,6 +32,7 @@ export default function CustomQuestions({ poll, onChange }: Props) {
             key={question}
             question={question}
             isEnabled={isEnabled}
+            organisation={organisation}
             poll={poll}
             onChange={onChange}
           />

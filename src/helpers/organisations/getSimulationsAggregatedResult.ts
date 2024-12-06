@@ -1,10 +1,8 @@
 import { carboneMetric, eauMetric } from '@/constants/metric'
-import type { SimulationRecap } from '@/types/organisations'
+import type { Simulation } from '@/types/organisations'
 
-export function getSimulationRecapAggregatedResult(
-  simulationRecaps: SimulationRecap[]
-) {
-  const result = simulationRecaps.reduce(
+export function getSimulationsAggregatedResult(simulations: Simulation[]) {
+  const result = simulations.reduce(
     (acc, simulation) => {
       return {
         carbone: {
@@ -68,12 +66,11 @@ export function getSimulationRecapAggregatedResult(
 
   Object.keys(result.carbone).forEach((key) => {
     result.carbone[key as keyof typeof result.carbone] =
-      result.carbone[key as keyof typeof result.carbone] /
-      simulationRecaps.length
+      result.carbone[key as keyof typeof result.carbone] / simulations.length
   })
   Object.keys(result.eau).forEach((key) => {
     result.eau[key as keyof typeof result.eau] =
-      result.eau[key as keyof typeof result.eau] / simulationRecaps.length
+      result.eau[key as keyof typeof result.eau] / simulations.length
   })
 
   return result

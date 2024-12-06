@@ -49,7 +49,7 @@ export function useGroupPagesGuard(
       isDashboard &&
       group &&
       !group?.participants?.some(
-        (participant: { userId: string }) => participant.userId === user.userId
+        (participant) => participant.userId === user.userId
       )
     ) {
       router.replace(getLinkToGroupInvitation({ group }))
@@ -62,7 +62,7 @@ export function useGroupPagesGuard(
       !isDashboard &&
       group &&
       group?.participants?.some(
-        (participant: { userId: string }) => participant.userId === user.userId
+        (participant) => participant.userId === user.userId
       )
     ) {
       router.replace(getLinkToGroupDashboard({ group }))

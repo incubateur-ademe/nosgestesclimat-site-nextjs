@@ -6,7 +6,7 @@ import { endClickPoll } from '@/constants/tracking/pages/end'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { getLinkToPollDashboard } from '@/helpers/navigation/pollPages'
-import { usePollPublicInfo } from '@/hooks/organisations/usePollPublicInfo'
+import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { useContext, useEffect } from 'react'
 
@@ -15,8 +15,8 @@ export default function Poll() {
 
   const lastPollSlug = polls?.[polls?.length - 1]
 
-  const { data: poll, isLoading } = usePollPublicInfo({
-    pollSlug: lastPollSlug,
+  const { data: poll, isLoading } = useFetchPublicPoll({
+    pollIdOrSlug: lastPollSlug,
   })
 
   const { shouldPreventNavigation, handleUpdateShouldPreventNavigation } =
@@ -42,11 +42,11 @@ export default function Poll() {
     <Card className="mb-4 w-[24rem] max-w-full flex-row items-center justify-between gap-4 border-none bg-primary-100">
       <p className="m-0 flex-1 ">
         <Trans>Découvrez les résultats du groupe</Trans>{' '}
-        <b>{isLoading ? '... ' : poll?.organisationInfo?.name}</b>
+        <b>{isLoading ? '... ' : poll?.organisation?.name}</b>
       </p>
       <ButtonLink
         href={getLinkToPollDashboard({
-          orgaSlug: poll?.organisationInfo.slug || '', // TODO: handle this better
+          orgaSlug: poll?.organisation.slug || '', // TODO: handle this better
           pollSlug: lastPollSlug || '',
         })}
         trackingEvent={endClickPoll}

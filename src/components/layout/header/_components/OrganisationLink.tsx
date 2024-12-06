@@ -18,9 +18,7 @@ export default function OrganisationLink({
 
   const { user } = useUser()
 
-  const { data: organisation } = useFetchOrganisation({
-    email: user?.organisation?.administratorEmail ?? '',
-  })
+  const { data: organisation } = useFetchOrganisation()
 
   const organisationName = organisation?.name ?? user?.organisation?.name
 

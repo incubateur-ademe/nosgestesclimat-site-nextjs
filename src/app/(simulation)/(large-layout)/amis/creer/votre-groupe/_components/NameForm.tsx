@@ -79,21 +79,25 @@ export default function NameForm() {
         groupInfo: {
           name: name ?? '',
           emoji: emoji ?? '',
-          administratorEmail: administratorEmail ?? '',
-          administratorName: administratorName ?? '',
-          userId: user.userId,
-          simulation: currentSimulation,
+          administrator: {
+            userId: user.userId,
+            name: administratorName ?? '',
+            ...(administratorEmail ? { email: administratorEmail } : {}),
+          },
+          ...(currentSimulation
+            ? { participants: [{ simulation: currentSimulation }] }
+            : {}),
         },
       })
 
       // Update current simulation with group id (to redirect after test completion)
       currentSimulation.update({
-        groupToAdd: group._id,
+        groupToAdd: group.id,
       })
 
       trackEvent(amisCreationEtapeVotreGroupeSuivant)
 
-      setShouldNavigate(group._id)
+      setShouldNavigate(group.id)
     } catch (e) {
       captureException(e)
     }

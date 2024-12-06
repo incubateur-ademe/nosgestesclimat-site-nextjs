@@ -2,19 +2,28 @@
 
 import { GROUP_URL } from '@/constants/urls'
 import { useUser } from '@/publicodes-state'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 
 export function useRemoveParticipant() {
+  const queryClient = useQueryClient()
   const { updateCurrentSimulation } = useUser()
   return useMutation({
-    mutationFn: ({ groupId, userId }: { groupId: string; userId: string }) =>
-      axios.post(`${GROUP_URL}/remove-participant`, {
-        groupId,
-        userId,
-      }),
+    mutationFn: ({
+      participantId,
+      groupId,
+      userId,
+    }: {
+      participantId: string
+      groupId: string
+      userId: string
+    }) =>
+      axios.delete<void>(
+        `${GROUP_URL}/${userId}/${groupId}/participants/${participantId}`
+      ),
     onSuccess: (data, variables) => {
       updateCurrentSimulation({ groupToDelete: variables.groupId })
+      queryClient.invalidateQueries({ queryKey: ['groups'] })
     },
   })
 }

@@ -51,7 +51,7 @@ export default function InviteBlock({ group }: { group: Group }) {
     navigator.share !== undefined &&
     window.innerWidth <= 768
 
-  const sharedURL = `${window.location.origin}/amis/invitation?groupId=${group?._id}&mtm_campaign=challenge-amis`
+  const sharedURL = `${window.location.origin}/amis/invitation?groupId=${group.id}&mtm_campaign=challenge-amis`
 
   const handleShare = async () => {
     if (shouldUseShareAPI) {

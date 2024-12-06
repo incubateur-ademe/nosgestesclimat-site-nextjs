@@ -4,13 +4,13 @@ import Badge from '@/design-system/layout/Badge'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
-import type { SimulationRecap } from '@/types/organisations'
+import type { Simulation } from '@/types/organisations'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { t } from 'i18next'
 import RepartitionChart from './RepartitionChart'
 
 type Props = {
-  simulationsRecap: SimulationRecap[]
+  simulations: Simulation[]
   value: number
   category: DottedName
   maxValue: number
@@ -25,7 +25,7 @@ const CATEGORY_LABELS = {
 }
 
 export default function CategoryListItem({
-  simulationsRecap,
+  simulations,
   value,
   category,
   maxValue,
@@ -59,9 +59,9 @@ export default function CategoryListItem({
         className="min-h-[2.5rem] flex-1 rounded-xl"
         color={`bg-${category.includes('services') ? 'servicessocietaux' : category}-500`}
         maxValue={maxValue}
-        items={simulationsRecap.map((obj) => ({
+        items={simulations.map((obj) => ({
           value: obj.computedResults[carboneMetric].categories[category],
-          shouldBeHighlighted: obj.isCurrentUser,
+          shouldBeHighlighted: !!obj.user,
         }))}
         id={category}
       />
