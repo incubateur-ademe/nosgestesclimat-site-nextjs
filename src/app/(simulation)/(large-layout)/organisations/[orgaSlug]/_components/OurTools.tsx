@@ -88,9 +88,9 @@ export default function OurTools() {
             target="_blank"
             trackingEvent={organisationsDashboardClickImpactCo2}
             aria-label={t(
-              'Découvrez le simulateur, ouvrir dans un nouvel onglet'
+              'Découvrez le calculateur, ouvrir dans un nouvel onglet'
             )}>
-            <Trans>Découvrir le simulateur</Trans>
+            <Trans>Découvrir le calculateur</Trans>
             <ExternalLinkIcon className="ml-2 stroke-primary-700" />
           </ButtonLink>
         </CTACard>

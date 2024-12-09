@@ -48,7 +48,7 @@ export default function DocumentationLanding() {
           <Title title={<Trans>Documentation</Trans>} />
           <p>
             <Trans>
-              Le simulateur Nos Gestes Climat est basé sur le modèle de calcul
+              Le calculateur Nos Gestes Climat est basé sur le modèle de calcul
               du même nom, composé d'un ensemble de briques.
             </Trans>
           </p>
