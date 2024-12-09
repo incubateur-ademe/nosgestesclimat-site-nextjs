@@ -2,23 +2,22 @@ import type { Simulation } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 export type Participant = {
-  _id: string
+  id: string
   name: string
-  email?: string
   simulation: Simulation
-  userId: string
+  userId?: string
+  email?: string
 }
 
 export type Group = {
-  _id: string
+  id: string
   name: string
   emoji: string
   participants: Participant[]
   administrator: {
-    _id: string
     name: string
+    id: string
     email?: string
-    userId: string
   }
 }
 

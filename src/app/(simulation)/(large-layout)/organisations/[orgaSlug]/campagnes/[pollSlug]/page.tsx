@@ -5,12 +5,13 @@ import PollStatistics from '@/components/organisations/PollStatistics'
 import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { filterExtremes } from '@/helpers/organisations/filterExtremes'
-import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulationRecaps'
-import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
+import { filterSimulations } from '@/helpers/organisations/filterSimulations'
+import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
+import { useFetchPublicPollDashboard } from '@/hooks/organisations/polls/useFetchPublicPollDashboard'
+import { useFetchPublicPollSimulations } from '@/hooks/organisations/polls/useFetchPublicPollSimulations'
 import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedirectFromLegacy'
-import type { SimulationRecap } from '@/types/organisations'
 import dayjs from 'dayjs'
-import { useParams, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { useContext, useMemo } from 'react'
 import AdminSection from './_components/AdminSection'
 import { FiltersContext } from './_components/FiltersProvider'
@@ -19,8 +20,6 @@ import PollStatisticsCharts from './_components/PollStatisticsCharts'
 import PollStatisticsFilters from './_components/PollStatisticsFilters'
 
 export default function CampagnePage() {
-  const { pollSlug, orgaSlug } = useParams()
-
   const searchParams = useSearchParams()
 
   const isRedirectFromLegacy = Boolean(searchParams.get('isRedirectFromLegacy'))
@@ -28,32 +27,34 @@ export default function CampagnePage() {
   useHandleRedirectFromLegacy()
 
   const {
-    data: pollData,
+    data: poll,
     isLoading,
     isFetched,
-  } = useFetchPollData({
-    orgaSlug: decodeURIComponent(orgaSlug as string),
-    pollSlug: decodeURIComponent(pollSlug as string),
+  } = useFetchPublicPoll({
     enabled: !isRedirectFromLegacy,
   })
+
+  const { data: dashboard } = useFetchPublicPollDashboard()
+
+  const { data: simulations } = useFetchPublicPollSimulations()
 
   const { ageFilters, postalCodeFilters } = useContext(FiltersContext)
 
   // Remove the values that are too high to avoid polluting the statistics
-  const simulationRecapsWithoutExtremes = useMemo(
-    () => filterExtremes(pollData?.simulationRecaps ?? []),
-    [pollData?.simulationRecaps]
+  const simulationsWithoutExtremes = useMemo(
+    () => filterExtremes(simulations ?? []),
+    [simulations]
   )
 
-  const filteredSimulationRecaps =
-    pollData &&
-    filterSimulationRecaps({
-      simulationRecaps: simulationRecapsWithoutExtremes as SimulationRecap[],
+  const filteredSimulations =
+    poll &&
+    filterSimulations({
+      simulations: simulationsWithoutExtremes,
       ageFilters,
       postalCodeFilters,
     })
 
-  if (isFetched && !pollData) {
+  if (isFetched && !poll) {
     return <PollNotFound />
   }
 
@@ -67,15 +68,15 @@ export default function CampagnePage() {
         title={
           isLoading
             ? '...'
-            : pollData?.name ?? (
+            : poll?.name ?? (
                 <>
                   <span className="mr-2">
                     <Trans>Campagne de</Trans>{' '}
                     <span className="text-primary-700">
-                      {pollData?.organisationName}
+                      {poll?.organisation.name}
                     </span>
                   </span>{' '}
-                  {pollData?.isAdmin && (
+                  {!!poll?.organisation.administrators && (
                     <span className="text-sm text-gray-600">
                       <Trans>(définissez un titre dans les paramètres)</Trans>
                     </span>
@@ -84,14 +85,13 @@ export default function CampagnePage() {
               )
         }
         subtitle={
-          pollData ? (
+          poll ? (
             <span>
               <Trans>Campagne créée par</Trans>{' '}
               <strong className="text-primary-700">
-                {pollData?.organisationName}
+                {poll?.organisation.name}
               </strong>
-              <Trans>, le</Trans>{' '}
-              {dayjs(pollData?.createdAt).format('DD/MM/YYYY')}
+              <Trans>, le</Trans> {dayjs(poll?.createdAt).format('DD/MM/YYYY')}
             </span>
           ) : (
             ''
@@ -100,30 +100,24 @@ export default function CampagnePage() {
       />
 
       <div className="mt-8">
-        <AdminSection pollData={pollData} />
+        <AdminSection poll={poll} />
 
         <PollStatistics
-          simulationRecaps={pollData?.simulationRecaps ?? []}
-          simulationRecapsWithoutExtremes={
-            simulationRecapsWithoutExtremes as SimulationRecap[]
-          }
-          funFacts={pollData?.funFacts}
+          simulations={simulations ?? []}
+          simulationsWithoutExtremes={simulationsWithoutExtremes}
+          funFacts={dashboard?.funFacts}
           title={<Trans>Résultats de campagne</Trans>}
         />
 
         <PollStatisticsFilters
-          simulationRecaps={
-            simulationRecapsWithoutExtremes as SimulationRecap[]
-          }
-          filteredSimulationRecaps={filteredSimulationRecaps ?? []}
-          defaultAdditionalQuestions={
-            pollData?.defaultAdditionalQuestions ?? []
-          }
+          simulations={simulationsWithoutExtremes}
+          filteredSimulations={filteredSimulations ?? []}
+          defaultAdditionalQuestions={poll?.defaultAdditionalQuestions ?? []}
         />
 
         <PollStatisticsCharts
-          simulationRecaps={filteredSimulationRecaps ?? []}
-          isAdmin={pollData?.isAdmin}
+          simulations={filteredSimulations ?? []}
+          isAdmin={!!poll?.organisation.administrators}
         />
       </div>
     </div>

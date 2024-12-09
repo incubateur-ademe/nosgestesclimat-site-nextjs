@@ -5,18 +5,21 @@ import ChevronRight from '@/components/icons/ChevronRight'
 import Trans from '@/components/translation/Trans'
 import { classementClickOrganisation } from '@/constants/tracking/pages/classements'
 import { getLinkToPollDashboard } from '@/helpers/navigation/pollPages'
-import type { PollInfo } from '@/types/organisations'
+import type { Organisation, OrganisationPoll } from '@/types/organisations'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {
-  poll: PollInfo
+  organisation: Organisation
+  poll: OrganisationPoll
 }
 
-export default function PollItem({ poll }: Props) {
+export default function PollItem({ organisation, poll }: Props) {
+  const expectedNumberOfParticipants = poll.expectedNumberOfParticipants ?? 0
+
   return (
     <Link
       href={getLinkToPollDashboard({
-        orgaSlug: poll.organisationInfo.slug,
+        orgaSlug: organisation.slug,
         pollSlug: poll.slug,
       })}
       className="rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors hover:bg-primary-100"
@@ -25,14 +28,14 @@ export default function PollItem({ poll }: Props) {
         <div className="flex w-full items-center">
           <div>
             <div className="text-md text-gray-900">
-              <strong>{poll.organisationInfo?.name}</strong>
+              <strong>{organisation.name}</strong>
               {poll.name && ` - ${poll.name}`}
             </div>
 
             <div className="flex gap-1 text-sm text-violet-900">
               <span className="whitespace-nowrap">
-                {poll.numberOfParticipants ?? 0} <Trans>participant</Trans>
-                {poll.numberOfParticipants > 1 ? 's' : ''}
+                {expectedNumberOfParticipants} <Trans>participant</Trans>
+                {expectedNumberOfParticipants > 1 ? 's' : ''}
               </span>
             </div>
           </div>
