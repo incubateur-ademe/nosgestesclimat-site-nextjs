@@ -130,7 +130,7 @@ export default function PollStatisticsCharts({
           </p>
         </div>
         <ul>
-          {simulations?.length > 0 &&
+          {!!simulations?.length &&
             (
               Object.keys(
                 simulations[0].computedResults[carboneMetric].categories

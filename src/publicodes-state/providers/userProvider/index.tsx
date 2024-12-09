@@ -1,6 +1,6 @@
 'use client'
 
-import type { PropsWithChildren} from 'react';
+import type { PropsWithChildren } from 'react'
 import { useMemo } from 'react'
 
 import type { RegionFromGeolocation } from '@/publicodes-state/types'
@@ -45,7 +45,7 @@ export default function UserProvider({
   } = usePersistentSimulations({ storageKey, migrationInstructions })
 
   const isInitialized = useMemo(
-    () => user && simulations.length > 0,
+    () => user && !!simulations.length,
     [user, simulations]
   )
 
