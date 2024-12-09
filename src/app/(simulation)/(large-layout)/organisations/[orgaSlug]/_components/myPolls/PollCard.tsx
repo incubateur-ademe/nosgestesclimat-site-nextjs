@@ -1,6 +1,5 @@
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import { filterExtremes } from '@/helpers/organisations/filterExtremes'
 import type { OrganisationPoll } from '@/types/organisations'
 import dayjs from 'dayjs'
 import { useParams } from 'next/navigation'
@@ -14,8 +13,6 @@ export default function PollCard({ poll }: Props) {
   const { orgaSlug } = useParams()
 
   if (!poll) return null
-
-  const simulationsWithoutExtremes = filterExtremes(poll.simulations)
 
   return (
     <div className="rounded-xl bg-primary-50 p-6">
@@ -36,11 +33,11 @@ export default function PollCard({ poll }: Props) {
 
       <div className="mb-12">
         <p className="mb-0 text-xl font-bold text-primary-700">
-          {simulationsWithoutExtremes?.length}{' '}
+          {poll.simulations.finished}{' '}
         </p>
 
         <p className="text-base font-light text-default">
-          {simulationsWithoutExtremes?.length > 1 ? (
+          {poll.simulations.finished > 1 ? (
             <Trans>Simulations terminées</Trans>
           ) : (
             <Trans>Simulation terminée</Trans>

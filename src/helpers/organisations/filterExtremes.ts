@@ -1,19 +1,16 @@
 import { carboneMetric } from '@/constants/metric'
-import type { Simulation } from '@/publicodes-state/types'
-import type { SimulationRecap } from '@/types/organisations'
+import type { Simulation } from '@/types/organisations'
 
 const MAX_VALUE = 100000
 
-export function filterExtremes(
-  simulationRecaps: (SimulationRecap | Simulation)[]
-) {
-  return simulationRecaps?.filter((simulationRecap) => {
+export function filterExtremes(simulations: Simulation[]) {
+  return simulations?.filter((simulation) => {
     // Remove simulations with too high values
     if (
       [
-        simulationRecap.computedResults?.[carboneMetric]?.bilan,
+        simulation.computedResults?.[carboneMetric]?.bilan,
         ...Object.values(
-          simulationRecap.computedResults?.[carboneMetric]?.categories ?? {}
+          simulation.computedResults?.[carboneMetric]?.categories ?? {}
         ),
       ].some((value) => (value as number) > MAX_VALUE)
     ) {

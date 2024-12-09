@@ -1,25 +1,20 @@
 import Trans from '@/components/translation/Trans'
-import type { PollData, SimulationRecap } from '@/types/organisations'
+import { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
+import type { OrganisationPoll, Simulation } from '@/types/organisations'
 import AgeFilter from './pollStatisticsFilters/AgeFilter'
 import DepartementFilter from './pollStatisticsFilters/DepartementFilter'
 import InfoTooltipIcon from './pollStatisticsFilters/InfoTooltipIcon'
 
 export default function PollStatisticsFilters({
-  simulationRecaps,
-  filteredSimulationRecaps,
+  simulations,
+  filteredSimulations,
   defaultAdditionalQuestions,
 }: {
-  simulationRecaps: SimulationRecap[]
-  filteredSimulationRecaps: SimulationRecap[]
-  defaultAdditionalQuestions: Pick<
-    PollData,
-    'defaultAdditionalQuestions'
-  >['defaultAdditionalQuestions']
+  simulations: Simulation[]
+  filteredSimulations: Simulation[]
+  defaultAdditionalQuestions: OrganisationPoll['defaultAdditionalQuestions']
 }) {
-  if (
-    defaultAdditionalQuestions?.length === 0 ||
-    simulationRecaps?.length < 3
-  ) {
+  if (defaultAdditionalQuestions?.length === 0 || simulations?.length < 3) {
     return null
   }
 
@@ -33,14 +28,16 @@ export default function PollStatisticsFilters({
       </div>
 
       <div className="flex flex-col gap-2 md:gap-4 xs:flex-row xs:items-center">
-        {defaultAdditionalQuestions.includes('birthdate') && (
-          <AgeFilter filteredSimulationRecaps={filteredSimulationRecaps} />
-        )}
+        {defaultAdditionalQuestions?.includes(
+          PollDefaultAdditionalQuestion.birthdate
+        ) && <AgeFilter filteredSimulations={filteredSimulations} />}
 
-        {defaultAdditionalQuestions.includes('postalCode') && (
+        {defaultAdditionalQuestions?.includes(
+          PollDefaultAdditionalQuestion.postalCode
+        ) && (
           <DepartementFilter
-            simulationRecaps={simulationRecaps}
-            filteredSimulationRecaps={filteredSimulationRecaps}
+            simulations={simulations}
+            filteredSimulations={filteredSimulations}
           />
         )}
         <InfoTooltipIcon className="hidden md:block" />

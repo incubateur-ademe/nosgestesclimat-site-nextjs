@@ -1,18 +1,18 @@
 import Trans from '@/components/translation/Trans'
 import ComplexSelect from '@/design-system/inputs/ComplexSelect'
-import { extractPostalCodesFromSimulationRecaps } from '@/helpers/organisations/extractPostalCodesFromSimulationRecaps'
-import type { SimulationRecap } from '@/types/organisations'
-import type { SetStateAction} from 'react';
+import { extractPostalCodesFromSimulations } from '@/helpers/organisations/extractPostalCodesFromSimulations'
+import type { Simulation } from '@/types/organisations'
+import type { SetStateAction } from 'react'
 import { useContext } from 'react'
 import type { MultiValue, SingleValue } from 'react-select'
 import { FiltersContext } from '../FiltersProvider'
 
 export default function DepartementFilter({
-  simulationRecaps,
-  filteredSimulationRecaps,
+  simulations,
+  filteredSimulations,
 }: {
-  simulationRecaps: SimulationRecap[]
-  filteredSimulationRecaps: SimulationRecap[]
+  simulations: Simulation[]
+  filteredSimulations: Simulation[]
 }) {
   const { setPostalCodeFilters } = useContext(FiltersContext)
 
@@ -24,9 +24,9 @@ export default function DepartementFilter({
     )
   }
 
-  const options = extractPostalCodesFromSimulationRecaps({
-    simulationRecaps,
-    filteredSimulationRecaps,
+  const options = extractPostalCodesFromSimulations({
+    simulations,
+    filteredSimulations,
   })
 
   return (

@@ -37,7 +37,7 @@ export default function InvitationForm({ group }: { group: Group }) {
 
   const [shouldNavigate, setShouldNavigate] = useState(false)
   useEffect(() => {
-    if (shouldNavigate && currentSimulation.groups?.includes(group._id)) {
+    if (shouldNavigate && currentSimulation.groups?.includes(group.id)) {
       setShouldNavigate(false)
       if (hasCompletedTest) {
         goToEndPage({ allowedToGoToGroupDashboard: true })
@@ -47,7 +47,7 @@ export default function InvitationForm({ group }: { group: Group }) {
     }
   }, [
     currentSimulation.groups,
-    group._id,
+    group.id,
     hasCompletedTest,
     goToEndPage,
     goToSimulateurPage,
@@ -68,7 +68,7 @@ export default function InvitationForm({ group }: { group: Group }) {
 
     // Update current simulation with group id (to redirect after test completion)
     currentSimulation.update({
-      groupToAdd: group._id,
+      groupToAdd: group.id,
     })
 
     // Redirect to simulateur page or end page

@@ -5,8 +5,8 @@ import OrganisationFetchError from '@/components/organisations/OrganisationFetch
 import Trans from '@/components/translation/Trans'
 import { organisationsDashboardClickParameters } from '@/constants/tracking/pages/organisationsDashboard'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import { useFetchPolls } from '@/hooks/organisations/polls/useFetchPolls'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
-import { useUser } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
@@ -15,17 +15,10 @@ import NousContacter from './_components/NousContacter'
 import OurTools from './_components/OurTools'
 
 export default function OrganisationPage() {
-  const { user } = useUser()
-
   const router = useRouter()
 
-  const {
-    data: organisation,
-    isError,
-    isLoading,
-  } = useFetchOrganisation({
-    email: user?.organisation?.administratorEmail ?? '',
-  })
+  const { data: organisation, isError, isLoading } = useFetchOrganisation()
+  const { data: polls } = useFetchPolls({ enabled: !!organisation })
 
   useEffect(() => {
     if (organisation && !organisation.slug) {
@@ -51,7 +44,7 @@ export default function OrganisationPage() {
             <span>
               <Trans>Bienvenue</Trans>{' '}
               <span className="text-primary-700">
-                {capitalizeString(organisation?.administrators?.[0]?.name)}
+                {capitalizeString(organisation.administrators[0].name || '')}
               </span>
               ,
             </span>
@@ -75,7 +68,7 @@ export default function OrganisationPage() {
         </ButtonLink>
       </div>
 
-      <MyPolls polls={organisation?.polls} />
+      <MyPolls polls={polls} />
 
       <OurTools />
 
