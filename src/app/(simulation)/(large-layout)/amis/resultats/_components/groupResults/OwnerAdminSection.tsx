@@ -44,8 +44,8 @@ export default function OwnerAdminSection({ group }: Props) {
 
     try {
       await deleteUserOrGroupIfOwner({
-        groupId: group?._id,
-        userId: user?.userId || '',
+        groupId: group.id,
+        userId: user.userId,
       })
 
       timeoutRef.current = setTimeout(() => {

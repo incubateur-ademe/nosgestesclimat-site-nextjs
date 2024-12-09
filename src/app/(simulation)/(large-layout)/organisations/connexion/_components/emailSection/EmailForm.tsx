@@ -3,9 +3,8 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
-import { useCreateOrganisation } from '@/hooks/organisations/useCreateOrganisation'
-import { useLoginOrganisation } from '@/hooks/organisations/useLoginOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useCreateVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
 import { useUser } from '@/publicodes-state'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { isEmailValid } from '@/utils/isEmailValid'
@@ -23,9 +22,7 @@ export default function EmailForm() {
     updateEmail,
   } = useUser()
 
-  const { mutateAsync: loginOrganisation } = useLoginOrganisation()
-
-  const { mutateAsync: createOrganisation } = useCreateOrganisation()
+  const { mutateAsync: createVerificationCode } = useCreateVerificationCode()
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -49,47 +46,24 @@ export default function EmailForm() {
       return
     }
 
-    // Try and login
-    try {
-      const { expirationDate } = await loginOrganisation({
-        email,
-      })
+    const { expirationDate } = await createVerificationCode({
+      email,
+      userId: user.userId,
+    })
 
-      // Reset the organisation local state
-      updateUserOrganisation({
-        administratorEmail: email,
-        slug: '',
-        name: '',
-      })
+    // Reset the organisation local state
+    updateUserOrganisation({
+      administratorEmail: email,
+      slug: '',
+      name: '',
+    })
 
-      // We update the expiration date of the code
-      updateLoginExpirationDate(expirationDate)
-    } catch (error: any) {
-      // If not possible, create the organisation
-      try {
-        const { expirationDate } = await createOrganisation({
-          email,
-          userId: user.userId,
-        })
+    // We update the expiration date of the code
+    updateLoginExpirationDate(expirationDate)
+    updateUserOrganisation({ administratorEmail: email })
 
-        // Always reset the organisation local state
-        updateUserOrganisation({
-          administratorEmail: email,
-          slug: '',
-          name: '',
-        })
-
-        updateLoginExpirationDate(expirationDate)
-      } catch (error: any) {
-        setInputError(error.response.data.message)
-        return
-      }
-    } finally {
-      updateUserOrganisation({ administratorEmail: email })
-
-      if (!user.email) {
-        updateEmail(email)
-      }
+    if (!user.email) {
+      updateEmail(email)
     }
   }
 

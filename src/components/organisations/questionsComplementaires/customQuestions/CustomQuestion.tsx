@@ -1,16 +1,15 @@
 import Trans from '@/components/translation/Trans'
-import type { OrganisationPoll } from '@/types/organisations'
+import type { Organisation, OrganisationPoll } from '@/types/organisations'
 import { useState } from 'react'
 import CustomQuestionForm from '../CustomQuestionForm'
 import ToggleField from '../ToggleField'
 
 type Props = {
-  poll:
-    | Pick<
-        OrganisationPoll,
-        'customAdditionalQuestions' | 'defaultAdditionalQuestions'
-      >
-    | undefined
+  organisation: Organisation
+  poll: Pick<
+    OrganisationPoll,
+    'customAdditionalQuestions' | 'defaultAdditionalQuestions'
+  >
   onChange: (changes: Record<string, unknown>) => void
   question: string
   isEnabled: boolean
@@ -21,6 +20,7 @@ export default function CustomQuestion({
   question,
   isEnabled,
   onChange,
+  organisation,
 }: Props) {
   const [isEditing, setIsEditing] = useState(false)
 
@@ -69,6 +69,7 @@ export default function CustomQuestion({
   if (isEditing) {
     return (
       <CustomQuestionForm
+        organisation={organisation}
         submitLabel={<Trans>Modifier</Trans>}
         poll={poll}
         onCompleted={(changes) => {

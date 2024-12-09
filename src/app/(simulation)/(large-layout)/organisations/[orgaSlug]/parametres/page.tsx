@@ -10,21 +10,57 @@ import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { displaySuccessToast } from '@/helpers/toasts/displaySuccessToast'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
-import { useSendVerificationCodeWhenModifyingEmail } from '@/hooks/organisations/useSendVerificationCodeWhenModifyingEmail'
 import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisation'
-import { useVerifyCodeAndUpdate } from '@/hooks/organisations/useVerifyCodeAndUpdate'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useCreateVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
 import { useUser } from '@/publicodes-state'
-import type { OrgaSettingsInputsType } from '@/types/organisations'
+import type {
+  Organisation,
+  OrgaSettingsInputsType,
+} from '@/types/organisations'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef, useState } from 'react'
-import type { SubmitHandler} from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
-import DeconnexionButton from './DeconnexionButton'
 import EmailVerificationModal from './_components/EmailVerificationModal'
 import OrganisationFields from './_components/OrganisationFields'
 import PersonalInfoFields from './_components/PersonalInfoFields'
+import DeconnexionButton from './DeconnexionButton'
+
+const getFormDefaultValues = (
+  organisation?: Organisation
+): OrgaSettingsInputsType | undefined => {
+  if (!organisation) {
+    return
+  }
+
+  const {
+    administrators: [
+      {
+        email,
+        optedInForCommunications,
+        position,
+        name: administratorName,
+        telephone: administratorTelephone,
+      },
+    ],
+    numberOfCollaborators,
+    type: organisationType,
+    name,
+  } = organisation
+
+  return {
+    name,
+    email,
+    numberOfCollaborators: numberOfCollaborators ?? 0,
+    hasOptedInForCommunications: optedInForCommunications ?? false,
+    ...(organisationType ? { organisationType } : {}),
+    ...(position ? { position } : {}),
+    ...(administratorName ? { administratorName } : {}),
+    ...(administratorTelephone ? { administratorTelephone } : {}),
+  }
+}
 
 export default function ParametresPage() {
   const { user, updateUserOrganisation } = useUser()
@@ -35,85 +71,50 @@ export default function ParametresPage() {
 
   const { t } = useClientTranslation()
 
-  const {
-    data: organisation,
-    isError,
-    isLoading,
-  } = useFetchOrganisation({
-    email: user?.organisation?.administratorEmail ?? '',
-  })
+  const { data: organisation, isError, isLoading } = useFetchOrganisation()
 
-  const { mutateAsync: updateOrganisation } = useUpdateOrganisation({
-    email: user?.organisation?.administratorEmail ?? '',
-  })
+  const {
+    mutateAsync: updateOrganisation,
+    error: errorUpdate,
+    isSuccess: isSuccessUpdate,
+    isPending: isPendingUpdate,
+  } = useUpdateOrganisation()
+
+  const { mutateAsync: createVerificationCode, isError: isErrorSendCode } =
+    useCreateVerificationCode()
+
+  const defaultValues = getFormDefaultValues(organisation)
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useReactHookForm({
-    defaultValues: organisation
-      ? {
-          name: organisation?.name ?? '',
-          administratorName: organisation?.administrators?.[0]?.name ?? '',
-          hasOptedInForCommunications:
-            organisation?.administrators?.[0]?.hasOptedInForCommunications ??
-            false,
-          organisationType: organisation?.organisationType ?? '',
-          email: organisation?.administrators?.[0]?.email ?? '',
-          position: organisation?.administrators?.[0]?.position ?? '',
-          numberOfCollaborators: organisation?.numberOfCollaborators ?? 0,
-          administratorTelephone:
-            organisation?.administrators?.[0]?.telephone ?? '',
-        }
-      : undefined,
+    defaultValues,
   })
-
-  const {
-    mutateAsync: verifyCodeAndUpdateOrganisation,
-    error: errorVerifyAndUpdate,
-    isSuccess: isSuccessVerifyAndUpdate,
-    isPending: isPendingVerifyAndUpdate,
-  } = useVerifyCodeAndUpdate(user?.organisation?.administratorEmail ?? '')
-
-  const { mutate: sendVerificationCode, isError: isErrorSendCode } =
-    useSendVerificationCodeWhenModifyingEmail(
-      user?.organisation?.administratorEmail ?? ''
-    )
 
   function handleSaveDataForVerification(data: OrgaSettingsInputsType) {
     setDataTemporarySaved(data)
     setShouldDisplayModal(true)
-    sendVerificationCode({
-      email: data?.email ?? '',
-      previousEmail: user?.organisation?.administratorEmail ?? '',
+    createVerificationCode({
+      email: data.email,
+      userId: user.userId,
     })
   }
 
   const handleUpdateOrganisation: SubmitHandler<
     OrgaSettingsInputsType
-  > = async ({
-    email,
-    name,
-    organisationType,
-    numberOfCollaborators,
-    position,
-    administratorName,
-    administratorTelephone,
-    hasOptedInForCommunications,
-  }) => {
-    const formattedEmail = formatEmail(email)
+  > = async (formData) => {
+    if (!organisation?.slug) {
+      return
+    }
+
+    const formattedEmail = formatEmail(formData.email)
     // Switch to the update email user flow
     if (formattedEmail !== user?.organisation?.administratorEmail) {
       handleSaveDataForVerification({
+        ...formData,
         email: formattedEmail,
-        name,
-        organisationType,
-        numberOfCollaborators,
-        position,
-        administratorName,
-        hasOptedInForCommunications,
-        administratorTelephone,
       })
       return
     }
@@ -122,13 +123,8 @@ export default function ParametresPage() {
       trackEvent(organisationsParametersUpdateInformations)
 
       await updateOrganisation({
-        name,
-        organisationType,
-        numberOfCollaborators,
-        position,
-        administratorName,
-        hasOptedInForCommunications,
-        administratorTelephone,
+        organisationIdOrSlug: organisation.slug,
+        formData,
       })
 
       displaySuccessToast(t('Vos informations ont bien été mises à jour.'))
@@ -152,14 +148,20 @@ export default function ParametresPage() {
   async function handleVerifyCodeAndSaveModifications(
     verificationCode: string
   ) {
-    if (verificationCode?.length < 6) return
+    if (
+      !organisation?.slug ||
+      !dataTemporarySaved ||
+      verificationCode?.length < 6
+    )
+      return
 
-    await verifyCodeAndUpdateOrganisation({
-      ...dataTemporarySaved,
-      email: user?.organisation?.administratorEmail ?? '',
-      emailModified: dataTemporarySaved?.email ?? '',
-      verificationCode,
+    await updateOrganisation({
+      organisationIdOrSlug: organisation.slug,
+      formData: dataTemporarySaved,
+      code: verificationCode,
     })
+
+    setShouldDisplayModal(false)
 
     displaySuccessToast(t('Vos informations ont bien été mises à jour.'))
 
@@ -168,8 +170,6 @@ export default function ParametresPage() {
       updateUserOrganisation({
         administratorEmail: dataTemporarySaved?.email ?? '',
       })
-
-      closeModal()
     }, 100)
   }
 
@@ -203,7 +203,7 @@ export default function ParametresPage() {
         </h2>
 
         <OrganisationFields
-          organisation={organisation}
+          defaultValues={defaultValues}
           register={register}
           errors={errors}
         />
@@ -214,26 +214,23 @@ export default function ParametresPage() {
           <Trans>Vos informations personnelles</Trans>
         </h2>
 
-        <PersonalInfoFields
-          organisation={organisation}
-          register={register as any}
-        />
+        <PersonalInfoFields defaultValues={defaultValues} register={register} />
       </Form>
 
       {shouldDisplayModal && (
         <EmailVerificationModal
           closeModal={closeModal}
           onSubmit={handleVerifyCodeAndSaveModifications}
-          error={errorVerifyAndUpdate}
-          isSuccess={isSuccessVerifyAndUpdate}
-          isPending={isPendingVerifyAndUpdate}
+          error={errorUpdate}
+          isSuccess={isSuccessUpdate}
+          isPending={isPendingUpdate}
           isErrorSendCode={isErrorSendCode}
         />
       )}
 
       <Separator className="my-4" />
 
-      <DeconnexionButton organisation={organisation} />
+      <DeconnexionButton />
     </MaxWidthContent>
   )
 }

@@ -4,11 +4,12 @@ import Trans from '@/components/translation/Trans'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
-import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
-import { usePollPublicInfo } from '@/hooks/organisations/usePollPublicInfo'
+
+import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import { useParams, useRouter } from 'next/navigation'
 import { useContext } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
+import { v4 as uuid } from 'uuid'
 import { InfosContext } from '../_components/InfosProvider'
 import Navigation from '../_components/Navigation'
 
@@ -27,9 +28,7 @@ export default function CustomQuestion() {
 
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
 
-  const { pollSlug } = useOrganisationQueryParams()
-
-  const { data: poll, isLoading } = usePollPublicInfo({ pollSlug })
+  const { data: poll, isLoading } = useFetchPublicPoll()
 
   const { addCustomAnswer } = useContext(InfosContext)
 
@@ -37,7 +36,7 @@ export default function CustomQuestion() {
 
   function onSubmit({ 'custom-answer': customQuestion }: Inputs) {
     addCustomAnswer({
-      id: customAdditionalQuestions?.[customQuestionIndex - 1]._id ?? '',
+      id: uuid(),
       answer: customQuestion,
     })
 
@@ -58,7 +57,7 @@ export default function CustomQuestion() {
           <span>
             <Trans>Question personnalisée de</Trans> 
             <strong className="text-secondary-700">
-              {poll?.organisationInfo?.name}
+              {poll?.organisation?.name}
             </strong>
           </span>
         }
