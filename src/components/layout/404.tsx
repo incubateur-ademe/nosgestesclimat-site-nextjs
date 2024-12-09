@@ -13,7 +13,7 @@ export default function Route404() {
 
   const [numberOfFish, setNumberOfFish] = useState(0)
   return (
-    <div className="relative h-svh">
+    <div className="relative h-svh" data-cypress-id="404">
       <div className="absolute bottom-0 left-0 right-0 top-20 bg-[#1617C5] opacity-75 lg:top-36" />
 
       <div className="relative mt-20 flex flex-col items-center lg:mt-36">
@@ -25,7 +25,7 @@ export default function Route404() {
                 onClick={() =>
                   setNumberOfFish((prevNumberOfFish) => prevNumberOfFish + 1)
                 }
-                className="hover:animate-jump absolute -top-16 left-0 right-0 m-auto w-10 md:w-12"
+                className="absolute -top-16 left-0 right-0 m-auto w-10 hover:animate-jump md:w-12"
                 src="/images/misc/404_bonhomme.svg"
                 width="60"
                 height="60"

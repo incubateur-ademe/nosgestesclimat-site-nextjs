@@ -1,19 +1,20 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import {
-  headerClickCtaCommencer,
-  headerClickCtaReprendre,
-  headerClickCtaResultats,
-} from '@/constants/tracking/layout'
+import { trackingActionClickCTAMenu } from '@/constants/tracking/actions'
 import { HIDE_CTA_PATHS } from '@/constants/urls'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import {
+  getLandingClickCTAResults,
+  getLandingClickCTAResume,
+  getLandingClickCTAStart,
+} from '@/helpers/tracking/landings'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { usePathname } from 'next/navigation'
 
-export default function CTAButton() {
+export default function MenuCTAButton() {
   const { getLinkToSimulateurPage, linkToSimulateurPageLabel } =
     useSimulateurPage()
 
@@ -31,16 +32,22 @@ export default function CTAButton() {
       href={getLinkToSimulateurPage()}
       onClick={() => {
         if (progression === 1) {
-          trackEvent(headerClickCtaResultats)
+          trackEvent(
+            getLandingClickCTAResults(pathname, trackingActionClickCTAMenu)
+          )
           return
         }
 
         if (progression > 0) {
-          trackEvent(headerClickCtaReprendre)
+          trackEvent(
+            getLandingClickCTAResume(pathname, trackingActionClickCTAMenu)
+          )
           return
         }
 
-        trackEvent(headerClickCtaCommencer)
+        trackEvent(
+          getLandingClickCTAStart(pathname, trackingActionClickCTAMenu)
+        )
       }}>
       <Trans>{linkToSimulateurPageLabel}</Trans>
     </ButtonLink>
