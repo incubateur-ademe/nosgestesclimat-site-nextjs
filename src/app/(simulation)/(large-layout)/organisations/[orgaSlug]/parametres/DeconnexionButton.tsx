@@ -4,27 +4,20 @@ import LogOutIcon from '@/components/icons/LogOutIcon'
 import Trans from '@/components/translation/Trans'
 import { organisationsParametersLogout } from '@/constants/tracking/pages/organisationsParameters'
 import Button from '@/design-system/inputs/Button'
-import { useLogoutOrganisation } from '@/hooks/organisations/useLogout'
-import type { Organisation } from '@/types/organisations'
+import { useLogout } from '@/hooks/authentication/useLogout'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 
-export default function DeconnexionButton({
-  organisation,
-}: {
-  organisation: Organisation | undefined
-}) {
-  const { mutateAsync: logoutOrganisation } = useLogoutOrganisation({
-    orgaSlug: organisation?.slug,
-  })
+export default function DeconnexionButton() {
+  const { mutateAsync: logout } = useLogout()
 
   const router = useRouter()
   const queryClient = useQueryClient()
 
   async function handleDisconnect() {
     trackEvent(organisationsParametersLogout)
-    await logoutOrganisation()
+    await logout()
 
     queryClient.clear()
 

@@ -1,7 +1,8 @@
-import { useSendVerificationCode } from '@/hooks/organisations/useSendVerificationCode'
+import useLogin from '@/hooks/authentication/useLogin'
+import useFetchOrganisations from '@/hooks/organisations/useFetchOrganisations'
 import useTimeLeft from '@/hooks/organisations/useTimeleft'
-import useValidateVerificationCode from '@/hooks/organisations/useValidateVerificationCode'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useCreateVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
 import { useUser } from '@/publicodes-state'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
@@ -10,6 +11,12 @@ import NotReceived from './verificationForm/NotReceived'
 import VerificationContent from './verificationForm/VerificationContent'
 
 export default function VerificationForm() {
+  const { updateLoginExpirationDate, user, updateUserOrganisation } = useUser()
+
+  const [email, setEmail] = useState<string | undefined>(
+    user.organisation?.administratorEmail
+  )
+
   const [inputError, setInputError] = useState<string | undefined>()
 
   const { timeLeft, setTimeLeft } = useTimeLeft()
@@ -20,51 +27,60 @@ export default function VerificationForm() {
 
   const timeoutRef = useRef<NodeJS.Timeout>()
 
-  const { updateLoginExpirationDate, user, updateUserOrganisation } = useUser()
-
   // Reset the login expiration date if the user is logged in
   // and the login expiration date is in the past
   useEffect(() => {
-    if (user?.loginExpirationDate) {
+    if (user.loginExpirationDate) {
       return
     }
     if (dayjs(user.loginExpirationDate).isBefore(dayjs())) {
       updateLoginExpirationDate(undefined)
     }
-  }, [user?.loginExpirationDate, updateLoginExpirationDate])
+  }, [user.loginExpirationDate, updateLoginExpirationDate])
 
   const {
-    mutateAsync: validateVerificationCode,
-    isPending: isPendingValidate,
-    isSuccess: isSuccessValidate,
-  } = useValidateVerificationCode({
-    email: user?.organisation?.administratorEmail ?? '',
-  })
-
-  const {
-    mutateAsync: sendVerificationCode,
+    mutateAsync: createVerificationCode,
     isError: isErrorResend,
     isPending: isPendingResend,
-  } = useSendVerificationCode(user?.organisation?.administratorEmail ?? '')
+  } = useCreateVerificationCode()
 
-  async function handleValidateVerificationCode(verificationCode: string) {
+  const {
+    mutateAsync: login,
+    isPending: isPendingValidate,
+    isSuccess: isSuccessValidate,
+  } = useLogin()
+
+  const { refetch: fetchOrganisations } = useFetchOrganisations({ enabled: false })
+
+  function sendVerificationCode(email: string) {
+    setEmail(email)
+
+    return createVerificationCode({
+      email,
+      userId: user.userId,
+    })
+  }
+
+  async function handleValidateVerificationCode(code: string) {
     setInputError(undefined)
 
-    if (
-      isPendingValidate ||
-      isSuccessValidate ||
-      verificationCode.length !== 6
-    ) {
+    if (isPendingValidate || isSuccessValidate || !email || code.length !== 6) {
       return
     }
 
     try {
-      const organisation = await validateVerificationCode({
-        verificationCode,
+      await login({
+        email,
+        code,
       })
 
+      const { data: organisations } = await fetchOrganisations()
+
+      // I don´t understand why refetch returns undefined
+      const [organisation] = organisations!
+
       timeoutRef.current = setTimeout(() => {
-        if (!organisation.name) {
+        if (!organisation) {
           // Reset the login expiration date
           updateLoginExpirationDate(undefined)
           router.push('/organisations/creer')
@@ -76,7 +92,7 @@ export default function VerificationForm() {
           slug: organisation.slug,
         })
 
-        router.push(`/organisations/${organisation?.slug}`)
+        router.push(`/organisations/${organisation.slug}`)
 
         // Reset the login expiration date
         updateLoginExpirationDate(undefined)

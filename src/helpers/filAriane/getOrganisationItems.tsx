@@ -1,6 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import type { User } from '@/publicodes-state/types'
-import type { PollData } from '@/types/organisations'
+import type { PublicOrganisationPoll } from '@/types/organisations'
 
 function formatSlugToName(slug: string) {
   return decodeURIComponent(slug).replaceAll('-', ' ')
@@ -32,7 +32,7 @@ function getOrganisationEspaceItems({
   params: any
   user: User
   isAdmin: boolean
-  poll?: PollData | null
+  poll?: PublicOrganisationPoll | null
 }) {
   const items = []
   if (params.orgaSlug) {
@@ -52,7 +52,7 @@ function getOrganisationEspaceItems({
           <>
             {poll?.name ?? (
               <span>
-                <Trans>Campagne de</Trans> {poll?.organisationName}
+                <Trans>Campagne de</Trans> {poll?.organisation.name}
               </span>
             )}
           </>
@@ -88,7 +88,7 @@ export function getOrganisationItems({
   params: any
   user: User
   isAdmin: boolean
-  poll?: PollData | null
+  poll?: PublicOrganisationPoll | null
 }): {
   href: string
   label: string | JSX.Element

@@ -7,7 +7,7 @@ type Props = {
 export function useIsGroupOwner({ group }: Props) {
   const { user } = useUser()
 
-  const isGroupOwner = group?.administrator?.userId === user.userId
+  const isGroupOwner = group.administrator.id === user.userId
 
   return { isGroupOwner }
 }

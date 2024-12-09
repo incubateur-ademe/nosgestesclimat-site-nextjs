@@ -2,7 +2,7 @@ import QuestionsComplementaires from '@/components/organisations/QuestionsComple
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
-import { useCreatePoll } from '@/hooks/polls/useCreatePoll'
+import { useCreatePoll } from '@/hooks/organisations/polls/useCreatePoll'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Organisation } from '@/types/organisations'
 import { captureException } from '@sentry/react'
@@ -20,7 +20,7 @@ type Inputs = {
 
 export default function PollForm({ organisation }: Props) {
   const [pollInfo, setPollInfo] = useState({
-    defaultAdditionalQuestions: [] as unknown as [string],
+    defaultAdditionalQuestions: [],
     customAdditionalQuestions: [],
   })
   const [isError, setIsError] = useState(false)
@@ -35,7 +35,7 @@ export default function PollForm({ organisation }: Props) {
     getValues,
   } = useReactHookForm<Inputs>()
 
-  const { mutateAsync: createPoll } = useCreatePoll()
+  const { mutateAsync: createPoll } = useCreatePoll(organisation.slug)
 
   async function onSubmit() {
     if (isError) setIsError(false)
@@ -44,7 +44,6 @@ export default function PollForm({ organisation }: Props) {
 
     try {
       const pollCreated = await createPoll({
-        organisationId: organisation?._id ?? '',
         name,
         defaultAdditionalQuestions: pollInfo.defaultAdditionalQuestions,
         customAdditionalQuestions: pollInfo.customAdditionalQuestions,
@@ -52,7 +51,7 @@ export default function PollForm({ organisation }: Props) {
 
       if (pollCreated) {
         router.push(
-          `/organisations/${organisation?.slug}/campagnes/${pollCreated.slug}`
+          `/organisations/${organisation.slug}/campagnes/${pollCreated.slug}`
         )
       }
     } catch (error) {
@@ -73,6 +72,7 @@ export default function PollForm({ organisation }: Props) {
       />
 
       <QuestionsComplementaires
+        organisation={organisation}
         poll={pollInfo}
         description={
           <Trans>

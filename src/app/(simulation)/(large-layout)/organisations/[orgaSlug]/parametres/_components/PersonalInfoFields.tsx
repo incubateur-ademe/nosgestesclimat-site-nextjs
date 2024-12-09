@@ -1,22 +1,22 @@
 import Trans from '@/components/translation/Trans'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
-import type { Organisation } from '@/types/organisations'
-import type { FieldValues, UseFormRegister } from 'react-hook-form'
+import type { OrgaSettingsInputsType } from '@/types/organisations'
+import type { UseFormRegister } from 'react-hook-form'
 
 type Props = {
-  organisation?: Organisation
-  register: UseFormRegister<FieldValues>
+  defaultValues?: OrgaSettingsInputsType
+  register: UseFormRegister<OrgaSettingsInputsType>
 }
 
-export default function PersonalInfoFields({ organisation, register }: Props) {
-  if (!organisation) return null
+export default function PersonalInfoFields({ defaultValues, register }: Props) {
+  if (!defaultValues) return null
 
   return (
     <div className="flex flex-col gap-4">
       <TextInputGroup
         label={<Trans>Votre prénom</Trans>}
-        value={organisation.administrators?.[0]?.name}
+        value={defaultValues.administratorName}
         {...register('administratorName')}
       />
 
@@ -30,22 +30,20 @@ export default function PersonalInfoFields({ organisation, register }: Props) {
             </span>
           </p>
         }
-        value={organisation.administrators?.[0]?.telephone}
+        value={defaultValues.administratorTelephone}
         {...register('administratorTelephone')}
       />
 
       <TextInputGroup
         label={<Trans>Votre e-mail</Trans>}
-        value={organisation.administrators?.[0]?.email}
+        value={defaultValues.email}
         {...register('email')}
       />
 
       <div className="w-[32rem]">
         <CheckboxInputGroup
           size="xl"
-          defaultChecked={
-            organisation.administrators?.[0]?.hasOptedInForCommunications
-          }
+          defaultChecked={defaultValues.hasOptedInForCommunications}
           label={
             <span>
               <strong>

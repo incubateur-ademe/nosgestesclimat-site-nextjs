@@ -19,7 +19,7 @@ import { captureException } from '@sentry/react'
 import { useState } from 'react'
 
 export default function EditableGroupTitle({ group }: { group: Group }) {
-  const formattedGroupId = group?._id?.replaceAll('/', '')
+  const formattedGroupId = group.id?.replaceAll('/', '')
 
   const [isEditingTitle, setIsEditingTitle] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
