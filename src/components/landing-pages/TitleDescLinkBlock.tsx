@@ -1,11 +1,12 @@
 import Separator from '@/design-system/layout/Separator'
 import type { ReactNode } from 'react'
-import Link from '../Link'
+import TitleDescLink from './titleDescLinkBlock/TitleDescLink'
 
 export default function TitleDescLinkBlock({
   title,
   description,
   link,
+  trackingEvent,
 }: {
   title: ReactNode
   description: ReactNode
@@ -13,6 +14,7 @@ export default function TitleDescLinkBlock({
     href: string
     text: ReactNode
   }
+  trackingEvent?: string[]
 }) {
   return (
     <div className="flex flex-1 flex-col">
@@ -22,9 +24,7 @@ export default function TitleDescLinkBlock({
 
       <p className="mb-6 text-sm md:text-lg">{description}</p>
 
-      <Link className="text-[13px] md:text-base" href={link.href}>
-        {link.text}
-      </Link>
+      <TitleDescLink {...link} trackingEvent={trackingEvent} />
     </div>
   )
 }

@@ -1,5 +1,7 @@
+import { trackingActionClickPostThumbnail } from '@/constants/tracking/actions'
 import PostThumbnail from '@/design-system/cms/PostThumbnail'
 import ColorLine from '@/design-system/layout/ColorLine'
+import { getLandingClickPostThumbnail } from '@/helpers/tracking/landings'
 import type { LandingPagePostType } from '@/types/landing-page'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -9,10 +11,12 @@ export default function UnderstandToAct({
   title,
   description,
   posts,
+  pathname,
 }: {
   title?: ReactNode
   description?: ReactNode
-  posts: LandingPagePostType[]
+  posts: Omit<LandingPagePostType, 'trackingEvent'>[]
+  pathname: string
 }) {
   return (
     <div className="relative w-full bg-heroLightBackground py-16 md:py-20">
@@ -33,7 +37,14 @@ export default function UnderstandToAct({
 
         <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
           {posts.map((post, index) => (
-            <PostThumbnail key={`${index}-post-thumbnail`} {...post} />
+            <PostThumbnail
+              key={`${index}-post-thumbnail`}
+              {...post}
+              trackingEvent={getLandingClickPostThumbnail(
+                pathname,
+                `${trackingActionClickPostThumbnail} ${index + 1}`
+              )}
+            />
           ))}
         </ul>
       </div>

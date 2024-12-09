@@ -1,10 +1,5 @@
 'use client'
 
-import {
-  homeClickCtaCommencer,
-  homeClickCtaReprendre,
-  homeClickCtaResultats,
-} from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useIsClient } from '@/hooks/useIsClient'
@@ -16,8 +11,14 @@ import Trans from '../translation/Trans'
 
 export default function DynamicCTAButton({
   className,
+  trackingEvents,
 }: {
   className?: string
+  trackingEvents: {
+    start: string[]
+    resume: string[]
+    results: string[]
+  }
 }) {
   const { progression } = useCurrentSimulation()
 
@@ -42,16 +43,16 @@ export default function DynamicCTAButton({
       onMouseLeave={() => setIsHover(false)}
       onClick={() => {
         if (progression === 1) {
-          trackEvent(homeClickCtaResultats)
+          trackEvent(trackingEvents?.results)
           return
         }
 
         if (progression > 0) {
-          trackEvent(homeClickCtaReprendre)
+          trackEvent(trackingEvents?.resume)
           return
         }
 
-        trackEvent(homeClickCtaCommencer)
+        trackEvent(trackingEvents?.start)
       }}>
       <span
         className={twMerge(

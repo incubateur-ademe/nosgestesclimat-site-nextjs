@@ -1,7 +1,7 @@
 import { captureException } from '@sentry/nextjs'
-import type { ErrorInfo, ReactNode } from 'react';
+import type { ErrorInfo, ReactNode } from 'react'
 import React from 'react'
-import ErrorModal from './ErrorModal'
+import ErrorContent from './ErrorContent'
 
 interface ErrorBoundaryProps {
   children: ReactNode
@@ -33,7 +33,11 @@ class ErrorBoundary extends React.Component<
 
   render() {
     if (this.state.hasError) {
-      return <ErrorModal />
+      return (
+        <div className="flex h-screen flex-col items-center justify-center">
+          <ErrorContent />
+        </div>
+      )
     }
 
     return this.props.children
