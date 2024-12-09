@@ -71,7 +71,7 @@
 
     Por estas dos razones, la huella de sus ahorros no se evalúa actualmente en el marco de Nos Gestes Climat.
 
-    no obstante, somos conscientes de que seguramente no estamos cumpliendo nuestro objetivo pedagógico: es un tema sobre el que todavía se vierte (demasiada) poca tinta, y sobre el que los ciudadanos merecen estar informados. Así que <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/1823">seguimos pensando en</a> añadir un componente de "ahorro individual" al simulador._
+    no obstante, somos conscientes de que seguramente no estamos cumpliendo nuestro objetivo pedagógico: se trata de un tema al que todavía se presta (demasiada) poca atención y sobre el que los ciudadanos merecen estar informados. Así que <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/1823">seguimos pensando en</a> añadir un componente de "ahorro individual" a la calculadora._
   question.lock: Pourquoi ne pas prendre en compte l'épargne individuelle ?
   catégorie.lock: général
   réponse.lock: |
@@ -87,7 +87,7 @@
 
     Ces deux raisons font qu'actuellement, l'empreinte de votre épargne n'est pas évaluée dans le cadre de Nos Gestes Climat.
 
-    _Néanmoins, nous sommes conscients que nous passons sûrement là à côté de notre objectif pédagogique : c'est un sujet qui fait couler encore (trop) peu d'encre, et sur lequel les citoyens méritent d'être informés. Aussi, [la réflexion est toujours ouverte](https://github.com/incubateur-ademe/nosgestesclimat/issues/1823) pour ajouter une composante "épargne individuelle" au simulateur._
+    _Néanmoins, nous sommes conscients que nous passons sûrement là à côté de notre objectif pédagogique : c'est un sujet qui fait couler encore (trop) peu d'encre, et sur lequel les citoyens méritent d'être informés. Aussi, [la réflexion est toujours ouverte](https://github.com/incubateur-ademe/nosgestesclimat/issues/1823) pour ajouter une composante "épargne individuelle" au calculateur._
 - id: régime
   question: ¿Tiene previsto incorporar otras prácticas alimentarias?
   catégorie: suministro eléctrico
@@ -162,9 +162,9 @@
   catégorie: general
   réponse: |
 
-    La huella visualizada al inicio del test, antes de que haya respondido a las preguntas, debe considerarse como un **punto de partida**. A lo largo del simulador, podrá comparar la huella de sus consumos (kilómetros de coche, calefacción, etc.) con valores que pretenden aproximarse lo más posible a la media francesa. 
+    La huella que aparece al principio del test, antes de que hayas respondido a las preguntas, debe considerarse como un **punto de partida**. A lo largo de la calculadora, podrás comparar la huella de tus consumos (kilómetros de coche, calefacción, etc.) con valores que pretenden aproximarse lo más posible a la media francesa. 
 
-    Este punto de partida es diferente de las `8,9 toneladas de CO₂ₑ`, la <a href="https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1995-2021">última huella de carbono media francesa calculada por el Ministerio de Medio Ambiente en noviembre de 2022</a>.
+    Este punto de partida es diferente de `8,9 toneladas de CO₂ₑ`, <a href="https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1995-2021">la última huella de carbono media francesa calculada por el Ministerio de Medio Ambiente en noviembre de 2022</a>.
 
     **Esta diferencia es normal**, ya que los dos métodos de cálculo son muy diferentes:
 
@@ -178,7 +178,7 @@
   catégorie.lock: général
   réponse.lock: |
 
-    Il faut voir l'empreinte qui s'affiche au début du test, avant que vous n'ayez répondu aux questions, comme un **point de départ**. Il vous permet, tout au long du simulateur, de comparer l'empreinte de vos postes de consommation (km en voiture, chauffage...) à des valeurs qui se veulent les plus proches de la moyenne française. 
+    Il faut voir l'empreinte qui s'affiche au début du test, avant que vous n'ayez répondu aux questions, comme un **point de départ**. Il vous permet, tout au long du calculateur, de comparer l'empreinte de vos postes de consommation (km en voiture, chauffage...) à des valeurs qui se veulent les plus proches de la moyenne française. 
 
     Ce point de départ est différent des `8,9 tonnes de CO₂ₑ`, [la dernière moyenne d'empreinte carbone française calculé par le Ministère de l'Environnement en novembre 2022](https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1995-2021).
 
@@ -316,7 +316,7 @@
 
     Es un tema complicado, por no decir otra cosa
 
-    Nos Gestes Climat es un simulador de huella individual. Se considera que **cada ser humano, niño o adulto, tiene su propia huella**.
+    Nos Gestes Climat es una calculadora de la huella individual. Consideramos que **cada ser humano, niño o adulto, tiene su propia huella**.
 
     Por supuesto, un niño no ha elegido nacer, y en algún lugar uno o dos adultos han decidido traer un nuevo individuo al mundo, que tendrá una huella de carbono. Podríamos decir que debemos atribuírsela a ellos. Pero, ¿por cuánto tiempo? ¡No atribuyas tu huella a tus padres!
 
@@ -327,7 +327,7 @@
 
     C'est un sujet, pour le moins, compliqué !
 
-    Nos Gestes Climat est un simulateur d'empreinte individuelle. On considère que **chaque humain, enfant ou adulte, a sa propre empreinte**.
+    Nos Gestes Climat est un calculateur d'empreinte individuelle. On considère que **chaque humain, enfant ou adulte, a sa propre empreinte**.
 
     Certes, un enfant n'a pas choisi de naître, et quelque part un ou deux adulte(s) ont décidé de mettre au monde un nouvel individu, qui aura une empreinte carbone. On pourrait se dire que l'on devrait la leur attribuer. Mais alors, pendant combien de temps ? Votre empreinte n'est pas à attribuer à vos parents !
 
@@ -549,13 +549,13 @@
   catégorie: suministro eléctrico
   réponse: |
 
-    **Nota: el consumo de productos ecológicos no reduce por sí mismo la huella de carbono
+    **Nota: el consumo de productos ecológicos no reduce por sí solo la huella de carbono
 
-    Hasta la fecha, los datos indican que para la misma producción y productos, **la agricultura ecológica requiere parcelas agrícolas más grandes**, reduciendo el tamaño de los bosques y áreas naturales, que son esenciales para el secuestro de carbono. Por ello, a escala mundial y para las mismas cantidades consumidas, se tiende a considerar que la agricultura ecológica tiene un "mayor impacto" sobre el clima que la convencional.
+    Hasta la fecha, los datos indican que para la misma producción y productos, **la agricultura ecológica requiere parcelas agrícolas más grandes**, reduciendo el tamaño de los bosques y áreas naturales, que son esenciales para el secuestro de carbono. Por eso, a escala mundial y para las mismas cantidades consumidas, se tiende a considerar que la agricultura ecológica tiene un "mayor impacto" sobre el clima que la convencional.
 
-    Por supuesto, **esto no es razón para no comer ecológico**. Se trata de un sesgo de nuestro simulador. Sólo tiene en cuenta las emisiones de carbono.
+    Por supuesto, **esto no es razón para no comer ecológico**. Se trata de un sesgo de nuestra calculadora. Sólo tiene en cuenta las emisiones de carbono.
 
-    Sin embargo, desde la contaminación del suelo y las aguas subterráneas hasta la pérdida de biodiversidad y la salud de los agricultores, **los alimentos ecológicos reducen considerablemente muchos otros impactos medioambientales** al tiempo que reducen los riesgos para nuestra salud. Estamos hablando aquí de cuestiones medioambientales en general, y tenemos que dar un paso atrás en nuestro cálculo, que se centra al 100% en los gases de efecto invernadero.
+    Y sin embargo, desde la contaminación del suelo y las aguas subterráneas hasta la pérdida de biodiversidad y la salud de los agricultores, **los alimentos ecológicos reducen considerablemente muchos otros impactos medioambientales**, al tiempo que reducen los riesgos para nuestra salud. Estamos hablando aquí de cuestiones medioambientales en general, y tenemos que dar un paso atrás en nuestro cálculo, que se centra al 100% en los gases de efecto invernadero.
 
     Hay un animado debate sobre esta cuestión y se está vertiendo mucha tinta (digital) <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/1799">en nuestro Github</a>. No dudes en unirte a la conversación
   question.lock: Pourquoi ne posez-vous pas de question sur le bio ?
@@ -566,7 +566,7 @@
 
     À ce jour, les données indiquent qu'à production et produits égaux, **une culture bio nécessite des parcelles agricoles plus grandes**, réduisant la taille des forêts et des zones naturelles, zones essentielles à la séquestration du carbone. C’est pourquoi, à l’échelle globale et à quantités consommées égales, on tend à considérer que le bio a « plus d’impact » sur le climat que l’agriculture conventionnelle.
 
-    Bien sûr, **ce n’est pas une raison pour ne pas manger bio**. C'est un biais de notre simulateur. Il ne s'intéresse qu'aux émissions de carbone.
+    Bien sûr, **ce n’est pas une raison pour ne pas manger bio**. C'est un biais de notre calculateur. Il ne s'intéresse qu'aux émissions de carbone.
 
     Or, de la pollution des sols et des nappes phréatiques à la perte de biodiversité en passant par la préservation de la santé des agriculteurs, **une alimentation bio permet de réduire considérablement de nombreux autres impacts environnementaux** tout en réduisant également les risques pour notre santé. Nous touchons ici aux enjeux environnementaux en général, et devons prendre du recul par rapport à notre calcul 100 % centré sur les gaz à effet de serre.
 

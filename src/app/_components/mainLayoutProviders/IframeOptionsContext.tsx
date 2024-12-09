@@ -20,7 +20,6 @@ const nullDecode = (string: string) =>
 
 export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
   const isClient = useIsClient()
-
   const isIframe = isClient && getIsIframe()
 
   const [iframeIntegratorOptions, setIframeIntegratorOptions] = useState({
@@ -101,6 +100,7 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
         ...iframeIntegratorOptions,
         isIframeShareData,
         iframeRegion,
+        isIframe,
         isIframeOnlySimulation,
         iframeLang,
       }}>
