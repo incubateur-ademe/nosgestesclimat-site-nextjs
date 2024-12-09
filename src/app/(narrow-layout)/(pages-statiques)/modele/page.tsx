@@ -12,7 +12,7 @@ export async function generateMetadata() {
   return {
     title: t('Notre modèle de données - Nos Gestes Climat'),
     description: t(
-      "Découvrez le modèle de données de notre simulateur d'empreinte climat"
+      "Découvrez le modèle de données de notre calculateur d'empreinte climat"
     ),
     alternates: {
       canonical: '/modele',
