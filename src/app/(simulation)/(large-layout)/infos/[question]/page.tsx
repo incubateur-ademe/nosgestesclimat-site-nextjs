@@ -9,7 +9,7 @@ import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPo
 import { useParams, useRouter } from 'next/navigation'
 import { useContext } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
-import { v4 } from 'uuid'
+import { v4 as uuid } from 'uuid'
 import { InfosContext } from '../_components/InfosProvider'
 import Navigation from '../_components/Navigation'
 
@@ -36,7 +36,7 @@ export default function CustomQuestion() {
 
   function onSubmit({ 'custom-answer': customQuestion }: Inputs) {
     addCustomAnswer({
-      id: v4(),
+      id: uuid(),
       answer: customQuestion,
     })
 
