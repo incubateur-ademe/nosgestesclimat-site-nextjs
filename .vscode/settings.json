@@ -16,7 +16,5 @@
     "titleBar.activeBackground": "#296c36",
     "titleBar.activeForeground": "#FAF9FD"
   },
-  "editor.formatOnSave": true,
-  "spellright.language": ["fr", "en"],
-  "spellright.documentTypes": ["markdown", "latex", "plaintext"]
+  "editor.formatOnSave": true
 }
