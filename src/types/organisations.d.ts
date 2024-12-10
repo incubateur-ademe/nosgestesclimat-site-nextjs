@@ -98,6 +98,9 @@ export type Simulation = {
   progression: number
   additionalQuestionsAnswers: AdditionalQuestionsAnswer[]
   savedViaEmail?: boolean
+  /**
+   * user is defined only for the current user and undefined for others
+   */
   user?: User
   polls?: Array<{ id: string; slug: string }>
 }
