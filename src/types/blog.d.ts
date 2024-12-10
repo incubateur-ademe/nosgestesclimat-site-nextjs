@@ -33,4 +33,5 @@ export type HomepageContentType = {
   }
   mainArticle: ArticleType
   articles: ArticleType[]
+  pageCount: number
 }

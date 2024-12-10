@@ -29,7 +29,7 @@ export default async function Blog({
   // Get the page number from the query params from the server side
   const page = Number(searchParams.page) || 1
 
-  const { title, description, image, mainArticle, articles } =
+  const { title, description, image, mainArticle, articles, pageCount } =
     await fetchHomepageContent({
       page,
     })
@@ -70,7 +70,11 @@ export default async function Blog({
         category={mainArticle.category.title}
       />
 
-      <ArticleList articles={articles} />
+      <ArticleList
+        articles={articles}
+        pageCount={pageCount}
+        currentPage={page}
+      />
 
       <div className="flex flex-col gap-8 md:flex-row">
         <NewslettersBlock />

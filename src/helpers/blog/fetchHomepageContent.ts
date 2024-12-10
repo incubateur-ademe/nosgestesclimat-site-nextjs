@@ -29,7 +29,6 @@ export async function fetchHomepageContent({
         },
       }
     )
-    console.log(mainArticleResponse.data.data)
 
     const articlesResponse = await axios.get(
       `${process.env.CMS_URL}/api/articles?locale=fr&fields[0]=title&fields[1]=description&fields[2]=slug&populate[0]=image&populate[1]=category&filters[id][$ne]=${homepageResponse.data.data.mainArticle.id}&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}`,
@@ -40,12 +39,15 @@ export async function fetchHomepageContent({
       }
     )
 
+    console.log(articlesResponse.data.data)
+
     return {
       title: homepageResponse.data.data.title,
       description: homepageResponse.data.data.description,
       image: homepageResponse.data.data.image,
       mainArticle: mainArticleResponse.data.data,
       articles: articlesResponse.data.data,
+      pageCount: articlesResponse.data.meta.pagination.pageCount,
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -76,6 +78,7 @@ export async function fetchHomepageContent({
         id: '',
       },
       articles: [],
+      pageCount: 0,
     }
   }
 }
