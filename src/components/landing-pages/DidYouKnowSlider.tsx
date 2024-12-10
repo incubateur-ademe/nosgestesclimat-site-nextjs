@@ -12,24 +12,31 @@ import type { ReactNode } from 'react'
 import { useState } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
+import { twMerge } from 'tailwind-merge'
 import DynamicCTAButton from '../cta/DynamicCTAButton'
 import Trans from '../translation/Trans'
 
 export default function DidYouKnowSlider({
   slides,
+  className,
 }: {
   slides: {
     illustration: string
     content: ReactNode
     highlight: ReactNode
   }[]
+  className?: string
 }) {
   const [currentSlide, setCurrentSlide] = useState(0)
 
   const pathname = usePathname()
 
   return (
-    <div className="relative bg-heroLightBackground pb-20 pt-16">
+    <div
+      className={twMerge(
+        'relative bg-heroLightBackground pb-20 pt-16',
+        className
+      )}>
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-10 md:flex-row md:gap-0">
         <Slider
           dots={true}

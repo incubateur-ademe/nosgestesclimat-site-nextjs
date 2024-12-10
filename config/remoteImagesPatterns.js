@@ -29,6 +29,12 @@ const remoteImagesPatterns = [
     port: '',
     pathname: '/**',
   },
+  {
+    protocol: 'https',
+    hostname: 'nosgestesclimat-dev.s3.fr-par.scw.cloud',
+    port: '',
+    pathname: '/cms/**',
+  },
 ]
 
 module.exports = remoteImagesPatterns

@@ -5,6 +5,7 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import Image from 'next/image'
 import type { ReactNode } from 'react'
 import Badge from '../layout/Badge'
+import ImageWithCategory from './ImageWithCategory'
 
 export default function PostThumbnail({
   title,
@@ -26,6 +27,12 @@ export default function PostThumbnail({
       href={href}
       className="flex rounded-xl bg-white !no-underline !duration-500 md:flex-col md:transition-transform md:hover:translate-y-[-6px]"
       onClick={() => trackEvent(trackingEvent)}>
+      <ImageWithCategory
+        category={category}
+        imageSrc={imageSrc}
+        imageAlt={imageAlt}
+      />
+
       <div className="relative min-h-[134px] w-1/3 min-w-28 md:mb-4 md:min-h-[240px] md:w-auto">
         <Image
           src={imageSrc}
