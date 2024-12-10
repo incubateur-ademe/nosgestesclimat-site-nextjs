@@ -8,7 +8,8 @@ export default function ImageWithCategory({
   imageAlt,
   width = 320,
   height = 240,
-  className,
+  imageClassName,
+  containerClassName,
   category,
   hideBadgeOnMobile = true,
 }: {
@@ -16,18 +17,22 @@ export default function ImageWithCategory({
   imageAlt: string
   width?: number | `${number}`
   height?: number | `${number}`
-  className?: string
+  imageClassName?: string
+  containerClassName?: string
   category: ReactNode | string
   hideBadgeOnMobile?: boolean
 }) {
   return (
-    <div className="relative min-h-[134px] w-1/3 min-w-28 md:mb-4 md:min-h-[240px] md:w-auto">
+    <div className={twMerge('relative', containerClassName)}>
       <Image
         src={imageSrc}
         alt={imageAlt}
         width={width}
         height={height}
-        className={twMerge('h-full w-full rounded-xl object-cover', className)}
+        className={twMerge(
+          'h-full w-full rounded-xl object-cover',
+          imageClassName
+        )}
       />
 
       {/* Hidden on mobile */}

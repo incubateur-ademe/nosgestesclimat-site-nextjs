@@ -31,9 +31,10 @@ export default function PostThumbnail({
         category={category}
         imageSrc={imageSrc}
         imageAlt={imageAlt}
+        containerClassName="min-h-[134px] w-1/3 min-w-28 md:min-h-[240px] md:w-auto"
       />
 
-      <div className="relative min-h-[134px] w-1/3 min-w-28 md:mb-4 md:min-h-[240px] md:w-auto">
+      <div className="relative min-h-[134px] w-1/3 min-w-28 md:mb-4 md:mt-4 md:min-h-[240px] md:w-auto">
         <Image
           src={imageSrc}
           alt={imageAlt}
