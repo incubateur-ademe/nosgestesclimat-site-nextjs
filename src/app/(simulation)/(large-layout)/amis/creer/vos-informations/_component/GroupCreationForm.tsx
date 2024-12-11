@@ -41,16 +41,14 @@ export default function GroupCreationForm() {
   function onSubmit({ administratorName, administratorEmail }: Inputs) {
     trackEvent(amisCreationEtapeVotreGroupeSuivant)
 
-    const formattedAdministratorEmail = formatEmail(
-      encodeURIComponent(administratorEmail)
-    )
+    const formattedEmail = formatEmail(administratorEmail)
 
     // Update user info
     updateName(administratorName ?? '')
-    updateEmail(formattedAdministratorEmail ?? '')
+    updateEmail(formattedEmail ?? '')
 
     router.push(
-      `/amis/creer/votre-groupe?administratorName=${administratorName}&administratorEmail=${formattedAdministratorEmail ?? ''}`
+      `/amis/creer/votre-groupe?administratorName=${administratorName}&administratorEmail=${encodeURIComponent(formattedEmail) ?? ''}`
     )
   }
 
