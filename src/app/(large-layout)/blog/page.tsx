@@ -48,7 +48,7 @@ export default async function Blog({
 
   return (
     <>
-      <div className="mb-12 flex flex-col justify-between gap-8 md:mb-20 md:flex-row">
+      <div className="flex flex-col justify-between gap-8 md:flex-row">
         <div className="md:max-w-[30rem]">
           <h1
             data-cypress-id="blog-title"
