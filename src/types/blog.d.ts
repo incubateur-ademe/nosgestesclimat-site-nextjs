@@ -35,3 +35,11 @@ export type HomepageContentType = {
   articles: ArticleType[]
   pageCount: number
 }
+
+export type CategoryType = {
+  id: string
+  title: string
+  slug: string
+  description: string
+  order: number
+}

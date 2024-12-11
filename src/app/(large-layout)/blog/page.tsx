@@ -4,6 +4,7 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
 import HeroArticle from './_components/HeroArticle'
 
+import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import NewslettersBlockSkeleton from '@/design-system/cms/NewslettersBlockSkeleton'
 import { fetchHomepageContent } from '@/helpers/blog/fetchHomepageContent'
 import dynamic from 'next/dynamic'
@@ -87,13 +88,15 @@ export default async function Blog({
         currentPage={page}
       />
 
-      <div className="mb-20 flex flex-col gap-8 md:flex-row">
+      <div className="mb-48 flex flex-col gap-8 md:flex-row">
         <Suspense fallback={<NewslettersBlockSkeleton />}>
           <NewslettersBlockDynamic />
         </Suspense>
 
         <GroupBlock />
       </div>
+
+      <AllBlogCategories />
     </>
   )
 }
