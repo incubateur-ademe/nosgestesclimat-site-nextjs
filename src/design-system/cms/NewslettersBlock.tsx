@@ -194,6 +194,7 @@ export default function NewslettersBlock() {
 
               <div className="mt-10 flex w-full gap-8">
                 <EmailInput
+                  value={user?.email}
                   {...register('email', {
                     required: 'Veuillez renseigner un email.',
                     pattern: {

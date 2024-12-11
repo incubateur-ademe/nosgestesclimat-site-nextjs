@@ -1,6 +1,6 @@
 export default function NewslettersBlockSkeleton() {
   return (
-    <div className="relative w-full animate-pulse rounded-lg border border-primary-100 bg-white p-6 md:w-4/6">
+    <div className="relative w-full animate-pulse rounded-lg border-2 border-primary-100 bg-white p-6 md:w-4/6">
       {/* Title skeleton */}
       <div className="mb-4 h-6 w-full rounded bg-primary-100"></div>
 
