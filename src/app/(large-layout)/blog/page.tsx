@@ -4,9 +4,19 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
 import HeroArticle from './_components/HeroArticle'
 
-import NewslettersBlock from '@/design-system/cms/NewslettersBlock'
+import NewslettersBlockSkeleton from '@/design-system/cms/NewslettersBlockSkeleton'
 import { fetchHomepageContent } from '@/helpers/blog/fetchHomepageContent'
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
 import ArticleList from './_components/ArticleList'
+
+const NewslettersBlockDynamic = dynamic(
+  () => import('@/design-system/cms/NewslettersBlock'),
+  {
+    ssr: false,
+  }
+)
+
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
 
@@ -77,7 +87,9 @@ export default async function Blog({
       />
 
       <div className="flex flex-col gap-8 md:flex-row">
-        <NewslettersBlock />
+        <Suspense fallback={<NewslettersBlockSkeleton />}>
+          <NewslettersBlockDynamic />
+        </Suspense>
       </div>
     </>
   )
