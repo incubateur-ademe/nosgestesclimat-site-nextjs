@@ -29,7 +29,7 @@ export default function ArticleList({
         ))}
       </ul>
 
-      <DidYouKnowMainLanding className="my-20 px-10" />
+      <DidYouKnowMainLanding className="my-20 overflow-hidden rounded-lg px-10" />
 
       <ul className="grid grid-cols-1 gap-8 md:grid-cols-3">
         {articles.slice(6).map((article) => (

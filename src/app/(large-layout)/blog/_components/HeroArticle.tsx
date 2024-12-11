@@ -35,7 +35,7 @@ export default function HeroArticle({
           containerClassName="w-1/2"
         />
 
-        <div className="flex-1 py-8 pr-20">
+        <div className="flex-1 py-6 pr-20">
           <h3 className="text-xl font-normal md:text-2xl">{title}</h3>
 
           <p
@@ -46,7 +46,7 @@ export default function HeroArticle({
           <div className="flex justify-end">
             <Link
               href={href}
-              className="ml-auto inline-block cursor-pointer p-4 pt-0 text-right text-[13px] text-primary-700 underline md:text-right md:text-base">
+              className="ml-auto inline-block cursor-pointer text-right text-[13px] text-primary-700 underline md:text-right md:text-base">
               <Trans>Lire la suite</Trans>
             </Link>
           </div>

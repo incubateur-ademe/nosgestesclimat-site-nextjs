@@ -17,9 +17,9 @@ export default function Pagination({
       <div className="relative my-16 inline-flex items-center justify-center gap-3">
         {currentPage > 1 && (
           <Link
-            className="absolute -left-8 top-1/2 -translate-y-1/2"
+            className="absolute -left-6 top-1/2 -translate-y-1/2"
             href={`/blog?page=${currentPage - 1}#articles`}>
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronLeft className="h-3 w-3" />
           </Link>
         )}
 
@@ -42,9 +42,9 @@ export default function Pagination({
 
         {currentPage < totalPages && (
           <Link
-            className="absolute -right-8 top-1/2 -translate-y-1/2"
+            className="absolute -right-6 top-1/2 -translate-y-1/2"
             href={`/blog?page=${currentPage + 1}#articles`}>
-            <ChevronRight className="h-5 w-5" />
+            <ChevronRight className="h-3 w-3" />
           </Link>
         )}
       </div>
