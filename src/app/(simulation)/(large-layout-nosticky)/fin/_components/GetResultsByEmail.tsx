@@ -133,6 +133,7 @@ export default function GetResultsByEmail({
         savedViaEmail: true,
       },
       newsletters,
+      sendEmail: true,
     })
   }
 
