@@ -9,6 +9,7 @@ import { fetchHomepageContent } from '@/helpers/blog/fetchHomepageContent'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import ArticleList from './_components/ArticleList'
+import GroupBlock from './_components/GroupBlock'
 
 const NewslettersBlockDynamic = dynamic(
   () => import('@/design-system/cms/NewslettersBlock'),
@@ -86,10 +87,12 @@ export default async function Blog({
         currentPage={page}
       />
 
-      <div className="flex flex-col gap-8 md:flex-row">
+      <div className="mb-20 flex flex-col gap-8 md:flex-row">
         <Suspense fallback={<NewslettersBlockSkeleton />}>
           <NewslettersBlockDynamic />
         </Suspense>
+
+        <GroupBlock />
       </div>
     </>
   )

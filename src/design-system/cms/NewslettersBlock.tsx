@@ -110,7 +110,7 @@ export default function NewslettersBlock() {
   }
 
   return (
-    <div className="rainbow-border rounded-xl bg-white p-8">
+    <div className="rainbow-border w-full rounded-xl bg-white p-8 md:w-4/6">
       <h3 className="mb-2">
         Vous souhaitez recevoir nos derniers articles directement ?
       </h3>
@@ -190,7 +190,7 @@ export default function NewslettersBlock() {
               className="h-full"
             />
 
-            <Button type="submit">
+            <Button size="lg" type="submit">
               <Trans>S'inscrire</Trans>
             </Button>
           </div>
