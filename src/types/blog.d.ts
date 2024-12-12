@@ -10,7 +10,9 @@ export type ArticleType = {
   category: {
     title: string
     slug: string
+    id: string
   }
+  href: string
 }
 
 export type HomepageContentType = {
@@ -42,4 +44,13 @@ export type CategoryType = {
   slug: string
   description: string
   order: number
+  mainArticle: ArticleType
+}
+
+export type CategoryPageContentType = {
+  title: string
+  description: string
+  mainArticle: ArticleType
+  articles: ArticleType[]
+  pageCount: number
 }

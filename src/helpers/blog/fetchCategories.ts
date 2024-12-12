@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export async function fetchCategories(): Promise<CategoryType[]> {
   try {
-    const homepageResponse = await axios.get(
+    const categoriesResponse = await axios.get(
       `${process.env.CMS_URL}/api/categories?locale=fr&sort[0]=order`,
       {
         headers: {
@@ -12,7 +12,7 @@ export async function fetchCategories(): Promise<CategoryType[]> {
       }
     )
 
-    return homepageResponse.data.data
+    return categoriesResponse.data.data
   } catch (error) {
     if (axios.isAxiosError(error)) {
       // Handle specific HTTP errors

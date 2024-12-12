@@ -30,9 +30,14 @@ export default function Breadcrumbs({
                 }
                 trackEvent(breadcrumbClickLink)
               }}
-              className={`text-default ${
-                isActive ? '' : 'no-underline'
-              } max-w-full text-ellipsis whitespace-nowrap text-sm capitalize hover:text-default hover:underline ${isDisabled ? 'cursor-none' : ''}`}
+              aria-current={isActive}
+              className={twMerge(
+                'max-w-full text-ellipsis whitespace-nowrap text-sm capitalize text-primary-700 hover:text-primary-700 hover:underline ',
+                isActive
+                  ? 'cursor-default text-default no-underline hover:text-default hover:no-underline'
+                  : '',
+                isDisabled ? 'cursor-default' : ''
+              )}
               href={href}>
               {label}
             </Link>

@@ -2,16 +2,17 @@ import SquareImageContainer from '@/components/images/SquareImageContainer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
-import HeroArticle from './_components/HeroArticle'
 
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import NewslettersBlockSkeleton from '@/design-system/cms/NewslettersBlockSkeleton'
 import { fetchHomepageContent } from '@/helpers/blog/fetchHomepageContent'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
-import ArticleList from './_components/ArticleList'
+
+import ArticleList from '@/design-system/cms/ArticleList'
 import GroupBlock from './_components/GroupBlock'
 
+import MainArticle from '@/design-system/cms/MainArticle'
 const NewslettersBlockDynamic = dynamic(
   () => import('@/design-system/cms/NewslettersBlock'),
   {
@@ -33,7 +34,7 @@ export async function generateMetadata() {
   })
 }
 
-export default async function Blog({
+export default async function BlogHomePage({
   searchParams,
 }: {
   searchParams: { page: string }
@@ -73,7 +74,7 @@ export default async function Blog({
         </div>
       </div>
 
-      <HeroArticle
+      <MainArticle
         title={mainArticle.title}
         description={mainArticle.description}
         imageSrc={mainArticle.image.url}
