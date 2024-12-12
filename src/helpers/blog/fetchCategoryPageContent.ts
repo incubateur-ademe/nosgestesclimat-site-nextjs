@@ -12,7 +12,7 @@ export async function fetchCategoryPageContent({
 }): Promise<CategoryPageContentType> {
   try {
     const categoryResponse = await axios.get(
-      `${process.env.CMS_URL}/api/categories?locale=fr&filters[slug][$eq]=${slug}&populate[0]=mainArticle`,
+      `${process.env.CMS_URL}/api/categories?locale=fr&filters[slug][$eq]=${slug}&populate[0]=mainArticle&populate[1]=questions`,
       {
         headers: {
           Authorization: `Bearer ${process.env.CMS_TOKEN}`,
@@ -40,13 +40,15 @@ export async function fetchCategoryPageContent({
         },
       }
     )
-    console.log(categoryResponse.data.data[0])
+
     return {
       title: categoryResponse.data.data[0].title,
       description: categoryResponse.data.data[0].description,
       mainArticle: mainArticleResponse.data.data,
       articles: articlesResponse.data.data,
       pageCount: articlesResponse.data.meta.pagination.pageCount,
+      questions: categoryResponse.data.data[0].questions,
+      faqDescription: categoryResponse.data.data[0].faqDescription,
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -59,6 +61,7 @@ export async function fetchCategoryPageContent({
     return {
       title: '',
       description: '',
+      faqDescription: '',
       mainArticle: {
         id: '',
         title: '',
@@ -77,6 +80,7 @@ export async function fetchCategoryPageContent({
       },
       articles: [],
       pageCount: 0,
+      questions: [],
     }
   }
 }

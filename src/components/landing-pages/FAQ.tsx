@@ -1,25 +1,42 @@
 import Separator from '@/design-system/layout/Separator'
 import type { ReactNode } from 'react'
+import { twMerge } from 'tailwind-merge'
 import PlusIcon from '../icons/PlusIcon'
 import Background from './Background'
 
 export default function FAQ({
   subTitle,
   questions,
+  isBackgroundSkewed = true,
+  isBackgroundFullWidth = false,
+  className,
 }: {
+  className?: string
   subTitle: ReactNode
   questions: {
     question: ReactNode
     answer: ReactNode
   }[]
+  isBackgroundSkewed?: boolean
+  isBackgroundFullWidth?: boolean
 }) {
   return (
-    <div className="relative mb-16 w-full bg-[#F6F6F5] py-16 md:py-20">
-      <Background
-        direction="left"
-        className="-bottom-10 top-auto mt-6 h-[200px] rotate-12 bg-[#F6F6F5]"
-        withColorLine
-      />
+    <div
+      className={twMerge(
+        'relative w-full bg-[#F6F6F5] py-16 md:py-20',
+        className
+      )}>
+      {isBackgroundSkewed && (
+        <Background
+          direction="left"
+          className="-bottom-10 top-auto mt-6 h-[200px] rotate-12 bg-[#F6F6F5]"
+          withColorLine
+        />
+      )}
+
+      {isBackgroundFullWidth && (
+        <div className="absolute -left-1/2 bottom-0 top-0 h-full w-[200%] bg-[#F6F6F5]" />
+      )}
 
       <div className="relative mx-auto flex w-full max-w-full flex-col gap-8 px-4 md:max-w-5xl md:flex-row md:gap-16 md:px-0">
         <div className="flex flex-col gap-4 text-center md:w-[240px] md:max-w-[240px] md:text-left">

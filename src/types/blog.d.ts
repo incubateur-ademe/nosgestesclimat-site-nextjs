@@ -47,10 +47,18 @@ export type CategoryType = {
   mainArticle: ArticleType
 }
 
+export type QuestionType = {
+  id: string
+  question: string
+  answer: string
+}
+
 export type CategoryPageContentType = {
   title: string
   description: string
+  faqDescription: string
   mainArticle: ArticleType
   articles: ArticleType[]
   pageCount: number
+  questions: QuestionType[]
 }
