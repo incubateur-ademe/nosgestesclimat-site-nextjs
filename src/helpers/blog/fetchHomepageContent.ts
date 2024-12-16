@@ -3,6 +3,8 @@ import axios from 'axios'
 
 const PAGE_SIZE = 12
 
+const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
+
 export async function fetchHomepageContent({
   page,
 }: {
@@ -10,7 +12,9 @@ export async function fetchHomepageContent({
 }): Promise<HomepageContentType> {
   try {
     const homepageResponse = await axios.get(
-      `${process.env.CMS_URL}/api/home-page?locale=fr&populate[0]=image&populate[1]=mainArticle`,
+      `${process.env.CMS_URL}/api/home-page?locale=fr&populate[0]=image&populate[1]=mainArticle${
+        isProduction ? '' : '&status=draft'
+      }`,
       {
         headers: {
           Authorization: `Bearer ${process.env.CMS_TOKEN}`,
@@ -22,7 +26,9 @@ export async function fetchHomepageContent({
       homepageResponse.data.data.mainArticle.documentId
 
     const mainArticleResponse = await axios.get(
-      `${process.env.CMS_URL}/api/articles/${mainArticleDocumentId}?locale=fr&fields[0]=title&fields[1]=description&fields[2]=slug&populate[0]=image&populate[1]=category`,
+      `${process.env.CMS_URL}/api/articles/${mainArticleDocumentId}?locale=fr&fields[0]=title&fields[1]=description&fields[2]=slug&populate[0]=image&populate[1]=category${
+        isProduction ? '' : '&status=draft'
+      }`,
       {
         headers: {
           Authorization: `Bearer ${process.env.CMS_TOKEN}`,
@@ -31,7 +37,9 @@ export async function fetchHomepageContent({
     )
 
     const articlesResponse = await axios.get(
-      `${process.env.CMS_URL}/api/articles?locale=fr&fields[0]=title&fields[1]=description&fields[2]=slug&populate[0]=image&populate[1]=category&filters[id][$ne]=${homepageResponse.data.data.mainArticle.id}&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}`,
+      `${process.env.CMS_URL}/api/articles?locale=fr&fields[0]=title&fields[1]=description&fields[2]=slug&populate[0]=image&populate[1]=category&filters[id][$ne]=${homepageResponse.data.data.mainArticle.id}&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}${
+        isProduction ? '' : '&status=draft'
+      }`,
       {
         headers: {
           Authorization: `Bearer ${process.env.CMS_TOKEN}`,
