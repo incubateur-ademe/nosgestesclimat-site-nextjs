@@ -41,7 +41,7 @@ export type HomepageContentType = {
 export type HomepageMetadataType = {
   metaTitle: string
   metaDescription: string
-  metaImage: {
+  image: {
     url: string
     alternativeText: string
   }

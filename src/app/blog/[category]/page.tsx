@@ -1,4 +1,3 @@
-import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 
 import FAQ from '@/components/landing-pages/FAQ'
@@ -8,6 +7,9 @@ import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
 import { fetchCategoryPageContent } from '@/helpers/blog/fetchCategoryPageContent'
+import { fetchCategoryPageMetadata } from '@/helpers/blog/fetchCategoryPageMetadata'
+import { defaultLocale } from '@/i18nConfig'
+import { currentLocale } from 'next-i18n-router'
 import CategoryHero from './_components/CategoryHero'
 
 export async function generateMetadata({
@@ -15,13 +17,20 @@ export async function generateMetadata({
 }: {
   params: { category: string }
 }) {
-  const { t } = await getServerTranslation()
+  const locale = currentLocale()
+
+  const { metaTitle, metaDescription, image } = await fetchCategoryPageMetadata(
+    {
+      locale: locale ?? defaultLocale,
+    }
+  )
 
   return getMetadataObject({
-    title: t('Blog - Nos Gestes Climat'),
-    description: t(
-      'Découvrez des conseils pratiques pour réduire votre empreinte écologique.'
-    ),
+    title: metaTitle ?? 'Blog - Nos Gestes Climat',
+    description:
+      metaDescription ??
+      'Découvrez des conseils pratiques pour réduire votre empreinte écologique.',
+    image: image?.url ?? '',
     alternates: {
       canonical: `/blog/${params.category}`,
     },
@@ -82,6 +91,7 @@ export default async function CategoryPage({
         description={description}
         slug={params.category}
       />
+
       <ContentLarge>
         <MainArticle
           imageSrc={mainArticle.image.url}
@@ -89,7 +99,7 @@ export default async function CategoryPage({
           title={mainArticle.title}
           description={mainArticle.description}
           category={mainArticle.category.title}
-          href={mainArticle.href}
+          href={`/blog/${mainArticle.category.slug}/${mainArticle.slug}`}
         />
 
         <ArticleList

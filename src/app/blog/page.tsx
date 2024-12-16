@@ -27,18 +27,16 @@ const NewslettersBlockDynamic = dynamic(
 export async function generateMetadata() {
   const locale = currentLocale()
 
-  const { metaTitle, metaDescription, metaImage } = await fetchHomepageMetadata(
-    {
-      locale: locale ?? defaultLocale,
-    }
-  )
+  const { metaTitle, metaDescription, image } = await fetchHomepageMetadata({
+    locale: locale ?? defaultLocale,
+  })
 
   return getMetadataObject({
     title: metaTitle ?? 'Blog - Nos Gestes Climat',
     description:
       metaDescription ??
       'Découvrez des conseils pratiques pour réduire votre empreinte écologique.',
-    image: metaImage?.url ?? '',
+    image: image?.url ?? '',
     alternates: {
       canonical: '/blog',
     },
@@ -57,6 +55,8 @@ export default async function BlogHomePage({
     await fetchHomepageContent({
       page,
     })
+
+  console.log(mainArticle)
 
   return (
     <>

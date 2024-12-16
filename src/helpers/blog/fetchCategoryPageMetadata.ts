@@ -3,14 +3,14 @@ import axios from 'axios'
 
 const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
 
-export async function fetchHomepageMetadata({
+export async function fetchCategoryPageMetadata({
   locale,
 }: {
   locale: string
 }): Promise<HomepageMetadataType> {
   try {
-    const homepageResponse = await axios.get(
-      `${process.env.CMS_URL}/api/home-page?locale=${locale}&populate[0]=image&fields[0]=metaTitle&fields[1]=metaDescription${
+    const categoryResponse = await axios.get(
+      `${process.env.CMS_URL}/api/category?locale=${locale}&populate[0]=image&fields[0]=metaTitle&fields[1]=metaDescription${
         isProduction ? '' : '&status=draft'
       }`,
       {
@@ -21,9 +21,9 @@ export async function fetchHomepageMetadata({
     )
 
     return {
-      metaTitle: homepageResponse.data.data.metaTitle,
-      metaDescription: homepageResponse.data.data.metaDescription,
-      image: homepageResponse.data.data.image,
+      metaTitle: categoryResponse.data.data.metaTitle,
+      metaDescription: categoryResponse.data.data.metaDescription,
+      image: categoryResponse.data.data.image,
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {
