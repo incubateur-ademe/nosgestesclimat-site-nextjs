@@ -47,7 +47,7 @@ export default function Warning({
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
-      className="mb-4 inline-flex flex-auto flex-col items-start rounded-xl border-2 border-red-300 bg-red-200 p-4 pb-0 text-sm">
+      className="mb-4 inline-flex flex-col items-start rounded-xl border-2 border-red-300 bg-red-200 p-4 pb-0 text-sm">
       {warning ? (
         <Markdown>{warning}</Markdown>
       ) : plancher && plafond ? (
