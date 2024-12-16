@@ -33,7 +33,19 @@ const remoteImagesPatterns = [
     protocol: 'https',
     hostname: 'nosgestesclimat-dev.s3.fr-par.scw.cloud',
     port: '',
-    pathname: '/cms/**',
+    pathname: '/**',
+  },
+  {
+    protocol: 'https',
+    hostname: 'nosgestesclimat-prod.s3.fr-par.scw.cloud',
+    port: '',
+    pathname: '/**',
+  },
+  {
+    protocol: 'https',
+    hostname: 's3.fr-par.scw.cloud',
+    port: '',
+    pathname: '/**',
   },
 ]
 
