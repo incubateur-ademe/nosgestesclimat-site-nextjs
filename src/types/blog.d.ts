@@ -38,6 +38,15 @@ export type HomepageContentType = {
   pageCount: number
 }
 
+export type HomepageMetadataType = {
+  metaTitle: string
+  metaDescription: string
+  metaImage: {
+    url: string
+    alternativeText: string
+  }
+}
+
 export type CategoryType = {
   id: string
   title: string
