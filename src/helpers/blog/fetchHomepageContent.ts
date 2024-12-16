@@ -47,8 +47,6 @@ export async function fetchHomepageContent({
       }
     )
 
-    console.log(articlesResponse.data.data)
-
     return {
       title: homepageResponse.data.data.title,
       description: homepageResponse.data.data.description,
