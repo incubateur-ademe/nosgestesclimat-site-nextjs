@@ -1,18 +1,19 @@
-import type { HomepageContentType } from '@/types/blog'
+import type { CategoryPageContentType } from '@/types/blog'
 import axios from 'axios'
 
 const PAGE_SIZE = 12
+const isProduction = process.env.NODE_ENV === 'production'
 
-const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
-
-export async function fetchHomepageContent({
+export async function fetchCategoryPageContent({
+  slug,
   page,
 }: {
+  slug: string
   page: number
-}): Promise<HomepageContentType> {
+}): Promise<CategoryPageContentType> {
   try {
-    const homepageResponse = await axios.get(
-      `${process.env.CMS_URL}/api/home-page?locale=fr&populate[0]=image&populate[1]=mainArticle${
+    const categoryResponse = await axios.get(
+      `${process.env.CMS_URL}/api/categories?locale=fr&filters[slug][$eq]=${slug}&populate[0]=mainArticle&populate[1]=questions${
         isProduction ? '' : '&status=draft'
       }`,
       {
@@ -23,7 +24,7 @@ export async function fetchHomepageContent({
     )
 
     const mainArticleDocumentId =
-      homepageResponse.data.data.mainArticle.documentId
+      categoryResponse.data.data[0].mainArticle.documentId
 
     const mainArticleResponse = await axios.get(
       `${process.env.CMS_URL}/api/articles/${mainArticleDocumentId}?locale=fr&fields[0]=title&fields[1]=description&fields[2]=slug&populate[0]=image&populate[1]=category${
@@ -37,7 +38,7 @@ export async function fetchHomepageContent({
     )
 
     const articlesResponse = await axios.get(
-      `${process.env.CMS_URL}/api/articles?locale=fr&fields[0]=title&fields[1]=description&fields[2]=slug&populate[0]=image&populate[1]=category&filters[id][$ne]=${homepageResponse.data.data.mainArticle.id}&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}${
+      `${process.env.CMS_URL}/api/articles?locale=fr&fields[0]=title&fields[1]=description&fields[2]=slug&populate[0]=image&populate[1]=category&filters[documentId][$ne]=${mainArticleDocumentId}&filters[category][$eq]=${categoryResponse.data.data[0].id}&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}${
         isProduction ? '' : '&status=draft'
       }`,
       {
@@ -48,12 +49,13 @@ export async function fetchHomepageContent({
     )
 
     return {
-      title: homepageResponse.data.data.title,
-      description: homepageResponse.data.data.description,
-      image: homepageResponse.data.data.image,
+      title: categoryResponse.data.data[0].title,
+      description: categoryResponse.data.data[0].description,
       mainArticle: mainArticleResponse.data.data,
       articles: articlesResponse.data.data,
       pageCount: articlesResponse.data.meta.pagination.pageCount,
+      questions: categoryResponse.data.data[0].questions,
+      faqDescription: categoryResponse.data.data[0].faqDescription,
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -66,26 +68,26 @@ export async function fetchHomepageContent({
     return {
       title: '',
       description: '',
-      image: {
-        url: '',
-        alternativeText: '',
-        formats: {
-          small: { url: '' },
-          medium: { url: '' },
-          thumbnail: { url: '' },
-        },
-      },
+      faqDescription: '',
       mainArticle: {
-        title: '',
-        description: '',
-        image: { url: '', alternativeText: '' },
-        slug: '',
-        category: { title: '', slug: '', id: '' },
         id: '',
+        title: '',
+        slug: '',
+        description: '',
         href: '',
+        image: {
+          url: '',
+          alternativeText: '',
+        },
+        category: {
+          id: '',
+          title: '',
+          slug: '',
+        },
       },
       articles: [],
       pageCount: 0,
+      questions: [],
     }
   }
 }

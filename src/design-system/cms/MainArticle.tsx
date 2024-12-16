@@ -3,7 +3,7 @@ import Trans from '@/components/translation/Trans'
 import ImageWithCategory from '@/design-system/cms/ImageWithCategory'
 import ColorLine from '@/design-system/layout/ColorLine'
 
-export default function HeroArticle({
+export default function MainArticle({
   imageSrc,
   imageAlt,
   title,

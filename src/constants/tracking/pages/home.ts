@@ -43,13 +43,6 @@ export const homeClickClassements = [
 // Figma comment #21
 export const homeClickActions = ['trackEvent', 'Accueil', 'Click Actions']
 
-// Figma comment #22
-export const homeClickOrganisations = [
-  'trackEvent',
-  'Accueil',
-  'Click Organisations',
-]
-
 // Figma comment #23
 export const homeClickEnSavoirPlus = [
   'trackEvent',
