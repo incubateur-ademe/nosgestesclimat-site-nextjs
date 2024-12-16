@@ -15,6 +15,7 @@ import ArticleList from '@/design-system/cms/ArticleList'
 import GroupBlock from './_components/GroupBlock'
 
 import ContentLarge from '@/components/layout/ContentLarge'
+import JSONLD from '@/components/seo/JSONLD'
 import MainArticle from '@/design-system/cms/MainArticle'
 const NewslettersBlockDynamic = dynamic(
   () => import('@/design-system/cms/NewslettersBlock'),
@@ -59,6 +60,18 @@ export default async function BlogHomePage({
 
   return (
     <>
+      <JSONLD
+        jsonLd={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            url: 'https://nosgestesclimat.fr',
+            name: 'Nos Gestes Climat',
+            logo: 'https://nosgestesclimat.fr/_next/image?url=%2Fimages%2Fmisc%2Fpetit-logo%403x.png&w=640&q=75',
+          },
+        ]}
+      />
+
       <ContentLarge>
         <div className="flex flex-col justify-between gap-8 overflow-x-hidden md:flex-row">
           <div className="md:max-w-[30rem]">

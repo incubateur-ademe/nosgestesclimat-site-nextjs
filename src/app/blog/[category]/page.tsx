@@ -3,6 +3,7 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 
 import FAQ from '@/components/landing-pages/FAQ'
 import ContentLarge from '@/components/layout/ContentLarge'
+import JSONLD from '@/components/seo/JSONLD'
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
@@ -52,6 +53,30 @@ export default async function CategoryPage({
 
   return (
     <div className="-mt-12">
+      <JSONLD
+        jsonLd={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            url: 'https://nosgestesclimat.fr',
+            name: 'Nos Gestes Climat',
+            logo: 'https://nosgestesclimat.fr/_next/image?url=%2Fimages%2Fmisc%2Fpetit-logo%403x.png&w=640&q=75',
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: questions.map((faq) => ({
+              '@type': 'Question',
+              name: faq.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: faq.answer,
+              },
+            })),
+          },
+        ]}
+      />
+
       <CategoryHero
         title={title}
         description={description}
