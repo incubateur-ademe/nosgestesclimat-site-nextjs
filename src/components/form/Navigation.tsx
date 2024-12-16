@@ -15,7 +15,7 @@ import { useMagicKey } from '@/hooks/useMagicKey'
 import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import type { MouseEvent} from 'react';
+import type { MouseEvent } from 'react'
 import { useCallback, useMemo } from 'react'
 import { twMerge } from 'tailwind-merge'
 import SyncIndicator from './navigation/SyncIndicator'
@@ -36,12 +36,15 @@ export default function Navigation({
   const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
     useForm()
 
-  const { isMissing, plancher, value } = useRule(question)
+  const { isMissing, plancher, plafond, value } = useRule(question)
 
   const { updateCurrentSimulation } = useCurrentSimulation()
 
   const isNextDisabled =
-    tempValue !== undefined && plancher !== undefined && tempValue < plancher
+    (tempValue !== undefined &&
+      plancher !== undefined &&
+      tempValue < plancher) ||
+    (tempValue !== undefined && plafond !== undefined && tempValue > plafond)
 
   // Start time of the question
   //(we need to use question to update the start time when the question changes, but it is not exactly usefull as a dependency)
