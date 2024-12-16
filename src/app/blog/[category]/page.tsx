@@ -2,6 +2,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 
 import FAQ from '@/components/landing-pages/FAQ'
+import ContentLarge from '@/components/layout/ContentLarge'
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
@@ -56,21 +57,22 @@ export default async function CategoryPage({
         description={description}
         slug={params.category}
       />
+      <ContentLarge>
+        <MainArticle
+          imageSrc={mainArticle.image.url}
+          imageAlt={mainArticle.image.alternativeText}
+          title={mainArticle.title}
+          description={mainArticle.description}
+          category={mainArticle.category.title}
+          href={mainArticle.href}
+        />
 
-      <MainArticle
-        imageSrc={mainArticle.image.url}
-        imageAlt={mainArticle.image.alternativeText}
-        title={mainArticle.title}
-        description={mainArticle.description}
-        category={mainArticle.category.title}
-        href={mainArticle.href}
-      />
-
-      <ArticleList
-        articles={articles}
-        pageCount={pageCount}
-        currentPage={page}
-      />
+        <ArticleList
+          articles={articles}
+          pageCount={pageCount}
+          currentPage={page}
+        />
+      </ContentLarge>
 
       <FAQ
         className="!pb-28"
