@@ -1,4 +1,4 @@
-import type { ArticlePageContentType } from '@/types/blog'
+import type { ArticleType } from '@/types/blog'
 import axios from 'axios'
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -9,7 +9,10 @@ export async function fetchArticlePageContent({
 }: {
   articleSlug: string
   locale: string
-}): Promise<ArticlePageContentType> {
+}): Promise<{
+  article?: ArticleType
+  otherArticles?: ArticleType[]
+}> {
   try {
     const articleResponse = await axios.get(
       `${process.env.CMS_URL}/api/articles?locale=${locale}&filters[slug][$eq]=${articleSlug}&populate[0]=image&populate[1]=category&populate[2]=author${
@@ -22,7 +25,21 @@ export async function fetchArticlePageContent({
       }
     )
 
-    return articleResponse.data.data?.[0]
+    const otherArticlesResponse = await axios.get(
+      `${process.env.CMS_URL}/api/articles?locale=${locale}&filters[category][slug][$eq]=${articleResponse.data.data?.[0].category.slug}&filters[slug][$ne]=${articleSlug}&populate[0]=image&populate[1]=category&populate[2]=author&pagination[limit]=3${
+        isProduction ? '' : '&status=draft'
+      }`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.CMS_TOKEN}`,
+        },
+      }
+    )
+
+    return {
+      article: articleResponse.data.data?.[0],
+      otherArticles: otherArticlesResponse.data.data,
+    }
   } catch (error) {
     if (axios.isAxiosError(error)) {
       // Handle specific HTTP errors
@@ -32,32 +49,8 @@ export async function fetchArticlePageContent({
       console.error('Error:', error)
     }
     return {
-      title: '',
-      description: '',
-      image: {
-        url: '',
-        alternativeText: '',
-      },
-      duration: 0,
-      date: '',
-      category: {
-        title: '',
-        slug: '',
-      },
-      content: '',
-      htmlContent: '',
-      modifiedAt: '',
-      publishedAt: '',
-      createdAt: '',
-      headings: [],
-      author: {
-        name: '',
-        description: '',
-        image: {
-          url: '',
-          alternativeText: '',
-        },
-      },
+      article: undefined,
+      otherArticles: undefined,
     }
   }
 }

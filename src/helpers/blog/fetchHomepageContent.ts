@@ -9,7 +9,7 @@ export async function fetchHomepageContent({
   page,
 }: {
   page: number
-}): Promise<HomepageContentType> {
+}): Promise<HomepageContentType | undefined> {
   try {
     const homepageResponse = await axios.get(
       `${process.env.CMS_URL}/api/home-page?locale=fr&populate[0]=image&populate[1]=mainArticle${
@@ -63,29 +63,6 @@ export async function fetchHomepageContent({
       // Handle other errors
       console.error('Error:', error)
     }
-    return {
-      title: '',
-      description: '',
-      image: {
-        url: '',
-        alternativeText: '',
-        formats: {
-          small: { url: '' },
-          medium: { url: '' },
-          thumbnail: { url: '' },
-        },
-      },
-      mainArticle: {
-        title: '',
-        description: '',
-        image: { url: '', alternativeText: '' },
-        slug: '',
-        category: { title: '', slug: '', id: '' },
-        id: '',
-        href: '',
-      },
-      articles: [],
-      pageCount: 0,
-    }
+    return undefined
   }
 }

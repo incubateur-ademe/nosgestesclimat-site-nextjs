@@ -1,4 +1,3 @@
-import SquareImageContainer from '@/components/images/SquareImageContainer'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
 
@@ -17,6 +16,7 @@ import GroupBlock from './_components/GroupBlock'
 import ContentLarge from '@/components/layout/ContentLarge'
 import JSONLD from '@/components/seo/JSONLD'
 import MainArticle from '@/design-system/cms/MainArticle'
+import { notFound } from 'next/navigation'
 const NewslettersBlockDynamic = dynamic(
   () => import('@/design-system/cms/NewslettersBlock'),
   {
@@ -52,11 +52,20 @@ export default async function BlogHomePage({
   const page = Number(searchParams.page) || 1
 
   const { title, description, image, mainArticle, articles, pageCount } =
-    await fetchHomepageContent({
+    (await fetchHomepageContent({
       page,
-    })
+    })) ?? {}
 
-  console.log(mainArticle)
+  if (
+    !title ||
+    !description ||
+    !image ||
+    !mainArticle ||
+    !articles ||
+    !pageCount
+  ) {
+    notFound()
+  }
 
   return (
     <>
@@ -72,8 +81,8 @@ export default async function BlogHomePage({
         ]}
       />
 
-      <ContentLarge className="mt-8">
-        <div className="flex flex-col justify-between gap-8 overflow-x-hidden md:flex-row">
+      <ContentLarge className="mt-20">
+        <div className="mb-20 flex flex-col justify-between gap-8 overflow-x-hidden md:flex-row">
           <div className="md:max-w-[30rem]">
             <h1
               data-cypress-id="blog-title"
@@ -87,14 +96,12 @@ export default async function BlogHomePage({
             />
           </div>
           <div>
-            <SquareImageContainer>
-              <Image
-                src={image?.url ?? ''}
-                width="350"
-                height="400"
-                alt={image?.alternativeText ?? ''}
-              />
-            </SquareImageContainer>
+            <Image
+              src={image?.url ?? ''}
+              width="350"
+              height="400"
+              alt={image?.alternativeText ?? ''}
+            />
           </div>
         </div>
 

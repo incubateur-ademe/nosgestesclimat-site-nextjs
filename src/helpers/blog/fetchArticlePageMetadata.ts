@@ -5,12 +5,14 @@ const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
 
 export async function fetchArticlePageMetadata({
   locale,
+  articleSlug,
 }: {
   locale: string
+  articleSlug: string
 }): Promise<HomepageMetadataType> {
   try {
     const articleResponse = await axios.get(
-      `${process.env.CMS_URL}/api/article?locale=${locale}&populate[0]=image&fields[0]=metaTitle&fields[1]=metaDescription${
+      `${process.env.CMS_URL}/api/articles?locale=${locale}&filters[slug][$eq]=${articleSlug}&populate[0]=image${
         isProduction ? '' : '&status=draft'
       }`,
       {
@@ -19,11 +21,11 @@ export async function fetchArticlePageMetadata({
         },
       }
     )
-
+    console.log(articleResponse.data)
     return {
-      metaTitle: articleResponse.data.data.metaTitle,
-      metaDescription: articleResponse.data.data.metaDescription,
-      image: articleResponse.data.data.image,
+      metaTitle: articleResponse.data.data[0].pageMetadata.title,
+      metaDescription: articleResponse.data.data[0].pageMetadata.description,
+      image: articleResponse.data.data[0].image,
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {

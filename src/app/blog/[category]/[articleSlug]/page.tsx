@@ -7,7 +7,9 @@ import { defaultLocale } from '@/i18nConfig'
 
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
+import AuthorBlock from './_components/AuthorBlock'
+import OtherArticles from './_components/OtherArticles'
 import StickySummary from './_components/StickySummary'
 
 const ArticleBreadcrumbs = dynamic(
@@ -24,6 +26,7 @@ export async function generateMetadata({
 }) {
   const { metaTitle, metaDescription, image } = await fetchArticlePageMetadata({
     locale: params.locale,
+    articleSlug: params.articleSlug,
   })
 
   return getMetadataObject({
@@ -43,13 +46,13 @@ export default async function ArticlePage({
 }: {
   params: { category: string; articleSlug: string; locale: string }
 }) {
-  const article = await fetchArticlePageContent({
+  const { article, otherArticles } = await fetchArticlePageContent({
     articleSlug: params.articleSlug,
     locale: params.locale || defaultLocale,
   })
 
   if (!article) {
-    return redirect('/404')
+    return notFound()
   }
 
   const articleDate =
@@ -67,6 +70,7 @@ export default async function ArticlePage({
       <div className="flex flex-col items-start gap-12 md:flex-row md:justify-between">
         <div className="flex flex-col items-start gap-8 md:w-8/12">
           <h1 className="mb-0 text-5xl font-bold">{article.title}</h1>
+
           <Badge size="sm">{article.category.title}</Badge>
 
           <div className="flex flex-row gap-2">
@@ -90,6 +94,7 @@ export default async function ArticlePage({
 
         <div className="md:w-4/12">
           <Image
+            className="rounded-md border border-gray-200"
             src={article.image.url}
             alt={article.image.alternativeText}
             width={420}
@@ -101,33 +106,19 @@ export default async function ArticlePage({
       <div className="mt-10 flex min-h-screen flex-col flex-nowrap gap-8 overflow-auto md:flex-row md:items-start">
         <div className="max-w-full flex-1 md:w-[600px]">
           <div
-            className="markdown min-h-[100vh] max-w-full border-b border-gray-300 pb-10"
+            className="markdown min-h-[100vh] max-w-full border-b border-gray-300 pb-8"
             dangerouslySetInnerHTML={{ __html: article.htmlContent }}
           />
 
-          <div className="mt-10 flex flex-row items-center gap-2">
-            <div>
-              <Image
-                className="overflow-hidden rounded-full"
-                src={article.author.image?.url}
-                alt={article.author.image?.alternativeText}
-                width={60}
-                height={60}
-              />
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold">
-                <Trans>Auteur :</Trans>
-              </h2>
-              <p className="text-lg">{article.author.name}</p>
-            </div>
-          </div>
+          <AuthorBlock author={article.author} />
         </div>
 
         <div className="hidden h-[600px] w-[1px] bg-gray-300 md:block" />
 
         <StickySummary headings={article.headings} />
       </div>
+
+      <OtherArticles articles={otherArticles} />
     </div>
   )
 }

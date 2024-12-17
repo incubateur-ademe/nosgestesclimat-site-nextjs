@@ -23,6 +23,7 @@ export async function generateMetadata({
   const { metaTitle, metaDescription, image } = await fetchCategoryPageMetadata(
     {
       locale: locale ?? defaultLocale,
+      slug: params.category,
     }
   )
 

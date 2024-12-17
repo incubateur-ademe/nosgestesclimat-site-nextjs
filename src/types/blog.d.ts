@@ -1,20 +1,3 @@
-export type ArticleType = {
-  id: string
-  title: string
-  description: string
-  image: {
-    url: string
-    alternativeText: string
-  }
-  slug: string
-  category: {
-    title: string
-    slug: string
-    id: string
-  }
-  href: string
-}
-
 export type HomepageContentType = {
   title: string
   description: string
@@ -78,8 +61,9 @@ export type HeadingType = {
   level: number
 }
 
-export type ArticlePageContentType = {
+export type ArticleType = {
   title: string
+  slug: string
   description: string
   image: {
     url: string
@@ -104,5 +88,14 @@ export type ArticlePageContentType = {
       url: string
       alternativeText: string
     }
+  }
+}
+
+export type AuthorType = {
+  name: string
+  description: string
+  image: {
+    url: string
+    alternativeText: string
   }
 }

@@ -30,10 +30,10 @@ export default function PostThumbnail({
         imageSrc={imageSrc}
         imageAlt={imageAlt}
         imageClassName="min-h-[134px] w-1/3 min-w-28 md:min-h-[240px] md:w-full"
-        containerClassName="w-full"
+        containerClassName="w-1/3 md:w-full"
       />
 
-      <div className="mt-4 flex flex-col">
+      <div className="mt-4 flex w-full flex-col">
         {/* Hidden on desktop */}
         <p className="mb-2 px-4 pt-4 text-xs font-bold text-primary-700 md:hidden md:text-[13px]">
           {category}

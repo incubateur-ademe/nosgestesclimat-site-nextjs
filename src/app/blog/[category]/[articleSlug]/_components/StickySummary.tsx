@@ -15,7 +15,7 @@ export default async function StickySummary({
 }) {
   return (
     <div className="sticky top-0 -order-1 w-full rounded-xl bg-gray-100 p-4 md:order-1 md:w-[calc(100%-600px-84px)]">
-      <h2 className="text-xl font-bold">
+      <h2 className="mb-2 text-xl font-bold">
         <Trans>Sommaire</Trans>
       </h2>
 
