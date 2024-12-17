@@ -7,6 +7,7 @@ import { defaultLocale } from '@/i18nConfig'
 
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
+import { redirect } from 'next/navigation'
 import StickySummary from './_components/StickySummary'
 
 const ArticleBreadcrumbs = dynamic(
@@ -46,7 +47,11 @@ export default async function ArticlePage({
     articleSlug: params.articleSlug,
     locale: params.locale || defaultLocale,
   })
-  console.log(article)
+
+  if (!article) {
+    return redirect('/404')
+  }
+
   const articleDate =
     article.modifiedAt || article.publishedAt || article.createdAt
 

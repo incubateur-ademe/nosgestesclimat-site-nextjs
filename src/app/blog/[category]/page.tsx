@@ -10,6 +10,7 @@ import { fetchCategoryPageContent } from '@/helpers/blog/fetchCategoryPageConten
 import { fetchCategoryPageMetadata } from '@/helpers/blog/fetchCategoryPageMetadata'
 import { defaultLocale } from '@/i18nConfig'
 import { currentLocale } from 'next-i18n-router'
+import { redirect } from 'next/navigation'
 import CategoryHero from './_components/CategoryHero'
 
 export async function generateMetadata({
@@ -59,6 +60,10 @@ export default async function CategoryPage({
     slug: params.category,
     page,
   })
+
+  if (!title) {
+    return redirect('/404')
+  }
 
   return (
     <div className="-mt-12">
