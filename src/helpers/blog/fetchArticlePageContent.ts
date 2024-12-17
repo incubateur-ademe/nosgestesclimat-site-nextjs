@@ -1,4 +1,4 @@
-import type { CategoryPageContentType } from '@/types/blog'
+import type { ArticlePageContentType } from '@/types/blog'
 import axios from 'axios'
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -9,7 +9,7 @@ export async function fetchArticlePageContent({
 }: {
   articleSlug: string
   locale: string
-}): Promise<CategoryPageContentType> {
+}): Promise<ArticlePageContentType> {
   console.log(articleSlug, locale)
   try {
     const articleResponse = await axios.get(
@@ -35,26 +35,22 @@ export async function fetchArticlePageContent({
     return {
       title: '',
       description: '',
-      faqDescription: '',
-      mainArticle: {
-        id: '',
+      image: {
+        url: '',
+        alternativeText: '',
+      },
+      duration: 0,
+      date: '',
+      category: {
         title: '',
         slug: '',
-        description: '',
-        href: '',
-        image: {
-          url: '',
-          alternativeText: '',
-        },
-        category: {
-          id: '',
-          title: '',
-          slug: '',
-        },
       },
-      articles: [],
-      pageCount: 0,
-      questions: [],
+      content: '',
+      htmlContent: '',
+      modifiedAt: '',
+      publishedAt: '',
+      createdAt: '',
+      headings: [],
     }
   }
 }

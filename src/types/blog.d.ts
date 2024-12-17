@@ -71,3 +71,30 @@ export type CategoryPageContentType = {
   pageCount: number
   questions: QuestionType[]
 }
+
+export type HeadingType = {
+  id: string
+  text: string
+  level: number
+}
+
+export type ArticlePageContentType = {
+  title: string
+  description: string
+  image: {
+    url: string
+    alternativeText: string
+  }
+  duration: number
+  date: string
+  category: {
+    title: string
+    slug: string
+  }
+  content: string
+  htmlContent: string
+  modifiedAt: string
+  publishedAt: string
+  createdAt: string
+  headings: HeadingType[]
+}
