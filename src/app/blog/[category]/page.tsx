@@ -57,12 +57,20 @@ export default async function CategoryPage({
     pageCount,
     questions,
     faqDescription,
-  } = await fetchCategoryPageContent({
-    slug: params.category,
-    page,
-  })
+  } =
+    (await fetchCategoryPageContent({
+      slug: params.category,
+      page,
+    })) || {}
 
-  if (!title) {
+  if (
+    !title ||
+    !description ||
+    !mainArticle ||
+    !articles ||
+    !pageCount ||
+    !questions
+  ) {
     return redirect('/404')
   }
 
@@ -88,6 +96,30 @@ export default async function CategoryPage({
                 text: faq.answer,
               },
             })),
+          },
+          {
+            '@context': 'https://schema.org/',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Accueil Blog',
+                item: 'https://nosgestesclimat.fr/blog',
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: title,
+                item: `https://nosgestesclimat.fr/blog/${params.category}`,
+              },
+              {
+                '@type': 'ListItem',
+                position: 3,
+                name: 'Articles',
+                item: `https://nosgestesclimat.fr/blog/${params.category}?page=1`,
+              },
+            ],
           },
         ]}
       />

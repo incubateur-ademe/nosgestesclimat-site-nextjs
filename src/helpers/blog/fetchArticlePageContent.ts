@@ -1,3 +1,4 @@
+import { cmsClient } from '@/adapters/cms'
 import type { ArticleType } from '@/types/blog'
 import axios from 'axios'
 
@@ -14,16 +15,12 @@ export async function fetchArticlePageContent({
   otherArticles?: ArticleType[]
 }> {
   try {
-    const articleResponse = await axios.get(
-      `${process.env.CMS_URL}/api/articles?locale=${locale}&filters[slug][$eq]=${articleSlug}&populate[0]=image&populate[1]=category&populate[2]=author${
+    const articleResponse = await cmsClient.get(
+      `/api/articles?locale=${locale}&filters[slug][$eq]=${articleSlug}&populate[0]=image&populate[1]=category&populate[2]=author${
         isProduction ? '' : '&status=draft'
-      }`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.CMS_TOKEN}`,
-        },
-      }
+      }`
     )
+    // console.log(articleResponse.data, articleSlug)
 
     const otherArticlesResponse = await axios.get(
       `${process.env.CMS_URL}/api/articles?locale=${locale}&filters[category][slug][$eq]=${articleResponse.data.data?.[0].category.slug}&filters[slug][$ne]=${articleSlug}&populate[0]=image&populate[1]=category&populate[2]=author&pagination[limit]=3${

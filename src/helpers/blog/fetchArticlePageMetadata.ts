@@ -1,3 +1,4 @@
+import { cmsClient } from '@/adapters/cms'
 import type { HomepageMetadataType } from '@/types/blog'
 import axios from 'axios'
 
@@ -11,17 +12,12 @@ export async function fetchArticlePageMetadata({
   articleSlug: string
 }): Promise<HomepageMetadataType> {
   try {
-    const articleResponse = await axios.get(
-      `${process.env.CMS_URL}/api/articles?locale=${locale}&filters[slug][$eq]=${articleSlug}&populate[0]=image${
+    const articleResponse = await cmsClient.get(
+      `/api/articles?locale=${locale}&filters[slug][$eq]=${articleSlug}&populate[0]=image&populate[1]=pageMetadata${
         isProduction ? '' : '&status=draft'
-      }`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.CMS_TOKEN}`,
-        },
-      }
+      }`
     )
-    console.log(articleResponse.data)
+
     return {
       metaTitle: articleResponse.data.data[0].pageMetadata.title,
       metaDescription: articleResponse.data.data[0].pageMetadata.description,

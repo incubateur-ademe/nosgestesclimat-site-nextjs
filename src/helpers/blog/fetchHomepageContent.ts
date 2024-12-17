@@ -12,21 +12,7 @@ export async function fetchHomepageContent({
 }): Promise<HomepageContentType | undefined> {
   try {
     const homepageResponse = await axios.get(
-      `${process.env.CMS_URL}/api/home-page?locale=fr&populate[0]=image&populate[1]=mainArticle${
-        isProduction ? '' : '&status=draft'
-      }`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.CMS_TOKEN}`,
-        },
-      }
-    )
-
-    const mainArticleDocumentId =
-      homepageResponse.data.data.mainArticle.documentId
-
-    const mainArticleResponse = await axios.get(
-      `${process.env.CMS_URL}/api/articles/${mainArticleDocumentId}?locale=fr&fields[0]=title&fields[1]=description&fields[2]=slug&populate[0]=image&populate[1]=category${
+      `${process.env.CMS_URL}/api/home-page?locale=fr&populate[0]=image&populate[1]=mainArticle&populate[2]=mainArticle.image${
         isProduction ? '' : '&status=draft'
       }`,
       {
@@ -51,7 +37,7 @@ export async function fetchHomepageContent({
       title: homepageResponse.data.data.title,
       description: homepageResponse.data.data.description,
       image: homepageResponse.data.data.image,
-      mainArticle: mainArticleResponse.data.data,
+      mainArticle: homepageResponse.data.data.mainArticle,
       articles: articlesResponse.data.data,
       pageCount: articlesResponse.data.meta.pagination.pageCount,
     }

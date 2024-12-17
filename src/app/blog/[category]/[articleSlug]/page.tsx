@@ -5,6 +5,8 @@ import { fetchArticlePageMetadata } from '@/helpers/blog/fetchArticlePageMetadat
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { defaultLocale } from '@/i18nConfig'
 
+import JSONLD from '@/components/seo/JSONLD'
+import { currentLocale } from 'next-i18n-router'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
@@ -24,8 +26,9 @@ export async function generateMetadata({
 }: {
   params: { category: string; articleSlug: string; locale: string }
 }) {
+  const locale = currentLocale()
   const { metaTitle, metaDescription, image } = await fetchArticlePageMetadata({
-    locale: params.locale,
+    locale: locale || defaultLocale,
     articleSlug: params.articleSlug,
   })
 
@@ -59,66 +62,103 @@ export default async function ArticlePage({
     article.modifiedAt || article.publishedAt || article.createdAt
 
   return (
-    <div className="relative">
-      <ArticleBreadcrumbs
-        categorySlug={params.category}
-        articleSlug={params.articleSlug}
-        articleTitle="Titre de l'article"
-        categoryTitle="Titre de la catégorie"
+    <>
+      <JSONLD
+        jsonLd={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            url: 'https://nosgestesclimat.fr',
+            name: 'Nos Gestes Climat',
+            logo: 'https://nosgestesclimat.fr/_next/image?url=%2Fimages%2Fmisc%2Fpetit-logo%403x.png&w=640&q=75',
+          },
+          {
+            '@context': 'https://schema.org/',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Accueil Blog',
+                item: 'https://nosgestesclimat.fr/blog',
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: article.category.title,
+                item: `https://nosgestesclimat.fr/blog/${params.category}`,
+              },
+              {
+                '@type': 'ListItem',
+                position: 3,
+                name: article.title,
+                item: `https://nosgestesclimat.fr/blog/${params.category}/${params.articleSlug}`,
+              },
+            ],
+          },
+        ]}
       />
+      <div className="relative">
+        <ArticleBreadcrumbs
+          categorySlug={params.category}
+          articleSlug={params.articleSlug}
+          articleTitle="Titre de l'article"
+          categoryTitle="Titre de la catégorie"
+        />
 
-      <div className="flex flex-col items-start gap-12 md:flex-row md:justify-between">
-        <div className="flex flex-col items-start gap-8 md:w-8/12">
-          <h1 className="mb-0 text-5xl font-bold">{article.title}</h1>
+        <div className="flex flex-col items-start gap-12 md:flex-row md:justify-between">
+          <div className="flex flex-col items-start gap-8 md:w-8/12">
+            <h1 className="mb-0 text-5xl font-bold">{article.title}</h1>
 
-          <Badge size="sm">{article.category.title}</Badge>
+            <Badge size="sm">{article.category.title}</Badge>
 
-          <div className="flex flex-row gap-2">
-            <p className="mb-0 text-lg">
-              <span className="text-primary-700">
-                <Trans>Temps de lecture :</Trans>
-              </span>{' '}
-              {Math.round(article.duration / 60)} <Trans>minutes</Trans>
-            </p>
+            <div className="flex flex-row gap-2">
+              <p className="mb-0 text-lg">
+                <span className="text-primary-700">
+                  <Trans>Temps de lecture :</Trans>
+                </span>{' '}
+                {Math.round(article.duration / 60)} <Trans>minutes</Trans>
+              </p>
 
-            <span className="text-lg">|</span>
+              <span className="text-lg">|</span>
 
-            <p className="mb-0 text-lg">
-              <span className="text-primary-700">
-                <Trans>Publié le :</Trans>
-              </span>{' '}
-              {articleDate ? new Date(articleDate).toLocaleDateString() : ''}
-            </p>
+              <p className="mb-0 text-lg">
+                <span className="text-primary-700">
+                  <Trans>Publié le :</Trans>
+                </span>{' '}
+                {articleDate ? new Date(articleDate).toLocaleDateString() : ''}
+              </p>
+            </div>
+          </div>
+
+          <div className="md:w-4/12">
+            <Image
+              className="rounded-md border border-gray-200"
+              src={article.image.url}
+              alt={article.image.alternativeText}
+              width={420}
+              height={420}
+            />
           </div>
         </div>
 
-        <div className="md:w-4/12">
-          <Image
-            className="rounded-md border border-gray-200"
-            src={article.image.url}
-            alt={article.image.alternativeText}
-            width={420}
-            height={420}
-          />
-        </div>
-      </div>
+        <div className="mt-10 flex min-h-screen flex-col flex-nowrap gap-8 overflow-auto md:flex-row md:items-start">
+          <div className="max-w-full flex-1 md:w-[600px]">
+            <div
+              className="markdown min-h-[100vh] max-w-full border-b border-gray-300 pb-8"
+              dangerouslySetInnerHTML={{ __html: article.htmlContent }}
+            />
 
-      <div className="mt-10 flex min-h-screen flex-col flex-nowrap gap-8 overflow-auto md:flex-row md:items-start">
-        <div className="max-w-full flex-1 md:w-[600px]">
-          <div
-            className="markdown min-h-[100vh] max-w-full border-b border-gray-300 pb-8"
-            dangerouslySetInnerHTML={{ __html: article.htmlContent }}
-          />
+            <AuthorBlock author={article.author} />
+          </div>
 
-          <AuthorBlock author={article.author} />
+          <div className="hidden h-[600px] w-[1px] bg-gray-300 md:block" />
+
+          <StickySummary headings={article.headings} />
         </div>
 
-        <div className="hidden h-[600px] w-[1px] bg-gray-300 md:block" />
-
-        <StickySummary headings={article.headings} />
+        <OtherArticles articles={otherArticles} />
       </div>
-
-      <OtherArticles articles={otherArticles} />
-    </div>
+    </>
   )
 }
