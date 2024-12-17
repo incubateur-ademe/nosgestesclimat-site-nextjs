@@ -63,14 +63,7 @@ export default async function CategoryPage({
       page,
     })) || {}
 
-  if (
-    !title ||
-    !description ||
-    !mainArticle ||
-    !articles ||
-    !pageCount ||
-    !questions
-  ) {
+  if (!title || !description || !mainArticle || !articles || !questions) {
     return redirect('/404')
   }
 
@@ -142,7 +135,7 @@ export default async function CategoryPage({
 
         <ArticleList
           articles={articles}
-          pageCount={pageCount}
+          pageCount={pageCount ?? 0}
           currentPage={page}
         />
       </ContentLarge>

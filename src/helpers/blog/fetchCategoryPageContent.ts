@@ -13,7 +13,7 @@ export async function fetchCategoryPageContent({
 }): Promise<CategoryPageContentType | undefined> {
   try {
     const categoryResponse = await axios.get(
-      `${process.env.CMS_URL}/api/categories?locale=fr&filters[slug][$eq]=${slug}&populate[0]=mainArticle&populate[1]=questions&populate[2]=mainArticle.image${
+      `${process.env.CMS_URL}/api/categories?locale=fr&filters[slug][$eq]=${slug}&populate[0]=mainArticle&populate[1]=questions&populate[2]=mainArticle.image&populate[3]=mainArticle.category${
         isProduction ? '' : '&status=draft'
       }`,
       {

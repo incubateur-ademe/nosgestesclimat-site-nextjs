@@ -56,14 +56,7 @@ export default async function BlogHomePage({
       page,
     })) ?? {}
 
-  if (
-    !title ||
-    !description ||
-    !image ||
-    !mainArticle ||
-    !articles ||
-    !pageCount
-  ) {
+  if (!title || !description || !image || !mainArticle || !articles) {
     notFound()
   }
 
@@ -116,7 +109,7 @@ export default async function BlogHomePage({
 
         <ArticleList
           articles={articles}
-          pageCount={pageCount}
+          pageCount={pageCount ?? 0}
           currentPage={page}
         />
 

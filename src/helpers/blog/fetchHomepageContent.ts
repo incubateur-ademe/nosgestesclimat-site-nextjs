@@ -12,7 +12,7 @@ export async function fetchHomepageContent({
 }): Promise<HomepageContentType | undefined> {
   try {
     const homepageResponse = await axios.get(
-      `${process.env.CMS_URL}/api/home-page?locale=fr&populate[0]=image&populate[1]=mainArticle&populate[2]=mainArticle.image${
+      `${process.env.CMS_URL}/api/home-page?locale=fr&populate[0]=image&populate[1]=mainArticle&populate[2]=mainArticle.image&populate[3]=mainArticle.category${
         isProduction ? '' : '&status=draft'
       }`,
       {
