@@ -10,10 +10,9 @@ export async function fetchArticlePageContent({
   articleSlug: string
   locale: string
 }): Promise<ArticlePageContentType> {
-  console.log(articleSlug, locale)
   try {
     const articleResponse = await axios.get(
-      `${process.env.CMS_URL}/api/articles?locale=${locale}&filters[slug][$eq]=${articleSlug}&populate[0]=image&populate[1]=category${
+      `${process.env.CMS_URL}/api/articles?locale=${locale}&filters[slug][$eq]=${articleSlug}&populate[0]=image&populate[1]=category&populate[2]=author${
         isProduction ? '' : '&status=draft'
       }`,
       {
@@ -51,6 +50,14 @@ export async function fetchArticlePageContent({
       publishedAt: '',
       createdAt: '',
       headings: [],
+      author: {
+        name: '',
+        description: '',
+        image: {
+          url: '',
+          alternativeText: '',
+        },
+      },
     }
   }
 }

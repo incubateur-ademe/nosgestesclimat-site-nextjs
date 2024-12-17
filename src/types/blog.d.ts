@@ -97,4 +97,12 @@ export type ArticlePageContentType = {
   publishedAt: string
   createdAt: string
   headings: HeadingType[]
+  author: {
+    name: string
+    description: string
+    image: {
+      url: string
+      alternativeText: string
+    }
+  }
 }

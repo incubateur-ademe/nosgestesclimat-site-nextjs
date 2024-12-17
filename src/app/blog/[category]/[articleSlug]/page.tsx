@@ -96,9 +96,27 @@ export default async function ArticlePage({
       <div className="mt-10 flex min-h-screen flex-col flex-nowrap gap-8 overflow-auto md:flex-row md:items-start">
         <div className="max-w-full flex-1 md:w-[600px]">
           <div
-            className="markdown min-h-[100vh] max-w-full"
+            className="markdown min-h-[100vh] max-w-full border-b border-gray-300 pb-10"
             dangerouslySetInnerHTML={{ __html: article.htmlContent }}
           />
+
+          <div className="mt-10 flex flex-row items-center gap-2">
+            <div>
+              <Image
+                className="overflow-hidden rounded-full"
+                src={article.author.image?.url}
+                alt={article.author.image?.alternativeText}
+                width={60}
+                height={60}
+              />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold">
+                <Trans>Auteur :</Trans>
+              </h2>
+              <p className="text-lg">{article.author.name}</p>
+            </div>
+          </div>
         </div>
 
         <div className="hidden h-[600px] w-[1px] bg-gray-300 md:block" />
