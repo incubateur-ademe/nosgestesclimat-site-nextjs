@@ -62,6 +62,7 @@ export type HeadingType = {
 }
 
 export type ArticleType = {
+  documentId: string
   title: string
   slug: string
   description: string
