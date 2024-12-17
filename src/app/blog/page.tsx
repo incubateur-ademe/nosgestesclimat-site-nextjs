@@ -72,7 +72,7 @@ export default async function BlogHomePage({
         ]}
       />
 
-      <ContentLarge>
+      <ContentLarge className="mt-8">
         <div className="flex flex-col justify-between gap-8 overflow-x-hidden md:flex-row">
           <div className="md:max-w-[30rem]">
             <h1
