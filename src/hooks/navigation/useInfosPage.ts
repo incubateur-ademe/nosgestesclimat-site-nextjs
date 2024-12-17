@@ -34,9 +34,9 @@ export function useInfosPage() {
 
   const { data: poll, isLoading } = useFetchPublicPoll()
 
-  const { customAdditionalQuestions } = poll ?? {
-    customAdditionnalQuestions: [],
-  }
+  const customAdditionalQuestions = (
+    poll?.customAdditionalQuestions || []
+  ).filter(({ isEnabled }) => !!isEnabled)
 
   const urlsInfosPages = useMemo(() => {
     const pagePaths: Record<string, string> = {
@@ -47,9 +47,7 @@ export function useInfosPage() {
     }
 
     // Add the custom additionnal questions
-    customAdditionalQuestions?.forEach(({ isEnabled }, index) => {
-      if (!isEnabled) return
-
+    customAdditionalQuestions?.forEach((_, index) => {
       pagePaths[`question-personnalisee-${index + 1}`] =
         `/infos/question-personnalisee-${index + 1}?${queryParamsString}`
     })
