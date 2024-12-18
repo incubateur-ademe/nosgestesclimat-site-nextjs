@@ -26,6 +26,7 @@ export async function fetchHomepageContent({
     })
 
     if (!homepageResponse?.data?.data) {
+      console.error('Error: homepageResponse?.data?.data is undefined')
       return undefined
     }
 
@@ -48,8 +49,8 @@ export async function fetchHomepageContent({
       description: homepageResponse.data.data.description,
       image: homepageResponse.data.data.image,
       mainArticle: homepageResponse.data.data.mainArticle,
-      articles: articlesResponse.data.data,
-      pageCount: articlesResponse.data.meta.pagination.pageCount,
+      articles: articlesResponse?.data?.data ?? [],
+      pageCount: articlesResponse?.data?.meta?.pagination?.pageCount ?? 0,
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {

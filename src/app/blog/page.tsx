@@ -71,7 +71,7 @@ export default async function BlogHomePage({
 
       <ContentLarge className="mt-20">
         <div className="mb-20 flex flex-col justify-between gap-8 overflow-x-hidden md:flex-row">
-          <div className="md:max-w-[30rem]">
+          <div className="md:max-w-[36rem]">
             <h1
               data-cypress-id="blog-title"
               className="text-3xl md:text-5xl"

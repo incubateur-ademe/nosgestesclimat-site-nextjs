@@ -14,6 +14,11 @@ export async function fetchCategories(): Promise<CategoryType[]> {
       },
     })
 
+    if (!categoriesResponse?.data?.data) {
+      console.error('Error: categoriesResponse?.data?.data is undefined')
+      return []
+    }
+
     return categoriesResponse.data.data
   } catch (error) {
     if (axios.isAxiosError(error)) {

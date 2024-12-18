@@ -28,6 +28,7 @@ export async function fetchCategoryPageContent({
     })
 
     if (!categoryResponse?.data?.data?.[0]) {
+      console.error('Error: categoryResponse?.data?.data?.[0] is undefined')
       return undefined
     }
 

@@ -27,6 +27,7 @@ export async function fetchArticlePageContent({
     })
 
     if (!articleResponse.data.data?.[0]) {
+      console.error('Error: articleResponse.data.data?.[0] is undefined')
       return {
         article: undefined,
         otherArticles: undefined,
@@ -49,7 +50,7 @@ export async function fetchArticlePageContent({
 
     return {
       article: articleResponse.data.data?.[0],
-      otherArticles: otherArticlesResponse.data.data,
+      otherArticles: otherArticlesResponse?.data?.data ?? [],
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {

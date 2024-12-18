@@ -17,6 +17,7 @@ export async function fetchHomepageMetadata(): Promise<
     })
 
     if (!homepageResponse?.data?.data) {
+      console.error('Error: homepageResponse?.data?.data is undefined')
       return undefined
     }
 

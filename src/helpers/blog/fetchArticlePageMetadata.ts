@@ -24,6 +24,7 @@ export async function fetchArticlePageMetadata({
     })
 
     if (!articleResponse?.data?.data) {
+      console.error('Error: articleResponse?.data?.data is undefined')
       return undefined
     }
 
