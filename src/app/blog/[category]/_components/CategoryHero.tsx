@@ -22,10 +22,10 @@ export default function CategoryHero({
       <div className="mx-auto max-w-5xl">
         <CategoryBreadcrumb slug={slug} title={title} />
 
-        <div className="relative flex flex-col items-center gap-8 pb-20 pt-2 md:flex-row">
-          <h1 className="text-4xl font-bold md:w-1/2">{title}</h1>
+        <div className="relative flex flex-col items-center gap-8 pb-20 pt-8 md:flex-row">
+          <h1 className="text-3xl font-medium md:w-1/2 md:text-5xl">{title}</h1>
           <p
-            className="text-lg md:w-1/2"
+            className="text-base md:w-1/2 md:text-lg"
             dangerouslySetInnerHTML={{ __html: description }}
           />
         </div>

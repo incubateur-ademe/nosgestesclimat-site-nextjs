@@ -120,7 +120,7 @@ export default async function CategoryPage({
         slug={params.category}
       />
 
-      <ContentLarge>
+      <ContentLarge tag="div">
         <MainArticle
           imageSrc={mainArticle.image.url}
           imageAlt={mainArticle.image.alternativeText}
@@ -138,7 +138,7 @@ export default async function CategoryPage({
       </ContentLarge>
 
       <FAQ
-        className="!pb-28"
+        className="mt-20 !pb-28"
         questions={questions
           .sort((a, b) => a.order - b.order)
           .map((question) => ({

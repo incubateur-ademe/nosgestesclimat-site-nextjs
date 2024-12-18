@@ -8,7 +8,7 @@ export default async function AllBlogCategories() {
   const categories = await fetchCategories()
 
   return (
-    <div className="relative mb-10 px-4 py-20 pb-28">
+    <div className="relative mb-10 px-4 pb-16 pt-10">
       {/* Helps cover the triangles of white shown because of the perspective change in Background */}
       <div className="absolute -left-1/2 -top-10 h-1/2 w-[200%] bg-heroLightBackground xl:w-[300%]" />
 
