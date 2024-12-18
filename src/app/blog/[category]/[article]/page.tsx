@@ -44,10 +44,10 @@ export async function generateMetadata({
 export default async function ArticlePage({
   params,
 }: {
-  params: { category: string; articleSlug: string; locale: string }
+  params: { category: string; article: string; locale: string }
 }) {
   const { article, otherArticles } = await fetchArticlePageContent({
-    articleSlug: params.articleSlug,
+    articleSlug: params.article,
   })
 
   if (!article) {
@@ -88,7 +88,7 @@ export default async function ArticlePage({
                 '@type': 'ListItem',
                 position: 3,
                 name: article.title,
-                item: `https://nosgestesclimat.fr/blog/${params.category}/${params.articleSlug}`,
+                item: `https://nosgestesclimat.fr/blog/${params.category}/${params.article}`,
               },
             ],
           },
@@ -97,7 +97,7 @@ export default async function ArticlePage({
       <div className="relative">
         <ArticleBreadcrumbs
           categorySlug={params.category}
-          articleSlug={params.articleSlug}
+          articleSlug={params.article}
           articleTitle={article.title}
           categoryTitle={article.category.title}
         />

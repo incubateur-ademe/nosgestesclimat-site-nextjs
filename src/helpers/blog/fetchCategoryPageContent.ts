@@ -51,6 +51,8 @@ export async function fetchCategoryPageContent({
       title: categoryResponse.data.data[0].title,
       description: categoryResponse.data.data[0].description,
       mainArticle: categoryResponse.data.data[0].mainArticle,
+      additionalContent: categoryResponse.data.data[0].htmlContent,
+      image: categoryResponse.data.data[0].image,
       articles: articlesResponse.data.data,
       pageCount: articlesResponse.data.meta.pagination.pageCount,
       questions: categoryResponse.data.data[0].questions,

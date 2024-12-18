@@ -24,7 +24,10 @@ export default function CategoryHero({
 
         <div className="relative flex flex-col items-center gap-8 pb-20 pt-2 md:flex-row">
           <h1 className="text-4xl font-bold md:w-1/2">{title}</h1>
-          <p className="text-lg md:w-1/2">{description}</p>
+          <p
+            className="text-lg md:w-1/2"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         </div>
       </div>
     </div>

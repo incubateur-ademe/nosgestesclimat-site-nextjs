@@ -42,7 +42,7 @@ export type CategoryType = {
 export type QuestionType = {
   id: string
   question: string
-  answer: string
+  htmlAnswer: string
 }
 
 export type CategoryPageContentType = {
@@ -53,6 +53,11 @@ export type CategoryPageContentType = {
   articles: ArticleType[]
   pageCount: number
   questions: QuestionType[]
+  additionalContent: string
+  image: {
+    url: string
+    alternativeText: string
+  }
 }
 
 export type HeadingType = {

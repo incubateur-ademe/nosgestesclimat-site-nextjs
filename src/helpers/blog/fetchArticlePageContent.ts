@@ -26,6 +26,13 @@ export async function fetchArticlePageContent({
       },
     })
 
+    if (!articleResponse.data.data?.[0]) {
+      return {
+        article: undefined,
+        otherArticles: undefined,
+      }
+    }
+
     const otherArticlesResponse = await cmsClient.get(`/api/articles`, {
       params: {
         locale: 'fr',
@@ -36,6 +43,7 @@ export async function fetchArticlePageContent({
             },
           },
         },
+        sort: 'publishedAt:desc',
       },
     })
 

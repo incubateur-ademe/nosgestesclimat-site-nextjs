@@ -9,6 +9,7 @@ import MainArticle from '@/design-system/cms/MainArticle'
 import { fetchCategoryPageContent } from '@/helpers/blog/fetchCategoryPageContent'
 import { fetchCategoryPageMetadata } from '@/helpers/blog/fetchCategoryPageMetadata'
 import { redirect } from 'next/navigation'
+import AdditionalContent from './_components/AdditionalContent'
 import CategoryHero from './_components/CategoryHero'
 
 export async function generateMetadata({
@@ -51,6 +52,8 @@ export default async function CategoryPage({
     pageCount,
     questions,
     faqDescription,
+    additionalContent,
+    image,
   } =
     (await fetchCategoryPageContent({
       slug: params.category,
@@ -80,7 +83,7 @@ export default async function CategoryPage({
               name: faq.question,
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: faq.answer,
+                text: faq.htmlAnswer,
               },
             })),
           },
@@ -136,10 +139,19 @@ export default async function CategoryPage({
 
       <FAQ
         className="!pb-28"
-        questions={questions}
+        questions={questions.map((question) => ({
+          question: question.question,
+          answer: question.htmlAnswer,
+        }))}
         subTitle={faqDescription}
         isBackgroundSkewed={false}
         isBackgroundFullWidth={true}
+        shouldUseDangerouslySetInnerHTML={true}
+      />
+
+      <AdditionalContent
+        content={additionalContent ?? ''}
+        image={image ?? { url: '', alternativeText: '' }}
       />
 
       <AllBlogCategories />

@@ -10,6 +10,7 @@ export default function FAQ({
   isBackgroundSkewed = true,
   isBackgroundFullWidth = false,
   className,
+  shouldUseDangerouslySetInnerHTML = false,
 }: {
   className?: string
   subTitle: ReactNode
@@ -19,6 +20,7 @@ export default function FAQ({
   }[]
   isBackgroundSkewed?: boolean
   isBackgroundFullWidth?: boolean
+  shouldUseDangerouslySetInnerHTML?: boolean
 }) {
   return (
     <div
@@ -59,9 +61,18 @@ export default function FAQ({
 
                 <div className="grid grid-rows-[0fr] transition-all duration-200 ease-in-out group-open:grid-rows-[1fr]">
                   <div className="overflow-hidden">
-                    <div className="pt-4 text-sm last:mb-0 md:text-base">
-                      {answer}
-                    </div>
+                    {shouldUseDangerouslySetInnerHTML ? (
+                      <div
+                        className="pt-4 text-sm last:mb-0 md:text-base"
+                        dangerouslySetInnerHTML={{
+                          __html: answer as string,
+                        }}
+                      />
+                    ) : (
+                      <div className="pt-4 text-sm last:mb-0 md:text-base">
+                        {answer}
+                      </div>
+                    )}
                   </div>
                 </div>
               </details>
