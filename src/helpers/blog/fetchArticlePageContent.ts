@@ -28,9 +28,7 @@ export async function fetchArticlePageContent({
 
     if (!articleResponse.data.data?.[0]) {
       console.error(
-        'Error: articleResponse.data.data?.[0] is undefined',
-        articleResponse,
-        articleResponse.data
+        `Error: articleResponse.data.data?.[0] is undefined for articleSlug: ${articleSlug} ${JSON.stringify(articleResponse)}`
       )
       return {
         article: undefined,

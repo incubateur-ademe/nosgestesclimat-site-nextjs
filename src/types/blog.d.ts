@@ -43,6 +43,7 @@ export type QuestionType = {
   id: string
   question: string
   htmlAnswer: string
+  order: number
 }
 
 export type CategoryPageContentType = {

@@ -139,10 +139,12 @@ export default async function CategoryPage({
 
       <FAQ
         className="!pb-28"
-        questions={questions.map((question) => ({
-          question: question.question,
-          answer: question.htmlAnswer,
-        }))}
+        questions={questions
+          .sort((a, b) => a.order - b.order)
+          .map((question) => ({
+            question: question.question,
+            answer: question.htmlAnswer,
+          }))}
         subTitle={faqDescription}
         isBackgroundSkewed={false}
         isBackgroundFullWidth={true}
