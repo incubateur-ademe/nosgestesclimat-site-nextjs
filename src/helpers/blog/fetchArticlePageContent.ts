@@ -2,8 +2,7 @@ import { cmsClient } from '@/adapters/cms'
 import type { ArticleType } from '@/types/blog'
 import axios from 'axios'
 
-const isProduction =
-  process.env.NODE_ENV === 'production' && process.env.VERCEL_ENV !== 'preview'
+const isProduction = process.env.NODE_ENV === 'production'
 
 export async function fetchArticlePageContent({
   articleSlug,
@@ -23,7 +22,7 @@ export async function fetchArticlePageContent({
           },
         },
         populate: ['image', 'category', 'author'],
-        status: isProduction ? undefined : 'draft',
+        status: isProduction ? '' : 'draft',
       },
     })
 
