@@ -8,8 +8,6 @@ import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
 import { fetchCategoryPageContent } from '@/helpers/blog/fetchCategoryPageContent'
 import { fetchCategoryPageMetadata } from '@/helpers/blog/fetchCategoryPageMetadata'
-import { defaultLocale } from '@/i18nConfig'
-import { currentLocale } from 'next-i18n-router'
 import { redirect } from 'next/navigation'
 import CategoryHero from './_components/CategoryHero'
 
@@ -18,14 +16,10 @@ export async function generateMetadata({
 }: {
   params: { category: string }
 }) {
-  const locale = currentLocale()
-
-  const { metaTitle, metaDescription, image } = await fetchCategoryPageMetadata(
-    {
-      locale: locale ?? defaultLocale,
+  const { metaTitle, metaDescription, image } =
+    (await fetchCategoryPageMetadata({
       slug: params.category,
-    }
-  )
+    })) || {}
 
   return getMetadataObject({
     title: metaTitle ?? 'Blog - Nos Gestes Climat',

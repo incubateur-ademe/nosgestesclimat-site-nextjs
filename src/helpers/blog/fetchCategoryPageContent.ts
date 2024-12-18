@@ -1,3 +1,4 @@
+import { cmsClient } from '@/adapters/cms'
 import type { CategoryPageContentType } from '@/types/blog'
 import axios from 'axios'
 
@@ -12,27 +13,39 @@ export async function fetchCategoryPageContent({
   page: number
 }): Promise<CategoryPageContentType | undefined> {
   try {
-    const categoryResponse = await axios.get(
-      `${process.env.CMS_URL}/api/categories?locale=fr&filters[slug][$eq]=${slug}&populate[0]=mainArticle&populate[1]=questions&populate[2]=mainArticle.image&populate[3]=mainArticle.category${
-        isProduction ? '' : '&status=draft'
-      }`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.CMS_TOKEN}`,
-        },
-      }
-    )
+    const categoryResponse = await cmsClient.get(`/api/categories`, {
+      params: {
+        locale: 'fr',
+        'filters[slug][$eq]': slug,
+        populate: [
+          'mainArticle',
+          'questions',
+          'mainArticle.image',
+          'mainArticle.category',
+        ],
+        status: isProduction ? '' : 'draft',
+      },
+    })
 
-    const articlesResponse = await axios.get(
-      `${process.env.CMS_URL}/api/articles?locale=fr&fields[0]=title&fields[1]=description&fields[2]=slug&populate[0]=image&populate[1]=category&filters[documentId][$ne]=${categoryResponse.data.data[0].mainArticle.documentId}&filters[category][$eq]=${categoryResponse.data.data[0].id}&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}${
-        isProduction ? '' : '&status=draft'
-      }`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.CMS_TOKEN}`,
+    if (!categoryResponse?.data?.data?.[0]) {
+      return undefined
+    }
+
+    const articlesResponse = await cmsClient.get('/api/articles', {
+      params: {
+        locale: 'fr',
+        fields: ['title', 'description', 'slug'],
+        populate: ['image', 'category'],
+        'filters[documentId][$ne]':
+          categoryResponse.data.data[0]?.mainArticle?.documentId,
+        'filters[category][$eq]': categoryResponse.data.data[0]?.id,
+        pagination: {
+          page,
+          pageSize: PAGE_SIZE,
         },
-      }
-    )
+        status: isProduction ? '' : 'draft',
+      },
+    })
 
     return {
       title: categoryResponse.data.data[0].title,

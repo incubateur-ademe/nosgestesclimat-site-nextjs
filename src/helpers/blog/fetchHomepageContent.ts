@@ -1,3 +1,4 @@
+import { cmsClient } from '@/adapters/cms'
 import type { HomepageContentType } from '@/types/blog'
 import axios from 'axios'
 
@@ -11,27 +12,36 @@ export async function fetchHomepageContent({
   page: number
 }): Promise<HomepageContentType | undefined> {
   try {
-    const homepageResponse = await axios.get(
-      `${process.env.CMS_URL}/api/home-page?locale=fr&populate[0]=image&populate[1]=mainArticle&populate[2]=mainArticle.image&populate[3]=mainArticle.category${
-        isProduction ? '' : '&status=draft'
-      }`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.CMS_TOKEN}`,
-        },
-      }
-    )
+    const homepageResponse = await cmsClient.get(`/api/home-page`, {
+      params: {
+        locale: 'fr',
+        populate: [
+          'image',
+          'mainArticle',
+          'mainArticle.image',
+          'mainArticle.category',
+        ],
+        status: isProduction ? '' : 'draft',
+      },
+    })
 
-    const articlesResponse = await axios.get(
-      `${process.env.CMS_URL}/api/articles?locale=fr&fields[0]=title&fields[1]=description&fields[2]=slug&populate[0]=image&populate[1]=category&filters[id][$ne]=${homepageResponse.data.data.mainArticle.id}&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}${
-        isProduction ? '' : '&status=draft'
-      }`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.CMS_TOKEN}`,
+    if (!homepageResponse?.data?.data) {
+      return undefined
+    }
+
+    const articlesResponse = await cmsClient.get(`/api/articles`, {
+      params: {
+        locale: 'fr',
+        fields: ['title', 'description', 'slug'],
+        populate: ['image', 'category'],
+        'filters[id][$ne]': homepageResponse.data.data.mainArticle.id,
+        pagination: {
+          page,
+          pageSize: PAGE_SIZE,
         },
-      }
-    )
+        status: isProduction ? '' : 'draft',
+      },
+    })
 
     return {
       title: homepageResponse.data.data.title,

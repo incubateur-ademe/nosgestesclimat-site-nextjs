@@ -5,18 +5,27 @@ import axios from 'axios'
 const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
 
 export async function fetchArticlePageMetadata({
-  locale,
   articleSlug,
 }: {
-  locale: string
   articleSlug: string
-}): Promise<HomepageMetadataType> {
+}): Promise<HomepageMetadataType | undefined> {
   try {
-    const articleResponse = await cmsClient.get(
-      `/api/articles?locale=${locale}&filters[slug][$eq]=${articleSlug}&populate[0]=image&populate[1]=pageMetadata${
-        isProduction ? '' : '&status=draft'
-      }`
-    )
+    const articleResponse = await cmsClient.get(`/api/articles`, {
+      params: {
+        locale: 'fr',
+        filters: {
+          slug: {
+            $eq: articleSlug,
+          },
+        },
+        populate: ['image', 'pageMetadata'],
+        status: isProduction ? '' : 'draft',
+      },
+    })
+
+    if (!articleResponse?.data?.data) {
+      return undefined
+    }
 
     return {
       metaTitle: articleResponse.data.data[0].pageMetadata.title,
@@ -31,13 +40,6 @@ export async function fetchArticlePageMetadata({
       // Handle other errors
       console.error('Error:', error)
     }
-    return {
-      metaTitle: '',
-      metaDescription: '',
-      image: {
-        url: '',
-        alternativeText: '',
-      },
-    }
+    return undefined
   }
 }

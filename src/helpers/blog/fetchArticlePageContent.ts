@@ -6,32 +6,38 @@ const isProduction = process.env.NODE_ENV === 'production'
 
 export async function fetchArticlePageContent({
   articleSlug,
-  locale,
 }: {
   articleSlug: string
-  locale: string
 }): Promise<{
   article?: ArticleType
   otherArticles?: ArticleType[]
 }> {
   try {
-    const articleResponse = await cmsClient.get(
-      `/api/articles?locale=${locale}&filters[slug][$eq]=${articleSlug}&populate[0]=image&populate[1]=category&populate[2]=author${
-        isProduction ? '' : '&status=draft'
-      }`
-    )
-    // console.log(articleResponse.data, articleSlug)
-
-    const otherArticlesResponse = await axios.get(
-      `${process.env.CMS_URL}/api/articles?locale=${locale}&filters[category][slug][$eq]=${articleResponse.data.data?.[0].category.slug}&filters[slug][$ne]=${articleSlug}&populate[0]=image&populate[1]=category&populate[2]=author&pagination[limit]=3${
-        isProduction ? '' : '&status=draft'
-      }`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.CMS_TOKEN}`,
+    const articleResponse = await cmsClient.get(`/api/articles`, {
+      params: {
+        locale: 'fr',
+        filters: {
+          slug: {
+            $eq: articleSlug,
+          },
         },
-      }
-    )
+        populate: ['image', 'category', 'author'],
+        status: isProduction ? undefined : 'draft',
+      },
+    })
+
+    const otherArticlesResponse = await cmsClient.get(`/api/articles`, {
+      params: {
+        locale: 'fr',
+        filters: {
+          category: {
+            slug: {
+              $eq: articleResponse.data.data?.[0]?.category?.slug,
+            },
+          },
+        },
+      },
+    })
 
     return {
       article: articleResponse.data.data?.[0],

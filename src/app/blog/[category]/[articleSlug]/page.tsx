@@ -3,10 +3,8 @@ import Badge from '@/design-system/layout/Badge'
 import { fetchArticlePageContent } from '@/helpers/blog/fetchArticlePageContent'
 import { fetchArticlePageMetadata } from '@/helpers/blog/fetchArticlePageMetadata'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { defaultLocale } from '@/i18nConfig'
 
 import JSONLD from '@/components/seo/JSONLD'
-import { currentLocale } from 'next-i18n-router'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
@@ -26,18 +24,17 @@ export async function generateMetadata({
 }: {
   params: { category: string; articleSlug: string; locale: string }
 }) {
-  const locale = currentLocale()
-  const { metaTitle, metaDescription, image } = await fetchArticlePageMetadata({
-    locale: locale || defaultLocale,
-    articleSlug: params.articleSlug,
-  })
+  const { metaTitle, metaDescription, image } =
+    (await fetchArticlePageMetadata({
+      articleSlug: params.articleSlug,
+    })) || {}
 
   return getMetadataObject({
     title: metaTitle || 'Blog - Nos Gestes Climat',
     description:
       metaDescription ||
       'Découvrez des conseils pratiques pour réduire votre empreinte écologique.',
-    image: image.url,
+    image: image?.url || '',
     alternates: {
       canonical: `/blog/${params.category}/${params.articleSlug}`,
     },
@@ -51,7 +48,6 @@ export default async function ArticlePage({
 }) {
   const { article, otherArticles } = await fetchArticlePageContent({
     articleSlug: params.articleSlug,
-    locale: params.locale || defaultLocale,
   })
 
   if (!article) {
@@ -102,8 +98,8 @@ export default async function ArticlePage({
         <ArticleBreadcrumbs
           categorySlug={params.category}
           articleSlug={params.articleSlug}
-          articleTitle="Titre de l'article"
-          categoryTitle="Titre de la catégorie"
+          articleTitle={article.title}
+          categoryTitle={article.category.title}
         />
 
         <div className="flex flex-col items-start gap-12 md:flex-row md:justify-between">

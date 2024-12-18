@@ -1,24 +1,24 @@
+import { cmsClient } from '@/adapters/cms'
 import type { HomepageMetadataType } from '@/types/blog'
 import axios from 'axios'
 
 const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
 
-export async function fetchHomepageMetadata({
-  locale,
-}: {
-  locale: string
-}): Promise<HomepageMetadataType> {
+export async function fetchHomepageMetadata(): Promise<
+  HomepageMetadataType | undefined
+> {
   try {
-    const homepageResponse = await axios.get(
-      `${process.env.CMS_URL}/api/home-page?locale=${locale}&populate[0]=image&populate[1]=pageMetadata${
-        isProduction ? '' : '&status=draft'
-      }`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.CMS_TOKEN}`,
-        },
-      }
-    )
+    const homepageResponse = await cmsClient.get(`/api/home-page`, {
+      params: {
+        locale: 'fr',
+        populate: ['image', 'pageMetadata'],
+        status: isProduction ? '' : 'draft',
+      },
+    })
+
+    if (!homepageResponse?.data?.data) {
+      return undefined
+    }
 
     return {
       metaTitle: homepageResponse.data.data.pageMetadata.title,
@@ -33,13 +33,6 @@ export async function fetchHomepageMetadata({
       // Handle other errors
       console.error('Error:', error)
     }
-    return {
-      metaTitle: '',
-      metaDescription: '',
-      image: {
-        url: '',
-        alternativeText: '',
-      },
-    }
+    return undefined
   }
 }

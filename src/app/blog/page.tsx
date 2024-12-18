@@ -5,8 +5,6 @@ import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import NewslettersBlockSkeleton from '@/design-system/cms/NewslettersBlockSkeleton'
 import { fetchHomepageContent } from '@/helpers/blog/fetchHomepageContent'
 import { fetchHomepageMetadata } from '@/helpers/blog/fetchHomepageMetadata'
-import { defaultLocale } from '@/i18nConfig'
-import { currentLocale } from 'next-i18n-router'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 
@@ -25,11 +23,8 @@ const NewslettersBlockDynamic = dynamic(
 )
 
 export async function generateMetadata() {
-  const locale = currentLocale()
-
-  const { metaTitle, metaDescription, image } = await fetchHomepageMetadata({
-    locale: locale ?? defaultLocale,
-  })
+  const { metaTitle, metaDescription, image } =
+    (await fetchHomepageMetadata()) || {}
 
   return getMetadataObject({
     title: metaTitle ?? 'Blog - Nos Gestes Climat',
