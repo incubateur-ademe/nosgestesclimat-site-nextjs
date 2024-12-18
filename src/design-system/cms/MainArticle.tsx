@@ -24,7 +24,7 @@ export default function MainArticle({
         <Trans>À la une !</Trans>{' '}
         <ColorLine className="bg-rainbow absolute bottom-0 left-[15%] h-[3px] w-[70%] animate-rainbow-slow transition-all md:left-0 md:w-full" />
       </h2>
-      <div className="flex gap-8 rounded-xl bg-heroLightBackground md:flex-row">
+      <div className="flex flex-col gap-8 rounded-xl bg-heroLightBackground md:flex-row">
         <ImageWithCategory
           imageSrc={imageSrc}
           imageAlt={imageAlt}
@@ -32,10 +32,10 @@ export default function MainArticle({
           height={500}
           category={category}
           imageClassName="w-full"
-          containerClassName="w-1/2"
+          containerClassName="w-full md:w-1/2"
         />
 
-        <div className="flex-1 py-6 pr-20">
+        <div className="flex-1 p-4 md:py-6 md:pr-20">
           <h3 className="text-xl font-normal md:text-2xl">{title}</h3>
 
           <p

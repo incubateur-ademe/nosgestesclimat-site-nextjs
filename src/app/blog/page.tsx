@@ -1,5 +1,4 @@
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import Image from 'next/image'
 
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import NewslettersBlockSkeleton from '@/design-system/cms/NewslettersBlockSkeleton'
@@ -15,6 +14,7 @@ import ContentLarge from '@/components/layout/ContentLarge'
 import JSONLD from '@/components/seo/JSONLD'
 import MainArticle from '@/design-system/cms/MainArticle'
 import { notFound } from 'next/navigation'
+import BlogHero from './_components/BlogHero'
 const NewslettersBlockDynamic = dynamic(
   () => import('@/design-system/cms/NewslettersBlock'),
   {
@@ -69,29 +69,8 @@ export default async function BlogHomePage({
         ]}
       />
 
-      <ContentLarge className="mt-20">
-        <div className="mb-20 flex flex-col justify-between gap-8 overflow-x-hidden md:flex-row">
-          <div className="md:max-w-[36rem]">
-            <h1
-              data-cypress-id="blog-title"
-              className="text-3xl md:text-5xl"
-              dangerouslySetInnerHTML={{ __html: title ?? '' }}
-            />
-
-            <p
-              className="text-lg"
-              dangerouslySetInnerHTML={{ __html: description ?? '' }}
-            />
-          </div>
-          <div>
-            <Image
-              src={image?.url ?? ''}
-              width="350"
-              height="400"
-              alt={image?.alternativeText ?? ''}
-            />
-          </div>
-        </div>
+      <ContentLarge tag="div" className="mt-20">
+        <BlogHero title={title} description={description} image={image} />
 
         <MainArticle
           title={mainArticle.title}
@@ -108,7 +87,7 @@ export default async function BlogHomePage({
           currentPage={page}
         />
 
-        <div className="mb-48 flex flex-col gap-8 md:flex-row">
+        <div className="mb-40 mt-24 flex flex-col gap-8 md:flex-row">
           <Suspense fallback={<NewslettersBlockSkeleton />}>
             <NewslettersBlockDynamic />
           </Suspense>

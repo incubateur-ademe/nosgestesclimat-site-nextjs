@@ -29,22 +29,24 @@ export default function ArticleList({
         ))}
       </ul>
 
-      <DidYouKnowMainLanding className="my-20 overflow-hidden rounded-lg px-10" />
+      <DidYouKnowMainLanding className="mt-20 overflow-hidden rounded-lg px-10" />
 
-      <ul className="grid grid-cols-1 gap-8 md:grid-cols-3">
-        {articles.slice(6).map((article) => (
-          <li key={article.documentId}>
-            <PostThumbnail
-              title={article.title}
-              category={article.category?.title ?? ''}
-              imageSrc={article.image?.url ?? ''}
-              imageAlt={article.image?.alternativeText ?? ''}
-              href={`/blog/${article.category?.slug}/${article.slug}`}
-              trackingEvent={['blog', 'article', article.slug]}
-            />
-          </li>
-        ))}
-      </ul>
+      {articles.length > 6 && (
+        <ul className="mt-20 grid grid-cols-1 gap-8 md:grid-cols-3">
+          {articles.slice(6).map((article) => (
+            <li key={article.documentId}>
+              <PostThumbnail
+                title={article.title}
+                category={article.category?.title ?? ''}
+                imageSrc={article.image?.url ?? ''}
+                imageAlt={article.image?.alternativeText ?? ''}
+                href={`/blog/${article.category?.slug}/${article.slug}`}
+                trackingEvent={['blog', 'article', article.slug]}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
 
       {pageCount > 1 && (
         <Pagination currentPage={currentPage} totalPages={pageCount} />

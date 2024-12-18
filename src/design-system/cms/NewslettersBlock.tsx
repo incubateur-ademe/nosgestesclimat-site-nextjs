@@ -192,7 +192,7 @@ export default function NewslettersBlock() {
                 {...register('newsletter-logement')}
               />
 
-              <div className="mt-10 flex w-full gap-8">
+              <div className="mt-10 flex w-full flex-col gap-8 md:flex-row">
                 <EmailInput
                   value={user?.email}
                   {...register('email', {
