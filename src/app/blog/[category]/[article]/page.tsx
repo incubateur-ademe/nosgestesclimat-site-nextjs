@@ -103,23 +103,27 @@ export default async function ArticlePage({
         />
 
         <div className="flex flex-col items-start gap-12 md:flex-row md:justify-between">
-          <div className="flex flex-col items-start gap-8 md:w-8/12">
-            <h1 className="mb-0 text-5xl font-bold">{article.title}</h1>
+          <div className="flex flex-col items-start md:w-8/12">
+            <Badge className="mb-1" size="sm">
+              {article.category.title}
+            </Badge>
 
-            <Badge size="sm">{article.category.title}</Badge>
+            <h1 className="mb-6 text-3xl font-bold md:text-5xl">
+              {article.title}
+            </h1>
 
-            <div className="flex flex-row gap-2">
+            <div className="flex flex-row gap-3">
               <p className="mb-0 text-lg">
-                <span className="text-primary-700">
+                <span className="text-primary-600">
                   <Trans>Temps de lecture :</Trans>
                 </span>{' '}
                 {Math.round(article.duration / 60)} <Trans>minutes</Trans>
               </p>
 
-              <span className="text-lg">|</span>
+              <span className="text-lg text-gray-500">|</span>
 
               <p className="mb-0 text-lg">
-                <span className="text-primary-700">
+                <span className="text-primary-600">
                   <Trans>Publié le :</Trans>
                 </span>{' '}
                 {articleDate ? new Date(articleDate).toLocaleDateString() : ''}
