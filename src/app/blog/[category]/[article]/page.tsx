@@ -4,10 +4,10 @@ import { fetchArticlePageContent } from '@/helpers/blog/fetchArticlePageContent'
 import { fetchArticlePageMetadata } from '@/helpers/blog/fetchArticlePageMetadata'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 
-import JSONLD from '@/components/seo/JSONLD'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import ArticleJSONLD from './_components/ArticleJSONLD'
 import AuthorBlock from './_components/AuthorBlock'
 import OtherArticles from './_components/OtherArticles'
 import StickySummary from './_components/StickySummary'
@@ -59,41 +59,12 @@ export default async function ArticlePage({
 
   return (
     <>
-      <JSONLD
-        jsonLd={[
-          {
-            '@context': 'https://schema.org',
-            '@type': 'Organization',
-            url: 'https://nosgestesclimat.fr',
-            name: 'Nos Gestes Climat',
-            logo: 'https://nosgestesclimat.fr/_next/image?url=%2Fimages%2Fmisc%2Fpetit-logo%403x.png&w=640&q=75',
-          },
-          {
-            '@context': 'https://schema.org/',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              {
-                '@type': 'ListItem',
-                position: 1,
-                name: 'Accueil Blog',
-                item: 'https://nosgestesclimat.fr/blog',
-              },
-              {
-                '@type': 'ListItem',
-                position: 2,
-                name: article.category.title,
-                item: `https://nosgestesclimat.fr/blog/${params.category}`,
-              },
-              {
-                '@type': 'ListItem',
-                position: 3,
-                name: article.title,
-                item: `https://nosgestesclimat.fr/blog/${params.category}/${params.article}`,
-              },
-            ],
-          },
-        ]}
+      <ArticleJSONLD
+        article={article}
+        categorySlug={params.category}
+        articleSlug={params.article}
       />
+
       <div className="relative">
         <ArticleBreadcrumbs
           categorySlug={params.category}

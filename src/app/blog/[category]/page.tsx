@@ -2,7 +2,6 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 
 import FAQ from '@/components/landing-pages/FAQ'
 import ContentLarge from '@/components/layout/ContentLarge'
-import JSONLD from '@/components/seo/JSONLD'
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
@@ -11,6 +10,7 @@ import { fetchCategoryPageMetadata } from '@/helpers/blog/fetchCategoryPageMetad
 import { redirect } from 'next/navigation'
 import AdditionalContent from './_components/AdditionalContent'
 import CategoryHero from './_components/CategoryHero'
+import CategoryJSONLD from './_components/CategoryJSONLD'
 
 export async function generateMetadata({
   params,
@@ -66,52 +66,10 @@ export default async function CategoryPage({
 
   return (
     <div className="-mt-12">
-      <JSONLD
-        jsonLd={[
-          {
-            '@context': 'https://schema.org',
-            '@type': 'Organization',
-            url: 'https://nosgestesclimat.fr',
-            name: 'Nos Gestes Climat',
-            logo: 'https://nosgestesclimat.fr/_next/image?url=%2Fimages%2Fmisc%2Fpetit-logo%403x.png&w=640&q=75',
-          },
-          {
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: questions.map((faq) => ({
-              '@type': 'Question',
-              name: faq.question,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: faq.htmlAnswer,
-              },
-            })),
-          },
-          {
-            '@context': 'https://schema.org/',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              {
-                '@type': 'ListItem',
-                position: 1,
-                name: 'Accueil Blog',
-                item: 'https://nosgestesclimat.fr/blog',
-              },
-              {
-                '@type': 'ListItem',
-                position: 2,
-                name: title,
-                item: `https://nosgestesclimat.fr/blog/${params.category}`,
-              },
-              {
-                '@type': 'ListItem',
-                position: 3,
-                name: 'Articles',
-                item: `https://nosgestesclimat.fr/blog/${params.category}?page=1`,
-              },
-            ],
-          },
-        ]}
+      <CategoryJSONLD
+        title={title}
+        questions={questions}
+        categorySlug={params.category}
       />
 
       <CategoryHero
