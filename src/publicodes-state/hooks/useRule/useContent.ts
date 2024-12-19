@@ -52,6 +52,11 @@ export default function useContent({ dottedName, rule }: Props) {
 
   const plancher = useMemo<number>(() => rule?.rawNode['plancher'] ?? 0, [rule])
 
+  const plafond = useMemo<number>(
+    () => rule?.rawNode['plafond'] ?? 1000000,
+    [rule]
+  )
+
   const warning = useMemo<string | undefined>(
     () => rule?.rawNode['avertissement'],
     [rule]
@@ -102,6 +107,7 @@ export default function useContent({ dottedName, rule }: Props) {
     suggestions,
     excerpt,
     plancher,
+    plafond,
     warning,
     actions,
   }
