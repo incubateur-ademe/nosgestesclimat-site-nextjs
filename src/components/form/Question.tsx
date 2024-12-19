@@ -178,6 +178,7 @@ export default function Question({
         plafond={plafond}
         warning={warning}
         tempValue={tempValue}
+        unit={unit}
       />
 
       {assistance ? (

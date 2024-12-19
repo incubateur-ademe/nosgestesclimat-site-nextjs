@@ -1,5 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import Markdown from '@/design-system/utils/Markdown'
+import { useLocale } from '@/hooks/useLocale'
 import { motion } from 'framer-motion'
 
 type Props = {
@@ -8,6 +9,7 @@ type Props = {
   plafond?: number
   warning?: string
   tempValue?: number
+  unit?: string
 }
 export default function Warning({
   type,
@@ -15,7 +17,10 @@ export default function Warning({
   plafond,
   warning,
   tempValue,
+  unit,
 }: Props) {
+  const locale = useLocale()
+
   if (type !== 'number') return null
 
   if (plancher === undefined && plafond === undefined) return null
@@ -52,16 +57,18 @@ export default function Warning({
         <Markdown>{warning}</Markdown>
       ) : plancher && plafond ? (
         <p className="p-0">
-          <Trans>La valeur pour ce champ est comprise entre</Trans> {plancher}{' '}
-          <Trans>et</Trans> {plafond}.
+          <Trans>La valeur pour ce champ est comprise entre</Trans>{' '}
+          {plancher.toLocaleString(locale)} <Trans>et</Trans> {plafond} {unit}.
         </p>
       ) : plancher ? (
         <p className="p-0">
-          <Trans>La valeur minimum pour ce champ est de</Trans> {plancher}
+          <Trans>La valeur minimum pour ce champ est de</Trans>{' '}
+          {plancher.toLocaleString(locale)} {unit}.
         </p>
       ) : plafond ? (
         <p className="p-0">
-          <Trans>La valeur maximum pour ce champ est de</Trans> {plafond}
+          <Trans>La valeur maximum pour ce champ est de</Trans>{' '}
+          {plafond.toLocaleString(locale)} {unit}.
         </p>
       ) : null}
     </motion.div>
