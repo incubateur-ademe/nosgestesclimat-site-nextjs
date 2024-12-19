@@ -44,6 +44,7 @@ export async function fetchCategoryPageContent({
           page,
           pageSize: PAGE_SIZE,
         },
+        sort: 'publishedAt:desc',
         status: isProduction ? '' : 'draft',
       },
     })

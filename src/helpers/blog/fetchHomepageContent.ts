@@ -40,6 +40,7 @@ export async function fetchHomepageContent({
           page,
           pageSize: PAGE_SIZE,
         },
+        sort: 'publishedAt:desc',
         status: isProduction ? '' : 'draft',
       },
     })
