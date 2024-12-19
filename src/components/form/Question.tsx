@@ -55,6 +55,7 @@ export default function Question({
     questionsOfMosaicFromParent,
     activeNotifications,
     plancher,
+    plafond,
     warning,
   } = useRule(question)
 
@@ -174,8 +175,10 @@ export default function Question({
       <Warning
         type={type}
         plancher={plancher}
+        plafond={plafond}
         warning={warning}
         tempValue={tempValue}
+        unit={unit}
       />
 
       {assistance ? (
