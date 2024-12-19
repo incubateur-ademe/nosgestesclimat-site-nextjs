@@ -7,8 +7,6 @@ export default function AdditionalContent({
   content: string
   image: { url: string; alternativeText: string }
 }) {
-  if (!content || !image) return null
-
   return (
     <div className="mb-20 flex flex-col justify-between gap-8 overflow-x-hidden md:flex-row">
       <div className="md:max-w-[30rem]">

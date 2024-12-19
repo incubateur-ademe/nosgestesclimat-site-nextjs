@@ -137,24 +137,28 @@ export default async function CategoryPage({
         />
       </ContentLarge>
 
-      <FAQ
-        className="mt-20 !pb-28"
-        questions={questions
-          .sort((a, b) => a.order - b.order)
-          .map((question) => ({
-            question: question.question,
-            answer: question.htmlAnswer,
-          }))}
-        subTitle={faqDescription}
-        isBackgroundSkewed={false}
-        isBackgroundFullWidth={true}
-        shouldUseDangerouslySetInnerHTML={true}
-      />
+      {questions?.length > 0 && (
+        <FAQ
+          className="mt-20 !pb-28"
+          questions={questions
+            .sort((a, b) => a.order - b.order)
+            .map((question) => ({
+              question: question.question,
+              answer: question.htmlAnswer,
+            }))}
+          subTitle={faqDescription}
+          isBackgroundSkewed={false}
+          isBackgroundFullWidth={true}
+          shouldUseDangerouslySetInnerHTML={true}
+        />
+      )}
 
-      <AdditionalContent
-        content={additionalContent ?? ''}
-        image={image ?? { url: '', alternativeText: '' }}
-      />
+      {additionalContent && image && (
+        <AdditionalContent
+          content={additionalContent ?? ''}
+          image={image ?? { url: '', alternativeText: '' }}
+        />
+      )}
 
       <AllBlogCategories />
     </div>
