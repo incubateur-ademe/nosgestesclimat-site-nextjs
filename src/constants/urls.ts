@@ -21,10 +21,7 @@ export const SIMULATION_URL = SERVER_URL + '/simulations/v1'
 export const VERIFICATION_CODE_URL = SERVER_URL + '/verification-codes/v1'
 
 export const getPreviewUrl = (PRNumber: string | number) => {
-  if (PRNumber === 'nightly') {
-    return `https://preprod--ecolab-data.netlify.app`
-  }
-  return `https://deploy-preview-${PRNumber}--ecolab-data.netlify.app`
+  return `https://nosgestesclimat-dev.s3.fr-par.scw.cloud/model/${PRNumber}`
 }
 
 export const HIDE_CTA_PATHS = [
