@@ -1,8 +1,11 @@
 import Link from '@/components/Link'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
-import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import type { Rule} from 'publicodes';
+import type {
+  DottedName,
+  NGCRule,
+  NGCRules,
+} from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
 
 const KEYS_TO_OMIT = [
@@ -24,7 +27,7 @@ const KEYS_TO_OMIT = [
   'mosaique',
 ]
 
-const getRuleFormatted = (rule: Rule): Rule => {
+const getRuleFormatted = (rule: NGCRule): NGCRule => {
   const ruleFormatted = { ...rule }
 
   for (const key in ruleFormatted) {
@@ -40,7 +43,7 @@ export default function RuleDetail({
   ruleData,
   context,
 }: {
-  ruleData: Rule | string | number
+  ruleData: NGCRule | string | number
   context: {
     dottedName: DottedName
     rules: NGCRules

@@ -2,9 +2,9 @@ import MessageIcon from '@/components/icons/MessageIcon'
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import Markdown from '@/design-system/utils/Markdown'
-import type { Rule } from 'publicodes'
+import type { NGCRule } from '@incubateur-ademe/nosgestesclimat'
 
-export default function QuestionSection({ rule }: { rule: Rule }) {
+export default function QuestionSection({ rule }: { rule: NGCRule }) {
   if (!rule.question) return null
   return (
     <>
