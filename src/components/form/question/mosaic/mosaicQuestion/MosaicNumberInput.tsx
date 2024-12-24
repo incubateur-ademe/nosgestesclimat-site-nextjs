@@ -29,6 +29,7 @@ export default function NumberInput({
     value !== undefined &&
     typeof value === 'number' &&
     plafond !== undefined &&
+    typeof plafond === 'number' &&
     value === plafond
 
   // Model shenanigans for description split...
