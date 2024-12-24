@@ -7,7 +7,7 @@ import { safeEvaluateHelper } from '@/publicodes-state/helpers/safeEvaluateHelpe
 import type { Situation } from '@/publicodes-state/types'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import type { Evaluation } from 'publicodes';
+import type { Evaluation } from 'publicodes'
 import Engine from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
 
@@ -86,7 +86,7 @@ export default function ModeleDemoBlock() {
                     onChange(el, e.target.value === '' ? '' : e.target.value)
                   }
                 />
-                &nbsp;{rules?.[el]?.unité}
+                &nbsp;{rules?.[el]?.unité as string}
               </span>
             </label>
           </li>
