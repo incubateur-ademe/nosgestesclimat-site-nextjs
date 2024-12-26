@@ -63,6 +63,7 @@ export default function MosaicQuestion({
           setValue={(value) => {
             setValue(value, {
               foldedStep: parentMosaic,
+              questionsOfMosaicFromSibling,
             })
 
             trackEvent(
