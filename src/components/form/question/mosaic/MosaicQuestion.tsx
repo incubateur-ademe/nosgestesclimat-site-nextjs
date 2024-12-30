@@ -37,7 +37,7 @@ export default function MosaicQuestion({
           description={description}
           setValue={(value) => {
             setValue(value < 0 ? 0 : value, {
-              foldedStep: parentMosaic,
+              questionDottedName: parentMosaic,
               questionsOfMosaicFromSibling,
             })
 
@@ -62,7 +62,7 @@ export default function MosaicQuestion({
           description={description}
           setValue={(value) => {
             setValue(value, {
-              foldedStep: parentMosaic,
+              questionDottedName: parentMosaic,
               questionsOfMosaicFromSibling,
             })
 

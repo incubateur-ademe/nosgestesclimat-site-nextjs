@@ -1,5 +1,5 @@
 import { useCurrentSimulation } from '@/publicodes-state'
-import { shouldNotBeIgnored } from '@/publicodes-state/helpers/shouldNotBeIgnored'
+import { checkIfDottedNameShouldNotBeIgnored } from '@/publicodes-state/helpers/checkIfDottedNameShouldNotBeIgnored'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { useCallback, useEffect, useState } from 'react'
@@ -33,7 +33,7 @@ export function useEngineSituation({
 
       const cleanSituation = Object.fromEntries(
         Object.entries(safeSituation).filter(([dottedName]) => {
-          return shouldNotBeIgnored({
+          return checkIfDottedNameShouldNotBeIgnored({
             dottedName: dottedName as DottedName,
             safeEvaluate,
             rawMissingVariables,

@@ -87,7 +87,7 @@ export default function Question({
             if (type === 'number') {
               if (setTempValue) setTempValue(value as number)
             }
-            setValue(value, { foldedStep: question })
+            setValue(value, { questionDottedName: question })
           }}
         />
         {showInputsLabel ? (
@@ -109,7 +109,7 @@ export default function Question({
                   if (setTempValue) {
                     setTempValue(value)
                   }
-                  setValue(value, { foldedStep: question })
+                  setValue(value, { questionDottedName: question })
                   trackEvent(questionTypeAnswer({ question, answer: value }))
                 }}
                 isMissing={isMissing}
@@ -125,7 +125,7 @@ export default function Question({
                 value={value}
                 setValue={(value) => {
                   {
-                    setValue(value, { foldedStep: question })
+                    setValue(value, { questionDottedName: question })
                     trackEvent(
                       questionChooseAnswer({ question, answer: value })
                     )
@@ -146,7 +146,7 @@ export default function Question({
                 value={String(value)}
                 setValue={(value) => {
                   {
-                    setValue(value, { foldedStep: question })
+                    setValue(value, { questionDottedName: question })
                     trackEvent(
                       questionChooseAnswer({ question, answer: value })
                     )

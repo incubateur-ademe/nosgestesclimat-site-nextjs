@@ -8,7 +8,7 @@ type Props = {
   rawMissingVariables: MissingVariables
 }
 
-export const shouldNotBeIgnored = ({
+export const checkIfDottedNameShouldNotBeIgnored = ({
   dottedName,
   safeEvaluate,
   rawMissingVariables,

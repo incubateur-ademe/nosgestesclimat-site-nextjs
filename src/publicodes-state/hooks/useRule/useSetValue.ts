@@ -1,7 +1,7 @@
 'use client'
 
+import { checkIfDottedNameShouldNotBeIgnored } from '@/publicodes-state/helpers/checkIfDottedNameShouldNotBeIgnored'
 import getIsMissing from '@/publicodes-state/helpers/getIsMissing'
-import { shouldNotBeIgnored } from '@/publicodes-state/helpers/shouldNotBeIgnored'
 import type {
   DottedName,
   NGCRuleNode,
@@ -84,17 +84,17 @@ export default function useSetValue({
 
   /**
    * @param value - The value to set
-   * @param options.foldedStep - The dottedName of the foldedStep
+   * @param options.questionDottedName - The dottedName to be folded
    * @param options.questionsOfMosaicFromSibling - The dottedNames of the questions of the mosaic from the brother (another child)
    */
   const setValue = useCallback(
     async (
       value: NodeValue | Record<string, NodeValue>,
       {
-        foldedStep,
+        questionDottedName,
         questionsOfMosaicFromSibling,
       }: {
-        foldedStep?: DottedName
+        questionDottedName?: DottedName
         questionsOfMosaicFromSibling?: DottedName[]
       } = {}
     ) => {
@@ -139,15 +139,18 @@ export default function useSetValue({
       const safeAndCleanSituation = addToEngineSituation(situationToAdd)
 
       const cleanFoldedSteps = foldedSteps.filter((foldedStep) => {
-        return shouldNotBeIgnored({
+        return checkIfDottedNameShouldNotBeIgnored({
           dottedName: foldedStep as DottedName,
           safeEvaluate,
           rawMissingVariables,
         })
       })
 
-      if (foldedStep !== undefined && !cleanFoldedSteps.includes(foldedStep)) {
-        cleanFoldedSteps.push(foldedStep)
+      if (
+        questionDottedName !== undefined &&
+        !cleanFoldedSteps.includes(questionDottedName)
+      ) {
+        cleanFoldedSteps.push(questionDottedName)
       }
 
       updateCurrentSimulation({
