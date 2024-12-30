@@ -45,10 +45,11 @@ export const config = {
      * - images (image optimization files)
      * - favicon.ico (favicon file)
      * - manifest.webmanifest (manifest file)
+     * - blog/* (blog routes)
      */
     {
       source:
-        '/((?!api|_next/static|favicon.ico|images|manifest.webmanifest).*)',
+        '/((?!api|_next/static|favicon.ico|images|manifest.webmanifest|blog).*)',
       missing: [
         { type: 'header', key: 'next-router-prefetch' },
         { type: 'header', key: 'purpose', value: 'prefetch' },
