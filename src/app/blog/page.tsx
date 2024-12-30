@@ -1,5 +1,3 @@
-import dynamic from 'next/dynamic'
-import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 
 import ContentLarge from '@/components/layout/ContentLarge'
@@ -7,19 +5,13 @@ import JSONLD from '@/components/seo/JSONLD'
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
+import NewslettersBlock from '@/design-system/cms/NewslettersBlock'
 import NewslettersBlockSkeleton from '@/design-system/cms/NewslettersBlockSkeleton'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { fetchHomepageContent } from '@/services/fetchHomepageContent'
 import { fetchHomepageMetadata } from '@/services/fetchHomepageMetadata'
 import BlogHero from './_components/BlogHero'
 import GroupBlock from './_components/GroupBlock'
-
-const NewslettersBlockDynamic = dynamic(
-  () => import('@/design-system/cms/NewslettersBlock'),
-  {
-    ssr: false,
-  }
-)
 
 export async function generateMetadata() {
   const { metaTitle, metaDescription, image } =
@@ -50,9 +42,9 @@ export default async function BlogHomePage({
       page,
     })) ?? {}
 
-  if (!title || !description || !image || !mainArticle || !articles) {
-    notFound()
-  }
+  // if (!title || !description || !image || !mainArticle || !articles) {
+  //   notFound()
+  // }
 
   return (
     <>
@@ -71,26 +63,32 @@ export default async function BlogHomePage({
       <ContentLarge
         tag="div"
         className="mt-20 overflow-hidden overflow-y-auto overflow-x-hidden">
-        <BlogHero title={title} description={description} image={image} />
+        {title && description && image && (
+          <BlogHero title={title} description={description} image={image} />
+        )}
 
-        <MainArticle
-          title={mainArticle.title}
-          description={mainArticle.description}
-          imageSrc={mainArticle.image.url}
-          imageAlt={mainArticle.image.alternativeText}
-          href={`/blog/${mainArticle.category.slug}/${mainArticle.slug}`}
-          category={mainArticle.category.title}
-        />
+        {mainArticle && (
+          <MainArticle
+            title={mainArticle.title}
+            description={mainArticle.description}
+            imageSrc={mainArticle.image.url}
+            imageAlt={mainArticle.image.alternativeText}
+            href={`/blog/${mainArticle.category.slug}/${mainArticle.slug}`}
+            category={mainArticle.category.title}
+          />
+        )}
 
-        <ArticleList
-          articles={articles}
-          pageCount={pageCount ?? 0}
-          currentPage={page}
-        />
+        {articles && (
+          <ArticleList
+            articles={articles}
+            pageCount={pageCount ?? 0}
+            currentPage={page}
+          />
+        )}
 
         <div className="mb-40 mt-24 flex flex-col gap-8 md:flex-row">
           <Suspense fallback={<NewslettersBlockSkeleton />}>
-            <NewslettersBlockDynamic />
+            <NewslettersBlock />
           </Suspense>
 
           <GroupBlock />

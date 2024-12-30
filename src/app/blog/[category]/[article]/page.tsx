@@ -4,20 +4,13 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { fetchArticlePageContent } from '@/services/fetchArticlePageContent'
 import { fetchArticlePageMetadata } from '@/services/fetchArticlePageMetadata'
 
-import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import ArticleBreadcrumbs from './_components/ArticleBreadcrumbs'
 import ArticleJSONLD from './_components/ArticleJSONLD'
 import AuthorBlock from './_components/AuthorBlock'
 import OtherArticles from './_components/OtherArticles'
 import StickySummary from './_components/StickySummary'
-
-const ArticleBreadcrumbs = dynamic(
-  () => import('./_components/ArticleBreadcrumbs'),
-  {
-    loading: () => <div>Loading...</div>,
-  }
-)
 
 export async function generateMetadata({
   params,
@@ -97,7 +90,9 @@ export default async function ArticlePage({
                 <span className="text-primary-600">
                   <Trans>Publié le :</Trans>
                 </span>{' '}
-                {articleDate ? new Date(articleDate).toLocaleDateString() : ''}
+                {articleDate
+                  ? new Date(articleDate).toLocaleDateString('fr')
+                  : ''}
               </p>
             </div>
           </div>
