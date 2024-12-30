@@ -2,8 +2,6 @@ import dynamic from 'next/dynamic'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 
-import { fetchHomepageContent } from '@/adapters/services/fetchHomepageContent'
-import { fetchHomepageMetadata } from '@/adapters/services/fetchHomepageMetadata'
 import ContentLarge from '@/components/layout/ContentLarge'
 import JSONLD from '@/components/seo/JSONLD'
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
@@ -11,6 +9,8 @@ import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
 import NewslettersBlockSkeleton from '@/design-system/cms/NewslettersBlockSkeleton'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { fetchHomepageContent } from '@/services/fetchHomepageContent'
+import { fetchHomepageMetadata } from '@/services/fetchHomepageMetadata'
 import BlogHero from './_components/BlogHero'
 import GroupBlock from './_components/GroupBlock'
 
@@ -68,7 +68,9 @@ export default async function BlogHomePage({
         ]}
       />
 
-      <ContentLarge tag="div" className="mt-20">
+      <ContentLarge
+        tag="div"
+        className="mt-20 overflow-hidden overflow-y-auto overflow-x-hidden">
         <BlogHero title={title} description={description} image={image} />
 
         <MainArticle

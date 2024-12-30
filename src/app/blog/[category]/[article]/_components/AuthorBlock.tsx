@@ -14,8 +14,8 @@ export default function AuthorBlock({ author }: { author: AuthorType }) {
             height={60}
           />
         ) : (
-          <div className="h-12 w-12 rounded-full bg-gray-200">
-            <p className="text-center text-sm">{author.name.charAt(0)}</p>
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-200">
+            <p className="mb-0 text-center text-lg">{author.name.charAt(0)}</p>
           </div>
         )}
       </div>

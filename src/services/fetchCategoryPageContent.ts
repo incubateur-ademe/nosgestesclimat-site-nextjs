@@ -20,7 +20,7 @@ export async function fetchCategoryPageContent({
       'populate[1]': 'questions',
       'populate[2]': 'mainArticle.image',
       'populate[3]': 'mainArticle.category',
-      'sort[questions]': 'order:asc',
+      sort: 'questions.order:asc',
       status: isProduction ? '' : 'draft',
     })
 

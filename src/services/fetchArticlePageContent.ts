@@ -35,7 +35,9 @@ export async function fetchArticlePageContent({
 
     const { data } = articleResponse
 
-    const categorySlug = data[0]?.category?.slug
+    const article = data[0]
+
+    const categorySlug = article?.category?.slug
     const otherArticlesSearchParams = new URLSearchParams({
       locale: 'fr',
       'filters[category][slug][$eq]': categorySlug,
@@ -47,8 +49,8 @@ export async function fetchArticlePageContent({
     )
 
     return {
-      article: data[0],
-      otherArticles: otherArticlesResponse?.data?.data ?? [],
+      article,
+      otherArticles: otherArticlesResponse?.data ?? [],
     }
   } catch (error) {
     console.error('Error:', error)
