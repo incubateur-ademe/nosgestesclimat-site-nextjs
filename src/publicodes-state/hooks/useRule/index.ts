@@ -34,6 +34,7 @@ export default function useRule(
     everyNotifications,
     everyMosaicChildrenWithParent,
     addToEngineSituation,
+    rawMissingVariables,
   } = useContext(SimulationContext)
 
   const { situation, foldedSteps, updateCurrentSimulation } =
@@ -118,6 +119,8 @@ export default function useRule(
     updateCurrentSimulation,
     situation,
     addToEngineSituation,
+    foldedSteps,
+    rawMissingVariables,
   })
 
   return {

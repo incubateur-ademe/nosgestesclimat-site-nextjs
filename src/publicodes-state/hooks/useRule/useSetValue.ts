@@ -1,6 +1,7 @@
 'use client'
 
 import getIsMissing from '@/publicodes-state/helpers/getIsMissing'
+import { shouldNotBeIgnored } from '@/publicodes-state/helpers/shouldNotBeIgnored'
 import type {
   DottedName,
   NGCRuleNode,
@@ -11,6 +12,7 @@ import { utils } from 'publicodes'
 import { useCallback } from 'react'
 import getType from '../../helpers/getType'
 import type {
+  MissingVariables,
   ParsedRules,
   Situation,
   UpdateCurrentSimulationProps,
@@ -26,6 +28,8 @@ type Props = {
   situation: Situation
   updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
   addToEngineSituation: (situationToAdd: Situation) => Situation
+  foldedSteps: DottedName[]
+  rawMissingVariables: MissingVariables
 }
 
 export default function useSetValue({
@@ -37,6 +41,8 @@ export default function useSetValue({
   situation,
   updateCurrentSimulation,
   addToEngineSituation,
+  foldedSteps,
+  rawMissingVariables,
 }: Props) {
   const getMosaicResetSituation = useCallback(
     (questionsOfMosaicFromSibling: DottedName[]): Situation => {
@@ -130,14 +136,28 @@ export default function useSetValue({
         }
       }
 
-      const safeSituation = addToEngineSituation(situationToAdd)
+      const safeAndCleanSituation = addToEngineSituation(situationToAdd)
+
+      const cleanFoldedSteps = foldedSteps.filter((foldedStep) => {
+        return shouldNotBeIgnored({
+          dottedName: foldedStep as DottedName,
+          safeEvaluate,
+          rawMissingVariables,
+        })
+      })
+
+      if (foldedStep !== undefined && !cleanFoldedSteps.includes(foldedStep)) {
+        cleanFoldedSteps.push(foldedStep)
+      }
+
       updateCurrentSimulation({
-        situationToAdd: safeSituation,
-        foldedStepToAdd: foldedStep,
+        situation: safeAndCleanSituation,
+        foldedSteps: cleanFoldedSteps,
       })
     },
     [
       addToEngineSituation,
+      foldedSteps,
       updateCurrentSimulation,
       parsedRules,
       dottedName,
@@ -145,6 +165,7 @@ export default function useSetValue({
       safeEvaluate,
       type,
       getMosaicResetSituation,
+      rawMissingVariables,
     ]
   )
 

@@ -42,6 +42,8 @@ export default function SimulationProvider({
 
   const { isEngineInitialized, addToEngineSituation } = useEngineSituation({
     engine,
+    safeEvaluate,
+    rawMissingVariables,
   })
 
   const { isInitialized } = useSetComputedResults({
@@ -49,7 +51,7 @@ export default function SimulationProvider({
     subcategories,
     isEngineInitialized,
     safeGetRule,
-    safeEvaluate: safeEvaluate ?? undefined,
+    safeEvaluate,
   })
 
   if (!rules || !engine || !isInitialized) return children
