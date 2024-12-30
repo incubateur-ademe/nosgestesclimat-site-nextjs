@@ -1,8 +1,8 @@
-import { fetchArticlePageContent } from '@/adapters/services/fetchArticlePageContent'
-import { fetchArticlePageMetadata } from '@/adapters/services/fetchArticlePageMetadata'
 import Trans from '@/components/translation/Trans'
 import Badge from '@/design-system/layout/Badge'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { fetchArticlePageContent } from '@/services/fetchArticlePageContent'
+import { fetchArticlePageMetadata } from '@/services/fetchArticlePageMetadata'
 
 import dynamic from 'next/dynamic'
 import Image from 'next/image'

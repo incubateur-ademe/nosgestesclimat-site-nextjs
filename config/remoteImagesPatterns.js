@@ -41,7 +41,6 @@ const remoteImagesPatterns = [
     port: '',
     pathname: '/cms/**',
   },
-
   {
     protocol: 'https',
     hostname: 's3.fr-par.scw.cloud',
