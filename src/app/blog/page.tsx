@@ -1,20 +1,19 @@
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-
-import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
-import NewslettersBlockSkeleton from '@/design-system/cms/NewslettersBlockSkeleton'
-import { fetchHomepageContent } from '@/helpers/blog/fetchHomepageContent'
-import { fetchHomepageMetadata } from '@/helpers/blog/fetchHomepageMetadata'
 import dynamic from 'next/dynamic'
+import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
-
-import ArticleList from '@/design-system/cms/ArticleList'
-import GroupBlock from './_components/GroupBlock'
 
 import ContentLarge from '@/components/layout/ContentLarge'
 import JSONLD from '@/components/seo/JSONLD'
+import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
+import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
-import { notFound } from 'next/navigation'
+import NewslettersBlockSkeleton from '@/design-system/cms/NewslettersBlockSkeleton'
+import { fetchHomepageContent } from '@/helpers/blog/fetchHomepageContent'
+import { fetchHomepageMetadata } from '@/helpers/blog/fetchHomepageMetadata'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import BlogHero from './_components/BlogHero'
+import GroupBlock from './_components/GroupBlock'
+
 const NewslettersBlockDynamic = dynamic(
   () => import('@/design-system/cms/NewslettersBlock'),
   {

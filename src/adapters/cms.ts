@@ -6,6 +6,8 @@ export const cmsClient = axios.create({
   headers: {
     Authorization: `Bearer ${process.env.CMS_TOKEN}`,
   },
+  adapter: 'fetch',
+  fetchOptions: { cache: 'force-cache' },
 })
 
 cmsClient.interceptors.response.use(
