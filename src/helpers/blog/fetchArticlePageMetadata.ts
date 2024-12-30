@@ -25,7 +25,7 @@ export async function fetchArticlePageMetadata({
 
     if (!articleResponse?.data?.data) {
       console.error('Error: articleResponse?.data?.data is undefined')
-      return undefined
+      return
     }
 
     return {
@@ -41,6 +41,6 @@ export async function fetchArticlePageMetadata({
       // Handle other errors
       console.error('Error:', error)
     }
-    return undefined
+    return
   }
 }

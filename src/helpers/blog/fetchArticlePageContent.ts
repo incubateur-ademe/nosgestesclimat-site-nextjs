@@ -32,10 +32,7 @@ export async function fetchArticlePageContent({
       console.error(
         `Error: articleResponse.data.data?.[0] is undefined for articleSlug: ${articleSlug}`
       )
-      return {
-        article: undefined,
-        otherArticles: undefined,
-      }
+      return {}
     }
 
     const otherArticlesResponse = await cmsClient.get(`/api/articles`, {
@@ -64,9 +61,6 @@ export async function fetchArticlePageContent({
       // Handle other errors
       console.error('Error:', error)
     }
-    return {
-      article: undefined,
-      otherArticles: undefined,
-    }
+    return {}
   }
 }
