@@ -88,20 +88,13 @@ export type ArticleType = {
   publishedAt: string
   createdAt: string
   headings: HeadingType[]
-  author: {
-    name: string
-    description: string
-    image: {
-      url: string
-      alternativeText: string
-    }
-  }
+  author: AuthorType
 }
 
 export type AuthorType = {
   name: string
   description: string
-  image: {
+  image?: {
     url: string
     alternativeText: string
   }

@@ -5,8 +5,8 @@ import ContentLarge from '@/components/layout/ContentLarge'
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
-import { fetchCategoryPageContent } from '@/helpers/blog/fetchCategoryPageContent'
-import { fetchCategoryPageMetadata } from '@/helpers/blog/fetchCategoryPageMetadata'
+import { fetchCategoryPageContent } from '@/services/fetchCategoryPageContent'
+import { fetchCategoryPageMetadata } from '@/services/fetchCategoryPageMetadata'
 import { redirect } from 'next/navigation'
 import AdditionalContent from './_components/AdditionalContent'
 import CategoryHero from './_components/CategoryHero'
@@ -60,7 +60,7 @@ export default async function CategoryPage({
       page,
     })) || {}
 
-  if (!title || !description || !mainArticle || !articles || !questions) {
+  if (!title || !description) {
     return redirect('/404')
   }
 
@@ -68,7 +68,7 @@ export default async function CategoryPage({
     <div className="-mt-12">
       <CategoryJSONLD
         title={title}
-        questions={questions}
+        questions={questions ?? []}
         categorySlug={params.category}
       />
 
@@ -79,31 +79,33 @@ export default async function CategoryPage({
       />
 
       <ContentLarge tag="div">
-        <MainArticle
-          imageSrc={mainArticle.image.url}
-          imageAlt={mainArticle.image.alternativeText}
-          title={mainArticle.title}
-          description={mainArticle.description}
-          category={mainArticle.category.title}
-          href={`/blog/${mainArticle.category.slug}/${mainArticle.slug}`}
-        />
+        {mainArticle && (
+          <MainArticle
+            imageSrc={mainArticle.image.url}
+            imageAlt={mainArticle.image.alternativeText}
+            title={mainArticle.title}
+            description={mainArticle.description}
+            category={mainArticle.category.title}
+            href={`/blog/${mainArticle.category.slug}/${mainArticle.slug}`}
+          />
+        )}
 
-        <ArticleList
-          articles={articles}
-          pageCount={pageCount ?? 0}
-          currentPage={page}
-        />
+        {articles && articles.length > 0 && (
+          <ArticleList
+            articles={articles}
+            pageCount={pageCount ?? 0}
+            currentPage={page}
+          />
+        )}
       </ContentLarge>
 
-      {questions?.length > 0 && (
+      {questions && questions.length > 0 && (
         <FAQ
           className="mt-20 !pb-28"
-          questions={questions
-            .sort((a, b) => a.order - b.order)
-            .map((question) => ({
-              question: question.question,
-              answer: question.htmlAnswer,
-            }))}
+          questions={questions.map((question) => ({
+            question: question.question,
+            answer: question.htmlAnswer,
+          }))}
           subTitle={faqDescription}
           isBackgroundSkewed={false}
           isBackgroundFullWidth={true}
