@@ -2,6 +2,7 @@
 
 yarn lint
 
-yarn lint:types
+# Run TypeScript type checks and exit if there are errors
+yarn lint:types || exit 1
 
 yarn test
