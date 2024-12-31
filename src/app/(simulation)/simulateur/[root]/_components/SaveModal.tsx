@@ -105,15 +105,13 @@ export default function SaveModal({ isOpen, closeModal }: Props) {
       hasAbortButton={false}
       buttons={
         <>
-          {currentSimulation.savedViaEmail ? (
-            <Button color="secondary" onClick={() => router.push('/')}>
-              (<Trans>Revenir à l'accueil</Trans>)
-            </Button>
-          ) : (
-            <Button color="secondary" onClick={closeModal}>
+          <Button color="secondary" onClick={() => router.push('/')}>
+            {currentSimulation.savedViaEmail ? (
+              <Trans>Revenir à l'accueil</Trans>
+            ) : (
               <Trans>Non, merci</Trans>
-            </Button>
-          )}
+            )}
+          </Button>
 
           {currentSimulation.savedViaEmail ? (
             <Button onClick={closeModal}>Continuer mon test</Button>
