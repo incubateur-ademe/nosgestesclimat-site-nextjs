@@ -1,7 +1,8 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import type { ReactNode} from 'react';
+import { useClientTranslation } from '@/hooks/useClientTranslation'
+import type { ReactNode } from 'react'
 import { useEffect } from 'react'
 import ReactModal from 'react-modal'
 import Button from '../inputs/Button'
@@ -11,6 +12,7 @@ type Props = {
   children: ReactNode
   isLoading?: boolean
   isOpen: boolean
+  hasAbortCross?: boolean
   hasAbortButton?: boolean
   buttons?: ReactNode
 }
@@ -22,6 +24,7 @@ export default function Modal({
   children,
   isLoading,
   isOpen,
+  hasAbortCross = true,
   hasAbortButton = true,
   buttons,
 }: Props) {
@@ -32,11 +35,25 @@ export default function Modal({
     }
   }, [])
 
+  const { t } = useClientTranslation()
+
   return (
     <ReactModal
       isOpen={isOpen}
-      className="fixed left-1/2 top-1/2 w-[40rem] max-w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white p-8 pt-16 md:pt-8"
+      className="fixed left-1/2 top-1/2 w-[40rem] max-w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white p-8 pt-4"
       overlayClassName="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-[10000] overflow-hidden">
+      {hasAbortCross && (
+        <div className="flex justify-end">
+          <button
+            disabled={isLoading}
+            onClick={!isLoading ? closeModal : () => {}}
+            className="text-xl "
+            title={t('Fermer')}>
+            ×
+          </button>
+        </div>
+      )}
+
       {children}
 
       {hasAbortButton || buttons ? (
