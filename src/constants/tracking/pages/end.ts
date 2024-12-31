@@ -22,9 +22,6 @@ export const endToggleTargetBlock = ['trackEvent', 'Fin', 'Toggle Target block']
 
 export const endClickHedgehog = ['trackEvent', 'Fin', 'Click Hedgehog']
 
-// Figma comment #59
-export const endClickEmpreinte = ['trackEvent', 'Fin', 'Click Empreinte']
-
 // Figma comment #60
 export const endClickCategory = (category: DottedName) => [
   'trackEvent',
@@ -33,22 +30,12 @@ export const endClickCategory = (category: DottedName) => [
   `Click Category ${category}`,
 ]
 
-// Figma comment #61
-export const endClickChangeAnswers = [
-  'trackEvent',
-  'Fin',
-  'Click Change answers',
-]
-
 // Figma comment #62
 export const endClickSaveSimulation = [
   'trackEvent',
   'Fin',
   'Click Save simulation',
 ]
-
-// Figma comment #113
-export const endClickCreateGroup = ['trackEvent', 'Fin', 'Click Create group']
 
 // Figma comment #63
 export const endClickAction = (action: DottedName) => [
