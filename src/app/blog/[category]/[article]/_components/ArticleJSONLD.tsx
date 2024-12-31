@@ -1,5 +1,5 @@
+import type { ArticleType } from '@/adapters/cmsClient'
 import JSONLD from '@/components/seo/JSONLD'
-import type { ArticleType } from '@/types/blog'
 
 export default function ArticleJSONLD({
   article,

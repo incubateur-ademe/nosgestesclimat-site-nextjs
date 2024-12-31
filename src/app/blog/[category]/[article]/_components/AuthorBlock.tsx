@@ -1,4 +1,4 @@
-import type { AuthorType } from '@/types/blog'
+import type { AuthorType } from '@/adapters/cmsClient'
 import Image from 'next/image'
 
 export default function AuthorBlock({ author }: { author: AuthorType }) {

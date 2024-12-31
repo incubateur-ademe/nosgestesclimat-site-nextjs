@@ -1,6 +1,6 @@
+import type { ArticleType } from '@/adapters/cmsClient'
 import Trans from '@/components/translation/Trans'
 import PostThumbnail from '@/design-system/cms/PostThumbnail'
-import type { ArticleType } from '@/types/blog'
 
 export default function OtherArticles({
   articles,

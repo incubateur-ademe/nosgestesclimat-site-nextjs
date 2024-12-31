@@ -1,6 +1,6 @@
+import type { ArticleType } from '@/adapters/cmsClient'
 import DidYouKnowMainLanding from '@/app/_components/DidYouKnowMainLanding'
 import PostThumbnail from '@/design-system/cms/PostThumbnail'
-import type { ArticleType } from '@/types/blog'
 import Pagination from './articleList/Pagination'
 
 export default function ArticleList({
