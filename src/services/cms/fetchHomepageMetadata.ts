@@ -1,6 +1,6 @@
 import {
   cmsClient,
-  type HomepageContentType,
+  type HomePageContentType,
   type HomepageMetadataType,
   type PageMetadataType,
 } from '@/adapters/cmsClient'
@@ -20,12 +20,12 @@ export async function fetchHomepageMetadata(): Promise<
     })
 
     const homepageResponse = await cmsClient<{
-      data: HomepageContentType & { pageMetadata: PageMetadataType }
+      data: HomePageContentType & { pageMetadata: PageMetadataType }
     }>(`/api/home-page?${searchParams}`)
 
     if (!homepageResponse?.data) {
       console.error('Error: homepageResponse?.data is undefined')
-      return undefined
+      return
     }
 
     const { pageMetadata, image } = homepageResponse.data
@@ -39,6 +39,6 @@ export async function fetchHomepageMetadata(): Promise<
     console.error('Error:', error)
     captureException(error)
 
-    return undefined
+    return
   }
 }

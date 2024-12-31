@@ -43,9 +43,9 @@ export async function fetchArticlePageContent({
       sort: 'publishedAt:desc',
     })
 
-    const otherArticlesResponse = await cmsClient<{ data: ArticleType[] }>(
-      `/api/articles?${otherArticlesSearchParams}`
-    )
+    const otherArticlesResponse = await cmsClient<{
+      data: ArticleType[]
+    }>(`/api/articles?${otherArticlesSearchParams}`)
 
     return {
       article,

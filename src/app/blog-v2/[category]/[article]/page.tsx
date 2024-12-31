@@ -48,7 +48,7 @@ export default async function ArticlePage({
   }
 
   const articleDate =
-    article.modifiedAt || article.publishedAt || article.createdAt
+    article.updatedAt || article.publishedAt || article.createdAt
 
   return (
     <>

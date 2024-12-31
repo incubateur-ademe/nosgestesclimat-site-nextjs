@@ -31,86 +31,24 @@ export const cmsClient = async <T>(
   }
 }
 
-export type HomepageContentType = {
-  title: string
-  description: string
-  image: ImageType
-  mainArticle: ArticleType
-  articles: ArticleType[]
-  pageCount: number
-}
+type OptionalKeys<T> = Exclude<
+  { [P in keyof T]: undefined extends T[P] ? P : never }[keyof T],
+  undefined
+>
 
-export type HomepageMetadataType = {
-  metaTitle: string
-  metaDescription: string
-  image: ImageType
-}
+type Populate<T, KEYS extends OptionalKeys<T>> = Omit<T, OptionalKeys<T>> &
+  Required<Pick<T, KEYS>>
 
+// Components
 export type PageMetadataType = {
   title: string
-  description: string
-}
-
-export type CategoryType = {
-  id: string
-  title: string
-  slug: string
-  description: string
-  order: number
-  mainArticle: ArticleType
-  htmlDescription: string
-  htmlContent: string
-  questions: QuestionType[]
-  faqDescription: string
-  pageMetadata: PageMetadataType
-}
-
-export type QuestionType = {
-  id: string
-  question: string
-  htmlAnswer: string
-  order: number
-}
-
-export type CategoryPageContentType = {
-  title: string
-  description: string
-  faqDescription: string
-  mainArticle: ArticleType
-  articles: ArticleType[]
-  pageCount: number
-  questions: QuestionType[]
-  additionalContent: string
-  image: ImageType
+  description?: string | null
 }
 
 export type HeadingType = {
   id: string
   text: string
   level: number
-}
-
-export type ArticleType = {
-  id: string
-  documentId: string
-  title: string
-  slug: string
-  description: string
-  image: ImageType
-  duration: number
-  date: string
-  category: {
-    title: string
-    slug: string
-  }
-  content: string
-  htmlContent: string
-  modifiedAt: string
-  publishedAt: string
-  createdAt: string
-  headings: HeadingType[]
-  author: AuthorType
-  pageMetadata: PageMetadataType
 }
 
 export type ImageType = {
@@ -129,10 +67,69 @@ export type ImageType = {
   }
 }
 
+// Single types
+export type HomePageType = {
+  title: string
+  htmlTitle: string
+  description: string
+  htmlDescription: string
+  image?: ImageType
+  mainArticle?: ArticleType | null
+  articles?: ArticleType[]
+  pageMetadata?: PageMetadataType
+}
+
+// usage PopulatedHomePageType<"image" | "articles">
+export type PopulatedHomePageType<K extends OptionalKeys<HomePageType>> =
+  Populate<HomePageType, K>
+
+// Collection types
+export type ArticleType = {
+  id: number
+  documentId: string
+  title: string
+  duration: number
+  description: string
+  htmlDescription: string
+  content: string
+  htmlContent: string
+  slug: string
+  date: string
+  headings: HeadingType[]
+  updatedAt: string
+  publishedAt: string
+  createdAt: string
+  category: {
+    title: string
+    slug: string
+  }
+  author?: AuthorType | null
+  image?: ImageType
+  pageMetadata?: PageMetadataType
+}
+
+export type QuestionType = {
+  id: string
+  question: string
+  htmlAnswer: string
+  order: number
+}
+
+export type CategoryType = {
+  title: string
+  description: string
+  faqDescription: string
+  mainArticle: ArticleType
+  articles: ArticleType[]
+  questions: QuestionType[]
+  additionalContent: string
+  image: ImageType
+}
+
 export type AuthorType = {
   name: string
   description: string
-  image?: ImageType
+  image?: ImageType | null
 }
 
 export type MetaType = {

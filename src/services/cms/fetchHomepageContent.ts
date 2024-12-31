@@ -1,7 +1,7 @@
 import {
   cmsClient,
   type ArticleType,
-  type HomepageContentType,
+  type HomePageContentType,
   type ImageType,
   type MetaType,
 } from '@/adapters/cmsClient'
@@ -15,7 +15,7 @@ export async function fetchHomepageContent({
   page,
 }: {
   page: number
-}): Promise<HomepageContentType | undefined> {
+}): Promise<HomePageContentType | undefined> {
   try {
     const homepageSearchParams = new URLSearchParams({
       locale: 'fr',
@@ -27,7 +27,7 @@ export async function fetchHomepageContent({
     })
 
     const homepageResponse = await cmsClient<{
-      data: HomepageContentType
+      data: HomePageContentType
       image: ImageType
     }>(`/api/home-page?${homepageSearchParams}`)
 
