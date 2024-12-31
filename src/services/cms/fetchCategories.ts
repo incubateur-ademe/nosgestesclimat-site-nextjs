@@ -1,5 +1,4 @@
-import { cmsFetch } from '@/adapters/cmsFetch'
-import type { CategoryType } from '@/types/blog'
+import { cmsClient, type CategoryType } from '@/adapters/cmsClient'
 import { captureException } from '@sentry/nextjs'
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -12,7 +11,7 @@ export async function fetchCategories(): Promise<CategoryType[]> {
       status: isProduction ? '' : 'draft',
     })
 
-    const categoriesResponse = await cmsFetch(
+    const categoriesResponse = await cmsClient<{ data: CategoryType[] }>(
       `/api/categories?${categoriesSearchParams}`
     )
 

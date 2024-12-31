@@ -1,5 +1,9 @@
-import { cmsFetch } from '@/adapters/cmsFetch'
-import type { HomepageMetadataType } from '@/types/blog'
+import {
+  cmsClient,
+  type CategoryType,
+  type HomepageMetadataType,
+  type ImageType,
+} from '@/adapters/cmsClient'
 import { captureException } from '@sentry/nextjs'
 
 const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
@@ -18,9 +22,10 @@ export async function fetchCategoryPageMetadata({
       status: isProduction ? '' : 'draft',
     })
 
-    const categoryResponse = await cmsFetch(
-      `/api/categories?${categorySearchParams}`
-    )
+    const categoryResponse = await cmsClient<{
+      data: CategoryType[]
+      image: ImageType
+    }>(`/api/categories?${categorySearchParams}`)
 
     if (!categoryResponse?.data[0]) {
       console.error('Error: categoryResponse?.data?.[0] is undefined')

@@ -1,5 +1,10 @@
-import { cmsFetch } from '@/adapters/cmsFetch'
-import type { HomepageContentType } from '@/types/blog'
+import {
+  cmsClient,
+  type ArticleType,
+  type HomepageContentType,
+  type ImageType,
+  type MetaType,
+} from '@/adapters/cmsClient'
 import { captureException } from '@sentry/nextjs'
 
 const PAGE_SIZE = 12
@@ -21,9 +26,10 @@ export async function fetchHomepageContent({
       status: isProduction ? '' : 'draft',
     })
 
-    const homepageResponse = await cmsFetch(
-      `/api/home-page?${homepageSearchParams}`
-    )
+    const homepageResponse = await cmsClient<{
+      data: HomepageContentType
+      image: ImageType
+    }>(`/api/home-page?${homepageSearchParams}`)
 
     if (!homepageResponse?.data) {
       console.error('Error: homepageResponse?.data is undefined')
@@ -46,9 +52,10 @@ export async function fetchHomepageContent({
       status: isProduction ? '' : 'draft',
     })
 
-    const articlesResponse = await cmsFetch(
-      `/api/articles?${articlesSearchParams}`
-    )
+    const articlesResponse = await cmsClient<{
+      data: ArticleType[]
+      meta: MetaType
+    }>(`/api/articles?${articlesSearchParams}`)
 
     const { data, meta } = articlesResponse
 

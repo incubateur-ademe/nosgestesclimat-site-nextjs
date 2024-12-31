@@ -1,7 +1,7 @@
 import Link from '@/components/Link'
 import Background from '@/components/landing-pages/Background'
 import Trans from '@/components/translation/Trans'
-import { fetchCategories } from '@/services/fetchCategories'
+import { fetchCategories } from '@/services/cms/fetchCategories'
 import Badge from '../layout/Badge'
 
 export default async function AllBlogCategories() {

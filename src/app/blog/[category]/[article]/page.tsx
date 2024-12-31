@@ -1,8 +1,8 @@
 import Trans from '@/components/translation/Trans'
 import Badge from '@/design-system/layout/Badge'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { fetchArticlePageContent } from '@/services/fetchArticlePageContent'
-import { fetchArticlePageMetadata } from '@/services/fetchArticlePageMetadata'
+import { fetchArticlePageContent } from '@/services/cms/fetchArticlePageContent'
+import { fetchArticlePageMetadata } from '@/services/cms/fetchArticlePageMetadata'
 
 import Image from 'next/image'
 import { notFound } from 'next/navigation'

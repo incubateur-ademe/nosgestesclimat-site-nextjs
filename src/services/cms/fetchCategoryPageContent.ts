@@ -1,5 +1,10 @@
-import { cmsFetch } from '@/adapters/cmsFetch'
-import type { CategoryPageContentType } from '@/types/blog'
+import {
+  cmsClient,
+  type ArticleType,
+  type CategoryPageContentType,
+  type CategoryType,
+  type ImageType,
+} from '@/adapters/cmsClient'
 import { captureException } from '@sentry/nextjs'
 
 const PAGE_SIZE = 12
@@ -24,9 +29,10 @@ export async function fetchCategoryPageContent({
       status: isProduction ? '' : 'draft',
     })
 
-    const categoryResponse = await cmsFetch(
-      `/api/categories?${categorySearchParams}`
-    )
+    const categoryResponse = await cmsClient<{
+      data: CategoryType[]
+      image: ImageType
+    }>(`/api/categories?${categorySearchParams}`)
 
     if (!categoryResponse?.data?.[0]) {
       console.error('Error: categoryResponse?.data?.[0] is undefined')
@@ -52,9 +58,10 @@ export async function fetchCategoryPageContent({
       status: isProduction ? '' : 'draft',
     })
 
-    const articlesResponse = await cmsFetch(
-      `/api/articles?${articlesSearchParams}`
-    )
+    const articlesResponse = await cmsClient<{
+      data: ArticleType[]
+      meta: { pagination: { pageCount: number } }
+    }>(`/api/articles?${articlesSearchParams}`)
 
     const { data: articlesData, meta } = articlesResponse
 

@@ -1,5 +1,9 @@
-import { cmsFetch } from '@/adapters/cmsFetch'
-import type { HomepageMetadataType } from '@/types/blog'
+import {
+  cmsClient,
+  type HomepageContentType,
+  type HomepageMetadataType,
+  type PageMetadataType,
+} from '@/adapters/cmsClient'
 import { captureException } from '@sentry/nextjs'
 
 const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
@@ -15,7 +19,9 @@ export async function fetchHomepageMetadata(): Promise<
       status: isProduction ? '' : 'draft',
     })
 
-    const homepageResponse = await cmsFetch(`/api/home-page?${searchParams}`)
+    const homepageResponse = await cmsClient<{
+      data: HomepageContentType & { pageMetadata: PageMetadataType }
+    }>(`/api/home-page?${searchParams}`)
 
     if (!homepageResponse?.data) {
       console.error('Error: homepageResponse?.data is undefined')

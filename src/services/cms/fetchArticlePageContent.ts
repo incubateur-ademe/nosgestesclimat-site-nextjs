@@ -1,5 +1,4 @@
-import { cmsFetch } from '@/adapters/cmsFetch'
-import type { ArticleType } from '@/types/blog'
+import { cmsClient, type ArticleType } from '@/adapters/cmsClient'
 import { captureException } from '@sentry/nextjs'
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -22,7 +21,7 @@ export async function fetchArticlePageContent({
       status: isProduction ? '' : 'draft',
     })
 
-    const articleResponse = await cmsFetch(
+    const articleResponse = await cmsClient<{ data: ArticleType[] }>(
       `/api/articles?${articleSearchParams}`
     )
 
@@ -44,7 +43,7 @@ export async function fetchArticlePageContent({
       sort: 'publishedAt:desc',
     })
 
-    const otherArticlesResponse = await cmsFetch(
+    const otherArticlesResponse = await cmsClient<{ data: ArticleType[] }>(
       `/api/articles?${otherArticlesSearchParams}`
     )
 
