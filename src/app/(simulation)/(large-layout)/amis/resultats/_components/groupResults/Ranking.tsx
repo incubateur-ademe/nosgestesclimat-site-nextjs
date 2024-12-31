@@ -60,7 +60,7 @@ export default function Ranking({
           return (
             <RankingMember
               metric={metric}
-              key={participant._id}
+              key={participant.id}
               index={index}
               participant={participant}
               isTopThree
@@ -89,7 +89,7 @@ export default function Ranking({
               .map((participant: Participant, index: number) => {
                 return (
                   <RankingMember
-                    key={participant._id}
+                    key={participant.id}
                     isCurrentMember={participant.userId === userId}
                     group={group}
                     // Add 3 to the index to account for the top three members

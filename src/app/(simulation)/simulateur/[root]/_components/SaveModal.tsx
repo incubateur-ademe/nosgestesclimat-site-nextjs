@@ -10,7 +10,7 @@ import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import type { SubmitHandler} from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import SaveSimulationForm from './saveModal/SaveSimulationForm'
 
@@ -60,7 +60,7 @@ export default function SaveModal({ isOpen, closeModal }: Props) {
         ...currentSimulation,
         savedViaEmail: true,
       },
-      shouldSendSimulationEmail: true,
+      sendEmail: true,
     })
   }
 

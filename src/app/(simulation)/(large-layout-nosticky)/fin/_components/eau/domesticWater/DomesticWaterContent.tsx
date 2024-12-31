@@ -6,7 +6,7 @@ import France from '@socialgouv/react-departements'
 import DomesticWaterChart from './domesticWaterContent/DomesticWaterChart'
 
 export default function DomesticWaterContent() {
-  const { departements } = useVigieEau()
+  const { departements, error } = useVigieEau()
 
   // We remove the departements with the maximum level of vigilance (there is no restriction yet)
   const departementsCodes = departements
@@ -42,13 +42,31 @@ export default function DomesticWaterContent() {
           en ce moment :
         </Trans>
       </p>
-      <div className="mb-8 max-w-96 self-center">
+      <div className="relative mb-8 max-w-96 self-center">
         <France
           departements={departementsCodes}
           color="transparent"
           highlightColor="#d40d83"
         />
+
+        {error && (
+          <div className="absolute left-0 top-0 z-10 flex h-full w-full flex-col items-center justify-center bg-[rgba(255,255,255,0.7)]">
+            <p className="text-center text-sm font-bold text-red-700">
+              <Trans>
+                Oups ! Une erreur s'est produite au moment de récupérer les
+                données VigiEau.
+              </Trans>
+            </p>
+            <p className="text-center text-sm font-bold text-red-700">
+              <Trans>
+                Veuillez réessayer plus tard ou nous contacter si le problème
+                persiste.
+              </Trans>
+            </p>
+          </div>
+        )}
       </div>
+
       <p>
         <Link href="https://vigieau.gouv.fr/" target="_blank">
           <Trans>Rendez-vous sur VigiEau pour en savoir plus.</Trans>

@@ -9,7 +9,7 @@ import {
   useUser,
 } from '@/publicodes-state'
 import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
-import type { PropsWithChildren} from 'react';
+import type { PropsWithChildren } from 'react'
 import { Suspense, useState } from 'react'
 import Error500 from '../layout/500'
 import PRNumberHook from './providers/PRNumberHook'

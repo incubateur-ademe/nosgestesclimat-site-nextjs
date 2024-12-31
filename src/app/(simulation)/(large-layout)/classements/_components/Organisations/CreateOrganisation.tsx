@@ -8,10 +8,12 @@ import type { Organisation } from '@/types/organisations'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {
-  organisation?: Organisation
+  organisations?: Organisation[]
 }
 
-export default function CreateOrganisation({ organisation }: Props) {
+export default function CreateOrganisation({
+  organisations: [organisation] = [],
+}: Props) {
   if (organisation) {
     return null
   }

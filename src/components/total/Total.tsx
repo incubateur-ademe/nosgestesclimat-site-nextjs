@@ -7,6 +7,7 @@ import {
 } from '@/constants/tracking/pages/simulateur'
 import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useIframe } from '@/hooks/useIframe'
 import { useCurrentSimulation, useForm, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useState } from 'react'
@@ -32,6 +33,8 @@ export default function Total({
   const { tutorials, hideTutorial, showTutorial } = useUser()
 
   const { progression } = useCurrentSimulation()
+
+  const { isIframe, isIframeOnlySimulation } = useIframe()
 
   const { currentCategory } = useForm()
 
@@ -80,7 +83,9 @@ export default function Total({
 
         <div className="mb-0 flex w-full max-w-6xl justify-between overflow-visible pl-1 pr-4 lg:mx-auto lg:px-4">
           <div className="relative flex items-center gap-1 lg:gap-4">
-            {simulationMode && <ButtonBack onClick={toggleSaveModal} />}
+            {simulationMode && !isIframe && !isIframeOnlySimulation && (
+              <ButtonBack onClick={toggleSaveModal} />
+            )}
 
             <TotalFootprintNumber />
 

@@ -112,9 +112,9 @@
 
     It's a complicated subject, to say the least!
 
-    Nos Gestes Climat is an individual footprint simulator. We consider that **every human being, child or adult, has his or her own footprint**.
+    Nos Gestes Climat is an individual footprint calculator. We consider that **every human being, child or adult, has his or her own footprint**.
 
-    Of course, a child has not chosen to be born, and somewhere one or two adults have decided to bring a new individual into the world, who will have a carbon footprint. One might say that we should attribute it to them. But for how long? Your footprint is not to be attributed to your parents!
+    Of course, a child has not chosen to be born, and somewhere one or two adults have decided to bring a new individual into the world, who will have a carbon footprint. We could say that we should attribute it to them. But for how long? Your footprint is not to be attributed to your parents!
 
     On the other hand, we're lucky: French demographics are fairly stable, and there's not much risk of our individual budgets melting away because of explosive demographics.
   question.lock: Vous ne posez pas de questions sur les enfants ?
@@ -123,7 +123,7 @@
 
     C'est un sujet, pour le moins, compliqué !
 
-    Nos Gestes Climat est un simulateur d'empreinte individuelle. On considère que **chaque humain, enfant ou adulte, a sa propre empreinte**.
+    Nos Gestes Climat est un calculateur d'empreinte individuelle. On considère que **chaque humain, enfant ou adulte, a sa propre empreinte**.
 
     Certes, un enfant n'a pas choisi de naître, et quelque part un ou deux adulte(s) ont décidé de mettre au monde un nouvel individu, qui aura une empreinte carbone. On pourrait se dire que l'on devrait la leur attribuer. Mais alors, pendant combien de temps ? Votre empreinte n'est pas à attribuer à vos parents !
 
@@ -173,16 +173,16 @@
 
     It's a very complex subject, on several levels.
 
-    First, there is **the problem of double counting**. Emissions from fossil fuels financed by banks are counted for those who use them. Counting the footprint of savings therefore means double-counting the consumption linked to what these savings have financed.
+    Firstly, there is **the problem of double counting**. Emissions from fossil fuels financed by banks are counted for those who use them. Counting the footprint of savings therefore means counting twice the consumption linked to what these savings have financed.
 
-    > For example, your bank may finance the extraction of oil off the coast of Siberia, but this oil is extracted so that someone, somewhere, can drive a car 10km, heat a house or produce plastic.
+    > To illustrate, your bank may be financing the extraction of oil off the coast of Siberia, but this oil is being extracted so that someone, somewhere, can drive 10km, heat a house or produce plastic.
     > In the model, these emissions are attributed to the consumption of cars, housing and plastic.
 
-    There is also **the difficulty of accounting for the carbon footprint of savings**. Initiatives do exist (such as <a href="https://www.oxfamfrance.org/climat-et-energie/calculez-lempreinte-carbone-de-votre-compte-bancaire/">that of Oxfam</a>, for example), but we are far from a consensus on calculation methods.
+    There is also **the difficulty of accounting for the carbon footprint of savings**. Initiatives exist (such as <a href="https://www.oxfamfrance.org/climat-et-energie/calculez-lempreinte-carbone-de-votre-compte-bancaire/">that of Oxfam</a>, for example), but we are far from a consensus on calculation methods.
 
-    For these two reasons, the carbon footprint of your savings is not currently assessed as part of Nos Gestes Climat.
+    For these two reasons, the footprint of your savings is not currently assessed as part of Nos Gestes Climat.
 
-    nevertheless, we're aware that we're probably missing our educational objective here: this is a subject that still gets (too) little attention, and one on which citizens deserve to be informed. So we' <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/1823">re still thinking about</a> adding an "individual savings" component to the simulator._
+    nevertheless, we are aware that we are probably missing our educational objective here: this is a subject that still receives (too) little attention, and one on which citizens deserve to be informed. So <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/1823">we're still thinking about</a> adding an 'individual savings' component to the calculator._
   question.lock: Pourquoi ne pas prendre en compte l'épargne individuelle ?
   catégorie.lock: général
   réponse.lock: |
@@ -198,7 +198,7 @@
 
     Ces deux raisons font qu'actuellement, l'empreinte de votre épargne n'est pas évaluée dans le cadre de Nos Gestes Climat.
 
-    _Néanmoins, nous sommes conscients que nous passons sûrement là à côté de notre objectif pédagogique : c'est un sujet qui fait couler encore (trop) peu d'encre, et sur lequel les citoyens méritent d'être informés. Aussi, [la réflexion est toujours ouverte](https://github.com/incubateur-ademe/nosgestesclimat/issues/1823) pour ajouter une composante "épargne individuelle" au simulateur._
+    _Néanmoins, nous sommes conscients que nous passons sûrement là à côté de notre objectif pédagogique : c'est un sujet qui fait couler encore (trop) peu d'encre, et sur lequel les citoyens méritent d'être informés. Aussi, [la réflexion est toujours ouverte](https://github.com/incubateur-ademe/nosgestesclimat/issues/1823) pour ajouter une composante "épargne individuelle" au calculateur._
 - id: 2tonnes
   question: Where does this 2-tonne target come from?
   catégorie: general
@@ -252,23 +252,23 @@
   catégorie: general
   réponse: |
 
-    The footprint displayed at the start of the test, before you have answered the questions, should be seen as a **starting point**. Throughout the simulator, you can compare the footprint of your consumption items (car mileage, heating, etc.) with values that are intended to be as close as possible to the French average. 
+    The footprint displayed at the start of the test, before you have answered the questions, should be seen as a **starting point**. Throughout the calculator, you can compare the footprint of your consumption items (car kilometres, heating, etc.) with values that are intended to be as close as possible to the French average. 
 
     This starting point is different from `8.9 tonnes of CO₂ₑ`, <a href="https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1995-2021">the latest average French carbon footprint calculated by the Ministry of the Environment in November 2022</a>.
 
     **This difference is normal**, as the two calculation methods are very different:
 
     - **"From above "**: The Ministry's average includes the carbon impact of all activities in the French economy, which it then divides by the 67 million French people.
-    - **Bottom-up "**: Nos Gestes Climat proposes adding, item by item, the footprints of all our actual and "significant" consumption (i.e. representing the vast majority of an individual's carbon footprint). The model is not exhaustive, the challenge being to strike the right balance between accuracy/completeness and complexity/test duration.
+    - **"Bottom up "**: Nos Gestes Climat proposes adding, item by item, the footprints of all our actual and "significant" consumption (i.e. representing the vast majority of an individual's carbon footprint). The model is not exhaustive, the challenge being to strike the right balance between accuracy/completeness and complexity/length of test.
 
-    As long as the order of magnitude is identical, all is well (here we have a deviation of less than one tonne, i.e. less than 10%, which seems reasonable). 
+    As long as the order of magnitude is identical, everything is fine (here we have a difference of less than one tonne, i.e. less than 10%, which seems reasonable). 
 
-    > In addition, we're constantly looking to **make the model <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%97%AF+sujet+manquant%22">more accurate and complete**</a>. If you feel you've missed an important topic, please <a href="https://github.com/incubateur-ademe/nosgestesclimat">let us know on Github</a>!
+    > In addition, we are constantly looking to **make the model <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%97%AF+sujet+manquant%22">more accurate and more complete**</a>. If you feel you've missed an important topic, don't hesitate to <a href="https://github.com/incubateur-ademe/nosgestesclimat">let us know on Github</a>!
   question.lock: Puis-je me comparer à la moyenne française ?
   catégorie.lock: général
   réponse.lock: |
 
-    Il faut voir l'empreinte qui s'affiche au début du test, avant que vous n'ayez répondu aux questions, comme un **point de départ**. Il vous permet, tout au long du simulateur, de comparer l'empreinte de vos postes de consommation (km en voiture, chauffage...) à des valeurs qui se veulent les plus proches de la moyenne française. 
+    Il faut voir l'empreinte qui s'affiche au début du test, avant que vous n'ayez répondu aux questions, comme un **point de départ**. Il vous permet, tout au long du calculateur, de comparer l'empreinte de vos postes de consommation (km en voiture, chauffage...) à des valeurs qui se veulent les plus proches de la moyenne française. 
 
     Ce point de départ est différent des `8,9 tonnes de CO₂ₑ`, [la dernière moyenne d'empreinte carbone française calculé par le Ministère de l'Environnement en novembre 2022](https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1995-2021).
 
@@ -438,15 +438,15 @@
   catégorie: food
   réponse: |
 
-    **Please note: eating organic does not, in itself, reduce your carbon footprint **
+    **Please note: eating organic does not in itself reduce your carbon footprint **
 
-    To date, data indicates that for the same production and products, **organic farming requires larger agricultural plots**, reducing the size of forests and natural areas, which are essential for carbon sequestration. This is why, on a global scale and for equal quantities consumed, organic tends to be considered as having "more impact" on the climate than conventional agriculture.
+    To date, the data indicates that for the same production and products, **organic farming requires larger agricultural plots**, reducing the size of forests and natural areas, which are essential for carbon sequestration. This is why, on a global scale and for the same quantities consumed, organic farming tends to be considered as having a "greater impact" on the climate than conventional farming.
 
-    Of course, **this is no reason not to eat organic**. This is a bias in our simulator. It only looks at carbon emissions.
+    Of course, **this is no reason not to eat organic**. This is a bias in our calculator. It only looks at carbon emissions.
 
-    And yet, from soil and groundwater pollution to loss of biodiversity and the preservation of farmers' health, **an organic diet considerably reduces many other environmental impacts**, while also reducing the risks to our health. We're dealing here with environmental issues in general, and need to take a step back from our 100% greenhouse gas-focused calculation.
+    And yet, from soil and groundwater pollution to loss of biodiversity and the health of farmers, **organic food considerably reduces many other environmental impacts** while also reducing the risks to our health. We're talking here about environmental issues in general, and we need to take a step back from our calculation, which focuses 100% on greenhouse gases.
 
-    There's a lively debate going on around this issue, and a lot of (digital) ink is being spilled <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/1799">on our Github</a>. Feel free to join the conversation!
+    There's a lively debate on this issue and a lot of (digital) ink is being spilled <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/1799">on our Github</a>. Feel free to join the conversation!
   question.lock: Pourquoi ne posez-vous pas de question sur le bio ?
   catégorie.lock: alimentation
   réponse.lock: |
@@ -455,7 +455,7 @@
 
     À ce jour, les données indiquent qu'à production et produits égaux, **une culture bio nécessite des parcelles agricoles plus grandes**, réduisant la taille des forêts et des zones naturelles, zones essentielles à la séquestration du carbone. C’est pourquoi, à l’échelle globale et à quantités consommées égales, on tend à considérer que le bio a « plus d’impact » sur le climat que l’agriculture conventionnelle.
 
-    Bien sûr, **ce n’est pas une raison pour ne pas manger bio**. C'est un biais de notre simulateur. Il ne s'intéresse qu'aux émissions de carbone.
+    Bien sûr, **ce n’est pas une raison pour ne pas manger bio**. C'est un biais de notre calculateur. Il ne s'intéresse qu'aux émissions de carbone.
 
     Or, de la pollution des sols et des nappes phréatiques à la perte de biodiversité en passant par la préservation de la santé des agriculteurs, **une alimentation bio permet de réduire considérablement de nombreux autres impacts environnementaux** tout en réduisant également les risques pour notre santé. Nous touchons ici aux enjeux environnementaux en général, et devons prendre du recul par rapport à notre calcul 100 % centré sur les gaz à effet de serre.
 

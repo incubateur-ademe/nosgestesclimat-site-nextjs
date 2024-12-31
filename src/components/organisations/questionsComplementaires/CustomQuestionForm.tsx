@@ -1,9 +1,8 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
-import { useAreCustomQuestionsEnabled } from '@/hooks/organisations/useAreCustomQuestionsEnabled'
-import type { OrganisationPoll } from '@/types/organisations'
+import type { Organisation, OrganisationPoll } from '@/types/organisations'
 import { useEffect, useState } from 'react'
-import type { SubmitHandler} from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import EditableToggleField from './EditableToggleField'
@@ -13,12 +12,11 @@ type Inputs = {
 }
 
 type Props = {
-  poll:
-    | Pick<
-        OrganisationPoll,
-        'customAdditionalQuestions' | 'defaultAdditionalQuestions'
-      >
-    | undefined
+  organisation: Organisation
+  poll: Pick<
+    OrganisationPoll,
+    'customAdditionalQuestions' | 'defaultAdditionalQuestions'
+  >
   submitLabel?: string | JSX.Element
   isEditMode?: boolean
   onCompleted?: (changes: Record<string, unknown>) => void
@@ -32,12 +30,10 @@ export default function CustomQuestionForm({
   submitLabel,
   question,
   isEditMode,
+  organisation,
   onCompleted = () => {},
 }: Props) {
   const [isFormDisplayed, setIsFormDisplayed] = useState(isEditMode ?? false)
-
-  const { data: areCustomQuestionsEnabled, isFetched } =
-    useAreCustomQuestionsEnabled()
 
   const { register, handleSubmit, setValue, reset } = useReactHookForm<Inputs>()
 
@@ -81,7 +77,7 @@ export default function CustomQuestionForm({
   }
 
   // Show the form only for organisations with access
-  if (!isFetched || !areCustomQuestionsEnabled) {
+  if (!organisation.hasCustomQuestionEnabled) {
     return null
   }
 

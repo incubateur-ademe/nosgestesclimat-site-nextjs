@@ -19,6 +19,7 @@ import {
 } from '@/constants/tracking/layout'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Separator from '@/design-system/layout/Separator'
+import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { usePathname } from 'next/navigation'
@@ -31,6 +32,10 @@ import Trans from '../translation/Trans'
 export default function Footer({ className = '' }) {
   const pathname = usePathname()
   const locale = useLocale()
+
+  const { isIframeOnlySimulation } = useIframe()
+
+  if (isIframeOnlySimulation) return null
 
   const shouldUseWhiteBackground =
     pathname === '/' ||

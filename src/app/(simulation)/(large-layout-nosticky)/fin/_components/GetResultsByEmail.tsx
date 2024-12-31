@@ -110,7 +110,7 @@ export default function GetResultsByEmail({
 
     trackEvent(endClickSaveSimulation)
 
-    const listIds = getSaveSimulationListIds(data)
+    const newsletters = getSaveSimulationListIds(data)
 
     const formattedEmail = formatEmail(data.email)
 
@@ -132,8 +132,8 @@ export default function GetResultsByEmail({
         ...currentSimulation,
         savedViaEmail: true,
       },
-      shouldSendSimulationEmail: true,
-      listIds,
+      newsletters,
+      sendEmail: true,
     })
   }
 

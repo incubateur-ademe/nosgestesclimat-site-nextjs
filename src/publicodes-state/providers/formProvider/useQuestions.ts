@@ -33,7 +33,10 @@ export default function useQuestions({
   rawMissingVariables,
 }: Props) {
   // We use the DottedName type from nosgestesclimat to make sure the build will break when using rules that are not in the model.
-  const priorityQuestions: DottedName[] = ['alimentation . plats']
+  const priorityQuestions: DottedName[] = [
+    'alimentation . plats',
+    'logement . chauffage . bois . type',
+  ]
 
   const nonPriorityQuestions: DottedName[] = [
     'logement . électricité . réseau . consommation',
