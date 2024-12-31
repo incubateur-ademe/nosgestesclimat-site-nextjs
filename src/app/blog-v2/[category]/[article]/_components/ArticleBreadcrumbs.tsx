@@ -18,10 +18,10 @@ export default async function ArticleBreadcrumbs({
     <Breadcrumbs
       className="relative"
       items={[
-        { href: '/blog', label: t('Accueil Blog') },
-        { href: `/blog/${categorySlug}`, label: categoryTitle },
+        { href: '/blog-v2', label: t('Accueil Blog') },
+        { href: `/blog-v2/${categorySlug}`, label: categoryTitle },
         {
-          href: `/blog/${categorySlug}/${articleSlug}`,
+          href: `/blog-v2/${categorySlug}/${articleSlug}`,
           label: articleTitle,
           isActive: true,
         },

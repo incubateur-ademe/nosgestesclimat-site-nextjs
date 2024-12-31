@@ -18,7 +18,7 @@ export default function Pagination({
         {currentPage > 1 && (
           <Link
             className="absolute -left-6 top-1/2 -translate-y-1/2"
-            href={`/blog?page=${currentPage - 1}#articles`}>
+            href={`/blog-v2?page=${currentPage - 1}#articles`}>
             <ChevronLeft className="h-3 w-3" />
           </Link>
         )}
@@ -33,7 +33,7 @@ export default function Pagination({
                     ? 'font-medium text-primary-700 underline'
                     : '!text-gray-600 no-underline'
                 )}
-                href={`/blog?page=${index + 1}#articles`}>
+                href={`/blog-v2?page=${index + 1}#articles`}>
                 {index + 1}
               </Link>
             </li>
@@ -43,7 +43,7 @@ export default function Pagination({
         {currentPage < totalPages && (
           <Link
             className="absolute -right-6 top-1/2 -translate-y-1/2"
-            href={`/blog?page=${currentPage + 1}#articles`}>
+            href={`/blog-v2?page=${currentPage + 1}#articles`}>
             <ChevronRight className="h-3 w-3" />
           </Link>
         )}

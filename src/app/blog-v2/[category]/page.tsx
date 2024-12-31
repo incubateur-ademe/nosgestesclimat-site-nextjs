@@ -86,7 +86,7 @@ export default async function CategoryPage({
             title={mainArticle.title}
             description={mainArticle.description}
             category={mainArticle.category.title}
-            href={`/blog/${mainArticle.category.slug}/${mainArticle.slug}`}
+            href={`/blog-v2/${mainArticle.category.slug}/${mainArticle.slug}`}
           />
         )}
 

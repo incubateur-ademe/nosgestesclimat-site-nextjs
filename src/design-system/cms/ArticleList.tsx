@@ -22,7 +22,7 @@ export default function ArticleList({
               category={article.category?.title ?? ''}
               imageSrc={article.image?.url ?? ''}
               imageAlt={article.image?.alternativeText ?? ''}
-              href={`/blog/${article.category?.slug}/${article.slug}`}
+              href={`/blog-v2/${article.category?.slug}/${article.slug}`}
               trackingEvent={['blog', 'article', article.slug]}
             />
           </li>
@@ -40,7 +40,7 @@ export default function ArticleList({
                 category={article.category?.title ?? ''}
                 imageSrc={article.image?.url ?? ''}
                 imageAlt={article.image?.alternativeText ?? ''}
-                href={`/blog/${article.category?.slug}/${article.slug}`}
+                href={`/blog-v2/${article.category?.slug}/${article.slug}`}
                 trackingEvent={['blog', 'article', article.slug]}
               />
             </li>
