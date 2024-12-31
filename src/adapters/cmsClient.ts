@@ -21,7 +21,7 @@ export const cmsClient = async <T>(
       throw new Error(`HTTP error! status: ${response.status}`)
     }
 
-    return response.json()
+    return await response.json()
   } catch (error) {
     console.error('CMS API Error:', error)
 
