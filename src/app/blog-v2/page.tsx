@@ -10,6 +10,7 @@ import NewslettersBlockSkeleton from '@/design-system/cms/NewslettersBlockSkelet
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { fetchHomepageContent } from '@/services/cms/fetchHomepageContent'
 import { fetchHomepageMetadata } from '@/services/cms/fetchHomepageMetadata'
+import { notFound } from 'next/navigation'
 import BlogHero from './_components/BlogHero'
 import GroupBlock from './_components/GroupBlock'
 
@@ -42,9 +43,9 @@ export default async function BlogHomePage({
       page,
     })) ?? {}
 
-  // if (!title || !description || !image || !mainArticle || !articles) {
-  //   notFound()
-  // }
+  if (!title || !description || !image || !mainArticle || !articles) {
+    notFound()
+  }
 
   return (
     <>
