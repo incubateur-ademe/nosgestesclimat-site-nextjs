@@ -22,7 +22,7 @@ type Inputs = {
   email?: string
 }
 
-export default function SaveModal({ isOpen, closeModal }: Props) {
+export default function BackHomeModal({ isOpen, closeModal }: Props) {
   const [isAlreadySavedSimulationUpdated, setIsAlreadySavedSimulationUpdated] =
     useState(false)
 
@@ -105,16 +105,9 @@ export default function SaveModal({ isOpen, closeModal }: Props) {
       hasAbortButton={false}
       buttons={
         <>
-          {currentSimulation.savedViaEmail ? (
-            <Button color="secondary" onClick={() => router.push('/')}>
-              <Trans>Revenir à l'accueil</Trans>
-            </Button>
-          ) : (
-            <Button color="secondary" onClick={closeModal}>
-              <Trans>Non, merci</Trans>
-            </Button>
-          )}
-
+          <Button color="secondary" onClick={() => router.push('/')}>
+            <Trans>Revenir à l'accueil</Trans>
+          </Button>
           {currentSimulation.savedViaEmail ? (
             <Button onClick={closeModal}>Continuer mon test</Button>
           ) : (
@@ -139,35 +132,11 @@ export default function SaveModal({ isOpen, closeModal }: Props) {
           className="flex items-center gap-1"
           subtitle={
             <Trans>
-              Vous pouvez le reprendre plus tard en cliquant sur le lien que
-              vous avez reçu par email.
+              Votre test est sauvegardé, vous pourrez le reprendre plus tard en
+              cliquant sur le lien que vous avez reçu par email.
             </Trans>
           }>
-          <Trans>Votre test est sauvegardé !</Trans>
-          <svg
-            className="inline-block h-8 w-8"
-            viewBox="0 0 100 100"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              fill="none"
-              stroke="rgb(22, 163, 74)"
-              strokeWidth="8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeDasharray="200"
-              strokeDashoffset="200"
-              d="M20 50 L40 70 L80 30">
-              <animate
-                attributeName="stroke-dashoffset"
-                from="200"
-                to="0"
-                dur="1s"
-                begin="0s"
-                fill="freeze"
-                calcMode="linear"
-              />
-            </path>
-          </svg>
+          <Trans>Revenir à l'accueil</Trans>
         </Title>
       )}
 
@@ -177,6 +146,7 @@ export default function SaveModal({ isOpen, closeModal }: Props) {
           onSubmit={onSubmit}
           register={register}
           isError={isError}
+          backHome={true}
         />
       )}
     </Modal>

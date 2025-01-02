@@ -16,11 +16,13 @@ export default function SaveSimulationForm({
   onSubmit,
   register,
   isError,
+  backHome = false,
 }: {
   handleSubmit: UseFormHandleSubmit<Inputs>
   onSubmit: SubmitHandler<Inputs>
   register: UseFormRegister<Inputs>
   isError: boolean
+  backHome?: boolean
 }) {
   return (
     <form
@@ -34,7 +36,11 @@ export default function SaveSimulationForm({
             Recevez par email un lien pour reprendre votre test plus tard.
           </Trans>
         }>
-        <Trans>Reprendre plus tard</Trans>
+        {backHome ? (
+          <Trans>Revenir à l'accueil</Trans>
+        ) : (
+          <Trans>Reprendre plus tard</Trans>
+        )}
       </Title>
 
       <div className="flex w-full flex-col items-start gap-4">

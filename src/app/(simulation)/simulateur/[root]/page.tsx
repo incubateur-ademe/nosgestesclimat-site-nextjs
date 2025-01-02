@@ -9,6 +9,7 @@ import { useSimulateurGuard } from '@/hooks/navigation/useSimulateurGuard'
 import { useTrackSimulateur } from '@/hooks/tracking/useTrackSimulateur'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useCallback, useState } from 'react'
+import BackHomeModal from './_components/BackHomeModal'
 import SaveModal from './_components/SaveModal'
 import Simulateur from './_components/Simulateur'
 
@@ -36,10 +37,16 @@ export default function SimulateurPage() {
     setIsSaveModalOpen((prevIsSaveModalOpen) => !prevIsSaveModalOpen)
   }, [])
 
+  const [isBackHomeModalOpen, setIsBackHomeModalOpen] = useState(false)
+  const toggleBackHomeModal = useCallback(() => {
+    setIsBackHomeModalOpen((isBackHomeModalOpen) => !isBackHomeModalOpen)
+  }, [])
+
   return (
     <div className="flex h-screen flex-1 flex-col overflow-scroll">
       <Total
         toggleQuestionList={toggleQuestionList}
+        toggleBackHomeModal={toggleBackHomeModal}
         toggleSaveModal={toggleSaveModal}
       />
 
@@ -50,6 +57,10 @@ export default function SimulateurPage() {
       />
 
       <SaveModal isOpen={isSaveModalOpen} closeModal={toggleSaveModal} />
+      <BackHomeModal
+        isOpen={isBackHomeModalOpen}
+        closeModal={toggleBackHomeModal}
+      />
     </div>
   )
 }
