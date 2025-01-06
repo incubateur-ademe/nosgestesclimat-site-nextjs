@@ -46,7 +46,7 @@ export default function Assistance({
       numericValueOfParent !== valueOfQuestion &&
       prevNumericValueOfParent.current !== numericValueOfParent
     ) {
-      setValueOfQuestion(numericValueOfParent, { foldedStep: question })
+      setValueOfQuestion(numericValueOfParent, { questionDottedName: question })
       if (setTempValue) {
         setTempValue(numericValueOfParent)
       }
