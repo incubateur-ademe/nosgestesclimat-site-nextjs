@@ -15,6 +15,7 @@ export const cmsClient = async <T>(
       ...options,
       headers,
       cache: 'force-cache',
+      next: { revalidate: 3600 },
     })
 
     if (!response.ok) {
