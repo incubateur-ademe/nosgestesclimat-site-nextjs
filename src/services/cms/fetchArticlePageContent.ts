@@ -30,6 +30,7 @@ export async function fetchArticlePageContent({
       'populate[2]': 'author',
       'populate[3]': 'author.image',
       'filters[slug][$eq]': articleSlug,
+      sort: 'publishedAt:desc',
       status: isProduction ? '' : 'draft',
     })
 
