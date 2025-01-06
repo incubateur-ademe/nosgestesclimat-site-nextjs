@@ -126,6 +126,11 @@ export type AuthorType = {
   articles?: ArticleType[] | null
 }
 
+export type PopulatedAuthorType<K extends OptionalKeys<AuthorType>> = Populate<
+  AuthorType,
+  K
+>
+
 export type CategoryType = {
   slug: string
   title: string

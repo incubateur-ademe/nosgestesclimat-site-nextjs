@@ -1,10 +1,15 @@
-import type { ArticleType, PopulatedArticleType } from '@/adapters/cmsClient'
+import type {
+  PopulatedArticleType,
+  PopulatedAuthorType,
+} from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
 import { captureException } from '@sentry/nextjs'
 
 const isProduction = process.env.NODE_ENV === 'production'
 
-type Article = PopulatedArticleType<'image' | 'category' | 'author'>
+type Article = PopulatedArticleType<'image' | 'category'> & {
+  author: PopulatedAuthorType<'image'>
+}
 
 export async function fetchArticlePageContent({
   articleSlug,
@@ -13,7 +18,7 @@ export async function fetchArticlePageContent({
 }): Promise<
   | {
       article?: Article
-      otherArticles?: ArticleType[]
+      otherArticles?: PopulatedArticleType<'image' | 'category'>[]
     }
   | undefined
 > {
@@ -23,12 +28,13 @@ export async function fetchArticlePageContent({
       'populate[0]': 'image',
       'populate[1]': 'category',
       'populate[2]': 'author',
+      'populate[3]': 'author.image',
       'filters[slug][$eq]': articleSlug,
       status: isProduction ? '' : 'draft',
     })
 
     const articleResponse = await cmsClient<{
-      data: [PopulatedArticleType<'image' | 'category' | 'author'>]
+      data: [Article]
     }>(`/api/articles?${articleSearchParams}`)
 
     if (articleResponse.data?.length !== 1) {
@@ -45,12 +51,14 @@ export async function fetchArticlePageContent({
     const categorySlug = article.category?.slug
     const otherArticlesSearchParams = new URLSearchParams({
       locale: 'fr',
+      'populate[0]': 'image',
+      'populate[1]': 'category',
       'filters[category][slug][$eq]': categorySlug ?? '',
       sort: 'publishedAt:desc',
     })
 
     const otherArticlesResponse = await cmsClient<{
-      data: ArticleType[]
+      data: PopulatedArticleType<'image' | 'category'>[]
     }>(`/api/articles?${otherArticlesSearchParams}`)
 
     return {
