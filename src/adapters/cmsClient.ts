@@ -15,8 +15,8 @@ export const cmsClient = async <T>(
       ...options,
       headers,
       cache: 'force-cache',
-      // In seconds, 5 minutes
-      next: { revalidate: 60 * 5 },
+      // In seconds, production => 5 minutes, dev => 5 seconds
+      next: { revalidate: process.env.NODE_ENV !== 'production' ? 5 : 60 * 5 },
     })
 
     if (!response.ok) {
