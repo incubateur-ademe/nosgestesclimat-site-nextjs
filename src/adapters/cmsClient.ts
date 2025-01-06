@@ -69,14 +69,6 @@ export type ImageType = {
   } | null
 }
 
-export type AuthorType = {
-  name: string
-  description: string
-  htmlDescription?: string | null
-  image?: ImageType | null
-  articles?: ArticleType[] | null
-}
-
 export type MetaType = {
   pagination: {
     pageCount: number
@@ -94,13 +86,13 @@ type DefaultAttributesType = {
 // Single types
 export type HomePageType = {
   title: string
-  htmlTitle?: string | null
+  htmlTitle: string
   description: string
   htmlDescription: string
   image?: ImageType | null
   mainArticle?: ArticleType | null
-  pageMetadata: PageMetadataType
   articles?: ArticleType[] | null
+  pageMetadata?: PageMetadataType
 } & DefaultAttributesType
 
 // usage PopulatedHomePageType<"image" | "articles">
@@ -111,41 +103,51 @@ export type PopulatedHomePageType<K extends OptionalKeys<HomePageType>> =
 export type ArticleType = {
   title: string
   duration: number
-  image?: ImageType
   description: string
-  htmlDescription?: string | null
+  htmlDescription: string
   content: string
-  headings?: HeadingType[] | null
-  htmlContent?: string | null
+  htmlContent: string
+  headings: HeadingType[]
   slug: string
-  category?: {
-    title: string
-    slug: string
-  } | null
+  image?: ImageType | null
+  category?: CategoryType | null
   author?: AuthorType | null
-  pageMetadata: PageMetadataType
+  pageMetadata?: PageMetadataType
 } & DefaultAttributesType
 
-export type QuestionType = {
-  question: string
-  htmlAnswer: string
-  order: number
-} & DefaultAttributesType
+export type PopulatedArticleType<K extends OptionalKeys<ArticleType>> =
+  Populate<ArticleType, K>
+
+export type AuthorType = {
+  name: string
+  description: string
+  htmlDescription: string
+  image?: ImageType | null
+  articles?: ArticleType[] | null
+}
 
 export type CategoryType = {
   slug: string
   title: string
   description: string
   faqDescription: string
-  mainArticle?: ArticleType
-  articles?: ArticleType[] | null
-  questions?: QuestionType[] | null
   additionalContent: string
-  image?: ImageType | null
   htmlContent: string
   htmlTitle: string
-  pageMetadata: PageMetadataType
+  image?: ImageType | null
+  articles?: ArticleType[] | null
+  questions?: QuestionType[] | null
+  pageMetadata?: PageMetadataType
+  mainArticle?: ArticleType | null
 } & DefaultAttributesType
 
 export type PopulatedCategoryType<K extends OptionalKeys<CategoryType>> =
   Populate<CategoryType, K>
+
+export type QuestionType = {
+  question: string
+  answer: string
+  htmlAnswer: string
+  order: number
+  category?: CategoryType | null
+} & DefaultAttributesType
