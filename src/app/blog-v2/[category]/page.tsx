@@ -81,12 +81,12 @@ export default async function CategoryPage({
       <ContentLarge tag="div">
         {mainArticle && (
           <MainArticle
-            imageSrc={mainArticle.image.url}
-            imageAlt={mainArticle.image.alternativeText}
+            imageSrc={mainArticle.image?.url ?? ''}
+            imageAlt={mainArticle.image?.alternativeText ?? ''}
             title={mainArticle.title}
             description={mainArticle.description}
-            category={mainArticle.category.title}
-            href={`/blog-v2/${mainArticle.category.slug}/${mainArticle.slug}`}
+            category={mainArticle.category?.title ?? ''}
+            href={`/blog-v2/${mainArticle.category?.slug}/${mainArticle.slug}`}
           />
         )}
 

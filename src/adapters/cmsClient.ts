@@ -64,72 +64,15 @@ export type ImageType = {
     thumbnail: {
       url: string
     }
-  }
-}
-
-// Single types
-export type HomePageType = {
-  title: string
-  htmlTitle: string
-  description: string
-  htmlDescription: string
-  image?: ImageType
-  mainArticle?: ArticleType | null
-  articles?: ArticleType[]
-  pageMetadata?: PageMetadataType
-}
-
-// usage PopulatedHomePageType<"image" | "articles">
-export type PopulatedHomePageType<K extends OptionalKeys<HomePageType>> =
-  Populate<HomePageType, K>
-
-// Collection types
-export type ArticleType = {
-  id: number
-  documentId: string
-  title: string
-  duration: number
-  description: string
-  htmlDescription: string
-  content: string
-  htmlContent: string
-  slug: string
-  date: string
-  headings: HeadingType[]
-  updatedAt: string
-  publishedAt: string
-  createdAt: string
-  category: {
-    title: string
-    slug: string
-  }
-  author?: AuthorType | null
-  image?: ImageType
-  pageMetadata?: PageMetadataType
-}
-
-export type QuestionType = {
-  id: string
-  question: string
-  htmlAnswer: string
-  order: number
-}
-
-export type CategoryType = {
-  title: string
-  description: string
-  faqDescription: string
-  mainArticle: ArticleType
-  articles: ArticleType[]
-  questions: QuestionType[]
-  additionalContent: string
-  image: ImageType
+  } | null
 }
 
 export type AuthorType = {
   name: string
   description: string
+  htmlDescription?: string | null
   image?: ImageType | null
+  articles?: ArticleType[] | null
 }
 
 export type MetaType = {
@@ -137,3 +80,70 @@ export type MetaType = {
     pageCount: number
   }
 }
+
+type DefaultAttributesType = {
+  id: string
+  documentId: string
+  createdAt: string
+  updatedAt: string
+  publishedAt: string
+}
+
+// Single types
+export type HomePageType = {
+  title: string
+  htmlTitle?: string | null
+  description: string
+  htmlDescription: string
+  image?: ImageType | null
+  mainArticle?: ArticleType | null
+  pageMetadata: PageMetadataType
+  articles?: ArticleType[] | null
+} & DefaultAttributesType
+
+// usage PopulatedHomePageType<"image" | "articles">
+export type PopulatedHomePageType<K extends OptionalKeys<HomePageType>> =
+  Populate<HomePageType, K>
+
+// Collection types
+export type ArticleType = {
+  title: string
+  duration: number
+  image?: ImageType
+  description: string
+  htmlDescription?: string | null
+  content: string
+  headings?: HeadingType[] | null
+  htmlContent?: string | null
+  slug: string
+  category?: {
+    title: string
+    slug: string
+  } | null
+  author?: AuthorType | null
+  pageMetadata: PageMetadataType
+} & DefaultAttributesType
+
+export type QuestionType = {
+  question: string
+  htmlAnswer: string
+  order: number
+} & DefaultAttributesType
+
+export type CategoryType = {
+  slug: string
+  title: string
+  description: string
+  faqDescription: string
+  mainArticle?: ArticleType
+  articles?: ArticleType[] | null
+  questions?: QuestionType[] | null
+  additionalContent: string
+  image?: ImageType | null
+  htmlContent: string
+  htmlTitle: string
+  pageMetadata: PageMetadataType
+} & DefaultAttributesType
+
+export type PopulatedCategoryType<K extends OptionalKeys<CategoryType>> =
+  Populate<CategoryType, K>

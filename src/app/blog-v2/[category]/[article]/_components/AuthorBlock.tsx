@@ -1,7 +1,13 @@
 import type { AuthorType } from '@/adapters/cmsClient'
 import Image from 'next/image'
 
-export default function AuthorBlock({ author }: { author: AuthorType }) {
+export default function AuthorBlock({
+  author,
+}: {
+  author?: AuthorType | null
+}) {
+  if (!author) return null
+
   return (
     <div className="mt-8 flex flex-row items-center gap-4">
       <div>

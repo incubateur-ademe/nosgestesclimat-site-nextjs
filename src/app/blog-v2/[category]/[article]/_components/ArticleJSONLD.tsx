@@ -26,7 +26,7 @@ export default function ArticleJSONLD({
             {
               '@type': 'ListItem',
               position: 2,
-              name: article.category.title,
+              name: article.category?.title ?? '',
               item: `https://nosgestesclimat.fr/blog/${categorySlug}`,
             },
             {

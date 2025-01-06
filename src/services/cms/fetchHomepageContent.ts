@@ -1,9 +1,9 @@
 import {
   cmsClient,
   type ArticleType,
-  type HomePageContentType,
   type ImageType,
   type MetaType,
+  type PopulatedHomePageType,
 } from '@/adapters/cmsClient'
 import { captureException } from '@sentry/nextjs'
 
@@ -11,11 +11,12 @@ const PAGE_SIZE = 12
 
 const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
 
-export async function fetchHomepageContent({
-  page,
-}: {
-  page: number
-}): Promise<HomePageContentType | undefined> {
+export async function fetchHomepageContent({ page }: { page: number }): Promise<
+  | (Partial<PopulatedHomePageType<'mainArticle' | 'image' | 'articles'>> & {
+      pageCount: number
+    })
+  | undefined
+> {
   try {
     const homepageSearchParams = new URLSearchParams({
       locale: 'fr',
@@ -27,7 +28,7 @@ export async function fetchHomepageContent({
     })
 
     const homepageResponse = await cmsClient<{
-      data: HomePageContentType
+      data: PopulatedHomePageType<'mainArticle' | 'image' | 'articles'>
       image: ImageType
     }>(`/api/home-page?${homepageSearchParams}`)
 
@@ -45,7 +46,7 @@ export async function fetchHomepageContent({
       'fields[2]': 'slug',
       'populate[0]': 'image',
       'populate[1]': 'category',
-      'filters[id][$ne]': mainArticle.id,
+      'filters[id][$ne]': mainArticle?.id ?? '',
       'pagination[page]': page.toString(),
       'pagination[pageSize]': PAGE_SIZE.toString(),
       sort: 'publishedAt:desc',

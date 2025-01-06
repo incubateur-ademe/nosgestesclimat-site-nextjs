@@ -1,9 +1,9 @@
 import {
   cmsClient,
   type ArticleType,
-  type CategoryPageContentType,
   type CategoryType,
   type ImageType,
+  type PopulatedCategoryType,
 } from '@/adapters/cmsClient'
 import { captureException } from '@sentry/nextjs'
 
@@ -16,7 +16,14 @@ export async function fetchCategoryPageContent({
 }: {
   slug: string
   page: number
-}): Promise<CategoryPageContentType | undefined> {
+}): Promise<
+  | (Partial<
+      PopulatedCategoryType<'mainArticle' | 'questions' | 'articles' | 'image'>
+    > & {
+      pageCount: number
+    })
+  | undefined
+> {
   try {
     const categorySearchParams = new URLSearchParams({
       locale: 'fr',

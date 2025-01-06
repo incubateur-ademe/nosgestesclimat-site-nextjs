@@ -1,7 +1,6 @@
 import {
   cmsClient,
   type ArticleType,
-  type HomepageMetadataType,
   type ImageType,
 } from '@/adapters/cmsClient'
 import { captureException } from '@sentry/nextjs'
@@ -12,7 +11,14 @@ export async function fetchArticlePageMetadata({
   articleSlug,
 }: {
   articleSlug: string
-}): Promise<HomepageMetadataType | undefined> {
+}): Promise<
+  | {
+      metaTitle: string
+      metaDescription: string
+      image: ImageType | null
+    }
+  | undefined
+> {
   try {
     const articleSearchParams = new URLSearchParams({
       locale: 'fr',
@@ -35,8 +41,8 @@ export async function fetchArticlePageMetadata({
     const { data, image } = articleResponse
 
     return {
-      metaTitle: data[0].pageMetadata?.title,
-      metaDescription: data[0].pageMetadata?.description,
+      metaTitle: data[0].pageMetadata?.title ?? '',
+      metaDescription: data[0].pageMetadata?.description ?? '',
       image,
     }
   } catch (error) {

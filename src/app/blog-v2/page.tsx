@@ -72,10 +72,10 @@ export default async function BlogHomePage({
           <MainArticle
             title={mainArticle.title}
             description={mainArticle.description}
-            imageSrc={mainArticle.image.url}
-            imageAlt={mainArticle.image.alternativeText}
-            href={`/blog-v2/${mainArticle.category.slug}/${mainArticle.slug}`}
-            category={mainArticle.category.title}
+            imageSrc={mainArticle.image?.url ?? ''}
+            imageAlt={mainArticle.image?.alternativeText ?? ''}
+            href={`/blog-v2/${mainArticle.category?.slug}/${mainArticle.slug}`}
+            category={mainArticle.category?.title ?? ''}
           />
         )}
 

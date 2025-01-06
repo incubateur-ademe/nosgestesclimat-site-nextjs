@@ -1,15 +1,19 @@
 import {
   cmsClient,
-  type HomePageContentType,
-  type HomepageMetadataType,
-  type PageMetadataType,
+  type HomePageType,
+  type ImageType,
 } from '@/adapters/cmsClient'
 import { captureException } from '@sentry/nextjs'
 
 const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
 
 export async function fetchHomepageMetadata(): Promise<
-  HomepageMetadataType | undefined
+  | {
+      metaTitle: string
+      metaDescription?: string | null
+      image?: ImageType | null
+    }
+  | undefined
 > {
   try {
     const searchParams = new URLSearchParams({
@@ -20,7 +24,7 @@ export async function fetchHomepageMetadata(): Promise<
     })
 
     const homepageResponse = await cmsClient<{
-      data: HomePageContentType & { pageMetadata: PageMetadataType }
+      data: HomePageType
     }>(`/api/home-page?${searchParams}`)
 
     if (!homepageResponse?.data) {

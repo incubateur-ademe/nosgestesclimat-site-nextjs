@@ -63,13 +63,13 @@ export default async function ArticlePage({
           categorySlug={params.category}
           articleSlug={params.article}
           articleTitle={article.title}
-          categoryTitle={article.category.title}
+          categoryTitle={article.category?.title ?? ''}
         />
 
         <div className="flex flex-col items-start gap-12 md:flex-row md:justify-between">
           <div className="flex flex-col items-start md:w-8/12">
             <Badge className="mb-1" size="sm">
-              {article.category.title}
+              {article.category?.title ?? ''}
             </Badge>
 
             <h1 className="mb-6 text-3xl font-bold md:text-5xl">
@@ -100,8 +100,8 @@ export default async function ArticlePage({
           <div className="md:w-4/12">
             <Image
               className="rounded-md border border-gray-200"
-              src={article.image.url}
-              alt={article.image.alternativeText}
+              src={article.image?.url ?? ''}
+              alt={article.image?.alternativeText ?? ''}
               width={420}
               height={420}
             />
@@ -112,7 +112,7 @@ export default async function ArticlePage({
           <div className="max-w-full flex-1 md:w-[600px]">
             <div
               className="markdown min-h-[100vh] max-w-full border-b border-gray-300 pb-8"
-              dangerouslySetInnerHTML={{ __html: article.htmlContent }}
+              dangerouslySetInnerHTML={{ __html: article.htmlContent ?? '' }}
             />
 
             <AuthorBlock author={article.author} />
@@ -120,7 +120,7 @@ export default async function ArticlePage({
 
           <div className="hidden h-[600px] w-[1px] bg-gray-300 md:block" />
 
-          <StickySummary headings={article.headings} />
+          <StickySummary headings={article.headings ?? []} />
         </div>
 
         <OtherArticles articles={otherArticles} />

@@ -21,11 +21,11 @@ export default function OtherArticles({
           <PostThumbnail
             key={article.slug}
             title={article.title}
-            imageSrc={article.image.url}
-            imageAlt={article.image.alternativeText}
-            href={`/blog-v2/${article.category.slug}/${article.slug}`}
+            imageSrc={article.image?.url ?? ''}
+            imageAlt={article.image?.alternativeText ?? ''}
+            href={`/blog-v2/${article.category?.slug}/${article.slug}`}
             trackingEvent={['blog', 'other-articles']}
-            category={article.category.title}
+            category={article.category?.title ?? ''}
           />
         ))}
       </div>

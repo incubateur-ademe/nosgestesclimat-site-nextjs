@@ -39,7 +39,7 @@ export async function fetchArticlePageContent({
     const categorySlug = article?.category?.slug
     const otherArticlesSearchParams = new URLSearchParams({
       locale: 'fr',
-      'filters[category][slug][$eq]': categorySlug,
+      'filters[category][slug][$eq]': categorySlug ?? '',
       sort: 'publishedAt:desc',
     })
 
