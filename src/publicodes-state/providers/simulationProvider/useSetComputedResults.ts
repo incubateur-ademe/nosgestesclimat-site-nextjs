@@ -2,7 +2,7 @@ import { defaultMetric, metrics } from '@/constants/metric'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { getComputedResults } from '@/publicodes-state/helpers/getComputedResults'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
-import type { EvaluatedNode } from 'publicodes'
+import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import type { ComputedResults, Metric } from '../../types'
 
@@ -10,7 +10,10 @@ type Props = {
   categories: DottedName[]
   subcategories: DottedName[]
   isEngineInitialized: boolean
-  safeEvaluate?: (ruleName: DottedName, metric: Metric) => EvaluatedNode | null
+  safeEvaluate?: (
+    rule: PublicodesExpression,
+    metric?: Metric
+  ) => EvaluatedNode | null
   safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
 }
 export function useSetComputedResults({
@@ -23,7 +26,7 @@ export function useSetComputedResults({
 
   // little helper function to get the numeric value of a dottedName (it is a copy of the one in useEngine)
   const getNumericValue = useCallback(
-    (dottedName: DottedName, metric: Metric): number => {
+    (dottedName: DottedName, metric?: Metric): number => {
       // If the engine is not initialized, we return 0
       if (!isEngineInitialized) return 0
 

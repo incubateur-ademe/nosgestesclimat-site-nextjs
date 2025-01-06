@@ -57,6 +57,7 @@ export type ComputedResults = Record<Metric, ComputedResultsFootprint>
 export type UpdateCurrentSimulationProps = {
   situation?: Situation
   situationToAdd?: Situation
+  foldedSteps?: DottedName[]
   foldedStepToAdd?: DottedName
   actionChoices?: any
   defaultAdditionalQuestionsAnswers?: Record<string, string>
