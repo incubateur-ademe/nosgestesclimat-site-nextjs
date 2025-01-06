@@ -6,7 +6,7 @@ import {
 } from '@/helpers/tracking/landings'
 import { headers } from 'next/headers'
 
-export default async function ModelInfo() {
+export default function ModelInfo() {
   const pathname = headers().get('x-pathname') || '/'
 
   return (
