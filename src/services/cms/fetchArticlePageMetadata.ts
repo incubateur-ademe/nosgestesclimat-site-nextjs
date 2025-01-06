@@ -1,8 +1,5 @@
-import {
-  cmsClient,
-  type ArticleType,
-  type ImageType,
-} from '@/adapters/cmsClient'
+import type { ImageType, PopulatedArticleType } from '@/adapters/cmsClient'
+import { cmsClient } from '@/adapters/cmsClient'
 import { captureException } from '@sentry/nextjs'
 
 const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
@@ -29,21 +26,24 @@ export async function fetchArticlePageMetadata({
     })
 
     const articleResponse = await cmsClient<{
-      data: ArticleType[]
-      image: ImageType
+      data: [PopulatedArticleType<'image' | 'pageMetadata'>]
     }>(`/api/articles?${articleSearchParams}`)
 
-    if (!articleResponse?.data?.[0]) {
-      console.error('Error: articleResponse?.data?.[0] is undefined')
+    if (articleResponse?.data?.length !== 1) {
+      console.error(
+        `Error: fetch article error for articleSlug: ${articleSlug}`
+      )
       return
     }
 
-    const { data, image } = articleResponse
+    const {
+      data: [article],
+    } = articleResponse
 
     return {
-      metaTitle: data[0].pageMetadata?.title ?? '',
-      metaDescription: data[0].pageMetadata?.description ?? '',
-      image,
+      metaTitle: article.pageMetadata.title,
+      metaDescription: article.pageMetadata.description ?? '',
+      image: article.image,
     }
   } catch (error) {
     console.error('Error:', error)

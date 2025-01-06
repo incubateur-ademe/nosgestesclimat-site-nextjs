@@ -1,8 +1,5 @@
-import {
-  cmsClient,
-  type CategoryType,
-  type ImageType,
-} from '@/adapters/cmsClient'
+import type { ImageType, PopulatedCategoryType } from '@/adapters/cmsClient'
+import { cmsClient } from '@/adapters/cmsClient'
 import { captureException } from '@sentry/nextjs'
 
 const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
@@ -29,26 +26,27 @@ export async function fetchCategoryPageMetadata({
     })
 
     const categoryResponse = await cmsClient<{
-      data: CategoryType[]
-      image: ImageType
+      data: [PopulatedCategoryType<'image' | 'pageMetadata'>]
     }>(`/api/categories?${categorySearchParams}`)
 
-    if (!categoryResponse?.data[0]) {
-      console.error('Error: categoryResponse?.data?.[0] is undefined')
-      return undefined
+    if (categoryResponse?.data.length !== 1) {
+      console.error(`Error: fetch category error for categorySlug: ${slug}`)
+      return
     }
 
-    const { data, image } = categoryResponse
+    const {
+      data: [category],
+    } = categoryResponse
 
     return {
-      metaTitle: data[0].pageMetadata?.title ?? '',
-      metaDescription: data[0].pageMetadata?.description ?? '',
-      image: image ?? null,
+      metaTitle: category.pageMetadata.title,
+      metaDescription: category.pageMetadata.description ?? '',
+      image: category.image,
     }
   } catch (error) {
     console.error('Error:', error)
     captureException(error)
 
-    return undefined
+    return
   }
 }

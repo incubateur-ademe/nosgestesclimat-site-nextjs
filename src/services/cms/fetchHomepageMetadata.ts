@@ -1,8 +1,5 @@
-import {
-  cmsClient,
-  type HomePageType,
-  type ImageType,
-} from '@/adapters/cmsClient'
+import type { ImageType, PopulatedHomePageType } from '@/adapters/cmsClient'
+import { cmsClient } from '@/adapters/cmsClient'
 import { captureException } from '@sentry/nextjs'
 
 const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
@@ -24,7 +21,7 @@ export async function fetchHomepageMetadata(): Promise<
     })
 
     const homepageResponse = await cmsClient<{
-      data: HomePageType
+      data: PopulatedHomePageType<'image' | 'pageMetadata'>
     }>(`/api/home-page?${searchParams}`)
 
     if (!homepageResponse?.data) {

@@ -1,6 +1,6 @@
-import type { ArticleType } from '@/adapters/cmsClient'
 import DidYouKnowMainLanding from '@/app/_components/DidYouKnowMainLanding'
 import PostThumbnail from '@/design-system/cms/PostThumbnail'
+import type { ArticleItemType } from '../../adapters/cmsClient'
 import Pagination from './articleList/Pagination'
 
 export default function ArticleList({
@@ -8,14 +8,14 @@ export default function ArticleList({
   pageCount,
   currentPage,
 }: {
-  articles: ArticleType[]
+  articles: ArticleItemType[]
   pageCount: number
   currentPage: number
 }) {
   return (
     <section className="mt-20 scroll-mt-40" id="articles">
       <ul className="grid grid-cols-1 gap-8 md:grid-cols-3">
-        {articles.slice(0, 6).map((article: ArticleType) => (
+        {articles.slice(0, 6).map((article) => (
           <li key={article.documentId}>
             <PostThumbnail
               title={article.title}

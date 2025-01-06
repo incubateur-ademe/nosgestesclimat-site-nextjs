@@ -1,16 +1,22 @@
-import { cmsClient, type ArticleType } from '@/adapters/cmsClient'
+import type { ArticleType, PopulatedArticleType } from '@/adapters/cmsClient'
+import { cmsClient } from '@/adapters/cmsClient'
 import { captureException } from '@sentry/nextjs'
 
 const isProduction = process.env.NODE_ENV === 'production'
+
+type Article = PopulatedArticleType<'image' | 'category' | 'author'>
 
 export async function fetchArticlePageContent({
   articleSlug,
 }: {
   articleSlug: string
-}): Promise<{
-  article?: ArticleType
-  otherArticles?: ArticleType[]
-}> {
+}): Promise<
+  | {
+      article?: Article
+      otherArticles?: ArticleType[]
+    }
+  | undefined
+> {
   try {
     const articleSearchParams = new URLSearchParams({
       locale: 'fr',
@@ -21,22 +27,22 @@ export async function fetchArticlePageContent({
       status: isProduction ? '' : 'draft',
     })
 
-    const articleResponse = await cmsClient<{ data: ArticleType[] }>(
-      `/api/articles?${articleSearchParams}`
-    )
+    const articleResponse = await cmsClient<{
+      data: [PopulatedArticleType<'image' | 'category' | 'author'>]
+    }>(`/api/articles?${articleSearchParams}`)
 
-    if (!articleResponse.data?.[0]) {
+    if (articleResponse.data?.length !== 1) {
       console.error(
-        `Error: articleResponse.data?.[0] is undefined for articleSlug: ${articleSlug}`
+        `Error: fetch article error for articleSlug: ${articleSlug}`
       )
-      return {}
+      return
     }
 
-    const { data } = articleResponse
+    const {
+      data: [article],
+    } = articleResponse
 
-    const article = data[0]
-
-    const categorySlug = article?.category?.slug
+    const categorySlug = article.category?.slug
     const otherArticlesSearchParams = new URLSearchParams({
       locale: 'fr',
       'filters[category][slug][$eq]': categorySlug ?? '',
@@ -55,6 +61,6 @@ export async function fetchArticlePageContent({
     console.error('Error:', error)
     captureException(error)
 
-    return {}
+    return
   }
 }

@@ -1,10 +1,8 @@
-import {
-  cmsClient,
-  type ArticleType,
-  type CategoryType,
-  type ImageType,
-  type PopulatedCategoryType,
+import type {
+  ArticleItemType,
+  PopulatedCategoryType,
 } from '@/adapters/cmsClient'
+import { cmsClient } from '@/adapters/cmsClient'
 import { captureException } from '@sentry/nextjs'
 
 const PAGE_SIZE = 12
@@ -18,7 +16,9 @@ export async function fetchCategoryPageContent({
   page: number
 }): Promise<
   | (Partial<
-      PopulatedCategoryType<'mainArticle' | 'questions' | 'articles' | 'image'>
+      PopulatedCategoryType<'mainArticle' | 'questions' | 'image'> & {
+        articles: ArticleItemType[]
+      }
     > & {
       pageCount: number
     })
@@ -30,25 +30,22 @@ export async function fetchCategoryPageContent({
       'filters[slug][$eq]': slug,
       'populate[0]': 'mainArticle',
       'populate[1]': 'questions',
-      'populate[2]': 'mainArticle.image',
-      'populate[3]': 'mainArticle.category',
+      'populate[2]': 'image',
       sort: 'questions.order:asc',
       status: isProduction ? '' : 'draft',
     })
 
     const categoryResponse = await cmsClient<{
-      data: CategoryType[]
-      image: ImageType
+      data: [PopulatedCategoryType<'questions' | 'mainArticle' | 'image'>]
     }>(`/api/categories?${categorySearchParams}`)
 
-    if (!categoryResponse?.data?.[0]) {
-      console.error('Error: categoryResponse?.data?.[0] is undefined')
-      return undefined
+    if (categoryResponse?.data?.length !== 1) {
+      console.error(`Error: fetch category error for categorySlug: ${slug}`)
     }
 
-    const { data, image } = categoryResponse
-
-    const categoryData = data[0]
+    const {
+      data: [category],
+    } = categoryResponse
 
     const articlesSearchParams = new URLSearchParams({
       locale: 'fr',
@@ -57,8 +54,8 @@ export async function fetchCategoryPageContent({
       'fields[2]': 'slug',
       'populate[0]': 'image',
       'populate[1]': 'category',
-      'filters[documentId][$ne]': categoryData?.mainArticle?.documentId || '',
-      'filters[category][$eq]': categoryData?.id || '',
+      'filters[documentId][$ne]': category?.mainArticle?.documentId || '',
+      'filters[category][$eq]': category?.id || '',
       'pagination[page]': page.toString(),
       'pagination[pageSize]': PAGE_SIZE.toString(),
       sort: 'publishedAt:desc',
@@ -66,22 +63,22 @@ export async function fetchCategoryPageContent({
     })
 
     const articlesResponse = await cmsClient<{
-      data: ArticleType[]
+      data: ArticleItemType[]
       meta: { pagination: { pageCount: number } }
     }>(`/api/articles?${articlesSearchParams}`)
 
     const { data: articlesData, meta } = articlesResponse
 
     return {
-      title: categoryData.title,
-      description: categoryData.description,
-      mainArticle: categoryData.mainArticle,
-      additionalContent: categoryData.htmlContent,
-      image,
+      title: category.title,
+      description: category.description,
+      mainArticle: category.mainArticle,
+      additionalContent: category.htmlContent,
+      image: category.image,
       articles: articlesData,
       pageCount: meta.pagination.pageCount,
-      questions: categoryData.questions,
-      faqDescription: categoryData.faqDescription,
+      questions: category.questions,
+      faqDescription: category.faqDescription,
     }
   } catch (error) {
     console.error('Error:', error)

@@ -1,10 +1,9 @@
-import {
-  cmsClient,
-  type ArticleType,
-  type ImageType,
-  type MetaType,
-  type PopulatedHomePageType,
+import type {
+  ArticleItemType,
+  MetaType,
+  PopulatedHomePageType,
 } from '@/adapters/cmsClient'
+import { cmsClient } from '@/adapters/cmsClient'
 import { captureException } from '@sentry/nextjs'
 
 const PAGE_SIZE = 12
@@ -12,8 +11,9 @@ const PAGE_SIZE = 12
 const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
 
 export async function fetchHomepageContent({ page }: { page: number }): Promise<
-  | (Partial<PopulatedHomePageType<'mainArticle' | 'image' | 'articles'>> & {
+  | (Partial<PopulatedHomePageType<'mainArticle' | 'image'>> & {
       pageCount: number
+      articles: ArticleItemType[]
     })
   | undefined
 > {
@@ -22,14 +22,11 @@ export async function fetchHomepageContent({ page }: { page: number }): Promise<
       locale: 'fr',
       'populate[0]': 'image',
       'populate[1]': 'mainArticle',
-      'populate[2]': 'mainArticle.image',
-      'populate[3]': 'mainArticle.category',
       status: isProduction ? '' : 'draft',
     })
 
     const homepageResponse = await cmsClient<{
-      data: PopulatedHomePageType<'mainArticle' | 'image' | 'articles'>
-      image: ImageType
+      data: PopulatedHomePageType<'mainArticle' | 'image'>
     }>(`/api/home-page?${homepageSearchParams}`)
 
     if (!homepageResponse?.data) {
@@ -54,7 +51,7 @@ export async function fetchHomepageContent({ page }: { page: number }): Promise<
     })
 
     const articlesResponse = await cmsClient<{
-      data: ArticleType[]
+      data: ArticleItemType[]
       meta: MetaType
     }>(`/api/articles?${articlesSearchParams}`)
 

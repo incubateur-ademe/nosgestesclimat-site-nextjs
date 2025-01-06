@@ -1,4 +1,5 @@
-import { cmsClient, type CategoryType } from '@/adapters/cmsClient'
+import type { CategoryType } from '@/adapters/cmsClient'
+import { cmsClient } from '@/adapters/cmsClient'
 import { captureException } from '@sentry/nextjs'
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -14,11 +15,6 @@ export async function fetchCategories(): Promise<CategoryType[]> {
     const categoriesResponse = await cmsClient<{ data: CategoryType[] }>(
       `/api/categories?${categoriesSearchParams}`
     )
-
-    if (!categoriesResponse?.data) {
-      console.error('Error: categoriesResponse?.data is undefined')
-      return []
-    }
 
     return categoriesResponse.data
   } catch (error) {

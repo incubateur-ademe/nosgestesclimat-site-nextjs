@@ -39,9 +39,10 @@ export default async function ArticlePage({
 }: {
   params: { category: string; article: string; locale: string }
 }) {
-  const { article, otherArticles } = await fetchArticlePageContent({
-    articleSlug: params.article,
-  })
+  const { article, otherArticles } =
+    (await fetchArticlePageContent({
+      articleSlug: params.article,
+    })) || {}
 
   if (!article) {
     return notFound()
