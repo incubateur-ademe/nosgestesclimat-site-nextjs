@@ -193,7 +193,7 @@ const redirects = [
     permanent: true,
   },
   {
-    source: '/blog/definition-empreinte-carbone',
+    source: '/empreinte-climat',
     destination: '/blog/environnement/definition-empreinte-carbone',
     permanent: true,
   },
