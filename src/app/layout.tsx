@@ -82,13 +82,9 @@ export default async function RootLayout({ children }: PropsWithChildren) {
             _paq.push(["setCookieDomain", "*.nosgestesclimat.fr"]);
             _paq.push(['enableLinkTracking']);
             (function() {
-              // var u="https://stats.beta.gouv.fr/";
-              var u="https://stats.data.gouv.fr/";
+              var u="https://stats.beta.gouv.fr/";
               _paq.push(['setTrackerUrl', u+'matomo.php']);
-              // _paq.push(['setSiteId', '20']);
-              _paq.push(['setSiteId', '153']);
-              // Adds the Matomo V1 tracker for safe measure
-              // _paq.push(['addTracker', 'https://stats.data.gouv.fr/matomo.php', '153'])
+              _paq.push(['setSiteId', '20']);
               var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
               g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
             })();
