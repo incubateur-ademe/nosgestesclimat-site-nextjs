@@ -85,8 +85,8 @@ export default async function CategoryPage({
             imageAlt={mainArticle.image?.alternativeText ?? ''}
             title={mainArticle.title}
             description={mainArticle.description}
-            category={mainArticle.category?.title ?? ''}
-            href={`/blog-v2/${mainArticle.category?.slug}/${mainArticle.slug}`}
+            category={title}
+            href={`/blog-v2/${params.category}/${mainArticle.slug}`}
           />
         )}
 

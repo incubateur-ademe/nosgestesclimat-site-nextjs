@@ -1,5 +1,6 @@
 import type {
   ArticleItemType,
+  PopulatedArticleType,
   PopulatedCategoryType,
 } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
@@ -16,7 +17,8 @@ export async function fetchCategoryPageContent({
   page: number
 }): Promise<
   | (Partial<
-      PopulatedCategoryType<'mainArticle' | 'questions' | 'image'> & {
+      PopulatedCategoryType<'questions' | 'image'> & {
+        mainArticle: PopulatedArticleType<'image'>
         articles: ArticleItemType[]
       }
     > & {
@@ -28,15 +30,20 @@ export async function fetchCategoryPageContent({
     const categorySearchParams = new URLSearchParams({
       locale: 'fr',
       'filters[slug][$eq]': slug,
-      'populate[0]': 'mainArticle',
+      'populate[0]': 'image',
       'populate[1]': 'questions',
-      'populate[2]': 'image',
+      'populate[2]': 'mainArticle',
+      'populate[3]': 'mainArticle.image',
       sort: 'questions.order:asc',
       status: isProduction ? '' : 'draft',
     })
 
     const categoryResponse = await cmsClient<{
-      data: [PopulatedCategoryType<'questions' | 'mainArticle' | 'image'>]
+      data: [
+        PopulatedCategoryType<'questions' | 'image'> & {
+          mainArticle: PopulatedArticleType<'image'>
+        },
+      ]
     }>(`/api/categories?${categorySearchParams}`)
 
     if (categoryResponse?.data?.length !== 1) {
@@ -67,7 +74,7 @@ export async function fetchCategoryPageContent({
       meta: { pagination: { pageCount: number } }
     }>(`/api/articles?${articlesSearchParams}`)
 
-    const { data: articlesData, meta } = articlesResponse
+    const { data: articles, meta } = articlesResponse
 
     return {
       title: category.title,
@@ -75,7 +82,7 @@ export async function fetchCategoryPageContent({
       mainArticle: category.mainArticle,
       additionalContent: category.htmlContent,
       image: category.image,
-      articles: articlesData,
+      articles,
       pageCount: meta.pagination.pageCount,
       questions: category.questions,
       faqDescription: category.faqDescription,
