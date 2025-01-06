@@ -68,9 +68,9 @@ export default function useContent({ dottedName, rule }: Props) {
 
     // TODO: Deal with the case where the plafond needs to be evaluated.
     if (typeof plafondValue === 'string') {
-      return 1000000
+      return 1_000_000
     }
-    return plafondValue ?? 1000000
+    return plafondValue ?? 1_000_000
   }, [rule])
 
   const warning = useMemo<string | undefined>(
