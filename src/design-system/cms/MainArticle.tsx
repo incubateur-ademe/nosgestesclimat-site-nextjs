@@ -20,7 +20,7 @@ export default function MainArticle({
 }) {
   return (
     <Link href={href} className="mb-20 no-underline">
-      <h2 className="relative mb-8 inline-block pb-4 text-2xl font-medium md:text-3xl">
+      <h2 className="relative mb-8 inline-block pb-4 text-2xl font-medium text-default md:text-3xl">
         <Trans>À la une !</Trans>{' '}
         <ColorLine className="bg-rainbow absolute bottom-0 left-[15%] h-[3px] w-[70%] animate-rainbow-slow transition-all md:left-0 md:w-full" />
       </h2>

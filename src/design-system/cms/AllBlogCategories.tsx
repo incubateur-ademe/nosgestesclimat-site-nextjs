@@ -1,38 +1,32 @@
 import Link from '@/components/Link'
-import Background from '@/components/landing-pages/Background'
 import Trans from '@/components/translation/Trans'
 import { fetchCategories } from '@/services/cms/fetchCategories'
 import Badge from '../layout/Badge'
+import ColorLine from '../layout/ColorLine'
 
 export default async function AllBlogCategories() {
   const categories = await fetchCategories()
 
   return (
-    <div className="relative mb-10 mt-32 px-4 pb-16 pt-10">
-      {/* Helps cover the triangles of white shown because of the perspective change in Background */}
-      <div className="absolute -left-1/2 -top-10 h-1/2 w-[200%] bg-heroLightBackground xl:w-[300%]" />
+    <div className="relative left-1/2 mb-10 mt-32 w-[100vw] -translate-x-1/2 overflow-hidden pb-10 pt-10 before:absolute before:-top-8 before:left-1/2 before:z-10 before:h-[100px] before:w-[102vw] before:-translate-x-1/2 before:bg-white">
+      <div className="relative left-1/2 w-[110vw] -translate-x-1/2 -rotate-2 skew-x-[10deg] transform overflow-hidden bg-heroLightBackground px-[calc(5vw+16px)] pb-24 pt-28 ">
+        <div className="relative flex max-w-[100vw] rotate-2 -skew-x-[10deg] flex-col gap-8 md:mx-auto md:max-w-5xl">
+          <h2 className="mb-0 text-2xl md:text-3xl">
+            <Trans>Toutes les catégories du blog</Trans>
+          </h2>
 
-      {/* Add the background along with the tilted colorline */}
-      <Background
-        className="bg-heroLightBackground"
-        withColorLine
-        direction="left"
-      />
+          <ul className="flex w-full flex-row flex-wrap items-center gap-4 md:max-w-[50%]">
+            {categories.map((category) => (
+              <li key={category.id}>
+                <Link href={`/blog-v2/${category.slug.toLocaleLowerCase()}`}>
+                  <Badge size="sm">{category.title}</Badge>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      <div className="relative flex flex-col gap-8 md:mx-auto md:max-w-5xl">
-        <h2 className="mb-0 text-2xl md:text-3xl">
-          <Trans>Toutes les catégories du blog</Trans>
-        </h2>
-
-        <ul className="flex w-full flex-row flex-wrap items-center gap-4 md:max-w-[50%]">
-          {categories.map((category) => (
-            <li key={category.id}>
-              <Link href={`/blog-v2/${category.slug.toLocaleLowerCase()}`}>
-                <Badge size="sm">{category.title}</Badge>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <ColorLine className="bg-rainbow absolute bottom-0 left-0 h-[4px] w-[100%] animate-rainbow-slow transition-all" />
       </div>
     </div>
   )
