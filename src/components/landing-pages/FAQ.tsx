@@ -47,7 +47,7 @@ export default function FAQ({
           <p className="text-sm font-bold md:text-xl">{subTitle}</p>
         </div>
 
-        <ul className="flex flex-1 list-none flex-col gap-3">
+        <ul className="flex flex-1 list-none flex-col gap-4">
           {questions.map(({ question, answer }, index) => (
             <li key={`question-${index}`}>
               <details className="group rounded-lg bg-white px-4 py-4 transition-all duration-200">
