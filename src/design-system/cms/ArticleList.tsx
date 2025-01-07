@@ -1,4 +1,5 @@
 import DidYouKnowMainLanding from '@/app/_components/DidYouKnowMainLanding'
+import Trans from '@/components/translation/Trans'
 import PostThumbnail from '@/design-system/cms/PostThumbnail'
 import type { ArticleItemType } from '../../adapters/cmsClient'
 import Pagination from './articleList/Pagination'
@@ -14,6 +15,9 @@ export default function ArticleList({
 }) {
   return (
     <section className="mb-20 scroll-mt-40" id="articles">
+      <h2 className="mb-8 font-medium">
+        <Trans>Nos derniers articles</Trans>
+      </h2>
       <ul className="grid grid-cols-1 gap-8 md:grid-cols-3">
         {articles.slice(0, 6).map((article) => (
           <li key={article.documentId} className="h-full">

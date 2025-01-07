@@ -41,11 +41,11 @@ export default function PostThumbnail({
 
       <div className="mt-4 flex w-full flex-col md:flex-1">
         {/* Hidden on desktop */}
-        <p className="mb-2 px-4 pt-4 text-xs font-bold text-primary-700 md:hidden md:text-[13px]">
+        <p className="mb-2 px-4 text-xs font-bold text-primary-700 md:hidden md:pt-4 md:text-[13px]">
           {category}
         </p>
 
-        <h3 className="mb-2 pl-4 pr-2 text-[13px] font-normal text-default !no-underline md:px-4 md:text-base">
+        <h3 className="mb-auto pl-4 pr-2 text-[13px] font-normal text-default !no-underline md:mb-2 md:px-4 md:text-base">
           {title}
         </h3>
 
