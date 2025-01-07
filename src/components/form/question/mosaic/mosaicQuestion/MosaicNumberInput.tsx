@@ -23,7 +23,14 @@ export default function NumberInput({
   parentMosaic,
   ...props
 }: Props) {
-  const { value, isMissing } = useRule(question)
+  const { value, isMissing, plafond } = useRule(question)
+
+  const isPlusDisabled =
+    value !== undefined &&
+    typeof value === 'number' &&
+    plafond !== undefined &&
+    typeof plafond === 'number' &&
+    value === plafond
 
   // Model shenanigans for description split...
   return (
@@ -67,6 +74,7 @@ export default function NumberInput({
           {...props}
         />
         <Button
+          disabled={isPlusDisabled}
           onClick={() => setValue(isMissing ? 1 : Number(value) + 1)}
           size="sm"
           className="z-10 h-8 w-8 items-center justify-center p-0 md:h-8 md:w-8">
