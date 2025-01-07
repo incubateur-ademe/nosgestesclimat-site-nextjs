@@ -13,6 +13,12 @@ export const amisCreationVosInformationsRetour = [
   'Step 1 - Click Retour',
 ]
 
+export const amisCreationEtapeVosInformationsSuivant = [
+  'trackEvent',
+  'Amis Creation',
+  'Step 2 - Click Suivant',
+]
+
 export const amisCreationVotreGroupeRetour = [
   'trackEvent',
   'Amis Creation',
