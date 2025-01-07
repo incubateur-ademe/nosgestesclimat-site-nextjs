@@ -17,11 +17,11 @@ import StickySummary from './_components/StickySummary'
 export async function generateMetadata({
   params,
 }: {
-  params: { category: string; articleSlug: string; locale: string }
+  params: { category: string; article: string; locale: string }
 }) {
   const { metaTitle, metaDescription, image } =
     (await fetchArticlePageMetadata({
-      articleSlug: params.articleSlug,
+      articleSlug: params.article,
     })) || {}
 
   return getMetadataObject({
@@ -31,7 +31,7 @@ export async function generateMetadata({
       'Découvrez des conseils pratiques pour réduire votre empreinte écologique.',
     image: image?.url || '',
     alternates: {
-      canonical: `/blog/${params.category}/${params.articleSlug}`,
+      canonical: `/blog/${params.category}/${params.article}`,
     },
   })
 }
@@ -123,7 +123,7 @@ export default async function ArticlePage({
 
           <div className="h-[600px] w-[1px] bg-gray-300 md:block" />
 
-          <div className="flex flex-col items-start gap-4 md:w-[calc(33%-8px)] md:items-end">
+          <div className="-order-1 flex w-full flex-col items-start gap-4 md:order-1 md:w-[calc(33%-8px)] md:items-end">
             <CopyButton
               className="w-auto"
               textToCopy={`https://nosgestesclimat.fr/blog/${params.category}/${params.article}`}

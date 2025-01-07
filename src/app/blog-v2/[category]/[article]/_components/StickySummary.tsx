@@ -14,7 +14,7 @@ export default async function StickySummary({
   headings: Heading[]
 }) {
   return (
-    <div className="-order-1 w-full rounded-xl bg-gray-100 p-4 md:order-1">
+    <div className="w-full rounded-xl bg-gray-100 p-4">
       <h2 className="mb-2 text-xl font-bold">
         <Trans>Sommaire</Trans>
       </h2>
