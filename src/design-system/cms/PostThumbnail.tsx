@@ -3,6 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import type { ReactNode } from 'react'
+import { twMerge } from 'tailwind-merge'
 import ImageWithCategory from './ImageWithCategory'
 
 export default function PostThumbnail({
@@ -12,6 +13,7 @@ export default function PostThumbnail({
   imageAlt,
   href,
   trackingEvent,
+  className,
 }: {
   title: ReactNode
   category: ReactNode
@@ -19,11 +21,15 @@ export default function PostThumbnail({
   imageAlt: string
   href: string
   trackingEvent: string[]
+  className?: string
 }) {
   return (
     <a
       href={href}
-      className="flex h-full rounded-xl bg-gray-50 !no-underline !duration-300 md:flex-col md:transition-transform md:hover:translate-y-[-6px]"
+      className={twMerge(
+        'flex h-full rounded-xl  !no-underline !duration-300 md:flex-col md:transition-transform md:hover:translate-y-[-6px]',
+        className
+      )}
       onClick={() => trackEvent(trackingEvent)}>
       <ImageWithCategory
         category={category}

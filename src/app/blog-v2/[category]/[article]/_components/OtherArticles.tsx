@@ -26,6 +26,7 @@ export default function OtherArticles({
             href={`/blog-v2/${article.category?.slug}/${article.slug}`}
             trackingEvent={['blog', 'other-articles']}
             category={article.category?.title ?? ''}
+            className="bg-white"
           />
         ))}
       </div>

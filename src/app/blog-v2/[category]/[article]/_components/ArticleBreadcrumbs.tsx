@@ -16,7 +16,7 @@ export default async function ArticleBreadcrumbs({
 
   return (
     <Breadcrumbs
-      className="relative"
+      className="relative mb-10"
       items={[
         { href: '/blog-v2', label: t('Accueil Blog') },
         { href: `/blog-v2/${categorySlug}`, label: categoryTitle },

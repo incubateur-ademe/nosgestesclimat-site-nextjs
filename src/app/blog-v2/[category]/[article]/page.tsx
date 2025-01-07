@@ -67,9 +67,9 @@ export default async function ArticlePage({
           categoryTitle={article.category?.title ?? ''}
         />
 
-        <div className="flex flex-col items-start gap-12 md:flex-row md:justify-between">
+        <div className="mb-16 flex flex-col items-start gap-8 md:flex-row md:justify-between">
           <div className="flex flex-col items-start md:w-8/12">
-            <Badge className="mb-1" size="sm">
+            <Badge className="mb-4" size="sm">
               {article.category?.title ?? ''}
             </Badge>
 
@@ -109,8 +109,8 @@ export default async function ArticlePage({
           </div>
         </div>
 
-        <div className="mt-10 flex min-h-screen flex-col flex-nowrap gap-8 overflow-auto md:flex-row md:items-start">
-          <div className="max-w-full flex-1 md:w-[600px]">
+        <div className="mb-20 flex min-h-screen flex-col flex-nowrap gap-8 overflow-auto md:flex-row md:items-start">
+          <div className="max-w-full md:w-8/12">
             <div
               className="markdown min-h-[100vh] max-w-full border-b border-gray-300 pb-8"
               dangerouslySetInnerHTML={{ __html: article.htmlContent ?? '' }}
