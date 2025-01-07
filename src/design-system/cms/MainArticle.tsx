@@ -19,7 +19,7 @@ export default function MainArticle({
   href: string
 }) {
   return (
-    <div>
+    <Link href={href} className="mb-20 no-underline">
       <h2 className="relative mb-8 inline-block pb-4 text-2xl font-medium md:text-3xl">
         <Trans>À la une !</Trans>{' '}
         <ColorLine className="bg-rainbow absolute bottom-0 left-[15%] h-[3px] w-[70%] animate-rainbow-slow transition-all md:left-0 md:w-full" />
@@ -36,22 +36,22 @@ export default function MainArticle({
         />
 
         <div className="flex flex-1 flex-col gap-4 p-4 md:py-6 md:pl-0 md:pr-20">
-          <h3 className="mb-0 text-xl font-normal md:text-2xl">{title}</h3>
+          <h3 className="mb-0 text-xl font-normal text-default md:text-2xl">
+            {title}
+          </h3>
 
           <p
-            className="flex-1 text-base"
+            className="flex-1 text-base text-default"
             dangerouslySetInnerHTML={{ __html: description }}
           />
 
           <div className="flex justify-end">
-            <Link
-              href={href}
-              className="ml-auto inline-block cursor-pointer text-right text-[13px] text-primary-700 underline md:text-right md:text-base">
+            <span className="ml-auto inline-block cursor-pointer text-right text-[13px] text-primary-700 underline md:text-right md:text-base">
               <Trans>Lire la suite</Trans>
-            </Link>
+            </span>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }

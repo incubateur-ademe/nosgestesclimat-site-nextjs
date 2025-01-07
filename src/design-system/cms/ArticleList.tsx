@@ -13,10 +13,10 @@ export default function ArticleList({
   currentPage: number
 }) {
   return (
-    <section className="mt-20 scroll-mt-40" id="articles">
+    <section className="mb-20 scroll-mt-40" id="articles">
       <ul className="grid grid-cols-1 gap-8 md:grid-cols-3">
         {articles.slice(0, 6).map((article) => (
-          <li key={article.documentId}>
+          <li key={article.documentId} className="h-full">
             <PostThumbnail
               title={article.title}
               category={article.category?.title ?? ''}

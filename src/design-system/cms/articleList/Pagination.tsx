@@ -14,7 +14,7 @@ export default function Pagination({
 }) {
   return (
     <div className="text-center">
-      <div className="relative my-16 inline-flex items-center justify-center gap-3">
+      <div className="relative mt-16 inline-flex items-center justify-center gap-3">
         {currentPage > 1 && (
           <Link
             className="absolute -left-6 top-1/2 -translate-y-1/2"

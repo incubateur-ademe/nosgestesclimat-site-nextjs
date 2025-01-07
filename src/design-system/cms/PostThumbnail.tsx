@@ -23,7 +23,7 @@ export default function PostThumbnail({
   return (
     <a
       href={href}
-      className="flex rounded-xl bg-white !no-underline !duration-500 md:flex-col md:transition-transform md:hover:translate-y-[-6px]"
+      className="flex h-full rounded-xl bg-gray-50 !no-underline !duration-300 md:flex-col md:transition-transform md:hover:translate-y-[-6px]"
       onClick={() => trackEvent(trackingEvent)}>
       <ImageWithCategory
         category={category}
@@ -33,7 +33,7 @@ export default function PostThumbnail({
         containerClassName="w-1/3 md:w-full"
       />
 
-      <div className="mt-4 flex w-full flex-col">
+      <div className="mt-4 flex w-full flex-col md:flex-1">
         {/* Hidden on desktop */}
         <p className="mb-2 px-4 pt-4 text-xs font-bold text-primary-700 md:hidden md:text-[13px]">
           {category}
@@ -43,7 +43,7 @@ export default function PostThumbnail({
           {title}
         </h3>
 
-        <div className="cursor-pointer p-4 pt-0 text-left text-[13px] text-primary-700 underline md:text-right md:text-base">
+        <div className="mt-auto cursor-pointer p-4 pt-0 text-left text-[13px] text-primary-700 underline md:text-right md:text-base">
           <Trans>Lire la suite</Trans>
         </div>
       </div>

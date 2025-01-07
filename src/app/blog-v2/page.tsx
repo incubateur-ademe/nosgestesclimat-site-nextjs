@@ -61,9 +61,7 @@ export default async function BlogHomePage({
         ]}
       />
 
-      <ContentLarge
-        tag="div"
-        className="mt-20 overflow-hidden overflow-y-auto overflow-x-hidden">
+      <ContentLarge tag="div" className="mt-20 overflow-hidden">
         {title && description && image && (
           <BlogHero title={title} description={description} image={image} />
         )}
@@ -87,7 +85,7 @@ export default async function BlogHomePage({
           />
         )}
 
-        <div className="mb-40 mt-24 flex flex-col gap-8 md:flex-row">
+        <div className=" mt-20 flex flex-col gap-8 md:flex-row">
           <Suspense fallback={<NewslettersBlockSkeleton />}>
             <NewslettersBlock />
           </Suspense>

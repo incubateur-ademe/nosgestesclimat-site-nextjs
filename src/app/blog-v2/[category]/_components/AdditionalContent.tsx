@@ -8,7 +8,7 @@ export default function AdditionalContent({
   image: { url: string; alternativeText: string }
 }) {
   return (
-    <div className="mb-20 flex flex-col justify-between gap-8 overflow-x-hidden md:flex-row">
+    <div className="flex flex-col justify-between gap-8 overflow-x-hidden md:flex-row">
       <div className="md:max-w-[30rem]">
         <p
           className="text-lg"
