@@ -4,6 +4,8 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { fetchArticlePageContent } from '@/services/cms/fetchArticlePageContent'
 import { fetchArticlePageMetadata } from '@/services/cms/fetchArticlePageMetadata'
 
+import ShareIcon from '@/components/icons/ShareIcon'
+import CopyButton from '@/design-system/inputs/CopyButton'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import ArticleBreadcrumbs from './_components/ArticleBreadcrumbs'
@@ -119,9 +121,19 @@ export default async function ArticlePage({
             <AuthorBlock author={article.author} />
           </div>
 
-          <div className="hidden h-[600px] w-[1px] bg-gray-300 md:block" />
+          <div className="h-[600px] w-[1px] bg-gray-300 md:block" />
 
-          <StickySummary headings={article.headings ?? []} />
+          <div className="flex flex-col items-start gap-4 md:w-[calc(33%-8px)] md:items-end">
+            <CopyButton
+              className="w-auto"
+              textToCopy={`https://nosgestesclimat.fr/blog/${params.category}/${params.article}`}
+              copiedStateText={<Trans>Lien copié</Trans>}>
+              <ShareIcon className="mr-2 h-8 w-8 fill-primary-700" />
+              <Trans>Partager l'article</Trans>
+            </CopyButton>
+
+            <StickySummary headings={article.headings ?? []} />
+          </div>
         </div>
 
         <OtherArticles articles={otherArticles} />

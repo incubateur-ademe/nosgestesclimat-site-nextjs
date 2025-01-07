@@ -101,7 +101,7 @@ export default async function CategoryPage({
 
       {questions && questions.length > 0 && (
         <FAQ
-          className="!pb-28"
+          className="!pb-10"
           questions={questions.map((question) => ({
             question: question.question,
             answer: question.htmlAnswer,
@@ -120,7 +120,11 @@ export default async function CategoryPage({
         />
       )}
 
-      <AllBlogCategories />
+      <AllBlogCategories
+        className={
+          additionalContent && image ? 'before:bg-white' : 'before:bg-[#F6F6F5]'
+        }
+      />
     </div>
   )
 }

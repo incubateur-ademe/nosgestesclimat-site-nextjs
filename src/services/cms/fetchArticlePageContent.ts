@@ -57,6 +57,8 @@ export async function fetchArticlePageContent({
       'filters[category][slug][$eq]': categorySlug ?? '',
       'filters[slug][$ne]': articleSlug,
       sort: 'publishedAt:desc',
+      'pagination[start]': '0',
+      'pagination[limit]': '3',
     })
 
     const otherArticlesResponse = await cmsClient<{

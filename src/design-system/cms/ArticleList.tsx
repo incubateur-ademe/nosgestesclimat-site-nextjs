@@ -24,6 +24,7 @@ export default function ArticleList({
               imageAlt={article.image?.alternativeText ?? ''}
               href={`/blog-v2/${article.category?.slug}/${article.slug}`}
               trackingEvent={['blog', 'article', article.slug]}
+              className="bg-gray-50"
             />
           </li>
         ))}
