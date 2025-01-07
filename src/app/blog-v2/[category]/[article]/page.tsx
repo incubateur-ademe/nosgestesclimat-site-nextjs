@@ -55,11 +55,7 @@ export default async function ArticlePage({
 
   return (
     <>
-      <ArticleJSONLD
-        article={article}
-        categorySlug={params.category}
-        articleSlug={params.article}
-      />
+      <ArticleJSONLD article={article} />
 
       <div className="relative">
         <ArticleBreadcrumbs

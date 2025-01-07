@@ -1,41 +1,26 @@
 import type { ArticleType } from '@/adapters/cmsClient'
 import JSONLD from '@/components/seo/JSONLD'
 
-export default function ArticleJSONLD({
-  article,
-  categorySlug,
-  articleSlug,
-}: {
-  article: ArticleType
-  categorySlug: string
-  articleSlug: string
-}) {
+export default function ArticleJSONLD({ article }: { article: ArticleType }) {
   return (
     <JSONLD
       jsonLd={[
         {
           '@context': 'https://schema.org/',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            {
-              '@type': 'ListItem',
-              position: 1,
-              name: 'Accueil Blog',
-              item: 'https://nosgestesclimat.fr/blog',
-            },
-            {
-              '@type': 'ListItem',
-              position: 2,
-              name: article.category?.title ?? '',
-              item: `https://nosgestesclimat.fr/blog/${categorySlug}`,
-            },
-            {
-              '@type': 'ListItem',
-              position: 3,
-              name: article.title,
-              item: `https://nosgestesclimat.fr/blog/${categorySlug}/${articleSlug}`,
-            },
-          ],
+          '@type': 'BlogPosting',
+          headline: article.title,
+          datePublished: article.publishedAt,
+          dateModified: article.updatedAt,
+          image: {
+            '@type': 'imageObject',
+            url: article.image,
+            height: '640',
+            width: '800',
+          },
+          author: {
+            '@type': 'Person',
+            name: article.author?.name,
+          },
         },
       ]}
     />

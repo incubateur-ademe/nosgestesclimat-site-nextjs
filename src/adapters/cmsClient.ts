@@ -14,6 +14,7 @@ export const cmsClient = async <T>(
     const response = await fetch(fullUrl, {
       ...options,
       headers,
+      cache: 'force-cache',
       // In seconds, production => 5 minutes, dev => 5 seconds
       next: { revalidate: process.env.NODE_ENV !== 'production' ? 5 : 60 * 5 },
     })
