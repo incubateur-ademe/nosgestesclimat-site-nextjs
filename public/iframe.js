@@ -11,20 +11,21 @@ const possibleOptions = [
   { key: 'shareData', legacy: 'partagedatafinsimulation' },
 ]
 
-const optionFragments = possibleOptions.map(({ key, legacy }) => {
+const url = new URL(hostname)
+
+url.searchParams.append('iframe', 'true')
+url.searchParams.append('integratorUrl', integratorUrl)
+
+possibleOptions.forEach(({ key, legacy }) => {
   const value = script.dataset[key] || script.dataset[legacy]
 
-  return value != null ? `&${key}=${value}` : ''
+  url.searchParams.append(key, value)
 })
-
-const src = `${hostname}/?iframe&integratorUrl=${integratorUrl}${optionFragments.join(
-  ''
-)}`
 
 const iframe = document.createElement('iframe')
 
 const iframeAttributes = {
-  src,
+  src: url.toString(),
   allowfullscreen: true,
   webkitallowfullscreen: true,
   mozallowfullscreen: true,
@@ -36,31 +37,31 @@ const color = '#32337b'
 document.head.insertAdjacentHTML(
   'beforeend',
   `<style>
-	#iframeNGC {
-	  border: none;
-		border-radius: 1rem;
-		display: block;
-		margin: 10px auto;
-		height: 800px;
-		max-height: 80vh; /* Small smartphone screens should'nt have to scroll too much. We estimate that the host's header takes 20vh */
-		width: 100%;
-	}
-	@media (min-width: 800px){
-	  #iframeNGC{
-	    max-width: 450px; /* On large monitors, the iframe should not extend too much, as to avoid confusion between the iframe (viewed as an app) and the rest of the content, e.g. when it's integrated in a blog article. Remember : the website is designed mobile first, so should work perfectly on this width */
-		  border: 8px solid ${color};
-		}
-  }
-	#iframeNGC:fullscreen {
-    width: 100%;
-    height: 100%;
-	  max-height: 100%;
-	  max-width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-	  background: white;
-	}
+    #iframeNGC {
+      border: none;
+      border-radius: 1rem;
+      display: block;
+      margin: 10px auto;
+      height: 800px;
+      max-height: 80vh; /* Small smartphone screens should'nt have to scroll too much. We estimate that the host's header takes 20vh */
+      width: 100%;
+    }
+    @media (min-width: 800px){
+      #iframeNGC{
+        max-width: 450px; /* On large monitors, the iframe should not extend too much, as to avoid confusion between the iframe (viewed as an app) and the rest of the content, e.g. when it's integrated in a blog article. Remember : the website is designed mobile first, so should work perfectly on this width */
+        border: 8px solid ${color};
+      }
+    }
+    #iframeNGC:fullscreen {
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      max-width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: white;
+    }
     </style>`
 )
 

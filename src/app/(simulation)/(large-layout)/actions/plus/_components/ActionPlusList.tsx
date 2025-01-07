@@ -42,7 +42,7 @@ export default function ActionPlusList({ actions }: Props) {
             <div className="mb-8 text-2xl">{rule.icônes || '🎯'}</div>
             <div className="text-center">
               {getRuleTitle(
-                rule as NGCRule & { dottedName: DottedName; titre: string }
+                rule as NGCRule & { dottedName: DottedName; titre?: string }
               )}
             </div>
           </Card>

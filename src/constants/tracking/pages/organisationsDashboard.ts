@@ -50,13 +50,6 @@ export const organisationsDashboardClickImpactCo2 = [
   'Click Impact CO2',
 ]
 
-// Figma comment #98
-export const organisationsDashboardClickRapportDetaille = [
-  'trackEvent',
-  'Organisations Dashboard',
-  'Click Rapport détaillé',
-]
-
 // Figma comment #99
 export const organisationsDashboardExportData = [
   'trackEvent',

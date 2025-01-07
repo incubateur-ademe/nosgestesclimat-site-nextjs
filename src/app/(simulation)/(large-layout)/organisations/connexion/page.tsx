@@ -3,25 +3,16 @@
 import Trans from '@/components/translation/Trans'
 import Separator from '@/design-system/layout/Separator'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
-import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import EmailSection from './_components/EmailSection'
 
 export default function Page() {
-  const { user } = useUser()
-
   const router = useRouter()
 
   // This should fail if the user has not received a
   // valid token to access the organisation
-  const {
-    isSuccess,
-    isError,
-    data: organisation,
-  } = useFetchOrganisation({
-    email: user?.organisation?.administratorEmail ?? '',
-  })
+  const { isSuccess, isError, data: organisation } = useFetchOrganisation()
 
   // Redirect to the organisation page if the user
   // is already logged in (has a valid cookie stored)

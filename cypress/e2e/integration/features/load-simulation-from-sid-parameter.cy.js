@@ -16,7 +16,7 @@ describe('Loading the simulation from the sid parameter', () => {
       let simulationId
 
       beforeEach(() => {
-        cy.intercept('POST', '/simulations/create', (req) => {
+        cy.intercept('POST', '/simulations/v1/**', (req) => {
           req.body.userId = TEST_USER_ID
         }).as('saveSimulation')
 

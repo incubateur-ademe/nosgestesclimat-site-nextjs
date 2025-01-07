@@ -81,6 +81,7 @@ export default function useSimulations({
     ({
       situation,
       situationToAdd,
+      foldedSteps,
       foldedStepToAdd,
       actionChoices,
       defaultAdditionalQuestionsAnswers,
@@ -108,6 +109,10 @@ export default function useSimulations({
               ...simulationToUpdate.situation,
               ...situationToAdd,
             }
+          }
+
+          if (foldedSteps !== undefined) {
+            simulationToUpdate.foldedSteps = foldedSteps
           }
 
           if (

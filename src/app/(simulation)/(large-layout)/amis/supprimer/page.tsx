@@ -42,7 +42,7 @@ export default function SupprimerGroupePage({
     }
   }
 
-  const isOwner = group?.administrator?.userId === userId
+  const isOwner = group?.administrator.id === userId
 
   if (
     !groupId ||

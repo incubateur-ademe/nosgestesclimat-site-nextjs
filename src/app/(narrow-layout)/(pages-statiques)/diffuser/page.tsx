@@ -10,7 +10,7 @@ export async function generateMetadata() {
 
   return getMetadataObject({
     title: t(
-      "Diffuser notre simulateur d'empreinte climat - Nos Gestes Climat"
+      "Diffuser notre calculateur d'empreinte climat - Nos Gestes Climat"
     ),
     description: t('Diffusez Nos Gestes Climat dans votre organisation.'),
     alternates: {

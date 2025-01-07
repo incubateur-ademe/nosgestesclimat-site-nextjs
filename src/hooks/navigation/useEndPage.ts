@@ -65,6 +65,7 @@ export function useEndPage() {
 
         await saveSimulation({
           simulation: currentSimulation,
+          sendEmail: true,
         })
       }
 

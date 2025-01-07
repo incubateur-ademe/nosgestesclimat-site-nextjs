@@ -5,6 +5,7 @@
  */
 'use client'
 
+import { useSetIframeLang } from '@/hooks/language/useSetIframeLang'
 import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
 import { useTrackLocale } from '@/hooks/tracking/useTrackLocale'
 import { useTrackPageView } from '@/hooks/tracking/useTrackPageView'
@@ -26,6 +27,7 @@ export default function MainHooks({ children }: PropsWithChildren) {
   useUserInfosParams()
   useInitSimulationParam()
   useRedirectIfInAppBrowser()
+  useSetIframeLang()
 
   return children
 }

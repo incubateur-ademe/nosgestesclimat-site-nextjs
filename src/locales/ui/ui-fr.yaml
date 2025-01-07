@@ -105,7 +105,7 @@ entries:
   publicodes.Contribution.descriptionComplète: <0>La description complète de votre problème</0><1><0>En indiquant le navigateur que vous utilisez (par exemple Firefox version 93, Chrome version 95, Safari, etc.), et la plateforme (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à résoudre le bug plus rapidement.</0></1>
   publicodes.Contribution.liensVersGithub: Pour toute remarque ou question, nous vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
   publicodes.Contribution.remerciements: Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur <2>ce lien</2>.
-  publicodes.Personas.description: 'Nous les avons définis pour qu’ils représentent la diversité des cas d’usage du simulateur.<1>Toute ressemblance avec une personne existant ou ayant existé serait purement fortuite !</1>En aucune mesure, on ne peut dire qu’ils sont représentatifs de la distribution de la population française : il ne s’agit pas de coller aux statistiques de la population, mais de retrouver parmi nos dix personas au moins un qui représente chaque usage majeur et différenciant pour le simulateur. Ainsi, nous avons fait varier pour chacun d’entre eux :<3><0>Leur genre : même s’il n’influe pas sur l’empreinte, il serait étonnant de n’avoir que des personas “femmes”</0><1>Leur âge et situation personnelle / professionnelle : au moins un étudiant, un retraité, un adulte au foyer, un actif</1><2>La taille de leur foyer : de 1 personne à famille nombreuse</2><3>Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans le nord, dans le sud, les plaines, la montagne et sur une île</3><4>Leur logement : de l’appartement à la maison, du neuf à l’ancien</4><5>Leurs modes de transport : de la marche à la voiture en passant par le ferry et l’avion</5><6>Leur régime alimentaire : au moins un végétalien, un végétarien, une personne ne mangeant que du poisson, et un amateur de viande rouge</6><7>Leur tendance à l’achat : du tout occasion au tout neuf, de l’acheteur compulsif à celui ou celle qui n’achète presque rien</7><8>Leur façon de partir en vacances : mode de transport, hébergement, on trouve de tout</8><9>Leurs loisirs : de la culture, du sport, du bien-être…</9></3>'
+  publicodes.Personas.description: 'Nous les avons définis pour qu’ils représentent la diversité des cas d’usage du calculateur.<1>Toute ressemblance avec une personne existant ou ayant existé serait purement fortuite !</1>En aucune mesure, on ne peut dire qu’ils sont représentatifs de la distribution de la population française : il ne s’agit pas de coller aux statistiques de la population, mais de retrouver parmi nos dix personas au moins un qui représente chaque usage majeur et différenciant pour le calculateur. Ainsi, nous avons fait varier pour chacun d’entre eux :<3><0>Leur genre : même s’il n’influe pas sur l’empreinte, il serait étonnant de n’avoir que des personas “femmes”</0><1>Leur âge et situation personnelle / professionnelle : au moins un étudiant, un retraité, un adulte au foyer, un actif</1><2>La taille de leur foyer : de 1 personne à famille nombreuse</2><3>Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans le nord, dans le sud, les plaines, la montagne et sur une île</3><4>Leur logement : de l’appartement à la maison, du neuf à l’ancien</4><5>Leurs modes de transport : de la marche à la voiture en passant par le ferry et l’avion</5><6>Leur régime alimentaire : au moins un végétalien, un végétarien, une personne ne mangeant que du poisson, et un amateur de viande rouge</6><7>Leur tendance à l’achat : du tout occasion au tout neuf, de l’acheteur compulsif à celui ou celle qui n’achète presque rien</7><8>Leur façon de partir en vacances : mode de transport, hébergement, on trouve de tout</8><9>Leurs loisirs : de la culture, du sport, du bien-être…</9></3>'
   publicodes.Profil.locationDonnées: <0>Où sont mes données ? </0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
   publicodes.Profil.recap: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions), choisi {{chosenActions}} action(s) et décliné {{declinedActions}} action(s).
   publicodes.Profil.simulations: Chaque simulation que vous faite est sauvegardée dans votre navigateur Web. Vous êtes le seul à y avoir accès.
@@ -187,7 +187,7 @@ entries:
   Personas: Personas
   Qui sont-ils ?: Qui sont-ils ?
   Comment les mettons-nous à jour ?: Comment les mettons-nous à jour ?
-  publicodes.Personas.maj: Pour qu’ils ou elles continuent de représenter la diversité des cas d’usage du simulateur d’empreinte carbone, nous les éditons à chaque ajout ou modification de ce dernier, en respectant les règles suivantes :<1><0>Chaque réponse possible est attribuée à au moins un persona</0><1>Au moins un persona ne répond rien à la question (il lui est donc attribué la valeur par défaut donnée dans le simulateur).</1></1>
+  publicodes.Personas.maj: Pour qu’ils ou elles continuent de représenter la diversité des cas d’usage du calculateur d’empreinte carbone, nous les éditons à chaque ajout ou modification de ce dernier, en respectant les règles suivantes :<1><0>Chaque réponse possible est attribuée à au moins un persona</0><1>Au moins un persona ne répond rien à la question (il lui est donc attribué la valeur par défaut donnée dans le calculateur).</1></1>
   Cette page vous permet de naviguer dans les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.: Cette page vous permet de naviguer dans les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.
   Nos équipes ont été prévenues ; veuillez réessayer d'accéder à cette page plus tard.: Nos équipes ont été prévenues ; veuillez réessayer d'accéder à cette page plus tard.
   ' Retour à la liste': ' Retour à la liste'
@@ -211,7 +211,7 @@ entries:
   Il concerne votre vie personnelle, et non pas votre boulot.: Il concerne votre vie personnelle, et non pas votre boulot.
   international.comment.2: Explorez en détail les spécificités de chaque pays.
   Le Blog: Le Blog
-  Les personas nous servent à tester le simulateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: Les personas nous servent à tester le simulateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.
+  Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.
   Logo de l'Association pour la transition Bas Carbone: Logo de l'Association pour la transition Bas Carbone
   Mes réponses: Mes réponses
   Passer en français: Passer en français
@@ -350,7 +350,6 @@ entries:
   Quelle est votre année de naissance ?: Quelle est votre année de naissance ?
   Qui peut consulter les résultats de mon organisation ?: Qui peut consulter les résultats de mon organisation ?
   Tranche d'âge: Tranche d'âge
-  Voir le rapport détaillé: Voir le rapport détaillé
   Voir les paramètres: Voir les paramètres
   Votre e-mail: Votre e-mail
   Vous avez une question ?: Vous avez une question ?
@@ -369,7 +368,7 @@ entries:
   Bien vu !: Bien vu !
   Calculez votre empreinte en: Calculez votre empreinte en
   D’après vous, quel est: D’après vous, quel est
-  Découvrez le simulateur, ouvrir dans un nouvel onglet: Découvrez le simulateur, ouvrir dans un nouvel onglet
+  Découvrez le calculateur, ouvrir dans un nouvel onglet: Découvrez le calculateur, ouvrir dans un nouvel onglet
   Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet
   Découvrez vos résultats détaillés: Découvrez vos résultats détaillés
   Effectivement, avec: Effectivement, avec
@@ -436,7 +435,7 @@ entries:
   top chrono.: top chrono.
   Vous avez déja participé à ce sondage.: Vous avez déja participé à ce sondage.
   Vous avez déjà participé à ce sondage.: Vous avez déjà participé à ce sondage.
-  Découvrir le simulateur: Découvrir le simulateur
+  Découvrir le calculateur: Découvrir le calculateur
   écartez celles qui vous semblent trop ambitieuses ou déplacées.: écartez celles qui vous semblent trop ambitieuses ou déplacées.
   Empreinte: Empreinte
   Gestes: Gestes
@@ -477,7 +476,7 @@ entries:
   Budget - Nos Gestes Climat: Budget - Nos Gestes Climat
   Calculer votre empreinte carbone avec vos amis - Nos Gestes Climat: Calculer votre empreinte carbone avec vos amis - Nos Gestes Climat
   Calculer votre empreinte carbone individuelle - Nos Gestes Climat: Calculer votre empreinte carbone individuelle - Nos Gestes Climat
-  Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.
+  Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat.: Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat.
   Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.: Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.
   CGU - Nos Gestes Climat: CGU - Nos Gestes Climat
   Comparez vos résultats avec votre famille ou un groupe d’amis.: Comparez vos résultats avec votre famille ou un groupe d’amis.
@@ -486,16 +485,16 @@ entries:
   Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.: Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.
   Contact - Nos Gestes Climat: Contact - Nos Gestes Climat
   Contactez l'équipe de Nos Gestes Climat.: Contactez l'équipe de Nos Gestes Climat.
-  Découvrez comment nous utilisons vos données personnelles pour vous proposer un simulateur de bilan carbone personnel.: Découvrez comment nous utilisons vos données personnelles pour vous proposer un simulateur de bilan carbone personnel.
-  Découvrez le modèle de données de notre simulateur d'empreinte climat: Découvrez le modèle de données de notre simulateur d'empreinte climat
+  Découvrez comment nous utilisons vos données personnelles pour vous proposer un calculateur de bilan carbone personnel.: Découvrez comment nous utilisons vos données personnelles pour vous proposer un calculateur de bilan carbone personnel.
+  Découvrez le modèle de données de notre calculateur d'empreinte climat: Découvrez le modèle de données de notre calculateur d'empreinte climat
   Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.: Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.
   Découvrez les articles de blog du site Nos Gestes Climat.: Découvrez les articles de blog du site Nos Gestes Climat.
   Découvrez les nouveautés du site Nos Gestes Climat.: Découvrez les nouveautés du site Nos Gestes Climat.
-  Découvrez les personas d'utilisateurs types qui nous servent à tester le simulateur sous toutes ses coutures.: Découvrez les personas d'utilisateurs types qui nous servent à tester le simulateur sous toutes ses coutures.
-  Diffuser notre simulateur d'empreinte climat - Nos Gestes Climat: Diffuser notre simulateur d'empreinte climat - Nos Gestes Climat
+  Découvrez les personas d'utilisateurs types qui nous servent à tester le calculateur sous toutes ses coutures.: Découvrez les personas d'utilisateurs types qui nous servent à tester le calculateur sous toutes ses coutures.
+  Diffuser notre calculateur d'empreinte climat - Nos Gestes Climat: Diffuser notre calculateur d'empreinte climat - Nos Gestes Climat
   Diffusez Nos Gestes Climat dans votre organisation.: Diffusez Nos Gestes Climat dans votre organisation.
   Documentation Contexte Sondage - Nos Gestes Climat: Documentation Contexte Sondage - Nos Gestes Climat
-  Documentation, votre simulateur d'empreinte carbone - Nos Gestes Climat: Documentation, votre simulateur d'empreinte carbone - Nos Gestes Climat
+  Documentation, votre calculateur d'empreinte carbone - Nos Gestes Climat: Documentation, votre calculateur d'empreinte carbone - Nos Gestes Climat
   Empreinte Climat - Nos Gestes Climat: Empreinte Climat - Nos Gestes Climat
   Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.: Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.
   Informations relatives à l'accessibilité de Nos Gestes Climat.: Informations relatives à l'accessibilité de Nos Gestes Climat.
@@ -526,16 +525,16 @@ entries:
   Politique de confidentialité - Nos Gestes Climat: Politique de confidentialité - Nos Gestes Climat
   Quelles sont les actions les plus efficaces ?: Quelles sont les actions les plus efficaces ?
   Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat: Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat
-  Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.
+  Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat.: Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat.
   Rejoindre un groupe - Nos Gestes Climat: Rejoindre un groupe - Nos Gestes Climat
   Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.: Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.
   Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.: Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.
   Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.: Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.
-  Simulateur d’empreinte climat - Nos Gestes Climat: Simulateur d’empreinte climat - Nos Gestes Climat
+  Calculateur d’empreinte climat - Nos Gestes Climat: Calculateur d’empreinte climat - Nos Gestes Climat
   Supprimer mes données de groupe - Nos Gestes Climat: Supprimer mes données de groupe - Nos Gestes Climat
-  Supprimez vos données de groupe enregistrées dans le simulateur Nos Gestes Climat.: Supprimez vos données de groupe enregistrées dans le simulateur Nos Gestes Climat.
-  Vos résultats de tests de notre simulateur d'empreinte carbone.: Vos résultats de tests de notre simulateur d'empreinte carbone.
-  Vos résultats, simulateur d'empreinte climat - Nos Gestes Climat: Vos résultats, simulateur d'empreinte climat - Nos Gestes Climat
+  Supprimez vos données de groupe enregistrées dans le calculateur Nos Gestes Climat.: Supprimez vos données de groupe enregistrées dans le calculateur Nos Gestes Climat.
+  Vos résultats de tests de notre calculateur d'empreinte carbone.: Vos résultats de tests de notre calculateur d'empreinte carbone.
+  Vos résultats, calculateur d'empreinte climat - Nos Gestes Climat: Vos résultats, calculateur d'empreinte climat - Nos Gestes Climat
   Ce test vous est proposé par: Ce test vous est proposé par
   En participant vous acceptez que vos résultats sont partagés anonymement avec cette organisation.: En participant vous acceptez que vos résultats sont partagés anonymement avec cette organisation.
   par semaine, miam: par semaine, miam
@@ -606,7 +605,7 @@ entries:
   Maintenant que vous avez fait votre bilan carbone et que vous avez pris conscience de votre empreinte, vous pouvez découvrir <2>l’ensemble des gestes</2> qui vous permettront d’atteindre progressivement l’objectif de 2 tonnes.: Maintenant que vous avez fait votre bilan carbone et que vous avez pris conscience de votre empreinte, vous pouvez découvrir <2>l’ensemble des gestes</2> qui vous permettront d’atteindre progressivement l’objectif de 2 tonnes.
   Mes principaux postes d’émissions: Mes principaux postes d’émissions
   Mon Empreinte Carbone - Nos Gestes Climat: Mon Empreinte Carbone - Nos Gestes Climat
-  Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Notre simulateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.
+  Notre calculateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Notre calculateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.
   par an: par an
   Par où commencer ?: Par où commencer ?
   'Recevez des conseils pour réduire votre empreinte :': 'Recevez des conseils pour réduire votre empreinte :'
@@ -721,7 +720,7 @@ entries:
   Des enfants sortant de l'école en se tenant la main.: Des enfants sortant de l'école en se tenant la main.
   Deux personnes se faisant une accolade en levant le bras en signe de victoire.: Deux personnes se faisant une accolade en levant le bras en signe de victoire.
   Groupe de personnes devant un paperboard: Groupe de personnes devant un paperboard
-  Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.: Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.
+  Le calculateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.: Le calculateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.
   Nous améliorons le site en continu à partir de <2>vos retours</2>. Découvrez la tambouille interne de Nos Gestes Climat.: Nous améliorons le site en continu à partir de <2>vos retours</2>. Découvrez la tambouille interne de Nos Gestes Climat.
   Personne sur un vélo récupérant du courrier dans une boîte aux lettres: Personne sur un vélo récupérant du courrier dans une boîte aux lettres
   Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul. À lire tranquillement au coin du feu.: Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul. À lire tranquillement au coin du feu.
@@ -754,7 +753,7 @@ entries:
   Même si réduire son empreinte individuelle est l'action la plus directe, il existe <1>d'autres façons d'agir à son niveau</1>. Tous ces modes d'action sont complémentaires !: Même si réduire son empreinte individuelle est l'action la plus directe, il existe <1>d'autres façons d'agir à son niveau</1>. Tous ces modes d'action sont complémentaires !
   Ce champ est obligatoire.: Ce champ est obligatoire.
   Ce champ est trop long: Ce champ est trop long
-  Cependant, nous suivons quelques informations sur votre utilisation de ce simulateur, telles que les pages consultées et le temps passé, dans l'unique but de l'améliorer.: Cependant, nous suivons quelques informations sur votre utilisation de ce simulateur, telles que les pages consultées et le temps passé, dans l'unique but de l'améliorer.
+  Cependant, nous suivons quelques informations sur votre utilisation de ce calculateur, telles que les pages consultées et le temps passé, dans l'unique but de l'améliorer.: Cependant, nous suivons quelques informations sur votre utilisation de ce calculateur, telles que les pages consultées et le temps passé, dans l'unique but de l'améliorer.
   Choisissez un nom pour ce groupe: Choisissez un nom pour ce groupe
   Continuer: Continuer
   Créer un groupe et calculer votre empreinte carbone - Nos Gestes Climat: Créer un groupe et calculer votre empreinte carbone - Nos Gestes Climat
@@ -780,7 +779,7 @@ entries:
   Données qualitatives: Données qualitatives
   inscrits à l'infolettre: inscrits à l'infolettre
   Modes "Groupes": Modes "Groupes"
-  partages du simulateur: partages du simulateur
+  partages du calculateur: partages du calculateur
   Récupération des données: Récupération des données
   simulations terminées depuis le lancement: simulations terminées depuis le lancement
   Une erreur est survenue lors de la récupération des données: Une erreur est survenue lors de la récupération des données
@@ -912,59 +911,34 @@ entries:
   / an: / an
   Les 8 manières d’améliorer l'empreinte eau de mon assiette: Les 8 manières d’améliorer l'empreinte eau de mon assiette
   <0>L’empreinte eau</0> correspond à l’ensemble de l’eau douce utilisée pour produire, distribuer et traiter en fin de vie des produits, biens ou services, que nous consommons au quotidien.: <0>L’empreinte eau</0> correspond à l’ensemble de l’eau douce utilisée pour produire, distribuer et traiter en fin de vie des produits, biens ou services, que nous consommons au quotidien.
-  À la différence de l’empreinte carbone, nous ne disposons pas encore de données consolidées à l’échelle de la France, ni d’objectifs à atteindre. Mais nous avons déjà une vision assez juste des conséquences de notre accaparement de cette précieuse ressource pour l’ensemble du vivant. Nous pouvons agir collectivement pour réduire notre empreinte eau.: À la différence de l’empreinte carbone, nous ne disposons pas encore de données consolidées à l’échelle de la France, ni d’objectifs à atteindre. Mais nous avons déjà une vision assez juste des conséquences de notre accaparement de cette précieuse ressource pour l’ensemble du vivant. Nous pouvons agir collectivement pour réduire notre empreinte eau.
   Accès à l'eau: Accès à l'eau
-  Adopter une alimentation moins gourmande en eau, en consommant moins de viande et en privilégiant les produits locaux et de saison, a également un impact significatif. Enfin, en évitant le gaspillage et en achetant des produits fabriqués de manière durable, on peut contribuer à la préservation des ressources hydriques tout en limitant notre empreinte environnementale.: Adopter une alimentation moins gourmande en eau, en consommant moins de viande et en privilégiant les produits locaux et de saison, a également un impact significatif. Enfin, en évitant le gaspillage et en achetant des produits fabriqués de manière durable, on peut contribuer à la préservation des ressources hydriques tout en limitant notre empreinte environnementale.
-  Ainsi, en calculant votre empreinte carbone, vous obtenez également une estimation de votre empreinte eau pour une vision complète de votre impact.: Ainsi, en calculant votre empreinte carbone, vous obtenez également une estimation de votre empreinte eau pour une vision complète de votre impact.
   'Attention : l’empreinte eau ne tient pas compte de la consommation d’eau domestique (douche, toilettes, cuisine, arrosage) !': 'Attention : l’empreinte eau ne tient pas compte de la consommation d’eau domestique (douche, toilettes, cuisine, arrosage) !'
-  Au travers du calculateur Nos Gestes Climat, nous calculons la quantité d’eau consommée par chacun de vos usages (achat d’un produit ou aliment, utilisation d’un service, consommations d’énergies).: Au travers du calculateur Nos Gestes Climat, nous calculons la quantité d’eau consommée par chacun de vos usages (achat d’un produit ou aliment, utilisation d’un service, consommations d’énergies).
   Avec les pressions croissantes exercées par les activités humaines et le changement climatique, la gestion durable de l’eau est devenue <2>un défi planétaire</2>. Que ce soit pour l’agriculture, l’industrie ou l’usage domestique, cette ressource limitée fait face à des menaces importantes. <5>Réduire notre consommation d’eau</5> et adopter des pratiques responsables est donc <9>nécessaire pour préserver les ressources</9> et répondre aux défis environnementaux mondiaux.: Avec les pressions croissantes exercées par les activités humaines et le changement climatique, la gestion durable de l’eau est devenue <2>un défi planétaire</2>. Que ce soit pour l’agriculture, l’industrie ou l’usage domestique, cette ressource limitée fait face à des menaces importantes. <5>Réduire notre consommation d’eau</5> et adopter des pratiques responsables est donc <9>nécessaire pour préserver les ressources</9> et répondre aux défis environnementaux mondiaux.
   Bien que l’eau soit abondante sur Terre, seule 1 % de l’eau est douce et accessible pour la consommation humaine.: Bien que l’eau soit abondante sur Terre, seule 1 % de l’eau est douce et accessible pour la consommation humaine.
-  Calculateur d'empreinte eau personnelle - Nos Gestes Climat: Calculateur d'empreinte eau personnelle - Nos Gestes Climat
-  "Ce n’est pas parce qu’elle n’est pas incluse qu’elle n’est pas importante ! Régulièrement, de nombreux territoires français sont soumis à des restrictions d’eau liées à des périodes de sécheresse. Il est important de réduire sa consommation d'eau domestique pour mieux partager cette ressource vitale et limiter les pressions sur les réserves locales. ": "Ce n’est pas parce qu’elle n’est pas incluse qu’elle n’est pas importante ! Régulièrement, de nombreux territoires français sont soumis à des restrictions d’eau liées à des périodes de sécheresse. Il est important de réduire sa consommation d'eau domestique pour mieux partager cette ressource vitale et limiter les pressions sur les réserves locales. "
   Cette consommation d’eau, pourtant très importante, est <2>invisible à l’œil nu</2> mais son impact est bien réel.: Cette consommation d’eau, pourtant très importante, est <2>invisible à l’œil nu</2> mais son impact est bien réel.
-  "Chaque geste compte pour garantir un accès durable à l'eau pour tous. ": "Chaque geste compte pour garantir un accès durable à l'eau pour tous. "
   Comment calculer l’empreinte eau ?: Comment calculer l’empreinte eau ?
   Comprendre pour agir: Comprendre pour agir
-  Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte eau.: Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte eau.
-  Comment agir ?: Comment agir ?
-  Connaissez-vous votre empreinte sur le climat ?: Connaissez-vous votre empreinte sur le climat ?
-  L'empreinte climat, qu'est-ce que c'est ?: L'empreinte climat, qu'est-ce que c'est ?
-  Toute contribution est la bienvenue !: Toute contribution est la bienvenue !
-  Une idée ? Une correction ? Une remarque ?: Une idée ? Une correction ? Une remarque ?
   Considérable, non ?: Considérable, non ?
   De l’eau se cache derrière toutes nos consommations, dans des proportions que nous ne soupçonnons pas toujours !: De l’eau se cache derrière toutes nos consommations, dans des proportions que nous ne soupçonnons pas toujours !
   Économiser l’eau, un enjeu de développement durable: Économiser l’eau, un enjeu de développement durable
   'Empreinte eau et empreinte carbone se répondent. ': 'Empreinte eau et empreinte carbone se répondent. '
   'Il existe plusieurs distinctions, qui permettent de valoriser les différences qualitatives d’impact de l’humain sur le cycle de l’eau. La couleur de l’eau en est une majeure :': 'Il existe plusieurs distinctions, qui permettent de valoriser les différences qualitatives d’impact de l’humain sur le cycle de l’eau. La couleur de l’eau en est une majeure :'
-  Il existe plusieurs méthodes pour calculer une empreinte eau. Chacune présente des avantages, et aucune à ce stade ne permet de saisir toute la complexité de la question des impacts de l’humain sur le cycle de l’eau. Notre choix s’est porté sur <2>la méthode AWARE</2>, qui permet de valoriser à sa juste mesure le stress hydrique des régions concernées par les consommations d’eau. C’est la méthode recommandée par la convention européenne, et plébiscitée par l’ADEME pour ses calculs d’ACV.: Il existe plusieurs méthodes pour calculer une empreinte eau. Chacune présente des avantages, et aucune à ce stade ne permet de saisir toute la complexité de la question des impacts de l’humain sur le cycle de l’eau. Notre choix s’est porté sur <2>la méthode AWARE</2>, qui permet de valoriser à sa juste mesure le stress hydrique des régions concernées par les consommations d’eau. C’est la méthode recommandée par la convention européenne, et plébiscitée par l’ADEME pour ses calculs d’ACV.
   Il faut 75 litres d’eau pour produire un oeuf.: Il faut 75 litres d’eau pour produire un oeuf.
   Impressionnant, non ?: Impressionnant, non ?
-  L’eau domestique, celle qui sort de vos robinets pour la douche, la cuisine, le ménage... n'est pas incluse dans l'empreinte eau car elle est en grande majorité restituée dans le même bassin versant après traitement.: L’eau domestique, celle qui sort de vos robinets pour la douche, la cuisine, le ménage... n'est pas incluse dans l'empreinte eau car elle est en grande majorité restituée dans le même bassin versant après traitement.
   "L'empreinte eau : pourquoi et comment avons-nous travaillé": "L'empreinte eau : pourquoi et comment avons-nous travaillé"
-  L’empreinte eau aboutit-elle aux mêmes conclusions que l’empreinte carbone ?: L’empreinte eau aboutit-elle aux mêmes conclusions que l’empreinte carbone ?
-  'L’empreinte eau d’un français est de plusieurs milliers de litres par jour : entre 4 et 8000, en moyenne.': 'L’empreinte eau d’un français est de plusieurs milliers de litres par jour : entre 4 et 8000, en moyenne.'
-  L’empreinte eau d'un jean est de 30 000 litres d'eau.: L’empreinte eau d'un jean est de 30 000 litres d'eau.
-  L’empreinte eau, ces litres qu’on ne voit pas !: L’empreinte eau, ces litres qu’on ne voit pas !
   L'extraction des matériaux pour le numérique: L'extraction des matériaux pour le numérique
   La culture des fruits, légumes et céréales que nous mangeons: La culture des fruits, légumes et céréales que nous mangeons
   La culture du coton de nos vêtements: La culture du coton de nos vêtements
-  La méthodologie AWARE que nous utilisons pour calculer l’empreinte eau se concentre sur les prélèvements d’eau, à savoir l’eau bleue. Elle ne tient pas compte de l’eau grise.: La méthodologie AWARE que nous utilisons pour calculer l’empreinte eau se concentre sur les prélèvements d’eau, à savoir l’eau bleue. Elle ne tient pas compte de l’eau grise.
   La production d’aliments pour les animaux d’élevage: La production d’aliments pour les animaux d’élevage
   La production d’électricité: La production d’électricité
-  La production d’un ordinateur nécessite 195 000 litres d’eau.: La production d’un ordinateur nécessite 195 000 litres d’eau.
   Le lexique pour tout comprendre à l'empreinte eau: Le lexique pour tout comprendre à l'empreinte eau
   Les activités humaines perturbent le cycle de l’eau et compromettent l’accès à l’eau potable, entraînant conflits, perte de biodiversité et déplacements de populations.: Les activités humaines perturbent le cycle de l’eau et compromettent l’accès à l’eau potable, entraînant conflits, perte de biodiversité et déplacements de populations.
   Les pratiques agricoles intensives et les rejets industriels contaminent les ressources en eau, menacent les écosystèmes et notre santé.: Les pratiques agricoles intensives et les rejets industriels contaminent les ressources en eau, menacent les écosystèmes et notre santé.
-  Lire l'article sur la méthode AWARE, nouvelle page: Lire l'article sur la méthode AWARE, nouvelle page
   Lire l'article sur le lexique pour tout comprendre à l'empreinte eau, nouvelle page: Lire l'article sur le lexique pour tout comprendre à l'empreinte eau, nouvelle page
   Lire la suite: Lire la suite
   Mieux comprendre <2>notre impact sur les ressources en eau</2> est essentiel pour pouvoir agir efficacement. À travers une série d’articles, nous vous proposons des conseils pratiques, des idées inspirantes et des informations clés pour <6>réduire votre empreinte eau</6>.: Mieux comprendre <2>notre impact sur les ressources en eau</2> est essentiel pour pouvoir agir efficacement. À travers une série d’articles, nous vous proposons des conseils pratiques, des idées inspirantes et des informations clés pour <6>réduire votre empreinte eau</6>.
-  Par ailleurs, l’empreinte humaine sur les sols (artificialisation, cultures intensives, déforestation) a réduit fortement leur capacité à absorber et retenir les eaux pluviales. Elle s’évapore trop vite, et n’alimente plus autant les cours d’eau, lacs et nappes phréatiques, qui progressivement s’épuisent.: Par ailleurs, l’empreinte humaine sur les sols (artificialisation, cultures intensives, déforestation) a réduit fortement leur capacité à absorber et retenir les eaux pluviales. Elle s’évapore trop vite, et n’alimente plus autant les cours d’eau, lacs et nappes phréatiques, qui progressivement s’épuisent.
   Pollution des eaux: Pollution des eaux
   'Pour aller plus loin : <2>Le lexique pour tout comprendre à l’empreinte eau</2>': 'Pour aller plus loin : <2>Le lexique pour tout comprendre à l’empreinte eau</2>'
-  Pour réduire son empreinte eau, il est nécessaire de changer nos habitudes quotidiennes.: Pour réduire son empreinte eau, il est nécessaire de changer nos habitudes quotidiennes.
-  Empreinte eau et empreinte carbone sont complémentaires, et les comprendre permet d’agir en faveur d’une gestion <2>plus durable des ressources naturelles</2> de la planète.: Empreinte eau et empreinte carbone sont complémentaires, et les comprendre permet d’agir en faveur d’une gestion <2>plus durable des ressources naturelles</2> de la planète.
   Passer le test: Passer le test
   Pourquoi l'eau domestique n'est-elle pas incluse dans l'empreinte eau ?: Pourquoi l'eau domestique n'est-elle pas incluse dans l'empreinte eau ?
   Qu'est-ce que l'eau verte, l'eau bleue et l'eau grise ?: Qu'est-ce que l'eau verte, l'eau bleue et l'eau grise ?
@@ -973,17 +947,11 @@ entries:
   Quels sont les exemples d'empreinte eau de certains produits ?: Quels sont les exemples d'empreinte eau de certains produits ?
   Ressources en eau douce limitées: Ressources en eau douce limitées
   Sur le site Nos Gestes Climat, le calcul de l'empreinte eau se fait simultanément avec le calcul de l'empreinte carbone.: Sur le site Nos Gestes Climat, le calcul de l'empreinte eau se fait simultanément avec le calcul de l'empreinte carbone.
-  Une fois utilisée, cette eau est dépolluée puis renvoyée dans les cours d'eau locaux.: Une fois utilisée, cette eau est dépolluée puis renvoyée dans les cours d'eau locaux.
-  'Une hausse de 1 degré de la température du globe entraîne une hausse de 7% du taux d’humidité dans l’atmosphère. L’eau s’évapore plus, plus vite, et les phénomènes climatiques violents s’intensifient. Des régions s’assèchent, quand d’autres sont inondées. ': 'Une hausse de 1 degré de la température du globe entraîne une hausse de 7% du taux d’humidité dans l’atmosphère. L’eau s’évapore plus, plus vite, et les phénomènes climatiques violents s’intensifient. Des régions s’assèchent, quand d’autres sont inondées. '
-  'Voici quelques exemples d’empreinte eau pour des produits courants :': 'Voici quelques exemples d’empreinte eau pour des produits courants :'
   'Voici quelques exemples de gestes qui auront un impact important sur votre consommation eau indirecte :': 'Voici quelques exemples de gestes qui auront un impact important sur votre consommation eau indirecte :'
   Vos questions sur l'empreinte eau: Vos questions sur l'empreinte eau
   Les gestes du quotidien pour préserver nos ressources en eau: Les gestes du quotidien pour préserver nos ressources en eau
   Calculez votre <2>empreinte eau</2> et découvrez <5>les litres qui se cachent</5> dans votre consommation du quotidien.: Calculez votre <2>empreinte eau</2> et découvrez <5>les litres qui se cachent</5> dans votre consommation du quotidien.
   Qu'est-ce que l'empreinte eau ?: Qu'est-ce que l'empreinte eau ?
-  <0>Eau bleue</0> : eau de surface et souterraine prélevée pour l’irrigation, la production industrielle ou l'énergie ;: <0>Eau bleue</0> : eau de surface et souterraine prélevée pour l’irrigation, la production industrielle ou l'énergie ;
-  <0>Eau grise</0> : quantité d’eau nécessaire pour diluer les polluants générés par la production d’un bien ou service.: <0>Eau grise</0> : quantité d’eau nécessaire pour diluer les polluants générés par la production d’un bien ou service.
-  <0>Eau verte</0> : eau de pluie absorbée par les sols, utilisée pour les cultures sans irrigation artificielle ;: <0>Eau verte</0> : eau de pluie absorbée par les sols, utilisée pour les cultures sans irrigation artificielle ;
   '<0>Un hamburger de bœuf</0> : environ 380 litres d’eau ;': '<0>Un hamburger de bœuf</0> : environ 380 litres d’eau ;'
   '<0>Un jean</0> : environ 30 000 litres d’eau, principalement pour la culture du coton ;': '<0>Un jean</0> : environ 30 000 litres d’eau, principalement pour la culture du coton ;'
   '<0>Un kilo de pommes de terre</0> : 330 litres d’eau ;': '<0>Un kilo de pommes de terre</0> : 330 litres d’eau ;'
@@ -1002,7 +970,6 @@ entries:
   Cuisiner avec des produits locaux et de saison: Cuisiner avec des produits locaux et de saison
   Opter pour des vêtements durables: Opter pour des vêtements durables
   Préférer l'eau du robinet: Préférer l'eau du robinet
-  'Privilégier les matériaux durables (lin, chanvre, laine, et si coton : recyclé': 'Privilégier les matériaux durables (lin, chanvre, laine, et si coton : recyclé'
   Privilégier les produits d'occasion: Privilégier les produits d'occasion
   Réduire la consommation de viande: Réduire la consommation de viande
   Empreinte eau: Empreinte eau
@@ -1012,9 +979,7 @@ entries:
   Accélérons l’impact collectif avec Nos Gestes Climat !: Accélérons l’impact collectif avec Nos Gestes Climat !
   Basé sur les données de l’ADEME: Basé sur les données de l’ADEME
   Café: Café
-  Calculez votre <1>empreinte carbone</1> et votre <4>empreinte eau</4> en <7>seulement 10 minutes</7>.: Calculez votre <1>empreinte carbone</1> et votre <4>empreinte eau</4> en <7>seulement 10 minutes</7>.
   Chemisier: Chemisier
-  Chez Nos Gestes Climat, nous croyons au pouvoir de <2>l’action collective</2> pour relever les défis environnementaux. Notre mission est de<5>sensibiliser</5> et d’accompagner chacun, citoyens, entreprises et collectivités, à mieux comprendre son empreinte écologique, carbone ou eau, <8>identifier les gestes</8> pour la réduire et <12>entraîner leur entourage</12> dans ce mouvement.: Chez Nos Gestes Climat, nous croyons au pouvoir de <2>l’action collective</2> pour relever les défis environnementaux. Notre mission est de<5>sensibiliser</5> et d’accompagner chacun, citoyens, entreprises et collectivités, à mieux comprendre son empreinte écologique, carbone ou eau, <8>identifier les gestes</8> pour la réduire et <12>entraîner leur entourage</12> dans ce mouvement.
   CO₂e: CO₂e
   Connaissez-vous votre empreinte écologique ?: Connaissez-vous votre empreinte écologique ?
   Considérable, non ?: Considérable, non ?
@@ -1041,11 +1006,9 @@ entries:
   Les lignes de code, les données et même une grande partie des réflexions méthodologiques derrière le calculateur sont toutes <2>accessibles</2>, ce qui permet à qui veut de <5>contribuer et améliorer l’outil</5>.: Les lignes de code, les données et même une grande partie des réflexions méthodologiques derrière le calculateur sont toutes <2>accessibles</2>, ce qui permet à qui veut de <5>contribuer et améliorer l’outil</5>.
   Mobilisez votre entourage pour la planète !: Mobilisez votre entourage pour la planète !
   Ordinateur: Ordinateur
-  'Retrouvez toute l’expertise de <2>l’Agence de l’Environnement et de la Maîtrise de l’Énergie</2> dans le calculateur de Nos Gestes Climat : données, perspectives,': 'Retrouvez toute l’expertise de <2>l’Agence de l’Environnement et de la Maîtrise de l’Énergie</2> dans le calculateur de Nos Gestes Climat : données, perspectives,'
   S’engager collectivement autour des enjeux du climat: S’engager collectivement autour des enjeux du climat
   'Transports : les modes à fuir, ceux à chérir': 'Transports : les modes à fuir, ceux à chérir'
   Un aller-retour Paris-Athènes en avion représente <2>800 kg de CO2e</2>.: Un aller-retour Paris-Athènes en avion représente <2>800 kg de CO2e</2>.
-  Un calculateur libre et documenté: Un calculateur libre et documenté
   Un calculateur, deux empreintes: Un calculateur, deux empreintes
   Un modèle de calcul fiable: Un modèle de calcul fiable
   Voir les nouveautés: Voir les nouveautés
@@ -1060,15 +1023,12 @@ entries:
   Accélérons la transition écologique: Accélérons la transition écologique
   Agir au quotidien: Agir au quotidien
   Avez-vous déjà entendu parler de maladaptation ?: Avez-vous déjà entendu parler de maladaptation ?
-  Calculateur d'empreinte carbone personnelle - Nos Gestes Climat: Calculateur d'empreinte carbone personnelle - Nos Gestes Climat
   Calculer son empreinte carbone: Calculer son empreinte carbone
   'Calculer son empreinte carbone consiste à additionner l’ensemble des gaz à effet de serre émis par ses activités quotidiennes, en tenant compte de plusieurs facteurs comme les déplacements, l’alimentation, le logement et la consommation de biens et services. ': 'Calculer son empreinte carbone consiste à additionner l’ensemble des gaz à effet de serre émis par ses activités quotidiennes, en tenant compte de plusieurs facteurs comme les déplacements, l’alimentation, le logement et la consommation de biens et services. '
-  Calculez votre <2>empreinte carbone</2> en quelques minutes et découvrez les <5>actions</5> les plus efficaces pour <8>réduire vos émissions</8> de gaz à effet de serre.: Calculez votre <2>empreinte carbone</2> en quelques minutes et découvrez les <5>actions</5> les plus efficaces pour <8>réduire vos émissions</8> de gaz à effet de serre.
   Ces deux indicateurs permettent de mieux comprendre l’impact environnemental de vos choix pour agir de manière plus responsable.: Ces deux indicateurs permettent de mieux comprendre l’impact environnemental de vos choix pour agir de manière plus responsable.
   'Ces émissions bouleversent le climat, contribuant au réchauffement global et à ses conséquences dévastatrices : montée du niveau des océans, multiplication des catastrophes naturelles et extinction d’une partie du vivant.': 'Ces émissions bouleversent le climat, contribuant au réchauffement global et à ses conséquences dévastatrices : montée du niveau des océans, multiplication des catastrophes naturelles et extinction d’une partie du vivant.'
   Comment calculer son empreinte carbone ?: Comment calculer son empreinte carbone ?
   Comment définir l'empreinte carbone ?: Comment définir l'empreinte carbone ?
-  Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone.: Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone.
   Consommation: Consommation
   Découvrir quelles actions ont le plus d’impact pour réduire son empreinte carbone.: Découvrir quelles actions ont le plus d’impact pour réduire son empreinte carbone.
   'Depuis le siècle dernier, <2>la concentration du carbone dans l’atmosphère augmente</2>, si bien que le climat subit de graves bouleversements : montée des eaux, destruction du vivant, augmentation des températures, etc.': 'Depuis le siècle dernier, <2>la concentration du carbone dans l’atmosphère augmente</2>, si bien que le climat subit de graves bouleversements : montée des eaux, destruction du vivant, augmentation des températures, etc.'
@@ -1102,18 +1062,13 @@ entries:
   Réduire efficacement son empreinte sur l’environnement nécessite de <2>s’informer sur les enjeux du réchauffement climatique</2>, s'inspirer des bonnes pratiques et <5>passer à l’action</5>.: Réduire efficacement son empreinte sur l’environnement nécessite de <2>s’informer sur les enjeux du réchauffement climatique</2>, s'inspirer des bonnes pratiques et <5>passer à l’action</5>.
   S'engager collectivement: S'engager collectivement
   'Voici quelques idées :': 'Voici quelques idées :'
-  Vos achats (équipements, vêtements, loisirs).: Vos achats (équipements, vêtements, loisirs).
-  Vos consommations énergétiques (chauffage, électricité).: Vos consommations énergétiques (chauffage, électricité).
-  Vos modes de déplacement (voiture, vélo, train, ferry, avion...).: Vos modes de déplacement (voiture, vélo, train, ferry, avion...).
   Vos questions sur l'empreinte carbone: Vos questions sur l'empreinte carbone
-  Votre régime alimentaire (viande rouge, volaille, poisson...): Votre régime alimentaire (viande rouge, volaille, poisson...)
   Allonger la vie de ses appareils et des meubles: Allonger la vie de ses appareils et des meubles
   Ces émissions proviennent de diverses activités humaines dont les moyens de transport, l’alimentation, le logement, la consommation courante de produits et de services, la production industrielle ainsi que le service public.: Ces émissions proviennent de diverses activités humaines dont les moyens de transport, l’alimentation, le logement, la consommation courante de produits et de services, la production industrielle ainsi que le service public.
   Éviter les trajets en avion: Éviter les trajets en avion
   'Les actions pour réduire son empreinte carbone ': 'Les actions pour réduire son empreinte carbone '
   Pour un mode de vie plus durable, certaines actions <2>ont un impact plus fort que d’autres</2>. En intégrant ces gestes dans votre quotidien, vous pouvez fortement <5>réduire vos émissions de Co2</5>.: Pour un mode de vie plus durable, certaines actions <2>ont un impact plus fort que d’autres</2>. En intégrant ces gestes dans votre quotidien, vous pouvez fortement <5>réduire vos émissions de Co2</5>.
   Privilégier les mobilités douces: Privilégier les mobilités douces
-  Privilégier les modes de chauffage peu émetteurs de Co2 (électricité, bois, biomasse): Privilégier les modes de chauffage peu émetteurs de Co2 (électricité, bois, biomasse)
   Privilégier les transports en commun, si possible: Privilégier les transports en commun, si possible
   Réaliser des travaux d’isolation de son logement (pour les propriétaires): Réaliser des travaux d’isolation de son logement (pour les propriétaires)
   À partir de votre bilan, <1>J’agis</1> vous propose des actions concrètes et adaptées à vos envies et à vos moyens: À partir de votre bilan, <1>J’agis</1> vous propose des actions concrètes et adaptées à vos envies et à vos moyens
@@ -1153,16 +1108,13 @@ entries:
   Pour réduire son empreinte eau, il est nécessaire de <2>changer nos habitudes quotidiennes</2>.: Pour réduire son empreinte eau, il est nécessaire de <2>changer nos habitudes quotidiennes</2>.
   Une hausse de 1 degré de la température du globe entraîne <2>une hausse de 7% du taux d’humidité</2> dans l’atmosphère. L’eau s’évapore plus, plus vite, et les phénomènes climatiques violents s’intensifient. <6>Des régions s’assèchent, quand d’autres sont inondées.</6>: Une hausse de 1 degré de la température du globe entraîne <2>une hausse de 7% du taux d’humidité</2> dans l’atmosphère. L’eau s’évapore plus, plus vite, et les phénomènes climatiques violents s’intensifient. <6>Des régions s’assèchent, quand d’autres sont inondées.</6>
   'Voici quelques exemples d’empreinte eau pour des <2>produits courants</2>:': 'Voici quelques exemples d’empreinte eau pour des <2>produits courants</2>:'
-  Un homme perplexe réfléchissant à l'empreinte eau du tee-shirt qu'il tient: Un homme perplexe réfléchissant à l'empreinte eau du tee-shirt qu'il tient
   Un éclair, symbolisant la production d'électricité: Un éclair, symbolisant la production d'électricité
-  Un homme réfléchissant à l'empreinte eau du tee-shirt qu'il tient: Un homme réfléchissant à l'empreinte eau du tee-shirt qu'il tient
   Un mouton, liant empreinte eau et élevage: Un mouton, liant empreinte eau et élevage
   Un ordinateur, illustrant la consommation d'eau par le numérique: Un ordinateur, illustrant la consommation d'eau par le numérique
   Un tee-shirt, symbolisant la consommation d'eau pour l'industrie textile: Un tee-shirt, symbolisant la consommation d'eau pour l'industrie textile
   Une balance indiquant la quantité d'eau nécessaire pour produire un ordinateur: Une balance indiquant la quantité d'eau nécessaire pour produire un ordinateur
   Une pomme, symbolisant le lien entre eau et agriculture: Une pomme, symbolisant le lien entre eau et agriculture
   <0>2 millions de personnes</0> ont déjà <3></3>calculé leur empreinte !: <0>2 millions de personnes</0> ont déjà <3></3>calculé leur empreinte !
-  Calculez votre <2>empreinte carbone</2> et votre <4>empreinte eau</4> en <8>seulement 10 minutes</8>.: Calculez votre <2>empreinte carbone</2> et votre <4>empreinte eau</4> en <8>seulement 10 minutes</8>.
   Libre et documenté: Libre et documenté
   L’empreinte eau d'un jean est de 30 000 litres d'eau.: L’empreinte eau d'un jean est de 30 000 litres d'eau.
   La production d’un ordinateur nécessite 195 000 litres d’eau.: La production d’un ordinateur nécessite 195 000 litres d’eau.
@@ -1201,3 +1153,5 @@ entries:
   'Le dioxyde de carbone, CO2, est le principal gaz à effet de serre, mais il y en a d’autres : méthane, protoxyde d’azote par exemple. C’est pourquoi on parle “d’équivalent carbone”.': 'Le dioxyde de carbone, CO2, est le principal gaz à effet de serre, mais il y en a d’autres : méthane, protoxyde d’azote par exemple. C’est pourquoi on parle “d’équivalent carbone”.'
   Privilégier les modes de chauffage peu émetteurs de CO2 (électricité, bois, biomasse): Privilégier les modes de chauffage peu émetteurs de CO2 (électricité, bois, biomasse)
   Une fois utilisée, cette eau est <2>dépolluée</2> puis <5>renvoyée</5> dans les cours d'eau locaux.: Une fois utilisée, cette eau est <2>dépolluée</2> puis <5>renvoyée</5> dans les cours d'eau locaux.
+  Oups ! Une erreur s'est produite au moment de récupérer les données VigiEau.: Oups ! Une erreur s'est produite au moment de récupérer les données VigiEau.
+  Veuillez réessayer plus tard ou nous contacter si le problème persiste.: Veuillez réessayer plus tard ou nous contacter si le problème persiste.

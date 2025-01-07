@@ -8,7 +8,7 @@
     "url": "https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs.git"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "scripts": {
     "test": "jest",
@@ -22,7 +22,7 @@
     "lint": "prettier --check \"**/*.{js,ts,md,json}\" && next lint",
     "lint:types": "tsc --noEmit",
     "e2e": "cypress open --e2e",
-    "e2e:generate": "node cypress/scripts/generateSpecsFromPersonas.mjs",
+    "e2e:generate": "node cypress/scripts/generateSpecsFromPersonas.js",
     "ui:parse": "node scripts/i18n/generate-ui.js",
     "ui:check": "yarn run ui:parse && node scripts/i18n/check-ui.js",
     "ui:translate": "node scripts/i18n/translate-ui.js",
@@ -36,7 +36,7 @@
   "dependencies": {
     "@babel/runtime": "^7.23.1",
     "@incubateur-ademe/legal-pages-react": "^0.2.0",
-    "@incubateur-ademe/nosgestesclimat": "^3.3.3",
+    "@incubateur-ademe/nosgestesclimat": "3.4.3",
     "@mdx-js/loader": "^3.0.0",
     "@mdx-js/react": "^3.0.0",
     "@next/bundle-analyzer": "^14.1.0",

@@ -39,7 +39,7 @@ export default function AcquisitionBlock({
               {formatValue(allSharedSimulationEventsData, locale)}
             </strong>{' '}
             <p className="mb-0 text-sm">
-              <Trans>partages du simulateur</Trans>
+              <Trans>partages du calculateur</Trans>
             </p>
           </Card>
           <Card className="flex-1">

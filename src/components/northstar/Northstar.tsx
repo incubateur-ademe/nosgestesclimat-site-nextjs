@@ -1,4 +1,4 @@
-import { SIMULATION_URL } from '@/constants/urls'
+import { OLD_SIMULATION_URL } from '@/constants/urls'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import type {
@@ -141,7 +141,7 @@ const postData = async (data: any, id: string, ratings: NorthStarRatings) => {
   const body = { data: selectedData, id }
 
   try {
-    await fetch(SIMULATION_URL, {
+    await fetch(OLD_SIMULATION_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

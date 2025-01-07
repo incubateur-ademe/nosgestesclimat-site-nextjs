@@ -15,7 +15,6 @@ type Props = {
   foldedSteps: DottedName[]
   everyQuestions: DottedName[]
   everyMosaicChildrenWithParent: Record<DottedName, DottedName[]>
-  rawMissingVariables: MissingVariables
 }
 
 /**
@@ -30,10 +29,12 @@ export default function useQuestions({
   foldedSteps,
   everyQuestions,
   everyMosaicChildrenWithParent,
-  rawMissingVariables,
 }: Props) {
   // We use the DottedName type from nosgestesclimat to make sure the build will break when using rules that are not in the model.
-  const priorityQuestions: DottedName[] = ['alimentation . plats']
+  const priorityQuestions: DottedName[] = [
+    'alimentation . plats',
+    'logement . chauffage . bois . type',
+  ]
 
   const nonPriorityQuestions: DottedName[] = [
     'logement . électricité . réseau . consommation',
@@ -134,19 +135,9 @@ export default function useQuestions({
         if (!everyQuestions.includes(foldedStep)) {
           return false
         }
-
-        const isApplicable =
-          safeEvaluate({ 'est applicable': foldedStep })?.nodeValue === true
-
-        const isInMissingVariables =
-          Object.keys(rawMissingVariables).includes(foldedStep)
-        // even if the question is disabled, we want to display it if it's a missing variable
-        // (this is the case for boolean question whose value is a condition for the parent).
-        return isInMissingVariables || isApplicable
+        return true
       }),
-    // We want to recompute this every time the situation changes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [situation, foldedSteps, safeEvaluate, everyQuestions, rawMissingVariables]
+    [foldedSteps, everyQuestions]
   )
 
   const tempRelevantQuestions = useMemo(

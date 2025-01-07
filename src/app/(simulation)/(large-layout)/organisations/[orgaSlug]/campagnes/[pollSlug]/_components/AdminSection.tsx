@@ -10,18 +10,18 @@ import {
 } from '@/constants/tracking/pages/pollDashboard'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import CopyInput from '@/design-system/inputs/CopyInput'
-import type { PollData } from '@/types/organisations'
+import type { PublicOrganisationPoll } from '@/types/organisations'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useParams } from 'next/navigation'
 
 type Props = {
-  pollData?: PollData | null
+  poll?: PublicOrganisationPoll | null
 }
 
-export default function AdminSection({ pollData }: Props) {
+export default function AdminSection({ poll }: Props) {
   const { orgaSlug, pollSlug } = useParams()
 
-  if (!pollData?.isAdmin) return null
+  if (!poll?.organisation.administrators) return null
 
   return (
     <section className="mb-10 rounded-xl bg-gray-50 p-6">
@@ -53,8 +53,7 @@ export default function AdminSection({ pollData }: Props) {
 
         <div className="flex flex-1 flex-col justify-center gap-4 sm:flex-row md:flex-col">
           <ExportDataButton
-            simulationRecaps={pollData?.simulationRecaps ?? []}
-            poll={pollData}
+            poll={poll}
             color="secondary"
             onClick={() => {
               trackEvent(organisationsDashboardExportData)
