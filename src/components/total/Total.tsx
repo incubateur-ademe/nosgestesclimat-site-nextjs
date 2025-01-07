@@ -10,6 +10,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useCurrentSimulation, useForm, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import ValueChangeDisplay from '../misc/ValueChangeDisplay'
@@ -39,6 +40,10 @@ export default function Total({
   const { isIframe, isIframeOnlySimulation } = useIframe()
 
   const { currentCategory } = useForm()
+
+  const currentSimulation = useCurrentSimulation()
+
+  const router = useRouter()
 
   const [hasManuallyOpenedTutorial, setHasManuallyOpenedTutorial] =
     useState(false)
@@ -86,7 +91,13 @@ export default function Total({
         <div className="mb-0 flex w-full max-w-6xl justify-between overflow-visible pl-1 pr-4 lg:mx-auto lg:px-4">
           <div className="relative flex items-center gap-1 lg:gap-4">
             {simulationMode && !isIframe && !isIframeOnlySimulation && (
-              <ButtonBack onClick={toggleBackHomeModal} />
+              <ButtonBack
+                onClick={
+                  !currentSimulation.savedViaEmail
+                    ? toggleBackHomeModal
+                    : () => router.push('/')
+                }
+              />
             )}
 
             <TotalFootprintNumber />
