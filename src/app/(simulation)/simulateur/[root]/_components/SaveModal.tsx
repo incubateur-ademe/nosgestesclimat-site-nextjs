@@ -177,6 +177,7 @@ export default function SaveModal({ isOpen, closeModal }: Props) {
           onSubmit={onSubmit}
           register={register}
           isError={isError}
+          title={<Trans>Reprendre plus tard</Trans>}
         />
       )}
     </Modal>

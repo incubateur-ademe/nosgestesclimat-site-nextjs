@@ -146,7 +146,7 @@ export default function BackHomeModal({ isOpen, closeModal }: Props) {
           onSubmit={onSubmit}
           register={register}
           isError={isError}
-          backHome={true}
+          title={<Trans>Revenir à l'accueil</Trans>}
         />
       )}
     </Modal>
