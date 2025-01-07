@@ -24,7 +24,7 @@ describe('The End page', () => {
     let requestCount = 0
 
     beforeEach(() => {
-      cy.intercept('POST', '/simulations/create', (req) => {
+      cy.intercept('POST', '/simulations/v1/**', (req) => {
         requestCount++
       }).as('saveSimulation')
 
