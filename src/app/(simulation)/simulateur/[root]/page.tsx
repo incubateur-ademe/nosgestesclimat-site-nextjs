@@ -9,7 +9,6 @@ import { useSimulateurGuard } from '@/hooks/navigation/useSimulateurGuard'
 import { useTrackSimulateur } from '@/hooks/tracking/useTrackSimulateur'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useCallback, useState } from 'react'
-import BackHomeModal from './_components/BackHomeModal'
 import SaveModal from './_components/SaveModal'
 import Simulateur from './_components/Simulateur'
 
@@ -56,10 +55,15 @@ export default function SimulateurPage() {
         isLoading={!isGuardInit || isGuardRedirecting}
       />
 
-      <SaveModal isOpen={isSaveModalOpen} closeModal={toggleSaveModal} />
-      <BackHomeModal
+      <SaveModal
+        isOpen={isSaveModalOpen}
+        closeModal={toggleSaveModal}
+        mode="save"
+      />
+      <SaveModal
         isOpen={isBackHomeModalOpen}
         closeModal={toggleBackHomeModal}
+        mode="backHome"
       />
     </div>
   )

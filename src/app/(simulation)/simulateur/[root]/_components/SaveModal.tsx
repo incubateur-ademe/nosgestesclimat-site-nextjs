@@ -17,12 +17,13 @@ import SaveSimulationForm from './modal/SaveSimulationForm'
 type Props = {
   isOpen: boolean
   closeModal: () => void
+  mode: 'save' | 'backHome'
 }
 type Inputs = {
   email?: string
 }
 
-export default function SaveModal({ isOpen, closeModal }: Props) {
+export default function BackHomeModal({ isOpen, closeModal, mode }: Props) {
   const [isAlreadySavedSimulationUpdated, setIsAlreadySavedSimulationUpdated] =
     useState(false)
 
@@ -105,16 +106,15 @@ export default function SaveModal({ isOpen, closeModal }: Props) {
       hasAbortButton={false}
       buttons={
         <>
-          {currentSimulation.savedViaEmail ? (
-            <Button color="secondary" onClick={() => router.push('/')}>
-              <Trans>Revenir à l'accueil</Trans>
-            </Button>
-          ) : (
+          {!currentSimulation.savedViaEmail && mode === 'save' ? (
             <Button color="secondary" onClick={closeModal}>
               <Trans>Non, merci</Trans>
             </Button>
+          ) : (
+            <Button color="secondary" onClick={() => router.push('/')}>
+              <Trans>Revenir à l'accueil</Trans>
+            </Button>
           )}
-
           {currentSimulation.savedViaEmail ? (
             <Button onClick={closeModal}>Continuer mon test</Button>
           ) : (
@@ -139,7 +139,13 @@ export default function SaveModal({ isOpen, closeModal }: Props) {
           onSubmit={onSubmit}
           register={register}
           isError={isError}
-          title={<Trans>Reprendre plus tard</Trans>}
+          title={
+            mode === 'backHome' ? (
+              <Trans>Revenir à l'accueil</Trans>
+            ) : (
+              <Trans>Reprendre plus tard</Trans>
+            )
+          }
         />
       )}
     </Modal>
