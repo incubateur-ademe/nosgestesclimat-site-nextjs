@@ -11,9 +11,11 @@ import PollsList from './Organisations/PollsList'
 export default function Organisations() {
   const { t } = useClientTranslation()
 
-  const {
-    data: organisations,
-  } = useFetchOrganisations()
+  const { data: organisations, isLoading, isError } = useFetchOrganisations()
+
+  if (isLoading && !organisations && !isError) {
+    return null
+  }
 
   return (
     <>
