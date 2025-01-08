@@ -85,6 +85,7 @@ export default function useRule(
     unit,
     assistance,
     plancher,
+    plafond,
     warning,
     isInactive,
     suggestions,
@@ -165,7 +166,11 @@ export default function useRule(
      */
     plancher,
     /**
-     * A specific message to display if the value is under plancher
+     * The maximum value
+     */
+    plafond,
+    /**
+     * A specific message to display if the value is under plancher or over plafond
      */
     warning,
     /**

@@ -20,30 +20,6 @@ export const headerClickClassements = [
 // Figma comment #5
 export const headerClickProfil = ['trackEvent', 'Header', 'Click Profil']
 
-// Figma comment #6
-export const headerClickCtaCommencer = [
-  'trackEvent',
-  'Header',
-  'Click CTA',
-  'Click Passer le test',
-]
-
-// Figma comment #6
-export const headerClickCtaReprendre = [
-  'trackEvent',
-  'Header',
-  'Click CTA',
-  'Click Reprendre mon test',
-]
-
-// Figma comment #6
-export const headerClickCtaResultats = [
-  'trackEvent',
-  'Header',
-  'Click CTA',
-  'Click Voir les résultats',
-]
-
 // Figma comment #7
 export const headerClickOrganisation = [
   'trackEvent',

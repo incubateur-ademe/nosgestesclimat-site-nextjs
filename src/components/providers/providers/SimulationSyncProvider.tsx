@@ -14,7 +14,7 @@ import { createContext, useCallback, useEffect, useMemo, useRef } from 'react'
 // The max rate at which we save the simulation (in ms)
 const SAVE_DELAY = 3000
 
-export type SimulationSyncContextType = {
+type SimulationSyncContextType = {
   shouldSyncWithBackend: boolean
   isSyncedWithBackend: boolean
   resetSyncTimer: () => void
