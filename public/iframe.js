@@ -31,6 +31,7 @@ const iframeAttributes = {
   mozallowfullscreen: true,
   allow: 'fullscreen',
   id: 'iframeNGC',
+  loading: 'lazy',
 }
 
 const color = '#32337b'
