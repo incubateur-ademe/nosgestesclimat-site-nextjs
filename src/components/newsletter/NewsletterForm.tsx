@@ -42,7 +42,6 @@ export default function NewsletterForm() {
   // Avoid refetching useGetNewsletterSubscriptions when defining an email for the first time
   const emailRef = useRef<string>(userEmailFromLocalStorage ?? '')
 
-  console.log(userEmailFromLocalStorage)
   const { register, handleSubmit, setError, setValue } = useForm({
     defaultValues: {
       email: userEmailFromLocalStorage ?? '',
@@ -53,6 +52,7 @@ export default function NewsletterForm() {
     emailRef?.current ?? ''
   )
 
+  // Hack to force the email to be set in the form
   useEffect(() => {
     if (userEmailFromLocalStorage) {
       setValue('email', userEmailFromLocalStorage)
@@ -73,7 +73,7 @@ export default function NewsletterForm() {
     newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER) &&
     emailRef.current === userEmailFromLocalStorage
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: { email: string }) => {
     if (isPending || isSuccess) {
       return
     }
@@ -89,7 +89,6 @@ export default function NewsletterForm() {
     const formattedEmail = formatEmail(data.email)
 
     await updateUserSettings({
-      name: data.name,
       email: formattedEmail,
       newsletterIds: {
         [LIST_MAIN_NEWSLETTER]: true,
@@ -113,6 +112,7 @@ export default function NewsletterForm() {
       )
     }
   }
+
   return (
     <div className="w-96 min-w-80 max-w-full md:flex-1">
       <h3 className="mb-4 text-base font-bold text-primary-700">
