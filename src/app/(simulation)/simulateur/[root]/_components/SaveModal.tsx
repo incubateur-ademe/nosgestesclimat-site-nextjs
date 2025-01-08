@@ -2,7 +2,6 @@
 
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
-import Title from '@/design-system/layout/Title'
 import Modal from '@/design-system/modals/Modal'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useIframe } from '@/hooks/useIframe'
@@ -12,7 +11,8 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
-import SaveSimulationForm from './saveModal/SaveSimulationForm'
+import ConfirmationMessage from './modal/ConfirmationMessage'
+import SaveSimulationForm from './modal/SaveSimulationForm'
 
 type Props = {
   isOpen: boolean
@@ -132,45 +132,7 @@ export default function SaveModal({ isOpen, closeModal }: Props) {
           )}
         </>
       }>
-      {currentSimulation.savedViaEmail && (
-        <Title
-          tag="h2"
-          hasSeparator={false}
-          className="flex items-center gap-1"
-          subtitle={
-            <Trans>
-              Vous pouvez le reprendre plus tard en cliquant sur le lien que
-              vous avez reçu par email.
-            </Trans>
-          }>
-          <Trans>Votre test est sauvegardé !</Trans>
-          <svg
-            className="inline-block h-8 w-8"
-            viewBox="0 0 100 100"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              fill="none"
-              stroke="rgb(22, 163, 74)"
-              strokeWidth="8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeDasharray="200"
-              strokeDashoffset="200"
-              d="M20 50 L40 70 L80 30">
-              <animate
-                attributeName="stroke-dashoffset"
-                from="200"
-                to="0"
-                dur="1s"
-                begin="0s"
-                fill="freeze"
-                calcMode="linear"
-              />
-            </path>
-          </svg>
-        </Title>
-      )}
-
+      {currentSimulation.savedViaEmail && <ConfirmationMessage />}
       {!currentSimulation.savedViaEmail && (
         <SaveSimulationForm
           handleSubmit={handleSubmit}

@@ -2,7 +2,6 @@
 
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
-import Title from '@/design-system/layout/Title'
 import Modal from '@/design-system/modals/Modal'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useIframe } from '@/hooks/useIframe'
@@ -12,7 +11,8 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
-import SaveSimulationForm from './saveModal/SaveSimulationForm'
+import ConfirmationMessage from './modal/ConfirmationMessage'
+import SaveSimulationForm from './modal/SaveSimulationForm'
 
 type Props = {
   isOpen: boolean
@@ -125,21 +125,7 @@ export default function BackHomeModal({ isOpen, closeModal }: Props) {
           )}
         </>
       }>
-      {currentSimulation.savedViaEmail && (
-        <Title
-          tag="h2"
-          hasSeparator={false}
-          className="flex items-center gap-1"
-          subtitle={
-            <Trans>
-              Votre test est sauvegardé, vous pourrez le reprendre plus tard en
-              cliquant sur le lien que vous avez reçu par email.
-            </Trans>
-          }>
-          <Trans>Revenir à l'accueil</Trans>
-        </Title>
-      )}
-
+      {currentSimulation.savedViaEmail && <ConfirmationMessage />}
       {!currentSimulation.savedViaEmail && (
         <SaveSimulationForm
           handleSubmit={handleSubmit}
