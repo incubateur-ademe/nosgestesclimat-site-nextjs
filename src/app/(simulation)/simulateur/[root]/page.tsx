@@ -56,14 +56,9 @@ export default function SimulateurPage() {
       />
 
       <SaveModal
-        isOpen={isSaveModalOpen}
-        closeModal={toggleSaveModal}
-        mode="save"
-      />
-      <SaveModal
-        isOpen={isBackHomeModalOpen}
-        closeModal={toggleBackHomeModal}
-        mode="backHome"
+        isOpen={isSaveModalOpen || isBackHomeModalOpen}
+        closeModal={isSaveModalOpen ? toggleSaveModal : toggleBackHomeModal}
+        mode={isSaveModalOpen ? 'save' : 'backHome'}
       />
     </div>
   )

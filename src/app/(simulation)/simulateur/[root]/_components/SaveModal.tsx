@@ -11,8 +11,8 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
-import ConfirmationMessage from './modal/ConfirmationMessage'
-import SaveSimulationForm from './modal/SaveSimulationForm'
+import ConfirmationMessage from './saveModal/ConfirmationMessage'
+import SaveSimulationForm from './saveModal/SaveSimulationForm'
 
 type Props = {
   isOpen: boolean
@@ -23,7 +23,7 @@ type Inputs = {
   email?: string
 }
 
-export default function BackHomeModal({ isOpen, closeModal, mode }: Props) {
+export default function SaveModal({ isOpen, closeModal, mode }: Props) {
   const [isAlreadySavedSimulationUpdated, setIsAlreadySavedSimulationUpdated] =
     useState(false)
 
