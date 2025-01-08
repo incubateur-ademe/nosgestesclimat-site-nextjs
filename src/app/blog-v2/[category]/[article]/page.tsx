@@ -1,18 +1,16 @@
 import Trans from '@/components/translation/Trans'
-import Badge from '@/design-system/layout/Badge'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { fetchArticlePageContent } from '@/services/cms/fetchArticlePageContent'
 import { fetchArticlePageMetadata } from '@/services/cms/fetchArticlePageMetadata'
 
-import ShareIcon from '@/components/icons/ShareIcon'
-import CopyButton from '@/design-system/inputs/CopyButton'
+import Badge from '@/design-system/layout/Badge'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import ArticleBreadcrumbs from './_components/ArticleBreadcrumbs'
 import ArticleJSONLD from './_components/ArticleJSONLD'
 import AuthorBlock from './_components/AuthorBlock'
 import OtherArticles from './_components/OtherArticles'
-import StickySummary from './_components/StickySummary'
+import StickySidebar from './_components/StickySidebar'
 
 export async function generateMetadata({
   params,
@@ -107,33 +105,24 @@ export default async function ArticlePage({
           </div>
         </div>
 
-        <div className="mb-20 flex min-h-screen flex-col flex-nowrap gap-8 overflow-auto md:flex-row md:items-start">
+        <StickySidebar
+          article={article}
+          category={params.category}
+          articleSlug={params.article}
+        />
+
+        <div className="relative mt-8 flex flex-col flex-nowrap gap-8 overflow-auto md:mt-0 md:flex-row md:items-stretch">
           <div className="max-w-full md:w-8/12">
             <div
-              className="markdown min-h-[100vh] max-w-full border-b border-gray-300 pb-8"
+              className="markdown max-w-full border-b border-gray-300 pb-8"
               dangerouslySetInnerHTML={{ __html: article.htmlContent ?? '' }}
             />
-
-            <AuthorBlock author={article.author} />
-          </div>
-
-          <div className="h-[600px] w-[1px] bg-gray-300 md:block" />
-
-          <div className="-order-1 flex w-full flex-col items-start gap-4 md:order-1 md:w-[calc(33%-8px)] md:items-end">
-            <CopyButton
-              className="w-auto"
-              textToCopy={`https://nosgestesclimat.fr/blog/${params.category}/${params.article}`}
-              copiedStateText={<Trans>Lien copié</Trans>}>
-              <ShareIcon className="mr-2 h-8 w-8 fill-primary-700" />
-              <Trans>Partager l'article</Trans>
-            </CopyButton>
-
-            <StickySummary headings={article.headings ?? []} />
           </div>
         </div>
-
-        <OtherArticles articles={otherArticles} />
       </div>
+
+      <AuthorBlock author={article.author} />
+      <OtherArticles articles={otherArticles} />
     </>
   )
 }

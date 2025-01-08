@@ -8,13 +8,9 @@ interface Heading {
   level: number
 }
 
-export default async function StickySummary({
-  headings,
-}: {
-  headings: Heading[]
-}) {
+export default function Summary({ headings }: { headings: Heading[] }) {
   return (
-    <div className="w-full rounded-xl bg-gray-100 p-4">
+    <div className="relative w-full rounded-xl bg-gray-100 p-4 before:absolute before:-left-8 before:top-0 before:h-full before:w-1 before:border-l before:border-gray-300 before:content-['']">
       <h2 className="mb-2 text-xl font-bold">
         <Trans>Sommaire</Trans>
       </h2>
