@@ -3,7 +3,7 @@
 import { useCurrentSimulation } from '@/publicodes-state'
 
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import type { PropsWithChildren} from 'react';
+import type { PropsWithChildren } from 'react'
 import { useContext } from 'react'
 import { SimulationContext } from '../simulationProvider/context'
 import FormContext from './context'
@@ -25,7 +25,6 @@ export default function FormProvider({
     safeEvaluate,
     everyQuestions,
     everyMosaicChildrenWithParent,
-    rawMissingVariables,
   } = useContext(SimulationContext)
 
   const { situation, foldedSteps, updateCurrentSimulation } =
@@ -52,7 +51,6 @@ export default function FormProvider({
     situation,
     everyQuestions,
     everyMosaicChildrenWithParent,
-    rawMissingVariables,
   })
 
   const { remainingQuestionsByCategories } = useProgression({

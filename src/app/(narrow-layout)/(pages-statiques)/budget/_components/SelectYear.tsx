@@ -1,12 +1,12 @@
 'use client'
 
-import type { ReactNode} from 'react';
+import type { ReactNode } from 'react'
 import { useState } from 'react'
 
 import budget from '../_data/budget.yaml'
 import RessourcesAllocationTable from './RessourcesAllocationTable'
 
-export type BudgetType = {
+type BudgetType = {
   [year: string]: {
     [product: string]: {
       description: ReactNode

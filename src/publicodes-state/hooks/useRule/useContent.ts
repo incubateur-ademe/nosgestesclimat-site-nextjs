@@ -62,6 +62,17 @@ export default function useContent({ dottedName, rule }: Props) {
     return plancherValue ?? 0
   }, [rule])
 
+  const plafond = useMemo<number>(() => {
+    // By default, the plafond is 1 000 000
+    const plafondValue = rule?.rawNode['plafond']
+
+    // TODO: Deal with the case where the plafond needs to be evaluated.
+    if (typeof plafondValue === 'string') {
+      return 1_000_000
+    }
+    return plafondValue ?? 1_000_000
+  }, [rule])
+
   const warning = useMemo<string | undefined>(
     () => rule?.rawNode['avertissement'],
     [rule]
@@ -112,6 +123,7 @@ export default function useContent({ dottedName, rule }: Props) {
     suggestions,
     excerpt,
     plancher,
+    plafond,
     warning,
     actions,
   }
