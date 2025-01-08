@@ -16,7 +16,7 @@ export default function Groups() {
 
   const { t } = useClientTranslation()
 
-  if (isLoading) {
+  if (isLoading && !groups && !isError) {
     return <GroupLoader />
   }
 
