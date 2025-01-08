@@ -2,7 +2,6 @@
 
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
-import Title from '@/design-system/layout/Title'
 import Modal from '@/design-system/modals/Modal'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useIframe } from '@/hooks/useIframe'
@@ -12,17 +11,19 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
+import ConfirmationMessage from './saveModal/ConfirmationMessage'
 import SaveSimulationForm from './saveModal/SaveSimulationForm'
 
 type Props = {
   isOpen: boolean
   closeModal: () => void
+  mode: 'save' | 'backHome'
 }
 type Inputs = {
   email?: string
 }
 
-export default function SaveModal({ isOpen, closeModal }: Props) {
+export default function SaveModal({ isOpen, closeModal, mode }: Props) {
   const [isAlreadySavedSimulationUpdated, setIsAlreadySavedSimulationUpdated] =
     useState(false)
 
@@ -105,14 +106,15 @@ export default function SaveModal({ isOpen, closeModal }: Props) {
       hasAbortButton={false}
       buttons={
         <>
-          <Button color="secondary" onClick={() => router.push('/')}>
-            {currentSimulation.savedViaEmail ? (
-              <Trans>Revenir à l'accueil</Trans>
-            ) : (
+          {!currentSimulation.savedViaEmail && mode === 'save' ? (
+            <Button color="secondary" onClick={closeModal}>
               <Trans>Non, merci</Trans>
-            )}
-          </Button>
-
+            </Button>
+          ) : (
+            <Button color="secondary" onClick={() => router.push('/')}>
+              <Trans>Revenir à l'accueil</Trans>
+            </Button>
+          )}
           {currentSimulation.savedViaEmail ? (
             <Button onClick={closeModal}>Continuer mon test</Button>
           ) : (
@@ -130,51 +132,20 @@ export default function SaveModal({ isOpen, closeModal }: Props) {
           )}
         </>
       }>
-      {currentSimulation.savedViaEmail && (
-        <Title
-          tag="h2"
-          hasSeparator={false}
-          className="flex items-center gap-1"
-          subtitle={
-            <Trans>
-              Vous pouvez le reprendre plus tard en cliquant sur le lien que
-              vous avez reçu par email.
-            </Trans>
-          }>
-          <Trans>Votre test est sauvegardé !</Trans>
-          <svg
-            className="inline-block h-8 w-8"
-            viewBox="0 0 100 100"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              fill="none"
-              stroke="rgb(22, 163, 74)"
-              strokeWidth="8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeDasharray="200"
-              strokeDashoffset="200"
-              d="M20 50 L40 70 L80 30">
-              <animate
-                attributeName="stroke-dashoffset"
-                from="200"
-                to="0"
-                dur="1s"
-                begin="0s"
-                fill="freeze"
-                calcMode="linear"
-              />
-            </path>
-          </svg>
-        </Title>
-      )}
-
+      {currentSimulation.savedViaEmail && <ConfirmationMessage />}
       {!currentSimulation.savedViaEmail && (
         <SaveSimulationForm
           handleSubmit={handleSubmit}
           onSubmit={onSubmit}
           register={register}
           isError={isError}
+          title={
+            mode === 'backHome' ? (
+              <Trans>Revenir à l'accueil</Trans>
+            ) : (
+              <Trans>Reprendre plus tard</Trans>
+            )
+          }
         />
       )}
     </Modal>
