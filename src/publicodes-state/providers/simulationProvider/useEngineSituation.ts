@@ -1,14 +1,23 @@
 import { useCurrentSimulation } from '@/publicodes-state'
+import { checkIfDottedNameShouldNotBeIgnored } from '@/publicodes-state/helpers/checkIfDottedNameShouldNotBeIgnored'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { useCallback, useEffect, useState } from 'react'
-import type { Engine, Situation } from '../../types'
+import type { Engine, MissingVariables, Situation } from '../../types'
 
 type Props = {
-  engine?: Engine
+  engine: Engine | undefined
+  safeEvaluate: (rule: PublicodesExpression) => EvaluatedNode | null
+  rawMissingVariables: MissingVariables
 }
 /**
  * Update the engine situation and the simulation situation
  */
-export function useEngineSituation({ engine }: Props) {
+export function useEngineSituation({
+  engine,
+  safeEvaluate,
+  rawMissingVariables,
+}: Props) {
   const { situation } = useCurrentSimulation()
 
   const [isEngineInitialized, setIsEngineInitialized] = useState(false)
@@ -18,12 +27,25 @@ export function useEngineSituation({ engine }: Props) {
       if (!engine) return situation
 
       engine.setSituation({ ...situation, ...situationToAdd })
-      // The current engine situation might have been filtered
+
+      // The current engine situation might have been filtered with Publicodes filtering logic.
       const safeSituation = engine.getSituation()
 
-      return safeSituation
+      const cleanSituation = Object.fromEntries(
+        Object.entries(safeSituation).filter(([dottedName]) => {
+          return checkIfDottedNameShouldNotBeIgnored({
+            dottedName: dottedName as DottedName,
+            safeEvaluate,
+            rawMissingVariables,
+          })
+        })
+      )
+
+      engine.setSituation(cleanSituation)
+
+      return cleanSituation
     },
-    [engine, situation]
+    [engine, rawMissingVariables, safeEvaluate, situation]
   )
 
   useEffect(() => {

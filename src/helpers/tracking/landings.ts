@@ -1,4 +1,4 @@
-export function getLandingCategory(pathname: string) {
+function getLandingCategory(pathname: string) {
   switch (pathname) {
     case '/empreinte-eau':
       return 'LP eau'

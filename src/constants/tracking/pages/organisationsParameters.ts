@@ -14,23 +14,3 @@ export const organisationsParametersLogout = [
   'Organisations Paramètres',
   'Logout',
 ]
-
-// Figma comment #117
-export const organisationsParametersToggleAdditionnalQuestionsPostCode = (
-  isEnabled: boolean
-) => [
-  'trackEvent',
-  'Organisations Paramètres',
-  isEnabled ? 'Enable Additionnal Questions' : 'Disable Additionnal Questions',
-  'Enable or disable Postal Code',
-]
-
-// Figma comment #117
-export const organisationsParametersToggleAdditionnalQuestionsBirthdate = (
-  isEnabled: boolean
-) => [
-  'trackEvent',
-  'Organisations Paramètres',
-  isEnabled ? 'Enable Additionnal Questions' : 'Disable Additionnal Questions',
-  'Enable or disable Birthdate',
-]

@@ -1,5 +1,6 @@
 'use client'
 
+import { checkIfDottedNameShouldNotBeIgnored } from '@/publicodes-state/helpers/checkIfDottedNameShouldNotBeIgnored'
 import getIsMissing from '@/publicodes-state/helpers/getIsMissing'
 import type {
   DottedName,
@@ -11,6 +12,7 @@ import { utils } from 'publicodes'
 import { useCallback } from 'react'
 import getType from '../../helpers/getType'
 import type {
+  MissingVariables,
   ParsedRules,
   Situation,
   UpdateCurrentSimulationProps,
@@ -26,6 +28,8 @@ type Props = {
   situation: Situation
   updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
   addToEngineSituation: (situationToAdd: Situation) => Situation
+  foldedSteps: DottedName[]
+  rawMissingVariables: MissingVariables
 }
 
 export default function useSetValue({
@@ -37,6 +41,8 @@ export default function useSetValue({
   situation,
   updateCurrentSimulation,
   addToEngineSituation,
+  foldedSteps,
+  rawMissingVariables,
 }: Props) {
   const getMosaicResetSituation = useCallback(
     (questionsOfMosaicFromSibling: DottedName[]): Situation => {
@@ -78,17 +84,17 @@ export default function useSetValue({
 
   /**
    * @param value - The value to set
-   * @param options.foldedStep - The dottedName of the foldedStep
+   * @param options.questionDottedName - The dottedName to be folded
    * @param options.questionsOfMosaicFromSibling - The dottedNames of the questions of the mosaic from the brother (another child)
    */
   const setValue = useCallback(
     async (
       value: NodeValue | Record<string, NodeValue>,
       {
-        foldedStep,
+        questionDottedName,
         questionsOfMosaicFromSibling,
       }: {
-        foldedStep?: DottedName
+        questionDottedName?: DottedName
         questionsOfMosaicFromSibling?: DottedName[]
       } = {}
     ) => {
@@ -130,14 +136,31 @@ export default function useSetValue({
         }
       }
 
-      const safeSituation = addToEngineSituation(situationToAdd)
+      const safeAndCleanSituation = addToEngineSituation(situationToAdd)
+
+      const cleanFoldedSteps = foldedSteps.filter((foldedStep) => {
+        return checkIfDottedNameShouldNotBeIgnored({
+          dottedName: foldedStep as DottedName,
+          safeEvaluate,
+          rawMissingVariables,
+        })
+      })
+
+      if (
+        questionDottedName !== undefined &&
+        !cleanFoldedSteps.includes(questionDottedName)
+      ) {
+        cleanFoldedSteps.push(questionDottedName)
+      }
+
       updateCurrentSimulation({
-        situationToAdd: safeSituation,
-        foldedStepToAdd: foldedStep,
+        situation: safeAndCleanSituation,
+        foldedSteps: cleanFoldedSteps,
       })
     },
     [
       addToEngineSituation,
+      foldedSteps,
       updateCurrentSimulation,
       parsedRules,
       dottedName,
@@ -145,6 +168,7 @@ export default function useSetValue({
       safeEvaluate,
       type,
       getMosaicResetSituation,
+      rawMissingVariables,
     ]
   )
 
