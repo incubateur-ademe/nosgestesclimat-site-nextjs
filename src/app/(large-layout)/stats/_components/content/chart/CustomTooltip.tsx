@@ -1,34 +1,34 @@
-import { useUser } from '@/publicodes-state'
+import { useLocale } from '@/hooks/useLocale'
 import { capitalizeString } from '@/utils/capitalizeString'
 
 // I don't know how to fix it
 type Props = any
 
 export default function CustomTooltip(props: Props) {
-  const { user } = useUser()
+  const locale = useLocale()
 
   const date =
     props.period === 'week'
       ? `Semaine du ${new Date(props.label?.split(',')[0]).toLocaleDateString(
-          user?.region?.code,
+          locale,
           {
             day: '2-digit',
             month: '2-digit',
           }
         )} au ${new Date(props.label?.split(',')[1]).toLocaleDateString(
-          user?.region?.code,
+          locale,
           {
             day: '2-digit',
             month: '2-digit',
           }
         )}`
       : props.period === 'month'
-        ? `${new Date(props.label).toLocaleDateString(user?.region?.code, {
+        ? `${new Date(props.label).toLocaleDateString(locale, {
             month: 'long',
             year: 'numeric',
           })}`
         : props.period === 'day'
-          ? `${new Date(props.label).toLocaleDateString(user?.region?.code, {
+          ? `${new Date(props.label).toLocaleDateString(locale, {
               weekday: 'long',
               day: '2-digit',
               month: 'long',
