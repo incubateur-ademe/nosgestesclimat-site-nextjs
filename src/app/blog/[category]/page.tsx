@@ -84,7 +84,7 @@ export default async function CategoryPage({
         slug={params.category}
       />
 
-      <ContentLarge tag="div">
+      <ContentLarge tag="div" className="overflow-hidden">
         {mainArticle && (
           <MainArticle
             imageSrc={mainArticle.image?.url ?? ''}
@@ -92,7 +92,7 @@ export default async function CategoryPage({
             title={mainArticle.title}
             description={mainArticle.description}
             category={title}
-            href={`/blog-v2/${params.category}/${mainArticle.slug}`}
+            href={`/blog/${params.category}/${mainArticle.slug}`}
           />
         )}
 

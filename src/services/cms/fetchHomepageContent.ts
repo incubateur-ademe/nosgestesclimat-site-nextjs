@@ -40,7 +40,7 @@ export async function fetchHomepageContent({
         mainArticle: PopulatedArticleType<'image' | 'category'>
       }
     }>(`/api/home-page?${homepageSearchParams}`)
-
+    console.log('homepageresponse', homepageResponse)
     if (!homepageResponse?.data) {
       console.error('Error: homepageResponse?.data is undefined')
       return undefined
@@ -48,24 +48,27 @@ export async function fetchHomepageContent({
 
     const { mainArticle, image, title, description } = homepageResponse.data
 
-    const articlesSearchParams = new URLSearchParams({
+    const articlesSearchParams: Record<string, string> = {
       locale,
       'fields[0]': 'title',
       'fields[1]': 'description',
       'fields[2]': 'slug',
       'populate[0]': 'image',
       'populate[1]': 'category',
-      'filters[id][$ne]': mainArticle?.id ?? '',
       'pagination[page]': page.toString(),
       'pagination[pageSize]': PAGE_SIZE.toString(),
       sort: 'publishedAt:desc',
       status: isProduction ? '' : 'draft',
-    })
+    }
+
+    if (mainArticle) {
+      articlesSearchParams['filters[id][$ne]'] = mainArticle.id
+    }
 
     const articlesResponse = await cmsClient<{
       data: ArticleItemType[]
       meta: MetaType
-    }>(`/api/articles?${articlesSearchParams}`)
+    }>(`/api/articles?${new URLSearchParams(articlesSearchParams)}`)
 
     const { data, meta } = articlesResponse
 

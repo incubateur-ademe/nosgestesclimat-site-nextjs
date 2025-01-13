@@ -9,7 +9,7 @@ export default function AuthorBlock({
   if (!author) return null
 
   return (
-    <div className="mt-8 flex flex-row items-center gap-6 md:w-8/12">
+    <div className="mb-20 mt-8 flex flex-row items-center gap-6 md:w-8/12">
       <div className="min-w-24">
         {author.image ? (
           <Image

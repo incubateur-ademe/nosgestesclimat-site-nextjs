@@ -63,7 +63,7 @@ export default async function ArticlePage({
     <>
       <ArticleJSONLD article={article} />
 
-      <div className="relative">
+      <div className="relative max-w-5xl md:mx-auto">
         <ArticleBreadcrumbs
           categorySlug={params.category}
           articleSlug={params.article}
@@ -119,7 +119,7 @@ export default async function ArticlePage({
           articleSlug={params.article}
         />
 
-        <div className="relative mt-8 flex flex-col flex-nowrap gap-8 overflow-auto md:mt-0 md:flex-row md:items-stretch">
+        <div className="relative mt-8 flex max-w-5xl flex-col flex-nowrap gap-8 overflow-auto md:mx-auto md:mt-0 md:flex-row md:items-stretch">
           <div className="max-w-full md:w-8/12">
             <div
               className="markdown max-w-full border-b border-gray-300 pb-8"
@@ -128,9 +128,10 @@ export default async function ArticlePage({
           </div>
         </div>
       </div>
-
-      <AuthorBlock author={article.author} />
-      <OtherArticles articles={otherArticles} />
+      <div className="mb-12 max-w-5xl md:mx-auto">
+        <AuthorBlock author={article.author} />
+        <OtherArticles articles={otherArticles} />
+      </div>
     </>
   )
 }

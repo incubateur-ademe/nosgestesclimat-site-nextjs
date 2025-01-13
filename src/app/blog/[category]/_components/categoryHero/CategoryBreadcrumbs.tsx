@@ -13,8 +13,8 @@ export default async function CategoryBreadcrumbs({
     <Breadcrumbs
       className="relative"
       items={[
-        { href: '/blog-v2', label: t('Accueil Blog') },
-        { href: `/blog-v2/${slug}`, label: title, isActive: true },
+        { href: '/blog', label: t('Accueil Blog') },
+        { href: `/blog/${slug}`, label: title, isActive: true },
       ]}
     />
   )

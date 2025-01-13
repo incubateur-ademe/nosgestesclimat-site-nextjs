@@ -23,7 +23,7 @@ export default function OtherArticles({
             title={article.title}
             imageSrc={article.image?.url ?? ''}
             imageAlt={article.image?.alternativeText ?? ''}
-            href={`/blog-v2/${article.category?.slug}/${article.slug}`}
+            href={`/blog/${article.category?.slug}/${article.slug}`}
             trackingEvent={['blog', 'other-articles']}
             category={article.category?.title ?? ''}
             className="bg-white"

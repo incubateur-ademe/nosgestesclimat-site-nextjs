@@ -6,6 +6,5 @@ Disallow: /infos/*
 Disallow: /quiz/*
 Disallow: /partage/*
 Disallow: /tutoriel/*
-Disallow: /blog-v2/*
 
 Sitemap: https://nosgestesclimat.fr/sitemap.xml

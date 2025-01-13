@@ -50,7 +50,7 @@ export default async function BlogHomePage({
       locale: locale ?? defaultLocale,
     })) ?? {}
 
-  if (!title || !description || !image || !mainArticle || !articles) {
+  if (!title || !description || !image || !articles) {
     notFound()
   }
 
@@ -79,7 +79,7 @@ export default async function BlogHomePage({
             description={mainArticle.description}
             imageSrc={mainArticle.image?.url ?? ''}
             imageAlt={mainArticle.image?.alternativeText ?? ''}
-            href={`/blog-v2/${mainArticle.category?.slug}/${mainArticle.slug}`}
+            href={`/blog/${mainArticle.category?.slug}/${mainArticle.slug}`}
             category={mainArticle.category?.title ?? ''}
           />
         )}

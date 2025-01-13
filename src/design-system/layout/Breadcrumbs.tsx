@@ -9,6 +9,7 @@ import { twMerge } from 'tailwind-merge'
 export default function Breadcrumbs({
   items,
   className,
+  linkClassName,
 }: {
   items: {
     href: string
@@ -17,6 +18,7 @@ export default function Breadcrumbs({
     isDisabled?: boolean
   }[]
   className?: string
+  linkClassName?: string
 }) {
   return (
     <section className={twMerge('h-[75px] w-full', className)}>
@@ -36,7 +38,8 @@ export default function Breadcrumbs({
                 isActive
                   ? 'cursor-default text-default no-underline hover:text-default hover:no-underline'
                   : '',
-                isDisabled ? 'cursor-default' : ''
+                isDisabled ? 'cursor-default' : '',
+                linkClassName
               )}
               href={href}>
               {label}

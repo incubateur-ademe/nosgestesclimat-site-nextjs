@@ -26,10 +26,10 @@ export async function fetchArticlePageMetadata({
       'filters[slug][$eq]': articleSlug,
       status: isProduction ? '' : 'draft',
     })
-
     const articleResponse = await cmsClient<{
       data: [PopulatedArticleType<'image' | 'pageMetadata'>]
     }>(`/api/articles?${articleSearchParams}`)
+    console.log(articleResponse)
 
     if (articleResponse?.data?.length !== 1) {
       console.error(
