@@ -7,18 +7,13 @@ import Loader from '@/design-system/layout/Loader'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { getLocalState } from '@/services/localStorage'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import ArrowRightIcon from '../icons/ArrowRightIcon'
 import Trans from '../translation/Trans'
-
-function getNGCLocalStorage() {
-  return JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '{}') as {
-    user: { email: string; userId: string }
-  }
-}
 
 function getSuccessMessage(isSubscribed: boolean, isSuccess: boolean) {
   if (isSuccess) {
@@ -33,9 +28,9 @@ function getSuccessMessage(isSubscribed: boolean, isSuccess: boolean) {
 }
 
 export default function NewsletterForm() {
-  const ngcLocalStorage = getNGCLocalStorage()
-  const userEmailFromLocalStorage = ngcLocalStorage?.user?.email
-  const userId = ngcLocalStorage?.user?.userId
+  const state = getLocalState()
+  const userEmailFromLocalStorage = state?.user?.email
+  const userId = state?.user?.userId
 
   const { t } = useClientTranslation()
 
@@ -103,9 +98,9 @@ export default function NewsletterForm() {
       localStorage.setItem(
         STORAGE_KEY,
         JSON.stringify({
-          ...ngcLocalStorage,
+          ...state,
           user: {
-            ...ngcLocalStorage.user,
+            ...state.user,
             email: formattedEmail,
           },
         })
