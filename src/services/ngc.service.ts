@@ -9,9 +9,9 @@ export function getProgression() {
   const state = getLocalState()
 
   return (
-    state?.simulations?.filter(
+    state?.simulations?.find(
       (simulation) => simulation.id === state.currentSimulationId
-    )?.[0] ?? 0
+    )?.progression ?? 0
   )
 }
 
