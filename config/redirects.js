@@ -107,6 +107,11 @@ const redirects = [
     destination: '/nos-relais',
     permanent: true,
   },
+  {
+    source: '/actions/plus',
+    destination: '/blog',
+    permanent: true,
+  },
 ]
 
 module.exports = redirects
