@@ -40,7 +40,7 @@ export async function fetchHomepageContent({
         mainArticle: PopulatedArticleType<'image' | 'category'>
       }
     }>(`/api/home-page?${homepageSearchParams}`)
-    console.log('homepageresponse', homepageResponse)
+
     if (!homepageResponse?.data) {
       console.error('Error: homepageResponse?.data is undefined')
       return undefined

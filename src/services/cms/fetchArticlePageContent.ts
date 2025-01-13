@@ -35,11 +35,11 @@ export async function fetchArticlePageContent({
       sort: 'publishedAt:desc',
       status: isProduction ? '' : 'draft',
     })
-    console.log('toto')
+
     const articleResponse = await cmsClient<{
       data: [Article]
     }>(`/api/articles?${articleSearchParams}`)
-    console.log(articleResponse)
+
     if (articleResponse.data?.length !== 1) {
       console.error(
         `Error: fetch article error for articleSlug: ${articleSlug}`
