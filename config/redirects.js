@@ -115,7 +115,7 @@ const redirects = [
     permanent: true,
   },
   {
-    source: 'blog/fonctionnalite-animateurs-ateliers-sensibilisation',
+    source: '/blog/fonctionnalite-animateurs-ateliers-sensibilisation',
     destination:
       'blog/actualites-et-fonctionnalites/fonctionnalite-animateurs-ateliers-sensibilisation',
     permanent: true,
