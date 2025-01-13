@@ -50,7 +50,28 @@ export default function useContent({ dottedName, rule }: Props) {
     [rule]
   )
 
-  const plancher = useMemo<number>(() => rule?.rawNode['plancher'] ?? 0, [rule])
+  const plancher = useMemo<number>(() => {
+    // By default, the plancher is 0
+    const plancherValue = rule?.rawNode['plancher']
+
+    // TODO: Deal with the case where the plancher needs to be evaluated.
+    if (typeof plancherValue === 'string') {
+      return 0
+    }
+
+    return plancherValue ?? 0
+  }, [rule])
+
+  const plafond = useMemo<number>(() => {
+    // By default, the plafond is 1 000 000
+    const plafondValue = rule?.rawNode['plafond']
+
+    // TODO: Deal with the case where the plafond needs to be evaluated.
+    if (typeof plafondValue === 'string') {
+      return 1_000_000
+    }
+    return plafondValue ?? 1_000_000
+  }, [rule])
 
   const warning = useMemo<string | undefined>(
     () => rule?.rawNode['avertissement'],
@@ -102,6 +123,7 @@ export default function useContent({ dottedName, rule }: Props) {
     suggestions,
     excerpt,
     plancher,
+    plafond,
     warning,
     actions,
   }

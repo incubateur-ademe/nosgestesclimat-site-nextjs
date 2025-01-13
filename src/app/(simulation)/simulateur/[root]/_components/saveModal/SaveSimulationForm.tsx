@@ -1,6 +1,7 @@
 import Trans from '@/components/translation/Trans'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Title from '@/design-system/layout/Title'
+import type { ReactNode } from 'react'
 import type {
   SubmitHandler,
   UseFormHandleSubmit,
@@ -16,11 +17,13 @@ export default function SaveSimulationForm({
   onSubmit,
   register,
   isError,
+  title,
 }: {
   handleSubmit: UseFormHandleSubmit<Inputs>
   onSubmit: SubmitHandler<Inputs>
   register: UseFormRegister<Inputs>
   isError: boolean
+  title: ReactNode | string
 }) {
   return (
     <form
@@ -34,7 +37,7 @@ export default function SaveSimulationForm({
             Recevez par email un lien pour reprendre votre test plus tard.
           </Trans>
         }>
-        <Trans>Reprendre plus tard</Trans>
+        {title}
       </Title>
 
       <div className="flex w-full flex-col items-start gap-4">

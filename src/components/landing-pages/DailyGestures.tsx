@@ -3,7 +3,7 @@
 import Separator from '@/design-system/layout/Separator'
 import type { GesturesType } from '@/types/landing-page'
 import type { ReactNode } from 'react'
-import DynamicCTAButton from '../cta/DynamicCTAButton'
+import DynamicCTAButton from '../cta/DynamicCTAButtons'
 import GestureSelector from './dailyGestures/GestureSelector'
 
 export default function DailyGestures({
@@ -34,7 +34,7 @@ export default function DailyGestures({
       </div>
 
       <div className="mt-10 text-center">
-        <DynamicCTAButton trackingEvents={trackingEvents} />
+        <DynamicCTAButton trackingEvents={trackingEvents} withRestart={false} />
       </div>
     </div>
   )

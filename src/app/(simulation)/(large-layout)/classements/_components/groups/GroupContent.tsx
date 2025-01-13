@@ -5,7 +5,7 @@ import GroupList from './createOtherGroupsSection/GroupList'
 
 type Props = {
   isError: boolean
-  groups: Group[]
+  groups?: Group[]
 }
 
 export default function GroupContent({ isError, groups }: Props) {
@@ -13,7 +13,7 @@ export default function GroupContent({ isError, groups }: Props) {
     return <ServerErrorSection />
   }
 
-  if (!groups || groups?.length === 0) {
+  if (groups?.length === 0 || !groups) {
     return <CreateFirstGroupSection />
   }
   return <GroupList groups={groups} />

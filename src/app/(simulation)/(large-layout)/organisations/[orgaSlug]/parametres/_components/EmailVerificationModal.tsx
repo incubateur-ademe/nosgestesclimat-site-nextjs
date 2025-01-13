@@ -26,7 +26,7 @@ export default function EmailVerificationModal({
   const { t } = useClientTranslation()
 
   return (
-    <Modal isOpen closeModal={closeModal}>
+    <Modal isOpen closeModal={closeModal} hasAbortCross={false}>
       <form>
         <h3>
           <Trans>Vous devez valider votre changement d'adresse e-mail.</Trans>
