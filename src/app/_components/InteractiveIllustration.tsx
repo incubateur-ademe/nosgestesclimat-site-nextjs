@@ -10,7 +10,7 @@ export default function InteractiveIllustration() {
   const { t } = useClientTranslation()
 
   return (
-    <div className="relative">
+    <div className="relative mx-auto sm:max-w-[380px] md:max-w-none">
       <Image
         src="/images/illustrations/empreinte-carbone-eau-objets-du-quotidien.svg"
         alt={t(

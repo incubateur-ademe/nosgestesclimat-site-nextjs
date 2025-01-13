@@ -1,4 +1,4 @@
-import DynamicCTAButton from '@/components/cta/DynamicCTAButton'
+import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/Trans'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
@@ -7,6 +7,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import {
+  getLandingClickCTARestart,
   getLandingClickCTAResults,
   getLandingClickCTAResume,
   getLandingClickCTAStart,
@@ -75,7 +76,7 @@ export default async function Homepage() {
         heroIllustration={
           <div className="flex flex-col gap-4">
             {/* Displayed on mobile only */}
-            <p className="text-center text-sm md:hidden">
+            <p className="text-center text-sm sm:text-base md:hidden">
               <Trans>
                 <strong className="text-primary-700">
                   2 millions de personnes
@@ -105,7 +106,7 @@ export default async function Homepage() {
             </p>
 
             <div className="order-1 mt-10 flex flex-col items-center gap-6 md:order-2 md:mt-0 md:max-w-[300px] md:items-start">
-              <DynamicCTAButton
+              <DynamicCTAButtons
                 trackingEvents={{
                   start: getLandingClickCTAStart(
                     pathname,
@@ -116,6 +117,10 @@ export default async function Homepage() {
                     trackingActionClickCTA
                   ),
                   results: getLandingClickCTAResults(
+                    pathname,
+                    trackingActionClickCTA
+                  ),
+                  restart: getLandingClickCTARestart(
                     pathname,
                     trackingActionClickCTA
                   ),

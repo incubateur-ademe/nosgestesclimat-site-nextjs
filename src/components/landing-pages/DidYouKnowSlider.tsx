@@ -12,7 +12,7 @@ import type { ReactNode } from 'react'
 import { useState } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
-import DynamicCTAButton from '../cta/DynamicCTAButton'
+import DynamicCTAButton from '../cta/DynamicCTAButtons'
 import Trans from '../translation/Trans'
 
 export default function DidYouKnowSlider({
