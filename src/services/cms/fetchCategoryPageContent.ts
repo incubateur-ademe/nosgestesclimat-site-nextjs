@@ -12,9 +12,11 @@ const isProduction = process.env.NODE_ENV === 'production'
 export async function fetchCategoryPageContent({
   slug,
   page,
+  locale,
 }: {
   slug: string
   page: number
+  locale: string
 }): Promise<
   | (Partial<
       PopulatedCategoryType<'questions' | 'image'> & {
@@ -28,7 +30,7 @@ export async function fetchCategoryPageContent({
 > {
   try {
     const categorySearchParams = new URLSearchParams({
-      locale: 'fr',
+      locale,
       'filters[slug][$eq]': slug,
       'populate[0]': 'image',
       'populate[1]': 'questions',
@@ -55,7 +57,7 @@ export async function fetchCategoryPageContent({
     } = categoryResponse
 
     const articlesSearchParams = new URLSearchParams({
-      locale: 'fr',
+      locale,
       'fields[0]': 'title',
       'fields[1]': 'description',
       'fields[2]': 'slug',

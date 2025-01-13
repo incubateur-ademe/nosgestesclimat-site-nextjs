@@ -6,8 +6,10 @@ const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
 
 export async function fetchCategoryPageMetadata({
   slug,
+  locale,
 }: {
   slug: string
+  locale: string
 }): Promise<
   | {
       metaTitle: string
@@ -18,7 +20,7 @@ export async function fetchCategoryPageMetadata({
 > {
   try {
     const categorySearchParams = new URLSearchParams({
-      locale: 'fr',
+      locale,
       'populate[0]': 'image',
       'populate[1]': 'pageMetadata',
       'filters[slug][$eq]': slug,

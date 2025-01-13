@@ -11,7 +11,13 @@ const PAGE_SIZE = 12
 
 const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
 
-export async function fetchHomepageContent({ page }: { page: number }): Promise<
+export async function fetchHomepageContent({
+  page,
+  locale,
+}: {
+  page: number
+  locale: string
+}): Promise<
   | (Partial<PopulatedHomePageType<'image'>> & {
       pageCount: number
       mainArticle: PopulatedArticleType<'image' | 'category'>
@@ -21,7 +27,7 @@ export async function fetchHomepageContent({ page }: { page: number }): Promise<
 > {
   try {
     const homepageSearchParams = new URLSearchParams({
-      locale: 'fr',
+      locale,
       'populate[0]': 'image',
       'populate[1]': 'mainArticle',
       'populate[2]': 'mainArticle.image',
@@ -43,7 +49,7 @@ export async function fetchHomepageContent({ page }: { page: number }): Promise<
     const { mainArticle, image, title, description } = homepageResponse.data
 
     const articlesSearchParams = new URLSearchParams({
-      locale: 'fr',
+      locale,
       'fields[0]': 'title',
       'fields[1]': 'description',
       'fields[2]': 'slug',

@@ -4,7 +4,11 @@ import { captureException } from '@sentry/nextjs'
 
 const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
 
-export async function fetchHomepageMetadata(): Promise<
+export async function fetchHomepageMetadata({
+  locale,
+}: {
+  locale: string
+}): Promise<
   | {
       metaTitle: string
       metaDescription?: string | null
@@ -14,7 +18,7 @@ export async function fetchHomepageMetadata(): Promise<
 > {
   try {
     const searchParams = new URLSearchParams({
-      locale: 'fr',
+      locale,
       'populate[0]': 'image',
       'populate[1]': 'pageMetadata',
       status: isProduction ? '' : 'draft',

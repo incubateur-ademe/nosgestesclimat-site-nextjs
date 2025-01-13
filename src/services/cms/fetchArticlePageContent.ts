@@ -13,8 +13,10 @@ type Article = PopulatedArticleType<'image' | 'category'> & {
 
 export async function fetchArticlePageContent({
   articleSlug,
+  locale,
 }: {
   articleSlug: string
+  locale: string
 }): Promise<
   | {
       article?: Article
@@ -24,7 +26,7 @@ export async function fetchArticlePageContent({
 > {
   try {
     const articleSearchParams = new URLSearchParams({
-      locale: 'fr',
+      locale,
       'populate[0]': 'image',
       'populate[1]': 'category',
       'populate[2]': 'author',
@@ -51,7 +53,7 @@ export async function fetchArticlePageContent({
 
     const categorySlug = article.category?.slug
     const otherArticlesSearchParams = new URLSearchParams({
-      locale: 'fr',
+      locale,
       'populate[0]': 'image',
       'populate[1]': 'category',
       'filters[category][slug][$eq]': categorySlug ?? '',
