@@ -2,8 +2,8 @@
 
 import Trans from '@/components/translation/Trans'
 import UserInformationForm from '@/components/user/UserInformationForm'
-import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useFetchUserContact } from '@/hooks/users/useFetchUserContact'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 
 type Props = {
@@ -20,8 +20,7 @@ export default function CustomActionForm({
   const { toggleActionChoice, user } = useUser()
   const { actionChoices } = useCurrentSimulation()
 
-  const { refetch: refreshNewsletterSubcriptions } =
-    useGetNewsletterSubscriptions(user?.email ?? '')
+  const { refetch: refreshUserContact } = useFetchUserContact(user.userId)
 
   if (dottedName === 'transport . infolettre')
     return (
@@ -41,7 +40,7 @@ export default function CustomActionForm({
               data['newsletter-transports'] !== actionChoices?.[dottedName]
             ) {
               toggleActionChoice(dottedName)
-              refreshNewsletterSubcriptions()
+              refreshUserContact()
               setFocusedAction('')
             }
           }}

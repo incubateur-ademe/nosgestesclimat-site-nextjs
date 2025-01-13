@@ -11,13 +11,13 @@ import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
-import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
-import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useFetchUserContact } from '@/hooks/users/useFetchUserContact'
+import { useUpdateUserSettings } from '@/hooks/users/useUpdateUserSettings'
 import { useUser } from '@/publicodes-state'
-import type { ReactNode} from 'react';
+import type { ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
-import type { SubmitHandler} from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 
@@ -75,23 +75,21 @@ export default function UserInformationForm({
     },
   })
 
-  const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
-    user?.email ?? ''
-  )
+  const { data: userContact } = useFetchUserContact(user.userId)
 
   useEffect(() => {
-    if (!newsletterSubscriptions && !defaultValues) return
+    if (!userContact && !defaultValues) return
 
     setValue(
       'newsletter-saisonniere',
-      newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER)
+      !!userContact?.listIds.includes(LIST_MAIN_NEWSLETTER)
     )
     setValue(
       'newsletter-transports',
-      newsletterSubscriptions?.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER) ||
-        defaultValues?.['newsletter-transports']
+      !!userContact?.listIds.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER) ||
+        !!defaultValues?.['newsletter-transports']
     )
-  }, [newsletterSubscriptions, setValue, defaultValues])
+  }, [userContact, setValue, defaultValues])
 
   const {
     mutateAsync: updateUserSettings,

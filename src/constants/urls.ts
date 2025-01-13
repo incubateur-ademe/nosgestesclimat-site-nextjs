@@ -20,6 +20,8 @@ export const QUIZZ_ANSWER_URL = SERVER_URL + '/quizz-answers/v1'
 
 export const SIMULATION_URL = SERVER_URL + '/simulations/v1'
 
+export const USER_URL = SERVER_URL + '/users/v1'
+
 export const VERIFICATION_CODE_URL = SERVER_URL + '/verification-codes/v1'
 
 export const getPreviewUrl = (PRNumber: string | number) => {
