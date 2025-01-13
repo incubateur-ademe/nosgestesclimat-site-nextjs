@@ -1,4 +1,4 @@
-import DynamicCTAButton from '@/components/cta/DynamicCTAButton'
+import DynamicCTAButton from '@/components/cta/DynamicCTAButtons'
 import Partners from '@/components/landing-pages/Partners'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/Trans'
@@ -7,6 +7,7 @@ import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import {
+  getLandingClickCTARestart,
   getLandingClickCTAResults,
   getLandingClickCTAResume,
   getLandingClickCTAStart,
@@ -95,6 +96,10 @@ export default function CarbonFootprintLandingPage() {
                     trackingActionClickCTA
                   ),
                   results: getLandingClickCTAResults(
+                    '/empreinte-carbone',
+                    trackingActionClickCTA
+                  ),
+                  restart: getLandingClickCTARestart(
                     '/empreinte-carbone',
                     trackingActionClickCTA
                   ),
