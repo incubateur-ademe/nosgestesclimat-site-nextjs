@@ -13,7 +13,7 @@ import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useFetchUserContact } from '@/hooks/users/useFetchUserContact'
-import { useUpdateUserSettings } from '@/hooks/users/useUpdateUserSettings'
+import { useUpdateUser } from '@/hooks/users/useUpdateUser'
 import { useUser } from '@/publicodes-state'
 import type { ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
@@ -92,10 +92,10 @@ export default function UserInformationForm({
   }, [userContact, setValue, defaultValues])
 
   const {
-    mutateAsync: updateUserSettings,
+    mutateAsync: updateUser,
     isPending,
     isError,
-  } = useUpdateUserSettings({
+  } = useUpdateUser({
     email: user?.email ?? '',
     userId: user?.userId,
   })
@@ -106,7 +106,7 @@ export default function UserInformationForm({
       [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: data['newsletter-transports'],
     }
 
-    await updateUserSettings({
+    await updateUser({
       name: data.name,
       email: data.email,
       newsletterIds,

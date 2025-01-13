@@ -15,7 +15,7 @@ import { displayErrorToast } from '@/helpers/toasts/displayErrorToast'
 import { displaySuccessToast } from '@/helpers/toasts/displaySuccessToast'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useFetchUserContact } from '@/hooks/users/useFetchUserContact'
-import { useUpdateUserSettings } from '@/hooks/users/useUpdateUserSettings'
+import { useUpdateUser } from '@/hooks/users/useUpdateUser'
 import { useUser } from '@/publicodes-state'
 import type { ReactNode } from 'react'
 import { useEffect, useRef } from 'react'
@@ -101,7 +101,7 @@ export default function UserInformationForm({
     )
   }, [userContact, setValue, defaultValues])
 
-  const { mutateAsync: updateUserSettings, isPending } = useUpdateUserSettings({
+  const { mutateAsync: updateUser, isPending } = useUpdateUser({
     email: user?.email ?? '',
     userId: user?.userId,
   })
@@ -114,7 +114,7 @@ export default function UserInformationForm({
     }
 
     try {
-      await updateUserSettings({
+      await updateUser({
         name: data.name,
         email: data.email,
         newsletterIds,

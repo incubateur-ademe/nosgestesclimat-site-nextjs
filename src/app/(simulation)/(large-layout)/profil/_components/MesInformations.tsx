@@ -13,7 +13,7 @@ import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useFetchUserContact } from '@/hooks/users/useFetchUserContact'
-import { useUpdateUserSettings } from '@/hooks/users/useUpdateUserSettings'
+import { useUpdateUser } from '@/hooks/users/useUpdateUser'
 import { useUser } from '@/publicodes-state'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { useEffect, useRef, useState } from 'react'
@@ -63,10 +63,10 @@ export default function MesInformations() {
   }, [userContact, setValue])
 
   const {
-    mutateAsync: updateUserSettings,
+    mutateAsync: updateUser,
     isPending,
     isError,
-  } = useUpdateUserSettings({
+  } = useUpdateUser({
     email: user?.email ?? '',
     userId: user?.userId,
   })
@@ -78,7 +78,7 @@ export default function MesInformations() {
     }
     try {
       const formattedEmail = formatEmail(data.email)
-      await updateUserSettings({
+      await updateUser({
         name: data.name,
         email: formattedEmail,
         newsletterIds,

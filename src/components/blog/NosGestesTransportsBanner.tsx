@@ -5,7 +5,7 @@ import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useFetchUserContact } from '@/hooks/users/useFetchUserContact'
-import { useUpdateUserSettings } from '@/hooks/users/useUpdateUserSettings'
+import { useUpdateUser } from '@/hooks/users/useUpdateUser'
 import { useUser } from '@/publicodes-state'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
@@ -27,17 +27,17 @@ export default function NosGestesTransportsBanner() {
   const { data: userContact } = useFetchUserContact(user.userId)
 
   const {
-    mutateAsync: updateUserSettings,
+    mutateAsync: updateUser,
     isPending,
     isError,
     isSuccess,
-  } = useUpdateUserSettings({
+  } = useUpdateUser({
     email: user?.email ?? '',
     userId: user?.userId,
   })
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    await updateUserSettings({
+    await updateUser({
       email: data.email,
       newsletterIds: {
         [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: true,
