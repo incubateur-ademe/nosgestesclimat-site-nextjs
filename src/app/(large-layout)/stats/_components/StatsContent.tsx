@@ -142,13 +142,7 @@ export default function StatsContent() {
           <Trans>Données qualitatives</Trans>
         </h2>
         <p>
-          <Trans i18nKey={'components.stats.StatsContent.infosNorthstar'}>
-            En fin de simulation, pour 10% de nos utilisateurs, nous proposons à
-            nos utilisateurs de répondre à la question suivante :{' '}
-            <strong>D’après vous, quel est votre le plus important ?</strong>.
-            L'idée est d'évaluer l'effet de nos améliorations pédagogiques.
-            Cette section statistique est générée via Metabase.
-          </Trans>
+          <Trans>Cette section statistique est générée via Metabase.</Trans>
         </p>
         <MetabaseIframe
           id="stats-quali"
@@ -163,7 +157,7 @@ export default function StatsContent() {
         </h2>
         <p>
           {' '}
-          <Trans i18nKey={'components.stats.StatsContent.infosNorthstar'}>
+          <Trans>
             Il est question ici des modes "Organisations" et "Challenge tes
             amis". Cette section est générée via Metabase.
           </Trans>{' '}
