@@ -7,10 +7,6 @@ type Props = {
   className?: string
 }
 
-export const colorClassNames = {
-  primary: 'border-primary-700 text-primary-700',
-  white: 'border-white text-white',
-}
 export default function QuestionButton({ onClick, title }: Props) {
   return (
     <Button

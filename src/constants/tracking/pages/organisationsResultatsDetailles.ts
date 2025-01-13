@@ -18,10 +18,3 @@ export const organisationsResultatsDetaillesFilterByPostalCode = (
   'Filter by postal code',
   `Filter by postal code ${postalCode}`,
 ]
-
-// Figma comment #104
-export const organisationsResultatsDetaillesClickInfos = [
-  'trackEvent',
-  'Organisations Resultats Détaillés',
-  'Click Infos',
-]
