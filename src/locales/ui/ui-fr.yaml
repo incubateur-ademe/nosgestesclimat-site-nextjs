@@ -5,7 +5,6 @@ entries:
   Actions d'engagement: Actions d'engagement
   Actions négatives: Actions négatives
   'Actions écartées :': 'Actions écartées :'
-  "Cette contribution sera publique : n'y mettez pas d'informations sensibles": "Cette contribution sera publique : n'y mettez pas d'informations sensibles"
   Charger: Charger
   Chargée: Chargée
   Choisir l'action: Choisir l'action
@@ -15,7 +14,6 @@ entries:
   Commencer: Commencer
   Comprendre le calcul: Comprendre le calcul
   Copier le lien: Copier le lien
-  Depuis la page: Depuis la page
   Documentation: Documentation
   Découvrez la FAQ !: Découvrez la FAQ !
   Découvrez les enjeux qui se cachent derrière chaque action.: Découvrez les enjeux qui se cachent derrière chaque action.
@@ -32,7 +30,6 @@ entries:
   J'ai compris: J'ai compris
   Le modèle d'empreinte carbone de référence: Le modèle d'empreinte carbone de référence
   Le test: Le test
-  Le titre bref de votre problème: Le titre bref de votre problème
   Mon historique des simulations: Mon historique des simulations
   Mon profil: Mon profil
   Non: Non
@@ -100,11 +97,6 @@ entries:
   publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
   publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} actions disponibles,'
   publicodes.AllActions.msgPlusActions: <0>Nous n'avons plus d'actions chiffrées très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes pour agir autrement ⏬</1>
-  publicodes.Contribution.bugQuestion: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
-  publicodes.Contribution.commentaireAugmenté: '> Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contact).'
-  publicodes.Contribution.descriptionComplète: <0>La description complète de votre problème</0><1><0>En indiquant le navigateur que vous utilisez (par exemple Firefox version 93, Chrome version 95, Safari, etc.), et la plateforme (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à résoudre le bug plus rapidement.</0></1>
-  publicodes.Contribution.liensVersGithub: Pour toute remarque ou question, nous vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
-  publicodes.Contribution.remerciements: Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur <2>ce lien</2>.
   publicodes.Personas.description: 'Nous les avons définis pour qu’ils représentent la diversité des cas d’usage du calculateur.<1>Toute ressemblance avec une personne existant ou ayant existé serait purement fortuite !</1>En aucune mesure, on ne peut dire qu’ils sont représentatifs de la distribution de la population française : il ne s’agit pas de coller aux statistiques de la population, mais de retrouver parmi nos dix personas au moins un qui représente chaque usage majeur et différenciant pour le calculateur. Ainsi, nous avons fait varier pour chacun d’entre eux :<3><0>Leur genre : même s’il n’influe pas sur l’empreinte, il serait étonnant de n’avoir que des personas “femmes”</0><1>Leur âge et situation personnelle / professionnelle : au moins un étudiant, un retraité, un adulte au foyer, un actif</1><2>La taille de leur foyer : de 1 personne à famille nombreuse</2><3>Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans le nord, dans le sud, les plaines, la montagne et sur une île</3><4>Leur logement : de l’appartement à la maison, du neuf à l’ancien</4><5>Leurs modes de transport : de la marche à la voiture en passant par le ferry et l’avion</5><6>Leur régime alimentaire : au moins un végétalien, un végétarien, une personne ne mangeant que du poisson, et un amateur de viande rouge</6><7>Leur tendance à l’achat : du tout occasion au tout neuf, de l’acheteur compulsif à celui ou celle qui n’achète presque rien</7><8>Leur façon de partir en vacances : mode de transport, hébergement, on trouve de tout</8><9>Leurs loisirs : de la culture, du sport, du bien-être…</9></3>'
   publicodes.Profil.locationDonnées: <0>Où sont mes données ? </0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
   publicodes.Profil.recap: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions), choisi {{chosenActions}} action(s) et décliné {{declinedActions}} action(s).
@@ -176,9 +168,7 @@ entries:
   Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.: Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.
   Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données: Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données
   Supprimer mes données: Supprimer mes données
-  Veuillez renseigner un email valide.: Veuillez renseigner un email valide.
   Veuillez renseigner un nom.: Veuillez renseigner un nom.
-  Veuillez renseigner un prénom ou un pseudonyme.: Veuillez renseigner un prénom ou un pseudonyme.
   Créer et passer mon test: Créer et passer mon test
   Rejoindre et passer mon test: Rejoindre et passer mon test
   Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.: Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.
@@ -215,7 +205,6 @@ entries:
   Logo de l'Association pour la transition Bas Carbone: Logo de l'Association pour la transition Bas Carbone
   Mes réponses: Mes réponses
   Passer en français: Passer en français
-  Plus d'information à ce sujet: Plus d'information à ce sujet
   publicodes.Tutoriel.slide1.p1: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
   publicodes.Tutoriel.slide1.p2: Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer ce qu'on appelle l'empreinte carbone individuelle de consommation.
   publicodes.Tutoriel.slide2.blockquote: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en CO₂e pour simplifier la mesure. "
@@ -333,22 +322,17 @@ entries:
   Accueil: Accueil
   Animez un atelier: Animez un atelier
   Ce champ n'est pas modifiable: Ce champ n'est pas modifiable
-  Comment regrouper les résultats par région, ville, établissement... ?: Comment regrouper les résultats par région, ville, établissement... ?
   Dans quelle ville habitez-vous ?: Dans quelle ville habitez-vous ?
   Département: Département
   Empreinte moyenne: Empreinte moyenne
-  Est-il possible de personnaliser l’affichage du test ?: Est-il possible de personnaliser l’affichage du test ?
   Exporter les données: Exporter les données
   Filtrer par: Filtrer par
   Kit de diffusion: Kit de diffusion
-  Les résultats du test sont-ils anonymes ?: Les résultats du test sont-ils anonymes ?
   Mes informations: Mes informations
   Organisations: Organisations
   Oups, une erreur s'est produite au moment de l'envoi de votre code...: Oups, une erreur s'est produite au moment de l'envoi de votre code...
   Paramètres: Paramètres
-  Puis-je utiliser le logo Nos Gestes Climat dans mes communications ?: Puis-je utiliser le logo Nos Gestes Climat dans mes communications ?
   Quelle est votre année de naissance ?: Quelle est votre année de naissance ?
-  Qui peut consulter les résultats de mon organisation ?: Qui peut consulter les résultats de mon organisation ?
   Tranche d'âge: Tranche d'âge
   Voir les paramètres: Voir les paramètres
   Votre e-mail: Votre e-mail
@@ -773,7 +757,6 @@ entries:
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Rien à l'horizon ! <1></1>La page recherchée n'existe pas.
   Un bonhomme se demandant où il est: Un bonhomme se demandant où il est
   Acquisition: Acquisition
-  components.stats.StatsContent.infosNorthstar: Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.
   de visites via iframe ce mois-ci: de visites via iframe ce mois-ci
   Données qualitatives: Données qualitatives
   inscrits à l'infolettre: inscrits à l'infolettre
@@ -1156,3 +1139,5 @@ entries:
   La valeur maximum pour ce champ est de: La valeur maximum pour ce champ est de
   La valeur pour ce champ est comprise entre: La valeur pour ce champ est comprise entre
   En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.: En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.
+  Cette section statistique est générée via Metabase.: Cette section statistique est générée via Metabase.
+  Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.: Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.
