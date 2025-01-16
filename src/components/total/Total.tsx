@@ -1,12 +1,10 @@
 'use client'
 
-import QuestionButton from '@/components/misc/QuestionButton'
 import {
   simulateurCloseScoreInfo,
   simulateurOpenScoreInfo,
 } from '@/constants/tracking/pages/simulateur'
 import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useCurrentSimulation, useForm, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -15,10 +13,10 @@ import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import ValueChangeDisplay from '../misc/ValueChangeDisplay'
 import ButtonBack from './total/ButtonBack'
+import Category from './total/Category'
 import Explanation from './total/Explanation'
 import Progress from './total/Progress'
 import TotalButtons from './total/TotalButtons'
-import TotalFootprintNumber from './total/TotalFootprintNumber'
 
 export default function Total({
   toggleQuestionList,
@@ -31,8 +29,6 @@ export default function Total({
   toggleSaveModal?: () => void
   simulationMode?: boolean
 }) {
-  const { t } = useClientTranslation()
-
   const { tutorials, hideTutorial, showTutorial } = useUser()
 
   const { progression } = useCurrentSimulation()
@@ -100,12 +96,12 @@ export default function Total({
               />
             )}
 
-            <TotalFootprintNumber />
+            <Category category={currentCategory} />
 
-            <QuestionButton
+            {/* <QuestionButton
               onClick={toggleOpen}
               title={t('Comprendre mon score')}
-            />
+            /> */}
           </div>
           {toggleQuestionList ? (
             <TotalButtons
