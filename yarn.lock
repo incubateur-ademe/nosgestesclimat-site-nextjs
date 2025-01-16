@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@abc-transitionbascarbone/near-modele@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@abc-transitionbascarbone/near-modele/-/near-modele-1.0.1.tgz#e71fa6bd192ba45440720443ceb9887b6647762f"
+  integrity sha512-bcJQZndjq3koZ1d1qLXxK5gYQIGJsR6I9rtabZnnTyNpUNCgg3BMhOz4V5TCuLYZPHg4NFRzup5jrzB9/lADPg==
+
 "@alloc/quick-lru@^5.2.0":
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/@alloc/quick-lru/-/quick-lru-5.2.0.tgz#7bf68b20c0a350f936915fcae06f58e32007ce30"
@@ -1142,11 +1147,6 @@
     isomorphic-fetch "^3.0.0"
     prompt-sync "^4.2.0"
     yargs "^17.7.2"
-
-"@incubateur-ademe/nosgestesclimat@3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-3.5.0.tgz#d1332e5eb104bd9db4363241299cfaf61ccd61d5"
-  integrity sha512-eCGovtumU/WZixVMNORA4f7GgCK0NHbXzxQdDyqa2XGySVH9fGRZMrH7USB2khdkCFTncElqK0Gf1rrmdowFsA==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
