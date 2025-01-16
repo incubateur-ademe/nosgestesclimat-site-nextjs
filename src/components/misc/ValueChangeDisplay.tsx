@@ -85,7 +85,7 @@ export default function ValueChangeDisplay({
       )}>
       <span
         className={twMerge(
-          'text-sm font-medium',
+          'text-sm font-semibold',
           size === 'md' ? 'text-base' : ''
         )}>
         {displayDifference > 0 ? '+' : ''}
@@ -93,7 +93,7 @@ export default function ValueChangeDisplay({
       </span>{' '}
       <span
         className={twMerge(
-          'text-xs font-medium',
+          'text-xs font-normal',
           size === 'md' ? 'text-sm' : ''
         )}>
         {unit}

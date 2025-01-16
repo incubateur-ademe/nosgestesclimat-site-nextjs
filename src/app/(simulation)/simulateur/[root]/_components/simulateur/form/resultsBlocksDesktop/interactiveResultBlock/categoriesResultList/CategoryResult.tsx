@@ -47,10 +47,10 @@ export default function CategoryResult({
   return (
     <div
       className={twMerge(
-        'relative mb-0 flex w-full items-center justify-between gap-4 overflow-hidden bg-white px-3 py-2 text-base transition-colors',
-        isStarted || isCurrent ? getTextDarkColor(category) : 'text-slate-600'
+        'relative mb-0 flex w-full items-center justify-between gap-4 overflow-hidden bg-white px-3 py-2 text-sm transition-colors',
+        isStarted || isCurrent ? 'text-default' : 'text-slate-600'
       )}>
-      <div className="relative flex items-center font-normal">
+      <div className="relative flex items-center text-sm font-normal">
         <Emoji
           className={twMerge(
             isStarted || isCurrent ? 'opacity-100' : 'opacity-50',
@@ -68,9 +68,14 @@ export default function CategoryResult({
             ? 'visible opacity-100'
             : 'invisible opacity-0'
         )}>
-        {(isCompleted || isStarted) && !isValueZero
-          ? `${formattedValue} ${unit}`
-          : '--'}
+        {(isCompleted || isStarted) && !isValueZero ? (
+          <>
+            <span>{formattedValue}</span>{' '}
+            <span className="font-normal">{unit}</span>
+          </>
+        ) : (
+          '--'
+        )}
       </span>
     </div>
   )
