@@ -22,7 +22,7 @@ export default function MainLayoutProviders({
       <IframeOptionsProvider>
         <QueryClientProviderWrapper>
           <UserProvider
-            storageKey="nosgestesclimat::v3"
+            storageKey="near::v1"
             migrationInstructions={migrationInstructions}
             initialRegion={initialRegion}>
             <PreventNavigationProvider>

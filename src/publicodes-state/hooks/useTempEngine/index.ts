@@ -19,7 +19,6 @@ export default function useTempEngine(): {
   const { safeEvaluate, rules, safeGetRule, everyMosaicChildrenWithParent } =
     useContext(SimulationContext)
 
-    debugger
   const { foldedSteps } = useCurrentSimulation()
 
   const getSpecialRuleObject = (

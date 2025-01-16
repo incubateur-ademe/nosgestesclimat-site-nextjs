@@ -20,6 +20,7 @@ import type { MouseEvent } from 'react'
 import { useCallback, useMemo } from 'react'
 import { twMerge } from 'tailwind-merge'
 import SyncIndicator from './navigation/SyncIndicator'
+import keys from '../../data/keys.json'
 
 export default function Navigation({
   question,
@@ -58,6 +59,70 @@ export default function Navigation({
     return Date.now()
   }, [question])
 
+  // Fonction pour préparer les données à envoyer
+  const prepareDataToSend = useCallback((JSONValue: any): Record<string, any>[] => {
+    const dataToSend: any[] = [];
+    const opinionWayId = JSONValue.simulation.opinionWayId;
+    const simulationData = {
+      ...JSONValue.simulation.situation,
+      ...JSONValue.simulation.suggestions,
+    };
+
+    keys.forEach((key) => {
+      let value = simulationData[key];
+
+      if (key === 'id opinion way') {
+        dataToSend.push(opinionWayId);
+        return;
+      }
+      if (value === null) {
+        value = 'je ne sais pas';
+      }
+
+      dataToSend.push(value);
+    });
+
+    return dataToSend;
+  }, []);
+
+
+  function getLastSimulationFromLocalStorage() {
+    const localStorageValue = localStorage.getItem('near::v1');
+    if (!localStorageValue) return null;
+
+    const JSONValue: any = JSON.parse(localStorageValue);
+    JSONValue.simulation = JSONValue.simulations.at(-1); // Dernière simulation
+    delete JSONValue.simulations;
+    return JSONValue;
+  }
+
+  // Fonction pour envoyer les données au serveur
+  const sendDataToServer = useCallback(async (data: any) => {
+    const voitures = localStorage.getItem('transport . voitures . km') ?? [];
+
+    try {
+      const response = await fetch('/api/add-row', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ simulationResults: data, voitures }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Erreur HTTP: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log('Réponse du serveur:', result);
+      onComplete();
+    } catch (error) {
+      alert(
+        "Une erreur s'est produite lors de l'enregistrement de votre sondage. Réessayer dans quelques instants ou contactez xx.xx@xx.com"
+      );
+      console.error('Erreur lors de l’envoi des données au serveur:', error);
+    }
+  }, [onComplete]);
+
+
   const handleGoToNextQuestion = useCallback(
     async (e: KeyboardEvent | MouseEvent) => {
       e.preventDefault()
@@ -80,22 +145,17 @@ export default function Navigation({
       handleMoveFocus()
 
       if (noNextQuestion) {
-        onComplete()
-        return
+        const JSONValue = getLastSimulationFromLocalStorage();
+        if (!JSONValue) return;
+
+        const dataToSend = prepareDataToSend(JSONValue);
+        await sendDataToServer(dataToSend);
+        return;
       }
 
       gotoNextQuestion()
     },
-    [
-      question,
-      gotoNextQuestion,
-      noNextQuestion,
-      isMissing,
-      value,
-      onComplete,
-      updateCurrentSimulation,
-      startTime,
-    ]
+    [startTime, isMissing, noNextQuestion, gotoNextQuestion, question, value, updateCurrentSimulation, prepareDataToSend, sendDataToServer]
   )
 
   useMagicKey({
