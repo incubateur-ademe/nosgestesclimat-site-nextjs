@@ -53,16 +53,16 @@ export default function TotalFootprintNumber({
 
   return (
     <div
-      className="flex flex-col gap-2"
+      className="flex flex-col"
       aria-live="polite"
       data-cypress-id="total-footprint-number">
       {shouldDisplayTotalWithoutActions && (
-        <strong className="mr-4 block font-black leading-none text-slate-500 line-through lg:inline lg:text-4xl short:text-3xl">
+        <strong className="mr-4 block font-black leading-none text-slate-500 line-through md:text-xl">
           {!isInitialized ? '--' : formatedTotalFootprintValue}
         </strong>
       )}
       {isInitialized ? (
-        <strong className="block text-lg font-black leading-none lg:inline lg:text-4xl short:text-3xl">
+        <strong className="block text-lg font-black leading-none md:text-2xl">
           {formattedValue}
         </strong>
       ) : (
@@ -70,7 +70,7 @@ export default function TotalFootprintNumber({
           <Loader color="dark" size="sm" />
         </div>
       )}
-      <span className="block text-xs font-medium leading-none lg:inline lg:text-base">
+      <span className="block text-xs font-medium leading-none lg:inline lg:text-sm">
         {' '}
         <Trans>{unit}</Trans> {duration[metric]}
       </span>

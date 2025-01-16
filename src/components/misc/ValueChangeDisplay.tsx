@@ -12,9 +12,11 @@ import { twMerge } from 'tailwind-merge'
 export default function ValueChangeDisplay({
   className,
   metric,
+  size = 'sm',
 }: {
   className?: string
   metric: Metrics
+  size?: 'sm' | 'md'
 }) {
   const { t } = useClientTranslation()
   const locale = useLocale()
@@ -81,11 +83,21 @@ export default function ValueChangeDisplay({
           metric: metric === 'carbone' ? t('carbone') : t('eau'),
         }
       )}>
-      <span className="text-sm font-medium">
+      <span
+        className={twMerge(
+          'text-sm font-medium',
+          size === 'md' ? 'text-base' : ''
+        )}>
         {displayDifference > 0 ? '+' : ''}
         {formattedValue}
       </span>{' '}
-      <span className="text-xs font-medium">{unit}</span>
+      <span
+        className={twMerge(
+          'text-xs font-medium',
+          size === 'md' ? 'text-sm' : ''
+        )}>
+        {unit}
+      </span>
     </div>
   )
 }

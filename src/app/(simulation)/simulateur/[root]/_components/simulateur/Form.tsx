@@ -15,9 +15,9 @@ import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import { useCurrentSimulation, useEngine, useForm } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useContext, useEffect, useState } from 'react'
-import CategoriesSummary from './form/CategoriesSummary'
 import FunFact from './form/FunFact'
-import ResultsBlocks from './form/ResultsBlocks'
+import ResultsBlocksDesktop from './form/ResultsBlocksDesktop'
+import ResultsBlocksMobile from './form/ResultsBlocksMobile'
 import CategoryIllustration from './summary/CategoryIllustration'
 
 export default function Form() {
@@ -118,8 +118,9 @@ export default function Form() {
   return (
     <>
       <ContentLarge className="pt-2">
-        <ResultsBlocks />
-        <div className="relative flex flex-1 flex-col gap-2 md:gap-8 lg:mt-0 lg:flex-row lg:gap-24">
+        <ResultsBlocksMobile />
+
+        <div className="relative flex flex-1 flex-col gap-2 md:flex-row md:gap-8 lg:mt-0 lg:gap-24">
           <div className="relative flex flex-1 flex-col">
             <QuestionComponent
               question={currentQuestion}
@@ -131,7 +132,7 @@ export default function Form() {
 
           <div
             className={`flex flex-col gap-8 md:self-start lg:w-[20rem] short:gap-2 md:${getBgCategoryColor(currentCategory ?? 'transport', '500')}`}>
-            <CategoriesSummary />
+            <ResultsBlocksDesktop />
 
             <FunFact question={currentQuestion} />
 

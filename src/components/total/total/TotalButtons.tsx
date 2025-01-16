@@ -5,7 +5,7 @@ import SaveCheckIcon from '@/components/icons/SaveCheckIcon'
 import SaveIcon from '@/components/icons/SaveIcon'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
-import { getFillColor } from '@/helpers/getCategoryColorClass'
+import { getFillColor, getTextDarkColor } from '@/helpers/getCategoryColorClass'
 import { useCurrentSimulation, useForm } from '@/publicodes-state'
 import { twMerge } from 'tailwind-merge'
 
@@ -34,7 +34,11 @@ export default function TotalButtons({
         <ListIcon
           className={twMerge('h-6 w-6', getFillColor(currentCategory))}
         />
-        <span className="hidden lg:inline">
+        <span
+          className={twMerge(
+            'hidden lg:inline',
+            getTextDarkColor(currentCategory)
+          )}>
           <Trans>Liste des questions</Trans>
         </span>
       </Button>
@@ -55,7 +59,11 @@ export default function TotalButtons({
               className={twMerge('h-6 w-6', getFillColor(currentCategory))}
             />
           )}
-          <span className="hidden lg:inline">
+          <span
+            className={twMerge(
+              'hidden lg:inline',
+              getTextDarkColor(currentCategory)
+            )}>
             <Trans>Reprendre plus tard</Trans>
           </span>
         </Button>
