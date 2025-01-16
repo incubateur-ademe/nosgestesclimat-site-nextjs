@@ -1,5 +1,6 @@
 'use client'
 
+import { defaultMetric } from '@/constants/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
@@ -11,11 +12,11 @@ import { twMerge } from 'tailwind-merge'
 
 export default function ValueChangeDisplay({
   className,
-  metric,
+  metric = defaultMetric,
   size = 'sm',
 }: {
   className?: string
-  metric: Metrics
+  metric?: Metrics
   size?: 'sm' | 'md'
 }) {
   const { t } = useClientTranslation()
