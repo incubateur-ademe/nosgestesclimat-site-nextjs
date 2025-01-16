@@ -3,7 +3,7 @@ import type {
   NGCRule,
   NGCRuleNode,
   NGCRulesNodes,
-} from '@incubateur-ademe/nosgestesclimat'
+} from '@abc-transitionbascarbone/near-modele'
 import * as Sentry from '@sentry/react'
 import { utils } from 'publicodes'
 import getSomme from './getSomme'

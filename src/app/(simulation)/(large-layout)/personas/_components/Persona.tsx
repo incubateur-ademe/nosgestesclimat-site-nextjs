@@ -9,7 +9,7 @@ import { useDisposableEngine, useSimulation, useUser } from '@/publicodes-state'
 import type {
   DottedName,
   Persona as PersonaType,
-} from '@incubateur-ademe/nosgestesclimat'
+} from '@abc-transitionbascarbone/near-modele'
 import { useRouter } from 'next/navigation'
 
 type Props = {

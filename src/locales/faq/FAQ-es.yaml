@@ -24,7 +24,7 @@
 
     Para cada uno de ellos, **hemos arbitrado entre personal y compartido** (la televisión es compartida, el ordenador es personal). Si la distinción no es la misma para ti, no te preocupes: estos artículos representan muy poco de tu huella final.
 
-    Al mismo tiempo, el equipo está trabajando en el desarrollo de una herramienta <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/113">"doméstica</a>" para que puedas estimar la huella de carbono de tu familia.
+    Al mismo tiempo, el equipo está trabajando en el desarrollo de una herramienta <a href="https://github.com/abc-transitionbascarbone/near-modele/issues/113">"doméstica</a>" para que puedas estimar la huella de carbono de tu familia.
   question.lock: L'empreinte calculée est-elle celle de mon foyer, ou seulement la mienne ?
   catégorie.lock: général
   réponse.lock: |
@@ -39,7 +39,7 @@
 
     Pour chacun d'entre eux, **nous avons donc arbitré entre personnel et partagé** (la télévision est partagée, l'ordinateur est personnel). Si pour vous la distinction n'est pas la même, ne vous inquiétez pas : ces postes représentent peu dans votre empreinte finale.
 
-    En parallèle, l’équipe travaille à développer un **parcours [« foyer »](https://github.com/incubateur-ademe/nosgestesclimat/issues/113)** afin de pouvoir estimer l’empreinte carbone de sa famille.
+    En parallèle, l’équipe travaille à développer un **parcours [« foyer »](https://github.com/abc-transitionbascarbone/near-modele/issues/113)** afin de pouvoir estimer l’empreinte carbone de sa famille.
 - id: age-électronique
   question: ¿Por qué me preguntan la antigüedad de mi equipo electrónico?
   catégorie: varios
@@ -71,7 +71,7 @@
 
     Por estas dos razones, la huella de sus ahorros no se evalúa actualmente en el marco de Nos Gestes Climat.
 
-    no obstante, somos conscientes de que seguramente no estamos cumpliendo nuestro objetivo pedagógico: es un tema sobre el que todavía se vierte (demasiada) poca tinta, y sobre el que los ciudadanos merecen estar informados. Así que <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/1823">seguimos pensando en</a> añadir a la calculadora un componente de "ahorro individual"_
+    no obstante, somos conscientes de que seguramente no estamos cumpliendo nuestro objetivo pedagógico: es un tema sobre el que todavía se vierte (demasiada) poca tinta, y sobre el que los ciudadanos merecen estar informados. Así que <a href="https://github.com/abc-transitionbascarbone/near-modele/issues/1823">seguimos pensando en</a> añadir a la calculadora un componente de "ahorro individual"_
   question.lock: Pourquoi ne pas prendre en compte l'épargne individuelle ?
   catégorie.lock: général
   réponse.lock: |
@@ -87,7 +87,7 @@
 
     Ces deux raisons font qu'actuellement, l'empreinte de votre épargne n'est pas évaluée dans le cadre de Nos Gestes Climat.
 
-    _Néanmoins, nous sommes conscients que nous passons sûrement là à côté de notre objectif pédagogique : c'est un sujet qui fait couler encore (trop) peu d'encre, et sur lequel les citoyens méritent d'être informés. Aussi, [la réflexion est toujours ouverte](https://github.com/incubateur-ademe/nosgestesclimat/issues/1823) pour ajouter une composante "épargne individuelle" au calculateur._
+    _Néanmoins, nous sommes conscients que nous passons sûrement là à côté de notre objectif pédagogique : c'est un sujet qui fait couler encore (trop) peu d'encre, et sur lequel les citoyens méritent d'être informés. Aussi, [la réflexion est toujours ouverte](https://github.com/abc-transitionbascarbone/near-modele/issues/1823) pour ajouter une composante "épargne individuelle" au calculateur._
 - id: régime
   question: ¿Tiene previsto incorporar otras prácticas alimentarias?
   catégorie: suministro eléctrico
@@ -99,7 +99,7 @@
 
     Nuestra herramienta es de libre acceso y aceptamos contribuciones de todo el mundo. Así que no dudes en enviarnos tus sugerencias de mejora si crees que falta algo en el modelo.
 
-     <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/185">Aquí</a> le explicamos cómo.
+     <a href="https://github.com/abc-transitionbascarbone/near-modele/issues/185">Aquí</a> le explicamos cómo.
   question.lock: Avez-vous prévu d'intégrer d'autres pratiques alimentaires ?
   catégorie.lock: alimentation
   réponse.lock: |
@@ -110,7 +110,7 @@
 
     Notre outil est libre d’accès et la contribution de tous est possible et souhaitée. N’hésitez donc pas à nous faire part de vos suggestions d’amélioration si un manque au modèle vous paraît important.
 
-    On vous explique comment [ici](https://github.com/incubateur-ademe/nosgestesclimat/issues/185).
+    On vous explique comment [ici](https://github.com/abc-transitionbascarbone/near-modele/issues/185).
 - id: mesure
   question: ¿Cómo se mide la huella de carbono?
   catégorie: general
@@ -173,7 +173,7 @@
 
     Mientras el orden de magnitud sea idéntico, todo va bien (aquí tenemos una diferencia de menos de una tonelada, es decir, menos del 10%, lo que parece razonable). 
 
-    > Además, buscamos constantemente **hacer el modelo <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%97%AF+sujet+manquant%22">más preciso y más completo**</a>. Si crees que hemos pasado por alto algún tema importante, ¡no dudes en <a href="https://github.com/incubateur-ademe/nosgestesclimat">hacérnoslo saber en Github</a>!
+    > Además, buscamos constantemente **hacer el modelo <a href="https://github.com/abc-transitionbascarbone/near-modele/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%97%AF+sujet+manquant%22">más preciso y más completo**</a>. Si crees que hemos pasado por alto algún tema importante, ¡no dudes en <a href="https://github.com/incubateur-ademe/nosgestesclimat">hacérnoslo saber en Github</a>!
   question.lock: Puis-je me comparer à la moyenne française ?
   catégorie.lock: général
   réponse.lock: |
@@ -189,7 +189,7 @@
 
     Tant que l'ordre de grandeur est identique, tout va bien (ici nous avons un écart de moins d'une tonne, soit moins de 10%, ce qui semble raisonnable). 
 
-    > Par ailleurs, nous cherchons en continu à **rendre le modèle [plus précis et plus complet](https://github.com/incubateur-ademe/nosgestesclimat/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%97%AF+sujet+manquant%22)**. Si un sujet important vous semble manquer, n'hésitez pas à [nous le signaler sur Github](https://github.com/incubateur-ademe/nosgestesclimat) !
+    > Par ailleurs, nous cherchons en continu à **rendre le modèle [plus précis et plus complet](https://github.com/abc-transitionbascarbone/near-modele/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%97%AF+sujet+manquant%22)**. Si un sujet important vous semble manquer, n'hésitez pas à [nous le signaler sur Github](https://github.com/incubateur-ademe/nosgestesclimat) !
 - id: déprime
   question: ¿Es realmente posible alcanzar las 2 toneladas?
   catégorie: general
@@ -239,7 +239,7 @@
 
     En cuanto introduzcas un kilometraje del coche superior a 0, la herramienta debería "aplicarte" una parte de la depreciación de la construcción del coche que estás utilizando.
 
-    No obstante, actualmente estamos estudiando la posibilidad de <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/185">reducir el número de preguntas que se hacen sobre el coche a los no propietarios</a>.
+    No obstante, actualmente estamos estudiando la posibilidad de <a href="https://github.com/abc-transitionbascarbone/near-modele/issues/185">reducir el número de preguntas que se hacen sobre el coche a los no propietarios</a>.
 
     ### Pero, ¿qué es la depreciación?
 
@@ -256,7 +256,7 @@
 
     Dès que vous renseignez un kilométrage parcouru en voiture plus grand que 0, l’outil doit vous « appliquer » une part de l'amortissement de la construction de la voiture que vous utilisez.
 
-    Néanmoins, nous sommes actuellement en cours de réflexion pour [réduire le nombre de questions posées sur la voiture aux non-propriétaires](https://github.com/incubateur-ademe/nosgestesclimat/issues/185).
+    Néanmoins, nous sommes actuellement en cours de réflexion pour [réduire le nombre de questions posées sur la voiture aux non-propriétaires](https://github.com/abc-transitionbascarbone/near-modele/issues/185).
 
     ### Mais qu’est-ce que l’amortissement ?
 
@@ -557,7 +557,7 @@
 
     Y sin embargo, desde la contaminación del suelo y las aguas subterráneas hasta la pérdida de biodiversidad y la salud de los agricultores, **los alimentos ecológicos reducen considerablemente muchos otros impactos medioambientales**, al tiempo que reducen los riesgos para nuestra salud. Estamos hablando aquí de cuestiones medioambientales en general, y tenemos que dar un paso atrás en nuestro cálculo, que se centra al 100% en los gases de efecto invernadero.
 
-    Hay un animado debate sobre esta cuestión y se está vertiendo mucha tinta (digital) <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/1799">en nuestro Github</a>. No dudes en unirte a la conversación
+    Hay un animado debate sobre esta cuestión y se está vertiendo mucha tinta (digital) <a href="https://github.com/abc-transitionbascarbone/near-modele/issues/1799">en nuestro Github</a>. No dudes en unirte a la conversación
   question.lock: Pourquoi ne posez-vous pas de question sur le bio ?
   catégorie.lock: alimentation
   réponse.lock: |
@@ -570,4 +570,4 @@
 
     Or, de la pollution des sols et des nappes phréatiques à la perte de biodiversité en passant par la préservation de la santé des agriculteurs, **une alimentation bio permet de réduire considérablement de nombreux autres impacts environnementaux** tout en réduisant également les risques pour notre santé. Nous touchons ici aux enjeux environnementaux en général, et devons prendre du recul par rapport à notre calcul 100 % centré sur les gaz à effet de serre.
 
-    Le débat est vif autour de cette question et fait couler beaucoup d'encre (numérique) [sur notre Github](https://github.com/incubateur-ademe/nosgestesclimat/issues/1799). N'hésitez pas à rejoindre la conversation !
+    Le débat est vif autour de cette question et fait couler beaucoup d'encre (numérique) [sur notre Github](https://github.com/abc-transitionbascarbone/near-modele/issues/1799). N'hésitez pas à rejoindre la conversation !

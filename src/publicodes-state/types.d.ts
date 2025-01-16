@@ -3,7 +3,7 @@ import type {
   DottedName,
   Metrics,
   SuggestionValue,
-} from '@incubateur-ademe/nosgestesclimat'
+} from '@abc-transitionbascarbone/near-modele'
 import type PublicodesEngine from 'publicodes'
 import type {
   ParsedRules as PublicodesParsedRules,

@@ -1,7 +1,7 @@
-import type { Personas } from '@incubateur-ademe/nosgestesclimat'
-import personasEN from '@incubateur-ademe/nosgestesclimat/public/personas-en.json'
-import personasES from '@incubateur-ademe/nosgestesclimat/public/personas-es.json'
-import personasFR from '@incubateur-ademe/nosgestesclimat/public/personas-fr.json'
+import type { Personas } from '@abc-transitionbascarbone/near-modele'
+import personasEN from '@abc-transitionbascarbone/near-modele/public/personas-en.json'
+import personasES from '@abc-transitionbascarbone/near-modele/public/personas-es.json'
+import personasFR from '@abc-transitionbascarbone/near-modele/public/personas-fr.json'
 import { importPreviewFile } from './importPreviewFile'
 
 const personasByLocale: Record<string, Personas> = {

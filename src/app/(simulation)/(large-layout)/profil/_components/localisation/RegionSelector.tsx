@@ -20,7 +20,7 @@ import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
+import type { SupportedRegions } from '@abc-transitionbascarbone/near-modele'
 
 type Props = {
   isOpen?: boolean

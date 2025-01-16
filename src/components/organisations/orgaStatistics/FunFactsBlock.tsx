@@ -1,6 +1,6 @@
 'use client'
 
-import type { DottedName, FunFacts } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, FunFacts } from '@abc-transitionbascarbone/near-modele'
 import { twMerge } from 'tailwind-merge'
 import FunFactsItem from './funFacts/FunFactsItem'
 

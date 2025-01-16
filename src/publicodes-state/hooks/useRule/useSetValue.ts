@@ -6,7 +6,7 @@ import type {
   DottedName,
   NGCRuleNode,
   NodeValue,
-} from '@incubateur-ademe/nosgestesclimat'
+} from '@abc-transitionbascarbone/near-modele'
 import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { utils } from 'publicodes'
 import { useCallback } from 'react'

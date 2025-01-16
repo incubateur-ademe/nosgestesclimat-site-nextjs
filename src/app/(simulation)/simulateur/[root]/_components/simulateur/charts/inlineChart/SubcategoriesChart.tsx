@@ -1,7 +1,7 @@
 import ValueChangeDisplay from '@/components/misc/ValueChangeDisplay'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useEngine, useForm, useRule, useSimulation } from '@/publicodes-state'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@abc-transitionbascarbone/near-modele'
 import { useMemo } from 'react'
 import Subcategory from './subcategoriesChart/Subcategory'
 

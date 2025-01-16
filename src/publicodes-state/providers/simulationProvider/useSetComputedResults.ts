@@ -1,7 +1,7 @@
 import { defaultMetric, metrics } from '@/constants/metric'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { getComputedResults } from '@/publicodes-state/helpers/getComputedResults'
-import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, NGCRuleNode } from '@abc-transitionbascarbone/near-modele'
 import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import type { ComputedResults, Metric } from '../../types'

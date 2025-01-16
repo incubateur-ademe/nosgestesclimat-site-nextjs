@@ -61,7 +61,7 @@ export default async function ModelePage() {
         <Trans i18nKey="model.modern2">
           Entièrement paramétrable, depuis les questions posées à l'utilisateur
           jusqu'aux hypothèses du modèle de calcul, il peut être réutilisé{' '}
-          <Link href="https://github.com/incubateur-ademe/nosgestesclimat/blob/master/LICENSE">
+          <Link href="https://github.com/abc-transitionbascarbone/near-modele/blob/master/LICENSE">
             librement
           </Link>{' '}
           par tout type d'acteur.
@@ -104,7 +104,7 @@ export default async function ModelePage() {
           et d'un modèle "top-down" dérivé des travaux du SDES pour estimer
           l'empreinte par personne des services dits sociétaux (services publics
           et services de base tels les télécom).{' '}
-          <a href="https://github.com/incubateur-ademe/nosgestesclimat/releases/tag/2.5.0">
+          <a href="https://github.com/abc-transitionbascarbone/near-modele/releases/tag/2.5.0">
             En savoir plus sur cette hybridation
           </a>
           .
@@ -119,7 +119,7 @@ export default async function ModelePage() {
         <Trans i18nKey={'model.active.documented'}>
           La construction du modèle (pistes de travail, réflexions en cours,
           feuille de route, etc.) est amplement{' '}
-          <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues">
+          <a href="https://github.com/abc-transitionbascarbone/near-modele/issues">
             documentée publiquement
           </a>
           .

@@ -4,7 +4,7 @@ import type {
   DottedName,
   NGCRuleNode,
   NGCRules,
-} from '@incubateur-ademe/nosgestesclimat'
+} from '@abc-transitionbascarbone/near-modele'
 import { captureException } from '@sentry/react'
 import type { PublicodesExpression } from 'publicodes'
 import Engine from 'publicodes'

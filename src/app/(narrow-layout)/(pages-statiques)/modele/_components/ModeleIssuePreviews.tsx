@@ -15,7 +15,7 @@ type IssueType = {
 export default async function ModeleIssuePreviews() {
   const issues: IssueType[] = await axios
     .get(
-      `https://api.github.com/repos/incubateur-ademe/nosgestesclimat/issues?labels=${encodeURI(
+      `https://api.github.com/repos/abc-transitionbascarbone/near-modele/issues?labels=${encodeURI(
         labelString
       )}`
     )

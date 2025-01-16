@@ -1,6 +1,6 @@
 import Link from '@/components/Link'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
-import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, NGCRules } from '@abc-transitionbascarbone/near-modele'
 import { utils } from 'publicodes'
 
 export default function PagesProches({

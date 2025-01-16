@@ -4,7 +4,7 @@ import { organisationsDashboardClickFunFactsDownload } from '@/constants/trackin
 import Button from '@/design-system/inputs/Button'
 import type { Entries } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import type { DottedName, FunFacts } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, FunFacts } from '@abc-transitionbascarbone/near-modele'
 import { toPng } from 'html-to-image'
 import { useParams } from 'next/navigation'
 import { utils } from 'publicodes'

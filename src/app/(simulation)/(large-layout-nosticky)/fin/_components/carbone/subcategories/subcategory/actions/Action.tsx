@@ -8,7 +8,7 @@ import {
 } from '@/helpers/getCategoryColorClass'
 import { useCurrentSimulation, useRule } from '@/publicodes-state'
 import type { Metric } from '@/publicodes-state/types'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@abc-transitionbascarbone/near-modele'
 import { twMerge } from 'tailwind-merge'
 
 const colorClassName = ['200', '100', '50']

@@ -1,5 +1,5 @@
-import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json'
+import type { NGCRules } from '@abc-transitionbascarbone/near-modele'
+import rules from '@abc-transitionbascarbone/near-modele/public/co2-model.FR-lang.fr-opti.json'
 import { getSupportedRegions } from './getSupportedRegions'
 import { importPreviewFile } from './importPreviewFile'
 import { importRulesFromModel } from './importRulesFromModel'

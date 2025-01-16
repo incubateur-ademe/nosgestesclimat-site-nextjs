@@ -19,7 +19,7 @@ export default function PRIndicator() {
         className="font-base text-sm text-primary-700"
         target="_blank"
         href={
-          'https://github.com/incubateur-ademe/nosgestesclimat/pull/' + PRNumber
+          'https://github.com/abc-transitionbascarbone/near-modele/pull/' + PRNumber
         }>
         #{PRNumber}
       </Link>

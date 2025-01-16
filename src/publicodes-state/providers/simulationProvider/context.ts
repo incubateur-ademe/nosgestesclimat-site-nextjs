@@ -3,7 +3,7 @@ import type {
   DottedName,
   NGCRuleNode,
   NGCRules,
-} from '@incubateur-ademe/nosgestesclimat'
+} from '@abc-transitionbascarbone/near-modele'
 import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { createContext } from 'react'
 import type {

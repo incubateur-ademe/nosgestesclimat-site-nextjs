@@ -1,7 +1,7 @@
 'use client'
 
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@abc-transitionbascarbone/near-modele'
 
 type Props = { category: DottedName; percentageSquashed: number }
 

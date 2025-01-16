@@ -1,6 +1,6 @@
 const { writeFileSync } = require('fs')
 
-const personas = require('@incubateur-ademe/nosgestesclimat/public/personas-fr.json')
+const personas = require('@abc-transitionbascarbone/near-modele/public/personas-fr.json')
 
 /**
  * @param {string} name

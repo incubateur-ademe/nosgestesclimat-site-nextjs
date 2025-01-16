@@ -2,7 +2,7 @@ import type {
   DottedName,
   NGCRuleNode,
   NGCRules,
-} from '@incubateur-ademe/nosgestesclimat'
+} from '@abc-transitionbascarbone/near-modele'
 import { useContext } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
 import useCurrentSimulation from '../useCurrentSimulation'
@@ -19,6 +19,7 @@ export default function useTempEngine(): {
   const { safeEvaluate, rules, safeGetRule, everyMosaicChildrenWithParent } =
     useContext(SimulationContext)
 
+    debugger
   const { foldedSteps } = useCurrentSimulation()
 
   const getSpecialRuleObject = (

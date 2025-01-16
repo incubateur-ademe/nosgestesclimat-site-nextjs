@@ -1,5 +1,5 @@
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@abc-transitionbascarbone/near-modele'
 import { useCallback, useState } from 'react'
 
 /**

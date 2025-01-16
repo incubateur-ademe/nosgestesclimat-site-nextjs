@@ -1,7 +1,7 @@
 import { eauMetric } from '@/constants/metric'
 import { useEngine, useSimulation } from '@/publicodes-state'
 import type { Metric } from '@/publicodes-state/types'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@abc-transitionbascarbone/near-modele'
 import { useMemo } from 'react'
 
 type Props = {

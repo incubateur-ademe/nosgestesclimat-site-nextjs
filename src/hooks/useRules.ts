@@ -1,6 +1,6 @@
 import { getRules } from '@/helpers/modelFetching/getRules'
 import { useUser } from '@/publicodes-state'
-import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import type { NGCRules } from '@abc-transitionbascarbone/near-modele'
 import type { UseQueryResult } from '@tanstack/react-query'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useLocale } from './useLocale'

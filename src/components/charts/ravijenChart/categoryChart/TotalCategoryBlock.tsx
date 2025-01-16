@@ -3,7 +3,7 @@
 import Link from '@/components/Link'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@abc-transitionbascarbone/near-modele'
 import Image from 'next/image'
 
 export default function TotalCategoryBlock({

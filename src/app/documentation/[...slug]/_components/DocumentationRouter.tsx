@@ -2,7 +2,7 @@
 
 import Providers from '@/components/providers/Providers'
 import { useCurrentSimulation } from '@/publicodes-state'
-import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import type { NGCRules } from '@abc-transitionbascarbone/near-modele'
 import type { JSX} from 'react';
 import { useContext, useEffect } from 'react'
 import { IsDocumentationClientContext } from '../../_contexts/DocumentationStateContext'

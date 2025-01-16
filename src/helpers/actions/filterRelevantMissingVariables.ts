@@ -1,4 +1,4 @@
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@abc-transitionbascarbone/near-modele'
 
 // Gathered from nosgestesclimat-site
 const filteredDottedNames: DottedName[] = [

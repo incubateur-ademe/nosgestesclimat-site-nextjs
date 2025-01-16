@@ -1,6 +1,6 @@
 import Link from '@/components/Link'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
-import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import type { NGCRules } from '@abc-transitionbascarbone/near-modele'
 import type Fuse from 'fuse.js'
 import highlightMatches from '../_helpers/highlightMatches'
 import type { Matches, SearchItem } from './SearchBar'

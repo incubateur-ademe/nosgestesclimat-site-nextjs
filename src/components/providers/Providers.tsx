@@ -8,7 +8,7 @@ import {
   useCurrentSimulation,
   useUser,
 } from '@/publicodes-state'
-import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
+import type { SupportedRegions } from '@abc-transitionbascarbone/near-modele'
 import type { PropsWithChildren } from 'react'
 import { Suspense, useState } from 'react'
 import Error500 from '../layout/500'

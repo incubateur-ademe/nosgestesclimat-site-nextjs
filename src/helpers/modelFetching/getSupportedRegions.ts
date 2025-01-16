@@ -1,5 +1,5 @@
-import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
-import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json'
+import type { SupportedRegions } from '@abc-transitionbascarbone/near-modele'
+import supportedRegions from '@abc-transitionbascarbone/near-modele/public/supportedRegions.json'
 
 /**
  * This function is used to get the supported regions. It can be called directly from a server component.

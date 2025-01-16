@@ -3,7 +3,7 @@ import type {
   Simulation,
 } from '@/publicodes-state/types'
 import type { ValueObject } from '@/types/groups'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@abc-transitionbascarbone/near-modele'
 
 export function getSubcategoriesObject({
   simulation,

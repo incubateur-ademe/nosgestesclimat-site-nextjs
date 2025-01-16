@@ -89,7 +89,7 @@
 
     For each of them, **we have therefore arbitrated between personal and shared** (the television is shared, the computer is personal). If the distinction isn't the same for you, don't worry: these items represent very little in your final footprint.
 
-    At the same time, the team is working on developing a <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/113">**household</a> course** so that you can estimate your family's carbon footprint.
+    At the same time, the team is working on developing a <a href="https://github.com/abc-transitionbascarbone/near-modele/issues/113">**household</a> course** so that you can estimate your family's carbon footprint.
   question.lock: L'empreinte calculée est-elle celle de mon foyer, ou seulement la mienne ?
   catégorie.lock: général
   réponse.lock: |
@@ -104,7 +104,7 @@
 
     Pour chacun d'entre eux, **nous avons donc arbitré entre personnel et partagé** (la télévision est partagée, l'ordinateur est personnel). Si pour vous la distinction n'est pas la même, ne vous inquiétez pas : ces postes représentent peu dans votre empreinte finale.
 
-    En parallèle, l’équipe travaille à développer un **parcours [« foyer »](https://github.com/incubateur-ademe/nosgestesclimat/issues/113)** afin de pouvoir estimer l’empreinte carbone de sa famille.
+    En parallèle, l’équipe travaille à développer un **parcours [« foyer »](https://github.com/abc-transitionbascarbone/near-modele/issues/113)** afin de pouvoir estimer l’empreinte carbone de sa famille.
 - id: enfants
   question: Aren't you going to ask about having children?
   catégorie: general
@@ -182,7 +182,7 @@
 
     For these two reasons, the footprint of your savings is not currently assessed as part of Nos Gestes Climat.
 
-    nevertheless, we are aware that we are probably missing our educational objective here: this is a subject that still receives (too) little attention, and one on which citizens deserve to be informed. So <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/1823">we're still thinking about</a> adding an 'individual savings' component to the calculator._
+    nevertheless, we are aware that we are probably missing our educational objective here: this is a subject that still receives (too) little attention, and one on which citizens deserve to be informed. So <a href="https://github.com/abc-transitionbascarbone/near-modele/issues/1823">we're still thinking about</a> adding an 'individual savings' component to the calculator._
   question.lock: Pourquoi ne pas prendre en compte l'épargne individuelle ?
   catégorie.lock: général
   réponse.lock: |
@@ -198,7 +198,7 @@
 
     Ces deux raisons font qu'actuellement, l'empreinte de votre épargne n'est pas évaluée dans le cadre de Nos Gestes Climat.
 
-    _Néanmoins, nous sommes conscients que nous passons sûrement là à côté de notre objectif pédagogique : c'est un sujet qui fait couler encore (trop) peu d'encre, et sur lequel les citoyens méritent d'être informés. Aussi, [la réflexion est toujours ouverte](https://github.com/incubateur-ademe/nosgestesclimat/issues/1823) pour ajouter une composante "épargne individuelle" au calculateur._
+    _Néanmoins, nous sommes conscients que nous passons sûrement là à côté de notre objectif pédagogique : c'est un sujet qui fait couler encore (trop) peu d'encre, et sur lequel les citoyens méritent d'être informés. Aussi, [la réflexion est toujours ouverte](https://github.com/abc-transitionbascarbone/near-modele/issues/1823) pour ajouter une composante "épargne individuelle" au calculateur._
 - id: 2tonnes
   question: Where does this 2-tonne target come from?
   catégorie: general
@@ -263,7 +263,7 @@
 
     As long as the order of magnitude is identical, everything is fine (here we have a difference of less than one tonne, i.e. less than 10%, which seems reasonable). 
 
-    > In addition, we are constantly looking to **make the model <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%97%AF+sujet+manquant%22">more accurate and more complete**</a>. If you feel you've missed an important topic, don't hesitate to <a href="https://github.com/incubateur-ademe/nosgestesclimat">let us know on Github</a>!
+    > In addition, we are constantly looking to **make the model <a href="https://github.com/abc-transitionbascarbone/near-modele/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%97%AF+sujet+manquant%22">more accurate and more complete**</a>. If you feel you've missed an important topic, don't hesitate to <a href="https://github.com/incubateur-ademe/nosgestesclimat">let us know on Github</a>!
   question.lock: Puis-je me comparer à la moyenne française ?
   catégorie.lock: général
   réponse.lock: |
@@ -279,7 +279,7 @@
 
     Tant que l'ordre de grandeur est identique, tout va bien (ici nous avons un écart de moins d'une tonne, soit moins de 10%, ce qui semble raisonnable). 
 
-    > Par ailleurs, nous cherchons en continu à **rendre le modèle [plus précis et plus complet](https://github.com/incubateur-ademe/nosgestesclimat/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%97%AF+sujet+manquant%22)**. Si un sujet important vous semble manquer, n'hésitez pas à [nous le signaler sur Github](https://github.com/incubateur-ademe/nosgestesclimat) !
+    > Par ailleurs, nous cherchons en continu à **rendre le modèle [plus précis et plus complet](https://github.com/abc-transitionbascarbone/near-modele/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%97%AF+sujet+manquant%22)**. Si un sujet important vous semble manquer, n'hésitez pas à [nous le signaler sur Github](https://github.com/incubateur-ademe/nosgestesclimat) !
 - id: services-sociétaux
   question: What do "societal services" represent?
   catégorie: societal services
@@ -372,7 +372,7 @@
 
     As soon as you enter a car mileage greater than 0, the tool should "apply" to you a share of the depreciation on the construction of the car you're using.
 
-    Nevertheless, we are currently considering <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/185">reducing the number of car-related questions asked of non-owners</a>.
+    Nevertheless, we are currently considering <a href="https://github.com/abc-transitionbascarbone/near-modele/issues/185">reducing the number of car-related questions asked of non-owners</a>.
 
     ### But what is depreciation?
 
@@ -389,7 +389,7 @@
 
     Dès que vous renseignez un kilométrage parcouru en voiture plus grand que 0, l’outil doit vous « appliquer » une part de l'amortissement de la construction de la voiture que vous utilisez.
 
-    Néanmoins, nous sommes actuellement en cours de réflexion pour [réduire le nombre de questions posées sur la voiture aux non-propriétaires](https://github.com/incubateur-ademe/nosgestesclimat/issues/185).
+    Néanmoins, nous sommes actuellement en cours de réflexion pour [réduire le nombre de questions posées sur la voiture aux non-propriétaires](https://github.com/abc-transitionbascarbone/near-modele/issues/185).
 
     ### Mais qu’est-ce que l’amortissement ?
 
@@ -446,7 +446,7 @@
 
     And yet, from soil and groundwater pollution to loss of biodiversity and the health of farmers, **organic food considerably reduces many other environmental impacts** while also reducing the risks to our health. We're talking here about environmental issues in general, and we need to take a step back from our calculation, which focuses 100% on greenhouse gases.
 
-    There's a lively debate on this issue and a lot of (digital) ink is being spilled <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/1799">on our Github</a>. Feel free to join the conversation!
+    There's a lively debate on this issue and a lot of (digital) ink is being spilled <a href="https://github.com/abc-transitionbascarbone/near-modele/issues/1799">on our Github</a>. Feel free to join the conversation!
   question.lock: Pourquoi ne posez-vous pas de question sur le bio ?
   catégorie.lock: alimentation
   réponse.lock: |
@@ -459,7 +459,7 @@
 
     Or, de la pollution des sols et des nappes phréatiques à la perte de biodiversité en passant par la préservation de la santé des agriculteurs, **une alimentation bio permet de réduire considérablement de nombreux autres impacts environnementaux** tout en réduisant également les risques pour notre santé. Nous touchons ici aux enjeux environnementaux en général, et devons prendre du recul par rapport à notre calcul 100 % centré sur les gaz à effet de serre.
 
-    Le débat est vif autour de cette question et fait couler beaucoup d'encre (numérique) [sur notre Github](https://github.com/incubateur-ademe/nosgestesclimat/issues/1799). N'hésitez pas à rejoindre la conversation !
+    Le débat est vif autour de cette question et fait couler beaucoup d'encre (numérique) [sur notre Github](https://github.com/abc-transitionbascarbone/near-modele/issues/1799). N'hésitez pas à rejoindre la conversation !
 - id: régime
   question: Do you plan to integrate other food practices?
   catégorie: food
@@ -471,7 +471,7 @@
 
     Our tool is freely accessible, and we welcome contributions from everyone. So don't hesitate to send us your suggestions for improvement if you feel there's something missing from the model.
 
-    We'll explain how <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/185">here</a>.
+    We'll explain how <a href="https://github.com/abc-transitionbascarbone/near-modele/issues/185">here</a>.
   question.lock: Avez-vous prévu d'intégrer d'autres pratiques alimentaires ?
   catégorie.lock: alimentation
   réponse.lock: |
@@ -482,7 +482,7 @@
 
     Notre outil est libre d’accès et la contribution de tous est possible et souhaitée. N’hésitez donc pas à nous faire part de vos suggestions d’amélioration si un manque au modèle vous paraît important.
 
-    On vous explique comment [ici](https://github.com/incubateur-ademe/nosgestesclimat/issues/185).
+    On vous explique comment [ici](https://github.com/abc-transitionbascarbone/near-modele/issues/185).
 - id: électricité-dite-verte
   question: My home is supplied with green electricity. Why can't I take it into account?
   catégorie: housing

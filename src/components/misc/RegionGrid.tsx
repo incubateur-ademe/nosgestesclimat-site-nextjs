@@ -4,7 +4,7 @@ import CountryListItem from '@/components/misc/CountryListItem'
 import { sortSupportedRegions } from '@/helpers/localisation/sortSupportedRegions'
 import { useLocale } from '@/hooks/useLocale'
 import { capitalizeString } from '@/utils/capitalizeString'
-import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
+import type { SupportedRegions } from '@abc-transitionbascarbone/near-modele'
 import type { HTMLAttributes } from 'react'
 
 type Props = {

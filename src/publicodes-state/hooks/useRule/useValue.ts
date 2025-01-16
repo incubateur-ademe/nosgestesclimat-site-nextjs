@@ -1,6 +1,6 @@
 'use client'
 
-import type { NodeValue } from '@incubateur-ademe/nosgestesclimat'
+import type { NodeValue } from '@abc-transitionbascarbone/near-modele'
 import type { EvaluatedNode } from 'publicodes'
 import { useMemo } from 'react'
 

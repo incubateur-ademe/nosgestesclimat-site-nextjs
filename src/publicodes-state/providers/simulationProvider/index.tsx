@@ -2,7 +2,7 @@
 
 import type { PropsWithChildren } from 'react'
 
-import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, NGCRules } from '@abc-transitionbascarbone/near-modele'
 import { SimulationContext } from './context'
 import { useCategories } from './useCategories'
 import { useEngine } from './useEngine'

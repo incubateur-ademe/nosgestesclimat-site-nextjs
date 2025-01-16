@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import type { Simulation } from '@/types/organisations'
-import type { FunFacts } from '@incubateur-ademe/nosgestesclimat'
+import type { FunFacts } from '@abc-transitionbascarbone/near-modele'
 import DetailedStatistics from './orgaStatistics/DetailedStatistics'
 import FunFactsBlock from './orgaStatistics/FunFactsBlock'
 import StatisticsBlocks from './orgaStatistics/StatisticsBlocks'

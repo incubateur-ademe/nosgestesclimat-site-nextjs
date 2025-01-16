@@ -1,7 +1,7 @@
 'use client'
 
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@abc-transitionbascarbone/near-modele'
 import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
 import type { Situation } from '../../types'

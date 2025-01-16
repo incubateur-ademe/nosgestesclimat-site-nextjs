@@ -1,5 +1,5 @@
 import { ORGANISATION_URL } from '@/constants/urls'
-import type { FunFacts } from '@incubateur-ademe/nosgestesclimat'
+import type { FunFacts } from '@abc-transitionbascarbone/near-modele'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useParams } from 'next/navigation'

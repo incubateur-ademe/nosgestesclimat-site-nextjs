@@ -57,7 +57,7 @@
 
     Pour chacun d'entre eux, **nous avons donc arbitré entre personnel et partagé** (la télévision est partagée, l'ordinateur est personnel). Si pour vous la distinction n'est pas la même, ne vous inquiétez pas : ces postes représentent peu dans votre empreinte finale.
 
-    En parallèle, l’équipe travaille à développer un **parcours [« foyer »](https://github.com/incubateur-ademe/nosgestesclimat/issues/113)** afin de pouvoir estimer l’empreinte carbone de sa famille.
+    En parallèle, l’équipe travaille à développer un **parcours [« foyer »](https://github.com/abc-transitionbascarbone/near-modele/issues/113)** afin de pouvoir estimer l’empreinte carbone de sa famille.
 
 - question: Vous ne posez pas de questions sur les enfants ?
   id: enfants
@@ -110,7 +110,7 @@
 
     Ces deux raisons font qu'actuellement, l'empreinte de votre épargne n'est pas évaluée dans le cadre de Nos Gestes Climat.
 
-    _Néanmoins, nous sommes conscients que nous passons sûrement là à côté de notre objectif pédagogique : c'est un sujet qui fait couler encore (trop) peu d'encre, et sur lequel les citoyens méritent d'être informés. Aussi, [la réflexion est toujours ouverte](https://github.com/incubateur-ademe/nosgestesclimat/issues/1823) pour ajouter une composante "épargne individuelle" au calculateur._
+    _Néanmoins, nous sommes conscients que nous passons sûrement là à côté de notre objectif pédagogique : c'est un sujet qui fait couler encore (trop) peu d'encre, et sur lequel les citoyens méritent d'être informés. Aussi, [la réflexion est toujours ouverte](https://github.com/abc-transitionbascarbone/near-modele/issues/1823) pour ajouter une composante "épargne individuelle" au calculateur._
 
 - question: D'où vient cet objectif de 2 tonnes ?
   id: 2tonnes
@@ -155,7 +155,7 @@
 
     Tant que l'ordre de grandeur est identique, tout va bien (ici nous avons un écart de moins d'une tonne, soit moins de 10%, ce qui semble raisonnable). 
 
-    > Par ailleurs, nous cherchons en continu à **rendre le modèle [plus précis et plus complet](https://github.com/incubateur-ademe/nosgestesclimat/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%97%AF+sujet+manquant%22)**. Si un sujet important vous semble manquer, n'hésitez pas à [nous le signaler sur Github](https://github.com/incubateur-ademe/nosgestesclimat) !
+    > Par ailleurs, nous cherchons en continu à **rendre le modèle [plus précis et plus complet](https://github.com/abc-transitionbascarbone/near-modele/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%97%AF+sujet+manquant%22)**. Si un sujet important vous semble manquer, n'hésitez pas à [nous le signaler sur Github](https://github.com/incubateur-ademe/nosgestesclimat) !
 
 - question: Que représente le poste « services sociétaux » ?
   id: services-sociétaux
@@ -211,7 +211,7 @@
 
     Dès que vous renseignez un kilométrage parcouru en voiture plus grand que 0, l’outil doit vous « appliquer » une part de l'amortissement de la construction de la voiture que vous utilisez.
 
-    Néanmoins, nous sommes actuellement en cours de réflexion pour [réduire le nombre de questions posées sur la voiture aux non-propriétaires](https://github.com/incubateur-ademe/nosgestesclimat/issues/185).
+    Néanmoins, nous sommes actuellement en cours de réflexion pour [réduire le nombre de questions posées sur la voiture aux non-propriétaires](https://github.com/abc-transitionbascarbone/near-modele/issues/185).
 
     ### Mais qu’est-ce que l’amortissement ?
 
@@ -254,7 +254,7 @@
 
     Or, de la pollution des sols et des nappes phréatiques à la perte de biodiversité en passant par la préservation de la santé des agriculteurs, **une alimentation bio permet de réduire considérablement de nombreux autres impacts environnementaux** tout en réduisant également les risques pour notre santé. Nous touchons ici aux enjeux environnementaux en général, et devons prendre du recul par rapport à notre calcul 100 % centré sur les gaz à effet de serre.
 
-    Le débat est vif autour de cette question et fait couler beaucoup d'encre (numérique) [sur notre Github](https://github.com/incubateur-ademe/nosgestesclimat/issues/1799). N'hésitez pas à rejoindre la conversation !
+    Le débat est vif autour de cette question et fait couler beaucoup d'encre (numérique) [sur notre Github](https://github.com/abc-transitionbascarbone/near-modele/issues/1799). N'hésitez pas à rejoindre la conversation !
 
 - question: Avez-vous prévu d'intégrer d'autres pratiques alimentaires ?
   catégorie: alimentation
@@ -267,7 +267,7 @@
 
     Notre outil est libre d’accès et la contribution de tous est possible et souhaitée. N’hésitez donc pas à nous faire part de vos suggestions d’amélioration si un manque au modèle vous paraît important.
 
-    On vous explique comment [ici](https://github.com/incubateur-ademe/nosgestesclimat/issues/185).
+    On vous explique comment [ici](https://github.com/abc-transitionbascarbone/near-modele/issues/185).
 
 - question: Mon logement est alimenté en électricité verte, pourquoi ne puis-je pas le prendre en compte ?
   id: électricité-dite-verte

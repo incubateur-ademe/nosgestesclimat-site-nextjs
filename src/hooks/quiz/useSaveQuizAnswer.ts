@@ -1,7 +1,7 @@
 import { QUIZZ_ANSWER_URL } from '@/constants/urls'
 import { useCurrentSimulation } from '@/publicodes-state'
 import type { AnswerType } from '@/types/quiz'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@abc-transitionbascarbone/near-modele'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 

@@ -1,7 +1,7 @@
 'use client'
 
 import type { Situation } from '@/publicodes-state/types'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@abc-transitionbascarbone/near-modele'
 import { useMemo } from 'react'
 import getIsMissing from '../../helpers/getIsMissing'
 
