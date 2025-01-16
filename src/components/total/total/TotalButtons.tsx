@@ -5,7 +5,9 @@ import SaveCheckIcon from '@/components/icons/SaveCheckIcon'
 import SaveIcon from '@/components/icons/SaveIcon'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
-import { useCurrentSimulation } from '@/publicodes-state'
+import { getFillColor } from '@/helpers/getCategoryColorClass'
+import { useCurrentSimulation, useForm } from '@/publicodes-state'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   toggleQuestionList: () => void
@@ -18,6 +20,8 @@ export default function TotalButtons({
 }: Props) {
   const { savedViaEmail } = useCurrentSimulation()
 
+  const { currentCategory } = useForm()
+
   return (
     <div className="flex">
       <Button
@@ -27,7 +31,9 @@ export default function TotalButtons({
         onClick={() => {
           toggleQuestionList()
         }}>
-        <ListIcon className="h-6 w-6 fill-primary-700" />
+        <ListIcon
+          className={twMerge('h-6 w-6', getFillColor(currentCategory))}
+        />
         <span className="hidden lg:inline">
           <Trans>Liste des questions</Trans>
         </span>
@@ -41,9 +47,13 @@ export default function TotalButtons({
             toggleSaveModal()
           }}>
           {savedViaEmail ? (
-            <SaveCheckIcon className="h-6 w-6 fill-primary-700" />
+            <SaveCheckIcon
+              className={twMerge('h-6 w-6', getFillColor(currentCategory))}
+            />
           ) : (
-            <SaveIcon className="h-6 w-6 fill-primary-700" />
+            <SaveIcon
+              className={twMerge('h-6 w-6', getFillColor(currentCategory))}
+            />
           )}
           <span className="hidden lg:inline">
             <Trans>Reprendre plus tard</Trans>

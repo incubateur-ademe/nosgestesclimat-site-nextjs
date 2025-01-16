@@ -17,6 +17,7 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useContext, useEffect, useState } from 'react'
 import CategoriesSummary from './form/CategoriesSummary'
 import FunFact from './form/FunFact'
+import ResultsBlocks from './form/ResultsBlocks'
 import CategoryIllustration from './summary/CategoryIllustration'
 
 export default function Form() {
@@ -116,7 +117,8 @@ export default function Form() {
 
   return (
     <>
-      <ContentLarge>
+      <ContentLarge className="pt-2">
+        <ResultsBlocks />
         <div className="relative flex flex-1 flex-col gap-2 md:gap-8 lg:mt-0 lg:flex-row lg:gap-24">
           <div className="relative flex flex-1 flex-col">
             <QuestionComponent

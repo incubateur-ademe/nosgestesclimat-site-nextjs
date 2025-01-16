@@ -703,6 +703,18 @@ module.exports = {
     'focus:ring-divers-800',
     'focus:ring-servicessocietaux-800',
     'focus:ring-offset-2',
+    // stroke category colors
+    'stroke-transport-800',
+    'stroke-alimentation-800',
+    'stroke-logement-800',
+    'stroke-divers-800',
+    'stroke-servicessocietaux-800',
+    // Same for fill
+    'fill-transport-800',
+    'fill-alimentation-800',
+    'fill-logement-800',
+    'fill-divers-800',
+    'fill-servicessocietaux-800',
   ],
   plugins: [
     function ({ addComponents }) {

@@ -11,7 +11,6 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import ValueChangeDisplay from '../misc/ValueChangeDisplay'
 import ButtonBack from './total/ButtonBack'
 import Category from './total/Category'
 import Explanation from './total/Explanation'
@@ -97,11 +96,6 @@ export default function Total({
             )}
 
             <Category category={currentCategory} />
-
-            {/* <QuestionButton
-              onClick={toggleOpen}
-              title={t('Comprendre mon score')}
-            /> */}
           </div>
           {toggleQuestionList ? (
             <TotalButtons
@@ -109,14 +103,6 @@ export default function Total({
               toggleSaveModal={toggleSaveModal}
             />
           ) : null}
-        </div>
-
-        <div
-          className="absolute -bottom-7 left-10 w-full lg:left-4"
-          aria-live="polite">
-          <div className="w-full max-w-6xl md:mx-auto">
-            <ValueChangeDisplay />
-          </div>
         </div>
       </div>
       {!tutorials.scoreExplanation && simulationMode ? (
