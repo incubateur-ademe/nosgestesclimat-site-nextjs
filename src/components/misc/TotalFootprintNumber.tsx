@@ -12,8 +12,14 @@ type Props = {
 }
 
 const duration = {
-  carbone: <Trans>de CO₂e par an</Trans>,
-  eau: <Trans>d'eau par jour</Trans>,
+  desktop: {
+    carbone: <Trans>de CO₂e par an</Trans>,
+    eau: <Trans>d'eau par jour</Trans>,
+  },
+  mobile: {
+    carbone: <Trans>de CO₂e / an</Trans>,
+    eau: <Trans>d'eau / jour</Trans>,
+  },
 }
 export default function TotalFootprintNumber({
   metric = defaultMetric,
@@ -53,7 +59,7 @@ export default function TotalFootprintNumber({
 
   return (
     <div
-      className="flex flex-col"
+      className="flex flex-col gap-1 md:gap-0"
       aria-live="polite"
       data-cypress-id="total-footprint-number">
       {shouldDisplayTotalWithoutActions && (
@@ -72,7 +78,9 @@ export default function TotalFootprintNumber({
       )}
       <span className="block text-xs font-medium leading-none lg:inline lg:text-sm">
         {' '}
-        <Trans>{unit}</Trans> {duration[metric]}
+        <Trans>{unit}</Trans>{' '}
+        <span className="hidden md:inline">{duration.desktop[metric]}</span>{' '}
+        <span className="inline md:hidden">{duration.mobile[metric]}</span>
       </span>
     </div>
   )
