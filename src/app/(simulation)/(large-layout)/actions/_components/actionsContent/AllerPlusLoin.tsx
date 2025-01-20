@@ -3,10 +3,7 @@
 import Link from '@/components/Link'
 import BookClosedIcon from '@/components/icons/BookClosedIcon'
 import Trans from '@/components/translation/Trans'
-import {
-  actionsClickActionsPlus,
-  actionsClickAdeme,
-} from '@/constants/tracking/pages/actions'
+import { actionsClickAdeme } from '@/constants/tracking/pages/actions'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -25,21 +22,7 @@ export default function AllerPlusLoin() {
       </div>
 
       <div>
-        <p className="text-white">
-          Au-delà d'un simple chiffre, découvrez les enjeux qui se cachent
-          derrière chaque action :
-        </p>
-
         <ul>
-          <li className="mb-1">
-            <Link
-              className="block text-white underline hover:text-primary-200"
-              href="/actions/plus"
-              onClick={() => trackEvent(actionsClickActionsPlus)}>
-              <Trans>Explorez le détail de nos actions clés</Trans>
-            </Link>
-          </li>
-
           <li>
             <Link
               className="block text-white underline hover:text-primary-200"

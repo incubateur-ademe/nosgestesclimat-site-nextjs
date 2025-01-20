@@ -1,6 +1,4 @@
 import Route404 from '@/components/layout/404'
-import Trans from '@/components/translation/Trans'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Markdown from '@/design-system/utils/Markdown'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPost } from '@/helpers/markdown/getPost'
@@ -35,18 +33,6 @@ export default async function ActionPlus({
   )
 
   return (
-    <div>
-      <div className="mb-8 mt-4 flex flex-wrap gap-4">
-        <ButtonLink size="sm" color="text" href={'/actions/plus'}>
-          <Trans>◀ Retour à la liste des fiches</Trans>
-        </ButtonLink>
-        {action ? (
-          <ButtonLink size="sm" href={'/actions/' + dottedNameArray.join('/')}>
-            <Trans>🧮 Voir le geste climat correspondant</Trans>
-          </ButtonLink>
-        ) : null}
-      </div>
-      {action ? <Markdown>{action?.content}</Markdown> : <Route404 />}
-    </div>
+    <div>{action ? <Markdown>{action?.content}</Markdown> : <Route404 />}</div>
   )
 }
