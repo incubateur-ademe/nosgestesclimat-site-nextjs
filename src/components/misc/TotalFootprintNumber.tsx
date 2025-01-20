@@ -12,14 +12,8 @@ type Props = {
 }
 
 const duration = {
-  desktop: {
-    carbone: <Trans>de CO₂e par an</Trans>,
-    eau: <Trans>d'eau par jour</Trans>,
-  },
-  mobile: {
-    carbone: <Trans>de CO₂e / an</Trans>,
-    eau: <Trans>d'eau / jour</Trans>,
-  },
+  carbone: <Trans>de CO₂e par an</Trans>,
+  eau: <Trans>d'eau par jour</Trans>,
 }
 export default function TotalFootprintNumber({
   metric = defaultMetric,
@@ -69,7 +63,7 @@ export default function TotalFootprintNumber({
       )}
       {isInitialized ? (
         <strong className="block text-lg font-black leading-none md:text-2xl">
-          {formattedValue}
+          {formattedValue} <span className="text-xs font-medium">{unit}</span>
         </strong>
       ) : (
         <div className="px-2">
@@ -77,10 +71,7 @@ export default function TotalFootprintNumber({
         </div>
       )}
       <span className="block text-xs font-medium leading-none lg:inline lg:text-sm">
-        {' '}
-        <Trans>{unit}</Trans>{' '}
-        <span className="hidden md:inline">{duration.desktop[metric]}</span>{' '}
-        <span className="inline md:hidden">{duration.mobile[metric]}</span>
+        <span className="hidden xs:inline">{duration[metric]}</span>
       </span>
     </div>
   )

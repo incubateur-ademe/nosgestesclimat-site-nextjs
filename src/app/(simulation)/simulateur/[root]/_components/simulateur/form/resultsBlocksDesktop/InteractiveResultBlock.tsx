@@ -21,7 +21,7 @@ export default function InteractiveResultBlock({
           <ValueChangeDisplay metric={metric} size="md" />
         </div>
 
-        <PlusIcon className="inline-block h-6 w-6 min-w-6 origin-center transform fill-primary-400 transition-transform duration-300 group-open:rotate-45" />
+        <PlusIcon className="inline-block h-4 w-4 min-w-4 origin-center transform stroke-primary-800 transition-transform duration-300 group-open:rotate-45" />
       </summary>
 
       <div className="border-primary-10 -z-10 -mt-2 grid cursor-default grid-rows-[0fr] overflow-hidden rounded-b-xl border-2 pt-2 transition-all duration-200 ease-in-out group-open:grid-rows-[1fr]">

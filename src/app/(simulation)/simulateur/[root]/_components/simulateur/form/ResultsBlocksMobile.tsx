@@ -5,17 +5,17 @@ import Card from '@/design-system/layout/Card'
 
 export default function ResultsBlocks() {
   return (
-    <div className="relative mb-8 grid grid-cols-2 gap-4 md:hidden">
+    <div className="relative mb-8 grid grid-cols-2 gap-2 md:hidden">
       <Card
         aria-live="polite"
-        className="relative col-span-1 rounded-md border-primary-100 bg-primary-50 p-2">
+        className="relative col-span-1 rounded-lg border-none bg-primary-50 p-2 pr-0">
         <TotalFootprintNumber metric="carbone" />
 
         <ValueChangeDisplay metric="carbone" />
       </Card>
       <Card
         aria-live="polite"
-        className="relative col-span-1 rounded-md border-primary-100 bg-primary-50 p-2">
+        className="relative col-span-1 rounded-lg border-none bg-primary-50 p-2">
         <TotalFootprintNumber metric="eau" />
 
         <ValueChangeDisplay metric="eau" />
