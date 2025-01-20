@@ -1,9 +1,10 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
-import { useUser } from '@/publicodes-state'
+import { useLocale } from '@/hooks/useLocale'
 
 export default function IframeFigures(props) {
-  const { user } = useUser()
+  const locale = useLocale()
+
   if (!props.pages.length || !props.activePages.length) return
   const [iframes, activeIframes] =
     props.pages &&
@@ -19,7 +20,7 @@ export default function IframeFigures(props) {
         <Card>
           <p className="mb-0 text-3xl font-bold">
             {' '}
-            {Math.round(iframes).toLocaleString(user?.region?.code)}
+            {Math.round(iframes).toLocaleString(locale)}
             <small>&nbsp;%</small>
           </p>
           <p className="text-sm">
@@ -29,8 +30,7 @@ export default function IframeFigures(props) {
         <Card>
           <p className="mb-0 text-3xl font-bold">
             {' '}
-            {Math.round(activeIframes).toLocaleString(user?.region?.code) ||
-              '-'}
+            {Math.round(activeIframes).toLocaleString(locale) || '-'}
             <small>&nbsp;%</small>
           </p>
           <p className="text-sm">

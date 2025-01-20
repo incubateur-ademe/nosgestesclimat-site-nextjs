@@ -1,7 +1,9 @@
 import Trans from '@/components/translation/Trans'
+import { organisationsResultatsDetaillesFilterByPostalCode } from '@/constants/tracking/pages/organisationsResultatsDetailles'
 import ComplexSelect from '@/design-system/inputs/ComplexSelect'
 import { extractPostalCodesFromSimulations } from '@/helpers/organisations/extractPostalCodesFromSimulations'
 import type { Simulation } from '@/types/organisations'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import type { SetStateAction } from 'react'
 import { useContext } from 'react'
 import type { MultiValue, SingleValue } from 'react-select'
@@ -19,6 +21,11 @@ export default function DepartementFilter({
   function handleSaveSelectionToLocalStorage(
     selectedOptions: MultiValue<string | number> | SingleValue<string | number>
   ) {
+    trackEvent(
+      organisationsResultatsDetaillesFilterByPostalCode(
+        JSON.stringify(selectedOptions)
+      )
+    )
     setPostalCodeFilters(
       selectedOptions as unknown as SetStateAction<{ value: string }[]>
     )

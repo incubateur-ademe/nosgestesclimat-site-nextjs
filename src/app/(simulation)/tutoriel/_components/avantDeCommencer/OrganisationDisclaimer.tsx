@@ -22,7 +22,7 @@ export default function OrganisationDisclaimer() {
         <Trans>Ce test vous est proposé par</Trans>{' '}
         <strong>{isLoading ? '... ' : poll?.organisation.name}</strong>.{' '}
         <Trans>
-          En participant vous acceptez que vos résultats sont partagés
+          En participant vous acceptez que vos résultats soient partagés
           anonymement avec cette organisation.
         </Trans>
       </p>

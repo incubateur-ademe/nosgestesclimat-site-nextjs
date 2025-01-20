@@ -38,14 +38,8 @@ export const profilClickRecommencer = [
 // Figma comment #74
 export const profilClickTutoriel = ['trackEvent', 'Profil', 'Click Tutoriel']
 
-// Figma comment #75
-export const profilClickData = ['trackEvent', 'Profil', 'Click Data']
-
 // Figma comment #76
 export const profilOpenRegions = ['trackEvent', 'Profil', 'Open Regions']
-
-// Figma comment #76
-export const profilCloseRegions = ['trackEvent', 'Profil', 'Close Regions']
 
 // Figma comment #77
 export const profilClickRegion = (region: string) => [

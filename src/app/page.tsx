@@ -1,43 +1,26 @@
-import DynamicCTAButton from '@/components/cta/DynamicCTAButton'
+import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/Trans'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import {
+  getLandingClickCTARestart,
   getLandingClickCTAResults,
   getLandingClickCTAResume,
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
-import dynamic from 'next/dynamic'
 import { headers } from 'next/headers'
-import Image from 'next/image'
 import Partners from '../components/landing-pages/Partners'
 import CollectivelyCommit from './_components/CollectivelyCommit'
 import DecryptChallenges from './_components/DecryptChallenges'
 import DidYouKnowMainLanding from './_components/DidYouKnowMainLanding'
+import InteractiveIllustration from './_components/InteractiveIllustration'
 import Mobilise from './_components/Mobilise'
 import ModelInfo from './_components/ModelInfo'
 import TheySpeakAboutUs from './_components/TheySpeakAboutUs'
 import TwoFootprints from './_components/TwoFootprints'
-
-const InteractiveIllustration = dynamic(
-  () => import('./_components/InteractiveIllustration'),
-  {
-    loading: () => (
-      <Image
-        src="/images/illustrations/empreinte-carbone-eau-objets-du-quotidien.svg"
-        alt={t(
-          "Une fille tapant sur son ordinateur, entouré d'objets aux empreintes écologiques variées."
-        )}
-        width={580}
-        height={580}
-      />
-    ),
-  }
-)
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
@@ -75,7 +58,7 @@ export default async function Homepage() {
         heroIllustration={
           <div className="flex flex-col gap-4">
             {/* Displayed on mobile only */}
-            <p className="text-center text-sm md:hidden">
+            <p className="text-center text-sm sm:text-base md:hidden">
               <Trans>
                 <strong className="text-primary-700">
                   2 millions de personnes
@@ -105,7 +88,7 @@ export default async function Homepage() {
             </p>
 
             <div className="order-1 mt-10 flex flex-col items-center gap-6 md:order-2 md:mt-0 md:max-w-[300px] md:items-start">
-              <DynamicCTAButton
+              <DynamicCTAButtons
                 trackingEvents={{
                   start: getLandingClickCTAStart(
                     pathname,
@@ -116,6 +99,10 @@ export default async function Homepage() {
                     trackingActionClickCTA
                   ),
                   results: getLandingClickCTAResults(
+                    pathname,
+                    trackingActionClickCTA
+                  ),
+                  restart: getLandingClickCTARestart(
                     pathname,
                     trackingActionClickCTA
                   ),

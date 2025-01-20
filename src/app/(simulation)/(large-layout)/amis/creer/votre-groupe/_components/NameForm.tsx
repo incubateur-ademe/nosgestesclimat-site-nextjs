@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import { GROUP_EMOJIS } from '@/constants/group'
-import { amisCreationEtapeVotreGroupeSuivant } from '@/constants/tracking/pages/amisCreation'
+import { amisCreationEtapeVosInformationsSuivant } from '@/constants/tracking/pages/amisCreation'
 import Button from '@/design-system/inputs/Button'
 import GridRadioInputs from '@/design-system/inputs/GridRadioInputs'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
@@ -95,7 +95,7 @@ export default function NameForm() {
         groupToAdd: group.id,
       })
 
-      trackEvent(amisCreationEtapeVotreGroupeSuivant)
+      trackEvent(amisCreationEtapeVosInformationsSuivant)
 
       setShouldNavigate(group.id)
     } catch (e) {

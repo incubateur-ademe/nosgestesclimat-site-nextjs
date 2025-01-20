@@ -20,9 +20,9 @@ export default function CreateOrganisation({
 
   return (
     <>
-      <p className="max-w-3xl">
+      <div className="max-w-3xl">
         <Baseline />
-      </p>
+      </div>
 
       <ButtonLink
         className="font-bold"
