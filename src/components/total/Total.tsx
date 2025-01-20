@@ -1,19 +1,12 @@
 'use client'
 
-import {
-  simulateurCloseScoreInfo,
-  simulateurOpenScoreInfo,
-} from '@/constants/tracking/pages/simulateur'
 import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
 import { useIframe } from '@/hooks/useIframe'
-import { useCurrentSimulation, useForm, useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { useCurrentSimulation, useForm } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import ButtonBack from './total/ButtonBack'
 import Category from './total/Category'
-import Explanation from './total/Explanation'
 import Progress from './total/Progress'
 import TotalButtons from './total/TotalButtons'
 
@@ -28,10 +21,6 @@ export default function Total({
   toggleSaveModal?: () => void
   simulationMode?: boolean
 }) {
-  const { tutorials, hideTutorial, showTutorial } = useUser()
-
-  const { progression } = useCurrentSimulation()
-
   const { isIframe, isIframeOnlySimulation } = useIframe()
 
   const { currentCategory } = useForm()
@@ -39,35 +28,6 @@ export default function Total({
   const currentSimulation = useCurrentSimulation()
 
   const router = useRouter()
-
-  const [hasManuallyOpenedTutorial, setHasManuallyOpenedTutorial] =
-    useState(false)
-
-  function toggleOpen() {
-    if (tutorials.scoreExplanation) {
-      trackEvent(simulateurOpenScoreInfo)
-      setHasManuallyOpenedTutorial(true)
-      showTutorial('scoreExplanation')
-    } else {
-      trackEvent(simulateurCloseScoreInfo)
-      hideTutorial('scoreExplanation')
-    }
-  }
-
-  useEffect(() => {
-    if (
-      progression > 0.05 &&
-      !tutorials.scoreExplanation &&
-      !hasManuallyOpenedTutorial
-    ) {
-      hideTutorial('scoreExplanation')
-    }
-  }, [
-    hideTutorial,
-    progression,
-    tutorials.scoreExplanation,
-    hasManuallyOpenedTutorial,
-  ])
 
   return (
     <header
@@ -105,16 +65,6 @@ export default function Total({
           ) : null}
         </div>
       </div>
-      {!tutorials.scoreExplanation && simulationMode ? (
-        <div className="relative mx-auto max-w-6xl">
-          <Explanation
-            toggleOpen={toggleOpen}
-            isFirstToggle={
-              !tutorials.scoreExplanation && !hasManuallyOpenedTutorial
-            }
-          />
-        </div>
-      ) : null}
     </header>
   )
 }

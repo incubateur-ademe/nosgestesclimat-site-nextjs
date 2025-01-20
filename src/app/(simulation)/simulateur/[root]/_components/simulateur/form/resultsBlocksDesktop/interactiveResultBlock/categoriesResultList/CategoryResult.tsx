@@ -50,7 +50,11 @@ export default function CategoryResult({
         'relative mb-0 flex w-full items-center justify-between gap-4 overflow-hidden bg-white px-4 py-2 text-sm transition-colors',
         isStarted || isCurrent ? 'text-default' : 'text-slate-600'
       )}>
-      <div className="relative flex items-center text-sm font-normal">
+      <div
+        className={twMerge(
+          'relative flex items-center text-sm font-normal',
+          getTextDarkColor(category)
+        )}>
         <Emoji
           className={twMerge(
             isStarted || isCurrent ? 'opacity-100' : 'opacity-50',
@@ -63,7 +67,6 @@ export default function CategoryResult({
       <span
         className={twMerge(
           'relative block font-semibold transition-opacity',
-          getTextDarkColor(category),
           isCompleted || isStarted
             ? 'visible opacity-100'
             : 'invisible opacity-0'

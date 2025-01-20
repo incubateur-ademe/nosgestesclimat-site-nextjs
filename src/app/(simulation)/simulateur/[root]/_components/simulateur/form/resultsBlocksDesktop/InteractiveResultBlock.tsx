@@ -1,9 +1,6 @@
-import CloudIcon from '@/components/icons/Cloudicon'
-import DropIcon from '@/components/icons/DropIcon'
 import PlusIcon from '@/components/icons/PlusIcon'
 import TotalFootprintNumber from '@/components/misc/TotalFootprintNumber'
 import ValueChangeDisplay from '@/components/misc/ValueChangeDisplay'
-import { eauMetric } from '@/constants/metric'
 import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
 import CategoriesResultList from './interactiveResultBlock/CategoriesResultList'
 
@@ -17,11 +14,6 @@ export default function InteractiveResultBlock({
       <summary className="relative z-10 flex cursor-pointer list-none items-center justify-between gap-2 rounded-lg border-2 border-primary-100 bg-primary-50 p-4 [&::-webkit-details-marker]:hidden [&::marker]:hidden">
         <div className="relative w-full">
           <div className="flex items-center gap-2">
-            {metric === eauMetric ? (
-              <DropIcon className="mr-2 h-8 w-8 fill-blue-600 stroke-blue-500 stroke-1" />
-            ) : (
-              <CloudIcon className="mr-2 h-8 w-8 fill-gray-600 stroke-gray-500 stroke-1" />
-            )}
             <h3 className="mb-0 text-[13px] font-bold md:text-base">
               <TotalFootprintNumber metric={metric} />
             </h3>

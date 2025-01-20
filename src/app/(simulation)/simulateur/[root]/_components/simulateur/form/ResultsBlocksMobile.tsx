@@ -1,10 +1,11 @@
 import TotalFootprintNumber from '@/components/misc/TotalFootprintNumber'
 import ValueChangeDisplay from '@/components/misc/ValueChangeDisplay'
+import Explanation from '@/components/total/total/Explanation'
 import Card from '@/design-system/layout/Card'
 
 export default function ResultsBlocks() {
   return (
-    <div className="mb-8 grid grid-cols-2 gap-4 md:hidden">
+    <div className="relative mb-8 grid grid-cols-2 gap-4 md:hidden">
       <Card
         aria-live="polite"
         className="relative col-span-1 rounded-md border-primary-100 bg-primary-50 p-2">
@@ -19,6 +20,8 @@ export default function ResultsBlocks() {
 
         <ValueChangeDisplay metric="eau" />
       </Card>
+
+      <Explanation />
     </div>
   )
 }
