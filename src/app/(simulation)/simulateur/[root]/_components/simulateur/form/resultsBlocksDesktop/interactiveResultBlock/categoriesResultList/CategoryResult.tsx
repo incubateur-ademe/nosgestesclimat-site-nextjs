@@ -47,7 +47,7 @@ export default function CategoryResult({
   return (
     <div
       className={twMerge(
-        'relative mb-0 flex w-full items-center justify-between gap-4 overflow-hidden bg-white px-3 py-2 text-sm transition-colors',
+        'relative mb-0 flex w-full items-center justify-between gap-4 overflow-hidden bg-white px-4 py-2 text-sm transition-colors',
         isStarted || isCurrent ? 'text-default' : 'text-slate-600'
       )}>
       <div className="relative flex items-center text-sm font-normal">

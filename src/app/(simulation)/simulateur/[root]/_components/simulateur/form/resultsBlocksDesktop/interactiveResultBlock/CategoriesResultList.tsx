@@ -4,7 +4,7 @@ import CategoryResult from './categoriesResultList/CategoryResult'
 
 export default function CategoriesResultList({ metric }: { metric: Metrics }) {
   return (
-    <div className="flex flex-col pb-1">
+    <div className="flex flex-col pb-2">
       {orderedCategories.map((category) => (
         <CategoryResult key={category} category={category} metric={metric} />
       ))}
