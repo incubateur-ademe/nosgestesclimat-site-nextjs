@@ -4,8 +4,6 @@ import { fetchArticlePageContent } from '@/services/cms/fetchArticlePageContent'
 import { fetchArticlePageMetadata } from '@/services/cms/fetchArticlePageMetadata'
 
 import Badge from '@/design-system/layout/Badge'
-import { defaultLocale } from '@/i18nConfig'
-import { currentLocale } from 'next-i18n-router'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import ArticleBreadcrumbs from './_components/ArticleBreadcrumbs'
@@ -19,12 +17,9 @@ export async function generateMetadata({
 }: {
   params: { category: string; article: string; locale: string }
 }) {
-  const locale = currentLocale()
-
   const { metaTitle, metaDescription, image } =
     (await fetchArticlePageMetadata({
       articleSlug: params.article,
-      locale: locale ?? defaultLocale,
     })) || {}
 
   return getMetadataObject({
@@ -44,12 +39,9 @@ export default async function ArticlePage({
 }: {
   params: { category: string; article: string; locale: string }
 }) {
-  const locale = currentLocale()
-
   const { article, otherArticles } =
     (await fetchArticlePageContent({
       articleSlug: params.article,
-      locale: locale ?? defaultLocale,
     })) || {}
 
   if (!article) {

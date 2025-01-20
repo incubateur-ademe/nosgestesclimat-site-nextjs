@@ -3,6 +3,7 @@ import type {
   PopulatedAuthorType,
 } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
+import { defaultLocale } from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -13,10 +14,8 @@ type Article = PopulatedArticleType<'image' | 'category'> & {
 
 export async function fetchArticlePageContent({
   articleSlug,
-  locale,
 }: {
   articleSlug: string
-  locale: string
 }): Promise<
   | {
       article?: Article
@@ -26,7 +25,7 @@ export async function fetchArticlePageContent({
 > {
   try {
     const articleSearchParams = new URLSearchParams({
-      locale,
+      locale: defaultLocale,
       'populate[0]': 'image',
       'populate[1]': 'category',
       'populate[2]': 'author',
@@ -53,7 +52,7 @@ export async function fetchArticlePageContent({
 
     const categorySlug = article.category?.slug
     const otherArticlesSearchParams = new URLSearchParams({
-      locale,
+      locale: defaultLocale,
       'populate[0]': 'image',
       'populate[1]': 'category',
       'filters[category][slug][$eq]': categorySlug ?? '',

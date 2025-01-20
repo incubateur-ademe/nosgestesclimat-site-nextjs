@@ -5,10 +5,8 @@ import ContentLarge from '@/components/layout/ContentLarge'
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
-import { defaultLocale } from '@/i18nConfig'
 import { fetchCategoryPageContent } from '@/services/cms/fetchCategoryPageContent'
 import { fetchCategoryPageMetadata } from '@/services/cms/fetchCategoryPageMetadata'
-import { currentLocale } from 'next-i18n-router'
 import { redirect } from 'next/navigation'
 import AdditionalContent from './_components/AdditionalContent'
 import CategoryHero from './_components/CategoryHero'
@@ -19,11 +17,9 @@ export async function generateMetadata({
 }: {
   params: { category: string }
 }) {
-  const locale = currentLocale()
   const { metaTitle, metaDescription, image } =
     (await fetchCategoryPageMetadata({
       slug: params.category,
-      locale: locale ?? defaultLocale,
     })) || {}
 
   return getMetadataObject({
@@ -47,7 +43,6 @@ export default async function CategoryPage({
 }) {
   // Get the page number from the query params from the server side
   const page = Number(searchParams.page) || 1
-  const locale = currentLocale()
 
   const {
     title,
@@ -63,7 +58,6 @@ export default async function CategoryPage({
     (await fetchCategoryPageContent({
       slug: params.category,
       page,
-      locale: locale ?? defaultLocale,
     })) || {}
 
   if (!title || !description) {

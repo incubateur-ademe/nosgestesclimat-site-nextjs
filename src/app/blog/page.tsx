@@ -8,19 +8,15 @@ import MainArticle from '@/design-system/cms/MainArticle'
 import NewslettersBlock from '@/design-system/cms/NewslettersBlock'
 import NewslettersBlockSkeleton from '@/design-system/cms/NewslettersBlockSkeleton'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { defaultLocale } from '@/i18nConfig'
 import { fetchHomepageContent } from '@/services/cms/fetchHomepageContent'
 import { fetchHomepageMetadata } from '@/services/cms/fetchHomepageMetadata'
-import { currentLocale } from 'next-i18n-router'
 import { notFound } from 'next/navigation'
 import BlogHero from './_components/BlogHero'
 import GroupBlock from './_components/GroupBlock'
 
 export async function generateMetadata() {
-  const locale = currentLocale()
-
   const { metaTitle, metaDescription, image } =
-    (await fetchHomepageMetadata({ locale: locale ?? defaultLocale })) || {}
+    (await fetchHomepageMetadata()) || {}
 
   return getMetadataObject({
     title: metaTitle ?? 'Blog - Nos Gestes Climat',
@@ -39,15 +35,12 @@ export default async function BlogHomePage({
 }: {
   searchParams: { page: string }
 }) {
-  const locale = currentLocale()
-
   // Get the page number from the query params from the server side
   const page = Number(searchParams.page) || 1
 
   const { title, description, image, mainArticle, articles, pageCount } =
     (await fetchHomepageContent({
       page,
-      locale: locale ?? defaultLocale,
     })) ?? {}
 
   if (!title || !description || !image || !articles) {
