@@ -1,9 +1,9 @@
 import { carboneMetric, eauMetric } from '@/constants/metric'
-import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
+import Trans from '../translation/Trans'
 import CarboneTotalChart from './metricSlider/CarboneTotalChart'
-import TabNavigation from './metricSlider/TabNavigation'
+import MetricCard from './metricSlider/MetricCard'
 import WaterTotalChart from './metricSlider/WaterTotalChart'
 
 type Props = {
@@ -16,8 +16,6 @@ export default function MetricSlider({
   waterTotal,
   isStatic,
 }: Props) {
-  const { currentMetric } = useCurrentMetric()
-
   const [isSticky, setIsSticky] = useState(false)
 
   const myElementRef = useRef<HTMLDivElement>(null)
@@ -48,37 +46,26 @@ export default function MetricSlider({
 
   return (
     <div
-      className={twMerge(
-        isStatic ? '' : 'sticky top-0 z-40 mb-4 h-96',
-        isSticky && 'pointer-events-none'
-      )}
+      className={twMerge(isStatic ? '' : 'sticky top-0 z-40 mb-4 h-96')}
       ref={myElementRef}>
-      <TabNavigation
-        isSticky={isSticky}
-        isStatic={isStatic}
-        shouldShowWater={!(isStatic && !waterTotal)}
-      />
       <div
         className={twMerge(
-          'relative mx-auto -mt-0.5 w-full overflow-hidden rounded-b-xl rounded-tr-xl border-2 border-primary-50 bg-gray-100 px-0 transition-all duration-300',
-          isSticky ? 'h-20 lg:h-[5.5rem]' : 'h-72 lg:h-80'
+          'relative mx-auto -mt-0.5 flex w-full gap-8 overflow-hidden  px-0 transition-all duration-300',
+          isSticky ? 'h-20 lg:h-[6rem]' : 'h-72 lg:h-80'
         )}>
-        {currentMetric === carboneMetric && (
-          <div className={twMerge('relative !flex h-full flex-col')}>
-            <div className="h-full w-full px-4">
-              <CarboneTotalChart isSmall={isSticky} total={carboneTotal} />
-            </div>
+        <MetricCard
+          metric={carboneMetric}
+          metricTitle={<Trans>Mon empreinte carbone</Trans>}>
+          <div className="w-full flex-1 px-4">
+            <CarboneTotalChart isSmall={isSticky} total={carboneTotal} />
           </div>
-        )}
-        {currentMetric === eauMetric && (
-          <div className={twMerge('relative !flex h-full flex-col')}>
-            <WaterTotalChart
-              isSmall={isSticky}
-              total={waterTotal}
-              isStatic={isStatic}
-            />
-          </div>
-        )}
+        </MetricCard>
+
+        <MetricCard
+          metric={eauMetric}
+          metricTitle={<Trans>Mon empreinte eau</Trans>}>
+          <WaterTotalChart isSmall={isSticky} total={waterTotal} />
+        </MetricCard>
       </div>
     </div>
   )

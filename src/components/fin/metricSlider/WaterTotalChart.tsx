@@ -6,9 +6,8 @@ import WaveContent from './waterTotalChart/WaveContent'
 type Props = {
   total?: number
   isSmall?: boolean
-  isStatic?: boolean
 }
-export default function WaterTotalChart({ total, isSmall, isStatic }: Props) {
+export default function WaterTotalChart({ total, isSmall }: Props) {
   return (
     <motion.div
       exit={{ opacity: 0 }}
@@ -19,7 +18,7 @@ export default function WaterTotalChart({ total, isSmall, isStatic }: Props) {
         isSmall && 'mt-0.5 lg:mt-0.5'
       )}>
       <WaterTotalNumber total={total} isSmall={isSmall} />
-      <WaveContent isStatic={isStatic} />
+      <WaveContent />
     </motion.div>
   )
 }

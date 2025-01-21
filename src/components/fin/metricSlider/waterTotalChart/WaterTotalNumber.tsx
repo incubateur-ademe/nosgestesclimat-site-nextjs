@@ -31,10 +31,10 @@ export default function WaterTotalNumber({ total, isSmall }: Props) {
       )}>
       <div className="mx-auto whitespace-nowrap text-right font-medium text-water">
         <span className="flex items-end gap-4">
-          <strong className="text-6xl font-black leading-none lg:text-8xl">
+          <strong className="text-4xl font-black leading-none lg:text-6xl">
             {realFormattedValue}
           </strong>{' '}
-          <span className="text-5xl leading-[3rem] lg:text-6xl lg:leading-tight">
+          <span className="text-3xl leading-[3rem] lg:text-4xl lg:leading-tight">
             {unit}
           </span>
         </span>
