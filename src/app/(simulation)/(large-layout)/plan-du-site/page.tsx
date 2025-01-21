@@ -94,7 +94,7 @@ export default async function PlanDuSitePage() {
   }
 
   return (
-    <div data-cypress-id="plan-links">
+    <div data-cypress-id="plan-links" className="mb-16">
       <Title
         title={
           <Trans i18nKey="publicodes.planDuSite.title">Plan du site</Trans>

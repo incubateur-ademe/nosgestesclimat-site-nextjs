@@ -11,13 +11,12 @@ import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
+import { useSubscribeToNewsletter } from '@/hooks/newsletter/useSubscribeToNewsletter'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
-import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { formatEmail } from '@/utils/format/formatEmail'
 import { useEffect, useRef, useState } from 'react'
-import type { SubmitHandler} from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
 type Inputs = {
@@ -41,6 +40,7 @@ export default function MesInformations() {
     handleSubmit,
     formState: { errors },
     setValue,
+    setError,
   } = useReactHookForm<Inputs>({
     defaultValues: {
       name: user?.name,
@@ -64,13 +64,25 @@ export default function MesInformations() {
     )
   }, [newsletterSubscriptions, setValue])
 
-  const {
-    mutateAsync: updateUserSettings,
-    isPending,
-    isError,
-  } = useUpdateUserSettings({
+  const { isPending, isError, submit } = useSubscribeToNewsletter({
     email: user?.email ?? '',
-    userId: user?.userId,
+    userId: user?.userId ?? '',
+    setError,
+    onSuccess: ({ email, name }) => {
+      if (email) {
+        updateEmail(email)
+      }
+
+      if (name) {
+        updateName(name)
+      }
+
+      setIsSubmitted(true)
+
+      timeoutRef.current = setTimeout(() => {
+        setIsSubmitted(false)
+      }, 2500)
+    },
   })
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -79,26 +91,11 @@ export default function MesInformations() {
       [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: data['newsletter-transports'],
     }
     try {
-      const formattedEmail = formatEmail(data.email)
-      await updateUserSettings({
+      await submit({
         name: data.name,
-        email: formattedEmail,
+        email: data.email ?? '',
         newsletterIds,
       })
-
-      if (formattedEmail) {
-        updateEmail(formattedEmail)
-      }
-
-      if (data.name) {
-        updateName(data.name)
-      }
-
-      setIsSubmitted(true)
-
-      timeoutRef.current = setTimeout(() => {
-        setIsSubmitted(false)
-      }, 2500)
     } catch (error) {
       console.error(error)
     }

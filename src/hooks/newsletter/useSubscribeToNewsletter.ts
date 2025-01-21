@@ -1,6 +1,5 @@
 'use client'
 
-import { LIST_MAIN_NEWSLETTER } from '@/constants/brevo'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { isEmailValid } from '@/utils/isEmailValid'
 import type { UseFormSetError } from 'react-hook-form'
@@ -18,7 +17,7 @@ export function useSubscribeToNewsletter({
   // The user id got from the user context or the local storage
   userId: string
   setError: UseFormSetError<{ email: string }>
-  onSuccess: (data: { email: string }) => void
+  onSuccess: (data: { email: string; name?: string }) => void
 }) {
   const { t } = useClientTranslation()
 
@@ -32,7 +31,11 @@ export function useSubscribeToNewsletter({
     userId: userId ?? '',
   })
 
-  const submit = async (data: { email: string }) => {
+  const submit = async (data: {
+    email: string
+    name?: string
+    newsletterIds: Record<string, boolean>
+  }) => {
     if (isPending || isSuccess) {
       return
     }
@@ -48,13 +51,12 @@ export function useSubscribeToNewsletter({
     const formattedEmail = formatEmail(data.email)
 
     await updateUserSettings({
+      name: data.name ?? undefined,
       email: formattedEmail,
-      newsletterIds: {
-        [LIST_MAIN_NEWSLETTER]: true,
-      },
+      newsletterIds: data.newsletterIds,
     })
 
-    onSuccess({ email: formattedEmail })
+    onSuccess({ email: formattedEmail, name: data.name ?? undefined })
   }
 
   return { isPending, isError, isSuccess, submit }

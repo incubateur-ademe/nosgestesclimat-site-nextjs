@@ -19,7 +19,7 @@ export default function Questions() {
   )
 
   return (
-    <ul>
+    <ul className="mb-16">
       {orderedQuestions.map((question) => (
         <Question key={question} question={question} />
       ))}

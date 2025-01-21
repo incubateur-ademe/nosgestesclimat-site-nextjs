@@ -83,7 +83,9 @@ export default function NewsletterForm() {
 
       <form
         className="flex flex-col items-end justify-start gap-2 sm:flex-row sm:items-start"
-        onSubmit={handleSubmit(submit)}>
+        onSubmit={handleSubmit((data) =>
+          submit({ ...data, newsletterIds: { [LIST_MAIN_NEWSLETTER]: true } })
+        )}>
         <TextInputGroup
           placeholder="email@mail.com"
           className="rounded-full sm:min-w-96"
