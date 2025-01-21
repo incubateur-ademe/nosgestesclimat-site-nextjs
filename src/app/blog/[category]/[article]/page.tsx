@@ -117,7 +117,7 @@ export default async function ArticlePage({
           </div>
         </div>
       </div>
-      <div className="mb-12 max-w-5xl md:mx-auto">
+      <div className="mb-12">
         <AuthorBlock author={article.author} />
         <OtherArticles articles={otherArticles} />
       </div>

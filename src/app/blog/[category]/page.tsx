@@ -108,7 +108,6 @@ export default async function CategoryPage({
           }))}
           subTitle={faqDescription}
           isBackgroundSkewed={false}
-          isBackgroundFullWidth={true}
           shouldUseDangerouslySetInnerHTML={true}
         />
       )}

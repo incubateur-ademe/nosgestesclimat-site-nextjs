@@ -8,7 +8,6 @@ export default function FAQ({
   subTitle,
   questions,
   isBackgroundSkewed = true,
-  isBackgroundFullWidth = false,
   className,
   shouldUseDangerouslySetInnerHTML = false,
 }: {
@@ -19,7 +18,6 @@ export default function FAQ({
     answer: ReactNode
   }[]
   isBackgroundSkewed?: boolean
-  isBackgroundFullWidth?: boolean
   shouldUseDangerouslySetInnerHTML?: boolean
 }) {
   return (
@@ -34,10 +32,6 @@ export default function FAQ({
           className="-bottom-10 top-auto mt-6 h-[200px] rotate-12 bg-[#F6F6F5]"
           withColorLine
         />
-      )}
-
-      {isBackgroundFullWidth && (
-        <div className="absolute -left-1/2 bottom-0 top-0 h-full w-[200%] bg-[#F6F6F5]" />
       )}
 
       <div className="relative mx-auto flex w-full max-w-full flex-col gap-8 px-4 md:max-w-5xl md:flex-row md:gap-16 md:px-0">
