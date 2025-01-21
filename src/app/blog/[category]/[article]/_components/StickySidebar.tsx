@@ -7,6 +7,11 @@ import CopyButton from '@/design-system/inputs/CopyButton'
 import { useEffect, useState } from 'react'
 import Summary from './Summary'
 
+const MOBILE_BREAKPOINT = 768
+const BOTTOM_DISTANCE = 300
+const FULL_OPACITY = 1
+const ARBITRARY_DISTANCE_FROM_BOTTOM = 1800
+
 export default function StickySidebar({
   article,
   category,
@@ -16,24 +21,28 @@ export default function StickySidebar({
   category: string
   articleSlug: string
 }) {
-  const [opacity, setOpacity] = useState(1)
+  const [opacity, setOpacity] = useState(FULL_OPACITY)
 
   useEffect(() => {
     const handleScroll = () => {
       // Only apply fade effect on md breakpoint and above
-      if (window.innerWidth < 768) return
+      if (window.innerWidth < MOBILE_BREAKPOINT) return
 
       const documentHeight = document.documentElement.scrollHeight
       const scrollTop = window.scrollY
 
       // Start fading out when within 300px of the bottom
-      const fadeStart = documentHeight - 1800
+      const fadeStart = documentHeight - ARBITRARY_DISTANCE_FROM_BOTTOM
+
       if (scrollTop > fadeStart) {
-        const fadeDistance = Math.max(0, 1 - (scrollTop - fadeStart) / 300)
+        const fadeDistance = Math.max(
+          0,
+          1 - (scrollTop - fadeStart) / BOTTOM_DISTANCE
+        )
 
         setOpacity(fadeDistance)
       } else {
-        setOpacity(1)
+        setOpacity(FULL_OPACITY)
       }
     }
 
