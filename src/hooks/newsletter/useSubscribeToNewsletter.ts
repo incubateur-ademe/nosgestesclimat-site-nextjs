@@ -6,6 +6,7 @@ import type { UseFormSetError } from 'react-hook-form'
 import { useUpdateUserSettings } from '../settings/useUpdateUserSettings'
 import { useClientTranslation } from '../useClientTranslation'
 
+// Use with react-hook-form
 export function useSubscribeToNewsletter({
   email,
   userId,
