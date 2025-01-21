@@ -66,7 +66,7 @@ export async function fetchCategoryPageContent({
       'filters[category][$eq]': category?.id || '',
       'pagination[page]': page.toString(),
       'pagination[pageSize]': PAGE_SIZE.toString(),
-      sort: 'publishedAt:desc',
+      sort: 'createdAt:desc',
       status: isProduction ? '' : 'draft',
     })
 

@@ -48,9 +48,6 @@ export default async function ArticlePage({
     return notFound()
   }
 
-  const articleDate =
-    article.updatedAt || article.publishedAt || article.createdAt
-
   return (
     <>
       <ArticleJSONLD article={article} />
@@ -87,8 +84,8 @@ export default async function ArticlePage({
                 <span className="text-primary-600">
                   <Trans>Publié le :</Trans>
                 </span>{' '}
-                {articleDate
-                  ? new Date(articleDate).toLocaleDateString('fr')
+                {article.createdAt
+                  ? new Date(article.createdAt).toLocaleDateString('fr')
                   : ''}
               </p>
             </div>

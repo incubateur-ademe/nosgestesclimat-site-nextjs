@@ -96,6 +96,7 @@ export default function DidYouKnowSlider({
                 getLandingDidYouKnowSliderValue(currentSlide + 1)
               ),
             }}
+            withRestart={false}
           />
         </div>
       </div>

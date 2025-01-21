@@ -57,7 +57,7 @@ export async function fetchArticlePageContent({
       'populate[1]': 'category',
       'filters[category][slug][$eq]': categorySlug ?? '',
       'filters[slug][$ne]': articleSlug,
-      sort: 'publishedAt:desc',
+      sort: 'createdAt:desc',
       'pagination[start]': '0',
       'pagination[limit]': '3',
     })
