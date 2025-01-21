@@ -756,7 +756,6 @@ entries:
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Rien à l'horizon ! <1></1>La page recherchée n'existe pas.
   Un bonhomme se demandant où il est: Un bonhomme se demandant où il est
   Acquisition: Acquisition
-  components.stats.StatsContent.infosNorthstar: Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.
   de visites via iframe ce mois-ci: de visites via iframe ce mois-ci
   Données qualitatives: Données qualitatives
   inscrits à l'infolettre: inscrits à l'infolettre
@@ -1141,3 +1140,5 @@ entries:
   d'eau / jour: d'eau / jour
   de CO₂e / an: de CO₂e / an
   Aide: Aide
+  Cette section statistique est générée via Metabase.: Cette section statistique est générée via Metabase.
+  Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.: Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.
