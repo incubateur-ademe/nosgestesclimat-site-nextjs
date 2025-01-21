@@ -142,18 +142,12 @@ export default function StatsContent() {
           <Trans>Données qualitatives</Trans>
         </h2>
         <p>
-          <Trans i18nKey={'components.stats.StatsContent.infosNorthstar'}>
-            En fin de simulation, pour 10% de nos utilisateurs, nous proposons à
-            nos utilisateurs de répondre à la question suivante :{' '}
-            <strong>D’après vous, quel est votre le plus important ?</strong>.
-            L'idée est d'évaluer l'effet de nos améliorations pédagogiques.
-            Cette section statistique est générée via Metabase.
-          </Trans>
+          <Trans>Cette section statistique est générée via Metabase.</Trans>
         </p>
         <MetabaseIframe
           id="stats-quali"
           titre="stats-quali"
-          src="https://metabase.nosgestesclimat.fr/public/dashboard/f36c5cc4-abb9-4ac6-98b5-13bed7318e7d#titled=false"
+          src="https://metabase.nosgestesclimat.fr/public/dashboard/1ca406e9-7366-4cc2-8930-50b8f9fde77d#titled=false"
           height="800px"
         />{' '}
       </div>
@@ -163,7 +157,7 @@ export default function StatsContent() {
         </h2>
         <p>
           {' '}
-          <Trans i18nKey={'components.stats.StatsContent.infosNorthstar'}>
+          <Trans>
             Il est question ici des modes "Organisations" et "Challenge tes
             amis". Cette section est générée via Metabase.
           </Trans>{' '}
@@ -172,13 +166,13 @@ export default function StatsContent() {
         <MetabaseIframe
           id="stats-orga"
           titre="stats mode orga"
-          src="https://metabase.nosgestesclimat.fr/public/dashboard/f64f2de4-fc94-431e-a6c0-01f9c0095267#titled=false"
+          src="https://metabase.nosgestesclimat.fr/public/dashboard/fd7c7f21-460a-44bb-865d-ceb72f3eafe2#titled=false"
         />
         <h3 className="mt-4">Mode "Challenge tes amis"</h3>
         <MetabaseIframe
           id="stats-amis"
           titre="stats-amis"
-          src="https://metabase.nosgestesclimat.fr/public/dashboard/8a32d8a6-3716-40a7-9ce0-f9991c54acf4#titled=false"
+          src="https://metabase.nosgestesclimat.fr/public/dashboard/73de06cd-a637-470b-a8a7-3ed86a06da4a#titled=false"
         />{' '}
       </div>
     </div>

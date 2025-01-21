@@ -32,6 +32,12 @@ export const getLandingClickCTAResults = (pathname: string, action: string) => [
   action,
   'Click Voir les résultats',
 ]
+export const getLandingClickCTARestart = (pathname: string, action: string) => [
+  'trackEvent',
+  getLandingCategory(pathname),
+  action,
+  'Click Recommencer',
+]
 
 // Did you know slider
 export const getLandingDidYouKnowSliderValue = (number: number) =>
