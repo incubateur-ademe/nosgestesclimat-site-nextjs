@@ -1,15 +1,13 @@
 'use client'
+
 import { LIST_MAIN_NEWSLETTER } from '@/constants/brevo'
 import { STORAGE_KEY } from '@/constants/storage'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Loader from '@/design-system/layout/Loader'
+import { useSubscribeToNewsletter } from '@/hooks/newsletter/useSubscribeToNewsletter'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
-import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { getLocalState } from '@/services/ngc.service'
-import { formatEmail } from '@/utils/format/formatEmail'
-import { isEmailValid } from '@/utils/isEmailValid'
 import { useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import ArrowRightIcon from '../icons/ArrowRightIcon'
@@ -32,8 +30,6 @@ export default function NewsletterForm() {
   const userEmailFromLocalStorage = state?.user?.email
   const userId = state?.user?.userId
 
-  const { t } = useClientTranslation()
-
   // Avoid refetching useGetNewsletterSubscriptions when defining an email for the first time
   const emailRef = useRef<string>(userEmailFromLocalStorage ?? '')
 
@@ -47,6 +43,27 @@ export default function NewsletterForm() {
     emailRef?.current ?? ''
   )
 
+  const { isPending, isError, isSuccess, submit } = useSubscribeToNewsletter({
+    email: emailRef?.current ?? '',
+    userId: userId ?? '',
+    setError,
+    onSuccess: ({ email }) => {
+      if (!userEmailFromLocalStorage || userEmailFromLocalStorage !== email) {
+        // Update the email in the local storage
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify({
+            ...state,
+            user: {
+              ...(state?.user ?? {}),
+              email,
+            },
+          })
+        )
+      }
+    },
+  })
+
   // Hack to force the email to be set in the form
   useEffect(() => {
     if (userEmailFromLocalStorage) {
@@ -54,59 +71,9 @@ export default function NewsletterForm() {
     }
   }, [setValue, userEmailFromLocalStorage])
 
-  const {
-    mutateAsync: updateUserSettings,
-    isPending,
-    isError,
-    isSuccess,
-  } = useUpdateUserSettings({
-    email: emailRef?.current ?? '',
-    userId: userId ?? '',
-  })
-
   const isSubscribed =
     newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER) &&
     emailRef.current === userEmailFromLocalStorage
-
-  const onSubmit = async (data: { email: string }) => {
-    if (isPending || isSuccess) {
-      return
-    }
-
-    if (!isEmailValid(data.email)) {
-      setError('email', {
-        type: 'validate',
-        message: t('Veuillez saisir une adresse email valide.'),
-      })
-      return
-    }
-
-    const formattedEmail = formatEmail(data.email)
-
-    await updateUserSettings({
-      email: formattedEmail,
-      newsletterIds: {
-        [LIST_MAIN_NEWSLETTER]: true,
-      },
-    })
-
-    if (
-      !userEmailFromLocalStorage ||
-      userEmailFromLocalStorage !== formattedEmail
-    ) {
-      // Update the email in the local storage
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({
-          ...state,
-          user: {
-            ...state.user,
-            email: formattedEmail,
-          },
-        })
-      )
-    }
-  }
 
   return (
     <div className="w-96 min-w-80 max-w-full md:flex-1">
@@ -115,11 +82,12 @@ export default function NewsletterForm() {
       </h3>
 
       <form
-        className="flex items-start justify-start gap-2"
-        onSubmit={handleSubmit(onSubmit)}>
+        className="flex flex-col items-end justify-start gap-2 sm:flex-row sm:items-start"
+        onSubmit={handleSubmit(submit)}>
         <TextInputGroup
           placeholder="email@mail.com"
-          className="rounded-full"
+          className="rounded-full sm:min-w-96"
+          containerClassName="w-full sm:w-auto"
           successMessage={getSuccessMessage(isSubscribed, isSuccess)}
           error={isError ? <Trans>Une erreur est survenue</Trans> : ''}
           disabled={isPending || isSuccess}
