@@ -30,8 +30,8 @@ export default function TotalButtons({
 
   const { currentCategory } = useForm()
 
-  const { showTutorial, tutorials } = useUser()
-  console.log(tutorials)
+  const { showTutorial } = useUser()
+
   return (
     <div className="flex">
       <Button
