@@ -1,12 +1,20 @@
 'use client'
 
+import HelpCircleIcon from '@/components/icons/HelpCircleIcon'
 import ListIcon from '@/components/icons/ListIcon'
 import SaveCheckIcon from '@/components/icons/SaveCheckIcon'
 import SaveIcon from '@/components/icons/SaveIcon'
 import Trans from '@/components/translation/Trans'
+import { simulateurOpenScoreInfo } from '@/constants/tracking/pages/simulateur'
+import { TUTORIALS } from '@/constants/tutorial'
 import Button from '@/design-system/inputs/Button'
-import { getFillColor, getTextDarkColor } from '@/helpers/getCategoryColorClass'
-import { useCurrentSimulation, useForm } from '@/publicodes-state'
+import {
+  getFillColor,
+  getStrokeColor,
+  getTextDarkColor,
+} from '@/helpers/getCategoryColorClass'
+import { useCurrentSimulation, useForm, useUser } from '@/publicodes-state'
+import { trackEvent } from '@/utils/matomo/trackEvent'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -22,8 +30,34 @@ export default function TotalButtons({
 
   const { currentCategory } = useForm()
 
+  const { showTutorial, tutorials } = useUser()
+  console.log(tutorials)
   return (
     <div className="flex">
+      <Button
+        color="text"
+        size="sm"
+        className={twMerge(
+          'h-10 w-10 !p-0 font-medium lg:w-auto lg:gap-2 lg:!px-4 lg:!py-2',
+          getTextDarkColor(currentCategory)
+        )}
+        onClick={() => {
+          trackEvent(simulateurOpenScoreInfo)
+          showTutorial(TUTORIALS.SCORE_EXPLANATION)
+        }}>
+        <HelpCircleIcon
+          className={twMerge('h-6 w-6', getStrokeColor(currentCategory))}
+        />
+
+        <span
+          className={twMerge(
+            'hidden lg:inline',
+            getTextDarkColor(currentCategory)
+          )}>
+          <Trans>Aide</Trans>
+        </span>
+      </Button>
+
       <Button
         color="text"
         size="sm"
@@ -42,6 +76,7 @@ export default function TotalButtons({
           <Trans>Liste des questions</Trans>
         </span>
       </Button>
+
       {toggleSaveModal ? (
         <Button
           color="text"
