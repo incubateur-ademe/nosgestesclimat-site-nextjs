@@ -3,7 +3,7 @@
 import OrganisationIcon from '@/components/icons/OrganisationIcon'
 import Trans from '@/components/translation/Trans'
 import { headerClickOrganisation } from '@/constants/tracking/layout'
-import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
+import useFetchOrganisations from '@/hooks/organisations/useFetchOrganisations'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -18,7 +18,9 @@ export default function OrganisationLink({
 
   const { user } = useUser()
 
-  const { data: organisation } = useFetchOrganisation()
+  const { data: organisations } = useFetchOrganisations()
+
+  const organisation = organisations?.[0]
 
   const organisationName = organisation?.name ?? user?.organisation?.name
 
