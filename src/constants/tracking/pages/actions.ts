@@ -47,14 +47,6 @@ export const actionsOpenAction = (action: DottedName) => [
 ]
 
 // Figma comment #114
-export const actionsClickActionsPlus = [
-  'trackEvent',
-  'Actions',
-  'Click More infos',
-  'Click Actions Plus',
-]
-
-// Figma comment #114
 export const actionsClickAdeme = [
   'trackEvent',
   'Actions',

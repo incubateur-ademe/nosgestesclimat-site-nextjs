@@ -213,6 +213,12 @@ const redirects = [
       '/blog/alimentation/8-facons-ameliorer-empreinte-de-mon-assiette',
     permanent: true,
   },
+  // For now, we redirect actions/plus homepage to blog homepage. We still have each actions/plus page available but ghosted.
+  {
+    source: '/actions/plus',
+    destination: '/blog',
+    permanent: true,
+  },
 ]
 
 module.exports = redirects
