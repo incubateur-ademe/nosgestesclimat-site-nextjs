@@ -14,7 +14,7 @@ export default function WaterTotalChart({ total, isSmall }: Props) {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       className={twMerge(
-        'relative mt-7 flex h-full w-full flex-1 flex-col justify-between transition-all duration-300 lg:mt-8',
+        'relative flex h-full w-full flex-1 flex-col justify-between transition-all duration-300',
         isSmall && 'mt-0.5 lg:mt-0.5'
       )}>
       <WaterTotalNumber total={total} isSmall={isSmall} />

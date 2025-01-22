@@ -43,12 +43,12 @@ export default function CarboneTotalChart({ total, isSmall }: Props) {
   const cssColor = `rgba(${color['r']},${color['g']},${color['b']},${color['a']})`
 
   return (
-    <div className={twMerge(isSmall ? 'py-0' : 'py-4 lg:py-8')}>
-      <div className="relative mx-auto mb-16 w-full pt-28">
+    <div className={twMerge(isSmall ? 'py-0' : 'pt-4 lg:pt-8')}>
+      <div className="relative mx-auto w-full pt-28">
         <div
           className={twMerge(
-            'absolute left-1/2 top-1  mb-4 -translate-x-1/2 whitespace-nowrap text-center font-medium transition-all duration-300',
-            isSmall ? '-top-4  scale-75 lg:scale-50' : 'scale-100'
+            'absolute left-1/2 top-4  mb-4 -translate-x-1/2 whitespace-nowrap text-center font-medium transition-all duration-300',
+            isSmall ? 'top-0  scale-75 lg:scale-50' : 'scale-100'
           )}
           style={{ color: cssColor }}>
           <p className="mb-0">
@@ -74,8 +74,14 @@ export default function CarboneTotalChart({ total, isSmall }: Props) {
           </p>
         </div>
 
-        <AnimatedArrow isSmall={isSmall} position={position} color={cssColor} />
-        <Gauge isSmall={isSmall} total={total} />
+        <div className="mt-4">
+          <AnimatedArrow
+            isSmall={isSmall}
+            position={position}
+            color={cssColor}
+          />
+          <Gauge isSmall={isSmall} total={total} />
+        </div>
       </div>
     </div>
   )
