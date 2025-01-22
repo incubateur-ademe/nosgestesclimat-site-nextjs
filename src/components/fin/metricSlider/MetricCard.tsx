@@ -9,8 +9,12 @@ export default function MetricCard({
   metric,
   children,
   isSticky,
+  ...props
 }: PropsWithChildren<{
-  metricTitle: ReactNode
+  metricTitle: {
+    desktop: ReactNode
+    mobile: ReactNode
+  }
   metric: Metric
   isSticky?: boolean
 }>) {
@@ -25,14 +29,23 @@ export default function MetricCard({
         'last: pointer-events-auto relative !flex h-full flex-1 flex-col overflow-hidden rounded-xl rounded-l-xl rounded-r-none border-[3px] border-r-0 border-primary-50 bg-white last:rounded-l-none last:rounded-r-xl last:border-l-0 last:border-r-[3px]',
         isSelected &&
           ' border-r-[3px] border-primary-700 bg-primary-50 last:border-l-[3px]'
-      )}>
-      <Badge size="xs" className="absolute right-0 top-0 mx-2 mt-2">
-        {metricTitle}
+      )}
+      {...props}>
+      {/* Mobile only */}
+      <div className="absolute left-0 right-0 top-0 mx-1 border-b border-primary-200 py-1 text-center text-xs md:hidden">
+        {metricTitle.mobile}
+      </div>
+
+      {/* Desktop only */}
+      <Badge
+        size="xs"
+        className="absolute right-0 top-0 mx-2 mt-2 hidden md:flex">
+        {metricTitle.desktop}
       </Badge>
       <div
         className={twMerge(
           'h-full',
-          isSticky && 'pointer-events-none max-h-20 overflow-hidden'
+          isSticky && 'pointer-events-none max-h-28 overflow-hidden'
         )}>
         {children}
       </div>
