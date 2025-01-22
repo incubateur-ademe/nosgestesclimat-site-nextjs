@@ -16,7 +16,6 @@ entries:
   Copier le lien: Copier le lien
   Documentation: Documentation
   Découvrez la FAQ !: Découvrez la FAQ !
-  Découvrez les enjeux qui se cachent derrière chaque action.: Découvrez les enjeux qui se cachent derrière chaque action.
   Démarrer: Démarrer
   En développement actif: En développement actif
   En savoir plus: En savoir plus
@@ -34,7 +33,6 @@ entries:
   Mon profil: Mon profil
   Non: Non
   Non applicable: Non applicable
-  Nos explications complètes: Nos explications complètes
   Nous avons détecté que vous faites cette simulation depuis: Nous avons détecté que vous faites cette simulation depuis
   Nouveautés: Nouveautés
   Oui: Oui
@@ -119,9 +117,7 @@ entries:
   visites: visites
   '{unit}': '{unit}'
   À propos: À propos
-  ◀ Retour à la liste des fiches: ◀ Retour à la liste des fiches
   👤 Vous utilisez actuellement le persona: 👤 Vous utilisez actuellement le persona
-  🧮 Voir le geste climat correspondant: 🧮 Voir le geste climat correspondant
   components.localisation.LocalisationMessage.warnMessage2: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut
   À venir !: À venir !
   international.comment.1: Pour proposer un modèle pour chaque pays, il nous faut forcément une base. Nos Gestes Climat s'est construit sur le cas de la France. À partir de là, chaque pays décrit ses différences par rapport à la base.
@@ -256,7 +252,6 @@ entries:
   'Vous pouvez nous contacter via notre page de contact : <2>accéder à notre page de contact</2>.': 'Vous pouvez nous contacter via notre page de contact : <2>accéder à notre page de contact</2>.'
   FAQ: FAQ
   Le modèle Nos Gestes Climat: Le modèle Nos Gestes Climat
-  Les actions phares: Les actions phares
   Nos actions pour réduire votre empreinte: Nos actions pour réduire votre empreinte
   Partenaires: Partenaires
   Statistiques: Statistiques
@@ -414,7 +409,6 @@ entries:
   Découvrez les conseils de l'ADEME: Découvrez les conseils de l'ADEME
   Découvrez les conseils de l'ADEME, ouvrir dans un nouvel onglet: Découvrez les conseils de l'ADEME, ouvrir dans un nouvel onglet
   en 10 minutes: en 10 minutes
-  Explorez le détail de nos actions clés: Explorez le détail de nos actions clés
   Nous pourrons vous contacter en cas de problème lors de votre inscription: Nous pourrons vous contacter en cas de problème lors de votre inscription
   top chrono.: top chrono.
   Vous avez déja participé à ce sondage.: Vous avez déja participé à ce sondage.
@@ -453,7 +447,6 @@ entries:
   Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.: Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.
   Accessibilité - Nos Gestes Climat: Accessibilité - Nos Gestes Climat
   'Actions : comment réduire votre empreinte climat ? - Nos Gestes Climat': 'Actions : comment réduire votre empreinte climat ? - Nos Gestes Climat'
-  Actions, la liste - Nos Gestes Climat: Actions, la liste - Nos Gestes Climat
   Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat: Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat
   article du blog - Nos Gestes Climat: article du blog - Nos Gestes Climat
   Blog - Nos Gestes Climat: Blog - Nos Gestes Climat
@@ -801,7 +794,6 @@ entries:
   L’eau domestique peut avoir un <2>impact très fort</2> selon la <6>saison et la localisation.</6>: L’eau domestique peut avoir un <2>impact très fort</2> selon la <6>saison et la localisation.</6>
   L’eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu’elle est restituée. Par exemple, l’eau de votre douche, après dépollution, est rendue aux cours d’eau de votre territoire.: L’eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu’elle est restituée. Par exemple, l’eau de votre douche, après dépollution, est rendue aux cours d’eau de votre territoire.
   L’eau est une ressource planétaire précieuse. Comme le climat, <2>le cycle de l’eau est fortement impacté par les activités humaines.</2> Nous avons fait le choix d’ajouter l'empreinte eau à notre modèle de calcul afin de vous apporter des éléments de compréhension de cet impact.: L’eau est une ressource planétaire précieuse. Comme le climat, <2>le cycle de l’eau est fortement impacté par les activités humaines.</2> Nous avons fait le choix d’ajouter l'empreinte eau à notre modèle de calcul afin de vous apporter des éléments de compréhension de cet impact.
-  L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et distribuer les biens et services de votre quotidien.: L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et distribuer les biens et services de votre quotidien.
   "L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et distribuer les biens et services de votre quotidien. Par exemple il faut de l’eau pour :": "L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et distribuer les biens et services de votre quotidien. Par exemple il faut de l’eau pour :"
   l’extraction des matériaux de vos <2>appareils numériques</2>: l’extraction des matériaux de vos <2>appareils numériques</2>
   la culture du <2>coton</2> que vous portez: la culture du <2>coton</2> que vous portez
@@ -822,7 +814,6 @@ entries:
   Nous n'affichons pas la valeur par défaut en début de test. En effet, notre modèle eau étant le premier du genre en France, nous ne voulons pas qu'elle soit perçue comme la valeur moyenne nationale.: Nous n'affichons pas la valeur par défaut en début de test. En effet, notre modèle eau étant le premier du genre en France, nous ne voulons pas qu'elle soit perçue comme la valeur moyenne nationale.
   'Comme le climat, <2>le cycle de l’eau est fortement impacté partout dans le monde</2>: accès à l’eau potable, disparition et migration d’espèces (animales et végétales), déplacement de populations.': 'Comme le climat, <2>le cycle de l’eau est fortement impacté partout dans le monde</2>: accès à l’eau potable, disparition et migration d’espèces (animales et végétales), déplacement de populations.'
   Les activités humaines menacent les équilibres naturels de notre planète.: Les activités humaines menacent les équilibres naturels de notre planète.
-  C'est pourtant bien l'eau qui sert à produire ce que vous consommez :<1></1> votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.: C'est pourtant bien l'eau qui sert à produire ce que vous consommez :<1></1> votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.
   Ce chiffre vous semble impressionnant ?: Ce chiffre vous semble impressionnant ?
   '*La moyenne française est de': '*La moyenne française est de'
   'L’empreinte eau : pourquoi et comment avons-nous travaillé…': 'L’empreinte eau : pourquoi et comment avons-nous travaillé…'
@@ -1141,3 +1132,9 @@ entries:
   En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.: En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.
   Cette section statistique est générée via Metabase.: Cette section statistique est générée via Metabase.
   Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.: Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.
+  Affichez le détail de votre empreinte carbone ou eau en cliquant sur les cartes ci-dessus.: Affichez le détail de votre empreinte carbone ou eau en cliquant sur les cartes ci-dessus.
+  "C'est pourtant bien l'eau qui sert à produire ce que vous consommez : votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.": "C'est pourtant bien l'eau qui sert à produire ce que vous consommez : votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau."
+  Empreinte carbone, sélectionné, voir le détail ci-dessous: Empreinte carbone, sélectionné, voir le détail ci-dessous
+  Empreinte carbone, voir le détail ci-dessous: Empreinte carbone, voir le détail ci-dessous
+  Empreinte eau, sélectionné, voir le détail ci-dessous: Empreinte eau, sélectionné, voir le détail ci-dessous
+  Empreinte eau, voir le détail ci-dessous: Empreinte eau, voir le détail ci-dessous
