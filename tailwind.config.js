@@ -189,10 +189,10 @@ module.exports = {
             transform: 'translateX(-10vw)',
           },
           '50%': {
-            transform: 'translateX(110vw)',
+            transform: 'translateX(100vw)',
           },
           '98%': {
-            transform: 'translateX(110vw)',
+            transform: 'translateX(100vw)',
           },
           to: {
             transform: 'translateX(-10vw)',
@@ -249,7 +249,7 @@ module.exports = {
         'rainbow-fast': 'rainbow 5s linear infinite',
         jump: 'jump 1s infinite',
         swim: 'swim 10s linear infinite',
-        'swim-delay': 'swimDelay 4s linear infinite',
+        'swim-delay': 'swimDelay 120s linear infinite',
         'swim-fast': 'swim 5s linear infinite',
         'swim-slow': 'swim 15s linear infinite',
         'swim-backwards': 'swimBackwards 10s linear infinite',
