@@ -510,10 +510,7 @@ html[data-useragent*='Trident'] #js {
 }
 
 .markdown img {
-  @apply border;
-  @apply border-gray-200;
-  @apply rounded-md;
-  @apply mb-6;
+  @apply mb-6 rounded-md border border-gray-200;
 }
 
 @keyframes rainbow {
@@ -732,4 +729,13 @@ html[data-useragent*='Trident'] #js {
 }
 .slick-active > button {
   @apply !w-8 bg-primary-700;
+}
+
+.custom-scrollbar {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
 }

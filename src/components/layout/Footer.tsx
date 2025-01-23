@@ -37,17 +37,19 @@ export default function Footer({ className = '' }) {
 
   if (isIframeOnlySimulation) return null
 
-  const isHomePage =
+  const shouldUseWhiteBackground =
     pathname === '/' ||
     pathname === `/${locale}` ||
     pathname.includes('/empreinte-eau') ||
-    pathname.includes('/empreinte-carbone')
+    pathname.includes('/empreinte-carbone') ||
+    pathname.includes('/blog')
+
   return (
     <footer
       className={twMerge(
         'relative flex flex-col items-center gap-4 bg-gray-100 p-4 !pb-32 sm:p-8 md:mb-0',
         className,
-        isHomePage ? 'bg-white' : ''
+        shouldUseWhiteBackground ? 'bg-white' : ''
       )}>
       <div className="flex w-full flex-col items-start gap-2 md:max-w-5xl md:flex-row md:gap-12">
         <Logo onClick={() => trackEvent(footerClickLogo)} />
