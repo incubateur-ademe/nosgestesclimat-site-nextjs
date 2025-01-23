@@ -5,6 +5,7 @@ import { STORAGE_KEY } from '@/constants/storage'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Loader from '@/design-system/layout/Loader'
+import Emoji from '@/design-system/utils/Emoji'
 import { useSubscribeToNewsletter } from '@/hooks/newsletter/useSubscribeToNewsletter'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { getLocalState } from '@/services/ngc.service'
@@ -13,7 +14,23 @@ import { useForm } from 'react-hook-form'
 import ArrowRightIcon from '../icons/ArrowRightIcon'
 import Trans from '../translation/Trans'
 
-function getSuccessMessage(isSubscribed: boolean, isSuccess: boolean) {
+function getSuccessMessage({
+  isSubscribed,
+  isSuccess,
+  userEmailFromLocalStorage,
+}: {
+  isSubscribed: boolean
+  isSuccess: boolean
+  userEmailFromLocalStorage: string
+}) {
+  if (userEmailFromLocalStorage) {
+    return (
+      <span>
+        <Trans>Vous êtes déjà inscrit !</Trans> <Emoji>✅</Emoji>
+      </span>
+    )
+  }
+
   if (isSuccess) {
     return <Trans>Bien noté ! Vous aurez prochainement de nos nouvelles.</Trans>
   }
@@ -73,36 +90,40 @@ export default function NewsletterForm() {
 
   const isSubscribed =
     newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER) &&
+    !!userEmailFromLocalStorage &&
     emailRef.current === userEmailFromLocalStorage
 
+  const isDisabled = !!userEmailFromLocalStorage || isPending || isSuccess
+
   return (
-    <div className="w-96 min-w-80 max-w-full md:flex-1">
+    <div className="min-w-56 max-w-full flex-1">
       <h3 className="mb-4 text-base font-bold text-primary-700">
         <Trans>Inscrivez-vous à notre infolettre</Trans>
       </h3>
 
       <form
-        className="flex flex-col items-end justify-start gap-2 sm:flex-row sm:items-start"
+        className="flex flex-col items-start justify-start gap-2 sm:flex-row"
         onSubmit={handleSubmit((data) =>
           submit({ ...data, newsletterIds: { [LIST_MAIN_NEWSLETTER]: true } })
         )}>
         <TextInputGroup
           placeholder="email@mail.com"
-          className="rounded-full sm:min-w-96"
-          containerClassName="w-full sm:w-auto"
-          successMessage={getSuccessMessage(isSubscribed, isSuccess)}
+          className="w-full rounded-full"
+          containerClassName="w-full max-w-[30rem]"
+          successMessage={getSuccessMessage({
+            isSubscribed,
+            isSuccess,
+            userEmailFromLocalStorage: userEmailFromLocalStorage ?? '',
+          })}
           error={isError ? <Trans>Une erreur est survenue</Trans> : ''}
-          disabled={isPending || isSuccess}
+          disabled={isDisabled}
           value={userEmailFromLocalStorage ?? ''}
           {...register('email')}
         />
         <Button
           type="submit"
-          style={{
-            display: 'flex',
-          }}
-          className="relative flex h-14 w-14 min-w-14 max-w-14 rounded-full !px-0 !py-0"
-          disabled={isPending || isSuccess}>
+          className="relative flex h-14 w-14 min-w-14 max-w-14 self-end rounded-full !px-0 !py-0 sm:self-start md:self-start"
+          disabled={isDisabled}>
           {isPending ? (
             <div className="absolute left-1/2 top-1/2 flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center">
               <Loader size="sm" />
