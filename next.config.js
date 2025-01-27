@@ -59,6 +59,7 @@ const nextConfig = {
   sentry: {
     hideSourceMaps: false, // Ensure source maps are not hidden
   },
+  deleteSourcemapsAfterUpload: true,
   experimental: {
     outputFileTracingExcludes: {
       '*': ['.next/cache/webpack', '.git/**/*', 'cypress/**/*'],
@@ -78,6 +79,7 @@ const nextConfig = {
   },
 }
 
+/** @type {import('@sentry/nextjs').SentryBuildOptions} */
 const sentryConfig = {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options
