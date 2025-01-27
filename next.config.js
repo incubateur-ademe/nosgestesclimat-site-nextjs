@@ -89,7 +89,8 @@ const sentryConfig = {
   sentryUrl: 'https://sentry.incubateur.net',
 
   // Only print logs for uploading source maps in CI
-  silent: true,
+  silent: false,
+  debug: true,
 
   authToken: process.env.SENTRY_AUTH_TOKEN,
 
