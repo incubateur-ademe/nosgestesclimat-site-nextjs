@@ -59,9 +59,6 @@ const nextConfig = {
   sentry: {
     hideSourceMaps: false, // Ensure source maps are not hidden
   },
-  sourcemaps: {
-    deleteSourcemapsAfterUpload: true,
-  },
   outputFileTracing: true,
   experimental: {
     outputFileTracingExcludes: {
@@ -89,7 +86,7 @@ const sentryConfig = {
 
   org: 'incubateur-ademe',
   project: 'nosgestesclimat-nextjs',
-  sentryUrl: 'https://sentry.incubateur.net/',
+  sentryUrl: 'https://sentry.incubateur.net',
 
   // Only print logs for uploading source maps in CI
   silent: true,
@@ -102,9 +99,8 @@ const sentryConfig = {
   // Upload a larger set of source maps for prettier stack traces (increases build time)
   widenClientFileUpload: true,
 
-  // Automatically annotate React components to show their full name in breadcrumbs and session replay
-  reactComponentAnnotation: {
-    enabled: true,
+  sourcemaps: {
+    deleteSourcemapsAfterUpload: true,
   },
 
   // Uncomment to route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
