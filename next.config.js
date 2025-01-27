@@ -60,6 +60,7 @@ const nextConfig = {
     hideSourceMaps: false, // Ensure source maps are not hidden
   },
   deleteSourcemapsAfterUpload: true,
+  outputFileTracing: true,
   experimental: {
     outputFileTracingExcludes: {
       '*': ['.next/cache/webpack', '.git/**/*', 'cypress/**/*'],
@@ -86,7 +87,7 @@ const sentryConfig = {
 
   org: 'incubateur-ademe',
   project: 'nosgestesclimat-nextjs',
-  sentryUrl: 'https://sentry.io/',
+  sentryUrl: 'https://sentry.incubateur.net/',
 
   // Only print logs for uploading source maps in CI
   silent: true,
