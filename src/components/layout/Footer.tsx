@@ -25,7 +25,6 @@ import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 import Link from '../Link'
 import Logo from '../misc/Logo'
-import NewsletterForm from '../newsletter/NewsletterForm'
 import LanguageSwitchButton from '../translation/LanguageSwitchButton'
 import Trans from '../translation/Trans'
 
@@ -154,8 +153,6 @@ export default function Footer({ className = '' }) {
             Impact CO2
           </InlineLink>
         </div>
-
-        <NewsletterForm />
       </div>
 
       <div className="flex flex-wrap justify-between gap-8 md:flex-row md:flex-nowrap">
