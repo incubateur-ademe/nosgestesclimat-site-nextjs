@@ -2174,6 +2174,13 @@
     "@sentry/core" "8.51.0"
     hoist-non-react-statics "^3.3.2"
 
+"@sentry/utils@^8.51.0":
+  version "8.51.0"
+  resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-8.51.0.tgz#5b27f0a4357e2d21b5101bca8af0fb4a9bf44eec"
+  integrity sha512-8YBPpzXugXslWFGT7T0UjzEyJypdZkUOZ/c1QZmE5YFqekFvC1M/KC+L7XwsEE1VRbGMOn8QDankW2EvYLYcMA==
+  dependencies:
+    "@sentry/core" "8.51.0"
+
 "@sentry/vercel-edge@8.51.0":
   version "8.51.0"
   resolved "https://registry.yarnpkg.com/@sentry/vercel-edge/-/vercel-edge-8.51.0.tgz#5f9192a6a5f9aad650f8c228a69d3fe2dc89311f"

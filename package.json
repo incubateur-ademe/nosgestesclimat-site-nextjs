@@ -102,6 +102,7 @@
     "@babel/runtime": "^7.23.1",
     "@faker-js/faker": "^8.4.1",
     "@incubateur-ademe/nosgestesclimat-scripts": "^0.6.0",
+    "@sentry/utils": "^8.51.0",
     "@sentry/webpack-plugin": "^3.1.0",
     "@simonsmith/cypress-image-snapshot": "^9.0.1",
     "@types/mdx": "^2.0.10",
