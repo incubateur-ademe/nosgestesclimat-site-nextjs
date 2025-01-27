@@ -1,6 +1,7 @@
 'use client'
 
 import ErrorBoundary from '@/components/error/ErrorBoundary'
+import { STORAGE_KEY } from '@/constants/storage'
 import { UserProvider } from '@/publicodes-state'
 import type { RegionFromGeolocation } from '@/publicodes-state/types'
 import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
@@ -22,7 +23,7 @@ export default function MainLayoutProviders({
       <IframeOptionsProvider>
         <QueryClientProviderWrapper>
           <UserProvider
-            storageKey="nosgestesclimat::v3"
+            storageKey={STORAGE_KEY}
             migrationInstructions={migrationInstructions}
             initialRegion={initialRegion}>
             <PreventNavigationProvider>
