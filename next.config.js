@@ -59,7 +59,9 @@ const nextConfig = {
   sentry: {
     hideSourceMaps: false, // Ensure source maps are not hidden
   },
-  deleteSourcemapsAfterUpload: true,
+  sourcemaps: {
+    deleteSourcemapsAfterUpload: true,
+  },
   outputFileTracing: true,
   experimental: {
     outputFileTracingExcludes: {
