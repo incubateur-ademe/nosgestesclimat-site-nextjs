@@ -50,22 +50,15 @@ const nextConfig = {
       config.devtool = 'source-map'
     }
 
-    // if (process.env.SENTRY_AUTH_TOKEN) {
-    //   config.plugins.push(
-    //     sentryWebpackPlugin({
-    //       authToken: process.env.SENTRY_AUTH_TOKEN_SOURCEMAPS,
-    //       org: 'betagouv',
-    //       project: 'nosgestesclimat-nextjs',
-    //     })
-    //   )
-    // }
-
     // We do not want to split the chunks too much
     config.optimization.splitChunks.minSize = 300000
 
     return config
   },
   productionBrowserSourceMaps: true,
+  sentry: {
+    hideSourceMaps: false, // Ensure source maps are not hidden
+  },
   experimental: {
     outputFileTracingExcludes: {
       '*': ['.next/cache/webpack', '.git/**/*', 'cypress/**/*'],
@@ -85,40 +78,44 @@ const nextConfig = {
   },
 }
 
-const sentryConfig = [
-  {
-    // For all available options, see:
-    // https://github.com/getsentry/sentry-webpack-plugin#options
+const sentryConfig = {
+  // For all available options, see:
+  // https://github.com/getsentry/sentry-webpack-plugin#options
 
-    // Suppresses source map uploading logs during build
-    silent: true,
-    org: 'incubateur-ademe',
-    project: 'nosgestesclimat-nextjs',
-    url: 'https://sentry.incubateur.net/',
-    authToken: process.env.SENTRY_AUTH_TOKEN,
+  org: 'incubateur-ademe',
+  project: 'nosgestesclimat-nextjs',
+  sentryUrl: 'https://sentry.io/',
+
+  // Only print logs for uploading source maps in CI
+  silent: true,
+
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+
+  // For all available options, see:
+  // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
+
+  // Upload a larger set of source maps for prettier stack traces (increases build time)
+  widenClientFileUpload: true,
+
+  // Automatically annotate React components to show their full name in breadcrumbs and session replay
+  reactComponentAnnotation: {
+    enabled: true,
   },
-  {
-    // For all available options, see:
-    // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 
-    // Upload a larger set of source maps for prettier stack traces (increases build time)
-    widenClientFileUpload: false,
+  // Uncomment to route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
+  // This can increase your server load as well as your hosting bill.
+  // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
+  // side errors will fail.
+  tunnelRoute: '/monitoring',
 
-    // Transpiles SDK to be compatible with IE11 (increases bundle size)
-    transpileClientSDK: false,
+  // Hides source maps from generated client bundles
+  hideSourceMaps: true,
 
-    // Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
-    tunnelRoute: '/monitoring',
-
-    // Hides source maps from generated client bundles
-    hideSourceMaps: false,
-
-    // Automatically tree-shake Sentry logger statements to reduce bundle size
-    disableLogger: true,
-  },
-]
+  // Automatically tree-shake Sentry logger statements to reduce bundle size
+  disableLogger: true,
+}
 
 module.exports =
   process.env.NODE_ENV !== 'development'
-    ? withSentryConfig(withMDX(nextConfig), ...sentryConfig)
+    ? withSentryConfig(withMDX(nextConfig), sentryConfig)
     : nextConfig
