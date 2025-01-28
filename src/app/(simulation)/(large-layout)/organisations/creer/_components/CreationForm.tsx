@@ -57,7 +57,7 @@ export default function CreationForm() {
     try {
       const organisationUpdated = await createOrganisation({
         name,
-        type: organisationType || null,
+        type: organisationType || OrganisationTypeEnum.other,
         administrators: [
           {
             name: administratorName,

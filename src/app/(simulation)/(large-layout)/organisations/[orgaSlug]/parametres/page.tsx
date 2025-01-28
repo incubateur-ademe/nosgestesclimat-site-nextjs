@@ -4,6 +4,7 @@ import MaxWidthContent from '@/components/layout/MaxWidthContent'
 import OrganisationFetchError from '@/components/organisations/OrganisationFetchError'
 import OrganisationLoader from '@/components/organisations/OrganisationLoader'
 import Trans from '@/components/translation/Trans'
+import { OrganisationTypeEnum } from '@/constants/organisations/organisationTypes'
 import { organisationsParametersUpdateInformations } from '@/constants/tracking/pages/organisationsParameters'
 import Form from '@/design-system/form/Form'
 import Separator from '@/design-system/layout/Separator'
@@ -55,7 +56,7 @@ const getFormDefaultValues = (
     email,
     numberOfCollaborators: numberOfCollaborators ?? 0,
     hasOptedInForCommunications: optedInForCommunications ?? false,
-    ...(organisationType ? { organisationType } : {}),
+    organisationType: organisationType ?? OrganisationTypeEnum.other,
     ...(position ? { position } : {}),
     ...(administratorName ? { administratorName } : {}),
     ...(administratorTelephone ? { administratorTelephone } : {}),
