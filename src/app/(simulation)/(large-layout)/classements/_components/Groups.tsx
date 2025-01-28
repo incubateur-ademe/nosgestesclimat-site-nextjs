@@ -2,10 +2,10 @@
 
 import GroupLoader from '@/components/groups/GroupLoader'
 import Trans from '@/components/translation/Trans'
+import { linkToGroupCreation } from '@/constants/group'
 import { classementCreateGroup } from '@/constants/tracking/pages/classements'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
-import { linkToGroupCreation } from '@/helpers/navigation/groupPages'
 import { useFetchGroupsOfUser } from '@/hooks/groups/useFetchGroupsOfUser'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'

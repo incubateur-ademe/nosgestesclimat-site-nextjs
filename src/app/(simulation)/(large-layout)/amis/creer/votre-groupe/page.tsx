@@ -1,10 +1,10 @@
 import StepsDisplay from '@/components/groups/StepsDisplay'
+import { linkToGroupCreation } from '@/constants/group'
 import { amisCreationVotreGroupeRetour } from '@/constants/tracking/pages/amisCreation'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { linkToGroupCreation } from '@/helpers/navigation/groupPages'
 import NameForm from './_components/NameForm'
 
 export async function generateMetadata() {
@@ -30,7 +30,7 @@ export default async function GroupNamePage() {
     <div className="p-4 md:p-8">
       <GoBackLink
         className="mb-4 font-bold"
-        href={'/amis/creer/vos-informations'}
+        href={linkToGroupCreation}
         eventTracked={amisCreationVotreGroupeRetour}
       />
 
