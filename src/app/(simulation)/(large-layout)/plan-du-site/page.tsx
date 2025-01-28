@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import { linkToGroupCreation } from '@/constants/group'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -44,7 +45,7 @@ export default async function PlanDuSitePage() {
       },
       amis: {
         title: t(`Dans un groupe d'amis`),
-        href: '/amis/creer/vos-informations',
+        href: linkToGroupCreation,
       },
     },
     Informations: {

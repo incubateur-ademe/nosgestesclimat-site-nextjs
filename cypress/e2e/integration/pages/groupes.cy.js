@@ -2,7 +2,7 @@ import { clickSkipTutorialButton } from '../../../helpers/elements/buttons'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 import { skipRiddle } from '../../../helpers/simulation/skipRiddle'
 
-describe('The Group creation page /amis/creer', () => {
+describe('The Group creation page', () => {
   let ownerUserId = ''
 
   it('allows to create a new group and displays it afterwards', () => {
