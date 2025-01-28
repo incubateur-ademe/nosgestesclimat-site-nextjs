@@ -79,3 +79,5 @@ export const GROUP_EMOJIS = [
   '🍐',
   '🍌',
 ]
+
+export const linkToGroupCreation = '/amis/creer/vos-informations'
