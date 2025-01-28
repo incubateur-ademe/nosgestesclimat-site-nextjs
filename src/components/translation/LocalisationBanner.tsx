@@ -12,6 +12,8 @@ import { useUser } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
+import { usePathname } from 'next/navigation'
+import { twMerge } from 'tailwind-merge'
 import Trans from './Trans'
 
 type Props = {
@@ -19,6 +21,11 @@ type Props = {
 }
 export default function LocalisationBanner({ supportedRegions }: Props) {
   const { user, tutorials, hideTutorial } = useUser()
+
+  const pathname = usePathname()
+
+  const isTutorialOrTest =
+    pathname.includes('/tutoriel') || pathname.includes('/simulateur/bilan')
 
   const currentLocale = useLocale() as string
 
@@ -47,24 +54,32 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
   if (code === defaultModelRegionCode) return null
 
   return (
-    <Card className="mx-auto mb-8 w-[32rem] max-w-full flex-row border-none bg-[#fff8d3]">
-      <div className="flex gap-8">
-        <div className="flex w-8 items-center text-4xl">📍</div>
+    <Card
+      className={twMerge(
+        'fixed bottom-0 right-8 z-50 mx-auto mb-8 max-w-full flex-row bg-primary-50',
+        isTutorialOrTest && 'bottom-12'
+      )}>
+      <div className="flex gap-4">
         <div className="flex-1">
           {regionParams && (
-            <p className="mb-0 flex-1 items-baseline gap-1">
-              <Trans>Vous utilisez la version</Trans>{' '}
-              <strong>{versionName}</strong> <Trans>du test</Trans>
-              <CountryFlag code={code} />
-              {code !== defaultModelRegionCode && (
-                <span>
-                  {' '}
-                  <Trans i18nKey="components.localisation.LocalisationMessage.betaMsg">
-                    Elle est actuellement en version <strong>bêta</strong>.
-                  </Trans>
-                </span>
-              )}{' '}
-            </p>
+            <>
+              <p className="mb-0 inline flex-1 items-baseline gap-1">
+                <CountryFlag className="mr-2 inline" code={code} />
+                <Trans>Vous utilisez la version</Trans>{' '}
+                <strong>{versionName}</strong> <Trans>du test</Trans>.
+              </p>
+
+              <p className="mb-2">
+                {code !== defaultModelRegionCode && (
+                  <span>
+                    {' '}
+                    <Trans i18nKey="components.localisation.LocalisationMessage.betaMsg">
+                      Elle est actuellement en version <strong>bêta</strong>.
+                    </Trans>
+                  </span>
+                )}{' '}
+              </p>
+            </>
           )}
 
           {!regionParams && code && (
