@@ -1,5 +1,4 @@
 import { GROUP_URL } from '@/constants/urls'
-import type { Simulation } from '@/publicodes-state/types'
 import type { Group } from '@/types/groups'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
@@ -13,11 +12,6 @@ type MutateAsyncProps = {
       name: string
       email?: string
     }
-    participants?: [
-      {
-        simulation?: Simulation
-      },
-    ]
   }
 }
 
@@ -26,14 +20,13 @@ export function useCreateGroup() {
 
   return useMutation({
     mutationFn: ({
-      groupInfo: { name, emoji, administrator, participants },
+      groupInfo: { name, emoji, administrator },
     }: MutateAsyncProps) =>
       axios
         .post<Group>(GROUP_URL, {
           name,
           emoji,
           administrator,
-          participants,
         })
         .then((res) => res.data),
     onSuccess: () => {
