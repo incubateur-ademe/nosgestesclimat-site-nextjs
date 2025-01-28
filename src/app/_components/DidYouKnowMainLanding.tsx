@@ -1,9 +1,14 @@
 import DidYouKnowSlider from '@/components/landing-pages/DidYouKnowSlider'
 import Trans from '@/components/translation/Trans'
 
-export default function DidYouKnowMainLanding() {
+export default function DidYouKnowMainLanding({
+  className,
+}: {
+  className?: string
+}) {
   return (
     <DidYouKnowSlider
+      className={className}
       slides={[
         {
           illustration: '/images/icons/icone-ordinateur.svg',

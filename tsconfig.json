@@ -29,6 +29,6 @@
     "cypress/**/*",
     "scripts/**/*",
     "./next.config.js",
-    ".next/types/app/layout.ts"
+    ".next/**/*"
   ]
 }

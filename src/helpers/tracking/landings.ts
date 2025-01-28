@@ -1,4 +1,4 @@
-export function getLandingCategory(pathname: string) {
+function getLandingCategory(pathname: string) {
   switch (pathname) {
     case '/empreinte-eau':
       return 'LP eau'
@@ -31,6 +31,12 @@ export const getLandingClickCTAResults = (pathname: string, action: string) => [
   getLandingCategory(pathname),
   action,
   'Click Voir les résultats',
+]
+export const getLandingClickCTARestart = (pathname: string, action: string) => [
+  'trackEvent',
+  getLandingCategory(pathname),
+  action,
+  'Click Recommencer',
 ]
 
 // Did you know slider

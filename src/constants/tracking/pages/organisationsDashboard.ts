@@ -8,27 +8,6 @@ export const organisationsDashboardClickParameters = [
   'Click Paramètres',
 ]
 
-// Figma comment #92
-export const organisationsDashboardClickShortcutShare = [
-  'trackEvent',
-  'Organisations Dashboard',
-  'Click Shortcut Share',
-]
-
-// Figma comment #93
-export const organisationsDashboardCopyLink = [
-  'trackEvent',
-  'Organisations Dashboard',
-  'Copy Link',
-]
-
-// Figma comment #94
-export const organisationsDashboardClickIframe = [
-  'trackEvent',
-  'Organisations Dashboard',
-  'Click Iframe',
-]
-
 // Figma comment #95
 export const organisationsDashboardDownloadKit = [
   'trackEvent',

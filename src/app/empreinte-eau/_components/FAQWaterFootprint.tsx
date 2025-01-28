@@ -8,6 +8,7 @@ export default async function FAQWaterFootprint() {
 
   return (
     <FAQ
+      className="mb-16"
       subTitle={<Trans>Vos questions sur l'empreinte eau</Trans>}
       questions={[
         {

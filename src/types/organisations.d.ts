@@ -9,13 +9,13 @@ type CustomAdditionalQuestions = {
   isEnabled: boolean
 }
 
-export type User = {
+type User = {
   id: string
   name?: string
   email?: string
 }
 
-export type VerifiedUser = {
+type VerifiedUser = {
   id: string
   email: string
   name?: string | null
@@ -113,5 +113,5 @@ export type OrgaSettingsInputsType = {
   numberOfCollaborators?: number
   administratorTelephone?: string
   hasOptedInForCommunications?: boolean
-  organisationType?: OrganisationTypeEnum
+  organisationType: OrganisationTypeEnum
 }

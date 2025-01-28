@@ -36,9 +36,7 @@ const faqFr = parseYaml(faqFrYaml as unknown as YamlEntry)
 const faqEn = parseYaml(faqEnYaml as unknown as YamlEntry)
 const faqEs = parseYaml(faqEsYaml as unknown as YamlEntry)
 
-export const defaultLang = Lang.Fr
-
-export function getLangInfos(lang: Lang): LangInfos {
+function getLangInfos(lang: Lang): LangInfos {
   switch (lang) {
     case Lang.En: {
       return {
@@ -71,7 +69,7 @@ export function getLangInfos(lang: Lang): LangInfos {
   }
 }
 
-export function getLangFromAbreviation(abrv: string): Lang {
+function getLangFromAbreviation(abrv: string): Lang {
   switch (abrv?.slice(0, 2) ?? '') {
     case 'en':
       return Lang.En
@@ -87,29 +85,6 @@ export function getLangFromAbreviation(abrv: string): Lang {
 
 export function getCurrentLangInfos(i18n: i18n): LangInfos {
   return getLangInfos(getLangFromAbreviation(i18n.language))
-}
-
-export function getCurrentLangAbrv(i18n: i18n): string {
-  return getCurrentLangInfos(i18n).abrv
-}
-
-export function changeLangTo(i18n: i18n, currentLangState: Lang) {
-  const langInfos = getLangInfos(currentLangState)
-  if (langInfos) {
-    i18n.changeLanguage(langInfos.abrv)
-    console.log('[i18next] current language:', i18n.language)
-  }
-}
-
-export function getMarkdownInCurrentLang(
-  markdownFiles: Array<[Lang, string]>,
-  currentLangState: Lang
-) {
-  return (
-    markdownFiles.find(
-      ([lang]) => getLangInfos(lang).abrv === currentLangState
-    )?.[1] || markdownFiles[0][1]
-  )
 }
 
 const enTranslation = {

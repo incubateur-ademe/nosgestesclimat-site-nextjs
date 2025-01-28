@@ -36,10 +36,6 @@ export default async function PlanDuSitePage() {
         title: t('Nos actions pour réduire votre empreinte'),
         href: '/actions',
       },
-      actionsPlus: {
-        title: t('Les actions phares'),
-        href: '/actions/plus',
-      },
     },
     'Comparez votre empreinte': {
       organisation: {
