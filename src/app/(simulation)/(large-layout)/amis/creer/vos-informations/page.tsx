@@ -1,10 +1,10 @@
 import StepsDisplay from '@/components/groups/StepsDisplay'
+import { linkToGroupCreation } from '@/constants/group'
 import { amisCreationVosInformationsRetour } from '@/constants/tracking/pages/amisCreation'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { linkToGroupCreation } from '@/helpers/navigation/groupPages'
 import GroupCreationForm from './_component/GroupCreationForm'
 
 export async function generateMetadata() {
