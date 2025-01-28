@@ -1,6 +1,7 @@
 'use client'
 
 import MetricSlider from '@/components/fin/MetricSlider'
+import HeadingButtons from '@/components/fin/metricSlider/heading/HeadingButtons'
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
 import Trans from '@/components/translation/Trans'
@@ -45,10 +46,12 @@ export default function FinPage() {
 
       <Poll />
 
-      <div className="lg:hidden">
+      <div className="flex justify-between">
         <Title tag="h1">
           <Trans>Mes empreintes</Trans>
         </Title>
+
+        <HeadingButtons />
       </div>
 
       <MetricSlider />

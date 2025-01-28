@@ -26,9 +26,8 @@ export default function MetricCard({
     <button
       onClick={() => setCurrentMetric(metric)}
       className={twMerge(
-        'last: pointer-events-auto relative !flex h-full flex-1 flex-col overflow-hidden rounded-xl rounded-l-xl rounded-r-none border-[3px] border-r-0 border-primary-50 bg-white last:rounded-l-none last:rounded-r-xl last:border-l-0 last:border-r-[3px]',
-        isSelected &&
-          ' border-r-[3px] border-primary-700 bg-primary-50 last:border-l-[3px]'
+        'pointer-events-auto relative !flex h-full flex-1 flex-col overflow-hidden rounded-xl border-[3px] border-primary-50 bg-white',
+        isSelected && 'border-primary-700 bg-primary-50'
       )}
       {...props}>
       {/* Mobile only */}
@@ -44,7 +43,7 @@ export default function MetricCard({
       </Badge>
       <div
         className={twMerge(
-          'h-full',
+          'h-full w-full',
           isSticky && 'pointer-events-none max-h-28 overflow-hidden'
         )}>
         {children}
