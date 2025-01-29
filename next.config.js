@@ -21,7 +21,7 @@ const nextConfig = {
   async redirects() {
     return redirects
   },
-  webpack: (config, { dev, isServer }) => {
+  webpack: (config, { dev }) => {
     if (config.cache) {
       if (dev) {
         // Development configuration
@@ -44,7 +44,7 @@ const nextConfig = {
     })
 
     // Enable source maps
-    if (!dev && !isServer) {
+    if (!dev) {
       config.devtool = 'source-map'
     }
 
@@ -86,10 +86,6 @@ const sentryConfig = {
   silent: !process.env.CI,
 
   debug: true,
-
-  sourcemaps: {
-    deleteSourcemapsAfterUpload: true,
-  },
 
   // For all available options, see:
   // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
