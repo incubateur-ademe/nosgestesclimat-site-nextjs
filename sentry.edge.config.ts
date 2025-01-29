@@ -8,6 +8,7 @@ import * as Sentry from '@sentry/nextjs'
 Sentry.init({
   dsn: 'https://75dcf9dfe74c4439977a517be2805122@sentry.incubateur.net/118',
 
+  // In production keep a 10% sample rate to avoid high costs
   sampleRate: process.env.NODE_ENV === 'production' ? 0.1 : 1,
 
   // Setting this option to true will print useful information to the console while you're setting up Sentry.
