@@ -2151,7 +2151,7 @@
   resolved "https://registry.yarnpkg.com/@sentry/core/-/core-8.52.0.tgz#ad5f4099b82a35b53c16be1fa86fd51817acd051"
   integrity sha512-2j3B7IKmseTKFm6AyheJ+RSgXqIsx+3blFSuxpkdvsEt60Lbzva2uDkCENfBDOclioo1kvHgsyuXLfWW4A+wwA==
 
-"@sentry/nextjs@^8.52.0":
+"@sentry/nextjs@^8.12.0":
   version "8.52.0"
   resolved "https://registry.yarnpkg.com/@sentry/nextjs/-/nextjs-8.52.0.tgz#387195dd3e38f959cf90dba913eec0841ee1504b"
   integrity sha512-0tPt780x0XpX0QdedXYuesJ0Caqf8zMk9zAAhA8H6NdA94eJ7ztHwCgX7tOWkzNCnAozcfiC/mMNKIrkmmV0Gg==
@@ -2219,7 +2219,7 @@
   dependencies:
     "@sentry/core" "8.52.0"
 
-"@sentry/react@8.52.0", "@sentry/react@^8.52.0":
+"@sentry/react@8.52.0", "@sentry/react@^8.12.0":
   version "8.52.0"
   resolved "https://registry.yarnpkg.com/@sentry/react/-/react-8.52.0.tgz#fc04c3fe096bc88702922d46a0392d601ec69669"
   integrity sha512-7tbRuTFOgKLM2fM5/TjrfDWbkqOOsxkb2QldnAUHTAcArIx77DpsurAgEx5L9lqn+UAhuw1X2IGbzk9fVV/ZDQ==
@@ -2228,7 +2228,7 @@
     "@sentry/core" "8.52.0"
     hoist-non-react-statics "^3.3.2"
 
-"@sentry/utils@^8.52.0":
+"@sentry/utils@^8.12.0":
   version "8.52.0"
   resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-8.52.0.tgz#93bd49a52d37ebeddc6f08b4a23ce291a18d4e0e"
   integrity sha512-I5ZTPRjozN8C5qGumZcnmXRU5nIj9S9bXO44HMmGxfIb8d12glAq+BBkbKycO2mB9baz/RXx3rK6FfM5W4VZ3Q==
