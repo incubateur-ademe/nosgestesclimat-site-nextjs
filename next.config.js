@@ -50,16 +50,6 @@ const nextConfig = {
       config.devtool = 'source-map'
     }
 
-    // if (process.env.SENTRY_AUTH_TOKEN) {
-    //   config.plugins.push(
-    //     sentryWebpackPlugin({
-    //       authToken: process.env.SENTRY_AUTH_TOKEN_SOURCEMAPS,
-    //       org: 'betagouv',
-    //       project: 'nosgestesclimat-nextjs',
-    //     })
-    //   )
-    // }
-
     // We do not want to split the chunks too much
     config.optimization.splitChunks.minSize = 300000
 
@@ -94,7 +84,13 @@ const sentryConfig = {
   sentryUrl: 'https://sentry.incubateur.net/',
 
   // Only print logs for uploading source maps in CI
-  silent: false, //!process.env.CI,
+  silent: !process.env.CI,
+
+  debug: true,
+
+  sourcemaps: {
+    deleteSourcemapsAfterUpload: true,
+  },
 
   // For all available options, see:
   // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
