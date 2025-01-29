@@ -49,7 +49,7 @@ const nextConfig = {
     }
 
     // We do not want to split the chunks too much
-    //config.optimization.splitChunks.minSize = 300000
+    config.optimization.splitChunks.minSize = 300000
 
     return config
   },
@@ -118,7 +118,7 @@ const sentryConfig = {
   // // See the following for more information:
   // // https://docs.sentry.io/product/crons/
   // // https://vercel.com/docs/cron-jobs
-  // automaticVercelMonitors: true,
+  automaticVercelMonitors: true,
 }
 
 module.exports =
