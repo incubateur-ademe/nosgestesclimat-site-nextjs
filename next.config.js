@@ -10,8 +10,6 @@ const redirects = require('./config/redirects.js')
 
 const remoteImagesPatterns = require('./config/remoteImagesPatterns.js')
 
-// const { sentryWebpackPlugin } = require('@sentry/webpack-plugin')
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
@@ -51,7 +49,7 @@ const nextConfig = {
     }
 
     // We do not want to split the chunks too much
-    config.optimization.splitChunks.minSize = 300000
+    //config.optimization.splitChunks.minSize = 300000
 
     return config
   },
@@ -75,6 +73,7 @@ const nextConfig = {
   },
 }
 
+/** @type {import('@sentry/nextjs').SentryBuildOptions} */
 const sentryConfig = {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options
