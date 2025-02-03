@@ -51,6 +51,11 @@ export function useSetCurrentSimulationFromParams() {
     if (storedSimulation) {
       setCurrentSimulationId(storedSimulation.id)
       setIsCorrectSimulationSet(true)
+
+      if (simulation.progression === 1 || storedSimulation.progression === 1) {
+        router.replace('/fin')
+      }
+
       return
     }
 
@@ -58,8 +63,8 @@ export function useSetCurrentSimulationFromParams() {
     initSimulation(simulation)
     setIsCorrectSimulationSet(true)
 
-    // We delete the query params and reload the page
-    router.replace(pathname)
+    // We delete the query params and redirect to end page or reload the simulator page
+    router.replace(simulation.progression === 1 ? '/fin' : pathname)
   }, [
     simulations,
     simulation,

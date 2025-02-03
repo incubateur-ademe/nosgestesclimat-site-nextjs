@@ -30,7 +30,7 @@ export default function PulsatingDot({
 
   // Default open the floating info if the user is on mobile and the shouldDefaultDisplayFloatingInfo is true
   useEffect(() => {
-    if (/* isMobile() && */ shouldDefaultDisplayFloatingInfo) {
+    if (shouldDefaultDisplayFloatingInfo) {
       setFloatingElementDisplayed(itemKey)
       setIsHovered(true)
     }
@@ -60,7 +60,7 @@ export default function PulsatingDot({
           carbonScore={carbonScore}
           waterScore={waterScore}
           orientation={floatingInfoOrientation}
-          className="animate-fade-in left-0 top-0"
+          className="left-0 top-0 animate-fade-in"
           key={`${itemKey}-floating-info`}
         />
       )}
