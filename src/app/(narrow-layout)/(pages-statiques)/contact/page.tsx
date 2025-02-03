@@ -52,7 +52,7 @@ export default async function Contact() {
           </p>
         </div>
 
-        <Image
+        
           className="max-w-[50vw] self-start"
           src="/images/illustrations/delivering-mail.png"
           width="300"

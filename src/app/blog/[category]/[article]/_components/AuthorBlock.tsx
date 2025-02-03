@@ -16,7 +16,7 @@ export default function AuthorBlock({
             <Image
               className="overflow-hidden rounded-full"
               src={author.image?.url}
-              alt={author.image?.alternativeText}
+              alt={author.image?.alternativeText ?? ''}
               width={200}
               height={200}
             />
