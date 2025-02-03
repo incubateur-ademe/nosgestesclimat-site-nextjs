@@ -192,14 +192,6 @@ export default function Footer({ className = '' }) {
             </Link>
           </div>
         </div>
-
-        <div className="flex gap-4 self-end pb-1">
-          <Marianne className="h-auto w-12 md:w-auto" />
-
-          <Link href="https://ademe.fr" target="_blank">
-            <Ademe className="h-auto w-10 md:w-auto" />
-          </Link>
-        </div>
       </div>
     </footer>
   )
