@@ -18,7 +18,7 @@ export function useUpdateUserSettings({ email, userId }: Props) {
     mutationKey: ['updateUserSettings', email, userId],
     mutationFn: async ({ name, newsletterIds, email: emailParam }: FuncProps) =>
       axios.post(SERVER_URL + '/update-settings', {
-        email: email || emailParam,
+        email: emailParam || email,
         userId,
         name,
         newsletterIds,

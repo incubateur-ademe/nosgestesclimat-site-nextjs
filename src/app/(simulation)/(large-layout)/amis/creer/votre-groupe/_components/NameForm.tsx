@@ -84,9 +84,6 @@ export default function NameForm() {
             name: administratorName ?? '',
             ...(administratorEmail ? { email: administratorEmail } : {}),
           },
-          ...(currentSimulation
-            ? { participants: [{ simulation: currentSimulation }] }
-            : {}),
         },
       })
 

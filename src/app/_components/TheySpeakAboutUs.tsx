@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 export default function TheySpeakAboutUs() {
   return (
-    <div className="relative mb-10 px-4 py-16 md:py-28">
+    <div className="relative mb-10 px-4 py-16 md:mb-20 md:py-28 xl:mb-32">
       {/* Helps cover the triangles of white shown because of the perspective change in Background */}
       <div className="absolute left-0 top-0 h-1/2 w-[200%] bg-heroLightBackground" />
 

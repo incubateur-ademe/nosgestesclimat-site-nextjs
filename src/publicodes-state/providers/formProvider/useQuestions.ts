@@ -72,12 +72,16 @@ export default function useQuestions({
 
       // We artificially set the missing variables of the whiteList to a high value
       priorityQuestions.forEach((dottedName) => {
-        tempMissingVariables[dottedName] += 10000
+        if (dottedName in tempMissingVariables) {
+          tempMissingVariables[dottedName] += 10000
+        }
       })
 
       // We artificially set the missing variables of the blackList to a negative value
       nonPriorityQuestions.forEach((dottedName) => {
-        tempMissingVariables[dottedName] -= 1000
+        if (dottedName in tempMissingVariables) {
+          tempMissingVariables[dottedName] -= 1000
+        }
       })
 
       return tempMissingVariables

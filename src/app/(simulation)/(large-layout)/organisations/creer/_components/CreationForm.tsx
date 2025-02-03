@@ -1,6 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import { linkToGroupCreation } from '@/constants/group'
 import {
   ORGANISATION_TYPES,
   OrganisationTypeEnum,
@@ -57,7 +58,7 @@ export default function CreationForm() {
     try {
       const organisationUpdated = await createOrganisation({
         name,
-        type: organisationType || null,
+        type: organisationType || OrganisationTypeEnum.other,
         administrators: [
           {
             name: administratorName,
@@ -158,7 +159,7 @@ export default function CreationForm() {
                   ou celle ayant la plus faible empreinte gagne !
                 </Trans>
               </p>
-              <ButtonLink href="/amis/creer" size="sm">
+              <ButtonLink href={linkToGroupCreation} size="sm">
                 <Trans>Créer un groupe d'amis</Trans>
               </ButtonLink>
             </div>

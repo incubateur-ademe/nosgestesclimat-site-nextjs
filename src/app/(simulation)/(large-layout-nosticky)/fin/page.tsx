@@ -41,7 +41,7 @@ export default function FinPage() {
     return <FinPageSkeleton />
 
   return (
-    <div className="relative">
+    <div className="relative mt-12">
       <IframeDataShareModal />
 
       <Poll />

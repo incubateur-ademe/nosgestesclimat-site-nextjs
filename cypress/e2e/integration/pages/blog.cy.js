@@ -10,7 +10,7 @@ describe('The Blog page', { testIsolation: false }, () => {
   it('displays a list of articles, which are themselves displayed correctly', () => {
     cy.get('ul[data-cypress-id="blog-list"]').should('be.visible')
 
-    cy.get('ul[data-cypress-id="blog-list"] > a').first().click()
+    cy.get('ul[data-cypress-id="blog-list"]  a').first().click()
 
     cy.wait(1000)
 

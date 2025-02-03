@@ -113,5 +113,5 @@ export type OrgaSettingsInputsType = {
   numberOfCollaborators?: number
   administratorTelephone?: string
   hasOptedInForCommunications?: boolean
-  organisationType?: OrganisationTypeEnum
+  organisationType: OrganisationTypeEnum
 }
