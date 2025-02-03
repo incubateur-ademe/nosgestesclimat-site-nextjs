@@ -61,12 +61,13 @@ export default function CarboneTotalChart({ total, isSmall }: Props) {
               decimalSeparator=","
               thousandsSeparator=" "
             />
-          </strong>{' '}
+          </strong>
+            
           <span className="text-lg md:text-3xl lg:text-4xl lg:leading-tight">
             {unit}
           </span>
         </p>
-        <p className="mb-0 text-right text-default">
+        <p className="mb-0 text-center text-default">
           <span className="text-sm md:text-lg lg:text-xl">
             <Trans>de</Trans> CO₂e <Trans>par an</Trans>
           </span>

@@ -61,7 +61,7 @@ export default function MetricSlider({
         className={twMerge(
           'relative mx-auto -mt-0.5 flex w-full gap-2 overflow-hidden px-0 transition-all duration-300 md:gap-4',
           isSticky
-            ? 'mt-2 h-28 overflow-hidden lg:h-[6rem]'
+            ? 'mt-2 h-28 overflow-hidden lg:h-32'
             : 'h-28 md:h-72 lg:h-80'
         )}>
         <MetricCard
