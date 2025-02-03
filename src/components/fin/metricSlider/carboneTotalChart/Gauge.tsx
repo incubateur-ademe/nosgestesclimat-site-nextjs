@@ -1,11 +1,15 @@
 import { useRule } from '@/publicodes-state'
 import { motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
+import TargetNumber from './TargetNumber'
 
-type Props = {
+export default function Gauge({
+  isSmall,
+  total,
+}: {
   isSmall?: boolean
-}
-export default function Gauge({ isSmall }: Props) {
+  total?: number
+}) {
   const { numericValue } = useRule('bilan')
 
   const isOutOfRange = numericValue > 12000
@@ -17,7 +21,7 @@ export default function Gauge({ isSmall }: Props) {
         isSmall ? 'pointer-events-none h-0 opacity-0' : 'h-8 lg:h-12'
       )}>
       <div
-        className="relative h-full w-full overflow-hidden rounded-full border-2 border-primary-100 lg:h-12"
+        className="relative h-full w-full overflow-hidden rounded-full border-2 border-primary-100 lg:h-10"
         style={{ backgroundColor: '#f96f81' }}>
         <motion.div
           initial={{ scaleX: 1 }}
@@ -42,6 +46,8 @@ export default function Gauge({ isSmall }: Props) {
           12
         </div>
       ) : null}
+
+      {!total ? <TargetNumber isSmall={isSmall} /> : null}
     </div>
   )
 }

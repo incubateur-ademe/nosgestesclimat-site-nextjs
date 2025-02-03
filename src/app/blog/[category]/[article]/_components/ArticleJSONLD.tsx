@@ -13,7 +13,7 @@ export default function ArticleJSONLD({ article }: { article: ArticleType }) {
           dateModified: article.updatedAt,
           image: {
             '@type': 'imageObject',
-            url: article.image,
+            url: article.image?.url,
             height: '640',
             width: '800',
           },

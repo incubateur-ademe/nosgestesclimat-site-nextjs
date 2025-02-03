@@ -10,7 +10,7 @@ export default function ButtonBack({
       data-cypress-id="back-button"
       className="relative block h-8 w-8"
       onClick={onClick}>
-      <ChevronLeft className="h-auto w-full transition-transform hover:-translate-x-2" />
+      <ChevronLeft className="h-auto w-full stroke-primary-700 transition-transform hover:-translate-x-2" />
     </button>
   )
 }
