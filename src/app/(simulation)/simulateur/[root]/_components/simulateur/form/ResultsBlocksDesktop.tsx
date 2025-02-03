@@ -1,4 +1,4 @@
-import Explanation from '@/components/total/total/Explanation'
+import Explanation from '@/components/simulation/topBar/Explanation'
 import InteractiveResultBlock from './resultsBlocksDesktop/InteractiveResultBlock'
 
 export default function ResultsBlocksDesktop() {

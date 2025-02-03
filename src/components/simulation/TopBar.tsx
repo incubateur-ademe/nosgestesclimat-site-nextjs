@@ -1,25 +1,27 @@
 'use client'
 
-import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
 import { useIframe } from '@/hooks/useIframe'
 import { useCurrentSimulation, useForm } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
-import ButtonBack from './total/ButtonBack'
-import Category from './total/Category'
-import Progress from './total/Progress'
-import TotalButtons from './total/TotalButtons'
+import TotalFootprintNumber from '../misc/TotalFootprintNumber'
+import ButtonBack from './topBar/ButtonBack'
+import Category from './topBar/Category'
+import Progress from './topBar/Progress'
+import TotalButtons from './topBar/TotalButtons'
 
 export default function Total({
   toggleQuestionList,
   toggleBackHomeModal,
   toggleSaveModal,
   simulationMode = true,
+  showTotal = false,
 }: {
   toggleQuestionList?: () => void
   toggleBackHomeModal?: () => void
   toggleSaveModal?: () => void
   simulationMode?: boolean
+  showTotal?: boolean
 }) {
   const { isIframe, isIframeOnlySimulation } = useIframe()
 
@@ -32,8 +34,7 @@ export default function Total({
   return (
     <header
       className={twMerge(
-        'fixed top-0 z-50 h-16 w-full md:bg-white',
-        getBgCategoryColor(currentCategory, '50'),
+        'fixed top-0 z-50 h-16 w-full bg-white',
         !simulationMode && 'static z-0 bg-white'
       )}>
       <div
@@ -54,8 +55,14 @@ export default function Total({
                 }
               />
             )}
-
-            <Category category={currentCategory} />
+            {showTotal ? (
+              <TotalFootprintNumber
+                size="lg"
+                className="flex-row items-baseline md:gap-1"
+              />
+            ) : (
+              <Category category={currentCategory} />
+            )}
           </div>
           {toggleQuestionList ? (
             <TotalButtons

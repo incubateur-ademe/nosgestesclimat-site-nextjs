@@ -8,12 +8,7 @@ import Trans from '@/components/translation/Trans'
 import { simulateurOpenScoreInfo } from '@/constants/tracking/pages/simulateur'
 import { TUTORIALS } from '@/constants/tutorial'
 import Button from '@/design-system/inputs/Button'
-import {
-  getFillColor,
-  getStrokeColor,
-  getTextDarkColor,
-} from '@/helpers/getCategoryColorClass'
-import { useCurrentSimulation, useForm, useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { twMerge } from 'tailwind-merge'
 
@@ -28,8 +23,6 @@ export default function TotalButtons({
 }: Props) {
   const { savedViaEmail } = useCurrentSimulation()
 
-  const { currentCategory } = useForm()
-
   const { showTutorial } = useUser()
 
   return (
@@ -38,22 +31,15 @@ export default function TotalButtons({
         color="text"
         size="sm"
         className={twMerge(
-          'h-10 w-10 !p-0 font-medium lg:w-auto lg:gap-2 lg:!px-4 lg:!py-2',
-          getTextDarkColor(currentCategory)
+          'h-10 w-10 !p-0 font-medium lg:w-auto lg:gap-2 lg:!px-4 lg:!py-2'
         )}
         onClick={() => {
           trackEvent(simulateurOpenScoreInfo)
           showTutorial(TUTORIALS.SCORE_EXPLANATION)
         }}>
-        <HelpCircleIcon
-          className={twMerge('h-6 w-6', getStrokeColor(currentCategory))}
-        />
+        <HelpCircleIcon className="h-6 w-6 stroke-primary-700" />
 
-        <span
-          className={twMerge(
-            'hidden lg:inline',
-            getTextDarkColor(currentCategory)
-          )}>
+        <span className="hidden lg:inline">
           <Trans>Aide</Trans>
         </span>
       </Button>
@@ -65,14 +51,8 @@ export default function TotalButtons({
         onClick={() => {
           toggleQuestionList()
         }}>
-        <ListIcon
-          className={twMerge('h-6 w-6', getFillColor(currentCategory))}
-        />
-        <span
-          className={twMerge(
-            'hidden lg:inline',
-            getTextDarkColor(currentCategory)
-          )}>
+        <ListIcon className="h-6 w-6 fill-primary-700" />
+        <span className="hidden lg:inline">
           <Trans>Liste des questions</Trans>
         </span>
       </Button>
@@ -86,19 +66,11 @@ export default function TotalButtons({
             toggleSaveModal()
           }}>
           {savedViaEmail ? (
-            <SaveCheckIcon
-              className={twMerge('h-6 w-6', getFillColor(currentCategory))}
-            />
+            <SaveCheckIcon className="h-6 w-6 fill-primary-700" />
           ) : (
-            <SaveIcon
-              className={twMerge('h-6 w-6', getFillColor(currentCategory))}
-            />
+            <SaveIcon className="h-6 w-6 fill-primary-700" />
           )}
-          <span
-            className={twMerge(
-              'hidden lg:inline',
-              getTextDarkColor(currentCategory)
-            )}>
+          <span className="hidden lg:inline">
             <Trans>Reprendre plus tard</Trans>
           </span>
         </Button>
