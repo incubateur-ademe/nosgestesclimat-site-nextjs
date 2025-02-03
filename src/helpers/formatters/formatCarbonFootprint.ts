@@ -25,33 +25,36 @@ export function formatCarbonFootprint(
   unit: string | null
   negative: boolean
 } {
-  let numberValue = Number(value)
+  const numberValue = Number(value)
 
   const negative = numberValue < 0
-
-  numberValue = Math.abs(numberValue)
+  const absNumberValue = Math.abs(numberValue)
 
   let tempValue = 0
   let unit = null
 
-  if (numberValue > 0 && numberValue < 1) {
-    tempValue = numberValue * 1000
+  if (absNumberValue > 0 && absNumberValue < 1) {
+    tempValue = absNumberValue * 1000
     unit = 'g'
   }
 
-  if (numberValue >= 1 && numberValue < 1000) {
-    tempValue = Math.round(numberValue)
+  if (absNumberValue >= 1 && absNumberValue < 1000) {
+    tempValue = Math.round(absNumberValue)
     unit = 'kg'
   }
 
-  if (numberValue >= 1000) {
-    tempValue = numberValue / 1000
+  if (absNumberValue >= 1000) {
+    tempValue = absNumberValue / 1000
     unit = shouldUseAbbreviation
       ? 't'
       : // Doesn't work perfectly. For example 1.950.toFixed(1) = 1.9 but 1.950.toLocaleString('fr-FR', { maximumFractionDigits: 1 }) = 2
         Number(tempValue.toFixed(maximumFractionDigits)) < 2
         ? t('tonne')
         : t('tonnes')
+  }
+
+  if (negative) {
+    tempValue = -tempValue
   }
 
   return {

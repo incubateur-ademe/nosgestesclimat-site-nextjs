@@ -1,17 +1,16 @@
 import { twMerge } from 'tailwind-merge'
 
-export default function PlusIcon({ className }: { className?: string }) {
+export default function InfoCircleIcon({ className }: { className?: string }) {
   return (
     <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
+      width="22"
+      height="22"
+      viewBox="0 0 22 22"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
       className={twMerge('inline-block stroke-default', className)}>
       <path
-        d="M8 1V15M1 8H15"
+        d="M11 15V11M11 7H11.01M21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
