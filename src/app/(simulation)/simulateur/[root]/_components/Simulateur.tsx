@@ -22,7 +22,7 @@ export default function Simulateur({
   }
 
   return (
-    <div className="flex flex-1 flex-col pb-16 pt-16 md:pt-20">
+    <div className="flex flex-1 flex-col px-4 pb-16 pt-16 md:pt-20 lg:px-0">
       {isQuestionListOpen && (
         <Summary
           toggleQuestionList={toggleQuestionList}
