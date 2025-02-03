@@ -16,7 +16,7 @@ export default function OrganisationMessage() {
       </p>
 
       <ButtonLink
-        href={`/organisations/${poll.organisation.slug}/resultats-detailles`}>
+        href={`/organisations/${poll.organisation.slug}/campagnes/${poll.slug}`}>
         <Trans>Voir mes résultats</Trans>
       </ButtonLink>
     </div>
