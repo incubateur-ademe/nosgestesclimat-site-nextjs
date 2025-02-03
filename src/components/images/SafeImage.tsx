@@ -1,6 +1,6 @@
 'use client'
 
-import type { ImageProps } from 'next/image';
+import type { ImageProps } from 'next/image'
 import Image from 'next/image'
 import { useState } from 'react'
 
@@ -13,7 +13,7 @@ export default function SafeImage({ alt, src, ...props }: ImageProps) {
     <Image
       {...props}
       src={src}
-      alt={alt}
+      alt={alt ?? ''}
       onError={({ currentTarget }) => {
         currentTarget.onerror = null
         setIsErrorLoading(true)

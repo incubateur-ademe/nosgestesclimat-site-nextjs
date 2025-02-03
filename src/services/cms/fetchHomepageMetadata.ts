@@ -18,7 +18,7 @@ export async function fetchHomepageMetadata(): Promise<
       locale: defaultLocale,
       'populate[0]': 'image',
       'populate[1]': 'pageMetadata',
-      status: isProduction ? '' : 'draft',
+      ...(isProduction ? {} : { status: 'draft' }),
     })
 
     const homepageResponse = await cmsClient<{

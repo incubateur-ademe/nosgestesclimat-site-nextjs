@@ -61,7 +61,7 @@ export default function CategoryListItem({
         maxValue={maxValue}
         items={simulations.map((obj) => ({
           value: obj.computedResults[carboneMetric].categories[category],
-          shouldBeHighlighted: !!obj.user,
+          shouldBeHighlighted: !!obj.user?.id,
         }))}
         id={category}
       />

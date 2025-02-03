@@ -23,7 +23,7 @@ export default function FAQ({
   return (
     <div
       className={twMerge(
-        'relative w-full bg-[#F6F6F5] py-16 md:py-20',
+        'relative w-full bg-[#F6F6F5] px-4 py-16 md:py-20 lg:px-0',
         className
       )}>
       {isBackgroundSkewed && (

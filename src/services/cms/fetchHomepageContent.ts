@@ -27,7 +27,7 @@ export async function fetchHomepageContent({ page }: { page: number }): Promise<
       'populate[1]': 'mainArticle',
       'populate[2]': 'mainArticle.image',
       'populate[3]': 'mainArticle.category',
-      status: isProduction ? '' : 'draft',
+      ...(isProduction ? {} : { status: 'draft' }),
     })
 
     const homepageResponse = await cmsClient<{
@@ -53,7 +53,7 @@ export async function fetchHomepageContent({ page }: { page: number }): Promise<
       'pagination[page]': page.toString(),
       'pagination[pageSize]': PAGE_SIZE.toString(),
       sort: 'createdAt:desc',
-      status: isProduction ? '' : 'draft',
+      ...(isProduction ? {} : { status: 'draft' }),
     }
 
     if (mainArticle) {
