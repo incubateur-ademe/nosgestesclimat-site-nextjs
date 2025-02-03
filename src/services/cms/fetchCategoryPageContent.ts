@@ -36,7 +36,7 @@ export async function fetchCategoryPageContent({
       'populate[2]': 'mainArticle',
       'populate[3]': 'mainArticle.image',
       sort: 'questions.order:asc',
-      status: isProduction ? '' : 'draft',
+      ...(isProduction ? {} : { status: 'draft' }),
     })
 
     const categoryResponse = await cmsClient<{
@@ -67,7 +67,7 @@ export async function fetchCategoryPageContent({
       'pagination[page]': page.toString(),
       'pagination[pageSize]': PAGE_SIZE.toString(),
       sort: 'createdAt:desc',
-      status: isProduction ? '' : 'draft',
+      ...(isProduction ? {} : { status: 'draft' }),
     })
 
     const articlesResponse = await cmsClient<{
