@@ -13,7 +13,7 @@ type Sizes = 'md' | 'lg'
 type Props = {
   metric?: Metric
   className?: string
-  size: Sizes
+  size?: Sizes
 }
 
 const duration = {
