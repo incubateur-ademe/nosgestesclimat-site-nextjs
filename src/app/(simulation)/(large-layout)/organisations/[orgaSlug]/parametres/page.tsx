@@ -1,6 +1,5 @@
 'use client'
 
-import MaxWidthContent from '@/components/layout/MaxWidthContent'
 import OrganisationFetchError from '@/components/organisations/OrganisationFetchError'
 import OrganisationLoader from '@/components/organisations/OrganisationLoader'
 import Trans from '@/components/translation/Trans'
@@ -185,7 +184,7 @@ export default function ParametresPage() {
   }
 
   return (
-    <MaxWidthContent className="pb-8">
+    <div className="pb-8">
       <Title
         title={
           <span>
@@ -232,6 +231,6 @@ export default function ParametresPage() {
       <Separator className="my-4" />
 
       <DeconnexionButton />
-    </MaxWidthContent>
+    </div>
   )
 }

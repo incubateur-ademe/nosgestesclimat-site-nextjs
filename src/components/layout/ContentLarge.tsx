@@ -15,7 +15,7 @@ export default function ContentLarge({
   return (
     <Tag
       className={twMerge(
-        'flex w-full max-w-5xl flex-1 flex-col overflow-visible lg:mx-auto',
+        'flex w-full max-w-5xl flex-1 flex-col overflow-visible px-4 lg:mx-auto',
         className
       )}>
       {children}
