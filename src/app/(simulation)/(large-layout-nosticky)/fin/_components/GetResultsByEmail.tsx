@@ -14,17 +14,17 @@ import EmailInput from '@/design-system/inputs/EmailInput'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import { getSaveSimulationListIds } from '@/helpers/brevo/getSaveSimulationListIds'
-import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
-import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
+import { useMainNewsletter } from '@/hooks/useMainNewsletter'
+import { useFetchUserContact } from '@/hooks/users/useFetchUserContact'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
-import { useEffect, useRef } from 'react'
-import type { SubmitHandler} from 'react-hook-form';
+import { useEffect } from 'react'
+import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Confirmation from './carbone/getResultsByEmail/Confirmation'
@@ -49,17 +49,12 @@ export default function GetResultsByEmail({
 
   const currentSimulation = useCurrentSimulation()
 
-  // Avoid refetching useGetNewsletterSubscriptions when defining an email for the first time
-  const emailRef = useRef<string>(user?.email ?? '')
-
-  const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
-    emailRef?.current ?? ''
-  )
+  const { data: userContact } = useFetchUserContact(user.userId)
 
   const isSubscribedMainNewsletter =
-    newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER)
+    userContact?.listIds.includes(LIST_MAIN_NEWSLETTER)
 
-  const isSubscribedTransportNewsletter = newsletterSubscriptions?.includes(
+  const isSubscribedTransportNewsletter = userContact?.listIds.includes(
     LIST_NOS_GESTES_TRANSPORT_NEWSLETTER
   )
 
@@ -75,32 +70,32 @@ export default function GetResultsByEmail({
     mode: 'onSubmit',
   })
 
-  const isSubscribedLogementNewsletter = newsletterSubscriptions?.includes(
+  const isSubscribedLogementNewsletter = userContact?.listIds.includes(
     LIST_NOS_GESTES_LOGEMENT_NEWSLETTER
   )
 
   useEffect(() => {
-    if (!newsletterSubscriptions) return
+    if (!userContact) return
 
     setValue(
       'newsletter-saisonniere',
-      newsletterSubscriptions.includes(LIST_MAIN_NEWSLETTER)
+      userContact.listIds.includes(LIST_MAIN_NEWSLETTER)
     )
     setValue(
       'newsletter-transports',
-      newsletterSubscriptions.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER)
+      userContact.listIds.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER)
     )
 
     setValue(
       'newsletter-logement',
-      newsletterSubscriptions.includes(LIST_NOS_GESTES_LOGEMENT_NEWSLETTER)
+      userContact.listIds.includes(LIST_NOS_GESTES_LOGEMENT_NEWSLETTER)
     )
-  }, [newsletterSubscriptions, setValue])
+  }, [userContact, setValue])
 
   const { saveSimulation, isPending, isSuccess, isError, error } =
     useSaveSimulation()
 
-  const { data: numberSubscribers } = useNumberSubscribers()
+  const { data: mainNewsletter } = useMainNewsletter()
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     // If the mutation is pending, we do nothing
@@ -175,7 +170,7 @@ export default function GetResultsByEmail({
             </strong>
             {t('comme {{numberSubscribers}} personnes.', {
               numberSubscribers:
-                numberSubscribers?.toLocaleString(locale, {
+                mainNewsletter?.totalSubscribers.toLocaleString(locale, {
                   maximumFractionDigits: 0,
                 }) ?? '---',
             })}

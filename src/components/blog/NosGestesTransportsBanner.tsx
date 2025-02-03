@@ -3,11 +3,11 @@ import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
-import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
-import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useFetchUserContact } from '@/hooks/users/useFetchUserContact'
+import { useUpdateUser } from '@/hooks/users/useUpdateUser'
 import { useUser } from '@/publicodes-state'
-import type { SubmitHandler} from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import Trans from '../translation/Trans'
 
@@ -24,22 +24,20 @@ export default function NosGestesTransportsBanner() {
     },
   })
 
-  const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
-    user?.email ?? ''
-  )
+  const { data: userContact } = useFetchUserContact(user.userId)
 
   const {
-    mutateAsync: updateUserSettings,
+    mutateAsync: updateUser,
     isPending,
     isError,
     isSuccess,
-  } = useUpdateUserSettings({
+  } = useUpdateUser({
     email: user?.email ?? '',
     userId: user?.userId,
   })
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    await updateUserSettings({
+    await updateUser({
       email: data.email,
       newsletterIds: {
         [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: true,
@@ -51,7 +49,7 @@ export default function NosGestesTransportsBanner() {
     }
   }
 
-  if (newsletterSubscriptions?.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER)) {
+  if (userContact?.listIds.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER)) {
     return null
   }
 

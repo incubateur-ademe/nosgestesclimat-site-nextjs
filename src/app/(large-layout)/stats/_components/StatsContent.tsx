@@ -12,7 +12,7 @@ import {
   useCurrentMonthWebsites,
   useGetSharedSimulationEvents,
 } from '@/helpers/matomo'
-import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
+import { useMainNewsletter } from '@/hooks/useMainNewsletter'
 import type { UseQueryResult } from '@tanstack/react-query'
 import AcquisitionBlock from './content/AcquisitionBlock'
 import MetabaseIframe from './content/MetabaseIframe'
@@ -70,7 +70,7 @@ export default function StatsContent() {
   const currentMonthWebsites = useCurrentMonthWebsites()
   const currentMonthSocials = useCurrentMonthSocials()
   const allSharedSimulationEvents = useGetSharedSimulationEvents()
-  const allSubscribers = useNumberSubscribers()
+  const { data: mainNewsletter } = useMainNewsletter()
 
   return (
     <div>
@@ -127,7 +127,7 @@ export default function StatsContent() {
             currentMonthIframeVisitsData,
           ]) => (
             <AcquisitionBlock
-              allSubscribers={allSubscribers}
+              mainNewsletter={mainNewsletter}
               allSharedSimulationEventsData={allSharedSimulationEventsData}
               currentMonthWebsitesData={currentMonthWebsitesData}
               currentMonthSocialsData={currentMonthSocialsData}
