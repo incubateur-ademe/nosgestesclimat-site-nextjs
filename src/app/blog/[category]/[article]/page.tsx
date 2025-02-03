@@ -52,7 +52,7 @@ export default async function ArticlePage({
     <>
       <ArticleJSONLD article={article} />
 
-      <div className="relative max-w-5xl md:mx-auto">
+      <div className="relative max-w-5xl px-4 md:mx-auto lg:px-0">
         <ArticleBreadcrumbs
           categorySlug={params.category}
           articleSlug={params.article}

@@ -6,7 +6,7 @@ export default async function BlogLayout({ children }: PropsWithChildren) {
     <>
       <Header isSticky={false} />
 
-      <main className="flex w-full flex-1 flex-col overflow-visible px-4 lg:mx-auto lg:px-0">
+      <main className="flex w-full flex-1 flex-col overflow-visible lg:mx-auto lg:px-0">
         {children}
       </main>
     </>

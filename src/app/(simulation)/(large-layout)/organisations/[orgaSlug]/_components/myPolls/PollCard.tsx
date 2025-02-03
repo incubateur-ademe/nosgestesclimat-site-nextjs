@@ -15,7 +15,7 @@ export default function PollCard({ poll }: Props) {
   if (!poll) return null
 
   return (
-    <div className="rounded-xl bg-primary-50 p-6">
+    <div className="h-full rounded-xl bg-primary-50 p-6">
       <h3 className="mb-2 text-xl">
         {poll.name ?? (
           <>

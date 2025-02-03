@@ -6,7 +6,7 @@ import PartnersSection from './_components/PartnersSection'
 
 export default function Page() {
   return (
-    <section className="mx-none w-full bg-[#fff] md:mx-auto">
+    <section className="mx-4 w-full bg-[#fff] md:mx-auto">
       <div>
         <HeroSection />
 

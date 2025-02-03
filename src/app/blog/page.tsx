@@ -61,7 +61,7 @@ export default async function BlogHomePage({
         ]}
       />
 
-      <ContentLarge tag="div" className="overflow-hidden">
+      <ContentLarge tag="div" className="overflow-hidden px-4 lg:px-0">
         {title && description && image && (
           <BlogHero title={title} description={description} image={image} />
         )}

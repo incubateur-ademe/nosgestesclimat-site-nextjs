@@ -78,7 +78,7 @@ export default async function CategoryPage({
         slug={params.category}
       />
 
-      <ContentLarge tag="div" className="overflow-hidden">
+      <ContentLarge tag="div" className="overflow-hidden px-4 lg:px-0">
         {mainArticle && (
           <MainArticle
             imageSrc={mainArticle.image?.url ?? ''}

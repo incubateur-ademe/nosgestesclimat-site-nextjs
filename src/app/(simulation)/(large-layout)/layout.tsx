@@ -6,7 +6,7 @@ export default async function LargeLayout({ children }: PropsWithChildren) {
   return (
     <>
       <Header />
-      <ContentLarge className="mt-10">{children}</ContentLarge>
+      <ContentLarge className="mt-10 px-4 lg:px-0">{children}</ContentLarge>
     </>
   )
 }
