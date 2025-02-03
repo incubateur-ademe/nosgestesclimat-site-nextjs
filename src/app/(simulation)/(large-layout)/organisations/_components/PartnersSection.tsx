@@ -6,7 +6,7 @@ import Image from 'next/image'
 export default function PartnersSection() {
   return (
     <>
-      <section className="-mx-8 mb-8 mt-28 flex flex-col items-center gap-16 rounded-xl bg-gray-100 px-8 py-16">
+      <section className="mb-8 mt-28 flex w-full flex-col items-center gap-16 rounded-xl bg-gray-100 px-8 py-16">
         <h3 className="text-center">
           <Trans>Rejoignez nos partenaires</Trans>
         </h3>
