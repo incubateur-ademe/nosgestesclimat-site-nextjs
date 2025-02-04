@@ -118,7 +118,7 @@ export default function CreationForm() {
           label={<Trans>Votre organisation</Trans>}
           error={formState.errors.name?.message}
           {...register('name', {
-            required: t('Vous devez renseigner le nom de votre organisation'),
+            required: t('Ce champ est requis'),
           })}
         />
 
@@ -128,9 +128,7 @@ export default function CreationForm() {
             label={<Trans>Type d'organisation</Trans>}
             error={formState.errors.organisationType?.message}
             {...register('organisationType', {
-              required: t(
-                'Vous devez renseigner le type de votre organisation'
-              ),
+              required: t('Ce champ est requis'),
             })}>
             {/* Empty option to reset field */}
             <option className="cursor-pointer"></option>
@@ -151,7 +149,7 @@ export default function CreationForm() {
           label={<Trans>Votre prénom</Trans>}
           error={formState.errors.administratorFirstName?.message}
           {...register('administratorFirstName', {
-            required: t('Vous devez renseigner votre prénom'),
+            required: t('Ce champ est requis'),
           })}
         />
 
@@ -160,7 +158,7 @@ export default function CreationForm() {
           label={<Trans>Votre nom</Trans>}
           error={formState.errors.administratorLastName?.message}
           {...register('administratorLastName', {
-            required: t('Vous devez renseigner votre nom'),
+            required: t('Ce champ est requis'),
           })}
         />
 

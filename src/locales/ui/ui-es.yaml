@@ -1563,3 +1563,7 @@ entries:
   'Oups, une erreur est survenue lors de la copie du lien, voici le lien à copier / coller :': 'Oops, hubo un error al copiar el enlace, aquí está el enlace para copiar / pegar :'
   Vous devez renseigner le type de votre organisation: Debe introducir el tipo de organización
   Votre nom complet: Su nombre completo
+  Votre poste: Su posición
+  Service public: Servicios públicos
+  Nombre de participants attendus: Número previsto de participantes
+  Le nombre de participants doit être supérieur à 0: El número de participantes debe ser superior a 0
