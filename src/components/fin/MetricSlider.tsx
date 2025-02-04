@@ -97,15 +97,13 @@ export default function MetricSlider({
         </MetricCard>
       </div>
 
-      {!isSticky && (
-        <p className="mt-2 inline-block w-full text-center text-xs text-default md:text-sm">
-          <Emoji>💡</Emoji>{' '}
-          <Trans>
-            Affichez le détail de votre empreinte carbone ou eau en cliquant sur
-            les cartes ci-dessus.
-          </Trans>
-        </p>
-      )}
+      <p className="mt-2 inline-block w-full text-center text-xs text-default md:text-sm">
+        <Emoji>💡</Emoji>{' '}
+        <Trans>
+          Affichez le détail de votre empreinte carbone ou eau en cliquant sur
+          les cartes ci-dessus.
+        </Trans>
+      </p>
     </div>
   )
 }
