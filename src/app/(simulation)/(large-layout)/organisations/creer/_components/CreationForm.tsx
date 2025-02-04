@@ -137,7 +137,7 @@ export default function CreationForm() {
 
         <TextInputGroup
           className="col-span-1"
-          label={<Trans>Votre nom complet</Trans>}
+          label={<Trans>Votre nom</Trans>}
           error={formState.errors.administratorName?.message}
           {...register('administratorName', {
             required: t('Vous devez renseigner votre nom'),
