@@ -8,7 +8,7 @@ export default async function LargeLayoutNoSticky({
   return (
     <>
       <Header isSticky={false} />
-      <ContentLarge>{children}</ContentLarge>
+      <ContentLarge className="px-4 lg:px-0">{children}</ContentLarge>
     </>
   )
 }

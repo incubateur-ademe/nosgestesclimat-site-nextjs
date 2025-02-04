@@ -9,14 +9,14 @@ export default function AuthorBlock({
   if (!author) return null
 
   return (
-    <div className="max-w-5xl md:mx-auto">
+    <div className="max-w-5xl px-4 md:mx-auto">
       <div className="mt-8 flex flex-row items-center gap-6 md:w-8/12">
         <div className="min-w-24">
           {author.image ? (
             <Image
               className="overflow-hidden rounded-full"
               src={author.image?.url}
-              alt={author.image?.alternativeText}
+              alt={author.image?.alternativeText ?? ''}
               width={200}
               height={200}
             />

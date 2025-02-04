@@ -1,5 +1,6 @@
 import type { LocalStorage } from '@/publicodes-state/types'
 import { useEffect } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 type Props = {
   storageKey: string
@@ -30,8 +31,8 @@ export default function useUpdateOldLocalStorage({ storageKey }: Props) {
         JSON.stringify({
           ...objectOldLocalStorage,
           user: {
-            ...objectOldLocalStorage.user,
-            userId: objectOldLocalStorage.user.userId,
+            ...(objectOldLocalStorage?.user ?? {}),
+            userId: objectOldLocalStorage?.user?.userId ?? uuidv4(),
           },
         })
       )

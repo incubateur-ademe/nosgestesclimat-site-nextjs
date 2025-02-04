@@ -23,7 +23,6 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/Trans'
-import Category from './question/Category'
 import Warning from './question/Warning'
 
 type Props = {
@@ -79,7 +78,6 @@ export default function Question({
   return (
     <>
       <div className={twMerge('mb-6 flex flex-col items-start', className)}>
-        <Category question={question} />
         <Label question={question} label={label} description={description} />
 
         <Suggestions
