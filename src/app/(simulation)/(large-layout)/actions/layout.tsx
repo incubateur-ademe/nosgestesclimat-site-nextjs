@@ -1,5 +1,5 @@
 import NorthStarBanner from '@/components/northstar/NorthstarBanner'
-import Total from '@/components/total/Total'
+import TopBar from '@/components/simulation/TopBar'
 import Trans from '@/components/translation/Trans'
 import { noIndexObject } from '@/constants/metadata'
 import Title from '@/design-system/layout/Title'
@@ -28,7 +28,7 @@ export default function ActionsLayout({ children }: PropsWithChildren) {
     <FormProvider>
       <Title title={<Trans>Mes&#160;gestes</Trans>} />
 
-      <Total simulationMode={false} />
+      <TopBar simulationMode={false} showTotal />
 
       <NorthStarBanner type="action" />
 

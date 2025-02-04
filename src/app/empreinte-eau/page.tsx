@@ -105,6 +105,17 @@ export default async function WaterFootprintLandingPage() {
                 }}
               />
             </div>
+
+            <div className="mx-auto mt-4 max-w-80 md:mt-0 md:hidden">
+              <Image
+                width={560}
+                height={560}
+                src="/images/illustrations/mon-empreinte-eau.svg"
+                alt={t(
+                  "Un homme dans un magasin réfléchissant à l'empreinte eau du tee-shirt qu'il tient"
+                )}
+              />
+            </div>
           </div>
         }
         heroIllustration={

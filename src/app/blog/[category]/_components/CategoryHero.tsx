@@ -10,7 +10,7 @@ export default function CategoryHero({
   slug: string
 }) {
   return (
-    <div className="relative mb-20 mt-12 w-full bg-heroLightBackground">
+    <div className="relative mb-20 mt-12 w-full bg-heroLightBackground px-4">
       <div className="mx-auto max-w-5xl">
         <CategoryBreadcrumbs slug={slug} title={title} />
 

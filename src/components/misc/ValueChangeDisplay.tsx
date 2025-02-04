@@ -1,18 +1,23 @@
 'use client'
 
+import { defaultMetric } from '@/constants/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useForm, useRule } from '@/publicodes-state'
+import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import Trans from '../translation/Trans'
 
 export default function ValueChangeDisplay({
   className,
+  metric = defaultMetric,
+  size = 'sm',
 }: {
   className?: string
+  metric?: Metrics
+  size?: 'sm' | 'md'
 }) {
   const { t } = useClientTranslation()
   const locale = useLocale()
@@ -21,7 +26,8 @@ export default function ValueChangeDisplay({
 
   const { currentQuestion } = useForm()
 
-  const { numericValue } = useRule('bilan')
+  const { numericValue } = useRule('bilan', metric)
+
   const prevValue = useRef(numericValue)
 
   const [displayDifference, setDisplayDifference] = useState(0)
@@ -51,6 +57,7 @@ export default function ValueChangeDisplay({
 
   const { formattedValue, unit } = formatFootprint(displayDifference, {
     locale,
+    metric,
     t,
   })
 
@@ -61,24 +68,36 @@ export default function ValueChangeDisplay({
   return (
     <div
       className={twMerge(
-        '-z-0 whitespace-nowrap',
+        'absolute right-2 top-1 -z-0 w-auto whitespace-nowrap',
         isNegative
           ? 'animate-valuechange-reverse text-green-700'
           : 'animate-valuechange text-red-700',
         className
       )}
       key={keyFromNumericValue}
-      aria-label={t('{{signe}} {{value}} {{unit}} sur votre empreinte', {
-        signe: isNegative ? t('moins') : t('plus'),
-        value: formattedValue,
-        unit,
-      })}>
-      <strong className="text-base font-black">
-        {displayDifference > 0 ? '+' : '-'}
+      aria-label={t(
+        '{{signe}} {{value}} {{unit}} sur votre empreinte {{metric}}',
+        {
+          signe: isNegative ? t('moins') : t('plus'),
+          value: formattedValue,
+          unit,
+          metric: metric === 'carbone' ? t('carbone') : t('eau'),
+        }
+      )}>
+      <span
+        className={twMerge(
+          'text-sm font-semibold',
+          size === 'md' ? 'text-base' : ''
+        )}>
+        {displayDifference > 0 ? '+' : ''}
         {formattedValue}
-      </strong>{' '}
-      <span className="text-xs">
-        {unit} <Trans>sur votre empreinte</Trans>
+      </span>{' '}
+      <span
+        className={twMerge(
+          'text-xs font-normal',
+          size === 'md' ? 'text-sm' : ''
+        )}>
+        {unit}
       </span>
     </div>
   )
