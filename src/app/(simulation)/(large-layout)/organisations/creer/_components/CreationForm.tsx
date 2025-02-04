@@ -15,7 +15,7 @@ import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
 import { useCreateOrganisation } from '@/hooks/organisations/useCreateOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { captureException } from '@sentry/react'
+import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
@@ -122,16 +122,13 @@ export default function CreationForm() {
 
         <div>
           <Select
-            label={
-              <p className="mb-0 flex justify-between">
-                <Trans>Type d'organisation</Trans>{' '}
-                <span className="font-bold italic text-secondary-700">
-                  {' '}
-                  <Trans>facultatif</Trans>
-                </span>
-              </p>
-            }
-            {...register('organisationType')}>
+            label={<Trans>Type d'organisation</Trans>}
+            error={formState.errors.organisationType?.message}
+            {...register('organisationType', {
+              required: t(
+                'Vous devez renseigner le type de votre organisation'
+              ),
+            })}>
             {/* Empty option to reset field */}
             <option className="cursor-pointer"></option>
             {Object.entries(ORGANISATION_TYPES).map(([key, value]) => (
@@ -168,7 +165,7 @@ export default function CreationForm() {
 
         <TextInputGroup
           className="col-span-1"
-          label={<Trans>Votre nom</Trans>}
+          label={<Trans>Votre nom complet</Trans>}
           error={formState.errors.administratorName?.message}
           {...register('administratorName', {
             required: t('Vous devez renseigner votre nom'),
