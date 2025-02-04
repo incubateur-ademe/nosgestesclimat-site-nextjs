@@ -22,8 +22,6 @@ export default async function Hero({
               </h1>
             </div>
 
-            <div className="mx-auto max-w-80 md:hidden">{illustration}</div>
-
             <div className="max-w-[600px] text-center text-sm md:order-2 md:text-left md:text-lg">
               {description}
             </div>

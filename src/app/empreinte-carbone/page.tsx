@@ -104,17 +104,28 @@ export default function CarbonFootprintLandingPage() {
                     trackingActionClickCTA
                   ),
                 }}
-              />{' '}
+              />
+            </div>
+
+            <div className="mx-auto mt-4 max-w-80 md:mt-0 md:hidden">
+              <Image
+                width={280}
+                height={280}
+                src="/images/illustrations/girl-holding-earth.svg"
+                alt=""
+              />
             </div>
           </div>
         }
         heroIllustration={
-          <Image
-            width={400}
-            height={400}
-            src="/images/illustrations/girl-holding-earth.svg"
-            alt=""
-          />
+          <div className="hidden md:block">
+            <Image
+              width={400}
+              height={400}
+              src="/images/illustrations/girl-holding-earth.svg"
+              alt=""
+            />
+          </div>
         }
         heroPartners={<Partners />}>
         <WhatItIsCarbon />
