@@ -68,10 +68,6 @@ export default function SimulationSyncProvider({
       return false
     }
 
-    if (progression === 1) {
-      return true
-    }
-
     if ((groups?.length || polls?.length) && progression === 1) {
       return true
     }
