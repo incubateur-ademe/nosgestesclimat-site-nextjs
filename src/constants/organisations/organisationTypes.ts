@@ -1,8 +1,10 @@
 import { t } from 'i18next'
 
 export enum OrganisationTypeEnum {
-  company = 'company',
   association = 'association',
+  company = 'company',
+  cooperative = 'cooperative',
+  groupOfFriends = 'groupOfFriends',
   publicOrRegionalAuthority = 'publicOrRegionalAuthority',
   universityOrSchool = 'universityOrSchool',
   other = 'other',
