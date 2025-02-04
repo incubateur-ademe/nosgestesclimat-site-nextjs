@@ -31,6 +31,7 @@ export default function OrganisationFields({
         {...register('name')}
       />
       <Select
+        containerClassName="pt-[3px]"
         label={
           <p className="mb-0 flex justify-between">
             <Trans>Type d'organisation</Trans>{' '}

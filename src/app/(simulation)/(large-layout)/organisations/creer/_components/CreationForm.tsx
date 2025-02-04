@@ -9,6 +9,7 @@ import Button from '@/design-system/inputs/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import Separator from '@/design-system/layout/Separator'
 import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
 import { useCreateOrganisation } from '@/hooks/organisations/useCreateOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -21,7 +22,9 @@ import { useForm as useReactHookForm } from 'react-hook-form'
 type Inputs = {
   name: string
   organisationType: OrganisationTypeEnum
-  administratorName: string
+  administratorFirstName: string
+  administratorLastName: string
+  administratorPosition: string
   hasOptedInForCommunications: boolean
   shouldNavigateToPollForm?: boolean
 }
@@ -47,7 +50,9 @@ export default function CreationForm() {
   async function onSubmit({
     shouldNavigateToPollForm = true,
     name,
-    administratorName,
+    administratorFirstName,
+    administratorLastName,
+    administratorPosition,
     organisationType,
     hasOptedInForCommunications,
   }: Inputs) {
@@ -57,7 +62,8 @@ export default function CreationForm() {
         type: organisationType,
         administrators: [
           {
-            name: administratorName,
+            name: `${administratorFirstName}\n_\n${administratorLastName}`,
+            position: administratorPosition,
             optedInForCommunications: hasOptedInForCommunications,
           },
         ],
@@ -105,7 +111,7 @@ export default function CreationForm() {
   }, [router, pathToNavigateTo, user?.organisation?.slug])
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="mb-12">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <TextInputGroup
           className="col-span-1"
@@ -118,6 +124,7 @@ export default function CreationForm() {
 
         <div>
           <Select
+            containerClassName="pt-[3px]"
             label={<Trans>Type d'organisation</Trans>}
             error={formState.errors.organisationType?.message}
             {...register('organisationType', {
@@ -134,14 +141,40 @@ export default function CreationForm() {
             ))}
           </Select>
         </div>
+      </div>
+
+      <Separator />
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <TextInputGroup
+          className="col-span-1"
+          label={<Trans>Votre prénom</Trans>}
+          error={formState.errors.administratorFirstName?.message}
+          {...register('administratorFirstName', {
+            required: t('Vous devez renseigner votre prénom'),
+          })}
+        />
 
         <TextInputGroup
           className="col-span-1"
-          label={<Trans>Votre nom complet</Trans>}
-          error={formState.errors.administratorName?.message}
-          {...register('administratorName', {
+          label={<Trans>Votre nom</Trans>}
+          error={formState.errors.administratorLastName?.message}
+          {...register('administratorLastName', {
             required: t('Vous devez renseigner votre nom'),
           })}
+        />
+
+        <TextInputGroup
+          className="col-span-1"
+          label={
+            <p className="mb-0 flex items-center justify-between">
+              <Trans>Votre poste</Trans>
+              <span className="text-sm italic text-secondary-700">
+                (facultatif)
+              </span>
+            </p>
+          }
+          {...register('administratorPosition')}
         />
       </div>
 
