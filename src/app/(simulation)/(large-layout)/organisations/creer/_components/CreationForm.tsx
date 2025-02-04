@@ -1,13 +1,11 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { linkToGroupCreation } from '@/constants/group'
 import {
   ORGANISATION_TYPES,
-  OrganisationTypeEnum,
+  type OrganisationTypeEnum,
 } from '@/constants/organisations/organisationTypes'
 import Button from '@/design-system/inputs/Button'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
@@ -22,7 +20,7 @@ import { useForm as useReactHookForm } from 'react-hook-form'
 
 type Inputs = {
   name: string
-  organisationType?: OrganisationTypeEnum
+  organisationType: OrganisationTypeEnum
   administratorName: string
   hasOptedInForCommunications: boolean
   shouldNavigateToPollForm?: boolean
@@ -39,11 +37,9 @@ export default function CreationForm() {
 
   const router = useRouter()
 
-  const { register, handleSubmit, formState, watch } = useReactHookForm<Inputs>(
-    {
-      defaultValues: {},
-    }
-  )
+  const { register, handleSubmit, formState } = useReactHookForm<Inputs>({
+    defaultValues: {},
+  })
 
   const { mutateAsync: createOrganisation, isError: isErrorUpdateOrga } =
     useCreateOrganisation()
@@ -58,7 +54,7 @@ export default function CreationForm() {
     try {
       const organisationUpdated = await createOrganisation({
         name,
-        type: organisationType || OrganisationTypeEnum.other,
+        type: organisationType,
         administrators: [
           {
             name: administratorName,
@@ -137,30 +133,6 @@ export default function CreationForm() {
               </option>
             ))}
           </Select>
-
-          {watch('organisationType') ===
-            OrganisationTypeEnum.groupOfFriends && (
-            <div className="mt-4 rounded-xl bg-gray-100 p-4 text-sm">
-              <p className="mb-2">
-                <Trans>
-                  Le mode organisation est un mode <strong>100% anonyme</strong>{' '}
-                  pour les participants.
-                </Trans>
-              </p>
-
-              <p className="mb-4">
-                <Trans>
-                  Avez-vous essayé{' '}
-                  <strong>notre fonctionnalité “Groupes d’amis”</strong> ? Elle
-                  vous permettra de vous comparer dans un classement : que celui
-                  ou celle ayant la plus faible empreinte gagne !
-                </Trans>
-              </p>
-              <ButtonLink href={linkToGroupCreation} size="sm">
-                <Trans>Créer un groupe d'amis</Trans>
-              </ButtonLink>
-            </div>
-          )}
         </div>
 
         <TextInputGroup

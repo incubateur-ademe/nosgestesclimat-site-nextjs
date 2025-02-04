@@ -1,23 +1,17 @@
 import { t } from 'i18next'
 
 export enum OrganisationTypeEnum {
-  association = 'association',
   company = 'company',
-  cooperative = 'cooperative',
-  groupOfFriends = 'groupOfFriends',
-  other = 'other',
+  association = 'association',
   publicOrRegionalAuthority = 'publicOrRegionalAuthority',
   universityOrSchool = 'universityOrSchool',
+  other = 'other',
 }
 
 export const ORGANISATION_TYPES = {
   [OrganisationTypeEnum.company]: t('Entreprise'),
-  [OrganisationTypeEnum.publicOrRegionalAuthority]: t(
-    'Public ou collectivité territoriale'
-  ),
-  [OrganisationTypeEnum.cooperative]: t('Coopérative'),
   [OrganisationTypeEnum.association]: t('Association'),
+  [OrganisationTypeEnum.publicOrRegionalAuthority]: t('Service public'),
   [OrganisationTypeEnum.universityOrSchool]: t('Université ou école'),
-  [OrganisationTypeEnum.groupOfFriends]: t("Groupe d'amis"),
   [OrganisationTypeEnum.other]: t('Autre'),
 }
