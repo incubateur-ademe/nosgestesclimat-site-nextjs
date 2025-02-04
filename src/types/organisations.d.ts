@@ -32,7 +32,7 @@ type BaseOrganisation = {
   slug: string
   administrators?: [VerifiedUser]
   polls?: Omit<OrganisationPoll, 'simulations'>[]
-  type: OrganisationTypeEnum
+  type?: OrganisationTypeEnum
   numberOfCollaborators?: number | null
   hasCustomQuestionEnabled?: boolean
   createdAt?: string
