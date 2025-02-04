@@ -1,6 +1,7 @@
 'use client'
 
 import MetricSlider from '@/components/fin/MetricSlider'
+import CarboneTotalChart from '@/components/fin/metricSlider/CarboneTotalChart'
 import HeadingButtons from '@/components/fin/metricSlider/heading/HeadingButtons'
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
@@ -56,7 +57,13 @@ export default function FinPage() {
 
       <MetricSlider />
 
-      <div className="relative flex flex-col-reverse gap-16 lg:flex-row lg:gap-10">
+      {currentMetric === carboneMetric && (
+        <div className="mb-20 block w-full md:hidden">
+          <CarboneTotalChart shouldShowOnlyGauge />
+        </div>
+      )}
+
+      <div className="relative flex flex-col-reverse gap-8 md:gap-16 lg:flex-row lg:gap-10">
         <div className="relative flex flex-1 flex-col gap-16 lg:mt-7">
           <div
             className={twMerge(
@@ -104,7 +111,7 @@ export default function FinPage() {
 
           <DocumentationBlock />
         </div>
-        <div className="top-40 mb-8 flex w-full flex-col gap-4 self-start lg:sticky lg:z-30 lg:w-[22rem] short:gap-2">
+        <div className="top-40 flex w-full flex-col gap-4 self-start md:mb-8 lg:sticky lg:z-30 lg:w-[22rem] short:gap-2">
           <InformationBlock />
         </div>
       </div>

@@ -1,4 +1,3 @@
-import Badge from '@/design-system/layout/Badge'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import type { Metric } from '@/publicodes-state/types'
 import type { PropsWithChildren, ReactNode } from 'react'
@@ -30,21 +29,14 @@ export default function MetricCard({
         isSelected && 'border-primary-700 bg-primary-50'
       )}
       {...props}>
-      {/* Mobile only */}
-      <div className="absolute left-0 right-0 top-0 mx-1 border-b border-primary-200 py-1 text-center text-xs md:hidden">
+      <div className="absolute left-0 right-0 top-0 mx-1 border-b border-primary-200 py-1 text-center text-xs">
         {metricTitle.mobile}
       </div>
 
-      {/* Desktop only */}
-      <Badge
-        size="xs"
-        className="absolute right-0 top-0 mx-2 mt-2 hidden md:flex">
-        {metricTitle.desktop}
-      </Badge>
       <div
         className={twMerge(
           'h-full w-full',
-          isSticky && 'pointer-events-none max-h-28 overflow-hidden'
+          isSticky && 'pointer-events-none max-h-28 overflow-hidden lg:mt-6'
         )}>
         {children}
       </div>
