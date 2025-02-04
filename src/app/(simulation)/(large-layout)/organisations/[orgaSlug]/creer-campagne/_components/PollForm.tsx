@@ -16,6 +16,7 @@ type Props = {
 
 type Inputs = {
   name: string
+  expectedNumberOfParticipants: string
 }
 
 export default function PollForm({ organisation }: Props) {
@@ -47,6 +48,7 @@ export default function PollForm({ organisation }: Props) {
         name,
         defaultAdditionalQuestions: pollInfo.defaultAdditionalQuestions,
         customAdditionalQuestions: pollInfo.customAdditionalQuestions,
+        expectedNumberOfParticipants: parseInt(expectedNumberOfParticipants),
       })
 
       if (pollCreated) {
