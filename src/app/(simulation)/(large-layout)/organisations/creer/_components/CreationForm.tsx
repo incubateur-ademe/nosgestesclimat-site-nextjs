@@ -2,6 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import { linkToGroupCreation } from '@/constants/group'
+import { ADMINISTRATOR_SEPARATOR } from '@/constants/organisations/administrator'
 import {
   ORGANISATION_TYPES,
   OrganisationTypeEnum,
@@ -66,7 +67,7 @@ export default function CreationForm() {
         type: organisationType,
         administrators: [
           {
-            name: `${administratorFirstName}\n_\n${administratorLastName}`,
+            name: `${administratorFirstName}${ADMINISTRATOR_SEPARATOR}${administratorLastName}`,
             position: administratorPosition,
             optedInForCommunications: hasOptedInForCommunications,
           },
@@ -194,7 +195,7 @@ export default function CreationForm() {
             <p className="mb-0 flex items-center justify-between">
               <Trans>Votre poste</Trans>
               <span className="text-sm italic text-secondary-700">
-                (facultatif)
+                facultatif
               </span>
             </p>
           }
