@@ -26,17 +26,15 @@ export default function CampagnePage() {
 
   useHandleRedirectFromLegacy()
 
-  const {
-    data: poll,
-    isLoading,
-    isFetched,
-  } = useFetchPublicPoll({
+  const { data: poll, isLoading: isLoadingPoll } = useFetchPublicPoll({
     enabled: !isRedirectFromLegacy,
   })
 
-  const { data: dashboard } = useFetchPublicPollDashboard()
+  const { data: dashboard, isLoading: isLoadingDashboard } =
+    useFetchPublicPollDashboard()
 
-  const { data: simulations } = useFetchPublicPollSimulations()
+  const { data: simulations, isLoading: isLoadingSimulations } =
+    useFetchPublicPollSimulations()
 
   const { ageFilters, postalCodeFilters } = useContext(FiltersContext)
 
@@ -54,44 +52,38 @@ export default function CampagnePage() {
       postalCodeFilters,
     })
 
-  if (isFetched && !poll) {
-    return <PollNotFound />
+  if (isLoadingPoll || isLoadingDashboard || isLoadingSimulations) {
+    return <PollLoader />
   }
 
-  if (isLoading) {
-    return <PollLoader />
+  if (!poll) {
+    return <PollNotFound />
   }
 
   return (
     <div className="mb-4 flex flex-col justify-between md:flex-nowrap">
       <Title
         title={
-          isLoading
-            ? '...'
-            : poll?.name ?? (
-                <>
-                  <span className="mr-2">
-                    <Trans>Campagne de</Trans>{' '}
-                    <span className="text-primary-700">
-                      {poll?.organisation.name}
-                    </span>
-                  </span>{' '}
-                  {!!poll?.organisation.administrators && (
-                    <span className="text-sm text-gray-600">
-                      <Trans>(définissez un titre dans les paramètres)</Trans>
-                    </span>
-                  )}
-                </>
-              )
+          <>
+            <span className="mr-2">
+              <Trans>Campagne de</Trans>{' '}
+              <span className="text-primary-700">{poll.organisation.name}</span>
+            </span>{' '}
+            {!!poll.organisation.administrators && (
+              <span className="text-sm text-gray-600">
+                <Trans>(définissez un titre dans les paramètres)</Trans>
+              </span>
+            )}
+          </>
         }
         subtitle={
           poll ? (
             <span>
               <Trans>Campagne créée par</Trans>{' '}
               <strong className="text-primary-700">
-                {poll?.organisation.name}
+                {poll.organisation.name}
               </strong>
-              <Trans>, le</Trans> {dayjs(poll?.createdAt).format('DD/MM/YYYY')}
+              <Trans>, le</Trans> {dayjs(poll.createdAt).format('DD/MM/YYYY')}
             </span>
           ) : (
             ''
