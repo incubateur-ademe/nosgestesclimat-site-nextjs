@@ -57,24 +57,11 @@ export default function OrganisationFields({
         {...register('numberOfCollaborators', {
           min: {
             value: 0,
-            message: t('Veuillez entrer un nombre positif.'),
+            message: t('Veuillez entrer un nombre positif'),
           },
         })}
         error={(errors.numberOfCollaborators?.message as string) || ''}
       />
-      <TextInputGroup
-        label={
-          <p className="mb-0 flex w-full justify-between">
-            <Trans>Votre rôle</Trans>{' '}
-            <span className="font-bold italic text-secondary-700">
-              {' '}
-              <Trans>facultatif</Trans>
-            </span>
-          </p>
-        }
-        value={defaultValues.position}
-        {...register('position')}
-      />{' '}
     </div>
   )
 }

@@ -22,7 +22,7 @@ export async function generateMetadata() {
 export default function Layout({ children }: PropsWithChildren) {
   return (
     <div className="bg-white md:-mt-8">
-      <FilAriane className="-mt-4 mb-4" />
+      <FilAriane className="-mt-4" />
       {children}
     </div>
   )
