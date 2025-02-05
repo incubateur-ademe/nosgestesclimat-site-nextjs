@@ -5,9 +5,9 @@ export enum OrganisationTypeEnum {
   company = 'company',
   cooperative = 'cooperative',
   groupOfFriends = 'groupOfFriends',
+  other = 'other',
   publicOrRegionalAuthority = 'publicOrRegionalAuthority',
   universityOrSchool = 'universityOrSchool',
-  other = 'other',
 }
 
 export const ORGANISATION_TYPES = {
