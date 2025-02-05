@@ -129,8 +129,6 @@ export default function CreationForm() {
                 'Vous devez renseigner le type de votre organisation'
               ),
             })}>
-            {/* Empty option to reset field */}
-            <option className="cursor-pointer"></option>
             {Object.entries(ORGANISATION_TYPES).map(([key, value]) => (
               <option className="cursor-pointer" key={key} value={key}>
                 {value}
