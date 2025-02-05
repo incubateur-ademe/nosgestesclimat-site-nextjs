@@ -2,6 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import { linkToGroupCreation } from '@/constants/group'
+import { ADMINISTRATOR_SEPARATOR } from '@/constants/organisations/administrator'
 import {
   ORGANISATION_TYPES,
   OrganisationTypeEnum,
@@ -68,7 +69,7 @@ export default function CreationForm() {
           {
             // Send the name as a string with a separator to avoid changing
             // the API
-            name: `${administratorFirstName}\n_\n${administratorLastName}`,
+            name: `${administratorFirstName}${ADMINISTRATOR_SEPARATOR}${administratorLastName}`,
             position: administratorPosition,
             optedInForCommunications: hasOptedInForCommunications,
           },
@@ -136,8 +137,6 @@ export default function CreationForm() {
             {...register('organisationType', {
               required: t('Ce champ est requis'),
             })}>
-            {/* Empty option to reset field */}
-            <option className="cursor-pointer"></option>
             {Object.entries(ORGANISATION_TYPES).map(([key, value]) => (
               <option className="cursor-pointer" key={key} value={key}>
                 {value}
@@ -198,7 +197,7 @@ export default function CreationForm() {
             <p className="mb-0 flex items-center justify-between">
               <Trans>Votre poste</Trans>
               <span className="text-sm italic text-secondary-700">
-                (facultatif)
+                facultatif
               </span>
             </p>
           }

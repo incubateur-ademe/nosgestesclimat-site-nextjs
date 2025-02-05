@@ -1,6 +1,9 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { OrgaSettingsInputsType } from '@/types/organisations'
 import type { UseFormRegister } from 'react-hook-form'
 
@@ -10,14 +13,39 @@ type Props = {
 }
 
 export default function PersonalInfoFields({ defaultValues, register }: Props) {
+  const { t } = useClientTranslation()
+
   if (!defaultValues) return null
 
   return (
     <div className="flex flex-col gap-4">
       <TextInputGroup
         label={<Trans>Votre prénom</Trans>}
-        value={defaultValues.administratorName}
-        {...register('administratorName')}
+        value={defaultValues.administratorFirstName}
+        {...register('administratorFirstName', {
+          required: t('Ce champ est requis'),
+        })}
+      />
+
+      <TextInputGroup
+        label={<Trans>Votre nom</Trans>}
+        value={defaultValues.administratorLastName}
+        {...register('administratorLastName', {
+          required: t('Ce champ est requis'),
+        })}
+      />
+
+      <TextInputGroup
+        label={
+          <p className="mb-0 flex items-center justify-between">
+            <Trans>Votre poste</Trans>
+            <span className="text-sm italic text-secondary-700">
+              facultatif
+            </span>
+          </p>
+        }
+        value={defaultValues.position}
+        {...register('position')}
       />
 
       <TextInputGroup
@@ -37,7 +65,9 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
       <TextInputGroup
         label={<Trans>Votre e-mail</Trans>}
         value={defaultValues.email}
-        {...register('email')}
+        {...register('email', {
+          required: t('Ce champ est requis'),
+        })}
       />
 
       <div className="w-[32rem]">
