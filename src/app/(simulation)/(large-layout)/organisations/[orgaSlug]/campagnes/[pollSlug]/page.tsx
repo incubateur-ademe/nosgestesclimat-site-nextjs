@@ -13,7 +13,6 @@ import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedi
 import dayjs from 'dayjs'
 import { useSearchParams } from 'next/navigation'
 import { useContext, useMemo } from 'react'
-import AdminSection from './_components/AdminSection'
 import { FiltersContext } from './_components/FiltersProvider'
 import PollNotFound from './_components/PollNotFound'
 import PollStatisticsCharts from './_components/PollStatisticsCharts'
@@ -92,7 +91,7 @@ export default function CampagnePage() {
       />
 
       <div className="mt-8">
-        <AdminSection poll={poll} />
+        {/* <AdminSection poll={poll} /> */}
 
         <PollStatistics
           simulations={simulations ?? []}
