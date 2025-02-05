@@ -15,14 +15,14 @@ import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
 import { useCreateOrganisation } from '@/hooks/organisations/useCreateOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { captureException } from '@sentry/react'
+import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
 type Inputs = {
   name: string
-  organisationType?: OrganisationTypeEnum
+  organisationType: OrganisationTypeEnum
   administratorName: string
   hasOptedInForCommunications: boolean
   shouldNavigateToPollForm?: boolean
@@ -58,7 +58,7 @@ export default function CreationForm() {
     try {
       const organisationUpdated = await createOrganisation({
         name,
-        type: organisationType || OrganisationTypeEnum.other,
+        type: organisationType,
         administrators: [
           {
             name: administratorName,
@@ -122,18 +122,13 @@ export default function CreationForm() {
 
         <div>
           <Select
-            label={
-              <p className="mb-0 flex justify-between">
-                <Trans>Type d'organisation</Trans>{' '}
-                <span className="font-bold italic text-secondary-700">
-                  {' '}
-                  <Trans>facultatif</Trans>
-                </span>
-              </p>
-            }
-            {...register('organisationType')}>
-            {/* Empty option to reset field */}
-            <option className="cursor-pointer"></option>
+            label={<Trans>Type d'organisation</Trans>}
+            error={formState.errors.organisationType?.message}
+            {...register('organisationType', {
+              required: t(
+                'Vous devez renseigner le type de votre organisation'
+              ),
+            })}>
             {Object.entries(ORGANISATION_TYPES).map(([key, value]) => (
               <option className="cursor-pointer" key={key} value={key}>
                 {value}
