@@ -134,8 +134,6 @@ export default function CreationForm() {
             {...register('organisationType', {
               required: t('Ce champ est requis'),
             })}>
-            {/* Empty option to reset field */}
-            <option className="cursor-pointer"></option>
             {Object.entries(ORGANISATION_TYPES).map(([key, value]) => (
               <option className="cursor-pointer" key={key} value={key}>
                 {value}

@@ -31,20 +31,11 @@ export default function OrganisationFields({
         {...register('name')}
       />
       <Select
-        containerClassName="pt-[3px]"
-        label={
-          <p className="mb-0 flex justify-between">
-            <Trans>Type d'organisation</Trans>{' '}
-            <span className="font-bold italic text-secondary-700">
-              {' '}
-              <Trans>facultatif</Trans>
-            </span>
-          </p>
-        }
+        label={<Trans>Type d'organisation</Trans>}
         value={defaultValues.organisationType}
-        {...register('organisationType')}>
-        {/* Empty option to reset field */}
-        <option className="cursor-pointer"></option>
+        {...register('organisationType', {
+          required: t('Ce champ est requis'),
+        })}>
         {Object.entries(ORGANISATION_TYPES).map(([key, value]) => (
           <option className="cursor-pointer" key={key} value={key}>
             {value}
