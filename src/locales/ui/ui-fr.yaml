@@ -627,7 +627,6 @@ entries:
   Visible uniquement par vous: Visible uniquement par vous
   Voir le détail: Voir le détail
   Vos informations personnelles: Vos informations personnelles
-  Votre rôle: Votre rôle
   Votre téléphone: Votre téléphone
   Vous retrouverez les réponses à ces questions dans l'export des réponses à la campagne.: Vous retrouverez les réponses à ces questions dans l'export des réponses à la campagne.
   (définissez un titre dans les paramètres): (définissez un titre dans les paramètres)
@@ -813,7 +812,6 @@ entries:
   Reprendre plus tard: Reprendre plus tard
   Sauvegarder <2>ma progression</2>: Sauvegarder <2>ma progression</2>
   Votre région a bien été mise à jour.: Votre région a bien été mise à jour.
-  Veuillez entrer un nombre positif.: Veuillez entrer un nombre positif.
   '{{name}}, supprimer cette participation': '{{name}}, supprimer cette participation'
   Participant supprimé avec succès: Participant supprimé avec succès
   Supprimer ce participant ? Cette opération est définitive.: Supprimer ce participant ? Cette opération est définitive.
@@ -1151,7 +1149,6 @@ entries:
   Nombre de participants attendus: Nombre de participants attendus
   Service public: Service public
   Votre poste: Votre poste
-  Votre nom complet: Votre nom complet
-  Vous devez renseigner le type de votre organisation: Vous devez renseigner le type de votre organisation
   'Avez-vous essayé <2>notre fonctionnalité “Groupes d’amis”</2> ? Elle vous permettra de vous comparer dans un classement : que celui ou celle ayant la plus faible empreinte gagne !': 'Avez-vous essayé <2>notre fonctionnalité “Groupes d’amis”</2> ? Elle vous permettra de vous comparer dans un classement : que celui ou celle ayant la plus faible empreinte gagne !'
   Coopérative: Coopérative
+  Veuillez entrer un nombre positif: Veuillez entrer un nombre positif

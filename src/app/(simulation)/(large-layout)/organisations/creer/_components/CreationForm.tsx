@@ -67,6 +67,8 @@ export default function CreationForm() {
         type: organisationType,
         administrators: [
           {
+            // Send the name as a string with a separator to avoid changing
+            // the API
             name: `${administratorFirstName}${ADMINISTRATOR_SEPARATOR}${administratorLastName}`,
             position: administratorPosition,
             optedInForCommunications: hasOptedInForCommunications,
