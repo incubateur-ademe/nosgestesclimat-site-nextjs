@@ -6,7 +6,7 @@ import axios from 'axios'
 
 type OrganisationToCreate = {
   name: string
-  type?: OrganisationTypeEnum | null
+  type: OrganisationTypeEnum
   numberOfCollaborators?: number
   administrators?: [
     {
