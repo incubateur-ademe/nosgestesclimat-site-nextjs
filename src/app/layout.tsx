@@ -8,6 +8,7 @@ import dynamic from 'next/dynamic'
 import localFont from 'next/font/local'
 import Script from 'next/script'
 import type { PropsWithChildren } from 'react'
+import IFrameChild from './_components/IframeChild'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
 
@@ -117,6 +118,12 @@ export default async function RootLayout({ children }: PropsWithChildren) {
               </Script>
             )
           }
+
+          {/* iframe-resizer */}
+          <Script
+            src="https://cdn.jsdelivr.net/npm/@iframe-resizer/parent@5.3.2"
+            strategy="beforeInteractive"
+          />
         </head>
 
         <body
@@ -129,6 +136,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           <MainLayoutProviders initialRegion={initialRegion}>
             {children}
             <Footer />
+            <IFrameChild />
           </MainLayoutProviders>
 
           <div id="modal" />
