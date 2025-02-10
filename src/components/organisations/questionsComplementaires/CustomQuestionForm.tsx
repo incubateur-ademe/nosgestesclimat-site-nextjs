@@ -63,7 +63,7 @@ export default function CustomQuestionForm({
     } else {
       customAdditionalQuestions.push({
         question: questionValue,
-        isEnabled: false,
+        isEnabled: true,
       })
     }
 
