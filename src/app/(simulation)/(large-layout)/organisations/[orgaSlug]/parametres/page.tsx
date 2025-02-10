@@ -51,6 +51,9 @@ const getFormDefaultValues = (
     name,
   } = organisation
 
+  const [administratorFirstName, administratorLastName] =
+    administratorName?.split(ADMINISTRATOR_SEPARATOR) ?? []
+
   return {
     name,
     email,
@@ -60,12 +63,8 @@ const getFormDefaultValues = (
     ...(position ? { position } : {}),
     ...(administratorName
       ? {
-          administratorFirstName: administratorName.split(
-            ADMINISTRATOR_SEPARATOR
-          )[0],
-          administratorLastName: administratorName.split(
-            ADMINISTRATOR_SEPARATOR
-          )[1],
+          administratorFirstName,
+          administratorLastName,
         }
       : {}),
     ...(administratorTelephone ? { administratorTelephone } : {}),
@@ -131,13 +130,6 @@ export default function ParametresPage() {
 
     try {
       trackEvent(organisationsParametersUpdateInformations)
-
-      // Handle administrator name
-      if (formData.administratorFirstName && formData.administratorLastName) {
-        formData.administratorName = `${formData.administratorFirstName}${ADMINISTRATOR_SEPARATOR}${formData.administratorLastName}`
-        delete formData.administratorFirstName
-        delete formData.administratorLastName
-      }
 
       await updateOrganisation({
         organisationIdOrSlug: organisation.slug,
