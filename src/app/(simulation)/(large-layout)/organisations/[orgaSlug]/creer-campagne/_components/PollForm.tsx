@@ -44,7 +44,7 @@ export default function PollForm({ organisation }: Props) {
         name,
         defaultAdditionalQuestions: pollInfo.defaultAdditionalQuestions,
         customAdditionalQuestions: pollInfo.customAdditionalQuestions,
-        expectedNumberOfParticipants,
+        expectedNumberOfParticipants: expectedNumberOfParticipants || undefined,
       })
 
       if (pollCreated) {
