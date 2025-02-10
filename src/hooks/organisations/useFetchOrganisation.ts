@@ -1,11 +1,17 @@
 import { ORGANISATION_URL } from '@/constants/urls'
+import { useUser } from '@/publicodes-state'
 import type { Organisation } from '@/types/organisations'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useParams } from 'next/navigation'
 
 export default function useFetchOrganisation() {
-  const { orgaSlug: organisationIdOrSlug } = useParams()
+  const { orgaSlug } = useParams()
+
+  const { user } = useUser()
+
+  // Use organisationIdOrSlug or organisationId from the localstate
+  const organisationIdOrSlug = orgaSlug || user?.organisation?.slug
 
   return useQuery({
     queryKey: ['organisations', organisationIdOrSlug],
