@@ -29,7 +29,7 @@ const url = new URL(hostname)
 const withHomepage = script.dataset.withHomepage
 
 if (withHomepage) {
-  url.pathname = `/${lang ? lang + '/' : ''}`
+  url.pathname = `/${lang ? lang + '/accueil-iframe' : 'accueil-iframe'}`
 } else {
   url.pathname = `/${lang ? lang + '/' : ''}simulateur/bilan`
 }
