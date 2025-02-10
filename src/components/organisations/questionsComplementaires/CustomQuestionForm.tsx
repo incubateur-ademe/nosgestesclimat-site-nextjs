@@ -21,6 +21,7 @@ type Props = {
   submitLabel?: string | JSX.Element
   isEditMode?: boolean
   onCompleted?: (changes: Record<string, unknown>) => void
+  onCancel?: () => void
   question?: string
 }
 
@@ -33,6 +34,7 @@ export default function CustomQuestionForm({
   isEditMode,
   organisation,
   onCompleted = () => {},
+  onCancel,
 }: Props) {
   const [isFormDisplayed, setIsFormDisplayed] = useState(isEditMode ?? false)
 
@@ -90,6 +92,7 @@ export default function CustomQuestionForm({
 
   function handleCancel() {
     setIsFormDisplayed(false)
+    onCancel?.()
   }
 
   // Show the form only for organisations with access
