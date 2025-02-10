@@ -48,7 +48,7 @@ export default async function Tutoriel() {
 
         <AvantDeCommencer />
 
-        <div className={twMerge('mb-12 flex w-full gap-4 px-4 md:px-0 ')}>
+        <div className={twMerge('mb-12 flex w-full gap-4 sm:px-4 md:px-0 ')}>
           <ButtonBack />
 
           <OrganisationMessage />
