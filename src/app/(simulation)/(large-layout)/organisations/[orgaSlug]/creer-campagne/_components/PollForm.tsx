@@ -74,7 +74,6 @@ export default function PollForm({ organisation }: Props) {
           label={<Trans>Nombre de participants attendus</Trans>}
           type="number"
           {...register('expectedNumberOfParticipants', {
-            required: t('Ce champ est requis'),
             min: {
               value: 1,
               message: t('Le nombre de participants doit être supérieur à 0'),
