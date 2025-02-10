@@ -1,6 +1,7 @@
 import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
 import Partners from '@/components/landing-pages/Partners'
 import Trans from '@/components/translation/Trans'
+import { noIndexObject } from '@/constants/metadata'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -25,6 +26,7 @@ export async function generateMetadata() {
     alternates: {
       canonical: '',
     },
+    robots: noIndexObject,
   })
 }
 
