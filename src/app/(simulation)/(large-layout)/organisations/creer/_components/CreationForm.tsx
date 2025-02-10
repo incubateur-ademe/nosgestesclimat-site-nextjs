@@ -1,6 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import { linkToGroupCreation } from '@/constants/group'
 import {
   ORGANISATION_TYPES,
   OrganisationTypeEnum,
@@ -14,14 +15,14 @@ import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
 import { useCreateOrganisation } from '@/hooks/organisations/useCreateOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { captureException } from '@sentry/react'
+import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
 type Inputs = {
   name: string
-  organisationType?: OrganisationTypeEnum
+  organisationType: OrganisationTypeEnum
   administratorName: string
   hasOptedInForCommunications: boolean
   shouldNavigateToPollForm?: boolean
@@ -57,7 +58,7 @@ export default function CreationForm() {
     try {
       const organisationUpdated = await createOrganisation({
         name,
-        type: organisationType || null,
+        type: organisationType,
         administrators: [
           {
             name: administratorName,
@@ -121,18 +122,13 @@ export default function CreationForm() {
 
         <div>
           <Select
-            label={
-              <p className="mb-0 flex justify-between">
-                <Trans>Type d'organisation</Trans>{' '}
-                <span className="font-bold italic text-secondary-700">
-                  {' '}
-                  <Trans>facultatif</Trans>
-                </span>
-              </p>
-            }
-            {...register('organisationType')}>
-            {/* Empty option to reset field */}
-            <option className="cursor-pointer"></option>
+            label={<Trans>Type d'organisation</Trans>}
+            error={formState.errors.organisationType?.message}
+            {...register('organisationType', {
+              required: t(
+                'Vous devez renseigner le type de votre organisation'
+              ),
+            })}>
             {Object.entries(ORGANISATION_TYPES).map(([key, value]) => (
               <option className="cursor-pointer" key={key} value={key}>
                 {value}
@@ -158,7 +154,7 @@ export default function CreationForm() {
                   ou celle ayant la plus faible empreinte gagne !
                 </Trans>
               </p>
-              <ButtonLink href="/amis/creer" size="sm">
+              <ButtonLink href={linkToGroupCreation} size="sm">
                 <Trans>Créer un groupe d'amis</Trans>
               </ButtonLink>
             </div>

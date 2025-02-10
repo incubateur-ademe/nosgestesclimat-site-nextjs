@@ -1,6 +1,6 @@
 'use client'
 
-import Total from '@/components/total/Total'
+import TopBar from '@/components/simulation/TopBar'
 import {
   simulateurCloseSommaire,
   simulateurOpenSommaire,
@@ -36,10 +36,16 @@ export default function SimulateurPage() {
     setIsSaveModalOpen((prevIsSaveModalOpen) => !prevIsSaveModalOpen)
   }, [])
 
+  const [isBackHomeModalOpen, setIsBackHomeModalOpen] = useState(false)
+  const toggleBackHomeModal = useCallback(() => {
+    setIsBackHomeModalOpen((isBackHomeModalOpen) => !isBackHomeModalOpen)
+  }, [])
+
   return (
     <div className="flex h-screen flex-1 flex-col overflow-scroll">
-      <Total
+      <TopBar
         toggleQuestionList={toggleQuestionList}
+        toggleBackHomeModal={toggleBackHomeModal}
         toggleSaveModal={toggleSaveModal}
       />
 
@@ -49,7 +55,11 @@ export default function SimulateurPage() {
         isLoading={!isGuardInit || isGuardRedirecting}
       />
 
-      <SaveModal isOpen={isSaveModalOpen} closeModal={toggleSaveModal} />
+      <SaveModal
+        isOpen={isSaveModalOpen || isBackHomeModalOpen}
+        closeModal={isSaveModalOpen ? toggleSaveModal : toggleBackHomeModal}
+        mode={isSaveModalOpen ? 'save' : 'backHome'}
+      />
     </div>
   )
 }

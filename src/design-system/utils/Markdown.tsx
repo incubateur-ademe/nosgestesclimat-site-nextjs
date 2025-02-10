@@ -2,7 +2,7 @@
 
 import Link from '@/components/Link'
 import NosGestesTransportsBanner from '@/components/blog/NosGestesTransportsBanner'
-import type { MarkdownToJSX } from 'markdown-to-jsx';
+import type { MarkdownToJSX } from 'markdown-to-jsx'
 import MarkdownToJsx from 'markdown-to-jsx'
 import Image from 'next/image'
 import type { ComponentProps } from 'react'
@@ -35,7 +35,7 @@ export default function Markdown({
                   width={props.width ?? 900}
                   height={props.height ?? 500}
                   style={{ width: '100%', height: 'auto' }}
-                  alt={props.alt as string}
+                  alt={(props.alt as string) ?? ''}
                   {...(props as any)}
                 />
               ),

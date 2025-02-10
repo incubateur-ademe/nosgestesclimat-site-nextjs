@@ -18,7 +18,6 @@ import {
   footerClickQuiSommesNous,
 } from '@/constants/tracking/layout'
 import InlineLink from '@/design-system/inputs/InlineLink'
-import Separator from '@/design-system/layout/Separator'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -37,179 +36,160 @@ export default function Footer({ className = '' }) {
 
   if (isIframeOnlySimulation) return null
 
-  const isHomePage =
+  const shouldUseWhiteBackground =
     pathname === '/' ||
     pathname === `/${locale}` ||
     pathname.includes('/empreinte-eau') ||
-    pathname.includes('/empreinte-carbone')
+    pathname.includes('/empreinte-carbone') ||
+    pathname.includes('/blog')
+
   return (
     <footer
       className={twMerge(
-        'relative flex flex-col items-center gap-4 bg-gray-100 p-4 !pb-32 sm:p-8 md:mb-0',
+        'relative bg-gray-100 p-4 !pb-32 sm:p-8',
         className,
-        isHomePage ? 'bg-white' : ''
+        shouldUseWhiteBackground ? 'bg-white' : ''
       )}>
-      <div className="flex w-full flex-col items-start gap-2 md:max-w-5xl md:flex-row md:gap-12">
-        <Logo onClick={() => trackEvent(footerClickLogo)} />
+      <div className=" md:mx-auto md:max-w-5xl">
+        <Logo className="mb-8" onClick={() => trackEvent(footerClickLogo)} />
 
-        <div className="flex-1">
-          <div className="flex flex-col flex-wrap justify-start gap-x-5 gap-y-2 pt-4 sm:flex-row md:items-center">
+        <div className="mb-10 flex flex-col flex-wrap justify-start gap-x-16 gap-y-8 pt-4 md:flex-row lg:flex-nowrap">
+          <div className="flex flex-col gap-y-2">
+            <h3 className="mb-0 text-sm font-bold text-default">
+              <Trans>À propos</Trans>
+            </h3>
             <InlineLink
               href="/a-propos"
               onClick={() => trackEvent(footerClickQuiSommesNous)}
-              className="text-default no-underline hover:underline">
-              <strong>
-                <Trans>À propos</Trans>
-              </strong>
-            </InlineLink>
-
-            <InlineLink
-              href="/empreinte-eau"
-              className="text-default no-underline hover:underline">
-              <strong>
-                <Trans>Empreinte eau</Trans>
-              </strong>
-            </InlineLink>
-
-            <InlineLink
-              href="/blog"
-              onClick={() => trackEvent(footerClickBlog)}
-              className="text-default no-underline hover:underline">
-              <strong>
-                <Trans>Blog</Trans>
-              </strong>
-            </InlineLink>
-
-            <InlineLink
-              href="/nouveautes"
-              onClick={() => trackEvent(footerClickNouveautes)}
-              className="text-default no-underline hover:underline">
-              <strong>
-                <Trans>Nouveautés</Trans>
-              </strong>
-            </InlineLink>
-
-            <InlineLink
-              href="/documentation"
-              onClick={() => trackEvent(footerClickDocumentation)}
-              className="text-default no-underline hover:underline">
-              <strong>
-                <Trans>Documentation</Trans>
-              </strong>
-            </InlineLink>
-
-            <InlineLink
-              href="/questions-frequentes"
-              onClick={() => trackEvent(footerClickFAQ)}
-              className="text-default no-underline hover:underline">
-              <strong>
-                <Trans>FAQ</Trans>
-              </strong>
-            </InlineLink>
-
-            <InlineLink
-              href="/contact"
-              onClick={() => trackEvent(footerClickContact)}
-              className="text-default no-underline hover:underline">
-              <strong>
-                <Trans>Contact</Trans>
-              </strong>
+              className="text-sm text-default no-underline hover:underline">
+              <Trans>Qui sommes-nous</Trans>
             </InlineLink>
 
             <InlineLink
               href="/plan-du-site"
               onClick={() => trackEvent(footerClickPlanSite)}
-              className="font-bold text-default no-underline hover:underline">
+              className="text-sm text-default no-underline hover:underline">
               <Trans>Plan du site</Trans>
             </InlineLink>
 
-            {/* Hack in order to force Diffusion to be on a new line on desktop */}
-            <div className="hidden w-full lg:block" />
+            <InlineLink
+              href="/contact"
+              onClick={() => trackEvent(footerClickContact)}
+              className="text-sm text-default no-underline hover:underline">
+              <Trans>Contact</Trans>
+            </InlineLink>
 
+            <InlineLink
+              href="/international"
+              onClick={() => trackEvent(footerClickInternational)}
+              className="text-sm text-default no-underline hover:underline">
+              <Trans>International</Trans>
+            </InlineLink>
+          </div>
+
+          <div className="flex flex-col gap-y-2">
+            <h3 className="mb-0 text-sm font-bold text-default">
+              <Trans>Diffusion</Trans>
+            </h3>
             <InlineLink
               href="/diffuser"
               onClick={() => trackEvent(footerClickDiffusion)}
-              className="font-bold text-default no-underline hover:underline">
-              <Trans>Diffusion</Trans>
+              className="text-sm text-default no-underline hover:underline">
+              <Trans>Diffuser Nos Gestes Climat</Trans>
             </InlineLink>
 
             <InlineLink
               href="/organisations"
               onClick={() => trackEvent(footerClickOrganisations)}
-              className="font-bold text-default no-underline hover:underline">
+              className="text-sm text-default no-underline hover:underline">
               <Trans>Organisations</Trans>
             </InlineLink>
 
             <InlineLink
               href="/nos-relais"
               onClick={() => trackEvent(footerClickAmbassadeurs)}
-              className="text-default no-underline hover:underline">
-              <strong>
-                <Trans>Nos relais</Trans>
-              </strong>
+              className="text-sm text-default no-underline hover:underline">
+              <Trans>Relais et partenaires</Trans>
+            </InlineLink>
+          </div>
+
+          <div className="flex flex-col gap-y-2">
+            <h3 className="mb-0 text-sm font-bold text-default">
+              <Trans>Ressources</Trans>
+            </h3>
+
+            <InlineLink
+              href="/blog"
+              onClick={() => trackEvent(footerClickBlog)}
+              className="text-sm text-default no-underline hover:underline">
+              <Trans>Blog</Trans>
             </InlineLink>
 
             <InlineLink
-              href="/international"
-              onClick={() => trackEvent(footerClickInternational)}
-              className="font-bold text-default no-underline hover:underline">
-              <Trans>International</Trans>
+              href="/documentation"
+              onClick={() => trackEvent(footerClickDocumentation)}
+              className="text-sm text-default no-underline hover:underline">
+              <Trans>Documentation</Trans>
+            </InlineLink>
+
+            <InlineLink
+              href="/questions-frequentes"
+              onClick={() => trackEvent(footerClickFAQ)}
+              className="text-sm text-default no-underline hover:underline">
+              <Trans>FAQ</Trans>
+            </InlineLink>
+
+            <InlineLink
+              href="/nouveautes"
+              onClick={() => trackEvent(footerClickNouveautes)}
+              className="text-sm text-default no-underline hover:underline">
+              <Trans>Nouveautés</Trans>
             </InlineLink>
 
             <InlineLink
               href="https://impactco2.fr"
               target="_blank"
-              className="font-bold text-default no-underline hover:underline"
+              className="text-sm text-default no-underline hover:underline"
               onClick={() => trackEvent(footerClickImpactco2)}>
               Impact CO2
             </InlineLink>
           </div>
+        </div>
 
-          <Separator className="mb-0 mt-6 md:mt-4" />
-
-          <div className="flex flex-wrap justify-between gap-8 md:flex-row md:flex-nowrap">
-            <div>
-              <div className="mt-6 flex flex-wrap items-start justify-between gap-10">
-                <LanguageSwitchButton />
-              </div>
-
-              <div className="mt-4 text-xs">
-                <InlineLink
-                  href="/accessibilite"
-                  className="text-default no-underline hover:underline">
-                  <Trans>Accessibilité : partiellement conforme</Trans>
-                </InlineLink>
-                <span className="hidden sm:inline"> | </span>
-                <br className="md:hidden" />
-                <InlineLink
-                  href="/mentions-legales"
-                  className="text-default no-underline hover:underline">
-                  <Trans>Mentions légales</Trans>
-                </InlineLink>
-                <span className="hidden sm:inline"> | </span>
-                <br className="md:hidden" />
-                <InlineLink
-                  href="/politique-de-confidentialite"
-                  className="text-default no-underline hover:underline">
-                  <Trans>Politique de confidentialité</Trans>
-                </InlineLink>
-                <span className="hidden sm:inline"> | </span>
-                <br className="md:hidden" />
-                <InlineLink
-                  href="/politique-des-cookies"
-                  className="text-default no-underline hover:underline">
-                  <Trans>Politique des cookies</Trans>
-                </InlineLink>
-              </div>
+        <div className="flex flex-wrap justify-between gap-8 md:flex-row md:flex-nowrap">
+          <div>
+            <div className="mt-6 flex flex-wrap items-start justify-between gap-10">
+              <LanguageSwitchButton />
             </div>
 
-            <div className="flex gap-4 self-end pb-1">
-              <Marianne className="h-auto w-12 md:w-auto" />
-
-              <Link href="https://ademe.fr" target="_blank">
-                <Ademe className="h-auto w-10 md:w-auto" />
-              </Link>
+            <div className="mt-4 text-xs">
+              <InlineLink href="/accessibilite">
+                <Trans>Accessibilité : partiellement conforme</Trans>
+              </InlineLink>
+              <span className="mx-1 hidden sm:inline"> | </span>
+              <br className="md:hidden" />
+              <InlineLink href="/mentions-legales">
+                <Trans>Mentions légales</Trans>
+              </InlineLink>
+              <span className="mx-1 hidden sm:inline"> | </span>
+              <br className="md:hidden" />
+              <InlineLink href="/politique-de-confidentialite">
+                <Trans>Politique de confidentialité</Trans>
+              </InlineLink>
+              <span className="mx-1 hidden sm:inline"> | </span>
+              <br className="md:hidden" />
+              <InlineLink href="/politique-des-cookies">
+                <Trans>Politique des cookies</Trans>
+              </InlineLink>
             </div>
+          </div>
+
+          <div className="flex gap-4 self-end pb-1">
+            <Marianne className="h-auto w-12 md:w-auto" />
+
+            <Link href="https://ademe.fr" target="_blank">
+              <Ademe className="h-auto w-10 md:w-auto" />
+            </Link>
           </div>
         </div>
       </div>

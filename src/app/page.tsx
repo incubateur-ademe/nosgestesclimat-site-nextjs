@@ -1,4 +1,4 @@
-import DynamicCTAButton from '@/components/cta/DynamicCTAButton'
+import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/Trans'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
@@ -6,6 +6,7 @@ import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import {
+  getLandingClickCTARestart,
   getLandingClickCTAResults,
   getLandingClickCTAResume,
   getLandingClickCTAStart,
@@ -54,26 +55,11 @@ export default async function Homepage() {
       />
 
       <LandingPage
-        heroIllustration={
-          <div className="flex flex-col gap-4">
-            {/* Displayed on mobile only */}
-            <p className="text-center text-sm md:hidden">
-              <Trans>
-                <strong className="text-primary-700">
-                  2 millions de personnes
-                </strong>{' '}
-                ont déjà <br />
-                calculé leur empreinte !
-              </Trans>
-            </p>
-
-            <InteractiveIllustration />
-          </div>
-        }
+        heroIllustration={<InteractiveIllustration />}
         heroTitle={<Trans>Connaissez-vous votre empreinte écologique ?</Trans>}
         heroDescription={
           <div className="flex flex-col items-center gap-6 md:items-start md:gap-10">
-            <p className="order-2 mb-0 text-lg md:order-1 md:text-2xl">
+            <p className="mb-0 text-base md:order-1 md:text-2xl">
               <Trans>
                 Calculez votre{' '}
                 <strong className="text-primary-700">empreinte carbone</strong>{' '}
@@ -86,8 +72,8 @@ export default async function Homepage() {
               </Trans>
             </p>
 
-            <div className="order-1 mt-10 flex flex-col items-center gap-6 md:order-2 md:mt-0 md:max-w-[300px] md:items-start">
-              <DynamicCTAButton
+            <div className="flex flex-col items-center gap-6 md:order-2 md:mt-0 md:max-w-[300px] md:items-start">
+              <DynamicCTAButtons
                 trackingEvents={{
                   start: getLandingClickCTAStart(
                     pathname,
@@ -101,12 +87,21 @@ export default async function Homepage() {
                     pathname,
                     trackingActionClickCTA
                   ),
+                  restart: getLandingClickCTARestart(
+                    pathname,
+                    trackingActionClickCTA
+                  ),
                 }}
                 className="w-full"
               />
 
+              {/* Displayed on mobile only */}
+              <div className="mx-auto mt-4 max-w-80 md:mt-0 md:hidden">
+                <InteractiveIllustration />
+              </div>
+
               {/* Displayed on desktop only */}
-              <p className="hidden md:block">
+              <p>
                 <Trans>
                   <strong className="text-primary-700">
                     2 millions de personnes

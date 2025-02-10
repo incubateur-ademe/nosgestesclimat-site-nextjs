@@ -9,13 +9,13 @@ type CustomAdditionalQuestions = {
   isEnabled: boolean
 }
 
-export type User = {
+type User = {
   id: string
   name?: string
   email?: string
 }
 
-export type VerifiedUser = {
+type VerifiedUser = {
   id: string
   email: string
   name?: string | null
@@ -32,7 +32,7 @@ type BaseOrganisation = {
   slug: string
   administrators?: [VerifiedUser]
   polls?: Omit<OrganisationPoll, 'simulations'>[]
-  type?: OrganisationTypeEnum | null
+  type?: OrganisationTypeEnum
   numberOfCollaborators?: number | null
   hasCustomQuestionEnabled?: boolean
   createdAt?: string
@@ -113,5 +113,5 @@ export type OrgaSettingsInputsType = {
   numberOfCollaborators?: number
   administratorTelephone?: string
   hasOptedInForCommunications?: boolean
-  organisationType?: OrganisationTypeEnum
+  organisationType: OrganisationTypeEnum
 }

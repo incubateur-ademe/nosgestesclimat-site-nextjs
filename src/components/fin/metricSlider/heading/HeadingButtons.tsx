@@ -27,7 +27,7 @@ const saveClassNames = {
 }
 const shareClassNames = {
   sm: 'h-[22px] w-[22px]',
-  md: 'h-[22px] w-[22px]',
+  md: 'h-[28px] w-[28px]',
 }
 
 type Props = {

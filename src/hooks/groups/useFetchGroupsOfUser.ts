@@ -15,6 +15,5 @@ export function useFetchGroupsOfUser() {
       axios
         .get<Group[]>(`${GROUP_URL}/${userId}`)
         .then((response) => response.data),
-    initialData: [],
   })
 }

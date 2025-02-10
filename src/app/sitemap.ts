@@ -1,5 +1,4 @@
 import { getPosts } from '@/helpers/markdown/getPosts'
-import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json'
 import type { MetadataRoute } from 'next'
 import { utils } from 'publicodes'
@@ -8,7 +7,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages = [
     '',
     'personas',
-    'actions/plus',
     'nouveautes',
     'a-propos',
     'contact',
@@ -50,18 +48,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
-  const actionPosts = await getPosts(`src/locales/actions-plus/fr/`)
-  const actionUrls = actionPosts.map((post) => ({
-    url: `https://nosgestesclimat.fr/actions/plus/${encodeRuleName(post?.slug ?? '')}`,
-    lastModified: new Date(),
-    priority: 0.8,
-  }))
-
-  return [
-    ...staticUrls,
-    ...blogUrls,
-    ...actionUrls,
-    ...releaseUrls,
-    ...documentationUrls,
-  ]
+  return [...staticUrls, ...blogUrls, ...releaseUrls, ...documentationUrls]
 }

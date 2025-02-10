@@ -3,7 +3,11 @@
 import Link from '@/components/Link'
 import PlusIcon from '@/components/icons/PlusIcon'
 import Trans from '@/components/translation/Trans'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import {
+  baseClassNames,
+  colorClassNames,
+  sizeClassNames,
+} from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
@@ -37,18 +41,22 @@ export default function AddPollCard({ hasNoPollsYet }: Props) {
         />
       </div>
 
-      <ButtonLink
-        href={`/organisations/${orgaSlug}/creer-campagne`}
-        className="!w-full text-sm "
+      <div
+        className={twMerge(
+          '!w-full text-sm',
+          baseClassNames,
+          sizeClassNames.md,
+          hasNoPollsYet ? colorClassNames.primary : colorClassNames.secondary
+        )}
         color={hasNoPollsYet ? 'primary' : 'secondary'}>
         <PlusIcon
           className={twMerge(
-            'mr-2 ',
+            'min-w-8',
             hasNoPollsYet ? 'stroke-white' : 'stroke-primary-700'
           )}
         />
         <Trans>Créer une campagne</Trans>
-      </ButtonLink>
+      </div>
     </Link>
   )
 }
