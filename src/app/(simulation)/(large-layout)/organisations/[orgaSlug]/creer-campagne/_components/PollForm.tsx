@@ -71,7 +71,15 @@ export default function PollForm({ organisation }: Props) {
         />
 
         <TextInputGroup
-          label={<Trans>Nombre de participants attendus</Trans>}
+          label={
+            <p className="mb-0 flex w-full justify-between">
+              <Trans>Nombre de participants attendus</Trans>
+              <span className="font-bold italic text-secondary-700">
+                {' '}
+                <Trans>facultatif</Trans>
+              </span>
+            </p>
+          }
           type="number"
           {...register('expectedNumberOfParticipants', {
             min: {
