@@ -23,3 +23,13 @@ export function getProgression() {
     )?.progression ?? 0
   )
 }
+
+export function getUser() {
+  const state = getLocalState()
+
+  if (!state?.user) {
+    return undefined
+  }
+
+  return state.user
+}
