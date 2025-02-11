@@ -37,16 +37,20 @@ export default function NameForm({
 
   async function onSubmit({
     name,
-    expectedNumberOfParticipants,
+    expectedNumberOfParticipants: newExpectedNumberOfParticipants,
   }: {
     name: string
     expectedNumberOfParticipants: string
   }) {
     updatePoll({
       name,
-      expectedNumberOfParticipants: expectedNumberOfParticipants
-        ? parseInt(expectedNumberOfParticipants)
-        : undefined,
+      expectedNumberOfParticipants: newExpectedNumberOfParticipants
+        ? parseInt(newExpectedNumberOfParticipants)
+        : // If the expectedNumberOfParticipants is empty, we set it to undefined
+          // otherwise reset its value to null
+          expectedNumberOfParticipants
+          ? null
+          : undefined,
     })
   }
 
