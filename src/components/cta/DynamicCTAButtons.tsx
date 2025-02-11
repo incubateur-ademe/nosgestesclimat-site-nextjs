@@ -1,8 +1,8 @@
 'use client'
 
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import { getCTAButtonLabel } from '@/helpers/ctaButton/getCTAButtonLabel'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIsClient } from '@/hooks/useIsClient'
 import { getProgression } from '@/services/localstorage/ngc.service'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -27,7 +27,13 @@ export default function DynamicCTAButtons({
 }) {
   const isClient = useIsClient()
 
-  const { getLinkToSimulateurPage, goToSimulateurPage } = useSimulateurPage()
+  const { t } = useClientTranslation()
+
+  const {
+    getLinkToSimulateurPage,
+    goToSimulateurPage,
+    linkToSimulateurPageLabel,
+  } = useSimulateurPage()
 
   // Use the progression from the local storage as component isn't always in the right context
   const progression = getProgression()
@@ -35,11 +41,11 @@ export default function DynamicCTAButtons({
   const [isHover, setIsHover] = useState(false)
 
   // Hack to force Client side rendering
-  const [label, setLabel] = useState('')
+  const [label, setLabel] = useState(t('Passer le test'))
 
   useEffect(() => {
-    setLabel(getCTAButtonLabel({ progression }))
-  }, [progression])
+    setLabel(linkToSimulateurPageLabel)
+  }, [linkToSimulateurPageLabel])
 
   return (
     <div className="flex flex-col flex-wrap items-center justify-center gap-2 md:items-start lg:flex-row lg:flex-nowrap">

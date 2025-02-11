@@ -3,7 +3,7 @@ import type { LocalStorage } from '@/publicodes-state/types'
 
 export function getLocalState() {
   // Check if the local storage is available
-  if (typeof window === 'undefined') {
+  if (typeof window === 'undefined' || !window.localStorage) {
     return undefined
   }
 
@@ -22,14 +22,4 @@ export function getProgression() {
       (simulation) => simulation.id === state.currentSimulationId
     )?.progression ?? 0
   )
-}
-
-export function getUser() {
-  const state = getLocalState()
-
-  if (!state?.user) {
-    return undefined
-  }
-
-  return state.user
 }
