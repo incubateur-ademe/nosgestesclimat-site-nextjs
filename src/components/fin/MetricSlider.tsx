@@ -97,7 +97,11 @@ export default function MetricSlider({
         </MetricCard>
       </div>
 
-      <p className="mt-2 inline-block w-full text-center text-xs text-default md:text-sm">
+      <p
+        className={twMerge(
+          'mt-2 inline-block w-full text-center text-xs text-default md:text-sm transition-opacity duration-300',
+          isSticky ? 'opacity-0' : ''
+        )}>
         <Emoji>💡</Emoji>{' '}
         <Trans>
           Affichez le détail de votre empreinte carbone ou eau en cliquant sur

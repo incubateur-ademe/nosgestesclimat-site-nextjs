@@ -17,7 +17,7 @@ export default async function DecryptChallenges() {
           imageAlt: t(
             "Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau"
           ),
-          href: '/blog/lexique-eau-tout-comprendre',
+          href: '/blog/environnement/lexique-eau-tout-comprendre',
         },
         {
           title: <Trans>Transports : les modes à fuir, ceux à chérir</Trans>,
@@ -26,7 +26,7 @@ export default async function DecryptChallenges() {
           imageAlt: t(
             "Deux mini-vans, illustrant l'empreinte carbone des transports"
           ),
-          href: '/blog/transports-fuir-transports-cherir',
+          href: '/blog/mobilites/transports-fuir-transports-cherir',
         },
         {
           title: (
@@ -37,7 +37,7 @@ export default async function DecryptChallenges() {
           imageAlt: t(
             'Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone'
           ),
-          href: '/blog/carbone-empreinte-parmi-autres',
+          href: '/blog/environnement/carbone-empreinte-parmi-autres',
         },
       ]}
     />
