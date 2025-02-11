@@ -6,7 +6,7 @@ import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useIsClient } from '@/hooks/useIsClient'
 import { getProgression } from '@/services/localstorage/ngc.service'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RestartIcon from '../icons/RestartIcon'
 import Trans from '../translation/Trans'
@@ -33,6 +33,13 @@ export default function DynamicCTAButtons({
   const progression = getProgression()
 
   const [isHover, setIsHover] = useState(false)
+
+  // Hack to force Client side rendering
+  const [label, setLabel] = useState('')
+
+  useEffect(() => {
+    setLabel(getCTAButtonLabel({ progression }))
+  }, [progression])
 
   return (
     <div className="flex flex-col flex-wrap items-center justify-center gap-2 md:items-start lg:flex-row lg:flex-nowrap">
@@ -67,7 +74,7 @@ export default function DynamicCTAButtons({
               : '',
             'leading-none'
           )}>
-          <Trans>{getCTAButtonLabel({ progression })}</Trans>
+          <Trans>{label}</Trans>
         </span>
       </ButtonLink>
 

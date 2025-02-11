@@ -1,4 +1,3 @@
-import DynamicCTAButton from '@/components/cta/DynamicCTAButtons'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/Trans'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
@@ -11,6 +10,7 @@ import {
   getLandingClickCTAResume,
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import DailyGestureWaterFootprint from './_components/DailyGestureWaterFootprint'
 import DidYouKnowWaterFootprint from './_components/DidYouKnowWaterFootprint'
@@ -21,6 +21,10 @@ import WaterFootprintPartners from './_components/WaterFootprintPartners'
 import WhatDoWeMeasureWaterFootprint from './_components/WhatDoWeMeasureWaterFootprint'
 import WhatItIsWaterFootprint from './_components/WhatItIsWaterFootprint'
 import { waterFAQJsonLd } from './_constants/waterFAQJsonLd'
+
+const CTAButtons = dynamic(() => import('@/components/cta/DynamicCTAButtons'), {
+  ssr: false,
+})
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
@@ -84,7 +88,7 @@ export default async function WaterFootprintLandingPage() {
               </Trans>
             </p>
             <div className="flex w-full justify-center md:justify-start">
-              <DynamicCTAButton
+              <CTAButtons
                 trackingEvents={{
                   start: getLandingClickCTAStart(
                     '/empreinte-eau',
