@@ -22,6 +22,7 @@ export default function CreationPage() {
         <Title
           title={<Trans>Bienvenue sur votre espace !</Trans>}
           subtitle={<Trans>Plus que quelques petites questions</Trans>}
+          hasSeparator={false}
         />
 
         <CreationForm />

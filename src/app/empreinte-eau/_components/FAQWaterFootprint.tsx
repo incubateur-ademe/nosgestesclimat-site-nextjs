@@ -108,7 +108,7 @@ export default async function FAQWaterFootprint() {
                 <Trans>
                   Pour aller plus loin :{' '}
                   <a
-                    href="/blog/lexique-eau-tout-comprendre"
+                    href="/blog/environnement/lexique-eau-tout-comprendre"
                     target="_blank"
                     rel="noopener"
                     aria-label={t(
@@ -174,7 +174,7 @@ export default async function FAQWaterFootprint() {
                 <Trans>
                   Pour aller plus loin :{' '}
                   <a
-                    href="/blog/lexique-eau-tout-comprendre"
+                    href="/blog/environnement/lexique-eau-tout-comprendre"
                     target="_blank"
                     rel="noopener"
                     aria-label={t(
