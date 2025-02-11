@@ -16,7 +16,7 @@ type Props = {
 
 type Inputs = {
   name: string
-  expectedNumberOfParticipants: string
+  expectedNumberOfParticipants: number
 }
 
 export default function PollForm({ organisation }: Props) {
@@ -44,8 +44,7 @@ export default function PollForm({ organisation }: Props) {
         name,
         defaultAdditionalQuestions: pollInfo.defaultAdditionalQuestions,
         customAdditionalQuestions: pollInfo.customAdditionalQuestions,
-        expectedNumberOfParticipants:
-          parseInt(expectedNumberOfParticipants) || undefined,
+        expectedNumberOfParticipants: expectedNumberOfParticipants || undefined,
       })
 
       if (pollCreated) {
@@ -83,6 +82,7 @@ export default function PollForm({ organisation }: Props) {
           }
           type="number"
           {...register('expectedNumberOfParticipants', {
+            valueAsNumber: true,
             min: {
               value: 1,
               message: t('Le nombre de participants doit être supérieur à 0'),

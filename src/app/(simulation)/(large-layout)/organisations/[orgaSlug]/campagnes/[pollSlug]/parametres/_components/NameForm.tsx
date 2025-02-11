@@ -27,9 +27,7 @@ export default function NameForm({
   } = useReactHookForm({
     defaultValues: {
       name: nameValue,
-      expectedNumberOfParticipants: expectedNumberOfParticipants
-        ? `${expectedNumberOfParticipants}`
-        : '',
+      expectedNumberOfParticipants,
     },
   })
 
@@ -40,17 +38,18 @@ export default function NameForm({
     expectedNumberOfParticipants: newExpectedNumberOfParticipants,
   }: {
     name: string
-    expectedNumberOfParticipants: string
+    expectedNumberOfParticipants?: number
   }) {
     updatePoll({
       name,
-      expectedNumberOfParticipants: newExpectedNumberOfParticipants
-        ? parseInt(newExpectedNumberOfParticipants)
-        : // If the expectedNumberOfParticipants is empty, we set it to undefined
-          // otherwise reset its value to null
-          expectedNumberOfParticipants
-          ? null
-          : undefined,
+      expectedNumberOfParticipants:
+        newExpectedNumberOfParticipants !== undefined
+          ? newExpectedNumberOfParticipants
+          : // If the expectedNumberOfParticipants is empty, we set it to undefined
+            // otherwise reset its value to null
+            expectedNumberOfParticipants
+            ? null
+            : undefined,
     })
   }
 
@@ -102,6 +101,7 @@ export default function NameForm({
           value={expectedNumberOfParticipants}
           type="number"
           {...register('expectedNumberOfParticipants', {
+            valueAsNumber: true,
             min: {
               value: 1,
               message: t('Le nombre de participants doit être supérieur à 0'),
