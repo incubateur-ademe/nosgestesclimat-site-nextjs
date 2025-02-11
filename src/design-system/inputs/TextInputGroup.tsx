@@ -2,10 +2,9 @@ import type {
   ChangeEventHandler,
   ForwardedRef,
   HTMLAttributes,
-  ReactNode} from 'react';
-import {
-  forwardRef,
+  ReactNode,
 } from 'react'
+import { forwardRef } from 'react'
 import { DebounceInput } from 'react-debounce-input'
 import { twMerge } from 'tailwind-merge'
 
@@ -14,7 +13,8 @@ type Props = {
   label?: string | ReactNode
   type?: string
   isInvalid?: boolean
-  error?: string
+  error?: string | ReactNode
+  successMessage?: ReactNode | string
   helperText?: string | ReactNode
   className?: string
   containerClassName?: string
@@ -35,6 +35,7 @@ export default forwardRef(function TextInputGroup(
     label,
     type = 'text',
     error,
+    successMessage,
     helperText,
     className,
     containerClassName,
@@ -101,6 +102,10 @@ export default forwardRef(function TextInputGroup(
         <span id={`error-${name}`} className="mt-2 text-xs text-red-700">
           {error}
         </span>
+      )}
+
+      {successMessage && (
+        <span className="mt-2 text-xs text-green-700">{successMessage}</span>
       )}
     </div>
   )

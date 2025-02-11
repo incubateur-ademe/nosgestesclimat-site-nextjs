@@ -18,7 +18,9 @@ export default function ArticleList({
       <h2 className="mb-8 font-medium">
         <Trans>Nos derniers articles</Trans>
       </h2>
-      <ul className="grid grid-cols-1 gap-8 md:grid-cols-3">
+      <ul
+        className="grid grid-cols-1 gap-8 md:grid-cols-3"
+        data-cypress-id="blog-list">
         {articles.slice(0, 6).map((article) => (
           <li key={article.documentId} className="h-full">
             <PostThumbnail

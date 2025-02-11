@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/Trans'
+import { linkToGroupCreation } from '@/constants/group'
 import { classementCreateGroup } from '@/constants/tracking/pages/classements'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import { linkToGroupCreation } from '@/helpers/navigation/groupPages'
 
 export default function CreateFirstGroupSection() {
   return (

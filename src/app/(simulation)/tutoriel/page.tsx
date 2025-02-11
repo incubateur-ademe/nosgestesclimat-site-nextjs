@@ -31,7 +31,7 @@ export async function generateMetadata() {
 
 export default async function Tutoriel() {
   return (
-    <ContentLarge className="px-4 pt-12">
+    <ContentLarge className="mt-10 px-4 lg:px-0">
       <div className="mx-auto flex h-screen max-w-3xl flex-col overflow-auto">
         <Title
           data-cypress-id="tutoriel-title"

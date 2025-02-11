@@ -1,6 +1,6 @@
 function ActionsPageSkeleton() {
   return (
-    <div className="mx-auto my-4 animate-pulse pb-4">
+    <div className="mx-auto my-4 mt-10 animate-pulse px-4 pb-4">
       <div className="mb-8 h-36 w-full rounded-md bg-primary-100"></div>
 
       <div className="mx-auto grid grid-cols-1 gap-8 sm:max-w-none sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">

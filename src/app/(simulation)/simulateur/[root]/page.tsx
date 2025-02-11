@@ -1,6 +1,6 @@
 'use client'
 
-import Total from '@/components/total/Total'
+import TopBar from '@/components/simulation/TopBar'
 import {
   simulateurCloseSommaire,
   simulateurOpenSommaire,
@@ -43,7 +43,7 @@ export default function SimulateurPage() {
 
   return (
     <div className="flex h-screen flex-1 flex-col overflow-scroll">
-      <Total
+      <TopBar
         toggleQuestionList={toggleQuestionList}
         toggleBackHomeModal={toggleBackHomeModal}
         toggleSaveModal={toggleSaveModal}

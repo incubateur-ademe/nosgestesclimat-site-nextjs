@@ -71,14 +71,14 @@ entries:
   Voir toutes les actions: See all actions
   Vous n'avez pas encore fait le test.: You haven't taken the test yet.
   actions choisies: selected actions
-  components.ScoreExplanation.text.p1: 🧮 This is your starting score, calculated from pre-assigned answers to each question! It will change with each new answer.
-  components.ScoreExplanation.text.p1.lock: 🧮 Voici votre score de départ, calculé à partir de réponses attribuées à l'avance à chaque question ! Il évoluera à chaque nouvelle réponse.
-  components.ScoreExplanation.text.p2: 🧮 Here is your provisional score, it changes with each new answer!
-  components.ScoreExplanation.text.p2.lock: 🧮 Voici votre score provisoire, il évolue à chaque nouvelle réponse !
-  components.ScoreExplanation.text.p3: '🤔 If you answer "I don''t know" to a question, the score will not change: you are assigned a default value.'
-  components.ScoreExplanation.text.p3.lock: '🤔 Si vous répondez "je ne sais pas" à une question, le score ne changera pas : une valeur par défaut vous est attribuée.'
-  components.ScoreExplanation.text.p4: 💡 We improve the calculation and its default values <2>every month</2>!
-  components.ScoreExplanation.text.p4.lock: 💡 Nous améliorons le calcul et ses valeurs par défaut <2>tous les mois</2>!
+  components.ScoreExplanation.text.p1: Here are your starting scores, calculated from the answers assigned to each question in advance! They will change with each new answer.
+  components.ScoreExplanation.text.p1.lock: Voici vos scores de départ, calculés à partir de réponses attribuées à l'avance à chaque question ! Ils évolueront à chaque nouvelle réponse.
+  components.ScoreExplanation.text.p2: Here are your provisional scores - they change with each new answer!
+  components.ScoreExplanation.text.p2.lock: Voici vos scores provisoires, ils évoluent à chaque nouvelle réponse !
+  components.ScoreExplanation.text.p3: 'If you answer "I don''t know" to a question, the score will not change: you will be given a default value.'
+  components.ScoreExplanation.text.p3.lock: 'Si vous répondez "je ne sais pas" à une question, le score ne changera pas : une valeur par défaut vous est attribuée.'
+  components.ScoreExplanation.text.p4: We improve the calculation and its default values <2>every month</2>!
+  components.ScoreExplanation.text.p4.lock: Nous améliorons le calcul et ses valeurs par défaut <2>tous les mois</2>!
   components.localisation.LocalisationMessage.betaMsg: It is currently in <1>beta</1> version.
   components.localisation.LocalisationMessage.betaMsg.lock: Elle est actuellement en version <1>bêta</1>.
   components.localisation.LocalisationMessage.warnMessage: Your region is not yet supported, the French model is proposed by default
@@ -1549,5 +1549,25 @@ entries:
   La valeur maximum pour ce champ est de: The maximum value for this field is
   La valeur pour ce champ est comprise entre: The value for this field is between
   En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.: By taking part, you agree to your results being shared anonymously with this organisation.
+  d'eau / jour: of water / day
+  de CO₂e / an: of CO₂e / year
+  Aide: Help
   Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.: We are talking here about the "Organisations" and "Challenge your friends" modes. This section is generated via Metabase.
   Cette section statistique est générée via Metabase.: This statistical section is generated via Metabase.
+  Empreinte eau, voir le détail ci-dessous: Water footprint, see details below
+  Empreinte carbone, voir le détail ci-dessous: Carbon footprint, see details below
+  Empreinte eau, sélectionné, voir le détail ci-dessous: Water footprint, selected, see details below
+  Affichez le détail de votre empreinte carbone ou eau en cliquant sur les cartes ci-dessus.: View details of your carbon or water footprint by clicking on the maps above.
+  "C'est pourtant bien l'eau qui sert à produire ce que vous consommez : votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.": 'Yet it is water that is used to produce what you consume: your water footprint is the impact of your lifestyle on natural water cycles.'
+  Empreinte carbone, sélectionné, voir le détail ci-dessous: Carbon footprint, selected, see details below
+  Ressources: Resources
+  Qui sommes-nous: Who we are
+  Relais et partenaires: Relays and partners
+  Inscrivez-vous à notre infolettre: Subscribe to our newsletter
+  Bien noté ! Vous aurez prochainement de nos nouvelles.: Duly noted! You'll be hearing from us soon.
+  Super, vous êtes déjà inscrit !: Great, you're already registered!
+  Diffuser Nos Gestes Climat: Spreading Our Gestes Climat
+  'Oups, une erreur est survenue lors de la copie du lien, voici le lien à copier / coller :': 'Oops, there was an error copying the link, here is the link to copy / paste :'
+  Vous devez renseigner le type de votre organisation: You must enter the type of organisation
+  Votre nom complet: Your full name
+  Service public: Public services

@@ -10,7 +10,7 @@ export async function fetchCategories(): Promise<CategoryType[]> {
     const categoriesSearchParams = new URLSearchParams({
       locale: defaultLocale,
       sort: 'order',
-      status: isProduction ? '' : 'draft',
+      ...(isProduction ? {} : { status: 'draft' }),
     })
 
     const categoriesResponse = await cmsClient<{ data: CategoryType[] }>(

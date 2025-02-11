@@ -12,7 +12,7 @@ module.exports = {
       },
       colors: {
         primary: {
-          50: '#f0f4fd',
+          50: '#f7fbff',
           100: '#e3ebfc',
           200: '#cdd9f8',
           300: '#afbff2',
@@ -189,10 +189,10 @@ module.exports = {
             transform: 'translateX(-10vw)',
           },
           '50%': {
-            transform: 'translateX(110vw)',
+            transform: 'translateX(100vw)',
           },
           '98%': {
-            transform: 'translateX(110vw)',
+            transform: 'translateX(100vw)',
           },
           to: {
             transform: 'translateX(-10vw)',
@@ -249,7 +249,7 @@ module.exports = {
         'rainbow-fast': 'rainbow 5s linear infinite',
         jump: 'jump 1s infinite',
         swim: 'swim 10s linear infinite',
-        'swim-delay': 'swimDelay 240s linear infinite',
+        'swim-delay': 'swimDelay 120s linear infinite',
         'swim-fast': 'swim 5s linear infinite',
         'swim-slow': 'swim 15s linear infinite',
         'swim-backwards': 'swimBackwards 10s linear infinite',
@@ -703,6 +703,18 @@ module.exports = {
     'focus:ring-divers-800',
     'focus:ring-servicessocietaux-800',
     'focus:ring-offset-2',
+    // stroke category colors
+    'stroke-transport-800',
+    'stroke-alimentation-800',
+    'stroke-logement-800',
+    'stroke-divers-800',
+    'stroke-servicessocietaux-800',
+    // Same for fill
+    'fill-transport-800',
+    'fill-alimentation-800',
+    'fill-logement-800',
+    'fill-divers-800',
+    'fill-servicessocietaux-800',
   ],
   plugins: [
     function ({ addComponents }) {

@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/Trans'
+import { linkToGroupCreation } from '@/constants/group'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
@@ -21,7 +22,7 @@ export default async function GroupBlock() {
         height={240}
       />
 
-      <ButtonLink size="lg" color="secondary" href="/amis/creer">
+      <ButtonLink size="lg" color="secondary" href={linkToGroupCreation}>
         <Trans>Créer un groupe</Trans>
       </ButtonLink>
     </div>

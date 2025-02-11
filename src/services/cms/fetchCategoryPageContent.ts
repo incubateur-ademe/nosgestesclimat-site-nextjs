@@ -36,7 +36,7 @@ export async function fetchCategoryPageContent({
       'populate[2]': 'mainArticle',
       'populate[3]': 'mainArticle.image',
       sort: 'questions.order:asc',
-      status: isProduction ? '' : 'draft',
+      ...(isProduction ? {} : { status: 'draft' }),
     })
 
     const categoryResponse = await cmsClient<{
@@ -55,6 +55,8 @@ export async function fetchCategoryPageContent({
       data: [category],
     } = categoryResponse
 
+    const { id: categoryId, mainArticle: { documentId } = {} } = category
+
     const articlesSearchParams = new URLSearchParams({
       locale: defaultLocale,
       'fields[0]': 'title',
@@ -62,12 +64,12 @@ export async function fetchCategoryPageContent({
       'fields[2]': 'slug',
       'populate[0]': 'image',
       'populate[1]': 'category',
-      'filters[documentId][$ne]': category?.mainArticle?.documentId || '',
-      'filters[category][$eq]': category?.id || '',
+      ...(documentId ? { 'filters[documentId][$ne]': documentId } : {}),
+      ...(categoryId ? { 'filters[category][$eq]': categoryId } : {}),
       'pagination[page]': page.toString(),
       'pagination[pageSize]': PAGE_SIZE.toString(),
       sort: 'createdAt:desc',
-      status: isProduction ? '' : 'draft',
+      ...(isProduction ? {} : { status: 'draft' }),
     })
 
     const articlesResponse = await cmsClient<{

@@ -2,10 +2,10 @@
 
 import GroupLoader from '@/components/groups/GroupLoader'
 import Trans from '@/components/translation/Trans'
+import { linkToGroupCreation } from '@/constants/group'
 import { classementCreateGroup } from '@/constants/tracking/pages/classements'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
-import { linkToGroupCreation } from '@/helpers/navigation/groupPages'
 import { useFetchGroupsOfUser } from '@/hooks/groups/useFetchGroupsOfUser'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
@@ -22,7 +22,7 @@ export default function Groups() {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row  md:items-baseline md:justify-between">
+      <div className="flex flex-col sm:flex-row  sm:items-baseline sm:justify-between">
         <Title tag="h2" title={<Trans>Groupes d'amis</Trans>} />
 
         {groups && groups.length > 0 && (
@@ -31,7 +31,7 @@ export default function Groups() {
             trackingEvent={classementCreateGroup}
             color="secondary"
             size="sm"
-            className="-order-1 mb-2 self-end md:order-1 md:mb-0 md:self-auto"
+            className="-order-1 mb-2 self-end sm:order-1 sm:mb-0 sm:self-auto"
             data-cypress-id="button-create-other-group">
             <Trans>Créer un autre groupe</Trans>
           </ButtonLink>

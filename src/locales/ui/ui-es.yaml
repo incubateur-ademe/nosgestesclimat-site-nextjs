@@ -67,22 +67,22 @@ entries:
   Sites Web: Páginas web
   components.localisation.LocalisationMessage.warnMessage: Su región aún no es compatible, el modelo francés se propone por defecto
   components.localisation.LocalisationMessage.warnMessage.lock: Votre région n'est pas encore supportée, le modèle Français vous est proposé par défaut
-  components.ScoreExplanation.text.p2: 🧮 ¡Aquí tienes tu puntuación provisional, que cambia con cada nueva respuesta!
-  components.ScoreExplanation.text.p2.lock: 🧮 Voici votre score provisoire, il évolue à chaque nouvelle réponse !
+  components.ScoreExplanation.text.p2: 'Aquí tienes tus puntuaciones provisionales: ¡cambian con cada nueva respuesta!'
+  components.ScoreExplanation.text.p2.lock: Voici vos scores provisoires, ils évoluent à chaque nouvelle réponse !
   actions choisies: acciones seleccionadas
   Une technologie moderne: Tecnología moderna
   Questions fréquentes: Preguntas más frecuentes
   derniers: última
   Non: No
   Nouveautés: Noticias
-  components.ScoreExplanation.text.p3: '🤔 Si contestas "No lo sé" a una pregunta, la puntuación no cambiará: se te da un valor por defecto.'
-  components.ScoreExplanation.text.p3.lock: '🤔 Si vous répondez "je ne sais pas" à une question, le score ne changera pas : une valeur par défaut vous est attribuée.'
-  components.ScoreExplanation.text.p4: 💡 ¡Mejoramos el cálculo y sus valores por defecto <2>cada mes</2>!
-  components.ScoreExplanation.text.p4.lock: 💡 Nous améliorons le calcul et ses valeurs par défaut <2>tous les mois</2>!
+  components.ScoreExplanation.text.p3: 'Si responde "No lo sé" a una pregunta, la puntuación no cambiará: se le dará un valor por defecto.'
+  components.ScoreExplanation.text.p3.lock: 'Si vous répondez "je ne sais pas" à une question, le score ne changera pas : une valeur par défaut vous est attribuée.'
+  components.ScoreExplanation.text.p4: Mejoramos el cálculo y sus valores por defecto <2>todos los meses</2>
+  components.ScoreExplanation.text.p4.lock: Nous améliorons le calcul et ses valeurs par défaut <2>tous les mois</2>!
   components.localisation.Localisation.warnMessage2: No hemos podido detectar su país de simulación, por lo que se propone por defecto el modelo francés.
   components.localisation.Localisation.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut.
-  components.ScoreExplanation.text.p1: 🧮 ¡Aquí tienes tu puntuación inicial, calculada a partir de las respuestas asignadas de antemano a cada pregunta! Cambiará con cada nueva respuesta.
-  components.ScoreExplanation.text.p1.lock: 🧮 Voici votre score de départ, calculé à partir de réponses attribuées à l'avance à chaque question ! Il évoluera à chaque nouvelle réponse.
+  components.ScoreExplanation.text.p1: Aquí tienes tus puntuaciones iniciales, calculadas a partir de las respuestas asignadas de antemano a cada pregunta Cambiarán con cada nueva respuesta.
+  components.ScoreExplanation.text.p1.lock: Voici vos scores de départ, calculés à partir de réponses attribuées à l'avance à chaque question ! Ils évolueront à chaque nouvelle réponse.
   publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} pregunta{{pluralSuffix}} restante{{pluralSuffix}}'
   publicodes.ActionVignette.questionsRestantesText.lock: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
   minutes: minutos
@@ -1542,5 +1542,25 @@ entries:
   La valeur maximum pour ce champ est de: El valor máximo de este campo es
   La valeur pour ce champ est comprise entre: El valor de este campo está comprendido entre
   En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.: Al participar, acepta que sus resultados se compartan de forma anónima con esta organización.
+  d'eau / jour: de agua / día
+  de CO₂e / an: de CO₂e / año
+  Aide: Ayuda
   Cette section statistique est générée via Metabase.: Esta sección estadística se genera a través de Metabase.
   Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.: Nos referimos a los modos "Organizaciones" y "Desafía a tus amigos". Esta sección se genera a través de Metabase.
+  Empreinte eau, sélectionné, voir le détail ci-dessous: Huella hídrica, seleccionada, ver detalles más abajo
+  Empreinte carbone, voir le détail ci-dessous: Huella de carbono, ver detalles más abajo
+  Affichez le détail de votre empreinte carbone ou eau en cliquant sur les cartes ci-dessus.: Vea los detalles de su huella de carbono o de agua haciendo clic en los mapas de arriba.
+  Empreinte eau, voir le détail ci-dessous: Huella hídrica, ver detalles más abajo
+  Empreinte carbone, sélectionné, voir le détail ci-dessous: Huella de carbono, seleccionada, ver detalles más abajo
+  "C'est pourtant bien l'eau qui sert à produire ce que vous consommez : votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.": 'Sin embargo, es agua lo que se utiliza para producir lo que consumes: tu huella hídrica es el impacto de tu estilo de vida en los ciclos naturales del agua.'
+  Ressources: Recursos
+  Qui sommes-nous: Quiénes somos
+  Relais et partenaires: Relevos y socios
+  Bien noté ! Vous aurez prochainement de nos nouvelles.: Tomo nota Pronto tendrá noticias nuestras.
+  Inscrivez-vous à notre infolettre: Suscríbase a nuestro boletín
+  Diffuser Nos Gestes Climat: Difundir Nos Gestes Climat
+  Super, vous êtes déjà inscrit !: Genial, ¡ya estás registrado!
+  'Oups, une erreur est survenue lors de la copie du lien, voici le lien à copier / coller :': 'Oops, hubo un error al copiar el enlace, aquí está el enlace para copiar / pegar :'
+  Vous devez renseigner le type de votre organisation: Debe introducir el tipo de organización
+  Votre nom complet: Su nombre completo
+  Service public: Servicios públicos
