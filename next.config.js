@@ -21,7 +21,7 @@ const nextConfig = {
   async redirects() {
     return redirects
   },
-  webpack: (config, { dev }) => {
+  webpack: (config, { dev, isServer }) => {
     if (config.cache) {
       if (dev) {
         // Development configuration
@@ -44,7 +44,7 @@ const nextConfig = {
     })
 
     // Enable source maps
-    if (!dev) {
+    if (!dev && !isServer) {
       config.devtool = 'source-map'
     }
 
@@ -81,8 +81,6 @@ const sentryConfig = {
   org: 'incubateur-ademe',
   project: 'nosgestesclimat-nextjs',
   sentryUrl: 'https://sentry.incubateur.net/',
-
-  authToken: process.env.SENTRY_AUTH_TOKEN,
 
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,
