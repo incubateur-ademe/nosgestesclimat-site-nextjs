@@ -21,16 +21,20 @@ export default function MainLayoutProviders({
   return (
     <ErrorBoundary>
       <IframeOptionsProvider>
-        <QueryClientProviderWrapper>
-          <UserProvider
-            storageKey={STORAGE_KEY}
-            migrationInstructions={migrationInstructions}
-            initialRegion={initialRegion}>
-            <PreventNavigationProvider>
-              <MainHooks>{children}</MainHooks>
-            </PreventNavigationProvider>
-          </UserProvider>
-        </QueryClientProviderWrapper>
+        {(containerRef: React.RefObject<HTMLDivElement>) => (
+          <QueryClientProviderWrapper>
+            <UserProvider
+              storageKey={STORAGE_KEY}
+              migrationInstructions={migrationInstructions}
+              initialRegion={initialRegion}>
+              <PreventNavigationProvider>
+                <MainHooks>
+                  <div ref={containerRef}>{children}</div>
+                </MainHooks>
+              </PreventNavigationProvider>
+            </UserProvider>
+          </QueryClientProviderWrapper>
+        )}
       </IframeOptionsProvider>
     </ErrorBoundary>
   )
