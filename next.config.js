@@ -80,7 +80,7 @@ const sentryConfig = {
 
   org: 'incubateur-ademe',
   project: 'nosgestesclimat-nextjs',
-  sentryUrl: 'https://sentry.incubateur.net/',
+  sentryUrl: 'https://sentry.incubateur.net',
 
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,
