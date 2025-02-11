@@ -1,7 +1,7 @@
 import Link from '@/components/Link'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import type Fuse from 'fuse.js'
+import type { FuseResultMatch } from 'fuse.js'
 import highlightMatches from '../_helpers/highlightMatches'
 import type { Matches, SearchItem } from './SearchBar'
 
@@ -12,7 +12,7 @@ export default function RuleListItem({
 }: {
   rules: NGCRules
   item: SearchItem
-  matches: Fuse.FuseResultMatch[] | undefined
+  matches: FuseResultMatch[] | undefined
 }) {
   return (
     <li

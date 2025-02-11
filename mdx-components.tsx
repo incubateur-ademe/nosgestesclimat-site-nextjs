@@ -10,7 +10,7 @@ import Image from 'next/image'
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     // Allows customizing built-in components, e.g. to add styling.
-    h1: Title,
+    h1: (props: any) => <Title {...props} />,
     ButtonLink: (props: any) => (
       <div className="text-center">
         <ButtonLink href={props.href}>{props.children}</ButtonLink>

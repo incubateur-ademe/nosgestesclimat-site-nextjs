@@ -36,7 +36,7 @@ const SubmitButton = ({
 export default function InviteBlock({ group }: { group: Group }) {
   const [isCopied, setIsCopied] = useState(false)
 
-  const timeoutRef = useRef<NodeJS.Timeout>()
+  const timeoutRef = useRef<NodeJS.Timeout>(undefined)
 
   useEffect(() => {
     return () => {

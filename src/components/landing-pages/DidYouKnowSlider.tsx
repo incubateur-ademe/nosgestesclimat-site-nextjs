@@ -38,6 +38,7 @@ export default function DidYouKnowSlider({
         className
       )}>
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-10 md:flex-row md:gap-0">
+        {/* @ts-expect-error Slider is not typed */}
         <Slider
           dots={true}
           arrows={false}

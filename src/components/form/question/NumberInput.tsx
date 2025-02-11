@@ -1,8 +1,8 @@
 import Trans from '@/components/translation/Trans'
 import { useLocale } from '@/hooks/useLocale'
-import type { HTMLAttributes, SyntheticEvent} from 'react';
+import type { HTMLAttributes, SyntheticEvent } from 'react'
 import { useEffect, useRef } from 'react'
-import type { NumberFormatValues} from 'react-number-format';
+import type { NumberFormatValues } from 'react-number-format'
 import { NumericFormat } from 'react-number-format'
 import { twMerge } from 'tailwind-merge'
 
@@ -28,7 +28,7 @@ export default function NumberInput({
 }: HTMLAttributes<HTMLInputElement> & Props) {
   const locale = useLocale()
 
-  const timeoutRef = useRef<NodeJS.Timeout>()
+  const timeoutRef = useRef<NodeJS.Timeout>(undefined)
 
   const handleValueChange = (
     values: NumberFormatValues,

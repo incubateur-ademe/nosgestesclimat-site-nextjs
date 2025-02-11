@@ -30,7 +30,7 @@ export default function OwnerAdminSection({ group }: Props) {
 
   const router = useRouter()
 
-  const timeoutRef = useRef<NodeJS.Timeout>()
+  const timeoutRef = useRef<NodeJS.Timeout>(undefined)
 
   useEffect(() => {
     return () => {

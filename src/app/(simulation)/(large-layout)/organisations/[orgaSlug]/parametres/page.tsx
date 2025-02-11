@@ -146,7 +146,7 @@ export default function ParametresPage() {
     setShouldDisplayModal(false)
   }
 
-  const timeoutRef = useRef<NodeJS.Timeout>()
+  const timeoutRef = useRef<NodeJS.Timeout>(undefined)
 
   useEffect(() => {
     return () => {

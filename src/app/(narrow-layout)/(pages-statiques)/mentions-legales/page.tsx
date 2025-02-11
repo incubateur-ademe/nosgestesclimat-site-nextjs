@@ -16,6 +16,7 @@ export default function MentionsLegalesPage() {
     <div className="markdown">
       <LegalNotice
         includeBetaGouv
+        contactEmail="contact@nosgestesclimat.fr"
         siteName="Nos Gestes Climat"
         siteUrl={process.env.NEXT_PUBLIC_SITE_URL!}
         licenceUrl="https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs/blob/main/LICENSE"

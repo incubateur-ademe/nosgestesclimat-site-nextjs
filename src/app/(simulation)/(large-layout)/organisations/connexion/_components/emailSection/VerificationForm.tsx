@@ -41,7 +41,7 @@ export default function VerificationForm({
 
   const router = useRouter()
 
-  const timeoutRef = useRef<NodeJS.Timeout>()
+  const timeoutRef = useRef<NodeJS.Timeout>(undefined)
 
   // Reset the login expiration date if the user is logged in
   // and the login expiration date is in the past

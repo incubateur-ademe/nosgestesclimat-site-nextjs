@@ -27,7 +27,7 @@ export default function ParticipantAdminSection({ group }: Props) {
 
   const router = useRouter()
 
-  const timeoutRef = useRef<NodeJS.Timeout>()
+  const timeoutRef = useRef<NodeJS.Timeout>(undefined)
 
   async function handleDelete() {
     const participant = group.participants.find((p) => p.userId === userId)

@@ -32,7 +32,7 @@ export default function ResendButton({
 
   const { user } = useUser()
 
-  const timeoutRef = useRef<NodeJS.Timeout>()
+  const timeoutRef = useRef<NodeJS.Timeout>(undefined)
 
   async function handleResendVerificationCode() {
     if (isRetryButtonDisabled) {
