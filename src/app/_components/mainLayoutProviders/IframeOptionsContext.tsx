@@ -1,10 +1,8 @@
 'use client'
 
-import { trackingIframe } from '@/constants/tracking/misc'
+import { useTrackIframe } from '@/hooks/tracking/useTrackIframe'
 import { useIsClient } from '@/hooks/useIsClient'
 import { getIsIframe } from '@/utils/getIsIframe'
-import { trackEvent } from '@/utils/matomo/trackEvent'
-import type { PropsWithChildren } from 'react'
 import { createContext, useEffect, useState } from 'react'
 
 export const IframeOptionsContext = createContext<{
@@ -18,7 +16,11 @@ export const IframeOptionsContext = createContext<{
 const nullDecode = (string: string) =>
   string == null ? string : decodeURIComponent(string)
 
-export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
+export const IframeOptionsProvider = ({
+  children,
+}: {
+  children: (containerRef: React.RefObject<HTMLDivElement>) => JSX.Element
+}) => {
   const isClient = useIsClient()
   const isIframe = isClient && getIsIframe()
 
@@ -34,25 +36,10 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
   const [isIframeOnlySimulation, setIsIframeOnlySimulation] = useState(false)
   const [iframeLang, setIframeLang] = useState<string | null>(null)
 
+  const containerRef = useTrackIframe(isIframe)
+
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
-
-    const isIframeParameterDefined = urlParams.get('iframe') !== null
-
-    // Si l'on détecte que l'on est dans un iframe sans paramètre iframe défini
-    // on essaie de récupérer l'URL du referrer
-    if (isIframe && !isIframeParameterDefined) {
-      urlParams.set('iframe', '')
-      urlParams.set('integratorUrl', document.referrer)
-    }
-
-    if (isIframe) {
-      trackEvent(
-        trackingIframe(
-          urlParams.get('integratorUrl') || "Pas d'URL d'intégration"
-        )
-      )
-    }
 
     setIframeIntegratorOptions(
       Object.fromEntries(
@@ -104,7 +91,7 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
         isIframeOnlySimulation,
         iframeLang,
       }}>
-      {children}
+      {children(containerRef)}
     </IframeOptionsContext.Provider>
   )
 }
