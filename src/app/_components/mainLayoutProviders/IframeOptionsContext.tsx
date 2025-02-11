@@ -1,11 +1,8 @@
 'use client'
 
-import { trackingIframe } from '@/constants/tracking/misc'
-import { useTrackIframe } from "@/hooks/tracking/useTrackIframe"
+import { useTrackIframe } from '@/hooks/tracking/useTrackIframe'
 import { useIsClient } from '@/hooks/useIsClient'
 import { getIsIframe } from '@/utils/getIsIframe'
-import { trackEvent } from '@/utils/matomo/trackEvent'
-import type { PropsWithChildren } from 'react'
 import { createContext, useEffect, useState } from 'react'
 
 export const IframeOptionsContext = createContext<{
@@ -19,7 +16,11 @@ export const IframeOptionsContext = createContext<{
 const nullDecode = (string: string) =>
   string == null ? string : decodeURIComponent(string)
 
-export const IframeOptionsProvider = ({ children }: { children: (containerRef: React.RefObject<HTMLDivElement>) => JSX.Element }) => {
+export const IframeOptionsProvider = ({
+  children,
+}: {
+  children: (containerRef: React.RefObject<HTMLDivElement>) => JSX.Element
+}) => {
   const isClient = useIsClient()
   const isIframe = isClient && getIsIframe()
 
@@ -39,7 +40,6 @@ export const IframeOptionsProvider = ({ children }: { children: (containerRef: R
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
-
 
     setIframeIntegratorOptions(
       Object.fromEntries(
