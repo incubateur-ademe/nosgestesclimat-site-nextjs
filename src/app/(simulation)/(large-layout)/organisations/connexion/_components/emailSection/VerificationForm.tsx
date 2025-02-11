@@ -1,16 +1,32 @@
-import useLogin from '@/hooks/authentication/useLogin'
 import useFetchOrganisations from '@/hooks/organisations/useFetchOrganisations'
 import useTimeLeft from '@/hooks/organisations/useTimeleft'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCreateVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
 import { useUser } from '@/publicodes-state'
+import type { UseMutateAsyncFunction } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import NotReceived from './verificationForm/NotReceived'
 import VerificationContent from './verificationForm/VerificationContent'
 
-export default function VerificationForm() {
+export default function VerificationForm({
+  login,
+  isPendingValidate,
+  isSuccessValidate,
+}: {
+  login: UseMutateAsyncFunction<
+    any,
+    Error,
+    {
+      email: string
+      code: string
+    },
+    unknown
+  >
+  isPendingValidate: boolean
+  isSuccessValidate: boolean
+}) {
   const { updateLoginExpirationDate, user, updateUserOrganisation } = useUser()
 
   const [email, setEmail] = useState<string | undefined>(
@@ -44,13 +60,9 @@ export default function VerificationForm() {
     isPending: isPendingResend,
   } = useCreateVerificationCode()
 
-  const {
-    mutateAsync: login,
-    isPending: isPendingValidate,
-    isSuccess: isSuccessValidate,
-  } = useLogin()
-
-  const { refetch: fetchOrganisations } = useFetchOrganisations({ enabled: false })
+  const { refetch: fetchOrganisations } = useFetchOrganisations({
+    enabled: false,
+  })
 
   function sendVerificationCode(email: string) {
     setEmail(email)

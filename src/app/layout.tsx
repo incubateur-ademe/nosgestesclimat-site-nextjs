@@ -82,6 +82,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
                   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
                   _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
                   _paq.push(["setCookieDomain", "*.nosgestesclimat.fr"]);
+                  _paq.push(['setCookieSameSite', 'None']);
                   _paq.push(['enableLinkTracking']);
                   (function() {
                     var u="https://stats.beta.gouv.fr/";
@@ -105,6 +106,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
                 /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
                 _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
                 _paq.push(["setCookieDomain", "*.nosgestesclimat.fr"]);
+                _paq.push(['setCookieSameSite', 'None']);
                 _paq.push(['enableLinkTracking']);
                 (function() {
                   var u="https://stats.beta.gouv.fr/";
