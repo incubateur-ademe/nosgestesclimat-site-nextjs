@@ -115,6 +115,8 @@ const sentryConfig = [
 
     // Automatically tree-shake Sentry logger statements to reduce bundle size
     disableLogger: true,
+
+    telemetry: false,
   },
 ]
 
