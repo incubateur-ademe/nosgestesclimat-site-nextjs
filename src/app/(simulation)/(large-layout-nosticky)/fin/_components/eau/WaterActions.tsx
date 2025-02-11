@@ -27,7 +27,7 @@ export default function WaterActions() {
       </p>
       <div className="mb-4 flex justify-center gap-4">
         <Link
-          href={'/blog/reflexes-textile-econome-empreinte-eau'}
+          href={'/blog/consommation/reflexes-textile-econome-empreinte-eau'}
           target="_blank"
           className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
           <div>
@@ -50,7 +50,7 @@ export default function WaterActions() {
           </div>
         </Link>
         <Link
-          href={'/blog/huit-facons-reduire-empreinte-eau-alimentation'}
+          href={'/blog/alimentation/8-facons-ameliorer-empreinte-de-mon-assiette'}
           target="_blank"
           className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
           <div>
