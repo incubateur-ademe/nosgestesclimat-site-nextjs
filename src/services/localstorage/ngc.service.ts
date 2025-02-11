@@ -4,7 +4,7 @@ import type { LocalStorage } from '@/publicodes-state/types'
 export function getLocalState() {
   // Check if the local storage is available
   if (typeof window === 'undefined' || !window.localStorage) {
-    return undefined
+    return
   }
 
   return JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '{}') as LocalStorage
