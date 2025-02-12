@@ -13,6 +13,7 @@ import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import posthog from 'posthog-js'
 
 type Props = {
   answer: string | null
@@ -52,9 +53,14 @@ export default function Navigation({
           })}
           data-cypress-id="button-skip-quiz"
           onClick={() => {
-            trackEvent(
-              simulationSimulationCompleted({ bilan: getNumericValue('bilan') })
-            )
+            const eventParams = simulationSimulationCompleted({
+              bilan: getNumericValue('bilan'),
+            })
+            trackEvent(eventParams)
+            posthog.capture(eventParams[2] as string, {
+              category: eventParams[1],
+              bilanValue: eventParams[4],
+            })
             trackEvent(quizClickPass)
           }}>
           <Trans>Passer la question →</Trans>
@@ -64,11 +70,16 @@ export default function Navigation({
           href={getLinkToEndPage({
             allowedToGoToGroupDashboard: true,
           })}
-          onClick={() =>
-            trackEvent(
-              simulationSimulationCompleted({ bilan: getNumericValue('bilan') })
-            )
-          }>
+          onClick={() => {
+            const eventParams = simulationSimulationCompleted({
+              bilan: getNumericValue('bilan'),
+            })
+            trackEvent(eventParams)
+            posthog.capture(eventParams[2] as string, {
+              category: eventParams[1],
+              bilanValue: eventParams[4],
+            })
+          }}>
           <Trans>Voir mes résultats →</Trans>
         </ButtonLink>
       ) : (
