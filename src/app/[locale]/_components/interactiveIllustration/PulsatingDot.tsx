@@ -91,7 +91,7 @@ export default function PulsatingDot({
             'absolute inset-0 scale-[0.15] rounded-full bg-secondary-600 transition-all duration-500',
             isHovered
               ? 'scale-[0.7]'
-              : 'scale-[0.15] animate-[pulse-scale_3s_ease-in-out_infinite]'
+              : 'scale-[0.7] animate-[pulse-scale_3s_ease-in-out_infinite]'
           )}
         />
       </div>
