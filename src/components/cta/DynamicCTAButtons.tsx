@@ -2,7 +2,7 @@
 
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
-import { useIsClient } from '@/hooks/useIsClient'
+import { useLocale } from '@/hooks/useLocale'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
@@ -26,7 +26,7 @@ export default function DynamicCTAButtons({
 }) {
   const { progression } = useCurrentSimulation()
 
-  const isClient = useIsClient()
+  const locale = useLocale()
 
   const {
     getLinkToSimulateurPage,
@@ -68,7 +68,7 @@ export default function DynamicCTAButtons({
               : '',
             'leading-none'
           )}>
-          <Trans>{linkToSimulateurPageLabel}</Trans>
+          <Trans locale={locale}>{linkToSimulateurPageLabel}</Trans>
         </span>
       </ButtonLink>
 
@@ -83,7 +83,7 @@ export default function DynamicCTAButtons({
           href={getLinkToSimulateurPage({ newSimulation: true })}>
           <RestartIcon className="fill-primary-700 mr-2" />
 
-          <Trans>Recommencer</Trans>
+          <Trans locale={locale}>Recommencer</Trans>
         </ButtonLink>
       )}
     </div>

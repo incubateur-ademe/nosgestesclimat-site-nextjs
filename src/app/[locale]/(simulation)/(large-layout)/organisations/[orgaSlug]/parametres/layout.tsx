@@ -6,17 +6,20 @@ import type { PropsWithChildren } from 'react'
 export async function generateMetadata({
   params,
 }: {
-  params: { orgaSlug: string }
+  params: Promise<{ orgaSlug: string; locale: string }>
 }) {
-  const { t } = await getServerTranslation()
+  const { orgaSlug, locale } = await params
+
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t('Organisations, mon espace - Nos Gestes Climat'),
     description: t(
       'Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.'
     ),
     alternates: {
-      canonical: `/organisations/${params.orgaSlug}/parametres`,
+      canonical: `/organisations/${orgaSlug}/parametres`,
     },
   })
 }

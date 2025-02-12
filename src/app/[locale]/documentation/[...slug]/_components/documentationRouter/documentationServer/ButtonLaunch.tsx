@@ -1,6 +1,6 @@
 'use client'
 
-import { IsDocumentationClientContext } from '@/app/documentation/_contexts/DocumentationStateContext'
+import { IsDocumentationClientContext } from '@/app/[locale]/documentation/_contexts/DocumentationStateContext'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import { useContext } from 'react'

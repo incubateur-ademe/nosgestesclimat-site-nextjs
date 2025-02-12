@@ -3,8 +3,12 @@ import Trans from '@/components/translation/Trans'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
-export default async function WhatDoWeMeasureWaterFootprint() {
-  const { t } = await getServerTranslation()
+export default async function WhatDoWeMeasureWaterFootprint({
+  locale,
+}: {
+  locale: string
+}) {
+  const { t } = await getServerTranslation(locale)
 
   return (
     <WhatDoWeMeasure
@@ -97,7 +101,7 @@ export default async function WhatDoWeMeasureWaterFootprint() {
             </Trans>
           </p>
 
-          <p className="mb-0 text-center font-bold text-secondary-700">
+          <p className="text-secondary-700 mb-0 text-center font-bold">
             <Trans>
               Attention : l’empreinte eau ne tient pas compte de la consommation
               d’eau domestique (douche, toilettes, cuisine, arrosage) !

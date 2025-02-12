@@ -4,11 +4,14 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 export default async function CategoryBreadcrumbs({
   slug,
   title,
+  locale,
 }: {
   slug: string
   title: string
+  locale: string
 }) {
-  const { t } = await getServerTranslation()
+  const { t } = await getServerTranslation(locale)
+
   return (
     <Breadcrumbs
       className="relative"

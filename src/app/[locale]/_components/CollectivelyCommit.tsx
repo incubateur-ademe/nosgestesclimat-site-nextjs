@@ -3,18 +3,24 @@ import Trans from '@/components/translation/Trans'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
-export default async function CollectivelyCommit() {
-  const { t } = await getServerTranslation()
+export default async function CollectivelyCommit({
+  locale,
+}: {
+  locale: string
+}) {
+  const { t } = await getServerTranslation(locale)
 
   return (
     <MotivationSection
       title={
-        <Trans>S’engager collectivement autour des enjeux du climat</Trans>
+        <Trans locale={locale}>
+          S’engager collectivement autour des enjeux du climat
+        </Trans>
       }
       description={
         <div className="flex flex-col items-center gap-6">
           <p className="text-center text-sm md:text-lg">
-            <Trans>
+            <Trans locale={locale}>
               Chez Nos Gestes Climat, nous croyons au pouvoir de{' '}
               <strong className="text-primary-600">l’action collective</strong>{' '}
               pour relever les défis environnementaux. Notre mission est de{' '}
@@ -31,8 +37,8 @@ export default async function CollectivelyCommit() {
               dans ce mouvement.
             </Trans>
           </p>
-          <p className="text-center text-sm font-bold text-secondary-700 md:text-lg">
-            <Trans>
+          <p className="text-secondary-700 text-center text-sm font-bold md:text-lg">
+            <Trans locale={locale}>
               Accélérons l’impact collectif avec Nos Gestes Climat !
             </Trans>
           </p>

@@ -4,10 +4,16 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import type { PropsWithChildren } from 'react'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t("Nos personas d'utilisateurs types - Nos Gestes Climat"),
     description: t(
       "Découvrez les personas d'utilisateurs types qui nous servent à tester le calculateur sous toutes ses coutures."

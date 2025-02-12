@@ -4,8 +4,13 @@ import Trans from '@/components/translation/Trans'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
-export default async function WhatItIsWaterFootprint() {
-  const { t } = await getServerTranslation()
+export default async function WhatItIsWaterFootprint({
+  locale,
+}: {
+  locale: string
+}) {
+  const { t } = await getServerTranslation(locale)
+
   return (
     <WhatItIs
       title={<Trans>Qu'est-ce que l'empreinte eau ?</Trans>}
@@ -31,7 +36,7 @@ export default async function WhatItIsWaterFootprint() {
             <Trans>
               Empreinte eau et{' '}
               <Link
-                className="font-bold text-primary-600"
+                className="text-primary-600 font-bold"
                 href="/empreinte-carbone">
                 empreinte carbone
               </Link>{' '}

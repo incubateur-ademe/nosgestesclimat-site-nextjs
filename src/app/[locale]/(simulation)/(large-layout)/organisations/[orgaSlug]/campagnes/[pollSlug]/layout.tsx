@@ -6,17 +6,19 @@ import FiltersProvider from './_components/FiltersProvider'
 export async function generateMetadata({
   params,
 }: {
-  params: { orgaSlug: string; pollSlug: string }
+  params: Promise<{ orgaSlug: string; pollSlug: string; locale: string }>
 }) {
-  const { t } = await getServerTranslation()
+  const { orgaSlug, pollSlug, locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t('Organisations, mon espace - Nos Gestes Climat'),
     description: t(
       'Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.'
     ),
     alternates: {
-      canonical: `/organisations/${params.orgaSlug}/campagnes/${params.pollSlug}`,
+      canonical: `/organisations/${orgaSlug}/campagnes/${pollSlug}`,
     },
   })
 }

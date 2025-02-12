@@ -8,12 +8,8 @@ import {
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
 
-export default async function DailyGestureCarbonFootprint({
-  locale,
-}: {
-  locale: string
-}) {
-  const { t } = await getServerTranslation(locale)
+export default async function DailyGestureCarbonFootprint() {
+  const { t } = await getServerTranslation()
 
   const gesturesKeysForTranslation = {
     transport: t('Transport'),

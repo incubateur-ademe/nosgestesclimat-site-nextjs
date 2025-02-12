@@ -4,10 +4,16 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import type { PropsWithChildren } from 'react'
 import InfosProvider from './_components/InfosProvider'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t(
       'Calculer votre empreinte carbone individuelle - Nos Gestes Climat'
     ),

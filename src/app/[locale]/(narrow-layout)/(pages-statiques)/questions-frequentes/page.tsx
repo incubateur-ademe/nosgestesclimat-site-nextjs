@@ -18,10 +18,16 @@ type FAQType = {
   id: string
 }
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t(
       "Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat"
     ),
@@ -34,8 +40,13 @@ export async function generateMetadata() {
   })
 }
 
-export default async function FAQPage() {
-  const { i18n, t } = await getServerTranslation()
+export default async function FAQPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { i18n, t } = await getServerTranslation(locale)
 
   const FAQContent = getCurrentLangInfos(i18n)
     .faqContent as unknown as FAQType[]

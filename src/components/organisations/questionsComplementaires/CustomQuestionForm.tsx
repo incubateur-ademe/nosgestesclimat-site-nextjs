@@ -1,12 +1,12 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import type { Organisation, OrganisationPoll } from '@/types/organisations'
+import type { ReactNode } from 'react'
 import { useEffect, useState } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import EditableToggleField from './EditableToggleField'
-
 type Inputs = {
   question: string
 }
@@ -17,7 +17,7 @@ type Props = {
     OrganisationPoll,
     'customAdditionalQuestions' | 'defaultAdditionalQuestions'
   >
-  submitLabel?: string | JSX.Element
+  submitLabel?: string | ReactNode
   isEditMode?: boolean
   onCompleted?: (changes: Record<string, unknown>) => void
   question?: string

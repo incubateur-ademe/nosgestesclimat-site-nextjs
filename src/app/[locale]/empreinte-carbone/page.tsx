@@ -142,7 +142,7 @@ export default async function CarbonFootprintLandingPage(props: {
 
         <DidYouKnowCarbon />
 
-        <DailyGestureCarbonFootprint locale={locale} />
+        <DailyGestureCarbonFootprint />
 
         <UnderstandToActCarbonFootprint pathname={'/empreinte-carbone'} />
 

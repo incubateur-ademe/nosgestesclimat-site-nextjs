@@ -1,6 +1,6 @@
 'use client'
 
-import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
+import { PreventNavigationContext } from '@/app/[locale]/_components/mainLayoutProviders/PreventNavigationProvider'
 import Trans from '@/components/translation/Trans'
 import {
   infosCommencerClickCtaCommencer,
@@ -41,10 +41,12 @@ const texts = {
   notStarted: (
     <>
       <Trans>Calculez votre empreinte en</Trans>{' '}
-      <span className="font-bold text-primary-700">
+      <span className="text-primary-700 font-bold">
         <Trans>10 minutes</Trans>
       </span>{' '}
-      <Trans>puis comparez vos résultats à ceux des autres participants.</Trans>{' '}
+      <Trans>
+        puis comparez vos résultats à ceux des autres participants.
+      </Trans>{' '}
     </>
   ),
   started: (

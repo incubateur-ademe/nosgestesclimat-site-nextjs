@@ -5,8 +5,13 @@ import { getPost } from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
     title: t(
@@ -15,6 +20,7 @@ export async function generateMetadata() {
     description: t(
       'Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.'
     ),
+    locale,
   })
 }
 

@@ -2,11 +2,11 @@ import Background from '@/components/landing-pages/Background'
 import Trans from '@/components/translation/Trans'
 import Image from 'next/image'
 
-export default function TheySpeakAboutUs() {
+export default function TheySpeakAboutUs({ locale }: { locale: string }) {
   return (
     <div className="relative mb-10 px-4 py-16 md:mb-20 md:py-28 xl:mb-32">
       {/* Helps cover the triangles of white shown because of the perspective change in Background */}
-      <div className="absolute left-0 top-0 h-1/2 w-[200%] bg-heroLightBackground" />
+      <div className="bg-heroLightBackground absolute top-0 left-0 h-1/2 w-[200%]" />
 
       {/* Add the background along with the tilted colorline */}
       <Background
@@ -15,9 +15,9 @@ export default function TheySpeakAboutUs() {
         direction="left"
       />
 
-      <div className="relative flex flex-col items-center gap-10  md:mx-auto md:max-w-5xl">
+      <div className="relative flex flex-col items-center gap-10 md:mx-auto md:max-w-5xl">
         <h2 className="text-center text-2xl md:text-3xl">
-          <Trans>Ils parlent de nous</Trans>
+          <Trans locale={locale}>Ils parlent de nous</Trans>
         </h2>
 
         <ul className="flex w-full flex-row flex-wrap items-center justify-center gap-7 md:justify-between">

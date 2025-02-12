@@ -6,21 +6,23 @@ import {
 } from '@/helpers/tracking/landings'
 import { headers } from 'next/headers'
 
-export default async function ModelInfo() {
+export default async function ModelInfo({ locale }: { locale: string }) {
   const pathname = (await headers()).get('x-pathname') || '/'
 
   return (
     <div className="bg-heroLightBackground px-4 py-12 md:py-20">
       <div className="flex flex-col items-center gap-10 md:mx-auto md:max-w-5xl">
         <h2 className="text-center text-2xl md:text-3xl">
-          <Trans>Un modèle de calcul fiable</Trans>
+          <Trans locale={locale}>Un modèle de calcul fiable</Trans>
         </h2>
 
         <div className="flex flex-col gap-16 md:flex-row md:gap-10">
           <TitleDescLinkBlock
-            title={<Trans>Basé sur les données de l’ADEME</Trans>}
+            title={
+              <Trans locale={locale}>Basé sur les données de l’ADEME</Trans>
+            }
             description={
-              <Trans>
+              <Trans locale={locale}>
                 Retrouvez toute l’expertise de{' '}
                 <strong className="text-primary-600">
                   l’Agence de l’Environnement et de la Maîtrise de l’Énergie
@@ -31,15 +33,15 @@ export default async function ModelInfo() {
             }
             link={{
               href: '/documentation',
-              text: <Trans>Découvrir la documentation</Trans>,
+              text: <Trans locale={locale}>Découvrir la documentation</Trans>,
             }}
             trackingEvent={getLandingClickModelDocumentation(pathname)}
           />
 
           <TitleDescLinkBlock
-            title={<Trans>Libre et documenté</Trans>}
+            title={<Trans locale={locale}>Libre et documenté</Trans>}
             description={
-              <Trans>
+              <Trans locale={locale}>
                 Les lignes de code, les données et même une grande partie des
                 réflexions méthodologiques derrière le calculateur sont toutes{' '}
                 <strong className="text-primary-600">accessibles</strong>, ce
@@ -52,7 +54,7 @@ export default async function ModelInfo() {
             }
             link={{
               href: '/nouveautes',
-              text: <Trans>Voir les nouveautés</Trans>,
+              text: <Trans locale={locale}>Voir les nouveautés</Trans>,
             }}
             trackingEvent={getLandingClickNouveautes(pathname)}
           />

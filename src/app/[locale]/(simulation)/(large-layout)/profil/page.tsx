@@ -14,10 +14,16 @@ import PersonaWarning from './_components/PersonaWarning'
 import SimulationBanner from './_components/SimulationBanner'
 import SimulationList from './_components/SimulationList'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t('Mon profil, voir mon empreinte carbone - Nos Gestes Climat'),
     description: t(
       'Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.'
@@ -28,9 +34,15 @@ export async function generateMetadata() {
   })
 }
 
-export default async function Profil() {
+export default async function Profil({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
+
   const supportedRegions = getSupportedRegions()
-  const { t } = await getServerTranslation()
 
   return (
     <FormProvider>

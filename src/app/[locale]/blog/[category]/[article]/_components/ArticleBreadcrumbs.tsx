@@ -2,17 +2,19 @@ import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function ArticleBreadcrumbs({
+  locale,
   categorySlug,
   categoryTitle,
   articleTitle,
   articleSlug,
 }: {
+  locale: string
   categorySlug: string
   categoryTitle: string
   articleTitle: string
   articleSlug: string
 }) {
-  const { t } = await getServerTranslation()
+  const { t } = await getServerTranslation(locale)
 
   return (
     <Breadcrumbs

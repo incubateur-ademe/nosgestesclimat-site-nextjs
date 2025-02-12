@@ -8,8 +8,12 @@ import {
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
 
-export default async function DailyGestureWaterFootprint() {
-  const { t } = await getServerTranslation()
+export default async function DailyGestureWaterFootprint({
+  locale,
+}: {
+  locale: string
+}) {
+  const { t } = await getServerTranslation(locale)
 
   const gesturesKeysForTranslation = {
     alimentation: t('Alimentation'),

@@ -6,10 +6,16 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Actions from './_components/Actions'
 import LinkList from './_components/LinkList'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t('Plan du site - Nos Gestes Climat'),
     description: t(
       'Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.'
@@ -20,8 +26,13 @@ export async function generateMetadata() {
   })
 }
 
-export default async function PlanDuSitePage() {
-  const { t } = await getServerTranslation()
+export default async function PlanDuSitePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   const links = {
     'Nos outils': {

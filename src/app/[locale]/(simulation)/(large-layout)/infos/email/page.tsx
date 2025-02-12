@@ -5,6 +5,7 @@ import { EMAIL_PAGE } from '@/constants/infosPages'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
+import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
@@ -12,7 +13,6 @@ import { trackPageView } from '@/utils/matomo/trackEvent'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
-import { useFetchPublicPoll } from '../../../../../hooks/organisations/polls/useFetchPublicPoll'
 import Navigation from '../_components/Navigation'
 
 type Inputs = {
@@ -95,7 +95,7 @@ export default function Email() {
               Pour conserver vos résultats et les retrouver à l’avenir
             </Trans>
             {!fixedEmail ? (
-              <span className="ml-2 inline-block font-bold italic text-secondary-700">
+              <span className="text-secondary-700 ml-2 inline-block font-bold italic">
                 <Trans>facultatif</Trans>
               </span>
             ) : null}

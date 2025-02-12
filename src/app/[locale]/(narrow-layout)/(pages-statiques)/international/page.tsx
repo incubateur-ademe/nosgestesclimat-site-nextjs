@@ -11,10 +11,16 @@ import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import Image from 'next/image'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t('Le calculateur d’empreinte climat international'),
     description: t(
       'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.'
@@ -25,15 +31,20 @@ export async function generateMetadata() {
   })
 }
 
-export default async function International() {
-  const { t } = await getServerTranslation()
+export default async function International({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   const supportedRegions = getSupportedRegions()
 
   // TODO: add back full width somehow
   return (
     <>
-      <Container maxWidth="3xl" className="pb-12 pt-8">
+      <Container maxWidth="3xl" className="pt-8 pb-12">
         <div className="flex items-start justify-between gap-4">
           <div className="text-center md:text-left">
             <Title
@@ -76,7 +87,7 @@ export default async function International() {
         </div>
       </Container>
       <div className="rounded-xl bg-gray-100">
-        <Container maxWidth="3xl" className="px-4 pb-12 pt-8">
+        <Container maxWidth="3xl" className="px-4 pt-8 pb-12">
           <h2>
             <Trans i18nKey="international.pourquoi.titre">
               Adapté à votre pays
@@ -120,7 +131,7 @@ export default async function International() {
         </Container>
       </div>
 
-      <Container maxWidth="3xl" className="pb-12 pt-8">
+      <Container maxWidth="3xl" className="pt-8 pb-12">
         <h2>
           <Trans i18nKey="international.comment.titre">
             Comment ça marche ?
@@ -139,14 +150,14 @@ export default async function International() {
             Explorez en détail les spécificités de chaque pays.
           </Trans>
           &nbsp;
-          <span className="ml-2 whitespace-nowrap rounded-xs bg-primary-100 px-2 py-1">
+          <span className="bg-primary-100 ml-2 rounded-xs px-2 py-1 whitespace-nowrap">
             ⏳️ <Trans>À venir !</Trans>
           </span>
         </p>
       </Container>
 
       <div className="rounded-xl bg-gray-100">
-        <Container maxWidth="3xl" className="pb-12 pt-8">
+        <Container maxWidth="3xl" className="pt-8 pb-12">
           <div className="mx-auto my-0">
             <RegionGrid
               className="mx-auto"
@@ -157,7 +168,7 @@ export default async function International() {
         </Container>
       </div>
 
-      <Container maxWidth="3xl" className="pb-12 pt-8">
+      <Container maxWidth="3xl" className="pt-8 pb-12">
         <h2>
           <Trans i18nKey="international.ensuite.titre">
             Vous ne trouvez pas votre pays ?

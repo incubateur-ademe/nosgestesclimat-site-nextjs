@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import { useFetchPublicPoll } from '../../../../hooks/organisations/polls/useFetchPublicPoll'
+import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 
 export default function OrganisationMessage() {
   const { data: poll } = useFetchPublicPoll()

@@ -41,7 +41,13 @@ export async function generateMetadata(props: {
   })
 }
 
-export default async function Homepage() {
+export default async function Homepage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+
   const headersList = await headers()
   const pathname = headersList.get('x-pathname') || '/'
 
@@ -61,11 +67,15 @@ export default async function Homepage() {
 
       <LandingPage
         heroIllustration={<InteractiveIllustration />}
-        heroTitle={<Trans>Connaissez-vous votre empreinte écologique ?</Trans>}
+        heroTitle={
+          <Trans locale={locale}>
+            Connaissez-vous votre empreinte écologique ?
+          </Trans>
+        }
         heroDescription={
           <div className="flex flex-col items-center gap-6 md:items-start md:gap-10">
             <p className="mb-0 text-base md:order-1 md:text-2xl">
-              <Trans>
+              <Trans locale={locale}>
                 Calculez votre{' '}
                 <strong className="text-primary-700">empreinte carbone</strong>{' '}
                 et votre{' '}
@@ -107,7 +117,7 @@ export default async function Homepage() {
 
               {/* Displayed on desktop only */}
               <p>
-                <Trans>
+                <Trans locale={locale}>
                   <strong className="text-primary-700">
                     2 millions de personnes
                   </strong>{' '}
@@ -118,19 +128,19 @@ export default async function Homepage() {
           </div>
         }
         heroPartners={<Partners />}>
-        <TwoFootprints />
+        <TwoFootprints locale={locale} />
 
-        <DidYouKnowMainLanding />
+        <DidYouKnowMainLanding locale={locale} />
 
-        <Mobilise />
+        <Mobilise locale={locale} />
 
-        <DecryptChallenges />
+        <DecryptChallenges locale={locale} />
 
-        <CollectivelyCommit />
+        <CollectivelyCommit locale={locale} />
 
-        <ModelInfo />
+        <ModelInfo locale={locale} />
 
-        <TheySpeakAboutUs />
+        <TheySpeakAboutUs locale={locale} />
       </LandingPage>
     </>
   )

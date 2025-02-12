@@ -2,10 +2,16 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { LegalNotice } from '@incubateur-ademe/legal-pages-react/LegalNotice'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t('Mentions légales - Nos Gestes Climat'),
     description: t('Mentions légales du site Nos Gestes Climat.'),
   })

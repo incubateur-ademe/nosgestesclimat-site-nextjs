@@ -2,9 +2,12 @@ import FAQ from '@/components/landing-pages/FAQ'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-
-export default async function FAQWaterFootprint() {
-  const { t } = await getServerTranslation()
+export default async function FAQWaterFootprint({
+  locale,
+}: {
+  locale: string
+}) {
+  const { t } = await getServerTranslation(locale)
 
   return (
     <FAQ

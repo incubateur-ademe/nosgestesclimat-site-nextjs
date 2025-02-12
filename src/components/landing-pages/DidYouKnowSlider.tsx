@@ -34,11 +34,10 @@ export default function DidYouKnowSlider({
   return (
     <div
       className={twMerge(
-        'relative bg-heroLightBackground pb-20 pt-16',
+        'bg-heroLightBackground relative pt-16 pb-20',
         className
       )}>
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-10 md:flex-row md:gap-0">
-        {/* @ts-expect-error Slider is not typed */}
         <Slider
           dots={true}
           arrows={false}
@@ -74,7 +73,7 @@ export default function DidYouKnowSlider({
                   {slide.content}
                 </p>
 
-                <p className="mb-0 mt-4 pb-4 text-center text-sm font-bold text-secondary-700 md:text-left md:text-lg">
+                <p className="text-secondary-700 mt-4 mb-0 pb-4 text-center text-sm font-bold md:text-left md:text-lg">
                   {slide.highlight}
                 </p>
               </div>
@@ -102,7 +101,7 @@ export default function DidYouKnowSlider({
         </div>
       </div>
 
-      <ColorLine className="bg-rainbow absolute bottom-0 left-0 h-[4px] w-[100%] animate-rainbow-slow transition-all" />
+      <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-0 h-[4px] w-[100%] transition-all" />
     </div>
   )
 }

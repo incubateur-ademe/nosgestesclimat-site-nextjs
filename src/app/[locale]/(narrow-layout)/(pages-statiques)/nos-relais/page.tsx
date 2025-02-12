@@ -7,9 +7,15 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import ambassadeursYaml from '@/locales/ambassadeurs/fr/ambassadeurs.yaml'
 import Image from 'next/image'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
   return getMetadataObject({
+    locale,
     title: t('Nos relais - Nos Gestes Climat'),
     description: t(
       'Découvrez les relais de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.'
@@ -23,8 +29,13 @@ export async function generateMetadata() {
 const ambassadeurs = ambassadeursYaml as any
 const categories = Object.keys(ambassadeurs)
 
-export default async function NosRelais() {
-  const { t } = await getServerTranslation()
+export default async function NosRelais({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return (
     <div>
@@ -92,7 +103,7 @@ export default async function NosRelais() {
                 key={ambassadeur.title}
                 href={ambassadeur.link}
                 tag="a"
-                className="border-none bg-primary-50 no-underline"
+                className="bg-primary-50 border-none no-underline"
                 target="_blank">
                 <Image
                   src={'/images/ambassadeurs/' + ambassadeur.image}

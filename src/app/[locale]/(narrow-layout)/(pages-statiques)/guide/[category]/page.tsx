@@ -21,13 +21,15 @@ const categories: Record<string, any> = {
 }
 
 export async function generateMetadata({
-  params: { category },
+  params,
 }: {
-  params: { category: string }
+  params: Promise<{ category: string; locale: string }>
 }) {
-  const { t } = await getServerTranslation()
+  const { category, locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t('Le guide - Nos Gestes Climat'),
     description: t(
       'Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.'
@@ -38,11 +40,13 @@ export async function generateMetadata({
   })
 }
 
-export default function CategoryGuidePage({
-  params: { category },
+export default async function CategoryGuidePage({
+  params,
 }: {
-  params: { category: string }
+  params: Promise<{ category: string; locale: string }>
 }) {
+  const { category, locale } = await params
+
   return (
     <div className="mx-auto my-4 flex flex-col items-start justify-center">
       <ButtonLink color="text" href="/guide">
@@ -50,7 +54,7 @@ export default function CategoryGuidePage({
         <Trans>Retour</Trans>
       </ButtonLink>
       {categories[category] ? (
-        <MDXContent contentFr={categories[category]} />
+        <MDXContent locale={locale} contentFr={categories[category]} />
       ) : (
         <Route404 />
       )}

@@ -7,10 +7,16 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import GroupCreationForm from './_component/GroupCreationForm'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t(
       'Créer un groupe et calculer votre empreinte carbone - Nos Gestes Climat'
     ),
@@ -23,8 +29,13 @@ export async function generateMetadata() {
   })
 }
 
-export default async function YourInfoPage() {
-  const { t } = await getServerTranslation()
+export default async function YourInfoPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return (
     <div className="p-4 md:p-8">

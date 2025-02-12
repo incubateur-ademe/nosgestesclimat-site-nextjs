@@ -4,10 +4,12 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function UnderstandToActWaterFootprint({
   pathname,
+  locale,
 }: {
   pathname: string
+  locale: string
 }) {
-  const { t } = await getServerTranslation()
+  const { t } = await getServerTranslation(locale)
 
   return (
     <UnderstandToAct

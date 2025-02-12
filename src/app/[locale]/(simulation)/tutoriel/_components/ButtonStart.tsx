@@ -4,10 +4,10 @@ import Trans from '@/components/translation/Trans'
 import { tutorielClickSuivant } from '@/constants/tracking/pages/tutoriel'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
+import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useMemo } from 'react'
-import { useFetchPublicPoll } from '../../../../hooks/organisations/polls/useFetchPublicPoll'
 
 export default function ButtonStart() {
   const { hideTutorial } = useUser()

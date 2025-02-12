@@ -40,11 +40,13 @@ export async function generateMetadata({
 export default async function ArticlePage({
   params,
 }: {
-  params: { category: string; article: string; locale: string }
+  params: Promise<{ category: string; article: string; locale: string }>
 }) {
+  const { category, article: articleSlug, locale } = await params
+
   const { article, otherArticles } =
     (await fetchArticlePageContent({
-      articleSlug: params.article,
+      articleSlug: articleSlug,
     })) || {}
 
   if (!article) {
@@ -57,8 +59,9 @@ export default async function ArticlePage({
 
       <div className="relative max-w-5xl px-4 md:mx-auto lg:px-0">
         <ArticleBreadcrumbs
-          categorySlug={params.category}
-          articleSlug={params.article}
+          locale={locale}
+          categorySlug={category}
+          articleSlug={articleSlug}
           articleTitle={article.title}
           categoryTitle={article.category?.title ?? ''}
         />
@@ -107,8 +110,8 @@ export default async function ArticlePage({
 
         <StickySidebar
           article={article}
-          category={params.category}
-          articleSlug={params.article}
+          category={category}
+          articleSlug={articleSlug}
         />
 
         <div className="relative mt-8 flex max-w-5xl flex-col flex-nowrap gap-8 overflow-auto md:mx-auto md:mt-0 md:flex-row md:items-stretch">

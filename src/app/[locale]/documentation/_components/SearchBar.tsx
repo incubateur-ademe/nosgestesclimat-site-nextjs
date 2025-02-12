@@ -4,7 +4,7 @@ import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import Fuse from 'fuse.js'
+import Fuse, { FuseResult } from 'fuse.js'
 import { utils } from 'publicodes'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import RuleListItem from './RuleListIem'
@@ -34,7 +34,7 @@ const searchWeights = [
 
 export default function SearchBar({ rules }: { rules: NGCRules }) {
   const [input, setInput] = useState('')
-  const [results, setResults] = useState<Fuse.FuseResult<SearchItem>[]>([])
+  const [results, setResults] = useState<FuseResult<SearchItem>[]>([])
 
   const rulesList: any[] = Object.entries(rules).map(([dottedName, rule]) => ({
     ...rule,
@@ -82,7 +82,7 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
 
   return (
     <>
-      <Card className="my-8 border-none bg-primary-100">
+      <Card className="bg-primary-100 my-8 border-none">
         <h2 className="flex items-center text-xl">
           <SearchIcon className="mr-2" />
 
@@ -97,7 +97,7 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
             type="search"
             value={input}
             placeholder={t('Entrez des mots-clefs de recherche')}
-            className="w-full rounded-xl border border-solid border-primary-100 p-4"
+            className="border-primary-100 w-full rounded-xl border border-solid p-4"
             onChange={(e) => {
               const input = e.target.value
 

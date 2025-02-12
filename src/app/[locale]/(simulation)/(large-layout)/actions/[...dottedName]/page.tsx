@@ -6,13 +6,15 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import ActionDetail from './_components/ActionDetail'
 
 export async function generateMetadata({
-  params: { dottedName },
+  params,
 }: {
-  params: { dottedName: DottedName[] }
+  params: Promise<{ dottedName: DottedName[]; locale: string }>
 }) {
-  const { t } = await getServerTranslation()
+  const { dottedName, locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t(
       "Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat"
     ),

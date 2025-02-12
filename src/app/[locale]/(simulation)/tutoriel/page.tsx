@@ -12,10 +12,16 @@ import AvantDeCommencer from './_components/AvantDeCommencer'
 import ButtonBack from './_components/ButtonBack'
 import OrganisationMessage from './_components/OrganisationMessage'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t(
       'Calculer votre empreinte carbone individuelle - Nos Gestes Climat'
     ),
@@ -38,7 +44,7 @@ export default async function Tutoriel() {
           className="text-lg md:text-2xl"
           title={
             <>
-              <span className="inline text-secondary-700">
+              <span className="text-secondary-700 inline">
                 <Trans>10 minutes</Trans>
               </span>{' '}
               <Trans>chrono pour calculer votre empreinte carbone et eau</Trans>
@@ -53,7 +59,7 @@ export default async function Tutoriel() {
         {/* Check if body has the "iframe-mode" class name and if so add the static class to the footer */}
         <div
           className={twMerge(
-            'tutorial-footer fixed bottom-0 left-0 right-0 z-50 border-t-2 border-primary-200 bg-gray-100 py-3'
+            'tutorial-footer border-primary-200 fixed right-0 bottom-0 left-0 z-50 border-t-2 bg-gray-100 py-3'
           )}>
           <div
             className={twMerge(

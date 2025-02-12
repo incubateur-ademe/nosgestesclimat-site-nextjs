@@ -6,16 +6,17 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPost } from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { capitalizeString } from '@/utils/capitalizeString'
-import { currentLocale } from 'next-i18n-router'
 
-type Props = {
-  params: { slug: string }
-}
-
-export async function generateMetadata({ params: { slug } }: Props) {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string; locale: string }>
+}) {
+  const { slug, locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: `${capitalizeString(decodeURI(slug))?.replaceAll(
       '-',
       ' '
@@ -25,8 +26,12 @@ export async function generateMetadata({ params: { slug } }: Props) {
   })
 }
 
-export default async function Release({ params: { slug } }: Props) {
-  const locale = currentLocale()
+export default async function Release({
+  params,
+}: {
+  params: Promise<{ slug: string; locale: string }>
+}) {
+  const { slug, locale } = await params
   const nouveaute = await getPost(`src/locales/nouveautes/${locale}/`, slug)
 
   return (

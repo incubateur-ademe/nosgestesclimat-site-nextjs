@@ -29,6 +29,7 @@ export async function generateMetadata(props: {
   const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t('Empreinte eau : comprendre, évaluer, économiser l’eau'),
     description: t(
       'Découvrez les litres d’eau cachés derrière chacun de vos repas, vêtements, appareils… Adoptez des actions concrètes pour réduire votre empreinte eau'
@@ -135,19 +136,22 @@ export default async function WaterFootprintLandingPage(props: {
           />
         }
         heroPartners={<WaterFootprintPartners />}>
-        <WhatItIsWaterFootprint />
+        <WhatItIsWaterFootprint locale={locale} />
 
-        <WhatDoWeMeasureWaterFootprint />
+        <WhatDoWeMeasureWaterFootprint locale={locale} />
 
         <DidYouKnowWaterFootprint />
 
-        <DailyGestureWaterFootprint />
+        <DailyGestureWaterFootprint locale={locale} />
 
-        <UnderstandToActWaterFootprint pathname={'/empreinte-eau'} />
+        <UnderstandToActWaterFootprint
+          pathname={'/empreinte-eau'}
+          locale={locale}
+        />
 
         <MotivationSectionWaterFootprint />
 
-        <FAQWaterFootprint />
+        <FAQWaterFootprint locale={locale} />
       </LandingPage>
     </>
   )

@@ -1,5 +1,6 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
+import { defaultLocale } from './i18nConfig'
 import i18nMiddleware from './middlewares/i18nMiddleware'
 import splitTestingMiddleware from './middlewares/splitTestingMiddleware'
 
@@ -7,6 +8,10 @@ export const middlewares = [splitTestingMiddleware, i18nMiddleware]
 
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next()
+
+  // Get locale from request
+  const locale = request.headers.get('accept-language')?.split(',')[0]
+  response.cookies.set('locale', locale || defaultLocale)
 
   for await (const middlewareFunction of middlewares) {
     const middlewareResponse = await middlewareFunction(request)
