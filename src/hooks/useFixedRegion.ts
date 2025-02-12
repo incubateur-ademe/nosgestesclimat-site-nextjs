@@ -1,4 +1,4 @@
-import countries from '@/app/[locale]/api/geolocation/countries.json'
+import countries from '@/app/api/geolocation/countries.json'
 import { useUser } from '@/publicodes-state'
 import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'

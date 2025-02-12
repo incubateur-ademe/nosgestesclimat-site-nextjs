@@ -6,16 +6,25 @@ import type { PropsWithChildren } from 'react'
 
 type Props = { params: { root: DottedName } }
 
-export async function generateMetadata({ params }: Props) {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{
+    root: DottedName
+    locale: string
+  }>
+}) {
+  const { root, locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t('Calculateur d’empreinte climat - Nos Gestes Climat'),
     description: t(
       'Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.'
     ),
     alternates: {
-      canonical: `/simulateur/${params.root}`,
+      canonical: `/simulateur/${root}`,
     },
   })
 }

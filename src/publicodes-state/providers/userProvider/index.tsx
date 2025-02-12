@@ -23,7 +23,7 @@ type Props = {
   /**
    * The region of the user (via server side geolocation)
    */
-  initialRegion: RegionFromGeolocation
+  initialRegion?: RegionFromGeolocation
 }
 export default function UserProvider({
   children,

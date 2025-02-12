@@ -120,6 +120,10 @@
     -moz-appearance: textfield !important;
   }
 
+  button {
+    @apply cursor-pointer;
+  }
+
   h1 {
     @apply text-2xl;
     @apply md:text-3xl;

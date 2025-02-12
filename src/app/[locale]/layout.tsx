@@ -17,12 +17,6 @@ export default async function RootLayout({
   const { locale } = await params
 
   try {
-    // const initialRegion = await getGeolocation()
-    const initialRegion = {
-      name: 'France',
-      code: 'FR',
-    }
-
     return (
       <html lang={locale} dir={dir(locale)}>
         <head>
@@ -93,7 +87,7 @@ export default async function RootLayout({
             b.setAttribute('data-useragent', navigator.userAgent);
           `}</Script>
 
-          <MainLayoutProviders initialRegion={initialRegion}>
+          <MainLayoutProviders>
             {children}
             <Footer />
           </MainLayoutProviders>
