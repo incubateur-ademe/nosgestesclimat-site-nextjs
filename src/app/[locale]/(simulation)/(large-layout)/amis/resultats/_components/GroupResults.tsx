@@ -45,7 +45,7 @@ export default function GroupResults({
     <>
       <div className="mt-4 flex items-center justify-between">
         <h2 className="m-0 text-base font-bold md:text-lg">
-          <Trans>Le classement</Trans>
+          <Trans locale={locale}>Le classement</Trans>
         </h2>
 
         <FootprintSelector
@@ -80,7 +80,7 @@ export default function GroupResults({
         isCarbonFootprintSelected && (
           <>
             <h2 data-cypress-id="votre-empreinte-title" className="mt-8">
-              <Trans>Votre empreinte</Trans>
+              <Trans locale={locale}>Votre empreinte</Trans>
             </h2>
 
             <CategoriesChart />

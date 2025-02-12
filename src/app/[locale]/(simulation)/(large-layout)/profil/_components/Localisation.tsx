@@ -33,18 +33,18 @@ export default function Localisation({ supportedRegions }: Props) {
   if (iframeRegion) return null
 
   return (
-    <div className="mb-8 mt-4 sm:mt-8">
+    <div className="mt-4 mb-8 sm:mt-8">
       <h2 id="answers" className="flex items-center">
-        <FlagIcon className="mr-3 fill-primary-700" aria-hidden />
+        <FlagIcon className="fill-primary-700 mr-3" aria-hidden />
 
         <span>
-          <Trans>Ma région de simulation</Trans>
+          <Trans locale={locale}>Ma région de simulation</Trans>
         </span>
       </h2>
       {region?.code && (
         <div className="my-4">
           <span>
-            <Trans>Vous faites cette simulation depuis :</Trans>{' '}
+            <Trans locale={locale}>Vous faites cette simulation depuis :</Trans>{' '}
             <strong>{region.name}</strong>
             <CountryFlag code={region.code} className="ml-2 inline-block" />.
           </span>
@@ -68,7 +68,7 @@ export default function Localisation({ supportedRegions }: Props) {
                       showTutorial('localisationBanner')
                     }
                   }}>
-                  <Trans>Revenir à ma région par défaut </Trans>{' '}
+                  <Trans locale={locale}>Revenir à ma région par défaut </Trans>{' '}
                   <span aria-label={initialRegion.name}>
                     <CountryFlag
                       code={initialRegion.code}

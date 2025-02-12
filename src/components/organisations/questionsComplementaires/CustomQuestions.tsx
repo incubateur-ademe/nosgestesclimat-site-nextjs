@@ -24,7 +24,7 @@ export default function CustomQuestions({
   return (
     <>
       <h3 className="mt-8">
-        <Trans>Questions personnalisées</Trans>
+        <Trans locale={locale}>Questions personnalisées</Trans>
       </h3>
       <div className="flex flex-col gap-4">
         {poll?.customAdditionalQuestions?.map(({ question, isEnabled }) => (

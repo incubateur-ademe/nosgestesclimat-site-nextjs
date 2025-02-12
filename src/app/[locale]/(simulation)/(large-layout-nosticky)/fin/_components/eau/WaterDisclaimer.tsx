@@ -5,13 +5,13 @@ export default function WaterDisclaimer() {
   return (
     <div>
       <Title tag="h2">
-        <Trans>
+        <Trans locale={locale}>
           Est-ce que c'est{' '}
           <strong className="text-secondary-700">beaucoup ?</strong>
         </Trans>
       </Title>
       <p>
-        <Trans>
+        <Trans locale={locale}>
           En règle générale, les valeurs d'empreinte eau varient{' '}
           <strong className="text-secondary-700">
             entre 3 000 et 9 000 litres par jour
@@ -21,7 +21,7 @@ export default function WaterDisclaimer() {
         </Trans>
       </p>
       <p>
-        <Trans>
+        <Trans locale={locale}>
           Nous n'affichons pas la valeur par défaut en début de test. En effet,
           notre modèle eau étant le premier du genre en France, nous ne voulons
           pas qu'elle soit perçue comme la valeur moyenne nationale.

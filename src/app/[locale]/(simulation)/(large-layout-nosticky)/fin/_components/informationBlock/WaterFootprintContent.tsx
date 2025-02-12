@@ -9,9 +9,9 @@ type Props = {
 }
 
 const title = (
-  <span className="pr-16	md:pr-0 lg:tracking-tight">
-    <Trans>
-      <strong className="font-black text-secondary-700">
+  <span className="pr-16 md:pr-0 lg:tracking-tight">
+    <Trans locale={locale}>
+      <strong className="text-secondary-700 font-black">
         L’empreinte eau,
       </strong>{' '}
       c’est quoi ?
@@ -31,7 +31,7 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
         />
       </div>
       <div className="hidden lg:block">
-        <Title tag="h2" className=" text-lg lg:text-2xl" title={title} />
+        <Title tag="h2" className="text-lg lg:text-2xl" title={title} />
       </div>
       <div
         className={twMerge(
@@ -39,7 +39,7 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
           isOpen || isHedgehog ? 'block' : 'hidden'
         )}>
         <p>
-          <Trans>
+          <Trans locale={locale}>
             L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire
             et distribuer les biens et services de votre quotidien. Par exemple
             il faut de l’eau pour :
@@ -49,7 +49,7 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
           <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">🍅</Emoji>
             <span className="flex-1">
-              <Trans>
+              <Trans locale={locale}>
                 les{' '}
                 <strong className="text-secondary-700">
                   fruits, légumes et céréales
@@ -61,7 +61,7 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
           <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">👕</Emoji>
             <span className="flex-1">
-              <Trans>
+              <Trans locale={locale}>
                 la culture du{' '}
                 <strong className="text-secondary-700">coton</strong> que vous
                 portez
@@ -71,7 +71,7 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
           <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">🐮</Emoji>
             <span className="flex-1">
-              <Trans>
+              <Trans locale={locale}>
                 l’alimentation des{' '}
                 <strong className="text-secondary-700">animaux</strong> que vous
                 consommez
@@ -81,7 +81,7 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
           <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">📱</Emoji>
             <span className="flex-1">
-              <Trans>
+              <Trans locale={locale}>
                 l’extraction des matériaux de vos{' '}
                 <strong className="text-secondary-700">
                   appareils numériques
@@ -92,7 +92,7 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
           <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">⚡️</Emoji>
             <span className="flex-1">
-              <Trans>
+              <Trans locale={locale}>
                 la production de votre{' '}
                 <strong className="text-secondary-700">électricité</strong>
               </Trans>
@@ -101,7 +101,7 @@ export default function IndirectWaterContent({ isOpen, isHedgehog }: Props) {
           <li className="mb-1 flex items-start gap-3">
             <Emoji className="mt-1 text-2xl">🚫</Emoji>
             <span className="flex-1">
-              <Trans>
+              <Trans locale={locale}>
                 attention : l'eau domestique (par exemple l’eau de vos douches)
                 ne fait pas partie de l'empreinte eau
               </Trans>

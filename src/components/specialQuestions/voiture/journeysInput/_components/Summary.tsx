@@ -1,3 +1,5 @@
+'use client'
+
 import Trans from '@/components/translation/Trans'
 import { useLocale } from '@/hooks/useLocale'
 
@@ -16,12 +18,14 @@ export default function Summary({
 
   return (
     <div className="mt-4 px-2 text-right text-xs">
-      <Trans>Au total</Trans> {total.toLocaleString(locale)}{' '}
-      <Trans>km sont parcourus par an, avec en moyenne</Trans>{' '}
-      {averagePassengers.toLocaleString(locale)} <Trans>voyageurs, soit</Trans>{' '}
+      <Trans locale={locale}>Au total</Trans> {total.toLocaleString(locale)}{' '}
+      <Trans locale={locale}>km sont parcourus par an, avec en moyenne</Trans>{' '}
+      {averagePassengers.toLocaleString(locale)}{' '}
+      <Trans locale={locale}>voyageurs, soit</Trans>{' '}
       {(totalForOnePassenger ?? 0).toLocaleString(locale)}{' '}
-      <Trans>km par personne</Trans>. <br className="hidden md:inline" />
-      <Trans>
+      <Trans locale={locale}>km par personne</Trans>.{' '}
+      <br className="hidden md:inline" />
+      <Trans locale={locale}>
         C’est bien cette distance qui sera comptabilisée en fin de test.
       </Trans>
     </div>

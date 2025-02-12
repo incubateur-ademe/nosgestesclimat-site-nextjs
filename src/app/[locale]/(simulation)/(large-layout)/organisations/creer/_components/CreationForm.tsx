@@ -120,7 +120,7 @@ export default function CreationForm() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <TextInputGroup
           className="col-span-1"
-          label={<Trans>Votre organisation</Trans>}
+          label={<Trans locale={locale}>Votre organisation</Trans>}
           error={formState.errors.name?.message}
           {...register('name', {
             required: t('Ce champ est requis'),
@@ -130,7 +130,7 @@ export default function CreationForm() {
         <div>
           <Select
             containerClassName="pt-[3px]"
-            label={<Trans>Type d'organisation</Trans>}
+            label={<Trans locale={locale}>Type d'organisation</Trans>}
             error={formState.errors.organisationType?.message}
             {...register('organisationType', {
               required: t('Ce champ est requis'),
@@ -146,14 +146,14 @@ export default function CreationForm() {
             OrganisationTypeEnum.groupOfFriends && (
             <div className="mt-4 rounded-xl bg-gray-100 p-4 text-sm">
               <p className="mb-2">
-                <Trans>
+                <Trans locale={locale}>
                   Le mode organisation est un mode <strong>100% anonyme</strong>{' '}
                   pour les participants.
                 </Trans>
               </p>
 
               <p className="mb-4">
-                <Trans>
+                <Trans locale={locale}>
                   Avez-vous essayé{' '}
                   <strong>notre fonctionnalité “Groupes d’amis”</strong> ? Elle
                   vous permettra de vous comparer dans un classement : que celui
@@ -161,7 +161,7 @@ export default function CreationForm() {
                 </Trans>
               </p>
               <ButtonLink href={linkToGroupCreation} size="sm">
-                <Trans>Créer un groupe d'amis</Trans>
+                <Trans locale={locale}>Créer un groupe d'amis</Trans>
               </ButtonLink>
             </div>
           )}
@@ -173,7 +173,7 @@ export default function CreationForm() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <TextInputGroup
           className="col-span-1"
-          label={<Trans>Votre prénom</Trans>}
+          label={<Trans locale={locale}>Votre prénom</Trans>}
           error={formState.errors.administratorFirstName?.message}
           {...register('administratorFirstName', {
             required: t('Ce champ est requis'),
@@ -182,7 +182,7 @@ export default function CreationForm() {
 
         <TextInputGroup
           className="col-span-1"
-          label={<Trans>Votre nom</Trans>}
+          label={<Trans locale={locale}>Votre nom</Trans>}
           error={formState.errors.administratorLastName?.message}
           {...register('administratorLastName', {
             required: t('Ce champ est requis'),
@@ -193,8 +193,8 @@ export default function CreationForm() {
           className="col-span-1"
           label={
             <p className="mb-0 flex items-center justify-between">
-              <Trans>Votre poste</Trans>
-              <span className="text-sm italic text-secondary-700">
+              <Trans locale={locale}>Votre poste</Trans>
+              <span className="text-secondary-700 text-sm italic">
                 facultatif
               </span>
             </p>
@@ -205,7 +205,9 @@ export default function CreationForm() {
 
       {isErrorUpdateOrga && (
         <div className="mt-4 rounded-xl bg-red-100 p-4 text-red-800">
-          <Trans>Une erreur est survenue, veuillez réessayer.</Trans>
+          <Trans locale={locale}>
+            Une erreur est survenue, veuillez réessayer.
+          </Trans>
         </div>
       )}
 
@@ -215,12 +217,12 @@ export default function CreationForm() {
           label={
             <span>
               <strong>
-                <Trans>
+                <Trans locale={locale}>
                   Recevoir ponctuellement par email les nouveaux services Nos
                   Gestes Climat aux organisations
                 </Trans>
               </strong>{' '}
-              <Trans>(une fois par mois maximum !)</Trans>
+              <Trans locale={locale}>(une fois par mois maximum !)</Trans>
             </span>
           }
           {...register('hasOptedInForCommunications')}
@@ -235,11 +237,11 @@ export default function CreationForm() {
             async (props) =>
               await onSubmit({ ...props, shouldNavigateToPollForm: false })
           )}>
-          <Trans>Accéder à mon espace</Trans>
+          <Trans locale={locale}>Accéder à mon espace</Trans>
         </Button>
 
         <Button type="submit">
-          <Trans>Créer ma première campagne</Trans>
+          <Trans locale={locale}>Créer ma première campagne</Trans>
         </Button>
       </div>
     </form>

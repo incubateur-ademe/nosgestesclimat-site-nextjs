@@ -43,7 +43,7 @@ export default function OrganisationPage() {
         <div>
           <h1>
             <span>
-              <Trans>Bienvenue</Trans>{' '}
+              <Trans locale={locale}>Bienvenue</Trans>{' '}
               <span className="text-primary-700">
                 {capitalizeString(
                   unformatAdministratorName(
@@ -56,10 +56,12 @@ export default function OrganisationPage() {
           </h1>
 
           <p className="max-w-lg">
-            <Trans>Sur l'espace organisation de </Trans>{' '}
+            <Trans locale={locale}>Sur l'espace organisation de </Trans>{' '}
             <strong className="text-secondary-700">{organisation?.name}</strong>
             .{' '}
-            <Trans>Retrouvez vos campagnes et suivez leurs statistiques.</Trans>
+            <Trans locale={locale}>
+              Retrouvez vos campagnes et suivez leurs statistiques.
+            </Trans>
           </p>
         </div>
         <ButtonLink
@@ -67,9 +69,9 @@ export default function OrganisationPage() {
           trackingEvent={organisationsDashboardClickParameters}
           color="text"
           className="flex items-center self-start">
-          <SettingsIcon className="mr-2 fill-primary-700" />
+          <SettingsIcon className="fill-primary-700 mr-2" />
 
-          <Trans>Voir les paramètres</Trans>
+          <Trans locale={locale}>Voir les paramètres</Trans>
         </ButtonLink>
       </div>
 

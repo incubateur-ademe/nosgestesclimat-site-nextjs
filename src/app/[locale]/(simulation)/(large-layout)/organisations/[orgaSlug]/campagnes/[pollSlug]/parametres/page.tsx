@@ -53,7 +53,7 @@ export default function ParametresPage() {
       <Title
         title={
           <span>
-            <Trans>Paramètres de</Trans>{' '}
+            <Trans locale={locale}>Paramètres de</Trans>{' '}
             <span className="text-secondary-700">{poll?.name}</span>
           </span>
         }

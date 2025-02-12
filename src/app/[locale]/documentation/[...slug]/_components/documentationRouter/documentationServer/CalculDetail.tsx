@@ -19,7 +19,7 @@ export default function CalculDetail({
   return (
     <>
       <h2>
-        <Trans>Comment cette donnée est-elle calculée ?</Trans>
+        <Trans locale={locale}>Comment cette donnée est-elle calculée ?</Trans>
       </h2>
 
       <Card className="p-8">

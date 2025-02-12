@@ -34,7 +34,7 @@ export default function RejoindreGroupePage() {
     <div className="p-4 md:p-8">
       <Title
         title={
-          <Trans>
+          <Trans locale={locale}>
             {group?.administrator?.name} vous a invité à rejoindre le groupe{' '}
             <span className="text-violet-900">{group?.name}</span>
           </Trans>

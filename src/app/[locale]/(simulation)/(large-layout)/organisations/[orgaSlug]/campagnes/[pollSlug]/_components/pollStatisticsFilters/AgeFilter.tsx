@@ -49,7 +49,7 @@ export default function AgeFilter({
       onClick={
         options.length <= 1 ? (e: MouseEvent) => e.stopPropagation() : undefined
       }
-      placeholder={<Trans>Tranche d'âge</Trans>}
+      placeholder={<Trans locale={locale}>Tranche d'âge</Trans>}
       onChange={handleChange}
     />
   )

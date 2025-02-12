@@ -36,11 +36,11 @@ function SuccessMessage() {
       <CheckIcon className="mb-4 h-12 w-12 fill-green-500" />
 
       <h3 className="mb-4 text-xl font-bold text-gray-800">
-        <Trans>Merci de votre inscription !</Trans>
+        <Trans locale={locale}>Merci de votre inscription !</Trans>
       </h3>
 
       <p className="text-gray-600">
-        <Trans>
+        <Trans locale={locale}>
           Vous recevrez bientôt nos actualités et conseils directement dans
           votre boîte mail.
         </Trans>
@@ -144,7 +144,7 @@ export default function NewslettersBlock() {
 
             <span className="text-sm text-gray-600">
               {mainNewsletter?.totalSubscribers.toLocaleString(locale) ?? 0}{' '}
-              <Trans>personnes inscrites</Trans>
+              <Trans locale={locale}>personnes inscrites</Trans>
             </span>
           </p>
 
@@ -157,11 +157,11 @@ export default function NewslettersBlock() {
                 label={
                   <p className="mb-0 text-sm">
                     <span>
-                      <Trans>Je m'inscris à l'infolettre</Trans>
+                      <Trans locale={locale}>Je m'inscris à l'infolettre</Trans>
                     </span>{' '}
                     -{' '}
                     <span className="text-gray-600">
-                      <Trans>1 par mois max</Trans>
+                      <Trans locale={locale}>1 par mois max</Trans>
                     </span>
                   </p>
                 }
@@ -173,7 +173,9 @@ export default function NewslettersBlock() {
                   <p className="mb-0 text-sm">
                     <span>Nos Gestes Transports</span> -{' '}
                     <span className="text-gray-600">
-                      <Trans>4 infolettres l’impact des transports</Trans>
+                      <Trans locale={locale}>
+                        4 infolettres l’impact des transports
+                      </Trans>
                     </span>
                   </p>
                 }
@@ -185,7 +187,9 @@ export default function NewslettersBlock() {
                   <p className="mb-0 text-sm">
                     <span>Nos Gestes Logement</span> -{' '}
                     <span className="text-gray-600">
-                      <Trans>5 infolettres sur l’impact du logement</Trans>
+                      <Trans locale={locale}>
+                        5 infolettres sur l’impact du logement
+                      </Trans>
                     </span>
                   </p>
                 }
@@ -210,7 +214,7 @@ export default function NewslettersBlock() {
                 />
 
                 <Button size="lg" type="submit">
-                  <Trans>S'inscrire</Trans>
+                  <Trans locale={locale}>S'inscrire</Trans>
                 </Button>
               </div>
             </div>

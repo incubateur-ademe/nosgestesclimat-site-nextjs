@@ -163,15 +163,17 @@ export default function GetResultsByEmail({
           className="flex h-full flex-col items-start"
           onSubmit={handleSubmit(onSubmit)}>
           <h3 className="flex items-center text-base sm:text-lg">
-            <Trans>Vous souhaitez recevoir vos résultats ?</Trans>
+            <Trans locale={locale}>
+              Vous souhaitez recevoir vos résultats ?
+            </Trans>
 
             <Emoji>💡</Emoji>
           </h3>
 
           <p className="text-sm sm:text-base">
-            <Trans>Pour cela,</Trans>{' '}
+            <Trans locale={locale}>Pour cela,</Trans>{' '}
             <strong className="text-primary-700">
-              <Trans>laissez-nous votre email,</Trans>{' '}
+              <Trans locale={locale}>laissez-nous votre email,</Trans>{' '}
             </strong>
             {t('comme {{numberSubscribers}} personnes.', {
               numberSubscribers:
@@ -200,7 +202,7 @@ export default function GetResultsByEmail({
             {(!isSubscribedMainNewsletter ||
               !isSubscribedTransportNewsletter) && (
               <p className="mb-0">
-                <Trans>
+                <Trans locale={locale}>
                   Recevez des conseils pour réduire votre empreinte :
                 </Trans>
               </p>
@@ -212,7 +214,8 @@ export default function GetResultsByEmail({
                   <span>
                     <Emoji>☀️</Emoji>{' '}
                     <strong>
-                      <Trans>Infolettre saisonnière de</Trans> Nos Gestes Climat
+                      <Trans locale={locale}>Infolettre saisonnière de</Trans>{' '}
+                      Nos Gestes Climat
                     </strong>
                   </span>
                 }
@@ -225,7 +228,7 @@ export default function GetResultsByEmail({
                 label={
                   <span>
                     <Emoji>🚗</Emoji> <strong>Nos Gestes Transports</strong>
-                    <Trans>
+                    <Trans locale={locale}>
                        : maîtrisez l'impact carbone de vos transports avec nos 4
                       infolettres
                     </Trans>
@@ -240,7 +243,7 @@ export default function GetResultsByEmail({
                 label={
                   <span>
                     <Emoji>🏡</Emoji>{' '}
-                    <Trans>
+                    <Trans locale={locale}>
                       <strong>Nos Gestes Logement</strong> : informez-vous sur
                       l'impact carbone du logement, en quelques e-mails
                     </Trans>
@@ -256,7 +259,7 @@ export default function GetResultsByEmail({
             disabled={isPending}
             className="mt-auto items-start"
             data-cypress-id="fin-email-submit-button">
-            <Trans>Envoyer</Trans>
+            <Trans locale={locale}>Envoyer</Trans>
           </Button>
 
           {isError && (

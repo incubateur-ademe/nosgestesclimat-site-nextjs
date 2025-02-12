@@ -77,7 +77,7 @@ export default function Actions({
         />
 
         <div className="my-4 h-8 w-full text-center">
-          <p className="inline-block rounded-md bg-primary-700 px-4 py-1 text-sm font-medium text-white ">
+          <p className="bg-primary-700 inline-block rounded-md px-4 py-1 text-sm font-medium text-white">
             <span>{label} &#9650;</span>
           </p>
         </div>
@@ -104,15 +104,15 @@ export default function Actions({
       {radical ? numberedActions : numberedActions.slice().reverse()}
 
       <div className="my-4 h-8 w-full text-center">
-        <p className="inline-flex items-center rounded-full bg-primary-700 px-4 text-sm font-medium  text-white">
+        <p className="bg-primary-700 inline-flex items-center rounded-full px-4 text-sm font-medium text-white">
           <Image
             src="/images/misc/270A.svg"
-            className="mr-2 align-middle invert "
+            className="mr-2 align-middle invert"
             height={36}
             width={36}
             alt=""
           />
-          <Trans>Actions d'engagement</Trans> &#9660;
+          <Trans locale={locale}>Actions d'engagement</Trans> &#9660;
         </p>
       </div>
 
@@ -127,7 +127,7 @@ export default function Actions({
       />
 
       <div className="my-4 h-8 w-full text-center">
-        <p className="inline-flex items-center rounded-full bg-primary-700 px-4 text-sm  font-medium text-white ">
+        <p className="bg-primary-700 inline-flex items-center rounded-full px-4 text-sm font-medium text-white">
           <Image
             src="/images/misc/26D4.svg"
             className="mr-2 invert"
@@ -135,7 +135,7 @@ export default function Actions({
             width={36}
             alt=""
           />
-          <Trans>Actions négatives</Trans> &#9660;
+          <Trans locale={locale}>Actions négatives</Trans> &#9660;
         </p>
       </div>
 
@@ -150,7 +150,7 @@ export default function Actions({
       {rejected.length > 0 && (
         <div>
           <h2>
-            <Trans>Actions écartées :</Trans>
+            <Trans locale={locale}>Actions écartées :</Trans>
           </h2>
           <ActionList
             actions={rejected}

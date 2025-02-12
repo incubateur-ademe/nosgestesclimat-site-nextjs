@@ -25,8 +25,8 @@ import ShareBlock from './_components/ShareBlock'
 import FinPageSkeleton from './skeleton'
 
 const titles: Record<Metric, ReactElement> = {
-  [carboneMetric]: <Trans>carbone</Trans>,
-  [eauMetric]: <Trans>eau</Trans>,
+  [carboneMetric]: <Trans locale={locale}>carbone</Trans>,
+  [eauMetric]: <Trans locale={locale}>eau</Trans>,
 }
 
 export default function FinPage() {
@@ -49,7 +49,7 @@ export default function FinPage() {
 
       <div className="flex justify-between">
         <Title tag="h1">
-          <Trans>Mes empreintes</Trans>
+          <Trans locale={locale}>Mes empreintes</Trans>
         </Title>
 
         <HeadingButtons />
@@ -90,7 +90,7 @@ export default function FinPage() {
 
           <div id="categories-block">
             <Title tag="h2" className="text-lg lg:text-2xl">
-              <Trans>Le détail de mon empreinte</Trans>{' '}
+              <Trans locale={locale}>Le détail de mon empreinte</Trans>{' '}
               <strong className="text-secondary-700">
                 {titles[currentMetric]}
               </strong>
@@ -99,7 +99,7 @@ export default function FinPage() {
           </div>
 
           <FeedbackBanner
-            className="mb-8 mt-12"
+            className="mt-12 mb-8"
             text={
               <Trans i18nKey="publicodes.northstar.learned">
                 Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque
@@ -111,7 +111,7 @@ export default function FinPage() {
 
           <DocumentationBlock />
         </div>
-        <div className="top-40 flex w-full flex-col gap-4 self-start md:mb-8 lg:sticky lg:z-30 lg:w-[22rem] short:gap-2">
+        <div className="short:gap-2 top-40 flex w-full flex-col gap-4 self-start md:mb-8 lg:sticky lg:z-30 lg:w-[22rem]">
           <InformationBlock />
         </div>
       </div>

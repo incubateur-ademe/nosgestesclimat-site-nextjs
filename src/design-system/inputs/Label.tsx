@@ -10,7 +10,7 @@ export default function Label({
       <span>{children}</span>{' '}
       {isOptional && (
         <span className="text-secondary-700 italic">
-          <Trans>facultatif</Trans>
+          <Trans locale={locale}>facultatif</Trans>
         </span>
       )}
     </div>

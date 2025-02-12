@@ -32,7 +32,7 @@ export default function GestureSelector({
                   'cursor-pointer'
                 )}
                 onClick={() => setSelectedCategory(categoryName)}>
-                <Trans>{categoryName}</Trans>
+                <Trans locale={locale}>{categoryName}</Trans>
               </button>
             </li>
           ))}
@@ -51,7 +51,7 @@ export default function GestureSelector({
                 <li
                   key={`gesture-${index}`}
                   className="text-primary-600 flex items-baseline gap-1 text-sm font-bold md:text-lg">
-                  <Trans>{gesture}</Trans>
+                  <Trans locale={locale}>{gesture}</Trans>
                 </li>
               ))}
             </motion.ul>

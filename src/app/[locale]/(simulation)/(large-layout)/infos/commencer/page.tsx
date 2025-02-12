@@ -20,19 +20,25 @@ import { InfosContext } from '../_components/InfosProvider'
 const titles = {
   notStarted: (
     <span className="flex items-center">
-      <Trans>Envie de connaître votre empreinte carbone ?</Trans>{' '}
+      <Trans locale={locale}>
+        Envie de connaître votre empreinte carbone ?
+      </Trans>{' '}
       <Emoji className="ml-1">🤓</Emoji>
     </span>
   ),
   started: (
     <span className="flex items-center">
-      <Trans>Vous avez déjà commencé le test Nos Gestes Climat !</Trans>{' '}
+      <Trans locale={locale}>
+        Vous avez déjà commencé le test Nos Gestes Climat !
+      </Trans>{' '}
       <Emoji className="ml-1">💪</Emoji>
     </span>
   ),
   finished: (
     <span className="flex items-center">
-      <Trans>Vous avez déjà réalisé le test Nos Gestes Climat !</Trans>{' '}
+      <Trans locale={locale}>
+        Vous avez déjà réalisé le test Nos Gestes Climat !
+      </Trans>{' '}
       <Emoji className="ml-1">👏</Emoji>
     </span>
   ),
@@ -40,30 +46,30 @@ const titles = {
 const texts = {
   notStarted: (
     <>
-      <Trans>Calculez votre empreinte en</Trans>{' '}
+      <Trans locale={locale}>Calculez votre empreinte en</Trans>{' '}
       <span className="text-primary-700 font-bold">
-        <Trans>10 minutes</Trans>
+        <Trans locale={locale}>10 minutes</Trans>
       </span>{' '}
-      <Trans>
+      <Trans locale={locale}>
         puis comparez vos résultats à ceux des autres participants.
       </Trans>{' '}
     </>
   ),
   started: (
-    <Trans>
+    <Trans locale={locale}>
       Vous pouvez reprendre votre test en cours, ou en recommencer un.
     </Trans>
   ),
   finished: (
-    <Trans>
+    <Trans locale={locale}>
       Vous pouvez utiliser vos données existantes, ou recommencer le test.
     </Trans>
   ),
 }
 const buttonLabels = {
-  notStarted: <Trans>Commencer le test</Trans>,
-  started: <Trans>Reprendre le test</Trans>,
-  finished: <Trans>Utiliser mes données existantes</Trans>,
+  notStarted: <Trans locale={locale}>Commencer le test</Trans>,
+  started: <Trans locale={locale}>Reprendre le test</Trans>,
+  finished: <Trans locale={locale}>Utiliser mes données existantes</Trans>,
 }
 
 export default function Commencer() {
@@ -167,7 +173,7 @@ export default function Commencer() {
                 },
               })
             }}>
-            <Trans>Commencer un nouveau test</Trans>
+            <Trans locale={locale}>Commencer un nouveau test</Trans>
           </Button>
         ) : null}
       </div>

@@ -23,7 +23,7 @@ export default function Form({
       {error && <p className="my-4 text-sm text-red-500">{error}</p>}
 
       <Button className="mt-8" type="submit">
-        {buttonLabel ?? <Trans>Enregistrer</Trans>}
+        {buttonLabel ?? <Trans locale={locale}>Enregistrer</Trans>}
       </Button>
     </form>
   )

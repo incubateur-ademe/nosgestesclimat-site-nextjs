@@ -58,11 +58,12 @@ export default function ParticipantAdminSection({ group }: Props) {
   return (
     <section>
       <h2>
-        <Trans>Quitter</Trans> <Emoji>{group?.emoji}</Emoji> {group?.name}
+        <Trans locale={locale}>Quitter</Trans> <Emoji>{group?.emoji}</Emoji>{' '}
+        {group?.name}
       </h2>
 
       <p className="text-sm md:text-base">
-        <Trans>
+        <Trans locale={locale}>
           Vous pouvez quitter le groupe en cliquant sur le bouton ci-dessous. Le
           groupe ne sera en revanche pas supprimé puisque vous n’en êtes pas
           l’administrateur.
@@ -72,7 +73,7 @@ export default function ParticipantAdminSection({ group }: Props) {
       {isConfirming && !isSuccess && (
         <Card className="border-none bg-gray-100">
           <p className="text-sm md:text-base">
-            <Trans>
+            <Trans locale={locale}>
               Cette opération est définitive et vous ne pourrez plus accéder aux
               résultats du groupe.
             </Trans>
@@ -102,7 +103,7 @@ export default function ParticipantAdminSection({ group }: Props) {
       {isSuccess && (
         <Card className="border-none bg-gray-100">
           <p className="text-sm md:text-base">
-            <Trans>
+            <Trans locale={locale}>
               Vous avez quitté ce groupe. Vous allez être redirigé vers la page
               d'accueil du mode groupe
             </Trans>

@@ -34,12 +34,12 @@ export default function QuestionsComplementaires({
   return (
     <section className="mt-8">
       <h2>
-        <Trans>Questions complémentaires</Trans>
+        <Trans locale={locale}>Questions complémentaires</Trans>
       </h2>
 
       <p className="mb-8">
         {description ?? (
-          <Trans>
+          <Trans locale={locale}>
             Vous avez la possibilité d’ajouter des questions complémentaires au
             test pour vos statistiques. Vos questions additionnelles activées
             seront posées à chaque participant en amont du test Nos Gestes
@@ -49,7 +49,7 @@ export default function QuestionsComplementaires({
       </p>
 
       <h3>
-        <Trans>Questions par défaut</Trans>
+        <Trans locale={locale}>Questions par défaut</Trans>
       </h3>
 
       <ToggleField

@@ -20,21 +20,21 @@ export default function OrganisationFetchError({
       {isError && (
         <MaxWidthContent>
           <p>
-            <Trans>Oups</Trans>
-            <Trans>
+            <Trans locale={locale}>Oups</Trans>
+            <Trans locale={locale}>
               , vous avez été déconnecté·e de votre espace organisation, ou vous
               cherchez à y accéder depuis un nouveau navigateur.
             </Trans>
           </p>
 
           <p>
-            <Trans>
+            <Trans locale={locale}>
               Reconnectez vous en cliquant sur le bouton ci-dessous.
             </Trans>
           </p>
 
           <ButtonLink href="/organisations/connexion" className="mt-8">
-            <Trans>Me connecter</Trans>
+            <Trans locale={locale}>Me connecter</Trans>
           </ButtonLink>
         </MaxWidthContent>
       )}

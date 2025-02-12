@@ -23,9 +23,9 @@ export default function SimulationList() {
   return (
     <div className="my-6">
       <h2 className="flex items-center">
-        <SavesIcon className="mr-3 fill-primary-700" />
+        <SavesIcon className="fill-primary-700 mr-3" />
 
-        <Trans>Mon historique des simulations</Trans>
+        <Trans locale={locale}>Mon historique des simulations</Trans>
       </h2>
       <p>
         <Trans i18nKey={'publicodes.Profil.simulations'}>
@@ -52,7 +52,7 @@ export default function SimulationList() {
                     {currentSimulationId === simulation.id ? (
                       <span className="mx-2 flex items-center">
                         <CheckCircleIcon className="mr-1 h-4 w-4 fill-green-500" />{' '}
-                        <Trans>Chargée</Trans>
+                        <Trans locale={locale}>Chargée</Trans>
                       </span>
                     ) : (
                       <span>
@@ -63,7 +63,7 @@ export default function SimulationList() {
                             trackEvent(profilLoadSimulation)
                             setCurrentSimulationId(simulation.id as string)
                           }}>
-                          <Trans>Charger</Trans>
+                          <Trans locale={locale}>Charger</Trans>
                         </Button>
 
                         <Button
@@ -73,7 +73,7 @@ export default function SimulationList() {
                             trackEvent(profilDeleteSimulation)
                             deleteSimulation(simulation.id as string)
                           }}>
-                          <Trans>Supprimer</Trans>
+                          <Trans locale={locale}>Supprimer</Trans>
                         </Button>
                       </span>
                     )}
@@ -81,12 +81,13 @@ export default function SimulationList() {
                 </summary>
                 <ul>
                   <li>
-                    <Trans>Date complète :</Trans>
+                    <Trans locale={locale}>Date complète :</Trans>
                     {simulationDate.toLocaleDateString()}{' '}
                     {simulationDate.toLocaleTimeString()}.
                   </li>
                   <li>
-                    <Trans>Identifiant :</Trans> {simulation.id}.
+                    <Trans locale={locale}>Identifiant :</Trans> {simulation.id}
+                    .
                   </li>
                 </ul>
               </details>

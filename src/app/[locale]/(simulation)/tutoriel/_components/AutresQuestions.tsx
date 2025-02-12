@@ -17,20 +17,20 @@ export default function AutresQuestions() {
   return (
     <div className="order-last mb-8 md:order-none">
       <h5 className="mb-2 text-lg">
-        <Trans>D'autres questions ?</Trans>
+        <Trans locale={locale}>D'autres questions ?</Trans>
       </h5>
       <ul className="mb-1 list-none p-0">
         <OrganisationPrivacy />
         <li className="mb-2" id={'empreinte'}>
           <details>
             <summary
-              className="cursor-pointer text-sm font-bold text-primary-700 md:text-lg"
+              className="text-primary-700 cursor-pointer text-sm font-bold md:text-lg"
               onClick={() =>
                 trackEvent(
                   tutorielClickQuestion('C’est quoi mon empreinte carbone ?')
                 )
               }>
-              <Trans>C’est quoi mon empreinte carbone ?</Trans>
+              <Trans locale={locale}>C’est quoi mon empreinte carbone ?</Trans>
             </summary>
             <div className="my-2 ml-3.5 text-sm">
               <p>
@@ -66,11 +66,11 @@ export default function AutresQuestions() {
         <li className="mb-2" id={'mesure'}>
           <details>
             <summary
-              className="cursor-pointer text-sm font-bold text-primary-700 md:text-lg"
+              className="text-primary-700 cursor-pointer text-sm font-bold md:text-lg"
               onClick={() =>
                 trackEvent(tutorielClickQuestion('Comment on la mesure ?'))
               }>
-              <Trans>Comment on la mesure ?</Trans>
+              <Trans locale={locale}>Comment on la mesure ?</Trans>
             </summary>
             <div className="my-2 ml-3.5 text-sm">
               <p>
@@ -143,11 +143,11 @@ export default function AutresQuestions() {
         <li className="mb-2" id={'categories'}>
           <details id={'categories'} className="text-sm">
             <summary
-              className="cursor-pointer text-sm font-bold text-primary-700 md:text-lg"
+              className="text-primary-700 cursor-pointer text-sm font-bold md:text-lg"
               onClick={() =>
                 trackEvent(tutorielClickQuestion('D’où vient mon empreinte ?'))
               }>
-              <Trans>D’où vient mon empreinte ?</Trans>
+              <Trans locale={locale}>D’où vient mon empreinte ?</Trans>
             </summary>
             <div className="my-2 ml-3.5">
               <Trans i18nKey={'publicodes.Tutoriel.slide6'}>
@@ -167,15 +167,17 @@ export default function AutresQuestions() {
         <li className="mb-4" id={'eau'}>
           <details id={'eau'} className="text-sm">
             <summary
-              className="cursor-pointer text-sm font-bold text-primary-700 md:text-lg"
+              className="text-primary-700 cursor-pointer text-sm font-bold md:text-lg"
               onClick={() =>
                 trackEvent(tutorielClickQuestion('D’où vient mon empreinte ?'))
               }>
-              <Trans>Pourquoi avons-nous ajouté l’empreinte eau ?</Trans>
+              <Trans locale={locale}>
+                Pourquoi avons-nous ajouté l’empreinte eau ?
+              </Trans>
             </summary>
             <div className="my-2 ml-3.5">
               <p>
-                <Trans>
+                <Trans locale={locale}>
                   L’eau est une ressource planétaire précieuse. Comme le climat,{' '}
                   <strong className="text-secondary-700">
                     le cycle de l’eau est fortement impacté par les activités
@@ -196,7 +198,7 @@ export default function AutresQuestions() {
         color="text"
         className="px-0 underline"
         trackingEvent={tutorielClickFaq}>
-        <Trans>Consultez la FAQ</Trans>
+        <Trans locale={locale}>Consultez la FAQ</Trans>
       </ButtonLink>
     </div>
   )

@@ -45,8 +45,8 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
     region?.name
 
   const versionName: string = regionParams
-    ? regionParams?.[currentLocale]?.['gentilé'] ??
-      regionParams?.[currentLocale]?.['nom']
+    ? (regionParams?.[currentLocale]?.['gentilé'] ??
+      regionParams?.[currentLocale]?.['nom'])
     : countryName
 
   if (tutorials.localisationBanner) return null
@@ -56,7 +56,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
   return (
     <Card
       className={twMerge(
-        'fixed bottom-0 right-8 z-50 mx-auto mb-8 max-w-full flex-row bg-primary-50',
+        'bg-primary-50 fixed right-8 bottom-0 z-50 mx-auto mb-8 max-w-full flex-row',
         isTutorialOrTest && 'bottom-12'
       )}>
       <div className="flex gap-4">
@@ -65,15 +65,20 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
             <>
               <p className="mb-0 inline flex-1 items-baseline gap-1">
                 <CountryFlag className="mr-2 inline" code={code} />
-                <Trans>Vous utilisez la version</Trans>{' '}
-                <strong>{versionName}</strong> <Trans>du test</Trans>.
+                <Trans locale={currentLocale}>
+                  Vous utilisez la version
+                </Trans>{' '}
+                <strong>{versionName}</strong>{' '}
+                <Trans locale={currentLocale}>du test</Trans>.
               </p>
 
               <p className="mb-2">
                 {code !== defaultModelRegionCode && (
                   <span>
                     {' '}
-                    <Trans i18nKey="components.localisation.LocalisationMessage.betaMsg">
+                    <Trans
+                      locale={currentLocale}
+                      i18nKey="components.localisation.LocalisationMessage.betaMsg">
                       Elle est actuellement en version <strong>bêta</strong>.
                     </Trans>
                   </span>
@@ -85,7 +90,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
           {!regionParams && code && (
             <section>
               <p>
-                <Trans>
+                <Trans locale={currentLocale}>
                   Nous avons détecté que vous faites cette simulation depuis
                 </Trans>{' '}
                 {countryName} <CountryFlag code={code} className="inline" />.
@@ -93,7 +98,9 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
               <p className="mt-2">
                 <b>
-                  <Trans i18nKey="components.localisation.LocalisationMessage.warnMessage">
+                  <Trans
+                    locale={currentLocale}
+                    i18nKey="components.localisation.LocalisationMessage.warnMessage">
                     Votre région n'est pas encore supportée, le modèle Français
                     vous est proposé par défaut
                   </Trans>
@@ -106,7 +113,9 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
           {!regionParams && !code && (
             <p className="mb-0">
-              <Trans i18nKey="components.localisation.LocalisationMessage.warnMessage2">
+              <Trans
+                locale={currentLocale}
+                i18nKey="components.localisation.LocalisationMessage.warnMessage2">
                 Nous n'avons pas pu détecter votre pays de simulation, le modèle
                 Français vous est proposé par défaut
               </Trans>{' '}
@@ -117,7 +126,9 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
           <p>
             <small>
               <Link href="/profil">
-                <Trans>Choisissez une région parmi celles disponibles !</Trans>
+                <Trans locale={currentLocale}>
+                  Choisissez une région parmi celles disponibles !
+                </Trans>
               </Link>
             </small>
           </p>
@@ -131,7 +142,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
               trackEvent(trackingClickRegionBanner)
             }}>
-            <Trans>J'ai compris</Trans>
+            <Trans locale={currentLocale}>J'ai compris</Trans>
           </Button>
         </div>
       </div>

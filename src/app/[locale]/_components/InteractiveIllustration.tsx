@@ -1,11 +1,10 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 import { FloatingElementDisplayedProvider } from './interactiveIllustration/FloatingElementDisplayedProvider'
 import PulsatingDot from './interactiveIllustration/PulsatingDot'
-
 export default function InteractiveIllustration() {
   const { t } = useClientTranslation()
 
@@ -23,7 +22,7 @@ export default function InteractiveIllustration() {
         {/* Computer */}
         <PulsatingDot
           className="bottom-[15%] left-[50%]"
-          itemTitle={<Trans>Ordinateur</Trans>}
+          itemTitle={<TransClient>Ordinateur</TransClient>}
           itemKey="computer"
           carbonScore={4}
           waterScore={4}
@@ -32,8 +31,8 @@ export default function InteractiveIllustration() {
 
         {/* Shirt */}
         <PulsatingDot
-          className="right-[35%] top-[40%]"
-          itemTitle={<Trans>Chemisier</Trans>}
+          className="top-[40%] right-[35%]"
+          itemTitle={<TransClient>Chemisier</TransClient>}
           itemKey="shirt"
           carbonScore={3}
           waterScore={5}
@@ -43,7 +42,7 @@ export default function InteractiveIllustration() {
         {/* Coffee */}
         <PulsatingDot
           className="bottom-[41%] left-[12%]"
-          itemTitle={<Trans>Café</Trans>}
+          itemTitle={<TransClient>Café</TransClient>}
           itemKey="coffee"
           carbonScore={4}
           waterScore={3}
@@ -52,7 +51,7 @@ export default function InteractiveIllustration() {
         {/* Car */}
         <PulsatingDot
           className="bottom-[15%] left-[10%]"
-          itemTitle={<Trans>Voiture</Trans>}
+          itemTitle={<TransClient>Voiture</TransClient>}
           carbonScore={5}
           itemKey="car"
         />

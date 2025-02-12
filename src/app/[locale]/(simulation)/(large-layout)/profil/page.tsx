@@ -46,7 +46,7 @@ export default async function Profil({
 
   return (
     <FormProvider>
-      <Title title={<Trans>Mon profil</Trans>} />
+      <Title title={<Trans locale={locale}>Mon profil</Trans>} />
 
       <PersonaWarning />
 
@@ -73,7 +73,7 @@ export default async function Profil({
         <UserInformationForm
           title={
             <h3>
-              <Trans>Mes informations</Trans>
+              <Trans locale={locale}>Mes informations</Trans>
             </h3>
           }
         />

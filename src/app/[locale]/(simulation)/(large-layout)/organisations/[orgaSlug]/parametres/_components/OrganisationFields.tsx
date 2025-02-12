@@ -26,12 +26,12 @@ export default function OrganisationFields({
   return (
     <div className="flex flex-col gap-4">
       <TextInputGroup
-        label={<Trans>Votre organisation</Trans>}
+        label={<Trans locale={locale}>Votre organisation</Trans>}
         value={defaultValues.name}
         {...register('name')}
       />
       <Select
-        label={<Trans>Type d'organisation</Trans>}
+        label={<Trans locale={locale}>Type d'organisation</Trans>}
         value={defaultValues.organisationType}
         {...register('organisationType', {
           required: t('Ce champ est requis'),
@@ -46,10 +46,10 @@ export default function OrganisationFields({
         type="number"
         label={
           <p className="mb-0 flex w-full justify-between">
-            <Trans>Nombre de collaborateurs</Trans>{' '}
-            <span className="font-bold italic text-secondary-700">
+            <Trans locale={locale}>Nombre de collaborateurs</Trans>{' '}
+            <span className="text-secondary-700 font-bold italic">
               {' '}
-              <Trans>facultatif</Trans>
+              <Trans locale={locale}>facultatif</Trans>
             </span>
           </p>
         }

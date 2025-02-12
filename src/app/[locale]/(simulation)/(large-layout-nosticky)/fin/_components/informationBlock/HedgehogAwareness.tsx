@@ -9,14 +9,14 @@ export default function HedgehogAwareness() {
         tag="h2"
         className="text-lg lg:text-2xl"
         title={
-          <Trans>
-            <strong className="font-black text-secondary-700">Hérissons</strong>{' '}
+          <Trans locale={locale}>
+            <strong className="text-secondary-700 font-black">Hérissons</strong>{' '}
             en danger ?
           </Trans>
         }
       />
       <p>
-        <Trans>
+        <Trans locale={locale}>
           Les hérissons sont menacé⋅e⋅s par le changement climatique et la perte
           de biodiversité. L'augmentation des températures et les conditions
           climatiques extrêmes perturbent leur habitat naturel, rendant
@@ -24,7 +24,7 @@ export default function HedgehogAwareness() {
         </Trans>
       </p>
       <p>
-        <Trans>
+        <Trans locale={locale}>
           De plus, la disparition de leur environnement naturel, due à la
           déforestation et à l'urbanisation, réduit leurs zones de vie
           potentielles, augmentant ainsi leur vulnérabilité face aux prédateurs
@@ -36,7 +36,7 @@ export default function HedgehogAwareness() {
           className="text-sm"
           target="_blank"
           href="https://information.tv5monde.com/international/france-les-herissons-en-danger-dextinction-708196">
-          <Trans>En savoir plus</Trans>
+          <Trans locale={locale}>En savoir plus</Trans>
         </Link>
       </div>
     </>

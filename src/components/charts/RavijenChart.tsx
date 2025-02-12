@@ -68,7 +68,7 @@ export default function RavijenChart({
               link.remove()
             })
           }}>
-          <Trans>Télécharger l'image</Trans>
+          <Trans locale={locale}>Télécharger l'image</Trans>
         </Button>
       </div>
     </>

@@ -22,7 +22,7 @@ export default function PollItem({ organisation, poll }: Props) {
         orgaSlug: organisation.slug,
         pollSlug: poll.slug,
       })}
-      className="rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors hover:bg-primary-100"
+      className="hover:bg-primary-100 rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors"
       onClick={() => trackEvent(classementClickOrganisation)}>
       <div className="flex items-center justify-between py-4">
         <div className="flex w-full items-center">
@@ -34,7 +34,8 @@ export default function PollItem({ organisation, poll }: Props) {
 
             <div className="flex gap-1 text-sm text-violet-900">
               <span className="whitespace-nowrap">
-                {expectedNumberOfParticipants} <Trans>participant</Trans>
+                {expectedNumberOfParticipants}{' '}
+                <Trans locale={locale}>participant</Trans>
                 {expectedNumberOfParticipants > 1 ? 's' : ''}
               </span>
             </div>

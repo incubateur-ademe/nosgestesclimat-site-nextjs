@@ -68,9 +68,9 @@ export default function DetailedStatistics({ funFacts }: Props) {
         />
         <span className="w-24">
           {!isSectionVisible ? (
-            <Trans>Voir plus</Trans>
+            <Trans locale={locale}>Voir plus</Trans>
           ) : (
-            <Trans>Voir moins</Trans>
+            <Trans locale={locale}>Voir moins</Trans>
           )}
         </span>
       </Button>

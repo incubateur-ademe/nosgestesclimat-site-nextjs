@@ -1,6 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
 import {
   useAllSimulationsTerminees,
@@ -12,6 +13,7 @@ import {
   useCurrentMonthWebsites,
   useGetSharedSimulationEvents,
 } from '@/helpers/matomo'
+import { useLocale } from '@/hooks/useLocale'
 import { useMainNewsletter } from '@/hooks/useMainNewsletter'
 import type { UseQueryResult } from '@tanstack/react-query'
 import type { ReactNode } from 'react'
@@ -19,7 +21,6 @@ import AcquisitionBlock from './content/AcquisitionBlock'
 import MetabaseIframe from './content/MetabaseIframe'
 import SimulationsBlock from './content/SimulationsBlock'
 import VisitsBlock from './content/VisitsBlock'
-
 // Do not try [toRenderWithRequestData] until all [requestResults] are successful.
 // Otherwise, an informative message in rendered.
 const UseQueryResultHandler = ({
@@ -33,6 +34,8 @@ const UseQueryResultHandler = ({
     ({ isSuccess }) => !isSuccess
   )
 
+  const locale = useLocale()
+
   if (notSuccessfulRequests.length > 0) {
     return (
       <div>
@@ -40,7 +43,7 @@ const UseQueryResultHandler = ({
           if (isError) {
             return (
               <p key={`${JSON.stringify(error)}-${index}`}>
-                <Trans>
+                <Trans locale={locale}>
                   Une erreur est survenue lors de la récupération des données
                 </Trans>{' '}
                 : {(error as any).message}
@@ -50,7 +53,7 @@ const UseQueryResultHandler = ({
           if (isLoading) {
             return (
               <p key={`${JSON.stringify(error)}-${index}`}>
-                <Trans>Récupération des données</Trans>...
+                <Trans locale={locale}>Récupération des données</Trans>...
               </p>
             )
           }
@@ -73,14 +76,16 @@ export default function StatsContent() {
   const allSharedSimulationEvents = useGetSharedSimulationEvents()
   const { data: mainNewsletter } = useMainNewsletter()
 
+  const locale = useLocale()
+
   return (
     <div>
       <Title>
-        <Trans>Statistiques</Trans>
+        <TransClient>Statistiques</TransClient>
       </Title>
       <div className="mt-8">
         <h2>
-          <Trans>Visites et simulations</Trans>
+          <TransClient>Visites et simulations</TransClient>
         </h2>
         <UseQueryResultHandler
           requestResults={[
@@ -110,7 +115,7 @@ export default function StatsContent() {
       </div>
       <div className="mt-8">
         <h2>
-          <Trans>Acquisition</Trans>
+          <TransClient>Acquisition</TransClient>
         </h2>
         <UseQueryResultHandler
           requestResults={[
@@ -140,10 +145,12 @@ export default function StatsContent() {
       </div>
       <div className="mt-8">
         <h2>
-          <Trans>Données qualitatives</Trans>
+          <TransClient>Données qualitatives</TransClient>
         </h2>
         <p>
-          <Trans>Cette section statistique est générée via Metabase.</Trans>
+          <TransClient>
+            Cette section statistique est générée via Metabase.
+          </TransClient>
         </p>
         <MetabaseIframe
           id="stats-quali"
@@ -154,14 +161,14 @@ export default function StatsContent() {
       </div>
       <div className="mt-8">
         <h2>
-          <Trans>Modes "Groupes"</Trans>
+          <TransClient>Modes "Groupes"</TransClient>
         </h2>
         <p>
           {' '}
-          <Trans>
+          <TransClient>
             Il est question ici des modes "Organisations" et "Challenge tes
             amis". Cette section est générée via Metabase.
-          </Trans>{' '}
+          </TransClient>{' '}
         </p>
         <h3>Mode "Organisations"</h3>
         <MetabaseIframe

@@ -16,7 +16,7 @@ export default function MainFootprintChart({ simulations, maxValue }: Props) {
   return (
     <section className="mb-12">
       <h3>
-        <Trans>Empreinte carbone totale</Trans>
+        <Trans locale={locale}>Empreinte carbone totale</Trans>
       </h3>
 
       <div className="flex flex-col">
@@ -29,14 +29,14 @@ export default function MainFootprintChart({ simulations, maxValue }: Props) {
             }}>
             <div className="mt-1 whitespace-nowrap">
               <p className="mb-0">
-                <strong className="font-black text-secondary-700">
+                <strong className="text-secondary-700 font-black">
                   2 tonnes,
                 </strong>
               </p>
               <p className="mb-0 text-sm">
-                <Trans>c'est l’objectif pour 2050,</Trans>{' '}
+                <Trans locale={locale}>c'est l’objectif pour 2050,</Trans>{' '}
                 <InlineLink href="/actions">
-                  <Trans>on s'y met ?</Trans>
+                  <Trans locale={locale}>on s'y met ?</Trans>
                 </InlineLink>
               </p>
             </div>
@@ -63,9 +63,9 @@ export default function MainFootprintChart({ simulations, maxValue }: Props) {
             <strong className="text-lg">{maxValue}</strong>{' '}
             <span>
               {shouldUseAbbreviation ? (
-                <Trans>t CO₂e / an</Trans>
+                <Trans locale={locale}>t CO₂e / an</Trans>
               ) : (
-                <Trans>tonnes CO₂e / an</Trans>
+                <Trans locale={locale}>tonnes CO₂e / an</Trans>
               )}
             </span>
           </span>

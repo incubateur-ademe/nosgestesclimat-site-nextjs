@@ -71,7 +71,7 @@ export default function GroupCreationForm() {
           label={
             <span>
               {t('Votre adresse email')}{' '}
-              <span className="italic text-secondary-700">
+              <span className="text-secondary-700 italic">
                 {' '}
                 {t('facultatif')}
               </span>
@@ -89,7 +89,7 @@ export default function GroupCreationForm() {
 
       <Button type="submit" data-cypress-id="button-continue-create-group">
         {' '}
-        <Trans>Continuer</Trans>
+        <Trans locale={locale}>Continuer</Trans>
       </Button>
     </form>
   )

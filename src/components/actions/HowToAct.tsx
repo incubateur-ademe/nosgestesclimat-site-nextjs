@@ -7,17 +7,17 @@ export default function HowToAct({ shouldLeadToTest = true }) {
   return (
     <>
       <h2>
-        <Trans>Comment agir ?</Trans>
+        <Trans locale={locale}>Comment agir ?</Trans>
       </h2>
 
       <p className="text-gray-600">
         {shouldLeadToTest ? (
-          <Trans>
+          <Trans locale={locale}>
             Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou
             passez le test pour obtenir des recommandations personnalisées.
           </Trans>
         ) : (
-          <Trans>
+          <Trans locale={locale}>
             Découvrez nos pistes pour agir dès aujourd’hui pour le climat.
           </Trans>
         )}
@@ -30,7 +30,7 @@ export default function HowToAct({ shouldLeadToTest = true }) {
           href="/actions"
           color="secondary"
           trackingEvent={endClickActions}>
-          <Trans>Voir toutes les actions</Trans>
+          <Trans locale={locale}>Voir toutes les actions</Trans>
         </ButtonLink>
       </div>
     </>

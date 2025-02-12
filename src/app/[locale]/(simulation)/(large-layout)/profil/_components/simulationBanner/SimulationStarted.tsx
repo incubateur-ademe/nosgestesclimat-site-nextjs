@@ -56,7 +56,7 @@ export default function SimulationStarted() {
             </span>
           </Trans>{' '}
           <Link href="/vie-privee" className="text-xs!">
-            <Trans>En savoir plus</Trans>
+            <Trans locale={locale}>En savoir plus</Trans>
           </Link>
         </details>
       </div>
@@ -68,7 +68,7 @@ export default function SimulationStarted() {
             color="primary"
             href={getLinkToEndPage()}
             trackingEvent={profilClickCtaResultats}>
-            <Trans>Voir mon résultat</Trans>
+            <Trans locale={locale}>Voir mon résultat</Trans>
           </ButtonLink>
         )}
 
@@ -80,7 +80,7 @@ export default function SimulationStarted() {
             trackingEvent={profilClickCtaReprendre}>
             <PlaySignIcon className="mr-2 fill-white" />
 
-            <Trans>Reprendre mon test</Trans>
+            <Trans locale={locale}>Reprendre mon test</Trans>
           </ButtonLink>
         )}
 
@@ -92,9 +92,9 @@ export default function SimulationStarted() {
             goToSimulateurPage({ noNavigation: true, newSimulation: {} })
           }}
           href={getLinkToSimulateurPage({ newSimulation: true })}>
-          <RestartIcon className="mr-2 fill-primary-700" />
+          <RestartIcon className="fill-primary-700 mr-2" />
 
-          <Trans>Recommencer</Trans>
+          <Trans locale={locale}>Recommencer</Trans>
         </ButtonLink>
 
         <TutorialLink />

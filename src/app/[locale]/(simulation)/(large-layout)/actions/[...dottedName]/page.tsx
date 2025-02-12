@@ -45,7 +45,7 @@ export default function ActionDetailPage({
           aria-label="arrow pointing left">
           ◀
         </span>{' '}
-        <Trans> Retour à la liste</Trans>
+        <Trans locale={locale}> Retour à la liste</Trans>
       </ButtonLink>
 
       <ActionDetail params={params} />

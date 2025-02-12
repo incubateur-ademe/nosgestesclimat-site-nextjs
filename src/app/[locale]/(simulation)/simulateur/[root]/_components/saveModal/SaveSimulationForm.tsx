@@ -33,7 +33,7 @@ export default function SaveSimulationForm({
       <Title
         tag="h2"
         subtitle={
-          <Trans>
+          <Trans locale={locale}>
             Recevez par email un lien pour reprendre votre test plus tard.
           </Trans>
         }>
@@ -51,7 +51,9 @@ export default function SaveSimulationForm({
 
         {isError && (
           <p className="mt-4 text-sm text-red-700">
-            <Trans>Une erreur s'est produite au moment de la sauvegarde.</Trans>
+            <Trans locale={locale}>
+              Une erreur s'est produite au moment de la sauvegarde.
+            </Trans>
           </p>
         )}
       </div>

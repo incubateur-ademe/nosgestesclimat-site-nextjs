@@ -45,15 +45,15 @@ export default function DocumentationLanding() {
     <div className="mt-4">
       <div className="flex flex-wrap gap-8 md:flex-nowrap">
         <div>
-          <Title title={<Trans>Documentation</Trans>} />
+          <Title title={<Trans locale={locale}>Documentation</Trans>} />
           <p>
-            <Trans>
+            <Trans locale={locale}>
               Le calculateur Nos Gestes Climat est basé sur le modèle de calcul
               du même nom, composé d'un ensemble de briques.
             </Trans>
           </p>
           <p>
-            <Trans>
+            <Trans locale={locale}>
               Sur cette documentation, vous avez accès en toute transparence à
               l'ensemble des variables du calcul. À lire tranquillement au coin
               du feu.
@@ -62,8 +62,8 @@ export default function DocumentationLanding() {
 
           <div>
             <Link href="/modele" className="flex items-center">
-              <LightBulbIcon className="mr-1 h-4 w-4 fill-primary-700" />
-              <Trans> En savoir plus sur notre modèle</Trans>
+              <LightBulbIcon className="fill-primary-700 mr-1 h-4 w-4" />
+              <Trans locale={locale}> En savoir plus sur notre modèle</Trans>
             </Link>
           </div>
         </div>
@@ -94,7 +94,7 @@ export default function DocumentationLanding() {
       <SearchBar rules={rules} />
 
       <h2 className="mt-4 text-xl">
-        <Trans>Quelques suggestions </Trans>
+        <Trans locale={locale}>Quelques suggestions </Trans>
       </h2>
 
       <ul className="grid max-w-[60rem] grid-cols-1 flex-wrap gap-2 p-0 sm:grid-cols-2 md:grid-cols-3">

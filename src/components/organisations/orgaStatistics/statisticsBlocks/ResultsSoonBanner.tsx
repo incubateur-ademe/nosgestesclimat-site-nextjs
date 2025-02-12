@@ -17,8 +17,8 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
 
   return (
     <div className="relative col-span-1 sm:col-span-2 lg:col-span-3">
-      <div className="absolute left-0 top-0 z-10 h-full w-full p-10 pb-0">
-        <div className="absolute bottom-0 left-0 right-0 top-0 -z-10 bg-white opacity-50" />
+      <div className="absolute top-0 left-0 z-10 h-full w-full p-10 pb-0">
+        <div className="absolute top-0 right-0 bottom-0 left-0 -z-10 bg-white opacity-50" />
 
         <Card className="w-full flex-row flex-wrap items-center justify-between gap-4 p-4 md:flex-nowrap">
           <div className="flex max-w-2xl gap-4">
@@ -31,14 +31,14 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
               {isAdmin ? (
                 <p className="mb-0">
                   <span>
-                    <Trans>
+                    <Trans locale={locale}>
                       Partagez le test pour obtenir vos premiers résultats.
                     </Trans>
                   </span>
                   {hasLessThan3Participants && (
                     <span>
                       {' '}
-                      <Trans>
+                      <Trans locale={locale}>
                         (Données consultables à partir de 3 participants, dans
                         un souci d'anonymat)
                       </Trans>
@@ -47,7 +47,7 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
                 </p>
               ) : (
                 <p className="mb-0">
-                  <Trans>
+                  <Trans locale={locale}>
                     Données consultables à partir de 3 participants, dans un
                     souci d'anonymat.
                   </Trans>
@@ -60,18 +60,18 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <div className="bg-rainbow-rotation overflow-hidden rounded-xl bg-gray-100 p-8">
-          <p className="text-4xl font-bold text-primary-700">
+          <p className="text-primary-700 text-4xl font-bold">
             8,0 <span className="text-base font-normal">t CO₂e</span>
           </p>
           <p className="text-xl">
-            <Trans>Empreinte moyenne</Trans>
+            <Trans locale={locale}>Empreinte moyenne</Trans>
           </p>
         </div>
 
         <div className="relative hidden rounded-xl bg-gray-100 p-8 lg:block">
           <Wave
             fill="#5152D0"
-            className="pointer-events-none absolute bottom-0 left-0 right-0 h-full w-full rounded-b-xl"
+            className="pointer-events-none absolute right-0 bottom-0 left-0 h-full w-full rounded-b-xl"
             options={{
               height: 10,
               amplitude: 20,
@@ -83,12 +83,12 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
             <p className="text-3xl font-bold text-white">
               10 000{' '}
               <span className="text-base font-normal">
-                <Trans>litres</Trans>
+                <Trans locale={locale}>litres</Trans>
               </span>
             </p>
 
             <p className="text-xl text-white">
-              <Trans>
+              <Trans locale={locale}>
                 <strong>Empreinte eau</strong> moyenne
               </Trans>
             </p>
@@ -128,8 +128,8 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
               value={2}
             />
           </VerticalBarChart>
-          <h3 className="mb-4 ml-6 mt-4 text-sm">
-            <Trans>Moyenne du groupe par catégorie</Trans>
+          <h3 className="mt-4 mb-4 ml-6 text-sm">
+            <Trans locale={locale}>Moyenne du groupe par catégorie</Trans>
           </h3>
         </div>
       </div>

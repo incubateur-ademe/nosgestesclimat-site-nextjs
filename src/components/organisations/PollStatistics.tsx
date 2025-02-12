@@ -23,7 +23,7 @@ export default function PollStatistics({
 
   return (
     <>
-      <h2>{title ?? <Trans>Statistiques</Trans>}</h2>
+      <h2>{title ?? <Trans locale={locale}>Statistiques</Trans>}</h2>
 
       <section className="relative mb-8 flex gap-4">
         <StatisticsBlocks

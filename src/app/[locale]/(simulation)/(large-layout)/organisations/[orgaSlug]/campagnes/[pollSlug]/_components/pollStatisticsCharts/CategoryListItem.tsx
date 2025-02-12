@@ -42,7 +42,7 @@ export default function CategoryListItem({
         <div className="flex items-baseline gap-1">
           <Emoji className="mr-2">{icons}</Emoji>{' '}
           <span>
-            <Trans>
+            <Trans locale={locale}>
               {CATEGORY_LABELS[category as keyof typeof CATEGORY_LABELS]}
             </Trans>
           </span>

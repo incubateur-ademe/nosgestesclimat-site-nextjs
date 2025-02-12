@@ -30,13 +30,13 @@ export default function DeletePollButton() {
   return (
     <>
       <Button color="link" onClick={() => setIsOpen(true)}>
-        <TrashIcon className="mr-2 w-4 fill-primary-700" />
-        <Trans>Supprimer cette campagne</Trans>
+        <TrashIcon className="fill-primary-700 mr-2 w-4" />
+        <Trans locale={locale}>Supprimer cette campagne</Trans>
       </Button>
 
       {error && (
         <div className="mt-4 text-red-600">
-          <Trans>
+          <Trans locale={locale}>
             Une erreur est survenue lors de la suppression de la campagne.
           </Trans>
         </div>
@@ -47,10 +47,10 @@ export default function DeletePollButton() {
           closeModal={() => setIsOpen(false)}
           onConfirm={handleDeletePoll}>
           <h2>
-            <Trans>Supprimer cette campagne ?</Trans>
+            <Trans locale={locale}>Supprimer cette campagne ?</Trans>
           </h2>
           <p>
-            <Trans>Cette opération est définitive.</Trans>
+            <Trans locale={locale}>Cette opération est définitive.</Trans>
           </p>
         </ConfirmationModal>
       )}

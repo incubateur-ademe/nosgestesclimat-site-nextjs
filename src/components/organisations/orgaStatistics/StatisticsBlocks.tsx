@@ -64,16 +64,16 @@ export default function StatisticsBlocks({
 
   return (
     <div className="grid w-full auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      <div className="rounded-xl bg-primary-100 p-8">
-        <p className="text-4xl font-bold text-primary-700">
+      <div className="bg-primary-100 rounded-xl p-8">
+        <p className="text-primary-700 text-4xl font-bold">
           {simulationsWithoutExtremes?.length?.toLocaleString(locale) ?? 0}
         </p>
 
         <p className="text-xl">
           {simulationsWithoutExtremes.length <= 1 ? (
-            <Trans>Simulation terminée</Trans>
+            <Trans locale={locale}>Simulation terminée</Trans>
           ) : (
-            <Trans>Simulations terminées</Trans>
+            <Trans locale={locale}>Simulations terminées</Trans>
           )}
         </p>
       </div>
@@ -85,25 +85,25 @@ export default function StatisticsBlocks({
       ) : (
         <>
           <div className="bg-rainbow-rotation overflow-hidden rounded-xl p-8">
-            <p className="text-4xl font-bold text-primary-700">
+            <p className="text-primary-700 text-4xl font-bold">
               {formattedValue}{' '}
               <span className="text-base font-normal">
-                {unit} CO₂e <Trans>/ an</Trans>
+                {unit} CO₂e <Trans locale={locale}>/ an</Trans>
               </span>
             </p>
 
             <p className="text-xl">
-              <Trans>
+              <Trans locale={locale}>
                 <strong>Empreinte carbone</strong> moyenne
               </Trans>
             </p>
           </div>
 
           {result.eau.bilan > 0 && (
-            <div className="relative overflow-hidden rounded-xl bg-primary-100 p-8">
+            <div className="bg-primary-100 relative overflow-hidden rounded-xl p-8">
               <Wave
                 fill="#5152D0"
-                className="pointer-events-none absolute bottom-0 left-0 right-0 h-full w-full rounded-b-xl"
+                className="pointer-events-none absolute right-0 bottom-0 left-0 h-full w-full rounded-b-xl"
                 options={{
                   speed: 0.11,
                   points: 3,
@@ -113,12 +113,12 @@ export default function StatisticsBlocks({
                 <p className="text-3xl font-bold text-white">
                   {formattedWaterValue ?? 0}{' '}
                   <span className="text-base font-normal">
-                    {waterUnit} <Trans>/ jour</Trans>
+                    {waterUnit} <Trans locale={locale}>/ jour</Trans>
                   </span>
                 </p>
 
                 <p className="text-xl text-white">
-                  <Trans>
+                  <Trans locale={locale}>
                     <strong>Empreinte eau</strong> moyenne
                   </Trans>
                 </p>
@@ -126,7 +126,7 @@ export default function StatisticsBlocks({
             </div>
           )}
 
-          <div className="rounded-xl bg-primary-100/40 py-4">
+          <div className="bg-primary-100/40 rounded-xl py-4">
             <VerticalBarChart className="h-[calc(100%-48px) bg-white] mt-0 px-1">
               {(
                 Object.entries(result.carbone) as Entries<typeof result.carbone>
@@ -143,8 +143,8 @@ export default function StatisticsBlocks({
                 ))}
             </VerticalBarChart>
 
-            <h3 className="mb-4 ml-6 mt-4 text-sm">
-              <Trans>Moyenne du groupe par catégorie</Trans>
+            <h3 className="mt-4 mb-4 ml-6 text-sm">
+              <Trans locale={locale}>Moyenne du groupe par catégorie</Trans>
             </h3>
           </div>
         </>

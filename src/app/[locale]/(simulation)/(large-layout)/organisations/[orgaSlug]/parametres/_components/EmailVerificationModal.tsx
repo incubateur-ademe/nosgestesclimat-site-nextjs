@@ -29,11 +29,13 @@ export default function EmailVerificationModal({
     <Modal isOpen closeModal={closeModal} hasAbortCross={false}>
       <form>
         <h3>
-          <Trans>Vous devez valider votre changement d'adresse e-mail.</Trans>
+          <Trans locale={locale}>
+            Vous devez valider votre changement d'adresse e-mail.
+          </Trans>
         </h3>
 
         <p>
-          <Trans>
+          <Trans locale={locale}>
             Vous allez recevoir sous peu un e-mail de notre part contenant un{' '}
             <strong className="text-secondary-700">code de vérification</strong>{' '}
             à entrer dans cette fenêtre.
@@ -41,7 +43,9 @@ export default function EmailVerificationModal({
         </p>
 
         <label htmlFor="code" className="mb-4 block font-bold">
-          <Trans>Entrez votre code de vérification pour continuer</Trans>
+          <Trans locale={locale}>
+            Entrez votre code de vérification pour continuer
+          </Trans>
         </label>
 
         <VerificationCodeInput
@@ -53,7 +57,7 @@ export default function EmailVerificationModal({
 
         {isErrorSendCode && (
           <p className="mt-8 text-red-700">
-            <Trans>
+            <Trans locale={locale}>
               Oups ! Une erreur s'est produite au moment d'envoyer votre code de
               vérification par email. Vérifiez si votre nouvel e-mail est bien
               valide et si le problème persiste, n'hésitez pas à{' '}

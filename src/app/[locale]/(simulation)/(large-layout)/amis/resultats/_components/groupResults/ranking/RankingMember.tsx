@@ -81,7 +81,7 @@ export default function RankingMember({
   const quantity =
     participant.simulation.progression !== 1 ? (
       <span className="text-sm text-gray-600">
-        <Trans>En cours</Trans>
+        <Trans locale={locale}>En cours</Trans>
       </span>
     ) : participant.simulation.computedResults?.[metric]?.bilan ? (
       <span className="m-none leading-[160%]">
@@ -136,8 +136,8 @@ export default function RankingMember({
           <span className={textColor}>{participant.name}</span>
 
           {isCurrentMember && (
-            <Badge className="ml-2 inline rounded-xl border-pink-100 bg-pink-200 text-xs font-bold text-secondary-700">
-              <Trans>Vous</Trans>
+            <Badge className="text-secondary-700 ml-2 inline rounded-xl border-pink-100 bg-pink-200 text-xs font-bold">
+              <Trans locale={locale}>Vous</Trans>
             </Badge>
           )}
         </div>
@@ -168,7 +168,7 @@ export default function RankingMember({
               })}>
               <TrashIcon
                 className={twMerge(
-                  'w-4 fill-default',
+                  'fill-default w-4',
                   textColor === 'text-white' ? 'fill-white' : 'fill-default'
                 )}
               />
@@ -179,7 +179,7 @@ export default function RankingMember({
                 onConfirm={handleDelete}
                 closeModal={() => setIsConfirmationModalOpen(false)}>
                 <p className="text-sm md:text-base">
-                  <Trans>
+                  <Trans locale={locale}>
                     Supprimer ce participant ? Cette opération est définitive.
                   </Trans>
                 </p>

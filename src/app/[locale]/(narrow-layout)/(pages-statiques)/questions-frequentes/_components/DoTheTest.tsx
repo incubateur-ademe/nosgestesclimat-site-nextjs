@@ -11,10 +11,10 @@ export default function DoTheTest() {
   if (progression === 0) {
     return (
       <div>
-        <Trans>Vous n'avez pas encore débuté votre test,</Trans>{' '}
+        <Trans locale={locale}>Vous n'avez pas encore débuté votre test,</Trans>{' '}
         <InlineLink href={getLinkToSimulateur()}>
           <strong>
-            <Trans>lancez-vous !</Trans>
+            <Trans locale={locale}>lancez-vous !</Trans>
           </strong>
         </InlineLink>
       </div>
@@ -23,11 +23,11 @@ export default function DoTheTest() {
 
   return (
     <div>
-      <Trans>Vous avez commencé votre test,</Trans>{' '}
+      <Trans locale={locale}>Vous avez commencé votre test,</Trans>{' '}
       <InlineLink href={getLinkToSimulateur()}>
         <strong>
           {' '}
-          <Trans>cliquez ici pour le reprendre !</Trans>
+          <Trans locale={locale}>cliquez ici pour le reprendre !</Trans>
         </strong>
       </InlineLink>
     </div>

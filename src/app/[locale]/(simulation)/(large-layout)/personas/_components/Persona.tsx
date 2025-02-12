@@ -40,7 +40,7 @@ export default function Persona({ persona, personaDottedName }: Props) {
       className={`${
         isCurrentPersonaSelected
           ? 'border-2! border-green-500 bg-green-200'
-          : 'border-none bg-primary-50'
+          : 'bg-primary-50 border-none'
       } items-center`}>
       <div className="text-lg">{persona['icônes']}</div>
 
@@ -79,13 +79,13 @@ export default function Persona({ persona, personaDottedName }: Props) {
             hideTutorial('testIntro')
             router.refresh()
           }}>
-          <Trans>Sélectionner</Trans>
+          <Trans locale={locale}>Sélectionner</Trans>
         </Button>
       )}
 
       {isCurrentPersonaSelected && (
-        <p className="align-self-end mb-0 mt-auto p-1 text-sm font-bold">
-          <Trans>Sélectionné·e</Trans>
+        <p className="align-self-end mt-auto mb-0 p-1 text-sm font-bold">
+          <Trans locale={locale}>Sélectionné·e</Trans>
         </p>
       )}
     </Card>

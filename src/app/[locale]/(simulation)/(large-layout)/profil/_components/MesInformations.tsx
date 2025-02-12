@@ -17,7 +17,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { useEffect, useRef, useState } from 'react'
-import type { SubmitHandler} from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
 type Inputs = {
@@ -115,7 +115,7 @@ export default function MesInformations() {
   return (
     <div>
       <h2>
-        <Trans>Mes informations</Trans>
+        <Trans locale={locale}>Mes informations</Trans>
       </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
@@ -131,7 +131,9 @@ export default function MesInformations() {
         <TextInputGroup
           type="email"
           helperText={
-            user?.email ? <Trans>Ce champ n'est pas modifiable</Trans> : null
+            user?.email ? (
+              <Trans locale={locale}>Ce champ n'est pas modifiable</Trans>
+            ) : null
           }
           label={t('Votre adresse email')}
           value={user?.email}
@@ -139,12 +141,14 @@ export default function MesInformations() {
           readOnly={user?.email ? true : false}
         />
 
-        <h3 className="mb-0 mt-6">
-          <Trans>Inscription à nos e-mails</Trans>
+        <h3 className="mt-6 mb-0">
+          <Trans locale={locale}>Inscription à nos e-mails</Trans>
         </h3>
 
         <p className="text-sm text-gray-600">
-          <Trans>Vous pouvez vous désincrire à tout moment</Trans>
+          <Trans locale={locale}>
+            Vous pouvez vous désincrire à tout moment
+          </Trans>
         </p>
 
         <CheckboxInputGroup
@@ -152,7 +156,7 @@ export default function MesInformations() {
           label={
             <span>
               <Emoji>☀️</Emoji>{' '}
-              <Trans>
+              <Trans locale={locale}>
                 <strong>Infolettre saisonnière de Nos Gestes Climat</strong> :
                 actualités climat, initiatives positives et nouveautés
               </Trans>
@@ -166,7 +170,7 @@ export default function MesInformations() {
           label={
             <span>
               <Emoji>🚗</Emoji>{' '}
-              <Trans>
+              <Trans locale={locale}>
                 <strong>Nos Gestes Transports</strong> : tout savoir ou presque
                 sur l'impact carbone des transports, en 4 e-mails
               </Trans>
@@ -182,19 +186,19 @@ export default function MesInformations() {
             disabled={isPending || isSubmitted}>
             {isPending && <Loader size="sm" color="light" />}
 
-            <Trans>Mettre à jour mes informations</Trans>
+            <Trans locale={locale}>Mettre à jour mes informations</Trans>
           </Button>
 
           {isSubmitted && (
             <p className="mt-4 flex items-center text-sm text-green-700">
               <CheckCircleIcon className="mr-2 fill-green-700" />
-              <Trans>Modifications sauvegardées</Trans>
+              <Trans locale={locale}>Modifications sauvegardées</Trans>
             </p>
           )}
 
           {isError && (
             <p className="mt-4 text-sm text-red-700">
-              <Trans>
+              <Trans locale={locale}>
                 Une erreur s'est produite au moment de la sauvegarde de vos
                 paramètres
               </Trans>

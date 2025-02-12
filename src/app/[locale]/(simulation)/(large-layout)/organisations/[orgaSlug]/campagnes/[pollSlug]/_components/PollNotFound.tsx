@@ -5,7 +5,7 @@ export default function PollNotFound() {
   return (
     <>
       <h1 className="text-xl">
-        <Trans>
+        <Trans locale={locale}>
           Oups, nous n'avons pas trouvé les résultats de cette campagne
         </Trans>
       </h1>

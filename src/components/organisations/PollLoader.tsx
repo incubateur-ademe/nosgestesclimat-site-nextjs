@@ -7,10 +7,12 @@ export default function PollLoader() {
     <div className="py-12 text-center">
       <Loader color="dark" className="mb-8" />
       <p>
-        <Trans>Nous récupérons les données de la campagne...</Trans>
+        <Trans locale={locale}>
+          Nous récupérons les données de la campagne...
+        </Trans>
       </p>
       <p className="text-sm text-gray-700">
-        <Trans>
+        <Trans locale={locale}>
           (Cela peut durer quelques dizaines de secondes pour les campagnes avec
           un grand nombre de participants ! Merci pour votre patience.)
         </Trans>{' '}

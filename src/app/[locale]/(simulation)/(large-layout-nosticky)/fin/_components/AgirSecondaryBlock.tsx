@@ -30,20 +30,20 @@ export default function AgirSecondaryBlock() {
       <div className="bg-[url('/images/misc/jagis-bg.svg')] bg-right-bottom bg-no-repeat px-4 py-6 lg:bg-[length:18rem]">
         <div className="mb-4 flex gap-4">
           <Badge size="xs" color="green">
-            <Trans>Aides financières</Trans>
+            <Trans locale={locale}>Aides financières</Trans>
           </Badge>
           <Badge size="xs" color="green">
-            <Trans>Bons plans</Trans>
+            <Trans locale={locale}>Bons plans</Trans>
           </Badge>
           <Badge size="xs" color="green">
-            <Trans>Idées</Trans>
+            <Trans locale={locale}>Idées</Trans>
           </Badge>
         </div>
         <h2 className="mb-2">
-          <Trans>Que faire pour réduire mon empreinte ?</Trans>
+          <Trans locale={locale}>Que faire pour réduire mon empreinte ?</Trans>
         </h2>
         <p>
-          <Trans>
+          <Trans locale={locale}>
             À partir de votre bilan, <strong>J’agis</strong> vous propose des
             actions concrètes et adaptées à vos envies et à vos moyens
           </Trans>
@@ -55,19 +55,19 @@ export default function AgirSecondaryBlock() {
             trackEvent(endClickJagisSecondBlock)
             exportSimulation()
           }}>
-          <Trans>
+          <Trans locale={locale}>
             Créer mon compte {isPending && <Loader className="ml-2" />}
           </Trans>
         </Button>
         {isError && <div className="text-red-600">{error?.toString()}</div>}
         {!data?.redirectUrl && isSuccess && (
           <div className="text-red-600">
-            <Trans>Une erreur est survenue</Trans>
+            <Trans locale={locale}>Une erreur est survenue</Trans>
           </div>
         )}
         {!couldOpen && isSuccess && (
           <div className="text-red-600">
-            <Trans>
+            <Trans locale={locale}>
               Une erreur est survenue.{' '}
               <a href={data?.redirectUrl} rel="noreferrer" target="_blank">
                 Cliquez sur ce lien pour naviguer vers J'agis.

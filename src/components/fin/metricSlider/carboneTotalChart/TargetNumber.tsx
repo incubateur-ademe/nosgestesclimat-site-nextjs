@@ -20,10 +20,10 @@ export default function TargetNumber({ isSmall }: Props) {
       )}
       style={{ left: `${position}%` }}>
       <div className="absolute top-full mt-1 whitespace-nowrap">
-        <strong className="font-black text-secondary-700">2 tonnes,</strong>
+        <strong className="text-secondary-700 font-black">2 tonnes,</strong>
         <br />
         <span>
-          <Trans>l’objectif pour 2050</Trans>
+          <Trans locale={locale}>l’objectif pour 2050</Trans>
         </span>
       </div>
       <Arrow className="h-4 w-4 rotate-180" />

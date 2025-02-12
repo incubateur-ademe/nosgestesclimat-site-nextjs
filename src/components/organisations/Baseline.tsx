@@ -4,26 +4,26 @@ export default function Baseline() {
   return (
     <p>
       <strong className="text-secondary-700">
-        <Trans>Entreprises</Trans>
+        <Trans locale={locale}>Entreprises</Trans>
       </strong>
       ,{' '}
       <strong className="text-secondary-700">
-        <Trans>collectivités</Trans>
+        <Trans locale={locale}>collectivités</Trans>
       </strong>
       ,{' '}
       <strong className="text-secondary-700">
-        <Trans>associations</Trans>
+        <Trans locale={locale}>associations</Trans>
       </strong>
       ,{' '}
       <strong className="text-secondary-700">
-        <Trans>écoles</Trans>
+        <Trans locale={locale}>écoles</Trans>
       </strong>{' '}
       ou encore{' '}
       <strong className="text-secondary-700">
-        <Trans>festivals</Trans>
+        <Trans locale={locale}>festivals</Trans>
       </strong>
        :{' '}
-      <Trans>
+      <Trans locale={locale}>
         vous souhaitez lancer une campagne Nos Gestes Climat et sensibiliser
         toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !
       </Trans>

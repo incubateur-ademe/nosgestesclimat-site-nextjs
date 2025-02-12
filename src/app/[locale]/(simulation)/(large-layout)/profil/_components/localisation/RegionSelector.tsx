@@ -52,14 +52,14 @@ export default function RegionSelector({
     <>
       <details open={isOpen} className="rounded-xl bg-gray-100 p-2">
         <summary
-          className={`middle w-auto cursor-pointer   p-4 ${
+          className={`middle w-auto cursor-pointer p-4 ${
             isLoading ? 'pointer-events-none opacity-60' : ''
           }`}
           onClick={() => trackEvent(profilOpenRegions)}>
           <span>
-            <Trans>Choisir une autre région</Trans>{' '}
+            <Trans locale={locale}>Choisir une autre région</Trans>{' '}
             <small title={`${numberOfRegions} régions`}>
-              ({numberOfRegions} <Trans>disponibles</Trans>)
+              ({numberOfRegions} <Trans locale={locale}>disponibles</Trans>)
             </small>
           </span>
           {isLoading && (
@@ -90,13 +90,15 @@ export default function RegionSelector({
         <Card className="mt-4 flex-row items-center border-none bg-transparent shadow-none">
           <Emoji className="mr-2">🌐</Emoji>
           <p className="mb-0">
-            <Trans>Envie de contribuer à une version pour votre région ?</Trans>{' '}
+            <Trans locale={locale}>
+              Envie de contribuer à une version pour votre région ?
+            </Trans>{' '}
             <a
               target="_blank"
               rel="noopener noreferrer"
               className="align-top"
               href="https://accelerateur-transition-ecologique-ademe.notion.site/Ajouter-une-nouvelle-r-gion-f7e3a09a975d423f826ae654a788f8ba">
-              <Trans>Suivez le guide !</Trans>
+              <Trans locale={locale}>Suivez le guide !</Trans>
               <NewTabSvg className="-mt-1!" />
             </a>
           </p>

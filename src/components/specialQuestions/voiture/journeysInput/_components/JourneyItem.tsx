@@ -57,10 +57,10 @@ export default function JourneyItem({ journey, odd, setJourneys }: Props) {
       </td>
 
       <td className="block p-2 text-left text-xs sm:table-cell">
-        {journey.passengers} <Trans>passager(s)</Trans>
+        {journey.passengers} <Trans locale={locale}>passager(s)</Trans>
       </td>
 
-      <td className="absolute -right-1 -top-2 block py-2 pl-2 text-right text-xs sm:static sm:table-cell">
+      <td className="absolute -top-2 -right-1 block py-2 pl-2 text-right text-xs sm:static sm:table-cell">
         <Button
           color="text"
           size="sm"

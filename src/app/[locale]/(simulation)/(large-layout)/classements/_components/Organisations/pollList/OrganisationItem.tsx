@@ -16,7 +16,7 @@ export default function OrganisationItem({
   return (
     <Link
       href={`/organisations/${organisation?.slug}`}
-      className="mb-6 rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors hover:bg-primary-100"
+      className="hover:bg-primary-100 mb-6 rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors"
       onClick={() => trackEvent(classementClickOrganisation)}>
       <div className="flex items-center justify-between py-4">
         <div className="flex w-full items-center gap-4">
@@ -27,8 +27,8 @@ export default function OrganisationItem({
           </div>
 
           <div className="flex gap-1 text-sm text-violet-900">
-            <Badge className="ml-2 inline border-secondary-300  text-xs font-bold text-secondary-700">
-              <Trans>Administrateur·ice</Trans>
+            <Badge className="border-secondary-300 text-secondary-700 ml-2 inline text-xs font-bold">
+              <Trans locale={locale}>Administrateur·ice</Trans>
             </Badge>
           </div>
         </div>

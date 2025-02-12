@@ -11,9 +11,12 @@ export default function Personas() {
 
   return (
     <>
-      <Title title={<Trans>Personas</Trans>} data-cypress-id="personas-title" />
+      <Title
+        title={<Trans locale={locale}>Personas</Trans>}
+        data-cypress-id="personas-title"
+      />
       <p>
-        <Trans>
+        <Trans locale={locale}>
           Les personas nous servent à tester le calculateur sous toutes ses
           coutures, et à vérifier qu’il s’adapte bien à toutes les situations de
           vie des citoyens métropolitains. De par leur présence, ils nous
@@ -23,7 +26,7 @@ export default function Personas() {
         </Trans>
       </p>
       <p>
-        <Trans>
+        <Trans locale={locale}>
           Cette page vous permet de naviguer dans les parcours Nos Gestes Climat
           comme si vous étiez l'un des profils types que nous avons listés.
         </Trans>

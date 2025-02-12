@@ -8,13 +8,13 @@ export default function CreateFirstGroupSection() {
     <section className="mt-4">
       <p className="mb-6">
         <strong className="text-secondary-700">
-          <Trans>Créez votre premier groupe</Trans>
+          <Trans locale={locale}>Créez votre premier groupe</Trans>
         </strong>{' '}
-        <Trans>
+        <Trans locale={locale}>
           et invitez vos proches pour comparer vos résultats. Cela prend
         </Trans>{' '}
         <strong className="text-secondary-700">
-          <Trans>1 minute</Trans>
+          <Trans locale={locale}>1 minute</Trans>
         </strong>{' '}
         !
       </p>
@@ -22,7 +22,7 @@ export default function CreateFirstGroupSection() {
         href={linkToGroupCreation}
         trackingEvent={classementCreateGroup}
         data-cypress-id="button-create-first-group">
-        <Trans>Commencer</Trans>
+        <Trans locale={locale}>Commencer</Trans>
       </ButtonLink>
     </section>
   )

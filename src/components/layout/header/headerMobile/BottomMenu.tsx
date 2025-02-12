@@ -25,20 +25,20 @@ export default function BottomMenu() {
           onClick={() => trackEvent(headerClickTest)}
           activeMatches={['/tutoriel', '/simulateur']}
           icon={BilanIcon}
-          className="flex-col  p-2 px-4"
+          className="flex-col p-2 px-4"
           activeClassName="bg-primary-50 border-r border-gray-200 text-primary-700 font-bold">
-          <Trans>Empreinte</Trans>
+          <Trans locale={locale}>Empreinte</Trans>
         </NavLink>
       </li>
 
       <li className="h-full w-full">
         <NavLink
-          className="flex-col  p-2 px-4"
+          className="flex-col p-2 px-4"
           activeClassName="bg-white border-x border-gray-200 text-primary-700 font-bold"
           href="/actions"
           onClick={() => trackEvent(headerClickActions)}
           icon={ActionsIcon}>
-          <Trans>Gestes</Trans>
+          <Trans locale={locale}>Gestes</Trans>
         </NavLink>
       </li>
 
@@ -50,7 +50,7 @@ export default function BottomMenu() {
           onClick={() => trackEvent(headerClickClassements)}
           icon={AmisIcon}
           data-cypress-id="amis-link">
-          <Trans>Groupes</Trans>
+          <Trans locale={locale}>Groupes</Trans>
         </NavLink>
       </li>
     </ul>

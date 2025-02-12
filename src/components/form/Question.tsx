@@ -95,7 +95,7 @@ export default function Question({
             size="xs"
             onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
             className="mb-2">
-            {isOpen ? <Trans>Fermer</Trans> : showInputsLabel}
+            {isOpen ? <Trans locale={locale}>Fermer</Trans> : showInputsLabel}
           </Button>
         ) : null}
         {isOpen && (

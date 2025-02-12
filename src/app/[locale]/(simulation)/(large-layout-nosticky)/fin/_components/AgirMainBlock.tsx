@@ -28,22 +28,22 @@ export default function AgirMainBlock() {
     <div className="relative flex items-center justify-between rounded-xl border-2 border-amber-200 bg-amber-50 bg-[url('/images/misc/jagis-coins-bg-mobile.svg')] bg-contain bg-[center_right_4rem] bg-no-repeat px-4 py-6 lg:bg-[url('/images/misc/jagis-coins-bg-desktop.svg')] lg:bg-[center_right_7rem]">
       <div className="flex-1">
         <h3 className="mb-2 text-lg">
-          <Trans>Un coup de pouce pour agir ?</Trans>
+          <Trans locale={locale}>Un coup de pouce pour agir ?</Trans>
         </h3>
         <p className="text-sm lg:text-base">
-          <Trans>
+          <Trans locale={locale}>
             Découvrez toutes les aides financières auxquelles vous avez droit
           </Trans>
         </p>
         {isError && <div className="text-red-600">{error?.toString()}</div>}
         {!data?.redirectUrl && isSuccess && (
           <div className="text-red-600">
-            <Trans>Une erreur est survenue</Trans>
+            <Trans locale={locale}>Une erreur est survenue</Trans>
           </div>
         )}
         {!couldOpen && isSuccess && (
           <div className="text-red-600">
-            <Trans>
+            <Trans locale={locale}>
               Une erreur est survenue.{' '}
               <a href={data?.redirectUrl} rel="noreferrer" target="_blank">
                 Cliquez sur ce lien pour naviguer vers J'agis.

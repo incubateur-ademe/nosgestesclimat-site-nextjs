@@ -30,7 +30,7 @@ export default function HeroSection() {
           <ButtonLink
             href="/organisations/connexion"
             trackingEvent={organisationsAccueilClickCommencer}>
-            <Trans>Commencer</Trans>
+            <Trans locale={locale}>Commencer</Trans>
           </ButtonLink>
 
           <ButtonLink
@@ -39,7 +39,7 @@ export default function HeroSection() {
             onClick={() => {
               trackEvent(organisationsAccueilClickDemo)
             }}>
-            <Trans>Demander une démo</Trans>
+            <Trans locale={locale}>Demander une démo</Trans>
           </ButtonLink>
         </div>
       </div>

@@ -13,17 +13,17 @@ export default function Confirmation({ className }: { className?: string }) {
       )}>
       <div className="text-left; bg-transparent text-left text-2xl font-bold">
         <p className="flex items-center gap-1">
-          <Trans>Votre simulation est sauvegardée !</Trans> 
+          <Trans locale={locale}>Votre simulation est sauvegardée !</Trans> 
           <CheckCircleIcon className="fill-logement-400" />
         </p>
       </div>
       <p className="mt-4 max-w-lg text-left">
-        <Trans>
+        <Trans locale={locale}>
           Vous allez recevoir un email de notre part sous peu, qui vous
           permettra de la retrouver
         </Trans>{' '}
         <strong>
-          <Trans>à tout moment</Trans>
+          <Trans locale={locale}>à tout moment</Trans>
         </strong>
         .
       </p>

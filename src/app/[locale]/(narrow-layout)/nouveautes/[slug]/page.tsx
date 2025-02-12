@@ -37,7 +37,7 @@ export default async function Release({
   return (
     <div>
       <Link href="/nouveautes" className="mb-8 block text-sm">
-        ← <Trans>Retour à la liste des nouveautes</Trans>
+        ← <Trans locale={locale}>Retour à la liste des nouveautes</Trans>
       </Link>
 
       <PasserTestBanner />
@@ -45,7 +45,9 @@ export default async function Release({
       {nouveaute ? (
         <Markdown>{nouveaute?.content}</Markdown>
       ) : (
-        <Trans>Oups, nous n'avons pas d'article correspondant</Trans>
+        <Trans locale={locale}>
+          Oups, nous n'avons pas d'article correspondant
+        </Trans>
       )}
     </div>
   )

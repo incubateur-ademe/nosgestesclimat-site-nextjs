@@ -73,10 +73,10 @@ export default function EmailForm() {
         name="email"
         type="email"
         value={user?.organisation?.administratorEmail || user?.email || ''}
-        label={<Trans>Votre adresse e-mail</Trans>}
+        label={<Trans locale={locale}>Votre adresse e-mail</Trans>}
         placeholder="jeanmarc@nosgestesclimat.fr"
         helperText={
-          <Trans>
+          <Trans locale={locale}>
             Nous pourrons vous contacter en cas de problème lors de votre
             inscription
           </Trans>
@@ -88,7 +88,7 @@ export default function EmailForm() {
       {inputError && <p className="mt-2 text-sm text-red-600">{inputError}</p>}
 
       <Button type="submit" className="mt-8">
-        <Trans>Accéder à mon espace</Trans>
+        <Trans locale={locale}>Accéder à mon espace</Trans>
       </Button>
     </form>
   )

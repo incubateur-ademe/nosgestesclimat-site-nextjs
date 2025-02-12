@@ -50,7 +50,7 @@ export default function Actions({ subcategory, noNumberedFootprint }: Props) {
     <>
       {!noNumberedFootprint && (
         <p className="mb-6">
-          <Trans>
+          <Trans locale={locale}>
             Voici quelques idées pour vous aider à réduire votre impact :
           </Trans>
         </p>
@@ -66,7 +66,7 @@ export default function Actions({ subcategory, noNumberedFootprint }: Props) {
             onClick={() => trackEvent(endClickActions)}
             href="/actions"
             className="text-center text-xs">
-            <Trans>Voir tous les gestes</Trans> : {title}
+            <Trans locale={locale}>Voir tous les gestes</Trans> : {title}
           </Link>
         </div>
       )}

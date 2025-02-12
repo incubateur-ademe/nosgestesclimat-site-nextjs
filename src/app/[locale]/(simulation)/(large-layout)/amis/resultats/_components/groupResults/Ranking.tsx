@@ -38,9 +38,9 @@ export default function Ranking({
   return (
     <>
       {metric === eauMetric && (
-        <p className="mb-4 rounded-lg border-2 border-primary-200 p-2 text-sm md:max-w-[60%]">
+        <p className="border-primary-200 mb-4 rounded-lg border-2 p-2 text-sm md:max-w-[60%]">
           <Emoji>✨</Emoji>{' '}
-          <Trans>
+          <Trans locale={locale}>
             Voici un aperçu du classement des participants en fonction de leur
             empreinte eau. Cette fonctionnalité est encore en cours de
             développement.
@@ -50,7 +50,7 @@ export default function Ranking({
 
       <ul
         className={twMerge(
-          'mt-2 rounded-xl  px-3 py-4',
+          'mt-2 rounded-xl px-3 py-4',
           hasOneParticipant
             ? 'bg-primary-50 text-primary-700'
             : 'bg-primary-700 text-white',
@@ -106,8 +106,8 @@ export default function Ranking({
       {group.participants.length > 5 && !isExpanded && (
         <button
           onClick={() => setIsExpanded(true)}
-          className="bg-Transparent mt-4 w-full border-none text-center text-sm text-primary-700 underline">
-          <Trans>
+          className="bg-Transparent text-primary-700 mt-4 w-full border-none text-center text-sm underline">
+          <Trans locale={locale}>
             Voir les {String(group.participants.length - 5)} autre{withS}{' '}
             participant
             {withS}

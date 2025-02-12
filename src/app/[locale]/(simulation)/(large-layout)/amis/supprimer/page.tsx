@@ -65,18 +65,18 @@ export default function SupprimerGroupePage({
     <div className="p-4 md:p-8">
       <Title title={t('Supprimer mes données')} />
 
-      {isSuccess && <Trans>Données supprimées.</Trans>}
+      {isSuccess && <Trans locale={locale}>Données supprimées.</Trans>}
 
       {!isSuccess && (
         <p className="my-4">
           {isOwner ? (
-            <Trans>
+            <Trans locale={locale}>
               Supprimer votre groupe <strong>{group?.name}</strong> ? Les
               données sauvegardées seront supprimées pour tous les membres du
               groupe. Cette action est irréversible.
             </Trans>
           ) : (
-            <Trans>
+            <Trans locale={locale}>
               Supprimer vos données de groupe enregistrées ? Seules vos données
               de membre seront supprimées. Cette action est irréversible.
             </Trans>
@@ -86,7 +86,7 @@ export default function SupprimerGroupePage({
 
       {isError && (
         <p className="mt-4 text-red-600">
-          <Trans>
+          <Trans locale={locale}>
             Oups, une erreur s'est produite au moment de récupérer les données
             du groupe.
           </Trans>
@@ -96,7 +96,7 @@ export default function SupprimerGroupePage({
       <Button
         disabled={!!isError || !group || isSuccess}
         onClick={handleDelete}>
-        <Trans>Supprimer mes données</Trans>
+        <Trans locale={locale}>Supprimer mes données</Trans>
       </Button>
     </div>
   )

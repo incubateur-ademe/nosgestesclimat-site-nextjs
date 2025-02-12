@@ -45,9 +45,11 @@ export default async function Tutoriel() {
           title={
             <>
               <span className="text-secondary-700 inline">
-                <Trans>10 minutes</Trans>
+                <Trans locale={locale}>10 minutes</Trans>
               </span>{' '}
-              <Trans>chrono pour calculer votre empreinte carbone et eau</Trans>
+              <Trans locale={locale}>
+                chrono pour calculer votre empreinte carbone et eau
+              </Trans>
             </>
           }
         />

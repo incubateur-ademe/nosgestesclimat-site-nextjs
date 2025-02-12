@@ -1,7 +1,7 @@
 'use client'
 
 import { StyledLink } from '@/components/links/StyledLink'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { learnMoreCarbonLink } from '@/constants/tracking/pages/mainLanding'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
@@ -11,7 +11,7 @@ export default function LearnMoreCarbonLink() {
       href="/empreinte-carbone"
       onClick={() => trackEvent(learnMoreCarbonLink)}
       className="text-[13px] md:text-base">
-      <Trans>En savoir plus sur l'empreinte carbone</Trans>
+      <TransClient>En savoir plus sur l'empreinte carbone</TransClient>
     </StyledLink>
   )
 }

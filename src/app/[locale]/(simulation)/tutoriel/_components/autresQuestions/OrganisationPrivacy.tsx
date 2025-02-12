@@ -23,7 +23,7 @@ export default function OrganisationPrivacy() {
     <li className="mb-2" id={'empreinte'}>
       <details>
         <summary
-          className="cursor-pointer text-sm font-bold text-primary-700 md:text-lg"
+          className="text-primary-700 cursor-pointer text-sm font-bold md:text-lg"
           onClick={() =>
             trackEvent(
               tutorielClickQuestion('Mes données restent-elles privées ?')
@@ -33,7 +33,7 @@ export default function OrganisationPrivacy() {
         </summary>
         <div className="my-2 ml-3.5">
           <p>
-            <Trans>
+            <Trans locale={locale}>
               Vos données seront stockées de manière sécurisée et anonyme. Elles
               seront agrégées à des fins statistiques ; lesdites statistiques
               seront consultables sur la page "Rapport détaillé" de votre

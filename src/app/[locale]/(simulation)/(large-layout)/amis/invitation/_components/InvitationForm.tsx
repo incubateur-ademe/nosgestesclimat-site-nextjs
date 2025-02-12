@@ -92,7 +92,7 @@ export default function InvitationForm({ group }: { group: Group }) {
           label={
             <span>
               {t('Votre adresse email')}{' '}
-              <span className="italic text-secondary-700">
+              <span className="text-secondary-700 italic">
                 {' '}
                 {t('facultatif')}
               </span>
@@ -119,9 +119,9 @@ export default function InvitationForm({ group }: { group: Group }) {
 
       <Button type="submit" data-cypress-id="button-join-group">
         {hasCompletedTest ? (
-          <Trans>Rejoindre</Trans>
+          <Trans locale={locale}>Rejoindre</Trans>
         ) : (
-          <Trans>Rejoindre et passer mon test</Trans>
+          <Trans locale={locale}>Rejoindre et passer mon test</Trans>
         )}
       </Button>
     </form>

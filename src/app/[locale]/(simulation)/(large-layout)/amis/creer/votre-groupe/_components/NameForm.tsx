@@ -103,9 +103,11 @@ export default function NameForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <TextInputGroup
-        label={<Trans>Choisissez un nom pour ce groupe</Trans>}
+        label={<Trans locale={locale}>Choisissez un nom pour ce groupe</Trans>}
         helperText={
-          <Trans>Pour le retrouver facilement dans votre liste</Trans>
+          <Trans locale={locale}>
+            Pour le retrouver facilement dans votre liste
+          </Trans>
         }
         data-cypress-id="group-name"
         error={errors.name?.message}
@@ -117,8 +119,10 @@ export default function NameForm() {
 
       <GridRadioInputs
         control={control as any}
-        label={<Trans>Et une illustration</Trans>}
-        helperText={<Trans>Pour faire joli et le reconnaitre !</Trans>}
+        label={<Trans locale={locale}>Et une illustration</Trans>}
+        helperText={
+          <Trans locale={locale}>Pour faire joli et le reconnaitre !</Trans>
+        }
         name="emoji"
         data-cypress-id="group-select-emoji"
         items={GROUP_EMOJIS.map((emoji) => ({ value: emoji, label: emoji }))}
@@ -132,9 +136,9 @@ export default function NameForm() {
         className="mt-4 self-start"
         disabled={isPending || isSuccess}>
         {hasCompletedTest ? (
-          <Trans>Créer le groupe</Trans>
+          <Trans locale={locale}>Créer le groupe</Trans>
         ) : (
-          <Trans>Créer et passer mon test</Trans>
+          <Trans locale={locale}>Créer et passer mon test</Trans>
         )}
       </Button>
     </form>

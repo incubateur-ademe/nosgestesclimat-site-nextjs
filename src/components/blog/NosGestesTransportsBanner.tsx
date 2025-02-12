@@ -7,7 +7,7 @@ import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletter
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import type { SubmitHandler} from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import Trans from '../translation/Trans'
 
@@ -57,9 +57,9 @@ export default function NosGestesTransportsBanner() {
 
   if (isSuccess) {
     return (
-      <div className="mt-12 flex w-full flex-wrap rounded-xl bg-transport-50 p-6 md:flex-nowrap">
+      <div className="bg-transport-50 mt-12 flex w-full flex-wrap rounded-xl p-6 md:flex-nowrap">
         <p className="text-lg" style={{ marginBottom: '0' }}>
-          <Trans>
+          <Trans locale={locale}>
             Votre inscription est validée ! <Emoji>✨</Emoji>
           </Trans>
         </p>
@@ -68,7 +68,7 @@ export default function NosGestesTransportsBanner() {
   }
 
   return (
-    <div className="mt-12 flex w-full flex-wrap items-start gap-4 rounded-xl bg-transport-50 p-6 md:flex-nowrap">
+    <div className="bg-transport-50 mt-12 flex w-full flex-wrap items-start gap-4 rounded-xl p-6 md:flex-nowrap">
       <div>
         <p className="text-lg" style={{ marginBottom: '16px' }}>
           <Emoji
@@ -78,13 +78,13 @@ export default function NosGestesTransportsBanner() {
             }}>
             🚲
           </Emoji>
-          <Trans>
+          <Trans locale={locale}>
             Recevez nos <strong>conseils transports</strong> directement dans
             votre boite mail !
           </Trans>
         </p>
         <p className="text-sm" style={{ marginBottom: '0' }}>
-          <Trans>
+          <Trans locale={locale}>
             Vous accompagner pour mieux agir en{' '}
             <strong className="text-secondary-700">4 mails seulement</strong>.
           </Trans>
@@ -115,7 +115,7 @@ export default function NosGestesTransportsBanner() {
               disabled={isPending}
               type="submit"
               aria-label={t('Valider')}
-              className="absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full p-0 leading-none">
+              className="absolute top-1/2 right-2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full p-0 leading-none">
               {isPending ? <Loader /> : '→'}
             </Button>
           </div>

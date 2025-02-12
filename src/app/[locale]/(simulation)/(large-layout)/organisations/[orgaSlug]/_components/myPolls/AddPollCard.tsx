@@ -26,7 +26,7 @@ export default function AddPollCard({ hasNoPollsYet }: Props) {
     <Link
       href={`/organisations/${orgaSlug}/creer-campagne`}
       className={twMerge(
-        'flex min-h-64 flex-col rounded-xl bg-primary-50 p-6 no-underline',
+        'bg-primary-50 flex min-h-64 flex-col rounded-xl p-6 no-underline',
         hasNoPollsYet ? 'rainbow-border' : ''
       )}>
       <div className="mb-6 flex flex-1 items-center justify-center">
@@ -55,7 +55,7 @@ export default function AddPollCard({ hasNoPollsYet }: Props) {
             hasNoPollsYet ? 'stroke-white' : 'stroke-primary-700'
           )}
         />
-        <Trans>Créer une campagne</Trans>
+        <Trans locale={locale}>Créer une campagne</Trans>
       </div>
     </Link>
   )

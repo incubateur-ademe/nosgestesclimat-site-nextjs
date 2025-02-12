@@ -29,7 +29,9 @@ export default function CustomActionForm({
         <UserInformationForm
           title={
             <h3>
-              <Trans>S’abonner à la newsletter Nos Gestes Transport</Trans>
+              <Trans locale={locale}>
+                S’abonner à la newsletter Nos Gestes Transport
+              </Trans>
             </h3>
           }
           inputsDisplayed={['email', 'newsletter-transports']}

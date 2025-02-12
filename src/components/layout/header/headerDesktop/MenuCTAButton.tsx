@@ -49,7 +49,7 @@ export default function MenuCTAButton() {
           getLandingClickCTAStart(pathname, trackingActionClickCTAMenu)
         )
       }}>
-      <Trans>{linkToSimulateurPageLabel}</Trans>
+      <Trans locale={locale}>{linkToSimulateurPageLabel}</Trans>
     </ButtonLink>
   )
 }

@@ -10,8 +10,8 @@ export default function QuestionSection({ rule }: { rule: NGCRule }) {
     <>
       <Card className="mb-6">
         <h2 className="flex items-center">
-          <MessageIcon className="mr-2 fill-primary-700" />{' '}
-          <Trans>Question pour l'utilisateur</Trans>
+          <MessageIcon className="fill-primary-700 mr-2" />{' '}
+          <Trans locale={locale}>Question pour l'utilisateur</Trans>
         </h2>
 
         <p className="mb-0">{rule.question}</p>
@@ -20,7 +20,7 @@ export default function QuestionSection({ rule }: { rule: NGCRule }) {
       {rule.description && (
         <section>
           <h2>
-            <Trans>Aide à la saisie</Trans>
+            <Trans locale={locale}>Aide à la saisie</Trans>
           </h2>
           <Markdown>{rule.description}</Markdown>
         </section>

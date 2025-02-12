@@ -8,9 +8,15 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Image from 'next/image'
 import Script from 'next/script'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
   return getMetadataObject({
+    locale,
     title: t('Contact - Nos Gestes Climat'),
     description: t("Contactez l'équipe de Nos Gestes Climat."),
     alternates: {
@@ -19,8 +25,13 @@ export async function generateMetadata() {
   })
 }
 
-export default async function Contact() {
-  const { t } = await getServerTranslation()
+export default async function Contact({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return (
     <div className="pb-4">
@@ -29,15 +40,15 @@ export default async function Contact() {
           <Title
             title={
               <span className="flex items-center">
-                <Trans>Contact</Trans>
+                <Trans locale={locale}>Contact</Trans>
 
-                <MailIcon className="ml-3 fill-primary-500" />
+                <MailIcon className="fill-primary-500 ml-3" />
               </span>
             }
           />
 
           <p>
-            <Trans>
+            <Trans locale={locale}>
               N'hésitez pas à consulter notre{' '}
               <Link href="/questions-frequentes">FAQ</Link> avant de nous
               écrire, vous y trouverez sans doute la réponse à votre question !
@@ -45,7 +56,7 @@ export default async function Contact() {
           </p>
 
           <p>
-            <Trans>
+            <Trans locale={locale}>
               Pour toute autre remarque ou question, vous pouvez nous envoyer un
               message via le formulaire de contact ci-dessous.
             </Trans>

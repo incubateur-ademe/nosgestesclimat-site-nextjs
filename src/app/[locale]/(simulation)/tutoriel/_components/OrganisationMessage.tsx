@@ -12,12 +12,12 @@ export default function OrganisationMessage() {
   return (
     <div className="flex flex-col items-end gap-2">
       <p className="mb-0 text-sm text-gray-500">
-        <Trans>Vous avez déja participé à ce sondage.</Trans>
+        <Trans locale={locale}>Vous avez déja participé à ce sondage.</Trans>
       </p>
 
       <ButtonLink
         href={`/organisations/${poll.organisation.slug}/campagnes/${poll.slug}`}>
-        <Trans>Voir mes résultats</Trans>
+        <Trans locale={locale}>Voir mes résultats</Trans>
       </ButtonLink>
     </div>
   )

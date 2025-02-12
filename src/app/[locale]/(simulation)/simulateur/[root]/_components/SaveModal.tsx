@@ -108,11 +108,11 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
         <>
           {!currentSimulation.savedViaEmail && mode === 'save' ? (
             <Button color="secondary" onClick={closeModal}>
-              <Trans>Non, merci</Trans>
+              <Trans locale={locale}>Non, merci</Trans>
             </Button>
           ) : (
             <Button color="secondary" onClick={() => router.push('/')}>
-              <Trans>Revenir à l'accueil</Trans>
+              <Trans locale={locale}>Revenir à l'accueil</Trans>
             </Button>
           )}
           {currentSimulation.savedViaEmail ? (
@@ -124,7 +124,7 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
               disabled={isPending}
               className="inline"
               data-cypress-id="save-modal-submit-button">
-              <Trans>
+              <Trans locale={locale}>
                 Sauvegarder{' '}
                 <span className="hidden lg:inline">ma progression</span>
               </Trans>
@@ -141,9 +141,9 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
           isError={isError}
           title={
             mode === 'backHome' ? (
-              <Trans>Revenir à l'accueil</Trans>
+              <Trans locale={locale}>Revenir à l'accueil</Trans>
             ) : (
-              <Trans>Reprendre plus tard</Trans>
+              <Trans locale={locale}>Reprendre plus tard</Trans>
             )
           }
         />

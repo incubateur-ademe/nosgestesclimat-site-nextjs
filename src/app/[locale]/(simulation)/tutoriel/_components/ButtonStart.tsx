@@ -30,7 +30,7 @@ export default function ButtonStart() {
         const timeSpentOnPage = endTime - startTime
         trackEvent(tutorielClickSuivant(timeSpentOnPage))
       }}>
-      <Trans>C'est parti ! →</Trans>
+      <Trans locale={locale}>C'est parti ! →</Trans>
     </ButtonLink>
   )
 }

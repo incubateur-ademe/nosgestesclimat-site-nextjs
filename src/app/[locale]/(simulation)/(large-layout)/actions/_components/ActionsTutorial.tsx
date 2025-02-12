@@ -31,14 +31,14 @@ export default function ActionsTutorial() {
   return (
     <Card className="my-6 items-start border-none bg-gray-100">
       <h2 className="flex items-center">
-        <Trans>Passer à l'action !</Trans>
+        <Trans locale={locale}>Passer à l'action !</Trans>
       </h2>
 
       <p>
         <Trans i18nKey={'publicodes.ActionTutorial.félicitation'}>
           Vous avez terminé votre simulation
         </Trans>
-        , <Emoji>👏</Emoji> <Trans>bravo !</Trans>
+        , <Emoji>👏</Emoji> <Trans locale={locale}>bravo !</Trans>
       </p>
 
       <p>{t('publicodes.ActionTutorial.msgEstimation', { value, unit })}</p>
@@ -54,13 +54,15 @@ export default function ActionsTutorial() {
         <li className="flex items-center">
           <Emoji className="mr-2">✅</Emoji>
 
-          <Trans>sélectionnez celles qui vous intéressent</Trans>
+          <Trans locale={locale}>
+            sélectionnez celles qui vous intéressent
+          </Trans>
         </li>
 
         <li className="flex items-center">
           <Emoji className="mr-2">❌</Emoji>
 
-          <Trans>
+          <Trans locale={locale}>
             écartez celles qui vous semblent trop ambitieuses ou déplacées.
           </Trans>
         </li>
@@ -80,7 +82,7 @@ export default function ActionsTutorial() {
           hideTutorial('actions')
           trackEvent(actionsClickStart)
         }}>
-        <Trans>Démarrer</Trans>
+        <Trans locale={locale}>Démarrer</Trans>
       </Button>
     </Card>
   )

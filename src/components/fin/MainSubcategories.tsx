@@ -11,8 +11,8 @@ type Props = {
 }
 
 const titles: Record<Metric, ReactElement> = {
-  carbone: <Trans>Mes principaux postes d’émissions</Trans>,
-  eau: <Trans>Mes principaux postes d'usage</Trans>,
+  carbone: <Trans locale={locale}>Mes principaux postes d’émissions</Trans>,
+  eau: <Trans locale={locale}>Mes principaux postes d'usage</Trans>,
 }
 export default function MainSubcategories({ isLink }: Props) {
   const { currentMetric } = useCurrentMetric()

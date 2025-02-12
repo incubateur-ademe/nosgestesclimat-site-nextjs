@@ -6,7 +6,7 @@ import PostalCodeInput from '@/design-system/inputs/PostalCodeInput'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 import { useRouter } from 'next/navigation'
-import type { FormEvent} from 'react';
+import type { FormEvent } from 'react'
 import { useCallback, useContext } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
 import Navigation from '../_components/Navigation'
@@ -34,10 +34,10 @@ export default function PostalCode() {
       <Title
         data-cypress-id="postal-code-title"
         className="text-lg md:text-2xl"
-        title={<Trans>Votre code postal</Trans>}
+        title={<Trans locale={locale}>Votre code postal</Trans>}
         subtitle={
-          <span className="font-bold italic text-secondary-700">
-            <Trans>Facultatif</Trans>
+          <span className="text-secondary-700 font-bold italic">
+            <Trans locale={locale}>Facultatif</Trans>
           </span>
         }
       />

@@ -15,10 +15,12 @@ type Props = {
 const questions = [
   {
     slug: 'est-ce-que-je-peux-y-arriver-tout-seul',
-    question: <Trans>Est-ce que je peux y arriver tout seul ?</Trans>,
+    question: (
+      <Trans locale={locale}>Est-ce que je peux y arriver tout seul ?</Trans>
+    ),
     answer: (
       <p>
-        <Trans>
+        <Trans locale={locale}>
           Il est quasiment impossible de vivre à moins de 2 tonnes dans notre
           société actuellement.{' '}
           <span className="text-secondary-700">
@@ -31,10 +33,10 @@ const questions = [
   },
   {
     slug: 'par-ou-commencer',
-    question: <Trans>Par où commencer ?</Trans>,
+    question: <Trans locale={locale}>Par où commencer ?</Trans>,
     answer: (
       <p>
-        <Trans>
+        <Trans locale={locale}>
           Maintenant que vous avez fait votre bilan carbone et que vous avez
           pris conscience de votre empreinte, vous pouvez découvrir{' '}
           <Link href="/actions">l’ensemble des gestes</Link> qui vous
@@ -56,8 +58,8 @@ export default function CarboneTargetContent({ isOpen, isHedgehog }: Props) {
           className="text-lg lg:text-2xl"
           hasSeparator={isOpen}
           title={
-            <Trans>
-              <strong className="font-black text-secondary-700">
+            <Trans locale={locale}>
+              <strong className="text-secondary-700 font-black">
                 2 tonnes
               </strong>{' '}
               en 2050 ?
@@ -68,10 +70,10 @@ export default function CarboneTargetContent({ isOpen, isHedgehog }: Props) {
       <div className="hidden lg:block">
         <Title
           tag="h2"
-          className=" text-lg lg:text-2xl"
+          className="text-lg lg:text-2xl"
           title={
-            <Trans>
-              <strong className="font-black text-secondary-700">
+            <Trans locale={locale}>
+              <strong className="text-secondary-700 font-black">
                 2 tonnes
               </strong>{' '}
               en 2050 ?
@@ -85,7 +87,7 @@ export default function CarboneTargetContent({ isOpen, isHedgehog }: Props) {
           isOpen || isHedgehog ? 'block' : 'hidden'
         )}>
         <p>
-          <Trans>
+          <Trans locale={locale}>
             C’est l’objectif à atteindre pour espérer limiter le réchauffement
             climatique à 2 degrés.
           </Trans>
@@ -97,7 +99,7 @@ export default function CarboneTargetContent({ isOpen, isHedgehog }: Props) {
         />
         <div className="flex justify-end">
           <Link className="text-sm" href="/empreinte-climat" target="_blank">
-            <Trans>En savoir plus</Trans>{' '}
+            <Trans locale={locale}>En savoir plus</Trans>{' '}
             <ExternalLinkIcon className="stroke-primary-700" />
           </Link>
         </div>

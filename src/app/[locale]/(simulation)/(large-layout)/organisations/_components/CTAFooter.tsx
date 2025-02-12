@@ -12,16 +12,16 @@ export default function CTAFooter() {
   const { t } = useClientTranslation()
 
   return (
-    <section className="pb-24 pt-16">
+    <section className="pt-16 pb-24">
       <div className="mx-auto max-w-5xl">
         <div className="max-w-full md:w-[34rem]">
           <h2>
-            <Trans>Créez votre compte organisation</Trans>
+            <Trans locale={locale}>Créez votre compte organisation</Trans>
           </h2>
 
           <p className="mb-8">
             <strong className="text-primary-700">
-              <Trans>2 petites minutes</Trans>
+              <Trans locale={locale}>2 petites minutes</Trans>
             </strong>{' '}
             {t(
               'pour créer un compte, et vous pourrez retrouver tous nos services gratuitement\u202f!'
@@ -32,7 +32,7 @@ export default function CTAFooter() {
             <ButtonLink
               trackingEvent={organisationsAccueilClickCommencerBottom}
               href="/organisations/connexion">
-              <Trans>Créer un compte</Trans>
+              <Trans locale={locale}>Créer un compte</Trans>
             </ButtonLink>
 
             <ButtonLink
@@ -40,7 +40,7 @@ export default function CTAFooter() {
               className="font-normal underline"
               href="/contact?motif=demo"
               trackingEvent={organisationsAccueilClickDemoBottom}>
-              <Trans>Demander une démo</Trans>
+              <Trans locale={locale}>Demander une démo</Trans>
             </ButtonLink>
           </div>
         </div>

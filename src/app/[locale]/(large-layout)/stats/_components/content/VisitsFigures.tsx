@@ -1,4 +1,4 @@
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Card from '@/design-system/layout/Card'
 import { useLocale } from '@/hooks/useLocale'
 import { formatValue } from '../utils/formatFigure'
@@ -21,7 +21,7 @@ export default function VisitsFigures({
             {formatValue(allTimeVisits, locale)}
           </p>{' '}
           <p className="mb-0 text-sm">
-            <Trans>visites depuis le lancement</Trans>
+            <TransClient>visites depuis le lancement</TransClient>
           </p>
         </div>
         <div className="text-sm">
@@ -29,7 +29,7 @@ export default function VisitsFigures({
             {formatValue(currentMonthVisits, locale)}
           </p>{' '}
           <p>
-            <Trans>visites ce mois-ci (en cours)</Trans>
+            <TransClient>visites ce mois-ci (en cours)</TransClient>
           </p>
         </div>
       </Card>

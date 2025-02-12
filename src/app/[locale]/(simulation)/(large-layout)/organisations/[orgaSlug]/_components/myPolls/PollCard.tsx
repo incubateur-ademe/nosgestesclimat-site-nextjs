@@ -20,14 +20,14 @@ export default function PollCard({ poll }: Props) {
         {poll.name ?? (
           <>
             <span className="mr-3 italic text-gray-600">
-              <Trans>Sans titre</Trans>
+              <Trans locale={locale}>Sans titre</Trans>
             </span>
           </>
         )}
       </h3>
 
       <p className="mb-8 text-sm font-light">
-        <Trans>Créée le </Trans>
+        <Trans locale={locale}>Créée le </Trans>
         {dayjs(poll.createdAt).format('DD/MM/YYYY')}
       </p>
 
@@ -38,9 +38,9 @@ export default function PollCard({ poll }: Props) {
 
         <p className="text-base font-light text-default">
           {poll.simulations.finished > 1 ? (
-            <Trans>Simulations terminées</Trans>
+            <Trans locale={locale}>Simulations terminées</Trans>
           ) : (
-            <Trans>Simulation terminée</Trans>
+            <Trans locale={locale}>Simulation terminée</Trans>
           )}
         </p>
       </div>
@@ -48,7 +48,7 @@ export default function PollCard({ poll }: Props) {
       <ButtonLink
         className="w-full"
         href={`/organisations/${orgaSlug}/campagnes/${poll?.slug}`}>
-        <Trans>Voir le détail</Trans>
+        <Trans locale={locale}>Voir le détail</Trans>
       </ButtonLink>
     </div>
   )

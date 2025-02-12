@@ -10,7 +10,7 @@ export default function PersonaWarning() {
   if (!persona) return null
   return (
     <p>
-      <Trans>👤 Vous utilisez actuellement le persona</Trans>{' '}
+      <Trans locale={locale}>👤 Vous utilisez actuellement le persona</Trans>{' '}
       <span className="font-bold">
         {capitalizeString(persona.split(' . ')[1])}
       </span>

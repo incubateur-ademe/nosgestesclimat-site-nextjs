@@ -53,7 +53,7 @@ export default async function DocumentationServer({ slugs, rules }: Props) {
       {rule.note && (
         <section className="mt-4">
           <h2>
-            <Trans>Notes</Trans>
+            <Trans locale={locale}>Notes</Trans>
           </h2>
           <Markdown>{rule.note}</Markdown>
         </section>
@@ -61,9 +61,9 @@ export default async function DocumentationServer({ slugs, rules }: Props) {
 
       <CalculDetail rule={rule} ruleName={ruleName} rules={rules} />
 
-      <Card className="mb-4 mt-4 border-none bg-primary-100">
+      <Card className="bg-primary-100 mt-4 mb-4 border-none">
         <p className="mb-0">
-          <Trans>
+          <Trans locale={locale}>
             Pour en savoir plus sur cette règle de notre modèle, lancer le
             calcul en cliquant sur le bouton ci-dessous.
           </Trans>

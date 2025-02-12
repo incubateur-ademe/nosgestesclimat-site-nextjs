@@ -32,9 +32,9 @@ export default function CreerCampagnePage() {
   return (
     <div className="mb-4 flex flex-col justify-between md:flex-nowrap">
       <Title
-        title={<Trans>Créer une campagne</Trans>}
+        title={<Trans locale={locale}>Créer une campagne</Trans>}
         subtitle={
-          <Trans>
+          <Trans locale={locale}>
             Lancez une campagne de calcul de l'empreinte carbone de vos
             collaborateurs, élèves, collègues...
           </Trans>

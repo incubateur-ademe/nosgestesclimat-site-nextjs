@@ -68,10 +68,12 @@ export default async function FAQPage({
           <Scroller />
 
           <p>
-            <Trans>Levez la main, on répond à vos questions !</Trans>
+            <Trans locale={locale}>
+              Levez la main, on répond à vos questions !
+            </Trans>
           </p>
           <p>
-            <Trans>
+            <Trans locale={locale}>
               Vous trouverez ici les réponses aux questions les plus fréquentes.
               S’il vous reste des interrogations ou si vous souhaitez nous
               proposer des améliorations, rendez-vous tout en bas. Bonne lecture
@@ -125,12 +127,12 @@ export default async function FAQPage({
 
       <Card className="bg-gray-100">
         <h3 className="text-yellow-dark flex items-center">
-          <Trans>Je ne trouve pas réponse à ma question </Trans>
+          <Trans locale={locale}>Je ne trouve pas réponse à ma question </Trans>
 
           <Emoji className="ml-2 inline-block">🙋‍♀️</Emoji>
         </h3>
         <p className="mb-0">
-          <Trans>
+          <Trans locale={locale}>
             Vous pouvez nous contacter via notre page de contact :{' '}
             <Link href="/contact">accéder à notre page de contact</Link>.
           </Trans>

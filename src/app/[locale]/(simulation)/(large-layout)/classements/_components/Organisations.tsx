@@ -22,7 +22,7 @@ export default function Organisations() {
       <Title
         tag="h2"
         className="mt-16"
-        title={<Trans>Organisations et campagnes</Trans>}
+        title={<Trans locale={locale}>Organisations et campagnes</Trans>}
       />
       <div className="flex flex-wrap justify-center gap-16 md:flex-nowrap">
         <div className="flex-1">

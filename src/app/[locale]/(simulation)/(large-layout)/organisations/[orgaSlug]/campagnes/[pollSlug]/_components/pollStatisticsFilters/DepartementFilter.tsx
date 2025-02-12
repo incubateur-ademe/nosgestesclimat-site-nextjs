@@ -44,7 +44,7 @@ export default function DepartementFilter({
       isSearchable
       // @ts-expect-error fix this
       options={options}
-      placeholder={<Trans>Département</Trans>}
+      placeholder={<Trans locale={locale}>Département</Trans>}
       onChange={handleSaveSelectionToLocalStorage}
     />
   )

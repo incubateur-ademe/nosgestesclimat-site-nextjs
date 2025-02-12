@@ -25,7 +25,7 @@ export default function FunFact({ question }: Props) {
         <Emoji>💡</Emoji> Le saviez vous ?
       </h3>
       <p className="mb-0">
-        <Trans>
+        <Trans locale={locale}>
           <strong>
             La taille des logements français a très fortement augmenté
           </strong>{' '}

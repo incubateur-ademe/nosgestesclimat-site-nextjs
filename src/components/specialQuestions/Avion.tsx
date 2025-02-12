@@ -21,11 +21,11 @@ export default function Avion({ question, ...props }: Props) {
           onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
           className="mb-2">
           {isOpen ? (
-            <Trans>Fermer</Trans>
+            <Trans locale={locale}>Fermer</Trans>
           ) : (
             <>
-              <PencilIcon className="mr-2 stroke-primary-700" width="16" />
-              <Trans>Répondre sur les 3 dernières années</Trans>
+              <PencilIcon className="stroke-primary-700 mr-2" width="16" />
+              <Trans locale={locale}>Répondre sur les 3 dernières années</Trans>
             </>
           )}
         </Button>

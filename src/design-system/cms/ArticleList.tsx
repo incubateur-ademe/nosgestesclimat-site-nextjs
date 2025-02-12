@@ -16,7 +16,7 @@ export default function ArticleList({
   return (
     <section className="mb-20 scroll-mt-40" id="articles">
       <h2 className="mb-8 font-medium">
-        <Trans>Nos derniers articles</Trans>
+        <Trans locale={locale}>Nos derniers articles</Trans>
       </h2>
       <ul
         className="grid grid-cols-1 gap-8 md:grid-cols-3"

@@ -21,16 +21,16 @@ export default function Voiture({ question, ...props }: Props) {
           onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
           className="mb-2">
           {isOpen ? (
-            <Trans>Fermer</Trans>
+            <Trans locale={locale}>Fermer</Trans>
           ) : (
             <span className="flex items-center">
               <PencilIcon
-                className="mr-2 stroke-primary-700"
+                className="stroke-primary-700 mr-2"
                 width="16"
                 height="16"
               />
 
-              <Trans>Détailler mes trajets</Trans>
+              <Trans locale={locale}>Détailler mes trajets</Trans>
             </span>
           )}
         </Button>

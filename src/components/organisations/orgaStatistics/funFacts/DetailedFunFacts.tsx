@@ -90,9 +90,9 @@ export default function DetailedFunFacts({
               link.remove()
             })
           }}>
-          <SaveIcon className="mr-2 w-4 fill-primary-700" />
+          <SaveIcon className="fill-primary-700 mr-2 w-4" />
 
-          <Trans>Télécharger l'image</Trans>
+          <Trans locale={locale}>Télécharger l'image</Trans>
         </Button>
       </div>
     </div>

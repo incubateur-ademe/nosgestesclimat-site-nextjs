@@ -17,9 +17,9 @@ import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletter
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import type { ReactNode} from 'react';
+import type { ReactNode } from 'react'
 import { useEffect, useRef } from 'react'
-import type { SubmitHandler} from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 
@@ -174,7 +174,9 @@ export default function UserInformationForm({
               user?.email && !shouldForceEmailEditable ? (
                 <TextInputGroup
                   name="email"
-                  helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
+                  helperText={
+                    <Trans locale={locale}>Ce champ n'est pas modifiable</Trans>
+                  }
                   label={t('Votre adresse email')}
                   value={user?.email}
                   readOnly
@@ -191,12 +193,14 @@ export default function UserInformationForm({
           </>
         )}
 
-        <h3 className="mb-0 mt-6">
-          <Trans>Inscription à nos e-mails</Trans>
+        <h3 className="mt-6 mb-0">
+          <Trans locale={locale}>Inscription à nos e-mails</Trans>
         </h3>
 
         <p className="text-sm text-gray-600">
-          <Trans>Vous pouvez vous désincrire à tout moment</Trans>
+          <Trans locale={locale}>
+            Vous pouvez vous désincrire à tout moment
+          </Trans>
         </p>
         {inputsDisplayed.includes('newsletter-saisonniere') && (
           <CheckboxInputGroup
@@ -204,7 +208,7 @@ export default function UserInformationForm({
             label={
               <span>
                 <Emoji>☀️</Emoji>{' '}
-                <Trans>
+                <Trans locale={locale}>
                   <strong>Infolettre saisonnière de Nos Gestes Climat</strong> :
                   actualités climat, initiatives positives et nouveautés
                 </Trans>
@@ -219,7 +223,7 @@ export default function UserInformationForm({
             label={
               <span>
                 <Emoji>🚗</Emoji>{' '}
-                <Trans>
+                <Trans locale={locale}>
                   <strong>Nos Gestes Transports</strong> : tout savoir ou
                   presque sur l'impact carbone des transports, en 4 e-mails
                 </Trans>
@@ -234,7 +238,7 @@ export default function UserInformationForm({
             label={
               <span>
                 <Emoji>🏡</Emoji>{' '}
-                <Trans>
+                <Trans locale={locale}>
                   <strong>Nos Gestes Logement</strong> : informez-vous sur
                   l'impact carbone du logement, en quelques e-mails
                 </Trans>
@@ -251,7 +255,9 @@ export default function UserInformationForm({
             disabled={isPending}>
             {isPending && <Loader size="sm" color="light" />}
 
-            {submitLabel ?? <Trans>Mettre à jour mes informations</Trans>}
+            {submitLabel ?? (
+              <Trans locale={locale}>Mettre à jour mes informations</Trans>
+            )}
           </Button>
         </div>
       </form>

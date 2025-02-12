@@ -62,7 +62,7 @@ export default function PollForm({ organisation }: Props) {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <TextInputGroup
-          label={<Trans>Nom de la campagne</Trans>}
+          label={<Trans locale={locale}>Nom de la campagne</Trans>}
           placeholder={t('ex : Campagne 2024, Classe de 6ème A, etc.')}
           {...register('name', {
             required: t('Ce champ est requis'),
@@ -73,10 +73,10 @@ export default function PollForm({ organisation }: Props) {
         <TextInputGroup
           label={
             <p className="mb-0 flex w-full justify-between">
-              <Trans>Nombre de participants attendus</Trans>
-              <span className="font-bold italic text-secondary-700">
+              <Trans locale={locale}>Nombre de participants attendus</Trans>
+              <span className="text-secondary-700 font-bold italic">
                 {' '}
-                <Trans>facultatif</Trans>
+                <Trans locale={locale}>facultatif</Trans>
               </span>
             </p>
           }
@@ -96,7 +96,7 @@ export default function PollForm({ organisation }: Props) {
         organisation={organisation}
         poll={pollInfo}
         description={
-          <Trans>
+          <Trans locale={locale}>
             Vous retrouverez les réponses à ces questions dans l'export des
             réponses à la campagne.
           </Trans>
@@ -111,7 +111,7 @@ export default function PollForm({ organisation }: Props) {
 
       {isError && (
         <p className="mt-2 text-red-500">
-          <Trans>
+          <Trans locale={locale}>
             Une erreur s'est produite lors de la création de la campagne.
             Veuillez réessayer.
           </Trans>
@@ -119,7 +119,7 @@ export default function PollForm({ organisation }: Props) {
       )}
 
       <Button type="submit" className="self-start">
-        <Trans>Lancer ma campagne</Trans>
+        <Trans locale={locale}>Lancer ma campagne</Trans>
       </Button>
     </form>
   )

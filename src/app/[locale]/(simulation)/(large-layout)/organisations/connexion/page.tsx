@@ -33,11 +33,11 @@ export default function Page() {
     <section className="w-full bg-[#fff]">
       <div className="max-w-5xl lg:px-0">
         <h1>
-          <Trans>Accédez à votre espace organisation</Trans>
+          <Trans locale={locale}>Accédez à votre espace organisation</Trans>
         </h1>
 
         <p>
-          <Trans>C'est gratuit, et ça prend une minute !</Trans>
+          <Trans locale={locale}>C'est gratuit, et ça prend une minute !</Trans>
         </p>
 
         <Separator />

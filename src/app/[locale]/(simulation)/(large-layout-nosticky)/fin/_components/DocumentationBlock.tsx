@@ -9,11 +9,11 @@ export default function DocumentationBlock() {
   return (
     <div className="mb-8">
       <Title tag="h2">
-        <Trans>Comment est calculée votre empreinte ?</Trans>
+        <Trans locale={locale}>Comment est calculée votre empreinte ?</Trans>
       </Title>
 
       <p>
-        <Trans>
+        <Trans locale={locale}>
           Notre calculateur repose sur un modèle de données, dont l'intégralité
           des calculs est documentée ; les données affichées sont directement
           associées à votre test.
@@ -24,9 +24,9 @@ export default function DocumentationBlock() {
         href="/documentation/bilan"
         className="flex items-center"
         onClick={() => trackEvent(endClickDocumentation)}>
-        <BookClosedIcon className="mr-2 w-4 fill-primary-700" />
+        <BookClosedIcon className="fill-primary-700 mr-2 w-4" />
 
-        <Trans>Comprendre le calcul</Trans>
+        <Trans locale={locale}>Comprendre le calcul</Trans>
       </InlineLink>
     </div>
   )

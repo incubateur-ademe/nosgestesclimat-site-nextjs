@@ -44,8 +44,8 @@ export default function CopyButton({
           }
         }}>
         {isCopied
-          ? copiedStateText ?? <Trans>Copié !</Trans>
-          : children ?? <Trans>Copier le lien</Trans>}
+          ? (copiedStateText ?? <Trans locale={locale}>Copié !</Trans>)
+          : (children ?? <Trans locale={locale}>Copier le lien</Trans>)}
       </Button>
 
       <ToastDisplay />

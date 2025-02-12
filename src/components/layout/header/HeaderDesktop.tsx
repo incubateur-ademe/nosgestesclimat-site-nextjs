@@ -60,7 +60,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
                   activeMatches={['/tutoriel', '/simulateur', '/fin']}
                   icon={BilanIcon}
                   title={t('Mon empreinte')}>
-                  <Trans>Mon empreinte</Trans>
+                  <Trans locale={locale}>Mon empreinte</Trans>
                 </NavLink>
               </li>
 
@@ -70,7 +70,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
                   onClick={() => trackEvent(headerClickActions)}
                   icon={ActionsIcon}
                   title={t('Mes gestes')}>
-                  <Trans>Mes gestes</Trans>
+                  <Trans locale={locale}>Mes gestes</Trans>
                 </NavLink>
               </li>
 
@@ -82,7 +82,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
                   activeMatches={['/classement', '/amis']}
                   title={t('Mes classements')}
                   data-cypress-id="amis-link">
-                  <Trans>Mes groupes</Trans>
+                  <Trans locale={locale}>Mes groupes</Trans>
                 </NavLink>
               </li>
             </ul>
@@ -99,7 +99,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
               title={t('Profil')}
               className="px-4"
               onClick={() => trackEvent(headerClickProfil)}>
-              <Trans>Profil</Trans>
+              <Trans locale={locale}>Profil</Trans>
             </NavLink>
 
             {user?.organisation?.administratorEmail ? (

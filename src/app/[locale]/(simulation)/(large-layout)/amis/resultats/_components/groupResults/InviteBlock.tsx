@@ -26,9 +26,13 @@ const SubmitButton = ({
         handleShare()
       }}
       data-cypress-id="invite-button">
-      {isShareDefined && <Trans>Partager</Trans>}
+      {isShareDefined && <Trans locale={locale}>Partager</Trans>}
       {!isShareDefined &&
-        (isCopied ? <Trans>Copié !</Trans> : <Trans>Copier le lien</Trans>)}
+        (isCopied ? (
+          <Trans locale={locale}>Copié !</Trans>
+        ) : (
+          <Trans locale={locale}>Copier le lien</Trans>
+        ))}
     </Button>
   )
 }
@@ -78,7 +82,9 @@ export default function InviteBlock({ group }: { group: Group }) {
     return (
       <div className="mt-4 flex flex-col justify-between gap-4 rounded-md bg-gray-100 p-4 md:flex-row md:items-center">
         <p className="mb-0 text-sm md:text-base">
-          <Trans>Invitez d'autres personnes à rejoindre votre groupe</Trans>
+          <Trans locale={locale}>
+            Invitez d'autres personnes à rejoindre votre groupe
+          </Trans>
         </p>
         <SubmitButton
           isShareDefined={shouldUseShareAPI}
@@ -92,11 +98,11 @@ export default function InviteBlock({ group }: { group: Group }) {
   return (
     <div className="rainbow-border mt-4 rounded-xl p-4">
       <h2 className="mt-0 flex items-center text-base md:text-lg">
-        <Trans>Vous êtes le premier</Trans> <Emoji>🥳</Emoji> 
-        <Trans>mais vous êtes seul·e…</Trans> <Emoji>🥲</Emoji>
+        <Trans locale={locale}>Vous êtes le premier</Trans> <Emoji>🥳</Emoji> 
+        <Trans locale={locale}>mais vous êtes seul·e…</Trans> <Emoji>🥲</Emoji>
       </h2>
       <p className="mb-4 text-sm md:text-base">
-        <Trans>
+        <Trans locale={locale}>
           Partagez cette page à vos proches pour leur permettre de rejoindre
           votre groupe.
         </Trans>

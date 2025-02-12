@@ -53,7 +53,7 @@ export default function MyPolls({ polls }: Props) {
     <section className="mb-12">
       <div className="flex flex-wrap items-center justify-between sm:flex-nowrap">
         <Title tag="h2">
-          <Trans>Mes campagnes</Trans>
+          <Trans locale={locale}>Mes campagnes</Trans>
         </Title>
 
         {pollsSorted.length > 0 && (
@@ -64,16 +64,16 @@ export default function MyPolls({ polls }: Props) {
             className="p-2 text-sm"
             name="sortOrder">
             <option value="date-old">
-              <Trans>Date (anciennes &gt; récentes)</Trans>
+              <Trans locale={locale}>Date (anciennes &gt; récentes)</Trans>
             </option>
             <option value="date-new">
-              <Trans>Date (récentes &gt; anciennes)</Trans>
+              <Trans locale={locale}>Date (récentes &gt; anciennes)</Trans>
             </option>
             <option value="alphabetical">
-              <Trans>Nom (A &gt; Z)</Trans>
+              <Trans locale={locale}>Nom (A &gt; Z)</Trans>
             </option>
             <option value="anti-alphabetical">
-              <Trans>Nom (Z &gt; A)</Trans>
+              <Trans locale={locale}>Nom (Z &gt; A)</Trans>
             </option>
           </Select>
         )}
@@ -98,11 +98,11 @@ export default function MyPolls({ polls }: Props) {
           color="link">
           {isMinified ? (
             <span>
-              + <Trans>Voir toutes les campagnes</Trans>
+              + <Trans locale={locale}>Voir toutes les campagnes</Trans>
             </span>
           ) : (
             <span>
-              - <Trans>Masquer les autres campagnes</Trans>
+              - <Trans locale={locale}>Masquer les autres campagnes</Trans>
             </span>
           )}
         </Button>

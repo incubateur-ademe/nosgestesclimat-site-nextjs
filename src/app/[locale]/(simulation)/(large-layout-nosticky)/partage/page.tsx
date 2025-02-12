@@ -17,7 +17,7 @@ export default function PartagePage() {
     <div className="relative">
       <div>
         <Title className="text-lg md:text-2xl">
-          <Trans>Découvre mes empreintes</Trans>
+          <Trans locale={locale}>Découvre mes empreintes</Trans>
         </Title>
       </div>
       <MetricSlider
@@ -31,19 +31,19 @@ export default function PartagePage() {
           className="text-lg lg:text-2xl"
           hasSeparator={false}
           subtitle={
-            <Trans>
+            <Trans locale={locale}>
               En 10 minutes, obtenez une estimation de vos empreintes carbone et
               eau.
             </Trans>
           }>
-          <Trans>
+          <Trans locale={locale}>
             <span className="text-secondary-700">Et vous,</span> quel est votre
             impact sur notre planète ?
           </Trans>
         </Title>
 
         <ButtonLink href={getLinkToSimulateurPage()}>
-          <Trans>{linkToSimulateurPageLabel}</Trans>
+          <Trans locale={locale}>{linkToSimulateurPageLabel}</Trans>
         </ButtonLink>
       </div>
     </div>

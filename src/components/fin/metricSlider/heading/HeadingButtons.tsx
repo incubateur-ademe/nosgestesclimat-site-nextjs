@@ -137,7 +137,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
           className={twMerge('fill-primary-700', saveClassNames[size])}
         />
         <span className="hidden lg:inline">
-          <Trans>Sauvegarder</Trans>
+          <Trans locale={locale}>Sauvegarder</Trans>
         </span>
       </Button>
 
@@ -155,17 +155,17 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         aria-label={t('Partager')}>
         <ShareIcon
           className={twMerge(
-            'mr-[1px] fill-primary-700',
+            'fill-primary-700 mr-[1px]',
             shareClassNames[size]
           )}
         />
         {shouldDisplayConfirmMessage ? (
           <span className="hidden lg:inline">
-            <Trans>Copié !</Trans>
+            <Trans locale={locale}>Copié !</Trans>
           </span>
         ) : (
           <span className="hidden lg:inline">
-            <Trans>Partager</Trans>
+            <Trans locale={locale}>Partager</Trans>
           </span>
         )}
       </Button>

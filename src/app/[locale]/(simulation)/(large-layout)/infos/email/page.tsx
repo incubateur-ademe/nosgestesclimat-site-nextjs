@@ -88,15 +88,15 @@ export default function Email() {
       <Title
         data-cypress-id="tutoriel-title"
         className="text-lg md:text-2xl"
-        title={<Trans>Votre adresse email</Trans>}
+        title={<Trans locale={locale}>Votre adresse email</Trans>}
         subtitle={
           <>
-            <Trans>
+            <Trans locale={locale}>
               Pour conserver vos résultats et les retrouver à l’avenir
             </Trans>
             {!fixedEmail ? (
               <span className="text-secondary-700 ml-2 inline-block font-bold italic">
-                <Trans>facultatif</Trans>
+                <Trans locale={locale}>facultatif</Trans>
               </span>
             ) : null}
           </>

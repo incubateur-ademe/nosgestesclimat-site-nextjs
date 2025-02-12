@@ -1,6 +1,6 @@
 import DotIcon from '@/components/icons/DotIcon'
 import WaterDropIcon from '@/components/icons/WaterDropIcon'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -20,18 +20,18 @@ export default function FloatingInfo({
   return (
     <div
       className={twMerge(
-        'absolute w-36 -translate-y-[120%]  rounded-xl bg-white px-3 py-2 shadow-lg md:-translate-y-1/2',
+        'absolute w-36 -translate-y-[120%] rounded-xl bg-white px-3 py-2 shadow-lg md:-translate-y-1/2',
         orientation === 'left'
           ? '-translate-x-[80%] md:-translate-x-[110%]'
           : 'md:translate-x-[30%]',
         className
       )}>
-      <p className="mb-0 text-sm font-bold text-primary-600">{title}</p>
+      <p className="text-primary-600 mb-0 text-sm font-bold">{title}</p>
 
       {waterScore ? (
         <div className="flex items-center justify-between gap-2 text-sm">
           <div className="text-primary-600">
-            <Trans>Eau</Trans>
+            <TransClient>Eau</TransClient>
           </div>
           <div className="-mr-[3px] flex items-center">
             {Array.from({ length: 5 }).map((_, index) => (
@@ -50,7 +50,7 @@ export default function FloatingInfo({
       {carbonScore ? (
         <div className="flex items-center justify-between gap-2 text-sm">
           <div className="text-primary-600">
-            <Trans>CO₂e</Trans>
+            <TransClient>CO₂e</TransClient>
           </div>
           <div className="flex items-center">
             {Array.from({ length: 5 }).map((_, index) => (

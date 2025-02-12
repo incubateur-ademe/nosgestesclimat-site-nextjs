@@ -12,21 +12,22 @@ export default function DishesNumberInfo() {
       <div aria-live="polite" className="mb-2 text-center text-sm">
         {totalNumberOfPlats !== 14 ? (
           <span className="text-red-700">
-            <Trans>Vous avez sélectionné</Trans>{' '}
+            <Trans locale={locale}>Vous avez sélectionné</Trans>{' '}
             <strong>{totalNumberOfPlats}</strong>{' '}
             <strong>
-              <Trans>repas</Trans>
+              <Trans locale={locale}>repas</Trans>
             </strong>{' '}
-            <Trans>sur les 14 habituels</Trans> <Emoji>🍽️</Emoji>
+            <Trans locale={locale}>sur les 14 habituels</Trans>{' '}
+            <Emoji>🍽️</Emoji>
           </span>
         ) : null}
         {totalNumberOfPlats === 14 ? (
           <span>
             <strong>{totalNumberOfPlats}</strong>{' '}
             <strong>
-              <Trans>repas</Trans>
+              <Trans locale={locale}>repas</Trans>
             </strong>{' '}
-            <Trans>par semaine, miam</Trans> <Emoji>😋</Emoji>
+            <Trans locale={locale}>par semaine, miam</Trans> <Emoji>😋</Emoji>
           </span>
         ) : null}
       </div>

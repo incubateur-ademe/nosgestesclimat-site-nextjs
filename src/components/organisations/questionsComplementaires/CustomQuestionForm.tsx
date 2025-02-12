@@ -99,7 +99,7 @@ export default function CustomQuestionForm({
                 setIsFormDisplayed(true)
               }
         }>
-        + <Trans>Ajouter une question personnalisée</Trans>
+        + <Trans locale={locale}>Ajouter une question personnalisée</Trans>
       </Button>
     )
   }
@@ -113,7 +113,7 @@ export default function CustomQuestionForm({
       className="flex w-full flex-col items-start">
       {!isEditMode && (
         <label htmlFor="question" className="mb-2 text-sm">
-          <Trans>Votre question à ajouter</Trans>
+          <Trans locale={locale}>Votre question à ajouter</Trans>
         </label>
       )}
 
@@ -127,11 +127,11 @@ export default function CustomQuestionForm({
           size={isEditMode ? 'xs' : 'sm'}
           color="secondary"
           className="mt-4">
-          <Trans>Annuler</Trans>
+          <Trans locale={locale}>Annuler</Trans>
         </Button>
 
         <Button type="submit" size={isEditMode ? 'xs' : 'sm'} className="mt-4">
-          {submitLabel ?? <Trans>Ajouter la question</Trans>}
+          {submitLabel ?? <Trans locale={locale}>Ajouter la question</Trans>}
         </Button>
       </div>
     </form>

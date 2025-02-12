@@ -47,7 +47,7 @@ export default function OrganisationLink({
       {isOrganisationFullyCreated ? (
         <span className="whitespace-nowrap">{formattedOrganisationName}</span>
       ) : (
-        <Trans>Organisation</Trans>
+        <Trans locale={locale}>Organisation</Trans>
       )}
     </NavLink>
   )

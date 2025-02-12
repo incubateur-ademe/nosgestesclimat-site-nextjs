@@ -17,8 +17,8 @@ type Props = {
 }
 
 const duration = {
-  carbone: <Trans>de CO₂e par an</Trans>,
-  eau: <Trans>d'eau par jour</Trans>,
+  carbone: <Trans locale={locale}>de CO₂e par an</Trans>,
+  eau: <Trans locale={locale}>d'eau par jour</Trans>,
 }
 export default function TotalFootprintNumber({
   metric = defaultMetric,
@@ -66,7 +66,7 @@ export default function TotalFootprintNumber({
       {shouldDisplayTotalWithoutActions && (
         <strong
           className={twMerge(
-            'mr-4 block font-black leading-none text-slate-500 line-through md:text-xl',
+            'mr-4 block leading-none font-black text-slate-500 line-through md:text-xl',
             size === 'lg' && 'text-xl md:text-3xl'
           )}>
           {!isInitialized ? '--' : formatedTotalFootprintValue}
@@ -75,7 +75,7 @@ export default function TotalFootprintNumber({
       {isInitialized ? (
         <strong
           className={twMerge(
-            'block text-lg font-black leading-none md:text-2xl',
+            'block text-lg leading-none font-black md:text-2xl',
             size === 'lg' && 'text-xl md:text-4xl'
           )}>
           {formattedValue}{' '}
@@ -94,10 +94,10 @@ export default function TotalFootprintNumber({
       )}
       <span
         className={twMerge(
-          'block text-xs font-medium leading-none lg:inline lg:text-sm',
+          'block text-xs leading-none font-medium lg:inline lg:text-sm',
           size === 'lg' && 'text-sm md:text-base'
         )}>
-        <span className="hidden xs:inline">{duration[metric]}</span>
+        <span className="xs:inline hidden">{duration[metric]}</span>
       </span>
     </div>
   )

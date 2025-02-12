@@ -41,7 +41,7 @@ export default function Poll() {
   return (
     <Card className="bg-primary-100 mb-4 w-[24rem] max-w-full flex-row items-center justify-between gap-4 border-none">
       <p className="m-0 flex-1">
-        <Trans>Découvrez les résultats du groupe</Trans>{' '}
+        <Trans locale={locale}>Découvrez les résultats du groupe</Trans>{' '}
         <b>{isLoading ? '... ' : poll?.organisation?.name}</b>
       </p>
       <ButtonLink

@@ -1,6 +1,7 @@
 import Trans from '@/components/translation/Trans'
-
+import { useLocale } from '@/hooks/useLocale'
 export default function Table(props) {
+  const locale = useLocale()
   return (
     <div>
       <div>
@@ -35,7 +36,7 @@ export default function Table(props) {
           </tbody>
         </table>
         <p className="text-right text-sm font-light">
-          <Trans>Données valables pour le mois en cours</Trans>
+          <Trans locale={locale}>Données valables pour le mois en cours</Trans>
         </p>
       </div>
     </div>

@@ -55,7 +55,7 @@ export default function CustomQuestion() {
         className="text-lg md:text-2xl"
         title={
           <span>
-            <Trans>Question personnalisée de</Trans> 
+            <Trans locale={locale}>Question personnalisée de</Trans> 
             <strong className="text-secondary-700">
               {poll?.organisation?.name}
             </strong>

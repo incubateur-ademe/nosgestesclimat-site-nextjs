@@ -40,15 +40,17 @@ export default function NotReceived({
     <>
       <p className="mt-12">
         <strong>
-          <Trans>Vous n'avez pas reçu de code ?</Trans>
+          <Trans locale={locale}>Vous n'avez pas reçu de code ?</Trans>
         </strong>
       </p>
       <p className="mb-1 flex items-center text-sm">
-        <EyeIcon className="mr-2 h-4  w-4" />{' '}
-        <Trans>Avez-vous pensé à vérifier votre outil anti-spams ?</Trans>
+        <EyeIcon className="mr-2 h-4 w-4" />{' '}
+        <Trans locale={locale}>
+          Avez-vous pensé à vérifier votre outil anti-spams ?
+        </Trans>
       </p>
       <p className="mb-0 ml-6 text-xs text-gray-500">
-        <Trans>
+        <Trans locale={locale}>
           Certaines organisations sont dotées d’un outil type MailinBlack,
           Altospam, ect., qui bloque parfois nos emails.
         </Trans>
@@ -66,7 +68,7 @@ export default function NotReceived({
       {isErrorResend && (
         <div className="text-red-800">
           <p>
-            <Trans>
+            <Trans locale={locale}>
               Oups, une erreur s'est produite au moment de l'envoi de votre
               code...
             </Trans>
@@ -90,10 +92,10 @@ export default function NotReceived({
         onClick={handleGoBackToForm}
         color="link"
         size="sm"
-        className="-ml-2 -mt-2 flex items-center font-normal">
-        <ReturnIcon className="mr-2 inline-block w-4 fill-primary-700" />
+        className="-mt-2 -ml-2 flex items-center font-normal">
+        <ReturnIcon className="fill-primary-700 mr-2 inline-block w-4" />
 
-        <Trans>Revenir au formulaire de connexion</Trans>
+        <Trans locale={locale}>Revenir au formulaire de connexion</Trans>
       </Button>
     </>
   )

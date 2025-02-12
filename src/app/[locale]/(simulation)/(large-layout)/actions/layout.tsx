@@ -32,7 +32,7 @@ export async function generateMetadata({
 export default function ActionsLayout({ children }: PropsWithChildren) {
   return (
     <FormProvider>
-      <Title title={<Trans>Mes&#160;gestes</Trans>} />
+      <Title title={<Trans locale={locale}>Mes&#160;gestes</Trans>} />
 
       <TopBar simulationMode={false} showTotal />
 

@@ -11,13 +11,13 @@ export default function LaconicRanking({ group }: Props) {
   // If only one participant
   if (group.participants.length === 1) {
     return (
-      <section className="mt-6 rounded-xl bg-primary-50 p-4">
+      <section className="bg-primary-50 mt-6 rounded-xl p-4">
         <p className="mb-0">
-          <Trans>Qui de </Trans>{' '}
+          <Trans locale={locale}>Qui de </Trans>{' '}
           <strong className="text-primary-700">
             {group.participants[0].name}
           </strong>{' '}
-          <Trans>et vous aura la plus faible empreinte ?</Trans>{' '}
+          <Trans locale={locale}>et vous aura la plus faible empreinte ?</Trans>{' '}
           <Emoji>🤓</Emoji>
         </p>
       </section>
@@ -41,9 +41,9 @@ export default function LaconicRanking({ group }: Props) {
   // Display a list of participants with their rank and an emoji medal for the first three
   // then a number for the rest
   return (
-    <section className="mt-6 rounded-xl bg-primary-50 p-6">
+    <section className="bg-primary-50 mt-6 rounded-xl p-6">
       <h3 className="font-bold">
-        <Trans>Le classement</Trans>
+        <Trans locale={locale}>Le classement</Trans>
       </h3>
 
       <ul>

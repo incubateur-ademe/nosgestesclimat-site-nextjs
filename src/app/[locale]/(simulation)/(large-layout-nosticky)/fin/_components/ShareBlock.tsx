@@ -11,7 +11,7 @@ export default function ShareBlock() {
   return (
     <div id="share-block" className="">
       <Title tag="h2">
-        <Trans>Partager mon résultat</Trans>
+        <Trans locale={locale}>Partager mon résultat</Trans>
       </Title>
 
       <CopyInput

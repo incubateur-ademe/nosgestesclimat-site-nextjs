@@ -28,7 +28,7 @@ export default function QuestionsPage() {
   return (
     <>
       <Title>
-        <Trans>Questions</Trans>
+        <Trans locale={locale}>Questions</Trans>
       </Title>
       <Questions />
     </>

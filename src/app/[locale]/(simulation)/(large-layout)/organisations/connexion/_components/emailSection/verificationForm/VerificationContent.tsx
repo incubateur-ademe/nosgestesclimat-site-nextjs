@@ -20,22 +20,24 @@ export default function VerificationContent({
   return (
     <>
       <h2 className="flex items-center gap-2">
-        <Trans>Vérifiez votre boîte e-mail !</Trans>
-        <MailIcon className="h-8 w-8 fill-primary-700" />
+        <Trans locale={locale}>Vérifiez votre boîte e-mail !</Trans>
+        <MailIcon className="fill-primary-700 h-8 w-8" />
       </h2>
 
       <p>
-        <Trans>Nous avons envoyé un</Trans>{' '}
+        <Trans locale={locale}>Nous avons envoyé un</Trans>{' '}
         <strong className="text-primary-700">
-          <Trans>code de vérification</Trans>
+          <Trans locale={locale}>code de vérification</Trans>
         </strong>{' '}
-        <Trans>à </Trans>
+        <Trans locale={locale}>à </Trans>
         {email}.{' '}
       </p>
 
       <form>
         <label htmlFor="code" className="mb-4 block font-bold">
-          <Trans>Entrez votre code de vérification pour continuer</Trans>
+          <Trans locale={locale}>
+            Entrez votre code de vérification pour continuer
+          </Trans>
         </label>
 
         <VerificationCodeInput

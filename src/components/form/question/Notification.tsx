@@ -27,7 +27,7 @@ export default function Notification({ notification }: Props) {
       className={`mb-4 flex flex-col items-end rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} !${getTextCategoryColor(currentCategory, '700')} p-4 text-sm`}>
       <Markdown className="notification pb-0">{description}</Markdown>
       <Button size="sm" color={'secondary'} onClick={() => setValue(false)}>
-        <Trans>J'ai compris</Trans>
+        <Trans locale={locale}>J'ai compris</Trans>
       </Button>
     </motion.div>
   )

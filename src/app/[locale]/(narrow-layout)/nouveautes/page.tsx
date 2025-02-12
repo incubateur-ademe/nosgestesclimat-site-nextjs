@@ -41,14 +41,14 @@ export default async function Releases() {
             data-cypress-id="news-title"
             title={
               <span className="flex items-center">
-                <Trans>Les nouveautés</Trans>
-                <SparklesIcon className="ml-2 fill-divers-300" />
+                <Trans locale={locale}>Les nouveautés</Trans>
+                <SparklesIcon className="fill-divers-300 ml-2" />
               </span>
             }
           />
 
-          <p className="max-w-74 mb-0">
-            <Trans>
+          <p className="mb-0 max-w-74">
+            <Trans locale={locale}>
               Nous améliorons le site en continu à partir de{' '}
               <InlineLink href="/contact">vos retours</InlineLink>. Découvrez la
               tambouille interne de Nos Gestes Climat.

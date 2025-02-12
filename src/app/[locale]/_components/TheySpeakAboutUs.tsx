@@ -1,5 +1,5 @@
 import Background from '@/components/landing-pages/Background'
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import Image from 'next/image'
 
 export default function TheySpeakAboutUs({ locale }: { locale: string }) {
@@ -17,7 +17,7 @@ export default function TheySpeakAboutUs({ locale }: { locale: string }) {
 
       <div className="relative flex flex-col items-center gap-10 md:mx-auto md:max-w-5xl">
         <h2 className="text-center text-2xl md:text-3xl">
-          <Trans locale={locale}>Ils parlent de nous</Trans>
+          <TransServer locale={locale}>Ils parlent de nous</TransServer>
         </h2>
 
         <ul className="flex w-full flex-row flex-wrap items-center justify-center gap-7 md:justify-between">

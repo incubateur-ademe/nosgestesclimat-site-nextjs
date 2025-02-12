@@ -115,28 +115,28 @@ export default async function PlanDuSitePage({
 
       <section className="mb-2">
         <h2 data-cypress-id="plan-outils-title">
-          <Trans>Nos outils</Trans>
+          <Trans locale={locale}>Nos outils</Trans>
         </h2>
         <LinkList entries={links['Nos outils']} />
       </section>
 
       <section className="mb-2">
         <h2>
-          <Trans>Comparez votre empreinte</Trans>
+          <Trans locale={locale}>Comparez votre empreinte</Trans>
         </h2>
         <LinkList entries={links['Comparez votre empreinte']} />
       </section>
 
       <section className="mb-2">
         <h2>
-          <Trans>Informations</Trans>
+          <Trans locale={locale}>Informations</Trans>
         </h2>
         <LinkList entries={links['Informations']} />
       </section>
 
       <section className="mb-2">
         <h2>
-          <Trans>Documentations</Trans>
+          <Trans locale={locale}>Documentations</Trans>
         </h2>
         <LinkList entries={links['Documentations']} />
       </section>

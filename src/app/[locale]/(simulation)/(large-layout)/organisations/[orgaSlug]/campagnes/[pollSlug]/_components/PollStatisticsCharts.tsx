@@ -83,27 +83,27 @@ export default function PollStatisticsCharts({
   if (!simulations || simulations?.length < 3) return null
 
   return (
-    <section className="my-12 rounded-xl bg-gray-100 px-8 pb-4 pt-8">
+    <section className="my-12 rounded-xl bg-gray-100 px-8 pt-8 pb-4">
       <h2>
-        <Trans>Répartition des empreintes carbone</Trans>
+        <Trans locale={locale}>Répartition des empreintes carbone</Trans>
         <InformationIconWithTooltip
           id="resultats-groupe"
           className="ml-1 inline-block">
           <>
             <p className="mb-1 text-sm">
-              <Trans>
+              <Trans locale={locale}>
                 Chaque participation est représentée par une barre verticale.
                 Votre score est affiché en{' '}
-                <span className="font-bold text-secondary-700">rose</span>.
+                <span className="text-secondary-700 font-bold">rose</span>.
               </Trans>
             </p>
             <p className="mb-0 text-sm">
-              <Trans>
+              <Trans locale={locale}>
                 Pour faciliter la lecture, les valeurs supérieures à 100 t sont
                 retirées.
               </Trans>{' '}
               {isAdmin && (
-                <Trans>
+                <Trans locale={locale}>
                   Elle seront toutefois prises en compte lors de l'export de
                   données.
                 </Trans>
@@ -123,10 +123,10 @@ export default function PollStatisticsCharts({
       <section>
         <div className="flex items-baseline justify-between md:max-w-[16rem]">
           <h3>
-            <Trans>Par catégorie</Trans>
+            <Trans locale={locale}>Par catégorie</Trans>
           </h3>
           <p className="mb-0 text-[0.75rem]">
-            <Trans>Moyenne :</Trans>
+            <Trans locale={locale}>Moyenne :</Trans>
           </p>
         </div>
         <ul>
@@ -152,17 +152,17 @@ export default function PollStatisticsCharts({
             <div>
               <strong className="text-lg">0</strong>{' '}
               {shouldUseAbbreviation ? (
-                <Trans>t CO₂e / an</Trans>
+                <Trans locale={locale}>t CO₂e / an</Trans>
               ) : (
-                <Trans>tonnes CO₂e / an</Trans>
+                <Trans locale={locale}>tonnes CO₂e / an</Trans>
               )}
             </div>
 
             {hasCurrentUser && (
               <div className="flex items-center gap-3">
-                <div className="h-4 w-1 bg-secondary-700" />
+                <div className="bg-secondary-700 h-4 w-1" />
                 <p className="mb-0 text-sm text-gray-600">
-                  <Trans>Votre résultat</Trans>
+                  <Trans locale={locale}>Votre résultat</Trans>
                 </p>
               </div>
             )}
@@ -170,9 +170,9 @@ export default function PollStatisticsCharts({
             <div>
               <strong className="text-lg">{maxValueOfAllCategories}</strong>{' '}
               {shouldUseAbbreviation ? (
-                <Trans>t CO₂e / an</Trans>
+                <Trans locale={locale}>t CO₂e / an</Trans>
               ) : (
-                <Trans>tonnes CO₂e / an</Trans>
+                <Trans locale={locale}>tonnes CO₂e / an</Trans>
               )}
             </div>
           </div>

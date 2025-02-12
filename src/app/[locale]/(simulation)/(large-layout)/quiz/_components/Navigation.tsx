@@ -57,7 +57,7 @@ export default function Navigation({
             )
             trackEvent(quizClickPass)
           }}>
-          <Trans>Passer la question →</Trans>
+          <Trans locale={locale}>Passer la question →</Trans>
         </ButtonLink>
       ) : isAnswerValidated ? (
         <ButtonLink
@@ -69,11 +69,11 @@ export default function Navigation({
               simulationSimulationCompleted({ bilan: getNumericValue('bilan') })
             )
           }>
-          <Trans>Voir mes résultats →</Trans>
+          <Trans locale={locale}>Voir mes résultats →</Trans>
         </ButtonLink>
       ) : (
         <Button onClick={handleAnswerValidation}>
-          <Trans>Valider</Trans>
+          <Trans locale={locale}>Valider</Trans>
         </Button>
       )}
     </div>

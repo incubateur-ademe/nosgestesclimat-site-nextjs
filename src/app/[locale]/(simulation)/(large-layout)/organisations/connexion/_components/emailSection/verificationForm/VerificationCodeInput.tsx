@@ -35,7 +35,7 @@ export default function VerificationCodeInput({
       {inputError && (
         <div>
           <p className="mt-2 text-sm text-red-700">
-            <Trans>Le code est invalide</Trans>
+            <Trans locale={locale}>Le code est invalide</Trans>
           </p>
         </div>
       )}
@@ -45,7 +45,7 @@ export default function VerificationCodeInput({
           <Loader color="dark" size="sm" />
 
           <span>
-            <Trans>Nous vérifions votre code...</Trans>
+            <Trans locale={locale}>Nous vérifions votre code...</Trans>
           </span>
         </div>
       )}
@@ -55,7 +55,7 @@ export default function VerificationCodeInput({
           <CheckCircleIcon className="h-4 w-4 fill-green-700" />
 
           <span className="text-green-700">
-            <Trans>Votre code est valide !</Trans>
+            <Trans locale={locale}>Votre code est valide !</Trans>
           </span>
         </div>
       )}

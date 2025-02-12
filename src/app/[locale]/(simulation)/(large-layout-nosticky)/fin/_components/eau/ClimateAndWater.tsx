@@ -5,17 +5,17 @@ export default function ClimateAndWater() {
   return (
     <div>
       <Title tag="h2">
-        <Trans>
+        <Trans locale={locale}>
           <strong className="text-secondary-700">Eau, climat,</strong> même
           combat ?
         </Trans>
       </Title>
       <p>
-        <Trans>
+        <Trans locale={locale}>
           Les activités humaines menacent les équilibres naturels de notre
           planète.
         </Trans>{' '}
-        <Trans>
+        <Trans locale={locale}>
           Comme le climat,{' '}
           <strong className="text-secondary-700">
             le cycle de l’eau est fortement impacté partout dans le monde

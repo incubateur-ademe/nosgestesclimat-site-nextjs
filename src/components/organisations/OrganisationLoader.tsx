@@ -6,7 +6,9 @@ export default function OrganisationLoader() {
     <div className="py-12 text-center">
       <Loader color="dark" className="mb-8" />
       <p>
-        <Trans>Nous récupérons les données de votre organisation...</Trans>
+        <Trans locale={locale}>
+          Nous récupérons les données de votre organisation...
+        </Trans>
       </p>
     </div>
   )

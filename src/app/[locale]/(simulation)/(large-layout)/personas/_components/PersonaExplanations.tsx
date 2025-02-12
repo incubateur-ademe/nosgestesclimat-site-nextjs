@@ -6,7 +6,7 @@ export default function PersonaExplanations() {
       <details className="pb-4">
         <summary>
           <h2 className="inline">
-            <Trans>Qui sont-ils ?</Trans>
+            <Trans locale={locale}>Qui sont-ils ?</Trans>
           </h2>
         </summary>
 
@@ -78,7 +78,7 @@ export default function PersonaExplanations() {
       <details>
         <summary>
           <h2 className="inline">
-            <Trans>Comment les mettons-nous à jour ?</Trans>
+            <Trans locale={locale}>Comment les mettons-nous à jour ?</Trans>
           </h2>
         </summary>
 

@@ -53,7 +53,7 @@ export default function Explanation() {
         initial={{ opacity: 0, translateY: '-10px' }}
         animate={{ opacity: 1, translateY: 0 }}
         transition={{ duration: 0.3 }}
-        className="absolute left-0 right-0 top-20 z-50 mb-2 w-full rounded-xl border-2 border-primary-200 bg-gray-100 p-3 pt-2 text-sm md:left-0 md:top-24 md:mx-0 lg:w-80">
+        className="border-primary-200 absolute top-20 right-0 left-0 z-50 mb-2 w-full rounded-xl border-2 bg-gray-100 p-3 pt-2 text-sm md:top-24 md:left-0 md:mx-0 lg:w-80">
         <svg
           width="28"
           height="24"
@@ -63,7 +63,7 @@ export default function Explanation() {
           className="absolute -top-6 left-4 z-10">
           <path
             d="M14 0L27.8564 24H0.143594L14 0Z"
-            className=" fill-gray-100 stroke-primary-200 stroke-2"
+            className="stroke-primary-200 fill-gray-100 stroke-2"
           />
         </svg>
 
@@ -110,7 +110,7 @@ export default function Explanation() {
         </p>
         <p className="mb-2 md:mb-4">
           <Emoji>💧</Emoji>{' '}
-          <Trans>
+          <Trans locale={locale}>
             Retrouvez aussi le résultat de votre empreinte eau à la fin du
             test !
           </Trans>
@@ -120,7 +120,7 @@ export default function Explanation() {
             size="xs"
             data-cypress-id="understood-explanation-button"
             onClick={closeExplanation}>
-            <Trans>J'ai compris</Trans>
+            <Trans locale={locale}>J'ai compris</Trans>
           </Button>
         </div>
       </motion.div>

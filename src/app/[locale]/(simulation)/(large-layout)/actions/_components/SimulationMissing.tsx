@@ -23,7 +23,7 @@ export default function SimulationMissing() {
     <div className="mb-8">
       <Card className="border-none bg-gray-100!">
         <h2>
-          <Trans>Calcul d'empreinte carbone manquant</Trans>
+          <Trans locale={locale}>Calcul d'empreinte carbone manquant</Trans>
         </h2>
         <p>
           🔒{' '}
@@ -34,13 +34,13 @@ export default function SimulationMissing() {
 
         <div>
           <ButtonLink href={getLinkToSimulateur()}>
-            <Trans>
+            <Trans locale={locale}>
               {progression > 0 ? 'Reprendre mon test' : 'Faire le test'}
             </Trans>
           </ButtonLink>
         </div>
 
-        <p className="mb-0 mt-4">
+        <p className="mt-4 mb-0">
           <small>
             <Trans i18nKey={'publicodes.SimulationMissing.personnas'}>
               Vous pouvez aussi continuer avec un{' '}

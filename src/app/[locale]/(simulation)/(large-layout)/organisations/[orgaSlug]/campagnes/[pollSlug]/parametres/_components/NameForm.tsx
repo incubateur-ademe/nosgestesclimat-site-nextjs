@@ -81,7 +81,7 @@ export default function NameForm({
           containerClassName="max-w-[30rem]"
           label={
             <span className="text-lg font-medium">
-              <Trans>Nom de la campagne</Trans>
+              <Trans locale={locale}>Nom de la campagne</Trans>
             </span>
           }
           value={nameValue}
@@ -91,10 +91,10 @@ export default function NameForm({
         <TextInputGroup
           label={
             <p className="mb-0 flex w-full justify-between">
-              <Trans>Nombre de participants attendus</Trans>
-              <span className="font-bold italic text-secondary-700">
+              <Trans locale={locale}>Nombre de participants attendus</Trans>
+              <span className="text-secondary-700 font-bold italic">
                 {' '}
-                <Trans>facultatif</Trans>
+                <Trans locale={locale}>facultatif</Trans>
               </span>
             </p>
           }

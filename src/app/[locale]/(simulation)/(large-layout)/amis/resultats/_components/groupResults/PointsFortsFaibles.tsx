@@ -18,10 +18,10 @@ export default function PointsFortsFaibles({
           <h2
             className="mt-0 text-lg"
             data-cypress-id="points-fort-faibles-title">
-            <Trans>Vos points forts</Trans>
+            <Trans locale={locale}>Vos points forts</Trans>
           </h2>
           <p className="mb-4 text-gray-500">
-            <Trans>Par rapport à la moyenne du groupe.</Trans>
+            <Trans locale={locale}>Par rapport à la moyenne du groupe.</Trans>
           </p>
           <ul className="pl-0">
             {pointsForts?.map((point, index) => {
@@ -43,7 +43,7 @@ export default function PointsFortsFaibles({
       {!!pointsFaibles && pointsFaibles.length > 0 && (
         <>
           <h2 className="mt-6 text-lg">
-            <Trans>Vos points faibles</Trans>
+            <Trans locale={locale}>Vos points faibles</Trans>
           </h2>
           <ul className="pl-0">
             {pointsFaibles?.map((point, index) => {

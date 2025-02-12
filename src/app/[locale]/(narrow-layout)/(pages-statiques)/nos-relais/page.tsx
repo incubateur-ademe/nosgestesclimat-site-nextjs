@@ -40,16 +40,16 @@ export default async function NosRelais({
   return (
     <div>
       <Title>
-        <Trans>Ils relaient </Trans>
+        <Trans locale={locale}>Ils relaient </Trans>
         <span className="text-primary-700">
-          <Trans>Nos Gestes Climat</Trans>
+          <Trans locale={locale}>Nos Gestes Climat</Trans>
         </span>
       </Title>
 
       <div className="flex flex-wrap items-center md:flex-nowrap md:gap-16">
         <div>
           <p>
-            <Trans>
+            <Trans locale={locale}>
               Plus de 40 acteurs relaient ou ont relayé Nos Gestes Climat à
               travers 
               <a
@@ -67,7 +67,7 @@ export default async function NosRelais({
           </p>
 
           <p>
-            <Trans>
+            <Trans locale={locale}>
               Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans
               notre galerie de relais ? Merci de nous envoyer un message avec
               votre logo via{' '}
@@ -76,7 +76,7 @@ export default async function NosRelais({
           </p>
 
           <p className="mb-8 italic">
-            <Trans>
+            <Trans locale={locale}>
               N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat,
               qui est et restera un service public, indépendant et gratuit de
               l’ADEME.

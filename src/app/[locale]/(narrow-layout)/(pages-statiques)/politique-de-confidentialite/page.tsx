@@ -27,21 +27,21 @@ export default function ViePriveePage() {
   return (
     <div className="markdown">
       <p>
-        <Trans>
+        <Trans locale={locale}>
           La simulation et les calculs se font dans votre navigateur Web, donc
           les réponses aux questions restent chez vous, nous n'en collectons
           aucune.
         </Trans>
       </p>
       <p>
-        <Trans>
+        <Trans locale={locale}>
           Cependant, nous suivons quelques informations sur votre utilisation de
           ce calculateur, telles que les pages consultées et le temps passé,
           dans l'unique but de l'améliorer.
         </Trans>
       </p>
       <p>
-        <Trans>
+        <Trans locale={locale}>
           En particulier, nous suivons l'adresse de la page de fin de
           simulation, qui contient le total de votre empreinte et sa répartition
           en grande catégories (transport, logement, etc.)

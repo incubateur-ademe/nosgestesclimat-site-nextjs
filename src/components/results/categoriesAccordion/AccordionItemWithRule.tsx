@@ -48,7 +48,7 @@ export default function AccordionItemWithRule({
           displayValue={
             <span>
               <strong className="font-black">{formattedValue}</strong>{' '}
-              <Trans>{unit}</Trans>
+              <Trans locale={locale}>{unit}</Trans>
             </span>
           }
         />

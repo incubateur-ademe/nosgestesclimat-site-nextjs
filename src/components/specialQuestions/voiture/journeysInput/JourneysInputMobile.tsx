@@ -26,7 +26,7 @@ export default function JourneysInputMobile({
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
-      className="mb-2 block w-full overflow-scroll rounded-xl border-2 border-primary-50 bg-white p-2 lg:hidden">
+      className="border-primary-50 mb-2 block w-full overflow-scroll rounded-xl border-2 bg-white p-2 lg:hidden">
       <table className="block w-full border-collapse">
         <tbody className="block w-full">
           <AddJourneyMobile
@@ -38,7 +38,7 @@ export default function JourneysInputMobile({
           {journeys.length > 0 && (
             <tr className="mt-4 block w-full text-left">
               <th className="mb-2 block">
-                <Trans>Vos trajets :</Trans>
+                <Trans locale={locale}>Vos trajets :</Trans>
               </th>
             </tr>
           )}

@@ -1,5 +1,3 @@
-'use server'
-
 import i18nConfig from '@/i18nConfig'
 import { headers } from 'next/headers'
 

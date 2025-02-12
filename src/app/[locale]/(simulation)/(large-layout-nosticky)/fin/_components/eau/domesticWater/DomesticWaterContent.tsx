@@ -16,7 +16,7 @@ export default function DomesticWaterContent() {
   return (
     <>
       <p className="mb-6">
-        <Trans>
+        <Trans locale={locale}>
           L’eau domestique, à savoir, celle qui sort de vos robinets n'est pas
           comprise dans votre empreinte eau, puisqu’elle est restituée. Par
           exemple, l’eau de votre douche, après dépollution, est rendue aux
@@ -25,19 +25,19 @@ export default function DomesticWaterContent() {
       </p>
       <DomesticWaterChart />
       <p>
-        <Trans>
+        <Trans locale={locale}>
           L’eau domestique peut avoir un{' '}
-          <strong className="font-black text-secondary-700">
+          <strong className="text-secondary-700 font-black">
             impact très fort
           </strong>{' '}
           selon la{' '}
-          <strong className="font-black text-secondary-700">
+          <strong className="text-secondary-700 font-black">
             saison et la localisation.
           </strong>
         </Trans>
       </p>
       <p>
-        <Trans>
+        <Trans locale={locale}>
           Voici la carte des départements qui subissent des restrictions d'eau
           en ce moment :
         </Trans>
@@ -50,15 +50,15 @@ export default function DomesticWaterContent() {
         />
 
         {error && (
-          <div className="absolute left-0 top-0 z-10 flex h-full w-full flex-col items-center justify-center bg-[rgba(255,255,255,0.7)]">
+          <div className="absolute top-0 left-0 z-10 flex h-full w-full flex-col items-center justify-center bg-[rgba(255,255,255,0.7)]">
             <p className="text-center text-sm font-bold text-red-700">
-              <Trans>
+              <Trans locale={locale}>
                 Oups ! Une erreur s'est produite au moment de récupérer les
                 données VigiEau.
               </Trans>
             </p>
             <p className="text-center text-sm font-bold text-red-700">
-              <Trans>
+              <Trans locale={locale}>
                 Veuillez réessayer plus tard ou nous contacter si le problème
                 persiste.
               </Trans>
@@ -69,7 +69,9 @@ export default function DomesticWaterContent() {
 
       <p>
         <Link href="https://vigieau.gouv.fr/" target="_blank">
-          <Trans>Rendez-vous sur VigiEau pour en savoir plus.</Trans>
+          <Trans locale={locale}>
+            Rendez-vous sur VigiEau pour en savoir plus.
+          </Trans>
         </Link>
       </p>
     </>

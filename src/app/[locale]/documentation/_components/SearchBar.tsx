@@ -86,7 +86,7 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
         <h2 className="flex items-center text-xl">
           <SearchIcon className="mr-2" />
 
-          <Trans>Explorez nos modèles</Trans>
+          <Trans locale={locale}>Explorez nos modèles</Trans>
         </h2>
 
         <label

@@ -67,8 +67,8 @@ export default function MetricSlider({
         <MetricCard
           metric={carboneMetric}
           metricTitle={{
-            desktop: <Trans>Mon empreinte carbone</Trans>,
-            mobile: <Trans>Empreinte carbone</Trans>,
+            desktop: <Trans locale={locale}>Mon empreinte carbone</Trans>,
+            mobile: <Trans locale={locale}>Empreinte carbone</Trans>,
           }}
           isSticky={isSticky}
           aria-label={
@@ -84,8 +84,8 @@ export default function MetricSlider({
         <MetricCard
           metric={eauMetric}
           metricTitle={{
-            desktop: <Trans>Mon empreinte eau</Trans>,
-            mobile: <Trans>Empreinte eau</Trans>,
+            desktop: <Trans locale={locale}>Mon empreinte eau</Trans>,
+            mobile: <Trans locale={locale}>Empreinte eau</Trans>,
           }}
           isSticky={isSticky}
           aria-label={
@@ -99,11 +99,11 @@ export default function MetricSlider({
 
       <p
         className={twMerge(
-          'mt-2 inline-block w-full text-center text-xs text-default md:text-sm transition-opacity duration-300',
+          'text-default mt-2 inline-block w-full text-center text-xs transition-opacity duration-300 md:text-sm',
           isSticky ? 'opacity-0' : ''
         )}>
         <Emoji>💡</Emoji>{' '}
-        <Trans>
+        <Trans locale={locale}>
           Affichez le détail de votre empreinte carbone ou eau en cliquant sur
           les cartes ci-dessus.
         </Trans>

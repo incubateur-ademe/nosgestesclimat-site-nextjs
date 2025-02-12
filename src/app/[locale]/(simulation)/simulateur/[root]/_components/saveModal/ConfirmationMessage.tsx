@@ -8,12 +8,12 @@ export default function ConfirmationMessage() {
       hasSeparator={false}
       className="flex items-center gap-1"
       subtitle={
-        <Trans>
+        <Trans locale={locale}>
           Vous pouvez le reprendre plus tard en cliquant sur le lien que vous
           avez reçu par email.
         </Trans>
       }>
-      <Trans>Votre test est sauvegardé !</Trans>
+      <Trans locale={locale}>Votre test est sauvegardé !</Trans>
       <svg
         className="inline-block h-8 w-8"
         viewBox="0 0 100 100"

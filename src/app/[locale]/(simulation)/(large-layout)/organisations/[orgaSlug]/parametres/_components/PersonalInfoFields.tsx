@@ -20,7 +20,7 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
   return (
     <div className="flex flex-col gap-4">
       <TextInputGroup
-        label={<Trans>Votre prénom</Trans>}
+        label={<Trans locale={locale}>Votre prénom</Trans>}
         value={defaultValues.administratorFirstName}
         {...register('administratorFirstName', {
           required: t('Ce champ est requis'),
@@ -28,7 +28,7 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
       />
 
       <TextInputGroup
-        label={<Trans>Votre nom</Trans>}
+        label={<Trans locale={locale}>Votre nom</Trans>}
         value={defaultValues.administratorLastName}
         {...register('administratorLastName', {
           required: t('Ce champ est requis'),
@@ -38,8 +38,8 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
       <TextInputGroup
         label={
           <p className="mb-0 flex items-center justify-between">
-            <Trans>Votre poste</Trans>
-            <span className="text-sm italic text-secondary-700">
+            <Trans locale={locale}>Votre poste</Trans>
+            <span className="text-secondary-700 text-sm italic">
               facultatif
             </span>
           </p>
@@ -51,10 +51,10 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
       <TextInputGroup
         label={
           <p className="mb-0 flex w-full justify-between">
-            <Trans>Votre téléphone</Trans>{' '}
-            <span className="font-bold italic text-secondary-700">
+            <Trans locale={locale}>Votre téléphone</Trans>{' '}
+            <span className="text-secondary-700 font-bold italic">
               {' '}
-              <Trans>facultatif</Trans>
+              <Trans locale={locale}>facultatif</Trans>
             </span>
           </p>
         }
@@ -63,7 +63,7 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
       />
 
       <TextInputGroup
-        label={<Trans>Votre e-mail</Trans>}
+        label={<Trans locale={locale}>Votre e-mail</Trans>}
         value={defaultValues.email}
         {...register('email', {
           required: t('Ce champ est requis'),
@@ -77,12 +77,12 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
           label={
             <span>
               <strong>
-                <Trans>
+                <Trans locale={locale}>
                   Recevoir nos actualités sur les nouveaux services dédiés aux
                   organisation (une fois par mois maximum !)
                 </Trans>
               </strong>{' '}
-              <Trans>(une fois par mois maximum !)</Trans>
+              <Trans locale={locale}>(une fois par mois maximum !)</Trans>
             </span>
           }
           {...register('hasOptedInForCommunications')}

@@ -11,9 +11,9 @@ export default function StepsDisplay({ currentStep }: Props) {
   const { progression } = useCurrentSimulation()
 
   return (
-    <p className="mb-2 text-sm font-bold text-secondary-700">
-      <Trans>Étape</Trans> {currentStep} <Trans>sur</Trans>{' '}
-      {progression === 1 ? 2 : 3}
+    <p className="text-secondary-700 mb-2 text-sm font-bold">
+      <Trans locale={locale}>Étape</Trans> {currentStep}{' '}
+      <Trans locale={locale}>sur</Trans> {progression === 1 ? 2 : 3}
     </p>
   )
 }

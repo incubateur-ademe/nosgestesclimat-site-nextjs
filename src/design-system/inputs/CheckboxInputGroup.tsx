@@ -1,5 +1,5 @@
 import Trans from '@/components/translation/Trans'
-import type { ChangeEvent, ForwardedRef, ReactNode} from 'react';
+import type { ChangeEvent, ForwardedRef, ReactNode } from 'react'
 import { forwardRef } from 'react'
 
 type Props = {
@@ -44,7 +44,7 @@ export default forwardRef(function CheckboxInputGroup(
           name={name}
           id={name}
           type="checkbox"
-          className={`mr-1 max-w-[30rem] cursor-pointer rounded-xl border-2 border-solid border-gray-200 bg-gray-100 !p-4 text-2xl transition-colors focus:border-primary-700 focus:ring-2 focus:ring-primary-700 ${
+          className={`focus:border-primary-700 focus:ring-primary-700 mr-1 max-w-[30rem] cursor-pointer rounded-xl border-2 border-solid border-gray-200 bg-gray-100 !p-4 text-2xl transition-colors focus:ring-2 ${
             sizesClassNames[size]
           } ${error ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : ''}`}
           onChange={onChange}
@@ -56,7 +56,7 @@ export default forwardRef(function CheckboxInputGroup(
         />
 
         <span className={`text-sm ${error ? 'text-red-700!' : ''}`}>
-          <Trans>{label}</Trans>
+          <Trans locale={locale}>{label}</Trans>
         </span>
       </label>
 

@@ -29,7 +29,11 @@ export default async function ModelePage() {
   return (
     <div>
       <Title
-        title={<Trans>Le modèle d'empreinte carbone de référence</Trans>}
+        title={
+          <Trans locale={locale}>
+            Le modèle d'empreinte carbone de référence
+          </Trans>
+        }
       />
 
       <p>
@@ -51,7 +55,7 @@ export default async function ModelePage() {
       </p>
 
       <h2>
-        💫 <Trans>Une technologie moderne</Trans>
+        💫 <Trans locale={locale}>Une technologie moderne</Trans>
       </h2>
 
       <p>
@@ -97,7 +101,7 @@ export default async function ModelePage() {
       </p>
 
       <h2>
-        📚️ <Trans>Un modèle complet</Trans>
+        📚️ <Trans locale={locale}>Un modèle complet</Trans>
       </h2>
 
       <ModeleStatsBlock />
@@ -117,7 +121,7 @@ export default async function ModelePage() {
       </p>
 
       <h2>
-        ⏩️ <Trans>En développement actif</Trans>
+        ⏩️ <Trans locale={locale}>En développement actif</Trans>
       </h2>
 
       <p>

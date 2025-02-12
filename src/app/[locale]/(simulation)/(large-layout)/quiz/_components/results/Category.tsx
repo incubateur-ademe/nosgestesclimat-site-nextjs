@@ -41,7 +41,8 @@ export default function Category({
         icons={icons?.slice(0, 2)} // No idea why we need to remove the last character on some icons
         displayValue={
           <span>
-            <strong>{formattedValue}</strong> <Trans>{unit}</Trans>
+            <strong>{formattedValue}</strong>{' '}
+            <Trans locale={locale}>{unit}</Trans>
           </span>
         }
       />

@@ -87,8 +87,8 @@ export default function ExportDataButton({
   }
   return (
     <Button color={color} disabled={isLoading} onClick={handleClick} {...props}>
-      <DownloadIcon className="mr-2 fill-primary-700" />
-      <Trans>Exporter les données</Trans>
+      <DownloadIcon className="fill-primary-700 mr-2" />
+      <Trans locale={locale}>Exporter les données</Trans>
     </Button>
   )
 }

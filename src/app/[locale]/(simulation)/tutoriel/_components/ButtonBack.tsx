@@ -15,7 +15,7 @@ export default function ButtonBack() {
       color="secondary"
       title={t("revenir à l'accueil")}
       onClick={() => trackEvent(tutorielClickPrecedent)}>
-      ← <Trans>Précédent</Trans>
+      ← <Trans locale={locale}>Précédent</Trans>
     </ButtonLink>
   )
 }

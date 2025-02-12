@@ -10,13 +10,13 @@ export default function InfoTooltipIcon({ className = '' }) {
   return (
     <div className={className}>
       <span
-        className="ml-1 cursor-pointer text-2xl font-bold text-primary-700"
+        className="text-primary-700 ml-1 cursor-pointer text-2xl font-bold"
         data-tooltip-id={id}>
         &#9432;
       </span>
       <Tooltip id={id}>
         <div className="max-w-sm">
-          <Trans>
+          <Trans locale={locale}>
             Seules les options incluant plus de 3 participants sont accessibles,
             et ce, dans un objectif de préservation de l’anonymat des
             participants.

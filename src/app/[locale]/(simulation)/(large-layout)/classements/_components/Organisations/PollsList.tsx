@@ -20,7 +20,7 @@ export default function PollsList({ organisations }: Props) {
       {!!organisation && (
         <>
           <h3 className="mb-0 text-base">
-            <Trans>Mon organisation</Trans>
+            <Trans locale={locale}>Mon organisation</Trans>
           </h3>
           <OrganisationItem organisation={organisation} />
         </>
@@ -29,7 +29,7 @@ export default function PollsList({ organisations }: Props) {
       {!!organisation && !!polls?.length && (
         <>
           <h3 className="mb-0 text-base">
-            <Trans>Mes campagnes</Trans>
+            <Trans locale={locale}>Mes campagnes</Trans>
           </h3>
 
           {polls?.map((poll) => (

@@ -13,7 +13,7 @@ export default function OtherArticles({
     <div className="mt-10 bg-gray-100 px-4 py-8">
       <div className="max-w-5xl md:mx-auto">
         <h2 className="relative mb-8">
-          <Trans>D'autres articles sur le même sujet</Trans>
+          <Trans locale={locale}>D'autres articles sur le même sujet</Trans>
         </h2>
 
         <div className="relative flex flex-col gap-4 md:grid md:grid-cols-3">

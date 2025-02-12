@@ -100,8 +100,8 @@ export default function MosaicBooleanInput({
           ) : null}
         </div>
         {isInactive ? (
-          <div className="absolute bottom-1 right-4 top-1 flex -rotate-12 items-center justify-center rounded-xl border-2 border-black bg-white p-2 text-xs font-semibold text-black">
-            <Trans>Bientôt disponible</Trans>
+          <div className="absolute top-1 right-4 bottom-1 flex -rotate-12 items-center justify-center rounded-xl border-2 border-black bg-white p-2 text-xs font-semibold text-black">
+            <Trans locale={locale}>Bientôt disponible</Trans>
           </div>
         ) : null}
       </label>

@@ -21,7 +21,7 @@ export default function GroupItem({ group }: Props) {
 
   return (
     <Link
-      className="mb-3 rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors hover:bg-primary-100"
+      className="hover:bg-primary-100 mb-3 rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors"
       href={getLinkToGroupDashboard({ groupId: group.id })}
       onClick={() =>
         trackEvent(
@@ -42,7 +42,8 @@ export default function GroupItem({ group }: Props) {
             </div>
             <div className="flex gap-1 text-sm text-violet-900">
               <span className="whitespace-nowrap">
-                {group.participants.length ?? 0} <Trans>participant</Trans>
+                {group.participants.length ?? 0}{' '}
+                <Trans locale={locale}>participant</Trans>
                 {group.participants.length > 1 ? 's' : ''}
               </span>{' '}
               <span> - </span>{' '}

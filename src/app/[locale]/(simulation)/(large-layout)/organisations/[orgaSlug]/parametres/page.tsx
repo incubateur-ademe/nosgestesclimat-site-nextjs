@@ -197,7 +197,7 @@ export default function ParametresPage() {
       <Title
         title={
           <span>
-            <Trans>Paramètres de </Trans>
+            <Trans locale={locale}>Paramètres de </Trans>
             <strong className="text-primary-700">{organisation?.name}</strong>
           </span>
         }
@@ -205,10 +205,10 @@ export default function ParametresPage() {
 
       <Form
         error={error}
-        className="mb-4 mt-8"
+        className="mt-8 mb-4"
         onSubmit={handleSubmit(handleUpdateOrganisation)}>
         <h2>
-          <Trans>Votre organisation</Trans>
+          <Trans locale={locale}>Votre organisation</Trans>
         </h2>
 
         <OrganisationFields
@@ -220,7 +220,7 @@ export default function ParametresPage() {
         <Separator className="my-6" />
 
         <h2 className="mt-6">
-          <Trans>Vos informations personnelles</Trans>
+          <Trans locale={locale}>Vos informations personnelles</Trans>
         </h2>
 
         <PersonalInfoFields defaultValues={defaultValues} register={register} />

@@ -9,15 +9,17 @@ export default function IllustratedPointsList() {
         <section className="flex flex-wrap items-center justify-between gap-8">
           <div className="mx-auto max-w-full md:w-[34rem] lg:ml-0">
             <h2 className="mb-2 text-base text-pink-600">
-              <Trans>Campagne personnalisée</Trans>
+              <Trans locale={locale}>Campagne personnalisée</Trans>
             </h2>
 
             <h3 className="text-2xl leading-10 md:text-3xl">
-              <Trans>Lancez une campagne Nos Gestes Climat personnalisée</Trans>
+              <Trans locale={locale}>
+                Lancez une campagne Nos Gestes Climat personnalisée
+              </Trans>
             </h3>
 
             <p className="text-base md:text-lg">
-              <Trans>
+              <Trans locale={locale}>
                 Créez une campagne Nos Gestes Climat personnalisée au sein de
                 votre organisation et accédez à un kit clé en main pour
                 sensibiliser vos partenaires au sein de votre organisation.
@@ -42,15 +44,17 @@ export default function IllustratedPointsList() {
         <section className="flex flex-wrap items-center justify-between gap-8">
           <div className="mx-auto max-w-full md:w-[34rem] lg:ml-0">
             <h2 className="mb-2 text-base text-pink-600">
-              <Trans>Tableau de bord</Trans>
+              <Trans locale={locale}>Tableau de bord</Trans>
             </h2>
 
             <h3 className="text-2xl leading-10 md:text-3xl">
-              <Trans>Explorez, comparez et analysez vos données</Trans>
+              <Trans locale={locale}>
+                Explorez, comparez et analysez vos données
+              </Trans>
             </h3>
 
             <p className="text-base md:text-lg">
-              <Trans>
+              <Trans locale={locale}>
                 Explorez, analysez et téléchargez des données anonymisées pour
                 faire des choix éclairés et améliorer continuellement votre
                 démarche écologique. Avec nos exports sur mesure, partagez vos
@@ -77,17 +81,17 @@ export default function IllustratedPointsList() {
         <section className="flex flex-wrap items-center justify-between gap-8">
           <div className="mx-auto max-w-full md:w-[34rem] lg:ml-0">
             <h2 className="mb-2 text-base text-pink-600">
-              <Trans>Lien personnalisé & iframes</Trans>
+              <Trans locale={locale}>Lien personnalisé & iframes</Trans>
             </h2>
 
             <h3 className="text-2xl leading-10 md:text-3xl">
-              <Trans>
+              <Trans locale={locale}>
                 Intégrez Nos Gestes Climat directement à vos services
               </Trans>
             </h3>
 
             <p className="text-base md:text-lg">
-              <Trans>
+              <Trans locale={locale}>
                 Permettez à vos cibles (clients, étudiants, participants,
                 habitants..) de calculer et réduire leur empreinte carbone
                 directement depuis vos plateformes web et mobile, avec un lien

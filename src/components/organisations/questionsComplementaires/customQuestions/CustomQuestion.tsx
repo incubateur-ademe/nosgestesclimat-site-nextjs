@@ -70,7 +70,7 @@ export default function CustomQuestion({
     return (
       <CustomQuestionForm
         organisation={organisation}
-        submitLabel={<Trans>Modifier</Trans>}
+        submitLabel={<Trans locale={locale}>Modifier</Trans>}
         poll={poll}
         onCompleted={(changes) => {
           onChange(changes)

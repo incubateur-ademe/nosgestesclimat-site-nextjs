@@ -79,16 +79,17 @@ export default async function ArticlePage({
             <div className="flex flex-row gap-3">
               <p className="mb-0 text-lg">
                 <span className="text-primary-600">
-                  <Trans>Temps de lecture :</Trans>
+                  <Trans locale={locale}>Temps de lecture :</Trans>
                 </span>{' '}
-                {Math.round(article.duration / 60)} <Trans>minutes</Trans>
+                {Math.round(article.duration / 60)}{' '}
+                <Trans locale={locale}>minutes</Trans>
               </p>
 
               <span className="text-lg text-gray-500">|</span>
 
               <p className="mb-0 text-lg">
                 <span className="text-primary-600">
-                  <Trans>Publié le :</Trans>
+                  <Trans locale={locale}>Publié le :</Trans>
                 </span>{' '}
                 {article.createdAt
                   ? new Date(article.createdAt).toLocaleDateString('fr')
