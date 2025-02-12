@@ -4,42 +4,40 @@ import { getGeolocation } from '@/helpers/getGeolocation'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import { dir } from 'i18next'
-import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
 import Script from 'next/script'
-import type { PropsWithChildren } from 'react'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
 
 export const marianne = localFont({
   src: [
     {
-      path: '../../public/fonts/Marianne-Thin.woff2',
+      path: '../../../public/fonts/Marianne-Thin.woff2',
       weight: '100',
       style: 'normal',
     },
     {
-      path: '../../public/fonts/Marianne-Light.woff2',
+      path: '../../../public/fonts/Marianne-Light.woff2',
       weight: '300',
       style: 'normal',
     },
     {
-      path: '../../public/fonts/Marianne-Regular.woff2',
+      path: '../../../public/fonts/Marianne-Regular.woff2',
       weight: 'normal',
       style: 'normal',
     },
     {
-      path: '../../public/fonts/Marianne-Medium.woff2',
+      path: '../../../public/fonts/Marianne-Medium.woff2',
       weight: '500',
       style: 'normal',
     },
     {
-      path: '../../public/fonts/Marianne-Bold.woff2',
+      path: '../../../public/fonts/Marianne-Bold.woff2',
       weight: 'bold',
       style: 'normal',
     },
     {
-      path: '../../public/fonts/Marianne-ExtraBold.woff2',
+      path: '../../../public/fonts/Marianne-ExtraBold.woff2',
       weight: '800',
       style: 'normal',
     },
@@ -47,14 +45,20 @@ export const marianne = localFont({
   variable: '--font-marianne',
 })
 
-export default async function RootLayout({ children }: PropsWithChildren) {
-  try {
-    const lang = currentLocale()
+export default async function RootLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
 
+  try {
     const initialRegion = await getGeolocation()
 
     return (
-      <html lang={lang ?? ''} dir={dir(lang ?? '')}>
+      <html lang={locale} dir={dir(locale)}>
         <head>
           <link rel="icon" href="/favicon.png" />
 
@@ -118,7 +122,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         </head>
 
         <body
-          className={`${marianne.className} bg-white text-default transition-colors duration-700`}>
+          className={`${marianne.className} text-default bg-white transition-colors duration-700`}>
           <Script id="script-user-agent">{`
             const b = document.documentElement;
             b.setAttribute('data-useragent', navigator.userAgent);
@@ -136,7 +140,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
   } catch (error) {
     return (
       <html lang="fr">
-        <body className={`${marianne.className} bg-white text-default`}>
+        <body className={`${marianne.className} text-default bg-white`}>
           <div className="flex h-screen flex-col items-center justify-center">
             <ErrorContent />
           </div>

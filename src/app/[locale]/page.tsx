@@ -12,7 +12,7 @@ import {
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
 import { headers } from 'next/headers'
-import Partners from '../components/landing-pages/Partners'
+import Partners from '../../components/landing-pages/Partners'
 import CollectivelyCommit from './_components/CollectivelyCommit'
 import DecryptChallenges from './_components/DecryptChallenges'
 import DidYouKnowMainLanding from './_components/DidYouKnowMainLanding'
@@ -22,8 +22,11 @@ import ModelInfo from './_components/ModelInfo'
 import TheySpeakAboutUs from './_components/TheySpeakAboutUs'
 import TwoFootprints from './_components/TwoFootprints'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await props.params
+  const { t } = await getServerTranslation(locale)
   return getMetadataObject({
     title: t('Calculez votre empreinte carbone et eau en 10 minutes !'),
     description: t(
@@ -37,7 +40,7 @@ export async function generateMetadata() {
 }
 
 export default async function Homepage() {
-  const headersList = headers()
+  const headersList = await headers()
   const pathname = headersList.get('x-pathname') || '/'
 
   return (

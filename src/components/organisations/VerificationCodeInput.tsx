@@ -1,4 +1,4 @@
-import { marianne } from '@/app/layout'
+import { marianne } from '@/app/[lang]/layout'
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import Trans from '@/components/translation/Trans'
 import Loader from '@/design-system/layout/Loader'

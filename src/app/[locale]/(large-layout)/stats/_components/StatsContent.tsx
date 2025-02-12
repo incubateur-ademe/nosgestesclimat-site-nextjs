@@ -14,6 +14,7 @@ import {
 } from '@/helpers/matomo'
 import { useMainNewsletter } from '@/hooks/useMainNewsletter'
 import type { UseQueryResult } from '@tanstack/react-query'
+import type { ReactNode } from 'react'
 import AcquisitionBlock from './content/AcquisitionBlock'
 import MetabaseIframe from './content/MetabaseIframe'
 import SimulationsBlock from './content/SimulationsBlock'
@@ -26,7 +27,7 @@ const UseQueryResultHandler = ({
   toRenderWithRequestData,
 }: {
   requestResults: UseQueryResult<any, unknown>[]
-  toRenderWithRequestData: (data: any[]) => JSX.Element
+  toRenderWithRequestData: (data: any[]) => ReactNode
 }) => {
   const notSuccessfulRequests = requestResults.filter(
     ({ isSuccess }) => !isSuccess

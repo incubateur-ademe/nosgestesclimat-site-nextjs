@@ -1,4 +1,4 @@
-import { marianne } from '@/app/layout'
+import { marianne } from '@/app/[lang]/layout'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { twMerge } from 'tailwind-merge'

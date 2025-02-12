@@ -7,8 +7,6 @@ import * as Sentry from '@sentry/nextjs'
 Sentry.init({
   dsn: 'https://75dcf9dfe74c4439977a517be2805122@sentry.incubateur.net/118',
 
-  enableTracing: true,
-
   // Only for previews including preprod
   debug: process.env.NODE_ENV !== 'production',
 

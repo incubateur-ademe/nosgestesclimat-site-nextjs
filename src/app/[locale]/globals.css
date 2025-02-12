@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
 @font-face {
   font-family: 'Marianne';
@@ -150,7 +148,7 @@ body {
 }
 
 a {
-  @apply break-words text-primary-700 underline transition-colors hover:text-primary-800;
+  @apply text-primary-700 hover:text-primary-800 break-words underline transition-colors;
   word-break: break-word;
 }
 
@@ -725,10 +723,10 @@ html[data-useragent*='Trident'] #js {
   @apply !flex;
 }
 .slick-dots > li > button {
-  @apply h-3 w-3 rounded-full border-2 border-primary-700 text-[0px] transition-all duration-500;
+  @apply border-primary-700 h-3 w-3 rounded-full border-2 text-[0px] transition-all duration-500;
 }
 .slick-active > button {
-  @apply !w-8 bg-primary-700;
+  @apply bg-primary-700 !w-8;
 }
 
 .custom-scrollbar {

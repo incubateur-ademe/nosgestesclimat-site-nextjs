@@ -66,13 +66,13 @@ const nextConfig = {
     return config
   },
   productionBrowserSourceMaps: true,
+  outputFileTracingExcludes: {
+    '*': ['.next/cache/webpack', '.git/**/*', 'cypress/**/*'],
+    '/blog': ['public/NGC_Kit.diffusion.zip'],
+    '/nouveautes': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
+    '/sitemap.xml': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
+  },
   experimental: {
-    outputFileTracingExcludes: {
-      '*': ['.next/cache/webpack', '.git/**/*', 'cypress/**/*'],
-      '/blog': ['public/NGC_Kit.diffusion.zip'],
-      '/nouveautes': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
-      '/sitemap.xml': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
-    },
     optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
     webpackBuildWorker: true,
     turbo: {
@@ -85,40 +85,33 @@ const nextConfig = {
   },
 }
 
-const sentryConfig = [
-  {
-    // For all available options, see:
-    // https://github.com/getsentry/sentry-webpack-plugin#options
+/** @type {import('@sentry/nextjs').SentryBuildOptions} */
+const sentryConfig = {
+  // For all available options, see:
+  // https://github.com/getsentry/sentry-webpack-plugin#options
 
-    // Suppresses source map uploading logs during build
-    silent: true,
-    org: 'incubateur-ademe',
-    project: 'nosgestesclimat-nextjs',
-    url: 'https://sentry.incubateur.net/',
-    authToken: process.env.SENTRY_AUTH_TOKEN,
-  },
-  {
-    // For all available options, see:
-    // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
+  // Suppresses source map uploading logs during build
+  silent: true,
+  org: 'incubateur-ademe',
+  project: 'nosgestesclimat-nextjs',
 
-    // Upload a larger set of source maps for prettier stack traces (increases build time)
-    widenClientFileUpload: false,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  // For all available options, see:
+  // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 
-    // Transpiles SDK to be compatible with IE11 (increases bundle size)
-    transpileClientSDK: false,
+  // Upload a larger set of source maps for prettier stack traces (increases build time)
+  widenClientFileUpload: false,
 
-    // Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
-    tunnelRoute: '/monitoring',
+  // Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
+  tunnelRoute: '/monitoring',
 
-    // Hides source maps from generated client bundles
-    hideSourceMaps: false,
+  // Automatically tree-shake Sentry logger statements to reduce bundle size
+  disableLogger: true,
 
-    // Automatically tree-shake Sentry logger statements to reduce bundle size
-    disableLogger: true,
-  },
-]
+  telemetry: process.env.NODE_ENV !== 'development',
+}
 
 module.exports =
   process.env.NODE_ENV !== 'development'
-    ? withSentryConfig(withMDX(nextConfig), ...sentryConfig)
+    ? withSentryConfig(withMDX(nextConfig), sentryConfig)
     : nextConfig

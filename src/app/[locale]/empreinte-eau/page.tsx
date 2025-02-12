@@ -22,8 +22,11 @@ import WhatDoWeMeasureWaterFootprint from './_components/WhatDoWeMeasureWaterFoo
 import WhatItIsWaterFootprint from './_components/WhatItIsWaterFootprint'
 import { waterFAQJsonLd } from './_constants/waterFAQJsonLd'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await props.params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
     title: t('Empreinte eau : comprendre, évaluer, économiser l’eau'),
@@ -37,8 +40,11 @@ export async function generateMetadata() {
   })
 }
 
-export default async function WaterFootprintLandingPage() {
-  const { t } = await getServerTranslation()
+export default async function WaterFootprintLandingPage(props: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await props.params
+  const { t } = await getServerTranslation(locale)
 
   return (
     <>
