@@ -15,21 +15,24 @@ import StickySidebar from './_components/StickySidebar'
 export async function generateMetadata({
   params,
 }: {
-  params: { category: string; article: string; locale: string }
+  params: Promise<{ category: string; article: string; locale: string }>
 }) {
+  const { category, article, locale } = await params
+
   const { metaTitle, metaDescription, image } =
     (await fetchArticlePageMetadata({
-      articleSlug: params.article,
+      articleSlug: article,
     })) || {}
 
   return getMetadataObject({
+    locale,
     title: metaTitle || 'Blog - Nos Gestes Climat',
     description:
       metaDescription ||
       'Découvrez des conseils pratiques pour réduire votre empreinte écologique.',
     image: image?.url || '',
     alternates: {
-      canonical: `/blog/${params.category}/${params.article}`,
+      canonical: `/blog/${category}/${article}`,
     },
   })
 }

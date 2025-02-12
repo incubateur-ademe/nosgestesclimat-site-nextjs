@@ -1,8 +1,9 @@
 'use client'
 
 import type { PropsWithChildren } from 'react'
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
+import { getGeolocation } from '@/helpers/getGeolocation'
 import type { RegionFromGeolocation } from '@/publicodes-state/types'
 import type { Migration } from '@publicodes/tools/migration'
 import UserContext from './context'
@@ -20,17 +21,22 @@ type Props = {
    * The migration instructions for old localstorage
    */
   migrationInstructions: Migration
-  /**
-   * The region of the user (via server side geolocation)
-   */
-  initialRegion?: RegionFromGeolocation
 }
 export default function UserProvider({
   children,
   storageKey = 'ngc',
   migrationInstructions,
-  initialRegion,
 }: PropsWithChildren<Props>) {
+  const [initialRegion, setInitialRegion] = useState<
+    RegionFromGeolocation | undefined
+  >(undefined)
+
+  useEffect(() => {
+    getGeolocation().then((region) => {
+      setInitialRegion(region)
+    })
+  }, [])
+
   useUpdateOldLocalStorage({ storageKey })
 
   const { user, setUser } = usePersistentUser({ storageKey, initialRegion })

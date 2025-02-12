@@ -15,21 +15,24 @@ import CategoryJSONLD from './_components/CategoryJSONLD'
 export async function generateMetadata({
   params,
 }: {
-  params: { category: string }
+  params: Promise<{ category: string; locale: string }>
 }) {
+  const { category, locale } = await params
+
   const { metaTitle, metaDescription, image } =
     (await fetchCategoryPageMetadata({
-      slug: params.category,
+      slug: category,
     })) || {}
 
   return getMetadataObject({
+    locale,
     title: metaTitle ?? 'Blog - Nos Gestes Climat',
     description:
       metaDescription ??
       'Découvrez des conseils pratiques pour réduire votre empreinte écologique.',
     image: image?.url ?? '',
     alternates: {
-      canonical: `/blog/${params.category}`,
+      canonical: `/blog/${category}`,
     },
   })
 }

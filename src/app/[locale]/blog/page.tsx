@@ -14,11 +14,18 @@ import { notFound } from 'next/navigation'
 import BlogHero from './_components/BlogHero'
 import GroupBlock from './_components/GroupBlock'
 
-export async function generateMetadata() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+
   const { metaTitle, metaDescription, image } =
     (await fetchHomepageMetadata()) || {}
 
   return getMetadataObject({
+    locale,
     title: metaTitle ?? 'Blog - Nos Gestes Climat',
     description:
       metaDescription ??
