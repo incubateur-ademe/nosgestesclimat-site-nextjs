@@ -75,12 +75,14 @@ export default async function WaterFootprintLandingPage(props: {
 
       <LandingPage
         heroTitle={
-          <Trans>Chaque goutte compte : découvrez votre empreinte eau !</Trans>
+          <Trans locale={locale}>
+            Chaque goutte compte : découvrez votre empreinte eau !
+          </Trans>
         }
         heroDescription={
           <div className="flex flex-col items-start gap-4 md:gap-6">
             <p className="mb-0">
-              <Trans>
+              <Trans locale={locale}>
                 Calculez votre{' '}
                 <strong className="text-primary-600">empreinte eau</strong> et
                 découvrez{' '}
@@ -140,7 +142,7 @@ export default async function WaterFootprintLandingPage(props: {
 
         <WhatDoWeMeasureWaterFootprint locale={locale} />
 
-        <DidYouKnowWaterFootprint />
+        <DidYouKnowWaterFootprint locale={locale} />
 
         <DailyGestureWaterFootprint locale={locale} />
 
@@ -149,7 +151,7 @@ export default async function WaterFootprintLandingPage(props: {
           locale={locale}
         />
 
-        <MotivationSectionWaterFootprint />
+        <MotivationSectionWaterFootprint locale={locale} />
 
         <FAQWaterFootprint locale={locale} />
       </LandingPage>

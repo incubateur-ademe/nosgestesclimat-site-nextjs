@@ -12,20 +12,24 @@ export default async function FAQWaterFootprint({
   return (
     <FAQ
       className="mb-16"
-      subTitle={<Trans>Vos questions sur l'empreinte eau</Trans>}
+      subTitle={
+        <Trans locale={locale}>Vos questions sur l'empreinte eau</Trans>
+      }
       questions={[
         {
-          question: <Trans>Comment calculer l’empreinte eau ?</Trans>,
+          question: (
+            <Trans locale={locale}>Comment calculer l’empreinte eau ?</Trans>
+          ),
           answer: (
             <>
               <p>
-                <Trans>
+                <Trans locale={locale}>
                   Sur le site Nos Gestes Climat, le calcul de l'empreinte eau se
                   fait simultanément avec le calcul de l'empreinte carbone.
                 </Trans>
               </p>
               <p>
-                <Trans>
+                <Trans locale={locale}>
                   Au travers{' '}
                   <Link href="/">du calculateur Nos Gestes Climat</Link>, nous
                   calculons{' '}
@@ -37,7 +41,7 @@ export default async function FAQWaterFootprint({
                 </Trans>
               </p>
               <p>
-                <Trans>
+                <Trans locale={locale}>
                   Ainsi, en calculant votre empreinte carbone, vous obtenez
                   également{' '}
                   <strong className="text-primary-700">
@@ -47,7 +51,7 @@ export default async function FAQWaterFootprint({
                 </Trans>
               </p>
               <p className="mb-0">
-                <Trans>
+                <Trans locale={locale}>
                   Il existe plusieurs méthodes pour calculer une empreinte eau.
                   Chacune présente des avantages, et aucune à ce stade ne permet
                   de saisir toute la complexité de la question des impacts de
@@ -63,7 +67,7 @@ export default async function FAQWaterFootprint({
         },
         {
           question: (
-            <Trans>
+            <Trans locale={locale}>
               Pourquoi l'eau domestique n'est-elle pas incluse dans l'empreinte
               eau ?
             </Trans>
@@ -71,7 +75,7 @@ export default async function FAQWaterFootprint({
           answer: (
             <>
               <p>
-                <Trans>
+                <Trans locale={locale}>
                   <strong className="text-primary-700">L’eau domestique</strong>
                   , celle qui sort de vos robinets pour la douche, la cuisine,
                   le ménage... n'est pas incluse dans l'empreinte eau car elle
@@ -84,7 +88,7 @@ export default async function FAQWaterFootprint({
               </p>
 
               <p>
-                <Trans>
+                <Trans locale={locale}>
                   Une fois utilisée, cette eau est{' '}
                   <strong className="text-primary-700">dépolluée</strong> puis{' '}
                   <strong className="text-primary-700">renvoyée</strong> dans
@@ -93,7 +97,7 @@ export default async function FAQWaterFootprint({
               </p>
 
               <p>
-                <Trans>
+                <Trans locale={locale}>
                   Ce n’est pas parce qu’elle n’est pas incluse qu’elle n’est pas
                   importante ! Régulièrement, de nombreux territoires français
                   sont soumis à{' '}
@@ -108,7 +112,7 @@ export default async function FAQWaterFootprint({
               </p>
 
               <p className="mb-0">
-                <Trans>
+                <Trans locale={locale}>
                   Pour aller plus loin :{' '}
                   <a
                     href="/blog/environnement/lexique-eau-tout-comprendre"
@@ -126,14 +130,14 @@ export default async function FAQWaterFootprint({
         },
         {
           question: (
-            <Trans>
+            <Trans locale={locale}>
               Qu'est-ce que l'eau verte, l'eau bleue et l'eau grise ?
             </Trans>
           ),
           answer: (
             <>
               <p>
-                <Trans>
+                <Trans locale={locale}>
                   Il existe plusieurs distinctions, qui permettent de valoriser
                   les différences qualitatives d’impact de l’humain sur le cycle
                   de l’eau. La couleur de l’eau en est une majeure :
@@ -141,21 +145,21 @@ export default async function FAQWaterFootprint({
               </p>
               <ul className="mb-4 flex list-disc flex-col gap-2 pl-3">
                 <li>
-                  <Trans>
+                  <Trans locale={locale}>
                     <strong className="text-primary-700">Eau bleue</strong> :{' '}
                     eau de surface et souterraine prélevée pour l’irrigation, la
                     production industrielle ou l'énergie ;
                   </Trans>
                 </li>
                 <li>
-                  <Trans>
+                  <Trans locale={locale}>
                     <strong className="text-primary-700">Eau verte</strong> :{' '}
                     eau de pluie absorbée par les sols, utilisée pour les
                     cultures sans irrigation artificielle ;
                   </Trans>
                 </li>
                 <li>
-                  <Trans>
+                  <Trans locale={locale}>
                     <strong className="text-primary-700">Eau grise</strong> :{' '}
                     quantité d’eau nécessaire pour diluer les polluants générés
                     par la production d’un bien ou service.
@@ -164,7 +168,7 @@ export default async function FAQWaterFootprint({
               </ul>
 
               <p>
-                <Trans>
+                <Trans locale={locale}>
                   La méthodologie AWARE que nous utilisons pour calculer
                   l’empreinte eau se concentre sur les prélèvements d’eau, à
                   savoir{' '}
@@ -174,7 +178,7 @@ export default async function FAQWaterFootprint({
               </p>
 
               <p className="mb-0">
-                <Trans>
+                <Trans locale={locale}>
                   Pour aller plus loin :{' '}
                   <a
                     href="/blog/environnement/lexique-eau-tout-comprendre"
@@ -192,14 +196,14 @@ export default async function FAQWaterFootprint({
         },
         {
           question: (
-            <Trans>
+            <Trans locale={locale}>
               Quels sont les exemples d'empreinte eau de certains produits ?
             </Trans>
           ),
           answer: (
             <>
               <p>
-                <Trans>
+                <Trans locale={locale}>
                   Voici quelques exemples d’empreinte eau pour des{' '}
                   <strong className="text-primary-700">
                     produits courants
@@ -210,14 +214,14 @@ export default async function FAQWaterFootprint({
 
               <ul className="mb-4 flex list-disc flex-col gap-2 pl-3">
                 <li>
-                  <Trans>
+                  <Trans locale={locale}>
                     <strong className="text-primary-700">Un jean</strong> :{' '}
                     environ 30 000 litres d’eau, principalement pour la culture
                     du coton ;
                   </Trans>
                 </li>
                 <li>
-                  <Trans>
+                  <Trans locale={locale}>
                     <strong className="text-primary-700">
                       Un hamburger de bœuf
                     </strong>{' '}
@@ -225,7 +229,7 @@ export default async function FAQWaterFootprint({
                   </Trans>
                 </li>
                 <li>
-                  <Trans>
+                  <Trans locale={locale}>
                     <strong className="text-primary-700">
                       Une tasse de café
                     </strong>{' '}
@@ -233,13 +237,13 @@ export default async function FAQWaterFootprint({
                   </Trans>
                 </li>
                 <li>
-                  <Trans>
+                  <Trans locale={locale}>
                     <strong className="text-primary-700">Un kilo de riz</strong>{' '}
                     : 14 000 litres d’eau ;
                   </Trans>
                 </li>
                 <li>
-                  <Trans>
+                  <Trans locale={locale}>
                     <strong className="text-primary-700">
                       Un kilo de pommes de terre
                     </strong>{' '}
@@ -247,7 +251,7 @@ export default async function FAQWaterFootprint({
                   </Trans>
                 </li>
                 <li>
-                  <Trans>
+                  <Trans locale={locale}>
                     <strong className="text-primary-700">
                       Une tablette de chocolat (150g)
                     </strong>{' '}
@@ -255,7 +259,7 @@ export default async function FAQWaterFootprint({
                   </Trans>
                 </li>
                 <li>
-                  <Trans>
+                  <Trans locale={locale}>
                     <strong className="text-primary-700">
                       Un litre de lait
                     </strong>{' '}
@@ -263,13 +267,13 @@ export default async function FAQWaterFootprint({
                   </Trans>
                 </li>
                 <li>
-                  <Trans>
+                  <Trans locale={locale}>
                     <strong className="text-primary-700">Un œuf</strong> : 75
                     litres d’eau ;
                   </Trans>
                 </li>
                 <li>
-                  <Trans>
+                  <Trans locale={locale}>
                     <strong className="text-primary-700">
                       Une baguette de pain
                     </strong>{' '}
@@ -279,7 +283,7 @@ export default async function FAQWaterFootprint({
               </ul>
 
               <p className="mb-0">
-                <Trans>
+                <Trans locale={locale}>
                   De l’eau se cache derrière toutes nos consommations, dans des
                   proportions que nous ne soupçonnons pas toujours !
                 </Trans>
@@ -289,14 +293,14 @@ export default async function FAQWaterFootprint({
         },
         {
           question: (
-            <Trans>
+            <Trans locale={locale}>
               Quelle est l'empreinte eau moyenne d'un habitant français ?
             </Trans>
           ),
           answer: (
             <>
               <p>
-                <Trans>
+                <Trans locale={locale}>
                   L’empreinte eau d’un français est de plusieurs milliers de
                   litres par jour :{' '}
                   <strong className="text-primary-700">entre 4 et 8000</strong>,
@@ -305,7 +309,7 @@ export default async function FAQWaterFootprint({
               </p>
 
               <p className="mb-0">
-                <Trans>
+                <Trans locale={locale}>
                   À la différence de l’empreinte carbone, nous ne disposons pas
                   encore de données consolidées à l’échelle de la France, ni
                   d’objectifs à atteindre. Mais nous avons déjà une vision assez
@@ -323,7 +327,7 @@ export default async function FAQWaterFootprint({
         },
         {
           question: (
-            <Trans>
+            <Trans locale={locale}>
               L’empreinte eau aboutit-elle aux mêmes conclusions que l’empreinte
               carbone ?
             </Trans>
@@ -331,11 +335,13 @@ export default async function FAQWaterFootprint({
           answer: (
             <>
               <p>
-                <Trans>Empreinte eau et empreinte carbone se répondent. </Trans>
+                <Trans locale={locale}>
+                  Empreinte eau et empreinte carbone se répondent.
+                </Trans>
               </p>
 
               <p>
-                <Trans>
+                <Trans locale={locale}>
                   Une hausse de 1 degré de la température du globe entraîne{' '}
                   <strong className="text-primary-700">
                     une hausse de 7% du taux d’humidité
@@ -349,7 +355,7 @@ export default async function FAQWaterFootprint({
               </p>
 
               <p>
-                <Trans>
+                <Trans locale={locale}>
                   Par ailleurs,{' '}
                   <strong className="text-primary-700">
                     l’empreinte humaine sur les sols
@@ -363,7 +369,7 @@ export default async function FAQWaterFootprint({
               </p>
 
               <p>
-                <Trans>
+                <Trans locale={locale}>
                   <strong className="text-primary-700">
                     Chaque geste compte
                   </strong>{' '}
@@ -372,7 +378,7 @@ export default async function FAQWaterFootprint({
               </p>
 
               <p>
-                <Trans>
+                <Trans locale={locale}>
                   Pour réduire son empreinte eau, il est nécessaire de{' '}
                   <strong className="text-primary-700">
                     changer nos habitudes quotidiennes
@@ -382,7 +388,7 @@ export default async function FAQWaterFootprint({
               </p>
 
               <p className="mb-0">
-                <Trans>
+                <Trans locale={locale}>
                   Adopter{' '}
                   <strong className="text-primary-700">
                     une alimentation moins gourmande en eau

@@ -23,14 +23,14 @@ export default async function DailyGestureWaterFootprint({
   return (
     <DailyGestures
       title={
-        <Trans>
+        <Trans locale={locale}>
           Les gestes du quotidien pour préserver nos ressources en eau
         </Trans>
       }
       description={
         <>
           <p>
-            <Trans>
+            <Trans locale={locale}>
               L’eau est{' '}
               <strong className="text-primary-600">au cœur de nos vies</strong>{' '}
               et de notre consommation quotidienne, bien{' '}
@@ -44,7 +44,7 @@ export default async function DailyGestureWaterFootprint({
           </p>
 
           <p className="mb-0">
-            <Trans>
+            <Trans locale={locale}>
               Voici quelques exemples de gestes qui auront un impact important
               sur votre consommation eau indirecte :
             </Trans>

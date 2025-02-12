@@ -12,21 +12,23 @@ export default function UnderstandToAct({
   description,
   posts,
   pathname,
+  locale,
 }: {
   title?: ReactNode
   description?: ReactNode
   posts: Omit<LandingPagePostType, 'trackingEvent'>[]
   pathname: string
+  locale: string
 }) {
   return (
-    <div className="relative w-full bg-heroLightBackground py-16 md:py-20">
+    <div className="bg-heroLightBackground relative w-full py-16 md:py-20">
       <div className="mx-auto flex max-w-full flex-col gap-4 px-4 md:max-w-5xl md:px-0">
         <h2
           className={twMerge(
             'mb-0 text-center text-2xl md:text-3xl',
             !description ? 'mb-10' : ''
           )}>
-          {title ?? <Trans>Comprendre pour agir</Trans>}
+          {title ?? <Trans locale={locale}>Comprendre pour agir</Trans>}
         </h2>
 
         {description && (
@@ -49,7 +51,7 @@ export default function UnderstandToAct({
         </ul>
       </div>
 
-      <ColorLine className="bg-rainbow absolute bottom-0 left-0 h-[4px] w-[100%] animate-rainbow-slow transition-all" />
+      <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-0 h-[4px] w-[100%] transition-all" />
     </div>
   )
 }

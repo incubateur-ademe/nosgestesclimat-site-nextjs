@@ -2,13 +2,21 @@ import MotivationSection from '@/components/landing-pages/MotivationSection'
 import Trans from '@/components/translation/Trans'
 import Image from 'next/image'
 
-export default function MotivationSectionWaterFootprint() {
+export default function MotivationSectionWaterFootprint({
+  locale,
+}: {
+  locale: string
+}) {
   return (
     <MotivationSection
-      title={<Trans>Économiser l’eau, un enjeu de développement durable</Trans>}
+      title={
+        <Trans locale={locale}>
+          Économiser l’eau, un enjeu de développement durable
+        </Trans>
+      }
       description={
         <p className="mb-0">
-          <Trans>
+          <Trans locale={locale}>
             Avec les pressions croissantes exercées par les activités humaines
             et le changement climatique, la gestion durable de l’eau est devenue{' '}
             <strong className="text-primary-600">un défi planétaire</strong>.
@@ -27,7 +35,9 @@ export default function MotivationSectionWaterFootprint() {
       }
       motivationItems={[
         {
-          title: <Trans>Ressources en eau douce limitées</Trans>,
+          title: (
+            <Trans locale={locale}>Ressources en eau douce limitées</Trans>
+          ),
           icon: (
             <Image
               width={50}
@@ -37,14 +47,14 @@ export default function MotivationSectionWaterFootprint() {
             />
           ),
           description: (
-            <Trans>
+            <Trans locale={locale}>
               Bien que l’eau soit abondante sur Terre, seule 1 % de l’eau est
               douce et accessible pour la consommation humaine.
             </Trans>
           ),
         },
         {
-          title: <Trans>Pollution des eaux</Trans>,
+          title: <Trans locale={locale}>Pollution des eaux</Trans>,
           icon: (
             <Image
               width={50}
@@ -54,7 +64,7 @@ export default function MotivationSectionWaterFootprint() {
             />
           ),
           description: (
-            <Trans>
+            <Trans locale={locale}>
               Les pratiques agricoles intensives et les rejets industriels
               contaminent les ressources en eau, menacent les écosystèmes et
               notre santé.
@@ -62,7 +72,7 @@ export default function MotivationSectionWaterFootprint() {
           ),
         },
         {
-          title: <Trans>Accès à l'eau</Trans>,
+          title: <Trans locale={locale}>Accès à l'eau</Trans>,
           icon: (
             <Image
               width={50}
@@ -72,7 +82,7 @@ export default function MotivationSectionWaterFootprint() {
             />
           ),
           description: (
-            <Trans>
+            <Trans locale={locale}>
               Les activités humaines perturbent le cycle de l’eau et
               compromettent l’accès à l’eau potable, entraînant conflits, perte
               de biodiversité et déplacements de populations.

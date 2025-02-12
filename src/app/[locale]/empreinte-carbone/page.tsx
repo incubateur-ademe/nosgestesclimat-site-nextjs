@@ -73,14 +73,14 @@ export default async function CarbonFootprintLandingPage(props: {
 
       <LandingPage
         heroTitle={
-          <Trans>
+          <Trans locale={locale}>
             L'empreinte carbone, une première étape pour passer à l’action
           </Trans>
         }
         heroDescription={
           <div className="flex flex-col items-start gap-4 md:gap-6">
             <p className="mb-0">
-              <Trans>
+              <Trans locale={locale}>
                 Calculez votre{' '}
                 <strong className="text-primary-600">empreinte carbone</strong>{' '}
                 en quelques minutes et découvrez les{' '}
@@ -136,19 +136,22 @@ export default async function CarbonFootprintLandingPage(props: {
           </div>
         }
         heroPartners={<Partners />}>
-        <WhatItIsCarbon />
+        <WhatItIsCarbon locale={locale} />
 
-        <WhatDoWeMeasureCarbon />
+        <WhatDoWeMeasureCarbon locale={locale} />
 
-        <DidYouKnowCarbon />
+        <DidYouKnowCarbon locale={locale} />
 
-        <DailyGestureCarbonFootprint />
+        <DailyGestureCarbonFootprint locale={locale} />
 
-        <UnderstandToActCarbonFootprint pathname={'/empreinte-carbone'} />
+        <UnderstandToActCarbonFootprint
+          locale={locale}
+          pathname={'/empreinte-carbone'}
+        />
 
-        <MotivationSectionCarbonFootprint />
+        <MotivationSectionCarbonFootprint locale={locale} />
 
-        <FAQCarbonFootprint />
+        <FAQCarbonFootprint locale={locale} />
       </LandingPage>
     </>
   )

@@ -13,11 +13,11 @@ export default async function WhatItIsWaterFootprint({
 
   return (
     <WhatItIs
-      title={<Trans>Qu'est-ce que l'empreinte eau ?</Trans>}
+      title={<Trans locale={locale}>Qu'est-ce que l'empreinte eau ?</Trans>}
       description={
         <section>
           <p>
-            <Trans>
+            <Trans locale={locale}>
               <strong className="text-primary-600">L’empreinte eau</strong>{' '}
               correspond à l’ensemble de l’eau douce utilisée pour produire,
               distribuer et traiter en fin de vie des produits, biens ou
@@ -26,14 +26,14 @@ export default async function WhatItIsWaterFootprint({
           </p>
 
           <p>
-            <Trans>
+            <Trans locale={locale}>
               Cette consommation d’eau, pourtant très importante, est{' '}
               <strong className="text-primary-600">invisible à l’œil nu</strong>{' '}
               mais son impact est bien réel.
             </Trans>
           </p>
           <p className="mb-0">
-            <Trans>
+            <Trans locale={locale}>
               Empreinte eau et{' '}
               <Link
                 className="text-primary-600 font-bold"

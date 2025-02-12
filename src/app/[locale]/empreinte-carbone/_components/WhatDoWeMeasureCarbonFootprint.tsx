@@ -2,13 +2,13 @@ import WhatDoWeMeasure from '@/components/landing-pages/WhatDoWeMeasure'
 import Trans from '@/components/translation/Trans'
 import Image from 'next/image'
 
-export default function WhatDoWeMeasureCarbon() {
+export default function WhatDoWeMeasureCarbon({ locale }: { locale: string }) {
   return (
     <WhatDoWeMeasure
-      title={<Trans>Calculer son empreinte carbone</Trans>}
+      title={<Trans locale={locale}>Calculer son empreinte carbone</Trans>}
       description={
         <p className="mb-0 text-center">
-          <Trans>
+          <Trans locale={locale}>
             Le calculateur carbone permet de comprendre quels sont nos usages
             qui contribuent le plus au changement climatique et de saisir{' '}
             <strong className="text-primary-600">
@@ -32,7 +32,7 @@ export default function WhatDoWeMeasureCarbon() {
               />
             </div>
           ),
-          title: <Trans>Vos modes de déplacement</Trans>,
+          title: <Trans locale={locale}>Vos modes de déplacement</Trans>,
         },
         {
           icon: (
@@ -45,7 +45,7 @@ export default function WhatDoWeMeasureCarbon() {
               />
             </div>
           ),
-          title: <Trans>Votre régime alimentaire</Trans>,
+          title: <Trans locale={locale}>Votre régime alimentaire</Trans>,
         },
         {
           icon: (
@@ -58,7 +58,7 @@ export default function WhatDoWeMeasureCarbon() {
               />
             </div>
           ),
-          title: <Trans>Vos consommations énergétiques</Trans>,
+          title: <Trans locale={locale}>Vos consommations énergétiques</Trans>,
         },
 
         {
@@ -72,7 +72,7 @@ export default function WhatDoWeMeasureCarbon() {
               />
             </div>
           ),
-          title: <Trans>Vos achats</Trans>,
+          title: <Trans locale={locale}>Vos achats</Trans>,
         },
       ]}
     />

@@ -4,17 +4,19 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function UnderstandToActCarbonFootprint({
   pathname,
+  locale,
 }: {
   pathname: string
+  locale: string
 }) {
-  const { t } = await getServerTranslation()
+  const { t } = await getServerTranslation(locale)
 
   return (
     <UnderstandToAct
       pathname={pathname}
       description={
         <p className="mb-0">
-          <Trans>
+          <Trans locale={locale}>
             Réduire efficacement son empreinte sur l’environnement nécessite de{' '}
             <strong className="text-primary-600">
               s’informer sur les enjeux du réchauffement climatique

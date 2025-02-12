@@ -8,8 +8,12 @@ import {
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
 
-export default async function DailyGestureCarbonFootprint() {
-  const { t } = await getServerTranslation()
+export default async function DailyGestureCarbonFootprint({
+  locale,
+}: {
+  locale: string
+}) {
+  const { t } = await getServerTranslation(locale)
 
   const gesturesKeysForTranslation = {
     transport: t('Transport'),
@@ -20,11 +24,15 @@ export default async function DailyGestureCarbonFootprint() {
 
   return (
     <DailyGestures
-      title={<Trans>Les actions pour réduire son empreinte carbone </Trans>}
+      title={
+        <Trans locale={locale}>
+          Les actions pour réduire son empreinte carbone{' '}
+        </Trans>
+      }
       description={
         <>
           <p className="mb-0">
-            <Trans>
+            <Trans locale={locale}>
               Pour un mode de vie plus durable, certaines actions{' '}
               <strong className="text-primary-600">
                 ont un impact plus fort que d’autres
@@ -36,7 +44,7 @@ export default async function DailyGestureCarbonFootprint() {
               </strong>
               .
             </Trans>{' '}
-            <Trans>Voici quelques idées :</Trans>
+            <Trans locale={locale}>Voici quelques idées :</Trans>
           </p>
         </>
       }

@@ -13,10 +13,11 @@ export default async function UnderstandToActWaterFootprint({
 
   return (
     <UnderstandToAct
+      locale={locale}
       pathname={pathname}
       description={
         <p className="mb-0">
-          <Trans>
+          <Trans locale={locale}>
             Mieux comprendre{' '}
             <strong className="text-primary-600">
               notre impact sur les ressources en eau

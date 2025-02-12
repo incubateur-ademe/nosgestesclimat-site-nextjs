@@ -28,8 +28,8 @@ export default function FAQ({
       )}>
       {isBackgroundSkewed && (
         <Background
-          direction="left"
-          className="-bottom-10 top-auto mt-6 h-[200px] rotate-12 bg-[#F6F6F5]"
+          direction="right"
+          className="top-auto -bottom-10 mt-6 h-[200px] bg-[#F6F6F5] sm:-bottom-16"
           withColorLine
         />
       )}
@@ -50,7 +50,7 @@ export default function FAQ({
                     {question}
                   </h3>
 
-                  <PlusIcon className="inline-block h-8 w-8 min-w-8 origin-center transform transition-transform duration-300 group-open:rotate-45 group-open:fill-primary-700" />
+                  <PlusIcon className="group-open:fill-primary-700 inline-block h-8 w-8 min-w-8 origin-center transform transition-transform duration-300 group-open:rotate-45" />
                 </summary>
 
                 <div className="grid grid-rows-[0fr] transition-all duration-200 ease-in-out group-open:grid-rows-[1fr]">

@@ -12,7 +12,9 @@ export default async function WhatDoWeMeasureWaterFootprint({
 
   return (
     <WhatDoWeMeasure
-      title={<Trans>Que calcule-t-on dans l’empreinte eau ?</Trans>}
+      title={
+        <Trans locale={locale}>Que calcule-t-on dans l’empreinte eau ?</Trans>
+      }
       listItems={[
         {
           icon: (
@@ -24,7 +26,7 @@ export default async function WhatDoWeMeasureWaterFootprint({
             />
           ),
           title: (
-            <Trans>
+            <Trans locale={locale}>
               La culture des fruits, légumes et céréales que nous mangeons
             </Trans>
           ),
@@ -40,7 +42,9 @@ export default async function WhatDoWeMeasureWaterFootprint({
               )}
             />
           ),
-          title: <Trans>La culture du coton de nos vêtements</Trans>,
+          title: (
+            <Trans locale={locale}>La culture du coton de nos vêtements</Trans>
+          ),
         },
         {
           icon: (
@@ -52,7 +56,9 @@ export default async function WhatDoWeMeasureWaterFootprint({
             />
           ),
           title: (
-            <Trans>La production d’aliments pour les animaux d’élevage</Trans>
+            <Trans locale={locale}>
+              La production d’aliments pour les animaux d’élevage
+            </Trans>
           ),
         },
         {
@@ -66,7 +72,11 @@ export default async function WhatDoWeMeasureWaterFootprint({
               )}
             />
           ),
-          title: <Trans>L'extraction des matériaux pour le numérique</Trans>,
+          title: (
+            <Trans locale={locale}>
+              L'extraction des matériaux pour le numérique
+            </Trans>
+          ),
         },
         {
           icon: (
@@ -77,13 +87,13 @@ export default async function WhatDoWeMeasureWaterFootprint({
               alt={t("Un éclair, symbolisant la production d'électricité")}
             />
           ),
-          title: <Trans>La production d’électricité</Trans>,
+          title: <Trans locale={locale}>La production d’électricité</Trans>,
         },
       ]}
       description={
         <>
           <p className="mb-10 text-center">
-            <Trans>
+            <Trans locale={locale}>
               L’empreinte eau,{' '}
               <strong className="text-primary-600">
                 calculée en milliers de litres par jour
@@ -102,7 +112,7 @@ export default async function WhatDoWeMeasureWaterFootprint({
           </p>
 
           <p className="text-secondary-700 mb-0 text-center font-bold">
-            <Trans>
+            <Trans locale={locale}>
               Attention : l’empreinte eau ne tient pas compte de la consommation
               d’eau domestique (douche, toilettes, cuisine, arrosage) !
             </Trans>
