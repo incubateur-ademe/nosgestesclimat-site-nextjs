@@ -24,6 +24,10 @@ const nextConfig = {
     return redirects
   },
   webpack: (config, { dev, isServer }) => {
+    if (isServer) {
+      config.ignoreWarnings = [{ module: /opentelemetry/ }]
+    }
+
     if (config.cache) {
       if (dev) {
         // Development configuration
@@ -108,7 +112,7 @@ const sentryConfig = {
   // Automatically tree-shake Sentry logger statements to reduce bundle size
   disableLogger: true,
 
-  telemetry: process.env.NODE_ENV !== 'development',
+  telemetry: false,
 }
 
 module.exports =

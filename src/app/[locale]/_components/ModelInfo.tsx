@@ -6,12 +6,12 @@ import {
 } from '@/helpers/tracking/landings'
 import { headers } from 'next/headers'
 
-export default function ModelInfo() {
-  const pathname = headers().get('x-pathname') || '/'
+export default async function ModelInfo() {
+  const pathname = (await headers()).get('x-pathname') || '/'
 
   return (
     <div className="bg-heroLightBackground px-4 py-12 md:py-20">
-      <div className="flex flex-col items-center gap-10  md:mx-auto md:max-w-5xl">
+      <div className="flex flex-col items-center gap-10 md:mx-auto md:max-w-5xl">
         <h2 className="text-center text-2xl md:text-3xl">
           <Trans>Un modèle de calcul fiable</Trans>
         </h2>

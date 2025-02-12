@@ -10,7 +10,7 @@ import ue_country_codes from './ue_country_codes.json'
 export const runtime = 'edge'
 
 export async function GET(request: NextRequest) {
-  const detectedCountryCode = request.geo?.country
+  const detectedCountryCode = request.headers.get('x-vercel-ip-country')
 
   if (!detectedCountryCode) {
     return NextResponse.json(defaultInitialRegion)

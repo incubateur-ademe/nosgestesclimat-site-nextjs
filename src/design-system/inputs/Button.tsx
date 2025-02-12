@@ -1,5 +1,9 @@
 import type { ButtonSize } from '@/types/values'
-import type { HtmlHTMLAttributes, MouseEventHandler, PropsWithChildren } from 'react'
+import type {
+  HtmlHTMLAttributes,
+  MouseEventHandler,
+  PropsWithChildren,
+} from 'react'
 import { twMerge } from 'tailwind-merge'
 
 export type ButtonProps = {

@@ -22,10 +22,14 @@ import WhatDoWeMeasureCarbon from './_components/WhatDoWeMeasureCarbonFootprint'
 import WhatItIsCarbon from './_components/WhatItIsCarbon'
 import { carbonFAQJsonLd } from './_constants/carbonFAQJsonLd'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await props.params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t('Empreinte carbone : comprendre, mesurer, réduire son impact'),
     description: t(
       'Informez-vous sur l’empreinte carbone, de sa définition aux actions les plus impactantes pour réduire ses émissions et enclencher sa transition écologique'
@@ -36,7 +40,11 @@ export async function generateMetadata() {
   })
 }
 
-export default function CarbonFootprintLandingPage() {
+export default async function CarbonFootprintLandingPage(props: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await props.params
+
   return (
     <>
       <JSONLD
@@ -134,7 +142,7 @@ export default function CarbonFootprintLandingPage() {
 
         <DidYouKnowCarbon />
 
-        <DailyGestureCarbonFootprint />
+        <DailyGestureCarbonFootprint locale={locale} />
 
         <UnderstandToActCarbonFootprint pathname={'/empreinte-carbone'} />
 

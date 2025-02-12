@@ -1,49 +1,11 @@
 import ErrorContent from '@/components/error/ErrorContent'
 import Footer from '@/components/layout/Footer'
-import { getGeolocation } from '@/helpers/getGeolocation'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import { dir } from 'i18next'
-import localFont from 'next/font/local'
 import Script from 'next/script'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
-
-export const marianne = localFont({
-  src: [
-    {
-      path: '../../../public/fonts/Marianne-Thin.woff2',
-      weight: '100',
-      style: 'normal',
-    },
-    {
-      path: '../../../public/fonts/Marianne-Light.woff2',
-      weight: '300',
-      style: 'normal',
-    },
-    {
-      path: '../../../public/fonts/Marianne-Regular.woff2',
-      weight: 'normal',
-      style: 'normal',
-    },
-    {
-      path: '../../../public/fonts/Marianne-Medium.woff2',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../../../public/fonts/Marianne-Bold.woff2',
-      weight: 'bold',
-      style: 'normal',
-    },
-    {
-      path: '../../../public/fonts/Marianne-ExtraBold.woff2',
-      weight: '800',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-marianne',
-})
 
 export default async function RootLayout({
   children,
@@ -55,7 +17,11 @@ export default async function RootLayout({
   const { locale } = await params
 
   try {
-    const initialRegion = await getGeolocation()
+    // const initialRegion = await getGeolocation()
+    const initialRegion = {
+      name: 'France',
+      code: 'FR',
+    }
 
     return (
       <html lang={locale} dir={dir(locale)}>
@@ -121,8 +87,7 @@ export default async function RootLayout({
           }
         </head>
 
-        <body
-          className={`${marianne.className} text-default bg-white transition-colors duration-700`}>
+        <body className="text-default bg-white transition-colors duration-700">
           <Script id="script-user-agent">{`
             const b = document.documentElement;
             b.setAttribute('data-useragent', navigator.userAgent);
@@ -140,7 +105,7 @@ export default async function RootLayout({
   } catch (error) {
     return (
       <html lang="fr">
-        <body className={`${marianne.className} text-default bg-white`}>
+        <body className="text-default bg-white">
           <div className="flex h-screen flex-col items-center justify-center">
             <ErrorContent />
           </div>

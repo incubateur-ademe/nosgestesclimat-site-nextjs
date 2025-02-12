@@ -115,8 +115,6 @@ module.exports = {
           divers: '#F9CD49',
           servicessocietaux: '#9E8EF5',
         },
-        heroLightBackground: '#F0F8FF',
-        landingLightBackground: '#F6F6F5',
       },
       fontSize: {
         '3xl': '2rem',
@@ -715,6 +713,7 @@ module.exports = {
     'fill-logement-800',
     'fill-divers-800',
     'fill-servicessocietaux-800',
+    'border-heroLightBackground',
   ],
   plugins: [
     function ({ addComponents }) {

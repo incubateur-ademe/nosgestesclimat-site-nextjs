@@ -27,7 +27,9 @@ export async function generateMetadata(props: {
 }) {
   const { locale } = await props.params
   const { t } = await getServerTranslation(locale)
+
   return getMetadataObject({
+    locale,
     title: t('Calculez votre empreinte carbone et eau en 10 minutes !'),
     description: t(
       "2 millions de personnes ont déjà calculé leur empreinte sur le climat avec le calculateur Nos Gestes Climat ! Et vous, qu'attendez-vous pour faire le test ?"
