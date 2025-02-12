@@ -8,6 +8,7 @@ import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migr
 import type { PropsWithChildren } from 'react'
 import { IframeOptionsProvider } from './mainLayoutProviders/IframeOptionsContext'
 import MainHooks from './mainLayoutProviders/MainHooks'
+import { PostHogProvider } from './mainLayoutProviders/PostHogProvider'
 import { PreventNavigationProvider } from './mainLayoutProviders/PreventNavigationProvider'
 import QueryClientProviderWrapper from './mainLayoutProviders/QueryClientProviderWrapper'
 
@@ -20,22 +21,24 @@ export default function MainLayoutProviders({
 }: PropsWithChildren<Props>) {
   return (
     <ErrorBoundary>
-      <IframeOptionsProvider>
-        {(containerRef: React.RefObject<HTMLDivElement>) => (
-          <QueryClientProviderWrapper>
-            <UserProvider
-              storageKey={STORAGE_KEY}
-              migrationInstructions={migrationInstructions}
-              initialRegion={initialRegion}>
-              <PreventNavigationProvider>
-                <MainHooks>
-                  <div ref={containerRef}>{children}</div>
-                </MainHooks>
-              </PreventNavigationProvider>
-            </UserProvider>
-          </QueryClientProviderWrapper>
-        )}
-      </IframeOptionsProvider>
+      <PostHogProvider>
+        <IframeOptionsProvider>
+          {(containerRef: React.RefObject<HTMLDivElement>) => (
+            <QueryClientProviderWrapper>
+              <UserProvider
+                storageKey={STORAGE_KEY}
+                migrationInstructions={migrationInstructions}
+                initialRegion={initialRegion}>
+                <PreventNavigationProvider>
+                  <MainHooks>
+                    <div ref={containerRef}>{children}</div>
+                  </MainHooks>
+                </PreventNavigationProvider>
+              </UserProvider>
+            </QueryClientProviderWrapper>
+          )}
+        </IframeOptionsProvider>
+      </PostHogProvider>
     </ErrorBoundary>
   )
 }
