@@ -1,4 +1,4 @@
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
@@ -40,16 +40,16 @@ export default async function NosRelais({
   return (
     <div>
       <Title>
-        <Trans locale={locale}>Ils relaient </Trans>
+        <TransServer locale={locale}>Ils relaient </TransServer>
         <span className="text-primary-700">
-          <Trans locale={locale}>Nos Gestes Climat</Trans>
+          <TransServer locale={locale}>Nos Gestes Climat</TransServer>
         </span>
       </Title>
 
       <div className="flex flex-wrap items-center md:flex-nowrap md:gap-16">
         <div>
           <p>
-            <Trans locale={locale}>
+            <TransServer locale={locale}>
               Plus de 40 acteurs relaient ou ont relayé Nos Gestes Climat à
               travers 
               <a
@@ -63,24 +63,24 @@ export default async function NosRelais({
               (mail, réseaux sociaux et / ou affichage). C’est majoritairement
               grâce à eux que nous sensibilisons près de 2 000 nouvelles
               personnes en moyenne chaque jour et nous les en remercions.
-            </Trans>
+            </TransServer>
           </p>
 
           <p>
-            <Trans locale={locale}>
+            <TransServer locale={locale}>
               Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans
               notre galerie de relais ? Merci de nous envoyer un message avec
               votre logo via{' '}
               <InlineLink href="/contact">notre page de contact</InlineLink>.
-            </Trans>
+            </TransServer>
           </p>
 
           <p className="mb-8 italic">
-            <Trans locale={locale}>
+            <TransServer locale={locale}>
               N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat,
               qui est et restera un service public, indépendant et gratuit de
               l’ADEME.
-            </Trans>
+            </TransServer>
           </p>
         </div>
         <Image

@@ -1,5 +1,5 @@
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Markdown from '@/design-system/utils/Markdown'
@@ -16,9 +16,13 @@ import QuestionSection from './documentationServer/QuestionSection'
 type Props = {
   slugs: string[]
   rules: NGCRules
-  locale?: string
+  locale: string
 }
-export default async function DocumentationServer({ slugs, rules }: Props) {
+export default async function DocumentationServer({
+  slugs,
+  rules,
+  locale,
+}: Props) {
   const ruleName = decodeRuleNameFromPath(slugs.join('/')) as DottedName
 
   if (!ruleName) {
@@ -42,7 +46,7 @@ export default async function DocumentationServer({ slugs, rules }: Props) {
         data-cypress-id="documentation-title"
       />
 
-      {rule.question && <QuestionSection rule={rule} />}
+      {rule.question && <QuestionSection rule={rule} locale={locale} />}
 
       {!rule.question && rule.description && (
         <section className="mt-4">
@@ -53,24 +57,29 @@ export default async function DocumentationServer({ slugs, rules }: Props) {
       {rule.note && (
         <section className="mt-4">
           <h2>
-            <Trans locale={locale}>Notes</Trans>
+            <TransServer locale={locale}>Notes</TransServer>
           </h2>
           <Markdown>{rule.note}</Markdown>
         </section>
       )}
 
-      <CalculDetail rule={rule} ruleName={ruleName} rules={rules} />
+      <CalculDetail
+        rule={rule}
+        ruleName={ruleName}
+        rules={rules}
+        locale={locale}
+      />
 
       <Card className="bg-primary-100 mt-4 mb-4 border-none">
         <p className="mb-0">
-          <Trans locale={locale}>
+          <TransServer locale={locale}>
             Pour en savoir plus sur cette règle de notre modèle, lancer le
             calcul en cliquant sur le bouton ci-dessous.
-          </Trans>
+          </TransServer>
         </p>
       </Card>
 
-      <ButtonLaunch />
+      <ButtonLaunch locale={locale} />
 
       <PagesProches rules={rules} ruleName={ruleName} />
     </div>

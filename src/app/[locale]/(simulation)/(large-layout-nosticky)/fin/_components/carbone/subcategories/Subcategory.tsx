@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import TransClient from '@/components/translation/trans/TransClient'
 import Emoji from '@/design-system/utils/Emoji'
 import {
   getBorderLightColor,
@@ -34,7 +36,7 @@ export default function Subcategory({ subcategory, index }: Props) {
           </h3>
           <div className="text-base">
             <span className="text-secondary-700 font-black">{percent} %</span>{' '}
-            <Trans locale={locale}>de votre empreinte</Trans>
+            <TransClient>de votre empreinte</TransClient>
           </div>
         </div>
         <Emoji className="text-4xl lg:text-6xl">{icons?.slice(0, 2)}</Emoji>

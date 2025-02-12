@@ -3,10 +3,16 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import NorthStarIframe from './_components/NorthStarIframe'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t('Nos statistiques "phares" - Nos Gestes Climat'),
     description: t(
       "Observez nos l'évolution de nos deux mesures d'impact principales."
@@ -17,8 +23,13 @@ export async function generateMetadata() {
   })
 }
 
-export default async function NorthStarPage() {
-  const { t } = await getServerTranslation()
+export default async function NorthStarPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   const title = t('Statistiques Northstar')
 

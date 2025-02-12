@@ -1,5 +1,7 @@
+'use client'
+
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Card from '@/design-system/layout/Card'
 import { twMerge } from 'tailwind-merge'
 
@@ -13,17 +15,17 @@ export default function Confirmation({ className }: { className?: string }) {
       )}>
       <div className="text-left; bg-transparent text-left text-2xl font-bold">
         <p className="flex items-center gap-1">
-          <Trans locale={locale}>Votre simulation est sauvegardée !</Trans> 
+          <TransClient>Votre simulation est sauvegardée !</TransClient>
           <CheckCircleIcon className="fill-logement-400" />
         </p>
       </div>
       <p className="mt-4 max-w-lg text-left">
-        <Trans locale={locale}>
+        <TransClient>
           Vous allez recevoir un email de notre part sous peu, qui vous
           permettra de la retrouver
-        </Trans>{' '}
+        </TransClient>{' '}
         <strong>
-          <Trans locale={locale}>à tout moment</Trans>
+          <TransClient>à tout moment</TransClient>
         </strong>
         .
       </p>

@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import TransClient from '@/components/translation/trans/TransClient'
 import { defaultMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import {
@@ -63,7 +65,7 @@ export default function Action({
           <span className="text-secondary-700 block text-2xl font-black">
             {percent || 1} %
           </span>
-          <Trans locale={locale}> de votre empreinte</Trans>
+          <TransClient> de votre empreinte</TransClient>
         </div>
       )}
     </div>

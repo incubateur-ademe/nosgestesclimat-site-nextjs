@@ -2,18 +2,24 @@ import SparklesIcon from '@/components/icons/SparklesIcon'
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import List from '@/components/posts/List'
 import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPosts } from '@/helpers/markdown/getPosts'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { currentLocale } from 'next-i18n-router'
 import Image from 'next/image'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t('Les nouveautés - Nos Gestes Climat'),
     description: t(
       'Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.'
@@ -24,12 +30,15 @@ export async function generateMetadata() {
   })
 }
 
-export default async function Releases() {
-  const locale = currentLocale()
-
+export default async function Releases({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
   const releases = await getPosts(`src/locales/nouveautes/${locale}/`)
 
-  const { t } = await getServerTranslation()
+  const { t } = await getServerTranslation(locale)
 
   return (
     <>
@@ -48,11 +57,11 @@ export default async function Releases() {
           />
 
           <p className="mb-0 max-w-74">
-            <Trans locale={locale}>
+            <TransServer locale={locale}>
               Nous améliorons le site en continu à partir de{' '}
               <InlineLink href="/contact">vos retours</InlineLink>. Découvrez la
               tambouille interne de Nos Gestes Climat.
-            </Trans>
+            </TransServer>
           </p>
         </div>
 

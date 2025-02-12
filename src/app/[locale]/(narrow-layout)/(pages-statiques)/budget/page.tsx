@@ -9,9 +9,15 @@ import contentFrBottom from '@/locales/pages/fr/budgetBottom.mdx'
 import contentFrTop from '@/locales/pages/fr/budgetTop.mdx'
 import SelectYear from './_components/SelectYear'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
   return getMetadataObject({
+    locale,
     title: t('Budget - Nos Gestes Climat'),
     description: t('Informations relatives au budget de Nos Gestes Climat.'),
     alternates: {
@@ -20,19 +26,27 @@ export async function generateMetadata() {
   })
 }
 
-export default function BudgetPage() {
+export default async function BudgetPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
   return (
     <>
       <MDXContent
         contentEn={contentEnTop}
         contentFr={contentFrTop}
         contentEs={contentEsTop}
+        locale={locale}
       />
       <SelectYear />
       <MDXContent
         contentEn={contentEnBottom}
         contentFr={contentFrBottom}
         contentEs={contentEsBottom}
+        locale={locale}
       />
     </>
   )

@@ -1,5 +1,7 @@
+'use client'
+
 import Link from '@/components/Link'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { endClickActions } from '@/constants/tracking/pages/end'
 import { useEngine, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
@@ -50,9 +52,9 @@ export default function Actions({ subcategory, noNumberedFootprint }: Props) {
     <>
       {!noNumberedFootprint && (
         <p className="mb-6">
-          <Trans locale={locale}>
+          <TransClient>
             Voici quelques idées pour vous aider à réduire votre impact :
-          </Trans>
+          </TransClient>
         </p>
       )}
       <div className="mb-4 flex flex-row-reverse justify-center gap-4">
@@ -66,7 +68,7 @@ export default function Actions({ subcategory, noNumberedFootprint }: Props) {
             onClick={() => trackEvent(endClickActions)}
             href="/actions"
             className="text-center text-xs">
-            <Trans locale={locale}>Voir tous les gestes</Trans> : {title}
+            <TransClient>Voir tous les gestes</TransClient> : {title}
           </Link>
         </div>
       )}

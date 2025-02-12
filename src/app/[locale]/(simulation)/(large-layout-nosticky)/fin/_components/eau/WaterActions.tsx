@@ -1,6 +1,8 @@
+'use client'
+
 import ExternalLinkIcon from '@/components/icons/ExternalLinkIcon'
 import Link from '@/components/Link'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
 import Image from 'next/image'
 
@@ -8,24 +10,22 @@ export default function WaterActions() {
   return (
     <div>
       <Title tag="h2">
-        <Trans locale={locale}>
+        <TransClient>
           Comment <strong className="text-secondary-700">agir</strong> ?
-        </Trans>
+        </TransClient>
       </Title>
       <p>
-        <Trans locale={locale}>
+        <TransClient>
           <strong className="text-secondary-700">
             La majeure partie de l’empreinte eau concerne la pousse des
             végétaux,
           </strong>{' '}
           que ce soit pour nous alimenter, pour nourrir le bétail, ou pour
           obtenir la matière première de nombre de nos vêtements.
-        </Trans>
+        </TransClient>
       </p>
       <p className="mb-6">
-        <Trans locale={locale}>
-          Retrouvez nos conseils dans ces articles :
-        </Trans>
+        <TransClient>Retrouvez nos conseils dans ces articles :</TransClient>
       </p>
       <div className="mb-4 flex justify-center gap-4">
         <Link
@@ -41,13 +41,13 @@ export default function WaterActions() {
               alt={`Les 3 réflexes à adopter pour une garde-robe économe en eau`}
             />
             <p className="mb-3 px-4 text-center text-sm leading-tight text-black lg:px-0 lg:text-base">
-              <Trans locale={locale}>
+              <TransClient>
                 Les 3 réflexes à adopter pour une garde-robe économe en eau
-              </Trans>
+              </TransClient>
             </p>
           </div>
           <div className="text-primary-700 text-center text-sm underline">
-            <Trans locale={locale}>Lire l'article</Trans>{' '}
+            <TransClient>Lire l'article</TransClient>{' '}
             <ExternalLinkIcon className="stroke-primary-700" />
           </div>
         </Link>
@@ -66,13 +66,13 @@ export default function WaterActions() {
               alt={`Les 8 manières d’améliorer l'empreinte eau de mon assiette`}
             />
             <p className="mb-3 px-4 text-center text-sm leading-tight text-black lg:px-0 lg:text-base">
-              <Trans locale={locale}>
+              <TransClient>
                 Les 8 manières d’améliorer l'empreinte eau de mon assiette
-              </Trans>
+              </TransClient>
             </p>
           </div>
           <div className="text-primary-700 text-center text-sm underline">
-            <Trans locale={locale}>Lire l'article</Trans>{' '}
+            <TransClient>Lire l'article</TransClient>{' '}
             <ExternalLinkIcon className="stroke-primary-700" />
           </div>
         </Link>

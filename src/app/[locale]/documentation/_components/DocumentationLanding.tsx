@@ -1,12 +1,12 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import { useRules } from '@/hooks/useRules'
 
 import Link from '@/components/Link'
 import LightBulbIcon from '@/components/icons/LightBulbIcon'
 import SquareImageContainer from '@/components/images/SquareImageContainer'
+import TransClient from '@/components/translation/trans/TransClient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
@@ -45,25 +45,25 @@ export default function DocumentationLanding() {
     <div className="mt-4">
       <div className="flex flex-wrap gap-8 md:flex-nowrap">
         <div>
-          <Title title={<Trans locale={locale}>Documentation</Trans>} />
+          <Title title={<TransClient>Documentation</TransClient>} />
           <p>
-            <Trans locale={locale}>
+            <TransClient>
               Le calculateur Nos Gestes Climat est basé sur le modèle de calcul
               du même nom, composé d'un ensemble de briques.
-            </Trans>
+            </TransClient>
           </p>
           <p>
-            <Trans locale={locale}>
+            <TransClient>
               Sur cette documentation, vous avez accès en toute transparence à
               l'ensemble des variables du calcul. À lire tranquillement au coin
               du feu.
-            </Trans>
+            </TransClient>
           </p>
 
           <div>
             <Link href="/modele" className="flex items-center">
               <LightBulbIcon className="fill-primary-700 mr-1 h-4 w-4" />
-              <Trans locale={locale}> En savoir plus sur notre modèle</Trans>
+              <TransClient> En savoir plus sur notre modèle</TransClient>
             </Link>
           </div>
         </div>
@@ -94,7 +94,7 @@ export default function DocumentationLanding() {
       <SearchBar rules={rules} />
 
       <h2 className="mt-4 text-xl">
-        <Trans locale={locale}>Quelques suggestions </Trans>
+        <TransClient>Quelques suggestions </TransClient>
       </h2>
 
       <ul className="grid max-w-[60rem] grid-cols-1 flex-wrap gap-2 p-0 sm:grid-cols-2 md:grid-cols-3">

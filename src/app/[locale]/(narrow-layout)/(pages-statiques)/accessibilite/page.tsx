@@ -5,9 +5,15 @@ import accessibilityEn from '@/locales/pages/en/accessibility.mdx'
 import accessibilityEs from '@/locales/pages/es/accessibility.mdx'
 import accessibilityFr from '@/locales/pages/fr/accessibility.mdx'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
   return getMetadataObject({
+    locale,
     title: t('Accessibilité - Nos Gestes Climat'),
     description: t(
       "Informations relatives à l'accessibilité de Nos Gestes Climat."
@@ -18,12 +24,19 @@ export async function generateMetadata() {
   })
 }
 
-export default function AccessibilityPage() {
+export default async function AccessibilityPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
   return (
     <MDXContent
       contentEn={accessibilityEn}
       contentFr={accessibilityFr}
       contentEs={accessibilityEs}
+      locale={locale}
     />
   )
 }

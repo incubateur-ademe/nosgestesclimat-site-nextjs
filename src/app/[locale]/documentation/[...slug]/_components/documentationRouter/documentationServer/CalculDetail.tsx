@@ -1,4 +1,4 @@
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import Card from '@/design-system/layout/Card'
 import type {
   DottedName,
@@ -11,15 +11,19 @@ export default function CalculDetail({
   rule,
   ruleName,
   rules,
+  locale,
 }: {
   rule: NGCRule
   ruleName: DottedName
   rules: NGCRules
+  locale: string
 }) {
   return (
     <>
       <h2>
-        <Trans locale={locale}>Comment cette donnée est-elle calculée ?</Trans>
+        <TransServer locale={locale}>
+          Comment cette donnée est-elle calculée ?
+        </TransServer>
       </h2>
 
       <Card className="p-8">

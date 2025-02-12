@@ -1,6 +1,8 @@
+'use client'
+
 import ExternalLinkIcon from '@/components/icons/ExternalLinkIcon'
 import Link from '@/components/Link'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
 import Image from 'next/image'
 
@@ -8,10 +10,10 @@ export default function BlogArticles() {
   return (
     <div>
       <Title tag="h2">
-        <Trans locale={locale}>Aller plus loin</Trans>
+        <TransClient>Aller plus loin</TransClient>
       </Title>
       <p className="mb-6">
-        <Trans locale={locale}>Nos articles sur le sujet :</Trans>
+        <TransClient>Nos articles sur le sujet :</TransClient>
       </p>
       <div className="mb-4 flex justify-center gap-4">
         <Link
@@ -27,13 +29,13 @@ export default function BlogArticles() {
               alt={`Les 4 gestes pour réduire l’empreinte eau de mon alimentation`}
             />
             <p className="mb-3 px-4 text-center text-sm leading-tight text-black lg:px-0 lg:text-base">
-              <Trans locale={locale}>
+              <TransClient>
                 Le lexique pour tout comprendre à l’empreinte eau
-              </Trans>
+              </TransClient>
             </p>
           </div>
           <div className="text-primary-700 text-center text-sm underline">
-            <Trans locale={locale}>Lire l'article</Trans>{' '}
+            <TransClient>Lire l'article</TransClient>{' '}
             <ExternalLinkIcon className="stroke-primary-700" />
           </div>
         </Link>
@@ -52,13 +54,13 @@ export default function BlogArticles() {
               alt={`Les 4 gestes pour réduire l’empreinte eau de mon alimentation`}
             />
             <p className="mb-3 px-4 text-center text-sm leading-tight text-black lg:px-0 lg:text-base">
-              <Trans locale={locale}>
+              <TransClient>
                 L’empreinte eau : pourquoi et comment avons-nous travaillé…
-              </Trans>
+              </TransClient>
             </p>
           </div>
           <div className="text-primary-700 text-center text-sm underline">
-            <Trans locale={locale}>Lire l'article</Trans>{' '}
+            <TransClient>Lire l'article</TransClient>{' '}
             <ExternalLinkIcon className="stroke-primary-700" />
           </div>
         </Link>

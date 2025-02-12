@@ -39,9 +39,13 @@ export async function generateMetadata({
 
 export default async function BlogHomePage({
   searchParams,
+  params,
 }: {
   searchParams: { page: string }
+  params: Promise<{ locale: string }>
 }) {
+  const { locale } = await params
+
   // Get the page number from the query params from the server side
   const page = Number(searchParams.page) || 1
 
@@ -101,7 +105,7 @@ export default async function BlogHomePage({
         </div>
       </ContentLarge>
 
-      <AllBlogCategories />
+      <AllBlogCategories locale={locale} />
     </>
   )
 }

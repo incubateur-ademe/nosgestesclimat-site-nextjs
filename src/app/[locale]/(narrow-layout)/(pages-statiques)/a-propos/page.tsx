@@ -6,10 +6,16 @@ import AboutEn from '@/locales/pages/en/about.mdx'
 import AboutEs from '@/locales/pages/es/about.mdx'
 import AboutFr from '@/locales/pages/fr/about.mdx'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t('À propos - Nos Gestes Climat'),
     description: t('Informations relatives à Nos Gestes Climat.'),
     alternates: {
@@ -18,12 +24,24 @@ export async function generateMetadata() {
   })
 }
 
-export default async function AProposPage() {
+export default async function AProposPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
+
   return (
     <>
       <PasserTestBanner />
 
-      <MDXContent contentEn={AboutEn} contentFr={AboutFr} contentEs={AboutEs} />
+      <MDXContent
+        contentEn={AboutEn}
+        contentFr={AboutFr}
+        contentEs={AboutEs}
+        locale={locale}
+      />
     </>
   )
 }

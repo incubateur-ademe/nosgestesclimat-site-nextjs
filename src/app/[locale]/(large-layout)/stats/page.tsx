@@ -2,10 +2,16 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import StatsContent from './_components/StatsContent'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
+    locale,
     title: t("Nos Statistiques d'utilisation - Nos Gestes Climat"),
     description: t(
       "Observez l'évolution de l'impact de Nos Gestes Climat en mesures chiffrées."

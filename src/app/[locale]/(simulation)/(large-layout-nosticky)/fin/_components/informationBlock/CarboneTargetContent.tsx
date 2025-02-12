@@ -1,6 +1,8 @@
+'use client'
+
 import Link from '@/components/Link'
 import ExternalLinkIcon from '@/components/icons/ExternalLinkIcon'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -16,32 +18,32 @@ const questions = [
   {
     slug: 'est-ce-que-je-peux-y-arriver-tout-seul',
     question: (
-      <Trans locale={locale}>Est-ce que je peux y arriver tout seul ?</Trans>
+      <TransClient>Est-ce que je peux y arriver tout seul ?</TransClient>
     ),
     answer: (
       <p>
-        <Trans locale={locale}>
+        <TransClient>
           Il est quasiment impossible de vivre à moins de 2 tonnes dans notre
           société actuellement.{' '}
           <span className="text-secondary-700">
             L’État, les collectivités locales, le secteur privé et les citoyens
           </span>{' '}
           devront tous contribuer pour atteindre cet objectif.
-        </Trans>
+        </TransClient>
       </p>
     ),
   },
   {
     slug: 'par-ou-commencer',
-    question: <Trans locale={locale}>Par où commencer ?</Trans>,
+    question: <TransClient>Par où commencer ?</TransClient>,
     answer: (
       <p>
-        <Trans locale={locale}>
+        <TransClient>
           Maintenant que vous avez fait votre bilan carbone et que vous avez
           pris conscience de votre empreinte, vous pouvez découvrir{' '}
           <Link href="/actions">l’ensemble des gestes</Link> qui vous
           permettront d’atteindre progressivement l’objectif de 2 tonnes.
-        </Trans>
+        </TransClient>
       </p>
     ),
   },
@@ -58,12 +60,12 @@ export default function CarboneTargetContent({ isOpen, isHedgehog }: Props) {
           className="text-lg lg:text-2xl"
           hasSeparator={isOpen}
           title={
-            <Trans locale={locale}>
+            <TransClient>
               <strong className="text-secondary-700 font-black">
                 2 tonnes
               </strong>{' '}
               en 2050 ?
-            </Trans>
+            </TransClient>
           }
         />
       </div>
@@ -72,12 +74,12 @@ export default function CarboneTargetContent({ isOpen, isHedgehog }: Props) {
           tag="h2"
           className="text-lg lg:text-2xl"
           title={
-            <Trans locale={locale}>
+            <TransClient>
               <strong className="text-secondary-700 font-black">
                 2 tonnes
               </strong>{' '}
               en 2050 ?
-            </Trans>
+            </TransClient>
           }
         />
       </div>
@@ -87,10 +89,10 @@ export default function CarboneTargetContent({ isOpen, isHedgehog }: Props) {
           isOpen || isHedgehog ? 'block' : 'hidden'
         )}>
         <p>
-          <Trans locale={locale}>
+          <TransClient>
             C’est l’objectif à atteindre pour espérer limiter le réchauffement
             climatique à 2 degrés.
-          </Trans>
+          </TransClient>
         </p>
         <TargetChart isQuestionOpen={isQuestionOpen} />
         <TargetQuestions
@@ -99,7 +101,7 @@ export default function CarboneTargetContent({ isOpen, isHedgehog }: Props) {
         />
         <div className="flex justify-end">
           <Link className="text-sm" href="/empreinte-climat" target="_blank">
-            <Trans locale={locale}>En savoir plus</Trans>{' '}
+            <TransClient>En savoir plus</TransClient>{' '}
             <ExternalLinkIcon className="stroke-primary-700" />
           </Link>
         </div>

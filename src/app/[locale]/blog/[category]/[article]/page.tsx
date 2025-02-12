@@ -113,6 +113,7 @@ export default async function ArticlePage({
           article={article}
           category={category}
           articleSlug={articleSlug}
+          locale={locale}
         />
 
         <div className="relative mt-8 flex max-w-5xl flex-col flex-nowrap gap-8 overflow-auto md:mx-auto md:mt-0 md:flex-row md:items-stretch">
@@ -126,7 +127,7 @@ export default async function ArticlePage({
       </div>
       <div className="mb-12">
         <AuthorBlock author={article.author} />
-        <OtherArticles articles={otherArticles} />
+        <OtherArticles articles={otherArticles} locale={locale} />
       </div>
     </>
   )

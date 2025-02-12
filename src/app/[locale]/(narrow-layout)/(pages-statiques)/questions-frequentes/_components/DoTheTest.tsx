@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useCurrentSimulation } from '@/publicodes-state'
@@ -11,10 +11,10 @@ export default function DoTheTest() {
   if (progression === 0) {
     return (
       <div>
-        <Trans locale={locale}>Vous n'avez pas encore débuté votre test,</Trans>{' '}
+        <TransClient>Vous n'avez pas encore débuté votre test,</TransClient>{' '}
         <InlineLink href={getLinkToSimulateur()}>
           <strong>
-            <Trans locale={locale}>lancez-vous !</Trans>
+            <TransClient>lancez-vous !</TransClient>
           </strong>
         </InlineLink>
       </div>
@@ -23,11 +23,11 @@ export default function DoTheTest() {
 
   return (
     <div>
-      <Trans locale={locale}>Vous avez commencé votre test,</Trans>{' '}
+      <TransClient>Vous avez commencé votre test,</TransClient>{' '}
       <InlineLink href={getLinkToSimulateur()}>
         <strong>
           {' '}
-          <Trans locale={locale}>cliquez ici pour le reprendre !</Trans>
+          <TransClient>cliquez ici pour le reprendre !</TransClient>
         </strong>
       </InlineLink>
     </div>

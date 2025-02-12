@@ -1,4 +1,4 @@
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { PrivacyPolicy } from '@incubateur-ademe/legal-pages-react/PrivacyPolicy'
@@ -23,29 +23,34 @@ export async function generateMetadata({
   })
 }
 
-export default function ViePriveePage() {
+export default async function ViePriveePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
   return (
     <div className="markdown">
       <p>
-        <Trans locale={locale}>
+        <TransServer locale={locale}>
           La simulation et les calculs se font dans votre navigateur Web, donc
           les réponses aux questions restent chez vous, nous n'en collectons
           aucune.
-        </Trans>
+        </TransServer>
       </p>
       <p>
-        <Trans locale={locale}>
+        <TransServer locale={locale}>
           Cependant, nous suivons quelques informations sur votre utilisation de
           ce calculateur, telles que les pages consultées et le temps passé,
           dans l'unique but de l'améliorer.
-        </Trans>
+        </TransServer>
       </p>
       <p>
-        <Trans locale={locale}>
+        <TransServer locale={locale}>
           En particulier, nous suivons l'adresse de la page de fin de
           simulation, qui contient le total de votre empreinte et sa répartition
           en grande catégories (transport, logement, etc.)
-        </Trans>
+        </TransServer>
       </p>
       <PrivacyPolicy
         includeBetaGouv

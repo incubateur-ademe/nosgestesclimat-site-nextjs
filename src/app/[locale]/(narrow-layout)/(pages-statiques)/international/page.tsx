@@ -1,6 +1,6 @@
 import Link from '@/components/Link'
 import RegionGrid from '@/components/misc/RegionGrid'
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Container from '@/design-system/layout/Container'
@@ -70,7 +70,7 @@ export default async function International({
                 size="lg"
                 className="px-20">
                 <span>
-                  <Trans locale={locale}>Faire le test</Trans>
+                  <TransServer locale={locale}>Faire le test</TransServer>
                 </span>
               </ButtonLink>
             </div>
@@ -89,31 +89,31 @@ export default async function International({
       <div className="rounded-xl bg-gray-100">
         <Container maxWidth="3xl" className="px-4 pt-8 pb-12">
           <h2>
-            <Trans locale={locale} i18nKey="international.pourquoi.titre">
+            <TransServer locale={locale} i18nKey="international.pourquoi.titre">
               Adapté à votre pays
-            </Trans>
+            </TransServer>
           </h2>
           <p>
-            <Trans locale={locale} i18nKey="international.pourquoi.1">
+            <TransServer locale={locale} i18nKey="international.pourquoi.1">
               Les modes de vies ne sont pas les mêmes en fonction du pays dans
               lequel on vit. Certains pays ont un réseau ferré très développé,
               d'autres sont insulaires et donc reposent davantage sur le ferry
               et l'avion.
-            </Trans>
+            </TransServer>
           </p>
           <p>
-            <Trans locale={locale} i18nKey="international.pourquoi.2">
+            <TransServer locale={locale} i18nKey="international.pourquoi.2">
               Au fur et à mesure que l'électricité prend une place très
               importante grâce à la transition énergétique, l'empreinte carbone
               du mix électrique influence fortement le calcul d'empreinte
               climat.
-            </Trans>
+            </TransServer>
           </p>
           <p>
-            <Trans locale={locale} i18nKey="international.pourquoi.3">
+            <TransServer locale={locale} i18nKey="international.pourquoi.3">
               Nous utilisons, quand disponible, l'empreinte du mix électrique
               fournie par :
-            </Trans>
+            </TransServer>
              
             <Link
               className="inline"
@@ -133,25 +133,25 @@ export default async function International({
 
       <Container maxWidth="3xl" className="pt-8 pb-12">
         <h2>
-          <Trans locale={locale} i18nKey="international.comment.titre">
+          <TransServer locale={locale} i18nKey="international.comment.titre">
             Comment ça marche ?
-          </Trans>
+          </TransServer>
         </h2>
         <p>
-          <Trans locale={locale} i18nKey="international.comment.1">
+          <TransServer locale={locale} i18nKey="international.comment.1">
             Pour proposer un modèle pour chaque pays, il nous faut forcément une
             base. Nos Gestes Climat s'est construit sur le cas de la France. À
             partir de là, chaque pays décrit ses différences par rapport à la
             base.
-          </Trans>
+          </TransServer>
         </p>
         <p>
-          <Trans locale={locale} i18nKey="international.comment.2">
+          <TransServer locale={locale} i18nKey="international.comment.2">
             Explorez en détail les spécificités de chaque pays.
-          </Trans>
+          </TransServer>
           &nbsp;
           <span className="bg-primary-100 ml-2 rounded-xs px-2 py-1 whitespace-nowrap">
-            ⏳️ <Trans locale={locale}>À venir !</Trans>
+            ⏳️ <TransServer locale={locale}>À venir !</TransServer>
           </span>
         </p>
       </Container>
@@ -170,17 +170,17 @@ export default async function International({
 
       <Container maxWidth="3xl" className="pt-8 pb-12">
         <h2>
-          <Trans locale={locale} i18nKey="international.ensuite.titre">
+          <TransServer locale={locale} i18nKey="international.ensuite.titre">
             Vous ne trouvez pas votre pays ?
-          </Trans>
+          </TransServer>
         </h2>
         <p>
-          <Trans locale={locale} i18nKey="international.ensuite.1">
+          <TransServer locale={locale} i18nKey="international.ensuite.1">
             Nous avons lancé une première version de l'internationalisation qui
             comprend une douzaine de pays. Nous le faisons pas à pas, pour
             consolider les particularités de chaque pays. Le votre n'y est pas ?{' '}
             <InlineLink href="/a-propos">Écrivez-nous !</InlineLink>
-          </Trans>
+          </TransServer>
         </p>
       </Container>
     </>

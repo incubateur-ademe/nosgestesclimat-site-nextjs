@@ -41,9 +41,11 @@ export default async function CategoryPage({
   params,
   searchParams,
 }: {
-  params: { category: string }
+  params: Promise<{ category: string; locale: string }>
   searchParams: { page: string }
 }) {
+  const { category, locale } = await params
+
   // Get the page number from the query params from the server side
   const page = Number(searchParams.page) || 1
 
@@ -59,7 +61,7 @@ export default async function CategoryPage({
     image,
   } =
     (await fetchCategoryPageContent({
-      slug: params.category,
+      slug: category,
       page,
     })) || {}
 
@@ -72,13 +74,14 @@ export default async function CategoryPage({
       <CategoryJSONLD
         title={title}
         questions={questions ?? []}
-        categorySlug={params.category}
+        categorySlug={category}
       />
 
       <CategoryHero
         title={title}
         description={description}
-        slug={params.category}
+        slug={category}
+        locale={locale}
       />
 
       <ContentLarge tag="div" className="overflow-hidden px-4 lg:px-0">
@@ -89,7 +92,7 @@ export default async function CategoryPage({
             title={mainArticle.title}
             description={mainArticle.description}
             category={title}
-            href={`/blog/${params.category}/${mainArticle.slug}`}
+            href={`/blog/${category}/${mainArticle.slug}`}
           />
         )}
 
@@ -126,6 +129,7 @@ export default async function CategoryPage({
         className={
           additionalContent && image ? 'before:bg-white' : 'before:bg-[#F6F6F5]'
         }
+        locale={locale}
       />
     </div>
   )

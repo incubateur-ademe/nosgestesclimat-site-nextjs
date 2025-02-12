@@ -1,6 +1,6 @@
 import Link from '@/components/Link'
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import Markdown from '@/design-system/utils/Markdown'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPost } from '@/helpers/markdown/getPost'
@@ -37,7 +37,10 @@ export default async function Release({
   return (
     <div>
       <Link href="/nouveautes" className="mb-8 block text-sm">
-        ← <Trans locale={locale}>Retour à la liste des nouveautes</Trans>
+        ←{' '}
+        <TransServer locale={locale}>
+          Retour à la liste des nouveautes
+        </TransServer>
       </Link>
 
       <PasserTestBanner />
@@ -45,9 +48,9 @@ export default async function Release({
       {nouveaute ? (
         <Markdown>{nouveaute?.content}</Markdown>
       ) : (
-        <Trans locale={locale}>
+        <TransServer locale={locale}>
           Oups, nous n'avons pas d'article correspondant
-        </Trans>
+        </TransServer>
       )}
     </div>
   )

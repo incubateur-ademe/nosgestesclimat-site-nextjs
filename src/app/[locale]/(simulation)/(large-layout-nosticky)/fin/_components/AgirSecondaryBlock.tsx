@@ -1,5 +1,5 @@
 import Logo from '@/components/misc/Logo'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { endClickJagisSecondBlock } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
 import Badge from '@/design-system/layout/Badge'
@@ -30,23 +30,23 @@ export default function AgirSecondaryBlock() {
       <div className="bg-[url('/images/misc/jagis-bg.svg')] bg-right-bottom bg-no-repeat px-4 py-6 lg:bg-[length:18rem]">
         <div className="mb-4 flex gap-4">
           <Badge size="xs" color="green">
-            <Trans locale={locale}>Aides financières</Trans>
+            <TransClient>Aides financières</TransClient>
           </Badge>
           <Badge size="xs" color="green">
-            <Trans locale={locale}>Bons plans</Trans>
+            <TransClient>Bons plans</TransClient>
           </Badge>
           <Badge size="xs" color="green">
-            <Trans locale={locale}>Idées</Trans>
+            <TransClient>Idées</TransClient>
           </Badge>
         </div>
         <h2 className="mb-2">
-          <Trans locale={locale}>Que faire pour réduire mon empreinte ?</Trans>
+          <TransClient>Que faire pour réduire mon empreinte ?</TransClient>
         </h2>
         <p>
-          <Trans locale={locale}>
+          <TransClient>
             À partir de votre bilan, <strong>J’agis</strong> vous propose des
             actions concrètes et adaptées à vos envies et à vos moyens
-          </Trans>
+          </TransClient>
         </p>
         <Button
           disabled={isPending}
@@ -55,24 +55,24 @@ export default function AgirSecondaryBlock() {
             trackEvent(endClickJagisSecondBlock)
             exportSimulation()
           }}>
-          <Trans locale={locale}>
+          <TransClient>
             Créer mon compte {isPending && <Loader className="ml-2" />}
-          </Trans>
+          </TransClient>
         </Button>
         {isError && <div className="text-red-600">{error?.toString()}</div>}
         {!data?.redirectUrl && isSuccess && (
           <div className="text-red-600">
-            <Trans locale={locale}>Une erreur est survenue</Trans>
+            <TransClient>Une erreur est survenue</TransClient>
           </div>
         )}
         {!couldOpen && isSuccess && (
           <div className="text-red-600">
-            <Trans locale={locale}>
+            <TransClient>
               Une erreur est survenue.{' '}
               <a href={data?.redirectUrl} rel="noreferrer" target="_blank">
                 Cliquez sur ce lien pour naviguer vers J'agis.
               </a>
-            </Trans>
+            </TransClient>
           </div>
         )}
         <div className="flex items-center gap-4">
