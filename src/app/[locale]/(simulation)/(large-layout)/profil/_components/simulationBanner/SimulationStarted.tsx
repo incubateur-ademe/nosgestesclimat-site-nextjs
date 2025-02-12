@@ -50,12 +50,12 @@ export default function SimulationStarted() {
             <summary className="mb-2 cursor-pointer">
               Où sont mes données ?{' '}
             </summary>
-            <span className="!text-xs">
+            <span className="text-xs!">
               Vos données sont stockées dans votre navigateur, vous avez donc le
               contrôle total sur elles.
             </span>
           </Trans>{' '}
-          <Link href="/vie-privee" className="!text-xs">
+          <Link href="/vie-privee" className="text-xs!">
             <Trans>En savoir plus</Trans>
           </Link>
         </details>
@@ -75,7 +75,7 @@ export default function SimulationStarted() {
         {!isFinished && (
           <ButtonLink
             color="primary"
-            className="w-full !justify-center"
+            className="w-full justify-center!"
             href={getLinkToSimulateur()}
             trackingEvent={profilClickCtaReprendre}>
             <PlaySignIcon className="mr-2 fill-white" />

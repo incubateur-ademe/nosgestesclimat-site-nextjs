@@ -18,8 +18,8 @@ import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const sizeClassNames = {
-  sm: '!p-0 h-10 w-10',
-  md: '!p-0 h-10 w-10',
+  sm: 'p-0! h-10 w-10',
+  md: 'p-0! h-10 w-10',
 }
 const saveClassNames = {
   sm: 'h-6 w-6',
@@ -125,7 +125,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         aria-label={t('Sauvegarder')}
         className={twMerge(
           sizeClassNames[size],
-          'font-medium lg:w-auto lg:gap-2 lg:!px-4 lg:!py-2'
+          'font-medium lg:w-auto lg:gap-2 lg:px-4! lg:py-2!'
         )}
         onClick={() => {
           trackEvent(
@@ -146,7 +146,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         size="sm"
         className={twMerge(
           sizeClassNames[size],
-          'font-medium lg:w-auto lg:min-w-32 lg:gap-1 lg:!px-4 lg:!py-2'
+          'font-medium lg:w-auto lg:min-w-32 lg:gap-1 lg:px-4! lg:py-2!'
         )}
         onClick={() => {
           trackEvent(endClickShareShortcut)

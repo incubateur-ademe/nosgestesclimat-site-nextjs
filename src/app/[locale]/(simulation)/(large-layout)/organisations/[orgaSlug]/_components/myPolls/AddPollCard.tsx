@@ -43,7 +43,7 @@ export default function AddPollCard({ hasNoPollsYet }: Props) {
 
       <div
         className={twMerge(
-          '!w-full text-sm',
+          'w-full! text-sm',
           baseClassNames,
           sizeClassNames.md,
           hasNoPollsYet ? colorClassNames.primary : colorClassNames.secondary

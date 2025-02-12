@@ -56,7 +56,7 @@ export default function NavLink({
       {icon && (
         <Icon
           className={twMerge(
-            'h-5 w-5 group-hover:fill-primary-800 group-hover:!stroke-primary-800',
+            'h-5 w-5 group-hover:fill-primary-800 group-hover:stroke-primary-800!',
             `${isActive ? 'fill-primary-800 stroke-primary-800' : ''}`
           )}
         />

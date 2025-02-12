@@ -69,7 +69,7 @@ export default function MosaicBooleanInput({
         />
 
         <span
-          className={`${checkClassNames[status]} flex h-5 w-5 items-center justify-center rounded-sm border-2 leading-4`}>
+          className={`${checkClassNames[status]} flex h-5 w-5 items-center justify-center rounded-xs border-2 leading-4`}>
           {status === 'checked' ? (
             <motion.div
               initial={{ opacity: 0 }}

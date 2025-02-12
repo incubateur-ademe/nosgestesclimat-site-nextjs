@@ -1,5 +1,25 @@
 @import 'tailwindcss';
 
+@config '../../../tailwind.config.js';
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
 @font-face {
   font-family: 'Marianne';
   src: url('/fonts/Marianne-Thin.woff2') format('woff2');
@@ -666,11 +686,11 @@ html[data-useragent*='Trident'] #js {
 }
 
 .Toastify__toast--error {
-  @apply bg-red-50 text-red-700 !important;
+  @apply bg-red-50! text-red-700!;
 }
 .Toastify__close-button--light {
   opacity: 1 !important;
-  @apply text-gray-700 !important;
+  @apply text-gray-700!;
 }
 .Toastify__progress-bar {
   background: linear-gradient(
@@ -695,7 +715,7 @@ html[data-useragent*='Trident'] #js {
 }
 
 .Toastify__progress-bar--bg {
-  @apply bg-gray-100 !important;
+  @apply bg-gray-100!;
   opacity: 1 !important;
 }
 
@@ -717,16 +737,16 @@ html[data-useragent*='Trident'] #js {
 }
 
 .slick-dots {
-  @apply !flex items-center justify-center gap-2 md:ml-[200px] md:justify-start;
+  @apply flex! items-center justify-center gap-2 md:ml-[200px] md:justify-start;
 }
 .slick-dots li {
-  @apply !flex;
+  @apply flex!;
 }
 .slick-dots > li > button {
   @apply border-primary-700 h-3 w-3 rounded-full border-2 text-[0px] transition-all duration-500;
 }
 .slick-active > button {
-  @apply bg-primary-700 !w-8;
+  @apply bg-primary-700 w-8!;
 }
 
 .custom-scrollbar {

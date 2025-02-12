@@ -31,7 +31,7 @@ export default function TotalButtons({
         color="text"
         size="sm"
         className={twMerge(
-          'h-10 w-10 !p-0 font-medium lg:w-auto lg:gap-2 lg:!px-4 lg:!py-2'
+          'h-10 w-10 p-0! font-medium lg:w-auto lg:gap-2 lg:px-4! lg:py-2!'
         )}
         onClick={() => {
           trackEvent(simulateurOpenScoreInfo)
@@ -47,7 +47,7 @@ export default function TotalButtons({
       <Button
         color="text"
         size="sm"
-        className="h-10 w-10 !p-0 font-medium lg:w-auto lg:gap-2 lg:!px-4 lg:!py-2"
+        className="h-10 w-10 p-0! font-medium lg:w-auto lg:gap-2 lg:px-4! lg:py-2!"
         onClick={() => {
           toggleQuestionList()
         }}>
@@ -61,7 +61,7 @@ export default function TotalButtons({
         <Button
           color="text"
           size="sm"
-          className="h-10 w-10 !p-0 font-medium lg:w-auto lg:gap-2 lg:!px-4 lg:!py-2"
+          className="h-10 w-10 p-0! font-medium lg:w-auto lg:gap-2 lg:px-4! lg:py-2!"
           onClick={() => {
             toggleSaveModal()
           }}>

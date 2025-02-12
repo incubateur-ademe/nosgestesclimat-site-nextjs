@@ -139,7 +139,7 @@ export default async function International() {
             Explorez en détail les spécificités de chaque pays.
           </Trans>
           &nbsp;
-          <span className="ml-2 whitespace-nowrap rounded-sm bg-primary-100 px-2 py-1">
+          <span className="ml-2 whitespace-nowrap rounded-xs bg-primary-100 px-2 py-1">
             ⏳️ <Trans>À venir !</Trans>
           </span>
         </p>
