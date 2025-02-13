@@ -35,6 +35,7 @@ export default function AdminSection({ poll }: Props) {
     organisation?.administrators.find(
       ({ userId, email }) =>
         userId === user.userId ||
+        // Cover possible edge case where admin changes browser and looses his/her original userId
         email === user.organisation?.administratorEmail
     )
 
