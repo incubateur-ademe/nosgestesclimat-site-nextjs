@@ -10,9 +10,18 @@ declare global {
 
 export const trackEvent = (args: (string | null)[]) => {
   if (shouldUseDevTracker || !window?._paq) {
+    console.log(args)
     console.debug(args.join(' => '))
     return
   }
+
+  // Matomo: [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
+  // Exemple : ['trackEvent', 'Accueil', 'CTA Click', 'Click Reprendre le test']
+  // posthog.capture(args[3], {
+  //   category: args[1],
+  //   subcategory: args[2],
+  //   value: args[4],
+  // })
 
   // Pass a copy of the array to avoid mutation
   window?._paq?.push([...args])

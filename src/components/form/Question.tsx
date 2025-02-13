@@ -18,7 +18,7 @@ import {
 } from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
 import { useRule } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'

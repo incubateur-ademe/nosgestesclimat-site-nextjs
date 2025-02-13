@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 import ImageWithCategory from './ImageWithCategory'

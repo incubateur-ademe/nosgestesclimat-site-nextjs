@@ -1,5 +1,5 @@
 import { trackingIframe } from '@/constants/tracking/misc'
-import { trackEvent, trackPageView } from '@/utils/matomo/trackEvent'
+import { trackEvent, trackPageView } from '@/utils/analytics/trackEvent'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { useGetTrackedUrl } from './useGetTrackedUrl'

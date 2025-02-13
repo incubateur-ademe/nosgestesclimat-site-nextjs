@@ -1,4 +1,4 @@
-import { trackPageView } from '@/utils/matomo/trackEvent'
+import { trackPageView } from '@/utils/analytics/trackEvent'
 import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 import { useGetTrackedUrl } from './useGetTrackedUrl'

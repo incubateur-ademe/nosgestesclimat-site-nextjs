@@ -13,7 +13,7 @@ import { useTrackTimeOnSimulation } from '@/hooks/tracking/useTrackTimeOnSimulat
 import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import { useCurrentSimulation, useEngine, useForm } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import posthog from 'posthog-js'
 import { useContext, useEffect, useState } from 'react'
 import FunFact from './form/FunFact'

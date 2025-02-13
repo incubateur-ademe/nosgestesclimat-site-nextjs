@@ -11,7 +11,7 @@ import {
 } from '@/constants/tracking/layout'
 import { linkToClassement } from '@/helpers/navigation/classementPages'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import NavLink from '../NavLink'
 
 export default function BottomMenu() {

@@ -5,7 +5,7 @@ import Trans from '@/components/translation/Trans'
 import { classementCreateOrganisation } from '@/constants/tracking/pages/classements'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import type { Organisation } from '@/types/organisations'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
 type Props = {
   organisations?: Organisation[]

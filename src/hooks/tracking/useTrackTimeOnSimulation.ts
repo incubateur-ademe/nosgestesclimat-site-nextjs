@@ -1,5 +1,5 @@
 import { simulationSimulationCompletedTime } from '@/constants/tracking/simulation'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import posthog from 'posthog-js'
 import { useCallback, useMemo } from 'react'
 

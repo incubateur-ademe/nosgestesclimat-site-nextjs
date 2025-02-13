@@ -11,7 +11,7 @@ import {
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import CopyInput from '@/design-system/inputs/CopyInput'
 import type { PublicOrganisationPoll } from '@/types/organisations'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useParams } from 'next/navigation'
 
 type Props = {

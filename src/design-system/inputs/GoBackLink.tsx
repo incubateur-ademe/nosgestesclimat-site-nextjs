@@ -2,7 +2,7 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
 type Props = {
   href: string
