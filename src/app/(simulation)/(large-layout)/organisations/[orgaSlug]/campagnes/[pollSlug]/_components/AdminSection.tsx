@@ -28,7 +28,7 @@ export default function AdminSection({ poll }: Props) {
   // Organisation can only be fetched by a authentified organisation administrator
   const { data: organisation, isLoading: isLoadingOrganisation } =
     useFetchOrganisation()
-
+  console.log(organisation, user)
   // Temp hotfix to display the admin section
   const isAdmin =
     poll?.organisation.administrators ||
@@ -36,7 +36,9 @@ export default function AdminSection({ poll }: Props) {
       ({ userId, email }) =>
         userId === user.userId ||
         // Cover possible edge case where admin changes browser and looses his/her original userId
-        email === user.organisation?.administratorEmail
+        email === user.organisation?.administratorEmail ||
+        // Unsecure remove as soon as possible
+        organisation?.slug === user.organisation?.slug
     )
 
   if (!isAdmin || isLoadingOrganisation) return null
