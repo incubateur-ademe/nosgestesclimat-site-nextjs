@@ -10,6 +10,8 @@ import {
 } from '@/constants/tracking/pages/pollDashboard'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import CopyInput from '@/design-system/inputs/CopyInput'
+import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
+import { useUser } from '@/publicodes-state'
 import type { PublicOrganisationPoll } from '@/types/organisations'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useParams } from 'next/navigation'
@@ -21,7 +23,22 @@ type Props = {
 export default function AdminSection({ poll }: Props) {
   const { orgaSlug, pollSlug } = useParams()
 
-  if (!poll?.organisation.administrators) return null
+  const { user } = useUser()
+
+  // Organisation can only be fetched by a authentified organisation administrator
+  const { data: organisation, isLoading: isLoadingOrganisation } =
+    useFetchOrganisation()
+
+  // Temp hotfix to display the admin section
+  const isAdmin =
+    poll?.organisation.administrators ||
+    organisation?.administrators.find(
+      ({ userId, email }) =>
+        userId === user.userId ||
+        email === user.organisation?.administratorEmail
+    )
+
+  if (!isAdmin || isLoadingOrganisation) return null
 
   return (
     <section className="mb-10 rounded-xl bg-gray-50 p-6">
