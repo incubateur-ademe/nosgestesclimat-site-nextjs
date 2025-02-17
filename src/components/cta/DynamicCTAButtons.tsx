@@ -1,9 +1,9 @@
 'use client'
 
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import Loader from '@/design-system/layout/Loader'
 import { getCTAButtonLabel } from '@/helpers/ctaButton/getCTAButtonLabel'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
-import { useIsClient } from '@/hooks/useIsClient'
 import { getProgression } from '@/services/localstorage/ngc.service'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useState } from 'react'
@@ -25,8 +25,6 @@ export default function DynamicCTAButtons({
   }
   withRestart?: boolean
 }) {
-  const isClient = useIsClient()
-
   const { getLinkToSimulateurPage, goToSimulateurPage } = useSimulateurPage()
 
   // Use the progression from the local storage as component isn't always in the right context
@@ -47,7 +45,6 @@ export default function DynamicCTAButtons({
         size="xl"
         className={twMerge(
           'transition-all duration-300 hover:bg-primary-900',
-          isClient ? 'opacity-100' : 'opacity-0',
           className
         )}
         href={getLinkToSimulateurPage()}
@@ -74,7 +71,7 @@ export default function DynamicCTAButtons({
               : '',
             'leading-none'
           )}>
-          <Trans>{label}</Trans>
+          {!label ? <Loader color="light" /> : <Trans>{label}</Trans>}
         </span>
       </ButtonLink>
 

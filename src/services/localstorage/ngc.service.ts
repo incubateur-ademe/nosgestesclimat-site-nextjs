@@ -1,13 +1,21 @@
 import { STORAGE_KEY } from '@/constants/storage'
 import type { LocalStorage } from '@/publicodes-state/types'
+import { captureException } from '@sentry/nextjs'
 
 export function getLocalState() {
   // Check if the local storage is available
   if (typeof localStorage === 'undefined') {
     return
   }
-
-  return JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '{}') as LocalStorage
+  let parsedState: LocalStorage | undefined
+  try {
+    parsedState = JSON.parse(
+      localStorage.getItem(STORAGE_KEY) ?? '{}'
+    ) as LocalStorage
+  } catch (error) {
+    captureException(error)
+  }
+  return parsedState
 }
 
 export function getProgression() {
