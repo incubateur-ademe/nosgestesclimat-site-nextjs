@@ -1,3 +1,5 @@
+'use client'
+
 import TransClient from '@/components/translation/trans/TransClient'
 import Card from '@/design-system/layout/Card'
 import { useLocale } from '@/hooks/useLocale'
@@ -15,7 +17,7 @@ export default function SimulationsFigures({
   const locale = useLocale()
   return (
     <div>
-      <Card className="flex- flex-row justify-around gap-4 lg:h-60 lg:flex-col!">
+      <Card className="flex- lg:flex-col! flex-row justify-around gap-4 lg:h-60">
         <div>
           <p className="mb-0 text-3xl font-bold">
             {formatValue(allSimulationsTerminees, locale)}

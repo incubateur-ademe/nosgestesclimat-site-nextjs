@@ -1,5 +1,4 @@
 import TitleDescLinkBlock from '@/components/landing-pages/TitleDescLinkBlock'
-import Trans from '@/components/translation/Trans'
 import TransServer from '@/components/translation/trans/TransServer'
 import {
   getLandingClickModelDocumentation,
@@ -46,7 +45,9 @@ export default async function ModelInfo({ locale }: { locale: string }) {
           />
 
           <TitleDescLinkBlock
-            title={<Trans locale={locale}>Libre et documenté</Trans>}
+            title={
+              <TransServer locale={locale}>Libre et documenté</TransServer>
+            }
             description={
               <TransServer locale={locale}>
                 Les lignes de code, les données et même une grande partie des

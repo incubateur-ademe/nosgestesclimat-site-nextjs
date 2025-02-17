@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
 import TransClient from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
 import {
@@ -43,9 +42,9 @@ const UseQueryResultHandler = ({
           if (isError) {
             return (
               <p key={`${JSON.stringify(error)}-${index}`}>
-                <Trans locale={locale}>
+                <TransClient>
                   Une erreur est survenue lors de la récupération des données
-                </Trans>{' '}
+                </TransClient>{' '}
                 : {(error as any).message}
               </p>
             )
@@ -53,7 +52,7 @@ const UseQueryResultHandler = ({
           if (isLoading) {
             return (
               <p key={`${JSON.stringify(error)}-${index}`}>
-                <Trans locale={locale}>Récupération des données</Trans>...
+                <TransClient>Récupération des données</TransClient>...
               </p>
             )
           }

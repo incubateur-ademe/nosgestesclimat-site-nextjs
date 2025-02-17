@@ -1,5 +1,4 @@
 import UnderstandToAct from '@/components/landing-pages/UnderstandToAct'
-import Trans from '@/components/translation/Trans'
 import TransServer from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
@@ -26,7 +25,7 @@ export default async function DecryptChallenges({
               Le lexique pour tout comprendre à l'eau
             </TransServer>
           ),
-          category: <Trans locale={locale}>Empreinte eau</Trans>,
+          category: <TransServer locale={locale}>Empreinte eau</TransServer>,
           imageSrc: '/images/blog/seo/lexique-eau.jpg',
           imageAlt: t(
             "Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau"

@@ -1,4 +1,4 @@
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { useLocale } from '@/hooks/useLocale'
 export default function Table(props) {
   const locale = useLocale()
@@ -36,7 +36,7 @@ export default function Table(props) {
           </tbody>
         </table>
         <p className="text-right text-sm font-light">
-          <Trans locale={locale}>Données valables pour le mois en cours</Trans>
+          <TransClient>Données valables pour le mois en cours</TransClient>
         </p>
       </div>
     </div>
