@@ -59,38 +59,40 @@ export default function PollForm({ organisation }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <TextInputGroup
-          label={<Trans>Nom de la campagne</Trans>}
-          placeholder={t('ex : Campagne 2024, Classe de 6ème A, etc.')}
-          {...register('name', {
-            required: t('Ce champ est requis'),
-          })}
-          error={errors.name?.message}
-        />
+    <>
+      <form onSubmit={handleSubmit(onSubmit)} id="poll-form">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <TextInputGroup
+            label={<Trans>Nom de la campagne</Trans>}
+            placeholder={t('ex : Campagne 2024, Classe de 6ème A, etc.')}
+            {...register('name', {
+              required: t('Ce champ est requis'),
+            })}
+            error={errors.name?.message}
+          />
 
-        <TextInputGroup
-          label={
-            <p className="mb-0 flex w-full justify-between">
-              <Trans>Nombre de participants attendus</Trans>
-              <span className="font-bold italic text-secondary-700">
-                {' '}
-                <Trans>facultatif</Trans>
-              </span>
-            </p>
-          }
-          type="number"
-          {...register('expectedNumberOfParticipants', {
-            valueAsNumber: true,
-            min: {
-              value: 1,
-              message: t('Le nombre de participants doit être supérieur à 0'),
-            },
-          })}
-          error={errors.expectedNumberOfParticipants?.message}
-        />
-      </div>
+          <TextInputGroup
+            label={
+              <p className="mb-0 flex w-full justify-between">
+                <Trans>Nombre de participants attendus</Trans>
+                <span className="font-bold italic text-secondary-700">
+                  {' '}
+                  <Trans>facultatif</Trans>
+                </span>
+              </p>
+            }
+            type="number"
+            {...register('expectedNumberOfParticipants', {
+              valueAsNumber: true,
+              min: {
+                value: 1,
+                message: t('Le nombre de participants doit être supérieur à 0'),
+              },
+            })}
+            error={errors.expectedNumberOfParticipants?.message}
+          />
+        </div>
+      </form>
 
       <QuestionsComplementaires
         organisation={organisation}
@@ -118,9 +120,9 @@ export default function PollForm({ organisation }: Props) {
         </p>
       )}
 
-      <Button type="submit" className="self-start">
+      <Button type="submit" form="poll-form" className="self-start">
         <Trans>Lancer ma campagne</Trans>
       </Button>
-    </form>
+    </>
   )
 }
