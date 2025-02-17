@@ -12,7 +12,7 @@ export default function AllerPlusLoin() {
   const { t } = useClientTranslation()
 
   return (
-    <Card className="bg-primary-700 mt-4 flex w-full! rounded-2xl p-8 text-left! whitespace-normal!">
+    <Card className="mt-4 flex !w-full !whitespace-normal rounded-2xl bg-primary-700 p-8 !text-left">
       <div className="flex gap-2">
         <h2 className="flex items-center text-white">
           <BookClosedIcon aria-hidden className="mr-3 fill-white" />
@@ -25,7 +25,7 @@ export default function AllerPlusLoin() {
         <ul>
           <li>
             <Link
-              className="hover:text-primary-200 block text-white underline"
+              className="block text-white underline hover:text-primary-200"
               href="https://agirpourlatransition.ademe.fr/particuliers/"
               onClick={() => trackEvent(actionsClickAdeme)}
               aria-label={t(

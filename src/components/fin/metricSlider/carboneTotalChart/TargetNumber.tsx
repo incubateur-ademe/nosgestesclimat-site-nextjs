@@ -16,7 +16,7 @@ export default function TargetNumber({ isSmall }: Props) {
       transition={{ duration: 1.5, delay: 2 }}
       className={twMerge(
         'absolute top-8 -translate-x-1/2 text-left lg:top-10',
-        isSmall && 'opacity-0! delay-0! pointer-events-none'
+        isSmall && 'pointer-events-none !opacity-0 !delay-0'
       )}
       style={{ left: `${position}%` }}>
       <div className="absolute top-full mt-1 whitespace-nowrap">

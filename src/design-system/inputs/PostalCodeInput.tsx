@@ -30,11 +30,11 @@ export default function PostalCodeInput({ postalCode, setPostalCode }: Props) {
       className="max-w-[30rem]"
       classNames={{
         control: () =>
-          `p-0 border-gray-300 cursor-pointer rounded-full border border-solid bg-gray-100!  text-sm transition-colors focus:border-primary-700 focus:ring-2 focus:ring-primary-700`,
+          `p-0 border-gray-300 cursor-pointer rounded-full border border-solid !bg-gray-100  text-sm transition-colors focus:border-primary-700 focus:ring-2 focus:ring-primary-700`,
 
-        valueContainer: () => `p-4! cursor-pointer`,
-        input: () => `p-0! m-0! border-none`,
-        option: () => 'cursor-pointer!',
+        valueContainer: () => `!p-4 cursor-pointer`,
+        input: () => `!p-0 !m-0 border-none`,
+        option: () => '!cursor-pointer',
       }}
       isAsync
       isSearchable

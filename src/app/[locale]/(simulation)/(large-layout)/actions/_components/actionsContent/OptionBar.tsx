@@ -53,7 +53,7 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
       <Button
         size="sm"
         color="text"
-        className="underline!"
+        className="!underline"
         onClick={() => setRadical(!radical)}
         title={t('Choisir le type de tri des actions')}>
         {radical ? (

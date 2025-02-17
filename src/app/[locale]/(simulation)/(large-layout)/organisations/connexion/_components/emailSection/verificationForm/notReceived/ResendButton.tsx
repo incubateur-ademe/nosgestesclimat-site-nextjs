@@ -73,7 +73,7 @@ export default function ResendButton({
         onClick={handleResendVerificationCode}>
         {isRetryButtonDisabled && timeLeft > 0 && (
           <span className="mr-2 flex items-center">
-            <LockIcon className="fill-primary-700 mr-2 h-4 w-4" />
+            <LockIcon className="mr-2 h-4 w-4 fill-primary-700" />
             <TransClient>Renvoyer le code</TransClient>
           </span>
         )}
@@ -87,13 +87,13 @@ export default function ResendButton({
 
         {!shouldDisplayConfirmation && !isRetryButtonDisabled && (
           <span className="flex items-center underline">
-            <SendIcon className="fill-primary-700 mr-2 h-4 w-4" />
+            <SendIcon className="mr-2 h-4 w-4 fill-primary-700" />
             <TransClient>Renvoyer le code</TransClient>
           </span>
         )}
       </Button>
       {isRetryButtonDisabled && timeLeft > 0 && (
-        <span className="text-xs font-normal text-gray-500 no-underline!">
+        <span className="text-xs font-normal text-gray-500 !no-underline">
           <TransClient>(Attendre</TransClient> {timeLeft}{' '}
           <TransClient>secondes)</TransClient>
         </span>

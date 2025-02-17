@@ -19,7 +19,7 @@ export default function GoBackLink({ className, href, eventTracked }: Props) {
           trackEvent(eventTracked)
         }
       }}
-      className={`${className} text-[1rem]! inline-block px-0 text-primary-700 no-underline transition-opacity hover:opacity-80`}>
+      className={`${className} inline-block px-0 !text-[1rem] text-primary-700 no-underline transition-opacity hover:opacity-80`}>
       ← <TransClient>Retour</TransClient>
     </Link>
   )

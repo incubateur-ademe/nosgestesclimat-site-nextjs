@@ -46,7 +46,7 @@ export default function DidYouKnowSlider({
           className="max-w-[594px]">
           {slides.map((slide) => (
             <li
-              className="flex! mx-auto w-full max-w-[90vw] flex-col items-start gap-10 md:flex-row"
+              className="mx-auto !flex w-full max-w-[90vw] flex-col items-start gap-10 md:flex-row"
               key={String(slide.highlight)}>
               <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-white md:mx-0 md:h-40 md:w-40">
                 <Image

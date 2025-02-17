@@ -31,7 +31,7 @@ export default function Pagination({
                   'text-lg',
                   currentPage === index + 1
                     ? 'font-medium text-primary-700 underline'
-                    : 'text-gray-600! no-underline'
+                    : '!text-gray-600 no-underline'
                 )}
                 href={`/blog?page=${index + 1}#articles`}>
                 {index + 1}

@@ -33,7 +33,7 @@ export default function GroupItem({ group }: Props) {
       }>
       <div className="flex items-center justify-between py-4">
         <div className="flex w-full items-center">
-          <div className="shrink-0 text-2xl">
+          <div className="flex-shrink-0 text-2xl">
             <Emoji>{group.emoji}</Emoji>
           </div>
           <div className="ml-4">
@@ -56,7 +56,7 @@ export default function GroupItem({ group }: Props) {
           </div>
         </div>
         <div className="flex items-center">
-          <div className="shrink-0">
+          <div className="flex-shrink-0">
             <ChevronRight />
           </div>
         </div>

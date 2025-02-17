@@ -29,7 +29,7 @@ export default function ActionCard({
     <Card
       tag={tag}
       onClick={onClick}
-      className={twMerge('h-[140px] w-[230px] pr-2 no-underline!', className)}
+      className={twMerge('h-[140px] w-[230px] pr-2 !no-underline', className)}
       {...props}>
       <div className="flex justify-between">
         <Emoji className="flex gap-1">{icons}</Emoji>

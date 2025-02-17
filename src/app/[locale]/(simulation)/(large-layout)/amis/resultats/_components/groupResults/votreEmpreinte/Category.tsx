@@ -23,7 +23,7 @@ export default function Category({
   return (
     <li className="flex items-center justify-between border-0 border-b-[1px] border-solid border-gray-200 py-4 last:border-b-0">
       <div className="flex items-center">
-        <div className="shrink-0 text-2xl">
+        <div className="flex-shrink-0 text-2xl">
           <Emoji>{icons}</Emoji>
         </div>
         <div className="ml-4">

@@ -21,7 +21,7 @@ export default function SimulationMissing() {
 
   return (
     <div className="mb-8">
-      <Card className="border-none bg-gray-100!">
+      <Card className="border-none !bg-gray-100">
         <h2>
           <TransClient>Calcul d'empreinte carbone manquant</TransClient>
         </h2>

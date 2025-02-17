@@ -10,7 +10,7 @@ import TutorialLink from './_components/TutorialLink'
 
 export default function SimulationNotStarted() {
   return (
-    <Card className="my-4 flex w-[35rem]! max-w-full flex-1 items-start gap-2 self-start border-none bg-gray-100 md:p-8">
+    <Card className="my-4 flex !w-[35rem] max-w-full flex-1 items-start gap-2 self-start border-none bg-gray-100 md:p-8">
       <p className="w-full text-center md:text-left">
         <span
           role="img"

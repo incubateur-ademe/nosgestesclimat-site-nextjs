@@ -62,7 +62,7 @@ export default function DynamicCTAButtons({
         <span
           className={twMerge(
             isHover
-              ? 'bg-rainbow animate-rainbow-fast bg-clip-text! text-transparent! duration-1000'
+              ? 'bg-rainbow animate-rainbow-fast !bg-clip-text !text-transparent duration-1000'
               : '',
             'leading-none'
           )}>

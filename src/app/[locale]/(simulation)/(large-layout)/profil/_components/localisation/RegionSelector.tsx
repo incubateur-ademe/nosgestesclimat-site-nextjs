@@ -99,7 +99,7 @@ export default function RegionSelector({
               className="align-top"
               href="https://accelerateur-transition-ecologique-ademe.notion.site/Ajouter-une-nouvelle-r-gion-f7e3a09a975d423f826ae654a788f8ba">
               <TransClient>Suivez le guide !</TransClient>
-              <NewTabSvg className="-mt-1!" />
+              <NewTabSvg className="-mt-1" />
             </a>
           </p>
         </Card>

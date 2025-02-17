@@ -82,7 +82,7 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
 
   return (
     <>
-      <Card className="bg-primary-100 my-8 border-none">
+      <Card className="my-8 border-none bg-primary-100">
         <h2 className="flex items-center text-xl">
           <SearchIcon className="mr-2" />
 
@@ -97,7 +97,7 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
             type="search"
             value={input}
             placeholder={t('Entrez des mots-clefs de recherche')}
-            className="border-primary-100 w-full rounded-xl border border-solid p-4"
+            className="w-full rounded-xl border border-solid border-primary-100 p-4"
             onChange={(e) => {
               const input = e.target.value
 
@@ -107,8 +107,8 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
         </label>
 
         {input.length > 2 && !results.length && (
-          <div role="status" className="mt-2 rounded-xs p-2">
-            <TransClient>
+          <div role="status" className="mt-2 rounded-sm p-2">
+            <TransClient i18nKey="noresults">
               Aucun résultat ne correspond à cette recherche
             </TransClient>
           </div>

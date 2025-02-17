@@ -28,7 +28,7 @@ export default function FancySelect({
         }}
       />
       <select
-        className="absolute left-0 top-0 h-full w-full cursor-pointer appearance-none border-none bg-transparent text-transparent opacity-0 shadow-xs"
+        className="absolute left-0 top-0 h-full w-full cursor-pointer appearance-none border-none bg-transparent text-transparent opacity-0 shadow-sm"
         id={name}
         name={name}
         value={value ? value : ''}

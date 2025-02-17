@@ -46,7 +46,7 @@ export default function SimulationList() {
                 <summary>
                   <div className="inline-flex">
                     <span>{simulationDate.toLocaleDateString()}</span>
-                    <span className="ml-1 hidden w-[8rem] overflow-hidden text-ellipsis whitespace-nowrap md:inline-block">
+                    <span className="ml-1 hidden w-[8rem] overflow-hidden overflow-ellipsis whitespace-nowrap md:inline-block">
                       - {simulation.id}
                     </span>
                     {currentSimulationId === simulation.id ? (

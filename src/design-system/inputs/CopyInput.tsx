@@ -59,7 +59,7 @@ export default function CopyInput({
       />
       <Button
         size="sm"
-        className="min-w-[9rem]! shrink-0 justify-center rounded-l-none px-4 py-2"
+        className="!min-w-[9rem] flex-shrink-0 justify-center rounded-l-none px-4 py-2"
         onClick={() => {
           if (canShare && isShareDefined) {
             handleShare()

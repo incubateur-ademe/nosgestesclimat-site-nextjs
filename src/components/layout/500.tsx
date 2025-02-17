@@ -16,7 +16,7 @@ export default function Error500() {
         </span>
       </h1>
 
-      <InlineLink href="/" className="text-center! flex flex-col items-center">
+      <InlineLink href="/" className="flex flex-col items-center !text-center">
         <em>
           <TransClient i18nKey="404.action">Revenir en lieu sûr</TransClient>
         </em>

@@ -19,7 +19,7 @@ export default function AnimatedArrow({
       style={{ left: isSmall ? '50%' : `${position}%` }}>
       <Arrow
         style={{ fill: color }}
-        className={isSmall ? 'pointer-events-none opacity-0! duration-300' : ''}
+        className={isSmall ? 'pointer-events-none !opacity-0 duration-300' : ''}
       />
     </motion.div>
   )

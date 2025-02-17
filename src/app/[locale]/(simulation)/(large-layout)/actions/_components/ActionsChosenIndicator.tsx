@@ -18,7 +18,7 @@ export default function ActionsChosenIndicator() {
   return (
     <span>
       ,{' '}
-      <span className="mr-2 inline-block h-[1.8rem] w-[1.3rem] rounded-xs bg-[#77b255] text-center align-middle leading-[0.85rem] font-bold text-white">
+      <span className="mr-2 inline-block h-[1.8rem] w-[1.3rem] rounded-sm bg-[#77b255] text-center align-middle font-bold leading-[0.85rem] text-white">
         <div>{count}</div>
         <div title={t('actions choisies')}>&#10004;</div>
       </span>

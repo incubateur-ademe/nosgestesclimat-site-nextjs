@@ -28,7 +28,7 @@ export default function IllustratedPointsList({ locale }: { locale: string }) {
           </div>
 
           <div className="mx-auto flex max-w-full items-end overflow-hidden rounded-xl bg-gray-100 px-6 pt-6 md:w-[26rem]">
-            <div className="mx-auto mt-4 flex items-end rounded-t-md bg-white p-4 pb-0 shadow-xs">
+            <div className="mx-auto mt-4 flex items-end rounded-t-md bg-white p-4 pb-0 shadow-sm">
               <Image
                 src="/images/organisations/tutoriel.png"
                 width="300"
