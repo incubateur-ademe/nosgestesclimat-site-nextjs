@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { ReactNode } from 'react'
 import { useEffect } from 'react'
@@ -41,7 +41,7 @@ export default function Modal({
     <ReactModal
       isOpen={isOpen}
       onRequestClose={!isLoading ? closeModal : undefined}
-      className="fixed top-1/2 left-1/2 w-[40rem] max-w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white p-8 pt-4"
+      className="fixed left-1/2 top-1/2 w-[40rem] max-w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white p-8 pt-4"
       overlayClassName="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-[10000] overflow-hidden">
       {hasAbortCross && (
         <div className="flex justify-end">
@@ -64,7 +64,7 @@ export default function Modal({
               color="secondary"
               disabled={isLoading}
               onClick={!isLoading ? closeModal : () => {}}>
-              <Trans locale={locale}>Annuler</Trans>
+              <TransClient>Annuler</TransClient>
             </Button>
           )}
           {buttons ? buttons : null}

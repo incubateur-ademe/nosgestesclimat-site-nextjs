@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 type Props = {
@@ -19,8 +19,8 @@ export default function GoBackLink({ className, href, eventTracked }: Props) {
           trackEvent(eventTracked)
         }
       }}
-      className={`${className} text-primary-700 inline-block px-0 text-[1rem]! no-underline transition-opacity hover:opacity-80`}>
-      ← <Trans locale={locale}>Retour</Trans>
+      className={`${className} text-[1rem]! inline-block px-0 text-primary-700 no-underline transition-opacity hover:opacity-80`}>
+      ← <TransClient>Retour</TransClient>
     </Link>
   )
 }

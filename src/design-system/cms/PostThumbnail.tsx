@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -27,7 +27,7 @@ export default function PostThumbnail({
     <a
       href={href}
       className={twMerge(
-        'flex h-full rounded-xl no-underline! duration-300! md:flex-col md:transition-transform md:hover:translate-y-[-6px]',
+        'no-underline! duration-300! flex h-full rounded-xl md:flex-col md:transition-transform md:hover:translate-y-[-6px]',
         className
       )}
       onClick={() => trackEvent(trackingEvent)}>
@@ -41,16 +41,16 @@ export default function PostThumbnail({
 
       <div className="mt-4 flex w-full flex-col md:flex-1">
         {/* Hidden on desktop */}
-        <p className="text-primary-700 mb-2 px-4 text-xs font-bold md:hidden md:pt-4 md:text-[13px]">
+        <p className="mb-2 px-4 text-xs font-bold text-primary-700 md:hidden md:pt-4 md:text-[13px]">
           {category}
         </p>
 
-        <h3 className="text-default mb-auto pr-2 pl-4 text-[13px] font-normal no-underline! md:mb-2 md:px-4 md:text-base">
+        <h3 className="no-underline! mb-auto pl-4 pr-2 text-[13px] font-normal text-default md:mb-2 md:px-4 md:text-base">
           {title}
         </h3>
 
-        <div className="text-primary-700 mt-auto cursor-pointer p-4 pt-0 text-left text-[13px] underline md:text-right md:text-base">
-          <Trans locale={locale}>Lire la suite</Trans>
+        <div className="mt-auto cursor-pointer p-4 pt-0 text-left text-[13px] text-primary-700 underline md:text-right md:text-base">
+          <TransClient>Lire la suite</TransClient>
         </div>
       </div>
     </a>

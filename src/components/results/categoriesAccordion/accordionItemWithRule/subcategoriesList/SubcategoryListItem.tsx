@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import TransClient from '@/components/translation/trans/TransClient'
 import { defaultMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
@@ -6,11 +8,7 @@ import { useRule } from '@/publicodes-state'
 import type { Metric } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
-type Props = {
-  subcategory: DottedName
-  categoryValue: number
-  metric?: Metric
-}
+type Props = { subcategory: DottedName; categoryValue: number; metric?: Metric }
 
 export default function SubcategoryListItem({
   subcategory,
@@ -37,16 +35,14 @@ export default function SubcategoryListItem({
 
             <div className="text-primary-700">
               <strong>{formattedValue}</strong>{' '}
-              <Trans locale={locale}>{unit}</Trans>
+              <TransClient>{unit}</TransClient>
             </div>
           </div>
           <div className="mt-2">
             <div>
               <div
-                className="bg-primary-700 h-[6px] rounded-xl"
-                style={{
-                  width: `calc(${percentageOfCategoryValue} * 100%)`,
-                }}
+                className="h-[6px] rounded-xl bg-primary-700"
+                style={{ width: `calc(${percentageOfCategoryValue} * 100%)` }}
               />
             </div>
           </div>

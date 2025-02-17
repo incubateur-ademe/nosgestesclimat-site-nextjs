@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import TransClient from '@/components/translation/trans/TransClient'
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
@@ -69,7 +71,7 @@ export default function MosaicBooleanInput({
         />
 
         <span
-          className={`${checkClassNames[status]} flex h-5 w-5 items-center justify-center rounded-xs border-2 leading-4`}>
+          className={`${checkClassNames[status]} rounded-xs flex h-5 w-5 items-center justify-center border-2 leading-4`}>
           {status === 'checked' ? (
             <motion.div
               initial={{ opacity: 0 }}
@@ -100,8 +102,8 @@ export default function MosaicBooleanInput({
           ) : null}
         </div>
         {isInactive ? (
-          <div className="absolute top-1 right-4 bottom-1 flex -rotate-12 items-center justify-center rounded-xl border-2 border-black bg-white p-2 text-xs font-semibold text-black">
-            <Trans locale={locale}>Bientôt disponible</Trans>
+          <div className="absolute bottom-1 right-4 top-1 flex -rotate-12 items-center justify-center rounded-xl border-2 border-black bg-white p-2 text-xs font-semibold text-black">
+            <TransClient>Bientôt disponible</TransClient>
           </div>
         ) : null}
       </label>

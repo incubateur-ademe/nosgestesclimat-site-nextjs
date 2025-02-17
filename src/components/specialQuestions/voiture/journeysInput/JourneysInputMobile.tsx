@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import TransClient from '@/components/translation/trans/TransClient'
 import type { Journey } from '@/types/journey'
 import { motion } from 'framer-motion'
 import type { Dispatch, SetStateAction } from 'react'
@@ -26,7 +28,7 @@ export default function JourneysInputMobile({
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
-      className="border-primary-50 mb-2 block w-full overflow-scroll rounded-xl border-2 bg-white p-2 lg:hidden">
+      className="mb-2 block w-full overflow-scroll rounded-xl border-2 border-primary-50 bg-white p-2 lg:hidden">
       <table className="block w-full border-collapse">
         <tbody className="block w-full">
           <AddJourneyMobile
@@ -38,7 +40,7 @@ export default function JourneysInputMobile({
           {journeys.length > 0 && (
             <tr className="mt-4 block w-full text-left">
               <th className="mb-2 block">
-                <Trans locale={locale}>Vos trajets :</Trans>
+                <TransClient>Vos trajets :</TransClient>
               </th>
             </tr>
           )}

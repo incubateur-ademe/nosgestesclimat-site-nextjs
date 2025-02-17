@@ -2,35 +2,35 @@
 
 import Button from '@/design-system/inputs/Button'
 import { useLocale } from '@/hooks/useLocale'
-import Trans from '../translation/Trans'
+import TransClient from '../translation/trans/TransClient'
 
 export default function ErrorContent() {
   const locale = useLocale()
   return (
     <>
       <h2>
-        <Trans locale={locale}>Oups ! Une erreur est survenue</Trans> 🐛
+        <TransClient>Oups ! Une erreur est survenue</TransClient> 🐛
       </h2>
 
       <p>
-        <Trans locale={locale}>
+        <TransClient>
           Une erreur s'est produite ; veuillez recharger la page ou réessayer
           plus tard.
-        </Trans>
+        </TransClient>
       </p>
 
       <p>
-        <Trans locale={locale}>Si le problème persiste, merci de</Trans>{' '}
+        <TransClient>Si le problème persiste, merci de</TransClient>{' '}
         <Button
           color="link"
           onClick={() => window.location.replace('/contact')}>
-          <Trans locale={locale}>contacter le support.</Trans>
+          <TransClient>contacter le support.</TransClient>
         </Button>
       </p>
 
       <div className="mt-10 flex w-full justify-center">
         <Button onClick={() => window.location.replace('/')}>
-          <Trans locale={locale}>Revenir à l'accueil</Trans>
+          <TransClient>Revenir à l'accueil</TransClient>
         </Button>
       </div>
     </>

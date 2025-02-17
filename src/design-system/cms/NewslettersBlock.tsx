@@ -1,7 +1,7 @@
 'use client'
 
 import CheckIcon from '@/components/icons/CheckIcon'
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import {
   LIST_MAIN_NEWSLETTER,
   LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
@@ -30,20 +30,20 @@ type Inputs = {
   'newsletter-logement': boolean
 }
 
-function SuccessMessage() {
+function SuccessMessage({ locale }: { locale: string }) {
   return (
     <div className="flex flex-col items-center justify-center text-center">
       <CheckIcon className="mb-4 h-12 w-12 fill-green-500" />
 
       <h3 className="mb-4 text-xl font-bold text-gray-800">
-        <Trans locale={locale}>Merci de votre inscription !</Trans>
+        <TransServer locale={locale}>Merci de votre inscription !</TransServer>
       </h3>
 
       <p className="text-gray-600">
-        <Trans locale={locale}>
+        <TransServer locale={locale}>
           Vous recevrez bientôt nos actualités et conseils directement dans
           votre boîte mail.
-        </Trans>
+        </TransServer>
       </p>
     </div>
   )
@@ -78,10 +78,7 @@ export default function NewslettersBlock() {
     setValue,
     formState: { errors },
   } = useReactHookForm<Inputs>({
-    defaultValues: {
-      name: user?.name,
-      email: user?.email,
-    },
+    defaultValues: { name: user?.name, email: user?.email },
     mode: 'onSubmit',
   })
 
@@ -122,9 +119,7 @@ export default function NewslettersBlock() {
     updateEmail(formattedEmail)
 
     // We save the simulation (and signify the backend to send the email)
-    updateUserSettings({
-      newsletterIds: listIds,
-    })
+    updateUserSettings({ newsletterIds: listIds })
   }
 
   return (
@@ -132,7 +127,7 @@ export default function NewslettersBlock() {
       className="rainbow-border w-full rounded-xl bg-white p-8 md:w-4/6"
       aria-live="polite">
       {isSuccess ? (
-        <SuccessMessage />
+        <SuccessMessage locale={locale} />
       ) : (
         <>
           <h3 className="mb-2">
@@ -144,7 +139,7 @@ export default function NewslettersBlock() {
 
             <span className="text-sm text-gray-600">
               {mainNewsletter?.totalSubscribers.toLocaleString(locale) ?? 0}{' '}
-              <Trans locale={locale}>personnes inscrites</Trans>
+              <TransServer locale={locale}>personnes inscrites</TransServer>
             </span>
           </p>
 
@@ -157,11 +152,13 @@ export default function NewslettersBlock() {
                 label={
                   <p className="mb-0 text-sm">
                     <span>
-                      <Trans locale={locale}>Je m'inscris à l'infolettre</Trans>
+                      <TransServer locale={locale}>
+                        Je m'inscris à l'infolettre
+                      </TransServer>
                     </span>{' '}
                     -{' '}
                     <span className="text-gray-600">
-                      <Trans locale={locale}>1 par mois max</Trans>
+                      <TransServer locale={locale}>1 par mois max</TransServer>
                     </span>
                   </p>
                 }
@@ -173,9 +170,9 @@ export default function NewslettersBlock() {
                   <p className="mb-0 text-sm">
                     <span>Nos Gestes Transports</span> -{' '}
                     <span className="text-gray-600">
-                      <Trans locale={locale}>
+                      <TransServer locale={locale}>
                         4 infolettres l’impact des transports
-                      </Trans>
+                      </TransServer>
                     </span>
                   </p>
                 }
@@ -187,9 +184,9 @@ export default function NewslettersBlock() {
                   <p className="mb-0 text-sm">
                     <span>Nos Gestes Logement</span> -{' '}
                     <span className="text-gray-600">
-                      <Trans locale={locale}>
+                      <TransServer locale={locale}>
                         5 infolettres sur l’impact du logement
-                      </Trans>
+                      </TransServer>
                     </span>
                   </p>
                 }
@@ -214,7 +211,7 @@ export default function NewslettersBlock() {
                 />
 
                 <Button size="lg" type="submit">
-                  <Trans locale={locale}>S'inscrire</Trans>
+                  <TransServer locale={locale}>S'inscrire</TransServer>
                 </Button>
               </div>
             </div>

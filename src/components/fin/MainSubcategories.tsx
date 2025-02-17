@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import TransClient from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useSortedUiCategoriesByFootprint } from '@/hooks/useSortedUiCategoriesByFootprint'
@@ -6,13 +8,11 @@ import type { Metric } from '@/publicodes-state/types'
 import type { ReactElement } from 'react'
 import MainSubcategory from './mainSubcategories/MainSubcategory'
 
-type Props = {
-  isLink?: boolean
-}
+type Props = { isLink?: boolean }
 
 const titles: Record<Metric, ReactElement> = {
-  carbone: <Trans locale={locale}>Mes principaux postes d’émissions</Trans>,
-  eau: <Trans locale={locale}>Mes principaux postes d'usage</Trans>,
+  carbone: <TransClient>Mes principaux postes d’émissions</TransClient>,
+  eau: <TransClient>Mes principaux postes d'usage</TransClient>,
 }
 export default function MainSubcategories({ isLink }: Props) {
   const { currentMetric } = useCurrentMetric()

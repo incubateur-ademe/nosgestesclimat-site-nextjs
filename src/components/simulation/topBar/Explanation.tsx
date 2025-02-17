@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { simulateurCloseScoreInfo } from '@/constants/tracking/pages/simulateur'
 import { TUTORIALS } from '@/constants/tutorial'
 import Button from '@/design-system/inputs/Button'
@@ -53,7 +53,7 @@ export default function Explanation() {
         initial={{ opacity: 0, translateY: '-10px' }}
         animate={{ opacity: 1, translateY: 0 }}
         transition={{ duration: 0.3 }}
-        className="border-primary-200 absolute top-20 right-0 left-0 z-50 mb-2 w-full rounded-xl border-2 bg-gray-100 p-3 pt-2 text-sm md:top-24 md:left-0 md:mx-0 lg:w-80">
+        className="absolute left-0 right-0 top-20 z-50 mb-2 w-full rounded-xl border-2 border-primary-200 bg-gray-100 p-3 pt-2 text-sm md:left-0 md:top-24 md:mx-0 lg:w-80">
         <svg
           width="28"
           height="24"
@@ -63,7 +63,7 @@ export default function Explanation() {
           className="absolute -top-6 left-4 z-10">
           <path
             d="M14 0L27.8564 24H0.143594L14 0Z"
-            className="stroke-primary-200 fill-gray-100 stroke-2"
+            className="fill-gray-100 stroke-primary-200 stroke-2"
           />
         </svg>
 
@@ -79,48 +79,48 @@ export default function Explanation() {
         {progression === 0 ? (
           <p className="mb-2">
             <Emoji>🧮</Emoji>{' '}
-            <Trans i18nKey={'components.ScoreExplanation.text.p1'}>
+            <TransClient i18nKey={'components.ScoreExplanation.text.p1'}>
               Voici vos scores de départ, calculés à partir de réponses
               attribuées à l'avance à chaque question ! Ils évolueront à chaque
               nouvelle réponse.
-            </Trans>
+            </TransClient>
           </p>
         ) : (
           <p className="mb-2">
             <Emoji>🧮</Emoji>{' '}
-            <Trans i18nKey={'components.ScoreExplanation.text.p2'}>
+            <TransClient i18nKey={'components.ScoreExplanation.text.p2'}>
               Voici vos scores provisoires, ils évoluent à chaque nouvelle
               réponse !
-            </Trans>
+            </TransClient>
           </p>
         )}
         <p className="mb-2">
           <Emoji>🤔</Emoji>{' '}
-          <Trans i18nKey={'components.ScoreExplanation.text.p3'}>
+          <TransClient i18nKey={'components.ScoreExplanation.text.p3'}>
             Si vous répondez "je ne sais pas" à une question, le score ne
             changera pas : une valeur par défaut vous est attribuée.
-          </Trans>
+          </TransClient>
         </p>
         <p className="mb-2">
           <Emoji>💡</Emoji>{' '}
-          <Trans i18nKey={'components.ScoreExplanation.text.p4'}>
+          <TransClient i18nKey={'components.ScoreExplanation.text.p4'}>
             Nous améliorons le calcul et ses valeurs par défaut{' '}
             <Link href="/nouveautes">tous les mois</Link>!
-          </Trans>
+          </TransClient>
         </p>
         <p className="mb-2 md:mb-4">
           <Emoji>💧</Emoji>{' '}
-          <Trans locale={locale}>
+          <TransClient>
             Retrouvez aussi le résultat de votre empreinte eau à la fin du
             test !
-          </Trans>
+          </TransClient>
         </p>
         <div className="flex justify-end">
           <Button
             size="xs"
             data-cypress-id="understood-explanation-button"
             onClick={closeExplanation}>
-            <Trans locale={locale}>J'ai compris</Trans>
+            <TransClient>J'ai compris</TransClient>
           </Button>
         </div>
       </motion.div>

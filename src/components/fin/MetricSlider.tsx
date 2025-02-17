@@ -1,19 +1,17 @@
+'use client'
+
 import { carboneMetric, eauMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import Trans from '../translation/Trans'
+import TransClient from '../translation/trans/TransClient'
 import CarboneTotalChart from './metricSlider/CarboneTotalChart'
 import MetricCard from './metricSlider/MetricCard'
 import WaterTotalChart from './metricSlider/WaterTotalChart'
 
-type Props = {
-  carboneTotal?: number
-  waterTotal?: number
-  isStatic?: boolean
-}
+type Props = { carboneTotal?: number; waterTotal?: number; isStatic?: boolean }
 export default function MetricSlider({
   carboneTotal,
   waterTotal,
@@ -67,8 +65,8 @@ export default function MetricSlider({
         <MetricCard
           metric={carboneMetric}
           metricTitle={{
-            desktop: <Trans locale={locale}>Mon empreinte carbone</Trans>,
-            mobile: <Trans locale={locale}>Empreinte carbone</Trans>,
+            desktop: <TransClient>Mon empreinte carbone</TransClient>,
+            mobile: <TransClient>Empreinte carbone</TransClient>,
           }}
           isSticky={isSticky}
           aria-label={
@@ -84,8 +82,8 @@ export default function MetricSlider({
         <MetricCard
           metric={eauMetric}
           metricTitle={{
-            desktop: <Trans locale={locale}>Mon empreinte eau</Trans>,
-            mobile: <Trans locale={locale}>Empreinte eau</Trans>,
+            desktop: <TransClient>Mon empreinte eau</TransClient>,
+            mobile: <TransClient>Empreinte eau</TransClient>,
           }}
           isSticky={isSticky}
           aria-label={
@@ -99,14 +97,14 @@ export default function MetricSlider({
 
       <p
         className={twMerge(
-          'text-default mt-2 inline-block w-full text-center text-xs transition-opacity duration-300 md:text-sm',
+          'mt-2 inline-block w-full text-center text-xs text-default transition-opacity duration-300 md:text-sm',
           isSticky ? 'opacity-0' : ''
         )}>
         <Emoji>💡</Emoji>{' '}
-        <Trans locale={locale}>
+        <TransClient>
           Affichez le détail de votre empreinte carbone ou eau en cliquant sur
           les cartes ci-dessus.
-        </Trans>
+        </TransClient>
       </p>
     </div>
   )

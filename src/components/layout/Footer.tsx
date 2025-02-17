@@ -26,7 +26,7 @@ import { twMerge } from 'tailwind-merge'
 import Link from '../Link'
 import Logo from '../misc/Logo'
 import LanguageSwitchButton from '../translation/LanguageSwitchButton'
-import Trans from '../translation/Trans'
+import TransClient from '../translation/trans/TransClient'
 
 export default function Footer({ className = '' }) {
   const pathname = usePathname()
@@ -46,7 +46,7 @@ export default function Footer({ className = '' }) {
   return (
     <footer
       className={twMerge(
-        'relative bg-gray-100 p-4 pb-32! sm:p-8',
+        'pb-32! relative bg-gray-100 p-4 sm:p-8',
         className,
         shouldUseWhiteBackground ? 'bg-white' : ''
       )}>
@@ -55,101 +55,101 @@ export default function Footer({ className = '' }) {
 
         <div className="mb-10 flex flex-col flex-wrap justify-start gap-x-16 gap-y-8 pt-4 md:flex-row lg:flex-nowrap">
           <div className="flex flex-col gap-y-2">
-            <h3 className="text-default mb-0 text-sm font-bold">
-              <Trans locale={locale}>À propos</Trans>
+            <h3 className="mb-0 text-sm font-bold text-default">
+              <TransClient>À propos</TransClient>
             </h3>
             <InlineLink
               href="/a-propos"
               onClick={() => trackEvent(footerClickQuiSommesNous)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans locale={locale}>Qui sommes-nous</Trans>
+              className="text-sm text-default no-underline hover:underline">
+              <TransClient>Qui sommes-nous</TransClient>
             </InlineLink>
 
             <InlineLink
               href="/plan-du-site"
               onClick={() => trackEvent(footerClickPlanSite)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans locale={locale}>Plan du site</Trans>
+              className="text-sm text-default no-underline hover:underline">
+              <TransClient>Plan du site</TransClient>
             </InlineLink>
 
             <InlineLink
               href="/contact"
               onClick={() => trackEvent(footerClickContact)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans locale={locale}>Contact</Trans>
+              className="text-sm text-default no-underline hover:underline">
+              <TransClient>Contact</TransClient>
             </InlineLink>
 
             <InlineLink
               href="/international"
               onClick={() => trackEvent(footerClickInternational)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans locale={locale}>International</Trans>
+              className="text-sm text-default no-underline hover:underline">
+              <TransClient>International</TransClient>
             </InlineLink>
           </div>
 
           <div className="flex flex-col gap-y-2">
-            <h3 className="text-default mb-0 text-sm font-bold">
-              <Trans locale={locale}>Diffusion</Trans>
+            <h3 className="mb-0 text-sm font-bold text-default">
+              <TransClient>Diffusion</TransClient>
             </h3>
             <InlineLink
               href="/diffuser"
               onClick={() => trackEvent(footerClickDiffusion)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans locale={locale}>Diffuser Nos Gestes Climat</Trans>
+              className="text-sm text-default no-underline hover:underline">
+              <TransClient>Diffuser Nos Gestes Climat</TransClient>
             </InlineLink>
 
             <InlineLink
               href="/organisations"
               onClick={() => trackEvent(footerClickOrganisations)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans locale={locale}>Organisations</Trans>
+              className="text-sm text-default no-underline hover:underline">
+              <TransClient>Organisations</TransClient>
             </InlineLink>
 
             <InlineLink
               href="/nos-relais"
               onClick={() => trackEvent(footerClickAmbassadeurs)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans locale={locale}>Relais et partenaires</Trans>
+              className="text-sm text-default no-underline hover:underline">
+              <TransClient>Relais et partenaires</TransClient>
             </InlineLink>
           </div>
 
           <div className="flex flex-col gap-y-2">
-            <h3 className="text-default mb-0 text-sm font-bold">
-              <Trans locale={locale}>Ressources</Trans>
+            <h3 className="mb-0 text-sm font-bold text-default">
+              <TransClient>Ressources</TransClient>
             </h3>
 
             <InlineLink
               href="/blog"
               onClick={() => trackEvent(footerClickBlog)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans locale={locale}>Blog</Trans>
+              className="text-sm text-default no-underline hover:underline">
+              <TransClient>Blog</TransClient>
             </InlineLink>
 
             <InlineLink
               href="/documentation"
               onClick={() => trackEvent(footerClickDocumentation)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans locale={locale}>Documentation</Trans>
+              className="text-sm text-default no-underline hover:underline">
+              <TransClient>Documentation</TransClient>
             </InlineLink>
 
             <InlineLink
               href="/questions-frequentes"
               onClick={() => trackEvent(footerClickFAQ)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans locale={locale}>FAQ</Trans>
+              className="text-sm text-default no-underline hover:underline">
+              <TransClient>FAQ</TransClient>
             </InlineLink>
 
             <InlineLink
               href="/nouveautes"
               onClick={() => trackEvent(footerClickNouveautes)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans locale={locale}>Nouveautés</Trans>
+              className="text-sm text-default no-underline hover:underline">
+              <TransClient>Nouveautés</TransClient>
             </InlineLink>
 
             <InlineLink
               href="https://impactco2.fr"
               target="_blank"
-              className="text-default text-sm no-underline hover:underline"
+              className="text-sm text-default no-underline hover:underline"
               onClick={() => trackEvent(footerClickImpactco2)}>
               Impact CO2
             </InlineLink>
@@ -164,24 +164,24 @@ export default function Footer({ className = '' }) {
 
             <div className="mt-4 text-xs">
               <InlineLink href="/accessibilite">
-                <Trans locale={locale}>
+                <TransClient>
                   Accessibilité : partiellement conforme
-                </Trans>
+                </TransClient>
               </InlineLink>
               <span className="mx-1 hidden sm:inline"> | </span>
               <br className="md:hidden" />
               <InlineLink href="/mentions-legales">
-                <Trans locale={locale}>Mentions légales</Trans>
+                <TransClient>Mentions légales</TransClient>
               </InlineLink>
               <span className="mx-1 hidden sm:inline"> | </span>
               <br className="md:hidden" />
               <InlineLink href="/politique-de-confidentialite">
-                <Trans locale={locale}>Politique de confidentialité</Trans>
+                <TransClient>Politique de confidentialité</TransClient>
               </InlineLink>
               <span className="mx-1 hidden sm:inline"> | </span>
               <br className="md:hidden" />
               <InlineLink href="/politique-des-cookies">
-                <Trans locale={locale}>Politique des cookies</Trans>
+                <TransClient>Politique des cookies</TransClient>
               </InlineLink>
             </div>
           </div>

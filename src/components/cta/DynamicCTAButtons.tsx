@@ -8,7 +8,7 @@ import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RestartIcon from '../icons/RestartIcon'
-import Trans from '../translation/Trans'
+import TransClient from '../translation/trans/TransClient'
 
 export default function DynamicCTAButtons({
   className,
@@ -41,7 +41,7 @@ export default function DynamicCTAButtons({
       <ButtonLink
         size="xl"
         className={twMerge(
-          'hover:bg-primary-900 transition-all duration-300',
+          'transition-all duration-300 hover:bg-primary-900',
           className
         )}
         href={getLinkToSimulateurPage()}
@@ -64,11 +64,11 @@ export default function DynamicCTAButtons({
         <span
           className={twMerge(
             isHover
-              ? 'bg-rainbow animate-rainbow-fast bg-clip-text! text-transparent! duration-1000'
+              ? 'bg-rainbow bg-clip-text! text-transparent! animate-rainbow-fast duration-1000'
               : '',
             'leading-none'
           )}>
-          <Trans locale={locale}>{linkToSimulateurPageLabel}</Trans>
+          <TransClient>{linkToSimulateurPageLabel}</TransClient>
         </span>
       </ButtonLink>
 
@@ -81,9 +81,9 @@ export default function DynamicCTAButtons({
             goToSimulateurPage({ noNavigation: true, newSimulation: {} })
           }}
           href={getLinkToSimulateurPage({ newSimulation: true })}>
-          <RestartIcon className="fill-primary-700 mr-2" />
+          <RestartIcon className="mr-2 fill-primary-700" />
 
-          <Trans locale={locale}>Recommencer</Trans>
+          <TransClient>Recommencer</TransClient>
         </ButtonLink>
       )}
     </div>

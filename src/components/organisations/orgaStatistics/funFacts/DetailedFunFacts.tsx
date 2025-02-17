@@ -1,5 +1,7 @@
+'use client'
+
 import SaveIcon from '@/components/icons/SaveIcon'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { organisationsDashboardClickFunFactsDownload } from '@/constants/tracking/pages/organisationsDashboard'
 import Button from '@/design-system/inputs/Button'
 import type { Entries } from '@/publicodes-state/types'
@@ -90,9 +92,9 @@ export default function DetailedFunFacts({
               link.remove()
             })
           }}>
-          <SaveIcon className="fill-primary-700 mr-2 w-4" />
+          <SaveIcon className="mr-2 w-4 fill-primary-700" />
 
-          <Trans locale={locale}>Télécharger l'image</Trans>
+          <TransClient>Télécharger l'image</TransClient>
         </Button>
       </div>
     </div>

@@ -5,7 +5,7 @@ import AmisIcon from '@/components/icons/AmisIcon'
 import BilanIcon from '@/components/icons/BilanIcon'
 import PRIndicator from '@/components/layout/header/headerDesktop/PRIndicator'
 import Logo from '@/components/misc/Logo'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import {
   headerClickActions,
   headerClickClassements,
@@ -27,9 +27,7 @@ import ProfileIcon from './_components/ProfileIcon'
 import DebugIndicator from './headerDesktop/DebugIndicator'
 import CTAButton from './headerDesktop/MenuCTAButton'
 
-type Props = {
-  isSticky: boolean
-}
+type Props = { isSticky: boolean }
 export default function HeaderDesktop({ isSticky }: Props) {
   const { t } = useClientTranslation()
 
@@ -42,10 +40,10 @@ export default function HeaderDesktop({ isSticky }: Props) {
   return (
     <header
       className={twMerge(
-        'hidden! h-20 items-center lg:block!',
+        'hidden! lg:block! h-20 items-center',
         isSticky ? 'sticky top-0 z-50' : ''
       )}>
-      <div className="absolute top-0 right-0 bottom-0 left-0 flex h-20 w-full items-center border-b border-gray-200 bg-white shadow-xs">
+      <div className="shadow-xs absolute bottom-0 left-0 right-0 top-0 flex h-20 w-full items-center border-b border-gray-200 bg-white">
         <div className="mx-auto flex h-full w-full max-w-5xl items-center justify-between gap-6">
           <div className="flex origin-left items-center justify-center">
             <Logo onClick={() => trackEvent(headerClickLogo)} />
@@ -60,7 +58,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
                   activeMatches={['/tutoriel', '/simulateur', '/fin']}
                   icon={BilanIcon}
                   title={t('Mon empreinte')}>
-                  <Trans locale={locale}>Mon empreinte</Trans>
+                  <TransClient>Mon empreinte</TransClient>
                 </NavLink>
               </li>
 
@@ -70,7 +68,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
                   onClick={() => trackEvent(headerClickActions)}
                   icon={ActionsIcon}
                   title={t('Mes gestes')}>
-                  <Trans locale={locale}>Mes gestes</Trans>
+                  <TransClient>Mes gestes</TransClient>
                 </NavLink>
               </li>
 
@@ -82,7 +80,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
                   activeMatches={['/classement', '/amis']}
                   title={t('Mes classements')}
                   data-cypress-id="amis-link">
-                  <Trans locale={locale}>Mes groupes</Trans>
+                  <TransClient>Mes groupes</TransClient>
                 </NavLink>
               </li>
             </ul>
@@ -99,7 +97,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
               title={t('Profil')}
               className="px-4"
               onClick={() => trackEvent(headerClickProfil)}>
-              <Trans locale={locale}>Profil</Trans>
+              <TransClient>Profil</TransClient>
             </NavLink>
 
             {user?.organisation?.administratorEmail ? (

@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { useLocale } from '@/hooks/useLocale'
 import type { Journey } from '@/types/journey'
 import { motion } from 'framer-motion'
@@ -30,24 +30,24 @@ export function JourneysInputDesktop({
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
-      className="border-primary-50 mb-2 hidden w-full overflow-scroll rounded-xl border-2 bg-white p-2 text-xs lg:block">
+      className="mb-2 hidden w-full overflow-scroll rounded-xl border-2 border-primary-50 bg-white p-2 text-xs lg:block">
       <table className="table w-full border-collapse">
         <tbody className="block w-full">
           <tr className="table-row w-full">
             <th className="table-cell p-2 text-left text-xs">
-              <Trans locale={locale}>Label</Trans>
+              <TransClient>Label</TransClient>
             </th>
             <th className="table-cell p-2 text-left text-xs">
-              <Trans locale={locale}>Distance</Trans>
+              <TransClient>Distance</TransClient>
             </th>
             <th className="table-cell p-2 text-left text-xs">
-              <Trans locale={locale}>Fréquence</Trans>
+              <TransClient>Fréquence</TransClient>
             </th>
             <th className="table-cell p-2 text-left text-xs">
-              <Trans locale={locale}>Passagers</Trans>
+              <TransClient>Passagers</TransClient>
             </th>
             <th className="table-cell p-2 text-left text-xs opacity-0">
-              <Trans locale={locale}>Options</Trans>
+              <TransClient>Options</TransClient>
             </th>
           </tr>
 

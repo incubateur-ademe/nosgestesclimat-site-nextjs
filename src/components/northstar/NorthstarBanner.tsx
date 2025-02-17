@@ -4,9 +4,9 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import type { NorthStarType } from '@/types/northstar'
 import { motion } from 'framer-motion'
-import type { JSX} from 'react';
+import type { JSX } from 'react'
 import { useEffect, useRef, useState } from 'react'
-import Trans from '../translation/Trans'
+import TransClient from '../translation/trans/TransClient'
 import Northstar from './Northstar'
 
 export default function NorthStarBanner({
@@ -53,9 +53,9 @@ export default function NorthStarBanner({
   useEffect(() => {
     if (shouldDisplayNorthstarBanner && !isAnimationCompleted) {
       timeoutRef.current = setTimeout(() => {
-        document.getElementById('northstarBanner')?.scrollIntoView({
-          behavior: 'smooth',
-        })
+        document
+          .getElementById('northstarBanner')
+          ?.scrollIntoView({ behavior: 'smooth' })
       }, 2000)
     }
   }, [shouldDisplayNorthstarBanner, isAnimationCompleted])
@@ -94,19 +94,19 @@ export default function NorthStarBanner({
         <div className="m-auto max-w-[420px] p-6">
           <h2>
             <b>
-              <Trans i18nKey={'publicodes.northstar.title'}>
+              <TransClient i18nKey={'publicodes.northstar.title'}>
                 Petite question entre nous...
-              </Trans>
+              </TransClient>
             </b>
           </h2>
 
           {type === 'action' ? (
             <>
               <p>
-                <Trans i18nKey={'publicodes.northstar.action'}>
+                <TransClient i18nKey={'publicodes.northstar.action'}>
                   Nos Gestes Climat vous donne envie d'agir pour réduire votre
                   empreinte carbone ?
-                </Trans>
+                </TransClient>
               </p>
               <Northstar
                 type="action"
@@ -118,10 +118,10 @@ export default function NorthStarBanner({
             <>
               <p>
                 <b>
-                  <Trans i18nKey={'publicodes.northstar.learned'}>
+                  <TransClient i18nKey={'publicodes.northstar.learned'}>
                     Est-ce que "Nos Gestes Climat" vous a permis d'apprendre
                     quelque chose ?
-                  </Trans>
+                  </TransClient>
                 </b>
               </p>
               <Northstar

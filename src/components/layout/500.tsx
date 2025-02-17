@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 
@@ -16,9 +16,9 @@ export default function Error500() {
         </span>
       </h1>
 
-      <InlineLink href="/" className="flex flex-col items-center text-center!">
+      <InlineLink href="/" className="text-center! flex flex-col items-center">
         <em>
-          <Trans i18nKey="404.action">Revenir en lieu sûr</Trans>
+          <TransClient i18nKey="404.action">Revenir en lieu sûr</TransClient>
         </em>
       </InlineLink>
     </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { getColorAtPosition } from '@/helpers/getColorOfGradient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -52,12 +52,12 @@ export default function CarboneTotalChart({
       {!shouldShowOnlyGauge && (
         <div
           className={twMerge(
-            'mb-4 pt-8 text-center font-medium whitespace-nowrap transition-transform duration-300 md:pt-12',
+            'mb-4 whitespace-nowrap pt-8 text-center font-medium transition-transform duration-300 md:pt-12',
             isSmall ? 'md:scale-75 md:pt-6 lg:pt-0' : 'scale-100'
           )}
           style={{ color: cssColor }}>
           <p className="mb-0 leading-none">
-            <strong className="bottom-7 text-xl leading-none font-black md:text-4xl lg:bottom-7 lg:text-6xl">
+            <strong className="bottom-7 text-xl font-black leading-none md:text-4xl lg:bottom-7 lg:text-6xl">
               <CountUp
                 isCounting
                 end={Number(formattedValue)}
@@ -74,10 +74,10 @@ export default function CarboneTotalChart({
             </span>
           </p>
 
-          <p className="text-default mb-0 text-center">
+          <p className="mb-0 text-center text-default">
             <span className="text-sm md:text-lg lg:text-xl">
-              <Trans locale={locale}>de</Trans> CO₂e{' '}
-              <Trans locale={locale}>par an</Trans>
+              <TransClient>de</TransClient> CO₂e{' '}
+              <TransClient>par an</TransClient>
             </span>
           </p>
         </div>

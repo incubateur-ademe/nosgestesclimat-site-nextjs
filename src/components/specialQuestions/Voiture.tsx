@@ -1,14 +1,14 @@
+'use client'
+
 import Question from '@/components/form/Question'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
 import PencilIcon from '../icons/PencilIcon'
 import JourneysInput from './voiture/JourneysInput'
 
-type Props = {
-  question: DottedName
-}
+type Props = { question: DottedName }
 export default function Voiture({ question, ...props }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   return (
@@ -21,16 +21,16 @@ export default function Voiture({ question, ...props }: Props) {
           onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
           className="mb-2">
           {isOpen ? (
-            <Trans locale={locale}>Fermer</Trans>
+            <TransClient>Fermer</TransClient>
           ) : (
             <span className="flex items-center">
               <PencilIcon
-                className="stroke-primary-700 mr-2"
+                className="mr-2 stroke-primary-700"
                 width="16"
                 height="16"
               />
 
-              <Trans locale={locale}>Détailler mes trajets</Trans>
+              <TransClient>Détailler mes trajets</TransClient>
             </span>
           )}
         </Button>

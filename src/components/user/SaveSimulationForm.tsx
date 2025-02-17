@@ -1,7 +1,7 @@
 'use client'
 
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import {
   LIST_MAIN_NEWSLETTER,
   LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
@@ -38,9 +38,7 @@ type Props = {
   onCompleted?: (props: Record<string, unknown>) => void
   className?: string
   shouldForceEmailEditable?: boolean
-  defaultValues?: {
-    'newsletter-transports': boolean
-  }
+  defaultValues?: { 'newsletter-transports': boolean }
 }
 
 export default function UserInformationForm({
@@ -72,11 +70,7 @@ export default function UserInformationForm({
     handleSubmit,
     formState: { errors },
     setValue,
-  } = useReactHookForm<Inputs>({
-    defaultValues: {
-      name: user?.name,
-    },
-  })
+  } = useReactHookForm<Inputs>({ defaultValues: { name: user?.name } })
 
   const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
     user?.email ?? ''
@@ -100,10 +94,7 @@ export default function UserInformationForm({
     mutateAsync: updateUserSettings,
     isPending,
     isError,
-  } = useUpdateUserSettings({
-    email: user?.email ?? '',
-    userId: user?.userId,
-  })
+  } = useUpdateUserSettings({ email: user?.email ?? '', userId: user?.userId })
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const newsletterIds = {
@@ -167,7 +158,7 @@ export default function UserInformationForm({
                 <TextInputGroup
                   name="email"
                   helperText={
-                    <Trans locale={locale}>Ce champ n'est pas modifiable</Trans>
+                    <TransClient>Ce champ n'est pas modifiable</TransClient>
                   }
                   label={t('Votre adresse email')}
                   value={user?.email}
@@ -187,7 +178,7 @@ export default function UserInformationForm({
         {inputsDisplayed.includes('newsletter-saisonniere') ||
           (inputsDisplayed.includes('newsletter-transports') && (
             <>
-              <h3 className="mt-6 mb-0">{t('Inscription à nos e-mails')}</h3>
+              <h3 className="mb-0 mt-6">{t('Inscription à nos e-mails')}</h3>
 
               <p className="text-sm text-gray-600">
                 {t('Vous pouvez vous désincrire à tout moment')}
@@ -200,10 +191,10 @@ export default function UserInformationForm({
             label={
               <span>
                 <Emoji>☀️</Emoji>{' '}
-                <Trans locale={locale}>
+                <TransClient>
                   <strong>Infolettre saisonnière de Nos Gestes Climat</strong> :
                   actualités climat, initiatives positives et nouveautés
-                </Trans>
+                </TransClient>
               </span>
             }
             {...register('newsletter-saisonniere')}
@@ -215,10 +206,10 @@ export default function UserInformationForm({
             label={
               <span>
                 <Emoji>🚗</Emoji>{' '}
-                <Trans locale={locale}>
+                <TransClient>
                   <strong>Nos Gestes Transports</strong> : tout savoir ou
                   presque sur l'impact carbone des transports, en 4 e-mails
-                </Trans>
+                </TransClient>
               </span>
             }
             {...register('newsletter-transports')}

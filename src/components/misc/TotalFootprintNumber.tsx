@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import TransClient from '@/components/translation/trans/TransClient'
 import { defaultMetric } from '@/constants/metric'
 import Loader from '@/design-system/layout/Loader'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
@@ -10,15 +12,11 @@ import { twMerge } from 'tailwind-merge'
 
 type Sizes = 'md' | 'lg'
 
-type Props = {
-  metric?: Metric
-  className?: string
-  size?: Sizes
-}
+type Props = { metric?: Metric; className?: string; size?: Sizes }
 
 const duration = {
-  carbone: <Trans locale={locale}>de CO₂e par an</Trans>,
-  eau: <Trans locale={locale}>d'eau par jour</Trans>,
+  carbone: <TransClient>de CO₂e par an</TransClient>,
+  eau: <TransClient>d'eau par jour</TransClient>,
 }
 export default function TotalFootprintNumber({
   metric = defaultMetric,
@@ -39,20 +37,12 @@ export default function TotalFootprintNumber({
 
   const { formattedValue, unit } = formatFootprint(
     totalFootprintValueMinusActions,
-    {
-      t,
-      locale,
-      metric,
-    }
+    { t, locale, metric }
   )
 
   const { formattedValue: formatedTotalFootprintValue } = formatFootprint(
     totalFootprintValue,
-    {
-      t,
-      locale,
-      metric,
-    }
+    { t, locale, metric }
   )
 
   const shouldDisplayTotalWithoutActions =
@@ -66,7 +56,7 @@ export default function TotalFootprintNumber({
       {shouldDisplayTotalWithoutActions && (
         <strong
           className={twMerge(
-            'mr-4 block leading-none font-black text-slate-500 line-through md:text-xl',
+            'mr-4 block font-black leading-none text-slate-500 line-through md:text-xl',
             size === 'lg' && 'text-xl md:text-3xl'
           )}>
           {!isInitialized ? '--' : formatedTotalFootprintValue}
@@ -75,7 +65,7 @@ export default function TotalFootprintNumber({
       {isInitialized ? (
         <strong
           className={twMerge(
-            'block text-lg leading-none font-black md:text-2xl',
+            'block text-lg font-black leading-none md:text-2xl',
             size === 'lg' && 'text-xl md:text-4xl'
           )}>
           {formattedValue}{' '}
@@ -94,10 +84,10 @@ export default function TotalFootprintNumber({
       )}
       <span
         className={twMerge(
-          'block text-xs leading-none font-medium lg:inline lg:text-sm',
+          'block text-xs font-medium leading-none lg:inline lg:text-sm',
           size === 'lg' && 'text-sm md:text-base'
         )}>
-        <span className="xs:inline hidden">{duration[metric]}</span>
+        <span className="hidden xs:inline">{duration[metric]}</span>
       </span>
     </div>
   )

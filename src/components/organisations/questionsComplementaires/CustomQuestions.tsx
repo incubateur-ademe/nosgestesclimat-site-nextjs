@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import TransClient from '@/components/translation/trans/TransClient'
 import type { PollToUpdate } from '@/hooks/organisations/polls/useUpdatePoll'
 import type { Organisation, OrganisationPoll } from '@/types/organisations'
 import CustomQuestion from './customQuestions/CustomQuestion'
@@ -24,7 +26,7 @@ export default function CustomQuestions({
   return (
     <>
       <h3 className="mt-8">
-        <Trans locale={locale}>Questions personnalisées</Trans>
+        <TransClient>Questions personnalisées</TransClient>
       </h3>
       <div className="flex flex-col gap-4">
         {poll?.customAdditionalQuestions?.map(({ question, isEnabled }) => (

@@ -1,13 +1,12 @@
+'use client'
+
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Loader from '@/design-system/layout/Loader'
 import type { Organisation } from '@/types/organisations'
 import MaxWidthContent from '../layout/MaxWidthContent'
-import Trans from '../translation/Trans'
+import TransClient from '../translation/trans/TransClient'
 
-type Props = {
-  organisation: Organisation | undefined
-  isError: boolean
-}
+type Props = { organisation: Organisation | undefined; isError: boolean }
 
 export default function OrganisationFetchError({
   organisation,
@@ -20,21 +19,21 @@ export default function OrganisationFetchError({
       {isError && (
         <MaxWidthContent>
           <p>
-            <Trans locale={locale}>Oups</Trans>
-            <Trans locale={locale}>
+            <TransClient>Oups</TransClient>
+            <TransClient>
               , vous avez été déconnecté·e de votre espace organisation, ou vous
               cherchez à y accéder depuis un nouveau navigateur.
-            </Trans>
+            </TransClient>
           </p>
 
           <p>
-            <Trans locale={locale}>
+            <TransClient>
               Reconnectez vous en cliquant sur le bouton ci-dessous.
-            </Trans>
+            </TransClient>
           </p>
 
           <ButtonLink href="/organisations/connexion" className="mt-8">
-            <Trans locale={locale}>Me connecter</Trans>
+            <TransClient>Me connecter</TransClient>
           </ButtonLink>
         </MaxWidthContent>
       )}

@@ -1,7 +1,9 @@
+'use client'
+
 import SaveIcon from '@/components/icons/SaveIcon'
 import ShareIcon from '@/components/icons/ShareIcon'
 import ToastDisplay from '@/components/messages/ToastDisplay'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import {
   endClickSaveShortcut,
   endClickShareShortcut,
@@ -17,23 +19,11 @@ import isMobile from 'is-mobile'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-const sizeClassNames = {
-  sm: 'p-0! h-10 w-10',
-  md: 'p-0! h-10 w-10',
-}
-const saveClassNames = {
-  sm: 'h-6 w-6',
-  md: 'h-6 w-6',
-}
-const shareClassNames = {
-  sm: 'h-[22px] w-[22px]',
-  md: 'h-[28px] w-[28px]',
-}
+const sizeClassNames = { sm: 'p-0! h-10 w-10', md: 'p-0! h-10 w-10' }
+const saveClassNames = { sm: 'h-6 w-6', md: 'h-6 w-6' }
+const shareClassNames = { sm: 'h-[22px] w-[22px]', md: 'h-[28px] w-[28px]' }
 
-type Props = {
-  size?: 'sm' | 'md'
-  endPage?: boolean
-}
+type Props = { size?: 'sm' | 'md'; endPage?: boolean }
 
 export default function HeadingButtons({ size = 'md', endPage }: Props) {
   const { sharedUrl } = useEndPageSharedUrl()
@@ -111,10 +101,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
 
   const handleScroll = (id: string, block: ScrollLogicalPosition) => {
     const emailBlock = document.getElementById(id)
-    emailBlock?.scrollIntoView({
-      behavior: 'smooth',
-      block,
-    })
+    emailBlock?.scrollIntoView({ behavior: 'smooth', block })
   }
 
   return (
@@ -125,7 +112,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         aria-label={t('Sauvegarder')}
         className={twMerge(
           sizeClassNames[size],
-          'font-medium lg:w-auto lg:gap-2 lg:px-4! lg:py-2!'
+          'lg:px-4! lg:py-2! font-medium lg:w-auto lg:gap-2'
         )}
         onClick={() => {
           trackEvent(
@@ -137,7 +124,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
           className={twMerge('fill-primary-700', saveClassNames[size])}
         />
         <span className="hidden lg:inline">
-          <Trans locale={locale}>Sauvegarder</Trans>
+          <TransClient>Sauvegarder</TransClient>
         </span>
       </Button>
 
@@ -146,7 +133,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         size="sm"
         className={twMerge(
           sizeClassNames[size],
-          'font-medium lg:w-auto lg:min-w-32 lg:gap-1 lg:px-4! lg:py-2!'
+          'lg:px-4! lg:py-2! font-medium lg:w-auto lg:min-w-32 lg:gap-1'
         )}
         onClick={() => {
           trackEvent(endClickShareShortcut)
@@ -155,17 +142,17 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         aria-label={t('Partager')}>
         <ShareIcon
           className={twMerge(
-            'fill-primary-700 mr-[1px]',
+            'mr-[1px] fill-primary-700',
             shareClassNames[size]
           )}
         />
         {shouldDisplayConfirmMessage ? (
           <span className="hidden lg:inline">
-            <Trans locale={locale}>Copié !</Trans>
+            <TransClient>Copié !</TransClient>
           </span>
         ) : (
           <span className="hidden lg:inline">
-            <Trans locale={locale}>Partager</Trans>
+            <TransClient>Partager</TransClient>
           </span>
         )}
       </Button>

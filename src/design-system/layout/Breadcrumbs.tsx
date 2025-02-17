@@ -3,7 +3,7 @@
 import Link from '@/components/Link'
 import { breadcrumbClickLink } from '@/constants/tracking/layout'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { Fragment } from 'react'
+import { Fragment, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 export default function Breadcrumbs({
@@ -13,7 +13,7 @@ export default function Breadcrumbs({
 }: {
   items: {
     href: string
-    label: string | JSX.Element
+    label: string | ReactNode
     isActive?: boolean
     isDisabled?: boolean
   }[]

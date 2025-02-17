@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import TransClient from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import Markdown from '@/design-system/utils/Markdown'
 import {
@@ -9,9 +11,7 @@ import {
 import { useForm, useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
-type Props = {
-  notification: DottedName
-}
+type Props = { notification: DottedName }
 export default function Notification({ notification }: Props) {
   const { description, setValue } = useRule(notification)
 
@@ -27,7 +27,7 @@ export default function Notification({ notification }: Props) {
       className={`mb-4 flex flex-col items-end rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} !${getTextCategoryColor(currentCategory, '700')} p-4 text-sm`}>
       <Markdown className="notification pb-0">{description}</Markdown>
       <Button size="sm" color={'secondary'} onClick={() => setValue(false)}>
-        <Trans locale={locale}>J'ai compris</Trans>
+        <TransClient>J'ai compris</TransClient>
       </Button>
     </motion.div>
   )

@@ -1,7 +1,7 @@
 'use client'
 
 import ChevronRight from '@/components/icons/ChevronRight'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { organisationsDashboardClickFunFacts } from '@/constants/tracking/pages/organisationsDashboard'
 import Button from '@/design-system/inputs/Button'
 import type { Entries } from '@/publicodes-state/types'
@@ -28,9 +28,7 @@ const plusFunFactsRules: { [k in keyof Partial<FunFacts>]: DottedName } =
     )
   )
 
-type Props = {
-  funFacts?: FunFacts
-}
+type Props = { funFacts?: FunFacts }
 export default function DetailedStatistics({ funFacts }: Props) {
   const [isSectionVisible, setIsSectionVisible] = useState(false)
 
@@ -54,7 +52,7 @@ export default function DetailedStatistics({ funFacts }: Props) {
   return (
     <div className="flex flex-col">
       <Button
-        className="my-4 w-36 self-center px-4! md:self-end"
+        className="px-4! my-4 w-36 self-center md:self-end"
         color="link"
         onClick={() => {
           trackEvent(organisationsDashboardClickFunFacts)
@@ -68,9 +66,9 @@ export default function DetailedStatistics({ funFacts }: Props) {
         />
         <span className="w-24">
           {!isSectionVisible ? (
-            <Trans locale={locale}>Voir plus</Trans>
+            <TransClient>Voir plus</TransClient>
           ) : (
-            <Trans locale={locale}>Voir moins</Trans>
+            <TransClient>Voir moins</TransClient>
           )}
         </span>
       </Button>

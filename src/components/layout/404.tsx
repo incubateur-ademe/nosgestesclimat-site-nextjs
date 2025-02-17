@@ -5,7 +5,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 import { useState } from 'react'
 import Wave from 'react-wavify'
-import Trans from '../translation/Trans'
+import TransClient from '../translation/trans/TransClient'
 import Fish from './404/Fish'
 
 export default function Route404() {
@@ -14,7 +14,7 @@ export default function Route404() {
   const [numberOfFish, setNumberOfFish] = useState(0)
   return (
     <div className="relative h-svh" data-cypress-id="404">
-      <div className="absolute top-20 right-0 bottom-0 left-0 bg-[#1617C5] opacity-75 lg:top-36" />
+      <div className="absolute bottom-0 left-0 right-0 top-20 bg-[#1617C5] opacity-75 lg:top-36" />
 
       <div className="relative mt-20 flex flex-col items-center lg:mt-36">
         <div className="relative w-full bg-white">
@@ -25,7 +25,7 @@ export default function Route404() {
                 onClick={() =>
                   setNumberOfFish((prevNumberOfFish) => prevNumberOfFish + 1)
                 }
-                className="hover:animate-jump absolute -top-16 right-0 left-0 m-auto w-10 md:w-12"
+                className="absolute -top-16 left-0 right-0 m-auto w-10 hover:animate-jump md:w-12"
                 src="/images/misc/404_bonhomme.svg"
                 width="60"
                 height="60"
@@ -37,26 +37,21 @@ export default function Route404() {
           </h1>
           <Wave
             fill="#1617C5"
-            className="pointer-events-none absolute right-0 bottom-0 left-0 h-full w-full opacity-75"
-            options={{
-              height: 70,
-              amplitude: 70,
-              speed: 0.11,
-              points: 3,
-            }}
+            className="pointer-events-none absolute bottom-0 left-0 right-0 h-full w-full opacity-75"
+            options={{ height: 70, amplitude: 70, speed: 0.11, points: 3 }}
           />
         </div>
         <p className="relative text-center font-bold text-white sm:text-lg md:text-2xl">
-          <Trans locale={locale}>
+          <TransClient>
             Rien à l'horizon ! <br className="md:hidden" />
             La page recherchée n'existe pas.
-          </Trans>
+          </TransClient>
         </p>
         <ButtonLink
           color="primary"
           href="/"
-          className="text-primary-700! hover:text-primary-700 relative mt-8 justify-self-center border-2 border-white bg-white shadow-xs hover:bg-white">
-          <Trans locale={locale}>Revenir à l'accueil</Trans>
+          className="text-primary-700! shadow-xs relative mt-8 justify-self-center border-2 border-white bg-white hover:bg-white hover:text-primary-700">
+          <TransClient>Revenir à l'accueil</TransClient>
         </ButtonLink>
       </div>
       <Fish numberOfFish={numberOfFish} />

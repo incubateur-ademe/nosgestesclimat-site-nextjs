@@ -14,17 +14,13 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import { twMerge } from 'tailwind-merge'
 import DynamicCTAButton from '../cta/DynamicCTAButtons'
-import Trans from '../translation/Trans'
+import TransClient from '../translation/trans/TransClient'
 
 export default function DidYouKnowSlider({
   slides,
   className,
 }: {
-  slides: {
-    illustration: string
-    content: ReactNode
-    highlight: ReactNode
-  }[]
+  slides: { illustration: string; content: ReactNode; highlight: ReactNode }[]
   className?: string
 }) {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -34,7 +30,7 @@ export default function DidYouKnowSlider({
   return (
     <div
       className={twMerge(
-        'bg-heroLightBackground relative pt-16 pb-20',
+        'bg-heroLightBackground relative pb-20 pt-16',
         className
       )}>
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-10 md:flex-row md:gap-0">
@@ -50,7 +46,7 @@ export default function DidYouKnowSlider({
           className="max-w-[594px]">
           {slides.map((slide) => (
             <li
-              className="mx-auto flex! w-full max-w-[90vw] flex-col items-start gap-10 md:flex-row"
+              className="flex! mx-auto w-full max-w-[90vw] flex-col items-start gap-10 md:flex-row"
               key={String(slide.highlight)}>
               <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-white md:mx-0 md:h-40 md:w-40">
                 <Image
@@ -64,7 +60,7 @@ export default function DidYouKnowSlider({
 
               <div className="w-full flex-1">
                 <h3 className="text-center text-xl md:text-left md:text-3xl">
-                  <Trans locale={locale}>Le saviez vous ?</Trans>
+                  <TransClient>Le saviez vous ?</TransClient>
                 </h3>
 
                 <Separator className="mx-auto my-4 md:mx-0" />
@@ -73,7 +69,7 @@ export default function DidYouKnowSlider({
                   {slide.content}
                 </p>
 
-                <p className="text-secondary-700 mt-4 mb-0 pb-4 text-center text-sm font-bold md:text-left md:text-lg">
+                <p className="mb-0 mt-4 pb-4 text-center text-sm font-bold text-secondary-700 md:text-left md:text-lg">
                   {slide.highlight}
                 </p>
               </div>
@@ -101,7 +97,7 @@ export default function DidYouKnowSlider({
         </div>
       </div>
 
-      <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-0 h-[4px] w-[100%] transition-all" />
+      <ColorLine className="bg-rainbow absolute bottom-0 left-0 h-[4px] w-[100%] animate-rainbow-slow transition-all" />
     </div>
   )
 }

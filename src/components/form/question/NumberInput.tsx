@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import TransClient from '@/components/translation/trans/TransClient'
 import { useLocale } from '@/hooks/useLocale'
 import type { HTMLAttributes, SyntheticEvent } from 'react'
 import { useEffect, useRef } from 'react'
@@ -32,10 +34,7 @@ export default function NumberInput({
 
   const handleValueChange = (
     values: NumberFormatValues,
-    sourceInfo: {
-      event?: SyntheticEvent
-      source: 'event' | 'prop'
-    }
+    sourceInfo: { event?: SyntheticEvent; source: 'event' | 'prop' }
   ) => {
     // If the value change because we typed something, we debounce it
     if (sourceInfo.source === 'event') {
@@ -68,11 +67,9 @@ export default function NumberInput({
       <NumericFormat
         value={isMissing ? '' : value}
         placeholder={
-          value.toLocaleString(locale, {
-            maximumFractionDigits: 2,
-          }) ?? '0'
+          value.toLocaleString(locale, { maximumFractionDigits: 2 }) ?? '0'
         }
-        className={`focus:ring-primary border-primary-200 focus:border-primary-700 max-w-[8rem] rounded-xl border-2 bg-white p-2 text-right transition-colors focus:ring-2 md:max-w-full`}
+        className={`focus:ring-primary max-w-[8rem] rounded-xl border-2 border-primary-200 bg-white p-2 text-right transition-colors focus:border-primary-700 focus:ring-2 md:max-w-full`}
         thousandSeparator={' '}
         decimalSeparator={','}
         allowNegative={false}
@@ -84,7 +81,7 @@ export default function NumberInput({
       {unit ? (
         <span className="whitespace-nowrap">
           &nbsp;
-          <Trans locale={locale}>{unit}</Trans>
+          <TransClient>{unit}</TransClient>
         </span>
       ) : null}
     </div>

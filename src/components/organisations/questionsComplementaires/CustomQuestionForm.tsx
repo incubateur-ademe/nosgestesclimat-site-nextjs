@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import TransClient from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import type { Organisation, OrganisationPoll } from '@/types/organisations'
 import type { ReactNode } from 'react'
@@ -7,9 +9,7 @@ import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import EditableToggleField from './EditableToggleField'
-type Inputs = {
-  question: string
-}
+type Inputs = { question: string }
 
 type Props = {
   organisation: Organisation
@@ -99,7 +99,7 @@ export default function CustomQuestionForm({
                 setIsFormDisplayed(true)
               }
         }>
-        + <Trans locale={locale}>Ajouter une question personnalisée</Trans>
+        + <TransClient>Ajouter une question personnalisée</TransClient>
       </Button>
     )
   }
@@ -113,7 +113,7 @@ export default function CustomQuestionForm({
       className="flex w-full flex-col items-start">
       {!isEditMode && (
         <label htmlFor="question" className="mb-2 text-sm">
-          <Trans locale={locale}>Votre question à ajouter</Trans>
+          <TransClient>Votre question à ajouter</TransClient>
         </label>
       )}
 
@@ -127,11 +127,11 @@ export default function CustomQuestionForm({
           size={isEditMode ? 'xs' : 'sm'}
           color="secondary"
           className="mt-4">
-          <Trans locale={locale}>Annuler</Trans>
+          <TransClient>Annuler</TransClient>
         </Button>
 
         <Button type="submit" size={isEditMode ? 'xs' : 'sm'} className="mt-4">
-          {submitLabel ?? <Trans locale={locale}>Ajouter la question</Trans>}
+          {submitLabel ?? <TransClient>Ajouter la question</TransClient>}
         </Button>
       </div>
     </form>

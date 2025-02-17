@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import {
   LIST_MAIN_NEWSLETTER,
   LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
@@ -44,9 +44,7 @@ type Props = {
   onCompleted?: (props: Record<string, unknown>) => void
   className?: string
   shouldForceEmailEditable?: boolean
-  defaultValues?: {
-    'newsletter-transports': boolean
-  }
+  defaultValues?: { 'newsletter-transports': boolean }
 }
 
 export default function UserInformationForm({
@@ -75,11 +73,7 @@ export default function UserInformationForm({
     handleSubmit,
     formState: { errors },
     setValue,
-  } = useReactHookForm<Inputs>({
-    defaultValues: {
-      name: user?.name,
-    },
-  })
+  } = useReactHookForm<Inputs>({ defaultValues: { name: user?.name } })
 
   const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
     user?.email ?? ''
@@ -175,7 +169,7 @@ export default function UserInformationForm({
                 <TextInputGroup
                   name="email"
                   helperText={
-                    <Trans locale={locale}>Ce champ n'est pas modifiable</Trans>
+                    <TransClient>Ce champ n'est pas modifiable</TransClient>
                   }
                   label={t('Votre adresse email')}
                   value={user?.email}
@@ -193,14 +187,12 @@ export default function UserInformationForm({
           </>
         )}
 
-        <h3 className="mt-6 mb-0">
-          <Trans locale={locale}>Inscription à nos e-mails</Trans>
+        <h3 className="mb-0 mt-6">
+          <TransClient>Inscription à nos e-mails</TransClient>
         </h3>
 
         <p className="text-sm text-gray-600">
-          <Trans locale={locale}>
-            Vous pouvez vous désincrire à tout moment
-          </Trans>
+          <TransClient>Vous pouvez vous désincrire à tout moment</TransClient>
         </p>
         {inputsDisplayed.includes('newsletter-saisonniere') && (
           <CheckboxInputGroup
@@ -208,10 +200,10 @@ export default function UserInformationForm({
             label={
               <span>
                 <Emoji>☀️</Emoji>{' '}
-                <Trans locale={locale}>
+                <TransClient>
                   <strong>Infolettre saisonnière de Nos Gestes Climat</strong> :
                   actualités climat, initiatives positives et nouveautés
-                </Trans>
+                </TransClient>
               </span>
             }
             {...register('newsletter-saisonniere')}
@@ -223,10 +215,10 @@ export default function UserInformationForm({
             label={
               <span>
                 <Emoji>🚗</Emoji>{' '}
-                <Trans locale={locale}>
+                <TransClient>
                   <strong>Nos Gestes Transports</strong> : tout savoir ou
                   presque sur l'impact carbone des transports, en 4 e-mails
-                </Trans>
+                </TransClient>
               </span>
             }
             {...register('newsletter-transports')}
@@ -238,10 +230,10 @@ export default function UserInformationForm({
             label={
               <span>
                 <Emoji>🏡</Emoji>{' '}
-                <Trans locale={locale}>
+                <TransClient>
                   <strong>Nos Gestes Logement</strong> : informez-vous sur
                   l'impact carbone du logement, en quelques e-mails
-                </Trans>
+                </TransClient>
               </span>
             }
             {...register('newsletter-logement')}
@@ -256,7 +248,7 @@ export default function UserInformationForm({
             {isPending && <Loader size="sm" color="light" />}
 
             {submitLabel ?? (
-              <Trans locale={locale}>Mettre à jour mes informations</Trans>
+              <TransClient>Mettre à jour mes informations</TransClient>
             )}
           </Button>
         </div>

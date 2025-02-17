@@ -1,14 +1,14 @@
+'use client'
+
 import Question from '@/components/form/Question'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
 import PencilIcon from '../icons/PencilIcon'
 import ThreeYearsInput from './avion/ThreeYearsInput'
 
-type Props = {
-  question: DottedName
-}
+type Props = { question: DottedName }
 export default function Avion({ question, ...props }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   return (
@@ -21,11 +21,11 @@ export default function Avion({ question, ...props }: Props) {
           onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
           className="mb-2">
           {isOpen ? (
-            <Trans locale={locale}>Fermer</Trans>
+            <TransClient>Fermer</TransClient>
           ) : (
             <>
-              <PencilIcon className="stroke-primary-700 mr-2" width="16" />
-              <Trans locale={locale}>Répondre sur les 3 dernières années</Trans>
+              <PencilIcon className="mr-2 stroke-primary-700" width="16" />
+              <TransClient>Répondre sur les 3 dernières années</TransClient>
             </>
           )}
         </Button>

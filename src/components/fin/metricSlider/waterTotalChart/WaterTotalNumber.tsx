@@ -1,13 +1,12 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import TransClient from '@/components/translation/trans/TransClient'
 import { eauMetric } from '@/constants/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useRule } from '@/publicodes-state'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
-  total?: number
-  isSmall?: boolean
-}
+type Props = { total?: number; isSmall?: boolean }
 export default function WaterTotalNumber({ total, isSmall }: Props) {
   const { numericValue } = useRule('bilan', eauMetric)
 
@@ -29,9 +28,9 @@ export default function WaterTotalNumber({ total, isSmall }: Props) {
         'flex origin-top items-center justify-center pt-8 transition-transform duration-300 md:pt-12',
         isSmall ? 'md:scale-75 md:pt-10 lg:pt-4' : 'scale-100'
       )}>
-      <div className="text-water text-center font-medium whitespace-nowrap">
+      <div className="whitespace-nowrap text-center font-medium text-water">
         <span className="flex items-baseline justify-center gap-1">
-          <strong className="text-xl leading-none font-black md:text-4xl lg:text-6xl">
+          <strong className="text-xl font-black leading-none md:text-4xl lg:text-6xl">
             {realFormattedValue}
           </strong>
            
@@ -39,8 +38,8 @@ export default function WaterTotalNumber({ total, isSmall }: Props) {
             {unit}
           </span>
         </span>
-        <span className="text-default text-center text-sm md:text-lg lg:text-xl">
-          <Trans locale={locale}>d'eau par jour</Trans>
+        <span className="text-center text-sm text-default md:text-lg lg:text-xl">
+          <TransClient>d'eau par jour</TransClient>
         </span>
       </div>
     </div>

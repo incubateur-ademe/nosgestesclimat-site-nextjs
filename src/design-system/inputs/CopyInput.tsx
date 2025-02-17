@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { useEffect, useRef, useState } from 'react'
 import Button from './Button'
 
@@ -36,10 +36,7 @@ export default function CopyInput({
   const handleShare = async () => {
     if (navigator.share) {
       await navigator
-        .share({
-          url: textToCopy,
-          title: 'Découvre mon empreinte carbone !',
-        })
+        .share({ url: textToCopy, title: 'Découvre mon empreinte carbone !' })
         .catch(handleCopy)
     } else {
       handleCopy()
@@ -56,7 +53,7 @@ export default function CopyInput({
     <div className={`flex ${className}`}>
       <input
         type="text"
-        className="block w-full min-w-0 flex-1 rounded-none rounded-l-md border-2 border-r-0 border-solid border-gray-200 bg-gray-100 py-3 pr-2 pl-4 text-gray-600 sm:text-sm"
+        className="block w-full min-w-0 flex-1 rounded-none rounded-l-md border-2 border-r-0 border-solid border-gray-200 bg-gray-100 py-3 pl-4 pr-2 text-gray-600 sm:text-sm"
         value={textToDisplay ?? textToCopy}
         readOnly
       />
@@ -76,11 +73,11 @@ export default function CopyInput({
           if (onClick) onClick()
         }}>
         {isCopied ? (
-          <Trans locale={locale}>Copié !</Trans>
+          <TransClient>Copié !</TransClient>
         ) : canShare && isShareDefined ? (
-          <Trans locale={locale}>Partager</Trans>
+          <TransClient>Partager</TransClient>
         ) : (
-          <Trans locale={locale}>Copier le lien</Trans>
+          <TransClient>Copier le lien</TransClient>
         )}
       </Button>
     </div>

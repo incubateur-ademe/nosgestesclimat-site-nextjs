@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { trackingDownloadRavijenChart } from '@/constants/tracking/misc'
 import Button from '@/design-system/inputs/Button'
 import { getSubcatsOfCategory } from '@/helpers/publicodes/getSubcatsOfCategory'
@@ -68,7 +68,7 @@ export default function RavijenChart({
               link.remove()
             })
           }}>
-          <Trans locale={locale}>Télécharger l'image</Trans>
+          <TransClient>Télécharger l'image</TransClient>
         </Button>
       </div>
     </>

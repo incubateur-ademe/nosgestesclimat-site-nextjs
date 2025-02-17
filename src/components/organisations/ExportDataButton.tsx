@@ -9,7 +9,7 @@ import type { PublicOrganisationPoll } from '@/types/organisations'
 import dayjs from 'dayjs'
 import { useState } from 'react'
 import DownloadIcon from '../icons/DownloadIcon'
-import Trans from '../translation/Trans'
+import TransClient from '../translation/trans/TransClient'
 
 type Props = {
   poll?: PublicOrganisationPoll | null
@@ -87,8 +87,8 @@ export default function ExportDataButton({
   }
   return (
     <Button color={color} disabled={isLoading} onClick={handleClick} {...props}>
-      <DownloadIcon className="fill-primary-700 mr-2" />
-      <Trans locale={locale}>Exporter les données</Trans>
+      <DownloadIcon className="mr-2 fill-primary-700" />
+      <TransClient>Exporter les données</TransClient>
     </Button>
   )
 }
