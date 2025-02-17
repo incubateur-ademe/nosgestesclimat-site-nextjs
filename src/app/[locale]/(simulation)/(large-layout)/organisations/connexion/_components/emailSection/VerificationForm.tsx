@@ -3,6 +3,7 @@ import useTimeLeft from '@/hooks/organisations/useTimeleft'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCreateVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
 import { useUser } from '@/publicodes-state'
+import { captureException } from '@sentry/nextjs'
 import type { UseMutateAsyncFunction } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
@@ -111,6 +112,7 @@ export default function VerificationForm({
       }, 1000)
     } catch (err) {
       setInputError(t('Le code est invalide'))
+      captureException(err)
       return
     }
   }

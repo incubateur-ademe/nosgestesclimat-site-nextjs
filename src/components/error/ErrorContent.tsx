@@ -1,11 +1,9 @@
 'use client'
 
 import Button from '@/design-system/inputs/Button'
-import { useLocale } from '@/hooks/useLocale'
 import TransClient from '../translation/trans/TransClient'
 
 export default function ErrorContent() {
-  const locale = useLocale()
   return (
     <>
       <h2>

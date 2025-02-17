@@ -14,7 +14,6 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
 import type { ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
@@ -58,8 +57,6 @@ export default function UserInformationForm({
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   const { t } = useClientTranslation()
-
-  const locale = useLocale()
 
   const { user, updateEmail, updateName } = useUser()
 
@@ -178,7 +175,7 @@ export default function UserInformationForm({
         {inputsDisplayed.includes('newsletter-saisonniere') ||
           (inputsDisplayed.includes('newsletter-transports') && (
             <>
-              <h3 className="mb-0 mt-6">{t('Inscription à nos e-mails')}</h3>
+              <h3 className="mt-6 mb-0">{t('Inscription à nos e-mails')}</h3>
 
               <p className="text-sm text-gray-600">
                 {t('Vous pouvez vous désincrire à tout moment')}

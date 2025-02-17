@@ -15,6 +15,7 @@ import { displaySuccessToast } from '@/helpers/toasts/displaySuccessToast'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEndPageSharedUrl } from '@/hooks/useEndPageSharedUrl'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { captureException } from '@sentry/nextjs'
 import isMobile from 'is-mobile'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -47,6 +48,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
           setShouldDisplayConfirmMessage(false)
         }, 2000)
       } catch (err) {
+        captureException(err)
         displayErrorToast(
           t(
             'Oups, une erreur s’est produite lors de la copie du lien de partage.'
@@ -82,6 +84,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
           setShouldDisplayConfirmMessage(false)
         }, 2000)
       } catch (err) {
+        captureException(err)
         displayErrorToast(
           t(
             'Oups, une erreur s’est produite lors de la copie du lien de partage.'
@@ -112,7 +115,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         aria-label={t('Sauvegarder')}
         className={twMerge(
           sizeClassNames[size],
-          'lg:px-4! lg:py-2! font-medium lg:w-auto lg:gap-2'
+          'font-medium lg:w-auto lg:gap-2 lg:px-4! lg:py-2!'
         )}
         onClick={() => {
           trackEvent(
@@ -133,7 +136,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         size="sm"
         className={twMerge(
           sizeClassNames[size],
-          'lg:px-4! lg:py-2! font-medium lg:w-auto lg:min-w-32 lg:gap-1'
+          'font-medium lg:w-auto lg:min-w-32 lg:gap-1 lg:px-4! lg:py-2!'
         )}
         onClick={() => {
           trackEvent(endClickShareShortcut)
@@ -142,7 +145,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         aria-label={t('Partager')}>
         <ShareIcon
           className={twMerge(
-            'mr-[1px] fill-primary-700',
+            'fill-primary-700 mr-[1px]',
             shareClassNames[size]
           )}
         />

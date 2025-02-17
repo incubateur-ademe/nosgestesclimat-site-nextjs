@@ -9,7 +9,6 @@ import Button from '@/design-system/inputs/Button'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useLocale } from '@/hooks/useLocale'
 import type { Journey } from '@/types/journey'
 import type { Dispatch, SetStateAction } from 'react'
 import { useState } from 'react'
@@ -28,8 +27,6 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
   const [reccurrence, setReccurrence] = useState(1)
   const [period, setPeriod] = useState('week')
   const [passengers, setPassengers] = useState(1)
-
-  const locale = useLocale()
 
   return (
     <tr className={twMerge('block border-b border-primary-700 p-2', className)}>

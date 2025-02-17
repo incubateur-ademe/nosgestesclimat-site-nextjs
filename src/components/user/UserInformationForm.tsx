@@ -17,6 +17,7 @@ import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletter
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
+import { captureException } from '@sentry/nextjs'
 import type { ReactNode } from 'react'
 import { useEffect, useRef } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
@@ -130,6 +131,7 @@ export default function UserInformationForm({
         onCompleted(data)
       }, 2500)
     } catch (error) {
+      captureException(error)
       displayErrorToast(t('Une erreur est survenue. Veuillez réessayer.'))
     }
   }
@@ -187,7 +189,7 @@ export default function UserInformationForm({
           </>
         )}
 
-        <h3 className="mb-0 mt-6">
+        <h3 className="mt-6 mb-0">
           <TransClient>Inscription à nos e-mails</TransClient>
         </h3>
 

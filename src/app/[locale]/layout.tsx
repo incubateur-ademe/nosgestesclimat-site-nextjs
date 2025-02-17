@@ -2,6 +2,7 @@ import ErrorContent from '@/components/error/ErrorContent'
 import Footer from '@/components/layout/Footer'
 import '@/locales/initClient'
 import '@/locales/initServer'
+import { captureException } from '@sentry/nextjs'
 import { dir } from 'i18next'
 import Script from 'next/script'
 import MainLayoutProviders from './_components/MainLayoutProviders'
@@ -97,6 +98,7 @@ export default async function RootLayout({
       </html>
     )
   } catch (error) {
+    captureException(error)
     return (
       <html lang="fr">
         <body className="text-default bg-white">

@@ -12,7 +12,6 @@ import {
   useCurrentMonthWebsites,
   useGetSharedSimulationEvents,
 } from '@/helpers/matomo'
-import { useLocale } from '@/hooks/useLocale'
 import { useMainNewsletter } from '@/hooks/useMainNewsletter'
 import type { UseQueryResult } from '@tanstack/react-query'
 import type { ReactNode } from 'react'
@@ -32,8 +31,6 @@ const UseQueryResultHandler = ({
   const notSuccessfulRequests = requestResults.filter(
     ({ isSuccess }) => !isSuccess
   )
-
-  const locale = useLocale()
 
   if (notSuccessfulRequests.length > 0) {
     return (
@@ -74,8 +71,6 @@ export default function StatsContent() {
   const currentMonthSocials = useCurrentMonthSocials()
   const allSharedSimulationEvents = useGetSharedSimulationEvents()
   const { data: mainNewsletter } = useMainNewsletter()
-
-  const locale = useLocale()
 
   return (
     <div>

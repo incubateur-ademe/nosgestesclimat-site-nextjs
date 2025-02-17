@@ -21,6 +21,7 @@ import type {
 } from '@/types/organisations'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { trackEvent } from '@/utils/matomo/trackEvent'
+import { captureException } from '@sentry/nextjs'
 import { useEffect, useRef, useState } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
@@ -139,6 +140,7 @@ export default function ParametresPage() {
       displaySuccessToast(t('Vos informations ont bien été mises à jour.'))
     } catch (error) {
       setError(t('Une erreur est survenue. Veuillez réessayer.'))
+      captureException(error)
     }
   }
 

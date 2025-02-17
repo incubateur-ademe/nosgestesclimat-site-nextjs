@@ -1,7 +1,5 @@
 import TransClient from '@/components/translation/trans/TransClient'
-import { useLocale } from '@/hooks/useLocale'
 export default function Table(props) {
-  const locale = useLocale()
   return (
     <div>
       <div>

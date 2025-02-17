@@ -1,5 +1,6 @@
 'use client'
 
+import TransClient from '@/components/translation/trans/TransClient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Table from './sources/Table'
 

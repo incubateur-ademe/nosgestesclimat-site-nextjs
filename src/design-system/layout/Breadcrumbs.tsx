@@ -3,7 +3,7 @@
 import Link from '@/components/Link'
 import { breadcrumbClickLink } from '@/constants/tracking/layout'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { Fragment, ReactNode } from 'react'
+import { Fragment, type ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 export default function Breadcrumbs({
@@ -34,9 +34,9 @@ export default function Breadcrumbs({
               }}
               aria-current={isActive}
               className={twMerge(
-                'max-w-full text-ellipsis whitespace-nowrap text-sm capitalize text-primary-700 hover:text-primary-700 hover:underline ',
+                'text-primary-700 hover:text-primary-700 max-w-full text-sm text-ellipsis whitespace-nowrap capitalize hover:underline',
                 isActive
-                  ? 'cursor-default text-default no-underline hover:text-default hover:no-underline'
+                  ? 'text-default hover:text-default cursor-default no-underline hover:no-underline'
                   : '',
                 isDisabled ? 'cursor-default' : '',
                 linkClassName

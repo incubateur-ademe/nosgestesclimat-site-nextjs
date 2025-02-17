@@ -3,7 +3,6 @@
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import TransClient from '@/components/translation/trans/TransClient'
 import Loader from '@/design-system/layout/Loader'
-import { useLocale } from '@/hooks/useLocale'
 import VerificationInput from 'react-verification-input'
 
 type Props = {
@@ -19,7 +18,6 @@ export default function VerificationCodeInput({
   isPendingValidate,
   handleValidateVerificationCode,
 }: Props) {
-  const locale = useLocale()
   return (
     <>
       <VerificationInput

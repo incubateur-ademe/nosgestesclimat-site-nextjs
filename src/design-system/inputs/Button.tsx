@@ -58,7 +58,7 @@ export default function Button({
       onClick={
         disabled
           ? (e) => {
-              e.preventDefault
+              e.preventDefault()
             }
           : onClick
       }

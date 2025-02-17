@@ -2,7 +2,6 @@
 
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
-import { useLocale } from '@/hooks/useLocale'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
@@ -26,8 +25,6 @@ export default function DynamicCTAButtons({
 }) {
   const { progression } = useCurrentSimulation()
 
-  const locale = useLocale()
-
   const {
     getLinkToSimulateurPage,
     linkToSimulateurPageLabel,
@@ -41,7 +38,7 @@ export default function DynamicCTAButtons({
       <ButtonLink
         size="xl"
         className={twMerge(
-          'transition-all duration-300 hover:bg-primary-900',
+          'hover:bg-primary-900 transition-all duration-300',
           className
         )}
         href={getLinkToSimulateurPage()}
@@ -64,7 +61,7 @@ export default function DynamicCTAButtons({
         <span
           className={twMerge(
             isHover
-              ? 'bg-rainbow bg-clip-text! text-transparent! animate-rainbow-fast duration-1000'
+              ? 'bg-rainbow animate-rainbow-fast bg-clip-text! text-transparent! duration-1000'
               : '',
             'leading-none'
           )}>
@@ -81,7 +78,7 @@ export default function DynamicCTAButtons({
             goToSimulateurPage({ noNavigation: true, newSimulation: {} })
           }}
           href={getLinkToSimulateurPage({ newSimulation: true })}>
-          <RestartIcon className="mr-2 fill-primary-700" />
+          <RestartIcon className="fill-primary-700 mr-2" />
 
           <TransClient>Recommencer</TransClient>
         </ButtonLink>

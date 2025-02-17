@@ -32,7 +32,7 @@ export default async function BudgetPage({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+
   return (
     <>
       <MDXContent

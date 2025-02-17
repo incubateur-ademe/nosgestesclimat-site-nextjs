@@ -76,6 +76,7 @@ export default function RuleDetail({
         </Link>
       )
     } catch (e) {
+      console.error(e)
       return <span>{capitalizeString(ruleFormatted)}</span>
     }
   }

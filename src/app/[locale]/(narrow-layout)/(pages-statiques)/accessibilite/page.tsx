@@ -30,7 +30,6 @@ export default async function AccessibilityPage({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
   return (
     <MDXContent
       contentEn={accessibilityEn}

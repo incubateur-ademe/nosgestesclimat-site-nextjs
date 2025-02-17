@@ -1,29 +1,28 @@
-//@ts-check
-/* eslint-disable @typescript-eslint/no-var-requires */
+import type { Configuration } from 'webpack'
+
 const withMDX = require('@next/mdx')({
   extension: /\.mdx$/,
 })
 
-const { withSentryConfig } = require('@sentry/nextjs')
+import { withSentryConfig } from '@sentry/nextjs'
 
-const redirects = require('./config/redirects.js')
+import redirects from './config/redirects.js'
 
-const remoteImagesPatterns = require('./config/remoteImagesPatterns.js')
+import remoteImagesPatterns from './config/remoteImagesPatterns.js'
 
-// const { sentryWebpackPlugin } = require('@sentry/webpack-plugin')
-
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
   images: {
-    // @ts-expect-error remotePatterns is not typed
     remotePatterns: remoteImagesPatterns,
   },
   async redirects() {
     return redirects
   },
-  webpack: (config, { dev, isServer }) => {
+  webpack: (
+    config: Configuration,
+    { dev, isServer }: { dev: boolean; isServer: boolean }
+  ) => {
     if (isServer) {
       config.ignoreWarnings = [{ module: /opentelemetry/ }]
     }
@@ -39,12 +38,12 @@ const nextConfig = {
         config.cache = Object.freeze({
           type: 'memory',
         })
-        config.cache.maxMemoryGenerations = 0
+        config.cache.maxGenerations = 0
       }
     }
 
     // Add a rule for YAML files
-    config.module.rules.push({
+    config.module?.rules?.push({
       test: /\.ya?ml$/,
       use: 'yaml-loader',
     })
@@ -54,18 +53,10 @@ const nextConfig = {
       config.devtool = 'source-map'
     }
 
-    // if (process.env.SENTRY_AUTH_TOKEN) {
-    //   config.plugins.push(
-    //     sentryWebpackPlugin({
-    //       authToken: process.env.SENTRY_AUTH_TOKEN_SOURCEMAPS,
-    //       org: 'betagouv',
-    //       project: 'nosgestesclimat-nextjs',
-    //     })
-    //   )
-    // }
-
     // We do not want to split the chunks too much
-    config.optimization.splitChunks.minSize = 300000
+    if (config?.optimization?.splitChunks) {
+      config.optimization.splitChunks.minSize = 300000
+    }
 
     return config
   },
@@ -89,7 +80,6 @@ const nextConfig = {
   },
 }
 
-/** @type {import('@sentry/nextjs').SentryBuildOptions} */
 const sentryConfig = {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options

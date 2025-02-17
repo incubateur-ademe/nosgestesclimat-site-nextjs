@@ -5,7 +5,7 @@ import { getOrganisationItems } from '@/helpers/filAriane/getOrganisationItems'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useUser } from '@/publicodes-state'
 import { useParams, usePathname } from 'next/navigation'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { useFetchPublicPoll } from '../../hooks/organisations/polls/useFetchPublicPoll'
 
 const TARGETED_PATHS = ['/organisations']
