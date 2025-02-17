@@ -1,5 +1,6 @@
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Organisation, OrganisationPoll } from '@/types/organisations'
 import { useEffect, useState } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
@@ -20,6 +21,7 @@ type Props = {
   submitLabel?: string | JSX.Element
   isEditMode?: boolean
   onCompleted?: (changes: Record<string, unknown>) => void
+  onCancel?: () => void
   question?: string
 }
 
@@ -32,10 +34,23 @@ export default function CustomQuestionForm({
   isEditMode,
   organisation,
   onCompleted = () => {},
+  onCancel,
 }: Props) {
   const [isFormDisplayed, setIsFormDisplayed] = useState(isEditMode ?? false)
 
-  const { register, handleSubmit, setValue, reset } = useReactHookForm<Inputs>()
+  const { t } = useClientTranslation()
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    reset,
+    formState: { errors },
+  } = useReactHookForm<Inputs>({
+    defaultValues: {
+      question: '',
+    },
+  })
 
   useEffect(() => {
     if (question) {
@@ -50,6 +65,7 @@ export default function CustomQuestionForm({
       ...(poll?.customAdditionalQuestions || []),
     ]
 
+    // Editing an existing question
     if (isEditMode && question !== questionValue) {
       const questionIndex = customAdditionalQuestions.findIndex(
         ({ question: questionSearched }) => questionSearched === question
@@ -61,8 +77,10 @@ export default function CustomQuestionForm({
 
       customAdditionalQuestions[questionIndex].question = questionValue
     } else {
+      // Adding a new question
       customAdditionalQuestions.push({
         question: questionValue,
+        // Enabled by default
         isEnabled: true,
       })
     }
@@ -74,6 +92,7 @@ export default function CustomQuestionForm({
 
   function handleCancel() {
     setIsFormDisplayed(false)
+    onCancel?.()
   }
 
   // Show the form only for organisations with access
@@ -94,7 +113,6 @@ export default function CustomQuestionForm({
           hasReachedMaxQuestions
             ? () => {}
             : () => {
-                // Reset the form if it was previously used
                 reset()
                 setIsFormDisplayed(true)
               }
@@ -103,13 +121,10 @@ export default function CustomQuestionForm({
       </Button>
     )
   }
+
   return (
     <form
-      id="custom-question-form"
-      onSubmit={(event) => {
-        event.preventDefault()
-        handleSubmit(onSubmit)(event)
-      }}
+      onSubmit={handleSubmit(onSubmit)}
       className="flex w-full flex-col items-start">
       {!isEditMode && (
         <label htmlFor="question" className="mb-2 text-sm">
@@ -117,7 +132,10 @@ export default function CustomQuestionForm({
         </label>
       )}
 
-      <EditableToggleField {...register('question')} />
+      <EditableToggleField
+        {...register('question', { required: t('Ce champ est requis') })}
+        error={errors.question?.message}
+      />
 
       <div
         className={twMerge('mt-2 flex gap-4', `${isEditMode ? 'mt-1' : ''}`)}>

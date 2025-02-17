@@ -40,6 +40,7 @@ export default function UnderstandToAct({
             <PostThumbnail
               key={`${index}-post-thumbnail`}
               {...post}
+              className="bg-white"
               trackingEvent={getLandingClickPostThumbnail(
                 pathname,
                 `${trackingActionClickPostThumbnail} ${index + 1}`
