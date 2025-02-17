@@ -16,7 +16,7 @@ type Props = {
 
 type Inputs = {
   name: string
-  expectedNumberOfParticipants: string
+  expectedNumberOfParticipants: number
 }
 
 export default function PollForm({ organisation }: Props) {
@@ -41,14 +41,14 @@ export default function PollForm({ organisation }: Props) {
   async function onSubmit() {
     if (isError) setIsError(false)
 
-    const { name } = getValues()
+    const { name, expectedNumberOfParticipants } = getValues()
 
     try {
       const pollCreated = await createPoll({
         name,
         defaultAdditionalQuestions: pollInfo.defaultAdditionalQuestions,
         customAdditionalQuestions: pollInfo.customAdditionalQuestions,
-        expectedNumberOfParticipants: parseInt(expectedNumberOfParticipants),
+        expectedNumberOfParticipants: expectedNumberOfParticipants || undefined,
       })
 
       if (pollCreated) {
