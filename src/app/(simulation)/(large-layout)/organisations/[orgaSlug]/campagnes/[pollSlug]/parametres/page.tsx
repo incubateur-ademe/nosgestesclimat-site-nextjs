@@ -61,6 +61,9 @@ export default function ParametresPage() {
 
       <NameForm
         nameValue={poll?.name ?? ''}
+        expectedNumberOfParticipants={
+          poll?.expectedNumberOfParticipants ?? undefined
+        }
         updatePoll={updatePoll}
         updatePollStatus={updatePollStatus}
       />
