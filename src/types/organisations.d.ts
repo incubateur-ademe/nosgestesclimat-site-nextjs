@@ -24,7 +24,6 @@ type VerifiedUser = {
   optedInForCommunications: boolean
   createdAt: string
   updatedAt: string | null
-  userId: string
 }
 
 type BaseOrganisation = {
