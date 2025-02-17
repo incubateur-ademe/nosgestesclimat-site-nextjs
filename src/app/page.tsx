@@ -1,4 +1,4 @@
-import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
+import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/Trans'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
@@ -11,6 +11,7 @@ import {
   getLandingClickCTAResume,
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
+import dynamic from 'next/dynamic'
 import { headers } from 'next/headers'
 import Partners from '../components/landing-pages/Partners'
 import CollectivelyCommit from './_components/CollectivelyCommit'
@@ -21,6 +22,11 @@ import Mobilise from './_components/Mobilise'
 import ModelInfo from './_components/ModelInfo'
 import TheySpeakAboutUs from './_components/TheySpeakAboutUs'
 import TwoFootprints from './_components/TwoFootprints'
+
+const DynamicCTAButtons = dynamic(
+  () => import('@/components/cta/DynamicCTAButtons'),
+  { ssr: false, loading: () => <CTAButtonsPlaceholder /> }
+)
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
