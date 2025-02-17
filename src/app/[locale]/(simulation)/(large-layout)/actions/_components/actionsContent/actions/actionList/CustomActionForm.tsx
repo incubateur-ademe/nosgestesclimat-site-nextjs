@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import UserInformationForm from '@/components/user/UserInformationForm'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -29,9 +29,9 @@ export default function CustomActionForm({
         <UserInformationForm
           title={
             <h3>
-              <Trans locale={locale}>
+              <TransClient>
                 S’abonner à la newsletter Nos Gestes Transport
-              </Trans>
+              </TransClient>
             </h3>
           }
           inputsDisplayed={['email', 'newsletter-transports']}

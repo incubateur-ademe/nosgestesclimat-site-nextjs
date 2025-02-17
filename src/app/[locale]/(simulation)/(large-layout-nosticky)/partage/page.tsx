@@ -1,7 +1,7 @@
 'use client'
 
 import MetricSlider from '@/components/fin/MetricSlider'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
@@ -17,7 +17,7 @@ export default function PartagePage() {
     <div className="relative">
       <div>
         <Title className="text-lg md:text-2xl">
-          <Trans locale={locale}>Découvre mes empreintes</Trans>
+          <TransClient>Découvre mes empreintes</TransClient>
         </Title>
       </div>
       <MetricSlider
@@ -31,19 +31,19 @@ export default function PartagePage() {
           className="text-lg lg:text-2xl"
           hasSeparator={false}
           subtitle={
-            <Trans locale={locale}>
+            <TransClient>
               En 10 minutes, obtenez une estimation de vos empreintes carbone et
               eau.
-            </Trans>
+            </TransClient>
           }>
-          <Trans locale={locale}>
+          <TransClient>
             <span className="text-secondary-700">Et vous,</span> quel est votre
             impact sur notre planète ?
-          </Trans>
+          </TransClient>
         </Title>
 
         <ButtonLink href={getLinkToSimulateurPage()}>
-          <Trans locale={locale}>{linkToSimulateurPageLabel}</Trans>
+          <TransClient>{linkToSimulateurPageLabel}</TransClient>
         </ButtonLink>
       </div>
     </div>

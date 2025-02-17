@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
@@ -23,29 +23,30 @@ export default function SimulationMissing() {
     <div className="mb-8">
       <Card className="border-none bg-gray-100!">
         <h2>
-          <Trans locale={locale}>Calcul d'empreinte carbone manquant</Trans>
+          <TransClient>Calcul d'empreinte carbone manquant</TransClient>
         </h2>
         <p>
           🔒{' '}
-          <Trans i18nKey={'publicodes.SimulationMissing.simulationManquante'}>
+          <TransClient
+            i18nKey={'publicodes.SimulationMissing.simulationManquante'}>
             Pour débloquer ce parcours, vous devez d'abord terminer le test.
-          </Trans>
+          </TransClient>
         </p>
 
         <div>
           <ButtonLink href={getLinkToSimulateur()}>
-            <Trans locale={locale}>
+            <TransClient>
               {progression > 0 ? 'Reprendre mon test' : 'Faire le test'}
-            </Trans>
+            </TransClient>
           </ButtonLink>
         </div>
 
         <p className="mt-4 mb-0">
           <small>
-            <Trans i18nKey={'publicodes.SimulationMissing.personnas'}>
+            <TransClient i18nKey={'publicodes.SimulationMissing.personnas'}>
               Vous pouvez aussi continuer avec un{' '}
               <Link href={'/personas'}>profil type</Link>.
-            </Trans>
+            </TransClient>
           </small>
         </p>
       </Card>

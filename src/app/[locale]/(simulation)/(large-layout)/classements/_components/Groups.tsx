@@ -1,7 +1,7 @@
 'use client'
 
 import GroupLoader from '@/components/groups/GroupLoader'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { linkToGroupCreation } from '@/constants/group'
 import { classementCreateGroup } from '@/constants/tracking/pages/classements'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
@@ -23,7 +23,7 @@ export default function Groups() {
   return (
     <>
       <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between">
-        <Title tag="h2" title={<Trans locale={locale}>Groupes d'amis</Trans>} />
+        <Title tag="h2" title={<TransClient>Groupes d'amis</TransClient>} />
 
         {groups && groups.length > 0 && (
           <ButtonLink
@@ -33,14 +33,14 @@ export default function Groups() {
             size="sm"
             className="-order-1 mb-2 self-end sm:order-1 sm:mb-0 sm:self-auto"
             data-cypress-id="button-create-other-group">
-            <Trans locale={locale}>Créer un autre groupe</Trans>
+            <TransClient>Créer un autre groupe</TransClient>
           </ButtonLink>
         )}
       </div>
       <p className="text-gray-500">
-        <Trans locale={locale}>
+        <TransClient>
           Comparez vos résultats avec votre famille ou un groupe d’ami·e·s
-        </Trans>
+        </TransClient>
       </p>
 
       <div className="flex flex-wrap justify-center gap-16 md:flex-nowrap">

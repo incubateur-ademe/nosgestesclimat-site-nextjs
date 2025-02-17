@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { amisDashboardCopyLink } from '@/constants/tracking/pages/amisDashboard'
 import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
@@ -26,12 +26,12 @@ const SubmitButton = ({
         handleShare()
       }}
       data-cypress-id="invite-button">
-      {isShareDefined && <Trans locale={locale}>Partager</Trans>}
+      {isShareDefined && <TransClient>Partager</TransClient>}
       {!isShareDefined &&
         (isCopied ? (
-          <Trans locale={locale}>Copié !</Trans>
+          <TransClient>Copié !</TransClient>
         ) : (
-          <Trans locale={locale}>Copier le lien</Trans>
+          <TransClient>Copier le lien</TransClient>
         ))}
     </Button>
   )
@@ -82,9 +82,9 @@ export default function InviteBlock({ group }: { group: Group }) {
     return (
       <div className="mt-4 flex flex-col justify-between gap-4 rounded-md bg-gray-100 p-4 md:flex-row md:items-center">
         <p className="mb-0 text-sm md:text-base">
-          <Trans locale={locale}>
+          <TransClient>
             Invitez d'autres personnes à rejoindre votre groupe
-          </Trans>
+          </TransClient>
         </p>
         <SubmitButton
           isShareDefined={shouldUseShareAPI}
@@ -98,14 +98,14 @@ export default function InviteBlock({ group }: { group: Group }) {
   return (
     <div className="rainbow-border mt-4 rounded-xl p-4">
       <h2 className="mt-0 flex items-center text-base md:text-lg">
-        <Trans locale={locale}>Vous êtes le premier</Trans> <Emoji>🥳</Emoji> 
-        <Trans locale={locale}>mais vous êtes seul·e…</Trans> <Emoji>🥲</Emoji>
+        <TransClient>Vous êtes le premier</TransClient> <Emoji>🥳</Emoji> 
+        <TransClient>mais vous êtes seul·e…</TransClient> <Emoji>🥲</Emoji>
       </h2>
       <p className="mb-4 text-sm md:text-base">
-        <Trans locale={locale}>
+        <TransClient>
           Partagez cette page à vos proches pour leur permettre de rejoindre
           votre groupe.
-        </Trans>
+        </TransClient>
       </p>
       <SubmitButton
         isShareDefined={shouldUseShareAPI}

@@ -1,4 +1,5 @@
 'use client'
+
 import { useEngine, useSimulation } from '@/publicodes-state'
 import Filter from './categoryFilters/Filter'
 

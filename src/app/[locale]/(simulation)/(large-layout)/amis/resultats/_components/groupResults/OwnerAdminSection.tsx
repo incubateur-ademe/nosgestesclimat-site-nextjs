@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import {
   amisDashboardOpenDeleteGroup,
   amisDashboardValidateDeleteGroup,
@@ -59,25 +59,25 @@ export default function OwnerAdminSection({ group }: Props) {
   return (
     <section className="my-6" aria-live="polite">
       <h2 className="md:text-lg">
-        <Trans locale={locale}>Supprimer</Trans> <Emoji>{group?.emoji}</Emoji>{' '}
+        <TransClient>Supprimer</TransClient> <Emoji>{group?.emoji}</Emoji>{' '}
         {group?.name}
       </h2>
 
       <p className="text-sm md:text-base">
-        <Trans locale={locale}>
+        <TransClient>
           Vous pouvez supprimer le groupe en cliquant sur le bouton ci-dessous.
           Il sera supprimé définitivement pour tous ses autres membres puisque
           vous en êtes l'administrateur.
-        </Trans>
+        </TransClient>
       </p>
 
       {isConfirming && !isSuccess && (
         <Card className="border-none bg-gray-100">
           <p className="text-sm md:text-base">
-            <Trans locale={locale}>
+            <TransClient>
               Cette opération est définitive et supprimera le groupe pour tous
               ses membres.
-            </Trans>
+            </TransClient>
           </p>
           <div className="flex gap-4">
             <Button
@@ -86,7 +86,7 @@ export default function OwnerAdminSection({ group }: Props) {
               }}
               size="sm"
               color="secondary">
-              <Trans locale={locale}>Annuler</Trans>
+              <TransClient>Annuler</TransClient>
             </Button>
 
             <Button
@@ -94,7 +94,7 @@ export default function OwnerAdminSection({ group }: Props) {
               size="sm"
               color="primary"
               data-cypress-id="button-confirm-delete-group">
-              <Trans locale={locale}>Supprimer</Trans>
+              <TransClient>Supprimer</TransClient>
             </Button>
           </div>
         </Card>
@@ -108,17 +108,17 @@ export default function OwnerAdminSection({ group }: Props) {
             setIsConfirming(true)
           }}
           data-cypress-id="button-delete-group">
-          <Trans locale={locale}>Supprimer le groupe</Trans>
+          <TransClient>Supprimer le groupe</TransClient>
         </Button>
       )}
 
       {isSuccess && (
         <Card className="border-none bg-gray-100">
           <p className="mb-0 text-sm md:text-base">
-            <Trans locale={locale}>
+            <TransClient>
               Votre groupe a été supprimé. Vous allez être redirigé vers la page
               d'accueil du mode groupe.
-            </Trans>
+            </TransClient>
           </p>
         </Card>
       )}

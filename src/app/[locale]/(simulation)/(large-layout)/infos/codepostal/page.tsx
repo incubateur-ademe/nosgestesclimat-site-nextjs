@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { POSTAL_CODE_PAGE } from '@/constants/infosPages'
 import PostalCodeInput from '@/design-system/inputs/PostalCodeInput'
 import Title from '@/design-system/layout/Title'
@@ -34,10 +34,10 @@ export default function PostalCode() {
       <Title
         data-cypress-id="postal-code-title"
         className="text-lg md:text-2xl"
-        title={<Trans locale={locale}>Votre code postal</Trans>}
+        title={<TransClient>Votre code postal</TransClient>}
         subtitle={
           <span className="text-secondary-700 font-bold italic">
-            <Trans locale={locale}>Facultatif</Trans>
+            <TransClient>Facultatif</TransClient>
           </span>
         }
       />

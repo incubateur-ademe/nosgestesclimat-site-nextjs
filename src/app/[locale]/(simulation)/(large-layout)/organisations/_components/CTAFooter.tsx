@@ -1,27 +1,27 @@
-'use client'
-
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import {
   organisationsAccueilClickCommencerBottom,
   organisationsAccueilClickDemoBottom,
 } from '@/constants/tracking/pages/organisationsAccueil'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 
-export default function CTAFooter() {
-  const { t } = useClientTranslation()
+export default async function CTAFooter({ locale }: { locale: string }) {
+  const { t } = await getServerTranslation(locale)
 
   return (
     <section className="pt-16 pb-24">
       <div className="mx-auto max-w-5xl">
         <div className="max-w-full md:w-[34rem]">
           <h2>
-            <Trans locale={locale}>Créez votre compte organisation</Trans>
+            <TransServer locale={locale}>
+              Créez votre compte organisation
+            </TransServer>
           </h2>
 
           <p className="mb-8">
             <strong className="text-primary-700">
-              <Trans locale={locale}>2 petites minutes</Trans>
+              <TransServer locale={locale}>2 petites minutes</TransServer>
             </strong>{' '}
             {t(
               'pour créer un compte, et vous pourrez retrouver tous nos services gratuitement\u202f!'
@@ -32,7 +32,7 @@ export default function CTAFooter() {
             <ButtonLink
               trackingEvent={organisationsAccueilClickCommencerBottom}
               href="/organisations/connexion">
-              <Trans locale={locale}>Créer un compte</Trans>
+              <TransServer locale={locale}>Créer un compte</TransServer>
             </ButtonLink>
 
             <ButtonLink
@@ -40,7 +40,7 @@ export default function CTAFooter() {
               className="font-normal underline"
               href="/contact?motif=demo"
               trackingEvent={organisationsAccueilClickDemoBottom}>
-              <Trans locale={locale}>Demander une démo</Trans>
+              <TransServer locale={locale}>Demander une démo</TransServer>
             </ButtonLink>
           </div>
         </div>

@@ -1,26 +1,24 @@
-'use client'
-
 import Baseline from '@/components/organisations/Baseline'
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import {
   organisationsAccueilClickCommencer,
   organisationsAccueilClickDemo,
 } from '@/constants/tracking/pages/organisationsAccueil'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import Image from 'next/image'
 
-export default function HeroSection() {
-  const { t } = useClientTranslation()
+export default async function HeroSection({ locale }: { locale: string }) {
+  const { t } = await getServerTranslation(locale)
 
   return (
     <div className="flex flex-wrap justify-center gap-12 pt-14 lg:flex-nowrap lg:justify-start lg:gap-16">
       <div className="max-w-full md:w-[34rem]">
         <h1>
-          <Trans i18nKey="organisations.accueil.titre">
+          <TransServer locale={locale} i18nKey="organisations.accueil.titre">
             Nos Gestes Climat pour les organisations
-          </Trans>
+          </TransServer>
         </h1>
 
         <div className="mb-12 text-sm md:text-lg">
@@ -30,7 +28,7 @@ export default function HeroSection() {
           <ButtonLink
             href="/organisations/connexion"
             trackingEvent={organisationsAccueilClickCommencer}>
-            <Trans locale={locale}>Commencer</Trans>
+            <TransServer locale={locale}>Commencer</TransServer>
           </ButtonLink>
 
           <ButtonLink
@@ -39,7 +37,7 @@ export default function HeroSection() {
             onClick={() => {
               trackEvent(organisationsAccueilClickDemo)
             }}>
-            <Trans locale={locale}>Demander une démo</Trans>
+            <TransServer locale={locale}>Demander une démo</TransServer>
           </ButtonLink>
         </div>
       </div>

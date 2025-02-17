@@ -1,14 +1,14 @@
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import { organisationsAccueilClickAmbassadeurs } from '@/constants/tracking/pages/organisationsAccueil'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Image from 'next/image'
 
-export default function PartnersSection() {
+export default function PartnersSection({ locale }: { locale: string }) {
   return (
     <>
       <section className="mt-28 mb-8 flex w-full flex-col items-center gap-16 rounded-xl bg-gray-100 px-8 py-16">
         <h3 className="text-center">
-          <Trans locale={locale}>Rejoignez nos partenaires</Trans>
+          <TransServer locale={locale}>Rejoignez nos partenaires</TransServer>
         </h3>
 
         <div className="mx-auto flex flex-wrap items-center justify-center gap-12">
@@ -44,7 +44,7 @@ export default function PartnersSection() {
           color="secondary"
           href="/ambassadeurs"
           trackingEvent={organisationsAccueilClickAmbassadeurs}>
-          <Trans locale={locale}>Ils ont testé</Trans>
+          <TransServer locale={locale}>Ils ont testé</TransServer>
         </ButtonLink>
       </section>
     </>

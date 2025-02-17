@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
@@ -119,9 +119,9 @@ export default function InvitationForm({ group }: { group: Group }) {
 
       <Button type="submit" data-cypress-id="button-join-group">
         {hasCompletedTest ? (
-          <Trans locale={locale}>Rejoindre</Trans>
+          <TransClient>Rejoindre</TransClient>
         ) : (
-          <Trans locale={locale}>Rejoindre et passer mon test</Trans>
+          <TransClient>Rejoindre et passer mon test</TransClient>
         )}
       </Button>
     </form>

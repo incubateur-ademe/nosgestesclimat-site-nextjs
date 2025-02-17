@@ -2,7 +2,7 @@
 
 import Link from '@/components/Link'
 import ChevronRight from '@/components/icons/ChevronRight'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { classementClickGroup } from '@/constants/tracking/pages/classements'
 import Emoji from '@/design-system/utils/Emoji'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
@@ -43,7 +43,7 @@ export default function GroupItem({ group }: Props) {
             <div className="flex gap-1 text-sm text-violet-900">
               <span className="whitespace-nowrap">
                 {group.participants.length ?? 0}{' '}
-                <Trans locale={locale}>participant</Trans>
+                <TransClient>participant</TransClient>
                 {group.participants.length > 1 ? 's' : ''}
               </span>{' '}
               <span> - </span>{' '}

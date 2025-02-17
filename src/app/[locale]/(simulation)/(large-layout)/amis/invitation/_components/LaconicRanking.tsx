@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import TransClient from '@/components/translation/trans/TransClient'
 import { defaultMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import type { Group } from '@/types/groups'
@@ -13,11 +15,11 @@ export default function LaconicRanking({ group }: Props) {
     return (
       <section className="bg-primary-50 mt-6 rounded-xl p-4">
         <p className="mb-0">
-          <Trans locale={locale}>Qui de </Trans>{' '}
+          <TransClient>Qui de </TransClient>{' '}
           <strong className="text-primary-700">
             {group.participants[0].name}
           </strong>{' '}
-          <Trans locale={locale}>et vous aura la plus faible empreinte ?</Trans>{' '}
+          <TransClient>et vous aura la plus faible empreinte ?</TransClient>{' '}
           <Emoji>🤓</Emoji>
         </p>
       </section>
@@ -43,7 +45,7 @@ export default function LaconicRanking({ group }: Props) {
   return (
     <section className="bg-primary-50 mt-6 rounded-xl p-6">
       <h3 className="font-bold">
-        <Trans locale={locale}>Le classement</Trans>
+        <TransClient>Le classement</TransClient>
       </h3>
 
       <ul>

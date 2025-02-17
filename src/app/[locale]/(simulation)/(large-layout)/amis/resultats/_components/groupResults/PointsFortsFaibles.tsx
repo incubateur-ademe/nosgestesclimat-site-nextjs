@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import type { PointsFortsFaiblesType } from '@/types/groups'
 import PointsListItem from './pointsFortsFaibles/PointsListItem'
 
@@ -18,10 +18,10 @@ export default function PointsFortsFaibles({
           <h2
             className="mt-0 text-lg"
             data-cypress-id="points-fort-faibles-title">
-            <Trans locale={locale}>Vos points forts</Trans>
+            <TransClient>Vos points forts</TransClient>
           </h2>
           <p className="mb-4 text-gray-500">
-            <Trans locale={locale}>Par rapport à la moyenne du groupe.</Trans>
+            <TransClient>Par rapport à la moyenne du groupe.</TransClient>
           </p>
           <ul className="pl-0">
             {pointsForts?.map((point, index) => {
@@ -43,7 +43,7 @@ export default function PointsFortsFaibles({
       {!!pointsFaibles && pointsFaibles.length > 0 && (
         <>
           <h2 className="mt-6 text-lg">
-            <Trans locale={locale}>Vos points faibles</Trans>
+            <TransClient>Vos points faibles</TransClient>
           </h2>
           <ul className="pl-0">
             {pointsFaibles?.map((point, index) => {

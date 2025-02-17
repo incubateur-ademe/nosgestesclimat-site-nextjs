@@ -1,6 +1,6 @@
 import Link from '@/components/Link'
 import MailIcon from '@/components/icons/MailIcon'
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -40,7 +40,7 @@ export default async function Contact({
           <Title
             title={
               <span className="flex items-center">
-                <Trans locale={locale}>Contact</Trans>
+                <TransServer locale={locale}>Contact</TransServer>
 
                 <MailIcon className="fill-primary-500 ml-3" />
               </span>
@@ -48,18 +48,18 @@ export default async function Contact({
           />
 
           <p>
-            <Trans locale={locale}>
+            <TransServer locale={locale}>
               N'hésitez pas à consulter notre{' '}
               <Link href="/questions-frequentes">FAQ</Link> avant de nous
               écrire, vous y trouverez sans doute la réponse à votre question !
-            </Trans>
+            </TransServer>
           </p>
 
           <p>
-            <Trans locale={locale}>
+            <TransServer locale={locale}>
               Pour toute autre remarque ou question, vous pouvez nous envoyer un
               message via le formulaire de contact ci-dessous.
-            </Trans>
+            </TransServer>
           </p>
         </div>
 

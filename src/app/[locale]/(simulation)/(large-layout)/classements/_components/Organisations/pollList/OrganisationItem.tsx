@@ -2,7 +2,7 @@
 
 import Link from '@/components/Link'
 import ChevronRight from '@/components/icons/ChevronRight'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { classementClickOrganisation } from '@/constants/tracking/pages/classements'
 import Badge from '@/design-system/layout/Badge'
 import type { Organisation } from '@/types/organisations'
@@ -28,7 +28,7 @@ export default function OrganisationItem({
 
           <div className="flex gap-1 text-sm text-violet-900">
             <Badge className="border-secondary-300 text-secondary-700 ml-2 inline text-xs font-bold">
-              <Trans locale={locale}>Administrateur·ice</Trans>
+              <TransClient>Administrateur·ice</TransClient>
             </Badge>
           </div>
         </div>

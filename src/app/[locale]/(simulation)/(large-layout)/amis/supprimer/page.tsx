@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import Title from '@/design-system/layout/Title'
 import { linkToClassement } from '@/helpers/navigation/classementPages'
@@ -65,38 +65,38 @@ export default function SupprimerGroupePage({
     <div className="p-4 md:p-8">
       <Title title={t('Supprimer mes données')} />
 
-      {isSuccess && <Trans locale={locale}>Données supprimées.</Trans>}
+      {isSuccess && <TransClient>Données supprimées.</TransClient>}
 
       {!isSuccess && (
         <p className="my-4">
           {isOwner ? (
-            <Trans locale={locale}>
+            <TransClient>
               Supprimer votre groupe <strong>{group?.name}</strong> ? Les
               données sauvegardées seront supprimées pour tous les membres du
               groupe. Cette action est irréversible.
-            </Trans>
+            </TransClient>
           ) : (
-            <Trans locale={locale}>
+            <TransClient>
               Supprimer vos données de groupe enregistrées ? Seules vos données
               de membre seront supprimées. Cette action est irréversible.
-            </Trans>
+            </TransClient>
           )}
         </p>
       )}
 
       {isError && (
         <p className="mt-4 text-red-600">
-          <Trans locale={locale}>
+          <TransClient>
             Oups, une erreur s'est produite au moment de récupérer les données
             du groupe.
-          </Trans>
+          </TransClient>
         </p>
       )}
 
       <Button
         disabled={!!isError || !group || isSuccess}
         onClick={handleDelete}>
-        <Trans locale={locale}>Supprimer mes données</Trans>
+        <TransClient>Supprimer mes données</TransClient>
       </Button>
     </div>
   )

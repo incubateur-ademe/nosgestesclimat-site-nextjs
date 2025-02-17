@@ -2,7 +2,7 @@
 
 import Link from '@/components/Link'
 import BookClosedIcon from '@/components/icons/BookClosedIcon'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { actionsClickAdeme } from '@/constants/tracking/pages/actions'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -17,7 +17,7 @@ export default function AllerPlusLoin() {
         <h2 className="flex items-center text-white">
           <BookClosedIcon aria-hidden className="mr-3 fill-white" />
 
-          <Trans locale={locale}>Aller plus loin</Trans>
+          <TransClient>Aller plus loin</TransClient>
         </h2>
       </div>
 
@@ -31,7 +31,7 @@ export default function AllerPlusLoin() {
               aria-label={t(
                 "Découvrez les conseils de l'ADEME, ouvrir dans un nouvel onglet"
               )}>
-              <Trans locale={locale}>Découvrez les conseils de l'ADEME</Trans>
+              <TransClient>Découvrez les conseils de l'ADEME</TransClient>
             </Link>
           </li>
         </ul>

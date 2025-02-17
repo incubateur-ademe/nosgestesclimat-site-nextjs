@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { useFetchPolls } from '@/hooks/organisations/polls/useFetchPolls'
 import type { Organisation } from '@/types/organisations'
 import OrganisationItem from './pollList/OrganisationItem'
@@ -20,7 +20,7 @@ export default function PollsList({ organisations }: Props) {
       {!!organisation && (
         <>
           <h3 className="mb-0 text-base">
-            <Trans locale={locale}>Mon organisation</Trans>
+            <TransClient>Mon organisation</TransClient>
           </h3>
           <OrganisationItem organisation={organisation} />
         </>
@@ -29,7 +29,7 @@ export default function PollsList({ organisations }: Props) {
       {!!organisation && !!polls?.length && (
         <>
           <h3 className="mb-0 text-base">
-            <Trans locale={locale}>Mes campagnes</Trans>
+            <TransClient>Mes campagnes</TransClient>
           </h3>
 
           {polls?.map((poll) => (

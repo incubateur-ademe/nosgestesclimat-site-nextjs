@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useEngine } from '@/publicodes-state'
@@ -89,7 +89,7 @@ export default function Actions({
     <>
       {maxImpactAction.value < 100 && (
         <Card className="my-8">
-          <Trans i18nKey={'publicodes.AllActions.msgPlusActions'}>
+          <TransClient i18nKey={'publicodes.AllActions.msgPlusActions'}>
             <p>
               Nous n'avons plus d'actions chiffrées très impactantes à vous
               proposer 🤷
@@ -97,7 +97,7 @@ export default function Actions({
             <p className="mb-0">
               Découvrez plus bas quelques pistes pour agir autrement ⏬
             </p>
-          </Trans>
+          </TransClient>
         </Card>
       )}
 
@@ -112,7 +112,7 @@ export default function Actions({
             width={36}
             alt=""
           />
-          <Trans locale={locale}>Actions d'engagement</Trans> &#9660;
+          <TransClient>Actions d'engagement</TransClient> &#9660;
         </p>
       </div>
 
@@ -135,7 +135,7 @@ export default function Actions({
             width={36}
             alt=""
           />
-          <Trans locale={locale}>Actions négatives</Trans> &#9660;
+          <TransClient>Actions négatives</TransClient> &#9660;
         </p>
       </div>
 
@@ -150,7 +150,7 @@ export default function Actions({
       {rejected.length > 0 && (
         <div>
           <h2>
-            <Trans locale={locale}>Actions écartées :</Trans>
+            <TransClient>Actions écartées :</TransClient>
           </h2>
           <ActionList
             actions={rejected}

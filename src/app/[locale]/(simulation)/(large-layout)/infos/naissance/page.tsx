@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { BIRTHDATE_PAGE } from '@/constants/infosPages'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Title from '@/design-system/layout/Title'
@@ -34,10 +34,10 @@ export default function Birthdate() {
       <Title
         data-cypress-id="birthdate-title"
         className="text-lg md:text-2xl"
-        title={<Trans locale={locale}>Votre date de naissance</Trans>}
+        title={<TransClient>Votre date de naissance</TransClient>}
         subtitle={
           <span className="text-secondary-700 font-bold italic">
-            <Trans locale={locale}>Facultatif</Trans>
+            <TransClient>Facultatif</TransClient>
           </span>
         }
       />

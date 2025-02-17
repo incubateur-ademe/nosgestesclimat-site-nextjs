@@ -1,6 +1,6 @@
 import NorthStarBanner from '@/components/northstar/NorthstarBanner'
 import TopBar from '@/components/simulation/TopBar'
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import { noIndexObject } from '@/constants/metadata'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -29,10 +29,17 @@ export async function generateMetadata({
   })
 }
 
-export default function ActionsLayout({ children }: PropsWithChildren) {
+export default async function ActionsLayout({
+  children,
+  params,
+}: PropsWithChildren<{ params: Promise<{ locale: string }> }>) {
+  const { locale } = await params
+
   return (
     <FormProvider>
-      <Title title={<Trans locale={locale}>Mes&#160;gestes</Trans>} />
+      <Title
+        title={<TransServer locale={locale}>Mes&#160;gestes</TransServer>}
+      />
 
       <TopBar simulationMode={false} showTotal />
 

@@ -1,7 +1,7 @@
 'use client'
 
 import TrashIcon from '@/components/icons/TrashIcon'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/metric'
 import Badge from '@/design-system/layout/Badge'
 import ConfirmationModal from '@/design-system/modals/ConfirmationModal'
@@ -81,7 +81,7 @@ export default function RankingMember({
   const quantity =
     participant.simulation.progression !== 1 ? (
       <span className="text-sm text-gray-600">
-        <Trans locale={locale}>En cours</Trans>
+        <TransClient>En cours</TransClient>
       </span>
     ) : participant.simulation.computedResults?.[metric]?.bilan ? (
       <span className="m-none leading-[160%]">
@@ -137,7 +137,7 @@ export default function RankingMember({
 
           {isCurrentMember && (
             <Badge className="text-secondary-700 ml-2 inline rounded-xl border-pink-100 bg-pink-200 text-xs font-bold">
-              <Trans locale={locale}>Vous</Trans>
+              <TransClient>Vous</TransClient>
             </Badge>
           )}
         </div>
@@ -179,9 +179,9 @@ export default function RankingMember({
                 onConfirm={handleDelete}
                 closeModal={() => setIsConfirmationModalOpen(false)}>
                 <p className="text-sm md:text-base">
-                  <Trans locale={locale}>
+                  <TransClient>
                     Supprimer ce participant ? Cette opération est définitive.
-                  </Trans>
+                  </TransClient>
                 </p>
               </ConfirmationModal>
             )}

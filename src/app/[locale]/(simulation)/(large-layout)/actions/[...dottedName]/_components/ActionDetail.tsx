@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { actionsClickYes } from '@/constants/tracking/pages/actions'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
@@ -92,7 +92,7 @@ export default function ActionDetail({
                 className="mr-3 text-xl">
                 📚
               </span>
-              <Trans locale={locale}>Comprendre le calcul</Trans>
+              <TransClient>Comprendre le calcul</TransClient>
             </ButtonLink>
           </div>
         </div>
@@ -101,7 +101,7 @@ export default function ActionDetail({
       {nbRemainingQuestions > 0 && (
         <>
           <h3 className="mt-4">
-            <Trans locale={locale}>Personnalisez cette estimation</Trans>
+            <TransClient>Personnalisez cette estimation</TransClient>
           </h3>
 
           <FormProvider root={dottedName}>
@@ -123,7 +123,7 @@ export default function ActionDetail({
       {relatedActions && (
         <div className="mt-8">
           <h3>
-            <Trans locale={locale}>Sur le même sujet</Trans>
+            <TransClient>Sur le même sujet</TransClient>
           </h3>
           <div className="flex flex-wrap gap-2">
             {relatedActions.map((action, index) => (

@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { amisCreationEtapeVotreGroupeSuivant } from '@/constants/tracking/pages/amisCreation'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
@@ -89,7 +89,7 @@ export default function GroupCreationForm() {
 
       <Button type="submit" data-cypress-id="button-continue-create-group">
         {' '}
-        <Trans locale={locale}>Continuer</Trans>
+        <TransClient>Continuer</TransClient>
       </Button>
     </form>
   )

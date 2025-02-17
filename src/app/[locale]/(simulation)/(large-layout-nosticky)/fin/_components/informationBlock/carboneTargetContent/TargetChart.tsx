@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import TransClient from '@/components/translation/trans/TransClient'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
@@ -46,7 +48,7 @@ export default function TargetChart({ isQuestionOpen }: Props) {
         className="absolute right-1 bottom-10">
         <div className="text-secondary-700 text-xs">2050</div>
         <div className="text-xl font-black">
-          <Trans locale={locale}>2 tonnes</Trans>
+          <TransClient>2 tonnes</TransClient>
         </div>
         <div className="bg-secondary-700 absolute top-full right-full h-3 w-3 -translate-x-1 -translate-y-2/3 rounded-full" />
       </motion.div>
