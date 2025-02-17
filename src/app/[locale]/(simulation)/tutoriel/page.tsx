@@ -1,8 +1,8 @@
-import Trans from '@/components/translation/Trans'
 import Title from '@/design-system/layout/Title'
 import ButtonStart from './_components/ButtonStart'
 
 import ContentLarge from '@/components/layout/ContentLarge'
+import TransServer from '@/components/translation/trans/TransServer'
 import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -11,7 +11,6 @@ import AutresQuestions from './_components/AutresQuestions'
 import AvantDeCommencer from './_components/AvantDeCommencer'
 import ButtonBack from './_components/ButtonBack'
 import OrganisationMessage from './_components/OrganisationMessage'
-
 export async function generateMetadata({
   params,
 }: {
@@ -28,14 +27,17 @@ export async function generateMetadata({
     description: t(
       'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.'
     ),
-    alternates: {
-      canonical: '/tutoriel',
-    },
+    alternates: { canonical: '/tutoriel' },
     robots: noIndexObject,
   })
 }
 
-export default async function Tutoriel() {
+export default async function Tutoriel({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
   return (
     <ContentLarge className="mt-10 px-4 lg:px-0">
       <div className="mx-auto flex h-screen max-w-3xl flex-col overflow-auto">
@@ -44,12 +46,12 @@ export default async function Tutoriel() {
           className="text-lg md:text-2xl"
           title={
             <>
-              <span className="text-secondary-700 inline">
-                <Trans locale={locale}>10 minutes</Trans>
+              <span className="inline text-secondary-700">
+                <TransServer locale={locale}>10 minutes</TransServer>
               </span>{' '}
-              <Trans locale={locale}>
+              <TransServer locale={locale}>
                 chrono pour calculer votre empreinte carbone et eau
-              </Trans>
+              </TransServer>
             </>
           }
         />
@@ -61,7 +63,7 @@ export default async function Tutoriel() {
         {/* Check if body has the "iframe-mode" class name and if so add the static class to the footer */}
         <div
           className={twMerge(
-            'tutorial-footer border-primary-200 fixed right-0 bottom-0 left-0 z-50 border-t-2 bg-gray-100 py-3'
+            'tutorial-footer fixed bottom-0 left-0 right-0 z-50 border-t-2 border-primary-200 bg-gray-100 py-3'
           )}>
           <div
             className={twMerge(

@@ -1,4 +1,4 @@
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
 
 export default function ConfirmationMessage() {
@@ -8,12 +8,12 @@ export default function ConfirmationMessage() {
       hasSeparator={false}
       className="flex items-center gap-1"
       subtitle={
-        <Trans locale={locale}>
+        <TransClient>
           Vous pouvez le reprendre plus tard en cliquant sur le lien que vous
           avez reçu par email.
-        </Trans>
+        </TransClient>
       }>
-      <Trans locale={locale}>Votre test est sauvegardé !</Trans>
+      <TransClient>Votre test est sauvegardé !</TransClient>
       <svg
         className="inline-block h-8 w-8"
         viewBox="0 0 100 100"

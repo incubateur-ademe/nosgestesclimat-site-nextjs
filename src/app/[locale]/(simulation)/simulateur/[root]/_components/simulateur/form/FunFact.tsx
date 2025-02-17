@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Emoji from '@/design-system/utils/Emoji'
 import {
   getBgCategoryColor,
@@ -9,9 +9,7 @@ import {
 import { useForm } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
-type Props = {
-  question: DottedName
-}
+type Props = { question: DottedName }
 
 export default function FunFact({ question }: Props) {
   const { currentCategory } = useForm()
@@ -25,14 +23,14 @@ export default function FunFact({ question }: Props) {
         <Emoji>💡</Emoji> Le saviez vous ?
       </h3>
       <p className="mb-0">
-        <Trans locale={locale}>
+        <TransClient>
           <strong>
             La taille des logements français a très fortement augmenté
           </strong>{' '}
           sur ces 50 dernirèes années, passant de 23 à 40,4 m² par habitant,
           soit{' '}
           <strong>90,9 m² en moyenne pour un foyer de 2,2 personnes.</strong>
-        </Trans>
+        </TransClient>
       </p>
     </div>
   )

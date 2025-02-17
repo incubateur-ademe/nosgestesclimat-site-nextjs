@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { tutorielClickSuivant } from '@/constants/tracking/pages/tutoriel'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
@@ -30,7 +30,7 @@ export default function ButtonStart() {
         const timeSpentOnPage = endTime - startTime
         trackEvent(tutorielClickSuivant(timeSpentOnPage))
       }}>
-      <Trans locale={locale}>C'est parti ! →</Trans>
+      <TransClient>C'est parti ! →</TransClient>
     </ButtonLink>
   )
 }

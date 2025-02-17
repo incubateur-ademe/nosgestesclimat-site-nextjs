@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import Modal from '@/design-system/modals/Modal'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
@@ -19,9 +19,7 @@ type Props = {
   closeModal: () => void
   mode: 'save' | 'backHome'
 }
-type Inputs = {
-  email?: string
-}
+type Inputs = { email?: string }
 
 export default function SaveModal({ isOpen, closeModal, mode }: Props) {
   const [isAlreadySavedSimulationUpdated, setIsAlreadySavedSimulationUpdated] =
@@ -34,9 +32,7 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
   const router = useRouter()
 
   const { register, handleSubmit } = useReactHookForm<Inputs>({
-    defaultValues: {
-      email: user.email,
-    },
+    defaultValues: { email: user.email },
   })
 
   const { saveSimulation, isPending, isSuccess, isError } = useSaveSimulation()
@@ -57,10 +53,7 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
 
     // We save the simulation (and signify the backend to send the email)
     saveSimulation({
-      simulation: {
-        ...currentSimulation,
-        savedViaEmail: true,
-      },
+      simulation: { ...currentSimulation, savedViaEmail: true },
       sendEmail: true,
     })
   }
@@ -81,9 +74,7 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
       !isSuccess &&
       !isError
     ) {
-      saveSimulation({
-        simulation: currentSimulation,
-      })
+      saveSimulation({ simulation: currentSimulation })
       setIsAlreadySavedSimulationUpdated(true)
     }
   }, [
@@ -108,11 +99,11 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
         <>
           {!currentSimulation.savedViaEmail && mode === 'save' ? (
             <Button color="secondary" onClick={closeModal}>
-              <Trans locale={locale}>Non, merci</Trans>
+              <TransClient>Non, merci</TransClient>
             </Button>
           ) : (
             <Button color="secondary" onClick={() => router.push('/')}>
-              <Trans locale={locale}>Revenir à l'accueil</Trans>
+              <TransClient>Revenir à l'accueil</TransClient>
             </Button>
           )}
           {currentSimulation.savedViaEmail ? (
@@ -124,10 +115,10 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
               disabled={isPending}
               className="inline"
               data-cypress-id="save-modal-submit-button">
-              <Trans locale={locale}>
+              <TransClient>
                 Sauvegarder{' '}
                 <span className="hidden lg:inline">ma progression</span>
-              </Trans>
+              </TransClient>
             </Button>
           )}
         </>
@@ -141,9 +132,9 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
           isError={isError}
           title={
             mode === 'backHome' ? (
-              <Trans locale={locale}>Revenir à l'accueil</Trans>
+              <TransClient>Revenir à l'accueil</TransClient>
             ) : (
-              <Trans locale={locale}>Reprendre plus tard</Trans>
+              <TransClient>Reprendre plus tard</TransClient>
             )
           }
         />

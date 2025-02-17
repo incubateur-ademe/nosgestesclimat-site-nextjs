@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 
@@ -12,12 +12,12 @@ export default function OrganisationMessage() {
   return (
     <div className="flex flex-col items-end gap-2">
       <p className="mb-0 text-sm text-gray-500">
-        <Trans locale={locale}>Vous avez déja participé à ce sondage.</Trans>
+        <TransClient>Vous avez déja participé à ce sondage.</TransClient>
       </p>
 
       <ButtonLink
         href={`/organisations/${poll.organisation.slug}/campagnes/${poll.slug}`}>
-        <Trans locale={locale}>Voir mes résultats</Trans>
+        <TransClient>Voir mes résultats</TransClient>
       </ButtonLink>
     </div>
   )
