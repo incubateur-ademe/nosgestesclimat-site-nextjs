@@ -3,7 +3,7 @@ import type { LocalStorage } from '@/publicodes-state/types'
 
 export function getLocalState() {
   // Check if the local storage is available
-  if (typeof window === 'undefined' || !window.localStorage) {
+  if (typeof localStorage === 'undefined') {
     return
   }
 
