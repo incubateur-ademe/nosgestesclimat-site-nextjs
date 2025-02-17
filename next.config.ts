@@ -38,7 +38,6 @@ const nextConfig = {
         config.cache = Object.freeze({
           type: 'memory',
         })
-        config.cache.maxGenerations = 0
       }
     }
 
@@ -51,11 +50,6 @@ const nextConfig = {
     // Enable source maps
     if (!dev && !isServer) {
       config.devtool = 'source-map'
-    }
-
-    // We do not want to split the chunks too much
-    if (config?.optimization?.splitChunks) {
-      config.optimization.splitChunks.minSize = 300000
     }
 
     return config
