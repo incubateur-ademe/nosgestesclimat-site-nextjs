@@ -50,7 +50,6 @@ export function useTrackIframe(isIframe: boolean) {
       setHasInteracted(true)
     }
 
-    node.addEventListener('mouseenter', handleInteraction)
     node.addEventListener('click', handleInteraction)
     node.addEventListener('touchstart', handleInteraction)
 
