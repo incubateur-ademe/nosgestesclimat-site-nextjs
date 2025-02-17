@@ -1,12 +1,10 @@
 'use client'
 
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import Loader from '@/design-system/layout/Loader'
-import { getCTAButtonLabel } from '@/helpers/ctaButton/getCTAButtonLabel'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
-import { getProgression } from '@/services/localstorage/ngc.service'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RestartIcon from '../icons/RestartIcon'
 import Trans from '../translation/Trans'
@@ -25,19 +23,15 @@ export default function DynamicCTAButtons({
   }
   withRestart?: boolean
 }) {
-  const { getLinkToSimulateurPage, goToSimulateurPage } = useSimulateurPage()
+  const {
+    getLinkToSimulateurPage,
+    goToSimulateurPage,
+    linkToSimulateurPageLabel,
+  } = useSimulateurPage()
 
-  // Use the progression from the local storage as component isn't always in the right context
-  const progression = getProgression()
+  const { progression } = useCurrentSimulation()
 
   const [isHover, setIsHover] = useState(false)
-
-  // Hack to force Client side rendering
-  const [label, setLabel] = useState('')
-
-  useEffect(() => {
-    setLabel(getCTAButtonLabel({ progression }))
-  }, [progression])
 
   return (
     <div className="flex flex-col flex-wrap items-center justify-center gap-2 md:items-start lg:flex-row lg:flex-nowrap">
@@ -71,7 +65,7 @@ export default function DynamicCTAButtons({
               : '',
             'leading-none'
           )}>
-          {!label ? <Loader color="light" /> : <Trans>{label}</Trans>}
+          {linkToSimulateurPageLabel}
         </span>
       </ButtonLink>
 

@@ -2,6 +2,7 @@ import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/Trans'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
+import Loader from '@/design-system/layout/Loader'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import {
@@ -22,9 +23,15 @@ import ModelInfo from './_components/ModelInfo'
 import TheySpeakAboutUs from './_components/TheySpeakAboutUs'
 import TwoFootprints from './_components/TwoFootprints'
 
+const ButtonsPlaceholder = () => (
+  <div className="flex h-[56px] w-full items-center justify-center">
+    <Loader color="dark" />
+  </div>
+)
+
 const DynamicCTAButtons = dynamic(
   () => import('@/components/cta/DynamicCTAButtons'),
-  { ssr: false }
+  { ssr: false, loading: () => <ButtonsPlaceholder /> }
 )
 
 export async function generateMetadata() {
