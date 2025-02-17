@@ -2735,6 +2735,11 @@
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.3.0.tgz#d06bbb384ebcf6c505fde1c3d0ed4ddffe0aaff8"
   integrity sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==
 
+"@vercel/functions@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@vercel/functions/-/functions-2.0.0.tgz#be72057235a667b8c5b2713880fba717cd5a372b"
+  integrity sha512-BSwIihLHoV18gerKZJyGuqd3rtaYM6rJvET1kOwKktshucyaHXTJel7Cxegs+sdX0NZqsX4LO2MFnMU2jG01Cw==
+
 "@webassemblyjs/ast@1.14.1", "@webassemblyjs/ast@^1.14.1":
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.14.1.tgz#a9f6a07f2b03c95c8d38c4536a1fdfb521ff55b6"
@@ -8697,6 +8702,14 @@ publicodes@1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.4.0.tgz#6f126326d0895ec9679ea31fa2c12a27b206f633"
   integrity sha512-42LTuqGB8g8DP3ZUbT4vKu+D6fR7iJ+Ibcsw0SALFw25UKPpRBi8ibYvcoDt4FWf9CAFUKaSdLe6EYN1GS2W3w==
+
+publicodes@^1.7.0:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.7.2.tgz#8763a500ba3dc420a488a816a35c98b03dd6f43b"
+  integrity sha512-R9iqut98I1o4KMgmI8oRxfF1UqpPa4kce7ZPSJDvOTj6QMmCPAuIoF7bDTwJ8IkhSBQnFV59GNMggsS/czyQtw==
+  dependencies:
+    moo "^0.5.2"
+    nearley "^2.20.1"
 
 pump@^3.0.0:
   version "3.0.2"

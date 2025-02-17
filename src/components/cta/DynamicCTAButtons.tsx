@@ -39,7 +39,6 @@ export default function DynamicCTAButtons({
         size="xl"
         className={twMerge(
           'transition-all duration-300 hover:bg-primary-900',
-          isClient ? 'opacity-100' : 'opacity-0',
           className
         )}
         href={getLinkToSimulateurPage()}

@@ -1,7 +1,7 @@
 import { defaultLocale, locales } from '@/i18nConfig'
-import { currentLocale } from 'next-i18n-router'
 
 type Props = {
+  locale: string
   title: string
   description: string
   params?: Record<string, string>
@@ -62,10 +62,9 @@ export function getMetadataObject({
   searchParams,
   image,
   alternates,
+  locale,
   ...props
 }: Props) {
-  const locale = currentLocale()
-
   const url = buildURL({
     params,
     searchParams,
