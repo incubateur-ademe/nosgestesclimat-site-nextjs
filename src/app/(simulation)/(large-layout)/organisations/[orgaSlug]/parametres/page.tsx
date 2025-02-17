@@ -3,6 +3,7 @@
 import OrganisationFetchError from '@/components/organisations/OrganisationFetchError'
 import OrganisationLoader from '@/components/organisations/OrganisationLoader'
 import Trans from '@/components/translation/Trans'
+import { ADMINISTRATOR_SEPARATOR } from '@/constants/organisations/administrator'
 import { OrganisationTypeEnum } from '@/constants/organisations/organisationTypes'
 import { organisationsParametersUpdateInformations } from '@/constants/tracking/pages/organisationsParameters'
 import Form from '@/design-system/form/Form'
@@ -50,6 +51,9 @@ const getFormDefaultValues = (
     name,
   } = organisation
 
+  const [administratorFirstName, administratorLastName] =
+    administratorName?.split(ADMINISTRATOR_SEPARATOR) ?? []
+
   return {
     name,
     email,
@@ -57,7 +61,12 @@ const getFormDefaultValues = (
     hasOptedInForCommunications: optedInForCommunications ?? false,
     organisationType: organisationType ?? OrganisationTypeEnum.other,
     ...(position ? { position } : {}),
-    ...(administratorName ? { administratorName } : {}),
+    ...(administratorName
+      ? {
+          administratorFirstName,
+          administratorLastName,
+        }
+      : {}),
     ...(administratorTelephone ? { administratorTelephone } : {}),
   }
 }
@@ -184,7 +193,7 @@ export default function ParametresPage() {
   }
 
   return (
-    <div className="pb-8">
+    <div className="pb-12">
       <Title
         title={
           <span>
@@ -228,7 +237,7 @@ export default function ParametresPage() {
         />
       )}
 
-      <Separator className="my-4" />
+      <Separator className="my-8" />
 
       <DeconnexionButton />
     </div>

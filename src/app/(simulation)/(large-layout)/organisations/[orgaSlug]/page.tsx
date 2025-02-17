@@ -5,6 +5,7 @@ import OrganisationFetchError from '@/components/organisations/OrganisationFetch
 import Trans from '@/components/translation/Trans'
 import { organisationsDashboardClickParameters } from '@/constants/tracking/pages/organisationsDashboard'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import { unformatAdministratorName } from '@/helpers/organisations/unformatAdministratorName'
 import { useFetchPolls } from '@/hooks/organisations/polls/useFetchPolls'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { capitalizeString } from '@/utils/capitalizeString'
@@ -44,7 +45,11 @@ export default function OrganisationPage() {
             <span>
               <Trans>Bienvenue</Trans>{' '}
               <span className="text-primary-700">
-                {capitalizeString(organisation.administrators[0].name || '')}
+                {capitalizeString(
+                  unformatAdministratorName(
+                    organisation.administrators[0].name || ''
+                  )
+                )}
               </span>
               ,
             </span>

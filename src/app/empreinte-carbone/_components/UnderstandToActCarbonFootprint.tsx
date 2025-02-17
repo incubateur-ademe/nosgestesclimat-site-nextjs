@@ -28,7 +28,7 @@ export default async function UnderstandToActCarbonFootprint({
         {
           category: t('Empreinte carbone'),
           title: t('Transports : les modes à fuir, ceux à chérir'),
-          href: '/blog/transports-fuir-transports-cherir',
+          href: '/blog/mobilites/transports-fuir-transports-cherir',
           imageSrc: '/images/blog/seo/empreinte-carbone-transports.jpg',
           imageAlt: t(
             "Deux mini-vans, illustrant l'empreinte carbone des transports"
@@ -37,7 +37,7 @@ export default async function UnderstandToActCarbonFootprint({
         {
           category: t('Empreinte carbone'),
           title: t("L'empreinte carbone : une empreinte parmi d'autres !"),
-          href: '/blog/carbone-empreinte-parmi-autres',
+          href: '/blog/environnement/carbone-empreinte-parmi-autres',
           imageSrc: '/images/blog/seo/agir-reduire-empreinte-carbone.jpg',
           imageAlt: t(
             'Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone'
@@ -46,7 +46,7 @@ export default async function UnderstandToActCarbonFootprint({
         {
           category: t('Empreinte carbone'),
           title: t('Avez-vous déjà entendu parler de maladaptation ?'),
-          href: '/blog/maladaptation',
+          href: '/blog/environnement/maladaptation',
           imageSrc: '/images/blog/seo/changement-climatique-maladaptation.jpg',
           imageAlt: t(
             'Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique'

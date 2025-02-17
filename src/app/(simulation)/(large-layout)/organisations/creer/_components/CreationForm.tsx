@@ -2,6 +2,7 @@
 
 import Trans from '@/components/translation/Trans'
 import { linkToGroupCreation } from '@/constants/group'
+import { ADMINISTRATOR_SEPARATOR } from '@/constants/organisations/administrator'
 import {
   ORGANISATION_TYPES,
   OrganisationTypeEnum,
@@ -11,19 +12,22 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import Separator from '@/design-system/layout/Separator'
 import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
 import { useCreateOrganisation } from '@/hooks/organisations/useCreateOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { captureException } from '@sentry/react'
+import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
 type Inputs = {
   name: string
-  organisationType?: OrganisationTypeEnum
-  administratorName: string
+  organisationType: OrganisationTypeEnum
+  administratorFirstName: string
+  administratorLastName: string
+  administratorPosition: string
   hasOptedInForCommunications: boolean
   shouldNavigateToPollForm?: boolean
 }
@@ -51,17 +55,20 @@ export default function CreationForm() {
   async function onSubmit({
     shouldNavigateToPollForm = true,
     name,
-    administratorName,
+    administratorFirstName,
+    administratorLastName,
+    administratorPosition,
     organisationType,
     hasOptedInForCommunications,
   }: Inputs) {
     try {
       const organisationUpdated = await createOrganisation({
         name,
-        type: organisationType || OrganisationTypeEnum.other,
+        type: organisationType,
         administrators: [
           {
-            name: administratorName,
+            name: `${administratorFirstName}${ADMINISTRATOR_SEPARATOR}${administratorLastName}`,
+            position: administratorPosition,
             optedInForCommunications: hasOptedInForCommunications,
           },
         ],
@@ -109,31 +116,25 @@ export default function CreationForm() {
   }, [router, pathToNavigateTo, user?.organisation?.slug])
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="mb-12">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <TextInputGroup
           className="col-span-1"
           label={<Trans>Votre organisation</Trans>}
           error={formState.errors.name?.message}
           {...register('name', {
-            required: t('Vous devez renseigner le nom de votre organisation'),
+            required: t('Ce champ est requis'),
           })}
         />
 
         <div>
           <Select
-            label={
-              <p className="mb-0 flex justify-between">
-                <Trans>Type d'organisation</Trans>{' '}
-                <span className="font-bold italic text-secondary-700">
-                  {' '}
-                  <Trans>facultatif</Trans>
-                </span>
-              </p>
-            }
-            {...register('organisationType')}>
-            {/* Empty option to reset field */}
-            <option className="cursor-pointer"></option>
+            containerClassName="pt-[3px]"
+            label={<Trans>Type d'organisation</Trans>}
+            error={formState.errors.organisationType?.message}
+            {...register('organisationType', {
+              required: t('Ce champ est requis'),
+            })}>
             {Object.entries(ORGANISATION_TYPES).map(([key, value]) => (
               <option className="cursor-pointer" key={key} value={key}>
                 {value}
@@ -165,14 +166,40 @@ export default function CreationForm() {
             </div>
           )}
         </div>
+      </div>
+
+      <Separator />
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <TextInputGroup
+          className="col-span-1"
+          label={<Trans>Votre prénom</Trans>}
+          error={formState.errors.administratorFirstName?.message}
+          {...register('administratorFirstName', {
+            required: t('Ce champ est requis'),
+          })}
+        />
 
         <TextInputGroup
           className="col-span-1"
           label={<Trans>Votre nom</Trans>}
-          error={formState.errors.administratorName?.message}
-          {...register('administratorName', {
-            required: t('Vous devez renseigner votre nom'),
+          error={formState.errors.administratorLastName?.message}
+          {...register('administratorLastName', {
+            required: t('Ce champ est requis'),
           })}
+        />
+
+        <TextInputGroup
+          className="col-span-1"
+          label={
+            <p className="mb-0 flex items-center justify-between">
+              <Trans>Votre poste</Trans>
+              <span className="text-sm italic text-secondary-700">
+                facultatif
+              </span>
+            </p>
+          }
+          {...register('administratorPosition')}
         />
       </div>
 

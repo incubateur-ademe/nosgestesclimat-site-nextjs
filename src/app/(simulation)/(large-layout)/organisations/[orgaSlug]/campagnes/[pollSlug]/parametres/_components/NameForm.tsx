@@ -2,17 +2,20 @@ import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import type { PollToUpdate } from '@/hooks/organisations/polls/useUpdatePoll'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEffect } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
 type Props = {
   nameValue: string
+  expectedNumberOfParticipants?: number
   updatePoll: (pollToUpdate: PollToUpdate) => void
   updatePollStatus: string
 }
 
 export default function NameForm({
   nameValue,
+  expectedNumberOfParticipants,
   updatePoll,
   updatePollStatus,
 }: Props) {
@@ -24,12 +27,29 @@ export default function NameForm({
   } = useReactHookForm({
     defaultValues: {
       name: nameValue,
+      expectedNumberOfParticipants,
     },
   })
 
-  async function onSubmit(data: { name: string }) {
+  const { t } = useClientTranslation()
+
+  async function onSubmit({
+    name,
+    expectedNumberOfParticipants: newExpectedNumberOfParticipants,
+  }: {
+    name: string
+    expectedNumberOfParticipants?: number
+  }) {
     updatePoll({
-      name: data.name,
+      name,
+      expectedNumberOfParticipants:
+        newExpectedNumberOfParticipants !== undefined
+          ? newExpectedNumberOfParticipants
+          : // If the expectedNumberOfParticipants is empty, we set it to undefined
+            // otherwise reset its value to null
+            expectedNumberOfParticipants
+            ? null
+            : undefined,
     })
   }
 
@@ -56,7 +76,7 @@ export default function NameForm({
               e.preventDefault()
             }
       }>
-      <div className="relative w-full max-w-[30rem] pb-4">
+      <div className="relative grid w-full grid-cols-1 gap-4 pb-4 md:grid-cols-2">
         <TextInputGroup
           containerClassName="max-w-[30rem]"
           label={
@@ -67,6 +87,27 @@ export default function NameForm({
           value={nameValue}
           error={errors.name?.message}
           {...register('name', { required: 'Ce champ est requis' })}
+        />
+        <TextInputGroup
+          label={
+            <p className="mb-0 flex w-full justify-between">
+              <Trans>Nombre de participants attendus</Trans>
+              <span className="font-bold italic text-secondary-700">
+                {' '}
+                <Trans>facultatif</Trans>
+              </span>
+            </p>
+          }
+          value={expectedNumberOfParticipants}
+          type="number"
+          {...register('expectedNumberOfParticipants', {
+            valueAsNumber: true,
+            min: {
+              value: 1,
+              message: t('Le nombre de participants doit être supérieur à 0'),
+            },
+          })}
+          error={errors.expectedNumberOfParticipants?.message}
         />
       </div>
 
