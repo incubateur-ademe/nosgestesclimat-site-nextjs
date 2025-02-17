@@ -14,11 +14,12 @@ import { useState } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import { twMerge } from 'tailwind-merge'
+import CTAButtonsPlaceholder from '../cta/CTAButtonsPlaceholder'
 import Trans from '../translation/Trans'
 
 const DynamicCTAButtons = dynamic(
   () => import('@/components/cta/DynamicCTAButtons'),
-  { ssr: false }
+  { ssr: false, loading: () => <CTAButtonsPlaceholder /> }
 )
 
 export default function DidYouKnowSlider({
