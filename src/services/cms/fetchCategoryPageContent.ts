@@ -55,7 +55,9 @@ export async function fetchCategoryPageContent({
       data: [category],
     } = categoryResponse
 
-    const { id: categoryId, mainArticle: { documentId } = {} } = category
+    const { id: categoryId, mainArticle } = category
+
+    const { documentId } = mainArticle || {}
 
     const articlesSearchParams = new URLSearchParams({
       locale: defaultLocale,

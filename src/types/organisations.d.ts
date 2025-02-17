@@ -109,7 +109,9 @@ export type OrgaSettingsInputsType = {
   name: string
   email: string
   position?: string
-  administratorName?: string
+  administratorFirstName?: string
+  administratorLastName?: string
+  administratorPosition?: string
   numberOfCollaborators?: number
   administratorTelephone?: string
   hasOptedInForCommunications?: boolean

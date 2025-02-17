@@ -15,7 +15,7 @@ export default function BlogArticles() {
       </p>
       <div className="mb-4 flex justify-center gap-4">
         <Link
-          href={'/blog/lexique-eau-tout-comprendre'}
+          href={'/blog/environnement/lexique-eau-tout-comprendre'}
           target="_blank"
           className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
           <div>
@@ -36,7 +36,7 @@ export default function BlogArticles() {
           </div>
         </Link>
         <Link
-          href={'/blog/empreinte-eau-pourquoi-comment'}
+          href={'/blog/actualites-et-fonctionnalites/empreinte-eau-pourquoi-comment'}
           target="_blank"
           className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
           <div>
