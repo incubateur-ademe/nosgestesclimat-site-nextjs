@@ -14,7 +14,6 @@ import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import { useCurrentSimulation, useEngine, useForm } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
-import posthog from 'posthog-js'
 import { useContext, useEffect, useState } from 'react'
 import FunFact from './form/FunFact'
 import ResultsBlocksDesktop from './form/ResultsBlocksDesktop'
@@ -60,10 +59,6 @@ export default function Form() {
           bilan: getNumericValue('bilan'),
         })
         trackEvent(eventParams)
-        posthog.capture(eventParams[2] as string, {
-          category: eventParams[1],
-          bilanValue: eventParams[4],
-        })
       }
       goToEndPage({
         shouldShowQuiz,

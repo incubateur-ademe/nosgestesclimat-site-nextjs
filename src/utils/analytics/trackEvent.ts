@@ -16,12 +16,18 @@ export const trackEvent = (args: (string | null)[]) => {
   }
 
   // Matomo: [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
-  // Exemple : ['trackEvent', 'Accueil', 'CTA Click', 'Click Reprendre le test']
-  // posthog.capture(args[3], {
-  //   category: args[1],
-  //   subcategory: args[2],
-  //   value: args[4],
-  // })
+  // Exemple : ['trackEvent', 'Misc', 'Region', 'Region used: FR']
+  // Or : ['trackEvent', 'Accueil', 'CTA Click', 'Click Reprendre le test']
+  // Or : ['trackEvent', 'Simulation', 'Simulation Completed', null, '8.9']
+  // Or : ['trackEvent', 'Simulation', 'Simulation Time', null, '3']
+  // Or : ['trackEvent', 'Fin', 'Toggle Target block']
+  // FIXME: Convert properly events to posthog with better precision
+
+  posthog.capture(args[2] ? args[2] : 'Fix Event Name', {
+    category: args[1],
+    description: args[3],
+    value: args[4],
+  })
 
   // Pass a copy of the array to avoid mutation
   window?._paq?.push([...args])

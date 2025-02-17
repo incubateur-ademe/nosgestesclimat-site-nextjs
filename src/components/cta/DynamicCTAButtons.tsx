@@ -5,7 +5,6 @@ import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useIsClient } from '@/hooks/useIsClient'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
-import posthog from 'posthog-js'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RestartIcon from '../icons/RestartIcon'
@@ -53,28 +52,16 @@ export default function DynamicCTAButtons({
         onClick={() => {
           if (progression === 1) {
             trackEvent(trackingEvents?.results)
-            posthog.capture(trackingEvents?.results[3], {
-              landing: trackingEvents?.results[1],
-              eventType: trackingEvents?.results[2],
-            })
             return
           }
 
           if (progression > 0) {
             trackEvent(trackingEvents?.resume)
-            posthog.capture(trackingEvents?.resume[3], {
-              landing: trackingEvents?.resume[1],
-              eventType: trackingEvents?.resume[2],
-            })
             console.log('trackEvent', trackingEvents?.resume)
             return
           }
 
           trackEvent(trackingEvents?.start)
-          posthog.capture(trackingEvents?.start[3], {
-            landing: trackingEvents?.start[1],
-            eventType: trackingEvents?.start[2],
-          })
         }}>
         <span
           className={twMerge(
