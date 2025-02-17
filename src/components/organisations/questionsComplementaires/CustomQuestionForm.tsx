@@ -127,10 +127,7 @@ export default function CustomQuestionForm({
       onSubmit={handleSubmit(onSubmit)}
       className="flex w-full flex-col items-start">
       {!isEditMode && (
-        <label
-          id="custom-question-label"
-          htmlFor="question"
-          className="mb-2 text-sm">
+        <label htmlFor="question" className="mb-2 text-sm">
           <Trans>Votre question à ajouter</Trans>
         </label>
       )}
