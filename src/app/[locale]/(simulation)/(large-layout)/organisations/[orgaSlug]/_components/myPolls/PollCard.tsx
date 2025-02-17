@@ -1,4 +1,5 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import type { OrganisationPoll } from '@/types/organisations'
 import dayjs from 'dayjs'
@@ -15,11 +16,11 @@ export default function PollCard({ poll }: Props) {
   if (!poll) return null
 
   return (
-    <div className="h-full rounded-xl bg-primary-50 p-6">
+    <div className="bg-primary-50 h-full rounded-xl p-6">
       <h3 className="mb-2 text-xl">
         {poll.name ?? (
           <>
-            <span className="mr-3 italic text-gray-600">
+            <span className="mr-3 text-gray-600 italic">
               <Trans locale={locale}>Sans titre</Trans>
             </span>
           </>
@@ -32,11 +33,11 @@ export default function PollCard({ poll }: Props) {
       </p>
 
       <div className="mb-12">
-        <p className="mb-0 text-xl font-bold text-primary-700">
+        <p className="text-primary-700 mb-0 text-xl font-bold">
           {poll.simulations.finished}{' '}
         </p>
 
-        <p className="text-base font-light text-default">
+        <p className="text-default text-base font-light">
           {poll.simulations.finished > 1 ? (
             <Trans locale={locale}>Simulations terminées</Trans>
           ) : (

@@ -2,7 +2,7 @@
 
 import Link from '@/components/Link'
 import PlusIcon from '@/components/icons/PlusIcon'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import {
   baseClassNames,
   colorClassNames,
@@ -55,7 +55,7 @@ export default function AddPollCard({ hasNoPollsYet }: Props) {
             hasNoPollsYet ? 'stroke-white' : 'stroke-primary-700'
           )}
         />
-        <Trans locale={locale}>Créer une campagne</Trans>
+        <TransClient>Créer une campagne</TransClient>
       </div>
     </Link>
   )
