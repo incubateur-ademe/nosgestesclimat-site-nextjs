@@ -4,7 +4,7 @@ import MaxWidthContent from '@/components/layout/MaxWidthContent'
 import ToastDisplay from '@/components/messages/ToastDisplay'
 import PollLoader from '@/components/organisations/PollLoader'
 import QuestionsComplementaires from '@/components/organisations/QuestionsComplementaires'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { displaySuccessToast } from '@/helpers/toasts/displaySuccessToast'
@@ -53,7 +53,7 @@ export default function ParametresPage() {
       <Title
         title={
           <span>
-            <Trans locale={locale}>Paramètres de</Trans>{' '}
+            <TransClient>Paramètres de</TransClient>{' '}
             <span className="text-secondary-700">{poll?.name}</span>
           </span>
         }

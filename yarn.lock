@@ -8636,13 +8636,10 @@ psl@^1.1.33:
   dependencies:
     punycode "^2.3.1"
 
-publicodes@1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.6.1.tgz#362ebe75de54ade3a81643b730c5a76dea3445b2"
-  integrity sha512-oCi9SMIUYgQzIL/9Txz+agl2/V0pJc6+q+0XxfcHv4evkCojdJ6VsubgiL/MLxiE0B7e1BLTUobkTPYHvgOMnw==
-  dependencies:
-    moo "^0.5.2"
-    nearley "^2.20.1"
+publicodes@1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.4.0.tgz#6f126326d0895ec9679ea31fa2c12a27b206f633"
+  integrity sha512-42LTuqGB8g8DP3ZUbT4vKu+D6fR7iJ+Ibcsw0SALFw25UKPpRBi8ibYvcoDt4FWf9CAFUKaSdLe6EYN1GS2W3w==
 
 publicodes@^1.7.0:
   version "1.7.0"

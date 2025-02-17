@@ -79,6 +79,7 @@ export default async function BlogHomePage({
 
         {mainArticle && (
           <MainArticle
+            locale={locale}
             title={mainArticle.title}
             description={mainArticle.description}
             imageSrc={mainArticle.image?.url ?? ''}
@@ -90,6 +91,7 @@ export default async function BlogHomePage({
 
         {articles && (
           <ArticleList
+            locale={locale}
             articles={articles}
             pageCount={pageCount ?? 0}
             currentPage={page}
@@ -101,7 +103,7 @@ export default async function BlogHomePage({
             <NewslettersBlock />
           </Suspense>
 
-          <GroupBlock />
+          <GroupBlock locale={locale} />
         </div>
       </ContentLarge>
 

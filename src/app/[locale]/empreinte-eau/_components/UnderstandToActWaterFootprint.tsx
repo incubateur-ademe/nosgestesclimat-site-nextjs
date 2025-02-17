@@ -1,5 +1,5 @@
 import UnderstandToAct from '@/components/landing-pages/UnderstandToAct'
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function UnderstandToActWaterFootprint({
@@ -17,7 +17,7 @@ export default async function UnderstandToActWaterFootprint({
       pathname={pathname}
       description={
         <p className="mb-0">
-          <Trans locale={locale}>
+          <TransServer locale={locale}>
             Mieux comprendre{' '}
             <strong className="text-primary-600">
               notre impact sur les ressources en eau
@@ -29,7 +29,7 @@ export default async function UnderstandToActWaterFootprint({
               réduire votre empreinte eau
             </strong>
             .
-          </Trans>
+          </TransServer>
         </p>
       }
       posts={[

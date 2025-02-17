@@ -1,7 +1,7 @@
 'use client'
 
 import TrashIcon from '@/components/icons/TrashIcon'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import ConfirmationModal from '@/design-system/modals/ConfirmationModal'
 import { useDeletePoll } from '@/hooks/organisations/polls/useDeletePoll'
@@ -31,14 +31,14 @@ export default function DeletePollButton() {
     <>
       <Button color="link" onClick={() => setIsOpen(true)}>
         <TrashIcon className="fill-primary-700 mr-2 w-4" />
-        <Trans locale={locale}>Supprimer cette campagne</Trans>
+        <TransClient>Supprimer cette campagne</TransClient>
       </Button>
 
       {error && (
         <div className="mt-4 text-red-600">
-          <Trans locale={locale}>
+          <TransClient>
             Une erreur est survenue lors de la suppression de la campagne.
-          </Trans>
+          </TransClient>
         </div>
       )}
 
@@ -47,10 +47,10 @@ export default function DeletePollButton() {
           closeModal={() => setIsOpen(false)}
           onConfirm={handleDeletePoll}>
           <h2>
-            <Trans locale={locale}>Supprimer cette campagne ?</Trans>
+            <TransClient>Supprimer cette campagne ?</TransClient>
           </h2>
           <p>
-            <Trans locale={locale}>Cette opération est définitive.</Trans>
+            <TransClient>Cette opération est définitive.</TransClient>
           </p>
         </ConfirmationModal>
       )}

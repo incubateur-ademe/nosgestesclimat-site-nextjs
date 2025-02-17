@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import Select from '@/design-system/inputs/Select'
 import Title from '@/design-system/layout/Title'
@@ -53,7 +53,7 @@ export default function MyPolls({ polls }: Props) {
     <section className="mb-12">
       <div className="flex flex-wrap items-center justify-between sm:flex-nowrap">
         <Title tag="h2">
-          <Trans locale={locale}>Mes campagnes</Trans>
+          <TransClient>Mes campagnes</TransClient>
         </Title>
 
         {pollsSorted.length > 0 && (
@@ -64,16 +64,16 @@ export default function MyPolls({ polls }: Props) {
             className="p-2 text-sm"
             name="sortOrder">
             <option value="date-old">
-              <Trans locale={locale}>Date (anciennes &gt; récentes)</Trans>
+              <TransClient>Date (anciennes &gt; récentes)</TransClient>
             </option>
             <option value="date-new">
-              <Trans locale={locale}>Date (récentes &gt; anciennes)</Trans>
+              <TransClient>Date (récentes &gt; anciennes)</TransClient>
             </option>
             <option value="alphabetical">
-              <Trans locale={locale}>Nom (A &gt; Z)</Trans>
+              <TransClient>Nom (A &gt; Z)</TransClient>
             </option>
             <option value="anti-alphabetical">
-              <Trans locale={locale}>Nom (Z &gt; A)</Trans>
+              <TransClient>Nom (Z &gt; A)</TransClient>
             </option>
           </Select>
         )}
@@ -98,11 +98,11 @@ export default function MyPolls({ polls }: Props) {
           color="link">
           {isMinified ? (
             <span>
-              + <Trans locale={locale}>Voir toutes les campagnes</Trans>
+              + <TransClient>Voir toutes les campagnes</TransClient>
             </span>
           ) : (
             <span>
-              - <Trans locale={locale}>Masquer les autres campagnes</Trans>
+              - <TransClient>Masquer les autres campagnes</TransClient>
             </span>
           )}
         </Button>

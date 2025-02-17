@@ -1,6 +1,6 @@
 import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
 import JSONLD from '@/components/seo/JSONLD'
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -68,14 +68,14 @@ export default async function Homepage({
       <LandingPage
         heroIllustration={<InteractiveIllustration />}
         heroTitle={
-          <Trans locale={locale}>
+          <TransServer locale={locale}>
             Connaissez-vous votre empreinte écologique ?
-          </Trans>
+          </TransServer>
         }
         heroDescription={
           <div className="flex flex-col items-center gap-6 md:items-start md:gap-10">
             <p className="mb-0 text-base md:order-1 md:text-2xl">
-              <Trans locale={locale}>
+              <TransServer locale={locale}>
                 Calculez votre{' '}
                 <strong className="text-primary-700">empreinte carbone</strong>{' '}
                 et votre{' '}
@@ -84,7 +84,7 @@ export default async function Homepage({
                   seulement 10 minutes
                 </strong>
                 .
-              </Trans>
+              </TransServer>
             </p>
 
             <div className="flex flex-col items-center gap-6 md:order-2 md:mt-0 md:max-w-[300px] md:items-start">
@@ -117,17 +117,17 @@ export default async function Homepage({
 
               {/* Displayed on desktop only */}
               <p>
-                <Trans locale={locale}>
+                <TransServer locale={locale}>
                   <strong className="text-primary-700">
                     2 millions de personnes
                   </strong>{' '}
                   ont déjà calculé leur empreinte !
-                </Trans>
+                </TransServer>
               </p>
             </div>
           </div>
         }
-        heroPartners={<Partners />}>
+        heroPartners={<Partners locale={locale} />}>
         <TwoFootprints locale={locale} />
 
         <DidYouKnowMainLanding locale={locale} />

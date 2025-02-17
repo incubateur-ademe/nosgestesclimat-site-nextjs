@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import TransClient from '@/components/translation/trans/TransClient'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Title from '@/design-system/layout/Title'
 import type { ReactNode } from 'react'
@@ -33,9 +35,9 @@ export default function SaveSimulationForm({
       <Title
         tag="h2"
         subtitle={
-          <Trans locale={locale}>
+          <TransClient>
             Recevez par email un lien pour reprendre votre test plus tard.
-          </Trans>
+          </TransClient>
         }>
         {title}
       </Title>
@@ -51,9 +53,9 @@ export default function SaveSimulationForm({
 
         {isError && (
           <p className="mt-4 text-sm text-red-700">
-            <Trans locale={locale}>
+            <TransClient>
               Une erreur s'est produite au moment de la sauvegarde.
-            </Trans>
+            </TransClient>
           </p>
         )}
       </div>

@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import TransClient from '@/components/translation/trans/TransClient'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 
@@ -12,22 +14,21 @@ export default function DishesNumberInfo() {
       <div aria-live="polite" className="mb-2 text-center text-sm">
         {totalNumberOfPlats !== 14 ? (
           <span className="text-red-700">
-            <Trans locale={locale}>Vous avez sélectionné</Trans>{' '}
+            <TransClient>Vous avez sélectionné</TransClient>{' '}
             <strong>{totalNumberOfPlats}</strong>{' '}
             <strong>
-              <Trans locale={locale}>repas</Trans>
+              <TransClient>repas</TransClient>
             </strong>{' '}
-            <Trans locale={locale}>sur les 14 habituels</Trans>{' '}
-            <Emoji>🍽️</Emoji>
+            <TransClient>sur les 14 habituels</TransClient> <Emoji>🍽️</Emoji>
           </span>
         ) : null}
         {totalNumberOfPlats === 14 ? (
           <span>
             <strong>{totalNumberOfPlats}</strong>{' '}
             <strong>
-              <Trans locale={locale}>repas</Trans>
+              <TransClient>repas</TransClient>
             </strong>{' '}
-            <Trans locale={locale}>par semaine, miam</Trans> <Emoji>😋</Emoji>
+            <TransClient>par semaine, miam</TransClient> <Emoji>😋</Emoji>
           </span>
         ) : null}
       </div>

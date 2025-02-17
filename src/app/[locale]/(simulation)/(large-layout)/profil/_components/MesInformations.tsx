@@ -1,7 +1,7 @@
 'use client'
 
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import {
   LIST_MAIN_NEWSLETTER,
   LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
@@ -115,7 +115,7 @@ export default function MesInformations() {
   return (
     <div>
       <h2>
-        <Trans locale={locale}>Mes informations</Trans>
+        <TransClient>Mes informations</TransClient>
       </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
@@ -132,7 +132,7 @@ export default function MesInformations() {
           type="email"
           helperText={
             user?.email ? (
-              <Trans locale={locale}>Ce champ n'est pas modifiable</Trans>
+              <TransClient>Ce champ n'est pas modifiable</TransClient>
             ) : null
           }
           label={t('Votre adresse email')}
@@ -142,13 +142,11 @@ export default function MesInformations() {
         />
 
         <h3 className="mt-6 mb-0">
-          <Trans locale={locale}>Inscription à nos e-mails</Trans>
+          <TransClient>Inscription à nos e-mails</TransClient>
         </h3>
 
         <p className="text-sm text-gray-600">
-          <Trans locale={locale}>
-            Vous pouvez vous désincrire à tout moment
-          </Trans>
+          <TransClient>Vous pouvez vous désincrire à tout moment</TransClient>
         </p>
 
         <CheckboxInputGroup
@@ -156,10 +154,10 @@ export default function MesInformations() {
           label={
             <span>
               <Emoji>☀️</Emoji>{' '}
-              <Trans locale={locale}>
+              <TransClient>
                 <strong>Infolettre saisonnière de Nos Gestes Climat</strong> :
                 actualités climat, initiatives positives et nouveautés
-              </Trans>
+              </TransClient>
             </span>
           }
           {...register('newsletter-saisonniere')}
@@ -170,10 +168,10 @@ export default function MesInformations() {
           label={
             <span>
               <Emoji>🚗</Emoji>{' '}
-              <Trans locale={locale}>
+              <TransClient>
                 <strong>Nos Gestes Transports</strong> : tout savoir ou presque
                 sur l'impact carbone des transports, en 4 e-mails
-              </Trans>
+              </TransClient>
             </span>
           }
           {...register('newsletter-transports')}
@@ -186,22 +184,22 @@ export default function MesInformations() {
             disabled={isPending || isSubmitted}>
             {isPending && <Loader size="sm" color="light" />}
 
-            <Trans locale={locale}>Mettre à jour mes informations</Trans>
+            <TransClient>Mettre à jour mes informations</TransClient>
           </Button>
 
           {isSubmitted && (
             <p className="mt-4 flex items-center text-sm text-green-700">
               <CheckCircleIcon className="mr-2 fill-green-700" />
-              <Trans locale={locale}>Modifications sauvegardées</Trans>
+              <TransClient>Modifications sauvegardées</TransClient>
             </p>
           )}
 
           {isError && (
             <p className="mt-4 text-sm text-red-700">
-              <Trans locale={locale}>
+              <TransClient>
                 Une erreur s'est produite au moment de la sauvegarde de vos
                 paramètres
-              </Trans>
+              </TransClient>
             </p>
           )}
         </div>

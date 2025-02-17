@@ -1,5 +1,5 @@
 import ToastDisplay from '@/components/messages/ToastDisplay'
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import UserInformationForm from '@/components/user/UserInformationForm'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
@@ -46,7 +46,7 @@ export default async function Profil({
 
   return (
     <FormProvider>
-      <Title title={<Trans locale={locale}>Mon profil</Trans>} />
+      <Title title={<TransServer locale={locale}>Mon profil</TransServer>} />
 
       <PersonaWarning />
 
@@ -73,7 +73,7 @@ export default async function Profil({
         <UserInformationForm
           title={
             <h3>
-              <Trans locale={locale}>Mes informations</Trans>
+              <TransServer locale={locale}>Mes informations</TransServer>
             </h3>
           }
         />

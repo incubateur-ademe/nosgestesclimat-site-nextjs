@@ -1,7 +1,7 @@
 'use client'
 
 import GlassesIcon from '@/components/icons/GlassesIcon'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { profilClickTutoriel } from '@/constants/tracking/pages/profil'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { twMerge } from 'tailwind-merge'
@@ -20,7 +20,7 @@ export default function TutorialLink({ className }: Props) {
       <GlassesIcon className="fill-primary-700 mr-2" />
 
       <span>
-        <Trans locale={locale}>Revoir le tutoriel</Trans>
+        <TransClient>Revoir le tutoriel</TransClient>
       </span>
     </ButtonLink>
   )

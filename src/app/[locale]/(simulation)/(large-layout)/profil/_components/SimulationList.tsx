@@ -2,7 +2,7 @@
 
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import SavesIcon from '@/components/icons/SavesIcon'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import {
   profilDeleteSimulation,
   profilLoadSimulation,
@@ -25,13 +25,13 @@ export default function SimulationList() {
       <h2 className="flex items-center">
         <SavesIcon className="fill-primary-700 mr-3" />
 
-        <Trans locale={locale}>Mon historique des simulations</Trans>
+        <TransClient>Mon historique des simulations</TransClient>
       </h2>
       <p>
-        <Trans i18nKey={'publicodes.Profil.simulations'}>
+        <TransClient i18nKey={'publicodes.Profil.simulations'}>
           Chaque simulation que vous faite est sauvegardée dans votre navigateur
           Web. Vous êtes le seul à y avoir accès.
-        </Trans>
+        </TransClient>
       </p>
       <ul>
         {simulations.map((simulation: Simulation) => {
@@ -52,7 +52,7 @@ export default function SimulationList() {
                     {currentSimulationId === simulation.id ? (
                       <span className="mx-2 flex items-center">
                         <CheckCircleIcon className="mr-1 h-4 w-4 fill-green-500" />{' '}
-                        <Trans locale={locale}>Chargée</Trans>
+                        <TransClient>Chargée</TransClient>
                       </span>
                     ) : (
                       <span>
@@ -63,7 +63,7 @@ export default function SimulationList() {
                             trackEvent(profilLoadSimulation)
                             setCurrentSimulationId(simulation.id as string)
                           }}>
-                          <Trans locale={locale}>Charger</Trans>
+                          <TransClient>Charger</TransClient>
                         </Button>
 
                         <Button
@@ -73,7 +73,7 @@ export default function SimulationList() {
                             trackEvent(profilDeleteSimulation)
                             deleteSimulation(simulation.id as string)
                           }}>
-                          <Trans locale={locale}>Supprimer</Trans>
+                          <TransClient>Supprimer</TransClient>
                         </Button>
                       </span>
                     )}
@@ -81,13 +81,12 @@ export default function SimulationList() {
                 </summary>
                 <ul>
                   <li>
-                    <Trans locale={locale}>Date complète :</Trans>
+                    <TransClient>Date complète :</TransClient>
                     {simulationDate.toLocaleDateString()}{' '}
                     {simulationDate.toLocaleTimeString()}.
                   </li>
                   <li>
-                    <Trans locale={locale}>Identifiant :</Trans> {simulation.id}
-                    .
+                    <TransClient>Identifiant :</TransClient> {simulation.id}.
                   </li>
                 </ul>
               </details>

@@ -1,6 +1,8 @@
+'use client'
+
 import Link from '@/components/Link'
 import MessageIcon from '@/components/icons/MessageIcon'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 
 export default function NousContacter() {
   return (
@@ -10,7 +12,7 @@ export default function NousContacter() {
 
         <div className="text-lg">
           <p className="mb-2">
-            <Trans locale={locale}>Vous avez une question ?</Trans>
+            <TransClient>Vous avez une question ?</TransClient>
           </p>
           <Link href="/contact">Contactez-nous</Link>
         </div>

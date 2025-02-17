@@ -1,8 +1,10 @@
+'use client'
+
 import EyeIcon from '@/components/icons/EyeIcon'
 import SettingsIcon from '@/components/icons/SettingsIcon'
 import InformationIconWithTooltip from '@/components/messages/InformationIconWithTooltip'
 import ExportDataButton from '@/components/organisations/ExportDataButton'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { organisationsDashboardExportData } from '@/constants/tracking/pages/organisationsDashboard'
 import {
   pollDashboardClickParameters,
@@ -26,13 +28,13 @@ export default function AdminSection({ poll }: Props) {
   return (
     <section className="mb-10 rounded-xl bg-gray-50 p-6">
       <h3 className="mb-4">
-        <Trans locale={locale}>Section administrateur</Trans>
+        <TransClient>Section administrateur</TransClient>
         <InformationIconWithTooltip
           id="admin-section"
           className="ml-1 inline-block">
           <p className="mb-0 flex items-center gap-1 text-xs">
             <EyeIcon className="w-4 fill-white" />{' '}
-            <Trans locale={locale}>Visible uniquement par vous</Trans>
+            <TransClient>Visible uniquement par vous</TransClient>
           </p>
         </InformationIconWithTooltip>
       </h3>
@@ -40,7 +42,7 @@ export default function AdminSection({ poll }: Props) {
       <div className="flex flex-wrap gap-8 md:flex-nowrap">
         <div className="rainbow-border w-full rounded-xl p-4 md:w-2/3">
           <h2 className="text-lg">
-            <Trans locale={locale}>Partagez votre campagne</Trans>
+            <TransClient>Partagez votre campagne</TransClient>
           </h2>
           <CopyInput
             textToDisplay={`${window.location.host}/o/${orgaSlug}/${pollSlug}`}
@@ -68,7 +70,7 @@ export default function AdminSection({ poll }: Props) {
             className="flex items-center">
             <SettingsIcon className="fill-primary-700 mr-2" />
 
-            <Trans locale={locale}>Voir les paramètres</Trans>
+            <TransClient>Voir les paramètres</TransClient>
           </ButtonLink>
         </div>
       </div>

@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import TransClient from '@/components/translation/trans/TransClient'
 import { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
 import type { OrganisationPoll, Simulation } from '@/types/organisations'
 import AgeFilter from './pollStatisticsFilters/AgeFilter'
@@ -22,7 +24,7 @@ export default function PollStatisticsFilters({
     <div className="mb-8 flex flex-col justify-between gap-4 rounded-lg bg-gray-100 px-4 py-4 sm:flex-row sm:items-center md:px-6">
       <div className="flex items-center gap-2">
         <p className="mb-0 md:text-xl">
-          <Trans locale={locale}>Filtrer par</Trans>
+          <TransClient>Filtrer par</TransClient>
         </p>
         <InfoTooltipIcon className="z-10 inline-block md:hidden" />
       </div>

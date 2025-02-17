@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -73,13 +73,13 @@ export default function EmailForm() {
         name="email"
         type="email"
         value={user?.organisation?.administratorEmail || user?.email || ''}
-        label={<Trans locale={locale}>Votre adresse e-mail</Trans>}
+        label={<TransClient>Votre adresse e-mail</TransClient>}
         placeholder="jeanmarc@nosgestesclimat.fr"
         helperText={
-          <Trans locale={locale}>
+          <TransClient>
             Nous pourrons vous contacter en cas de problème lors de votre
             inscription
-          </Trans>
+          </TransClient>
         }
         required
         error={inputError}
@@ -88,7 +88,7 @@ export default function EmailForm() {
       {inputError && <p className="mt-2 text-sm text-red-600">{inputError}</p>}
 
       <Button type="submit" className="mt-8">
-        <Trans locale={locale}>Accéder à mon espace</Trans>
+        <TransClient>Accéder à mon espace</TransClient>
       </Button>
     </form>
   )

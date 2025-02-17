@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import getActions from '@/helpers/actions/getActions'
 import { useSimulation, useTempEngine } from '@/publicodes-state'
 import { utils } from 'publicodes'
@@ -30,7 +30,9 @@ export default function Actions() {
   return (
     <>
       <h2 data-cypress-id="plan-actions-title">
-        <Trans i18nKey="publicodes.planDuSite.actionsPlus">Les actions</Trans>
+        <TransClient i18nKey="publicodes.planDuSite.actionsPlus">
+          Les actions
+        </TransClient>
       </h2>
 
       <ul className="m-0 list-none p-0">

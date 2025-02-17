@@ -1,5 +1,5 @@
 import DailyGestures from '@/components/landing-pages/DailyGestures'
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import { trackingActionClickPageBottom } from '@/constants/tracking/actions'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import {
@@ -25,14 +25,14 @@ export default async function DailyGestureCarbonFootprint({
   return (
     <DailyGestures
       title={
-        <Trans locale={locale}>
+        <TransServer locale={locale}>
           Les actions pour réduire son empreinte carbone{' '}
-        </Trans>
+        </TransServer>
       }
       description={
         <>
           <p className="mb-0">
-            <Trans locale={locale}>
+            <TransServer locale={locale}>
               Pour un mode de vie plus durable, certaines actions{' '}
               <strong className="text-primary-600">
                 ont un impact plus fort que d’autres
@@ -43,8 +43,8 @@ export default async function DailyGestureCarbonFootprint({
                 réduire vos émissions de Co2
               </strong>
               .
-            </Trans>{' '}
-            <Trans locale={locale}>Voici quelques idées :</Trans>
+            </TransServer>{' '}
+            <TransServer locale={locale}>Voici quelques idées :</TransServer>
           </p>
         </>
       }

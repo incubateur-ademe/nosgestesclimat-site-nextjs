@@ -1,7 +1,7 @@
 'use client'
 
 import LogOutIcon from '@/components/icons/LogOutIcon'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { organisationsParametersLogout } from '@/constants/tracking/pages/organisationsParameters'
 import Button from '@/design-system/inputs/Button'
 import { useLogout } from '@/hooks/authentication/useLogout'
@@ -30,7 +30,7 @@ export default function DeconnexionButton() {
       className="text-primary-700 flex items-center gap-2 underline"
       onClick={handleDisconnect}>
       <LogOutIcon className="fill-primary-700 mr-2" />
-      <Trans locale={locale}>Se déconnecter de votre espace organisation</Trans>
+      <TransClient>Se déconnecter de votre espace organisation</TransClient>
     </Button>
   )
 }

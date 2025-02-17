@@ -1,5 +1,7 @@
+'use client'
+
 import Link from '@/components/Link'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
@@ -34,9 +36,9 @@ export default function Label({
         <Title className="text-lg md:text-2xl">
           {t('Une devinette pour finir\u202f!')}{' '}
           <br className="hidden md:inline" />
-          <Trans locale={locale}>D’après vous, quel est</Trans>{' '}
+          <TransClient>D’après vous, quel est</TransClient>{' '}
           <span className="text-secondary-700">
-            <Trans locale={locale}>votre</Trans>
+            <TransClient>votre</TransClient>
           </span>{' '}
           {t('poste le plus important\u202f?')}
         </Title>
@@ -48,9 +50,9 @@ export default function Label({
     <>
       <h1 className="mb-4 text-lg md:text-2xl">{t('Loupé\u202f!')}&nbsp;😓</h1>
       <p className="md:text-lg">
-        <Trans locale={locale}>Avec</Trans>{' '}
+        <TransClient>Avec</TransClient>{' '}
         <strong className="text-secondary-200">
-          {formattedValue} <Trans locale={locale}>{unit}</Trans>
+          {formattedValue} <TransClient>{unit}</TransClient>
         </strong>
         , {t('le poste')}{' '}
         <span className="text-secondary-200">{title?.toLowerCase()}</span>{' '}
@@ -59,7 +61,7 @@ export default function Label({
         <Link
           className="hover:text-secondary-200 focus:text-secondary-200 text-white"
           href={getLinkToEndPage()}>
-          <Trans locale={locale}>Découvrez vos résultats détaillés</Trans>
+          <TransClient>Découvrez vos résultats détaillés</TransClient>
         </Link>
       </p>
     </>
@@ -71,9 +73,9 @@ export default function Label({
         {t('Presque\u202f!')}&nbsp;🙃
       </h1>
       <p className="md:text-lg">
-        <Trans locale={locale}>Avec</Trans>{' '}
+        <TransClient>Avec</TransClient>{' '}
         <strong className="text-secondary-200">
-          {formattedValue} <Trans locale={locale}>{unit}</Trans>
+          {formattedValue} <TransClient>{unit}</TransClient>
         </strong>
         , {t('le poste')}{' '}
         <span className="text-secondary-200">{title?.toLowerCase()}</span>{' '}
@@ -82,7 +84,7 @@ export default function Label({
         <Link
           className="hover:text-secondary-200 focus:text-secondary-200 text-white"
           href={getLinkToEndPage()}>
-          <Trans locale={locale}>Découvrez vos résultats détaillés</Trans>
+          <TransClient>Découvrez vos résultats détaillés</TransClient>
         </Link>
       </p>
     </>
@@ -94,9 +96,9 @@ export default function Label({
         {t('Bien vu\u202f!')}&nbsp;👌
       </h1>
       <p className="md:text-lg">
-        <Trans locale={locale}>Effectivement, avec</Trans>{' '}
+        <TransClient>Effectivement, avec</TransClient>{' '}
         <strong className="text-secondary-200">
-          {formattedValue} <Trans locale={locale}>{unit}</Trans>
+          {formattedValue} <TransClient>{unit}</TransClient>
         </strong>
         , {t('le poste')}{' '}
         <span className="text-secondary-200">{title?.toLowerCase()}</span>{' '}
@@ -105,7 +107,7 @@ export default function Label({
         <Link
           className="hover:text-secondary-200 focus:text-secondary-200 text-white"
           href={getLinkToEndPage()}>
-          <Trans locale={locale}>Découvrez vos résultats détaillés</Trans>
+          <TransClient>Découvrez vos résultats détaillés</TransClient>
         </Link>
       </p>
     </>

@@ -1,5 +1,7 @@
+'use client'
+
 import Arrow from '@/components/fin/metricSlider/carboneTotalChart/Arrow'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/metric'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import type { Simulation } from '@/types/organisations'
@@ -16,7 +18,7 @@ export default function MainFootprintChart({ simulations, maxValue }: Props) {
   return (
     <section className="mb-12">
       <h3>
-        <Trans locale={locale}>Empreinte carbone totale</Trans>
+        <TransClient>Empreinte carbone totale</TransClient>
       </h3>
 
       <div className="flex flex-col">
@@ -34,9 +36,9 @@ export default function MainFootprintChart({ simulations, maxValue }: Props) {
                 </strong>
               </p>
               <p className="mb-0 text-sm">
-                <Trans locale={locale}>c'est l’objectif pour 2050,</Trans>{' '}
+                <TransClient>c'est l’objectif pour 2050,</TransClient>{' '}
                 <InlineLink href="/actions">
-                  <Trans locale={locale}>on s'y met ?</Trans>
+                  <TransClient>on s'y met ?</TransClient>
                 </InlineLink>
               </p>
             </div>
@@ -63,9 +65,9 @@ export default function MainFootprintChart({ simulations, maxValue }: Props) {
             <strong className="text-lg">{maxValue}</strong>{' '}
             <span>
               {shouldUseAbbreviation ? (
-                <Trans locale={locale}>t CO₂e / an</Trans>
+                <TransClient>t CO₂e / an</TransClient>
               ) : (
-                <Trans locale={locale}>tonnes CO₂e / an</Trans>
+                <TransClient>tonnes CO₂e / an</TransClient>
               )}
             </span>
           </span>

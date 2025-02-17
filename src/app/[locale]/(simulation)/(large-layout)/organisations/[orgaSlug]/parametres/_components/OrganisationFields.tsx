@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { ORGANISATION_TYPES } from '@/constants/organisations/organisationTypes'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
@@ -26,12 +26,12 @@ export default function OrganisationFields({
   return (
     <div className="flex flex-col gap-4">
       <TextInputGroup
-        label={<Trans locale={locale}>Votre organisation</Trans>}
+        label={<TransClient>Votre organisation</TransClient>}
         value={defaultValues.name}
         {...register('name')}
       />
       <Select
-        label={<Trans locale={locale}>Type d'organisation</Trans>}
+        label={<TransClient>Type d'organisation</TransClient>}
         value={defaultValues.organisationType}
         {...register('organisationType', {
           required: t('Ce champ est requis'),
@@ -46,10 +46,10 @@ export default function OrganisationFields({
         type="number"
         label={
           <p className="mb-0 flex w-full justify-between">
-            <Trans locale={locale}>Nombre de collaborateurs</Trans>{' '}
+            <TransClient>Nombre de collaborateurs</TransClient>{' '}
             <span className="text-secondary-700 font-bold italic">
               {' '}
-              <Trans locale={locale}>facultatif</Trans>
+              <TransClient>facultatif</TransClient>
             </span>
           </p>
         }

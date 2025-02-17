@@ -1,7 +1,7 @@
 'use client'
 
 import InformationIconWithTooltip from '@/components/messages/InformationIconWithTooltip'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/metric'
 import Separator from '@/design-system/layout/Separator'
 import type { Simulation } from '@/types/organisations'
@@ -85,28 +85,28 @@ export default function PollStatisticsCharts({
   return (
     <section className="my-12 rounded-xl bg-gray-100 px-8 pt-8 pb-4">
       <h2>
-        <Trans locale={locale}>Répartition des empreintes carbone</Trans>
+        <TransClient>Répartition des empreintes carbone</TransClient>
         <InformationIconWithTooltip
           id="resultats-groupe"
           className="ml-1 inline-block">
           <>
             <p className="mb-1 text-sm">
-              <Trans locale={locale}>
+              <TransClient>
                 Chaque participation est représentée par une barre verticale.
                 Votre score est affiché en{' '}
                 <span className="text-secondary-700 font-bold">rose</span>.
-              </Trans>
+              </TransClient>
             </p>
             <p className="mb-0 text-sm">
-              <Trans locale={locale}>
+              <TransClient>
                 Pour faciliter la lecture, les valeurs supérieures à 100 t sont
                 retirées.
-              </Trans>{' '}
+              </TransClient>{' '}
               {isAdmin && (
-                <Trans locale={locale}>
+                <TransClient>
                   Elle seront toutefois prises en compte lors de l'export de
                   données.
-                </Trans>
+                </TransClient>
               )}
             </p>
           </>
@@ -123,10 +123,10 @@ export default function PollStatisticsCharts({
       <section>
         <div className="flex items-baseline justify-between md:max-w-[16rem]">
           <h3>
-            <Trans locale={locale}>Par catégorie</Trans>
+            <TransClient>Par catégorie</TransClient>
           </h3>
           <p className="mb-0 text-[0.75rem]">
-            <Trans locale={locale}>Moyenne :</Trans>
+            <TransClient>Moyenne :</TransClient>
           </p>
         </div>
         <ul>
@@ -152,9 +152,9 @@ export default function PollStatisticsCharts({
             <div>
               <strong className="text-lg">0</strong>{' '}
               {shouldUseAbbreviation ? (
-                <Trans locale={locale}>t CO₂e / an</Trans>
+                <TransClient>t CO₂e / an</TransClient>
               ) : (
-                <Trans locale={locale}>tonnes CO₂e / an</Trans>
+                <TransClient>tonnes CO₂e / an</TransClient>
               )}
             </div>
 
@@ -162,7 +162,7 @@ export default function PollStatisticsCharts({
               <div className="flex items-center gap-3">
                 <div className="bg-secondary-700 h-4 w-1" />
                 <p className="mb-0 text-sm text-gray-600">
-                  <Trans locale={locale}>Votre résultat</Trans>
+                  <TransClient>Votre résultat</TransClient>
                 </p>
               </div>
             )}
@@ -170,9 +170,9 @@ export default function PollStatisticsCharts({
             <div>
               <strong className="text-lg">{maxValueOfAllCategories}</strong>{' '}
               {shouldUseAbbreviation ? (
-                <Trans locale={locale}>t CO₂e / an</Trans>
+                <TransClient>t CO₂e / an</TransClient>
               ) : (
-                <Trans locale={locale}>tonnes CO₂e / an</Trans>
+                <TransClient>tonnes CO₂e / an</TransClient>
               )}
             </div>
           </div>

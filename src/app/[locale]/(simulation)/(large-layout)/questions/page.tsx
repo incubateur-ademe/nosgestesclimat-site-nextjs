@@ -1,4 +1,4 @@
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -24,11 +24,16 @@ export async function generateMetadata({
   })
 }
 
-export default function QuestionsPage() {
+export default async function QuestionsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
   return (
     <>
       <Title>
-        <Trans locale={locale}>Questions</Trans>
+        <TransServer locale={locale}>Questions</TransServer>
       </Title>
       <Questions />
     </>

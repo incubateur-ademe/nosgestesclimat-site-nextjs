@@ -2,7 +2,7 @@
 
 import Link from '@/components/Link'
 import ChevronRight from '@/components/icons/ChevronRight'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { classementClickOrganisation } from '@/constants/tracking/pages/classements'
 import { getLinkToPollDashboard } from '@/helpers/navigation/pollPages'
 import type { Organisation, OrganisationPoll } from '@/types/organisations'
@@ -35,7 +35,7 @@ export default function PollItem({ organisation, poll }: Props) {
             <div className="flex gap-1 text-sm text-violet-900">
               <span className="whitespace-nowrap">
                 {expectedNumberOfParticipants}{' '}
-                <Trans locale={locale}>participant</Trans>
+                <TransClient>participant</TransClient>
                 {expectedNumberOfParticipants > 1 ? 's' : ''}
               </span>
             </div>

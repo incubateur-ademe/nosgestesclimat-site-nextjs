@@ -1,5 +1,5 @@
 import DailyGestures from '@/components/landing-pages/DailyGestures'
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import { trackingActionClickPageBottom } from '@/constants/tracking/actions'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import {
@@ -23,14 +23,14 @@ export default async function DailyGestureWaterFootprint({
   return (
     <DailyGestures
       title={
-        <Trans locale={locale}>
+        <TransServer locale={locale}>
           Les gestes du quotidien pour préserver nos ressources en eau
-        </Trans>
+        </TransServer>
       }
       description={
         <>
           <p>
-            <Trans locale={locale}>
+            <TransServer locale={locale}>
               L’eau est{' '}
               <strong className="text-primary-600">au cœur de nos vies</strong>{' '}
               et de notre consommation quotidienne, bien{' '}
@@ -40,14 +40,14 @@ export default async function DailyGestureWaterFootprint({
               . Chaque jour, des milliers de litres d’eau sont utilisés pour
               produire les aliments que nous mangeons, les vêtements que nous
               portons et l’énergie que nous consommons.
-            </Trans>
+            </TransServer>
           </p>
 
           <p className="mb-0">
-            <Trans locale={locale}>
+            <TransServer locale={locale}>
               Voici quelques exemples de gestes qui auront un impact important
               sur votre consommation eau indirecte :
-            </Trans>
+            </TransServer>
           </p>
         </>
       }

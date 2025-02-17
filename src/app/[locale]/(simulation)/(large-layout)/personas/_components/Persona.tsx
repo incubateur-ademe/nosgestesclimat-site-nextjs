@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { fixSituationWithPartialMosaic } from '@/helpers/personas/fixSituationWithPartialMosaic'
@@ -79,13 +79,13 @@ export default function Persona({ persona, personaDottedName }: Props) {
             hideTutorial('testIntro')
             router.refresh()
           }}>
-          <Trans locale={locale}>Sélectionner</Trans>
+          <TransClient>Sélectionner</TransClient>
         </Button>
       )}
 
       {isCurrentPersonaSelected && (
         <p className="align-self-end mt-auto mb-0 p-1 text-sm font-bold">
-          <Trans locale={locale}>Sélectionné·e</Trans>
+          <TransClient>Sélectionné·e</TransClient>
         </p>
       )}
     </Card>

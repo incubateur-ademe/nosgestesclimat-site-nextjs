@@ -1,5 +1,7 @@
+'use client'
+
 import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -41,8 +43,7 @@ export default function Category({
         icons={icons?.slice(0, 2)} // No idea why we need to remove the last character on some icons
         displayValue={
           <span>
-            <strong>{formattedValue}</strong>{' '}
-            <Trans locale={locale}>{unit}</Trans>
+            <strong>{formattedValue}</strong> <TransClient>{unit}</TransClient>
           </span>
         }
       />

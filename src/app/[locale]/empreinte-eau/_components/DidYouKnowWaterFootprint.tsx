@@ -1,5 +1,5 @@
 import DidYouKnowSlider from '@/components/landing-pages/DidYouKnowSlider'
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 
 export default function DidYouKnowWaterFootprint({
   locale,
@@ -12,29 +12,35 @@ export default function DidYouKnowWaterFootprint({
         {
           illustration: '/images/icons/icone-ordinateur.svg',
           content: (
-            <Trans locale={locale}>
+            <TransServer locale={locale}>
               La production d’un ordinateur nécessite 195 000 litres d’eau.
-            </Trans>
+            </TransServer>
           ),
-          highlight: <Trans locale={locale}>Considérable, non ?</Trans>,
+          highlight: (
+            <TransServer locale={locale}>Considérable, non ?</TransServer>
+          ),
         },
         {
           illustration: '/images/icons/icone-jeans.svg',
           content: (
-            <Trans locale={locale}>
+            <TransServer locale={locale}>
               L’empreinte eau d'un jean est de 30 000 litres d'eau.
-            </Trans>
+            </TransServer>
           ),
-          highlight: <Trans locale={locale}>Impressionnant, non ?</Trans>,
+          highlight: (
+            <TransServer locale={locale}>Impressionnant, non ?</TransServer>
+          ),
         },
         {
           illustration: '/images/icons/icone-oeuf.svg',
           content: (
-            <Trans locale={locale}>
+            <TransServer locale={locale}>
               Il faut 75 litres d’eau pour produire un oeuf.
-            </Trans>
+            </TransServer>
           ),
-          highlight: <Trans locale={locale}>Considérable, non ?</Trans>,
+          highlight: (
+            <TransServer locale={locale}>Considérable, non ?</TransServer>
+          ),
         },
       ]}
     />

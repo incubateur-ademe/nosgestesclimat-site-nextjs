@@ -1,4 +1,4 @@
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { fetchArticlePageContent } from '@/services/cms/fetchArticlePageContent'
 import { fetchArticlePageMetadata } from '@/services/cms/fetchArticlePageMetadata'
@@ -79,17 +79,17 @@ export default async function ArticlePage({
             <div className="flex flex-row gap-3">
               <p className="mb-0 text-lg">
                 <span className="text-primary-600">
-                  <Trans locale={locale}>Temps de lecture :</Trans>
+                  <TransServer locale={locale}>Temps de lecture :</TransServer>
                 </span>{' '}
                 {Math.round(article.duration / 60)}{' '}
-                <Trans locale={locale}>minutes</Trans>
+                <TransServer locale={locale}>minutes</TransServer>
               </p>
 
               <span className="text-lg text-gray-500">|</span>
 
               <p className="mb-0 text-lg">
                 <span className="text-primary-600">
-                  <Trans locale={locale}>Publié le :</Trans>
+                  <TransServer locale={locale}>Publié le :</TransServer>
                 </span>{' '}
                 {article.createdAt
                   ? new Date(article.createdAt).toLocaleDateString('fr')

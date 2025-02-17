@@ -2,7 +2,7 @@
 
 import SettingsIcon from '@/components/icons/SettingsIcon'
 import OrganisationFetchError from '@/components/organisations/OrganisationFetchError'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import { organisationsDashboardClickParameters } from '@/constants/tracking/pages/organisationsDashboard'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { unformatAdministratorName } from '@/helpers/organisations/unformatAdministratorName'
@@ -43,7 +43,7 @@ export default function OrganisationPage() {
         <div>
           <h1>
             <span>
-              <Trans locale={locale}>Bienvenue</Trans>{' '}
+              <TransClient>Bienvenue</TransClient>{' '}
               <span className="text-primary-700">
                 {capitalizeString(
                   unformatAdministratorName(
@@ -56,12 +56,12 @@ export default function OrganisationPage() {
           </h1>
 
           <p className="max-w-lg">
-            <Trans locale={locale}>Sur l'espace organisation de </Trans>{' '}
+            <TransClient>Sur l'espace organisation de </TransClient>{' '}
             <strong className="text-secondary-700">{organisation?.name}</strong>
             .{' '}
-            <Trans locale={locale}>
+            <TransClient>
               Retrouvez vos campagnes et suivez leurs statistiques.
-            </Trans>
+            </TransClient>
           </p>
         </div>
         <ButtonLink
@@ -71,7 +71,7 @@ export default function OrganisationPage() {
           className="flex items-center self-start">
           <SettingsIcon className="fill-primary-700 mr-2" />
 
-          <Trans locale={locale}>Voir les paramètres</Trans>
+          <TransClient>Voir les paramètres</TransClient>
         </ButtonLink>
       </div>
 

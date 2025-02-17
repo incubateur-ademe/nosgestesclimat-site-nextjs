@@ -1,5 +1,7 @@
+'use client'
+
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Loader from '@/design-system/layout/Loader'
 import VerificationInput from 'react-verification-input'
 
@@ -35,7 +37,7 @@ export default function VerificationCodeInput({
       {inputError && (
         <div>
           <p className="mt-2 text-sm text-red-700">
-            <Trans locale={locale}>Le code est invalide</Trans>
+            <TransClient>Le code est invalide</TransClient>
           </p>
         </div>
       )}
@@ -45,7 +47,7 @@ export default function VerificationCodeInput({
           <Loader color="dark" size="sm" />
 
           <span>
-            <Trans locale={locale}>Nous vérifions votre code...</Trans>
+            <TransClient>Nous vérifions votre code...</TransClient>
           </span>
         </div>
       )}
@@ -55,7 +57,7 @@ export default function VerificationCodeInput({
           <CheckCircleIcon className="h-4 w-4 fill-green-700" />
 
           <span className="text-green-700">
-            <Trans locale={locale}>Votre code est valide !</Trans>
+            <TransClient>Votre code est valide !</TransClient>
           </span>
         </div>
       )}

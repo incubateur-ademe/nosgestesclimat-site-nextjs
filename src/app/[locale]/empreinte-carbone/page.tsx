@@ -1,7 +1,7 @@
 import DynamicCTAButton from '@/components/cta/DynamicCTAButtons'
 import Partners from '@/components/landing-pages/Partners'
 import JSONLD from '@/components/seo/JSONLD'
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -73,14 +73,14 @@ export default async function CarbonFootprintLandingPage(props: {
 
       <LandingPage
         heroTitle={
-          <Trans locale={locale}>
+          <TransServer locale={locale}>
             L'empreinte carbone, une première étape pour passer à l’action
-          </Trans>
+          </TransServer>
         }
         heroDescription={
           <div className="flex flex-col items-start gap-4 md:gap-6">
             <p className="mb-0">
-              <Trans locale={locale}>
+              <TransServer locale={locale}>
                 Calculez votre{' '}
                 <strong className="text-primary-600">empreinte carbone</strong>{' '}
                 en quelques minutes et découvrez les{' '}
@@ -90,7 +90,7 @@ export default async function CarbonFootprintLandingPage(props: {
                   réduire vos émissions
                 </strong>{' '}
                 de gaz à effet de serre.
-              </Trans>
+              </TransServer>
             </p>
             <div className="flex w-full justify-center md:justify-start">
               <DynamicCTAButton
@@ -135,7 +135,7 @@ export default async function CarbonFootprintLandingPage(props: {
             />
           </div>
         }
-        heroPartners={<Partners />}>
+        heroPartners={<Partners locale={locale} />}>
         <WhatItIsCarbon locale={locale} />
 
         <WhatDoWeMeasureCarbon locale={locale} />

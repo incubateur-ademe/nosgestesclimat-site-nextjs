@@ -2,7 +2,7 @@
 
 import FlagIcon from '@/components/icons/FlagIcon'
 import CountryFlag from '@/components/misc/CountryFlag'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
@@ -38,13 +38,13 @@ export default function Localisation({ supportedRegions }: Props) {
         <FlagIcon className="fill-primary-700 mr-3" aria-hidden />
 
         <span>
-          <Trans locale={locale}>Ma région de simulation</Trans>
+          <TransClient>Ma région de simulation</TransClient>
         </span>
       </h2>
       {region?.code && (
         <div className="my-4">
           <span>
-            <Trans locale={locale}>Vous faites cette simulation depuis :</Trans>{' '}
+            <TransClient>Vous faites cette simulation depuis :</TransClient>{' '}
             <strong>{region.name}</strong>
             <CountryFlag code={region.code} className="ml-2 inline-block" />.
           </span>
@@ -68,7 +68,7 @@ export default function Localisation({ supportedRegions }: Props) {
                       showTutorial('localisationBanner')
                     }
                   }}>
-                  <Trans locale={locale}>Revenir à ma région par défaut </Trans>{' '}
+                  <TransClient>Revenir à ma région par défaut </TransClient>{' '}
                   <span aria-label={initialRegion.name}>
                     <CountryFlag
                       code={initialRegion.code}
@@ -89,10 +89,10 @@ export default function Localisation({ supportedRegions }: Props) {
 
       {!region && (
         <p>
-          <Trans i18nKey="components.localisation.Localisation.warnMessage2">
+          <TransClient i18nKey="components.localisation.Localisation.warnMessage2">
             Nous n'avons pas pu détecter votre pays de simulation, le modèle
             Français vous est proposé par défaut.
-          </Trans>
+          </TransClient>
         </p>
       )}
       <RegionSelector supportedRegions={supportedRegions} />

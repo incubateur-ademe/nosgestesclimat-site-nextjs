@@ -1,7 +1,9 @@
+'use client'
+
 import Link from '@/components/Link'
 import PlaySignIcon from '@/components/icons/PlaySignIcon'
 import RestartIcon from '@/components/icons/RestartIcon'
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 import {
   profilClickCtaReprendre,
   profilClickCtaResultats,
@@ -46,7 +48,7 @@ export default function SimulationStarted() {
         </Card>
 
         <details className="mt-3 max-w-full text-sm">
-          <Trans i18nKey={'publicodes.Profil.locationDonnées'}>
+          <TransClient i18nKey={'publicodes.Profil.locationDonnées'}>
             <summary className="mb-2 cursor-pointer">
               Où sont mes données ?{' '}
             </summary>
@@ -54,9 +56,9 @@ export default function SimulationStarted() {
               Vos données sont stockées dans votre navigateur, vous avez donc le
               contrôle total sur elles.
             </span>
-          </Trans>{' '}
+          </TransClient>{' '}
           <Link href="/vie-privee" className="text-xs!">
-            <Trans locale={locale}>En savoir plus</Trans>
+            <TransClient>En savoir plus</TransClient>
           </Link>
         </details>
       </div>
@@ -68,7 +70,7 @@ export default function SimulationStarted() {
             color="primary"
             href={getLinkToEndPage()}
             trackingEvent={profilClickCtaResultats}>
-            <Trans locale={locale}>Voir mon résultat</Trans>
+            <TransClient>Voir mon résultat</TransClient>
           </ButtonLink>
         )}
 
@@ -80,7 +82,7 @@ export default function SimulationStarted() {
             trackingEvent={profilClickCtaReprendre}>
             <PlaySignIcon className="mr-2 fill-white" />
 
-            <Trans locale={locale}>Reprendre mon test</Trans>
+            <TransClient>Reprendre mon test</TransClient>
           </ButtonLink>
         )}
 
@@ -94,7 +96,7 @@ export default function SimulationStarted() {
           href={getLinkToSimulateurPage({ newSimulation: true })}>
           <RestartIcon className="fill-primary-700 mr-2" />
 
-          <Trans locale={locale}>Recommencer</Trans>
+          <TransClient>Recommencer</TransClient>
         </ButtonLink>
 
         <TutorialLink />

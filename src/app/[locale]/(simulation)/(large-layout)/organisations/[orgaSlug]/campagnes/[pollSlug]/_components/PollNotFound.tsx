@@ -1,13 +1,15 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import TransClient from '@/components/translation/trans/TransClient'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 
 export default function PollNotFound() {
   return (
     <>
       <h1 className="text-xl">
-        <Trans locale={locale}>
+        <TransClient>
           Oups, nous n'avons pas trouvé les résultats de cette campagne
-        </Trans>
+        </TransClient>
       </h1>
 
       <p>

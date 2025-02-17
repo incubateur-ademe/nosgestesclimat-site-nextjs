@@ -1,5 +1,5 @@
 import MotivationSection from '@/components/landing-pages/MotivationSection'
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import Image from 'next/image'
 
 export default async function MotivationSectionCarbonFootprint({
@@ -9,22 +9,26 @@ export default async function MotivationSectionCarbonFootprint({
 }) {
   return (
     <MotivationSection
-      title={<Trans locale={locale}>Accélérons la transition écologique</Trans>}
+      title={
+        <TransServer locale={locale}>
+          Accélérons la transition écologique
+        </TransServer>
+      }
       description={
         <p className="mb-0">
-          <Trans locale={locale}>
+          <TransServer locale={locale}>
             Il est urgent de réduire nos émissions de gaz à effet de serre et
             d’opérer une transition vers des modes de vie bas-carbone. Individus
             et organisations, il est temps d’agir :{' '}
             <strong className="text-primary-600">
               mesurer son empreinte carbone est la première étape !
             </strong>
-          </Trans>
+          </TransServer>
         </p>
       }
       motivationItems={[
         {
-          title: <Trans locale={locale}>Passer le test</Trans>,
+          title: <TransServer locale={locale}>Passer le test</TransServer>,
           icon: (
             <div className="flex h-12 w-12 items-center justify-center">
               <Image
@@ -36,14 +40,14 @@ export default async function MotivationSectionCarbonFootprint({
             </div>
           ),
           description: (
-            <Trans locale={locale}>
+            <TransServer locale={locale}>
               Évaluer son empreinte écologique (carbone et eau) pour identifier
               les principaux leviers d’action.
-            </Trans>
+            </TransServer>
           ),
         },
         {
-          title: <Trans locale={locale}>Agir au quotidien</Trans>,
+          title: <TransServer locale={locale}>Agir au quotidien</TransServer>,
           icon: (
             <div className="flex h-12 w-12 items-center justify-center">
               <Image
@@ -55,14 +59,16 @@ export default async function MotivationSectionCarbonFootprint({
             </div>
           ),
           description: (
-            <Trans locale={locale}>
+            <TransServer locale={locale}>
               Découvrir quelles actions ont le plus d’impact pour réduire son
               empreinte carbone.
-            </Trans>
+            </TransServer>
           ),
         },
         {
-          title: <Trans locale={locale}>S'engager collectivement</Trans>,
+          title: (
+            <TransServer locale={locale}>S'engager collectivement</TransServer>
+          ),
           icon: (
             <div className="flex h-12 w-12 items-center justify-center">
               <Image
@@ -74,10 +80,10 @@ export default async function MotivationSectionCarbonFootprint({
             </div>
           ),
           description: (
-            <Trans locale={locale}>
+            <TransServer locale={locale}>
               Les challenges entre amis ou la diffusion des outils en entreprise
               permettent de mobiliser votre entourage.
-            </Trans>
+            </TransServer>
           ),
         },
       ]}

@@ -1,6 +1,9 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import TransClient from '@/components/translation/trans/TransClient'
 import type { User } from '@/publicodes-state/types'
 import type { PublicOrganisationPoll } from '@/types/organisations'
+import type { ReactNode } from 'react'
 
 function formatSlugToName(slug: string) {
   return decodeURIComponent(slug).replaceAll('-', ' ')
@@ -10,12 +13,12 @@ function getBaseItems({ pathname }: { pathname: string }) {
   return [
     {
       href: '/',
-      label: <Trans locale={locale}>Accueil</Trans>,
+      label: <TransClient>Accueil</TransClient>,
       isActive: pathname === '/',
     },
     {
       href: '/organisations',
-      label: <Trans locale={locale}>Organisations</Trans>,
+      label: <TransClient>Organisations</TransClient>,
       isActive: pathname === '/organisations',
     },
   ]
@@ -52,8 +55,7 @@ function getOrganisationEspaceItems({
           <>
             {poll?.name ?? (
               <span>
-                <Trans locale={locale}>Campagne de</Trans>{' '}
-                {poll?.organisation.name}
+                <TransClient>Campagne de</TransClient> {poll?.organisation.name}
               </span>
             )}
           </>
@@ -67,7 +69,7 @@ function getOrganisationEspaceItems({
     if (pathname.includes('parametres')) {
       items.push({
         href: `/organisations/${params.orgaSlug}/parametres`,
-        label: <Trans locale={locale}>Paramètres</Trans>,
+        label: <TransClient>Paramètres</TransClient>,
         isActive:
           pathname === `/organisations/${params.orgaSlug}/parametres` ||
           pathname ===
@@ -92,7 +94,7 @@ export function getOrganisationItems({
   poll?: PublicOrganisationPoll | null
 }): {
   href: string
-  label: string | JSX.Element
+  label: string | ReactNode
   isActive: boolean
 }[] {
   if (!pathname.includes('organisations')) {
@@ -105,7 +107,7 @@ export function getOrganisationItems({
   if (pathname.includes('demander-demo')) {
     items.push({
       href: '/organisations/demander-demo',
-      label: <Trans locale={locale}>Demander une démo</Trans>,
+      label: <TransClient>Demander une démo</TransClient>,
       isActive: pathname === '/organisations/demander-demo',
     })
     return items

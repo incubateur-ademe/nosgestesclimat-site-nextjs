@@ -1,4 +1,4 @@
-import Trans from '@/components/translation/Trans'
+import TransClient from '@/components/translation/trans/TransClient'
 
 export default function PersonaExplanations() {
   return (
@@ -6,12 +6,12 @@ export default function PersonaExplanations() {
       <details className="pb-4">
         <summary>
           <h2 className="inline">
-            <Trans locale={locale}>Qui sont-ils ?</Trans>
+            <TransClient>Qui sont-ils ?</TransClient>
           </h2>
         </summary>
 
         <div className="mt-4">
-          <Trans i18nKey={'publicodes.Personas.description'}>
+          <TransClient i18nKey={'publicodes.Personas.description'}>
             Nous les avons définis pour qu’ils représentent la diversité des cas
             d’usage du calculateur.
             <i>
@@ -71,19 +71,19 @@ export default function PersonaExplanations() {
 
               <li>Leurs loisirs : de la culture, du sport, du bien-être…</li>
             </ul>
-          </Trans>
+          </TransClient>
         </div>
       </details>
 
       <details>
         <summary>
           <h2 className="inline">
-            <Trans locale={locale}>Comment les mettons-nous à jour ?</Trans>
+            <TransClient>Comment les mettons-nous à jour ?</TransClient>
           </h2>
         </summary>
 
         <div className="mt-4">
-          <Trans i18nKey={'publicodes.Personas.maj'}>
+          <TransClient i18nKey={'publicodes.Personas.maj'}>
             Pour qu’ils ou elles continuent de représenter la diversité des cas
             d’usage du calculateur d’empreinte carbone, nous les éditons à
             chaque ajout ou modification de ce dernier, en respectant les règles
@@ -98,7 +98,7 @@ export default function PersonaExplanations() {
                 donc attribué la valeur par défaut donnée dans le calculateur).
               </li>
             </ul>
-          </Trans>
+          </TransClient>
         </div>
       </details>
     </div>

@@ -1,21 +1,25 @@
 import WhatDoWeMeasure from '@/components/landing-pages/WhatDoWeMeasure'
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import Image from 'next/image'
 
 export default function WhatDoWeMeasureCarbon({ locale }: { locale: string }) {
   return (
     <WhatDoWeMeasure
-      title={<Trans locale={locale}>Calculer son empreinte carbone</Trans>}
+      title={
+        <TransServer locale={locale}>
+          Calculer son empreinte carbone
+        </TransServer>
+      }
       description={
         <p className="mb-0 text-center">
-          <Trans locale={locale}>
+          <TransServer locale={locale}>
             Le calculateur carbone permet de comprendre quels sont nos usages
             qui contribuent le plus au changement climatique et de saisir{' '}
             <strong className="text-primary-600">
               les actions qui auraient le plus d’impact
             </strong>{' '}
             pour le réduire.
-          </Trans>
+          </TransServer>
         </p>
       }
       shouldDescriptionBeBeforeList
@@ -32,7 +36,9 @@ export default function WhatDoWeMeasureCarbon({ locale }: { locale: string }) {
               />
             </div>
           ),
-          title: <Trans locale={locale}>Vos modes de déplacement</Trans>,
+          title: (
+            <TransServer locale={locale}>Vos modes de déplacement</TransServer>
+          ),
         },
         {
           icon: (
@@ -45,7 +51,9 @@ export default function WhatDoWeMeasureCarbon({ locale }: { locale: string }) {
               />
             </div>
           ),
-          title: <Trans locale={locale}>Votre régime alimentaire</Trans>,
+          title: (
+            <TransServer locale={locale}>Votre régime alimentaire</TransServer>
+          ),
         },
         {
           icon: (
@@ -58,7 +66,11 @@ export default function WhatDoWeMeasureCarbon({ locale }: { locale: string }) {
               />
             </div>
           ),
-          title: <Trans locale={locale}>Vos consommations énergétiques</Trans>,
+          title: (
+            <TransServer locale={locale}>
+              Vos consommations énergétiques
+            </TransServer>
+          ),
         },
 
         {
@@ -72,7 +84,7 @@ export default function WhatDoWeMeasureCarbon({ locale }: { locale: string }) {
               />
             </div>
           ),
-          title: <Trans locale={locale}>Vos achats</Trans>,
+          title: <TransServer locale={locale}>Vos achats</TransServer>,
         },
       ]}
     />

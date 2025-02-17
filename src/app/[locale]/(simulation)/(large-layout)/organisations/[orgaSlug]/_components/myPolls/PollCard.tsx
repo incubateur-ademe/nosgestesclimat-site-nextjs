@@ -1,5 +1,6 @@
 'use client'
 
+import TransClient from '@/components/translation/trans/TransClient'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import type { OrganisationPoll } from '@/types/organisations'
 import dayjs from 'dayjs'
@@ -21,14 +22,14 @@ export default function PollCard({ poll }: Props) {
         {poll.name ?? (
           <>
             <span className="mr-3 text-gray-600 italic">
-              <Trans locale={locale}>Sans titre</Trans>
+              <TransClient>Sans titre</TransClient>
             </span>
           </>
         )}
       </h3>
 
       <p className="mb-8 text-sm font-light">
-        <Trans locale={locale}>Créée le </Trans>
+        <TransClient>Créée le </TransClient>
         {dayjs(poll.createdAt).format('DD/MM/YYYY')}
       </p>
 
@@ -39,9 +40,9 @@ export default function PollCard({ poll }: Props) {
 
         <p className="text-default text-base font-light">
           {poll.simulations.finished > 1 ? (
-            <Trans locale={locale}>Simulations terminées</Trans>
+            <TransClient>Simulations terminées</TransClient>
           ) : (
-            <Trans locale={locale}>Simulation terminée</Trans>
+            <TransClient>Simulation terminée</TransClient>
           )}
         </p>
       </div>
@@ -49,7 +50,7 @@ export default function PollCard({ poll }: Props) {
       <ButtonLink
         className="w-full"
         href={`/organisations/${orgaSlug}/campagnes/${poll?.slug}`}>
-        <Trans locale={locale}>Voir le détail</Trans>
+        <TransClient>Voir le détail</TransClient>
       </ButtonLink>
     </div>
   )
