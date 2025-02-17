@@ -1,6 +1,6 @@
 'use client'
 
-import { StyledLink } from '@/components/links/StyledLink'
+import Link from '@/components/Link'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 import type { ReactNode } from 'react'
 
@@ -14,11 +14,11 @@ export default function TitleDescLink({
   trackingEvent?: string[]
 }) {
   return (
-    <StyledLink
+    <Link
       className="text-[13px] md:text-base"
       href={href}
       onClick={() => trackingEvent && trackEvent(trackingEvent)}>
       {text}
-    </StyledLink>
+    </Link>
   )
 }

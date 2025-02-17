@@ -1,3 +1,4 @@
+import { marianne } from '@/app/[locale]/layout'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { twMerge } from 'tailwind-merge'
@@ -23,7 +24,7 @@ type Props = {
 export default function ToastDisplay(props: Props) {
   return (
     <ToastContainer
-      className={twMerge(props?.className, 'font-sans')}
+      className={twMerge(props?.className, marianne.className)}
       aria-live="polite"
       position="bottom-right"
       {...props}

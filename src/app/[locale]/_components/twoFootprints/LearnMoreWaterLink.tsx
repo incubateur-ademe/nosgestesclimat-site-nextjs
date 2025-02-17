@@ -1,17 +1,17 @@
 'use client'
 
-import { StyledLink } from '@/components/links/StyledLink'
+import Link from '@/components/Link'
 import TransClient from '@/components/translation/trans/TransClient'
 import { learnMoreWaterLink } from '@/constants/tracking/pages/mainLanding'
 import { trackEvent } from '@/utils/matomo/trackEvent'
 
 export default function LearnMoreCarbonLink() {
   return (
-    <StyledLink
+    <Link
       href="/empreinte-eau"
       onClick={() => trackEvent(learnMoreWaterLink)}
       className="text-[13px] md:text-base">
       <TransClient>En savoir plus sur l'empreinte eau</TransClient>
-    </StyledLink>
+    </Link>
   )
 }

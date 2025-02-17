@@ -2,54 +2,6 @@
 
 @config '../../../tailwind.config.js';
 
-@font-face {
-  font-family: 'Marianne';
-  src: url('../../../public/fonts/Marianne-Thin.woff2') format('woff2');
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Marianne';
-  src: url('../../../public/fonts/Marianne-Light.woff2') format('woff2');
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Marianne';
-  src: url('../../../public/fonts/Marianne-Regular.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Marianne';
-  src: url('../../../public/fonts/Marianne-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Marianne';
-  src: url('../../../public/fonts/Marianne-Bold.woff2') format('woff2');
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Marianne';
-  src: url('../../../public/fonts/Marianne-ExtraBold.woff2') format('woff2');
-  font-weight: 800;
-  font-style: normal;
-}
-
-@theme {
-  --color-heroLightBackground: #f0f8ff;
-  --color-landingLightBackground: #f6f6f5;
-  --font-sans: 'Marianne', sans-serif;
-}
-
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
@@ -175,6 +127,11 @@ html,
 body {
   margin: 0;
   padding: 0;
+}
+
+a {
+  @apply text-primary-700 hover:text-primary-800 break-words underline transition-colors;
+  word-break: break-word;
 }
 
 img {

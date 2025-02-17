@@ -4,9 +4,46 @@ import '@/locales/initClient'
 import '@/locales/initServer'
 import { captureException } from '@sentry/nextjs'
 import { dir } from 'i18next'
+import localFont from 'next/font/local'
 import Script from 'next/script'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
+
+export const marianne = localFont({
+  src: [
+    {
+      path: '../../../public/fonts/Marianne-Thin.woff2',
+      weight: '100',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/Marianne-Light.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/Marianne-Regular.woff2',
+      weight: 'normal',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/Marianne-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/Marianne-Bold.woff2',
+      weight: 'bold',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/Marianne-ExtraBold.woff2',
+      weight: '800',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-marianne',
+})
 
 export default async function RootLayout({
   children,
@@ -82,7 +119,8 @@ export default async function RootLayout({
           }
         </head>
 
-        <body className="text-default bg-white transition-colors duration-700">
+        <body
+          className={`${marianne.className} bg-white text-default transition-colors duration-700`}>
           <Script id="script-user-agent">{`
             const b = document.documentElement;
             b.setAttribute('data-useragent', navigator.userAgent);
@@ -101,7 +139,7 @@ export default async function RootLayout({
     captureException(error)
     return (
       <html lang="fr">
-        <body className="text-default bg-white">
+        <body className={`${marianne.className} bg-white text-default`}>
           <div className="flex h-screen flex-col items-center justify-center">
             <ErrorContent />
           </div>

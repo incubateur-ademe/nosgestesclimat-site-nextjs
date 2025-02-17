@@ -28,8 +28,7 @@ export default function GestureSelector({
                   sizeClassNames.xs,
                   'my-1 border-2 border-primary-100 bg-primary-50 text-primary-800 transition-colors hover:bg-primary-100',
                   selectedCategory === categoryName &&
-                    'border-primary-500 bg-primary-100 text-primary-800',
-                  'cursor-pointer'
+                    'border-primary-500 bg-primary-100 text-primary-800'
                 )}
                 onClick={() => setSelectedCategory(categoryName)}>
                 <TransClient>{categoryName}</TransClient>

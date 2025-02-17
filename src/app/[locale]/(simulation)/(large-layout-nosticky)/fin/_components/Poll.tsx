@@ -39,7 +39,7 @@ export default function Poll() {
   }
 
   return (
-    <Card className="bg-primary-100 mb-4 w-[24rem] max-w-full flex-row items-center justify-between gap-4 border-none">
+    <Card className="mb-4 w-[24rem] max-w-full flex-row items-center justify-between gap-4 border-none bg-primary-100">
       <p className="m-0 flex-1">
         <TransClient>Découvrez les résultats du groupe</TransClient>{' '}
         <b>{isLoading ? '... ' : poll?.organisation?.name}</b>
@@ -50,7 +50,7 @@ export default function Poll() {
           pollSlug: lastPollSlug || '',
         })}
         trackingEvent={endClickPoll}
-        className="flex h-10! max-h-10 w-10! max-w-10 items-center justify-center rounded-full p-0 leading-none">
+        className="h-10! w-10! flex max-h-10 max-w-10 items-center justify-center rounded-full p-0 leading-none">
         →
       </ButtonLink>
     </Card>
