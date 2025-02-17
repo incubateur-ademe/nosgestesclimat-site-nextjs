@@ -123,9 +123,14 @@ export default function CustomQuestionForm({
   }
 
   return (
-    <div className="flex w-full flex-col items-start">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex w-full flex-col items-start">
       {!isEditMode && (
-        <label htmlFor="question" className="mb-2 text-sm">
+        <label
+          id="custom-question-label"
+          htmlFor="question"
+          className="mb-2 text-sm">
           <Trans>Votre question à ajouter</Trans>
         </label>
       )}
@@ -146,13 +151,10 @@ export default function CustomQuestionForm({
           <Trans>Annuler</Trans>
         </Button>
 
-        <Button
-          onClick={handleSubmit(onSubmit)}
-          size={isEditMode ? 'xs' : 'sm'}
-          className="mt-4">
+        <Button type="submit" size={isEditMode ? 'xs' : 'sm'} className="mt-4">
           {submitLabel ?? <Trans>Ajouter la question</Trans>}
         </Button>
       </div>
-    </div>
+    </form>
   )
 }
