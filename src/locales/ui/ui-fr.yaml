@@ -1155,3 +1155,6 @@ entries:
   'Avez-vous essayé <2>notre fonctionnalité “Groupes d’amis”</2> ? Elle vous permettra de vous comparer dans un classement : que celui ou celle ayant la plus faible empreinte gagne !': 'Avez-vous essayé <2>notre fonctionnalité “Groupes d’amis”</2> ? Elle vous permettra de vous comparer dans un classement : que celui ou celle ayant la plus faible empreinte gagne !'
   Coopérative: Coopérative
   Veuillez entrer un nombre positif: Veuillez entrer un nombre positif
+  Cookies utilisés par PostHog: Cookies utilisés par PostHog
+  "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :": "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :"
+  Voir la liste des cookies utilisés par PostHog: Voir la liste des cookies utilisés par PostHog
