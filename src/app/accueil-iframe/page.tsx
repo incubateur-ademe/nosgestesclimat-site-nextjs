@@ -1,6 +1,7 @@
-import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
-import JSONLD from '@/components/seo/JSONLD'
+import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
+import Partners from '@/components/landing-pages/Partners'
 import Trans from '@/components/translation/Trans'
+import { noIndexObject } from '@/constants/metadata'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -11,22 +12,8 @@ import {
   getLandingClickCTAResume,
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
-import dynamic from 'next/dynamic'
 import { headers } from 'next/headers'
-import Partners from '../components/landing-pages/Partners'
-import CollectivelyCommit from './_components/CollectivelyCommit'
-import DecryptChallenges from './_components/DecryptChallenges'
-import DidYouKnowMainLanding from './_components/DidYouKnowMainLanding'
-import InteractiveIllustration from './_components/InteractiveIllustration'
-import Mobilise from './_components/Mobilise'
-import ModelInfo from './_components/ModelInfo'
-import TheySpeakAboutUs from './_components/TheySpeakAboutUs'
-import TwoFootprints from './_components/TwoFootprints'
-
-const DynamicCTAButtons = dynamic(
-  () => import('@/components/cta/DynamicCTAButtons'),
-  { ssr: false, loading: () => <CTAButtonsPlaceholder /> }
-)
+import InteractiveIllustration from '../_components/InteractiveIllustration'
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
@@ -39,6 +26,7 @@ export async function generateMetadata() {
     alternates: {
       canonical: '',
     },
+    robots: noIndexObject,
   })
 }
 
@@ -48,18 +36,6 @@ export default async function Homepage() {
 
   return (
     <>
-      <JSONLD
-        jsonLd={[
-          {
-            '@context': 'https://schema.org',
-            '@type': 'Organization',
-            url: 'https://nosgestesclimat.fr',
-            name: 'Nos Gestes Climat',
-            logo: 'https://nosgestesclimat.fr/_next/image?url=%2Fimages%2Fmisc%2Fpetit-logo%403x.png&w=640&q=75',
-          },
-        ]}
-      />
-
       <LandingPage
         heroIllustration={<InteractiveIllustration />}
         heroTitle={<Trans>Connaissez-vous votre empreinte écologique ?</Trans>}
@@ -119,19 +95,7 @@ export default async function Homepage() {
           </div>
         }
         heroPartners={<Partners />}>
-        <TwoFootprints />
-
-        <DidYouKnowMainLanding />
-
-        <Mobilise />
-
-        <DecryptChallenges />
-
-        <CollectivelyCommit />
-
-        <ModelInfo />
-
-        <TheySpeakAboutUs />
+        <></>
       </LandingPage>
     </>
   )

@@ -2,7 +2,6 @@
 
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
-import { useIsClient } from '@/hooks/useIsClient'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useState } from 'react'
@@ -24,15 +23,13 @@ export default function DynamicCTAButtons({
   }
   withRestart?: boolean
 }) {
-  const { progression } = useCurrentSimulation()
-
-  const isClient = useIsClient()
-
   const {
     getLinkToSimulateurPage,
-    linkToSimulateurPageLabel,
     goToSimulateurPage,
+    linkToSimulateurPageLabel,
   } = useSimulateurPage()
+
+  const { progression } = useCurrentSimulation()
 
   const [isHover, setIsHover] = useState(false)
 
@@ -42,7 +39,6 @@ export default function DynamicCTAButtons({
         size="xl"
         className={twMerge(
           'transition-all duration-300 hover:bg-primary-900',
-          isClient ? 'opacity-100' : 'opacity-0',
           className
         )}
         href={getLinkToSimulateurPage()}
@@ -70,7 +66,7 @@ export default function DynamicCTAButtons({
               : '',
             'leading-none'
           )}>
-          <Trans>{linkToSimulateurPageLabel}</Trans>
+          {linkToSimulateurPageLabel}
         </span>
       </ButtonLink>
 
