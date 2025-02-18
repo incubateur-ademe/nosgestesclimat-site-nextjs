@@ -31,6 +31,7 @@ export default function Explanation() {
   useEffect(() => {
     if (progression > 0.05 && !tutorials.scoreExplanation && isFirstToggle) {
       hideTutorial(TUTORIALS.SCORE_EXPLANATION)
+      setShouldShowExplanation(false)
     }
   }, [hideTutorial, progression, tutorials.scoreExplanation, isFirstToggle])
 

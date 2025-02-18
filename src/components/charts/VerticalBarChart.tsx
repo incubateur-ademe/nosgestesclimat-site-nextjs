@@ -17,9 +17,7 @@ export default function VerticalBarChart({
         'mt-4 flex w-full justify-end rounded-xl border-none bg-gray-100 p-3 shadow-none',
         className
       )}>
-      <ul className="flex h-full items-end justify-between gap-2">
-        {children}
-      </ul>
+      <ul className="flex h-full items-end justify-between">{children}</ul>
     </Card>
   )
 }
