@@ -5,7 +5,7 @@ import Button from '@/design-system/inputs/Button'
 import Loader from '@/design-system/layout/Loader'
 import { useExportSituationToAgir } from '@/hooks/simulation/useExportSituationToAgir'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 

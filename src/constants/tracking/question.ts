@@ -73,9 +73,10 @@ export const questionTypeAnswer = ({ question, mosaicValue }: Props) => [
 ]
 
 // Figma comment #50
-export const questionClickSuggestion = ({ question }: Props) => [
+export const questionClickSuggestion = ({ question, answer }: Props) => [
   'trackEvent',
   'Simulateur',
   'Click Suggestion',
   question,
+  String(answer),
 ]

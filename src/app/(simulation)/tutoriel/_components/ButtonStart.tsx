@@ -5,7 +5,7 @@ import { tutorielClickSuivant } from '@/constants/tracking/pages/tutoriel'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 import { useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useMemo } from 'react'
 import { useFetchPublicPoll } from '../../../../hooks/organisations/polls/useFetchPublicPoll'
 

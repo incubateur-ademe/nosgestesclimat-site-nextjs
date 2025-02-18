@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { ReactNode } from 'react'
 
 export default function TitleDescLink({

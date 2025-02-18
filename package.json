@@ -67,6 +67,7 @@
     "next": "14.2.7",
     "next-i18n-router": "^4.1.1",
     "postcss": "8.4.36",
+    "posthog-js": "^1.217.2",
     "process": "^0.11.10",
     "publicodes": "1.4.0",
     "qrcode.react": "^3.1.0",
