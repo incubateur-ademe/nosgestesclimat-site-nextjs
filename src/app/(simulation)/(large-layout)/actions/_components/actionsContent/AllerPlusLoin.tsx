@@ -6,7 +6,7 @@ import Trans from '@/components/translation/Trans'
 import { actionsClickAdeme } from '@/constants/tracking/pages/actions'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
 export default function AllerPlusLoin() {
   const { t } = useClientTranslation()

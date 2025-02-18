@@ -7,7 +7,7 @@ import {
 } from '@/constants/tracking/pages/simulateur'
 import { useSimulateurGuard } from '@/hooks/navigation/useSimulateurGuard'
 import { useTrackSimulateur } from '@/hooks/tracking/useTrackSimulateur'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useCallback, useState } from 'react'
 import SaveModal from './_components/SaveModal'
 import Simulateur from './_components/Simulateur'

@@ -13,7 +13,7 @@ import CopyInput from '@/design-system/inputs/CopyInput'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useUser } from '@/publicodes-state'
 import type { PublicOrganisationPoll } from '@/types/organisations'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useParams } from 'next/navigation'
 
 type Props = {

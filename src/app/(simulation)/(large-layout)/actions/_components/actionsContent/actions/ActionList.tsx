@@ -8,7 +8,7 @@ import {
   useEngine,
   useUser,
 } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { Fragment } from 'react'
 import ActionCard from './ActionCard'
 import ActionForm from './ActionForm'

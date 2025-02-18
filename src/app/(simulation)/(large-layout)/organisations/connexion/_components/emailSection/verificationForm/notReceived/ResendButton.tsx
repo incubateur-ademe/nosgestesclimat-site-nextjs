@@ -8,7 +8,7 @@ import { organisationsConnexionClickCode } from '@/constants/tracking/pages/orga
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { UseMutateAsyncFunction } from '@tanstack/react-query'
 import React, { useEffect, useRef, useState } from 'react'
 

@@ -1,11 +1,12 @@
 import Trans from '@/components/translation/Trans'
 import Card from '@/design-system/layout/Card'
 import { useLocale } from '@/hooks/useLocale'
+import type { Newsletter } from '@/hooks/useMainNewsletter'
 import { formatPercentage, formatValue } from '../utils/formatFigure'
 import Sources from './Sources'
 
 type Props = {
-  allSubscribers: any
+  mainNewsletter?: Newsletter
   allSharedSimulationEventsData: any
   currentMonthWebsitesData: any
   currentMonthSocialsData: any
@@ -14,7 +15,7 @@ type Props = {
 }
 
 export default function AcquisitionBlock({
-  allSubscribers,
+  mainNewsletter,
   allSharedSimulationEventsData,
   currentMonthWebsitesData,
   currentMonthSocialsData,
@@ -27,9 +28,11 @@ export default function AcquisitionBlock({
       <div className="mt-4">
         <div className="flex flex-row gap-4">
           <Card className="flex-1">
-            <strong className="text-3xl">
-              {formatValue(allSubscribers?.data, locale)}
-            </strong>{' '}
+            {!!mainNewsletter && (
+              <strong className="text-3xl">
+                {formatValue(mainNewsletter.totalSubscribers, locale)}
+              </strong>
+            )}
             <p className="mb-0 text-sm">
               <Trans>inscrits à l'infolettre</Trans>
             </p>

@@ -13,7 +13,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { usePollQueryParams } from '@/hooks/organisations/usePollQueryParams'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useContext, useEffect, useState } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
 

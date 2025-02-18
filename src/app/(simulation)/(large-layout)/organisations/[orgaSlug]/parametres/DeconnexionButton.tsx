@@ -5,7 +5,7 @@ import Trans from '@/components/translation/Trans'
 import { organisationsParametersLogout } from '@/constants/tracking/pages/organisationsParameters'
 import Button from '@/design-system/inputs/Button'
 import { useLogout } from '@/hooks/authentication/useLogout'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 

@@ -6,7 +6,7 @@ import Trans from '@/components/translation/Trans'
 import { classementClickOrganisation } from '@/constants/tracking/pages/classements'
 import Badge from '@/design-system/layout/Badge'
 import type { Organisation } from '@/types/organisations'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
 export default function OrganisationItem({
   organisation,

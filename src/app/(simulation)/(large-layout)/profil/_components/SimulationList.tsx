@@ -10,7 +10,7 @@ import {
 import Button from '@/design-system/inputs/Button'
 import { useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
 export default function SimulationList() {
   const {

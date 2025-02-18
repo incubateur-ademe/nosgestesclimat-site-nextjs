@@ -1,5 +1,5 @@
 import { trackingSplitTesting } from '@/constants/tracking/misc'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useEffect } from 'react'
 
 export function useTrackSplitTesting() {

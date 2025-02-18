@@ -1,19 +1,15 @@
+import ErrorContent from '@/components/error/ErrorContent'
 import Footer from '@/components/layout/Footer'
 import { getGeolocation } from '@/helpers/getGeolocation'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import { dir } from 'i18next'
 import { currentLocale } from 'next-i18n-router'
-import dynamic from 'next/dynamic'
 import localFont from 'next/font/local'
 import Script from 'next/script'
 import type { PropsWithChildren } from 'react'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
-
-const ClientErrorContent = dynamic(
-  () => import('@/components/error/ErrorContent')
-)
 
 export const marianne = localFont({
   src: [
@@ -82,6 +78,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
                   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
                   _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
                   _paq.push(["setCookieDomain", "*.nosgestesclimat.fr"]);
+                  _paq.push(['setCookieSameSite', 'None']);
                   _paq.push(['enableLinkTracking']);
                   (function() {
                     var u="https://stats.beta.gouv.fr/";
@@ -105,6 +102,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
                 /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
                 _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
                 _paq.push(["setCookieDomain", "*.nosgestesclimat.fr"]);
+                _paq.push(['setCookieSameSite', 'None']);
                 _paq.push(['enableLinkTracking']);
                 (function() {
                   var u="https://stats.beta.gouv.fr/";
@@ -140,7 +138,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
       <html lang="fr">
         <body className={`${marianne.className} bg-white text-default`}>
           <div className="flex h-screen flex-col items-center justify-center">
-            <ClientErrorContent />
+            <ErrorContent />
           </div>
         </body>
       </html>

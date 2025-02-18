@@ -1,11 +1,18 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
-export const trackingIframe = (url: string) => [
+export const trackingIframeVisit = (url: string) => [
   'trackEvent',
   'Misc',
   'Iframe visit',
   `Iframe visit from ${url}`,
+]
+
+export const trackingIframeInteraction = (url: string) => [
+  'trackEvent',
+  'Misc',
+  'Iframe interaction',
+  `Iframe interaction from ${url}`,
 ]
 
 export const trackingLocale = (locale: string) => [
