@@ -1,4 +1,7 @@
-import { trackingIframe } from '@/constants/tracking/misc'
+import {
+  trackingIframeInteraction,
+  trackingIframeVisit,
+} from '@/constants/tracking/misc'
 import { trackEvent, trackPageView } from '@/utils/matomo/trackEvent'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
@@ -14,6 +17,25 @@ export function useTrackIframe(isIframe: boolean) {
   const [observed, setObserved] = useState(false)
   const [hasInteracted, setHasInteracted] = useState(false)
 
+  const getIntegratorUrl = (isIframe: boolean) => {
+    const urlParams = new URLSearchParams(window.location.search)
+
+    const isIframeParameterDefined = urlParams.get('iframe') !== null
+
+    if (isIframe && !isIframeParameterDefined) {
+      urlParams.set('iframe', '')
+      urlParams.set(
+        'integratorUrl',
+        document.location.ancestorOrigins &&
+          document.location.ancestorOrigins.length > 0
+          ? document.location.ancestorOrigins[0]
+          : document.referrer
+      )
+    }
+
+    return urlParams.get('integratorUrl') || "Pas d'URL d'intégration"
+  }
+
   // Set up the intersection observer
   useEffect(() => {
     if (!isIframe) {
@@ -28,7 +50,6 @@ export function useTrackIframe(isIframe: boolean) {
       setHasInteracted(true)
     }
 
-    node.addEventListener('mouseenter', handleInteraction)
     node.addEventListener('click', handleInteraction)
     node.addEventListener('touchstart', handleInteraction)
 
@@ -61,6 +82,11 @@ export function useTrackIframe(isIframe: boolean) {
     if (!observed && entry && entry.isIntersecting) {
       // Track the page view
       trackPageView(url)
+
+      // And with an event
+      const urlInteractor = getIntegratorUrl(isIframe)
+
+      trackEvent(trackingIframeVisit(urlInteractor))
     }
   }, [entry, observed, url, isIframe])
 
@@ -72,26 +98,10 @@ export function useTrackIframe(isIframe: boolean) {
 
     if (!observed && entry && entry.isIntersecting) {
       setObserved(true)
-      const urlParams = new URLSearchParams(window.location.search)
 
-      const isIframeParameterDefined = urlParams.get('iframe') !== null
+      const urlInteractor = getIntegratorUrl(isIframe)
 
-      if (isIframe && !isIframeParameterDefined) {
-        urlParams.set('iframe', '')
-        urlParams.set(
-          'integratorUrl',
-          document.location.ancestorOrigins &&
-            document.location.ancestorOrigins.length > 0
-            ? document.location.ancestorOrigins[0]
-            : document.referrer
-        )
-      }
-
-      trackEvent(
-        trackingIframe(
-          urlParams.get('integratorUrl') || "Pas d'URL d'intégration"
-        )
-      )
+      trackEvent(trackingIframeInteraction(urlInteractor))
     }
   }, [entry, observed, path, isIframe, hasInteracted])
 
