@@ -10,7 +10,7 @@ import {
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import CTACard from './CTACard'
 
 export default function OurTools() {

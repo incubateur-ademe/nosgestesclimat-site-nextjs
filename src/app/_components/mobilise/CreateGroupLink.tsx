@@ -3,7 +3,7 @@
 import Trans from '@/components/translation/Trans'
 import { createGroupLink } from '@/constants/tracking/pages/mainLanding'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
 export default function CreateGroupLink() {
   return (

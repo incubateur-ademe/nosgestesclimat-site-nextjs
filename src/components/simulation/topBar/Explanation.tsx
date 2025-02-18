@@ -8,7 +8,7 @@ import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 

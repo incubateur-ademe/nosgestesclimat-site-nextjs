@@ -20,7 +20,7 @@ import {
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 import Link from '../Link'

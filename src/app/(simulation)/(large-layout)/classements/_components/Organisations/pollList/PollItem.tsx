@@ -6,7 +6,7 @@ import Trans from '@/components/translation/Trans'
 import { classementClickOrganisation } from '@/constants/tracking/pages/classements'
 import { getLinkToPollDashboard } from '@/helpers/navigation/pollPages'
 import type { Organisation, OrganisationPoll } from '@/types/organisations'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
 type Props = {
   organisation: Organisation

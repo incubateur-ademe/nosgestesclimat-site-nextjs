@@ -11,10 +11,10 @@ import { subscribeToNewsletterBlog } from '@/constants/tracking/pages/newsletter
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useLocale } from '@/hooks/useLocale'
-import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
+import { useMainNewsletter } from '@/hooks/useMainNewsletter'
 import { useUser } from '@/publicodes-state'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
@@ -50,7 +50,7 @@ function SuccessMessage() {
 }
 
 export default function NewslettersBlock() {
-  const { data: numberSubscribers } = useNumberSubscribers()
+  const { data: mainNewsletter } = useMainNewsletter()
 
   const locale = useLocale()
 
@@ -143,7 +143,7 @@ export default function NewslettersBlock() {
             <CheckIcon className="mr-2 h-4 w-4 stroke-green-500" />
 
             <span className="text-sm text-gray-600">
-              {numberSubscribers?.toLocaleString(locale) ?? 0}{' '}
+              {mainNewsletter?.totalSubscribers.toLocaleString(locale) ?? 0}{' '}
               <Trans>personnes inscrites</Trans>
             </span>
           </p>

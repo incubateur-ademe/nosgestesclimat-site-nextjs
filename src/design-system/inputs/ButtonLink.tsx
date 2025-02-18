@@ -2,7 +2,7 @@
 
 import Link from '@/components/Link'
 import type { ButtonSize } from '@/types/values'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { HtmlHTMLAttributes, PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { baseClassNames, colorClassNames, sizeClassNames } from './Button'

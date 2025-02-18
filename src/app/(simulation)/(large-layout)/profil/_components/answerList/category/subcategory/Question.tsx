@@ -7,7 +7,7 @@ import { profilClickQuestion } from '@/constants/tracking/pages/profil'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import MosaicQuestion from './question/MosaicQuestion'
 

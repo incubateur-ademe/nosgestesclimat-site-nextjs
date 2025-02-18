@@ -4,7 +4,7 @@ import ChoiceInput from '@/components/misc/ChoiceInput'
 import { quizClickAnswer } from '@/constants/tracking/pages/quiz'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {

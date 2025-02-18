@@ -1,3 +1,4 @@
+import { ADMINISTRATOR_SEPARATOR } from '@/constants/organisations/administrator'
 import type { OrganisationTypeEnum } from '@/constants/organisations/organisationTypes'
 import { ORGANISATION_URL } from '@/constants/urls'
 import type {
@@ -46,8 +47,10 @@ export function useUpdateOrganisation() {
           : { numberOfCollaborators: null }),
         administrators: [
           {
-            ...(formData.administratorName
-              ? { name: formData.administratorName }
+            ...(formData.administratorFirstName
+              ? {
+                  name: `${formData.administratorFirstName}${ADMINISTRATOR_SEPARATOR}${formData.administratorLastName ?? ''}`,
+                }
               : { name: null }),
             ...(formData.administratorTelephone
               ? { telephone: formData.administratorTelephone }
