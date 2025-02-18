@@ -52,10 +52,11 @@ export default function Navigation({
           })}
           data-cypress-id="button-skip-quiz"
           onClick={() => {
-            const eventParams = simulationSimulationCompleted({
-              bilan: getNumericValue('bilan'),
-            })
-            trackEvent(eventParams)
+            trackEvent(
+              simulationSimulationCompleted({
+                bilan: getNumericValue('bilan'),
+              })
+            )
             trackEvent(quizClickPass)
           }}>
           <Trans>Passer la question →</Trans>
@@ -66,10 +67,11 @@ export default function Navigation({
             allowedToGoToGroupDashboard: true,
           })}
           onClick={() => {
-            const eventParams = simulationSimulationCompleted({
-              bilan: getNumericValue('bilan'),
-            })
-            trackEvent(eventParams)
+            trackEvent(
+              simulationSimulationCompleted({
+                bilan: getNumericValue('bilan'),
+              })
+            )
           }}>
           <Trans>Voir mes résultats →</Trans>
         </ButtonLink>

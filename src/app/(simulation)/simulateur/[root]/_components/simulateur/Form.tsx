@@ -55,10 +55,11 @@ export default function Form() {
       trackTimeOnSimulation()
 
       if (!shouldShowQuiz) {
-        const eventParams = simulationSimulationCompleted({
-          bilan: getNumericValue('bilan'),
-        })
-        trackEvent(eventParams)
+        trackEvent(
+          simulationSimulationCompleted({
+            bilan: getNumericValue('bilan'),
+          })
+        )
       }
       goToEndPage({
         shouldShowQuiz,

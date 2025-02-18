@@ -53,7 +53,6 @@ export default function DynamicCTAButtons({
 
           if (progression > 0) {
             trackEvent(trackingEvents?.resume)
-            console.log('trackEvent', trackingEvents?.resume)
             return
           }
 

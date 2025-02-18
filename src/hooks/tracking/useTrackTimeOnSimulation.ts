@@ -8,10 +8,11 @@ export function useTrackTimeOnSimulation() {
   const trackTimeOnSimulation = useCallback(() => {
     const endTime = Date.now()
     const timeSpentOnSimulation = endTime - startTime
-    const eventParams = simulationSimulationCompletedTime({
-      timeSpentOnSimulation,
-    })
-    trackEvent(eventParams)
+    trackEvent(
+      simulationSimulationCompletedTime({
+        timeSpentOnSimulation,
+      })
+    )
   }, [startTime])
 
   return { trackTimeOnSimulation }
