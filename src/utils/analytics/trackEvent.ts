@@ -10,7 +10,6 @@ declare global {
 
 export const trackEvent = (args: (string | null)[]) => {
   if (shouldUseDevTracker || !window?._paq) {
-    console.log(args)
     console.debug(args.join(' => '))
     return
   }

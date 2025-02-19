@@ -30,7 +30,7 @@ export default function Breadcrumbs({
                 if (isDisabled) {
                   e.preventDefault()
                 }
-                trackEvent(breadcrumbClickLink)
+                trackEvent(breadcrumbClickLink(href))
               }}
               aria-current={isActive}
               className={twMerge(

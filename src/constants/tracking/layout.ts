@@ -99,4 +99,9 @@ export const footerClickLanguage = (locale: string) => [
 ]
 
 // Figma comment #18
-export const breadcrumbClickLink = ['trackEvent', 'Breadcrumb', 'Click link']
+export const breadcrumbClickLink = (href: string) => [
+  'trackEvent',
+  'Breadcrumb',
+  'Click link',
+  href,
+]
