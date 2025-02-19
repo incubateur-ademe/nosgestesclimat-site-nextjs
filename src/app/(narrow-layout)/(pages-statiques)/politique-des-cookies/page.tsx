@@ -1,6 +1,8 @@
+import Trans from '@/components/translation/Trans'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { CookiesPolicy } from '@incubateur-ademe/legal-pages-react/CookiesPolicy'
+import PostHogCookieConsentBanner from './_components/PostHogCookieConsentBanner'
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
@@ -16,7 +18,7 @@ export async function generateMetadata() {
   })
 }
 
-export default function ViePriveePage() {
+export default function CookiesPolicyPage() {
   return (
     <div className="markdown">
       <CookiesPolicy
@@ -33,6 +35,23 @@ export default function ViePriveePage() {
         }
         siteName="Nos Gestes Climat"
       />
+
+      <h2>
+        <Trans>Cookies utilisés par PostHog</Trans>
+      </h2>
+      <p>
+        <Trans>
+          Nous utilisons également PostHog pour mesurer l'audience de notre
+          site. La liste des cookies utilisés est disponible ici :
+        </Trans>
+      </p>
+      <p>
+        <a href="https://www.cookie.is/service/posthog-analytics#">
+          <Trans>Voir la liste des cookies utilisés par PostHog</Trans>
+        </a>
+      </p>
+
+      <PostHogCookieConsentBanner />
     </div>
   )
 }
