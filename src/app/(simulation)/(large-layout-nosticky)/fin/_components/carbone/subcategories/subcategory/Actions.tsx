@@ -2,7 +2,7 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import { endClickActions } from '@/constants/tracking/pages/end'
 import { useEngine, useRule } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Action from './actions/Action'
 

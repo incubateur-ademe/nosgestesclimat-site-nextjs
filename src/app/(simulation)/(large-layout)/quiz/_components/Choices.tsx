@@ -1,7 +1,7 @@
 'use client'
 
 import { quizClickAnswer } from '@/constants/tracking/pages/quiz'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 import Choice from './choices/Choice'

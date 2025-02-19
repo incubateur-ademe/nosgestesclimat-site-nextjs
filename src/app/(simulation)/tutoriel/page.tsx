@@ -32,7 +32,7 @@ export async function generateMetadata() {
 export default async function Tutoriel() {
   return (
     <ContentLarge className="mt-10 px-4 lg:px-0">
-      <div className="mx-auto flex h-screen max-w-3xl flex-col overflow-auto">
+      <div className="mx-auto flex max-w-3xl flex-col overflow-auto">
         <Title
           data-cypress-id="tutoriel-title"
           className="text-lg md:text-2xl"
@@ -48,24 +48,15 @@ export default async function Tutoriel() {
 
         <AvantDeCommencer />
 
-        <AutresQuestions />
+        <div className={twMerge('mb-12 flex w-full gap-4 sm:px-4 md:px-0 ')}>
+          <ButtonBack />
 
-        {/* Check if body has the "iframe-mode" class name and if so add the static class to the footer */}
-        <div
-          className={twMerge(
-            'tutorial-footer fixed bottom-0 left-0 right-0 z-50 border-t-2 border-primary-200 bg-gray-100 py-3'
-          )}>
-          <div
-            className={twMerge(
-              'relative mx-auto flex w-full max-w-3xl justify-between gap-4 px-4 md:px-0 lg:justify-start'
-            )}>
-            <ButtonBack />
+          <OrganisationMessage />
 
-            <OrganisationMessage />
-
-            <ButtonStart />
-          </div>
+          <ButtonStart />
         </div>
+
+        <AutresQuestions />
       </div>
     </ContentLarge>
   )

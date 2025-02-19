@@ -1,7 +1,7 @@
 'use client'
 
 import { endClickHedgehog } from '@/constants/tracking/pages/end'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 

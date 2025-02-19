@@ -50,7 +50,7 @@ export default function FAQ({
                     {question}
                   </h3>
 
-                  <PlusIcon className="inline-block h-8 w-8 min-w-8 origin-center transform transition-transform duration-300 group-open:rotate-45 group-open:fill-primary-700" />
+                  <PlusIcon className="inline-block h-6 w-6 min-w-6 origin-center transform transition-transform duration-300 group-open:rotate-45 group-open:fill-primary-700" />
                 </summary>
 
                 <div className="grid grid-rows-[0fr] transition-all duration-200 ease-in-out group-open:grid-rows-[1fr]">

@@ -9,7 +9,7 @@ import { useParams } from 'next/navigation'
 
 export type PollToUpdate = {
   name?: string
-  expectedNumberOfParticipants?: number
+  expectedNumberOfParticipants?: number | null
   defaultAdditionalQuestions?: PollDefaultAdditionalQuestion[]
   customAdditionalQuestions?: { question: string; isEnabled: boolean }[]
 }

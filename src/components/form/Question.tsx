@@ -12,13 +12,10 @@ import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
-import {
-  questionChooseAnswer,
-  questionTypeAnswer,
-} from '@/constants/tracking/question'
+import { questionChooseAnswer } from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
 import { useRule } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -109,7 +106,6 @@ export default function Question({
                     setTempValue(value)
                   }
                   setValue(value, { questionDottedName: question })
-                  trackEvent(questionTypeAnswer({ question, answer: value }))
                 }}
                 isMissing={isMissing}
                 min={0}

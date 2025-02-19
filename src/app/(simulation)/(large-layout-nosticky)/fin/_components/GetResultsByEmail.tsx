@@ -18,13 +18,13 @@ import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletter
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
-import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
+import { useMainNewsletter } from '@/hooks/useMainNewsletter'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
 import { useEffect, useRef } from 'react'
-import type { SubmitHandler} from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Confirmation from './carbone/getResultsByEmail/Confirmation'
@@ -100,7 +100,7 @@ export default function GetResultsByEmail({
   const { saveSimulation, isPending, isSuccess, isError, error } =
     useSaveSimulation()
 
-  const { data: numberSubscribers } = useNumberSubscribers()
+  const { data: mainNewsletter } = useMainNewsletter()
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     // If the mutation is pending, we do nothing
@@ -175,7 +175,7 @@ export default function GetResultsByEmail({
             </strong>
             {t('comme {{numberSubscribers}} personnes.', {
               numberSubscribers:
-                numberSubscribers?.toLocaleString(locale, {
+                mainNewsletter?.totalSubscribers.toLocaleString(locale, {
                   maximumFractionDigits: 0,
                 }) ?? '---',
             })}

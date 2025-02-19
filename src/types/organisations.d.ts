@@ -33,7 +33,7 @@ type BaseOrganisation = {
   slug: string
   administrators?: [VerifiedUser]
   polls?: Omit<OrganisationPoll, 'simulations'>[]
-  type?: OrganisationTypeEnum | null
+  type?: OrganisationTypeEnum
   numberOfCollaborators?: number | null
   hasCustomQuestionEnabled?: boolean
   createdAt?: string
@@ -110,7 +110,9 @@ export type OrgaSettingsInputsType = {
   name: string
   email: string
   position?: string
-  administratorName?: string
+  administratorFirstName?: string
+  administratorLastName?: string
+  administratorPosition?: string
   numberOfCollaborators?: number
   administratorTelephone?: string
   hasOptedInForCommunications?: boolean

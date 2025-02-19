@@ -131,7 +131,6 @@ entries:
   Ce modèle a été conçu par: Ce modèle a été conçu par
   model.questions: Découvrez <2>la liste des questions disponibles dans le modèle</2>.
   Oups, nous n'avons pas d'article correspondant: Oups, nous n'avons pas d'article correspondant
-  Retour à la liste des articles: Retour à la liste des articles
   Blog: Blog
   simulations terminées: simulations terminées
   Statistiques Northstar: Statistiques Northstar
@@ -188,14 +187,12 @@ entries:
   Comparez vos résultats avec votre famille ou un groupe d’ami·e·s: Comparez vos résultats avec votre famille ou un groupe d’ami·e·s
   Consultez la FAQ: Consultez la FAQ
   'Date complète :': 'Date complète :'
-  'Découvrez nos articles de blog :': 'Découvrez nos articles de blog :'
   disponibles: disponibles
   Entrez des mots-clefs de recherche: Entrez des mots-clefs de recherche
   Fermer le bandeau de feedback: Fermer le bandeau de feedback
   'Identifiant :': 'Identifiant :'
   Il concerne votre vie personnelle, et non pas votre boulot.: Il concerne votre vie personnelle, et non pas votre boulot.
   international.comment.2: Explorez en détail les spécificités de chaque pays.
-  Le Blog: Le Blog
   Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.
   Logo de l'Association pour la transition Bas Carbone: Logo de l'Association pour la transition Bas Carbone
   Mes réponses: Mes réponses
@@ -311,7 +308,6 @@ entries:
   Votre prénom: Votre prénom
   Code renvoyé: Code renvoyé
   L’adresse e-mail est invalide: L’adresse e-mail est invalide
-  Vous devez renseigner le nom de votre organisation: Vous devez renseigner le nom de votre organisation
   Vous devez renseigner votre adresse e-mail: Vous devez renseigner votre adresse e-mail
   Accueil: Accueil
   Animez un atelier: Animez un atelier
@@ -447,8 +443,6 @@ entries:
   Accessibilité - Nos Gestes Climat: Accessibilité - Nos Gestes Climat
   'Actions : comment réduire votre empreinte climat ? - Nos Gestes Climat': 'Actions : comment réduire votre empreinte climat ? - Nos Gestes Climat'
   Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat: Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat
-  article du blog - Nos Gestes Climat: article du blog - Nos Gestes Climat
-  Blog - Nos Gestes Climat: Blog - Nos Gestes Climat
   Budget - Nos Gestes Climat: Budget - Nos Gestes Climat
   Calculer votre empreinte carbone avec vos amis - Nos Gestes Climat: Calculer votre empreinte carbone avec vos amis - Nos Gestes Climat
   Calculer votre empreinte carbone individuelle - Nos Gestes Climat: Calculer votre empreinte carbone individuelle - Nos Gestes Climat
@@ -464,7 +458,6 @@ entries:
   Découvrez comment nous utilisons vos données personnelles pour vous proposer un calculateur de bilan carbone personnel.: Découvrez comment nous utilisons vos données personnelles pour vous proposer un calculateur de bilan carbone personnel.
   Découvrez le modèle de données de notre calculateur d'empreinte climat: Découvrez le modèle de données de notre calculateur d'empreinte climat
   Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.: Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.
-  Découvrez les articles de blog du site Nos Gestes Climat.: Découvrez les articles de blog du site Nos Gestes Climat.
   Découvrez les nouveautés du site Nos Gestes Climat.: Découvrez les nouveautés du site Nos Gestes Climat.
   Découvrez les personas d'utilisateurs types qui nous servent à tester le calculateur sous toutes ses coutures.: Découvrez les personas d'utilisateurs types qui nous servent à tester le calculateur sous toutes ses coutures.
   Diffuser notre calculateur d'empreinte climat - Nos Gestes Climat: Diffuser notre calculateur d'empreinte climat - Nos Gestes Climat
@@ -549,16 +542,12 @@ entries:
   Questions complémentaires: Questions complémentaires
   Association: Association
   Autre: Autre
-  'Avez-vous essayé <2>notre fonctionnalité “Groupes d’amis”</2> ? Elle vous permettra de vous comparer dans un classement : que celui ou celle ayant la plus faible empreinte gagne !': 'Avez-vous essayé <2>notre fonctionnalité “Groupes d’amis”</2> ? Elle vous permettra de vous comparer dans un classement : que celui ou celle ayant la plus faible empreinte gagne !'
-  Coopérative: Coopérative
   Créer ma première campagne: Créer ma première campagne
   Entreprise: Entreprise
   Groupe d'amis: Groupe d'amis
   Le mode organisation est un mode <1>100% anonyme</1> pour les participants.: Le mode organisation est un mode <1>100% anonyme</1> pour les participants.
-  Public ou collectivité territoriale: Public ou collectivité territoriale
   Type d'organisation: Type d'organisation
   Université ou école: Université ou école
-  Vous devez renseigner votre nom: Vous devez renseigner votre nom
   Voir moins: Voir moins
   Voir plus: Voir plus
   (Attendre: (Attendre
@@ -668,10 +657,7 @@ entries:
   Tableau de bord: Tableau de bord
   vous souhaitez lancer une campagne Nos Gestes Climat et sensibiliser toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !: vous souhaitez lancer une campagne Nos Gestes Climat et sensibiliser toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !
   Ils ont testé: Ils ont testé
-  mis à jour le: mis à jour le
-  'Un article de ': 'Un article de '
   'Découvrez les relais de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.': 'Découvrez les relais de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.'
-  Nos relais: Nos relais
   Nos relais - Nos Gestes Climat: Nos relais - Nos Gestes Climat
   'N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l’ADEME.': 'N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l’ADEME.'
   ', le': ', le'
@@ -780,7 +766,6 @@ entries:
   chrono pour calculer votre empreinte carbone et eau: chrono pour calculer votre empreinte carbone et eau
   Comment <1>agir</1> ?: Comment <1>agir</1> ?
   Comment on la mesure ?: Comment on la mesure ?
-  d'eau <1>par jour</1>: d'eau <1>par jour</1>
   d’eau domestique par jour: d’eau domestique par jour
   D’où vient mon empreinte ?: D’où vient mon empreinte ?
   Découvre mes empreintes: Découvre mes empreintes
@@ -1084,7 +1069,6 @@ entries:
   Un tee-shirt, symbolisant la consommation d'eau pour l'industrie textile: Un tee-shirt, symbolisant la consommation d'eau pour l'industrie textile
   Une balance indiquant la quantité d'eau nécessaire pour produire un ordinateur: Une balance indiquant la quantité d'eau nécessaire pour produire un ordinateur
   Une pomme, symbolisant le lien entre eau et agriculture: Une pomme, symbolisant le lien entre eau et agriculture
-  <0>2 millions de personnes</0> ont déjà <3></3>calculé leur empreinte !: <0>2 millions de personnes</0> ont déjà <3></3>calculé leur empreinte !
   Libre et documenté: Libre et documenté
   L’empreinte eau d'un jean est de 30 000 litres d'eau.: L’empreinte eau d'un jean est de 30 000 litres d'eau.
   La production d’un ordinateur nécessite 195 000 litres d’eau.: La production d’un ordinateur nécessite 195 000 litres d’eau.
@@ -1149,8 +1133,6 @@ entries:
   La valeur pour ce champ est comprise entre: La valeur pour ce champ est comprise entre
   En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.: En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.
   '{{signe}} {{value}} {{unit}} sur votre empreinte {{metric}}': '{{signe}} {{value}} {{unit}} sur votre empreinte {{metric}}'
-  d'eau / jour: d'eau / jour
-  de CO₂e / an: de CO₂e / an
   Aide: Aide
   Cette section statistique est générée via Metabase.: Cette section statistique est générée via Metabase.
   Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.: Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.
@@ -1160,11 +1142,20 @@ entries:
   Empreinte carbone, voir le détail ci-dessous: Empreinte carbone, voir le détail ci-dessous
   Empreinte eau, sélectionné, voir le détail ci-dessous: Empreinte eau, sélectionné, voir le détail ci-dessous
   Empreinte eau, voir le détail ci-dessous: Empreinte eau, voir le détail ci-dessous
-  Bien noté ! Vous aurez prochainement de nos nouvelles.: Bien noté ! Vous aurez prochainement de nos nouvelles.
   Diffuser Nos Gestes Climat: Diffuser Nos Gestes Climat
-  Inscrivez-vous à notre infolettre: Inscrivez-vous à notre infolettre
   Qui sommes-nous: Qui sommes-nous
   Relais et partenaires: Relais et partenaires
   Ressources: Ressources
-  Super, vous êtes déjà inscrit !: Super, vous êtes déjà inscrit !
   'Oups, une erreur est survenue lors de la copie du lien, voici le lien à copier / coller :': 'Oups, une erreur est survenue lors de la copie du lien, voici le lien à copier / coller :'
+  Le nombre de participants doit être supérieur à 0: Le nombre de participants doit être supérieur à 0
+  Nombre de participants attendus: Nombre de participants attendus
+  Service public: Service public
+  Votre poste: Votre poste
+  Vous devez renseigner le type de votre organisation: Vous devez renseigner le type de votre organisation
+  'Avez-vous essayé <2>notre fonctionnalité “Groupes d’amis”</2> ? Elle vous permettra de vous comparer dans un classement : que celui ou celle ayant la plus faible empreinte gagne !': 'Avez-vous essayé <2>notre fonctionnalité “Groupes d’amis”</2> ? Elle vous permettra de vous comparer dans un classement : que celui ou celle ayant la plus faible empreinte gagne !'
+  Coopérative: Coopérative
+  Veuillez entrer un nombre positif: Veuillez entrer un nombre positif
+  Cookies utilisés par PostHog: Cookies utilisés par PostHog
+  "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :": "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :"
+  Voir la liste des cookies utilisés par PostHog: Voir la liste des cookies utilisés par PostHog
+  Une erreur est survenue. Si le problème persiste, veuillez contacter notre support.: Une erreur est survenue. Si le problème persiste, veuillez contacter notre support.

@@ -76,6 +76,7 @@ export default function CustomQuestion({
           onChange(changes)
           setIsEditing(false)
         }}
+        onCancel={() => setIsEditing(false)}
         isEditMode
         question={question}
       />

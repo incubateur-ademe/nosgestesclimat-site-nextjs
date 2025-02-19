@@ -5,7 +5,7 @@ import {
   simulationSimulationStarted,
 } from '@/constants/tracking/simulation'
 import { useCurrentSimulation, useForm } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useEffect, useRef } from 'react'
 
 export function useTrackSimulateur() {

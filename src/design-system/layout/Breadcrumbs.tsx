@@ -2,7 +2,7 @@
 
 import Link from '@/components/Link'
 import { breadcrumbClickLink } from '@/constants/tracking/layout'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { Fragment } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -30,7 +30,7 @@ export default function Breadcrumbs({
                 if (isDisabled) {
                   e.preventDefault()
                 }
-                trackEvent(breadcrumbClickLink)
+                trackEvent(breadcrumbClickLink(href))
               }}
               aria-current={isActive}
               className={twMerge(
