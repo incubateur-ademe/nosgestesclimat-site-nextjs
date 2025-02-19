@@ -53,7 +53,7 @@ export async function fetchHomepageContent({ page }: { page: number }): Promise<
       'pagination[page]': page.toString(),
       'pagination[pageSize]': PAGE_SIZE.toString(),
       sort: 'createdAt:desc',
-      ...(isProduction ? {} : { status: 'draft' }),
+      ...(isProduction ? { status: 'published' } : { status: 'draft' }),
     }
 
     if (mainArticle) {
