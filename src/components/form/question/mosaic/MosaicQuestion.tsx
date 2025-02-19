@@ -43,9 +43,8 @@ export default function MosaicQuestion({
 
             trackEvent(
               questionTypeAnswer({
-                question: parentMosaic,
-                answer: parent,
-                mosaicValue: value,
+                question: parent,
+                answer: value,
               })
             )
           }}
@@ -68,9 +67,8 @@ export default function MosaicQuestion({
 
             trackEvent(
               questionChooseAnswer({
-                question: parentMosaic,
-                answer: parent,
-                mosaicValue: value,
+                question: parent,
+                answer: value,
               })
             )
           }}
