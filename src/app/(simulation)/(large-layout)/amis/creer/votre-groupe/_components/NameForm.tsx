@@ -32,6 +32,8 @@ export default function NameForm() {
     formState: { errors },
   } = useReactHookForm<Inputs>()
 
+  const [error, setError] = useState('')
+
   const { user } = useUser()
 
   const searchParams = useSearchParams()
@@ -69,6 +71,10 @@ export default function NameForm() {
   ])
 
   async function onSubmit({ name, emoji }: Inputs) {
+    if (error) {
+      setError('')
+    }
+
     try {
       const administratorEmail = formatEmail(
         searchParams.get('administratorEmail')
@@ -96,6 +102,11 @@ export default function NameForm() {
 
       setShouldNavigate(group.id)
     } catch (e) {
+      setError(
+        t(
+          'Une erreur est survenue. Si le problème persiste, veuillez contacter notre support.'
+        )
+      )
       captureException(e)
     }
   }
@@ -125,6 +136,8 @@ export default function NameForm() {
         rules={{ required: t('Ce champ est obligatoire.') }}
         error={errors.emoji?.message}
       />
+
+      {error && <p className="mt-4 text-sm text-red-700">{error}</p>}
 
       <Button
         type="submit"
