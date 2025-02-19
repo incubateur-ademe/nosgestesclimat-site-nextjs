@@ -1,9 +1,6 @@
 'use client'
 
-import {
-  questionChooseAnswer,
-  questionTypeAnswer,
-} from '@/constants/tracking/question'
+import { questionChooseAnswer } from '@/constants/tracking/question'
 import { useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -40,13 +37,6 @@ export default function MosaicQuestion({
               questionDottedName: parentMosaic,
               questionsOfMosaicFromSibling,
             })
-
-            trackEvent(
-              questionTypeAnswer({
-                question: parent,
-                answer: value,
-              })
-            )
           }}
           parentMosaic={parentMosaic}
           index={index}

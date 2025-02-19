@@ -63,13 +63,14 @@ export const questionChooseAnswer = ({ question, answer }: Props) => [
 ]
 
 // Figma comment #51
-export const questionTypeAnswer = ({ question, answer }: Props) => [
-  'trackEvent',
-  'Simulateur',
-  'Type Answer',
-  question,
-  String(answer),
-]
+// An event is sent on every change of the input, it's too much !
+// export const questionTypeAnswer = ({ question, answer }: Props) => [
+//   'trackEvent',
+//   'Simulateur',
+//   'Type Answer',
+//   question,
+//   String(answer),
+// ]
 
 // Figma comment #50
 export const questionClickSuggestion = ({ question, answer }: Props) => [
