@@ -1,6 +1,6 @@
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useSimulationIdInQueryParams } from '../simulation/useSimulationIdInQueryParams'
 import { useDebug } from '../useDebug'
 import { useQuestionInQueryParams } from '../useQuestionInQueryParams'
@@ -22,6 +22,8 @@ export function useSimulateurGuard() {
   const [isGuardRedirecting, setIsGuardRedirecting] = useState(false)
 
   const { simulationIdInQueryParams } = useSimulationIdInQueryParams()
+
+  const prevSimulationIdInQueryParams = useRef(simulationIdInQueryParams)
 
   useEffect(() => {
     // we only run the guard at mount
@@ -59,6 +61,25 @@ export function useSimulateurGuard() {
     isDebug,
     questionInQueryParams,
     simulationIdInQueryParams,
+  ])
+
+  // After fetching the simulation, we redirect the user to the end page if he has completed the test
+  useEffect(() => {
+    if (prevSimulationIdInQueryParams.current === simulationIdInQueryParams) {
+      return
+    }
+
+    if (progression === 1 && !questionInQueryParams) {
+      goToEndPage()
+      setIsGuardRedirecting(true)
+      return
+    }
+  }, [
+    prevSimulationIdInQueryParams,
+    simulationIdInQueryParams,
+    progression,
+    questionInQueryParams,
+    goToEndPage,
   ])
 
   return { isGuardInit, isGuardRedirecting }
