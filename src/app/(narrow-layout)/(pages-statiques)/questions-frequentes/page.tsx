@@ -80,7 +80,7 @@ export default async function FAQPage() {
         />
       </div>
 
-      <div className="-mt-8 pb-4 md:-mt-16">
+      <ul className="-mt-8 pb-4 md:-mt-16">
         {categories.map((category) => {
           return (
             <li key={category} className="list-none">
@@ -110,7 +110,7 @@ export default async function FAQPage() {
             </li>
           )
         })}
-      </div>
+      </ul>
 
       <Card className="bg-gray-100">
         <h3 className="text-yellow-dark flex items-center">

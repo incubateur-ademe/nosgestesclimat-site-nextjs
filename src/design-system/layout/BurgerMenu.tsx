@@ -1,7 +1,7 @@
 'use client'
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import type { KeyboardEvent, ReactNode} from 'react';
+import type { KeyboardEvent, ReactNode } from 'react'
 import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Button from '../inputs/Button'
@@ -52,6 +52,7 @@ export default function BurgerMenu({
     <div id="burger-menu">
       <Button
         color="text"
+        aria-label={t('Menu déroulant')}
         onClick={handleToggleMenu}
         className="absolute right-4 top-4 z-[52] flex h-[44px] w-[44px] flex-col items-center justify-center !p-0">
         <div

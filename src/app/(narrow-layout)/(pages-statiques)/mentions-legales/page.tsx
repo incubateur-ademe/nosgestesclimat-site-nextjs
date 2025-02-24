@@ -26,6 +26,7 @@ export default function MentionsLegalesPage() {
           country: 'États-Unis',
           email: 'privacy@vercel.com',
         }}
+        contactEmail="contact@nosgestesclimat.fr"
       />
     </div>
   )

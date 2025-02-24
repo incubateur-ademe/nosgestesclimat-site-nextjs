@@ -64,6 +64,7 @@ export default async function Releases() {
           alt={t('Une femme préparant un bon petit plat.')}
         />
       </div>
+
       <List items={releases} path="/nouveautes" />
     </>
   )

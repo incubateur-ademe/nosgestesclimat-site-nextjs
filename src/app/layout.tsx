@@ -126,8 +126,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
             {children}
             <Footer />
-
-            <div id="modal" />
           </>
         </MainLayoutProviders>
       </html>

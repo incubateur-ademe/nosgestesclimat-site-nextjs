@@ -65,7 +65,11 @@ export default function HeaderDesktop({ isSticky }: Props) {
 
           {!isIframeOnlySimulation && (
             <>
-              <nav className="h-full">
+              <nav className="h-full" aria-labelledby="header-navigation-title">
+                <h2 id="header-navigation-title" className="sr-only">
+                  <Trans>Navigation principale</Trans>
+                </h2>
+
                 <ul className="flex h-full flex-1 justify-start gap-4">
                   <li>
                     <NavLink

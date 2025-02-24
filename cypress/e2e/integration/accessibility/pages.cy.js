@@ -4,27 +4,33 @@ import 'cypress-axe'
 const pagesToTest = [
   // '/',
   // '/a-propos',
-  '/blog',
+  // '/blog',
   // '/blog/environnement',
   // '/blog/environnement/definition-empreinte-carbone',
-  // '/nos-relais',
+  //'/nos-relais',
   // '/personas',
-  // '/profil',
-  // '/actions',
   // '/accessibilite',
-  // '/diffuser',
-  // '/international',
+  //'/diffuser',
+  //'/international',
   // '/questions-frequentes',
   // '/organisations',
-  // '/classements',
   // '/nouveautes',
   // '/nouveautes/thwaites',
   // '/politique-de-confidentialite',
+  // '/politique-des-cookies',
+  '/mentions-legales',
   // '/stats',
   // '/modele',
   // '/documentation',
   // '/documentation/bilan',
   // '/actions/divers/partage-NGC',
+]
+
+const dynamicPages = [
+  '/actions',
+  '/classements',
+  '/profil',
+  '/simulateur/bilan',
 ]
 
 Cypress.on('uncaught:exception', (err) => {
@@ -36,6 +42,8 @@ describe('Accessibility Tests', () => {
   pagesToTest.forEach((page) => {
     it(`Should have no accessibility violations on ${page}`, () => {
       cy.intercept({ resourceType: /xhr|fetch|uncaught/ }, { log: false })
+
+      // cy.viewport('iphone-6')
 
       // Visit the page
       cy.visit(page)
