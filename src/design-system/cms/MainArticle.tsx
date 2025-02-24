@@ -46,7 +46,7 @@ export default function MainArticle({
           />
 
           <div className="flex justify-end">
-            <span className="ml-auto inline-block cursor-pointer text-right text-[13px] text-primary-700 underline md:text-right md:text-base">
+            <span className="ml-auto inline-block cursor-pointer text-right text-[13px] text-primary-800 underline md:text-right md:text-base">
               <Trans>Lire la suite</Trans>
             </span>
           </div>

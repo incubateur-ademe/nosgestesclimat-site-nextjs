@@ -1,5 +1,6 @@
 'use client'
 
+import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
 import ActionsIcon from '@/components/icons/ActionsIcon'
 import AmisIcon from '@/components/icons/AmisIcon'
 import BilanIcon from '@/components/icons/BilanIcon'
@@ -20,16 +21,25 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
+import dynamic from 'next/dynamic'
 import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 import NavLink from './NavLink'
 import OrganisationLink from './_components/OrganisationLink'
 import ProfileIcon from './_components/ProfileIcon'
 import DebugIndicator from './headerDesktop/DebugIndicator'
-import CTAButton from './headerDesktop/MenuCTAButton'
 type Props = {
   isSticky: boolean
 }
+
+const DynamicCTAButton = dynamic(
+  () => import('./headerDesktop/MenuCTAButton'),
+  {
+    ssr: false,
+    loading: () => <CTAButtonsPlaceholder className="w-36" />,
+  }
+)
+
 export default function HeaderDesktop({ isSticky }: Props) {
   const { t } = useClientTranslation()
 
@@ -101,7 +111,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
                   href="/profil"
                   icon={ProfileIcon}
                   title={t('Profil')}
-                  className="px-4"
+                  className="whitespace-nowrap px-4"
                   onClick={() => trackEvent(headerClickProfil)}>
                   <Trans>Profil</Trans>
                 </NavLink>
@@ -113,7 +123,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
                     <OrganisationLink />
                   </>
                 ) : !HIDE_CTA_PATHS.find((path) => pathname.includes(path)) ? (
-                  <CTAButton />
+                  <DynamicCTAButton />
                 ) : null}
               </div>
             </>

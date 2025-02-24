@@ -37,8 +37,8 @@ export default function UnderstandToAct({
 
         <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
           {posts.map((post, index) => (
+            <li key={`${index}-post-thumbnail`}>
             <PostThumbnail
-              key={`${index}-post-thumbnail`}
               {...post}
               className="bg-white"
               trackingEvent={getLandingClickPostThumbnail(
@@ -46,6 +46,7 @@ export default function UnderstandToAct({
                 `${trackingActionClickPostThumbnail} ${index + 1}`
               )}
             />
+            </li>
           ))}
         </ul>
       </div>

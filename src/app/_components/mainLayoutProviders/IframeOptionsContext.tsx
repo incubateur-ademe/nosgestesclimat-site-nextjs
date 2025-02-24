@@ -19,7 +19,7 @@ const nullDecode = (string: string) =>
 export const IframeOptionsProvider = ({
   children,
 }: {
-  children: (containerRef: React.RefObject<HTMLDivElement>) => JSX.Element
+  children: (containerRef: React.RefObject<HTMLBodyElement>) => JSX.Element
 }) => {
   const isClient = useIsClient()
   const isIframe = isClient && getIsIframe()
