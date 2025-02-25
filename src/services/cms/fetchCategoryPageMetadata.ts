@@ -23,7 +23,7 @@ export async function fetchCategoryPageMetadata({
       'populate[0]': 'image',
       'populate[1]': 'pageMetadata',
       'filters[slug][$eq]': slug,
-      ...(isProduction ? {} : { status: 'draft' }),
+      ...(isProduction ? { status: 'published' } : { status: 'draft' }),
     })
 
     const categoryResponse = await cmsClient<{
