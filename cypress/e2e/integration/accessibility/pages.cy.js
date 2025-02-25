@@ -2,7 +2,7 @@ import 'cypress-axe'
 
 // Define the pages to test
 const pagesToTest = [
-  // '/',
+  '/',
   // '/a-propos',
   // '/blog',
   // '/blog/environnement',
@@ -18,11 +18,11 @@ const pagesToTest = [
   // '/nouveautes/thwaites',
   // '/politique-de-confidentialite',
   // '/politique-des-cookies',
-  // '/mentions-legales',
+  // '/mentions-legales', // link on telephone number
   //'/stats',
-  '/modele',
+  // '/modele',
   // '/documentation',
-  // '/documentation/bilan',
+  // '/documentation/bilan', // heading order
   // '/actions/divers/partage-NGC',
 ]
 
