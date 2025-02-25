@@ -18,6 +18,7 @@ export default function CopyInput({
   className = '',
   onClick,
   canShare,
+  ...props
 }: Props) {
   const [isCopied, setIsCopied] = useState(false)
 
@@ -59,6 +60,7 @@ export default function CopyInput({
         className="block w-full min-w-0 flex-1 rounded-none rounded-l-md border-2 border-r-0 border-solid border-gray-200 bg-gray-100 py-3 pl-4 pr-2 text-gray-600 sm:text-sm"
         value={textToDisplay ?? textToCopy}
         readOnly
+        {...props}
       />
       <Button
         size="sm"

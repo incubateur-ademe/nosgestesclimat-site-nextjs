@@ -11,9 +11,9 @@ export default function AvantDeCommencer() {
         className="absolute -top-8 inline-block rounded-full bg-gray-100 p-4 text-3xl">
         <Emoji>💡</Emoji>
       </div>
-      <h3 className="z-10">
+      <h2 className="z-10">
         <Trans>Avant de commencer</Trans>
-      </h3>
+      </h2>
       <OrganisationDisclaimer />
       <div className="relative pl-8">
         <h4 className="relative overflow-visible font-bold">
