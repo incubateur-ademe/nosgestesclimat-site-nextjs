@@ -29,6 +29,7 @@ export default function HeroSection() {
         <div className="flex flex-col flex-wrap items-center gap-4 sm:flex-row sm:justify-start md:items-baseline md:gap-8 lg:justify-start">
           <ButtonLink
             href="/organisations/connexion"
+            data-cypress-id="organisations-start-button"
             trackingEvent={organisationsAccueilClickCommencer}>
             <Trans>Commencer</Trans>
           </ButtonLink>
