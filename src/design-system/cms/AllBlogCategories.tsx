@@ -24,7 +24,9 @@ export default async function AllBlogCategories({
             <Trans>Toutes les catégories du blog</Trans>
           </h2>
 
-          <ul className="flex w-full flex-row flex-wrap items-center gap-4 md:max-w-[50%]">
+          <ul
+            data-cypress-id="blog-categories-list"
+            className="flex w-full flex-row flex-wrap items-center gap-4 md:max-w-[50%]">
             {categories.map((category) => (
               <li key={category.id}>
                 <Link href={`/blog/${category.slug.toLocaleLowerCase()}`}>
