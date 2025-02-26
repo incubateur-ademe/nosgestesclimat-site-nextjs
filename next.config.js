@@ -121,4 +121,4 @@ const sentryConfig = [
 module.exports =
   process.env.NODE_ENV !== 'development'
     ? withSentryConfig(withMDX(nextConfig), ...sentryConfig)
-    : nextConfig
+    : withMDX(nextConfig)

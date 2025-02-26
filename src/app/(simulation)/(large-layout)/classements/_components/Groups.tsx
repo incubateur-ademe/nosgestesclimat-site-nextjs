@@ -23,7 +23,7 @@ export default function Groups() {
   return (
     <>
       <div className="flex flex-col sm:flex-row  sm:items-baseline sm:justify-between">
-        <Title tag="h2" title={<Trans>Groupes d'amis</Trans>} />
+        <Title tag="h1" title={<Trans>Groupes d'amis</Trans>} />
 
         {groups && groups.length > 0 && (
           <ButtonLink

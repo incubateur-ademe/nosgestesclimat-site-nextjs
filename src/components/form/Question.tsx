@@ -75,7 +75,12 @@ export default function Question({
   return (
     <>
       <div className={twMerge('mb-6 flex flex-col items-start', className)}>
-        <Label question={question} label={label} description={description} />
+        <Label
+          question={question}
+          label={label}
+          description={description}
+          id="question-label"
+        />
 
         <Suggestions
           question={question}
@@ -112,6 +117,7 @@ export default function Question({
                 data-cypress-id={question}
                 id={DEFAULT_FOCUS_ELEMENT_ID}
                 aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+                aria-labelledby="question-label"
               />
             )}
 
@@ -131,6 +137,7 @@ export default function Question({
                 label={label || ''}
                 id={DEFAULT_FOCUS_ELEMENT_ID}
                 aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+                aria-labelledby="question-label"
               />
             )}
 
@@ -152,6 +159,7 @@ export default function Question({
                 label={label || ''}
                 id={DEFAULT_FOCUS_ELEMENT_ID}
                 aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+                aria-labelledby="question-label"
               />
             )}
 
@@ -160,6 +168,7 @@ export default function Question({
                 question={question}
                 questionsOfMosaic={questionsOfMosaicFromParent}
                 aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+                aria-labelledby="question-label"
               />
             )}
           </>

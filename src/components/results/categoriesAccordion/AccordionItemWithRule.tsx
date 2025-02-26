@@ -53,6 +53,7 @@ export default function AccordionItemWithRule({
           }
         />
       }
+      name={title ?? ''}
       content={
         <Card
           className="mb-4 border-x-0 bg-gray-100"

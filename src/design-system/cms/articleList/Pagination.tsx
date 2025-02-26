@@ -3,22 +3,25 @@
 import ChevronLeft from '@/components/icons/ChevronLeft'
 import ChevronRight from '@/components/icons/ChevronRight'
 import Link from '@/components/Link'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { twMerge } from 'tailwind-merge'
 
-export default function Pagination({
+export default async function Pagination({
   currentPage,
   totalPages,
 }: {
   currentPage: number
   totalPages: number
 }) {
+  const { t } = await getServerTranslation()
   return (
     <div className="text-center">
       <div className="relative mt-16 inline-flex items-center justify-center gap-3">
         {currentPage > 1 && (
           <Link
             className="absolute -left-6 top-1/2 -translate-y-1/2"
-            href={`/blog?page=${currentPage - 1}#articles`}>
+            href={`/blog?page=${currentPage - 1}#articles`}
+            aria-label={t('Page précédente')}>
             <ChevronLeft className="h-3 w-3" />
           </Link>
         )}
@@ -33,7 +36,8 @@ export default function Pagination({
                     ? 'font-medium text-primary-700 underline'
                     : '!text-gray-600 no-underline'
                 )}
-                href={`/blog?page=${index + 1}#articles`}>
+                href={`/blog?page=${index + 1}#articles`}
+                aria-label={t('Page {{page}}', { page: index + 1 })}>
                 {index + 1}
               </Link>
             </li>
@@ -43,7 +47,8 @@ export default function Pagination({
         {currentPage < totalPages && (
           <Link
             className="absolute -right-6 top-1/2 -translate-y-1/2"
-            href={`/blog?page=${currentPage + 1}#articles`}>
+            href={`/blog?page=${currentPage + 1}#articles`}
+            aria-label={t('Page suivante')}>
             <ChevronRight className="h-3 w-3" />
           </Link>
         )}

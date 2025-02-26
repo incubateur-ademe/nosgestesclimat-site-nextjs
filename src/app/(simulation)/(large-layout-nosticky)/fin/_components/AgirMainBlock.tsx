@@ -67,6 +67,7 @@ export default function AgirMainBlock() {
           trackEvent(endClickJagisFirstBlock)
           exportSimulation()
         }}
+        aria-label={t("Accéder à J'agis")}
         className="flex !h-11 max-h-11 !w-11 max-w-11 items-center justify-center rounded-full !p-0 !text-2xl leading-none">
         {isPending ? <Loader /> : '→'}
       </Button>
