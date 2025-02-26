@@ -48,7 +48,7 @@ export default function LaconicRanking({ group }: Props) {
 
       <ul>
         {particpantsOrdered.map((participant, index) => {
-          let isFirstThree = index < 3
+          const isFirstThree = index < 3
 
           let rank
           switch (index) {
