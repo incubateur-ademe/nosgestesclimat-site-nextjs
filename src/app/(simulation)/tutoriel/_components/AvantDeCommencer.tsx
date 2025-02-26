@@ -16,10 +16,10 @@ export default function AvantDeCommencer() {
       </h2>
       <OrganisationDisclaimer />
       <div className="relative pl-8">
-        <h4 className="relative overflow-visible font-bold">
+        <h3 className="relative overflow-visible font-bold">
           <Emoji className="absolute -left-8 top-0">🏡</Emoji>
           <Trans>C'est un test individuel !</Trans>
-        </h4>
+        </h3>
         <p className="text-sm md:text-base">
           <Trans>
             Répondez aux questions en votre nom, pas pour votre foyer.
@@ -36,12 +36,12 @@ export default function AvantDeCommencer() {
         </p>
       </div>
       <div className="relative pl-8">
-        <h4 className="relative overflow-visible font-bold">
+        <h3 className="relative overflow-visible font-bold">
           <Emoji className="absolute -left-8 top-0">👤</Emoji>
           <Trans>
             Il concerne votre vie personnelle, et non pas votre boulot.
           </Trans>
-        </h4>
+        </h3>
       </div>
     </div>
   )

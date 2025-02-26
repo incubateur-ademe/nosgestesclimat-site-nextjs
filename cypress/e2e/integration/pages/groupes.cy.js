@@ -1,4 +1,8 @@
 import { clickSkipTutorialButton } from '../../../helpers/elements/buttons'
+import { clickNextStepGroupCreation } from '../../../helpers/groups/clickNextStepGroupCreation'
+import { clickValidateGroupCreation } from '../../../helpers/groups/clickValidateGroupCreation'
+import { fillGroupCreationFirstStep } from '../../../helpers/groups/fillGroupCreationFirstStep'
+import { fillGroupNameEmoji } from '../../../helpers/groups/fillGroupNameEmoji'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 import { skipRiddle } from '../../../helpers/simulation/skipRiddle'
 
@@ -11,25 +15,20 @@ describe('The Group creation page', () => {
     cy.clearLocalStorage()
 
     // Check that we can create our first group
-    cy.get('[data-cypress-id="button-create-first-group"]').click()
-    cy.get('input[data-cypress-id="group-input-owner-name"]').type('Jean-Marc')
-    cy.get('input[data-cypress-id="group-input-owner-name"]').type(
-      'jean@marc.com'
-    )
+    fillGroupCreationFirstStep()
 
     cy.wait(2000)
 
-    cy.get('[data-cypress-id="button-continue-create-group"]').click()
+    clickNextStepGroupCreation()
 
     cy.wait(2000)
 
     // Continue and choose group name and emoji
-    cy.get('input[data-cypress-id="group-name"]').type('Jean-Marc groupe')
-    cy.get(`label[data-cypress-id="group-select-emoji-🍋"]`).click()
+    fillGroupNameEmoji()
 
     cy.wait(2000)
 
-    cy.get('[data-cypress-id="button-validate-create-group"]').click()
+    clickValidateGroupCreation()
 
     cy.wait(2000)
     // Fill simulation

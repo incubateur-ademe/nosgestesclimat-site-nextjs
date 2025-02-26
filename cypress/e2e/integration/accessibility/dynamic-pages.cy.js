@@ -1,4 +1,11 @@
 import 'cypress-axe'
+import { clickSkipTutorialButton } from '../../../helpers/elements/buttons'
+import { clickNextStepGroupCreation } from '../../../helpers/groups/clickNextStepGroupCreation'
+import { clickValidateGroupCreation } from '../../../helpers/groups/clickValidateGroupCreation'
+import { fillGroupCreationFirstStep } from '../../../helpers/groups/fillGroupCreationFirstStep'
+import { fillGroupNameEmoji } from '../../../helpers/groups/fillGroupNameEmoji'
+import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
+import { skipRiddle } from '../../../helpers/simulation/skipRiddle'
 
 const dynamicPages = [
   '/actions',
@@ -13,45 +20,45 @@ Cypress.on('uncaught:exception', (err) => {
 })
 
 describe('Accessibility Tests', () => {
-  // it('Should have no accessibility violations on /simulateur/bilan', () => {
-  //   cy.intercept({ resourceType: /xhr|fetch|uncaught/ }, { log: false })
-
-  //   cy.visit('/tutoriel')
-
-  //   clickSkipTutorialButton()
-
-  //   // Wait for the page to load completely
-  //   cy.wait(2000)
-  //   cy.injectAxe()
-
-  //   // Run accessibility checks
-  //   cy.checkA11y()
-  // })
-
-  // it('Should have no accessibility violations on /fin', () => {
-  //   cy.intercept({ resourceType: /xhr|fetch|uncaught/ }, { log: false })
-
-  //   cy.visit('/')
-
-  //   setupSimulation()
-
-  //   recursivelyFillSimulation()
-
-  //   cy.visit('/fin')
-
-  //   cy.wait(2000)
-  //   cy.injectAxe()
-
-  //   // Run accessibility checks
-  //   cy.checkA11y()
-  // })
-
-  it('Should have no accessibility violations on /amis', () => {
+  it('Should have no accessibility violations on /simulateur/bilan', () => {
     cy.intercept({ resourceType: /xhr|fetch|uncaught/ }, { log: false })
 
-    cy.visit('/amis')
+    cy.visit('/tutoriel')
 
-    cy.wait(6000)
+    clickSkipTutorialButton()
+
+    // Wait for the page to load completely
+    cy.wait(2000)
+    cy.injectAxe()
+
+    // Run accessibility checks
+    cy.checkA11y()
+  })
+
+  it('Should have no accessibility violations on /fin', () => {
+    cy.intercept({ resourceType: /xhr|fetch|uncaught/ }, { log: false })
+
+    cy.visit('/')
+
+    setupSimulation()
+
+    recursivelyFillSimulation()
+
+    cy.visit('/fin')
+
+    cy.wait(2000)
+    cy.injectAxe()
+
+    // Run accessibility checks
+    cy.checkA11y()
+  })
+
+  it('Should have no accessibility violations on /classements', () => {
+    cy.intercept({ resourceType: /xhr|fetch|uncaught/ }, { log: false })
+
+    cy.visit('/classements')
+
+    cy.wait(8000)
 
     cy.injectAxe()
 
@@ -59,21 +66,58 @@ describe('Accessibility Tests', () => {
     cy.checkA11y()
   })
 
-  //   dynamicPages.forEach((page) => {
-  //     it(`Should have no accessibility violations on ${page}`, () => {
-  //       cy.intercept({ resourceType: /xhr|fetch|uncaught/ }, { log: false })
+  it('Should have no accessibility violations on the /amis userflow', () => {
+    cy.intercept({ resourceType: /xhr|fetch|uncaught/ }, { log: false })
 
-  //       // cy.viewport('iphone-6')
+    cy.visit('/amis/creer/vos-informations')
 
-  //       // Visit the page
-  //       cy.visit(page)
+    // Run accessibility checks on first step
+    cy.injectAxe()
 
-  //       // Wait for the page to load completely
-  //       cy.wait(2000)
-  //       cy.injectAxe()
+    cy.checkA11y()
 
-  //       // Run accessibility checks
-  //       cy.checkA11y()
-  //     })
-  //   })
+    fillGroupCreationFirstStep()
+
+    clickNextStepGroupCreation()
+
+    cy.wait(2000)
+
+    // Run accessibility checks on second step
+    cy.injectAxe()
+
+    cy.checkA11y()
+
+    fillGroupNameEmoji()
+
+    clickValidateGroupCreation()
+
+    cy.wait(2000)
+
+    clickSkipTutorialButton()
+
+    recursivelyFillSimulation()
+
+    cy.wait(4000)
+
+    skipRiddle()
+
+    cy.wait(4000)
+
+    // Run accessibility checks on group results page
+    cy.injectAxe()
+
+    cy.checkA11y()
+
+    cy.wait(2000)
+
+    cy.clearLocalStorage()
+    cy.reload()
+
+    cy.wait(7000)
+
+    // Run accessibility checks on group results page
+    cy.injectAxe()
+
+    cy.checkA11y()
+  })
 })
