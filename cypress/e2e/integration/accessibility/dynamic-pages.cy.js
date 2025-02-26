@@ -138,4 +138,59 @@ describe('Accessibility Tests', () => {
 
     cy.checkA11y()
   })
+  it('should have no accessibility violations on the /organisations userflow', () => {
+    cy.intercept({ resourceType: /xhr|fetch|uncaught/ }, { log: false })
+
+    cy.visit('/organisations')
+
+    cy.wait(2000)
+
+    cy.injectAxe()
+
+    cy.checkA11y()
+
+    cy.visit('/organisations/connexion')
+
+    cy.wait(2000)
+
+    cy.injectAxe()
+
+    cy.checkA11y()
+
+    cy.visit('/organisations/creer') // ! This shouldn't be accessible without being logged in
+
+    cy.wait(2000)
+
+    cy.injectAxe()
+
+    cy.checkA11y()
+  })
+
+  it('should have no accessibility violations on /profil', () => {
+    cy.intercept({ resourceType: /xhr|fetch|uncaught/ }, { log: false })
+
+    // With no simulation completed
+    cy.visit('/profil')
+
+    cy.wait(2000)
+
+    cy.injectAxe()
+
+    cy.checkA11y()
+
+    // With simulation completed
+    cy.visit('/')
+
+    setupSimulation()
+
+    recursivelyFillSimulation()
+
+    cy.visit('/profil')
+
+    cy.wait(2000)
+
+    cy.injectAxe()
+
+    cy.checkA11y()
+  })
 })

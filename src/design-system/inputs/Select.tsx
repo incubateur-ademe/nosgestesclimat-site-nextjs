@@ -39,6 +39,7 @@ export default forwardRef(function Select(
       aria-live="polite">
       <label
         htmlFor={name}
+        id={`label-${name}`}
         className={`max-w-[30rem] text-sm font-bold text-slate-900 ${
           error ? '!text-red-700' : ''
         }`}>
@@ -57,6 +58,7 @@ export default forwardRef(function Select(
         defaultValue={value}
         onChange={onChange ?? (() => {})}
         aria-describedby={`error-${name}`}
+        aria-labelledby={`label-${name}`}
         required={required}
         className={twMerge(
           'mt-3 h-[56px] max-w-[30rem] !cursor-pointer rounded-xl border-2 border-solid border-gray-300 bg-gray-100 p-4 text-sm transition-colors focus:border-primary-700 focus:ring-2 focus:ring-primary-700',

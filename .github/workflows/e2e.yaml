@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'main'
+      - 'NGC-1684'
   pull_request:
     branches:
       - 'main'
