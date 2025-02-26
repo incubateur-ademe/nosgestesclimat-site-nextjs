@@ -1,18 +1,6 @@
 import 'cypress-axe'
-import { clickSkipTutorialButton } from '../../../helpers/elements/buttons'
-import { clickNextStepGroupCreation } from '../../../helpers/groups/clickNextStepGroupCreation'
-import { clickValidateGroupCreation } from '../../../helpers/groups/clickValidateGroupCreation'
-import { fillGroupCreationFirstStep } from '../../../helpers/groups/fillGroupCreationFirstStep'
-import { fillGroupNameEmoji } from '../../../helpers/groups/fillGroupNameEmoji'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
-import { skipRiddle } from '../../../helpers/simulation/skipRiddle'
-
-const dynamicPages = [
-  '/actions',
-  '/classements',
-  '/profil',
-  '/simulateur/bilan',
-]
+import { setupSimulation } from '../../../helpers/simulation/setupSimulation'
 
 Cypress.on('uncaught:exception', (err) => {
   // Ignore uncaught exception failures for now
@@ -116,6 +104,36 @@ describe('Accessibility Tests', () => {
     cy.wait(7000)
 
     // Run accessibility checks on group results page
+    cy.injectAxe()
+
+    cy.checkA11y()
+  })
+
+  it('Should have no accessibility violations on /actions', () => {
+    cy.intercept({ resourceType: /xhr|fetch|uncaught/ }, { log: false })
+
+    // Actions when user hasn't completed the simulation
+    cy.visit('/actions')
+
+    cy.wait(2000)
+
+    cy.injectAxe()
+
+    cy.checkA11y()
+
+    // Actions when user has completed the simulation
+    cy.visit('/')
+
+    setupSimulation()
+
+    recursivelyFillSimulation()
+
+    cy.wait(4000)
+
+    cy.visit('/actions')
+
+    cy.wait(2000)
+
     cy.injectAxe()
 
     cy.checkA11y()
