@@ -59,6 +59,8 @@ export function useEndPage() {
         isAllowedToSave &&
         (currentSimulation.polls ||
           currentSimulation.groups ||
+          // Simulation has already been saved during the test, save it one last time
+          // to make sure the the latest version is saved
           currentSimulation.savedViaEmail)
       ) {
         if (currentSimulation.computedResults[defaultMetric].bilan === 0) {
@@ -70,7 +72,8 @@ export function useEndPage() {
 
         saveSimulation({
           simulation: currentSimulation,
-          sendEmail: true,
+          // If the simulation has already been saved via email, we don't send it again
+          sendEmail: currentSimulation.savedViaEmail ? false : true,
         })
       }
 
