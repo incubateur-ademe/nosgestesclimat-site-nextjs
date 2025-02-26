@@ -43,9 +43,10 @@ export default function AgirSecondaryBlock() {
           <Trans>Que faire pour réduire mon empreinte ?</Trans>
         </h2>
         <p>
+          <Trans>À partir de votre bilan,</Trans> <strong>J’agis</strong>{' '}
           <Trans>
-            À partir de votre bilan, <strong>J’agis</strong> vous propose des
-            actions concrètes et adaptées à vos envies et à vos moyens
+            vous propose des actions concrètes et adaptées à vos envies et à vos
+            moyens
           </Trans>
         </p>
         <Button

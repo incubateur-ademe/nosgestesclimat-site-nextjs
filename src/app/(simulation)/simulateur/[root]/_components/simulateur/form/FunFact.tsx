@@ -29,7 +29,7 @@ export default function FunFact({ question }: Props) {
           <strong>
             La taille des logements français a très fortement augmenté
           </strong>{' '}
-          sur ces 50 dernirèes années, passant de 23 à 40,4 m² par habitant,
+          sur ces 50 dernières années, passant de 23 à 40,4 m² par habitant,
           soit{' '}
           <strong>90,9 m² en moyenne pour un foyer de 2,2 personnes.</strong>
         </Trans>
