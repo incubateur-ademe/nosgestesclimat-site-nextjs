@@ -1,8 +1,8 @@
-import Trans from '@/components/translation/Trans'
+import PostHogCookieConsentBanner from '@/app/(narrow-layout)/(pages-statiques)/politique-des-cookies/_components/PostHogCookieConsentBanner'
+import TransServer from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { CookiesPolicy } from '@incubateur-ademe/legal-pages-react/CookiesPolicy'
-import PostHogCookieConsentBanner from './_components/PostHogCookieConsentBanner'
 
 export async function generateMetadata({
   params,
@@ -24,7 +24,13 @@ export async function generateMetadata({
   })
 }
 
-export default function CookiesPolicyPage() {
+export default async function CookiesPolicyPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+
   return (
     <div className="markdown">
       <CookiesPolicy
@@ -43,17 +49,19 @@ export default function CookiesPolicyPage() {
       />
 
       <h2>
-        <Trans>Cookies utilisés par PostHog</Trans>
+        <TransServer locale={locale}>Cookies utilisés par PostHog</TransServer>
       </h2>
       <p>
-        <Trans>
+        <TransServer locale={locale}>
           Nous utilisons également PostHog pour mesurer l'audience de notre
           site. La liste des cookies utilisés est disponible ici :
-        </Trans>
+        </TransServer>
       </p>
       <p>
         <a href="https://www.cookie.is/service/posthog-analytics#">
-          <Trans>Voir la liste des cookies utilisés par PostHog</Trans>
+          <TransServer locale={locale}>
+            Voir la liste des cookies utilisés par PostHog
+          </TransServer>
         </a>
       </p>
 

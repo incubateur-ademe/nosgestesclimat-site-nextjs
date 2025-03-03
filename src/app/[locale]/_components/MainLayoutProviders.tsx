@@ -14,7 +14,7 @@ export default function MainLayoutProviders({ children }: PropsWithChildren) {
   return (
     <ErrorBoundary>
       <IframeOptionsProvider>
-        {(containerRef: React.RefObject<HTMLDivElement>) => (
+        {(containerRef: React.RefObject<HTMLDivElement | null>) => (
           <QueryClientProviderWrapper>
             <UserProvider
               storageKey={STORAGE_KEY}

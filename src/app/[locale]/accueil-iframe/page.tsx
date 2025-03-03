@@ -1,6 +1,6 @@
 import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
 import Partners from '@/components/landing-pages/Partners'
-import Trans from '@/components/translation/Trans'
+import TransServer from '@/components/translation/trans/TransServer'
 import { noIndexObject } from '@/constants/metadata'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
@@ -15,9 +15,16 @@ import {
 import { headers } from 'next/headers'
 import InteractiveIllustration from '../_components/InteractiveIllustration'
 
-export async function generateMetadata() {
-  const { t } = await getServerTranslation()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const { t } = await getServerTranslation(locale)
+
   return getMetadataObject({
+    locale,
     title: t('Calculez votre empreinte carbone et eau en 10 minutes !'),
     description: t(
       "2 millions de personnes ont déjà calculé leur empreinte sur le climat avec le calculateur Nos Gestes Climat ! Et vous, qu'attendez-vous pour faire le test ?"
@@ -30,19 +37,28 @@ export async function generateMetadata() {
   })
 }
 
-export default async function Homepage() {
-  const headersList = headers()
+export default async function Homepage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const headersList = await headers()
   const pathname = headersList.get('x-pathname') || '/'
 
   return (
     <>
       <LandingPage
         heroIllustration={<InteractiveIllustration />}
-        heroTitle={<Trans>Connaissez-vous votre empreinte écologique ?</Trans>}
+        heroTitle={
+          <TransServer locale={locale}>
+            Connaissez-vous votre empreinte écologique ?
+          </TransServer>
+        }
         heroDescription={
           <div className="flex flex-col items-center gap-6 md:items-start md:gap-10">
             <p className="mb-0 text-base md:order-1 md:text-2xl">
-              <Trans>
+              <TransServer locale={locale}>
                 Calculez votre{' '}
                 <strong className="text-primary-700">empreinte carbone</strong>{' '}
                 et votre{' '}
@@ -51,7 +67,7 @@ export default async function Homepage() {
                   seulement 10 minutes
                 </strong>
                 .
-              </Trans>
+              </TransServer>
             </p>
 
             <div className="flex flex-col items-center gap-6 md:order-2 md:mt-0 md:max-w-[300px] md:items-start">
@@ -84,17 +100,17 @@ export default async function Homepage() {
 
               {/* Displayed on desktop only */}
               <p>
-                <Trans>
+                <TransServer locale={locale}>
                   <strong className="text-primary-700">
                     2 millions de personnes
                   </strong>{' '}
                   ont déjà calculé leur empreinte !
-                </Trans>
+                </TransServer>
               </p>
             </div>
           </div>
         }
-        heroPartners={<Partners />}>
+        heroPartners={<Partners locale={locale} />}>
         <></>
       </LandingPage>
     </>
