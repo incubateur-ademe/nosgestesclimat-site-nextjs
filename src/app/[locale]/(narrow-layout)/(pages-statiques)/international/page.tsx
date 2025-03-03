@@ -9,13 +9,10 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
+import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 
@@ -31,11 +28,7 @@ export async function generateMetadata({
   })
 }
 
-export default async function International({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function International({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 

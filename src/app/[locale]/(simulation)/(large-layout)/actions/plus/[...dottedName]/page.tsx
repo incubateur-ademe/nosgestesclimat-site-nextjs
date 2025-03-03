@@ -3,13 +3,10 @@ import Markdown from '@/design-system/utils/Markdown'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPost } from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import type { DefaultPageProps } from '@/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 
@@ -24,15 +21,11 @@ export async function generateMetadata({
   })
 }
 
-type Props = {
-  params: {
-    dottedName: DottedName[]
-  }
-}
-
 export default async function ActionPlus({
-  params: { dottedName: dottedNameArray },
-}: Props) {
+  params,
+}: DefaultPageProps<{ params: { dottedName: DottedName[] } }>) {
+  const { dottedName: dottedNameArray } = await params
+
   const action = await getPost(
     `src/locales/actions-plus/fr/`,
     decodeURI(dottedNameArray.join(' . ').replaceAll('-', ' '))

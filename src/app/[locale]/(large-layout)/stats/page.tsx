@@ -1,12 +1,9 @@
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import type { DefaultPageProps } from '@/types'
 import StatsContent from './_components/StatsContent'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 

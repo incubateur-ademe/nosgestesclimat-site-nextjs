@@ -4,12 +4,9 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import accessibilityEn from '@/locales/pages/en/accessibility.mdx'
 import accessibilityEs from '@/locales/pages/es/accessibility.mdx'
 import accessibilityFr from '@/locales/pages/fr/accessibility.mdx'
+import type { DefaultPageProps } from '@/types'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
   return getMetadataObject({
@@ -24,11 +21,7 @@ export async function generateMetadata({
   })
 }
 
-export default async function AccessibilityPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function AccessibilityPage({ params }: DefaultPageProps) {
   const { locale } = await params
   return (
     <MDXContent

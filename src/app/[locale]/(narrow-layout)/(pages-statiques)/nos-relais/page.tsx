@@ -4,14 +4,12 @@ import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+// @ts-expect-error Ambassadeurs are not typed
 import ambassadeursYaml from '@/locales/ambassadeurs/fr/ambassadeurs.yaml'
+import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
   return getMetadataObject({
@@ -29,11 +27,7 @@ export async function generateMetadata({
 const ambassadeurs = ambassadeursYaml as any
 const categories = Object.keys(ambassadeurs)
 
-export default async function NosRelais({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function NosRelais({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 

@@ -6,13 +6,10 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
+import type { DefaultPageProps } from '@/types'
 import type { PropsWithChildren } from 'react'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 
@@ -32,7 +29,7 @@ export async function generateMetadata({
 export default async function ActionsLayout({
   children,
   params,
-}: PropsWithChildren<{ params: Promise<{ locale: string }> }>) {
+}: PropsWithChildren<DefaultPageProps>) {
   const { locale } = await params
 
   return (

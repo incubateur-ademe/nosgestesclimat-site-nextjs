@@ -7,6 +7,7 @@ import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
 import { fetchCategoryPageContent } from '@/services/cms/fetchCategoryPageContent'
 import { fetchCategoryPageMetadata } from '@/services/cms/fetchCategoryPageMetadata'
+import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
 import AdditionalContent from './_components/AdditionalContent'
 import CategoryHero from './_components/CategoryHero'
@@ -14,9 +15,9 @@ import CategoryJSONLD from './_components/CategoryJSONLD'
 
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ category: string; locale: string }>
-}) {
+}: DefaultPageProps<{
+  params: { category: string }
+}>) {
   const { category, locale } = await params
 
   const { metaTitle, metaDescription, image } =

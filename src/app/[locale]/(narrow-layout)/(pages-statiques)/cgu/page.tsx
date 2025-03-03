@@ -4,12 +4,9 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import ContentEn from '@/locales/pages/en/CGU.mdx'
 import ContentEs from '@/locales/pages/es/CGU.mdx'
 import ContentFr from '@/locales/pages/fr/CGU.mdx'
+import type { DefaultPageProps } from '@/types'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
   return getMetadataObject({
@@ -22,11 +19,7 @@ export async function generateMetadata({
   })
 }
 
-export default async function CGUPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function CGUPage({ params }: DefaultPageProps) {
   const { locale } = await params
 
   return (

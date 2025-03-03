@@ -3,14 +3,11 @@ import { linkToGroupCreation } from '@/constants/group'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import type { DefaultPageProps } from '@/types'
 import Actions from './_components/Actions'
 import LinkList from './_components/LinkList'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 
@@ -26,11 +23,7 @@ export async function generateMetadata({
   })
 }
 
-export default async function PlanDuSitePage({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function PlanDuSitePage({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 

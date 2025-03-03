@@ -10,6 +10,7 @@ import guideLogement from '@/locales/guide-mode-groupe/fr/guide-logement.mdx'
 import guideNumerique from '@/locales/guide-mode-groupe/fr/guide-numerique.mdx'
 import guideServicesSocietaux from '@/locales/guide-mode-groupe/fr/guide-services-societaux.mdx'
 import guideTransport from '@/locales/guide-mode-groupe/fr/guide-transport.mdx'
+import type { DefaultPageProps } from '@/types'
 
 const categories: Record<string, any> = {
   alimentation: guideAlimentation,
@@ -22,9 +23,7 @@ const categories: Record<string, any> = {
 
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ category: string; locale: string }>
-}) {
+}: DefaultPageProps<{ params: { category: string } }>) {
   const { category, locale } = await params
   const { t } = await getServerTranslation(locale)
 
@@ -40,11 +39,7 @@ export async function generateMetadata({
   })
 }
 
-export default async function CategoryGuidePage({
-  params,
-}: {
-  params: Promise<{ category: string; locale: string }>
-}) {
+export default async function CategoryGuidePage({ params }: DefaultPageProps) {
   const { category, locale } = await params
 
   return (

@@ -1,12 +1,11 @@
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import type { DefaultPageProps } from '@/types'
 import type { PropsWithChildren } from 'react'
 
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ orgaSlug: string; locale: string }>
-}) {
+}: DefaultPageProps<{ params: { orgaSlug: string } }>) {
   const { orgaSlug, locale } = await params
 
   const { t } = await getServerTranslation(locale)

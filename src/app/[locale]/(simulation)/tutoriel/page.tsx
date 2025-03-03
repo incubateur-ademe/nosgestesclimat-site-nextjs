@@ -6,16 +6,14 @@ import Trans from '@/components/translation/trans/TransServer'
 import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import type { DefaultPageProps } from '@/types'
 import { twMerge } from 'tailwind-merge'
 import AutresQuestions from './_components/AutresQuestions'
 import AvantDeCommencer from './_components/AvantDeCommencer'
 import ButtonBack from './_components/ButtonBack'
 import OrganisationMessage from './_components/OrganisationMessage'
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 
@@ -32,11 +30,7 @@ export async function generateMetadata({
   })
 }
 
-export default async function Tutoriel({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function Tutoriel({ params }: DefaultPageProps) {
   const { locale } = await params
   return (
     <ContentLarge className="mt-10 px-4 lg:px-0">

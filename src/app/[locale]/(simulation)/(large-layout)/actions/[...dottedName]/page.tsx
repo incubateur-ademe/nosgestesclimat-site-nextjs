@@ -2,14 +2,13 @@ import Trans from '@/components/translation/trans/TransClient'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import type { DefaultPageProps } from '@/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import ActionDetail from './_components/ActionDetail'
 
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ dottedName: DottedName[]; locale: string }>
-}) {
+}: DefaultPageProps<{ params: { dottedName: DottedName[] } }>) {
   const { dottedName, locale } = await params
   const { t } = await getServerTranslation(locale)
 
@@ -27,11 +26,10 @@ export async function generateMetadata({
   })
 }
 
-export default function ActionDetailPage({
+export default async function ActionDetailPage({
   params,
-}: {
-  params: { dottedName: DottedName[] }
-}) {
+}: DefaultPageProps<{ params: { dottedName: DottedName[] } }>) {
+  const paramsAwaited = await params
   return (
     <div className="mx-auto max-w-[600px]">
       <ButtonLink
@@ -48,7 +46,7 @@ export default function ActionDetailPage({
         <Trans> Retour à la liste</Trans>
       </ButtonLink>
 
-      <ActionDetail params={params} />
+      <ActionDetail params={paramsAwaited} />
     </div>
   )
 }

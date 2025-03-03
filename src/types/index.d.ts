@@ -4,3 +4,8 @@ declare module '*.yaml' {
 }
 
 declare module '@getbrevo/brevo'
+
+export type DefaultPageProps<T = { params: Record<string, string> }> = {
+  params: Promise<{ locale: string } & T.params>
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
+}

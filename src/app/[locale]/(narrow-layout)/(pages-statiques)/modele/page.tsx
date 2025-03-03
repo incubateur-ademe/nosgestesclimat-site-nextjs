@@ -2,15 +2,12 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import type { DefaultPageProps } from '@/types'
 import ModeleDemoBlock from './_components/ModeleDemoBlock'
 import ModeleIssuePreviews from './_components/ModeleIssuePreviews'
 import ModeleStatsBlock from './_components/ModeleStatsBlock'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 
@@ -25,11 +22,7 @@ export async function generateMetadata({
   }
 }
 
-export default async function ModelePage({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function ModelePage({ params }: DefaultPageProps) {
   const { locale } = await params
   return (
     <div>

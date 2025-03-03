@@ -5,12 +5,9 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import AboutEn from '@/locales/pages/en/about.mdx'
 import AboutEs from '@/locales/pages/es/about.mdx'
 import AboutFr from '@/locales/pages/fr/about.mdx'
+import type { DefaultPageProps } from '@/types'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 
@@ -24,11 +21,7 @@ export async function generateMetadata({
   })
 }
 
-export default async function AProposPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function AProposPage({ params }: DefaultPageProps) {
   const { locale } = await params
 
   return (

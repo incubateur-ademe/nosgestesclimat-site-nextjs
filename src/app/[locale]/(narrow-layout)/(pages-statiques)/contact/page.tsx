@@ -5,14 +5,11 @@ import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 import Script from 'next/script'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
   return getMetadataObject({
@@ -25,11 +22,7 @@ export async function generateMetadata({
   })
 }
 
-export default async function Contact({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function Contact({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 

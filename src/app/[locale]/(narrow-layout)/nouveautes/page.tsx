@@ -7,13 +7,10 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPosts } from '@/helpers/markdown/getPosts'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 
@@ -29,11 +26,7 @@ export async function generateMetadata({
   })
 }
 
-export default async function Releases({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function Releases({ params }: DefaultPageProps) {
   const { locale } = await params
   const releases = await getPosts(`src/locales/nouveautes/${locale}/`)
 

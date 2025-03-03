@@ -6,6 +6,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getCurrentLangInfos } from '@/locales/translation'
+import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 import DoTheTest from './_components/DoTheTest'
 import FAQListItem from './_components/FAQListItem'
@@ -18,11 +19,7 @@ type FAQType = {
   id: string
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 
@@ -40,11 +37,7 @@ export async function generateMetadata({
   })
 }
 
-export default async function FAQPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function FAQPage({ params }: DefaultPageProps) {
   const { locale } = await params
   const { i18n, t } = await getServerTranslation(locale)
 

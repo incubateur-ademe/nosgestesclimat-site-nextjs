@@ -5,13 +5,12 @@ import Markdown from '@/design-system/utils/Markdown'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPost } from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import type { DefaultPageProps } from '@/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ slug: string; locale: string }>
-}) {
+}: DefaultPageProps<{ params: { slug: string } }>) {
   const { slug, locale } = await params
   const { t } = await getServerTranslation(locale)
 
@@ -28,9 +27,7 @@ export async function generateMetadata({
 
 export default async function Release({
   params,
-}: {
-  params: Promise<{ slug: string; locale: string }>
-}) {
+}: DefaultPageProps<{ params: { slug: string } }>) {
   const { slug, locale } = await params
   const nouveaute = await getPost(`src/locales/nouveautes/${locale}/`, slug)
 

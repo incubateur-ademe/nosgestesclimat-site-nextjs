@@ -2,14 +2,15 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getRules } from '@/helpers/modelFetching/getRules'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
+import type { DefaultPageProps } from '@/types'
 import DocumentationRouter from './_components/DocumentationRouter'
 import DocumentationServer from './_components/documentationRouter/DocumentationServer'
 
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ locale: string; slug: string[] }>
-}) {
+}: DefaultPageProps<{
+  params: { slug: string[] }
+}>) {
   const { locale, slug } = await params
   const { t } = await getServerTranslation(locale)
 
@@ -31,9 +32,9 @@ export async function generateMetadata({
 // between the server and the client
 export default async function DocumentationPage({
   params,
-}: {
-  params: Promise<{ locale: string; slug: string[] }>
-}) {
+}: DefaultPageProps<{
+  params: { slug: string[] }
+}>) {
   const { locale, slug } = await params
   const supportedRegions = getSupportedRegions()
 

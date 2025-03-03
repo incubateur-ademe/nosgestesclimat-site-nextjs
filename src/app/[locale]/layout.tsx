@@ -2,6 +2,7 @@ import ErrorContent from '@/components/error/ErrorContent'
 import Footer from '@/components/layout/Footer'
 import '@/locales/initClient'
 import '@/locales/initServer'
+import type { DefaultPageProps } from '@/types'
 import { captureException } from '@sentry/nextjs'
 import { dir } from 'i18next'
 import localFont from 'next/font/local'
@@ -50,8 +51,7 @@ export default async function RootLayout({
   params,
 }: {
   children: React.ReactNode
-  params: Promise<{ locale: string }>
-}) {
+} & DefaultPageProps) {
   const { locale } = await params
 
   try {

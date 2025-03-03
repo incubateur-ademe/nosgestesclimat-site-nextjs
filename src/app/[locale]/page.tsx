@@ -11,6 +11,7 @@ import {
   getLandingClickCTAResume,
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
+import type { DefaultPageProps } from '@/types'
 import dynamic from 'next/dynamic'
 import { headers } from 'next/headers'
 import Partners from '../../components/landing-pages/Partners'
@@ -27,9 +28,7 @@ const DynamicCTAButtons = dynamic(
   () => import('@/components/cta/DynamicCTAButtons'),
   { loading: () => <CTAButtonsPlaceholder /> }
 )
-export async function generateMetadata(props: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata(props: DefaultPageProps) {
   const { locale } = await props.params
   const { t } = await getServerTranslation(locale)
   return getMetadataObject({
@@ -45,11 +44,7 @@ export async function generateMetadata(props: {
   })
 }
 
-export default async function Homepage({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function Homepage({ params }: DefaultPageProps) {
   const { locale } = await params
 
   const headersList = await headers()

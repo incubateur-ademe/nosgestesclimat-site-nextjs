@@ -12,6 +12,7 @@ import {
   getLandingClickCTAResume,
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
+import type { DefaultPageProps } from '@/types'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import DailyGestureCarbonFootprint from './_components/DailyGestureCarbonFootprint'
@@ -29,11 +30,7 @@ const DynamicCTAButtons = dynamic(
     loading: () => <CTAButtonsPlaceholder />,
   }
 )
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 
@@ -51,9 +48,7 @@ export async function generateMetadata({
 
 export default async function CarbonFootprintLandingPage({
   params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+}: DefaultPageProps) {
   const { locale } = await params
   return (
     <>

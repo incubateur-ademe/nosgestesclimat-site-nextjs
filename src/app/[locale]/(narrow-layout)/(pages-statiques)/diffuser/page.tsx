@@ -4,12 +4,9 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import DiffuserEn from '@/locales/pages/en/diffuser.mdx'
 import DiffuserEs from '@/locales/pages/es/diffuser.mdx'
 import DiffuserFr from '@/locales/pages/fr/diffuser.mdx'
+import type { DefaultPageProps } from '@/types'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 
@@ -25,11 +22,7 @@ export async function generateMetadata({
   })
 }
 
-export default async function DiffuserPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function DiffuserPage({ params }: DefaultPageProps) {
   const { locale } = await params
 
   return (

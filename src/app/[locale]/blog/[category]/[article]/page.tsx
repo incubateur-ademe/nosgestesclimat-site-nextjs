@@ -4,6 +4,7 @@ import { fetchArticlePageContent } from '@/services/cms/fetchArticlePageContent'
 import { fetchArticlePageMetadata } from '@/services/cms/fetchArticlePageMetadata'
 
 import Badge from '@/design-system/layout/Badge'
+import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import ArticleBreadcrumbs from './_components/ArticleBreadcrumbs'
@@ -14,9 +15,9 @@ import StickySidebar from './_components/StickySidebar'
 
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ category: string; article: string; locale: string }>
-}) {
+}: DefaultPageProps<{
+  params: { category: string; article: string }
+}>) {
   const { category, article, locale } = await params
 
   const { metaTitle, metaDescription, image } =

@@ -7,13 +7,10 @@ import contentEsBottom from '@/locales/pages/es/budgetBottom.mdx'
 import contentEsTop from '@/locales/pages/es/budgetTop.mdx'
 import contentFrBottom from '@/locales/pages/fr/budgetBottom.mdx'
 import contentFrTop from '@/locales/pages/fr/budgetTop.mdx'
+import type { DefaultPageProps } from '@/types'
 import SelectYear from './_components/SelectYear'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
   return getMetadataObject({
@@ -26,11 +23,7 @@ export async function generateMetadata({
   })
 }
 
-export default async function BudgetPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function BudgetPage({ params }: DefaultPageProps) {
   const { locale } = await params
 
   return (

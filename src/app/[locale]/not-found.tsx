@@ -1,10 +1,9 @@
 import Route404 from '@/components/layout/404'
 import Main from '@/design-system/layout/Main'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import type { DefaultPageProps } from '@/types'
 
-export async function generateMetadata(props: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata(props: DefaultPageProps) {
   const { locale } = await props.params
   const { t } = await getServerTranslation(locale)
 

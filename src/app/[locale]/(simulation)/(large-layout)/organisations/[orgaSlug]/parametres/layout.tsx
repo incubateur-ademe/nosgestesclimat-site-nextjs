@@ -1,13 +1,14 @@
 import ToastDisplay from '@/components/messages/ToastDisplay'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import type { DefaultPageProps } from '@/types'
 import type { PropsWithChildren } from 'react'
 
 export async function generateMetadata({
   params,
-}: {
+}: DefaultPageProps<{
   params: Promise<{ orgaSlug: string; locale: string }>
-}) {
+}>) {
   const { orgaSlug, locale } = await params
 
   const { t } = await getServerTranslation(locale)

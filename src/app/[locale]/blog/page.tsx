@@ -10,15 +10,12 @@ import NewslettersBlockSkeleton from '@/design-system/cms/NewslettersBlockSkelet
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { fetchHomepageContent } from '@/services/cms/fetchHomepageContent'
 import { fetchHomepageMetadata } from '@/services/cms/fetchHomepageMetadata'
+import type { DefaultPageProps } from '@/types'
 import { notFound } from 'next/navigation'
 import BlogHero from './_components/BlogHero'
 import GroupBlock from './_components/GroupBlock'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
 
   const { metaTitle, metaDescription, image } =

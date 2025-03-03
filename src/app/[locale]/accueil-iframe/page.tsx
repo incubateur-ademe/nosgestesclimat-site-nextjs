@@ -12,14 +12,11 @@ import {
   getLandingClickCTAResume,
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
+import type { DefaultPageProps } from '@/types'
 import { headers } from 'next/headers'
 import InteractiveIllustration from '../_components/InteractiveIllustration'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 
@@ -37,11 +34,7 @@ export async function generateMetadata({
   })
 }
 
-export default async function Homepage({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function Homepage({ params }: DefaultPageProps) {
   const { locale } = await params
   const headersList = await headers()
   const pathname = headersList.get('x-pathname') || '/'

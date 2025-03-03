@@ -7,6 +7,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import { FormProvider } from '@/publicodes-state'
+import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 import AnswerList from './_components/AnswerList'
 import Localisation from './_components/Localisation'
@@ -14,11 +15,7 @@ import PersonaWarning from './_components/PersonaWarning'
 import SimulationBanner from './_components/SimulationBanner'
 import SimulationList from './_components/SimulationList'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 
@@ -34,11 +31,7 @@ export async function generateMetadata({
   })
 }
 
-export default async function Profil({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function Profil({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 

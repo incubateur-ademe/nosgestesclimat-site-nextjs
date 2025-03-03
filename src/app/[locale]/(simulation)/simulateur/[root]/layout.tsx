@@ -1,6 +1,7 @@
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
+import type { DefaultPageProps } from '@/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { PropsWithChildren } from 'react'
 
@@ -8,12 +9,7 @@ type Props = { params: { root: DottedName } }
 
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{
-    root: DottedName
-    locale: string
-  }>
-}) {
+}: DefaultPageProps<{ params: { root: DottedName } }>) {
   const { root, locale } = await params
   const { t } = await getServerTranslation(locale)
 

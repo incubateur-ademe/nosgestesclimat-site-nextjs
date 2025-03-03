@@ -1,13 +1,10 @@
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import type { DefaultPageProps } from '@/types'
 import NorthStarIframe from './_components/NorthStarIframe'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 
@@ -23,11 +20,7 @@ export async function generateMetadata({
   })
 }
 
-export default async function NorthStarPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function NorthStarPage({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 

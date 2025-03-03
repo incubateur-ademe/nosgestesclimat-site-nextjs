@@ -1,14 +1,11 @@
 import Trans from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import type { DefaultPageProps } from '@/types'
 import { CookiesPolicy } from '@incubateur-ademe/legal-pages-react/CookiesPolicy'
 import PostHogCookieConsentBanner from './_components/PostHogCookieConsentBanner'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation(locale)
 
@@ -24,11 +21,7 @@ export async function generateMetadata({
   })
 }
 
-export default async function CookiesPolicyPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function CookiesPolicyPage({ params }: DefaultPageProps) {
   const { locale } = await params
 
   return (

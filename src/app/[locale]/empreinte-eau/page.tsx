@@ -11,6 +11,7 @@ import {
   getLandingClickCTAResume,
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
+import type { DefaultPageProps } from '@/types'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import DailyGestureWaterFootprint from './_components/DailyGestureWaterFootprint'
@@ -30,9 +31,7 @@ const DynamicCTAButtons = dynamic(
   }
 )
 
-export async function generateMetadata(props: {
-  params: Promise<{ locale: string }>
-}) {
+export async function generateMetadata(props: DefaultPageProps) {
   const { locale } = await props.params
   const { t } = await getServerTranslation(locale)
 
@@ -49,9 +48,9 @@ export async function generateMetadata(props: {
   })
 }
 
-export default async function WaterFootprintLandingPage(props: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function WaterFootprintLandingPage(
+  props: DefaultPageProps
+) {
   const { locale } = await props.params
   const { t } = await getServerTranslation(locale)
 
