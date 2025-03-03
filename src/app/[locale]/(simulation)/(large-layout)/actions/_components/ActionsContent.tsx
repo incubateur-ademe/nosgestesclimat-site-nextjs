@@ -7,6 +7,7 @@ import {
   useSimulation,
   useTempEngine,
 } from '@/publicodes-state'
+import type { Action, ParsedRules } from '@/publicodes-state/types'
 import { useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 import Actions from './actionsContent/Actions'
@@ -59,8 +60,8 @@ export default function ActionsContent() {
       </div>
 
       <Actions
-        actions={actionsDisplayed.reverse()}
-        rules={rules}
+        actions={actionsDisplayed.reverse() as Action[]}
+        rules={rules as ParsedRules}
         radical={radical}
       />
 

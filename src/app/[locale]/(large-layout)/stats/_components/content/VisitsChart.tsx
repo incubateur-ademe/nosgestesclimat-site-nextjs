@@ -1,4 +1,5 @@
 import { useVisitsChart } from '@/helpers/matomo'
+import type { UseQueryResult } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import Chart from './chart/Chart'
 
@@ -26,7 +27,12 @@ export default function VisitsChart({
     chartDate: Number(chartDate) + 1,
     chartPeriod,
     name: elementAnalysedTitle,
-  })
+  }) as UseQueryResult<
+    Record<
+      string,
+      string | number | { [key: string]: { nb_visits: number }[] }
+    >[]
+  >
 
   const [data, setData] = useState<
     Record<string, string | number>[] | undefined
@@ -43,7 +49,8 @@ export default function VisitsChart({
         points[dataKey] =
           typeof chart[date] === 'number'
             ? +chart[date]
-            : +chart[date]?.[0]?.['nb_visits']
+            : // @ts-expect-error chart[date] is an array of objects
+              +chart[date]?.[0]?.['nb_visits']
         return points
       })
       setData(dataDots)

@@ -4,14 +4,15 @@ import Trans from '@/components/translation/trans/TransClient'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useEngine } from '@/publicodes-state'
+import type { Action, ParsedRules } from '@/publicodes-state/types'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import Image from 'next/image'
 import { useState } from 'react'
 import ActionList from './actions/ActionList'
 
 type Props = {
-  actions: any
-  rules: any
+  actions: Action[]
+  rules: ParsedRules
   radical: boolean
 }
 
@@ -40,7 +41,7 @@ export default function Actions({
   const actions = rawActions.map((a: any) => ({
     ...a,
     value: getCorrectedValue(a),
-  }))
+  })) as Action[]
 
   const rejected = actions.filter(
     (a: any) => actionChoices?.[a.dottedName] === false
@@ -55,14 +56,14 @@ export default function Actions({
       return next.value > acc.value ? next : acc
     },
     { value: 0 } as { value: number }
-  )
+  ) as Action
 
   const numberedActions = thresholds.map(([threshold, label], index) => {
     const thresholdActions = notRejected.filter(
-      (a: { value: any }) =>
-        a.value >= threshold &&
-        (index === 0 || a.value < thresholds[index - 1][0])
-    )
+      (a: Action) =>
+        a.value >= (threshold as number) &&
+        (index === 0 || a.value < (thresholds[index - 1][0] as number))
+    ) as Action[]
 
     if (!thresholdActions.length) return null
 

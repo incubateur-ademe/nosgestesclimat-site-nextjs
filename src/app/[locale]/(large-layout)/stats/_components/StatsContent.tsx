@@ -96,12 +96,12 @@ export default function StatsContent() {
           ]) => (
             <>
               <VisitsBlock
-                allTimeVisits={allTimeVisitsData}
-                currentMonthVisits={currentMonthVisitsData}
+                allTimeVisits={allTimeVisitsData as number}
+                currentMonthVisits={currentMonthVisitsData as number}
               />
               <SimulationsBlock
-                allSimulationsTerminees={allSimulationsTermineesData}
-                currentMonthSimulations={currentMonthSimulationsData}
+                allSimulationsTerminees={allSimulationsTermineesData as number}
+                currentMonthSimulations={currentMonthSimulationsData as number}
               />
             </>
           )}
@@ -128,11 +128,15 @@ export default function StatsContent() {
           ]) => (
             <AcquisitionBlock
               mainNewsletter={mainNewsletter}
-              allSharedSimulationEventsData={allSharedSimulationEventsData}
-              currentMonthWebsitesData={currentMonthWebsitesData}
-              currentMonthSocialsData={currentMonthSocialsData}
-              currentMonthVisitsData={currentMonthVisitsData}
-              currentMonthIframeVisitsData={currentMonthIframeVisitsData}
+              allSharedSimulationEventsData={
+                allSharedSimulationEventsData as number
+              }
+              currentMonthWebsitesData={currentMonthWebsitesData as number}
+              currentMonthSocialsData={currentMonthSocialsData as number}
+              currentMonthVisitsData={currentMonthVisitsData as number}
+              currentMonthIframeVisitsData={
+                currentMonthIframeVisitsData as number
+              }
             />
           )}
         />

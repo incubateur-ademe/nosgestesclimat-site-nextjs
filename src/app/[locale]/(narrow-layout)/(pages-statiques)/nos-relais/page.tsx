@@ -4,9 +4,15 @@ import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import ambassadeursYaml from '@/locales/ambassadeurs/fr/ambassadeurs.yaml'
+import ambassadeursYaml from '@/locales/ambassadeurs/fr/ambassadeurs.yaml' assert { type: 'yaml' }
 import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
+
+type Ambassadeur = {
+  title: string
+  link: string
+  image: string
+}
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
@@ -23,7 +29,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
   })
 }
 
-const ambassadeurs = ambassadeursYaml as any
+const ambassadeurs = ambassadeursYaml as Record<string, Ambassadeur[]>
 const categories = Object.keys(ambassadeurs)
 
 export default async function NosRelais({ params }: DefaultPageProps) {
@@ -87,11 +93,11 @@ export default async function NosRelais({ params }: DefaultPageProps) {
         />
       </div>
 
-      {categories.map((category: any) => (
+      {categories.map((category: string) => (
         <div key={category} className="mb-16">
           <h2>{category}</h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {ambassadeurs[category].map((ambassadeur: any) => (
+            {ambassadeurs[category].map((ambassadeur: Ambassadeur) => (
               <Card
                 key={ambassadeur.title}
                 href={ambassadeur.link}

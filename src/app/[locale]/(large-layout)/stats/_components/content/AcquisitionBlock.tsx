@@ -58,9 +58,9 @@ export default function AcquisitionBlock({
         </div>
       </div>
       <Sources
-        currentMonthVisitsData={currentMonthVisitsData}
-        currentMonthWebsitesData={currentMonthWebsitesData}
-        currentMonthSocialsData={currentMonthSocialsData}
+        currentMonthVisitsData={currentMonthVisitsData as number}
+        currentMonthWebsitesData={currentMonthWebsitesData as number}
+        currentMonthSocialsData={currentMonthSocialsData as number}
       />
     </div>
   )

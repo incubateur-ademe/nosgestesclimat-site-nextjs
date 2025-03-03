@@ -13,13 +13,13 @@ type IssueType = {
 }
 
 export default async function ModeleIssuePreviews() {
-  const issues: IssueType[] = await axios
+  const issues: IssueType[] | null = await axios
     .get(
       `https://api.github.com/repos/incubateur-ademe/nosgestesclimat/issues?labels=${encodeURI(
         labelString
       )}`
     )
-    .then((res) => res.data)
+    .then((res) => res.data as IssueType[])
     .catch(() => {
       return null
     })
