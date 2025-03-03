@@ -11,9 +11,8 @@ import guideNumerique from '@/locales/guide-mode-groupe/fr/guide-numerique.mdx'
 import guideServicesSocietaux from '@/locales/guide-mode-groupe/fr/guide-services-societaux.mdx'
 import guideTransport from '@/locales/guide-mode-groupe/fr/guide-transport.mdx'
 import type { DefaultPageProps } from '@/types'
-import type { MDXContent as MDXContentType } from 'mdx/types'
 
-const categories: Record<string, MDXContentType> = {
+const categories: Record<string, any> = {
   alimentation: guideAlimentation,
   divers: guideDivers,
   logement: guideLogement,

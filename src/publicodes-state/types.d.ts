@@ -76,7 +76,7 @@ export type Simulation = {
   date: Date | string
   situation: Situation
   foldedSteps: DottedName[]
-  actionChoices: Record<string, boolean>
+  actionChoices: any
   persona?: string
   computedResults: ComputedResults
   progression: number
@@ -108,12 +108,4 @@ export type MissingVariables = Record<DottedName, number>
 export type FormattedSuggestion = {
   label: string
   value: SuggestionValue | Record<string, SuggestionValue>
-}
-
-export type Action = {
-  dottedName: DottedName
-  title: string
-  description: string
-  icon: string
-  value: number
 }

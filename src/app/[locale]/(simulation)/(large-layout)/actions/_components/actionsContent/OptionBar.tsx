@@ -18,7 +18,7 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
 
   const { t } = useClientTranslation()
 
-  const numberOfAvailableFinalActions = actions.length as number
+  const numberOfAvailableFinalActions = actions.length
 
   if (!isOpen) {
     return (

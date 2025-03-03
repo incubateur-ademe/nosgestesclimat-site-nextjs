@@ -1,5 +1,4 @@
 import { useSimulationsChart } from '@/helpers/matomo'
-import type { UseQueryResult } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import Chart from './chart/Chart'
 
@@ -26,19 +25,10 @@ export default function SimulationsChart({
     chartDate: Number(chartDate) + 1,
     chartPeriod,
     name: elementAnalysedTitle,
-  }) as UseQueryResult<
-    Record<
-      string,
-      string | number | { [key: string]: { nb_visits: number }[] }
-    >[]
-  >
+  })
 
   const [data, setData] = useState<
-    | Record<
-        string,
-        string | number | { [key: string]: { nb_visits: number }[] }
-      >[]
-    | undefined
+    Record<string, string | number>[] | undefined
   >(undefined)
 
   useEffect(() => {
@@ -52,8 +42,7 @@ export default function SimulationsChart({
         points[dataKey] =
           typeof chart[date] === 'number'
             ? +chart[date]
-            : // @ts-expect-error chart[date] is an array of objects
-              +chart[date]?.[0]?.['nb_visits']
+            : +chart[date]?.[0]?.['nb_visits']
         return points
       })
       setData(dataDots)
