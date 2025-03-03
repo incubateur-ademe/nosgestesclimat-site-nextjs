@@ -38,13 +38,14 @@ export default async function BlogHomePage({
   searchParams,
   params,
 }: {
-  searchParams: { page: string }
+  searchParams: Promise<{ page: string }>
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
 
   // Get the page number from the query params from the server side
-  const page = Number(searchParams.page) || 1
+  const { page: pageParam } = await searchParams
+  const page = Number(pageParam) || 1
 
   const { title, description, image, mainArticle, articles, pageCount } =
     (await fetchHomepageContent({

@@ -60,7 +60,6 @@ export default async function ArticlePage({
 
       <div className="relative max-w-5xl px-4 md:mx-auto lg:px-0">
         <ArticleBreadcrumbs
-          locale={locale}
           categorySlug={category}
           articleSlug={articleSlug}
           articleTitle={article.title}
@@ -114,7 +113,6 @@ export default async function ArticlePage({
           article={article}
           category={category}
           articleSlug={articleSlug}
-          locale={locale}
         />
 
         <div className="relative mt-8 flex max-w-5xl flex-col flex-nowrap gap-8 overflow-auto md:mx-auto md:mt-0 md:flex-row md:items-stretch">

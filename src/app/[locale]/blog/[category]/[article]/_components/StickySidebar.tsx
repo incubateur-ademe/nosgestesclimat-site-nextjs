@@ -2,7 +2,7 @@
 
 import type { ArticleType } from '@/adapters/cmsClient'
 import ShareIcon from '@/components/icons/ShareIcon'
-import Trans from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransClient'
 import CopyButton from '@/design-system/inputs/CopyButton'
 import { useEffect, useState } from 'react'
 import Summary from './Summary'
@@ -16,12 +16,10 @@ export default function StickySidebar({
   article,
   category,
   articleSlug,
-  locale,
 }: {
   article: ArticleType
   category: string
   articleSlug: string
-  locale: string
 }) {
   const [opacity, setOpacity] = useState(FULL_OPACITY)
 
@@ -59,12 +57,12 @@ export default function StickySidebar({
       <CopyButton
         className="w-auto"
         textToCopy={`https://nosgestesclimat.fr/blog/${category}/${articleSlug}`}
-        copiedStateText={<Trans locale={locale}>Lien copié</Trans>}>
+        copiedStateText={<Trans>Lien copié</Trans>}>
         <ShareIcon className="mr-2 h-8 w-8 fill-primary-700" />
-        <Trans locale={locale}>Partager l'article</Trans>
+        <Trans>Partager l'article</Trans>
       </CopyButton>
 
-      <Summary headings={article.headings ?? []} locale={locale} />
+      <Summary headings={article.headings ?? []} />
     </div>
   )
 }

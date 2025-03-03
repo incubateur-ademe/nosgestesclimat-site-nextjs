@@ -1,16 +1,16 @@
-import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
+'use client'
 
-export default async function CategoryBreadcrumbs({
+import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
+
+export default function CategoryBreadcrumbs({
   slug,
   title,
-  locale,
 }: {
   slug: string
   title: string
-  locale: string
 }) {
-  const { t } = await getServerTranslation(locale)
+  const { t } = useClientTranslation()
 
   return (
     <Breadcrumbs

@@ -43,12 +43,14 @@ export default async function CategoryPage({
   searchParams,
 }: {
   params: Promise<{ category: string; locale: string }>
-  searchParams: { page: string }
+  searchParams: Promise<{ page: string }>
 }) {
   const { category, locale } = await params
 
+  const { page: pageParam } = await searchParams
+
   // Get the page number from the query params from the server side
-  const page = Number(searchParams.page) || 1
+  const page = Number(pageParam) || 1
 
   const {
     title,
