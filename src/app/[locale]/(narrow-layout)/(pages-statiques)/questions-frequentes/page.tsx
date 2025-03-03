@@ -21,7 +21,7 @@ type FAQType = {
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation(params)
 
   return getMetadataObject({
     locale,
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
 export default async function FAQPage({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { i18n, t } = await getServerTranslation(locale)
+  const { i18n, t } = await getServerTranslation(params)
 
   const FAQContent = getCurrentLangInfos(i18n)
     .faqContent as unknown as FAQType[]
@@ -68,7 +68,7 @@ export default async function FAQPage({ params }: DefaultPageProps) {
           <p>
             <Trans locale={locale}>
               Vous trouverez ici les réponses aux questions les plus fréquentes.
-              S’il vous reste des interrogations ou si vous souhaitez nous
+              S'il vous reste des interrogations ou si vous souhaitez nous
               proposer des améliorations, rendez-vous tout en bas. Bonne lecture
               !
             </Trans>

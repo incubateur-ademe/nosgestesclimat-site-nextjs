@@ -5,7 +5,7 @@ import StatsContent from './_components/StatsContent'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation(params)
 
   return getMetadataObject({
     locale,

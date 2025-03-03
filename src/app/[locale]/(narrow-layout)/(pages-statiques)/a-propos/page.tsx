@@ -8,8 +8,8 @@ import AboutFr from '@/locales/pages/fr/about.mdx'
 import type { DefaultPageProps } from '@/types'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
+  const { t } = await getServerTranslation(params)
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
     locale,

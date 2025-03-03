@@ -8,7 +8,7 @@ export default async function TransServer({
   children,
   i18nKey,
 }: TransPropsWithInterpolation & { locale: string }): Promise<ReactElement> {
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <Trans i18nKey={i18nKey} t={t}>

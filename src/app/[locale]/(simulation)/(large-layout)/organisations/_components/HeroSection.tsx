@@ -10,7 +10,7 @@ import { trackEvent } from '@/utils/analytics/trackEvent'
 import Image from 'next/image'
 
 export default async function HeroSection({ locale }: { locale: string }) {
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <div className="flex flex-wrap justify-center gap-12 pt-14 lg:flex-nowrap lg:justify-start lg:gap-16">

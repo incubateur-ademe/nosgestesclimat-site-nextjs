@@ -10,7 +10,7 @@ import Image from 'next/image'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
   return getMetadataObject({
     locale,
     title: t('Nos relais - Nos Gestes Climat'),
@@ -28,7 +28,7 @@ const categories = Object.keys(ambassadeurs)
 
 export default async function NosRelais({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <div>

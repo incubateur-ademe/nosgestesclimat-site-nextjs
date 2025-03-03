@@ -7,7 +7,7 @@ export default async function FAQWaterFootprint({
 }: {
   locale: string
 }) {
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <FAQ

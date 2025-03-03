@@ -13,12 +13,12 @@ import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
+  const { t } = await getServerTranslation(params)
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
     locale,
-    title: t('Le calculateur d’empreinte climat international'),
+    title: t("Le calculateur d'empreinte climat international"),
     description: t(
       'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.'
     ),
@@ -29,8 +29,8 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 }
 
 export default async function International({ params }: DefaultPageProps) {
+  const { t } = await getServerTranslation(params)
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
 
   const supportedRegions = getSupportedRegions()
 

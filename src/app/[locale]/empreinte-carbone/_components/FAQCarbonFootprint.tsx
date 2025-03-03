@@ -8,7 +8,7 @@ export default async function FAQCarbonFootprint({
 }: {
   locale: string
 }) {
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <FAQ

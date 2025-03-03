@@ -10,7 +10,7 @@ import NameForm from './_components/NameForm'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return getMetadataObject({
     locale,
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
 export default async function GroupNamePage({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <div className="p-4 md:p-8">

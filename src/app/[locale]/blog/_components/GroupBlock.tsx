@@ -5,7 +5,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
 export default async function GroupBlock({ locale }: { locale: string }) {
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
   return (
     <div className="flex w-full flex-col items-start justify-between gap-8 rounded-xl bg-heroLightBackground px-8 py-6 md:w-4/12">
       <h3 className="mb-0 text-xl font-medium">

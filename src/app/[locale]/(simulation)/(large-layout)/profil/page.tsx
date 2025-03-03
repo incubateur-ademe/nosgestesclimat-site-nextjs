@@ -17,7 +17,7 @@ import SimulationList from './_components/SimulationList'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return getMetadataObject({
     locale,
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
 export default async function Profil({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   const supportedRegions = getSupportedRegions()
 

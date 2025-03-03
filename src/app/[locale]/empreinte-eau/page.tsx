@@ -33,7 +33,7 @@ const DynamicCTAButtons = dynamic(
 
 export async function generateMetadata(props: DefaultPageProps) {
   const { locale } = await props.params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return getMetadataObject({
     locale,
@@ -51,8 +51,8 @@ export async function generateMetadata(props: DefaultPageProps) {
 export default async function WaterFootprintLandingPage(
   props: DefaultPageProps
 ) {
+  const { t } = await getServerTranslation(props.params)
   const { locale } = await props.params
-  const { t } = await getServerTranslation(locale)
 
   return (
     <>

@@ -30,7 +30,7 @@ const DynamicCTAButtons = dynamic(
 )
 export async function generateMetadata(props: DefaultPageProps) {
   const { locale } = await props.params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation(props.params)
   return getMetadataObject({
     locale,
     title: t('Calculez votre empreinte carbone et eau en 10 minutes !'),

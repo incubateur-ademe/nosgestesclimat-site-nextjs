@@ -11,7 +11,7 @@ import Script from 'next/script'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
   return getMetadataObject({
     locale,
     title: t('Contact - Nos Gestes Climat'),
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
 export default async function Contact({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <div className="pb-4">

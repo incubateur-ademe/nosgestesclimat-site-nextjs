@@ -5,8 +5,8 @@ import Groups from './_components/Groups'
 import Organisations from './_components/Organisations'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
+  const { t } = await getServerTranslation(params)
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
 
   return getMetadataObject({
     locale,
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
       'Calculer votre empreinte carbone avec vos amis - Nos Gestes Climat'
     ),
     description: t(
-      'Comparez vos résultats avec votre famille ou un groupe d’amis.'
+      "Comparez vos résultats avec votre famille ou un groupe d'amis."
     ),
     alternates: {
       canonical: '/classements',

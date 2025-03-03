@@ -9,7 +9,7 @@ import ModeleStatsBlock from './_components/ModeleStatsBlock'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return {
     title: t('Notre modèle de données - Nos Gestes Climat'),

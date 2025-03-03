@@ -7,7 +7,7 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function CTAFooter({ locale }: { locale: string }) {
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <section className="pb-24 pt-16">

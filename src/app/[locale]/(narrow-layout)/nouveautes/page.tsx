@@ -12,7 +12,7 @@ import Image from 'next/image'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return getMetadataObject({
     locale,
@@ -30,7 +30,7 @@ export default async function Releases({ params }: DefaultPageProps) {
   const { locale } = await params
   const releases = await getPosts(`src/locales/nouveautes/${locale}/`)
 
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <>

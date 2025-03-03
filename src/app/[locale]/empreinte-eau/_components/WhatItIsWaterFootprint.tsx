@@ -9,7 +9,7 @@ export default async function WhatItIsWaterFootprint({
 }: {
   locale: string
 }) {
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <WhatItIs

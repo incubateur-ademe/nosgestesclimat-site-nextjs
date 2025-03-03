@@ -8,7 +8,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return getMetadataObject({
     title: t(

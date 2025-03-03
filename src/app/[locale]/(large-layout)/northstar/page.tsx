@@ -6,7 +6,7 @@ import NorthStarIframe from './_components/NorthStarIframe'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return getMetadataObject({
     locale,
@@ -21,8 +21,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 }
 
 export default async function NorthStarPage({ params }: DefaultPageProps) {
-  const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation(params)
 
   const title = t('Statistiques Northstar')
 

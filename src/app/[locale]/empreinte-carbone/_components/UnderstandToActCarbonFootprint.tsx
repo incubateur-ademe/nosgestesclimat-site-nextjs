@@ -9,7 +9,7 @@ export default async function UnderstandToActCarbonFootprint({
   pathname: string
   locale: string
 }) {
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <UnderstandToAct

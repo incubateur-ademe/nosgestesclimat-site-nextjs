@@ -6,7 +6,7 @@ import { PrivacyPolicy } from '@incubateur-ademe/legal-pages-react/PrivacyPolicy
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return getMetadataObject({
     locale,

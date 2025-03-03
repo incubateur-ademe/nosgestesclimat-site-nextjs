@@ -12,7 +12,7 @@ import SelectYear from './_components/SelectYear'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation(params)
   return getMetadataObject({
     locale,
     title: t('Budget - Nos Gestes Climat'),

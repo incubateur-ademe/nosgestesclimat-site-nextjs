@@ -25,7 +25,7 @@ export async function generateMetadata({
   params,
 }: DefaultPageProps<{ params: { category: string } }>) {
   const { category, locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return getMetadataObject({
     locale,

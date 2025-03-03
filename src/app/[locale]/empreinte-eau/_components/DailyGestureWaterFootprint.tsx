@@ -13,7 +13,7 @@ export default async function DailyGestureWaterFootprint({
 }: {
   locale: string
 }) {
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   const gesturesKeysForTranslation = {
     alimentation: t('Alimentation'),

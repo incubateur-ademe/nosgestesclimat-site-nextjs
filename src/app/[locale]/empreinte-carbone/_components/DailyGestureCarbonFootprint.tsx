@@ -13,7 +13,7 @@ export default async function DailyGestureCarbonFootprint({
 }: {
   locale: string
 }) {
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   const gesturesKeysForTranslation = {
     transport: t('Transport'),

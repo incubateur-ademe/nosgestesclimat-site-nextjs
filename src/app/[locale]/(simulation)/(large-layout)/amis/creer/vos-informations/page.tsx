@@ -10,7 +10,7 @@ import GroupCreationForm from './_component/GroupCreationForm'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return getMetadataObject({
     locale,
@@ -27,8 +27,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 }
 
 export default async function YourInfoPage({ params }: DefaultPageProps) {
-  const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation(params)
 
   return (
     <div className="p-4 md:p-8">

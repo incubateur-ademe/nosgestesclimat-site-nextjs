@@ -8,7 +8,7 @@ import type { DefaultPageProps } from '@/types'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
   return getMetadataObject({
     locale,
     title: t('CGU - Nos Gestes Climat'),

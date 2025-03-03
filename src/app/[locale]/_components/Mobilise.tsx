@@ -5,7 +5,7 @@ import CreateGroupLink from './mobilise/CreateGroupLink'
 import CreateOrganisationLink from './mobilise/CreateOrganisationLink'
 
 export default async function Mobilise({ locale }: { locale: string }) {
-  const { t } = await getServerTranslation(locale)
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <div className="flex flex-col items-center px-4 py-20 md:mx-auto md:max-w-5xl">
