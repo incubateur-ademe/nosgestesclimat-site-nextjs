@@ -14,15 +14,19 @@ export default function MainLayoutProviders({ children }: PropsWithChildren) {
   return (
     <ErrorBoundary>
       <IframeOptionsProvider>
-        <QueryClientProviderWrapper>
-          <UserProvider
-            storageKey={STORAGE_KEY}
-            migrationInstructions={migrationInstructions}>
-            <PreventNavigationProvider>
-              <MainHooks>{children}</MainHooks>
-            </PreventNavigationProvider>
-          </UserProvider>
-        </QueryClientProviderWrapper>
+        {(containerRef: React.RefObject<HTMLDivElement>) => (
+          <QueryClientProviderWrapper>
+            <UserProvider
+              storageKey={STORAGE_KEY}
+              migrationInstructions={migrationInstructions}>
+              <PreventNavigationProvider>
+                <MainHooks>
+                  <div ref={containerRef}>{children}</div>
+                </MainHooks>
+              </PreventNavigationProvider>
+            </UserProvider>
+          </QueryClientProviderWrapper>
+        )}
       </IframeOptionsProvider>
     </ErrorBoundary>
   )
