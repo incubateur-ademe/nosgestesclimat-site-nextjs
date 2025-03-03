@@ -51,7 +51,7 @@ export default function MainFootprintChart({ simulations, maxValue }: Props) {
           maxValue={maxValue}
           items={simulations.map(({ computedResults, user }) => ({
             value: computedResults[carboneMetric].bilan,
-            shouldBeHighlighted: !!user,
+            shouldBeHighlighted: !!user?.id,
           }))}
           id="bilan"
         />

@@ -11,8 +11,8 @@ import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/react'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -31,6 +31,8 @@ export default function NameForm() {
     control,
     formState: { errors },
   } = useReactHookForm<Inputs>()
+
+  const [error, setError] = useState('')
 
   const { user } = useUser()
 
@@ -69,6 +71,10 @@ export default function NameForm() {
   ])
 
   async function onSubmit({ name, emoji }: Inputs) {
+    if (error) {
+      setError('')
+    }
+
     try {
       const administratorEmail = formatEmail(
         searchParams.get('administratorEmail')
@@ -96,6 +102,11 @@ export default function NameForm() {
 
       setShouldNavigate(group.id)
     } catch (e) {
+      setError(
+        t(
+          'Une erreur est survenue. Si le problème persiste, veuillez contacter notre support.'
+        )
+      )
       captureException(e)
     }
   }
@@ -129,6 +140,8 @@ export default function NameForm() {
         rules={{ required: t('Ce champ est obligatoire.') }}
         error={errors.emoji?.message}
       />
+
+      {error && <p className="mt-4 text-sm text-red-700">{error}</p>}
 
       <Button
         type="submit"

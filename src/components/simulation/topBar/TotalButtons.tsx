@@ -9,7 +9,7 @@ import { simulateurOpenScoreInfo } from '@/constants/tracking/pages/simulateur'
 import { TUTORIALS } from '@/constants/tutorial'
 import Button from '@/design-system/inputs/Button'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { twMerge } from 'tailwind-merge'
 
 type Props = { toggleQuestionList: () => void; toggleSaveModal?: () => void }

@@ -8,7 +8,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import { getCarbonFootprint } from '@/helpers/actions/getCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useEngine, useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
 export default function ActionsTutorial() {
   const { t, i18n } = useClientTranslation()

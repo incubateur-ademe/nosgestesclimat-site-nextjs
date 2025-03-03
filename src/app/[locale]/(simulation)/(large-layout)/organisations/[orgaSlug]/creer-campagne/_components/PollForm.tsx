@@ -61,7 +61,7 @@ export default function PollForm({ organisation }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} id="poll-form">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <TextInputGroup
           label={<TransClient>Nom de la campagne</TransClient>}
@@ -76,7 +76,7 @@ export default function PollForm({ organisation }: Props) {
           label={
             <p className="mb-0 flex w-full justify-between">
               <TransClient>Nombre de participants attendus</TransClient>
-              <span className="text-secondary-700 font-bold italic">
+              <span className="font-bold italic text-secondary-700">
                 {' '}
                 <TransClient>facultatif</TransClient>
               </span>
@@ -120,7 +120,7 @@ export default function PollForm({ organisation }: Props) {
         </p>
       )}
 
-      <Button type="submit" className="self-start">
+      <Button type="submit" form="poll-form" className="self-start">
         <TransClient>Lancer ma campagne</TransClient>
       </Button>
     </form>

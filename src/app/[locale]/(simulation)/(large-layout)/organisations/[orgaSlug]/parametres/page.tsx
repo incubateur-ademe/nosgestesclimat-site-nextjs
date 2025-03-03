@@ -19,8 +19,8 @@ import type {
   Organisation,
   OrgaSettingsInputsType,
 } from '@/types/organisations'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { captureException } from '@sentry/nextjs'
 import { useEffect, useRef, useState } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
@@ -207,7 +207,7 @@ export default function ParametresPage() {
 
       <Form
         error={error}
-        className="mt-8 mb-4"
+        className="mb-4 mt-8"
         onSubmit={handleSubmit(handleUpdateOrganisation)}>
         <h2>
           <TransClient>Votre organisation</TransClient>

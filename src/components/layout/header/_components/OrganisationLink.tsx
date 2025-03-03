@@ -6,7 +6,7 @@ import { headerClickOrganisation } from '@/constants/tracking/layout'
 import useFetchOrganisations from '@/hooks/organisations/useFetchOrganisations'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import NavLink from '../NavLink'
 
 export default function OrganisationLink({

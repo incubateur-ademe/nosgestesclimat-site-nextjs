@@ -10,7 +10,7 @@ import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useRule, useSimulation } from '@/publicodes-state'
 import type { Metric } from '@/publicodes-state/types'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import SubcategoriesList from './accordionItemWithRule/SubcategoriesList'
 

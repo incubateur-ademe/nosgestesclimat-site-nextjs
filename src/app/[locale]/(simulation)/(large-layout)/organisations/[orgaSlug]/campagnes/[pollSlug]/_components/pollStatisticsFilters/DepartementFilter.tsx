@@ -5,7 +5,7 @@ import { organisationsResultatsDetaillesFilterByPostalCode } from '@/constants/t
 import ComplexSelect from '@/design-system/inputs/ComplexSelect'
 import { extractPostalCodesFromSimulations } from '@/helpers/organisations/extractPostalCodesFromSimulations'
 import type { Simulation } from '@/types/organisations'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { SetStateAction } from 'react'
 import { useContext } from 'react'
 import type { MultiValue, SingleValue } from 'react-select'

@@ -11,7 +11,7 @@ import {
 } from '@/helpers/tracking/landings'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { usePathname } from 'next/navigation'
 
 export default function MenuCTAButton() {

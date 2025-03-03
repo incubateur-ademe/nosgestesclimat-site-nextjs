@@ -9,7 +9,7 @@ import {
   tutorielClickQuestion,
 } from '@/constants/tracking/pages/tutoriel'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import Image from 'next/image'
 import OrganisationPrivacy from './autresQuestions/OrganisationPrivacy'
 

@@ -1,4 +1,4 @@
-import DynamicCTAButton from '@/components/cta/DynamicCTAButtons'
+import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
 import Partners from '@/components/landing-pages/Partners'
 import JSONLD from '@/components/seo/JSONLD'
 import TransServer from '@/components/translation/trans/TransServer'
@@ -12,6 +12,7 @@ import {
   getLandingClickCTAResume,
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import DailyGestureCarbonFootprint from './_components/DailyGestureCarbonFootprint'
 import DidYouKnowCarbon from './_components/DidYouKnowCarbonFootprint'
@@ -22,6 +23,13 @@ import WhatDoWeMeasureCarbon from './_components/WhatDoWeMeasureCarbonFootprint'
 import WhatItIsCarbon from './_components/WhatItIsCarbon'
 import { carbonFAQJsonLd } from './_constants/carbonFAQJsonLd'
 
+const DynamicCTAButtons = dynamic(
+  () => import('@/components/cta/DynamicCTAButtons'),
+  {
+    ssr: false,
+    loading: () => <CTAButtonsPlaceholder />,
+  }
+)
 export async function generateMetadata({
   params,
 }: {
@@ -96,7 +104,7 @@ export default async function CarbonFootprintLandingPage({
               </TransServer>
             </p>
             <div className="flex w-full justify-center md:justify-start">
-              <DynamicCTAButton
+              <DynamicCTAButtons
                 trackingEvents={{
                   start: getLandingClickCTAStart(
                     '/empreinte-carbone',

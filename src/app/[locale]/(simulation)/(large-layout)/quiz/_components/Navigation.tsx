@@ -12,7 +12,7 @@ import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
 type Props = {
   answer: string | null
@@ -53,7 +53,9 @@ export default function Navigation({
           data-cypress-id="button-skip-quiz"
           onClick={() => {
             trackEvent(
-              simulationSimulationCompleted({ bilan: getNumericValue('bilan') })
+              simulationSimulationCompleted({
+                bilan: getNumericValue('bilan'),
+              })
             )
             trackEvent(quizClickPass)
           }}>
@@ -64,11 +66,13 @@ export default function Navigation({
           href={getLinkToEndPage({
             allowedToGoToGroupDashboard: true,
           })}
-          onClick={() =>
+          onClick={() => {
             trackEvent(
-              simulationSimulationCompleted({ bilan: getNumericValue('bilan') })
+              simulationSimulationCompleted({
+                bilan: getNumericValue('bilan'),
+              })
             )
-          }>
+          }}>
           <TransClient>Voir mes résultats →</TransClient>
         </ButtonLink>
       ) : (

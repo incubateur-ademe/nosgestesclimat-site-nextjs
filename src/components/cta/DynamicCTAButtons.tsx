@@ -3,7 +3,7 @@
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RestartIcon from '../icons/RestartIcon'
@@ -23,13 +23,13 @@ export default function DynamicCTAButtons({
   }
   withRestart?: boolean
 }) {
-  const { progression } = useCurrentSimulation()
-
   const {
     getLinkToSimulateurPage,
-    linkToSimulateurPageLabel,
     goToSimulateurPage,
+    linkToSimulateurPageLabel,
   } = useSimulateurPage()
+
+  const { progression } = useCurrentSimulation()
 
   const [isHover, setIsHover] = useState(false)
 

@@ -69,7 +69,7 @@ export default async function Profil({
 
       <Separator />
 
-      <div className="flex flex-wrap gap-16 md:flex-nowrap">
+      <div className="mb-12 flex flex-wrap gap-16 md:flex-nowrap">
         <UserInformationForm
           title={
             <h3>

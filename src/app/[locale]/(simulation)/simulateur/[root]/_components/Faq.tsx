@@ -5,7 +5,7 @@ import TransClient from '@/components/translation/trans/TransClient'
 import { simulateurClickFaq } from '@/constants/tracking/pages/simulateur'
 
 import { useIframe } from '@/hooks/useIframe'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
 export default function Faq() {
   const { isIframeOnlySimulation } = useIframe()

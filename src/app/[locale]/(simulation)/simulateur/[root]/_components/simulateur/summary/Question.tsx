@@ -12,7 +12,7 @@ import {
 } from '@/helpers/getCategoryColorClass'
 import { useDebug } from '@/hooks/useDebug'
 import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 

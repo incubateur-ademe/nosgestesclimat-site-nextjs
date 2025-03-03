@@ -3,7 +3,7 @@
 import Link from '@/components/Link'
 import TransClient from '@/components/translation/trans/TransClient'
 import { learnMoreWaterLink } from '@/constants/tracking/pages/mainLanding'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
 export default function LearnMoreCarbonLink() {
   return (

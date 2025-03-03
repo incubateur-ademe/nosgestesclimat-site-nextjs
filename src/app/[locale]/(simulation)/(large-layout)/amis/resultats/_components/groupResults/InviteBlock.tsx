@@ -5,7 +5,7 @@ import { amisDashboardCopyLink } from '@/constants/tracking/pages/amisDashboard'
 import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import type { Group } from '@/types/groups'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useEffect, useRef, useState } from 'react'
 
 const SubmitButton = ({

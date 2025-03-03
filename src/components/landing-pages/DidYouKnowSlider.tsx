@@ -6,6 +6,7 @@ import {
   getLandingDidYouKnowSlider,
   getLandingDidYouKnowSliderValue,
 } from '@/helpers/tracking/landings'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import type { ReactNode } from 'react'
@@ -13,8 +14,13 @@ import { useState } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import { twMerge } from 'tailwind-merge'
-import DynamicCTAButton from '../cta/DynamicCTAButtons'
+import CTAButtonsPlaceholder from '../cta/CTAButtonsPlaceholder'
 import TransClient from '../translation/trans/TransClient'
+
+const DynamicCTAButtons = dynamic(
+  () => import('@/components/cta/DynamicCTAButtons'),
+  { ssr: false, loading: () => <CTAButtonsPlaceholder /> }
+)
 
 export default function DidYouKnowSlider({
   slides,
@@ -30,7 +36,7 @@ export default function DidYouKnowSlider({
   return (
     <div
       className={twMerge(
-        'bg-heroLightBackground relative pb-20 pt-16',
+        'relative bg-heroLightBackground pb-20 pt-16',
         className
       )}>
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-10 md:flex-row md:gap-0">
@@ -77,7 +83,7 @@ export default function DidYouKnowSlider({
           ))}
         </Slider>
         <div>
-          <DynamicCTAButton
+          <DynamicCTAButtons
             trackingEvents={{
               start: getLandingDidYouKnowSlider(
                 pathname,

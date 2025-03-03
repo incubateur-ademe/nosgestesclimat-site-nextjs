@@ -7,7 +7,7 @@ import TransClient from '@/components/translation/trans/TransClient'
 import { tutorielClickQuestion } from '@/constants/tracking/pages/tutoriel'
 import { usePollQueryParams } from '@/hooks/organisations/usePollQueryParams'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
 export default function OrganisationPrivacy() {
   const { pollSlug } = usePollQueryParams()

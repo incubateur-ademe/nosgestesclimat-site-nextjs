@@ -17,8 +17,9 @@ import { HIDE_CTA_PATHS } from '@/constants/urls'
 import { linkToClassement } from '@/helpers/navigation/classementPages'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useIframe } from '@/hooks/useIframe'
 import { useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 import NavLink from './NavLink'
@@ -37,6 +38,8 @@ export default function HeaderDesktop({ isSticky }: Props) {
 
   const { getLinkToSimulateurPage } = useSimulateurPage()
 
+  const { isIframeOnlySimulation } = useIframe()
+
   return (
     <header
       className={twMerge(
@@ -49,67 +52,71 @@ export default function HeaderDesktop({ isSticky }: Props) {
             <Logo onClick={() => trackEvent(headerClickLogo)} />
           </div>
 
-          <nav className="h-full">
-            <ul className="flex h-full flex-1 justify-start gap-4">
-              <li>
+          {!isIframeOnlySimulation && (
+            <>
+              <nav className="h-full">
+                <ul className="flex h-full flex-1 justify-start gap-4">
+                  <li>
+                    <NavLink
+                      href={getLinkToSimulateurPage()}
+                      onClick={() => trackEvent(headerClickTest)}
+                      activeMatches={['/tutoriel', '/simulateur', '/fin']}
+                      icon={BilanIcon}
+                      title={t('Mon empreinte')}>
+                      <TransClient>Mon empreinte</TransClient>
+                    </NavLink>
+                  </li>
+
+                  <li>
+                    <NavLink
+                      href="/actions"
+                      onClick={() => trackEvent(headerClickActions)}
+                      icon={ActionsIcon}
+                      title={t('Mes gestes')}>
+                      <TransClient>Mes gestes</TransClient>
+                    </NavLink>
+                  </li>
+
+                  <li>
+                    <NavLink
+                      href={linkToClassement}
+                      onClick={() => trackEvent(headerClickClassements)}
+                      icon={AmisIcon}
+                      activeMatches={['/classement', '/amis']}
+                      title={t('Mes classements')}
+                      data-cypress-id="amis-link">
+                      <TransClient>Mes groupes</TransClient>
+                    </NavLink>
+                  </li>
+                </ul>
+              </nav>
+
+              <div className="flex h-full items-center gap-3">
+                <PRIndicator />
+
+                <DebugIndicator />
+
                 <NavLink
-                  href={getLinkToSimulateurPage()}
-                  onClick={() => trackEvent(headerClickTest)}
-                  activeMatches={['/tutoriel', '/simulateur', '/fin']}
-                  icon={BilanIcon}
-                  title={t('Mon empreinte')}>
-                  <TransClient>Mon empreinte</TransClient>
+                  href="/profil"
+                  icon={ProfileIcon}
+                  title={t('Profil')}
+                  className="px-4"
+                  onClick={() => trackEvent(headerClickProfil)}>
+                  <TransClient>Profil</TransClient>
                 </NavLink>
-              </li>
 
-              <li>
-                <NavLink
-                  href="/actions"
-                  onClick={() => trackEvent(headerClickActions)}
-                  icon={ActionsIcon}
-                  title={t('Mes gestes')}>
-                  <TransClient>Mes gestes</TransClient>
-                </NavLink>
-              </li>
+                {user?.organisation?.administratorEmail ? (
+                  <>
+                    <div className="my-auto h-8 w-[1px] bg-gray-200" />
 
-              <li>
-                <NavLink
-                  href={linkToClassement}
-                  onClick={() => trackEvent(headerClickClassements)}
-                  icon={AmisIcon}
-                  activeMatches={['/classement', '/amis']}
-                  title={t('Mes classements')}
-                  data-cypress-id="amis-link">
-                  <TransClient>Mes groupes</TransClient>
-                </NavLink>
-              </li>
-            </ul>
-          </nav>
-
-          <div className="flex h-full items-center gap-3">
-            <PRIndicator />
-
-            <DebugIndicator />
-
-            <NavLink
-              href="/profil"
-              icon={ProfileIcon}
-              title={t('Profil')}
-              className="px-4"
-              onClick={() => trackEvent(headerClickProfil)}>
-              <TransClient>Profil</TransClient>
-            </NavLink>
-
-            {user?.organisation?.administratorEmail ? (
-              <>
-                <div className="my-auto h-8 w-[1px] bg-gray-200" />
-
-                <OrganisationLink />
-              </>
-            ) : !HIDE_CTA_PATHS.find((path) => pathname.includes(path)) ? (
-              <CTAButton />
-            ) : null}
-          </div>
+                    <OrganisationLink />
+                  </>
+                ) : !HIDE_CTA_PATHS.find((path) => pathname.includes(path)) ? (
+                  <CTAButton />
+                ) : null}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </header>

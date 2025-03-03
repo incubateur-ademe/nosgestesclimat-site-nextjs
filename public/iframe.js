@@ -2,6 +2,10 @@ const script =
   document.getElementById('ecolab-climat') ||
   document.getElementById('nosgestesclimat')
 
+if (!script) {
+  console.error('Iframe Nos Gestes Climat: No target element found')
+}
+
 const integratorUrl = encodeURIComponent(window.location.href.toString())
 
 const srcURL = new URL(script.src)
