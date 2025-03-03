@@ -1,7 +1,7 @@
 'use client'
 
 import Baseline from '@/components/organisations/Baseline'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { classementCreateOrganisation } from '@/constants/tracking/pages/classements'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import type { Organisation } from '@/types/organisations'
@@ -28,7 +28,7 @@ export default function CreateOrganisation({
         className="font-bold"
         href="/organisations/connexion"
         onClick={() => trackEvent(classementCreateOrganisation)}>
-        <TransClient>Créer mon organisation</TransClient>
+        <Trans>Créer mon organisation</Trans>
       </ButtonLink>
     </>
   )

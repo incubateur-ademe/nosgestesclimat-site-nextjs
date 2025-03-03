@@ -2,7 +2,7 @@
 
 import OrganisationFetchError from '@/components/organisations/OrganisationFetchError'
 import OrganisationLoader from '@/components/organisations/OrganisationLoader'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { ADMINISTRATOR_SEPARATOR } from '@/constants/organisations/administrator'
 import { OrganisationTypeEnum } from '@/constants/organisations/organisationTypes'
 import { organisationsParametersUpdateInformations } from '@/constants/tracking/pages/organisationsParameters'
@@ -199,7 +199,7 @@ export default function ParametresPage() {
       <Title
         title={
           <span>
-            <TransClient>Paramètres de </TransClient>
+            <Trans>Paramètres de </Trans>
             <strong className="text-primary-700">{organisation?.name}</strong>
           </span>
         }
@@ -210,7 +210,7 @@ export default function ParametresPage() {
         className="mb-4 mt-8"
         onSubmit={handleSubmit(handleUpdateOrganisation)}>
         <h2>
-          <TransClient>Votre organisation</TransClient>
+          <Trans>Votre organisation</Trans>
         </h2>
 
         <OrganisationFields
@@ -222,7 +222,7 @@ export default function ParametresPage() {
         <Separator className="my-6" />
 
         <h2 className="mt-6">
-          <TransClient>Vos informations personnelles</TransClient>
+          <Trans>Vos informations personnelles</Trans>
         </h2>
 
         <PersonalInfoFields defaultValues={defaultValues} register={register} />

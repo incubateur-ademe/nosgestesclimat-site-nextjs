@@ -2,7 +2,7 @@ import Title from '@/design-system/layout/Title'
 import ButtonStart from './_components/ButtonStart'
 
 import ContentLarge from '@/components/layout/ContentLarge'
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -47,18 +47,18 @@ export default async function Tutoriel({
           title={
             <>
               <span className="inline text-secondary-700">
-                <TransServer locale={locale}>10 minutes</TransServer>
+                <Trans locale={locale}>10 minutes</Trans>
               </span>{' '}
-              <TransServer locale={locale}>
+              <Trans locale={locale}>
                 chrono pour calculer votre empreinte carbone et eau
-              </TransServer>
+              </Trans>
             </>
           }
         />
 
         <AvantDeCommencer />
 
-        <div className={twMerge('mb-12 flex w-full gap-4 sm:px-4 md:px-0 ')}>
+        <div className={twMerge('mb-12 flex w-full gap-4 sm:px-4 md:px-0')}>
           <ButtonBack />
 
           <OrganisationMessage />

@@ -1,7 +1,7 @@
 'use client'
 
 import CheckIcon from '@/components/icons/CheckIcon'
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import {
   LIST_MAIN_NEWSLETTER,
   LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
@@ -36,14 +36,14 @@ function SuccessMessage({ locale }: { locale: string }) {
       <CheckIcon className="mb-4 h-12 w-12 fill-green-500" />
 
       <h3 className="mb-4 text-xl font-bold text-gray-800">
-        <TransServer locale={locale}>Merci de votre inscription !</TransServer>
+        <Trans locale={locale}>Merci de votre inscription !</Trans>
       </h3>
 
       <p className="text-gray-600">
-        <TransServer locale={locale}>
+        <Trans locale={locale}>
           Vous recevrez bientôt nos actualités et conseils directement dans
           votre boîte mail.
-        </TransServer>
+        </Trans>
       </p>
     </div>
   )
@@ -139,7 +139,7 @@ export default function NewslettersBlock() {
 
             <span className="text-sm text-gray-600">
               {mainNewsletter?.totalSubscribers.toLocaleString(locale) ?? 0}{' '}
-              <TransServer locale={locale}>personnes inscrites</TransServer>
+              <Trans locale={locale}>personnes inscrites</Trans>
             </span>
           </p>
 
@@ -152,13 +152,11 @@ export default function NewslettersBlock() {
                 label={
                   <p className="mb-0 text-sm">
                     <span>
-                      <TransServer locale={locale}>
-                        Je m'inscris à l'infolettre
-                      </TransServer>
+                      <Trans locale={locale}>Je m'inscris à l'infolettre</Trans>
                     </span>{' '}
                     -{' '}
                     <span className="text-gray-600">
-                      <TransServer locale={locale}>1 par mois max</TransServer>
+                      <Trans locale={locale}>1 par mois max</Trans>
                     </span>
                   </p>
                 }
@@ -170,9 +168,9 @@ export default function NewslettersBlock() {
                   <p className="mb-0 text-sm">
                     <span>Nos Gestes Transports</span> -{' '}
                     <span className="text-gray-600">
-                      <TransServer locale={locale}>
+                      <Trans locale={locale}>
                         4 infolettres l’impact des transports
-                      </TransServer>
+                      </Trans>
                     </span>
                   </p>
                 }
@@ -184,9 +182,9 @@ export default function NewslettersBlock() {
                   <p className="mb-0 text-sm">
                     <span>Nos Gestes Logement</span> -{' '}
                     <span className="text-gray-600">
-                      <TransServer locale={locale}>
+                      <Trans locale={locale}>
                         5 infolettres sur l’impact du logement
-                      </TransServer>
+                      </Trans>
                     </span>
                   </p>
                 }
@@ -211,7 +209,7 @@ export default function NewslettersBlock() {
                 />
 
                 <Button size="lg" type="submit">
-                  <TransServer locale={locale}>S'inscrire</TransServer>
+                  <Trans locale={locale}>S'inscrire</Trans>
                 </Button>
               </div>
             </div>

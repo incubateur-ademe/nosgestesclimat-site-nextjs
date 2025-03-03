@@ -2,7 +2,7 @@
 
 import PollLoader from '@/components/organisations/PollLoader'
 import PollStatistics from '@/components/organisations/PollStatistics'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
 import { filterExtremes } from '@/helpers/organisations/filterExtremes'
 import { filterSimulations } from '@/helpers/organisations/filterSimulations'
@@ -66,14 +66,12 @@ export default function CampagnePage() {
         title={
           <>
             <span className="mr-2">
-              <TransClient>Campagne de</TransClient>{' '}
+              <Trans>Campagne de</Trans>{' '}
               <span className="text-primary-700">{poll.organisation.name}</span>
             </span>{' '}
             {!!poll.organisation.administrators && (
               <span className="text-sm text-gray-600">
-                <TransClient>
-                  (définissez un titre dans les paramètres)
-                </TransClient>
+                <Trans>(définissez un titre dans les paramètres)</Trans>
               </span>
             )}
           </>
@@ -81,12 +79,11 @@ export default function CampagnePage() {
         subtitle={
           poll ? (
             <span>
-              <TransClient>Campagne créée par</TransClient>{' '}
+              <Trans>Campagne créée par</Trans>{' '}
               <strong className="text-primary-700">
                 {poll.organisation.name}
               </strong>
-              <TransClient>, le</TransClient>{' '}
-              {dayjs(poll.createdAt).format('DD/MM/YYYY')}
+              <Trans>, le</Trans> {dayjs(poll.createdAt).format('DD/MM/YYYY')}
             </span>
           ) : (
             ''
@@ -101,7 +98,7 @@ export default function CampagnePage() {
           simulations={simulations ?? []}
           simulationsWithoutExtremes={simulationsWithoutExtremes}
           funFacts={dashboard?.funFacts}
-          title={<TransClient>Résultats de campagne</TransClient>}
+          title={<Trans>Résultats de campagne</Trans>}
         />
 
         <PollStatisticsFilters

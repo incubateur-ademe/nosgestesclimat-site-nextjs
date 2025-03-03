@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { simulateurCloseScoreInfo } from '@/constants/tracking/pages/simulateur'
 import { TUTORIALS } from '@/constants/tutorial'
 import Button from '@/design-system/inputs/Button'
@@ -80,48 +80,48 @@ export default function Explanation() {
         {progression === 0 ? (
           <p className="mb-2">
             <Emoji>🧮</Emoji>{' '}
-            <TransClient i18nKey={'components.ScoreExplanation.text.p1'}>
+            <Trans i18nKey={'components.ScoreExplanation.text.p1'}>
               Voici vos scores de départ, calculés à partir de réponses
               attribuées à l'avance à chaque question ! Ils évolueront à chaque
               nouvelle réponse.
-            </TransClient>
+            </Trans>
           </p>
         ) : (
           <p className="mb-2">
             <Emoji>🧮</Emoji>{' '}
-            <TransClient i18nKey={'components.ScoreExplanation.text.p2'}>
+            <Trans i18nKey={'components.ScoreExplanation.text.p2'}>
               Voici vos scores provisoires, ils évoluent à chaque nouvelle
               réponse !
-            </TransClient>
+            </Trans>
           </p>
         )}
         <p className="mb-2">
           <Emoji>🤔</Emoji>{' '}
-          <TransClient i18nKey={'components.ScoreExplanation.text.p3'}>
+          <Trans i18nKey={'components.ScoreExplanation.text.p3'}>
             Si vous répondez "je ne sais pas" à une question, le score ne
             changera pas : une valeur par défaut vous est attribuée.
-          </TransClient>
+          </Trans>
         </p>
         <p className="mb-2">
           <Emoji>💡</Emoji>{' '}
-          <TransClient i18nKey={'components.ScoreExplanation.text.p4'}>
+          <Trans i18nKey={'components.ScoreExplanation.text.p4'}>
             Nous améliorons le calcul et ses valeurs par défaut{' '}
             <Link href="/nouveautes">tous les mois</Link>!
-          </TransClient>
+          </Trans>
         </p>
         <p className="mb-2 md:mb-4">
           <Emoji>💧</Emoji>{' '}
-          <TransClient>
+          <Trans>
             Retrouvez aussi le résultat de votre empreinte eau à la fin du
             test !
-          </TransClient>
+          </Trans>
         </p>
         <div className="flex justify-end">
           <Button
             size="xs"
             data-cypress-id="understood-explanation-button"
             onClick={closeExplanation}>
-            <TransClient>J'ai compris</TransClient>
+            <Trans>J'ai compris</Trans>
           </Button>
         </div>
       </motion.div>

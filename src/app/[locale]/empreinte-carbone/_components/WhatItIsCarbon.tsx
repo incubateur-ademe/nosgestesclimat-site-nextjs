@@ -1,5 +1,5 @@
 import WhatItIs from '@/components/landing-pages/WhatItIs'
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
@@ -8,22 +8,18 @@ export default async function WhatItIsCarbon({ locale }: { locale: string }) {
 
   return (
     <WhatItIs
-      title={
-        <TransServer locale={locale}>
-          Qu’est-ce que l’empreinte carbone ?
-        </TransServer>
-      }
+      title={<Trans locale={locale}>Qu’est-ce que l’empreinte carbone ?</Trans>}
       description={
         <div>
           <p>
-            <TransServer locale={locale}>
+            <Trans locale={locale}>
               <strong className="text-primary-600">L’empreinte carbone</strong>{' '}
               mesure la quantité totale de gaz à effet de serre (GES) émis par
               nos activités sur une année.
-            </TransServer>
+            </Trans>
           </p>
           <p>
-            <TransServer locale={locale}>
+            <Trans locale={locale}>
               Depuis le siècle dernier,{' '}
               <strong className="text-primary-600">
                 la concentration du carbone dans l’atmosphère augmente
@@ -31,17 +27,17 @@ export default async function WhatItIsCarbon({ locale }: { locale: string }) {
               , si bien que le climat subit de graves bouleversements : montée
               des eaux, destruction du vivant, augmentation des températures,
               etc.
-            </TransServer>
+            </Trans>
           </p>
           <p className="mb-0">
-            <TransServer locale={locale}>
+            <Trans locale={locale}>
               Le consensus scientifique est formel,{' '}
               <strong className="text-primary-600">
                 cette augmentation est directement liée aux activités humaines
               </strong>
               . Il est temps de réduire ou de remplacer ces activités émettrices
               !
-            </TransServer>
+            </Trans>
           </p>
         </div>
       }

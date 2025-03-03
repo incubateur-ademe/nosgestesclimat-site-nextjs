@@ -2,7 +2,7 @@
 
 import Link from '@/components/Link'
 import ChevronRight from '@/components/icons/ChevronRight'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { classementClickOrganisation } from '@/constants/tracking/pages/classements'
 import { getLinkToPollDashboard } from '@/helpers/navigation/pollPages'
 import type { Organisation, OrganisationPoll } from '@/types/organisations'
@@ -22,7 +22,7 @@ export default function PollItem({ organisation, poll }: Props) {
         orgaSlug: organisation.slug,
         pollSlug: poll.slug,
       })}
-      className="hover:bg-primary-100 rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors"
+      className="rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors hover:bg-primary-100"
       onClick={() => trackEvent(classementClickOrganisation)}>
       <div className="flex items-center justify-between py-4">
         <div className="flex w-full items-center">
@@ -34,8 +34,7 @@ export default function PollItem({ organisation, poll }: Props) {
 
             <div className="flex gap-1 text-sm text-violet-900">
               <span className="whitespace-nowrap">
-                {expectedNumberOfParticipants}{' '}
-                <TransClient>participant</TransClient>
+                {expectedNumberOfParticipants} <Trans>participant</Trans>
                 {expectedNumberOfParticipants > 1 ? 's' : ''}
               </span>
             </div>

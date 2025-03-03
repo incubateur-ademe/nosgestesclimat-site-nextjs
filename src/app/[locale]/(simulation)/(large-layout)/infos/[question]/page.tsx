@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
@@ -55,7 +55,7 @@ export default function CustomQuestion() {
         className="text-lg md:text-2xl"
         title={
           <span>
-            <TransClient>Question personnalisée de</TransClient> 
+            <Trans>Question personnalisée de</Trans> 
             <strong className="text-secondary-700">
               {poll?.organisation?.name}
             </strong>

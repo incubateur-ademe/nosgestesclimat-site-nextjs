@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/metric'
 import Badge from '@/design-system/layout/Badge'
 import Emoji from '@/design-system/utils/Emoji'
@@ -44,9 +44,9 @@ export default function CategoryListItem({
         <div className="flex items-baseline gap-1">
           <Emoji className="mr-2">{icons}</Emoji>{' '}
           <span>
-            <TransClient>
+            <Trans>
               {CATEGORY_LABELS[category as keyof typeof CATEGORY_LABELS]}
-            </TransClient>
+            </Trans>
           </span>
         </div>
 

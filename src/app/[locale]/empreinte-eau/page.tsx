@@ -1,6 +1,6 @@
 import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
 import JSONLD from '@/components/seo/JSONLD'
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -83,14 +83,14 @@ export default async function WaterFootprintLandingPage(props: {
 
       <LandingPage
         heroTitle={
-          <TransServer locale={locale}>
+          <Trans locale={locale}>
             Chaque goutte compte : découvrez votre empreinte eau !
-          </TransServer>
+          </Trans>
         }
         heroDescription={
           <div className="flex flex-col items-start gap-4 md:gap-6">
             <p className="mb-0">
-              <TransServer locale={locale}>
+              <Trans locale={locale}>
                 Calculez votre{' '}
                 <strong className="text-primary-600">empreinte eau</strong> et
                 découvrez{' '}
@@ -98,7 +98,7 @@ export default async function WaterFootprintLandingPage(props: {
                   les litres qui se cachent
                 </strong>{' '}
                 dans votre consommation du quotidien.
-              </TransServer>
+              </Trans>
             </p>
             <div className="flex w-full justify-center md:justify-start">
               <DynamicCTAButtons

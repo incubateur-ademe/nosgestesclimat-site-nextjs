@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Table from './sources/Table'
 
@@ -9,7 +9,7 @@ export default function Sources(props) {
   return (
     <section className="mt-8">
       <h3>
-        <TransClient>Origine des visites</TransClient>
+        <Trans>Origine des visites</Trans>
       </h3>
       <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
         <div>

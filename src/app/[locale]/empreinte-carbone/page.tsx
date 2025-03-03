@@ -1,7 +1,7 @@
 import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
 import Partners from '@/components/landing-pages/Partners'
 import JSONLD from '@/components/seo/JSONLD'
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -83,14 +83,14 @@ export default async function CarbonFootprintLandingPage({
 
       <LandingPage
         heroTitle={
-          <TransServer locale={locale}>
+          <Trans locale={locale}>
             L'empreinte carbone, une première étape pour passer à l’action
-          </TransServer>
+          </Trans>
         }
         heroDescription={
           <div className="flex flex-col items-start gap-4 md:gap-6">
             <p className="mb-0">
-              <TransServer locale={locale}>
+              <Trans locale={locale}>
                 Calculez votre{' '}
                 <strong className="text-primary-600">empreinte carbone</strong>{' '}
                 en quelques minutes et découvrez les{' '}
@@ -100,7 +100,7 @@ export default async function CarbonFootprintLandingPage({
                   réduire vos émissions
                 </strong>{' '}
                 de gaz à effet de serre.
-              </TransServer>
+              </Trans>
             </p>
             <div className="flex w-full justify-center md:justify-start">
               <DynamicCTAButtons

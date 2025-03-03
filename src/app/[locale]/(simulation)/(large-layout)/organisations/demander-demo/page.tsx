@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Script from 'next/script'
@@ -10,12 +10,12 @@ export default function DemanderDemoPage() {
     <section className="w-full bg-[#fff]">
       <div className="mx-auto max-w-5xl px-6 py-10 lg:px-0">
         <Title
-          title={<TransClient>Demander une démo</TransClient>}
+          title={<Trans>Demander une démo</Trans>}
           subtitle={
-            <TransClient>
+            <Trans>
               Contactez nous afin de convenir d'un temps de démonstration de
               notre outil pour les organisations.
-            </TransClient>
+            </Trans>
           }
         />
         <Card>

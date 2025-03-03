@@ -11,7 +11,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
-import TransClient from '../translation/trans/TransClient'
+import Trans from '../translation/trans/TransClient'
 
 type Inputs = { email: string }
 
@@ -52,9 +52,9 @@ export default function NosGestesTransportsBanner() {
     return (
       <div className="mt-12 flex w-full flex-wrap rounded-xl bg-transport-50 p-6 md:flex-nowrap">
         <p className="text-lg" style={{ marginBottom: '0' }}>
-          <TransClient>
+          <Trans>
             Votre inscription est validée ! <Emoji>✨</Emoji>
-          </TransClient>
+          </Trans>
         </p>
       </div>
     )
@@ -65,16 +65,16 @@ export default function NosGestesTransportsBanner() {
       <div>
         <p className="text-lg" style={{ marginBottom: '16px' }}>
           <Emoji style={{ marginRight: '8px', fontSize: '2rem' }}>🚲</Emoji>
-          <TransClient>
+          <Trans>
             Recevez nos <strong>conseils transports</strong> directement dans
             votre boite mail !
-          </TransClient>
+          </Trans>
         </p>
         <p className="text-sm" style={{ marginBottom: '0' }}>
-          <TransClient>
+          <Trans>
             Vous accompagner pour mieux agir en{' '}
             <strong className="text-secondary-700">4 mails seulement</strong>.
-          </TransClient>
+          </Trans>
         </p>
       </div>
 

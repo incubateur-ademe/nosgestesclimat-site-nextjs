@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
 import type { OrganisationPoll, Simulation } from '@/types/organisations'
 import AgeFilter from './pollStatisticsFilters/AgeFilter'
@@ -24,12 +24,12 @@ export default function PollStatisticsFilters({
     <div className="mb-8 flex flex-col justify-between gap-4 rounded-lg bg-gray-100 px-4 py-4 sm:flex-row sm:items-center md:px-6">
       <div className="flex items-center gap-2">
         <p className="mb-0 md:text-xl">
-          <TransClient>Filtrer par</TransClient>
+          <Trans>Filtrer par</Trans>
         </p>
         <InfoTooltipIcon className="z-10 inline-block md:hidden" />
       </div>
 
-      <div className="xs:flex-row xs:items-center flex flex-col gap-2 md:gap-4">
+      <div className="flex flex-col gap-2 md:gap-4 xs:flex-row xs:items-center">
         {defaultAdditionalQuestions?.includes(
           PollDefaultAdditionalQuestion.birthdate
         ) && <AgeFilter filteredSimulations={filteredSimulations} />}

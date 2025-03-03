@@ -5,7 +5,7 @@
 
 import NewTabSvg from '@/components/icons/NewTabSvg'
 import RegionGrid from '@/components/misc/RegionGrid'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import {
   profilClickRegion,
   profilOpenRegions,
@@ -57,9 +57,9 @@ export default function RegionSelector({
           }`}
           onClick={() => trackEvent(profilOpenRegions)}>
           <span>
-            <TransClient>Choisir une autre région</TransClient>{' '}
+            <Trans>Choisir une autre région</Trans>{' '}
             <small title={`${numberOfRegions} régions`}>
-              ({numberOfRegions} <TransClient>disponibles</TransClient>)
+              ({numberOfRegions} <Trans>disponibles</Trans>)
             </small>
           </span>
           {isLoading && (
@@ -90,15 +90,13 @@ export default function RegionSelector({
         <Card className="mt-4 flex-row items-center border-none bg-transparent shadow-none">
           <Emoji className="mr-2">🌐</Emoji>
           <p className="mb-0">
-            <TransClient>
-              Envie de contribuer à une version pour votre région ?
-            </TransClient>{' '}
+            <Trans>Envie de contribuer à une version pour votre région ?</Trans>{' '}
             <a
               target="_blank"
               rel="noopener noreferrer"
               className="align-top"
               href="https://accelerateur-transition-ecologique-ademe.notion.site/Ajouter-une-nouvelle-r-gion-f7e3a09a975d423f826ae654a788f8ba">
-              <TransClient>Suivez le guide !</TransClient>
+              <Trans>Suivez le guide !</Trans>
               <NewTabSvg className="-mt-1" />
             </a>
           </p>

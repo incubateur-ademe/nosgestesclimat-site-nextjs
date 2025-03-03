@@ -1,4 +1,4 @@
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import { linkToGroupCreation } from '@/constants/group'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -109,36 +109,36 @@ export default async function PlanDuSitePage({
     <div data-cypress-id="plan-links">
       <Title
         title={
-          <TransServer locale={locale} i18nKey="publicodes.planDuSite.title">
+          <Trans locale={locale} i18nKey="publicodes.planDuSite.title">
             Plan du site
-          </TransServer>
+          </Trans>
         }
       />
 
       <section className="mb-2">
         <h2 data-cypress-id="plan-outils-title">
-          <TransServer locale={locale}>Nos outils</TransServer>
+          <Trans locale={locale}>Nos outils</Trans>
         </h2>
         <LinkList entries={links['Nos outils']} />
       </section>
 
       <section className="mb-2">
         <h2>
-          <TransServer locale={locale}>Comparez votre empreinte</TransServer>
+          <Trans locale={locale}>Comparez votre empreinte</Trans>
         </h2>
         <LinkList entries={links['Comparez votre empreinte']} />
       </section>
 
       <section className="mb-2">
         <h2>
-          <TransServer locale={locale}>Informations</TransServer>
+          <Trans locale={locale}>Informations</Trans>
         </h2>
         <LinkList entries={links['Informations']} />
       </section>
 
       <section className="mb-2">
         <h2>
-          <TransServer locale={locale}>Documentations</TransServer>
+          <Trans locale={locale}>Documentations</Trans>
         </h2>
         <LinkList entries={links['Documentations']} />
       </section>

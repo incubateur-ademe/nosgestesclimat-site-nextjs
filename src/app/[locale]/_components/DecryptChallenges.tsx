@@ -1,5 +1,5 @@
 import UnderstandToAct from '@/components/landing-pages/UnderstandToAct'
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function DecryptChallenges({
@@ -14,18 +14,16 @@ export default async function DecryptChallenges({
       locale={locale}
       pathname={'/'}
       title={
-        <TransServer locale={locale}>
-          Décryptez les défis environnementaux
-        </TransServer>
+        <Trans locale={locale}>Décryptez les défis environnementaux</Trans>
       }
       posts={[
         {
           title: (
-            <TransServer locale={locale}>
+            <Trans locale={locale}>
               Le lexique pour tout comprendre à l'eau
-            </TransServer>
+            </Trans>
           ),
-          category: <TransServer locale={locale}>Empreinte eau</TransServer>,
+          category: <Trans locale={locale}>Empreinte eau</Trans>,
           imageSrc: '/images/blog/seo/lexique-eau.jpg',
           imageAlt: t(
             "Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau"
@@ -34,13 +32,11 @@ export default async function DecryptChallenges({
         },
         {
           title: (
-            <TransServer locale={locale}>
+            <Trans locale={locale}>
               Transports : les modes à fuir, ceux à chérir
-            </TransServer>
+            </Trans>
           ),
-          category: (
-            <TransServer locale={locale}>Empreinte carbone</TransServer>
-          ),
+          category: <Trans locale={locale}>Empreinte carbone</Trans>,
           imageSrc: '/images/blog/seo/empreinte-carbone-transports.jpg',
           imageAlt: t(
             "Deux mini-vans, illustrant l'empreinte carbone des transports"
@@ -49,13 +45,11 @@ export default async function DecryptChallenges({
         },
         {
           title: (
-            <TransServer locale={locale}>
+            <Trans locale={locale}>
               L’empreinte carbone : une empreinte parmi d’autres !
-            </TransServer>
+            </Trans>
           ),
-          category: (
-            <TransServer locale={locale}>Empreinte carbone</TransServer>
-          ),
+          category: <Trans locale={locale}>Empreinte carbone</Trans>,
           imageSrc: '/images/blog/seo/agir-reduire-empreinte-carbone.jpg',
           imageAlt: t(
             'Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone'

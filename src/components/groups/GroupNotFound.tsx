@@ -3,23 +3,21 @@
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { linkToClassement } from '@/helpers/navigation/classementPages'
-import TransClient from '../translation/trans/TransClient'
+import Trans from '../translation/trans/TransClient'
 
 export default function GroupNotFound() {
   return (
     <div className="flex flex-col items-start">
       <Title
-        title={
-          <TransClient>Oups ! Nous n'avons pas trouvé votre groupe</TransClient>
-        }
+        title={<Trans>Oups ! Nous n'avons pas trouvé votre groupe</Trans>}
       />
 
       <p className="mb-8 mt-2">
-        <TransClient>Ce groupe n'existe pas ou a été supprimé.</TransClient>
+        <Trans>Ce groupe n'existe pas ou a été supprimé.</Trans>
       </p>
 
       <ButtonLink href={linkToClassement}>
-        <TransClient>Retour à la liste des groupes</TransClient>
+        <Trans>Retour à la liste des groupes</Trans>
       </ButtonLink>
     </div>
   )

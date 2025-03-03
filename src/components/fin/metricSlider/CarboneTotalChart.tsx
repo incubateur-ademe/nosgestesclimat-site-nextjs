@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { getColorAtPosition } from '@/helpers/getColorOfGradient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -76,8 +76,7 @@ export default function CarboneTotalChart({
 
           <p className="mb-0 text-center text-default">
             <span className="text-sm md:text-lg lg:text-xl">
-              <TransClient>de</TransClient> CO₂e{' '}
-              <TransClient>par an</TransClient>
+              <Trans>de</Trans> CO₂e <Trans>par an</Trans>
             </span>
           </p>
         </div>

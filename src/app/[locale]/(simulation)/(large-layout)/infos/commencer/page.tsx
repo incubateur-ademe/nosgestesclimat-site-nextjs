@@ -1,7 +1,7 @@
 'use client'
 
 import { PreventNavigationContext } from '@/app/[locale]/_components/mainLayoutProviders/PreventNavigationProvider'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import {
   infosCommencerClickCtaCommencer,
   infosCommencerClickNewTest,
@@ -20,23 +20,19 @@ import { InfosContext } from '../_components/InfosProvider'
 const titles = {
   notStarted: (
     <span className="flex items-center">
-      <TransClient>Envie de connaître votre empreinte carbone ?</TransClient>{' '}
+      <Trans>Envie de connaître votre empreinte carbone ?</Trans>{' '}
       <Emoji className="ml-1">🤓</Emoji>
     </span>
   ),
   started: (
     <span className="flex items-center">
-      <TransClient>
-        Vous avez déjà commencé le test Nos Gestes Climat !
-      </TransClient>{' '}
+      <Trans>Vous avez déjà commencé le test Nos Gestes Climat !</Trans>{' '}
       <Emoji className="ml-1">💪</Emoji>
     </span>
   ),
   finished: (
     <span className="flex items-center">
-      <TransClient>
-        Vous avez déjà réalisé le test Nos Gestes Climat !
-      </TransClient>{' '}
+      <Trans>Vous avez déjà réalisé le test Nos Gestes Climat !</Trans>{' '}
       <Emoji className="ml-1">👏</Emoji>
     </span>
   ),
@@ -44,30 +40,30 @@ const titles = {
 const texts = {
   notStarted: (
     <>
-      <TransClient>Calculez votre empreinte en</TransClient>{' '}
-      <span className="text-primary-700 font-bold">
-        <TransClient>10 minutes</TransClient>
+      <Trans>Calculez votre empreinte en</Trans>{' '}
+      <span className="font-bold text-primary-700">
+        <Trans>10 minutes</Trans>
       </span>{' '}
-      <TransClient>
+      <Trans>
         puis comparez vos résultats à ceux des autres participants.
-      </TransClient>{' '}
+      </Trans>{' '}
     </>
   ),
   started: (
-    <TransClient>
+    <Trans>
       Vous pouvez reprendre votre test en cours, ou en recommencer un.
-    </TransClient>
+    </Trans>
   ),
   finished: (
-    <TransClient>
+    <Trans>
       Vous pouvez utiliser vos données existantes, ou recommencer le test.
-    </TransClient>
+    </Trans>
   ),
 }
 const buttonLabels = {
-  notStarted: <TransClient>Commencer le test</TransClient>,
-  started: <TransClient>Reprendre le test</TransClient>,
-  finished: <TransClient>Utiliser mes données existantes</TransClient>,
+  notStarted: <Trans>Commencer le test</Trans>,
+  started: <Trans>Reprendre le test</Trans>,
+  finished: <Trans>Utiliser mes données existantes</Trans>,
 }
 
 export default function Commencer() {
@@ -171,7 +167,7 @@ export default function Commencer() {
                 },
               })
             }}>
-            <TransClient>Commencer un nouveau test</TransClient>
+            <Trans>Commencer un nouveau test</Trans>
           </Button>
         ) : null}
       </div>

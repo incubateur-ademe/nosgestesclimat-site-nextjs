@@ -1,6 +1,6 @@
 import Route404 from '@/components/layout/404'
 import MDXContent from '@/components/mdx/MDXContent'
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -51,7 +51,7 @@ export default async function CategoryGuidePage({
     <div className="mx-auto my-4 flex flex-col items-start justify-center">
       <ButtonLink color="text" href="/guide">
         <span className="mr-2 inline-block">◀</span>
-        <TransServer locale={locale}>Retour</TransServer>
+        <Trans locale={locale}>Retour</Trans>
       </ButtonLink>
       {categories[category] ? (
         <MDXContent locale={locale} contentFr={categories[category]} />

@@ -1,7 +1,7 @@
 'use client'
 
 import TrashIcon from '@/components/icons/TrashIcon'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/metric'
 import Badge from '@/design-system/layout/Badge'
 import ConfirmationModal from '@/design-system/modals/ConfirmationModal'
@@ -81,7 +81,7 @@ export default function RankingMember({
   const quantity =
     participant.simulation.progression !== 1 ? (
       <span className="text-sm text-gray-600">
-        <TransClient>En cours</TransClient>
+        <Trans>En cours</Trans>
       </span>
     ) : participant.simulation.computedResults?.[metric]?.bilan ? (
       <span className="m-none leading-[160%]">
@@ -136,8 +136,8 @@ export default function RankingMember({
           <span className={textColor}>{participant.name}</span>
 
           {isCurrentMember && (
-            <Badge className="text-secondary-700 ml-2 inline rounded-xl border-pink-100 bg-pink-200 text-xs font-bold">
-              <TransClient>Vous</TransClient>
+            <Badge className="ml-2 inline rounded-xl border-pink-100 bg-pink-200 text-xs font-bold text-secondary-700">
+              <Trans>Vous</Trans>
             </Badge>
           )}
         </div>
@@ -168,7 +168,7 @@ export default function RankingMember({
               })}>
               <TrashIcon
                 className={twMerge(
-                  'fill-default w-4',
+                  'w-4 fill-default',
                   textColor === 'text-white' ? 'fill-white' : 'fill-default'
                 )}
               />
@@ -179,9 +179,9 @@ export default function RankingMember({
                 onConfirm={handleDelete}
                 closeModal={() => setIsConfirmationModalOpen(false)}>
                 <p className="text-sm md:text-base">
-                  <TransClient>
+                  <Trans>
                     Supprimer ce participant ? Cette opération est définitive.
-                  </TransClient>
+                  </Trans>
                 </p>
               </ConfirmationModal>
             )}

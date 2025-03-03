@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import type { Organisation, OrganisationPoll } from '@/types/organisations'
 import { useState } from 'react'
 import CustomQuestionForm from '../CustomQuestionForm'
@@ -72,7 +72,7 @@ export default function CustomQuestion({
     return (
       <CustomQuestionForm
         organisation={organisation}
-        submitLabel={<TransClient>Modifier</TransClient>}
+        submitLabel={<Trans>Modifier</Trans>}
         poll={poll}
         onCompleted={(changes) => {
           onChange(changes)

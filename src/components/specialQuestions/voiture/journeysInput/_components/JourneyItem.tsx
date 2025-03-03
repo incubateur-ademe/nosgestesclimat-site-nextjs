@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Journey } from '@/types/journey'
@@ -59,7 +59,7 @@ export default function JourneyItem({ journey, odd, setJourneys }: Props) {
       </td>
 
       <td className="block p-2 text-left text-xs sm:table-cell">
-        {journey.passengers} <TransClient>passager(s)</TransClient>
+        {journey.passengers} <Trans>passager(s)</Trans>
       </td>
 
       <td className="absolute -right-1 -top-2 block py-2 pl-2 text-right text-xs sm:static sm:table-cell">

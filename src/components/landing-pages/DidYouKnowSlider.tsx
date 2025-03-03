@@ -15,7 +15,7 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import { twMerge } from 'tailwind-merge'
 import CTAButtonsPlaceholder from '../cta/CTAButtonsPlaceholder'
-import TransClient from '../translation/trans/TransClient'
+import Trans from '../translation/trans/TransClient'
 
 const DynamicCTAButtons = dynamic(
   () => import('@/components/cta/DynamicCTAButtons'),
@@ -66,7 +66,7 @@ export default function DidYouKnowSlider({
 
               <div className="w-full flex-1">
                 <h3 className="text-center text-xl md:text-left md:text-3xl">
-                  <TransClient>Le saviez vous ?</TransClient>
+                  <Trans>Le saviez vous ?</Trans>
                 </h3>
 
                 <Separator className="mx-auto my-4 md:mx-0" />

@@ -1,7 +1,7 @@
 'use client'
 
 import Marianne from '@/components/images/partners/Marianne'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { endClickJagisFirstBlock } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
 import Loader from '@/design-system/layout/Loader'
@@ -30,27 +30,27 @@ export default function AgirMainBlock() {
     <div className="relative flex items-center justify-between rounded-xl border-2 border-amber-200 bg-amber-50 bg-[url('/images/misc/jagis-coins-bg-mobile.svg')] bg-contain bg-[center_right_4rem] bg-no-repeat px-4 py-6 lg:bg-[url('/images/misc/jagis-coins-bg-desktop.svg')] lg:bg-[center_right_7rem]">
       <div className="flex-1">
         <h3 className="mb-2 text-lg">
-          <TransClient>Un coup de pouce pour agir ?</TransClient>
+          <Trans>Un coup de pouce pour agir ?</Trans>
         </h3>
         <p className="text-sm lg:text-base">
-          <TransClient>
+          <Trans>
             Découvrez toutes les aides financières auxquelles vous avez droit
-          </TransClient>
+          </Trans>
         </p>
         {isError && <div className="text-red-600">{error?.toString()}</div>}
         {!data?.redirectUrl && isSuccess && (
           <div className="text-red-600">
-            <TransClient>Une erreur est survenue</TransClient>
+            <Trans>Une erreur est survenue</Trans>
           </div>
         )}
         {!couldOpen && isSuccess && (
           <div className="text-red-600">
-            <TransClient>
+            <Trans>
               Une erreur est survenue.{' '}
               <a href={data?.redirectUrl} rel="noreferrer" target="_blank">
                 Cliquez sur ce lien pour naviguer vers J'agis.
               </a>
-            </TransClient>
+            </Trans>
           </div>
         )}
         <div className="flex items-center gap-4">

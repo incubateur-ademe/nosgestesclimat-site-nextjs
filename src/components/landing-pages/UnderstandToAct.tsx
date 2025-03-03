@@ -5,7 +5,7 @@ import { getLandingClickPostThumbnail } from '@/helpers/tracking/landings'
 import type { LandingPagePostType } from '@/types/landing-page'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
-import TransServer from '../translation/trans/TransServer'
+import Trans from '../translation/trans/TransServer'
 
 export default function UnderstandToAct({
   title,
@@ -21,16 +21,14 @@ export default function UnderstandToAct({
   locale: string
 }) {
   return (
-    <div className="bg-heroLightBackground relative w-full py-16 md:py-20">
+    <div className="relative w-full bg-heroLightBackground py-16 md:py-20">
       <div className="mx-auto flex max-w-full flex-col gap-4 px-4 md:max-w-5xl md:px-0">
         <h2
           className={twMerge(
             'mb-0 text-center text-2xl md:text-3xl',
             !description ? 'mb-10' : ''
           )}>
-          {title ?? (
-            <TransServer locale={locale}>Comprendre pour agir</TransServer>
-          )}
+          {title ?? <Trans locale={locale}>Comprendre pour agir</Trans>}
         </h2>
 
         {description && (

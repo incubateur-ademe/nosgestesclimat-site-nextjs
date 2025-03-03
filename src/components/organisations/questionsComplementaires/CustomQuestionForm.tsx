@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Organisation, OrganisationPoll } from '@/types/organisations'
@@ -117,7 +117,7 @@ export default function CustomQuestionForm({
                 setIsFormDisplayed(true)
               }
         }>
-        + <TransClient>Ajouter une question personnalisée</TransClient>
+        + <Trans>Ajouter une question personnalisée</Trans>
       </Button>
     )
   }
@@ -128,7 +128,7 @@ export default function CustomQuestionForm({
       className="flex w-full flex-col items-start">
       {!isEditMode && (
         <label htmlFor="question" className="mb-2 text-sm">
-          <TransClient>Votre question à ajouter</TransClient>
+          <Trans>Votre question à ajouter</Trans>
         </label>
       )}
 
@@ -145,11 +145,11 @@ export default function CustomQuestionForm({
           size={isEditMode ? 'xs' : 'sm'}
           color="secondary"
           className="mt-4">
-          <TransClient>Annuler</TransClient>
+          <Trans>Annuler</Trans>
         </Button>
 
         <Button type="submit" size={isEditMode ? 'xs' : 'sm'} className="mt-4">
-          {submitLabel ?? <TransClient>Ajouter la question</TransClient>}
+          {submitLabel ?? <Trans>Ajouter la question</Trans>}
         </Button>
       </div>
     </form>

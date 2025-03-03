@@ -2,7 +2,7 @@
 
 import { marianne } from '@/app/[locale]/layout'
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Loader from '@/design-system/layout/Loader'
 import VerificationInput from 'react-verification-input'
 
@@ -40,7 +40,7 @@ export default function VerificationCodeInput({
       {inputError && (
         <div>
           <p className="mt-2 text-sm text-red-700">
-            <TransClient>Le code est invalide</TransClient>
+            <Trans>Le code est invalide</Trans>
           </p>
         </div>
       )}
@@ -50,7 +50,7 @@ export default function VerificationCodeInput({
           <Loader color="dark" size="sm" />
 
           <span>
-            <TransClient>Nous vérifions votre code...</TransClient>
+            <Trans>Nous vérifions votre code...</Trans>
           </span>
         </div>
       )}
@@ -60,7 +60,7 @@ export default function VerificationCodeInput({
           <CheckCircleIcon className="h-4 w-4 fill-green-700" />
 
           <span className="text-green-700">
-            <TransClient>Votre code est valide !</TransClient>
+            <Trans>Votre code est valide !</Trans>
           </span>
         </div>
       )}

@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { eauMetric } from '@/constants/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useRule } from '@/publicodes-state'
@@ -39,7 +39,7 @@ export default function WaterTotalNumber({ total, isSmall }: Props) {
           </span>
         </span>
         <span className="text-center text-sm text-default md:text-lg lg:text-xl">
-          <TransClient>d'eau par jour</TransClient>
+          <Trans>d'eau par jour</Trans>
         </span>
       </div>
     </div>

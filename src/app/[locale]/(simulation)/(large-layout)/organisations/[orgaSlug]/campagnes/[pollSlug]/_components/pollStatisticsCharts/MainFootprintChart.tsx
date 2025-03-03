@@ -1,7 +1,7 @@
 'use client'
 
 import Arrow from '@/components/fin/metricSlider/carboneTotalChart/Arrow'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/metric'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import type { Simulation } from '@/types/organisations'
@@ -18,7 +18,7 @@ export default function MainFootprintChart({ simulations, maxValue }: Props) {
   return (
     <section className="mb-12">
       <h3>
-        <TransClient>Empreinte carbone totale</TransClient>
+        <Trans>Empreinte carbone totale</Trans>
       </h3>
 
       <div className="flex flex-col">
@@ -31,14 +31,14 @@ export default function MainFootprintChart({ simulations, maxValue }: Props) {
             }}>
             <div className="mt-1 whitespace-nowrap">
               <p className="mb-0">
-                <strong className="text-secondary-700 font-black">
+                <strong className="font-black text-secondary-700">
                   2 tonnes,
                 </strong>
               </p>
               <p className="mb-0 text-sm">
-                <TransClient>c'est l’objectif pour 2050,</TransClient>{' '}
+                <Trans>c'est l’objectif pour 2050,</Trans>{' '}
                 <InlineLink href="/actions">
-                  <TransClient>on s'y met ?</TransClient>
+                  <Trans>on s'y met ?</Trans>
                 </InlineLink>
               </p>
             </div>
@@ -65,9 +65,9 @@ export default function MainFootprintChart({ simulations, maxValue }: Props) {
             <strong className="text-lg">{maxValue}</strong>{' '}
             <span>
               {shouldUseAbbreviation ? (
-                <TransClient>t CO₂e / an</TransClient>
+                <Trans>t CO₂e / an</Trans>
               ) : (
-                <TransClient>tonnes CO₂e / an</TransClient>
+                <Trans>tonnes CO₂e / an</Trans>
               )}
             </span>
           </span>

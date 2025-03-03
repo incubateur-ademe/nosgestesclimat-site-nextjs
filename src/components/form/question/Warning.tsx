@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Markdown from '@/design-system/utils/Markdown'
 import { useLocale } from '@/hooks/useLocale'
 import getValueIsOverFloorOrCeiling from '@/publicodes-state/helpers/getValueIsOverFloorOrCeiling'
@@ -42,18 +42,17 @@ export default function Warning({
       className="mb-4 inline-flex flex-col items-start rounded-xl border-2 border-red-300 bg-red-200 p-4 pb-0 text-sm">
       {plancher && plafond ? (
         <p className="p-0">
-          <TransClient>La valeur pour ce champ est comprise entre</TransClient>{' '}
-          {plancher.toLocaleString(locale)} <TransClient>et</TransClient>{' '}
-          {plafond} {unit}.
+          <Trans>La valeur pour ce champ est comprise entre</Trans>{' '}
+          {plancher.toLocaleString(locale)} <Trans>et</Trans> {plafond} {unit}.
         </p>
       ) : plancher ? (
         <p className="p-0">
-          <TransClient>La valeur minimum pour ce champ est de</TransClient>{' '}
+          <Trans>La valeur minimum pour ce champ est de</Trans>{' '}
           {plancher.toLocaleString(locale)} {unit}.
         </p>
       ) : plafond ? (
         <p className="p-0">
-          <TransClient>La valeur maximum pour ce champ est de</TransClient>{' '}
+          <Trans>La valeur maximum pour ce champ est de</Trans>{' '}
           {plafond.toLocaleString(locale)} {unit}.
         </p>
       ) : warning ? (

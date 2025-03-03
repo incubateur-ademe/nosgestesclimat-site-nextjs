@@ -1,4 +1,4 @@
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import ColorLine from '@/design-system/layout/ColorLine'
 import Separator from '@/design-system/layout/Separator'
 import dynamic from 'next/dynamic'
@@ -54,11 +54,9 @@ export default async function TwoFootprints({ locale }: { locale: string }) {
     <div className="my-16 flex flex-col items-center px-4 md:mx-auto md:my-20 md:max-w-5xl">
       <div className="relative mb-16 pb-4 md:mb-20">
         <h2 className="mb-0 text-center text-2xl md:text-3xl">
-          <TransServer locale={locale}>
-            Un calculateur, deux empreintes
-          </TransServer>
+          <Trans locale={locale}>Un calculateur, deux empreintes</Trans>
         </h2>
-        <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-[15%] h-[3px] w-[70%] transition-all md:left-0 md:w-full" />
+        <ColorLine className="bg-rainbow absolute bottom-0 left-[15%] h-[3px] w-[70%] animate-rainbow-slow transition-all md:left-0 md:w-full" />
       </div>
 
       {/* Displayed on desktop only */}
@@ -73,14 +71,14 @@ export default async function TwoFootprints({ locale }: { locale: string }) {
             </div>
 
             <h3 className="mb-0 text-xl md:text-2xl">
-              <TransServer locale={locale}>L'empreinte carbone</TransServer>
+              <Trans locale={locale}>L'empreinte carbone</Trans>
             </h3>
 
             <Separator className="my-4" />
           </div>
 
           <p className="mb-6 text-sm md:text-lg">
-            <TransServer locale={locale}>
+            <Trans locale={locale}>
               <strong className="text-primary-700">L’empreinte carbone</strong>{' '}
               représente la quantité de gaz à effet de serre émise par les
               activités humaines. Le calculateur d’empreinte carbone aide à{' '}
@@ -88,7 +86,7 @@ export default async function TwoFootprints({ locale }: { locale: string }) {
               qui contribuent le plus au changement climatique et à{' '}
               <strong className="text-primary-700">choisir les actions</strong>{' '}
               les plus efficaces pour réduire son impact.
-            </TransServer>
+            </Trans>
           </p>
 
           <LearnMoreCarbonLink />
@@ -102,14 +100,14 @@ export default async function TwoFootprints({ locale }: { locale: string }) {
             </div>
 
             <h3 className="mb-0 text-xl md:text-2xl">
-              <TransServer locale={locale}>L'empreinte eau</TransServer>
+              <Trans locale={locale}>L'empreinte eau</Trans>
             </h3>
 
             <Separator className="my-4" />
           </div>
 
           <p className="mb-6 text-sm md:text-lg">
-            <TransServer locale={locale}>
+            <Trans locale={locale}>
               <strong className="text-primary-700">L’empreinte eau</strong>{' '}
               mesure la quantité totale d’eau utilisée pour produire les biens
               et services que nous consommons. Contrairement à l’eau domestique,{' '}
@@ -118,7 +116,7 @@ export default async function TwoFootprints({ locale }: { locale: string }) {
               </strong>{' '}
               nécessaire pour cultiver nos aliments, fabriquer nos vêtements et
               produire de l’énergie.
-            </TransServer>
+            </Trans>
           </p>
 
           <LearnMoreWaterLink />

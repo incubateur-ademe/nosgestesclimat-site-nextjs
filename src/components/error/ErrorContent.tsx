@@ -1,34 +1,34 @@
 'use client'
 
 import Button from '@/design-system/inputs/Button'
-import TransClient from '../translation/trans/TransClient'
+import Trans from '../translation/trans/TransClient'
 
 export default function ErrorContent() {
   return (
     <>
       <h2>
-        <TransClient>Oups ! Une erreur est survenue</TransClient> 🐛
+        <Trans>Oups ! Une erreur est survenue</Trans> 🐛
       </h2>
 
       <p>
-        <TransClient>
+        <Trans>
           Une erreur s'est produite ; veuillez recharger la page ou réessayer
           plus tard.
-        </TransClient>
+        </Trans>
       </p>
 
       <p>
-        <TransClient>Si le problème persiste, merci de</TransClient>{' '}
+        <Trans>Si le problème persiste, merci de</Trans>{' '}
         <Button
           color="link"
           onClick={() => window.location.replace('/contact')}>
-          <TransClient>contacter le support.</TransClient>
+          <Trans>contacter le support.</Trans>
         </Button>
       </p>
 
       <div className="mt-10 flex w-full justify-center">
         <Button onClick={() => window.location.replace('/')}>
-          <TransClient>Revenir à l'accueil</TransClient>
+          <Trans>Revenir à l'accueil</Trans>
         </Button>
       </div>
     </>

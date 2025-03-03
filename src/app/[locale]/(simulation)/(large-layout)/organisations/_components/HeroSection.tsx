@@ -1,5 +1,5 @@
 import Baseline from '@/components/organisations/Baseline'
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import {
   organisationsAccueilClickCommencer,
   organisationsAccueilClickDemo,
@@ -16,9 +16,9 @@ export default async function HeroSection({ locale }: { locale: string }) {
     <div className="flex flex-wrap justify-center gap-12 pt-14 lg:flex-nowrap lg:justify-start lg:gap-16">
       <div className="max-w-full md:w-[34rem]">
         <h1>
-          <TransServer locale={locale} i18nKey="organisations.accueil.titre">
+          <Trans locale={locale} i18nKey="organisations.accueil.titre">
             Nos Gestes Climat pour les organisations
-          </TransServer>
+          </Trans>
         </h1>
 
         <div className="mb-12 text-sm md:text-lg">
@@ -28,7 +28,7 @@ export default async function HeroSection({ locale }: { locale: string }) {
           <ButtonLink
             href="/organisations/connexion"
             trackingEvent={organisationsAccueilClickCommencer}>
-            <TransServer locale={locale}>Commencer</TransServer>
+            <Trans locale={locale}>Commencer</Trans>
           </ButtonLink>
 
           <ButtonLink
@@ -37,7 +37,7 @@ export default async function HeroSection({ locale }: { locale: string }) {
             onClick={() => {
               trackEvent(organisationsAccueilClickDemo)
             }}>
-            <TransServer locale={locale}>Demander une démo</TransServer>
+            <Trans locale={locale}>Demander une démo</Trans>
           </ButtonLink>
         </div>
       </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { endClickActions } from '@/constants/tracking/pages/end'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import RecommendedActions from './howToAct/RecommendedActions'
@@ -9,19 +9,19 @@ export default function HowToAct({ shouldLeadToTest = true }) {
   return (
     <>
       <h2>
-        <TransClient>Comment agir ?</TransClient>
+        <Trans>Comment agir ?</Trans>
       </h2>
 
       <p className="text-gray-600">
         {shouldLeadToTest ? (
-          <TransClient>
+          <Trans>
             Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou
             passez le test pour obtenir des recommandations personnalisées.
-          </TransClient>
+          </Trans>
         ) : (
-          <TransClient>
+          <Trans>
             Découvrez nos pistes pour agir dès aujourd’hui pour le climat.
-          </TransClient>
+          </Trans>
         )}
       </p>
 
@@ -32,7 +32,7 @@ export default function HowToAct({ shouldLeadToTest = true }) {
           href="/actions"
           color="secondary"
           trackingEvent={endClickActions}>
-          <TransClient>Voir toutes les actions</TransClient>
+          <Trans>Voir toutes les actions</Trans>
         </ButtonLink>
       </div>
     </>

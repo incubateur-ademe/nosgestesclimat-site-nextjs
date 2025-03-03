@@ -1,7 +1,7 @@
 'use client'
 
 import ToastDisplay from '@/components/messages/ToastDisplay'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { displayErrorToast } from '@/helpers/toasts/displayErrorToast'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { PropsWithChildren, ReactNode } from 'react'
@@ -44,8 +44,8 @@ export default function CopyButton({
           }
         }}>
         {isCopied
-          ? (copiedStateText ?? <TransClient>Copié !</TransClient>)
-          : (children ?? <TransClient>Copier le lien</TransClient>)}
+          ? (copiedStateText ?? <Trans>Copié !</Trans>)
+          : (children ?? <Trans>Copier le lien</Trans>)}
       </Button>
 
       <ToastDisplay />

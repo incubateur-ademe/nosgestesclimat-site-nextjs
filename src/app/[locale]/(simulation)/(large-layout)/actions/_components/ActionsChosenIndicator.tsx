@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
 
@@ -22,7 +22,7 @@ export default function ActionsChosenIndicator() {
         <div>{count}</div>
         <div title={t('actions choisies')}>&#10004;</div>
       </span>
-      <TransClient>sélectionnées</TransClient>.
+      <Trans>sélectionnées</Trans>.
     </span>
   )
 }

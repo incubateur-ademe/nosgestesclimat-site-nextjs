@@ -4,7 +4,7 @@ import {
   labels,
   periods,
 } from '@/components/specialQuestions/voiture/journeysInput/_components/JourneyItem'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
@@ -120,7 +120,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
               },
             ])
           }>
-          <TransClient>Ajouter</TransClient>
+          <Trans>Ajouter</Trans>
         </Button>
       </td>
     </tr>

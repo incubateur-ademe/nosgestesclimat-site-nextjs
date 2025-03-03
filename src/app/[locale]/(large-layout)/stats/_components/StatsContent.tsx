@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
 import {
   useAllSimulationsTerminees,
@@ -39,9 +39,9 @@ const UseQueryResultHandler = ({
           if (isError) {
             return (
               <p key={`${JSON.stringify(error)}-${index}`}>
-                <TransClient>
+                <Trans>
                   Une erreur est survenue lors de la récupération des données
-                </TransClient>{' '}
+                </Trans>{' '}
                 : {(error as any).message}
               </p>
             )
@@ -49,7 +49,7 @@ const UseQueryResultHandler = ({
           if (isLoading) {
             return (
               <p key={`${JSON.stringify(error)}-${index}`}>
-                <TransClient>Récupération des données</TransClient>...
+                <Trans>Récupération des données</Trans>...
               </p>
             )
           }
@@ -75,11 +75,11 @@ export default function StatsContent() {
   return (
     <div>
       <Title>
-        <TransClient>Statistiques</TransClient>
+        <Trans>Statistiques</Trans>
       </Title>
       <div className="mt-8">
         <h2>
-          <TransClient>Visites et simulations</TransClient>
+          <Trans>Visites et simulations</Trans>
         </h2>
         <UseQueryResultHandler
           requestResults={[
@@ -109,7 +109,7 @@ export default function StatsContent() {
       </div>
       <div className="mt-8">
         <h2>
-          <TransClient>Acquisition</TransClient>
+          <Trans>Acquisition</Trans>
         </h2>
         <UseQueryResultHandler
           requestResults={[
@@ -139,12 +139,10 @@ export default function StatsContent() {
       </div>
       <div className="mt-8">
         <h2>
-          <TransClient>Données qualitatives</TransClient>
+          <Trans>Données qualitatives</Trans>
         </h2>
         <p>
-          <TransClient>
-            Cette section statistique est générée via Metabase.
-          </TransClient>
+          <Trans>Cette section statistique est générée via Metabase.</Trans>
         </p>
         <MetabaseIframe
           id="stats-quali"
@@ -155,14 +153,14 @@ export default function StatsContent() {
       </div>
       <div className="mt-8">
         <h2>
-          <TransClient>Modes "Groupes"</TransClient>
+          <Trans>Modes "Groupes"</Trans>
         </h2>
         <p>
           {' '}
-          <TransClient>
+          <Trans>
             Il est question ici des modes "Organisations" et "Challenge tes
             amis". Cette section est générée via Metabase.
-          </TransClient>{' '}
+          </Trans>{' '}
         </p>
         <h3>Mode "Organisations"</h3>
         <MetabaseIframe

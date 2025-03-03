@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { linkToGroupCreation } from '@/constants/group'
 import { classementCreateGroup } from '@/constants/tracking/pages/classements'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
@@ -10,13 +10,13 @@ export default function CreateFirstGroupSection() {
     <section className="mt-4">
       <p className="mb-6">
         <strong className="text-secondary-700">
-          <TransClient>Créez votre premier groupe</TransClient>
+          <Trans>Créez votre premier groupe</Trans>
         </strong>{' '}
-        <TransClient>
+        <Trans>
           et invitez vos proches pour comparer vos résultats. Cela prend
-        </TransClient>{' '}
+        </Trans>{' '}
         <strong className="text-secondary-700">
-          <TransClient>1 minute</TransClient>
+          <Trans>1 minute</Trans>
         </strong>{' '}
         !
       </p>
@@ -24,7 +24,7 @@ export default function CreateFirstGroupSection() {
         href={linkToGroupCreation}
         trackingEvent={classementCreateGroup}
         data-cypress-id="button-create-first-group">
-        <TransClient>Commencer</TransClient>
+        <Trans>Commencer</Trans>
       </ButtonLink>
     </section>
   )

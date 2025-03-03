@@ -2,7 +2,7 @@
 
 import FlagIcon from '@/components/icons/FlagIcon'
 import CountryFlag from '@/components/misc/CountryFlag'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
@@ -33,18 +33,18 @@ export default function Localisation({ supportedRegions }: Props) {
   if (iframeRegion) return null
 
   return (
-    <div className="mt-4 mb-8 sm:mt-8">
+    <div className="mb-8 mt-4 sm:mt-8">
       <h2 id="answers" className="flex items-center">
-        <FlagIcon className="fill-primary-700 mr-3" aria-hidden />
+        <FlagIcon className="mr-3 fill-primary-700" aria-hidden />
 
         <span>
-          <TransClient>Ma région de simulation</TransClient>
+          <Trans>Ma région de simulation</Trans>
         </span>
       </h2>
       {region?.code && (
         <div className="my-4">
           <span>
-            <TransClient>Vous faites cette simulation depuis :</TransClient>{' '}
+            <Trans>Vous faites cette simulation depuis :</Trans>{' '}
             <strong>{region.name}</strong>
             <CountryFlag code={region.code} className="ml-2 inline-block" />.
           </span>
@@ -68,7 +68,7 @@ export default function Localisation({ supportedRegions }: Props) {
                       showTutorial('localisationBanner')
                     }
                   }}>
-                  <TransClient>Revenir à ma région par défaut </TransClient>{' '}
+                  <Trans>Revenir à ma région par défaut </Trans>{' '}
                   <span aria-label={initialRegion.name}>
                     <CountryFlag
                       code={initialRegion.code}
@@ -89,10 +89,10 @@ export default function Localisation({ supportedRegions }: Props) {
 
       {!region && (
         <p>
-          <TransClient i18nKey="components.localisation.Localisation.warnMessage2">
+          <Trans i18nKey="components.localisation.Localisation.warnMessage2">
             Nous n'avons pas pu détecter votre pays de simulation, le modèle
             Français vous est proposé par défaut.
-          </TransClient>
+          </Trans>
         </p>
       )}
       <RegionSelector supportedRegions={supportedRegions} />

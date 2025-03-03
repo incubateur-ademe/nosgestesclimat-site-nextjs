@@ -1,5 +1,5 @@
 import Link from '@/components/Link'
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import ModeleDemoBlock from './_components/ModeleDemoBlock'
@@ -35,65 +35,65 @@ export default async function ModelePage({
     <div>
       <Title
         title={
-          <TransServer locale={locale}>
+          <Trans locale={locale}>
             Le modèle d'empreinte carbone de référence
-          </TransServer>
+          </Trans>
         }
       />
 
       <p>
-        <TransServer locale={locale} i18nKey="model.intro">
+        <Trans locale={locale} i18nKey="model.intro">
           Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte
           climat individuelle de consommation de référence.
-        </TransServer>
+        </Trans>
       </p>
 
       <p>
-        <TransServer locale={locale} i18nKey="model.intro2">
+        <Trans locale={locale} i18nKey="model.intro2">
           Entièrement ouvert (open source) et contributif, chacun peut l'
           <Link href="/documentation">explorer</Link>,{' '}
           <Link href="https://github.com/incubateur-ademe/nosgestesclimat">
             l'améliorer
           </Link>
           .
-        </TransServer>
+        </Trans>
       </p>
 
       <h2>
-        💫 <TransServer locale={locale}>Une technologie moderne</TransServer>
+        💫 <Trans locale={locale}>Une technologie moderne</Trans>
       </h2>
 
       <p>
-        <TransServer locale={locale} i18nKey="model.modern">
+        <Trans locale={locale} i18nKey="model.modern">
           Le modèle est basé sur{' '}
           <Link href="https://publi.codes">publicodes</Link>, un langage conçu
           par l'État pour exprimer des algorithmes d'intérêt public.
-        </TransServer>
+        </Trans>
       </p>
 
       <p>
-        <TransServer locale={locale} i18nKey="model.modern2">
+        <Trans locale={locale} i18nKey="model.modern2">
           Entièrement paramétrable, depuis les questions posées à l'utilisateur
           jusqu'aux hypothèses du modèle de calcul, il peut être réutilisé{' '}
           <Link href="https://github.com/incubateur-ademe/nosgestesclimat/blob/master/LICENSE">
             librement
           </Link>{' '}
           par tout type d'acteur.
-        </TransServer>
+        </Trans>
       </p>
 
       <p>
-        <TransServer locale={locale} i18nKey="model.modern3">
+        <Trans locale={locale} i18nKey="model.modern3">
           ⬇️ Ci-dessous, vous pouvez voir l'influence de 3 paramètres de calcul
           sur les résultats finaux.
-        </TransServer>
+        </Trans>
       </p>
 
       <ModeleDemoBlock />
 
       <p>
         🕵️
-        <TransServer locale={locale} i18nKey="model.modern4">
+        <Trans locale={locale} i18nKey="model.modern4">
           Le modèle de calcul est directement embarqué chez le client, le calcul
           a lieu là dans votre navigateur, pas sur nos serveurs. Les données
           collectées sont si descriptives de la vie des utilisateurs, donc
@@ -102,17 +102,17 @@ export default async function ModelePage({
             et les stocker
           </a>{' '}
           poserait un risque trop élevé.
-        </TransServer>
+        </Trans>
       </p>
 
       <h2>
-        📚️ <TransServer locale={locale}>Un modèle complet</TransServer>
+        📚️ <Trans locale={locale}>Un modèle complet</Trans>
       </h2>
 
       <ModeleStatsBlock />
 
       <p>
-        <TransServer locale={locale} i18nKey={'model.stats2'}>
+        <Trans locale={locale} i18nKey={'model.stats2'}>
           Il est constitué d'une combinaison de centaines de modèles micro
           "bottom-up" pour les consommations carbonées de notre vie quotidienne,
           et d'un modèle "top-down" dérivé des travaux du SDES pour estimer
@@ -122,22 +122,22 @@ export default async function ModelePage({
             En savoir plus sur cette hybridation
           </a>
           .
-        </TransServer>
+        </Trans>
       </p>
 
       <h2>
-        ⏩️ <TransServer locale={locale}>En développement actif</TransServer>
+        ⏩️ <Trans locale={locale}>En développement actif</Trans>
       </h2>
 
       <p>
-        <TransServer locale={locale} i18nKey={'model.active.documented'}>
+        <Trans locale={locale} i18nKey={'model.active.documented'}>
           La construction du modèle (pistes de travail, réflexions en cours,
           feuille de route, etc.) est amplement{' '}
           <a href="https://github.com/incubateur-ademe/nosgestesclimat/issues">
             documentée publiquement
           </a>
           .
-        </TransServer>
+        </Trans>
       </p>
 
       <ModeleIssuePreviews />

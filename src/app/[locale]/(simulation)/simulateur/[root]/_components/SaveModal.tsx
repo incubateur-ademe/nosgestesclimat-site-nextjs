@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import Modal from '@/design-system/modals/Modal'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
@@ -99,11 +99,11 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
         <>
           {!currentSimulation.savedViaEmail && mode === 'save' ? (
             <Button color="secondary" onClick={closeModal}>
-              <TransClient>Non, merci</TransClient>
+              <Trans>Non, merci</Trans>
             </Button>
           ) : (
             <Button color="secondary" onClick={() => router.push('/')}>
-              <TransClient>Revenir à l'accueil</TransClient>
+              <Trans>Revenir à l'accueil</Trans>
             </Button>
           )}
           {currentSimulation.savedViaEmail ? (
@@ -115,10 +115,10 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
               disabled={isPending}
               className="inline"
               data-cypress-id="save-modal-submit-button">
-              <TransClient>
+              <Trans>
                 Sauvegarder{' '}
                 <span className="hidden lg:inline">ma progression</span>
-              </TransClient>
+              </Trans>
             </Button>
           )}
         </>
@@ -132,9 +132,9 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
           isError={isError}
           title={
             mode === 'backHome' ? (
-              <TransClient>Revenir à l'accueil</TransClient>
+              <Trans>Revenir à l'accueil</Trans>
             ) : (
-              <TransClient>Reprendre plus tard</TransClient>
+              <Trans>Reprendre plus tard</Trans>
             )
           }
         />

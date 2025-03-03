@@ -4,7 +4,7 @@
 
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { QUESTION_DESCRIPTION_BUTTON_ID } from '@/constants/accessibility'
 import {
   questionCloseInfo,
@@ -107,7 +107,7 @@ export default function Label({
               setIsOpen(false)
             }}
             title={t('Fermer')}>
-            <TransClient>Fermer</TransClient>
+            <Trans>Fermer</Trans>
           </Button>
         </motion.div>
       ) : null}

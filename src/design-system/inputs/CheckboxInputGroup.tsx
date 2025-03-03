@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import type { ChangeEvent, ForwardedRef, ReactNode } from 'react'
 import { forwardRef } from 'react'
 
@@ -54,7 +54,7 @@ export default forwardRef(function CheckboxInputGroup(
         />
 
         <span className={`text-sm ${error ? '!text-red-700' : ''}`}>
-          <TransClient>{label}</TransClient>
+          <Trans>{label}</Trans>
         </span>
       </label>
 

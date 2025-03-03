@@ -3,7 +3,7 @@
 
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import {
   tutorielClickFaq,
   tutorielClickQuestion,
@@ -17,7 +17,7 @@ export default function AutresQuestions() {
   return (
     <div className="order-last mb-8 md:order-none">
       <h5 className="mb-2 text-lg">
-        <TransClient>D'autres questions ?</TransClient>
+        <Trans>D'autres questions ?</Trans>
       </h5>
       <ul className="mb-1 list-none p-0">
         <OrganisationPrivacy />
@@ -30,11 +30,11 @@ export default function AutresQuestions() {
                   tutorielClickQuestion('C’est quoi mon empreinte carbone ?')
                 )
               }>
-              <TransClient>C’est quoi mon empreinte carbone ?</TransClient>
+              <Trans>C’est quoi mon empreinte carbone ?</Trans>
             </summary>
             <div className="my-2 ml-3.5 text-sm">
               <p>
-                <TransClient i18nKey={'publicodes.Tutoriel.slide1.p1'}>
+                <Trans i18nKey={'publicodes.Tutoriel.slide1.p1'}>
                   Le climat se réchauffe à cause des activités humaines, c'est
                   un fait. Tout ce que nous consommons, utilisons, puis jetons a
                   nécessité de la matière et de l'énergie. Que ce soit pour la
@@ -43,7 +43,7 @@ export default function AutresQuestions() {
                   émettre des gaz à effet de serre. Certaines énormément,
                   d'autres très peu. Mais quel est notre impact, à notre échelle
                   de citoyen ?
-                </TransClient>
+                </Trans>
               </p>
               <Image
                 src="/images/tutoriel/greenhouse-effect.svg"
@@ -53,12 +53,12 @@ export default function AutresQuestions() {
                 height={100}
               />
               <p className="text-sm">
-                <TransClient i18nKey={'publicodes.Tutoriel.slide1.p2'}>
+                <Trans i18nKey={'publicodes.Tutoriel.slide1.p2'}>
                   Pour estimer sa propre contribution au réchauffement de la
                   planète (son "impact climat"), il est d'usage de calculer ce
                   qu'on appelle l'empreinte carbone individuelle de
                   consommation.
-                </TransClient>
+                </Trans>
               </p>
             </div>
           </details>
@@ -70,11 +70,11 @@ export default function AutresQuestions() {
               onClick={() =>
                 trackEvent(tutorielClickQuestion('Comment on la mesure ?'))
               }>
-              <TransClient>Comment on la mesure ?</TransClient>
+              <Trans>Comment on la mesure ?</Trans>
             </summary>
             <div className="my-2 ml-3.5 text-sm">
               <p>
-                <TransClient i18nKey={'publicodes.Tutoriel.slide2.p1'}>
+                <Trans i18nKey={'publicodes.Tutoriel.slide2.p1'}>
                   Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde
                   de carbone{' '}
                   <Image
@@ -86,7 +86,7 @@ export default function AutresQuestions() {
                   />
                   , vous le connaissez : on l'expire toute la journée, mais sans
                   influence sur le climat.
-                </TransClient>
+                </Trans>
               </p>
               <Image
                 src="/images/tutoriel/co2e.svg"
@@ -96,12 +96,12 @@ export default function AutresQuestions() {
                 height={100}
               />
               <p>
-                <TransClient i18nKey={'publicodes.Tutoriel.slide2.p2'}>
+                <Trans i18nKey={'publicodes.Tutoriel.slide2.p2'}>
                   Ce sont les machines qui font notre confort moderne qui en
                   rejettent massivement, à tel point qu'on le compte en milliers
                   de kilos par an et par personne, donc en{' '}
                   <strong>tonnes</strong> de CO₂e !
-                </TransClient>
+                </Trans>
               </p>
               <blockquote>
                 <details className="text-sm">
@@ -111,13 +111,11 @@ export default function AutresQuestions() {
                         tutorielClickQuestion('Mais que veut dire ce petit e ?')
                       )
                     }>
-                    <TransClient
-                      i18nKey={'sites.publicodes.Tutorial.questionE'}>
+                    <Trans i18nKey={'sites.publicodes.Tutorial.questionE'}>
                       💡 Mais que veut dire ce petit <em>e</em> ?
-                    </TransClient>
+                    </Trans>
                   </summary>{' '}
-                  <TransClient
-                    i18nKey={'publicodes.Tutoriel.slide2.blockquote'}>
+                  <Trans i18nKey={'publicodes.Tutoriel.slide2.blockquote'}>
                     D'autres gaz, surtout le méthane{' '}
                     <Image
                       src="/images/tutoriel/methane.svg"
@@ -136,7 +134,7 @@ export default function AutresQuestions() {
                     />{' '}
                     réchauffent aussi la planète : on convertit leur potentiel
                     de réchauffement en CO₂e pour simplifier la mesure.{' '}
-                  </TransClient>
+                  </Trans>
                 </details>
               </blockquote>
             </div>
@@ -149,10 +147,10 @@ export default function AutresQuestions() {
               onClick={() =>
                 trackEvent(tutorielClickQuestion('D’où vient mon empreinte ?'))
               }>
-              <TransClient>D’où vient mon empreinte ?</TransClient>
+              <Trans>D’où vient mon empreinte ?</Trans>
             </summary>
             <div className="my-2 ml-3.5">
-              <TransClient i18nKey={'publicodes.Tutoriel.slide6'}>
+              <Trans i18nKey={'publicodes.Tutoriel.slide6'}>
                 <p>
                   Prendre la voiture, manger un steak, chauffer sa maison, se
                   faire soigner, acheter une TV...
@@ -162,7 +160,7 @@ export default function AutresQuestions() {
                   L'empreinte de notre consommation individuelle, c'est la somme
                   de toutes ces activités qui font notre vie moderne.
                 </p>
-              </TransClient>
+              </Trans>
             </div>
           </details>
         </li>
@@ -173,13 +171,11 @@ export default function AutresQuestions() {
               onClick={() =>
                 trackEvent(tutorielClickQuestion('D’où vient mon empreinte ?'))
               }>
-              <TransClient>
-                Pourquoi avons-nous ajouté l’empreinte eau ?
-              </TransClient>
+              <Trans>Pourquoi avons-nous ajouté l’empreinte eau ?</Trans>
             </summary>
             <div className="my-2 ml-3.5">
               <p>
-                <TransClient>
+                <Trans>
                   L’eau est une ressource planétaire précieuse. Comme le climat,{' '}
                   <strong className="text-secondary-700">
                     le cycle de l’eau est fortement impacté par les activités
@@ -188,7 +184,7 @@ export default function AutresQuestions() {
                   Nous avons fait le choix d’ajouter l'empreinte eau à notre
                   modèle de calcul afin de vous apporter des éléments de
                   compréhension de cet impact.
-                </TransClient>
+                </Trans>
               </p>
             </div>
           </details>
@@ -200,7 +196,7 @@ export default function AutresQuestions() {
         color="text"
         className="px-0 underline"
         trackingEvent={tutorielClickFaq}>
-        <TransClient>Consultez la FAQ</TransClient>
+        <Trans>Consultez la FAQ</Trans>
       </ButtonLink>
     </div>
   )

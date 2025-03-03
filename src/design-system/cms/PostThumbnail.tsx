@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -50,7 +50,7 @@ export default function PostThumbnail({
         </h3>
 
         <div className="mt-auto cursor-pointer p-4 pt-0 text-left text-[13px] text-primary-700 underline md:text-right md:text-base">
-          <TransClient>Lire la suite</TransClient>
+          <Trans>Lire la suite</Trans>
         </div>
       </div>
     </a>

@@ -2,7 +2,7 @@
 
 import type { Group, Participant } from '@/types/groups'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { eauMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { getTopThreeAndRestMembers } from '@/helpers/groups/getTopThreeAndRestMembers'
@@ -38,13 +38,13 @@ export default function Ranking({
   return (
     <>
       {metric === eauMetric && (
-        <p className="border-primary-200 mb-4 rounded-lg border-2 p-2 text-sm md:max-w-[60%]">
+        <p className="mb-4 rounded-lg border-2 border-primary-200 p-2 text-sm md:max-w-[60%]">
           <Emoji>✨</Emoji>{' '}
-          <TransClient>
+          <Trans>
             Voici un aperçu du classement des participants en fonction de leur
             empreinte eau. Cette fonctionnalité est encore en cours de
             développement.
-          </TransClient>
+          </Trans>
         </p>
       )}
 
@@ -106,12 +106,12 @@ export default function Ranking({
       {group.participants.length > 5 && !isExpanded && (
         <button
           onClick={() => setIsExpanded(true)}
-          className="bg-Transparent text-primary-700 mt-4 w-full border-none text-center text-sm underline">
-          <TransClient>
+          className="bg-Transparent mt-4 w-full border-none text-center text-sm text-primary-700 underline">
+          <Trans>
             Voir les {String(group.participants.length - 5)} autre{withS}{' '}
             participant
             {withS}
-          </TransClient>
+          </Trans>
         </button>
       )}
     </>

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { learnMoreCarbonLink } from '@/constants/tracking/pages/mainLanding'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 
@@ -11,7 +11,7 @@ export default function LearnMoreCarbonLink() {
       href="/empreinte-carbone"
       onClick={() => trackEvent(learnMoreCarbonLink)}
       className="text-[13px] md:text-base">
-      <TransClient>En savoir plus sur l'empreinte carbone</TransClient>
+      <Trans>En savoir plus sur l'empreinte carbone</Trans>
     </Link>
   )
 }

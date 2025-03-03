@@ -2,7 +2,7 @@
 
 import MailIcon from '@/components/icons/MailIcon'
 import VerificationCodeInput from '@/components/organisations/VerificationCodeInput'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 
 type Props = {
   email: string
@@ -22,24 +22,22 @@ export default function VerificationContent({
   return (
     <>
       <h2 className="flex items-center gap-2">
-        <TransClient>Vérifiez votre boîte e-mail !</TransClient>
-        <MailIcon className="fill-primary-700 h-8 w-8" />
+        <Trans>Vérifiez votre boîte e-mail !</Trans>
+        <MailIcon className="h-8 w-8 fill-primary-700" />
       </h2>
 
       <p>
-        <TransClient>Nous avons envoyé un</TransClient>{' '}
+        <Trans>Nous avons envoyé un</Trans>{' '}
         <strong className="text-primary-700">
-          <TransClient>code de vérification</TransClient>
+          <Trans>code de vérification</Trans>
         </strong>{' '}
-        <TransClient>à </TransClient>
+        <Trans>à </Trans>
         {email}.{' '}
       </p>
 
       <form>
         <label htmlFor="code" className="mb-4 block font-bold">
-          <TransClient>
-            Entrez votre code de vérification pour continuer
-          </TransClient>
+          <Trans>Entrez votre code de vérification pour continuer</Trans>
         </label>
 
         <VerificationCodeInput

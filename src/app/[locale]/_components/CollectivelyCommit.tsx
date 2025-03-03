@@ -1,5 +1,5 @@
 import MotivationSection from '@/components/landing-pages/MotivationSection'
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
@@ -13,14 +13,14 @@ export default async function CollectivelyCommit({
   return (
     <MotivationSection
       title={
-        <TransServer locale={locale}>
+        <Trans locale={locale}>
           S’engager collectivement autour des enjeux du climat
-        </TransServer>
+        </Trans>
       }
       description={
         <div className="flex flex-col items-center gap-6">
           <p className="text-center text-sm md:text-lg">
-            <TransServer locale={locale}>
+            <Trans locale={locale}>
               Chez Nos Gestes Climat, nous croyons au pouvoir de{' '}
               <strong className="text-primary-600">l’action collective</strong>{' '}
               pour relever les défis environnementaux. Notre mission est de{' '}
@@ -35,12 +35,12 @@ export default async function CollectivelyCommit({
                 entraîner leur entourage
               </strong>{' '}
               dans ce mouvement.
-            </TransServer>
+            </Trans>
           </p>
           <p className="text-center text-sm font-bold text-secondary-700 md:text-lg">
-            <TransServer locale={locale}>
+            <Trans locale={locale}>
               Accélérons l’impact collectif avec Nos Gestes Climat !
-            </TransServer>
+            </Trans>
           </p>
 
           <Image

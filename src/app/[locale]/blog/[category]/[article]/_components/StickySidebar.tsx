@@ -2,7 +2,7 @@
 
 import type { ArticleType } from '@/adapters/cmsClient'
 import ShareIcon from '@/components/icons/ShareIcon'
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import CopyButton from '@/design-system/inputs/CopyButton'
 import { useEffect, useState } from 'react'
 import Summary from './Summary'
@@ -55,13 +55,13 @@ export default function StickySidebar({
   return (
     <div
       style={{ opacity: opacity, zIndex: opacity === 0 ? -10 : 30 }}
-      className="top-4 right-0 z-40 -order-1 flex w-full flex-col items-start gap-4 overflow-visible transition-opacity duration-200 md:sticky md:order-1 md:ml-auto md:h-0 md:w-[calc(33%-24px)] md:items-end md:pl-8">
+      className="right-0 top-4 z-40 -order-1 flex w-full flex-col items-start gap-4 overflow-visible transition-opacity duration-200 md:sticky md:order-1 md:ml-auto md:h-0 md:w-[calc(33%-24px)] md:items-end md:pl-8">
       <CopyButton
         className="w-auto"
         textToCopy={`https://nosgestesclimat.fr/blog/${category}/${articleSlug}`}
-        copiedStateText={<TransServer locale={locale}>Lien copié</TransServer>}>
-        <ShareIcon className="fill-primary-700 mr-2 h-8 w-8" />
-        <TransServer locale={locale}>Partager l'article</TransServer>
+        copiedStateText={<Trans locale={locale}>Lien copié</Trans>}>
+        <ShareIcon className="mr-2 h-8 w-8 fill-primary-700" />
+        <Trans locale={locale}>Partager l'article</Trans>
       </CopyButton>
 
       <Summary headings={article.headings ?? []} locale={locale} />

@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { amisCreationEtapeVotreGroupeSuivant } from '@/constants/tracking/pages/amisCreation'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
@@ -71,7 +71,7 @@ export default function GroupCreationForm() {
           label={
             <span>
               {t('Votre adresse email')}{' '}
-              <span className="text-secondary-700 italic">
+              <span className="italic text-secondary-700">
                 {' '}
                 {t('facultatif')}
               </span>
@@ -89,7 +89,7 @@ export default function GroupCreationForm() {
 
       <Button type="submit" data-cypress-id="button-continue-create-group">
         {' '}
-        <TransClient>Continuer</TransClient>
+        <Trans>Continuer</Trans>
       </Button>
     </form>
   )

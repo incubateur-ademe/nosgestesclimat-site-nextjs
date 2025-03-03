@@ -1,5 +1,5 @@
 import TitleDescLinkBlock from '@/components/landing-pages/TitleDescLinkBlock'
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import {
   getLandingClickModelDocumentation,
   getLandingClickNouveautes,
@@ -13,43 +13,35 @@ export default async function ModelInfo({ locale }: { locale: string }) {
     <div className="bg-heroLightBackground px-4 py-12 md:py-20">
       <div className="flex flex-col items-center gap-10 md:mx-auto md:max-w-5xl">
         <h2 className="text-center text-2xl md:text-3xl">
-          <TransServer locale={locale}>Un modèle de calcul fiable</TransServer>
+          <Trans locale={locale}>Un modèle de calcul fiable</Trans>
         </h2>
 
         <div className="flex flex-col gap-16 md:flex-row md:gap-10">
           <TitleDescLinkBlock
             title={
-              <TransServer locale={locale}>
-                Basé sur les données de l’ADEME
-              </TransServer>
+              <Trans locale={locale}>Basé sur les données de l’ADEME</Trans>
             }
             description={
-              <TransServer locale={locale}>
+              <Trans locale={locale}>
                 Retrouvez toute l’expertise de{' '}
                 <strong className="text-primary-600">
                   l’Agence de l’Environnement et de la Maîtrise de l’Énergie
                 </strong>{' '}
                 dans le calculateur de Nos Gestes Climat : données,
                 perspectives, leviers d'action.
-              </TransServer>
+              </Trans>
             }
             link={{
               href: '/documentation',
-              text: (
-                <TransServer locale={locale}>
-                  Découvrir la documentation
-                </TransServer>
-              ),
+              text: <Trans locale={locale}>Découvrir la documentation</Trans>,
             }}
             trackingEvent={getLandingClickModelDocumentation(pathname)}
           />
 
           <TitleDescLinkBlock
-            title={
-              <TransServer locale={locale}>Libre et documenté</TransServer>
-            }
+            title={<Trans locale={locale}>Libre et documenté</Trans>}
             description={
-              <TransServer locale={locale}>
+              <Trans locale={locale}>
                 Les lignes de code, les données et même une grande partie des
                 réflexions méthodologiques derrière le calculateur sont toutes{' '}
                 <strong className="text-primary-600">accessibles</strong>, ce
@@ -58,13 +50,11 @@ export default async function ModelInfo({ locale }: { locale: string }) {
                   contribuer et améliorer l’outil
                 </strong>
                 .
-              </TransServer>
+              </Trans>
             }
             link={{
               href: '/nouveautes',
-              text: (
-                <TransServer locale={locale}>Voir les nouveautés</TransServer>
-              ),
+              text: <Trans locale={locale}>Voir les nouveautés</Trans>,
             }}
             trackingEvent={getLandingClickNouveautes(pathname)}
           />

@@ -1,5 +1,5 @@
 import Link from '@/components/Link'
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import { twMerge } from 'tailwind-merge'
 
 interface Heading {
@@ -16,9 +16,9 @@ export default function Summary({
   locale: string
 }) {
   return (
-    <div className="relative w-full rounded-xl bg-gray-100 p-4 before:absolute before:top-0 before:-left-8 before:h-full before:w-1 before:border-l before:border-gray-300 before:content-['']">
+    <div className="relative w-full rounded-xl bg-gray-100 p-4 before:absolute before:-left-8 before:top-0 before:h-full before:w-1 before:border-l before:border-gray-300 before:content-['']">
       <h2 className="mb-2 text-xl font-bold">
-        <TransServer locale={locale}>Sommaire</TransServer>
+        <Trans locale={locale}>Sommaire</Trans>
       </h2>
 
       <nav>
@@ -33,7 +33,7 @@ export default function Summary({
               <Link
                 href={`#${heading.id}`}
                 className={twMerge(
-                  'hover:text-primary text-default block text-sm no-underline transition-colors duration-200',
+                  'hover:text-primary block text-sm text-default no-underline transition-colors duration-200',
                   'w-full truncate text-left'
                 )}>
                 {heading.text}

@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import type { User } from '@/publicodes-state/types'
 import type { PublicOrganisationPoll } from '@/types/organisations'
 import type { ReactNode } from 'react'
@@ -13,12 +13,12 @@ function getBaseItems({ pathname }: { pathname: string }) {
   return [
     {
       href: '/',
-      label: <TransClient>Accueil</TransClient>,
+      label: <Trans>Accueil</Trans>,
       isActive: pathname === '/',
     },
     {
       href: '/organisations',
-      label: <TransClient>Organisations</TransClient>,
+      label: <Trans>Organisations</Trans>,
       isActive: pathname === '/organisations',
     },
   ]
@@ -55,7 +55,7 @@ function getOrganisationEspaceItems({
           <>
             {poll?.name ?? (
               <span>
-                <TransClient>Campagne de</TransClient> {poll?.organisation.name}
+                <Trans>Campagne de</Trans> {poll?.organisation.name}
               </span>
             )}
           </>
@@ -69,7 +69,7 @@ function getOrganisationEspaceItems({
     if (pathname.includes('parametres')) {
       items.push({
         href: `/organisations/${params.orgaSlug}/parametres`,
-        label: <TransClient>Paramètres</TransClient>,
+        label: <Trans>Paramètres</Trans>,
         isActive:
           pathname === `/organisations/${params.orgaSlug}/parametres` ||
           pathname ===
@@ -107,7 +107,7 @@ export function getOrganisationItems({
   if (pathname.includes('demander-demo')) {
     items.push({
       href: '/organisations/demander-demo',
-      label: <TransClient>Demander une démo</TransClient>,
+      label: <Trans>Demander une démo</Trans>,
       isActive: pathname === '/organisations/demander-demo',
     })
     return items

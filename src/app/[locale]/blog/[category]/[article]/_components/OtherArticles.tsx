@@ -1,5 +1,5 @@
 import type { ArticleType } from '@/adapters/cmsClient'
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import PostThumbnail from '@/design-system/cms/PostThumbnail'
 
 export default function OtherArticles({
@@ -15,9 +15,7 @@ export default function OtherArticles({
     <div className="mt-10 bg-gray-100 px-4 py-8">
       <div className="max-w-5xl md:mx-auto">
         <h2 className="relative mb-8">
-          <TransServer locale={locale}>
-            D'autres articles sur le même sujet
-          </TransServer>
+          <Trans locale={locale}>D'autres articles sur le même sujet</Trans>
         </h2>
 
         <div className="relative flex flex-col gap-4 md:grid md:grid-cols-3">

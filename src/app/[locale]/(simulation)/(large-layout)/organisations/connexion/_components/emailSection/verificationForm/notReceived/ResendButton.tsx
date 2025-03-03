@@ -3,7 +3,7 @@
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import LockIcon from '@/components/icons/LockIcon'
 import SendIcon from '@/components/icons/SendIcon'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { organisationsConnexionClickCode } from '@/constants/tracking/pages/organisationsConnexion'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -74,28 +74,27 @@ export default function ResendButton({
         {isRetryButtonDisabled && timeLeft > 0 && (
           <span className="mr-2 flex items-center">
             <LockIcon className="mr-2 h-4 w-4 fill-primary-700" />
-            <TransClient>Renvoyer le code</TransClient>
+            <Trans>Renvoyer le code</Trans>
           </span>
         )}
 
         {shouldDisplayConfirmation && (
           <span className="flex items-center text-green-500 no-underline">
             <CheckCircleIcon className="mr-2 h-4 w-4 fill-green-500" />
-            <TransClient>Code renvoyé</TransClient>
+            <Trans>Code renvoyé</Trans>
           </span>
         )}
 
         {!shouldDisplayConfirmation && !isRetryButtonDisabled && (
           <span className="flex items-center underline">
             <SendIcon className="mr-2 h-4 w-4 fill-primary-700" />
-            <TransClient>Renvoyer le code</TransClient>
+            <Trans>Renvoyer le code</Trans>
           </span>
         )}
       </Button>
       {isRetryButtonDisabled && timeLeft > 0 && (
         <span className="text-xs font-normal text-gray-500 !no-underline">
-          <TransClient>(Attendre</TransClient> {timeLeft}{' '}
-          <TransClient>secondes)</TransClient>
+          <Trans>(Attendre</Trans> {timeLeft} <Trans>secondes)</Trans>
         </span>
       )}
     </div>

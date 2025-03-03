@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { ReactNode } from 'react'
 import { useEffect } from 'react'
@@ -64,7 +64,7 @@ export default function Modal({
               color="secondary"
               disabled={isLoading}
               onClick={!isLoading ? closeModal : () => {}}>
-              <TransClient>Annuler</TransClient>
+              <Trans>Annuler</Trans>
             </Button>
           )}
           {buttons ? buttons : null}

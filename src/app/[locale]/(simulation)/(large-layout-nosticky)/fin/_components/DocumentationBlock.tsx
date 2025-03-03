@@ -1,7 +1,7 @@
 'use client'
 
 import BookClosedIcon from '@/components/icons/BookClosedIcon'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { endClickDocumentation } from '@/constants/tracking/pages/end'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Title from '@/design-system/layout/Title'
@@ -11,24 +11,24 @@ export default function DocumentationBlock() {
   return (
     <div className="mb-8">
       <Title tag="h2">
-        <TransClient>Comment est calculée votre empreinte ?</TransClient>
+        <Trans>Comment est calculée votre empreinte ?</Trans>
       </Title>
 
       <p>
-        <TransClient>
+        <Trans>
           Notre calculateur repose sur un modèle de données, dont l'intégralité
           des calculs est documentée ; les données affichées sont directement
           associées à votre test.
-        </TransClient>
+        </Trans>
       </p>
 
       <InlineLink
         href="/documentation/bilan"
         className="flex items-center"
         onClick={() => trackEvent(endClickDocumentation)}>
-        <BookClosedIcon className="fill-primary-700 mr-2 w-4" />
+        <BookClosedIcon className="mr-2 w-4 fill-primary-700" />
 
-        <TransClient>Comprendre le calcul</TransClient>
+        <Trans>Comprendre le calcul</Trans>
       </InlineLink>
     </div>
   )

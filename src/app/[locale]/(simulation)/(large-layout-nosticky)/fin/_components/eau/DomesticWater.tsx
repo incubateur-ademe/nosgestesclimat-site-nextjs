@@ -2,7 +2,7 @@
 
 import CloseIcon from '@/components/icons/Close'
 import DownArrow from '@/components/icons/DownArrow'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { endClickDomesticWater } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
 import Title from '@/design-system/layout/Title'
@@ -22,11 +22,11 @@ export default function DomesticWater() {
             tag="h2"
             hasSeparator={isOpen}
             className="pr-16 text-lg md:pr-0 lg:text-2xl">
-            <TransClient>
+            <Trans>
               Et l'eau de{' '}
               <strong className="text-secondary-700">ma douche</strong> dans
               tout ça ?
-            </TransClient>
+            </Trans>
           </Title>
         </div>
         <div

@@ -1,4 +1,4 @@
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 import CreateGroupLink from './mobilise/CreateGroupLink'
@@ -10,19 +10,19 @@ export default async function Mobilise({ locale }: { locale: string }) {
   return (
     <div className="flex flex-col items-center px-4 py-20 md:mx-auto md:max-w-5xl">
       <h2 className="mb-10 text-center text-2xl md:max-w-[430px] md:text-3xl">
-        <TransServer locale={locale}>
+        <Trans locale={locale}>
           Mobilisez votre entourage pour la planète !
-        </TransServer>
+        </Trans>
       </h2>
 
       <div className="mb-16 flex flex-col items-center justify-between gap-6 md:mb-20 md:flex-row md:gap-24">
         <div className="md:max-w-[500px]">
           <h3 className="mb-4 text-xl md:text-2xl">
-            <TransServer locale={locale}>Défiez votre entourage</TransServer>
+            <Trans locale={locale}>Défiez votre entourage</Trans>
           </h3>
 
           <p className="mb-6 text-sm md:text-lg">
-            <TransServer locale={locale}>
+            <Trans locale={locale}>
               Créez un groupe avec vos proches et{' '}
               <strong className="text-primary-600">
                 lancez-vous dans un défi collectif
@@ -30,7 +30,7 @@ export default async function Mobilise({ locale }: { locale: string }) {
               pour réduire votre empreinte. Comparez vos résultats, suivez vos
               progrès et voyez qui parvient à réduire le plus ses émissions de
               carbone ou sa consommation d’eau.
-            </TransServer>
+            </Trans>
           </p>
 
           <CreateGroupLink />
@@ -61,13 +61,13 @@ export default async function Mobilise({ locale }: { locale: string }) {
         </div>
         <div className="md:max-w-[500px]">
           <h3 className="mb-4 text-xl md:text-2xl">
-            <TransServer locale={locale}>
+            <Trans locale={locale}>
               Lancez une campagne dans votre organisation
-            </TransServer>
+            </Trans>
           </h3>
 
           <p className="mb-6 text-sm md:text-lg">
-            <TransServer locale={locale}>
+            <Trans locale={locale}>
               Entreprises, collectivités, associations, écoles ou festivals :{' '}
               <strong className="text-primary-600">
                 engagez votre organisation dans une démarche durable
@@ -78,7 +78,7 @@ export default async function Mobilise({ locale }: { locale: string }) {
                 grâce à nos outils clés en main
               </strong>
               .
-            </TransServer>
+            </Trans>
           </p>
 
           <CreateOrganisationLink />

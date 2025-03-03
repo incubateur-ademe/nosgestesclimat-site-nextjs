@@ -1,4 +1,4 @@
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import {
   organisationsAccueilClickCommencerBottom,
   organisationsAccueilClickDemoBottom,
@@ -10,18 +10,16 @@ export default async function CTAFooter({ locale }: { locale: string }) {
   const { t } = await getServerTranslation(locale)
 
   return (
-    <section className="pt-16 pb-24">
+    <section className="pb-24 pt-16">
       <div className="mx-auto max-w-5xl">
         <div className="max-w-full md:w-[34rem]">
           <h2>
-            <TransServer locale={locale}>
-              Créez votre compte organisation
-            </TransServer>
+            <Trans locale={locale}>Créez votre compte organisation</Trans>
           </h2>
 
           <p className="mb-8">
             <strong className="text-primary-700">
-              <TransServer locale={locale}>2 petites minutes</TransServer>
+              <Trans locale={locale}>2 petites minutes</Trans>
             </strong>{' '}
             {t(
               'pour créer un compte, et vous pourrez retrouver tous nos services gratuitement\u202f!'
@@ -32,7 +30,7 @@ export default async function CTAFooter({ locale }: { locale: string }) {
             <ButtonLink
               trackingEvent={organisationsAccueilClickCommencerBottom}
               href="/organisations/connexion">
-              <TransServer locale={locale}>Créer un compte</TransServer>
+              <Trans locale={locale}>Créer un compte</Trans>
             </ButtonLink>
 
             <ButtonLink
@@ -40,7 +38,7 @@ export default async function CTAFooter({ locale }: { locale: string }) {
               className="font-normal underline"
               href="/contact?motif=demo"
               trackingEvent={organisationsAccueilClickDemoBottom}>
-              <TransServer locale={locale}>Demander une démo</TransServer>
+              <Trans locale={locale}>Demander une démo</Trans>
             </ButtonLink>
           </div>
         </div>

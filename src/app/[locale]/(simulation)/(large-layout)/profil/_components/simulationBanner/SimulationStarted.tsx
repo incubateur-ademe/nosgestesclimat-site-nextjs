@@ -3,7 +3,7 @@
 import Link from '@/components/Link'
 import PlaySignIcon from '@/components/icons/PlaySignIcon'
 import RestartIcon from '@/components/icons/RestartIcon'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import {
   profilClickCtaReprendre,
   profilClickCtaResultats,
@@ -48,7 +48,7 @@ export default function SimulationStarted() {
         </Card>
 
         <details className="mt-3 max-w-full text-sm">
-          <TransClient i18nKey={'publicodes.Profil.locationDonnées'}>
+          <Trans i18nKey={'publicodes.Profil.locationDonnées'}>
             <summary className="mb-2 cursor-pointer">
               Où sont mes données ?{' '}
             </summary>
@@ -56,9 +56,9 @@ export default function SimulationStarted() {
               Vos données sont stockées dans votre navigateur, vous avez donc le
               contrôle total sur elles.
             </span>
-          </TransClient>{' '}
+          </Trans>{' '}
           <Link href="/vie-privee" className="!text-xs">
-            <TransClient>En savoir plus</TransClient>
+            <Trans>En savoir plus</Trans>
           </Link>
         </details>
       </div>
@@ -70,7 +70,7 @@ export default function SimulationStarted() {
             color="primary"
             href={getLinkToEndPage()}
             trackingEvent={profilClickCtaResultats}>
-            <TransClient>Voir mon résultat</TransClient>
+            <Trans>Voir mon résultat</Trans>
           </ButtonLink>
         )}
 
@@ -82,7 +82,7 @@ export default function SimulationStarted() {
             trackingEvent={profilClickCtaReprendre}>
             <PlaySignIcon className="mr-2 fill-white" />
 
-            <TransClient>Reprendre mon test</TransClient>
+            <Trans>Reprendre mon test</Trans>
           </ButtonLink>
         )}
 
@@ -96,7 +96,7 @@ export default function SimulationStarted() {
           href={getLinkToSimulateurPage({ newSimulation: true })}>
           <RestartIcon className="mr-2 fill-primary-700" />
 
-          <TransClient>Recommencer</TransClient>
+          <Trans>Recommencer</Trans>
         </ButtonLink>
 
         <TutorialLink />

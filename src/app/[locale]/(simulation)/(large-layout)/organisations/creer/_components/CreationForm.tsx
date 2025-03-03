@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { linkToGroupCreation } from '@/constants/group'
 import { ADMINISTRATOR_SEPARATOR } from '@/constants/organisations/administrator'
 import {
@@ -120,7 +120,7 @@ export default function CreationForm() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <TextInputGroup
           className="col-span-1"
-          label={<TransClient>Votre organisation</TransClient>}
+          label={<Trans>Votre organisation</Trans>}
           error={formState.errors.name?.message}
           {...register('name', {
             required: t('Ce champ est requis'),
@@ -130,7 +130,7 @@ export default function CreationForm() {
         <div>
           <Select
             containerClassName="pt-[3px]"
-            label={<TransClient>Type d'organisation</TransClient>}
+            label={<Trans>Type d'organisation</Trans>}
             error={formState.errors.organisationType?.message}
             {...register('organisationType', {
               required: t('Ce champ est requis'),
@@ -146,22 +146,22 @@ export default function CreationForm() {
             OrganisationTypeEnum.groupOfFriends && (
             <div className="mt-4 rounded-xl bg-gray-100 p-4 text-sm">
               <p className="mb-2">
-                <TransClient>
+                <Trans>
                   Le mode organisation est un mode <strong>100% anonyme</strong>{' '}
                   pour les participants.
-                </TransClient>
+                </Trans>
               </p>
 
               <p className="mb-4">
-                <TransClient>
+                <Trans>
                   Avez-vous essayé{' '}
                   <strong>notre fonctionnalité “Groupes d’amis”</strong> ? Elle
                   vous permettra de vous comparer dans un classement : que celui
                   ou celle ayant la plus faible empreinte gagne !
-                </TransClient>
+                </Trans>
               </p>
               <ButtonLink href={linkToGroupCreation} size="sm">
-                <TransClient>Créer un groupe d'amis</TransClient>
+                <Trans>Créer un groupe d'amis</Trans>
               </ButtonLink>
             </div>
           )}
@@ -173,7 +173,7 @@ export default function CreationForm() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <TextInputGroup
           className="col-span-1"
-          label={<TransClient>Votre prénom</TransClient>}
+          label={<Trans>Votre prénom</Trans>}
           error={formState.errors.administratorFirstName?.message}
           {...register('administratorFirstName', {
             required: t('Ce champ est requis'),
@@ -182,7 +182,7 @@ export default function CreationForm() {
 
         <TextInputGroup
           className="col-span-1"
-          label={<TransClient>Votre nom</TransClient>}
+          label={<Trans>Votre nom</Trans>}
           error={formState.errors.administratorLastName?.message}
           {...register('administratorLastName', {
             required: t('Ce champ est requis'),
@@ -193,8 +193,8 @@ export default function CreationForm() {
           className="col-span-1"
           label={
             <p className="mb-0 flex items-center justify-between">
-              <TransClient>Votre poste</TransClient>
-              <span className="text-secondary-700 text-sm italic">
+              <Trans>Votre poste</Trans>
+              <span className="text-sm italic text-secondary-700">
                 facultatif
               </span>
             </p>
@@ -205,9 +205,7 @@ export default function CreationForm() {
 
       {isErrorUpdateOrga && (
         <div className="mt-4 rounded-xl bg-red-100 p-4 text-red-800">
-          <TransClient>
-            Une erreur est survenue, veuillez réessayer.
-          </TransClient>
+          <Trans>Une erreur est survenue, veuillez réessayer.</Trans>
         </div>
       )}
 
@@ -217,12 +215,12 @@ export default function CreationForm() {
           label={
             <span>
               <strong>
-                <TransClient>
+                <Trans>
                   Recevoir ponctuellement par email les nouveaux services Nos
                   Gestes Climat aux organisations
-                </TransClient>
+                </Trans>
               </strong>{' '}
-              <TransClient>(une fois par mois maximum !)</TransClient>
+              <Trans>(une fois par mois maximum !)</Trans>
             </span>
           }
           {...register('hasOptedInForCommunications')}
@@ -237,11 +235,11 @@ export default function CreationForm() {
             async (props) =>
               await onSubmit({ ...props, shouldNavigateToPollForm: false })
           )}>
-          <TransClient>Accéder à mon espace</TransClient>
+          <Trans>Accéder à mon espace</Trans>
         </Button>
 
         <Button type="submit">
-          <TransClient>Créer ma première campagne</TransClient>
+          <Trans>Créer ma première campagne</Trans>
         </Button>
       </div>
     </form>

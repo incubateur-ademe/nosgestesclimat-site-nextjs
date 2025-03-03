@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { useLocale } from '@/hooks/useLocale'
 import type { HTMLAttributes, SyntheticEvent } from 'react'
 import { useEffect, useRef } from 'react'
@@ -81,7 +81,7 @@ export default function NumberInput({
       {unit ? (
         <span className="whitespace-nowrap">
           &nbsp;
-          <TransClient>{unit}</TransClient>
+          <Trans>{unit}</Trans>
         </span>
       ) : null}
     </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { organisationsResultatsDetaillesFilterByPostalCode } from '@/constants/tracking/pages/organisationsResultatsDetailles'
 import ComplexSelect from '@/design-system/inputs/ComplexSelect'
 import { extractPostalCodesFromSimulations } from '@/helpers/organisations/extractPostalCodesFromSimulations'
@@ -46,7 +46,7 @@ export default function DepartementFilter({
       isSearchable
       // @ts-expect-error fix this
       options={options}
-      placeholder={<TransClient>Département</TransClient>}
+      placeholder={<Trans>Département</Trans>}
       onChange={handleSaveSelectionToLocalStorage}
     />
   )

@@ -1,7 +1,7 @@
 'use client'
 
 import InformationIconWithTooltip from '@/components/messages/InformationIconWithTooltip'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/metric'
 import Separator from '@/design-system/layout/Separator'
 import type { Simulation } from '@/types/organisations'
@@ -83,30 +83,30 @@ export default function PollStatisticsCharts({
   if (!simulations || simulations?.length < 3) return null
 
   return (
-    <section className="my-12 rounded-xl bg-gray-100 px-8 pt-8 pb-4">
+    <section className="my-12 rounded-xl bg-gray-100 px-8 pb-4 pt-8">
       <h2>
-        <TransClient>Répartition des empreintes carbone</TransClient>
+        <Trans>Répartition des empreintes carbone</Trans>
         <InformationIconWithTooltip
           id="resultats-groupe"
           className="ml-1 inline-block">
           <>
             <p className="mb-1 text-sm">
-              <TransClient>
+              <Trans>
                 Chaque participation est représentée par une barre verticale.
                 Votre score est affiché en{' '}
-                <span className="text-secondary-700 font-bold">rose</span>.
-              </TransClient>
+                <span className="font-bold text-secondary-700">rose</span>.
+              </Trans>
             </p>
             <p className="mb-0 text-sm">
-              <TransClient>
+              <Trans>
                 Pour faciliter la lecture, les valeurs supérieures à 100 t sont
                 retirées.
-              </TransClient>{' '}
+              </Trans>{' '}
               {isAdmin && (
-                <TransClient>
+                <Trans>
                   Elle seront toutefois prises en compte lors de l'export de
                   données.
-                </TransClient>
+                </Trans>
               )}
             </p>
           </>
@@ -123,10 +123,10 @@ export default function PollStatisticsCharts({
       <section>
         <div className="flex items-baseline justify-between md:max-w-[16rem]">
           <h3>
-            <TransClient>Par catégorie</TransClient>
+            <Trans>Par catégorie</Trans>
           </h3>
           <p className="mb-0 text-[0.75rem]">
-            <TransClient>Moyenne :</TransClient>
+            <Trans>Moyenne :</Trans>
           </p>
         </div>
         <ul>
@@ -152,17 +152,17 @@ export default function PollStatisticsCharts({
             <div>
               <strong className="text-lg">0</strong>{' '}
               {shouldUseAbbreviation ? (
-                <TransClient>t CO₂e / an</TransClient>
+                <Trans>t CO₂e / an</Trans>
               ) : (
-                <TransClient>tonnes CO₂e / an</TransClient>
+                <Trans>tonnes CO₂e / an</Trans>
               )}
             </div>
 
             {hasCurrentUser && (
               <div className="flex items-center gap-3">
-                <div className="bg-secondary-700 h-4 w-1" />
+                <div className="h-4 w-1 bg-secondary-700" />
                 <p className="mb-0 text-sm text-gray-600">
-                  <TransClient>Votre résultat</TransClient>
+                  <Trans>Votre résultat</Trans>
                 </p>
               </div>
             )}
@@ -170,9 +170,9 @@ export default function PollStatisticsCharts({
             <div>
               <strong className="text-lg">{maxValueOfAllCategories}</strong>{' '}
               {shouldUseAbbreviation ? (
-                <TransClient>t CO₂e / an</TransClient>
+                <Trans>t CO₂e / an</Trans>
               ) : (
-                <TransClient>tonnes CO₂e / an</TransClient>
+                <Trans>tonnes CO₂e / an</Trans>
               )}
             </div>
           </div>

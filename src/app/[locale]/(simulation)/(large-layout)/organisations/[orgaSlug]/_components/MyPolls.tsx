@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import Select from '@/design-system/inputs/Select'
 import Title from '@/design-system/layout/Title'
@@ -53,7 +53,7 @@ export default function MyPolls({ polls }: Props) {
     <section className="mb-12">
       <div className="flex flex-wrap items-center justify-between sm:flex-nowrap">
         <Title tag="h2">
-          <TransClient>Mes campagnes</TransClient>
+          <Trans>Mes campagnes</Trans>
         </Title>
 
         {pollsSorted.length > 0 && (
@@ -64,16 +64,16 @@ export default function MyPolls({ polls }: Props) {
             className="p-2 text-sm"
             name="sortOrder">
             <option value="date-old">
-              <TransClient>Date (anciennes &gt; récentes)</TransClient>
+              <Trans>Date (anciennes &gt; récentes)</Trans>
             </option>
             <option value="date-new">
-              <TransClient>Date (récentes &gt; anciennes)</TransClient>
+              <Trans>Date (récentes &gt; anciennes)</Trans>
             </option>
             <option value="alphabetical">
-              <TransClient>Nom (A &gt; Z)</TransClient>
+              <Trans>Nom (A &gt; Z)</Trans>
             </option>
             <option value="anti-alphabetical">
-              <TransClient>Nom (Z &gt; A)</TransClient>
+              <Trans>Nom (Z &gt; A)</Trans>
             </option>
           </Select>
         )}
@@ -98,11 +98,11 @@ export default function MyPolls({ polls }: Props) {
           color="link">
           {isMinified ? (
             <span>
-              + <TransClient>Voir toutes les campagnes</TransClient>
+              + <Trans>Voir toutes les campagnes</Trans>
             </span>
           ) : (
             <span>
-              - <TransClient>Masquer les autres campagnes</TransClient>
+              - <Trans>Masquer les autres campagnes</Trans>
             </span>
           )}
         </Button>

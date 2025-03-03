@@ -5,7 +5,7 @@ import AmisIcon from '@/components/icons/AmisIcon'
 import BilanIcon from '@/components/icons/BilanIcon'
 import PRIndicator from '@/components/layout/header/headerDesktop/PRIndicator'
 import Logo from '@/components/misc/Logo'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import {
   headerClickActions,
   headerClickClassements,
@@ -63,7 +63,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
                       activeMatches={['/tutoriel', '/simulateur', '/fin']}
                       icon={BilanIcon}
                       title={t('Mon empreinte')}>
-                      <TransClient>Mon empreinte</TransClient>
+                      <Trans>Mon empreinte</Trans>
                     </NavLink>
                   </li>
 
@@ -73,7 +73,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
                       onClick={() => trackEvent(headerClickActions)}
                       icon={ActionsIcon}
                       title={t('Mes gestes')}>
-                      <TransClient>Mes gestes</TransClient>
+                      <Trans>Mes gestes</Trans>
                     </NavLink>
                   </li>
 
@@ -85,7 +85,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
                       activeMatches={['/classement', '/amis']}
                       title={t('Mes classements')}
                       data-cypress-id="amis-link">
-                      <TransClient>Mes groupes</TransClient>
+                      <Trans>Mes groupes</Trans>
                     </NavLink>
                   </li>
                 </ul>
@@ -102,7 +102,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
                   title={t('Profil')}
                   className="px-4"
                   onClick={() => trackEvent(headerClickProfil)}>
-                  <TransClient>Profil</TransClient>
+                  <Trans>Profil</Trans>
                 </NavLink>
 
                 {user?.organisation?.administratorEmail ? (

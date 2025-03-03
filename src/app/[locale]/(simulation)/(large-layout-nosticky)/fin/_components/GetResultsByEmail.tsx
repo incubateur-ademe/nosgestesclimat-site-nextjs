@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import {
   LIST_MAIN_NEWSLETTER,
   LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
@@ -163,15 +163,15 @@ export default function GetResultsByEmail({
           className="flex h-full flex-col items-start"
           onSubmit={handleSubmit(onSubmit)}>
           <h3 className="flex items-center text-base sm:text-lg">
-            <TransClient>Vous souhaitez recevoir vos résultats ?</TransClient>
+            <Trans>Vous souhaitez recevoir vos résultats ?</Trans>
 
             <Emoji>💡</Emoji>
           </h3>
 
           <p className="text-sm sm:text-base">
-            <TransClient>Pour cela,</TransClient>{' '}
+            <Trans>Pour cela,</Trans>{' '}
             <strong className="text-primary-700">
-              <TransClient>laissez-nous votre email,</TransClient>{' '}
+              <Trans>laissez-nous votre email,</Trans>{' '}
             </strong>
             {t('comme {{numberSubscribers}} personnes.', {
               numberSubscribers:
@@ -200,9 +200,9 @@ export default function GetResultsByEmail({
             {(!isSubscribedMainNewsletter ||
               !isSubscribedTransportNewsletter) && (
               <p className="mb-0">
-                <TransClient>
+                <Trans>
                   Recevez des conseils pour réduire votre empreinte :
-                </TransClient>
+                </Trans>
               </p>
             )}
 
@@ -212,9 +212,7 @@ export default function GetResultsByEmail({
                   <span>
                     <Emoji>☀️</Emoji>{' '}
                     <strong>
-                      <TransClient>
-                        Infolettre saisonnière de Nos Gestes Climat
-                      </TransClient>
+                      <Trans>Infolettre saisonnière de Nos Gestes Climat</Trans>
                     </strong>
                   </span>
                 }
@@ -227,10 +225,10 @@ export default function GetResultsByEmail({
                 label={
                   <span>
                     <Emoji>🚗</Emoji> <strong>Nos Gestes Transports</strong>
-                    <TransClient>
+                    <Trans>
                       : maîtrisez l'impact carbone de vos transports avec nos 4
                       infolettres
-                    </TransClient>
+                    </Trans>
                   </span>
                 }
                 {...register('newsletter-transports')}
@@ -242,10 +240,10 @@ export default function GetResultsByEmail({
                 label={
                   <span>
                     <Emoji>🏡</Emoji>{' '}
-                    <TransClient>
+                    <Trans>
                       <strong>Nos Gestes Logement</strong> : informez-vous sur
                       l'impact carbone du logement, en quelques e-mails
-                    </TransClient>
+                    </Trans>
                   </span>
                 }
                 {...register('newsletter-logement')}
@@ -258,7 +256,7 @@ export default function GetResultsByEmail({
             disabled={isPending}
             className="mt-auto items-start"
             data-cypress-id="fin-email-submit-button">
-            <TransClient>Envoyer</TransClient>
+            <Trans>Envoyer</Trans>
           </Button>
 
           {isError && (

@@ -1,7 +1,7 @@
 'use client'
 
 import Question from '@/components/form/Question'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
@@ -21,11 +21,11 @@ export default function Avion({ question, ...props }: Props) {
           onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
           className="mb-2">
           {isOpen ? (
-            <TransClient>Fermer</TransClient>
+            <Trans>Fermer</Trans>
           ) : (
             <>
               <PencilIcon className="mr-2 stroke-primary-700" width="16" />
-              <TransClient>Répondre sur les 3 dernières années</TransClient>
+              <Trans>Répondre sur les 3 dernières années</Trans>
             </>
           )}
         </Button>

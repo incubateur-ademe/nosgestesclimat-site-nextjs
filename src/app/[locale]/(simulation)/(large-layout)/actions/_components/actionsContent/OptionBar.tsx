@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -22,7 +22,7 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
 
   if (!isOpen) {
     return (
-      <div className="absolute top-1 right-0 text-right">
+      <div className="absolute right-0 top-1 text-right">
         <button
           title={t('Ouvrir les options de tri')}
           onClick={() => setIsOpen(true)}
@@ -45,10 +45,10 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
         <ActionsChosenIndicator />
       </small>{' '}
       <small className="hidden md:block">
-        <TransClient>Triées par :</TransClient>
+        <Trans>Triées par :</Trans>
       </small>{' '}
       <small className="block md:hidden">
-        <TransClient>Tri :</TransClient>
+        <Trans>Tri :</Trans>
       </small>{' '}
       <Button
         size="sm"
@@ -58,11 +58,11 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
         title={t('Choisir le type de tri des actions')}>
         {radical ? (
           <span>
-            <TransClient>le + d'impact climat</TransClient>
+            <Trans>le + d'impact climat</Trans>
           </span>
         ) : (
           <span>
-            <TransClient>le - d'impact climat</TransClient>
+            <Trans>le - d'impact climat</Trans>
           </span>
         )}
       </Button>

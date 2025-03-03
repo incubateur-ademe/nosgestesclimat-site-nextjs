@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
 import useFetchOrganisations from '@/hooks/organisations/useFetchOrganisations'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -22,7 +22,7 @@ export default function Organisations() {
       <Title
         tag="h2"
         className="mt-16"
-        title={<TransClient>Organisations et campagnes</TransClient>}
+        title={<Trans>Organisations et campagnes</Trans>}
       />
       <div className="flex flex-wrap justify-center gap-16 md:flex-nowrap">
         <div className="flex-1">

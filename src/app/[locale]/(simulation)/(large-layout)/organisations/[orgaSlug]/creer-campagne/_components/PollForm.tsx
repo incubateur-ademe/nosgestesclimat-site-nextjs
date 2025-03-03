@@ -1,7 +1,7 @@
 'use client'
 
 import QuestionsComplementaires from '@/components/organisations/QuestionsComplementaires'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useCreatePoll } from '@/hooks/organisations/polls/useCreatePoll'
@@ -64,7 +64,7 @@ export default function PollForm({ organisation }: Props) {
     <form onSubmit={handleSubmit(onSubmit)} id="poll-form">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <TextInputGroup
-          label={<TransClient>Nom de la campagne</TransClient>}
+          label={<Trans>Nom de la campagne</Trans>}
           placeholder={t('ex : Campagne 2024, Classe de 6ème A, etc.')}
           {...register('name', {
             required: t('Ce champ est requis'),
@@ -75,10 +75,10 @@ export default function PollForm({ organisation }: Props) {
         <TextInputGroup
           label={
             <p className="mb-0 flex w-full justify-between">
-              <TransClient>Nombre de participants attendus</TransClient>
+              <Trans>Nombre de participants attendus</Trans>
               <span className="font-bold italic text-secondary-700">
                 {' '}
-                <TransClient>facultatif</TransClient>
+                <Trans>facultatif</Trans>
               </span>
             </p>
           }
@@ -98,10 +98,10 @@ export default function PollForm({ organisation }: Props) {
         organisation={organisation}
         poll={pollInfo}
         description={
-          <TransClient>
+          <Trans>
             Vous retrouverez les réponses à ces questions dans l'export des
             réponses à la campagne.
-          </TransClient>
+          </Trans>
         }
         onChange={(updates: Record<string, unknown>) =>
           setPollInfo((prevPollInfo) => ({ ...prevPollInfo, ...updates }))
@@ -113,15 +113,15 @@ export default function PollForm({ organisation }: Props) {
 
       {isError && (
         <p className="mt-2 text-red-500">
-          <TransClient>
+          <Trans>
             Une erreur s'est produite lors de la création de la campagne.
             Veuillez réessayer.
-          </TransClient>
+          </Trans>
         </p>
       )}
 
       <Button type="submit" form="poll-form" className="self-start">
-        <TransClient>Lancer ma campagne</TransClient>
+        <Trans>Lancer ma campagne</Trans>
       </Button>
     </form>
   )

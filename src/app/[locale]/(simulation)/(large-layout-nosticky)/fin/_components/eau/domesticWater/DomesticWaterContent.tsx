@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { useVigieEau } from '@/hooks/useVigieEau'
 import DomesticWaterChart from './domesticWaterContent/DomesticWaterChart'
 
@@ -16,16 +16,16 @@ export default function DomesticWaterContent() {
   return (
     <>
       <p className="mb-6">
-        <TransClient>
+        <Trans>
           L’eau domestique, à savoir, celle qui sort de vos robinets n'est pas
           comprise dans votre empreinte eau, puisqu’elle est restituée. Par
           exemple, l’eau de votre douche, après dépollution, est rendue aux
           cours d’eau de votre territoire.
-        </TransClient>
+        </Trans>
       </p>
       <DomesticWaterChart />
       <p>
-        <TransClient>
+        <Trans>
           L’eau domestique peut avoir un{' '}
           <strong className="font-black text-secondary-700">
             impact très fort
@@ -34,13 +34,13 @@ export default function DomesticWaterContent() {
           <strong className="font-black text-secondary-700">
             saison et la localisation.
           </strong>
-        </TransClient>
+        </Trans>
       </p>
       <p>
-        <TransClient>
+        <Trans>
           Voici la carte des départements qui subissent des restrictions d'eau
           en ce moment :
-        </TransClient>
+        </Trans>
       </p>
       {/* TODO: Uncomment when a new version of the @socialgouv/react-departements
       package compatible with React 19 is released.
@@ -54,16 +54,16 @@ export default function DomesticWaterContent() {
         {error && (
           <div className="absolute top-0 left-0 z-10 flex h-full w-full flex-col items-center justify-center bg-[rgba(255,255,255,0.7)]">
             <p className="text-center text-sm font-bold text-red-700">
-              <TransClient>
+              <Trans>
                 Oups ! Une erreur s'est produite au moment de récupérer les
                 données VigiEau.
-              </TransClient>
+              </Trans>
             </p>
             <p className="text-center text-sm font-bold text-red-700">
-              <TransClient>
+              <Trans>
                 Veuillez réessayer plus tard ou nous contacter si le problème
                 persiste.
-              </TransClient>
+              </Trans>
             </p>
           </div>
         )}
@@ -72,9 +72,7 @@ export default function DomesticWaterContent() {
 
       <p>
         <Link href="https://vigieau.gouv.fr/" target="_blank">
-          <TransClient>
-            Rendez-vous sur VigiEau pour en savoir plus.
-          </TransClient>
+          <Trans>Rendez-vous sur VigiEau pour en savoir plus.</Trans>
         </Link>
       </p>
     </>

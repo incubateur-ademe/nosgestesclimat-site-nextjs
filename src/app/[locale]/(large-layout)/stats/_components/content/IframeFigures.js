@@ -1,4 +1,4 @@
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Card from '@/design-system/layout/Card'
 import { useLocale } from '@/hooks/useLocale'
 
@@ -24,7 +24,7 @@ export default function IframeFigures(props) {
             <small>&nbsp;%</small>
           </p>
           <p className="text-sm">
-            <TransClient>des visites affichées en iframe</TransClient>
+            <Trans>des visites affichées en iframe</Trans>
           </p>
         </Card>
         <Card>
@@ -34,7 +34,7 @@ export default function IframeFigures(props) {
             <small>&nbsp;%</small>
           </p>
           <p className="text-sm">
-            <TransClient>des visites en iframe sont actives</TransClient>
+            <Trans>des visites en iframe sont actives</Trans>
           </p>
         </Card>
       </div>
@@ -43,10 +43,10 @@ export default function IframeFigures(props) {
         <tbody>
           <tr>
             <th>
-              <TransClient>Intégrateurs identifiés</TransClient>
+              <Trans>Intégrateurs identifiés</Trans>
             </th>
             <th>
-              <TransClient>Visites</TransClient>
+              <Trans>Visites</Trans>
             </th>
             <th>%</th>
           </tr>
@@ -74,7 +74,7 @@ export default function IframeFigures(props) {
         </tbody>
       </table>
       <p className="text-right text-sm font-light">
-        <TransClient>Données valables pour le mois en cours</TransClient>
+        <Trans>Données valables pour le mois en cours</Trans>
       </p>
     </div>
   )

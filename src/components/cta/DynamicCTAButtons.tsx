@@ -7,7 +7,7 @@ import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RestartIcon from '../icons/RestartIcon'
-import TransClient from '../translation/trans/TransClient'
+import Trans from '../translation/trans/TransClient'
 
 export default function DynamicCTAButtons({
   className,
@@ -65,7 +65,7 @@ export default function DynamicCTAButtons({
               : '',
             'leading-none'
           )}>
-          <TransClient>{linkToSimulateurPageLabel}</TransClient>
+          <Trans>{linkToSimulateurPageLabel}</Trans>
         </span>
       </ButtonLink>
 
@@ -80,7 +80,7 @@ export default function DynamicCTAButtons({
           href={getLinkToSimulateurPage({ newSimulation: true })}>
           <RestartIcon className="mr-2 fill-primary-700" />
 
-          <TransClient>Recommencer</TransClient>
+          <Trans>Recommencer</Trans>
         </ButtonLink>
       )}
     </div>

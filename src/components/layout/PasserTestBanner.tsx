@@ -4,7 +4,7 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useCurrentSimulation } from '@/publicodes-state'
-import TransClient from '../translation/trans/TransClient'
+import Trans from '../translation/trans/TransClient'
 
 export default function PasserTestBanner() {
   const { progression } = useCurrentSimulation()
@@ -18,11 +18,11 @@ export default function PasserTestBanner() {
   return (
     <Card className="mb-4 flex-row flex-wrap items-baseline justify-between gap-4 border-none bg-gray-100 p-4 sm:flex-nowrap sm:p-6">
       <p className="mb-0">
-        <TransClient>Calculez votre empreinte sur le climat</TransClient>{' '}
+        <Trans>Calculez votre empreinte sur le climat</Trans>{' '}
         <span className="font-bold text-secondary-700">
-          <TransClient>en 10 minutes</TransClient>
+          <Trans>en 10 minutes</Trans>
         </span>{' '}
-        <TransClient>top chrono.</TransClient>
+        <Trans>top chrono.</Trans>
       </p>
 
       <ButtonLink href={getLinkToSimulateurPage()}>

@@ -1,7 +1,7 @@
 'use client'
 
 import OrganisationIcon from '@/components/icons/OrganisationIcon'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { headerClickOrganisation } from '@/constants/tracking/layout'
 import useFetchOrganisations from '@/hooks/organisations/useFetchOrganisations'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -47,7 +47,7 @@ export default function OrganisationLink({
       {isOrganisationFullyCreated ? (
         <span className="whitespace-nowrap">{formattedOrganisationName}</span>
       ) : (
-        <TransClient>Organisation</TransClient>
+        <Trans>Organisation</Trans>
       )}
     </NavLink>
   )

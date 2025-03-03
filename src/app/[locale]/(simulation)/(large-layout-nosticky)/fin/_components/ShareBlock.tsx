@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { endClickShare } from '@/constants/tracking/pages/end'
 import CopyInput from '@/design-system/inputs/CopyInput'
 import Title from '@/design-system/layout/Title'
@@ -13,7 +13,7 @@ export default function ShareBlock() {
   return (
     <div id="share-block" className="">
       <Title tag="h2">
-        <TransClient>Partager mon résultat</TransClient>
+        <Trans>Partager mon résultat</Trans>
       </Title>
 
       <CopyInput

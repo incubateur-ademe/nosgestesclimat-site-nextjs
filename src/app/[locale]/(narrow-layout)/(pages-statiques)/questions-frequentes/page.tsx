@@ -1,5 +1,5 @@
 import Link from '@/components/Link'
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
@@ -68,17 +68,17 @@ export default async function FAQPage({
           <Scroller />
 
           <p>
-            <TransServer locale={locale}>
+            <Trans locale={locale}>
               Levez la main, on répond à vos questions !
-            </TransServer>
+            </Trans>
           </p>
           <p>
-            <TransServer locale={locale}>
+            <Trans locale={locale}>
               Vous trouverez ici les réponses aux questions les plus fréquentes.
               S’il vous reste des interrogations ou si vous souhaitez nous
               proposer des améliorations, rendez-vous tout en bas. Bonne lecture
               !
-            </TransServer>
+            </Trans>
           </p>
 
           <DoTheTest />
@@ -127,17 +127,15 @@ export default async function FAQPage({
 
       <Card className="bg-gray-100">
         <h3 className="text-yellow-dark flex items-center">
-          <TransServer locale={locale}>
-            Je ne trouve pas réponse à ma question{' '}
-          </TransServer>
+          <Trans locale={locale}>Je ne trouve pas réponse à ma question </Trans>
 
           <Emoji className="ml-2 inline-block">🙋‍♀️</Emoji>
         </h3>
         <p className="mb-0">
-          <TransServer locale={locale}>
+          <Trans locale={locale}>
             Vous pouvez nous contacter via notre page de contact :{' '}
             <Link href="/contact">accéder à notre page de contact</Link>.
-          </TransServer>
+          </Trans>
         </p>
       </Card>
     </>

@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import type { Simulation } from '@/types/organisations'
 import type { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 import type { ReactNode } from 'react'
@@ -23,7 +23,7 @@ export default function PollStatistics({
 
   return (
     <>
-      <h2>{title ?? <TransClient>Statistiques</TransClient>}</h2>
+      <h2>{title ?? <Trans>Statistiques</Trans>}</h2>
 
       <section className="relative mb-8 flex gap-4">
         <StatisticsBlocks

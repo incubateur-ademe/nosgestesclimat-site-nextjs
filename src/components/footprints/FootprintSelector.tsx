@@ -5,7 +5,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
 import type { Options } from 'react-select'
 import Select, { components } from 'react-select'
-import TransClient from '../translation/trans/TransClient'
+import Trans from '../translation/trans/TransClient'
 
 interface OptionType {
   value: string
@@ -83,7 +83,7 @@ export default function FootprintSelector({
           <div
             id="footprint-select-label"
             className="-mb-1 cursor-pointer select-none text-[0.6rem] font-normal text-default">
-            <TransClient>Empreinte</TransClient>
+            <Trans>Empreinte</Trans>
           </div>
 
           <div className="flex items-center">{children}</div>

@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { defaultMetric } from '@/constants/metric'
 import Loader from '@/design-system/layout/Loader'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
@@ -15,8 +15,8 @@ type Sizes = 'md' | 'lg'
 type Props = { metric?: Metric; className?: string; size?: Sizes }
 
 const duration = {
-  carbone: <TransClient>de CO₂e par an</TransClient>,
-  eau: <TransClient>d'eau par jour</TransClient>,
+  carbone: <Trans>de CO₂e par an</Trans>,
+  eau: <Trans>d'eau par jour</Trans>,
 }
 export default function TotalFootprintNumber({
   metric = defaultMetric,

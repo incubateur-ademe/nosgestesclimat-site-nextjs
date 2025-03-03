@@ -1,33 +1,33 @@
 'use client'
-import TransClient from '../translation/trans/TransClient'
+import Trans from '../translation/trans/TransClient'
 
 export default function Baseline() {
   return (
     <p>
       <strong className="text-secondary-700">
-        <TransClient>Entreprises</TransClient>
+        <Trans>Entreprises</Trans>
       </strong>
       ,{' '}
       <strong className="text-secondary-700">
-        <TransClient>collectivités</TransClient>
+        <Trans>collectivités</Trans>
       </strong>
       ,{' '}
       <strong className="text-secondary-700">
-        <TransClient>associations</TransClient>
+        <Trans>associations</Trans>
       </strong>
       ,{' '}
       <strong className="text-secondary-700">
-        <TransClient>écoles</TransClient>
+        <Trans>écoles</Trans>
       </strong>{' '}
       ou encore{' '}
       <strong className="text-secondary-700">
-        <TransClient>festivals</TransClient>
+        <Trans>festivals</Trans>
       </strong>
        :{' '}
-      <TransClient>
+      <Trans>
         vous souhaitez lancer une campagne Nos Gestes Climat et sensibiliser
         toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !
-      </TransClient>
+      </Trans>
     </p>
   )
 }

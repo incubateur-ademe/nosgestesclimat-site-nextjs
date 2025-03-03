@@ -3,7 +3,7 @@
 import SaveIcon from '@/components/icons/SaveIcon'
 import ShareIcon from '@/components/icons/ShareIcon'
 import ToastDisplay from '@/components/messages/ToastDisplay'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import {
   endClickSaveShortcut,
   endClickShareShortcut,
@@ -136,7 +136,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
           className={twMerge('fill-primary-700', saveClassNames[size])}
         />
         <span className="hidden lg:inline">
-          <TransClient>Sauvegarder</TransClient>
+          <Trans>Sauvegarder</Trans>
         </span>
       </Button>
 
@@ -160,11 +160,11 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         />
         {shouldDisplayConfirmMessage ? (
           <span className="hidden lg:inline">
-            <TransClient>Copié !</TransClient>
+            <Trans>Copié !</Trans>
           </span>
         ) : (
           <span className="hidden lg:inline">
-            <TransClient>Partager</TransClient>
+            <Trans>Partager</Trans>
           </span>
         )}
       </Button>

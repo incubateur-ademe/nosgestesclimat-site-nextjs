@@ -1,5 +1,5 @@
 import WhatDoWeMeasure from '@/components/landing-pages/WhatDoWeMeasure'
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
@@ -13,9 +13,7 @@ export default async function WhatDoWeMeasureWaterFootprint({
   return (
     <WhatDoWeMeasure
       title={
-        <TransServer locale={locale}>
-          Que calcule-t-on dans l’empreinte eau ?
-        </TransServer>
+        <Trans locale={locale}>Que calcule-t-on dans l’empreinte eau ?</Trans>
       }
       listItems={[
         {
@@ -28,9 +26,9 @@ export default async function WhatDoWeMeasureWaterFootprint({
             />
           ),
           title: (
-            <TransServer locale={locale}>
+            <Trans locale={locale}>
               La culture des fruits, légumes et céréales que nous mangeons
-            </TransServer>
+            </Trans>
           ),
         },
         {
@@ -45,9 +43,7 @@ export default async function WhatDoWeMeasureWaterFootprint({
             />
           ),
           title: (
-            <TransServer locale={locale}>
-              La culture du coton de nos vêtements
-            </TransServer>
+            <Trans locale={locale}>La culture du coton de nos vêtements</Trans>
           ),
         },
         {
@@ -60,9 +56,9 @@ export default async function WhatDoWeMeasureWaterFootprint({
             />
           ),
           title: (
-            <TransServer locale={locale}>
+            <Trans locale={locale}>
               La production d’aliments pour les animaux d’élevage
-            </TransServer>
+            </Trans>
           ),
         },
         {
@@ -77,9 +73,9 @@ export default async function WhatDoWeMeasureWaterFootprint({
             />
           ),
           title: (
-            <TransServer locale={locale}>
+            <Trans locale={locale}>
               L'extraction des matériaux pour le numérique
-            </TransServer>
+            </Trans>
           ),
         },
         {
@@ -91,17 +87,13 @@ export default async function WhatDoWeMeasureWaterFootprint({
               alt={t("Un éclair, symbolisant la production d'électricité")}
             />
           ),
-          title: (
-            <TransServer locale={locale}>
-              La production d’électricité
-            </TransServer>
-          ),
+          title: <Trans locale={locale}>La production d’électricité</Trans>,
         },
       ]}
       description={
         <>
           <p className="mb-10 text-center">
-            <TransServer locale={locale}>
+            <Trans locale={locale}>
               L’empreinte eau,{' '}
               <strong className="text-primary-600">
                 calculée en milliers de litres par jour
@@ -116,14 +108,14 @@ export default async function WhatDoWeMeasureWaterFootprint({
                 la rareté de la ressource
               </strong>{' '}
               dans les territoires concernés.
-            </TransServer>
+            </Trans>
           </p>
 
-          <p className="text-secondary-700 mb-0 text-center font-bold">
-            <TransServer locale={locale}>
+          <p className="mb-0 text-center font-bold text-secondary-700">
+            <Trans locale={locale}>
               Attention : l’empreinte eau ne tient pas compte de la consommation
               d’eau domestique (douche, toilettes, cuisine, arrosage) !
-            </TransServer>
+            </Trans>
           </p>
         </>
       }

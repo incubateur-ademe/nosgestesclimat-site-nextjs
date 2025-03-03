@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { organisationsResultatsDetaillesFilterByAge } from '@/constants/tracking/pages/organisationsResultatsDetailles'
 import ComplexSelect from '@/design-system/inputs/ComplexSelect'
 import { getAgeFilterOptions } from '@/helpers/organisations/getAgeFilterOptions'
@@ -51,7 +51,7 @@ export default function AgeFilter({
       onClick={
         options.length <= 1 ? (e: MouseEvent) => e.stopPropagation() : undefined
       }
-      placeholder={<TransClient>Tranche d'âge</TransClient>}
+      placeholder={<Trans>Tranche d'âge</Trans>}
       onChange={handleChange}
     />
   )

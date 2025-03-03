@@ -1,5 +1,5 @@
 import DidYouKnowMainLanding from '@/app/[locale]/_components/DidYouKnowMainLanding'
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import PostThumbnail from '@/design-system/cms/PostThumbnail'
 import type { ArticleItemType } from '../../adapters/cmsClient'
 import Pagination from './articleList/Pagination'
@@ -18,7 +18,7 @@ export default function ArticleList({
   return (
     <section className="mb-20 scroll-mt-40" id="articles">
       <h2 className="mb-8 font-medium">
-        <TransServer locale={locale}>Nos derniers articles</TransServer>
+        <Trans locale={locale}>Nos derniers articles</Trans>
       </h2>
       <ul
         className="grid grid-cols-1 gap-8 md:grid-cols-3"

@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useEngine } from '@/publicodes-state'
@@ -77,7 +77,7 @@ export default function Actions({
         />
 
         <div className="my-4 h-8 w-full text-center">
-          <p className="bg-primary-700 inline-block rounded-md px-4 py-1 text-sm font-medium text-white">
+          <p className="inline-block rounded-md bg-primary-700 px-4 py-1 text-sm font-medium text-white">
             <span>{label} &#9650;</span>
           </p>
         </div>
@@ -89,7 +89,7 @@ export default function Actions({
     <>
       {maxImpactAction.value < 100 && (
         <Card className="my-8">
-          <TransClient i18nKey={'publicodes.AllActions.msgPlusActions'}>
+          <Trans i18nKey={'publicodes.AllActions.msgPlusActions'}>
             <p>
               Nous n'avons plus d'actions chiffrées très impactantes à vous
               proposer 🤷
@@ -97,14 +97,14 @@ export default function Actions({
             <p className="mb-0">
               Découvrez plus bas quelques pistes pour agir autrement ⏬
             </p>
-          </TransClient>
+          </Trans>
         </Card>
       )}
 
       {radical ? numberedActions : numberedActions.slice().reverse()}
 
       <div className="my-4 h-8 w-full text-center">
-        <p className="bg-primary-700 inline-flex items-center rounded-full px-4 text-sm font-medium text-white">
+        <p className="inline-flex items-center rounded-full bg-primary-700 px-4 text-sm font-medium text-white">
           <Image
             src="/images/misc/270A.svg"
             className="mr-2 align-middle invert"
@@ -112,7 +112,7 @@ export default function Actions({
             width={36}
             alt=""
           />
-          <TransClient>Actions d'engagement</TransClient> &#9660;
+          <Trans>Actions d'engagement</Trans> &#9660;
         </p>
       </div>
 
@@ -127,7 +127,7 @@ export default function Actions({
       />
 
       <div className="my-4 h-8 w-full text-center">
-        <p className="bg-primary-700 inline-flex items-center rounded-full px-4 text-sm font-medium text-white">
+        <p className="inline-flex items-center rounded-full bg-primary-700 px-4 text-sm font-medium text-white">
           <Image
             src="/images/misc/26D4.svg"
             className="mr-2 invert"
@@ -135,7 +135,7 @@ export default function Actions({
             width={36}
             alt=""
           />
-          <TransClient>Actions négatives</TransClient> &#9660;
+          <Trans>Actions négatives</Trans> &#9660;
         </p>
       </div>
 
@@ -150,7 +150,7 @@ export default function Actions({
       {rejected.length > 0 && (
         <div>
           <h2>
-            <TransClient>Actions écartées :</TransClient>
+            <Trans>Actions écartées :</Trans>
           </h2>
           <ActionList
             actions={rejected}

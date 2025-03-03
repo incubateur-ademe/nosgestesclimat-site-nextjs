@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { getUpdatedDefaultAdditionalQuestions } from '@/helpers/polls/getUpdatedDefaultAdditionalQuestions'
 import type { PollToUpdate } from '@/hooks/organisations/polls/useUpdatePoll'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -34,22 +34,22 @@ export default function QuestionsComplementaires({
   return (
     <section className="mt-8">
       <h2>
-        <TransClient>Questions complémentaires</TransClient>
+        <Trans>Questions complémentaires</Trans>
       </h2>
 
       <p className="mb-8">
         {description ?? (
-          <TransClient>
+          <Trans>
             Vous avez la possibilité d’ajouter des questions complémentaires au
             test pour vos statistiques. Vos questions additionnelles activées
             seront posées à chaque participant en amont du test Nos Gestes
             Climat. Leur réponse sera facultative.
-          </TransClient>
+          </Trans>
         )}
       </p>
 
       <h3>
-        <TransClient>Questions par défaut</TransClient>
+        <Trans>Questions par défaut</Trans>
       </h3>
 
       <ToggleField

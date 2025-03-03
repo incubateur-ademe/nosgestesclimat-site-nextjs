@@ -6,7 +6,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import TransClient from '../translation/trans/TransClient'
+import Trans from '../translation/trans/TransClient'
 import CarboneTotalChart from './metricSlider/CarboneTotalChart'
 import MetricCard from './metricSlider/MetricCard'
 import WaterTotalChart from './metricSlider/WaterTotalChart'
@@ -65,8 +65,8 @@ export default function MetricSlider({
         <MetricCard
           metric={carboneMetric}
           metricTitle={{
-            desktop: <TransClient>Mon empreinte carbone</TransClient>,
-            mobile: <TransClient>Empreinte carbone</TransClient>,
+            desktop: <Trans>Mon empreinte carbone</Trans>,
+            mobile: <Trans>Empreinte carbone</Trans>,
           }}
           isSticky={isSticky}
           aria-label={
@@ -82,8 +82,8 @@ export default function MetricSlider({
         <MetricCard
           metric={eauMetric}
           metricTitle={{
-            desktop: <TransClient>Mon empreinte eau</TransClient>,
-            mobile: <TransClient>Empreinte eau</TransClient>,
+            desktop: <Trans>Mon empreinte eau</Trans>,
+            mobile: <Trans>Empreinte eau</Trans>,
           }}
           isSticky={isSticky}
           aria-label={
@@ -101,10 +101,10 @@ export default function MetricSlider({
           isSticky ? 'opacity-0' : ''
         )}>
         <Emoji>💡</Emoji>{' '}
-        <TransClient>
+        <Trans>
           Affichez le détail de votre empreinte carbone ou eau en cliquant sur
           les cartes ci-dessus.
-        </TransClient>
+        </Trans>
       </p>
     </div>
   )

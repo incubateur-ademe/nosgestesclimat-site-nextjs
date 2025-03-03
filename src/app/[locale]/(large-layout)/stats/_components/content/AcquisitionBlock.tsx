@@ -1,4 +1,4 @@
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Card from '@/design-system/layout/Card'
 import { useLocale } from '@/hooks/useLocale'
 import type { Newsletter } from '@/hooks/useMainNewsletter'
@@ -34,7 +34,7 @@ export default function AcquisitionBlock({
               </strong>
             )}
             <p className="mb-0 text-sm">
-              <TransClient>inscrits à l'infolettre</TransClient>
+              <Trans>inscrits à l'infolettre</Trans>
             </p>
           </Card>
           <Card className="flex-1">
@@ -42,7 +42,7 @@ export default function AcquisitionBlock({
               {formatValue(allSharedSimulationEventsData, locale)}
             </strong>{' '}
             <p className="mb-0 text-sm">
-              <TransClient>partages du calculateur</TransClient>
+              <Trans>partages du calculateur</Trans>
             </p>
           </Card>
           <Card className="flex-1">
@@ -52,7 +52,7 @@ export default function AcquisitionBlock({
               )}
             </strong>{' '}
             <p className="mb-0 text-sm">
-              <TransClient>de visites via iframe ce mois-ci</TransClient>
+              <Trans>de visites via iframe ce mois-ci</Trans>
             </p>
           </Card>
         </div>

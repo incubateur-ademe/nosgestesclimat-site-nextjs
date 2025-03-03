@@ -1,4 +1,4 @@
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -33,7 +33,7 @@ export default async function QuestionsPage({
   return (
     <>
       <Title>
-        <TransServer locale={locale}>Questions</TransServer>
+        <Trans locale={locale}>Questions</Trans>
       </Title>
       <Questions />
     </>

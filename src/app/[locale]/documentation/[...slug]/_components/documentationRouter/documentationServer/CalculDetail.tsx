@@ -1,4 +1,4 @@
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import Card from '@/design-system/layout/Card'
 import type {
   DottedName,
@@ -21,9 +21,7 @@ export default function CalculDetail({
   return (
     <>
       <h2>
-        <TransServer locale={locale}>
-          Comment cette donnée est-elle calculée ?
-        </TransServer>
+        <Trans locale={locale}>Comment cette donnée est-elle calculée ?</Trans>
       </h2>
 
       <Card className="p-8">

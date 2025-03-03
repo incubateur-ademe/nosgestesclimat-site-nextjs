@@ -1,4 +1,4 @@
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import Image from 'next/image'
 import VisuelIframe from './VisuelIframe'
 
@@ -9,21 +9,21 @@ export default function IllustratedPointsList({ locale }: { locale: string }) {
         <section className="flex flex-wrap items-center justify-between gap-8">
           <div className="mx-auto max-w-full md:w-[34rem] lg:ml-0">
             <h2 className="mb-2 text-base text-pink-600">
-              <TransServer locale={locale}>Campagne personnalisée</TransServer>
+              <Trans locale={locale}>Campagne personnalisée</Trans>
             </h2>
 
             <h3 className="text-2xl leading-10 md:text-3xl">
-              <TransServer locale={locale}>
+              <Trans locale={locale}>
                 Lancez une campagne Nos Gestes Climat personnalisée
-              </TransServer>
+              </Trans>
             </h3>
 
             <p className="text-base md:text-lg">
-              <TransServer locale={locale}>
+              <Trans locale={locale}>
                 Créez une campagne Nos Gestes Climat personnalisée au sein de
                 votre organisation et accédez à un kit clé en main pour
                 sensibiliser vos partenaires au sein de votre organisation.
-              </TransServer>
+              </Trans>
             </p>
           </div>
 
@@ -44,23 +44,23 @@ export default function IllustratedPointsList({ locale }: { locale: string }) {
         <section className="flex flex-wrap items-center justify-between gap-8">
           <div className="mx-auto max-w-full md:w-[34rem] lg:ml-0">
             <h2 className="mb-2 text-base text-pink-600">
-              <TransServer locale={locale}>Tableau de bord</TransServer>
+              <Trans locale={locale}>Tableau de bord</Trans>
             </h2>
 
             <h3 className="text-2xl leading-10 md:text-3xl">
-              <TransServer locale={locale}>
+              <Trans locale={locale}>
                 Explorez, comparez et analysez vos données
-              </TransServer>
+              </Trans>
             </h3>
 
             <p className="text-base md:text-lg">
-              <TransServer locale={locale}>
+              <Trans locale={locale}>
                 Explorez, analysez et téléchargez des données anonymisées pour
                 faire des choix éclairés et améliorer continuellement votre
                 démarche écologique. Avec nos exports sur mesure, partagez vos
                 réussites et vos challenges avec vos équipes et parties
                 prenantes pour une stratégie de durabilité unifiée.
-              </TransServer>
+              </Trans>
             </p>
           </div>
 
@@ -81,24 +81,22 @@ export default function IllustratedPointsList({ locale }: { locale: string }) {
         <section className="flex flex-wrap items-center justify-between gap-8">
           <div className="mx-auto max-w-full md:w-[34rem] lg:ml-0">
             <h2 className="mb-2 text-base text-pink-600">
-              <TransServer locale={locale}>
-                Lien personnalisé & iframes
-              </TransServer>
+              <Trans locale={locale}>Lien personnalisé & iframes</Trans>
             </h2>
 
             <h3 className="text-2xl leading-10 md:text-3xl">
-              <TransServer locale={locale}>
+              <Trans locale={locale}>
                 Intégrez Nos Gestes Climat directement à vos services
-              </TransServer>
+              </Trans>
             </h3>
 
             <p className="text-base md:text-lg">
-              <TransServer locale={locale}>
+              <Trans locale={locale}>
                 Permettez à vos cibles (clients, étudiants, participants,
                 habitants..) de calculer et réduire leur empreinte carbone
                 directement depuis vos plateformes web et mobile, avec un lien
                 dédié ou d’autres modes d’intégration prêts à l’emploi.
-              </TransServer>
+              </Trans>
             </p>
           </div>
 

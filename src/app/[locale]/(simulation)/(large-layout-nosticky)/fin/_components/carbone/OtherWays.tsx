@@ -1,38 +1,34 @@
 'use client'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
 import Actions from './subcategories/subcategory/Actions'
 
 const title = {
-  small: <TransClient>Bien joué 👏</TransClient>,
-  other: <TransClient>Autres actions</TransClient>,
+  small: <Trans>Bien joué 👏</Trans>,
+  other: <Trans>Autres actions</Trans>,
 }
 const subtitle = {
   small: (
-    <TransClient>
-      Vous êtes très nettement en dessous de la moyenne française.
-    </TransClient>
+    <Trans>Vous êtes très nettement en dessous de la moyenne française.</Trans>
   ),
   other: (
-    <TransClient>
-      Il n'y a pas que sur votre empreinte que vous pouvez agir !
-    </TransClient>
+    <Trans>Il n'y a pas que sur votre empreinte que vous pouvez agir !</Trans>
   ),
 }
 const text = {
   small: (
-    <TransClient>
+    <Trans>
       Il y a de grandes chances que votre temps soit plus efficace à{' '}
       <strong>convaincre et aider les autres</strong> qu'à chercher à gagner vos
       "tonnes en trop".
-    </TransClient>
+    </Trans>
   ),
   other: (
-    <TransClient>
+    <Trans>
       Même si réduire son empreinte individuelle est l'action la plus directe,
       il existe <strong>d'autres façons d'agir à son niveau</strong>. Tous ces
       modes d'action sont complémentaires !
-    </TransClient>
+    </Trans>
   ),
 }
 

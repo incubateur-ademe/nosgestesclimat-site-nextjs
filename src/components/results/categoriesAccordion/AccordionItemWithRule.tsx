@@ -1,7 +1,7 @@
 'use client'
 
 import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { defaultMetric } from '@/constants/metric'
 import { endClickCategory } from '@/constants/tracking/pages/end'
 import Card from '@/design-system/layout/Card'
@@ -48,7 +48,7 @@ export default function AccordionItemWithRule({
           displayValue={
             <span>
               <strong className="font-black">{formattedValue}</strong>{' '}
-              <TransClient>{unit}</TransClient>
+              <Trans>{unit}</Trans>
             </span>
           }
         />

@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { defaultMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import type { Group } from '@/types/groups'
@@ -13,13 +13,13 @@ export default function LaconicRanking({ group }: Props) {
   // If only one participant
   if (group.participants.length === 1) {
     return (
-      <section className="bg-primary-50 mt-6 rounded-xl p-4">
+      <section className="mt-6 rounded-xl bg-primary-50 p-4">
         <p className="mb-0">
-          <TransClient>Qui de </TransClient>{' '}
+          <Trans>Qui de </Trans>{' '}
           <strong className="text-primary-700">
             {group.participants[0].name}
           </strong>{' '}
-          <TransClient>et vous aura la plus faible empreinte ?</TransClient>{' '}
+          <Trans>et vous aura la plus faible empreinte ?</Trans>{' '}
           <Emoji>🤓</Emoji>
         </p>
       </section>
@@ -43,9 +43,9 @@ export default function LaconicRanking({ group }: Props) {
   // Display a list of participants with their rank and an emoji medal for the first three
   // then a number for the rest
   return (
-    <section className="bg-primary-50 mt-6 rounded-xl p-6">
+    <section className="mt-6 rounded-xl bg-primary-50 p-6">
       <h3 className="font-bold">
-        <TransClient>Le classement</TransClient>
+        <Trans>Le classement</Trans>
       </h3>
 
       <ul>

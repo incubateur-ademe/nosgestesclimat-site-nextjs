@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Emoji from '@/design-system/utils/Emoji'
 import {
   getBgCategoryColor,
@@ -23,14 +23,14 @@ export default function FunFact({ question }: Props) {
         <Emoji>💡</Emoji> Le saviez vous ?
       </h3>
       <p className="mb-0">
-        <TransClient>
+        <Trans>
           <strong>
             La taille des logements français a très fortement augmenté
           </strong>{' '}
           sur ces 50 dernirèes années, passant de 23 à 40,4 m² par habitant,
           soit{' '}
           <strong>90,9 m² en moyenne pour un foyer de 2,2 personnes.</strong>
-        </TransClient>
+        </Trans>
       </p>
     </div>
   )

@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
@@ -103,7 +103,7 @@ export default function MosaicBooleanInput({
         </div>
         {isInactive ? (
           <div className="absolute bottom-1 right-4 top-1 flex -rotate-12 items-center justify-center rounded-xl border-2 border-black bg-white p-2 text-xs font-semibold text-black">
-            <TransClient>Bientôt disponible</TransClient>
+            <Trans>Bientôt disponible</Trans>
           </div>
         ) : null}
       </label>

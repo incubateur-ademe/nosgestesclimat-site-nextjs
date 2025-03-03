@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { baseClassNames, sizeClassNames } from '@/design-system/inputs/Button'
 import type { GesturesType } from '@/types/landing-page'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -31,7 +31,7 @@ export default function GestureSelector({
                     'border-primary-500 bg-primary-100 text-primary-800'
                 )}
                 onClick={() => setSelectedCategory(categoryName)}>
-                <TransClient>{categoryName}</TransClient>
+                <Trans>{categoryName}</Trans>
               </button>
             </li>
           ))}
@@ -50,7 +50,7 @@ export default function GestureSelector({
                 <li
                   key={`gesture-${index}`}
                   className="flex items-baseline gap-1 text-sm font-bold text-primary-600 md:text-lg">
-                  <TransClient>{gesture}</TransClient>
+                  <Trans>{gesture}</Trans>
                 </li>
               ))}
             </motion.ul>

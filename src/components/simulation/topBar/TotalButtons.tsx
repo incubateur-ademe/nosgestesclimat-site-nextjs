@@ -4,7 +4,7 @@ import HelpCircleIcon from '@/components/icons/HelpCircleIcon'
 import ListIcon from '@/components/icons/ListIcon'
 import SaveCheckIcon from '@/components/icons/SaveCheckIcon'
 import SaveIcon from '@/components/icons/SaveIcon'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { simulateurOpenScoreInfo } from '@/constants/tracking/pages/simulateur'
 import { TUTORIALS } from '@/constants/tutorial'
 import Button from '@/design-system/inputs/Button'
@@ -37,7 +37,7 @@ export default function TotalButtons({
         <HelpCircleIcon className="h-6 w-6 stroke-primary-700" />
 
         <span className="hidden lg:inline">
-          <TransClient>Aide</TransClient>
+          <Trans>Aide</Trans>
         </span>
       </Button>
 
@@ -50,7 +50,7 @@ export default function TotalButtons({
         }}>
         <ListIcon className="h-6 w-6 fill-primary-700" />
         <span className="hidden lg:inline">
-          <TransClient>Liste des questions</TransClient>
+          <Trans>Liste des questions</Trans>
         </span>
       </Button>
 
@@ -68,7 +68,7 @@ export default function TotalButtons({
             <SaveIcon className="h-6 w-6 fill-primary-700" />
           )}
           <span className="hidden lg:inline">
-            <TransClient>Reprendre plus tard</TransClient>
+            <Trans>Reprendre plus tard</Trans>
           </span>
         </Button>
       ) : null}

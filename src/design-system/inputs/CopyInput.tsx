@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { useEffect, useRef, useState } from 'react'
 import Button from './Button'
 
@@ -73,11 +73,11 @@ export default function CopyInput({
           if (onClick) onClick()
         }}>
         {isCopied ? (
-          <TransClient>Copié !</TransClient>
+          <Trans>Copié !</Trans>
         ) : canShare && isShareDefined ? (
-          <TransClient>Partager</TransClient>
+          <Trans>Partager</Trans>
         ) : (
-          <TransClient>Copier le lien</TransClient>
+          <Trans>Copier le lien</Trans>
         )}
       </Button>
     </div>

@@ -3,7 +3,7 @@
 
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { tutorielClickQuestion } from '@/constants/tracking/pages/tutoriel'
 import { usePollQueryParams } from '@/hooks/organisations/usePollQueryParams'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -33,13 +33,13 @@ export default function OrganisationPrivacy() {
         </summary>
         <div className="my-2 ml-3.5">
           <p>
-            <TransClient>
+            <Trans>
               Vos données seront stockées de manière sécurisée et anonyme. Elles
               seront agrégées à des fins statistiques ; lesdites statistiques
               seront consultables sur la page "Rapport détaillé" de votre
               sondage en fin de parcours. Cette page restera exclusivement
               accessible aux participant·es ainsi qu'aux organisateur·ices.
-            </TransClient>
+            </Trans>
           </p>
         </div>
       </details>

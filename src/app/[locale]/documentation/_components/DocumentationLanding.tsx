@@ -6,7 +6,7 @@ import { useRules } from '@/hooks/useRules'
 import Link from '@/components/Link'
 import LightBulbIcon from '@/components/icons/LightBulbIcon'
 import SquareImageContainer from '@/components/images/SquareImageContainer'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
@@ -45,25 +45,25 @@ export default function DocumentationLanding() {
     <div className="mt-4">
       <div className="flex flex-wrap gap-8 md:flex-nowrap">
         <div>
-          <Title title={<TransClient>Documentation</TransClient>} />
+          <Title title={<Trans>Documentation</Trans>} />
           <p>
-            <TransClient>
+            <Trans>
               Le calculateur Nos Gestes Climat est basé sur le modèle de calcul
               du même nom, composé d'un ensemble de briques.
-            </TransClient>
+            </Trans>
           </p>
           <p>
-            <TransClient>
+            <Trans>
               Sur cette documentation, vous avez accès en toute transparence à
               l'ensemble des variables du calcul. À lire tranquillement au coin
               du feu.
-            </TransClient>
+            </Trans>
           </p>
 
           <div>
             <Link href="/modele" className="flex items-center">
-              <LightBulbIcon className="fill-primary-700 mr-1 h-4 w-4" />
-              <TransClient> En savoir plus sur notre modèle</TransClient>
+              <LightBulbIcon className="mr-1 h-4 w-4 fill-primary-700" />
+              <Trans> En savoir plus sur notre modèle</Trans>
             </Link>
           </div>
         </div>
@@ -94,7 +94,7 @@ export default function DocumentationLanding() {
       <SearchBar rules={rules} />
 
       <h2 className="mt-4 text-xl">
-        <TransClient>Quelques suggestions </TransClient>
+        <Trans>Quelques suggestions </Trans>
       </h2>
 
       <ul className="grid max-w-[60rem] grid-cols-1 flex-wrap gap-2 p-0 sm:grid-cols-2 md:grid-cols-3">

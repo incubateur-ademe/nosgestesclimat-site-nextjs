@@ -1,7 +1,7 @@
 'use client'
 
 import ChevronRight from '@/components/icons/ChevronRight'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { organisationsDashboardClickFunFacts } from '@/constants/tracking/pages/organisationsDashboard'
 import Button from '@/design-system/inputs/Button'
 import type { Entries } from '@/publicodes-state/types'
@@ -66,9 +66,9 @@ export default function DetailedStatistics({ funFacts }: Props) {
         />
         <span className="w-24">
           {!isSectionVisible ? (
-            <TransClient>Voir plus</TransClient>
+            <Trans>Voir plus</Trans>
           ) : (
-            <TransClient>Voir moins</TransClient>
+            <Trans>Voir moins</Trans>
           )}
         </span>
       </Button>

@@ -1,4 +1,4 @@
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { CookiesPolicy } from '@incubateur-ademe/legal-pages-react/CookiesPolicy'
@@ -49,19 +49,19 @@ export default async function CookiesPolicyPage({
       />
 
       <h2>
-        <TransServer locale={locale}>Cookies utilisés par PostHog</TransServer>
+        <Trans locale={locale}>Cookies utilisés par PostHog</Trans>
       </h2>
       <p>
-        <TransServer locale={locale}>
+        <Trans locale={locale}>
           Nous utilisons également PostHog pour mesurer l'audience de notre
           site. La liste des cookies utilisés est disponible ici :
-        </TransServer>
+        </Trans>
       </p>
       <p>
         <a href="https://www.cookie.is/service/posthog-analytics#">
-          <TransServer locale={locale}>
+          <Trans locale={locale}>
             Voir la liste des cookies utilisés par PostHog
-          </TransServer>
+          </Trans>
         </a>
       </p>
 

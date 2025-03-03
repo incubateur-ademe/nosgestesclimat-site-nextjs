@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { simulateurClickFaq } from '@/constants/tracking/pages/simulateur'
 
 import { useIframe } from '@/hooks/useIframe'
@@ -15,12 +15,12 @@ export default function Faq() {
   return (
     <div className="mx-auto mb-4 rounded-xl bg-gray-100 p-4 text-center">
       <p>
-        <TransClient>Une question, un problème ?</TransClient>
+        <Trans>Une question, un problème ?</Trans>
       </p>
       <Link
         href="/questions-frequentes"
         onClick={() => trackEvent(simulateurClickFaq)}>
-        <TransClient>Découvrez la FAQ !</TransClient>
+        <Trans>Découvrez la FAQ !</Trans>
       </Link>
     </div>
   )

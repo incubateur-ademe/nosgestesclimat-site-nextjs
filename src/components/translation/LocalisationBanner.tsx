@@ -14,7 +14,7 @@ import { capitalizeString } from '@/utils/capitalizeString'
 import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
-import TransClient from './trans/TransClient'
+import Trans from './trans/TransClient'
 
 type Props = { supportedRegions: SupportedRegions }
 export default function LocalisationBanner({ supportedRegions }: Props) {
@@ -63,18 +63,17 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
             <>
               <p className="mb-0 inline flex-1 items-baseline gap-1">
                 <CountryFlag className="mr-2 inline" code={code} />
-                <TransClient>Vous utilisez la version</TransClient>{' '}
-                <strong>{versionName}</strong>{' '}
-                <TransClient>du test</TransClient>.
+                <Trans>Vous utilisez la version</Trans>{' '}
+                <strong>{versionName}</strong> <Trans>du test</Trans>.
               </p>
 
               <p className="mb-2">
                 {code !== defaultModelRegionCode && (
                   <span>
                     {' '}
-                    <TransClient i18nKey="components.localisation.LocalisationMessage.betaMsg">
+                    <Trans i18nKey="components.localisation.LocalisationMessage.betaMsg">
                       Elle est actuellement en version <strong>bêta</strong>.
-                    </TransClient>
+                    </Trans>
                   </span>
                 )}{' '}
               </p>
@@ -84,18 +83,18 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
           {!regionParams && code && (
             <section>
               <p>
-                <TransClient>
+                <Trans>
                   Nous avons détecté que vous faites cette simulation depuis
-                </TransClient>{' '}
+                </Trans>{' '}
                 {countryName} <CountryFlag code={code} className="inline" />.
               </p>
 
               <p className="mt-2">
                 <b>
-                  <TransClient i18nKey="components.localisation.LocalisationMessage.warnMessage">
+                  <Trans i18nKey="components.localisation.LocalisationMessage.warnMessage">
                     Votre région n'est pas encore supportée, le modèle Français
                     vous est proposé par défaut
-                  </TransClient>
+                  </Trans>
                 </b>{' '}
                 <CountryFlag code={defaultModelRegionCode} className="inline" />
                 <b>.</b>
@@ -105,10 +104,10 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
           {!regionParams && !code && (
             <p className="mb-0">
-              <TransClient i18nKey="components.localisation.LocalisationMessage.warnMessage2">
+              <Trans i18nKey="components.localisation.LocalisationMessage.warnMessage2">
                 Nous n'avons pas pu détecter votre pays de simulation, le modèle
                 Français vous est proposé par défaut
-              </TransClient>{' '}
+              </Trans>{' '}
               <CountryFlag code={defaultModelRegionCode} className="inline" />.
             </p>
           )}
@@ -116,9 +115,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
           <p>
             <small>
               <Link href="/profil">
-                <TransClient>
-                  Choisissez une région parmi celles disponibles !
-                </TransClient>
+                <Trans>Choisissez une région parmi celles disponibles !</Trans>
               </Link>
             </small>
           </p>
@@ -132,7 +129,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
               trackEvent(trackingClickRegionBanner)
             }}>
-            <TransClient>J'ai compris</TransClient>
+            <Trans>J'ai compris</Trans>
           </Button>
         </div>
       </div>

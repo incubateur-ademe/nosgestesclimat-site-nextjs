@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useSortedUiCategoriesByFootprint } from '@/hooks/useSortedUiCategoriesByFootprint'
@@ -11,8 +11,8 @@ import MainSubcategory from './mainSubcategories/MainSubcategory'
 type Props = { isLink?: boolean }
 
 const titles: Record<Metric, ReactElement> = {
-  carbone: <TransClient>Mes principaux postes d’émissions</TransClient>,
-  eau: <TransClient>Mes principaux postes d'usage</TransClient>,
+  carbone: <Trans>Mes principaux postes d’émissions</Trans>,
+  eau: <Trans>Mes principaux postes d'usage</Trans>,
 }
 export default function MainSubcategories({ isLink }: Props) {
   const { currentMetric } = useCurrentMetric()

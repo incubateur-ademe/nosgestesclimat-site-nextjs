@@ -1,4 +1,4 @@
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Emoji from '@/design-system/utils/Emoji'
 import OrganisationDisclaimer from './avantDeCommencer/OrganisationDisclaimer'
 
@@ -12,35 +12,35 @@ export default function AvantDeCommencer() {
         <Emoji>💡</Emoji>
       </div>
       <h3 className="z-10">
-        <TransClient>Avant de commencer</TransClient>
+        <Trans>Avant de commencer</Trans>
       </h3>
       <OrganisationDisclaimer />
       <div className="relative pl-8">
         <h4 className="relative overflow-visible font-bold">
           <Emoji className="absolute -left-8 top-0">🏡</Emoji>
-          <TransClient>C'est un test individuel !</TransClient>
+          <Trans>C'est un test individuel !</Trans>
         </h4>
         <p className="text-sm md:text-base">
-          <TransClient>
+          <Trans>
             Répondez aux questions en votre nom, pas pour votre foyer.
-          </TransClient>
+          </Trans>
           <span className="hidden md:inline">
             {' '}
-            <TransClient>
+            <Trans>
               Bien sûr, certaines choses sont partagées (au sein de mon logement
               avec ma famille, la voiture avec les covoitureurs) : cela sera
               bien pris en compte dans le calcul de votre empreinte carbone, ne
               vous inquiétez pas !
-            </TransClient>
+            </Trans>
           </span>
         </p>
       </div>
       <div className="relative pl-8">
         <h4 className="relative overflow-visible font-bold">
           <Emoji className="absolute -left-8 top-0">👤</Emoji>
-          <TransClient>
+          <Trans>
             Il concerne votre vie personnelle, et non pas votre boulot.
-          </TransClient>
+          </Trans>
         </h4>
       </div>
     </div>

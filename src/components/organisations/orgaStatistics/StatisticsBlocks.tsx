@@ -1,7 +1,7 @@
 'use client'
 
 import VerticalBarChart from '@/components/charts/VerticalBarChart'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric, eauMetric } from '@/constants/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getSimulationsAggregatedResult } from '@/helpers/organisations/getSimulationsAggregatedResult'
@@ -68,9 +68,9 @@ export default function StatisticsBlocks({
 
         <p className="text-xl">
           {simulationsWithoutExtremes.length <= 1 ? (
-            <TransClient>Simulation terminée</TransClient>
+            <Trans>Simulation terminée</Trans>
           ) : (
-            <TransClient>Simulations terminées</TransClient>
+            <Trans>Simulations terminées</Trans>
           )}
         </p>
       </div>
@@ -85,14 +85,14 @@ export default function StatisticsBlocks({
             <p className="text-4xl font-bold text-primary-700">
               {formattedValue}{' '}
               <span className="text-base font-normal">
-                {unit} CO₂e <TransClient>/ an</TransClient>
+                {unit} CO₂e <Trans>/ an</Trans>
               </span>
             </p>
 
             <p className="text-xl">
-              <TransClient>
+              <Trans>
                 <strong>Empreinte carbone</strong> moyenne
-              </TransClient>
+              </Trans>
             </p>
           </div>
 
@@ -107,14 +107,14 @@ export default function StatisticsBlocks({
                 <p className="text-3xl font-bold text-white">
                   {formattedWaterValue ?? 0}{' '}
                   <span className="text-base font-normal">
-                    {waterUnit} <TransClient>/ jour</TransClient>
+                    {waterUnit} <Trans>/ jour</Trans>
                   </span>
                 </p>
 
                 <p className="text-xl text-white">
-                  <TransClient>
+                  <Trans>
                     <strong>Empreinte eau</strong> moyenne
-                  </TransClient>
+                  </Trans>
                 </p>
               </div>
             </div>
@@ -138,7 +138,7 @@ export default function StatisticsBlocks({
             </VerticalBarChart>
 
             <h3 className="mb-4 ml-6 mt-4 text-sm">
-              <TransClient>Moyenne du groupe par catégorie</TransClient>
+              <Trans>Moyenne du groupe par catégorie</Trans>
             </h3>
           </div>
         </>

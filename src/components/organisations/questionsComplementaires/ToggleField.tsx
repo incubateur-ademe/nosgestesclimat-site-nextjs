@@ -2,7 +2,7 @@
 
 import PencilIcon from '@/components/icons/PencilIcon'
 import TrashIcon from '@/components/icons/TrashIcon'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import ConfirmationModal from '@/design-system/modals/ConfirmationModal'
 import type { KeyboardEvent } from 'react'
@@ -116,10 +116,10 @@ export default function ToggleField({
           closeModal={() => setIsConfirmingDelete(false)}
           isLoading={isLoadingUpdate}>
           <h2>
-            <TransClient>Supprimer cette question personnalisée ?</TransClient>
+            <Trans>Supprimer cette question personnalisée ?</Trans>
           </h2>
           <p>
-            <TransClient>Cette action est définitive.</TransClient>
+            <Trans>Cette action est définitive.</Trans>
           </p>
         </ConfirmationModal>
       )}

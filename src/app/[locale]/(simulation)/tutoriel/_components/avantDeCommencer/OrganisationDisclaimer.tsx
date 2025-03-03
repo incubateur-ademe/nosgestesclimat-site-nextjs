@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 
 export default function OrganisationDisclaimer() {
@@ -19,12 +19,12 @@ export default function OrganisationDisclaimer() {
   return (
     <div className="relative pl-8">
       <p className="overflow-visible before:absolute before:left-0 before:content-['🏢']">
-        <TransClient>Ce test vous est proposé par</TransClient>{' '}
+        <Trans>Ce test vous est proposé par</Trans>{' '}
         <strong>{isLoading ? '... ' : poll?.organisation.name}</strong>.{' '}
-        <TransClient>
+        <Trans>
           En participant vous acceptez que vos résultats soient partagés
           anonymement avec cette organisation.
-        </TransClient>
+        </Trans>
       </p>
     </div>
   )

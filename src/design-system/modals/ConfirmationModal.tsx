@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import type { ReactNode } from 'react'
 import { useEffect } from 'react'
 import Modal from 'react-modal'
@@ -55,14 +55,14 @@ export default function ConfirmationModal({
           <Button
             color="secondary"
             onClick={!isLoading ? closeModal : () => {}}>
-            <TransClient>Annuler</TransClient>
+            <Trans>Annuler</Trans>
           </Button>
 
           <Button
             color="primary"
             className="-order-1 w-[140px] xs:order-2"
             onClick={!isLoading ? onConfirm : () => {}}>
-            {isLoading ? <Loader /> : <TransClient>Confirmer</TransClient>}
+            {isLoading ? <Loader /> : <Trans>Confirmer</Trans>}
           </Button>
         </div>
       </Modal>

@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
 import { useOrgaCreationGuard } from '@/hooks/navigation/useOrgaCreationGuard'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
@@ -20,10 +20,8 @@ export default function CreationPage() {
     <section className="w-full bg-[#fff]">
       <div className="mx-auto max-w-5xl px-6 lg:px-0">
         <Title
-          title={<TransClient>Bienvenue sur votre espace !</TransClient>}
-          subtitle={
-            <TransClient>Plus que quelques petites questions</TransClient>
-          }
+          title={<Trans>Bienvenue sur votre espace !</Trans>}
+          subtitle={<Trans>Plus que quelques petites questions</Trans>}
           hasSeparator={false}
         />
 

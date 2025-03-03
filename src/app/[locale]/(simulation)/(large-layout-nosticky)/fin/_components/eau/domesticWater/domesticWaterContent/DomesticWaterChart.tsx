@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { eauMetric } from '@/constants/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useRule } from '@/publicodes-state'
@@ -16,7 +16,7 @@ export default function DomesticWaterChart() {
 
   return (
     <div className="mb-6 self-center">
-      <div className="bg-water flex gap-4 rounded-xl p-4 lg:pr-8">
+      <div className="flex gap-4 rounded-xl bg-water p-4 lg:pr-8">
         <svg
           className="h-auto fill-white lg:w-14"
           width="48"
@@ -27,17 +27,16 @@ export default function DomesticWaterChart() {
           <path d="M37.7916 23.6907L24.197 1.45337L11.5996 23.5387C8.66632 28.2187 8.41032 34.304 11.4916 39.344C15.8716 46.508 25.309 48.808 32.573 44.4867C39.8343 40.1667 42.1716 30.86 37.7916 23.6907Z" />
         </svg>
         <p className="mb-0 text-white lg:text-xl">
-          <TransClient>Vous utilisez</TransClient>{' '}
-          <br className="hidden lg:inline" />
+          <Trans>Vous utilisez</Trans> <br className="hidden lg:inline" />
           <strong className="font-black">
-            {formattedValue} <TransClient>{unit}</TransClient>
+            {formattedValue} <Trans>{unit}</Trans>
           </strong>{' '}
-          <TransClient>d’eau domestique par jour</TransClient>
+          <Trans>d’eau domestique par jour</Trans>
         </p>
       </div>
       <p className="mb-0 w-full text-center text-sm italic">
-        <TransClient>*La moyenne française est de</TransClient> {average}{' '}
-        <TransClient>litres par jour</TransClient>
+        <Trans>*La moyenne française est de</Trans> {average}{' '}
+        <Trans>litres par jour</Trans>
       </p>
     </div>
   )

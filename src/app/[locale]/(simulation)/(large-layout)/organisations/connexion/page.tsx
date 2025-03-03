@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Separator from '@/design-system/layout/Separator'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useRouter } from 'next/navigation'
@@ -33,11 +33,11 @@ export default function Page() {
     <section className="w-full bg-[#fff]">
       <div className="max-w-5xl lg:px-0">
         <h1>
-          <TransClient>Accédez à votre espace organisation</TransClient>
+          <Trans>Accédez à votre espace organisation</Trans>
         </h1>
 
         <p>
-          <TransClient>C'est gratuit, et ça prend une minute !</TransClient>
+          <Trans>C'est gratuit, et ça prend une minute !</Trans>
         </p>
 
         <Separator />

@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import type { Journey } from '@/types/journey'
 import { motion } from 'framer-motion'
 import type { Dispatch, SetStateAction } from 'react'
@@ -40,7 +40,7 @@ export default function JourneysInputMobile({
           {journeys.length > 0 && (
             <tr className="mt-4 block w-full text-left">
               <th className="mb-2 block">
-                <TransClient>Vos trajets :</TransClient>
+                <Trans>Vos trajets :</Trans>
               </th>
             </tr>
           )}

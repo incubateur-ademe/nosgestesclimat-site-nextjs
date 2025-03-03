@@ -4,7 +4,7 @@ import HowToAct from '@/components/actions/HowToAct'
 import FootprintSelector from '@/components/footprints/FootprintSelector'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
 import CategoriesChart from '@/components/results/CategoriesChart'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric, defaultMetric } from '@/constants/metric'
 import Separator from '@/design-system/layout/Separator'
 import { useGetGroupStats } from '@/hooks/groups/useGetGroupStats'
@@ -45,7 +45,7 @@ export default function GroupResults({
     <>
       <div className="mt-4 flex items-center justify-between">
         <h2 className="m-0 text-base font-bold md:text-lg">
-          <TransClient>Le classement</TransClient>
+          <Trans>Le classement</Trans>
         </h2>
 
         <FootprintSelector
@@ -80,7 +80,7 @@ export default function GroupResults({
         isCarbonFootprintSelected && (
           <>
             <h2 data-cypress-id="votre-empreinte-title" className="mt-8">
-              <TransClient>Votre empreinte</TransClient>
+              <Trans>Votre empreinte</Trans>
             </h2>
 
             <CategoriesChart />

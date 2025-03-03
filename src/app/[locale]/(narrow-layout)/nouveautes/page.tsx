@@ -1,7 +1,7 @@
 import SparklesIcon from '@/components/icons/SparklesIcon'
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import List from '@/components/posts/List'
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -49,18 +49,18 @@ export default async function Releases({
             data-cypress-id="news-title"
             title={
               <span className="flex items-center">
-                <TransServer locale={locale}>Les nouveautés</TransServer>
-                <SparklesIcon className="fill-divers-300 ml-2" />
+                <Trans locale={locale}>Les nouveautés</Trans>
+                <SparklesIcon className="ml-2 fill-divers-300" />
               </span>
             }
           />
 
-          <p className="mb-0 max-w-74">
-            <TransServer locale={locale}>
+          <p className="max-w-74 mb-0">
+            <Trans locale={locale}>
               Nous améliorons le site en continu à partir de{' '}
               <InlineLink href="/contact">vos retours</InlineLink>. Découvrez la
               tambouille interne de Nos Gestes Climat.
-            </TransServer>
+            </Trans>
           </p>
         </div>
 

@@ -1,6 +1,6 @@
 import NorthStarBanner from '@/components/northstar/NorthstarBanner'
 import TopBar from '@/components/simulation/TopBar'
-import TransServer from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransServer'
 import { noIndexObject } from '@/constants/metadata'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -37,9 +37,7 @@ export default async function ActionsLayout({
 
   return (
     <FormProvider>
-      <Title
-        title={<TransServer locale={locale}>Mes&#160;gestes</TransServer>}
-      />
+      <Title title={<Trans locale={locale}>Mes&#160;gestes</Trans>} />
 
       <TopBar simulationMode={false} showTotal />
 

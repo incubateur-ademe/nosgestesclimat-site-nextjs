@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { defaultMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
@@ -34,8 +34,7 @@ export default function SubcategoryListItem({
             <p className="mb-0">{title}</p>
 
             <div className="text-primary-700">
-              <strong>{formattedValue}</strong>{' '}
-              <TransClient>{unit}</TransClient>
+              <strong>{formattedValue}</strong> <Trans>{unit}</Trans>
             </div>
           </div>
           <div className="mt-2">

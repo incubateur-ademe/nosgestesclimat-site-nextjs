@@ -2,7 +2,7 @@
 
 import VerticalBarChart from '@/components/charts/VerticalBarChart'
 import HourglassIcon from '@/components/icons/HourglassIcon'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Card from '@/design-system/layout/Card'
 import { useIsOrganisationAdmin } from '@/hooks/organisations/useIsOrganisationAdmin'
 import Wave from 'react-wavify'
@@ -29,26 +29,26 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
               {isAdmin ? (
                 <p className="mb-0">
                   <span>
-                    <TransClient>
+                    <Trans>
                       Partagez le test pour obtenir vos premiers résultats.
-                    </TransClient>
+                    </Trans>
                   </span>
                   {hasLessThan3Participants && (
                     <span>
                       {' '}
-                      <TransClient>
+                      <Trans>
                         (Données consultables à partir de 3 participants, dans
                         un souci d'anonymat)
-                      </TransClient>
+                      </Trans>
                     </span>
                   )}
                 </p>
               ) : (
                 <p className="mb-0">
-                  <TransClient>
+                  <Trans>
                     Données consultables à partir de 3 participants, dans un
                     souci d'anonymat.
-                  </TransClient>
+                  </Trans>
                 </p>
               )}
             </div>
@@ -62,7 +62,7 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
             8,0 <span className="text-base font-normal">t CO₂e</span>
           </p>
           <p className="text-xl">
-            <TransClient>Empreinte moyenne</TransClient>
+            <Trans>Empreinte moyenne</Trans>
           </p>
         </div>
 
@@ -76,14 +76,14 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
             <p className="text-3xl font-bold text-white">
               10 000{' '}
               <span className="text-base font-normal">
-                <TransClient>litres</TransClient>
+                <Trans>litres</Trans>
               </span>
             </p>
 
             <p className="text-xl text-white">
-              <TransClient>
+              <Trans>
                 <strong>Empreinte eau</strong> moyenne
-              </TransClient>
+              </Trans>
             </p>
           </div>
         </div>
@@ -122,7 +122,7 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
             />
           </VerticalBarChart>
           <h3 className="mb-4 ml-6 mt-4 text-sm">
-            <TransClient>Moyenne du groupe par catégorie</TransClient>
+            <Trans>Moyenne du groupe par catégorie</Trans>
           </h3>
         </div>
       </div>

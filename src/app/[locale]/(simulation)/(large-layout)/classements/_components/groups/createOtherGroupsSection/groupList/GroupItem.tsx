@@ -2,7 +2,7 @@
 
 import Link from '@/components/Link'
 import ChevronRight from '@/components/icons/ChevronRight'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { classementClickGroup } from '@/constants/tracking/pages/classements'
 import Emoji from '@/design-system/utils/Emoji'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
@@ -21,7 +21,7 @@ export default function GroupItem({ group }: Props) {
 
   return (
     <Link
-      className="hover:bg-primary-100 mb-3 rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors"
+      className="mb-3 rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors hover:bg-primary-100"
       href={getLinkToGroupDashboard({ groupId: group.id })}
       onClick={() =>
         trackEvent(
@@ -42,8 +42,7 @@ export default function GroupItem({ group }: Props) {
             </div>
             <div className="flex gap-1 text-sm text-violet-900">
               <span className="whitespace-nowrap">
-                {group.participants.length ?? 0}{' '}
-                <TransClient>participant</TransClient>
+                {group.participants.length ?? 0} <Trans>participant</Trans>
                 {group.participants.length > 1 ? 's' : ''}
               </span>{' '}
               <span> - </span>{' '}

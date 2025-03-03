@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -20,7 +20,7 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
   return (
     <div className="flex flex-col gap-4">
       <TextInputGroup
-        label={<TransClient>Votre prénom</TransClient>}
+        label={<Trans>Votre prénom</Trans>}
         value={defaultValues.administratorFirstName}
         {...register('administratorFirstName', {
           required: t('Ce champ est requis'),
@@ -28,7 +28,7 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
       />
 
       <TextInputGroup
-        label={<TransClient>Votre nom</TransClient>}
+        label={<Trans>Votre nom</Trans>}
         value={defaultValues.administratorLastName}
         {...register('administratorLastName', {
           required: t('Ce champ est requis'),
@@ -38,9 +38,9 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
       <TextInputGroup
         label={
           <p className="mb-0 flex items-center justify-between">
-            <TransClient>Votre poste</TransClient>
-            <span className="text-secondary-700 text-sm italic">
-              <TransClient>facultatif</TransClient>
+            <Trans>Votre poste</Trans>
+            <span className="text-sm italic text-secondary-700">
+              <Trans>facultatif</Trans>
             </span>
           </p>
         }
@@ -51,10 +51,10 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
       <TextInputGroup
         label={
           <p className="mb-0 flex w-full justify-between">
-            <TransClient>Votre téléphone</TransClient>{' '}
-            <span className="text-secondary-700 font-bold italic">
+            <Trans>Votre téléphone</Trans>{' '}
+            <span className="font-bold italic text-secondary-700">
               {' '}
-              <TransClient>facultatif</TransClient>
+              <Trans>facultatif</Trans>
             </span>
           </p>
         }
@@ -63,7 +63,7 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
       />
 
       <TextInputGroup
-        label={<TransClient>Votre e-mail</TransClient>}
+        label={<Trans>Votre e-mail</Trans>}
         value={defaultValues.email}
         {...register('email', {
           required: t('Ce champ est requis'),
@@ -77,12 +77,12 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
           label={
             <span>
               <strong>
-                <TransClient>
+                <Trans>
                   Recevoir nos actualités sur les nouveaux services dédiés aux
                   organisation (une fois par mois maximum !)
-                </TransClient>
+                </Trans>
               </strong>{' '}
-              <TransClient>(une fois par mois maximum !)</TransClient>
+              <Trans>(une fois par mois maximum !)</Trans>
             </span>
           }
           {...register('hasOptedInForCommunications')}

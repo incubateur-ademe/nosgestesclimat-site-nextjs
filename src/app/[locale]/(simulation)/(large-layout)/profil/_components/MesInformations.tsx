@@ -1,7 +1,7 @@
 'use client'
 
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import {
   LIST_MAIN_NEWSLETTER,
   LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
@@ -115,7 +115,7 @@ export default function MesInformations() {
   return (
     <div>
       <h2>
-        <TransClient>Mes informations</TransClient>
+        <Trans>Mes informations</Trans>
       </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
@@ -131,9 +131,7 @@ export default function MesInformations() {
         <TextInputGroup
           type="email"
           helperText={
-            user?.email ? (
-              <TransClient>Ce champ n'est pas modifiable</TransClient>
-            ) : null
+            user?.email ? <Trans>Ce champ n'est pas modifiable</Trans> : null
           }
           label={t('Votre adresse email')}
           value={user?.email}
@@ -141,12 +139,12 @@ export default function MesInformations() {
           readOnly={user?.email ? true : false}
         />
 
-        <h3 className="mt-6 mb-0">
-          <TransClient>Inscription à nos e-mails</TransClient>
+        <h3 className="mb-0 mt-6">
+          <Trans>Inscription à nos e-mails</Trans>
         </h3>
 
         <p className="text-sm text-gray-600">
-          <TransClient>Vous pouvez vous désincrire à tout moment</TransClient>
+          <Trans>Vous pouvez vous désincrire à tout moment</Trans>
         </p>
 
         <CheckboxInputGroup
@@ -154,10 +152,10 @@ export default function MesInformations() {
           label={
             <span>
               <Emoji>☀️</Emoji>{' '}
-              <TransClient>
+              <Trans>
                 <strong>Infolettre saisonnière de Nos Gestes Climat</strong> :
                 actualités climat, initiatives positives et nouveautés
-              </TransClient>
+              </Trans>
             </span>
           }
           {...register('newsletter-saisonniere')}
@@ -168,10 +166,10 @@ export default function MesInformations() {
           label={
             <span>
               <Emoji>🚗</Emoji>{' '}
-              <TransClient>
+              <Trans>
                 <strong>Nos Gestes Transports</strong> : tout savoir ou presque
                 sur l'impact carbone des transports, en 4 e-mails
-              </TransClient>
+              </Trans>
             </span>
           }
           {...register('newsletter-transports')}
@@ -184,22 +182,22 @@ export default function MesInformations() {
             disabled={isPending || isSubmitted}>
             {isPending && <Loader size="sm" color="light" />}
 
-            <TransClient>Mettre à jour mes informations</TransClient>
+            <Trans>Mettre à jour mes informations</Trans>
           </Button>
 
           {isSubmitted && (
             <p className="mt-4 flex items-center text-sm text-green-700">
               <CheckCircleIcon className="mr-2 fill-green-700" />
-              <TransClient>Modifications sauvegardées</TransClient>
+              <Trans>Modifications sauvegardées</Trans>
             </p>
           )}
 
           {isError && (
             <p className="mt-4 text-sm text-red-700">
-              <TransClient>
+              <Trans>
                 Une erreur s'est produite au moment de la sauvegarde de vos
                 paramètres
-              </TransClient>
+              </Trans>
             </p>
           )}
         </div>

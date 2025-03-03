@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import Button from '../inputs/Button'
 
 type Props = {
@@ -25,7 +25,7 @@ export default function Form({
       {error && <p className="my-4 text-sm text-red-500">{error}</p>}
 
       <Button className="mt-8" type="submit">
-        {buttonLabel ?? <TransClient>Enregistrer</TransClient>}
+        {buttonLabel ?? <Trans>Enregistrer</Trans>}
       </Button>
     </form>
   )

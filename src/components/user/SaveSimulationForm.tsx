@@ -1,7 +1,7 @@
 'use client'
 
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import {
   LIST_MAIN_NEWSLETTER,
   LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
@@ -154,9 +154,7 @@ export default function UserInformationForm({
               user?.email && !shouldForceEmailEditable ? (
                 <TextInputGroup
                   name="email"
-                  helperText={
-                    <TransClient>Ce champ n'est pas modifiable</TransClient>
-                  }
+                  helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
                   label={t('Votre adresse email')}
                   value={user?.email}
                   readOnly
@@ -175,7 +173,7 @@ export default function UserInformationForm({
         {inputsDisplayed.includes('newsletter-saisonniere') ||
           (inputsDisplayed.includes('newsletter-transports') && (
             <>
-              <h3 className="mt-6 mb-0">{t('Inscription à nos e-mails')}</h3>
+              <h3 className="mb-0 mt-6">{t('Inscription à nos e-mails')}</h3>
 
               <p className="text-sm text-gray-600">
                 {t('Vous pouvez vous désincrire à tout moment')}
@@ -188,10 +186,10 @@ export default function UserInformationForm({
             label={
               <span>
                 <Emoji>☀️</Emoji>{' '}
-                <TransClient>
+                <Trans>
                   <strong>Infolettre saisonnière de Nos Gestes Climat</strong> :
                   actualités climat, initiatives positives et nouveautés
-                </TransClient>
+                </Trans>
               </span>
             }
             {...register('newsletter-saisonniere')}
@@ -203,10 +201,10 @@ export default function UserInformationForm({
             label={
               <span>
                 <Emoji>🚗</Emoji>{' '}
-                <TransClient>
+                <Trans>
                   <strong>Nos Gestes Transports</strong> : tout savoir ou
                   presque sur l'impact carbone des transports, en 4 e-mails
-                </TransClient>
+                </Trans>
               </span>
             }
             {...register('newsletter-transports')}

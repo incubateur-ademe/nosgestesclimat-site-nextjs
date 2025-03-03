@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 
 type Props = {
@@ -20,7 +20,7 @@ export default function GoBackLink({ className, href, eventTracked }: Props) {
         }
       }}
       className={`${className} inline-block px-0 !text-[1rem] text-primary-700 no-underline transition-opacity hover:opacity-80`}>
-      ← <TransClient>Retour</TransClient>
+      ← <Trans>Retour</Trans>
     </Link>
   )
 }

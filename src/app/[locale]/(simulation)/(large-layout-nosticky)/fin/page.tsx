@@ -5,7 +5,7 @@ import CarboneTotalChart from '@/components/fin/metricSlider/CarboneTotalChart'
 import HeadingButtons from '@/components/fin/metricSlider/heading/HeadingButtons'
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric, eauMetric } from '@/constants/metric'
 import Title from '@/design-system/layout/Title'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
@@ -25,8 +25,8 @@ import ShareBlock from './_components/ShareBlock'
 import FinPageSkeleton from './skeleton'
 
 const titles: Record<Metric, ReactElement> = {
-  [carboneMetric]: <TransClient>carbone</TransClient>,
-  [eauMetric]: <TransClient>eau</TransClient>,
+  [carboneMetric]: <Trans>carbone</Trans>,
+  [eauMetric]: <Trans>eau</Trans>,
 }
 
 export default function FinPage() {
@@ -49,7 +49,7 @@ export default function FinPage() {
 
       <div className="flex justify-between">
         <Title tag="h1">
-          <TransClient>Mes empreintes</TransClient>
+          <Trans>Mes empreintes</Trans>
         </Title>
 
         <HeadingButtons />
@@ -90,7 +90,7 @@ export default function FinPage() {
 
           <div id="categories-block">
             <Title tag="h2" className="text-lg lg:text-2xl">
-              <TransClient>Le détail de mon empreinte</TransClient>{' '}
+              <Trans>Le détail de mon empreinte</Trans>{' '}
               <strong className="text-secondary-700">
                 {titles[currentMetric]}
               </strong>
@@ -101,10 +101,10 @@ export default function FinPage() {
           <FeedbackBanner
             className="mb-8 mt-12"
             text={
-              <TransClient i18nKey="publicodes.northstar.learned">
+              <Trans i18nKey="publicodes.northstar.learned">
                 Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque
                 chose ?
-              </TransClient>
+              </Trans>
             }
             type="learned"
           />

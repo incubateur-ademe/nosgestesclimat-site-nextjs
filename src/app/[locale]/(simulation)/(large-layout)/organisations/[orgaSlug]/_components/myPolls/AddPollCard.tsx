@@ -2,7 +2,7 @@
 
 import Link from '@/components/Link'
 import PlusIcon from '@/components/icons/PlusIcon'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import {
   baseClassNames,
   colorClassNames,
@@ -26,7 +26,7 @@ export default function AddPollCard({ hasNoPollsYet }: Props) {
     <Link
       href={`/organisations/${orgaSlug}/creer-campagne`}
       className={twMerge(
-        'bg-primary-50 flex min-h-64 flex-col rounded-xl p-6 no-underline',
+        'flex min-h-64 flex-col rounded-xl bg-primary-50 p-6 no-underline',
         hasNoPollsYet ? 'rainbow-border' : ''
       )}>
       <div className="mb-6 flex flex-1 items-center justify-center">
@@ -55,7 +55,7 @@ export default function AddPollCard({ hasNoPollsYet }: Props) {
             hasNoPollsYet ? 'stroke-white' : 'stroke-primary-700'
           )}
         />
-        <TransClient>Créer une campagne</TransClient>
+        <Trans>Créer une campagne</Trans>
       </div>
     </Link>
   )

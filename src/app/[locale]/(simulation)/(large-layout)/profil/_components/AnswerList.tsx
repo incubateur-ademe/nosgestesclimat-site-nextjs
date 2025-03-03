@@ -1,7 +1,7 @@
 'use client'
 
 import AnswersIcon from '@/components/icons/AnswersIcon'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { useEngine, useForm, useSimulation } from '@/publicodes-state'
 import Category from './answerList/Category'
 
@@ -13,9 +13,9 @@ export default function AnswerList() {
   return (
     <div>
       <h2 className="flex items-center">
-        <AnswersIcon className="fill-primary-700 mr-3" />
+        <AnswersIcon className="mr-3 fill-primary-700" />
 
-        <TransClient>Mes réponses</TransClient>
+        <Trans>Mes réponses</Trans>
       </h2>
 
       {categories.map((category) =>

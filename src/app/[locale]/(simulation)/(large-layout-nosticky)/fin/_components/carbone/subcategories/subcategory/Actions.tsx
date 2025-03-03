@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { endClickActions } from '@/constants/tracking/pages/end'
 import { useEngine, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
@@ -52,9 +52,9 @@ export default function Actions({ subcategory, noNumberedFootprint }: Props) {
     <>
       {!noNumberedFootprint && (
         <p className="mb-6">
-          <TransClient>
+          <Trans>
             Voici quelques idées pour vous aider à réduire votre impact :
-          </TransClient>
+          </Trans>
         </p>
       )}
       <div className="mb-4 flex flex-row-reverse justify-center gap-4">
@@ -68,7 +68,7 @@ export default function Actions({ subcategory, noNumberedFootprint }: Props) {
             onClick={() => trackEvent(endClickActions)}
             href="/actions"
             className="text-center text-xs">
-            <TransClient>Voir tous les gestes</TransClient> : {title}
+            <Trans>Voir tous les gestes</Trans> : {title}
           </Link>
         </div>
       )}

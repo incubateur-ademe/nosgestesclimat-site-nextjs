@@ -1,4 +1,4 @@
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -45,7 +45,7 @@ export default function ActionDetailPage({
           aria-label="arrow pointing left">
           ◀
         </span>{' '}
-        <TransClient> Retour à la liste</TransClient>
+        <Trans> Retour à la liste</Trans>
       </ButtonLink>
 
       <ActionDetail params={params} />

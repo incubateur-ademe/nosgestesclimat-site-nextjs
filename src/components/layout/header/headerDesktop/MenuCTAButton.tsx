@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { trackingActionClickCTAMenu } from '@/constants/tracking/actions'
 import { HIDE_CTA_PATHS } from '@/constants/urls'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
@@ -49,7 +49,7 @@ export default function MenuCTAButton() {
           getLandingClickCTAStart(pathname, trackingActionClickCTAMenu)
         )
       }}>
-      <TransClient>{linkToSimulateurPageLabel}</TransClient>
+      <Trans>{linkToSimulateurPageLabel}</Trans>
     </ButtonLink>
   )
 }

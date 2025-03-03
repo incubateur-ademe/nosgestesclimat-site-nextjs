@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
 import Arrow from './Arrow'
@@ -23,7 +23,7 @@ export default function TargetNumber({ isSmall }: Props) {
         <strong className="font-black text-secondary-700">2 tonnes,</strong>
         <br />
         <span>
-          <TransClient>l’objectif pour 2050</TransClient>
+          <Trans>l’objectif pour 2050</Trans>
         </span>
       </div>
       <Arrow className="h-4 w-4 rotate-180" />

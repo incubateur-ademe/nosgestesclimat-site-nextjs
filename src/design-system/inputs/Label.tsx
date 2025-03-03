@@ -1,4 +1,4 @@
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import type { PropsWithChildren } from 'react'
 
 export default function Label({
@@ -10,7 +10,7 @@ export default function Label({
       <span>{children}</span>{' '}
       {isOptional && (
         <span className="italic text-secondary-700">
-          <TransClient>facultatif</TransClient>
+          <Trans>facultatif</Trans>
         </span>
       )}
     </div>

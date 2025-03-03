@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { actionsClickStart } from '@/constants/tracking/pages/actions'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
@@ -31,48 +31,48 @@ export default function ActionsTutorial() {
   return (
     <Card className="my-6 items-start border-none bg-gray-100">
       <h2 className="flex items-center">
-        <TransClient>Passer à l'action !</TransClient>
+        <Trans>Passer à l'action !</Trans>
       </h2>
 
       <p>
-        <TransClient i18nKey={'publicodes.ActionTutorial.félicitation'}>
+        <Trans i18nKey={'publicodes.ActionTutorial.félicitation'}>
           Vous avez terminé votre simulation
-        </TransClient>
-        , <Emoji>👏</Emoji> <TransClient>bravo !</TransClient>
+        </Trans>
+        , <Emoji>👏</Emoji> <Trans>bravo !</Trans>
       </p>
 
       <p>{t('publicodes.ActionTutorial.msgEstimation', { value, unit })}</p>
 
       <p>
-        <TransClient i18nKey={'publicodes.ActionTutorial.msgPrésentation'}>
+        <Trans i18nKey={'publicodes.ActionTutorial.msgPrésentation'}>
           Pour vous aider, nous vous présenterons{' '}
           <strong>une liste d'actions</strong> :
-        </TransClient>
+        </Trans>
       </p>
 
       <ul className="list-none">
         <li className="flex items-center">
           <Emoji className="mr-2">✅</Emoji>
 
-          <TransClient>sélectionnez celles qui vous intéressent</TransClient>
+          <Trans>sélectionnez celles qui vous intéressent</Trans>
         </li>
 
         <li className="flex items-center">
           <Emoji className="mr-2">❌</Emoji>
 
-          <TransClient>
+          <Trans>
             écartez celles qui vous semblent trop ambitieuses ou déplacées.
-          </TransClient>
+          </Trans>
         </li>
       </ul>
 
       <p className="mt-6">
         <Emoji className="mr-2">💡</Emoji>
 
-        <TransClient i18nKey={'publicodes.ActionTutorial.msgPrécision'}>
+        <Trans i18nKey={'publicodes.ActionTutorial.msgPrécision'}>
           Pour améliorer la précision, certaines actions vous poseront quelques
           questions en plus.
-        </TransClient>
+        </Trans>
       </p>
 
       <Button
@@ -80,7 +80,7 @@ export default function ActionsTutorial() {
           hideTutorial('actions')
           trackEvent(actionsClickStart)
         }}>
-        <TransClient>Démarrer</TransClient>
+        <Trans>Démarrer</Trans>
       </Button>
     </Card>
   )

@@ -5,7 +5,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 import { useState } from 'react'
 import Wave from 'react-wavify'
-import TransClient from '../translation/trans/TransClient'
+import Trans from '../translation/trans/TransClient'
 import Fish from './404/Fish'
 
 export default function Route404() {
@@ -42,16 +42,16 @@ export default function Route404() {
           />
         </div>
         <p className="relative text-center font-bold text-white sm:text-lg md:text-2xl">
-          <TransClient>
+          <Trans>
             Rien à l'horizon ! <br className="md:hidden" />
             La page recherchée n'existe pas.
-          </TransClient>
+          </Trans>
         </p>
         <ButtonLink
           color="primary"
           href="/"
           className="relative mt-8 justify-self-center border-2 border-white bg-white !text-primary-700 shadow-sm hover:bg-white hover:text-primary-700">
-          <TransClient>Revenir à l'accueil</TransClient>
+          <Trans>Revenir à l'accueil</Trans>
         </ButtonLink>
       </div>
       <Fish numberOfFish={numberOfFish} />
