@@ -1,8 +1,8 @@
-import PostHogCookieConsentBanner from '@/app/(narrow-layout)/(pages-statiques)/politique-des-cookies/_components/PostHogCookieConsentBanner'
 import TransServer from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { CookiesPolicy } from '@incubateur-ademe/legal-pages-react/CookiesPolicy'
+import PostHogCookieConsentBanner from './_components/PostHogCookieConsentBanner'
 
 export async function generateMetadata({
   params,

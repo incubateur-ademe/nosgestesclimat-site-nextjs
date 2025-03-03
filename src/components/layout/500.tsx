@@ -10,7 +10,7 @@ export default function Error500() {
   return (
     <div className="mx-auto my-16 text-center text-primary-700">
       <h1 className="flex items-center justify-center">
-        {t('Oups\u202f! Une erreur est survenue')}{' '}
+        {t('Oups\u202f! Une erreur est survenue')} 
         <span role="img" aria-label="Emoji no" aria-hidden>
           😮
         </span>

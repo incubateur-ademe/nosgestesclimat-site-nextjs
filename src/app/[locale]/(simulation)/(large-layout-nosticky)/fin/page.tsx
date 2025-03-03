@@ -99,7 +99,7 @@ export default function FinPage() {
           </div>
 
           <FeedbackBanner
-            className="mt-12 mb-8"
+            className="mb-8 mt-12"
             text={
               <TransClient i18nKey="publicodes.northstar.learned">
                 Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque
@@ -111,7 +111,7 @@ export default function FinPage() {
 
           <DocumentationBlock />
         </div>
-        <div className="short:gap-2 top-40 flex w-full flex-col gap-4 self-start md:mb-8 lg:sticky lg:z-30 lg:w-[22rem]">
+        <div className="top-40 flex w-full flex-col gap-4 self-start md:mb-8 lg:sticky lg:z-30 lg:w-[22rem] short:gap-2">
           <InformationBlock />
         </div>
       </div>

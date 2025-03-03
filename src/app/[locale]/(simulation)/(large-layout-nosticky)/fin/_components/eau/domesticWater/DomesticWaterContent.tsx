@@ -3,12 +3,10 @@
 import Link from '@/components/Link'
 import TransClient from '@/components/translation/trans/TransClient'
 import { useVigieEau } from '@/hooks/useVigieEau'
-// @ts-expect-error There is no types for this package
-import France from '@socialgouv/react-departements'
 import DomesticWaterChart from './domesticWaterContent/DomesticWaterChart'
 
 export default function DomesticWaterContent() {
-  const { departements, error } = useVigieEau()
+  const { departements } = useVigieEau()
 
   // We remove the departements with the maximum level of vigilance (there is no restriction yet)
   const departementsCodes = departements
@@ -29,11 +27,11 @@ export default function DomesticWaterContent() {
       <p>
         <TransClient>
           L’eau domestique peut avoir un{' '}
-          <strong className="text-secondary-700 font-black">
+          <strong className="font-black text-secondary-700">
             impact très fort
           </strong>{' '}
           selon la{' '}
-          <strong className="text-secondary-700 font-black">
+          <strong className="font-black text-secondary-700">
             saison et la localisation.
           </strong>
         </TransClient>
@@ -44,6 +42,8 @@ export default function DomesticWaterContent() {
           en ce moment :
         </TransClient>
       </p>
+      {/* TODO: Uncomment when a new version of the @socialgouv/react-departements
+      package compatible with React 19 is released.
       <div className="relative mb-8 max-w-96 self-center">
         <France
           departements={departementsCodes}
@@ -68,6 +68,7 @@ export default function DomesticWaterContent() {
           </div>
         )}
       </div>
+      */}
 
       <p>
         <Link href="https://vigieau.gouv.fr/" target="_blank">
