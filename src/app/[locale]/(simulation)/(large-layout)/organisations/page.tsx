@@ -11,14 +11,14 @@ export default async function Page({ params }: DefaultPageProps) {
   return (
     <section className="w-full bg-[#fff] md:mx-auto">
       <div className="mx-4 lg:mx-0">
-        <HeroSection locale={locale} />
+        <HeroSection />
 
         <Separator className="my-12 opacity-0 lg:opacity-100" />
 
         <IllustratedPointsList locale={locale} />
       </div>
       <PartnersSection locale={locale} />
-      <CTAFooter locale={locale} />
+      <CTAFooter />
     </section>
   )
 }

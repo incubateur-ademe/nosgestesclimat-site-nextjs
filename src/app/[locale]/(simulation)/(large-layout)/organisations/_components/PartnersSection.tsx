@@ -1,9 +1,8 @@
 import Trans from '@/components/translation/trans/TransServer'
-import { organisationsAccueilClickAmbassadeurs } from '@/constants/tracking/pages/organisationsAccueil'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Image from 'next/image'
+import LinkAmbassadeurs from './partnersSection/LinkAmbassadeurs'
 
-export default function PartnersSection({ locale }: { locale: string }) {
+export default async function PartnersSection({ locale }: { locale: string }) {
   return (
     <>
       <section className="mb-8 mt-28 flex w-full flex-col items-center gap-16 rounded-xl bg-gray-100 px-8 py-16">
@@ -40,12 +39,7 @@ export default function PartnersSection({ locale }: { locale: string }) {
             alt="France Info"
           />
         </div>
-        <ButtonLink
-          color="secondary"
-          href="/ambassadeurs"
-          trackingEvent={organisationsAccueilClickAmbassadeurs}>
-          <Trans locale={locale}>Ils ont testé</Trans>
-        </ButtonLink>
+        <LinkAmbassadeurs />
       </section>
     </>
   )

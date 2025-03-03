@@ -5,8 +5,9 @@ import Groups from './_components/Groups'
 import Organisations from './_components/Organisations'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
-  const { t } = await getServerTranslation(params)
   const { locale } = await params
+
+  const { t } = await getServerTranslation({ locale })
 
   return getMetadataObject({
     locale,

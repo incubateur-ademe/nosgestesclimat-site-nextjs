@@ -37,14 +37,14 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 export default async function BlogHomePage({
   searchParams,
   params,
-}: {
-  searchParams: Promise<{ page: string }>
-  params: Promise<{ locale: string }>
-}) {
+}: DefaultPageProps<{
+  searchParams: { page: string }
+  params: { locale: string }
+}>) {
   const { locale } = await params
 
   // Get the page number from the query params from the server side
-  const { page: pageParam } = await searchParams
+  const pageParam = searchParams ? (await searchParams).page : undefined
   const page = Number(pageParam) || 1
 
   const { title, description, image, mainArticle, articles, pageCount } =

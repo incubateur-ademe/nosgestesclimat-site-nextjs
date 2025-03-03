@@ -1,22 +1,24 @@
+'use client'
+
 import Baseline from '@/components/organisations/Baseline'
-import Trans from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransClient'
 import {
   organisationsAccueilClickCommencer,
   organisationsAccueilClickDemo,
 } from '@/constants/tracking/pages/organisationsAccueil'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import Image from 'next/image'
 
-export default async function HeroSection({ locale }: { locale: string }) {
-  const { t } = await getServerTranslation({ locale })
+export default function HeroSection() {
+  const { t } = useClientTranslation()
 
   return (
     <div className="flex flex-wrap justify-center gap-12 pt-14 lg:flex-nowrap lg:justify-start lg:gap-16">
       <div className="max-w-full md:w-[34rem]">
         <h1>
-          <Trans locale={locale} i18nKey="organisations.accueil.titre">
+          <Trans i18nKey="organisations.accueil.titre">
             Nos Gestes Climat pour les organisations
           </Trans>
         </h1>
@@ -28,7 +30,7 @@ export default async function HeroSection({ locale }: { locale: string }) {
           <ButtonLink
             href="/organisations/connexion"
             trackingEvent={organisationsAccueilClickCommencer}>
-            <Trans locale={locale}>Commencer</Trans>
+            <Trans>Commencer</Trans>
           </ButtonLink>
 
           <ButtonLink
@@ -37,7 +39,7 @@ export default async function HeroSection({ locale }: { locale: string }) {
             onClick={() => {
               trackEvent(organisationsAccueilClickDemo)
             }}>
-            <Trans locale={locale}>Demander une démo</Trans>
+            <Trans>Demander une démo</Trans>
           </ButtonLink>
         </div>
       </div>

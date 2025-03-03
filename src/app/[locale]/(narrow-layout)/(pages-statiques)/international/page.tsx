@@ -29,8 +29,9 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 }
 
 export default async function International({ params }: DefaultPageProps) {
-  const { t } = await getServerTranslation(params)
   const { locale } = await params
+
+  const { t } = await getServerTranslation({ locale })
 
   const supportedRegions = getSupportedRegions()
 

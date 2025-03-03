@@ -41,13 +41,13 @@ export async function generateMetadata({
 export default async function CategoryPage({
   params,
   searchParams,
-}: {
-  params: Promise<{ category: string; locale: string }>
-  searchParams: Promise<{ page: string }>
-}) {
+}: DefaultPageProps<{
+  params: { category: string }
+  searchParams: { page: string }
+}>) {
   const { category, locale } = await params
 
-  const { page: pageParam } = await searchParams
+  const pageParam = searchParams ? (await searchParams).page : undefined
 
   // Get the page number from the query params from the server side
   const page = Number(pageParam) || 1

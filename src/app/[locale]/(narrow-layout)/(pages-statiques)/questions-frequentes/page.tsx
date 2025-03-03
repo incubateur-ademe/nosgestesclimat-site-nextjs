@@ -21,7 +21,7 @@ type FAQType = {
 
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation(params)
+  const { t } = await getServerTranslation({ locale })
 
   return getMetadataObject({
     locale,
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
 export default async function FAQPage({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { i18n, t } = await getServerTranslation(params)
+  const { i18n, t } = await getServerTranslation({ locale })
 
   const FAQContent = getCurrentLangInfos(i18n)
     .faqContent as unknown as FAQType[]
