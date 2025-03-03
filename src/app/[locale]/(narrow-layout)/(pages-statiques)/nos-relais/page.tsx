@@ -4,7 +4,6 @@ import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-// @ts-expect-error Ambassadeurs are not typed
 import ambassadeursYaml from '@/locales/ambassadeurs/fr/ambassadeurs.yaml'
 import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'

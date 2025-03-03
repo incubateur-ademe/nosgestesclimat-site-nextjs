@@ -1,16 +1,18 @@
+import type { NextConfig } from 'next'
 import type { Configuration } from 'webpack'
 
-const withMDX = require('@next/mdx')({
-  extension: /\.mdx$/,
-})
-
+import createMDX from '@next/mdx'
 import { withSentryConfig } from '@sentry/nextjs'
 
 import redirects from './config/redirects.js'
 
-import remoteImagesPatterns from './config/remoteImagesPatterns.js'
+import { remoteImagesPatterns } from './config/remoteImagesPatterns'
 
-const nextConfig = {
+const withMDX = createMDX({
+  extension: /\.mdx$/,
+})
+
+const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
   images: {
@@ -102,4 +104,4 @@ const sentryConfig = {
 module.exports =
   process.env.NODE_ENV !== 'development'
     ? withSentryConfig(withMDX(nextConfig), sentryConfig)
-    : nextConfig
+    : withMDX(nextConfig)

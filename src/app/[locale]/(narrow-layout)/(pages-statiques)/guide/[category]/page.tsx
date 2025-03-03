@@ -39,7 +39,9 @@ export async function generateMetadata({
   })
 }
 
-export default async function CategoryGuidePage({ params }: DefaultPageProps) {
+export default async function CategoryGuidePage({
+  params,
+}: DefaultPageProps<{ params: { category: string } }>) {
   const { category, locale } = await params
 
   return (

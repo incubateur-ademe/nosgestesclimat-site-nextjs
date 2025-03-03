@@ -1,4 +1,6 @@
-const remoteImagesPatterns = [
+import type { RemotePattern } from 'next/dist/shared/lib/image-config'
+
+export const remoteImagesPatterns: RemotePattern[] = [
   {
     protocol: 'https',
     hostname: 'abc-transitionbascarbone.fr',
@@ -48,5 +50,3 @@ const remoteImagesPatterns = [
     pathname: '/nosgestesclimat-prod/cms/**',
   },
 ]
-
-module.exports = remoteImagesPatterns

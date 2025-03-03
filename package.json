@@ -41,7 +41,7 @@
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
     "@next/bundle-analyzer": "^14.1.0",
-    "@next/mdx": "^15.1.7",
+    "@next/mdx": "^15.2.0",
     "@publicodes/react-ui": "^1.7.1",
     "@publicodes/tools": "^1.5.3",
     "@sentry/nextjs": "^9.0.1",
