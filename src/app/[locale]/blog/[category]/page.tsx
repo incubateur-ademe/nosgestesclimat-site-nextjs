@@ -80,12 +80,7 @@ export default async function CategoryPage({
         categorySlug={category}
       />
 
-      <CategoryHero
-        title={title}
-        description={description}
-        slug={category}
-        locale={locale}
-      />
+      <CategoryHero title={title} description={description} slug={category} />
 
       <ContentLarge tag="div" className="overflow-hidden px-4 lg:px-0">
         {mainArticle && (
