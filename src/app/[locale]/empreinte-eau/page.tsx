@@ -26,7 +26,6 @@ import { waterFAQJsonLd } from './_constants/waterFAQJsonLd'
 const DynamicCTAButtons = dynamic(
   () => import('@/components/cta/DynamicCTAButtons'),
   {
-    ssr: false,
     loading: () => <CTAButtonsPlaceholder />,
   }
 )

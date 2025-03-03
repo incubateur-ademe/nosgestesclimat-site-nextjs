@@ -25,7 +25,7 @@ import TwoFootprints from './_components/TwoFootprints'
 
 const DynamicCTAButtons = dynamic(
   () => import('@/components/cta/DynamicCTAButtons'),
-  { ssr: false, loading: () => <CTAButtonsPlaceholder /> }
+  { loading: () => <CTAButtonsPlaceholder /> }
 )
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>

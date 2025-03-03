@@ -26,7 +26,6 @@ import { carbonFAQJsonLd } from './_constants/carbonFAQJsonLd'
 const DynamicCTAButtons = dynamic(
   () => import('@/components/cta/DynamicCTAButtons'),
   {
-    ssr: false,
     loading: () => <CTAButtonsPlaceholder />,
   }
 )
