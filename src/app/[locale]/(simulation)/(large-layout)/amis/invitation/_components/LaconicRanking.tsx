@@ -50,6 +50,8 @@ export default function LaconicRanking({ group }: Props) {
 
       <ul>
         {particpantsOrdered.map((participant, index) => {
+          const isFirstThree = index < 3
+
           let rank
           switch (index) {
             case 0:
@@ -68,7 +70,14 @@ export default function LaconicRanking({ group }: Props) {
             <li
               key={`participant-${index}`}
               className="flex items-center gap-4">
-              {rank} {participant.name}
+              <span
+                className={
+                  !isFirstThree ? 'ml-1 mr-0.5 text-sm font-bold' : ''
+                }>
+                {rank}
+                {!isFirstThree && '. '}
+              </span>{' '}
+              {participant.name}
             </li>
           )
         })}

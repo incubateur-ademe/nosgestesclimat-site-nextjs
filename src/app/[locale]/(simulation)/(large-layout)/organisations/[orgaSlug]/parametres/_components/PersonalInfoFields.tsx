@@ -79,7 +79,7 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
               <strong>
                 <Trans>
                   Recevoir nos actualités sur les nouveaux services dédiés aux
-                  organisation (une fois par mois maximum !)
+                  organisation
                 </Trans>
               </strong>{' '}
               <Trans>(une fois par mois maximum !)</Trans>

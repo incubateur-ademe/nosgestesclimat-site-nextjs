@@ -17,18 +17,27 @@ const subtitle = {
 }
 const text = {
   small: (
-    <Trans>
-      Il y a de grandes chances que votre temps soit plus efficace à{' '}
-      <strong>convaincre et aider les autres</strong> qu'à chercher à gagner vos
-      "tonnes en trop".
-    </Trans>
+    <>
+      <Trans>
+        Il y a de grandes chances que votre temps soit plus efficace à
+      </Trans>{' '}
+      <strong>
+        <Trans>convaincre et aider les autres</Trans>
+      </strong>{' '}
+      <Trans>qu'à chercher à gagner vos "tonnes en trop".</Trans>
+    </>
   ),
   other: (
-    <Trans>
-      Même si réduire son empreinte individuelle est l'action la plus directe,
-      il existe <strong>d'autres façons d'agir à son niveau</strong>. Tous ces
-      modes d'action sont complémentaires !
-    </Trans>
+    <>
+      <Trans>
+        Même si réduire son empreinte individuelle est l'action la plus directe,
+        il existe
+      </Trans>{' '}
+      <strong>
+        <Trans>d'autres façons d'agir à son niveau.</Trans>
+      </strong>
+      <Trans>Tous ces modes d'action sont complémentaires !</Trans>
+    </>
   ),
 }
 
