@@ -21,8 +21,8 @@ export default function Filter({ dottedName, countByCategory }: Props) {
 
   const router = useRouter()
 
-  const metric = useSearchParams().get('métrique') || ''
-  const categorySelected = useSearchParams().get('catégorie') || ''
+  const metric = useSearchParams()?.get('métrique') || ''
+  const categorySelected = useSearchParams()?.get('catégorie') || ''
 
   const isSelected = categorySelected === dottedName
 

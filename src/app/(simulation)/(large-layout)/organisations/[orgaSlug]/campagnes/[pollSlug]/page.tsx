@@ -22,7 +22,7 @@ import PollStatisticsFilters from './_components/PollStatisticsFilters'
 export default function CampagnePage() {
   const searchParams = useSearchParams()
 
-  const isRedirectFromLegacy = Boolean(searchParams.get('isRedirectFromLegacy'))
+  const isRedirectFromLegacy = Boolean(searchParams?.get('isRedirectFromLegacy'))
 
   useHandleRedirectFromLegacy()
 
