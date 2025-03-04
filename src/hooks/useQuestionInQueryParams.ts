@@ -11,7 +11,7 @@ export const useQuestionInQueryParams = () => {
 
   const locale = useLocale()
 
-  const questionInQueryParams = decodeURI(searchParams.get('question') || '')
+  const questionInQueryParams = decodeURI(searchParams?.get('question') || '')
     ?.replaceAll('.', ' . ')
     .replaceAll('_', ' ') as DottedName
 

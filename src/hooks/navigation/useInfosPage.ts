@@ -28,7 +28,7 @@ type Props = {
 }
 export function useInfosPage() {
   const searchParams = useSearchParams()
-  const queryParamsString = searchParams.toString()
+  const queryParamsString = searchParams?.toString()
 
   const { pollSlug } = usePollQueryParams()
 

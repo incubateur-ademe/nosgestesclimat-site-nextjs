@@ -15,7 +15,9 @@ export type PollToUpdate = {
 }
 
 export function useUpdatePoll() {
-  const { orgaSlug, pollSlug } = useParams()
+  const param = useParams<{ orgaSlug: string; pollSlug: string }>() 
+  const orgaSlug = param?.orgaSlug
+  const pollSlug = param?.pollSlug
 
   return useMutation({
     mutationKey: ['organisations', orgaSlug, 'polls', pollSlug],

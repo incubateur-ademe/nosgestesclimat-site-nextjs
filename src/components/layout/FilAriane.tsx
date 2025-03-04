@@ -19,11 +19,11 @@ export default function FilAriane({ className }: { className?: string }) {
   // Handles fetching the organisation data if the user is an administrator
   const { data: organisation } = useFetchOrganisation()
 
-  const isAdmin = organisation?.slug === params.orgaSlug
+  const isAdmin = organisation?.slug === params?.orgaSlug
 
   const { data: poll } = useFetchPublicPoll()
 
-  if (!TARGETED_PATHS.some((path) => pathname.includes(path))) return null
+  if (!TARGETED_PATHS.some((path) => pathname?.includes(path))) return null
 
   const getBreadcrumbsItems = (): {
     href: string
@@ -31,7 +31,7 @@ export default function FilAriane({ className }: { className?: string }) {
     isActive: boolean
   }[] => {
     // Organisation path
-    if (pathname.includes('/organisations')) {
+    if (pathname?.includes('/organisations')) {
       return getOrganisationItems({
         pathname,
         params,

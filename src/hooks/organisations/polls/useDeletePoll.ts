@@ -4,7 +4,9 @@ import axios from 'axios'
 import { useParams } from 'next/navigation'
 
 export function useDeletePoll() {
-  const { pollSlug, orgaSlug } = useParams()
+  const param = useParams<{ orgaSlug: string; pollSlug: string }>() 
+  const orgaSlug = param?.orgaSlug
+  const pollSlug = param?.pollSlug
 
   return useMutation({
     mutationKey: ['organisations', orgaSlug, 'polls', pollSlug],

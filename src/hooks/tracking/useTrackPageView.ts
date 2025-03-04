@@ -30,7 +30,7 @@ export function useTrackPageView() {
   const searchParams = useSearchParams()
 
   useEffect(() => {
-    let url = pathname
+    let url = pathname!
 
     // We remove the lang prefix from the pathname
     locales.map((locale) => {
@@ -43,7 +43,7 @@ export function useTrackPageView() {
     url = handleOrganisationModifications(url)
 
     // We convert the question searchParams to a real url
-    const questionParams = searchParams.get('question')
+    const questionParams = searchParams?.get('question')
     if (questionParams) {
       const category = questionParams.split('.')[0]
       const question = questionParams.replace(category + '.', '')
@@ -51,7 +51,7 @@ export function useTrackPageView() {
     }
 
     // We convert the groupId to a real url
-    const groupId = searchParams.get('groupId')
+    const groupId = searchParams?.get('groupId')
     if (groupId) {
       url += `/${groupId}`
     }
@@ -62,7 +62,7 @@ export function useTrackPageView() {
     }
 
     // We add the searchParams to the url
-    const search = searchParams.toString()
+    const search = searchParams?.toString()
     if (search) {
       url += `?${search}`
     }

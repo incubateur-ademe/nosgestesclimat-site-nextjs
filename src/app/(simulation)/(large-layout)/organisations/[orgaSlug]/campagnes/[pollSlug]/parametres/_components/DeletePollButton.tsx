@@ -11,7 +11,8 @@ import { useState } from 'react'
 export default function DeletePollButton() {
   const [isOpen, setIsOpen] = useState(false)
 
-  const { orgaSlug } = useParams()
+  const param = useParams<{ orgaSlug: string }>() 
+  const orgaSlug = param?.orgaSlug
 
   const router = useRouter()
 

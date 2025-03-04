@@ -14,9 +14,14 @@ type Props = {
 }
 
 export default function AddPollCard({ hasNoPollsYet }: Props) {
-  const { orgaSlug } = useParams()
+  const params = useParams<{ orgaSlug: string }>()
+  const orgaSlug = params?.orgaSlug
 
   const { t } = useClientTranslation()
+
+  if(!orgaSlug) {
+    return null;
+  }
 
   return (
     <Link

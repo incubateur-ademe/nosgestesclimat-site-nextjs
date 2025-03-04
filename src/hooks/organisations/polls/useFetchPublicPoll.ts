@@ -16,11 +16,11 @@ export const useFetchPublicPoll = ({
   const searchParams = useSearchParams()
 
   if (!pollIdOrSlug) {
-    pollIdOrSlug = params.pollSlug
+    pollIdOrSlug = params?.pollSlug
   }
 
   if (!pollIdOrSlug) {
-    pollIdOrSlug = searchParams.get('poll')
+    pollIdOrSlug = searchParams?.get('poll')
   }
 
   const {

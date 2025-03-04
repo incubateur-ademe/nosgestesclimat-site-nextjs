@@ -34,7 +34,7 @@ export function useSetCurrentSimulationFromParams() {
     }
 
     // If there is no simulation found with the id in the query params, we delete the query params and reload the page
-    if (!simulation) {
+    if (!simulation && pathname) {
       window.location.href = pathname
       return
     }
@@ -44,7 +44,7 @@ export function useSetCurrentSimulationFromParams() {
     hideTutorial('testIntro')
 
     const storedSimulation = simulations.find(
-      (storedSimulation) => storedSimulation.id === simulation.id
+      (storedSimulation) => storedSimulation.id === simulation?.id
     )
 
     // If the simulation is already in the localStorage, we set it as current
@@ -59,7 +59,9 @@ export function useSetCurrentSimulationFromParams() {
     setIsCorrectSimulationSet(true)
 
     // We delete the query params and reload the page
-    router.replace(pathname)
+    if(pathname){
+      router.replace(pathname)
+    }
   }, [
     simulations,
     simulation,

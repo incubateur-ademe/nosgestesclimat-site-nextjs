@@ -40,8 +40,8 @@ export default function Footer({ className = '' }) {
   const isHomePage =
     pathname === '/' ||
     pathname === `/${locale}` ||
-    pathname.includes('/empreinte-eau') ||
-    pathname.includes('/empreinte-carbone')
+    pathname?.includes('/empreinte-eau') ||
+    pathname?.includes('/empreinte-carbone')
   return (
     <footer
       className={twMerge(

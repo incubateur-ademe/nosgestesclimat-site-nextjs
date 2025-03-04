@@ -22,7 +22,7 @@ export default function MenuCTAButton() {
 
   const pathname = usePathname()
 
-  if (HIDE_CTA_PATHS.some((path) => pathname.includes(path))) {
+  if (HIDE_CTA_PATHS.some((path) => pathname?.includes(path))) {
     return null
   }
 

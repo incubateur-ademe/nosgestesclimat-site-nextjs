@@ -5,17 +5,18 @@ import axios from 'axios'
 import { useParams } from 'next/navigation'
 
 export default function useFetchOrganisation() {
-  const { orgaSlug: organisationIdOrSlug } = useParams()
+  const param = useParams<{orgaSlug: string}>()
+  const orgaSlug = param?.orgaSlug 
 
   return useQuery({
-    queryKey: ['organisations', organisationIdOrSlug],
+    queryKey: ['organisations', orgaSlug],
     queryFn: () =>
       axios
-        .get<Organisation>(`${ORGANISATION_URL}/${organisationIdOrSlug}`, {
+        .get<Organisation>(`${ORGANISATION_URL}/${orgaSlug}`, {
           withCredentials: true,
         })
         .then((res) => res.data),
     retry: false,
-    enabled: !!organisationIdOrSlug,
+    enabled: !!orgaSlug,
   })
 }
