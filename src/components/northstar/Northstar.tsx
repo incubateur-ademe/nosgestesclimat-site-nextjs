@@ -6,9 +6,9 @@ import type {
   NorthStarType,
   NorthStarValue,
 } from '@/types/northstar'
-import { captureException } from '@sentry/browser'
 import { useEffect, useState } from 'react'
 import EmojiButton from './EmojiButton'
+import { captureException } from '@sentry/nextjs'
 
 const setRating = (
   ratings: NorthStarRatings,
