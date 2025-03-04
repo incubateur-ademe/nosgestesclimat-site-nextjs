@@ -21,3 +21,9 @@ export const SAVE_MODAL_EMAIL_INPUT = 'save-modal-email-input'
 export const SAVE_MODAL_SUBMIT_BUTTON = 'save-modal-submit-button'
 export const FIN_EMAIL_INPUT = 'fin-email-input'
 export const FIN_EMAIL_SUBMIT_BUTTON = 'fin-email-submit-button'
+export const ORGANISATION_CONNEXION_EMAIL_INPUT =
+  'organisation-connexion-email-input'
+export const ORGANISATION_CONNEXION_SUBMIT_BUTTON =
+  'organisation-connexion-submit-button'
+export const ORGANISATION_CONNEXION_VERIFICATION_CODE_INPUT =
+  'organisation-connexion-verification-code-input'

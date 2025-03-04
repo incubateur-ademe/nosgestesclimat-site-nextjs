@@ -21,6 +21,7 @@ export default function VerificationCodeInput({
     <>
       <VerificationInput
         length={6}
+        data-cypress-id="organisation-connexion-verification-code-input"
         classNames={{
           container: 'container w-[16rem] md:w-[20rem]',
           character: `border-2 border-gray-300 rounded-xl w-[2rem] text-transparent font-medium ${

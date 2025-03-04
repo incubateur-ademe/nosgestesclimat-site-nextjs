@@ -3,6 +3,7 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import { breadcrumbClickLink } from '@/constants/tracking/layout'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { Fragment } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -21,9 +22,15 @@ export default function Breadcrumbs({
   className?: string
   linkClassName?: string
 }) {
+  const { t } = useClientTranslation()
+
   return (
     <section className={twMerge('h-[75px] w-full', className)}>
-      <nav aria-labelledby="breadcrumbs-title" className="h-full w-full">
+      <nav
+        id="breadcrumbs-navigation"
+        aria-label={t('Chemin de navigation')}
+        aria-labelledby="breadcrumbs-title"
+        className="h-full w-full">
         <h2 id="breadcrumbs-title" className="sr-only">
           <Trans>Chemin de navigation</Trans>
         </h2>

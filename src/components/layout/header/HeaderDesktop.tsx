@@ -65,7 +65,11 @@ export default function HeaderDesktop({ isSticky }: Props) {
 
           {!isIframeOnlySimulation && (
             <>
-              <nav className="h-full" aria-labelledby="header-navigation-title">
+              <nav
+                className="h-full"
+                id="header-navigation"
+                aria-label={t('Navigation principale')}
+                aria-labelledby="header-navigation-title">
                 <h2 id="header-navigation-title" className="sr-only">
                   <Trans>Navigation principale</Trans>
                 </h2>
