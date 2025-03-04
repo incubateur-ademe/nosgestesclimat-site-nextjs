@@ -8,7 +8,7 @@ import { useUser } from '../../../publicodes-state'
 export const useFetchPublicPollDashboard = () => {
   const params = useParams()
 
-  const pollIdOrSlug = params.pollSlug
+  const pollIdOrSlug = params?.pollSlug
 
   const {
     user: { userId },

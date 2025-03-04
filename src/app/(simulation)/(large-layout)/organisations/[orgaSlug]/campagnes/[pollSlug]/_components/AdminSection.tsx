@@ -19,7 +19,9 @@ type Props = {
 }
 
 export default function AdminSection({ poll }: Props) {
-  const { orgaSlug, pollSlug } = useParams()
+  const param = useParams<{ orgaSlug: string; pollSlug: string }>() 
+  const orgaSlug = param?.orgaSlug
+  const pollSlug = param?.pollSlug
 
   if (!poll?.organisation.administrators) return null
 

@@ -8,5 +8,5 @@ export function useIsOrganisationAdmin() {
 
   const { data: organisation, isLoading } = useFetchOrganisation()
 
-  return { isAdmin: organisation?.slug === params.orgaSlug, isLoading }
+  return { isAdmin: organisation?.slug === params?.orgaSlug, isLoading }
 }

@@ -8,7 +8,7 @@ const metricParamsName = 'theme'
 export function useCurrentMetric() {
   const { queryParams, setQueryParams } = useQueryParams()
 
-  const queryParamsMetric = queryParams.get(metricParamsName) as Metric | null
+  const queryParamsMetric = queryParams?.get(metricParamsName) as Metric | null
 
   const setCurrentMetric = useCallback(
     (metric: Metric) => {

@@ -8,7 +8,7 @@ import { useUser } from '../../../publicodes-state'
 export const useFetchPublicPollSimulations = () => {
   const params = useParams()
 
-  const pollIdOrSlug = params.pollSlug
+  const pollIdOrSlug = params?.pollSlug
 
   const {
     user: { userId },
