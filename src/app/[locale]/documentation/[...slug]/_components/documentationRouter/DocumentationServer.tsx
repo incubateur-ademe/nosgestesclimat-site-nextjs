@@ -18,11 +18,7 @@ type Props = {
   rules: NGCRules
   locale: string
 }
-export default async function DocumentationServer({
-  slugs,
-  rules,
-  locale,
-}: Props) {
+export default function DocumentationServer({ slugs, rules, locale }: Props) {
   const ruleName = decodeRuleNameFromPath(slugs.join('/')) as DottedName
 
   if (!ruleName) {
@@ -36,7 +32,7 @@ export default async function DocumentationServer({
   }
 
   return (
-    <div className="mt-4 w-full max-w-4xl p-4 md:mx-auto md:py-8">
+    <div className="mt-12 w-full max-w-4xl p-4 md:mx-auto md:py-8">
       <PasserTestBanner />
 
       <Title

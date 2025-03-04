@@ -34,7 +34,7 @@ export default function RavijenChart({
   if (!categories) return null
 
   return (
-    <>
+    <div className="mb-8">
       <ul
         id="ravijen"
         className="flex h-[40rem] max-w-full items-end gap-1 bg-white py-4 md:w-[36rem] md:px-4">
@@ -71,6 +71,6 @@ export default function RavijenChart({
           <Trans>Télécharger l'image</Trans>
         </Button>
       </div>
-    </>
+    </div>
   )
 }

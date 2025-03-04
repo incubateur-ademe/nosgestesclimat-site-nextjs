@@ -32,7 +32,7 @@ export default function DocumentationClient({ slugs, rules }: Props) {
   const [metric, setMetric] = useState<Metric>(defaultMetric)
 
   return (
-    <>
+    <div className="mt-4 w-full">
       <PasserTestBanner />
       <MetricSwitchButton
         metric={metric}
@@ -55,7 +55,11 @@ export default function DocumentationClient({ slugs, rules }: Props) {
           Link: ({ children, to }) => <Link href={to || ''}>{children}</Link>,
           Text: ({ children }) => (
             <>
-              <Markdown>{children}</Markdown>
+              <Markdown>
+                {children
+                  .replaceAll('<RavijenChart/>', '')
+                  .replaceAll('<RavijenChartSocietaux/>', '')}
+              </Markdown>
               {children.includes('<RavijenChart/>') && <BilanChart />}
               {children.includes('<RavijenChartSocietaux/>') && (
                 <ServicesChart />
@@ -64,6 +68,6 @@ export default function DocumentationClient({ slugs, rules }: Props) {
           ),
         }}
       />
-    </>
+    </div>
   )
 }

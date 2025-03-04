@@ -20,6 +20,7 @@ export default function CopyInput({
   canShare,
 }: Props) {
   const [isCopied, setIsCopied] = useState(false)
+  const [isError, setIsError] = useState(false)
 
   const timeoutRef = useRef<NodeJS.Timeout>(undefined)
   useEffect(() => {
@@ -44,42 +45,53 @@ export default function CopyInput({
   }
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(textToCopy)
-    setIsCopied(true)
-    timeoutRef.current = setTimeout(() => setIsCopied(false), 3000)
+    if (typeof navigator !== 'undefined' && navigator.clipboard !== undefined) {
+      navigator.clipboard.writeText(textToCopy)
+      setIsCopied(true)
+      timeoutRef.current = setTimeout(() => setIsCopied(false), 3000)
+    } else {
+      setIsError(true)
+    }
   }
 
   return (
-    <div className={`flex ${className}`}>
-      <input
-        type="text"
-        className="block w-full min-w-0 flex-1 rounded-none rounded-l-md border-2 border-r-0 border-solid border-gray-200 bg-gray-100 py-3 pl-4 pr-2 text-gray-600 sm:text-sm"
-        value={textToDisplay ?? textToCopy}
-        readOnly
-      />
-      <Button
-        size="sm"
-        className="!min-w-[9rem] flex-shrink-0 justify-center rounded-l-none px-4 py-2"
-        onClick={() => {
-          if (canShare && isShareDefined) {
-            handleShare()
-            return
-          }
-          handleCopy()
-          navigator.clipboard.writeText(textToCopy)
-          setIsCopied(true)
-          setTimeout(() => setIsCopied(false), 3000)
+    <>
+      <div className={`flex ${className}`}>
+        <input
+          type="text"
+          className="block w-full min-w-0 flex-1 rounded-none rounded-l-md border-2 border-r-0 border-solid border-gray-200 bg-gray-100 py-3 pl-4 pr-2 text-gray-600 sm:text-sm"
+          value={textToDisplay ?? textToCopy}
+          readOnly
+        />
+        <Button
+          size="sm"
+          className="!min-w-[9rem] flex-shrink-0 justify-center rounded-l-none px-4 py-2"
+          onClick={() => {
+            if (canShare && isShareDefined) {
+              handleShare()
+              return
+            }
+            handleCopy()
+            navigator.clipboard.writeText(textToCopy)
+            setIsCopied(true)
+            setTimeout(() => setIsCopied(false), 3000)
 
-          if (onClick) onClick()
-        }}>
-        {isCopied ? (
-          <Trans>Copié !</Trans>
-        ) : canShare && isShareDefined ? (
-          <Trans>Partager</Trans>
-        ) : (
-          <Trans>Copier le lien</Trans>
-        )}
-      </Button>
-    </div>
+            if (onClick) onClick()
+          }}>
+          {isCopied ? (
+            <Trans>Copié !</Trans>
+          ) : canShare && isShareDefined ? (
+            <Trans>Partager</Trans>
+          ) : (
+            <Trans>Copier le lien</Trans>
+          )}
+        </Button>
+      </div>
+      {isError && (
+        <div className="mt-2 text-red-500">
+          <Trans>Impossible de copier le lien</Trans>
+        </div>
+      )}
+    </>
   )
 }

@@ -36,14 +36,15 @@ export default function DomesticWaterContent() {
           </strong>
         </Trans>
       </p>
+
+      {/* TODO: Uncomment when a new version of the @socialgouv/react-departements
+      package compatible with React 19 is released.
       <p>
         <Trans>
           Voici la carte des départements qui subissent des restrictions d'eau
           en ce moment :
         </Trans>
       </p>
-      {/* TODO: Uncomment when a new version of the @socialgouv/react-departements
-      package compatible with React 19 is released.
       <div className="relative mb-8 max-w-96 self-center">
         <France
           departements={departementsCodes}

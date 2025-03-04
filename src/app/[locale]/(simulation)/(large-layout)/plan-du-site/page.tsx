@@ -99,7 +99,7 @@ export default async function PlanDuSitePage({ params }: DefaultPageProps) {
   }
 
   return (
-    <div data-cypress-id="plan-links">
+    <div data-cypress-id="plan-links" className="mb-12">
       <Title
         title={
           <Trans locale={locale} i18nKey="publicodes.planDuSite.title">
