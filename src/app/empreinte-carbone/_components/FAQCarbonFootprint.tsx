@@ -162,48 +162,61 @@ export default async function FAQCarbonFootprint() {
 
               <ul className="mb-4 flex list-disc flex-col gap-2 pl-3">
                 <li>
+                  <strong>
+                    <Trans>énergie et production industrielle</Trans>{' '}
+                  </strong>
                   <Trans>
-                    <strong>énergie et production industrielle</strong> : la
-                    combustion d’énergies fossiles (charbon, pétrole, gaz
+                    : la combustion d’énergies fossiles (charbon, pétrole, gaz
                     naturel) pour produire de l’électricité mais aussi pour
                     alimenter les industries est la première cause d’émissions
                     de CO₂ dans le monde ;
                   </Trans>
                 </li>
                 <li>
+                  <strong>
+                    <Trans>transports</Trans>
+                  </strong>{' '}
                   <Trans>
-                    <strong>transports</strong> : voitures, camions, avions et
-                    navires rejettent massivement du CO2 en brûlant des
+                    : voitures, camions, avions et navires rejettent massivement
+                    du CO2 en brûlant des carburants fossiles. La demande
                     carburants fossiles. La demande croissante de mobilité
                     (voyages et transport de marchandises) accentue ces
                     émissions ;
                   </Trans>
                 </li>
                 <li>
+                  <strong>
+                    <Trans>agriculture et élevage</Trans>
+                  </strong>{' '}
                   <Trans>
-                    <strong>agriculture et élevage</strong> : les pratiques
-                    agricoles intensives et l’élevage, en particulier la
-                    production de viande et les rejets de méthane des ruminants,
-                    contribuent fortement aux gaz à effet de serre, avec un
-                    impact significatif sur le changement climatique. L’usage de
-                    fertilisants et la déforestation pour l’extension des terres
-                    agricoles contribuent également à ces émissions ;
+                    : les pratiques agricoles intensives et l’élevage, en
+                    particulier la production de viande et les rejets de méthane
+                    des ruminants, contribuent fortement aux gaz à effet de
+                    serre, avec un impact significatif sur le changement
+                    climatique. L’usage de fertilisants et la fertilisants et la
+                    déforestation pour l’extension des terres agricoles
+                    contribuent également à ces émissions ;
                   </Trans>
                 </li>
                 <li>
+                  <strong>
+                    <Trans>logement et consommation énergétique </Trans>
+                  </strong>{' '}
                   <Trans>
-                    <strong>logement et consommation énergétique </strong> : le
-                    chauffage (et dans une moindre mesure, la climatisation) est
-                    le poste le plus important de consommation énergétique du
-                    logement, donc d’émission de GES. Il faut également y
-                    ajouter les consommations des appareils électroménagers ;
+                    : le chauffage (et dans une moindre mesure, la
+                    climatisation) est le poste le plus important de
+                    consommation énergétique du logement, donc d’émission de
+                    GES. Il faut également y ajouter les consommations des
+                    appareils électroménagers ;
                   </Trans>
                 </li>
                 <li>
-                  <Trans>
-                    <strong>
+                  <strong>
+                    <Trans>
                       production de biens et consommation croissante
-                    </strong>{' '}
+                    </Trans>
+                  </strong>{' '}
+                  <Trans>
                     : la fabrication de biens (électronique, vêtements,
                     équipements, loisirs) à travers le monde génère des
                     émissions à chaque étape : extraction des matières

@@ -25,14 +25,18 @@ export default function FunFact({ question }: Props) {
         <Emoji>💡</Emoji> Le saviez vous ?
       </h3>
       <p className="mb-0">
-        <Trans>
-          <strong>
+        <strong>
+          <Trans>
             La taille des logements français a très fortement augmenté
-          </strong>{' '}
+          </Trans>
+        </strong>{' '}
+        <Trans>
           sur ces 50 dernières années, passant de 23 à 40,4 m² par habitant,
-          soit{' '}
-          <strong>90,9 m² en moyenne pour un foyer de 2,2 personnes.</strong>
-        </Trans>
+          soit
+        </Trans>{' '}
+        <strong>
+          <Trans>90,9 m² en moyenne pour un foyer de 2,2 personnes.</Trans>
+        </strong>
       </p>
     </div>
   )

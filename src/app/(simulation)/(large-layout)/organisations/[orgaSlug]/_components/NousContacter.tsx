@@ -12,7 +12,9 @@ export default function NousContacter() {
           <p className="mb-2">
             <Trans>Vous avez une question ?</Trans>
           </p>
-          <Link href="/contact">Contactez-nous</Link>
+          <Link href="/contact">
+            <Trans>Contactez-nous</Trans>
+          </Link>
         </div>
       </div>
     </section>

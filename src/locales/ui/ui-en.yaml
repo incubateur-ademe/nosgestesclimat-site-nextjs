@@ -409,7 +409,7 @@ entries:
   Nous vérifions votre code...: We check your code...
   Demander une démo: Request a demo
   secondes avant de pouvoir recevoir un nouveau code: seconds before you can receive a new code
-  "Sur l'espace organisation de ": 'On the '
+  "Sur l'espace organisation de ": 'On the organisation space of'
   Renvoyer le code: Resend code
   Le code est invalide: The code is invalid
   Bienvenue sur votre espace !: Welcome to your space!
@@ -1588,3 +1588,21 @@ entries:
   Il y a de grandes chances que votre temps soit plus efficace à: Chances are your time will be better spent on
   Même si réduire son empreinte individuelle est l'action la plus directe, il existe: Even if reducing our individual footprint is the most direct action, there are other ways of doing things
   À partir de votre bilan,: From your balance sheet,
+  Contactez-nous: Contact us
+  'logement et consommation énergétique ': 'housing and energy consumption '
+  énergie et production industrielle: energy and industrial production
+  90,9 m² en moyenne pour un foyer de 2,2 personnes.: 90.9 m² on average for a household of 2.2 people.
+  La taille des logements français a très fortement augmenté: The size of French homes has risen sharply
+  transports: transport
+  agriculture et élevage: agriculture and livestock
+  production de biens et consommation croissante: production of goods and growing consumption
+  Un petit doute ? L’info sera sûrement dans votre contrat d’assurance: A little doubt? You'll probably find the information in your insurance policy
+  sur ces 50 dernières années, passant de 23 à 40,4 m² par habitant, soit: over the last 50 years, from 23 to 40.4 m² per inhabitant, i.e
+  ': le chauffage (et dans une moindre mesure, la climatisation) est le poste le plus important de consommation énergétique du logement, donc d’émission de GES. Il faut également y ajouter les consommations des appareils électroménagers ;': heating (and, to a lesser extent, air conditioning) is the largest single source of energy consumption in the home, and therefore of greenhouse gas emissions. To this must also be added the consumption of household appliances;
+  ': la combustion d’énergies fossiles (charbon, pétrole, gaz naturel) pour produire de l’électricité mais aussi pour alimenter les industries est la première cause d’émissions de CO₂ dans le monde ;': combustion of fossil fuels (coal, oil, natural gas) to produce electricity and power industry is the leading cause of CO₂ emissions worldwide;
+  ': la fabrication de biens (électronique, vêtements, équipements, loisirs) à travers le monde génère des émissions à chaque étape : extraction des matières premières, production, transport, distribution et élimination. Ces processus contribuent fortement à l’empreinte carbone globale en raison d’une demande toujours croissante.': 'the manufacture of goods (electronics, clothing, equipment, leisure) around the world generates emissions at every stage: extraction of raw materials, production, transport, distribution and disposal. These processes make a significant contribution to the global carbon footprint because of ever-increasing demand.'
+  ': les pratiques agricoles intensives et l’élevage, en particulier la production de viande et les rejets de méthane des ruminants, contribuent fortement aux gaz à effet de serre, avec un impact significatif sur le changement climatique. L’usage de fertilisants et la fertilisants et la déforestation pour l’extension des terres agricoles contribuent également à ces émissions ;': intensive agricultural practices and livestock farming, particularly meat production and methane emissions from ruminants, are major contributors to greenhouse gases, with a significant impact on climate change. The use of fertilisers and deforestation to extend farmland also contribute to these emissions;
+  ': voitures, camions, avions et navires rejettent massivement du CO2 en brûlant des carburants fossiles. La demande carburants fossiles. La demande croissante de mobilité (voyages et transport de marchandises) accentue ces émissions ;': 'cO2 emissions: cars, trucks, planes and ships emit massive amounts of CO2 by burning fossil fuels. Demand for fossil fuels. The growing demand for mobility (travel and goods transport) is exacerbating these emissions;'
+  Sur l'espace organisation de: On the
+  Un petit doute ? L’info sera sûrement dans votre contrat d’assurance logement.: A little doubt? You'll find the information in your home insurance policy.
+  Sur l'espace organisation de <strong className="text-secondary-700">{{organisation}}</strong>: On the <strong className="text-secondary-700">{{organisation}}</strong>
