@@ -1,4 +1,4 @@
-import type { ReactNode} from 'react';
+import type { ReactNode } from 'react';
 import { forwardRef } from 'react'
 import TextInputGroup from './TextInputGroup'
 
@@ -29,7 +29,7 @@ export default forwardRef(function EmailInput(
       helperText={helperText}
       name="email"
       type="email"
-      placeholder="jean-marc@nosgestesclimat.fr"
+      placeholder="paul.martin@xxx.com"
       className={className}
       readOnly={readOnly}
       ref={ref as any}
