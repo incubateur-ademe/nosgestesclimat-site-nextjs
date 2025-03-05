@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@incubateur-ademe/legal-pages-react": "^0.3.0",
-    "@incubateur-ademe/nosgestesclimat": "^3.6.0",
+    "@incubateur-ademe/nosgestesclimat": "3.5.4",
     "@next/mdx": "^15.2.0",
     "@publicodes/react-ui": "^1.7.1",
     "@publicodes/tools": "^1.5.3",
