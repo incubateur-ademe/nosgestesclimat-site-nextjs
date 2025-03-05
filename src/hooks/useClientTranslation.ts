@@ -20,5 +20,13 @@ export function useClientTranslation(): ReturnType<typeof useTranslation> {
     prevLocale.current = locale
   }, [locale, transObject])
 
+  if (typeof window === 'undefined') {
+    return {
+      ...transObject,
+      // @ts-expect-error This is a workaround to avoid hydration errors
+      t: (key: string, options?: Record<string, unknown>) => key,
+    }
+  }
+
   return transObject
 }
