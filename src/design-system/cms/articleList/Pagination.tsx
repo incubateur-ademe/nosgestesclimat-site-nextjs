@@ -9,11 +9,13 @@ import { twMerge } from 'tailwind-merge'
 export default async function Pagination({
   currentPage,
   totalPages,
+  locale,
 }: {
   currentPage: number
   totalPages: number
+  locale: string
 }) {
-  const { t } = await getServerTranslation()
+  const { t } = await getServerTranslation({ locale })
   return (
     <div className="text-center">
       <div className="relative mt-16 inline-flex items-center justify-center gap-3">

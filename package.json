@@ -36,7 +36,7 @@
     "ts:prune": "ts-prune | grep -v generateMetadata"
   },
   "dependencies": {
-    "@incubateur-ademe/legal-pages-react": "^0.3.0",
+    "@incubateur-ademe/legal-pages-react": "^0.4.0",
     "@incubateur-ademe/nosgestesclimat": "3.5.4",
     "@next/mdx": "^15.2.0",
     "@publicodes/react-ui": "^1.7.1",
