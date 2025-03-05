@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { ReactNode } from 'react'
 import { useEffect } from 'react'
@@ -48,7 +48,7 @@ export default function Modal({
           <button
             disabled={isLoading}
             onClick={!isLoading ? closeModal : () => {}}
-            className="text-xl "
+            className="text-xl"
             title={t('Fermer')}>
             ×
           </button>

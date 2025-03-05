@@ -219,6 +219,11 @@ const redirects = [
     destination: '/blog',
     permanent: true,
   },
+  {
+    source: '/contextes-de-sondages',
+    destination: '/',
+    permanent: true,
+  },
 ]
 
 module.exports = redirects

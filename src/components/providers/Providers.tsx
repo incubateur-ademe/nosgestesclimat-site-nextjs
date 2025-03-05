@@ -1,6 +1,6 @@
 'use client'
 
-import SimulateurSkeleton from '@/app/(simulation)/simulateur/[root]/skeleton'
+import SimulateurSkeleton from '@/app/[locale]/(simulation)/simulateur/[root]/skeleton'
 import LocalisationBanner from '@/components/translation/LocalisationBanner'
 import { useRules } from '@/hooks/useRules'
 import {

@@ -19,7 +19,7 @@ import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import Trans from '../translation/Trans'
+import Trans from '../translation/trans/TransClient'
 import Warning from './question/Warning'
 
 type Props = {

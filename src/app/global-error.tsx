@@ -15,7 +15,7 @@ export default function GlobalError({ error }: Props) {
 
   return (
     <html lang="fr">
-      <body>
+      <body style={{ backgroundColor: 'white', fontFamily: 'sans-serif' }}>
         <Error500 />
 
         <NextError statusCode={undefined as any} />

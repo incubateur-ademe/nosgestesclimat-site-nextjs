@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import Trans from '@/components/translation/trans/TransClient'
 import { defaultMetric } from '@/constants/metric'
 import Loader from '@/design-system/layout/Loader'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
@@ -10,11 +12,7 @@ import { twMerge } from 'tailwind-merge'
 
 type Sizes = 'md' | 'lg'
 
-type Props = {
-  metric?: Metric
-  className?: string
-  size?: Sizes
-}
+type Props = { metric?: Metric; className?: string; size?: Sizes }
 
 const duration = {
   carbone: <Trans>de CO₂e par an</Trans>,
@@ -39,20 +37,12 @@ export default function TotalFootprintNumber({
 
   const { formattedValue, unit } = formatFootprint(
     totalFootprintValueMinusActions,
-    {
-      t,
-      locale,
-      metric,
-    }
+    { t, locale, metric }
   )
 
   const { formattedValue: formatedTotalFootprintValue } = formatFootprint(
     totalFootprintValue,
-    {
-      t,
-      locale,
-      metric,
-    }
+    { t, locale, metric }
   )
 
   const shouldDisplayTotalWithoutActions =

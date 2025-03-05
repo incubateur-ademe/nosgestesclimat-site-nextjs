@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import Trans from '@/components/translation/trans/TransClient'
 import type { Journey } from '@/types/journey'
 import { motion } from 'framer-motion'
 import type { Dispatch, SetStateAction } from 'react'

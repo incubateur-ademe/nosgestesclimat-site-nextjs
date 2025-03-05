@@ -2,15 +2,13 @@
 
 import VerticalBarChart from '@/components/charts/VerticalBarChart'
 import HourglassIcon from '@/components/icons/HourglassIcon'
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import Card from '@/design-system/layout/Card'
 import { useIsOrganisationAdmin } from '@/hooks/organisations/useIsOrganisationAdmin'
 import Wave from 'react-wavify'
 import CategoryChartItem from './CategoryChartItem'
 
-type Props = {
-  hasLessThan3Participants: boolean
-}
+type Props = { hasLessThan3Participants: boolean }
 
 export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
   const { isAdmin } = useIsOrganisationAdmin()
@@ -72,12 +70,7 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
           <Wave
             fill="#5152D0"
             className="pointer-events-none absolute bottom-0 left-0 right-0 h-full w-full rounded-b-xl"
-            options={{
-              height: 10,
-              amplitude: 20,
-              speed: 0.11,
-              points: 3,
-            }}
+            options={{ height: 10, amplitude: 20, speed: 0.11, points: 3 }}
           />
           <div className="relative z-10">
             <p className="text-3xl font-bold text-white">

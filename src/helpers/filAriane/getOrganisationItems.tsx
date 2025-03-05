@@ -1,6 +1,9 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import Trans from '@/components/translation/trans/TransClient'
 import type { User } from '@/publicodes-state/types'
 import type { PublicOrganisationPoll } from '@/types/organisations'
+import type { ReactNode } from 'react'
 
 function formatSlugToName(slug: string) {
   return decodeURIComponent(slug).replaceAll('-', ' ')
@@ -91,7 +94,7 @@ export function getOrganisationItems({
   poll?: PublicOrganisationPoll | null
 }): {
   href: string
-  label: string | JSX.Element
+  label: string | ReactNode
   isActive: boolean
 }[] {
   if (!pathname.includes('organisations')) {

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import { simulateurCloseScoreInfo } from '@/constants/tracking/pages/simulateur'
 import { TUTORIALS } from '@/constants/tutorial'
 import Button from '@/design-system/inputs/Button'
@@ -64,7 +64,7 @@ export default function Explanation() {
           className="absolute -top-6 left-4 z-10">
           <path
             d="M14 0L27.8564 24H0.143594L14 0Z"
-            className=" fill-gray-100 stroke-primary-200 stroke-2"
+            className="fill-gray-100 stroke-primary-200 stroke-2"
           />
         </svg>
 

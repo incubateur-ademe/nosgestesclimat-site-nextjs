@@ -3,8 +3,8 @@ import Marianne from '@/components/images/partners/Marianne'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
-export default async function Partners() {
-  const { t } = await getServerTranslation()
+export default async function Partners({ locale }: { locale: string }) {
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <div className="flex justify-center md:-mt-10">

@@ -1,14 +1,16 @@
+'use client'
+
 import {
   labels,
   periods,
 } from '@/components/specialQuestions/voiture/journeysInput/_components/JourneyItem'
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Journey } from '@/types/journey'
-import type { Dispatch, SetStateAction} from 'react';
+import type { Dispatch, SetStateAction } from 'react'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { v4 as uuid } from 'uuid'
@@ -27,9 +29,8 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
   const [passengers, setPassengers] = useState(1)
 
   return (
-    <tr
-      className={twMerge('block border-b border-primary-700  p-2', className)}>
-      <td className="mb-4 block text-sm ">
+    <tr className={twMerge('block border-b border-primary-700 p-2', className)}>
+      <td className="mb-4 block text-sm">
         <Select
           className="w-48 text-sm"
           value={label}
@@ -45,7 +46,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
           })}
         </Select>
       </td>
-      <td className="block border-primary-700 pb-4 text-sm ">
+      <td className="block border-primary-700 pb-4 text-sm">
         <span className="flex items-end gap-4">
           <TextInputGroup
             className="w-12 text-sm md:w-16"
