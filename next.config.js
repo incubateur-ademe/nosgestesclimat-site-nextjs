@@ -14,6 +14,7 @@ const remoteImagesPatterns = require('./config/remoteImagesPatterns.js')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
   images: {

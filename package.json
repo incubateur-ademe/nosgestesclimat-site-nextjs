@@ -11,14 +11,15 @@
     "node": ">=22"
   },
   "scripts": {
+    "start": "node .next/standalone/server.js",
     "test": "jest",
     "dev": "next dev",
     "dev:turbo": "next dev --turbo",
-    "build": "next build",
+    "build": "next build && node copy-assets.js",
     "build:analyze": "ANALYZE=true next build",
     "build:debug-memory": "next build --experimental-debug-memory-usage",
     "format": "prettier --write \"**/*.{js,ts,md,json}\" && next lint --fix",
-    "start": "next start",
+    "start:dev": "next start",
     "lint": "prettier --check \"**/*.{js,ts,md,json}\" && next lint",
     "lint:types": "tsc --noEmit",
     "e2e": "cypress open --e2e",
