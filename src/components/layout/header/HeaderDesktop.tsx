@@ -1,41 +1,29 @@
 'use client'
 
 import ActionsIcon from '@/components/icons/ActionsIcon'
-import AmisIcon from '@/components/icons/AmisIcon'
 import BilanIcon from '@/components/icons/BilanIcon'
 import PRIndicator from '@/components/layout/header/headerDesktop/PRIndicator'
 import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/Trans'
 import {
   headerClickActions,
-  headerClickClassements,
   headerClickLogo,
   headerClickProfil,
   headerClickTest,
 } from '@/constants/tracking/layout'
-import { HIDE_CTA_PATHS } from '@/constants/urls'
-import { linkToClassement } from '@/helpers/navigation/classementPages'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 import NavLink from './NavLink'
-import OrganisationLink from './_components/OrganisationLink'
 import ProfileIcon from './_components/ProfileIcon'
 import DebugIndicator from './headerDesktop/DebugIndicator'
-import CTAButton from './headerDesktop/MenuCTAButton'
 
 type Props = {
   isSticky: boolean
 }
 export default function HeaderDesktop({ isSticky }: Props) {
   const { t } = useClientTranslation()
-
-  const pathname = usePathname()
-
-  const { user } = useUser()
 
   const { getLinkToSimulateurPage } = useSimulateurPage()
 
@@ -73,18 +61,6 @@ export default function HeaderDesktop({ isSticky }: Props) {
                   <Trans>Mes gestes</Trans>
                 </NavLink>
               </li>
-
-              <li>
-                <NavLink
-                  href={linkToClassement}
-                  onClick={() => trackEvent(headerClickClassements)}
-                  icon={AmisIcon}
-                  activeMatches={['/classement', '/amis']}
-                  title={t('Mes classements')}
-                  data-cypress-id="amis-link">
-                  <Trans>Mes groupes</Trans>
-                </NavLink>
-              </li>
             </ul>
           </nav>
 
@@ -101,16 +77,6 @@ export default function HeaderDesktop({ isSticky }: Props) {
               onClick={() => trackEvent(headerClickProfil)}>
               <Trans>Profil</Trans>
             </NavLink>
-
-            {user?.organisation?.administratorEmail ? (
-              <>
-                <div className="my-auto h-8 w-[1px] bg-gray-200" />
-
-                <OrganisationLink />
-              </>
-            ) : !HIDE_CTA_PATHS.find((path) => pathname?.includes(path)) ? (
-              <CTAButton />
-            ) : null}
           </div>
         </div>
       </div>
