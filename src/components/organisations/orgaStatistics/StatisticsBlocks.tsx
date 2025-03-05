@@ -1,7 +1,7 @@
 'use client'
 
 import VerticalBarChart from '@/components/charts/VerticalBarChart'
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric, eauMetric } from '@/constants/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getSimulationsAggregatedResult } from '@/helpers/organisations/getSimulationsAggregatedResult'
@@ -57,10 +57,7 @@ export default function StatisticsBlocks({
   })
 
   const { formattedValue: formattedWaterValue, unit: waterUnit } =
-    formatFootprint(result.eau.bilan, {
-      metric: eauMetric,
-      localize: true,
-    })
+    formatFootprint(result.eau.bilan, { metric: eauMetric, localize: true })
 
   return (
     <div className="grid w-full auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -104,10 +101,7 @@ export default function StatisticsBlocks({
               <Wave
                 fill="#5152D0"
                 className="pointer-events-none absolute bottom-0 left-0 right-0 h-full w-full rounded-b-xl"
-                options={{
-                  speed: 0.11,
-                  points: 3,
-                }}
+                options={{ speed: 0.11, points: 3 }}
               />
               <div className="relative z-10">
                 <p className="text-3xl font-bold text-white">

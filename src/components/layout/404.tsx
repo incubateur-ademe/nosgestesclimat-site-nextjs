@@ -5,7 +5,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 import { useState } from 'react'
 import Wave from 'react-wavify'
-import Trans from '../translation/Trans'
+import Trans from '../translation/trans/TransClient'
 import Fish from './404/Fish'
 
 export default function Route404() {
@@ -18,7 +18,7 @@ export default function Route404() {
 
       <div className="relative mt-20 flex flex-col items-center lg:mt-36">
         <div className="relative w-full bg-white">
-          <h1 className="mb-2 flex items-center justify-center text-[10rem] font-black text-amber-400  md:text-[20rem]">
+          <h1 className="mb-2 flex items-center justify-center text-[10rem] font-black text-amber-400 md:text-[20rem]">
             <span className="island mt-20 leading-none">4</span>
             <span className="island relative leading-none">
               <Image
@@ -38,12 +38,7 @@ export default function Route404() {
           <Wave
             fill="#1617C5"
             className="pointer-events-none absolute bottom-0 left-0 right-0 h-full w-full opacity-75"
-            options={{
-              height: 70,
-              amplitude: 70,
-              speed: 0.11,
-              points: 3,
-            }}
+            options={{ height: 70, amplitude: 70, speed: 0.11, points: 3 }}
           />
         </div>
         <p className="relative text-center font-bold text-white sm:text-lg md:text-2xl">

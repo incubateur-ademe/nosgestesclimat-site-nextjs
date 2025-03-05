@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import Markdown from '@/design-system/utils/Markdown'
 import {
@@ -9,9 +11,7 @@ import {
 import { useForm, useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
-type Props = {
-  notification: DottedName
-}
+type Props = { notification: DottedName }
 export default function Notification({ notification }: Props) {
   const { description, setValue } = useRule(notification)
 

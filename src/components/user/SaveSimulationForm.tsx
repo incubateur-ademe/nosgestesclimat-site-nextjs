@@ -1,7 +1,7 @@
 'use client'
 
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import {
   LIST_MAIN_NEWSLETTER,
   LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
@@ -15,9 +15,9 @@ import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletter
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import type { ReactNode} from 'react';
+import type { ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
-import type { SubmitHandler} from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 
@@ -37,9 +37,7 @@ type Props = {
   onCompleted?: (props: Record<string, unknown>) => void
   className?: string
   shouldForceEmailEditable?: boolean
-  defaultValues?: {
-    'newsletter-transports': boolean
-  }
+  defaultValues?: { 'newsletter-transports': boolean }
 }
 
 export default function UserInformationForm({
@@ -69,11 +67,7 @@ export default function UserInformationForm({
     handleSubmit,
     formState: { errors },
     setValue,
-  } = useReactHookForm<Inputs>({
-    defaultValues: {
-      name: user?.name,
-    },
-  })
+  } = useReactHookForm<Inputs>({ defaultValues: { name: user?.name } })
 
   const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
     user?.email ?? ''
@@ -97,10 +91,7 @@ export default function UserInformationForm({
     mutateAsync: updateUserSettings,
     isPending,
     isError,
-  } = useUpdateUserSettings({
-    email: user?.email ?? '',
-    userId: user?.userId,
-  })
+  } = useUpdateUserSettings({ email: user?.email ?? '', userId: user?.userId })
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const newsletterIds = {
@@ -182,12 +173,10 @@ export default function UserInformationForm({
         {inputsDisplayed.includes('newsletter-saisonniere') ||
           (inputsDisplayed.includes('newsletter-transports') && (
             <>
-              <h3 className="mb-0 mt-6">
-                <Trans>Inscription à nos e-mails</Trans>
-              </h3>
+              <h3 className="mb-0 mt-6">{t('Inscription à nos e-mails')}</h3>
 
               <p className="text-sm text-gray-600">
-                <Trans>Vous pouvez vous désincrire à tout moment</Trans>
+                {t('Vous pouvez vous désincrire à tout moment')}
               </p>
             </>
           ))}
@@ -229,22 +218,21 @@ export default function UserInformationForm({
             disabled={isPending || isSubmitted}>
             {isPending && <Loader size="sm" color="light" />}
 
-            {submitLabel ?? <Trans>Mettre à jour mes informations</Trans>}
+            {submitLabel ?? t('Mettre à jour mes informations')}
           </Button>
 
           {isSubmitted && (
             <p className="mt-4 flex items-center text-sm text-green-700">
               <CheckCircleIcon className="mr-2 fill-green-700" />
-              <Trans>Modifications sauvegardées</Trans>
+              {t('Modifications sauvegardées')}
             </p>
           )}
 
           {isError && (
             <p className="mt-4 text-sm text-red-700">
-              <Trans>
-                Une erreur s'est produite au moment de la sauvegarde de vos
-                paramètres
-              </Trans>
+              {t(
+                "Une erreur s'est produite au moment de la sauvegarde de vos paramètres"
+              )}
             </p>
           )}
         </div>

@@ -1,3 +1,5 @@
+'use client'
+
 import { useSimulation } from '@/publicodes-state'
 import RavijenChart from './RavijenChart'
 

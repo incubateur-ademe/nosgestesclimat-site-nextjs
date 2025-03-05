@@ -1,5 +1,7 @@
-import Trans from '@/components/translation/Trans'
-import type { ReactNode} from 'react';
+'use client'
+
+import Trans from '@/components/translation/trans/TransClient'
+import type { ReactNode } from 'react'
 import { useEffect } from 'react'
 import Modal from 'react-modal'
 import Button from '../inputs/Button'
@@ -48,7 +50,7 @@ export default function ConfirmationModal({
       overlayClassName="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-[10000] overflow-hidden">
       {children}
 
-      <div className="mt-12 flex flex-wrap justify-center gap-4 md:justify-normal ">
+      <div className="mt-12 flex flex-wrap justify-center gap-4 md:justify-normal">
         <Button color="secondary" onClick={!isLoading ? closeModal : () => {}}>
           <Trans>Annuler</Trans>
         </Button>

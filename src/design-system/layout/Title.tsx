@@ -3,7 +3,7 @@ import type { JSX, PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Separator from './Separator'
 
-type Props = {
+export type TitleProps = {
   title?: string | JSX.Element
   subtitle?: string | JSX.Element
   tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
@@ -19,7 +19,7 @@ export default function Title({
   className = '',
   children,
   ...props
-}: PropsWithChildren<Props>) {
+}: PropsWithChildren<TitleProps>) {
   const Tag = tag
   return (
     <div className="relative">

@@ -1,4 +1,4 @@
-import { locales } from '@/i18nConfig'
+import i18nConfig from '@/i18nConfig'
 import { useSearchParams } from 'next/navigation'
 
 import { usePathname } from 'next/navigation'
@@ -32,7 +32,7 @@ export function useGetTrackedUrl() {
   let url = pathname
 
   // We remove the lang prefix from the pathname
-  locales.map((locale) => {
+  i18nConfig.locales.map((locale) => {
     if (pathname?.startsWith(`/${locale}`)) {
       url = pathname.slice(3)
     }

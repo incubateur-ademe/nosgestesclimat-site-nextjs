@@ -1,6 +1,8 @@
+'use client'
+
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
-import Trans from '../translation/Trans'
+import Trans from '../translation/trans/TransClient'
 
 export default function PollLoader() {
   return (

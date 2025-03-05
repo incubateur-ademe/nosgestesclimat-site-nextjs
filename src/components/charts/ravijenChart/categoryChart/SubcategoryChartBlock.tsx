@@ -1,7 +1,6 @@
 'use client'
 
 import Link from '@/components/Link'
-import SafeImage from '@/components/images/SafeImage'
 import { DEFAULT_LIMIT_PERCENTAGE_TO_SQUASH } from '@/constants/ravijen'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
@@ -9,6 +8,7 @@ import { useRule } from '@/publicodes-state'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { removePercentageFromString } from '@/utils/removePercentageFromString'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import Image from 'next/image'
 import EnigmaticMoreChartBlock from './subcategoryChartBlock/EnigmaticMoreChartBlock'
 
 type Props = {
@@ -81,7 +81,7 @@ export default function SubcategoryChartBlock({
       style={{
         height: `${heightPercentage}%`,
       }}>
-      <SafeImage
+      <Image
         style={{ filter: 'grayscale(1) invert(1) brightness(1.8)' }}
         src={`/images/model/${subcategory}.svg`}
         alt={`${titleFormatted}, ${formattedValue} ${unit}`}
@@ -96,7 +96,7 @@ export default function SubcategoryChartBlock({
 
       {!isSmall && !shouldAlwaysDisplayValue && (
         <p
-          className={`absolute bottom-0 right-1 z-10 mb-0  pl-1 text-[0.65rem] ${getBackgroundColor(
+          className={`absolute bottom-0 right-1 z-10 mb-0 pl-1 text-[0.65rem] ${getBackgroundColor(
             category
           )}`}>
           <strong>

@@ -1,7 +1,7 @@
 'use client'
 
 import CheckIcon from '@/components/icons/CheckIcon'
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import {
   LIST_MAIN_NEWSLETTER,
   LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
@@ -30,7 +30,7 @@ type Inputs = {
   'newsletter-logement': boolean
 }
 
-function SuccessMessage() {
+function SuccessMessage({ locale }: { locale: string }) {
   return (
     <div className="flex flex-col items-center justify-center text-center">
       <CheckIcon className="mb-4 h-12 w-12 fill-green-500" />
@@ -78,10 +78,7 @@ export default function NewslettersBlock() {
     setValue,
     formState: { errors },
   } = useReactHookForm<Inputs>({
-    defaultValues: {
-      name: user?.name,
-      email: user?.email,
-    },
+    defaultValues: { name: user?.name, email: user?.email },
     mode: 'onSubmit',
   })
 
@@ -122,9 +119,7 @@ export default function NewslettersBlock() {
     updateEmail(formattedEmail)
 
     // We save the simulation (and signify the backend to send the email)
-    updateUserSettings({
-      newsletterIds: listIds,
-    })
+    updateUserSettings({ newsletterIds: listIds })
   }
 
   return (
@@ -132,7 +127,7 @@ export default function NewslettersBlock() {
       className="rainbow-border w-full rounded-xl bg-white p-8 md:w-4/6"
       aria-live="polite">
       {isSuccess ? (
-        <SuccessMessage />
+        <SuccessMessage locale={locale} />
       ) : (
         <>
           <h3 className="mb-2">

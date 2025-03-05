@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import { baseClassNames, sizeClassNames } from '@/design-system/inputs/Button'
 import type { GesturesType } from '@/types/landing-page'
 import { AnimatePresence, motion } from 'framer-motion'

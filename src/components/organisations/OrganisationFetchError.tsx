@@ -1,13 +1,12 @@
+'use client'
+
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Loader from '@/design-system/layout/Loader'
 import type { Organisation } from '@/types/organisations'
 import MaxWidthContent from '../layout/MaxWidthContent'
-import Trans from '../translation/Trans'
+import Trans from '../translation/trans/TransClient'
 
-type Props = {
-  organisation: Organisation | undefined
-  isError: boolean
-}
+type Props = { organisation: Organisation | undefined; isError: boolean }
 
 export default function OrganisationFetchError({
   organisation,

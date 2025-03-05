@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import {
   LIST_MAIN_NEWSLETTER,
   LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
@@ -17,9 +17,10 @@ import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletter
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import type { ReactNode} from 'react';
+import { captureException } from '@sentry/nextjs'
+import type { ReactNode } from 'react'
 import { useEffect, useRef } from 'react'
-import type { SubmitHandler} from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 
@@ -44,9 +45,7 @@ type Props = {
   onCompleted?: (props: Record<string, unknown>) => void
   className?: string
   shouldForceEmailEditable?: boolean
-  defaultValues?: {
-    'newsletter-transports': boolean
-  }
+  defaultValues?: { 'newsletter-transports': boolean }
 }
 
 export default function UserInformationForm({
@@ -75,11 +74,7 @@ export default function UserInformationForm({
     handleSubmit,
     formState: { errors },
     setValue,
-  } = useReactHookForm<Inputs>({
-    defaultValues: {
-      name: user?.name,
-    },
-  })
+  } = useReactHookForm<Inputs>({ defaultValues: { name: user?.name } })
 
   const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
     user?.email ?? ''
@@ -136,6 +131,7 @@ export default function UserInformationForm({
         onCompleted(data)
       }, 2500)
     } catch (error) {
+      captureException(error)
       displayErrorToast(t('Une erreur est survenue. Veuillez réessayer.'))
     }
   }

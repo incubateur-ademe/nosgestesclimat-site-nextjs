@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import { trackingDownloadRavijenChart } from '@/constants/tracking/misc'
 import Button from '@/design-system/inputs/Button'
 import { getSubcatsOfCategory } from '@/helpers/publicodes/getSubcatsOfCategory'
@@ -34,7 +34,7 @@ export default function RavijenChart({
   if (!categories) return null
 
   return (
-    <>
+    <div className="mb-8">
       <ul
         id="ravijen"
         className="flex h-[40rem] max-w-full items-end gap-1 bg-white py-4 md:w-[36rem] md:px-4">
@@ -71,6 +71,6 @@ export default function RavijenChart({
           <Trans>Télécharger l'image</Trans>
         </Button>
       </div>
-    </>
+    </div>
   )
 }

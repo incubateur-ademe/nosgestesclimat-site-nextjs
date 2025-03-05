@@ -1,7 +1,7 @@
 'use client'
 
 import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import { defaultMetric } from '@/constants/metric'
 import { endClickCategory } from '@/constants/tracking/pages/end'
 import Card from '@/design-system/layout/Card'
@@ -56,9 +56,7 @@ export default function AccordionItemWithRule({
       content={
         <Card
           className="mb-4 border-x-0 bg-gray-100"
-          style={{
-            boxShadow: '0px 6px 6px -2px rgba(21, 3, 35, 0.05) inset',
-          }}>
+          style={{ boxShadow: '0px 6px 6px -2px rgba(21, 3, 35, 0.05) inset' }}>
           <SubcategoriesList
             category={dottedName}
             subcategories={subcategories}
