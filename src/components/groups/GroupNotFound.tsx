@@ -1,7 +1,9 @@
+'use client'
+
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { linkToClassement } from '@/helpers/navigation/classementPages'
-import Trans from '../translation/Trans'
+import Trans from '../translation/trans/TransClient'
 
 export default function GroupNotFound() {
   return (

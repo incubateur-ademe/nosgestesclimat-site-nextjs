@@ -1,5 +1,5 @@
-import DidYouKnowMainLanding from '@/app/_components/DidYouKnowMainLanding'
-import Trans from '@/components/translation/Trans'
+import DidYouKnowMainLanding from '@/app/[locale]/_components/DidYouKnowMainLanding'
+import Trans from '@/components/translation/trans/TransServer'
 import PostThumbnail from '@/design-system/cms/PostThumbnail'
 import type { ArticleItemType } from '../../adapters/cmsClient'
 import Pagination from './articleList/Pagination'
@@ -8,15 +8,17 @@ export default function ArticleList({
   articles,
   pageCount,
   currentPage,
+  locale,
 }: {
   articles: ArticleItemType[]
   pageCount: number
   currentPage: number
+  locale: string
 }) {
   return (
     <section className="mb-20 scroll-mt-40" id="articles">
       <h2 className="mb-8 font-medium">
-        <Trans>Nos derniers articles</Trans>
+        <Trans locale={locale}>Nos derniers articles</Trans>
       </h2>
       <ul
         className="grid grid-cols-1 gap-8 md:grid-cols-3"
@@ -36,7 +38,10 @@ export default function ArticleList({
         ))}
       </ul>
 
-      <DidYouKnowMainLanding className="mt-20 overflow-hidden rounded-lg px-10" />
+      <DidYouKnowMainLanding
+        locale={locale}
+        className="mt-20 overflow-hidden rounded-lg px-10"
+      />
 
       {articles.length > 6 && (
         <ul className="mt-20 grid grid-cols-1 gap-8 md:grid-cols-3">

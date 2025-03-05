@@ -4,10 +4,10 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RestartIcon from '../icons/RestartIcon'
-import Trans from '../translation/Trans'
+import Trans from '../translation/trans/TransClient'
 
 export default function DynamicCTAButtons({
   className,
@@ -32,6 +32,16 @@ export default function DynamicCTAButtons({
   const { progression } = useCurrentSimulation()
 
   const [isHover, setIsHover] = useState(false)
+
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  if (!isClient) {
+    return null
+  }
 
   return (
     <div className="flex flex-col flex-wrap items-center justify-center gap-2 md:items-start lg:flex-row lg:flex-nowrap">
@@ -65,7 +75,7 @@ export default function DynamicCTAButtons({
               : '',
             'leading-none'
           )}>
-          {linkToSimulateurPageLabel}
+          <Trans>{linkToSimulateurPageLabel}</Trans>
         </span>
       </ButtonLink>
 

@@ -1,13 +1,13 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import Trans from '@/components/translation/trans/TransClient'
 import { motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
 import Arrow from './Arrow'
 
 const position = (2 / 12) * 100
 
-type Props = {
-  isSmall?: boolean
-}
+type Props = { isSmall?: boolean }
 export default function TargetNumber({ isSmall }: Props) {
   return (
     <motion.div

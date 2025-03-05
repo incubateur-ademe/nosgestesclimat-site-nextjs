@@ -1,11 +1,11 @@
 'use client'
 
 import Link from '@/components/Link'
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import { breadcrumbClickLink } from '@/constants/tracking/layout'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/analytics/trackEvent'
-import { Fragment } from 'react'
+import { Fragment, type ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 export default function Breadcrumbs({
@@ -15,7 +15,7 @@ export default function Breadcrumbs({
 }: {
   items: {
     href: string
-    label: string | JSX.Element
+    label: string | ReactNode
     isActive?: boolean
     isDisabled?: boolean
   }[]
@@ -47,7 +47,7 @@ export default function Breadcrumbs({
                   }}
                   aria-current={isActive}
                   className={twMerge(
-                    'max-w-full text-ellipsis whitespace-nowrap text-sm capitalize text-primary-700 hover:text-primary-700 hover:underline ',
+                    'max-w-full text-ellipsis whitespace-nowrap text-sm capitalize text-primary-700 hover:text-primary-700 hover:underline',
                     isActive
                       ? 'cursor-default text-default no-underline hover:text-default hover:no-underline'
                       : '',

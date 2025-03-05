@@ -1,3 +1,5 @@
+'use client'
+
 import { LIST_NOS_GESTES_TRANSPORT_NEWSLETTER } from '@/constants/brevo'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
@@ -7,21 +9,17 @@ import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletter
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import type { SubmitHandler} from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
-import Trans from '../translation/Trans'
+import Trans from '../translation/trans/TransClient'
 
-type Inputs = {
-  email: string
-}
+type Inputs = { email: string }
 
 export default function NosGestesTransportsBanner() {
   const { t } = useClientTranslation()
   const { user, updateEmail } = useUser()
   const { register, handleSubmit } = useReactHookForm<Inputs>({
-    defaultValues: {
-      email: user?.email,
-    },
+    defaultValues: { email: user?.email },
   })
 
   const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
@@ -33,17 +31,12 @@ export default function NosGestesTransportsBanner() {
     isPending,
     isError,
     isSuccess,
-  } = useUpdateUserSettings({
-    email: user?.email ?? '',
-    userId: user?.userId,
-  })
+  } = useUpdateUserSettings({ email: user?.email ?? '', userId: user?.userId })
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     await updateUserSettings({
       email: data.email,
-      newsletterIds: {
-        [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: true,
-      },
+      newsletterIds: { [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: true },
     })
 
     if (data.email && !user?.email) {
@@ -71,13 +64,7 @@ export default function NosGestesTransportsBanner() {
     <div className="mt-12 flex w-full flex-wrap items-start gap-4 rounded-xl bg-transport-50 p-6 md:flex-nowrap">
       <div>
         <p className="text-lg" style={{ marginBottom: '16px' }}>
-          <Emoji
-            style={{
-              marginRight: '8px',
-              fontSize: '2rem',
-            }}>
-            🚲
-          </Emoji>
+          <Emoji style={{ marginRight: '8px', fontSize: '2rem' }}>🚲</Emoji>
           <Trans>
             Recevez nos <strong>conseils transports</strong> directement dans
             votre boite mail !
@@ -106,9 +93,7 @@ export default function NosGestesTransportsBanner() {
                   ? t('Une erreur est survenue. Veuillez réessayer.')
                   : undefined
               }
-              {...register('email', {
-                required: t('Ce champ est requis'),
-              })}
+              {...register('email', { required: t('Ce champ est requis') })}
             />
 
             <Button

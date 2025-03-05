@@ -1,6 +1,8 @@
-import { marianne } from '@/app/layout'
+'use client'
+
+import { marianne } from '@/app/[locale]/layout'
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import Loader from '@/design-system/layout/Loader'
 import VerificationInput from 'react-verification-input'
 

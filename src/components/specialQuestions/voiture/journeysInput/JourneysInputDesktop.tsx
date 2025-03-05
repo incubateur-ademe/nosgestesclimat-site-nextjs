@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import Trans from '@/components/translation/trans/TransClient'
 import type { Journey } from '@/types/journey'
 import { motion } from 'framer-motion'
 import type { Dispatch, SetStateAction } from 'react'
@@ -43,7 +45,7 @@ export function JourneysInputDesktop({
               <Trans>Passagers</Trans>
             </th>
             <th className="table-cell p-2 text-left text-xs opacity-0">
-              Options
+              <Trans>Options</Trans>
             </th>
           </tr>
 

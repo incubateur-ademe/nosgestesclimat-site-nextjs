@@ -1,7 +1,7 @@
 'use client'
 
 import OrganisationIcon from '@/components/icons/OrganisationIcon'
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import { headerClickOrganisation } from '@/constants/tracking/layout'
 import useFetchOrganisations from '@/hooks/organisations/useFetchOrganisations'
 import { useClientTranslation } from '@/hooks/useClientTranslation'

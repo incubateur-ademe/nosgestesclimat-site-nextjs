@@ -26,7 +26,7 @@ import { twMerge } from 'tailwind-merge'
 import Link from '../Link'
 import Logo from '../misc/Logo'
 import LanguageSwitchButton from '../translation/LanguageSwitchButton'
-import Trans from '../translation/Trans'
+import Trans from '../translation/trans/TransClient'
 
 export default function Footer({ className = '' }) {
   const pathname = usePathname()
@@ -50,7 +50,7 @@ export default function Footer({ className = '' }) {
         className,
         shouldUseWhiteBackground ? 'bg-white' : ''
       )}>
-      <div className=" md:mx-auto md:max-w-5xl">
+      <div className="md:mx-auto md:max-w-5xl">
         <Logo className="mb-8" onClick={() => trackEvent(footerClickLogo)} />
 
         <div className="mb-10 flex flex-col flex-wrap justify-start gap-x-16 gap-y-8 pt-4 md:flex-row lg:flex-nowrap">

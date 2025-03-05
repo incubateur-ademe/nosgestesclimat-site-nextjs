@@ -1,13 +1,12 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import Trans from '@/components/translation/trans/TransClient'
 import { motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
 import WaterTotalNumber from './waterTotalChart/WaterTotalNumber'
 import WaveContent from './waterTotalChart/WaveContent'
 
-type Props = {
-  total?: number
-  isSmall?: boolean
-}
+type Props = { total?: number; isSmall?: boolean }
 export default function WaterTotalChart({ total, isSmall }: Props) {
   return (
     <motion.div

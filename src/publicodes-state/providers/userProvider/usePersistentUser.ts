@@ -7,7 +7,7 @@ const isLocalStorageAvailable = getIsLocalStorageAvailable()
 
 type Props = {
   storageKey: string
-  initialRegion: RegionFromGeolocation
+  initialRegion?: RegionFromGeolocation
 }
 export default function usePersistentUser({
   storageKey,

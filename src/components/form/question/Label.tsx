@@ -4,7 +4,7 @@
 
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import { QUESTION_DESCRIPTION_BUTTON_ID } from '@/constants/accessibility'
 import {
   questionCloseInfo,
@@ -31,10 +31,7 @@ type Props = {
   id?: string
 }
 
-const sizeClassNames = {
-  sm: 'mb-1 text-sm',
-  md: 'mb-3 text-lg md:text-2xl',
-}
+const sizeClassNames = { sm: 'mb-1 text-sm', md: 'mb-3 text-lg md:text-2xl' }
 
 export default function Label({
   question,

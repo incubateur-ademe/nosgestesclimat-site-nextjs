@@ -1,7 +1,7 @@
 'use client'
 
 import ChevronRight from '@/components/icons/ChevronRight'
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import { organisationsDashboardClickFunFacts } from '@/constants/tracking/pages/organisationsDashboard'
 import Button from '@/design-system/inputs/Button'
 import type { Entries } from '@/publicodes-state/types'
@@ -28,9 +28,7 @@ const plusFunFactsRules: { [k in keyof Partial<FunFacts>]: DottedName } =
     )
   )
 
-type Props = {
-  funFacts?: FunFacts
-}
+type Props = { funFacts?: FunFacts }
 export default function DetailedStatistics({ funFacts }: Props) {
   const [isSectionVisible, setIsSectionVisible] = useState(false)
 
