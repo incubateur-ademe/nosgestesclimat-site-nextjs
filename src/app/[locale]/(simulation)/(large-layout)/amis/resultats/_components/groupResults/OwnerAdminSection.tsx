@@ -13,7 +13,7 @@ import { useDeleteGroup } from '@/hooks/groups/useDeleteGroup'
 import { useUser } from '@/publicodes-state'
 import type { Group } from '@/types/groups'
 import { trackEvent } from '@/utils/analytics/trackEvent'
-import { captureException } from '@sentry/react'
+import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 

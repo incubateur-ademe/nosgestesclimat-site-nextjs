@@ -8,7 +8,7 @@ import {
   useSimulation,
   useUser,
 } from '@/publicodes-state'
-import { captureException } from '@sentry/react'
+import { captureException } from '@sentry/nextjs'
 import { createContext, useCallback, useEffect, useMemo, useRef } from 'react'
 
 // The max rate at which we save the simulation (in ms)
