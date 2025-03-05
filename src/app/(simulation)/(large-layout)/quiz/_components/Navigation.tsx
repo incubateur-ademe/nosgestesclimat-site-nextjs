@@ -47,9 +47,7 @@ export default function Navigation({
       {!answer ? (
         <ButtonLink
           color="secondary"
-          href={getLinkToEndPage({
-            allowedToGoToGroupDashboard: true,
-          })}
+          href={getLinkToEndPage()}
           data-cypress-id="button-skip-quiz"
           onClick={() => {
             trackEvent(
@@ -61,9 +59,7 @@ export default function Navigation({
         </ButtonLink>
       ) : isAnswerValidated ? (
         <ButtonLink
-          href={getLinkToEndPage({
-            allowedToGoToGroupDashboard: true,
-          })}
+          href={getLinkToEndPage()}
           onClick={() =>
             trackEvent(
               simulationSimulationCompleted({ bilan: getNumericValue('bilan') })
