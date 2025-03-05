@@ -1,6 +1,5 @@
 import MainSubcategories from '@/components/fin/MainSubcategories'
 import { useRule } from '@/publicodes-state'
-import AgirMainBlock from './AgirMainBlock'
 import OtherWays from './carbone/OtherWays'
 import Subcategories from './carbone/Subcategories'
 
@@ -12,8 +11,6 @@ export default function Carbone() {
   return (
     <div className="flex flex-1 flex-col gap-16">
       <MainSubcategories isLink={!isSmallFootprint} />
-
-      <AgirMainBlock />
 
       {isSmallFootprint ? <OtherWays isSmallFootprint /> : <Subcategories />}
     </div>
