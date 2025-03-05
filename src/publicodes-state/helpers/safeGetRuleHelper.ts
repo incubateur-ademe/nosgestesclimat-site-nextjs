@@ -1,5 +1,5 @@
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
-import { captureException } from '@sentry/react'
+import { captureException } from '@sentry/nextjs'
 import type { Engine } from '../types'
 
 export const safeGetRuleHelper = (
