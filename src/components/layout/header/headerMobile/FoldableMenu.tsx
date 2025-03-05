@@ -5,17 +5,11 @@ import {
   headerClickProfil,
 } from '@/constants/tracking/layout'
 import BurgerMenu from '@/design-system/layout/BurgerMenu'
-import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { Suspense } from 'react'
 import NavLink from '../NavLink'
-import OrganisationLink from '../_components/OrganisationLink'
 import ProfileIcon from '../_components/ProfileIcon'
-import CTAButton from '../headerDesktop/MenuCTAButton'
 
 export default function FoldableMenu() {
-  const { user } = useUser()
-
   return (
     <BurgerMenu>
       {({ closeMenu, onFocus }) => (
@@ -32,12 +26,6 @@ export default function FoldableMenu() {
               Profil
             </NavLink>
           </li>
-
-          {user?.organisation?.administratorEmail && (
-            <li>
-              <OrganisationLink onClick={closeMenu} />
-            </li>
-          )}
 
           <li>
             <div className="ml-2 h-[1px] w-4 bg-gray-400" />
@@ -75,14 +63,6 @@ export default function FoldableMenu() {
               Diffuser Nos Gestes Climat
             </NavLink>
           </li>
-
-          {!user?.organisation?.administratorEmail ? (
-            <li>
-              <Suspense fallback={null}>
-                <CTAButton />
-              </Suspense>
-            </li>
-          ) : null}
         </ul>
       )}
     </BurgerMenu>

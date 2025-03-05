@@ -13,7 +13,6 @@ import {
   footerClickInternational,
   footerClickLogo,
   footerClickNouveautes,
-  footerClickOrganisations,
   footerClickPlanSite,
   footerClickQuiSommesNous,
 } from '@/constants/tracking/layout'
@@ -131,13 +130,6 @@ export default function Footer({ className = '' }) {
               onClick={() => trackEvent(footerClickDiffusion)}
               className="font-bold text-default no-underline hover:underline">
               <Trans>Diffusion</Trans>
-            </InlineLink>
-
-            <InlineLink
-              href="/organisations"
-              onClick={() => trackEvent(footerClickOrganisations)}
-              className="font-bold text-default no-underline hover:underline">
-              <Trans>Organisations</Trans>
             </InlineLink>
 
             <InlineLink

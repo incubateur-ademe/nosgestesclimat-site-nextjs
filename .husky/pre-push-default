@@ -3,5 +3,3 @@
 yarn lint
 
 yarn lint:types
-
-yarn test

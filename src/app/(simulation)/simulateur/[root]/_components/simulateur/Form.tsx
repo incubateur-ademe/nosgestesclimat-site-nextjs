@@ -60,7 +60,6 @@ export default function Form() {
       }
       goToEndPage({
         shouldShowQuiz,
-        allowedToGoToGroupDashboard: true,
       })
     }
   }, [

@@ -60,10 +60,9 @@ export default function Navigation({
   }, [question])
 
   // Fonction pour préparer les données à envoyer
-  const prepareDataToSend = useCallback((JSONValue: any): Record<string, any>[] => {
-    const dataToSend: any[] = [];
-    // console.log(JSONValue)
-    const opinionWayId = JSONValue.simulation.opinionWayId;
+  const prepareDataToSend = useCallback((JSONValue: any): { [key: string]: string } => {
+    const dataToSend: { [key: string]: string } = {};
+    const nearId = JSONValue.simulation.nearId;
     const simulationData = {
       ...JSONValue.simulation.situation,
       ...JSONValue.simulation.suggestions,
@@ -72,15 +71,15 @@ export default function Navigation({
     keys.forEach((key) => {
       let value = simulationData[key];
 
-      if (key === 'id opinion way') {
-        dataToSend.push(opinionWayId);
+      if (key === 'id near') {
+        dataToSend['id'] = nearId;
         return;
       }
       if (value === null) {
         value = 'je ne sais pas';
       }
 
-      dataToSend.push(value);
+      dataToSend[key] = value;
     });
 
     return dataToSend;
@@ -98,7 +97,7 @@ export default function Navigation({
   }
 
   // Fonction pour envoyer les données au serveur
-  const sendDataToServer = useCallback(async (data: any) => {
+  const sendDataToServer = useCallback(async (data: { [key: string]: string }) => {
     const voitures = localStorage.getItem('transport . voitures . km') ?? [];
 
     try {

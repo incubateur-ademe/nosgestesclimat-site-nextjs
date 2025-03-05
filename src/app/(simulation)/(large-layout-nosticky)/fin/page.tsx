@@ -15,11 +15,9 @@ import { twMerge } from 'tailwind-merge'
 import Carbone from './_components/Carbone'
 import DocumentationBlock from './_components/DocumentationBlock'
 import Eau from './_components/Eau'
-import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
 import InformationBlock from './_components/InformationBlock'
 import Poll from './_components/Poll'
-import ShareBlock from './_components/ShareBlock'
 import FinPageSkeleton from './skeleton'
 
 const titles: Record<Metric, ReactElement> = {
@@ -76,8 +74,6 @@ export default function FinPage() {
 
           <GetResultsByEmail />
 
-          <ShareBlock />
-
           <div id="categories-block">
             <Title tag="h2" className="text-lg lg:text-2xl">
               <Trans>Le détail de mon empreinte</Trans>{' '}
@@ -87,17 +83,6 @@ export default function FinPage() {
             </Title>
             <CategoriesAccordion metric={currentMetric} />
           </div>
-
-          <FeedbackBanner
-            className="mb-8 mt-12"
-            text={
-              <Trans i18nKey="publicodes.northstar.learned">
-                Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque
-                chose ?
-              </Trans>
-            }
-            type="learned"
-          />
 
           <DocumentationBlock />
         </div>

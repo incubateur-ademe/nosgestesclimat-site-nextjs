@@ -41,16 +41,6 @@ export default async function PlanDuSitePage() {
         href: '/actions/plus',
       },
     },
-    'Comparez votre empreinte': {
-      organisation: {
-        title: t('Au sein de votre organisation'),
-        href: '/organisations',
-      },
-      amis: {
-        title: t(`Dans un groupe d'amis`),
-        href: '/amis/creer/vos-informations',
-      },
-    },
     Informations: {
       Blog: {
         title: t('Blog'),
@@ -110,13 +100,6 @@ export default async function PlanDuSitePage() {
           <Trans>Nos outils</Trans>
         </h2>
         <LinkList entries={links['Nos outils']} />
-      </section>
-
-      <section className="mb-2">
-        <h2>
-          <Trans>Comparez votre empreinte</Trans>
-        </h2>
-        <LinkList entries={links['Comparez votre empreinte']} />
       </section>
 
       <section className="mb-2">

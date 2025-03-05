@@ -24,10 +24,6 @@ export default async function addRow(
       return res.status(400).json({ message: "Problème lors de l'appel à l'api" });
     }
 
-    const values = [simulationResults];
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const ressource = { values };
-
     // Appel à l'API de pathtech
 
     return res.status(200).json({ message: SUCCESS_MESSAGES.SUCCESS });

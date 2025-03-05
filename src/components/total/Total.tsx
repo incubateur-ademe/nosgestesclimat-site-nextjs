@@ -22,13 +22,9 @@ import TotalFootprintNumber from './total/TotalFootprintNumber'
 
 export default function Total({
   toggleQuestionList,
-  toggleBackHomeModal,
-  toggleSaveModal,
   simulationMode = true,
 }: {
   toggleQuestionList?: () => void
-  toggleBackHomeModal?: () => void
-  toggleSaveModal?: () => void
   simulationMode?: boolean
 }) {
   const { t } = useClientTranslation()
@@ -40,8 +36,6 @@ export default function Total({
   const { isIframe, isIframeOnlySimulation } = useIframe()
 
   const { currentCategory } = useForm()
-
-  const currentSimulation = useCurrentSimulation()
 
   const router = useRouter()
 
@@ -92,11 +86,7 @@ export default function Total({
           <div className="relative flex items-center gap-1 lg:gap-4">
             {simulationMode && !isIframe && !isIframeOnlySimulation && (
               <ButtonBack
-                onClick={
-                  !currentSimulation.savedViaEmail
-                    ? toggleBackHomeModal
-                    : () => router.push('/')
-                }
+                onClick={() => router.push('/')}
               />
             )}
 
@@ -110,7 +100,6 @@ export default function Total({
           {toggleQuestionList ? (
             <TotalButtons
               toggleQuestionList={toggleQuestionList}
-              toggleSaveModal={toggleSaveModal}
             />
           ) : null}
         </div>

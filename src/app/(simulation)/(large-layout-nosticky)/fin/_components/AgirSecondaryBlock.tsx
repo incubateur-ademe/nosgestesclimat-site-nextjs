@@ -1,29 +1,11 @@
 import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/Trans'
-import { endClickJagisSecondBlock } from '@/constants/tracking/pages/end'
-import Button from '@/design-system/inputs/Button'
 import Badge from '@/design-system/layout/Badge'
-import Loader from '@/design-system/layout/Loader'
-import { useExportSituationToAgir } from '@/hooks/simulation/useExportSituationToAgir'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
 
 export default function AgirSecondaryBlock() {
   const { t } = useClientTranslation()
-
-  const [couldOpen, setCouldOpen] = useState(false)
-
-  const { exportSimulation, data, isPending, isSuccess, isError, error } =
-    useExportSituationToAgir()
-
-  useEffect(() => {
-    if (data?.redirectUrl && isSuccess) {
-      const isOpen = window.open(data.redirectUrl, '_blank')
-      setCouldOpen(isOpen ? true : false)
-    }
-  }, [data, isSuccess])
 
   return (
     <div className="rainbow-border relative rounded-xl border-2">
@@ -48,33 +30,13 @@ export default function AgirSecondaryBlock() {
             actions concrètes et adaptées à vos envies et à vos moyens
           </Trans>
         </p>
-        <Button
-          disabled={isPending}
+        <a
           className="mb-4"
-          onClick={() => {
-            trackEvent(endClickJagisSecondBlock)
-            exportSimulation()
-          }}>
+          href="https://jagis.beta.gouv.fr/">
           <Trans>
-            Créer mon compte {isPending && <Loader className="ml-2" />}
+            Aller sur la plateforme J'agis
           </Trans>
-        </Button>
-        {isError && <div className="text-red-600">{error?.toString()}</div>}
-        {!data?.redirectUrl && isSuccess && (
-          <div className="text-red-600">
-            <Trans>Une erreur est survenue</Trans>
-          </div>
-        )}
-        {!couldOpen && isSuccess && (
-          <div className="text-red-600">
-            <Trans>
-              Une erreur est survenue.{' '}
-              <a href={data?.redirectUrl} rel="noreferrer" target="_blank">
-                Cliquez sur ce lien pour naviguer vers J'agis.
-              </a>
-            </Trans>
-          </div>
-        )}
+        </a>
         <div className="flex items-center gap-4">
           <Image
             src="/images/misc/jagis.svg"
