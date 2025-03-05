@@ -15,7 +15,6 @@ import { twMerge } from 'tailwind-merge'
 import Carbone from './_components/Carbone'
 import DocumentationBlock from './_components/DocumentationBlock'
 import Eau from './_components/Eau'
-import GetResultsByEmail from './_components/GetResultsByEmail'
 import InformationBlock from './_components/InformationBlock'
 import Poll from './_components/Poll'
 import FinPageSkeleton from './skeleton'
@@ -72,7 +71,7 @@ export default function FinPage() {
             <Eau />
           </div>
 
-          <GetResultsByEmail />
+          {/* <GetResultsByEmail /> */}
 
           <div id="categories-block">
             <Title tag="h2" className="text-lg lg:text-2xl">

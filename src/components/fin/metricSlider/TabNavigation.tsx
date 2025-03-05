@@ -2,7 +2,6 @@
 
 import Trans from '@/components/translation/Trans'
 import { carboneMetric, eauMetric } from '@/constants/metric'
-import Badge from '@/design-system/layout/Badge'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import type { Metric } from '@/publicodes-state/types'
@@ -86,12 +85,6 @@ export default function TabNavigation({
               )}>
               <Trans>eau</Trans>
             </strong>
-            <Badge
-              size="xs"
-              color="secondary"
-              className="absolute bottom-full left-full -translate-x-6 translate-y-3 ">
-              BETA
-            </Badge>
           </button>
         )}
       </div>

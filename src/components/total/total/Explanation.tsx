@@ -1,9 +1,7 @@
 'use client'
 
-import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import Button from '@/design-system/inputs/Button'
-import Badge from '@/design-system/layout/Badge'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { motion } from 'framer-motion'
@@ -85,16 +83,7 @@ export default function Explanation({
           changera pas : une valeur par défaut vous est attribuée.
         </Trans>
       </p>
-      <p className="mb-2">
-        <Trans i18nKey={'components.ScoreExplanation.text.p4'}>
-          💡 Nous améliorons le calcul et ses valeurs par défaut{' '}
-          <Link href="/nouveautes">tous les mois</Link>!
-        </Trans>
-      </p>
       <p className="mb-2 md:mb-4">
-        <Badge tag="span" color="secondary" size="xs">
-          BETA
-        </Badge>{' '}
         <Trans>
           Retrouvez aussi le résultat de votre empreinte eau à la fin du test !
         </Trans>
