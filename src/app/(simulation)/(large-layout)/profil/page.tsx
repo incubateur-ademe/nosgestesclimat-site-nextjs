@@ -1,18 +1,12 @@
-import ToastDisplay from '@/components/messages/ToastDisplay'
 import Trans from '@/components/translation/Trans'
-import UserInformationForm from '@/components/user/UserInformationForm'
-import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import { FormProvider } from '@/publicodes-state'
 import Image from 'next/image'
 import AnswerList from './_components/AnswerList'
-import Localisation from './_components/Localisation'
 import PersonaWarning from './_components/PersonaWarning'
 import SimulationBanner from './_components/SimulationBanner'
-import SimulationList from './_components/SimulationList'
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
@@ -29,7 +23,6 @@ export async function generateMetadata() {
 }
 
 export default async function Profil() {
-  const supportedRegions = getSupportedRegions()
   const { t } = await getServerTranslation()
 
   return (
@@ -49,32 +42,7 @@ export default async function Profil() {
         />
       </div>
 
-      <Localisation supportedRegions={supportedRegions} />
-
       <AnswerList />
-
-      <SimulationList />
-
-      <Separator />
-
-      <div className="flex flex-wrap gap-16 md:flex-nowrap">
-        <UserInformationForm
-          title={
-            <h3>
-              <Trans>Mes informations</Trans>
-            </h3>
-          }
-        />
-        <Image
-          className="-mt-12 ml-auto w-48 self-end md:mt-auto md:w-auto"
-          src="/images/illustrations/delivering-mail.png"
-          width="350"
-          height="400"
-          alt={t('Une personne livrant du courrier.')}
-        />
-      </div>
-
-      <ToastDisplay />
     </FormProvider>
   )
 }

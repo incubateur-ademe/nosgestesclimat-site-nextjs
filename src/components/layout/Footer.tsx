@@ -13,7 +13,6 @@ import {
   footerClickInternational,
   footerClickLogo,
   footerClickNouveautes,
-  footerClickOrganisations,
   footerClickPlanSite,
   footerClickQuiSommesNous,
 } from '@/constants/tracking/layout'
