@@ -1,3 +1,5 @@
+'use client'
+
 import Trans from '@/components/translation/trans/TransClient'
 import type { PropsWithChildren } from 'react'
 

@@ -1,3 +1,5 @@
+'use client'
+
 import DotIcon from '@/components/icons/DotIcon'
 import WaterDropIcon from '@/components/icons/WaterDropIcon'
 import Trans from '@/components/translation/trans/TransClient'

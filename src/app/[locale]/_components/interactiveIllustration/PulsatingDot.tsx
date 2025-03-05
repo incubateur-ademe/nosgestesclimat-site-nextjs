@@ -60,7 +60,7 @@ export default function PulsatingDot({
           carbonScore={carbonScore}
           waterScore={waterScore}
           orientation={floatingInfoOrientation}
-          className="animate-fade-in left-0 top-0"
+          className="left-0 top-0 animate-fade-in"
           key={`${itemKey}-floating-info`}
         />
       )}
@@ -91,7 +91,7 @@ export default function PulsatingDot({
             'absolute inset-0 scale-[0.15] rounded-full bg-secondary-600 transition-all duration-500',
             isHovered
               ? 'scale-[0.7]'
-              : 'scale-[0.7] animate-[pulse-scale_3s_ease-in-out_infinite]'
+              : 'scale-[0.15] animate-[pulse-scale_3s_ease-in-out_infinite]'
           )}
         />
       </div>

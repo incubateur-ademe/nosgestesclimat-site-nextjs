@@ -1,3 +1,5 @@
+'use client'
+
 import Trans from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'

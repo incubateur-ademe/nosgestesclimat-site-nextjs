@@ -1,3 +1,5 @@
+'use client'
+
 import Trans from '@/components/translation/trans/TransClient'
 import Emoji from '@/design-system/utils/Emoji'
 import OrganisationDisclaimer from './avantDeCommencer/OrganisationDisclaimer'
