@@ -1,8 +1,3 @@
-declare module '*.yaml' {
-  const data: any
-  export default data
-}
-
 declare module '@getbrevo/brevo'
 
 export type DefaultPageProps<
