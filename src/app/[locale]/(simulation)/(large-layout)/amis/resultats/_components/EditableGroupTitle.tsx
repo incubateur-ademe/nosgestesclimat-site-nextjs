@@ -15,7 +15,7 @@ import { useUpdateGroup } from '@/hooks/groups/useUpdateGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Group } from '@/types/groups'
 import { trackEvent } from '@/utils/analytics/trackEvent'
-import { captureException } from '@sentry/react'
+import { captureException } from '@sentry/nextjs'
 import { useState } from 'react'
 
 export default function EditableGroupTitle({ group }: { group: Group }) {
