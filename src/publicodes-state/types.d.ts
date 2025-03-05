@@ -1,4 +1,3 @@
-import type { Group } from '@/types/groups'
 import type {
   DottedName,
   Metrics,
@@ -92,7 +91,6 @@ export type LocalStorage = {
   tutorials: Tutorials
   simulations: Simulation[]
   currentSimulationId: string
-  groupToRedirectToAfterTest?: Group
 }
 
 export type Metric = Metrics
