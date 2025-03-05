@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { getColorAtPosition } from '@/helpers/getColorOfGradient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'

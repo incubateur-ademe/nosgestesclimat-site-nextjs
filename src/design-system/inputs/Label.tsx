@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import Trans from '@/components/translation/trans/TransClient'
 import type { PropsWithChildren } from 'react'
 
 export default function Label({
@@ -9,7 +11,7 @@ export default function Label({
     <div className="flex justify-between">
       <span>{children}</span>{' '}
       {isOptional && (
-        <span className="text-secondary-700 italic">
+        <span className="italic text-secondary-700">
           <Trans>facultatif</Trans>
         </span>
       )}

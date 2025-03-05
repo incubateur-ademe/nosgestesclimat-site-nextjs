@@ -28,7 +28,8 @@ export default function splitTestingMiddleware(request: NextRequest) {
   if (!process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH) {
     return NextResponse.next()
   }
-  const ip = request.ip
+  // This has become useless
+  const ip = '127.0.0.1' // request.ip
 
   if (!ip || !isIPv4(ip) || isGoogleBot(ip)) {
     return NextResponse.next()

@@ -1,9 +1,11 @@
+'use client'
+
 import PencilIcon from '@/components/icons/PencilIcon'
 import TrashIcon from '@/components/icons/TrashIcon'
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import ConfirmationModal from '@/design-system/modals/ConfirmationModal'
-import type { KeyboardEvent} from 'react';
+import type { KeyboardEvent } from 'react'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -99,7 +101,7 @@ export default function ToggleField({
                   onKeyDown={handleKeyboardEvent}
                   onClick={handleMouseEvent}
                   className={twMerge(
-                    "peer h-6 w-11 rounded-full bg-primary-200  after:absolute  after:left-[2px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-focus:ring-primary-300",
+                    "peer h-6 w-11 rounded-full bg-primary-200 after:absolute after:left-[2px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-focus:ring-primary-300",
                     `${isEnabled ? 'bg-primary-700 after:translate-x-full after:border-white' : ''}`
                   )}
                 />

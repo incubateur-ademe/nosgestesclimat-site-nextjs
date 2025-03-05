@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import Trans from '@/components/translation/trans/TransClient'
 import type { PollToUpdate } from '@/hooks/organisations/polls/useUpdatePoll'
 import type { Organisation, OrganisationPoll } from '@/types/organisations'
 import CustomQuestion from './customQuestions/CustomQuestion'

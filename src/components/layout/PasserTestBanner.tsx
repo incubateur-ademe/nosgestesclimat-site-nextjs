@@ -4,7 +4,7 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useCurrentSimulation } from '@/publicodes-state'
-import Trans from '../translation/Trans'
+import Trans from '../translation/trans/TransClient'
 
 export default function PasserTestBanner() {
   const { progression } = useCurrentSimulation()

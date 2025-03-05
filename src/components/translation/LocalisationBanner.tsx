@@ -14,11 +14,9 @@ import { capitalizeString } from '@/utils/capitalizeString'
 import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
-import Trans from './Trans'
+import Trans from './trans/TransClient'
 
-type Props = {
-  supportedRegions: SupportedRegions
-}
+type Props = { supportedRegions: SupportedRegions }
 export default function LocalisationBanner({ supportedRegions }: Props) {
   const { user, tutorials, hideTutorial } = useUser()
 
@@ -45,8 +43,8 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
     region?.name
 
   const versionName: string = regionParams
-    ? regionParams?.[currentLocale]?.['gentilé'] ??
-      regionParams?.[currentLocale]?.['nom']
+    ? (regionParams?.[currentLocale]?.['gentilé'] ??
+      regionParams?.[currentLocale]?.['nom'])
     : countryName
 
   if (tutorials.localisationBanner) return null

@@ -1,7 +1,9 @@
+'use client'
+
 import SaveIcon from '@/components/icons/SaveIcon'
 import ShareIcon from '@/components/icons/ShareIcon'
 import ToastDisplay from '@/components/messages/ToastDisplay'
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import {
   endClickSaveShortcut,
   endClickShareShortcut,
@@ -13,6 +15,7 @@ import { displaySuccessToast } from '@/helpers/toasts/displaySuccessToast'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEndPageSharedUrl } from '@/hooks/useEndPageSharedUrl'
 import { trackEvent } from '@/utils/analytics/trackEvent'
+import { captureException } from '@sentry/nextjs'
 import isMobile from 'is-mobile'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -30,10 +33,7 @@ const shareClassNames = {
   md: 'h-[28px] w-[28px]',
 }
 
-type Props = {
-  size?: 'sm' | 'md'
-  endPage?: boolean
-}
+type Props = { size?: 'sm' | 'md'; endPage?: boolean }
 
 export default function HeadingButtons({ size = 'md', endPage }: Props) {
   const { sharedUrl } = useEndPageSharedUrl()
@@ -57,6 +57,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
           setShouldDisplayConfirmMessage(false)
         }, 2000)
       } catch (err) {
+        captureException(err)
         displayErrorToast(
           t(
             'Oups, une erreur s’est produite lors de la copie du lien de partage.'
@@ -92,6 +93,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
           setShouldDisplayConfirmMessage(false)
         }, 2000)
       } catch (err) {
+        captureException(err)
         displayErrorToast(
           t(
             'Oups, une erreur s’est produite lors de la copie du lien de partage.'
@@ -111,10 +113,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
 
   const handleScroll = (id: string, block: ScrollLogicalPosition) => {
     const emailBlock = document.getElementById(id)
-    emailBlock?.scrollIntoView({
-      behavior: 'smooth',
-      block,
-    })
+    emailBlock?.scrollIntoView({ behavior: 'smooth', block })
   }
 
   return (

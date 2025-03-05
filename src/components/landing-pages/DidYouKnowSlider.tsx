@@ -15,7 +15,7 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import { twMerge } from 'tailwind-merge'
 import CTAButtonsPlaceholder from '../cta/CTAButtonsPlaceholder'
-import Trans from '../translation/Trans'
+import Trans from '../translation/trans/TransClient'
 
 const DynamicCTAButtons = dynamic(
   () => import('@/components/cta/DynamicCTAButtons'),
@@ -26,11 +26,7 @@ export default function DidYouKnowSlider({
   slides,
   className,
 }: {
-  slides: {
-    illustration: string
-    content: ReactNode
-    highlight: ReactNode
-  }[]
+  slides: { illustration: string; content: ReactNode; highlight: ReactNode }[]
   className?: string
 }) {
   const [currentSlide, setCurrentSlide] = useState(0)

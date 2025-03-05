@@ -1,6 +1,6 @@
 'use client'
 
-import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
+import { PreventNavigationContext } from '@/app/[locale]/_components/mainLayoutProviders/PreventNavigationProvider'
 import { languages } from '@/constants/translation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import i18nConfig from '@/i18nConfig'
@@ -9,11 +9,9 @@ import NextLink from 'next/link'
 import type {
   HTMLAttributes,
   MouseEventHandler,
-  PropsWithChildren} from 'react';
-import {
-  useContext,
-  useMemo,
+  PropsWithChildren,
 } from 'react'
+import { useContext, useMemo } from 'react'
 
 type Props = {
   href: string

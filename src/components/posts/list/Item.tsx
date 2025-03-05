@@ -2,22 +2,20 @@ import Link from '@/components/Link'
 import Card from '@/design-system/layout/Card'
 import { getFormattedDate } from '@/helpers/date/getFormattedDate'
 import type { Post } from '@/types/posts'
-import { currentLocale } from 'next-i18n-router'
 import Image from 'next/image'
 
 type Props = {
   item: Post
   path: string
+  locale: string
 }
 
-export default function Item({ item, path }: Props) {
-  const locale = currentLocale()
-
+export default function Item({ item, path, locale }: Props) {
   return (
     <Card
       tag={Link}
       href={`${path}/${item.slug}`}
-      className="h-full w-full justify-between border-0 bg-primary-50 p-4 text-default no-underline">
+      className="bg-primary-50 text-default h-full w-full justify-between border-0 p-4 no-underline">
       <div>
         {item.data.image ? (
           <Image
@@ -29,7 +27,7 @@ export default function Item({ item, path }: Props) {
           />
         ) : null}
         <p
-          className="mb-4 mt-4 text-center text-lg font-bold"
+          className="mt-4 mb-4 text-center text-lg font-bold"
           dangerouslySetInnerHTML={{
             __html: item.data.title || item.slug || '',
           }}

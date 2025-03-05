@@ -1,19 +1,17 @@
+'use client'
+
 import { carboneMetric, eauMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import Trans from '../translation/Trans'
+import Trans from '../translation/trans/TransClient'
 import CarboneTotalChart from './metricSlider/CarboneTotalChart'
 import MetricCard from './metricSlider/MetricCard'
 import WaterTotalChart from './metricSlider/WaterTotalChart'
 
-type Props = {
-  carboneTotal?: number
-  waterTotal?: number
-  isStatic?: boolean
-}
+type Props = { carboneTotal?: number; waterTotal?: number; isStatic?: boolean }
 export default function MetricSlider({
   carboneTotal,
   waterTotal,
@@ -99,7 +97,7 @@ export default function MetricSlider({
 
       <p
         className={twMerge(
-          'mt-2 inline-block w-full text-center text-xs text-default md:text-sm transition-opacity duration-300',
+          'mt-2 inline-block w-full text-center text-xs text-default transition-opacity duration-300 md:text-sm',
           isSticky ? 'opacity-0' : ''
         )}>
         <Emoji>💡</Emoji>{' '}
