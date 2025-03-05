@@ -4,7 +4,7 @@ import type {
   NGCRuleNode,
   NGCRulesNodes,
 } from '@incubateur-ademe/nosgestesclimat'
-import * as Sentry from '@sentry/react'
+import * as Sentry from '@sentry/nextjs'
 import { utils } from 'publicodes'
 import getSomme from './getSomme'
 
