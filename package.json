@@ -11,7 +11,6 @@
     "node": ">=22"
   },
   "scripts": {
-    "test": "jest",
     "dev": "next dev",
     "dev:turbo": "next dev --turbo",
     "build": "next build",
