@@ -243,7 +243,7 @@ export default function CreationForm() {
           <Trans>Accéder à mon espace</Trans>
         </Button>
 
-        <Button type="submit" data-cypress-id="create_organisation_button">
+        <Button type="submit" data-cypress-id="create-organisation-button">
           <Trans>Créer ma première campagne</Trans>
         </Button>
       </div>

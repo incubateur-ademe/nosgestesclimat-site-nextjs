@@ -1,5 +1,11 @@
 import 'cypress-axe'
-
+import { clickSkipTutorialButton } from '../../../helpers/elements/buttons'
+import { clickNextStepGroupCreation } from '../../../helpers/groups/clickNextStepGroupCreation'
+import { clickValidateGroupCreation } from '../../../helpers/groups/clickValidateGroupCreation'
+import { fillGroupCreationFirstStep } from '../../../helpers/groups/fillGroupCreationFirstStep'
+import { fillGroupNameEmoji } from '../../../helpers/groups/fillGroupNameEmoji'
+import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
+import { skipRiddle } from '../../../helpers/simulation/skipRiddle'
 Cypress.on('uncaught:exception', (err) => {
   // Ignore uncaught exception failures for now
   return false

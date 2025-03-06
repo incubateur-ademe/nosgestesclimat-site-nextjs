@@ -45,3 +45,5 @@ export const POLL_ADMIN_SECTION_SEE_PARAMETERS_BUTTON =
   'poll-admin-section-see-parameters-button'
 export const ORGANISATION_PAGE_SEE_PARAMETERS_BUTTON =
   'organisation-page-see-parameters-button'
+export const ORGANISATION_ADMINISTRATOR_POSITION_INPUT =
+  'organisation-administrator-position-input'
