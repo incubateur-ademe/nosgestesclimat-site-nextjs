@@ -66,8 +66,7 @@ export default function CampagnePage() {
         title={
           <>
             <span className="mr-2">
-              <Trans>Campagne de</Trans>{' '}
-              <span className="text-primary-700">{poll.organisation.name}</span>
+              <span className="text-primary-700">{poll.name}</span>
             </span>{' '}
             {!!poll.organisation.administrators && (
               <span className="text-sm text-gray-600">
