@@ -21,7 +21,7 @@
     "start": "next start",
     "lint": "prettier --check \"**/*.{js,ts,md,json}\" && next lint",
     "lint:types": "tsc --noEmit",
-    "e2e": "cypress open --e2e",
+    "e2e": "cypress open --e2e --config baseUrl=https://nosgestesclimat-git-ngc-1684-ademe.vercel.app",
     "e2e:with-db": "WITH_DB=true cypress open --e2e --config baseUrl=https://nosgestesclimat-git-ngc-1684-ademe.vercel.app",
     "e2e:generate": "node cypress/scripts/generateSpecsFromPersonas.js",
     "ui:parse": "node scripts/i18n/generate-ui.js",

@@ -78,9 +78,10 @@ export default defineConfig({
             // Query to get the verification code
             const result = await client.query(
               `
-                  SELECT code FROM ngc."VerificationCode"
-                  WHERE email = 'team@nosgestesclimat.fr'
-                  LIMIT 1
+                SELECT code FROM ngc."VerificationCode"
+                WHERE email = '${process.env.VERIFICATION_CODE_EMAIL}'
+                ORDER BY "createdAt" DESC
+                LIMIT 1
                 `
             )
 

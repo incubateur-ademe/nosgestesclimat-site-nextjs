@@ -25,6 +25,7 @@ const staticPagesToTest = [
   '/documentation/bilan', // heading order
   '/actions',
   '/actions/divers/partage-NGC',
+  '/profil',
 ]
 
 Cypress.on('uncaught:exception', (err) => {
