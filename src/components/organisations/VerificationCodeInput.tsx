@@ -4,6 +4,7 @@ import { marianne } from '@/app/[locale]/layout'
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import Loader from '@/design-system/layout/Loader'
+import type { DetailedHTMLProps, InputHTMLAttributes } from 'react'
 import VerificationInput from 'react-verification-input'
 
 type Props = {
@@ -23,6 +24,14 @@ export default function VerificationCodeInput({
     <>
       <VerificationInput
         length={6}
+        inputProps={
+          {
+            'data-cypress-id': 'organisation-connexion-verification-code-input',
+          } as DetailedHTMLProps<
+            InputHTMLAttributes<HTMLInputElement>,
+            HTMLInputElement
+          >
+        }
         classNames={{
           container: 'container w-[16rem] md:w-[20rem]',
           character: `border-2 border-gray-300 rounded-xl w-[2rem] text-transparent font-medium ${

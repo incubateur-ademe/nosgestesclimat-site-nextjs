@@ -12,34 +12,36 @@ type Props = {
 
 export default function Item({ item, path, locale }: Props) {
   return (
-    <Card
-      tag={Link}
-      href={`${path}/${item.slug}`}
-      className="bg-primary-50 text-default h-full w-full justify-between border-0 p-4 no-underline">
-      <div>
-        {item.data.image ? (
-          <Image
-            src={item.data?.image || ''}
-            width="400"
-            height="200"
-            className="mx-auto mb-2 max-h-36 w-full object-cover"
-            alt={`Illustration: ${item.data.title}`}
+    <li>
+      <Card
+        tag={Link}
+        href={`${path}/${item.slug}`}
+        className="h-full w-full justify-between border-0 bg-primary-50 p-4 text-default no-underline">
+        <div>
+          {item.data.image ? (
+            <Image
+              src={item.data?.image || ''}
+              width="400"
+              height="200"
+              className="mx-auto mb-2 max-h-36 w-full object-cover"
+              alt={`Illustration: ${item.data.title}`}
+            />
+          ) : null}
+          <p
+            className="mb-4 mt-4 text-center text-lg font-bold"
+            dangerouslySetInnerHTML={{
+              __html: item.data.title || item.slug || '',
+            }}
           />
+        </div>
+        {item.data.date ? (
+          <p className="text-center">
+            <small>
+              {getFormattedDate(new Date(item.data.date), locale || 'fr')}
+            </small>
+          </p>
         ) : null}
-        <p
-          className="mt-4 mb-4 text-center text-lg font-bold"
-          dangerouslySetInnerHTML={{
-            __html: item.data.title || item.slug || '',
-          }}
-        />
-      </div>
-      {item.data.date ? (
-        <p className="text-center">
-          <small>
-            {getFormattedDate(new Date(item.data.date), locale || 'fr')}
-          </small>
-        </p>
-      ) : null}
-    </Card>
+      </Card>
+    </li>
   )
 }

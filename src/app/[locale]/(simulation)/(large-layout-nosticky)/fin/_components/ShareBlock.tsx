@@ -11,17 +11,21 @@ export default function ShareBlock() {
   const { sharedUrl } = useEndPageSharedUrl()
 
   return (
-    <div id="share-block" className="">
-      <Title tag="h2">
-        <Trans>Partager mon résultat</Trans>
-      </Title>
+    <div id="share-block">
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+      <label id="share-block-label">
+        <Title tag="h2">
+          <Trans>Partager mon résultat</Trans>
+        </Title>
 
-      <CopyInput
-        textToCopy={sharedUrl}
-        textToDisplay={sharedUrl}
-        canShare
-        onClick={() => trackEvent(endClickShare)}
-      />
+        <CopyInput
+          aria-labelledby="share-block-label"
+          textToCopy={sharedUrl}
+          textToDisplay={sharedUrl}
+          canShare
+          onClick={() => trackEvent(endClickShare)}
+        />
+      </label>
     </div>
   )
 }

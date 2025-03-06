@@ -29,19 +29,22 @@ export default async function ModeleIssuePreviews() {
   return (
     <ul className="grid list-none grid-cols-1 gap-4 md:grid-cols-2">
       {issues?.map(({ body, id, html_url: url, title }) => (
-        <Card key={id}>
-          <h3>{title}</h3>
+        <li key={id}>
+          <Card key={id}>
+            <h3>{title}</h3>
 
-          <div
-            className="h-[12rem] overflow-hidden"
-            style={{
-              WebkitMaskImage: 'linear-gradient(180deg, #000 60%, transparent)',
-            }}>
-            <Markdown>{body}</Markdown>
-          </div>
+            <div
+              className="h-[12rem] overflow-hidden"
+              style={{
+                WebkitMaskImage:
+                  'linear-gradient(180deg, #000 60%, transparent)',
+              }}>
+              <Markdown>{body}</Markdown>
+            </div>
 
-          <Link href={url}>En savoir plus</Link>
-        </Card>
+            <Link href={url}>En savoir plus</Link>
+          </Card>
+        </li>
       ))}
     </ul>
   )

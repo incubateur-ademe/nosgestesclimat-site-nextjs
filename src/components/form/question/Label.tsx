@@ -28,6 +28,7 @@ type Props = {
   size?: QuestionSize
   className?: string
   titleClassName?: string
+  id?: string
 }
 
 const sizeClassNames = { sm: 'mb-1 text-sm', md: 'mb-3 text-lg md:text-2xl' }
@@ -39,6 +40,7 @@ export default function Label({
   size = 'md',
   className,
   titleClassName,
+  id,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -52,6 +54,7 @@ export default function Label({
           `flex ${sizeClassNames[size]} gap-2 font-semibold`,
           className
         )}
+        id={id}
         aria-label={label}
         // This is a hack to avoid the default <label> element behavior
         // of triggering the first input (here the button) it

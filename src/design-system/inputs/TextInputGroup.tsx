@@ -58,7 +58,10 @@ export default forwardRef(function TextInputGroup(
       )}
       aria-live="polite">
       {label ? (
-        <label htmlFor={name} className="w-full max-w-[30rem]">
+        <label
+          id={`label-${name}`}
+          htmlFor={name}
+          className="w-full max-w-[30rem]">
           <span
             className={` text-sm font-bold text-slate-900 ${
               error ? '!text-red-700' : ''
@@ -74,6 +77,7 @@ export default forwardRef(function TextInputGroup(
 
       <DebounceInput
         inputRef={ref}
+        aria-labelledby={`label-${name}`}
         readOnly={readOnly}
         debounceTimeout={debounceTimeout}
         name={name}
