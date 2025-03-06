@@ -409,7 +409,7 @@ entries:
   Nous vérifions votre code...: We check your code...
   Demander une démo: Request a demo
   secondes avant de pouvoir recevoir un nouveau code: seconds before you can receive a new code
-  "Sur l'espace organisation de ": 'On the organisation space of'
+  "Sur l'espace organisation de ": On the organisation space of
   Renvoyer le code: Resend code
   Le code est invalide: The code is invalid
   Bienvenue sur votre espace !: Welcome to your space!
@@ -1612,3 +1612,7 @@ entries:
   Sur l'espace organisation de: On the
   Un petit doute ? L’info sera sûrement dans votre contrat d’assurance logement.: A little doubt? You'll find the information in your home insurance policy.
   Sur l'espace organisation de <strong className="text-secondary-700">{{organisation}}</strong>: On the <strong className="text-secondary-700">{{organisation}}</strong>
+  "Retrouvez toute l’expertise de <2>l’Agence de la Transition Écologique</2> dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action.": 'All the expertise of <2>the Agence de la Transition Écologique</2> can be found in the Nos Gestes Climat calculator: data, outlook, levers for action.'
+  Retrouvez toute l’expertise de: All the expertise of
+  l’Agence de la Transition Écologique: the french Agency for Ecological Transition
+  "dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action.": 'in the Nos Gestes Climat calculator: data, outlook, levers for action.'
