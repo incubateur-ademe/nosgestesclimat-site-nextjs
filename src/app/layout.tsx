@@ -136,6 +136,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
       </html>
     )
   } catch (error) {
+    console.error(error);
     return (
       <html lang="fr">
         <body className={`${marianne.className} bg-white text-default`}>
