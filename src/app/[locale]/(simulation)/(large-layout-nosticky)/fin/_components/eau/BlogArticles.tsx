@@ -22,7 +22,7 @@ export default function BlogArticles() {
           className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
           <div>
             <Image
-              src="/images/blog/philip-junior-mail-arroser-champ.jpg"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/philip_junior_mail_Bp_Uk_WK_6hf_JA_unsplash_0f0f3b01c2.jpg"
               width="400"
               height="200"
               className="mx-auto mb-3 h-24 w-full object-cover lg:h-36"
