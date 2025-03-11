@@ -45,7 +45,7 @@ export default function BlogArticles() {
           className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
           <div>
             <Image
-              src="/images/blog/william-bossen-fonte-glaces.jpg"
+              src="https://s3.fr-par.scw.cloud/nosgestesclimat-prod/cms/william_bossen_fonte_glaces_a3dd8ea653.jpg"
               width="400"
               height="200"
               className="mx-auto mb-3 h-24 w-full object-cover lg:h-36"
