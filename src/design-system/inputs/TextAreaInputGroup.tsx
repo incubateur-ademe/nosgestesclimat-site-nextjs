@@ -47,6 +47,7 @@ export default function TextAreaInputGroup({
         onChange={onChange}
         aria-describedby={`error-${name}`}
         value={value}
+        autoComplete="off"
         required={required}
         {...props}
       />
