@@ -6,7 +6,7 @@ import type {
   Simulation,
 } from '@/publicodes-state/types'
 import type { Migration } from '@publicodes/tools/migration'
-import { captureException } from '@sentry/react'
+import { captureException } from '@sentry/nextjs'
 import { v4 as uuidv4 } from 'uuid'
 
 export function generateSimulation({

@@ -5,7 +5,7 @@ import type {
   NGCRuleNode,
   NGCRules,
 } from '@incubateur-ademe/nosgestesclimat'
-import { captureException } from '@sentry/react'
+import { captureException } from '@sentry/nextjs'
 import type { PublicodesExpression } from 'publicodes'
 import Engine from 'publicodes'
 import { useCallback, useMemo } from 'react'

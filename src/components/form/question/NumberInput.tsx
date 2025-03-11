@@ -1,8 +1,10 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import Trans from '@/components/translation/trans/TransClient'
 import { useLocale } from '@/hooks/useLocale'
-import type { HTMLAttributes, SyntheticEvent} from 'react';
+import type { HTMLAttributes, SyntheticEvent } from 'react'
 import { useEffect, useRef } from 'react'
-import type { NumberFormatValues} from 'react-number-format';
+import type { NumberFormatValues } from 'react-number-format'
 import { NumericFormat } from 'react-number-format'
 import { twMerge } from 'tailwind-merge'
 
@@ -28,14 +30,11 @@ export default function NumberInput({
 }: HTMLAttributes<HTMLInputElement> & Props) {
   const locale = useLocale()
 
-  const timeoutRef = useRef<NodeJS.Timeout>()
+  const timeoutRef = useRef<NodeJS.Timeout>(undefined)
 
   const handleValueChange = (
     values: NumberFormatValues,
-    sourceInfo: {
-      event?: SyntheticEvent
-      source: 'event' | 'prop'
-    }
+    sourceInfo: { event?: SyntheticEvent; source: 'event' | 'prop' }
   ) => {
     // If the value change because we typed something, we debounce it
     if (sourceInfo.source === 'event') {
@@ -68,9 +67,7 @@ export default function NumberInput({
       <NumericFormat
         value={isMissing ? '' : value}
         placeholder={
-          value.toLocaleString(locale, {
-            maximumFractionDigits: 2,
-          }) ?? '0'
+          value.toLocaleString(locale, { maximumFractionDigits: 2 }) ?? '0'
         }
         className={`focus:ring-primary max-w-[8rem] rounded-xl border-2 border-primary-200 bg-white p-2 text-right transition-colors focus:border-primary-700 focus:ring-2 md:max-w-full`}
         thousandSeparator={' '}

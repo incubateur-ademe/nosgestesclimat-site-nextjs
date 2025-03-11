@@ -2,12 +2,8 @@ import type { Post } from '@/types/posts'
 import { twMerge } from 'tailwind-merge'
 import Item from './list/Item'
 
-type Props = {
-  items: Post[]
-  path: string
-  className?: string
-}
-export default function PostList({ items, path, className }: Props) {
+type Props = { items: Post[]; path: string; className?: string; locale: string }
+export default function PostList({ items, path, className, locale }: Props) {
   return (
     <ul
       className={twMerge(
@@ -22,7 +18,7 @@ export default function PostList({ items, path, className }: Props) {
             : 1
         )
         .map((item) => (
-          <Item item={item} key={item.slug} path={path} />
+          <Item item={item} key={item.slug} path={path} locale={locale} />
         ))}
     </ul>
   )

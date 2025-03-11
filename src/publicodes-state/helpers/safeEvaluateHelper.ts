@@ -1,5 +1,5 @@
 import type { Engine } from '@/publicodes-state/types'
-import { captureException } from '@sentry/react'
+import { captureException } from '@sentry/nextjs'
 import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 
 export const safeEvaluateHelper = (

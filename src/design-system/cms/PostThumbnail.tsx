@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -27,7 +27,7 @@ export default function PostThumbnail({
     <a
       href={href}
       className={twMerge(
-        'flex h-full rounded-xl  !no-underline !duration-300 md:flex-col md:transition-transform md:hover:translate-y-[-6px]',
+        'flex h-full rounded-xl !no-underline !duration-300 md:flex-col md:transition-transform md:hover:translate-y-[-6px]',
         className
       )}
       onClick={() => trackEvent(trackingEvent)}>

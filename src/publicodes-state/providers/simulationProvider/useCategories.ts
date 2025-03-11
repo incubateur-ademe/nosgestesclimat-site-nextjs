@@ -6,7 +6,7 @@ import type {
   NGCRuleNode,
   NGCRulesNodes,
 } from '@incubateur-ademe/nosgestesclimat'
-import * as Sentry from '@sentry/react'
+import * as Sentry from '@sentry/nextjs'
 import { useMemo } from 'react'
 
 type Props = {

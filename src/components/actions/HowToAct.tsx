@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import Trans from '@/components/translation/trans/TransClient'
 import { endClickActions } from '@/constants/tracking/pages/end'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import RecommendedActions from './howToAct/RecommendedActions'

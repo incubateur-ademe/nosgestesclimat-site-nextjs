@@ -5,18 +5,20 @@ import { getLandingClickPostThumbnail } from '@/helpers/tracking/landings'
 import type { LandingPagePostType } from '@/types/landing-page'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
-import Trans from '../translation/Trans'
+import Trans from '../translation/trans/TransServer'
 
 export default function UnderstandToAct({
   title,
   description,
   posts,
   pathname,
+  locale,
 }: {
   title?: ReactNode
   description?: ReactNode
   posts: Omit<LandingPagePostType, 'trackingEvent'>[]
   pathname: string
+  locale: string
 }) {
   return (
     <div className="relative w-full bg-heroLightBackground py-16 md:py-20">
@@ -26,7 +28,7 @@ export default function UnderstandToAct({
             'mb-0 text-center text-2xl md:text-3xl',
             !description ? 'mb-10' : ''
           )}>
-          {title ?? <Trans>Comprendre pour agir</Trans>}
+          {title ?? <Trans locale={locale}>Comprendre pour agir</Trans>}
         </h2>
 
         {description && (

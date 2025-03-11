@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import { trackingActionClickCTAMenu } from '@/constants/tracking/actions'
 import { HIDE_CTA_PATHS } from '@/constants/urls'
 import ButtonLink from '@/design-system/inputs/ButtonLink'

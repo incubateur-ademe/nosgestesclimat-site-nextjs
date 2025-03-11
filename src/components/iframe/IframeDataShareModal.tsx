@@ -32,7 +32,7 @@ export default function IframeDataShareModal() {
   )
 
   //To delay the dialog show in to let the animation play
-  const timeoutRef = useRef<NodeJS.Timeout>()
+  const timeoutRef = useRef<NodeJS.Timeout>(undefined)
   const isIframe = getIsIframe()
   const { isIframeShareData } = useIframe()
 

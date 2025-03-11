@@ -5,6 +5,7 @@ import { getOrganisationItems } from '@/helpers/filAriane/getOrganisationItems'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useUser } from '@/publicodes-state'
 import { useParams, usePathname } from 'next/navigation'
+import type { ReactNode } from 'react'
 import { useFetchPublicPoll } from '../../hooks/organisations/polls/useFetchPublicPoll'
 
 const TARGETED_PATHS = ['/organisations']
@@ -27,7 +28,7 @@ export default function FilAriane({ className }: { className?: string }) {
 
   const getBreadcrumbsItems = (): {
     href: string
-    label: string | JSX.Element
+    label: string | ReactNode
     isActive: boolean
   }[] => {
     // Organisation path

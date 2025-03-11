@@ -1,13 +1,12 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import Trans from '@/components/translation/trans/TransClient'
 import { eauMetric } from '@/constants/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useRule } from '@/publicodes-state'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
-  total?: number
-  isSmall?: boolean
-}
+type Props = { total?: number; isSmall?: boolean }
 export default function WaterTotalNumber({ total, isSmall }: Props) {
   const { numericValue } = useRule('bilan', eauMetric)
 
