@@ -34,7 +34,7 @@ export default function WaterActions() {
           className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
           <div>
             <Image
-              src="/images/blog/priscilla-du-preez-garde-robe.jpg"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/priscilla_du_preez_9d7a6e02a2.jpg"
               width="400"
               height="200"
               className="mx-auto mb-3 h-24 w-full object-cover lg:h-36"
@@ -59,7 +59,7 @@ export default function WaterActions() {
           className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
           <div>
             <Image
-              src="/images/blog/lumin-osity-arrosage-champ.jpg"
+              src="https://s3.fr-par.scw.cloud/nosgestesclimat-prod/cms/lumin_osity_arrosage_champ_eeafa85606.jpg"
               width="400"
               height="200"
               className="mx-auto mb-3 h-24 w-full object-cover lg:h-36"

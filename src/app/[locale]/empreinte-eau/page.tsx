@@ -44,7 +44,8 @@ export async function generateMetadata(props: DefaultPageProps) {
     alternates: {
       canonical: '/empreinte-eau',
     },
-    image: '/images/misc/calculer-son-empreinte-eau.png',
+    image:
+      'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/calculer_son_empreinte_eau_f3f7c34d45.png',
   })
 }
 
