@@ -8,6 +8,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useActions, useRule, useSimulation } from '@/publicodes-state'
 import type { Metric } from '@/publicodes-state/types'
+import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
 type Sizes = 'md' | 'lg'
@@ -26,6 +27,10 @@ export default function TotalFootprintNumber({
   const locale = useLocale()
   const { t } = useClientTranslation()
 
+  const pathname = usePathname()
+
+  const isOnActionsPage = pathname.includes('/actions')
+
   const { isInitialized } = useSimulation()
 
   const { numericValue: totalFootprintValue } = useRule('bilan', metric)
@@ -35,7 +40,7 @@ export default function TotalFootprintNumber({
   const totalFootprintValueMinusActions =
     totalFootprintValue - totalChosenActionsValue
 
-  const { formattedValue, unit } = formatFootprint(
+  const { formattedValue: formattedValueMinusActions, unit } = formatFootprint(
     totalFootprintValueMinusActions,
     { t, locale, metric }
   )
@@ -46,7 +51,12 @@ export default function TotalFootprintNumber({
   )
 
   const shouldDisplayTotalWithoutActions =
-    totalFootprintValue !== totalFootprintValueMinusActions
+    isOnActionsPage && totalFootprintValue !== totalFootprintValueMinusActions
+
+  // Only display the difference between the total footprint and the actions if the user is on the actions page
+  const result = isOnActionsPage
+    ? formattedValueMinusActions
+    : formatedTotalFootprintValue
 
   return (
     <div
@@ -68,7 +78,7 @@ export default function TotalFootprintNumber({
             'block text-lg font-black leading-none md:text-2xl',
             size === 'lg' && 'text-xl md:text-4xl'
           )}>
-          {formattedValue}{' '}
+          {result}{' '}
           <span
             className={twMerge(
               'text-xs font-medium',
