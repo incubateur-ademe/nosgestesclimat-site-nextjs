@@ -32,7 +32,7 @@ export async function fetchArticlePageContent({
       'populate[3]': 'author.image',
       'filters[slug][$eq]': articleSlug,
       sort: 'publishedAt:desc',
-      ...(isProduction ? {} : { status: 'draft' }),
+      ...(isProduction ? { status: 'published' } : { status: 'draft' }),
     })
 
     const articleResponse = await cmsClient<{
@@ -60,6 +60,7 @@ export async function fetchArticlePageContent({
       sort: 'createdAt:desc',
       'pagination[start]': '0',
       'pagination[limit]': '3',
+      ...(isProduction ? { status: 'published' } : { status: 'draft' }),
     })
 
     const otherArticlesResponse = await cmsClient<{

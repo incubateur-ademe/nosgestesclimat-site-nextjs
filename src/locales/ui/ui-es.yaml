@@ -1605,3 +1605,7 @@ entries:
   Sur l'espace organisation de: En el
   Un petit doute ? L’info sera sûrement dans votre contrat d’assurance logement.: ¿Alguna duda? Encontrará la información en su póliza de seguro de hogar.
   Sur l'espace organisation de <strong className="text-secondary-700">{{organisation}}</strong>: En el <strong className="text-secondary-700">{{organisation}}</strong>
+  "Retrouvez toute l’expertise de <2>l’Agence de la Transition Écologique</2> dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action.": 'Encuentre toda la experiencia de <2>la Agence de la Transition Écologique</2> en la calculadora Nos Gestes Climat: datos, perspectivas, palancas para la acción.'
+  Retrouvez toute l’expertise de: Toda la experiencia de
+  l’Agence de la Transition Écologique: agencia de Transición Ecológica
+  "dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action.": 'en la calculadora de Nos Gestes Climat: datos, perspectivas, palancas de actuación.'

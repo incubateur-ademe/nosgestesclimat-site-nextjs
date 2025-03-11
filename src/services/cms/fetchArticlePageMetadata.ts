@@ -23,7 +23,7 @@ export async function fetchArticlePageMetadata({
       'populate[0]': 'image',
       'populate[1]': 'pageMetadata',
       'filters[slug][$eq]': articleSlug,
-      ...(isProduction ? {} : { status: 'draft' }),
+      ...(isProduction ? { status: 'published' } : { status: 'draft' }),
     })
     const articleResponse = await cmsClient<{
       data: [PopulatedArticleType<'image' | 'pageMetadata'>]
