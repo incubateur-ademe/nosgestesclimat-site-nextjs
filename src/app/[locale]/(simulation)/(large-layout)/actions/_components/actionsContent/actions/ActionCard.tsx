@@ -30,6 +30,7 @@ import { trackEvent } from '@/utils/analytics/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback } from 'react'
+import { twMerge } from 'tailwind-merge'
 import ActionValue from './ActionValue'
 
 type Props = {
@@ -38,6 +39,7 @@ type Props = {
   rule: any
   setFocusedAction: (dottedName: DottedName) => void
   isFocused: boolean
+  isIrrelevant: boolean
 }
 
 export default function ActionCard({
@@ -45,6 +47,7 @@ export default function ActionCard({
   total,
   rule,
   setFocusedAction,
+  isIrrelevant,
 }: Props) {
   const { t } = useClientTranslation()
 
@@ -127,17 +130,19 @@ export default function ActionCard({
   return (
     <div
       id={dottedName}
-      className={`relative flex h-[18rem] w-full flex-col items-center justify-center overflow-auto rounded-xl border-2 border-solid p-4 ${
-        !hasFormula ? 'h-[13rem]' : ''
-      } ${
+      className={twMerge(
+        'relative flex h-[18rem] w-full flex-col items-center justify-center overflow-auto rounded-xl border-2 border-solid p-4',
         isSelected
           ? 'border-green-500 bg-green-500/[0.23]'
-          : getBorderColor(category)
-      }`}>
+          : getBorderColor(category),
+        isIrrelevant && 'border-gray-300 bg-gray-500/[0.1]'
+      )}>
       <div
-        className={`flex h-[6rem] w-full items-center rounded-xl p-2 ${getBackgroundLightColor(
-          category
-        )}`}>
+        className={twMerge(
+          'flex h-[6rem] w-full items-center rounded-xl p-2',
+          getBackgroundLightColor(category),
+          isIrrelevant && 'bg-gray-500/[0.1]'
+        )}>
         <Link
           className="z-10 w-full no-underline"
           onClick={() => trackEvent(actionsOpenAction(dottedName))}
@@ -147,7 +152,11 @@ export default function ActionCard({
           )}
 
           <h2
-            className={`mb-0 inline-block w-full text-center text-sm font-bold ${getTextDarkColor(category)}`}>
+            className={twMerge(
+              'mb-0 inline-block w-full text-center text-sm font-bold',
+              getTextDarkColor(category),
+              isIrrelevant && 'text-gray-800'
+            )}>
             {title}
           </h2>
         </Link>
@@ -186,7 +195,9 @@ export default function ActionCard({
             title={t("Choisir l'action")}
             type="button"
             aria-pressed={actionChoices?.[dottedName]}
-            className={hasRemainingQuestions ? 'grayscale' : ''}
+            className={twMerge(
+              hasRemainingQuestions || isIrrelevant ? 'grayscale' : ''
+            )}
             onClick={handleChooseAction}>
             <CheckCircleIcon
               className="fill-green-500"
@@ -202,7 +213,9 @@ export default function ActionCard({
               title={t("Rejeter l'action")}
               onClick={(e) => {
                 if (isDisabled) return
+
                 rejectAction(dottedName)
+
                 if (!isSelected) {
                   trackEvent(actionsClickNo(dottedName))
                 }
