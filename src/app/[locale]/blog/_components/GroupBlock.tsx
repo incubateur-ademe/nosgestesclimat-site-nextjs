@@ -16,7 +16,7 @@ export default async function GroupBlock({ locale }: { locale: string }) {
       </h3>
 
       <Image
-        src="/images/blog/comparer-empreinte-carbone-avec-ses-amis.svg"
+        src="/images/illustrations/comparer-empreinte-carbone-avec-ses-amis.svg"
         alt={t('Comparez vos résultats avec vos proches')}
         width={240}
         height={240}
