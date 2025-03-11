@@ -32,7 +32,8 @@ export default async function UnderstandToActCarbonFootprint({
           category: t('Empreinte carbone'),
           title: t('Transports : les modes à fuir, ceux à chérir'),
           href: '/blog/mobilites/transports-fuir-transports-cherir',
-          imageSrc: '/images/blog/seo/empreinte-carbone-transports.jpg',
+          imageSrc:
+            'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/van_bus_velo_elviss_railijs_bitans_dce5c98c2c.jpg',
           imageAlt: t(
             "Deux mini-vans, illustrant l'empreinte carbone des transports"
           ),
@@ -41,7 +42,8 @@ export default async function UnderstandToActCarbonFootprint({
           category: t('Empreinte carbone'),
           title: t("L'empreinte carbone : une empreinte parmi d'autres !"),
           href: '/blog/environnement/carbone-empreinte-parmi-autres',
-          imageSrc: '/images/blog/seo/agir-reduire-empreinte-carbone.jpg',
+          imageSrc:
+            'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/markus_spiske_nature_future_0398daa4ed.jpg',
           imageAlt: t(
             'Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone'
           ),
@@ -50,7 +52,8 @@ export default async function UnderstandToActCarbonFootprint({
           category: t('Empreinte carbone'),
           title: t('Avez-vous déjà entendu parler de maladaptation ?'),
           href: '/blog/environnement/maladaptation',
-          imageSrc: '/images/blog/seo/changement-climatique-maladaptation.jpg',
+          imageSrc:
+            'https://s3.fr-par.scw.cloud/nosgestesclimat-prod/cms/william_bossen_fonte_glaces_a3dd8ea653.jpg',
           imageAlt: t(
             'Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique'
           ),
