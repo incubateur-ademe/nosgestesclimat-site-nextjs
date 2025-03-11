@@ -103,7 +103,7 @@ export function getMetadataObject({
       type: 'website',
       images: image
         ? image
-        : 'https://nosgestesclimat.fr/images/misc/metadata.png',
+        : 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/metadata_1749c11cdc.png',
     },
     alternates: alternatesWithLanguages,
     ...props,
