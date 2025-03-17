@@ -12,7 +12,7 @@ import { useBackgroundSyncSimulation } from './useBackgroundSyncSimulation'
 type Props = {
   simulation: Simulation
   newsletters?: number[]
-  sendEmail?: boolean
+  sendEmail?: true
 }
 export function useSaveSimulation() {
   const {

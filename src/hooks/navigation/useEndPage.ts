@@ -73,7 +73,7 @@ export function useEndPage() {
         saveSimulation({
           simulation: currentSimulation,
           // If the simulation has already been saved via email, we don't send it again
-          sendEmail: currentSimulation.savedViaEmail ? false : true,
+          ...(!currentSimulation.savedViaEmail ? { sendEmail: true } : {}),
         })
       }
 
