@@ -73,6 +73,7 @@ export default function NumberInput({
         thousandSeparator={' '}
         decimalSeparator={','}
         allowNegative={false}
+        autoComplete="off"
         onValueChange={handleValueChange}
         id={id}
         {...props}
