@@ -46,7 +46,7 @@ export default async function International({ params }: DefaultPageProps) {
             />
 
             <Image
-              src="/images/misc/international-illustration.jpeg"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/international_illustration_a376930f53.jpeg"
               alt=""
               className="mx-auto max-w-12 py-8 md:hidden"
               width="100"
@@ -71,7 +71,7 @@ export default async function International({ params }: DefaultPageProps) {
           </div>
 
           <Image
-            src="/images/misc/international-illustration.jpeg"
+            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/international_illustration_a376930f53.jpeg"
             alt=""
             aria-hidden="true"
             className="mx-auto hidden max-w-md p-8 md:block"
