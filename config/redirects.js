@@ -267,12 +267,6 @@ const redirects = [
     destination: '/misc/NGC_Kit.diffusion.zip',
     permanent: true,
   },
-  // Videos
-  {
-    source: '/parcours-orga.mp4',
-    destination: '/videos/parcours-orga.mp4',
-    permanent: true,
-  },
 ]
 
 module.exports = redirects
