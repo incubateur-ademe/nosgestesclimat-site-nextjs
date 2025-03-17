@@ -262,6 +262,17 @@ const redirects = [
     destination: '/misc/4dc3300c431ca82c00785768559ea871.html',
     permanent: true,
   },
+  {
+    source: '/NGC_Kit.diffusion.zip',
+    destination: '/misc/NGC_Kit.diffusion.zip',
+    permanent: true,
+  },
+  // Videos
+  {
+    source: '/parcours-orga.mp4',
+    destination: '/videos/parcours-orga.mp4',
+    permanent: true,
+  },
 ]
 
 module.exports = redirects
