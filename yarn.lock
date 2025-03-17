@@ -801,17 +801,17 @@
   resolved "https://registry.yarnpkg.com/@img/sharp-win32-x64/-/sharp-win32-x64-0.33.5.tgz#56f00962ff0c4e0eb93d34a047d29fa995e3e342"
   integrity sha512-MpY/o8/8kj+EcnxwvrP4aTJSWw/aZ7JIGR4aBeZkZw5B7/Jn+tY9/VNwtcoGmdT7GfggGIU4kygOMSbYnOrAbg==
 
-"@incubateur-ademe/legal-pages-markdown@0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@incubateur-ademe/legal-pages-markdown/-/legal-pages-markdown-0.4.0.tgz#f16af37912bba8c4758d33a9b97708160ba5d94d"
-  integrity sha512-hVe8xH1976HUrg5qEBodbpE8KsmK9SjWgOomoKiITG6LcQbukRWSASIz3CqbFAyCcSwwWKMl/h+3acFXXlEHQg==
+"@incubateur-ademe/legal-pages-markdown@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@incubateur-ademe/legal-pages-markdown/-/legal-pages-markdown-0.3.0.tgz#bd29f2de5992a451b44e53f911cbfefe4c5e4c26"
+  integrity sha512-DJ6OE+h/vaAFtGxwM1o0sRQvkQWvqQgMsFF9N/JVsVT21+DpR2wBSKWeBKZUxp75jeOqqGa8AGB1hS3kCR1xGQ==
 
-"@incubateur-ademe/legal-pages-react@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@incubateur-ademe/legal-pages-react/-/legal-pages-react-0.4.0.tgz#92fd8ec9569f7ba50678a71622368e6624aac6a8"
-  integrity sha512-huwyAgo2+rJgedoOfR3D440cWGUtiZvMtAy1nnJ0ygYPcQXd977IFPQAbfOLNmttexVleHwypF4afZefC5ET6Q==
+"@incubateur-ademe/legal-pages-react@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@incubateur-ademe/legal-pages-react/-/legal-pages-react-0.3.0.tgz#cb9f6d6e319383b5cfc6a4cfd3a9d1edb3628f38"
+  integrity sha512-69Z9SbyFzj3Y8BO8PWWpTOTJlgA9pT7oc4E19P4HtfVCo9wEP30BqsXgATE2P8wGWpklKm9GHA9S8ingfdVXuQ==
   dependencies:
-    "@incubateur-ademe/legal-pages-markdown" "0.4.0"
+    "@incubateur-ademe/legal-pages-markdown" "0.3.0"
     mustache "^4.2.0"
 
 "@incubateur-ademe/nosgestesclimat-scripts@^0.6.0":
@@ -827,10 +827,10 @@
     prompt-sync "^4.2.0"
     yargs "^17.7.2"
 
-"@incubateur-ademe/nosgestesclimat@3.5.4":
-  version "3.5.4"
-  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-3.5.4.tgz#d815600d4024b35aa52ba90bac2c7a1bbbf5ad72"
-  integrity sha512-AiJg2sm4jV6jZWOkHYQV+qLkEptEAcU0ACLfcdTUhcm8wDz2AzrcMxMgexmTnguh3T6FcSamBAjvc4gZQwbQwQ==
+"@incubateur-ademe/nosgestesclimat@^3.6.0":
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-3.6.0.tgz#3555b25f49633ffd3a160efdbab9ff1877b68731"
+  integrity sha512-SiT67Fjb7lWXhhumP20MG7or+KhsUETnVn8GxsTUpev3b8UQmAqBkPYqD5O4ktnGJi5ZJJ4wQw7ZwBzzp5mQLQ==
 
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"

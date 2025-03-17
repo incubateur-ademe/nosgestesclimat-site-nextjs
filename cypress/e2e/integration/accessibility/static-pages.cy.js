@@ -2,9 +2,9 @@ import 'cypress-axe'
 
 // Define the pages to test
 const staticPagesToTest = [
-  '/', // React-slick is not accessible
+  '/', // Fails: React-slick is not accessible
   '/a-propos',
-  '/blog', // React-slick is not accessible
+  '/blog', // Fails: React-slick is not accessible
   '/blog/environnement', // React-slick is not accessible
   '/blog/environnement/definition-empreinte-carbone', // image alt are redundant
   '/nos-relais',
@@ -19,7 +19,7 @@ const staticPagesToTest = [
   '/politique-de-confidentialite',
   '/politique-des-cookies',
   '/mentions-legales', // link on telephone number
-  '/stats',
+  '/stats', // Fails : selects lack accessible labels
   '/modele',
   '/documentation',
   '/documentation/bilan', // heading order
