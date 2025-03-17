@@ -118,7 +118,7 @@ export default function Actions({
 
       <ActionList
         actions={notRejected.filter(
-          (a: { value: any }) => a.value === undefined
+          (a: { value: any; isIrrelevant: boolean }) => a.value === undefined
         )}
         rules={rules}
         bilan={bilan}
