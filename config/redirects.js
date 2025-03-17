@@ -224,6 +224,44 @@ const redirects = [
     destination: '/',
     permanent: true,
   },
+  // Iframe scripts
+  {
+    source: '/iframe.js',
+    destination: '/scripts/iframe.js',
+    permanent: true,
+  },
+  {
+    source: '/iframeSimulation.js',
+    destination: '/scripts/iframeSimulation.js',
+    permanent: true,
+  },
+  // Demos
+  {
+    source: '/demo-iframe-datashare.html',
+    destination: '/demos/demo-iframe-datashare.html',
+    permanent: true,
+  },
+  {
+    source: '/demo-iframe.html',
+    destination: '/demos/demo-iframe.html',
+    permanent: true,
+  },
+  {
+    source: '/demo-iframeSimulation.html',
+    destination: '/demos/demo-iframeSimulation.html',
+    permanent: true,
+  },
+  {
+    source: '/demo-iframeSimulationHomepage.html',
+    destination: '/demos/demo-iframeSimulationHomepage.html',
+    permanent: true,
+  },
+  // Misc
+  {
+    source: '/4dc3300c431ca82c00785768559ea871.html',
+    destination: '/misc/4dc3300c431ca82c00785768559ea871.html',
+    permanent: true,
+  },
 ]
 
 module.exports = redirects

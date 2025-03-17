@@ -53,7 +53,7 @@ export const config = {
      */
     {
       source:
-        '/((?!api|_next/static|favicon.ico|images|manifest.webmanifest).*)',
+        '/((?!api|_next/static|favicon.ico|images|manifest.webmanifest|scripts|demos|misc).*)',
       missing: [
         { type: 'header', key: 'next-router-prefetch' },
         { type: 'header', key: 'purpose', value: 'prefetch' },
