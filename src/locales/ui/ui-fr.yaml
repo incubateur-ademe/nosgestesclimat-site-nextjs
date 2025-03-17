@@ -583,7 +583,6 @@ entries:
   Certaines organisations sont dotées d’un outil type MailinBlack, Altospam, ect., qui bloque parfois nos emails.: Certaines organisations sont dotées d’un outil type MailinBlack, Altospam, ect., qui bloque parfois nos emails.
   Cette action est définitive.: Cette action est définitive.
   Confirmer: Confirmer
-  Il y a de grandes chances que votre temps soit plus efficace à <2>convaincre et aider les autres</2> qu'à chercher à gagner vos "tonnes en trop".: Il y a de grandes chances que votre temps soit plus efficace à <2>convaincre et aider les autres</2> qu'à chercher à gagner vos "tonnes en trop".
   Modifier: Modifier
   Question personnalisée de: Question personnalisée de
   Questions par défaut: Questions par défaut
@@ -627,7 +626,6 @@ entries:
   Visible uniquement par vous: Visible uniquement par vous
   Voir le détail: Voir le détail
   Vos informations personnelles: Vos informations personnelles
-  Votre rôle: Votre rôle
   Votre téléphone: Votre téléphone
   Vous retrouverez les réponses à ces questions dans l'export des réponses à la campagne.: Vous retrouverez les réponses à ces questions dans l'export des réponses à la campagne.
   (définissez un titre dans les paramètres): (définissez un titre dans les paramètres)
@@ -711,7 +709,6 @@ entries:
   Autres actions: Autres actions
   Bien joué 👏: Bien joué 👏
   Il n'y a pas que sur votre empreinte que vous pouvez agir !: Il n'y a pas que sur votre empreinte que vous pouvez agir !
-  Même si réduire son empreinte individuelle est l'action la plus directe, il existe <1>d'autres façons d'agir à son niveau</1>. Tous ces modes d'action sont complémentaires !: Même si réduire son empreinte individuelle est l'action la plus directe, il existe <1>d'autres façons d'agir à son niveau</1>. Tous ces modes d'action sont complémentaires !
   Ce champ est obligatoire.: Ce champ est obligatoire.
   Ce champ est trop long: Ce champ est trop long
   Cependant, nous suivons quelques informations sur votre utilisation de ce calculateur, telles que les pages consultées et le temps passé, dans l'unique but de l'améliorer.: Cependant, nous suivons quelques informations sur votre utilisation de ce calculateur, telles que les pages consultées et le temps passé, dans l'unique but de l'améliorer.
@@ -755,7 +752,6 @@ entries:
   Vos informations ont bien été mises à jour.: Vos informations ont bien été mises à jour.
   Vous allez recevoir sous peu un e-mail de notre part contenant un <2>code de vérification</2> à entrer dans cette fenêtre.: Vous allez recevoir sous peu un e-mail de notre part contenant un <2>code de vérification</2> à entrer dans cette fenêtre.
   Vous devez valider votre changement d'adresse e-mail.: Vous devez valider votre changement d'adresse e-mail.
-  Recevoir nos actualités sur les nouveaux services dédiés aux organisation (une fois par mois maximum !): Recevoir nos actualités sur les nouveaux services dédiés aux organisation (une fois par mois maximum !)
   <0>Eau, climat,</0> même combat ?: <0>Eau, climat,</0> même combat ?
   <0>Et vous,</0> quel est votre impact sur notre planète ?: <0>Et vous,</0> quel est votre impact sur notre planète ?
   <0>L’empreinte eau,</0> c’est quoi ?: <0>L’empreinte eau,</0> c’est quoi ?
@@ -813,12 +809,10 @@ entries:
   Reprendre plus tard: Reprendre plus tard
   Sauvegarder <2>ma progression</2>: Sauvegarder <2>ma progression</2>
   Votre région a bien été mise à jour.: Votre région a bien été mise à jour.
-  Veuillez entrer un nombre positif.: Veuillez entrer un nombre positif.
   '{{name}}, supprimer cette participation': '{{name}}, supprimer cette participation'
   Participant supprimé avec succès: Participant supprimé avec succès
   Supprimer ce participant ? Cette opération est définitive.: Supprimer ce participant ? Cette opération est définitive.
   Une erreur est survenue: Une erreur est survenue
-  <0>La taille des logements français a très fortement augmenté</0> sur ces 50 dernirèes années, passant de 23 à 40,4 m² par habitant, soit <4>90,9 m² en moyenne pour un foyer de 2,2 personnes.</4>: <0>La taille des logements français a très fortement augmenté</0> sur ces 50 dernirèes années, passant de 23 à 40,4 m² par habitant, soit <4>90,9 m² en moyenne pour un foyer de 2,2 personnes.</4>
   Des enfants qui se tiennent la main: Des enfants qui se tiennent la main
   Non, merci: Non, merci
   Un grand-père et sa petite fille qui regardent un film: Un grand-père et sa petite fille qui regardent un film
@@ -968,12 +962,7 @@ entries:
   Un modèle de calcul fiable: Un modèle de calcul fiable
   Voir les nouveautés: Voir les nouveautés
   Voiture: Voiture
-  '<0>agriculture et élevage</0> : les pratiques agricoles intensives et l’élevage, en particulier la production de viande et les rejets de méthane des ruminants, contribuent fortement aux gaz à effet de serre, avec un impact significatif sur le changement climatique. L’usage de fertilisants et la déforestation pour l’extension des terres agricoles contribuent également à ces émissions ;': '<0>agriculture et élevage</0> : les pratiques agricoles intensives et l’élevage, en particulier la production de viande et les rejets de méthane des ruminants, contribuent fortement aux gaz à effet de serre, avec un impact significatif sur le changement climatique. L’usage de fertilisants et la déforestation pour l’extension des terres agricoles contribuent également à ces émissions ;'
-  '<0>énergie et production industrielle</0> : la combustion d’énergies fossiles (charbon, pétrole, gaz naturel) pour produire de l’électricité mais aussi pour alimenter les industries est la première cause d’émissions de CO₂ dans le monde ;': '<0>énergie et production industrielle</0> : la combustion d’énergies fossiles (charbon, pétrole, gaz naturel) pour produire de l’électricité mais aussi pour alimenter les industries est la première cause d’émissions de CO₂ dans le monde ;'
   <0>L’empreinte carbone</0> mesure la quantité totale de gaz à effet de serre (GES) émis par nos activités sur une année.: <0>L’empreinte carbone</0> mesure la quantité totale de gaz à effet de serre (GES) émis par nos activités sur une année.
-  '<0>logement et consommation énergétique </0> : le chauffage (et dans une moindre mesure, la climatisation) est le poste le plus important de consommation énergétique du logement, donc d’émission de GES. Il faut également y ajouter les consommations des appareils électroménagers ;': '<0>logement et consommation énergétique </0> : le chauffage (et dans une moindre mesure, la climatisation) est le poste le plus important de consommation énergétique du logement, donc d’émission de GES. Il faut également y ajouter les consommations des appareils électroménagers ;'
-  '<0>production de biens et consommation croissante</0> : la fabrication de biens (électronique, vêtements, équipements, loisirs) à travers le monde génère des émissions à chaque étape : extraction des matières premières, production, transport, distribution et élimination. Ces processus contribuent fortement à l’empreinte carbone globale en raison d’une demande toujours croissante.': '<0>production de biens et consommation croissante</0> : la fabrication de biens (électronique, vêtements, équipements, loisirs) à travers le monde génère des émissions à chaque étape : extraction des matières premières, production, transport, distribution et élimination. Ces processus contribuent fortement à l’empreinte carbone globale en raison d’une demande toujours croissante.'
-  '<0>transports</0> : voitures, camions, avions et navires rejettent massivement du CO2 en brûlant des carburants fossiles. La demande croissante de mobilité (voyages et transport de marchandises) accentue ces émissions ;': '<0>transports</0> : voitures, camions, avions et navires rejettent massivement du CO2 en brûlant des carburants fossiles. La demande croissante de mobilité (voyages et transport de marchandises) accentue ces émissions ;'
   À l’échelle nationale, la France s’est fixée pour objectif d’atteindre la neutralité carbone d’ici 2050, ce qui implique de réduire drastiquement les émissions dans tous les secteurs.: À l’échelle nationale, la France s’est fixée pour objectif d’atteindre la neutralité carbone d’ici 2050, ce qui implique de réduire drastiquement les émissions dans tous les secteurs.
   Accélérons la transition écologique: Accélérons la transition écologique
   Agir au quotidien: Agir au quotidien
@@ -1026,7 +1015,6 @@ entries:
   Privilégier les mobilités douces: Privilégier les mobilités douces
   Privilégier les transports en commun, si possible: Privilégier les transports en commun, si possible
   Réaliser des travaux d’isolation de son logement (pour les propriétaires): Réaliser des travaux d’isolation de son logement (pour les propriétaires)
-  À partir de votre bilan, <1>J’agis</1> vous propose des actions concrètes et adaptées à vos envies et à vos moyens: À partir de votre bilan, <1>J’agis</1> vous propose des actions concrètes et adaptées à vos envies et à vos moyens
   Aides financières: Aides financières
   Bons plans: Bons plans
   Découvrez toutes les aides financières auxquelles vous avez droit: Découvrez toutes les aides financières auxquelles vous avez droit
@@ -1151,7 +1139,6 @@ entries:
   Nombre de participants attendus: Nombre de participants attendus
   Service public: Service public
   Votre poste: Votre poste
-  Vous devez renseigner le type de votre organisation: Vous devez renseigner le type de votre organisation
   'Avez-vous essayé <2>notre fonctionnalité “Groupes d’amis”</2> ? Elle vous permettra de vous comparer dans un classement : que celui ou celle ayant la plus faible empreinte gagne !': 'Avez-vous essayé <2>notre fonctionnalité “Groupes d’amis”</2> ? Elle vous permettra de vous comparer dans un classement : que celui ou celle ayant la plus faible empreinte gagne !'
   Coopérative: Coopérative
   Veuillez entrer un nombre positif: Veuillez entrer un nombre positif
@@ -1166,7 +1153,6 @@ entries:
   Options: Options
   Vous trouverez ici les réponses aux questions les plus fréquentes. S'il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !: Vous trouverez ici les réponses aux questions les plus fréquentes. S'il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !
   Recevoir nos actualités sur les nouveaux services dédiés aux organisation: Recevoir nos actualités sur les nouveaux services dédiés aux organisation
-  <0>La taille des logements français a très fortement augmenté</0> sur ces 50 dernières années, passant de 23 à 40,4 m² par habitant, soit <4>90,9 m² en moyenne pour un foyer de 2,2 personnes.</4>: <0>La taille des logements français a très fortement augmenté</0> sur ces 50 dernières années, passant de 23 à 40,4 m² par habitant, soit <4>90,9 m² en moyenne pour un foyer de 2,2 personnes.</4>
   À partir de votre bilan,: À partir de votre bilan,
   convaincre et aider les autres: convaincre et aider les autres
   d'autres façons d'agir à son niveau.: d'autres façons d'agir à son niveau.
@@ -1175,3 +1161,22 @@ entries:
   qu'à chercher à gagner vos "tonnes en trop".: qu'à chercher à gagner vos "tonnes en trop".
   Tous ces modes d'action sont complémentaires !: Tous ces modes d'action sont complémentaires !
   vous propose des actions concrètes et adaptées à vos envies et à vos moyens: vous propose des actions concrètes et adaptées à vos envies et à vos moyens
+  ': la combustion d’énergies fossiles (charbon, pétrole, gaz naturel) pour produire de l’électricité mais aussi pour alimenter les industries est la première cause d’émissions de CO₂ dans le monde ;': ': la combustion d’énergies fossiles (charbon, pétrole, gaz naturel) pour produire de l’électricité mais aussi pour alimenter les industries est la première cause d’émissions de CO₂ dans le monde ;'
+  ': la fabrication de biens (électronique, vêtements, équipements, loisirs) à travers le monde génère des émissions à chaque étape : extraction des matières premières, production, transport, distribution et élimination. Ces processus contribuent fortement à l’empreinte carbone globale en raison d’une demande toujours croissante.': ': la fabrication de biens (électronique, vêtements, équipements, loisirs) à travers le monde génère des émissions à chaque étape : extraction des matières premières, production, transport, distribution et élimination. Ces processus contribuent fortement à l’empreinte carbone globale en raison d’une demande toujours croissante.'
+  ': le chauffage (et dans une moindre mesure, la climatisation) est le poste le plus important de consommation énergétique du logement, donc d’émission de GES. Il faut également y ajouter les consommations des appareils électroménagers ;': ': le chauffage (et dans une moindre mesure, la climatisation) est le poste le plus important de consommation énergétique du logement, donc d’émission de GES. Il faut également y ajouter les consommations des appareils électroménagers ;'
+  ': les pratiques agricoles intensives et l’élevage, en particulier la production de viande et les rejets de méthane des ruminants, contribuent fortement aux gaz à effet de serre, avec un impact significatif sur le changement climatique. L’usage de fertilisants et la fertilisants et la déforestation pour l’extension des terres agricoles contribuent également à ces émissions ;': ': les pratiques agricoles intensives et l’élevage, en particulier la production de viande et les rejets de méthane des ruminants, contribuent fortement aux gaz à effet de serre, avec un impact significatif sur le changement climatique. L’usage de fertilisants et la fertilisants et la déforestation pour l’extension des terres agricoles contribuent également à ces émissions ;'
+  ': voitures, camions, avions et navires rejettent massivement du CO2 en brûlant des carburants fossiles. La demande carburants fossiles. La demande croissante de mobilité (voyages et transport de marchandises) accentue ces émissions ;': ': voitures, camions, avions et navires rejettent massivement du CO2 en brûlant des carburants fossiles. La demande carburants fossiles. La demande croissante de mobilité (voyages et transport de marchandises) accentue ces émissions ;'
+  agriculture et élevage: agriculture et élevage
+  énergie et production industrielle: énergie et production industrielle
+  'logement et consommation énergétique ': 'logement et consommation énergétique '
+  production de biens et consommation croissante: production de biens et consommation croissante
+  transports: transports
+  90,9 m² en moyenne pour un foyer de 2,2 personnes.: 90,9 m² en moyenne pour un foyer de 2,2 personnes.
+  Contactez-nous: Contactez-nous
+  La taille des logements français a très fortement augmenté: La taille des logements français a très fortement augmenté
+  sur ces 50 dernières années, passant de 23 à 40,4 m² par habitant, soit: sur ces 50 dernières années, passant de 23 à 40,4 m² par habitant, soit
+  Un petit doute ? L’info sera sûrement dans votre contrat d’assurance logement.: Un petit doute ? L’info sera sûrement dans votre contrat d’assurance logement.
+  "Retrouvez toute l’expertise de <2>l’Agence de la Transition Écologique</2> dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action.": "Retrouvez toute l’expertise de <2>l’Agence de la Transition Écologique</2> dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action."
+  Retrouvez toute l’expertise de: Retrouvez toute l’expertise de
+  l’Agence de la Transition Écologique: l’Agence de la Transition Écologique
+  "dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action.": "dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action."

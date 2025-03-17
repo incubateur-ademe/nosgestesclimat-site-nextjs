@@ -22,14 +22,18 @@ export default async function ModelInfo({ locale }: { locale: string }) {
               <Trans locale={locale}>Basé sur les données de l’ADEME</Trans>
             }
             description={
-              <Trans locale={locale}>
-                Retrouvez toute l’expertise de{' '}
+              <>
+                <Trans locale={locale}>Retrouvez toute l’expertise de</Trans>{' '}
                 <strong className="text-primary-600">
-                  l’Agence de l’Environnement et de la Maîtrise de l’Énergie
+                  <Trans locale={locale}>
+                    l’Agence de la Transition Écologique
+                  </Trans>
                 </strong>{' '}
-                dans le calculateur de Nos Gestes Climat : données,
-                perspectives, leviers d'action.
-              </Trans>
+                <Trans locale={locale}>
+                  dans le calculateur de Nos Gestes Climat : données,
+                  perspectives, leviers d'action.
+                </Trans>
+              </>
             }
             link={{
               href: '/documentation',

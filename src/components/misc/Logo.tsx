@@ -37,7 +37,7 @@ export default function Logo({
           isIframeOnlySimulation ? 'pointer-events-none' : ''
         }`}>
         <Image
-          src="/images/misc/petit-logo@3x.png"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/petit_logo_3x_5b54f9a203.png"
           alt="Logo Nos Gestes Climat"
           width="200"
           height="200"

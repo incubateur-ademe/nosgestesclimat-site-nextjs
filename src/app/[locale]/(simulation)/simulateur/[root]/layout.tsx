@@ -25,6 +25,10 @@ export async function generateMetadata({
   })
 }
 
-export default function Layout({ params, children }: PropsWithChildren<Props>) {
-  return <FormProvider root={params.root}>{children}</FormProvider>
+export default async function Layout({
+  params,
+  children,
+}: PropsWithChildren<Props>) {
+  const { root } = await params
+  return <FormProvider root={root}>{children}</FormProvider>
 }

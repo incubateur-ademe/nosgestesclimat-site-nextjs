@@ -89,8 +89,9 @@ export default function Label({
       </label>
       {question === 'logement . âge' && (
         <div className="mb-6 mt-2 text-xs italic md:text-sm">
-          Un petit doute ? L’info sera sûrement dans votre contrat d’assurance
-          logement.
+          <Trans>
+            Un petit doute ? L’info sera sûrement dans votre contrat d’assurance logement.
+          </Trans>
         </div>
       )}
       {isOpen && description ? (
