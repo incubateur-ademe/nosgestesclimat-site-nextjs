@@ -1,5 +1,5 @@
 import Link from '@/components/Link'
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransServer'
 import ImageWithCategory from '@/design-system/cms/ImageWithCategory'
 import ColorLine from '@/design-system/layout/ColorLine'
 
@@ -10,6 +10,7 @@ export default function MainArticle({
   description,
   category,
   href,
+  locale,
 }: {
   imageSrc: string
   imageAlt: string
@@ -17,11 +18,12 @@ export default function MainArticle({
   description: string
   category: string
   href: string
+  locale: string
 }) {
   return (
     <Link href={href} className="mb-20 no-underline">
       <h2 className="relative mb-8 inline-block pb-4 text-2xl font-medium text-default md:text-3xl">
-        <Trans>À la une !</Trans>{' '}
+        <Trans locale={locale}>À la une !</Trans>{' '}
         <ColorLine className="bg-rainbow absolute bottom-0 left-[15%] h-[3px] w-[70%] animate-rainbow-slow transition-all md:left-0 md:w-full" />
       </h2>
       <div className="flex flex-col gap-6 rounded-xl bg-heroLightBackground md:flex-row">
@@ -47,7 +49,7 @@ export default function MainArticle({
 
           <div className="flex justify-end">
             <span className="ml-auto inline-block cursor-pointer text-right text-[13px] text-primary-700 underline md:text-right md:text-base">
-              <Trans>Lire la suite</Trans>
+              <Trans locale={locale}>Lire la suite</Trans>
             </span>
           </div>
         </div>

@@ -1,4 +1,5 @@
-import Trans from '../translation/Trans'
+'use client'
+import Trans from '../translation/trans/TransClient'
 
 export default function Baseline() {
   return (

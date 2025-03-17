@@ -1,5 +1,7 @@
+'use client'
+
 import Loader from '@/design-system/layout/Loader'
-import Trans from '../translation/Trans'
+import Trans from '../translation/trans/TransClient'
 
 export default function OrganisationLoader() {
   return (

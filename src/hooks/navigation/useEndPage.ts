@@ -3,7 +3,7 @@ import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { linkToQuiz } from '@/helpers/navigation/quizPages'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { captureException } from '@sentry/react'
+import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 

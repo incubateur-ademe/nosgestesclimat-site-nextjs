@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import Trans from '@/components/translation/trans/TransClient'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 

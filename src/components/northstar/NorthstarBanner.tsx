@@ -4,9 +4,9 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import type { NorthStarType } from '@/types/northstar'
 import { motion } from 'framer-motion'
-import type { JSX} from 'react';
+import type { JSX } from 'react'
 import { useEffect, useRef, useState } from 'react'
-import Trans from '../translation/Trans'
+import Trans from '../translation/trans/TransClient'
 import Northstar from './Northstar'
 
 export default function NorthStarBanner({
@@ -53,9 +53,9 @@ export default function NorthStarBanner({
   useEffect(() => {
     if (shouldDisplayNorthstarBanner && !isAnimationCompleted) {
       timeoutRef.current = setTimeout(() => {
-        document.getElementById('northstarBanner')?.scrollIntoView({
-          behavior: 'smooth',
-        })
+        document
+          .getElementById('northstarBanner')
+          ?.scrollIntoView({ behavior: 'smooth' })
       }, 2000)
     }
   }, [shouldDisplayNorthstarBanner, isAnimationCompleted])

@@ -4,7 +4,7 @@ import HelpCircleIcon from '@/components/icons/HelpCircleIcon'
 import ListIcon from '@/components/icons/ListIcon'
 import SaveCheckIcon from '@/components/icons/SaveCheckIcon'
 import SaveIcon from '@/components/icons/SaveIcon'
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import { simulateurOpenScoreInfo } from '@/constants/tracking/pages/simulateur'
 import { TUTORIALS } from '@/constants/tutorial'
 import Button from '@/design-system/inputs/Button'
@@ -12,10 +12,7 @@ import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
-  toggleQuestionList: () => void
-  toggleSaveModal?: () => void
-}
+type Props = { toggleQuestionList: () => void; toggleSaveModal?: () => void }
 
 export default function TotalButtons({
   toggleQuestionList,

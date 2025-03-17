@@ -9,7 +9,7 @@ import type { PublicOrganisationPoll } from '@/types/organisations'
 import dayjs from 'dayjs'
 import { useState } from 'react'
 import DownloadIcon from '../icons/DownloadIcon'
-import Trans from '../translation/Trans'
+import Trans from '../translation/trans/TransClient'
 
 type Props = {
   poll?: PublicOrganisationPoll | null

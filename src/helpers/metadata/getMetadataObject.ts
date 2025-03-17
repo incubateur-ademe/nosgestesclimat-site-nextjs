@@ -1,7 +1,7 @@
-import { defaultLocale, locales } from '@/i18nConfig'
-import { currentLocale } from 'next-i18n-router'
+import i18nConfig from '@/i18nConfig'
 
 type Props = {
+  locale: string
   title: string
   description: string
   params?: Record<string, string>
@@ -62,14 +62,13 @@ export function getMetadataObject({
   searchParams,
   image,
   alternates,
+  locale,
   ...props
 }: Props) {
-  const locale = currentLocale()
-
   const url = buildURL({
     params,
     searchParams,
-    locale: locale ?? defaultLocale,
+    locale: locale ?? i18nConfig.defaultLocale,
   })
 
   let alternatesWithLanguages = null
@@ -80,7 +79,7 @@ export function getMetadataObject({
     // We set the alternates url for each language
     const languages: Record<string, string> = {}
 
-    locales.map((locale) => {
+    i18nConfig.locales.map((locale) => {
       languages[locale] =
         `${BASE_URL}${locale === 'fr' ? '' : `/${locale}`}${canonical}`
     })

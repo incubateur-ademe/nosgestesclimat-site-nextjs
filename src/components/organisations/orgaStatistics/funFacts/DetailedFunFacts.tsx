@@ -1,5 +1,7 @@
+'use client'
+
 import SaveIcon from '@/components/icons/SaveIcon'
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import { organisationsDashboardClickFunFactsDownload } from '@/constants/tracking/pages/organisationsDashboard'
 import Button from '@/design-system/inputs/Button'
 import type { Entries } from '@/publicodes-state/types'

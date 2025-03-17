@@ -3,7 +3,7 @@ import type {
   PopulatedAuthorType,
 } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
-import { defaultLocale } from '@/i18nConfig'
+import i18nConfig from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -25,14 +25,14 @@ export async function fetchArticlePageContent({
 > {
   try {
     const articleSearchParams = new URLSearchParams({
-      locale: defaultLocale,
+      locale: i18nConfig.defaultLocale,
       'populate[0]': 'image',
       'populate[1]': 'category',
       'populate[2]': 'author',
       'populate[3]': 'author.image',
       'filters[slug][$eq]': articleSlug,
       sort: 'publishedAt:desc',
-      ...(isProduction ? {} : { status: 'draft' }),
+      ...(isProduction ? { status: 'published' } : { status: 'draft' }),
     })
 
     const articleResponse = await cmsClient<{
@@ -52,7 +52,7 @@ export async function fetchArticlePageContent({
 
     const categorySlug = article.category?.slug
     const otherArticlesSearchParams = new URLSearchParams({
-      locale: defaultLocale,
+      locale: i18nConfig.defaultLocale,
       'populate[0]': 'image',
       'populate[1]': 'category',
       ...(categorySlug ? { 'filters[category][slug][$eq]': categorySlug } : {}),
@@ -60,6 +60,7 @@ export async function fetchArticlePageContent({
       sort: 'createdAt:desc',
       'pagination[start]': '0',
       'pagination[limit]': '3',
+      ...(isProduction ? { status: 'published' } : { status: 'draft' }),
     })
 
     const otherArticlesResponse = await cmsClient<{

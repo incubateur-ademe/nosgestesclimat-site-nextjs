@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import Trans from '@/components/translation/trans/TransClient'
 import type { Organisation, OrganisationPoll } from '@/types/organisations'
 import { useState } from 'react'
 import CustomQuestionForm from '../CustomQuestionForm'

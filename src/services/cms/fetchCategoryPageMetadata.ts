@@ -1,6 +1,6 @@
 import type { ImageType, PopulatedCategoryType } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
-import { defaultLocale } from '@/i18nConfig'
+import i18nConfig from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 
 const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
@@ -19,11 +19,11 @@ export async function fetchCategoryPageMetadata({
 > {
   try {
     const categorySearchParams = new URLSearchParams({
-      locale: defaultLocale,
+      locale: i18nConfig.defaultLocale,
       'populate[0]': 'image',
       'populate[1]': 'pageMetadata',
       'filters[slug][$eq]': slug,
-      ...(isProduction ? {} : { status: 'draft' }),
+      ...(isProduction ? { status: 'published' } : { status: 'draft' }),
     })
 
     const categoryResponse = await cmsClient<{

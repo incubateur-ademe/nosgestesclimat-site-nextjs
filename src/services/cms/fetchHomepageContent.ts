@@ -5,7 +5,7 @@ import type {
   PopulatedHomePageType,
 } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
-import { defaultLocale } from '@/i18nConfig'
+import i18nConfig from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 
 const PAGE_SIZE = 12
@@ -22,7 +22,7 @@ export async function fetchHomepageContent({ page }: { page: number }): Promise<
 > {
   try {
     const homepageSearchParams = new URLSearchParams({
-      locale: defaultLocale,
+      locale: i18nConfig.defaultLocale,
       'populate[0]': 'image',
       'populate[1]': 'mainArticle',
       'populate[2]': 'mainArticle.image',
@@ -44,7 +44,7 @@ export async function fetchHomepageContent({ page }: { page: number }): Promise<
     const { mainArticle, image, title, description } = homepageResponse.data
 
     const articlesSearchParams: Record<string, string> = {
-      locale: defaultLocale,
+      locale: i18nConfig.defaultLocale,
       'fields[0]': 'title',
       'fields[1]': 'description',
       'fields[2]': 'slug',
@@ -53,7 +53,7 @@ export async function fetchHomepageContent({ page }: { page: number }): Promise<
       'pagination[page]': page.toString(),
       'pagination[pageSize]': PAGE_SIZE.toString(),
       sort: 'createdAt:desc',
-      ...(isProduction ? {} : { status: 'draft' }),
+      ...(isProduction ? { status: 'published' } : { status: 'draft' }),
     }
 
     if (mainArticle) {

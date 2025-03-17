@@ -28,8 +28,8 @@ export default function FAQ({
       )}>
       {isBackgroundSkewed && (
         <Background
-          direction="left"
-          className="-bottom-10 top-auto mt-6 h-[200px] rotate-12 bg-[#F6F6F5]"
+          direction="right"
+          className="-bottom-10 top-auto mt-6 h-[200px] bg-[#F6F6F5] sm:-bottom-16"
           withColorLine
         />
       )}

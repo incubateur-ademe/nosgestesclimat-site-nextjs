@@ -1,4 +1,6 @@
-import Trans from '@/components/translation/Trans'
+'use client'
+
+import Trans from '@/components/translation/trans/TransClient'
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'

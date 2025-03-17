@@ -6,7 +6,6 @@ import type { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 type Props = {
   question: DottedName
   answer?: DottedName | NodeValue | string
-  mosaicValue?: NodeValue | string
   timeSpentOnQuestion?: number
 }
 // Figma comment #45
@@ -55,22 +54,23 @@ export const questionClickPrevious = ({ question }: Props) => [
 ]
 
 // Figma comment #46
-export const questionChooseAnswer = ({ question, mosaicValue }: Props) => [
+export const questionChooseAnswer = ({ question, answer }: Props) => [
   'trackEvent',
   'Simulateur',
   'Choose Answer',
   question,
-  String(mosaicValue),
+  String(answer),
 ]
 
 // Figma comment #51
-export const questionTypeAnswer = ({ question, mosaicValue }: Props) => [
-  'trackEvent',
-  'Simulateur',
-  'Type Answer',
-  question,
-  String(mosaicValue),
-]
+// An event is sent on every change of the input, it's too much !
+// export const questionTypeAnswer = ({ question, answer }: Props) => [
+//   'trackEvent',
+//   'Simulateur',
+//   'Type Answer',
+//   question,
+//   String(answer),
+// ]
 
 // Figma comment #50
 export const questionClickSuggestion = ({ question, answer }: Props) => [

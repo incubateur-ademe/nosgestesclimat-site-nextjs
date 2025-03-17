@@ -1,5 +1,7 @@
-import Trans from '@/components/translation/Trans'
-import type { ChangeEvent, ForwardedRef, ReactNode} from 'react';
+'use client'
+
+import Trans from '@/components/translation/trans/TransClient'
+import type { ChangeEvent, ForwardedRef, ReactNode } from 'react'
 import { forwardRef } from 'react'
 
 type Props = {
@@ -15,11 +17,7 @@ type Props = {
   size?: 'sm' | 'lg' | 'xl'
 }
 
-const sizesClassNames = {
-  sm: '',
-  lg: 'w-8 h-8',
-  xl: 'w-10 h-10',
-}
+const sizesClassNames = { sm: '', lg: 'w-8 h-8', xl: 'w-10 h-10' }
 
 export default forwardRef(function CheckboxInputGroup(
   {

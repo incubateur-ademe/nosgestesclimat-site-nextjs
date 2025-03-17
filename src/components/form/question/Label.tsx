@@ -4,7 +4,7 @@
 
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import { QUESTION_DESCRIPTION_BUTTON_ID } from '@/constants/accessibility'
 import {
   questionCloseInfo,
@@ -30,10 +30,7 @@ type Props = {
   titleClassName?: string
 }
 
-const sizeClassNames = {
-  sm: 'mb-1 text-sm',
-  md: 'mb-3 text-lg md:text-2xl',
-}
+const sizeClassNames = { sm: 'mb-1 text-sm', md: 'mb-3 text-lg md:text-2xl' }
 
 export default function Label({
   question,
@@ -89,8 +86,9 @@ export default function Label({
       </label>
       {question === 'logement . âge' && (
         <div className="mb-6 mt-2 text-xs italic md:text-sm">
-          Un petit doute ? L’info sera sûrement dans votre contrat d’assurance
-          logement.
+          <Trans>
+            Un petit doute ? L’info sera sûrement dans votre contrat d’assurance logement.
+          </Trans>
         </div>
       )}
       {isOpen && description ? (

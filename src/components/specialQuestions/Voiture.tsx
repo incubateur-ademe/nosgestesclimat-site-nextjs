@@ -1,14 +1,14 @@
+'use client'
+
 import Question from '@/components/form/Question'
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
 import PencilIcon from '../icons/PencilIcon'
 import JourneysInput from './voiture/JourneysInput'
 
-type Props = {
-  question: DottedName
-}
+type Props = { question: DottedName }
 export default function Voiture({ question, ...props }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   return (

@@ -3,9 +3,9 @@ import { carboneMetric, eauMetric } from '@/constants/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
-import type { Options} from 'react-select';
+import type { Options } from 'react-select'
 import Select, { components } from 'react-select'
-import Trans from '../translation/Trans'
+import Trans from '../translation/trans/TransClient'
 
 interface OptionType {
   value: string
@@ -40,15 +40,10 @@ export default function FootprintSelector({
       color: '#373978',
       cursor: 'pointer',
       fontSize: '0.875rem',
-      '&:hover': {
-        borderColor: '#3d3f96',
-        backgroundColor: '#e3ebfc',
-      },
+      '&:hover': { borderColor: '#3d3f96', backgroundColor: '#e3ebfc' },
       transition: 'all 0.2s ease-in-out',
     }),
-    indicatorSeparator: () => ({
-      display: 'none',
-    }),
+    indicatorSeparator: () => ({ display: 'none' }),
     indicatorsContainer: (provided: any) => ({
       ...provided,
       margin: '-0.2rem',
@@ -56,9 +51,7 @@ export default function FootprintSelector({
     dropdownIndicator: (provided: any) => ({
       ...provided,
       color: '#3d3f96',
-      '&:hover': {
-        color: '#3d3f96',
-      },
+      '&:hover': { color: '#3d3f96' },
     }),
     singleValue: (provided: any) => ({
       ...provided,
@@ -80,10 +73,7 @@ export default function FootprintSelector({
       backgroundColor: state.isSelected ? '#737de1' : provided.backgroundColor,
       color: state.isSelected ? 'white' : provided.color,
     }),
-    menu: (provided: any) => ({
-      ...provided,
-      borderRadius: '0.5rem',
-    }),
+    menu: (provided: any) => ({ ...provided, borderRadius: '0.5rem' }),
   }
 
   const customComponents = {

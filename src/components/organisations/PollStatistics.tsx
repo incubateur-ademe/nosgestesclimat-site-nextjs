@@ -1,8 +1,9 @@
 'use client'
 
-import Trans from '@/components/translation/Trans'
+import Trans from '@/components/translation/trans/TransClient'
 import type { Simulation } from '@/types/organisations'
 import type { FunFacts } from '@incubateur-ademe/nosgestesclimat'
+import type { ReactNode } from 'react'
 import DetailedStatistics from './orgaStatistics/DetailedStatistics'
 import FunFactsBlock from './orgaStatistics/FunFactsBlock'
 import StatisticsBlocks from './orgaStatistics/StatisticsBlocks'
@@ -13,7 +14,7 @@ export default function PollStatistics({
   simulationsWithoutExtremes,
   funFacts,
 }: {
-  title?: string | JSX.Element
+  title?: string | ReactNode
   simulations: Simulation[]
   simulationsWithoutExtremes: Simulation[]
   funFacts: FunFacts | undefined
