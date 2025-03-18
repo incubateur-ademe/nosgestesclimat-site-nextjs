@@ -1,4 +1,5 @@
 import 'cypress-axe'
+import { skipTutoIfExists } from '../../../helpers/elements/buttons'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 import { setupSimulation } from '../../../helpers/simulation/setupSimulation'
 
@@ -26,6 +27,8 @@ describe('Accessibility Tests', () => {
     setupSimulation()
 
     recursivelyFillSimulation()
+
+    skipTutoIfExists()
 
     cy.wait(4000)
 
