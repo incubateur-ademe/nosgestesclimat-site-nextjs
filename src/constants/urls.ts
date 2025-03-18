@@ -22,6 +22,8 @@ export const SIMULATION_URL = SERVER_URL + '/simulations/v1'
 
 export const VERIFICATION_CODE_URL = SERVER_URL + '/verification-codes/v1'
 
+export const MODELE_URL = SERVER_URL + '/modele/v1'
+
 export const getPreviewUrl = (PRNumber: string | number) => {
   return `https://nosgestesclimat-dev.s3.fr-par.scw.cloud/model/${PRNumber}`
 }
