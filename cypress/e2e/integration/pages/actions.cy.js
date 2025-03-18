@@ -19,6 +19,12 @@ describe('Action userflow', () => {
 
         cy.wait(2000)
 
+        cy.get('h1')
+          .contains(
+            Cypress.env('testLangURL') === 'en' ? 'My gestures' : 'Mes gestes'
+          )
+          .should('be.visible')
+
         cy.injectAxe()
 
         cy.checkA11y()
