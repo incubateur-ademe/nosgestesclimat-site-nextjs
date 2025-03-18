@@ -8,6 +8,7 @@ import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr
 import personas from '@incubateur-ademe/nosgestesclimat/public/personas-fr.json'
 import Engine from 'publicodes'
 
+// TODO: remove "as unknown" when the type is fixed
 const engine = new Engine<DottedName>(rules as unknown as NGCRules, {
   logger: { warn: () => {}, error: () => {}, log: () => {} },
   strict: {
