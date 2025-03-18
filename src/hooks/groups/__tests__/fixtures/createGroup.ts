@@ -8,7 +8,13 @@ import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr
 import personas from '@incubateur-ademe/nosgestesclimat/public/personas-fr.json'
 import Engine from 'publicodes'
 
-const engine = new Engine<DottedName>(rules as unknown as NGCRules)
+const engine = new Engine<DottedName>(rules as unknown as NGCRules, {
+  logger: { warn: () => {}, error: () => {}, log: () => {} },
+  strict: {
+    situation: false,
+    noOrphanRule: false,
+  },
+})
 
 function createSimulation({ persona }: { persona?: string }) {
   // Get computed results from the engine
