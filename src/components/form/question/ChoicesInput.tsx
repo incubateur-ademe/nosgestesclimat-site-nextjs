@@ -5,7 +5,7 @@ type Props = {
   question: DottedName
   value: string
   isMissing: boolean
-  choices: any[]
+  choices: (string | number)[] | null
   setValue: (value: string) => void
   'data-cypress-id': string
   label: string
