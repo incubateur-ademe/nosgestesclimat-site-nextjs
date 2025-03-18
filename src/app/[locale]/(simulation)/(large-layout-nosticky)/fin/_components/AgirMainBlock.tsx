@@ -79,7 +79,7 @@ export default function AgirMainBlock() {
                 <span aria-hidden className="text-xl">
                   →
                 </span>
-                Découvrir
+                <Trans>Découvrir</Trans>
               </span>
             )}
           </Button>
