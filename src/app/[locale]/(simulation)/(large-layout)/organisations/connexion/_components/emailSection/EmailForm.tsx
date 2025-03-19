@@ -72,6 +72,7 @@ export default function EmailForm() {
       <TextInputGroup
         name="email"
         type="email"
+        data-cypress-id="organisation-connexion-email-input"
         value={user?.organisation?.administratorEmail || user?.email || ''}
         label={<Trans>Votre adresse e-mail</Trans>}
         placeholder="jeanmarc@nosgestesclimat.fr"
@@ -87,7 +88,10 @@ export default function EmailForm() {
 
       {inputError && <p className="mt-2 text-sm text-red-600">{inputError}</p>}
 
-      <Button type="submit" className="mt-8">
+      <Button
+        type="submit"
+        data-cypress-id="organisation-connexion-submit-button"
+        className="mt-8">
         <Trans>Accéder à mon espace</Trans>
       </Button>
     </form>

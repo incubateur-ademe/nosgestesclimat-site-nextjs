@@ -51,7 +51,8 @@ export default function Suggestions({ question, setValue }: Props) {
               questionClickSuggestion({ question, answer: suggestion.label })
             )
             setValue(suggestion.value)
-          }}>
+          }}
+          aria-label={suggestion.label}>
           <Emoji className="flex items-center gap-1 leading-none">
             {capitalizeString(suggestion.label)}
           </Emoji>

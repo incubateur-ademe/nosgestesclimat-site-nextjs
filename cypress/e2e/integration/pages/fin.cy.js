@@ -4,6 +4,7 @@ import {
 } from '../../../constants/elements-ids'
 import { clickSkipTutorialButton } from '../../../helpers/elements/buttons'
 import { visit } from '../../../helpers/interactions/visit'
+import { checkA11y } from '../../../helpers/misc/checkA11y'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 import { skipRiddle } from '../../../helpers/simulation/skipRiddle'
 
@@ -35,6 +36,8 @@ describe('The End page', () => {
       recursivelyFillSimulation()
 
       skipRiddle()
+
+      checkA11y()
 
       cy.wait(4000)
     })

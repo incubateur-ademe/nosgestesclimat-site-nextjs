@@ -135,7 +135,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         <SaveIcon
           className={twMerge('fill-primary-700', saveClassNames[size])}
         />
-        <span className="hidden lg:inline">
+        <span className="sr-only lg:not-sr-only">
           <Trans>Sauvegarder</Trans>
         </span>
       </Button>
@@ -159,11 +159,11 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
           )}
         />
         {shouldDisplayConfirmMessage ? (
-          <span className="hidden lg:inline">
+          <span className="sr-only lg:not-sr-only">
             <Trans>Copié !</Trans>
           </span>
         ) : (
-          <span className="hidden lg:inline">
+          <span className="sr-only lg:not-sr-only">
             <Trans>Partager</Trans>
           </span>
         )}

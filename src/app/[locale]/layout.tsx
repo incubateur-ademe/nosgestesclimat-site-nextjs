@@ -119,20 +119,17 @@ export default async function RootLayout({
           }
         </head>
 
-        <body
-          className={`${marianne.className} bg-white text-default transition-colors duration-700`}>
-          <Script id="script-user-agent">{`
+        <MainLayoutProviders>
+          <>
+            <Script id="script-user-agent">{`
             const b = document.documentElement;
             b.setAttribute('data-useragent', navigator.userAgent);
           `}</Script>
 
-          <MainLayoutProviders>
             {children}
             <Footer />
-          </MainLayoutProviders>
-
-          <div id="modal" />
-        </body>
+          </>
+        </MainLayoutProviders>
       </html>
     )
   } catch (error) {

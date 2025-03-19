@@ -29,6 +29,7 @@ export default function Search({
       {t('Nombre de')} {elementAnalysedTitle} {t('pour les ')}
       <FancySelect
         name="select-date"
+        aria-label={t('Nombre de jours, semaines ou mois à afficher')}
         value={date}
         onChange={(e: string) => {
           setDate(e)
@@ -41,6 +42,7 @@ export default function Search({
       {period === 'week' ? t('dernières') : t('derniers')}{' '}
       <FancySelect
         name="select-period"
+        aria-label={t('Période à afficher')}
         value={period}
         onChange={setPeriod}
         options={[

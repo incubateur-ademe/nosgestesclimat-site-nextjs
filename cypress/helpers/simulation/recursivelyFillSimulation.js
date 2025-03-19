@@ -6,9 +6,6 @@ import { clickNextButton } from '../elements/buttons'
 const LAST_QUESTION_ID = 'services sociétaux . question rhétorique-ok'
 
 export async function recursivelyFillSimulation(persona = {}) {
-  const isPersonaEmptyOrNotDefined =
-    !persona || Object.keys(persona).length <= 0
-
   return new Promise((resolve) => {
     function answerCurrentQuestion() {
       const inputPromise = cy.get('input')
@@ -16,75 +13,79 @@ export async function recursivelyFillSimulation(persona = {}) {
       // Cypress doesn't handle async/await
       inputPromise.then((input) => {
         // All questions have been answered
-        if (input.length <= 0) {
-          resolve()
-          return
-        }
+        // get current url with cy method
+        cy.url().then((url) => {
+          if (input.length <= 0 || !url.includes('/simulateur/bilan')) {
+            resolve()
+            return
+          }
 
-        // @bjlaa: this is a hack to be able to differenciate between
-        // mosaics and single questions ; single questions have not mosaicDottedName defined
-        const [dottedName, mosaicDottedName] = input
-          .attr('data-cypress-id')
-          .split('---')
+          // @bjlaa: this is a hack to be able to differenciate between
+          // mosaics and single questions ; single questions have not mosaicDottedName defined
+          const inputAttributes = input.attr('data-cypress-id')
+          const [dottedName, mosaicDottedName] = inputAttributes
+            ? inputAttributes.split('---')
+            : []
 
-        function skipQuestion() {
-          clickNextButton()
+          function skipQuestion() {
+            clickNextButton()
 
-          answerCurrentQuestion()
-        }
+            answerCurrentQuestion()
+          }
 
-        // Is last question
-        if (dottedName === LAST_QUESTION_ID) {
-          clickNextButton()
+          // Is last question
+          if (dottedName === LAST_QUESTION_ID) {
+            clickNextButton()
 
-          return resolve()
-        }
+            return resolve()
+          }
 
-        // Questions should follow the order of the categories
-        checkIfCategoryOrderIsRespected(dottedName)
+          // Questions should follow the order of the categories
+          checkIfCategoryOrderIsRespected(dottedName)
 
-        const type = input.attr('type')
+          const type = input.attr('type')
 
-        // Special case : radios
-        if (type === 'radio') {
-          const [dottedNameWithoutValueSuffix, value] = dottedName.split('-')
-          if (persona?.situation?.[dottedNameWithoutValueSuffix] === value) {
-            cy.get(`label[data-cypress-id="${dottedName}-label"]`).click()
-          } else if (!dottedName === LAST_QUESTION_ID) {
+          // Special case : radios
+          if (type === 'radio') {
+            const [dottedNameWithoutValueSuffix, value] = dottedName.split('-')
+            if (persona?.situation?.[dottedNameWithoutValueSuffix] === value) {
+              cy.get(`label[data-cypress-id="${dottedName}-label"]`).click()
+            } else if (!dottedName === LAST_QUESTION_ID) {
+              skipQuestion()
+            }
+          }
+
+          // No value for this persona
+          if (!persona?.situation?.[dottedName]) {
             skipQuestion()
+            return
           }
-        }
 
-        // No value for this persona
-        if (!persona?.situation?.[dottedName]) {
-          skipQuestion()
-          return
-        }
+          // Single number input or radio
+          if (!mosaicDottedName && persona?.situation?.[dottedName]) {
+            cy.get(`input[data-cypress-id="${dottedName}"]`).type(
+              persona.situation[dottedName]
+            )
+          }
 
-        // Single number input or radio
-        if (!mosaicDottedName && persona?.situation?.[dottedName]) {
-          cy.get(`input[data-cypress-id="${dottedName}"]`).type(
-            persona.situation[dottedName]
+          const mosaicChildren = Object.keys(persona?.situation ?? {}).filter(
+            (dottedNameKey) => dottedNameKey.includes(mosaicDottedName)
           )
-        }
 
-        const mosaicChildren = Object.keys(persona?.situation ?? {}).filter(
-          (dottedNameKey) => dottedNameKey.includes(mosaicDottedName)
-        )
-
-        // Is Mosaic
-        if (mosaicChildren.length > 1) {
-          for (const mosaicItemDottedName of mosaicChildren) {
-            cy.get(
-              `input[data-cypress-id="${mosaicItemDottedName}---${mosaicDottedName}"]`
-            ).type(persona.situation[mosaicItemDottedName])
+          // Is Mosaic
+          if (mosaicChildren.length > 1) {
+            for (const mosaicItemDottedName of mosaicChildren) {
+              cy.get(
+                `input[data-cypress-id="${mosaicItemDottedName}---${mosaicDottedName}"]`
+              ).type(persona.situation[mosaicItemDottedName])
+            }
           }
-        }
 
-        clickNextButton()
+          clickNextButton()
 
-        // Call itself recursively to go to the next question
-        answerCurrentQuestion()
+          // Call itself recursively to go to the next question
+          answerCurrentQuestion()
+        })
       })
     }
 

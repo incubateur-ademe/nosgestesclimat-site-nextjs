@@ -11,7 +11,7 @@ export default async function GroupBlock({ locale }: { locale: string }) {
       <h3 className="mb-0 text-xl font-medium">
         <Trans locale={locale}>
           <span>Comparez vos résultats avec</span>{' '}
-          <span className="font-bold text-primary-600">vos proches</span>
+          <span className="font-bold text-primary-700">vos proches</span>
         </Trans>
       </h3>
 

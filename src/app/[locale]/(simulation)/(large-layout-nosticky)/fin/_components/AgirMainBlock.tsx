@@ -53,25 +53,38 @@ export default function AgirMainBlock() {
             </Trans>
           </div>
         )}
-        <div className="flex items-center gap-4">
-          <Marianne className="h-12 lg:h-auto" />
-          <Image
-            src="/images/misc/jagis.svg"
-            alt={t(`Logo de J'agis`)}
-            width="60"
-            height="60"
-          />
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <Marianne className="h-12 lg:h-auto" />
+            <Image
+              src="/images/misc/jagis.svg"
+              alt={t(`Logo de J'agis`)}
+              width="60"
+              height="60"
+            />
+          </div>
+
+          <Button
+            disabled={isPending}
+            onClick={() => {
+              trackEvent(endClickJagisFirstBlock)
+              exportSimulation()
+            }}
+            size="sm"
+            className="flex !h-11 max-h-11 items-center justify-center rounded-full leading-none">
+            {isPending ? (
+              <Loader />
+            ) : (
+              <span className="flex items-center gap-2">
+                <span aria-hidden className="text-xl">
+                  →
+                </span>
+                <Trans>Découvrir</Trans>
+              </span>
+            )}
+          </Button>
         </div>
       </div>
-      <Button
-        disabled={isPending}
-        onClick={() => {
-          trackEvent(endClickJagisFirstBlock)
-          exportSimulation()
-        }}
-        className="flex !h-11 max-h-11 !w-11 max-w-11 items-center justify-center rounded-full !p-0 !text-2xl leading-none">
-        {isPending ? <Loader /> : '→'}
-      </Button>
     </div>
   )
 }

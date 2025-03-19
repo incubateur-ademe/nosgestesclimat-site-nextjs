@@ -135,7 +135,7 @@ export default function NewslettersBlock() {
           </h3>
 
           <p className="mb-6 flex items-center">
-            <CheckIcon className="mr-2 h-4 w-4 stroke-green-500" />
+            <CheckIcon className="mr-2 h-4 w-4 stroke-green-500" aria-hidden />
 
             <span className="text-sm text-gray-600">
               {mainNewsletter?.totalSubscribers.toLocaleString(locale) ?? 0}{' '}
@@ -155,7 +155,7 @@ export default function NewslettersBlock() {
                       <Trans>Je m'inscris à l'infolettre</Trans>
                     </span>{' '}
                     -{' '}
-                    <span className="text-gray-600">
+                    <span className="text-gray-700">
                       <Trans>1 par mois max</Trans>
                     </span>
                   </p>
@@ -167,7 +167,7 @@ export default function NewslettersBlock() {
                 label={
                   <p className="mb-0 text-sm">
                     <span>Nos Gestes Transports</span> -{' '}
-                    <span className="text-gray-600">
+                    <span className="text-gray-700">
                       <Trans>4 infolettres l’impact des transports</Trans>
                     </span>
                   </p>
@@ -179,7 +179,7 @@ export default function NewslettersBlock() {
                 label={
                   <p className="mb-0 text-sm">
                     <span>Nos Gestes Logement</span> -{' '}
-                    <span className="text-gray-600">
+                    <span className="text-gray-700">
                       <Trans>5 infolettres sur l’impact du logement</Trans>
                     </span>
                   </p>
