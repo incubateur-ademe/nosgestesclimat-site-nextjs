@@ -24,7 +24,8 @@ export default async function DecryptChallenges({
             </Trans>
           ),
           category: <Trans locale={locale}>Empreinte eau</Trans>,
-          imageSrc: '/images/blog/seo/lexique-eau.jpg',
+          imageSrc:
+            'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/philip_junior_mail_Bp_Uk_WK_6hf_JA_unsplash_0f0f3b01c2.jpg',
           imageAlt: t(
             "Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau"
           ),
@@ -37,7 +38,8 @@ export default async function DecryptChallenges({
             </Trans>
           ),
           category: <Trans locale={locale}>Empreinte carbone</Trans>,
-          imageSrc: '/images/blog/seo/empreinte-carbone-transports.jpg',
+          imageSrc:
+            'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/van_bus_velo_elviss_railijs_bitans_dce5c98c2c.jpg',
           imageAlt: t(
             "Deux mini-vans, illustrant l'empreinte carbone des transports"
           ),
@@ -50,7 +52,8 @@ export default async function DecryptChallenges({
             </Trans>
           ),
           category: <Trans locale={locale}>Empreinte carbone</Trans>,
-          imageSrc: '/images/blog/seo/agir-reduire-empreinte-carbone.jpg',
+          imageSrc:
+            'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/markus_spiske_nature_future_0398daa4ed.jpg',
           imageAlt: t(
             'Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone'
           ),

@@ -12,8 +12,6 @@ type Props = {
 }
 
 export default function useType({ dottedName, rule, evaluation }: Props) {
-  // Model shenanigans
-
   const type = useMemo<
     'notQuestion' | 'mosaic' | 'choices' | 'boolean' | 'number' | undefined
   >(() => {

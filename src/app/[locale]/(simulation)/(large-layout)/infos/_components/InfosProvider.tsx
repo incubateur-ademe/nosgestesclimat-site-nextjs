@@ -9,7 +9,7 @@ type InfosContextType = {
   birthdate: string
   setBirthdate: (birthdate: string) => void
   customAnswers: Record<string, string>
-  addCustomAnswer: ({ id, answer }: { id: string; answer: string }) => void
+  addCustomAnswer: ({ key, answer }: { key: string; answer: string }) => void
 }
 export const InfosContext = createContext<InfosContextType>({
   postalCode: '',
@@ -27,8 +27,8 @@ export default function InfosProvider({ children }: PropsWithChildren) {
   // id of the question : answer of user
   const [customAnswers, setCustomAnswers] = useState<Record<string, string>>({})
 
-  function addCustomAnswer({ id, answer }: { id: string; answer: string }) {
-    setCustomAnswers((prev) => ({ ...prev, [id]: answer }))
+  function addCustomAnswer({ key, answer }: { key: string; answer: string }) {
+    setCustomAnswers((prev) => ({ ...prev, [key]: answer }))
   }
 
   return (
