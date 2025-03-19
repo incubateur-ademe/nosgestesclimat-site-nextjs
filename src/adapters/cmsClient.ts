@@ -165,7 +165,7 @@ export type ArticleItemType = Pick<
 export type BannerType = {
   text: string
   link: {
-    url: string
+    URL: string
     label: string
   }
   startDate: string
