@@ -1,16 +1,8 @@
-'use client'
-
-import type { BannerType } from '@/adapters/cmsClient'
 import { getBanner } from '@/helpers/api/getBanner'
-import { useEffect, useState } from 'react'
 import ButtonLink from '../inputs/ButtonLink'
 
-export default function Banner() {
-  const [banner, setBanner] = useState<BannerType | null>(null)
-
-  useEffect(() => {
-    getBanner().then(setBanner)
-  }, [])
+export default async function Banner() {
+  const banner = await getBanner()
 
   if (!banner) return null
 
