@@ -10,6 +10,9 @@ export async function fetchBanner(): Promise<BannerType | null> {
     const bannerSearchParams = new URLSearchParams({
       locale: i18nConfig.defaultLocale,
       sort: 'startDate:desc',
+      // Get the banner for the current date ; the date needs to be between the start and end date
+      'filters[$and][0][startDate][$lte]': new Date().toISOString(),
+      'filters[$and][1][endDate][$gte]': new Date().toISOString(),
       ...(isProduction ? { status: 'published' } : { status: 'draft' }),
       populate: '*',
     })
