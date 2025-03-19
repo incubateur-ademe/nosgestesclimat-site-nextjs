@@ -1,5 +1,6 @@
 import ErrorContent from '@/components/error/ErrorContent'
 import Footer from '@/components/layout/Footer'
+import Banner from '@/design-system/cms/Banner'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import type { DefaultPageProps } from '@/types'
@@ -125,6 +126,8 @@ export default async function RootLayout({
             const b = document.documentElement;
             b.setAttribute('data-useragent', navigator.userAgent);
           `}</Script>
+
+          <Banner />
 
           <MainLayoutProviders>
             {children}
