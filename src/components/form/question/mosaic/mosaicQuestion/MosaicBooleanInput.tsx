@@ -50,20 +50,29 @@ export default function MosaicBooleanInput({
     : !isMissing && value
       ? 'checked'
       : 'unchecked'
+
+  const onClick = () => {
+    setValue(value ? 'non' : 'oui')
+  }
+
   return (
     <div className="flex md:block">
       <label
         className={twMerge(
-          `relative flex h-full items-center gap-2 rounded-xl border bg-white px-4 py-2 text-left transition-colors`,
+          `relative flex h-full items-center gap-2 rounded-xl border bg-white px-4 py-2 text-left transition-colors focus-within:ring-2 focus-within:ring-primary-700`,
           buttonClassNames[status]
         )}
         htmlFor={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}>
         <input
           type="checkbox"
           disabled={isInactive}
-          className="absolute h-[1px] w-[1px] opacity-0"
-          onClick={() => {
-            setValue(value ? 'non' : 'oui')
+          className="sr-only"
+          onClick={onClick}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault()
+              onClick()
+            }
           }}
           data-cypress-id={`${question}-${value}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
