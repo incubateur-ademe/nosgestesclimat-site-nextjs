@@ -3,7 +3,7 @@
 import type { PropsWithChildren } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 
-import { getGeolocation } from '@/helpers/getGeolocation'
+import { getGeolocation } from '@/helpers/api/getGeolocation'
 import type { RegionFromGeolocation } from '@/publicodes-state/types'
 import type { Migration } from '@publicodes/tools/migration'
 import UserContext from './context'

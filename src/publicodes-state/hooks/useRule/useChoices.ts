@@ -1,28 +1,25 @@
 'use client'
 
-import type { NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
-
+import useEngine from '../useEngine'
 type Props = {
-  rule: NGCRuleNode | null | any // Model shenanigans: question alimentation . local . consommation is missing "formule"
+  rule: NGCRuleNode | undefined
   type: string | undefined
 }
 
 export default function useChoices({ rule, type }: Props) {
-  const choices = useMemo<string[]>(() => {
-    if (type === 'choices') {
-      // Model shenanigans: sometimes "une possibilité" is in rawNode, sometimes it is in formule
-      const unePossibilite: any = rule?.rawNode.formule
-        ? rule?.rawNode.formule['une possibilité']
-        : rule?.rawNode['une possibilité']
-      if (unePossibilite) {
-        return unePossibilite['possibilités']
-      } else {
-        return []
-      }
+  const { engine } = useEngine()
+  const choices = useMemo<(string | number)[] | null>(() => {
+    if (type === 'choices' && engine) {
+      const possibilities = engine
+        .getPossibilitiesFor(rule?.dottedName as DottedName)
+        ?.map(({ nodeValue }) => nodeValue)
+
+      return possibilities ?? []
     }
     return null
-  }, [rule, type])
+  }, [rule, type, engine])
 
   return choices
 }

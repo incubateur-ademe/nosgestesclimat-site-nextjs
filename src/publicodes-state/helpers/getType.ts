@@ -3,7 +3,7 @@ import type { EvaluatedNode } from 'publicodes'
 
 type Props = {
   dottedName: DottedName
-  rule: NGCRuleNode | null | any // Model shenanigans: question alimentation . local . consommation is missing "formule"
+  rule: NGCRuleNode | undefined
   evaluation: EvaluatedNode | null
 }
 
@@ -35,9 +35,8 @@ export default function getType({
       typeof evaluation.nodeValue !== 'number') ||
     booleanSecureTypes.some((key) => dottedName.includes(key))
   ) {
-    const unePossibilite: any = rule.rawNode.formule
-      ? rule.rawNode.formule['une possibilité']
-      : rule.rawNode['une possibilité']
+    const unePossibilite = rule.rawNode['une possibilité']
+
     if (unePossibilite) {
       return 'choices'
     } else {

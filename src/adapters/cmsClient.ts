@@ -161,3 +161,13 @@ export type ArticleItemType = Pick<
   PopulatedArticleType<'image' | 'category'>,
   'id' | 'documentId' | 'title' | 'description' | 'slug' | 'image' | 'category'
 >
+
+export type BannerType = {
+  text: string
+  link: {
+    URL: string
+    label: string
+  }
+  startDate: string
+  endDate: string
+} & DefaultAttributesType
