@@ -46,3 +46,6 @@ export const trackingSplitTesting = (branch: string) => [
   'Split testing',
   `User on branch ${branch}`,
 ]
+
+// Banner
+export const trackingBannerClick = ['trackEvent', 'Bannière', 'Click lien']
