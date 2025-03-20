@@ -6,7 +6,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import { updateLang } from '@/helpers/language/updateLang'
 import { updateLangCookie } from '@/helpers/language/updateLangCookie'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import i18nConfig from '@/i18nConfig'
+import i18nConfig, { type Locale } from '@/i18nConfig'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import { useCallback, useEffect } from 'react'
@@ -27,7 +27,7 @@ export default function LanguageSwitchButton() {
   }, [currentLocale])
 
   const handleChange = useCallback(
-    (newLocale: string) => {
+    (newLocale: Locale) => {
       trackEvent(footerClickLanguage(newLocale))
 
       updateLang({

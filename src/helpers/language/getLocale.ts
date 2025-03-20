@@ -1,4 +1,4 @@
-import i18nConfig from '@/i18nConfig'
+import i18nConfig, { type Locale } from '@/i18nConfig'
 import { headers } from 'next/headers'
 
 export async function getLocale() {
@@ -8,7 +8,7 @@ export async function getLocale() {
     const locale = path.split('/')[1] // Gets the first path segment after the domain
 
     // Check if the locale is valid (exists in your i18nConfig)
-    if (i18nConfig.locales.includes(locale)) {
+    if (i18nConfig.locales.includes(locale as Locale)) {
       return locale
     }
 
