@@ -1,12 +1,30 @@
-import Link from '@/components/Link'
-import TransServer from '@/components/translation/trans/TransServer'
+'use client'
 
-export default function SkipToMainContentLink({ locale }: { locale: string }) {
+import TransClient from '@/components/translation/trans/TransClient'
+import Button from '../inputs/Button'
+
+export default function SkipToMainContentLink() {
+  const skipToFirstFocusableElement = () => {
+    const firstFocusableElement = document
+      .getElementById('main-content')
+      ?.querySelector('a, button') as HTMLElement
+    if (firstFocusableElement) {
+      firstFocusableElement.focus()
+    }
+  }
+
   return (
-    <Link
-      href="#main-content"
-      className="sr-only bg-white focus:relative focus:left-0 focus:top-0 focus:z-[100000] focus:h-auto focus:w-auto focus:border-2 focus:border-primary-700">
-      <TransServer locale={locale}>Passer au contenu principal</TransServer>
-    </Link>
+    <Button
+      color="secondary"
+      onClick={skipToFirstFocusableElement}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          skipToFirstFocusableElement()
+        }
+      }}
+      className="sr-only focus:relative focus:left-0 focus:top-0 focus:z-[100000] focus:h-8 focus:w-auto focus:ring-2 focus:ring-primary-700 focus:ring-offset-[2px]">
+      <TransClient>Passer au contenu principal</TransClient>
+    </Button>
   )
 }

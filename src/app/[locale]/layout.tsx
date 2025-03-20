@@ -128,7 +128,7 @@ export default async function RootLayout({
           `}</Script>
 
           <MainLayoutProviders>
-            <SkipToMainContentLink locale={locale} />
+            <SkipToMainContentLink />
 
             {children}
 
