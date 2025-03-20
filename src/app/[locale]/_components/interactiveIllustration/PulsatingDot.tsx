@@ -71,7 +71,7 @@ export default function PulsatingDot({
         )}
         onMouseEnter={handleEnter}
         onMouseLeave={handleLeave}
-        tabIndex={0}
+        tabIndex={-1}
         role="button"
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -85,7 +85,7 @@ export default function PulsatingDot({
         }}
         // Handle touch events
         onTouchStart={handleEnter}
-        aria-label="Toggle information">
+        aria-hidden>
         <div
           className={twMerge(
             'absolute inset-0 scale-[0.15] rounded-full bg-secondary-600 transition-all duration-500',

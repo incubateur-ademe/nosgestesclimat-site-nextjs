@@ -1,5 +1,6 @@
 import ErrorContent from '@/components/error/ErrorContent'
 import Footer from '@/components/layout/Footer'
+import SkipToMainContentLink from '@/design-system/accessibility/SkipToMainContentLink'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import type { DefaultPageProps } from '@/types'
@@ -127,7 +128,10 @@ export default async function RootLayout({
           `}</Script>
 
           <MainLayoutProviders>
+            <SkipToMainContentLink locale={locale} />
+
             {children}
+
             <Footer />
           </MainLayoutProviders>
 
