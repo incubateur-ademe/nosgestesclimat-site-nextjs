@@ -1,8 +1,8 @@
-import { getBanner } from '@/helpers/api/getBanner'
+import { fetchBanner } from '@/services/cms/fetchBanner'
 import BannerLink from './banner/BannerLink'
 
 export default async function Banner() {
-  const banner = await getBanner()
+  const banner = await fetchBanner()
 
   if (!banner) return null
   return (
