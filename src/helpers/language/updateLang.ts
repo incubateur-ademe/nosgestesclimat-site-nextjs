@@ -1,11 +1,11 @@
-import i18nConfig from '@/i18nConfig'
+import i18nConfig, { type Locale } from '@/i18nConfig'
 import { updateLangCookie } from './updateLangCookie'
 
 export function updateLang({
   newLocale,
   currentLocale,
 }: {
-  newLocale: string
+  newLocale: Locale
   currentLocale: string
 }) {
   if (!i18nConfig.locales.includes(newLocale)) {
