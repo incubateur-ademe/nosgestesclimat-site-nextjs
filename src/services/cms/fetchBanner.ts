@@ -1,14 +1,20 @@
 import type { BannerType } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
-import i18nConfig from '@/i18nConfig'
+import i18nConfig, { type Locale } from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 
 const isProduction = process.env.NODE_ENV === 'production'
 
-export async function fetchBanner(): Promise<BannerType | null> {
+// Limit to the allowed locales fr and en, the only locales supported by the CMS
+const allowedLocales = [i18nConfig.locales[0], i18nConfig.locales[1]]
+
+export async function fetchBanner(locale: Locale): Promise<BannerType | null> {
   try {
     const bannerSearchParams = new URLSearchParams({
-      locale: i18nConfig.defaultLocale,
+      locale: allowedLocales.includes(locale)
+        ? locale
+        : // Display english banner if locale is not allowed (currently applies for es)
+          i18nConfig.locales[1],
       sort: 'startDate:desc',
       // Get the banner for the current date ; the date needs to be between the start and end date
       'filters[$and][0][startDate][$lte]': new Date().toISOString(),
