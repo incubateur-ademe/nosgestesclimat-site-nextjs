@@ -73,17 +73,6 @@ export default function PulsatingDot({
         onMouseLeave={handleLeave}
         tabIndex={-1}
         role="button"
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            handleEnter()
-          }
-        }}
-        onKeyUp={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            handleLeave()
-          }
-        }}
-        // Handle touch events
         onTouchStart={handleEnter}
         aria-hidden>
         <div

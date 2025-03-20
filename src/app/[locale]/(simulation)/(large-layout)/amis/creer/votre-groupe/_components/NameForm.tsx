@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/trans/TransClient'
+import { default as Trans } from '@/components/translation/trans/TransClient'
 import { GROUP_EMOJIS } from '@/constants/group'
 import { amisCreationEtapeVosInformationsSuivant } from '@/constants/tracking/pages/amisCreation'
 import Button from '@/design-system/inputs/Button'
@@ -132,7 +132,11 @@ export default function NameForm() {
         helperText={<Trans>Pour faire joli et le reconnaitre !</Trans>}
         name="emoji"
         data-cypress-id="group-select-emoji"
-        items={GROUP_EMOJIS.map((emoji) => ({ value: emoji, label: emoji }))}
+        items={GROUP_EMOJIS.map(({ emoji, label }) => ({
+          value: emoji,
+          label: emoji,
+          ariaLabel: t(label),
+        }))}
         rules={{ required: t('Ce champ est obligatoire.') }}
         error={errors.emoji?.message}
       />

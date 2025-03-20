@@ -1,6 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
 import type { ChangeEvent, ForwardedRef, ReactNode } from 'react'
 import { forwardRef } from 'react'
 
@@ -53,13 +54,10 @@ export default forwardRef(function CheckboxInputGroup(
           onChange={onChange}
           onKeyDown={
             disableSubmitOnEnter
-              ? (e) => {
+              ? onKeyDownHelper(() => {
                   // Avoid submitting the form when the checkbox is clicked, with keyboard navigation
-                  if (e.key === 'Enter') {
-                    e.preventDefault()
-                    document.getElementById(`${name}-label`)?.click()
-                  }
-                }
+                  document.getElementById(`${name}-label`)?.click()
+                })
               : undefined
           }
           aria-describedby={`error-${name}`}

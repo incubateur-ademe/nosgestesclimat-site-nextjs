@@ -3,6 +3,7 @@
 import Trans from '@/components/translation/trans/TransClient'
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import Emoji from '@/design-system/utils/Emoji'
+import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
 import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
@@ -68,12 +69,7 @@ export default function MosaicBooleanInput({
           disabled={isInactive}
           className="sr-only"
           onClick={onClick}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault()
-              onClick()
-            }
-          }}
+          onKeyDown={onKeyDownHelper(() => onClick())}
           data-cypress-id={`${question}-${value}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
           {...props}

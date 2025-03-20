@@ -1,4 +1,5 @@
 import Markdown from '@/design-system/utils/Markdown'
+import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
 import type { HTMLAttributes, JSX, PropsWithChildren } from 'react'
 import { useState } from 'react'
 import QuestionButton from './QuestionButton'
@@ -50,12 +51,7 @@ export default function ChoiceInput({
             tabIndex={0}
             className="sr-only"
             onClick={onClick}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault()
-                onClick()
-              }
-            }}
+            onKeyDown={onKeyDownHelper(() => onClick())}
             id={id}
             {...props}
           />
