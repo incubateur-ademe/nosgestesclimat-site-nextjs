@@ -1,5 +1,7 @@
 import ErrorContent from '@/components/error/ErrorContent'
 import Footer from '@/components/layout/Footer'
+import Banner from '@/design-system/cms/Banner'
+import type { Locale } from '@/i18nConfig'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import type { DefaultPageProps } from '@/types'
@@ -9,7 +11,6 @@ import localFont from 'next/font/local'
 import Script from 'next/script'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
-
 export const marianne = localFont({
   src: [
     {
@@ -119,16 +120,11 @@ export default async function RootLayout({
           }
         </head>
 
-        <MainLayoutProviders>
-          <>
-            <Script id="script-user-agent">{`
-            const b = document.documentElement;
-            b.setAttribute('data-useragent', navigator.userAgent);
-          `}</Script>
+        <Banner locale={locale as Locale} />
 
-            {children}
-            <Footer />
-          </>
+        <MainLayoutProviders>
+          {children}
+          <Footer />
         </MainLayoutProviders>
       </html>
     )
