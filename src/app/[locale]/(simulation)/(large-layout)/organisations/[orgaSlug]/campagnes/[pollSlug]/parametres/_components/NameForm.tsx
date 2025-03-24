@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/trans/TransClient'
+import TransClient from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import type { PollToUpdate } from '@/hooks/organisations/polls/useUpdatePoll'
@@ -83,7 +83,7 @@ export default function NameForm({
           containerClassName="max-w-[30rem]"
           label={
             <span className="text-lg font-medium">
-              <Trans>Nom de la campagne</Trans>
+              <TransClient>Nom de la campagne</TransClient>
             </span>
           }
           value={nameValue}
@@ -93,10 +93,10 @@ export default function NameForm({
         <TextInputGroup
           label={
             <p className="mb-0 flex w-full justify-between">
-              <Trans>Nombre de participants attendus</Trans>
+              <TransClient>Nombre de participants attendus</TransClient>
               <span className="font-bold italic text-secondary-700">
                 {' '}
-                <Trans>facultatif</Trans>
+                <TransClient>facultatif</TransClient>
               </span>
             </p>
           }

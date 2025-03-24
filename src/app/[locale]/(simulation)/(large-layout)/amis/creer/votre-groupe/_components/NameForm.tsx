@@ -1,6 +1,6 @@
 'use client'
 
-import { default as Trans } from '@/components/translation/trans/TransClient'
+import TransClient from '@/components/translation/trans/TransClient'
 import { GROUP_EMOJIS } from '@/constants/group'
 import { amisCreationEtapeVosInformationsSuivant } from '@/constants/tracking/pages/amisCreation'
 import Button from '@/design-system/inputs/Button'
@@ -114,9 +114,11 @@ export default function NameForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <TextInputGroup
-        label={<Trans>Choisissez un nom pour ce groupe</Trans>}
+        label={<TransClient>Choisissez un nom pour ce groupe</TransClient>}
         helperText={
-          <Trans>Pour le retrouver facilement dans votre liste</Trans>
+          <TransClient>
+            Pour le retrouver facilement dans votre liste
+          </TransClient>
         }
         data-cypress-id="group-name"
         error={errors.name?.message}
@@ -128,8 +130,10 @@ export default function NameForm() {
 
       <GridRadioInputs
         control={control as any}
-        label={<Trans>Et une illustration</Trans>}
-        helperText={<Trans>Pour faire joli et le reconnaitre !</Trans>}
+        label={<TransClient>Et une illustration</TransClient>}
+        helperText={
+          <TransClient>Pour faire joli et le reconnaitre !</TransClient>
+        }
         name="emoji"
         data-cypress-id="group-select-emoji"
         items={GROUP_EMOJIS.map(({ emoji, label }) => ({
@@ -149,9 +153,9 @@ export default function NameForm() {
         className="mt-4 self-start"
         disabled={isPending || isSuccess}>
         {hasCompletedTest ? (
-          <Trans>Créer le groupe</Trans>
+          <TransClient>Créer le groupe</TransClient>
         ) : (
-          <Trans>Créer et passer mon test</Trans>
+          <TransClient>Créer et passer mon test</TransClient>
         )}
       </Button>
     </form>
