@@ -69,7 +69,7 @@ export default function BurgerMenu({
         />
       </Button>
 
-      <div className="z-51 fixed left-0 top-0">
+      <div className="absolute left-0 top-0 z-[100]">
         <>
           {isOpen && (
             <div
