@@ -69,6 +69,7 @@ export default function ToggleField({
               type="checkbox"
               className="peer sr-only"
               checked={isEnabled}
+              tabIndex={-1}
               readOnly
             />
 
