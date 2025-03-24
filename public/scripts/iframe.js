@@ -76,7 +76,7 @@ for (var key in iframeAttributes) {
 const link = document.createElement('div')
 
 link.innerHTML = `
-  <a href="https://nosgestesclimat.fr" target="_blank">Calculer mon empreinte carbone ⬇️</a>
+  <a href="https://nosgestesclimat.fr" target="_blank">Calculer mon empreinte carbone et eau ⬇️</a>
 `
 
 link.style.cssText = `
