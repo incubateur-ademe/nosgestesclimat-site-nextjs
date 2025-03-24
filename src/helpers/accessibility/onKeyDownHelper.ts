@@ -11,7 +11,7 @@ export const onKeyDownHelper =
   (
     event: KeyboardEvent<HTMLInputElement | HTMLButtonElement | HTMLDivElement>
   ) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
       callback(event)
     }
