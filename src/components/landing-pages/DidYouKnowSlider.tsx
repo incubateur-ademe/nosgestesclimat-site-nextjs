@@ -25,13 +25,17 @@ const DynamicCTAButtons = dynamic(
 export default function DidYouKnowSlider({
   slides,
   className,
+  titleTag = 'h2',
 }: {
   slides: { illustration: string; content: ReactNode; highlight: ReactNode }[]
   className?: string
+  titleTag?: 'h2' | 'h3'
 }) {
   const [currentSlide, setCurrentSlide] = useState(0)
 
   const pathname = usePathname()
+
+  const Title = titleTag === 'h2' ? 'h2' : 'h3'
 
   return (
     <div
@@ -65,9 +69,9 @@ export default function DidYouKnowSlider({
               </div>
 
               <div className="w-full flex-1">
-                <h3 className="text-center text-xl md:text-left md:text-3xl">
+                <Title className="text-center text-xl md:text-left md:text-3xl">
                   <Trans>Le saviez vous ?</Trans>
-                </h3>
+                </Title>
 
                 <Separator className="mx-auto my-4 md:mx-0" />
 

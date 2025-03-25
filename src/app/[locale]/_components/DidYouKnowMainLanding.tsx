@@ -4,13 +4,16 @@ import Trans from '@/components/translation/trans/TransServer'
 export default function DidYouKnowMainLanding({
   locale,
   className,
+  titleTag = 'h2',
 }: {
   locale: string
   className?: string
+  titleTag?: 'h2' | 'h3'
 }) {
   return (
     <DidYouKnowSlider
       className={className}
+      titleTag={titleTag}
       slides={[
         {
           illustration: '/images/icons/icone-ordinateur.svg',

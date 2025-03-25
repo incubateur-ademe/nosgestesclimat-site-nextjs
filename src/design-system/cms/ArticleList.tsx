@@ -41,6 +41,7 @@ export default function ArticleList({
       <DidYouKnowMainLanding
         locale={locale}
         className="mt-20 overflow-hidden rounded-lg px-10"
+        titleTag="h3"
       />
 
       {articles.length > 6 && (
