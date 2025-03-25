@@ -1,5 +1,9 @@
 import type { ButtonSize } from '@/types/values'
-import type { HtmlHTMLAttributes, MouseEventHandler, PropsWithChildren } from 'react'
+import type {
+  HtmlHTMLAttributes,
+  MouseEventHandler,
+  PropsWithChildren,
+} from 'react'
 import { twMerge } from 'tailwind-merge'
 
 export type ButtonProps = {
@@ -34,7 +38,7 @@ export const sizeClassNames = {
 }
 
 export const baseClassNames =
-  'inline-flex items-center justify-center whitespace-nowrap rounded-full font-bold no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-primary-700 focus:ring-offset-3 aria-disabled:opacity-50 !leading-none'
+  'inline-flex items-center justify-center whitespace-nowrap rounded-full font-bold no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-primary-700 focus:ring-offset-[2px] aria-disabled:opacity-50 !leading-none'
 
 export default function Button({
   onClick,

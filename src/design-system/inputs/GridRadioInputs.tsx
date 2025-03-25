@@ -1,4 +1,5 @@
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
+import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
 import type { ChangeEventHandler, HTMLAttributes, ReactNode } from 'react'
 import { Controller } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
@@ -7,7 +8,11 @@ type Props = {
   name: string
   label?: string | ReactNode
   type?: string
-  items: { value: string; label: string }[]
+  items: {
+    value: string
+    label: string | ReactNode
+    ariaLabel: string
+  }[]
   isInvalid?: boolean
   error?: string
   helperText?: string | ReactNode
@@ -46,7 +51,7 @@ export default function GridRadioInputs({
       {label ? (
         <label htmlFor={name} className="w-full">
           <span
-            className={` text-sm font-bold text-slate-900 ${
+            className={`text-sm font-bold text-slate-900 ${
               error ? '!text-red-700' : ''
             }`}>
             {label}
@@ -65,7 +70,7 @@ export default function GridRadioInputs({
         rules={rules ?? undefined}
         render={({ field: { onChange, value, ...props } }) => {
           return (
-            <div className="grid w-full grid-cols-4 gap-2 sm:grid-cols-5">
+            <fieldset className="grid w-full grid-cols-4 gap-2 sm:grid-cols-5">
               {items?.map((item) => {
                 // Style the radio to look like a button
                 // hiding the actual radio button
@@ -75,30 +80,33 @@ export default function GridRadioInputs({
                   <label
                     key={item.value}
                     data-cypress-id={dataCypressId + '-' + item.value}
+                    aria-label={item.ariaLabel}
                     className={twMerge(
-                      'relative flex cursor-pointer items-center justify-center rounded-xl border-2 border-gray-200 p-6 text-xl transition-colors',
+                      'relative flex cursor-pointer items-center justify-center rounded-xl border-2 border-gray-200 p-6 text-xl transition-colors focus-within:ring-2 focus-within:ring-primary-700',
                       'hover:border-gray-300 hover:bg-primary-50 focus:border-slate-300',
                       value === item.value
                         ? '!border-primary-700 !bg-primary-50'
                         : ''
                     )}>
                     {value === item.value && (
-                      <CheckCircleIcon className="absolute bottom-1 right-1  fill-primary-700" />
+                      <CheckCircleIcon className="absolute bottom-1 right-1 fill-primary-700" />
                     )}
 
                     <input
                       type="radio"
                       className="sr-only"
+                      tabIndex={0}
                       onChange={() => {
                         onChange(item.value)
                       }}
+                      onKeyDown={onKeyDownHelper(() => onChange(item.value))}
                       {...props}
                     />
                     {item.label}
                   </label>
                 )
               })}
-            </div>
+            </fieldset>
           )
         }}
       />

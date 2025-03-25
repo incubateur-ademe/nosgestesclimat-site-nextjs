@@ -73,6 +73,7 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
       <div className="w-[32rem]">
         <CheckboxInputGroup
           size="xl"
+          disableSubmitOnEnter
           defaultChecked={defaultValues.hasOptedInForCommunications}
           label={
             <span>
