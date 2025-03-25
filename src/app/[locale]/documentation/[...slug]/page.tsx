@@ -16,9 +16,7 @@ export async function generateMetadata({
 
   return getMetadataObject({
     locale,
-    title: t(
-      "Documentation, votre calculateur d'empreinte carbone - Nos Gestes Climat"
-    ),
+    title: t('Documentation, règle du calculateur - Nos Gestes Climat'),
     description: t(
       'Notre documentation détaille les calculs qui nous ont permis de calculer votre bilan carbone personnel.'
     ),
