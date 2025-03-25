@@ -127,6 +127,8 @@ export default async function RootLayout({
 
           <SkipToMainContentLink />
 
+          <SkipToMainContentLink />
+
           <Banner locale={locale as Locale} />
 
           {children}
