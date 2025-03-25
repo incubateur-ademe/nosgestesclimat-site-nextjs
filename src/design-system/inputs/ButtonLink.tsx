@@ -3,7 +3,11 @@
 import Link from '@/components/Link'
 import type { ButtonSize } from '@/types/values'
 import { trackEvent } from '@/utils/analytics/trackEvent'
-import type { HtmlHTMLAttributes, PropsWithChildren } from 'react'
+import type {
+  HtmlHTMLAttributes,
+  KeyboardEvent,
+  PropsWithChildren,
+} from 'react'
 import { twMerge } from 'tailwind-merge'
 import { baseClassNames, colorClassNames, sizeClassNames } from './Button'
 
@@ -14,6 +18,7 @@ type Props = {
   size?: ButtonSize
   title?: string
   onClick?: () => void
+  onKeyDown?: (e: KeyboardEvent<HTMLAnchorElement>) => void
   trackingEvent?: (string | null)[]
   target?: string
 }
@@ -26,6 +31,7 @@ export default function ButtonLink({
   size = 'md',
   title,
   onClick,
+  onKeyDown,
   trackingEvent,
   target = '_self',
   ...props
@@ -37,6 +43,15 @@ export default function ButtonLink({
         if (onClick) {
           onClick(e)
         }
+        if (trackingEvent) {
+          trackEvent(trackingEvent)
+        }
+      }}
+      onKeyDown={(e) => {
+        if (onKeyDown) {
+          onKeyDown(e)
+        }
+
         if (trackingEvent) {
           trackEvent(trackingEvent)
         }
