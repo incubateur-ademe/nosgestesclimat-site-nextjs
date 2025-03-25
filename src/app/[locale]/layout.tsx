@@ -1,5 +1,6 @@
 import ErrorContent from '@/components/error/ErrorContent'
 import Footer from '@/components/layout/Footer'
+import SkipToMainContentLink from '@/design-system/accessibility/SkipToMainContentLink'
 import Banner from '@/design-system/cms/Banner'
 import type { Locale } from '@/i18nConfig'
 import '@/locales/initClient'

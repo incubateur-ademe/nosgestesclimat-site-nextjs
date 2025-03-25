@@ -2,7 +2,6 @@
 
 import TransClient from '@/components/translation/trans/TransClient'
 import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
-import Button from '../inputs/Button'
 import ButtonLink from '../inputs/ButtonLink'
 
 export default function SkipToMainContentLink() {
@@ -39,23 +38,25 @@ export default function SkipToMainContentLink() {
           <TransClient>Contenu</TransClient>
         </ButtonLink>
 
-        <Button
+        <ButtonLink
           color="secondary"
+          href="#nav-menu"
           onClick={() => skipToElement('nav-first-link')}
           onKeyDown={onKeyDownHelper(() => skipToElement('nav-first-link'))}
           className="focus:w-auto focus:ring-2 focus:ring-primary-700 focus:ring-offset-[2px]">
           <TransClient>Menu</TransClient>
-        </Button>
+        </ButtonLink>
 
-        <Button
+        <ButtonLink
           color="secondary"
+          href="#footer"
           onClick={() => skipToFirstFocusableElement('footer')}
           onKeyDown={onKeyDownHelper(() =>
             skipToFirstFocusableElement('footer')
           )}
           className="focus:w-auto focus:ring-2 focus:ring-primary-700 focus:ring-offset-[2px]">
           <TransClient>Pied de page</TransClient>
-        </Button>
+        </ButtonLink>
       </nav>
     </div>
   )
