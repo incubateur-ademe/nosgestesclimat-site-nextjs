@@ -1,3 +1,4 @@
+import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import type { DefaultPageProps } from '@/types'
@@ -9,16 +10,23 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
   return getMetadataObject({
     locale,
-    title: t('Mon groupe - Nos Gestes Climat'),
+    title: t(
+      'Votre date de naissance, rejoindre une campagne - Nos Gestes Climat'
+    ),
     description: t(
-      "Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat."
+      'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.'
     ),
     alternates: {
-      canonical: '/amis/resultats',
+      canonical: '/infos/codepostal',
     },
+    robots: noIndexObject,
   })
 }
 
-export default function Layout({ children }: PropsWithChildren) {
-  return <>{children}</>
+export default async function Layout({ children }: PropsWithChildren) {
+  return (
+    <div className="mx-auto w-full max-w-3xl">
+      <>{children}</>
+    </div>
+  )
 }

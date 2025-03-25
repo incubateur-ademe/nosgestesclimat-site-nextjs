@@ -14,9 +14,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
   return getMetadataObject({
     locale,
-    title: t(
-      'Créer un groupe et calculer votre empreinte carbone - Nos Gestes Climat'
-    ),
+    title: t('Créer un groupe, étape 2 sur 2 - Nos Gestes Climat'),
     description: t(
       "Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat."
     ),

@@ -11,9 +11,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
   return getMetadataObject({
     locale,
-    title: t(
-      'Calculer votre empreinte carbone avec vos amis - Nos Gestes Climat'
-    ),
+    title: t("Mes groupes d'amis - Nos Gestes Climat"),
     description: t(
       "Comparez vos résultats avec votre famille ou un groupe d'amis."
     ),
