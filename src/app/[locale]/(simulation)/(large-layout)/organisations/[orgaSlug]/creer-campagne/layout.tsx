@@ -1,25 +1,26 @@
-import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import type { DefaultPageProps } from '@/types'
 import type { PropsWithChildren } from 'react'
 
-export async function generateMetadata({ params }: DefaultPageProps) {
-  const { locale } = await params
+export async function generateMetadata({
+  params,
+}: DefaultPageProps<{
+  params: Promise<{ orgaSlug: string; locale: string }>
+}>) {
+  const { orgaSlug, locale } = await params
+
   const { t } = await getServerTranslation({ locale })
 
   return getMetadataObject({
     locale,
-    title: t(
-      'Demander une démo de notre calculateur pour les organisations - Nos Gestes Climat'
-    ),
+    title: t('Créer une campagne pour mon organisation - Nos Gestes Climat'),
     description: t(
       'Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.'
     ),
     alternates: {
-      canonical: '/organisations/demander-demo',
+      canonical: `/organisations/${orgaSlug}/creer-campagne`,
     },
-    robots: noIndexObject,
   })
 }
 

@@ -36,7 +36,9 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
   return getMetadataObject({
     locale,
-    title: t('Empreinte carbone : comprendre, mesurer, réduire son impact'),
+    title: t(
+      'Empreinte carbone : comprendre, mesurer, réduire son impact - Nos Gestes Climat'
+    ),
     description: t(
       'Informez-vous sur l’empreinte carbone, de sa définition aux actions les plus impactantes pour réduire ses émissions et enclencher sa transition écologique'
     ),

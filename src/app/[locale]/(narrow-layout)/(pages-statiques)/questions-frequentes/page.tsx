@@ -25,9 +25,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
   return getMetadataObject({
     locale,
-    title: t(
-      "Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat"
-    ),
+    title: t('Questions fréquentes - Nos Gestes Climat'),
     description: t(
       'Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.'
     ),
