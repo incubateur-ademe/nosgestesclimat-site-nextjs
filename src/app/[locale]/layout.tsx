@@ -127,6 +127,8 @@ export default async function RootLayout({
             b.setAttribute('data-useragent', navigator.userAgent);
           `}</Script>
 
+          <SkipToMainContentLink />
+
           <Banner locale={locale as Locale} />
 
           <MainLayoutProviders>
