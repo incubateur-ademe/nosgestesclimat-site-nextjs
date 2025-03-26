@@ -1,7 +1,6 @@
 'use client'
 
 import Link from '@/components/Link'
-import PlusIcon from '@/components/icons/PlusIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   baseClassNames,
@@ -46,15 +45,9 @@ export default function AddPollCard({ hasNoPollsYet }: Props) {
           '!w-full text-sm',
           baseClassNames,
           sizeClassNames.md,
-          hasNoPollsYet ? colorClassNames.primary : colorClassNames.secondary
-        )}
-        color={hasNoPollsYet ? 'primary' : 'secondary'}>
-        <PlusIcon
-          className={twMerge(
-            'min-w-8',
-            hasNoPollsYet ? 'stroke-white' : 'stroke-primary-700'
-          )}
-        />
+          hasNoPollsYet ? colorClassNames.primary : colorClassNames.secondary,
+          'whitespace-normal'
+        )}>
         <Trans>Créer une campagne</Trans>
       </div>
     </Link>

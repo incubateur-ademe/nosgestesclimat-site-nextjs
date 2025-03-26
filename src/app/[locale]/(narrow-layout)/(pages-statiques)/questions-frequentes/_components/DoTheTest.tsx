@@ -22,7 +22,7 @@ export default function DoTheTest() {
   }
 
   return (
-    <div>
+    <div className="mb-10">
       <Trans>Vous avez commencé votre test,</Trans>{' '}
       <InlineLink href={getLinkToSimulateur()}>
         <strong>

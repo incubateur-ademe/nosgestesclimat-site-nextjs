@@ -36,7 +36,7 @@ export default function DidYouKnowSlider({
   return (
     <div
       className={twMerge(
-        'relative bg-heroLightBackground pb-20 pt-16',
+        'relative max-w-[100vw] bg-heroLightBackground pb-20 pt-16',
         className
       )}>
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-10 md:flex-row md:gap-0">

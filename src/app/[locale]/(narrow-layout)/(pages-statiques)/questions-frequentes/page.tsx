@@ -86,7 +86,7 @@ export default async function FAQPage({ params }: DefaultPageProps) {
         />
       </div>
 
-      <div className="-mt-8 pb-4 md:-mt-16">
+      <div className="pb-4">
         {categories.map((category) => {
           return (
             <li key={category} className="list-none">
