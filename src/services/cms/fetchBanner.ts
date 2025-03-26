@@ -2,6 +2,7 @@ import type { BannerType } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
+import dayjs from 'dayjs'
 
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -17,8 +18,8 @@ export async function fetchBanner(locale: Locale): Promise<BannerType | null> {
           i18nConfig.locales[1],
       sort: 'startDate:desc',
       // Get the banner for the current date ; the date needs to be between the start and end date
-      'filters[$and][0][startDate][$lte]': new Date().toISOString(),
-      'filters[$and][1][endDate][$gte]': new Date().toISOString(),
+      'filters[$and][0][startDate][$lte]': dayjs(new Date()).endOf('day').toISOString(),
+      'filters[$and][1][endDate][$gte]': dayjs(new Date()).startOf('day').toISOString(),
       ...(isProduction ? { status: 'published' } : { status: 'draft' }),
       populate: '*',
     })
