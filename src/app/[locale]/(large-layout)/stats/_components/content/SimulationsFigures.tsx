@@ -31,7 +31,7 @@ export default function SimulationsFigures({
             {formatValue(currentMonthSimulations, locale)}
           </p>{' '}
           <p>
-            <Trans>visites ce mois-ci (en cours)</Trans>
+            <Trans>simulations terminées ce mois-ci (en cours)</Trans>
           </p>
         </div>
       </Card>
