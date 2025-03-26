@@ -57,9 +57,7 @@ export default function ActionDetail({
 
   const { title } = rule
 
-  const { description, icônes: icons } = rules[dottedName]
-    ? rules[dottedName]
-    : {}
+  const { description, icônes: icons } = rules[dottedName] ?? {}
 
   // Typing is shit here but it's the `actions` rule from model.
   const flatActions = rules['actions'] as { formule: { somme: DottedName[] } }
