@@ -1,7 +1,7 @@
 'use client'
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import type { KeyboardEvent, ReactNode} from 'react';
+import type { KeyboardEvent, ReactNode } from 'react'
 import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Button from '../inputs/Button'
@@ -56,7 +56,7 @@ export default function BurgerMenu({
         className="absolute right-4 top-4 z-[52] flex h-[44px] w-[44px] flex-col items-center justify-center !p-0">
         <div
           className={`${genericHamburgerLine} ${
-            isOpen ? 'translate-y-2 rotate-45 ' : ''
+            isOpen ? 'translate-y-2 rotate-45' : ''
           }`}
         />
         <div
@@ -64,12 +64,12 @@ export default function BurgerMenu({
         />
         <div
           className={`${genericHamburgerLine} ${
-            isOpen ? '-translate-y-3 -rotate-45 ' : ''
+            isOpen ? '-translate-y-3 -rotate-45' : ''
           }`}
         />
       </Button>
 
-      <div className="fixed left-0 top-0 z-51">
+      <div className="absolute left-0 top-0 z-[100]">
         <>
           {isOpen && (
             <div
@@ -84,8 +84,8 @@ export default function BurgerMenu({
 
           <div
             className={twMerge(
-              'fixed right-0 top-0 z-51 h-screen w-[90vw] max-w-[20rem] translate-x-full bg-white p-4 pt-16 opacity-0 shadow-md transition-all duration-300 ease-in-out',
-              isOpen ? 'opacity-1  translate-x-0' : ''
+              'z-51 fixed right-0 top-0 h-screen w-[90vw] max-w-[20rem] translate-x-full bg-white p-4 pt-16 opacity-0 shadow-md transition-all duration-300 ease-in-out',
+              isOpen ? 'opacity-1 translate-x-0' : ''
             )}>
             {children({
               closeMenu: () => setIsOpen(false),
