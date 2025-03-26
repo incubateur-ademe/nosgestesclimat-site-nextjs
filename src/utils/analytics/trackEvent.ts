@@ -1,3 +1,4 @@
+import { captureException } from '@sentry/nextjs'
 import posthog from 'posthog-js'
 
 const shouldUseDevTracker = process.env.NODE_ENV === 'development'
@@ -23,14 +24,22 @@ export const trackEvent = (args: (string | null)[]) => {
   // Or : ['trackEvent', 'Fin', 'Toggle Target block']
   // FIXME: Convert properly events to posthog with better precision
 
-  posthog.capture(args[2] ? args[2] : 'Fix Event Name', {
-    category: args[1],
-    description: args[3],
-    value: args[4],
-  })
+  try {
+    posthog.capture(args[2] ? args[2] : 'Fix Event Name', {
+      category: args[1],
+      description: args[3],
+      value: args[4],
+    })
+  } catch (error) {
+    captureException(error)
+  }
 
-  // Pass a copy of the array to avoid mutation
-  window?._paq?.push([...args])
+  try {
+    // Pass a copy of the array to avoid mutation
+    window?._paq?.push([...args])
+  } catch (error) {
+    captureException(error)
+  }
 }
 
 export const trackPageView = (url: string) => {
@@ -39,14 +48,22 @@ export const trackPageView = (url: string) => {
     return
   }
 
-  posthog.capture('$pageview', { $current_url: url })
+  try {
+    posthog.capture('$pageview', { $current_url: url })
+  } catch (error) {
+    captureException(error)
+  }
 
-  window?._paq?.push(['setCustomUrl', url])
-  window?._paq?.push(['setDocumentTitle', document?.title])
+  try {
+    window?._paq?.push(['setCustomUrl', url])
+    window?._paq?.push(['setDocumentTitle', document?.title])
 
-  // remove all previously assigned custom variables, requires Matomo (formerly Piwik) 3.0.2
-  window?._paq?.push(['deleteCustomVariables', 'page'])
-  window?._paq?.push(['setPagePerformanceTiming', 0])
+    // remove all previously assigned custom variables, requires Matomo (formerly Piwik) 3.0.2
+    window?._paq?.push(['deleteCustomVariables', 'page'])
+    window?._paq?.push(['setPagePerformanceTiming', 0])
 
-  window?._paq?.push(['trackPageView'])
+    window?._paq?.push(['trackPageView'])
+  } catch (error) {
+    captureException(error)
+  }
 }
