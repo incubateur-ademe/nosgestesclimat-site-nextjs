@@ -12,11 +12,7 @@ export default function SkipToMainContentLink() {
   }
 
   const skipToElement = (elementId: string) => {
-    const element = document.getElementById(elementId)
-    console.log(element)
-    if (element) {
-      element.focus()
-    }
+    document.getElementById(elementId)?.focus()
   }
 
   return (
