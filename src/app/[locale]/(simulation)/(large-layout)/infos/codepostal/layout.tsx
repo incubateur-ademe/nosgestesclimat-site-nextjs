@@ -10,19 +10,21 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
   return getMetadataObject({
     locale,
-    title: t(
-      'Demander une démo de notre calculateur pour les organisations - Nos Gestes Climat'
-    ),
+    title: t('Votre code postal, rejoindre une campagne - Nos Gestes Climat'),
     description: t(
-      'Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.'
+      'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.'
     ),
     alternates: {
-      canonical: '/organisations/demander-demo',
+      canonical: '/infos/codepostal',
     },
     robots: noIndexObject,
   })
 }
 
-export default function Layout({ children }: PropsWithChildren) {
-  return <>{children}</>
+export default async function Layout({ children }: PropsWithChildren) {
+  return (
+    <div className="mx-auto w-full max-w-3xl">
+      <>{children}</>
+    </div>
+  )
 }

@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
   return getMetadataObject({
     locale,
-    title: t('Mon profil, voir mon empreinte carbone - Nos Gestes Climat'),
+    title: t('Mon profil - Nos Gestes Climat'),
     description: t(
       'Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.'
     ),

@@ -19,9 +19,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
   return getMetadataObject({
     locale,
-    title: t(
-      'Calculer votre empreinte carbone individuelle - Nos Gestes Climat'
-    ),
+    title: t('Tutoriel du calculateur - Nos Gestes Climat'),
     description: t(
       'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.'
     ),

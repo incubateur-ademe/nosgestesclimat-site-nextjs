@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
   return getMetadataObject({
     locale,
     title: t(
-      'Actions : comment réduire votre empreinte climat ? - Nos Gestes Climat'
+      'Mes gestes : comment réduire mon empreinte climat - Nos Gestes Climat'
     ),
     description: t('Quelles sont les actions les plus efficaces ?'),
     alternates: {

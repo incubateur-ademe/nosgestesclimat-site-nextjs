@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
   return getMetadataObject({
     locale,
-    title: t('Mon groupe, nos bilans carbone personnels - Nos Gestes Climat'),
+    title: t('Mon groupe - Nos Gestes Climat'),
     description: t(
       "Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat."
     ),

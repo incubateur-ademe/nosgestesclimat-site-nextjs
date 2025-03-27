@@ -37,7 +37,9 @@ export async function generateMetadata(props: DefaultPageProps) {
 
   return getMetadataObject({
     locale,
-    title: t('Empreinte eau : comprendre, évaluer, économiser l’eau'),
+    title: t(
+      'Empreinte eau : comprendre, évaluer, économiser l’eau - Nos Gestes Climat'
+    ),
     description: t(
       'Découvrez les litres d’eau cachés derrière chacun de vos repas, vêtements, appareils… Adoptez des actions concrètes pour réduire votre empreinte eau'
     ),

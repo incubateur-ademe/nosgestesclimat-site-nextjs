@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
   return getMetadataObject({
     locale,
-    title: t('Liste des questions - Nos Gestes Climat'),
+    title: t('Liste des questions du calculateur - Nos Gestes Climat'),
     description: t(
       'Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.'
     ),
