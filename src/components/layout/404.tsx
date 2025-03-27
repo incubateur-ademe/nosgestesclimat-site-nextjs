@@ -29,6 +29,8 @@ export default function Route404() {
                 src="/images/misc/404_bonhomme.svg"
                 width="60"
                 height="60"
+                tabIndex={-1}
+                aria-hidden
                 alt={t('Un bonhomme se demandant où il est')}
               />
               0

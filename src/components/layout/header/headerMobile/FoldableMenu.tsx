@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/trans/TransClient'
 import {
   footerClickDocumentation,
   headerClickProfil,
@@ -17,13 +18,16 @@ export default function FoldableMenu() {
   const { user } = useUser()
 
   return (
-    <BurgerMenu>
+    <BurgerMenu aria-labelledby="foldable-menu-title">
       {({ closeMenu, onFocus }) => (
-        <nav>
+        <nav aria-labelledby="foldable-menu-title">
+          <h2 id="foldable-menu-title" className="sr-only">
+            <Trans>Menu principal</Trans>
+          </h2>
+
           <ul className="flex flex-col gap-4">
             <li>
               <NavLink
-                id="nav-first-link"
                 onFocus={onFocus}
                 onClick={() => {
                   closeMenu()

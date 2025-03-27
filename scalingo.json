@@ -1,0 +1,13 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Scalingo/developers-documentation/refs/heads/master/scalingo.schema.json",
+  "name": "nosgestesclimat-site",
+  "logo": "https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs/blob/preprod/public/images/misc/petit-logo.png?raw=true",
+  "repository": "https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs",
+  "website": "https://nosgestesclimat.fr",
+  "formation": {
+    "web": {
+      "amount": 1,
+      "size": "M"
+    }
+  }
+}

@@ -86,7 +86,7 @@ export default async function FAQPage({ params }: DefaultPageProps) {
         />
       </div>
 
-      <div className="-mt-8 pb-4 md:-mt-16">
+      <ul className="-mt-8 pb-4 md:-mt-16">
         {categories.map((category) => {
           return (
             <li key={category} className="list-none">
@@ -116,7 +116,7 @@ export default async function FAQPage({ params }: DefaultPageProps) {
             </li>
           )
         })}
-      </div>
+      </ul>
 
       <Card className="bg-gray-100">
         <h3 className="text-yellow-dark flex items-center">

@@ -45,6 +45,8 @@ export function useEngine(rules?: NGCRules) {
       strict: {
         situation: false,
         noOrphanRule: false,
+        // TODO: deal with cycle runtime (model side)
+        noCycleRuntime: false,
       },
     })
     console.timeEnd(`⚙️ Parsing ${nbRules}`)

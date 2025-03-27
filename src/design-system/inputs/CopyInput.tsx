@@ -18,6 +18,7 @@ export default function CopyInput({
   className = '',
   onClick,
   canShare,
+  ...props
 }: Props) {
   const [isCopied, setIsCopied] = useState(false)
   const [isError, setIsError] = useState(false)
