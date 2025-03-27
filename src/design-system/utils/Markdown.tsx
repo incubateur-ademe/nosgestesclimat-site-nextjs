@@ -46,7 +46,7 @@ export default function Markdown({
               component: ({ ...props }) => {
                 // If type if checkbox, return a dummy checkbox not interactive
                 if (props.type === 'checkbox') {
-                  return <div className="h-4 w-4 rounded-sm bg-gray-200" />
+                  return <div className="h-4 w-4 rounded-xs bg-gray-200" />
                 }
                 return <input type={props.type} {...props} />
               },

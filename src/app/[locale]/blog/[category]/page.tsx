@@ -107,7 +107,7 @@ export default async function CategoryPage({
 
       {questions && questions.length > 0 && (
         <FAQ
-          className="!pb-10"
+          className="pb-10!"
           questions={questions.map((question) => ({
             question: question.question,
             answer: question.htmlAnswer,

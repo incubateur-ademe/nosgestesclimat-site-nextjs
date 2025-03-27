@@ -64,7 +64,7 @@ export default forwardRef(function TextInputGroup(
           className="w-full max-w-[30rem]">
           <span
             className={`text-sm font-bold text-slate-900 ${
-              error ? '!text-red-700' : ''
+              error ? 'text-red-700!' : ''
             }`}>
             {label}
           </span>
@@ -92,13 +92,13 @@ export default forwardRef(function TextInputGroup(
         data-cypress-id={`${props['data-cypress-id']}`}
         {...props}
         className={twMerge(
-          helperText || label ? '!mt-3' : '',
-          `border-grey-300 w-full max-w-[30rem] rounded-xl border-2 border-solid bg-white p-4 text-sm transition-colors read-only:bg-gray-200`,
-          error ? '!border-red-200 !bg-red-50 ring-2 !ring-red-700' : '',
+          helperText || label ? 'mt-3!' : '',
+          `w-full max-w-[30rem] rounded-xl border-2 border-solid border-gray-300 bg-white p-4 text-sm transition-colors read-only:bg-gray-200`,
+          error ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : '',
           disabled ? 'cursor-not-allowed opacity-50' : '',
           readOnly
             ? 'cursor-not-allowed'
-            : 'focus:border-primary-700 focus:ring-2 focus:ring-primary-700',
+            : 'focus:border-primary-700 focus:ring-primary-700 focus:ring-2',
           className
         )}
       />

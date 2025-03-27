@@ -31,7 +31,7 @@ export default function BarItem({
       className={twMerge(
         'absolute h-8 w-2 bg-primary-700 opacity-20 hover:scale-[10%]',
         shouldBeHighlighted
-          ? '!z-10 border-x border-white !bg-secondary-700 !opacity-100'
+          ? 'z-10! border-x border-white bg-secondary-700! opacity-100!'
           : '',
         className
       )}

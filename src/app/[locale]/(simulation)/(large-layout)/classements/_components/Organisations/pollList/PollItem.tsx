@@ -42,7 +42,7 @@ export default function PollItem({ organisation, poll }: Props) {
         </div>
 
         <div className="flex items-center">
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             <ChevronRight />
           </div>
         </div>

@@ -52,7 +52,7 @@ export default function DetailedStatistics({ funFacts }: Props) {
   return (
     <div className="flex flex-col">
       <Button
-        className="my-4 w-36 self-center !px-4 md:self-end"
+        className="my-4 w-36 self-center px-4! md:self-end"
         color="link"
         onClick={() => {
           trackEvent(organisationsDashboardClickFunFacts)

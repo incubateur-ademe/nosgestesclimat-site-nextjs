@@ -35,7 +35,7 @@ export default function AccordionItem({
             onClick()
           }
         }}
-        className={`relative z-10 flex w-full items-end justify-between py-2 ${isReadOnly ? '!cursor-default' : ''}`}
+        className={`relative z-10 flex w-full items-end justify-between py-2 ${isReadOnly ? 'cursor-default!' : ''}`}
         aria-disabled={isReadOnly}
         aria-label={
           isReadOnly

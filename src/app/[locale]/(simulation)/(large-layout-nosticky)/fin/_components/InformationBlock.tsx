@@ -39,8 +39,8 @@ export default function InformationBlock() {
       <Button
         color={isOpen || isHedgehog ? 'text' : 'primary'}
         className={twMerge(
-          'absolute right-4 top-4 h-12 w-12 !p-0 lg:hidden',
-          isHedgehog ? '!block' : ''
+          'absolute right-4 top-4 h-12 w-12 p-0! lg:hidden',
+          isHedgehog ? 'block!' : ''
         )}
         aria-label={isOpen || isHedgehog ? t('Fermer') : t('Ouvrir')}
         onClick={() => {

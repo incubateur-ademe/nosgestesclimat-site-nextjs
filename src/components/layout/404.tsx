@@ -52,7 +52,7 @@ export default function Route404() {
         <ButtonLink
           color="primary"
           href="/"
-          className="relative mt-8 justify-self-center border-2 border-white bg-white !text-primary-700 shadow-sm hover:bg-white hover:text-primary-700">
+          className="relative mt-8 justify-self-center border-2 border-white bg-white text-primary-700! shadow-xs hover:bg-white hover:text-primary-700">
           <Trans>Revenir à l'accueil</Trans>
         </ButtonLink>
       </div>

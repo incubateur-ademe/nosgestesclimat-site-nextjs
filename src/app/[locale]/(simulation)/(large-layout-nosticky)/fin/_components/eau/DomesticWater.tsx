@@ -39,7 +39,7 @@ export default function DomesticWater() {
       </div>
       <Button
         color={isOpen ? 'text' : 'primary'}
-        className="absolute right-4 top-4 h-12 w-12 !p-0"
+        className="absolute right-4 top-4 h-12 w-12 p-0!"
         onClick={() => {
           trackEvent(endClickDomesticWater)
           setIsOpen((prevIsOpen) => !prevIsOpen)
