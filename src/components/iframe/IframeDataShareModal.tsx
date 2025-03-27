@@ -77,8 +77,8 @@ export default function IframeDataShareModal() {
   if (!isOpen) return null
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 top-0 z-1000 bg-black bg-opacity-50">
-      <Card className="absolute left-1/2 top-1/2 z-1000 -translate-x-1/2 -translate-y-1/2 bg-white">
+    <div className="fixed top-0 right-0 bottom-0 left-0 z-1000 bg-black/50">
+      <Card className="absolute top-1/2 left-1/2 z-1000 -translate-x-1/2 -translate-y-1/2 bg-white">
         <h2>{t(`Partage de vos résultats à {{ parent }} ?`, { parent })}</h2>
         <div>
           <p>

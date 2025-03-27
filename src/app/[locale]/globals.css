@@ -2,6 +2,12 @@
 
 @config '../../../tailwind.config.js';
 
+@theme {
+  --color-heroLightBackground: #f0f8ff;
+  --color-default: #1a1a1a;
+  --color-water: #5152d0;
+}
+
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
@@ -127,11 +133,6 @@ html,
 body {
   margin: 0;
   padding: 0;
-}
-
-a {
-  @apply break-words text-primary-700 underline transition-colors hover:text-primary-800;
-  word-break: break-word;
 }
 
 img {
@@ -712,10 +713,10 @@ html[data-useragent*='Trident'] #js {
   @apply flex!;
 }
 .slick-dots > li > button {
-  @apply h-3 w-3 rounded-full border-2 border-primary-700 text-[0px] transition-all duration-500;
+  @apply border-primary-700 h-3 w-3 rounded-full border-2 text-[0px] transition-all duration-500;
 }
 .slick-active > button {
-  @apply w-8! bg-primary-700;
+  @apply bg-primary-700 w-8!;
 }
 
 .custom-scrollbar {
