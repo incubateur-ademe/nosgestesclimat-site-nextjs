@@ -8,7 +8,6 @@ import {
   useSimulation,
   useUser,
 } from '@/publicodes-state'
-import { captureException } from '@sentry/nextjs'
 import { createContext, useCallback, useEffect, useMemo, useRef } from 'react'
 
 // The max rate at which we save the simulation (in ms)
@@ -58,13 +57,8 @@ export default function SimulationSyncProvider({
   const shouldSyncWithBackend = useMemo<boolean>(() => {
     if (!isInitialized) return false
 
+    // Unwanted situation, we don't save, may need other hooks to refresh
     if (computedResults[defaultMetric].bilan === 0) {
-      // Send an error to Sentry
-      captureException(
-        new Error(
-          'SimulationSyncProvider: computedResults[defaultMetric].bilan === 0'
-        )
-      )
       return false
     }
 

@@ -23,7 +23,9 @@ import CategoryIllustration from './summary/CategoryIllustration'
 export default function Form() {
   const isDebug = useDebug()
 
-  const { progression, id } = useCurrentSimulation()
+  const { progression, id, groups } = useCurrentSimulation()
+
+  console.log(groups)
 
   const {
     remainingQuestions,
@@ -63,7 +65,11 @@ export default function Form() {
       }
       goToEndPage({
         shouldShowQuiz,
-        allowedToGoToGroupDashboard: true,
+        // If the simulation has 1 group, it means we want to show the group dashboard
+        // Otherwise, it's just reconciliation between the new simulation and the user's
+        // previous groups and we want to show the results page
+        allowedToGoToGroupDashboard: (groups ?? []).length > 1 ? false : true,
+        isAllowedToSave: (groups ?? []).length > 0,
       })
     }
   }, [
@@ -73,6 +79,7 @@ export default function Form() {
     getNumericValue,
     id,
     trackTimeOnSimulation,
+    groups,
   ])
 
   const [tempValue, setTempValue] = useState<number | undefined>(undefined)
@@ -133,12 +140,12 @@ export default function Form() {
           </div>
 
           <div
-            className={`short:gap-2 flex flex-col gap-8 md:self-start lg:w-[20rem] md:${getBgCategoryColor(currentCategory ?? 'transport', '500')}`}>
+            className={`flex flex-col gap-8 md:self-start lg:w-[20rem] short:gap-2 md:${getBgCategoryColor(currentCategory ?? 'transport', '500')}`}>
             <ResultsBlocksDesktop />
 
             <FunFact question={currentQuestion} />
 
-            <div className="mt-auto mb-8 pb-16 md:pb-0">
+            <div className="mb-8 mt-auto pb-16 md:pb-0">
               <CategoryIllustration category={currentCategory ?? 'transport'} />
             </div>
           </div>
