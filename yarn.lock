@@ -1591,6 +1591,11 @@
   dependencies:
     "@opentelemetry/instrumentation" "^0.52.0 || ^0.53.0 || ^0.54.0 || ^0.55.0 || ^0.56.0"
 
+"@publicodes/forms@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@publicodes/forms/-/forms-0.5.1.tgz#221f63798e3e56e9946f03cac88f808d65d66ccb"
+  integrity sha512-0tmDWIN9MFR/1cibof45PRAbGS96vFJvBtDB6HEY5BdfCh49qkefFbrcSmmL3HQsfl6PQQif5aOIRMUcf1Uq+w==
+
 "@publicodes/react-ui@^1.7.0", "@publicodes/react-ui@^1.7.1":
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/@publicodes/react-ui/-/react-ui-1.7.1.tgz#c43ec02e8b397cbb72433dd485dbd4e54fa0b203"

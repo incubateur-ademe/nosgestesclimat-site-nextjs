@@ -1,0 +1,984 @@
+{
+  "ngc . transport . avion . moyen courrier . empreinte par km": {
+    "description": "\n> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.\n\n\nNous utilisons le facteur d'émission de la base carbone `Avion passagers - Moyen courrier, 2018 - AVEC trainées`.\n",
+    "unité": "kgCO2e/km",
+    "valeur": 0.187
+  },
+  "ngc . transport . avion . moyen courrier . vitesse moyenne": {
+    "unité": "km/h",
+    "note": "Nous utilisons la vitesse moyenne de vol pour un Paris Alger.\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": "1350 km / 2.5 h"
+  },
+  "ngc . transport . train . impact par km": {
+    "unité": "kgCO2e/km",
+    "note": "Les différents types de trains ont des impacts carbone par passager par kilomètres différents.\nNous calculons une moyenne pondérée en proportion du nombre total de kilomètres parcourus dans chaque type de train au niveau national.\nSource : [Autorité de régulation des transports](https://www.autorite-transports.fr/wp-content/uploads/2023/06/bilan-ferroviaire-2022-a-mi-2023.pdf)\n\n![Répartition Passagers.km](https://github.com/incubateur-ademe/nosgestesclimat/assets/55186402/4bbdf823-8e9a-4570-90da-77ff8af05b14)\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "somme": [
+      "proportion TGV * TGV",
+      "proportion TER * TER",
+      "proportion intercités * intercités"
+    ]
+  },
+  "ngc . transport . train . proportion TGV": {
+    "note": "Chiffres issus de l'[autorité de régulation des transports](https://www.autorite-transports.fr/wp-content/uploads/2023/06/bilan-ferroviaire-2022-a-mi-2023.pdf).\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": "passagers km TGV / total passagers km"
+  },
+  "ngc . transport . train . TGV": {
+    "unité": "kgCO2e/km",
+    "note": "TGV - 2022 ; 2.93 gCO2e/km/personne ; Base Carbone consultée le 19/11/2023 (Données SNCF)\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": 0.00293
+  },
+  "ngc . transport . train . proportion TER": {
+    "note": "Chiffres issus de l'[autorité de régulation des transports](https://www.autorite-transports.fr/wp-content/uploads/2023/06/bilan-ferroviaire-2022-a-mi-2023.pdf).\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": "passagers km TER / total passagers km"
+  },
+  "ngc . transport . train . TER": {
+    "unité": "kgCO2e/km",
+    "note": "TER - 2022 - Traction moyenne ; 27.7 gCO2e/km/personne ; Base Carbone consultée le 19/11/2023 (Données SNCF)\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": 0.0277
+  },
+  "ngc . transport . train . proportion intercités": {
+    "note": "Chiffres issus de l'[autorité de régulation des transports](https://www.autorite-transports.fr/wp-content/uploads/2023/06/bilan-ferroviaire-2022-a-mi-2023.pdf).\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": "passagers km intercités / total passagers km"
+  },
+  "ngc . transport . train . intercités": {
+    "unité": "kgCO2e/km",
+    "node": "Intercités - 2022 ; 8.98 gCO2e/km/personne ; Base Carbone consultée le 19/11/2023 (Données SNCF)\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": 0.00898
+  },
+  "ngc . transport . train . passagers km TGV": {
+    "note": "Chiffres issus de l'[autorité de régulation des transports](https://www.autorite-transports.fr/wp-content/uploads/2023/06/bilan-ferroviaire-2022-a-mi-2023.pdf).\nOn omet ici les trajets en RER et transilien.\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": "54 + 7"
+  },
+  "ngc . transport . train . total passagers km": {
+    "note": "Chiffres issus de l'[autorité de régulation des transports](https://www.autorite-transports.fr/wp-content/uploads/2023/06/bilan-ferroviaire-2022-a-mi-2023.pdf).\nOn omet ici les trajets en RER et transilien.\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "somme": ["passagers km TGV", "passagers km TER", "passagers km intercités"]
+  },
+  "ngc . transport . train . passagers km TER": {
+    "note": "Chiffres issus de l'[autorité de régulation des transports](https://www.autorite-transports.fr/wp-content/uploads/2023/06/bilan-ferroviaire-2022-a-mi-2023.pdf).\nOn omet ici les trajets en RER et transilien.\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": 19
+  },
+  "ngc . transport . train . passagers km intercités": {
+    "note": "Chiffres issus de l'[autorité de régulation des transports](https://www.autorite-transports.fr/wp-content/uploads/2023/06/bilan-ferroviaire-2022-a-mi-2023.pdf).\nOn omet ici les trajets en RER et transilien.\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": "3 + 0.5"
+  },
+  "ngc . transport . transports commun . car . impact par km": {
+    "unité": "kgCO2e/km",
+    "note": "Autocar - Gazole ; 29,5 gCO2e/km.personne ; Base Empreinte consultée le 18/01/2024\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": 0.0295
+  },
+  "transport": { "somme": ["avion", "train", "car", "ferry"] },
+  "transport . avion": {
+    "unité": "kgCO2e",
+    "valeur": "(heures de vol * ngc . transport . avion . moyen courrier . vitesse moyenne) * ngc . transport . avion . moyen courrier . empreinte par km"
+  },
+  "transport . avion . heures de vol": {
+    "question": "Combien d'heures en avion ?",
+    "par défaut": 8,
+    "unité": "h"
+  },
+  "transport . train": {
+    "unité": "kgCO2e",
+    "valeur": "ngc . transport . train . impact par km * km"
+  },
+  "transport . train . km": {
+    "question": "Combien de km en train ?",
+    "par défaut": 500,
+    "unité": "km"
+  },
+  "transport . car": {
+    "unité": "kgCO2e",
+    "valeur": "ngc . transport . transports commun . car . impact par km * km"
+  },
+  "transport . car . km": {
+    "question": "Combien de km en car ?",
+    "par défaut": 500,
+    "unité": "km"
+  },
+  "transport . ferry": {
+    "unité": "kgCO2e",
+    "valeur": "heures * empreinte par heure"
+  },
+  "transport . ferry . heures": {
+    "question": "Combien d'heures en ferry ?",
+    "par défaut": 8,
+    "unité": "h"
+  },
+  "transport . ferry . empreinte par heure": {
+    "unité": "kgCO2e/h",
+    "note": "Pour le moment, nous écrivons cette valeur \"en dur\" car l'import des règles ne fonctionne pas correctement avec publicodes/forms: toutes les questions \"sous-jacentes\" du modèle importé sont affichées. Cette donnée est issue de futureco-data.\n",
+    "valeur": 9.99
+  },
+  "ngc . logement . vacances . empreinte hotel par nuit": {
+    "unité": "kgCO2e/nuit",
+    "note": "## Notre hypothèse sur le facteur d'émission utilisé\n\n  D'après [l'enquête mobilité des français de 2019](https://www.statistiques.developpement-durable.gouv.fr/resultats-detailles-de-lenquete-mobilite-des-personnes-de-2019?rubrique=60&dossier=1345),\n  les français voyagent à 86% en France. On assume donc ici que **les nuitées se passent en France**.\n\n## Notre source de données\n\n  Le rapport final de pré-déploiement de l'affichage environnemental des hôtels, [publication ADEME de mars 2020](https://librairie.ademe.fr/consommer-autrement/4096-projet-de-pre-deploiement-de-l-affichage-environnemental-des-hotels.html), donne une moyenne de 9,91 kg éqCO2 / nuitée.\n  En retranchant la partie petit-déjeuner (comptant pour 30% de l'empreinte), car sinon nous aurions une double comptabilité de ces derniers, on se retrouve avec une empreinte par nuitée de 9,91 * (1 - 30%) = 6,93 kg éqCO2.\n\n  Le rapport permet également de scinder les empreintes selon la classe de l'hôtel. Pour démarrer, nous avons assumé de partir sur la moyenne des empreintes toutes classes confondues, mais cela pourra être implémenté par la suite. Cela donnerait :\n\n  - Hôtels sans classement : 4,73 kg éqCO2 / nuitée\n  - Hôtels 2* : 8,53 kg éqCO2 / nuitée\n  - Hôtels 3* : 8,47 kg éqCO2 / nuitée\n  - Hôtels 4* : 11,43 kg éqCO2 / nuitée\n  - Hôtels 5* : 17,11 kg éqCO2 / nuitée\n\n  Depuis plusieurs années, [Betterfly Tourism](https://www.betterfly-tourism.com/affichage-environnemental-hotels/) implémente en partenariat avec l'ADEME l'affichage environnemental auprès des hôtels. Il sera donc possible de réévaluer l'empreinte avec des données plus récentes issues de leur base de données consolidée.\n\n  De son côté, le [Hotel Carbon Measurement Initiative (HCMI)](https://sustainablehospitalityalliance.org/resource/hotel-carbon-measurement-initiative/) qui alimente le [Cornell Hotel Sustainability Benchmarking Index](https://greenview.sg/services/chsb-index/) présente des [données](https://ecommons.cornell.edu/handle/1813/109990) pertinentes pour notre usage.\n  Cela pourra être un bon point de départ pour le jour où nous souhaiterons différencier les nuitées d'hôtel selon le pays fréquenté.\n  À noter que le HCMI donne une moyenne pour la France de 7,7 kg éqCO2 / nuitée, ce qui est très proche de la donnée que nous avons choisie, elle calculée à partir du référentiel ADEME.\n\n  > Point publicodes : Cette règle étant utilisée dans d'autres espaces nom que `logement . vacances . hotel` c'est important ici de ne pas l'inclure dans cet espace non qui rendrait l'empreinte de la nuitée non applicable si la règle hotel est elle aussi non applicable.\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": 6.93
+  },
+  "ngc . logement . vacances . camping . empreinte par nuit": {
+    "unité": "kgCO2e/nuit",
+    "note": "Ces données sont issues de la proposition de référentiel ADEME pour l'hôtellerie de plein air, étude effectuée sur 13 campings de l'Hérault conjointement entre Betterfly Tourism et l'ADEME.\nLes données sont fournies par Betterfly Tourism et datent de juin 2021. La moyenne de l'empreinte par nuitée sur les 13 campings étudiés est de 1,4 kg éqCO2.\nLe référentiel ADEME est présent dans la base Impacts depuis mai 2023.\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": 1.4
+  },
+  "ngc . logement . vacances . auberge de jeunesse . empreinte par nuit": {
+    "unité": "kgCO2e/nuit",
+    "note": "Pour une première approximation d'une nuit en auberge de jeunesse, l'idée est ici de diviser l'impact\nd'une nuitée classique en hôtel par le nombre de personnes dans un dortoir moyen.\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": "empreinte hotel par nuit / nombre de personnes dans le dortoir"
+  },
+  "ngc . logement . vacances . auberge de jeunesse . nombre de personnes dans le dortoir": {
+    "note": "On considère ici qu'un dortoir \"classique\" comprend 6 personnes.",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": 6
+  },
+  "ngc . logement . vacances . locations . empreinte par nuit": {
+    "unité": "kgCO2e/nuit",
+    "note": "Ces données sont issues du [Bilan des émissions de gaz à effet de serre du secteur du tourisme en France](https://librairie.ademe.fr/changement-climatique-et-energie/4688-bilan-des-emissions-de-gaz-a-effet-de-serre-du-secteur-du-tourisme-en-france.html)\nElles représentent une approche dite \"top-down\", que voici. On considère d'abord que les surfaces fournies par Airbnb en France sont représentatives de la location saisonnière dans le Pays. On applique à ces surfaces les facteurs d'émission de la base Carbone correspondant aux résidences secondaires en France. Enfin, on applique un taux d'occupation des locations saisonnières de 25%.\nL'approche de Nos GEStes Climat, habituellement, est plutôt \"bottom-up\" : nous partons de l'usage, appliquons les facteurs d'émission et obtenons une empreinte.\nNéanmoins, l'approche bottom-up est ici très complexe à implémenter : elle supposerait de poser une quantité importante de questions à l'utilisateur (surface, mode de chauffage des locations saisonnières louées...).\nLe chiffre obtenu par l'approche top-down, 5,8 kg éqCO2, est tout à fait cohérent avec le reste des données disponibles sur les autres types de logement touristiques, et nous paraît un bon début pour approximer cette donnée complexe.\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": 5.8
+  },
+  "logement": {
+    "note": "Pour le moment, on ne vérifie pas que le nombre de nuit total correspond à la durée du voyage",
+    "somme": [
+      "hotel",
+      "auberge de jeunesse",
+      "airbnb",
+      "camping",
+      "sauvage ou WS"
+    ]
+  },
+  "logement . hotel": {
+    "titre": "Hôtel",
+    "unité": "kgCO2e",
+    "valeur": "(nombre de nuits * ngc . logement . vacances . empreinte hotel par nuit) / général . nombre de voyageurs"
+  },
+  "logement . hotel . nombre de nuits": {
+    "question": "Combien de nuits à l'hôtel ?",
+    "par défaut": 10,
+    "unité": "nuit"
+  },
+  "logement . auberge de jeunesse": {
+    "unité": "kgCO2e",
+    "valeur": "nombre de nuits * ngc . logement . vacances . auberge de jeunesse . empreinte par nuit"
+  },
+  "logement . auberge de jeunesse . nombre de nuits": {
+    "question": "Combien de nuits en auberge de jeunesse ?",
+    "par défaut": 10,
+    "unité": "nuit"
+  },
+  "logement . airbnb": {
+    "unité": "kgCO2e",
+    "valeur": "(nombre de nuits * ngc . logement . vacances . locations . empreinte par nuit) / général . nombre de voyageurs"
+  },
+  "logement . airbnb . nombre de nuits": {
+    "question": "Combien de nuits en airbnb?",
+    "par défaut": 10,
+    "unité": "nuit"
+  },
+  "logement . camping": {
+    "unité": "kgCO2e",
+    "valeur": "nombre de nuits * ngc . logement . vacances . camping . empreinte par nuit"
+  },
+  "logement . camping . nombre de nuits": {
+    "question": "Combien de nuits à l'hôtel ?",
+    "par défaut": 40,
+    "unité": "nuit"
+  },
+  "logement . sauvage ou WS": {
+    "unité": "kgCO2e",
+    "valeur": "(nombre de nuits * empreinte par nuit) / général . nombre de voyageurs"
+  },
+  "logement . sauvage ou WS . nombre de nuits": {
+    "question": "Combien de nuits en camping sauvage ou WS ?",
+    "par défaut": 20,
+    "unité": "nuit"
+  },
+  "logement . sauvage ou WS . empreinte par nuit": {
+    "note": "On considère que l'impact d'une nuit en camping sauvage ou chez l'habitant (Warm Shower par exemple) est nul.",
+    "unité": "kgCO2e/nuit",
+    "valeur": 0
+  },
+  "logement . nombre de nuits total": {
+    "somme": [
+      "hotel . nombre de nuits",
+      "auberge de jeunesse . nombre de nuits",
+      "airbnb . nombre de nuits",
+      "camping . nombre de nuits",
+      "sauvage ou WS . nombre de nuits"
+    ]
+  },
+  "logement . nombre de nuits possible": {
+    "valeur": "(nombre de nuits total * 1 jour/nuit) = général . nombre de jours"
+  },
+  "equipement": { "titre": "Équipement", "somme": ["materiel"] },
+  "equipement . materiel": {
+    "titre": "Matériel",
+    "unité": "kgCO2e",
+    "somme": [
+      "velo",
+      "materiel de reparation velo",
+      "tente",
+      "matelas",
+      "sacoches",
+      "vetements",
+      "autre materiel de camping"
+    ]
+  },
+  "equipement . materiel . velo": {
+    "titre": "Vélo",
+    "unité": "kgCO2e",
+    "valeur": 0
+  },
+  "equipement . materiel . materiel de reparation velo": {
+    "titre": "Matériel de réparation vélo",
+    "unité": "kgCO2e",
+    "valeur": 0
+  },
+  "equipement . materiel . tente": { "unité": "kgCO2e", "valeur": 0 },
+  "equipement . materiel . matelas": { "unité": "kgCO2e", "valeur": 0 },
+  "equipement . materiel . sacoches": { "unité": "kgCO2e", "valeur": 0 },
+  "equipement . materiel . vetements": {
+    "titre": "Vêtements",
+    "unité": "kgCO2e",
+    "valeur": 0
+  },
+  "equipement . materiel . autre materiel de camping": {
+    "titre": "Autre matériel de camping",
+    "unité": "kgCO2e",
+    "valeur": 0
+  },
+  "commun . intensité électricité": {
+    "titre": "Intensité carbone du mix électrique français",
+    "description": "\n> ℹ️ Cette règle provient du modèle [`@incubateur-ademe/publicodes-commun`](https://github.com/incubateur-ademe/publicodes-commun).\n\n\nIntensité moyenne, tous types de consommations confondues, année 2022.",
+    "unité": "kgCO2e/kWh",
+    "note": "Ici, on parle du mix électrique de consommation. \nLe chiffre est issu de la Base Empreinte (Electricité/2022 - mix moyen/consommation) dont la méthodologie est décrite dans la [documentation](https://prod-basecarbonesolo.ademe-dri.fr/documentation/UPLOAD_DOC_FR/).\nLa v2.6 de MicMac donnait une valeur de 12.4gCO2e/kWh pour les fournisseurs d'électricité \"verte\", mais cette valeur semble correspondre à un calcul théorique sur l'année, et non pas à un calcul réel, minute par minute.\n",
+    "valeur": 0.052
+  },
+  "commun . mois par an": {
+    "titre": "Nombre de mois par an",
+    "unité": "mois",
+    "description": "> ℹ️ Cette règle provient du modèle [`@incubateur-ademe/publicodes-commun`](https://github.com/incubateur-ademe/publicodes-commun).",
+    "valeur": 12
+  },
+  "commun . semaines par an": {
+    "titre": "Nombre de semaines par an",
+    "unité": "semaine",
+    "description": "> ℹ️ Cette règle provient du modèle [`@incubateur-ademe/publicodes-commun`](https://github.com/incubateur-ademe/publicodes-commun).",
+    "valeur": 52
+  },
+  "commun . jours par semaine": {
+    "titre": "Nombre de jours par semaine",
+    "unité": "jour/semaine",
+    "description": "> ℹ️ Cette règle provient du modèle [`@incubateur-ademe/publicodes-commun`](https://github.com/incubateur-ademe/publicodes-commun).",
+    "valeur": 7
+  },
+  "commun . jours par an": {
+    "titre": "Nombre de jours par an",
+    "unité": "jour",
+    "description": "> ℹ️ Cette règle provient du modèle [`@incubateur-ademe/publicodes-commun`](https://github.com/incubateur-ademe/publicodes-commun).",
+    "valeur": 365
+  },
+  "bilan": {
+    "note": "Hypothèses de calcul:\n  - On considère des FE spécifiques à la France alors que le voyage est international.\n",
+    "unité": "kgCO2e",
+    "somme": ["alimentation", "transport", "logement", "equipement"]
+  },
+  "général": null,
+  "général . nombre de voyageurs": {
+    "question": "Combien de personnes voyagent ?",
+    "par défaut": 2
+  },
+  "général . nombre de jours": {
+    "question": "Combien de jours dure le voyage ?",
+    "par défaut": 90,
+    "unité": "jour"
+  },
+  "ngc . alimentation . petit déjeuner . continental . empreinte carbone": {
+    "titre": "Empreinte carbone d'un petit déjeuner continental",
+    "unité": "kgCO2e/repas",
+    "description": "\n> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.\n\n\nPetit déjeuner avec pain, viennoiserie, beurre, confiture et un fruit.\n\n💡 Vous trouverez la documentation complète dans [notre wiki](https://accelerateur-transition-ecologique-ademe.notion.site/Empreinte-des-repas-NGC-377d2143f3a14b558ab2c8e0426d2e23).\n\n🧮 Le calcul détaillé est [disponible ici](https://docs.google.com/spreadsheets/d/1L3p1m2jtbSK7f3i9AYvWIHntXhI_IiVIY9RM6-IxTb8/edit#gid=1235090355) sous forme de tableur.\n",
+    "valeur": 0.31
+  },
+  "ngc . alimentation . petit déjeuner . lait vache céréales . empreinte carbone": {
+    "titre": "Empreinte carbone d'un petit déjeuner avec lait de vache et céréales",
+    "unité": "kgCO2e/repas",
+    "description": "\n> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.\n\n\nPetit déjeuner avec un produit laitier (lait de vache) et une portion de céréales.\n\n💡 Vous trouverez la documentation complète dans [notre wiki](https://accelerateur-transition-ecologique-ademe.notion.site/Empreinte-des-repas-NGC-377d2143f3a14b558ab2c8e0426d2e23).\n\n🧮 Le calcul détaillé est [disponible ici](https://docs.google.com/spreadsheets/d/1L3p1m2jtbSK7f3i9AYvWIHntXhI_IiVIY9RM6-IxTb8/edit#gid=1235090355) sous forme de tableur.\n",
+    "valeur": 0.45
+  },
+  "ngc . alimentation . petit déjeuner . britannique . empreinte carbone": {
+    "titre": "Empreinte carbone d'un petit déjeuner britannique",
+    "unité": "kgCO2e/repas",
+    "description": "\n> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.\n\n\nPetit déjeuner avec de la charcuterie, 2 œufs et des toasts.\n\n💡 Vous trouverez la documentation complète dans [notre wiki](https://accelerateur-transition-ecologique-ademe.notion.site/Empreinte-des-repas-NGC-377d2143f3a14b558ab2c8e0426d2e23).\n\n🧮 Le calcul détaillé est [disponible ici](https://docs.google.com/spreadsheets/d/1L3p1m2jtbSK7f3i9AYvWIHntXhI_IiVIY9RM6-IxTb8/edit#gid=1235090355) sous forme de tableur.\n",
+    "valeur": 1.08
+  },
+  "ngc . alimentation . petit déjeuner . végétalien . empreinte carbone": {
+    "titre": "Empreinte carbone d'un petit déjeuner végétalien",
+    "unité": "kgCO2e/repas",
+    "description": "\n> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.\n\n\nPetit déjeuner avec une portion de muesli, un fruit\n\n💡 Vous trouverez la documentation complète dans [notre wiki](https://accelerateur-transition-ecologique-ademe.notion.site/Empreinte-des-repas-NGC-377d2143f3a14b558ab2c8e0426d2e23).\n\n🧮 Le calcul détaillé est [disponible ici](https://docs.google.com/spreadsheets/d/1L3p1m2jtbSK7f3i9AYvWIHntXhI_IiVIY9RM6-IxTb8/edit#gid=1235090355) sous forme de tableur.\n",
+    "valeur": 0.4
+  },
+  "ngc . alimentation . plats . végétalien . empreinte carbone": {
+    "titre": "Empreinte carbone d'un repas végétalien",
+    "unité": "kgCO2e/repas",
+    "note": "Repas contenant du tofu, un accompagnement \"moyen\" (issu d'un travail de consolidation sur les moyennes de consommation des français tirées de l'étude INCA3 pour les légumes, légumineuses, riz, céréales et pâtes), huile.\n\n💡 Vous trouverez la documentation complète dans [notre wiki](https://accelerateur-transition-ecologique-ademe.notion.site/Empreinte-des-repas-NGC-377d2143f3a14b558ab2c8e0426d2e23).\n\n🧮 Le calcul détaillé est [disponible ici](https://docs.google.com/spreadsheets/d/1L3p1m2jtbSK7f3i9AYvWIHntXhI_IiVIY9RM6-IxTb8/edit#gid=1235090355) sous forme de tableur.\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": 0.66
+  },
+  "ngc . alimentation . plats . végétarien . empreinte carbone": {
+    "titre": "Empreinte carbone d'un repas végétarien",
+    "unité": "kgCO2e/repas",
+    "note": "Repas contenant des œufs, un accompagnement \"moyen\" (issu d'un travail de consolidation sur les moyennes de consommation des français tirées de l'étude INCA3 pour les légumes, légumineuses, riz, céréales et pâtes), huile.\n\n💡 Vous trouverez la documentation complète dans [notre wiki](https://accelerateur-transition-ecologique-ademe.notion.site/Empreinte-des-repas-NGC-377d2143f3a14b558ab2c8e0426d2e23).\n\n🧮 Le calcul détaillé est [disponible ici](https://docs.google.com/spreadsheets/d/1L3p1m2jtbSK7f3i9AYvWIHntXhI_IiVIY9RM6-IxTb8/edit#gid=1235090355) sous forme de tableur.\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": 0.97
+  },
+  "ngc . alimentation . plats . viande blanche . empreinte carbone": {
+    "titre": "Empreinte carbone d'un repas de type viande blanche (poulet, porc)",
+    "unité": "kgCO2e/repas",
+    "note": "Repas contenant 150g d'une viande blanche moyenne (issue d'un travail de consolidation sur les consommations moyennes de viande blanche de l'étude INCA3), un accompagnement moyen (consolidation sur les moyennes de consommation pour les légumes, légumineuses, riz, céréales et pâtes), huile.\n\n💡 Vous trouverez la documentation complète dans [notre wiki](https://accelerateur-transition-ecologique-ademe.notion.site/Empreinte-des-repas-NGC-377d2143f3a14b558ab2c8e0426d2e23).\n\n🧮 Le calcul détaillé est [disponible ici](https://docs.google.com/spreadsheets/d/1L3p1m2jtbSK7f3i9AYvWIHntXhI_IiVIY9RM6-IxTb8/edit#gid=1235090355) sous forme de tableur.\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": 1.75
+  },
+  "ngc . alimentation . plats . viande rouge . empreinte carbone": {
+    "titre": "Empreinte carbone d'un repas de type viande rouge (bœuf, veau, agneau)",
+    "unité": "kgCO2e/repas",
+    "note": "Repas contenant 150g d'une viande rouge moyenne (issue d'un travail de consolidation sur les consommations moyennes de viande rouge de l'étude INCA3), un accompagnement moyen (consolidation sur les moyennes de consommation pour les légumes, légumineuses, riz, céréales et pâtes), huile.\n\n💡 Vous trouverez la documentation complète dans [notre wiki](https://accelerateur-transition-ecologique-ademe.notion.site/Empreinte-des-repas-NGC-377d2143f3a14b558ab2c8e0426d2e23).\n\nPour la partie déforestation, notre alimentation est vectrice de déforestation à l'étranger, à l'impact carbone non négligeable. Cette empreinte n'est pas comprise dans les facteurs d'émission d'Agribalyse.\n\nD'après l'étude [Pendril & al.](https://iopscience.iop.org/article/10.1088/1748-9326/ab0d41), une part de cette déforestation est spécifiquement associée à la consommation de viande d'élevage.\nNous considérons que cette part associée aux \"viandes d'élevage\" est majoritairement associée à la consommation de viande rouge, c'est pourquoi nous ajoutons cette part de déforestation aux repas de viande rouge.\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "somme": [5.19, "déforestation"]
+  },
+  "ngc . alimentation . plats . viande rouge . déforestation": {
+    "unité": "kgCO2e/repas",
+    "note": "L’étude [Pendril & al.](https://iopscience.iop.org/article/10.1088/1748-9326/ab0d41) donne une empreinte moyenne de 34 kgCO2e / personne de déforestation importée liée à la consommation de viandes d'élevage.\nNous partons du principe que ces émissions liées à la production de viandes d'élevage appartiennent majoritairement à la catégorie \"viande rouge\" : c'est la catégorie la plus consommatrice de terres et de ressources.\nLa consommation moyenne par français de viande rouge se situe autour de 3 repas par semaine, soit 156 repas par an.\n\nEn conséquence, nous ajoutons à l'empreinte des repas une empreinte moyenne de 0.218 kgCO2e / repas de viande rouge.\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "variations": [{ "si": "déforestation", "alors": 0.218 }, { "sinon": 0 }]
+  },
+  "ngc . alimentation . déforestation": {
+    "non applicable si": "métrique != 'carbone'",
+    "note": "La déforestation importée est l'empreinte carbone associée à la destruction de forêts ailleurs sur la planète. Elle est la combinaison de deux facteurs :\n\n- Les émissions liées au brûlage de la forêt (instantanées)\n- Les émissions liées à la suppression de puits de carbone (futures)\n\nL’étude [Pendril & al.](https://iopscience.iop.org/article/10.1088/1748-9326/ab0d41) est la plus complète sur les émissions liées à la déforestation importée.\n\nUne part de ces émissions est à faire varier en fonction du régime alimentaire. Elle concerne :\n\n- les consommations de viande (en fonction du nombre de repas viande renseignés) : en moyenne 34 kgCO2e / français\n- les consommations de fruits, légumes, céréales et noix d'importation (à faire varier selon si l'on consomme local ou non) : en moyenne 86 kgCO2e / français, discriminées selon la part de local.\n\nLe reste des émissions liées à la déforestation importée liée à l'alimentation est attribué à chaque français de manière égale. Cela correspond à :\n\n- la consommation d'huiles végétales : 5 kgCO2e / personne\n- la consommation d'autres produits non discriminables en fonction des régimes alimentaires : 76 kgCO2e / personne\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "variations": [
+      {
+        "si": "déforestation",
+        "alors": {
+          "variations": [
+            {
+              "si": "alimentation . local . consommation = 'jamais'",
+              "alors": "forfait base + (forfait moyen fruits céréales * 1.5)"
+            },
+            {
+              "si": "alimentation . local . consommation = 'parfois'",
+              "alors": "forfait base + forfait moyen fruits céréales"
+            },
+            {
+              "si": "alimentation . local . consommation = 'souvent'",
+              "alors": "forfait base + (forfait moyen fruits céréales * 0.6)"
+            },
+            { "sinon": "forfait base + (forfait moyen fruits céréales * 0.2)" }
+          ]
+        }
+      },
+      { "sinon": 0 }
+    ]
+  },
+  "ngc . déforestation": {
+    "titre": "Déforestation importée",
+    "description": "\n> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.\n\n\nCette variable permet de désactiver la prise en compte de la déforestation importée dans les calculs.",
+    "note": "Deux types de déforestation importée pointées par l'étude [Pendril & al.](https://iopscience.iop.org/article/10.1088/1748-9326/ab0d41) manquent à ce stade dans notre modèle :\n\n- La déforestation importée liée aux transports : estimée à 3 kgCO2e en moyenne par habitant, nous l'avons jugée trop faible pour complexifier le modèle et l'intégrer. Aussi, ne sachant tracer cette déforestation, nous ne saurions pas sur quels critères la variabiliser.\n- La déforestation liée aux \"services\" : estimée à 56 kgCO2e en moyenne par habitant, nous ne savons pas bien déterminer ce qu'elle recouvre.\n",
+    "par défaut": "oui"
+  },
+  "ngc . alimentation . local . consommation": {
+    "question": "Consommez-vous des produits locaux ?",
+    "description": "\n> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.\n\n\nCette question nous permet de corriger l'empreinte de votre régime alimentaire en fonction de votre habitude sur le caractère local de vos achats.\n\nNous considérons \"locaux\" les aliments qui sont issus de la région où vous vivez ou de régions proches.\n\nCe critère a un impact relativement faible, car la part du transport dans l'empreinte carbone des produits que nous consommons est faible devant les émissions liées à la production, la transformation ou l'emballage, surtout quand votre régime est carné.\n\nMais c'est toujours ça de gagné, et les avantages d'une consommation locale ne s'arrêtent pas à l'empreinte climat.\n\n> ⚠️ Attention, si vous faites vos courses en voiture à plusieurs km de chez vous chaque semaine, il est possible que l'empreinte du dernier km dépasse les gains d'une alimentation locale !\n",
+    "note": "Voir détail de l'approche de calcul [ici](http://nosgestesclimat/documentation/alimentation/local/part-locale)",
+    "par défaut": "'jamais'"
+  },
+  "ngc . alimentation . déforestation . forfait base": {
+    "unité": "kgCO2e",
+    "note": "Forfait attribué à tous car non discriminable par régime alimentaire, correspondant aux catégories \"huiles végétales\" et \"autres produits alimentaires\".",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": "5 + 76"
+  },
+  "ngc . alimentation . déforestation . forfait moyen fruits céréales": {
+    "unité": "kgCO2e",
+    "note": "Nous partons du principe qu'en moyenne un français consomme \"parfois\" local. Aussi, c'est à cette mesure que s'applique l'empreinte moyenne de déforestation.\nSachant qu'une part des aliments concernés est **forcément** importée et que même une personne disant consommer local importe une partie de son alimentation, la pondération minimale est de 20% de l'empreinte moyenne.\n",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": 86
+  },
+  "ngc . métrique": {
+    "par défaut": "'carbone'",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`."
+  },
+  "ngc . alimentation . local . consommation . jamais": {
+    "titre": "Jamais",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`."
+  },
+  "ngc . alimentation . local . consommation . parfois": {
+    "titre": "Parfois",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`."
+  },
+  "ngc . alimentation . local . consommation . souvent": {
+    "titre": "Souvent",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`."
+  },
+  "ngc . alimentation . local . consommation . oui toujours": {
+    "titre": "Oui toujours",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`."
+  },
+  "ngc . métrique . carbone": {
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`."
+  },
+  "ngc . métrique . eau": {
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`."
+  },
+  "ngc . alimentation . plats . poisson gras . empreinte carbone": {
+    "titre": "Empreinte carbone d'un repas de type poisson gras (thon, saumon, sardine, maquereau)",
+    "unité": "kgCO2e/repas",
+    "description": "\n> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.\n\n\nRepas contenant 150g d'un poisson gras moyen (issu d'un travail de consolidation sur les consommations moyennes de poissons gras de l'étude INCA3), un accompagnement moyen (consolidation sur les moyennes de consommation pour les légumes, légumineuses, riz, céréales et pâtes), huile.\n\n💡 Vous trouverez la documentation complète dans [notre wiki](https://accelerateur-transition-ecologique-ademe.notion.site/Empreinte-des-repas-NGC-377d2143f3a14b558ab2c8e0426d2e23).\n\n🧮 Le calcul détaillé est [disponible ici](https://docs.google.com/spreadsheets/d/1L3p1m2jtbSK7f3i9AYvWIHntXhI_IiVIY9RM6-IxTb8/edit#gid=1235090355) sous forme de tableur.\n",
+    "valeur": 1.21
+  },
+  "ngc . alimentation . plats . poisson blanc . empreinte carbone": {
+    "titre": "Empreinte carbone d'un repas de type poisson blanc",
+    "unité": "kgCO2e/repas",
+    "description": "\n> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.\n\n\nRepas contenant 150g d'un poisson blanc moyen (issu d'un travail de consolidation sur les consommations moyennes de poissons blancs de l'étude INCA3), un accompagnement moyen (consolidation sur les moyennes de consommation pour les légumes, légumineuses, riz, céréales et pâtes), huile.\n\n💡 Vous trouverez la documentation complète dans [notre wiki](https://accelerateur-transition-ecologique-ademe.notion.site/Empreinte-des-repas-NGC-377d2143f3a14b558ab2c8e0426d2e23).\n\n🧮 Le calcul détaillé est [disponible ici](https://docs.google.com/spreadsheets/d/1L3p1m2jtbSK7f3i9AYvWIHntXhI_IiVIY9RM6-IxTb8/edit#gid=1235090355) sous forme de tableur.\n",
+    "valeur": 2.29
+  },
+  "ngc . alimentation . boisson . sucrées . facteur sodas carbone": {
+    "unité": "kgCO2e/l",
+    "note": "Facteur d'émission issu d'[Agribalyse, Cola, sucré](https://agribalyse.ademe.fr/app/aliments/18037#Cola,_sucr%C3%A9,_avec_%C3%A9dulcorants), 0.51 kgCO2e/kg. On considère que la masse volumique est de 1kg/l.",
+    "description": "> ℹ️ Cette règle provient du modèle `@incubateur-ademe/nosgestesclimat`.",
+    "valeur": 0.49
+  },
+  "alimentation": {
+    "unité": "kgCO2e",
+    "somme": [
+      "petit dejeuner * compensation sportive",
+      "repas * compensation sportive",
+      "snacks",
+      "boissons"
+    ]
+  },
+  "alimentation . compensation sportive": {
+    "note": "On pourrait évaluer la dépense énergétique à partir de la distance journalière parcourue pour quantifier plus précisémment les besoins alimentaire accrus par l'activité sportive.",
+    "valeur": 1.5
+  },
+  "alimentation . petit dejeuner": {
+    "titre": "Petit déjeuner",
+    "unité": "kgCO2e",
+    "valeur": "(général . nombre de jours * 1 repas/jour) * empreinte"
+  },
+  "alimentation . petit dejeuner . empreinte": {
+    "variations": [
+      {
+        "si": "type = 'continental'",
+        "alors": "ngc . alimentation . petit déjeuner . continental . empreinte carbone"
+      },
+      {
+        "si": "type = 'lait vache céréales'",
+        "alors": "ngc . alimentation . petit déjeuner . lait vache céréales . empreinte carbone"
+      },
+      {
+        "si": "type = 'britannique'",
+        "alors": "ngc . alimentation . petit déjeuner . britannique . empreinte carbone"
+      },
+      {
+        "si": "type = 'végétalien'",
+        "alors": "ngc . alimentation . petit déjeuner . végétalien . empreinte carbone"
+      },
+      { "sinon": "0 kgCO2e" }
+    ]
+  },
+  "alimentation . petit dejeuner . type": {
+    "question": "Type de petit déjeuner",
+    "description": "Si vous ne trouvez pas votre petit déjeuner dans la liste, choisissez celui qui s'en rapproche le plus.\n",
+    "une possibilité": [
+      "continental",
+      "lait vache céréales",
+      "britannique",
+      "végétalien",
+      "aucun"
+    ],
+    "par défaut": "'continental'"
+  },
+  "alimentation . petit dejeuner . type . continental": null,
+  "alimentation . petit dejeuner . type . lait vache céréales": null,
+  "alimentation . petit dejeuner . type . britannique": null,
+  "alimentation . petit dejeuner . type . végétalien": null,
+  "alimentation . petit dejeuner . type . aucun": null,
+  "alimentation . repas": {
+    "unité": "kgCO2e",
+    "valeur": "(général . nombre de jours * 2 repas/jour) * empreinte"
+  },
+  "alimentation . repas . empreinte": {
+    "variations": [
+      { "si": "régime = 'végétarien'", "alors": "régime végétarien" },
+      { "si": "régime = 'peu de viande'", "alors": "régime viande parfois" },
+      {
+        "si": "régime = 'viande régulièrement'",
+        "alors": "régime viande tous les jours"
+      },
+      {
+        "si": "régime = 'essentiellement viande'",
+        "alors": "régime viande tous les repas"
+      },
+      { "sinon": "0 kgCO2e/repas" }
+    ]
+  },
+  "alimentation . repas . empreinte . régime végétarien": {
+    "unité": "kgCO2e/repas",
+    "somme": [
+      "ngc . alimentation . plats . végétalien . empreinte carbone * 25 %",
+      "ngc . alimentation . plats . végétarien . empreinte carbone * 75 %"
+    ]
+  },
+  "alimentation . repas . empreinte . régime viande parfois": {
+    "unité": "kgCO2e/repas",
+    "somme": [
+      "ngc . alimentation . plats . végétarien . empreinte carbone * 80 %",
+      "ngc . alimentation . plats . viande blanche . empreinte carbone * 10 %",
+      "ngc . alimentation . plats . viande rouge . empreinte carbone * 5 %",
+      "ngc . alimentation . plats . poisson blanc . empreinte carbone * 5 %"
+    ]
+  },
+  "alimentation . repas . empreinte . régime viande tous les jours": {
+    "unité": "kgCO2e/repas",
+    "somme": [
+      "ngc . alimentation . plats . végétarien . empreinte carbone * 20 %",
+      "ngc . alimentation . plats . viande blanche . empreinte carbone * 45 %",
+      "ngc . alimentation . plats . viande rouge . empreinte carbone * 20 %",
+      "ngc . alimentation . plats . poisson gras . empreinte carbone * 5 %",
+      "ngc . alimentation . plats . poisson blanc . empreinte carbone * 10 %"
+    ]
+  },
+  "alimentation . repas . empreinte . régime viande tous les repas": {
+    "unité": "kgCO2e/repas",
+    "somme": [
+      "ngc . alimentation . plats . viande blanche . empreinte carbone * 55 %",
+      "ngc . alimentation . plats . viande rouge . empreinte carbone * 30 %",
+      "ngc . alimentation . plats . poisson gras . empreinte carbone * 5 %",
+      "ngc . alimentation . plats . poisson blanc . empreinte carbone * 10 %"
+    ]
+  },
+  "alimentation . repas . régime": {
+    "question": "Régime alimentaire",
+    "une possibilité": [
+      "végétarien",
+      "peu de viande",
+      "viande régulièrement",
+      "essentiellement viande"
+    ],
+    "par défaut": "'végétarien'"
+  },
+  "alimentation . repas . régime . végétarien": null,
+  "alimentation . repas . régime . peu de viande": null,
+  "alimentation . repas . régime . viande régulièrement": null,
+  "alimentation . repas . régime . essentiellement viande": null,
+  "alimentation . snacks": {
+    "unité": "kgCO2e",
+    "valeur": "(général . nombre de jours * nombre) * empreinte"
+  },
+  "alimentation . snacks . nombre": {
+    "question": "Nombre de barres par jour",
+    "par défaut": 5,
+    "unité": "barre/jour"
+  },
+  "alimentation . snacks . empreinte": {
+    "note": "On fait l'hypothèse qu'une barre pèse 50g.",
+    "unité": "kgCO2e/barre",
+    "produit": [
+      { "moyenne": ["barre chocolat", "barre fruits"] },
+      "0.05 kg/barre"
+    ]
+  },
+  "alimentation . snacks . empreinte . barre chocolat": {
+    "unité": "kgCO2e/kg",
+    "note": "https://agribalyse.ademe.fr/app/aliments/31000#Barre_chocolat%C3%A9e_biscuit%C3%A9e",
+    "valeur": 7.25
+  },
+  "alimentation . snacks . empreinte . barre fruits": {
+    "unité": "kgCO2e/kg",
+    "note": "https://agribalyse.ademe.fr/app/aliments/31071#Barre_chocolat%C3%A9e_aux_fruits_secs",
+    "valeur": 5.32
+  },
+  "alimentation . boissons": {
+    "unité": "kgCO2e",
+    "valeur": "(général . nombre de jours * quantité) * ngc . alimentation . boisson . sucrées . facteur sodas carbone"
+  },
+  "alimentation . boissons . fréquence sodas": {
+    "question": "Consommation de sodas",
+    "une possibilité": ["jamais", "parfois", "tous les jours"],
+    "par défaut": "'parfois'"
+  },
+  "alimentation . boissons . fréquence sodas . jamais": null,
+  "alimentation . boissons . fréquence sodas . parfois": null,
+  "alimentation . boissons . fréquence sodas . tous les jours": null,
+  "alimentation . boissons . quantité": {
+    "unité": "l/jour",
+    "variations": [
+      { "si": "fréquence sodas = 'jamais'", "alors": 0 },
+      { "si": "fréquence sodas = 'parfois'", "alors": 0.3 },
+      { "si": "fréquence sodas = 'tous les jours'", "alors": 0.75 },
+      { "sinon": 0 }
+    ]
+  },
+  "futureco-data . transport . ferry . empreinte par km volume": {
+    "titre": "Empreinte par km et passager",
+    "description": "\n> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).\n\n\nVoici notre objectif : estimer l'empreinte d'un passager sur les ferries de voyage comme ceux qui relient la métropole à la Corse et à l'Angleterre.\n\nLe ferry est souvent proposé comme alternative sérieuse à l’avion du point de vue de l'empreinte carbone, mais il n’existait pourtant aucune estimation de son empreinte climat au kilomètre (ni ADEME en France, ni à l’international, ni dans la littérature scientifique) qui prenne en compte non pas un passager moyen, mais la diversité des options d'un billet : \n\n- passager en voiture ou non\n- passager en cabine, en siège, ou au sol\n- équipement loisir du bateau : restaurant, bar, piscine, grand couloirs, etc.\n- le fret embarqué dans les camions\n- % de remplissage du bateau\n- vitesse\n- etc\n\nNous savons combien un ferry donné émet de gaz à effet de serre (GES) : il suffit en somme de multipler sa consommation de fioul par le ou les facteurs d'émission CO2e du fioul et autres carburants utilisés. Mais la difficulté est ensuite d'attribuer une part de ces GES au passager à pied, au passager seul dans sa voiture qui profite d'un lounge VIP, et au transport de marchandises, etc. \n\nLe principe de calcul adopté ici est simple : nous attribuons une empreinte selon le volume que le billet acheté par le voyageur et les choix de consommation faits à bord occupent sur le bateau. \n\nVoici la [note de méthode](https://hackmd.io/@laem/empreinte-ferry) (~20 pages) qui explique le problème qu'on veut résoudre et les possibilités pour faire le calcul, mais qui reste théorique.\n\nEnsuite, concrètement, vous pouvez parcourir ci-dessous de façon intéractive et complète le calcul du facteur d'émission dynamique juste ci-dessous ⬇️.\n\nFinalement, n'hésitez pas à faire des propositions de modification du modèle, soit via une pull request sur [github](https://github.com/laem/futureco/blob/master/source/sites/publicodes/ferry/index.yaml) soit via un simple commentaire sur [ce ticket](https://github.com/laem/futureco/issues/123).\n\nEn pratique, nous le faisons sur le bateau type Mega Express Four tout simplement car nous en disposons des plans assez détaillés. Le travail devrait être fait pour d'autres navires par la suite.\n\n![Le Mega Express Four en navigation sur la Mediterranée](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/02_Corsica_Ferries_Mega_Express_Four_\\(cropped\\).jpg/640px-02_Corsica_Ferries_Mega_Express_Four_\\(cropped\\).jpg)\n*[Plus d'infos sur le Mega Express Four](https://fr.wikipedia.org/wiki/Mega_Express_Four)*\n\nLe calcul des différentes surfaces est issu d'[un dessin SVG](https://futur.eco/ferry-surface-mega-express-four) sur un plan des ponts du navire, qui nous permet ensuite d'en déduire les volumes, et qui est donc une des clefs du calcul. \n\n### Limites du calcul\n\nUn biais à noter serait la non exactitude de ce plan du ferry et des mesures qui y sont faites. Il parait cependant assez fiable pour un ordre de grandeur, ce qui est notre but ici.\n\nUn autre biais est évidemment le choix de ce qui est comptabilisé comme surface utile ou non. Nous avons par exemple exclu les ponts à l'air libre, sauf la piscine et les bars extérieurs.\nÉvidemment, le calcul n'est donc applicable strictement qu'à ce bateau, mais nous faisons le choix de l'extrapoler comme un bateau type faute d'avoir les ressources pour modéliser chaque bateau commercial.\n\nVoir également ce [ticket](https://github.com/laem/futureco/issues/123) pour lire et contribuer aux limites du calcul.\n",
+    "unité": "kgCO2e/km",
+    "valeur": "empreinte du bateau * part du volume"
+  },
+  "futureco-data . transport . ferry . empreinte du bateau": {
+    "titre": "Empreinte du bateau témoin par km",
+    "description": "\n> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).\n\n\nNous utilisons ici comme bateau témoin Méga Express Four de la flotte Corsica Ferries. Ils est représentatif des gros ferries de max ~2000 passagers, rapides.",
+    "unité": "kgCO2e/km",
+    "valeur": "empreinte totale . par km"
+  },
+  "futureco-data . transport . ferry . part du volume": {
+    "titre": "Part du volume utile du bateau attribuée au passager",
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "volume passager / volume utile"
+  },
+  "futureco-data . transport . ferry . empreinte totale . par km": {
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "empreinte totale / km par mille nautique"
+  },
+  "futureco-data . transport . ferry . empreinte totale": {
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "(facteur vitesse * correction temps de navigation) * empreinte totale moyenne"
+  },
+  "futureco-data . transport . ferry . km par mille nautique": {
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "1.852 km/mn"
+  },
+  "futureco-data . transport . ferry . facteur vitesse": {
+    "description": "\n> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).\n\n\nOn prend l'hypothèse d'une évolution au cube de la puissance en fonction de la vitesse.",
+    "valeur": "(rapport vitesse * rapport vitesse) * rapport vitesse"
+  },
+  "futureco-data . transport . ferry . correction temps de navigation": {
+    "description": "\n> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).\n\n\nLa puissance nécessaire pour faire avancer le navire évolue au cube de la vitesse. L'empreinte climat par heure suite naturellement cette même fonction. Mais le navire va alors plus vite : il va émettre plus à l'heure pendant moins de temps, ce facteur corrige le tir pour.\n",
+    "valeur": "vitesse moyenne / vitesse"
+  },
+  "futureco-data . transport . ferry . empreinte totale moyenne": {
+    "note": "Données greenferries 2020 tirées de Thetis-MRV 2020 https://mrv.emsa.europa.eu/#public/emission-report\n",
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "576.48 kgCO2e/mn"
+  },
+  "futureco-data . transport . ferry . rapport vitesse": {
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "vitesse / vitesse moyenne"
+  },
+  "futureco-data . transport . ferry . vitesse moyenne": {
+    "unité": "noeud",
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "métrique / km par mille nautique"
+  },
+  "futureco-data . transport . ferry . vitesse en kmh": {
+    "par défaut": "vitesse moyenne . métrique",
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "distance aller / durée du voyage . réelle"
+  },
+  "futureco-data . transport . ferry . distance aller": {
+    "description": "\n> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).\n\n\nNous ne calculons pas encore les distances réelles traversées par les bateaux. Ainsi, l'ajout d'un facteur 30% permet de s'en rapprocher. \nSi vous avez accès à un facteur moyen sourcé, n'hésitez pas à intervenir.\n",
+    "valeur": "orthodromique * 1.3"
+  },
+  "futureco-data . transport . ferry . durée du voyage . réelle": {
+    "description": "\n> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).\n\n\nNous considérons que pour un départ à 19h sur le billet, et une arrivée à 7h, pour le calcul de la vitesse la traversée n'a pas duré 12h de navigation mais 11h, car il y a 30 minutes avant que le ferry se lance puis 30 minutes de débarquement. Cela peut évidemment varier en fonction des compagnies et du type de billet (embarquement piéton ou avec voiture), mais c'est un ordre de grandeur.\n\nPour les traversées courtes de moins de 3h, nous retirons 10% du temps (par convention également), soit 20 minutes * 2 pour 3h par exemple.\n",
+    "variations": [
+      { "si": "durée du voyage < 3", "alors": "durée du voyage * 0.8" },
+      { "sinon": "durée du voyage - 1" }
+    ]
+  },
+  "futureco-data . transport . ferry . volume passager": {
+    "note": "Pour les cabines, les sièges et les garages, nous ne pouvons pas supposer qu'ils sont aussi peu remplis que l'indicateur \"passagers\" nous donne (1/3). \n\nEn effet, nous supposons que le nombre max de passager est très élevé car on peut faire rentrer un tas de gens pour des traversées de jour. \n\nLa moyenne de remplissage de ces trois autres espaces doit davantage s'approcher d'un 2/3 avec une politique de prix au yield aggressive pour les places restantes. \n\n⚠️ C'est peut-être une hypothèse trop favorable qui pourrait donner lieu à une sous-estimation de 30% voir 100%.\n",
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "somme": ["cabine partagée", "loisirs", "siège", "voiture", "communs"]
+  },
+  "futureco-data . transport . ferry . volume utile": {
+    "question": "Quel est le volume utile du bateau ?",
+    "description": "\n> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).\n\n\nOn appelle ici volume utile la somme de toutes les surfaces qui ne sont pas l'infrastructure elle-même du bateau, sa sécurité, son équipage, etc.\n\n> Le calcul des différentes surfaces est isssu d'[un dessin SVG](https://futur.eco/ferry-surface-mega-express-four) sur un plan des ponts du navire, qui nous permet ensuite d'en déduire les volumes\n",
+    "unité": "m3",
+    "somme": [
+      "volume garage",
+      "surface . cabines * hauteur pont bas",
+      "surface . sièges * hauteur pont bas",
+      "surface . loisirs * hauteur pont bas",
+      "volume communs"
+    ]
+  },
+  "futureco-data . transport . ferry . volume passager . cabine partagée": {
+    "applicable si": "billet cabine",
+    "unité": "m3",
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "(cabines nécessaires * cabine) / groupe"
+  },
+  "futureco-data . transport . ferry . volume passager . loisirs": {
+    "applicable si": "consommation de services",
+    "unité": "m3",
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "(surface . loisirs * hauteur pont bas) / passagers"
+  },
+  "futureco-data . transport . ferry . volume passager . siège": {
+    "non applicable si": "cabine",
+    "titre": "Un siège dans un dortoir",
+    "unité": "m3",
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "hauteur pont bas * surface . siège"
+  },
+  "futureco-data . transport . ferry . volume passager . voiture": {
+    "applicable si": "voiture",
+    "note": "Ici nous décidons de ne pas voir la capacité en voiture et diviser la surface voiture par ce nombre, car les différentes zones de garage peuvent accomoder aussi bien des voitures que des camions.\n",
+    "unité": "m3",
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "majoré / groupe"
+  },
+  "futureco-data . transport . ferry . volume passager . communs": {
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "volume communs / passagers"
+  },
+  "futureco-data . transport . ferry . cabines nécessaires": {
+    "description": "\n> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).\n\n\nOn part pour l'instant du principe qu'il n'y a que des cabines 4 places.",
+    "note": "Ici on aimerait utiliser un mécanisme de modulo, qui n'existe pas dans publi.codes.\n",
+    "grille": {
+      "assiette": "groupe",
+      "tranches": [
+        { "montant": 1, "plafond": 5 },
+        { "montant": 2, "plafond": 9 },
+        { "montant": 3, "plafond": 13 },
+        { "montant": "groupe / 4" }
+      ]
+    }
+  },
+  "futureco-data . transport . ferry . volume passager . cabine": {
+    "unité": "m3",
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "surface . cabine * hauteur pont bas"
+  },
+  "futureco-data . transport . ferry . billet cabine": {
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "cabine"
+  },
+  "futureco-data . transport . ferry . surface . cabine": {
+    "unité": "m2",
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "cabines / cabine . nombre"
+  },
+  "futureco-data . transport . ferry . hauteur pont bas": {
+    "unité": "m",
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": 2.7
+  },
+  "futureco-data . transport . ferry . passagers": {
+    "titre": "Passagers moyens",
+    "description": "\n> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).\n\n\nPour certaines services en commun, nous avons besoin de répartir le poids par passager.\n\nC'est la valeur du Mega Express Four https://fr.wikipedia.org/wiki/Mega_Express_Four mais en ordre de grandeur de la valeur moyenne, obtenu grâce aux déclarations Thetis-MRV exposées sur https://www.greenferries.org/ships/mega-express-four-9086590 en 2018-2019, donc pré-pandémie.\n",
+    "note": "Ce paramètre est très déterminant. Le nombre de passagers max du Mega Express Four est de 1880 d'après Wikipedia. Il circule donc à 1/3 de son remplissage, ce qui est très faible si on compare au TGV ou aux avions de ligne.\n",
+    "valeur": 600
+  },
+  "futureco-data . transport . ferry . surface . siège": {
+    "unité": "m2",
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "sièges / siège . nombre"
+  },
+  "futureco-data . transport . ferry . siège . nombre": {
+    "question technique": "Quel est le nombre total de sièges passager ?",
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": 281
+  },
+  "futureco-data . transport . ferry . volume passager . voiture . majoré": {
+    "titre": "Volume garage voiture",
+    "unité": "m3",
+    "note": "Nous partons du principe que certaines voitures se garent dans un garage dont la hauteur du pont haut, donc appliquons la moyenne pondérée par la surface.",
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "(largeur * longueur) * hauteur moyenne garage"
+  },
+  "futureco-data . transport . ferry . volume passager . voiture . largeur": {
+    "description": "\n> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).\n\n\nNous prenons les dimensions conseillées ici pour un parking standard https://parkinggarage.fr/dimension-standard-longueur-largeur-hauteur-parking-box-garage-voiture/\n",
+    "valeur": "2.7 m"
+  },
+  "futureco-data . transport . ferry . volume passager . voiture . longueur": {
+    "description": "\n> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).\n\n\nNous prenons la longueur définie ici https://parkinggarage.fr/dimension-standard-longueur-largeur-hauteur-parking-box-garage-voiture, avec une majoration moins importante que la largeur, car elle est dynamique (la largeur est fixée par des bornes au sol) et ne nécessite pas d'accomoder deux portières ouvertes en concurrence.\n",
+    "valeur": "6 m"
+  },
+  "futureco-data . transport . ferry . hauteur moyenne garage": {
+    "unité": "m",
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "((surface . garage . bas * hauteur pont bas) + (surface . garage . haut * hauteur pont haut)) / surface . garage"
+  },
+  "futureco-data . transport . ferry . hauteur pont haut": {
+    "note": "Nous simplifions pour l'instant ces données qui pourront être améliorées dans un second temps.",
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "hauteur pont bas * 2"
+  },
+  "futureco-data . transport . ferry . surface . garage": {
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "bas + haut"
+  },
+  "futureco-data . transport . ferry . volume communs": {
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "hauteur pont bas * surface . communs"
+  },
+  "futureco-data . transport . ferry . volume garage": {
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "hauteur moyenne garage * surface . garage"
+  },
+  "futureco-data . transport . ferry . vitesse moyenne . métrique": {
+    "titre": "Vitesse moyenne ferry",
+    "note": "On considère la vitesse moyenne du Mega Express Four de Corsica Ferries\nDonnées greenferries 2019 tirées de Thetis-MRV 2019 https://www.greenferries.org/ships/mega-express-four-9086590/\n",
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "33 km/h"
+  },
+  "futureco-data . transport . ferry . durée du voyage": {
+    "question": null,
+    "description": "\n> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).\n\n\nIndiquez votre heure de départ et d'arrivée, en sélectionnant bien le jour d'arrivée.\n\n⚠️  La vitesse est cruciale pour calculer l'empreinte du voyage, car la consommation d'essence varie au cube de la vitesse.\n",
+    "note": "On parle de la durée du voyage calculée avec les heures de départ sur le billet, qui n'est donc pas la durée de navigation réelle.",
+    "icônes": "⏳️",
+    "unité": "h",
+    "suggestions": {
+      "une demi-journée": "6 h",
+      "une nuit": "12 h",
+      "24h": "24 h"
+    }
+  },
+  "futureco-data . transport . ferry . groupe": {
+    "icônes": "👥",
+    "question": null,
+    "par défaut": 2,
+    "suggestions": { "seul": 1, "en couple": 2, "à 3": 3, "à 4": 4 },
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data)."
+  },
+  "futureco-data . transport . ferry . cabine": {
+    "icônes": "🛌",
+    "question": null,
+    "description": "\n> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).\n\n\nSans surprise, voyager en cabine apporte du confort mais en contrepartie du poids embarqué.",
+    "note": "Il existe aussi des cabines partagées (comme dans les trains de nuit), nous pourrons les ajouter par la suite comme une option possible.",
+    "références": {
+      "corsica-ferries": "https://www.corsica-ferries.fr/ferries/traversee-ferry.html"
+    },
+    "par défaut": "oui"
+  },
+  "futureco-data . transport . ferry . distance aller . orthodromique": {
+    "icônes": "🗺️",
+    "question": null,
+    "description": "\n> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).\n\n\nSaisissez la ville de départ et d'arrivée d'un vrai trajet en ferry.\n\nNous ne gérons pas encore l'estimation de l'empreinte climat d'un trajet multimodal (TGV + ferry par exemple).\n",
+    "note": "L'utilisateur saisit les ports de départ et d'arrivée, nous récupérons leurs coordonnées et calculons la distance orthodromique, ce qui consiste à prendre en compte le fait que la terre n'est pas plate.",
+    "par défaut": "320 km",
+    "unité": "km",
+    "suggestions": {
+      "🇬🇧 Cherbourg↔Poole": 130,
+      "🏝️ Marseille↔Ajaccio": 350,
+      "🇩🇿 Marseille↔Alger": 800
+    }
+  },
+  "futureco-data . transport . ferry . cabine . nombre": {
+    "question technique": "Quel est le nombre total de cabines passager ?",
+    "question": null,
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": 255
+  },
+  "futureco-data . transport . ferry . consommation de services": {
+    "icônes": "🍽️",
+    "question": null,
+    "par défaut": "oui",
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data)."
+  },
+  "futureco-data . transport . ferry . voiture": {
+    "icônes": "🚗",
+    "question": null,
+    "description": "\n> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).\n\n\n\nLe calcul est limité à une seule voiture, on considère qu'elle est partagée par le groupe.\n\nSi vous transportez un camping-car, répondez oui (l'empreinte sera fortement sous-estimée). \n\nSi vous transportez une moto, répondez non (l'empreinte sera légèrement sous-estimée).\n",
+    "par défaut": "oui"
+  },
+  "futureco-data . transport . ferry . surface . garage . bas": {
+    "question technique": "Quelle est la surface de garage bas du bateau ?",
+    "unité": "m2",
+    "question": null,
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": 2334
+  },
+  "futureco-data . transport . ferry . surface . garage . haut": {
+    "question technique": "Quelle est la surface de garage haut du bateau ?",
+    "unité": "m2",
+    "question": null,
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": 11881
+  },
+  "futureco-data . transport . ferry . surface . cabines": {
+    "question technique": "Quelle est la surface totale des cabines ?",
+    "unité": "m2",
+    "question": null,
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": 7356
+  },
+  "futureco-data . transport . ferry . surface . sièges": {
+    "question technique": "Quelle est la surface totale des sièges ?",
+    "unité": "m2",
+    "question": null,
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": 1095
+  },
+  "futureco-data . transport . ferry . surface . loisirs": {
+    "question technique": "Quelle est la surface dédiée aux loisirs ?",
+    "description": "\n> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).\n\n\nRestaurants, bars, salons, jeux, commerces, piscines, etc.",
+    "unité": "m2",
+    "question": null,
+    "valeur": 4762
+  },
+  "futureco-data . transport . ferry . surface . communs": {
+    "question technique": "Quelle est la surface des zones communes à tous les passagers ?",
+    "description": "\n> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).\n\n\nCela inclut les escaliers, des places assises en salon hors bar ou restaurant, les couloirs intérieurs. Par convention, on n'inclut pas les surfaces extérieures non couvertes, sauf les espaces de loisir évidents : la piscine et les bars extérieurs.\n",
+    "unité": "m2",
+    "question": null,
+    "valeur": 1466
+  },
+  "futureco-data . transport . ferry . vitesse": {
+    "icônes": "⌚",
+    "question": null,
+    "unité": "noeud",
+    "suggestions": { "lente": 12, "rapide": 18, "très rapide": 27 },
+    "description": "> ℹ️ Cette règle provient du modèle [`futureco-data`](https://github.com/laem/futureco-data).",
+    "valeur": "vitesse en kmh / km par mille nautique"
+  },
+  "ngc": null,
+  "ngc . transport . avion . moyen courrier": null,
+  "ngc . transport . avion": null,
+  "ngc . transport": null,
+  "ngc . transport . train": null,
+  "ngc . transport . transports commun . car": null,
+  "ngc . transport . transports commun": null,
+  "ngc . logement . vacances": null,
+  "ngc . logement": null,
+  "ngc . logement . vacances . camping": null,
+  "ngc . logement . vacances . auberge de jeunesse": null,
+  "ngc . logement . vacances . locations": null,
+  "commun": null,
+  "ngc . alimentation . petit déjeuner . continental": null,
+  "ngc . alimentation . petit déjeuner": null,
+  "ngc . alimentation": null,
+  "ngc . alimentation . petit déjeuner . lait vache céréales": null,
+  "ngc . alimentation . petit déjeuner . britannique": null,
+  "ngc . alimentation . petit déjeuner . végétalien": null,
+  "ngc . alimentation . plats . végétalien": null,
+  "ngc . alimentation . plats": null,
+  "ngc . alimentation . plats . végétarien": null,
+  "ngc . alimentation . plats . viande blanche": null,
+  "ngc . alimentation . plats . viande rouge": null,
+  "ngc . alimentation . local": null,
+  "ngc . alimentation . plats . poisson gras": null,
+  "ngc . alimentation . plats . poisson blanc": null,
+  "ngc . alimentation . boisson . sucrées": null,
+  "ngc . alimentation . boisson": null,
+  "futureco-data": null,
+  "futureco-data . transport . ferry": null,
+  "futureco-data . transport": null,
+  "futureco-data . transport . ferry . surface": null,
+  "futureco-data . transport . ferry . siège": null
+}
