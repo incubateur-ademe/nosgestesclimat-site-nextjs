@@ -6,14 +6,9 @@ import ButtonLink from '../inputs/ButtonLink'
 
 export default function SkipToMainContentLink() {
   const skipToFirstFocusableElement = (elementId: string) => {
-    const firstFocusableElement = document
+    document
       .getElementById(elementId)
-      ?.querySelector('a, button') as HTMLElement
-
-    console.log(firstFocusableElement)
-    if (firstFocusableElement) {
-      firstFocusableElement.focus()
-    }
+      ?.querySelector('a, button')?.focus()
   }
 
   const skipToElement = (elementId: string) => {
