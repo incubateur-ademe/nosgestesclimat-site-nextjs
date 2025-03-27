@@ -12,10 +12,16 @@ import {
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
+import getGroupListFromSimulations from '@/helpers/simulation/getGroupListFromSimulations'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useActions, useCurrentSimulation, useForm } from '@/publicodes-state'
+import {
+  useActions,
+  useCurrentSimulation,
+  useForm,
+  useUser,
+} from '@/publicodes-state'
 import TutorialLink from './_components/TutorialLink'
 
 export default function SimulationStarted() {
@@ -30,6 +36,8 @@ export default function SimulationStarted() {
   const { chosenActions, declinedActions } = useActions()
 
   const { goToSimulateurPage, getLinkToSimulateurPage } = useSimulateurPage()
+
+  const { simulations } = useUser()
 
   const isFinished = progression === 1
 
@@ -91,7 +99,12 @@ export default function SimulationStarted() {
           className="my-2 w-full text-center"
           trackingEvent={profilClickRecommencer}
           onClick={() => {
-            goToSimulateurPage({ noNavigation: true, newSimulation: {} })
+            goToSimulateurPage({
+              noNavigation: true,
+              newSimulation: {
+                groups: getGroupListFromSimulations(simulations),
+              },
+            })
           }}
           href={getLinkToSimulateurPage({ newSimulation: true })}>
           <RestartIcon className="mr-2 fill-primary-700" />

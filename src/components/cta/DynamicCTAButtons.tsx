@@ -1,8 +1,9 @@
 'use client'
 
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import getGroupListFromSimulations from '@/helpers/simulation/getGroupListFromSimulations'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
-import { useCurrentSimulation } from '@/publicodes-state'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -30,6 +31,8 @@ export default function DynamicCTAButtons({
   } = useSimulateurPage()
 
   const { progression } = useCurrentSimulation()
+
+  const { simulations } = useUser()
 
   const [isHover, setIsHover] = useState(false)
 
@@ -85,7 +88,12 @@ export default function DynamicCTAButtons({
           color="text"
           trackingEvent={trackingEvents?.restart}
           onClick={() => {
-            goToSimulateurPage({ noNavigation: true, newSimulation: {} })
+            goToSimulateurPage({
+              noNavigation: true,
+              newSimulation: {
+                groups: getGroupListFromSimulations(simulations),
+              },
+            })
           }}
           href={getLinkToSimulateurPage({ newSimulation: true })}>
           <RestartIcon className="mr-2 fill-primary-700" />
