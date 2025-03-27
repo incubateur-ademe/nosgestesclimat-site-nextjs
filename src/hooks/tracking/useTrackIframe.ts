@@ -12,7 +12,7 @@ export function useTrackIframe(isIframe: boolean) {
   const url = useGetTrackedUrl()
 
   // inspired from https://usehooks-ts.com/react-hook/use-intersection-observer
-  const ref = useRef<HTMLDivElement | null>(null)
+  const ref = useRef<HTMLBodyElement | null>(null)
   const [entry, setEntry] = useState<IntersectionObserverEntry>()
   const [observed, setObserved] = useState(false)
   const [hasInteracted, setHasInteracted] = useState(false)

@@ -5,6 +5,7 @@ import DownArrow from '@/components/icons/DownArrow'
 import { carboneMetric } from '@/constants/metric'
 import { endToggleTargetBlock } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useState } from 'react'
@@ -20,6 +21,9 @@ export default function InformationBlock() {
   const [isHedgehog, setIsHedgehog] = useState(false)
 
   const { currentMetric } = useCurrentMetric()
+
+  const { t } = useClientTranslation()
+
   return (
     <div className="relative">
       <Hedgehog setIsHedgehog={setIsHedgehog} />
@@ -38,6 +42,7 @@ export default function InformationBlock() {
           'absolute right-4 top-4 h-12 w-12 !p-0 lg:hidden',
           isHedgehog ? '!block' : ''
         )}
+        aria-label={isOpen || isHedgehog ? t('Fermer') : t('Ouvrir')}
         onClick={() => {
           setIsOpen((prevIsOpen) => !prevIsOpen)
           setIsHedgehog(false)
