@@ -1,3 +1,4 @@
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import type { Metric } from '@/publicodes-state/types'
 import type { PropsWithChildren, ReactNode } from 'react'
@@ -19,6 +20,8 @@ export default function MetricCard({
 }>) {
   const { currentMetric, setCurrentMetric } = useCurrentMetric()
 
+  const { t } = useClientTranslation()
+
   const isSelected = currentMetric === metric
 
   return (
@@ -28,6 +31,11 @@ export default function MetricCard({
         'pointer-events-auto relative !flex h-full flex-1 flex-col overflow-hidden rounded-xl border-[3px] border-primary-50 bg-white',
         isSelected && 'border-primary-700 bg-primary-50'
       )}
+      aria-label={
+        isSelected
+          ? t('Empreinte carbone, sélectionné, voir le détail ci-dessous')
+          : t("Sélectionner l'empreinte carbone, voir le détail ci-dessous")
+      }
       {...props}>
       <div className="absolute left-0 right-0 top-0 mx-1 border-b border-primary-200 py-1 text-center text-xs">
         {metricTitle.mobile}
