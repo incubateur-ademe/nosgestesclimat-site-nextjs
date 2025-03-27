@@ -11,7 +11,8 @@ export default function QuestionSection({
   rule: NGCRule
   locale: string
 }) {
-  if (!rule || !rule.question) return null
+  if (!rule?.question) return null
+
   return (
     <>
       <Card className="mb-6">
