@@ -10,7 +10,7 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import type { ReactNode } from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import { twMerge } from 'tailwind-merge'
@@ -33,6 +33,30 @@ export default function DidYouKnowSlider({
 
   const pathname = usePathname()
 
+  // Make slider accessible
+  // Temporary : remove as soon as accessibility is well handled in Slick
+  useEffect(() => {
+    const slider = document.querySelector('.slick-track') as HTMLElement
+    // Change slider tag to ul
+    if (slider) {
+      const ul = document.createElement('ul')
+      ul.classList.add('slick-track')
+      // copy style from slider to ul
+      ul.style.width = window.getComputedStyle(slider).width
+      ul.style.height = window.getComputedStyle(slider).height
+
+      //Put slider children in ul
+      Array.from(slider.children).forEach((child) => {
+        const li = document.createElement('li')
+        li.classList.add('slick-slide')
+        li.appendChild(child)
+        ul.appendChild(li)
+      })
+
+      slider.parentNode?.replaceChild(ul, slider)
+    }
+  }, [])
+
   return (
     <div
       className={twMerge(
@@ -42,6 +66,7 @@ export default function DidYouKnowSlider({
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-10 md:flex-row md:gap-0">
         <Slider
           dots={true}
+          accessibility={true}
           arrows={false}
           infinite={true}
           autoplay={true}
@@ -51,7 +76,7 @@ export default function DidYouKnowSlider({
           afterChange={(index) => setCurrentSlide(index)}
           className="max-w-[594px]">
           {slides.map((slide) => (
-            <li
+            <div
               className="mx-auto !flex w-full max-w-[90vw] flex-col items-start gap-10 md:flex-row"
               key={String(slide.highlight)}>
               <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-white md:mx-0 md:h-40 md:w-40">
@@ -79,7 +104,7 @@ export default function DidYouKnowSlider({
                   {slide.highlight}
                 </p>
               </div>
-            </li>
+            </div>
           ))}
         </Slider>
         <div>
