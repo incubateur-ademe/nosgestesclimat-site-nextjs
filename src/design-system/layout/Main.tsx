@@ -20,6 +20,7 @@ export default function Main({
 
   return (
     <main
+      id="main-content"
       className={`flex flex-col overflow-hidden ${maxWidthClass} ${className} ${
         isIframe || pathname.includes('/simulateur/bilan')
           ? ''
