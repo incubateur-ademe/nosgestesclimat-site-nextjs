@@ -120,10 +120,11 @@ export default async function RootLayout({
           }
         </head>
 
-        <Banner locale={locale as Locale} />
-
         <MainLayoutProviders>
+          <Banner locale={locale as Locale} />
+
           {children}
+
           <Footer />
         </MainLayoutProviders>
       </html>
