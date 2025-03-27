@@ -1,17 +1,38 @@
-'use server'
-
+import { defaultInitialRegion } from '@/constants/defaultRegion'
 import type { RegionFromGeolocation } from '@/publicodes-state/types'
-import axios from 'axios'
+import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json'
+import { captureException } from '@sentry/nextjs'
+import axios, { isAxiosError } from 'axios'
+import { MODELE_URL } from '../../constants/urls'
+
+type ModelGeolocation = RegionFromGeolocation & {
+  region: string
+}
+
+const supportedCountryCodes = new Set(Object.keys(supportedRegions))
 
 export async function getGeolocation(): Promise<RegionFromGeolocation> {
-  return await axios
-    .get(
-      `${
-        process.env.VERCEL_ENV === 'preview' ||
-        process.env.VERCEL_ENV === 'production'
-          ? 'https'
-          : 'http'
-      }://${process.env.VERCEL_URL || 'localhost:3000'}/api/geolocation`
+  try {
+    const { data } = await axios.get<ModelGeolocation>(
+      `${MODELE_URL}/geolocation`
     )
-    .then((res) => res.data)
+
+    if (supportedCountryCodes.has(data.code)) {
+      return data
+    }
+
+    if (data.region === 'Europe') {
+      return { code: 'EU', name: 'Europe' }
+    }
+
+    return defaultInitialRegion
+  } catch (err) {
+    if (isAxiosError(err) && err.response?.status === 404) {
+      return defaultInitialRegion
+    }
+
+    captureException(err)
+
+    return defaultInitialRegion
+  }
 }

@@ -3,6 +3,7 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getRules } from '@/helpers/modelFetching/getRules'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import type { DefaultPageProps } from '@/types'
+import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import DocumentationRouter from './_components/DocumentationRouter'
 import DocumentationServer from './_components/documentationRouter/DocumentationServer'
 
@@ -38,11 +39,11 @@ export default async function DocumentationPage({
   const { locale, slug } = await params
   const supportedRegions = getSupportedRegions()
 
-  const rules = await getRules({
+  const rules = (await getRules({
     isOptim: false,
     locale,
     regionCode: 'FR',
-  })
+  })) as NGCRules
 
   return (
     <DocumentationRouter

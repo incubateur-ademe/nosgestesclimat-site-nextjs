@@ -120,22 +120,13 @@ export default async function RootLayout({
           }
         </head>
 
-        <body
-          className={`${marianne.className} bg-white text-default transition-colors duration-700`}>
-          <Script id="script-user-agent">{`
-            const b = document.documentElement;
-            b.setAttribute('data-useragent', navigator.userAgent);
-          `}</Script>
-
+        <MainLayoutProviders>
           <Banner locale={locale as Locale} />
 
-          <MainLayoutProviders>
-            {children}
-            <Footer />
-          </MainLayoutProviders>
+          {children}
 
-          <div id="modal" />
-        </body>
+          <Footer />
+        </MainLayoutProviders>
       </html>
     )
   } catch (error) {

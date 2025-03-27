@@ -40,6 +40,11 @@ export default function useQuestions({
     'logement . électricité . réseau . consommation',
   ]
 
+  const mustAskQuestions: DottedName[] = [
+    // With Publicodes >1.8.0, 'services sociétaux . question rhétorique' is not in the missing variable as it's a question "une possibilité" with only on possible answer... So logically,the question is already answered.
+    'services sociétaux . question rhétorique',
+  ]
+
   const missingVariables = useMemo(
     () => {
       const tempMissingVariables = Object.fromEntries(
@@ -82,6 +87,11 @@ export default function useQuestions({
         if (dottedName in tempMissingVariables) {
           tempMissingVariables[dottedName] -= 1000
         }
+      })
+
+      // We artificially add some questions in the missing variables.
+      mustAskQuestions.forEach((dottedName) => {
+        tempMissingVariables[dottedName] = 1
       })
 
       return tempMissingVariables

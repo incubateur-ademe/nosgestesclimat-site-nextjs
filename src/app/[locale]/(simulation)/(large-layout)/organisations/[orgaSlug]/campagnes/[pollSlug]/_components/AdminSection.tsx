@@ -87,6 +87,7 @@ export default function AdminSection({ poll }: Props) {
             href={`/organisations/${orgaSlug}/campagnes/${pollSlug}/parametres`}
             trackingEvent={pollDashboardClickParameters}
             color="text"
+            data-cypress-id="poll-admin-section-see-parameters-button"
             className="flex items-center">
             <SettingsIcon className="mr-2 fill-primary-700" />
 

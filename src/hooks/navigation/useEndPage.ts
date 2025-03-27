@@ -50,11 +50,18 @@ export function useEndPage() {
       }
       setIsNavigating(true)
 
-      // If the simulation is finished and is in a poll or a group, we save it (unless save is false)
+      // If the simulation is finished and
+      // * is in a poll or a group
+      // * has been already saved during the test
+      // we save it (unless save is false)
       if (
         progression === 1 &&
         isAllowedToSave &&
-        (currentSimulation.polls || currentSimulation.groups)
+        (currentSimulation.polls ||
+          currentSimulation.groups ||
+          // Simulation has already been saved during the test, save it one last time
+          // to make sure the the latest version is saved
+          currentSimulation.savedViaEmail)
       ) {
         if (currentSimulation.computedResults[defaultMetric].bilan === 0) {
           // Send an error to Sentry
@@ -63,9 +70,10 @@ export function useEndPage() {
           )
         }
 
-        await saveSimulation({
+        saveSimulation({
           simulation: currentSimulation,
-          sendEmail: true,
+          // If the simulation has already been saved via email, we don't send it again
+          ...(!currentSimulation.savedViaEmail ? { sendEmail: true } : {}),
         })
       }
 

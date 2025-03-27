@@ -62,7 +62,11 @@ export default function ArticleList({
       )}
 
       {pageCount > 1 && (
-        <Pagination currentPage={currentPage} totalPages={pageCount} />
+        <Pagination
+          currentPage={currentPage}
+          totalPages={pageCount}
+          locale={locale}
+        />
       )}
     </section>
   )

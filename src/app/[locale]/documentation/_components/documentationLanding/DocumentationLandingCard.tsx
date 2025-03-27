@@ -27,6 +27,8 @@ export default function DocumentationLandingCard({
   const { getCategory } = useEngine()
   const category = getCategory(dottedName)
 
+  if (!rule) return null
+
   return (
     <Card
       tag={Link}
@@ -40,7 +42,7 @@ export default function DocumentationLandingCard({
         </Emoji>
       </div>
 
-      <h2 className="z-10 mb-0 text-base ">{<Markdown>{summary}</Markdown>}</h2>
+      <h2 className="z-10 mb-0 text-base">{<Markdown>{summary}</Markdown>}</h2>
     </Card>
   )
 }

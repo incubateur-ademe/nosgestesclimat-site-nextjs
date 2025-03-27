@@ -9,7 +9,6 @@ import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPo
 import { useParams, useRouter } from 'next/navigation'
 import { useContext } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
-import { v4 as uuid } from 'uuid'
 import { InfosContext } from '../_components/InfosProvider'
 import Navigation from '../_components/Navigation'
 
@@ -34,10 +33,13 @@ export default function CustomQuestion() {
 
   const customAdditionalQuestions = poll?.customAdditionalQuestions ?? []
 
-  function onSubmit({ 'custom-answer': customQuestion }: Inputs) {
+  const customQuestion =
+    customAdditionalQuestions[customQuestionIndex - 1].question
+
+  function onSubmit({ 'custom-answer': customAnswer }: Inputs) {
     addCustomAnswer({
-      id: uuid(),
-      answer: customQuestion,
+      key: customQuestion,
+      answer: customAnswer,
     })
 
     // Go to next page
@@ -63,10 +65,7 @@ export default function CustomQuestion() {
         }
       />
 
-      <TextInputGroup
-        label={customAdditionalQuestions?.[customQuestionIndex - 1]?.question}
-        {...register('custom-answer')}
-      />
+      <TextInputGroup label={customQuestion} {...register('custom-answer')} />
 
       <Navigation
         linkToPrev={getLinkToPrevInfosPage({
