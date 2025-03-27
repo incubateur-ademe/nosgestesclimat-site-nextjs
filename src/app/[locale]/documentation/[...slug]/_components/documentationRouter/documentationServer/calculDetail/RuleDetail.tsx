@@ -59,6 +59,10 @@ export default function RuleDetail({
     isDataObject &&
     Object.keys(ruleData).every((key) => Number.isInteger(+key))
 
+  if (ruleFormatted === null) {
+    return
+  }
+
   if (typeof ruleFormatted === 'string') {
     try {
       if (!context) return <span>{capitalizeString(ruleFormatted)}</span>
