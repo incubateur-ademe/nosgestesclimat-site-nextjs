@@ -39,7 +39,7 @@ export default async function ActionDetailPage({
         className="flex items-center">
         <span
           role="img"
-          className="pr-2 !text-[0.5rem]"
+          className="pr-2 text-[0.5rem]!"
           aria-label="arrow pointing left">
           ◀
         </span>{' '}

@@ -47,7 +47,7 @@ export default function ConfirmationModal({
       onRequestClose={closeModal}
       style={customStyles}
       className="fixed left-1/2 top-1/2 w-[40rem] max-w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white p-8"
-      overlayClassName="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-[10000] overflow-hidden">
+      overlayClassName="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-10000 overflow-hidden">
       {children}
 
       <div className="mt-12 flex flex-wrap justify-center gap-4 md:justify-normal">
