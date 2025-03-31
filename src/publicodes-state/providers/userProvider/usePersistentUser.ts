@@ -30,7 +30,7 @@ export default function usePersistentUser({
         initialRegion: initialRegion,
       })
     }
-  }, [initialRegion, user.region, initialized])
+  }, [initialRegion, user, initialized])
 
   // Upon first render, check if there is a user in local storage and format it
   // and save it to the user state
