@@ -3,6 +3,7 @@
 import PollLoader from '@/components/organisations/PollLoader'
 import PollStatistics from '@/components/organisations/PollStatistics'
 import Trans from '@/components/translation/trans/TransClient'
+import Loader from '@/design-system/layout/Loader'
 import Title from '@/design-system/layout/Title'
 import { filterExtremes } from '@/helpers/organisations/filterExtremes'
 import { filterSimulations } from '@/helpers/organisations/filterSimulations'
@@ -20,6 +21,9 @@ import { FiltersContext } from './_components/FiltersProvider'
 import PollNotFound from './_components/PollNotFound'
 import PollStatisticsCharts from './_components/PollStatisticsCharts'
 import PollStatisticsFilters from './_components/PollStatisticsFilters'
+
+// TODO: temporary fix to avoid breaking the page when there are too many simulations
+const MAX_SIMULATIONS_FOR_DASHBOARD = 5000
 
 export default function CampagnePage() {
   const searchParams = useSearchParams()
@@ -42,13 +46,17 @@ export default function CampagnePage() {
     data: dashboard,
     isLoading: isLoadingDashboard,
     error: errorDashboard,
-  } = useFetchPublicPollDashboard()
+  } = useFetchPublicPollDashboard({
+    enabled: !!poll && poll.simulations.count < MAX_SIMULATIONS_FOR_DASHBOARD,
+  })
 
   const {
     data: simulations,
     isLoading: isLoadingSimulations,
     error: errorSimulations,
-  } = useFetchPublicPollSimulations()
+  } = useFetchPublicPollSimulations({
+    enabled: !!poll && poll.simulations.count < MAX_SIMULATIONS_FOR_DASHBOARD,
+  })
 
   const { ageFilters, postalCodeFilters } = useContext(FiltersContext)
 
@@ -76,7 +84,7 @@ export default function CampagnePage() {
     }
   }, [errorPoll, errorDashboard, errorSimulations, t])
 
-  if (isLoadingPoll || isLoadingDashboard || isLoadingSimulations) {
+  if (isLoadingPoll) {
     return <PollLoader />
   }
 
@@ -117,23 +125,52 @@ export default function CampagnePage() {
       <div className="mt-8">
         <AdminSection poll={poll} />
 
-        <PollStatistics
-          simulations={simulations ?? []}
-          simulationsWithoutExtremes={simulationsWithoutExtremes}
-          funFacts={dashboard?.funFacts}
-          title={<Trans>Résultats de campagne</Trans>}
-        />
+        {poll.simulations.count > MAX_SIMULATIONS_FOR_DASHBOARD && (
+          <div className="flex h-full items-center justify-center">
+            <Trans>
+              Cette campagne comporte plus de {MAX_SIMULATIONS_FOR_DASHBOARD}{' '}
+              simulations. Les statistiques globales ne sont pas disponibles
+              pour le moment. Nous nous excusons pour la gêne occasionnée, nos
+              équipes sont sur le coup.
+            </Trans>
+          </div>
+        )}
 
-        <PollStatisticsFilters
-          simulations={simulationsWithoutExtremes}
-          filteredSimulations={filteredSimulations ?? []}
-          defaultAdditionalQuestions={poll?.defaultAdditionalQuestions ?? []}
-        />
+        {isLoadingDashboard ? (
+          <div className="flex h-full items-center justify-center">
+            <Loader />
+            <Trans>Chargement des statistiques globales de campagne...</Trans>
+          </div>
+        ) : (
+          <PollStatistics
+            simulations={simulations ?? []}
+            simulationsWithoutExtremes={simulationsWithoutExtremes}
+            funFacts={dashboard?.funFacts}
+            title={<Trans>Résultats de campagne</Trans>}
+          />
+        )}
 
-        <PollStatisticsCharts
-          simulations={filteredSimulations ?? []}
-          isAdmin={!!poll?.organisation.administrators}
-        />
+        {isLoadingSimulations ? (
+          <div className="flex h-full items-center justify-center">
+            <Loader />
+            <Trans>Chargement des résultats détaillés de campagne...</Trans>
+          </div>
+        ) : (
+          <>
+            <PollStatisticsFilters
+              simulations={simulationsWithoutExtremes}
+              filteredSimulations={filteredSimulations ?? []}
+              defaultAdditionalQuestions={
+                poll?.defaultAdditionalQuestions ?? []
+              }
+            />
+
+            <PollStatisticsCharts
+              simulations={filteredSimulations ?? []}
+              isAdmin={!!poll?.organisation.administrators}
+            />
+          </>
+        )}
       </div>
     </div>
   )

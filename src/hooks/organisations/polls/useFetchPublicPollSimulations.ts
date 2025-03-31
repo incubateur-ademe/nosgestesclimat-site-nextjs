@@ -5,7 +5,11 @@ import axios from 'axios'
 import { useParams } from 'next/navigation'
 import { useUser } from '../../../publicodes-state'
 
-export const useFetchPublicPollSimulations = () => {
+export const useFetchPublicPollSimulations = (
+  options: {
+    enabled?: boolean
+  } = { enabled: true }
+) => {
   const params = useParams()
 
   const pollIdOrSlug = params.pollSlug
@@ -25,6 +29,6 @@ export const useFetchPublicPollSimulations = () => {
           }
         )
         .then((res) => res.data),
-    enabled: !!pollIdOrSlug,
+    enabled: !!pollIdOrSlug && options.enabled,
   })
 }
