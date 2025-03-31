@@ -6,8 +6,6 @@ import { cmsClient } from '@/adapters/cmsClient'
 import i18nConfig from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 
-const isProduction = process.env.NODE_ENV === 'production'
-
 type Article = PopulatedArticleType<'image' | 'category'> & {
   author: PopulatedAuthorType<'image'>
 }
@@ -32,7 +30,6 @@ export async function fetchArticlePageContent({
       'populate[3]': 'author.image',
       'filters[slug][$eq]': articleSlug,
       sort: 'publishedAt:desc',
-      ...(isProduction ? { status: 'published' } : { status: 'draft' }),
     })
 
     const articleResponse = await cmsClient<{
@@ -60,7 +57,6 @@ export async function fetchArticlePageContent({
       sort: 'createdAt:desc',
       'pagination[start]': '0',
       'pagination[limit]': '3',
-      ...(isProduction ? { status: 'published' } : { status: 'draft' }),
     })
 
     const otherArticlesResponse = await cmsClient<{
