@@ -16,7 +16,6 @@ export async function fetchCategories(): Promise<CategoryType[]> {
 
     return categoriesResponse.data
   } catch (error) {
-    console.error('Error:', error)
     captureException(error)
 
     return []

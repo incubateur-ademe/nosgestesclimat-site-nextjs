@@ -35,7 +35,6 @@ export async function fetchHomepageMetadata(): Promise<
       image: image,
     }
   } catch (error) {
-    console.error('Error:', error)
     captureException(error)
 
     return

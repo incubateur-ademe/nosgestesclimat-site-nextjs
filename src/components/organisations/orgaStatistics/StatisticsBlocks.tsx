@@ -7,7 +7,7 @@ import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getSimulationsAggregatedResult } from '@/helpers/organisations/getSimulationsAggregatedResult'
 import { useLocale } from '@/hooks/useLocale'
 import type { Entries } from '@/publicodes-state/types'
-import type { Simulation } from '@/types/organisations'
+import type { PublicPollSimulation } from '@/types/organisations'
 import Wave from 'react-wavify'
 import CategoryChartItem from './statisticsBlocks/CategoryChartItem'
 import ResultsSoonBanner from './statisticsBlocks/ResultsSoonBanner'
@@ -35,8 +35,8 @@ export default function StatisticsBlocks({
   simulations,
   simulationsWithoutExtremes,
 }: {
-  simulations: Simulation[]
-  simulationsWithoutExtremes: Simulation[]
+  simulations: PublicPollSimulation[]
+  simulationsWithoutExtremes: PublicPollSimulation[]
 }) {
   const locale = useLocale()
 

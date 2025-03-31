@@ -72,7 +72,6 @@ export async function fetchHomepageContent({ page }: { page: number }): Promise<
       pageCount: meta?.pagination?.pageCount ?? 0,
     }
   } catch (error) {
-    console.error('Error:', error)
     captureException(error)
 
     return undefined

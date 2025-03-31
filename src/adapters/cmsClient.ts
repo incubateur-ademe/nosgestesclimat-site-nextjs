@@ -28,8 +28,6 @@ export const cmsClient = async <T>(
 
     return await response.json()
   } catch (error) {
-    console.error('CMS API Error:', error)
-
     captureException(error)
 
     throw error

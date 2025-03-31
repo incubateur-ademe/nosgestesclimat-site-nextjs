@@ -68,7 +68,6 @@ export async function fetchArticlePageContent({
       otherArticles: otherArticlesResponse?.data ?? [],
     }
   } catch (error) {
-    console.error('Error:', error)
     captureException(error)
 
     return

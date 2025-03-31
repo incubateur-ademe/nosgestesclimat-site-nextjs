@@ -31,7 +31,6 @@ export async function fetchBanner(locale: Locale): Promise<BannerType | null> {
 
     return bannersResponse.data[0]
   } catch (error) {
-    console.error('Error:', error)
     captureException(error)
 
     return null
