@@ -47,6 +47,7 @@ export default function DidYouKnowSlider({
           autoplay={true}
           autoplaySpeed={4000}
           fade
+          slide="ul"
           easing="ease-in-out"
           afterChange={(index) => setCurrentSlide(index)}
           className="max-w-[594px]">

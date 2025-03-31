@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import type { Simulation } from '@/types/organisations'
+import type { PublicPollSimulation } from '@/types/organisations'
 import type { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 import type { ReactNode } from 'react'
 import DetailedStatistics from './orgaStatistics/DetailedStatistics'
@@ -15,8 +15,8 @@ export default function PollStatistics({
   funFacts,
 }: {
   title?: string | ReactNode
-  simulations: Simulation[]
-  simulationsWithoutExtremes: Simulation[]
+  simulations: PublicPollSimulation[]
+  simulationsWithoutExtremes: PublicPollSimulation[]
   funFacts: FunFacts | undefined
 }) {
   const hasAtLeastThreeParticipants = simulations?.length > 2

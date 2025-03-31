@@ -46,7 +46,6 @@ export async function fetchArticlePageMetadata({
       image: article.image,
     }
   } catch (error) {
-    console.error('Error:', error)
     captureException(error)
 
     return

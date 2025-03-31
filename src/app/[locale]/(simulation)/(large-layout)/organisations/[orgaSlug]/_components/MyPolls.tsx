@@ -45,10 +45,6 @@ export default function MyPolls({ polls }: Props) {
     [polls, sort]
   )
 
-  if (!polls) {
-    return null
-  }
-
   return (
     <section className="mb-12">
       <div className="flex flex-wrap items-center justify-between sm:flex-nowrap">
@@ -88,7 +84,7 @@ export default function MyPolls({ polls }: Props) {
           )
         )}
 
-        <AddPollCard hasNoPollsYet={polls.length === 0} />
+        <AddPollCard hasNoPollsYet={!polls || polls.length === 0} />
       </ul>
 
       {pollsSorted.length > 2 && (

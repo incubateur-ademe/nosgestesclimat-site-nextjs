@@ -1,12 +1,12 @@
 import { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
 import { SimulationAdditionalQuestionAnswerType } from '@/constants/organisations/simulationAdditionalQuestionAnswerType'
-import type { Simulation } from '@/types/organisations'
+import type { PublicPollSimulation } from '@/types/organisations'
 import dayjs from 'dayjs'
 
 export function getAgeFilterOptions({
   filteredSimulations,
 }: {
-  filteredSimulations: Simulation[]
+  filteredSimulations: PublicPollSimulation[]
 }) {
   const simulationsBirthdate = filteredSimulations.reduce(
     (acc: string[], simulation) => {

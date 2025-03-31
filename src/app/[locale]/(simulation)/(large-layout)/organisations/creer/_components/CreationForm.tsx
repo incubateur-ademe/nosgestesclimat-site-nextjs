@@ -121,6 +121,7 @@ export default function CreationForm() {
         <TextInputGroup
           className="col-span-1"
           label={<Trans>Votre organisation</Trans>}
+          data-cypress-id="organisation-name-input"
           error={formState.errors.name?.message}
           {...register('name', {
             required: t('Ce champ est requis'),
@@ -131,6 +132,7 @@ export default function CreationForm() {
           <Select
             containerClassName="pt-[3px]"
             label={<Trans>Type d'organisation</Trans>}
+            data-cypress-id="organisation-type-select"
             error={formState.errors.organisationType?.message}
             {...register('organisationType', {
               required: t('Ce champ est requis'),
@@ -174,6 +176,7 @@ export default function CreationForm() {
         <TextInputGroup
           className="col-span-1"
           label={<Trans>Votre prénom</Trans>}
+          data-cypress-id="organisation-administrator-first-name-input"
           error={formState.errors.administratorFirstName?.message}
           {...register('administratorFirstName', {
             required: t('Ce champ est requis'),
@@ -183,6 +186,7 @@ export default function CreationForm() {
         <TextInputGroup
           className="col-span-1"
           label={<Trans>Votre nom</Trans>}
+          data-cypress-id="organisation-administrator-last-name-input"
           error={formState.errors.administratorLastName?.message}
           {...register('administratorLastName', {
             required: t('Ce champ est requis'),
@@ -191,6 +195,7 @@ export default function CreationForm() {
 
         <TextInputGroup
           className="col-span-1"
+          data-cypress-id="organisation-administrator-position-input"
           label={
             <p className="mb-0 flex items-center justify-between">
               <Trans>Votre poste</Trans>
@@ -238,7 +243,7 @@ export default function CreationForm() {
           <Trans>Accéder à mon espace</Trans>
         </Button>
 
-        <Button type="submit">
+        <Button type="submit" data-cypress-id="create-organisation-button">
           <Trans>Créer ma première campagne</Trans>
         </Button>
       </div>

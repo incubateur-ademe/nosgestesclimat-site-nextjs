@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/trans/TransClient'
 import {
   footerClickDocumentation,
   headerClickProfil,
@@ -17,73 +18,79 @@ export default function FoldableMenu() {
   const { user } = useUser()
 
   return (
-    <BurgerMenu>
+    <BurgerMenu aria-labelledby="foldable-menu-title">
       {({ closeMenu, onFocus }) => (
-        <ul className="flex flex-col gap-4">
-          <li>
-            <NavLink
-              onFocus={onFocus}
-              onClick={() => {
-                closeMenu()
-                trackEvent(headerClickProfil)
-              }}
-              href="/profil"
-              icon={ProfileIcon}>
-              Profil
-            </NavLink>
-          </li>
+        <nav aria-labelledby="foldable-menu-title">
+          <h2 id="foldable-menu-title" className="sr-only">
+            <Trans>Menu principal</Trans>
+          </h2>
 
-          {user?.organisation?.administratorEmail && (
+          <ul className="flex flex-col gap-4">
             <li>
-              <OrganisationLink onClick={closeMenu} />
+              <NavLink
+                onFocus={onFocus}
+                onClick={() => {
+                  closeMenu()
+                  trackEvent(headerClickProfil)
+                }}
+                href="/profil"
+                icon={ProfileIcon}>
+                Profil
+              </NavLink>
             </li>
-          )}
 
-          <li>
-            <div className="ml-2 h-[1px] w-4 bg-gray-400" />
-          </li>
+            {user?.organisation?.administratorEmail && (
+              <li>
+                <OrganisationLink onClick={closeMenu} />
+              </li>
+            )}
 
-          <li>
-            <NavLink onFocus={onFocus} onClick={closeMenu} href="/blog">
-              Blog
-            </NavLink>
-          </li>
-
-          <li>
-            <NavLink
-              onFocus={onFocus}
-              onClick={closeMenu}
-              href="/questions-frequentes">
-              FAQ
-            </NavLink>
-          </li>
-
-          <li>
-            <NavLink
-              onFocus={onFocus}
-              onClick={() => {
-                closeMenu()
-                trackEvent(footerClickDocumentation)
-              }}
-              href="/documentation">
-              Documentation
-            </NavLink>
-          </li>
-
-          <li>
-            <NavLink onFocus={onFocus} onClick={closeMenu} href="/diffuser">
-              Diffuser Nos Gestes Climat
-            </NavLink>
-          </li>
-
-          {!user?.organisation?.administratorEmail ? (
             <li>
-              <Suspense fallback={null}>
-                <CTAButton />
-              </Suspense>
+              <div className="ml-2 h-[1px] w-4 bg-gray-400" />
             </li>
-          ) : null}
-        </ul>
+
+            <li>
+              <NavLink onFocus={onFocus} onClick={closeMenu} href="/blog">
+                Blog
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                onFocus={onFocus}
+                onClick={closeMenu}
+                href="/questions-frequentes">
+                FAQ
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                onFocus={onFocus}
+                onClick={() => {
+                  closeMenu()
+                  trackEvent(footerClickDocumentation)
+                }}
+                href="/documentation">
+                Documentation
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink onFocus={onFocus} onClick={closeMenu} href="/diffuser">
+                Diffuser Nos Gestes Climat
+              </NavLink>
+            </li>
+
+            {!user?.organisation?.administratorEmail ? (
+              <li>
+                <Suspense fallback={null}>
+                  <CTAButton />
+                </Suspense>
+              </li>
+            ) : null}
+          </ul>
+        </nav>
       )}
     </BurgerMenu>
   )
