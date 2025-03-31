@@ -6,13 +6,15 @@ import Trans from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
 import { filterExtremes } from '@/helpers/organisations/filterExtremes'
 import { filterSimulations } from '@/helpers/organisations/filterSimulations'
+import { displayErrorToast } from '@/helpers/toasts/displayErrorToast'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import { useFetchPublicPollDashboard } from '@/hooks/organisations/polls/useFetchPublicPollDashboard'
 import { useFetchPublicPollSimulations } from '@/hooks/organisations/polls/useFetchPublicPollSimulations'
 import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedirectFromLegacy'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import dayjs from 'dayjs'
 import { useSearchParams } from 'next/navigation'
-import { useContext, useMemo } from 'react'
+import { useContext, useEffect, useMemo } from 'react'
 import AdminSection from './_components/AdminSection'
 import { FiltersContext } from './_components/FiltersProvider'
 import PollNotFound from './_components/PollNotFound'
@@ -26,15 +28,27 @@ export default function CampagnePage() {
 
   useHandleRedirectFromLegacy()
 
-  const { data: poll, isLoading: isLoadingPoll } = useFetchPublicPoll({
+  const { t } = useClientTranslation()
+
+  const {
+    data: poll,
+    isLoading: isLoadingPoll,
+    error: errorPoll,
+  } = useFetchPublicPoll({
     enabled: !isRedirectFromLegacy,
   })
 
-  const { data: dashboard, isLoading: isLoadingDashboard } =
-    useFetchPublicPollDashboard()
+  const {
+    data: dashboard,
+    isLoading: isLoadingDashboard,
+    error: errorDashboard,
+  } = useFetchPublicPollDashboard()
 
-  const { data: simulations, isLoading: isLoadingSimulations } =
-    useFetchPublicPollSimulations()
+  const {
+    data: simulations,
+    isLoading: isLoadingSimulations,
+    error: errorSimulations,
+  } = useFetchPublicPollSimulations()
 
   const { ageFilters, postalCodeFilters } = useContext(FiltersContext)
 
@@ -51,6 +65,16 @@ export default function CampagnePage() {
       ageFilters,
       postalCodeFilters,
     })
+
+  useEffect(() => {
+    if (errorPoll || errorDashboard || errorSimulations) {
+      displayErrorToast(
+        t(
+          'Aie, une erreur est survenue lors du chargement de la campagne. Si le problème persiste merci de nous envoyer un message via notre page de contact.'
+        )
+      )
+    }
+  }, [errorPoll, errorDashboard, errorSimulations, t])
 
   if (isLoadingPoll || isLoadingDashboard || isLoadingSimulations) {
     return <PollLoader />
