@@ -23,14 +23,14 @@ export default function usePersistentUser({
 
   // Update the user region if it is not set and user is not saved in local storage
   useEffect(() => {
-    if (initialRegion && !user.region && !initialized) {
+    if (initialRegion && !user.region) {
       setUser({
         ...user,
         region: initialRegion,
         initialRegion: initialRegion,
       })
     }
-  }, [initialRegion, user, initialized])
+  }, [initialRegion, user])
 
   // Upon first render, check if there is a user in local storage and format it
   // and save it to the user state
