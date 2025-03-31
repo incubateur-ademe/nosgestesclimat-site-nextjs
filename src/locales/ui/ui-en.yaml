@@ -1622,3 +1622,18 @@ entries:
   Cette campagne comporte plus de {MAX_SIMULATIONS_FOR_DASHBOARD} simulations. Les statistiques globales ne sont pas disponibles pour le moment. Nous nous excusons pour la gêne occasionnée, nos équipes sont sur le coup.: This campaign includes more than {MAX_SIMULATIONS_FOR_DASHBOARD} simulations. Overall statistics are not available at the moment. We apologise for any inconvenience caused, as our teams are working on this.
   'Incident en cours :': 'Incident in progress :'
   les statistiques ne sont pas disponibles pour les campagnes de plus de 1000 participations pour le moment. Nous nous excusons pour la gêne occasionnée ; nos équipes sont sur le coup.: statistics are not available for campaigns with more than 1,000 entries at the moment. We apologise for any inconvenience caused; our teams are working on this.
+  Navigation principale: Main navigation
+  Page précédente: Previous page
+  Menu principal: Main menu
+  '{{name}} menu déroulant': '{{name}} drop-down menu'
+  Chemin de navigation: Navigation path
+  Voir le détail ci-dessous: See details below
+  Page {{page}}: Page {{page}}
+  Page suivante: Next page
+  Sélectionner l'empreinte carbone, voir le détail ci-dessous: Select carbon footprint, see details below
+  Période à afficher: Period to be displayed
+  Menu déroulant: Drop-down menu
+  '{{name}} lecture seule': '{{name}} read only'
+  Ouvrir: Open
+  Nombre de jours, semaines ou mois à afficher: Number of days, weeks or months to display
+  simulations terminées ce mois-ci (en cours): simulations completed this month (in progress)

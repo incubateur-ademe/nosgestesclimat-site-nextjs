@@ -16,6 +16,7 @@ export default function FancySelect({
   options,
   suffix,
   onChange,
+  ...props
 }: Props) {
   return (
     <div className="relative inline-block text-secondary-700">
@@ -34,7 +35,8 @@ export default function FancySelect({
         value={value ? value : ''}
         onChange={(e) => {
           onChange(e.target.value)
-        }}>
+        }}
+        {...props}>
         {options.map((option, index) => (
           <option
             className="text-secondary-700"

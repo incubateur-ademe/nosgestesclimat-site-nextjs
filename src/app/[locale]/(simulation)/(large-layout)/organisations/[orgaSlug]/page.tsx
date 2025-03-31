@@ -66,6 +66,7 @@ export default function OrganisationPage() {
           href={`/organisations/${organisation?.slug}/parametres`}
           trackingEvent={organisationsDashboardClickParameters}
           color="text"
+          data-cypress-id="organisation-page-see-parameters-button"
           className="flex items-center self-start">
           <SettingsIcon className="mr-2 fill-primary-700" />
 

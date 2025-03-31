@@ -1615,3 +1615,18 @@ entries:
   Cette campagne comporte plus de {MAX_SIMULATIONS_FOR_DASHBOARD} simulations. Les statistiques globales ne sont pas disponibles pour le moment. Nous nous excusons pour la gêne occasionnée, nos équipes sont sur le coup.: Esta campaña incluye más de {MAX_SIMULATIONS_FOR_DASHBOARD} simulaciones. Las estadísticas globales no están disponibles en este momento. Pedimos disculpas por las molestias causadas, ya que nuestros equipos están trabajando en ello.
   'Incident en cours :': 'Incidente en curso :'
   les statistiques ne sont pas disponibles pour les campagnes de plus de 1000 participations pour le moment. Nous nous excusons pour la gêne occasionnée ; nos équipes sont sur le coup.: por el momento, las estadísticas no están disponibles para las campañas con más de 1.000 entradas. Sentimos las molestias ocasionadas; nuestros equipos están trabajando en ello.
+  Menu principal: Menú principal
+  Menu déroulant: Menú desplegable
+  '{{name}} lecture seule': '{{name}} sólo lectura'
+  Chemin de navigation: Ruta de navegación
+  Période à afficher: Período que debe mostrarse
+  Voir le détail ci-dessous: Más información
+  '{{name}} menu déroulant': '{{name}} menú desplegable'
+  Page précédente: Página anterior
+  Ouvrir: Abrir
+  Page suivante: Página siguiente
+  Page {{page}}: Página {{page}}
+  Navigation principale: Navegación principal
+  Sélectionner l'empreinte carbone, voir le détail ci-dessous: Seleccione la huella de carbono, ver detalles más abajo
+  Nombre de jours, semaines ou mois à afficher: Número de días, semanas o meses a visualizar
+  simulations terminées ce mois-ci (en cours): simulaciones realizadas este mes (en curso)

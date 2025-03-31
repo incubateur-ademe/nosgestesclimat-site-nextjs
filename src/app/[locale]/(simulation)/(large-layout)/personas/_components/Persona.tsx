@@ -44,7 +44,7 @@ export default function Persona({ persona, personaDottedName }: Props) {
       } items-center`}>
       <div className="text-lg">{persona['icônes']}</div>
 
-      <h3>{persona.nom}</h3>
+      <h2>{persona.nom}</h2>
 
       <p className="text-center text-sm">
         {persona['résumé'] || persona['description']}

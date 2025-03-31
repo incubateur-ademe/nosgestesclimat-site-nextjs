@@ -16,6 +16,7 @@ import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { formatEmail } from '@/utils/format/formatEmail'
+import { captureException } from '@sentry/nextjs'
 import { useEffect, useRef, useState } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
@@ -100,7 +101,7 @@ export default function MesInformations() {
         setIsSubmitted(false)
       }, 2500)
     } catch (error) {
-      console.error(error)
+      captureException(error)
     }
   }
 

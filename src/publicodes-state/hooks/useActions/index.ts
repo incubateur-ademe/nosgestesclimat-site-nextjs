@@ -4,6 +4,7 @@ import { carboneMetric } from '@/constants/metric'
 import getSomme from '@/publicodes-state/helpers/getSomme'
 import type { Metric } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { captureException } from '@sentry/nextjs'
 import { useContext, useMemo } from 'react'
 import { useEngine } from '../..'
 import { SimulationContext } from '../../providers/simulationProvider/context'
@@ -37,7 +38,7 @@ export default function useActions(
     const somme = getSomme(actionsRule.rawNode)
 
     if (!somme) {
-      console.error('No actions found')
+      captureException('No actions found')
       return []
     }
 
