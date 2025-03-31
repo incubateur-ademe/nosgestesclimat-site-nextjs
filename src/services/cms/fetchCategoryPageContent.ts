@@ -93,7 +93,6 @@ export async function fetchCategoryPageContent({
       faqDescription: category.faqDescription,
     }
   } catch (error) {
-    console.error('Error:', error)
     captureException(error)
     return undefined
   }
