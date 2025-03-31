@@ -14,5 +14,10 @@
     "NEXT_PUBLIC_SITE_URL": {
       "generator": "url"
     }
+  },
+  "env": {
+    "NEXT_PUBLIC_SITE_URL": {
+      "generator": "url"
+    }
   }
 }
