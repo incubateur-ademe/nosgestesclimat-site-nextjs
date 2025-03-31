@@ -4,12 +4,12 @@ import Arrow from '@/components/fin/metricSlider/carboneTotalChart/Arrow'
 import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/metric'
 import InlineLink from '@/design-system/inputs/InlineLink'
-import type { Simulation } from '@/types/organisations'
+import type { PublicPollSimulation } from '@/types/organisations'
 import isMobile from 'is-mobile'
 import RepartitionChart from './RepartitionChart'
 
 type Props = {
-  simulations: Simulation[]
+  simulations: PublicPollSimulation[]
   maxValue: number
 }
 
