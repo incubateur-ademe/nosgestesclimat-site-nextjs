@@ -1,9 +1,9 @@
-import type { Simulation } from '@/types/organisations'
+import type { PublicPollSimulation } from '@/types/organisations'
 import { PollDefaultAdditionalQuestion } from '../../constants/organisations/pollDefaultAdditionalQuestion'
 import { SimulationAdditionalQuestionAnswerType } from '../../constants/organisations/simulationAdditionalQuestionAnswerType'
 
 type Props = {
-  simulations: Simulation[]
+  simulations: PublicPollSimulation[]
   ageFilters: { value: [number, number] }[]
   postalCodeFilters: { value: string }[]
 }

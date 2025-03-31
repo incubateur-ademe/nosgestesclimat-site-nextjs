@@ -1,7 +1,9 @@
 import { carboneMetric, eauMetric } from '@/constants/metric'
-import type { Simulation } from '@/types/organisations'
+import type { PublicPollSimulation } from '@/types/organisations'
 
-export function getSimulationsAggregatedResult(simulations: Simulation[]) {
+export function getSimulationsAggregatedResult(
+  simulations: PublicPollSimulation[]
+) {
   const result = simulations.reduce(
     (acc, simulation) => {
       return {

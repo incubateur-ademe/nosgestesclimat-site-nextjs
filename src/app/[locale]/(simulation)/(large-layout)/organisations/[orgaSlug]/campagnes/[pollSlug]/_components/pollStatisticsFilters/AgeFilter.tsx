@@ -4,7 +4,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import { organisationsResultatsDetaillesFilterByAge } from '@/constants/tracking/pages/organisationsResultatsDetailles'
 import ComplexSelect from '@/design-system/inputs/ComplexSelect'
 import { getAgeFilterOptions } from '@/helpers/organisations/getAgeFilterOptions'
-import type { Simulation } from '@/types/organisations'
+import type { PublicPollSimulation } from '@/types/organisations'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { SetStateAction } from 'react'
 import { useContext } from 'react'
@@ -14,7 +14,7 @@ import { FiltersContext } from '../FiltersProvider'
 export default function AgeFilter({
   filteredSimulations,
 }: {
-  filteredSimulations: Simulation[]
+  filteredSimulations: PublicPollSimulation[]
 }) {
   const { setAgeFilters } = useContext(FiltersContext)
 

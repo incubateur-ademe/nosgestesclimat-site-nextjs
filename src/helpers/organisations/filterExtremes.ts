@@ -1,9 +1,9 @@
 import { carboneMetric } from '@/constants/metric'
-import type { Simulation } from '@/types/organisations'
+import type { PublicPollSimulation } from '@/types/organisations'
 
 const MAX_VALUE = 100000
 
-export function filterExtremes(simulations: Simulation[]) {
+export function filterExtremes(simulations: PublicPollSimulation[]) {
   return simulations?.filter((simulation) => {
     // Remove simulations with too high values
     if (
