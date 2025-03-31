@@ -3,6 +3,7 @@
 import PollLoader from '@/components/organisations/PollLoader'
 import PollStatistics from '@/components/organisations/PollStatistics'
 import Trans from '@/components/translation/trans/TransClient'
+import Card from '@/design-system/layout/Card'
 import Loader from '@/design-system/layout/Loader'
 import Title from '@/design-system/layout/Title'
 import { filterExtremes } from '@/helpers/organisations/filterExtremes'
@@ -23,7 +24,7 @@ import PollStatisticsCharts from './_components/PollStatisticsCharts'
 import PollStatisticsFilters from './_components/PollStatisticsFilters'
 
 // TODO: temporary fix to avoid breaking the page when there are too many simulations
-const MAX_SIMULATIONS_FOR_DASHBOARD = 5000
+const MAX_SIMULATIONS_FOR_DASHBOARD = 500
 
 export default function CampagnePage() {
   const searchParams = useSearchParams()
@@ -126,19 +127,21 @@ export default function CampagnePage() {
         <AdminSection poll={poll} />
 
         {poll.simulations.count > MAX_SIMULATIONS_FOR_DASHBOARD && (
-          <div className="flex h-full items-center justify-center">
+          <Card className="mb-10 inline-block border-red-200 bg-red-100 text-red-900">
+            <strong>
+              <Trans>Incident en cours :</Trans>
+            </strong>{' '}
             <Trans>
-              Cette campagne comporte plus de {MAX_SIMULATIONS_FOR_DASHBOARD}{' '}
-              simulations. Les statistiques globales ne sont pas disponibles
-              pour le moment. Nous nous excusons pour la gêne occasionnée, nos
-              équipes sont sur le coup.
+              les statistiques ne sont pas disponibles pour les campagnes de
+              plus de 500 participations pour le moment. Nous nous excusons pour
+              la gêne occasionnée, nos équipes sont sur le coup.
             </Trans>
-          </div>
+          </Card>
         )}
 
         {isLoadingDashboard ? (
-          <div className="flex h-full items-center justify-center">
-            <Loader />
+          <div className="mb-8 flex h-full items-center gap-2">
+            <Loader color="dark" size="sm" />
             <Trans>Chargement des statistiques globales de campagne...</Trans>
           </div>
         ) : (
@@ -151,8 +154,8 @@ export default function CampagnePage() {
         )}
 
         {isLoadingSimulations ? (
-          <div className="flex h-full items-center justify-center">
-            <Loader />
+          <div className="mb-8 flex h-full items-center gap-2">
+            <Loader color="dark" size="sm" />
             <Trans>Chargement des résultats détaillés de campagne...</Trans>
           </div>
         ) : (
