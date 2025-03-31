@@ -24,7 +24,7 @@ import PollStatisticsCharts from './_components/PollStatisticsCharts'
 import PollStatisticsFilters from './_components/PollStatisticsFilters'
 
 // TODO: temporary fix to avoid breaking the page when there are too many simulations
-const MAX_SIMULATIONS_FOR_DASHBOARD = 500
+const MAX_SIMULATIONS_FOR_DASHBOARD = 1000
 
 export default function CampagnePage() {
   const searchParams = useSearchParams()
@@ -133,8 +133,8 @@ export default function CampagnePage() {
             </strong>{' '}
             <Trans>
               les statistiques ne sont pas disponibles pour les campagnes de
-              plus de 500 participations pour le moment. Nous nous excusons pour
-              la gêne occasionnée, nos équipes sont sur le coup.
+              plus de 1000 participations pour le moment. Nous nous excusons
+              pour la gêne occasionnée ; nos équipes sont sur le coup.
             </Trans>
           </Card>
         )}
