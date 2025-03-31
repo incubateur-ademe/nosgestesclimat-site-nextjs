@@ -2,7 +2,10 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
-import type { OrganisationPoll, Simulation } from '@/types/organisations'
+import type {
+  OrganisationPoll,
+  PublicPollSimulation,
+} from '@/types/organisations'
 import AgeFilter from './pollStatisticsFilters/AgeFilter'
 import DepartementFilter from './pollStatisticsFilters/DepartementFilter'
 import InfoTooltipIcon from './pollStatisticsFilters/InfoTooltipIcon'
@@ -12,8 +15,8 @@ export default function PollStatisticsFilters({
   filteredSimulations,
   defaultAdditionalQuestions,
 }: {
-  simulations: Simulation[]
-  filteredSimulations: Simulation[]
+  simulations: PublicPollSimulation[]
+  filteredSimulations: PublicPollSimulation[]
   defaultAdditionalQuestions: OrganisationPoll['defaultAdditionalQuestions']
 }) {
   if (defaultAdditionalQuestions?.length === 0 || simulations?.length < 3) {

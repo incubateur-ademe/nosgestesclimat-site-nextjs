@@ -6,13 +6,13 @@ import Badge from '@/design-system/layout/Badge'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useRule } from '@/publicodes-state'
-import type { Simulation } from '@/types/organisations'
+import type { PublicPollSimulation } from '@/types/organisations'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { t } from 'i18next'
 import RepartitionChart from './RepartitionChart'
 
 type Props = {
-  simulations: Simulation[]
+  simulations: PublicPollSimulation[]
   value: number
   category: DottedName
   maxValue: number
