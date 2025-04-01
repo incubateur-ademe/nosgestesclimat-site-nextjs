@@ -11,7 +11,9 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
   return getMetadataObject({
     locale,
-    title: t("Mes groupes d'amis - Nos Gestes Climat"),
+    title: t(
+      "Mes groupes d'amis, calculer vos empreintes carbone et eau à plusieurs - Nos Gestes Climat"
+    ),
     description: t(
       "Comparez vos résultats avec votre famille ou un groupe d'amis."
     ),

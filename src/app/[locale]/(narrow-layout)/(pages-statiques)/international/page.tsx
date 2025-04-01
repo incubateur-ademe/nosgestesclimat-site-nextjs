@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
   return getMetadataObject({
     locale,
-    title: t('Internationalisation - Nos Gestes Climat'),
+    title: t('International - Nos Gestes Climat'),
     description: t(
       'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.'
     ),

@@ -2,8 +2,11 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getRules } from '@/helpers/modelFetching/getRules'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
+import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import type { DefaultPageProps } from '@/types'
-import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import { capitalizeString } from '@/utils/capitalizeString'
+import { decodeRuleNameFromPath } from '@/utils/decodeRuleNameFromPath'
+import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import DocumentationRouter from './_components/DocumentationRouter'
 import DocumentationServer from './_components/documentationRouter/DocumentationServer'
 
@@ -15,9 +18,28 @@ export async function generateMetadata({
   const { locale, slug } = await params
   const { t } = await getServerTranslation({ locale })
 
+  const rules = (await getRules({
+    isOptim: false,
+    locale,
+    regionCode: 'FR',
+  })) as NGCRules
+
+  const ruleName = decodeRuleNameFromPath(slug.join('/')) as DottedName
+
+  const rule = rules?.[ruleName]
+
   return getMetadataObject({
     locale,
-    title: t('Documentation, règle du calculateur - Nos Gestes Climat'),
+    title:
+      rule && ruleName
+        ? // Dynamic title for each documentation page
+          t('Documentation, de la règle : {{ruleTitle}} - Nos Gestes Climat', {
+            ruleTitle: capitalizeString(
+              getRuleTitle({ ...rule, dottedName: ruleName })
+            ),
+          })
+        : // Fallback title
+          t('Documentation, règle du calculateur - Nos Gestes Climat'),
     description: t(
       'Notre documentation détaille les calculs qui nous ont permis de calculer votre bilan carbone personnel.'
     ),

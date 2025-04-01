@@ -33,7 +33,7 @@ export async function generateMetadata(props: DefaultPageProps) {
   const { t } = await getServerTranslation(props.params)
   return getMetadataObject({
     locale,
-    title: t('Nos Gestes Climat, calculez votre empreinte climatique'),
+    title: t('Nos Gestes Climat, calculez votre empreinte carbone et eau'),
     description: t(
       "2 millions de personnes ont déjà calculé leur empreinte sur le climat avec le calculateur Nos Gestes Climat ! Et vous, qu'attendez-vous pour faire le test ?"
     ),

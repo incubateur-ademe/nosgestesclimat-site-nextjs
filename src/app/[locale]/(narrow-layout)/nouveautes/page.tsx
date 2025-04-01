@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
   return getMetadataObject({
     locale,
-    title: t('Nouveautés - Nos Gestes Climat'),
+    title: t('Les nouveautés du calculateur - Nos Gestes Climat'),
     description: t(
       'Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.'
     ),

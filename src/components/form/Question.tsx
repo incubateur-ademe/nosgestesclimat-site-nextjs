@@ -96,6 +96,7 @@ export default function Question({
     }
   }, [remainingQuestionsByCategories, category, question])
 
+  // Update the page title when the question changes
   useEffect(() => {
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       document.title = t(
