@@ -67,7 +67,7 @@ type BaseOrganisationPoll = {
     finished: number
     hasParticipated: boolean
   }
-  funFacts?: FunFacts
+  funFacts?: FunFacts | null
 }
 
 export type OrganisationPoll = BaseOrganisationPoll & {
