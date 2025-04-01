@@ -25,7 +25,6 @@ export default function UpdateSimulationUsed({ group, refetchGroup }: Props) {
   const {
     user: { userId, name, email },
     simulations,
-    currentSimulation,
   } = useUser()
 
   const { t } = useClientTranslation()
