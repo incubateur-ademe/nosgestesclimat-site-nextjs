@@ -5,6 +5,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import ConfirmationModal from '@/design-system/modals/ConfirmationModal'
 import { useDeletePoll } from '@/hooks/organisations/polls/useDeletePoll'
+import { captureException } from '@sentry/nextjs'
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
 
@@ -23,7 +24,7 @@ export default function DeletePollButton() {
 
       router.push(`/organisations/${orgaSlug}`)
     } catch (error) {
-      console.error(error)
+      captureException(error)
     }
   }
 

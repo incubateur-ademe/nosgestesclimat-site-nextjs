@@ -4,7 +4,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import { organisationsResultatsDetaillesFilterByPostalCode } from '@/constants/tracking/pages/organisationsResultatsDetailles'
 import ComplexSelect from '@/design-system/inputs/ComplexSelect'
 import { extractPostalCodesFromSimulations } from '@/helpers/organisations/extractPostalCodesFromSimulations'
-import type { Simulation } from '@/types/organisations'
+import type { PublicPollSimulation } from '@/types/organisations'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { SetStateAction } from 'react'
 import { useContext } from 'react'
@@ -15,8 +15,8 @@ export default function DepartementFilter({
   simulations,
   filteredSimulations,
 }: {
-  simulations: Simulation[]
-  filteredSimulations: Simulation[]
+  simulations: PublicPollSimulation[]
+  filteredSimulations: PublicPollSimulation[]
 }) {
   const { setPostalCodeFilters } = useContext(FiltersContext)
 

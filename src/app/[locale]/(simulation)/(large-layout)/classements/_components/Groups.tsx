@@ -16,14 +16,12 @@ export default function Groups() {
 
   const { t } = useClientTranslation()
 
-  if (isLoading && !groups && !isError) {
-    return <GroupLoader />
-  }
+  const isGroupsLoading = isLoading && !groups && !isError
 
   return (
     <>
       <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between">
-        <Title tag="h2" title={<Trans>Groupes d'amis</Trans>} />
+        <Title tag="h1" title={<Trans>Groupes d'amis</Trans>} />
 
         {groups && groups.length > 0 && (
           <ButtonLink
@@ -37,25 +35,30 @@ export default function Groups() {
           </ButtonLink>
         )}
       </div>
-      <p className="text-gray-500">
-        <Trans>
-          Comparez vos résultats avec votre famille ou un groupe d’ami·e·s
-        </Trans>
-      </p>
+      {isGroupsLoading && <GroupLoader />}
+      {!isGroupsLoading && (
+        <>
+          <p className="text-gray-500">
+            <Trans>
+              Comparez vos résultats avec votre famille ou un groupe d’ami·e·s
+            </Trans>
+          </p>
 
-      <div className="flex flex-wrap justify-center gap-16 md:flex-nowrap">
-        <div className="flex-1">
-          <GroupContent isError={isError} groups={groups} />
-        </div>
+          <div className="flex flex-wrap justify-center gap-16 md:flex-nowrap">
+            <div className="flex-1">
+              <GroupContent isError={isError} groups={groups} />
+            </div>
 
-        <Image
-          className="w-60 self-start md:-mt-12 md:w-80"
-          src="/images/illustrations/people-playing.png"
-          width="380"
-          height="400"
-          alt={t("Un groupe d'amis jouant à un jeu de société.")}
-        />
-      </div>
+            <Image
+              className="w-60 self-start md:-mt-12 md:w-80"
+              src="/images/illustrations/people-playing.png"
+              width="380"
+              height="400"
+              alt={t("Un groupe d'amis jouant à un jeu de société.")}
+            />
+          </div>
+        </>
+      )}
     </>
   )
 }
