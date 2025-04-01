@@ -1,22 +1,25 @@
 import { captureException } from '@sentry/nextjs'
 
+const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
+
 export const cmsClient = async <T>(
-  url: string,
+  path: string,
   options: RequestInit = {}
 ): Promise<T> => {
-  const fullUrl = `${process.env.CMS_URL}${url}`
+  const fullUrl = new URL(`${process.env.CMS_URL}${path}`)
   const headers = {
     ...options.headers,
     Authorization: `Bearer ${process.env.CMS_TOKEN}`,
   }
 
+  fullUrl.searchParams.set('status', isProduction ? 'published' : 'draft')
+
   try {
     const response = await fetch(fullUrl, {
       ...options,
       headers,
-      cache: 'force-cache',
       // In seconds, production => 5 minutes, dev => 5 seconds
-      next: { revalidate: process.env.NODE_ENV !== 'production' ? 5 : 60 * 5 },
+      next: { revalidate: isProduction ? 5 : 60 * 5 },
     })
 
     if (!response.ok) {
@@ -25,8 +28,6 @@ export const cmsClient = async <T>(
 
     return await response.json()
   } catch (error) {
-    console.error('CMS API Error:', error)
-
     captureException(error)
 
     throw error

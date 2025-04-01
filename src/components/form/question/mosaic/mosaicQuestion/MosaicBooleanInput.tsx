@@ -89,10 +89,7 @@ export default function MosaicBooleanInput({
           {title && icons ? (
             <span
               className={`inline-block align-middle text-sm md:text-lg ${labelClassNames[status]}`}>
-              <Emoji className="">
-                {title}
-                {icons ? <> {icons}</> : null}
-              </Emoji>
+              {title} <Emoji className="">{icons ?? null}</Emoji>
             </span>
           ) : null}
           {description ? (

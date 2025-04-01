@@ -14,7 +14,6 @@ export async function getLocale() {
 
     return i18nConfig.defaultLocale
   } catch (error) {
-    console.error('Failed to get locale from path:', error)
     return i18nConfig.defaultLocale
   }
 }

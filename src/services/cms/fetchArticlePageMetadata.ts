@@ -3,8 +3,6 @@ import { cmsClient } from '@/adapters/cmsClient'
 import i18nConfig from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 
-const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
-
 export async function fetchArticlePageMetadata({
   articleSlug,
 }: {
@@ -23,7 +21,6 @@ export async function fetchArticlePageMetadata({
       'populate[0]': 'image',
       'populate[1]': 'pageMetadata',
       'filters[slug][$eq]': articleSlug,
-      ...(isProduction ? { status: 'published' } : { status: 'draft' }),
     })
     const articleResponse = await cmsClient<{
       data: [PopulatedArticleType<'image' | 'pageMetadata'>]
@@ -46,7 +43,6 @@ export async function fetchArticlePageMetadata({
       image: article.image,
     }
   } catch (error) {
-    console.error('Error:', error)
     captureException(error)
 
     return

@@ -23,7 +23,7 @@ export async function getRules({
   regionCode = 'FR',
   locale = 'fr',
   PRNumber,
-}: Props = defaultProps): Promise<NGCRules> {
+}: Props = defaultProps): Promise<Partial<NGCRules>> {
   const supportedRegions = getSupportedRegions()
 
   // We provide the FR version of the model if the region is not supported
@@ -42,7 +42,8 @@ export async function getRules({
   }
 
   if (regionCodeToProvide === 'FR' && locale === 'fr' && isOptim) {
-    return Promise.resolve(rules as unknown as NGCRules)
+    // We need to cast the rules as Partial<NGCRules> because the rules are optimized rules here (and some rules are voluntarily removed)
+    return Promise.resolve(rules as Partial<NGCRules>)
   }
 
   return importRulesFromModel({ fileName })

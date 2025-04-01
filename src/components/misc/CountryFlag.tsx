@@ -17,7 +17,7 @@ export default function CountryFlag({
     <Image
       src={flagSrc}
       alt=""
-      aria-hidden="true"
+      aria-hidden
       className={`mr-1 h-4 w-4 align-sub ${className}`}
       width={16}
       height={16}

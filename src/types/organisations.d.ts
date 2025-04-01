@@ -106,6 +106,11 @@ export type Simulation = {
   polls?: Array<{ id: string; slug: string }>
 }
 
+export type PublicPollSimulation = Pick<
+  Simulation,
+  'id' | 'date' | 'user' | 'computedResults' | 'additionalQuestionsAnswers'
+>
+
 export type OrgaSettingsInputsType = {
   name: string
   email: string
