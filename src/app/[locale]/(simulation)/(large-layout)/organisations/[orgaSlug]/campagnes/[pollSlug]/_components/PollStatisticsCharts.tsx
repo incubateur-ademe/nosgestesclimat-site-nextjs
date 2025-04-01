@@ -4,7 +4,7 @@ import InformationIconWithTooltip from '@/components/messages/InformationIconWit
 import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric } from '@/constants/metric'
 import Separator from '@/design-system/layout/Separator'
-import type { Simulation } from '@/types/organisations'
+import type { PublicPollSimulation } from '@/types/organisations'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import isMobile from 'is-mobile'
 import { useMemo } from 'react'
@@ -15,7 +15,7 @@ export default function PollStatisticsCharts({
   simulations,
   isAdmin,
 }: {
-  simulations: Simulation[]
+  simulations: PublicPollSimulation[]
   isAdmin?: boolean
 }) {
   const maxValueOfAllCategories = useMemo(

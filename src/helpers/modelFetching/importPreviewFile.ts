@@ -1,4 +1,5 @@
 import { getPreviewUrl } from '@/constants/urls'
+import { captureException } from '@sentry/nextjs'
 import axios from 'axios'
 
 type Props = {
@@ -14,7 +15,7 @@ export async function importPreviewFile({ fileName, PRNumber }: Props) {
     .get(`${previewURL}/${fileName}`)
     .then((res) => res.data)
     .catch((e) => {
-      console.error('importPreviewFile error', e)
+      captureException(e)
       return null
     })
 }

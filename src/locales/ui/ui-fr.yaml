@@ -1180,6 +1180,12 @@ entries:
   Retrouvez toute l’expertise de: Retrouvez toute l’expertise de
   l’Agence de la Transition Écologique: l’Agence de la Transition Écologique
   "dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action.": "dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action."
+  Aie, une erreur est survenue lors du chargement de la campagne. Si le problème persiste merci de nous envoyer un message via notre page de contact.: Aie, une erreur est survenue lors du chargement de la campagne. Si le problème persiste merci de nous envoyer un message via notre page de contact.
+  Cette campagne comporte plus de {MAX_SIMULATIONS_FOR_DASHBOARD} simulations. Les statistiques globales ne sont pas disponibles pour le moment. Nous nous excusons pour la gêne occasionnée, nos équipes sont sur le coup.: Cette campagne comporte plus de {MAX_SIMULATIONS_FOR_DASHBOARD} simulations. Les statistiques globales ne sont pas disponibles pour le moment. Nous nous excusons pour la gêne occasionnée, nos équipes sont sur le coup.
+  Chargement des résultats détaillés de campagne...: Chargement des résultats détaillés de campagne...
+  Chargement des statistiques globales de campagne...: Chargement des statistiques globales de campagne...
+  'Incident en cours :': 'Incident en cours :'
+  les statistiques ne sont pas disponibles pour les campagnes de plus de 1000 participations pour le moment. Nous nous excusons pour la gêne occasionnée ; nos équipes sont sur le coup.: les statistiques ne sont pas disponibles pour les campagnes de plus de 1000 participations pour le moment. Nous nous excusons pour la gêne occasionnée ; nos équipes sont sur le coup.
   '{{name}} lecture seule': '{{name}} lecture seule'
   '{{name}} menu déroulant': '{{name}} menu déroulant'
   Chemin de navigation: Chemin de navigation
