@@ -17,7 +17,7 @@ export default function PollStatistics({
   title?: string | ReactNode
   simulationsCount: number
   simulationsWithoutExtremes: PublicPollSimulation[]
-  funFacts: FunFacts | undefined
+  funFacts?: FunFacts | null
 }) {
   const hasAtLeastThreeParticipants = simulationsCount > 2
 
