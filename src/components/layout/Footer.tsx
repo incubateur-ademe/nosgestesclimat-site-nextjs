@@ -56,9 +56,9 @@ export default function Footer({ className = '' }) {
 
         <div className="mb-10 flex flex-col flex-wrap justify-start gap-x-16 gap-y-8 pt-4 md:flex-row lg:flex-nowrap">
           <div className="flex flex-col gap-y-2">
-            <h3 className="mb-0 text-sm font-bold text-default">
+            <h2 className="mb-0 text-sm font-bold text-default">
               <Trans>À propos</Trans>
-            </h3>
+            </h2>
             <InlineLink
               href="/a-propos"
               onClick={() => trackEvent(footerClickQuiSommesNous)}
@@ -89,9 +89,9 @@ export default function Footer({ className = '' }) {
           </div>
 
           <div className="flex flex-col gap-y-2">
-            <h3 className="mb-0 text-sm font-bold text-default">
+            <h2 className="mb-0 text-sm font-bold text-default">
               <Trans>Diffusion</Trans>
-            </h3>
+            </h2>
             <InlineLink
               href="/diffuser"
               onClick={() => trackEvent(footerClickDiffusion)}
@@ -115,9 +115,9 @@ export default function Footer({ className = '' }) {
           </div>
 
           <div className="flex flex-col gap-y-2">
-            <h3 className="mb-0 text-sm font-bold text-default">
+            <h2 className="mb-0 text-sm font-bold text-default">
               <Trans>Ressources</Trans>
-            </h3>
+            </h2>
 
             <InlineLink
               href="/blog"
@@ -167,17 +167,23 @@ export default function Footer({ className = '' }) {
               <InlineLink href="/accessibilite">
                 <Trans>Accessibilité : partiellement conforme</Trans>
               </InlineLink>
-              <span className="mx-1 hidden sm:inline"> | </span>
+              <span aria-hidden="true" className="mx-1 hidden sm:inline">
+                |
+              </span>
               <br className="md:hidden" />
               <InlineLink href="/mentions-legales">
                 <Trans>Mentions légales</Trans>
               </InlineLink>
-              <span className="mx-1 hidden sm:inline"> | </span>
+              <span aria-hidden="true" className="mx-1 hidden sm:inline">
+                |
+              </span>
               <br className="md:hidden" />
               <InlineLink href="/politique-de-confidentialite">
                 <Trans>Politique de confidentialité</Trans>
               </InlineLink>
-              <span className="mx-1 hidden sm:inline"> | </span>
+              <span aria-hidden="true" className="mx-1 hidden sm:inline">
+                |
+              </span>
               <br className="md:hidden" />
               <InlineLink href="/politique-des-cookies">
                 <Trans>Politique des cookies</Trans>
@@ -194,6 +200,8 @@ export default function Footer({ className = '' }) {
           </div>
         </div>
       </div>
+
+      <div id="modal" />
     </footer>
   )
 }

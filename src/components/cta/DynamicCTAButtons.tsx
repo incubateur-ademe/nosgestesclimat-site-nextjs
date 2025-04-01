@@ -82,7 +82,7 @@ export default function DynamicCTAButtons({
       {withRestart && progression > 0 && (
         <ButtonLink
           size="lg"
-          color="text"
+          color="secondary"
           trackingEvent={trackingEvents?.restart}
           onClick={() => {
             goToSimulateurPage({ noNavigation: true, newSimulation: {} })

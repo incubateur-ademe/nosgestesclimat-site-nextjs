@@ -20,8 +20,8 @@ export default function Hedgehog({ setIsHedgehog }: Props) {
       timerHideHedgehog = setTimeout(hideHedgehog, 2000)
     }
     const hideHedgehog = () => {
-      setIsVisible(false)
       timerShowHedgehog = setTimeout(showHedgehog, 60000)
+      setIsVisible(false)
     }
     hideHedgehog()
 
@@ -46,6 +46,7 @@ export default function Hedgehog({ setIsHedgehog }: Props) {
         'absolute right-0 top-0 h-6 w-6 -translate-x-full transform cursor-pointer transition-transform duration-1000',
         isVisible ? '-translate-y-3/4' : 'translate-y-0'
       )}
+      aria-hidden
       onClick={() => {
         trackEvent(endClickHedgehog)
         setIsHedgehog(true)
