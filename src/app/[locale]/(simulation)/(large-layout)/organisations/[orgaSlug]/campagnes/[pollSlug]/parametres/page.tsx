@@ -1,7 +1,6 @@
 'use client'
 
 import MaxWidthContent from '@/components/layout/MaxWidthContent'
-import ToastDisplay from '@/components/messages/ToastDisplay'
 import PollLoader from '@/components/organisations/PollLoader'
 import QuestionsComplementaires from '@/components/organisations/QuestionsComplementaires'
 import Trans from '@/components/translation/trans/TransClient'
@@ -81,8 +80,6 @@ export default function ParametresPage() {
       <Separator className="my-4" />
 
       <DeletePollButton />
-
-      <ToastDisplay />
     </MaxWidthContent>
   )
 }

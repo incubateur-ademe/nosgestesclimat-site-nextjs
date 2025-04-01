@@ -1,10 +1,11 @@
-import { GROUP_URL, ORGANISATION_URL, SIMULATION_URL } from '@/constants/urls'
+import { ORGANISATION_URL, SIMULATION_URL } from '@/constants/urls'
 import {
   mapNewSimulationToOld,
   mapOldSimulationToNew,
 } from '@/helpers/simulation/mapNewSimulation'
 import { useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
+import { updateGroupParticipant } from '@/services/groups/updateGroupParticipant'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useBackgroundSyncSimulation } from './useBackgroundSyncSimulation'
@@ -42,14 +43,13 @@ export function useSaveSimulation() {
       resetSyncTimer()
 
       if (groups?.length) {
-        return axios
-          .post(`${GROUP_URL}/${groups[groups.length - 1]}/participants`, {
-            ...(email ? { email } : {}),
-            simulation,
-            userId,
-            name,
-          })
-          .then((response) => response.data.simulation)
+        return updateGroupParticipant({
+          groupId: groups[groups.length - 1],
+          email,
+          simulation,
+          userId,
+          name: name || '',
+        }).then((response) => response.data.simulation)
       }
 
       const payload = {
