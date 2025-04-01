@@ -10,7 +10,7 @@ type Props = {
   defaultValue?: string
   label: string
   onClose: () => void
-  onSubmit: (value: string) => Promise<any>
+  onSubmit: (value: string) => void
   isLoading?: boolean
 }
 
