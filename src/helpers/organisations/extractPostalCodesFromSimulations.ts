@@ -1,8 +1,11 @@
 import { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
 import { SimulationAdditionalQuestionAnswerType } from '@/constants/organisations/simulationAdditionalQuestionAnswerType'
-import type { Simulation } from '@/types/organisations'
+import type { PublicPollSimulation } from '@/types/organisations'
 
-const filterMapPostalCodes = (acc: string[], simulation: Simulation) => {
+const filterMapPostalCodes = (
+  acc: string[],
+  simulation: PublicPollSimulation
+) => {
   const code = simulation.additionalQuestionsAnswers.find(
     ({ type, key }) =>
       type === SimulationAdditionalQuestionAnswerType.default &&
@@ -20,8 +23,8 @@ export function extractPostalCodesFromSimulations({
   simulations,
   filteredSimulations,
 }: {
-  simulations: Simulation[]
-  filteredSimulations: Simulation[]
+  simulations: PublicPollSimulation[]
+  filteredSimulations: PublicPollSimulation[]
 }) {
   const postalCodes = simulations.reduce(filterMapPostalCodes, [])
 

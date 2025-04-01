@@ -3,8 +3,6 @@ import { cmsClient } from '@/adapters/cmsClient'
 import i18nConfig from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 
-const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
-
 export async function fetchHomepageMetadata(): Promise<
   | {
       metaTitle: string
@@ -18,7 +16,6 @@ export async function fetchHomepageMetadata(): Promise<
       locale: i18nConfig.defaultLocale,
       'populate[0]': 'image',
       'populate[1]': 'pageMetadata',
-      ...(isProduction ? {} : { status: 'draft' }),
     })
 
     const homepageResponse = await cmsClient<{
@@ -38,7 +35,6 @@ export async function fetchHomepageMetadata(): Promise<
       image: image,
     }
   } catch (error) {
-    console.error('Error:', error)
     captureException(error)
 
     return
