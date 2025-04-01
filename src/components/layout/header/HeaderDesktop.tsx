@@ -77,6 +77,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
                 <ul className="flex h-full flex-1 justify-start gap-4">
                   <li>
                     <NavLink
+                      id="nav-first-link"
                       href={getLinkToSimulateurPage()}
                       onClick={() => trackEvent(headerClickTest)}
                       activeMatches={['/tutoriel', '/simulateur', '/fin']}
