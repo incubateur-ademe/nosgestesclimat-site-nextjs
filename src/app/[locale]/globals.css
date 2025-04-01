@@ -404,6 +404,13 @@ html[data-useragent*='Trident'] #js {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+.not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
 
 /*
   Markdown

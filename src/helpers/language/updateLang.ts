@@ -9,7 +9,6 @@ export function updateLang({
   currentLocale: string
 }) {
   if (!i18nConfig.locales.includes(newLocale)) {
-    console.error('Unauthorized locale:', newLocale)
     return
   }
 

@@ -41,8 +41,9 @@ export default function NumberInput({
       <div>
         {title && icons ? (
           <span className="mb-1 block text-sm font-medium md:text-xl">
+            {title}{' '}
             <Emoji className="inline-flex items-center leading-tight">
-              {title}&nbsp;{icons}
+              {icons}
             </Emoji>
           </span>
         ) : null}
@@ -59,7 +60,7 @@ export default function NumberInput({
           disabled={value === 0 || isMissing}
           onClick={() => setValue(Number(value) - 1)}
           size="sm"
-          className="z-10 h-8 w-8 items-center justify-center p-0  md:h-8 md:w-8">
+          className="z-10 h-8 w-8 items-center justify-center p-0 md:h-8 md:w-8">
           <span className="mb-[1px] block">-</span>
         </Button>
         <input

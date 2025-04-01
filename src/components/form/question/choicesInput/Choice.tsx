@@ -27,7 +27,7 @@ export default function Choice({
     <ChoiceInput
       label={
         <>
-          <Emoji className="inline-flex">{title}</Emoji>
+          <span className="inline-flex">{title}</span>
           {icons ? (
             <>
               {' '}
