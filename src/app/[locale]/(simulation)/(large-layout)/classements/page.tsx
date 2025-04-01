@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
   })
 }
 
-export default async function ClassementsPage() {
+export default function ClassementsPage() {
   return (
     <>
       <Groups />

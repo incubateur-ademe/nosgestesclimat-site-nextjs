@@ -23,10 +23,6 @@ export async function generateMetadata({ params }: DefaultPageProps) {
   })
 }
 
-export default async function Layout({ children }: PropsWithChildren) {
-  return (
-    <div className="mx-auto w-full max-w-3xl">
-      <>{children}</>
-    </div>
-  )
+export default function Layout({ children }: PropsWithChildren) {
+  return <>{children}</>
 }

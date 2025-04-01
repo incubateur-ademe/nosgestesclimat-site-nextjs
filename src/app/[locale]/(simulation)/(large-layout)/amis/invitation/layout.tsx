@@ -19,8 +19,6 @@ export async function generateMetadata({ params }: DefaultPageProps) {
   })
 }
 
-export default async function SimulateurLayout({
-  children,
-}: PropsWithChildren) {
+export default function SimulateurLayout({ children }: PropsWithChildren) {
   return <>{children}</>
 }
