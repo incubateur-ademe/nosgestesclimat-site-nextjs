@@ -30,33 +30,22 @@ export default function UpdateSimulationUsed({ group, refetchGroup }: Props) {
   const { t } = useClientTranslation()
 
   // The user hasn't got newer simulation than the one used in the group
-  if (
-    group.participants.some(
-      (participant) =>
-        participant.userId === userId &&
-        !simulations.some(
-          (simulation) =>
-            simulation.progression === 1 &&
-            dayjs(simulation.date).isAfter(dayjs(participant.simulation.date))
-        )
-    )
-  ) {
-    return null
-  }
+  const groupSimulation = group.participants.find(
+    (p) => p.userId === userId
+  )?.simulation
 
   const latestSimulation = simulations
     .filter(
-      (simulation) =>
-        simulation.progression === 1 &&
-        dayjs(simulation.date).isAfter(
-          dayjs(
-            group.participants.find(
-              (participant) => participant.userId === userId
-            )?.simulation.date
-          )
-        )
+      (s) =>
+        s.progression === 1 &&
+        dayjs(s.date).isAfter(dayjs(groupSimulation?.date))
     )
-    .sort((a, b) => dayjs(b.date).diff(dayjs(a.date)))[0]
+    .sort((a, b) => dayjs(b.date).diff(dayjs(a.date)))
+    .shift()
+
+  if (!latestSimulation) {
+    return null
+  }
 
   const handleUpdateSimulation = async () => {
     try {
