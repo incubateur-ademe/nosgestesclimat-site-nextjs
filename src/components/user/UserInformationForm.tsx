@@ -197,6 +197,7 @@ export default function UserInformationForm({
         {inputsDisplayed.includes('newsletter-saisonniere') && (
           <CheckboxInputGroup
             size="lg"
+            disableSubmitOnEnter
             label={
               <span>
                 <Emoji>☀️</Emoji>{' '}
@@ -212,6 +213,7 @@ export default function UserInformationForm({
         {inputsDisplayed.includes('newsletter-transports') && (
           <CheckboxInputGroup
             size="lg"
+            disableSubmitOnEnter
             label={
               <span>
                 <Emoji>🚗</Emoji>{' '}
@@ -227,6 +229,7 @@ export default function UserInformationForm({
         {inputsDisplayed.includes('newsletter-logement') && (
           <CheckboxInputGroup
             size="lg"
+            disableSubmitOnEnter
             label={
               <span>
                 <Emoji>🏡</Emoji>{' '}

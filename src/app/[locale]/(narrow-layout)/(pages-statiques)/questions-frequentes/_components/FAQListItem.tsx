@@ -2,6 +2,7 @@
 
 import Card from '@/design-system/layout/Card'
 import Markdown from '@/design-system/utils/Markdown'
+import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
 
 export default function FAQListItem({
   id,
@@ -37,7 +38,7 @@ export default function FAQListItem({
               )?.open ?? false
             )
           }
-          onKeyDown={(e) =>
+          onKeyDown={onKeyDownHelper((e) =>
             handleDetailsToggle(
               id,
               (
@@ -46,7 +47,7 @@ export default function FAQListItem({
                 }
               )?.open ?? false
             )
-          }>
+          )}>
           <h3 className="inline text-black">{question}</h3>
         </summary>
 
