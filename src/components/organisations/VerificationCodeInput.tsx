@@ -43,6 +43,7 @@ export default function VerificationCodeInput({
           characterSelected: 'character--selected',
           characterFilled: 'text-primary-700!',
         }}
+        placeholder=""
         onChange={handleValidateVerificationCode}
       />
 
