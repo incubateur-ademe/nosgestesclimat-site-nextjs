@@ -1,4 +1,6 @@
+import CategoryFilters from '@/components/filtering/CategoryFilters'
 import Trans from '@/components/translation/trans/TransServer'
+import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
@@ -7,6 +9,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import ambassadeursYaml from '@/locales/ambassadeurs/fr/ambassadeurs.yaml'
 import type { DefaultPageProps } from '@/types'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
@@ -27,8 +30,15 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 const ambassadeurs = ambassadeursYaml as any
 const categories = Object.keys(ambassadeurs)
 
-export default async function NosRelais({ params }: DefaultPageProps) {
+export default async function NosRelais({
+  params,
+  searchParams,
+}: DefaultPageProps & {
+  searchParams: Promise<{ [FILTER_SEARCH_PARAM_KEY]: string }>
+}) {
   const { locale } = await params
+  const { [FILTER_SEARCH_PARAM_KEY]: categoryFilter } = await searchParams
+
   const { t } = await getServerTranslation({ locale })
 
   return (
@@ -40,7 +50,7 @@ export default async function NosRelais({ params }: DefaultPageProps) {
         </span>
       </Title>
 
-      <div className="flex flex-wrap items-center md:flex-nowrap md:gap-16">
+      <div className="mb-8 flex flex-col items-center md:flex-row md:flex-nowrap md:gap-16">
         <div className="flex-1">
           <p>
             <strong className="text-primary-700">
@@ -76,7 +86,7 @@ export default async function NosRelais({ params }: DefaultPageProps) {
         <Image
           width="240"
           height="300"
-          className="ml-auto max-w-80 self-start md:-mt-16 md:w-auto"
+          className="ml-auto max-w-56 self-start md:-mt-16 md:w-auto md:max-w-80"
           alt={t(
             'Un grand-père et sa petite-fille au cinéma, mangeant du pop-corn.'
           )}
@@ -84,40 +94,55 @@ export default async function NosRelais({ params }: DefaultPageProps) {
         />
       </div>
 
-      {categories.map((category: any) => (
-        <div key={category} className="mb-16">
-          <h2>{category}</h2>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {ambassadeurs[category].map((ambassadeur: any) => (
-              <Card
-                key={ambassadeur.title}
-                href={ambassadeur.link}
-                tag="a"
-                className="border-none bg-primary-50 no-underline"
-                target="_blank">
-                <Image
-                  src={'/images/ambassadeurs/' + ambassadeur.image}
-                  width="100"
-                  height="100"
-                  className="mx-auto mb-4 h-36 w-2/3 object-contain"
-                  alt={ambassadeur.title}
-                />
-                <p className="mb-4 font-bold">{ambassadeur.title}</p>
-                {ambassadeur.link ? (
-                  <p className="my-0 underline">
-                    {
-                      ambassadeur.link
-                        .replace('https://', '')
-                        .replace('www.', '')
-                        .split('/')[0]
-                    }
-                  </p>
-                ) : null}
-              </Card>
-            ))}
+      <CategoryFilters
+        categories={categories.map((category: string) => ({
+          title: category,
+          dottedName: category as DottedName,
+          count: ambassadeurs[category].length,
+        }))}
+        className="mb-6"
+      />
+
+      {categories
+        .filter((category: string) =>
+          typeof categoryFilter !== 'undefined'
+            ? categoryFilter === category
+            : true
+        )
+        .map((category: any) => (
+          <div key={category} className="mb-16">
+            <h2>{category}</h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              {ambassadeurs[category].map((ambassadeur: any) => (
+                <Card
+                  key={ambassadeur.title}
+                  href={ambassadeur.link}
+                  tag="a"
+                  className="border-none bg-primary-50 no-underline"
+                  target="_blank">
+                  <Image
+                    src={'/images/ambassadeurs/' + ambassadeur.image}
+                    width="100"
+                    height="100"
+                    className="mx-auto mb-4 h-36 w-2/3 object-contain"
+                    alt={ambassadeur.title}
+                  />
+                  <p className="mb-4 font-bold">{ambassadeur.title}</p>
+                  {ambassadeur.link ? (
+                    <p className="my-0 underline">
+                      {
+                        ambassadeur.link
+                          .replace('https://', '')
+                          .replace('www.', '')
+                          .split('/')[0]
+                      }
+                    </p>
+                  ) : null}
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
     </div>
   )
 }

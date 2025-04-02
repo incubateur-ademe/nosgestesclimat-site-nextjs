@@ -1,6 +1,7 @@
 'use client'
 
 import CategoryFilters from '@/components/filtering/CategoryFilters'
+import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
 import getActions from '@/helpers/actions/getActions'
 import {
   useCurrentSimulation,
@@ -24,7 +25,7 @@ export default function ActionsContent() {
 
   const searchParams = useSearchParams()
 
-  const category = searchParams.get('categories')
+  const category = searchParams.get(FILTER_SEARCH_PARAM_KEY)
 
   const { actionChoices, progression } = useCurrentSimulation()
 

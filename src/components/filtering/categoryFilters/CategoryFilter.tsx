@@ -1,6 +1,7 @@
 'use client'
 
-import { actionsClickFilter } from '@/constants/tracking/pages/actions'
+import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
+import { trackingCategoryFilter } from '@/constants/tracking/misc'
 import {
   getBackgroundColor,
   getBackgroundLightColor,
@@ -19,7 +20,7 @@ type Props = {
 export default function CategoryFilter({ title, dottedName, count }: Props) {
   const router = useRouter()
 
-  const categorySelected = useSearchParams().get('categories') || ''
+  const categorySelected = useSearchParams().get(FILTER_SEARCH_PARAM_KEY) || ''
 
   const isSelected = categorySelected === dottedName
 
@@ -29,15 +30,15 @@ export default function CategoryFilter({ title, dottedName, count }: Props) {
     )
 
     if (isSelected && dottedName === categorySelected) {
-      siteURL.searchParams.delete('categories')
+      siteURL.searchParams.delete(FILTER_SEARCH_PARAM_KEY)
     }
 
     if (isSelected && dottedName !== categorySelected) {
-      siteURL.searchParams.set('categories', dottedName)
+      siteURL.searchParams.set(FILTER_SEARCH_PARAM_KEY, dottedName)
     }
 
     if (!isSelected) {
-      siteURL.searchParams.append('categories', dottedName)
+      siteURL.searchParams.append(FILTER_SEARCH_PARAM_KEY, dottedName)
     }
 
     return siteURL.toString()
@@ -56,7 +57,9 @@ export default function CategoryFilter({ title, dottedName, count }: Props) {
       <button
         className={`p-2 text-xs font-bold ${getTextDarkColor(dottedName)}`}
         onClick={() => {
-          trackEvent(actionsClickFilter(dottedName))
+          trackEvent(
+            trackingCategoryFilter(dottedName, window.location.pathname)
+          )
           router.replace(buildURL(), {
             scroll: false,
           })
