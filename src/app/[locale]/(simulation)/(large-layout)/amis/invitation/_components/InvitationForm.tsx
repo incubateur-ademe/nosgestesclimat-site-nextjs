@@ -54,7 +54,7 @@ export default function InvitationForm({ group }: { group: Group }) {
     shouldNavigate,
   ])
 
-  async function onSubmit({ guestName, guestEmail }: Inputs) {
+  function onSubmit({ guestName, guestEmail }: Inputs) {
     // Shouldn't happen but in any case, avoid group joining
     if (!group) {
       return

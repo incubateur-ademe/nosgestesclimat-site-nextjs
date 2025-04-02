@@ -49,7 +49,7 @@ const WaterGraphIllustration = dynamic(
   }
 )
 
-export default async function TwoFootprints({ locale }: { locale: string }) {
+export default function TwoFootprints({ locale }: { locale: string }) {
   return (
     <div className="my-16 flex flex-col items-center px-4 md:mx-auto md:my-20 md:max-w-5xl">
       <div className="relative mb-16 pb-4 md:mb-20">

@@ -88,7 +88,7 @@ export default function useSetValue({
    * @param options.questionsOfMosaicFromSibling - The dottedNames of the questions of the mosaic from the brother (another child)
    */
   const setValue = useCallback(
-    async (
+    (
       value: NodeValue | Record<string, NodeValue>,
       {
         questionDottedName,

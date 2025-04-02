@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
   return getMetadataObject({
     locale,
-    title: t('Mon Empreinte Carbone - Nos Gestes Climat'),
+    title: t('Mes empreintes carbone et eau partagées - Nos Gestes Climat'),
     description: t('Découvre mon bilan carbone sur Nos Gestes Climat.'),
     robots: noIndexObject,
     alternates: {

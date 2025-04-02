@@ -4,7 +4,8 @@ import Trans from '@/components/translation/trans/TransServer'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import {
   getLandingClickCTARestart,
   getLandingClickCTAResults,
@@ -31,23 +32,19 @@ const DynamicCTAButtons = dynamic(
   }
 )
 
-export async function generateMetadata(props: DefaultPageProps) {
-  const { locale } = await props.params
-  const { t } = await getServerTranslation({ locale })
-
-  return getMetadataObject({
-    locale,
-    title: t('Empreinte eau : comprendre, évaluer, économiser l’eau'),
-    description: t(
-      'Découvrez les litres d’eau cachés derrière chacun de vos repas, vêtements, appareils… Adoptez des actions concrètes pour réduire votre empreinte eau'
-    ),
-    alternates: {
-      canonical: '/empreinte-eau',
-    },
-    image:
-      'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/calculer_son_empreinte_eau_f3f7c34d45.png',
-  })
-}
+export const generateMetadata = getCommonMetadata({
+  title: t(
+    'Empreinte eau : comprendre, évaluer, économiser l’eau - Nos Gestes Climat'
+  ),
+  description: t(
+    'Découvrez les litres d’eau cachés derrière chacun de vos repas, vêtements, appareils… Adoptez des actions concrètes pour réduire votre empreinte eau'
+  ),
+  image:
+    'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/calculer_son_empreinte_eau_f3f7c34d45.png',
+  alternates: {
+    canonical: '/empreinte-eau',
+  },
+})
 
 export default async function WaterFootprintLandingPage(
   props: DefaultPageProps

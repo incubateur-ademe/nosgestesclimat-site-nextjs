@@ -10,9 +10,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
   return getMetadataObject({
     locale,
-    title: t(
-      "Vos résultats, calculateur d'empreinte climat - Nos Gestes Climat"
-    ),
+    title: t('Mes empreintes carbone et eau - Nos Gestes Climat'),
     description: t(
       "Vos résultats de tests de notre calculateur d'empreinte carbone."
     ),

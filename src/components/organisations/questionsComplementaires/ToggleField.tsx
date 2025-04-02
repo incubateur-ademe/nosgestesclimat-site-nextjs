@@ -17,7 +17,7 @@ type Props = {
   className?: string
   isCustomQuestion?: boolean
   onEdit?: () => void
-  onDelete?: (question: string) => Promise<void>
+  onDelete?: (question: string) => void
   isLoadingUpdate?: boolean
 }
 

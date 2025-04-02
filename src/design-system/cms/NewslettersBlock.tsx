@@ -100,7 +100,7 @@ export default function NewslettersBlock() {
     )
   }, [newsletterSubscriptions, setValue])
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
     // If the mutation is pending, we do nothing
     if (isPending) {
       return

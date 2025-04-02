@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-export default async function Hero({
+export default function Hero({
   illustration,
   title,
   description,

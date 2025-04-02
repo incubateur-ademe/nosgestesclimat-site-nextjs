@@ -1,24 +1,18 @@
 import Trans from '@/components/translation/trans/TransServer'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import type { DefaultPageProps } from '@/types'
 import { PrivacyPolicy } from '@incubateur-ademe/legal-pages-react/PrivacyPolicy'
 
-export async function generateMetadata({ params }: DefaultPageProps) {
-  const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
-
-  return getMetadataObject({
-    locale,
-    title: t('Politique de confidentialité - Nos Gestes Climat'),
-    description: t(
-      'Découvrez comment nous utilisons vos données personnelles pour vous proposer un calculateur de bilan carbone personnel.'
-    ),
-    alternates: {
-      canonical: '/politique-de-confidentialite',
-    },
-  })
-}
+export const generateMetadata = getCommonMetadata({
+  title: t('Politique de confidentialité - Nos Gestes Climat'),
+  description: t(
+    'Découvrez comment nous utilisons vos données personnelles pour vous proposer un calculateur de bilan carbone personnel.'
+  ),
+  alternates: {
+    canonical: '/politique-de-confidentialite',
+  },
+})
 
 export default async function ViePriveePage({ params }: DefaultPageProps) {
   const { locale } = await params

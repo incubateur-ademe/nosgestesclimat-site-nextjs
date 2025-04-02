@@ -19,7 +19,7 @@ export default function Birthdate() {
   const { birthdate, setBirthdate } = useContext(InfosContext)
 
   const handleSubmit = useCallback(
-    async (event: MouseEvent | FormEvent) => {
+    (event: MouseEvent | FormEvent) => {
       // Avoid reloading page
       event?.preventDefault()
 

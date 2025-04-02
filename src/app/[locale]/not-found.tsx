@@ -20,7 +20,7 @@ export async function generateMetadata(props: DefaultPageProps) {
   })
 }
 
-export default async function NotFound() {
+export default function NotFound() {
   return (
     <>
       <Main>

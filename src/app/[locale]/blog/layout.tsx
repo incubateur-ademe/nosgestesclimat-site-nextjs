@@ -1,7 +1,7 @@
 import Header from '@/components/layout/Header'
 import type { PropsWithChildren } from 'react'
 
-export default async function BlogLayout({ children }: PropsWithChildren) {
+export default function BlogLayout({ children }: PropsWithChildren) {
   return (
     <>
       <Header isSticky={false} />

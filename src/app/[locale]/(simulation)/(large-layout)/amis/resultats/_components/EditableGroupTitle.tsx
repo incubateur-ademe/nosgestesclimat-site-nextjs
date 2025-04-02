@@ -30,7 +30,7 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
 
   const { isGroupOwner } = useIsGroupOwner({ group })
 
-  const handleSubmit = async (groupNameUpdated: string) => {
+  const handleSubmit = (groupNameUpdated: string) => {
     setIsSubmitting(true)
     try {
       updateGroup({

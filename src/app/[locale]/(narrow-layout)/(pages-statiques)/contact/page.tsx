@@ -4,23 +4,19 @@ import Trans from '@/components/translation/trans/TransServer'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 import Script from 'next/script'
 
-export async function generateMetadata({ params }: DefaultPageProps) {
-  const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
-  return getMetadataObject({
-    locale,
-    title: t('Contact - Nos Gestes Climat'),
-    description: t("Contactez l'équipe de Nos Gestes Climat."),
-    alternates: {
-      canonical: '/contact',
-    },
-  })
-}
+export const generateMetadata = getCommonMetadata({
+  title: t('Contact - Nos Gestes Climat'),
+  description: t("Contactez l'équipe de Nos Gestes Climat."),
+  alternates: {
+    canonical: '/contact',
+  },
+})
 
 export default async function Contact({ params }: DefaultPageProps) {
   const { locale } = await params

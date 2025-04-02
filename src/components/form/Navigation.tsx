@@ -59,7 +59,7 @@ export default function Navigation({
   }, [question])
 
   const handleGoToNextQuestion = useCallback(
-    async (e: KeyboardEvent | MouseEvent) => {
+    (e: KeyboardEvent | MouseEvent) => {
       e.preventDefault()
 
       const endTime = Date.now()

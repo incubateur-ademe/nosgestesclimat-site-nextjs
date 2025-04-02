@@ -19,7 +19,7 @@ export default function PostalCode() {
   const { postalCode, setPostalCode } = useContext(InfosContext)
 
   const handleSubmit = useCallback(
-    async (event: MouseEvent | FormEvent) => {
+    (event: MouseEvent | FormEvent) => {
       // Avoid reloading page
       event?.preventDefault()
 

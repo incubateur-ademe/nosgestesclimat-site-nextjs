@@ -3,28 +3,22 @@ import TopBar from '@/components/simulation/TopBar'
 import Trans from '@/components/translation/trans/TransServer'
 import { noIndexObject } from '@/constants/metadata'
 import Title from '@/design-system/layout/Title'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { FormProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import type { PropsWithChildren } from 'react'
 
-export async function generateMetadata({ params }: DefaultPageProps) {
-  const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
-
-  return getMetadataObject({
-    locale,
-    title: t(
-      'Actions : comment réduire votre empreinte climat ? - Nos Gestes Climat'
-    ),
-    description: t('Quelles sont les actions les plus efficaces ?'),
-    alternates: {
-      canonical: '/actions',
-    },
-    robots: noIndexObject,
-  })
-}
+export const generateMetadata = getCommonMetadata({
+  title: t(
+    'Mes gestes : comment réduire mon empreinte climat - Nos Gestes Climat'
+  ),
+  description: t('Quelles sont les actions les plus efficaces ?'),
+  alternates: {
+    canonical: '/actions',
+  },
+  robots: noIndexObject,
+})
 
 export default async function ActionsLayout({
   children,

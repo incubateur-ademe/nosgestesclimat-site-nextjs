@@ -34,7 +34,7 @@ export function useSimulateurPage() {
   const { progression } = useCurrentSimulation()
 
   const goToSimulateurPage = useCallback(
-    async ({
+    ({
       noNavigation = false,
       newSimulation = undefined,
     }: GoToSimulateurPageProps = goToSimulateurPagePropsDefault) => {

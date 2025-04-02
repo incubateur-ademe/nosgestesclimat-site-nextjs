@@ -2,26 +2,21 @@ import Trans from '@/components/translation/trans/TransServer'
 import { linkToGroupCreation } from '@/constants/group'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import type { DefaultPageProps } from '@/types'
 import Actions from './_components/Actions'
 import LinkList from './_components/LinkList'
 
-export async function generateMetadata({ params }: DefaultPageProps) {
-  const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
-
-  return getMetadataObject({
-    locale,
-    title: t('Plan du site - Nos Gestes Climat'),
-    description: t(
-      'Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.'
-    ),
-    alternates: {
-      canonical: '/plan-du-site',
-    },
-  })
-}
+export const generateMetadata = getCommonMetadata({
+  title: t('Plan du site - Nos Gestes Climat'),
+  description: t(
+    'Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.'
+  ),
+  alternates: {
+    canonical: '/plan-du-site',
+  },
+})
 
 export default async function PlanDuSitePage({ params }: DefaultPageProps) {
   const { locale } = await params

@@ -3,10 +3,7 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
 
-export async function getPost(
-  folderPath: string,
-  slug: string
-): Promise<Post | null> {
+export function getPost(folderPath: string, slug: string): Post | null {
   const filePath = path.join(process.cwd(), folderPath + slug + '.mdx')
   try {
     const source = fs.readFileSync(filePath, 'utf-8')
