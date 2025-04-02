@@ -34,7 +34,7 @@ export default function VerificationCodeInput({
         }
         classNames={{
           container: 'container w-[16rem] md:w-[20rem]',
-          character: `border-2 border-gray-300 rounded-xl w-[2rem] text-transparent font-medium ${
+          character: `border-2! border-gray-300! rounded-xl w-[2rem] text-primary-700! font-medium ${
             marianne.className
           } ${inputError ? 'border-red-700! border-2' : ''} ${
             isSuccessValidate ? 'border-green-700! border-2' : ''
