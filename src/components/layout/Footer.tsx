@@ -47,7 +47,7 @@ export default function Footer({ className = '' }) {
     <footer
       id="footer"
       className={twMerge(
-        'relative bg-gray-100 p-4 !pb-32 sm:p-8',
+        'relative bg-gray-100 p-4 pb-32! sm:p-8',
         className,
         shouldUseWhiteBackground ? 'bg-white' : ''
       )}>

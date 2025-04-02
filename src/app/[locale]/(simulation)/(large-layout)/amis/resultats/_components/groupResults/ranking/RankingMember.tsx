@@ -160,7 +160,7 @@ export default function RankingMember({
             <button
               onClick={() => setIsConfirmationModalOpen(true)}
               className={twMerge(
-                'inline-flex h-6 w-6 items-center justify-center !p-0 transition-colors',
+                'inline-flex h-6 w-6 items-center justify-center p-0! transition-colors',
                 textColor
               )}
               aria-label={t('{{name}}, supprimer cette participation', {

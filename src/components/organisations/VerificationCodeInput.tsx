@@ -36,12 +36,12 @@ export default function VerificationCodeInput({
           container: 'container w-[16rem] md:w-[20rem]',
           character: `border-2 border-gray-300 rounded-xl w-[2rem] text-transparent font-medium ${
             marianne.className
-          } ${inputError ? '!border-red-700 border-2' : ''} ${
-            isSuccessValidate ? '!border-green-700 border-2' : ''
+          } ${inputError ? 'border-red-700! border-2' : ''} ${
+            isSuccessValidate ? 'border-green-700! border-2' : ''
           }`,
           characterInactive: 'text-transparent',
           characterSelected: 'character--selected',
-          characterFilled: '!text-primary-700',
+          characterFilled: 'text-primary-700!',
         }}
         onChange={handleValidateVerificationCode}
       />

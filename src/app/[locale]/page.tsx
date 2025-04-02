@@ -87,7 +87,7 @@ export default async function Homepage({ params }: DefaultPageProps) {
               </Trans>
             </p>
 
-            <div className="flex flex-col items-center gap-6 md:order-2 md:mt-0 md:max-w-[300px] md:items-start">
+            <div className="flex flex-col items-center gap-6 md:order-2 md:mt-0 md:items-start">
               <DynamicCTAButtons
                 trackingEvents={{
                   start: getLandingClickCTAStart(
@@ -107,7 +107,6 @@ export default async function Homepage({ params }: DefaultPageProps) {
                     trackingActionClickCTA
                   ),
                 }}
-                className="w-full"
               />
 
               {/* Displayed on mobile only */}
@@ -116,7 +115,7 @@ export default async function Homepage({ params }: DefaultPageProps) {
               </div>
 
               {/* Displayed on desktop only */}
-              <p>
+              <p className="md:max-w-[300px]">
                 <Trans locale={locale}>
                   <strong className="text-primary-700">
                     2 millions de personnes

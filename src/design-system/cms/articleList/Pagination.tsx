@@ -36,7 +36,7 @@ export default async function Pagination({
                   'text-lg',
                   currentPage === index + 1
                     ? 'font-medium text-primary-700 underline'
-                    : '!text-gray-600 no-underline'
+                    : 'text-gray-600! no-underline'
                 )}
                 href={`/blog?page=${index + 1}#articles`}
                 aria-label={t('Page {{page}}', { page: index + 1 })}>
