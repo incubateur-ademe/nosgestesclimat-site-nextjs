@@ -1,4 +1,3 @@
-import ToastDisplay from '@/components/messages/ToastDisplay'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import type { DefaultPageProps } from '@/types'
@@ -23,10 +22,5 @@ export async function generateMetadata({
 }
 
 export default function Layout({ children }: PropsWithChildren) {
-  return (
-    <FiltersProvider>
-      <ToastDisplay />
-      {children}
-    </FiltersProvider>
-  )
+  return <FiltersProvider>{children}</FiltersProvider>
 }

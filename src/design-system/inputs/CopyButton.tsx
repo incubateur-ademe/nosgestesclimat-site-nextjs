@@ -1,6 +1,5 @@
 'use client'
 
-import ToastDisplay from '@/components/messages/ToastDisplay'
 import Trans from '@/components/translation/trans/TransClient'
 import { displayErrorToast } from '@/helpers/toasts/displayErrorToast'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -47,8 +46,6 @@ export default function CopyButton({
           ? (copiedStateText ?? <Trans>Copié !</Trans>)
           : (children ?? <Trans>Copier le lien</Trans>)}
       </Button>
-
-      <ToastDisplay />
     </>
   )
 }

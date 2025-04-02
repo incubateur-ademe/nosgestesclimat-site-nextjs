@@ -1,5 +1,6 @@
 import ErrorContent from '@/components/error/ErrorContent'
 import Footer from '@/components/layout/Footer'
+import ToastDisplay from '@/components/messages/ToastDisplay'
 import Banner from '@/design-system/cms/Banner'
 import type { Locale } from '@/i18nConfig'
 import '@/locales/initClient'
@@ -126,6 +127,8 @@ export default async function RootLayout({
           {children}
 
           <Footer />
+
+          <ToastDisplay />
         </MainLayoutProviders>
       </html>
     )
