@@ -6,38 +6,41 @@ import {
   getBackgroundLightColor,
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
-import { useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 type Props = {
+  title: string
   dottedName: DottedName
-  countByCategory: any
+  count: number
 }
 
-export default function Filter({ dottedName, countByCategory }: Props) {
-  const { title } = useRule(dottedName)
-
+export default function CategoryFilter({ title, dottedName, count }: Props) {
   const router = useRouter()
 
-  const metric = useSearchParams().get('métrique') || ''
-  const categorySelected = useSearchParams().get('catégorie') || ''
+  const categorySelected = useSearchParams().get('categories') || ''
 
   const isSelected = categorySelected === dottedName
 
   const buildURL = () => {
-    const siteURL = `${window.location.origin}${window.location.pathname}`
+    const siteURL = new URL(
+      `${window.location.origin}${window.location.pathname}`
+    )
 
-    const searchParamsStart = metric || !isSelected ? '?' : ''
+    if (isSelected && dottedName === categorySelected) {
+      siteURL.searchParams.delete('categories')
+    }
 
-    const metricSearchParam = metric ? `métrique=${metric}&` : ''
+    if (isSelected && dottedName !== categorySelected) {
+      siteURL.searchParams.set('categories', dottedName)
+    }
 
-    const searchParamsPart = `${searchParamsStart}${metricSearchParam}${
-      isSelected ? '' : `catégorie=${dottedName}`
-    }`
+    if (!isSelected) {
+      siteURL.searchParams.append('categories', dottedName)
+    }
 
-    return `${siteURL}${searchParamsPart}`
+    return siteURL.toString()
   }
 
   return (
@@ -61,7 +64,7 @@ export default function Filter({ dottedName, countByCategory }: Props) {
         {title}{' '}
         <span
           className={`ml-2 inline-block w-4 rounded-full bg-white ${getTextDarkColor(dottedName)}`}>
-          {countByCategory[dottedName] || 0}
+          {count ?? 0}
         </span>
       </button>
     </li>
