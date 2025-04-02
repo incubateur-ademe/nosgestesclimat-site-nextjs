@@ -2,6 +2,7 @@ import Trans from '@/components/translation/trans/TransServer'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
+import Emoji from '@/design-system/utils/Emoji'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import ambassadeursYaml from '@/locales/ambassadeurs/fr/ambassadeurs.yaml'
@@ -40,46 +41,42 @@ export default async function NosRelais({ params }: DefaultPageProps) {
       </Title>
 
       <div className="flex flex-wrap items-center md:flex-nowrap md:gap-16">
-        <div>
+        <div className="flex-1">
           <p>
+            <strong className="text-primary-700">
+              <Trans locale={locale}>Plusieurs milliers d’organisations</Trans>
+            </strong>{' '}
             <Trans locale={locale}>
-              Plus de 40 acteurs relaient ou ont relayé Nos Gestes Climat à
-              travers 
-              <a
-                href="https://accelerateur-transition-ecologique-ademe.notion.site/Int-grer-Nos-Gestes-Climat-en-iframe-abdeb175baf84143922006964d80348c"
-                target="_blank"
-                rel="noopener noreferrer">
-                l’intégration du calculateur
-              </a>{' '}
-              sur leur site internet ou sa diffusion via{' '}
-              <InlineLink href="/organisations">des campagnes</InlineLink>{' '}
-              (mail, réseaux sociaux et / ou affichage). C’est majoritairement
-              grâce à eux que nous sensibilisons près de 2 000 nouvelles
-              personnes en moyenne chaque jour et nous les en remercions.
+              partagent Nos Gestes Climat via leur site ou des campagnes (mails,
+              réseaux sociaux, affichage), nous permettant de sensibiliser près
+              de 2 000 personnes chaque jour. Un grand merci à eux !
             </Trans>
           </p>
 
           <p>
             <Trans locale={locale}>
-              Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans
-              notre galerie de relais ? Merci de nous envoyer un message avec
-              votre logo via{' '}
-              <InlineLink href="/contact">notre page de contact</InlineLink>.
-            </Trans>
+              Vous relayez Nos Gestes Climat et souhaitez apparaître dans notre
+              galerie ?
+            </Trans>{' '}
+            <InlineLink className="inline" href="/contact">
+              <Trans locale={locale}>
+                Envoyez-nous votre logo via notre page de contact
+              </Trans>
+            </InlineLink>
           </p>
 
           <p className="mb-8 italic">
+            <Emoji>ℹ️</Emoji>{' '}
             <Trans locale={locale}>
-              N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat,
-              qui est et restera un service public, indépendant et gratuit de
-              l’ADEME.
+              Aucun de ces acteurs ne finance Nos Gestes Climat, un service
+              public, gratuit et indépendant de l'ADEME.
             </Trans>
           </p>
         </div>
         <Image
-          width="300"
-          height="400"
-          className="ml-auto w-48 self-start md:-mt-16 md:w-auto"
+          width="240"
+          height="300"
+          className="ml-auto max-w-80 self-start md:-mt-16 md:w-auto"
           alt={t(
             'Un grand-père et sa petite-fille au cinéma, mangeant du pop-corn.'
           )}

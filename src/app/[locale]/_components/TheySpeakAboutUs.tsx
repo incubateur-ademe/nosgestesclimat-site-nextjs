@@ -2,12 +2,25 @@ import Background from '@/components/landing-pages/Background'
 import TransServer from '@/components/translation/trans/TransServer'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Image from 'next/image'
+import { twMerge } from 'tailwind-merge'
 
-export default function TheySpeakAboutUs({ locale }: { locale: string }) {
+export default function TheySpeakAboutUs({
+  locale,
+  className,
+  ctaHref = '/nos-relais',
+}: {
+  locale: string
+  className?: string
+  ctaHref?: string
+}) {
   return (
-    <div className="relative mb-10 px-4 py-16 md:mb-20 md:py-28 xl:mb-32">
+    <div
+      className={twMerge(
+        'relative mb-10 px-4 py-16 md:mb-20 md:py-28 xl:mb-32',
+        className
+      )}>
       {/* Helps cover the triangles of white shown because of the perspective change in Background */}
-      <div className="absolute left-0 top-0 h-1/2 w-[200%] bg-heroLightBackground" />
+      <div className="absolute left-0 top-2 h-1/2 w-[200%] bg-heroLightBackground" />
 
       {/* Add the background along with the tilted colorline */}
       <Background
