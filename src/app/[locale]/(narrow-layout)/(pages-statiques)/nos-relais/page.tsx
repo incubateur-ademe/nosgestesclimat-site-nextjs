@@ -1,11 +1,15 @@
+import CategoryFilters from '@/components/filtering/CategoryFilters'
 import Trans from '@/components/translation/trans/TransServer'
+import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
+import Emoji from '@/design-system/utils/Emoji'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import ambassadeursYaml from '@/locales/ambassadeurs/fr/ambassadeurs.yaml'
 import type { DefaultPageProps } from '@/types'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
 
 export async function generateMetadata({ params }: DefaultPageProps) {
@@ -26,8 +30,15 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 const ambassadeurs = ambassadeursYaml as any
 const categories = Object.keys(ambassadeurs)
 
-export default async function NosRelais({ params }: DefaultPageProps) {
+export default async function NosRelais({
+  params,
+  searchParams,
+}: DefaultPageProps & {
+  searchParams: Promise<{ [FILTER_SEARCH_PARAM_KEY]: string }>
+}) {
   const { locale } = await params
+  const { [FILTER_SEARCH_PARAM_KEY]: categoryFilter } = await searchParams
+
   const { t } = await getServerTranslation({ locale })
 
   return (
@@ -39,47 +50,43 @@ export default async function NosRelais({ params }: DefaultPageProps) {
         </span>
       </Title>
 
-      <div className="flex flex-wrap items-center md:flex-nowrap md:gap-16">
-        <div>
+      <div className="mb-8 flex flex-col items-center md:flex-row md:flex-nowrap md:gap-16">
+        <div className="flex-1">
           <p>
+            <strong className="text-primary-700">
+              <Trans locale={locale}>Plusieurs milliers d’organisations</Trans>
+            </strong>{' '}
             <Trans locale={locale}>
-              Plus de 40 acteurs relaient ou ont relayé Nos Gestes Climat à
-              travers 
-              <a
-                href="https://accelerateur-transition-ecologique-ademe.notion.site/Int-grer-Nos-Gestes-Climat-en-iframe-abdeb175baf84143922006964d80348c"
-                target="_blank"
-                rel="noopener noreferrer">
-                l’intégration du calculateur
-              </a>{' '}
-              sur leur site internet ou sa diffusion via{' '}
-              <InlineLink href="/organisations">des campagnes</InlineLink>{' '}
-              (mail, réseaux sociaux et / ou affichage). C’est majoritairement
-              grâce à eux que nous sensibilisons près de 2 000 nouvelles
-              personnes en moyenne chaque jour et nous les en remercions.
+              partagent Nos Gestes Climat via leur site ou des campagnes (mails,
+              réseaux sociaux, affichage), nous permettant de sensibiliser près
+              de 2 000 personnes chaque jour. Un grand merci à eux !
             </Trans>
           </p>
 
           <p>
             <Trans locale={locale}>
-              Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans
-              notre galerie de relais ? Merci de nous envoyer un message avec
-              votre logo via{' '}
-              <InlineLink href="/contact">notre page de contact</InlineLink>.
-            </Trans>
+              Vous relayez Nos Gestes Climat et souhaitez apparaître dans notre
+              galerie ?
+            </Trans>{' '}
+            <InlineLink className="inline" href="/contact">
+              <Trans locale={locale}>
+                Envoyez-nous votre logo via notre page de contact
+              </Trans>
+            </InlineLink>
           </p>
 
           <p className="mb-8 italic">
+            <Emoji>ℹ️</Emoji>{' '}
             <Trans locale={locale}>
-              N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat,
-              qui est et restera un service public, indépendant et gratuit de
-              l’ADEME.
+              Aucun de ces acteurs ne finance Nos Gestes Climat, un service
+              public, gratuit et indépendant de l'ADEME.
             </Trans>
           </p>
         </div>
         <Image
-          width="300"
-          height="400"
-          className="ml-auto w-48 self-start md:-mt-16 md:w-auto"
+          width="240"
+          height="300"
+          className="ml-auto max-w-56 self-start md:-mt-16 md:w-auto md:max-w-80"
           alt={t(
             'Un grand-père et sa petite-fille au cinéma, mangeant du pop-corn.'
           )}
@@ -87,40 +94,55 @@ export default async function NosRelais({ params }: DefaultPageProps) {
         />
       </div>
 
-      {categories.map((category: any) => (
-        <div key={category} className="mb-16">
-          <h2>{category}</h2>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {ambassadeurs[category].map((ambassadeur: any) => (
-              <Card
-                key={ambassadeur.title}
-                href={ambassadeur.link}
-                tag="a"
-                className="border-none bg-primary-50 no-underline"
-                target="_blank">
-                <Image
-                  src={'/images/ambassadeurs/' + ambassadeur.image}
-                  width="100"
-                  height="100"
-                  className="mx-auto mb-4 h-36 w-2/3 object-contain"
-                  alt={ambassadeur.title}
-                />
-                <p className="mb-4 font-bold">{ambassadeur.title}</p>
-                {ambassadeur.link ? (
-                  <p className="my-0 underline">
-                    {
-                      ambassadeur.link
-                        .replace('https://', '')
-                        .replace('www.', '')
-                        .split('/')[0]
-                    }
-                  </p>
-                ) : null}
-              </Card>
-            ))}
+      <CategoryFilters
+        categories={categories.map((category: string) => ({
+          title: category,
+          dottedName: category as DottedName,
+          count: ambassadeurs[category].length,
+        }))}
+        className="mb-6"
+      />
+
+      {categories
+        .filter((category: string) =>
+          typeof categoryFilter !== 'undefined'
+            ? categoryFilter === category
+            : true
+        )
+        .map((category: any) => (
+          <div key={category} className="mb-16">
+            <h2>{category}</h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              {ambassadeurs[category].map((ambassadeur: any) => (
+                <Card
+                  key={ambassadeur.title}
+                  href={ambassadeur.link}
+                  tag="a"
+                  className="border-none bg-primary-50 no-underline"
+                  target="_blank">
+                  <Image
+                    src={'/images/ambassadeurs/' + ambassadeur.image}
+                    width="100"
+                    height="100"
+                    className="mx-auto mb-4 h-36 w-2/3 object-contain"
+                    alt={ambassadeur.title}
+                  />
+                  <p className="mb-4 font-bold">{ambassadeur.title}</p>
+                  {ambassadeur.link ? (
+                    <p className="my-0 underline">
+                      {
+                        ambassadeur.link
+                          .replace('https://', '')
+                          .replace('www.', '')
+                          .split('/')[0]
+                      }
+                    </p>
+                  ) : null}
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
     </div>
   )
 }
