@@ -13,12 +13,12 @@ export const updateGroupParticipant = async ({
   email?: string
   simulation: Simulation
   userId: string
-  name: string
+  name?: string
 }) => {
   return axios.post(`${GROUP_URL}/${groupId}/participants`, {
     ...(email ? { email } : {}),
     simulation,
     userId,
-    name,
+    ...(name ? { name } : {}),
   })
 }

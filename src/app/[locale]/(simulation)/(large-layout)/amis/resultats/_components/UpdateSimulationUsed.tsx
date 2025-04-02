@@ -56,7 +56,7 @@ export default function UpdateSimulationUsed({ group, refetchGroup }: Props) {
         email,
         simulation: latestSimulation,
         userId,
-        name: name || '',
+        name,
       })
 
       displaySuccessToast(t('Simulation mise à jour'))

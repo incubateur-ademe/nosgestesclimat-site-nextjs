@@ -48,7 +48,7 @@ export function useSaveSimulation() {
           email,
           simulation,
           userId,
-          name: name || '',
+          name,
         }).then((response) => response.data.simulation)
       }
 
