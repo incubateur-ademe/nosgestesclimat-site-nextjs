@@ -1,23 +1,16 @@
-import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import type { DefaultPageProps } from '@/types'
+import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import type { PropsWithChildren } from 'react'
 
-export async function generateMetadata({ params }: DefaultPageProps) {
-  const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
-
-  return getMetadataObject({
-    locale,
-    title: t('Mon groupe - Nos Gestes Climat'),
-    description: t(
-      "Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat."
-    ),
-    alternates: {
-      canonical: '/amis/resultats',
-    },
-  })
-}
+export const generateMetadata = getCommonMetadata({
+  title: t('Mon groupe - Nos Gestes Climat'),
+  description: t(
+    "Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat."
+  ),
+  alternates: {
+    canonical: '/amis/resultats',
+  },
+})
 
 export default function Layout({ children }: PropsWithChildren) {
   return <>{children}</>

@@ -4,7 +4,8 @@ import UserInformationForm from '@/components/user/UserInformationForm'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import { FormProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
@@ -15,21 +16,15 @@ import PersonaWarning from './_components/PersonaWarning'
 import SimulationBanner from './_components/SimulationBanner'
 import SimulationList from './_components/SimulationList'
 
-export async function generateMetadata({ params }: DefaultPageProps) {
-  const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
-
-  return getMetadataObject({
-    locale,
-    title: t('Mon profil - Nos Gestes Climat'),
-    description: t(
-      'Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.'
-    ),
-    alternates: {
-      canonical: '/profil',
-    },
-  })
-}
+export const generateMetadata = getCommonMetadata({
+  title: t('Mon profil - Nos Gestes Climat'),
+  description: t(
+    'Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.'
+  ),
+  alternates: {
+    canonical: '/profil',
+  },
+})
 
 export default async function Profil({ params }: DefaultPageProps) {
   const { locale } = await params

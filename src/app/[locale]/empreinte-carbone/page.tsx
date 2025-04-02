@@ -4,8 +4,8 @@ import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/trans/TransServer'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import {
   getLandingClickCTARestart,
   getLandingClickCTAResults,
@@ -30,23 +30,17 @@ const DynamicCTAButtons = dynamic(
     loading: () => <CTAButtonsPlaceholder />,
   }
 )
-export async function generateMetadata({ params }: DefaultPageProps) {
-  const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
-
-  return getMetadataObject({
-    locale,
-    title: t(
-      'Empreinte carbone : comprendre, mesurer, réduire son impact - Nos Gestes Climat'
-    ),
-    description: t(
-      'Informez-vous sur l’empreinte carbone, de sa définition aux actions les plus impactantes pour réduire ses émissions et enclencher sa transition écologique'
-    ),
-    alternates: {
-      canonical: '/empreinte-carbone',
-    },
-  })
-}
+export const generateMetadata = getCommonMetadata({
+  title: t(
+    'Empreinte carbone : comprendre, mesurer, réduire son impact - Nos Gestes Climat'
+  ),
+  description: t(
+    'Informez-vous sur l’empreinte carbone, de sa définition aux actions les plus impactantes pour réduire ses émissions et enclencher sa transition écologique'
+  ),
+  alternates: {
+    canonical: '/empreinte-carbone',
+  },
+})
 
 export default async function CarbonFootprintLandingPage({
   params,

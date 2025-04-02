@@ -4,8 +4,8 @@ import ButtonStart from './_components/ButtonStart'
 import ContentLarge from '@/components/layout/ContentLarge'
 import Trans from '@/components/translation/trans/TransServer'
 import { noIndexObject } from '@/constants/metadata'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import type { DefaultPageProps } from '@/types'
 import { twMerge } from 'tailwind-merge'
 import AutresQuestions from './_components/AutresQuestions'
@@ -13,20 +13,14 @@ import AvantDeCommencer from './_components/AvantDeCommencer'
 import ButtonBack from './_components/ButtonBack'
 import OrganisationMessage from './_components/OrganisationMessage'
 
-export async function generateMetadata({ params }: DefaultPageProps) {
-  const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
-
-  return getMetadataObject({
-    locale,
-    title: t('Tutoriel du calculateur - Nos Gestes Climat'),
-    description: t(
-      'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.'
-    ),
-    alternates: { canonical: '/tutoriel' },
-    robots: noIndexObject,
-  })
-}
+export const generateMetadata = getCommonMetadata({
+  title: t('Tutoriel du calculateur - Nos Gestes Climat'),
+  description: t(
+    'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.'
+  ),
+  alternates: { canonical: '/tutoriel' },
+  robots: noIndexObject,
+})
 
 export default async function Tutoriel({ params }: DefaultPageProps) {
   const { locale } = await params

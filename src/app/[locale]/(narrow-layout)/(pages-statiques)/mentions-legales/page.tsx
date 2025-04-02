@@ -1,18 +1,14 @@
-import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import type { DefaultPageProps } from '@/types'
+import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { LegalNotice } from '@incubateur-ademe/legal-pages-react/LegalNotice'
 
-export async function generateMetadata({ params }: DefaultPageProps) {
-  const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
-
-  return getMetadataObject({
-    locale,
-    title: t('Mentions légales - Nos Gestes Climat'),
-    description: t('Mentions légales du site Nos Gestes Climat.'),
-  })
-}
+export const generateMetadata = getCommonMetadata({
+  title: t('Mentions légales - Nos Gestes Climat'),
+  description: t('Mentions légales du site Nos Gestes Climat.'),
+  alternates: {
+    canonical: '/mentions-legales',
+  },
+})
 
 export default function MentionsLegalesPage() {
   return (

@@ -1,26 +1,19 @@
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import type { DefaultPageProps } from '@/types'
+import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import DocumentationLanding from './_components/DocumentationLanding'
 
-export async function generateMetadata({ params }: DefaultPageProps) {
-  const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
-
-  return getMetadataObject({
-    locale,
-    title: t(
-      "Documentation de notre calculateur d'empreinte climatique - Nos Gestes Climat"
-    ),
-    description: t(
-      'Notre documentation détaille les calculs qui nous ont permis de calculer votre bilan carbone personnel.'
-    ),
-    alternates: {
-      canonical: '/documentation',
-    },
-  })
-}
+export const generateMetadata = getCommonMetadata({
+  title: t(
+    "Documentation de notre calculateur d'empreinte climatique - Nos Gestes Climat"
+  ),
+  description: t(
+    'Notre documentation détaille les calculs qui nous ont permis de calculer votre bilan carbone personnel.'
+  ),
+  alternates: {
+    canonical: '/documentation',
+  },
+})
 
 export default function Documentation() {
   return (
