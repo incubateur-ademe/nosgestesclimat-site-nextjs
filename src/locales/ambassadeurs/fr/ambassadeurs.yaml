@@ -2,6 +2,9 @@ Médias:
   - title: France Inter
     image: france_inter.png
     link: https://www.radiofrance.fr/franceinter/podcasts/social-lab/social-lab-du-dimanche-14-novembre-2021-8081723
+  - title: Sud Radio
+    image: https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/Capture_d_ecran_2025_04_02_a_16_27_27_b1883a236d.png
+    link: https://www.sudradio.fr
   - title: France Info TV
     image: france_info.png
     link: https://www.francetvinfo.fr/monde/environnement/calculateur-empreinte-carbone.html
