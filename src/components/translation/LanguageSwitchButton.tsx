@@ -46,7 +46,6 @@ export default function LanguageSwitchButton() {
         onClick={() => handleChange('fr')}
         size="sm"
         aria-label={t('Passer en français')}
-        suppressHydrationWarning
         className="flex items-center gap-2 px-4 py-3"
         data-cypress-id="language-switch-button-fr">
         <span>FR</span> <Emoji>🇫🇷</Emoji>
@@ -57,7 +56,6 @@ export default function LanguageSwitchButton() {
         onClick={() => handleChange('en')}
         size="sm"
         aria-label={t('Switch to english')}
-        suppressHydrationWarning
         className="flex items-center gap-2 px-4 py-3"
         data-cypress-id="language-switch-button-en">
         <span>EN</span> <Emoji>🇬🇧</Emoji>
@@ -69,7 +67,6 @@ export default function LanguageSwitchButton() {
         onClick={() => handleChange('es')}
         size="sm"
         aria-label={t('Cambiar a español')}
-        suppressHydrationWarning
         className="flex gap-2 px-4 py-3"
         data-cypress-id="language-switch-button-es">
         <span>ES</span> <Emoji>🇪🇸</Emoji>

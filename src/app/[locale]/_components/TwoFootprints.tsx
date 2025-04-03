@@ -13,10 +13,9 @@ const TwoGraphsIllustration = dynamic(
       <Image
         src="/images/misc/graphiques-empreinte-carbone-eau-fr.png"
         className="hidden md:block"
-        alt=""
+        alt="Deux représentations graphiques de l'empreinte carbone et eau"
         width={600}
         height={800}
-        suppressHydrationWarning
       />
     ),
   }
@@ -28,10 +27,9 @@ const CarbonGraphIllustration = dynamic(
     loading: () => (
       <Image
         src="/images/misc/graphique-empreinte-carbone.png"
-        alt=""
+        alt="Graphique de l'empreinte carbone"
         width={300}
         height={300}
-        suppressHydrationWarning
       />
     ),
   }
@@ -43,10 +41,9 @@ const WaterGraphIllustration = dynamic(
     loading: () => (
       <Image
         src="/images/misc/graphique-empreinte-eau.png"
-        alt=""
+        alt="Graphique de l'empreinte eau"
         width={300}
         height={300}
-        suppressHydrationWarning
       />
     ),
   }
@@ -59,7 +56,7 @@ export default async function TwoFootprints({ locale }: { locale: string }) {
         <h2 className="mb-0 text-center text-2xl md:text-3xl">
           <Trans locale={locale}>Un calculateur, deux empreintes</Trans>
         </h2>
-        <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-[15%] h-[3px] w-[70%] transition-all md:left-0 md:w-full" />
+        <ColorLine className="bg-rainbow absolute bottom-0 left-[15%] h-[3px] w-[70%] animate-rainbow-slow transition-all md:left-0 md:w-full" />
       </div>
 
       {/* Displayed on desktop only */}

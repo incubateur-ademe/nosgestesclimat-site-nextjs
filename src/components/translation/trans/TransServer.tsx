@@ -11,7 +11,7 @@ export default async function TransServer({
   const { t } = await getServerTranslation({ locale })
 
   return (
-    <Trans i18nKey={i18nKey} t={t} suppressHydrationWarning>
+    <Trans i18nKey={i18nKey} t={t}>
       {children}
     </Trans>
   )

@@ -14,7 +14,6 @@ export default function LocalizedCarbonGraphIllustration() {
       alt={t("Graphique de l'empreinte eau")}
       width={300}
       height={300}
-      suppressHydrationWarning
     />
   )
 }

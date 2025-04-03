@@ -17,7 +17,6 @@ export default function InteractiveIllustration() {
         )}
         width={580}
         height={580}
-        suppressHydrationWarning
       />
       <FloatingElementDisplayedProvider>
         {/* Computer */}
@@ -32,7 +31,7 @@ export default function InteractiveIllustration() {
 
         {/* Shirt */}
         <PulsatingDot
-          className="top-[40%] right-[35%]"
+          className="right-[35%] top-[40%]"
           itemTitle={<Trans>Chemisier</Trans>}
           itemKey="shirt"
           carbonScore={3}

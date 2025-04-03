@@ -19,13 +19,13 @@ export default function PasserTestBanner() {
     <Card className="mb-4 flex-row flex-wrap items-baseline justify-between gap-4 border-none bg-gray-100 p-4 sm:flex-nowrap sm:p-6">
       <p className="mb-0">
         <Trans>Calculez votre empreinte sur le climat</Trans>{' '}
-        <span className="text-secondary-800 font-bold">
+        <span className="font-bold text-secondary-800">
           <Trans>en 10 minutes</Trans>
         </span>{' '}
         <Trans>top chrono.</Trans>
       </p>
 
-      <ButtonLink href={getLinkToSimulateurPage()} suppressHydrationWarning>
+      <ButtonLink href={getLinkToSimulateurPage()}>
         {linkToSimulateurPageLabel}
       </ButtonLink>
     </Card>

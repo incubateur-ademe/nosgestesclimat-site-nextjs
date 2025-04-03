@@ -69,8 +69,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
                 className="h-full"
                 id="header-navigation"
                 aria-label={t('Navigation principale')}
-                aria-labelledby="header-navigation-title"
-                suppressHydrationWarning>
+                aria-labelledby="header-navigation-title">
                 <h2 id="header-navigation-title" className="sr-only">
                   <Trans>Navigation principale</Trans>
                 </h2>
@@ -83,8 +82,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
                       onClick={() => trackEvent(headerClickTest)}
                       activeMatches={['/tutoriel', '/simulateur', '/fin']}
                       icon={BilanIcon}
-                      title={t('Mon empreinte')}
-                      suppressHydrationWarning>
+                      title={t('Mon empreinte')}>
                       <Trans>Mon empreinte</Trans>
                     </NavLink>
                   </li>
@@ -94,8 +92,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
                       href="/actions"
                       onClick={() => trackEvent(headerClickActions)}
                       icon={ActionsIcon}
-                      title={t('Mes gestes')}
-                      suppressHydrationWarning>
+                      title={t('Mes gestes')}>
                       <Trans>Mes gestes</Trans>
                     </NavLink>
                   </li>
@@ -107,7 +104,6 @@ export default function HeaderDesktop({ isSticky }: Props) {
                       icon={AmisIcon}
                       activeMatches={['/classement', '/amis']}
                       title={t('Mes classements')}
-                      suppressHydrationWarning
                       data-cypress-id="amis-link">
                       <Trans>Mes groupes</Trans>
                     </NavLink>
@@ -125,8 +121,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
                   icon={ProfileIcon}
                   title={t('Profil')}
                   className="px-4 whitespace-nowrap"
-                  onClick={() => trackEvent(headerClickProfil)}
-                  suppressHydrationWarning>
+                  onClick={() => trackEvent(headerClickProfil)}>
                   <Trans>Profil</Trans>
                 </NavLink>
 

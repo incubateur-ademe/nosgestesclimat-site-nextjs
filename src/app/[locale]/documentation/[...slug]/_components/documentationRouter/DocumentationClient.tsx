@@ -32,7 +32,7 @@ export default function DocumentationClient({ slugs, rules }: Props) {
   const [metric, setMetric] = useState<Metric>(defaultMetric)
 
   return (
-    <div className="mt-4 mb-10 w-full">
+    <div className="mt-4 w-full">
       <PasserTestBanner />
       <MetricSwitchButton
         metric={metric}

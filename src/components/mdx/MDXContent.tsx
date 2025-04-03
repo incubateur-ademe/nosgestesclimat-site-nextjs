@@ -25,7 +25,7 @@ export default function MDXContent({
   })
 
   return (
-    <div className="markdown" suppressHydrationWarning>
+    <div className="markdown">
       <Content />
     </div>
   )
