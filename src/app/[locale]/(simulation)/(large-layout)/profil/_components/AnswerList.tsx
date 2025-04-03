@@ -2,11 +2,11 @@
 
 import AnswersIcon from '@/components/icons/AnswersIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import { useEngine, useForm } from '@/publicodes-state'
+import { useEngine, useFormState } from '@/publicodes-state'
 import Category from './answerList/Category'
 
 export default function AnswerList() {
-  const { relevantAnsweredQuestions } = useForm()
+  const { relevantAnsweredQuestions } = useFormState()
 
   const { getCategory, categories } = useEngine()
   return (

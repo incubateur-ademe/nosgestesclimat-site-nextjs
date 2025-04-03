@@ -8,14 +8,14 @@ import {
   getBorderCategoryColor,
   getTextCategoryColor,
 } from '@/helpers/getCategoryColorClass'
-import { useForm, useRule } from '@/publicodes-state'
+import { useFormState, useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 type Props = { notification: DottedName }
 export default function Notification({ notification }: Props) {
   const { description, setValue } = useRule(notification)
 
-  const { currentCategory } = useForm()
+  const { currentCategory } = useFormState()
 
   if (!description) return
 

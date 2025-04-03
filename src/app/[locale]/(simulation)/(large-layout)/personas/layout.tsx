@@ -1,4 +1,4 @@
-import SimulationProviders from '@/components/providers/SimulationProviders'
+import EngineProviders from '@/components/providers/EngineProviders'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
@@ -25,8 +25,8 @@ export default function PersonasLayout({ children }: PropsWithChildren) {
   const supportedRegions = getSupportedRegions()
 
   return (
-    <SimulationProviders supportedRegions={supportedRegions}>
+    <EngineProviders supportedRegions={supportedRegions}>
       {children}
-    </SimulationProviders>
+    </EngineProviders>
   )
 }

@@ -4,7 +4,7 @@ import SimulateurSkeleton from '@/app/[locale]/(simulation)/simulateur/[root]/sk
 import LocalisationBanner from '@/components/translation/LocalisationBanner'
 import { useRules } from '@/hooks/useRules'
 import {
-  SimulationProvider,
+  EngineProvider,
   useCurrentSimulation,
   useUser,
 } from '@/publicodes-state'
@@ -20,7 +20,7 @@ type Props = {
   isOptim?: boolean
 }
 
-export default function SimulationProviders({
+export default function EngineProviders({
   children,
   supportedRegions,
   isOptim = true,
@@ -47,13 +47,15 @@ export default function SimulationProviders({
 
   return (
     <div key={id}>
-      <SimulationProvider rules={rules}>
+      <EngineProvider rules={rules}>
         <Suspense fallback={null}>
           <PRNumberHook setPRNumber={setPRNumber} />
         </Suspense>
+
         <LocalisationBanner supportedRegions={supportedRegions} />
+
         <SimulationSyncProvider>{children}</SimulationSyncProvider>
-      </SimulationProvider>
+      </EngineProvider>
     </div>
   )
 }

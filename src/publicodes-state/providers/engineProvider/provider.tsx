@@ -3,7 +3,7 @@
 import type { PropsWithChildren } from 'react'
 
 import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import { SimulationContext } from './context'
+import { EngineContext } from './context'
 import { useCategories } from './hooks/useCategories'
 import { useEngine } from './hooks/useEngine'
 import { useEngineSituation } from './hooks/useEngineSituation'
@@ -15,7 +15,7 @@ type Props = {
   root?: DottedName
   shouldAlwaysDisplayChildren?: boolean
 }
-export default function SimulationProvider({
+export default function EngineProvider({
   rules,
   root = 'bilan',
   children,
@@ -57,7 +57,7 @@ export default function SimulationProvider({
   if (!rules || !engine || !isInitialized) return children
 
   return (
-    <SimulationContext.Provider
+    <EngineContext.Provider
       value={{
         rules,
         engine,
@@ -78,6 +78,6 @@ export default function SimulationProvider({
         isInitialized,
       }}>
       {children}
-    </SimulationContext.Provider>
+    </EngineContext.Provider>
   )
 }

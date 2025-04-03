@@ -1,6 +1,6 @@
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import getSomme from '@/publicodes-state/helpers/getSomme'
-import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
+import { EngineContext } from '@/publicodes-state/providers/engineProvider/context'
 import type { Metric } from '@/publicodes-state/types'
 import type { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback, useContext } from 'react'
@@ -27,7 +27,7 @@ export default function useEngine({ metric }: { metric?: Metric } = {}) {
     subcategories,
     addToEngineSituation,
     isInitialized,
-  } = useContext(SimulationContext)
+  } = useContext(EngineContext)
 
   const getValue = (dottedName: DottedName): NodeValue =>
     safeEvaluate(dottedName)?.nodeValue

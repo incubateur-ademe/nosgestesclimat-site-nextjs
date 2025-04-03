@@ -2,35 +2,33 @@
 
 This interval library contains context/providers and hooks to manage the publicodes user and form state for the Nos Gestes Climat webapp.
 
-## Getting started
+## Providers
 
-Requirements :
 - The [UserProvider](./userProvider/provider.ts) should encapsulate at the higher level the app code. It allows to call the `useUser` hook inside its children. It contains all the logic relative to instantiating and updating the user state.
 
-- The [EngineSetupProvider](./engineSetup/provider.ts) should be encapsulated inside the `UserProvider` (as it needs access to the simulations saved inside the user state, i.e.). It allows to call the `useEngine` hook inside its children. This provider: 
+- The [EngineProvider](./engineProvider/provider.ts) should be encapsulated inside the `UserProvider` (as it needs access to the simulations saved inside the user state, i.e.). It allows to call the `useEngine` hook inside its children. This provider: 
   - creates the Publicodes engine
   - extract the categories and subcategories from the rules
   - loads the situation in the engine
   - handles computing the computedResults, as a permanent background task
 
--
+- The [FormProvider](./formProvider/provider.ts) should be encapsulated inside the `EngineProvider`. This provider handles the form logic, most notably manages the questions (which is the current one, the remaining questions...). It allows its children to call the `useFormState`, which gives access to questions, setting the current question etc.
 
-## Quelques exemples utiles :
+## Hooks
 
-### Providers
+- [useUser](./useUser/useUser.ts)
 
-- [userProvider](./userProvider/index.ts)
-- [simulationProvider](./simulationProvider/index.ts)
-- [formProvider](./formProvider/index.ts)
+- [useEngine](./useEngine/useEngine.ts)
 
-### Hooks
+- [useFormState](./useFormState/useFormState.ts)
 
-- [useUser](./useUser/index.ts)
+- [useRule](./useRule/useRule.ts)
 
-- [useForm](./useForm/index.ts)
+- [useActions](./useUser/useActions.ts)
 
-- [useRule](./useRule/index.ts)
-- [useActions](./useUser/index.ts)
+- [useCurrentSimulation](./useCurrentSimulation/useCurrentSimulation.ts)
 
-- [useEngine](./useEngine/index.ts)
-- [useDisposableEngine](./useDisposableEngine/index.ts)
+- [useDisposableEngine](./useDisposableEngine/useDisposableEngine.ts)
+
+- [useTempEngine](./useTempEngine/useTempEngine.ts)
+

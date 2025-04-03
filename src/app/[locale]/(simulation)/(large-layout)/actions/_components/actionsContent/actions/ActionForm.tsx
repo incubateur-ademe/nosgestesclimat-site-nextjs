@@ -2,7 +2,7 @@
 
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
-import { useForm } from '@/publicodes-state'
+import { useFormState } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { useEffect } from 'react'
@@ -19,7 +19,7 @@ export default function ActionForm({ category, onComplete }: Props) {
     setCurrentQuestion,
     setCurrentCategory,
     currentCategory,
-  } = useForm()
+  } = useFormState()
 
   useEffect(() => {
     if (category && !currentCategory) {
@@ -45,7 +45,7 @@ export default function ActionForm({ category, onComplete }: Props) {
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
-      className="mb-4 rounded-xl bg-primary-100 p-4 text-left">
+      className="bg-primary-100 mb-4 rounded-xl p-4 text-left">
       <Question question={currentQuestion} key={currentQuestion} />
       <Navigation
         question={currentQuestion}

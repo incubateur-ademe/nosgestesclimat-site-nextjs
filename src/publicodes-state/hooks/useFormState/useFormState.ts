@@ -7,7 +7,7 @@ import useNavigation from './hooks/useNavigation'
 /**
  * A hook to help display a form inside the simulation
  */
-export default function useForm() {
+export default function useFormState() {
   const {
     questionsByCategories,
     relevantQuestions,

@@ -1,9 +1,9 @@
-import { useEngine, useForm, useRule } from '@/publicodes-state'
+import { useEngine, useFormState, useRule } from '@/publicodes-state'
 
 import Category from './categoriesChart/Category'
 
 export default function CategoriesChart() {
-  const { currentCategory } = useForm()
+  const { currentCategory } = useFormState()
 
   const { categories } = useEngine()
 

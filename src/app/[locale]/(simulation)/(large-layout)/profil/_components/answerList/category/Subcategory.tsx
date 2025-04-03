@@ -7,7 +7,7 @@ import {
   getBorderColor,
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
-import { useForm, useRule } from '@/publicodes-state'
+import { useFormState, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
@@ -19,7 +19,7 @@ type Props = {
 
 export default function SubCategory({ subcategory }: Props) {
   const { title, numericValue, icons, category } = useRule(subcategory)
-  const { relevantAnsweredQuestions } = useForm()
+  const { relevantAnsweredQuestions } = useFormState()
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -36,7 +36,7 @@ export default function SubCategory({ subcategory }: Props) {
   return (
     <div className="relative mt-2 w-full overflow-hidden rounded-xl bg-gray-50">
       <div
-        className={`absolute bottom-0 left-0 top-0 w-2 ${getBackgroundColor(
+        className={`absolute top-0 bottom-0 left-0 w-2 ${getBackgroundColor(
           category
         )}`}
       />
@@ -54,7 +54,7 @@ export default function SubCategory({ subcategory }: Props) {
         </span>
       </button>
       {isOpen ? (
-        <div className="pb-2 pl-6 pr-4">
+        <div className="pr-4 pb-2 pl-6">
           {answeredQuestionOfSubcategory.map((question) => (
             <Question key={question} question={question} />
           ))}

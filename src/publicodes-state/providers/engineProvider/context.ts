@@ -14,7 +14,7 @@ import type {
   Situation,
 } from '../../types'
 
-type SimulationContextType = {
+type EngineContextType = {
   rules: NGCRules | undefined
   engine: Engine | undefined
   pristineEngine?: Engine | null
@@ -36,7 +36,7 @@ type SimulationContextType = {
   addToEngineSituation: (situationToAdd: Situation) => Situation
   isInitialized: boolean
 }
-export const SimulationContext = createContext<SimulationContextType>({
+export const EngineContext = createContext<EngineContextType>({
   rules: undefined,
   engine: undefined,
   pristineEngine: null,
