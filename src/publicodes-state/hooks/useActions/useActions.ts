@@ -8,7 +8,7 @@ import { captureException } from '@sentry/nextjs'
 import { useContext, useMemo } from 'react'
 import { useEngine } from '../..'
 import { SimulationContext } from '../../providers/simulationProvider/context'
-import useCurrentSimulation from '../useCurrentSimulation'
+import useCurrentSimulation from '../useCurrentSimulation/useCurrentSimulation'
 
 type Props = {
   metric: Metric

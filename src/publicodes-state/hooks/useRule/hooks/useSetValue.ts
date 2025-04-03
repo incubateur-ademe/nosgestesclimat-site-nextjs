@@ -2,6 +2,13 @@
 
 import { checkIfDottedNameShouldNotBeIgnored } from '@/publicodes-state/helpers/checkIfDottedNameShouldNotBeIgnored'
 import getIsMissing from '@/publicodes-state/helpers/getIsMissing'
+import getType from '@/publicodes-state/helpers/getType'
+import type {
+  MissingVariables,
+  ParsedRules,
+  Situation,
+  UpdateCurrentSimulationProps,
+} from '@/publicodes-state/types'
 import type {
   DottedName,
   NGCRuleNode,
@@ -10,13 +17,6 @@ import type {
 import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { utils } from 'publicodes'
 import { useCallback } from 'react'
-import getType from '../../helpers/getType'
-import type {
-  MissingVariables,
-  ParsedRules,
-  Situation,
-  UpdateCurrentSimulationProps,
-} from '../../types'
 
 type Props = {
   dottedName: DottedName

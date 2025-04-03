@@ -1,8 +1,8 @@
 'use client'
 
+import useEngine from '@/publicodes-state/hooks/useEngine/useEngine'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
-import useEngine from '../useEngine'
 type Props = {
   rule: NGCRuleNode | undefined
   type: string | undefined

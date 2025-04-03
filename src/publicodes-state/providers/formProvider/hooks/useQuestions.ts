@@ -1,10 +1,10 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
-import getIsMissing from '../../helpers/getIsMissing'
+import getIsMissing from '../../../helpers/getIsMissing'
 
 import getSortedQuestionsList from '@/publicodes-state/helpers/getSortedQuestionsList'
-import type { Entries, MissingVariables, Situation } from '../../types'
+import type { Entries, MissingVariables, Situation } from '../../../types'
 
 type Props = {
   root: DottedName

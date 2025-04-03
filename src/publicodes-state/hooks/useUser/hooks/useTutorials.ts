@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from 'react'
-import type { Tutorials } from '../../types'
+import type { Tutorials } from '../../../types'
 type Props = {
   setTutorials: Dispatch<SetStateAction<Tutorials>>
 }

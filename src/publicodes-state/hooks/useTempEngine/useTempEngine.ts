@@ -5,7 +5,7 @@ import type {
 } from '@incubateur-ademe/nosgestesclimat'
 import { useContext } from 'react'
 import { SimulationContext } from '../../providers/simulationProvider/context'
-import useCurrentSimulation from '../useCurrentSimulation'
+import useCurrentSimulation from '../useCurrentSimulation/useCurrentSimulation'
 
 import type { EvaluatedNode } from 'publicodes'
 /**

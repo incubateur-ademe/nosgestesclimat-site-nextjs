@@ -1,6 +1,6 @@
 import { getIsLocalStorageAvailable } from '@/utils/getIsLocalStorageAvailable'
 import { useEffect, useState } from 'react'
-import type { Tutorials } from '../../types'
+import type { Tutorials } from '../../../types'
 
 const isLocalStorageAvailable = getIsLocalStorageAvailable()
 

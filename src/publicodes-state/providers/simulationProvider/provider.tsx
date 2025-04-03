@@ -4,11 +4,11 @@ import type { PropsWithChildren } from 'react'
 
 import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { SimulationContext } from './context'
-import { useCategories } from './useCategories'
-import { useEngine } from './useEngine'
-import { useEngineSituation } from './useEngineSituation'
-import { useRules } from './useRules'
-import { useSetComputedResults } from './useSetComputedResults'
+import { useCategories } from './hooks/useCategories'
+import { useEngine } from './hooks/useEngine'
+import { useEngineSituation } from './hooks/useEngineSituation'
+import { useRules } from './hooks/useRules'
+import { useSetComputedResults } from './hooks/useSetComputedResults'
 
 type Props = {
   rules?: NGCRules

@@ -7,10 +7,10 @@ import { getGeolocation } from '@/helpers/api/getGeolocation'
 import type { RegionFromGeolocation } from '@/publicodes-state/types'
 import type { Migration } from '@publicodes/tools/migration'
 import UserContext from './context'
-import useUpdateOldLocalStorage from './useOldLocalStorage'
-import usePersistentSimulations from './usePersistentSimulations'
-import usePersistentTutorials from './usePersistentTutorials'
-import usePersistentUser from './usePersistentUser'
+import useUpdateOldLocalStorage from './hooks/useOldLocalStorage'
+import usePersistentSimulations from './hooks/usePersistentSimulations'
+import usePersistentTutorials from './hooks/usePersistentTutorials'
+import usePersistentUser from './hooks/usePersistentUser'
 
 type Props = {
   /**
