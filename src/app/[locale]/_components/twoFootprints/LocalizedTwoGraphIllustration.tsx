@@ -15,6 +15,7 @@ export default function LocalizedTwoGraphsIllustration() {
       alt={t("Deux représentations graphiques de l'empreinte carbone et eau")}
       width={600}
       height={800}
+      suppressHydrationWarning
     />
   )
 }
