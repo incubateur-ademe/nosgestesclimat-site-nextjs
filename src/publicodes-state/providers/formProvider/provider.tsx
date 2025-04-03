@@ -1,11 +1,10 @@
 'use client'
 
-import { useCurrentSimulation } from '@/publicodes-state'
+import { useCurrentSimulation, useSimulation } from '@/publicodes-state'
 
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { PropsWithChildren } from 'react'
-import { useContext, useMemo } from 'react'
-import { SimulationContext } from '../simulationProvider/context'
+import { useMemo } from 'react'
 import FormContext from './context'
 import useCurrent from './hooks/useCurrent'
 import useProgression from './hooks/useProgression'
@@ -22,7 +21,7 @@ function FormProvider({ root = 'bilan', children }: PropsWithChildren<Props>) {
     safeEvaluate,
     everyQuestions,
     everyMosaicChildrenWithParent,
-  } = useContext(SimulationContext)
+  } = useSimulation()
 
   const { situation, foldedSteps, updateCurrentSimulation } =
     useCurrentSimulation()
@@ -84,7 +83,7 @@ export default function FailSafeFormProvider({
 }: PropsWithChildren<{
   root?: DottedName
 }>) {
-  const { safeEvaluate, rules } = useContext(SimulationContext)
+  const { safeEvaluate, rules } = useSimulation()
 
   const isRootSafe = useMemo<boolean>(() => {
     if (!rules) return true

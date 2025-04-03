@@ -12,15 +12,15 @@ import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import type { PropsWithChildren } from 'react'
 import { Suspense, useState } from 'react'
 import Error500 from '../layout/500'
-import PRNumberHook from './providers/PRNumberHook'
-import SimulationSyncProvider from './providers/SimulationSyncProvider'
+import PRNumberHook from './simulationProviders/PRNumberHook'
+import SimulationSyncProvider from './simulationProviders/SimulationSyncProvider'
 
 type Props = {
   supportedRegions: SupportedRegions
   isOptim?: boolean
 }
 
-export default function Providers({
+export default function SimulationProviders({
   children,
   supportedRegions,
   isOptim = true,

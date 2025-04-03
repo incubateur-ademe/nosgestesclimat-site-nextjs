@@ -1,10 +1,10 @@
 import { defaultMetric, metrics } from '@/constants/metric'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { getComputedResults } from '@/publicodes-state/helpers/getComputedResults'
+import type { ComputedResults, Metric } from '@/publicodes-state/types'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
-import type { ComputedResults, Metric } from '../../types'
 
 type Props = {
   categories: DottedName[]

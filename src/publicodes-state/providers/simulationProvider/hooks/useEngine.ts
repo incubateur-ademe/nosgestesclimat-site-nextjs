@@ -1,5 +1,7 @@
 import { carboneMetric } from '@/constants/metric'
+import { safeEvaluateHelper } from '@/publicodes-state/helpers/safeEvaluateHelper'
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
+import type { Metric } from '@/publicodes-state/types'
 import type {
   DottedName,
   NGCRuleNode,
@@ -9,8 +11,6 @@ import { captureException } from '@sentry/nextjs'
 import type { PublicodesExpression } from 'publicodes'
 import Engine from 'publicodes'
 import { useCallback, useMemo } from 'react'
-import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
-import type { Metric } from '../../types'
 
 /**
  * Initiate the engine based on the rules we pass

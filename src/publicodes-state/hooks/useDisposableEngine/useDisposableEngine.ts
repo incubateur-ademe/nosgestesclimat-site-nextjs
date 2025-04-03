@@ -1,11 +1,11 @@
 import { carboneMetric } from '@/constants/metric'
+import { useSimulation } from '@/publicodes-state'
 import getSomme from '@/publicodes-state/helpers/getSomme'
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
-import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { PublicodesExpression } from 'publicodes'
 import Engine from 'publicodes'
-import { useCallback, useContext, useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
 import type { Metric, Situation } from '../../types'
 
@@ -19,7 +19,7 @@ type Props = {
  * Very ressource intensive. Use with caution
  */
 export default function useDisposableEngine({ rules, situation }: Props) {
-  const { rules: contextRules } = useContext(SimulationContext)
+  const { rules: contextRules } = useSimulation()
 
   const engine = useMemo(() => {
     return new Engine<DottedName>(rules ?? contextRules, {

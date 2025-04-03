@@ -1,14 +1,16 @@
 'use client'
 
 import { carboneMetric } from '@/constants/metric'
+import {
+  useCurrentSimulation,
+  useEngine,
+  useSimulation,
+} from '@/publicodes-state'
 import getSomme from '@/publicodes-state/helpers/getSomme'
 import type { Metric } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { captureException } from '@sentry/nextjs'
-import { useContext, useMemo } from 'react'
-import { useEngine } from '../..'
-import { SimulationContext } from '../../providers/simulationProvider/context'
-import useCurrentSimulation from '../useCurrentSimulation/useCurrentSimulation'
+import { useMemo } from 'react'
 
 type Props = {
   metric: Metric
@@ -25,7 +27,7 @@ type ActionObject = {
 export default function useActions(
   { metric }: Props = { metric: carboneMetric }
 ) {
-  const { engine } = useContext(SimulationContext)
+  const { engine } = useSimulation()
 
   const { getNumericValue } = useEngine({ metric })
 

@@ -1,6 +1,6 @@
 'use client'
 
-import Providers from '@/components/providers/Providers'
+import SimulationProviders from '@/components/providers/SimulationProviders'
 import { useCurrentSimulation } from '@/publicodes-state'
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import type { JSX } from 'react'
@@ -38,9 +38,9 @@ export default function DocumentationRouter({
 
   if (isDocumentationClient)
     return (
-      <Providers supportedRegions={supportedRegions} isOptim={false}>
+      <SimulationProviders supportedRegions={supportedRegions} isOptim={false}>
         <DocumentationClient slugs={slug} rules={rules} />
-      </Providers>
+      </SimulationProviders>
     )
 
   return serverComponent

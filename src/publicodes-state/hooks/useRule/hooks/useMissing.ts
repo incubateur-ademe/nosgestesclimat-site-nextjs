@@ -1,9 +1,9 @@
 'use client'
 
+import getIsMissing from '@/publicodes-state/helpers/getIsMissing'
 import type { Situation } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
-import getIsMissing from '../../helpers/getIsMissing'
 
 type Props = {
   dottedName: DottedName

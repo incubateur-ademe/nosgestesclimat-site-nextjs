@@ -1,8 +1,8 @@
+import { useSimulation } from '@/publicodes-state'
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import getSomme from '@/publicodes-state/helpers/getSomme'
 import type { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
-import { useCallback, useContext } from 'react'
-import { SimulationContext } from '../../providers/simulationProvider/context'
+import { useCallback } from 'react'
 import type { Metric } from '../../types'
 
 /**
@@ -14,11 +14,7 @@ type Props = {
   metric?: Metric
 }
 export default function useEngine({ metric }: Props = {}) {
-  const {
-    engine,
-    safeEvaluate: safeEvaluate,
-    safeGetRule,
-  } = useContext(SimulationContext)
+  const { engine, safeEvaluate: safeEvaluate, safeGetRule } = useSimulation()
 
   const getValue = (dottedName: DottedName): NodeValue =>
     safeEvaluate(dottedName)?.nodeValue

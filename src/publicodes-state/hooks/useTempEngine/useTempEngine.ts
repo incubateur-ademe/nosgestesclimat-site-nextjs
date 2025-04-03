@@ -3,10 +3,9 @@ import type {
   NGCRuleNode,
   NGCRules,
 } from '@incubateur-ademe/nosgestesclimat'
-import { useContext } from 'react'
-import { SimulationContext } from '../../providers/simulationProvider/context'
 import useCurrentSimulation from '../useCurrentSimulation/useCurrentSimulation'
 
+import { useSimulation } from '@/publicodes-state'
 import type { EvaluatedNode } from 'publicodes'
 /**
  * This is temporary and should be put to death as soon as possible
@@ -17,7 +16,7 @@ export default function useTempEngine(): {
   extendedFoldedSteps: DottedName[]
 } {
   const { safeEvaluate, rules, safeGetRule, everyMosaicChildrenWithParent } =
-    useContext(SimulationContext)
+    useSimulation()
 
   const { foldedSteps } = useCurrentSimulation()
 

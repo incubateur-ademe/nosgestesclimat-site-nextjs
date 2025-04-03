@@ -1,10 +1,10 @@
 'use client'
 
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
+import type { Situation } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
-import type { Situation } from '../../types'
 
 type Props = {
   dottedName: DottedName
