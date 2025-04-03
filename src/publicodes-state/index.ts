@@ -8,6 +8,5 @@ export { default as useDisposableEngine } from './hooks/useDisposableEngine/useD
 export { default as useEngine } from './hooks/useEngine/useEngine'
 export { default as useForm } from './hooks/useForm/useForm'
 export { default as useRule } from './hooks/useRule/useRule'
-export { default as useSimulation } from './hooks/useSimulation/useSimulation'
 export { default as useTempEngine } from './hooks/useTempEngine/useTempEngine'
 export { default as useUser } from './hooks/useUser/useUser'

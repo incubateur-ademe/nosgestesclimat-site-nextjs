@@ -1,11 +1,7 @@
 'use client'
 
 import { carboneMetric } from '@/constants/metric'
-import {
-  useCurrentSimulation,
-  useEngine,
-  useSimulation,
-} from '@/publicodes-state'
+import { useCurrentSimulation, useEngine } from '@/publicodes-state'
 import getSomme from '@/publicodes-state/helpers/getSomme'
 import type { Metric } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -27,9 +23,7 @@ type ActionObject = {
 export default function useActions(
   { metric }: Props = { metric: carboneMetric }
 ) {
-  const { engine } = useSimulation()
-
-  const { getNumericValue } = useEngine({ metric })
+  const { getNumericValue, engine } = useEngine({ metric })
 
   const { actionChoices } = useCurrentSimulation()
 

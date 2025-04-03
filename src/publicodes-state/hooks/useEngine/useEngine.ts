@@ -1,20 +1,33 @@
-import { useSimulation } from '@/publicodes-state'
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import getSomme from '@/publicodes-state/helpers/getSomme'
+import { SimulationContext } from '@/publicodes-state/providers/simulationProvider/context'
+import type { Metric } from '@/publicodes-state/types'
 import type { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
-import { useCallback } from 'react'
-import type { Metric } from '../../types'
+import { useCallback, useContext } from 'react'
 
 /**
- * A hook that make available some basic functions on the engine (and the engine itself).
- *
- * It should only be used when it is needed to compare rules between them. If not, useRule should be used
+ * A hook that make available some information on the current instanciated simulation.
  */
-type Props = {
-  metric?: Metric
-}
-export default function useEngine({ metric }: Props = {}) {
-  const { engine, safeEvaluate: safeEvaluate, safeGetRule } = useSimulation()
+export default function useEngine({ metric }: { metric?: Metric } = {}) {
+  const {
+    rules,
+    engine,
+    pristineEngine,
+    safeGetRule,
+    safeEvaluate,
+    parsedRules,
+    everyRules,
+    everyInactiveRules,
+    everyQuestions,
+    everyNotifications,
+    everyUiCategories,
+    everyMosaicChildrenWithParent,
+    rawMissingVariables,
+    categories,
+    subcategories,
+    addToEngineSituation,
+    isInitialized,
+  } = useContext(SimulationContext)
 
   const getValue = (dottedName: DottedName): NodeValue =>
     safeEvaluate(dottedName)?.nodeValue
@@ -43,13 +56,27 @@ export default function useEngine({ metric }: Props = {}) {
   )
 
   return {
+    rules,
     engine,
+    pristineEngine,
+    safeGetRule,
+    safeEvaluate,
+    parsedRules,
+    everyRules,
+    everyInactiveRules,
+    everyQuestions,
+    everyNotifications,
+    everyUiCategories,
+    everyMosaicChildrenWithParent,
+    rawMissingVariables,
+    categories,
+    subcategories,
+    addToEngineSituation,
+    isInitialized,
     getValue,
     getNumericValue,
     getCategory,
-    getSubcategories,
     checkIfValid,
-    safeEvaluate: safeEvaluate,
-    safeGetRule,
+    getSubcategories,
   }
 }

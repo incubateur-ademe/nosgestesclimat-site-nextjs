@@ -1,13 +1,13 @@
 'use client'
 
-import { useSimulation } from '@/publicodes-state'
+import { useEngine } from '@/publicodes-state'
 import ActionsContent from './_components/ActionsContent'
 import ActionsTutorial from './_components/ActionsTutorial'
 import SimulationMissing from './_components/SimulationMissing'
 import ActionsPageSkeleton from './skeleton'
 
 export default function ActionsPage() {
-  const { rules } = useSimulation()
+  const { rules } = useEngine()
 
   if (!rules) {
     return <ActionsPageSkeleton />

@@ -3,11 +3,7 @@
 import { defaultMetric } from '@/constants/metric'
 import { compareTwoSimulations } from '@/helpers/simulation/compareTwoSimulations'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
-import {
-  useCurrentSimulation,
-  useSimulation,
-  useUser,
-} from '@/publicodes-state'
+import { useCurrentSimulation, useEngine, useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
 import { createContext, useCallback, useEffect, useMemo, useRef } from 'react'
 
@@ -48,7 +44,7 @@ export default function SimulationSyncProvider({
     savedViaEmail,
   } = useCurrentSimulation()
 
-  const { isInitialized } = useSimulation()
+  const { isInitialized } = useEngine()
 
   const { saveSimulation, isPending } = useSaveSimulation()
 

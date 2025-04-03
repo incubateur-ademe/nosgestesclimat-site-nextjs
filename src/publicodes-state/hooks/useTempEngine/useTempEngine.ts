@@ -5,7 +5,7 @@ import type {
 } from '@incubateur-ademe/nosgestesclimat'
 import useCurrentSimulation from '../useCurrentSimulation/useCurrentSimulation'
 
-import { useSimulation } from '@/publicodes-state'
+import { useEngine } from '@/publicodes-state'
 import type { EvaluatedNode } from 'publicodes'
 /**
  * This is temporary and should be put to death as soon as possible
@@ -16,7 +16,7 @@ export default function useTempEngine(): {
   extendedFoldedSteps: DottedName[]
 } {
   const { safeEvaluate, rules, safeGetRule, everyMosaicChildrenWithParent } =
-    useSimulation()
+    useEngine()
 
   const { foldedSteps } = useCurrentSimulation()
 

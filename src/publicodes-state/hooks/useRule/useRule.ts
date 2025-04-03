@@ -1,7 +1,7 @@
 'use client'
 
 import { carboneMetric } from '@/constants/metric'
-import { useSimulation } from '@/publicodes-state'
+import { useEngine } from '@/publicodes-state'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import type { EvaluatedNode } from 'publicodes'
 import { utils } from 'publicodes'
@@ -35,7 +35,7 @@ export default function useRule(
     everyMosaicChildrenWithParent,
     addToEngineSituation,
     rawMissingVariables,
-  } = useSimulation()
+  } = useEngine()
 
   const { situation, foldedSteps, updateCurrentSimulation } =
     useCurrentSimulation()

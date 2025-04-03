@@ -1,6 +1,6 @@
 'use client'
 
-import { useCurrentSimulation, useSimulation } from '@/publicodes-state'
+import { useCurrentSimulation, useEngine } from '@/publicodes-state'
 
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { PropsWithChildren } from 'react'
@@ -21,7 +21,7 @@ function FormProvider({ root = 'bilan', children }: PropsWithChildren<Props>) {
     safeEvaluate,
     everyQuestions,
     everyMosaicChildrenWithParent,
-  } = useSimulation()
+  } = useEngine()
 
   const { situation, foldedSteps, updateCurrentSimulation } =
     useCurrentSimulation()
@@ -83,7 +83,7 @@ export default function FailSafeFormProvider({
 }: PropsWithChildren<{
   root?: DottedName
 }>) {
-  const { safeEvaluate, rules } = useSimulation()
+  const { safeEvaluate, rules } = useEngine()
 
   const isRootSafe = useMemo<boolean>(() => {
     if (!rules) return true
