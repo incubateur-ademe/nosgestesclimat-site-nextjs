@@ -13,7 +13,7 @@ export default function TransClient({
 
   return (
     <Trans t={t} i18nKey={i18nKey}>
-      {children}
+      <span suppressHydrationWarning>{children}</span>
     </Trans>
   )
 }

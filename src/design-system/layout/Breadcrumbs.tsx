@@ -30,7 +30,8 @@ export default function Breadcrumbs({
         id="breadcrumbs-navigation"
         aria-label={t('Chemin de navigation')}
         aria-labelledby="breadcrumbs-title"
-        className="h-full w-full">
+        className="h-full w-full"
+        suppressHydrationWarning>
         <h2 id="breadcrumbs-title" className="sr-only">
           <Trans>Chemin de navigation</Trans>
         </h2>
@@ -47,14 +48,15 @@ export default function Breadcrumbs({
                   }}
                   aria-current={isActive}
                   className={twMerge(
-                    'max-w-full text-ellipsis whitespace-nowrap text-sm capitalize text-primary-700 hover:text-primary-700 hover:underline',
+                    'text-primary-700 hover:text-primary-700 max-w-full text-sm text-ellipsis whitespace-nowrap capitalize hover:underline',
                     isActive
-                      ? 'cursor-default text-default no-underline hover:text-default hover:no-underline'
+                      ? 'text-default hover:text-default cursor-default no-underline hover:no-underline'
                       : '',
                     isDisabled ? 'cursor-default' : '',
                     linkClassName
                   )}
-                  href={href}>
+                  href={href}
+                  suppressHydrationWarning>
                   {label}
                 </Link>
               </li>

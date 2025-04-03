@@ -2,12 +2,14 @@ import ErrorContent from '@/components/error/ErrorContent'
 import Footer from '@/components/layout/Footer'
 import Banner from '@/design-system/cms/Banner'
 import type { Locale } from '@/i18nConfig'
+import i18nConfig from '@/i18nConfig'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import type { DefaultPageProps } from '@/types'
 import { captureException } from '@sentry/nextjs'
 import { dir } from 'i18next'
 import localFont from 'next/font/local'
+import { notFound } from 'next/navigation'
 import Script from 'next/script'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
@@ -54,6 +56,10 @@ export default async function RootLayout({
   children: React.ReactNode
 } & DefaultPageProps) {
   const { locale } = await params
+
+  if (!i18nConfig.locales.includes(locale as Locale)) {
+    notFound()
+  }
 
   try {
     return (
@@ -133,7 +139,7 @@ export default async function RootLayout({
     captureException(error)
     return (
       <html lang="fr">
-        <body className={`${marianne.className} bg-white text-default`}>
+        <body className={`${marianne.className} text-default bg-white`}>
           <div className="flex h-screen flex-col items-center justify-center">
             <ErrorContent />
           </div>

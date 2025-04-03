@@ -1,4 +1,5 @@
 import Route404 from '@/components/layout/404'
+import Header from '@/components/layout/Header'
 import Main from '@/design-system/layout/Main'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -23,6 +24,7 @@ export async function generateMetadata(props: DefaultPageProps) {
 export default async function NotFound() {
   return (
     <>
+      <Header />
       <Main>
         <Route404 />
       </Main>

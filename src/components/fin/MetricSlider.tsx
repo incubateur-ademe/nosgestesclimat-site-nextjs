@@ -97,7 +97,7 @@ export default function MetricSlider({
 
       <p
         className={twMerge(
-          'mt-2 inline-block w-full text-center text-xs text-default transition-opacity duration-300 md:text-sm',
+          'text-default mt-2 inline-block w-full text-center text-xs transition-opacity duration-300 md:text-sm',
           isSticky ? 'opacity-0' : ''
         )}>
         <Emoji>💡</Emoji>{' '}

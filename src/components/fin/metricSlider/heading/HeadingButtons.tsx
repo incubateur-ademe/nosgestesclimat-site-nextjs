@@ -154,16 +154,16 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         aria-label={t('Partager')}>
         <ShareIcon
           className={twMerge(
-            'mr-[1px] fill-primary-700',
+            'fill-primary-700 mr-[1px]',
             shareClassNames[size]
           )}
         />
         {shouldDisplayConfirmMessage ? (
-          <span className="sr-only lg:not-sr-only">
+          <span className="sr-only lg:static! lg:m-0! lg:h-auto! lg:w-auto! lg:p-0!">
             <Trans>Copié !</Trans>
           </span>
         ) : (
-          <span className="sr-only lg:not-sr-only">
+          <span className="sr-only lg:static! lg:m-0! lg:h-auto! lg:w-auto! lg:p-0!">
             <Trans>Partager</Trans>
           </span>
         )}
