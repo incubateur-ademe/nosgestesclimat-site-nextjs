@@ -1,4 +1,4 @@
-export { default as FormProvider } from './providers/formProvider/provider'
+export { default as FormProvider } from './providers/formProvider/provider-te'
 export { default as SimulationProvider } from './providers/simulationProvider/provider'
 export { default as UserProvider } from './providers/userProvider/provider'
 
