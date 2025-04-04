@@ -43,6 +43,7 @@
     "@publicodes/tools": "^1.5.3",
     "@sentry/nextjs": "^9.0.1",
     "@socialgouv/react-departements": "^3.0.0",
+    "@splidejs/react-splide": "^0.7.12",
     "@tailwindcss/postcss": "^4.0.17",
     "@tanstack/react-query": "^5.66.0",
     "@vercel/functions": "^2.0.0",
