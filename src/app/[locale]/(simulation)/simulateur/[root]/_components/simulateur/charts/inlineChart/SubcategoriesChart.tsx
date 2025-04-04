@@ -1,20 +1,18 @@
 import ValueChangeDisplay from '@/components/misc/ValueChangeDisplay'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
-import { useEngine, useForm, useRule, useSimulation } from '@/publicodes-state'
+import { useEngine, useFormState, useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 import Subcategory from './subcategoriesChart/Subcategory'
 
 export default function SubcategoriesChart() {
-  const { subcategories } = useSimulation()
-
-  const { currentCategory } = useForm()
+  const { currentCategory } = useFormState()
 
   const { title, numericValue: total } = useRule(
     currentCategory || ('' as DottedName)
   )
 
-  const { checkIfValid } = useEngine()
+  const { checkIfValid, subcategories } = useEngine()
 
   const filteredSubcategories = useMemo(
     () =>

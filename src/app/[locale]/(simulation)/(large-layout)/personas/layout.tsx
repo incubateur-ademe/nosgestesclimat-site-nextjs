@@ -1,4 +1,4 @@
-import Providers from '@/components/providers/Providers'
+import EngineProviders from '@/components/providers/EngineProviders'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
@@ -24,5 +24,9 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 export default function PersonasLayout({ children }: PropsWithChildren) {
   const supportedRegions = getSupportedRegions()
 
-  return <Providers supportedRegions={supportedRegions}>{children}</Providers>
+  return (
+    <EngineProviders supportedRegions={supportedRegions}>
+      {children}
+    </EngineProviders>
+  )
 }

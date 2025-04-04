@@ -3,7 +3,7 @@
 import ContentLarge from '@/components/layout/ContentLarge'
 import Title from '@/design-system/layout/Title'
 import { useDebug } from '@/hooks/useDebug'
-import { useForm } from '@/publicodes-state'
+import { useFormState } from '@/publicodes-state'
 import Question from './summary/Question'
 
 type Props = {
@@ -16,7 +16,7 @@ export default function Summary({
 }: Props) {
   const isDebug = useDebug()
 
-  const { relevantQuestions } = useForm()
+  const { relevantQuestions } = useFormState()
 
   return (
     <div className={isQuestionListOpen || isDebug ? 'block' : 'hidden'}>
