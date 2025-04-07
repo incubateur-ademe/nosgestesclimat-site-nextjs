@@ -107,7 +107,7 @@ export default function SearchBar({ rules }: { rules: NGCRules }) {
         </label>
 
         {input.length > 2 && !results.length && (
-          <div role="status" className="mt-2 rounded-sm p-2">
+          <div role="status" className="mt-2 rounded-xs p-2">
             <Trans i18nKey="noresults">
               Aucun résultat ne correspond à cette recherche
             </Trans>

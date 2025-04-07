@@ -102,8 +102,6 @@ module.exports = {
           900: '#422290',
           950: '#281461',
         },
-        water: '#5152D0',
-        default: '#1A1A1A',
         gray: {
           100: '#F7FBFF',
           200: '#E3E3DB',
@@ -115,8 +113,6 @@ module.exports = {
           divers: '#F9CD49',
           servicessocietaux: '#9E8EF5',
         },
-        heroLightBackground: '#F0F8FF',
-        landingLightBackground: '#F6F6F5',
       },
       fontSize: {
         '3xl': '2rem',
