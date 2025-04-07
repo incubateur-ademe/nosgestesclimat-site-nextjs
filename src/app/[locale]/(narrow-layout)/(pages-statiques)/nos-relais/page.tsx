@@ -9,6 +9,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import ambassadeursYaml from '@/locales/ambassadeurs/fr/ambassadeurs.yaml'
 import type { DefaultPageProps } from '@/types'
+import { encodeDottedNameAsURI } from '@/utils/format/encodeDottedNameAsURI'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
 
@@ -106,7 +107,7 @@ export default async function NosRelais({
       {categories
         .filter((category: string) =>
           typeof categoryFilter !== 'undefined'
-            ? categoryFilter === category
+            ? categoryFilter === encodeDottedNameAsURI(category)
             : true
         )
         .map((category: any) => (
@@ -118,7 +119,7 @@ export default async function NosRelais({
                   key={ambassadeur.title}
                   href={ambassadeur.link}
                   tag="a"
-                  className="border-none bg-primary-50 no-underline"
+                  className="bg-primary-50 border-none no-underline"
                   target="_blank">
                   <Image
                     src={'/images/ambassadeurs/' + ambassadeur.image}
