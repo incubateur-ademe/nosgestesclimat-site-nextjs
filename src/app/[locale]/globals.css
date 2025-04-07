@@ -615,8 +615,20 @@ html[data-useragent*='Trident'] #js {
   @apply mb-2;
 }
 
+@keyframes smoothbounceball {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, 2rem, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .island {
-  animation: bounce 5s infinite;
+  animation: smoothbounceball 5s infinite;
 }
 
 .island:nth-child(1) {

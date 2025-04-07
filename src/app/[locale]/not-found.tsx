@@ -19,6 +19,8 @@ export async function generateMetadata(props: DefaultPageProps) {
   })
 }
 
-export default async function NotFound() {
-  return <Route404 />
+export default async function NotFound({ params }: DefaultPageProps) {
+  const { locale } = await params
+
+  return <Route404 locale={locale} />
 }
