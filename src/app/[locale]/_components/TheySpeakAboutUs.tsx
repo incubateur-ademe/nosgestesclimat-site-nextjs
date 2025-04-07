@@ -20,7 +20,7 @@ export default function TheySpeakAboutUs({
         className
       )}>
       {/* Helps cover the triangles of white shown because of the perspective change in Background */}
-      <div className="absolute left-0 top-2 h-1/2 w-[200%] bg-heroLightBackground" />
+      <div className="bg-heroLightBackground absolute top-2 left-0 h-1/2 w-[200%]" />
 
       {/* Add the background along with the tilted colorline */}
       <Background
@@ -80,7 +80,7 @@ export default function TheySpeakAboutUs({
 
           <li>
             <Image
-              src="/images/ambassadeurs/strasbourg.jpg"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/strasbourg_d05212223e.jpg"
               alt="Strasbourg Métropole"
               className="h-auto w-24 md:w-40"
               width={100}

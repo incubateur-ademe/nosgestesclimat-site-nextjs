@@ -108,15 +108,18 @@ Entreprises:
     image: steply.png
     link: https://steply-app.com/
 Collectivités et acteurs publics:
-  - title: 'Ville de Grenoble'
+  - title: Ville de Grenoble
     image: Grenoble.png
     link: https://www.grenoble.fr/593-grenoble-climat.htm
-  - title: 'Grand Paris Seine-Ouest'
+  - title: Grand Paris Seine-Ouest
     image: paris-ouest.png
     link: https://www.seineouest.fr/nos-gestes-climat
   - title: Ville de Lyon
     image: lyon.png
     link: https://www.lyon.fr/actualite/environnement/carbone-detox-le-defi-pour-reduire-son-impact
+  - title: Strasbourg Métropole
+    image: https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/strasbourg_d05212223e.jpg
+    link: https://www.strasbourg.eu/
   - title: 'La Rochelle'
     image: la rochelle.png
     link: https://www.larochelle-zerocarbone.fr/s-engager/la-boite-a-outils-du-zero-carbone/nos-gestes-climat
