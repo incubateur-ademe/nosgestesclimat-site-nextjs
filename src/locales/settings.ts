@@ -2,7 +2,7 @@ import { defaultNS, fallbackLng, languages } from '@/constants/translation'
 
 export function getOptions(lng = fallbackLng, namespace = defaultNS) {
   return {
-    // debug: true,
+    languages,
     supportedLngs: languages,
     fallbackLng,
     lng,

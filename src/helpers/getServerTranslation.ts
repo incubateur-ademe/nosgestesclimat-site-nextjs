@@ -8,10 +8,16 @@ export async function getServerTranslation(
   const resolvedParams = await params
   const locale = resolvedParams.locale
 
-  const i18nextInstance = await initI18next(locale)
+  const i18nextInstance = await initI18next(locale, 'ici')
 
   i18nextInstance.getFixedT(locale, 'translation', options?.keyPrefix ?? '')
-
+  console.log(
+    i18nextInstance.getFixedT(
+      locale,
+      Array.isArray(namespace) ? namespace[0] : namespace,
+      options?.keyPrefix ?? ''
+    )('Navigation principale')
+  )
   return {
     t: i18nextInstance.getFixedT(
       locale,
