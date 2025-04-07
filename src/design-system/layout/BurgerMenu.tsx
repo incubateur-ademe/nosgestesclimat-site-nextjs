@@ -50,11 +50,37 @@ export default function BurgerMenu({
 
   return (
     <div id="burger-menu">
+      <div className="absolute top-0 left-0 z-100">
+        <>
+          {isOpen && (
+            <div
+              className="fixed top-0 left-0 h-screen w-screen"
+              tabIndex={0}
+              onClick={handleClickMask as any}
+              onKeyDown={handleClickMask}
+              role="button"
+              aria-label={t('Fermer le menu')}
+            />
+          )}
+
+          <div
+            className={twMerge(
+              'fixed top-0 right-0 z-50 h-screen w-[90vw] max-w-[20rem] translate-x-full bg-white p-4 pt-16 opacity-0 shadow-md transition-all duration-300 ease-in-out',
+              isOpen ? 'translate-x-0 opacity-100' : ''
+            )}>
+            {children({
+              closeMenu: () => setIsOpen(false),
+              onFocus: () => setIsOpen(true),
+            })}
+          </div>
+        </>
+      </div>
+
       <Button
         color="text"
         aria-label={t('Menu déroulant')}
         onClick={handleToggleMenu}
-        className="absolute right-4 top-4 z-[52] flex h-[44px] w-[44px] flex-col items-center justify-center !p-0">
+        className="fixed top-4 right-4 z-100 flex h-[44px] w-[44px] flex-col items-center justify-center p-0!">
         <div
           className={`${genericHamburgerLine} ${
             isOpen ? 'translate-y-2 rotate-45' : ''
@@ -69,32 +95,6 @@ export default function BurgerMenu({
           }`}
         />
       </Button>
-
-      <div className="absolute left-0 top-0 z-[100]">
-        <>
-          {isOpen && (
-            <div
-              className="fixed left-0 top-0 h-screen w-screen"
-              tabIndex={0}
-              onClick={handleClickMask as any}
-              onKeyDown={handleClickMask}
-              role="button"
-              aria-label={t('Fermer le menu')}
-            />
-          )}
-
-          <div
-            className={twMerge(
-              'z-51 fixed right-0 top-0 h-screen w-[90vw] max-w-[20rem] translate-x-full bg-white p-4 pt-16 opacity-0 shadow-md transition-all duration-300 ease-in-out',
-              isOpen ? 'opacity-1 translate-x-0' : ''
-            )}>
-            {children({
-              closeMenu: () => setIsOpen(false),
-              onFocus: () => setIsOpen(true),
-            })}
-          </div>
-        </>
-      </div>
     </div>
   )
 }
