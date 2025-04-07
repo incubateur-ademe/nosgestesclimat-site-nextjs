@@ -147,7 +147,7 @@ Associations:
     link: https://www.weareclimates.org/
 Education:
   - title: 'Université Catholique de Lyon'
-    image: ucly.png
+    image: https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/ucly_d769ca6466.png
     link: https://www.ucly.fr/
   - title: 'L’académie du climat'
     image: academieduclimat.png
@@ -160,5 +160,5 @@ Lieux et événements:
     image: sogood.png
     link: https://www.sogoodfestival.com/
   - title: 'Silicet'
-    image: silicet.jpg
+    image: https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/silicet_6d2b068bee.jpg
     link: https://scilicet.fr/
