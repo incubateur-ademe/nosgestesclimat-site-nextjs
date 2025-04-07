@@ -44,17 +44,17 @@ export default async function CategoryGuidePage({
 }: DefaultPageProps<{ params: { category: string } }>) {
   const { category, locale } = await params
 
+  if (!categories[category]) {
+    return <Route404 />
+  }
+
   return (
     <div className="mx-auto my-4 flex flex-col items-start justify-center">
       <ButtonLink color="text" href="/guide">
         <span className="mr-2 inline-block">◀</span>
         <Trans locale={locale}>Retour</Trans>
       </ButtonLink>
-      {categories[category] ? (
-        <MDXContent locale={locale} contentFr={categories[category]} />
-      ) : (
-        <Route404 />
-      )}
+      <MDXContent locale={locale} contentFr={categories[category]} />
     </div>
   )
 }

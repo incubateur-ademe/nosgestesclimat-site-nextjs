@@ -31,7 +31,5 @@ export default async function ActionPlus({
     decodeURI(dottedNameArray.join(' . ').replaceAll('-', ' '))
   )
 
-  return (
-    <div>{action ? <Markdown>{action?.content}</Markdown> : <Route404 />}</div>
-  )
+  return action ? <Markdown>{action?.content}</Markdown> : <Route404 />
 }
