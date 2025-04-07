@@ -9,9 +9,7 @@ export function useClientTranslation(): ReturnType<typeof useTranslation> {
   const locale = useLocale()
   const prevLocale = useRef(locale)
 
-  const transObject = useTranslation('translation', {
-    lng: locale,
-  })
+  const transObject = useTranslation('translation')
 
   useEffect(() => {
     if (locale !== prevLocale.current) {
@@ -19,6 +17,14 @@ export function useClientTranslation(): ReturnType<typeof useTranslation> {
     }
     prevLocale.current = locale
   }, [locale, transObject])
+
+  if (typeof window === 'undefined') {
+    return {
+      ...transObject,
+      // @ts-expect-error This is a workaround to avoid hydration errors
+      t: (key: string, options?: Record<string, unknown>) => key,
+    }
+  }
 
   return transObject
 }
