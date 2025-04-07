@@ -8,7 +8,7 @@ export async function getServerTranslation(
   const resolvedParams = await params
   const locale = resolvedParams.locale
 
-  const i18nextInstance = await initI18next(locale, 'ici')
+  const i18nextInstance = await initI18next(locale)
 
   i18nextInstance.getFixedT(locale, 'translation', options?.keyPrefix ?? '')
 
