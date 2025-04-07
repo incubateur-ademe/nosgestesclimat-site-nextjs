@@ -7,12 +7,11 @@ import { useLocale } from './useLocale'
 
 export function useClientTranslation(): ReturnType<typeof useTranslation> {
   const locale = useLocale()
-
-  const transObject = useTranslation('translation')
-
   const prevLocale = useRef(locale)
 
-  console.log('client translation', transObject.t('Navigation principale'))
+  const transObject = useTranslation('translation', {
+    lng: locale,
+  })
 
   useEffect(() => {
     if (locale !== prevLocale.current) {

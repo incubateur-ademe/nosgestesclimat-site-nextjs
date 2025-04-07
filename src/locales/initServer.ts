@@ -9,12 +9,7 @@ const initI18next = async (language: string, log: string) => {
   const i18nInstance = createInstance()
   await i18nInstance
     .use(LanguageDetector)
-    .use(
-      resourcesToBackend((language: string) => {
-        console.log('language', language, log)
-        return translations[language]
-      })
-    )
+    .use(resourcesToBackend((language: string) => translations[language]))
     .use(initReactI18next)
     .init(getOptions(language))
 
