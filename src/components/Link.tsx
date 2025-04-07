@@ -12,6 +12,7 @@ import type {
   PropsWithChildren,
 } from 'react'
 import { useContext, useMemo } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   href: string
@@ -68,7 +69,10 @@ export default function Link({
   return (
     <NextLink
       href={localisedHref}
-      className={className}
+      className={twMerge(
+        'text-primary-700 hover:text-primary-800 break-words underline transition-colors',
+        className
+      )}
       onClick={shouldPreventNavigation ? preventNavigation : onClick}
       title={title}
       target={target}

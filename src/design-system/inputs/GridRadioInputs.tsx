@@ -47,7 +47,7 @@ export default function GridRadioInputs({
         <label htmlFor={name} className="w-full">
           <span
             className={` text-sm font-bold text-slate-900 ${
-              error ? '!text-red-700' : ''
+              error ? 'text-red-700!' : ''
             }`}>
             {label}
           </span>
@@ -79,7 +79,7 @@ export default function GridRadioInputs({
                       'relative flex cursor-pointer items-center justify-center rounded-xl border-2 border-gray-200 p-6 text-xl transition-colors',
                       'hover:border-gray-300 hover:bg-primary-50 focus:border-slate-300',
                       value === item.value
-                        ? '!border-primary-700 !bg-primary-50'
+                        ? 'border-primary-700! bg-primary-50!'
                         : ''
                     )}>
                     {value === item.value && (

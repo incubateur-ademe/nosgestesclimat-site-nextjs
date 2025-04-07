@@ -93,7 +93,7 @@ export default function ResendButton({
         )}
       </Button>
       {isRetryButtonDisabled && timeLeft > 0 && (
-        <span className="text-xs font-normal text-gray-500 !no-underline">
+        <span className="text-xs font-normal text-gray-500 no-underline!">
           <Trans>(Attendre</Trans> {timeLeft} <Trans>secondes)</Trans>
         </span>
       )}
