@@ -1,4 +1,3 @@
-import Route404 from '@/components/layout/404'
 import MDXContent from '@/components/mdx/MDXContent'
 import Trans from '@/components/translation/trans/TransServer'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
@@ -11,6 +10,7 @@ import guideNumerique from '@/locales/guide-mode-groupe/fr/guide-numerique.mdx'
 import guideServicesSocietaux from '@/locales/guide-mode-groupe/fr/guide-services-societaux.mdx'
 import guideTransport from '@/locales/guide-mode-groupe/fr/guide-transport.mdx'
 import type { DefaultPageProps } from '@/types'
+import { redirect } from 'next/navigation'
 
 const categories: Record<string, any> = {
   alimentation: guideAlimentation,
@@ -45,7 +45,7 @@ export default async function CategoryGuidePage({
   const { category, locale } = await params
 
   if (!categories[category]) {
-    return <Route404 />
+    return redirect('/404')
   }
 
   return (
