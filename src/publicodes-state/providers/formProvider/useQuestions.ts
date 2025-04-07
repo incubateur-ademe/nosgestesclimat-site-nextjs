@@ -94,7 +94,13 @@ export default function useQuestions({
         tempMissingVariables[dottedName] = 1
       })
 
-      return tempMissingVariables
+      // TEMP: Filter missing variables to only keep keys starting with "divers . textile"
+      const filteredMissingVariables = Object.fromEntries(
+        Object.entries(tempMissingVariables).filter(([key]) =>
+          key.startsWith('divers . textile')
+        )
+      )
+      return filteredMissingVariables
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [
