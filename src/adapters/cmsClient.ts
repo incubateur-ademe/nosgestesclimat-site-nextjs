@@ -172,3 +172,15 @@ export type BannerType = {
   startDate: string
   endDate: string
 } & DefaultAttributesType
+
+export type PartnerCategoryType = {
+  category: string
+}
+
+export type PartnerType = {
+  name: string
+  imageSrc: string
+  link: string
+  order: number
+  category: PartnerCategoryType
+}

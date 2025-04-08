@@ -1,3 +1,4 @@
+import type { PartnerType } from '@/adapters/cmsClient'
 import Trans from '@/components/translation/trans/TransServer'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Card from '@/design-system/layout/Card'
@@ -5,7 +6,7 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
-import ambassadeursYaml from '@/locales/ambassadeurs/fr/ambassadeurs.yaml'
+import { fetchPartners } from '@/services/cms/fetchPartners'
 import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 
@@ -19,12 +20,29 @@ export const generateMetadata = getCommonMetadata({
   },
 })
 
-const ambassadeurs = ambassadeursYaml as any
-const categories = Object.keys(ambassadeurs)
+const getPartnersByCategory = (partners: PartnerType[]) => {
+  return partners.reduce(
+    (acc, partner) => {
+      const accUpdated = { ...acc }
+      if (!Object.keys(acc).includes(partner.category.category)) {
+        accUpdated[partner.category.category] = []
+      }
+
+      accUpdated[partner.category.category].push(partner)
+
+      return accUpdated
+    },
+    {} as { [key: string]: PartnerType[] }
+  )
+}
 
 export default async function NosRelais({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation({ locale })
+
+  const partners = await fetchPartners()
+
+  const partnersByCategories = getPartnersByCategory(partners)
 
   return (
     <div>
@@ -83,40 +101,40 @@ export default async function NosRelais({ params }: DefaultPageProps) {
         />
       </div>
 
-      {categories.map((category: any) => (
-        <div key={category} className="mb-16">
-          <h2>{category}</h2>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {ambassadeurs[category].map((ambassadeur: any) => (
-              <Card
-                key={ambassadeur.title}
-                href={ambassadeur.link}
-                tag="a"
-                className="border-none bg-primary-50 no-underline"
-                target="_blank">
-                <Image
-                  src={'/images/ambassadeurs/' + ambassadeur.image}
-                  width="100"
-                  height="100"
-                  className="mx-auto mb-4 h-36 w-2/3 object-contain"
-                  alt={ambassadeur.title}
-                />
-                <p className="mb-4 font-bold">{ambassadeur.title}</p>
-                {ambassadeur.link ? (
+      {Object.entries(partnersByCategories).map(
+        ([category, partners]: [string, PartnerType[]]) => (
+          <div key={category} className="mb-16">
+            <h2>{category}</h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              {partners.map((partner) => (
+                <Card
+                  key={partner.name}
+                  href={partner.link}
+                  tag="a"
+                  className="bg-primary-50 border-none no-underline"
+                  target="_blank">
+                  <Image
+                    src={partner.imageSrc}
+                    width="100"
+                    height="100"
+                    className="mx-auto mb-4 h-36 w-2/3 object-contain"
+                    alt={partner.name}
+                  />
+                  <p className="mb-4 font-bold">{partner.name}</p>
                   <p className="my-0 underline">
                     {
-                      ambassadeur.link
+                      partner.link
                         .replace('https://', '')
                         .replace('www.', '')
                         .split('/')[0]
                     }
                   </p>
-                ) : null}
-              </Card>
-            ))}
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        )
+      )}
     </div>
   )
 }
