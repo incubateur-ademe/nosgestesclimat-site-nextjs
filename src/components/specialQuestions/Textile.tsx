@@ -5,24 +5,22 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
 import PencilIcon from '../icons/PencilIcon'
 
 type Props = { question: DottedName }
 export default function Textile({ question, ...props }: Props) {
-  const [isOpen, setIsOpen] = useState(false)
   const { numericValue: totalPiecesTextile } = useRule(
     'divers . textile . nombre total'
   )
-  const { setValue: setPreciseChoice } = useRule(
+  const { value: preciseChoice, setValue: setPreciseChoice } = useRule(
     'divers . textile . choix précis'
   )
   const { setValue } = useRule(question)
 
   useEffect(() => {
-    if (isOpen && totalPiecesTextile > 0) {
-      setPreciseChoice('oui')
+    if (preciseChoice && totalPiecesTextile > 0) {
       if (totalPiecesTextile <= 15) {
         setValue('minimum')
       }
@@ -32,28 +30,27 @@ export default function Textile({ question, ...props }: Props) {
       if (totalPiecesTextile > 35) {
         setValue('accro au shopping')
       }
-    } else {
-      setPreciseChoice('non')
     }
-
-    return
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen, totalPiecesTextile])
+  }, [preciseChoice, totalPiecesTextile])
 
   return (
     <>
       <Question
         question={question}
-        className={twMerge('mb-4', isOpen && 'pointer-events-none opacity-20')}
+        className={twMerge(
+          'mb-4',
+          preciseChoice && 'pointer-events-none opacity-20'
+        )}
         {...props}
       />
       <div className="mb-4 flex flex-col items-start">
         <Button
           color="link"
           size="xs"
-          onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
+          onClick={() => setPreciseChoice(preciseChoice ? 'non' : 'oui')}
           className="mb-2">
-          {isOpen ? (
+          {preciseChoice ? (
             <Trans>Fermer</Trans>
           ) : (
             <span className="flex items-center">
@@ -67,7 +64,7 @@ export default function Textile({ question, ...props }: Props) {
             </span>
           )}
         </Button>
-        {isOpen ? (
+        {preciseChoice ? (
           <div className="p-4">
             <Question
               question={'divers . textile . empreinte précise'}

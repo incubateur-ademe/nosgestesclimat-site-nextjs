@@ -93,7 +93,6 @@ export default function useQuestions({
       mustAskQuestions.forEach((dottedName) => {
         tempMissingVariables[dottedName] = 1
       })
-
       // TEMP: Filter missing variables to only keep keys starting with "divers . textile"
       const filteredMissingVariables = Object.fromEntries(
         Object.entries(tempMissingVariables).filter(([key]) =>
@@ -160,8 +159,10 @@ export default function useQuestions({
     [foldedSteps, everyQuestions]
   )
 
-  const tempRelevantQuestions = useMemo(
-    () => [
+  const tempRelevantQuestions = useMemo(() => {
+    const mustNotAskQuestions = ['divers . textile . empreinte précise']
+
+    return [
       /**
        * We add every answered questions to display and every not answered
        * questions to display to get every relevant questions
@@ -177,14 +178,13 @@ export default function useQuestions({
             everyMosaicChildrenWithParent[dottedName] || [],
         })
       ),
-    ],
-    [
-      relevantAnsweredQuestions,
-      remainingQuestions,
-      situation,
-      everyMosaicChildrenWithParent,
-    ]
-  )
+    ].filter((question) => !mustNotAskQuestions.includes(question))
+  }, [
+    relevantAnsweredQuestions,
+    remainingQuestions,
+    situation,
+    everyMosaicChildrenWithParent,
+  ])
 
   /**
    * There is a small delay between adding a question to the answered questions
