@@ -1180,6 +1180,21 @@ entries:
   Retrouvez toute l’expertise de: Retrouvez toute l’expertise de
   l’Agence de la Transition Écologique: l’Agence de la Transition Écologique
   "dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action.": "dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action."
+  Ananas: Ananas
+  Banane: Banane
+  Brocoli: Brocoli
+  Carotte: Carotte
+  Cerise: Cerise
+  Citron: Citron
+  Kiwi: Kiwi
+  Maïs: Maïs
+  Melon: Melon
+  Noix de coco: Noix de coco
+  Orange: Orange
+  Pastèque: Pastèque
+  Poire: Poire
+  Pomme: Pomme
+  Raisin: Raisin
   Aie, une erreur est survenue lors du chargement de la campagne. Si le problème persiste merci de nous envoyer un message via notre page de contact.: Aie, une erreur est survenue lors du chargement de la campagne. Si le problème persiste merci de nous envoyer un message via notre page de contact.
   Cette campagne comporte plus de {MAX_SIMULATIONS_FOR_DASHBOARD} simulations. Les statistiques globales ne sont pas disponibles pour le moment. Nous nous excusons pour la gêne occasionnée, nos équipes sont sur le coup.: Cette campagne comporte plus de {MAX_SIMULATIONS_FOR_DASHBOARD} simulations. Les statistiques globales ne sont pas disponibles pour le moment. Nous nous excusons pour la gêne occasionnée, nos équipes sont sur le coup.
   Chargement des résultats détaillés de campagne...: Chargement des résultats détaillés de campagne...
@@ -1237,3 +1252,6 @@ entries:
   Votre date de naissance, rejoindre une campagne - Nos Gestes Climat: Votre date de naissance, rejoindre une campagne - Nos Gestes Climat
   Votre email, rejoindre une campagne - Nos Gestes Climat: Votre email, rejoindre une campagne - Nos Gestes Climat
   Certaines organisations sont dotées d'un outil type MailinBlack, Altospam, etc., qui bloque parfois nos emails.: Certaines organisations sont dotées d'un outil type MailinBlack, Altospam, etc., qui bloque parfois nos emails.
+  Contenu: Contenu
+  Menu: Menu
+  Pied de page: Pied de page

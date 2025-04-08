@@ -25,33 +25,34 @@ export default function MetricCard({
   const isSelected = currentMetric === metric
 
   return (
-    <button
-      onClick={() => setCurrentMetric(metric)}
-      className={twMerge(
-        'pointer-events-auto relative flex! h-full flex-1 flex-col overflow-hidden rounded-xl border-[3px] border-primary-50 bg-white',
-        isSelected && 'border-primary-700 bg-primary-50'
-      )}
-      aria-label={
-        isSelected
-          ? t('Empreinte carbone, sélectionné, voir le détail ci-dessous')
-          : t("Sélectionner l'empreinte carbone, voir le détail ci-dessous")
-      }
-      {...props}>
-      <div className="absolute left-0 right-0 top-0 mx-1 border-b border-primary-200 py-1 text-center text-xs">
-        {metricTitle.mobile}
-      </div>
-
-      <div
+    <div className="flex-1 p-2">
+      <button
         className={twMerge(
-          'h-full w-full',
-          isSticky && 'pointer-events-none max-h-28 overflow-hidden lg:mt-6'
-        )}>
-        {children}
-      </div>
+          'border-primary-50 pointer-events-auto relative flex! h-full flex-1 flex-col overflow-hidden rounded-xl border-[3px] bg-white',
+          isSelected && 'border-primary-700 bg-primary-50'
+        )}
+        aria-label={
+          isSelected
+            ? t('Empreinte carbone, sélectionné, voir le détail ci-dessous')
+            : t("Sélectionner l'empreinte carbone, voir le détail ci-dessous")
+        }
+        {...props}>
+        <div className="border-primary-200 absolute top-0 right-0 left-0 mx-1 border-b py-1 text-center text-xs">
+          {metricTitle.mobile}
+        </div>
 
-      {!isSelected && (
-        <div className="absolute bottom-0 left-0 right-0 top-0 bg-white opacity-10 transition-opacity duration-300 group-hover:opacity-100" />
-      )}
-    </button>
+        <div
+          className={twMerge(
+            'h-full w-full',
+            isSticky && 'pointer-events-none max-h-28 overflow-hidden lg:mt-6'
+          )}>
+          {children}
+        </div>
+
+        {!isSelected && (
+          <div className="absolute top-0 right-0 bottom-0 left-0 bg-white opacity-10 transition-opacity duration-300 group-hover:opacity-100" />
+        )}
+      </button>
+    </div>
   )
 }

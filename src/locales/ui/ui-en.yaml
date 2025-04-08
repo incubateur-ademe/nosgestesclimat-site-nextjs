@@ -1616,6 +1616,21 @@ entries:
   Retrouvez toute l’expertise de: All the expertise of
   l’Agence de la Transition Écologique: the french Agency for Ecological Transition
   "dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action.": 'in the Nos Gestes Climat calculator: data, outlook, levers for action.'
+  Pomme: Apple
+  Citron: Lemon
+  Banane: Banana
+  Melon: Melon
+  Maïs: Maize
+  Orange: Orange
+  Carotte: Carrot
+  Raisin: Grape
+  Pastèque: Watermelon
+  Ananas: Pineapple
+  Cerise: Cherry
+  Noix de coco: Coconut
+  Brocoli: Broccoli
+  Kiwi: Kiwi
+  Poire: Pear
   Chargement des statistiques globales de campagne...: Loading global campaign statistics...
   Chargement des résultats détaillés de campagne...: Loading detailed campaign results...
   Aie, une erreur est survenue lors du chargement de la campagne. Si le problème persiste merci de nous envoyer un message via notre page de contact.: Oops, there was an error loading the campaign. If the problem persists, please send us a message via our contact page.
@@ -1672,3 +1687,6 @@ entries:
   Votre email, rejoindre une campagne - Nos Gestes Climat: Your email, join a campaign - Nos Gestes Climat
   'Mes gestes : comment réduire mon empreinte climat - Nos Gestes Climat': 'My actions: how to reduce my climate footprint - Nos Gestes Climat'
   Certaines organisations sont dotées d'un outil type MailinBlack, Altospam, etc., qui bloque parfois nos emails.: Some organisations have a tool such as MailinBlack, Altospam, etc., which sometimes blocks our emails.
+  Pied de page: Footer
+  Menu: Menu
+  Contenu: Content

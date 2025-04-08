@@ -5,6 +5,7 @@ import TrashIcon from '@/components/icons/TrashIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/inputs/Button'
 import ConfirmationModal from '@/design-system/modals/ConfirmationModal'
+import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
 import type { KeyboardEvent } from 'react'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -68,6 +69,7 @@ export default function ToggleField({
               type="checkbox"
               className="peer sr-only"
               checked={isEnabled}
+              tabIndex={-1}
               readOnly
             />
 
@@ -98,7 +100,7 @@ export default function ToggleField({
                   aria-checked="false"
                   aria-labelledby="toggleLabel"
                   aria-describedby="toggleDescription"
-                  onKeyDown={handleKeyboardEvent}
+                  onKeyDown={onKeyDownHelper(handleKeyboardEvent)}
                   onClick={handleMouseEvent}
                   className={twMerge(
                     "peer h-6 w-11 rounded-full bg-primary-200 after:absolute after:left-[2px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-focus:ring-primary-300",
