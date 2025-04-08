@@ -108,6 +108,9 @@ export function getMetadataObject({
     },
     alternates: alternatesWithLanguages,
     ...props,
-    ...(process.env.NODE_ENV !== 'production' ? { robots: noIndexObject } : {}),
+    // TODO: Stop using VERCEL_ENV when migration towards Scalingo is completed
+    ...((process.env.VERCEL_ENV || process.env.SCALINGO_ENV) !== 'production'
+      ? { robots: noIndexObject }
+      : {}),
   }
 }
