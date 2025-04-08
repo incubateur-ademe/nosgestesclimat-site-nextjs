@@ -14,7 +14,8 @@ import {
 } from '@/constants/accessibility'
 import { questionChooseAnswer } from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
-import { useRule } from '@/publicodes-state'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect, useRef, useState } from 'react'
@@ -53,7 +54,12 @@ export default function Question({
     plancher,
     plafond,
     warning,
+    category,
   } = useRule(question)
+
+  const { remainingQuestionsByCategories, questionsByCategories } = useForm()
+
+  const { t } = useClientTranslation()
 
   // It should happen only on mount (the component remount every time the question changes)
   const prevQuestion = useRef('')
@@ -69,6 +75,42 @@ export default function Question({
       prevQuestion.current = question
     }
   }, [type, numericValue, setTempValue, question])
+
+  const currentCategoryQuestions = questionsByCategories[category]
+
+  const [
+    currentCategoryRemainingQuestions,
+    setCurrentCategoryRemainingQuestions,
+  ] = useState(remainingQuestionsByCategories[category])
+
+  useEffect(() => {
+    if (
+      remainingQuestionsByCategories[category] &&
+      // This is to avoid triggering the useEffect that modifies the title when the question
+      // is answered === removed from remainingQuestionsByCategories
+      remainingQuestionsByCategories[category].includes(question)
+    ) {
+      setCurrentCategoryRemainingQuestions(
+        remainingQuestionsByCategories[category]
+      )
+    }
+  }, [remainingQuestionsByCategories, category, question])
+
+  // Update the page title when the question changes
+  useEffect(() => {
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+      document.title = t(
+        `Calculateur, question ${currentCategoryQuestions.length - currentCategoryRemainingQuestions.length + 1} sur ${currentCategoryQuestions.length} de la catégorie ${category} - Nos Gestes Climat`
+      )
+    }
+  }, [
+    currentCategoryQuestions,
+    currentCategoryRemainingQuestions,
+    category,
+    t,
+    question,
+    prevQuestion,
+  ])
 
   const [isOpen, setIsOpen] = useState(showInputsLabel ? false : true)
 

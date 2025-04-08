@@ -35,7 +35,7 @@ export default function NameForm({
 
   const { t } = useClientTranslation()
 
-  async function onSubmit({
+  function onSubmit({
     name,
     expectedNumberOfParticipants: newExpectedNumberOfParticipants,
   }: {
