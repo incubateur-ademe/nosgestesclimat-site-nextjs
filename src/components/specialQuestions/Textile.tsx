@@ -63,7 +63,7 @@ export default function Textile({ question, ...props }: Props) {
                 height="16"
               />
 
-              <Trans>Détailler ma garde-robe</Trans>
+              <Trans>Je détaille ma garde-robe pour être plus précis</Trans>
             </span>
           )}
         </Button>
