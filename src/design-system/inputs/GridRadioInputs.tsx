@@ -52,7 +52,7 @@ export default function GridRadioInputs({
         <label htmlFor={name} className="w-full">
           <span
             className={`text-sm font-bold text-slate-900 ${
-              error ? '!text-red-700' : ''
+              error ? 'text-red-700!' : ''
             }`}>
             {label}
           </span>
@@ -60,7 +60,7 @@ export default function GridRadioInputs({
       ) : null}
 
       {helperText ? (
-        <span className="mb-4 mt-1 text-xs text-slate-500">{helperText}</span>
+        <span className="mt-1 mb-4 text-xs text-slate-500">{helperText}</span>
       ) : null}
 
       <Controller
@@ -82,14 +82,14 @@ export default function GridRadioInputs({
                     data-cypress-id={dataCypressId + '-' + item.value}
                     aria-label={item.ariaLabel}
                     className={twMerge(
-                      'relative flex cursor-pointer items-center justify-center rounded-xl border-2 border-gray-200 p-6 text-xl transition-colors focus-within:ring-2 focus-within:ring-primary-700',
-                      'hover:border-gray-300 hover:bg-primary-50 focus:border-slate-300',
+                      'focus-within:ring-primary-700 relative flex cursor-pointer items-center justify-center rounded-xl border-2 border-gray-200 p-6 text-xl transition-colors focus-within:ring-2',
+                      'hover:bg-primary-50 hover:border-gray-300 focus:border-slate-300',
                       value === item.value
-                        ? '!border-primary-700 !bg-primary-50'
+                        ? 'border-primary-700! bg-primary-50!'
                         : ''
                     )}>
                     {value === item.value && (
-                      <CheckCircleIcon className="absolute bottom-1 right-1 fill-primary-700" />
+                      <CheckCircleIcon className="fill-primary-700 absolute right-1 bottom-1" />
                     )}
 
                     <input

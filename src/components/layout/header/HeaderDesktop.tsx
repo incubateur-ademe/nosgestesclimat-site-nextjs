@@ -54,10 +54,10 @@ export default function HeaderDesktop({ isSticky }: Props) {
   return (
     <header
       className={twMerge(
-        '!hidden h-20 items-center lg:!block',
-        isSticky ? 'sticky top-0 z-[300]' : ''
+        'hidden! h-20 items-center lg:block!',
+        isSticky ? 'sticky top-0 z-300' : ''
       )}>
-      <div className="absolute bottom-0 left-0 right-0 top-0 flex h-20 w-full items-center border-b bg-white shadow-sm">
+      <div className="absolute top-0 right-0 bottom-0 left-0 flex h-20 w-full items-center border-b border-gray-200 bg-white shadow-xs">
         <div className="mx-auto flex h-full w-full max-w-5xl items-center justify-between gap-6">
           <div className="flex origin-left items-center justify-center">
             <Logo onClick={() => trackEvent(headerClickLogo)} />
@@ -120,7 +120,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
                   href="/profil"
                   icon={ProfileIcon}
                   title={t('Profil')}
-                  className="whitespace-nowrap px-4"
+                  className="px-4 whitespace-nowrap"
                   onClick={() => trackEvent(headerClickProfil)}>
                   <Trans>Profil</Trans>
                 </NavLink>

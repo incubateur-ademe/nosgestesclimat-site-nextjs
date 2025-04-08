@@ -71,7 +71,7 @@ export default function AgirMainBlock() {
               exportSimulation()
             }}
             size="sm"
-            className="flex !h-11 max-h-11 items-center justify-center rounded-full leading-none">
+            className="flex h-11! max-h-11 items-center justify-center rounded-full leading-none">
             {isPending ? (
               <Loader />
             ) : (

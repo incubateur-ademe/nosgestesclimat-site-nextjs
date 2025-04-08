@@ -20,13 +20,13 @@ export type ButtonProps = {
 
 export const colorClassNames = {
   primary:
-    'text-white bg-primary-700 border-2 border-primary-700 shadow-sm hover:text-white hover:bg-primary-800',
+    'text-white bg-primary-700 border-2 border-primary-700 shadow-xs hover:text-white hover:bg-primary-800',
   secondary:
-    'border-solid border-primary-700 border-2 text-primary-700 bg-transparent shadow-sm hover:text-primary-700 hover:bg-primary-100 hover:border-primary-700',
+    'border-solid border-primary-700 border-2 text-primary-700 bg-transparent shadow-xs hover:text-primary-700 hover:bg-primary-100 hover:border-primary-700',
   emerald:
-    'text-logement-400 bg-emerald-light border-2 border-emerald-dark shadow-sm hover:text-white hover:bg-logement-400 hover:text-emerald-dark hover:border-emerald-dark',
+    'text-logement-400 bg-emerald-light border-2 border-emerald-dark shadow-xs hover:text-white hover:bg-logement-400 hover:text-emerald-dark hover:border-emerald-dark',
   text: 'text-primary-700 bg-transparent border-2 border-transparent shadow-none hover:bg-primary-200 hover:text-primary-700 hover:border-primary-200',
-  link: 'text-primary-700 bg-transparent border-2 border-transparent shadow-none hover:text-primary-700 underline !px-1',
+  link: 'text-primary-700 bg-transparent border-2 border-transparent shadow-none hover:text-primary-700 underline px-1!',
 }
 
 export const sizeClassNames = {
@@ -38,7 +38,7 @@ export const sizeClassNames = {
 }
 
 export const baseClassNames =
-  'inline-flex items-center justify-center whitespace-nowrap rounded-full font-bold no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-primary-700 focus:ring-offset-[2px] aria-disabled:opacity-50 !leading-none'
+  'inline-flex items-center justify-center whitespace-nowrap rounded-full font-bold no-underline transition-colors focus:outline-hidden focus:ring-2 focus:ring-primary-700 focus:ring-offset-3 aria-disabled:opacity-50 leading-none!'
 
 export default function Button({
   onClick,
