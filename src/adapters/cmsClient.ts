@@ -181,6 +181,7 @@ export type PartnerType = {
   name: string
   imageSrc: string
   link: string
-  order: number
+  displayOrder?: number
   category: PartnerCategoryType
+  displayOnLandingPage?: boolean
 }

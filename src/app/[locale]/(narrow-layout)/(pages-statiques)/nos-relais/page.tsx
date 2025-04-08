@@ -63,11 +63,11 @@ export default async function NosRelais({ params }: DefaultPageProps) {
                 href="https://accelerateur-transition-ecologique-ademe.notion.site/Int-grer-Nos-Gestes-Climat-en-iframe-abdeb175baf84143922006964d80348c"
                 target="_blank"
                 rel="noopener noreferrer">
-                l’intégration du calculateur
+                l'intégration du calculateur
               </a>{' '}
               sur leur site internet ou sa diffusion via{' '}
               <InlineLink href="/organisations">des campagnes</InlineLink>{' '}
-              (mail, réseaux sociaux et / ou affichage). C’est majoritairement
+              (mail, réseaux sociaux et / ou affichage). C'est majoritairement
               grâce à eux que nous sensibilisons près de 2 000 nouvelles
               personnes en moyenne chaque jour et nous les en remercions.
             </Trans>
@@ -86,7 +86,7 @@ export default async function NosRelais({ params }: DefaultPageProps) {
             <Trans locale={locale}>
               N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat,
               qui est et restera un service public, indépendant et gratuit de
-              l’ADEME.
+              l'ADEME.
             </Trans>
           </p>
         </div>
