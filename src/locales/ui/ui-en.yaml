@@ -1653,3 +1653,6 @@ entries:
   Nombre de jours, semaines ou mois à afficher: Number of days, weeks or months to display
   simulations terminées ce mois-ci (en cours): simulations completed this month (in progress)
   Certaines organisations sont dotées d'un outil type MailinBlack, Altospam, etc., qui bloque parfois nos emails.: Some organisations have a tool such as MailinBlack, Altospam, etc., which sometimes blocks our emails.
+  Pied de page: Footer
+  Menu: Menu
+  Contenu: Content
