@@ -4,8 +4,8 @@ import Trans from '@/components/translation/trans/TransServer'
 import { noIndexObject } from '@/constants/metadata'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import {
   getLandingClickCTARestart,
   getLandingClickCTAResults,
@@ -16,24 +16,20 @@ import type { DefaultPageProps } from '@/types'
 import { headers } from 'next/headers'
 import InteractiveIllustration from '../_components/InteractiveIllustration'
 
-export async function generateMetadata({ params }: DefaultPageProps) {
-  const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
-
-  return getMetadataObject({
-    locale,
-    title: t('Calculez votre empreinte carbone et eau en 10 minutes !'),
-    description: t(
-      "2 millions de personnes ont déjà calculé leur empreinte sur le climat avec le calculateur Nos Gestes Climat ! Et vous, qu'attendez-vous pour faire le test ?"
-    ),
-    image:
-      'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/calculer_empreinte_carbone_et_eau_7d061171e4.png',
-    alternates: {
-      canonical: '',
-    },
-    robots: noIndexObject,
-  })
-}
+export const generateMetadata = getCommonMetadata({
+  title: t(
+    'Nos Gestes Climat, calculez votre empreinte climatique, mode intégré'
+  ),
+  description: t(
+    "2 millions de personnes ont déjà calculé leur empreinte sur le climat avec le calculateur Nos Gestes Climat ! Et vous, qu'attendez-vous pour faire le test ?"
+  ),
+  alternates: {
+    canonical: '/accueil-iframe',
+  },
+  robots: noIndexObject,
+  image:
+    'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/calculer_empreinte_carbone_et_eau_7d061171e4.png',
+})
 
 export default async function Homepage({ params }: DefaultPageProps) {
   const { locale } = await params

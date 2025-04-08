@@ -50,7 +50,7 @@ export default function Email() {
   }, [])
 
   const onSubmit = useCallback(
-    async ({ email }: Inputs) => {
+    ({ email }: Inputs) => {
       // Email is not mandatory
       if (!email) {
         router.push(getLinkToNextInfosPage({ curPage: EMAIL_PAGE }))

@@ -125,7 +125,7 @@ export default function Commencer() {
 
       <div className="flex flex-col items-start gap-6">
         <Button
-          onClick={async () => {
+          onClick={() => {
             if (status === 'notStarted') {
               trackEvent(infosCommencerClickCtaCommencer)
             }

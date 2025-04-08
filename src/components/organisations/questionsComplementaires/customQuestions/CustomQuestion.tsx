@@ -26,7 +26,7 @@ export default function CustomQuestion({
 }: Props) {
   const [isEditing, setIsEditing] = useState(false)
 
-  async function handleUpdateCustomQuestions({
+  function handleUpdateCustomQuestions({
     question,
     value,
   }: {
@@ -50,7 +50,7 @@ export default function CustomQuestion({
     onChange({ customAdditionalQuestions })
   }
 
-  async function handleDeleteQuestion(question: string) {
+  function handleDeleteQuestion(question: string) {
     const customAdditionalQuestions = [
       ...(poll?.customAdditionalQuestions || []),
     ]
