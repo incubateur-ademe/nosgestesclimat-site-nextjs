@@ -1,8 +1,7 @@
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { TransPropsWithInterpolation } from '@/types/translation'
 import type { ReactElement } from 'react'
-import { Trans as TransReactI18n } from 'react-i18next'
-
+import { Trans as TransReactI18n } from 'react-i18next/TransWithoutContext'
 export default async function Trans({
   locale,
   children,
