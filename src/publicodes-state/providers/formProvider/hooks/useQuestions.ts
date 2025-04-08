@@ -84,7 +84,6 @@ export default function useQuestions({
       MUST_ASK_QUESTIONS.forEach((dottedName) => {
         tempMissingVariables[dottedName] = 1
       })
-
       // TEMP: Filter missing variables to only keep keys starting with "divers . textile"
       const filteredMissingVariables = Object.fromEntries(
         Object.entries(tempMissingVariables).filter(([key]) =>
