@@ -44,35 +44,40 @@ export default function Textile({ question, ...props }: Props) {
         )}
         {...props}
       />
-      <div className="mb-4 flex flex-col items-start">
-        <Button
-          color="link"
-          size="xs"
-          onClick={() => setPreciseChoice(preciseChoice ? 'non' : 'oui')}
-          className="mb-2">
-          {preciseChoice ? (
-            <Trans>Fermer</Trans>
-          ) : (
-            <span className="flex items-center">
-              <PencilIcon
-                className="stroke-primary-700 mr-2"
-                width="16"
-                height="16"
-              />
+      <div className="flex flex-col items-start text-sm md:flex-row md:items-center">
+        <span>
+          <Trans>Pour plus de précision:</Trans>
+        </span>
+        <div>
+          <Button
+            color="link"
+            size="xs"
+            onClick={() => setPreciseChoice(preciseChoice ? 'non' : 'oui')}
+            className="mt-1 md:mt-0 md:ml-2">
+            {preciseChoice ? (
+              <Trans>Fermer</Trans>
+            ) : (
+              <span className="flex items-center">
+                <PencilIcon
+                  className="stroke-primary-700 mr-2"
+                  width="16"
+                  height="16"
+                />
 
-              <Trans>Je détaille ma garde-robe pour être plus précis</Trans>
-            </span>
-          )}
-        </Button>
-        {preciseChoice ? (
-          <div className="p-4">
-            <Question
-              question={'divers . textile . empreinte précise'}
-              {...props}
-            />
-          </div>
-        ) : null}
+                <Trans>Je détaille ma garde-robe</Trans>
+              </span>
+            )}
+          </Button>
+        </div>
       </div>
+      {preciseChoice ? (
+        <div className="p-4">
+          <Question
+            question={'divers . textile . empreinte précise'}
+            {...props}
+          />
+        </div>
+      ) : null}
     </>
   )
 }
