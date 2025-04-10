@@ -60,10 +60,16 @@ export default function MosaicBooleanInput({
     <div className="flex md:block">
       <label
         className={twMerge(
-          `relative flex h-full items-center gap-2 rounded-xl border bg-white px-4 py-2 text-left transition-colors focus-within:ring-2 focus-within:ring-primary-700`,
+          `focus-within:ring-primary-700 relative flex h-full items-center gap-2 rounded-xl border bg-white px-4 py-2 text-left transition-colors focus-within:ring-2`,
           buttonClassNames[status]
         )}
-        htmlFor={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}>
+        // We set the input id via the props for the first element, in order to link the question
+        // label to the inputs
+        htmlFor={
+          index === 0
+            ? DEFAULT_FOCUS_ELEMENT_ID
+            : `${DEFAULT_FOCUS_ELEMENT_ID}-${index}`
+        }>
         <input
           type="checkbox"
           disabled={isInactive}
@@ -104,7 +110,7 @@ export default function MosaicBooleanInput({
           ) : null}
         </div>
         {isInactive ? (
-          <div className="absolute bottom-1 right-4 top-1 flex -rotate-12 items-center justify-center rounded-xl border-2 border-black bg-white p-1 text-xs font-semibold text-black">
+          <div className="absolute top-1 right-4 bottom-1 flex -rotate-12 items-center justify-center rounded-xl border-2 border-black bg-white p-1 text-xs font-semibold text-black">
             <Trans>Bientôt disponible</Trans>
           </div>
         ) : null}
