@@ -99,6 +99,7 @@ export default function Question({
           label={label}
           description={description}
           id="question-label"
+          htmlFor={DEFAULT_FOCUS_ELEMENT_ID}
         />
 
         <Suggestions
@@ -154,7 +155,7 @@ export default function Question({
                 isMissing={isMissing}
                 data-cypress-id={question}
                 label={label || ''}
-                id={DEFAULT_FOCUS_ELEMENT_ID}
+                firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
                 aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
                 aria-labelledby="question-label"
               />
@@ -176,7 +177,7 @@ export default function Question({
                 isMissing={isMissing}
                 data-cypress-id={question}
                 label={label || ''}
-                id={DEFAULT_FOCUS_ELEMENT_ID}
+                firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
                 aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
                 aria-labelledby="question-label"
               />
@@ -188,6 +189,8 @@ export default function Question({
                 questionsOfMosaic={questionsOfMosaicFromParent}
                 aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
                 aria-labelledby="question-label"
+                firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
+                label={label || ''}
               />
             )}
           </>

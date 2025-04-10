@@ -29,6 +29,7 @@ type Props = {
   className?: string
   titleClassName?: string
   id?: string
+  htmlFor?: string
 }
 
 const sizeClassNames = { sm: 'mb-1 text-sm', md: 'mb-3 text-lg md:text-2xl' }
@@ -41,6 +42,7 @@ export default function Label({
   className,
   titleClassName,
   id,
+  htmlFor,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -55,6 +57,7 @@ export default function Label({
           className
         )}
         id={id}
+        htmlFor={htmlFor}
         aria-label={label}
         // This is a hack to avoid the default <label> element behavior
         // of triggering the first input (here the button) it
@@ -90,7 +93,7 @@ export default function Label({
       {question === 'logement . âge' && (
         <div className="mt-2 mb-6 text-xs italic md:text-sm">
           <Trans>
-            Un petit doute ? L’info sera sûrement dans votre contrat d’assurance
+            Un petit doute ? L'info sera sûrement dans votre contrat d'assurance
             logement.
           </Trans>
         </div>
