@@ -29,6 +29,7 @@ type Props = {
   className?: string
   titleClassName?: string
   id?: string
+  htmlFor?: string
 }
 
 const sizeClassNames = { sm: 'mb-1 text-sm', md: 'mb-3 text-lg md:text-2xl' }
@@ -41,6 +42,7 @@ export default function Label({
   className,
   titleClassName,
   id,
+  htmlFor,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -55,11 +57,12 @@ export default function Label({
           className
         )}
         id={id}
+        htmlFor={htmlFor}
         aria-label={label}
         // This is a hack to avoid the default <label> element behavior
         // of triggering the first input (here the button) it
         onClick={(e) => e.preventDefault()}>
-        <h1
+        <h2
           className={twMerge(
             'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
             titleClassName
@@ -67,7 +70,7 @@ export default function Label({
           tabIndex={0}
           id={QUESTION_DESCRIPTION_BUTTON_ID}>
           <Markdown>{label}</Markdown>
-        </h1>{' '}
+        </h2>{' '}
         {description ? (
           <Button
             type="button"
@@ -88,9 +91,10 @@ export default function Label({
         ) : null}
       </label>
       {question === 'logement . âge' && (
-        <div className="mb-6 mt-2 text-xs italic md:text-sm">
+        <div className="mt-2 mb-6 text-xs italic md:text-sm">
           <Trans>
-            Un petit doute ? L’info sera sûrement dans votre contrat d’assurance logement.
+            Un petit doute ? L'info sera sûrement dans votre contrat d'assurance
+            logement.
           </Trans>
         </div>
       )}
@@ -99,8 +103,8 @@ export default function Label({
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.2 }}
-          className="mb-3 origin-top rounded-xl border-2 border-primary-50 bg-gray-100 p-3 text-sm">
-          <Markdown className="[&>blockquote]:mb-2 [&>blockquote]:mt-0 [&>blockquote]:p-0 [&>blockquote]:text-default [&>p]:mb-2">
+          className="border-primary-50 mb-3 origin-top rounded-xl border-2 bg-gray-100 p-3 text-sm">
+          <Markdown className="[&>blockquote]:text-default [&>blockquote]:mt-0 [&>blockquote]:mb-2 [&>blockquote]:p-0 [&>p]:mb-2">
             {description}
           </Markdown>{' '}
           <Button
