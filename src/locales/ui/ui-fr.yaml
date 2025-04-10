@@ -1180,6 +1180,21 @@ entries:
   Retrouvez toute l’expertise de: Retrouvez toute l’expertise de
   l’Agence de la Transition Écologique: l’Agence de la Transition Écologique
   "dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action.": "dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action."
+  Ananas: Ananas
+  Banane: Banane
+  Brocoli: Brocoli
+  Carotte: Carotte
+  Cerise: Cerise
+  Citron: Citron
+  Kiwi: Kiwi
+  Maïs: Maïs
+  Melon: Melon
+  Noix de coco: Noix de coco
+  Orange: Orange
+  Pastèque: Pastèque
+  Poire: Poire
+  Pomme: Pomme
+  Raisin: Raisin
   Aie, une erreur est survenue lors du chargement de la campagne. Si le problème persiste merci de nous envoyer un message via notre page de contact.: Aie, une erreur est survenue lors du chargement de la campagne. Si le problème persiste merci de nous envoyer un message via notre page de contact.
   Cette campagne comporte plus de {MAX_SIMULATIONS_FOR_DASHBOARD} simulations. Les statistiques globales ne sont pas disponibles pour le moment. Nous nous excusons pour la gêne occasionnée, nos équipes sont sur le coup.: Cette campagne comporte plus de {MAX_SIMULATIONS_FOR_DASHBOARD} simulations. Les statistiques globales ne sont pas disponibles pour le moment. Nous nous excusons pour la gêne occasionnée, nos équipes sont sur le coup.
   Chargement des résultats détaillés de campagne...: Chargement des résultats détaillés de campagne...
@@ -1202,4 +1217,41 @@ entries:
   Voir le détail ci-dessous: Voir le détail ci-dessous
   Découvrir: Découvrir
   simulations terminées ce mois-ci (en cours): simulations terminées ce mois-ci (en cours)
+  Calculateur d’empreinte carbone et eau - Nos Gestes Climat: Calculateur d’empreinte carbone et eau - Nos Gestes Climat
+  Créer un groupe, étape 1 sur 2 - Nos Gestes Climat: Créer un groupe, étape 1 sur 2 - Nos Gestes Climat
+  Créer un groupe, étape 2 sur 2 - Nos Gestes Climat: Créer un groupe, étape 2 sur 2 - Nos Gestes Climat
+  Créer une campagne pour mon organisation - Nos Gestes Climat: Créer une campagne pour mon organisation - Nos Gestes Climat
+  Demander une démo de notre calculateur pour les organisations - Nos Gestes Climat: Demander une démo de notre calculateur pour les organisations - Nos Gestes Climat
+  Documentation de notre calculateur d'empreinte climatique - Nos Gestes Climat: Documentation de notre calculateur d'empreinte climatique - Nos Gestes Climat
+  'Documentation, de la règle : {{ruleTitle}} - Nos Gestes Climat': 'Documentation, de la règle : {{ruleTitle}} - Nos Gestes Climat'
+  Documentation, règle du calculateur - Nos Gestes Climat: Documentation, règle du calculateur - Nos Gestes Climat
+  'Empreinte carbone : comprendre, mesurer, réduire son impact - Nos Gestes Climat': 'Empreinte carbone : comprendre, mesurer, réduire son impact - Nos Gestes Climat'
+  'Empreinte eau : comprendre, évaluer, économiser l’eau - Nos Gestes Climat': 'Empreinte eau : comprendre, évaluer, économiser l’eau - Nos Gestes Climat'
+  International - Nos Gestes Climat: International - Nos Gestes Climat
+  Le calculateur Nos Gestes Climat, pour les organisations: Le calculateur Nos Gestes Climat, pour les organisations
+  Les nouveautés du calculateur - Nos Gestes Climat: Les nouveautés du calculateur - Nos Gestes Climat
+  Liste des questions du calculateur - Nos Gestes Climat: Liste des questions du calculateur - Nos Gestes Climat
+  Mes empreintes carbone et eau - Nos Gestes Climat: Mes empreintes carbone et eau - Nos Gestes Climat
+  Mes empreintes carbone et eau partagées - Nos Gestes Climat: Mes empreintes carbone et eau partagées - Nos Gestes Climat
+  'Mes gestes : comment réduire mon empreinte climat - Nos Gestes Climat': 'Mes gestes : comment réduire mon empreinte climat - Nos Gestes Climat'
+  Mes groupes d'amis, calculer vos empreintes carbone et eau à plusieurs - Nos Gestes Climat: Mes groupes d'amis, calculer vos empreintes carbone et eau à plusieurs - Nos Gestes Climat
+  Mon espace organisation - Nos Gestes Climat: Mon espace organisation - Nos Gestes Climat
+  Mon groupe - Nos Gestes Climat: Mon groupe - Nos Gestes Climat
+  Mon profil - Nos Gestes Climat: Mon profil - Nos Gestes Climat
+  Nos Gestes Climat, calculez votre empreinte carbone et eau: Nos Gestes Climat, calculez votre empreinte carbone et eau
+  Nos Gestes Climat, calculez votre empreinte climatique, mode intégré: Nos Gestes Climat, calculez votre empreinte climatique, mode intégré
+  Paramètres de ma campagne - Nos Gestes Climat: Paramètres de ma campagne - Nos Gestes Climat
+  Paramètres de mon organisation - Nos Gestes Climat: Paramètres de mon organisation - Nos Gestes Climat
+  Question personnalisée, rejoindre une campagne - Nos Gestes Climat: Question personnalisée, rejoindre une campagne - Nos Gestes Climat
+  Questions fréquentes - Nos Gestes Climat: Questions fréquentes - Nos Gestes Climat
+  Quiz - Nos Gestes Climat: Quiz - Nos Gestes Climat
+  Rejoindre une campagne - Nos Gestes Climat: Rejoindre une campagne - Nos Gestes Climat
+  Résultats de ma campagne - Nos Gestes Climat: Résultats de ma campagne - Nos Gestes Climat
+  Tutoriel du calculateur - Nos Gestes Climat: Tutoriel du calculateur - Nos Gestes Climat
+  Votre code postal, rejoindre une campagne - Nos Gestes Climat: Votre code postal, rejoindre une campagne - Nos Gestes Climat
+  Votre date de naissance, rejoindre une campagne - Nos Gestes Climat: Votre date de naissance, rejoindre une campagne - Nos Gestes Climat
+  Votre email, rejoindre une campagne - Nos Gestes Climat: Votre email, rejoindre une campagne - Nos Gestes Climat
   Certaines organisations sont dotées d'un outil type MailinBlack, Altospam, etc., qui bloque parfois nos emails.: Certaines organisations sont dotées d'un outil type MailinBlack, Altospam, etc., qui bloque parfois nos emails.
+  Contenu: Contenu
+  Menu: Menu
+  Pied de page: Pied de page

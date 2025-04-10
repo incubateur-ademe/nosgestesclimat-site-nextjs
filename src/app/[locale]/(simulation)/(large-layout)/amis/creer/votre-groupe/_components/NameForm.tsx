@@ -132,7 +132,11 @@ export default function NameForm() {
         helperText={<Trans>Pour faire joli et le reconnaitre !</Trans>}
         name="emoji"
         data-cypress-id="group-select-emoji"
-        items={GROUP_EMOJIS.map((emoji) => ({ value: emoji, label: emoji }))}
+        items={GROUP_EMOJIS.map(({ emoji, label }) => ({
+          value: emoji,
+          label: emoji,
+          ariaLabel: t(label),
+        }))}
         rules={{ required: t('Ce champ est obligatoire.') }}
         error={errors.emoji?.message}
       />
