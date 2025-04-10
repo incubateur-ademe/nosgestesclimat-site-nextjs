@@ -30,6 +30,7 @@ type Props = {
   titleClassName?: string
   headingLevel?: number
   id?: string
+  htmlFor?: string
 }
 
 const sizeClassNames = { sm: 'mb-1 text-sm', md: 'mb-3 text-lg md:text-2xl' }
@@ -43,6 +44,7 @@ export default function Label({
   titleClassName,
   headingLevel = 1,
   id,
+  htmlFor,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -57,11 +59,12 @@ export default function Label({
           className
         )}
         id={id}
+        htmlFor={htmlFor}
         aria-label={label}
         // This is a hack to avoid the default <label> element behavior
         // of triggering the first input (here the button) it
         onClick={(e) => e.preventDefault()}>
-        <h1
+        <h2
           className={twMerge(
             'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
             titleClassName
@@ -70,7 +73,7 @@ export default function Label({
           tabIndex={0}
           id={QUESTION_DESCRIPTION_BUTTON_ID}>
           <Markdown>{label}</Markdown>
-        </h1>{' '}
+        </h2>{' '}
         {description ? (
           <Button
             type="button"
@@ -93,7 +96,7 @@ export default function Label({
       {question === 'logement . âge' && (
         <div className="mt-2 mb-6 text-xs italic md:text-sm">
           <Trans>
-            Un petit doute ? L’info sera sûrement dans votre contrat d’assurance
+            Un petit doute ? L'info sera sûrement dans votre contrat d'assurance
             logement.
           </Trans>
         </div>
