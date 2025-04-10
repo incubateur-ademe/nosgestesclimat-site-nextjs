@@ -78,39 +78,16 @@ export default function Question({
 
   const currentCategoryQuestions = questionsByCategories[category]
 
-  const [
-    currentCategoryRemainingQuestions,
-    setCurrentCategoryRemainingQuestions,
-  ] = useState(remainingQuestionsByCategories[category])
-
-  useEffect(() => {
-    if (
-      remainingQuestionsByCategories[category] &&
-      // This is to avoid triggering the useEffect that modifies the title when the question
-      // is answered === removed from remainingQuestionsByCategories
-      remainingQuestionsByCategories[category].includes(question)
-    ) {
-      setCurrentCategoryRemainingQuestions(
-        remainingQuestionsByCategories[category]
-      )
-    }
-  }, [remainingQuestionsByCategories, category, question])
+  const refCurrentCategoryQuestions = useRef(currentCategoryQuestions)
 
   // Update the page title when the question changes
   useEffect(() => {
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       document.title = t(
-        `Calculateur, question ${currentCategoryQuestions.length - currentCategoryRemainingQuestions.length + 1} sur ${currentCategoryQuestions.length} de la catégorie ${category} - Nos Gestes Climat`
+        `Calculateur, question ${refCurrentCategoryQuestions.current.indexOf(question) + 1} sur ${currentCategoryQuestions.length} de la catégorie ${category} - Nos Gestes Climat`
       )
     }
-  }, [
-    currentCategoryQuestions,
-    currentCategoryRemainingQuestions,
-    category,
-    t,
-    question,
-    prevQuestion,
-  ])
+  }, [currentCategoryQuestions, category, t, question, prevQuestion])
 
   const [isOpen, setIsOpen] = useState(showInputsLabel ? false : true)
 
