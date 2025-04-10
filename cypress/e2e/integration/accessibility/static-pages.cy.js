@@ -2,10 +2,10 @@ import 'cypress-axe'
 
 // Define the pages to test
 const staticPagesToTest = [
-  '/', // Fails: React-slick is not accessible
+  '/',
   '/a-propos',
-  '/blog', // Fails: React-slick is not accessible
-  '/blog/environnement', // React-slick is not accessible
+  '/blog',
+  '/blog/environnement',
   '/blog/environnement/definition-empreinte-carbone', // image alt are redundant
   '/nos-relais',
   '/personas',

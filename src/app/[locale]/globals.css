@@ -694,31 +694,6 @@ html[data-useragent*='Trident'] #js {
   animation-fill-mode: forwards;
 }
 
-.slick-track {
-  display: flex !important;
-}
-
-.slick-slide {
-  height: inherit !important;
-}
-
-.slick-slide > div {
-  height: 100%;
-}
-
-.slick-dots {
-  @apply flex! items-center justify-center gap-2 md:ml-[200px] md:justify-start;
-}
-.slick-dots li {
-  @apply flex!;
-}
-.slick-dots > li > button {
-  @apply border-primary-700 h-3 w-3 rounded-full border-2 text-[0px] transition-all duration-500;
-}
-.slick-active > button {
-  @apply bg-primary-700 w-8!;
-}
-
 .custom-scrollbar {
   scrollbar-width: none; /* For Firefox */
   -ms-overflow-style: none; /* For Internet Explorer and Edge */
