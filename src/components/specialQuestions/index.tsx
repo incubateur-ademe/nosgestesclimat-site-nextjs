@@ -1,5 +1,6 @@
 import Avion from './Avion'
 import Plats from './Plats'
+import Textile from './Textile'
 import Voiture from './Voiture'
 
 type Props = {
@@ -36,6 +37,13 @@ const specialQuestions: Record<string, any> = {
     <Voiture
       key="transport . voiture . km"
       question="transport . voiture . km"
+      {...props}
+    />
+  ),
+  'divers . textile . volume': (props: Props) => (
+    <Textile
+      key="divers . textile . volume"
+      question="divers . textile . volume"
       {...props}
     />
   ),
