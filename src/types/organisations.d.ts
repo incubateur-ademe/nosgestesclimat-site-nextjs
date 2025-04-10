@@ -2,7 +2,7 @@ import type { OrganisationTypeEnum } from '@/constants/organisations/organisatio
 import type { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
 import type { SimulationAdditionalQuestionAnswerType } from '@/constants/organisations/simulationAdditionalQuestionAnswerType'
 import type { ComputedResults, Situation } from '@/publicodes-state/types'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, FunFacts } from '@incubateur-ademe/nosgestesclimat'
 
 type CustomAdditionalQuestions = {
   question: string
@@ -67,6 +67,7 @@ type BaseOrganisationPoll = {
     finished: number
     hasParticipated: boolean
   }
+  funFacts?: FunFacts | null
 }
 
 export type OrganisationPoll = BaseOrganisationPoll & {
