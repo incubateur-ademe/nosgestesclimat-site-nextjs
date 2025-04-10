@@ -65,7 +65,8 @@ export default function DidYouKnowSlider({
           onAutoplayPlay={(slide: unknown, nextSlideIndex: number) =>
             setCurrentSlide(nextSlideIndex)
           }
-          className="relative max-w-[594px]">
+          className="relative max-w-[594px]"
+          role="group">
           {slides.map((slide, index) => (
             <SplideSlide
               className="mx-auto flex! w-full max-w-[90vw] flex-col items-start gap-10 md:flex-row"
