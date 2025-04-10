@@ -28,6 +28,7 @@ type Props = {
   size?: QuestionSize
   className?: string
   titleClassName?: string
+  headingLevel?: number
   id?: string
 }
 
@@ -40,6 +41,7 @@ export default function Label({
   size = 'md',
   className,
   titleClassName,
+  headingLevel = 1,
   id,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false)
@@ -64,6 +66,7 @@ export default function Label({
             'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
             titleClassName
           )}
+          aria-level={headingLevel}
           tabIndex={0}
           id={QUESTION_DESCRIPTION_BUTTON_ID}>
           <Markdown>{label}</Markdown>
@@ -88,9 +91,10 @@ export default function Label({
         ) : null}
       </label>
       {question === 'logement . âge' && (
-        <div className="mb-6 mt-2 text-xs italic md:text-sm">
+        <div className="mt-2 mb-6 text-xs italic md:text-sm">
           <Trans>
-            Un petit doute ? L’info sera sûrement dans votre contrat d’assurance logement.
+            Un petit doute ? L’info sera sûrement dans votre contrat d’assurance
+            logement.
           </Trans>
         </div>
       )}
@@ -99,8 +103,8 @@ export default function Label({
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.2 }}
-          className="mb-3 origin-top rounded-xl border-2 border-primary-50 bg-gray-100 p-3 text-sm">
-          <Markdown className="[&>blockquote]:mb-2 [&>blockquote]:mt-0 [&>blockquote]:p-0 [&>blockquote]:text-default [&>p]:mb-2">
+          className="border-primary-50 mb-3 origin-top rounded-xl border-2 bg-gray-100 p-3 text-sm">
+          <Markdown className="[&>blockquote]:text-default [&>blockquote]:mt-0 [&>blockquote]:mb-2 [&>blockquote]:p-0 [&>p]:mb-2">
             {description}
           </Markdown>{' '}
           <Button

@@ -28,6 +28,7 @@ type Props = {
   tempValue?: number | undefined
   setTempValue?: (value: number | undefined) => void
   showInputsLabel?: React.ReactNode | string
+  headingLevel?: number
   className?: string
 }
 
@@ -36,6 +37,7 @@ export default function Question({
   tempValue,
   setTempValue,
   showInputsLabel,
+  headingLevel,
   className,
 }: Props) {
   const {
@@ -121,6 +123,7 @@ export default function Question({
           question={question}
           label={label}
           description={description}
+          headingLevel={headingLevel}
           id="question-label"
         />
 
