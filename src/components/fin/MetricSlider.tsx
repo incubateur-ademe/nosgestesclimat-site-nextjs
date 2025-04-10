@@ -57,7 +57,7 @@ export default function MetricSlider({
       ref={myElementRef}>
       <div
         className={twMerge(
-          'relative mx-auto -mt-0.5 flex w-full gap-2 overflow-hidden px-0 transition-all duration-300 md:gap-4',
+          'relative mx-auto -mt-0.5 flex w-full gap-0 overflow-hidden px-0 transition-all duration-300 md:gap-4',
           isSticky
             ? 'mt-2 h-28 overflow-hidden lg:h-32'
             : 'h-28 md:h-72 lg:h-80'
@@ -97,7 +97,7 @@ export default function MetricSlider({
 
       <p
         className={twMerge(
-          'mt-2 inline-block w-full text-center text-xs text-default transition-opacity duration-300 md:text-sm',
+          'text-default mt-2 inline-block w-full text-center text-xs transition-opacity duration-300 md:text-sm',
           isSticky ? 'opacity-0' : ''
         )}>
         <Emoji>💡</Emoji>{' '}
