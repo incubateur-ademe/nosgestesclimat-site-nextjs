@@ -23,7 +23,6 @@ export default function ChoicesInput(props: Props) {
     firstInputId,
     ...otherProps
   } = props
-  console.log('prout')
   return (
     <fieldset className="flex flex-col gap-2">
       <legend className="sr-only">{label}</legend>
