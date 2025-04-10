@@ -15,7 +15,6 @@ type Props = {
 
 export default function Choice({ answer, choice, setAnswer }: Props) {
   const { title, icons } = useRule(choice)
-
   return (
     <ChoiceInput
       onClick={() => {

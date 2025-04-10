@@ -10,16 +10,16 @@ import StatisticsBlocks from './orgaStatistics/StatisticsBlocks'
 
 export default function PollStatistics({
   title,
-  simulations,
+  simulationsCount,
   simulationsWithoutExtremes,
   funFacts,
 }: {
   title?: string | ReactNode
-  simulations: PublicPollSimulation[]
+  simulationsCount: number
   simulationsWithoutExtremes: PublicPollSimulation[]
-  funFacts: FunFacts | undefined
+  funFacts?: FunFacts | null
 }) {
-  const hasAtLeastThreeParticipants = simulations?.length > 2
+  const hasAtLeastThreeParticipants = simulationsCount > 2
 
   return (
     <>
@@ -27,7 +27,7 @@ export default function PollStatistics({
 
       <section className="relative mb-8 flex gap-4">
         <StatisticsBlocks
-          simulations={simulations}
+          simulationsCount={simulationsCount}
           simulationsWithoutExtremes={simulationsWithoutExtremes}
         />
       </section>

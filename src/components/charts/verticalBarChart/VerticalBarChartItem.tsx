@@ -52,7 +52,7 @@ export default function VerticalBarChartItem({
       <div className="flex items-end">
         <BarChart
           type="vertical"
-          value={`calc(${percentage} * 6rem)`}
+          value={`calc(${percentage} * 8rem)`}
           index={index}
           color={barColor}
         />

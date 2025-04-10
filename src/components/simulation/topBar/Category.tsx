@@ -13,13 +13,13 @@ export default function Category({
 
   return (
     <div className="flex">
-      <h2
+      <h1
         className={twMerge(
           'mb-0 text-base font-bold lg:text-lg',
           getTextDarkColor(category)
         )}>
         <Emoji>{icons}</Emoji> {title}
-      </h2>
+      </h1>
     </div>
   )
 }

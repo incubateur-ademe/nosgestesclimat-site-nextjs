@@ -11,12 +11,14 @@ type Props = {
   question: DottedName
   parentMosaic: DottedName
   index: number
+  firstInputId: string
 }
 
 export default function MosaicQuestion({
   question,
   parentMosaic,
   index,
+  firstInputId,
   ...props
 }: Props) {
   const { type, parent, setValue, questionsOfMosaicFromSibling } =
@@ -41,6 +43,7 @@ export default function MosaicQuestion({
           parentMosaic={parentMosaic}
           index={index}
           {...props}
+          {...(index === 0 ? { id: firstInputId } : {})}
         />
       )}
       {type === 'boolean' && (
@@ -64,6 +67,7 @@ export default function MosaicQuestion({
           }}
           index={index}
           {...props}
+          {...(index === 0 ? { id: firstInputId } : {})}
         />
       )}
     </>

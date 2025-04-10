@@ -27,6 +27,7 @@ export default function MetricCard({
   return (
     <div className="flex-1 p-1 md:p-2">
       <button
+        onClick={() => setCurrentMetric(metric)}
         className={twMerge(
           'border-primary-50 pointer-events-auto relative flex! h-full w-full flex-1 flex-col overflow-hidden rounded-xl border-[3px] bg-white',
           isSelected && 'border-primary-700 bg-primary-50'

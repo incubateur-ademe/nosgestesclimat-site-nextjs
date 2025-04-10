@@ -71,6 +71,8 @@ export default function GridRadioInputs({
         render={({ field: { onChange, value, ...props } }) => {
           return (
             <fieldset className="grid w-full grid-cols-4 gap-2 sm:grid-cols-5">
+              <legend className="sr-only">{label}</legend>
+
               {items?.map((item) => {
                 // Style the radio to look like a button
                 // hiding the actual radio button
