@@ -25,10 +25,10 @@ export default function MetricCard({
   const isSelected = currentMetric === metric
 
   return (
-    <div className="flex-1 p-2">
+    <div className="flex-1 p-1 md:p-2">
       <button
         className={twMerge(
-          'border-primary-50 pointer-events-auto relative flex! h-full flex-1 flex-col overflow-hidden rounded-xl border-[3px] bg-white',
+          'border-primary-50 pointer-events-auto relative flex! h-full w-full flex-1 flex-col overflow-hidden rounded-xl border-[3px] bg-white',
           isSelected && 'border-primary-700 bg-primary-50'
         )}
         aria-label={
@@ -44,7 +44,7 @@ export default function MetricCard({
         <div
           className={twMerge(
             'h-full w-full',
-            isSticky && 'pointer-events-none max-h-28 overflow-hidden lg:mt-6'
+            isSticky && 'pointer-events-none mt-1 max-h-28 overflow-hidden'
           )}>
           {children}
         </div>
