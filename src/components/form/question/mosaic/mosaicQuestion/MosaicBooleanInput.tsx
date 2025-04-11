@@ -3,6 +3,7 @@
 import Trans from '@/components/translation/trans/TransClient'
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import Emoji from '@/design-system/utils/Emoji'
+import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
 import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
@@ -50,21 +51,25 @@ export default function MosaicBooleanInput({
     : !isMissing && value
       ? 'checked'
       : 'unchecked'
+
+  const onClick = () => {
+    setValue(value ? 'non' : 'oui')
+  }
+
   return (
     <div className="flex md:block">
       <label
         className={twMerge(
-          `relative flex h-full items-center gap-2 rounded-xl border bg-white px-4 py-2 text-left transition-colors`,
+          `relative flex h-full items-center gap-2 rounded-xl border bg-white px-4 py-2 text-left transition-colors focus-within:ring-2 focus-within:ring-primary-700`,
           buttonClassNames[status]
         )}
         htmlFor={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}>
         <input
           type="checkbox"
           disabled={isInactive}
-          className="absolute h-[1px] w-[1px] opacity-0"
-          onClick={() => {
-            setValue(value ? 'non' : 'oui')
-          }}
+          className="sr-only"
+          onClick={onClick}
+          onKeyDown={onKeyDownHelper(() => onClick())}
           data-cypress-id={`${question}-${value}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
           {...props}
@@ -99,7 +104,7 @@ export default function MosaicBooleanInput({
           ) : null}
         </div>
         {isInactive ? (
-          <div className="absolute bottom-1 right-4 top-1 flex -rotate-12 items-center justify-center rounded-xl border-2 border-black bg-white p-2 text-xs font-semibold text-black">
+          <div className="absolute bottom-1 right-4 top-1 flex -rotate-12 items-center justify-center rounded-xl border-2 border-black bg-white p-1 text-xs font-semibold text-black">
             <Trans>Bientôt disponible</Trans>
           </div>
         ) : null}

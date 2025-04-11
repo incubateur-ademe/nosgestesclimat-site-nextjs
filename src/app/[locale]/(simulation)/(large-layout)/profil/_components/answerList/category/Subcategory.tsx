@@ -34,18 +34,18 @@ export default function SubCategory({ subcategory }: Props) {
 
   if (!answeredQuestionOfSubcategory.length) return null
   return (
-    <div className="relative mt-2 w-full overflow-hidden rounded-xl bg-gray-50">
-      <div
-        className={`absolute top-0 bottom-0 left-0 w-2 ${getBackgroundColor(
-          category
-        )}`}
-      />
+    <div className="relative mt-2 w-full rounded-xl bg-gray-50">
       <button
         onClick={() => {
           trackEvent(profilClickSubCategory(subcategory))
           setIsOpen((prevIsOpen) => !prevIsOpen)
         }}
-        className="flex w-full items-center justify-between gap-4 p-4 pl-6 text-lg font-bold">
+        className="relative flex w-full items-center justify-between gap-4 overflow-hidden rounded-xl p-4 pl-6 text-lg font-bold">
+        <div
+          className={`absolute top-0 bottom-0 left-0 w-2 ${getBackgroundColor(
+            category
+          )}`}
+        />
         {icons} {title}{' '}
         <span
           className={`block rounded-xl border-2 ${getBorderColor(category)} bg-white px-4 py-2 text-sm ${getTextDarkColor(category)}`}>
