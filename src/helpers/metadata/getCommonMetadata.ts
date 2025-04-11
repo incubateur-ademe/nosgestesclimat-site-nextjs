@@ -2,7 +2,7 @@ import type { DefaultPageProps } from '@/types'
 import { getServerTranslation } from '../getServerTranslation'
 import { getMetadataObject } from './getMetadataObject'
 
-export const getCommonMetadata = ({
+export const getCommonMetadata = <T extends DefaultPageProps>({
   title,
   description,
   image,
@@ -25,12 +25,18 @@ export const getCommonMetadata = ({
       'max-snippet': number
     }
   }
-  alternates?: {
-    canonical: string
-  }
+  alternates?:
+    | {
+        canonical: string
+      }
+    | ((params: Awaited<DefaultPageProps<T>['params']>) => {
+        canonical: string
+      })
 }) => {
-  return async ({ params }: DefaultPageProps) => {
-    const { locale } = await params
+  return async (props: DefaultPageProps<T>) => {
+    const { params } = props
+    const awaitedParams = await params
+    const { locale } = awaitedParams
 
     const { t } = await getServerTranslation({ locale })
 
@@ -43,7 +49,14 @@ export const getCommonMetadata = ({
         : t(
             'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.'
           ),
-      ...(alternates ? { alternates } : {}),
+      ...(alternates
+        ? {
+            alternates:
+              typeof alternates === 'function'
+                ? alternates(awaitedParams)
+                : alternates,
+          }
+        : {}),
       ...(robots ? { robots } : {}),
     })
   }
