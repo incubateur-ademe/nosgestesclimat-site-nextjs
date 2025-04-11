@@ -6,25 +6,20 @@ import InlineLink from '@/design-system/inputs/InlineLink'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPosts } from '@/helpers/markdown/getPosts'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 
-export async function generateMetadata({ params }: DefaultPageProps) {
-  const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
-
-  return getMetadataObject({
-    locale,
-    title: t('Les nouveautés - Nos Gestes Climat'),
-    description: t(
-      'Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.'
-    ),
-    alternates: {
-      canonical: '/nouveautes',
-    },
-  })
-}
+export const generateMetadata = getCommonMetadata({
+  title: t('Les nouveautés du calculateur - Nos Gestes Climat'),
+  description: t(
+    'Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.'
+  ),
+  alternates: {
+    canonical: '/nouveautes',
+  },
+})
 
 export default async function Releases({ params }: DefaultPageProps) {
   const { locale } = await params

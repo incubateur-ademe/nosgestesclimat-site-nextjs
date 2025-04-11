@@ -1,5 +1,6 @@
 import Markdown from '@/design-system/utils/Markdown'
-import type { HTMLAttributes, JSX, PropsWithChildren} from 'react';
+import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
+import type { HTMLAttributes, JSX, PropsWithChildren } from 'react'
 import { useState } from 'react'
 import QuestionButton from './QuestionButton'
 
@@ -42,17 +43,20 @@ export default function ChoiceInput({
     <>
       <div className="flex items-center gap-2">
         <label
-          className={`relative flex cursor-pointer items-center gap-2 rounded-xl border-2 bg-white px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}
+          htmlFor={id}
+          className={`relative flex cursor-pointer items-center gap-2 rounded-xl border-2 bg-white px-4 py-2 text-left transition-colors ${buttonClassNames[status]} focus-within:ring-primary-700 focus-within:ring-2`}
           data-cypress-id={`${props['data-cypress-id']}-label`}>
           <input
             type="radio"
-            className="hidden"
+            tabIndex={0}
+            className="sr-only"
             onClick={onClick}
+            onKeyDown={onKeyDownHelper(() => onClick())}
             id={id}
             {...props}
           />
           <span
-            className={`${checkClassNames[status]} relative flex h-5 w-5 items-center justify-center rounded-full border-2 text-sm before:absolute before:left-0.5 before:top-0.5 before:h-3 before:w-3 before:rounded-full before:p-1 md:h-5 md:w-5 md:text-base md:before:h-3 md:before:w-3`}
+            className={`${checkClassNames[status]} relative flex h-5 w-5 items-center justify-center rounded-full border-2 text-sm before:absolute before:top-1/2 before:left-1/2 before:h-3 before:w-3 before:-translate-x-1/2 before:-translate-y-1/2 before:transform before:rounded-full before:p-1 md:h-5 md:w-5 md:text-base md:before:h-3 md:before:w-3`}
           />
           <span
             className={`inline flex-1 align-middle text-sm md:text-lg ${labelClassNames[status]}`}>
@@ -66,8 +70,8 @@ export default function ChoiceInput({
         ) : null}
       </div>
       {description && isOpen ? (
-        <div className="mb-4 w-auto rounded-xl border-2 border-primary-50 bg-white p-3 text-sm sm:max-w-[30rem]">
-          <Markdown className="!mb-0 !inline">{description}</Markdown>
+        <div className="border-primary-50 mb-4 w-auto rounded-xl border-2 bg-white p-3 text-sm sm:max-w-[30rem]">
+          <Markdown className="mb-0! inline!">{description}</Markdown>
         </div>
       ) : null}
     </>

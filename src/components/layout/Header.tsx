@@ -9,10 +9,8 @@ type Props = {
 export default function Header({ isSticky = true }: Props) {
   return (
     <>
-      {/* Displayed only on mobile (screens < 768px) */}
       <HeaderMobile isSticky={isSticky} />
 
-      {/* Displayed only on desktop */}
       <HeaderDesktop isSticky={isSticky} />
     </>
   )

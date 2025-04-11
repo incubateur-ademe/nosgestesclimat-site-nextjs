@@ -41,7 +41,7 @@ export default function NotificationBubble({
           <tspan x={28.883} y={45.06} className="fill-white font-bold"></tspan>
         </text>
       </svg>
-      <span className="left-50 absolute top-2 -translate-x-1/2 font-bold text-white">
+      <span className="absolute top-2 left-1/2 -translate-x-1/2 font-bold text-white">
         {number}
       </span>
     </button>

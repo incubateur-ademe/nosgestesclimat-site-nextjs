@@ -60,7 +60,7 @@ export default function PulsatingDot({
           carbonScore={carbonScore}
           waterScore={waterScore}
           orientation={floatingInfoOrientation}
-          className="left-0 top-0 animate-fade-in"
+          className="animate-fade-in top-0 left-0"
           key={`${itemKey}-floating-info`}
         />
       )}
@@ -71,27 +71,16 @@ export default function PulsatingDot({
         )}
         onMouseEnter={handleEnter}
         onMouseLeave={handleLeave}
-        tabIndex={0}
+        tabIndex={-1}
         role="button"
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            handleEnter()
-          }
-        }}
-        onKeyUp={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            handleLeave()
-          }
-        }}
-        // Handle touch events
         onTouchStart={handleEnter}
-        aria-label="Toggle information">
+        aria-hidden>
         <div
           className={twMerge(
-            'absolute inset-0 scale-[0.15] rounded-full bg-secondary-600 transition-all duration-500',
+            'bg-secondary-600 absolute inset-0 scale-[0.15] rounded-full transition-all duration-500',
             isHovered
               ? 'scale-[0.7]'
-              : 'scale-[0.15] animate-[pulse-scale_3s_ease-in-out_infinite]'
+              : 'scale-[0.7] animate-[pulse-scale_3s_ease-in-out_infinite]'
           )}
         />
       </div>

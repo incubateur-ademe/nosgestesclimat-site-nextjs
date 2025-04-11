@@ -1,13 +1,13 @@
-import Trans from '@/components/translation/trans/TransServer'
+import TransServer from '@/components/translation/trans/TransServer'
 import Image from 'next/image'
 import LinkAmbassadeurs from './partnersSection/LinkAmbassadeurs'
 
-export default async function PartnersSection({ locale }: { locale: string }) {
+export default function PartnersSection({ locale }: { locale: string }) {
   return (
     <>
       <section className="mb-8 mt-28 flex w-full flex-col items-center gap-16 rounded-xl bg-gray-100 px-8 py-16">
         <h3 className="text-center">
-          <Trans locale={locale}>Rejoignez nos partenaires</Trans>
+          <TransServer locale={locale}>Rejoignez nos partenaires</TransServer>
         </h3>
 
         <div className="mx-auto flex flex-wrap items-center justify-center gap-12">

@@ -9,7 +9,7 @@ type Props = {
   setValue: (value: string) => void
   'data-cypress-id': string
   label: string
-  id?: string
+  firstInputId?: string
 }
 
 export default function ChoicesInput(props: Props) {
@@ -20,16 +20,15 @@ export default function ChoicesInput(props: Props) {
     choices,
     setValue,
     label,
-    id,
+    firstInputId,
     ...otherProps
   } = props
-
   return (
     <fieldset className="flex flex-col gap-2">
       <legend className="sr-only">{label}</legend>
 
       {choices &&
-        choices.map((choice: any) =>
+        choices.map((choice: any, index: number) =>
           choice ? (
             <Choice
               key={choice}
@@ -39,7 +38,7 @@ export default function ChoicesInput(props: Props) {
               setValue={setValue}
               {...otherProps}
               data-cypress-id={`${props['data-cypress-id']}-${choice}`}
-              id={id}
+              {...(index === 0 ? { id: firstInputId } : {})}
             />
           ) : null
         )}

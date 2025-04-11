@@ -15,7 +15,7 @@ export default function HeaderMobile({ isSticky }: Props) {
   return (
     <header
       className={twMerge(
-        'relative flex justify-between bg-white p-4 shadow-sm lg:hidden',
+        'relative flex justify-between bg-white p-4 shadow-xs md:hidden',
         isSticky ? 'sticky top-0 z-50' : ''
       )}>
       <Logo />

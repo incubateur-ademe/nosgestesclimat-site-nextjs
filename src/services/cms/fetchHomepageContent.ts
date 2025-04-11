@@ -10,8 +10,6 @@ import { captureException } from '@sentry/nextjs'
 
 const PAGE_SIZE = 12
 
-const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
-
 export async function fetchHomepageContent({ page }: { page: number }): Promise<
   | (Partial<PopulatedHomePageType<'image'>> & {
       pageCount: number
@@ -27,7 +25,6 @@ export async function fetchHomepageContent({ page }: { page: number }): Promise<
       'populate[1]': 'mainArticle',
       'populate[2]': 'mainArticle.image',
       'populate[3]': 'mainArticle.category',
-      ...(isProduction ? {} : { status: 'draft' }),
     })
 
     const homepageResponse = await cmsClient<{
@@ -53,7 +50,6 @@ export async function fetchHomepageContent({ page }: { page: number }): Promise<
       'pagination[page]': page.toString(),
       'pagination[pageSize]': PAGE_SIZE.toString(),
       sort: 'createdAt:desc',
-      ...(isProduction ? { status: 'published' } : { status: 'draft' }),
     }
 
     if (mainArticle) {

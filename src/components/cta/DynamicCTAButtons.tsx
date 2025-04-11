@@ -48,7 +48,7 @@ export default function DynamicCTAButtons({
       <ButtonLink
         size="xl"
         className={twMerge(
-          'transition-all duration-300 hover:bg-primary-900',
+          'hover:bg-primary-900 transition-all duration-300',
           className
         )}
         href={getLinkToSimulateurPage()}
@@ -71,7 +71,7 @@ export default function DynamicCTAButtons({
         <span
           className={twMerge(
             isHover
-              ? 'bg-rainbow animate-rainbow-fast !bg-clip-text !text-transparent duration-1000'
+              ? 'bg-rainbow animate-rainbow-fast bg-clip-text! text-transparent! duration-1000'
               : '',
             'leading-none'
           )}>
@@ -81,14 +81,15 @@ export default function DynamicCTAButtons({
 
       {withRestart && progression > 0 && (
         <ButtonLink
-          size="lg"
-          color="text"
+          size="xl"
+          color="secondary"
+          className="leading-none"
           trackingEvent={trackingEvents?.restart}
           onClick={() => {
             goToSimulateurPage({ noNavigation: true, newSimulation: {} })
           }}
           href={getLinkToSimulateurPage({ newSimulation: true })}>
-          <RestartIcon className="mr-2 fill-primary-700" />
+          <RestartIcon className="fill-primary-700 mr-2" />
 
           <Trans>Recommencer</Trans>
         </ButtonLink>

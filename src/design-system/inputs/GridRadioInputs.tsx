@@ -1,4 +1,5 @@
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
+import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
 import type { ChangeEventHandler, HTMLAttributes, ReactNode } from 'react'
 import { Controller } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
@@ -7,7 +8,11 @@ type Props = {
   name: string
   label?: string | ReactNode
   type?: string
-  items: { value: string; label: string }[]
+  items: {
+    value: string
+    label: string | ReactNode
+    ariaLabel: string
+  }[]
   isInvalid?: boolean
   error?: string
   helperText?: string | ReactNode
@@ -46,8 +51,8 @@ export default function GridRadioInputs({
       {label ? (
         <label htmlFor={name} className="w-full">
           <span
-            className={` text-sm font-bold text-slate-900 ${
-              error ? '!text-red-700' : ''
+            className={`text-sm font-bold text-slate-900 ${
+              error ? 'text-red-700!' : ''
             }`}>
             {label}
           </span>
@@ -55,7 +60,7 @@ export default function GridRadioInputs({
       ) : null}
 
       {helperText ? (
-        <span className="mb-4 mt-1 text-xs text-slate-500">{helperText}</span>
+        <span className="mt-1 mb-4 text-xs text-slate-500">{helperText}</span>
       ) : null}
 
       <Controller
@@ -65,7 +70,9 @@ export default function GridRadioInputs({
         rules={rules ?? undefined}
         render={({ field: { onChange, value, ...props } }) => {
           return (
-            <div className="grid w-full grid-cols-4 gap-2 sm:grid-cols-5">
+            <fieldset className="grid w-full grid-cols-4 gap-2 sm:grid-cols-5">
+              <legend className="sr-only">{label}</legend>
+
               {items?.map((item) => {
                 // Style the radio to look like a button
                 // hiding the actual radio button
@@ -75,30 +82,33 @@ export default function GridRadioInputs({
                   <label
                     key={item.value}
                     data-cypress-id={dataCypressId + '-' + item.value}
+                    aria-label={item.ariaLabel}
                     className={twMerge(
-                      'relative flex cursor-pointer items-center justify-center rounded-xl border-2 border-gray-200 p-6 text-xl transition-colors',
-                      'hover:border-gray-300 hover:bg-primary-50 focus:border-slate-300',
+                      'focus-within:ring-primary-700 relative flex cursor-pointer items-center justify-center rounded-xl border-2 border-gray-200 p-6 text-xl transition-colors focus-within:ring-2',
+                      'hover:bg-primary-50 hover:border-gray-300 focus:border-slate-300',
                       value === item.value
-                        ? '!border-primary-700 !bg-primary-50'
+                        ? 'border-primary-700! bg-primary-50!'
                         : ''
                     )}>
                     {value === item.value && (
-                      <CheckCircleIcon className="absolute bottom-1 right-1  fill-primary-700" />
+                      <CheckCircleIcon className="fill-primary-700 absolute right-1 bottom-1" />
                     )}
 
                     <input
                       type="radio"
                       className="sr-only"
+                      tabIndex={0}
                       onChange={() => {
                         onChange(item.value)
                       }}
+                      onKeyDown={onKeyDownHelper(() => onChange(item.value))}
                       {...props}
                     />
                     {item.label}
                   </label>
                 )
               })}
-            </div>
+            </fieldset>
           )
         }}
       />

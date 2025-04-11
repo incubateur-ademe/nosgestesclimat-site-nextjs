@@ -8,7 +8,6 @@ import i18nConfig from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 
 const PAGE_SIZE = 12
-const isProduction = process.env.NODE_ENV === 'production'
 
 export async function fetchCategoryPageContent({
   slug,
@@ -36,7 +35,6 @@ export async function fetchCategoryPageContent({
       'populate[2]': 'mainArticle',
       'populate[3]': 'mainArticle.image',
       sort: 'questions.order:asc',
-      ...(isProduction ? { status: 'published' } : { status: 'draft' }),
     })
 
     const categoryResponse = await cmsClient<{
@@ -71,7 +69,6 @@ export async function fetchCategoryPageContent({
       'pagination[page]': page.toString(),
       'pagination[pageSize]': PAGE_SIZE.toString(),
       sort: 'createdAt:desc',
-      ...(isProduction ? { status: 'published' } : { status: 'draft' }),
     })
 
     const articlesResponse = await cmsClient<{

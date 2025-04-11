@@ -4,8 +4,6 @@ import i18nConfig, { type Locale } from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 import dayjs from 'dayjs'
 
-const isProduction = process.env.NODE_ENV === 'production'
-
 // Limit to the allowed locales fr and en, the only locales supported by the CMS
 const allowedLocales = [i18nConfig.locales[0], i18nConfig.locales[1]]
 
@@ -24,7 +22,6 @@ export async function fetchBanner(locale: Locale): Promise<BannerType | null> {
       'filters[$and][1][endDate][$gte]': dayjs(new Date())
         .startOf('day')
         .toISOString(),
-      ...(isProduction ? { status: 'published' } : { status: 'draft' }),
       populate: '*',
     })
 

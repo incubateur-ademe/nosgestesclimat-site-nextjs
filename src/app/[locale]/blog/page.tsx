@@ -23,7 +23,9 @@ export async function generateMetadata({ params }: DefaultPageProps) {
 
   return getMetadataObject({
     locale,
-    title: metaTitle ?? 'Blog - Nos Gestes Climat',
+    title:
+      metaTitle ??
+      'Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat',
     description:
       metaDescription ??
       'Découvrez des conseils pratiques pour réduire votre empreinte écologique.',

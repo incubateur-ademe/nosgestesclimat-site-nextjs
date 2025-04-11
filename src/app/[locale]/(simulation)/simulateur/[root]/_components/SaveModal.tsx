@@ -37,7 +37,7 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
 
   const { saveSimulation, isPending, isSuccess, isError } = useSaveSimulation()
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
     // If the mutation is pending, we do nothing
     if (isPending) {
       return
