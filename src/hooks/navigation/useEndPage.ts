@@ -44,6 +44,44 @@ export function useEndPage() {
   // Get partner info if they exist
   const partnerParams = getPartnerFromStorage()
 
+  const handleRedirection = useCallback(
+    ({
+      allowedToGoToGroupDashboard,
+      partnerRedirectURL,
+      shouldShowQuiz,
+    }: {
+      allowedToGoToGroupDashboard: boolean
+      partnerRedirectURL: string
+      shouldShowQuiz: boolean
+    }) => {
+      // Redirect to partner's website
+      if (partnerRedirectURL) {
+        router.push(partnerRedirectURL)
+        return
+      }
+
+      // If we should show the quiz, we redirect to the quiz page
+      // TODO: This is maybe in the wrong place. Should check it later
+      if (shouldShowQuiz) {
+        router.push(linkToQuiz)
+        return
+      }
+
+      // if the simulation is in a group and we are allowed to, we redirect to the group results page
+      if (currentSimulation.groups?.length && allowedToGoToGroupDashboard) {
+        const lastGroupId =
+          currentSimulation.groups[currentSimulation.groups.length - 1]
+
+        router.push(getLinkToGroupDashboard({ groupId: lastGroupId }))
+        return
+      }
+
+      // else we redirect to the results page
+      router.push('/fin')
+    },
+    [currentSimulation.groups, router]
+  )
+
   const goToEndPage = useCallback(
     async ({
       isAllowedToSave = true,
@@ -55,6 +93,8 @@ export function useEndPage() {
         return
       }
       setIsNavigating(true)
+
+      let partnerRedirectURL = ''
 
       if (progression === 1 && partnerParams?.partner) {
         try {
@@ -69,7 +109,7 @@ export function useEndPage() {
           removePartnerFromStorage()
 
           if (redirectUrl) {
-            router.push(redirectUrl)
+            partnerRedirectURL = redirectUrl
           }
         } catch (error) {
           captureException(error)
@@ -127,7 +167,7 @@ export function useEndPage() {
       progression,
       partnerParams,
       currentSimulation,
-      router,
+      handleRedirection,
       saveSimulation,
     ]
   )
