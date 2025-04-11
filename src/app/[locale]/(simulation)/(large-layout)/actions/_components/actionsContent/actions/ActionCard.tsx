@@ -100,7 +100,7 @@ export default function ActionCard({
 
   const isCustomAction = getIsCustomAction(dottedName)
 
-  const handleChooseAction = useCallback(async () => {
+  const handleChooseAction = useCallback(() => {
     if (isDisabled) return
 
     if (hasRemainingQuestions || isCustomAction) {

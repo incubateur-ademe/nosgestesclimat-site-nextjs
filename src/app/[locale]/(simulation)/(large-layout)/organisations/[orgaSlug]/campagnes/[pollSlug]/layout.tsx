@@ -11,7 +11,7 @@ export async function generateMetadata({
 
   return getMetadataObject({
     locale,
-    title: t('Organisations, mon espace - Nos Gestes Climat'),
+    title: t('Résultats de ma campagne - Nos Gestes Climat'),
     description: t(
       'Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.'
     ),

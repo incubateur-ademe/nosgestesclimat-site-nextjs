@@ -1,6 +1,6 @@
 'use client'
 
-import TransClient from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransClient'
 import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
 import ButtonLink from '../inputs/ButtonLink'
 
@@ -18,7 +18,7 @@ export default function SkipToMainContentLink() {
   }
 
   return (
-    <div className="sr-only flex !w-full items-center focus-within:relative focus-within:left-0 focus-within:right-0 focus-within:top-0 focus-within:z-[100000] focus-within:h-auto focus-within:p-2">
+    <div className="sr-only flex !w-full items-center focus-within:relative focus-within:top-0 focus-within:right-0 focus-within:left-0 focus-within:z-[100000] focus-within:h-auto focus-within:p-2">
       <nav className="flex w-full flex-col items-start gap-2 md:flex-row md:items-center">
         <ButtonLink
           color="secondary"
@@ -27,8 +27,8 @@ export default function SkipToMainContentLink() {
           onKeyDown={onKeyDownHelper(() =>
             skipToFirstFocusableElement('main-content')
           )}
-          className="focus:w-auto focus:ring-2 focus:ring-primary-700 focus:ring-offset-[2px]">
-          <TransClient>Contenu</TransClient>
+          className="focus:ring-primary-700 focus:w-auto focus:ring-2 focus:ring-offset-[2px]">
+          <Trans>Contenu</Trans>
         </ButtonLink>
 
         <ButtonLink
@@ -36,8 +36,8 @@ export default function SkipToMainContentLink() {
           href="#nav-menu"
           onClick={() => skipToElement('nav-first-link')}
           onKeyDown={onKeyDownHelper(() => skipToElement('nav-first-link'))}
-          className="focus:w-auto focus:ring-2 focus:ring-primary-700 focus:ring-offset-[2px]">
-          <TransClient>Menu</TransClient>
+          className="focus:ring-primary-700 focus:w-auto focus:ring-2 focus:ring-offset-[2px]">
+          <Trans>Menu</Trans>
         </ButtonLink>
 
         <ButtonLink
@@ -47,8 +47,8 @@ export default function SkipToMainContentLink() {
           onKeyDown={onKeyDownHelper(() =>
             skipToFirstFocusableElement('footer')
           )}
-          className="focus:w-auto focus:ring-2 focus:ring-primary-700 focus:ring-offset-[2px]">
-          <TransClient>Pied de page</TransClient>
+          className="focus:ring-primary-700 focus:w-auto focus:ring-2 focus:ring-offset-[2px]">
+          <Trans>Pied de page</Trans>
         </ButtonLink>
       </nav>
     </div>
