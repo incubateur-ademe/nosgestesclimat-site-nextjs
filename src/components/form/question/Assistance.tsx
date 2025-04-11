@@ -1,4 +1,4 @@
-import { useForm, useRule } from '@/publicodes-state'
+import { useFormState, useRule } from '@/publicodes-state'
 
 import Label from '@/components/form/question/Label'
 import NumberInput from '@/components/form/question/NumberInput'
@@ -24,7 +24,7 @@ export default function Assistance({
   const { setValue: setValueOfQuestion, value: valueOfQuestion } =
     useRule(question)
 
-  const { currentCategory } = useForm()
+  const { currentCategory } = useFormState()
 
   const {
     type,

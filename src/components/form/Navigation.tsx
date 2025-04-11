@@ -12,7 +12,7 @@ import {
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useMagicKey } from '@/hooks/useMagicKey'
-import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
+import { useCurrentSimulation, useFormState, useRule } from '@/publicodes-state'
 import getValueIsOverFloorOrCeiling from '@/publicodes-state/helpers/getValueIsOverFloorOrCeiling'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -35,7 +35,7 @@ export default function Navigation({
   const { t } = useClientTranslation()
 
   const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
-    useForm()
+    useFormState()
 
   const { isMissing, plancher, plafond, value } = useRule(question)
 
@@ -126,8 +126,8 @@ export default function Navigation({
   return (
     <div
       className={twMerge(
-        'fixed bottom-0 left-0 right-0 z-50 bg-gray-100 py-3',
-        isEmbedded && 'static bg-primary-100 p-0'
+        'fixed right-0 bottom-0 left-0 z-50 bg-gray-100 py-3',
+        isEmbedded && 'bg-primary-100 static p-0'
       )}>
       <SyncIndicator />
 

@@ -1,12 +1,11 @@
 'use client'
 
-import { useEngine, useSimulation } from '@/publicodes-state'
+import { useEngine } from '@/publicodes-state'
 import { useMemo } from 'react'
 import Question from './questions/Question'
 
 export default function Questions() {
-  const { categories, everyQuestions } = useSimulation()
-  const { getCategory } = useEngine()
+  const { getCategory, categories, everyQuestions } = useEngine()
 
   const orderedQuestions = useMemo(
     () =>

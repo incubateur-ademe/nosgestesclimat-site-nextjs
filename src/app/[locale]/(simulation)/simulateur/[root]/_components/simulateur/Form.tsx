@@ -12,7 +12,11 @@ import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useTrackTimeOnSimulation } from '@/hooks/tracking/useTrackTimeOnSimulation'
 import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
-import { useCurrentSimulation, useEngine, useForm } from '@/publicodes-state'
+import {
+  useCurrentSimulation,
+  useEngine,
+  useFormState,
+} from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useContext, useEffect, useState } from 'react'
 import FunFact from './form/FunFact'
@@ -31,7 +35,7 @@ export default function Form() {
     currentQuestion,
     setCurrentQuestion,
     currentCategory,
-  } = useForm()
+  } = useFormState()
 
   const { questionInQueryParams, setQuestionInQueryParams } =
     useQuestionInQueryParams()

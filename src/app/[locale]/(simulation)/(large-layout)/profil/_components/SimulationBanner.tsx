@@ -1,12 +1,12 @@
 'use client'
 
-import { useCurrentSimulation, useSimulation } from '@/publicodes-state'
+import { useCurrentSimulation, useEngine } from '@/publicodes-state'
 import SimulationNotStarted from './simulationBanner/SimulationNotStarted'
 import SimulationSkeleton from './simulationBanner/SimulationSkeleton'
 import SimulationStarted from './simulationBanner/SimulationStarted'
 
 export default function SimulationBanner() {
-  const { isInitialized } = useSimulation()
+  const { isInitialized } = useEngine()
   const { progression } = useCurrentSimulation()
 
   if (!isInitialized) {
