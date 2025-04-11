@@ -2,7 +2,7 @@ import MotivationSection from '@/components/landing-pages/MotivationSection'
 import Trans from '@/components/translation/trans/TransServer'
 import Image from 'next/image'
 
-export default async function MotivationSectionCarbonFootprint({
+export default function MotivationSectionCarbonFootprint({
   locale,
 }: {
   locale: string

@@ -6,27 +6,22 @@ import InlineLink from '@/design-system/inputs/InlineLink'
 import Container from '@/design-system/layout/Container'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 
-export async function generateMetadata({ params }: DefaultPageProps) {
-  const { t } = await getServerTranslation(params)
-  const { locale } = await params
-
-  return getMetadataObject({
-    locale,
-    title: t("Le calculateur d'empreinte climat international"),
-    description: t(
-      'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.'
-    ),
-    alternates: {
-      canonical: '/international',
-    },
-  })
-}
+export const generateMetadata = getCommonMetadata({
+  title: t('International - Nos Gestes Climat'),
+  description: t(
+    'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.'
+  ),
+  alternates: {
+    canonical: '/international',
+  },
+})
 
 export default async function International({ params }: DefaultPageProps) {
   const { locale } = await params

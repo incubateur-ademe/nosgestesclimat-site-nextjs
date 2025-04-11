@@ -37,11 +37,11 @@ export default function OurTools() {
             }}
             className="mt-auto w-full justify-center align-bottom"
             color="secondary"
-            href="https://drive.google.com/drive/folders/1ppvieBBNCSSkvREGIAAK44PmPNy9CRz9?usp=drive_link"
+            href="https://accelerateur-transition-ecologique-ademe.notion.site/Kit-de-communication-Nos-Gestes-Climat-1156523d57d780fbb2a2dd413aef2681"
             target="_blank"
             aria-label={t('Télécharger le kit, ouvrir dans un nouvel onglet')}>
             <Trans>Accéder au kit</Trans>
-            <ExternalLinkIcon className="ml-2 stroke-primary-700" />
+            <ExternalLinkIcon className="stroke-primary-700 ml-2" />
           </ButtonLink>
         </CTACard>
 
@@ -66,7 +66,7 @@ export default function OurTools() {
               'Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet'
             )}>
             <Trans>Accéder aux ressources</Trans>
-            <ExternalLinkIcon className="ml-2 stroke-primary-700" />
+            <ExternalLinkIcon className="stroke-primary-700 ml-2" />
           </ButtonLink>
         </CTACard>
 
@@ -91,7 +91,7 @@ export default function OurTools() {
               'Découvrez le calculateur, ouvrir dans un nouvel onglet'
             )}>
             <Trans>Découvrir le calculateur</Trans>
-            <ExternalLinkIcon className="ml-2 stroke-primary-700" />
+            <ExternalLinkIcon className="stroke-primary-700 ml-2" />
           </ButtonLink>
         </CTACard>
       </div>
