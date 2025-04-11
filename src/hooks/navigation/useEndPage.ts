@@ -1,8 +1,11 @@
 import { defaultMetric } from '@/constants/model/metric'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { linkToQuiz } from '@/helpers/navigation/quizPages'
+import { getPartnerFromStorage } from '@/helpers/partners/getPartnerFromStorage'
+import { removePartnerFromStorage } from '@/helpers/partners/removePartnerFromStorage'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useCurrentSimulation } from '@/publicodes-state'
+import { postSituation } from '@/services/partners/postSituation'
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
@@ -38,8 +41,11 @@ export function useEndPage() {
 
   const [isNavigating, setIsNavigating] = useState(false)
 
+  // Get partner info if they exist
+  const partnerParams = getPartnerFromStorage()
+
   const goToEndPage = useCallback(
-    ({
+    async ({
       isAllowedToSave = true,
       allowedToGoToGroupDashboard = false,
       shouldShowQuiz = false,
@@ -49,6 +55,26 @@ export function useEndPage() {
         return
       }
       setIsNavigating(true)
+
+      if (progression === 1 && partnerParams?.partner) {
+        try {
+          const { redirectUrl } =
+            (await postSituation({
+              situation: currentSimulation.situation,
+              partner: partnerParams.partner,
+              partnerParams,
+            })) || {}
+
+          // Clear partner state
+          removePartnerFromStorage()
+
+          if (redirectUrl) {
+            router.push(redirectUrl)
+          }
+        } catch (error) {
+          captureException(error)
+        }
+      }
 
       // If the simulation is finished and
       // * is in a poll or a group
@@ -96,7 +122,14 @@ export function useEndPage() {
       // else we redirect to the results page
       router.push('/fin')
     },
-    [isNavigating, progression, currentSimulation, router, saveSimulation]
+    [
+      isNavigating,
+      progression,
+      partnerParams,
+      currentSimulation,
+      router,
+      saveSimulation,
+    ]
   )
 
   const getLinkToEndPage = useCallback(
