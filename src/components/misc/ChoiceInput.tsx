@@ -1,5 +1,6 @@
 import Markdown from '@/design-system/utils/Markdown'
-import type { HTMLAttributes, JSX, PropsWithChildren} from 'react';
+import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
+import type { HTMLAttributes, JSX, PropsWithChildren } from 'react'
 import { useState } from 'react'
 import QuestionButton from './QuestionButton'
 
@@ -42,12 +43,15 @@ export default function ChoiceInput({
     <>
       <div className="flex items-center gap-2">
         <label
-          className={`relative flex cursor-pointer items-center gap-2 rounded-xl border-2 bg-white px-4 py-2 text-left transition-colors ${buttonClassNames[status]}`}
+          htmlFor={id}
+          className={`relative flex cursor-pointer items-center gap-2 rounded-xl border-2 bg-white px-4 py-2 text-left transition-colors ${buttonClassNames[status]} focus-within:ring-2 focus-within:ring-primary-700`}
           data-cypress-id={`${props['data-cypress-id']}-label`}>
           <input
             type="radio"
-            className="hidden"
+            tabIndex={0}
+            className="sr-only"
             onClick={onClick}
+            onKeyDown={onKeyDownHelper(() => onClick())}
             id={id}
             {...props}
           />

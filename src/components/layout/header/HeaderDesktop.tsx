@@ -28,6 +28,7 @@ import NavLink from './NavLink'
 import OrganisationLink from './_components/OrganisationLink'
 import ProfileIcon from './_components/ProfileIcon'
 import DebugIndicator from './headerDesktop/DebugIndicator'
+
 type Props = {
   isSticky: boolean
 }
@@ -54,7 +55,7 @@ export default function HeaderDesktop({ isSticky }: Props) {
   return (
     <header
       className={twMerge(
-        'hidden! h-20 items-center lg:block!',
+        'hidden h-20 items-center md:block',
         isSticky ? 'sticky top-0 z-300' : ''
       )}>
       <div className="absolute top-0 right-0 bottom-0 left-0 flex h-20 w-full items-center border-b border-gray-200 bg-white shadow-xs">

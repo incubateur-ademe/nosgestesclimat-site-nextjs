@@ -14,7 +14,8 @@ import {
 } from '@/constants/accessibility'
 import { questionChooseAnswer } from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
-import { useRule } from '@/publicodes-state'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useForm, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect, useRef, useState } from 'react'
@@ -53,7 +54,12 @@ export default function Question({
     plancher,
     plafond,
     warning,
+    category,
   } = useRule(question)
+
+  const { remainingQuestionsByCategories, questionsByCategories } = useForm()
+
+  const { t } = useClientTranslation()
 
   // It should happen only on mount (the component remount every time the question changes)
   const prevQuestion = useRef('')
@@ -70,6 +76,19 @@ export default function Question({
     }
   }, [type, numericValue, setTempValue, question])
 
+  const currentCategoryQuestions = questionsByCategories[category]
+
+  const refCurrentCategoryQuestions = useRef(currentCategoryQuestions)
+
+  // Update the page title when the question changes
+  useEffect(() => {
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+      document.title = t(
+        `Calculateur, question ${refCurrentCategoryQuestions.current.indexOf(question) + 1} sur ${currentCategoryQuestions.length} de la catégorie ${category} - Nos Gestes Climat`
+      )
+    }
+  }, [currentCategoryQuestions, category, t, question, prevQuestion])
+
   const [isOpen, setIsOpen] = useState(showInputsLabel ? false : true)
 
   return (
@@ -80,6 +99,7 @@ export default function Question({
           label={label}
           description={description}
           id="question-label"
+          htmlFor={DEFAULT_FOCUS_ELEMENT_ID}
         />
 
         <Suggestions
@@ -135,7 +155,7 @@ export default function Question({
                 isMissing={isMissing}
                 data-cypress-id={question}
                 label={label || ''}
-                id={DEFAULT_FOCUS_ELEMENT_ID}
+                firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
                 aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
                 aria-labelledby="question-label"
               />
@@ -157,7 +177,7 @@ export default function Question({
                 isMissing={isMissing}
                 data-cypress-id={question}
                 label={label || ''}
-                id={DEFAULT_FOCUS_ELEMENT_ID}
+                firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
                 aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
                 aria-labelledby="question-label"
               />
@@ -169,6 +189,8 @@ export default function Question({
                 questionsOfMosaic={questionsOfMosaicFromParent}
                 aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
                 aria-labelledby="question-label"
+                firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
+                label={label || ''}
               />
             )}
           </>

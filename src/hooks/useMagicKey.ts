@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 export function useMagicKey({
   gotToNextQuestion,
 }: {
-  gotToNextQuestion: (e: KeyboardEvent) => Promise<void>
+  gotToNextQuestion: (e: KeyboardEvent) => void
 }) {
   useEffect(() => {
     const handleMagicKey = async (e: KeyboardEvent) => {

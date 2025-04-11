@@ -3,25 +3,21 @@ import InlineLink from '@/design-system/inputs/InlineLink'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import ambassadeursYaml from '@/locales/ambassadeurs/fr/ambassadeurs.yaml'
 import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 
-export async function generateMetadata({ params }: DefaultPageProps) {
-  const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
-  return getMetadataObject({
-    locale,
-    title: t('Nos relais - Nos Gestes Climat'),
-    description: t(
-      'Découvrez les relais de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.'
-    ),
-    alternates: {
-      canonical: '/nos-relais',
-    },
-  })
-}
+export const generateMetadata = getCommonMetadata({
+  title: t('Nos relais - Nos Gestes Climat'),
+  description: t(
+    'Découvrez les relais de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.'
+  ),
+  alternates: {
+    canonical: '/nos-relais',
+  },
+})
 
 const ambassadeurs = ambassadeursYaml as any
 const categories = Object.keys(ambassadeurs)

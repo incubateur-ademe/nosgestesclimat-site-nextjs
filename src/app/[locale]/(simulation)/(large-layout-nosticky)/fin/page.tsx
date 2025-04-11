@@ -72,7 +72,7 @@ export default function FinPage() {
                 ? 'relative opacity-100'
                 : 'pointer-events-none absolute top-0 opacity-0'
             )}>
-            <Carbone />
+            {currentMetric === carboneMetric && <Carbone />}
           </div>
           <div
             className={twMerge(
@@ -81,7 +81,7 @@ export default function FinPage() {
                 ? 'relative opacity-100'
                 : 'pointer-events-none absolute top-0 opacity-0'
             )}>
-            <Eau />
+            {currentMetric === eauMetric && <Eau />}
           </div>
 
           <GetResultsByEmail />

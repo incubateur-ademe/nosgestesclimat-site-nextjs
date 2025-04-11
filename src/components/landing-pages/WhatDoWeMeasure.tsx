@@ -2,7 +2,6 @@
 
 import type { WhatDoWeMeasureListItem } from '@/types/landing-page'
 import type { ReactNode } from 'react'
-import 'slick-carousel/slick/slick.css'
 import { twMerge } from 'tailwind-merge'
 
 const getGridColsClassname = (numberItems: number) => {
@@ -59,7 +58,7 @@ export default function WhatDoWeMeasure({
         {listItems.map(({ icon, title }, index) => (
           <li
             key={`list-item-${title}-${index}`}
-            className="flex flex-col items-center gap-2 rounded-xl border-2 border-heroLightBackground bg-primary-50 p-4">
+            className="border-heroLightBackground bg-primary-50 flex flex-col items-center gap-2 rounded-xl border-2 p-4">
             {icon}
             <span className="text-center">{title}</span>
           </li>
@@ -71,7 +70,7 @@ export default function WhatDoWeMeasure({
           {listItems.map(({ icon, title }, index) => (
             <li
               key={`list-item-${title}-${index}`}
-              className="flex! h-40! w-52! shrink-0 flex-col items-center justify-center gap-2 rounded-xl border-2 border-heroLightBackground bg-primary-50 p-4">
+              className="border-heroLightBackground bg-primary-50 flex! h-40! w-52! shrink-0 flex-col items-center justify-center gap-2 rounded-xl border-2 p-4">
               <div className="flex justify-center">{icon}</div>
               <p className="mb-0 flex! justify-center text-center text-sm">
                 {title}
