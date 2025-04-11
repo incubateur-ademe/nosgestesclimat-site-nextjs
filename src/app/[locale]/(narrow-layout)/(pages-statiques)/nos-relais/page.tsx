@@ -91,13 +91,13 @@ export default async function NosRelais({ params }: DefaultPageProps) {
           </p>
         </div>
         <Image
-          width="300"
+          width="200"
           height="400"
-          className="ml-auto w-48 self-start md:-mt-16 md:w-auto"
+          className="ml-auto w-64 self-start md:-mt-16"
           alt={t(
             'Un grand-père et sa petite-fille au cinéma, mangeant du pop-corn.'
           )}
-          src="/images/ambassadeurs/illu-cinema.svg"
+          src="/images/illustrations/at-the-cinema.svg"
         />
       </div>
 
