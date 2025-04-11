@@ -1,11 +1,10 @@
-import Route404 from '@/components/layout/404'
 import Markdown from '@/design-system/utils/Markdown'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPost } from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import type { DefaultPageProps } from '@/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-
+import { redirect } from 'next/navigation'
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation({ locale })
@@ -31,7 +30,9 @@ export default async function ActionPlus({
     decodeURI(dottedNameArray.join(' . ').replaceAll('-', ' '))
   )
 
-  return (
-    <div>{action ? <Markdown>{action?.content}</Markdown> : <Route404 />}</div>
-  )
+  if (!action) {
+    return redirect('/404')
+  }
+
+  return <Markdown>{action?.content}</Markdown>
 }

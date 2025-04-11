@@ -136,7 +136,7 @@ export default async function RootLayout({
     captureException(error)
     return (
       <html lang="fr">
-        <body className={`${marianne.className} bg-white text-default`}>
+        <body className={`${marianne.className} text-default bg-white`}>
           <div className="flex h-screen flex-col items-center justify-center">
             <ErrorContent />
           </div>
