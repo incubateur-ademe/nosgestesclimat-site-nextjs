@@ -6,13 +6,15 @@ import {
   getLandingDidYouKnowSlider,
   getLandingDidYouKnowSliderValue,
 } from '@/helpers/tracking/landings'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
+// @ts-expect-error package types are wrongly exported
+import { Splide, SplideSlide } from '@splidejs/react-splide'
+import '@splidejs/react-splide/css'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import type { ReactNode } from 'react'
 import { useState } from 'react'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
 import { twMerge } from 'tailwind-merge'
 import CTAButtonsPlaceholder from '../cta/CTAButtonsPlaceholder'
 import Trans from '../translation/trans/TransClient'
@@ -31,7 +33,10 @@ export default function DidYouKnowSlider({
   className?: string
   titleTag?: 'h2' | 'h3'
 }) {
+  const [isPlaying, setIsPlaying] = useState(true)
   const [currentSlide, setCurrentSlide] = useState(0)
+
+  const { t } = useClientTranslation()
 
   const pathname = usePathname()
 
@@ -40,25 +45,31 @@ export default function DidYouKnowSlider({
   return (
     <div
       className={twMerge(
-        'relative bg-heroLightBackground pb-20 pt-16',
+        'bg-heroLightBackground relative pt-16 pb-20',
         className
       )}>
-      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-10 md:flex-row md:gap-0">
-        <Slider
-          dots={true}
-          arrows={false}
-          infinite={true}
-          autoplay={true}
-          autoplaySpeed={4000}
-          fade
-          slide="ul"
-          easing="ease-in-out"
-          afterChange={(index) => setCurrentSlide(index)}
-          className="max-w-[594px]">
-          {slides.map((slide) => (
-            <li
+      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-10 lg:flex-row lg:gap-0">
+        <Splide
+          options={{
+            autoplay: true,
+            pauseOnHover: true,
+            pauseOnFocus: true,
+            pauseOnInteraction: false,
+            rewind: true,
+            interval: 5500,
+            reducedMotion: true,
+          }}
+          onMoved={(slide: unknown, nextSlideIndex: number) =>
+            setCurrentSlide(nextSlideIndex)
+          }
+          onAutoplayPlay={(slide: unknown, nextSlideIndex: number) =>
+            setCurrentSlide(nextSlideIndex)
+          }
+          className="relative max-w-[594px]">
+          {slides.map((slide, index) => (
+            <SplideSlide
               className="mx-auto flex! w-full max-w-[90vw] flex-col items-start gap-10 md:flex-row"
-              key={String(slide.highlight)}>
+              key={`slide-${index}`}>
               <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-white md:mx-0 md:h-40 md:w-40">
                 <Image
                   src={slide.illustration}
@@ -80,13 +91,13 @@ export default function DidYouKnowSlider({
                   {slide.content}
                 </p>
 
-                <p className="mb-0 mt-4 pb-4 text-center text-sm font-bold text-secondary-700 md:text-left md:text-lg">
+                <p className="text-secondary-700 mt-4 mb-0 pb-4 text-center text-sm font-bold md:text-left md:text-lg">
                   {slide.highlight}
                 </p>
               </div>
-            </li>
+            </SplideSlide>
           ))}
-        </Slider>
+        </Splide>
         <div>
           <DynamicCTAButtons
             trackingEvents={{
@@ -108,7 +119,7 @@ export default function DidYouKnowSlider({
         </div>
       </div>
 
-      <ColorLine className="bg-rainbow absolute bottom-0 left-0 h-[4px] w-[100%] animate-rainbow-slow transition-all" />
+      <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-0 h-[4px] w-[100%] transition-all" />
     </div>
   )
 }

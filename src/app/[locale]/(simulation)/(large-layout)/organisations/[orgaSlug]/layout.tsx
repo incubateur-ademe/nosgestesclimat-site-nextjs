@@ -1,26 +1,17 @@
-import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import type { DefaultPageProps } from '@/types'
 import type { PropsWithChildren } from 'react'
 
-export async function generateMetadata({
-  params,
-}: DefaultPageProps<{ params: { orgaSlug: string } }>) {
-  const { orgaSlug, locale } = await params
-
-  const { t } = await getServerTranslation({ locale })
-
-  return getMetadataObject({
-    locale,
-    title: t('Mon espace organisation - Nos Gestes Climat'),
-    description: t(
-      'Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.'
-    ),
-    alternates: {
-      canonical: `/organisations/${orgaSlug}`,
-    },
-  })
-}
+export const generateMetadata = getCommonMetadata<
+  DefaultPageProps<{ params: { orgaSlug: string } }>
+>({
+  title: 'Mon espace organisation - Nos Gestes Climat',
+  description:
+    'Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.',
+  alternates: ({ orgaSlug }) => ({
+    canonical: `/organisations/${orgaSlug}`,
+  }),
+})
 
 export default function Layout({ children }: PropsWithChildren) {
   return <>{children}</>

@@ -14,7 +14,7 @@ export default function FunFactsBlock({
   funFacts,
   className,
 }: {
-  funFacts: FunFacts | undefined
+  funFacts?: FunFacts | null
   className?: string
 }) {
   if (!funFacts) return null
