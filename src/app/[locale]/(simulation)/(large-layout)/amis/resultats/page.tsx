@@ -9,6 +9,7 @@ import { useGroupPagesGuard } from '@/hooks/navigation/useGroupPagesGuard'
 import { ToastContainer } from 'react-toastify'
 import EditableGroupTitle from './_components/EditableGroupTitle'
 import GroupResults from './_components/GroupResults'
+import UpdateSimulationUsed from './_components/UpdateSimulationUsed'
 
 export default function GroupResultsPage() {
   // Guarding the route and redirecting if necessary
@@ -38,6 +39,8 @@ export default function GroupResultsPage() {
       <GoBackLink href={'/classements'} className="mb-4 font-bold" />
 
       <EditableGroupTitle group={group} />
+
+      <UpdateSimulationUsed group={group} refetchGroup={refetchGroup} />
 
       <GroupResults group={group} refetchGroup={refetchGroup} />
 
