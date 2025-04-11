@@ -102,7 +102,7 @@ export default function GetResultsByEmail({
 
   const { data: mainNewsletter } = useMainNewsletter()
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
     // If the mutation is pending, we do nothing
     if (isPending) {
       return
@@ -208,6 +208,7 @@ export default function GetResultsByEmail({
 
             {!isSubscribedMainNewsletter && (
               <CheckboxInputGroup
+                disableSubmitOnEnter
                 label={
                   <span>
                     <Emoji>☀️</Emoji>{' '}
@@ -222,6 +223,7 @@ export default function GetResultsByEmail({
 
             {!isSubscribedTransportNewsletter && (
               <CheckboxInputGroup
+                disableSubmitOnEnter
                 label={
                   <span>
                     <Emoji>🚗</Emoji> <strong>Nos Gestes Transports</strong>
@@ -237,6 +239,7 @@ export default function GetResultsByEmail({
 
             {!isSubscribedLogementNewsletter && (
               <CheckboxInputGroup
+                disableSubmitOnEnter
                 label={
                   <span>
                     <Emoji>🏡</Emoji>{' '}

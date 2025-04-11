@@ -1,26 +1,22 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import type { DefaultPageProps } from '@/types'
 import ModeleDemoBlock from './_components/ModeleDemoBlock'
 import ModeleIssuePreviews from './_components/ModeleIssuePreviews'
 import ModeleStatsBlock from './_components/ModeleStatsBlock'
 
-export async function generateMetadata({ params }: DefaultPageProps) {
-  const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
-
-  return {
-    title: t('Notre modèle de données - Nos Gestes Climat'),
-    description: t(
-      "Découvrez le modèle de données de notre calculateur d'empreinte climat"
-    ),
-    alternates: {
-      canonical: '/modele',
-    },
-  }
-}
+export const generateMetadata = getCommonMetadata({
+  title: t('Notre modèle de données - Nos Gestes Climat'),
+  description: t(
+    "Découvrez le modèle de données de notre calculateur d'empreinte climat"
+  ),
+  alternates: {
+    canonical: '/modele',
+  },
+})
 
 export default async function ModelePage({ params }: DefaultPageProps) {
   const { locale } = await params

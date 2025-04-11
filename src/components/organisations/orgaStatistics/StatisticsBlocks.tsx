@@ -32,19 +32,15 @@ const mockResults = {
 }
 
 export default function StatisticsBlocks({
-  simulations,
+  simulationsCount,
   simulationsWithoutExtremes,
 }: {
-  simulations: PublicPollSimulation[]
+  simulationsCount: number
   simulationsWithoutExtremes: PublicPollSimulation[]
 }) {
   const locale = useLocale()
 
-  if (!simulations) {
-    return null
-  }
-
-  const hasLessThan3Participants = simulations.length < 3
+  const hasLessThan3Participants = simulationsCount < 3
 
   const result = hasLessThan3Participants
     ? mockResults
@@ -121,7 +117,7 @@ export default function StatisticsBlocks({
           )}
 
           <div className="rounded-xl bg-primary-100/40 py-4">
-            <VerticalBarChart className="h-[calc(100%-48px) bg-white] mt-0 px-1">
+            <VerticalBarChart className="mt-0 h-[calc(100%-48px)] bg-transparent px-1 pb-2 pt-0">
               {(
                 Object.entries(result.carbone) as Entries<typeof result.carbone>
               )
@@ -137,7 +133,7 @@ export default function StatisticsBlocks({
                 ))}
             </VerticalBarChart>
 
-            <h3 className="mb-4 ml-6 mt-4 text-sm">
+            <h3 className="mb-0 ml-6 text-sm">
               <Trans>Moyenne du groupe par catégorie</Trans>
             </h3>
           </div>

@@ -3,6 +3,7 @@
 import Trans from '@/components/translation/trans/TransClient'
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import Emoji from '@/design-system/utils/Emoji'
+import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -54,11 +55,16 @@ export default function MosaicBooleanInput({
     : !isMissing && value
       ? 'checked'
       : 'unchecked'
+
+  const onClick = () => {
+    setValue(value ? 'non' : 'oui')
+  }
+
   return (
     <div className="flex md:block">
       <label
         className={twMerge(
-          `relative flex h-full items-center gap-2 rounded-xl border bg-white px-4 py-2 text-left transition-colors`,
+          `focus-within:ring-primary-700 relative flex h-full items-center gap-2 rounded-xl border bg-white px-4 py-2 text-left transition-colors focus-within:ring-2`,
           buttonClassNames[status]
         )}
         htmlFor={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}>
@@ -66,11 +72,12 @@ export default function MosaicBooleanInput({
           type="checkbox"
           aria-disabled={isInactive}
           aria-describedby={isInactive ? `${title}-soon-available` : undefined}
-          className="absolute h-[1px] w-[1px] opacity-0"
+          className="sr-only"
           onClick={() => {
             if (isInactive) return
-            setValue(value ? 'non' : 'oui')
+            onClick()
           }}
+          onKeyDown={!isInactive ? onKeyDownHelper(() => onClick()) : undefined}
           data-cypress-id={`${question}-${value}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
           {...props}

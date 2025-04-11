@@ -39,7 +39,7 @@ export function useEndPage() {
   const [isNavigating, setIsNavigating] = useState(false)
 
   const goToEndPage = useCallback(
-    async ({
+    ({
       isAllowedToSave = true,
       allowedToGoToGroupDashboard = false,
       shouldShowQuiz = false,

@@ -58,9 +58,7 @@ export default function CustomQuestionForm({
     }
   }, [question, setValue])
 
-  const onSubmit: SubmitHandler<Inputs> = async ({
-    question: questionValue,
-  }) => {
+  const onSubmit: SubmitHandler<Inputs> = ({ question: questionValue }) => {
     const customAdditionalQuestions = [
       ...(poll?.customAdditionalQuestions || []),
     ]

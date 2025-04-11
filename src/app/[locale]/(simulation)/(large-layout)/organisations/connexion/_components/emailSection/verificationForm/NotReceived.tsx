@@ -49,8 +49,8 @@ export default function NotReceived({
       </p>
       <p className="mb-0 ml-6 text-xs text-gray-500">
         <Trans>
-          Certaines organisations sont dotées d’un outil type MailinBlack,
-          Altospam, ect., qui bloque parfois nos emails.
+          Certaines organisations sont dotées d'un outil type MailinBlack,
+          Altospam, etc., qui bloque parfois nos emails.
         </Trans>
       </p>
 
@@ -90,8 +90,8 @@ export default function NotReceived({
         onClick={handleGoBackToForm}
         color="link"
         size="sm"
-        className="-ml-2 -mt-2 flex items-center font-normal">
-        <ReturnIcon className="mr-2 inline-block w-4 fill-primary-700" />
+        className="-mt-2 -ml-2 flex items-center font-normal">
+        <ReturnIcon className="fill-primary-700 mr-2 inline-block w-4" />
 
         <Trans>Revenir au formulaire de connexion</Trans>
       </Button>
