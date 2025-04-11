@@ -77,7 +77,9 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
             'Nos Gestes Climat : vos empreintes carbone et eau en 10 min'
           ),
         })
-        .catch((e) => console.error(e))
+        .catch((e) => {
+          captureException(e)
+        })
     } else {
       try {
         const shareText = t(
