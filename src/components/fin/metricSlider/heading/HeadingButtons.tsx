@@ -2,7 +2,6 @@
 
 import SaveIcon from '@/components/icons/SaveIcon'
 import ShareIcon from '@/components/icons/ShareIcon'
-import ToastDisplay from '@/components/messages/ToastDisplay'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   endClickSaveShortcut,
@@ -170,8 +169,6 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
           </span>
         )}
       </Button>
-
-      <ToastDisplay />
     </div>
   )
 }
