@@ -4,7 +4,7 @@ import { defaultMetric } from '@/constants/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
-import { useForm, useRule } from '@/publicodes-state'
+import { useFormState, useRule } from '@/publicodes-state'
 import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
@@ -24,7 +24,7 @@ export default function ValueChangeDisplay({
 
   const pathname = usePathname()
 
-  const { currentQuestion } = useForm()
+  const { currentQuestion } = useFormState()
 
   const { numericValue } = useRule('bilan', metric)
 

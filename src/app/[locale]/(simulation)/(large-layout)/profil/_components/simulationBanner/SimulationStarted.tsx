@@ -15,7 +15,11 @@ import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useActions, useCurrentSimulation, useForm } from '@/publicodes-state'
+import {
+  useActions,
+  useCurrentSimulation,
+  useFormState,
+} from '@/publicodes-state'
 import TutorialLink from './_components/TutorialLink'
 
 export default function SimulationStarted() {
@@ -23,7 +27,7 @@ export default function SimulationStarted() {
 
   const { getLinkToEndPage } = useEndPage()
 
-  const { relevantAnsweredQuestions } = useForm()
+  const { relevantAnsweredQuestions } = useFormState()
 
   const { progression } = useCurrentSimulation()
 

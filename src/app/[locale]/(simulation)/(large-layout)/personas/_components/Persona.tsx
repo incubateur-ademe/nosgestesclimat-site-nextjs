@@ -5,7 +5,7 @@ import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import { fixSituationWithPartialMosaic } from '@/helpers/personas/fixSituationWithPartialMosaic'
 import { getPersonaFoldedSteps } from '@/helpers/personas/getPersonaFoldedSteps'
-import { useDisposableEngine, useSimulation, useUser } from '@/publicodes-state'
+import { useDisposableEngine, useEngine, useUser } from '@/publicodes-state'
 import type {
   DottedName,
   Persona as PersonaType,
@@ -30,7 +30,7 @@ export default function Persona({ persona, personaDottedName }: Props) {
     everyRules,
     safeEvaluate,
     safeGetRule,
-  } = useSimulation()
+  } = useEngine()
 
   const isCurrentPersonaSelected =
     currentSimulation.persona === personaDottedName

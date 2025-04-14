@@ -7,7 +7,7 @@ import {
   getBorderColor,
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
-import { useForm, useRule } from '@/publicodes-state'
+import { useFormState, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
@@ -19,7 +19,7 @@ type Props = {
 
 export default function SubCategory({ subcategory }: Props) {
   const { title, numericValue, icons, category } = useRule(subcategory)
-  const { relevantAnsweredQuestions } = useForm()
+  const { relevantAnsweredQuestions } = useFormState()
 
   const [isOpen, setIsOpen] = useState(false)
 
