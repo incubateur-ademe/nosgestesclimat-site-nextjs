@@ -92,7 +92,7 @@ export default function FailSafeFormProvider({
   }, [safeEvaluate, root, rules])
 
   if (!isRootSafe) {
-    window.location = '/404' as unknown as Location
+    window.location.href = '/404'
     return
   }
   return <FormProvider root={root}>{children}</FormProvider>
