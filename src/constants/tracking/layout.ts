@@ -88,6 +88,8 @@ export const footerClickInternational = [
   'Click International',
 ]
 
+export const footerClickStats = ['trackEvent', 'Footer', 'Click Statistiques']
+
 export const footerClickImpactco2 = ['trackEvent', 'Footer', 'Click Impact CO2']
 
 // Figma comment #17

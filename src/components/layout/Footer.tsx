@@ -16,6 +16,7 @@ import {
   footerClickOrganisations,
   footerClickPlanSite,
   footerClickQuiSommesNous,
+  footerClickStats,
 } from '@/constants/tracking/layout'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import { useIframe } from '@/hooks/useIframe'
@@ -85,6 +86,13 @@ export default function Footer({ className = '' }) {
               onClick={() => trackEvent(footerClickInternational)}
               className="text-default text-sm no-underline hover:underline">
               <Trans>International</Trans>
+            </InlineLink>
+
+            <InlineLink
+              href="/stats"
+              onClick={() => trackEvent(footerClickStats)}
+              className="text-default text-sm no-underline hover:underline">
+              <Trans>Statistiques</Trans>
             </InlineLink>
           </div>
 
