@@ -131,6 +131,6 @@ export default function PollForm({ organisation }: Props) {
         className="self-start">
         <Trans>Lancer ma campagne</Trans>
       </Button>
-    </form>
+    </>
   )
 }
