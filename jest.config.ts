@@ -36,7 +36,7 @@ const config: Config = {
   testEnvironment: 'jsdom',
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
-  testRegex: '.test.(ts|tsx)$',
+  testRegex: '.*\\.test\\.(ts|tsx)$',
 
   // A map from regular expressions to paths to transformers
   transform: {
