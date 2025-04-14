@@ -20,19 +20,10 @@ const mockProps = {
 describe('Share component', () => {
   it('should display a share button', () => {
     // Given
-    render(
-      <>
-        <div id="modal" />
-        <Share {...mockProps} />
-      </>
-    )
+    render(<Share {...mockProps} />)
 
     // Then
-    expect(
-      screen.getByRole('button', {
-        name: 'Partager',
-      })
-    )
+    expect(screen.getByTestId('share-button'))
   })
 
   it('should display a modal window upon click on the share button', async () => {
