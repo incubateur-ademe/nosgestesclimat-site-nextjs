@@ -69,10 +69,10 @@ export default function PostalCodeInput({ postalCode, setPostalCode }: Props) {
 
         return axios
           .get(
-            `https://geo.api.gouv.fr/departements/${search.substring(
-              0,
-              2
-            )}/communes?fields=code,nom,codesPostaux`
+            `https://geo.api.gouv.fr/departements/${
+              // Outre-mer departments have 3 numbers
+              search.length === 3 ? search : search.substring(0, 2)
+            }/communes?fields=code,nom,codesPostaux`
           )
           .then((res) =>
             res.data.reduce(
