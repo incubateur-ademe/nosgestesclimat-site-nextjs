@@ -29,7 +29,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
   const [passengers, setPassengers] = useState(1)
 
   return (
-    <tr className={twMerge('block border-b border-primary-700 p-2', className)}>
+    <tr className={twMerge('border-primary-700 block border-b p-2', className)}>
       <td className="mb-4 block text-sm">
         <Select
           className="w-48 text-sm"
@@ -46,7 +46,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
           })}
         </Select>
       </td>
-      <td className="block border-primary-700 pb-4 text-sm">
+      <td className="border-primary-700 block pb-4 text-sm">
         <span className="flex items-end gap-4">
           <TextInputGroup
             className="w-12 text-sm md:w-16"
@@ -59,7 +59,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
           <span className="mb-4 inline-block">km</span>
         </span>
       </td>
-      <td className="block border-primary-700 pb-4 text-sm">
+      <td className="border-primary-700 block pb-4 text-sm">
         <span className="flex items-end gap-4">
           <TextInputGroup
             className="w-16 text-sm"
@@ -88,7 +88,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
           </Select>
         </span>
       </td>
-      <td className="block border-primary-700 pb-4 text-sm">
+      <td className="border-primary-700 block pb-4 text-sm">
         <Select
           className="w-16 text-sm"
           name="passengers"
@@ -104,7 +104,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
           })}
         </Select>
       </td>
-      <td className="block border-primary-700 pl-2 text-right text-sm">
+      <td className="border-primary-700 block pl-2 text-right text-sm">
         <Button
           size="sm"
           onClick={() =>

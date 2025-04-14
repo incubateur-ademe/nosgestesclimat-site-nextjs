@@ -10,7 +10,7 @@ export default function InfoTooltipIcon({ className = '' }) {
   return (
     <div className={className}>
       <span
-        className="ml-1 cursor-pointer text-2xl font-bold text-primary-700"
+        className="text-primary-700 ml-1 cursor-pointer text-2xl font-bold"
         data-tooltip-id={id}>
         &#9432;
       </span>

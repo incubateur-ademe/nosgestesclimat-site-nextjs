@@ -13,7 +13,7 @@ export default function LaconicRanking({ group }: Props) {
   // If only one participant
   if (group.participants.length === 1) {
     return (
-      <section className="mt-6 rounded-xl bg-primary-50 p-4">
+      <section className="bg-primary-50 mt-6 rounded-xl p-4">
         <p className="mb-0">
           <Trans>Qui de </Trans>{' '}
           <strong className="text-primary-700">
@@ -43,7 +43,7 @@ export default function LaconicRanking({ group }: Props) {
   // Display a list of participants with their rank and an emoji medal for the first three
   // then a number for the rest
   return (
-    <section className="mt-6 rounded-xl bg-primary-50 p-6">
+    <section className="bg-primary-50 mt-6 rounded-xl p-6">
       <h3 className="font-bold">
         <Trans>Le classement</Trans>
       </h3>
@@ -72,7 +72,7 @@ export default function LaconicRanking({ group }: Props) {
               className="flex items-center gap-4">
               <span
                 className={
-                  !isFirstThree ? 'ml-1 mr-0.5 text-sm font-bold' : ''
+                  !isFirstThree ? 'mr-0.5 ml-1 text-sm font-bold' : ''
                 }>
                 {rank}
                 {!isFirstThree && '. '}

@@ -59,7 +59,7 @@ export default function Label({
         {t('est votre poste le plus important\u202f!')}{' '}
         <br className="hidden md:inline" />
         <Link
-          className="text-white hover:text-secondary-200 focus:text-secondary-200"
+          className="hover:text-secondary-200 focus:text-secondary-200 text-white"
           href={getLinkToEndPage()}>
           <Trans>Découvrez vos résultats détaillés</Trans>
         </Link>
@@ -82,7 +82,7 @@ export default function Label({
         {t('est votre poste le plus important\u202f!')}{' '}
         <br className="hidden md:inline" />
         <Link
-          className="text-white hover:text-secondary-200 focus:text-secondary-200"
+          className="hover:text-secondary-200 focus:text-secondary-200 text-white"
           href={getLinkToEndPage()}>
           <Trans>Découvrez vos résultats détaillés</Trans>
         </Link>
@@ -105,7 +105,7 @@ export default function Label({
         {t('est votre poste le plus important\u202f!')}{' '}
         <br className="hidden md:inline" />
         <Link
-          className="text-white hover:text-secondary-200 focus:text-secondary-200"
+          className="hover:text-secondary-200 focus:text-secondary-200 text-white"
           href={getLinkToEndPage()}>
           <Trans>Découvrez vos résultats détaillés</Trans>
         </Link>
@@ -114,7 +114,7 @@ export default function Label({
   )
 
   return (
-    <div className="relative mb-4 overflow-hidden rounded-xl bg-primary-700 p-4 text-white">
+    <div className="bg-primary-700 relative mb-4 overflow-hidden rounded-xl p-4 text-white">
       {isAnswerCorrect === 'correct' ? <CorrectComponent /> : null}
       {isAnswerCorrect === 'almost' ? <AlmostComponent /> : null}
       {isAnswerCorrect === 'wrong' ? <WrongComponent /> : null}

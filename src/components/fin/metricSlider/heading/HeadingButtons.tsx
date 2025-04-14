@@ -154,7 +154,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         aria-label={t('Partager')}>
         <ShareIcon
           className={twMerge(
-            'mr-[1px] fill-primary-700',
+            'fill-primary-700 mr-[1px]',
             shareClassNames[size]
           )}
         />
