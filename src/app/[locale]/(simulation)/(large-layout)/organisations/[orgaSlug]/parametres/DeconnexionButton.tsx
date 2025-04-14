@@ -27,9 +27,9 @@ export default function DeconnexionButton() {
   return (
     <Button
       color="text"
-      className="flex items-center gap-2 text-primary-700 underline"
+      className="text-primary-700 flex items-center gap-2 underline"
       onClick={handleDisconnect}>
-      <LogOutIcon className="mr-2 fill-primary-700" />
+      <LogOutIcon className="fill-primary-700 mr-2" />
       <Trans>Se déconnecter de votre espace organisation</Trans>
     </Button>
   )

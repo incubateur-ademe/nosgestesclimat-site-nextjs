@@ -34,7 +34,7 @@ export default function HorizontalBarChartItem({
           <Emoji>{icons}</Emoji> <p className={`mb-0`}>{title}</p>
         </div>
         {shouldDisplayValue && (
-          <div className="mr-4 min-w-20 text-right text-primary-700">
+          <div className="text-primary-700 mr-4 min-w-20 text-right">
             {displayValue}
           </div>
         )}

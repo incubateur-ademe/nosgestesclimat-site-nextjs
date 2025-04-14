@@ -84,7 +84,7 @@ export default function NorthStarBanner({
       id="northstarBanner"
       className="relative m-0 h-auto w-auto rounded-xl bg-green-50 shadow-md sm:m-2">
       <button
-        className="bold absolute right-0 top-0 h-10 w-10 text-center text-lg"
+        className="bold absolute top-0 right-0 h-10 w-10 text-center text-lg"
         onClick={closeFeedback}
         aria-label={t('Fermer le bandeau de feedback')}>
         &#215;

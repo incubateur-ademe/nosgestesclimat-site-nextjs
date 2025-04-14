@@ -14,7 +14,7 @@ export default function TrashIcon({ className, ...props }: Props) {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={twMerge('inline-block fill-default stroke-none', className)}
+      className={twMerge('fill-default inline-block stroke-none', className)}
       {...props}>
       <path
         fillRule="evenodd"

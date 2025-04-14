@@ -173,7 +173,7 @@ export default function UserInformationForm({
         {inputsDisplayed.includes('newsletter-saisonniere') ||
           (inputsDisplayed.includes('newsletter-transports') && (
             <>
-              <h3 className="mb-0 mt-6">{t('Inscription à nos e-mails')}</h3>
+              <h3 className="mt-6 mb-0">{t('Inscription à nos e-mails')}</h3>
 
               <p className="text-sm text-gray-600">
                 {t('Vous pouvez vous désincrire à tout moment')}

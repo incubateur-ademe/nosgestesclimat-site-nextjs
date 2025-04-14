@@ -40,7 +40,7 @@ export default function SimulationMissing() {
           </ButtonLink>
         </div>
 
-        <p className="mb-0 mt-4">
+        <p className="mt-4 mb-0">
           <small>
             <Trans i18nKey={'publicodes.SimulationMissing.personnas'}>
               Vous pouvez aussi continuer avec un{' '}

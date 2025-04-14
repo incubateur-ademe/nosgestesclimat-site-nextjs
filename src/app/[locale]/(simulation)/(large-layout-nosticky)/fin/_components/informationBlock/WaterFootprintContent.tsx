@@ -13,7 +13,7 @@ type Props = {
 const title = (
   <span className="pr-16 md:pr-0 lg:tracking-tight">
     <Trans>
-      <strong className="font-black text-secondary-700">
+      <strong className="text-secondary-700 font-black">
         L’empreinte eau,
       </strong>{' '}
       c’est quoi ?

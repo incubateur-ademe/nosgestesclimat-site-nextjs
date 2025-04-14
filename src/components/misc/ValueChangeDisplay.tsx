@@ -68,7 +68,7 @@ export default function ValueChangeDisplay({
   return (
     <div
       className={twMerge(
-        'absolute right-2 top-1 -z-0 w-auto whitespace-nowrap',
+        'absolute top-1 right-2 -z-0 w-auto whitespace-nowrap',
         isNegative
           ? 'animate-valuechange-reverse text-green-700'
           : 'animate-valuechange text-red-700',

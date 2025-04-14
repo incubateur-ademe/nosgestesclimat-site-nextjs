@@ -1,7 +1,7 @@
 'use client'
 
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import type { PropsWithChildren} from 'react';
+import type { PropsWithChildren } from 'react'
 import { useContext, useMemo } from 'react'
 import { SimulationContext } from '../simulationProvider/context'
 import Provider from './Provider'

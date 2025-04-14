@@ -36,7 +36,7 @@ export default async function WhatItIsWaterFootprint({
             <Trans locale={locale}>
               Empreinte eau et{' '}
               <Link
-                className="font-bold text-primary-600"
+                className="text-primary-600 font-bold"
                 href="/empreinte-carbone">
                 empreinte carbone
               </Link>{' '}

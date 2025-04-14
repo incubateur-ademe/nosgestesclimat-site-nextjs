@@ -36,7 +36,7 @@ export default function Birthdate() {
         className="text-lg md:text-2xl"
         title={<Trans>Votre date de naissance</Trans>}
         subtitle={
-          <span className="font-bold italic text-secondary-700">
+          <span className="text-secondary-700 font-bold italic">
             <Trans>Facultatif</Trans>
           </span>
         }
