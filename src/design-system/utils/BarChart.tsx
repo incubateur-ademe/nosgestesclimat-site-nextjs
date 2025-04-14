@@ -12,7 +12,7 @@ export default function BarChart({ type, value, color }: Props) {
 
   return (
     <motion.div
-      className={`min-w-0.5 max-w-full ${
+      className={`max-w-full min-w-0.5 ${
         propertyAffected === 'width' ? 'h-4' : 'w-4'
       } ${color ?? 'bg-secondary-700'} rotate-180 rounded-xl`}
       initial={{ [propertyAffected]: 0 }}

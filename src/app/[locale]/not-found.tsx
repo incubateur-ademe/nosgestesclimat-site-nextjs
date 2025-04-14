@@ -1,5 +1,4 @@
 import Route404 from '@/components/layout/404'
-import Main from '@/design-system/layout/Main'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import type { DefaultPageProps } from '@/types'
@@ -20,12 +19,8 @@ export async function generateMetadata(props: DefaultPageProps) {
   })
 }
 
-export default function NotFound() {
-  return (
-    <>
-      <Main>
-        <Route404 />
-      </Main>
-    </>
-  )
+export default async function NotFound({ params }: DefaultPageProps) {
+  const { locale } = await params
+
+  return <Route404 locale={locale} />
 }

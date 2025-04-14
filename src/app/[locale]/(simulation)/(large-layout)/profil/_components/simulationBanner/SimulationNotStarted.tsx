@@ -15,7 +15,7 @@ export default function SimulationNotStarted() {
         <span
           role="img"
           aria-label="hole emoji"
-          className="mb-2 block text-center text-3xl md:mb-0 md:mr-4 md:inline-block">
+          className="mb-2 block text-center text-3xl md:mr-4 md:mb-0 md:inline-block">
           🕳️
         </span>
         <Trans>Vous n'avez pas encore fait le test.</Trans>

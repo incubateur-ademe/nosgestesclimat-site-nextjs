@@ -1,4 +1,4 @@
-import type { Dispatch, SetStateAction} from 'react';
+import type { Dispatch, SetStateAction } from 'react'
 import { useEffect, useState } from 'react'
 
 type Props = {
@@ -36,7 +36,7 @@ export default function AdditionalQuestions({
               return prevQuestionsOpen.filter((question) => question !== slug)
             })
           }}>
-          <summary className="mb-2 cursor-pointer text-primary-700">
+          <summary className="text-primary-700 mb-2 cursor-pointer">
             {question}
           </summary>
           <div className="my-2 ml-3.5">{answer}</div>
