@@ -1,6 +1,4 @@
-import { vi } from 'vitest'
-
-vi.mock('@/publicodes-state')
+jest.mock('@/publicodes-state')
 
 import { useGetGroupStats } from '@/hooks/groups/useGetGroupStats'
 import type { Participant } from '@/types/groups'
