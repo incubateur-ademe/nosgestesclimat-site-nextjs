@@ -111,7 +111,7 @@ export default async function WhatDoWeMeasureWaterFootprint({
             </Trans>
           </p>
 
-          <p className="mb-0 text-center font-bold text-secondary-700">
+          <p className="text-secondary-700 mb-0 text-center font-bold">
             <Trans locale={locale}>
               Attention : l’empreinte eau ne tient pas compte de la consommation
               d’eau domestique (douche, toilettes, cuisine, arrosage) !

@@ -13,7 +13,7 @@ export default function AnswerList() {
   return (
     <div>
       <h2 className="flex items-center">
-        <AnswersIcon className="mr-3 fill-primary-700" />
+        <AnswersIcon className="fill-primary-700 mr-3" />
 
         <Trans>Mes réponses</Trans>
       </h2>

@@ -94,7 +94,7 @@ export default function SimulationStarted() {
             goToSimulateurPage({ noNavigation: true, newSimulation: {} })
           }}
           href={getLinkToSimulateurPage({ newSimulation: true })}>
-          <RestartIcon className="mr-2 fill-primary-700" />
+          <RestartIcon className="fill-primary-700 mr-2" />
 
           <Trans>Recommencer</Trans>
         </ButtonLink>

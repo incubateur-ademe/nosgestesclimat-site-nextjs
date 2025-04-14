@@ -33,7 +33,7 @@ export default async function International({ params }: DefaultPageProps) {
   // TODO: add back full width somehow
   return (
     <>
-      <Container maxWidth="3xl" className="pb-12 pt-8">
+      <Container maxWidth="3xl" className="pt-8 pb-12">
         <div className="flex items-start justify-between gap-4">
           <div className="text-center md:text-left">
             <Title
@@ -76,7 +76,7 @@ export default async function International({ params }: DefaultPageProps) {
         </div>
       </Container>
       <div className="rounded-xl bg-gray-100">
-        <Container maxWidth="3xl" className="px-4 pb-12 pt-8">
+        <Container maxWidth="3xl" className="px-4 pt-8 pb-12">
           <h2>
             <Trans locale={locale} i18nKey="international.pourquoi.titre">
               Adapté à votre pays
@@ -120,7 +120,7 @@ export default async function International({ params }: DefaultPageProps) {
         </Container>
       </div>
 
-      <Container maxWidth="3xl" className="pb-12 pt-8">
+      <Container maxWidth="3xl" className="pt-8 pb-12">
         <h2>
           <Trans locale={locale} i18nKey="international.comment.titre">
             Comment ça marche ?
@@ -139,14 +139,14 @@ export default async function International({ params }: DefaultPageProps) {
             Explorez en détail les spécificités de chaque pays.
           </Trans>
           &nbsp;
-          <span className="ml-2 whitespace-nowrap rounded-xs bg-primary-100 px-2 py-1">
+          <span className="bg-primary-100 ml-2 rounded-xs px-2 py-1 whitespace-nowrap">
             ⏳️ <Trans locale={locale}>À venir !</Trans>
           </span>
         </p>
       </Container>
 
       <div className="rounded-xl bg-gray-100">
-        <Container maxWidth="3xl" className="pb-12 pt-8">
+        <Container maxWidth="3xl" className="pt-8 pb-12">
           <div className="mx-auto my-0">
             <RegionGrid
               className="mx-auto"
@@ -157,7 +157,7 @@ export default async function International({ params }: DefaultPageProps) {
         </Container>
       </div>
 
-      <Container maxWidth="3xl" className="pb-12 pt-8">
+      <Container maxWidth="3xl" className="pt-8 pb-12">
         <h2>
           <Trans locale={locale} i18nKey="international.ensuite.titre">
             Vous ne trouvez pas votre pays ?

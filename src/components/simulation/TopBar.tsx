@@ -39,12 +39,12 @@ export default function Total({
       )}>
       <div
         className={twMerge(
-          'relative flex h-full items-center gap-4 overflow-visible pb-3 pt-2 lg:pb-5 lg:pt-4',
-          !simulationMode && 'border-b border-primary-100'
+          'relative flex h-full items-center gap-4 overflow-visible pt-2 pb-3 lg:pt-4 lg:pb-5',
+          !simulationMode && 'border-primary-100 border-b'
         )}>
         {simulationMode && <Progress />}
 
-        <div className="mb-0 flex w-full max-w-6xl justify-between overflow-visible pl-1 pr-4 lg:mx-auto lg:px-4">
+        <div className="mb-0 flex w-full max-w-6xl justify-between overflow-visible pr-4 pl-1 lg:mx-auto lg:px-4">
           <div className="relative flex items-center gap-1 lg:gap-4">
             {simulationMode && !isIframe && !isIframeOnlySimulation && (
               <ButtonBack

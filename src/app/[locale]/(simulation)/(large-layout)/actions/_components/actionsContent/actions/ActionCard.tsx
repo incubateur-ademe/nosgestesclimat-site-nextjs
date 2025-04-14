@@ -180,7 +180,7 @@ export default function ActionCard({
                 number={nbRemainingQuestions}
               />
               <button
-                className="cursor-pointer text-sm text-primary-700"
+                className="text-primary-700 cursor-pointer text-sm"
                 onClick={() => {
                   trackEvent(actionsClickAdditionalQuestion(dottedName))
                   setFocusedAction(dottedName)
