@@ -10,6 +10,8 @@ import Trans from '@/components/translation/trans/TransClient'
 import { endClickSaveShortcut } from '@/constants/tracking/pages/end'
 import { simulationClickSaveShortcut } from '@/constants/tracking/pages/simulateur'
 import {
+  FACEBOOK_SHARE_URL,
+  LINKEDIN_SHARE_URL,
   MESSENGER_SHARE_MOBILE_URL,
   WHATSAPP_SHARE_URL,
 } from '@/constants/urls/share'
@@ -84,22 +86,23 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
           {
             icon: <FacebookIcon />,
             label: t('Facebook'),
-            link: `${MESSENGER_SHARE_MOBILE_URL}${sharedUrl}`,
+            link: `${FACEBOOK_SHARE_URL}${sharedUrl}`,
           },
           {
             icon: <MessengerIcon />,
             label: t('Messenger'),
             link: `${MESSENGER_SHARE_MOBILE_URL}${sharedUrl}`,
+            mobileOnly: true,
           },
           {
             icon: <LinkedinIcon />,
             label: t('Linkedin'),
-            link: `${MESSENGER_SHARE_MOBILE_URL}${sharedUrl}`,
+            link: `${LINKEDIN_SHARE_URL}${sharedUrl}`,
           },
           {
             icon: <MailIcon className="fill-primary-700 w-4" />,
             label: t('Envoyer par e-mail'),
-            link: `${MESSENGER_SHARE_MOBILE_URL}${sharedUrl}`,
+            link: `mailto:?subject=${t('Voici mes empreintes carbone et eau ; tu connais les tiennes ?')}&body=${sharedUrl}`,
           },
         ]}
         link={sharedUrl}

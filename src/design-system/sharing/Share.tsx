@@ -6,6 +6,7 @@ import CheckIcon from '@/components/icons/status/CheckIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import { endClickShareShortcut } from '@/constants/tracking/pages/end'
 import { trackEvent } from '@/utils/analytics/trackEvent'
+import getIsMobile from 'is-mobile'
 import { type ReactNode, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Button from '../buttons/Button'
@@ -23,13 +24,20 @@ export default function Share({
   ...props
 }: {
   buttonLabel: string
-  shareItems: { label: ReactNode; icon: ReactNode; link: string }[]
+  shareItems: {
+    label: ReactNode
+    icon: ReactNode
+    link: string
+    mobileOnly?: boolean
+  }[]
   modalTitle: ReactNode
   modalDescription: ReactNode
   ariaHideApp?: boolean
   link: string
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const isMobile = getIsMobile()
 
   return (
     <>
@@ -87,19 +95,23 @@ export default function Share({
                 </CopyButton>
               </li>
 
-              {shareItems.map(({ label, icon, link }) => (
-                <li key={link} className="w-full">
-                  <ButtonLink
-                    className="max-h-10 w-full text-sm!"
-                    color="secondary"
-                    href={link}>
-                    <span className="flex items-center gap-2">
-                      {label}
-                      {icon}
-                    </span>
-                  </ButtonLink>
-                </li>
-              ))}
+              {shareItems.map(({ label, icon, link, mobileOnly }) =>
+                mobileOnly && !isMobile ? null : (
+                  <li key={link} className="w-full">
+                    <ButtonLink
+                      className="max-h-10 w-full text-sm!"
+                      color="secondary"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={link}>
+                      <span className="flex items-center gap-2">
+                        {label}
+                        {icon}
+                      </span>
+                    </ButtonLink>
+                  </li>
+                )
+              )}
             </ul>
           </Modal>
         </div>
