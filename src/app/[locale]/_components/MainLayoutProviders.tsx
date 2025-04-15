@@ -23,7 +23,7 @@ export default function MainLayoutProviders({ children }: PropsWithChildren) {
               <PreventNavigationProvider>
                 <MainHooks>
                   <body
-                    className={`${marianne.className} bg-white text-default transition-colors duration-700`}
+                    className={`${marianne.className} text-default bg-white transition-colors duration-700`}
                     ref={containerRef}>
                     {children}
                   </body>

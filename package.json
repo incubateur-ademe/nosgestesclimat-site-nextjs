@@ -18,7 +18,7 @@
     "build": "NODE_OPTIONS=--max-old-space-size=7168 next build",
     "build:analyze": "ANALYZE=true next build",
     "build:debug-memory": "next build --experimental-debug-memory-usage",
-    "format": "prettier --write \"**/*.{js,ts,md,json}\" && next lint --fix",
+    "format": "prettier --write \"**/*.{js,ts,tsx,md,json}\" && next lint --fix",
     "start": "next start",
     "lint": "prettier --check \"**/*.{js,ts,md,json}\" && next lint",
     "lint:types": "tsc --noEmit",

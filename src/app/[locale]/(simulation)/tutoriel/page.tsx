@@ -32,7 +32,7 @@ export default async function Tutoriel({ params }: DefaultPageProps) {
           className="text-lg md:text-2xl"
           title={
             <>
-              <span className="inline text-secondary-700">
+              <span className="text-secondary-700 inline">
                 <Trans locale={locale}>10 minutes</Trans>
               </span>{' '}
               <Trans locale={locale}>

@@ -92,7 +92,7 @@ export default function InvitationForm({ group }: { group: Group }) {
           label={
             <span>
               {t('Votre adresse email')}{' '}
-              <span className="italic text-secondary-700">
+              <span className="text-secondary-700 italic">
                 {' '}
                 {t('facultatif')}
               </span>

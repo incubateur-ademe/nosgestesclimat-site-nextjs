@@ -4,7 +4,6 @@ import getActions from '@/helpers/actions/getActions'
 import {
   useCurrentSimulation,
   useEngine,
-  useSimulation,
   useTempEngine,
 } from '@/publicodes-state'
 import { useSearchParams } from 'next/navigation'
@@ -15,7 +14,7 @@ import CategoryFilters from './actionsContent/CategoryFilters'
 import OptionBar from './actionsContent/OptionBar'
 
 export default function ActionsContent() {
-  const { getCategory } = useEngine()
+  const { getCategory, safeEvaluate } = useEngine()
   const containerRef = useRef<HTMLDivElement>(null)
 
   const [radical, setRadical] = useState(true)
@@ -28,7 +27,6 @@ export default function ActionsContent() {
 
   const { rules, getSpecialRuleObject } = useTempEngine()
 
-  const { safeEvaluate } = useSimulation()
   const actions = getActions({
     rules,
     radical,

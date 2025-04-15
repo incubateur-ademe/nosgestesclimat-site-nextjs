@@ -43,20 +43,20 @@ export default function NavLink({
       href={href}
       onClick={onClick}
       className={twMerge(
-        'group relative -mb-[1px] flex h-full items-center gap-2 px-3 text-sm text-default no-underline transition-colors hover:text-primary-900 md:text-base',
+        'group text-default hover:text-primary-900 relative -mb-[1px] flex h-full items-center gap-2 px-3 text-sm no-underline transition-colors md:text-base',
         `${
-          isActive ? activeClassName || 'font-bold text-primary-800' : ''
+          isActive ? activeClassName || 'text-primary-800 font-bold' : ''
         } ${className}`
       )}
       {...props}>
       {isActive && (
-        <ColorLine className="absolute bottom-0 left-0 rounded-full bg-primary-700 lg:h-[4px] lg:w-full" />
+        <ColorLine className="bg-primary-700 absolute bottom-0 left-0 rounded-full lg:h-[4px] lg:w-full" />
       )}
 
       {icon && (
         <Icon
           className={twMerge(
-            'h-5 w-5 group-hover:fill-primary-800 group-hover:stroke-primary-800!',
+            'group-hover:fill-primary-800 group-hover:stroke-primary-800! h-5 w-5',
             `${isActive ? 'fill-primary-800 stroke-primary-800' : ''}`
           )}
         />

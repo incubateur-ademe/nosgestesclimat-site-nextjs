@@ -66,7 +66,7 @@ export default function DocumentationServer({ slugs, rules, locale }: Props) {
         locale={locale}
       />
 
-      <Card className="mb-4 mt-4 border-none bg-primary-100">
+      <Card className="bg-primary-100 mt-4 mb-4 border-none">
         <p className="mb-0">
           <Trans locale={locale}>
             Pour en savoir plus sur cette règle de notre modèle, lancer le

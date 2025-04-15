@@ -27,7 +27,7 @@ export default function InformationBlock() {
   return (
     <div className="relative">
       <Hedgehog setIsHedgehog={setIsHedgehog} />
-      <div className="relative rounded-xl border-2 border-primary-50 bg-gray-100 px-4 py-6 short:py-2">
+      <div className="border-primary-50 short:py-2 relative rounded-xl border-2 bg-gray-100 px-4 py-6">
         {isHedgehog ? (
           <HedgehogAwareness />
         ) : currentMetric === carboneMetric ? (
@@ -39,7 +39,7 @@ export default function InformationBlock() {
       <Button
         color={isOpen || isHedgehog ? 'text' : 'primary'}
         className={twMerge(
-          'absolute right-4 top-4 h-12 w-12 p-0! lg:hidden',
+          'absolute top-4 right-4 h-12 w-12 p-0! lg:hidden',
           isHedgehog ? 'block!' : ''
         )}
         aria-label={isOpen || isHedgehog ? t('Fermer') : t('Ouvrir')}
@@ -49,7 +49,7 @@ export default function InformationBlock() {
           trackEvent(endToggleTargetBlock)
         }}>
         {isOpen || isHedgehog ? (
-          <CloseIcon className="h-7 w-7 fill-primary-700" />
+          <CloseIcon className="fill-primary-700 h-7 w-7" />
         ) : (
           <DownArrow className="h-7 w-7 fill-white" />
         )}

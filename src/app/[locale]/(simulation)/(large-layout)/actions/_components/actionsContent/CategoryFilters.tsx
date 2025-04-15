@@ -1,6 +1,6 @@
 'use client'
 
-import { useEngine, useSimulation } from '@/publicodes-state'
+import { useEngine } from '@/publicodes-state'
 import Filter from './categoryFilters/Filter'
 
 type Props = {
@@ -8,8 +8,7 @@ type Props = {
 }
 
 export default function CategoryFilters({ actions }: Props) {
-  const { categories } = useSimulation()
-  const { getCategory } = useEngine()
+  const { getCategory, categories } = useEngine()
 
   const countByCategory = actions.reduce((accumulator: any, action: any) => {
     const category = getCategory(action.dottedName)
