@@ -1,13 +1,18 @@
+import CategoryFilters from '@/components/filtering/CategoryFilters'
 import type { PartnerType } from '@/adapters/cmsClient'
 import Trans from '@/components/translation/trans/TransServer'
+import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
+import Emoji from '@/design-system/utils/Emoji'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { fetchPartners } from '@/services/cms/fetchPartners'
 import type { DefaultPageProps } from '@/types'
+import { encodeDottedNameAsURI } from '@/utils/format/encodeDottedNameAsURI'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
 
 export const generateMetadata = getCommonMetadata({
@@ -36,8 +41,15 @@ const getPartnersByCategory = (partners: PartnerType[]) => {
   )
 }
 
-export default async function NosRelais({ params }: DefaultPageProps) {
+export default async function NosRelais({
+  params,
+  searchParams,
+}: DefaultPageProps & {
+  searchParams: Promise<{ [FILTER_SEARCH_PARAM_KEY]: string }>
+}) {
   const { locale } = await params
+  const { [FILTER_SEARCH_PARAM_KEY]: categoryFilter } = await searchParams
+
   const { t } = await getServerTranslation({ locale })
 
   const partners = await fetchPartners()
@@ -48,41 +60,39 @@ export default async function NosRelais({ params }: DefaultPageProps) {
     <div>
       <Title>
         <Trans locale={locale}>Ils relaient </Trans>
+
         <span className="text-primary-700">
           <Trans locale={locale}>Nos Gestes Climat</Trans>
         </span>
       </Title>
 
-      <div className="flex flex-wrap items-center md:flex-nowrap md:gap-16">
-        <div>
+      <div className="mb-8 flex flex-col items-center md:flex-row md:flex-nowrap md:gap-16">
+        <div className="flex-1">
           <p>
+            <strong className="text-primary-700">
+              <Trans locale={locale}>Plusieurs milliers d’organisations</Trans>
+            </strong>{' '}
             <Trans locale={locale}>
-              Plus de 40 acteurs relaient ou ont relayé Nos Gestes Climat à
-              travers 
-              <a
-                href="https://accelerateur-transition-ecologique-ademe.notion.site/Int-grer-Nos-Gestes-Climat-en-iframe-abdeb175baf84143922006964d80348c"
-                target="_blank"
-                rel="noopener noreferrer">
-                l'intégration du calculateur
-              </a>{' '}
-              sur leur site internet ou sa diffusion via{' '}
-              <InlineLink href="/organisations">des campagnes</InlineLink>{' '}
-              (mail, réseaux sociaux et / ou affichage). C'est majoritairement
-              grâce à eux que nous sensibilisons près de 2 000 nouvelles
-              personnes en moyenne chaque jour et nous les en remercions.
+              partagent Nos Gestes Climat via leur site ou des campagnes (mails,
+              réseaux sociaux, affichage), nous permettant de sensibiliser près
+              de 2 000 personnes chaque jour. Un grand merci à eux !
             </Trans>
           </p>
 
           <p>
             <Trans locale={locale}>
-              Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans
-              notre galerie de relais ? Merci de nous envoyer un message avec
-              votre logo via{' '}
-              <InlineLink href="/contact">notre page de contact</InlineLink>.
-            </Trans>
+              Vous relayez Nos Gestes Climat et souhaitez apparaître dans notre
+              galerie ?
+            </Trans>{' '}
+            <InlineLink className="inline" href="/contact">
+              <Trans locale={locale}>
+                Envoyez-nous votre logo via notre page de contact
+              </Trans>
+            </InlineLink>
           </p>
 
           <p className="mb-8 italic">
+            <Emoji>ℹ️</Emoji>{' '}
             <Trans locale={locale}>
               N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat,
               qui est et restera un service public, indépendant et gratuit de
@@ -90,6 +100,7 @@ export default async function NosRelais({ params }: DefaultPageProps) {
             </Trans>
           </p>
         </div>
+
         <Image
           width="200"
           height="400"
@@ -101,12 +112,25 @@ export default async function NosRelais({ params }: DefaultPageProps) {
         />
       </div>
 
-      {Object.entries(partnersByCategories).map(
-        ([category, partners]: [string, PartnerType[]]) => (
+      <CategoryFilters
+        categories={Object.keys(partnersByCategories).map((category: string) => ({
+          title: category,
+          dottedName: category as DottedName,
+          count: partnersByCategories[category].length,
+        }))}
+        className="mb-6"
+      />
+      {Object.keys(partnersByCategories)
+        .filter((category: string) =>
+          typeof categoryFilter !== 'undefined'
+            ? categoryFilter === encodeDottedNameAsURI(category)
+            : true
+        )
+        .map((category: string) => (
           <div key={category} className="mb-16">
             <h2>{category}</h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-              {partners.map((partner) => (
+              {partnersByCategories[category].map((partner) => (
                 <Card
                   key={partner.name}
                   href={partner.link}
@@ -122,19 +146,13 @@ export default async function NosRelais({ params }: DefaultPageProps) {
                   />
                   <p className="mb-4 font-bold">{partner.name}</p>
                   <p className="my-0 underline">
-                    {
-                      partner.link
-                        .replace('https://', '')
-                        .replace('www.', '')
-                        .split('/')[0]
-                    }
+                    {partner.link}
                   </p>
                 </Card>
               ))}
             </div>
           </div>
-        )
-      )}
+        ))}
     </div>
   )
 }

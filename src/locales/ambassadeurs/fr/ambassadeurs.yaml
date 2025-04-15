@@ -108,15 +108,18 @@ Entreprises:
     image: steply.png
     link: https://steply-app.com/
 Collectivités et acteurs publics:
-  - title: 'Ville de Grenoble'
+  - title: Ville de Grenoble
     image: Grenoble.png
     link: https://www.grenoble.fr/593-grenoble-climat.htm
-  - title: 'Grand Paris Seine-Ouest'
+  - title: Grand Paris Seine-Ouest
     image: paris-ouest.png
     link: https://www.seineouest.fr/nos-gestes-climat
   - title: Ville de Lyon
     image: lyon.png
     link: https://www.lyon.fr/actualite/environnement/carbone-detox-le-defi-pour-reduire-son-impact
+  - title: Strasbourg Métropole
+    image: https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/strasbourg_d05212223e.jpg
+    link: https://www.strasbourg.eu/
   - title: 'La Rochelle'
     image: la rochelle.png
     link: https://www.larochelle-zerocarbone.fr/s-engager/la-boite-a-outils-du-zero-carbone/nos-gestes-climat
@@ -147,7 +150,7 @@ Associations:
     link: https://www.weareclimates.org/
 Education:
   - title: 'Université Catholique de Lyon'
-    image: ucl.png
+    image: https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/ucly_d769ca6466.png
     link: https://www.ucly.fr/
   - title: 'L’académie du climat'
     image: academieduclimat.png
@@ -156,9 +159,9 @@ Education:
     image: CNED.png
     link: https://www.cned.fr/transition-ecologique/ba-ba-du-climat-et-de-la-biodiversite
 Lieux et événements:
-  - title: 'Silicet'
-    image: silicetbidule.png
-    link: https://scilicet.fr/
   - title: 'SoGood Festival'
     image: sogood.png
     link: https://www.sogoodfestival.com/
+  - title: 'Silicet'
+    image: https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/silicet_6d2b068bee.jpg
+    link: https://scilicet.fr/
