@@ -2,11 +2,11 @@ import {
   getBackgroundColor,
   getBackgroundLightColor,
 } from '@/helpers/getCategoryColorClass'
-import { useCurrentSimulation, useForm } from '@/publicodes-state'
+import { useCurrentSimulation, useFormState } from '@/publicodes-state'
 import { twMerge } from 'tailwind-merge'
 
 export default function Progress() {
-  const { currentCategory } = useForm()
+  const { currentCategory } = useFormState()
 
   const { progression } = useCurrentSimulation()
 

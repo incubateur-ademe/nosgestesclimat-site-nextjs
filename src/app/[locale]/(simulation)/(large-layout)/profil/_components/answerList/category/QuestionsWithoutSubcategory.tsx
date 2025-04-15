@@ -2,7 +2,7 @@
 
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { getSubcatsOfCategory } from '@/helpers/publicodes/getSubcatsOfCategory'
-import { useForm, useSimulation } from '@/publicodes-state'
+import { useEngine, useFormState } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Question from './subcategory/Question'
 
@@ -11,8 +11,8 @@ type Props = {
 }
 
 export default function QuestionsWithoutSubcategory({ category }: Props) {
-  const { subcategories } = useSimulation()
-  const { relevantAnsweredQuestions } = useForm()
+  const { subcategories } = useEngine()
+  const { relevantAnsweredQuestions } = useFormState()
 
   const subCategoriesOfCategory = getSubcatsOfCategory(category, subcategories)
 

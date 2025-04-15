@@ -5,7 +5,7 @@ import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getTextDarkColor } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
-import { useForm, useRule } from '@/publicodes-state'
+import { useFormState, useRule } from '@/publicodes-state'
 import type { DottedName, Metrics } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 
@@ -23,7 +23,7 @@ export default function CategoryResult({
     remainingQuestionsByCategories,
     currentCategory,
     questionsByCategories,
-  } = useForm()
+  } = useFormState()
 
   const { title, icons, numericValue } = useRule(category, metric)
 

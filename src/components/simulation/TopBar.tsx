@@ -1,7 +1,7 @@
 'use client'
 
 import { useIframe } from '@/hooks/useIframe'
-import { useCurrentSimulation, useForm } from '@/publicodes-state'
+import { useCurrentSimulation, useFormState } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 import TotalFootprintNumber from '../misc/TotalFootprintNumber'
@@ -25,7 +25,7 @@ export default function Total({
 }) {
   const { isIframe, isIframeOnlySimulation } = useIframe()
 
-  const { currentCategory } = useForm()
+  const { currentCategory } = useFormState()
 
   const currentSimulation = useCurrentSimulation()
 
