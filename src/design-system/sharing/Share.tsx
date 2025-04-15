@@ -74,13 +74,13 @@ export default function Share({
                   className="max-h-10"
                   color="secondary"
                   copiedStateText={
-                    <span className="flex items-center gap-4 text-green-700">
+                    <span className="flex items-center gap-4 text-sm text-green-700">
                       <CheckIcon className="fill-green-700" />
                       <Trans>Lien copié !</Trans>
                     </span>
                   }
                   textToCopy={link}>
-                  <span className="flex items-center gap-2">
+                  <span className="flex items-center gap-2 text-sm">
                     <Trans>Copier le lien</Trans>{' '}
                     <CopyIcon className="stroke-primary-700" />
                   </span>
@@ -90,7 +90,7 @@ export default function Share({
               {shareItems.map(({ label, icon, link }) => (
                 <li key={link} className="w-full">
                   <ButtonLink
-                    className="max-h-10 w-full"
+                    className="max-h-10 w-full text-sm!"
                     color="secondary"
                     href={link}>
                     <span className="flex items-center gap-2">

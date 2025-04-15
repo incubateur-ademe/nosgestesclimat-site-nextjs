@@ -1,6 +1,9 @@
 'use client'
 
 import SaveIcon from '@/components/icons/SaveIcon'
+import FacebookIcon from '@/components/icons/share/FacebookIcon'
+import LinkedinIcon from '@/components/icons/share/LinkedinIcon'
+import MailIcon from '@/components/icons/share/MailIcon'
 import MessengerIcon from '@/components/icons/share/MessengerIcon'
 import WhatsappIcon from '@/components/icons/share/WhatsappIcon'
 import Trans from '@/components/translation/trans/TransClient'
@@ -79,8 +82,23 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
             link: `${WHATSAPP_SHARE_URL}${sharedUrl}`,
           },
           {
+            icon: <FacebookIcon />,
+            label: t('Facebook'),
+            link: `${MESSENGER_SHARE_MOBILE_URL}${sharedUrl}`,
+          },
+          {
             icon: <MessengerIcon />,
             label: t('Messenger'),
+            link: `${MESSENGER_SHARE_MOBILE_URL}${sharedUrl}`,
+          },
+          {
+            icon: <LinkedinIcon />,
+            label: t('Linkedin'),
+            link: `${MESSENGER_SHARE_MOBILE_URL}${sharedUrl}`,
+          },
+          {
+            icon: <MailIcon className="fill-primary-700 w-4" />,
+            label: t('Envoyer par e-mail'),
             link: `${MESSENGER_SHARE_MOBILE_URL}${sharedUrl}`,
           },
         ]}
