@@ -46,7 +46,7 @@ export default async function TheySpeakAboutUs({
               <Image
                 src={partner.imageSrc}
                 alt={partner.name}
-                className="h-auto w-24 md:w-36"
+                className="h-auto w-20 md:w-24"
                 width={150}
                 height={150}
               />

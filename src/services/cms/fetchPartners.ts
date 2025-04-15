@@ -18,6 +18,7 @@ export async function fetchPartners(props?: Props): Promise<PartnerType[]> {
       ...(displayOnLandingPage
         ? { 'filters[displayOnLandingPage][$eq]': 'true' }
         : {}),
+      'pagination[limit]': '100',
     })
 
     const partnersResponse = await cmsClient<{ data: PartnerType[] }>(

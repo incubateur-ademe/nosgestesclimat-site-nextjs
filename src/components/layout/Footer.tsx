@@ -29,12 +29,12 @@ import Logo from '../misc/Logo'
 import LanguageSwitchButton from '../translation/LanguageSwitchButton'
 import Trans from '../translation/trans/TransClient'
 
-const WHITE_BACKGROUND_PATHS = [
+const WHITE_BACKGROUND_PATHS = new Set([
   '/empreinte-eau',
   '/empreinte-carbone',
   '/blog',
   '/organisations',
-]
+])
 
 export default function Footer({ className = '' }) {
   const pathname = usePathname()
@@ -47,7 +47,7 @@ export default function Footer({ className = '' }) {
   const shouldUseWhiteBackground =
     pathname === '/' ||
     pathname === `/${locale}` ||
-    WHITE_BACKGROUND_PATHS.includes(pathname)
+    WHITE_BACKGROUND_PATHS.has(pathname)
 
   return (
     <footer

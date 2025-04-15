@@ -25,27 +25,19 @@ export default function CategoryFilter({ title, dottedName, count }: Props) {
 
   const encodedDottedName = encodeDottedNameAsURI(dottedName)
 
-  const isSelected = categorySelected === encodedDottedName
-
   const buildURL = () => {
-    const siteURL = new URL(
-      `${window.location.origin}${window.location.pathname}`
-    )
+    const siteURL = new URL(window.location.href)
 
-    if (isSelected && encodedDottedName === categorySelected) {
+    if (encodedDottedName === categorySelected) {
       siteURL.searchParams.delete(FILTER_SEARCH_PARAM_KEY)
-    }
-
-    if (isSelected && encodedDottedName !== categorySelected) {
+    } else {
       siteURL.searchParams.set(FILTER_SEARCH_PARAM_KEY, encodedDottedName)
-    }
-
-    if (!isSelected) {
-      siteURL.searchParams.append(FILTER_SEARCH_PARAM_KEY, encodedDottedName)
     }
 
     return siteURL.toString()
   }
+
+  const isSelected = categorySelected === encodedDottedName
 
   return (
     <li

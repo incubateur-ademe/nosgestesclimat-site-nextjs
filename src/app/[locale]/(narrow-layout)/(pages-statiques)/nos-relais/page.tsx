@@ -145,7 +145,7 @@ export default async function NosRelais({
                     alt={partner.name}
                   />
                   <p className="mb-4 font-bold">{partner.name}</p>
-                  <p className="my-0 underline">
+                  <p className="my-0 underline text-sm">
                     {partner.link}
                   </p>
                 </Card>
