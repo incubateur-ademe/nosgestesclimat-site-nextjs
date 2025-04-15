@@ -3,7 +3,7 @@ import type { Situation } from '@/publicodes-state/types'
 import { captureException } from '@sentry/nextjs'
 import axios from 'axios'
 
-export async function postSituation({
+export async function exportSituation({
   situation,
   partner,
   partnerParams,
