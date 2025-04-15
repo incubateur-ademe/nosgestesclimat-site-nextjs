@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '../inputs/Button'
+import Button from '../buttons/Button'
 
 type Props = {
   children: React.ReactNode

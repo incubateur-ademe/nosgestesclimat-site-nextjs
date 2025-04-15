@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Organisation, OrganisationPoll } from '@/types/organisations'
 import type { ReactNode } from 'react'

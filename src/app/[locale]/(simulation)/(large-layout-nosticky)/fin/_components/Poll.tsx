@@ -3,7 +3,7 @@
 import { PreventNavigationContext } from '@/app/[locale]/_components/mainLayoutProviders/PreventNavigationProvider'
 import Trans from '@/components/translation/trans/TransClient'
 import { endClickPoll } from '@/constants/tracking/pages/end'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { getLinkToPollDashboard } from '@/helpers/navigation/pollPages'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'

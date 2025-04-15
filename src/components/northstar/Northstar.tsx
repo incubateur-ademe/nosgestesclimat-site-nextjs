@@ -1,4 +1,4 @@
-import { OLD_SIMULATION_URL } from '@/constants/urls'
+import { OLD_SIMULATION_URL } from '@/constants/urls/main'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import type {

@@ -3,7 +3,7 @@
 import GlassesIcon from '@/components/icons/GlassesIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import { profilClickTutoriel } from '@/constants/tracking/pages/profil'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {

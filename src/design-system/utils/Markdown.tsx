@@ -6,7 +6,7 @@ import type { MarkdownToJSX } from 'markdown-to-jsx'
 import MarkdownToJsx from 'markdown-to-jsx'
 import Image from 'next/image'
 import type { ComponentProps } from 'react'
-import ButtonLink from '../inputs/ButtonLink'
+import ButtonLink from '../buttons/ButtonLink'
 
 type MarkdownProps = ComponentProps<typeof MarkdownToJsx> & {
   className?: string

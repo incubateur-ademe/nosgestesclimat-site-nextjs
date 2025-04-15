@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { useEffect, useRef, useState } from 'react'
-import Button from './Button'
+import Button from '../buttons/Button'
 
 type Props = {
   textToCopy: string

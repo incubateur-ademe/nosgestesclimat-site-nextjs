@@ -1,4 +1,4 @@
-import { metrics } from '@/constants/metric'
+import { metrics } from '@/constants/model/metric'
 import { migrateSimulation } from '@/publicodes-state/helpers/migrateSimulation'
 import type {
   ComputedResults,

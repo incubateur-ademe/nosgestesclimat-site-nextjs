@@ -2,8 +2,8 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { trackingActionClickCTAMenu } from '@/constants/tracking/actions'
-import { HIDE_CTA_PATHS } from '@/constants/urls'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import { HIDE_CTA_PATHS } from '@/constants/urls/main'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import {
   getLandingClickCTAResults,
   getLandingClickCTAResume,

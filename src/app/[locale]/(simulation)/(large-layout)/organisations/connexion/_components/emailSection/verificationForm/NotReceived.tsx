@@ -3,7 +3,7 @@
 import EyeIcon from '@/components/icons/EyeIcon'
 import ReturnIcon from '@/components/icons/ReturnIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import { useUser } from '@/publicodes-state'
 import type { UseMutateAsyncFunction } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'

@@ -4,7 +4,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import type { ReactNode } from 'react'
 import { useEffect } from 'react'
 import Modal from 'react-modal'
-import Button from '../inputs/Button'
+import Button from '../buttons/Button'
 import Loader from '../layout/Loader'
 
 type Props = {

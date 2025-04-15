@@ -18,7 +18,7 @@ import { formatEmail } from '@/utils/format/formatEmail'
 import { useEffect, useRef } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
-import Button from '../inputs/Button'
+import Button from '../buttons/Button'
 import CheckboxInputGroup from '../inputs/CheckboxInputGroup'
 import EmailInput from '../inputs/EmailInput'
 

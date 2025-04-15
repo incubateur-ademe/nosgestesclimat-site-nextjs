@@ -1,12 +1,15 @@
 'use client'
 
+import CopyIcon from '@/components/icons/share/CopyIcon'
 import ShareIcon from '@/components/icons/ShareIcon'
+import Trans from '@/components/translation/trans/TransClient'
 import { endClickShareShortcut } from '@/constants/tracking/pages/end'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { type ReactNode, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import Button from '../inputs/Button'
-import ButtonLink from '../inputs/ButtonLink'
+import Button from '../buttons/Button'
+import ButtonLink from '../buttons/ButtonLink'
+import CopyButton from '../buttons/CopyButton'
 import Modal from '../modals/Modal'
 
 export default function Share({
@@ -15,13 +18,15 @@ export default function Share({
   modalTitle,
   modalDescription,
   ariaHideApp,
+  link,
   ...props
 }: {
   buttonLabel: string
-  shareItems: { label: ReactNode; link: string }[]
+  shareItems: { label: ReactNode; icon: ReactNode; link: string }[]
   modalTitle: ReactNode
   modalDescription: ReactNode
   ariaHideApp?: boolean
+  link: string
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -46,7 +51,7 @@ export default function Share({
           className={twMerge('fill-primary-700 mr-[1px] h-[28px] w-[28px]')}
         />
 
-        <span className="sr-only lg:not-sr-only">{buttonLabel}</span>
+        <span className="sr-only lg:not-sr-only!">{buttonLabel}</span>
       </Button>
 
       {isModalOpen && (
@@ -54,19 +59,41 @@ export default function Share({
           <Modal
             isOpen
             ariaHideApp={ariaHideApp}
+            hasAbortButton={false}
             closeModal={() => setIsModalOpen(false)}
+            className="w-96 max-w-screen"
             {...props}>
-            <h2>{modalTitle}</h2>
+            <h2 className="text-center text-sm font-bold">{modalTitle}</h2>
 
-            <p>{modalDescription}</p>
+            <p className="mb-6 text-center text-sm">{modalDescription}</p>
 
-            <section className="flex flex-col gap-4">
-              {shareItems.map(({ label, link }) => (
-                <ButtonLink key={link} href={link}>
-                  {label}
-                </ButtonLink>
+            <ul className="flex flex-col gap-4">
+              <li>
+                <CopyButton
+                  className="max-h-10"
+                  color="secondary"
+                  textToCopy={link}>
+                  <span className="flex items-center gap-2">
+                    <Trans>Copier le lien</Trans>{' '}
+                    <CopyIcon className="stroke-primary-700" />
+                  </span>
+                </CopyButton>
+              </li>
+
+              {shareItems.map(({ label, icon, link }) => (
+                <li key={link} className="w-full">
+                  <ButtonLink
+                    className="max-h-10 w-full"
+                    color="secondary"
+                    href={link}>
+                    <span className="flex items-center gap-2">
+                      {label}
+                      {icon}
+                    </span>
+                  </ButtonLink>
+                </li>
               ))}
-            </section>
+            </ul>
           </Modal>
         </div>
       )}

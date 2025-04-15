@@ -2,7 +2,7 @@
 
 import InformationIconWithTooltip from '@/components/messages/InformationIconWithTooltip'
 import Trans from '@/components/translation/trans/TransClient'
-import { carboneMetric } from '@/constants/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import Separator from '@/design-system/layout/Separator'
 import type { PublicPollSimulation } from '@/types/organisations'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'

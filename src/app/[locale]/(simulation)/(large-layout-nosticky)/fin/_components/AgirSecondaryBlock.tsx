@@ -1,7 +1,7 @@
 import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/trans/TransClient'
 import { endClickJagisSecondBlock } from '@/constants/tracking/pages/end'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Badge from '@/design-system/layout/Badge'
 import Loader from '@/design-system/layout/Loader'
 import { useExportSituationToAgir } from '@/hooks/simulation/useExportSituationToAgir'

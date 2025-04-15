@@ -6,7 +6,7 @@ import {
   LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
   LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
 } from '@/constants/brevo'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Loader from '@/design-system/layout/Loader'

@@ -4,10 +4,12 @@ import Trans from '@/components/translation/trans/TransClient'
 import { displayErrorToast } from '@/helpers/toasts/displayErrorToast'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { PropsWithChildren, ReactNode } from 'react'
-import { useState } from 'react'
-import Button from './Button'
+import { useEffect, useRef, useState } from 'react'
+import { twMerge } from 'tailwind-merge'
+import Button, { type ButtonProps } from './Button'
 
 type Props = {
+  color?: ButtonProps['color']
   textToCopy: string
   className?: string
   copiedStateText?: ReactNode
@@ -15,6 +17,7 @@ type Props = {
 
 export default function CopyButton({
   children,
+  color = 'text',
   textToCopy,
   className = '',
   copiedStateText,
@@ -23,18 +26,25 @@ export default function CopyButton({
 
   const { t } = useClientTranslation()
 
+  const timeoutRef = useRef<NodeJS.Timeout>(undefined)
+
+  useEffect(() => {
+    return () => clearTimeout(timeoutRef.current)
+  }, [])
+
   return (
     <>
       <Button
-        color="text"
-        className={`w-full ${className}`}
+        color={color}
+        className={twMerge('w-full', className)}
         onClick={async () => {
           try {
             await navigator.clipboard.writeText(textToCopy)
+
             setIsCopied(true)
-            setTimeout(() => setIsCopied(false), 3000)
+
+            timeoutRef.current = setTimeout(() => setIsCopied(false), 3000)
           } catch (err) {
-            // Do not use the injection method of t here as it injects an encoded link
             displayErrorToast(
               `${t(
                 'Oups, une erreur est survenue lors de la copie du lien, voici le lien à copier / coller :'
@@ -43,7 +53,11 @@ export default function CopyButton({
           }
         }}>
         {isCopied
-          ? (copiedStateText ?? <Trans>Copié !</Trans>)
+          ? (copiedStateText ?? (
+              <span className="text-green-700">
+                <Trans>Copié !</Trans>
+              </span>
+            ))
           : (children ?? <Trans>Copier le lien</Trans>)}
       </Button>
     </>

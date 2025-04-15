@@ -5,7 +5,8 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { ReactNode } from 'react'
 import { useEffect } from 'react'
 import ReactModal from 'react-modal'
-import Button from '../inputs/Button'
+import { twMerge } from 'tailwind-merge'
+import Button from '../buttons/Button'
 
 type Props = {
   closeModal: () => void
@@ -16,6 +17,7 @@ type Props = {
   hasAbortButton?: boolean
   buttons?: ReactNode
   ariaHideApp?: boolean
+  className?: string
 }
 
 export default function Modal({
@@ -27,6 +29,7 @@ export default function Modal({
   hasAbortButton = true,
   buttons,
   ariaHideApp,
+  className,
   ...props
 }: Props) {
   useEffect(() => {
@@ -44,7 +47,10 @@ export default function Modal({
     <ReactModal
       isOpen={isOpen}
       onRequestClose={!isLoading ? closeModal : undefined}
-      className="fixed top-1/2 left-1/2 w-[40rem] max-w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white p-8 pt-4"
+      className={twMerge(
+        'fixed top-1/2 left-1/2 w-[40rem] max-w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white p-8 pt-4',
+        className
+      )}
       overlayClassName="fixed top-0 left-0 right-0 bottom-0 bg-black/50 z-10000 overflow-hidden"
       ariaHideApp={ariaHideApp}
       {...props}>

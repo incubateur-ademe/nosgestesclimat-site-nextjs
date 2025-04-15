@@ -10,7 +10,7 @@ import {
   questionCloseInfo,
   questionOpenInfo,
 } from '@/constants/tracking/question'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { QuestionSize } from '@/types/values'

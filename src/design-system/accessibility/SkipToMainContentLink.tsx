@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
-import ButtonLink from '../inputs/ButtonLink'
+import ButtonLink from '../buttons/ButtonLink'
 
 export default function SkipToMainContentLink() {
   const skipToFirstFocusableElement = (elementId: string) => {
