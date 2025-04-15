@@ -21,7 +21,7 @@ export default async function Pagination({
       <div className="relative mt-16 inline-flex items-center justify-center gap-3">
         {currentPage > 1 && (
           <Link
-            className="absolute -left-6 top-1/2 -translate-y-1/2"
+            className="absolute top-1/2 -left-6 -translate-y-1/2"
             href={`/blog?page=${currentPage - 1}#articles`}
             aria-label={t('Page précédente')}>
             <ChevronLeft className="h-3 w-3" />
@@ -35,7 +35,7 @@ export default async function Pagination({
                 className={twMerge(
                   'text-lg',
                   currentPage === index + 1
-                    ? 'font-medium text-primary-700 underline'
+                    ? 'text-primary-700 font-medium underline'
                     : 'text-gray-600! no-underline'
                 )}
                 href={`/blog?page=${index + 1}#articles`}
@@ -48,7 +48,7 @@ export default async function Pagination({
 
         {currentPage < totalPages && (
           <Link
-            className="absolute -right-6 top-1/2 -translate-y-1/2"
+            className="absolute top-1/2 -right-6 -translate-y-1/2"
             href={`/blog?page=${currentPage + 1}#articles`}
             aria-label={t('Page suivante')}>
             <ChevronRight className="h-3 w-3" />

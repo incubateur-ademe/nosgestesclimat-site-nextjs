@@ -31,7 +31,7 @@ export default function InteractiveIllustration() {
 
         {/* Shirt */}
         <PulsatingDot
-          className="right-[35%] top-[40%]"
+          className="top-[40%] right-[35%]"
           itemTitle={<Trans>Chemisier</Trans>}
           itemKey="shirt"
           carbonScore={3}

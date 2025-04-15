@@ -1,4 +1,5 @@
 import CategoryFilters from '@/components/filtering/CategoryFilters'
+import type { PartnerType } from '@/adapters/cmsClient'
 import Trans from '@/components/translation/trans/TransServer'
 import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
 import InlineLink from '@/design-system/inputs/InlineLink'
@@ -8,7 +9,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
-import ambassadeursYaml from '@/locales/ambassadeurs/fr/ambassadeurs.yaml'
+import { fetchPartners } from '@/services/cms/fetchPartners'
 import type { DefaultPageProps } from '@/types'
 import { encodeDottedNameAsURI } from '@/utils/format/encodeDottedNameAsURI'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -24,8 +25,21 @@ export const generateMetadata = getCommonMetadata({
   },
 })
 
-const ambassadeurs = ambassadeursYaml as any
-const categories = Object.keys(ambassadeurs)
+const getPartnersByCategory = (partners: PartnerType[]) => {
+  return partners.reduce(
+    (acc, partner) => {
+      const accUpdated = { ...acc }
+      if (!Object.keys(acc).includes(partner.category.category)) {
+        accUpdated[partner.category.category] = []
+      }
+
+      accUpdated[partner.category.category].push(partner)
+
+      return accUpdated
+    },
+    {} as { [key: string]: PartnerType[] }
+  )
+}
 
 export default async function NosRelais({
   params,
@@ -38,10 +52,15 @@ export default async function NosRelais({
 
   const { t } = await getServerTranslation({ locale })
 
+  const partners = await fetchPartners()
+
+  const partnersByCategories = getPartnersByCategory(partners)
+
   return (
     <div>
       <Title>
         <Trans locale={locale}>Ils relaient </Trans>
+
         <span className="text-primary-700">
           <Trans locale={locale}>Nos Gestes Climat</Trans>
         </span>
@@ -75,66 +94,60 @@ export default async function NosRelais({
           <p className="mb-8 italic">
             <Emoji>ℹ️</Emoji>{' '}
             <Trans locale={locale}>
-              Aucun de ces acteurs ne finance Nos Gestes Climat, un service
-              public, gratuit et indépendant de l'ADEME.
+              N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat,
+              qui est et restera un service public, indépendant et gratuit de
+              l'ADEME.
             </Trans>
           </p>
         </div>
+
         <Image
-          width="240"
-          height="300"
-          className="ml-auto max-w-56 self-start md:-mt-16 md:w-auto md:max-w-80"
+          width="200"
+          height="400"
+          className="ml-auto w-64 self-start md:-mt-16"
           alt={t(
             'Un grand-père et sa petite-fille au cinéma, mangeant du pop-corn.'
           )}
-          src="/images/ambassadeurs/illu-cinema.svg"
+          src="/images/illustrations/at-the-cinema.svg"
         />
       </div>
 
       <CategoryFilters
-        categories={categories.map((category: string) => ({
+        categories={Object.keys(partnersByCategories).map((category: string) => ({
           title: category,
           dottedName: category as DottedName,
-          count: ambassadeurs[category].length,
+          count: partnersByCategories[category].length,
         }))}
         className="mb-6"
       />
-
-      {categories
+      {Object.keys(partnersByCategories)
         .filter((category: string) =>
           typeof categoryFilter !== 'undefined'
             ? categoryFilter === encodeDottedNameAsURI(category)
             : true
         )
-        .map((category: any) => (
+        .map((category: string) => (
           <div key={category} className="mb-16">
             <h2>{category}</h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-              {ambassadeurs[category].map((ambassadeur: any) => (
+              {partnersByCategories[category].map((partner) => (
                 <Card
-                  key={ambassadeur.title}
-                  href={ambassadeur.link}
+                  key={partner.name}
+                  href={partner.link}
                   tag="a"
                   className="bg-primary-50 border-none no-underline"
                   target="_blank">
                   <Image
-                    src={'/images/ambassadeurs/' + ambassadeur.image}
+                    src={partner.imageSrc}
                     width="100"
                     height="100"
                     className="mx-auto mb-4 h-36 w-2/3 object-contain"
-                    alt={ambassadeur.title}
+                    alt={partner.name}
                   />
-                  <p className="mb-4 font-bold">{ambassadeur.title}</p>
-                  {ambassadeur.link ? (
-                    <p className="my-0 underline">
-                      {
-                        ambassadeur.link
-                          .replace('https://', '')
-                          .replace('www.', '')
-                          .split('/')[0]
-                      }
-                    </p>
-                  ) : null}
+                  <p className="mb-4 font-bold">{partner.name}</p>
+                  <p className="my-0 underline">
+                    {partner.link}
+                  </p>
                 </Card>
               ))}
             </div>

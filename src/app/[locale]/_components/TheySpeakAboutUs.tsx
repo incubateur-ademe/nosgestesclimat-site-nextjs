@@ -1,10 +1,11 @@
 import Background from '@/components/landing-pages/Background'
-import TransServer from '@/components/translation/trans/TransServer'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
+import Trans from '@/components/translation/trans/TransServer'
+import { fetchPartners } from '@/services/cms/fetchPartners'
 import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 
-export default function TheySpeakAboutUs({
+export default async function TheySpeakAboutUs({
   locale,
   className,
   ctaHref = '/nos-relais',
@@ -13,6 +14,8 @@ export default function TheySpeakAboutUs({
   className?: string
   ctaHref?: string
 }) {
+  const partners = await fetchPartners({ displayOnLandingPage: true })
+
   return (
     <div
       className={twMerge(
@@ -20,7 +23,7 @@ export default function TheySpeakAboutUs({
         className
       )}>
       {/* Helps cover the triangles of white shown because of the perspective change in Background */}
-      <div className="bg-heroLightBackground absolute top-2 left-0 h-1/2 w-[200%]" />
+      <div className="bg-heroLightBackground absolute top-0 left-0 h-1/2 w-[200%]" />
 
       {/* Add the background along with the tilted colorline */}
       <Background
@@ -31,77 +34,29 @@ export default function TheySpeakAboutUs({
 
       <div className="relative flex flex-col items-center gap-10 md:mx-auto md:max-w-5xl">
         <h2 className="text-center text-xl md:text-2xl">
-          <TransServer locale={locale}>
+          <Trans locale={locale}>
             Plusieurs milliers d’organisations nous font confiance pour
             sensibiliser efficacement
-          </TransServer>
+          </Trans>
         </h2>
 
         <ul className="flex w-full flex-row flex-wrap items-center justify-center gap-7 md:justify-between">
-          <li>
-            <Image
-              src="/images/ambassadeurs/sncf-voyageurs.png"
-              alt="SNCF Voyageurs"
-              className="h-auto w-24 md:w-36"
-              width={150}
-              height={150}
-            />
-          </li>
-
-          <li>
-            <Image
-              src="/images/ambassadeurs/leboncoin.png"
-              alt="Leboncoin"
-              className="h-auto w-24 md:w-36"
-              width={150}
-              height={150}
-            />
-          </li>
-
-          <li>
-            <Image
-              src="/images/ambassadeurs/france_info.png"
-              alt="France Info"
-              className="h-auto w-24 md:w-36"
-              width={150}
-              height={150}
-            />
-          </li>
-
-          <li>
-            <Image
-              src="/images/ambassadeurs/france_inter.png"
-              alt="France Inter"
-              className="h-auto w-16 md:w-24"
-              width={100}
-              height={100}
-            />
-          </li>
-
-          <li>
-            <Image
-              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/strasbourg_d05212223e.jpg"
-              alt="Strasbourg Métropole"
-              className="h-auto w-24 md:w-40"
-              width={100}
-              height={100}
-            />
-          </li>
-
-          <li>
-            <Image
-              src="/images/ambassadeurs/nantes metropole.jpg"
-              alt="Nantes Métropole"
-              className="h-auto w-16 md:w-24"
-              width={100}
-              height={100}
-            />
-          </li>
+          {partners.map((partner) => (
+            <li key={partner.name}>
+              <Image
+                src={partner.imageSrc}
+                alt={partner.name}
+                className="h-auto w-24 md:w-36"
+                width={150}
+                height={150}
+              />
+            </li>
+          ))}
         </ul>
 
         <div className="flex justify-center">
-          <ButtonLink color="secondary" size="xl" href="/nos-relais">
-            <TransServer locale={locale}>Rejoignez-les</TransServer>
+          <ButtonLink color="secondary" size="xl" href={ctaHref}>
+            <Trans locale={locale}>Rejoignez-les</Trans>
           </ButtonLink>
         </div>
       </div>

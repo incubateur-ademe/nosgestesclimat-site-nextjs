@@ -6,7 +6,6 @@ import getActions from '@/helpers/actions/getActions'
 import {
   useCurrentSimulation,
   useEngine,
-  useSimulation,
   useTempEngine,
 } from '@/publicodes-state'
 import type { Action } from '@/publicodes-state/types'
@@ -18,7 +17,7 @@ import AllerPlusLoin from './actionsContent/AllerPlusLoin'
 import OptionBar from './actionsContent/OptionBar'
 
 export default function ActionsContent() {
-  const { getCategory } = useEngine()
+  const { getCategory, safeEvaluate } = useEngine()
   const containerRef = useRef<HTMLDivElement>(null)
 
   const [radical, setRadical] = useState(true)
@@ -31,7 +30,7 @@ export default function ActionsContent() {
 
   const { rules, getSpecialRuleObject } = useTempEngine()
 
-  const { safeEvaluate, categories } = useSimulation()
+  const { categories } = useEngine()
 
   const actions = getActions({
     rules,
