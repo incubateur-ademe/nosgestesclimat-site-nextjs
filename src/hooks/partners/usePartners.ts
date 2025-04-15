@@ -1,77 +1,70 @@
 'use client'
 
 import { PARTNER_KEY } from '@/constants/partners'
+import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
+import { getPartnerFromStorage } from '@/helpers/partners/getPartnerFromStorage'
+import { removePartnerFromStorage } from '@/helpers/partners/removePartnerFromStorage'
 import { setPartnerInStorage } from '@/helpers/partners/setPartnerInStorage'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { postSituation } from '@/services/partners/postSituation'
-import { useRouter } from 'next/navigation'
-import { useEffect, useMemo } from 'react'
-
-const windowClient: Window =
-  typeof window === 'undefined'
-    ? ({ location: { search: '' } } as Window)
-    : window
+import { captureException } from '@sentry/nextjs'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useCallback, useEffect, useMemo } from 'react'
+import { useExportSituation } from '../simulation/useExportSituation'
 
 export function usePartners() {
-  // Get all search params from URL
-  const searchParams = useMemo(
-    () => new URLSearchParams(windowClient.location.search),
-    []
-  )
+  const searchParams = useSearchParams()
 
   const { progression, situation } = useCurrentSimulation()
 
+  const { exportSituationAsync } = useExportSituation()
+
   const router = useRouter()
 
-  const partnerParams = searchParams
-    .entries()
-    .reduce((acc: Record<string, string>, [key, value]: [string, string]) => {
-      const accUpdated = { ...acc }
-
-      if (key.includes(PARTNER_KEY)) {
-        accUpdated[key] = value
-      }
-
-      return accUpdated
-    }, {})
+  const partnerParams = useMemo(() => {
+    return (
+      getPartnerFromStorage() ??
+      Object.fromEntries(
+        searchParams
+          .entries()
+          .filter(([key]) => key === PARTNER_KEY || key.startsWith(PARTNER_KEY))
+      )
+    )
+  }, [searchParams])
 
   const hasNoPartnerParam = Object.keys(partnerParams).length === 0
 
-  const isProgressionUndefined = typeof progression === 'undefined'
-
-  // User has already completed the test, send the situation
-  useEffect(() => {
-    if (hasNoPartnerParam || isProgressionUndefined || progression !== 1) return
-
-    async function handlePostSituation() {
-      await postSituation({
+  const handleExportSituation = useCallback(async () => {
+    try {
+      await exportSituationAsync({
         situation,
-        partner: searchParams.get(PARTNER_KEY) as string,
-        partnerParams: searchParams,
+        partner: partnerParams[PARTNER_KEY],
+        partnerParams,
       })
+    } catch (error) {
+      captureException(error)
+    } finally {
+      removePartnerFromStorage()
     }
+  }, [exportSituationAsync, situation, partnerParams])
 
-    handlePostSituation()
+  useEffect(() => {
+    if (hasNoPartnerParam || typeof progression === 'undefined') return
+
+    if (progression === 1) {
+      handleExportSituation()
+    } else {
+      // Save partner info in Session Storage
+      setPartnerInStorage(partnerParams)
+
+      router.push(getLinkToSimulateur())
+    }
   }, [
-    isProgressionUndefined,
+    handleExportSituation,
+    hasNoPartnerParam,
+    partnerParams,
     progression,
+    router,
     searchParams,
     situation,
-    hasNoPartnerParam,
   ])
-  // User hasn't completed the test, redirect while saving partner info
-  useEffect(() => {
-    // Go through only if user has a simulation with a progression !== 1
-    if (hasNoPartnerParam || isProgressionUndefined || progression === 1) return
-
-    // Save partner info in Session Storage
-    setPartnerInStorage(partnerParams)
-
-    // Let the user pass his / her test
-  }, [hasNoPartnerParam, isProgressionUndefined, progression, partnerParams])
-
-  // Do nothing if no partner or partner-* search param
-  if (hasNoPartnerParam) {
-    return
-  }
 }

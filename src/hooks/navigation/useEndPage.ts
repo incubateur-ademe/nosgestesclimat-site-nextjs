@@ -1,11 +1,8 @@
 import { defaultMetric } from '@/constants/model/metric'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { linkToQuiz } from '@/helpers/navigation/quizPages'
-import { getPartnerFromStorage } from '@/helpers/partners/getPartnerFromStorage'
-import { removePartnerFromStorage } from '@/helpers/partners/removePartnerFromStorage'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { postSituation } from '@/services/partners/postSituation'
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
@@ -41,25 +38,14 @@ export function useEndPage() {
 
   const [isNavigating, setIsNavigating] = useState(false)
 
-  // Get partner info if they exist
-  const partnerParams = getPartnerFromStorage()
-
   const handleRedirection = useCallback(
     ({
       allowedToGoToGroupDashboard,
-      partnerRedirectURL,
       shouldShowQuiz,
     }: {
       allowedToGoToGroupDashboard: boolean
-      partnerRedirectURL: string
       shouldShowQuiz: boolean
     }) => {
-      // Redirect to partner's website
-      if (partnerRedirectURL) {
-        router.push(partnerRedirectURL)
-        return
-      }
-
       // If we should show the quiz, we redirect to the quiz page
       // TODO: This is maybe in the wrong place. Should check it later
       if (shouldShowQuiz) {
@@ -83,7 +69,7 @@ export function useEndPage() {
   )
 
   const goToEndPage = useCallback(
-    async ({
+    ({
       isAllowedToSave = true,
       allowedToGoToGroupDashboard = false,
       shouldShowQuiz = false,
@@ -93,28 +79,6 @@ export function useEndPage() {
         return
       }
       setIsNavigating(true)
-
-      let partnerRedirectURL = ''
-
-      if (progression === 1 && partnerParams?.partner) {
-        try {
-          const { redirectUrl } =
-            (await postSituation({
-              situation: currentSimulation.situation,
-              partner: partnerParams.partner,
-              partnerParams,
-            })) || {}
-
-          // Clear partner state
-          removePartnerFromStorage()
-
-          if (redirectUrl) {
-            partnerRedirectURL = redirectUrl
-          }
-        } catch (error) {
-          captureException(error)
-        }
-      }
 
       // If the simulation is finished and
       // * is in a poll or a group
@@ -165,7 +129,6 @@ export function useEndPage() {
     [
       isNavigating,
       progression,
-      partnerParams,
       currentSimulation,
       handleRedirection,
       saveSimulation,
