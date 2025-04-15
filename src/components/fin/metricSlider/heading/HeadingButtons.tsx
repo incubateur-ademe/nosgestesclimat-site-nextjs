@@ -17,6 +17,7 @@ import {
 } from '@/constants/urls/share'
 import Button from '@/design-system/buttons/Button'
 import Share from '@/design-system/sharing/Share'
+import { getShareTrackEvent } from '@/helpers/tracking/share'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEndPageSharedUrl } from '@/hooks/useEndPageSharedUrl'
 import { trackEvent } from '@/utils/analytics/trackEvent'
@@ -29,10 +30,6 @@ const sizeClassNames = {
 const saveClassNames = {
   sm: 'h-6 w-6',
   md: 'h-6 w-6',
-}
-const shareClassNames = {
-  sm: 'h-[22px] w-[22px]',
-  md: 'h-[28px] w-[28px]',
 }
 
 type Props = { size?: 'sm' | 'md'; endPage?: boolean }
@@ -82,27 +79,47 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
             icon: <WhatsappIcon />,
             label: t('Whatsapp'),
             link: `${WHATSAPP_SHARE_URL}${sharedUrl}`,
+            eventTracked: getShareTrackEvent({
+              page: 'Fin',
+              target: 'Whatsapp',
+            }),
           },
           {
             icon: <FacebookIcon />,
             label: t('Facebook'),
             link: `${FACEBOOK_SHARE_URL}${sharedUrl}`,
+            eventTracked: getShareTrackEvent({
+              page: 'Fin',
+              target: 'Facebook',
+            }),
           },
           {
             icon: <MessengerIcon />,
             label: t('Messenger'),
             link: `${MESSENGER_SHARE_MOBILE_URL}${sharedUrl}`,
             mobileOnly: true,
+            eventTracked: getShareTrackEvent({
+              page: 'Fin',
+              target: 'Messenger',
+            }),
           },
           {
             icon: <LinkedinIcon />,
             label: t('Linkedin'),
             link: `${LINKEDIN_SHARE_URL}${sharedUrl}`,
+            eventTracked: getShareTrackEvent({
+              page: 'Fin',
+              target: 'Linkedin',
+            }),
           },
           {
             icon: <MailIcon className="fill-primary-700 w-4" />,
             label: t('Envoyer par e-mail'),
             link: `mailto:?subject=${t('Voici mes empreintes carbone et eau ; tu connais les tiennes ?')}&body=${sharedUrl}`,
+            eventTracked: getShareTrackEvent({
+              page: 'Fin',
+              target: 'E-mail',
+            }),
           },
         ]}
         link={sharedUrl}

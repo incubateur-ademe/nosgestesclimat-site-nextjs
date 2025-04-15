@@ -13,6 +13,7 @@ type Props = {
   textToCopy: string
   className?: string
   copiedStateText?: ReactNode
+  onCopied?: () => void
 }
 
 export default function CopyButton({
@@ -21,6 +22,7 @@ export default function CopyButton({
   textToCopy,
   className = '',
   copiedStateText,
+  onCopied,
 }: PropsWithChildren<Props>) {
   const [isCopied, setIsCopied] = useState(false)
 
@@ -42,6 +44,8 @@ export default function CopyButton({
             await navigator.clipboard.writeText(textToCopy)
 
             setIsCopied(true)
+
+            onCopied?.()
 
             timeoutRef.current = setTimeout(() => setIsCopied(false), 3000)
           } catch (err) {
