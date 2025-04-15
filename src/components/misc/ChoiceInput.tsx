@@ -44,7 +44,7 @@ export default function ChoiceInput({
       <div className="flex items-center gap-2">
         <label
           htmlFor={id}
-          className={`relative flex cursor-pointer items-center gap-2 rounded-xl border-2 bg-white px-4 py-2 text-left transition-colors ${buttonClassNames[status]} focus-within:ring-2 focus-within:ring-primary-700`}
+          className={`relative flex cursor-pointer items-center gap-2 rounded-xl border-2 bg-white px-4 py-2 text-left transition-colors ${buttonClassNames[status]} focus-within:ring-primary-700 focus-within:ring-2`}
           data-cypress-id={`${props['data-cypress-id']}-label`}>
           <input
             type="radio"
@@ -56,7 +56,7 @@ export default function ChoiceInput({
             {...props}
           />
           <span
-            className={`${checkClassNames[status]} relative flex h-5 w-5 items-center justify-center rounded-full border-2 text-sm before:absolute before:left-0.5 before:top-0.5 before:h-3 before:w-3 before:rounded-full before:p-1 md:h-5 md:w-5 md:text-base md:before:h-3 md:before:w-3`}
+            className={`${checkClassNames[status]} relative flex h-5 w-5 items-center justify-center rounded-full border-2 text-sm before:absolute before:top-0.5 before:left-0.5 before:h-3 before:w-3 before:rounded-full before:p-1 md:h-5 md:w-5 md:text-base md:before:h-3 md:before:w-3`}
           />
           <span
             className={`inline flex-1 align-middle text-sm md:text-lg ${labelClassNames[status]}`}>
@@ -70,7 +70,7 @@ export default function ChoiceInput({
         ) : null}
       </div>
       {description && isOpen ? (
-        <div className="mb-4 w-auto rounded-xl border-2 border-primary-50 bg-white p-3 text-sm sm:max-w-[30rem]">
+        <div className="border-primary-50 mb-4 w-auto rounded-xl border-2 bg-white p-3 text-sm sm:max-w-[30rem]">
           <Markdown className="mb-0! inline!">{description}</Markdown>
         </div>
       ) : null}

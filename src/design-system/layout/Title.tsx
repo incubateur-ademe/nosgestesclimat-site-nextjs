@@ -30,7 +30,7 @@ export default function Title({
 
         {subtitle && <p className="mb-0 text-slate-500">{subtitle}</p>}
       </div>
-      {hasSeparator ? <Separator className="mb-4 mt-0" /> : null}
+      {hasSeparator ? <Separator className="mt-0 mb-4" /> : null}
     </div>
   )
 }

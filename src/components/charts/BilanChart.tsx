@@ -1,10 +1,10 @@
 'use client'
 
-import { useSimulation } from '@/publicodes-state'
+import { useEngine } from '@/publicodes-state'
 import RavijenChart from './RavijenChart'
 
 export default function BilanChart() {
-  const { categories, subcategories } = useSimulation()
+  const { categories, subcategories } = useEngine()
 
   return <RavijenChart categories={categories} subcategories={subcategories} />
 }

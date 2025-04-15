@@ -31,7 +31,7 @@ export default function WaterActions() {
         <Link
           href={'/blog/consommation/reflexes-textile-econome-empreinte-eau'}
           target="_blank"
-          className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
+          className="border-primary-50 hover:bg-primary-100 relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 bg-gray-100 pb-4 no-underline lg:p-4">
           <div>
             <Image
               src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/priscilla_du_preez_9d7a6e02a2.jpg"
@@ -46,7 +46,7 @@ export default function WaterActions() {
               </Trans>
             </p>
           </div>
-          <div className="text-center text-sm text-primary-700 underline">
+          <div className="text-primary-700 text-center text-sm underline">
             <Trans>Lire l'article</Trans>{' '}
             <ExternalLinkIcon className="stroke-primary-700" />
           </div>
@@ -56,7 +56,7 @@ export default function WaterActions() {
             '/blog/alimentation/8-facons-ameliorer-empreinte-de-mon-assiette'
           }
           target="_blank"
-          className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
+          className="border-primary-50 hover:bg-primary-100 relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 bg-gray-100 pb-4 no-underline lg:p-4">
           <div>
             <Image
               src="https://s3.fr-par.scw.cloud/nosgestesclimat-prod/cms/lumin_osity_arrosage_champ_eeafa85606.jpg"
@@ -71,7 +71,7 @@ export default function WaterActions() {
               </Trans>
             </p>
           </div>
-          <div className="text-center text-sm text-primary-700 underline">
+          <div className="text-primary-700 text-center text-sm underline">
             <Trans>Lire l'article</Trans>{' '}
             <ExternalLinkIcon className="stroke-primary-700" />
           </div>

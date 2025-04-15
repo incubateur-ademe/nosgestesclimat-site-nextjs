@@ -13,7 +13,7 @@ export default function VisuelIframe() {
         />
       </div>
 
-      <div className="absolute -bottom-[8%] right-[-16%] flex w-full rotate-[15deg] items-end rounded-t-md bg-white p-2 pb-0 shadow-md">
+      <div className="absolute right-[-16%] -bottom-[8%] flex w-full rotate-[15deg] items-end rounded-t-md bg-white p-2 pb-0 shadow-md">
         <Image
           className="rounded-xs"
           src="/images/organisations/orga-visuel-3.png"

@@ -33,9 +33,9 @@ export default function Localisation({ supportedRegions }: Props) {
   if (iframeRegion) return null
 
   return (
-    <div className="mb-8 mt-4 sm:mt-8">
+    <div className="mt-4 mb-8 sm:mt-8">
       <h2 id="answers" className="flex items-center">
-        <FlagIcon className="mr-3 fill-primary-700" aria-hidden />
+        <FlagIcon className="fill-primary-700 mr-3" aria-hidden />
 
         <span>
           <Trans>Ma région de simulation</Trans>

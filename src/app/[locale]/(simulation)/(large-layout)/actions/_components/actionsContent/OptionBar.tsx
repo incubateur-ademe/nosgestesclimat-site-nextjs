@@ -22,7 +22,7 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
 
   if (!isOpen) {
     return (
-      <div className="absolute right-0 top-1 text-right">
+      <div className="absolute top-1 right-0 text-right">
         <button
           title={t('Ouvrir les options de tri')}
           onClick={() => setIsOpen(true)}

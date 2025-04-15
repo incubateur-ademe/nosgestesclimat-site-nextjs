@@ -50,7 +50,7 @@ export default function NosGestesTransportsBanner() {
 
   if (isSuccess) {
     return (
-      <div className="mt-12 flex w-full flex-wrap rounded-xl bg-transport-50 p-6 md:flex-nowrap">
+      <div className="bg-transport-50 mt-12 flex w-full flex-wrap rounded-xl p-6 md:flex-nowrap">
         <p className="text-lg" style={{ marginBottom: '0' }}>
           <Trans>
             Votre inscription est validée ! <Emoji>✨</Emoji>
@@ -61,7 +61,7 @@ export default function NosGestesTransportsBanner() {
   }
 
   return (
-    <div className="mt-12 flex w-full flex-wrap items-start gap-4 rounded-xl bg-transport-50 p-6 md:flex-nowrap">
+    <div className="bg-transport-50 mt-12 flex w-full flex-wrap items-start gap-4 rounded-xl p-6 md:flex-nowrap">
       <div>
         <p className="text-lg" style={{ marginBottom: '16px' }}>
           <Emoji style={{ marginRight: '8px', fontSize: '2rem' }}>🚲</Emoji>
@@ -100,7 +100,7 @@ export default function NosGestesTransportsBanner() {
               disabled={isPending}
               type="submit"
               aria-label={t('Valider')}
-              className="absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full p-0 leading-none">
+              className="absolute top-1/2 right-2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full p-0 leading-none">
               {isPending ? <Loader /> : '→'}
             </Button>
           </div>

@@ -70,7 +70,7 @@ export default function ModeleDemoBlock() {
   )
 
   return (
-    <div className="my-4 rounded-md bg-primary-100 p-4">
+    <div className="bg-primary-100 my-4 rounded-md p-4">
       <ul>
         {demoDottedNames.map((el) => (
           <li key={el} className="mb-2">

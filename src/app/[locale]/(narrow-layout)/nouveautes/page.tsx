@@ -38,12 +38,12 @@ export default async function Releases({ params }: DefaultPageProps) {
             title={
               <span className="flex items-center">
                 <Trans locale={locale}>Les nouveautés</Trans>
-                <SparklesIcon className="ml-2 fill-divers-300" />
+                <SparklesIcon className="fill-divers-300 ml-2" />
               </span>
             }
           />
 
-          <p className="max-w-74 mb-0">
+          <p className="mb-0 max-w-74">
             <Trans locale={locale}>
               Nous améliorons le site en continu à partir de{' '}
               <InlineLink href="/contact">vos retours</InlineLink>. Découvrez la

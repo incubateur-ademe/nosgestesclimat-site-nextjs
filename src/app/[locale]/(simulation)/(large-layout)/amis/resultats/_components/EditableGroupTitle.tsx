@@ -82,7 +82,7 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
                     }}
                     color="secondary"
                     data-cypress-id="group-name-edit-button">
-                    <PencilIcon className="w-4 stroke-primary-700" />
+                    <PencilIcon className="stroke-primary-700 w-4" />
                   </Button>
                 ) : null}
               </span>

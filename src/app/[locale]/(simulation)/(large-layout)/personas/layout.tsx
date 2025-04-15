@@ -1,4 +1,4 @@
-import Providers from '@/components/providers/Providers'
+import EngineProviders from '@/components/providers/EngineProviders'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
@@ -17,5 +17,9 @@ export const generateMetadata = getCommonMetadata({
 export default function PersonasLayout({ children }: PropsWithChildren) {
   const supportedRegions = getSupportedRegions()
 
-  return <Providers supportedRegions={supportedRegions}>{children}</Providers>
+  return (
+    <EngineProviders supportedRegions={supportedRegions}>
+      {children}
+    </EngineProviders>
+  )
 }

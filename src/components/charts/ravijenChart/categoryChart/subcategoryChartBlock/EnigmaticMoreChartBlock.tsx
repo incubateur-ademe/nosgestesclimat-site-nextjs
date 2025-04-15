@@ -18,7 +18,7 @@ export default function EnigmaticMoreChartBlock({
       className={`relative cursor-default font-bold text-white ${getBackgroundColor(
         category
       )}`}>
-      <div className="absolute left-1/2 top-1/2 h-8 -translate-x-1/2 -translate-y-1/2 transform">
+      <div className="absolute top-1/2 left-1/2 h-8 -translate-x-1/2 -translate-y-1/2 transform">
         ...
       </div>
     </div>

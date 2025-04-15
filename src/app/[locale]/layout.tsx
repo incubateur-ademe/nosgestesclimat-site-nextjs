@@ -1,5 +1,6 @@
 import ErrorContent from '@/components/error/ErrorContent'
 import Footer from '@/components/layout/Footer'
+import ToastDisplay from '@/components/messages/ToastDisplay'
 import SkipToMainContentLink from '@/design-system/accessibility/SkipToMainContentLink'
 import Banner from '@/design-system/cms/Banner'
 import type { Locale } from '@/i18nConfig'
@@ -129,6 +130,8 @@ export default async function RootLayout({
           {children}
 
           <Footer />
+
+          <ToastDisplay />
         </MainLayoutProviders>
       </html>
     )
@@ -136,7 +139,7 @@ export default async function RootLayout({
     captureException(error)
     return (
       <html lang="fr">
-        <body className={`${marianne.className} bg-white text-default`}>
+        <body className={`${marianne.className} text-default bg-white`}>
           <div className="flex h-screen flex-col items-center justify-center">
             <ErrorContent />
           </div>

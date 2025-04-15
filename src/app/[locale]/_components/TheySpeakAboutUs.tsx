@@ -6,7 +6,7 @@ export default function TheySpeakAboutUs({ locale }: { locale: string }) {
   return (
     <div className="relative mb-10 px-4 py-16 md:mb-20 md:py-28 xl:mb-32">
       {/* Helps cover the triangles of white shown because of the perspective change in Background */}
-      <div className="absolute left-0 top-0 h-1/2 w-[200%] bg-heroLightBackground" />
+      <div className="bg-heroLightBackground absolute top-0 left-0 h-1/2 w-[200%]" />
 
       {/* Add the background along with the tilted colorline */}
       <Background

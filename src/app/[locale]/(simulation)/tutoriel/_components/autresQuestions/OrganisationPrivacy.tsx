@@ -23,7 +23,7 @@ export default function OrganisationPrivacy() {
     <li className="mb-2" id={'empreinte'}>
       <details>
         <summary
-          className="cursor-pointer text-sm font-bold text-primary-700 md:text-lg"
+          className="text-primary-700 cursor-pointer text-sm font-bold md:text-lg"
           onClick={() =>
             trackEvent(
               tutorielClickQuestion('Mes données restent-elles privées ?')

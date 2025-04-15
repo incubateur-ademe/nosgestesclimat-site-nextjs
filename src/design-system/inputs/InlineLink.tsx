@@ -24,7 +24,7 @@ export default function InlineLink({
       title={title}
       onClick={onClick}
       className={twMerge(
-        `inline-block text-primary-700 underline transition-colors hover:text-primary-700!`,
+        `text-primary-700 hover:text-primary-700! inline-block underline transition-colors`,
         className
       )}
       {...props}>

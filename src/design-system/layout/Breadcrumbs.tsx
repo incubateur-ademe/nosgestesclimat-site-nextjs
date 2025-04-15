@@ -47,9 +47,9 @@ export default function Breadcrumbs({
                   }}
                   aria-current={isActive}
                   className={twMerge(
-                    'max-w-full text-ellipsis whitespace-nowrap text-sm capitalize text-primary-700 hover:text-primary-700 hover:underline',
+                    'text-primary-700 hover:text-primary-700 max-w-full text-sm text-ellipsis whitespace-nowrap capitalize hover:underline',
                     isActive
-                      ? 'cursor-default text-default no-underline hover:text-default hover:no-underline'
+                      ? 'text-default hover:text-default cursor-default no-underline hover:no-underline'
                       : '',
                     isDisabled ? 'cursor-default' : '',
                     linkClassName

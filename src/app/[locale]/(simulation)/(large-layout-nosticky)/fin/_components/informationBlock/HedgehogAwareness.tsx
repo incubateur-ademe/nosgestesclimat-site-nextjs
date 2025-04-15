@@ -12,7 +12,7 @@ export default function HedgehogAwareness() {
         className="text-lg lg:text-2xl"
         title={
           <Trans>
-            <strong className="font-black text-secondary-700">Hérissons</strong>{' '}
+            <strong className="text-secondary-700 font-black">Hérissons</strong>{' '}
             en danger ?
           </Trans>
         }

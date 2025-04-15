@@ -68,7 +68,7 @@ export default function ActionValue({
 
   return (
     <div
-      className={`mb-6 inline-block rounded-[0.25rem] border-2 border-solid border-primary-700 bg-primary-700 pl-2 pr-[2px] text-white ${
+      className={`border-primary-700 bg-primary-700 mb-6 inline-block rounded-[0.25rem] border-2 border-solid pr-[2px] pl-2 text-white ${
         correctedValue != undefined && correctedValue < 0 ? 'bg-red-500' : ''
       }${isBlurred ? 'blur-[2px] grayscale' : ''}`}>
       <span>
@@ -78,7 +78,7 @@ export default function ActionValue({
       </span>
 
       {total && relativeValue > 0 && (
-        <span className="ml-2 rounded-e-sm bg-primary-100 px-1 text-primary-700">
+        <span className="bg-primary-100 text-primary-700 ml-2 rounded-e-sm px-1">
           {relativeValue}%
         </span>
       )}

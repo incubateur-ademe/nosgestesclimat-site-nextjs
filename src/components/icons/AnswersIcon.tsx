@@ -8,7 +8,7 @@ export default function AnswersIcon({ className }: { className?: string }) {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={twMerge('inline-block fill-default stroke-[1.5]', className)}>
+      className={twMerge('fill-default inline-block stroke-[1.5]', className)}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"

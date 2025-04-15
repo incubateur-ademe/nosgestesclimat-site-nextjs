@@ -8,7 +8,7 @@ import {
 } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
-import { useForm, useRule } from '@/publicodes-state'
+import { useFormState, useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 
@@ -24,7 +24,7 @@ export default function Category({ category }: Props) {
     remainingQuestionsByCategories,
     currentCategory,
     questionsByCategories,
-  } = useForm()
+  } = useFormState()
 
   const { title, icons, numericValue } = useRule(category)
 
@@ -56,7 +56,7 @@ export default function Category({ category }: Props) {
       )}>
       <div
         className={twMerge(
-          'absolute bottom-0 left-0 right-0 top-0 origin-left transition-transform duration-200',
+          'absolute top-0 right-0 bottom-0 left-0 origin-left transition-transform duration-200',
           isCurrent
             ? getBackgroundLightColor(category)
             : getBackgroundLightColor(category)

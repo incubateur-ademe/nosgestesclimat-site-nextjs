@@ -19,7 +19,7 @@ export default function BlogArticles() {
         <Link
           href={'/blog/environnement/lexique-eau-tout-comprendre'}
           target="_blank"
-          className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
+          className="border-primary-50 hover:bg-primary-100 relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 bg-gray-100 pb-4 no-underline lg:p-4">
           <div>
             <Image
               src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/philip_junior_mail_Bp_Uk_WK_6hf_JA_unsplash_0f0f3b01c2.jpg"
@@ -32,7 +32,7 @@ export default function BlogArticles() {
               <Trans>Le lexique pour tout comprendre à l’empreinte eau</Trans>
             </p>
           </div>
-          <div className="text-center text-sm text-primary-700 underline">
+          <div className="text-primary-700 text-center text-sm underline">
             <Trans>Lire l'article</Trans>{' '}
             <ExternalLinkIcon className="stroke-primary-700" />
           </div>
@@ -42,7 +42,7 @@ export default function BlogArticles() {
             '/blog/actualites-et-fonctionnalites/empreinte-eau-pourquoi-comment'
           }
           target="_blank"
-          className="relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 border-primary-50 bg-gray-100 pb-4 no-underline hover:bg-primary-100 lg:p-4">
+          className="border-primary-50 hover:bg-primary-100 relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 bg-gray-100 pb-4 no-underline lg:p-4">
           <div>
             <Image
               src="https://s3.fr-par.scw.cloud/nosgestesclimat-prod/cms/william_bossen_fonte_glaces_a3dd8ea653.jpg"
@@ -57,7 +57,7 @@ export default function BlogArticles() {
               </Trans>
             </p>
           </div>
-          <div className="text-center text-sm text-primary-700 underline">
+          <div className="text-primary-700 text-center text-sm underline">
             <Trans>Lire l'article</Trans>{' '}
             <ExternalLinkIcon className="stroke-primary-700" />
           </div>

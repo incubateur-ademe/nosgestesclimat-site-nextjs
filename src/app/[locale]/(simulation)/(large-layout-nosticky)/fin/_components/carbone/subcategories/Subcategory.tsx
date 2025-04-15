@@ -35,7 +35,7 @@ export default function Subcategory({ subcategory, index }: Props) {
             {index + 1}. {title}
           </h3>
           <div className="text-base">
-            <span className="font-black text-secondary-700">{percent} %</span>{' '}
+            <span className="text-secondary-700 font-black">{percent} %</span>{' '}
             <Trans>de votre empreinte</Trans>
           </div>
         </div>

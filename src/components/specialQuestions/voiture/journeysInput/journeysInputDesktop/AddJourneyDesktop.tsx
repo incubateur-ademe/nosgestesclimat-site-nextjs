@@ -30,7 +30,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
 
   return (
     <tr className={twMerge('block md:table-row', className)}>
-      <td className="block border-t border-primary-700 py-2 pr-2 text-xs md:table-cell md:pr-2">
+      <td className="border-primary-700 block border-t py-2 pr-2 text-xs md:table-cell md:pr-2">
         <Select
           className="p-2 text-xs"
           value={label}
@@ -45,7 +45,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
           })}
         </Select>
       </td>
-      <td className="block border-primary-700 py-2 text-xs md:table-cell md:border-t md:px-2">
+      <td className="border-primary-700 block py-2 text-xs md:table-cell md:border-t md:px-2">
         <span className="flex items-center gap-4">
           <TextInputGroup
             className="w-12 p-2 text-xs md:w-16"
@@ -57,7 +57,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
           km
         </span>
       </td>
-      <td className="block border-primary-700 py-2 text-xs md:table-cell md:border-t md:px-2">
+      <td className="border-primary-700 block py-2 text-xs md:table-cell md:border-t md:px-2">
         <span className="flex items-center gap-4">
           <TextInputGroup
             className="w-12 p-2 text-xs md:w-16"
@@ -84,7 +84,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
           </Select>
         </span>
       </td>
-      <td className="block border-primary-700 py-2 text-xs md:table-cell md:border-t md:px-2">
+      <td className="border-primary-700 block py-2 text-xs md:table-cell md:border-t md:px-2">
         <Select
           name="passengers"
           className="p-2 text-xs"
@@ -99,7 +99,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
           })}
         </Select>
       </td>
-      <td className="block border-primary-700 py-2 pl-2 text-right text-xs md:table-cell md:border-t">
+      <td className="border-primary-700 block py-2 pl-2 text-right text-xs md:table-cell md:border-t">
         <Button
           size="sm"
           onClick={() =>

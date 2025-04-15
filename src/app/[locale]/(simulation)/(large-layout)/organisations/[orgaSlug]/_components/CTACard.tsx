@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -28,7 +28,7 @@ export default function CTACard({
         className
       )}
       id={id}>
-      <p className="font-medium text-secondary-700">{overLabel}</p>
+      <p className="text-secondary-700 font-medium">{overLabel}</p>
 
       <Tag>{title}</Tag>
 

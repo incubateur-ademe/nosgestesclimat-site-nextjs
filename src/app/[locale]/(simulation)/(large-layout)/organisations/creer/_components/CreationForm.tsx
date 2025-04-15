@@ -199,7 +199,7 @@ export default function CreationForm() {
           label={
             <p className="mb-0 flex items-center justify-between">
               <Trans>Votre poste</Trans>
-              <span className="text-sm italic text-secondary-700">
+              <span className="text-secondary-700 text-sm italic">
                 facultatif
               </span>
             </p>

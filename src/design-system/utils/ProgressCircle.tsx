@@ -15,7 +15,7 @@ const ProgressCircle = ({
     <motion.path
       fill="none"
       strokeWidth="5"
-      className="fill-none stroke-primary-700"
+      className="stroke-primary-700 fill-none"
       strokeDasharray="0 1"
       d="M 0, 20 a 20, 20 0 1,0 40,0 a 20, 20 0 1,0 -40,0"
       style={{

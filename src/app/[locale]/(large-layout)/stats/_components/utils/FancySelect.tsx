@@ -19,7 +19,7 @@ export default function FancySelect({
   ...props
 }: Props) {
   return (
-    <div className="relative inline-block text-secondary-700">
+    <div className="text-secondary-700 relative inline-block">
       <span
         dangerouslySetInnerHTML={{
           __html: options.find((option) => option.value === value)
@@ -29,7 +29,7 @@ export default function FancySelect({
         }}
       />
       <select
-        className="absolute left-0 top-0 h-full w-full cursor-pointer appearance-none border-none bg-transparent text-transparent opacity-0 shadow-xs"
+        className="absolute top-0 left-0 h-full w-full cursor-pointer appearance-none border-none bg-transparent text-transparent opacity-0 shadow-xs"
         id={name}
         name={name}
         value={value ? value : ''}

@@ -59,7 +59,7 @@ export default function CarboneTargetContent({ isOpen, isHedgehog }: Props) {
           hasSeparator={isOpen}
           title={
             <Trans>
-              <strong className="font-black text-secondary-700">
+              <strong className="text-secondary-700 font-black">
                 2 tonnes
               </strong>{' '}
               en 2050 ?
@@ -73,7 +73,7 @@ export default function CarboneTargetContent({ isOpen, isHedgehog }: Props) {
           className="text-lg lg:text-2xl"
           title={
             <Trans>
-              <strong className="font-black text-secondary-700">
+              <strong className="text-secondary-700 font-black">
                 2 tonnes
               </strong>{' '}
               en 2050 ?

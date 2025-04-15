@@ -3,13 +3,12 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
 import getActions from '@/helpers/actions/getActions'
-import { useSimulation, useTempEngine } from '@/publicodes-state'
+import { useEngine, useTempEngine } from '@/publicodes-state'
 import { utils } from 'publicodes'
 
 export default function Actions() {
-  const { safeEvaluate } = useSimulation()
-
-  const { rules, getSpecialRuleObject } = useTempEngine()
+  const { safeEvaluate, rules } = useEngine()
+  const { getSpecialRuleObject } = useTempEngine()
 
   if (!rules) {
     return null

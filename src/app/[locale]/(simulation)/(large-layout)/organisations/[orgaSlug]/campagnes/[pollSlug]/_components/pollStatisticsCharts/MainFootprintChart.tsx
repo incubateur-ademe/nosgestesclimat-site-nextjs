@@ -31,7 +31,7 @@ export default function MainFootprintChart({ simulations, maxValue }: Props) {
             }}>
             <div className="mt-1 whitespace-nowrap">
               <p className="mb-0">
-                <strong className="font-black text-secondary-700">
+                <strong className="text-secondary-700 font-black">
                   2 tonnes,
                 </strong>
               </p>

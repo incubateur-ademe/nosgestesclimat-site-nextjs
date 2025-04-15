@@ -8,7 +8,7 @@ export default function DotIcon({ className }: { className?: string }) {
       viewBox="0 0 12 12"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={twMerge('inline-block fill-default stroke-[1.5]', className)}>
+      className={twMerge('fill-default inline-block stroke-[1.5]', className)}>
       <circle cx="6" cy="6" r="3" />
     </svg>
   )

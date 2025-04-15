@@ -7,11 +7,11 @@ import Image from 'next/image'
 export default async function GroupBlock({ locale }: { locale: string }) {
   const { t } = await getServerTranslation({ locale })
   return (
-    <div className="flex w-full flex-col items-start justify-between gap-8 rounded-xl bg-heroLightBackground px-8 py-6 md:w-4/12">
+    <div className="bg-heroLightBackground flex w-full flex-col items-start justify-between gap-8 rounded-xl px-8 py-6 md:w-4/12">
       <h3 className="mb-0 text-xl font-medium">
         <Trans locale={locale}>
           <span>Comparez vos résultats avec</span>{' '}
-          <span className="font-bold text-primary-700">vos proches</span>
+          <span className="text-primary-700 font-bold">vos proches</span>
         </Trans>
       </h3>
 

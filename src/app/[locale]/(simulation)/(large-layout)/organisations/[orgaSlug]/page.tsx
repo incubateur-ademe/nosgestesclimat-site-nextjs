@@ -68,7 +68,7 @@ export default function OrganisationPage() {
           color="text"
           data-cypress-id="organisation-page-see-parameters-button"
           className="flex items-center self-start">
-          <SettingsIcon className="mr-2 fill-primary-700" />
+          <SettingsIcon className="fill-primary-700 mr-2" />
 
           <Trans>Voir les paramètres</Trans>
         </ButtonLink>

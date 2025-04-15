@@ -4,7 +4,7 @@ import {
   simulationSimulationHalfCompleted,
   simulationSimulationStarted,
 } from '@/constants/tracking/simulation'
-import { useCurrentSimulation, useForm } from '@/publicodes-state'
+import { useCurrentSimulation, useFormState } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useEffect, useRef } from 'react'
 
@@ -13,7 +13,7 @@ export function useTrackSimulateur() {
     isFirstQuestionOfCategory,
     isLastQuestionOfCategory,
     currentCategory,
-  } = useForm()
+  } = useFormState()
 
   const { progression } = useCurrentSimulation()
 

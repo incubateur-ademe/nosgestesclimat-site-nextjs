@@ -54,7 +54,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
   return (
     <Card
       className={twMerge(
-        'fixed bottom-0 left-4 right-4 z-50 mx-auto mb-8 flex-row bg-primary-50 sm:left-auto sm:right-8',
+        'bg-primary-50 fixed right-4 bottom-0 left-4 z-50 mx-auto mb-8 flex-row sm:right-8 sm:left-auto',
         isTutorialOrTest && 'bottom-12'
       )}>
       <div className="flex w-full gap-4">

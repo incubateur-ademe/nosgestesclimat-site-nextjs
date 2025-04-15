@@ -207,7 +207,7 @@ export default function ParametresPage() {
 
       <Form
         error={error}
-        className="mb-4 mt-8"
+        className="mt-8 mb-4"
         onSubmit={handleSubmit(handleUpdateOrganisation)}>
         <h2>
           <Trans>Votre organisation</Trans>

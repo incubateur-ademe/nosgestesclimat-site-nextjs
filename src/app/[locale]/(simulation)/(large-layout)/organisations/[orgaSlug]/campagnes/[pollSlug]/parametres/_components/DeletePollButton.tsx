@@ -31,7 +31,7 @@ export default function DeletePollButton() {
   return (
     <>
       <Button color="link" onClick={() => setIsOpen(true)}>
-        <TrashIcon className="mr-2 w-4 fill-primary-700" />
+        <TrashIcon className="fill-primary-700 mr-2 w-4" />
         <Trans>Supprimer cette campagne</Trans>
       </Button>
 

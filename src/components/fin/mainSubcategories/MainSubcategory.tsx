@@ -63,7 +63,7 @@ export default function MainSubcategory({
         )}>
         <div
           className={twMerge(
-            'flex h-9 w-9  items-center justify-center rounded-full border-2 bg-white font-black leading-none',
+            'flex h-9 w-9 items-center justify-center rounded-full border-2 bg-white leading-none font-black',
             getBorderColor(category)
           )}>
           {index + 1}
@@ -72,7 +72,7 @@ export default function MainSubcategory({
       </div>
       <div
         className={twMerge(
-          'whitespace-nowrap rounded-xl border-2 bg-white px-3 py-2 font-black leading-none',
+          'rounded-xl border-2 bg-white px-3 py-2 leading-none font-black whitespace-nowrap',
           getBorderColor(category),
           getTextDarkColor(category)
         )}>

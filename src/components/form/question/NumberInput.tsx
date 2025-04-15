@@ -69,7 +69,7 @@ export default function NumberInput({
         placeholder={
           value.toLocaleString(locale, { maximumFractionDigits: 2 }) ?? '0'
         }
-        className={`focus:ring-primary max-w-[8rem] rounded-xl border-2 border-primary-200 bg-white p-2 text-right transition-colors focus:border-primary-700 focus:ring-2 md:max-w-full`}
+        className={`focus:ring-primary border-primary-200 focus:border-primary-700 max-w-[8rem] rounded-xl border-2 bg-white p-2 text-right transition-colors focus:ring-2 md:max-w-full`}
         thousandSeparator={' '}
         decimalSeparator={','}
         allowNegative={false}

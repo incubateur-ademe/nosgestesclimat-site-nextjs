@@ -11,7 +11,7 @@ export default function ProfileIcon({ className }: { className?: string }) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={twMerge(
-        'inline-block stroke-default stroke-[1.5]',
+        'stroke-default inline-block stroke-[1.5]',
         className
       )}>
       <path

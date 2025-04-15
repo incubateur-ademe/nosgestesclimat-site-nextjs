@@ -37,7 +37,7 @@ export default async function CollectivelyCommit({
               dans ce mouvement.
             </Trans>
           </p>
-          <p className="text-center text-sm font-bold text-secondary-700 md:text-lg">
+          <p className="text-secondary-700 text-center text-sm font-bold md:text-lg">
             <Trans locale={locale}>
               Accélérons l’impact collectif avec Nos Gestes Climat !
             </Trans>

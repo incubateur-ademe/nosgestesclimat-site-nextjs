@@ -39,7 +39,7 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
         label={
           <p className="mb-0 flex items-center justify-between">
             <Trans>Votre poste</Trans>
-            <span className="text-sm italic text-secondary-700">
+            <span className="text-secondary-700 text-sm italic">
               <Trans>facultatif</Trans>
             </span>
           </p>
@@ -52,7 +52,7 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
         label={
           <p className="mb-0 flex w-full justify-between">
             <Trans>Votre téléphone</Trans>{' '}
-            <span className="font-bold italic text-secondary-700">
+            <span className="text-secondary-700 font-bold italic">
               {' '}
               <Trans>facultatif</Trans>
             </span>

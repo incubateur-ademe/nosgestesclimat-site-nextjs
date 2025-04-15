@@ -17,7 +17,7 @@ export default function TutorialLink({ className }: Props) {
       href="/tutoriel"
       className={twMerge('flex w-full justify-center', className)}
       trackingEvent={profilClickTutoriel}>
-      <GlassesIcon className="mr-2 fill-primary-700" />
+      <GlassesIcon className="fill-primary-700 mr-2" />
 
       <span>
         <Trans>Revoir le tutoriel</Trans>

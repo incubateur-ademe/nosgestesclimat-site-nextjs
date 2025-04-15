@@ -21,7 +21,7 @@ export default function UnderstandToAct({
   locale: string
 }) {
   return (
-    <div className="relative w-full bg-heroLightBackground py-16 md:py-20">
+    <div className="bg-heroLightBackground relative w-full py-16 md:py-20">
       <div className="mx-auto flex max-w-full flex-col gap-4 px-4 md:max-w-5xl md:px-0">
         <h2
           className={twMerge(
@@ -40,20 +40,20 @@ export default function UnderstandToAct({
         <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
           {posts.map((post, index) => (
             <li key={`${index}-post-thumbnail`}>
-            <PostThumbnail
-              {...post}
-              className="bg-white"
-              trackingEvent={getLandingClickPostThumbnail(
-                pathname,
-                `${trackingActionClickPostThumbnail} ${index + 1}`
-              )}
-            />
+              <PostThumbnail
+                {...post}
+                className="bg-white"
+                trackingEvent={getLandingClickPostThumbnail(
+                  pathname,
+                  `${trackingActionClickPostThumbnail} ${index + 1}`
+                )}
+              />
             </li>
           ))}
         </ul>
       </div>
 
-      <ColorLine className="bg-rainbow absolute bottom-0 left-0 h-[4px] w-[100%] animate-rainbow-slow transition-all" />
+      <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-0 h-[4px] w-[100%] transition-all" />
     </div>
   )
 }

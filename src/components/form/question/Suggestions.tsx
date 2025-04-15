@@ -11,7 +11,7 @@ import {
   getHoverBorderCategoryColor,
   getTextCategoryColor,
 } from '@/helpers/getCategoryColorClass'
-import { useForm, useRule } from '@/publicodes-state'
+import { useFormState, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { capitalizeString } from '@/utils/capitalizeString'
 import type { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
@@ -25,7 +25,7 @@ type Props = {
 export default function Suggestions({ question, setValue }: Props) {
   const { suggestions } = useRule(question)
 
-  const { currentCategory } = useForm()
+  const { currentCategory } = useFormState()
 
   if (!suggestions?.length) return
 

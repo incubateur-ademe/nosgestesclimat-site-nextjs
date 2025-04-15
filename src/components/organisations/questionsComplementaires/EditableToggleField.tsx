@@ -30,12 +30,12 @@ export default forwardRef(function EditableToggleField(
             type="text"
             // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus
-            className="mr-2 w-full bg-transparent px-1 pb-1 text-base outline-hidden focus:border-b-2! focus:border-primary-500"
+            className="focus:border-primary-500 mr-2 w-full bg-transparent px-1 pb-1 text-base outline-hidden focus:border-b-2!"
           />
         </div>
       </div>
       {error && (
-        <p className="mb-2 mt-1 text-left text-sm text-red-700">{error}</p>
+        <p className="mt-1 mb-2 text-left text-sm text-red-700">{error}</p>
       )}
     </>
   )

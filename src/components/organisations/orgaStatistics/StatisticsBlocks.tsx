@@ -57,8 +57,8 @@ export default function StatisticsBlocks({
 
   return (
     <div className="grid w-full auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      <div className="rounded-xl bg-primary-100 p-8">
-        <p className="text-4xl font-bold text-primary-700">
+      <div className="bg-primary-100 rounded-xl p-8">
+        <p className="text-primary-700 text-4xl font-bold">
           {simulationsWithoutExtremes?.length?.toLocaleString(locale) ?? 0}
         </p>
 
@@ -78,7 +78,7 @@ export default function StatisticsBlocks({
       ) : (
         <>
           <div className="bg-rainbow-rotation overflow-hidden rounded-xl p-8">
-            <p className="text-4xl font-bold text-primary-700">
+            <p className="text-primary-700 text-4xl font-bold">
               {formattedValue}{' '}
               <span className="text-base font-normal">
                 {unit} CO₂e <Trans>/ an</Trans>
@@ -93,10 +93,10 @@ export default function StatisticsBlocks({
           </div>
 
           {result.eau.bilan > 0 && (
-            <div className="relative overflow-hidden rounded-xl bg-primary-100 p-8">
+            <div className="bg-primary-100 relative overflow-hidden rounded-xl p-8">
               <Wave
                 fill="#5152D0"
-                className="pointer-events-none absolute bottom-0 left-0 right-0 h-full w-full rounded-b-xl"
+                className="pointer-events-none absolute right-0 bottom-0 left-0 h-full w-full rounded-b-xl"
                 options={{ speed: 0.11, points: 3 }}
               />
               <div className="relative z-10">
@@ -116,8 +116,8 @@ export default function StatisticsBlocks({
             </div>
           )}
 
-          <div className="rounded-xl bg-primary-100/40 py-4">
-            <VerticalBarChart className="mt-0 h-[calc(100%-48px)] bg-transparent px-1 pb-2 pt-0">
+          <div className="bg-primary-100/40 rounded-xl py-4">
+            <VerticalBarChart className="mt-0 h-[calc(100%-48px)] bg-transparent px-1 pt-0 pb-2">
               {(
                 Object.entries(result.carbone) as Entries<typeof result.carbone>
               )

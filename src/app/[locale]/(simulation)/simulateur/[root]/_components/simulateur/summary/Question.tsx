@@ -11,7 +11,7 @@ import {
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useDebug } from '@/hooks/useDebug'
-import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
+import { useCurrentSimulation, useFormState, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
@@ -38,7 +38,8 @@ export default function Question({
 
   const { updateCurrentSimulation, foldedSteps } = useCurrentSimulation()
 
-  const { currentQuestion, setCurrentQuestion, relevantQuestions } = useForm()
+  const { currentQuestion, setCurrentQuestion, relevantQuestions } =
+    useFormState()
 
   const isDebug = useDebug()
 

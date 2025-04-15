@@ -1,3 +1,4 @@
+import { noIndexObject } from '@/constants/metadata'
 import i18nConfig from '@/i18nConfig'
 
 type Props = {
@@ -107,5 +108,8 @@ export function getMetadataObject({
     },
     alternates: alternatesWithLanguages,
     ...props,
+    ...(process.env.NEXT_PUBLIC_ENV !== 'production'
+      ? { robots: noIndexObject }
+      : {}),
   }
 }

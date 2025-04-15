@@ -9,7 +9,7 @@ export default function PlusIcon({ className }: { className?: string }) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
-      className={twMerge('inline-block stroke-default', className)}>
+      className={twMerge('stroke-default inline-block', className)}>
       <path
         d="M8 1V15M1 8H15"
         strokeWidth="2"

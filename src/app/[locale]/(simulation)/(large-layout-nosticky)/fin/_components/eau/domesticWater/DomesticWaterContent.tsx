@@ -27,11 +27,11 @@ export default function DomesticWaterContent() {
       <p>
         <Trans>
           L’eau domestique peut avoir un{' '}
-          <strong className="font-black text-secondary-700">
+          <strong className="text-secondary-700 font-black">
             impact très fort
           </strong>{' '}
           selon la{' '}
-          <strong className="font-black text-secondary-700">
+          <strong className="text-secondary-700 font-black">
             saison et la localisation.
           </strong>
         </Trans>

@@ -92,7 +92,7 @@ export default async function NosRelais({ params }: DefaultPageProps) {
                 key={ambassadeur.title}
                 href={ambassadeur.link}
                 tag="a"
-                className="border-none bg-primary-50 no-underline"
+                className="bg-primary-50 border-none no-underline"
                 target="_blank">
                 <Image
                   src={'/images/ambassadeurs/' + ambassadeur.image}

@@ -31,7 +31,7 @@ export default async function Contact({ params }: DefaultPageProps) {
               <span className="flex items-center">
                 <Trans locale={locale}>Contact</Trans>
 
-                <MailIcon className="ml-3 fill-primary-500" />
+                <MailIcon className="fill-primary-500 ml-3" />
               </span>
             }
           />

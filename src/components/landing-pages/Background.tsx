@@ -16,7 +16,7 @@ export default function Background({
   return (
     <div
       className={twMerge(
-        'absolute -left-1/2 top-0 h-full w-[200%] bg-gray-100 transition-transform xl:w-[300%]',
+        'absolute top-0 -left-1/2 h-full w-[200%] bg-gray-100 transition-transform xl:w-[300%]',
         className
       )}
       style={{
@@ -26,7 +26,7 @@ export default function Background({
         clipPath: `polygon(0 0, 100% 0, 98% 100%, 2% 100%)`,
       }}>
       {withColorLine && (
-        <ColorLine className="bg-rainbow absolute bottom-0 left-0 h-[4px] w-[100%] animate-rainbow-slow transition-all" />
+        <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-0 h-[4px] w-[100%] transition-all" />
       )}
     </div>
   )

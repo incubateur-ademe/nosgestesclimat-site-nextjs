@@ -46,16 +46,16 @@ export default function Logo({
 
         <div
           className={twMerge(
-            'origin-left font-extrabold uppercase leading-[0.85]! text-default transition-all duration-500 lg:block',
+            'text-default origin-left leading-[0.85]! font-extrabold uppercase transition-all duration-500 lg:block',
             textClassSize[size]
           )}>
-          <span className="block w-full whitespace-normal leading-[0.85]!">
+          <span className="block w-full leading-[0.85]! whitespace-normal">
             Nos
           </span>
-          <span className="block w-full whitespace-normal leading-[0.85]!">
+          <span className="block w-full leading-[0.85]! whitespace-normal">
             Gestes
           </span>
-          <span className="block w-full whitespace-normal leading-[0.85]!">
+          <span className="block w-full leading-[0.85]! whitespace-normal">
             Climat
           </span>
         </div>

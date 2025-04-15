@@ -424,11 +424,7 @@ html[data-useragent*='Trident'] #js {
   border: 0;
 }
 .not-sr-only {
-  position: static;
-  width: auto;
-  height: auto;
-  padding: 0;
-  margin: 0;
+  @apply static! m-0! h-auto! w-auto! p-0!;
 }
 
 /*
@@ -619,8 +615,20 @@ html[data-useragent*='Trident'] #js {
   @apply mb-2;
 }
 
+@keyframes smoothbounceball {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, 2rem, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .island {
-  animation: bounce 5s infinite;
+  animation: smoothbounceball 5s infinite;
 }
 
 .island:nth-child(1) {

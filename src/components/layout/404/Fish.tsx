@@ -1,5 +1,5 @@
 import Emoji from '@/design-system/utils/Emoji'
-import type { ReactElement} from 'react';
+import type { ReactElement } from 'react'
 import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 

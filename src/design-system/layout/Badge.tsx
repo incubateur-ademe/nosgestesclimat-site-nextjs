@@ -34,7 +34,7 @@ export default function Badge({
   return (
     <Tag
       className={twMerge(
-        'inline-block whitespace-nowrap rounded-xl border-2 px-2 font-black leading-none',
+        'inline-block rounded-xl border-2 px-2 leading-none font-black whitespace-nowrap',
         sizeClassNames[size],
         category
           ? getBorderColor(category) + ' ' + getTextDarkColor(category)

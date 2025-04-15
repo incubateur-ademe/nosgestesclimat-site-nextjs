@@ -62,7 +62,7 @@ export default function DocumentationLanding() {
 
           <div>
             <Link href="/modele" className="flex items-center">
-              <LightBulbIcon className="mr-1 h-4 w-4 fill-primary-700" />
+              <LightBulbIcon className="fill-primary-700 mr-1 h-4 w-4" />
               <Trans> En savoir plus sur notre modèle</Trans>
             </Link>
           </div>

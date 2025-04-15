@@ -17,7 +17,7 @@ export default function BannerLink({
         trackEvent(trackingBannerClick)
       }}
       size="sm"
-      className="inline-flex! border-primary-100 bg-white px-2 py-1 text-primary-800 transition-colors duration-300 hover:border-primary-200 hover:bg-primary-100 hover:text-primary-800"
+      className="border-primary-100 text-primary-800 hover:border-primary-200 hover:bg-primary-100 hover:text-primary-800 inline-flex! bg-white px-2 py-1 transition-colors duration-300"
       href={href}>
       {label}
     </ButtonLink>

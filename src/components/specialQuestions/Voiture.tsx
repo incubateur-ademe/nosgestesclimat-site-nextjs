@@ -25,7 +25,7 @@ export default function Voiture({ question, ...props }: Props) {
           ) : (
             <span className="flex items-center">
               <PencilIcon
-                className="mr-2 stroke-primary-700"
+                className="stroke-primary-700 mr-2"
                 width="16"
                 height="16"
               />

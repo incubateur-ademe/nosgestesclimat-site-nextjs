@@ -26,7 +26,7 @@ export default function DocumentationBlock() {
         href="/documentation/bilan"
         className="flex items-center"
         onClick={() => trackEvent(endClickDocumentation)}>
-        <BookClosedIcon className="mr-2 w-4 fill-primary-700" />
+        <BookClosedIcon className="fill-primary-700 mr-2 w-4" />
 
         <Trans>Comprendre le calcul</Trans>
       </InlineLink>

@@ -29,9 +29,9 @@ export default function BarItem({
         value: valueToDisplay.toFixed(1).replace('.', ','),
       })}
       className={twMerge(
-        'absolute h-8 w-2 bg-primary-700 opacity-20 hover:scale-[10%]',
+        'bg-primary-700 absolute h-8 w-2 opacity-20 hover:scale-[10%]',
         shouldBeHighlighted
-          ? 'z-10! border-x border-white bg-secondary-700! opacity-100!'
+          ? 'bg-secondary-700! z-10! border-x border-white opacity-100!'
           : '',
         className
       )}

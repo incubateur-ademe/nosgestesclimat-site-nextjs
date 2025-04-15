@@ -6,7 +6,7 @@ import Trans from '@/components/translation/trans/TransClient'
 
 export default function NousContacter() {
   return (
-    <section className="mb-20 mt-12">
+    <section className="mt-12 mb-20">
       <div className="flex gap-8">
         <MessageIcon width="50" height="50" className="fill-primary-700" />
 
