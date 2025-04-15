@@ -24,7 +24,9 @@ export default function ActionsContent() {
 
   const searchParams = useSearchParams()
 
-  const category = searchParams.get(FILTER_SEARCH_PARAM_KEY)
+  const category = decodeURIComponent(
+    searchParams.get(FILTER_SEARCH_PARAM_KEY) ?? ''
+  )
 
   const { actionChoices, progression } = useCurrentSimulation()
 
