@@ -1,11 +1,15 @@
 'use client'
 
 import SaveIcon from '@/components/icons/SaveIcon'
-import CopyIcon from '@/components/icons/share/CopyIcon'
+import MessengerIcon from '@/components/icons/share/MessengerIcon'
+import WhatsappIcon from '@/components/icons/share/WhatsappIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import { endClickSaveShortcut } from '@/constants/tracking/pages/end'
 import { simulationClickSaveShortcut } from '@/constants/tracking/pages/simulateur'
-import { FACEBOOK_SHARE_URL } from '@/constants/urls/share'
+import {
+  MESSENGER_SHARE_MOBILE_URL,
+  WHATSAPP_SHARE_URL,
+} from '@/constants/urls/share'
 import Button from '@/design-system/buttons/Button'
 import Share from '@/design-system/sharing/Share'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -70,9 +74,14 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
         )}
         shareItems={[
           {
-            icon: <CopyIcon />,
-            label: t('Facebook'),
-            link: `${FACEBOOK_SHARE_URL}${sharedUrl}`,
+            icon: <WhatsappIcon />,
+            label: t('Whatsapp'),
+            link: `${WHATSAPP_SHARE_URL}${sharedUrl}`,
+          },
+          {
+            icon: <MessengerIcon />,
+            label: t('Messenger'),
+            link: `${MESSENGER_SHARE_MOBILE_URL}${sharedUrl}`,
           },
         ]}
         link={sharedUrl}

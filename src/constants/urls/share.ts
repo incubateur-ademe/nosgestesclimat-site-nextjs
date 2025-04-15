@@ -6,4 +6,6 @@ export const TWITTER_SHARE_URL = 'https://twitter.com/intent/tweet?url='
 export const LINKEDIN_SHARE_URL =
   'https://www.linkedin.com/sharing/share-offsite/?url='
 
-export const WA_SHARE_URL = 'https://wa.me/?text='
+export const WHATSAPP_SHARE_URL = 'https://wa.me/?text='
+
+export const MESSENGER_SHARE_MOBILE_URL = 'fb-messenger://share/?link='
