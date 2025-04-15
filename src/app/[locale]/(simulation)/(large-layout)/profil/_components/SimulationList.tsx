@@ -1,7 +1,7 @@
 'use client'
 
-import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import SavesIcon from '@/components/icons/SavesIcon'
+import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   profilDeleteSimulation,

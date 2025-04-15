@@ -2,6 +2,7 @@
 
 import CopyIcon from '@/components/icons/share/CopyIcon'
 import ShareIcon from '@/components/icons/ShareIcon'
+import CheckIcon from '@/components/icons/status/CheckIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import { endClickShareShortcut } from '@/constants/tracking/pages/end'
 import { trackEvent } from '@/utils/analytics/trackEvent'
@@ -72,6 +73,12 @@ export default function Share({
                 <CopyButton
                   className="max-h-10"
                   color="secondary"
+                  copiedStateText={
+                    <span className="flex items-center gap-4 text-green-700">
+                      <CheckIcon className="fill-green-700" />
+                      <Trans>Lien copié !</Trans>
+                    </span>
+                  }
                   textToCopy={link}>
                   <span className="flex items-center gap-2">
                     <Trans>Copier le lien</Trans>{' '}

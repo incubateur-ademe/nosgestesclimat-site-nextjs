@@ -1,8 +1,8 @@
 'use client'
 
-import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import LockIcon from '@/components/icons/LockIcon'
 import SendIcon from '@/components/icons/SendIcon'
+import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import { organisationsConnexionClickCode } from '@/constants/tracking/pages/organisationsConnexion'
 import Button from '@/design-system/buttons/Button'

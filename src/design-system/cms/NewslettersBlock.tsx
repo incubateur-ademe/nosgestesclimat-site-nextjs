@@ -1,6 +1,6 @@
 'use client'
 
-import CheckIcon from '@/components/icons/CheckIcon'
+import CheckIcon from '@/components/icons/status/CheckIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   LIST_MAIN_NEWSLETTER,
