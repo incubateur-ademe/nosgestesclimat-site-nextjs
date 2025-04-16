@@ -52,7 +52,7 @@ export default function Modal({
 
   const closeDelayed = () => {
     setIsVisible(false)
-    setTimeout(() => closeModal(), 300)
+    setTimeout(() => closeModal(), 500)
   }
 
   return (
@@ -67,7 +67,7 @@ export default function Modal({
         className
       )}
       overlayClassName={twMerge(
-        'fixed top-0 left-0 right-0 bottom-0 bg-black/50 z-10000 overflow-hidden transition-opacity',
+        'fixed top-0 left-0 right-0 bottom-0 bg-black/50 duration-500 z-10000 overflow-hidden transition-opacity',
         isVisible ? 'opacity-100' : 'opacity-0'
       )}
       ariaHideApp={ariaHideApp}
