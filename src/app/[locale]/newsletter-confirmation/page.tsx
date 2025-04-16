@@ -1,11 +1,11 @@
 import Header from '@/components/layout/Header'
-import Trans from '@/components/translation/trans/TransServer'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Main from '@/design-system/layout/Main'
-import Emoji from '@/design-system/utils/Emoji'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import type { DefaultPageProps } from '@/types'
+import NewsletterErrorMessage from './_components/NewsletterErrorMessage'
+import NewsletterInvalidMessage from './_components/NewsletterInvalidMessage'
+import NewsletterSuccessMessage from './_components/NewsletterSuccessMessage'
 
 export const generateMetadata = getCommonMetadata({
   title: t("Confirmation d'inscription à nos infolettres - Nos Gestes Climat"),
@@ -21,8 +21,10 @@ export const generateMetadata = getCommonMetadata({
 
 export default async function NewsletterConfirmationPage({
   params,
-}: DefaultPageProps) {
+  searchParams,
+}: DefaultPageProps<{ searchParams: { success: string; status: string } }>) {
   const { locale } = await params
+  const { success, status } = searchParams ? await searchParams : {}
 
   return (
     <>
@@ -30,23 +32,15 @@ export default async function NewsletterConfirmationPage({
       <Main>
         <div className="min-h-screen">
           <div className="mt-36 text-center">
-            <h1 className="mb-4 text-lg md:text-xl">
-              <Trans locale={locale}>
-                Confirmation de votre inscription à nos e-mails
-              </Trans>{' '}
-              <Emoji>👍</Emoji>
-            </h1>
+            {success === 'true' && <NewsletterSuccessMessage locale={locale} />}
 
-            <p className="mb-10">
-              <Trans locale={locale}>
-                Votre e-mail a été vérifié, vous êtes bien inscrit à notre
-                infolettre.
-              </Trans>
-            </p>
+            {success === 'false' && status === '404' && (
+              <NewsletterInvalidMessage locale={locale} />
+            )}
 
-            <ButtonLink href="/">
-              <Trans locale={locale}>Revenir à la page d'accueil</Trans>
-            </ButtonLink>
+            {success === 'false' && status === '500' && (
+              <NewsletterErrorMessage locale={locale} />
+            )}
           </div>
         </div>
       </Main>
