@@ -22,7 +22,7 @@ export const generateMetadata = getCommonMetadata({
 export default async function NewsletterConfirmationPage({
   params,
   searchParams,
-}: DefaultPageProps<{ searchParams: { success: string; status: string } }>) {
+}: DefaultPageProps<{ searchParams: { success: string; status?: string } }>) {
   const { locale } = await params
   const { success, status } = searchParams ? await searchParams : {}
 
