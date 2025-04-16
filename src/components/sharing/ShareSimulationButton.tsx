@@ -73,7 +73,7 @@ export default function ShareSimulationButton({ url }: { url: string }) {
           }),
         },
       ]}
-      link={url}
+      linkShared={url}
     />
   )
 }

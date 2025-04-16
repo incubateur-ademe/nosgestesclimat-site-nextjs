@@ -28,7 +28,7 @@ export default function Share({
   modalTitle,
   modalDescription,
   ariaHideApp,
-  link,
+  linkShared,
   ...props
 }: {
   buttonLabel: string
@@ -36,7 +36,7 @@ export default function Share({
   modalTitle: ReactNode
   modalDescription: ReactNode
   ariaHideApp?: boolean
-  link: string
+  linkShared: string
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -94,7 +94,7 @@ export default function Share({
                       <Trans>Lien copié !</Trans>
                     </span>
                   }
-                  textToCopy={link}>
+                  textToCopy={linkShared}>
                   <span className="flex items-center gap-2 text-sm">
                     <Trans>Copier le lien</Trans>{' '}
                     <CopyIcon className="stroke-primary-700" />
@@ -103,10 +103,12 @@ export default function Share({
               </li>
 
               {shareItems.map(
-                ({ label, icon, link, mobileOnly, eventTracked }) =>
+                ({ label, icon, link, mobileOnly, eventTracked }, index) =>
                   mobileOnly && !isMobile ? null : (
                     <li key={link} className="w-full">
                       <ButtonLink
+                        // Add test id for first element
+                        data-testid={`share-button-link-${index}`}
                         className="max-h-10 w-full text-sm!"
                         color="secondary"
                         target="_blank"
