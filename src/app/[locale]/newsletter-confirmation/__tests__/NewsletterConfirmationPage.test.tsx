@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react'
+import { redirect } from 'next/navigation'
 import NewsletterErrorMessage from '../_components/NewsletterErrorMessage'
 import NewsletterInvalidMessage from '../_components/NewsletterInvalidMessage'
 import NewsletterSuccessMessage from '../_components/NewsletterSuccessMessage'
 import NewsletterConfirmationPage from '../page'
 
-// Mock des composants
 jest.mock('../_components/NewsletterSuccessMessage', () => ({
   __esModule: true,
   default: jest.fn(() => null),
@@ -20,7 +20,6 @@ jest.mock('../_components/NewsletterInvalidMessage', () => ({
   default: jest.fn(() => null),
 }))
 
-// Mock des composants de layout
 jest.mock('@/components/layout/Header', () => ({
   __esModule: true,
   default: () => <div>Header</div>,
@@ -31,6 +30,10 @@ jest.mock('@/design-system/layout/Main', () => ({
   default: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   ),
+}))
+
+jest.mock('next/navigation', () => ({
+  redirect: jest.fn(),
 }))
 
 describe('NewsletterConfirmationPage', () => {
@@ -90,5 +93,36 @@ describe('NewsletterConfirmationPage', () => {
       undefined
     )
     expect(NewsletterInvalidMessage).not.toHaveBeenCalled()
+  })
+
+  it('should redirect to the 404 page if wrong success param is passed', async () => {
+    // Given
+    const jsx = await NewsletterConfirmationPage({
+      params: Promise.resolve({ locale: 'fr' }),
+      searchParams: Promise.resolve({ success: 'toto' as 'true' }),
+    })
+
+    // When
+    render(jsx)
+
+    // Then
+    expect(redirect).toHaveBeenCalledWith('/404')
+  })
+
+  it('should redirect to the 404 page if wrong status param is passed', async () => {
+    // Given
+    const jsx = await NewsletterConfirmationPage({
+      params: Promise.resolve({ locale: 'fr' }),
+      searchParams: Promise.resolve({
+        success: 'false',
+        status: '505' as '500',
+      }),
+    })
+
+    // When
+    render(jsx)
+
+    // Then
+    expect(redirect).toHaveBeenCalledWith('/404')
   })
 })

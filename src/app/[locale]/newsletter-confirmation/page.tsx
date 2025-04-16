@@ -3,9 +3,12 @@ import Main from '@/design-system/layout/Main'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import type { DefaultPageProps } from '@/types'
+import { redirect } from 'next/navigation'
 import NewsletterErrorMessage from './_components/NewsletterErrorMessage'
 import NewsletterInvalidMessage from './_components/NewsletterInvalidMessage'
 import NewsletterSuccessMessage from './_components/NewsletterSuccessMessage'
+
+type SearchParams = { success: 'true' | 'false'; status?: '404' | '500' }
 
 export const generateMetadata = getCommonMetadata({
   title: t("Confirmation d'inscription à nos infolettres - Nos Gestes Climat"),
@@ -19,12 +22,26 @@ export const generateMetadata = getCommonMetadata({
   },
 })
 
+const shouldRedirect404 = ({ success, status }: Partial<SearchParams>) => {
+  if (!success) return true
+
+  if (success !== 'true' && success !== 'false') return true
+
+  if (success === 'false' && status !== '404' && status !== '500') return true
+
+  return false
+}
+
 export default async function NewsletterConfirmationPage({
   params,
   searchParams,
-}: DefaultPageProps<{ searchParams: { success: string; status?: string } }>) {
+}: DefaultPageProps<{ searchParams: SearchParams }>) {
   const { locale } = await params
   const { success, status } = searchParams ? await searchParams : {}
+
+  if (shouldRedirect404({ success, status })) {
+    return redirect('/404')
+  }
 
   return (
     <>
