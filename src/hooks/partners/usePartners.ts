@@ -5,14 +5,19 @@ import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { getPartnerFromStorage } from '@/helpers/partners/getPartnerFromStorage'
 import { removePartnerFromStorage } from '@/helpers/partners/removePartnerFromStorage'
 import { setPartnerInStorage } from '@/helpers/partners/setPartnerInStorage'
+import { displayTimedSuccessToast } from '@/helpers/toasts/displayTimedSuccessToast'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useMemo } from 'react'
-import { useExportSituation } from '../simulation/useExportSituation'
+import { useClientTranslation } from '../useClientTranslation'
+import { useExportSituation } from './useExportSituation'
+import { useVerifyPartner } from './useVerifyPartner'
 
 export function usePartners() {
   const searchParams = useSearchParams()
+
+  const { t } = useClientTranslation()
 
   const { progression, situation } = useCurrentSimulation()
 
@@ -35,20 +40,28 @@ export function usePartners() {
 
   const handleExportSituation = useCallback(async () => {
     try {
-      await exportSituationAsync({
+      const { redirectUrl } = await exportSituationAsync({
         situation,
         partner: partnerParams[PARTNER_KEY],
         partnerParams,
       })
+
+      displayTimedSuccessToast(
+        t(
+          'Vous serez automatiquement redirigé vers notre site partenaire dans 30 secondes.'
+        ),
+        () => {
+          router.push(redirectUrl)
+        }
+      )
     } catch (error) {
       captureException(error)
     } finally {
       removePartnerFromStorage()
     }
-  }, [exportSituationAsync, situation, partnerParams])
+  }, [exportSituationAsync, situation, partnerParams, t, router])
 
   useEffect(() => {
-    if (hasNoPartnerParam || typeof progression === 'undefined') return
 
     if (progression === 1) {
       handleExportSituation()
@@ -66,5 +79,6 @@ export function usePartners() {
     router,
     searchParams,
     situation,
+    isPartnerVerified,
   ])
 }
