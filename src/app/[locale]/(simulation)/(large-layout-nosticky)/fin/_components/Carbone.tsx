@@ -1,6 +1,6 @@
 import MainSubcategories from '@/components/fin/MainSubcategories'
 import { useRule } from '@/publicodes-state'
-import AgirMainBlock from './AgirMainBlock'
+import AgirMainBlock from './JagisMainBlock'
 import OtherWays from './carbone/OtherWays'
 import Subcategories from './carbone/Subcategories'
 
