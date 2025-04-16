@@ -30,6 +30,7 @@ const config: Config = {
     '^next-i18n-router/(.*)$':
       '<rootDir>/node_modules/next-i18n-router/dist/$1',
     '^next-i18n-router$': '<rootDir>/node_modules/next-i18n-router/dist',
+    '^yaml$': '<rootDir>/src/__mocks__/yaml.ts',
   },
 
   // The test environment that will be used for testing
@@ -42,11 +43,14 @@ const config: Config = {
   transform: {
     '^.+\\.(t|j)sx?$': '@swc/jest',
     '\\.yaml$': 'yaml-jest-transform',
+    'node_modules/yaml/.+\\.(j|t)s$': '@swc/jest',
   },
 
   moduleFileExtensions: ['js', 'ts', 'tsx', 'yaml', 'json'],
 
-  transformIgnorePatterns: ['/node_modules/(?!(next-i18n-router)/)'],
+  transformIgnorePatterns: [
+    '/node_modules/(?!(next-i18n-router|yaml|@publicodes)/)',
+  ],
   setupFilesAfterEnv: ['./jest.setup.tsx'],
 }
 

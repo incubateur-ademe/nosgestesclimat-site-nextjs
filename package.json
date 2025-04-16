@@ -92,6 +92,7 @@
     "@babel/eslint-parser": "^7.26.8",
     "@faker-js/faker": "^9.5.0",
     "@incubateur-ademe/nosgestesclimat-scripts": "^0.6.0",
+    "@jest/globals": "^29.7.0",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
     "@next/bundle-analyzer": "^15.2.1",

@@ -1,0 +1,24 @@
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import JagisSecondaryBlock from '../JagisSecondaryBlock'
+
+const mockExportSituation = jest.fn()
+
+jest.mock('@/hooks/simulation/useExportSituation', () => ({
+  useExportSituation: () => ({
+    exportSituation: mockExportSituation,
+  }),
+}))
+
+describe('JagisSecondaryBlock', () => {
+  it('should call export situation when the button is clicked', async () => {
+    // Given
+    render(<JagisSecondaryBlock />)
+
+    // When
+    await userEvent.click(screen.getByRole('button'))
+
+    // Then
+    expect(mockExportSituation).toHaveBeenCalled()
+  })
+})
