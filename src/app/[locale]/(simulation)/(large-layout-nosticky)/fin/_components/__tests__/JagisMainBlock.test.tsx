@@ -4,7 +4,7 @@ import JagisMainBlock from '../JagisMainBlock'
 
 const mockExportSituation = jest.fn()
 
-jest.mock('@/hooks/simulation/useExportSituation', () => ({
+jest.mock('@/hooks/partners/useExportSituation', () => ({
   useExportSituation: () => ({
     exportSituation: mockExportSituation,
   }),
