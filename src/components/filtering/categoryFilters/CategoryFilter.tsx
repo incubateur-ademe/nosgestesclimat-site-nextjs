@@ -41,7 +41,7 @@ export default function CategoryFilter({ title, dottedName, count }: Props) {
 
   return (
     <li
-      className={`height-[1.8rem] rounded-md ${
+      className={`height-[1.8rem] rounded-md transition-colors ${
         !categorySelected || isSelected
           ? getBackgroundLightColor(dottedName)
           : 'bg-gray-200'
