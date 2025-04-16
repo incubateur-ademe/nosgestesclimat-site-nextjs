@@ -68,7 +68,7 @@ export default function Modal({
       )}
       overlayClassName={twMerge(
         'fixed top-0 left-0 right-0 bottom-0 bg-black/50 z-10000 overflow-hidden transition-opacity',
-        isVisible ? 'opacity-100' : 'opacity-20'
+        isVisible ? 'opacity-100' : 'opacity-0'
       )}
       ariaHideApp={ariaHideApp}
       {...props}>
