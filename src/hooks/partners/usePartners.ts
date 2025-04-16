@@ -36,6 +36,8 @@ export function usePartners() {
     )
   }, [searchParams])
 
+  const isPartnerVerified = useVerifyPartner(partnerParams.partner)
+
   const hasNoPartnerParam = Object.keys(partnerParams).length === 0
 
   const handleExportSituation = useCallback(async () => {
@@ -62,6 +64,12 @@ export function usePartners() {
   }, [exportSituationAsync, situation, partnerParams, t, router])
 
   useEffect(() => {
+    if (
+      !isPartnerVerified ||
+      hasNoPartnerParam ||
+      typeof progression === 'undefined'
+    )
+      return
 
     if (progression === 1) {
       handleExportSituation()
