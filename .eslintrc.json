@@ -6,12 +6,15 @@
     "next/typescript",
     "plugin:jsx-a11y/strict",
     "plugin:cypress/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:storybook/recommended"
   ],
   "root": true,
   "overrides": [
     {
-      "files": ["**/*.ts?(x)"],
+      "files": [
+        "**/*.ts?(x)"
+      ],
       "parserOptions": {
         "project": "./tsconfig.json"
       },
@@ -25,7 +28,10 @@
       }
     },
     {
-      "files": ["*.js", "*.jsx"],
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
       "parser": "@babel/eslint-parser"
     }
   ],
@@ -49,5 +55,8 @@
     "react-hooks/exhaustive-deps": "error",
     "no-irregular-whitespace": "off"
   },
-  "ignorePatterns": ["node_modules", "cypress/**/*"]
+  "ignorePatterns": [
+    "node_modules",
+    "cypress/**/*"
+  ]
 }
