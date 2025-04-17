@@ -1,5 +1,6 @@
 'use client'
 
+import CloseIcon from '@/components/icons/Close'
 import Trans from '@/components/translation/trans/TransClient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { ReactNode } from 'react'
@@ -60,7 +61,7 @@ export default function Modal({
       isOpen={isOpen}
       onRequestClose={!isLoading ? closeDelayed : undefined}
       className={twMerge(
-        'fixed bottom-0 left-1/2 w-[40rem] max-w-[90vw] -translate-x-1/2 rounded-t-xl bg-white p-8 pt-4 transition-all duration-300 ease-out md:top-1/2 md:bottom-auto',
+        'fixed bottom-0 left-1/2 w-[40rem] max-w-[90vw] -translate-x-1/2 rounded-t-xl bg-white p-6 pt-10 transition-all duration-300 ease-out md:top-1/2 md:bottom-auto',
         isVisible
           ? 'translate-y-0 opacity-100 md:-translate-y-1/2 md:rounded-xl'
           : 'translate-y-12 opacity-0 md:-translate-y-[calc(50%-3rem)]',
@@ -73,13 +74,13 @@ export default function Modal({
       ariaHideApp={ariaHideApp}
       {...props}>
       {hasAbortCross && (
-        <div className="flex justify-end">
+        <div className="absolute -top-1 right-0 flex justify-end leading-none">
           <button
+            className="p-4 leading-none"
             disabled={isLoading}
             onClick={!isLoading ? closeDelayed : () => {}}
-            className="text-xl"
             title={t('Fermer')}>
-            ×
+            <CloseIcon className="w-4" />
           </button>
         </div>
       )}
