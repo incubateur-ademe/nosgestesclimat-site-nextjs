@@ -27,21 +27,11 @@ const nextConfig: NextConfig = {
     { dev, isServer }: { dev: boolean; isServer: boolean }
   ) => {
     if (isServer) {
-      config.ignoreWarnings = [{ module: /opentelemetry/ }]
-    }
-
-    if (config.cache) {
-      if (dev) {
-        // Development configuration
-        config.cache = {
-          type: 'filesystem',
-        }
-      } else {
-        // Use cache in production
-        config.cache = Object.freeze({
-          type: 'memory',
-        })
-      }
+      config.ignoreWarnings = [
+        { module: /opentelemetry/ },
+        { module: /mdx-js-loader/ },
+        { module: /next\.config\.compiled\.js/ },
+      ]
     }
 
     // Add a rule for YAML files

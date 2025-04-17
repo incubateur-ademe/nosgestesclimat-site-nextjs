@@ -5,7 +5,7 @@ import Trans from '../translation/trans/TransClient'
 
 export default function ErrorContent() {
   return (
-    <>
+    <div className="px-3 md:px-0">
       <h2>
         <Trans>Oups ! Une erreur est survenue</Trans> 🐛
       </h2>
@@ -19,11 +19,12 @@ export default function ErrorContent() {
 
       <p>
         <Trans>Si le problème persiste, merci de</Trans>{' '}
-        <Button
-          color="link"
+        <InlineLink
+          href="/contact"
+          className="inline!"
           onClick={() => window.location.replace('/contact')}>
           <Trans>contacter le support.</Trans>
-        </Button>
+        </InlineLink>
       </p>
 
       <div className="mt-10 flex w-full justify-center">
@@ -31,6 +32,6 @@ export default function ErrorContent() {
           <Trans>Revenir à l'accueil</Trans>
         </Button>
       </div>
-    </>
+    </div>
   )
 }

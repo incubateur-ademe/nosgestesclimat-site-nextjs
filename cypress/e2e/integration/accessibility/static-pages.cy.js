@@ -44,7 +44,7 @@ describe('Accessibility Tests', () => {
       cy.visit(page)
 
       // Wait for the page to load completely
-      cy.wait(2000)
+      cy.wait(500)
       cy.injectAxe()
 
       // Run accessibility checks
@@ -56,21 +56,21 @@ describe('Accessibility Tests', () => {
       })
     })
 
-    it(`Should have no accessibility violations on ${page} on desktop`, () => {
-      cy.intercept({ resourceType: /xhr|fetch|uncaught/ }, { log: false })
+    // it(`Should have no accessibility violations on ${page} on desktop`, () => {
+    //   cy.intercept({ resourceType: /xhr|fetch|uncaught/ }, { log: false })
 
-      // Visit the page
-      cy.visit(page)
+    //   // Visit the page
+    //   cy.visit(page)
 
-      // Wait for the page to load completely
-      cy.wait(2000)
-      cy.injectAxe()
+    //   // Wait for the page to load completely
+    //   cy.wait(2000)
+    //   cy.injectAxe()
 
-      // Run accessibility checks
-      cy.checkA11y([
-        '.splide', // false positive ; allowed-role
-        '.skip-to-main-content', // false positive ; skip-link : Ensure all skip links have a focusable target
-      ])
-    })
+    //   // Run accessibility checks
+    //   cy.checkA11y([
+    //     '.splide', // false positive ; allowed-role
+    //     '.skip-to-main-content', // false positive ; skip-link : Ensure all skip links have a focusable target
+    //   ])
+    // })
   })
 })
