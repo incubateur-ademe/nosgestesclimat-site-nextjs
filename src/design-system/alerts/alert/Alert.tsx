@@ -33,17 +33,19 @@ export default function Alert({
   onClose?: () => void
   type?: AlertType
 }) {
-  console.log(onClose)
+  const onCloseClassName = onClose ? 'pr-14' : ''
+
   return (
     <section
       className={twMerge(
-        'relative rounded-xl border-2 p-8',
-        getTypeClassNames(type)
+        'relative rounded-xl border-2 p-6',
+        getTypeClassNames(type),
+        onCloseClassName
       )}>
       {onClose && (
         <button className="absolute top-3 right-4" onClick={onClose}>
           <span className="not-sr-only">
-            <CloseIcon className="w-5" />
+            <CloseIcon className="w-6" />
           </span>
           <span className="sr-only">
             <Trans>Fermer</Trans>
