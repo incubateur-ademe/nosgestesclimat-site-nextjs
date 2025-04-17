@@ -17,7 +17,7 @@ export default function MentionsLegalesPage() {
         includeBetaGouv
         contactEmail="contact@nosgestesclimat.fr"
         siteName="Nos Gestes Climat"
-        siteUrl={process.env.NEXT_PUBLIC_SITE_URL!}
+        siteUrl="https://nosgestesclimat.fr"
         licenceUrl="https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs/blob/main/LICENSE"
         privacyPolicyUrl="/politique-de-confidentialite"
         siteHost={{
