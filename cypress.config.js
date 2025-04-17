@@ -10,6 +10,8 @@ export default defineConfig({
   projectId: 'bkkrae',
   viewportWidth: 1920,
   viewportHeight: 960,
+  video: false,
+  screenshotsFolder: false,
   env: {
     localisation_param: 'FR',
     language_param: 'fr',

@@ -59,12 +59,14 @@ export default function DidYouKnowSlider({
             interval: 5500,
             reducedMotion: true,
           }}
+          role="group"
           onMoved={(slide: unknown, nextSlideIndex: number) =>
             setCurrentSlide(nextSlideIndex)
           }
           onAutoplayPlay={(slide: unknown, nextSlideIndex: number) =>
             setCurrentSlide(nextSlideIndex)
           }
+          aria-label={t('Liste de faits amusants et intéressants')}
           className="relative max-w-[594px]">
           {slides.map((slide, index) => (
             <SplideSlide
