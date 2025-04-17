@@ -23,7 +23,9 @@ const parseYaml = (yaml: YamlEntry) => {
       )
     : {
         entries: Object.fromEntries(
-          Object.entries(yaml.entries).filter(([key]) => !key.endsWith('.lock'))
+          Object.entries(yaml.entries ?? {}).filter(
+            ([key]) => !key.endsWith('.lock')
+          )
         ),
       }
 }
