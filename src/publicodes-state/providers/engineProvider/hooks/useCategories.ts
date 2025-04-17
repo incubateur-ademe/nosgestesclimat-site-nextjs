@@ -1,4 +1,4 @@
-import { orderedCategories } from '@/constants/orderedCategories'
+import { orderedCategories } from '@/constants/model/orderedCategories'
 import getSomme from '@/publicodes-state/helpers/getSomme'
 import { getSubcategories } from '@/publicodes-state/helpers/getSubcategories'
 import type {

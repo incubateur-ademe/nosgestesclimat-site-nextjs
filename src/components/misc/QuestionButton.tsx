@@ -1,4 +1,4 @@
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 
 type Props = {
   onClick: any

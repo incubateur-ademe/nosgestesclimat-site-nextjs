@@ -1,4 +1,4 @@
-import { NORTHSTAR_RATING_URL } from '@/constants/urls'
+import { NORTHSTAR_RATING_URL } from '@/constants/urls/main'
 import { useCurrentSimulation } from '@/publicodes-state'
 import type { NorthStarValue } from '@/types/northstar'
 import { useMutation } from '@tanstack/react-query'

@@ -1,4 +1,4 @@
-import { eauMetric } from '@/constants/metric'
+import { eauMetric } from '@/constants/model/metric'
 import { useEngine } from '@/publicodes-state'
 import type { Metric } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'

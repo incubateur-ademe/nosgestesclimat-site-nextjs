@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { baseClassNames, sizeClassNames } from '@/design-system/inputs/Button'
+import { baseClassNames, sizeClassNames } from '@/design-system/buttons/Button'
 import type { GesturesType } from '@/types/landing-page'
 import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'

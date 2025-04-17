@@ -1,4 +1,4 @@
-import { carboneMetric } from '@/constants/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import type { PublicPollSimulation } from '@/types/organisations'
 
 const MAX_VALUE = 100000

@@ -3,7 +3,7 @@
 import Baseline from '@/components/organisations/Baseline'
 import Trans from '@/components/translation/trans/TransClient'
 import { classementCreateOrganisation } from '@/constants/tracking/pages/classements'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import type { Organisation } from '@/types/organisations'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 

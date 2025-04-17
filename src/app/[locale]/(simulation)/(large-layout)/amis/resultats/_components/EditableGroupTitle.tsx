@@ -6,7 +6,7 @@ import {
   amisDashboardOpenEditName,
   amisDashboardValidateEditName,
 } from '@/constants/tracking/pages/amisDashboard'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import InlineTextInput from '@/design-system/inputs/InlineTextInput'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'

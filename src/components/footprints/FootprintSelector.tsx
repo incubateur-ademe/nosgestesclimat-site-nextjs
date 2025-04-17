@@ -1,5 +1,5 @@
 'use client'
-import { carboneMetric, eauMetric } from '@/constants/metric'
+import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Metrics } from '@incubateur-ademe/nosgestesclimat'

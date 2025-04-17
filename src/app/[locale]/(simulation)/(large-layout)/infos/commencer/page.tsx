@@ -6,7 +6,7 @@ import {
   infosCommencerClickCtaCommencer,
   infosCommencerClickNewTest,
 } from '@/constants/tracking/pages/infos'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'

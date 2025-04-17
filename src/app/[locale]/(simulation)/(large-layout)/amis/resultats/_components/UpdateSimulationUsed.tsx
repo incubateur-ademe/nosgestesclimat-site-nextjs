@@ -1,7 +1,7 @@
 'use client'
 
 import TransClient from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import Loader from '@/design-system/layout/Loader'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'

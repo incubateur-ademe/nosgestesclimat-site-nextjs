@@ -3,7 +3,7 @@
 import type { Group, Participant } from '@/types/groups'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { eauMetric } from '@/constants/metric'
+import { eauMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { getTopThreeAndRestMembers } from '@/helpers/groups/getTopThreeAndRestMembers'
 import { useUser } from '@/publicodes-state'

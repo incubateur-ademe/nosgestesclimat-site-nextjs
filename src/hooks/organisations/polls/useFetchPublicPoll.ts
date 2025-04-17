@@ -1,4 +1,4 @@
-import { ORGANISATION_URL } from '@/constants/urls'
+import { ORGANISATION_URL } from '@/constants/urls/main'
 import type { PublicOrganisationPoll } from '@/types/organisations'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'

@@ -5,7 +5,7 @@ import {
   organisationsAccueilClickCommencerBottom,
   organisationsAccueilClickDemoBottom,
 } from '@/constants/tracking/pages/organisationsAccueil'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 
 export default function CTAFooter() {

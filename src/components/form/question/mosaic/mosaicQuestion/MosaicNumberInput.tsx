@@ -1,5 +1,5 @@
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'

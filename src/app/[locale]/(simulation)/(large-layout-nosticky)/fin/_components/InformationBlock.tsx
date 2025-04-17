@@ -2,9 +2,9 @@
 
 import CloseIcon from '@/components/icons/Close'
 import DownArrow from '@/components/icons/DownArrow'
-import { carboneMetric } from '@/constants/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import { endToggleTargetBlock } from '@/constants/tracking/pages/end'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { trackEvent } from '@/utils/analytics/trackEvent'

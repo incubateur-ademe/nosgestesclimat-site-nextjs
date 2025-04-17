@@ -1,6 +1,6 @@
 'use client'
 
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Loader from '@/design-system/layout/Loader'
 import type { Organisation } from '@/types/organisations'
 import MaxWidthContent from '../layout/MaxWidthContent'

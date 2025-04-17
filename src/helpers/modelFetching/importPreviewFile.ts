@@ -1,4 +1,4 @@
-import { getPreviewUrl } from '@/constants/urls'
+import { getPreviewUrl } from '@/constants/urls/main'
 import { captureException } from '@sentry/nextjs'
 import axios from 'axios'
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { footerClickLanguage } from '@/constants/tracking/layout'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { updateLang } from '@/helpers/language/updateLang'
 import { updateLangCookie } from '@/helpers/language/updateLangCookie'

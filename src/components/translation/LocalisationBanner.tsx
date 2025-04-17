@@ -2,9 +2,9 @@
 
 import Link from '@/components/Link'
 import CountryFlag from '@/components/misc/CountryFlag'
+import { defaultModelRegionCode } from '@/constants/localisation/translation'
 import { trackingClickRegionBanner } from '@/constants/tracking/misc'
-import { defaultModelRegionCode } from '@/constants/translation'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'

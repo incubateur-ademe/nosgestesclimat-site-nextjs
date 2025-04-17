@@ -2,7 +2,7 @@
 
 import Arrow from '@/components/fin/metricSlider/carboneTotalChart/Arrow'
 import Trans from '@/components/translation/trans/TransClient'
-import { carboneMetric } from '@/constants/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import type { PublicPollSimulation } from '@/types/organisations'
 import isMobile from 'is-mobile'

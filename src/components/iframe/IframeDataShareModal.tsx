@@ -1,7 +1,7 @@
 'use client'
 
-import { defaultMetric } from '@/constants/metric'
-import Button from '@/design-system/inputs/Button'
+import { defaultMetric } from '@/constants/model/metric'
+import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'

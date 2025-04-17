@@ -1,4 +1,4 @@
-import { GROUP_URL } from '@/constants/urls'
+import { GROUP_URL } from '@/constants/urls/main'
 import { useUser } from '@/publicodes-state'
 import type { Group } from '@/types/groups'
 import { useMutation, useQueryClient } from '@tanstack/react-query'

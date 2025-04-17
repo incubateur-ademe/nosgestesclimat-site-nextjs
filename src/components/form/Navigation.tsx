@@ -9,7 +9,7 @@ import {
   questionClickPrevious,
   questionClickSuivant,
 } from '@/constants/tracking/question'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import { useCurrentSimulation, useFormState, useRule } from '@/publicodes-state'

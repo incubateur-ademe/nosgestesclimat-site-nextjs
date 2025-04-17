@@ -1,4 +1,4 @@
-import { orderedCategories } from '@/constants/orderedCategories'
+import { orderedCategories } from '@/constants/model/orderedCategories'
 import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
 import CategoryResult from './categoriesResultList/CategoryResult'
 

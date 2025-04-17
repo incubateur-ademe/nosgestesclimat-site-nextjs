@@ -7,7 +7,7 @@ import {
   organisationsDashboardClickImpactCo2,
   organisationsDashboardDownloadKit,
 } from '@/constants/tracking/pages/organisationsDashboard'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/analytics/trackEvent'

@@ -1,6 +1,6 @@
 'use client'
 
-import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
+import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import Card from '@/design-system/layout/Card'
 import { twMerge } from 'tailwind-merge'

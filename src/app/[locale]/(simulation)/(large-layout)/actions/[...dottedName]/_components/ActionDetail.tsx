@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { actionsClickYes } from '@/constants/tracking/pages/actions'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import Markdown from '@/design-system/utils/Markdown'
 import { filterRelevantMissingVariables } from '@/helpers/actions/filterRelevantMissingVariables'

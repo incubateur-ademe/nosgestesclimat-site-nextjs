@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import type { OrganisationPoll } from '@/types/organisations'
 import dayjs from 'dayjs'
 import { useParams } from 'next/navigation'

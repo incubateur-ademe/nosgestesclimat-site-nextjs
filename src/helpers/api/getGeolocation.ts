@@ -1,9 +1,9 @@
-import { defaultInitialRegion } from '@/constants/defaultRegion'
+import { defaultInitialRegion } from '@/constants/localisation/defaultRegion'
 import type { RegionFromGeolocation } from '@/publicodes-state/types'
 import supportedRegions from '@incubateur-ademe/nosgestesclimat/public/supportedRegions.json'
 import { captureException } from '@sentry/nextjs'
 import axios, { isAxiosError } from 'axios'
-import { MODELE_URL } from '../../constants/urls'
+import { MODELE_URL } from '../../constants/urls/main'
 
 type ModelGeolocation = RegionFromGeolocation & {
   region: string

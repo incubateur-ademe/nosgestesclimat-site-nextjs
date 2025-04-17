@@ -1,6 +1,6 @@
 import { ADMINISTRATOR_SEPARATOR } from '@/constants/organisations/administrator'
 import type { OrganisationTypeEnum } from '@/constants/organisations/organisationTypes'
-import { ORGANISATION_URL } from '@/constants/urls'
+import { ORGANISATION_URL } from '@/constants/urls/main'
 import type {
   OrgaSettingsInputsType,
   Organisation,

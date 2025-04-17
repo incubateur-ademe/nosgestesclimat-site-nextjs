@@ -1,7 +1,7 @@
 'use client'
 
 import { marianne } from '@/app/[locale]/layout'
-import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
+import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import Loader from '@/design-system/layout/Loader'
 import type { DetailedHTMLProps, InputHTMLAttributes } from 'react'

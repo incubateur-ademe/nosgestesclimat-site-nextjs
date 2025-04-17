@@ -1,7 +1,7 @@
 'use client'
 
 import { trackingBannerClick } from '@/constants/tracking/misc'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 
 export default function BannerLink({

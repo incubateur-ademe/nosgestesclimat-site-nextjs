@@ -1,7 +1,7 @@
 'use client'
 
-import { carboneMetric, eauMetric } from '@/constants/metric'
-import Button from '@/design-system/inputs/Button'
+import { carboneMetric, eauMetric } from '@/constants/model/metric'
+import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Metric } from '@/publicodes-state/types'

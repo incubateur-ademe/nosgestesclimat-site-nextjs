@@ -6,8 +6,8 @@ import {
   quizClickPrevious,
 } from '@/constants/tracking/pages/quiz'
 import { simulationSimulationCompleted } from '@/constants/tracking/simulation'
-import Button from '@/design-system/inputs/Button'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import Button from '@/design-system/buttons/Button'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'

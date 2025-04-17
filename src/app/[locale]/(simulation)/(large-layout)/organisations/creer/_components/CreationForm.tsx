@@ -7,8 +7,8 @@ import {
   ORGANISATION_TYPES,
   OrganisationTypeEnum,
 } from '@/constants/organisations/organisationTypes'
-import Button from '@/design-system/inputs/Button'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import Button from '@/design-system/buttons/Button'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'

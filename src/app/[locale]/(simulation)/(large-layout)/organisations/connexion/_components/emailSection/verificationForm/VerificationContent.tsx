@@ -1,6 +1,6 @@
 'use client'
 
-import MailIcon from '@/components/icons/MailIcon'
+import MailIcon from '@/components/icons/share/MailIcon'
 import VerificationCodeInput from '@/components/organisations/VerificationCodeInput'
 import Trans from '@/components/translation/trans/TransClient'
 

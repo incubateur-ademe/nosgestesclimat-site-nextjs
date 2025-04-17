@@ -2,7 +2,7 @@
 
 import TrashIcon from '@/components/icons/TrashIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import { carboneMetric } from '@/constants/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import Badge from '@/design-system/layout/Badge'
 import ConfirmationModal from '@/design-system/modals/ConfirmationModal'
 import Emoji from '@/design-system/utils/Emoji'

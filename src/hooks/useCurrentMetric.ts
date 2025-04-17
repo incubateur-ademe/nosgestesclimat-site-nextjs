@@ -1,4 +1,4 @@
-import { defaultMetric, metrics } from '@/constants/metric'
+import { defaultMetric, metrics } from '@/constants/model/metric'
 import { useQueryParams } from '@/hooks/useQueryParams'
 import type { Metric } from '@/publicodes-state/types'
 import { useCallback } from 'react'

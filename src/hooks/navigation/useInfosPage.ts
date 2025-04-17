@@ -4,7 +4,7 @@ import {
   POSTAL_CODE_PAGE,
   START_PAGE,
   TUTORIEL_PAGE,
-} from '@/constants/infosPages'
+} from '@/constants/organisations/infosPages'
 import { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { usePollQueryParams } from '@/hooks/organisations/usePollQueryParams'

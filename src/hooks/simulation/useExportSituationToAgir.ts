@@ -1,4 +1,4 @@
-import { SERVER_URL } from '@/constants/urls'
+import { SERVER_URL } from '@/constants/urls/main'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'

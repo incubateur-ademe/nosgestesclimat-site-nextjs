@@ -1,4 +1,4 @@
-import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
+import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
 import type { ChangeEventHandler, HTMLAttributes, ReactNode } from 'react'
 import { Controller } from 'react-hook-form'

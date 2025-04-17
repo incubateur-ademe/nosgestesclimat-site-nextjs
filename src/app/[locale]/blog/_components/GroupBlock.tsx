@@ -1,6 +1,6 @@
 import Trans from '@/components/translation/trans/TransServer'
 import { linkToGroupCreation } from '@/constants/group'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 

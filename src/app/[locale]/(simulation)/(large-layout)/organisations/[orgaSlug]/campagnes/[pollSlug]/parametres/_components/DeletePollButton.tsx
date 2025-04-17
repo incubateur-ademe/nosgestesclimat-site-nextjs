@@ -2,7 +2,7 @@
 
 import TrashIcon from '@/components/icons/TrashIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import ConfirmationModal from '@/design-system/modals/ConfirmationModal'
 import { useDeletePoll } from '@/hooks/organisations/polls/useDeletePoll'
 import { captureException } from '@sentry/nextjs'

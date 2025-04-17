@@ -1,7 +1,7 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { LIST_MAIN_NEWSLETTER } from '../constants/brevo'
-import { NEWSLETTER_URL } from '../constants/urls'
+import { NEWSLETTER_URL } from '../constants/urls/main'
 
 export type Newsletter = {
   id: number
