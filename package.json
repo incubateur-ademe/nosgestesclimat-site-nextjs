@@ -143,10 +143,5 @@
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.24.0",
     "yaml-loader": "^0.8.1"
-  },
-  "packageManager": "yarn@1.22.19",
-  "resolutions": {
-    "@types/react": "19.1.0",
-    "@types/react-dom": "19.1.2"
   }
 }
