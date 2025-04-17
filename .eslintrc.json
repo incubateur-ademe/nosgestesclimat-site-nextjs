@@ -6,7 +6,8 @@
     "next/typescript",
     "plugin:jsx-a11y/strict",
     "plugin:cypress/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:storybook/recommended"
   ],
   "root": true,
   "overrides": [
