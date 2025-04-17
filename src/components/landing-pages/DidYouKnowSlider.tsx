@@ -59,6 +59,7 @@ export default function DidYouKnowSlider({
             interval: 5500,
             reducedMotion: true,
           }}
+          role="group"
           onMoved={(slide: unknown, nextSlideIndex: number) =>
             setCurrentSlide(nextSlideIndex)
           }
