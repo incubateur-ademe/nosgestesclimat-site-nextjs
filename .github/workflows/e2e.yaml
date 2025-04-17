@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - 'main'
+      - 'NGC-1836'
   pull_request:
     branches:
       - 'main'
+      - 'NGC-1836'
 
 jobs:
   sleep:
