@@ -22,8 +22,12 @@ export const generateMetadata = getCommonMetadata({
   robots: noIndexObject,
 })
 
-export default async function Tutoriel({ params }: DefaultPageProps) {
+export default async function Tutoriel({
+  params,
+  searchParams,
+}: DefaultPageProps) {
   const { locale } = await params
+
   return (
     <ContentLarge className="mt-10 px-4 lg:px-0">
       <div className="mx-auto flex max-w-3xl flex-col overflow-auto">
@@ -32,7 +36,7 @@ export default async function Tutoriel({ params }: DefaultPageProps) {
           className="text-lg md:text-2xl"
           title={
             <>
-              <span className="inline text-secondary-700">
+              <span className="text-secondary-700 inline">
                 <Trans locale={locale}>10 minutes</Trans>
               </span>{' '}
               <Trans locale={locale}>

@@ -1,14 +1,26 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import Loader from '@/design-system/layout/Loader'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
+import { usePollQueryParams } from '@/hooks/organisations/usePollQueryParams'
 
 export default function OrganisationDisclaimer() {
   const { data: poll, isLoading } = useFetchPublicPoll()
+  const { pollSlug } = usePollQueryParams()
 
   // If there is no pollSlug, we don't display the disclaimer
-  if (!poll) {
+  if (!pollSlug) {
     return null
+  }
+
+  if (isLoading) {
+    return (
+      <p>
+        <Loader size="sm" color="dark" />{' '}
+        <Trans>Nous chargeons les données de l'organisation partenaire.</Trans>
+      </p>
+    )
   }
 
   // If the poll is not loading and there is still no poll, we don't display the disclaimer
