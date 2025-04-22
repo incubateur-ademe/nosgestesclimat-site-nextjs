@@ -22,10 +22,7 @@ export const generateMetadata = getCommonMetadata({
   robots: noIndexObject,
 })
 
-export default async function Tutoriel({
-  params,
-  searchParams,
-}: DefaultPageProps) {
+export default async function Tutoriel({ params }: DefaultPageProps) {
   const { locale } = await params
 
   return (
