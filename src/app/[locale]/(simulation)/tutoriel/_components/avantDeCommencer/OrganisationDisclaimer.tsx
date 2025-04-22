@@ -1,12 +1,13 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import Card from '@/design-system/layout/Card'
 import Loader from '@/design-system/layout/Loader'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import { usePollQueryParams } from '@/hooks/organisations/usePollQueryParams'
 
 export default function OrganisationDisclaimer() {
-  const { data: poll, isLoading } = useFetchPublicPoll()
+  const { data: poll, isLoading, isError } = useFetchPublicPoll()
   const { pollSlug } = usePollQueryParams()
 
   // If there is no pollSlug, we don't display the disclaimer
@@ -20,6 +21,18 @@ export default function OrganisationDisclaimer() {
         <Loader size="sm" color="dark" />{' '}
         <Trans>Nous chargeons les données de l'organisation partenaire.</Trans>
       </p>
+    )
+  }
+
+  if (isError) {
+    return (
+      <Card className="mb-8 border-red-300 bg-red-50 text-sm text-red-800">
+        <Trans>
+          Une erreur s'est produite au moment de récupérer les informations
+          liées à l'organisation partenaire. Veuillez réessayer plus tard ou
+          contacter notre support.
+        </Trans>
+      </Card>
     )
   }
 
