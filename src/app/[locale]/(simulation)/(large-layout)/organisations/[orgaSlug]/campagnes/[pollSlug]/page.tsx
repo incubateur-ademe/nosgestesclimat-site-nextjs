@@ -50,7 +50,7 @@ export default function CampagnePage() {
     isLoading: isLoadingSimulations,
     error: errorSimulations,
   } = useFetchPublicPollSimulations({
-    enabled: !!poll && pollHasTooManyParticipants,
+    enabled: !!poll && !pollHasTooManyParticipants,
   })
 
   const { ageFilters, postalCodeFilters } = useContext(FiltersContext)
