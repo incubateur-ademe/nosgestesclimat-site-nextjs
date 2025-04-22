@@ -35,7 +35,7 @@
     "prepare": "husky",
     "ts:prune": "ts-prune | grep -v generateMetadata",
     "storybook": "storybook dev -p 6006",
-    "build:storybook": "storybook build --output-dir .storybook-build && rm -rf public/storybook && mv .storybook-build public/storybook"
+    "storybook:build": "storybook build --output-dir .storybook-build && rm -rf public/storybook && mv .storybook-build public/storybook"
   },
   "dependencies": {
     "@incubateur-ademe/legal-pages-react": "^0.3.0",
