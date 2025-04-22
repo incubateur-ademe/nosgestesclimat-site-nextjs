@@ -24,7 +24,6 @@ export const generateMetadata = getCommonMetadata({
 
 export default async function Tutoriel({ params }: DefaultPageProps) {
   const { locale } = await params
-
   return (
     <ContentLarge className="mt-10 px-4 lg:px-0">
       <div className="mx-auto flex max-w-3xl flex-col overflow-auto">
