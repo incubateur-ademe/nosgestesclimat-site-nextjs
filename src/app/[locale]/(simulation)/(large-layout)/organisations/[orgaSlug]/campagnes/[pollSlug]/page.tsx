@@ -127,7 +127,7 @@ export default function CampagnePage() {
           title={<Trans>Résultats de campagne</Trans>}
         />
 
-        {!pollHasTooManyParticipants && (
+        {pollHasTooManyParticipants && (
           <Card className="mb-8 inline-block border-orange-300 bg-orange-50 text-sm font-bold text-orange-800">
             <Trans>
               Oups ! Votre campagne a atteint un nombre de participations trop
