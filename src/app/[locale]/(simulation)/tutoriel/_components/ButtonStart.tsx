@@ -5,13 +5,16 @@ import { tutorielClickSuivant } from '@/constants/tracking/pages/tutoriel'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Loader from '@/design-system/layout/Loader'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
+import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useMemo } from 'react'
 
 export default function ButtonStart() {
   const { hideTutorial } = useUser()
-  const { getLinkToNextInfosPage, poll, isLoadingPoll } = useInfosPage()
+  const { getLinkToNextInfosPage } = useInfosPage()
+
+  const { data: poll, isLoading } = useFetchPublicPoll()
 
   const startTime = useMemo(() => Date.now(), [])
 
@@ -21,10 +24,10 @@ export default function ButtonStart() {
     <ButtonLink
       href={getLinkToNextInfosPage({ curPage: 'tutoriel' })}
       data-cypress-id="skip-tutorial-button"
-      aria-disabled={isLoadingPoll}
+      aria-disabled={isLoading}
       className="min-w-[167px]!"
       onClick={() => {
-        if (isLoadingPoll) {
+        if (isLoading) {
           return
         }
 
@@ -34,7 +37,7 @@ export default function ButtonStart() {
         const timeSpentOnPage = endTime - startTime
         trackEvent(tutorielClickSuivant(timeSpentOnPage))
       }}>
-      {isLoadingPoll ? <Loader size="sm" /> : <Trans>C'est parti ! →</Trans>}
+      {isLoading ? <Loader size="sm" /> : <Trans>C'est parti ! →</Trans>}
     </ButtonLink>
   )
 }
