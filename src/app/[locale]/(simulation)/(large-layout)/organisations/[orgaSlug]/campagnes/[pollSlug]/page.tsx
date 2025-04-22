@@ -3,8 +3,10 @@
 import PollLoader from '@/components/organisations/PollLoader'
 import PollStatistics from '@/components/organisations/PollStatistics'
 import Trans from '@/components/translation/trans/TransClient'
+import Card from '@/design-system/layout/Card'
 import Loader from '@/design-system/layout/Loader'
 import Title from '@/design-system/layout/Title'
+import Emoji from '@/design-system/utils/Emoji'
 import { filterExtremes } from '@/helpers/organisations/filterExtremes'
 import { filterSimulations } from '@/helpers/organisations/filterSimulations'
 import { displayErrorToast } from '@/helpers/toasts/displayErrorToast'
@@ -20,6 +22,8 @@ import { FiltersContext } from './_components/FiltersProvider'
 import PollNotFound from './_components/PollNotFound'
 import PollStatisticsCharts from './_components/PollStatisticsCharts'
 import PollStatisticsFilters from './_components/PollStatisticsFilters'
+
+const MAX_NUMBER_POLL_SIMULATIONS = 500
 
 export default function CampagnePage() {
   const searchParams = useSearchParams()
@@ -38,12 +42,15 @@ export default function CampagnePage() {
     enabled: !isRedirectFromLegacy,
   })
 
+  const pollHasTooManyParticipants =
+    (poll?.simulations?.count ?? 0) > MAX_NUMBER_POLL_SIMULATIONS
+
   const {
     data: simulations,
     isLoading: isLoadingSimulations,
     error: errorSimulations,
   } = useFetchPublicPollSimulations({
-    enabled: !!poll,
+    enabled: !!poll && !pollHasTooManyParticipants,
   })
 
   const { ageFilters, postalCodeFilters } = useContext(FiltersContext)
@@ -120,12 +127,25 @@ export default function CampagnePage() {
           title={<Trans>Résultats de campagne</Trans>}
         />
 
-        {isLoadingSimulations ? (
+        {pollHasTooManyParticipants && (
+          <Card className="mb-8 inline-block border-orange-300 bg-orange-50 text-sm font-bold text-orange-800">
+            <Trans>
+              Oups ! Votre campagne a atteint un nombre de participations trop
+              important pour permettre d'afficher notre graphique correctement.
+              Nous travaillons à résoudre le problème au plus vite.
+            </Trans>{' '}
+            <Emoji className="inline">💪</Emoji>
+          </Card>
+        )}
+
+        {isLoadingSimulations && !pollHasTooManyParticipants && (
           <div className="mb-8 flex h-full items-center gap-2">
             <Loader color="dark" size="sm" />
             <Trans>Chargement des résultats détaillés de campagne...</Trans>
           </div>
-        ) : (
+        )}
+
+        {!isLoadingSimulations && !pollHasTooManyParticipants && (
           <>
             <PollStatisticsFilters
               simulations={simulationsWithoutExtremes}
