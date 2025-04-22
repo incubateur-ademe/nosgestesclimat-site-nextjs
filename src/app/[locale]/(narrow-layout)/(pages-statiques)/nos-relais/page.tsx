@@ -1,5 +1,5 @@
-import CategoryFilters from '@/components/filtering/CategoryFilters'
 import type { PartnerType } from '@/adapters/cmsClient'
+import CategoryFilters from '@/components/filtering/CategoryFilters'
 import Trans from '@/components/translation/trans/TransServer'
 import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
 import InlineLink from '@/design-system/inputs/InlineLink'
@@ -92,10 +92,10 @@ export default async function NosRelais({
           </p>
 
           <p className="mb-8 italic">
-            <Emoji>ℹ️</Emoji>{' '}
+            <Emoji>ℹ️</Emoji> <Trans locale={locale}>N.B.</Trans>{' '}
             <Trans locale={locale}>
-              N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat,
-              qui est et restera un service public, indépendant et gratuit de
+              : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui
+              est et restera un service public, indépendant et gratuit de
               l'ADEME.
             </Trans>
           </p>
@@ -113,11 +113,13 @@ export default async function NosRelais({
       </div>
 
       <CategoryFilters
-        categories={Object.keys(partnersByCategories).map((category: string) => ({
-          title: category,
-          dottedName: category as DottedName,
-          count: partnersByCategories[category].length,
-        }))}
+        categories={Object.keys(partnersByCategories).map(
+          (category: string) => ({
+            title: category,
+            dottedName: category as DottedName,
+            count: partnersByCategories[category].length,
+          })
+        )}
         className="mb-6"
       />
       {Object.keys(partnersByCategories)
@@ -145,9 +147,7 @@ export default async function NosRelais({
                     alt={partner.name}
                   />
                   <p className="mb-4 font-bold">{partner.name}</p>
-                  <p className="my-0 underline text-sm">
-                    {partner.link}
-                  </p>
+                  <p className="my-0 text-sm underline">{partner.link}</p>
                 </Card>
               ))}
             </div>
