@@ -12,7 +12,7 @@ export default function CTAFooter() {
   const { t } = useClientTranslation()
 
   return (
-    <section className="pb-24 pt-16">
+    <section className="pt-16 pb-24">
       <div className="mx-auto max-w-5xl">
         <div className="max-w-full md:w-[34rem]">
           <h2>

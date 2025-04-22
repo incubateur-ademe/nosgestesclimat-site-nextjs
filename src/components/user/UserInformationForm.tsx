@@ -187,7 +187,7 @@ export default function UserInformationForm({
           </>
         )}
 
-        <h3 className="mb-0 mt-6">
+        <h3 className="mt-6 mb-0">
           <Trans>Inscription à nos e-mails</Trans>
         </h3>
 

@@ -9,7 +9,7 @@ import {
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { getSubcatsOfCategory } from '@/helpers/publicodes/getSubcatsOfCategory'
-import { useRule, useSimulation } from '@/publicodes-state'
+import { useEngine, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
@@ -22,7 +22,7 @@ type Props = {
 
 export default function Category({ category }: Props) {
   const { title, numericValue, icons } = useRule(category)
-  const { subcategories } = useSimulation()
+  const { subcategories } = useEngine()
 
   const [isOpen, setIsOpen] = useState(false)
   const formattedCarbonFootprint = formatCarbonFootprint(numericValue)

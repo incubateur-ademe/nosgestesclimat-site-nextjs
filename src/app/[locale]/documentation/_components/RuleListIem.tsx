@@ -17,7 +17,7 @@ export default function RuleListItem({
   return (
     <li
       key={item.dottedName}
-      className="my-2 border-b border-solid border-primary-100 p-2">
+      className="border-primary-100 my-2 border-b border-solid p-2">
       <Link
         href={`/documentation/${encodeRuleName(item.dottedName)}`}
         className="decoration-none">
