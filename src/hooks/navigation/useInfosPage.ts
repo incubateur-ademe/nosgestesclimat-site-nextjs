@@ -196,5 +196,10 @@ export function useInfosPage() {
     [pollSlug, poll, isLoading, urlsInfosPages]
   )
 
-  return { getLinkToNextInfosPage, getLinkToPrevInfosPage }
+  return {
+    getLinkToNextInfosPage,
+    getLinkToPrevInfosPage,
+    poll,
+    isLoadingPoll: isLoading,
+  }
 }

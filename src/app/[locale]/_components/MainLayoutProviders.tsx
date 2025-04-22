@@ -14,25 +14,25 @@ import { marianne } from '../layout'
 export default function MainLayoutProviders({ children }: PropsWithChildren) {
   return (
     <ErrorBoundary>
-      <IframeOptionsProvider>
-        {(containerRef: React.RefObject<HTMLBodyElement | null>) => (
-          <QueryClientProviderWrapper>
+      <QueryClientProviderWrapper>
+        <IframeOptionsProvider>
+          {(containerRef: React.RefObject<HTMLBodyElement | null>) => (
             <UserProvider
               storageKey={STORAGE_KEY}
               migrationInstructions={migrationInstructions}>
               <PreventNavigationProvider>
                 <MainHooks>
                   <body
-                    className={`${marianne.className} bg-white text-default transition-colors duration-700`}
+                    className={`${marianne.className} text-default bg-white transition-colors duration-700`}
                     ref={containerRef}>
                     {children}
                   </body>
                 </MainHooks>
               </PreventNavigationProvider>
             </UserProvider>
-          </QueryClientProviderWrapper>
-        )}
-      </IframeOptionsProvider>
+          )}
+        </IframeOptionsProvider>
+      </QueryClientProviderWrapper>
     </ErrorBoundary>
   )
 }
