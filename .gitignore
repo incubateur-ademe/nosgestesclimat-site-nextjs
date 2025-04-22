@@ -66,4 +66,4 @@ coverage
 
 .husky/pre-push-custom
 
-*storybook.log
+*.log
