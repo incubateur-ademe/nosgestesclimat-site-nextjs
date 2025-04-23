@@ -137,7 +137,7 @@ export default async function NosRelais({
                   key={partner.name}
                   href={partner.link}
                   tag="a"
-                  className="bg-primary-50 border-none no-underline"
+                  className="bg-primary-50 flex flex-col justify-between border-none no-underline"
                   target="_blank">
                   <Image
                     src={partner.imageSrc}
@@ -146,8 +146,18 @@ export default async function NosRelais({
                     className="mx-auto mb-4 h-36 w-2/3 object-contain"
                     alt={partner.name}
                   />
-                  <p className="mb-4 font-bold">{partner.name}</p>
-                  <p className="my-0 text-sm underline">{partner.link}</p>
+                  <section>
+                    <p className="mb-1 font-bold">{partner.name}</p>
+                    <p className="my-0 text-sm underline">
+                      {' '}
+                      {
+                        partner.link
+                          .replace('https://', '')
+                          .replace('www.', '')
+                          .split('/')[0]
+                      }
+                    </p>
+                  </section>
                 </Card>
               ))}
             </div>
