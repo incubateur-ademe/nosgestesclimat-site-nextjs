@@ -5,6 +5,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { utils } from 'publicodes'
 import { useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
 import PencilIcon from '../icons/PencilIcon'
@@ -19,16 +20,23 @@ export default function Textile({ question, ...props }: Props) {
   )
   const { setValue } = useRule(question)
 
+  const possibleAnswers: Record<string, DottedName> = {
+    minimum: 'divers . textile . volume . minimum',
+    'renouvellement occasionnel':
+      'divers . textile . volume . renouvellement occasionnel',
+    'accro au shopping': 'divers . textile . volume . accro au shopping',
+  }
+
   useEffect(() => {
     if (preciseChoice && totalPiecesTextile > 0) {
       if (totalPiecesTextile <= 15) {
-        setValue('minimum')
+        setValue(utils.nameLeaf(possibleAnswers['minimum']))
       }
       if (totalPiecesTextile > 15 && totalPiecesTextile <= 35) {
-        setValue('renouvellement occasionnel')
+        setValue(utils.nameLeaf(possibleAnswers['renouvellement occasionnel']))
       }
       if (totalPiecesTextile > 35) {
-        setValue('accro au shopping')
+        setValue(utils.nameLeaf(possibleAnswers['accro au shopping']))
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

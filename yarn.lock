@@ -1938,10 +1938,10 @@
     prompt-sync "^4.2.0"
     yargs "^17.7.2"
 
-"@incubateur-ademe/nosgestesclimat@3.7.0-rc.2":
-  version "3.7.0-rc.2"
-  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-3.7.0-rc.2.tgz#a89155ad1b85cbe35c792e18a0abfe8322d8e9b9"
-  integrity sha512-O/As+37jzJmJESQlqUJm0UysQ1uyfFl8EUTVjdbgRy0guM9r6W0LD0o86IRmqvgvfN/YQ481907ddTryMqWi5Q==
+"@incubateur-ademe/nosgestesclimat@3.7.0-rc.4":
+  version "3.7.0-rc.4"
+  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-3.7.0-rc.4.tgz#3b4ef4decc077c66ba416406885786c3ead37afc"
+  integrity sha512-Xslit9P+Nvo+rjJSKxD2/9IF97FvGLiCJg89kxs6sp+7UFRt8TPfEijOhN8JKSRbcYbVPK8x1K3i3oZ5VAmwzA==
 
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
