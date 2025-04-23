@@ -150,12 +150,12 @@ export default function CampagnePage() {
         {
           // Do not display message for unaware participants, but only for admins
           pollHasTooManyParticipants && !!isAdmin && (
-            <Card className="border-primary-300 bg-primary-50 text-primary-900 mb-8 inline-block text-sm font-bold">
+            <Card className="border-primary-300 bg-primary-50 text-primary-950 mb-8 inline-block text-sm font-bold">
               <Trans>
                 Les graphiques sont cachés pour les campagnes avec plus de 500
                 participations pour des raisons de performance. Nous travaillons
                 à l'ajout de cette fonctionnalité pour les plus grosses
-                campagnes
+                campagnes.
               </Trans>{' '}
               <Emoji className="inline">💪</Emoji>
             </Card>
