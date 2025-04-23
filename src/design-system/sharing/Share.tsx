@@ -107,7 +107,6 @@ export default function Share({
                   mobileOnly && !isMobile ? null : (
                     <li key={link} className="w-full">
                       <ButtonLink
-                        // Add test id for first element
                         data-testid={`share-button-link-${index}`}
                         className="max-h-10 w-full text-sm!"
                         color="secondary"

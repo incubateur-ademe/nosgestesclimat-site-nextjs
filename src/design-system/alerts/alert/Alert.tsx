@@ -10,13 +10,13 @@ type AlertType = 'default' | 'success' | 'warning' | 'error'
 const getTypeClassNames = (type: AlertType) => {
   switch (type) {
     case 'default':
-      return 'border-blue-200 bg-blue-100'
+      return 'border-blue-200 bg-blue-100 text-blue-950'
     case 'success':
-      return 'border-green-200 bg-green-100'
+      return 'border-green-200 bg-green-100 text-green-950'
     case 'warning':
-      return 'border-orange-200 bg-orange-100'
+      return 'border-orange-200 bg-orange-100 text-orange-950'
     case 'error':
-      return 'border-red-200 bg-red-100'
+      return 'border-red-200 bg-red-100 text-red-950'
   }
 }
 
@@ -26,12 +26,14 @@ export default function Alert({
   description,
   onClose,
   type = 'default',
+  className,
 }: {
   title: ReactNode | string
   titleTag?: string
   description: ReactNode | string
   onClose?: () => void
   type?: AlertType
+  className?: string
 }) {
   const onCloseClassName = onClose ? 'pr-14' : ''
 
@@ -40,7 +42,8 @@ export default function Alert({
       className={twMerge(
         'relative rounded-xl border-2 p-6',
         getTypeClassNames(type),
-        onCloseClassName
+        onCloseClassName,
+        className
       )}>
       {onClose && (
         <button className="absolute top-3 right-4" onClick={onClose}>

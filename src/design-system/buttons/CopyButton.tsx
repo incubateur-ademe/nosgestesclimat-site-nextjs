@@ -1,11 +1,11 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { displayErrorToast } from '@/helpers/toasts/displayErrorToast'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { PropsWithChildren, ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
+import Alert from '../alerts/alert/Alert'
 import Button, { type ButtonProps } from './Button'
 
 type Props = {
@@ -25,6 +25,7 @@ export default function CopyButton({
   onCopied,
 }: PropsWithChildren<Props>) {
   const [isCopied, setIsCopied] = useState(false)
+  const [isError, setIsError] = useState(false)
 
   const { t } = useClientTranslation()
 
@@ -48,12 +49,9 @@ export default function CopyButton({
             onCopied?.()
 
             timeoutRef.current = setTimeout(() => setIsCopied(false), 3000)
+            setIsError(true)
           } catch (err) {
-            displayErrorToast(
-              `${t(
-                'Oups, une erreur est survenue lors de la copie du lien, voici le lien à copier / coller :'
-              )} ${textToCopy}`
-            )
+            setIsError(true)
           }
         }}>
         {isCopied
@@ -64,6 +62,15 @@ export default function CopyButton({
             ))
           : (children ?? <Trans>Copier le lien</Trans>)}
       </Button>
+
+      {isError && (
+        <Alert
+          type="error"
+          className="mt-2"
+          title={<Trans>Oups, la copie du lien a échoué, le voici :</Trans>}
+          description={textToCopy}
+        />
+      )}
     </>
   )
 }
