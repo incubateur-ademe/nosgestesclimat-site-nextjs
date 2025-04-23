@@ -28,14 +28,13 @@ export const generateMetadata = getCommonMetadata({
 const getPartnersByCategory = (partners: PartnerType[]) => {
   return partners.reduce(
     (acc, partner) => {
-      const accUpdated = { ...acc }
       if (!Object.keys(acc).includes(partner.category.category)) {
-        accUpdated[partner.category.category] = []
+        acc[partner.category.category] = []
       }
 
-      accUpdated[partner.category.category].push(partner)
+      acc[partner.category.category].push(partner)
 
-      return accUpdated
+      return acc
     },
     {} as { [key: string]: PartnerType[] }
   )
