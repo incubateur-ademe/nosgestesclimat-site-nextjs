@@ -208,8 +208,6 @@ export default function Footer({ className = '' }) {
           </div>
         </div>
       </div>
-
-      <div id="modal" />
     </footer>
   )
 }

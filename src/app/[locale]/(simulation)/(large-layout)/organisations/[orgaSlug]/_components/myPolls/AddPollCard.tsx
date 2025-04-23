@@ -7,7 +7,7 @@ import {
   baseClassNames,
   colorClassNames,
   sizeClassNames,
-} from '@/design-system/inputs/Button'
+} from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'

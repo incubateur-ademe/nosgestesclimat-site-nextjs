@@ -1,6 +1,6 @@
 'use client'
 
-import { defaultMetric } from '@/constants/metric'
+import { defaultMetric } from '@/constants/model/metric'
 import Accordion from '@/design-system/layout/Accordion'
 import { useSortedCategoriesByFootprint } from '@/hooks/useSortedCategoriesByFootprint'
 import { useRule } from '@/publicodes-state'

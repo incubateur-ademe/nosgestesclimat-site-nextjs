@@ -1,4 +1,4 @@
-import { eauMetric } from '@/constants/metric'
+import { eauMetric } from '@/constants/model/metric'
 import { useRule } from '@/publicodes-state'
 
 export const useEndPageSharedUrl = () => {

@@ -1,7 +1,7 @@
 'use client'
 
 import { questionClickSuggestion } from '@/constants/tracking/question'
-import { baseClassNames, sizeClassNames } from '@/design-system/inputs/Button'
+import { baseClassNames, sizeClassNames } from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import {
   getBgCategoryColor,

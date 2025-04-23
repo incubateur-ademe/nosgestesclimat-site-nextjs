@@ -6,7 +6,7 @@ import {
   organisationsAccueilClickCommencer,
   organisationsAccueilClickDemo,
 } from '@/constants/tracking/pages/organisationsAccueil'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import Image from 'next/image'

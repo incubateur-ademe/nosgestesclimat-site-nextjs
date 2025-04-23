@@ -9,7 +9,7 @@ import {
   profilClickCtaResultats,
   profilClickRecommencer,
 } from '@/constants/tracking/pages/profil'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useEndPage } from '@/hooks/navigation/useEndPage'

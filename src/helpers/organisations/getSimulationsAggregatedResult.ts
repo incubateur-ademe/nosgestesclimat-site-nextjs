@@ -1,4 +1,4 @@
-import { carboneMetric, eauMetric } from '@/constants/metric'
+import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import type { PublicPollSimulation } from '@/types/organisations'
 
 export function getSimulationsAggregatedResult(

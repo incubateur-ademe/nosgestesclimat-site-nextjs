@@ -1,4 +1,4 @@
-import { carboneMetric } from '@/constants/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import { useEngine } from '@/publicodes-state'
 import getSomme from '@/publicodes-state/helpers/getSomme'
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'

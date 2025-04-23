@@ -1,4 +1,4 @@
-import { QUIZZ_ANSWER_URL } from '@/constants/urls'
+import { QUIZZ_ANSWER_URL } from '@/constants/urls/main'
 import { useCurrentSimulation } from '@/publicodes-state'
 import type { AnswerType } from '@/types/quiz'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'

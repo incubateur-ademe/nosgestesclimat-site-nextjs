@@ -4,7 +4,7 @@ import {
   BIRTHDATE_PAGE,
   EMAIL_PAGE,
   POSTAL_CODE_PAGE,
-} from '@/constants/infosPages'
+} from '@/constants/organisations/infosPages'
 import {
   infosBirthdateClickPrecedent,
   infosBirthdateClickSuivant,
@@ -13,8 +13,8 @@ import {
   infosPostalCodeClickPrecedent,
   infosPostalCodeClickSuivant,
 } from '@/constants/tracking/pages/infos'
-import Button from '@/design-system/inputs/Button'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import Button from '@/design-system/buttons/Button'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 

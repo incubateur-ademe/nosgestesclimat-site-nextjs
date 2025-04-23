@@ -1,13 +1,13 @@
 'use client'
 
-import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import SavesIcon from '@/components/icons/SavesIcon'
+import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   profilDeleteSimulation,
   profilLoadSimulation,
 } from '@/constants/tracking/pages/profil'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import { useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/analytics/trackEvent'
