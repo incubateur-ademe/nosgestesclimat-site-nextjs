@@ -42,7 +42,7 @@ export default function Label({
   size = 'md',
   className,
   titleClassName,
-  headingLevel = 1,
+  headingLevel = 2,
   id,
   htmlFor,
 }: Props) {

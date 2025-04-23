@@ -74,7 +74,7 @@ export default function Textile({ question, ...props }: Props) {
         <div className="p-4">
           <Question
             question={'divers . textile . empreinte précise'}
-            headingLevel={2}
+            headingLevel={3}
             {...props}
           />
         </div>
