@@ -44,7 +44,7 @@ export default async function OurPartners({
   params,
   searchParams,
 }: DefaultPageProps & {
-  searchParams: Promise<{ [FILTER_SEARCH_PARAM_KEY]: string }>
+  searchParams: Promise<{ [FILTER_SEARCH_PARAM_KEY]?: string }>
 }) {
   const { locale } = await params
   const { [FILTER_SEARCH_PARAM_KEY]: categoryFilter } = await searchParams
@@ -121,6 +121,7 @@ export default async function OurPartners({
         )}
         className="mb-6"
       />
+
       {Object.keys(partnersByCategories)
         .filter((category: string) =>
           typeof categoryFilter !== 'undefined'
