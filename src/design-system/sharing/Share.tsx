@@ -27,7 +27,6 @@ export default function Share({
   shareItems,
   modalTitle,
   modalDescription,
-  ariaHideApp,
   linkShared,
   ...props
 }: {
@@ -35,7 +34,6 @@ export default function Share({
   shareItems: ShareItem[]
   modalTitle: ReactNode
   modalDescription: ReactNode
-  ariaHideApp?: boolean
   linkShared: string
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -63,7 +61,6 @@ export default function Share({
       {isModalOpen && (
         <Modal
           isOpen
-          ariaHideApp={ariaHideApp}
           hasAbortButton={false}
           closeModal={() => setIsModalOpen(false)}
           className="w-96 max-w-screen"

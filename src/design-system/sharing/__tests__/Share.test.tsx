@@ -39,7 +39,7 @@ describe('Share component', () => {
 
   it('should display a modal window upon click on the share button', async () => {
     // Given
-    render(<Share {...mockProps} ariaHideApp={false} />)
+    render(<Share {...mockProps} />)
 
     // When
     await userEvent.click(screen.getByTestId('share-button'))
@@ -50,7 +50,7 @@ describe('Share component', () => {
 
   it('should share the shared url to network page', async () => {
     // Given
-    render(<Share {...mockProps} ariaHideApp={false} />)
+    render(<Share {...mockProps} />)
 
     // When
     await userEvent.click(screen.getByTestId('share-button'))

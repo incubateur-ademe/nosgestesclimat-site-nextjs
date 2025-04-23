@@ -11,7 +11,7 @@ import Button from '../buttons/Button'
 
 // Set the app element once when the module is loaded
 if (typeof document !== 'undefined') {
-  ReactModal.setAppElement('#modal')
+  ReactModal.setAppElement(document.body)
 }
 
 type Props = {
@@ -22,7 +22,6 @@ type Props = {
   hasAbortCross?: boolean
   hasAbortButton?: boolean
   buttons?: ReactNode
-  ariaHideApp?: boolean
   className?: string
 }
 
@@ -34,7 +33,6 @@ export default function Modal({
   hasAbortCross = true,
   hasAbortButton = true,
   buttons,
-  ariaHideApp,
   className,
   ...props
 }: Props) {
@@ -75,7 +73,6 @@ export default function Modal({
         'fixed top-0 left-0 right-0 bottom-0 bg-black/50 duration-500 z-10000 overflow-hidden transition-opacity',
         isVisible ? 'opacity-100' : 'opacity-0'
       )}
-      ariaHideApp={ariaHideApp}
       {...props}>
       {hasAbortCross && (
         <div className="absolute -top-1 right-0 flex justify-end leading-none">
