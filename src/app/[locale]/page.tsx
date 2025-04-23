@@ -59,7 +59,6 @@ export default async function Homepage({ params }: DefaultPageProps) {
           },
         ]}
       />
-
       <LandingPage
         heroIllustration={<InteractiveIllustration />}
         heroTitle={

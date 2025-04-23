@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { trackingDownloadRavijenChart } from '@/constants/tracking/misc'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import { getSubcatsOfCategory } from '@/helpers/publicodes/getSubcatsOfCategory'
 import { useEngine } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'

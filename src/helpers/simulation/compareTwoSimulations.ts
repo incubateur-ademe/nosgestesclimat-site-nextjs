@@ -1,4 +1,4 @@
-import { defaultMetric } from '@/constants/metric'
+import { defaultMetric } from '@/constants/model/metric'
 import type { Simulation } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 

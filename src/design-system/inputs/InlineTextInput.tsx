@@ -1,7 +1,7 @@
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { FocusEvent } from 'react'
 import { useRef, useState } from 'react'
-import Button from './Button'
+import Button from '../buttons/Button'
 
 type Props = {
   name: string

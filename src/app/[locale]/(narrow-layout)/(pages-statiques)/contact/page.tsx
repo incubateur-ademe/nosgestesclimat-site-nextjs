@@ -1,5 +1,5 @@
 import Link from '@/components/Link'
-import MailIcon from '@/components/icons/MailIcon'
+import MailIcon from '@/components/icons/share/MailIcon'
 import Trans from '@/components/translation/trans/TransServer'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'

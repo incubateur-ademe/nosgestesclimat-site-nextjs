@@ -1,7 +1,7 @@
 'use client'
 
 import type { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
-import { ORGANISATION_URL } from '@/constants/urls'
+import { ORGANISATION_URL } from '@/constants/urls/main'
 import type { OrganisationPoll } from '@/types/organisations'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'

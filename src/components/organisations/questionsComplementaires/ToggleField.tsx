@@ -3,7 +3,7 @@
 import PencilIcon from '@/components/icons/PencilIcon'
 import TrashIcon from '@/components/icons/TrashIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import ConfirmationModal from '@/design-system/modals/ConfirmationModal'
 import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
 import type { KeyboardEvent } from 'react'

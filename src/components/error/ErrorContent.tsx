@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Trans from '../translation/trans/TransClient'
 
 export default function ErrorContent() {

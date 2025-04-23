@@ -1,6 +1,6 @@
 'use client'
 
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { linkToClassement } from '@/helpers/navigation/classementPages'
 import Trans from '../translation/trans/TransClient'

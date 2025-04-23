@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 
 export default function OrganisationMessage() {

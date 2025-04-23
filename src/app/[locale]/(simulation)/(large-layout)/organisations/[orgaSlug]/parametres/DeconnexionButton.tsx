@@ -3,7 +3,7 @@
 import LogOutIcon from '@/components/icons/LogOutIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import { organisationsParametersLogout } from '@/constants/tracking/pages/organisationsParameters'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import { useLogout } from '@/hooks/authentication/useLogout'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useQueryClient } from '@tanstack/react-query'

@@ -1,4 +1,8 @@
-import { defaultNS, fallbackLng, languages } from '@/constants/translation'
+import {
+  defaultNS,
+  fallbackLng,
+  languages,
+} from '@/constants/localisation/translation'
 
 export function getOptions(lng = fallbackLng, namespace = defaultNS) {
   return {

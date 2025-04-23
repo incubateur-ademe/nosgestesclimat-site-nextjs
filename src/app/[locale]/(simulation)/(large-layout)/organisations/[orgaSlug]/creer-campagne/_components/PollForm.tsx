@@ -2,7 +2,7 @@
 
 import QuestionsComplementaires from '@/components/organisations/QuestionsComplementaires'
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useCreatePoll } from '@/hooks/organisations/polls/useCreatePoll'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
