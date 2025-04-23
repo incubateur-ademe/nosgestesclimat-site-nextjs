@@ -1,7 +1,6 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { PropsWithChildren, ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -27,8 +26,6 @@ export default function CopyButton({
   const [isCopied, setIsCopied] = useState(false)
   const [isError, setIsError] = useState(false)
 
-  const { t } = useClientTranslation()
-
   const timeoutRef = useRef<NodeJS.Timeout>(undefined)
 
   useEffect(() => {
@@ -49,7 +46,6 @@ export default function CopyButton({
             onCopied?.()
 
             timeoutRef.current = setTimeout(() => setIsCopied(false), 3000)
-            setIsError(true)
           } catch (err) {
             setIsError(true)
           }
