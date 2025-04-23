@@ -40,7 +40,7 @@ const getPartnersByCategory = (partners: PartnerType[]) => {
   )
 }
 
-export default async function NosRelais({
+export default async function OurPartners({
   params,
   searchParams,
 }: DefaultPageProps & {
