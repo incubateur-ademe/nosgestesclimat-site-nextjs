@@ -1,9 +1,8 @@
+import TheySpeakAboutUs from '@/app/[locale]/_components/TheySpeakAboutUs'
 import Separator from '@/design-system/layout/Separator'
 import type { DefaultPageProps } from '@/types'
-import CTAFooter from './_components/CTAFooter'
 import HeroSection from './_components/HeroSection'
 import IllustratedPointsList from './_components/IllustratedPointsList'
-import PartnersSection from './_components/PartnersSection'
 
 export default async function Page({ params }: DefaultPageProps) {
   const { locale } = await params
@@ -17,8 +16,12 @@ export default async function Page({ params }: DefaultPageProps) {
 
         <IllustratedPointsList locale={locale} />
       </div>
-      <PartnersSection locale={locale} />
-      <CTAFooter />
+
+      <TheySpeakAboutUs
+        ctaHref="/organisations/creer"
+        className="mt-16"
+        locale={locale}
+      />
     </section>
   )
 }
