@@ -9,6 +9,11 @@ import ReactModal from 'react-modal'
 import { twMerge } from 'tailwind-merge'
 import Button from '../buttons/Button'
 
+// Set the app element once when the module is loaded
+if (typeof document !== 'undefined') {
+  ReactModal.setAppElement('#modal')
+}
+
 type Props = {
   closeModal: () => void
   children: ReactNode
@@ -39,7 +44,6 @@ export default function Modal({
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
-    ReactModal.setAppElement('#modal')
 
     if (isOpen) {
       requestAnimationFrame(() => setIsVisible(true))

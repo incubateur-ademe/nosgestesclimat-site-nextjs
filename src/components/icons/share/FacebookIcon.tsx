@@ -9,7 +9,7 @@ export default function FacebookIcon({ className }: { className?: string }) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={twMerge('inline-block stroke-2', className)}>
-      <g clip-path="url(#clip0_54686_8474)">
+      <g clipPath="url(#clip0_54686_8474)">
         <path
           d="M9.31037 13V9.06238H10.6724L10.9316 7.43353H9.31037V6.37662C9.31037 5.93082 9.53688 5.4965 10.263 5.4965H11V4.1099C11 4.1099 10.3309 4 9.69151 4C8.35626 4 7.48394 4.78026 7.48394 6.19219V7.43353H6V9.06238H7.48394V13H9.31037Z"
           fill="#4949BA"
