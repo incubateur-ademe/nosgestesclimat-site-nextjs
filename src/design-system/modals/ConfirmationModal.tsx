@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import type { ReactElement } from 'react'
+import type { ReactElement, ReactNode } from 'react'
 import { useEffect } from 'react'
 import Modal from 'react-modal'
 import Button from '../inputs/Button'
@@ -11,7 +11,7 @@ type Props = {
   onConfirm: () => void
   closeModal: () => void
   isLoading?: boolean
-  children: ReactElement
+  children: ReactElement | ReactNode
 }
 
 Modal.setAppElement('#modal')
