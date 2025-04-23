@@ -55,18 +55,15 @@ export default function StatisticsBlocks({
   const { formattedValue: formattedWaterValue, unit: waterUnit } =
     formatFootprint(result.eau.bilan, { metric: eauMetric, localize: true })
 
-  const numberOfSimulations =
-    simulationsWithoutExtremes?.length ?? simulationsCount
-
   return (
     <div className="grid w-full auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       <div className="bg-primary-100 rounded-xl p-8">
         <p className="text-primary-700 text-4xl font-bold">
-          {numberOfSimulations?.toLocaleString(locale)}
+          {simulationsCount?.toLocaleString(locale)}
         </p>
 
         <p className="text-xl">
-          {numberOfSimulations <= 1 ? (
+          {simulationsCount <= 1 ? (
             <Trans>Simulation terminée</Trans>
           ) : (
             <Trans>Simulations terminées</Trans>
