@@ -2,8 +2,8 @@
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { NorthStarValue } from '@/types/northstar'
+import Button from '../buttons/Button'
 import Emoji from '../utils/Emoji'
-import Button from './Button'
 
 type Props = {
   onClick: (index: NorthStarValue) => void

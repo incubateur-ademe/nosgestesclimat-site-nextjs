@@ -1,6 +1,6 @@
 'use client'
 
-import { defaultMetric } from '@/constants/metric'
+import { defaultMetric } from '@/constants/model/metric'
 import { compareTwoSimulations } from '@/helpers/simulation/compareTwoSimulations'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useCurrentSimulation, useEngine, useUser } from '@/publicodes-state'

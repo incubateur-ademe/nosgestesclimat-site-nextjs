@@ -1,6 +1,6 @@
 import MDXContent from '@/components/mdx/MDXContent'
 import Trans from '@/components/translation/trans/TransServer'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import guideAlimentation from '@/locales/guide-mode-groupe/fr/guide-alimentation.mdx'

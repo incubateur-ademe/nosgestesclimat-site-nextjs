@@ -1,6 +1,6 @@
 'use client'
 
-import { carboneMetric } from '@/constants/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import { useCurrentSimulation, useEngine } from '@/publicodes-state'
 import getSomme from '@/publicodes-state/helpers/getSomme'
 import type { Metric } from '@/publicodes-state/types'

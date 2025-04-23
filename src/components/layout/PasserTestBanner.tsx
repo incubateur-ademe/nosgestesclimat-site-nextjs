@@ -1,6 +1,6 @@
 'use client'
 
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useCurrentSimulation } from '@/publicodes-state'

@@ -109,3 +109,8 @@ export type FormattedSuggestion = {
   label: string
   value: SuggestionValue | Record<string, SuggestionValue>
 }
+
+export type Action = {
+  dottedName: DottedName
+  value: number
+}

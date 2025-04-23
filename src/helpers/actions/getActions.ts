@@ -1,4 +1,5 @@
 import getSomme from '@/publicodes-state/helpers/getSomme'
+import type { Action } from '@/publicodes-state/types'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import { sortBy } from '@/utils/sortBy'
 import type {
@@ -25,7 +26,7 @@ export default function getActions({
   safeEvaluate,
   getSpecialRuleObject,
   actionChoices,
-}: Props) {
+}: Props): Action[] {
   if (!rules) return []
 
   const actionsObject = rules.actions
@@ -50,9 +51,9 @@ export default function getActions({
   }) as NGCRule[]
 
   const sortedActionsByImpact = sortBy(
-    (value: unknown) =>
+    (value) =>
       (radical ? 1 : -1) * (getCorrectedValue(value as EvaluatedNode) || 1)
-  )(relevantActions)
+  )(relevantActions) as Action[]
 
   // Filter disabled actions
   return sortedActionsByImpact.filter((action: any) => {

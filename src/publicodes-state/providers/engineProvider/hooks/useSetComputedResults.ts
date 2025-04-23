@@ -1,4 +1,4 @@
-import { defaultMetric, metrics } from '@/constants/metric'
+import { defaultMetric, metrics } from '@/constants/model/metric'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { getComputedResults } from '@/publicodes-state/helpers/getComputedResults'
 import type { ComputedResults, Metric } from '@/publicodes-state/types'

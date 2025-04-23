@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { amisDashboardCopyLink } from '@/constants/tracking/pages/amisDashboard'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import type { Group } from '@/types/groups'
 import { trackEvent } from '@/utils/analytics/trackEvent'
