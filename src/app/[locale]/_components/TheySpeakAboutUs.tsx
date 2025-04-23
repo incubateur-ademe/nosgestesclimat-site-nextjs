@@ -42,7 +42,7 @@ export default async function TheySpeakAboutUs({
 
         <ul className="flex w-full flex-row flex-wrap items-center justify-center gap-7 md:justify-between">
           {partners.map((partner) => (
-            <li key={partner.name}>
+            <li key={partner.name} data-testid="partner-theyspeakaboutus">
               <Image
                 src={partner.imageSrc}
                 alt={partner.name}
