@@ -85,7 +85,7 @@ export default function Modal({
         </div>
       )}
 
-      {children}
+      <div>{children}</div>
 
       {hasAbortButton || buttons ? (
         <div className="mt-12 flex justify-between">
