@@ -41,7 +41,7 @@ const texts = {
   notStarted: (
     <>
       <Trans>Calculez votre empreinte en</Trans>{' '}
-      <span className="font-bold text-primary-700">
+      <span className="text-primary-700 font-bold">
         <Trans>10 minutes</Trans>
       </span>{' '}
       <Trans>

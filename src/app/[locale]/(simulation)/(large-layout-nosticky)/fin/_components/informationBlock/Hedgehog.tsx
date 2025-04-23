@@ -43,7 +43,7 @@ export default function Hedgehog({ setIsHedgehog }: Props) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={twMerge(
-        'absolute right-0 top-0 h-6 w-6 -translate-x-full transform cursor-pointer transition-transform duration-1000',
+        'absolute top-0 right-0 h-6 w-6 -translate-x-full transform cursor-pointer transition-transform duration-1000',
         isVisible ? '-translate-y-3/4' : 'translate-y-0'
       )}
       aria-hidden

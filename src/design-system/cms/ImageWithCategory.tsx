@@ -38,7 +38,7 @@ export default function ImageWithCategory({
       {/* Hidden on mobile */}
       <div
         className={twMerge(
-          'absolute left-2 top-2 md:block',
+          'absolute top-2 left-2 md:block',
           hideBadgeOnMobile ? 'hidden' : 'block'
         )}>
         <Badge className="inline-block text-xs">{category}</Badge>

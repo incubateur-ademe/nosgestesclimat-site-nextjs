@@ -10,8 +10,8 @@ import Loader from '../layout/Loader'
 type Props = {
   onConfirm: () => void
   closeModal: () => void
-  children: ReactNode
   isLoading?: boolean
+  children: ReactNode
 }
 
 Modal.setAppElement('#modal')
@@ -47,8 +47,9 @@ export default function ConfirmationModal({
       onRequestClose={closeModal}
       style={customStyles}
       className="fixed top-1/2 left-1/2 w-[40rem] max-w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white p-8"
-      overlayClassName="fixed top-0 left-0 right-0 bottom-0 bg-black/50 z-10000 overflow-hidden">
-      {children}
+      overlayClassName="fixed top-0 left-0 right-0 bottom-0 bg-black/50 z-10000 overflow-hidden"
+      contentLabel="Confirmation Modal">
+      <div>{children}</div>
 
       <div className="mt-12 flex flex-wrap justify-center gap-4 md:justify-normal">
         <Button color="secondary" onClick={!isLoading ? closeModal : () => {}}>

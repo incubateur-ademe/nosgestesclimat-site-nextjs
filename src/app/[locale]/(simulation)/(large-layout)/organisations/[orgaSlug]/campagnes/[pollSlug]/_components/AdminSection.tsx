@@ -89,7 +89,7 @@ export default function AdminSection({ poll }: Props) {
             color="text"
             data-cypress-id="poll-admin-section-see-parameters-button"
             className="flex items-center">
-            <SettingsIcon className="mr-2 fill-primary-700" />
+            <SettingsIcon className="fill-primary-700 mr-2" />
 
             <Trans>Voir les paramètres</Trans>
           </ButtonLink>

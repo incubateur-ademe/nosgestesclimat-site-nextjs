@@ -6,13 +6,13 @@ import {
   getBgCategoryColor,
   getBorderCategoryColor,
 } from '@/helpers/getCategoryColorClass'
-import { useForm } from '@/publicodes-state'
+import { useFormState } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = { question: DottedName }
 
 export default function FunFact({ question }: Props) {
-  const { currentCategory } = useForm()
+  const { currentCategory } = useFormState()
 
   const funFactQuestions: DottedName[] = [
     'logement . âge',

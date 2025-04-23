@@ -17,7 +17,7 @@ export default function QuestionSection({
     <>
       <Card className="mb-6">
         <h2 className="flex items-center">
-          <MessageIcon className="mr-2 fill-primary-700" />{' '}
+          <MessageIcon className="fill-primary-700 mr-2" />{' '}
           <Trans locale={locale}>Question pour l'utilisateur</Trans>
         </h2>
 

@@ -15,7 +15,7 @@ import {
 import { questionChooseAnswer } from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useForm, useRule } from '@/publicodes-state'
+import { useFormState, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect, useRef, useState } from 'react'
@@ -59,7 +59,7 @@ export default function Question({
     category,
   } = useRule(question)
 
-  const { remainingQuestionsByCategories, questionsByCategories } = useForm()
+  const { questionsByCategories } = useFormState()
 
   const { t } = useClientTranslation()
 

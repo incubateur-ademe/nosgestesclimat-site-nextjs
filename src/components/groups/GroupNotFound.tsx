@@ -12,7 +12,7 @@ export default function GroupNotFound() {
         title={<Trans>Oups ! Nous n'avons pas trouvé votre groupe</Trans>}
       />
 
-      <p className="mb-8 mt-2">
+      <p className="mt-2 mb-8">
         <Trans>Ce groupe n'existe pas ou a été supprimé.</Trans>
       </p>
 

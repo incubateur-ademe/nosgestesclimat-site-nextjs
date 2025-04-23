@@ -28,7 +28,7 @@ export default function FloatingInfo({
           : 'md:translate-x-[30%]',
         className
       )}>
-      <p className="mb-0 text-sm font-bold text-primary-600">{title}</p>
+      <p className="text-primary-600 mb-0 text-sm font-bold">{title}</p>
 
       {waterScore ? (
         <div className="flex items-center justify-between gap-2 text-sm">

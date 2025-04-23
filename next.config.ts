@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: remoteImagesPatterns,
   },
+  // eslint-disable-next-line @typescript-eslint/require-await
   async redirects() {
     return redirects
   },
@@ -63,16 +64,16 @@ const nextConfig: NextConfig = {
     '/nouveautes': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
     '/sitemap.xml': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
   },
+  turbopack: {
+    rules: {
+      '*.yaml': {
+        loaders: ['yaml-loader'],
+      },
+    },
+  },
   experimental: {
     optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
     webpackBuildWorker: true,
-    turbo: {
-      rules: {
-        '*.yaml': {
-          loaders: ['yaml-loader'],
-        },
-      },
-    },
   },
 }
 

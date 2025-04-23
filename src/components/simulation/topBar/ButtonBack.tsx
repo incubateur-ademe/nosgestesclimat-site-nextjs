@@ -16,7 +16,7 @@ export default function ButtonBack({
       className="relative block h-8 w-8"
       aria-label={t('Retour')}
       onClick={onClick}>
-      <ChevronLeft className="h-auto w-full stroke-primary-700 transition-transform hover:-translate-x-2" />
+      <ChevronLeft className="stroke-primary-700 h-auto w-full transition-transform hover:-translate-x-2" />
     </button>
   )
 }
