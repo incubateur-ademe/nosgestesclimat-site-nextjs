@@ -53,5 +53,12 @@ jest.mock('next/navigation', () => ({
 }))
 
 jest.mock('@/publicodes-state', () => ({
-  useCurrentSimulation: jest.fn(),
+  useCurrentSimulation: () => ({
+    situation: {},
+  }),
+  useUser: () => ({
+    user: {
+      tutorials: {},
+    },
+  }),
 }))
