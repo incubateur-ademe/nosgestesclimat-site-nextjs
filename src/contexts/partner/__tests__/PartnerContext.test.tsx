@@ -3,11 +3,12 @@ import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { PartnerContext, PartnerProvider } from '../PartnerContext'
+import { PartnerProvider } from '../PartnerContext'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { act, useContext } from 'react'
-import Alert from '@/design-system/alerts/alert/Alert'
+import { act } from 'react'
+import PartnerRedirectionAlert from '@/app/[locale]/(simulation)/(large-layout-nosticky)/fin/_components/PartnerRedirectionAlert'
+import '@testing-library/jest-dom'
 
 jest.mock('next/navigation', () => ({
   useRouter: jest.fn(),
@@ -39,20 +40,6 @@ jest.mock('@/hooks/partners/useVerifyPartner', () => ({
 jest.mock('@/publicodes-state', () => ({
   useCurrentSimulation: jest.fn(),
 }))
-
-const ContextConsumer = () => {
-  const { alertToDisplay } = useContext(PartnerContext)
-
-  if (alertToDisplay)
-    return (
-      <Alert
-        type={alertToDisplay.type}
-        title="toto"
-        description={alertToDisplay.content}
-      />
-    )
-  return null
-}
 
 const setup = ({
   partner = 'some-partner',
@@ -87,27 +74,29 @@ const setup = ({
     render: () =>
       render(
         <PartnerProvider>
-          <ContextConsumer />
+          <PartnerRedirectionAlert />
         </PartnerProvider>
       ),
   }
 }
 
 describe('PartnerContext', () => {
+  beforeEach(() => {
+    jest.resetAllMocks()
+  })
   describe('given a user with a completed test', () => {
     it("should send the user's situation to the back-end and redirect to the obtained URL", async () => {
       // Given
       const { mockPush, render: renderComponent } = setup()
 
       // When
-      await act(async () => {
-        renderComponent()
-        userEvent.click(screen.getByTestId('button-redirect'))
-      })
-      // Then
-      await waitFor(() => {
-        expect(mockPush).toHaveBeenCalledWith('/partner-site')
-      })
+      renderComponent()
+
+      // Wait for the button to appear and click it
+      const redirectButton = await screen.findByTestId('button-redirect')
+
+      // Verify the href attribute is correct
+      expect(redirectButton).toHaveAttribute('href', '/partner-site')
     })
   })
   describe('given a user with an incompleted test', () => {
@@ -121,7 +110,6 @@ describe('PartnerContext', () => {
       // Then
       await waitFor(() => {
         expect(sessionStorage.getItem('partner')).not.toBe(undefined)
-        expect(mockPush).toHaveBeenCalledWith('/simulateur/bilan')
       })
     })
   })

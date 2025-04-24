@@ -16,5 +16,5 @@ export function useVerifyPartner(partner?: string) {
       }
     },
   })
-  return mutate
+  return mutate()
 }
