@@ -2,7 +2,7 @@ import type { NextConfig } from 'next'
 import type { Configuration } from 'webpack'
 
 import createMDX from '@next/mdx'
-// import { withSentryConfig } from '@sentry/nextjs'
+import { withSentryConfig } from '@sentry/nextjs'
 
 import redirects from './config/redirects.js'
 
@@ -94,5 +94,5 @@ const sentryConfig = {
 
 module.exports =
   process.env.NODE_ENV !== 'development'
-    ? /*withSentryConfig(*/ withMDX(nextConfig) /*, sentryConfig)*/
+    ? withSentryConfig(withMDX(nextConfig), sentryConfig)
     : withMDX(nextConfig)
