@@ -6,7 +6,6 @@
 'use client'
 
 import { useSetIframeLang } from '@/hooks/language/useSetIframeLang'
-import { usePartners } from '@/hooks/partners/usePartners'
 import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
 import { useTrackLocale } from '@/hooks/tracking/useTrackLocale'
 import { useTrackPageView } from '@/hooks/tracking/useTrackPageView'
