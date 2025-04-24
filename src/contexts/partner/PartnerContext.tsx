@@ -2,6 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { PARTNER_KEY } from '@/constants/partners'
+import { AlertType } from '@/design-system/alerts/alert/Alert'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Loader from '@/design-system/layout/Loader'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
@@ -13,13 +14,13 @@ import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
-import { useSearchParams } from 'next/navigation'
-import { useRouter } from 'next/router'
+import { useRouter, useSearchParams } from 'next/navigation'
 import {
   createContext,
   type PropsWithChildren,
   type ReactNode,
   useCallback,
+  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -27,7 +28,7 @@ import {
 } from 'react'
 
 type AlertToDisplay = {
-  type: string
+  type: AlertType
   content: ReactNode
 }
 
@@ -91,7 +92,9 @@ export function PartnerProvider({ children }: PropsWithChildren) {
               </Trans>
             </span>
             <span>
-              <ButtonLink href={redirectUrl}>Rediriger maintenant</ButtonLink>
+              <ButtonLink data-testid="button-redirect" href={redirectUrl}>
+                Rediriger maintenant
+              </ButtonLink>
             </span>
           </>
         ),
@@ -120,8 +123,6 @@ export function PartnerProvider({ children }: PropsWithChildren) {
     } else {
       // Save partner info in Session Storage
       setPartnerInStorage(partnerParams)
-
-      router.push(getLinkToSimulateur())
     }
   }, [
     handleExportSituation,
@@ -143,3 +144,5 @@ export function PartnerProvider({ children }: PropsWithChildren) {
     </PartnerContext>
   )
 }
+
+export const usePartner = () => useContext(PartnerContext)

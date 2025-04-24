@@ -18,7 +18,7 @@ export function useExportSituation() {
         return axios
           .post(
             `${SERVER_URL}/integrations/v1/${partner}/export-situation`,
-            { situation },
+            { situation: JSON.stringify(situation) },
             {
               params: partnerParams,
             }

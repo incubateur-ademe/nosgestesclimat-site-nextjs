@@ -1,11 +1,18 @@
 import { getPartnerFromStorage } from '@/helpers/partners/getPartnerFromStorage'
-import { displayTimedSuccessToast } from '@/helpers/toasts/displayTimedSuccessToast'
 import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { render, waitFor } from '@testing-library/react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { usePartners } from '../usePartners'
+import { PartnerContext, PartnerProvider } from '../PartnerContext'
+import { render, screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { act, useContext } from 'react'
+import Alert from '@/design-system/alerts/alert/Alert'
+
+jest.mock('next/navigation', () => ({
+  useRouter: jest.fn(),
+  useSearchParams: jest.fn(),
+}))
 
 jest.mock('@/helpers/partners/getPartnerFromStorage', () => ({
   getPartnerFromStorage: jest.fn(),
@@ -29,9 +36,22 @@ jest.mock('@/hooks/partners/useVerifyPartner', () => ({
   useVerifyPartner: jest.fn(),
 }))
 
-const TestComponent = () => {
-  usePartners()
-  return <div />
+jest.mock('@/publicodes-state', () => ({
+  useCurrentSimulation: jest.fn(),
+}))
+
+const ContextConsumer = () => {
+  const { alertToDisplay } = useContext(PartnerContext)
+
+  if (alertToDisplay)
+    return (
+      <Alert
+        type={alertToDisplay.type}
+        title="toto"
+        description={alertToDisplay.content}
+      />
+    )
+  return null
 }
 
 const setup = ({
@@ -64,22 +84,28 @@ const setup = ({
 
   return {
     mockPush,
-    render: () => render(<TestComponent />),
+    render: () =>
+      render(
+        <PartnerProvider>
+          <ContextConsumer />
+        </PartnerProvider>
+      ),
   }
 }
 
-describe('usePartners hook', () => {
+describe('PartnerContext', () => {
   describe('given a user with a completed test', () => {
     it("should send the user's situation to the back-end and redirect to the obtained URL", async () => {
       // Given
       const { mockPush, render: renderComponent } = setup()
 
       // When
-      renderComponent()
-
+      await act(async () => {
+        renderComponent()
+        userEvent.click(screen.getByTestId('button-redirect'))
+      })
       // Then
       await waitFor(() => {
-        expect(displayTimedSuccessToast).toHaveBeenCalled()
         expect(mockPush).toHaveBeenCalledWith('/partner-site')
       })
     })
