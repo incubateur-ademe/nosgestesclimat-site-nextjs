@@ -35,11 +35,11 @@ type PartnerContextType = {
   alertToDisplay?: AlertToDisplay
 }
 
-const PartnerContext = createContext<PartnerContextType>({
+export const PartnerContext = createContext<PartnerContextType>({
   alertToDisplay: undefined,
 })
 
-function PartnerProvider({ children }: PropsWithChildren) {
+export function PartnerProvider({ children }: PropsWithChildren) {
   const [alertToDisplay, setAlertToDisplay] = useState<
     AlertToDisplay | undefined
   >(undefined)

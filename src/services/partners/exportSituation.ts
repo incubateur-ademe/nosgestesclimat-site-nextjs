@@ -1,4 +1,4 @@
-import { PARTNER_URL } from '@/constants/urls'
+import { PARTNER_URL } from '@/constants/urls/main'
 import type { Situation } from '@/publicodes-state/types'
 import { captureException } from '@sentry/nextjs'
 import axios from 'axios'
