@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCreateVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'

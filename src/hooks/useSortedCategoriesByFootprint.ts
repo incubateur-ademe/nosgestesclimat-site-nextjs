@@ -1,4 +1,4 @@
-import { defaultMetric } from '@/constants/metric'
+import { defaultMetric } from '@/constants/model/metric'
 import { useEngine } from '@/publicodes-state'
 import type { Metric } from '@/publicodes-state/types'
 import { useMemo } from 'react'

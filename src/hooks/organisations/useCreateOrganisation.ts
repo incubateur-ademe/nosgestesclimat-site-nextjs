@@ -1,5 +1,5 @@
 import type { OrganisationTypeEnum } from '@/constants/organisations/organisationTypes'
-import { ORGANISATION_URL } from '@/constants/urls'
+import { ORGANISATION_URL } from '@/constants/urls/main'
 import type { Organisation } from '@/types/organisations'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'

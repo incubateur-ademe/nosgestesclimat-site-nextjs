@@ -3,7 +3,7 @@
 import type { ArticleType } from '@/adapters/cmsClient'
 import ShareIcon from '@/components/icons/ShareIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import CopyButton from '@/design-system/inputs/CopyButton'
+import CopyButton from '@/design-system/buttons/CopyButton'
 import { useEffect, useState } from 'react'
 import Summary from './Summary'
 

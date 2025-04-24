@@ -1,4 +1,4 @@
-import { GROUP_URL } from '@/constants/urls'
+import { GROUP_URL } from '@/constants/urls/main'
 import type { Simulation } from '@/publicodes-state/types'
 import axios from 'axios'
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { LIST_NOS_GESTES_TRANSPORT_NEWSLETTER } from '@/constants/brevo'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'

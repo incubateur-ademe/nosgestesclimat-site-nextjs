@@ -1,6 +1,6 @@
 'use client'
 
-import { carboneMetric } from '@/constants/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import { useEngine } from '@/publicodes-state'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import type { EvaluatedNode } from 'publicodes'

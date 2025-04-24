@@ -1,4 +1,4 @@
-import { GROUP_URL } from '@/constants/urls'
+import { GROUP_URL } from '@/constants/urls/main'
 import type { Group } from '@/types/groups'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'

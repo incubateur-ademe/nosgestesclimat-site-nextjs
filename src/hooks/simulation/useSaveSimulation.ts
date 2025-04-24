@@ -1,4 +1,4 @@
-import { ORGANISATION_URL, SIMULATION_URL } from '@/constants/urls'
+import { ORGANISATION_URL, SIMULATION_URL } from '@/constants/urls/main'
 import {
   mapNewSimulationToOld,
   mapOldSimulationToNew,

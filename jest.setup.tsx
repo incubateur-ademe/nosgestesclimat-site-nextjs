@@ -33,3 +33,18 @@ jest.mock('react-i18next', () => ({
   },
   Trans: (children: ReactNode) => children,
 }))
+
+jest.mock('@/helpers/getServerTranslation', () => ({
+  getServerTranslation: jest.fn().mockResolvedValue({
+    t: (key: string) => key,
+  }),
+}))
+
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+  }),
+  useSearchParams: () => ({
+    get: jest.fn(),
+  }),
+}))

@@ -2,7 +2,7 @@
 
 import type { MDXComponents } from 'mdx/types'
 
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title, { type TitleProps } from '@/design-system/layout/Title'
 import Image from 'next/image'
 

@@ -1,4 +1,4 @@
-import { defaultMetric } from '@/constants/metric'
+import { defaultMetric } from '@/constants/model/metric'
 import { useEngine, useRule } from '@/publicodes-state'
 import type { Metric } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'

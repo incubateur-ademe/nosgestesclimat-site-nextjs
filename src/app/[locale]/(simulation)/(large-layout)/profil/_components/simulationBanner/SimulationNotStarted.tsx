@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { profilClickCtaCommencer } from '@/constants/tracking/pages/profil'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'

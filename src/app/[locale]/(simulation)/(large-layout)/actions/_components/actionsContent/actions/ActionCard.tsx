@@ -1,8 +1,8 @@
 'use client'
 
 import Link from '@/components/Link'
-import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import CloseIcon from '@/components/icons/Close'
+import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import {
   actionsClickAdditionalQuestion,
   actionsClickNo,
