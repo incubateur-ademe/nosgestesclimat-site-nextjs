@@ -30,7 +30,5 @@ export default function MainHooks({ children }: PropsWithChildren) {
   useRedirectIfInAppBrowser()
   useSetIframeLang()
 
-  usePartners()
-
   return children
 }

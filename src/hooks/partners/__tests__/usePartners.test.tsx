@@ -7,15 +7,6 @@ import { render, waitFor } from '@testing-library/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { usePartners } from '../usePartners'
 
-jest.mock('next/navigation', () => ({
-  useRouter: jest.fn(),
-  useSearchParams: jest.fn(),
-}))
-
-jest.mock('@/publicodes-state', () => ({
-  useCurrentSimulation: jest.fn(),
-}))
-
 jest.mock('@/helpers/partners/getPartnerFromStorage', () => ({
   getPartnerFromStorage: jest.fn(),
 }))
