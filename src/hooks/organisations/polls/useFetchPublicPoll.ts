@@ -39,5 +39,6 @@ export const useFetchPublicPoll = ({
         )
         .then((res) => res.data),
     enabled: !!pollIdOrSlug && enabled,
+    retry: false,
   })
 }
