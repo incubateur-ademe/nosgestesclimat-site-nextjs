@@ -57,8 +57,9 @@ jest.mock('@/publicodes-state', () => ({
     situation: {},
   }),
   useUser: () => ({
-    user: {
-      tutorials: {},
+    user: {},
+    tutorials: {
+      testIntro: false,
     },
   }),
 }))
