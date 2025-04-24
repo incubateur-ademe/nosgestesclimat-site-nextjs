@@ -263,7 +263,12 @@ export default function GetResultsByEmail({
           </Button>
 
           {isError && (
-            <div className="mt-4 text-red-600">{error?.toString()}</div>
+            <div className="mt-4 text-red-600">
+              <Trans>
+                Oups ! Une erreur s'est produite, veuillez réessayer dans
+                quelques instants.
+              </Trans>
+            </div>
           )}
         </form>
       </Card>

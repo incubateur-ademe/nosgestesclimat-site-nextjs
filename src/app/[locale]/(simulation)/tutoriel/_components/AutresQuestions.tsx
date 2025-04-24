@@ -16,9 +16,9 @@ import OrganisationPrivacy from './autresQuestions/OrganisationPrivacy'
 export default function AutresQuestions() {
   return (
     <div className="order-last mb-8 md:order-none">
-      <h5 className="mb-2 text-lg">
+      <h2 className="mb-2 text-lg">
         <Trans>D'autres questions ?</Trans>
-      </h5>
+      </h2>
       <ul className="mb-1 list-none p-0">
         <OrganisationPrivacy />
         <li className="mb-2" id={'empreinte'}>

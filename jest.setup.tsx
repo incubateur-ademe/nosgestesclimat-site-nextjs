@@ -1,3 +1,4 @@
+import { usePathname } from 'next/navigation'
 import type { ReactNode } from 'react'
 
 jest.mock('next-i18n-router/client', () => ({
@@ -41,10 +42,12 @@ jest.mock('@/helpers/getServerTranslation', () => ({
 }))
 
 jest.mock('next/navigation', () => ({
+  redirect: jest.fn(),
   useRouter: () => ({
     push: jest.fn(),
   }),
   useSearchParams: () => ({
     get: jest.fn(),
   }),
+  usePathname: () => '',
 }))
