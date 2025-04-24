@@ -17,14 +17,15 @@ import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/router'
 import {
   createContext,
-  PropsWithChildren,
-  ReactNode,
+  type PropsWithChildren,
+  type ReactNode,
   useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from 'react'
+
 type AlertToDisplay = {
   type: string
   content: ReactNode
