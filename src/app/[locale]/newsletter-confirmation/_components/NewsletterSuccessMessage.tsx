@@ -1,5 +1,5 @@
 import Trans from '@/components/translation/trans/TransServer'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Emoji from '@/design-system/utils/Emoji'
 import MessageTemplate from './MessageTemplate'
 
