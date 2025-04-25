@@ -1,16 +1,13 @@
-import { useUser } from '@/publicodes-state'
 import { updateGroupParticipant } from '@/services/groups/updateGroupParticipant'
+
+import { renderWithWrapper } from '@/helpers/tests/wrapper'
+import { screen, waitFor } from '@testing-library/dom'
 import '@testing-library/jest-dom'
-import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import UpdateSimulationUsed from '../UpdateSimulationUsed'
 
 jest.mock('@/services/groups/updateGroupParticipant', () => ({
   updateGroupParticipant: jest.fn(),
-}))
-
-jest.mock('@/publicodes-state', () => ({
-  useUser: jest.fn(),
 }))
 
 const mockRefetchGroup = jest.fn()
@@ -82,19 +79,20 @@ const mockProps = {
 describe('UpdateSimulationUsed', () => {
   beforeEach(() => {
     jest.clearAllMocks()
-    ;(useUser as jest.Mock).mockReturnValue({
-      user: {
-        userId: '1',
-        name: 'Test User',
-        email: 'test@example.com',
-      },
-      simulations: [mockSimulation],
-    })
   })
 
   it('should display the update alert when detecting a more recent simulation with a different result', async () => {
     // When
-    render(<UpdateSimulationUsed {...mockProps} />)
+    renderWithWrapper(<UpdateSimulationUsed {...mockProps} />, {
+      user: {
+        user: {
+          userId: '1',
+          name: 'Test User',
+          email: 'test@example.com',
+        },
+        simulations: [mockSimulation],
+      },
+    })
 
     // Then
     await waitFor(() => {
@@ -111,7 +109,16 @@ describe('UpdateSimulationUsed', () => {
     })
 
     // When
-    render(<UpdateSimulationUsed {...mockProps} />)
+    renderWithWrapper(<UpdateSimulationUsed {...mockProps} />, {
+      user: {
+        user: {
+          userId: '1',
+          name: 'Test User',
+          email: 'test@example.com',
+        },
+        simulations: [mockSimulation],
+      },
+    })
     await userEvent.click(screen.getByTestId('update-button'))
 
     // Then
@@ -128,7 +135,16 @@ describe('UpdateSimulationUsed', () => {
     )
 
     // When
-    render(<UpdateSimulationUsed {...mockProps} />)
+    renderWithWrapper(<UpdateSimulationUsed {...mockProps} />, {
+      user: {
+        user: {
+          userId: '1',
+          name: 'Test User',
+          email: 'test@example.com',
+        },
+        simulations: [mockSimulation],
+      },
+    })
     await userEvent.click(screen.getByTestId('update-button'))
 
     // Then
