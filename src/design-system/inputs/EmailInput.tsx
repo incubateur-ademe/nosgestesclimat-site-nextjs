@@ -29,7 +29,7 @@ export default forwardRef(function EmailInput(
       helperText={helperText}
       name="email"
       type="email"
-      placeholder="jean-marc@nosgestesclimat.fr"
+      placeholder="nom@exemple.fr"
       className={className}
       readOnly={readOnly}
       ref={ref as any}
