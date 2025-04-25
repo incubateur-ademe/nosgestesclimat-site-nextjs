@@ -39,6 +39,7 @@ export function useSaveSimulation() {
       newsletters,
       sendEmail,
     }: Props) => {
+      console.debug('saveSimulation called')
       // We reset the sync timer to avoid saving the simulation in the background
       resetSyncTimer()
 

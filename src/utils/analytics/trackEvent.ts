@@ -11,7 +11,7 @@ declare global {
 export const trackEvent = (args: (string | null)[]) => {
   if (shouldUseDevTracker || !window?._paq) {
     console.log(args)
-    console.debug(args.join(' => '))
+    console.log(args.join(' => '))
     return
   }
 
@@ -35,7 +35,7 @@ export const trackEvent = (args: (string | null)[]) => {
 
 export const trackPageView = (url: string) => {
   if (shouldUseDevTracker || !window?._paq) {
-    console.debug('trackPageView => ' + url)
+    console.log('trackPageView => ' + url)
     return
   }
 

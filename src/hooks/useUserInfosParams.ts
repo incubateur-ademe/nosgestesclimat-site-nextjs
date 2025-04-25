@@ -2,6 +2,10 @@ import { useUser } from '@/publicodes-state'
 import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
+/**
+ * Organisation mode: allow admins to set the email of the participant
+ * via the search params name, email and fixedemail
+ */
 export const useUserInfosParams = () => {
   const searchParams = useSearchParams()
 
