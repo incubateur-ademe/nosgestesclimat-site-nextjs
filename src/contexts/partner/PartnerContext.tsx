@@ -92,9 +92,11 @@ export function PartnerProvider({ children }: PropsWithChildren) {
                 le site de notre partenaire dans :
               </Trans>
             </span>
-            <RedirectTimer href={redirectUrl} />
+            <RedirectTimer href={redirectUrlFromResponse} />
             <span>
-              <ButtonLink data-testid="button-redirect" href={redirectUrl}>
+              <ButtonLink
+                data-testid="button-redirect"
+                href={redirectUrlFromResponse}>
                 Rediriger maintenant
               </ButtonLink>
             </span>

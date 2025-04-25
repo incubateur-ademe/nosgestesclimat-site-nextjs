@@ -1,14 +1,12 @@
+import PartnerRedirectionAlert from '@/app/[locale]/(simulation)/(large-layout-nosticky)/fin/_components/PartnerRedirectionAlert'
 import { getPartnerFromStorage } from '@/helpers/partners/getPartnerFromStorage'
 import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
 import { useCurrentSimulation } from '@/publicodes-state'
+import '@testing-library/jest-dom'
+import { render, screen, waitFor } from '@testing-library/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { PartnerProvider } from '../PartnerContext'
-import { render, screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { act } from 'react'
-import PartnerRedirectionAlert from '@/app/[locale]/(simulation)/(large-layout-nosticky)/fin/_components/PartnerRedirectionAlert'
-import '@testing-library/jest-dom'
 
 jest.mock('next/navigation', () => ({
   useRouter: jest.fn(),
@@ -92,10 +90,8 @@ describe('PartnerContext', () => {
       // When
       renderComponent()
 
-      // Wait for the button to appear and click it
+      // Then
       const redirectButton = await screen.findByTestId('button-redirect')
-
-      // Verify the href attribute is correct
       expect(redirectButton).toHaveAttribute('href', '/partner-site')
     })
   })
