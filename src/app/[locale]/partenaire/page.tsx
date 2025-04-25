@@ -1,17 +1,13 @@
 import Header from '@/components/layout/Header'
-import MessageTemplate from '@/components/layout/MessageTemplate'
-import Trans from '@/components/translation/trans/TransServer'
 import { PARTNER_KEY } from '@/constants/partners'
 import Main from '@/design-system/layout/Main'
-import Emoji from '@/design-system/utils/Emoji'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { verifyPartner } from '@/services/partners/verifyPartner'
 import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
-import RedirectLink from './_components/RedirectLink'
-import RedirectTimer from './_components/RedirectTimer'
+import AdaptiveMessage from './_components/AdaptiveMessage'
 
 type SearchParams = { success: 'true' | 'false'; status?: '404' | '500' }
 
@@ -55,28 +51,7 @@ export default async function PartenairePage({
       <Main>
         <div className="min-h-screen">
           <div className="mt-36 text-center">
-            <MessageTemplate
-              title={t(
-                'Notre partenaire {{name}} vous a invité à leur transmettre vos empreintes carbone et eau.',
-                {
-                  name: partnerInfo.name,
-                }
-              )}
-              description={
-                <>
-                  <p>
-                    <Trans locale={locale}>C'est chose faite !</Trans>{' '}
-                    <Emoji>✅</Emoji>{' '}
-                    <Trans locale={locale}>
-                      Vous allez être redirigé vers le site de notre partenaire
-                      dans
-                    </Trans>
-                  </p>
-                  <RedirectTimer />
-                </>
-              }
-              buttonElement={<RedirectLink />}
-            />
+            <AdaptiveMessage partnerInfo={partnerInfo} />
           </div>
         </div>
       </Main>

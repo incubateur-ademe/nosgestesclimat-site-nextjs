@@ -1,16 +1,17 @@
 'use client'
 
+import RedirectTimer from '@/components/interactions/RedirectTimer'
 import Trans from '@/components/translation/trans/TransClient'
 import { PARTNER_KEY } from '@/constants/partners'
 import type { AlertType } from '@/design-system/alerts/alert/Alert'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Loader from '@/design-system/layout/Loader'
+import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { getPartnerFromStorage } from '@/helpers/partners/getPartnerFromStorage'
 import { removePartnerFromStorage } from '@/helpers/partners/removePartnerFromStorage'
 import { setPartnerInStorage } from '@/helpers/partners/setPartnerInStorage'
 import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -22,7 +23,6 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useRef,
   useState,
 } from 'react'
 
@@ -49,15 +49,11 @@ export function PartnerProvider({ children }: PropsWithChildren) {
 
   const searchParams = useSearchParams()
 
-  const { t } = useClientTranslation()
-
   const { progression, situation } = useCurrentSimulation()
 
   const { exportSituationAsync } = useExportSituation()
 
   const router = useRouter()
-
-  const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
 
   const partnerParams = useMemo(() => {
     return (
@@ -93,9 +89,10 @@ export function PartnerProvider({ children }: PropsWithChildren) {
               <Loader size="sm" color="dark" />
               <Trans>
                 Merci d'avoir complété votre test. Nous vous redirigerons vers
-                le site de notre partenaire dans 30 secondes.
+                le site de notre partenaire dans :
               </Trans>
             </span>
+            <RedirectTimer href={redirectUrl} />
             <span>
               <ButtonLink data-testid="button-redirect" href={redirectUrl}>
                 Rediriger maintenant
@@ -104,10 +101,6 @@ export function PartnerProvider({ children }: PropsWithChildren) {
           </>
         ),
       })
-
-      timeoutRef.current = setTimeout(() => {
-        router.push(redirectUrl)
-      }, 30_000)
     } catch (error) {
       captureException(error)
     } finally {
@@ -127,9 +120,11 @@ export function PartnerProvider({ children }: PropsWithChildren) {
 
     if (progression === 1) {
       handleExportSituation()
-    } else {
+    } else if (progression !== 1 && !getPartnerFromStorage()) {
       // Save partner info in Session Storage
       setPartnerInStorage(partnerParams)
+
+      router.push(getLinkToSimulateur())
     }
   }, [
     handleExportSituation,

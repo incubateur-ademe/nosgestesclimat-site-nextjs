@@ -1,15 +1,15 @@
 'use client'
 
-import Trans from '@/components/translation/trans/TransClient'
-import { usePartner } from '@/contexts/partner/PartnerContext'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
+import type { PropsWithChildren } from 'react'
 
-export default function RedirectLink() {
-  const { redirectUrl } = usePartner()
-
+export default function RedirectLink({
+  href,
+  children,
+}: PropsWithChildren<{ href: string }>) {
   return (
-    <ButtonLink href={redirectUrl}>
-      <Trans>Aller sur le site partenaire maintenant</Trans>
+    <ButtonLink className="px-3" size="sm" href={href}>
+      {children}
     </ButtonLink>
   )
 }

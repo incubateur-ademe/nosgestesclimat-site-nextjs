@@ -7,7 +7,7 @@ export function useVerifyPartner(partner?: string): boolean {
     mutationFn: async () => {
       if (!partner) return false
 
-      await verifyPartner(partner)
+      return await verifyPartner(partner)
     },
   })
 

@@ -40,7 +40,7 @@ export default function SecondsTimer({
   }
 
   return (
-    <div className="text-2xl font-bold">
+    <div className="text-2xl font-bold" role="timer">
       {formatTime(timeLeft)} <Trans>seconde</Trans>
       {timeLeft > 1 && 's'}
     </div>
