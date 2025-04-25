@@ -70,7 +70,7 @@ export default function GroupCreationForm() {
           value={user.email ?? ''}
           label={
             <span>
-              {t('Votre adresse e-mail')}{' '}
+              {t('Votre adresse electronique')}{' '}
               <span className="text-secondary-700 italic">
                 {' '}
                 {t('facultatif')}
