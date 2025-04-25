@@ -2,10 +2,9 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { PARTNER_KEY } from '@/constants/partners'
-import { AlertType } from '@/design-system/alerts/alert/Alert'
+import type { AlertType } from '@/design-system/alerts/alert/Alert'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Loader from '@/design-system/layout/Loader'
-import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { getPartnerFromStorage } from '@/helpers/partners/getPartnerFromStorage'
 import { removePartnerFromStorage } from '@/helpers/partners/removePartnerFromStorage'
 import { setPartnerInStorage } from '@/helpers/partners/setPartnerInStorage'
@@ -34,16 +33,19 @@ type AlertToDisplay = {
 
 type PartnerContextType = {
   alertToDisplay?: AlertToDisplay
+  redirectUrl: string
 }
 
 export const PartnerContext = createContext<PartnerContextType>({
   alertToDisplay: undefined,
+  redirectUrl: '',
 })
 
 export function PartnerProvider({ children }: PropsWithChildren) {
   const [alertToDisplay, setAlertToDisplay] = useState<
     AlertToDisplay | undefined
   >(undefined)
+  const [redirectUrl, setRedirectUrl] = useState('')
 
   const searchParams = useSearchParams()
 
@@ -74,11 +76,14 @@ export function PartnerProvider({ children }: PropsWithChildren) {
 
   const handleExportSituation = useCallback(async () => {
     try {
-      const { redirectUrl } = await exportSituationAsync({
-        situation,
-        partner: partnerParams[PARTNER_KEY],
-        partnerParams,
-      })
+      const { redirectUrl: redirectUrlFromResponse } =
+        await exportSituationAsync({
+          situation,
+          partner: partnerParams[PARTNER_KEY],
+          partnerParams,
+        })
+
+      setRedirectUrl(redirectUrlFromResponse)
 
       setAlertToDisplay({
         type: 'success',
@@ -108,7 +113,9 @@ export function PartnerProvider({ children }: PropsWithChildren) {
     } finally {
       removePartnerFromStorage()
     }
-  }, [exportSituationAsync, situation, partnerParams, t, router])
+    // False positive
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [exportSituationAsync, situation, partnerParams, router])
 
   useEffect(() => {
     if (
@@ -139,6 +146,7 @@ export function PartnerProvider({ children }: PropsWithChildren) {
     <PartnerContext
       value={{
         alertToDisplay,
+        redirectUrl,
       }}>
       {children}
     </PartnerContext>

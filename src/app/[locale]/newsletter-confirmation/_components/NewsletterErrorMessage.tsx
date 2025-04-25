@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/trans/TransServer'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Emoji from '@/design-system/utils/Emoji'
-import MessageTemplate from './MessageTemplate'
+import MessageTemplate from '../../../../components/layout/MessageTemplate'
 
 export default function NewsletterErrorMessage({ locale }: { locale: string }) {
   return (
@@ -12,7 +12,7 @@ export default function NewsletterErrorMessage({ locale }: { locale: string }) {
           <Emoji>😬</Emoji>
         </>
       }
-      body={
+      description={
         <Trans locale={locale}>
           Une erreur est survenue, merci de recommencer votre inscription.
         </Trans>
