@@ -152,10 +152,8 @@ export default function SimulationSyncProvider({
       return
     }
 
-    // If we are already waiting for a save, we do not start another one
-    if (timeoutRef.current) {
-      return
-    }
+    // Reset any existing timeout before creating a new one
+    resetSyncTimer()
 
     timeoutRef.current = setTimeout(() => {
       resetSyncTimer()
