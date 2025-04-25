@@ -59,27 +59,24 @@ export default function UpdateSimulationUsed({ group, refetchGroup }: Props) {
   }
 
   const handleUpdateSimulation = () => {
-    try {
-      startTransition(async () => {
-        try {
-          await updateGroupParticipant({
-            groupId: group.id,
-            email,
-            simulation: latestSimulation as Simulation,
-            userId,
-            name,
-          })
-        } catch (err) {
-          setIsError(true)
-        }
+    startTransition(async () => {
+      try {
+        await updateGroupParticipant({
+          groupId: group.id,
+          email,
+          simulation: latestSimulation as Simulation,
+          userId,
+          name,
+        })
 
         setIsUpdated(true)
 
         refetchGroup()
-      })
-    } catch (error) {
-      captureException(error)
-    }
+      } catch (error) {
+        captureException(error)
+        setIsError(true)
+      }
+    })
   }
 
   const { formattedValue, unit } = formatCarbonFootprint(

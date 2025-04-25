@@ -48,7 +48,10 @@ export default function Alert({
       )}
       {...otherProps}>
       {onClose && (
-        <button className="absolute top-3 right-4" onClick={onClose}>
+        <button
+          data-testid="alert-close"
+          className="absolute top-3 right-4"
+          onClick={onClose}>
           <span className="not-sr-only">
             <CloseIcon className="w-6" />
           </span>

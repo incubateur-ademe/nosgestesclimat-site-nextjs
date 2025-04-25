@@ -93,25 +93,28 @@ describe('UpdateSimulationUsed', () => {
   })
 
   it('should display the update alert when detecting a more recent simulation with a different result', async () => {
+    // When
     render(<UpdateSimulationUsed {...mockProps} />)
 
+    // Then
     await waitFor(() => {
       expect(screen.getByTestId('update-alert')).toBeInTheDocument()
     })
   })
 
   it('should display success alert when update is successful', async () => {
+    // Given
     ;(updateGroupParticipant as jest.Mock).mockResolvedValue({
       data: {
         success: true,
       },
     })
 
+    // When
     render(<UpdateSimulationUsed {...mockProps} />)
+    await userEvent.click(screen.getByTestId('update-button'))
 
-    const updateButton = screen.getByText('Mettre à jour la simulation')
-    await userEvent.click(updateButton)
-
+    // Then
     await waitFor(() => {
       expect(screen.getByTestId('success-alert')).toBeInTheDocument()
       expect(screen.getByText('Participation mise à jour')).toBeInTheDocument()
@@ -119,20 +122,29 @@ describe('UpdateSimulationUsed', () => {
   })
 
   it('should display error alert when update fails', async () => {
+    // Given
     ;(updateGroupParticipant as jest.Mock).mockRejectedValue(
       new Error('Update failed')
     )
 
+    // When
     render(<UpdateSimulationUsed {...mockProps} />)
+    await userEvent.click(screen.getByTestId('update-button'))
 
-    const updateButton = screen.getByText('Mettre à jour la simulation')
-    await userEvent.click(updateButton)
-
+    // Then
     await waitFor(() => {
       expect(screen.getByTestId('error-alert')).toBeInTheDocument()
       expect(
         screen.getByText("Oups, une erreur s'est produite")
       ).toBeInTheDocument()
+    })
+
+    // And
+    await userEvent.click(screen.getByTestId('alert-close'))
+
+    // Then
+    await waitFor(() => {
+      expect(screen.getByTestId('update-alert')).toBeInTheDocument()
     })
   })
 })
