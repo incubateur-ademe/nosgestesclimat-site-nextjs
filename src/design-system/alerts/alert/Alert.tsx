@@ -27,8 +27,9 @@ export default function Alert({
   onClose,
   type = 'default',
   className,
+  ...otherProps
 }: {
-  title: ReactNode | string
+  title?: ReactNode | string
   titleTag?: string
   description: ReactNode | string
   onClose?: () => void
@@ -44,9 +45,13 @@ export default function Alert({
         getTypeClassNames(type),
         onCloseClassName,
         className
-      )}>
+      )}
+      {...otherProps}>
       {onClose && (
-        <button className="absolute top-3 right-4" onClick={onClose}>
+        <button
+          data-testid="alert-close"
+          className="absolute top-3 right-4"
+          onClick={onClose}>
           <span className="not-sr-only">
             <CloseIcon className="w-6" />
           </span>
@@ -56,12 +61,13 @@ export default function Alert({
         </button>
       )}
 
-      {createElement(
-        titleTag ?? 'h2',
-        { className: 'mb-3 text-sm font-bold' },
-        title
-      )}
-      <p className="mb-0 text-sm">{description}</p>
+      {title &&
+        createElement(
+          titleTag ?? 'h2',
+          { className: 'mb-3 text-sm font-bold' },
+          title
+        )}
+      <div className="mb-0 text-sm">{description}</div>
     </section>
   )
 }

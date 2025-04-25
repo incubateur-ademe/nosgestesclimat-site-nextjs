@@ -171,13 +171,13 @@ export default function UserInformationForm({
                 <TextInputGroup
                   name="email"
                   helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
-                  label={t('Votre adresse email')}
+                  label={t('Votre adresse electronique')}
                   value={user?.email}
                   readOnly
                 />
               ) : (
                 <TextInputGroup
-                  label={t('Votre adresse email')}
+                  label={t('Votre adresse electronique')}
                   className="w-full"
                   value={user?.email ?? ''}
                   {...register('email')}
