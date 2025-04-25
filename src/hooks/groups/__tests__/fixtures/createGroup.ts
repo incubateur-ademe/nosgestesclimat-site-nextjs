@@ -3,12 +3,12 @@ import { getComputedResults } from '@/publicodes-state/helpers/getComputedResult
 import { getSubcategories } from '@/publicodes-state/helpers/getSubcategories'
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
 import { faker } from '@faker-js/faker'
-import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr.json'
 import personas from '@incubateur-ademe/nosgestesclimat/public/personas-fr.json'
 import Engine from 'publicodes'
 
-const engine = new Engine<DottedName>(rules as NGCRules, {
+const engine = new Engine<DottedName>(rules, {
   logger: { warn: () => {}, error: () => {}, log: () => {} },
   strict: {
     situation: false,
