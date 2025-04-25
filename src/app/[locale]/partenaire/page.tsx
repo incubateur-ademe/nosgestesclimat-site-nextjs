@@ -9,7 +9,7 @@ import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
 import AdaptiveMessage from './_components/AdaptiveMessage'
 
-type SearchParams = { success: 'true' | 'false'; status?: '404' | '500' }
+type SearchParams = Record<string, string>
 
 export const generateMetadata = getCommonMetadata({
   title: t("Confirmation d'inscription à nos infolettres - Nos Gestes Climat"),
