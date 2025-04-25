@@ -21,6 +21,7 @@ type Props = {
 
 export default function UpdateSimulationUsed({ group, refetchGroup }: Props) {
   const [isPending, startTransition] = useTransition()
+  const [isError, setIsError] = useState(false)
   const [isUpdated, setIsUpdated] = useState(false)
   const [latestSimulation, setLatestSimulation] = useState<
     Simulation | undefined
@@ -60,13 +61,17 @@ export default function UpdateSimulationUsed({ group, refetchGroup }: Props) {
   const handleUpdateSimulation = () => {
     try {
       startTransition(async () => {
-        await updateGroupParticipant({
-          groupId: group.id,
-          email,
-          simulation: latestSimulation as Simulation,
-          userId,
-          name,
-        })
+        try {
+          await updateGroupParticipant({
+            groupId: group.id,
+            email,
+            simulation: latestSimulation as Simulation,
+            userId,
+            name,
+          })
+        } catch (err) {
+          setIsError(true)
+        }
 
         setIsUpdated(true)
 
@@ -85,9 +90,31 @@ export default function UpdateSimulationUsed({ group, refetchGroup }: Props) {
     }
   )
 
+  if (isError) {
+    return (
+      <Alert
+        data-testid="error-alert"
+        aria-live="polite"
+        type="success"
+        title={<Trans>Oups, une erreur s'est produite</Trans>}
+        description={
+          <Trans>
+            Une erreur s'est produite au moment de mettre à jour votre
+            participation. Veuillez réessayer ultérieurement. Si le problème
+            persiste, veuillez nous contacter via notre page de contact.
+          </Trans>
+        }
+        onClose={() => {
+          setIsError(false)
+        }}
+      />
+    )
+  }
+
   if (isUpdated) {
     return (
       <Alert
+        data-testid="success-alert"
         aria-live="polite"
         type="success"
         title={<Trans>Participation mise à jour</Trans>}
@@ -109,6 +136,7 @@ export default function UpdateSimulationUsed({ group, refetchGroup }: Props) {
 
   return (
     <Alert
+      data-testid="update-alert"
       title={<Trans>Mettre à jour votre participation au groupe</Trans>}
       description={
         <div className="flex flex-col">
@@ -129,6 +157,7 @@ export default function UpdateSimulationUsed({ group, refetchGroup }: Props) {
             size="sm"
             className="w-60 self-end"
             disabled={isPending}
+            data-testid="update-button"
             onClick={handleUpdateSimulation}>
             {isPending ? (
               <Loader />
