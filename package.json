@@ -62,7 +62,7 @@
     "i18next-resources-to-backend": "^1.2.0",
     "is-mobile": "^5.0.0",
     "markdown-to-jsx": "^7.7.3",
-    "next": "15.3.0",
+    "next": "^15.3.1",
     "next-i18n-router": "^5.5.1",
     "postcss": "8.5.2",
     "posthog-js": "^1.217.2",
