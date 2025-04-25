@@ -92,7 +92,7 @@ export default function UpdateSimulationUsed({ group, refetchGroup }: Props) {
       <Alert
         data-testid="error-alert"
         aria-live="polite"
-        type="success"
+        type="error"
         title={<Trans>Oups, une erreur s'est produite</Trans>}
         description={
           <Trans>
