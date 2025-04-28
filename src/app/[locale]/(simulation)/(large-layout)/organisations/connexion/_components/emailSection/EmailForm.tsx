@@ -74,7 +74,7 @@ export default function EmailForm() {
         type="email"
         data-cypress-id="organisation-connexion-email-input"
         value={user?.organisation?.administratorEmail || user?.email || ''}
-        label={<Trans>Votre adresse e-mail</Trans>}
+        label={<Trans>Votre adresse electronique</Trans>}
         placeholder="jeanmarc@nosgestesclimat.fr"
         helperText={
           <Trans>

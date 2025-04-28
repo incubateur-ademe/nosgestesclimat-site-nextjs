@@ -88,7 +88,7 @@ export default function Email() {
       <Title
         data-cypress-id="tutoriel-title"
         className="text-lg md:text-2xl"
-        title={<Trans>Votre adresse email</Trans>}
+        title={<Trans>Votre adresse electronique</Trans>}
         subtitle={
           <>
             <Trans>

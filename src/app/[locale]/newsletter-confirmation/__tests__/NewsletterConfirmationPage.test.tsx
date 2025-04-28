@@ -1,10 +1,10 @@
-import { render, act } from '@testing-library/react'
+import { renderWithWrapper } from '@/helpers/tests/wrapper'
+import { act } from '@testing-library/react'
 import { redirect } from 'next/navigation'
 import NewsletterErrorMessage from '../_components/NewsletterErrorMessage'
 import NewsletterInvalidMessage from '../_components/NewsletterInvalidMessage'
 import NewsletterSuccessMessage from '../_components/NewsletterSuccessMessage'
 import NewsletterConfirmationPage from '../page'
-import QueryClientProviderWrapper from '../../_components/mainLayoutProviders/QueryClientProviderWrapper'
 
 jest.mock('../_components/NewsletterSuccessMessage', () => ({
   __esModule: true,
@@ -30,9 +30,7 @@ describe('NewsletterConfirmationPage', () => {
 
     // When
     await act(async () => {
-      render(await NewsletterConfirmationPage(props), {
-        wrapper: QueryClientProviderWrapper,
-      })
+      renderWithWrapper(await NewsletterConfirmationPage(props))
     })
 
     // Then
@@ -56,9 +54,7 @@ describe('NewsletterConfirmationPage', () => {
 
     // When
     await act(async () => {
-      render(await NewsletterConfirmationPage(props), {
-        wrapper: QueryClientProviderWrapper,
-      })
+      renderWithWrapper(await NewsletterConfirmationPage(props))
     })
 
     // Then
@@ -82,9 +78,7 @@ describe('NewsletterConfirmationPage', () => {
 
     // When
     await act(async () => {
-      render(await NewsletterConfirmationPage(props), {
-        wrapper: QueryClientProviderWrapper,
-      })
+      renderWithWrapper(await NewsletterConfirmationPage(props))
     })
 
     // Then
@@ -105,9 +99,7 @@ describe('NewsletterConfirmationPage', () => {
 
     // When
     await act(async () => {
-      render(await NewsletterConfirmationPage(props), {
-        wrapper: QueryClientProviderWrapper,
-      })
+      renderWithWrapper(await NewsletterConfirmationPage(props))
     })
 
     // Then
@@ -126,9 +118,7 @@ describe('NewsletterConfirmationPage', () => {
 
     // When
     await act(async () => {
-      render(await NewsletterConfirmationPage(props), {
-        wrapper: QueryClientProviderWrapper,
-      })
+      renderWithWrapper(await NewsletterConfirmationPage(props))
     })
 
     // Then

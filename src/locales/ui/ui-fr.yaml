@@ -168,7 +168,6 @@ entries:
   Rejoindre et passer mon test: Rejoindre et passer mon test
   Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.: Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.
   Supprimer votre groupe <1>{group?.name}</1> ? Les données sauvegardées seront supprimées pour tous les membres du groupe. Cette action est irréversible.: Supprimer votre groupe <1>{group?.name}</1> ? Les données sauvegardées seront supprimées pour tous les membres du groupe. Cette action est irréversible.
-  Votre adresse email: Votre adresse email
   Personas: Personas
   Qui sont-ils ?: Qui sont-ils ?
   Comment les mettons-nous à jour ?: Comment les mettons-nous à jour ?
@@ -300,7 +299,6 @@ entries:
   Renvoyer le code, désactivé pendant 30 secondes: Renvoyer le code, désactivé pendant 30 secondes
   "Sur l'espace organisation de ": "Sur l'espace organisation de "
   Vérifiez votre boîte e-mail !: Vérifiez votre boîte e-mail !
-  Votre adresse e-mail: Votre adresse e-mail
   Votre code est valide !: Votre code est valide !
   Votre organisation: Votre organisation
   Votre prénom: Votre prénom
@@ -802,13 +800,6 @@ entries:
   Oups ! Une erreur est survenue: Oups ! Une erreur est survenue
   Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.: Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.
   litres: litres
-  Lien de partage copié dans le presse-papier !: Lien de partage copié dans le presse-papier !
-  Oups, une erreur s’est produite lors de la copie du lien de partage.: Oups, une erreur s’est produite lors de la copie du lien de partage.
-  'Nos Gestes Climat : vos empreintes carbone et eau en 10 min': 'Nos Gestes Climat : vos empreintes carbone et eau en 10 min'
-  "Nos Gestes Climat : vos empreintes carbone et eau en 10 min\n{{sharedUrl}}":
-    |-
-    Nos Gestes Climat : vos empreintes carbone et eau en 10 min
-    {{sharedUrl}}
   Une erreur s'est produite au moment de la sauvegarde.: Une erreur s'est produite au moment de la sauvegarde.
   Accepter: Accepter
   Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais pas le détail question par question (vos km en voiture, les m² de votre logement...).: Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais pas le détail question par question (vos km en voiture, les m² de votre logement...).
@@ -1096,7 +1087,6 @@ entries:
   Qui sommes-nous: Qui sommes-nous
   Relais et partenaires: Relais et partenaires
   Ressources: Ressources
-  'Oups, une erreur est survenue lors de la copie du lien, voici le lien à copier / coller :': 'Oups, une erreur est survenue lors de la copie du lien, voici le lien à copier / coller :'
   Le nombre de participants doit être supérieur à 0: Le nombre de participants doit être supérieur à 0
   Nombre de participants attendus: Nombre de participants attendus
   Service public: Service public
@@ -1173,7 +1163,6 @@ entries:
   partagent Nos Gestes Climat via leur site ou des campagnes (mails, réseaux sociaux, affichage), nous permettant de sensibiliser près de 2 000 personnes chaque jour. Un grand merci à eux !: partagent Nos Gestes Climat via leur site ou des campagnes (mails, réseaux sociaux, affichage), nous permettant de sensibiliser près de 2 000 personnes chaque jour. Un grand merci à eux !
   Plusieurs milliers d’organisations: Plusieurs milliers d’organisations
   Vous relayez Nos Gestes Climat et souhaitez apparaître dans notre galerie ?: Vous relayez Nos Gestes Climat et souhaitez apparaître dans notre galerie ?
-  Simulation mise à jour: Simulation mise à jour
   Calculateur d’empreinte carbone et eau - Nos Gestes Climat: Calculateur d’empreinte carbone et eau - Nos Gestes Climat
   Créer un groupe, étape 1 sur 2 - Nos Gestes Climat: Créer un groupe, étape 1 sur 2 - Nos Gestes Climat
   Créer un groupe, étape 2 sur 2 - Nos Gestes Climat: Créer un groupe, étape 2 sur 2 - Nos Gestes Climat
@@ -1192,7 +1181,6 @@ entries:
   Mes empreintes carbone et eau partagées - Nos Gestes Climat: Mes empreintes carbone et eau partagées - Nos Gestes Climat
   'Mes gestes : comment réduire mon empreinte climat - Nos Gestes Climat': 'Mes gestes : comment réduire mon empreinte climat - Nos Gestes Climat'
   Mes groupes d'amis, calculer vos empreintes carbone et eau à plusieurs - Nos Gestes Climat: Mes groupes d'amis, calculer vos empreintes carbone et eau à plusieurs - Nos Gestes Climat
-  Mon espace organisation - Nos Gestes Climat: Mon espace organisation - Nos Gestes Climat
   Mon groupe - Nos Gestes Climat: Mon groupe - Nos Gestes Climat
   Mon profil - Nos Gestes Climat: Mon profil - Nos Gestes Climat
   Nos Gestes Climat, calculez votre empreinte carbone et eau: Nos Gestes Climat, calculez votre empreinte carbone et eau
@@ -1233,7 +1221,23 @@ entries:
   'Oups, la copie du lien a échoué, le voici :': 'Oups, la copie du lien a échoué, le voici :'
   Nous chargeons les données de l'organisation partenaire.: Nous chargeons les données de l'organisation partenaire.
   Une erreur s'est produite au moment de récupérer les informations liées à l'organisation partenaire. Veuillez réessayer plus tard ou contacter notre support.: Une erreur s'est produite au moment de récupérer les informations liées à l'organisation partenaire. Veuillez réessayer plus tard ou contacter notre support.
-  Oups ! Votre campagne a atteint un nombre de participations trop important pour permettre d'afficher notre graphique correctement. Nous travaillons à résoudre le problème au plus vite.: Oups ! Votre campagne a atteint un nombre de participations trop important pour permettre d'afficher notre graphique correctement. Nous travaillons à résoudre le problème au plus vite.
   Oups ! Une erreur s'est produite, veuillez réessayer dans quelques instants.: Oups ! Une erreur s'est produite, veuillez réessayer dans quelques instants.
-  Les graphiques sont cachés pour les campagnes avec plus de 500 participations pour des raisons de performance. Nous travaillons à l'ajout de cette fonctionnalité pour les plus grosses campagnes: Les graphiques sont cachés pour les campagnes avec plus de 500 participations pour des raisons de performance. Nous travaillons à l'ajout de cette fonctionnalité pour les plus grosses campagnes
   Les graphiques sont cachés pour les campagnes avec plus de 500 participations pour des raisons de performance. Nous travaillons à l'ajout de cette fonctionnalité pour les plus grosses campagnes.: Les graphiques sont cachés pour les campagnes avec plus de 500 participations pour des raisons de performance. Nous travaillons à l'ajout de cette fonctionnalité pour les plus grosses campagnes.
+  avec une empreinte carbone de: avec une empreinte carbone de
+  Confirmation d'inscription à nos infolettres - Nos Gestes Climat: Confirmation d'inscription à nos infolettres - Nos Gestes Climat
+  Confirmation de votre inscription à nos e-mails: Confirmation de votre inscription à nos e-mails
+  L'invitation a expiré: L'invitation a expiré
+  Mettre à jour la simulation: Mettre à jour la simulation
+  Mettre à jour votre participation au groupe: Mettre à jour votre participation au groupe
+  Oups, une erreur est survenue: Oups, une erreur est survenue
+  Oups, une erreur s'est produite: Oups, une erreur s'est produite
+  Participation mise à jour: Participation mise à jour
+  Recommencer mon inscription: Recommencer mon inscription
+  Revenir à la page d'accueil: Revenir à la page d'accueil
+  Une erreur est survenue, merci de recommencer votre inscription.: Une erreur est survenue, merci de recommencer votre inscription.
+  Une erreur s'est produite au moment de mettre à jour votre participation. Veuillez réessayer ultérieurement. Si le problème persiste, veuillez nous contacter via notre page de contact.: Une erreur s'est produite au moment de mettre à jour votre participation. Veuillez réessayer ultérieurement. Si le problème persiste, veuillez nous contacter via notre page de contact.
+  Votre adresse electronique: Votre adresse electronique
+  Votre e-mail a été vérifié, vous êtes bien inscrit à notre infolettre.: Votre e-mail a été vérifié, vous êtes bien inscrit à notre infolettre.
+  Votre participation a bien été mise à jour avec vos résultats de test les plus récents.: Votre participation a bien été mise à jour avec vos résultats de test les plus récents.
+  Vous devez recommencer votre inscription et valider votre e-mail.: Vous devez recommencer votre inscription et valider votre e-mail.
+  Vous pouvez mettre à jour le groupe avec votre simulation la plus récente réalisée en date du: Vous pouvez mettre à jour le groupe avec votre simulation la plus récente réalisée en date du
