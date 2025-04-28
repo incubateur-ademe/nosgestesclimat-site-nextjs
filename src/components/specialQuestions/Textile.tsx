@@ -11,6 +11,14 @@ import { twMerge } from 'tailwind-merge'
 import PencilIcon from '../icons/PencilIcon'
 
 type Props = { question: DottedName }
+
+const POSSIBLE_ANSWERS: Record<string, DottedName> = {
+  minimum: 'divers . textile . volume . minimum',
+  'renouvellement occasionnel':
+    'divers . textile . volume . renouvellement occasionnel',
+  'accro au shopping': 'divers . textile . volume . accro au shopping',
+}
+
 export default function Textile({ question, ...props }: Props) {
   const { numericValue: totalPiecesTextile } = useRule(
     'divers . textile . nombre total'
@@ -20,25 +28,19 @@ export default function Textile({ question, ...props }: Props) {
   )
   const { setValue } = useRule(question)
 
-  const possibleAnswers: Record<string, DottedName> = {
-    minimum: 'divers . textile . volume . minimum',
-    'renouvellement occasionnel':
-      'divers . textile . volume . renouvellement occasionnel',
-    'accro au shopping': 'divers . textile . volume . accro au shopping',
-  }
-
   useEffect(() => {
-    if (preciseChoice && totalPiecesTextile > 0) {
-      if (totalPiecesTextile <= 15) {
-        setValue(utils.nameLeaf(possibleAnswers['minimum']))
-      }
-      if (totalPiecesTextile > 15 && totalPiecesTextile <= 35) {
-        setValue(utils.nameLeaf(possibleAnswers['renouvellement occasionnel']))
-      }
-      if (totalPiecesTextile > 35) {
-        setValue(utils.nameLeaf(possibleAnswers['accro au shopping']))
-      }
+    if (!preciseChoice || totalPiecesTextile === 0) return
+
+    if (totalPiecesTextile <= 15) {
+      setValue(utils.nameLeaf(POSSIBLE_ANSWERS['minimum']))
     }
+    if (totalPiecesTextile > 15 && totalPiecesTextile <= 35) {
+      setValue(utils.nameLeaf(POSSIBLE_ANSWERS['renouvellement occasionnel']))
+    }
+    if (totalPiecesTextile > 35) {
+      setValue(utils.nameLeaf(POSSIBLE_ANSWERS['accro au shopping']))
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preciseChoice, totalPiecesTextile])
 
