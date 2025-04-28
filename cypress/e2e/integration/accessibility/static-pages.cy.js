@@ -45,7 +45,7 @@ describe('Accessibility Tests', () => {
       cy.visit(page)
 
       // Wait for the page to load completely
-      cy.wait(500)
+      cy.wait(800)
       cy.injectAxe()
 
       // Run accessibility checks
@@ -61,7 +61,7 @@ describe('Accessibility Tests', () => {
       cy.visit(page)
 
       // Wait for the page to load completely
-      cy.wait(500)
+      cy.wait(800)
       cy.injectAxe()
 
       // Run accessibility checks
