@@ -110,10 +110,6 @@ export default defineConfig({
             }
           }
         },
-        log(message) {
-          console.log(message)
-          return ''
-        },
       })
     },
     experimentalRunAllSpecs: true,

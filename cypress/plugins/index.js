@@ -1,7 +1,10 @@
-const { addMatchImageSnapshotPlugin } = require('cypress-image-snapshot/plugin')
-
 module.exports = (on, config) => {
   config.env = process.env
 
-  addMatchImageSnapshotPlugin(on, config)
+  on('task', {
+    log(message) {
+      console.log(message)
+      return null
+    },
+  })
 }
