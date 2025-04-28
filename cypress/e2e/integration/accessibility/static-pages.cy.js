@@ -1,4 +1,5 @@
 import 'cypress-axe'
+import { CHECK_A11Y_ELEMENTS_EXCLUDED } from '../../../constants/accessibility'
 
 // Define the pages to test
 const staticPagesToTest = [
@@ -49,10 +50,7 @@ describe('Accessibility Tests', () => {
 
       // Run accessibility checks
       cy.checkA11y({
-        exclude: [
-          '.splide', // false positive ; allowed-role
-          '.skip-to-main-content', // false positive ; skip-link : Ensure all skip links have a focusable target
-        ],
+        exclude: CHECK_A11Y_ELEMENTS_EXCLUDED,
       })
     })
 
@@ -67,10 +65,9 @@ describe('Accessibility Tests', () => {
       cy.injectAxe()
 
       // Run accessibility checks
-      cy.checkA11y([
-        '.splide', // false positive ; allowed-role
-        '.skip-to-main-content', // false positive ; skip-link : Ensure all skip links have a focusable target
-      ])
+      cy.checkA11y({
+        exclude: CHECK_A11Y_ELEMENTS_EXCLUDED,
+      })
     })
   })
 })

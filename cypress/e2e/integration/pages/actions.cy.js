@@ -1,4 +1,5 @@
 import 'cypress-axe'
+import { checkA11y } from '../../../helpers/accessibility/checkA11y'
 import { skipTutoIfExists } from '../../../helpers/elements/buttons'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 import { setupSimulation } from '../../../helpers/simulation/setupSimulation'
@@ -27,7 +28,7 @@ describe('Action userflow', () => {
 
         cy.injectAxe()
 
-        cy.checkA11y()
+        checkA11y()
 
         // Actions when user has completed the simulation
         cy.visit('/')
@@ -46,7 +47,7 @@ describe('Action userflow', () => {
 
         cy.injectAxe()
 
-        cy.checkA11y()
+        checkA11y()
       })
     })
   })
