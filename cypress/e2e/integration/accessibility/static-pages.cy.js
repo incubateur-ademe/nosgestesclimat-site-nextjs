@@ -1,5 +1,5 @@
 import 'cypress-axe'
-import { CHECK_A11Y_ELEMENTS_EXCLUDED } from '../../../constants/accessibility'
+import { checkA11y } from '../../../helpers/accessibility/checkA11y'
 
 // Define the pages to test
 const staticPagesToTest = [
@@ -49,9 +49,7 @@ describe('Accessibility Tests', () => {
       cy.injectAxe()
 
       // Run accessibility checks
-      cy.checkA11y({
-        exclude: CHECK_A11Y_ELEMENTS_EXCLUDED,
-      })
+      checkA11y()
     })
 
     it(`Should have no accessibility violations on ${page} on desktop`, () => {
@@ -65,9 +63,7 @@ describe('Accessibility Tests', () => {
       cy.injectAxe()
 
       // Run accessibility checks
-      cy.checkA11y({
-        exclude: CHECK_A11Y_ELEMENTS_EXCLUDED,
-      })
+      checkA11y()
     })
   })
 })
