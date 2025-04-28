@@ -2,8 +2,10 @@
 
 import Question from '@/components/form/Question'
 import Trans from '@/components/translation/trans/TransClient'
+import { openSubQuestion } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
 import { useRule } from '@/publicodes-state'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
 import { useEffect } from 'react'
@@ -62,7 +64,10 @@ export default function Textile({ question, ...props }: Props) {
           <Button
             color="link"
             size="xs"
-            onClick={() => setPreciseChoice(preciseChoice ? 'non' : 'oui')}
+            onClick={() => {
+              trackEvent(openSubQuestion({ question }))
+              setPreciseChoice(preciseChoice ? 'non' : 'oui')
+            }}
             className="mt-1 md:mt-0 md:ml-2">
             {preciseChoice ? (
               <Trans>Fermer</Trans>
