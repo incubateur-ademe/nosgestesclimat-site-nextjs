@@ -112,7 +112,7 @@ export default defineConfig({
         },
         log(message) {
           console.log(message)
-          return null
+          return ''
         },
       })
     },
