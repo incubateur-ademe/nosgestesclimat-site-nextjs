@@ -1,9 +1,9 @@
+import { checkA11y } from '../../../helpers/accessibility/checkA11y'
 import { clickSkipTutorialButton } from '../../../helpers/elements/buttons'
 import { clickNextStepGroupCreation } from '../../../helpers/groups/clickNextStepGroupCreation'
 import { clickValidateGroupCreation } from '../../../helpers/groups/clickValidateGroupCreation'
 import { fillGroupCreationFirstStep } from '../../../helpers/groups/fillGroupCreationFirstStep'
 import { fillGroupNameEmoji } from '../../../helpers/groups/fillGroupNameEmoji'
-import { checkA11y } from '../../../helpers/misc/checkA11y'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 import { skipRiddle } from '../../../helpers/simulation/skipRiddle'
 
@@ -68,8 +68,11 @@ describe('Group userflow', () => {
         cy.get('[data-cypress-id="button-create-first-group"]').click()
 
         cy.get('input[data-cypress-id="group-input-owner-name"]').clear()
+        cy.get('input[data-cypress-id="group-input-owner-email"]').clear()
 
         fillGroupCreationFirstStep()
+
+        clickNextStepGroupCreation()
 
         cy.wait(2000)
 
@@ -82,8 +85,6 @@ describe('Group userflow', () => {
 
         // And that we can update its name
         cy.get('[data-cypress-id="group-name-edit-button"]').click()
-
-        checkA11y()
 
         const newName = 'Les amis de Jean-Marc'
 

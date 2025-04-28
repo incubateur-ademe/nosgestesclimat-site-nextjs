@@ -2,9 +2,9 @@ import {
   FIN_EMAIL_INPUT,
   FIN_EMAIL_SUBMIT_BUTTON,
 } from '../../../constants/elements-ids'
+import { checkA11y } from '../../../helpers/accessibility/checkA11y'
 import { clickSkipTutorialButton } from '../../../helpers/elements/buttons'
 import { visit } from '../../../helpers/interactions/visit'
-import { checkA11y } from '../../../helpers/misc/checkA11y'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 import { skipRiddle } from '../../../helpers/simulation/skipRiddle'
 
