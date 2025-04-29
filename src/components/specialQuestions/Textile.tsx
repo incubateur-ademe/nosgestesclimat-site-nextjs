@@ -4,7 +4,7 @@ import Question from '@/components/form/Question'
 import Trans from '@/components/translation/trans/TransClient'
 import { openSubQuestion } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
-import { useRule } from '@/publicodes-state'
+import { useCurrentSimulation, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
@@ -29,6 +29,8 @@ export default function Textile({ question, ...props }: Props) {
     'divers . textile . choix précis'
   )
   const { setValue } = useRule(question)
+
+  const { updateCurrentSimulation } = useCurrentSimulation()
 
   useEffect(() => {
     if (!preciseChoice || totalPiecesTextile === 0) return
@@ -67,6 +69,10 @@ export default function Textile({ question, ...props }: Props) {
             onClick={() => {
               trackEvent(openSubQuestion({ question }))
               setPreciseChoice(preciseChoice ? 'non' : 'oui')
+
+              updateCurrentSimulation({
+                foldedStepToAdd: question,
+              })
             }}
             className="mt-1 md:mt-0 md:ml-2">
             {preciseChoice ? (
