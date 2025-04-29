@@ -2,7 +2,9 @@
 
 import Question from '@/components/form/Question'
 import Trans from '@/components/translation/trans/TransClient'
+import { openSubQuestion } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
 import PencilIcon from '../icons/PencilIcon'
@@ -18,7 +20,10 @@ export default function Voiture({ question, ...props }: Props) {
         <Button
           color="link"
           size="xs"
-          onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
+          onClick={() => {
+            trackEvent(openSubQuestion({ question }))
+            setIsOpen((prevIsOpen) => !prevIsOpen)
+          }}
           className="mb-2">
           {isOpen ? (
             <Trans>Fermer</Trans>
