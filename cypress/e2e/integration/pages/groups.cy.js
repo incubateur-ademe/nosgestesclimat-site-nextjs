@@ -6,6 +6,8 @@ import { fillGroupNameEmoji } from '../../../helpers/groups/fillGroupNameEmoji'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 import { skipRiddle } from '../../../helpers/simulation/skipRiddle'
 
+const TIMEOUT = 8000
+
 describe('Group userflow', () => {
   let ownerUserId = ''
   describe('Given a user', () => {
@@ -17,7 +19,7 @@ describe('Group userflow', () => {
 
         cy.clearLocalStorage()
 
-        cy.wait(2000)
+        cy.wait(TIMEOUT)
 
         cy.get('[data-cypress-id="button-create-first-group"]').click()
 
@@ -28,32 +30,32 @@ describe('Group userflow', () => {
 
         // checkA11y()  // TODO: fix A11Y test breaking only when running on CI
 
-        cy.wait(2000)
+        cy.wait(TIMEOUT)
 
         clickNextStepGroupCreation()
 
-        cy.wait(2000)
+        cy.wait(TIMEOUT)
 
         // Continue and choose group name and emoji
         fillGroupNameEmoji()
 
         // checkA11y()  // TODO: fix A11Y test breaking only when running on CI
 
-        cy.wait(2000)
+        cy.wait(TIMEOUT)
 
         clickValidateGroupCreation()
 
-        cy.wait(2000)
+        cy.wait(TIMEOUT)
         // Fill simulation
         clickSkipTutorialButton()
 
-        cy.wait(2000)
+        cy.wait(TIMEOUT)
 
         recursivelyFillSimulation(null, 'group')
 
         skipRiddle()
 
-        cy.wait(8000)
+        cy.wait(TIMEOUT)
 
         cy.get('[data-cypress-id="group-name"]')
 
@@ -64,7 +66,7 @@ describe('Group userflow', () => {
         cy.get('[data-cypress-id="button-confirm-delete-group"]').click()
 
         // Check that we can create a second group
-        cy.wait(2000)
+        cy.wait(TIMEOUT)
 
         cy.get('[data-cypress-id="button-create-first-group"]').click()
 
@@ -75,12 +77,12 @@ describe('Group userflow', () => {
 
         clickNextStepGroupCreation()
 
-        cy.wait(2000)
+        cy.wait(TIMEOUT)
 
         // Continue and choose group name and emoji
         fillGroupNameEmoji()
 
-        cy.wait(2000)
+        cy.wait(TIMEOUT)
 
         cy.get('[data-cypress-id="button-validate-create-group"]').click()
 
@@ -93,7 +95,7 @@ describe('Group userflow', () => {
         cy.get('input[data-cypress-id="group-edit-input-name"]').type(newName)
         cy.get('[data-cypress-id="button-inline-input"]').click()
 
-        cy.wait(2000)
+        cy.wait(TIMEOUT)
 
         cy.get('[data-cypress-id="group-name"]').contains(newName)
 
@@ -109,24 +111,24 @@ describe('Group userflow', () => {
         cy.clearLocalStorage()
         cy.reload()
 
-        cy.wait(3000)
+        cy.wait(TIMEOUT)
 
         // checkA11y()  // TODO: fix A11Y test breaking only when running on CI
 
         cy.get('[data-cypress-id="member-name"]').type('Jean-Claude')
 
-        cy.wait(2000)
+        cy.wait(TIMEOUT)
 
         cy.get('[data-cypress-id="button-join-group"]').click()
 
         clickSkipTutorialButton()
         recursivelyFillSimulation(null, 'group')
 
-        cy.wait(2000)
+        cy.wait(TIMEOUT)
 
         skipRiddle()
 
-        cy.wait(8000)
+        cy.wait(TIMEOUT)
 
         cy.get('[data-cypress-id="group-name"]')
 
