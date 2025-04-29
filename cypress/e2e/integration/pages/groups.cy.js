@@ -17,6 +17,8 @@ describe('Group userflow', () => {
 
         cy.clearLocalStorage()
 
+        cy.wait(2000)
+
         cy.get('[data-cypress-id="button-create-first-group"]').click()
 
         cy.get('input[data-cypress-id="group-input-owner-name"]').clear()

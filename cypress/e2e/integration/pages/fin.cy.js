@@ -34,6 +34,8 @@ describe('The End page', () => {
 
       recursivelyFillSimulation()
 
+      cy.wait(4000)
+
       skipRiddle()
 
       // checkA11y() // TODO: fix A11Y test breaking only when running on CI
@@ -43,6 +45,8 @@ describe('The End page', () => {
 
     describe('When he saves his/her simulation on the end page', () => {
       it('Then it should save the simulation only once', () => {
+        cy.wait(4000)
+
         cy.get(`input[data-cypress-id="${FIN_EMAIL_INPUT}"]`).type(
           'test@test.com'
         )
