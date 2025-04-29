@@ -12,7 +12,7 @@ export default async function AllBlogCategories({
   className?: string
   locale: string
 }) {
-  const categories = await fetchCategories()
+  const categories = await fetchCategories({ locale })
 
   return (
     <div

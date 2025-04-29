@@ -23,6 +23,7 @@ export async function generateMetadata({
   const { metaTitle, metaDescription, image } =
     (await fetchCategoryPageMetadata({
       slug: category,
+      locale,
     })) || {}
 
   return getMetadataObject({
@@ -66,6 +67,7 @@ export default async function CategoryPage({
     (await fetchCategoryPageContent({
       slug: category,
       page,
+      locale,
     })) || {}
 
   if (!title || !description) {
@@ -127,7 +129,10 @@ export default async function CategoryPage({
 
       <AllBlogCategories
         className={
-          additionalContent && image ? 'before:bg-white' : 'before:bg-[#F6F6F5]'
+          (additionalContent && image) ||
+          (!(additionalContent || image) && !questions?.length)
+            ? 'before:bg-white'
+            : 'before:bg-[#F6F6F5]'
         }
         locale={locale}
       />

@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
 
   const { metaTitle, metaDescription, image } =
-    (await fetchHomepageMetadata()) || {}
+    (await fetchHomepageMetadata({ locale })) || {}
 
   return getMetadataObject({
     locale,
@@ -52,6 +52,7 @@ export default async function BlogHomePage({
   const { title, description, image, mainArticle, articles, pageCount } =
     (await fetchHomepageContent({
       page,
+      locale,
     })) ?? {}
 
   if (!title || !description || !image || !articles) {
