@@ -26,8 +26,6 @@ describe('Action userflow', () => {
           )
           .should('be.visible')
 
-        cy.injectAxe()
-
         checkA11y()
 
         // Actions when user has completed the simulation
@@ -44,8 +42,6 @@ describe('Action userflow', () => {
         cy.visit('/actions')
 
         cy.wait(2000)
-
-        cy.injectAxe()
 
         checkA11y()
       })
