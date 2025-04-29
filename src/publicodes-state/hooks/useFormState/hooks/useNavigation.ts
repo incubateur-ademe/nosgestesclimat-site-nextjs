@@ -1,3 +1,4 @@
+import { MUST_NOT_ASK_QUESTIONS } from '@/publicodes-state/constants/questions'
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
@@ -24,18 +25,22 @@ export default function useNavigation({
     () => (currentQuestion ? relevantQuestions?.indexOf(currentQuestion) : 0),
     [relevantQuestions, currentQuestion]
   )
-
+  console.log(currentQuestion, currentQuestionIndex, relevantQuestions)
   const noPrevQuestion = useMemo<boolean>(
     () => currentQuestionIndex === 0,
     [currentQuestionIndex]
   )
-  const noNextQuestion = useMemo<boolean>(
-    () =>
-      remainingQuestions.length === 0 ||
-      (remainingQuestions.length === 1 &&
-        remainingQuestions[0] === currentQuestion),
-    [currentQuestion, remainingQuestions]
-  )
+
+  const noNextQuestion = useMemo<boolean>(() => {
+    const remainingAskableQuestions = remainingQuestions.filter(
+      (question) => !MUST_NOT_ASK_QUESTIONS.has(question)
+    )
+    return (
+      remainingAskableQuestions.length === 0 ||
+      (remainingAskableQuestions.length === 1 &&
+        remainingAskableQuestions[0] === currentQuestion)
+    )
+  }, [currentQuestion, remainingQuestions])
 
   const isLastQuestionOfCategory = useMemo<boolean>(
     () =>

@@ -1,3 +1,4 @@
+import { MUST_NOT_ASK_QUESTIONS } from '@/publicodes-state/constants/questions'
 import type { UpdateCurrentSimulationProps } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect, useMemo } from 'react'
@@ -20,13 +21,17 @@ export default function useProgression({
   relevantQuestions,
   updateCurrentSimulation,
 }: Props) {
+  const remainingAskableQuestions = remainingQuestions.filter(
+    (question) => !MUST_NOT_ASK_QUESTIONS.has(question)
+  )
+
   const progression = useMemo(
     () =>
       relevantQuestions.length
-        ? (relevantQuestions.length - remainingQuestions.length) /
+        ? (relevantQuestions.length - remainingAskableQuestions.length) /
           relevantQuestions.length
         : 0,
-    [relevantQuestions, remainingQuestions]
+    [relevantQuestions, remainingAskableQuestions]
   )
 
   const remainingQuestionsByCategories = useMemo(
@@ -34,13 +39,13 @@ export default function useProgression({
       categories.reduce(
         (accumulator, currentValue) => ({
           ...accumulator,
-          [currentValue]: remainingQuestions.filter((question) =>
+          [currentValue]: remainingAskableQuestions.filter((question) =>
             question.includes(currentValue)
           ),
         }),
         {} as Record<DottedName, DottedName[]>
       ),
-    [remainingQuestions, categories]
+    [remainingAskableQuestions, categories]
   )
 
   // Updates the progression stored in the user object / hook
