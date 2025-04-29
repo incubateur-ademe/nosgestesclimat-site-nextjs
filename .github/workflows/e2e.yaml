@@ -54,10 +54,10 @@ jobs:
           echo "CYPRESS_baseUrl=https://nosgestesclimat-git-${{ steps.branch-name.outputs.current_branch }}-ademe.vercel.app" >> "$GITHUB_ENV";
           echo "MODE=preview" >> "$GITHUB_ENV";
 
-      - name: Setup baseUrl to https://nosgestesclimat.vercel.app
+      - name: Setup baseUrl to https://nosgestesclimat.fr
         if: ${{ !success() || steps.branch-name.outputs.is_default == 'true' }}
         run: |
-          echo "CYPRESS_baseUrl=https://nosgestesclimat.vercel.app" >> "$GITHUB_ENV"
+          echo "CYPRESS_baseUrl=https://nosgestesclimat.fr" >> "$GITHUB_ENV"
           echo "MODE=production" >> "$GITHUB_ENV"
 
       - name: Test - e2e [${{ env.MODE }}]
@@ -70,6 +70,6 @@ jobs:
           group: 'Test - e2e'
           spec: cypress/e2e/integration/**/*.cy.js
         env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          CYPRESS_RECORD_KEY: ''
           SERVER_URL: ${{ secrets.SERVER_URL }}
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
