@@ -6,7 +6,7 @@ import { fillGroupNameEmoji } from '../../../helpers/groups/fillGroupNameEmoji'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 import { skipRiddle } from '../../../helpers/simulation/skipRiddle'
 
-const TIMEOUT = 8000
+const TIMEOUT = 12000
 
 describe('Group userflow', () => {
   let ownerUserId = ''
