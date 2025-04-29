@@ -1,5 +1,5 @@
 'use client'
-import { carboneMetric, eauMetric } from '@/constants/metric'
+import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
@@ -82,7 +82,7 @@ export default function FootprintSelector({
         <div className="flex flex-col">
           <div
             id="footprint-select-label"
-            className="-mb-1 cursor-pointer select-none text-[0.6rem] font-normal text-default">
+            className="text-default -mb-1 cursor-pointer text-[0.6rem] font-normal select-none">
             <Trans>Empreinte</Trans>
           </div>
 

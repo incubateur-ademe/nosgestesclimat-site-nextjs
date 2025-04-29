@@ -1,5 +1,5 @@
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -36,7 +36,7 @@ export default function NumberInput({
   return (
     <div
       className={
-        'flex items-center justify-between gap-4 rounded-xl border-2 border-primary-200 bg-white p-2 py-3'
+        'border-primary-200 flex items-center justify-between gap-4 rounded-xl border-2 bg-white p-2 py-3'
       }>
       <div>
         {title && icons ? (

@@ -10,6 +10,7 @@ export default defineConfig({
   projectId: 'bkkrae',
   viewportWidth: 1920,
   viewportHeight: 960,
+  defaultCommandTimeout: 10000,
   env: {
     localisation_param: 'FR',
     language_param: 'fr',

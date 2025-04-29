@@ -10,7 +10,7 @@ import {
   pollDashboardClickParameters,
   pollDashboardCopyLink,
 } from '@/constants/tracking/pages/pollDashboard'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import CopyInput from '@/design-system/inputs/CopyInput'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import type { PublicOrganisationPoll } from '@/types/organisations'

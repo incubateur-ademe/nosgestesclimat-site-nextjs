@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { actionsClickStart } from '@/constants/tracking/pages/actions'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import { getCarbonFootprint } from '@/helpers/actions/getCarbonFootprint'

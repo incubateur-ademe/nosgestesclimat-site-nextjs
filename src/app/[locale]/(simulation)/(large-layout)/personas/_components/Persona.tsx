@@ -1,11 +1,11 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import { fixSituationWithPartialMosaic } from '@/helpers/personas/fixSituationWithPartialMosaic'
 import { getPersonaFoldedSteps } from '@/helpers/personas/getPersonaFoldedSteps'
-import { useDisposableEngine, useSimulation, useUser } from '@/publicodes-state'
+import { useDisposableEngine, useEngine, useUser } from '@/publicodes-state'
 import type {
   DottedName,
   Persona as PersonaType,
@@ -30,7 +30,7 @@ export default function Persona({ persona, personaDottedName }: Props) {
     everyRules,
     safeEvaluate,
     safeGetRule,
-  } = useSimulation()
+  } = useEngine()
 
   const isCurrentPersonaSelected =
     currentSimulation.persona === personaDottedName
@@ -40,7 +40,7 @@ export default function Persona({ persona, personaDottedName }: Props) {
       className={`${
         isCurrentPersonaSelected
           ? 'border-2! border-green-500 bg-green-200'
-          : 'border-none bg-primary-50'
+          : 'bg-primary-50 border-none'
       } items-center`}>
       <div className="text-lg">{persona['icônes']}</div>
 
@@ -84,7 +84,7 @@ export default function Persona({ persona, personaDottedName }: Props) {
       )}
 
       {isCurrentPersonaSelected && (
-        <p className="align-self-end mb-0 mt-auto p-1 text-sm font-bold">
+        <p className="align-self-end mt-auto mb-0 p-1 text-sm font-bold">
           <Trans>Sélectionné·e</Trans>
         </p>
       )}

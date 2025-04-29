@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Select from '@/design-system/inputs/Select'
 import Title from '@/design-system/layout/Title'
 import type { OrganisationPoll } from '@/types/organisations'

@@ -1,12 +1,12 @@
 'use client'
 
-import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
+import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   LIST_MAIN_NEWSLETTER,
   LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
 } from '@/constants/brevo'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Loader from '@/design-system/layout/Loader'
@@ -155,13 +155,13 @@ export default function UserInformationForm({
                 <TextInputGroup
                   name="email"
                   helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
-                  label={t('Votre adresse email')}
+                  label={t('Votre adresse electronique')}
                   value={user?.email}
                   readOnly
                 />
               ) : (
                 <TextInputGroup
-                  label={t('Votre adresse email')}
+                  label={t('Votre adresse electronique')}
                   className="w-full"
                   value={user?.email ?? ''}
                   {...register('email')}
@@ -173,7 +173,7 @@ export default function UserInformationForm({
         {inputsDisplayed.includes('newsletter-saisonniere') ||
           (inputsDisplayed.includes('newsletter-transports') && (
             <>
-              <h3 className="mb-0 mt-6">{t('Inscription à nos e-mails')}</h3>
+              <h3 className="mt-6 mb-0">{t('Inscription à nos e-mails')}</h3>
 
               <p className="text-sm text-gray-600">
                 {t('Vous pouvez vous désincrire à tout moment')}

@@ -3,7 +3,7 @@
 import Marianne from '@/components/images/partners/Marianne'
 import Trans from '@/components/translation/trans/TransClient'
 import { endClickJagisFirstBlock } from '@/constants/tracking/pages/end'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Loader from '@/design-system/layout/Loader'
 import { useExportSituationToAgir } from '@/hooks/simulation/useExportSituationToAgir'
 import { useClientTranslation } from '@/hooks/useClientTranslation'

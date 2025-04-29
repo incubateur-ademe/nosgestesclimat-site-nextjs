@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { eauMetric } from '@/constants/metric'
+import { eauMetric } from '@/constants/model/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useRule } from '@/publicodes-state'
 
@@ -16,7 +16,7 @@ export default function DomesticWaterChart() {
 
   return (
     <div className="mb-6 self-center">
-      <div className="flex gap-4 rounded-xl bg-water p-4 lg:pr-8">
+      <div className="bg-water flex gap-4 rounded-xl p-4 lg:pr-8">
         <svg
           className="h-auto fill-white lg:w-14"
           width="48"

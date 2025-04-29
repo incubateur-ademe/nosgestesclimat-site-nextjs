@@ -32,7 +32,7 @@ export default function PollStatisticsFilters({
         <InfoTooltipIcon className="z-10 inline-block md:hidden" />
       </div>
 
-      <div className="flex flex-col gap-2 md:gap-4 xs:flex-row xs:items-center">
+      <div className="xs:flex-row xs:items-center flex flex-col gap-2 md:gap-4">
         {defaultAdditionalQuestions?.includes(
           PollDefaultAdditionalQuestion.birthdate
         ) && <AgeFilter filteredSimulations={filteredSimulations} />}

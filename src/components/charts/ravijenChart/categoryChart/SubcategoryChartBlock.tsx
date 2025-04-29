@@ -96,7 +96,7 @@ export default function SubcategoryChartBlock({
 
       {!isSmall && !shouldAlwaysDisplayValue && (
         <p
-          className={`absolute bottom-0 right-1 z-10 mb-0 pl-1 text-[0.65rem] ${getBackgroundColor(
+          className={`absolute right-1 bottom-0 z-10 mb-0 pl-1 text-[0.65rem] ${getBackgroundColor(
             category
           )}`}>
           <strong>

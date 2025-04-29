@@ -21,7 +21,6 @@ export default forwardRef(function PrenomInput(
       )}
       value={value}
       name="prenom"
-      placeholder="Jean-Marc"
       ref={ref as any}
       error={error}
       {...props}

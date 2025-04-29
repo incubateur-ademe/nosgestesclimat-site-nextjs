@@ -1645,6 +1645,12 @@ entries:
   Sélectionner l'empreinte carbone, voir le détail ci-dessous: Seleccione la huella de carbono, ver detalles más abajo
   Nombre de jours, semaines ou mois à afficher: Número de días, semanas o meses a visualizar
   simulations terminées ce mois-ci (en cours): simulaciones realizadas este mes (en curso)
+  partagent Nos Gestes Climat via leur site ou des campagnes (mails, réseaux sociaux, affichage), nous permettant de sensibiliser près de 2 000 personnes chaque jour. Un grand merci à eux !: comparten Nos Gestes Climat a través de su página web o de campañas (correo electrónico, redes sociales, carteles), lo que nos permite sensibilizar a casi 2.000 personas cada día. ¡Muchas gracias a todos ellos!
+  Envoyez-nous votre logo via notre page de contact: Envíenos su logotipo a través de nuestra página de contacto
+  Plusieurs milliers d’organisations: Varios miles de organizaciones
+  Aucun de ces acteurs ne finance Nos Gestes Climat, un service public, gratuit et indépendant de l'ADEME.: Ninguno de estos actores financia Nos Gestes Climat, un servicio público, gratuito e independiente prestado por la ADEME.
+  Vous relayez Nos Gestes Climat et souhaitez apparaître dans notre galerie ?: ¿Relevas Nos Gestes Climat y quieres aparecer en nuestra galería?
+  Simulation mise à jour: Simulación actualizada
   Mon groupe - Nos Gestes Climat: Mi Grupo - Nos Gestes Climat
   International - Nos Gestes Climat: Internacional - Nos Gestes Climat
   Mes empreintes carbone et eau - Nos Gestes Climat: Mi huella de carbono y de agua - Nos Gestes Climat
@@ -1684,9 +1690,48 @@ entries:
   Contenu: Contenido
   Pied de page: Pie de página
   Un petit doute ? L'info sera sûrement dans votre contrat d'assurance logement.: ¿Alguna duda? Encontrará la información en su póliza de seguro de hogar.
+  'Pour plus de précision:': 'Para más información:'
+  Je détaille ma garde-robe: Detallando mi armario
+  En moyenne, les Français achètent chaque année,: Por término medio, los franceses compran algo cada año,
+  9,5 kg de vêtements... mais n'en trient que 3,4 kg !: 9,5 kg de ropa... ¡pero sólo clasifica 3,4 kg!
+  Rejoignez-les: Únete a ellos
+  Plusieurs milliers d’organisations nous font confiance pour sensibiliser efficacement: Miles de organizaciones han depositado su confianza en nosotros para que les ayudemos a sensibilizar eficazmente
+  "N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l'ADEME.": 'N.B.: ninguno de los actores mencionados a continuación financia Nos Gestes Climat, que es y seguirá siendo un servicio público gratuito e independiente prestado por la ADEME.'
+  "N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l'ADEME..lock": "N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l'ADEME."
+  N.B.: N.B.
+  N.B..lock: N.B.
+  ": aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l'ADEME.": ninguno de los actores mencionados a continuación financia Nos Gestes Climat, que es y seguirá siendo un servicio público, independiente y gratuito de la ADEME.
+  Facebook: Facebook
+  Linkedin: Linkedin
+  Envoyer par e-mail: Enviar por correo electrónico
+  Whatsapp: Whatsapp
+  Messenger: Mensajero
+  Partager le simulateur: Compartir el simulador
+  Lien copié !: Enlace copiado
+  Envoyez le simulateur à vos proches et faites votre 1ère bonne action !: Envía el simulador a tus amigos y familiares y ¡haz tu 1ª buena acción!
+  Voici mes empreintes carbone et eau ; tu connais les tiennes ?: Aquí están mis huellas de carbono y de agua; ¿sabes cuáles son las tuyas?
+  'Oups, la copie du lien a échoué, le voici :': 'Oops, copiar el enlace falló, aquí está:'
   Nous chargeons les données de l'organisation partenaire.: Cargamos los datos de la organización asociada.
   Une erreur s'est produite au moment de récupérer les informations liées à l'organisation partenaire. Veuillez réessayer plus tard ou contacter notre support.: Se ha producido un error al recuperar la información relacionada con la organización asociada. Vuelva a intentarlo más tarde o póngase en contacto con nuestro equipo de asistencia.
   Oups ! Votre campagne a atteint un nombre de participations trop important pour permettre d'afficher notre graphique correctement. Nous travaillons à résoudre le problème au plus vite.: ¡Ups! Tu campaña ha recibido demasiadas entradas para que nuestro gráfico se muestre correctamente. Estamos trabajando para resolver el problema lo antes posible.
   Oups ! Une erreur s'est produite, veuillez réessayer dans quelques instants.: ¡Uy! Se ha producido un error. Por favor, inténtelo de nuevo en unos momentos.
   Les graphiques sont cachés pour les campagnes avec plus de 500 participations pour des raisons de performance. Nous travaillons à l'ajout de cette fonctionnalité pour les plus grosses campagnes: Los gráficos están ocultos para las campañas con más de 500 entradas por razones de rendimiento. Estamos trabajando para añadir esta función a las campañas más grandes
   Les graphiques sont cachés pour les campagnes avec plus de 500 participations pour des raisons de performance. Nous travaillons à l'ajout de cette fonctionnalité pour les plus grosses campagnes.: Los gráficos están ocultos para las campañas con más de 500 entradas por razones de rendimiento. Estamos trabajando en añadir esta funcionalidad para campañas más grandes.
+  Participation mise à jour: Participación actualizada
+  Recommencer mon inscription: Repetir mi registro
+  Votre adresse electronique: Su dirección de correo electrónico
+  Mettre à jour la simulation: Actualizar la simulación
+  Revenir à la page d'accueil: Volver a la página de inicio
+  L'invitation a expiré: La invitación ha expirado
+  Mettre à jour votre participation au groupe: Actualice su pertenencia a un grupo
+  avec une empreinte carbone de: con una huella de carbono de
+  Oups, une erreur s'est produite: Oops, ha habido un error
+  Confirmation de votre inscription à nos e-mails: Confirmación de su suscripción a nuestros correos electrónicos
+  Oups, une erreur est survenue: Oops, se ha producido un error
+  Votre participation a bien été mise à jour avec vos résultats de test les plus récents.: Su participación se ha actualizado con los resultados de sus pruebas más recientes.
+  Une erreur est survenue, merci de recommencer votre inscription.: Se ha producido un error. Por favor, inicie de nuevo su registro.
+  Une erreur s'est produite au moment de mettre à jour votre participation. Veuillez réessayer ultérieurement. Si le problème persiste, veuillez nous contacter via notre page de contact.: Se ha producido un error al actualizar su entrada. Vuelva a intentarlo más tarde. Si el problema persiste, póngase en contacto con nosotros a través de nuestra página de contacto.
+  Vous devez recommencer votre inscription et valider votre e-mail.: Deberá volver a registrarse y validar su dirección de correo electrónico.
+  Vous pouvez mettre à jour le groupe avec votre simulation la plus récente réalisée en date du: Puede actualizar el grupo con su simulación más reciente realizada en
+  Votre e-mail a été vérifié, vous êtes bien inscrit à notre infolettre.: Se ha comprobado su dirección de correo electrónico y se ha suscrito a nuestro boletín.
+  Confirmation d'inscription à nos infolettres - Nos Gestes Climat: Confirmación de suscripción a nuestros boletines - Nos Gestes Climat

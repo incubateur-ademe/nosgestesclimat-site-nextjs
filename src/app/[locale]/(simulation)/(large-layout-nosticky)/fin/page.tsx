@@ -6,7 +6,7 @@ import HeadingButtons from '@/components/fin/metricSlider/heading/HeadingButtons
 import IframeDataShareModal from '@/components/iframe/IframeDataShareModal'
 import CategoriesAccordion from '@/components/results/CategoriesAccordion'
 import Trans from '@/components/translation/trans/TransClient'
-import { carboneMetric, eauMetric } from '@/constants/metric'
+import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import Title from '@/design-system/layout/Title'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
 import { useSimulationIdInQueryParams } from '@/hooks/simulation/useSimulationIdInQueryParams'
@@ -99,7 +99,7 @@ export default function FinPage() {
           </div>
 
           <FeedbackBanner
-            className="mb-8 mt-12"
+            className="mt-12 mb-8"
             text={
               <Trans i18nKey="publicodes.northstar.learned">
                 Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque
@@ -111,7 +111,7 @@ export default function FinPage() {
 
           <DocumentationBlock />
         </div>
-        <div className="top-40 flex w-full flex-col gap-4 self-start md:mb-8 lg:sticky lg:z-30 lg:w-[22rem] short:gap-2">
+        <div className="short:gap-2 top-40 flex w-full flex-col gap-4 self-start md:mb-8 lg:sticky lg:z-30 lg:w-[22rem]">
           <InformationBlock />
         </div>
       </div>

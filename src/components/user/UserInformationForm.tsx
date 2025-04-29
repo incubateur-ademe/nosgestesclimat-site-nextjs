@@ -6,7 +6,7 @@ import {
   LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
   LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
 } from '@/constants/brevo'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Loader from '@/design-system/layout/Loader'
@@ -171,13 +171,13 @@ export default function UserInformationForm({
                 <TextInputGroup
                   name="email"
                   helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
-                  label={t('Votre adresse email')}
+                  label={t('Votre adresse electronique')}
                   value={user?.email}
                   readOnly
                 />
               ) : (
                 <TextInputGroup
-                  label={t('Votre adresse email')}
+                  label={t('Votre adresse electronique')}
                   className="w-full"
                   value={user?.email ?? ''}
                   {...register('email')}
@@ -187,7 +187,7 @@ export default function UserInformationForm({
           </>
         )}
 
-        <h3 className="mb-0 mt-6">
+        <h3 className="mt-6 mb-0">
           <Trans>Inscription à nos e-mails</Trans>
         </h3>
 

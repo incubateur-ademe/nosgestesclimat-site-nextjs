@@ -6,7 +6,7 @@ import {
   amisDashboardOpenEditName,
   amisDashboardValidateEditName,
 } from '@/constants/tracking/pages/amisDashboard'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import InlineTextInput from '@/design-system/inputs/InlineTextInput'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
@@ -82,7 +82,7 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
                     }}
                     color="secondary"
                     data-cypress-id="group-name-edit-button">
-                    <PencilIcon className="w-4 stroke-primary-700" />
+                    <PencilIcon className="stroke-primary-700 w-4" />
                   </Button>
                 ) : null}
               </span>

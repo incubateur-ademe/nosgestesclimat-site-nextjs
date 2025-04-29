@@ -21,7 +21,7 @@ export default function GroupItem({ group }: Props) {
 
   return (
     <Link
-      className="mb-3 rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors hover:bg-primary-100"
+      className="hover:bg-primary-100 mb-3 rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors"
       href={getLinkToGroupDashboard({ groupId: group.id })}
       onClick={() =>
         trackEvent(

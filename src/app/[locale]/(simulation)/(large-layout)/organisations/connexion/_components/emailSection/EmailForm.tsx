@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCreateVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
@@ -74,7 +74,7 @@ export default function EmailForm() {
         type="email"
         data-cypress-id="organisation-connexion-email-input"
         value={user?.organisation?.administratorEmail || user?.email || ''}
-        label={<Trans>Votre adresse e-mail</Trans>}
+        label={<Trans>Votre adresse electronique</Trans>}
         placeholder="jeanmarc@nosgestesclimat.fr"
         helperText={
           <Trans>

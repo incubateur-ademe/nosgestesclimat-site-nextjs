@@ -2,7 +2,7 @@
 
 import TrashIcon from '@/components/icons/TrashIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import { carboneMetric } from '@/constants/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import Badge from '@/design-system/layout/Badge'
 import ConfirmationModal from '@/design-system/modals/ConfirmationModal'
 import Emoji from '@/design-system/utils/Emoji'
@@ -136,7 +136,7 @@ export default function RankingMember({
           <span className={textColor}>{participant.name}</span>
 
           {isCurrentMember && (
-            <Badge className="ml-2 inline rounded-xl border-pink-100 bg-pink-200 text-xs font-bold text-secondary-800">
+            <Badge className="text-secondary-800 ml-2 inline rounded-xl border-pink-100 bg-pink-200 text-xs font-bold">
               <Trans>Vous</Trans>
             </Badge>
           )}
@@ -168,7 +168,7 @@ export default function RankingMember({
               })}>
               <TrashIcon
                 className={twMerge(
-                  'w-4 fill-default',
+                  'fill-default w-4',
                   textColor === 'text-white' ? 'fill-white' : 'fill-default'
                 )}
               />

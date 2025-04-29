@@ -2,7 +2,7 @@
 
 import Arrow from '@/components/fin/metricSlider/carboneTotalChart/Arrow'
 import Trans from '@/components/translation/trans/TransClient'
-import { carboneMetric } from '@/constants/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import type { PublicPollSimulation } from '@/types/organisations'
 import isMobile from 'is-mobile'
@@ -31,7 +31,7 @@ export default function MainFootprintChart({ simulations, maxValue }: Props) {
             }}>
             <div className="mt-1 whitespace-nowrap">
               <p className="mb-0">
-                <strong className="font-black text-secondary-700">
+                <strong className="text-secondary-700 font-black">
                   2 tonnes,
                 </strong>
               </p>

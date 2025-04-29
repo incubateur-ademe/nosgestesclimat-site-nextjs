@@ -1652,6 +1652,12 @@ entries:
   Ouvrir: Open
   Nombre de jours, semaines ou mois à afficher: Number of days, weeks or months to display
   simulations terminées ce mois-ci (en cours): simulations completed this month (in progress)
+  Plusieurs milliers d’organisations: Several thousand organisations
+  Vous relayez Nos Gestes Climat et souhaitez apparaître dans notre galerie ?: Do you relay Nos Gestes Climat and want to appear in our gallery?
+  Aucun de ces acteurs ne finance Nos Gestes Climat, un service public, gratuit et indépendant de l'ADEME.: None of these players finances Nos Gestes Climat, a free and independent public service provided by ADEME.
+  Envoyez-nous votre logo via notre page de contact: Send us your logo via our contact page
+  partagent Nos Gestes Climat via leur site ou des campagnes (mails, réseaux sociaux, affichage), nous permettant de sensibiliser près de 2 000 personnes chaque jour. Un grand merci à eux !: share Nos Gestes Climat via their website or campaigns (email, social networks, posters), enabling us to raise awareness among almost 2,000 people every day. Many thanks to them!
+  Simulation mise à jour: Updated simulation
   Calculateur d’empreinte carbone et eau - Nos Gestes Climat: Carbon and water footprint calculator - Nos Gestes Climat
   Demander une démo de notre calculateur pour les organisations - Nos Gestes Climat: Request a demo of our calculator for organisations - Nos Gestes Climat
   Créer une campagne pour mon organisation - Nos Gestes Climat: Create a campaign for my organisation - Nos Gestes Climat
@@ -1691,9 +1697,48 @@ entries:
   Menu: Menu
   Contenu: Content
   Un petit doute ? L'info sera sûrement dans votre contrat d'assurance logement.: A little doubt? You'll find the information in your home insurance policy.
+  'Pour plus de précision:': 'For more information:'
+  Je détaille ma garde-robe: Detailing my wardrobe
+  En moyenne, les Français achètent chaque année,: On average, the French buy something every year,
+  9,5 kg de vêtements... mais n'en trient que 3,4 kg !: 9.5 kg of clothes... but only sort 3.4 kg!
+  Rejoignez-les: Join them
+  Plusieurs milliers d’organisations nous font confiance pour sensibiliser efficacement: Thousands of organisations have put their trust in us to help them raise awareness effectively
+  "N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l'ADEME.": 'N.B.: none of the players listed below finances Nos Gestes Climat, which is and will remain a public, independent and free service of ADEME.'
+  "N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l'ADEME..lock": "N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l'ADEME."
+  N.B.: N.B.
+  N.B..lock: N.B.
+  ": aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l'ADEME.": none of the players listed below finances Nos Gestes Climat, which is and will remain a public service, independent and free of charge from ADEME.
+  Messenger: Messenger
+  Facebook: Facebook
+  Linkedin: Linkedin
+  Whatsapp: Whatsapp
+  Lien copié !: Link copied!
+  Envoyer par e-mail: Send by e-mail
+  Partager le simulateur: Share the simulator
+  Voici mes empreintes carbone et eau ; tu connais les tiennes ?: Here are my carbon and water footprints; do you know what yours are?
+  Envoyez le simulateur à vos proches et faites votre 1ère bonne action !: Send the simulator to your friends and family and do your 1st good deed!
+  'Oups, la copie du lien a échoué, le voici :': 'Oops, copying the link failed, here it is:'
   Nous chargeons les données de l'organisation partenaire.: We load the data from the partner organisation.
   Une erreur s'est produite au moment de récupérer les informations liées à l'organisation partenaire. Veuillez réessayer plus tard ou contacter notre support.: An error has occurred while retrieving the information related to the partner organisation. Please try again later or contact our support team.
   Oups ! Votre campagne a atteint un nombre de participations trop important pour permettre d'afficher notre graphique correctement. Nous travaillons à résoudre le problème au plus vite.: Oops! Your campaign has received too many entries for our graph to be displayed correctly. We're working on resolving the problem as quickly as possible.
   Oups ! Une erreur s'est produite, veuillez réessayer dans quelques instants.: Oops! An error has occurred. Please try again in a few moments.
   Les graphiques sont cachés pour les campagnes avec plus de 500 participations pour des raisons de performance. Nous travaillons à l'ajout de cette fonctionnalité pour les plus grosses campagnes: The graphics are hidden for campaigns with more than 500 entries for performance reasons. We are working on adding this feature for larger campaigns
   Les graphiques sont cachés pour les campagnes avec plus de 500 participations pour des raisons de performance. Nous travaillons à l'ajout de cette fonctionnalité pour les plus grosses campagnes.: The graphics are hidden for campaigns with more than 500 entries for performance reasons. We are working on adding this functionality for larger campaigns.
+  Participation mise à jour: Updated participation
+  Recommencer mon inscription: Repeat my registration
+  Votre adresse electronique: Your e-mail address
+  Mettre à jour la simulation: Update the simulation
+  Revenir à la page d'accueil: Return to home page
+  avec une empreinte carbone de: with a carbon footprint of
+  L'invitation a expiré: The invitation has expired
+  Mettre à jour votre participation au groupe: Update your group membership
+  Confirmation de votre inscription à nos e-mails: Confirmation of your subscription to our e-mails
+  Oups, une erreur est survenue: Oops, an error has occurred
+  Oups, une erreur s'est produite: Oops, there's been an error
+  Une erreur est survenue, merci de recommencer votre inscription.: An error has occurred. Please try your registration again.
+  Votre participation a bien été mise à jour avec vos résultats de test les plus récents.: Your participation has been updated with your most recent test results.
+  Vous pouvez mettre à jour le groupe avec votre simulation la plus récente réalisée en date du: You can update the group with your most recent simulation carried out on
+  Confirmation d'inscription à nos infolettres - Nos Gestes Climat: Confirmation of subscription to our newsletters - Nos Gestes Climat
+  Vous devez recommencer votre inscription et valider votre e-mail.: You will need to start your registration again and validate your e-mail address.
+  Votre e-mail a été vérifié, vous êtes bien inscrit à notre infolettre.: Your e-mail address has been checked and you have subscribed to our newsletter.
+  Une erreur s'est produite au moment de mettre à jour votre participation. Veuillez réessayer ultérieurement. Si le problème persiste, veuillez nous contacter via notre page de contact.: An error has occurred while updating your entry. Please try again later. If the problem persists, please contact us via our contact page.

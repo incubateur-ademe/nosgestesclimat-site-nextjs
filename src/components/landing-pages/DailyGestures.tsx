@@ -31,14 +31,14 @@ export default function DailyGestures({
   }
 }) {
   return (
-    <div className="mx-auto mb-20 mt-16 w-full max-w-full px-4 text-center md:my-20 md:max-w-[850px] md:px-0">
+    <div className="mx-auto mt-16 mb-20 w-full max-w-full px-4 text-center md:my-20 md:max-w-[850px] md:px-0">
       <h2 className="text-xl md:text-3xl">{title}</h2>
 
       <Separator className="mx-auto my-4" />
 
       <section className="text-sm md:text-lg">{description}</section>
 
-      <div className="mb-24 mt-10 flex w-full flex-col justify-between gap-10 md:mb-0 md:flex-row">
+      <div className="mt-10 mb-24 flex w-full flex-col justify-between gap-10 md:mb-0 md:flex-row">
         <GestureSelector gestures={gestures} />
       </div>
 

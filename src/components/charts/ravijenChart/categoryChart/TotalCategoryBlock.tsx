@@ -35,7 +35,7 @@ export default function TotalCategoryBlock({
         className="h-6 md:w-6"
       />
 
-      <p className="mb-2 mt-1 text-[0.65rem]">{title}</p>
+      <p className="mt-1 mb-2 text-[0.65rem]">{title}</p>
 
       <p className="mb-0 text-sm">
         <strong>

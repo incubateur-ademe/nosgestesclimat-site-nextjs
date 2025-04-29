@@ -3,7 +3,7 @@
 import Trans from '@/components/translation/trans/TransClient'
 import { GROUP_EMOJIS } from '@/constants/group'
 import { amisCreationEtapeVosInformationsSuivant } from '@/constants/tracking/pages/amisCreation'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import GridRadioInputs from '@/design-system/inputs/GridRadioInputs'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useCreateGroup } from '@/hooks/groups/useCreateGroup'

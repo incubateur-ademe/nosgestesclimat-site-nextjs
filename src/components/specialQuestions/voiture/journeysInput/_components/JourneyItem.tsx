@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Journey } from '@/types/journey'
 import type { Dispatch, SetStateAction } from 'react'
@@ -62,7 +62,7 @@ export default function JourneyItem({ journey, odd, setJourneys }: Props) {
         {journey.passengers} <Trans>passager(s)</Trans>
       </td>
 
-      <td className="absolute -right-1 -top-2 block py-2 pl-2 text-right text-xs sm:static sm:table-cell">
+      <td className="absolute -top-2 -right-1 block py-2 pl-2 text-right text-xs sm:static sm:table-cell">
         <Button
           color="text"
           size="sm"

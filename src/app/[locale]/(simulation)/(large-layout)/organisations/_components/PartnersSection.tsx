@@ -5,7 +5,7 @@ import LinkAmbassadeurs from './partnersSection/LinkAmbassadeurs'
 export default function PartnersSection({ locale }: { locale: string }) {
   return (
     <>
-      <section className="mb-8 mt-28 flex w-full flex-col items-center gap-16 rounded-xl bg-gray-100 px-8 py-16">
+      <section className="mt-28 mb-8 flex w-full flex-col items-center gap-16 rounded-xl bg-gray-100 px-8 py-16">
         <h3 className="text-center">
           <TransServer locale={locale}>Rejoignez nos partenaires</TransServer>
         </h3>

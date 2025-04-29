@@ -1,4 +1,4 @@
-import { orderedCategories } from '@/constants/orderedCategories'
+import { orderedCategories } from '@/constants/model/orderedCategories'
 import { getComputedResults } from '@/publicodes-state/helpers/getComputedResults'
 import { getSubcategories } from '@/publicodes-state/helpers/getSubcategories'
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
@@ -8,7 +8,7 @@ import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr
 import personas from '@incubateur-ademe/nosgestesclimat/public/personas-fr.json'
 import Engine from 'publicodes'
 
-const engine = new Engine<DottedName>(rules as NGCRules, {
+const engine = new Engine<DottedName>(rules as Partial<NGCRules>, {
   logger: { warn: () => {}, error: () => {}, log: () => {} },
   strict: {
     situation: false,

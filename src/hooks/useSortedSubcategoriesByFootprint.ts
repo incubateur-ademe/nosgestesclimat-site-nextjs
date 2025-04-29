@@ -1,4 +1,4 @@
-import { useEngine, useSimulation } from '@/publicodes-state'
+import { useEngine } from '@/publicodes-state'
 import type { Metric } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
@@ -11,8 +11,7 @@ export function useSortedSubcategoriesByFootprint({
   metric,
   withServiceSocietaux,
 }: Props = {}) {
-  const { subcategories } = useSimulation()
-  const { getNumericValue } = useEngine({ metric })
+  const { getNumericValue, subcategories } = useEngine({ metric })
 
   const everySubcategories = useMemo(
     () =>

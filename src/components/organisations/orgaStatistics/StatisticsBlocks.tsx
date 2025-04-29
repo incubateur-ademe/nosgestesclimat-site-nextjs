@@ -2,7 +2,7 @@
 
 import VerticalBarChart from '@/components/charts/VerticalBarChart'
 import Trans from '@/components/translation/trans/TransClient'
-import { carboneMetric, eauMetric } from '@/constants/metric'
+import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getSimulationsAggregatedResult } from '@/helpers/organisations/getSimulationsAggregatedResult'
 import { useLocale } from '@/hooks/useLocale'

@@ -1,12 +1,18 @@
+import type { PartnerType } from '@/adapters/cmsClient'
+import CategoryFilters from '@/components/filtering/CategoryFilters'
 import Trans from '@/components/translation/trans/TransServer'
+import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
+import Emoji from '@/design-system/utils/Emoji'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
-import ambassadeursYaml from '@/locales/ambassadeurs/fr/ambassadeurs.yaml'
+import { fetchPartners } from '@/services/cms/fetchPartners'
 import type { DefaultPageProps } from '@/types'
+import { encodeDottedNameAsURI } from '@/utils/format/encodeDottedNameAsURI'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
 
 export const generateMetadata = getCommonMetadata({
@@ -19,104 +25,144 @@ export const generateMetadata = getCommonMetadata({
   },
 })
 
-const ambassadeurs = ambassadeursYaml as any
-const categories = Object.keys(ambassadeurs)
+const getPartnersByCategory = (partners: PartnerType[]) => {
+  return partners.reduce(
+    (acc, partner) => {
+      if (!Object.keys(acc).includes(partner.category.category)) {
+        acc[partner.category.category] = []
+      }
 
-export default async function NosRelais({ params }: DefaultPageProps) {
+      acc[partner.category.category].push(partner)
+
+      return acc
+    },
+    {} as { [key: string]: PartnerType[] }
+  )
+}
+
+export default async function OurPartners({
+  params,
+  searchParams,
+}: DefaultPageProps & {
+  searchParams: Promise<{ [FILTER_SEARCH_PARAM_KEY]?: string }>
+}) {
   const { locale } = await params
+  const { [FILTER_SEARCH_PARAM_KEY]: categoryFilter } = await searchParams
+
   const { t } = await getServerTranslation({ locale })
+
+  const partners = await fetchPartners()
+
+  const partnersByCategories = getPartnersByCategory(partners)
 
   return (
     <div>
       <Title>
         <Trans locale={locale}>Ils relaient </Trans>
+
         <span className="text-primary-700">
           <Trans locale={locale}>Nos Gestes Climat</Trans>
         </span>
       </Title>
 
-      <div className="flex flex-wrap items-center md:flex-nowrap md:gap-16">
-        <div>
+      <div className="mb-8 flex flex-col items-center md:flex-row md:flex-nowrap md:gap-16">
+        <div className="flex-1">
           <p>
+            <strong className="text-primary-700">
+              <Trans locale={locale}>Plusieurs milliers d’organisations</Trans>
+            </strong>{' '}
             <Trans locale={locale}>
-              Plus de 40 acteurs relaient ou ont relayé Nos Gestes Climat à
-              travers 
-              <a
-                href="https://accelerateur-transition-ecologique-ademe.notion.site/Int-grer-Nos-Gestes-Climat-en-iframe-abdeb175baf84143922006964d80348c"
-                target="_blank"
-                rel="noopener noreferrer">
-                l’intégration du calculateur
-              </a>{' '}
-              sur leur site internet ou sa diffusion via{' '}
-              <InlineLink href="/organisations">des campagnes</InlineLink>{' '}
-              (mail, réseaux sociaux et / ou affichage). C’est majoritairement
-              grâce à eux que nous sensibilisons près de 2 000 nouvelles
-              personnes en moyenne chaque jour et nous les en remercions.
+              partagent Nos Gestes Climat via leur site ou des campagnes (mails,
+              réseaux sociaux, affichage), nous permettant de sensibiliser près
+              de 2 000 personnes chaque jour. Un grand merci à eux !
             </Trans>
           </p>
 
           <p>
             <Trans locale={locale}>
-              Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans
-              notre galerie de relais ? Merci de nous envoyer un message avec
-              votre logo via{' '}
-              <InlineLink href="/contact">notre page de contact</InlineLink>.
-            </Trans>
+              Vous relayez Nos Gestes Climat et souhaitez apparaître dans notre
+              galerie ?
+            </Trans>{' '}
+            <InlineLink className="inline" href="/contact">
+              <Trans locale={locale}>
+                Envoyez-nous votre logo via notre page de contact
+              </Trans>
+            </InlineLink>
           </p>
 
           <p className="mb-8 italic">
+            <Emoji>ℹ️</Emoji> <Trans locale={locale}>N.B.</Trans>{' '}
             <Trans locale={locale}>
-              N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat,
-              qui est et restera un service public, indépendant et gratuit de
-              l’ADEME.
+              : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui
+              est et restera un service public, indépendant et gratuit de
+              l'ADEME.
             </Trans>
           </p>
         </div>
+
         <Image
-          width="300"
+          width="200"
           height="400"
-          className="ml-auto w-48 self-start md:-mt-16 md:w-auto"
+          className="ml-auto w-64 self-start md:-mt-16"
           alt={t(
             'Un grand-père et sa petite-fille au cinéma, mangeant du pop-corn.'
           )}
-          src="/images/ambassadeurs/illu-cinema.svg"
+          src="/images/illustrations/at-the-cinema.svg"
         />
       </div>
 
-      {categories.map((category: any) => (
-        <div key={category} className="mb-16">
-          <h2>{category}</h2>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {ambassadeurs[category].map((ambassadeur: any) => (
-              <Card
-                key={ambassadeur.title}
-                href={ambassadeur.link}
-                tag="a"
-                className="border-none bg-primary-50 no-underline"
-                target="_blank">
-                <Image
-                  src={'/images/ambassadeurs/' + ambassadeur.image}
-                  width="100"
-                  height="100"
-                  className="mx-auto mb-4 h-36 w-2/3 object-contain"
-                  alt={ambassadeur.title}
-                />
-                <p className="mb-4 font-bold">{ambassadeur.title}</p>
-                {ambassadeur.link ? (
-                  <p className="my-0 underline">
-                    {
-                      ambassadeur.link
-                        .replace('https://', '')
-                        .replace('www.', '')
-                        .split('/')[0]
-                    }
-                  </p>
-                ) : null}
-              </Card>
-            ))}
+      <CategoryFilters
+        categories={Object.keys(partnersByCategories).map(
+          (category: string) => ({
+            title: category,
+            dottedName: category as DottedName,
+            count: partnersByCategories[category].length,
+          })
+        )}
+        className="mb-6"
+      />
+
+      {Object.keys(partnersByCategories)
+        .filter((category: string) =>
+          typeof categoryFilter !== 'undefined'
+            ? categoryFilter === encodeDottedNameAsURI(category)
+            : true
+        )
+        .map((category: string) => (
+          <div key={category} className="mb-16">
+            <h2>{category}</h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              {partnersByCategories[category].map((partner) => (
+                <Card
+                  key={partner.name}
+                  href={partner.link}
+                  tag="a"
+                  className="bg-primary-50 flex flex-col justify-between border-none no-underline"
+                  target="_blank">
+                  <Image
+                    src={partner.imageSrc}
+                    width="100"
+                    height="100"
+                    className="mx-auto mb-4 h-36 w-2/3 object-contain"
+                    alt={partner.name}
+                  />
+                  <section>
+                    <p className="mb-1 font-bold">{partner.name}</p>
+                    <p className="my-0 text-sm underline">
+                      {' '}
+                      {
+                        partner.link
+                          .replace('https://', '')
+                          .replace('www.', '')
+                          .split('/')[0]
+                      }
+                    </p>
+                  </section>
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
     </div>
   )
 }

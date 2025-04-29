@@ -4,7 +4,7 @@ import SettingsIcon from '@/components/icons/SettingsIcon'
 import OrganisationFetchError from '@/components/organisations/OrganisationFetchError'
 import Trans from '@/components/translation/trans/TransClient'
 import { organisationsDashboardClickParameters } from '@/constants/tracking/pages/organisationsDashboard'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { unformatAdministratorName } from '@/helpers/organisations/unformatAdministratorName'
 import { useFetchPolls } from '@/hooks/organisations/polls/useFetchPolls'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
@@ -68,7 +68,7 @@ export default function OrganisationPage() {
           color="text"
           data-cypress-id="organisation-page-see-parameters-button"
           className="flex items-center self-start">
-          <SettingsIcon className="mr-2 fill-primary-700" />
+          <SettingsIcon className="fill-primary-700 mr-2" />
 
           <Trans>Voir les paramètres</Trans>
         </ButtonLink>

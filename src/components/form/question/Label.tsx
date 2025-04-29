@@ -10,7 +10,7 @@ import {
   questionCloseInfo,
   questionOpenInfo,
 } from '@/constants/tracking/question'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { QuestionSize } from '@/types/values'
@@ -28,6 +28,7 @@ type Props = {
   size?: QuestionSize
   className?: string
   titleClassName?: string
+  headingLevel?: number
   id?: string
   htmlFor?: string
 }
@@ -41,6 +42,7 @@ export default function Label({
   size = 'md',
   className,
   titleClassName,
+  headingLevel = 2,
   id,
   htmlFor,
 }: Props) {
@@ -67,6 +69,7 @@ export default function Label({
             'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
             titleClassName
           )}
+          aria-level={headingLevel}
           tabIndex={0}
           id={QUESTION_DESCRIPTION_BUTTON_ID}>
           <Markdown>{label}</Markdown>

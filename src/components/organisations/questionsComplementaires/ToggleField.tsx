@@ -3,7 +3,7 @@
 import PencilIcon from '@/components/icons/PencilIcon'
 import TrashIcon from '@/components/icons/TrashIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import ConfirmationModal from '@/design-system/modals/ConfirmationModal'
 import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
 import type { KeyboardEvent } from 'react'
@@ -103,7 +103,7 @@ export default function ToggleField({
                   onKeyDown={onKeyDownHelper(handleKeyboardEvent)}
                   onClick={handleMouseEvent}
                   className={twMerge(
-                    "peer h-6 w-11 rounded-full bg-primary-200 after:absolute after:left-[2px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-focus:ring-primary-300",
+                    "peer bg-primary-200 peer-focus:ring-primary-300 h-6 w-11 rounded-full after:absolute after:top-0.5 after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-['']",
                     `${isEnabled ? 'bg-primary-700 after:translate-x-full after:border-white' : ''}`
                   )}
                 />

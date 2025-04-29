@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 export default function ActionsIcon({ className }: { className?: string }) {
   return (
     <svg
-      className={twMerge('inline-block fill-default', className)}
+      className={twMerge('fill-default inline-block', className)}
       width="17"
       height="17"
       viewBox="0 0 24 24"

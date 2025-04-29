@@ -1,4 +1,4 @@
-import { countries } from '@/constants/countries'
+import { countries } from '@/constants/localisation/countries'
 import { useUser } from '@/publicodes-state'
 import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'

@@ -1,11 +1,11 @@
 'use client'
 
-import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import LockIcon from '@/components/icons/LockIcon'
 import SendIcon from '@/components/icons/SendIcon'
+import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import { organisationsConnexionClickCode } from '@/constants/tracking/pages/organisationsConnexion'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
@@ -73,7 +73,7 @@ export default function ResendButton({
         onClick={handleResendVerificationCode}>
         {isRetryButtonDisabled && timeLeft > 0 && (
           <span className="mr-2 flex items-center">
-            <LockIcon className="mr-2 h-4 w-4 fill-primary-700" />
+            <LockIcon className="fill-primary-700 mr-2 h-4 w-4" />
             <Trans>Renvoyer le code</Trans>
           </span>
         )}
@@ -87,7 +87,7 @@ export default function ResendButton({
 
         {!shouldDisplayConfirmation && !isRetryButtonDisabled && (
           <span className="flex items-center underline">
-            <SendIcon className="mr-2 h-4 w-4 fill-primary-700" />
+            <SendIcon className="fill-primary-700 mr-2 h-4 w-4" />
             <Trans>Renvoyer le code</Trans>
           </span>
         )}

@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { POSTAL_CODE_PAGE } from '@/constants/infosPages'
+import { POSTAL_CODE_PAGE } from '@/constants/organisations/infosPages'
 import PostalCodeInput from '@/design-system/inputs/PostalCodeInput'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
@@ -36,7 +36,7 @@ export default function PostalCode() {
         className="text-lg md:text-2xl"
         title={<Trans>Votre code postal</Trans>}
         subtitle={
-          <span className="font-bold italic text-secondary-700">
+          <span className="text-secondary-700 font-bold italic">
             <Trans>Facultatif</Trans>
           </span>
         }

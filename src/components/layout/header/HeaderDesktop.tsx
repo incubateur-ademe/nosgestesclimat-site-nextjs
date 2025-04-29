@@ -14,7 +14,7 @@ import {
   headerClickProfil,
   headerClickTest,
 } from '@/constants/tracking/layout'
-import { HIDE_CTA_PATHS } from '@/constants/urls'
+import { HIDE_CTA_PATHS } from '@/constants/urls/main'
 import { linkToClassement } from '@/helpers/navigation/classementPages'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'

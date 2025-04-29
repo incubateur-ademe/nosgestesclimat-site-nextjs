@@ -3,7 +3,7 @@
 import ChevronRight from '@/components/icons/ChevronRight'
 import Trans from '@/components/translation/trans/TransClient'
 import { organisationsDashboardClickFunFacts } from '@/constants/tracking/pages/organisationsDashboard'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import type { Entries } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName, FunFacts } from '@incubateur-ademe/nosgestesclimat'

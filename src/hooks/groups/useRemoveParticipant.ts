@@ -1,6 +1,6 @@
 'use client'
 
-import { GROUP_URL } from '@/constants/urls'
+import { GROUP_URL } from '@/constants/urls/main'
 import { useUser } from '@/publicodes-state'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'

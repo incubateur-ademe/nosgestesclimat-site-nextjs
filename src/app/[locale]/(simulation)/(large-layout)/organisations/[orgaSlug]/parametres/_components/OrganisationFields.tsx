@@ -47,7 +47,7 @@ export default function OrganisationFields({
         label={
           <p className="mb-0 flex w-full justify-between">
             <Trans>Nombre de collaborateurs</Trans>{' '}
-            <span className="font-bold italic text-secondary-700">
+            <span className="text-secondary-700 font-bold italic">
               {' '}
               <Trans>facultatif</Trans>
             </span>

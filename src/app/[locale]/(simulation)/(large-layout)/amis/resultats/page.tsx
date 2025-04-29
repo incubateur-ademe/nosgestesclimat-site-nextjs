@@ -6,9 +6,9 @@ import GoBackLink from '@/design-system/inputs/GoBackLink'
 import { useFetchGroup } from '@/hooks/groups/useFetchGroup'
 import { useGroupIdInQueryParams } from '@/hooks/groups/useGroupIdInQueryParams'
 import { useGroupPagesGuard } from '@/hooks/navigation/useGroupPagesGuard'
-import { ToastContainer } from 'react-toastify'
 import EditableGroupTitle from './_components/EditableGroupTitle'
 import GroupResults from './_components/GroupResults'
+import UpdateSimulationUsed from './_components/UpdateSimulationUsed'
 
 export default function GroupResultsPage() {
   // Guarding the route and redirecting if necessary
@@ -39,9 +39,9 @@ export default function GroupResultsPage() {
 
       <EditableGroupTitle group={group} />
 
-      <GroupResults group={group} refetchGroup={refetchGroup} />
+      <UpdateSimulationUsed group={group} refetchGroup={refetchGroup} />
 
-      <ToastContainer />
+      <GroupResults group={group} refetchGroup={refetchGroup} />
     </div>
   )
 }

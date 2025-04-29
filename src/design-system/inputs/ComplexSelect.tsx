@@ -4,7 +4,7 @@ import type {
   GroupBase,
   MultiValue,
   SingleValue,
-} from 'react-select';
+} from 'react-select'
 import Select from 'react-select'
 import AsyncSelect from 'react-select/async'
 
