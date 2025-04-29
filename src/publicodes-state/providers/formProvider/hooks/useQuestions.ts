@@ -3,6 +3,12 @@ import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
 import getIsMissing from '../../../helpers/getIsMissing'
 
+import {
+  MUST_ASK_QUESTIONS,
+  MUST_NOT_ASK_QUESTIONS,
+  NON_PRIORITY_QUESTIONS,
+  PRIORITY_QUESTIONS,
+} from '@/publicodes-state/constants/questions'
 import getSortedQuestionsList from '@/publicodes-state/helpers/getSortedQuestionsList'
 import type { Entries, MissingVariables, Situation } from '../../../types'
 
@@ -30,21 +36,6 @@ export default function useQuestions({
   everyQuestions,
   everyMosaicChildrenWithParent,
 }: Props) {
-  // We use the DottedName type from nosgestesclimat to make sure the build will break when using rules that are not in the model.
-  const priorityQuestions: DottedName[] = [
-    'alimentation . plats',
-    'logement . chauffage . bois . type',
-  ]
-
-  const nonPriorityQuestions: DottedName[] = [
-    'logement . électricité . réseau . consommation',
-  ]
-
-  const mustAskQuestions: DottedName[] = [
-    // With Publicodes >1.8.0, 'services sociétaux . question rhétorique' is not in the missing variable as it's a question "une possibilité" with only on possible answer... So logically,the question is already answered.
-    'services sociétaux . question rhétorique',
-  ]
-
   const missingVariables = useMemo(
     () => {
       const tempMissingVariables = Object.fromEntries(
@@ -76,35 +67,28 @@ export default function useQuestions({
       })
 
       // We artificially set the missing variables of the whiteList to a high value
-      priorityQuestions.forEach((dottedName) => {
+      PRIORITY_QUESTIONS.forEach((dottedName) => {
         if (dottedName in tempMissingVariables) {
           tempMissingVariables[dottedName] += 10000
         }
       })
 
       // We artificially set the missing variables of the blackList to a negative value
-      nonPriorityQuestions.forEach((dottedName) => {
+      NON_PRIORITY_QUESTIONS.forEach((dottedName) => {
         if (dottedName in tempMissingVariables) {
           tempMissingVariables[dottedName] -= 1000
         }
       })
 
       // We artificially add some questions in the missing variables.
-      mustAskQuestions.forEach((dottedName) => {
+      MUST_ASK_QUESTIONS.forEach((dottedName) => {
         tempMissingVariables[dottedName] = 1
       })
 
       return tempMissingVariables
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [
-      safeEvaluate,
-      root,
-      everyQuestions,
-      situation,
-      priorityQuestions,
-      nonPriorityQuestions,
-    ]
+    [safeEvaluate, root, everyQuestions, situation]
   )
 
   const remainingQuestions = useMemo(() => {
@@ -125,6 +109,7 @@ export default function useQuestions({
           missingVariable.includes(question)
         )
       )
+      .filter((question) => !MUST_NOT_ASK_QUESTIONS.has(question))
 
     // then we sort them by category, subcategory and missing variables
     return getSortedQuestionsList({
@@ -155,8 +140,6 @@ export default function useQuestions({
   )
 
   const tempRelevantQuestions = useMemo(() => {
-    const mustNotAskQuestions = ['divers . textile . empreinte précise']
-
     return [
       /**
        * We add every answered questions to display and every not answered
@@ -173,7 +156,7 @@ export default function useQuestions({
             everyMosaicChildrenWithParent[dottedName] || [],
         })
       ),
-    ].filter((question) => !mustNotAskQuestions.includes(question))
+    ].filter((question) => !MUST_NOT_ASK_QUESTIONS.has(question))
   }, [
     relevantAnsweredQuestions,
     remainingQuestions,
