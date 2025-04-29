@@ -53,7 +53,7 @@ describe('Group userflow', () => {
 
         skipRiddle()
 
-        cy.wait(4000)
+        cy.wait(8000)
 
         cy.get('[data-cypress-id="group-name"]')
 
@@ -92,6 +92,9 @@ describe('Group userflow', () => {
         cy.get('input[data-cypress-id="group-edit-input-name"]').clear()
         cy.get('input[data-cypress-id="group-edit-input-name"]').type(newName)
         cy.get('[data-cypress-id="button-inline-input"]').click()
+
+        cy.wait(2000)
+
         cy.get('[data-cypress-id="group-name"]').contains(newName)
 
         // Save the owner user id in order to be able to delete the group later on
@@ -123,7 +126,7 @@ describe('Group userflow', () => {
 
         skipRiddle()
 
-        cy.wait(4000)
+        cy.wait(8000)
 
         cy.get('[data-cypress-id="group-name"]')
 
