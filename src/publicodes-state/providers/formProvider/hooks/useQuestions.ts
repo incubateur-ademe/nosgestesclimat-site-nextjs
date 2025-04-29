@@ -154,8 +154,10 @@ export default function useQuestions({
     [foldedSteps, everyQuestions]
   )
 
-  const tempRelevantQuestions = useMemo(
-    () => [
+  const tempRelevantQuestions = useMemo(() => {
+    const mustNotAskQuestions = ['divers . textile . empreinte précise']
+
+    return [
       /**
        * We add every answered questions to display and every not answered
        * questions to display to get every relevant questions
@@ -171,14 +173,13 @@ export default function useQuestions({
             everyMosaicChildrenWithParent[dottedName] || [],
         })
       ),
-    ],
-    [
-      relevantAnsweredQuestions,
-      remainingQuestions,
-      situation,
-      everyMosaicChildrenWithParent,
-    ]
-  )
+    ].filter((question) => !mustNotAskQuestions.includes(question))
+  }, [
+    relevantAnsweredQuestions,
+    remainingQuestions,
+    situation,
+    everyMosaicChildrenWithParent,
+  ])
 
   /**
    * There is a small delay between adding a question to the answered questions
