@@ -1,9 +1,14 @@
 import type { ImageType, PopulatedHomePageType } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
 import i18nConfig from '@/i18nConfig'
+import { getCMSLocale } from '@/utils/cms/getCMSLocale'
 import { captureException } from '@sentry/nextjs'
 
-export async function fetchHomepageMetadata(): Promise<
+export async function fetchHomepageMetadata({
+  locale,
+}: {
+  locale: string
+}): Promise<
   | {
       metaTitle: string
       metaDescription?: string | null
@@ -13,7 +18,7 @@ export async function fetchHomepageMetadata(): Promise<
 > {
   try {
     const searchParams = new URLSearchParams({
-      locale: i18nConfig.defaultLocale,
+      locale: locale ? getCMSLocale(locale) : i18nConfig.defaultLocale,
       'populate[0]': 'image',
       'populate[1]': 'pageMetadata',
     })
