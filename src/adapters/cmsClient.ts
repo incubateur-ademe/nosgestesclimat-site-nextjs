@@ -12,7 +12,8 @@ export const cmsClient = async <T>(
     Authorization: `Bearer ${process.env.CMS_TOKEN}`,
   }
 
-  fullUrl.searchParams.set('status', isProduction ? 'published' : 'draft')
+  // Passing an empty string returns both draft and published
+  fullUrl.searchParams.set('status', isProduction ? 'published' : '')
 
   try {
     const response = await fetch(fullUrl, {
