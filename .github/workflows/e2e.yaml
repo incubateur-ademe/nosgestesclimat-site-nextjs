@@ -7,7 +7,7 @@ on:
   pull_request:
     branches:
       - 'main'
-      - 'NGC-1836'
+      - 'NGC-1836-1'
 
 jobs:
   sleep:
