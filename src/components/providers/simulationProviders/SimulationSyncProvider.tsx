@@ -4,7 +4,6 @@ import { defaultMetric } from '@/constants/model/metric'
 import { compareTwoSimulations } from '@/helpers/simulation/compareTwoSimulations'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useCurrentSimulation, useEngine, useUser } from '@/publicodes-state'
-import { captureException } from '@sentry/nextjs'
 import { createContext, useCallback, useEffect, useMemo, useRef } from 'react'
 
 // The max rate at which we save the simulation (in ms)
@@ -55,12 +54,6 @@ export default function SimulationSyncProvider({
     if (!isInitialized) return false
 
     if (computedResults[defaultMetric].bilan === 0) {
-      // Send an error to Sentry
-      captureException(
-        new Error(
-          'SimulationSyncProvider: computedResults[defaultMetric].bilan === 0'
-        )
-      )
       return false
     }
 
