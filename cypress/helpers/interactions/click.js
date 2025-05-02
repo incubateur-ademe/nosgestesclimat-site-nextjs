@@ -1,6 +1,4 @@
-export function click(elementId, options = {}) {
-  cy.get(`[data-cypress-id="${elementId}"]`)
-    .first()
-    .should('be.visible')
-    .click()
+export function click(elementId) {
+  cy.get(`[data-cypress-id="${elementId}"]`).should('be.visible')
+  cy.get(`[data-cypress-id="${elementId}"]`).first().click()
 }

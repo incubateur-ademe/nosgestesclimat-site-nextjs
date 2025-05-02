@@ -1,4 +1,6 @@
 import {
+  BACK_BUTTON,
+  CAR_OPTION_20_000_KM,
   SAVE_MODAL_EMAIL_INPUT,
   SAVE_MODAL_SUBMIT_BUTTON,
 } from '../../../constants/elements-ids'
@@ -22,9 +24,9 @@ describe('Loading the simulation from the sid parameter', () => {
         visit('/tutoriel')
 
         clickSkipTutorialButton()
-        click('suggestion-20000')
+        click(CAR_OPTION_20_000_KM)
         clickNextButton()
-        click('back-button')
+        click(BACK_BUTTON)
 
         // Enter the email
         type(SAVE_MODAL_EMAIL_INPUT, 'test@test2002.com')
