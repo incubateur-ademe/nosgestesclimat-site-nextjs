@@ -46,6 +46,7 @@ jobs:
       - name: Setup baseUrl to deploy-preview
         if: ${{ success() && steps.branch-name.outputs.is_default == 'false' }}
         run: |
+          # Sanitize branch name to prevent code injection (only alphanumeric and dash allowed)
           SAFE_BRANCH=$(echo "${{ steps.branch-name.outputs.current_branch }}" | sed 's/[^a-zA-Z0-9-]/-/g')
           echo "CYPRESS_baseUrl=https://nosgestesclimat-git-${SAFE_BRANCH}-ademe.vercel.app" >> "$GITHUB_ENV"
           echo "MODE=preview" >> "$GITHUB_ENV"

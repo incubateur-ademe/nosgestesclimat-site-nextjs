@@ -11,3 +11,5 @@ Sentry.init({
   // Disable sentry for development based on local data
   enabled: process.env.NODE_ENV !== 'development',
 })
+
+export const onRouterTransitionStart = Sentry.captureRouterTransitionStart
