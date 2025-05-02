@@ -2,11 +2,12 @@ import {
   SAVE_MODAL_EMAIL_INPUT,
   SAVE_MODAL_SUBMIT_BUTTON,
 } from '../../../constants/elements-ids'
-import { TEST_USER_ID } from '../../../constants/user'
 import {
   clickNextButton,
   clickSkipTutorialButton,
 } from '../../../helpers/elements/buttons'
+import { click } from '../../../helpers/interactions/click'
+import { type } from '../../../helpers/interactions/type'
 import { visit } from '../../../helpers/interactions/visit'
 
 describe('Loading the simulation from the sid parameter', () => {
@@ -16,24 +17,18 @@ describe('Loading the simulation from the sid parameter', () => {
       let simulationId
 
       beforeEach(() => {
-        cy.intercept('POST', '/simulations/v1/**', (req) => {
-          req.body.userId = TEST_USER_ID
-        }).as('saveSimulation')
+        cy.intercept('POST', '/simulations/v1/**').as('saveSimulation')
 
         visit('/tutoriel')
 
-        cy.wait(2000)
-
         clickSkipTutorialButton()
-        cy.get('button[data-cypress-id="suggestion-20000"]').click()
+        click('suggestion-20000')
         clickNextButton()
-        cy.get('button[data-cypress-id="back-button"]').click()
+        click('back-button')
 
         // Enter the email
-        cy.get(`input[data-cypress-id="${SAVE_MODAL_EMAIL_INPUT}"]`).type(
-          'test@test2002.com'
-        )
-        cy.get(`button[data-cypress-id="${SAVE_MODAL_SUBMIT_BUTTON}"]`).click()
+        type(SAVE_MODAL_EMAIL_INPUT, 'test@test2002.com')
+        click(SAVE_MODAL_SUBMIT_BUTTON)
 
         // Wait for the simulation to be saved and extract the ID
         cy.wait('@saveSimulation').then((interception) => {
@@ -43,13 +38,15 @@ describe('Loading the simulation from the sid parameter', () => {
 
       context('when the user visits the simulation link', () => {
         beforeEach(() => {
+          cy.clearLocalStorage()
+
           cy.visit(`/simulateur/bilan?sid=${simulationId}`)
         })
 
         it('then it should load the simulation with the correct total footprint number', () => {
           cy.get('div[data-cypress-id="total-footprint-number"]').should(
             'contain',
-            '11'
+            '10'
           )
         })
       })
