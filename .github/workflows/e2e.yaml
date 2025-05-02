@@ -1,14 +1,13 @@
 name: Cypress Tests
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - 'main'
-      - 'NGC-1836-1'
   pull_request:
     branches:
       - 'main'
-      - 'NGC-1836-1'
 
 jobs:
   sleep:
@@ -66,7 +65,7 @@ jobs:
           SERVER_URL: ${{ secrets.SERVER_URL }}
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
       - name: Upload Cypress screenshots
-        if: failure() # seulement en cas d’échec
+        if: failure() # seulement en cas d'échec
         uses: actions/upload-artifact@v4
         with:
           name: cypress-screenshots

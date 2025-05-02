@@ -23,10 +23,6 @@ export default defineConfig({
     baseUrl: process.env.CYPRESS_baseUrl ?? 'http://localhost:3000',
     setupNodeEvents(on) {
       on('task', {
-        // log(message) {
-        //   console.log(message)
-        //   return ''
-        // },
         getVerificationCodeFromScalingo: async () => {
           let tunnelProcess = null
           try {
