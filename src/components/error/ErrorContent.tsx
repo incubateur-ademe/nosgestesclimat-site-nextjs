@@ -1,6 +1,7 @@
 'use client'
 
 import Button from '@/design-system/buttons/Button'
+import InlineLink from '@/design-system/inputs/InlineLink'
 import Trans from '../translation/trans/TransClient'
 
 export default function ErrorContent() {
