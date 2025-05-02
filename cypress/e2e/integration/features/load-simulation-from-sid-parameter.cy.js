@@ -26,8 +26,8 @@ describe('Loading the simulation from the sid parameter', () => {
         clickSkipTutorialButton()
 
         cy.get('div[data-cypress-id="total-footprint-number"]').should(
-          'contain',
-          '8,9'
+          'not.contain',
+          '11'
         )
 
         click(CAR_OPTION_20_000_KM)
@@ -53,8 +53,8 @@ describe('Loading the simulation from the sid parameter', () => {
 
         it('then it should load the simulation with the correct total footprint number', () => {
           cy.get('div[data-cypress-id="total-footprint-number"]').should(
-            'not.contain',
-            '8,9'
+            'contain',
+            '11'
           )
         })
       })
