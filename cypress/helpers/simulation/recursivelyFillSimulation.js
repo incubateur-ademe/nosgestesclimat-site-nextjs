@@ -2,6 +2,7 @@
 import { Promise } from 'core-js'
 import { checkIfCategoryOrderIsRespected } from '../categories/checkIfCategoryOrderIsRespected'
 import { clickNextButton } from '../elements/buttons'
+import { click } from '../interactions/click'
 
 const LAST_QUESTION_ID = 'services sociétaux . question rhétorique-ok'
 
@@ -49,7 +50,7 @@ export async function recursivelyFillSimulation(persona = {}) {
           if (type === 'radio') {
             const [dottedNameWithoutValueSuffix, value] = dottedName.split('-')
             if (persona?.situation?.[dottedNameWithoutValueSuffix] === value) {
-              cy.get(`label[data-cypress-id="${dottedName}-label"]`).click()
+              click(`label[data-cypress-id="${dottedName}-label"]`)
             } else if (!dottedName === LAST_QUESTION_ID) {
               skipQuestion()
             }
@@ -63,9 +64,9 @@ export async function recursivelyFillSimulation(persona = {}) {
 
           // Single number input or radio
           if (!mosaicDottedName && persona?.situation?.[dottedName]) {
-            cy.get(`input[data-cypress-id="${dottedName}"]`).type(
-              persona.situation[dottedName]
-            )
+            cy.get(`input[data-cypress-id="${dottedName}"]`)
+              .should('be.visible')
+              .type(persona.situation[dottedName])
           }
 
           const mosaicChildren = Object.keys(persona?.situation ?? {}).filter(
@@ -77,7 +78,9 @@ export async function recursivelyFillSimulation(persona = {}) {
             for (const mosaicItemDottedName of mosaicChildren) {
               cy.get(
                 `input[data-cypress-id="${mosaicItemDottedName}---${mosaicDottedName}"]`
-              ).type(persona.situation[mosaicItemDottedName])
+              )
+                .should('be.visible')
+                .type(persona.situation[mosaicItemDottedName])
             }
           }
 
