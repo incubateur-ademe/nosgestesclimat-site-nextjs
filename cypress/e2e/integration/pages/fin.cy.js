@@ -13,8 +13,6 @@ describe('The End page', () => {
       it('Then it should redirect to the tutorial', () => {
         visit('fin')
 
-        cy.wait(4000)
-
         cy.get('h1[data-cypress-id="tutoriel-title"]').should('be.visible')
       })
     })
@@ -34,19 +32,13 @@ describe('The End page', () => {
 
       recursivelyFillSimulation()
 
-      cy.wait(4000)
-
       skipRiddle()
 
       // checkA11y() // TODO: fix A11Y test breaking only when running on CI
-
-      cy.wait(4000)
     })
 
     describe('When he saves his/her simulation on the end page', () => {
       it('Then it should save the simulation only once', () => {
-        cy.wait(4000)
-
         cy.get(`input[data-cypress-id="${FIN_EMAIL_INPUT}"]`).type(
           'test@test.com'
         )

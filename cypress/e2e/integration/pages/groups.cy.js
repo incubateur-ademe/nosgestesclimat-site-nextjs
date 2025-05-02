@@ -3,10 +3,10 @@ import { clickNextStepGroupCreation } from '../../../helpers/groups/clickNextSte
 import { clickValidateGroupCreation } from '../../../helpers/groups/clickValidateGroupCreation'
 import { fillGroupCreationFirstStep } from '../../../helpers/groups/fillGroupCreationFirstStep'
 import { fillGroupNameEmoji } from '../../../helpers/groups/fillGroupNameEmoji'
+import { click } from '../../../helpers/interactions/click'
+import { type } from '../../../helpers/interactions/type'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 import { skipRiddle } from '../../../helpers/simulation/skipRiddle'
-
-const TIMEOUT = 12000
 
 describe('Group userflow', () => {
   let ownerUserId = ''
@@ -19,9 +19,7 @@ describe('Group userflow', () => {
 
         cy.clearLocalStorage()
 
-        cy.wait(TIMEOUT)
-
-        cy.get('[data-cypress-id="button-create-first-group"]').click()
+        click('button-create-first-group')
 
         cy.get('input[data-cypress-id="group-input-owner-name"]').clear()
 
@@ -30,45 +28,31 @@ describe('Group userflow', () => {
 
         // checkA11y()  // TODO: fix A11Y test breaking only when running on CI
 
-        cy.wait(TIMEOUT)
-
         clickNextStepGroupCreation()
-
-        cy.wait(TIMEOUT)
 
         // Continue and choose group name and emoji
         fillGroupNameEmoji()
 
         // checkA11y()  // TODO: fix A11Y test breaking only when running on CI
 
-        cy.wait(TIMEOUT)
-
         clickValidateGroupCreation()
-
-        cy.wait(TIMEOUT)
         // Fill simulation
         clickSkipTutorialButton()
-
-        cy.wait(TIMEOUT)
 
         recursivelyFillSimulation(null, 'group')
 
         skipRiddle()
-
-        cy.wait(TIMEOUT)
 
         cy.get('[data-cypress-id="group-name"]')
 
         // checkA11y()  // TODO: fix A11Y test breaking only when running on CI
 
         // And that we can delete it
-        cy.get('[data-cypress-id="button-delete-group"]').click()
-        cy.get('[data-cypress-id="button-confirm-delete-group"]').click()
+        click('button-delete-group')
+        click('button-confirm-delete-group')
 
         // Check that we can create a second group
-        cy.wait(TIMEOUT)
-
-        cy.get('[data-cypress-id="button-create-first-group"]').click()
+        click('button-create-first-group')
 
         cy.get('input[data-cypress-id="group-input-owner-name"]').clear()
         cy.get('input[data-cypress-id="group-input-owner-email"]').clear()
@@ -77,25 +61,20 @@ describe('Group userflow', () => {
 
         clickNextStepGroupCreation()
 
-        cy.wait(TIMEOUT)
-
         // Continue and choose group name and emoji
         fillGroupNameEmoji()
 
-        cy.wait(TIMEOUT)
-
-        cy.get('[data-cypress-id="button-validate-create-group"]').click()
+        click('button-validate-create-group')
 
         // And that we can update its name
-        cy.get('[data-cypress-id="group-name-edit-button"]').click()
+        click('group-name-edit-button')
 
         const newName = 'Les amis de Jean-Marc'
 
         cy.get('input[data-cypress-id="group-edit-input-name"]').clear()
-        cy.get('input[data-cypress-id="group-edit-input-name"]').type(newName)
-        cy.get('[data-cypress-id="button-inline-input"]').click()
 
-        cy.wait(TIMEOUT)
+        type('group-edit-input-name', newName)
+        click('button-inline-input')
 
         cy.get('[data-cypress-id="group-name"]').contains(newName)
 
@@ -111,24 +90,18 @@ describe('Group userflow', () => {
         cy.clearLocalStorage()
         cy.reload()
 
-        cy.wait(TIMEOUT)
-
         // checkA11y()  // TODO: fix A11Y test breaking only when running on CI
 
-        cy.get('[data-cypress-id="member-name"]').type('Jean-Claude')
+        type('member-name', 'Jean-Claude')
 
-        cy.wait(TIMEOUT)
-
-        cy.get('[data-cypress-id="button-join-group"]').click()
+        click('button-join-group')
 
         clickSkipTutorialButton()
         recursivelyFillSimulation(null, 'group')
 
-        cy.wait(TIMEOUT)
+        cy.wait(2000)
 
         skipRiddle()
-
-        cy.wait(TIMEOUT)
 
         cy.get('[data-cypress-id="group-name"]')
 

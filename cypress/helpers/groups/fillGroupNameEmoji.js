@@ -1,8 +1,8 @@
 import { click } from '../interactions/click'
+import { type } from '../interactions/type'
 
 export function fillGroupNameEmoji() {
-  cy.get('input[data-cypress-id="group-name"]')
-    .should('be.visible')
-    .type('Jean-Marc groupe')
-  click(`label[data-cypress-id="group-select-emoji-🍋"]`)
+  type('group-name', 'Jean-Marc groupe')
+
+  click('group-select-emoji-🍋')
 }
