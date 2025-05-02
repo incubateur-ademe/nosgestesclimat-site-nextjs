@@ -48,7 +48,7 @@ describe('Loading the simulation from the sid parameter', () => {
         it('then it should load the simulation with the correct total footprint number', () => {
           cy.get('div[data-cypress-id="total-footprint-number"]').should(
             'contain',
-            '10'
+            '11'
           )
         })
       })

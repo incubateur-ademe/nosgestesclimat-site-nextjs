@@ -29,7 +29,7 @@ jobs:
     container:
       image: cypress/browsers:latest
       options: --user 1001
-    name: Testing e2e
+    name: Run E2E tests
     if: github.event.pull_request.draft == false
     steps:
       - name: Checkout repository
@@ -57,7 +57,7 @@ jobs:
           echo "MODE=production" >> "$GITHUB_ENV"
 
       - name: Test - e2e [${{ env.MODE }}]
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v6.9.0
         with:
           build: yarn run e2e:generate
           browser: chrome
