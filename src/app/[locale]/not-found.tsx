@@ -1,4 +1,5 @@
 import Route404 from '@/components/layout/404'
+import Main from '@/design-system/layout/Main'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import i18nConfig from '@/i18nConfig'
