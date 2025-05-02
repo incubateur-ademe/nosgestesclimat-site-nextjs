@@ -1,6 +1,7 @@
 import DidYouKnowMainLanding from '@/app/[locale]/_components/DidYouKnowMainLanding'
 import Trans from '@/components/translation/trans/TransServer'
 import PostThumbnail from '@/design-system/cms/PostThumbnail'
+import { getPostThumbnailClickEvent } from '@/helpers/tracking/blog'
 import type { ArticleItemType } from '../../adapters/cmsClient'
 import Pagination from './articleList/Pagination'
 
@@ -31,7 +32,7 @@ export default function ArticleList({
               imageSrc={article.image?.url ?? ''}
               imageAlt={article.image?.alternativeText ?? ''}
               href={`/blog/${article.category?.slug}/${article.slug}`}
-              trackingEvent={['blog', 'article', article.slug]}
+              trackingEvent={getPostThumbnailClickEvent(article.slug)}
               className="bg-gray-50"
             />
           </li>

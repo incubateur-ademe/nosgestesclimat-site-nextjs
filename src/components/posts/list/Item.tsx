@@ -27,12 +27,9 @@ export default function Item({ item, path, locale }: Props) {
               alt={`Illustration: ${item.data.title}`}
             />
           ) : null}
-          <p
-            className="mt-4 mb-4 text-center text-lg font-bold"
-            dangerouslySetInnerHTML={{
-              __html: item.data.title || item.slug || '',
-            }}
-          />
+          <p className="mt-4 mb-4 text-center text-lg font-bold">
+            {item.data.title || item.slug || ''}
+          </p>
         </div>
         {item.data.date ? (
           <p className="text-center">

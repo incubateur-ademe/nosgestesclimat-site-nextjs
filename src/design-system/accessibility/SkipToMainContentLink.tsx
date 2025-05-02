@@ -18,7 +18,7 @@ export default function SkipToMainContentLink() {
   }
 
   return (
-    <div className="sr-only flex !w-full items-center focus-within:relative focus-within:top-0 focus-within:right-0 focus-within:left-0 focus-within:z-[100000] focus-within:h-auto focus-within:p-2">
+    <div className="skip-to-main-content sr-only flex !w-full items-center focus-within:not-sr-only! focus-within:top-0 focus-within:right-0 focus-within:left-0 focus-within:z-[100000] focus-within:h-auto! focus-within:p-2!">
       <nav className="flex w-full flex-col items-start gap-2 md:flex-row md:items-center">
         <ButtonLink
           color="secondary"
