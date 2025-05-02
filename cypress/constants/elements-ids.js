@@ -48,3 +48,4 @@ export const ORGANISATION_PAGE_SEE_PARAMETERS_BUTTON =
 export const ORGANISATION_ADMINISTRATOR_POSITION_INPUT =
   'organisation-administrator-position-input'
 export const CAR_OPTION_20_000_KM = 'suggestion-20000'
+export const QUESTION_LABEL = 'question-label'

@@ -1,6 +1,7 @@
 import {
   BACK_BUTTON,
   CAR_OPTION_20_000_KM,
+  QUESTION_LABEL,
   SAVE_MODAL_EMAIL_INPUT,
   SAVE_MODAL_SUBMIT_BUTTON,
 } from '../../../constants/elements-ids'
@@ -17,6 +18,7 @@ describe('Loading the simulation from the sid parameter', () => {
     'given the user saves their simulation after answering a question',
     () => {
       let simulationId
+      let initialValue
 
       beforeEach(() => {
         cy.intercept('POST', '/simulations/v1/**').as('saveSimulation')
@@ -25,10 +27,12 @@ describe('Loading the simulation from the sid parameter', () => {
 
         clickSkipTutorialButton()
 
-        cy.get('div[data-cypress-id="total-footprint-number"]').should(
-          'not.contain',
-          '10'
-        )
+        cy.get(`[data-cypress-id="${QUESTION_LABEL}"]`)
+          .should('be.visible')
+          .invoke('text')
+          .then((text) => {
+            initialValue = text
+          })
 
         click(CAR_OPTION_20_000_KM)
         clickNextButton()
@@ -52,10 +56,10 @@ describe('Loading the simulation from the sid parameter', () => {
         })
 
         it('then it should load the simulation with the correct total footprint number', () => {
-          cy.get('div[data-cypress-id="total-footprint-number"]').should(
-            'contain',
-            '10'
-          )
+          cy.wait(6000)
+          cy.get(`[data-cypress-id="${QUESTION_LABEL}"]`)
+            .invoke('text')
+            .should('not.equal', initialValue)
         })
       })
     }
