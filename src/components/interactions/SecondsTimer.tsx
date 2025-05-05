@@ -2,15 +2,18 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { useEffect, useState } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 interface SecondsTimerProps {
   duration: number // duration in seconds
   onComplete: () => void
+  className?: string
 }
 
 export default function SecondsTimer({
   duration,
   onComplete,
+  className,
 }: SecondsTimerProps) {
   const [timeLeft, setTimeLeft] = useState(duration)
 
@@ -40,7 +43,7 @@ export default function SecondsTimer({
   }
 
   return (
-    <div className="text-2xl font-bold" role="timer">
+    <div className={twMerge('text-2xl font-bold', className)} role="timer">
       {formatTime(timeLeft)} <Trans>seconde</Trans>
       {timeLeft > 1 && 's'}
     </div>

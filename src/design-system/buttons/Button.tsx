@@ -10,7 +10,7 @@ export type ButtonProps = {
   onClick?: MouseEventHandler<HTMLButtonElement>
   className?: string
   size?: ButtonSize
-  color?: 'primary' | 'secondary' | 'text' | 'link'
+  color?: 'primary' | 'secondary' | 'text' | 'link' | 'success'
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
   id?: string
@@ -23,8 +23,8 @@ export const colorClassNames = {
     'text-white bg-primary-700 border-2 border-primary-700 shadow-xs hover:text-white hover:bg-primary-800',
   secondary:
     'border-solid border-primary-700 border-2 text-primary-700 bg-transparent shadow-xs hover:text-primary-700 hover:bg-primary-100 hover:border-primary-700',
-  emerald:
-    'text-logement-400 bg-emerald-light border-2 border-emerald-dark shadow-xs hover:text-white hover:bg-logement-400 hover:text-emerald-dark hover:border-emerald-dark',
+  success:
+    'bg-green-700 text-white border-2 border-green-700 shadow-xs hover:text-white hover:bg-green-800',
   text: 'text-primary-700 bg-transparent border-2 border-transparent shadow-none hover:bg-primary-200 hover:text-primary-700 hover:border-primary-200',
   link: 'text-primary-700 bg-transparent border-2 border-transparent shadow-none hover:text-primary-700 underline px-1!',
 }

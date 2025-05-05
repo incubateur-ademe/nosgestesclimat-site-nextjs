@@ -5,8 +5,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import { PARTNER_KEY } from '@/constants/partners'
 import type { AlertType } from '@/design-system/alerts/alert/Alert'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
-import Loader from '@/design-system/layout/Loader'
-import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
+import Emoji from '@/design-system/utils/Emoji'
 import { getPartnerFromStorage } from '@/helpers/partners/getPartnerFromStorage'
 import { removePartnerFromStorage } from '@/helpers/partners/removePartnerFromStorage'
 import { setPartnerInStorage } from '@/helpers/partners/setPartnerInStorage'
@@ -84,27 +83,51 @@ export function PartnerProvider({ children }: PropsWithChildren) {
       setAlertToDisplay({
         type: 'success',
         content: (
-          <>
-            <span>
-              <Loader size="sm" color="dark" />
+          <div className="xs:text-left text-center">
+            <span className="mb-2 block">
+              <Emoji className="mr-2 text-base">✅</Emoji>
               <Trans>
                 Merci d'avoir complété votre test. Nous vous redirigerons vers
                 le site de notre partenaire dans :
               </Trans>
             </span>
-            <RedirectTimer href={redirectUrlFromResponse} />
-            <span>
+
+            <RedirectTimer
+              duration={40}
+              className="text-center text-lg sm:text-left"
+              href={redirectUrlFromResponse}
+            />
+
+            <span className="mt-3 flex w-full justify-center sm:justify-end md:mt-0">
               <ButtonLink
+                size="sm"
+                color="success"
                 data-testid="button-redirect"
                 href={redirectUrlFromResponse}>
                 Rediriger maintenant
               </ButtonLink>
             </span>
-          </>
+          </div>
         ),
       })
     } catch (error) {
       captureException(error)
+
+      setAlertToDisplay({
+        type: 'error',
+        content: (
+          <div className="xs:text-left text-center">
+            <span className="mb-2 block">
+              <Emoji className="mr-2 text-base">😫</Emoji>
+              <Trans>
+                Oups ! Une erreur s'est produite au moment d'envoyer vos
+                résultats à notre partenaire. Veuillez recommencer le parcours
+                depuis l'interface du site partenaire.
+              </Trans>
+            </span>
+          </div>
+        ),
+      })
     } finally {
       removePartnerFromStorage()
     }
@@ -125,8 +148,6 @@ export function PartnerProvider({ children }: PropsWithChildren) {
     } else if (progression !== 1 && !getPartnerFromStorage()) {
       // Save partner info in Session Storage
       setPartnerInStorage(partnerParams)
-
-      router.push(getLinkToSimulateur())
     }
   }, [
     handleExportSituation,

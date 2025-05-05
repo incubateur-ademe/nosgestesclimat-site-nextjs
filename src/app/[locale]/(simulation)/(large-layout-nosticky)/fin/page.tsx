@@ -20,10 +20,10 @@ import Eau from './_components/Eau'
 import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
 import InformationBlock from './_components/InformationBlock'
+import PartnerRedirectionAlert from './_components/PartnerRedirectionAlert'
 import Poll from './_components/Poll'
 import ShareBlock from './_components/ShareBlock'
 import FinPageSkeleton from './skeleton'
-import PartnerRedirectionAlert from './_components/PartnerRedirectionAlert'
 
 const titles: Record<Metric, ReactElement> = {
   [carboneMetric]: <Trans>carbone</Trans>,

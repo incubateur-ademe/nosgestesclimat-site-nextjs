@@ -9,6 +9,10 @@ export default function PartnerRedirectionAlert() {
   if (!alertToDisplay) return null
 
   return (
-    <Alert type={alertToDisplay.type} description={alertToDisplay.content} />
+    <Alert
+      className="mb-8"
+      type={alertToDisplay.type}
+      description={alertToDisplay.content}
+    />
   )
 }

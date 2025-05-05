@@ -3,7 +3,15 @@
 import { useRouter } from 'next/navigation'
 import SecondsTimer from './SecondsTimer'
 
-export default function RedirectTimer({ href }: { href: string }) {
+export default function RedirectTimer({
+  href,
+  className,
+  duration = 20,
+}: {
+  href: string
+  className?: string
+  duration?: number
+}) {
   const router = useRouter()
 
   const handleNavigation = () => {
@@ -18,5 +26,11 @@ export default function RedirectTimer({ href }: { href: string }) {
     window.location.href = href
   }
 
-  return <SecondsTimer duration={20} onComplete={handleNavigation} />
+  return (
+    <SecondsTimer
+      duration={duration}
+      onComplete={handleNavigation}
+      className={className}
+    />
+  )
 }
