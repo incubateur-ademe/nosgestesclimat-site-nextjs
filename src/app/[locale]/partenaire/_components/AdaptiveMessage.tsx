@@ -40,7 +40,7 @@ export default function AdaptiveMessage({
             <p data-testid="redirection-message">
               <Trans>C'est chose faite !</Trans> <Emoji>✅</Emoji>{' '}
               <Trans>
-                Vous allez être redirigé vers le site de notre partenaire dans
+                Vous allez être redirigé vers le site de notre partenaire dans :
               </Trans>
             </p>
             <RedirectTimer href={href} />
