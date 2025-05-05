@@ -430,10 +430,12 @@ html[data-useragent*='Trident'] #js {
 /*
   Markdown
 */
+.markdown a {
+  @apply text-primary-700 underline;
+}
+
 .markdown ul {
-  @apply pl-6;
-  @apply list-disc;
-  @apply mb-6;
+  @apply mb-6 list-disc pl-6;
 }
 
 .markdown ul > li {
