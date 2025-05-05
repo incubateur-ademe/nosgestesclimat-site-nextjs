@@ -11,5 +11,5 @@ export function useVerifyPartner(partner?: string): boolean {
     },
   })
 
-  return data ?? false
+  return data ?? undefined
 }
