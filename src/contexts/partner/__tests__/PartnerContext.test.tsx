@@ -21,12 +21,6 @@ jest.mock('@/helpers/partners/removePartnerFromStorage', () => ({
   removePartnerFromStorage: jest.fn(),
 }))
 
-jest.mock('@/helpers/toasts/displayTimedSuccessToast', () => ({
-  displayTimedSuccessToast: jest.fn((message, callback) => {
-    callback()
-  }),
-}))
-
 jest.mock('@/hooks/partners/useExportSituation', () => ({
   useExportSituation: jest.fn(),
 }))
