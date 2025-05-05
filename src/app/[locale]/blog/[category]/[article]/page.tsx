@@ -115,7 +115,7 @@ export default async function ArticlePage({
           articleSlug={articleSlug}
         />
 
-        <div className="relative mt-8 flex max-w-5xl flex-col flex-nowrap gap-8 overflow-auto md:mx-auto md:mt-0 md:flex-row md:items-stretch">
+        <div className="relative mt-8 flex max-w-5xl flex-col flex-nowrap gap-8 overflow-visible md:mx-auto md:mt-0 md:flex-row md:items-stretch">
           <div className="max-w-full md:w-8/12">
             <div
               className="markdown max-w-full border-b border-gray-300 pb-8"
