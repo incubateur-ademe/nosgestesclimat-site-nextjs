@@ -58,8 +58,7 @@ jobs:
           echo "MODE=production" >> "$GITHUB_ENV"
 
       - name: Test - e2e [${{ env.MODE }}]
-        # Pin SHA for security reasons
-        uses: cypress-io/github-action@b7eafc2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e
+        uses: cypress-io/github-action@v6.9.0
         with:
           build: yarn run e2e:generate
           browser: chrome
