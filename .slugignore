@@ -1,4 +1,5 @@
 /.cache
+/.next/cache
 /cypress
 /scripts
 .github
@@ -17,4 +18,3 @@ FICHEPRODUIT.md
 jest.config.ts
 README.md
 yarn.lock
-.next/cache
