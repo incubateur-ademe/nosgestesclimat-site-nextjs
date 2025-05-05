@@ -1,19 +1,15 @@
 import { verifyPartner } from '@/services/partners/verifyPartner'
-import { useMutation } from '@tanstack/react-query'
-import { useEffect } from 'react'
+import { useQuery } from '@tanstack/react-query'
 
 export function useVerifyPartner(partner?: string): boolean {
-  const { data, mutate } = useMutation({
-    mutationFn: async () => {
+  const { data } = useQuery({
+    queryKey: ['verify-partner', partner],
+    queryFn: async () => {
       if (!partner) return false
 
       return await verifyPartner(partner)
     },
   })
-
-  useEffect(() => {
-    mutate()
-  }, [mutate])
 
   return data ?? false
 }
