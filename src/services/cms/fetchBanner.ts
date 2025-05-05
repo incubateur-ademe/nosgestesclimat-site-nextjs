@@ -14,7 +14,7 @@ export async function fetchBanner(locale: Locale): Promise<BannerType | null> {
         ? locale
         : // Display english banner if locale is not allowed (currently applies for es)
           i18nConfig.locales[1],
-      sort: 'startDate:desc',
+      sort: 'startDate:asc',
       // Get the banner for the current date ; the date needs to be between the start and end date
       'filters[$and][0][startDate][$lte]': dayjs(new Date())
         .endOf('day')
@@ -22,6 +22,7 @@ export async function fetchBanner(locale: Locale): Promise<BannerType | null> {
       'filters[$and][1][endDate][$gte]': dayjs(new Date())
         .startOf('day')
         .toISOString(),
+      'pagination[limit]': '1',
       populate: '*',
     })
 
