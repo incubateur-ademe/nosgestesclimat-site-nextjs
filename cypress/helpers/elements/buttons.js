@@ -54,5 +54,5 @@ export function clickDoTheTestLink() {
 }
 
 export function clickAmisLink() {
-  cy.get(`[data-cypress-id="${AMIS_LINK}"]`).eq(1).click()
+  cy.get(`[data-cypress-id="${AMIS_LINK}"]`).eq(1).should('be.visible').click()
 }

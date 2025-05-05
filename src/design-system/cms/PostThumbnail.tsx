@@ -30,7 +30,7 @@ export default function PostThumbnail({
         'flex h-full rounded-xl no-underline! duration-300! md:flex-col md:transition-transform md:hover:translate-y-[-6px]',
         className
       )}
-      onClick={() => trackEvent(trackingEvent)}>
+      onClick={trackingEvent ? () => trackEvent(trackingEvent) : undefined}>
       <ImageWithCategory
         category={category}
         imageSrc={imageSrc}
