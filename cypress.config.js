@@ -1,4 +1,3 @@
-import { addMatchImageSnapshotPlugin } from '@simonsmith/cypress-image-snapshot/plugin'
 import { spawn } from 'child_process'
 import { defineConfig } from 'cypress'
 import dotenv from 'dotenv'
@@ -23,7 +22,6 @@ export default defineConfig({
   e2e: {
     baseUrl: process.env.CYPRESS_baseUrl ?? 'http://localhost:3000',
     setupNodeEvents(on) {
-      addMatchImageSnapshotPlugin(on)
       on('task', {
         getVerificationCodeFromScalingo: async () => {
           let tunnelProcess = null

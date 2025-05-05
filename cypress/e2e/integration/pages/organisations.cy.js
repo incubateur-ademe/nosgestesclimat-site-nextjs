@@ -15,7 +15,7 @@ import {
   POLL_EXPECTED_NUMBER_OF_PARTICIPANTS_INPUT,
   POLL_NAME_INPUT,
 } from '../../../constants/elements-ids'
-import { checkA11y } from '../../../helpers/misc/checkA11y'
+import { checkA11y } from '../../../helpers/accessibility/checkA11y'
 
 Cypress.on('uncaught:exception', (err) => {
   // Ignore uncaught exception failures for now

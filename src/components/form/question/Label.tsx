@@ -71,7 +71,8 @@ export default function Label({
           )}
           aria-level={headingLevel}
           tabIndex={0}
-          id={QUESTION_DESCRIPTION_BUTTON_ID}>
+          id={QUESTION_DESCRIPTION_BUTTON_ID}
+          data-cypress-id="question-label">
           <Markdown>{label}</Markdown>
         </h2>{' '}
         {description ? (

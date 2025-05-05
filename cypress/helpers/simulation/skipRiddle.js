@@ -1,3 +1,5 @@
+import { click } from '../interactions/click'
+
 export function skipRiddle() {
   cy.get('h1').then((element) => {
     if (
@@ -9,7 +11,7 @@ export function skipRiddle() {
             : 'Une devinette pour finir !'
         )
     ) {
-      cy.get('[data-cypress-id="button-skip-quiz"]').click()
+      click('[data-cypress-id="button-skip-quiz"]')
     }
   })
 }
