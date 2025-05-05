@@ -40,6 +40,10 @@ const nextConfig: NextConfig = {
       use: 'yaml-loader',
     })
 
+    config.cache = Object.freeze({
+      type: 'memory',
+    })
+
     // Enable source maps
     if (!dev && !isServer) {
       config.devtool = 'source-map'
