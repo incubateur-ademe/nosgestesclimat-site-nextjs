@@ -125,10 +125,6 @@ export default async function RootLayout({
         <MainLayoutProviders>
           <SkipToMainContentLink />
 
-          <SkipToMainContentLink />
-
-          <SkipToMainContentLink />
-
           <Banner locale={locale as Locale} />
 
           {children}
