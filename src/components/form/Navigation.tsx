@@ -126,14 +126,14 @@ export default function Navigation({
   return (
     <div
       className={twMerge(
-        'fixed right-0 bottom-0 left-0 z-50 bg-gray-100 py-3',
+        'sticky right-0 bottom-0 left-0 z-50 min-h-[66px] bg-gray-100 py-3',
         isEmbedded && 'bg-primary-100 static p-0'
       )}>
       <SyncIndicator />
 
       <div
         className={twMerge(
-          'relative mx-auto flex w-full max-w-6xl justify-between gap-4 px-4 lg:justify-start',
+          'relative mx-auto flex w-full max-w-6xl justify-between gap-1 px-4 md:gap-4 lg:justify-start',
           isEmbedded && 'justify-start'
         )}>
         <Button
@@ -150,12 +150,13 @@ export default function Navigation({
           disabled={noPrevQuestion}
           color="text"
           className={twMerge('px-3')}>
-          {'← ' + t('Précédent')}
+          <span className="hidden md:inline">←</span> {t('Précédent')}
         </Button>
 
         <Button
           color={isMissing ? 'secondary' : 'primary'}
           disabled={isNextDisabled}
+          className="p-3 text-sm"
           size="md"
           data-cypress-id="next-question-button"
           onClick={handleGoToNextQuestion}>
