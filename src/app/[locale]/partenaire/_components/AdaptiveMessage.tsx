@@ -4,6 +4,7 @@ import RedirectTimer from '@/components/interactions/RedirectTimer'
 import MessageTemplate from '@/components/layout/MessageTemplate'
 import Trans from '@/components/translation/trans/TransClient'
 import { usePartner } from '@/contexts/partner/PartnerContext'
+import Alert from '@/design-system/alerts/alert/Alert'
 import Emoji from '@/design-system/utils/Emoji'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -22,9 +23,11 @@ export default function AdaptiveMessage({
 
   const isTestCompleted = progression === 1
 
-  const { redirectUrl } = usePartner()
+  const { redirectUrl, alertToDisplay } = usePartner()
 
   const href = isTestCompleted ? redirectUrl : getLinkToSimulateur()
+
+  const isError = alertToDisplay?.type === 'error'
 
   return (
     <MessageTemplate
@@ -35,26 +38,32 @@ export default function AdaptiveMessage({
         }
       )}
       description={
-        isTestCompleted ? (
-          <>
+        <>
+          {isTestCompleted ? (
             <p data-testid="redirection-message">
               <Trans>C'est chose faite !</Trans> <Emoji>✅</Emoji>{' '}
               <Trans>
                 Vous allez être redirigé vers le site de notre partenaire dans :
               </Trans>
             </p>
-            <RedirectTimer href={href} />
-          </>
-        ) : (
-          <>
+          ) : (
             <p data-testid="test-message">
               <Trans>
                 Vous allez être redirigé vers notre calculateur dans :
               </Trans>
             </p>
-            <RedirectTimer href={href} />
-          </>
-        )
+          )}
+
+          {!isError && <RedirectTimer href={href} />}
+
+          {isError && (
+            <Alert
+              type="error"
+              className="mx-auto mt-8 w-2xl max-w-full"
+              description={alertToDisplay?.content}
+            />
+          )}
+        </>
       }
       buttonElement={
         <RedirectLink href={href}>
