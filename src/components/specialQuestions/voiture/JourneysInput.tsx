@@ -35,9 +35,11 @@ export default function JourneysInput({ question, setTempValue }: Props) {
   const [journeys, setJourneys] = useState<Journey[]>([])
 
   useEffect(() => {
+    if (isInitialized) return
+
     setJourneys(JSON.parse(localStorage.getItem(question) || '[]'))
     setIsInitialized(true)
-  }, [question])
+  }, [question, isInitialized])
 
   useEffect(() => {
     if (isInitialized) {
@@ -84,15 +86,20 @@ export default function JourneysInput({ question, setTempValue }: Props) {
 
   const prevTotal = useRef(total)
 
+  const prevNumPassengers = useRef(averagePassengers)
+
   useEffect(() => {
+    if (prevNumPassengers.current === averagePassengers) return
+
     setNumPassengers(averagePassengers)
+    prevNumPassengers.current = averagePassengers
   }, [averagePassengers, setNumPassengers])
 
   useEffect(() => {
-    if (prevTotal.current !== total) {
-      if (setTempValue) setTempValue(total)
-      setValue(total, { questionDottedName: question })
-    }
+    if (prevTotal.current === total) return
+
+    setTempValue?.(total)
+    setValue(total, { questionDottedName: question })
     prevTotal.current = total
   }, [
     total,
