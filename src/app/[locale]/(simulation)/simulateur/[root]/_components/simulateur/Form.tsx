@@ -11,6 +11,7 @@ import { uuidToNumber } from '@/helpers/uuidToNumber'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useTrackTimeOnSimulation } from '@/hooks/tracking/useTrackTimeOnSimulation'
 import { useDebug } from '@/hooks/useDebug'
+import { useIframe } from '@/hooks/useIframe'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import {
   useCurrentSimulation,
@@ -19,6 +20,7 @@ import {
 } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useContext, useEffect, useState } from 'react'
+import { twMerge } from 'tailwind-merge'
 import FunFact from './form/FunFact'
 import ResultsBlocksDesktop from './form/ResultsBlocksDesktop'
 import ResultsBlocksMobile from './form/ResultsBlocksMobile'
@@ -41,6 +43,8 @@ export default function Form() {
     useQuestionInQueryParams()
 
   const { goToEndPage } = useEndPage()
+
+  const { isIframe } = useIframe()
 
   const [isInitialized, setIsInitialized] = useState(false)
 
@@ -142,7 +146,11 @@ export default function Form() {
 
             <FunFact question={currentQuestion} />
 
-            <div className="mt-auto mb-8 pb-16 md:pb-0">
+            <div
+              className={twMerge(
+                'mt-auto mb-8 pb-16 md:pb-0',
+                isIframe && 'hidden'
+              )}>
               <CategoryIllustration category={currentCategory ?? 'transport'} />
             </div>
           </div>

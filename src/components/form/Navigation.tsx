@@ -11,6 +11,7 @@ import {
 } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useIframe } from '@/hooks/useIframe'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import { useCurrentSimulation, useFormState, useRule } from '@/publicodes-state'
 import getValueIsOverFloorOrCeiling from '@/publicodes-state/helpers/getValueIsOverFloorOrCeiling'
@@ -33,6 +34,8 @@ export default function Navigation({
   isEmbedded?: boolean
 }) {
   const { t } = useClientTranslation()
+
+  const { isIframe } = useIframe()
 
   const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
     useFormState()
@@ -127,7 +130,8 @@ export default function Navigation({
     <div
       className={twMerge(
         'sticky right-0 bottom-0 left-0 z-50 min-h-[66px] bg-gray-100 py-3',
-        isEmbedded && 'bg-primary-100 static p-0'
+        isEmbedded && 'bg-primary-100 static p-0',
+        isIframe && 'relative right-auto bottom-auto left-auto'
       )}>
       <SyncIndicator />
 
