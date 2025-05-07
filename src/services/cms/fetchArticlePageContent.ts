@@ -5,7 +5,6 @@ import type {
 import { cmsClient } from '@/adapters/cmsClient'
 import i18nConfig from '@/i18nConfig'
 import { getCMSLocale } from '@/utils/cms/getCMSLocale'
-import { captureException } from '@sentry/nextjs'
 
 type Article = PopulatedArticleType<'image' | 'category'> & {
   author: PopulatedAuthorType<'image'>
@@ -71,8 +70,6 @@ export async function fetchArticlePageContent({
       otherArticles: otherArticlesResponse?.data ?? [],
     }
   } catch (error) {
-    captureException(error)
-
     return
   }
 }

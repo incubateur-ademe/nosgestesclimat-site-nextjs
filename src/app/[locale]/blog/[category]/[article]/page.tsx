@@ -3,7 +3,9 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { fetchArticlePageContent } from '@/services/cms/fetchArticlePageContent'
 import { fetchArticlePageMetadata } from '@/services/cms/fetchArticlePageMetadata'
 
+import Footer from '@/components/layout/Footer'
 import Badge from '@/design-system/layout/Badge'
+import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
@@ -51,6 +53,11 @@ export default async function ArticlePage({
       articleSlug: articleSlug,
       locale,
     })) || {}
+
+  const langButtonsDisplayed = await getLangButtonsDisplayed({
+    category,
+    article: articleSlug,
+  })
 
   if (!article) {
     return notFound()
@@ -129,6 +136,8 @@ export default async function ArticlePage({
 
       <AuthorBlock author={article.author} />
       <OtherArticles articles={otherArticles} locale={locale} />
+
+      <Footer langButtonsDisplayed={langButtonsDisplayed} />
     </>
   )
 }

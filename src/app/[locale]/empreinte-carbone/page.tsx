@@ -1,5 +1,6 @@
 import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
 import Partners from '@/components/landing-pages/Partners'
+import Footer from '@/components/layout/Footer'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/trans/TransServer'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
@@ -154,6 +155,8 @@ export default async function CarbonFootprintLandingPage({
 
         <FAQCarbonFootprint locale={locale} />
       </LandingPage>
+
+      <Footer />
     </>
   )
 }

@@ -6,7 +6,6 @@ import type {
 import { cmsClient } from '@/adapters/cmsClient'
 import i18nConfig from '@/i18nConfig'
 import { getCMSLocale } from '@/utils/cms/getCMSLocale'
-import { captureException } from '@sentry/nextjs'
 
 const PAGE_SIZE = 12
 
@@ -93,7 +92,6 @@ export async function fetchCategoryPageContent({
       faqDescription: category.faqDescription,
     }
   } catch (error) {
-    captureException(error)
     return undefined
   }
 }

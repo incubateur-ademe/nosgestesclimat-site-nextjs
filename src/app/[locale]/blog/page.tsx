@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 
 import ContentLarge from '@/components/layout/ContentLarge'
+import Footer from '@/components/layout/Footer'
 import JSONLD from '@/components/seo/JSONLD'
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import ArticleList from '@/design-system/cms/ArticleList'
@@ -109,6 +110,8 @@ export default async function BlogHomePage({
       </ContentLarge>
 
       <AllBlogCategories locale={locale} />
+
+      <Footer />
     </>
   )
 }
