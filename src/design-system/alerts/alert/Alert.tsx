@@ -5,7 +5,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import { type ReactNode, createElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type AlertType = 'default' | 'success' | 'warning' | 'error'
+export type AlertType = 'default' | 'success' | 'warning' | 'error'
 
 const getTypeClassNames = (type: AlertType) => {
   switch (type) {
