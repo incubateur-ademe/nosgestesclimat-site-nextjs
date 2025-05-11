@@ -11,7 +11,6 @@ i18next
   .use(LanguageDetector)
   .init({
     ...getOptions(),
-    lng: undefined, // let detect the language on client side
     resources: {
       es: {
         translation: translations['es'],
