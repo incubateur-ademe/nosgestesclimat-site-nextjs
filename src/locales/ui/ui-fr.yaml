@@ -1244,9 +1244,11 @@ entries:
   Aller sur le site partenaire maintenant: Aller sur le site partenaire maintenant
   C'est chose faite !: C'est chose faite !
   Commencer le test maintenant: Commencer le test maintenant
-  "Merci d'avoir complété votre test. Nous vous redirigerons vers le site de notre partenaire dans :": "Merci d'avoir complété votre test. Nous vous redirigerons vers le site de notre partenaire dans :"
-  Notre partenaire {{name}} vous a invité à leur transmettre vos empreintes carbone et eau.: Notre partenaire {{name}} vous a invité à leur transmettre vos empreintes carbone et eau.
   seconde: seconde
   'Vous allez être redirigé vers notre calculateur dans :': 'Vous allez être redirigé vers notre calculateur dans :'
   Oups ! Une erreur s'est produite au moment d'envoyer vos résultats à notre partenaire. Veuillez recommencer le parcours depuis l'interface du site partenaire.: Oups ! Une erreur s'est produite au moment d'envoyer vos résultats à notre partenaire. Veuillez recommencer le parcours depuis l'interface du site partenaire.
   'Vous allez être redirigé vers le site de notre partenaire dans :': 'Vous allez être redirigé vers le site de notre partenaire dans :'
+  Merci d'avoir complété votre test.: Merci d'avoir complété votre test.
+  Notre partenaire {{name}} vous a invité à lui transmettre vos empreintes carbone et eau.: Notre partenaire {{name}} vous a invité à lui transmettre vos empreintes carbone et eau.
+  'Nous vous redirigerons vers le site de notre partenaire dans :': 'Nous vous redirigerons vers le site de notre partenaire dans :'
+  Vous avez terminé le test !: Vous avez terminé le test !
