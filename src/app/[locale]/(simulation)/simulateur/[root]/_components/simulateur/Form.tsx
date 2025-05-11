@@ -138,6 +138,20 @@ export default function Form() {
               tempValue={tempValue}
               setTempValue={setTempValue}
             />
+
+            <div className={isIframe ? '' : 'hidden'}>
+              <Navigation
+                question={currentQuestion}
+                tempValue={tempValue}
+                onComplete={() => {
+                  if (shouldPreventNavigation) {
+                    handleUpdateShouldPreventNavigation(false)
+                  }
+
+                  setShouldGoToEndPage(true)
+                }}
+              />
+            </div>
           </div>
 
           <div
@@ -157,17 +171,19 @@ export default function Form() {
         </div>
       </ContentLarge>
 
-      <Navigation
-        question={currentQuestion}
-        tempValue={tempValue}
-        onComplete={() => {
-          if (shouldPreventNavigation) {
-            handleUpdateShouldPreventNavigation(false)
-          }
+      <div className={isIframe ? 'hidden' : ''}>
+        <Navigation
+          question={currentQuestion}
+          tempValue={tempValue}
+          onComplete={() => {
+            if (shouldPreventNavigation) {
+              handleUpdateShouldPreventNavigation(false)
+            }
 
-          setShouldGoToEndPage(true)
-        }}
-      />
+            setShouldGoToEndPage(true)
+          }}
+        />
+      </div>
     </>
   )
 }

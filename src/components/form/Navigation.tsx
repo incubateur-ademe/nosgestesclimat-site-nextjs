@@ -131,10 +131,9 @@ export default function Navigation({
       className={twMerge(
         'sticky right-0 bottom-0 left-0 z-50 min-h-[66px] bg-gray-100 py-3',
         isEmbedded && 'bg-primary-100 static p-0',
-        isIframe && 'relative right-auto bottom-auto left-auto'
+        isIframe && 'relative right-auto bottom-auto left-auto bg-transparent'
       )}>
-      <SyncIndicator />
-
+      {!isIframe && <SyncIndicator />}
       <div
         className={twMerge(
           'relative mx-auto flex w-full max-w-6xl justify-between gap-1 px-4 md:gap-4 lg:justify-start',
