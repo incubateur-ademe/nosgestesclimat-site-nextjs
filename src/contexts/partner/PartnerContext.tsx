@@ -111,7 +111,7 @@ export function PartnerProvider({ children }: PropsWithChildren) {
               href={redirectUrlFromResponse}
             />
 
-            <span className="mt-3 flex w-full justify-start">
+            <span className="mt-8 flex w-full justify-start">
               <ButtonLink
                 size="sm"
                 color="primary"

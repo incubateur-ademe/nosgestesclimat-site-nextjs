@@ -32,7 +32,7 @@ export default function AdaptiveMessage({
   return (
     <MessageTemplate
       title={t(
-        'Notre partenaire {{name}} vous a invité à leur transmettre vos empreintes carbone et eau.',
+        'Notre partenaire {{name}} vous a invité à lui transmettre vos empreintes carbone et eau.',
         {
           name: partnerInfo.name,
         }
