@@ -126,13 +126,7 @@ export function useEndPage() {
       // else we redirect to the results page
       router.push('/fin')
     },
-    [
-      isNavigating,
-      progression,
-      currentSimulation,
-      handleRedirection,
-      saveSimulation,
-    ]
+    [isNavigating, progression, currentSimulation, router, saveSimulation]
   )
 
   const getLinkToEndPage = useCallback(
