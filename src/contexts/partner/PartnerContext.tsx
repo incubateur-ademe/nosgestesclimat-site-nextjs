@@ -5,6 +5,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import { PARTNER_KEY } from '@/constants/partners'
 import type { AlertType } from '@/design-system/alerts/alert/Alert'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
+import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import { getPartnerFromStorage } from '@/helpers/partners/getPartnerFromStorage'
 import { removePartnerFromStorage } from '@/helpers/partners/removePartnerFromStorage'
@@ -54,22 +55,25 @@ export function PartnerProvider({ children }: PropsWithChildren) {
 
   const router = useRouter()
 
-  const partnerParams = useMemo(() => {
-    return (
+  const partnerParams: Record<string, string> | undefined = useMemo(() => {
+    const params =
       getPartnerFromStorage() ??
       Object.fromEntries(
         searchParams
           .entries()
           .filter(([key]) => key === PARTNER_KEY || key.startsWith(PARTNER_KEY))
       )
-    )
+
+    return Object.keys(params).length ? params : undefined
   }, [searchParams])
 
-  const isPartnerVerified = useVerifyPartner(partnerParams.partner)
+  const isPartnerVerified = useVerifyPartner(partnerParams?.partner)
 
-  const hasNoPartnerParam = Object.keys(partnerParams).length === 0
+  const hasNoPartnerParam = Object.keys(partnerParams || {}).length === 0
 
   const handleExportSituation = useCallback(async () => {
+    if (!partnerParams) return
+
     try {
       const { redirectUrl: redirectUrlFromResponse } =
         await exportSituationAsync({
@@ -84,27 +88,36 @@ export function PartnerProvider({ children }: PropsWithChildren) {
         type: 'success',
         content: (
           <div className="xs:text-left text-center">
-            <span className="mb-2 block">
-              <Emoji className="mr-2 text-base">✅</Emoji>
+            <Title
+              title={
+                <span className="inline-block">
+                  <Trans>Vous avez terminé le test !</Trans> <Emoji>💪</Emoji>
+                </span>
+              }
+              tag="h2"
+            />
+            <p className="text-sm md:text-base">
+              <Trans>Merci d'avoir complété votre test.</Trans>
+            </p>
+            <p className="text-sm md:text-base">
               <Trans>
-                Merci d'avoir complété votre test. Nous vous redirigerons vers
-                le site de notre partenaire dans :
+                Nous vous redirigerons vers le site de notre partenaire dans :
               </Trans>
-            </span>
+            </p>
 
             <RedirectTimer
               duration={40}
-              className="text-center text-lg sm:text-left"
+              className="text-lg"
               href={redirectUrlFromResponse}
             />
 
-            <span className="mt-3 flex w-full justify-center sm:justify-end md:mt-0">
+            <span className="mt-3 flex w-full justify-start">
               <ButtonLink
                 size="sm"
-                color="success"
+                color="primary"
                 data-testid="button-redirect"
                 href={redirectUrlFromResponse}>
-                Rediriger maintenant
+                Revenir au site partenaire
               </ButtonLink>
             </span>
           </div>
@@ -137,16 +150,21 @@ export function PartnerProvider({ children }: PropsWithChildren) {
 
   useEffect(() => {
     // Redirect to 404
-    if (typeof isPartnerVerified !== 'undefined' && !isPartnerVerified) {
+    if (
+      partnerParams &&
+      typeof isPartnerVerified !== 'undefined' &&
+      !isPartnerVerified
+    ) {
       router.push('/404')
     }
-  }, [isPartnerVerified, router])
+  }, [isPartnerVerified, router, partnerParams])
 
   useEffect(() => {
     if (
       !isPartnerVerified ||
       hasNoPartnerParam ||
-      typeof progression === 'undefined'
+      typeof progression === 'undefined' ||
+      !partnerParams
     )
       return
 
