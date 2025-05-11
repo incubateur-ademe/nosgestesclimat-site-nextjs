@@ -10,11 +10,13 @@ type Props = {
   locale?: string
   PRNumber?: string
 }
-const defaultProps = {
+
+export const defaultProps = {
   isOptim: true,
   regionCode: 'FR',
   locale: 'fr',
 }
+
 /*
  * This function is used to get the rules. It is used in the useRules hook and can also be called directly from a server component.
  */
