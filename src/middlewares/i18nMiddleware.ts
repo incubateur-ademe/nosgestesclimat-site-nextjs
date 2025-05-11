@@ -4,10 +4,16 @@ import { type NextRequest, NextResponse } from 'next/server'
 
 function i18nMiddleware(request: NextRequest) {
   // Check if we're on the root path
+  console.log(
+    'i18nMiddleware, request.nextUrl.pathname',
+    request.nextUrl.pathname
+  )
   if (request.nextUrl.pathname === '/') {
     // Get the locale from cookie
     const cookie = request.cookies.get('NEXT_LOCALE')
     const locale = cookie?.value
+
+    console.log('i18nMiddleware, locale', locale)
 
     // If we have a valid locale in cookie and it's not the default locale
     if (

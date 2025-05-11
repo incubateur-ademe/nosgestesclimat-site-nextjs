@@ -11,7 +11,7 @@ const getLanguageFromCookie = () => {
   const match = cookie.match(/NEXT_LOCALE=([^;]+)/)
   return match ? match[1] : 'fr'
 }
-
+console.log('getLanguageFromCookie()', getLanguageFromCookie())
 i18next.use(initReactI18next).init({
   ...getOptions(),
   lng: getLanguageFromCookie(),
