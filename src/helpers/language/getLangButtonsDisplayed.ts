@@ -12,13 +12,11 @@ type Props = {
   article?: string
 }
 
-const getAllTrueOrFalseValue = (value: boolean): LangButtonsConfigType => ({
-  fr: value,
-  en: value,
-  es: value,
-})
-
-const ALL_FALSE_VALUE = getAllTrueOrFalseValue(false)
+const ALL_FALSE_VALUE = {
+  fr: false,
+  en: false,
+  es: false,
+}
 const FR_EN_ACTIVATED_VALUE = {
   fr: true,
   en: true,
