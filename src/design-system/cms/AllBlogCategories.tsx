@@ -20,7 +20,7 @@ export default async function AllBlogCategories({
         'relative left-1/2 mb-10 w-[100vw] -translate-x-1/2 overflow-hidden pt-10 pb-10 before:absolute before:-top-8 before:left-1/2 before:z-10 before:h-[100px] before:w-[102vw] before:-translate-x-1/2 before:bg-white',
         className
       )}>
-      <div className="bg-heroLightBackground relative left-1/2 w-[110vw] -translate-x-1/2 -rotate-2 skew-x-[10deg] transform overflow-hidden px-[calc(5vw+16px)] pt-28 pb-24">
+      <div className="bg-heroLightBackground relative left-1/2 w-[140vw] -translate-x-1/2 -rotate-2 skew-x-[10deg] transform overflow-hidden px-[calc(20vw+16px)] pt-28 pb-24">
         <div className="relative flex max-w-[100vw] rotate-2 -skew-x-[10deg] flex-col gap-8 md:mx-auto md:max-w-5xl">
           <h2 className="mb-0 text-2xl md:text-3xl">
             <Trans locale={locale}>Toutes les catégories du blog</Trans>
