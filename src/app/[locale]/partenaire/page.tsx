@@ -51,7 +51,7 @@ export default async function PartenairePage({
       <Main>
         <div className="min-h-screen">
           <div className="mt-36 text-center">
-            <AdaptiveMessage partnerInfo={partnerInfo} />
+            <AdaptiveMessage partner={partner} />
           </div>
         </div>
       </Main>

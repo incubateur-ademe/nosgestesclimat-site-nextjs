@@ -3,6 +3,7 @@
 import RedirectTimer from '@/components/interactions/RedirectTimer'
 import MessageTemplate from '@/components/layout/MessageTemplate'
 import Trans from '@/components/translation/trans/TransClient'
+import { PARTNER_2TONNES, PARTNER_JAGIS } from '@/constants/partners'
 import { usePartner } from '@/contexts/partner/PartnerContext'
 import Alert from '@/design-system/alerts/alert/Alert'
 import Emoji from '@/design-system/utils/Emoji'
@@ -11,13 +12,12 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
 import RedirectLink from './RedirectLink'
 
-export default function AdaptiveMessage({
-  partnerInfo,
-}: {
-  partnerInfo: {
-    name: string
-  }
-}) {
+const PARTNER_NAMES = {
+  [PARTNER_JAGIS]: "J'agis",
+  [PARTNER_2TONNES]: '2tonnes',
+}
+
+export default function AdaptiveMessage({ partner }: { partner: string }) {
   const { t } = useClientTranslation()
   const { progression } = useCurrentSimulation()
 
@@ -34,7 +34,7 @@ export default function AdaptiveMessage({
       title={t(
         'Notre partenaire {{name}} vous a invité à lui transmettre vos empreintes carbone et eau.',
         {
-          name: partnerInfo.name,
+          name: PARTNER_NAMES[partner as keyof typeof PARTNER_NAMES],
         }
       )}
       description={

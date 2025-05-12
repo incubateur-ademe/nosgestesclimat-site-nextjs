@@ -13,6 +13,8 @@ export async function exportSituation({
   partnerParams?: Record<string, string>
 }): Promise<{ redirectUrl: string } | null> {
   try {
+    delete partnerParams?.partner
+
     const { data } = await axios.post(
       `${PARTNER_URL}/${partner}/export-situation`,
       situation,
