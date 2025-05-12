@@ -3,6 +3,7 @@ import NumberInput from '@/components/form/question/NumberInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useRule } from '@/publicodes-state'
+import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { useEffect, useMemo, useRef, useState } from 'react'
@@ -28,7 +29,7 @@ export default function ThreeYearsInput({ question, setTempValue }: Props) {
   const [isInitialized, setIsInitialized] = useState(false)
 
   useEffect(() => {
-    const years = JSON.parse(localStorage.getItem(question) || '[0, 0, 0]')
+    const years = JSON.parse(safeLocalStorage.getItem(question) || '[0, 0, 0]')
     setCurrentYearValue(years[0])
     setLastYearValue(years[1])
     setYearBeforeLastValue(years[2])
@@ -37,7 +38,7 @@ export default function ThreeYearsInput({ question, setTempValue }: Props) {
 
   useEffect(() => {
     if (isInitialized) {
-      localStorage.setItem(
+      safeLocalStorage.setItem(
         question,
         JSON.stringify([currentYearValue, lastYearValue, yearBeforeLastValue])
       )
