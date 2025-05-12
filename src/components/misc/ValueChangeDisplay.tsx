@@ -2,12 +2,11 @@
 
 import { defaultMetric } from '@/constants/model/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import { useGetDifference } from '@/hooks/simulation/useGetDifference'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
-import { useFormState, useRule } from '@/publicodes-state'
 import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
 import { usePathname } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 export default function ValueChangeDisplay({
@@ -24,44 +23,19 @@ export default function ValueChangeDisplay({
 
   const pathname = usePathname()
 
-  const { currentQuestion } = useFormState()
+  const { difference, updateKey } = useGetDifference({
+    metric,
+  })
 
-  const { numericValue } = useRule('bilan', metric)
+  const isNegative = difference < 0
 
-  const prevValue = useRef(numericValue)
-
-  const [displayDifference, setDisplayDifference] = useState(0)
-
-  const prevQuestion = useRef(currentQuestion)
-
-  // We need this value to force the component to re-render when the numericValue changes
-  // We don't use numericValue directly because it update before the displayDifference
-  const [keyFromNumericValue, setKeyFromNumericValue] = useState(numericValue)
-
-  useEffect(() => {
-    if (prevQuestion.current !== currentQuestion) {
-      setDisplayDifference(0)
-    }
-  }, [currentQuestion])
-
-  useEffect(() => {
-    const difference = numericValue - prevValue.current
-
-    setDisplayDifference(difference)
-    setKeyFromNumericValue(numericValue)
-
-    prevValue.current = numericValue
-  }, [numericValue, locale])
-
-  const isNegative = displayDifference < 0
-
-  const { formattedValue, unit } = formatFootprint(displayDifference, {
+  const { formattedValue, unit } = formatFootprint(difference, {
     locale,
     metric,
     t,
   })
 
-  if (displayDifference === 0 || !pathname.includes('simulateur/bilan')) {
+  if (difference === 0 || !pathname.includes('simulateur/bilan')) {
     return null
   }
 
@@ -74,7 +48,7 @@ export default function ValueChangeDisplay({
           : 'animate-valuechange text-red-700',
         className
       )}
-      key={keyFromNumericValue}
+      key={updateKey}
       aria-label={t(
         '{{signe}} {{value}} {{unit}} sur votre empreinte {{metric}}',
         {
@@ -89,7 +63,7 @@ export default function ValueChangeDisplay({
           'text-sm font-semibold',
           size === 'md' ? 'text-base' : ''
         )}>
-        {displayDifference > 0 ? '+' : ''}
+        {difference > 0 ? '+' : ''}
         {formattedValue}
       </span>{' '}
       <span
