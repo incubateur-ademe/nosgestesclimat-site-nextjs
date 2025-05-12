@@ -14,6 +14,7 @@ import {
 } from '@/constants/accessibility'
 import { questionChooseAnswer } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
+import { useUpdatePageTitle } from '@/hooks/simulation/useUpdatePageTitle'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useFormState, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
@@ -82,14 +83,13 @@ export default function Question({
 
   const refCurrentCategoryQuestions = useRef(currentCategoryQuestions)
 
-  // Update the page title when the question changes
-  useEffect(() => {
-    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-      document.title = t(
-        `Calculateur, question ${refCurrentCategoryQuestions.current.indexOf(question) + 1} sur ${currentCategoryQuestions.length} de la catégorie ${category} - Nos Gestes Climat`
-      )
-    }
-  }, [currentCategoryQuestions, category, t, question, prevQuestion])
+  // Set dynamically the page title
+  useUpdatePageTitle({
+    category,
+    countCategoryQuestions: currentCategoryQuestions.length,
+    currentQuestionIndex:
+      refCurrentCategoryQuestions.current.indexOf(question) + 1,
+  })
 
   const [isOpen, setIsOpen] = useState(showInputsLabel ? false : true)
 

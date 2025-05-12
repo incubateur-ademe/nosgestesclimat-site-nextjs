@@ -3,7 +3,7 @@ import i18nConfig from '@/i18nConfig'
 
 type Props = {
   locale: string
-  title: string
+  title?: string
   description: string
   params?: Record<string, string>
   searchParams?: Record<string, string>
