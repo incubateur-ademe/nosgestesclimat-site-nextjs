@@ -19,6 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     'documentation/guide',
     'documentation/modele',
     'documentation',
+    'partenaire',
   ]
   const staticUrls = staticPages.map((page) => ({
     url: `https://nosgestesclimat.fr/${page}`,
