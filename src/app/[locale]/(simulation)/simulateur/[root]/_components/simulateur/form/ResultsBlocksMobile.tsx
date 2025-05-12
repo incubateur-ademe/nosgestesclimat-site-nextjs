@@ -1,6 +1,5 @@
 import TotalFootprintNumber from '@/components/misc/TotalFootprintNumber'
 import ValueChangeDisplay from '@/components/misc/ValueChangeDisplay'
-import Explanation from '@/components/simulation/topBar/Explanation'
 import Card from '@/design-system/layout/Card'
 
 export default function ResultsBlocks() {
@@ -20,8 +19,6 @@ export default function ResultsBlocks() {
 
         <ValueChangeDisplay metric="eau" />
       </Card>
-
-      <Explanation />
     </div>
   )
 }
