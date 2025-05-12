@@ -76,11 +76,13 @@ export function PartnerProvider({ children }: PropsWithChildren) {
 
     try {
       const { redirectUrl: redirectUrlFromResponse } =
-        await exportSituationAsync({
+        (await exportSituationAsync({
           situation,
           partner: partnerParams[PARTNER_KEY],
           partnerParams,
-        })
+        })) ?? {}
+
+      if (!redirectUrlFromResponse) throw new Error('No redirect URL')
 
       setRedirectUrl(redirectUrlFromResponse)
 

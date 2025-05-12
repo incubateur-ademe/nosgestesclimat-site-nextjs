@@ -10,14 +10,12 @@ export async function exportSituation({
 }: {
   situation: Situation
   partner: string
-  partnerParams: URLSearchParams
+  partnerParams?: Record<string, string>
 }): Promise<{ redirectUrl: string } | null> {
   try {
     const { data } = await axios.post(
       `${PARTNER_URL}/${partner}/export-situation`,
-      {
-        situation,
-      },
+      situation,
       {
         params: partnerParams,
       }
@@ -26,7 +24,6 @@ export async function exportSituation({
     return data
   } catch (err) {
     captureException(err)
-
     return null
   }
 }
