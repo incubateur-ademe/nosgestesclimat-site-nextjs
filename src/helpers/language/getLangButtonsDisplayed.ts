@@ -12,6 +12,11 @@ type Props = {
   article?: string
 }
 
+const ALL_TRUE_VALUE = {
+  fr: true,
+  en: true,
+  es: true,
+}
 const ALL_FALSE_VALUE = {
   fr: false,
   en: false,
@@ -58,5 +63,5 @@ export async function getLangButtonsDisplayed({
     }
   }
 
-  return FR_EN_ACTIVATED_VALUE
+  return ALL_TRUE_VALUE
 }
