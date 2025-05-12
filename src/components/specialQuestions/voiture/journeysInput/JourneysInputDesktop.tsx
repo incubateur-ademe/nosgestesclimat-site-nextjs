@@ -32,19 +32,27 @@ export function JourneysInputDesktop({
       <table className="table w-full border-collapse">
         <tbody className="block w-full">
           <tr className="table-row w-full">
-            <th className="table-cell p-2 text-left text-xs">
+            <th className="table-cell p-2 text-left text-xs" id="label-label">
               <Trans>Label</Trans>
             </th>
-            <th className="table-cell p-2 text-left text-xs">
+            <th
+              className="table-cell p-2 text-left text-xs"
+              id="label-distance">
               <Trans>Distance</Trans>
             </th>
-            <th className="table-cell p-2 text-left text-xs">
+            <th
+              className="table-cell p-2 text-left text-xs"
+              id="label-frequency">
               <Trans>Fréquence</Trans>
             </th>
-            <th className="table-cell p-2 text-left text-xs">
+            <th
+              className="table-cell p-2 text-left text-xs"
+              id="label-passengers">
               <Trans>Passagers</Trans>
             </th>
-            <th className="table-cell p-2 text-left text-xs opacity-0">
+            <th
+              className="table-cell p-2 text-left text-xs opacity-0"
+              id="label-options">
               <Trans>Options</Trans>
             </th>
           </tr>

@@ -19,6 +19,7 @@ import {
   footerClickStats,
 } from '@/constants/tracking/layout'
 import InlineLink from '@/design-system/inputs/InlineLink'
+import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDisplayed'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { trackEvent } from '@/utils/analytics/trackEvent'
@@ -36,7 +37,13 @@ const WHITE_BACKGROUND_PATHS = new Set([
   '/organisations',
 ])
 
-export default function Footer({ className = '' }) {
+export default function Footer({
+  className = '',
+  langButtonsDisplayed,
+}: {
+  className?: string
+  langButtonsDisplayed?: LangButtonsConfigType
+}) {
   const pathname = usePathname()
   const locale = useLocale()
 
@@ -47,7 +54,8 @@ export default function Footer({ className = '' }) {
   const shouldUseWhiteBackground =
     pathname === '/' ||
     pathname === `/${locale}` ||
-    WHITE_BACKGROUND_PATHS.has(pathname)
+    WHITE_BACKGROUND_PATHS.has(pathname) ||
+    pathname.includes('/blog')
 
   return (
     <footer
@@ -173,7 +181,9 @@ export default function Footer({ className = '' }) {
         <div className="flex flex-wrap justify-between gap-8 md:flex-row md:flex-nowrap">
           <div>
             <div className="mt-6 flex flex-wrap items-start justify-between gap-10">
-              <LanguageSwitchButton />
+              <LanguageSwitchButton
+                langButtonsDisplayed={langButtonsDisplayed}
+              />
             </div>
 
             <div className="mt-4 text-xs">

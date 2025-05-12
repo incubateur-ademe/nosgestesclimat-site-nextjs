@@ -1,5 +1,4 @@
 import ErrorContent from '@/components/error/ErrorContent'
-import Footer from '@/components/layout/Footer'
 import ToastDisplay from '@/components/messages/ToastDisplay'
 import SkipToMainContentLink from '@/design-system/accessibility/SkipToMainContentLink'
 import Banner from '@/design-system/cms/Banner'
@@ -125,13 +124,9 @@ export default async function RootLayout({
         <MainLayoutProviders>
           <SkipToMainContentLink />
 
-          <SkipToMainContentLink />
-
           <Banner locale={locale as Locale} />
 
           {children}
-
-          <Footer />
 
           <ToastDisplay />
         </MainLayoutProviders>
