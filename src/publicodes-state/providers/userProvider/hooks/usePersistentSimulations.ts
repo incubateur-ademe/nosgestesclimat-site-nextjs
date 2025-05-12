@@ -1,10 +1,8 @@
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
-import { getIsLocalStorageAvailable } from '@/utils/getIsLocalStorageAvailable'
+import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import type { Migration } from '@publicodes/tools/migration'
 import { useEffect, useState } from 'react'
 import type { Simulation } from '../../../types'
-
-const isLocalStorageAvailable = getIsLocalStorageAvailable()
 
 type Props = {
   storageKey: string
@@ -19,15 +17,12 @@ export default function usePersistentSimulations({
   const [currentSimulationId, setCurrentSimulationId] = useState<string>('')
 
   useEffect(() => {
-    let localSimulations: Simulation[] | undefined
-    let localCurrentSimulationId: string | undefined
-    if (isLocalStorageAvailable) {
-      const currentStorage = localStorage.getItem(storageKey)
-      const parsedStorage = JSON.parse(currentStorage || '{}')
+    const currentStorage = safeLocalStorage.getItem(storageKey)
+    const parsedStorage = JSON.parse(currentStorage || '{}')
 
-      localSimulations = parsedStorage.simulations
-      localCurrentSimulationId = parsedStorage.currentSimulationId
-    }
+    const localSimulations: Simulation[] | undefined = parsedStorage.simulations
+    const localCurrentSimulationId: string | undefined =
+      parsedStorage.currentSimulationId
 
     if (localSimulations && localCurrentSimulationId) {
       const migratedLocalSimulations = localSimulations.map((simulation) =>
@@ -50,20 +45,20 @@ export default function usePersistentSimulations({
   useEffect(() => {
     if (initialized) {
       const currentStorage = JSON.parse(
-        localStorage.getItem(storageKey) || '{}'
+        safeLocalStorage.getItem(storageKey) || '{}'
       )
       const updatedStorage = { ...currentStorage, simulations }
-      localStorage.setItem(storageKey, JSON.stringify(updatedStorage))
+      safeLocalStorage.setItem(storageKey, JSON.stringify(updatedStorage))
     }
   }, [storageKey, simulations, initialized])
 
   useEffect(() => {
     if (initialized) {
       const currentStorage = JSON.parse(
-        localStorage.getItem(storageKey) || '{}'
+        safeLocalStorage.getItem(storageKey) || '{}'
       )
       const updatedStorage = { ...currentStorage, currentSimulationId }
-      localStorage.setItem(storageKey, JSON.stringify(updatedStorage))
+      safeLocalStorage.setItem(storageKey, JSON.stringify(updatedStorage))
     }
   }, [storageKey, currentSimulationId, initialized])
 

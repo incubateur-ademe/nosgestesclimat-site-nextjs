@@ -1,6 +1,7 @@
 'use client'
 
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
+import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import type { Migration } from '@publicodes/tools/migration'
 import type { Dispatch, SetStateAction } from 'react'
 import { useCallback, useMemo } from 'react'
@@ -201,8 +202,14 @@ export default function useSimulations({
 }
 
 const resetAideSaisie = () => {
-  localStorage.removeItem('transport . voiture . km')
-  localStorage.removeItem('transport . avion . court courrier . heures de vol')
-  localStorage.removeItem('transport . avion . moyen courrier . heures de vol')
-  localStorage.removeItem('transport . avion . long courrier . heures de vol')
+  safeLocalStorage.removeItem('transport . voiture . km')
+  safeLocalStorage.removeItem(
+    'transport . avion . court courrier . heures de vol'
+  )
+  safeLocalStorage.removeItem(
+    'transport . avion . moyen courrier . heures de vol'
+  )
+  safeLocalStorage.removeItem(
+    'transport . avion . long courrier . heures de vol'
+  )
 }

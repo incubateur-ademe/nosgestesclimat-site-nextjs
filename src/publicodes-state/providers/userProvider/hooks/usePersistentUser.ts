@@ -1,9 +1,7 @@
-import { getIsLocalStorageAvailable } from '@/utils/getIsLocalStorageAvailable'
+import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import { useEffect, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 import type { RegionFromGeolocation, User } from '../../../types'
-
-const isLocalStorageAvailable = getIsLocalStorageAvailable()
 
 type Props = {
   storageKey: string
@@ -35,12 +33,10 @@ export default function usePersistentUser({
   // Upon first render, check if there is a user in local storage and format it
   // and save it to the user state
   useEffect(() => {
-    let localUser: User | undefined
-    if (isLocalStorageAvailable) {
-      const currentStorage = localStorage.getItem(storageKey)
-      const parsedStorage = JSON.parse(currentStorage || '{}')
-      localUser = parsedStorage.user
-    }
+    const currentStorage = safeLocalStorage.getItem(storageKey)
+    const parsedStorage = JSON.parse(currentStorage || '{}')
+    const localUser: User | undefined = parsedStorage.user
+
     if (localUser) {
       setUser(formatUser({ user: localUser }))
     }
@@ -51,10 +47,10 @@ export default function usePersistentUser({
   useEffect(() => {
     if (initialized) {
       const currentStorage = JSON.parse(
-        localStorage.getItem(storageKey) || '{}'
+        safeLocalStorage.getItem(storageKey) || '{}'
       )
       const updatedStorage = { ...currentStorage, user }
-      localStorage.setItem(storageKey, JSON.stringify(updatedStorage))
+      safeLocalStorage.setItem(storageKey, JSON.stringify(updatedStorage))
     }
   }, [storageKey, user, initialized])
 
