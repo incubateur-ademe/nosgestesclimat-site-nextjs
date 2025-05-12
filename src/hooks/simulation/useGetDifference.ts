@@ -15,7 +15,7 @@ export function useGetDifference({ metric }: { metric: Metrics }): {
   const [keyFromNumericValue, setKeyFromNumericValue] = useState(numericValue)
   const [hasAlreadyAnswered, setHasAlreadyAnswered] = useState<
     boolean | undefined
-  >(undefined)
+  >()
 
   const { foldedSteps } = useCurrentSimulation()
 
@@ -41,6 +41,8 @@ export function useGetDifference({ metric }: { metric: Metrics }): {
       foldedSteps.includes(currentQuestion)
     )
 
+    // This is set only once, at mount or when the question changes,
+    // after getting the foldedSteps from the local state
     if (typeof hasAlreadyAnswered === 'undefined') {
       setHasAlreadyAnswered(isInFoldedSteps)
     }
