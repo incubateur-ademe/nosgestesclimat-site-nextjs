@@ -7,13 +7,17 @@ export type LangButtonsConfigType = {
   es: boolean
 }
 
+type Props = {
+  category?: string
+  article?: string
+}
+
 const getAllTrueOrFalseValue = (value: boolean): LangButtonsConfigType => ({
   fr: value,
   en: value,
   es: value,
 })
 
-const ALL_TRUE_VALUE = getAllTrueOrFalseValue(true)
 const ALL_FALSE_VALUE = getAllTrueOrFalseValue(false)
 const FR_EN_ACTIVATED_VALUE = {
   fr: true,
@@ -24,11 +28,11 @@ const FR_EN_ACTIVATED_VALUE = {
 export async function getLangButtonsDisplayed({
   category,
   article,
-}: {
-  category?: string
-  article?: string
-}) {
-  if (!category && !article) return ALL_TRUE_VALUE
+}: Props = {}) {
+  // Blog landing page - no es version
+  if (!category && !article) {
+    return FR_EN_ACTIVATED_VALUE
+  }
 
   if (category && !article) {
     const result = await fetchCategoryPageContent({

@@ -8,6 +8,7 @@ import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
 import NewslettersBlock from '@/design-system/cms/NewslettersBlock'
 import NewslettersBlockSkeleton from '@/design-system/cms/NewslettersBlockSkeleton'
+import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { fetchHomepageContent } from '@/services/cms/fetchHomepageContent'
 import { fetchHomepageMetadata } from '@/services/cms/fetchHomepageMetadata'
@@ -55,6 +56,8 @@ export default async function BlogHomePage({
       page,
       locale,
     })) ?? {}
+
+  const langButtonsDisplayed = await getLangButtonsDisplayed()
 
   if (!title || !description || !image || !articles) {
     notFound()
@@ -111,7 +114,7 @@ export default async function BlogHomePage({
 
       <AllBlogCategories locale={locale} />
 
-      <Footer />
+      <Footer langButtonsDisplayed={langButtonsDisplayed} />
     </>
   )
 }
