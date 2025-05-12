@@ -75,14 +75,8 @@ entries:
   derniers: última
   Non: No
   Nouveautés: Noticias
-  components.ScoreExplanation.text.p3: 'Si responde "No lo sé" a una pregunta, la puntuación no cambiará: se le dará un valor por defecto.'
-  components.ScoreExplanation.text.p3.lock: 'Si vous répondez "je ne sais pas" à une question, le score ne changera pas : une valeur par défaut vous est attribuée.'
-  components.ScoreExplanation.text.p4: Mejoramos el cálculo y sus valores por defecto <2>todos los meses</2>
-  components.ScoreExplanation.text.p4.lock: Nous améliorons le calcul et ses valeurs par défaut <2>tous les mois</2>!
   components.localisation.Localisation.warnMessage2: No hemos podido detectar su país de simulación, por lo que se propone por defecto el modelo francés.
   components.localisation.Localisation.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut.
-  components.ScoreExplanation.text.p1: Aquí tienes tus puntuaciones iniciales, calculadas a partir de las respuestas asignadas de antemano a cada pregunta Cambiarán con cada nueva respuesta.
-  components.ScoreExplanation.text.p1.lock: Voici vos scores de départ, calculés à partir de réponses attribuées à l'avance à chaque question ! Ils évolueront à chaque nouvelle réponse.
   publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} pregunta{{pluralSuffix}} restante{{pluralSuffix}}'
   publicodes.ActionVignette.questionsRestantesText.lock: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
   minutes: minutos
