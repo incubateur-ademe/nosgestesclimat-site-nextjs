@@ -12,9 +12,7 @@ import AdaptiveMessage from './_components/AdaptiveMessage'
 type SearchParams = Record<string, string>
 
 export const generateMetadata = getCommonMetadata({
-  title: t("Confirmation d'inscription à nos infolettres - Nos Gestes Climat"),
-  image:
-    'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/calculer_empreinte_carbone_et_eau_7d061171e4.png',
+  title: t('Partagez vos résultats avec notre partenaire - Nos Gestes Climat'),
   description: t(
     "2 millions de personnes ont déjà calculé leur empreinte sur le climat avec le calculateur Nos Gestes Climat ! Et vous, qu'attendez-vous pour faire le test ?"
   ),
