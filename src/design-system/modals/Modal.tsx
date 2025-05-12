@@ -89,7 +89,7 @@ export default function Modal({
       <div>{children}</div>
 
       {hasAbortButton || buttons ? (
-        <div className="mt-12 flex justify-between">
+        <div className="mt-12 flex flex-col-reverse justify-between gap-2 sm:flex-row">
           {hasAbortButton && (
             <Button
               color="secondary"

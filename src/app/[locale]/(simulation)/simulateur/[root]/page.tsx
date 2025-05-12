@@ -7,14 +7,18 @@ import {
 } from '@/constants/tracking/pages/simulateur'
 import { useSimulateurGuard } from '@/hooks/navigation/useSimulateurGuard'
 import { useTrackSimulateur } from '@/hooks/tracking/useTrackSimulateur'
+import { useIframe } from '@/hooks/useIframe'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useCallback, useState } from 'react'
+import { twMerge } from 'tailwind-merge'
 import SaveModal from './_components/SaveModal'
 import Simulateur from './_components/Simulateur'
 
 export default function SimulateurPage() {
   // Guarding the route and redirecting if necessary
   const { isGuardInit, isGuardRedirecting } = useSimulateurGuard()
+
+  const { isIframe } = useIframe()
 
   // We track the progression of the user in the simulation
   useTrackSimulateur()
@@ -42,7 +46,11 @@ export default function SimulateurPage() {
   }, [])
 
   return (
-    <div className="flex h-screen flex-1 flex-col overflow-scroll">
+    <div
+      className={twMerge(
+        'flex h-screen flex-1 flex-col overflow-scroll',
+        isIframe && 'h-auto md:h-screen'
+      )}>
       <TopBar
         toggleQuestionList={toggleQuestionList}
         toggleBackHomeModal={toggleBackHomeModal}

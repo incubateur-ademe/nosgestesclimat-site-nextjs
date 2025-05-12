@@ -85,6 +85,7 @@ export type Simulation = {
   polls?: string[] | null
   groups?: string[] | null
   savedViaEmail?: boolean
+  model?: string
 }
 
 export type LocalStorage = {
