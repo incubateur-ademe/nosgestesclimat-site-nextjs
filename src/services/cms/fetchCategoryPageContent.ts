@@ -5,7 +5,6 @@ import type {
 } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
 import i18nConfig from '@/i18nConfig'
-import { getCMSLocale } from '@/utils/cms/getCMSLocale'
 
 const PAGE_SIZE = 12
 
@@ -30,7 +29,7 @@ export async function fetchCategoryPageContent({
 > {
   try {
     const categorySearchParams = new URLSearchParams({
-      locale: locale ? getCMSLocale(locale) : i18nConfig.defaultLocale,
+      locale: locale ?? i18nConfig.defaultLocale,
       'filters[slug][$eq]': slug,
       'populate[0]': 'image',
       'populate[1]': 'questions',
@@ -60,7 +59,7 @@ export async function fetchCategoryPageContent({
     const { documentId } = mainArticle || {}
 
     const articlesSearchParams = new URLSearchParams({
-      locale: locale ? getCMSLocale(locale) : i18nConfig.defaultLocale,
+      locale: locale ?? i18nConfig.defaultLocale,
       'fields[0]': 'title',
       'fields[1]': 'description',
       'fields[2]': 'slug',

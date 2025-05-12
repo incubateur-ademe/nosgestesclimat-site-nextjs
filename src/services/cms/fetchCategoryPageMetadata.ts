@@ -1,7 +1,6 @@
 import type { ImageType, PopulatedCategoryType } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
 import i18nConfig from '@/i18nConfig'
-import { getCMSLocale } from '@/utils/cms/getCMSLocale'
 import { captureException } from '@sentry/nextjs'
 
 export async function fetchCategoryPageMetadata({
@@ -20,7 +19,7 @@ export async function fetchCategoryPageMetadata({
 > {
   try {
     const categorySearchParams = new URLSearchParams({
-      locale: locale ? getCMSLocale(locale) : i18nConfig.defaultLocale,
+      locale: locale ?? i18nConfig.defaultLocale,
       'populate[0]': 'image',
       'populate[1]': 'pageMetadata',
       'filters[slug][$eq]': slug,
