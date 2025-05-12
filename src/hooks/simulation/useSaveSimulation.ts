@@ -1,4 +1,5 @@
 import { ORGANISATION_URL, SIMULATION_URL } from '@/constants/urls/main'
+import { getModelVersion } from '@/helpers/modelFetching/getModelVersion'
 import {
   mapNewSimulationToOld,
   mapOldSimulationToNew,
@@ -29,24 +30,24 @@ export function useSaveSimulation() {
     isError,
     error,
   } = useMutation({
-    mutationFn: ({
-      simulation: {
-        groups,
-        polls,
-
-        ...simulation
-      },
+    mutationFn: async ({
+      simulation: { groups, polls, ...simulation },
       newsletters,
       sendEmail,
     }: Props) => {
       // We reset the sync timer to avoid saving the simulation in the background
       resetSyncTimer()
 
+      const modelVersion = await getModelVersion()
+
       if (groups?.length) {
         return updateGroupParticipant({
           groupId: groups[groups.length - 1],
           email,
-          simulation,
+          simulation: {
+            ...simulation,
+            model: modelVersion,
+          },
           userId,
           name,
         }).then((response) => response.data.simulation)
@@ -54,6 +55,7 @@ export function useSaveSimulation() {
 
       const payload = {
         ...mapOldSimulationToNew(simulation),
+        model: modelVersion,
         ...(name || email
           ? {
               user: {

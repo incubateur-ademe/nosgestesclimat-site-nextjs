@@ -3,7 +3,9 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { fetchArticlePageContent } from '@/services/cms/fetchArticlePageContent'
 import { fetchArticlePageMetadata } from '@/services/cms/fetchArticlePageMetadata'
 
+import Footer from '@/components/layout/Footer'
 import Badge from '@/design-system/layout/Badge'
+import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
@@ -23,6 +25,7 @@ export async function generateMetadata({
   const { metaTitle, metaDescription, image } =
     (await fetchArticlePageMetadata({
       articleSlug: article,
+      locale,
     })) || {}
 
   return getMetadataObject({
@@ -48,7 +51,13 @@ export default async function ArticlePage({
   const { article, otherArticles } =
     (await fetchArticlePageContent({
       articleSlug: articleSlug,
+      locale,
     })) || {}
+
+  const langButtonsDisplayed = await getLangButtonsDisplayed({
+    category,
+    article: articleSlug,
+  })
 
   if (!article) {
     return notFound()
@@ -124,10 +133,11 @@ export default async function ArticlePage({
           </div>
         </div>
       </div>
-      <div className="mb-12">
-        <AuthorBlock author={article.author} />
-        <OtherArticles articles={otherArticles} locale={locale} />
-      </div>
+
+      <AuthorBlock author={article.author} />
+      <OtherArticles articles={otherArticles} locale={locale} />
+
+      <Footer langButtonsDisplayed={langButtonsDisplayed} />
     </>
   )
 }

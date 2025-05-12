@@ -4,7 +4,6 @@ import type {
 } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
 import i18nConfig from '@/i18nConfig'
-import { captureException } from '@sentry/nextjs'
 
 type Article = PopulatedArticleType<'image' | 'category'> & {
   author: PopulatedAuthorType<'image'>
@@ -12,8 +11,10 @@ type Article = PopulatedArticleType<'image' | 'category'> & {
 
 export async function fetchArticlePageContent({
   articleSlug,
+  locale,
 }: {
   articleSlug: string
+  locale: string
 }): Promise<
   | {
       article?: Article
@@ -23,7 +24,7 @@ export async function fetchArticlePageContent({
 > {
   try {
     const articleSearchParams = new URLSearchParams({
-      locale: i18nConfig.defaultLocale,
+      locale: locale ?? i18nConfig.defaultLocale,
       'populate[0]': 'image',
       'populate[1]': 'category',
       'populate[2]': 'author',
@@ -49,7 +50,7 @@ export async function fetchArticlePageContent({
 
     const categorySlug = article.category?.slug
     const otherArticlesSearchParams = new URLSearchParams({
-      locale: i18nConfig.defaultLocale,
+      locale: locale ?? i18nConfig.defaultLocale,
       'populate[0]': 'image',
       'populate[1]': 'category',
       ...(categorySlug ? { 'filters[category][slug][$eq]': categorySlug } : {}),
@@ -68,8 +69,6 @@ export async function fetchArticlePageContent({
       otherArticles: otherArticlesResponse?.data ?? [],
     }
   } catch (error) {
-    captureException(error)
-
     return
   }
 }

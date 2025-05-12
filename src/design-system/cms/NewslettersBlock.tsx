@@ -131,7 +131,9 @@ export default function NewslettersBlock() {
       ) : (
         <>
           <h3 className="mb-2">
-            Vous souhaitez recevoir nos derniers articles directement ?
+            <Trans>
+              Vous souhaitez recevoir nos derniers articles directement ?
+            </Trans>
           </h3>
 
           <p className="mb-6 flex items-center">

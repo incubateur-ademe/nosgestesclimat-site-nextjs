@@ -10,10 +10,7 @@ const allowedLocales = [i18nConfig.locales[0], i18nConfig.locales[1]]
 export async function fetchBanner(locale: Locale): Promise<BannerType | null> {
   try {
     const bannerSearchParams = new URLSearchParams({
-      locale: allowedLocales.includes(locale)
-        ? locale
-        : // Display english banner if locale is not allowed (currently applies for es)
-          i18nConfig.locales[1],
+      locale: locale ?? i18nConfig.defaultLocale,
       sort: 'startDate:desc',
       // Get the banner for the current date ; the date needs to be between the start and end date
       'filters[$and][0][startDate][$lte]': dayjs(new Date())
