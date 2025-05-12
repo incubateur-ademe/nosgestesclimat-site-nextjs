@@ -1,67 +1,39 @@
-export const safeLocalStorage = {
-  getItem(key: string): string | null {
+class SafeLocalStorage {
+  private _safeExecute<T>(operation: () => T, defaultValue: T): T {
     try {
       if (typeof window !== 'undefined' && window.localStorage) {
-        return window.localStorage.getItem(key)
+        return operation()
       }
-      return null
+      return defaultValue
     } catch (error) {
       console.warn('LocalStorage is not accessible:', error)
-      return null
+      return defaultValue
     }
-  },
+  }
+
+  getItem(key: string): string | null {
+    return this._safeExecute(() => window.localStorage.getItem(key), null)
+  }
 
   setItem(key: string, value: string): void {
-    try {
-      if (typeof window !== 'undefined' && window.localStorage) {
-        window.localStorage.setItem(key, value)
-      }
-    } catch (error) {
-      console.warn('LocalStorage is not accessible:', error)
-    }
-  },
+    this._safeExecute(() => window.localStorage.setItem(key, value), undefined)
+  }
 
   removeItem(key: string): void {
-    try {
-      if (typeof window !== 'undefined' && window.localStorage) {
-        window.localStorage.removeItem(key)
-      }
-    } catch (error) {
-      console.warn('LocalStorage is not accessible:', error)
-    }
-  },
+    this._safeExecute(() => window.localStorage.removeItem(key), undefined)
+  }
 
   clear(): void {
-    try {
-      if (typeof window !== 'undefined' && window.localStorage) {
-        window.localStorage.clear()
-      }
-    } catch (error) {
-      console.warn('LocalStorage is not accessible:', error)
-    }
-  },
+    this._safeExecute(() => window.localStorage.clear(), undefined)
+  }
 
   key(index: number): string | null {
-    try {
-      if (typeof window !== 'undefined' && window.localStorage) {
-        return window.localStorage.key(index)
-      }
-      return null
-    } catch (error) {
-      console.warn('LocalStorage is not accessible:', error)
-      return null
-    }
-  },
+    return this._safeExecute(() => window.localStorage.key(index), null)
+  }
 
   get length(): number {
-    try {
-      if (typeof window !== 'undefined' && window.localStorage) {
-        return window.localStorage.length
-      }
-      return 0
-    } catch (error) {
-      console.warn('LocalStorage is not accessible:', error)
-      return 0
-    }
-  },
+    return this._safeExecute(() => window.localStorage.length, 0)
+  }
 }
+
+export const safeLocalStorage = new SafeLocalStorage()
