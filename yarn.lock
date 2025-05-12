@@ -12148,10 +12148,10 @@ publicodes@^1.7.0:
     moo "^0.5.2"
     nearley "^2.20.1"
 
-publicodes@^1.8.2:
-  version "1.8.2"
-  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.8.2.tgz#d2b39c94d08649d36f29f71251828500e0f1a83a"
-  integrity sha512-BpOUlp2xyUQ3xrToLjJ9lZXOWagHbMDw7Ls/AMkd1sTHhfq0RMREwCA1JdjCiRYulMJgOIMxxr6NteRCtvN2WA==
+publicodes@^1.8.3:
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.8.3.tgz#b3c6ca3ef550b79fb7a02b13d3056a1cd87579a0"
+  integrity sha512-TQXzSYnoO4XlHuZZ34uUy90Om08hj7NNgw/ZBZrzR1i0vXvVHOT2vbqAOuV+vzDCG8ff0ndllL7cFEafQbBOtg==
 
 pump@^3.0.0:
   version "3.0.2"
