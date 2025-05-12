@@ -12,7 +12,7 @@ export default function OtherArticles({
   if (!articles || articles.length === 0) return null
 
   return (
-    <div className="mt-10 bg-gray-100 px-4 py-8">
+    <div className="mt-10 bg-gray-100 px-4 pt-8 pb-12">
       <div className="max-w-5xl md:mx-auto">
         <h2 className="relative mb-8">
           <Trans locale={locale}>D'autres articles sur le même sujet</Trans>

@@ -1,12 +1,14 @@
 import { Suspense } from 'react'
 
 import ContentLarge from '@/components/layout/ContentLarge'
+import Footer from '@/components/layout/Footer'
 import JSONLD from '@/components/seo/JSONLD'
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
 import NewslettersBlock from '@/design-system/cms/NewslettersBlock'
 import NewslettersBlockSkeleton from '@/design-system/cms/NewslettersBlockSkeleton'
+import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { fetchHomepageContent } from '@/services/cms/fetchHomepageContent'
 import { fetchHomepageMetadata } from '@/services/cms/fetchHomepageMetadata'
@@ -19,7 +21,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
 
   const { metaTitle, metaDescription, image } =
-    (await fetchHomepageMetadata()) || {}
+    (await fetchHomepageMetadata({ locale })) || {}
 
   return getMetadataObject({
     locale,
@@ -52,7 +54,10 @@ export default async function BlogHomePage({
   const { title, description, image, mainArticle, articles, pageCount } =
     (await fetchHomepageContent({
       page,
+      locale,
     })) ?? {}
+
+  const langButtonsDisplayed = await getLangButtonsDisplayed()
 
   if (!title || !description || !image || !articles) {
     notFound()
@@ -108,6 +113,8 @@ export default async function BlogHomePage({
       </ContentLarge>
 
       <AllBlogCategories locale={locale} />
+
+      <Footer langButtonsDisplayed={langButtonsDisplayed} />
     </>
   )
 }
