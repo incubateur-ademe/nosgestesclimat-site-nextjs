@@ -62,12 +62,16 @@ export function useEngine(rules?: NGCRules) {
 
   const safeEvaluate = useCallback(
     (expr: PublicodesExpression, metric: Metric = carboneMetric) => {
-      const exprWithContext = {
-        valeur: expr,
-        contexte: {
-          métrique: `'${metric}'`,
-        },
-      }
+      // Somehow, for the case for `textile . empreinte`, the evaluation was not working. Defining the context only for "non default" metric ("eau"). Still, it seems that there is a bug... Maybe due to some delay somewhere.
+      const exprWithContext =
+        metric === carboneMetric
+          ? expr
+          : {
+              valeur: expr,
+              contexte: {
+                métrique: `'${metric}'`,
+              },
+            }
 
       return safeEvaluateHelper(exprWithContext, engine ?? new Engine())
     },

@@ -1,4 +1,3 @@
-import Footer from '@/components/layout/Footer'
 import type { PropsWithChildren } from 'react'
 import ImpactCO2ScriptAdder from './_components/ImpactCO2ScriptAdder'
 
@@ -8,8 +7,6 @@ export default function ArticleLayout({ children }: PropsWithChildren) {
       <ImpactCO2ScriptAdder />
 
       {children}
-
-      <Footer />
     </>
   )
 }
