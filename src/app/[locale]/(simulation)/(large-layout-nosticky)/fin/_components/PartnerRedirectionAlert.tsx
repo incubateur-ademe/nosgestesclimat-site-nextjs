@@ -21,9 +21,7 @@ export default function PartnerRedirectionAlert() {
 
   return (
     <Card
-      className={
-        'bg-primary-100 mb-8 inline-block items-start border-none p-8'
-      }>
+      className={'mb-8 inline-block items-start border-none bg-[#F4F5FB] p-8'}>
       {alertToDisplay.content}
     </Card>
   )
