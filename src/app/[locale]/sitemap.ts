@@ -1,27 +1,49 @@
 import { getPosts } from '@/helpers/markdown/getPosts'
+import { fetchAllArticleTitlesAndSlugs } from '@/services/cms/fetchAllArticleTitlesAndSlugs'
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json'
 import type { MetadataRoute } from 'next'
 import { utils } from 'publicodes'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticPages = [
+  const staticPages = new Set([
     '',
-    'personas',
-    'nouveautes',
+    'actions',
+    'accessibilité',
+    'amis',
     'a-propos',
-    'contact',
-    'vie-privee',
-    'diffuser',
-    'ambassadeurs',
-    'faq',
-    'stats',
     'blog',
+    'budget',
+    'cgu',
+    'classements',
+    'contact',
+    'diffuser',
     'documentation/guide',
     'documentation/modele',
     'documentation',
+    'empreinte-carbone',
+    'empreinte-eau',
+    'fin',
+    'guide',
+    'international',
+    'mentions-legales',
+    'modele',
+    'nos-relais',
+    'nouveautes',
+    'northstar',
+    'organisations',
+    'partage',
     'partenaire',
-  ]
-  const staticUrls = staticPages.map((page) => ({
+    'personas',
+    'plan-du-site',
+    'politique-de-confidentialite',
+    'politique-des-cookies',
+    'profil',
+    'questions',
+    'questions-frequentes',
+    'stats',
+  ])
+
+  const staticUrls = Array.from(staticPages).map((page) => ({
     url: `https://nosgestesclimat.fr/${page}`,
     lastModified: new Date(),
     priority: 0.8,
@@ -35,14 +57,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }))
 
-  const blogPosts = await getPosts('src/locales/blog/fr/')
+  const blogPosts = await fetchAllArticleTitlesAndSlugs({ locale: 'fr' })
+
   const blogUrls = blogPosts.map((post) => ({
-    url: `https://nosgestesclimat.fr/blog/${post.slug}`,
+    url: `https://nosgestesclimat.fr/blog/${post.category?.slug}/${post.slug}`,
     lastModified: new Date(),
     priority: 1,
   }))
 
-  const releasePosts = await getPosts('src/locales/nouveautes/fr/')
+  const releasePosts = getPosts('src/locales/nouveautes/fr/')
   const releaseUrls = releasePosts.map((post) => ({
     url: `https://nosgestesclimat.fr/nouveautes/${post.slug}`,
     lastModified: new Date(),

@@ -32,9 +32,6 @@ export async function middleware(request: NextRequest) {
   return response
 }
 
-/**
- * Evite que le middleware soit appliqué à certaines routes
- */
 export const config = {
   matcher: [
     /*
