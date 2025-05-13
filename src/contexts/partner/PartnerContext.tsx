@@ -115,11 +115,10 @@ export function PartnerProvider({ children }: PropsWithChildren) {
   }, [exportSituationAsync, situation, partnerParams])
 
   useEffect(() => {
-    // Redirect to 404
-    if (partnerParams && isPartnerVerified === false) {
+    if (!hasNoPartnerParam && isPartnerVerified === false) {
       router.push('/404')
     }
-  }, [isPartnerVerified, router, partnerParams])
+  }, [isPartnerVerified, router, hasNoPartnerParam])
 
   useEffect(() => {
     if (

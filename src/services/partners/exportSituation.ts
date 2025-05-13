@@ -13,13 +13,14 @@ export async function exportSituation({
   partnerParams?: Record<string, string>
 }): Promise<{ redirectUrl: string } | null> {
   try {
-    delete partnerParams?.partner
+    const partnerParamsToSend = { ...partnerParams }
+    delete partnerParamsToSend?.partner
 
     const { data } = await axios.post(
       `${INTEGRATION_URL}/${partner}/export-situation`,
       situation,
       {
-        params: partnerParams,
+        params: partnerParamsToSend,
       }
     )
 

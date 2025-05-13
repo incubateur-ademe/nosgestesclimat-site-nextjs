@@ -28,15 +28,25 @@ export default function AdaptiveMessage({ partner }: { partner: string }) {
   const href = isTestCompleted ? redirectUrl : getLinkToSimulateur()
 
   const isError = alertToDisplay?.type === 'error'
+  const partnerName = PARTNER_NAMES[partner as keyof typeof PARTNER_NAMES]
 
   return (
     <MessageTemplate
-      title={t(
-        'Notre partenaire {{name}} vous a invité à lui transmettre vos empreintes carbone et eau.',
-        {
-          name: PARTNER_NAMES[partner as keyof typeof PARTNER_NAMES],
-        }
-      )}
+      title={
+        <>
+          <span>
+            <Trans>Notre partenaire</Trans>
+          </span>
+          {partnerName ? (
+            <strong className="text-primary-700"> {partnerName}</strong>
+          ) : (
+            ''
+          )}{' '}
+          <Trans>
+            vous a invité à lui transmettre vos empreintes carbone et eau.
+          </Trans>
+        </>
+      }
       description={
         <>
           {isTestCompleted ? (
