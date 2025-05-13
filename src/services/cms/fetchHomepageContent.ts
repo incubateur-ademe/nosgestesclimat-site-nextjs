@@ -10,7 +10,13 @@ import { captureException } from '@sentry/nextjs'
 
 const PAGE_SIZE = 12
 
-export async function fetchHomepageContent({ page }: { page: number }): Promise<
+export async function fetchHomepageContent({
+  page,
+  locale,
+}: {
+  page: number
+  locale: string
+}): Promise<
   | (Partial<PopulatedHomePageType<'image'>> & {
       pageCount: number
       mainArticle: PopulatedArticleType<'image' | 'category'>
@@ -20,7 +26,7 @@ export async function fetchHomepageContent({ page }: { page: number }): Promise<
 > {
   try {
     const homepageSearchParams = new URLSearchParams({
-      locale: i18nConfig.defaultLocale,
+      locale: locale ?? i18nConfig.defaultLocale,
       'populate[0]': 'image',
       'populate[1]': 'mainArticle',
       'populate[2]': 'mainArticle.image',
@@ -41,7 +47,7 @@ export async function fetchHomepageContent({ page }: { page: number }): Promise<
     const { mainArticle, image, title, description } = homepageResponse.data
 
     const articlesSearchParams: Record<string, string> = {
-      locale: i18nConfig.defaultLocale,
+      locale: locale ?? i18nConfig.defaultLocale,
       'fields[0]': 'title',
       'fields[1]': 'description',
       'fields[2]': 'slug',

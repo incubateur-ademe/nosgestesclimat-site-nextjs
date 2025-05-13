@@ -3,5 +3,5 @@ export function updateLangCookie(locale: string) {
   const date = new Date()
   date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
   const expires = '; expires=' + date.toUTCString()
-  document.cookie = `NEXT_LOCALE=${locale};expires=${expires}; path=/; SameSite=None; Secure`
+  document.cookie = `NEXT_LOCALE=${locale};expires=${expires}; path=/; SameSite=Lax; Secure`
 }

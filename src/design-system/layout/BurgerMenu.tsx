@@ -80,7 +80,7 @@ export default function BurgerMenu({
         color="text"
         aria-label={t('Menu déroulant')}
         onClick={handleToggleMenu}
-        className="fixed top-4 right-4 z-100 flex h-[44px] w-[44px] flex-col items-center justify-center p-0!">
+        className="absolute top-4 right-4 z-100 flex h-[44px] w-[44px] flex-col items-center justify-center p-0!">
         <div
           className={`${genericHamburgerLine} ${
             isOpen ? 'translate-y-2 rotate-45' : ''

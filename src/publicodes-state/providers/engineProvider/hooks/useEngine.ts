@@ -30,8 +30,8 @@ export function useEngine(rules?: NGCRules) {
         log(msg: string) {
           console.log(`[publicodes:log] ${msg}`)
         },
-        warn() {
-          return null
+        warn(msg) {
+          console.warn(`[publicodes:warn] ${msg}`)
         },
         error(msg: string) {
           console.error(`[publicodes:error] ${msg}`)
@@ -45,8 +45,13 @@ export function useEngine(rules?: NGCRules) {
       strict: {
         situation: false,
         noOrphanRule: false,
+        checkPossibleValues: false,
         // TODO: deal with cycle runtime (model side)
         noCycleRuntime: false,
+      },
+      warn: {
+        cyclicReferences: false,
+        situationIssues: false,
       },
     })
     console.timeEnd(`⚙️ Parsing ${nbRules}`)
@@ -57,12 +62,16 @@ export function useEngine(rules?: NGCRules) {
 
   const safeEvaluate = useCallback(
     (expr: PublicodesExpression, metric: Metric = carboneMetric) => {
-      const exprWithContext = {
-        valeur: expr,
-        contexte: {
-          métrique: `'${metric}'`,
-        },
-      }
+      // Somehow, for the case for `textile . empreinte`, the evaluation was not working. Defining the context only for "non default" metric ("eau"). Still, it seems that there is a bug... Maybe due to some delay somewhere.
+      const exprWithContext =
+        metric === carboneMetric
+          ? expr
+          : {
+              valeur: expr,
+              contexte: {
+                métrique: `'${metric}'`,
+              },
+            }
 
       return safeEvaluateHelper(exprWithContext, engine ?? new Engine())
     },

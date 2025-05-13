@@ -56,10 +56,6 @@ entries:
   Une technologie moderne: Une technologie moderne
   Vous n'avez pas encore fait le test.: Vous n'avez pas encore fait le test.
   actions choisies: actions choisies
-  components.ScoreExplanation.text.p1: Voici vos scores de départ, calculés à partir de réponses attribuées à l'avance à chaque question ! Ils évolueront à chaque nouvelle réponse.
-  components.ScoreExplanation.text.p2: Voici vos scores provisoires, ils évoluent à chaque nouvelle réponse !
-  components.ScoreExplanation.text.p3: 'Si vous répondez "je ne sais pas" à une question, le score ne changera pas : une valeur par défaut vous est attribuée.'
-  components.ScoreExplanation.text.p4: Nous améliorons le calcul et ses valeurs par défaut <2>tous les mois</2>!
   components.localisation.Localisation.warnMessage: Pour le moment, il n'existe pas de modèle de calcul pour {{countryName}}, le modèle Français vous est proposé par défaut.
   components.localisation.Localisation.warnMessage2: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut.
   components.localisation.LocalisationMessage.betaMsg: Elle est actuellement en version <1>bêta</1>.
@@ -754,7 +750,6 @@ entries:
   'Nos articles sur le sujet :': 'Nos articles sur le sujet :'
   Pourquoi avons-nous ajouté l’empreinte eau ?: Pourquoi avons-nous ajouté l’empreinte eau ?
   Rendez-vous sur VigiEau pour en savoir plus.: Rendez-vous sur VigiEau pour en savoir plus.
-  Retrouvez aussi le résultat de votre empreinte eau à la fin du test !: Retrouvez aussi le résultat de votre empreinte eau à la fin du test !
   'Retrouvez nos conseils dans ces articles :': 'Retrouvez nos conseils dans ces articles :'
   Sauvegarder: Sauvegarder
   Vous souhaitez recevoir vos résultats ?: Vous souhaitez recevoir vos résultats ?
@@ -1241,3 +1236,7 @@ entries:
   Votre participation a bien été mise à jour avec vos résultats de test les plus récents.: Votre participation a bien été mise à jour avec vos résultats de test les plus récents.
   Vous devez recommencer votre inscription et valider votre e-mail.: Vous devez recommencer votre inscription et valider votre e-mail.
   Vous pouvez mettre à jour le groupe avec votre simulation la plus récente réalisée en date du: Vous pouvez mettre à jour le groupe avec votre simulation la plus récente réalisée en date du
+  Ce dernier est calculé à partir de réponses par défaut attribuées à l’avance à chaque question. Si vous passez une question, ces mêmes réponses seront prises en compte.: Ce dernier est calculé à partir de réponses par défaut attribuées à l’avance à chaque question. Si vous passez une question, ces mêmes réponses seront prises en compte.
+  Vous débutez votre test avec un score de départ.: Vous débutez votre test avec un score de départ.
+  Vous souhaitez recevoir nos derniers articles directement ?: Vous souhaitez recevoir nos derniers articles directement ?
+  Envie de connaître vos empreintes carbone et eau ?: Envie de connaître vos empreintes carbone et eau ?

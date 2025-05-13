@@ -37,6 +37,7 @@ export default function AvantDeCommencer() {
           </span>
         </p>
       </div>
+
       <div className="relative pl-8">
         <h3 className="relative overflow-visible font-bold">
           <Emoji className="absolute top-0 -left-8">👤</Emoji>
@@ -44,6 +45,22 @@ export default function AvantDeCommencer() {
             Il concerne votre vie personnelle, et non pas votre boulot.
           </Trans>
         </h3>
+      </div>
+
+      <div className="relative pl-8">
+        <h3 className="relative overflow-visible font-bold">
+          <Emoji className="absolute top-0 -left-8">🧮</Emoji>
+          <Trans>Vous débutez votre test avec un score de départ.</Trans>
+        </h3>
+        <p className="text-sm md:text-base">
+          <span className="">
+            <Trans>
+              Ce dernier est calculé à partir de réponses par défaut attribuées
+              à l’avance à chaque question. Si vous passez une question, ces
+              mêmes réponses seront prises en compte.
+            </Trans>
+          </span>
+        </p>
       </div>
     </div>
   )

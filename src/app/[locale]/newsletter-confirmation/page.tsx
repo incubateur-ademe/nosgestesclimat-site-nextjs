@@ -1,3 +1,4 @@
+import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'
 import Main from '@/design-system/layout/Main'
 import { t } from '@/helpers/metadata/fakeMetadataT'
@@ -61,6 +62,8 @@ export default async function NewsletterConfirmationPage({
           </div>
         </div>
       </Main>
+
+      <Footer />
     </>
   )
 }
