@@ -20,7 +20,7 @@ import { InfosContext } from '../_components/InfosProvider'
 const titles = {
   notStarted: (
     <span className="flex items-center">
-      <Trans>Envie de connaître votre empreinte carbone ?</Trans>{' '}
+      <Trans>Envie de connaître vos empreintes carbone et eau ?</Trans>{' '}
       <Emoji className="ml-1">🤓</Emoji>
     </span>
   ),
