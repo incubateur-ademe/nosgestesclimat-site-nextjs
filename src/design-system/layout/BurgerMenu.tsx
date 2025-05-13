@@ -65,7 +65,7 @@ export default function BurgerMenu({
 
           <div
             className={twMerge(
-              'fixed top-0 right-0 z-50 h-screen w-[90vw] max-w-[20rem] translate-x-full bg-white p-4 pt-16 opacity-0 shadow-md transition-all duration-300 ease-in-out',
+              'absolute top-0 right-0 z-50 h-screen w-[90vw] max-w-[20rem] translate-x-full bg-white p-4 pt-16 opacity-0 shadow-md transition-all duration-300 ease-in-out',
               isOpen ? 'translate-x-0 opacity-100' : ''
             )}>
             {children({

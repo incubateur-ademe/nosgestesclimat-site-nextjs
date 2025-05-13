@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/trans/TransServer'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import MessageTemplate from './MessageTemplate'
+import MessageTemplate from '../../../../components/layout/MessageTemplate'
 
 export default async function NewsletterInvalidMessage({
   locale,
@@ -12,7 +12,7 @@ export default async function NewsletterInvalidMessage({
   return (
     <MessageTemplate
       title={t("L'invitation a expiré")}
-      body={t(
+      description={t(
         'Vous devez recommencer votre inscription et valider votre e-mail.'
       )}
       buttonElement={

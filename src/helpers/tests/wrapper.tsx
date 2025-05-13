@@ -61,13 +61,18 @@ export const renderWithWrapper = (
   ui: ReactElement,
   {
     user = defaultUser,
+    currentSimulation = defaultSimulation,
     ...options
   }: RenderOptions & {
     user?: Partial<typeof defaultUser>
+    currentSimulation?: Partial<typeof defaultSimulation>
   } = {}
 ) => {
   ;(useUser as jest.Mock).mockReturnValue({ ...defaultUser, ...user })
-  ;(useCurrentSimulation as jest.Mock).mockReturnValue(user.currentSimulation)
+  ;(useCurrentSimulation as jest.Mock).mockReturnValue({
+    ...defaultSimulation,
+    ...currentSimulation,
+  })
 
   return render(ui, {
     wrapper: ({ children }) => (
