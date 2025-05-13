@@ -1,5 +1,6 @@
 'use client'
 
+import { isServerSide } from '@/utils/nextjs/isServerSide'
 import { useRouter } from 'next/navigation'
 import SecondsTimer from './SecondsTimer'
 
@@ -21,7 +22,7 @@ export default function RedirectTimer({
       return
     }
 
-    if (typeof window === 'undefined') return
+    if (isServerSide()) return
 
     window.location.href = href
   }

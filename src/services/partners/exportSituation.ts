@@ -1,4 +1,4 @@
-import { PARTNER_URL } from '@/constants/urls/main'
+import { INTEGRATION_URL } from '@/constants/urls/main'
 import type { Situation } from '@/publicodes-state/types'
 import { captureException } from '@sentry/nextjs'
 import axios from 'axios'
@@ -16,7 +16,7 @@ export async function exportSituation({
     delete partnerParams?.partner
 
     const { data } = await axios.post(
-      `${PARTNER_URL}/${partner}/export-situation`,
+      `${INTEGRATION_URL}/${partner}/export-situation`,
       situation,
       {
         params: partnerParams,

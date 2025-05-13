@@ -1,5 +1,5 @@
 import PartnerRedirectionAlert from '@/app/[locale]/(simulation)/(large-layout-nosticky)/fin/_components/PartnerRedirectionAlert'
-import { getPartnerFromStorage } from '@/helpers/partners/getPartnerFromStorage'
+import { getPartnerFromStorage } from '@/helpers/partners/storage'
 import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
 import { useCurrentSimulation } from '@/publicodes-state'
@@ -13,11 +13,8 @@ jest.mock('next/navigation', () => ({
   useSearchParams: jest.fn(),
 }))
 
-jest.mock('@/helpers/partners/getPartnerFromStorage', () => ({
+jest.mock('@/helpers/partners/storage', () => ({
   getPartnerFromStorage: jest.fn(),
-}))
-
-jest.mock('@/helpers/partners/removePartnerFromStorage', () => ({
   removePartnerFromStorage: jest.fn(),
 }))
 

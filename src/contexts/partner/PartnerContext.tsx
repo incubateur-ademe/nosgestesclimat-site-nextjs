@@ -4,9 +4,11 @@ import Trans from '@/components/translation/trans/TransClient'
 import { PARTNER_KEY } from '@/constants/partners'
 import type { AlertType } from '@/design-system/alerts/alert/Alert'
 import Emoji from '@/design-system/utils/Emoji'
-import { getPartnerFromStorage } from '@/helpers/partners/getPartnerFromStorage'
-import { removePartnerFromStorage } from '@/helpers/partners/removePartnerFromStorage'
-import { setPartnerInStorage } from '@/helpers/partners/setPartnerInStorage'
+import {
+  getPartnerFromStorage,
+  removePartnerFromStorage,
+  setPartnerInStorage,
+} from '@/helpers/partners/storage'
 import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
 import { useCurrentSimulation } from '@/publicodes-state'
@@ -67,7 +69,8 @@ export function PartnerProvider({ children }: PropsWithChildren) {
 
   const isPartnerVerified = useVerifyPartner(partnerParams?.partner)
 
-  const hasNoPartnerParam = Object.keys(partnerParams || {}).length === 0
+  const hasNoPartnerParam =
+    !partnerParams || Object.keys(partnerParams || {}).length === 0
 
   const handleExportSituation = useCallback(async () => {
     if (!partnerParams) return
@@ -109,17 +112,11 @@ export function PartnerProvider({ children }: PropsWithChildren) {
     } finally {
       removePartnerFromStorage()
     }
-    // False positive
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [exportSituationAsync, situation, partnerParams, router])
+  }, [exportSituationAsync, situation, partnerParams])
 
   useEffect(() => {
     // Redirect to 404
-    if (
-      partnerParams &&
-      typeof isPartnerVerified !== 'undefined' &&
-      !isPartnerVerified
-    ) {
+    if (partnerParams && isPartnerVerified === false) {
       router.push('/404')
     }
   }, [isPartnerVerified, router, partnerParams])
@@ -128,8 +125,7 @@ export function PartnerProvider({ children }: PropsWithChildren) {
     if (
       !isPartnerVerified ||
       hasNoPartnerParam ||
-      typeof progression === 'undefined' ||
-      !partnerParams
+      typeof progression === 'undefined'
     )
       return
 
