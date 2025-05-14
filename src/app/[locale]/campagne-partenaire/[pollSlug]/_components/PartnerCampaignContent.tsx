@@ -2,6 +2,7 @@
 
 import type { PartnerCampaignType } from '@/adapters/cmsClient'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
+import PartnerCampaignHeader from './PartnerCampaignHeader'
 
 export default function PartnerCampaignContent({
   pollSlug,
@@ -10,9 +11,14 @@ export default function PartnerCampaignContent({
   pollSlug: string
   partnerCampaign: PartnerCampaignType
 }) {
+  console.log(partnerCampaign)
   const { data: pollInfo } = useFetchPublicPoll({
     pollIdOrSlug: pollSlug,
   })
 
-  return <div>PartnerCampaignContent</div>
+  return (
+    <>
+      <PartnerCampaignHeader logoSrc={partnerCampaign.logo.url} />
+    </>
+  )
 }

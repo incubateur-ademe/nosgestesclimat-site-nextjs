@@ -11,6 +11,7 @@ import i18nConfig, { type Locale } from '@/i18nConfig'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import { useCallback, useEffect } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 export default function LanguageSwitchButton({
   langButtonsDisplayed = {
@@ -18,8 +19,10 @@ export default function LanguageSwitchButton({
     en: true,
     es: true,
   },
+  className,
 }: {
   langButtonsDisplayed?: LangButtonsConfigType
+  className?: string
 }) {
   const { t } = useClientTranslation()
 
@@ -54,7 +57,7 @@ export default function LanguageSwitchButton({
   }
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className={twMerge('flex flex-wrap gap-2', className)}>
       {langButtonsDisplayed.fr && (
         <Button
           lang="fr"

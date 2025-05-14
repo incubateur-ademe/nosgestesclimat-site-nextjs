@@ -14,6 +14,8 @@ export async function fetchPartnerCampaign({
     const partnerCampaignSearchParams = new URLSearchParams({
       locale: locale ?? i18nConfig.defaultLocale,
       'filters[pollSlug][$eq]': pollSlug,
+      'populate[0]': 'logo',
+      'populate[1]': 'image',
     })
 
     const partnerCampaignsResponse = await cmsClient<{
