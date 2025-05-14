@@ -1,3 +1,5 @@
+import PartnerCampaignContent from './_components/PartnerCampaignContent'
+
 export default async function PartnerCampaignPage({
   params,
 }: {
@@ -5,5 +7,5 @@ export default async function PartnerCampaignPage({
 }) {
   const { pollSlug } = await params
 
-  return <></>
+  return <PartnerCampaignContent pollSlug={pollSlug} />
 }
