@@ -1,3 +1,4 @@
+import Partners from '@/components/landing-pages/Partners'
 import type { Locale } from '@/i18nConfig'
 import { fetchPartnerCampaign } from '@/services/cms/fetchPartnerCampaign'
 import { redirect } from 'next/navigation'
@@ -23,6 +24,7 @@ export default async function PartnerCampaignPage({
     <PartnerCampaignContent
       pollSlug={pollSlug}
       partnerCampaign={partnerCampaign}
+      partnersComponent={<Partners locale={locale} />}
     />
   )
 }
