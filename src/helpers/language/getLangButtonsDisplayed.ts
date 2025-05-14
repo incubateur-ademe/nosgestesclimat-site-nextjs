@@ -47,6 +47,8 @@ export async function getLangButtonsDisplayed({
     // Si le contenu n'existe pas en anglais, on ne montre pas les boutons de langue
     if (!result || !result?.title || !result?.description) {
       return ALL_FALSE_VALUE
+    } else {
+      return FR_EN_ACTIVATED_VALUE
     }
   }
 
@@ -60,6 +62,8 @@ export async function getLangButtonsDisplayed({
     // Si le contenu n'existe pas en anglais, on ne montre pas les boutons de langue
     if (!result || !result?.article) {
       return ALL_FALSE_VALUE
+    } else {
+      return FR_EN_ACTIVATED_VALUE
     }
   }
 
