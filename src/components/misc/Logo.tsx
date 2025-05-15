@@ -2,17 +2,19 @@ import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 
 const imageClassSize = {
+  xs: 'w-[24px]',
   sm: 'w-[38px]',
   md: 'w-[50px]',
 }
 const textClassSize = {
+  xs: 'ml-1 text-xs',
   sm: 'ml-1 text-sm',
   md: 'ml-2 text-lg',
 }
 type Props = {
   onClick?: () => void
   className?: string
-  size?: 'sm' | 'md'
+  size?: 'xs' | 'sm' | 'md'
 }
 export default function Logo({ className, size = 'md' }: Props) {
   return (

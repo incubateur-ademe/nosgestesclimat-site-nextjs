@@ -19,9 +19,11 @@ export default function LanguageSwitchButton({
     en: true,
     es: true,
   },
+  size = 'sm',
   className,
 }: {
   langButtonsDisplayed?: LangButtonsConfigType
+  size?: 'xs' | 'sm'
   className?: string
 }) {
   const { t } = useClientTranslation()
@@ -57,15 +59,19 @@ export default function LanguageSwitchButton({
   }
 
   return (
-    <div className={twMerge('flex flex-wrap gap-2', className)}>
+    <div
+      className={twMerge(
+        'flex flex-wrap items-center gap-1 sm:gap-2',
+        className
+      )}>
       {langButtonsDisplayed.fr && (
         <Button
           lang="fr"
           color={currentLocale === 'fr' ? 'primary' : 'secondary'}
           onClick={() => handleChange('fr')}
-          size="sm"
+          size={size}
           aria-label={t('Passer en français')}
-          className="flex items-center gap-2 px-4 py-3"
+          className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
           data-cypress-id="language-switch-button-fr">
           <span>FR</span> <Emoji>🇫🇷</Emoji>
         </Button>
@@ -76,9 +82,9 @@ export default function LanguageSwitchButton({
           lang="en"
           color={currentLocale === 'en' ? 'primary' : 'secondary'}
           onClick={() => handleChange('en')}
-          size="sm"
+          size={size}
           aria-label={t('Switch to english')}
-          className="flex items-center gap-2 px-4 py-3"
+          className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
           data-cypress-id="language-switch-button-en">
           <span>EN</span> <Emoji>🇬🇧</Emoji>
         </Button>
@@ -91,7 +97,7 @@ export default function LanguageSwitchButton({
           onClick={() => handleChange('es')}
           size="sm"
           aria-label={t('Cambiar a español')}
-          className="flex gap-2 px-4 py-3"
+          className="flex gap-2 px-2 py-2 sm:px-4 sm:py-3"
           data-cypress-id="language-switch-button-es">
           <span>ES</span> <Emoji>🇪🇸</Emoji>
         </Button>
