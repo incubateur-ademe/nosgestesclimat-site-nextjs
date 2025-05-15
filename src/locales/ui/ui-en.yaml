@@ -163,9 +163,9 @@ entries:
   sites.publicodes.Tutorial.questionE: 💡 But what does that little <1>e</1> mean?
   sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
   sélectionnées: selected
-  tonne: tonne
+  tonne: ton
   tonne.lock: ton
-  tonnes: tonnes
+  tonnes: tons
   tonnes.lock: tons
   trajets saisis en moyenne: trips entered on average
   visites: visits
@@ -279,7 +279,7 @@ entries:
   'Identifiant :': 'Identifier :'
   disponibles: available
   Mes réponses: My answers
-  C'est parti ! →: Here we go! →
+  C'est parti ! →: Start →
   'Date complète :': 'Full date :'
   Consultez la FAQ: Consult the FAQ
   Avant de commencer: Before you start
@@ -1165,7 +1165,7 @@ entries:
   Si le problème persiste, merci de <2>contacter le support</2>.: If the problem persists, please <2>contact support.</2>
   Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.: An error has occurred; please reload the page or try again later.
   Oups ! Une erreur est survenue: Oops! An error has occurred
-  litres: litres
+  litres: liters
   de CO₂e: of CO₂e
   friends.day: day
   friends.day.lock: jour
@@ -1746,3 +1746,14 @@ entries:
   Ce dernier est calculé à partir de réponses par défaut attribuées à l’avance à chaque question. Si vous passez une question, ces mêmes réponses seront prises en compte.: This is calculated from default answers assigned in advance to each question. If you pass a question, these same answers will be taken into account.
   Vous souhaitez recevoir nos derniers articles directement ?: Would you like to receive our latest articles directly?
   Envie de connaître vos empreintes carbone et eau ?: Want to know your carbon and water footprints?
+  Sport ou Loisir: Sport or Leisure
+  RDV médicaux: Medical appointments
+  Courses: Races
+  Domicile-Travail: Home-Work
+  Mobilité académique: Academic mobility
+  Sorties ponctuelles: One-off outings
+  Vacances: Holidays
+  Visite familiale: Family visit
+  Week-end: Weekend
+  Toutes les questions: All questions
+  litre: liter
