@@ -1,9 +1,11 @@
 'use client'
 
 import ContentLarge from '@/components/layout/ContentLarge'
+import Trans from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
 import { useDebug } from '@/hooks/useDebug'
 import { useFormState } from '@/publicodes-state'
+import { twMerge } from 'tailwind-merge'
 import Question from './summary/Question'
 
 type Props = {
@@ -19,10 +21,14 @@ export default function Summary({
   const { relevantQuestions } = useFormState()
 
   return (
-    <div className={isQuestionListOpen || isDebug ? 'block' : 'hidden'}>
+    <div
+      className={twMerge(
+        'my-8 px-4',
+        isQuestionListOpen || isDebug ? 'block' : 'hidden'
+      )}>
       <ContentLarge>
         <Title tag="h2" className="mb-4 text-lg md:text-xl">
-          Toutes les questions
+          <Trans>Toutes les questions</Trans>
         </Title>
         {relevantQuestions.map((question: any, index: number) => (
           <Question
