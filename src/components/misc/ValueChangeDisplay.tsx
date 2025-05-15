@@ -42,7 +42,7 @@ export default function ValueChangeDisplay({
   return (
     <div
       className={twMerge(
-        'absolute top-1 right-2 -z-0 w-auto whitespace-nowrap',
+        'absolute -top-0.5 right-2 -z-0 w-auto whitespace-nowrap sm:top-1',
         isNegative
           ? 'animate-valuechange-reverse text-green-700'
           : 'animate-valuechange text-red-700',
@@ -60,7 +60,7 @@ export default function ValueChangeDisplay({
       )}>
       <span
         className={twMerge(
-          'text-sm font-semibold',
+          'text-xs font-semibold sm:text-sm',
           size === 'md' ? 'text-base' : ''
         )}>
         {difference > 0 ? '+' : ''}

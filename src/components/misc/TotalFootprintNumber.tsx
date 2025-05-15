@@ -66,7 +66,7 @@ export default function TotalFootprintNumber({
       {shouldDisplayTotalWithoutActions && (
         <strong
           className={twMerge(
-            'mr-4 block leading-none font-black text-slate-500 line-through md:text-xl',
+            'mr-4 block leading-0! font-black text-slate-500 line-through md:text-xl',
             size === 'lg' && 'text-xl md:text-3xl'
           )}>
           {!isInitialized ? '--' : formatedTotalFootprintValue}
@@ -75,7 +75,7 @@ export default function TotalFootprintNumber({
       {isInitialized ? (
         <strong
           className={twMerge(
-            'block text-lg leading-none font-black md:text-2xl',
+            'block text-lg leading-0! font-black md:text-2xl',
             size === 'lg' && 'text-xl md:text-4xl'
           )}>
           {result}{' '}
