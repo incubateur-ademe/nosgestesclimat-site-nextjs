@@ -25,13 +25,18 @@ function isGoogleBot(ip: string) {
 }
 
 export default function splitTestingMiddleware(request: NextRequest) {
+  console.log('splitTestingMiddleware - called')
   if (!process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH) {
+    console.log(
+      'splitTestingMiddleware - !process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH'
+    )
     return NextResponse.next()
   }
   // This has become useless
   const ip = '127.0.0.1' // request.ip
 
   if (!ip || !isIPv4(ip) || isGoogleBot(ip)) {
+    console.log('splitTestingMiddleware - other if')
     return NextResponse.next()
   }
 
@@ -41,14 +46,28 @@ export default function splitTestingMiddleware(request: NextRequest) {
     Number(lastNumber / 255) <
     Number(process.env.NEXT_PUBLIC_SPLIT_TESTING_PERCENTAGE ?? 0.5)
 
+  console.log(
+    'splitTestingMiddleware - shouldRedirectToChallenger',
+    shouldRedirectToChallenger
+  )
+
   if (!shouldRedirectToChallenger || redirectUrl === request.nextUrl.origin) {
     const response = NextResponse.next()
+    console.log(
+      'splitTestingMiddleware - !shouldRedirectToChallenger || redirectUrl === request.nextUrl.origin',
+      redirectUrl,
+      request.nextUrl.origin
+    )
+
     return response
   } else {
     const rewriteTo = `${redirectUrl}${request.nextUrl.href.replace(
       request.nextUrl.origin,
       ''
     )}`
+
+    console.log('splitTestingMiddleware - rewriteTo', rewriteTo)
+
     const response = NextResponse.rewrite(rewriteTo)
     return response
   }
