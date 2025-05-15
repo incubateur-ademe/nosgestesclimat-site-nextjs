@@ -84,7 +84,7 @@ export default function TotalFootprintNumber({
               'text-xs font-medium',
               size === 'lg' && 'text-sm md:text-base'
             )}>
-            {unit}
+            {t(unit ?? '')}
           </span>
         </strong>
       ) : (
