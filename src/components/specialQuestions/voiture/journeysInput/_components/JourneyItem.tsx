@@ -2,6 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Journey } from '@/types/journey'
 import type { Dispatch, SetStateAction } from 'react'
@@ -20,15 +21,15 @@ export const periods: Record<string, string> = {
 }
 
 export const labels: Record<string, string> = {
-  work: 'Domicile-Travail',
-  holidays: 'Vacances',
-  family: 'Visite familiale',
-  school: 'Mobilité académique',
-  sport: 'Sport ou Loisir',
-  occasional: 'Sorties ponctuelles',
-  shopping: 'Courses',
-  medical: 'RDV médicaux',
-  weekends: 'Week-end',
+  work: t('Domicile-Travail'),
+  holidays: t('Vacances'),
+  family: t('Visite familiale'),
+  school: t('Mobilité académique'),
+  sport: t('Sport ou Loisir'),
+  occasional: t('Sorties ponctuelles'),
+  shopping: t('Courses'),
+  medical: t('RDV médicaux'),
+  weekends: t('Week-end'),
 }
 
 export default function JourneyItem({ journey, odd, setJourneys }: Props) {
