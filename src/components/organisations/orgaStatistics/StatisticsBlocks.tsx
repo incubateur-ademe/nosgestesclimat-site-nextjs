@@ -121,7 +121,7 @@ export default function StatisticsBlocks({
             )}
 
             <div className="bg-primary-100/40 rounded-xl py-4">
-              <VerticalBarChart className="mt-0 h-[calc(100%-48px)] bg-transparent px-1 pt-0 pb-2">
+              <VerticalBarChart className="mt-0 h-auto bg-transparent px-1 pt-0 pb-2 sm:h-[calc(100%-48px)]">
                 {(
                   Object.entries(result.carbone) as Entries<
                     typeof result.carbone
