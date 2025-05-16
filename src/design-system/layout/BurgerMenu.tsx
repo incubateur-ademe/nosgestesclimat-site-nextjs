@@ -1,5 +1,6 @@
 'use client'
 
+import CloseIcon from '@/components/icons/Close'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { KeyboardEvent, ReactNode } from 'react'
 import { useEffect, useState } from 'react'
@@ -65,9 +66,20 @@ export default function BurgerMenu({
 
           <div
             className={twMerge(
-              'absolute top-0 right-0 z-50 h-screen w-[90vw] max-w-[20rem] translate-x-full bg-white p-4 pt-16 opacity-0 shadow-md transition-all duration-300 ease-in-out',
-              isOpen ? 'translate-x-0 opacity-100' : ''
+              'pointer-events-none fixed top-0 right-0 z-50 h-screen w-[90vw] max-w-[20rem] translate-x-full bg-white p-4 pt-16 opacity-0 shadow-md transition-all duration-300 ease-in-out',
+              isOpen ? 'pointer-events-auto translate-x-0 opacity-100' : ''
             )}>
+            <Button
+              color="text"
+              aria-label={t('Menu déroulant')}
+              onClick={handleToggleMenu}
+              className={twMerge(
+                'absolute top-4 right-4 z-100 flex h-[44px] w-[44px] flex-col items-center justify-center p-0!',
+                isOpen ? 'flex' : ''
+              )}>
+              <CloseIcon />
+            </Button>
+
             {children({
               closeMenu: () => setIsOpen(false),
               onFocus: () => setIsOpen(true),
@@ -80,20 +92,13 @@ export default function BurgerMenu({
         color="text"
         aria-label={t('Menu déroulant')}
         onClick={handleToggleMenu}
-        className="absolute top-4 right-4 z-100 flex h-[44px] w-[44px] flex-col items-center justify-center p-0!">
-        <div
-          className={`${genericHamburgerLine} ${
-            isOpen ? 'translate-y-2 rotate-45' : ''
-          }`}
-        />
-        <div
-          className={`${genericHamburgerLine} ${isOpen ? 'opacity-0' : ''}`}
-        />
-        <div
-          className={`${genericHamburgerLine} ${
-            isOpen ? '-translate-y-3 -rotate-45' : ''
-          }`}
-        />
+        className={twMerge(
+          'absolute top-4 right-4 flex h-[44px] w-[44px] flex-col items-center justify-center p-0!',
+          isOpen ? 'hidden' : ''
+        )}>
+        <div className={genericHamburgerLine} />
+        <div className={genericHamburgerLine} />
+        <div className={genericHamburgerLine} />
       </Button>
     </div>
   )

@@ -1,3 +1,5 @@
+import { t } from '../metadata/fakeMetadataT'
+
 type Options = {
   localize?: boolean
   locale?: string
@@ -36,8 +38,8 @@ export function formatWaterFootprint(
     ? 'l'
     : // Doesn't work perfectly. For example 1.950.toFixed(1) = 1.9 but 1.950.toLocaleString('fr-FR', { maximumFractionDigits: 1 }) = 2
       Number(absolutenumberValue.toFixed(maximumFractionDigits)) < 2
-      ? 'litre'
-      : 'litres'
+      ? t('litre')
+      : t('litres')
 
   return {
     formattedValue: localize
