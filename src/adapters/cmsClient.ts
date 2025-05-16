@@ -196,4 +196,12 @@ export type PartnerCampaignType = {
   image?: ImageType | null
   logo: ImageType
   backgroundColor: string
+  faq?: {
+    title?: string
+    questions: {
+      question: string
+      answer: string
+      htmlAnswer: string
+    }[]
+  }
 }

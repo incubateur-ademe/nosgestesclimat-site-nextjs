@@ -12,10 +12,12 @@ export default function PartnerCampaignContent({
   pollSlug,
   partnerCampaign,
   partnersComponent,
+  faqComponent,
 }: {
   pollSlug: string
   partnerCampaign: PartnerCampaignType
   partnersComponent: ReactNode
+  faqComponent?: ReactNode
 }) {
   const { data: pollInfo } = useFetchPublicPoll({
     pollIdOrSlug: pollSlug,
@@ -26,6 +28,7 @@ export default function PartnerCampaignContent({
       <PartnerCampaignHeader logoSrc={partnerCampaign.logo.url} />
       <Hero
         title={partnerCampaign.title}
+        className="pt-8 pb-0 md:pt-16 md:pb-20"
         description={
           <>
             <div
@@ -34,7 +37,7 @@ export default function PartnerCampaignContent({
 
             <ButtonLink
               size="lg"
-              className="mt-8"
+              className="mt-2 md:mt-10"
               href={`/o/${pollInfo?.organisation?.slug}/${pollSlug}`}>
               {partnerCampaign.labelCTA}
             </ButtonLink>
@@ -57,14 +60,19 @@ export default function PartnerCampaignContent({
               partnerCampaign.image?.url ??
               '/images/illustrations/girl-holding-earth.svg'
             }
-            width={300}
+            width={400}
             height={300}
             className="w-96"
             alt=""
           />
         }
-        partners={partnersComponent}
       />
+
+      {faqComponent}
+
+      <div className="mb-10 px-4 md:mb-32 md:px-24 md:py-10">
+        {partnersComponent}
+      </div>
     </>
   )
 }

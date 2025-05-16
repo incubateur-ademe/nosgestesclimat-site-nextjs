@@ -16,6 +16,8 @@ export async function fetchPartnerCampaign({
       'filters[pollSlug][$eq]': pollSlug,
       'populate[0]': 'logo',
       'populate[1]': 'image',
+      'populate[2]': 'faq',
+      'populate[3]': 'faq.questions',
     })
 
     const partnerCampaignsResponse = await cmsClient<{

@@ -1,4 +1,6 @@
+import FAQ from '@/components/landing-pages/FAQ'
 import Partners from '@/components/landing-pages/Partners'
+import Markdown from '@/design-system/utils/Markdown'
 import type { Locale } from '@/i18nConfig'
 import { fetchPartnerCampaign } from '@/services/cms/fetchPartnerCampaign'
 import { redirect } from 'next/navigation'
@@ -19,12 +21,26 @@ export default async function PartnerCampaignPage({
   if (!partnerCampaign) {
     redirect('/404')
   }
-
+  console.log(partnerCampaign.faq)
   return (
     <PartnerCampaignContent
       pollSlug={pollSlug}
       partnerCampaign={partnerCampaign}
       partnersComponent={<Partners locale={locale} />}
+      faqComponent={
+        partnerCampaign.faq && (
+          <FAQ
+            isBackgroundSkewed={false}
+            className="bg-white"
+            questions={partnerCampaign.faq?.questions?.map(
+              (questionObject) => ({
+                question: questionObject.question,
+                answer: <Markdown>{questionObject.answer}</Markdown>,
+              })
+            )}
+          />
+        )
+      }
     />
   )
 }
