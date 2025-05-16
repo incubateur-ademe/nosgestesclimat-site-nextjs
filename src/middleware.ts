@@ -41,11 +41,12 @@ export const config = {
      * - images (image optimization files)
      * - favicon.ico (favicon file)
      * - manifest.webmanifest (manifest file)
+     * - robots.txt (robots file)
      */
     {
       source: process.env.NEXT_PUBLIC_SPLIT_TESTING_PR_NUMBER
-        ? '/((?!api|_next/image|favicon.ico|favicon.png|images|manifest.webmanifest|scripts|demos|misc|videos).*)'
-        : '/((?!api|_next/static|_next/image|favicon.ico|favicon.png|images|manifest.webmanifest|scripts|demos|misc|videos).*)',
+        ? '/((?!api|_next/image|favicon.ico|favicon.png|images|manifest.webmanifest|scripts|demos|misc|videos|robots.txt).*)'
+        : '/((?!api|_next/static|_next/image|favicon.ico|favicon.png|images|manifest.webmanifest|scripts|demos|misc|videos|robots.txt).*)',
       missing: [
         { type: 'header', key: 'next-router-prefetch' },
         { type: 'header', key: 'purpose', value: 'prefetch' },
