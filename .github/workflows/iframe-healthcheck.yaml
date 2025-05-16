@@ -34,17 +34,4 @@ jobs:
 
       - name: Run iframe healthcheck
         id: healthcheck
-        run: yarn e2e:iframe-healthcheck
-
-      - name: Notify Mattermost on failure
-        if: failure()
-        uses: mattermost/action-mattermost-notify@v1
-        env:
-          MATTERMOST_WEBHOOK_URL: ${{ vars.MATTERMOST_WEBHOOK_URL }}
-          MATTERMOST_CHANNEL: 'startup-nosgestesclimat-support'
-          MATTERMOST_USERNAME: 'Iframe Healthcheck'
-          MATTERMOST_ICON: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
-          MATTERMOST_MESSAGE: |
-            Une intégration iframe semble être cassée. Veuillez vérifier à la mano les intégrations en question :
-            - https://nosgestesclimat.fr/demo-iframe
-            - https://nosgestesclimat.fr/demo-iframe-international
+        run: yarn iframe-healthcheck
