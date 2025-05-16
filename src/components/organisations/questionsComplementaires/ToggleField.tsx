@@ -20,6 +20,7 @@ type Props = {
   onEdit?: () => void
   onDelete?: (question: string) => void
   isLoadingUpdate?: boolean
+  helperText?: string
 }
 
 export default function ToggleField({
@@ -32,6 +33,7 @@ export default function ToggleField({
   className,
   isCustomQuestion = false,
   isLoadingUpdate,
+  helperText,
 }: Props) {
   const [isEnabled, setIsEnabled] = useState<boolean>(value)
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false)
@@ -47,9 +49,9 @@ export default function ToggleField({
     }
   }
 
-  async function handleDelete() {
+  function handleDelete() {
     if (onDelete) {
-      await onDelete(label)
+      onDelete(label)
     }
   }
 
@@ -61,7 +63,14 @@ export default function ToggleField({
           `${isEnabled ? 'border-primary-300 bg-primary-100' : ''} ${className}`
         )}>
         <div className="flex w-full items-center justify-between">
-          <p className="mb-0 cursor-default">{label}</p>
+          <div>
+            <p className="mb-0 cursor-default">{label}</p>
+            {helperText && (
+              <p className="mt-1 mb-0 cursor-default text-sm text-gray-700">
+                {helperText}
+              </p>
+            )}
+          </div>
 
           <div className="relative inline-flex cursor-pointer items-center justify-between">
             <input

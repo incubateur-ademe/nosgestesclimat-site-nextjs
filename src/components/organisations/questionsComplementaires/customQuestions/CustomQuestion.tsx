@@ -91,8 +91,8 @@ export default function CustomQuestion({
       name={question}
       value={isEnabled}
       isCustomQuestion
-      onChange={async (isEnabled: boolean) => {
-        await handleUpdateCustomQuestions({ question, value: isEnabled })
+      onChange={(isEnabled: boolean) => {
+        handleUpdateCustomQuestions({ question, value: isEnabled })
       }}
       onEdit={() => setIsEditing(true)}
       onDelete={handleDeleteQuestion}
