@@ -2089,10 +2089,10 @@
     prompt-sync "^4.2.0"
     yargs "^17.7.2"
 
-"@incubateur-ademe/nosgestesclimat@3.7.1":
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-3.7.1.tgz#5727504295dcfdaa6d0a973c0158920734c47840"
-  integrity sha512-6n0UBKR7xew9QuZUSU5kZItEZ82axTrY6iepENWMcDZqF2pRb2t8hLtRCZtFnaEvI2fRvy1dKPY7Nd4a8qZ30w==
+"@incubateur-ademe/nosgestesclimat@3.7.2":
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-3.7.2.tgz#e48d9b73285a7ba5fdd5f2a0c5c9c2780a34cd1c"
+  integrity sha512-oA849u1Mne/aOUWLutanUwUaqoMWA7TomxKAQsfJGwZ9fvAHiVlm3IKYUgcy7XLhSxDDK6NigqMQ8TM43zgx4w==
 
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
@@ -12160,10 +12160,10 @@ publicodes@^1.7.0:
     moo "^0.5.2"
     nearley "^2.20.1"
 
-publicodes@^1.8.3:
-  version "1.8.3"
-  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.8.3.tgz#b3c6ca3ef550b79fb7a02b13d3056a1cd87579a0"
-  integrity sha512-TQXzSYnoO4XlHuZZ34uUy90Om08hj7NNgw/ZBZrzR1i0vXvVHOT2vbqAOuV+vzDCG8ff0ndllL7cFEafQbBOtg==
+publicodes@^1.8.5:
+  version "1.8.5"
+  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.8.5.tgz#654bb97bea3aed86ad7249b575d16ac948faf6ea"
+  integrity sha512-z+3/NSfOfW2GGp//ulnZBj/KHWylZGuwjKOc7vAVDvmnbdeAWSG1+Dn7JffSZ85+Qs2XK/pWEOrdtFMrPvSWYQ==
 
 pump@^3.0.0:
   version "3.0.2"
