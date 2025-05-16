@@ -37,14 +37,15 @@ export const config = {
     /*
      * Match all request paths except for the ones starting with:
      * - api (API routes)
-     * - _next/static (static files)
+     * - _next/static (static files) - only excluded when split testing is not active
      * - images (image optimization files)
      * - favicon.ico (favicon file)
      * - manifest.webmanifest (manifest file)
      */
     {
-      source:
-        '/((?!api|_next/image|favicon.ico|favicon.png|images|manifest.webmanifest|scripts|demos|misc|videos).*)',
+      source: process.env.NEXT_PUBLIC_SPLIT_TESTING_PR_NUMBER
+        ? '/((?!api|_next/image|favicon.ico|favicon.png|images|manifest.webmanifest|scripts|demos|misc|videos).*)'
+        : '/((?!api|_next/static|_next/image|favicon.ico|favicon.png|images|manifest.webmanifest|scripts|demos|misc|videos).*)',
       missing: [
         { type: 'header', key: 'next-router-prefetch' },
         { type: 'header', key: 'purpose', value: 'prefetch' },
