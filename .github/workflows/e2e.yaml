@@ -50,4 +50,4 @@ jobs:
       - name: Run E2E tests
         run: |
           echo "Running tests against ${{ env.TEST_URL }}"
-          # Add your test commands here
+          yarn e2e:ci
