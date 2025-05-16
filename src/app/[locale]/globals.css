@@ -468,6 +468,9 @@ html[data-useragent*='Trident'] #js {
 .markdown p {
   @apply mb-6;
 }
+.markdown p:last-child {
+  @apply mb-0;
+}
 
 .markdown blockquote {
   @apply mb-6;

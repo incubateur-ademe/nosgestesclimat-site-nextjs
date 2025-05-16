@@ -6,6 +6,7 @@ import AmisIcon from '@/components/icons/AmisIcon'
 import BilanIcon from '@/components/icons/BilanIcon'
 import PRIndicator from '@/components/layout/header/headerDesktop/PRIndicator'
 import Logo from '@/components/misc/Logo'
+import LogoLink from '@/components/misc/LogoLink'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   headerClickActions,
@@ -61,7 +62,11 @@ export default function HeaderDesktop({ isSticky }: Props) {
       <div className="absolute top-0 right-0 bottom-0 left-0 flex h-20 w-full items-center border-b border-gray-200 bg-white shadow-xs">
         <div className="mx-auto flex h-full w-full max-w-5xl items-center justify-between gap-6">
           <div className="flex origin-left items-center justify-center">
-            <Logo onClick={() => trackEvent(headerClickLogo)} />
+            {isIframeOnlySimulation ? (
+              <Logo />
+            ) : (
+              <LogoLink onClick={() => trackEvent(headerClickLogo)} />
+            )}
           </div>
 
           {!isIframeOnlySimulation && (

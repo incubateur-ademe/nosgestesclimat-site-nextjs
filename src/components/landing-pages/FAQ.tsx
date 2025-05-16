@@ -12,9 +12,9 @@ export default function FAQ({
   shouldUseDangerouslySetInnerHTML = false,
 }: {
   className?: string
-  subTitle: ReactNode
+  subTitle?: ReactNode
   questions: {
-    question: ReactNode
+    question: ReactNode | string
     answer: ReactNode
   }[]
   isBackgroundSkewed?: boolean
@@ -23,7 +23,7 @@ export default function FAQ({
   return (
     <div
       className={twMerge(
-        'relative w-full bg-[#F6F6F5] px-4 py-16 md:py-20 lg:px-0',
+        'relative w-full bg-[#F6F6F5] py-16 md:px-4 md:py-20 lg:px-0',
         className
       )}>
       {isBackgroundSkewed && (
@@ -35,9 +35,9 @@ export default function FAQ({
       )}
 
       <div className="relative mx-auto flex w-full max-w-full flex-col gap-8 px-4 md:max-w-5xl md:flex-row md:gap-16 md:px-0">
-        <div className="flex flex-col gap-4 text-center md:w-[240px] md:max-w-[240px] md:text-left">
+        <div className="flex flex-col gap-4 pl-4 md:w-[240px] md:max-w-[240px] md:pl-0 md:text-left">
           <h2 className="mb-0 text-2xl md:text-3xl">FAQ</h2>
-          <Separator className="mx-auto my-0 md:mx-0" />
+          <Separator className="my-0" />
           <p className="text-sm font-bold md:text-xl">{subTitle}</p>
         </div>
 
@@ -50,7 +50,7 @@ export default function FAQ({
                     {question}
                   </h3>
 
-                  <PlusIcon className="group-open:fill-primary-700 inline-block h-6 w-6 min-w-6 origin-center transform transition-transform duration-300 group-open:rotate-45" />
+                  <PlusIcon className="group-open:fill-primary-700 inline-block h-4 w-4 min-w-4 origin-center transform transition-transform duration-300 group-open:rotate-45" />
                 </summary>
 
                 <div className="grid grid-rows-[0fr] transition-all duration-200 ease-in-out group-open:grid-rows-[1fr]">
