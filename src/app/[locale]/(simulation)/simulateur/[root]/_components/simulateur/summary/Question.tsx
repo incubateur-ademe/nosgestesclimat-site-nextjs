@@ -56,12 +56,12 @@ export default function Question({
       aria-disabled={isDisabled}
       className={twMerge(
         'relative mb-2 flex w-full flex-col items-start justify-between gap-2 rounded-xl border-2! p-4 text-left font-medium transition-transform md:flex-row md:items-center md:gap-4',
-        status === 'missing' ? '' : getBorderColor(category),
         getBackgroundLightColor(category),
-        status === 'current' &&
-          `${getBackgroundDarkColor(category)} text-white!`,
         getTextDarkColor(category),
-        isDisabled && 'border-gray-300! bg-[#F3F3F3] text-gray-800'
+        status === 'missing' ? '' : getBorderColor(category),
+        isDisabled && 'border-gray-300! bg-[#F3F3F3] text-gray-800',
+        status === 'current' &&
+          `${getBackgroundDarkColor(category)} text-white!`
       )}
       onClick={() => {
         if (isDisabled) return
