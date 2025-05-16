@@ -48,7 +48,7 @@ async function healthcheck() {
         const isValid = validPatterns.every((pattern) =>
           pageContent.toLowerCase().includes(pattern.toLowerCase())
         )
-        const errorPatterns = ['404', 'erreur', 'error']
+        const errorPatterns = ['404', 'erreur', 'error', 'Avant de commencer']
         const hasError = errorPatterns.some((pattern) =>
           pageContent.toLowerCase().includes(pattern.toLowerCase())
         )
@@ -74,7 +74,7 @@ async function healthcheck() {
         try {
           console.log('Attempting to send notification to Mattermost...')
           const response = await axios.post(webhookUrl, {
-            text: `Iframes are broken on the following site${errors.length > 1 ? 's' : ''}:\n ${errors.join('\n')}`,
+            text: `🚨 Iframes cassées détectées sur le${errors.length > 1 ? 's' : ''} site${errors.length > 1 ? 's' : ''} suivant${errors.length > 1 ? 's' : ''}:\n\n${errors.map((url) => `• ${url}`).join('\n')}`,
           })
           console.log('Mattermost response status:', response.status)
           console.log('Mattermost response data:', response.data)
