@@ -1,10 +1,11 @@
+import { trackingSplitTestingRedirect } from '@/constants/tracking/misc'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 import googleBots from './excludedIPs/googlebot.json'
 import specialCrawlers from './excludedIPs/special-crawlers.json'
 import userTriggeredFetchers from './excludedIPs/user-triggered-fetchers.json'
 
-const redirectUrl = `https://nosgestesclimat-git-${process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH}-ademe.vercel.app`
+const redirectUrl = `https://nosgestesclimat-site-preprod-pr${process.env.NEXT_PUBLIC_SPLIT_TESTING_PR_NUMBER}.osc-fr1.scalingo.io`
 
 // https://developers.google.com/search/docs/crawling-indexing/verifying-googlebot?hl=fr
 function isGoogleBot(ip: string) {
@@ -25,7 +26,7 @@ function isGoogleBot(ip: string) {
 }
 
 export default function splitTestingMiddleware(request: NextRequest) {
-  if (!process.env.NEXT_PUBLIC_SPLIT_TESTING_BRANCH) {
+  if (!process.env.NEXT_PUBLIC_SPLIT_TESTING_PR_NUMBER) {
     return NextResponse.next()
   }
   // This has become useless
@@ -49,7 +50,15 @@ export default function splitTestingMiddleware(request: NextRequest) {
       request.nextUrl.origin,
       ''
     )}`
+
     const response = NextResponse.rewrite(rewriteTo)
+
+    // Add Matomo tracking event
+    const trackingEvent = trackingSplitTestingRedirect(
+      process.env.NEXT_PUBLIC_SPLIT_TESTING_PR_NUMBER
+    )
+    response.headers.set('x-matomo-tracking', JSON.stringify(trackingEvent))
+
     return response
   }
 }
