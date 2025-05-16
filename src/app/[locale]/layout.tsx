@@ -1,3 +1,4 @@
+import SplitTestingTracker from '@/components/analytics/SplitTestingTracker'
 import ErrorContent from '@/components/error/ErrorContent'
 import ToastDisplay from '@/components/messages/ToastDisplay'
 import SkipToMainContentLink from '@/design-system/accessibility/SkipToMainContentLink'
@@ -12,6 +13,7 @@ import localFont from 'next/font/local'
 import Script from 'next/script'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
+
 export const marianne = localFont({
   src: [
     {
@@ -125,6 +127,8 @@ export default async function RootLayout({
           <SkipToMainContentLink />
 
           <Banner locale={locale as Locale} />
+
+          <SplitTestingTracker />
 
           {children}
 

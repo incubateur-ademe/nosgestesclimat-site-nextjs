@@ -1,3 +1,4 @@
+import { trackingSplitTestingRedirect } from '@/constants/tracking/misc'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 import googleBots from './excludedIPs/googlebot.json'
@@ -43,7 +44,6 @@ export default function splitTestingMiddleware(request: NextRequest) {
 
   if (!shouldRedirectToChallenger || redirectUrl === request.nextUrl.origin) {
     const response = NextResponse.next()
-
     return response
   } else {
     const rewriteTo = `${redirectUrl}${request.nextUrl.href.replace(
@@ -52,6 +52,13 @@ export default function splitTestingMiddleware(request: NextRequest) {
     )}`
 
     const response = NextResponse.rewrite(rewriteTo)
+
+    // Add Matomo tracking event
+    const trackingEvent = trackingSplitTestingRedirect(
+      process.env.NEXT_PUBLIC_SPLIT_TESTING_PR_NUMBER
+    )
+    response.headers.set('x-matomo-tracking', JSON.stringify(trackingEvent))
+
     return response
   }
 }
