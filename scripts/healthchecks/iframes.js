@@ -75,7 +75,7 @@ async function healthcheck() {
           console.log('Attempting to send notification to Mattermost...')
           const withSOrNot = errors.length > 1 ? 's' : ''
           const response = await axios.post(webhookUrl, {
-            text: `🚨 Iframes cassées détectées sur le${withSOrNot} site${withSOrNot} suivant${withSOrNot}:\n\n${errors.map((url) => `• ${url}`).join('\n')}`,
+            text: `🚨 Iframes cassées détectées sur le${withSOrNot} site${withSOrNot} suivant${withSOrNot} :\n\n${errors.map((url) => `• ${url}`).join('\n')}`,
           })
           console.log('Mattermost response status:', response.status)
           console.log('Mattermost response data:', response.data)
