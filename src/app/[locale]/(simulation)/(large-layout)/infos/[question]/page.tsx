@@ -5,6 +5,8 @@ import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 
+import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
+import Loader from '@/design-system/layout/Loader'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import { useParams, useRouter } from 'next/navigation'
 import { useContext } from 'react'
@@ -27,7 +29,7 @@ export default function CustomQuestion() {
 
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
 
-  const { data: poll, isLoading } = useFetchPublicPoll()
+  const { data: poll, isLoading, isError } = useFetchPublicPoll()
 
   const { addCustomAnswer } = useContext(InfosContext)
 
@@ -35,6 +37,10 @@ export default function CustomQuestion() {
 
   const customQuestion =
     customAdditionalQuestions[customQuestionIndex - 1].question
+
+  if (!customAdditionalQuestions?.length || isError) {
+    return <DefaultErrorAlert />
+  }
 
   function onSubmit({ 'custom-answer': customAnswer }: Inputs) {
     addCustomAnswer({
@@ -46,8 +52,8 @@ export default function CustomQuestion() {
     router.push(getLinkToNextInfosPage({ curPage: params.question as string }))
   }
 
-  if (!customAdditionalQuestions?.length || isLoading) {
-    return null
+  if (isLoading) {
+    return <Loader />
   }
 
   return (

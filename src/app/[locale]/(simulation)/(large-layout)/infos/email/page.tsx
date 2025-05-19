@@ -1,5 +1,6 @@
 'use client'
 
+import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import Trans from '@/components/translation/trans/TransClient'
 import { EMAIL_PAGE } from '@/constants/organisations/infosPages'
 import EmailInput from '@/design-system/inputs/EmailInput'
@@ -42,7 +43,7 @@ export default function Email() {
 
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
 
-  const { data: poll } = useFetchPublicPoll()
+  const { data: poll, isError } = useFetchPublicPoll()
 
   // We track a page view with the format of the shared link (/o/organisation/poll)
   useEffect(() => {
@@ -85,6 +86,7 @@ export default function Email() {
 
   return (
     <form>
+      {isError && <DefaultErrorAlert className="mb-6" />}
       <Title
         data-cypress-id="tutoriel-title"
         className="text-lg md:text-2xl"
