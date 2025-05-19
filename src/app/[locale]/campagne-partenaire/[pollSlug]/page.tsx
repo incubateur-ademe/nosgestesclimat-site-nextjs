@@ -21,23 +21,21 @@ export default async function PartnerCampaignPage({
   if (!partnerCampaign) {
     redirect('/404')
   }
-  console.log(partnerCampaign.faq)
+
   return (
     <PartnerCampaignContent
       pollSlug={pollSlug}
       partnerCampaign={partnerCampaign}
       partnersComponent={<Partners locale={locale} />}
       faqComponent={
-        partnerCampaign.faq && (
+        partnerCampaign.questions?.length && (
           <FAQ
             isBackgroundSkewed={false}
             className="bg-white"
-            questions={partnerCampaign.faq?.questions?.map(
-              (questionObject) => ({
-                question: questionObject.question,
-                answer: <Markdown>{questionObject.answer}</Markdown>,
-              })
-            )}
+            questions={partnerCampaign?.questions?.map((questionObject) => ({
+              question: questionObject.question,
+              answer: <Markdown>{questionObject.answer}</Markdown>,
+            }))}
           />
         )
       }
