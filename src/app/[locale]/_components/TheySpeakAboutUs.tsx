@@ -1,3 +1,4 @@
+import DefaultErrorMessage from '@/components/error/DefaultErrorMessage'
 import Background from '@/components/landing-pages/Background'
 import Trans from '@/components/translation/trans/TransServer'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
@@ -14,7 +15,9 @@ export default async function TheySpeakAboutUs({
   className?: string
   ctaHref?: string
 }) {
-  const partners = await fetchPartners({ displayOnLandingPage: true })
+  const { data: partners, isError } = await fetchPartners({
+    displayOnLandingPage: true,
+  })
 
   return (
     <div
@@ -32,34 +35,38 @@ export default async function TheySpeakAboutUs({
         direction="left"
       />
 
-      <div className="relative flex flex-col items-center gap-10 md:mx-auto md:max-w-5xl">
-        <h2 className="text-center text-xl md:text-2xl">
-          <Trans locale={locale}>
-            Plusieurs milliers d’organisations nous font confiance pour
-            sensibiliser efficacement
-          </Trans>
-        </h2>
+      {isError && <DefaultErrorMessage />}
 
-        <ul className="flex w-full flex-row flex-wrap items-center justify-center gap-7 md:justify-between">
-          {partners.map((partner) => (
-            <li key={partner.name} data-testid="partner-theyspeakaboutus">
-              <Image
-                src={partner.imageSrc}
-                alt={partner.name}
-                className="h-auto w-20 md:w-24"
-                width={150}
-                height={150}
-              />
-            </li>
-          ))}
-        </ul>
+      {partners && !isError && (
+        <div className="relative flex flex-col items-center gap-10 md:mx-auto md:max-w-5xl">
+          <h2 className="text-center text-xl md:text-2xl">
+            <Trans locale={locale}>
+              Plusieurs milliers d’organisations nous font confiance pour
+              sensibiliser efficacement
+            </Trans>
+          </h2>
 
-        <div className="flex justify-center">
-          <ButtonLink color="secondary" size="xl" href={ctaHref}>
-            <Trans locale={locale}>Rejoignez-les</Trans>
-          </ButtonLink>
+          <ul className="flex w-full flex-row flex-wrap items-center justify-center gap-7 md:justify-between">
+            {partners.map((partner) => (
+              <li key={partner.name} data-testid="partner-theyspeakaboutus">
+                <Image
+                  src={partner.imageSrc}
+                  alt={partner.name}
+                  className="h-auto w-20 md:w-24"
+                  width={150}
+                  height={150}
+                />
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex justify-center">
+            <ButtonLink color="secondary" size="xl" href={ctaHref}>
+              <Trans locale={locale}>Rejoignez-les</Trans>
+            </ButtonLink>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }
