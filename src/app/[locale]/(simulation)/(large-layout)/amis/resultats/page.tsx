@@ -20,6 +20,7 @@ export default function GroupResultsPage() {
   const {
     data: group,
     isLoading,
+    isError,
     refetch: refetchGroup,
   } = useFetchGroup(groupIdInQueryParams)
 
@@ -29,7 +30,7 @@ export default function GroupResultsPage() {
   }
 
   // If the group doesn't exist, we display a 404 page
-  if (!group) {
+  if (!group || isError) {
     return <GroupNotFound />
   }
 

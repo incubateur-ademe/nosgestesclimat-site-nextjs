@@ -1,5 +1,6 @@
 'use client'
 
+import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import GroupLoader from '@/components/groups/GroupLoader'
 import Trans from '@/components/translation/trans/TransClient'
 import { linkToGroupCreation } from '@/constants/group'
@@ -36,7 +37,10 @@ export default function Groups() {
         )}
       </div>
       {isGroupsLoading && <GroupLoader />}
-      {!isGroupsLoading && (
+
+      {isError && !isGroupsLoading && <DefaultErrorAlert />}
+
+      {!isGroupsLoading && !isError && (
         <>
           <p className="text-gray-500">
             <Trans>
@@ -46,7 +50,7 @@ export default function Groups() {
 
           <div className="flex flex-wrap justify-center gap-16 md:flex-nowrap">
             <div className="flex-1">
-              <GroupContent isError={isError} groups={groups} />
+              <GroupContent groups={groups} />
             </div>
 
             <Image
