@@ -1,6 +1,6 @@
 'use client'
 
-import DefaultErrorMessage from '@/components/error/DefaultErrorMessage'
+import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import Loader from '@/design-system/layout/Loader'
 import { useEffect, useRef, useState } from 'react'
 
@@ -31,7 +31,7 @@ export default function NorthStarIframe() {
     <>
       {!isIFrameLoaded && <Loader />}
 
-      {hasError && <DefaultErrorMessage />}
+      {hasError && <DefaultErrorAlert />}
 
       <iframe
         ref={iFrameRef}

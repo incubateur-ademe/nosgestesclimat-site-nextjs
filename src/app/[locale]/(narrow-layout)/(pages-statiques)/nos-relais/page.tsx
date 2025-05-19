@@ -1,5 +1,5 @@
 import type { PartnerType } from '@/adapters/cmsClient'
-import DefaultErrorMessage from '@/components/error/DefaultErrorMessage'
+import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import CategoryFilters from '@/components/filtering/CategoryFilters'
 import Trans from '@/components/translation/trans/TransServer'
 import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
@@ -112,7 +112,7 @@ export default async function OurPartners({
         />
       </div>
 
-      {isError && <DefaultErrorMessage />}
+      {isError && <DefaultErrorAlert />}
 
       {partnersByCategories && (
         <>

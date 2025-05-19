@@ -1,4 +1,4 @@
-import DefaultErrorMessage from '@/components/error/DefaultErrorMessage'
+import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import Background from '@/components/landing-pages/Background'
 import Trans from '@/components/translation/trans/TransServer'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
@@ -35,7 +35,7 @@ export default async function TheySpeakAboutUs({
         direction="left"
       />
 
-      {isError && <DefaultErrorMessage />}
+      {isError && <DefaultErrorAlert />}
 
       {partners && !isError && (
         <div className="relative flex flex-col items-center gap-10 md:mx-auto md:max-w-5xl">
