@@ -53,6 +53,28 @@ export default function QuestionsComplementaires({
       </h3>
 
       <ToggleField
+        name="email"
+        className="mb-4"
+        value={
+          poll.defaultAdditionalQuestions?.includes(
+            PollDefaultAdditionalQuestion.email
+          ) ?? false
+        }
+        data-cypress-id="poll-default-additional-questions-email-toggle"
+        onChange={(isEnabled: boolean) => {
+          onChange({
+            defaultAdditionalQuestions: getUpdatedDefaultAdditionalQuestions({
+              defaultAdditionalQuestions: poll.defaultAdditionalQuestions ?? [],
+              questionKey: PollDefaultAdditionalQuestion.email,
+              value: isEnabled,
+            }),
+          })
+        }}
+        label={t('Votre adresse électronique')}
+        helperText={t('Rendre ce champ obligatoire')}
+      />
+
+      <ToggleField
         name="villeToggle"
         className="mb-4"
         value={

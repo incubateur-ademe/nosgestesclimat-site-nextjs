@@ -2,6 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { EMAIL_PAGE } from '@/constants/organisations/infosPages'
+import { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
@@ -44,6 +45,10 @@ export default function Email() {
 
   const { data: poll } = useFetchPublicPoll()
 
+  const isEmailFieldRequired = poll?.defaultAdditionalQuestions?.includes(
+    PollDefaultAdditionalQuestion.email
+  )
+
   // We track a page view with the format of the shared link (/o/organisation/poll)
   useEffect(() => {
     trackPageView('/o/orga_slug/poll_slug/')
@@ -51,8 +56,8 @@ export default function Email() {
 
   const onSubmit = useCallback(
     ({ email }: Inputs) => {
-      // Email is not mandatory
-      if (!email) {
+      // If e-mail is not mandatory
+      if (!email && !isEmailFieldRequired) {
         router.push(getLinkToNextInfosPage({ curPage: EMAIL_PAGE }))
         return
       }
@@ -80,7 +85,15 @@ export default function Email() {
       // Go to next page
       router.push(getLinkToNextInfosPage({ curPage: EMAIL_PAGE }))
     },
-    [poll, updateEmail, router, getLinkToNextInfosPage, setError, t]
+    [
+      poll,
+      updateEmail,
+      router,
+      getLinkToNextInfosPage,
+      setError,
+      t,
+      isEmailFieldRequired,
+    ]
   )
 
   return (
@@ -90,21 +103,26 @@ export default function Email() {
         className="text-lg md:text-2xl"
         title={<Trans>Votre adresse electronique</Trans>}
         subtitle={
-          <>
-            <Trans>
-              Pour conserver vos résultats et les retrouver à l’avenir
-            </Trans>
-            {!fixedEmail ? (
-              <span className="text-secondary-700 ml-2 inline-block font-bold italic">
-                <Trans>facultatif</Trans>
-              </span>
-            ) : null}
-          </>
+          isEmailFieldRequired ? (
+            ''
+          ) : (
+            <>
+              <Trans>
+                Pour conserver vos résultats et les retrouver à l’avenir
+              </Trans>
+              {!fixedEmail ? (
+                <span className="text-secondary-700 ml-2 inline-block font-bold italic">
+                  <Trans>facultatif</Trans>
+                </span>
+              ) : null}
+            </>
+          )
         }
       />
 
       <EmailInput
         readOnly={fixedEmail}
+        required={isEmailFieldRequired}
         value={user?.email || user?.organisation?.administratorEmail || ''}
         error={errors?.email?.message}
         {...register('email', {
@@ -113,6 +131,7 @@ export default function Email() {
               /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             message: t('Veuillez entrer une adresse email valide'),
           },
+          required: t('Ce champ est requis'),
         })}
       />
 
