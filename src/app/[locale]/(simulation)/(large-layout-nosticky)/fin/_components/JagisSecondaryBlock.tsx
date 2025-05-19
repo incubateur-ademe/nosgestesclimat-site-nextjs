@@ -1,22 +1,26 @@
 import Logo from '@/components/misc/Logo'
 import Trans from '@/components/translation/trans/TransClient'
+import { PARTNER_JAGIS } from '@/constants/partners'
 import { endClickJagisSecondBlock } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/buttons/Button'
 import Badge from '@/design-system/layout/Badge'
 import Loader from '@/design-system/layout/Loader'
-import { useExportSituationToAgir } from '@/hooks/simulation/useExportSituationToAgir'
+import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
-export default function AgirSecondaryBlock() {
+export default function JagisSecondaryBlock() {
   const { t } = useClientTranslation()
 
   const [couldOpen, setCouldOpen] = useState(false)
 
-  const { exportSimulation, data, isPending, isSuccess, isError, error } =
-    useExportSituationToAgir()
+  const { situation } = useCurrentSimulation()
+
+  const { exportSituation, data, isPending, isSuccess, isError, error } =
+    useExportSituation()
 
   useEffect(() => {
     if (data?.redirectUrl && isSuccess) {
@@ -54,7 +58,10 @@ export default function AgirSecondaryBlock() {
           className="mb-4"
           onClick={() => {
             trackEvent(endClickJagisSecondBlock)
-            exportSimulation()
+            exportSituation({
+              situation,
+              partner: PARTNER_JAGIS,
+            })
           }}>
           <Trans>
             Créer mon compte {isPending && <Loader className="ml-2" />}

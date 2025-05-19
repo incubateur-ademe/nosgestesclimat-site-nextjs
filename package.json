@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@incubateur-ademe/legal-pages-react": "^0.3.0",
-    "@incubateur-ademe/nosgestesclimat": "3.7.1",
+    "@incubateur-ademe/nosgestesclimat": "3.7.2",
     "@next/mdx": "^15.3.2",
     "@publicodes/react-ui": "^1.7.1",
     "@publicodes/tools": "^1.5.3",
@@ -67,7 +67,7 @@
     "postcss": "8.5.3",
     "posthog-js": "^1.217.2",
     "process": "^0.11.10",
-    "publicodes": "^1.8.3",
+    "publicodes": "^1.8.5",
     "react": "19.1.0",
     "react-debounce-input": "^3.3.0",
     "react-dom": "19.1.0",

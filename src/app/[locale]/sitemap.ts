@@ -32,6 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     'northstar',
     'organisations',
     'partage',
+    'partenaire',
     'personas',
     'plan-du-site',
     'politique-de-confidentialite',

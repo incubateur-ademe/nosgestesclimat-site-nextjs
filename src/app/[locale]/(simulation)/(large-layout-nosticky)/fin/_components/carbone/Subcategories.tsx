@@ -1,6 +1,6 @@
 import { useSortedSubcategoriesByFootprint } from '@/hooks/useSortedSubcategoriesByFootprint'
 import { useSortedUiCategoriesByFootprint } from '@/hooks/useSortedUiCategoriesByFootprint'
-import AgirSecondaryBlock from '../AgirSecondaryBlock'
+import AgirSecondaryBlock from '../JagisSecondaryBlock'
 import OtherWays from './OtherWays'
 import Subcategory from './subcategories/Subcategory'
 
