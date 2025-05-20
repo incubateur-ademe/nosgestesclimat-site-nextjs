@@ -6,6 +6,7 @@ import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 
 import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
+import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Loader from '@/design-system/layout/Loader'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import { useParams, useRouter } from 'next/navigation'
@@ -71,17 +72,26 @@ export default function CustomQuestion() {
         }
       />
 
-      <TextInputGroup label={customQuestion} {...register('custom-answer')} />
+      {isLoading && <BlockSkeleton />}
 
-      <Navigation
-        linkToPrev={getLinkToPrevInfosPage({
-          curPage: params.question as string,
-        })}
-        submitDisabled={
-          !getLinkToNextInfosPage({ curPage: params.question as string })
-        }
-        currentPage={params.question as string}
-      />
+      {poll && (
+        <>
+          <TextInputGroup
+            label={customQuestion}
+            {...register('custom-answer')}
+          />
+
+          <Navigation
+            linkToPrev={getLinkToPrevInfosPage({
+              curPage: params.question as string,
+            })}
+            submitDisabled={
+              !getLinkToNextInfosPage({ curPage: params.question as string })
+            }
+            currentPage={params.question as string}
+          />
+        </>
+      )}
     </form>
   )
 }
