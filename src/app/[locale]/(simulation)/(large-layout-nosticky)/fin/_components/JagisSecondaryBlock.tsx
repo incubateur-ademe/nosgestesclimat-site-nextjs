@@ -63,9 +63,8 @@ export default function JagisSecondaryBlock() {
               partner: PARTNER_JAGIS,
             })
           }}>
-          <Trans>
-            Créer mon compte {isPending && <Loader className="ml-2" />}
-          </Trans>
+          <Trans>Créer mon compte</Trans>
+          {isPending && <Loader className="ml-2" />}
         </Button>
         {isError && <div className="text-red-600">{error?.toString()}</div>}
         {!data?.redirectUrl && isSuccess && (

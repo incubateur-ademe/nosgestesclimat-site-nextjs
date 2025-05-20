@@ -326,7 +326,6 @@ entries:
   pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !: pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !
   '{{category}}': '{{category}}'
   '{{value}} tonnes': '{{value}} tonnes'
-  '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>'
   '{linkToSimulateurPageLabel}': '{linkToSimulateurPageLabel}'
   Accéder au kit: Accéder au kit
   Administrateur·ice: Administrateur·ice
@@ -975,7 +974,6 @@ entries:
   Logo de J'agis: Logo de J'agis
   Que faire pour réduire mon empreinte ?: Que faire pour réduire mon empreinte ?
   Un coup de pouce pour agir ?: Un coup de pouce pour agir ?
-  Créer mon compte {isPending && <Loader className="ml-2" />}: Créer mon compte {isPending && <Loader className="ml-2" />}
   Une erreur est survenue. <2>Cliquez sur ce lien pour naviguer vers J'agis.</2>: Une erreur est survenue. <2>Cliquez sur ce lien pour naviguer vers J'agis.</2>
   <0>Chaque geste compte</0> pour garantir un accès durable à l'eau pour tous.: <0>Chaque geste compte</0> pour garantir un accès durable à l'eau pour tous.
   "<0>Eau bleue</0> : eau de surface et souterraine prélevée pour l’irrigation, la production industrielle ou l'énergie ;": "<0>Eau bleue</0> : eau de surface et souterraine prélevée pour l’irrigation, la production industrielle ou l'énergie ;"
@@ -1265,3 +1263,5 @@ entries:
   litre: litre
   Ferme: Ferme
   Veuillez entrer un nombre inférieur à 100 millions: Veuillez entrer un nombre inférieur à 100 millions
+  Créer mon compte: Créer mon compte
+  vous a invité à rejoindre le groupe: vous a invité à rejoindre le groupe

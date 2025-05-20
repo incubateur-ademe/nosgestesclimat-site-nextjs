@@ -34,10 +34,11 @@ export default function RejoindreGroupePage() {
     <div className="p-4 md:p-8">
       <Title
         title={
-          <Trans>
-            {group?.administrator?.name} vous a invité à rejoindre le groupe{' '}
+          <span>
+            {group?.administrator?.name}{' '}
+            <Trans>vous a invité à rejoindre le groupe</Trans>{' '}
             <span className="text-violet-900">{group?.name}</span>
-          </Trans>
+          </span>
         }
         subtitle={t(
           "Comparez vos résultats avec votre famille ou un groupe d'amis."

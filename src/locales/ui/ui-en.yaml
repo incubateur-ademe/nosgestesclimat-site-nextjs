@@ -408,7 +408,6 @@ entries:
   Impact CO2: CO2 impact
   '{{value}} tonnes': '{{value}} tonnes'
   Mon organisation: My organisation
-  '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.administrator?.name} has invited you to join the <3>{group?.name}</3> group'
   'Moyenne :': 'Average :'
   Bien vu !: Good point!
   Votre code postal: Your postcode
@@ -1034,7 +1033,6 @@ entries:
   Idées: Ideas
   Que faire pour réduire mon empreinte ?: What can I do to reduce my footprint?
   Logo de J'agis: J'agis logo
-  Créer mon compte {isPending && <Loader className="ml-2" />}: Create my account {isPending && <Loader className="ml-2" />}
   Une erreur est survenue. <2>Cliquez sur ce lien pour naviguer vers J'agis.</2>: An error has occurred. <2>Click on this link to navigate to I'm taking action.</2>
   Mes groupes: My groups
   'Chaque goutte compte : découvrez votre empreinte eau !': 'Every drop counts: discover your water footprint!'
@@ -1319,3 +1317,5 @@ entries:
   litre: liter
   Ferme: Farm
   Veuillez entrer un nombre inférieur à 100 millions: Please enter a number less than 100 million
+  Créer mon compte: Create my account
+  vous a invité à rejoindre le groupe: has invited you to join the

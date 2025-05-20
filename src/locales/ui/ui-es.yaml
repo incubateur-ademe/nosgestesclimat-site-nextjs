@@ -386,7 +386,6 @@ entries:
   Accéder au kit: Acceder al kit
   '{{value}} tonnes': '{{value}} toneladas'
   pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !: para crear una cuenta y podrá acceder gratuitamente a todos nuestros servicios
-  '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{nombre del administrador del grupo} te ha invitado a unirte al grupo <3>{nombre del grupo}</3>'
   D’après vous, quel est: ¿Qué opinas?
   Découvrez le calculateur, ouvrir dans un nouvel onglet: Descubrir el simulador, abrir en una nueva pestaña
   Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Descubrir los talleres ABC, abrir en una nueva pestaña
@@ -1030,7 +1029,6 @@ entries:
   Découvrez toutes les aides financières auxquelles vous avez droit: Infórmese de todas las ayudas económicas a las que tiene derecho
   Idées: Ideas
   Une erreur est survenue. <2>Cliquez sur ce lien pour naviguer vers J'agis.</2>: Se ha producido un error. <2>Haga clic en este enlace para navegar a Estoy tomando medidas.</2>
-  Créer mon compte {isPending && <Loader className="ml-2" />}: <Loader className="ml-2" />Crear mi cuenta {isPending && }
   Groupes: Grupos
   Mes groupes: Mis grupos
   'Chaque goutte compte : découvrez votre empreinte eau !': 'Cada gota cuenta: ¡descubre tu huella hídrica!'
@@ -1314,3 +1312,5 @@ entries:
   litre: litro
   Ferme: Granja
   Veuillez entrer un nombre inférieur à 100 millions: Introduzca un número inferior a 100 millones
+  Créer mon compte: Crear mi cuenta
+  vous a invité à rejoindre le groupe: le ha invitado a unirse al
