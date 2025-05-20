@@ -62,8 +62,11 @@ jobs:
             fi
           fi
 
-      - name: Wait 15 minutes
-        run: sleep 900
+      #- name: Wait 15 minutes
+      #run: sleep 900
+
+      - name: Set CYPRESS_baseUrl
+        run: echo "CYPRESS_baseUrl=${{ env.TEST_URL }}" >> $GITHUB_ENV
 
       - name: Run E2E tests
         run: |
