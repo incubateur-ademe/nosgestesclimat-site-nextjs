@@ -1,6 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Separator from '@/design-system/layout/Separator'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useRouter } from 'next/navigation'
@@ -12,7 +13,12 @@ export default function Page() {
 
   // This should fail if the user has not received a
   // valid token to access the organisation
-  const { isSuccess, isError, data: organisation } = useFetchOrganisation()
+  const {
+    isSuccess,
+    isError,
+    data: organisation,
+    isLoading,
+  } = useFetchOrganisation()
 
   // Redirect to the organisation page if the user
   // is already logged in (has a valid cookie stored)
@@ -42,9 +48,13 @@ export default function Page() {
 
         <Separator />
 
-        <div className="max-w-full md:w-[40rem]">
-          <EmailSection />
-        </div>
+        {isLoading && <BlockSkeleton />}
+
+        {!isLoading && !organisation && (
+          <div className="max-w-full md:w-[40rem]">
+            <EmailSection />
+          </div>
+        )}
       </div>
     </section>
   )
