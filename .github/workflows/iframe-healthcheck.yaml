@@ -1,4 +1,6 @@
 name: Iframe Healthcheck
+permissions:
+  contents: read
 
 on:
   schedule:
