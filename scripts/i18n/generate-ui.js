@@ -43,20 +43,28 @@ try {
 } catch (err) {
   cli.printErr('ERROR: an error occured during the analysis!')
   cli.printErr(err.message)
-  return
+  process.exit(1)
 }
 
 if (!fs.existsSync(paths.staticAnalysisFrRes)) {
   cli.printWarn('WARN: the analysis did not produce any result!')
-  return
+  process.exit(1)
 }
 
 const staticAnalysedFrResource = require(paths.staticAnalysisFrRes)
-let oldFrResource
+let oldResources = {}
 try {
-  oldFrResource = utils.readYAML(paths.UI.fr.withLock).entries
+  oldResources = {
+    fr: utils.readYAML(paths.UI.fr.withLock).entries,
+    en: utils.readYAML(paths.UI.en.withLock).entries,
+    es: utils.readYAML(paths.UI.es.withLock).entries,
+  }
 } catch (err) {
-  oldFrResource = {}
+  oldResources = {
+    fr: {},
+    en: {},
+    es: {},
+  }
 }
 
 console.log('Adding missing entries...')
@@ -64,13 +72,37 @@ const translationIsTheKey = (key) => !utils.isI18nKey(key)
 
 if (remove) {
   console.log('Removing unused entries...')
-  const oldKeys = Object.keys(oldFrResource)
   const currentKeys = Object.keys(
     utils.nestedObjectToDotNotation(staticAnalysedFrResource)
   )
-  const unusedKeys = ramda.difference(oldKeys, currentKeys)
-  oldFrResource = ramda.omit(unusedKeys, oldFrResource)
-  printResult(c.green('-') + ' Removed', unusedKeys, c.green)
+
+  // Process each language
+  Object.entries(oldResources).forEach(([lang, resource]) => {
+    const oldKeys = Object.keys(resource)
+    const unusedKeys = ramda.difference(oldKeys, currentKeys)
+
+    // Filter out .lock keys that have a corresponding non-lock key in currentKeys
+    const keysToKeep = unusedKeys.filter((key) => {
+      if (!key.endsWith('.lock')) return false
+      const baseKey = key.slice(0, -5) // Remove '.lock'
+      return currentKeys.includes(baseKey)
+    })
+
+    const finalUnusedKeys = ramda.difference(unusedKeys, keysToKeep)
+    oldResources[lang] = ramda.omit(finalUnusedKeys, resource)
+    printResult(
+      c.green('-') + ` Removed from ${lang}`,
+      finalUnusedKeys,
+      c.green
+    )
+    if (keysToKeep.length > 0) {
+      printResult(
+        c.yellow('~') + ` Kept .lock keys in ${lang}`,
+        keysToKeep,
+        c.yellow
+      )
+    }
+  })
 } else {
   let result = {
     addedTranslations: [],
@@ -82,17 +114,17 @@ if (remove) {
       key,
       value === DEFAULT_VALUE && translationIsTheKey(key) ? key : value,
     ])
-    .filter(([key, value]) => oldFrResource[key] !== value)
+    .filter(([key, value]) => oldResources.fr[key] !== value)
     .forEach(([key, value]) => {
-      if (!oldFrResource[key] || value !== DEFAULT_VALUE) {
+      if (!oldResources.fr[key] || value !== DEFAULT_VALUE) {
         if (value === DEFAULT_VALUE) {
           result.missingTranslations.push(key)
-        } else if (oldFrResource[key]) {
+        } else if (oldResources.fr[key]) {
           result.updatedTranslations.push(key)
         } else {
           result.addedTranslations.push(key)
         }
-        oldFrResource[key] = value
+        oldResources.fr[key] = value
       }
     })
   printResult(c.green('+') + ' Added', result.addedTranslations, c.green)
@@ -100,11 +132,13 @@ if (remove) {
   printResult(c.red('-') + ' Missing', result.missingTranslations, c.red)
 }
 
-console.log(`Writting resources in ${paths.UI.fr.withLock}...`)
+console.log(`Writing resources...`)
 try {
-  utils.writeYAML(paths.UI.fr.withLock, { entries: oldFrResource })
+  Object.entries(oldResources).forEach(([lang, resource]) => {
+    utils.writeYAML(paths.UI[lang].withLock, { entries: resource })
+  })
 } catch (err) {
-  cli.printErr('ERROR: an error occured while writting!')
+  cli.printErr('ERROR: an error occured while writing!')
   cli.printErr(err.message)
-  return
+  process.exit(1)
 }
