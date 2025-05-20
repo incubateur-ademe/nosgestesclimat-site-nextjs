@@ -7,18 +7,13 @@ entries:
   ' En savoir plus sur notre modèle': ' Más información sobre nuestro modelo'
   404.action: Volver a la seguridad
   404.action.lock: Revenir en lieu sûr
-  "Cette contribution sera publique : n'y mettez pas d'informations sensibles": 'Esta contribución será pública: no incluya información sensible'
   Chargée: Director
-  Depuis la page: Desde el
   Fermer: Cerrar
   Entrez des mots clefs: Introducir palabras clave
-  En savoir +: Más información
-  Entre: Entre
   Le modèle d'empreinte carbone de référence: El modelo de referencia de la huella de carbono
   Envie de contribuer à une version pour votre région ?: ¿Le gustaría contribuir a una versión para su región?
   En savoir plus: Más información
   Démarrer: Inicio
-  Découvrez les enjeux qui se cachent derrière chaque action.: Descubra lo que hay detrás de cada acción.
   Découvrez la FAQ !: Descubra las FAQ
   Documentation: Documentación
   En développement actif: En desarrollo activo
@@ -29,8 +24,6 @@ entries:
   Envoyer: Enviar
   J'ai compris: Comprendo
   Copier le lien: Copiar el enlace
-  Le titre bref de votre problème: El título abreviado de su problema
-  Je ne sais pas: No lo sé
   Explorez nos modèles: Explore nuestros modelos
   Fermer les options de tri: Cerrar las opciones de clasificación
   Choisissez une région parmi celles disponibles !: Elija una región entre las disponibles
@@ -47,7 +40,6 @@ entries:
   Rejeter l'action: Rechazar la acción
   components.localisation.LocalisationMessage.betaMsg: Actualmente se encuentra en versión <1>beta</1>.
   components.localisation.LocalisationMessage.betaMsg.lock: Elle est actuellement en version <1>bêta</1>.
-  Ouvert, documenté et contributif: Abierto, documentado y contributivo
   'Triées par :': 'Ordenados por :'
   Nous avons détecté que vous faites cette simulation depuis: Hemos detectado que ha estado ejecutando esta simulación desde
   Vous n'avez pas encore fait le test.: Aún no has hecho la prueba.
@@ -57,7 +49,6 @@ entries:
   Suivez le guide !: Sigue la guía
   Personnalisez cette estimation: Personalice este presupuesto
   Ouvrir les options de tri: Abrir opciones de clasificación
-  Nos explications complètes: Nuestras explicaciones completas
   Profil: Perfil
   Suivant: Siguiente
   Oui: Sí
@@ -67,22 +58,14 @@ entries:
   Sites Web: Páginas web
   components.localisation.LocalisationMessage.warnMessage: Su región aún no es compatible, el modelo francés se propone por defecto
   components.localisation.LocalisationMessage.warnMessage.lock: Votre région n'est pas encore supportée, le modèle Français vous est proposé par défaut
-  components.ScoreExplanation.text.p2: 'Aquí tienes tus puntuaciones provisionales: ¡cambian con cada nueva respuesta!'
-  components.ScoreExplanation.text.p2.lock: Voici vos scores provisoires, ils évoluent à chaque nouvelle réponse !
   actions choisies: acciones seleccionadas
   Une technologie moderne: Tecnología moderna
   Questions fréquentes: Preguntas más frecuentes
   derniers: última
   Non: No
   Nouveautés: Noticias
-  components.ScoreExplanation.text.p3: 'Si responde "No lo sé" a una pregunta, la puntuación no cambiará: se le dará un valor por defecto.'
-  components.ScoreExplanation.text.p3.lock: 'Si vous répondez "je ne sais pas" à une question, le score ne changera pas : une valeur par défaut vous est attribuée.'
-  components.ScoreExplanation.text.p4: Mejoramos el cálculo y sus valores por defecto <2>todos los meses</2>
-  components.ScoreExplanation.text.p4.lock: Nous améliorons le calcul et ses valeurs par défaut <2>tous les mois</2>!
   components.localisation.Localisation.warnMessage2: No hemos podido detectar su país de simulación, por lo que se propone por defecto el modelo francés.
   components.localisation.Localisation.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut.
-  components.ScoreExplanation.text.p1: Aquí tienes tus puntuaciones iniciales, calculadas a partir de las respuestas asignadas de antemano a cada pregunta Cambiarán con cada nueva respuesta.
-  components.ScoreExplanation.text.p1.lock: Voici vos scores de départ, calculés à partir de réponses attribuées à l'avance à chaque question ! Ils évolueront à chaque nouvelle réponse.
   publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} pregunta{{pluralSuffix}} restante{{pluralSuffix}}'
   publicodes.ActionVignette.questionsRestantesText.lock: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
   minutes: minutos
@@ -100,17 +83,12 @@ entries:
   plus de 100 kg: más de 100 kg
   plus d'1 kg: más de 1 kg
   le - d'impact climat: el - impacto climático
-  pages.News.premierParagraphe: Mejoramos constantemente la web gracias a sus comentarios. Infórmese aquí de las últimas novedades.
-  pages.News.premierParagraphe.lock: Nous améliorons le site en continu à partir de vos retours. Découvrez ici les dernières nouveautés.
-  ont utilisé l'aide à la saisie des km: han utilizado la ayuda a la entrada de km
   noresults: No se han encontrado resultados para esta búsqueda
   publicodes.Profil.locationDonnées: <0>¿Dónde se almacenan mis datos? </0><1>Tus datos se almacenan en tu navegador, por lo que tienes un control total sobre ellos.</1>
   publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? </0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
   plus de 10 tonnes: más de 10 toneladas
   model.active.documented: La construcción del modelo (vías de trabajo, reflexiones en curso, hoja de ruta, etc.) está ampliamente <2>documentada públicamente</2>.
   model.active.documented.lock: La construction du modèle (pistes de travail, réflexions en cours, feuille de route, etc.) est amplement <2>documentée publiquement</2>.
-  publicodes.Contribution.commentaireAugmenté: '&gt; Este ticket fue creado automáticamente por nuestro robot desde nuestra [página de contribución](https://nosgestesclimat.fr/contact).'
-  publicodes.Contribution.commentaireAugmenté.lock: '> Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contact).'
   publicodes.AllActions.msgPlusActions: <0>Ya no tenemos acciones cuantificadas de alto impacto que ofrecerte 🤷</0><1>Vea a continuación algunas ideas sobre cómo actuar de otra manera ⏬</1>
   publicodes.AllActions.msgPlusActions.lock: <0>Nous n'avons plus d'actions chiffrées très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes pour agir autrement ⏬</1>
   publicodes.ActionTutorial.félicitation: Ha completado su simulación
@@ -125,18 +103,12 @@ entries:
   publicodes.ActionTutorial.msgEstimation.lock: Vous connaissez maintenant votre empreinte, estimée à {{value}} {{unit}}, et vous avez sûrement déjà des idées pour la réduire...
   model.modern: El modelo se basa en <2>publicodes</2>, un lenguaje diseñado por el Estado para expresar algoritmos de interés público.
   model.modern.lock: Le modèle est basé sur <2>publicodes</2>, un langage conçu par l'État pour exprimer des algorithmes d'intérêt public.
-  meta.publicodes.pages.Documentation.intro: El simulador Nos Gestes Climat se basa en el modelo de cálculo del mismo nombre, compuesto por un conjunto de bloques de construcción. Esta documentación le permite acceder de forma transparente a todas las variables del cálculo.
-  meta.publicodes.pages.Documentation.intro.lock: Le calculateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques. Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul.
   model.modern4: El modelo de cálculo está incrustado directamente en el cliente, por lo que el cálculo tiene lugar allí, en su navegador, y no en nuestros servidores. Los datos recogidos son tan descriptivos de la vida de los usuarios, y por tanto tan sensibles en términos de privacidad, que hacer los cálculos en el servidor <2>y almacenarlos</2> supondría un riesgo demasiado alto.
   model.modern4.lock: Le modèle de calcul est directement embarqué chez le client, le calcul a lieu là dans votre navigateur, pas sur nos serveurs. Les données collectées sont si descriptives de la vie des utilisateurs, donc sensibles en termes de vie privée, que faire les calculs côté serveur <2>et les stocker</2> poserait un risque trop élevé.
   model.modern2: Totalmente configurable, desde las preguntas formuladas al usuario hasta las hipótesis del modelo de cálculo, puede ser reutilizado <2>libremente</2> por cualquier tipo de jugador.
   model.modern2.lock: Entièrement paramétrable, depuis les questions posées à l'utilisateur jusqu'aux hypothèses du modèle de calcul, il peut être réutilisé <2>librement</2> par tout type d'acteur.
   model.intro2: Totalmente de código abierto y contributivo, cualquiera puede<1>explorarlo</1> y <4>mejorarlo</4>.
   model.intro2.lock: Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>l'améliorer</4>.
-  publicodes.Contribution.liensVersGithub: Si tiene algún comentario o pregunta, <2>abra un ticket directamente en GitHub</2>.
-  publicodes.Contribution.liensVersGithub.lock: Pour toute remarque ou question, nous vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
-  publicodes.Contribution.descriptionComplète: <0>Una descripción completa de tu problema</0><1><0>Indicando el navegador que utiliza (por ejemplo, Firefox versión 93, Chrome versión 95, Safari, etc.), y la plataforma (iPhone, Android, ordenador con Windows, etc.), nos ayudará a resolver el fallo más rápidamente.</0></1>
-  publicodes.Contribution.descriptionComplète.lock: <0>La description complète de votre problème</0><1><0>En indiquant le navigateur que vous utilisez (par exemple Firefox version 93, Chrome version 95, Safari, etc.), et la plateforme (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à résoudre le bug plus rapidement.</0></1>
   model.stats2: Se compone de una combinación de cientos de micromodelos "ascendentes" para el consumo de carbono de nuestra vida cotidiana, y un modelo "descendente" derivado del trabajo del SDES para estimar la huella por persona de los llamados servicios sociales (servicios públicos y servicios básicos como las telecomunicaciones). <2>Más información sobre esta hibridación</2>.
   model.stats2.lock: Il est constitué d'une combinaison de centaines de modèles micro "bottom-up" pour les consommations carbonées de notre vie quotidienne, et d'un modèle "top-down" dérivé des travaux du SDES pour estimer l'empreinte par personne des services dits sociétaux (services publics et services de base tels les télécom). <2>En savoir plus sur cette hybridation</2>.
   model.modern3: ⬇️ A continuación puede ver la influencia de 3 parámetros de cálculo en los resultados finales.
@@ -145,12 +117,6 @@ entries:
   publicodes.Personas.description.lock: 'Nous les avons définis pour qu’ils représentent la diversité des cas d’usage du calculateur.<1>Toute ressemblance avec une personne existant ou ayant existé serait purement fortuite !</1>En aucune mesure, on ne peut dire qu’ils sont représentatifs de la distribution de la population française : il ne s’agit pas de coller aux statistiques de la population, mais de retrouver parmi nos dix personas au moins un qui représente chaque usage majeur et différenciant pour le calculateur. Ainsi, nous avons fait varier pour chacun d’entre eux :<3><0>Leur genre : même s’il n’influe pas sur l’empreinte, il serait étonnant de n’avoir que des personas “femmes”</0><1>Leur âge et situation personnelle / professionnelle : au moins un étudiant, un retraité, un adulte au foyer, un actif</1><2>La taille de leur foyer : de 1 personne à famille nombreuse</2><3>Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans le nord, dans le sud, les plaines, la montagne et sur une île</3><4>Leur logement : de l’appartement à la maison, du neuf à l’ancien</4><5>Leurs modes de transport : de la marche à la voiture en passant par le ferry et l’avion</5><6>Leur régime alimentaire : au moins un végétalien, un végétarien, une personne ne mangeant que du poisson, et un amateur de viande rouge</6><7>Leur tendance à l’achat : du tout occasion au tout neuf, de l’acheteur compulsif à celui ou celle qui n’achète presque rien</7><8>Leur façon de partir en vacances : mode de transport, hébergement, on trouve de tout</8><9>Leurs loisirs : de la culture, du sport, du bien-être…</9></3>'
   model.stats: El modelo incluye ahora <1></1> reglas de cálculo. Entre ellas, <3></3> reglas son preguntas que deben formularse al usuario para calcular un resultado preciso.
   model.stats.lock: Le modèle comprend aujourd'hui <1></1> règles de calcul. Parmi elles, <3></3> règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.
-  publicodes.Contribution.bugQuestion: 🐛 ¿Tienes un error que te impide utilizar Nos Gestes Climat?
-  publicodes.Contribution.bugQuestion.lock: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
-  publicodes.FAQ.description: Bienvenido a la sección de preguntas frecuentes de Nos Gestes Climat Aquí encontrará respuestas a las preguntas más frecuentes. Si aún tiene preguntas o desea sugerir mejoras, vaya al final de la página. ¡Buena lectura!
-  publicodes.FAQ.description.lock: Bienvenue sur la FAQ Nos Gestes Climat ! Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !
-  publicodes.Contribution.remerciements: ¡Gracias 😍! Sigue el progreso de tu sugerencia haciendo clic en <2>este enlace</2>.
-  publicodes.Contribution.remerciements.lock: Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur <2>ce lien</2>.
   visites: visita
   À venir !: Próximamente
   publicodes.planDuSite.actionsPlus: Las acciones
@@ -161,10 +127,7 @@ entries:
   tonne: tonelada
   international.comment.titre: ¿Cómo funciona?
   international.comment.titre.lock: Comment ça marche ?
-  trajets saisis en moyenne: viajes introducidos de media
-  👍 Accepter: 👍 Aceptar
   Pas vraiment, envoyer cette réponse: En realidad no, envíe esta respuesta
-  ◀ Retour à la liste des fiches: ◀ Volver a la lista de archivos
   publicodes.northstar.title: Sólo una pregunta rápida entre nosotros...
   publicodes.northstar.title.lock: Petite question entre nous...
   publicodes.SimulationMissing.personnas: También puede continuar con un <2>perfil estándar</2>.
@@ -179,12 +142,10 @@ entries:
   publicodes.planDuSite.title: Mapa del sitio
   publicodes.planDuSite.title.lock: Plan du site
   Ce modèle a été conçu par: Este modelo fue diseñado por
-  Notre équipe a été notifiée, nous allons résoudre le problème au plus vite.: Nuestro equipo ha sido avisado y resolveremos el problema lo antes posible.
   publicodes.SimulationMissing.simulationManquante: Para desbloquear esta ruta, primero debes completar la prueba.
   publicodes.SimulationMissing.simulationManquante.lock: Pour débloquer ce parcours, vous devez d'abord terminer le test.
   international.pourquoi.3: 'Cuando está disponible, utilizamos la huella del mix eléctrico facilitada por :'
   international.pourquoi.3.lock: "Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par :"
-  👎 Refuser: 👎 Rechazar
   international.pourquoi.titre: Adaptado a su país
   international.pourquoi.titre.lock: Adapté à votre pays
   international.comment.1: Para proponer un modelo para cada país, necesitamos necesariamente una base. Nos Gestes Climat se basa en el caso de Francia. A partir de ahí, cada país describe sus diferencias con respecto a la base.
@@ -199,14 +160,12 @@ entries:
   Moyennement, envoyer cette réponse: Enviar esta respuesta
   sites.publicodes.Tutorial.questionE: 💡 Pero, ¿qué significa esa pequeña <1>e</1>?
   sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
-  🧮 Voir le geste climat correspondant: nos Gestes Climat
   publicodes.Profil.simulations: Cada simulación que ejecutas se guarda en tu navegador. Sólo tú tienes acceso a ella.
   publicodes.Profil.simulations.lock: Chaque simulation que vous faite est sauvegardée dans votre navigateur Web. Vous êtes le seul à y avoir accès.
   international.pourquoi.2: A medida que la electricidad adquiere mayor importancia como consecuencia de la transición energética, la huella de carbono del mix eléctrico tiene una gran influencia en el cálculo de la huella climática.
   international.pourquoi.2.lock: Au fur et à mesure que l'électricité prend une place très importante grâce à la transition énergétique, l'empreinte carbone du mix électrique influence fortement le calcul d'empreinte climat.
   international.ensuite.1: Hemos lanzado una primera versión de internacionalización que incluye una docena de países. Vamos paso a paso, para consolidar las características específicas de cada país. ¿No está incluido el tuyo? <2>¡Escríbanos!</2>
   international.ensuite.1.lock: Nous avons lancé une première version de l'internationalisation qui comprend une douzaine de pays. Nous le faisons pas à pas, pour consolider les particularités de chaque pays. Le votre n'y est pas ? <2>Écrivez-nous !</2>
-  Recharger la page: Recargar página
   Modifier le nom du groupe: Cambiar el nombre del grupo
   facultatif: opcional
   Créer le groupe: Crear un grupo
@@ -214,10 +173,8 @@ entries:
   'pour les ': 'para '
   Statistiques Northstar: Estadísticas de Northstar
   Vos points faibles: Sus puntos débiles
-  Toutes les actions: Todas las acciones
   Rejoindre: Póngase en contacto con
   Créer un groupe d'amis: Crear un grupo de amigos
-  Retour à la liste des articles: Volver a la lista de artículos
   Votre prénom (ou pseudo): Su nombre (o seudónimo)
   Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.: Comparte esta página con tus amigos y familiares para que se unan a tu grupo.
   Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données: Sólo para que puedas encontrar tu grupo o borrar tus datos
@@ -227,7 +184,6 @@ entries:
   Nombre de: Número de
   Vos points forts: Sus puntos fuertes
   simulations terminées: simulaciones completadas
-  Une erreur s'est produite: Se ha producido un error
   Retour: Volver
   Créez votre premier groupe: Cree su primer grupo
   Ok, sauvegarder la modification: Ok, guardar la modificación
@@ -244,8 +200,6 @@ entries:
   model.questions: Consulte <2>la lista de preguntas disponibles en la plantilla</2>.
   model.questions.lock: Découvrez <2>la liste des questions disponibles dans le modèle</2>.
   Comparez vos résultats avec votre famille ou un groupe d'amis.: Compara tus resultados con los de tu familia o un grupo de amigos.
-  publicodes.FAQ.faireletest: Aún no has empezado tu prueba, <2><0>¡empieza!</0></2>
-  publicodes.FAQ.faireletest.lock: Vous n'avez pas encore débuté votre test, <2><0>lancez-vous !</0></2>
   Supprimer mes données: Borrar mis datos
   disponibles: disponible
   Consultez la FAQ: Consulte las FAQ
@@ -253,15 +207,9 @@ entries:
   10 minutes: 10 minutos
   Qui sont-ils ?: ¿Quiénes son?
   Avant de commencer: Antes de empezar
-  D’où vient mon empreinte ?: ¿De dónde viene mi huella?
   Rejoindre et passer mon test: Únete y haz mi prueba
-  'Découvrez nos articles de blog :': 'Lea los artículos de nuestro blog:'
   'Date complète :': 'Fecha completa :'
-  Votre adresse email: Su dirección de correo electrónico
-  C’est quoi mon empreinte carbone ?: ¿Cuál es mi huella de carbono?
-  Comment on la mesure ?: ¿Cómo se mide?
   Comment les mettons-nous à jour ?: ¿Cómo se actualizan?
-  Comprendre mon score: Comprender mi puntuación
   Bientôt disponible: Disponible en breve
   Veuillez renseigner un nom.: Por favor, introduzca un nombre.
   ' Retour à la liste': ' Volver a la lista'
@@ -272,35 +220,24 @@ entries:
   Personas: Personas
   Calcul d'empreinte carbone manquant: Falta el cálculo de la huella de carbono
   Il concerne votre vie personnelle, et non pas votre boulot.: Se trata de tu vida personal, no de tu trabajo.
-  chrono pour calculer votre empreinte sur le climat: chrono para calcular tu huella climática
   Supprimer votre groupe <1>{group?.name}</1> ? Les données sauvegardées seront supprimées pour tous les membres du groupe. Cette action est irréversible.: Borrar el grupo <1>{nombre del grupo}</1>? Se borrarán los datos guardados de todos los miembros del grupo. Esta acción es irreversible.
-  Veuillez renseigner un prénom ou un pseudonyme.: Por favor, introduzca un nombre o seudónimo.
   Comparez vos résultats avec votre famille ou un groupe d’ami·e·s: Compara tus resultados con los de tu familia o grupo de amigos
   C'est un test individuel !: Es una prueba individual
-  Veuillez renseigner un email valide.: Introduzca una dirección de correo electrónico válida.
   Créer et passer mon test: Crear y realizar mi prueba
   Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.: ¿Borrar los datos de grupo guardados? Sólo se borrarán los datos de tus miembros. Esta acción es irreversible.
   publicodes.Personas.maj: Para garantizar que siguen representando la diversidad de casos de uso del simulador de huella de carbono, los editamos cada vez que se añade o modifica el simulador, de acuerdo con las siguientes reglas:<1><0>Cada respuesta posible se asigna al menos a una persona</0><1>Al menos una persona no responde a la pregunta (por lo que se le asigna el valor por defecto dado en el simulador).</1></1>
   publicodes.Personas.maj.lock: Pour qu’ils ou elles continuent de représenter la diversité des cas d’usage du calculateur d’empreinte carbone, nous les éditons à chaque ajout ou modification de ce dernier, en respectant les règles suivantes :<1><0>Chaque réponse possible est attribuée à au moins un persona</0><1>Au moins un persona ne répond rien à la question (il lui est donc attribué la valeur par défaut donnée dans le calculateur).</1></1>
   Cette page vous permet de naviguer dans les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.: Esta página le permite navegar por los itinerarios de Nos Gestes Climat como si fuera uno de los perfiles típicos que hemos enumerado.
-  Modifier mes réponses: Modificar mis respuestas
   Voir plus d'informations: Más información
   Label: Etiqueta
-  Plus d'information à ce sujet: Más información
   Comment agir ?: ¿Qué podemos hacer?
   Recommencer: Volver a empezar
-  Ambassadeurs: Embajadores
   Détailler mes trajets: Detallar mis viajes
   Télécharger l'image: Descargar imagen
   Fréquence: Frecuencia
   Passer en français: Cambiar al francés
-  ou: o
   Supprimer: Borrar
   Voir toutes les actions: Ver todas las acciones
-  Total.unit: de CO<1>2</1>e / año
-  Total.unit.lock: de CO<1>2</1>e / an
-  Voir la liste des questions: Ver la lista de preguntas
-  Comparez vos résultats <2>avec vos proches</2>: Compara tus resultados <2>con los de tu entorno</2>
   Passagers: Pasajeros
   Distance: Distancia
   Switch to english: Cambiar a inglés
@@ -311,18 +248,14 @@ entries:
   du test: de la prueba
   Sélectionner: Seleccione
   Mes réponses: Mis respuestas
-  Le Blog: El blog
   Répondez aux questions en votre nom, pas pour votre foyer.: Responda a las preguntas en su nombre, no en el de su familia.
   Revoir le tutoriel: Revisar el tutorial
   publicodes.Tutoriel.slide1.p2: Para estimar nuestra propia contribución al calentamiento global (nuestro "impacto climático"), solemos calcular la huella de carbono de nuestro consumo individual.
   publicodes.Tutoriel.slide1.p2.lock: Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer ce qu'on appelle l'empreinte carbone individuelle de consommation.
   international.comment.2: Explore en detalle las características específicas de cada país.
   international.comment.2.lock: Explorez en détail les spécificités de chaque pays.
-  Découvrez vos résultats, et nos idées d'actions pour vous améliorer.: Conozca sus resultados y lo que podemos hacer para ayudarle a mejorar.
   publicodes.northstar.learned: ¿Le ha ayudado "Nos Gestes Climat" a aprender algo?
   publicodes.northstar.learned.lock: Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque chose ?
-  Oups! Cette page n'existe pas ou n'existe plus: Oops! esta página no existe o ya no existe
-  La catégorie {{title}} représente {{formattedValue}} tonnes de CO2 equivalent.: La categoría {{title}} représente {{formattedValue}} toneladas equivalentes de CO2.
   'Total par an :': 'Total anual :'
   revenir à l'accueil: volver a la página de inicio
   Logo de l'Association pour la transition Bas Carbone: Logotipo de la Low Carbon Transition Association
@@ -330,7 +263,6 @@ entries:
   'Revenir à ma région par défaut ': 'Volver a mi región por defecto '
   Sélectionné·e: Selección
   Merci pour votre retour !: Gracias por sus comentarios
-  Qu'est-ce que ça veut dire ? Cette page s'ouvrira dans un nouvel onglet.: ¿Qué significa esto? Esta página se abrirá en una pestaña nueva.
   Vous utilisez la version: Está utilizando el
   'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': 'Por supuesto, algunas cosas son compartidas (en mi casa con mi familia, el coche con mis compañeros de viaje): esto se tendrá en cuenta a la hora de calcular tu huella de carbono, ¡así que no te preocupes!'
   publicodes.Tutoriel.slide2.blockquote: '<2></2> <6></6> Otros gases, especialmente el metano y el óxido nitroso, también calientan el planeta: convertimos su potencial de calentamiento en CO₂e para simplificar la medición.'
@@ -346,10 +278,8 @@ entries:
   Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: Los personajes nos permiten probar el simulador desde todos los ángulos y comprobar que se adapta a todas las situaciones de la vida de los habitantes de la Francia metropolitana. Su presencia nos obliga a reflexionar sobre todos los casos de uso, a proyectarnos en realidades diferentes y a incluir estas realidades en nuestros rediseños del recorrido de prueba y de las acciones propuestas al final del mismo.
   Terminer: Acabado
   Vous avez terminé le test !: Has completado la prueba
-  Une capture du mode Groupe Nos Gestes Climat.: Una captura del Grupo Nos Gestes Climat.
   FAQ: Preguntas frecuentes
   Créé par {{name}}: Creado por {{name}}
-  Les actions phares: Acciones clave
   Quitter: Deja
   Votre profil: Tu perfil
   de: de
@@ -361,20 +291,16 @@ entries:
   Ma région de simulation: Mi región de simulación
   Partenaires: Socios
   Documentations: Documentación
-  Nos utilisateurs types: Nuestros usuarios habituales
   'Vos trajets :': 'Sus rutas :'
   Aide à la saisie: Ayuda para la introducción de datos
-  Nos guides thématiques: Nuestras guías temáticas
   Informations: Información
   Nos outils: Nuestras herramientas
   Période: Periodo
-  chaque année: cada año
   Vie privée: Política de privacidad
   Sauvegarder: Guardar
   Statistiques: Estadísticas
   Plan du site: Mapa del sitio
   D'autres questions ?: ¿Alguna otra pregunta?
-  Comment est calculée votre empreinte ?: ¿Cómo se calcula su huella?
   Revenir à l'accueil: Volver a la página de inicio
   Le modèle Nos Gestes Climat: El modelo Nos Gestes Climat
   Nos actions pour réduire votre empreinte: Nuestras acciones para reducir su huella
@@ -382,167 +308,88 @@ entries:
   Découvrez nos pistes pour agir dès aujourd’hui pour le climat.: Averigua cómo puedes actuar hoy por el clima.
   Votre groupe a été supprimé. Vous allez être redirigé vers la page d'accueil du mode groupe.: Tu grupo ha sido eliminado. Serás redirigido a la página de inicio del modo grupo.
   Cette opération est définitive et vous ne pourrez plus accéder aux résultats du groupe.: Esta operación es definitiva y ya no podrás acceder a los resultados del grupo.
-  Notre calculateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Nuestro simulador se basa en un modelo de datos, con todos los cálculos documentados; los datos mostrados están directamente asociados a su prueba.
   N'hésitez pas à consulter notre <2>FAQ</2> avant de nous écrire, vous y trouverez sans doute la réponse à votre question !: 'No dude en consultar nuestras <2>FAQ</2> antes de escribirnos: ¡seguro que encuentra allí la respuesta a su pregunta!'
   Pour toute autre remarque ou question, vous pouvez nous envoyer un message via le formulaire de contact ci-dessous.: Si tiene algún otro comentario o pregunta, envíenos un mensaje mediante el siguiente formulario de contacto.
   Pour en savoir plus sur cette règle de notre modèle, lancer le calcul en cliquant sur le bouton ci-dessous.: Para saber más sobre esta regla en nuestro modelo, ejecute el cálculo haciendo clic en el botón de abajo.
   Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.: Viva donde viva, calcule su huella de carbono personal, teniendo en cuenta las particularidades de su país.
   Vous pouvez quitter le groupe en cliquant sur le bouton ci-dessous. Le groupe ne sera en revanche pas supprimé puisque vous n’en êtes pas l’administrateur.: Puedes abandonar el grupo haciendo clic en el botón de abajo. Sin embargo, el grupo no se borrará porque usted no es el administrador.
   Vous pouvez supprimer le groupe en cliquant sur le bouton ci-dessous. Il sera supprimé définitivement pour tous ses autres membres puisque vous en êtes l'administrateur.: Puedes eliminar el grupo haciendo clic en el botón de abajo. Se eliminará permanentemente para todos sus demás miembros, ya que usted es el administrador.
-  Vous souhaitez recevoir vos résultats d’empreinte carbone ?: ¿Le gustaría recibir los resultados de su huella de carbono?
   Cette opération est définitive et supprimera le groupe pour tous ses membres.: Esta operación es definitiva y borrará el grupo para todos sus miembros.
   Ce groupe n'existe pas ou a été supprimé.: Este grupo no existe o ha sido eliminado.
   'Vous pouvez nous contacter via notre page de contact : <2>accéder à notre page de contact</2>.': 'Puede ponerse en contacto con nosotros a través de nuestra página de <2>contacto: vaya a nuestra página de contacto</2>.'
   Le calculateur d’empreinte climat international: Calculadora internacional de la huella climática
   Vous avez quitté ce groupe. Vous allez être redirigé vers la page d'accueil du mode groupe: Has abandonado este grupo. Serás redirigido a la página de inicio del modo grupo
-  association: asociación
-  entreprise: empresa
-  Demandez une démo: Solicitar una demostración
-  Statistiques et exports: Estadísticas y exportaciones
   Renvoyer le code: Reenviar código
   Demander une démo: Solicitar una demostración
   Bienvenue sur votre espace !: ¡Bienvenido a tu espacio!
   Accédez à votre espace organisation: Acceda al área de su organización
   L’adresse e-mail est invalide: La dirección de correo electrónico no es válida
   Votre prénom: Su nombre
-  ', votre': su
-  Commencez: Inicio
   "Sur l'espace organisation de ": 'En el '
-  Votre adresse e-mail: Su dirección de correo electrónico
   2 petites minutes: 2 minutos
   Bienvenue: Bienvenido
-  secondes avant de pouvoir recevoir un nouveau code: segundos antes de poder recibir un nuevo código
   (une fois par mois maximum !): (¡una vez al mes como máximo!)
   Entrez votre code de vérification pour continuer: Introduzca su código de verificación para continuar
-  Rôle: Papel
   Explorez, comparez et analysez vos données: Explore, compare y analice sus datos
-  Sensibilisez votre organisation: Aumente la concienciación de su organización
   Vous êtes le premier: Usted es el primer
   mais vous êtes seul·e…: pero está solo…
   Nous vérifions votre code...: Comprobamos su código...
-  Vous n'avez pas reçu d'e-mail ?: ¿No has recibido un correo electrónico?
   Votre code est valide !: ¡Tu código es válido!
-  Veuillez attendre: Espere, por favor
   Nous avons envoyé un: Enviamos un
-  Vous devez renseigner le nom de votre organisation: Debe introducir el nombre de su organización
   Votre organisation: Su organización
   'à ': 'à '
   Créer un compte: Crear una cuenta
   Oups ! Nous n'avons pas trouvé votre groupe: ¡Uy! No hemos podido encontrar su grupo
-  Rejoignez nos partenaires: Únete a nuestros socios
   Code renvoyé: Código devuelto
   Accéder à mon espace: Acceder a mi espacio
   code de vérification: código de verificación
-  Téléphone: Teléfono
   Lien personnalisé & iframes: Enlaces personalizados e iframes
   Créez votre compte organisation: Cree la cuenta de su organización
   Plus que quelques petites questions: Algunas preguntas más
-  salle de classe: aula
-  Vous souhaitez mobiliser votre: Quiere movilizar a sus
-  Nos Gestes Climat pour les organisations: Nos Gestes Climat pour les organisations
   Retour à la liste des groupes: Volver a la lista de grupos
   Le code est invalide: El código no es válido
-  Nombre de participants (estimé): Número de participantes (estimado)
   Vérifiez votre boîte e-mail !: Compruebe su buzón de correo electrónico
-  Explorez, analysez et téléchargez des données pour faire des choix éclairés et pour améliorer continuellement votre démarche écologique. Avec nos exports sur mesure, partagez vos réussites et vos challenges avec vos équipes et parties prenantes pour une stratégie de durabilité unifiée.: Explore, analice y descargue datos para tomar decisiones informadas y mejorar continuamente su enfoque ecológico. Con nuestras exportaciones a medida, comparta sus éxitos y retos con sus equipos y partes interesadas para lograr una estrategia de sostenibilidad unificada.
   Renvoyer le code, désactivé pendant 30 secondes: Reenviar código, desactivado durante 30 segundos
-  Intégrez Nos Gestes Climat à vos services: Integre nuestros Gestes Climat en sus servicios
-  Partagez une version personnalisée de Nos Gestes Climat: Compartir una versión personalizada de Nos Gestes Climat
   C'est gratuit, et ça prend une minute !: Es gratis y sólo le llevará un minuto
   Contactez nous afin de convenir d'un temps de démonstration de notre outil pour les organisations.: Póngase en contacto con nosotros para concertar una demostración de nuestra herramienta para organizaciones.
   Recevoir ponctuellement par email les nouveaux services Nos Gestes Climat aux organisations: Reciba ocasionalmente correos electrónicos sobre los nuevos servicios de Nos Gestes Climat para organizaciones
-  Permettez à vos collaborateurs, employés, partenaires ou élèves de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d’autres modes d’intégration prêts à l’emploi.: Permita que su personal, empleados, socios o estudiantes calculen y reduzcan su huella de carbono directamente desde sus plataformas web y móvil, con un enlace dedicado u otros métodos de integración listos para usar.
-  Créez une campagne Nos Gestes Climat personnalisée au sein de votre organisation et accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.: Cree una campaña personalizada de Nos Gestes Climat dentro de su organización y acceda a servicios a medida para sensibilizar a sus socios dentro de su organización.
-  collègues: compañeros
   Votre e-mail: Tu e-mail
   Département: Departamento
   Filtrer par: Filtrar por
-  Chiffres clés: Cifras clave
   Accueil: Inicio
-  Vous devez renseigner votre prénom: Debe introducir su nombre
-  code source est ouvert: el código fuente es abierto
   Quelle est votre année de naissance ?: ¿En qué año nació?
   Voir mes résultats: Ver mis resultados
-  roulent en voiture: conducir un coche
   Empreinte moyenne: Huella media
-  Comment agir ?: ¿Qué podemos hacer?
   Tranche d'âge: Edades
-  'Intégrez le test sur un article de blog, ou une page dédiée de votre site ou application mobile ': 'Integre la prueba en un artículo de blog o en una página dedicada de su sitio web o aplicación móvil '
   Empreinte carbone: Huella de carbono
-  Intégration en iframe: Integración de Iframe
-  sont végétariens: son vegetarianos
-  La catégorie {{title}} représente {{value}} tonnes de CO2 equivalent.: La categoría {{title}} représente {{value}} toneladas equivalentes de CO2.
   Vous avez une question ?: ¿Tiene alguna pregunta?
   Vous devez renseigner votre adresse e-mail: Debe introducir su dirección de correo electrónico
-  calcul est documenté en ligne: el cálculo está documentado en línea
-  Les résultats du test sont-ils anonymes ?: ¿Son anónimos los resultados de las pruebas?
-  Découvrez le guide: Descubra la guía
   Kit de diffusion: Kit de difusión
-  Résultats détaillés: Resultados detallados
-  Comparez vos résultats: Compare sus resultados
-  Modifier mes informations: Modificar mis datos
-  Partagez Nos Gestes Climat: Compartir Nos Gestes Climat
-  Question complémentaires: Preguntas adicionales
   Paramètres: Parámetros
-  Connaissez-vous votre empreinte sur le climat ?: ¿Conoce su huella climática?
-  Apportez votre pierre au calculateur de référence: Contribuya al simulador de referencia
-  Qui peut consulter les résultats de mon organisation ?: ¿Quién puede ver los resultados de mi organización?
-  Vous pouvez modifier vos informations personnelles. Le lien du sondage de votre organisation ne changera pas.: Puede modificar sus datos personales. El enlace a la encuesta de su organización no cambiará.
-  Partagez le test à votre réseau et suivez vos statistiques.: Comparte la prueba con tu red y haz un seguimiento de tus estadísticas.
-  Partagez simplement cette page à vos employés, utilisateurs, élèves, et suivez leurs résultats: Sólo tienes que compartir esta página con tus empleados, usuarios y estudiantes y hacer un seguimiento de sus resultados
-  Est-il possible de personnaliser l’affichage du test ?: ¿Es posible personalizar la visualización de la prueba?
-  Puis-je utiliser le logo Nos Gestes Climat dans mes communications ?: ¿Puedo utilizar el logotipo de Nos Gestes Climat en mis comunicaciones?
   Organisations: Organizaciones
   Exporter les données: Exportar datos
-  Voir le rapport détaillé: Vea el informe detallado
-  se déplacent à vélo: viajar en bicicleta
   Dans quelle ville habitez-vous ?: ¿Dónde vive?
-  Via un lien de partage: A través de un enlace compartido
   Ce champ n'est pas modifiable: Este campo no puede modificarse
-  Agir pour le climat: Actuar por el clima
   Découvrir: Descubra
-  Services web et mobiles: Servicios web y móviles
   Commencer un nouveau test: Iniciar una nueva prueba
-  amis: amigos
-  En: Visite
   Voir les paramètres: Ver los parámetros
-  Résultats du groupe: Resultados de los grupos
   Oups, une erreur s'est produite au moment de l'envoi de votre code...: Oops, hubo un error al enviar tu código...
-  Comment regrouper les résultats par région, ville, établissement... ?: ¿Cómo puedo agrupar los resultados por región, ciudad, escuela, etc.? ?
   Mes informations: Mi información
   Animez un atelier: Organizar un taller
-  le site est amélioré régulièrement.: el sitio se mejora regularmente.
   Calculez votre empreinte en: Calcule su huella mediante
   La valeur minimum pour ce champ est de: El valor mínimo de este campo es
   Découvrez vos résultats détaillés: Descubra sus resultados detallados
-  Toute contribution est la bienvenue !: Todas las contribuciones son bienvenidas
-  et comparez vos résultats.: y compare sus resultados.
-  pour les curieux et les experts.: para curiosos y expertos.
-  famille: familia
-  Entre amis: Entre amigos
   Bien vu !: ¡Buena observación!
   Avec: Con
   Administrateur·ice: Administrador
   Par catégorie: Por categoría
   Accéder au kit: Acceder al kit
   '{{value}} tonnes': '{{value}} toneladas'
-  L'intégralité du: Todo el
-  entre: entre
-  Une idée ? Une correction ? Une remarque ?: ¿Alguna idea? ¿Una corrección? ¿Un comentario?
-  Le: Le
-  Pour les organisations: Para las organizaciones
-  Une capture du mode Amis Nos Gestes Climat.: Una captura del modo "Friends Our Gestes Climat".
   pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !: para crear una cuenta y podrá acceder gratuitamente a todos nuestros servicios
   '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{nombre del administrador del grupo} te ha invitado a unirte al grupo <3>{nombre del grupo}</3>'
   D’après vous, quel est: ¿Qué opinas?
-  L'empreinte climat, qu'est-ce que c'est ?: ¿Qué es la huella climática?
-  Faites le test en: Realice la prueba
-  Classements: Clasificaciones
   Découvrez le calculateur, ouvrir dans un nouvel onglet: Descubrir el simulador, abrir en una nueva pestaña
-  Chaque participation est représentée par une barre verticale. Votre score est affiché en rose.: Cada entrada está representada por una barra vertical. Su puntuación se muestra en rosa.
   Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Descubrir los talleres ABC, abrir en una nueva pestaña
-  Nos Gestes Climat dans votre entreprise, association, école...: Nos Gestes Climat en tu empresa, asociación o escuela...
-  obtenez une estimation de votre empreinte carbone de consommation.: obtenga una estimación de su huella de carbono.
   'Moyenne :': 'Media :'
   Au total: En total
   Effectivement, avec: De hecho, con
@@ -551,16 +398,12 @@ entries:
   Votre résultat: Su resultado
   Votre code postal: Su código postal
   Mes données restent-elles privées ?: ¿Mis datos seguirán siendo privados?
-  Propulsé par Vercel: Desarrollado por Vercel
   Revenir au formulaire de connexion: Volver al formulario de acceso
   Oups: Ups
-  Entreprises et collectivités: Empresas y autoridades locales
   Votre date de naissance: Su fecha de nacimiento
   Passer la question →: Saltar pregunta →
   Me connecter: Conéctame
-  Partagez le test: Compartir la prueba
   Loupé !: ¡Fallaste!
-  Télécharger le kit: Descargar el kit
   Presque !: ¡Casi!
   Vous avez déjà commencé le test Nos Gestes Climat !: ¡Ya has empezado el test Nos Gestes Climat!
   Impact CO2: Impacto del CO2
@@ -579,20 +422,13 @@ entries:
   Valorisez vos données carbone: Añada valor a sus datos sobre el carbono
   Voir mes résultats →: Ver mis resultados →
   Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.: ¿Estás seguro de que quieres abandonar esta página? Sus cambios se perderán.
-  Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.: Las preguntas adicionales activadas se plantearán a cada participante antes de la prueba de Nos Gestes Climat. Responderlas es opcional.
-  Envie de connaître votre empreinte carbone ?: ¿Quiere conocer su huella de carbono?
   km par personne: km por persona
   Valider: Confirme
   Groupes d'amis: Grupos de amigos
-  Les ateliers de l'ABC: Talleres ABC
   Modifications sauvegardées: Cambios guardados
-  Modification sauvegardée: Modificación guardada
   précédent: anterior
-  Résultats détaillés de: Resultados detallados de
   Facultatif: Opcional
-  Simulation{optionalSString} terminée{optionalSString}: Simulación{optionalSString} completada{optionalSString}
   Vous avez déjà réalisé le test Nos Gestes Climat !: ¡Ya has realizado el test Nos Gestes Climat!
-  Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques.: Puede añadir preguntas adicionales a la prueba para sus estadísticas.
   Vous pouvez reprendre votre test en cours, ou en recommencer un.: Puede reanudar su prueba actual o iniciar una nueva.
   puis comparez vos résultats à ceux des autres participants.: y compare sus resultados con los de los demás participantes.
   km sont parcourus par an, avec en moyenne: km se recorren al año, con una media de
@@ -601,15 +437,12 @@ entries:
   Organisez des temps d’animation et d’échanges physiques autour de Nos Gestes Climat pour fédérer et renforcer la compréhension des participants.: Organizar actos e intercambios físicos en torno a Nos Gestes Climat para reunir a la gente y reforzar su comprensión.
   Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}: Ver {String(group.participants.length - 5)} otro{conS} participante{conS}
   Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}.lock: Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}
-  Vous souhaitez illustrer une quantité de CO2e et diffuser les bons ordres de grandeur à votre communauté ? Le Comparateur carbone de l’ADEME est l’outil qu’il vous faut !: ¿Desea ilustrar una cantidad de CO2e y difundir los órdenes de magnitud adecuados a su comunidad? El comparador de carbono de ADEME es la herramienta que necesita
   Pour conserver vos résultats et les retrouver à l’avenir: Para conservar sus resultados y volver a encontrarlos en el futuro
-  Mes sondages: Mis encuestas
   top chrono.: la mejor hora.
   en 10 minutes: en 10 minutos
   Découvrez les conseils de l'ADEME: Más información sobre los consejos de ADEME
   Partage de vos résultats à {{ parent }} ?: 'Comparta sus resultados en {{ parent }} '
   Aller plus loin: Ir más lejos
-  Explorez le détail de nos actions clés: Más información sobre nuestras acciones clave
   Calculez votre empreinte sur le climat: Calcula tu huella climática
   voyageurs, soit: pasajeros, es decir
   Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.: Nosgestesclimat.fr no está afiliado al sitio web {{ parent }}.
@@ -621,13 +454,9 @@ entries:
   Vous avez déjà participé à ce sondage.: Ya ha participado en esta encuesta.
   Vous avez déja participé à ce sondage.: Ya ha participado en esta encuesta.
   En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.: Al hacer clic en el botón Aceptar, autoriza a {{ parent }} a recuperar su huella climática.
-  Le calculateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.: El simulador de la huella de carbono individual te ayuda a comprender cuáles de nuestros usos contribuyen más al cambio climático y a saber qué acciones tendrían mayor impacto para reducirlo.
   (Données consultables à partir de 3 participants, dans un souci d'anonymat): (Pueden consultarse los datos de 3 o más participantes, para garantizar el anonimato)
-  Oups, nous n'avons pas trouvé les résultats de cette organisation: No hemos podido encontrar los resultados de esta organización
-  Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <em>pas</em> le détail question par question (vos km en voiture, les m² de votre logement...).: Estos son sus resultados para las categorías principales (transporte, alimentación, etc.), pero <em>no</em> los detalles pregunta por pregunta (el kilometraje de su coche, los metros cuadrados de su vivienda, etc.).
   Cambiar a español: Change to English
   Voir les résultats: Ver los resultados
-  Bravo champion·ne !: ¡Bien hecho, campeón!
   CGU - Nos Gestes Climat: CGU - Nos Gestes Climat
   par semaine, miam: por semana, yum
   le poste: la posición
@@ -642,118 +471,77 @@ entries:
   Voir mon résultat: Ver mi resultado
   Empreinte: Huella
   Contact - Nos Gestes Climat: Contacto - Nos Gestes Climat
-  des conseils pour la réduire: consejos para reducirlo
   sélectionnez celles qui vous intéressent: seleccione los que le interesen
-  Les nouveautés - Nos Gestes Climat: Novedades - Nos Gestes Climat
   404 - Nos Gestes Climat: 404 - Nos Gestes Climat
   Gestes: Gestos
   Budget - Nos Gestes Climat: Presupuesto - Nos Gestes Climat
-  Actions, la liste - Nos Gestes Climat: Acciones, la lista - Nos Gestes Climat
-  Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat: Su calculadora personal de la huella de carbono - Nos Gestes Climat
   l’équipe de nosgestesclimat.fr: el equipo de nosgestesclimat.fr
   l’équipe de nosgestesclimat.fr.lock: l’équipe de nosgestesclimat.fr
-  Documentation, votre calculateur d'empreinte carbone - Nos Gestes Climat: Documentación, su simulador de huella de carbono - Nos Gestes Climat
   écartez celles qui vous semblent trop ambitieuses ou déplacées.: descartar las que parezcan demasiado ambiciosas o inapropiadas.
   Nos Statistiques d'utilisation - Nos Gestes Climat: Nuestras estadísticas de uso - Nos Gestes Climat
   Invitez d'autres personnes à rejoindre votre groupe: Invita a otras personas a unirse a tu grupo
   À propos - Nos Gestes Climat: Sobre nosotros - Nos Gestes Climat
   nouveautés - Nos Gestes Climat: noticias - Nos Gestes Climat
-  Empreinte Climat - Nos Gestes Climat: Huella Climática - Nos Gestes Climat
   Accessibilité - Nos Gestes Climat: Accesibilidad - Nos Gestes Climat
-  (1 fois par mois max.): (máx. una vez al mes)
   Informations relatives au budget de Nos Gestes Climat.: Información sobre el presupuesto de Nos Gestes Climat.
-  Mon profil, voir mon empreinte carbone - Nos Gestes Climat: Mi perfil, ver mi huella de carbono - Nos Gestes Climat
   Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personnelle: El núcleo de Nos Gestes Climat es **la evaluación de la huella climática personal**
-  Calculer votre empreinte carbone individuelle - Nos Gestes Climat: Calcule su huella de carbono individual - Nos Gestes Climat
-  Vous retrouverez votre résultat d’empreinte, ainsi que: Encontrará los resultados de su impresión, así como
   Découvrez les nouveautés du site Nos Gestes Climat.: Descubra las novedades en el sitio web de Nos Gestes Climat.
   Nos statistiques "phares" - Nos Gestes Climat: Nuestras estadísticas clave - Nos Gestes Climat
-  'Découvrez les ambassadeurs de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.': 'Descubra a los embajadores de Nos Gestes Climat: organizaciones, autoridades locales, medios de comunicación, personas influyentes, etc.'
   Découvrez comment nous utilisons vos données personnelles pour vous proposer un calculateur de bilan carbone personnel.: Descubra cómo utilizamos sus datos personales para ofrecerle un simulador personal de la huella de carbono.
-  Liste des questions - Nos Gestes Climat: Lista de preguntas - Nos Gestes Climat
-  En participant vous acceptez que vos résultats sont partagés anonymement avec cette organisation.: Al participar, acepta que sus resultados se compartan de forma anónima con esta organización.
   Rejoindre un groupe - Nos Gestes Climat: Únete a un grupo - Nos Gestes Climat
   Comprenez comment calculer votre empreinte sur le climat en 10min chrono.: Descubra cómo calcular su huella climática en 10 minutos.
-  Passer le test →: Supera la prueba →
   Reprendre mon test: Reanudar mi prueba
   Ce test vous est proposé par: Esta prueba está patrocinada por
   Le guide - Nos Gestes Climat: La guía - Nos Gestes Climat
-  par semaine, quel appétit !: a la semana, ¡qué apetito!
   Mentions légales - Nos Gestes Climat: Información jurídica - Nos Gestes Climat
-  Blog - Nos Gestes Climat: Blog - Nos Gestes Climat
   Votre simulation est sauvegardée !: ¡Tu simulación está guardada!
   Quelles sont les actions les plus efficaces ?: ¿Cuáles son las acciones más eficaces?
   '**6 repas** représentatifs de notre consommation': '**6 comidas** representativas de nuestro consumo'
   Oups ! Une erreur est survenue.: ¡Uy! Se ha producido un error.
   Conditions générales d'utilisation du site.: Condiciones de uso del sitio.
-  Créer un groupe et calculer notre empreinte carbone - Nos Gestes Climat: Crear un grupo y calcular nuestra huella de carbono - Nos Gestes Climat
-  Découvrez nos outils pour vous simplifier la vie !: Descubra nuestras herramientas para hacerle la vida más fácil
-  Organisations, demander une démo - Nos Gestes Climat: Organizaciones, solicitar una demostración - Nos Gestes Climat
-  Invitez vos proches pour comparer vos résultats. Cela prend: Invita a amigos y familiares a comparar tus resultados. Se necesita
-  Organisations, calculer votre empreinte carbone - Nos Gestes Climat: Organizaciones, calculen su huella de carbono - Nos Gestes Climat
   Un calcul statistique du **chauffage** résidentiel français moyen: Cálculo estadístico de la factura media de calefacción de las viviendas francesas
   Découvrez le modèle de données de notre calculateur d'empreinte climat: Descubra el modelo de datos de nuestro simulador de huella climática
   Mentions légales du site Nos Gestes Climat.: Información legal sobre el sitio web de Nos Gestes Climat.
-  Calculer votre empreinte carbone avec vos amis - Nos Gestes Climat: Calcula tu huella de carbono con tus amigos - Nos Gestes Climat
   Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver: En breve recibirá un correo electrónico nuestro que le permitirá encontrarlo
   Notre documentation détaille les calculs qui nous ont permis de calculer votre bilan carbone personnel.: Nuestra documentación detalla los cálculos que hemos utilizado para calcular su huella de carbono personal.
   Organisations, accéder à mon espace - Nos Gestes Climat: Organizaciones, acceder a mi espacio - Nos Gestes Climat
   Observez l'évolution de l'impact de Nos Gestes Climat en mesures chiffrées.: Vea en cifras la evolución del impacto de Nos Gestes Climat.
-  Informations relatives à la création d'un contexte spécifique.: Información relativa a la creación de un contexto específico.
   Informations relatives à l'accessibilité de Nos Gestes Climat.: Información sobre la accesibilidad de Nos Gestes Climat.
   Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat: Acciones tras la simulación de su huella climática - Nos Gestes Climat
   Diffusez Nos Gestes Climat dans votre organisation.: Difunda nuestros Gestes Climat en su organización.
   Découvrez les personas d'utilisateurs types qui nous servent à tester le calculateur sous toutes ses coutures.: Descubra los usuarios típicos que utilizamos para probar el simulador desde todos los ángulos.
   'Je ne trouve pas réponse à ma question ': 'No encuentro la respuesta a mi pregunta '
-  Ambassadeurs - Nos Gestes Climat: Embajadores - Nos Gestes Climat
   Contactez l'équipe de Nos Gestes Climat.: Póngase en contacto con el equipo de Nos Gestes Climat.
-  Mon groupe, nos bilans carbone personnels - Nos Gestes Climat: Mi grupo, nuestras huellas de carbono personales - Nos Gestes Climat
-  Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.: ¿Conoces tu huella climática? Haz la prueba y descubre cómo puedes reducir tu huella de carbono sobre el clima.
   Supprimer mes données de groupe - Nos Gestes Climat: Borrar los datos de mi grupo - Nos Gestes Climat
   Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.: Calcula tu huella climática en sólo 10 minutos. Descubre las acciones que realmente importan para el clima.
-  Documentation Contexte Sondage - Nos Gestes Climat: Documentación Encuesta de fondo - Nos Gestes Climat
-  article du blog - Nos Gestes Climat: entrada del blog - Nos Gestes Climat
   Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat.: Calcula tu huella de carbono en grupo y compárala con la de tus amigos y familiares utilizando el simulador personal de huella de carbono Nos Gestes Climat.
   Informations relatives à Nos Gestes Climat.: Información sobre Nos Gestes Climat.
   Un modèle inédit d'empreinte des **déchets**: Un modelo innovador de huella de residuos
-  L'empreinte climat, qu'est-ce que c'est ?: ¿Qué es la huella climática?
   Notre modèle de données - Nos Gestes Climat: Nuestro modelo de datos - Nos Gestes Climat
   Politique de confidentialité - Nos Gestes Climat: Política de privacidad - Nos Gestes Climat
   Plan du site - Nos Gestes Climat: Mapa del sitio - Nos Gestes Climat
   Retrouvez dans ce guide toutes les informations sur Nos Gestes Climat.: Esta guía contiene toda la información que necesita sobre Nos Gestes Climat.
-  Questions fréquentes sur notre calcul d'empreinte climat - Nos Gestes Climat: Preguntas frecuentes sobre el cálculo de nuestra huella climática - Nos Gestes Climat
-  par semaine, quel appétit de moineau: por semana, ¡qué apetito de gorrión!
-  Recevez un email avec un lien pour terminer votre test plus tard: Reciba un correo electrónico con un enlace para completar su prueba más tarde
   Les constantes de **services publics et marchands** calculées à partir des travaux du SDES: Servicios públicos y comerciales** constantes calculadas a partir de los trabajos del SDES
-  Découvrez les articles de blog du site Nos Gestes Climat.: Descubra los artículos del blog en la página web de Nos Gestes Climat.
   Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.: Encuentre las respuestas a las preguntas más frecuentes sobre Nos Gestes Climat.
   Vos résultats de tests de notre calculateur d'empreinte carbone.: Los resultados de las pruebas de nuestro simulador de huella de carbono.
   Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.: Consulta las novedades y últimas noticias de Nos Gestes Climat.
-  Calculateur d’empreinte climat - Nos Gestes Climat: Simulador de la huella climática - Nos Gestes Climat
   Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.: Acceda a servicios a medida para sensibilizar a sus socios dentro de su organización.
   Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**: La mayor huella media, el inevitable **coche individual**
-  Comparez vos résultats avec votre famille ou un groupe d’amis.: Compara tus resultados con los de tu familia o un grupo de amigos.
   Observez nos l'évolution de nos deux mesures d'impact principales.: Eche un vistazo a nuestras dos principales medidas de impacto.
   Supprimez vos données de groupe enregistrées dans le calculateur Nos Gestes Climat.: Borra los datos de tu grupo guardados en el simulador Nos Gestes Climat.
   Nos personas d'utilisateurs types - Nos Gestes Climat: Nuestros usuarios tipo - Nos Gestes Climat
-  Vos résultats, calculateur d'empreinte climat - Nos Gestes Climat: Tus resultados, simulador de huella climática - Nos Gestes Climat
-  Organisations, mon espace - Nos Gestes Climat: Organizaciones, mi espacio - Nos Gestes Climat
   Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.: Averigüe qué puede hacer para reducir su huella de carbono.
   Diffuser notre calculateur d'empreinte climat - Nos Gestes Climat: Distribuir nuestro simulador de huella climática - Nos Gestes Climat
-  'Actions : comment réduire votre empreinte climat ? - Nos Gestes Climat': 'Acciones: ¿cómo puedes reducir tu huella climática? - Nos Gestes Climat'
   Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.: Explore y modifique la información que ha introducido en la vía nosgestesclimat.
   Oups, vous êtes bien sur Nos Gestes Climat, mais cette page n'existe pas.: Oops, estás en Nos Gestes Climat, pero esta página no existe.
   Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au calculateur de bilan carbone personnel Nos Gestes Climat.: Únete a tu grupo para calcular tu huella de carbono y compararla con la de tus amigos y familiares mediante el simulador personal de huella de carbono Nos Gestes Climat.
-  Mes classements: Mi clasificación
   Mon empreinte: Mi huella
-  Votre empreinte carbone: Su huella de carbono
   comme {{numberSubscribers}} personnes.: como {{numberSubscribers}}.
   Votre empreinte: Tu huella
   laissez-nous votre email,: déjanos tu email,
   Pour cela,: Por eso,
   Le test: La prueba
   Mes gestes: Mis acciones
-  Qu'est-ce que ça veut dire ?: ¿Qué significa esto?
   Mes gestes: Mis acciones
   Reconnectez vous en cliquant sur le bouton ci-dessous.: Vuelva a conectarse haciendo clic en el botón de abajo.
   'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logotipos, carteles y presentaciones: en este kit encontrarás todas las herramientas que necesitas para compartir Nos Gestes Climat.'
@@ -764,28 +552,10 @@ entries:
   Simulation terminée: Simulación completa
   Commencer le test: Prueba de inicio
   Diffusion: Difusión
-  organisation: organización
-  Découvrez nos: Descubre nuestra
   Mon empreinte: Mi huella
-  pistes personnalisées: pistas personalizadas
-  Vous souhaitez: Usted desea
   Mes classements: Mi clasificación
   International: Internacional
-  pour agir dès aujourd'hui pour le climat.: actuar hoy por el clima.
-  la concentration du carbone dans l’atmosphère augmente: la concentración de carbono en la atmósfera aumenta
-  ces activités émettrices de gaz à effet de serre, à toutes les échelles !: actividades que emiten gases de efecto invernadero, ¡a todos los niveles!
-  Le consensus scientifique est formel, cette augmentation est: 'El consenso científico es claro: este aumento es'
-  auprès de votre organisation, découvrez-nous outils pour vous simplifier la vie !: a su organización, ¡descubra nuestras herramientas para hacerle la vida más fácil!
-  'directement liée aux activités humaines :': 'directamente relacionadas con las actividades humanas:'
-  Depuis le siècle dernier,: Desde el siglo pasado,
-  Créer ou accéder à mon organisation: Crear o acceder a mi organización
   Répondre sur les 3 dernières années: Respuesta de los últimos 3 años
-  Il est grand temps de réduire ou remplacer: Ya es hora de reducir o sustituir
-  diffuser Nos Gestes Climat: difundir Nos Gestes Climat
-  l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète.: la extracción, el consumo y la combustión de recursos superan la capacidad de nuestro planeta para absorberlos.
-  'tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.': 'tanto es así que el clima del planeta está sufriendo trastornos con consecuencias de largo alcance: aumento del nivel del mar, destrucción de organismos vivos y explosión de catástrofes climáticas.'
-  Le consensus scientifique est formel, cette augmentation est <2>directement liée aux activités humaines :</2> l’extraction, la consommation et la combustion de ressources dépassent les capacités d’absorption de notre planète. <6>Il est grand temps de réduire ou remplacer</6> ces activités émettrices de gaz à effet de serre, à toutes les échelles !: 'El consenso científico es claro: este aumento está <2>directamente relacionado con las actividades humanas:</2> la extracción, el consumo y la combustión de recursos superan la capacidad de nuestro planeta para absorberlos. Ya es <6>hora de que reduzcamos o sustituyamos</6> estas actividades emisoras de gases de efecto invernadero, ¡a todas las escalas!'
-  'Depuis le siècle dernier, <2>la concentration du carbone dans l’atmosphère augmente</2> tant et si bien que le climat de la planète subit des bouleversements aux lourdes conséquences : montée des eaux, destruction du vivant, explosion des catastrophes climatiques.': 'Desde el siglo pasado, <2>la concentración de carbono en la atmósfera ha aumentado</2> hasta tal punto que el clima del planeta está sufriendo trastornos con consecuencias de largo alcance: aumento del nivel del mar, destrucción de organismos vivos y explosión de catástrofes climáticas.'
   Créer mon organisation: Crear mi organización
   Une erreur est survenue !: Se ha producido un error
   Mettre à jour mes informations: Actualizar mis datos
@@ -795,27 +565,21 @@ entries:
   Simulations terminées: Simulaciones completadas
   Vous pouvez vous désincrire à tout moment: Puede darse de baja en cualquier momento
   Une erreur s'est produite au moment de la sauvegarde de vos paramètres: Se ha producido un error al guardar la configuración
-  'Recevez des conseils pour réduire votre empreinte :': 'Obtenga consejos sobre cómo reducir su huella:'
   "<0>Nos Gestes Transports</0> : tout savoir ou presque sur l'impact carbone des transports, en 4 e-mails": '<0>Nos Gestes Transports</0>: todo lo que necesita saber sobre el impacto del transporte en el carbono, en 4 e-mails'
-  <0>Infolettre saisonnière de Nos Gestes Climat</0>: <0>Boletín de temporada de Nos Gestes Climat</0>
   '<0>Infolettre saisonnière de Nos Gestes Climat</0> : actualités climat, initiatives positives et nouveautés': '<0>Boletín estacional de Nos Gestes Climat</0>: noticias sobre el clima, iniciativas positivas y nuevos productos'
-  "<0>Nos Gestes Transports</0> : maîtrisez l'impact carbone de vos transports avec nos 4 infolettres": '<0>Nuestras iniciativas de transporte</0>: controle el impacto del carbono de su transporte con nuestros 4 boletines informativos'
   Questions complémentaires: Preguntas adicionales
-  Vous devez renseigner votre nom: Debe introducir su nombre
   Coopérative: Cooperativa
   Créer ma première campagne: Crear mi primera campaña
   Université ou école: Universidad o escuela
   Entreprise: Empresa
   Autre: Otros
   Association: Asociación
-  Public ou collectivité territoriale: Autoridad pública o local
   Groupe d'amis: Grupo de amigos
   Type d'organisation: Tipo de organización
   Le mode organisation est un mode <1>100% anonyme</1> pour les participants.: El modo de organización es <1>100% anónimo</1> para los participantes.
   'Avez-vous essayé <2>notre fonctionnalité “Groupes d’amis”</2> ? Elle vous permettra de vous comparer dans un classement : que celui ou celle ayant la plus faible empreinte gagne !': '¿Has probado <2>nuestra función "Grupos de amigos"</2>? Te permite compararte en una clasificación: ¡que gane el que menos huella deje!'
   Voir moins: Ver menos
   Voir plus: Más información
-  Certaines organisations sont dotées d’un outil type MailinBlack, Altospam qui bloquent parfois nos emails.: Algunas organizaciones utilizan herramientas como MailinBlack o Altospam, que a veces bloquean nuestros correos electrónicos.
   (Attendre: (Espere a que
   Avez-vous pensé à vérifier votre outil anti-spams ?: ¿Ha pensado en comprobar su herramienta antispam?
   secondes): segundos)
@@ -828,33 +592,23 @@ entries:
   Comment est calculée votre empreinte ?: ¿Cómo se calcula su huella?
   Vous êtes très nettement en dessous de la moyenne française.: Está muy por debajo de la media francesa.
   <0>2 tonnes</0> en 2050 ?: <0>¿2 toneladas</0> en 2050?
-  Découvre mon empreinte carbone: Descubrir mi huella de carbono
   l’objectif pour 2050: el objetivo para 2050
   Le détail de mon empreinte: Detalles de mi huella
   Par où commencer ?: ¿Por dónde empezar?
-  Vous souhaitez recevoir vos résultats d’empreinte carbone ?: ¿Le gustaría recibir los resultados de su huella de carbono?
   'Voici quelques idées pour vous aider à réduire votre impact :': 'He aquí algunas ideas que le ayudarán a reducir su impacto:'
-  Mon Empreinte Carbone - Nos Gestes Climat: Mi huella de carbono - Nos Gestes Climat
   Est-ce que je peux y arriver tout seul ?: ¿Puedo hacerlo solo?
-  "<0>Nos Gestes Transports</0> : maîtrisez l'impact carbone de vos transports avec nos 4 infolettres": '<0>Nuestras iniciativas de transporte</0>: controle el impacto del carbono de su transporte con nuestros 4 boletines informativos'
   Découvre mon bilan carbone sur Nos Gestes Climat.: Descubra mi huella de carbono en Nos Gestes Climat.
-  En 10 minutes, obtenez une estimation de votre empreinte carbone.: Obtenga una estimación de su huella de carbono en sólo 10 minutos.
   'Recevez des conseils pour réduire votre empreinte :': 'Obtenga consejos sobre cómo reducir su huella :'
-  Voir tous les gestes {title}: Ver todos los gestos {title}
   C’est l’objectif à atteindre pour espérer limiter le réchauffement climatique à 2 degrés.: Este es el objetivo que debemos alcanzar si esperamos limitar el calentamiento global a 2 grados.
   Notre calculateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Nuestro simulador se basa en un modelo de datos, con todos los cálculos documentados; los datos mostrados están directamente asociados a su prueba.
-  Il est quasiment impossible de vivre à moins de 2 tonnes dans notre société actuellement. <2>L’État, le secteur privé et les citoyens</2> devront tous contribuer pour atteindre cet objectif.: En nuestra sociedad actual es prácticamente imposible vivir con menos de 2 toneladas. Tanto el <2>Estado como el sector privado y los ciudadanos</2> tendrán que contribuir a alcanzar este objetivo.
   Les hérissons sont menacé⋅e⋅s par le changement climatique et la perte de biodiversité. L'augmentation des températures et les conditions climatiques extrêmes perturbent leur habitat naturel, rendant difficile la recherche de nourriture et la reproduction.: Los erizos están amenazados⋅e⋅s por el cambio climático y la pérdida de biodiversidad. El aumento de las temperaturas y las condiciones meteorológicas extremas están alterando su hábitat natural, lo que les dificulta encontrar alimento y reproducirse.
   Maintenant que vous avez fait votre bilan carbone et que vous avez pris conscience de votre empreinte, vous pouvez découvrir <2>l’ensemble des gestes</2> qui vous permettront d’atteindre progressivement l’objectif de 2 tonnes.: Ahora que ya has realizado tu huella de carbono y eres consciente de ella, puedes informarte sobre los <2>pasos</2> que puedes dar para alcanzar gradualmente el objetivo de las 2 toneladas.
   De plus, la disparition de leur environnement naturel, due à la déforestation et à l'urbanisation, réduit leurs zones de vie potentielles, augmentant ainsi leur vulnérabilité face aux prédateurs et aux maladies.: Además, la desaparición de su entorno natural debido a la deforestación y la urbanización está reduciendo sus posibles zonas de vida, lo que aumenta su vulnerabilidad a los depredadores y las enfermedades.
-  <0>Et vous,</0> quel est votre impact sur le climat ?: Y <0>tú</0>, ¿cuál es tu impacto en el clima?
-  Il y a de grandes chances que votre temps soit plus efficace à convaincre et aider les autres qu'à chercher à gagner vos "tonnes en trop" (même s'il faudra le faire un jour).: Lo más probable es que emplees mejor tu tiempo en convencer y ayudar a los demás que en intentar ganarte tus "toneladas extra" (aunque algún día tendrás que hacerlo).
   Votre question à ajouter: Su pregunta para añadir
   Ajouter une question personnalisée: Añadir una pregunta personalizada
   2 tonnes: 2 toneladas
   Cette action est définitive.: Esta acción es definitiva.
   Une erreur est survenue. Veuillez réessayer.: Se ha producido un error. Por favor, inténtelo de nuevo.
-  Il y a de grandes chances que votre temps soit plus efficace à <2>convaincre et aider les autres</2> qu'à chercher à gagner vos "tonnes en trop".: Lo más probable es que emplees mejor tu tiempo <2>convenciendo y ayudando a los demás</2> que intentando ganarte tus "toneladas extra".
   Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.: Puede añadir preguntas adicionales a la prueba para sus estadísticas. Las preguntas adicionales activadas por usted se plantearán a cada participante antes de la prueba Nos Gestes Climat. Responderlas será opcional.
   Supprimer cette question personnalisée ?: ¿Borrar esta pregunta personalizada?
   Question personnalisée de: Pregunta personalizada de
@@ -869,7 +623,6 @@ entries:
   Recevez nos <1>conseils transports</1> directement dans votre boite mail !: Reciba nuestros <1>consejos sobre transporte</1> directamente en su buzón
   Vous accompagner pour mieux agir en <2>4 mails seulement</2>.: Ayudarle a actuar mejor en <2>sólo 4 correos electrónicos</2>.
   Une erreur est survenue, veuillez réessayer.: Se ha producido un error, inténtelo de nuevo.
-  Certaines organisations sont dotées d’un outil type MailinBlack, Altospam, ect., qui bloque parfois nos emails.: Algunas organizaciones disponen de una herramienta como MailinBlack, Altospam, etc., que a veces bloquea nuestros correos electrónicos.
   Chaque participation est représentée par une barre verticale. Votre score est affiché en <2>rose</2>.: Cada entrada está representada por una barra vertical. Su puntuación se muestra en <2>rosa</2>.
   Elle seront toutefois prises en compte lors de l'export de données.: No obstante, se tendrán en cuenta al exportar los datos.
   Pour faciliter la lecture, les valeurs supérieures à 100 t sont retirées.: Para facilitar la lectura, se eliminan los valores superiores a 100 t.
@@ -878,19 +631,14 @@ entries:
   'Paramètres de ': 'Parámetros de '
   Supprimer cette campagne: Eliminar esta campaña
   Section administrateur: Sección Administrador
-  Votre rôle: Su papel
-  Campagne: Campaña
   Lancer ma campagne: Lanzar mi campaña
   Nom de la campagne: Nombre de la campaña
   Cette opération est définitive.: Esta operación es definitiva.
   Supprimer cette campagne ?: ¿Borrar esta campaña?
   Visible uniquement par vous: Visible sólo para ti
   Mes campagnes: Mis campañas
-  Ma Campagne: Mi campaña
   Paramètres de: Parámetros de
-  Ma campagne n°{{number}}: Mi campaña no{{number}}
   Créer une campagne: Crear una campaña
-  Créée le: Creado el
   c'est l’objectif pour 2050,: es el objetivo para 2050,
   Vous retrouverez les réponses à ces questions dans l'export des réponses à la campagne.: Puede encontrar las respuestas a estas preguntas en la exportación de las respuestas a la campaña.
   Votre téléphone: Su teléfono
@@ -914,7 +662,6 @@ entries:
   Sans titre: Sin título
   (définissez un titre dans les paramètres): (defina un título en los parámetros)
   Date (anciennes > récentes): Fecha (antigua > reciente)
-  Campagne créée par <2>{pollData?.organisationName}</2>, le: Campaña creada por <2>{pollData?.organisationName}</2>, el
   Répartition des empreintes carbone: Desglose de la huella de carbono
   Nom (A > Z): Nombre (A > Z)
   Date (récentes > anciennes): Fecha (reciente > antigua)
@@ -929,27 +676,17 @@ entries:
   associations: asociaciones
   collectivités: autoridades locales
   Communiquez sur la campagne: Comunicar la campaña
-  Notre offre dédiée aux entreprises, collectivités, écoles et associations: Nuestros servicios para empresas, autoridades locales, escuelas y asociaciones
   vous souhaitez lancer une campagne Nos Gestes Climat et sensibiliser toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !: ¿Quiere lanzar una campaña Nos Gestes Climat y sensibilizar a todas sus partes interesadas? Descubra nuestras herramientas 100% gratuitas
-  via votre organisation ? Découvrez nos outils pour vous simplifier la vie !: a través de su organización? Descubra nuestras herramientas para hacerle la vida más fácil
   Explorez, analysez et téléchargez des données anonymisées pour faire des choix éclairés et améliorer continuellement votre démarche écologique. Avec nos exports sur mesure, partagez vos réussites et vos challenges avec vos équipes et parties prenantes pour une stratégie de durabilité unifiée.: Explore, analice y descargue datos anónimos para tomar decisiones informadas y mejorar continuamente su enfoque ecológico. Con nuestras exportaciones a medida, comparta sus éxitos y retos con sus equipos y partes interesadas para lograr una estrategia de sostenibilidad unificada.
   Créez une campagne Nos Gestes Climat personnalisée au sein de votre organisation et accédez à un kit clé en main pour sensibiliser vos partenaires au sein de votre organisation.: Cree una campaña personalizada de Nos Gestes Climat dentro de su organización y acceda a un kit llave en mano para sensibilizar a sus socios.
   Intégrez Nos Gestes Climat directement à vos services: Integre nuestros Gestes Climat directamente en sus servicios
   Lancez une campagne Nos Gestes Climat personnalisée: Lanzar una campaña personalizada Nos Gestes Climat
   Permettez à vos cibles (clients, étudiants, participants, habitants..) de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d’autres modes d’intégration prêts à l’emploi.: Permita a su público objetivo (clientes, estudiantes, participantes, residentes, etc.) calcular y reducir su huella de carbono directamente desde sus plataformas web y móvil, mediante un enlace dedicado u otros métodos de integración listos para usar.
   Ils ont testé: Probaron
-  mis à jour le: actualizado el
-  'Un article de ': 'Un artículo de '
   Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.: Visite la web nosgestesclimat.fr para calcular su huella de carbono.
   Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone..lock: Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.
-  Nos relais: Nuestros relés
-  Ils relaient <2>Nos Gestes Climat</2>: Retransmiten <2>Nuestros Gestos Climat</2>
   Nos relais - Nos Gestes Climat: Nuestros relevos - Nos Gestes Climat
   'Découvrez les relais de Nos Gestes Climat : organisations, collectivités, médias, influenceurs, etc.': 'Más información sobre Nos Gestes Climat: organizaciones, autoridades locales, medios de comunicación, personas influyentes, etc.'
-  Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans notre galerie de relais ? Merci de nous envoyer un message avec <2>votre logo</2> via <5>notre page de contact</5>.: ¿Ha retransmitido Nos Gestes Climat y le gustaría aparecer en nuestra galería de retransmisiones? Envíenos un mensaje con <2>su</2> logotipo a través de <5>nuestra página de contacto</5>.
-  'N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l’ADEME.': 'N.B.: Ninguno de los actores mencionados a continuación financia Nos Gestes Climat, que es y seguirá siendo un servicio público gratuito e independiente prestado por la ADEME.'
-  'N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l’ADEME..lock': 'N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l’ADEME.'
-  Plus de 40 acteurs relaient <2>ou</2> ont relayé Nos Gestes Climat à travers <4>l’intégration du calculateur</4> sur leur site internet <7>ou</7> sa diffusion via <11>des campagnes</11> (mail, réseaux sociaux et/ou affichage). C’est majoritairement grâce à eux que nous sensibilisons près de 2 000 nouvelles personnes en moyenne chaque jour et nous les en remercions.: Más de 40 actores retransmiten <2>o</2> han retransmitido Nos Gestes Climat <4>integrando la calculadora</4> en su sitio web <7>o</7> difundiéndola a través de <11>campañas</11> (correo electrónico, redes sociales y/o carteles). Es sobre todo gracias a ellos que estamos sensibilizando a una media de 2.000 nuevas personas cada día, y nos gustaría darles las gracias.
   Campagne créée par: Campaña creada por
   ', le':  el
   Alimentation: Alimentación
@@ -960,23 +697,15 @@ entries:
   Voir tous les gestes: Ver todos los gestos
   Partager mon résultat: Compartir mi resultado
   de votre empreinte: tu huella
-  Infolettre saisonnière de: Boletín de temporada de
   ": maîtrisez l'impact carbone de vos transports avec nos 4 infolettres": controle el impacto del carbono de su transporte con nuestros 4 boletines informativos
   Il est quasiment impossible de vivre à moins de 2 tonnes dans notre société actuellement. <2>L’État, les collectivités locales, le secteur privé et les citoyens</2> devront tous contribuer pour atteindre cet objectif.: En nuestra sociedad actual es prácticamente imposible vivir con menos de 2 toneladas. El <2>Estado, las autoridades locales, el sector privado y los ciudadanos a título individual</2> tendrán que contribuir a alcanzar este objetivo.
   "<0>Nos Gestes Logement</0> : informez-vous sur l'impact carbone du logement, en quelques e-mails": '<0>Nuestros Gestos por la</0> Vivienda: sepa más sobre el impacto de la vivienda en el carbono, en unos pocos e-mails'
   Campagne de: Campaña para
   Un grand-père et sa petite-fille au cinéma, mangeant du pop-corn.: Un abuelo y su nieta en el cine, comiendo palomitas.
-  Plus de 40 acteurs relaient <2>ou</2> ont relayé Nos Gestes Climat à travers <4>l’intégration du calculateur</4> sur leur site internet <8>ou</8> sa diffusion via <11>des campagnes</11> (mail, réseaux sociaux et/ou affichage). C’est majoritairement grâce à eux que nous sensibilisons près de 2 000 nouvelles personnes en moyenne chaque jour et nous les en remercions.: Más de 40 actores retransmiten <2>o</2> han retransmitido Nos Gestes Climat <4>integrando la calculadora</4> en su sitio web <8>o</8> difundiéndola a través de <11>campañas</11> (correo electrónico, redes sociales y/o carteles). Es sobre todo gracias a ellos que estamos sensibilizando a una media de 2.000 nuevas personas cada día, y nos gustaría darles las gracias.
   Des enfants sortant de l'école en se tenant la main.: Niños saliendo de la escuela cogidos de la mano.
-  Des amis jouant à un jeu de société: Amigos jugando a un juego de mesa
   Deux personnes se faisant une accolade en levant le bras en signe de victoire.: Dos personas se abrazan y levantan los brazos en señal de victoria.
-  À propos 🦔: Sobre nosotros 🦔
   Une personne livrant du courrier.: Una persona que reparte el correo.
   Une femme préparant un bon petit plat.: Una mujer prepara un sabroso plato.
-  Qu'est-ce que c'est ?: ¿De qué se trata?
-  Une jeune femme tenant la terre entre ses mains, un chien la regardant joyeusement.: Una mujer joven sostiene la tierra entre sus manos, un perro la mira feliz.
-  Groupe de personnes discutant devant un paperboard.: Un grupo de personas discute ante un rotafolio.
-  Une jeune fille tenant la terre sous le regard enjoué de son chien.: Una joven sosteniendo la tierra bajo la mirada juguetona de su perro.
   Personne sur un vélo récupérant du courrier dans une boîte aux lettres: Persona en bicicleta recogiendo correo de un buzón
   Une fille réfléchissant à son empreinte carbone.: Una chica pensando en su huella de carbono.
   Un groupe d'amis jouant à un jeu de société.: Un grupo de amigos jugando a un juego de mesa.
@@ -985,8 +714,6 @@ entries:
   Le calculateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.: El simulador Nos Gestes Climat se basa en el modelo de cálculo del mismo nombre, compuesto por un conjunto de bloques de construcción.
   Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul. À lire tranquillement au coin du feu.: Esta documentación le permite acceder de forma transparente a todas las variables que intervienen en el cálculo. Léala a fuego.
   Groupe de personnes devant un paperboard: Grupo de personas delante de un rotafolio
-  Ce calculateur vous permet d'évaluer votre empreinte carbone individuelle annuelle totale et par grandes catégories (alimentation, transport, logement, divers, services sociétaux), de la situer par rapport aux objectifs climatiques et surtout de passer à l'action à votre niveau avec des gestes personnalisés en fonction de vos réponses.: Este simulador le permite evaluar su huella de carbono individual total para el año y por categorías principales (alimentación, transporte, vivienda, varios, servicios sociales), situarla en relación con los objetivos climáticos y, sobre todo, actuar a su propio nivel con acciones personalizadas basadas en sus respuestas.
-  (Peut durer quelques dizaines de secondes pour les campagnes avec un grand nombre de participants ! Merci pour votre patience): (¡Puede tardar unas decenas de segundos en las campañas con un gran número de participantes! Gracias por su paciencia)
   Organisations et campagnes: Organizaciones y campañas
   moins: menos
   lancez-vous !: ¡empieza!
@@ -998,17 +725,13 @@ entries:
   Vous avez commencé votre test,: Ha comenzado la prueba,
   cliquez ici pour le reprendre !: ¡haga clic aquí para recogerlo!
   (Cela peut durer quelques dizaines de secondes pour les campagnes avec un grand nombre de participants ! Merci pour votre patience.): (Esto puede tardar unas decenas de segundos en el caso de campañas con un gran número de participantes) Gracias por su paciencia)
-  Plus de 40 acteurs relaient ou ont relayé Nos Gestes Climat à travers <1>l’intégration du calculateur</1> sur leur site internet ou sa diffusion via <5>des campagnes</5> (mail, réseaux sociaux et / ou affichage). C’est majoritairement grâce à eux que nous sensibilisons près de 2 000 nouvelles personnes en moyenne chaque jour et nous les en remercions.: Más de 40 actores retransmiten o han retransmitido Nos Gestes Climat <1>integrando la calculadora</1> en su página web o difundiéndola a través de <5>campañas</5> (correo electrónico, redes sociales y/o carteles). Es sobre todo gracias a ellos que estamos sensibilizando a una media de 2.000 personas nuevas cada día, y queremos darles las gracias.
   Un groupe de personnes discutant devant un paperboard.: Un grupo de personas hablando delante de un rotafolio.
   Vous n'avez pas encore débuté votre test,: Aún no has empezado la prueba,
   Levez la main, on répond à vos questions !: Levante la mano y responderemos a sus preguntas
   et vous aura la plus faible empreinte ?: y tendrás la huella más pequeña?
-  Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !: Aquí encontrará respuestas a las preguntas más frecuentes. Si aún tiene preguntas o desea sugerir mejoras, vaya al final de la página. Esperamos que disfrute de la lectura
-  Vous avez relayé Nos Gestes Climat et souhaitez apparaître dans notre galerie de relais ? Merci de nous envoyer un message avec votre logo via <2>notre page de contact</2>.: ¿Ha retransmitido Nos Gestes Climat y le gustaría aparecer en nuestra galería de retransmisiones? Envíenos un mensaje con su logotipo a través de <2>nuestra página de contacto</2>.
   Bien joué 👏: Bien hecho 👏
   Autres actions: Otras acciones
   Il n'y a pas que sur votre empreinte que vous pouvez agir !: No sólo puedes influir en tu huella
-  Même si réduire son empreinte individuelle est l'action la plus directe, il existe <1>d'autres façons d'agir à son niveau</1>. Tous ces modes d'action sont complémentaires !: Aunque reducir nuestra huella individual sea la acción más directa, hay <1>otras formas de actuar a nuestro nivel</1>. Todas ellas se complementan
   Politique des cookies: Política de cookies
   Mentions légales: Información jurídica
   sur: en
@@ -1017,7 +740,6 @@ entries:
   Politique de confidentialité: Política de privacidad
   Politique des cookies - Nos Gestes Climat: Política de cookies - Nos Gestes Climat
   Et une illustration: Y una ilustración
-  Créer un groupe et calculer votre empreinte carbone - Nos Gestes Climat: Crea un grupo y calcula tu huella de carbono - Nos Gestes Climat
   La simulation et les calculs se font dans votre navigateur Web, donc les réponses aux questions restent chez vous, nous n'en collectons aucune.: La simulación y los cálculos se realizan en tu navegador web, por lo que las respuestas a las preguntas permanecen contigo, no recopilamos ninguna de ellas.
   Cependant, nous suivons quelques informations sur votre utilisation de ce calculateur, telles que les pages consultées et le temps passé, dans l'unique but de l'améliorer.: Sin embargo, sí rastreamos cierta información sobre su uso de este simulador, como las páginas consultadas y el tiempo empleado, con el único objetivo de mejorarlo.
   Pour faire joli et le reconnaitre !: Para que quede bonito y reconocible
@@ -1043,8 +765,6 @@ entries:
   simulations terminées depuis le lancement: simulaciones realizadas desde el lanzamiento
   inscrits à l'infolettre: suscriptores del boletín
   Une erreur est survenue lors de la récupération des données: Se ha producido un error durante la recuperación de datos
-  components.stats.StatsContent.infosNorthstar: Nos referimos a los modos "Organizaciones" y "Desafía a tus amigos". Esta sección se genera a través de Metabase.
-  components.stats.StatsContent.infosNorthstar.lock: Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.
   Nos Gestes Climat: Nos Gestes Climat
   'Ils relaient ': 'Transmiten '
   sur les 14 habituels: de los 14 habituales
@@ -1054,12 +774,9 @@ entries:
   Vous devez valider votre changement d'adresse e-mail.: Debe confirmar su cambio de dirección de correo electrónico.
   Vous allez recevoir sous peu un e-mail de notre part contenant un <2>code de vérification</2> à entrer dans cette fenêtre.: En breve recibirá un correo electrónico con un <2>código de verificación</2> que deberá introducir en esta ventana.
   Oups ! Une erreur s'est produite au moment d'envoyer votre code de vérification par email. Vérifiez si votre nouvel e-mail est bien valide et si le problème persiste, n'hésitez pas à <2>nous contacter</2>: ¡Uy! Se ha producido un error al enviar su código de verificación por correo electrónico. Por favor, compruebe que su nuevo correo electrónico es válido y si el problema persiste, <2>póngase en contacto con nosotros</2>
-  Recevoir nos actualités sur les nouveaux services dédiés aux organisation (une fois par mois maximum !): Reciba nuestras últimas noticias sobre nuevos servicios para organizaciones (¡una vez al mes como máximo!)
   Découvre mes empreintes: Descubra mis grabados
   D’où vient mon empreinte ?: ¿De dónde viene mi huella?
-  d'eau <1>par jour</1>: de agua <1>al día</1>
   Est-ce que c'est <2>beaucoup ?</2>: ¿Es <2>mucho?</2>
-  Bientôt disponible !: Pronto disponible
   Evaluer la métrique eau: Evaluar la métrica del agua
   C’est quoi mon empreinte carbone ?: ¿Cuál es mi huella de carbono?
   <0>L’empreinte eau,</0> c’est quoi ?: ¿Qué es <0>la huella hídrica</0>?
@@ -1067,14 +784,11 @@ entries:
   l’alimentation des <2>animaux</2> que vous consommez: la alimentación de los <2>animales</2> que come
   <0>Et vous,</0> quel est votre impact sur notre planète ?: <0>Y tú,</0> ¿cuál es tu impacto en nuestro planeta?
   chrono pour calculer votre empreinte carbone et eau: chrono para calcular tu huella de carbono e hídrica
-  Et l'eau de <2>ma douche</2> <4></4>dans tout ça ?: <4></4>¿Qué pasa con el agua de <2>mi ducha</2>?
   carbone: carbono
-  "Voici la carte des départements qui subissent des restrictions d'eau en ce moment :": 'Aquí tiene un mapa de los departamentos sujetos actualmente a restricciones de agua:'
   Comment <1>agir</1> ?: ¿Qué podemos <1>hacer</1>?
   eau: agua
   Vous utilisez: Está utilizando
   Mes empreintes: Mis huellas
-  Les 4 gestes pour réduire l’empreinte eau de mon alimentation: 4 pasos para reducir la huella hídrica de mis alimentos
   d’eau domestique par jour: de agua doméstica al día
   Mes principaux postes d'usage: Mis principales ámbitos de uso
   En 10 minutes, obtenez une estimation de vos empreintes carbone et eau.: Obtén una estimación de tu huella de carbono e hídrica en sólo 10 minutos.
@@ -1089,49 +803,32 @@ entries:
   <0>Eau, climat,</0> même combat ?: <0>Agua, clima, ¿</0> la misma batalla?
   Pourquoi avons-nous ajouté l’empreinte eau ?: ¿Por qué hemos añadido la huella hídrica?
   Les 3 réflexes à adopter pour une garde-robe économe en eau: 3 consejos para ahorrar agua en el armario
-  Petit lexique pour tout comprendre à l’empreinte eau: Un glosario para entender la huella hídrica
-  Retrouvez aussi le résultat de votre empreinte eau à la fin du test !: También puedes comprobar tu huella hídrica al final de la prueba
-  obtenez une estimation<1></1>de votre <3>empreinte carbone</3>.: <1></1>obtenga una estimación de su<3>huella de carbono</3>.
   Rendez-vous sur VigiEau pour en savoir plus.: Visite VigiEau para saber más.
   les <2>fruits, légumes et céréales</2> que vous mangez: la <2>fruta, la verdura y los cereales</2> que consume
-  Découvrez votre <1>empreinte eau</1> à la fin du test !: Averigua tu <1>huella hídrica</1> al final de la prueba
-  L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et distribuer les biens et services de votre quotidien.: La huella hídrica es la cantidad total de agua consumida para producir y distribuir los bienes y servicios que utilizas cada día.
-  <0>En règle générale, les valeurs d'empreinte eau varient <2>entre 9000 et 15000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.</0><1>Nous n'affichons pas la valeur par défaut en début de test. En effet, notre modèle eau étant le premier du genre en France, nous ne voulons pas qu'elle soit perçue comme la valeur moyenne nationale.</1>: <0>Por regla general, los valores de la huella hídrica <2>oscilan entre 9.000 y 15.000 litros al día</2>. A diferencia de la huella de carbono, no existe un objetivo cuantificado para la huella hídrica.</0><1>No mostramos el valor por defecto al inicio de la prueba. Como nuestro modelo del agua es el primero de este tipo en Francia, no queremos que se perciba como la media nacional.</1>
   L’eau est une ressource planétaire précieuse. Comme le climat, <2>le cycle de l’eau est fortement impacté par les activités humaines.</2> Nous avons fait le choix d’ajouter l'empreinte eau à notre modèle de calcul afin de vous apporter des éléments de compréhension de cet impact.: El agua es un recurso mundial precioso. Al igual que el clima, <2>el ciclo del agua se ve muy afectado por las actividades humanas.</2> Hemos decidido añadir la huella hídrica a nuestro modelo de cálculo para ayudarte a comprender este impacto.
   "attention : l'eau domestique (par exemple l’eau de vos douches) ne fait pas partie de l'empreinte eau": 'nota: el agua doméstica (por ejemplo, el agua de las duchas) no se incluye en la huella hídrica'
   "L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et distribuer les biens et services de votre quotidien. Par exemple il faut de l’eau pour :": 'La huella hídrica es la cantidad total de agua consumida para producir y distribuir los bienes y servicios que utilizas cada día. Por ejemplo, se necesita agua para :'
-  'Les activités humaines menacent les équilibres naturels de notre planète. Comme le climat, <2>le cycle de l’eau est fortement impacté partout dans le monde</2>: accès à l’eau potable, disparition et migration d’espèces (animales et végétales), déplacement de populations.': Las actividades humanas amenazan el equilibrio natural de nuestro planeta. Al igual que el clima, <2>el ciclo del agua está teniendo un gran impacto en todo el mundo</2>, en términos de acceso al agua potable, desaparición y migración de especies (animales y vegetales) y desplazamiento de poblaciones.
   L’eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu’elle est restituée. Par exemple, l’eau de votre douche, après dépollution, est rendue aux cours d’eau de votre territoire.: El agua doméstica, es decir, la que sale de los grifos, no se incluye en la huella hídrica, ya que se devuelve al medio ambiente. Por ejemplo, una vez tratada, el agua de la ducha se devuelve a los cursos de agua de la zona.
-  Ce chiffre vous semble impressionnant ? <1></1>C'est pourtant bien l'eau qui sert à produire ce que vous consommez :<3></3> votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.: '¿Te parece impresionante esta cifra? <1></1><3></3> Pero en realidad es agua la que se utiliza para producir lo que consumes: tu huella hídrica es el impacto de tu estilo de vida en los ciclos naturales del agua.'
   <0>La majeure partie de l’empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombre de nos vêtements.: <0>La mayor parte de nuestra huella hídrica la genera el cultivo de plantas,</0> ya sea para alimentarnos a nosotros mismos o a nuestro ganado, o para proporcionar la materia prima de muchas de nuestras prendas de vestir.
-  En règle générale, les valeurs d'empreinte eau varient <2>entre 9000 et 15000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: Por regla general, los valores de la huella hídrica varían <2>entre 9.000 y 15.000 litros al día</2>. A diferencia del carbono, no existe un objetivo cuantificado para la huella hídrica.
   Nous n'affichons pas la valeur par défaut en début de test. En effet, notre modèle eau étant le premier du genre en France, nous ne voulons pas qu'elle soit perçue comme la valeur moyenne nationale.: No mostramos el valor por defecto al inicio de la prueba. Como nuestro modelo del agua es el primero de este tipo en Francia, no queremos que se perciba como la media nacional.
   Les activités humaines menacent les équilibres naturels de notre planète.: Las actividades humanas amenazan el equilibrio natural de nuestro planeta.
   'Comme le climat, <2>le cycle de l’eau est fortement impacté partout dans le monde</2>: accès à l’eau potable, disparition et migration d’espèces (animales et végétales), déplacement de populations.': 'Al igual que el clima, <2>el ciclo del agua tiene importantes repercusiones en todo el mundo</2>: acceso al agua potable, desaparición y migración de especies (animales y vegetales), desplazamiento de poblaciones.'
   Ce chiffre vous semble impressionnant ?: ¿Le parece impresionante esta cifra?
-  C'est pourtant bien l'eau qui sert à produire ce que vous consommez :<1></1> votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.: '<1></1> Sin embargo, es agua lo que se utiliza para producir lo que consumes: tu huella hídrica es el impacto de tu estilo de vida en los ciclos naturales del agua.'
-  '*La moyenne française est de {average} litres par jour': '*La media francesa es de {media} litros al día'
   litres par jour: litros al día
   '*La moyenne française est de': '*La media francesa es de'
   'L’empreinte eau : pourquoi et comment avons-nous travaillé…': 'La huella hídrica: por qué y cómo trabajamos..'
   Et l'eau de <2>ma douche</2> dans tout ça ?: ¿Qué pasa con el agua de <2>mi ducha</2>?
   Mon empreinte carbone: Mi huella de carbono
   Mon empreinte eau: Mi huella hídrica
-  sur votre empreinte: sobre su huella
   Passer la question: Saltar la pregunta
   Votre région a bien été mise à jour.: Su región ha sido actualizada.
   Une erreur s'est produite au moment de la sauvegarde.: Se ha producido un error durante la copia de seguridad.
-  Vous pouvez la reprendre plus tard en cliquant sur le lien que vous avez reçu par email.: Puede reanudarla más tarde haciendo clic en el enlace que recibió por correo electrónico.
   Liste des questions: Lista de preguntas
   Sauvegarder <2>ma progression</2>: Guardar <2>mis progresos</2>
   d'eau par jour: de agua al día
   Recevez par email un lien pour reprendre votre test plus tard.: Reciba un correo electrónico con un enlace para volver a realizar la prueba más tarde.
   de CO₂e par an: de CO₂e al año
   Reprendre plus tard: Reanudar más tarde
-  Veuillez entrer un nombre positif.: Introduzca un número positivo.
-  '{{signe}} {{value}} {{unit}} sur votre empreinte': '{{signe}} {{value}} {{unit}} sobre su huella'
-  Sauvegarder ma progression: Guardar mis progresos
-  <0>La majeure partie de l’empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombres de nos vêtements.: <0>La mayor parte de nuestra huella hídrica la genera el cultivo de plantas,</0> ya sea para alimentarnos a nosotros mismos o a nuestro ganado, o para obtener la materia prima de muchas de nuestras prendas de vestir.
   Une erreur est survenue: Se ha producido un error
   '{{name}}, supprimer cette participation': '{{name}}cancelar esta participación'
   Participant supprimé avec succès: Participante eliminado con éxito
@@ -1144,43 +841,18 @@ entries:
   Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par email.: Puede reanudarla más tarde haciendo clic en el enlace que recibió por correo electrónico.
   Une mère et son enfant sur un vélo: Una madre y su hijo en bicicleta
   Un grand-père et sa petite fille qui regardent un film: Un abuelo y su nieta viendo una película
-  <0>La taille des logements français a très fortement augmenté</0> sur ces 50 dernirèes années, passant de 23 à 40,4 m² par habitant, soit <4>90,9 m² en moyenne pour un foyer de 2,2 personnes.</4>: <0>El tamaño de las viviendas francesas ha aumentado mucho</0> en los últimos 50 años, pasando de 23 a 40,4 m² por habitante, es decir, <4>90,9 m² de media para un hogar de 2,2 personas.</4>
   <0>Empreinte carbone</0> moyenne: <0>Huella de carbono</0> media
   <0>Empreinte eau</0> moyenne: <0>Huella hídrica</0> media
   Le lexique pour tout comprendre à l’empreinte eau: Un glosario para entender la huella hídrica
   Lire l'article: Leer el artículo
   Carbone: Carbono
-  obtenez une estimation <1></1>de votre <3>empreinte carbone</3>.: <1></1>obtenga una estimación de su<3>huella de carbono</3>.
-  jour: día
   Voici un aperçu du classement des participants en fonction de leur empreinte eau. Cette fonctionnalité est encore en cours de développement.: He aquí un resumen de la clasificación de los participantes según su huella hídrica. Esta función aún está en fase de desarrollo.
   Eau: Agua
   En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: Por regla general, los valores de la huella hídrica varían <2>entre 3.000 y 9.000 litros al día</2>. A diferencia del carbono, no existe un objetivo cuantificado para la huella hídrica.
   Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.: Se ha producido un error; por favor, vuelva a cargar la página o inténtelo más tarde.
   Oups ! Une erreur est survenue: ¡Uy! Se ha producido un error
-  Si le problème persiste, merci de <2>contacter le support</2>.: Si el problema persiste, <2>póngase en contacto con el servicio de asistencia.</2>
   litres: litros
-  friends.day: día
-  friends.day.lock: jour
-  de CO₂e: de CO₂e
-  Lien de partage copié dans le presse-papier !: Enlace compartido copiado en el portapapeles
-  Oups, une erreur s’est produite lors de la copie du lien de partage.: Oops, hubo un error al copiar el enlace para compartir.
-  obtenez une estimation: solicitar estimación
-  "Nos Gestes Climat : une estimation de votre empreinte carbone de consommation en 10 min\n{{sharedUrl}}":
-    |-
-    Nos Gestes Climat: una estimación de su huella de carbono en 10 minutos
-    {{sharedUrl}}
   CO₂e: CO₂e
-  'Nos Gestes Climat : votre empreinte carbone en 10 min': 'Nos Gestes Climat: su huella de carbono en 10 minutos'
-  empreinte eau: huella hídrica
-  Découvrez votre: Descubre tu
-  empreinte carbone: huella de carbono
-  de votre: de su
-  à la fin du test !: al final de la prueba
-  "Nos Gestes Climat : vos empreintes carbone et eau en 10 min\n{{sharedUrl}}":
-    |-
-    Nos Gestes Climat: su huella de carbono y de agua en 10 minutos
-    {{sharedUrl}}
-  'Nos Gestes Climat : vos empreintes carbone et eau en 10 min': 'Nos Gestes Climat: su huella de carbono y de agua en 10 minutos'
   Refuser: Desechos
   Accepter: Acepte
   Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais pas le détail question par question (vos km en voiture, les m² de votre logement...).: Estos son sus resultados para las categorías principales (transporte, alimentación, etc.), pero no los detalles pregunta por pregunta (el kilometraje de su coche, los metros cuadrados de su vivienda, etc.).
@@ -1200,112 +872,55 @@ entries:
   tonnes CO₂e / an: toneladas CO₂e / año
   t CO₂e / an: t CO₂e / año
   / an: / año
-  Notre calculateur d’empreinte carbone individuelle permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique, et de saisir les actions qui auraient le plus d’impact pour le réduire.: Nuestra calculadora individual de la huella de carbono nos ayuda a comprender cuáles de nuestros usos contribuyen más al cambio climático y a saber qué acciones tendrían mayor impacto para reducirlo.
   Les 8 manières d’améliorer l'empreinte eau de mon assiette: 8 formas de mejorar la huella hídrica de mi plato
-  Comment agir ?: ¿Qué podemos hacer?
-  Connaissez-vous votre empreinte sur le climat ?: ¿Conoce su huella climática?
-  Toute contribution est la bienvenue !: Todas las contribuciones son bienvenidas
-  Une idée ? Une correction ? Une remarque ?: ¿Alguna idea? ¿Una corrección? ¿Un comentario?
-  L'empreinte climat, qu'est-ce que c'est ?: ¿Qué es la huella climática?
-  Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte eau.: ¿Conoces tu huella climática? Haz el test y descubre cómo puedes reducir tu huella hídrica.
-  L’empreinte eau d'un jean est de 30 000 litres d'eau.: La huella hídrica de un par de vaqueros es de 30.000 litros de agua.
-  'Une baguette de pain : 40 litres d’eau.': 'Una barra de pan: 40 litros de agua.'
-  Qu'est-ce que l'empreinte eau ?: ¿Qué es la huella hídrica?
-  L’eau est <2>au cœur de nos vies</2> et de notre consommation quotidienne, bien <6>au-delà de ce que nous voyons à la maison</6>. Chaque jour, des milliers de litres d’eau sont utilisés pour produire les aliments que nous mangeons, les vêtements que nous portons et l’énergie que nous consommons.: El agua está en <2>el centro de nuestras vidas</2> y de nuestro consumo diario, <6>mucho más allá de lo que vemos en casa</6>. Cada día se utilizan miles de litros de agua para producir los alimentos que comemos, la ropa que vestimos y la energía que consumimos.
   Le lexique pour tout comprendre à l'empreinte eau: Un glosario para entender la huella hídrica
-  La méthodologie AWARE que nous utilisons pour calculer l’empreinte eau se concentre sur les prélèvements d’eau, à savoir l’eau bleue. Elle ne tient pas compte de l’eau grise.: La metodología AWARE que utilizamos para calcular la huella hídrica se centra en las extracciones de agua, es decir, el agua azul. No tiene en cuenta las aguas grises.
   Sur le site Nos Gestes Climat, le calcul de l'empreinte eau se fait simultanément avec le calcul de l'empreinte carbone.: En la página web de Nos Gestes Climat, la huella hídrica se calcula al mismo tiempo que la huella de carbono.
-  Adopter une alimentation moins gourmande en eau, en consommant moins de viande et en privilégiant les produits locaux et de saison, a également un impact significatif. Enfin, en évitant le gaspillage et en achetant des produits fabriqués de manière durable, on peut contribuer à la préservation des ressources hydriques tout en limitant notre empreinte environnementale.: Adoptar una dieta menos intensiva en agua, comiendo menos carne y favoreciendo los productos locales y de temporada, también tiene un impacto significativo. Por último, si evitamos el despilfarro y compramos productos producidos de forma sostenible, podemos ayudar a preservar los recursos hídricos al tiempo que limitamos nuestra huella ambiental.
   La production d’aliments pour les animaux d’élevage: Producción de piensos para animales de granja
-  "Ce n’est pas parce qu’elle n’est pas incluse qu’elle n’est pas importante ! Régulièrement, de nombreux territoires français sont soumis à des restrictions d’eau liées à des périodes de sécheresse. Il est important de réduire sa consommation d'eau domestique pour mieux partager cette ressource vitale et limiter les pressions sur les réserves locales. ": 'Que no esté incluido no significa que no sea importante Muchas zonas de Francia sufren regularmente restricciones de agua debido a los periodos de sequía. Es importante reducir el consumo doméstico de agua para compartir mejor este recurso vital y limitar la presión sobre las reservas locales. '
   La culture des fruits, légumes et céréales que nous mangeons: Cultivar las frutas, hortalizas y cereales que comemos
   Les activités humaines perturbent le cycle de l’eau et compromettent l’accès à l’eau potable, entraînant conflits, perte de biodiversité et déplacements de populations.: Las actividades humanas alteran el ciclo del agua y comprometen el acceso al agua potable, lo que provoca conflictos, pérdida de biodiversidad y desplazamiento de poblaciones.
   <0>L’empreinte eau</0> correspond à l’ensemble de l’eau douce utilisée pour produire, distribuer et traiter en fin de vie des produits, biens ou services, que nous consommons au quotidien.: <0>La huella hídrica</0> es la cantidad total de agua dulce utilizada para producir, distribuir y tratar al final de su vida útil los productos, bienes y servicios que consumimos cada día.
   La production d’électricité: Producción de electricidad
-  Il existe plusieurs méthodes pour calculer une empreinte eau. Chacune présente des avantages, et aucune à ce stade ne permet de saisir toute la complexité de la question des impacts de l’humain sur le cycle de l’eau. Notre choix s’est porté sur <2>la méthode AWARE</2>, qui permet de valoriser à sa juste mesure le stress hydrique des régions concernées par les consommations d’eau. C’est la méthode recommandée par la convention européenne, et plébiscitée par l’ADEME pour ses calculs d’ACV.: Existen varios métodos para calcular la huella hídrica. Cada uno tiene sus ventajas, pero ninguno capta por ahora toda la complejidad de la cuestión del impacto humano en el ciclo del agua. Hemos optado por <2>el método AWARE</2>, que proporciona una evaluación precisa del estrés hídrico en las regiones afectadas por el consumo de agua. Es el método recomendado por la Convención Europea y ampliamente utilizado por ADEME para sus cálculos de ACV.
-  'Un jean : environ 30 000 litres d’eau, principalement pour la culture du coton.': Un par de vaqueros consume unos 30.000 litros de agua, principalmente para el cultivo del algodón.
   Bien que l’eau soit abondante sur Terre, seule 1 % de l’eau est douce et accessible pour la consommation humaine.: Aunque el agua es abundante en la Tierra, sólo el 1% de ella es dulce y accesible para el consumo humano.
-  'Un kilo de pommes de terre : 330 litres d’eau.': 'Un kilo de patatas: 330 litros de agua.'
   L'extraction des matériaux pour le numérique: Extracción de materiales para aplicaciones digitales
   Passer le test: Realización de la prueba
-  'Un hamburger de bœuf : environ 380 litres d’eau.': 'Una hamburguesa de ternera: unos 380 litros de agua.'
-  Eau verte : eau de pluie absorbée par les sols, utilisée pour les cultures sans irrigation artificielle.: 'Agua verde: agua de lluvia absorbida por el suelo y utilizada para cultivar sin riego artificial.'
   Comprendre pour agir: Comprender para actuar
   Considérable, non ?: Considerable, ¿no?
-  cuisiner: Cocinar con productos locales de temporada
   Accès à l'eau: Acceso al agua
   Comment calculer l’empreinte eau ?: ¿Cómo se calcula la huella hídrica?
-  À la différence de l’empreinte carbone, nous ne disposons pas encore de données consolidées à l’échelle de la France, ni d’objectifs à atteindre. Mais nous avons déjà une vision assez juste des conséquences de notre accaparement de cette précieuse ressource pour l’ensemble du vivant. Nous pouvons agir collectivement pour réduire notre empreinte eau.: A diferencia de la huella de carbono, aún no disponemos de datos consolidados para Francia, ni de objetivos a los que aspirar. Pero ya tenemos una imagen bastante precisa de las consecuencias de nuestro acaparamiento de este recurso precioso para todos los seres vivos. Podemos actuar colectivamente para reducir nuestra huella hídrica.
   Avec les pressions croissantes exercées par les activités humaines et le changement climatique, la gestion durable de l’eau est devenue <2>un défi planétaire</2>. Que ce soit pour l’agriculture, l’industrie ou l’usage domestique, cette ressource limitée fait face à des menaces importantes. <5>Réduire notre consommation d’eau</5> et adopter des pratiques responsables est donc <9>nécessaire pour préserver les ressources</9> et répondre aux défis environnementaux mondiaux.: Con la creciente presión de las actividades humanas y el cambio climático, la gestión sostenible del agua se ha convertido en <2>un reto mundial</2>. Ya sea para la agricultura, la industria o el uso doméstico, este recurso limitado se enfrenta a grandes amenazas. <5>Reducir nuestro consumo de agua</5> y adoptar prácticas responsables es, por tanto, <9>necesario para preservar los recursos</9> y hacer frente a los retos medioambientales mundiales.
   Cette consommation d’eau, pourtant très importante, est <2>invisible à l’œil nu</2> mais son impact est bien réel.: Este consumo de agua, aunque muy significativo, es <2>invisible a simple vista</2>, pero su impacto es muy real.
   'Attention : l’empreinte eau ne tient pas compte de la consommation d’eau domestique (douche, toilettes, cuisine, arrosage) !': 'Atención: la huella hídrica no tiene en cuenta el consumo doméstico de agua (duchas, inodoros, cocina, riego)'
-  "Chaque geste compte pour garantir un accès durable à l'eau pour tous. ": 'Cada gesto cuenta para garantizar un acceso sostenible al agua para todos. '
-  Calculateur d'empreinte eau personnelle - Nos Gestes Climat: Calculadora de la huella hídrica personal - Nos Gestes Climat
-  Calculez votre empreinte eau et découvrez les litres qui se cachent dans votre consommation du quotidien.: Calcula tu huella hídrica y descubre los litros que esconde tu consumo diario.
-  Ainsi, en calculant votre empreinte carbone, vous obtenez également une estimation de votre empreinte eau pour une vision complète de votre impact.: Así, al calcular su huella de carbono, también obtiene una estimación de su huella hídrica para tener una visión completa de su impacto.
-  Au travers du calculateur Nos Gestes Climat, nous calculons la quantité d’eau consommée par chacun de vos usages (achat d’un produit ou aliment, utilisation d’un service, consommations d’énergies).: Con la calculadora Nos Gestes Climat, calculamos la cantidad de agua consumida por cada uno de tus usos (compra de un producto o alimento, utilización de un servicio, consumo de energía).
-  Une fois utilisée, cette eau est dépolluée puis renvoyée dans les cours d'eau locaux.: Una vez utilizada, el agua se limpia y se devuelve a los cursos de agua locales.
   Les pratiques agricoles intensives et les rejets industriels contaminent les ressources en eau, menacent les écosystèmes et notre santé.: Las prácticas agrícolas intensivas y los residuos industriales están contaminando los recursos hídricos, amenazando los ecosistemas y nuestra salud.
-  Eau bleue : eau de surface et souterraine prélevée pour l’irrigation, la production industrielle ou l'énergie.: 'Aguas azules: aguas superficiales y subterráneas extraídas para el riego, la producción industrial o la energía.'
   'Il existe plusieurs distinctions, qui permettent de valoriser les différences qualitatives d’impact de l’humain sur le cycle de l’eau. La couleur de l’eau en est une majeure :': 'Hay varias distinciones que ponen de relieve las diferencias cualitativas del impacto humano en el ciclo del agua. El color del agua es una de las principales:'
-  'Empreinte eau et empreinte carbone se répondent. ': 'La huella hídrica y la huella de carbono van de la mano. '
   Économiser l’eau, un enjeu de développement durable: Ahorrar agua, una cuestión de desarrollo sostenible
-  fabric: 'Favorecer los materiales sostenibles (lino, cáñamo, lana, y si es algodón: reciclado)'
-  Empreinte eau et empreinte carbone sont complémentaires, et les comprendre permet d’agir en faveur d’une gestion <2>plus durable des ressources naturelles</2> de la planète.: La huella hídrica y la huella de carbono son complementarias, y comprenderlas nos permite actuar en favor de una gestión <2>más sostenible de los recursos naturales</2> del planeta.
   'Voici quelques exemples de gestes qui auront un impact important sur votre consommation eau indirecte :': 'He aquí algunos ejemplos de acciones que tendrán un impacto significativo en su consumo indirecto de agua:'
   Mieux comprendre <2>notre impact sur les ressources en eau</2> est essentiel pour pouvoir agir efficacement. À travers une série d’articles, nous vous proposons des conseils pratiques, des idées inspirantes et des informations clés pour <6>réduire votre empreinte eau</6>.: Comprender <2>nuestro impacto en los recursos hídricos</2> es esencial si queremos tomar medidas eficaces. A través de una serie de artículos, le ofrecemos consejos prácticos, ideas inspiradoras e información clave para ayudarle a <6>reducir su huella hídrica</6>.
   Impressionnant, non ?: Impresionante, ¿verdad?
-  'Voici quelques exemples d’empreinte eau pour des produits courants :': 'He aquí algunos ejemplos de huellas hídricas de productos comunes:'
   De l’eau se cache derrière toutes nos consommations, dans des proportions que nous ne soupçonnons pas toujours !: El agua se esconde detrás de todo lo que consumimos, en proporciones de las que no siempre nos damos cuenta
   La culture du coton de nos vêtements: Cultivar el algodón de nuestra ropa
-  Eau grise : quantité d’eau nécessaire pour diluer les polluants générés par la production d’un bien ou service.: 'Aguas grises: cantidad de agua necesaria para diluir los contaminantes generados por la producción de un bien o servicio.'
-  eau-du-robinet: Prefiero el agua del grifo
-  L’eau domestique, celle qui sort de vos robinets pour la douche, la cuisine, le ménage... n'est pas incluse dans l'empreinte eau car elle est en grande majorité restituée dans le même bassin versant après traitement.: El agua doméstica, la que sale de los grifos para ducharse, cocinar, limpiar, etc., no se incluye en la huella hídrica porque la mayor parte se devuelve a la misma cuenca de captación tras su tratamiento.
   Il faut 75 litres d’eau pour produire un oeuf.: Se necesitan 75 litros de agua para producir un huevo.
   "L'empreinte eau : pourquoi et comment avons-nous travaillé": 'La huella hídrica: por qué y cómo trabajamos'
-  L’empreinte eau aboutit-elle aux mêmes conclusions que l’empreinte carbone ?: ¿Lleva la huella hídrica a las mismas conclusiones que la huella de carbono?
-  L’empreinte eau, ces litres qu’on ne voit pas !: La huella hídrica, ¡los litros que no vemos!
-  'L’empreinte eau d’un français est de plusieurs milliers de litres par jour : entre 4 et 8000, en moyenne.': 'La huella hídrica de un francés es de varios miles de litros al día: entre 4 y 8.000 de media.'
   Vos questions sur l'empreinte eau: Sus preguntas sobre la huella hídrica
-  La production d’un ordinateur nécessite 195 000 litres d’eau.: Se necesitan 195.000 litros de agua para producir un ordenador.
   Lire l'article sur le lexique pour tout comprendre à l'empreinte eau, nouvelle page: Lea el artículo sobre el glosario para entender la huella hídrica, nueva página
   Lire la suite: Seguir leyendo
-  second-hand: Favorecer los productos de segunda mano
-  'Les gestes du quotidien pour préserver nos ressources en eau Les gestes du quotidien pour préserver nos ressources en eau ': 'Acciones cotidianas para preservar nuestros recursos hídricos Acciones cotidianas para preservar nuestros recursos hídricos '
-  L’empreinte eau, <2>calculée en milliers de litres par jour</2>, tient compte de <5>l’eau nécessaire</5> à la production, la distribution et au traitement des biens et services consommés. Ce calcul prend également en considération<7>le stress hydrique</7>et pondère les consommations d’eau en fonction de <10>la rareté de la ressource</10> dans les territoires concernés. Ainsi, un litre d’eau utilisé en France n’aura pas la même valeur qu’un litre d’eau utilisé au Maroc.: La huella hídrica, <2>calculada en miles de litros diarios</2>, tiene en cuenta el <5>agua necesaria</5> para producir, distribuir y procesar los bienes y servicios consumidos. El cálculo también tiene en cuenta<7>el estrés hídrico y</7>pondera el consumo de agua en función de <10>la escasez de recursos hídricos</10> en las regiones afectadas. Por ejemplo, un litro de agua utilizado en Francia no tendrá el mismo valor que un litro de agua utilizado en Marruecos.
-  viande: Reducir el consumo de carne
   Ressources en eau douce limitées: Recursos limitados de agua dulce
-  'Un kilo de riz : 14 000 litres d’eau.': 'Un kilo de arroz: 14.000 litros de agua.'
-  'Une tasse de café : 64 litres d’eau, de la culture à la transformation.': 'Una taza de café: 64 litros de agua, desde el cultivo hasta la elaboración.'
   Que calcule-t-on dans l’empreinte eau ?: ¿Qué se calcula en la huella hídrica?
-  Lire l'article sur la méthode AWARE, nouvelle page: Lea el artículo sobre el método AWARE, nueva página
   Quelle est l'empreinte eau moyenne d'un habitant français ?: ¿Cuál es la huella hídrica media de un francés?
   Pollution des eaux: Contaminación del agua
-  'Un litre de lait : environ 330 litres d’eau.': 'Un litro de leche: unos 330 litros de agua.'
   Qu'est-ce que l'eau verte, l'eau bleue et l'eau grise ?: ¿Qué es el agua verde, el agua azul y el agua gris?
   Quels sont les exemples d'empreinte eau de certains produits ?: ¿Cuáles son algunos ejemplos de la huella hídrica de determinados productos?
-  'Une tablette de chocolat (150g) : 235 litres d’eau.': 'Una tableta de chocolate (150 g): 235 litros de agua.'
-  Pour réduire son empreinte eau, il est nécessaire de changer nos habitudes quotidiennes.: Para reducir nuestra huella hídrica, tenemos que cambiar nuestros hábitos cotidianos.
   Pourquoi l'eau domestique n'est-elle pas incluse dans l'empreinte eau ?: ¿Por qué no se incluye el agua doméstica en la huella hídrica?
-  'Une hausse de 1 degré de la température du globe entraîne une hausse de 7% du taux d’humidité dans l’atmosphère. L’eau s’évapore plus, plus vite, et les phénomènes climatiques violents s’intensifient. Des régions s’assèchent, quand d’autres sont inondées. ': 'Un aumento de 1 grado de la temperatura global provoca un incremento del 7% de la humedad atmosférica. El agua se evapora más, más rápidamente, y los fenómenos climáticos violentos se intensifican. Algunas regiones se secan y otras se inundan. '
   'Pour aller plus loin : <2>Le lexique pour tout comprendre à l’empreinte eau</2>': 'Si quiere ver más: <2>Glosario de términos para entender mejor la huella hídrica</2>'
-  textile-durables: Opta por ropa sostenible
-  'Un œuf : 75 litres d’eau.': 'Un huevo: 75 litros de agua.'
-  Par ailleurs, l’empreinte humaine sur les sols (artificialisation, cultures intensives, déforestation) a réduit fortement leur capacité à absorber et retenir les eaux pluviales. Elle s’évapore trop vite, et n’alimente plus autant les cours d’eau, lacs et nappes phréatiques, qui progressivement s’épuisent.: Además, la huella humana en los suelos (artificialización, agricultura intensiva, deforestación) ha reducido mucho su capacidad de absorber y retener el agua de lluvia. Se evapora con demasiada rapidez y ya no alimenta en la misma medida los ríos, los lagos y las aguas subterráneas, que se agotan poco a poco.
   Les gestes du quotidien pour préserver nos ressources en eau: Acciones cotidianas para preservar nuestros recursos hídricos
-  L’empreinte eau, <2>calculée en milliers de litres par jour</2>, tient compte de <5>l’eau nécessaire</5> à la production, la distribution et au traitement des biens et services consommés. Ce calcul prend également en considération <8>le stress hydrique</8> et pondère les consommations d’eau en fonction de <12>la rareté de la ressource</12> dans les territoires concernés. Ainsi, un litre d’eau utilisé en France n’aura pas la même valeur qu’un litre d’eau utilisé au Maroc.: La huella hídrica, <2>calculada en miles de litros diarios</2>, tiene en cuenta el <5>agua necesaria</5> para producir, distribuir y procesar los bienes y servicios consumidos. El cálculo también tiene en cuenta <8>el estrés hídrico</8> y pondera el consumo de agua en función de <12>la escasez de recursos hídricos</12> en las regiones afectadas. Así, un litro de agua consumido en Francia no tendrá el mismo valor que un litro de agua consumido en Marruecos.
   Qu'est-ce que l'empreinte eau ?: ¿Qué es la huella hídrica?
   Calculez votre <2>empreinte eau</2> et découvrez <5>les litres qui se cachent</5> dans votre consommation du quotidien.: Calcula tu <2>huella hídrica</2> y descubre <5>los litros que esconde</5> tu consumo diario.
   '<0>Une tablette de chocolat (150g)</0> : 235 litres d’eau ;': '<0>Una tableta de chocolate (150 g)</0>: 235 litros de agua ;'
   '<0>Une tasse de café</0> : 64 litres d’eau, de la culture à la transformation ;': '<0>Una taza de café</0>: 64 litros de agua, desde el cultivo hasta la elaboración ;'
   '<0>Un hamburger de bœuf</0> : environ 380 litres d’eau ;': '<0>Una hamburguesa de ternera</0>: aproximadamente 380 litros de agua ;'
-  <0>Eau bleue</0> : eau de surface et souterraine prélevée pour l’irrigation, la production industrielle ou l'énergie ;: '<0>Aguas azules</0>: aguas superficiales y subterráneas extraídas para el riego, la producción industrial o la energía;'
-  <0>Eau grise</0> : quantité d’eau nécessaire pour diluer les polluants générés par la production d’un bien ou service.: '<0>Aguas grises</0>: cantidad de agua necesaria para diluir los contaminantes generados por la producción de un bien o servicio.'
   '<0>Un kilo de pommes de terre</0> : 330 litres d’eau ;': '<0>Un kilo de patatas</0>: 330 litros de agua;'
   '<0>Un litre de lait</0> : environ 330 litres d’eau ;': '<0>Un litro de leche</0>: unos 330 litros de agua;'
   '<0>Un kilo de riz</0> : 14 000 litres d’eau ;': '<0>Un kilo de arroz</0>: 14.000 litros de agua;'
   '<0>Un jean</0> : environ 30 000 litres d’eau, principalement pour la culture du coton ;': <0>Un par de vaqueros</0> consume unos 30.000 litros de agua, principalmente para el cultivo del algodón;
-  <0>Eau verte</0> : eau de pluie absorbée par les sols, utilisée pour les cultures sans irrigation artificielle ;: '<0>Agua verde</0>: agua de lluvia absorbida por el suelo y utilizada para cultivar sin riego artificial;'
   '<0>Une baguette de pain</0> : 40 litres d’eau.': '<0>Una barra de pan</0>: 40 litros de agua.'
   '<0>Un œuf</0> : 75 litres d’eau ;': '<0>Un huevo</0>: 75 litros de agua ;'
   L’empreinte eau, <2>calculée en milliers de litres par jour</2>, tient compte de <5>l’eau nécessaire</5> à la production, la distribution et au traitement des biens et services consommés. Ce calcul prend également en considération <8>le stress hydrique</8> et pondère les consommations d’eau en fonction de <12>la rareté de la ressource</12> dans les territoires concernés.: La huella hídrica, <2>calculada en miles de litros al día</2>, tiene en cuenta el <5>agua necesaria</5> para producir, distribuir y procesar los bienes y servicios consumidos. Este cálculo también tiene en cuenta <8>el estrés hídrico</8> y pondera el consumo de agua en función de <12>la escasez del recurso</12> en las zonas afectadas.
@@ -1317,7 +932,6 @@ entries:
   Réduire la consommation de viande: Reducir el consumo de carne
   Cuisiner avec des produits locaux et de saison: Cocinar con productos locales de temporada
   Opter pour des vêtements durables: Opta por ropa sostenible
-  'Privilégier les matériaux durables (lin, chanvre, laine, et si coton : recyclé': 'Privilegiar los materiales sostenibles (lino, cáñamo, lana, y si es algodón: reciclado)'
   Empreinte eau: Huella hídrica
   Voir les nouveautés: Novedades
   Un modèle de calcul fiable: Un modelo de cálculo fiable
@@ -1329,13 +943,11 @@ entries:
   Connaissez-vous votre empreinte écologique ?: ¿Conoce su huella ecológica?
   Les lignes de code, les données et même une grande partie des réflexions méthodologiques derrière le calculateur sont toutes <2>accessibles</2>, ce qui permet à qui veut de <5>contribuer et améliorer l’outil</5>.: Las líneas de código, los datos e incluso gran parte del pensamiento metodológico que hay detrás de la calculadora son <2>accesibles</2>, lo que permite a cualquiera <5>contribuir y mejorar la herramienta</5>.
   <0>L’empreinte carbone</0> représente la quantité de gaz à effet de serre émise par les activités humaines. Le calculateur d’empreinte carbone aide à <4>repérer les usages</4> qui contribuent le plus au changement climatique et à <8>choisir les actions</8> les plus efficaces pour réduire son impact.: <0>La huella de carbono</0> representa la cantidad de gases de efecto invernadero emitidos por las actividades humanas. La calculadora de la huella de carbono te ayuda a <4>identificar los usos</4> que más contribuyen al cambio climático y a <8>elegir las acciones</8> más eficaces para reducir tu impacto.
-  'Retrouvez toute l’expertise de <2>l’Agence de l’Environnement et de la Maîtrise de l’Énergie</2> dans le calculateur de Nos Gestes Climat : données, perspectives,': "Descubra toda la experiencia de <2>la Agence de l'Environnement et de la Maîtrise de l'Énergie</2> en la calculadora de Nos Gestes Climat: datos, perspectivas,"
   S’engager collectivement autour des enjeux du climat: Compromiso colectivo en favor del clima
   Un aller-retour Paris-Athènes en avion représente <2>800 kg de CO2e</2>.: Un viaje de ida y vuelta de París a Atenas en avión representa <2>800 kg de CO2e</2>.
   Impressionnant, non ?: Impresionante, ¿verdad?
   <0>2 millions de personnes</0> ont déjà calculé leur empreinte !: ¡<0>2 millones de personas</0> ya han calculado su huella!
   Chemisier: Blusa
-  Un calculateur libre et documenté: Una calculadora gratuita y documentada
   Découvrir la documentation: Descubra la documentación
   Défiez votre entourage: Desafía a los que te rodean
   L'empreinte carbone: Huella de carbono
@@ -1343,22 +955,18 @@ entries:
   'L’empreinte carbone : une empreinte parmi d’autres !': 'La huella de carbono: ¡una huella entre muchas!'
   Mobilisez votre entourage pour la planète !: Haz que tus amigos y familiares se impliquen en ayudar al planeta
   La production d'un jean nécessite près de <2>30 000 litres d'eau</2>.: Se necesitan casi <2>30.000 litros de agua</2> para producir un par de vaqueros.
-  Calculez votre <1>empreinte carbone</1> et votre <4>empreinte eau</4> en <7>seulement 10 minutes</7>.: Calcula tu <1>huella de carbono</1> y de <4>agua</4> <7>en sólo 10 minutos</7>.
   Le lexique pour tout comprendre à l'eau: Un glosario para entenderlo todo sobre el agua
   Et la vôtre ?: ¿Y la tuya?
   'Entreprises, collectivités, associations, écoles ou festivals : <2>engagez votre organisation dans une démarche durable</2> avec une campagne Nos Gestes Climat. Sensibilisez vos parties prenantes à l’empreinte carbone et à l’empreinte eau <6>grâce à nos outils clés en main</6>.': 'Empresas, ayuntamientos, asociaciones, escuelas o festivales: <2>comprometa a su organización con un enfoque sostenible</2> mediante una campaña Nos Gestes Climat. Sensibilice a sus interlocutores sobre su huella de carbono y de agua <6>con nuestras herramientas llave en mano</6>.'
   Décryptez les défis environnementaux: Descifrar los retos medioambientales
   Basé sur les données de l’ADEME: Basado en datos de ADEME
   En savoir plus sur l'empreinte eau: Más información sobre nuestra huella hídrica
-  Ils parlent de nous: Hablan de nosotros
   'Transports : les modes à fuir, ceux à chérir': 'Transporte: modos a evitar, modos a apreciar'
   En savoir plus sur l'empreinte carbone: Más información sobre nuestra huella de carbono
   Ordinateur: Ordenador
   L'empreinte eau moyenne d'un français se compte <2>milliers de litres par jour</2>.: La huella hídrica de un francés medio es de <2>miles de litros al día</2>.
   Créez un groupe avec vos proches et <2>lancez-vous dans un défi collectif</2> pour réduire votre empreinte. Comparez vos résultats, suivez vos progrès et voyez qui parvient à réduire le plus ses émissions de carbone ou sa consommation d’eau.: Crea un grupo con tus amigos y <2>acepta un reto colectivo</2> para reducir tu huella. Compara tus resultados, sigue tus progresos y comprueba quién consigue reducir más sus emisiones de carbono o su consumo de agua.
-  <0>2 millions de personnes</0> ont déjà passé calculé leur empreinte !: ¡<0>2 millones de personas</0> ya han calculado su huella!
   L'empreinte carbone moyenne d'un français est de <2>9,1 tonnes de CO2e par an</2>.: La huella de carbono media de un francés es de <2>9,1 toneladas de CO2e al año</2>.
-  Chez Nos Gestes Climat, nous croyons au pouvoir de <2>l’action collective</2> pour relever les défis environnementaux. Notre mission est de<5>sensibiliser</5> et d’accompagner chacun, citoyens, entreprises et collectivités, à mieux comprendre son empreinte écologique, carbone ou eau, <8>identifier les gestes</8> pour la réduire et <12>entraîner leur entourage</12> dans ce mouvement.: En Nos Gestes Climat creemos en el poder de la <2>acción colectiva</2> para hacer frente a los retos medioambientales. Nuestra misión es<5>sensibilizar</5> y ayudar a todos -ciudadanos, empresas y autoridades locales- a comprender mejor su huella ecológica, de carbono o de agua, a <8>identificar las medidas</8> que pueden tomar para reducirla y a <12>implicar a quienes les rodean</12> en este movimiento.
   L'empreinte eau: Huella hídrica
   Lancez une campagne dans votre organisation: Lance una campaña en su organización
   Agir au quotidien: Acción cotidiana
@@ -1366,34 +974,23 @@ entries:
   Accélérons la transition écologique: Acelerar la transición ecológica
   Les challenges entre amis ou la diffusion des outils en entreprise permettent de mobiliser votre entourage.: Los desafíos entre amigos o el reparto de herramientas dentro de la empresa pueden movilizar a su entorno.
   'Quelle est l’empreinte carbone moyenne d’un Français et celle de la France ? ': '¿Cuál es la huella de carbono media de un francés y la de Francia en su conjunto? '
-  Calculez votre <2>empreinte carbone</2> en quelques minutes et découvrez les <5>actions</5> les plus efficaces pour <8>réduire vos émissions</8> de gaz à effet de serre.: Calcule su <2>huella de carbono</2> en unos minutos y descubra las <5>formas</5> más eficaces de <8>reducir sus emisiones de</8> gases de efecto invernadero.
   Comment calculer son empreinte carbone ?: ¿Cómo calcula su huella de carbono?
-  Vos consommations énergétiques (chauffage, électricité).: Su consumo de energía (calefacción, electricidad).
   Avez-vous déjà entendu parler de maladaptation ?: ¿Ha oído hablar alguna vez de la inadaptación?
   'Quelles sont les principales sources d’émissions de CO2e ? ': '¿Cuáles son las principales fuentes de emisiones de CO2e? '
   L'empreinte carbone, une première étape pour passer à l’action: La huella de carbono, un primer paso hacia la acción
-  Vos achats (équipements, vêtements, loisirs).: Sus compras (equipamiento, ropa, actividades de ocio).
   Qu’est-ce que le carbone et pourquoi est-il important ?: ¿Qué es el carbono y por qué es importante?
   Quels pays émettent le plus de gaz à effet de serre ?: ¿Qué países emiten más gases de efecto invernadero?
   Comment définir l'empreinte carbone ?: ¿Cómo se define la huella de carbono?
   les données du Ministère de la Transition Écologique, nouvelle fenêtre: datos del Ministerio para la Transición Ecológica, nueva ventana
   "L'empreinte carbone : une empreinte parmi d'autres !": 'La huella de carbono: ¡una huella entre muchas!'
-  Calculateur d'empreinte carbone personnelle - Nos Gestes Climat: Calculadora de la huella de carbono personal - Nos Gestes Climat
-  Votre régime alimentaire (viande rouge, volaille, poisson...): Su dieta (carne roja, aves, pescado, etc.)
   Le consensus scientifique est formel, <2>cette augmentation est directement liée aux activités humaines</2>. Il est temps de réduire ou de remplacer ces activités émettrices !: 'El consenso científico es claro: <2>este aumento está directamente relacionado con las actividades humanas</2>. ¡Es hora de reducir o sustituir estas actividades emisoras!'
-  Vos modes de déplacement (voiture, vélo, train, ferry, avion...).: Su medio de transporte (coche, bicicleta, tren, ferry, avión, etc.).
   Découvrir quelles actions ont le plus d’impact pour réduire son empreinte carbone.: Averigüe qué acciones tienen mayor impacto en la reducción de su huella de carbono.
-  Pour un mode de vie plus durable, certaines actions <2>ont un impact plus fort que d’autres</2>. En intégrant ces gestes dans votre quotidien, vous pouvez fortement <5>réduire vos émissions de CO2</5>.: Para llevar un estilo de vida más sostenible, algunas acciones <2>tienen mayor impacto que otras</2>. Haciendo que estas acciones formen parte de tu rutina diaria, puedes <5>reducir</5> significativamente <5>tus emisiones de CO2</5>.
   Évaluer son empreinte écologique (carbone et eau) pour identifier les principaux leviers d’action.: Evalúe su huella ecológica (carbono y agua) para identificar las principales palancas de actuación.
-  '<0>transports</0> : voitures, camions, avions et navires rejettent massivement du CO2 en brûlant des carburants fossiles. La demande croissante de mobilité (voyages et transport de marchandises) accentue ces émissions ;': '<0>transporte</0>: coches, camiones, aviones y barcos emiten enormes cantidades de CO2 al quemar combustibles fósiles. La creciente demanda de movilidad (viajes y transporte de mercancías) agrava estas emisiones;'
   <0>L’empreinte carbone</0> mesure la quantité totale de gaz à effet de serre (GES) émis par nos activités sur une année.: <0>La huella de carbono</0> mide la cantidad total de gases de efecto invernadero (GEI) emitidos por nuestras actividades a lo largo de un año.
-  Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone.: ¿Conoces tu huella climática? Haz el test y descubre cómo puedes reducir tu huella de carbono.
   'Les émissions de gaz à effet de serre proviennent de différents secteurs de l’activité humaine. Les principales sources sont :': 'Las emisiones de gases de efecto invernadero proceden de diversos sectores de la actividad humana. Las principales fuentes son :'
   À l’échelle nationale, la France s’est fixée pour objectif d’atteindre la neutralité carbone d’ici 2050, ce qui implique de réduire drastiquement les émissions dans tous les secteurs.: A escala nacional, Francia se ha fijado el objetivo de alcanzar la neutralidad en carbono de aquí a 2050, lo que significa reducir drásticamente las emisiones en todos los sectores.
-  Ces émissions proviennent de diverses activités humaines dont les moyens de transport, l’alimentation, le logement, la consommation courante de produits et de services, la production industrielle ainsi que le service publique.: Estas emisiones proceden de diversas actividades humanas, como el transporte, la alimentación, la vivienda, el consumo cotidiano de bienes y servicios, la producción industrial y los servicios públicos.
   L’empreinte carbone n’est pas un bilan carbone. Même s’ils mesurent tous deux les émissions de gaz à effet de serre (GES), ils ne se calculent pas de la même manière et n’ont pas le même objectif.: Una huella de carbono no es un balance de carbono. Aunque ambos miden las emisiones de gases de efecto invernadero (GEI), no se calculan de la misma manera ni tienen el mismo objetivo.
   'Le carbone, CO2e, est le principal gaz à effet de serre, mais il y en a d’autres : méthane, protoxyde d’azote par exemple. C’est pourquoi on parle “d’équivalent carbone”.': 'El carbono, CO2e, es el principal gas de efecto invernadero, pero hay otros: metano y óxido nitroso, por ejemplo. Por eso hablamos de "equivalentes de carbono".'
-  '<0>logement et consommation énergétique </0> : le chauffage (et dans une moindre mesure, la climatisation) est le poste le plus important de consommation énergétique du logement, donc d’émission de GES. Il faut également y ajouter les consommations des appareils électroménagers ;': '<0>vivienda y consumo de energía </0>: la calefacción (y, en menor medida, el aire acondicionado) es la mayor fuente de consumo de energía en el hogar y, por tanto, de emisiones de gases de efecto invernadero. También está el consumo de electrodomésticos;'
   'Ces émissions bouleversent le climat, contribuant au réchauffement global et à ses conséquences dévastatrices : montée du niveau des océans, multiplication des catastrophes naturelles et extinction d’une partie du vivant.': 'Estas emisiones están alterando el clima, contribuyendo al calentamiento global y a sus devastadoras consecuencias: subida del nivel del mar, aumento del número de catástrofes naturales y extinción de parte del mundo vivo.'
   Ces deux indicateurs permettent de mieux comprendre l’impact environnemental de vos choix pour agir de manière plus responsable.: Estos dos indicadores te permiten comprender mejor el impacto medioambiental de tus elecciones, para que puedas actuar de forma más responsable.
   La méthodologie du bilan carbone a été développée par l’ADEME (Agence de la transition écologique).: La metodología de la huella de carbono fue desarrollada por la ADEME (Agencia Francesa de Medio Ambiente y Gestión de la Energía).
@@ -1404,11 +1001,9 @@ entries:
   'Voici quelques idées :': 'He aquí algunas ideas:'
   Qu’est-ce que l’empreinte carbone ?: ¿Cuál es la huella de carbono?
   Vos questions sur l'empreinte carbone: Sus preguntas sobre la huella de carbono
-  '<0>énergie et production industrielle</0> : la combustion d’énergies fossiles (charbon, pétrole, gaz naturel) pour produire de l’électricité mais aussi pour alimenter les industries est la première cause d’émissions de CO₂ dans le monde ;': '<0>energía y producción industrial</0>: la combustión de combustibles fósiles (carbón, petróleo, gas natural) para producir electricidad y alimentar la industria es la principal causa de emisiones de CO₂ en todo el mundo;'
   En quantifiant l’ensemble de ces émissions, l’empreinte carbone permet de mesurer l’impact sur le climat et de mettre en place des stratégies pour réduire ces émissions.: Al cuantificar todas estas emisiones, la huella de carbono permite medir el impacto sobre el clima y aplicar estrategias para reducirlas.
   La France représente environ 1% des émissions globales mais une partie majeure de son impact est indirecte et liée aux importations de produits fabriqués massivement à l’étranger.: Francia representa alrededor del 1% de las emisiones mundiales, pero una gran parte de su impacto es indirecto y está vinculado a las importaciones de productos fabricados a gran escala en el extranjero.
   Le carbone est un élément chimique nécessaire à la vie sur Terre. Il se trouve dans les végétaux, dans le sol, dans les océans et dans l’atmosphère principalement sous forme de dioxyde de carbone (CO2e).: El carbono es un elemento químico necesario para la vida en la Tierra. Se encuentra en las plantas, en el suelo, en los océanos y en la atmósfera, principalmente en forma de dióxido de carbono (CO2e).
-  '<0>production de biens et consommation croissante</0> : la fabrication de biens (électronique, vêtements, équipements, loisirs) à travers le monde génère des émissions à chaque étape : extraction des matières premières, production, transport, distribution et élimination. Ces processus contribuent fortement à l’empreinte carbone globale en raison d’une demande toujours croissante.': '<0>producción de bienes y consumo creciente</0>: la fabricación de bienes (electrónica, ropa, equipamiento, ocio) en todo el mundo genera emisiones en cada una de sus fases: extracción de materias primas, producción, transporte, distribución y eliminación. Estos procesos contribuyen de forma significativa a la huella de carbono mundial debido a una demanda cada vez mayor.'
   'Depuis le siècle dernier, <2>la concentration du carbone dans l’atmosphère augmente</2>, si bien que le climat subit de graves bouleversements : montée des eaux, destruction du vivant, augmentation des températures, etc.': 'Desde el siglo pasado, <2>la concentración de carbono en la atmósfera no ha dejado de aumentar</2>, provocando graves trastornos en el clima: subida del nivel del mar, destrucción de organismos vivos, aumento de las temperaturas, etc.'
   'Il est urgent de réduire nos émissions de gaz à effet de serre et d’opérer une transition vers des modes de vie bas-carbone. Individus et organisations, il est temps d’agir : <2>mesurer son empreinte carbone est la première étape !</2>': 'Necesitamos urgentemente reducir nuestras emisiones de gases de efecto invernadero y hacer la transición a un estilo de vida bajo en carbono. Individuos y organizaciones, es hora de actuar: <2>¡medir la huella de carbono es el primer paso!</2>'
   Réduire efficacement son empreinte sur l’environnement nécessite de <2>s’informer sur les enjeux du réchauffement climatique</2>, s'inspirer des bonnes pratiques et <5>passer à l’action</5>.: Para reducir eficazmente su huella ambiental, debe <2>estar informado sobre los retos del calentamiento global</2>, inspirarse en las buenas prácticas y pasar a <5>la acción</5>.
@@ -1418,7 +1013,6 @@ entries:
   L’empreinte carbone désigne la quantité totale de gaz à effet de serre (GES) émis directement et indirectement par une personne par ses activités sur une année.: La huella de carbono se refiere a la cantidad total de gases de efecto invernadero (GEI) emitidos directa e indirectamente por las actividades de una persona a lo largo de un año.
   "L'empreinte carbone moyenne d'un français est de <2>9 tonnes de CO2e par an</2>. Objectif 2050 : 2 tonnes !": La huella de carbono de un francés medio es de <2>9 toneladas de CO2e al año</2>. El objetivo para 2050 es de 2 toneladas
   L’empreinte carbone englobe les émissions directes et indirectes d’un individu sur une année. Le bilan carbone, en revanche, est un outil de comptabilité utilisé par les organisations (entreprises, collectivités) pour quantifier leurs émissions sur une période donnée et établir un plan de réduction.: La huella de carbono recoge las emisiones directas e indirectas de un individuo a lo largo de un año. Por otro lado, la huella de carbono es una herramienta contable utilizada por las organizaciones (empresas, autoridades locales) para cuantificar sus emisiones durante un periodo determinado y elaborar un plan de reducción.
-  '<0>agriculture et élevage</0> : les pratiques agricoles intensives et l’élevage, en particulier la production de viande et les rejets de méthane des ruminants, contribuent fortement aux gaz à effet de serre, avec un impact significatif sur le changement climatique. L’usage de fertilisants et la déforestation pour l’extension des terres agricoles contribuent également à ces émissions ;': '<0>agricultura y ganadería</0>: las prácticas agrícolas intensivas y la ganadería, en particular la producción de carne y las emisiones de metano de los rumiantes, contribuyen en gran medida a las emisiones de gases de efecto invernadero, con un impacto significativo en el cambio climático. El uso de fertilizantes y la deforestación para ampliar las tierras de cultivo también contribuyen a estas emisiones;'
   La Chine et les États-Unis sont les deux plus grands émetteurs de gaz à effet de serre en raison de leur forte dépendance aux énergies fossiles (charbon, pétrole, gaz), de leurs industries énergivores ainsi que de la croissance rapide de leurs secteurs de transport et de production manufacturière.: China y Estados Unidos son los dos mayores emisores de gases de efecto invernadero, debido a su gran dependencia de los combustibles fósiles (carbón, petróleo y gas), sus industrias de alto consumo energético y el rápido crecimiento de sus sectores del transporte y la fabricación.
   Privilégier les mobilités douces: Favorecer la movilidad suave
   'Les actions pour réduire son empreinte carbone ': 'Acciones para reducir su huella de carbono '
@@ -1428,26 +1022,20 @@ entries:
   Allonger la vie de ses appareils et des meubles: Alarga la vida de tus electrodomésticos y muebles
   Pour un mode de vie plus durable, certaines actions <2>ont un impact plus fort que d’autres</2>. En intégrant ces gestes dans votre quotidien, vous pouvez fortement <5>réduire vos émissions de Co2</5>.: Para llevar un estilo de vida más sostenible, algunas acciones <2>tienen mayor impacto que otras</2>. Haciendo que estas acciones formen parte de tu rutina diaria, puedes <5>reducir</5> significativamente <5>tus emisiones de CO2</5>.
   Ces émissions proviennent de diverses activités humaines dont les moyens de transport, l’alimentation, le logement, la consommation courante de produits et de services, la production industrielle ainsi que le service public.: Estas emisiones proceden de diversas actividades humanas, como el transporte, la alimentación, la vivienda, el consumo cotidiano de bienes y servicios, la producción industrial y los servicios públicos.
-  Privilégier les modes de chauffage peu émetteurs de Co2 (électricité, bois, biomasse): Favorecer los métodos de calefacción con bajas emisiones de CO2 (electricidad, madera, biomasa)
   Un coup de pouce pour agir ?: ¿Una ayuda para pasar a la acción?
   Aides financières: Ayuda financiera
-  Créer mon compte: Crear mi cuenta
   Bons plans: Buenos planes
   Logo de J'agis: Logotipo de J'agis
   Que faire pour réduire mon empreinte ?: ¿Qué puedo hacer para reducir mi huella?
   Découvrez toutes les aides financières auxquelles vous avez droit: Infórmese de todas las ayudas económicas a las que tiene derecho
   Idées: Ideas
-  À partir de votre bilan, <1>J’agis</1> vous propose des actions concrètes et adaptées à vos envies et à vos moyens: Basándose en su evaluación, <1>J'agis</1> le propondrá acciones prácticas adaptadas a sus necesidades y recursos
   Une erreur est survenue. <2>Cliquez sur ce lien pour naviguer vers J'agis.</2>: Se ha producido un error. <2>Haga clic en este enlace para navegar a Estoy tomando medidas.</2>
   Créer mon compte {isPending && <Loader className="ml-2" />}: <Loader className="ml-2" />Crear mi cuenta {isPending && }
   Groupes: Grupos
   Mes groupes: Mis grupos
-  'Empreinte carbone : comprendre, mesurer, réduire son impact': 'Huella de carbono: conocer, medir y reducir su impacto'
-  'Empreinte eau : comprendre, évaluer, économiser l’eau': 'Huella hídrica: comprender, evaluar y ahorrar agua'
   'Chaque goutte compte : découvrez votre empreinte eau !': 'Cada gota cuenta: ¡descubre tu huella hídrica!'
   'Voici quelques exemples d’empreinte eau pour des <2>produits courants</2>:': 'He aquí algunos ejemplos de huellas hídricas de <2>productos comunes</2>:'
   L’empreinte eau aboutit-elle aux mêmes conclusions que l’empreinte carbone ?: ¿Lleva la huella hídrica a las mismas conclusiones que la huella de carbono?
-  Calculez votre empreinte carbone et eau en 10 minutes !: Calcule su huella de carbono y de agua en 10 minutos
   Pour réduire son empreinte eau, il est nécessaire de <2>changer nos habitudes quotidiennes</2>.: Para reducir nuestra huella hídrica, tenemos que <2>cambiar nuestros hábitos cotidianos</2>.
   <0>Chaque geste compte</0> pour garantir un accès durable à l'eau pour tous.: <0>Cada gesto cuenta</0> para garantizar un acceso sostenible al agua para todos.
   '<0>Eau verte</0> : eau de pluie absorbée par les sols, utilisée pour les cultures sans irrigation artificielle ;': '<0>Agua verde</0>: agua de lluvia absorbida por el suelo y utilizada para cultivar sin riego artificial;'
@@ -1467,7 +1055,6 @@ entries:
   Une hausse de 1 degré de la température du globe entraîne <2>une hausse de 7% du taux d’humidité</2> dans l’atmosphère. L’eau s’évapore plus, plus vite, et les phénomènes climatiques violents s’intensifient. <6>Des régions s’assèchent, quand d’autres sont inondées.</6>: Un aumento de 1 grado de la temperatura global provoca <2>un incremento del 7% de la humedad</2> atmosférica. El agua se evapora más, más rápidamente, y los fenómenos climáticos violentos se intensifican. <6>Algunas regiones se secan y otras se inundan.</6>
   La méthodologie AWARE que nous utilisons pour calculer l’empreinte eau se concentre sur les prélèvements d’eau, à savoir <2>l’eau bleue</2>. Elle ne tient pas compte de l’eau grise.: La metodología AWARE que utilizamos para calcular la huella hídrica se centra en las extracciones de agua, es decir, <2>el agua azul</2>. No tiene en cuenta las aguas grises.
   À la différence de l’empreinte carbone, nous ne disposons pas encore de données consolidées à l’échelle de la France, ni d’objectifs à atteindre. Mais nous avons déjà une vision assez juste des conséquences de notre accaparement de cette précieuse ressource <2>pour l’ensemble du vivant</2>. Nous pouvons agir collectivement pour réduire notre empreinte eau.: A diferencia de la huella de carbono, aún no disponemos de datos consolidados para Francia, ni de objetivos a los que aspirar. Pero ya tenemos una imagen bastante precisa de las consecuencias de nuestro acaparamiento de este recurso precioso <2>para todos los seres vivos</2>. Podemos actuar colectivamente para reducir nuestra huella hídrica.
-  Un homme perplexe réfléchissant à l'empreinte eau du tee-shirt qu'il tient: Un hombre perplejo reflexiona sobre la huella hídrica de la camiseta que lleva en la mano
   Il existe plusieurs méthodes pour calculer une empreinte eau. Chacune présente des avantages, et aucune à ce stade ne permet de saisir toute la complexité de la question des impacts de l’humain sur le cycle de l’eau. Notre choix s’est porté sur la méthode AWARE , qui permet de valoriser à sa juste mesure le stress hydrique des régions concernées par les consommations d’eau. C’est la méthode recommandée par la convention européenne, et plébiscitée par l’ADEME pour ses calculs d’ACV.: Existen varios métodos para calcular la huella hídrica. Cada uno tiene sus ventajas, pero ninguno capta por ahora toda la complejidad de la cuestión del impacto humano en el ciclo del agua. Hemos elegido el método AWARE, que proporciona una evaluación precisa del estrés hídrico en las regiones afectadas por el consumo de agua. Es el método recomendado por la Convención Europea, y es ampliamente utilizado por ADEME para sus cálculos de ACV.
   Un ordinateur, illustrant la consommation d'eau par le numérique: Un ordenador, ilustración digital del consumo de agua
   Une pomme, symbolisant le lien entre eau et agriculture: Una manzana, símbolo del vínculo entre el agua y la agricultura
@@ -1475,10 +1062,7 @@ entries:
   Un mouton, liant empreinte eau et élevage: Una oveja, vinculando huella hídrica y ganadería
   Une balance indiquant la quantité d'eau nécessaire pour produire un ordinateur: Una escala que muestra la cantidad de agua necesaria para producir un ordenador
   Un éclair, symbolisant la production d'électricité: Un rayo, símbolo de la producción de electricidad
-  Un homme réfléchissant à l'empreinte eau du tee-shirt qu'il tient: Un hombre reflexiona sobre la huella del agua de la camiseta que lleva en la mano
   Libre et documenté: Gratuito y documentado
-  <0>2 millions de personnes</0> ont déjà <3></3>calculé leur empreinte !: <3></3>¡<0>2 millones de personas</0> ya han calculado su huella!
-  Calculez votre <2>empreinte carbone</2> et votre <4>empreinte eau</4> en <8>seulement 10 minutes</8>.: Calcula tu <2>huella de carbono</2> y de <4>agua</4> <8>en sólo 10 minutos</8>.
   Une garde-robe économe en eau: Un armario que ahorra agua
   La production d’un ordinateur nécessite 195 000 litres d’eau.: Se necesitan 195.000 litros de agua para producir un ordenador.
   L’empreinte eau d'un jean est de 30 000 litres d'eau.: La huella hídrica de un par de vaqueros es de 30.000 litros de agua.
@@ -1491,13 +1075,11 @@ entries:
   Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone: Un evento por el clima, que ilustra las acciones para reducir la propia huella de carbono
   Un groupe d'amis comparant leurs empreintes carbone et eau: Un grupo de amigos compara sus huellas de carbono e hídrica
   Un groupe de personnes en conférence, illustrant l'engagement collectif pour le climat: Un grupo de personas en una conferencia, ilustrando su compromiso colectivo con el clima
-  Une fille tapant sur son ordinateur, entouré d'objets aux empreintes écologiques variées.: Una chica teclea en su ordenador, rodeada de objetos con diversas huellas ecológicas.
   un groupe de personnes en train de réfléchir à leurs impacts et leur bilan carbone et eau: un grupo de personas que reflexionan sobre su impacto y su huella de carbono e hídrica
   Une fille tapant sur son ordinateur, entouré d'objets aux empreintes carbone et eau variées.: Una chica teclea en su ordenador, rodeada de objetos con diversas huellas de carbono y agua.
   Deux mini-vans, illustrant l'empreinte carbone des transports: Dos monovolúmenes que ilustran la huella de carbono del transporte
   Calculez votre <2>empreinte carbone</2> et votre <6>empreinte eau</6> en <9>seulement 10 minutes</9>.: Calcula tu <2>huella de carbono</2> y de <6>agua</6> <9>en sólo 10 minutos</9>.
   Deux représentations graphiques de l'empreinte carbone et eau: Dos representaciones gráficas de las huellas de carbono e hídrica
-  "Retrouvez toute l’expertise de <2>l’Agence de l’Environnement et de la Maîtrise de l’Énergie</2> dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action.": "Descubra la experiencia de <2>la Agence de l'Environnement et de la Maîtrise de l'Énergie</2> en la calculadora de Nos Gestes Climat: datos, perspectivas, palancas para la acción."
   Chez Nos Gestes Climat, nous croyons au pouvoir de <2>l’action collective</2> pour relever les défis environnementaux. Notre mission est de <6>sensibiliser</6> et d’accompagner chacun, citoyens, entreprises et collectivités, à mieux comprendre son empreinte écologique, carbone ou eau, <9>identifier les gestes</9> pour la réduire et <13>entraîner leur entourage</13> dans ce mouvement.: En Nos Gestes Climat creemos en el poder de la <2>acción colectiva</2> para hacer frente a los retos medioambientales. Nuestra misión es <6>sensibilizar</6> y ayudar a todos -ciudadanos, empresas y autoridades locales- a conocer mejor su huella ecológica, de carbono y de agua, a <9>identificar las medidas</9> que pueden tomar para reducirla y a <13>implicar</13> en este movimiento <13>a quienes les rodean</13>.
   Le saviez vous ?: ¿Lo sabías?
   Graphique de l'empreinte eau: Gráfico de la huella hídrica
@@ -1515,10 +1097,6 @@ entries:
   Deux personnes accolées levant le bras en signe de succès, illustrant l'importance du collectif dans la réduction de nos empreintes carbone: Dos personas de pie, una al lado de la otra, levantando los brazos en señal de éxito, ilustrando la importancia de trabajar juntos para reducir nuestra huella de carbono
   Privilégier les modes de chauffage peu émetteurs de CO2 (électricité, bois, biomasse): Favorecer los métodos de calefacción que emitan poco CO2 (electricidad, leña, biomasa)
   'Le dioxyde de carbone, CO2, est le principal gaz à effet de serre, mais il y en a d’autres : méthane, protoxyde d’azote par exemple. C’est pourquoi on parle “d’équivalent carbone”.': 'El dióxido de carbono, CO2, es el principal gas de efecto invernadero, pero hay otros: el metano y el óxido nitroso, por ejemplo. Por eso hablamos de "equivalentes de carbono".'
-  Oups ! Une erreur s'est produite au moment de récupérer les données VigiEau.: ¡Uy! Se ha producido un error al recuperar los datos de VigiEau.
-  Veuillez réessayer plus tard ou nous contacter si le problème persiste.: Vuelva a intentarlo más tarde o póngase en contacto con nosotros si el problema persiste.
-  Découvrir le simulateur: Descubra el simulador
-  Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.: El simulador Nos Gestes Climat se basa en el modelo de cálculo del mismo nombre, compuesto por un conjunto de bloques de construcción.
   À la une !: ¡Titulares!
   <0>Comparez vos résultats avec</0> <2>vos proches</2>: <0>Compara tus resultados con</0> <2>tus amigos</2>
   Merci de votre inscription !: Gracias por inscribirse
@@ -1542,8 +1120,6 @@ entries:
   La valeur maximum pour ce champ est de: El valor máximo de este campo es
   La valeur pour ce champ est comprise entre: El valor de este campo está comprendido entre
   En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.: Al participar, acepta que sus resultados se compartan de forma anónima con esta organización.
-  d'eau / jour: de agua / día
-  de CO₂e / an: de CO₂e / año
   Aide: Ayuda
   Cette section statistique est générée via Metabase.: Esta sección estadística se genera a través de Metabase.
   Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.: Nos referimos a los modos "Organizaciones" y "Desafía a tus amigos". Esta sección se genera a través de Metabase.
@@ -1556,29 +1132,19 @@ entries:
   Ressources: Recursos
   Qui sommes-nous: Quiénes somos
   Relais et partenaires: Relevos y socios
-  Bien noté ! Vous aurez prochainement de nos nouvelles.: Tomo nota Pronto tendrá noticias nuestras.
-  Inscrivez-vous à notre infolettre: Suscríbase a nuestro boletín
   Diffuser Nos Gestes Climat: Difundir Nos Gestes Climat
-  Super, vous êtes déjà inscrit !: Genial, ¡ya estás registrado!
-  'Oups, une erreur est survenue lors de la copie du lien, voici le lien à copier / coller :': 'Oops, hubo un error al copiar el enlace, aquí está el enlace para copiar / pegar :'
-  Vous devez renseigner le type de votre organisation: Debe introducir el tipo de organización
   Votre poste: Su posición
   Service public: Servicios públicos
   Nombre de participants attendus: Número previsto de participantes
   Le nombre de participants doit être supérieur à 0: El número de participantes debe ser superior a 0
   Veuillez entrer un nombre positif: Introduzca un número positivo
-  Cookies utilisés par PostHog: Cookies utilizadas por PostHog
-  Voir la liste des cookies utilisés par PostHog: Ver la lista de cookies utilizadas por PostHog
-  "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :": 'También utilizamos PostHog para medir la audiencia de nuestro sitio. La lista de cookies utilizadas está disponible aquí :'
   Une erreur est survenue. Si le problème persiste, veuillez contacter notre support.: Se ha producido un error. Si el problema persiste, póngase en contacto con nuestro equipo de asistencia.
   Options: Opciones
-  Le calculateur d'empreinte climat international: Calculadora internacional de la huella climática
   Impossible de copier le lien: No se puede copiar el enlace
   Infolettre saisonnière de Nos Gestes Climat: Boletín de temporada de Nos Gestes Climat
   Empreinte eau et empreinte carbone se répondent.: La huella hídrica y la huella de carbono van de la mano.
   Vous trouverez ici les réponses aux questions les plus fréquentes. S'il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !: Aquí encontrará respuestas a las preguntas más frecuentes. Si aún tiene preguntas o desea sugerir mejoras, vaya al final de la página. Esperamos que disfrute de la lectura
   Recevoir nos actualités sur les nouveaux services dédiés aux organisation: Reciba nuestras últimas noticias sobre nuevos servicios para organizaciones
-  <0>La taille des logements français a très fortement augmenté</0> sur ces 50 dernières années, passant de 23 à 40,4 m² par habitant, soit <4>90,9 m² en moyenne pour un foyer de 2,2 personnes.</4>: <0>El tamaño de las viviendas francesas ha aumentado mucho</0> en los últimos 50 años, pasando de 23 a 40,4 m² por habitante, es decir, <4>90,9 m² de media para un hogar de 2,2 personas.</4>
   convaincre et aider les autres: convencer y ayudar a los demás
   À partir de votre bilan,: De su balance,
   Tous ces modes d'action sont complémentaires !: Todos estos modos de acción se complementan entre sí
@@ -1595,17 +1161,12 @@ entries:
   La taille des logements français a très fortement augmenté: El tamaño de los hogares franceses ha aumentado mucho
   ': voitures, camions, avions et navires rejettent massivement du CO2 en brûlant des carburants fossiles. La demande carburants fossiles. La demande croissante de mobilité (voyages et transport de marchandises) accentue ces émissions ;': 'emisiones de CO2: coches, camiones, aviones y barcos emiten enormes cantidades de CO2 al quemar combustibles fósiles. Demanda de combustibles fósiles. La creciente demanda de movilidad (viajes y transporte de mercancías) agrava estas emisiones;'
   Contactez-nous: Póngase en contacto con nosotros
-  Un petit doute ? L’info sera sûrement dans votre contrat d’assurance: ¿Alguna duda? Probablemente encontrará la información en su póliza de seguros
   90,9 m² en moyenne pour un foyer de 2,2 personnes.: 90,9 m² de media para un hogar de 2,2 personas.
   sur ces 50 dernières années, passant de 23 à 40,4 m² par habitant, soit: en los últimos 50 años, de 23 a 40,4 m² por habitante, es decir
   ': la combustion d’énergies fossiles (charbon, pétrole, gaz naturel) pour produire de l’électricité mais aussi pour alimenter les industries est la première cause d’émissions de CO₂ dans le monde ;': la combustión de combustibles fósiles (carbón, petróleo, gas natural) para producir electricidad y la industria energética es la principal causa de emisiones de CO₂ en todo el mundo;
   ': la fabrication de biens (électronique, vêtements, équipements, loisirs) à travers le monde génère des émissions à chaque étape : extraction des matières premières, production, transport, distribution et élimination. Ces processus contribuent fortement à l’empreinte carbone globale en raison d’une demande toujours croissante.': 'la fabricación de bienes (electrónica, ropa, equipamiento, ocio) en todo el mundo genera emisiones en cada una de sus fases: extracción de materias primas, producción, transporte, distribución y eliminación. Estos procesos contribuyen significativamente a la huella de carbono mundial debido a una demanda cada vez mayor.'
   ': le chauffage (et dans une moindre mesure, la climatisation) est le poste le plus important de consommation énergétique du logement, donc d’émission de GES. Il faut également y ajouter les consommations des appareils électroménagers ;': la calefacción (y, en menor medida, el aire acondicionado) es la mayor fuente de consumo de energía en el hogar y, por tanto, de emisiones de gases de efecto invernadero. A ello hay que añadir el consumo de los electrodomésticos;
   ': les pratiques agricoles intensives et l’élevage, en particulier la production de viande et les rejets de méthane des ruminants, contribuent fortement aux gaz à effet de serre, avec un impact significatif sur le changement climatique. L’usage de fertilisants et la fertilisants et la déforestation pour l’extension des terres agricoles contribuent également à ces émissions ;': las prácticas agrícolas y ganaderas intensivas, en particular la producción de carne y las emisiones de metano de los rumiantes, contribuyen en gran medida a la emisión de gases de efecto invernadero, con un impacto significativo en el cambio climático. El uso de fertilizantes y la deforestación para ampliar las tierras de cultivo también contribuyen a estas emisiones;
-  Sur l'espace organisation de: En el
-  Un petit doute ? L’info sera sûrement dans votre contrat d’assurance logement.: ¿Alguna duda? Encontrará la información en su póliza de seguro de hogar.
-  Sur l'espace organisation de <strong className="text-secondary-700">{{organisation}}</strong>: En el <strong className="text-secondary-700">{{organisation}}</strong>
-  "Retrouvez toute l’expertise de <2>l’Agence de la Transition Écologique</2> dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action.": 'Encuentre toda la experiencia de <2>la Agence de la Transition Écologique</2> en la calculadora Nos Gestes Climat: datos, perspectivas, palancas para la acción.'
   Retrouvez toute l’expertise de: Toda la experiencia de
   l’Agence de la Transition Écologique: agencia de Transición Ecológica
   "dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action.": 'en la calculadora de Nos Gestes Climat: datos, perspectivas, palancas de actuación.'
@@ -1625,11 +1186,7 @@ entries:
   Raisin: Uva
   Poire: Pera
   Aie, une erreur est survenue lors du chargement de la campagne. Si le problème persiste merci de nous envoyer un message via notre page de contact.: Oops, se ha producido un error al cargar la campaña. Si el problema persiste, envíanos un mensaje a través de nuestra página de contacto.
-  Chargement des statistiques globales de campagne...: Cargando estadísticas globales de campaña...
   Chargement des résultats détaillés de campagne...: Cargando resultados detallados de la campaña...
-  Cette campagne comporte plus de {MAX_SIMULATIONS_FOR_DASHBOARD} simulations. Les statistiques globales ne sont pas disponibles pour le moment. Nous nous excusons pour la gêne occasionnée, nos équipes sont sur le coup.: Esta campaña incluye más de {MAX_SIMULATIONS_FOR_DASHBOARD} simulaciones. Las estadísticas globales no están disponibles en este momento. Pedimos disculpas por las molestias causadas, ya que nuestros equipos están trabajando en ello.
-  'Incident en cours :': 'Incidente en curso :'
-  les statistiques ne sont pas disponibles pour les campagnes de plus de 1000 participations pour le moment. Nous nous excusons pour la gêne occasionnée ; nos équipes sont sur le coup.: por el momento, las estadísticas no están disponibles para las campañas con más de 1.000 entradas. Sentimos las molestias ocasionadas; nuestros equipos están trabajando en ello.
   Menu principal: Menú principal
   Menu déroulant: Menú desplegable
   '{{name}} lecture seule': '{{name}} sólo lectura'
@@ -1648,9 +1205,7 @@ entries:
   partagent Nos Gestes Climat via leur site ou des campagnes (mails, réseaux sociaux, affichage), nous permettant de sensibiliser près de 2 000 personnes chaque jour. Un grand merci à eux !: comparten Nos Gestes Climat a través de su página web o de campañas (correo electrónico, redes sociales, carteles), lo que nos permite sensibilizar a casi 2.000 personas cada día. ¡Muchas gracias a todos ellos!
   Envoyez-nous votre logo via notre page de contact: Envíenos su logotipo a través de nuestra página de contacto
   Plusieurs milliers d’organisations: Varios miles de organizaciones
-  Aucun de ces acteurs ne finance Nos Gestes Climat, un service public, gratuit et indépendant de l'ADEME.: Ninguno de estos actores financia Nos Gestes Climat, un servicio público, gratuito e independiente prestado por la ADEME.
   Vous relayez Nos Gestes Climat et souhaitez apparaître dans notre galerie ?: ¿Relevas Nos Gestes Climat y quieres aparecer en nuestra galería?
-  Simulation mise à jour: Simulación actualizada
   Mon groupe - Nos Gestes Climat: Mi Grupo - Nos Gestes Climat
   International - Nos Gestes Climat: Internacional - Nos Gestes Climat
   Mes empreintes carbone et eau - Nos Gestes Climat: Mi huella de carbono y de agua - Nos Gestes Climat
@@ -1667,7 +1222,6 @@ entries:
   Rejoindre une campagne - Nos Gestes Climat: Únete a una campaña - Nos Gestes Climat
   Tutoriel du calculateur - Nos Gestes Climat: Calculator tutorial - Nos Gestes Climat
   Documentation de notre calculateur d'empreinte climatique - Nos Gestes Climat: Documentación para nuestra calculadora de la huella climática - Nos Gestes Climat
-  Mon espace organisation - Nos Gestes Climat: Mi espacio de organización - Nos Gestes Climat
   Votre code postal, rejoindre une campagne - Nos Gestes Climat: Tu código postal, únete a una campaña - Nos Gestes Climat
   Mes empreintes carbone et eau partagées - Nos Gestes Climat: Mis huellas compartidas de carbono y agua - Nos Gestes Climat
   'Empreinte eau : comprendre, évaluer, économiser l’eau - Nos Gestes Climat': 'Huella hídrica: comprender, evaluar y ahorrar agua - Nos Gestes Climat'
@@ -1696,8 +1250,6 @@ entries:
   9,5 kg de vêtements... mais n'en trient que 3,4 kg !: 9,5 kg de ropa... ¡pero sólo clasifica 3,4 kg!
   Rejoignez-les: Únete a ellos
   Plusieurs milliers d’organisations nous font confiance pour sensibiliser efficacement: Miles de organizaciones han depositado su confianza en nosotros para que les ayudemos a sensibilizar eficazmente
-  "N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l'ADEME.": 'N.B.: ninguno de los actores mencionados a continuación financia Nos Gestes Climat, que es y seguirá siendo un servicio público gratuito e independiente prestado por la ADEME.'
-  "N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l'ADEME..lock": "N.B. : aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l'ADEME."
   N.B.: N.B.
   N.B..lock: N.B.
   ": aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l'ADEME.": ninguno de los actores mencionados a continuación financia Nos Gestes Climat, que es y seguirá siendo un servicio público, independiente y gratuito de la ADEME.
@@ -1713,9 +1265,7 @@ entries:
   'Oups, la copie du lien a échoué, le voici :': 'Oops, copiar el enlace falló, aquí está:'
   Nous chargeons les données de l'organisation partenaire.: Cargamos los datos de la organización asociada.
   Une erreur s'est produite au moment de récupérer les informations liées à l'organisation partenaire. Veuillez réessayer plus tard ou contacter notre support.: Se ha producido un error al recuperar la información relacionada con la organización asociada. Vuelva a intentarlo más tarde o póngase en contacto con nuestro equipo de asistencia.
-  Oups ! Votre campagne a atteint un nombre de participations trop important pour permettre d'afficher notre graphique correctement. Nous travaillons à résoudre le problème au plus vite.: ¡Ups! Tu campaña ha recibido demasiadas entradas para que nuestro gráfico se muestre correctamente. Estamos trabajando para resolver el problema lo antes posible.
   Oups ! Une erreur s'est produite, veuillez réessayer dans quelques instants.: ¡Uy! Se ha producido un error. Por favor, inténtelo de nuevo en unos momentos.
-  Les graphiques sont cachés pour les campagnes avec plus de 500 participations pour des raisons de performance. Nous travaillons à l'ajout de cette fonctionnalité pour les plus grosses campagnes: Los gráficos están ocultos para las campañas con más de 500 entradas por razones de rendimiento. Estamos trabajando para añadir esta función a las campañas más grandes
   Les graphiques sont cachés pour les campagnes avec plus de 500 participations pour des raisons de performance. Nous travaillons à l'ajout de cette fonctionnalité pour les plus grosses campagnes.: Los gráficos están ocultos para las campañas con más de 500 entradas por razones de rendimiento. Estamos trabajando en añadir esta funcionalidad para campañas más grandes.
   Participation mise à jour: Participación actualizada
   Recommencer mon inscription: Repetir mi registro
@@ -1740,13 +1290,9 @@ entries:
   Aller sur le site partenaire maintenant: Ir al sitio asociado
   Commencer le test maintenant: Iniciar la prueba ahora
   'Vous allez être redirigé vers notre calculateur dans :': 'Será redirigido a nuestra calculadora en :'
-  Vous allez être redirigé vers le site de notre partenaire dans: Se le redirigirá al sitio web de nuestro socio en
-  "Merci d'avoir complété votre test. Nous vous redirigerons vers le site de notre partenaire dans :": 'Gracias por completar su prueba. Le redirigiremos al sitio web de nuestro socio en :'
-  Notre partenaire {{name}} vous a invité à leur transmettre vos empreintes carbone et eau.: Nuestro socio {{name}} te invita a enviarles tu huella de carbono y de agua.
   'Vous allez être redirigé vers le site de notre partenaire dans :': 'Se le redirigirá al sitio web de nuestro socio en :'
   Oups ! Une erreur s'est produite au moment d'envoyer vos résultats à notre partenaire. Veuillez recommencer le parcours depuis l'interface du site partenaire.: ¡Uy! Se ha producido un error al enviar sus resultados a nuestro socio. Por favor, reinicie el curso desde la interfaz del sitio asociado.
   Merci d'avoir complété votre test.: Gracias por completar la prueba.
-  Notre partenaire {{name}} vous a invité à lui transmettre vos empreintes carbone et eau.: Nuestro socio {{name}} le invita a enviar sus huellas de carbono y de agua.
   'Nous vous redirigerons vers le site de notre partenaire dans :': 'Le redirigiremos al sitio de nuestro socio en :'
   Vous débutez votre test avec un score de départ.: Comienzas tu prueba con una puntuación inicial.
   Ce dernier est calculé à partir de réponses par défaut attribuées à l’avance à chaque question. Si vous passez une question, ces mêmes réponses seront prises en compte.: Se calcula a partir de las respuestas por defecto asignadas de antemano a cada pregunta. Si apruebas una pregunta, se tendrán en cuenta estas mismas respuestas.
