@@ -10,7 +10,6 @@ import Loader from '@/design-system/layout/Loader'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import Image from 'next/image'
 import type { ReactNode } from 'react'
-import { twMerge } from 'tailwind-merge'
 import PartnerCampaignHeader from './PartnerCampaignHeader'
 
 export default function PartnerCampaignContent({
@@ -36,16 +35,21 @@ export default function PartnerCampaignContent({
     <>
       <PartnerCampaignHeader logoSrc={partnerCampaign.logo.url} />
       <Hero
-        title={partnerCampaign.title}
-        className={twMerge(
-          'pt-8 pb-0 md:pt-16 md:pb-20',
+        title={
+          <span className="block w-full text-left">
+            {partnerCampaign.title}
+          </span>
+        }
+        className="pt-8 pb-0 md:pt-16 md:pb-20"
+        style={
           partnerCampaign?.backgroundColor
-            ? `bg-[${partnerCampaign?.backgroundColor}]`
-            : ''
-        )}
+            ? { backgroundColor: partnerCampaign?.backgroundColor }
+            : {}
+        }
         description={
           <>
             <div
+              className="text-left"
               dangerouslySetInnerHTML={{ __html: partnerCampaign.htmlContent }}
             />
 
@@ -65,7 +69,7 @@ export default function PartnerCampaignContent({
             {
               // Loading state
               !isError && isLoading && (
-                <Button className="mt-2 md:mt-10" size="lg" disabled>
+                <Button className="mt-2 w-40 md:mt-10" size="lg" disabled>
                   <Loader color="light" />
                 </Button>
               )

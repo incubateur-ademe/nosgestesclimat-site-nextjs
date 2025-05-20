@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 export default function Hero({
@@ -7,12 +7,14 @@ export default function Hero({
   description,
   partners,
   className,
+  style,
 }: {
   illustration: ReactNode
   title: ReactNode
   description: ReactNode
   partners?: ReactNode
   className?: string
+  style?: CSSProperties
 }) {
   return (
     <>
@@ -20,7 +22,8 @@ export default function Hero({
         className={twMerge(
           'bg-heroLightBackground flex min-h-[588px] items-center px-4 pt-10 pb-20 md:min-h-full md:py-20',
           className
-        )}>
+        )}
+        style={style}>
         <div className="relative mx-auto flex max-w-5xl flex-row items-center justify-between gap-8 md:px-0">
           <div className="flex flex-col gap-4 md:gap-10">
             <div className="max-w-[600px] text-center md:text-left">
