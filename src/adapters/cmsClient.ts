@@ -192,10 +192,10 @@ export type PartnerCampaignType = {
   pollSlug: string
   content: string
   htmlContent: string
-  labelCTA: string
+  labelCTA?: string
   image?: ImageType | null
   logo: ImageType
-  backgroundColor: string
+  backgroundColor?: string
   questions?: {
     question: string
     answer: string
