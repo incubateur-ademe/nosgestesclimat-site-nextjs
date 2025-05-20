@@ -2,6 +2,7 @@
 
 import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import Trans from '@/components/translation/trans/TransClient'
+import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Title from '@/design-system/layout/Title'
 import useFetchOrganisations from '@/hooks/organisations/useFetchOrganisations'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -14,10 +15,6 @@ export default function Organisations() {
 
   const { data: organisations, isLoading, isError } = useFetchOrganisations()
 
-  if (isLoading && !organisations && !isError) {
-    return null
-  }
-
   return (
     <>
       <Title
@@ -25,6 +22,9 @@ export default function Organisations() {
         className="mt-16"
         title={<Trans>Organisations et campagnes</Trans>}
       />
+
+      {isLoading && <BlockSkeleton />}
+
       {organisations && (
         <div className="flex flex-wrap justify-center gap-16 md:flex-nowrap">
           <div className="flex-1">
