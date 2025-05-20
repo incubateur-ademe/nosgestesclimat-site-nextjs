@@ -1,6 +1,12 @@
 name: E2E Tests
 
 on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       branch:
@@ -47,7 +53,10 @@ jobs:
             fi
           fi
 
+      - name: Wait 15 minutes
+        run: sleep 900
+
       - name: Run E2E tests
         run: |
           echo "Running tests against ${{ env.TEST_URL }}"
-          # Add your test commands here
+          yarn e2e
