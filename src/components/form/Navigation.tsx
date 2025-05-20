@@ -131,7 +131,8 @@ export default function Navigation({
       className={twMerge(
         'fixed right-0 bottom-0 left-0 z-50 min-h-[66px] bg-gray-100 py-3',
         isEmbedded && 'bg-primary-100 static p-0',
-        isIframe && 'relative right-auto bottom-auto left-auto bg-transparent'
+        isIframe &&
+          'relative right-auto bottom-auto left-auto z-0 bg-transparent'
       )}>
       {!isIframe && <SyncIndicator />}
       <div
