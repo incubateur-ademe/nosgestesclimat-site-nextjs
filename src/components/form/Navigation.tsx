@@ -162,7 +162,7 @@ export default function Navigation({
           disabled={isNextDisabled}
           className="p-3 text-sm"
           size="md"
-          data-cypress-id={isIframe ? undefined : 'next-question-button'}
+          data-cypress-id="next-question-button"
           onClick={handleGoToNextQuestion}>
           {noNextQuestion
             ? t('Terminer')
