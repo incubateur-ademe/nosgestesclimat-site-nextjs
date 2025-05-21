@@ -90,33 +90,33 @@ async function healthcheck() {
       }
     }
 
-    // if (errors.length) {
-    //   console.log('Errors found:', errors)
-    //   const webhookUrl = process.env.MATTERMOST_WEBHOOK_URL
-    //   console.log('Webhook URL:', webhookUrl ? 'is set' : 'is not set')
+    if (errors.length) {
+      console.log('Errors found:', errors)
+      const webhookUrl = process.env.MATTERMOST_WEBHOOK_URL
+      console.log('Webhook URL:', webhookUrl ? 'is set' : 'is not set')
 
-    //   if (webhookUrl) {
-    //     try {
-    //       console.log('Attempting to send notification to Mattermost...')
-    //       const withSOrNot = errors.length > 1 ? 's' : ''
-    //       const response = await axios.post(webhookUrl, {
-    //         text: `🚨 Iframes cassées détectées sur le${withSOrNot} site${withSOrNot} suivant${withSOrNot} :\n\n${errors.map((url) => `• ${url}`).join('\n')}`,
-    //       })
-    //       console.log('Mattermost response status:', response.status)
-    //       console.log('Mattermost response data:', response.data)
-    //     } catch (error) {
-    //       console.log('Failed to send to Mattermost:', error.message)
-    //       if (error.response) {
-    //         console.log('Response status:', error.response.status)
-    //         console.log('Response data:', error.response.data)
-    //       }
-    //     }
-    //   } else {
-    //     console.log('Mattermost webhook URL not configured')
-    //     console.log('Iframes are broken on the following sites:')
-    //     errors.forEach((error) => console.log(error))
-    //   }
-    // }
+      if (webhookUrl) {
+        try {
+          console.log('Attempting to send notification to Mattermost...')
+          const withSOrNot = errors.length > 1 ? 's' : ''
+          const response = await axios.post(webhookUrl, {
+            text: `🚨 Iframes cassées détectées sur le${withSOrNot} site${withSOrNot} suivant${withSOrNot} :\n\n${errors.map((url) => `• ${url}`).join('\n')}`,
+          })
+          console.log('Mattermost response status:', response.status)
+          console.log('Mattermost response data:', response.data)
+        } catch (error) {
+          console.log('Failed to send to Mattermost:', error.message)
+          if (error.response) {
+            console.log('Response status:', error.response.status)
+            console.log('Response data:', error.response.data)
+          }
+        }
+      } else {
+        console.log('Mattermost webhook URL not configured')
+        console.log('Iframes are broken on the following sites:')
+        errors.forEach((error) => console.log(error))
+      }
+    }
   } catch (error) {
     console.log(`Healthcheck error: ${error.message}`)
   } finally {
