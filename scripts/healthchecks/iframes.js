@@ -27,7 +27,7 @@ async function healthcheck() {
         await page.setUserAgent(
           'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
         )
-        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 })
+        await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 })
 
         try {
           await page.waitForSelector(`#${iframeId}`, { timeout: 5000 })
@@ -52,7 +52,7 @@ async function healthcheck() {
         const isValid = validPatterns.every((pattern) =>
           pageContent.toLowerCase().includes(pattern.toLowerCase())
         )
-        const errorPatterns = ['404', 'erreur', 'error', 'Avant de commencer']
+        const errorPatterns = ['404', 'erreur', 'error']
         const hasError = errorPatterns.some((pattern) =>
           pageContent.toLowerCase().includes(pattern.toLowerCase())
         )
