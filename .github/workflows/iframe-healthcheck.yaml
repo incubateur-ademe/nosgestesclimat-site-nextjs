@@ -37,8 +37,8 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Install Puppeteer dependencies
-        run: yarn puppeteer install
+      - name: Install Chrome
+        run: npx puppeteer browsers install chrome
 
       - name: Run iframe healthcheck
         id: healthcheck
