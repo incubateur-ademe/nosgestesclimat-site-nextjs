@@ -5,7 +5,7 @@ import NumberValue from '@/components/misc/NumberValue'
 import { simulateurClickSommaireQuestion } from '@/constants/tracking/pages/simulateur'
 import { foldEveryQuestionsUntil } from '@/helpers/foldEveryQuestionsUntil'
 import {
-  getBackgroundColor,
+  getBackgroundDarkColor,
   getBackgroundLightColor,
   getBorderColor,
   getTextDarkColor,
@@ -49,18 +49,23 @@ export default function Question({
   const isFirstQuestionWithPristineForm =
     foldedSteps?.length === 0 && index === 0
 
+  const isDisabled = !isDebug && !isFirstQuestionWithPristineForm && !isFolded
+
   return (
     <button
-      disabled={!isDebug && !isFirstQuestionWithPristineForm && !isFolded}
+      aria-disabled={isDisabled}
       className={twMerge(
-        'relative mb-2 flex w-full flex-col items-start justify-between gap-2 rounded-xl border-2 p-4 text-left font-medium md:flex-row md:items-center md:gap-4',
-        status === 'missing' ? 'border-none' : getBorderColor(category),
-        status === 'current'
-          ? getBackgroundColor(category)
-          : getBackgroundLightColor(category),
-        getTextDarkColor(category)
+        'relative mb-2 flex w-full flex-col items-start justify-between gap-2 rounded-xl border-2! p-4 text-left font-medium transition-transform md:flex-row md:items-center md:gap-4',
+        getBackgroundLightColor(category),
+        getTextDarkColor(category),
+        status === 'missing' ? '' : getBorderColor(category),
+        isDisabled && 'border-gray-300! bg-[#F3F3F3] text-gray-800',
+        status === 'current' &&
+          `${getBackgroundDarkColor(category)} text-white!`
       )}
       onClick={() => {
+        if (isDisabled) return
+
         if (isDebug) {
           foldEveryQuestionsUntil({
             question,

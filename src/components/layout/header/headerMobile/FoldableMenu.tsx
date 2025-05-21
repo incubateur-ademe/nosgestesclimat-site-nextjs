@@ -21,9 +21,9 @@ export default function FoldableMenu() {
     <BurgerMenu aria-labelledby="foldable-menu-title">
       {({ closeMenu, onFocus }) => (
         <nav aria-labelledby="foldable-menu-title">
-          <h2 id="foldable-menu-title" className="sr-only">
+          <p id="foldable-menu-title" className="sr-only">
             <Trans>Menu principal</Trans>
-          </h2>
+          </p>
 
           <ul className="flex flex-col gap-4">
             <li>

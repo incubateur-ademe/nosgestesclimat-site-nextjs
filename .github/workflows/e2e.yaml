@@ -1,6 +1,12 @@
 name: E2E Tests
 
 on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       branch:
@@ -13,6 +19,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: yarn install
 
       - name: Get PR number for non-main/preprod branches
         if: ${{ github.event.inputs.branch != 'main' && github.event.inputs.branch != 'preprod' }}
@@ -46,6 +60,9 @@ jobs:
               exit 1
             fi
           fi
+
+      - name: Set CYPRESS_baseUrl
+        run: echo "CYPRESS_baseUrl=${{ env.TEST_URL }}" >> $GITHUB_ENV
 
       - name: Run E2E tests
         run: |
