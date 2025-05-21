@@ -156,7 +156,7 @@
     "json-stable-stringify": "^1.2.1",
     "next-router-mock": "^0.9.13",
     "pg": "^8.13.3",
-    "playwright": "^1.51.1",
+    "playwright": "^1.52.0",
     "postcss-loader": "^8.1.0",
     "prettier": "^3.5.3",
     "prettier-plugin-organize-imports": "^4.1.0",
