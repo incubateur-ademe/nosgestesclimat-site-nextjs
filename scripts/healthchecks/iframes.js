@@ -9,10 +9,27 @@ const urls = [
 
 const iframeId = 'iframeNGC'
 
+async function checkConnection(url) {
+  try {
+    const response = await axios.get(url, { timeout: 5000 })
+    return response.status === 200
+  } catch (error) {
+    console.log(`Connection check failed for ${url}:`, error.message)
+    return false
+  }
+}
+
 async function healthcheck() {
   const browser = await puppeteer.launch({
     headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-gpu',
+      '--disable-web-security',
+      '--disable-features=IsolateOrigins,site-per-process',
+    ],
   })
 
   try {
@@ -23,11 +40,20 @@ async function healthcheck() {
     for (const url of urls) {
       console.log(`\nChecking URL: ${url}`)
 
+      if (!(await checkConnection(url))) {
+        console.log(`Cannot connect to ${url}, skipping...`)
+        errors.push(url)
+        continue
+      }
+
       try {
         await page.setUserAgent(
           'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
         )
-        await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 })
+        await page.goto(url, {
+          waitUntil: ['networkidle0', 'domcontentloaded'],
+          timeout: 120000,
+        })
 
         try {
           await page.waitForSelector(`#${iframeId}`, { timeout: 5000 })
@@ -64,8 +90,13 @@ async function healthcheck() {
           console.log(`Content of iframe ${iframeId} is valid`)
         }
       } catch (error) {
-        console.log(`Error while checking ${url}: ${error.message}`)
+        console.log(`Navigation error details:`, {
+          message: error.message,
+          name: error.name,
+          stack: error.stack,
+        })
         errors.push(url)
+        continue
       }
     }
 
