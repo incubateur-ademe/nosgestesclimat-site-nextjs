@@ -11,7 +11,7 @@ const iframeId = 'iframeNGC'
 
 async function healthcheck() {
   const browser = await puppeteer.launch({
-    headless: 'new',
+    headless: false,
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   })
 
@@ -31,9 +31,25 @@ async function healthcheck() {
       }
 
       try {
-        await page.setUserAgent(
-          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-        )
+        await page.setExtraHTTPHeaders({
+          Accept:
+            'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+          'Accept-Language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
+          'Cache-Control': 'no-cache',
+          Pragma: 'no-cache',
+          'Upgrade-Insecure-Requests': '1',
+          'User-Agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          DNT: '1', // Do Not Track
+          'Sec-CH-UA': '"Chromium";v="120", "Not:A-Brand";v="99"',
+          'Sec-CH-UA-Mobile': '?0',
+          'Sec-CH-UA-Platform': '"Windows"',
+          'Sec-Fetch-Dest': 'document',
+          'Sec-Fetch-Mode': 'navigate',
+          'Sec-Fetch-Site': 'none',
+          'Sec-Fetch-User': '?1',
+          'Accept-Encoding': 'gzip, deflate, br',
+        })
         await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 })
 
         try {
