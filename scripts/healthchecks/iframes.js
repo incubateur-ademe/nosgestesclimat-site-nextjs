@@ -24,6 +24,13 @@ async function healthcheck() {
       console.log(`\nChecking URL: ${url}`)
 
       try {
+        const response = await axios.get(url, { timeout: 10000 })
+        console.log(`Axios GET status for ${url}: ${response.status}`)
+      } catch (err) {
+        console.log(`Axios GET failed for ${url}: ${err.message}`)
+      }
+
+      try {
         await page.setUserAgent(
           'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
         )
