@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - main
-      - NGC-1939
   workflow_dispatch:
     inputs:
       branch:
