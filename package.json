@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@incubateur-ademe/legal-pages-react": "^0.3.0",
-    "@incubateur-ademe/nosgestesclimat": "3.7.3",
+    "@incubateur-ademe/nosgestesclimat": "3.7.4",
     "@next/mdx": "^15.3.2",
     "@publicodes/react-ui": "^1.7.1",
     "@publicodes/tools": "^1.5.3",
@@ -169,5 +169,6 @@
     "yaml-jest": "^1.2.0",
     "yaml-jest-transform": "^2.0.2",
     "yaml-loader": "^0.8.1"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
