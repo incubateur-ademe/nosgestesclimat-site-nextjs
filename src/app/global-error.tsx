@@ -10,6 +10,7 @@ type Props = {
 }
 export default function GlobalError({ error }: Props) {
   useEffect(() => {
+    console.log(error)
     Sentry.captureException(error)
   }, [error])
 
