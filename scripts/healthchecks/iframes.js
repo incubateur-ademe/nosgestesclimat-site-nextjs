@@ -27,7 +27,7 @@ async function healthcheck() {
         await page.setUserAgent(
           'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
         )
-        await page.goto(url, { waitUntil: 'networkidle0' })
+        await page.goto(url, { waitUntil: 'domcontentloaded' })
 
         try {
           await page.waitForSelector(`#${iframeId}`, { timeout: 5000 })
