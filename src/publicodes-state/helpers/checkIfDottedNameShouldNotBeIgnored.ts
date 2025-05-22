@@ -1,6 +1,5 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
-import { MUST_NOT_ASK_QUESTIONS } from '../constants/questions'
 import type { MissingVariables } from '../types'
 
 type Props = {
@@ -14,10 +13,6 @@ export const checkIfDottedNameShouldNotBeIgnored = ({
   safeEvaluate,
   rawMissingVariables,
 }: Props) => {
-  if (MUST_NOT_ASK_QUESTIONS.has(dottedName)) {
-    return false
-  }
-
   const isApplicable =
     safeEvaluate({ 'est applicable': dottedName })?.nodeValue === true
 
