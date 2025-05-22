@@ -49,7 +49,7 @@ export default function VerificationCodeInput({
 
       {inputError && (
         <div>
-          <p className="mt-2 text-sm text-red-700">
+          <p className="mt-2 text-sm text-red-800">
             <Trans>Le code est invalide</Trans>
           </p>
         </div>

@@ -1,13 +1,14 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Title from '@/design-system/layout/Title'
 import { useOrgaCreationGuard } from '@/hooks/navigation/useOrgaCreationGuard'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import CreationForm from './_components/CreationForm'
 
 export default function CreationPage() {
-  const { isError, data: organisation } = useFetchOrganisation()
+  const { isError, data: organisation, isLoading } = useFetchOrganisation()
 
   const { isGuardInit, isGuardRedirecting } = useOrgaCreationGuard({
     isError,
@@ -25,7 +26,9 @@ export default function CreationPage() {
           hasSeparator={false}
         />
 
-        <CreationForm />
+        {isLoading && <BlockSkeleton />}
+
+        {!isLoading && !organisation && <CreationForm />}
       </div>
     </section>
   )

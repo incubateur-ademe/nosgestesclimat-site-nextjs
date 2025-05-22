@@ -1,5 +1,6 @@
 'use client'
 
+import DefaultErrorMessage from '@/components/error/DefaultErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   LIST_MAIN_NEWSLETTER,
@@ -262,14 +263,7 @@ export default function GetResultsByEmail({
             <Trans>Envoyer</Trans>
           </Button>
 
-          {isError && (
-            <div className="mt-4 text-red-600">
-              <Trans>
-                Oups ! Une erreur s'est produite, veuillez réessayer dans
-                quelques instants.
-              </Trans>
-            </div>
-          )}
+          {isError && <DefaultErrorMessage />}
         </form>
       </Card>
     </div>

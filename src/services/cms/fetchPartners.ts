@@ -7,7 +7,9 @@ type Props = {
   displayOnLandingPage?: boolean
 }
 
-export async function fetchPartners(props?: Props): Promise<PartnerType[]> {
+export async function fetchPartners(
+  props?: Props
+): Promise<{ data: PartnerType[]; isError?: boolean }> {
   const { displayOnLandingPage } = props || {}
 
   try {
@@ -25,10 +27,10 @@ export async function fetchPartners(props?: Props): Promise<PartnerType[]> {
       `/api/partners?${partnersSearchParams}`
     )
 
-    return partnersResponse.data
+    return { data: partnersResponse.data }
   } catch (error) {
     captureException(error)
 
-    return []
+    return { data: [], isError: true }
   }
 }

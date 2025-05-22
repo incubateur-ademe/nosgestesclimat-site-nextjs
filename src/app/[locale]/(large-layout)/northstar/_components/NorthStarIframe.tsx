@@ -1,25 +1,37 @@
 'use client'
 
+import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import Loader from '@/design-system/layout/Loader'
 import { useEffect, useRef, useState } from 'react'
 
 export default function NorthStarIframe() {
   const iFrameRef = useRef(null)
-
   const [isIFrameLoaded, setIsIFrameLoaded] = useState(false)
+  const [hasError, setHasError] = useState(false)
 
   useEffect(() => {
     const iframeCurrent: any = iFrameRef.current
 
-    iframeCurrent?.addEventListener('load', () => setIsIFrameLoaded(true))
+    const handleLoad = () => setIsIFrameLoaded(true)
+    const handleError = () => {
+      setHasError(true)
+      setIsIFrameLoaded(true) // Pour ne pas bloquer l'interface
+    }
+
+    iframeCurrent?.addEventListener('load', handleLoad)
+    iframeCurrent?.addEventListener('error', handleError)
 
     return () => {
-      iframeCurrent?.removeEventListener('load', () => setIsIFrameLoaded(true))
+      iframeCurrent?.removeEventListener('load', handleLoad)
+      iframeCurrent?.removeEventListener('error', handleError)
     }
   }, [iFrameRef])
+
   return (
     <>
       {!isIFrameLoaded && <Loader />}
+
+      {hasError && <DefaultErrorAlert />}
 
       <iframe
         ref={iFrameRef}

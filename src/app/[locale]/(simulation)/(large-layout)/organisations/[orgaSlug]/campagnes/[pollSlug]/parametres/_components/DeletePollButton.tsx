@@ -36,7 +36,7 @@ export default function DeletePollButton() {
       </Button>
 
       {error && (
-        <div className="mt-4 text-red-600">
+        <div className="mt-4 text-red-800">
           <Trans>
             Une erreur est survenue lors de la suppression de la campagne.
           </Trans>

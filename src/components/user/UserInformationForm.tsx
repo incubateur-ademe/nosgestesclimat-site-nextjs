@@ -23,6 +23,7 @@ import { useEffect, useRef } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
+import DefaultErrorMessage from '../error/DefaultErrorMessage'
 
 type Inputs = {
   name: string
@@ -98,7 +99,11 @@ export default function UserInformationForm({
     )
   }, [newsletterSubscriptions, setValue, defaultValues])
 
-  const { mutateAsync: updateUserSettings, isPending } = useUpdateUserSettings({
+  const {
+    mutateAsync: updateUserSettings,
+    isPending,
+    isError,
+  } = useUpdateUserSettings({
     email: user?.email ?? '',
     userId: user?.userId,
   })
@@ -242,6 +247,8 @@ export default function UserInformationForm({
             {...register('newsletter-logement')}
           />
         )}
+
+        {isError && <DefaultErrorMessage />}
 
         <div>
           <Button

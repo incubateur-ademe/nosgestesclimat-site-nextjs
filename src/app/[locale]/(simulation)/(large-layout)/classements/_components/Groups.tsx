@@ -1,10 +1,11 @@
 'use client'
 
-import GroupLoader from '@/components/groups/GroupLoader'
+import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import Trans from '@/components/translation/trans/TransClient'
 import { linkToGroupCreation } from '@/constants/group'
 import { classementCreateGroup } from '@/constants/tracking/pages/classements'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
+import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Title from '@/design-system/layout/Title'
 import { useFetchGroupsOfUser } from '@/hooks/groups/useFetchGroupsOfUser'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -15,8 +16,6 @@ export default function Groups() {
   const { data: groups, isLoading, isError } = useFetchGroupsOfUser()
 
   const { t } = useClientTranslation()
-
-  const isGroupsLoading = isLoading && !groups && !isError
 
   return (
     <>
@@ -35,8 +34,12 @@ export default function Groups() {
           </ButtonLink>
         )}
       </div>
-      {isGroupsLoading && <GroupLoader />}
-      {!isGroupsLoading && (
+
+      {isLoading && <BlockSkeleton />}
+
+      {isError && <DefaultErrorAlert />}
+
+      {groups && (
         <>
           <p className="text-gray-500">
             <Trans>
@@ -46,7 +49,7 @@ export default function Groups() {
 
           <div className="flex flex-wrap justify-center gap-16 md:flex-nowrap">
             <div className="flex-1">
-              <GroupContent isError={isError} groups={groups} />
+              <GroupContent groups={groups} />
             </div>
 
             <Image
