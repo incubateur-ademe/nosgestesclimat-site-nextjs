@@ -58,11 +58,9 @@ export function PartnerProvider({ children }: PropsWithChildren) {
     const params =
       getPartnerFromStorage() ??
       Object.fromEntries(
-        searchParams
-          ?.entries?.()
-          ?.filter(
-            ([key]) => key === PARTNER_KEY || key.startsWith(PARTNER_KEY)
-          ) || []
+        (searchParams?.entries?.() || []).filter(
+          ([key]) => key === PARTNER_KEY || key.startsWith(PARTNER_KEY)
+        )
       )
 
     return Object.keys(params).length ? params : undefined
