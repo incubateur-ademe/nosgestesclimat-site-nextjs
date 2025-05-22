@@ -2,6 +2,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 export const MUST_NOT_ASK_QUESTIONS: Set<DottedName> = new Set([
   'divers . textile . empreinte précise',
+  'divers . textile . choix précis',
 ])
 
 // We use the DottedName type from nosgestesclimat to make sure the build will break when using rules that are not in the model.

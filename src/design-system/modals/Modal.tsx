@@ -41,9 +41,8 @@ export default function Modal({
   const { t } = useClientTranslation()
 
   useEffect(() => {
-    document.body.style.overflow = 'hidden'
-
     if (isOpen) {
+      document.body.style.overflow = 'hidden'
       requestAnimationFrame(() => setIsVisible(true))
     }
 
