@@ -3,7 +3,7 @@ import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
 import { useCurrentSimulation } from '@/publicodes-state'
 import '@testing-library/jest-dom'
-import { render, screen, waitFor } from '@testing-library/react'
+import { act, render, screen, waitFor } from '@testing-library/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { PartnerProvider } from '../PartnerContext'
 
@@ -72,13 +72,31 @@ describe('PartnerContext', () => {
   beforeEach(() => {
     jest.resetAllMocks()
   })
+  describe('given undefined search params', () => {
+    it('should not crash the app', async () => {
+      // Given
+      const { render: renderComponent } = setup()
+
+      // When
+      // eslint-disable-next-line @typescript-eslint/require-await
+      await act(async () => {
+        renderComponent()
+      })
+
+      // Then
+      expect(screen.queryByTestId('error-500')).not.toBeInTheDocument()
+    })
+  })
   describe('given a user with a completed test', () => {
     it("should send the user's situation to the back-end and redirect to the obtained URL", async () => {
       // Given
       const { mockPush, render: renderComponent } = setup()
 
       // When
-      renderComponent()
+      // eslint-disable-next-line @typescript-eslint/require-await
+      await act(async () => {
+        renderComponent()
+      })
 
       // Then
       const redirectButton = await screen.findByTestId('button-redirect')
@@ -91,7 +109,10 @@ describe('PartnerContext', () => {
       const { mockPush, render: renderComponent } = setup({ progression: 0 })
 
       // When
-      renderComponent()
+      // eslint-disable-next-line @typescript-eslint/require-await
+      await act(async () => {
+        renderComponent()
+      })
 
       // Then
       await waitFor(() => {
