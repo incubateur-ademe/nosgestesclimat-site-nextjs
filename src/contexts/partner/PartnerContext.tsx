@@ -58,11 +58,15 @@ export function PartnerProvider({ children }: PropsWithChildren) {
   const partnerParams: Record<string, string> | undefined = useMemo(() => {
     const params =
       getPartnerFromStorage() ??
-      Object.fromEntries(
-        searchParams
-          .entries()
-          .filter(([key]) => key === PARTNER_KEY || key.startsWith(PARTNER_KEY))
-      )
+      (searchParams
+        ? Object.fromEntries(
+            searchParams
+              ?.entries()
+              ?.filter(
+                ([key]) => key === PARTNER_KEY || key.startsWith(PARTNER_KEY)
+              )
+          )
+        : '')
 
     return Object.keys(params).length ? params : undefined
   }, [searchParams])
