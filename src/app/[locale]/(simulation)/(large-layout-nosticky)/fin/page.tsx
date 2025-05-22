@@ -20,6 +20,7 @@ import Eau from './_components/Eau'
 import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
 import InformationBlock from './_components/InformationBlock'
+import PartnerRedirectionAlert from './_components/PartnerRedirectionAlert'
 import Poll from './_components/Poll'
 import ShareBlock from './_components/ShareBlock'
 import FinPageSkeleton from './skeleton'
@@ -46,6 +47,8 @@ export default function FinPage() {
       <IframeDataShareModal />
 
       <Poll />
+
+      <PartnerRedirectionAlert />
 
       <div className="flex justify-between">
         <Title tag="h1">

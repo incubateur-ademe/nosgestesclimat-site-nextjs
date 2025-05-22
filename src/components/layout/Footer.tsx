@@ -70,9 +70,9 @@ export default function Footer({
 
         <div className="mb-10 flex flex-col flex-wrap justify-start gap-x-16 gap-y-8 pt-4 md:flex-row lg:flex-nowrap">
           <div className="flex flex-col gap-y-2">
-            <h2 className="text-default mb-0 text-sm font-bold">
+            <p className="text-default mb-0 text-sm font-bold">
               <Trans>À propos</Trans>
-            </h2>
+            </p>
             <InlineLink
               href="/a-propos"
               onClick={() => trackEvent(footerClickQuiSommesNous)}
@@ -110,9 +110,9 @@ export default function Footer({
           </div>
 
           <div className="flex flex-col gap-y-2">
-            <h2 className="text-default mb-0 text-sm font-bold">
+            <p className="text-default mb-0 text-sm font-bold">
               <Trans>Diffusion</Trans>
-            </h2>
+            </p>
             <InlineLink
               href="/diffuser"
               onClick={() => trackEvent(footerClickDiffusion)}
@@ -136,9 +136,9 @@ export default function Footer({
           </div>
 
           <div className="flex flex-col gap-y-2">
-            <h2 className="text-default mb-0 text-sm font-bold">
+            <p className="text-default mb-0 text-sm font-bold">
               <Trans>Ressources</Trans>
-            </h2>
+            </p>
 
             <InlineLink
               href="/blog"

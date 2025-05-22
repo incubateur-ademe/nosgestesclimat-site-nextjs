@@ -139,8 +139,9 @@ export default function Form() {
               setTempValue={setTempValue}
             />
 
-            <div className={isIframe ? '' : 'hidden'}>
+            {isIframe && (
               <Navigation
+                key="iframe-navigation"
                 question={currentQuestion}
                 tempValue={tempValue}
                 onComplete={() => {
@@ -151,7 +152,7 @@ export default function Form() {
                   setShouldGoToEndPage(true)
                 }}
               />
-            </div>
+            )}
           </div>
 
           <div
@@ -171,8 +172,9 @@ export default function Form() {
         </div>
       </ContentLarge>
 
-      <div className={isIframe ? 'hidden' : ''}>
+      {!isIframe && (
         <Navigation
+          key="default-navigation"
           question={currentQuestion}
           tempValue={tempValue}
           onComplete={() => {
@@ -183,7 +185,7 @@ export default function Form() {
             setShouldGoToEndPage(true)
           }}
         />
-      </div>
+      )}
     </>
   )
 }

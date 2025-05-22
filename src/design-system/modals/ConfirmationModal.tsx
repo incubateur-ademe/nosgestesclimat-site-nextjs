@@ -14,7 +14,9 @@ type Props = {
   children: ReactNode
 }
 
-Modal.setAppElement('#modal')
+if (typeof document !== 'undefined') {
+  Modal.setAppElement(document.body)
+}
 
 export default function ConfirmationModal({
   onConfirm,

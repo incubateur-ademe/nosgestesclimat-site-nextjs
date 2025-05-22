@@ -1,7 +1,7 @@
 import Trans from '@/components/translation/trans/TransServer'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Emoji from '@/design-system/utils/Emoji'
-import MessageTemplate from './MessageTemplate'
+import MessageTemplate from '../../../../components/layout/MessageTemplate'
 
 export default function NewsletterSuccessMessage({
   locale,
@@ -18,7 +18,7 @@ export default function NewsletterSuccessMessage({
           <Emoji>👍</Emoji>
         </>
       }
-      body={
+      description={
         <Trans locale={locale}>
           Votre e-mail a été vérifié, vous êtes bien inscrit à notre infolettre.
         </Trans>

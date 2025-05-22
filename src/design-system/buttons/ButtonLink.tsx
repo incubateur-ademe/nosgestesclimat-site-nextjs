@@ -14,7 +14,7 @@ import { baseClassNames, colorClassNames, sizeClassNames } from './Button'
 type Props = {
   href: string
   className?: string
-  color?: 'primary' | 'secondary' | 'text'
+  color?: 'primary' | 'secondary' | 'text' | 'success'
   size?: ButtonSize
   title?: string
   onClick?: () => void

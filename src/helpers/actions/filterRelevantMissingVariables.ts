@@ -1,3 +1,4 @@
+import { MUST_NOT_ASK_QUESTIONS } from '@/publicodes-state/constants/questions'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 // Gathered from nosgestesclimat-site
@@ -33,6 +34,7 @@ export const filterRelevantMissingVariables = ({
   return missingVariables.filter((dottedName: DottedName) => {
     const isFolded = extendedFoldedSteps.indexOf(dottedName) >= 0
     const isManuallyExcluded = !filteredDottedNames?.includes(dottedName)
-    return isManuallyExcluded && !isFolded
+    const isMustNotAskQuestion = !MUST_NOT_ASK_QUESTIONS?.has(dottedName)
+    return isManuallyExcluded && !isFolded && isMustNotAskQuestion
   })
 }

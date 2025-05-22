@@ -38,6 +38,36 @@ export function useEndPage() {
 
   const [isNavigating, setIsNavigating] = useState(false)
 
+  const handleRedirection = useCallback(
+    ({
+      allowedToGoToGroupDashboard,
+      shouldShowQuiz,
+    }: {
+      allowedToGoToGroupDashboard: boolean
+      shouldShowQuiz: boolean
+    }) => {
+      // If we should show the quiz, we redirect to the quiz page
+      // TODO: This is maybe in the wrong place. Should check it later
+      if (shouldShowQuiz) {
+        router.push(linkToQuiz)
+        return
+      }
+
+      // if the simulation is in a group and we are allowed to, we redirect to the group results page
+      if (currentSimulation.groups?.length && allowedToGoToGroupDashboard) {
+        const lastGroupId =
+          currentSimulation.groups[currentSimulation.groups.length - 1]
+
+        router.push(getLinkToGroupDashboard({ groupId: lastGroupId }))
+        return
+      }
+
+      // else we redirect to the results page
+      router.push('/fin')
+    },
+    [currentSimulation.groups, router]
+  )
+
   const goToEndPage = useCallback(
     ({
       isAllowedToSave = true,

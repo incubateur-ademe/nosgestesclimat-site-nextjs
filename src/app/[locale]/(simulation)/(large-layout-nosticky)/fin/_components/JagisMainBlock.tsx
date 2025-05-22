@@ -2,22 +2,26 @@
 
 import Marianne from '@/components/images/partners/Marianne'
 import Trans from '@/components/translation/trans/TransClient'
+import { PARTNER_JAGIS } from '@/constants/partners'
 import { endClickJagisFirstBlock } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/buttons/Button'
 import Loader from '@/design-system/layout/Loader'
-import { useExportSituationToAgir } from '@/hooks/simulation/useExportSituationToAgir'
+import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
-export default function AgirMainBlock() {
+export default function JagisMainBlock() {
   const { t } = useClientTranslation()
 
   const [couldOpen, setCouldOpen] = useState(false)
 
-  const { exportSimulation, data, isPending, isSuccess, isError, error } =
-    useExportSituationToAgir()
+  const { situation } = useCurrentSimulation()
+
+  const { exportSituation, data, isPending, isSuccess, isError, error } =
+    useExportSituation()
 
   useEffect(() => {
     if (data?.redirectUrl && isSuccess) {
@@ -68,7 +72,10 @@ export default function AgirMainBlock() {
             disabled={isPending}
             onClick={() => {
               trackEvent(endClickJagisFirstBlock)
-              exportSimulation()
+              exportSituation({
+                situation,
+                partner: PARTNER_JAGIS,
+              })
             }}
             size="sm"
             className="flex h-11! max-h-11 items-center justify-center rounded-full leading-none">

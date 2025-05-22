@@ -59,6 +59,10 @@ export default function OrganisationFields({
             value: 0,
             message: t('Veuillez entrer un nombre positif'),
           },
+          max: {
+            value: 100_000_000,
+            message: t('Veuillez entrer un nombre inférieur à 100 millions'),
+          },
         })}
         error={(errors.numberOfCollaborators?.message as string) || ''}
       />
