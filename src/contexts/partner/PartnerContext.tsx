@@ -54,19 +54,16 @@ export function PartnerProvider({ children }: PropsWithChildren) {
   const { exportSituationAsync } = useExportSituation()
 
   const router = useRouter()
-
   const partnerParams: Record<string, string> | undefined = useMemo(() => {
     const params =
       getPartnerFromStorage() ??
-      (searchParams
-        ? Object.fromEntries(
-            searchParams
-              ?.entries()
-              ?.filter(
-                ([key]) => key === PARTNER_KEY || key.startsWith(PARTNER_KEY)
-              )
-          )
-        : '')
+      Object.fromEntries(
+        searchParams
+          ?.entries?.()
+          ?.filter(
+            ([key]) => key === PARTNER_KEY || key.startsWith(PARTNER_KEY)
+          ) || []
+      )
 
     return Object.keys(params).length ? params : undefined
   }, [searchParams])
