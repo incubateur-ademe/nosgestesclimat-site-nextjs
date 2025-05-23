@@ -130,7 +130,7 @@ export default function Form() {
       <ContentLarge className="px-4 pt-2">
         <ResultsBlocksMobile />
 
-        <div className="relative flex flex-1 flex-col gap-2 md:flex-row md:gap-8 lg:mt-0 lg:gap-24">
+        <div className="relative flex flex-1 flex-col gap-2 md:flex-row md:gap-8 lg:mt-0 lg:gap-12">
           <div className="relative flex flex-1 flex-col">
             <QuestionComponent
               question={currentQuestion}
@@ -156,7 +156,7 @@ export default function Form() {
           </div>
 
           <div
-            className={`short:gap-2 flex flex-col gap-8 md:w-[20rem] md:self-start md:${getBgCategoryColor(currentCategory ?? 'transport', '500')}`}>
+            className={`short:gap-2 flex flex-col gap-8 md:w-60 md:self-start md:${getBgCategoryColor(currentCategory ?? 'transport', '500')}`}>
             <ResultsBlocksDesktop />
 
             <FunFact question={currentQuestion} />

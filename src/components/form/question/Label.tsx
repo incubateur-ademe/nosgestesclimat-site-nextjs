@@ -73,7 +73,7 @@ export default function Label({
           tabIndex={0}
           id={QUESTION_DESCRIPTION_BUTTON_ID}
           data-cypress-id="question-label">
-          <Markdown>{label}</Markdown>
+          {label}
         </h2>{' '}
         {description ? (
           <Button

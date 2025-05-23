@@ -15,7 +15,6 @@ import {
 import { questionChooseAnswer } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
 import { useUpdatePageTitle } from '@/hooks/simulation/useUpdatePageTitle'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useFormState, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -61,8 +60,6 @@ export default function Question({
   } = useRule(question)
 
   const { questionsByCategories } = useFormState()
-
-  const { t } = useClientTranslation()
 
   // It should happen only on mount (the component remount every time the question changes)
   const prevQuestion = useRef('')

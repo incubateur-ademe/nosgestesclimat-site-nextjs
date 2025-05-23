@@ -110,7 +110,7 @@ export default function JourneysInput({ question, setTempValue }: Props) {
   ])
 
   return (
-    <>
+    <div className="flex-1">
       <JourneysInputDesktop
         journeys={journeys}
         setJourneys={setJourneys}
@@ -126,6 +126,6 @@ export default function JourneysInput({ question, setTempValue }: Props) {
         total={total}
         totalForOnePassenger={totalForOnePassenger}
       />
-    </>
+    </div>
   )
 }

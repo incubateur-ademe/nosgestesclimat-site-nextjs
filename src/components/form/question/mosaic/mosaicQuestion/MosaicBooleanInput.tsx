@@ -31,12 +31,6 @@ const checkClassNames = {
   unchecked: 'border-primary-200',
 }
 
-const labelClassNames = {
-  inactive: 'text-primary-700',
-  checked: 'text-primary-700',
-  unchecked: 'text-primary-700',
-}
-
 export default function MosaicBooleanInput({
   question,
   title,
@@ -96,7 +90,7 @@ export default function MosaicBooleanInput({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.2 }}
-              className={`font-mono text-2xl ${labelClassNames[status]}`}>
+              className="text-primary-700 font-mono text-2xl">
               ✓
             </motion.div>
           ) : (
@@ -108,8 +102,8 @@ export default function MosaicBooleanInput({
           {title && icons ? (
             <span
               aria-label={`${title} ${isInactive ? t('Bientôt disponible') : ''}`}
-              className={`inline-block align-middle text-sm md:text-lg ${labelClassNames[status]}`}>
-              {title} <Emoji className="">{icons ?? null}</Emoji>
+              className="text-default inline-block align-middle text-sm md:text-base">
+              {title} <Emoji className="leading-tight">{icons ?? null}</Emoji>
             </span>
           ) : null}
           {description ? (
