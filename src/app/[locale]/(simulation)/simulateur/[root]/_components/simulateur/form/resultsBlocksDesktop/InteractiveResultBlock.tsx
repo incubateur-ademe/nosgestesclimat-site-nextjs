@@ -14,7 +14,7 @@ export default function InteractiveResultBlock({
       <summary className="border-primary-100 bg-primary-50 relative z-10 flex cursor-pointer list-none items-center justify-between gap-2 rounded-lg border-2 p-4 [&::-webkit-details-marker]:hidden [&::marker]:hidden">
         <div className="relative w-full">
           <div className="flex items-center gap-2">
-            <h2 className="mb-0 text-[13px] font-bold md:text-base">
+            <h2 className="-mb-2 text-[13px] font-bold md:text-base">
               <TotalFootprintNumber metric={metric} />
             </h2>
           </div>
