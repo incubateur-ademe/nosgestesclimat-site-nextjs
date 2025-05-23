@@ -141,7 +141,7 @@ export default function CampagnePage() {
         <AdminSection poll={poll} isAdmin={!!isAdmin} />
 
         <PollStatistics
-          simulationsCount={poll.simulations.count}
+          simulationsCount={poll.simulations.finished}
           simulationsWithoutExtremes={simulationsWithoutExtremes}
           funFacts={poll.funFacts}
           title={<Trans>Résultats de campagne</Trans>}
