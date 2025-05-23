@@ -1,5 +1,6 @@
 'use client'
 
+import { SIMULATOR_PATH } from '@/constants/urls/paths'
 import { useIsClient } from '@/hooks/useIsClient'
 import { getIsIframe } from '@/utils/getIsIframe'
 import { usePathname } from 'next/navigation'
@@ -22,7 +23,7 @@ export default function Main({
     <main
       id="main-content"
       className={`flex flex-col overflow-hidden ${maxWidthClass} ${className} ${
-        isIframe || pathname.includes('/simulateur/bilan')
+        isIframe || pathname.startsWith(SIMULATOR_PATH)
           ? ''
           : 'min-h-[calc(100vh-2rem)]'
       }`}>

@@ -1,3 +1,4 @@
+import { SIMULATOR_PATH } from '@/constants/urls/paths'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
@@ -8,10 +9,10 @@ export const getLinkToSimulateur = ({ question, locale }: Props = {}) => {
   const basePath = locale ? `/${locale}` : ''
   // If no question is provided, we return
   if (!question) {
-    return `${basePath}/simulateur/bilan`
+    return `${basePath}${SIMULATOR_PATH}`
   }
   //
-  return `${basePath}/simulateur/bilan?question=${question
+  return `${basePath}${SIMULATOR_PATH}?question=${question
     .replaceAll(' . ', '.')
     .replaceAll(' ', '_')}`
 }
