@@ -20,20 +20,6 @@ import { render } from '@testing-library/react'
 import type { ReactElement } from 'react'
 import { useState } from 'react'
 
-// Mock localStorage
-const localStorageMock = {
-  getItem: jest.fn(),
-  setItem: jest.fn(),
-  removeItem: jest.fn(),
-  clear: jest.fn(),
-  length: 0,
-  key: jest.fn(),
-}
-
-Object.defineProperty(window, 'localStorage', {
-  value: localStorageMock,
-})
-
 // Mock the hooks
 jest.mock('@/publicodes-state', () => ({
   useUser: jest.fn(),

@@ -130,6 +130,7 @@ describe('PartnerPage', () => {
       )
 
       // Then
+
       expect(screen.getByTestId('test-message')).toBeInTheDocument()
     })
   })
