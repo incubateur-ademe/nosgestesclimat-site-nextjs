@@ -30,7 +30,7 @@ export default function MetricSlider({
       return
     }
 
-    const handleScroll = () => {
+    const handleStickyness = () => {
       if (myElementRef.current) {
         const { top } = myElementRef.current.getBoundingClientRect()
         // We need a value > 0 because of an iOS issue
@@ -42,10 +42,10 @@ export default function MetricSlider({
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleStickyness)
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('scroll', handleStickyness)
     }
   }, [isStatic])
 
