@@ -31,7 +31,7 @@ export default async function ActionDetailPage({
 }: DefaultPageProps<{ params: { dottedName: DottedName[] } }>) {
   const paramsAwaited = await params
   return (
-    <div className="mx-auto max-w-[600px]">
+    <div className="mx-auto mb-12 max-w-[600px]">
       <ButtonLink
         size="sm"
         color="text"
