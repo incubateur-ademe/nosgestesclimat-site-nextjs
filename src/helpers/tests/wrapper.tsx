@@ -3,29 +3,107 @@ import MainHooks from '@/app/[locale]/_components/mainLayoutProviders/MainHooks'
 import { PreventNavigationProvider } from '@/app/[locale]/_components/mainLayoutProviders/PreventNavigationProvider'
 import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import ErrorBoundary from '@/components/error/ErrorBoundary'
+import EngineProviders from '@/components/providers/EngineProviders'
 import PRNumberHook from '@/components/providers/simulationProviders/PRNumberHook'
 import SimulationSyncProvider from '@/components/providers/simulationProviders/SimulationSyncProvider'
 import { STORAGE_KEY } from '@/constants/storage'
 import { PartnerProvider } from '@/contexts/partner/PartnerContext'
-import {
-  EngineProvider,
-  useCurrentSimulation,
-  UserProvider,
-  useUser,
-} from '@/publicodes-state'
+import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import UserProvider from '@/publicodes-state/providers/userProvider/provider'
 import type { Simulation } from '@/publicodes-state/types'
-import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json'
 import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
 import type { RenderOptions } from '@testing-library/react'
 import { render } from '@testing-library/react'
 import type { ReactElement } from 'react'
 import { useState } from 'react'
 
+// Mock localStorage
+const localStorageMock = {
+  getItem: jest.fn(),
+  setItem: jest.fn(),
+  removeItem: jest.fn(),
+  clear: jest.fn(),
+  length: 0,
+  key: jest.fn(),
+}
+
+Object.defineProperty(window, 'localStorage', {
+  value: localStorageMock,
+})
+
 // Mock the hooks
 jest.mock('@/publicodes-state', () => ({
   useUser: jest.fn(),
   useCurrentSimulation: jest.fn(),
 }))
+
+// Mock useRules
+jest.mock('@/hooks/useRules', () => ({
+  useRules: () => ({
+    data: rules,
+    isLoading: false,
+    isFetched: true,
+  }),
+}))
+
+// Mock getGeolocation
+jest.mock('@/helpers/api/getGeolocation', () => ({
+  getGeolocation: () => Promise.resolve(undefined),
+}))
+
+// Mock usePersistentUser
+jest.mock(
+  '@/publicodes-state/providers/userProvider/hooks/usePersistentUser',
+  () => ({
+    __esModule: true,
+    default: () => ({
+      user: {
+        userId: '1',
+        name: 'Test User',
+        email: 'test@example.com',
+      },
+      setUser: jest.fn(),
+    }),
+  })
+)
+
+// Mock usePersistentTutorials
+jest.mock(
+  '@/publicodes-state/providers/userProvider/hooks/usePersistentTutorials',
+  () => ({
+    __esModule: true,
+    default: () => ({
+      tutorials: {},
+      setTutorials: jest.fn(),
+    }),
+  })
+)
+
+// Mock usePersistentSimulations
+jest.mock(
+  '@/publicodes-state/providers/userProvider/hooks/usePersistentSimulations',
+  () => ({
+    __esModule: true,
+    default: () => ({
+      simulations: [],
+      setSimulations: jest.fn(),
+      currentSimulationId: null,
+      setCurrentSimulationId: jest.fn(),
+    }),
+  })
+)
+
+// Mock useUpdateOldLocalStorage
+jest.mock(
+  '@/publicodes-state/providers/userProvider/hooks/useOldLocalStorage',
+  () => ({
+    __esModule: true,
+    default: jest.fn(),
+  })
+)
 
 // Default mock values
 const defaultSimulation: Simulation = {
@@ -100,12 +178,12 @@ const TestWrapper = ({
     wrapped = <SimulationSyncProvider>{wrapped}</SimulationSyncProvider>
   }
 
-  if (providers.prNumber) {
-    wrapped = <PRNumberHook setPRNumber={setPRNumber} />
-  }
-
   if (providers.engine) {
-    wrapped = <EngineProvider rules={{} as NGCRules}>{wrapped}</EngineProvider>
+    wrapped = (
+      <EngineProviders supportedRegions={getSupportedRegions()} isOptim={false}>
+        {wrapped}
+      </EngineProviders>
+    )
   }
 
   if (providers.mainHooks) {
@@ -146,7 +224,12 @@ const TestWrapper = ({
     wrapped = <ErrorBoundary>{wrapped}</ErrorBoundary>
   }
 
-  return wrapped
+  return (
+    <>
+      {providers.prNumber && <PRNumberHook setPRNumber={setPRNumber} />}
+      {wrapped}
+    </>
+  )
 }
 
 export const renderWithWrapper = (
