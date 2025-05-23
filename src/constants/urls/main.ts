@@ -1,3 +1,5 @@
+import { SIMULATOR_PATH } from './paths'
+
 const secure = process.env.NODE_ENV === 'development' ? '' : 's'
 const protocol = `http${secure}://`
 
@@ -32,7 +34,7 @@ export const getPreviewUrl = (PRNumber: string | number) => {
 
 export const HIDE_CTA_PATHS = [
   '/fin',
-  '/simulateur/bilan',
+  SIMULATOR_PATH,
   '/tutoriel',
   '/infos',
   '/organisations/infos',
