@@ -36,6 +36,29 @@ export default function IframeDataShareModal() {
   const isIframe = getIsIframe()
   const { isIframeShareData } = useIframe()
 
+  const resetOverflow = () => (document.body.style.overflow = 'auto')
+
+  const onReject = () => {
+    window.parent.postMessage(
+      {
+        messageType: 'ngc-iframe-share',
+        error: 'The user refused to share his result.',
+      },
+      '*'
+    )
+    setIsOpen(false)
+
+    resetOverflow()
+  }
+
+  const onAccept = () => {
+    window.parent.postMessage({ messageType: 'ngc-iframe-share', data }, '*')
+
+    setIsOpen(false)
+
+    resetOverflow()
+  }
+
   const shouldRender = isIframe && isIframeShareData
 
   useEffect(() => {
@@ -64,29 +87,6 @@ export default function IframeDataShareModal() {
 
   if (!shouldRender) {
     return null
-  }
-
-  const resetOverflow = () => (document.body.style.overflow = 'auto')
-
-  const onReject = () => {
-    window.parent.postMessage(
-      {
-        messageType: 'ngc-iframe-share',
-        error: 'The user refused to share his result.',
-      },
-      '*'
-    )
-    setIsOpen(false)
-
-    resetOverflow()
-  }
-
-  const onAccept = () => {
-    window.parent.postMessage({ messageType: 'ngc-iframe-share', data }, '*')
-
-    setIsOpen(false)
-
-    resetOverflow()
   }
 
   const parent = document.referrer
