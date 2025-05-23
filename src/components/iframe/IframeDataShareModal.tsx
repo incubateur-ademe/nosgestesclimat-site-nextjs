@@ -36,7 +36,10 @@ export default function IframeDataShareModal() {
   const isIframe = getIsIframe()
   const { isIframeShareData } = useIframe()
 
+  const shouldRender = isIframe && isIframeShareData
+
   useEffect(() => {
+    if (!shouldRender) return
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
     timeoutRef.current = setTimeout(() => {
       timeoutRef.current = undefined
@@ -47,9 +50,23 @@ export default function IframeDataShareModal() {
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
-  }, [])
+  }, [shouldRender])
 
-  const resetScrolling = () => (document.body.style.overflow = 'auto')
+  useEffect(() => {
+    if (shouldRender && document.body.style.overflow !== 'hidden') {
+      document.body.style.overflow = 'hidden'
+    }
+
+    return () => {
+      resetOverflow()
+    }
+  }, [shouldRender])
+
+  if (!shouldRender) {
+    return null
+  }
+
+  const resetOverflow = () => (document.body.style.overflow = 'auto')
 
   const onReject = () => {
     window.parent.postMessage(
@@ -61,7 +78,7 @@ export default function IframeDataShareModal() {
     )
     setIsOpen(false)
 
-    resetScrolling()
+    resetOverflow()
   }
 
   const onAccept = () => {
@@ -69,18 +86,7 @@ export default function IframeDataShareModal() {
 
     setIsOpen(false)
 
-    resetScrolling()
-  }
-
-  useEffect(() => {
-    document.body.style.overflow = 'hidden'
-    return () => {
-      resetScrolling()
-    }
-  }, [])
-
-  if (!isIframe || !isIframeShareData) {
-    return null
+    resetOverflow()
   }
 
   const parent = document.referrer
