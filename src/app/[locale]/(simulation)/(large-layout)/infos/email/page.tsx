@@ -85,7 +85,6 @@ export default function Email() {
     },
     [poll, updateEmail, router, getLinkToNextInfosPage, setError, t]
   )
-
   return (
     <form>
       <Title
@@ -96,7 +95,7 @@ export default function Email() {
           <>
             {pollSlug &&
             process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS &&
-            Array.isArray(process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS) &&
+            process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS.split(',') &&
             process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS.includes(pollSlug) ? (
               <span>
                 <Trans>Votre e-mail sera utilisé pour le tirage au sort.</Trans>{' '}
