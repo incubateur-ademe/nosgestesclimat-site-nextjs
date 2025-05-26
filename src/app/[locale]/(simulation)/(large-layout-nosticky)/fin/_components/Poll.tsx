@@ -52,7 +52,15 @@ export default function Poll() {
       />
 
       <p className="text-sm md:text-base">
-        <Trans>Merci d'avoir complété votre test.</Trans>
+        {
+          // Temp code to remove when info is dynamically stored in CMS
+          lastPollSlug ===
+          process.env.NEXT_PUBLIC_POLL_SLUG_DISPLAY_CUSTOM_TEXT ? (
+            <Trans>Votre participation au jeu concours est enregistrée.</Trans>
+          ) : (
+            <Trans>Merci d'avoir complété votre test.</Trans>
+          )
+        }
       </p>
 
       <p className="text-sm md:text-base">
