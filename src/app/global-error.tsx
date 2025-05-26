@@ -10,14 +10,6 @@ type Props = {
 }
 export default function GlobalError({ error }: Props) {
   useEffect(() => {
-    // Log error to console for Scalingo logs
-    console.error('Global error caught:', {
-      message: error.message,
-      stack: error.stack,
-      digest: error.digest,
-    })
-
-    // Send to Sentry
     Sentry.captureException(error)
   }, [error])
 
