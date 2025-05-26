@@ -94,8 +94,10 @@ export default function Email() {
         title={<Trans>Votre adresse electronique</Trans>}
         subtitle={
           <>
-            {pollSlug ===
-            process.env.NEXT_PUBLIC_POLL_SLUG_DISPLAY_CUSTOM_TEXT ? (
+            {pollSlug &&
+            process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS &&
+            Array.isArray(process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS) &&
+            process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS.includes(pollSlug) ? (
               <span>
                 <Trans>Votre e-mail sera utilisé pour le tirage au sort.</Trans>{' '}
                 <InlineLink href="/politique-de-confidentialite">
