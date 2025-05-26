@@ -99,7 +99,9 @@ export default function Email() {
             process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS.includes(pollSlug) ? (
               <span>
                 <Trans>Votre e-mail sera utilisé pour le tirage au sort.</Trans>{' '}
-                <InlineLink href="/politique-de-confidentialite">
+                <InlineLink
+                  target="_blank"
+                  href="/politique-de-confidentialite">
                   <Trans>En savoir plus</Trans>
                 </InlineLink>
               </span>
