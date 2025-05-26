@@ -4784,11 +4784,6 @@
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.3.0.tgz#d06bbb384ebcf6c505fde1c3d0ed4ddffe0aaff8"
   integrity sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==
 
-"@vercel/functions@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@vercel/functions/-/functions-2.0.0.tgz#be72057235a667b8c5b2713880fba717cd5a372b"
-  integrity sha512-BSwIihLHoV18gerKZJyGuqd3rtaYM6rJvET1kOwKktshucyaHXTJel7Cxegs+sdX0NZqsX4LO2MFnMU2jG01Cw==
-
 "@vitest/browser@^3.1.1":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@vitest/browser/-/browser-3.1.1.tgz#1dd6e2a1d40cc5adc4c3550bf6715eaaf5794853"
