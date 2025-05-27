@@ -49,6 +49,13 @@ export const trackingSplitTesting = (branch: string) => [
   `User on branch ${branch}`,
 ]
 
+export const trackingSplitTestingRedirect = (prNumber: string) => [
+  'trackEvent',
+  'Split Testing',
+  'Redirect',
+  `Redirected to PR ${prNumber}`,
+]
+
 // Banner
 export const trackingBannerClick = ['trackEvent', 'Bannière', 'Click lien']
 
