@@ -12,22 +12,18 @@ import {
 } from '@/constants/tracking/pages/pollDashboard'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import CopyInput from '@/design-system/inputs/CopyInput'
-import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import type { PublicOrganisationPoll } from '@/types/organisations'
 import { trackEvent } from '@/utils/analytics/trackEvent'
-import { useParams } from 'next/navigation'
 
 type Props = {
-  poll?: PublicOrganisationPoll | null
-  isAdmin: boolean
+  poll: PublicOrganisationPoll
 }
 
-export default function AdminSection({ poll, isAdmin }: Props) {
-  const { orgaSlug, pollSlug } = useParams()
-
-  const { isLoading: isLoadingOrganisation } = useFetchOrganisation()
-
-  if (!isAdmin || isLoadingOrganisation) return null
+export default function AdminSection({ poll }: Props) {
+  const {
+    slug: pollSlug,
+    organisation: { slug: orgaSlug },
+  } = poll
 
   return (
     <section className="mb-10 rounded-xl bg-gray-50 p-6">
