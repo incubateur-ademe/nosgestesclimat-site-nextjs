@@ -1,3 +1,4 @@
+import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import { useEffect, useState } from 'react'
 import type { Tutorials } from '../../../types'
 
@@ -11,7 +12,7 @@ export default function usePersistentTutorials({ storageKey }: Props) {
 
   useEffect(() => {
     setTutorials(
-      JSON.parse(localStorage.getItem(storageKey) || '{}').tutorials || {}
+      JSON.parse(safeLocalStorage.getItem(storageKey) || '{}').tutorials || {}
     )
 
     setInitialized(true)
@@ -20,10 +21,10 @@ export default function usePersistentTutorials({ storageKey }: Props) {
   useEffect(() => {
     if (initialized) {
       const currentStorage = JSON.parse(
-        localStorage.getItem(storageKey) || '{}'
+        safeLocalStorage.getItem(storageKey) || '{}'
       )
       const updatedStorage = { ...currentStorage, tutorials }
-      localStorage.setItem(storageKey, JSON.stringify(updatedStorage))
+      safeLocalStorage.setItem(storageKey, JSON.stringify(updatedStorage))
     }
   }, [storageKey, tutorials, initialized])
 
