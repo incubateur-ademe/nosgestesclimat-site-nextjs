@@ -6,7 +6,7 @@ export type Locale = 'fr' | 'en' | 'es'
 
 const i18nConfig = {
   locales: [LOCALE_FR_KEY, LOCALE_EN_KEY, LOCALE_ES_KEY] as Locale[],
-  defaultLocale: LOCALE_FR_KEY,
+  defaultLocale: LOCALE_FR_KEY as Locale,
   cookieOptions: {
     sameSite: 'lax' as const,
     path: '/',
