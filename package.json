@@ -86,7 +86,6 @@
     "tailwindcss": "^4.0.17",
     "use-count-up": "^3.0.1",
     "uuid": "^11.0.5",
-    "xlsx": "^0.18.5",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
