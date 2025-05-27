@@ -5,7 +5,8 @@ import type {
   PopulatedHomePageType,
 } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
-import i18nConfig from '@/i18nConfig'
+import { getLocaleWithoutEs } from '@/helpers/language/getLocaleWithoutEs'
+import i18nConfig, { type Locale } from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 
 const PAGE_SIZE = 12
@@ -15,7 +16,7 @@ export async function fetchHomepageContent({
   locale,
 }: {
   page: number
-  locale: string
+  locale: Locale
 }): Promise<
   | (Partial<PopulatedHomePageType<'image'>> & {
       pageCount: number
@@ -26,7 +27,7 @@ export async function fetchHomepageContent({
 > {
   try {
     const homepageSearchParams = new URLSearchParams({
-      locale: locale ?? i18nConfig.defaultLocale,
+      locale: getLocaleWithoutEs(locale),
       'populate[0]': 'image',
       'populate[1]': 'mainArticle',
       'populate[2]': 'mainArticle.image',
