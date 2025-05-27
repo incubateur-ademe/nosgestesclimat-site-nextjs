@@ -13,6 +13,8 @@ export default function CreerCampagnePage() {
 
   const { data: organisation, isError, isLoading } = useFetchOrganisation()
 
+  // The user hasn't completed the creation step if the orga
+  // hasn't got a slug defined
   useEffect(() => {
     if (organisation && !organisation.slug) {
       router.push('/organisations/creer')

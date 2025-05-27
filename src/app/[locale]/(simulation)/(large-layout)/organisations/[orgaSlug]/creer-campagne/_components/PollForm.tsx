@@ -26,7 +26,6 @@ export default function PollForm({ organisation }: Props) {
     defaultAdditionalQuestions: [],
     customAdditionalQuestions: [],
   })
-  const [isError, setIsError] = useState(false)
 
   const router = useRouter()
 
@@ -38,7 +37,11 @@ export default function PollForm({ organisation }: Props) {
     formState: { errors },
   } = useReactHookForm<Inputs>()
 
-  const { mutateAsync: createPoll } = useCreatePoll(organisation.slug)
+  const {
+    mutateAsync: createPoll,
+    isError,
+    isPending,
+  } = useCreatePoll(organisation.slug)
 
   async function onSubmit({ expectedNumberOfParticipants, name }: Inputs) {
     try {
@@ -55,14 +58,15 @@ export default function PollForm({ organisation }: Props) {
         )
       }
     } catch (error) {
-      setIsError(true)
       captureException(error)
     }
   }
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} id="poll-form">
+      <form
+        onSubmit={isPending ? () => {} : handleSubmit(onSubmit)}
+        id="poll-form">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <TextInputGroup
             label={<Trans>Nom de la campagne</Trans>}
@@ -116,7 +120,7 @@ export default function PollForm({ organisation }: Props) {
       />
 
       {isError && (
-        <p className="mt-2 text-red-500">
+        <p className="mt-2 text-red-800">
           <Trans>
             Une erreur s'est produite lors de la création de la campagne.
             Veuillez réessayer.
@@ -126,6 +130,7 @@ export default function PollForm({ organisation }: Props) {
 
       <Button
         type="submit"
+        disabled={isPending}
         data-cypress-id="poll-create-button"
         form="poll-form"
         className="self-start">

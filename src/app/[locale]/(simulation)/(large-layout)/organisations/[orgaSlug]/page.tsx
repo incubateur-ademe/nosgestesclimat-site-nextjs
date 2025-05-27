@@ -1,10 +1,12 @@
 'use client'
 
+import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import SettingsIcon from '@/components/icons/SettingsIcon'
 import OrganisationFetchError from '@/components/organisations/OrganisationFetchError'
 import Trans from '@/components/translation/trans/TransClient'
 import { organisationsDashboardClickParameters } from '@/constants/tracking/pages/organisationsDashboard'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
+import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import { unformatAdministratorName } from '@/helpers/organisations/unformatAdministratorName'
 import { useFetchPolls } from '@/hooks/organisations/polls/useFetchPolls'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
@@ -19,7 +21,11 @@ export default function OrganisationPage() {
   const router = useRouter()
 
   const { data: organisation, isError, isLoading } = useFetchOrganisation()
-  const { data: polls } = useFetchPolls({ enabled: !!organisation })
+  const {
+    data: polls,
+    isError: isErrorPolls,
+    isLoading: isLoadingPolls,
+  } = useFetchPolls({ enabled: !!organisation })
 
   useEffect(() => {
     if (organisation && !organisation.slug) {
@@ -74,7 +80,11 @@ export default function OrganisationPage() {
         </ButtonLink>
       </div>
 
-      <MyPolls polls={polls} />
+      {isLoadingPolls && <BlockSkeleton />}
+
+      {!!polls && <MyPolls polls={polls} />}
+
+      {isErrorPolls && <DefaultErrorAlert className="mb-12" />}
 
       <OurTools />
 

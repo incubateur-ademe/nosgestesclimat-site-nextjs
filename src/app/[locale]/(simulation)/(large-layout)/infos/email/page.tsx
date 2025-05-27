@@ -1,9 +1,11 @@
 'use client'
 
+import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import Trans from '@/components/translation/trans/TransClient'
 import { EMAIL_PAGE } from '@/constants/organisations/infosPages'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import InlineLink from '@/design-system/inputs/InlineLink'
+import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
@@ -45,7 +47,7 @@ export default function Email() {
 
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
 
-  const { data: poll } = useFetchPublicPoll()
+  const { data: poll, isError, isLoading } = useFetchPublicPoll()
 
   // We track a page view with the format of the shared link (/o/organisation/poll)
   useEffect(() => {
@@ -120,25 +122,33 @@ export default function Email() {
         }
       />
 
-      <EmailInput
-        readOnly={fixedEmail}
-        value={user?.email || user?.organisation?.administratorEmail || ''}
-        error={errors?.email?.message}
-        {...register('email', {
-          pattern: {
-            value:
-              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-            message: t('Veuillez entrer une adresse email valide'),
-          },
-        })}
-      />
+      {isError && <DefaultErrorAlert className="mb-6" />}
 
-      <Navigation
-        linkToPrev={getLinkToPrevInfosPage({ curPage: EMAIL_PAGE })}
-        handleSubmit={handleSubmit(onSubmit)}
-        submitDisabled={!getLinkToNextInfosPage({ curPage: EMAIL_PAGE })}
-        currentPage={EMAIL_PAGE}
-      />
+      {isLoading && <BlockSkeleton />}
+
+      {poll && (
+        <>
+          <EmailInput
+            readOnly={fixedEmail}
+            value={user?.email || user?.organisation?.administratorEmail || ''}
+            error={errors?.email?.message}
+            {...register('email', {
+              pattern: {
+                value:
+                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                message: t('Veuillez entrer une adresse email valide'),
+              },
+            })}
+          />
+
+          <Navigation
+            linkToPrev={getLinkToPrevInfosPage({ curPage: EMAIL_PAGE })}
+            handleSubmit={handleSubmit(onSubmit)}
+            submitDisabled={!getLinkToNextInfosPage({ curPage: EMAIL_PAGE })}
+            currentPage={EMAIL_PAGE}
+          />
+        </>
+      )}
     </form>
   )
 }
