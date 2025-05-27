@@ -1,6 +1,7 @@
 'use client'
 
 import type { BannerType } from '@/adapters/cmsClient'
+import { SIMULATOR_PATH } from '@/constants/urls/paths'
 import { usePathname } from 'next/navigation'
 import BannerLink from './banner/BannerLink'
 
@@ -8,7 +9,7 @@ export const BannerContent = ({ banner }: { banner: BannerType | null }) => {
   const pathname = usePathname()
 
   // Don't show banner on simulator results page
-  if (pathname.includes('/simulateur/bilan') || !banner) {
+  if (pathname.startsWith(SIMULATOR_PATH) || !banner) {
     return null
   }
 
