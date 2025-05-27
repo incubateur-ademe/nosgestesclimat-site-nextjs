@@ -1,6 +1,7 @@
 import type { ArticleItemType } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
-import i18nConfig from '@/i18nConfig'
+import { getLocaleWithoutEs } from '@/helpers/language/getLocaleWithoutEs'
+import i18nConfig, { type Locale } from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 
 const PAGE_SIZE = 100 // Utilisation d'une taille de page plus grande pour réduire le nombre d'appels
@@ -8,7 +9,7 @@ const PAGE_SIZE = 100 // Utilisation d'une taille de page plus grande pour rédu
 export async function fetchAllArticleTitlesAndSlugs({
   locale,
 }: {
-  locale: string
+  locale: Locale
 }): Promise<ArticleItemType[]> {
   try {
     let allArticles: ArticleItemType[] = []
@@ -17,7 +18,7 @@ export async function fetchAllArticleTitlesAndSlugs({
 
     while (hasMorePages) {
       const articlesSearchParams = new URLSearchParams({
-        locale: locale ?? i18nConfig.defaultLocale,
+        locale: getLocaleWithoutEs(locale) ?? i18nConfig.defaultLocale,
         'fields[0]': 'title',
         'fields[1]': 'slug',
         'populate[0]': 'category',
