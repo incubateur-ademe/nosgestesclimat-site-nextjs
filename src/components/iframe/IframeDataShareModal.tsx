@@ -4,9 +4,7 @@ import { defaultMetric } from '@/constants/model/metric'
 import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useIframe } from '@/hooks/useIframe'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { getIsIframe } from '@/utils/getIsIframe'
 import { useEffect, useRef, useState } from 'react'
 
 // We let iframe integrators ask the user if he wants to share its simulation data to the parent window
@@ -33,8 +31,6 @@ export default function IframeDataShareModal() {
 
   //To delay the dialog show in to let the animation play
   const timeoutRef = useRef<NodeJS.Timeout>(undefined)
-  const isIframe = getIsIframe()
-  const { isIframeShareData } = useIframe()
 
   useEffect(() => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
@@ -73,15 +69,25 @@ export default function IframeDataShareModal() {
   }
 
   useEffect(() => {
-    document.body.style.overflow = 'hidden'
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    timeoutRef.current = setTimeout(() => {
+      timeoutRef.current = undefined
+
+      setIsOpen(true)
+    }, shareDataPopupTimeout)
+
     return () => {
       resetScrolling()
     }
   }, [])
 
-  if (!isIframe || !isIframeShareData) {
-    return null
-  }
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      resetScrolling()
+    }
+  }, [])
 
   const parent = document.referrer
     ? String(new URL(document.referrer).hostname)
