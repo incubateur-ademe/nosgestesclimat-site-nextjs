@@ -23,7 +23,7 @@ import { useEffect, useRef } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import DefaultErrorMessage from '../error/DefaultErrorMessage'
+import DefaultSubmitErrorMessage from '../error/DefaultSubmitErrorMessage'
 
 type Inputs = {
   name: string
@@ -248,7 +248,7 @@ export default function UserInformationForm({
           />
         )}
 
-        {isError && <DefaultErrorMessage />}
+        {isError && <DefaultSubmitErrorMessage />}
 
         <div>
           <Button

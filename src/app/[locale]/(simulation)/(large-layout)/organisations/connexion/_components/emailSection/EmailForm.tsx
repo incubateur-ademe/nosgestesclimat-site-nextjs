@@ -1,6 +1,6 @@
 'use client'
 
-import DefaultErrorMessage from '@/components/error/DefaultErrorMessage'
+import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
@@ -85,7 +85,7 @@ export default function EmailForm() {
         error={errors.email?.message}
       />
 
-      {isError && <DefaultErrorMessage />}
+      {isError && <DefaultSubmitErrorMessage />}
 
       <Button
         type="submit"

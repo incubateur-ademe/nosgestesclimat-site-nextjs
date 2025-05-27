@@ -3,7 +3,6 @@
 import EyeIcon from '@/components/icons/EyeIcon'
 import ReturnIcon from '@/components/icons/ReturnIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
 import { useUser } from '@/publicodes-state'
 import type { UseMutateAsyncFunction } from '@tanstack/react-query'
@@ -65,31 +64,26 @@ export default function NotReceived({
       )}
 
       {isErrorResend && (
-        <Alert
-          type="error"
-          description={
-            <>
-              <p>
-                <Trans>
-                  Oups, une erreur s'est produite au moment de l'envoi de votre
-                  code...
-                </Trans>
-              </p>
+        <div className="text-red-800">
+          <p>
+            <Trans>
+              Oups, une erreur s'est produite au moment de l'envoi de votre
+              code...
+            </Trans>
+          </p>
 
-              <div>
-                <Button
-                  size="sm"
-                  onClick={() => {
-                    if (typeof window === 'undefined') return
-                    updateLoginExpirationDate(undefined)
-                    window.location.reload()
-                  }}>
-                  Recharger la page
-                </Button>
-              </div>
-            </>
-          }
-        />
+          <div>
+            <Button
+              size="sm"
+              onClick={() => {
+                if (typeof window === 'undefined') return
+                updateLoginExpirationDate(undefined)
+                window.location.reload()
+              }}>
+              Recharger la page
+            </Button>
+          </div>
+        </div>
       )}
 
       <Button

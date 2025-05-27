@@ -1,6 +1,6 @@
 'use client'
 
-import DefaultErrorMessage from '@/components/error/DefaultErrorMessage'
+import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import Title from '@/design-system/layout/Title'
@@ -85,7 +85,7 @@ export default function SupprimerGroupePage({
         </p>
       )}
 
-      {isError && <DefaultErrorMessage className="mt-4" />}
+      {isError && <DefaultSubmitErrorMessage className="mt-4" />}
 
       <Button
         disabled={!!isError || !group || isSuccess}

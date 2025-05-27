@@ -1,6 +1,6 @@
 'use client'
 
-import DefaultErrorMessage from '@/components/error/DefaultErrorMessage'
+import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   LIST_MAIN_NEWSLETTER,
@@ -263,7 +263,7 @@ export default function GetResultsByEmail({
             <Trans>Envoyer</Trans>
           </Button>
 
-          {isError && <DefaultErrorMessage />}
+          {isError && <DefaultSubmitErrorMessage />}
         </form>
       </Card>
     </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import DefaultErrorMessage from '@/components/error/DefaultErrorMessage'
+import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import MaxWidthContent from '@/components/layout/MaxWidthContent'
 import PollLoader from '@/components/organisations/PollLoader'
 import QuestionsComplementaires from '@/components/organisations/QuestionsComplementaires'
@@ -50,7 +50,7 @@ export default function ParametresPage() {
         }
       />
 
-      {isErrorUpdate && <DefaultErrorMessage />}
+      {isErrorUpdate && <DefaultSubmitErrorMessage />}
 
       {isSuccess && !isPending && (
         <p className="text-green-800">

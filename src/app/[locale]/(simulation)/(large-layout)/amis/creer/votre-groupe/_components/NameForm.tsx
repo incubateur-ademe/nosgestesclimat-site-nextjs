@@ -1,6 +1,6 @@
 'use client'
 
-import DefaultErrorMessage from '@/components/error/DefaultErrorMessage'
+import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
 import { GROUP_EMOJIS } from '@/constants/group'
 import { amisCreationEtapeVosInformationsSuivant } from '@/constants/tracking/pages/amisCreation'
@@ -136,7 +136,7 @@ export default function NameForm() {
         error={errors.emoji?.message}
       />
 
-      {isError && <DefaultErrorMessage className="mt-4" />}
+      {isError && <DefaultSubmitErrorMessage className="mt-4" />}
 
       <Button
         type="submit"

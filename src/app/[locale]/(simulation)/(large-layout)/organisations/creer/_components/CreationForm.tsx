@@ -1,6 +1,6 @@
 'use client'
 
-import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
+import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
 import { linkToGroupCreation } from '@/constants/group'
 import { ADMINISTRATOR_SEPARATOR } from '@/constants/organisations/administrator'
@@ -227,7 +227,7 @@ export default function CreationForm() {
         />
       </div>
 
-      {isErrorUpdateOrga && <DefaultErrorAlert className="mt-4" />}
+      {isErrorUpdateOrga && <DefaultSubmitErrorMessage className="mt-4" />}
 
       <div className="mt-12 flex w-full gap-4">
         <Button

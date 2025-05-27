@@ -7,7 +7,6 @@ import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 
 import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
-import Loader from '@/design-system/layout/Loader'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import { useParams, useRouter } from 'next/navigation'
 import { useContext } from 'react'
@@ -54,7 +53,7 @@ export default function CustomQuestion() {
   }
 
   if (isLoading) {
-    return <Loader />
+    return <BlockSkeleton />
   }
 
   return (
@@ -71,8 +70,6 @@ export default function CustomQuestion() {
           </span>
         }
       />
-
-      {isLoading && <BlockSkeleton />}
 
       {poll && (
         <>
