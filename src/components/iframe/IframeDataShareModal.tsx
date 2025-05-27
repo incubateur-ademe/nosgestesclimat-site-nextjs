@@ -4,9 +4,7 @@ import { defaultMetric } from '@/constants/model/metric'
 import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useIframe } from '@/hooks/useIframe'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { getIsIframe } from '@/utils/getIsIframe'
 import { useEffect, useRef, useState } from 'react'
 
 // We let iframe integrators ask the user if he wants to share its simulation data to the parent window
@@ -33,8 +31,29 @@ export default function IframeDataShareModal() {
 
   //To delay the dialog show in to let the animation play
   const timeoutRef = useRef<NodeJS.Timeout>(undefined)
-  const isIframe = getIsIframe()
-  const { isIframeShareData } = useIframe()
+
+  const resetOverflow = () => (document.body.style.overflow = 'auto')
+
+  const onReject = () => {
+    window.parent.postMessage(
+      {
+        messageType: 'ngc-iframe-share',
+        error: 'The user refused to share his result.',
+      },
+      '*'
+    )
+    setIsOpen(false)
+
+    resetOverflow()
+  }
+
+  const onAccept = () => {
+    window.parent.postMessage({ messageType: 'ngc-iframe-share', data }, '*')
+
+    setIsOpen(false)
+
+    resetOverflow()
+  }
 
   useEffect(() => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
@@ -49,26 +68,13 @@ export default function IframeDataShareModal() {
     }
   }, [])
 
-  const onReject = () => {
-    window.parent.postMessage(
-      {
-        messageType: 'ngc-iframe-share',
-        error: 'The user refused to share his result.',
-      },
-      '*'
-    )
-    setIsOpen(false)
-  }
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
 
-  const onAccept = () => {
-    window.parent.postMessage({ messageType: 'ngc-iframe-share', data }, '*')
-
-    setIsOpen(false)
-  }
-
-  if (!isIframe || !isIframeShareData) {
-    return null
-  }
+    return () => {
+      resetOverflow()
+    }
+  }, [])
 
   const parent = document.referrer
     ? String(new URL(document.referrer).hostname)
@@ -77,10 +83,12 @@ export default function IframeDataShareModal() {
   if (!isOpen) return null
 
   return (
-    <div className="fixed top-0 right-0 bottom-0 left-0 z-1000 bg-black/50">
-      <Card className="absolute top-1/2 left-1/2 z-1000 -translate-x-1/2 -translate-y-1/2 bg-white">
-        <h2>{t(`Partage de vos résultats à {{ parent }} ?`, { parent })}</h2>
-        <div>
+    <div className="fixed top-0 right-0 bottom-0 left-0 z-1000 overflow-auto bg-black/50">
+      <Card className="absolute top-4 left-1/2 z-1000 w-[calc(100%-16px)] -translate-x-1/2 bg-white sm:max-w-lg">
+        <h2 className="text-lg md:text-2xl">
+          {t(`Partage de vos résultats à {{ parent }} ?`, { parent })}
+        </h2>
+        <div className="text-sm md:text-base">
           <p>
             {t(
               `En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.`,

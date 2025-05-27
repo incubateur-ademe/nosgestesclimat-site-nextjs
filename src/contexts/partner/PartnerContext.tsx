@@ -54,17 +54,26 @@ export function PartnerProvider({ children }: PropsWithChildren) {
   const { exportSituationAsync } = useExportSituation()
 
   const router = useRouter()
-
   const partnerParams: Record<string, string> | undefined = useMemo(() => {
-    const params =
-      getPartnerFromStorage() ??
-      Object.fromEntries(
-        searchParams
-          .entries()
-          .filter(([key]) => key === PARTNER_KEY || key.startsWith(PARTNER_KEY))
-      )
+    try {
+      const params =
+        getPartnerFromStorage() ??
+        Object.fromEntries(
+          (typeof searchParams === 'object' &&
+          searchParams !== null &&
+          typeof searchParams.entries === 'function'
+            ? searchParams.entries()
+            : []
+          ).filter(
+            ([key]) => key === PARTNER_KEY || key.startsWith(PARTNER_KEY)
+          )
+        )
 
-    return Object.keys(params).length ? params : undefined
+      return Object.keys(params).length ? params : undefined
+    } catch (error) {
+      console.error('Error processing partner params:', error)
+      return undefined
+    }
   }, [searchParams])
 
   const isPartnerVerified = useVerifyPartner(partnerParams?.partner)

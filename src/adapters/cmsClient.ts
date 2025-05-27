@@ -187,3 +187,19 @@ export type PartnerType = {
   category: PartnerCategoryType
   displayOnLandingPage?: boolean
 }
+
+export type PartnerCampaignType = {
+  title: string
+  pollSlug: string
+  content: string
+  htmlContent: string
+  labelCTA?: string
+  image?: ImageType | null
+  logo: ImageType
+  backgroundColor?: string
+  questions?: {
+    question: string
+    answer: string
+    htmlAnswer: string
+  }[]
+}

@@ -11,7 +11,9 @@ import Title from '@/design-system/layout/Title'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
 import { useSimulationIdInQueryParams } from '@/hooks/simulation/useSimulationIdInQueryParams'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
+import { useIframe } from '@/hooks/useIframe'
 import type { Metric } from '@/publicodes-state/types'
+import { getIsIframe } from '@/utils/getIsIframe'
 import type { ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Carbone from './_components/Carbone'
@@ -38,13 +40,16 @@ export default function FinPage() {
 
   const { currentMetric } = useCurrentMetric()
 
+  const isIframe = getIsIframe()
+  const { isIframeShareData } = useIframe()
+
   // If the simulationIdInQueryParams is set, it means that the simulation is not loaded yet
   if (!isGuardInit || isGuardRedirecting || !!simulationIdInQueryParams)
     return <FinPageSkeleton />
 
   return (
     <div className="relative mt-12">
-      <IframeDataShareModal />
+      {isIframe && isIframeShareData && <IframeDataShareModal />}
 
       <Poll />
 

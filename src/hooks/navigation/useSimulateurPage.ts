@@ -61,7 +61,9 @@ export function useSimulateurPage() {
       }
 
       // else we redirect him to the tutoriel page
-      router.replace('/tutoriel')
+      router.push('/tutoriel', {
+        scroll: false,
+      })
     },
     [tutorielSeen, router, initSimulation, progression, goToEndPage]
   )

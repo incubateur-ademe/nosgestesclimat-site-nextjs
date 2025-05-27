@@ -4,6 +4,7 @@ import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import Trans from '@/components/translation/trans/TransClient'
 import { EMAIL_PAGE } from '@/constants/organisations/infosPages'
 import EmailInput from '@/design-system/inputs/EmailInput'
+import InlineLink from '@/design-system/inputs/InlineLink'
 import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
@@ -26,6 +27,8 @@ export default function Email() {
   const fixedEmail = searchParams.get('fixedemail') ? true : false
 
   const { user, updateEmail } = useUser()
+
+  const pollSlug = useSearchParams().get('poll')
 
   const {
     register,
@@ -84,7 +87,6 @@ export default function Email() {
     },
     [poll, updateEmail, router, getLinkToNextInfosPage, setError, t]
   )
-
   return (
     <form>
       <Title
@@ -93,9 +95,24 @@ export default function Email() {
         title={<Trans>Votre adresse electronique</Trans>}
         subtitle={
           <>
-            <Trans>
-              Pour conserver vos résultats et les retrouver à l’avenir
-            </Trans>
+            {pollSlug &&
+            process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS &&
+            process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS.split(',') &&
+            process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS.includes(pollSlug) ? (
+              <span>
+                <Trans>Votre e-mail sera utilisé pour le tirage au sort.</Trans>{' '}
+                <InlineLink
+                  target="_blank"
+                  href="/politique-de-confidentialite">
+                  <Trans>En savoir plus</Trans>
+                </InlineLink>
+              </span>
+            ) : (
+              <Trans>
+                Pour conserver vos résultats et les retrouver à l’avenir
+              </Trans>
+            )}
+
             {!fixedEmail ? (
               <span className="text-secondary-700 ml-2 inline-block font-bold italic">
                 <Trans>facultatif</Trans>

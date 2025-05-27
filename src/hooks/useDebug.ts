@@ -1,4 +1,5 @@
 import { useIsClient } from '@/hooks/useIsClient'
+import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
 import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
@@ -11,13 +12,13 @@ export const useDebug = () => {
     const debugInQueryParams = searchParams.get('debug') ? true : false
 
     if (debugInQueryParams && isClient) {
-      sessionStorage.setItem('debug', 'true')
+      safeSessionStorage.setItem('debug', 'true')
     }
   }, [searchParams, isClient])
 
   if (!isClient) return false
 
-  const isDebug = sessionStorage.getItem('debug') ? true : false
+  const isDebug = safeSessionStorage.getItem('debug') ? true : false
 
   return isDebug
 }

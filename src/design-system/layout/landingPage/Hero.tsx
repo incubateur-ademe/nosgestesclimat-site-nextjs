@@ -1,20 +1,30 @@
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 export default function Hero({
   illustration,
   title,
   description,
   partners,
+  className,
+  style,
 }: {
   illustration: ReactNode
   title: ReactNode
   description: ReactNode
-  partners: ReactNode
+  partners?: ReactNode
+  className?: string
+  style?: CSSProperties
 }) {
   return (
     <>
-      <div className="bg-heroLightBackground flex min-h-[588px] items-center px-4 pt-10 pb-20 md:min-h-full md:py-20">
-        <div className="relative mx-auto flex max-w-5xl flex-row items-center justify-between gap-8 md:px-0">
+      <div
+        className={twMerge(
+          'bg-heroLightBackground flex min-h-[588px] items-center px-4 pt-10 pb-20 md:min-h-full md:py-20',
+          className
+        )}
+        style={style}>
+        <div className="relative mx-auto flex max-w-5xl flex-row items-center justify-between gap-8 md:px-0 lg:w-5xl">
           <div className="flex flex-col gap-4 md:gap-10">
             <div className="max-w-[600px] text-center md:text-left">
               <h1 className="mb-0 text-2xl leading-8 md:text-5xl md:leading-[3rem]">
@@ -30,12 +40,13 @@ export default function Hero({
           <div className="hidden md:block">{illustration}</div>
         </div>
       </div>
-
-      <div className="-mt-6 flex justify-center md:-mt-10">
-        <div className="relative mb-4 flex items-center justify-center gap-6 rounded-full bg-white px-12 py-4 md:mb-0 md:gap-8 md:px-24 md:py-10">
-          {partners}
+      {partners && (
+        <div className="-mt-6 flex justify-center md:-mt-10">
+          <div className="relative mb-4 flex items-center justify-center gap-6 rounded-full bg-white px-12 py-4 md:mb-0 md:gap-8 md:px-24 md:py-10">
+            {partners}
+          </div>
         </div>
-      </div>
+      )}
     </>
   )
 }
