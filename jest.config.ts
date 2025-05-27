@@ -34,7 +34,7 @@ const config: Config = {
   },
 
   // The test environment that will be used for testing
-  testEnvironment: 'jsdom',
+  testEnvironment: 'jest-fixed-jsdom',
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   testRegex: '.*\\.test\\.(ts|tsx)$',
