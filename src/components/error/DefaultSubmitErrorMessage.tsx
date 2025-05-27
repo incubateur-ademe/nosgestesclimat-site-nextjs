@@ -1,9 +1,10 @@
 'use client'
+
 import { twMerge } from 'tailwind-merge'
 import Link from '../Link'
 import Trans from '../translation/trans/TransClient'
 
-export default function DefaultErrorMessage({
+export default function DefaultSubmitErrorMessage({
   className,
 }: {
   className?: string
@@ -11,7 +12,7 @@ export default function DefaultErrorMessage({
   return (
     <span className={twMerge('text-red-800', className)}>
       <Trans>
-        Oups ! Une erreur s'est produite. Veuillez recharger la page. Si le
+        Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le
         problème persiste, vous pouvez
       </Trans>{' '}
       <Link href="/contact">
