@@ -7,6 +7,7 @@ import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
 import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
+import type { Locale } from '@/i18nConfig'
 import { fetchCategoryPageContent } from '@/services/cms/fetchCategoryPageContent'
 import { fetchCategoryPageMetadata } from '@/services/cms/fetchCategoryPageMetadata'
 import type { DefaultPageProps } from '@/types'
@@ -18,7 +19,7 @@ import CategoryJSONLD from './_components/CategoryJSONLD'
 export async function generateMetadata({
   params,
 }: DefaultPageProps<{
-  params: { category: string }
+  params: { category: string; locale: Locale }
 }>) {
   const { category, locale } = await params
 
@@ -45,7 +46,7 @@ export default async function CategoryPage({
   params,
   searchParams,
 }: DefaultPageProps<{
-  params: { category: string }
+  params: { category: string; locale: Locale }
   searchParams: { page: string }
 }>) {
   const { category, locale } = await params
