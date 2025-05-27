@@ -27,7 +27,7 @@ const mockPartners = [
 
 describe('OurPartners page', () => {
   beforeAll(() => {
-    ;(fetchPartners as jest.Mock).mockResolvedValue(mockPartners)
+    ;(fetchPartners as jest.Mock).mockResolvedValue({ data: mockPartners })
   })
 
   it('should display partners correctly', async () => {

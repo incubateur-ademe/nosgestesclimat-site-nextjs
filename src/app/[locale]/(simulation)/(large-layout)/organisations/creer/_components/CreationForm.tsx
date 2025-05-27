@@ -1,5 +1,6 @@
 'use client'
 
+import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
 import { linkToGroupCreation } from '@/constants/group'
 import { ADMINISTRATOR_SEPARATOR } from '@/constants/organisations/administrator'
@@ -208,12 +209,6 @@ export default function CreationForm() {
         />
       </div>
 
-      {isErrorUpdateOrga && (
-        <div className="mt-4 rounded-xl bg-red-100 p-4 text-red-800">
-          <Trans>Une erreur est survenue, veuillez réessayer.</Trans>
-        </div>
-      )}
-
       <div className="mt-4 w-full md:w-1/2">
         <CheckboxInputGroup
           size="xl"
@@ -231,6 +226,8 @@ export default function CreationForm() {
           {...register('hasOptedInForCommunications')}
         />
       </div>
+
+      {isErrorUpdateOrga && <DefaultSubmitErrorMessage className="mt-4" />}
 
       <div className="mt-12 flex w-full gap-4">
         <Button

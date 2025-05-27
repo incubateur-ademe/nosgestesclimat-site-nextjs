@@ -1,5 +1,6 @@
 'use client'
 
+import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
 import { GROUP_EMOJIS } from '@/constants/group'
 import { amisCreationEtapeVosInformationsSuivant } from '@/constants/tracking/pages/amisCreation'
@@ -32,13 +33,16 @@ export default function NameForm() {
     formState: { errors },
   } = useReactHookForm<Inputs>()
 
-  const [error, setError] = useState('')
-
   const { user } = useUser()
 
   const searchParams = useSearchParams()
 
-  const { mutateAsync: createGroup, isPending, isSuccess } = useCreateGroup()
+  const {
+    mutateAsync: createGroup,
+    isPending,
+    isSuccess,
+    isError,
+  } = useCreateGroup()
 
   const [shouldNavigate, setShouldNavigate] = useState<string | undefined>(
     undefined
@@ -71,10 +75,6 @@ export default function NameForm() {
   ])
 
   async function onSubmit({ name, emoji }: Inputs) {
-    if (error) {
-      setError('')
-    }
-
     try {
       const administratorEmail = formatEmail(
         searchParams.get('administratorEmail')
@@ -102,11 +102,6 @@ export default function NameForm() {
 
       setShouldNavigate(group.id)
     } catch (e) {
-      setError(
-        t(
-          'Une erreur est survenue. Si le problème persiste, veuillez contacter notre support.'
-        )
-      )
       captureException(e)
     }
   }
@@ -141,7 +136,7 @@ export default function NameForm() {
         error={errors.emoji?.message}
       />
 
-      {error && <p className="mt-4 text-sm text-red-700">{error}</p>}
+      {isError && <DefaultSubmitErrorMessage className="mt-4" />}
 
       <Button
         type="submit"
