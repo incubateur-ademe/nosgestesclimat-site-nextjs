@@ -15,11 +15,12 @@ import {
   useUser,
 } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
+import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
 import ActionForm from '../../_components/actionsContent/actions/ActionForm'
 
-const { decodeRuleName, encodeRuleName } = utils
+const { decodeRuleName } = utils
 
 export default function ActionDetail({
   params,
@@ -60,9 +61,9 @@ export default function ActionDetail({
   const { description, icônes: icons } = rules[dottedName] ?? {}
 
   // Typing is shit here but it's the `actions` rule from model.
-  const flatActions = rules['actions'] as { formule: { somme: DottedName[] } }
+  const flatActions = rules['actions'] as { somme: DottedName[] }
 
-  const relatedActions: NGCRuleNode[] = flatActions?.formule?.somme
+  const relatedActions: NGCRuleNode[] = flatActions?.somme
     .filter(
       (action: DottedName) =>
         action !== dottedName && getCategory(dottedName) === getCategory(action)
@@ -84,7 +85,7 @@ export default function ActionDetail({
           <div className="mt-8">
             <ButtonLink
               color="secondary"
-              href={'/documentation/' + pathParamsDottedName?.join('/')}>
+              href={'/documentation/' + encodeRuleName(dottedName)}>
               <span
                 role="img"
                 aria-label="emoji book"
