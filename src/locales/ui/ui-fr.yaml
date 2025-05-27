@@ -155,7 +155,6 @@ entries:
   Données supprimées.: Données supprimées.
   Modifier le nom du groupe: Modifier le nom du groupe
   Ok, sauvegarder la modification: Ok, sauvegarder la modification
-  Oups, une erreur s'est produite au moment de récupérer les données du groupe.: Oups, une erreur s'est produite au moment de récupérer les données du groupe.
   Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.: Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.
   Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données: Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données
   Supprimer mes données: Supprimer mes données
@@ -199,7 +198,6 @@ entries:
   publicodes.Tutoriel.slide6: <0>Prendre la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter une TV...</0><1>L'empreinte de notre consommation individuelle, c'est la somme de toutes ces activités qui font notre vie moderne.</1>
   Recommencer: Recommencer
   Répondez aux questions en votre nom, pas pour votre foyer.: Répondez aux questions en votre nom, pas pour votre foyer.
-  revenir à l'accueil: revenir à l'accueil
   'Revenir à ma région par défaut ': 'Revenir à ma région par défaut '
   Revoir le tutoriel: Revoir le tutoriel
   Sélectionné·e: Sélectionné·e
@@ -299,8 +297,6 @@ entries:
   Votre organisation: Votre organisation
   Votre prénom: Votre prénom
   Code renvoyé: Code renvoyé
-  L’adresse e-mail est invalide: L’adresse e-mail est invalide
-  Vous devez renseigner votre adresse e-mail: Vous devez renseigner votre adresse e-mail
   Accueil: Accueil
   Animez un atelier: Animez un atelier
   Ce champ n'est pas modifiable: Ce champ n'est pas modifiable
@@ -330,20 +326,13 @@ entries:
   '{linkToSimulateurPageLabel}': '{linkToSimulateurPageLabel}'
   Accéder au kit: Accéder au kit
   Administrateur·ice: Administrateur·ice
-  Avec: Avec
-  Bien vu !: Bien vu !
   Calculez votre empreinte en: Calculez votre empreinte en
-  D’après vous, quel est: D’après vous, quel est
   Découvrez le calculateur, ouvrir dans un nouvel onglet: Découvrez le calculateur, ouvrir dans un nouvel onglet
   Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet
-  Découvrez vos résultats détaillés: Découvrez vos résultats détaillés
-  Effectivement, avec: Effectivement, avec
-  est votre poste le plus important !: est votre poste le plus important !
   Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.: Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.
   Facultatif: Facultatif
   Groupes d'amis: Groupes d'amis
   Impact CO2: Impact CO2
-  Loupé !: Loupé !
   Me connecter: Me connecter
   Mes données restent-elles privées ?: Mes données restent-elles privées ?
   Modifications sauvegardées: Modifications sauvegardées
@@ -354,25 +343,18 @@ entries:
   Organisez des temps d’animation et d’échanges physiques autour de Nos Gestes Climat pour fédérer et renforcer la compréhension des participants.: Organisez des temps d’animation et d’échanges physiques autour de Nos Gestes Climat pour fédérer et renforcer la compréhension des participants.
   Oups: Oups
   Partagez le test pour obtenir vos premiers résultats.: Partagez le test pour obtenir vos premiers résultats.
-  Passer la question →: Passer la question →
-  poste le plus important ?: poste le plus important ?
   Pour conserver vos résultats et les retrouver à l’avenir: Pour conserver vos résultats et les retrouver à l’avenir
   précédent: précédent
-  Presque !: Presque !
   puis comparez vos résultats à ceux des autres participants.: puis comparez vos résultats à ceux des autres participants.
   Revenir au formulaire de connexion: Revenir au formulaire de connexion
-  revenir au test: revenir au test
   Se déconnecter de votre espace organisation: Se déconnecter de votre espace organisation
   Seules les options incluant plus de 3 participants sont accessibles, et ce, dans un objectif de préservation de l’anonymat des participants.: Seules les options incluant plus de 3 participants sont accessibles, et ce, dans un objectif de préservation de l’anonymat des participants.
   Télécharger le kit, ouvrir dans un nouvel onglet: Télécharger le kit, ouvrir dans un nouvel onglet
-  Une devinette pour finir !: Une devinette pour finir !
   Valider: Valider
   Valorisez vos données carbone: Valorisez vos données carbone
   Veuillez entrer votre code postal: Veuillez entrer votre code postal
   Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}: Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}
-  Voir mes résultats →: Voir mes résultats →
   Vos données seront stockées de manière sécurisée et anonyme. Elles seront agrégées à des fins statistiques ; lesdites statistiques seront consultables sur la page "Rapport détaillé" de votre sondage en fin de parcours. Cette page restera exclusivement accessible aux participant·es ainsi qu'aux organisateur·ices.: Vos données seront stockées de manière sécurisée et anonyme. Elles seront agrégées à des fins statistiques ; lesdites statistiques seront consultables sur la page "Rapport détaillé" de votre sondage en fin de parcours. Cette page restera exclusivement accessible aux participant·es ainsi qu'aux organisateur·ices.
-  votre: votre
   Votre code postal: Votre code postal
   Votre date de naissance: Votre date de naissance
   Votre résultat: Votre résultat
@@ -404,7 +386,6 @@ entries:
   Empreinte: Empreinte
   Gestes: Gestes
   'Je ne trouve pas réponse à ma question ': 'Je ne trouve pas réponse à ma question '
-  le poste: le poste
   Les nouveautés: Les nouveautés
   Mes gestes: Mes gestes
   Mon empreinte: Mon empreinte
@@ -493,7 +474,6 @@ entries:
   Commencer le test: Commencer le test
   Reprendre le test: Reprendre le test
   Utiliser mes données existantes: Utiliser mes données existantes
-  Découvrez les résultats du groupe: Découvrez les résultats du groupe
   Simulation terminée: Simulation terminée
   Diffusion: Diffusion
   International: International
@@ -559,7 +539,6 @@ entries:
   Questions personnalisées: Questions personnalisées
   Recevez nos <1>conseils transports</1> directement dans votre boite mail !: Recevez nos <1>conseils transports</1> directement dans votre boite mail !
   Supprimer cette question personnalisée ?: Supprimer cette question personnalisée ?
-  Une erreur est survenue, veuillez réessayer.: Une erreur est survenue, veuillez réessayer.
   Une erreur est survenue. Veuillez réessayer.: Une erreur est survenue. Veuillez réessayer.
   Votre inscription est validée ! <1>✨</1>: Votre inscription est validée ! <1>✨</1>
   Votre question à ajouter: Votre question à ajouter
@@ -1088,7 +1067,6 @@ entries:
   'Avez-vous essayé <2>notre fonctionnalité “Groupes d’amis”</2> ? Elle vous permettra de vous comparer dans un classement : que celui ou celle ayant la plus faible empreinte gagne !': 'Avez-vous essayé <2>notre fonctionnalité “Groupes d’amis”</2> ? Elle vous permettra de vous comparer dans un classement : que celui ou celle ayant la plus faible empreinte gagne !'
   Coopérative: Coopérative
   Veuillez entrer un nombre positif: Veuillez entrer un nombre positif
-  Une erreur est survenue. Si le problème persiste, veuillez contacter notre support.: Une erreur est survenue. Si le problème persiste, veuillez contacter notre support.
   Empreinte eau et empreinte carbone se répondent.: Empreinte eau et empreinte carbone se répondent.
   Impossible de copier le lien: Impossible de copier le lien
   Infolettre saisonnière de Nos Gestes Climat: Infolettre saisonnière de Nos Gestes Climat
@@ -1135,7 +1113,6 @@ entries:
   Poire: Poire
   Pomme: Pomme
   Raisin: Raisin
-  Aie, une erreur est survenue lors du chargement de la campagne. Si le problème persiste merci de nous envoyer un message via notre page de contact.: Aie, une erreur est survenue lors du chargement de la campagne. Si le problème persiste merci de nous envoyer un message via notre page de contact.
   Chargement des résultats détaillés de campagne...: Chargement des résultats détaillés de campagne...
   '{{name}} lecture seule': '{{name}} lecture seule'
   '{{name}} menu déroulant': '{{name}} menu déroulant'
@@ -1183,7 +1160,6 @@ entries:
   Paramètres de mon organisation - Nos Gestes Climat: Paramètres de mon organisation - Nos Gestes Climat
   Question personnalisée, rejoindre une campagne - Nos Gestes Climat: Question personnalisée, rejoindre une campagne - Nos Gestes Climat
   Questions fréquentes - Nos Gestes Climat: Questions fréquentes - Nos Gestes Climat
-  Quiz - Nos Gestes Climat: Quiz - Nos Gestes Climat
   Rejoindre une campagne - Nos Gestes Climat: Rejoindre une campagne - Nos Gestes Climat
   Résultats de ma campagne - Nos Gestes Climat: Résultats de ma campagne - Nos Gestes Climat
   Tutoriel du calculateur - Nos Gestes Climat: Tutoriel du calculateur - Nos Gestes Climat
@@ -1215,7 +1191,6 @@ entries:
   'Oups, la copie du lien a échoué, le voici :': 'Oups, la copie du lien a échoué, le voici :'
   Nous chargeons les données de l'organisation partenaire.: Nous chargeons les données de l'organisation partenaire.
   Une erreur s'est produite au moment de récupérer les informations liées à l'organisation partenaire. Veuillez réessayer plus tard ou contacter notre support.: Une erreur s'est produite au moment de récupérer les informations liées à l'organisation partenaire. Veuillez réessayer plus tard ou contacter notre support.
-  Oups ! Une erreur s'est produite, veuillez réessayer dans quelques instants.: Oups ! Une erreur s'est produite, veuillez réessayer dans quelques instants.
   Les graphiques sont cachés pour les campagnes avec plus de 500 participations pour des raisons de performance. Nous travaillons à l'ajout de cette fonctionnalité pour les plus grosses campagnes.: Les graphiques sont cachés pour les campagnes avec plus de 500 participations pour des raisons de performance. Nous travaillons à l'ajout de cette fonctionnalité pour les plus grosses campagnes.
   avec une empreinte carbone de: avec une empreinte carbone de
   Confirmation d'inscription à nos infolettres - Nos Gestes Climat: Confirmation d'inscription à nos infolettres - Nos Gestes Climat
@@ -1270,3 +1245,10 @@ entries:
   Votre e-mail sera utilisé pour le tirage au sort.: Votre e-mail sera utilisé pour le tirage au sort.
   Votre participation au jeu concours est enregistrée.: Votre participation au jeu concours est enregistrée.
   Oups ! Une erreur s'est produite au moment de récupérer les informations de la campagne. Veuillez réessayer ultérieurement.: Oups ! Une erreur s'est produite au moment de récupérer les informations de la campagne. Veuillez réessayer ultérieurement.
+  L'adresse e-mail est invalide: L'adresse e-mail est invalide
+  la page classement: la page classement
+  nous contacter: nous contacter
+  "Oups ! Une erreur s'est produite au moment de récupérer les informations de votre campagne. Vous pouvez la retrouver depuis ": "Oups ! Une erreur s'est produite au moment de récupérer les informations de votre campagne. Vous pouvez la retrouver depuis "
+  Oups ! Une erreur s'est produite. Veuillez recharger la page. Si le problème persiste, vous pouvez: Oups ! Une erreur s'est produite. Veuillez recharger la page. Si le problème persiste, vous pouvez
+  Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez: Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez
+  Votre campagne a été mise à jour.: Votre campagne a été mise à jour.

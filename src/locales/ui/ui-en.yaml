@@ -200,7 +200,6 @@ entries:
   Supprimer mes données: Delete my data
   Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.: Share this page with your friends and family to let them join your group.
   Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données: Only to allow you to find your group or delete your data
-  Oups, une erreur s'est produite au moment de récupérer les données du groupe.: Oops, an error occurred while retrieving the group data.
   Ok, sauvegarder la modification: Ok, save the modification
   Veuillez renseigner un nom.: Please enter a name.
   Données supprimées.: Deleted data.
@@ -249,7 +248,6 @@ entries:
   publicodes.Tutoriel.slide1.p1: It's a fact that the climate is warming because of human activity. Everything we consume, use and then throw away requires materials and energy. Whether it's during the production, use or end-of-life phase of the good or service. So all our activities contribute to greenhouse gas emissions. Some a great deal, others very little. But what is our impact, as individual citizens?
   publicodes.Tutoriel.slide1.p1.lock: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
   Voir plus d'informations: See more information
-  revenir à l'accueil: return to home page
   'Revenir à ma région par défaut ': 'Return to my default region '
   Revoir le tutoriel: Review the tutorial
   'Vous faites cette simulation depuis :': 'You can run this simulation from :'
@@ -357,8 +355,6 @@ entries:
   Renvoyer le code, désactivé pendant 30 secondes: Resend code, deactivated for 30 seconds
   Recevoir ponctuellement par email les nouveaux services Nos Gestes Climat aux organisations: Receive occasional emails about new Nos Gestes Climat services for organisations
   Code renvoyé: Code returned
-  L’adresse e-mail est invalide: The e-mail address is invalid
-  Vous devez renseigner votre adresse e-mail: You must enter your e-mail address
   Filtrer par: Filter by
   Ce champ n'est pas modifiable: This field cannot be modified
   Accueil: Home
@@ -384,38 +380,27 @@ entries:
   Par catégorie: By category
   La valeur minimum pour ce champ est de: The minimum value for this field is
   pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !: to create an account, and you'll be able to access all our services free of charge!
-  votre: your
-  Avec: With
   Votre résultat: Your result
   précédent: previous
   Administrateur·ice: Administrator
-  Loupé !: Woops!
   Valorisez vos données carbone: Add value to your carbon data
   Vos données seront stockées de manière sécurisée et anonyme. Elles seront agrégées à des fins statistiques ; lesdites statistiques seront consultables sur la page "Rapport détaillé" de votre sondage en fin de parcours. Cette page restera exclusivement accessible aux participant·es ainsi qu'aux organisateur·ices.: Your data will be stored securely and anonymously. They will be aggregated for statistical purposes; these statistics will be available on the "Detailed report" page of your survey at the end of the course. This page will remain accessible exclusively to participants and organisers.
-  Découvrez vos résultats détaillés: Discover your detailed results
   Votre date de naissance: Your date of birth
   Organisation: Organisation
   Valider: Confirm
-  revenir au test: back to test
   Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Discover the ABC workshops, open in a new tab
-  Une devinette pour finir !: Let's finish with a riddle!
   Revenir au formulaire de connexion: Back to the login form
   Moyenne du groupe par catégorie: Group average by category
-  Effectivement, avec: Indeed, with
   Mes données restent-elles privées ?: Will my data remain private?
-  D’après vous, quel est: What do you think
   Facultatif: Optional
   Impact CO2: CO2 impact
   '{{value}} tonnes': '{{value}} tonnes'
   Mon organisation: My organisation
   '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.administrator?.name} has invited you to join the <3>{group?.name}</3> group'
   'Moyenne :': 'Average :'
-  Bien vu !: Good point!
   Votre code postal: Your postcode
   Modifications sauvegardées: Changes saved
-  Presque !: Almost!
   Calculez votre empreinte en: Calculate your footprint by
-  Voir mes résultats →: See my results →
   Pour conserver vos résultats et les retrouver à l’avenir: To keep your results and find them again in the future
   Se déconnecter de votre espace organisation: Logging out of your organisation space
   Veuillez entrer votre code postal: Please enter your postcode
@@ -423,10 +408,7 @@ entries:
   Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.: Are you sure you want to leave this page? Your changes will be lost.
   Accéder au kit: Access the kit
   puis comparez vos résultats à ceux des autres participants.: then compare your results with those of the other participants.
-  est votre poste le plus important !: is your most important job!
   Partagez le test pour obtenir vos premiers résultats.: Share the test to get your first results.
-  Passer la question →: Skip question →
-  poste le plus important ?: most important position?
   Vous pouvez reprendre votre test en cours, ou en recommencer un.: You can resume your current test, or start a new one.
   Télécharger le kit, ouvrir dans un nouvel onglet: Download the kit, open in a new tab
   Me connecter: Connect me
@@ -464,7 +446,6 @@ entries:
   Les nouveautés: What's new?
   sélectionnez celles qui vous intéressent: select those that interest you
   Oups ! Une erreur est survenue.: Oops! An error has occurred.
-  le poste: the position
   Empreinte: Footprint
   Gestes: Gestures
   Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver: You will receive an email from us shortly, enabling you to find it
@@ -552,7 +533,6 @@ entries:
   ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouveau navigateur.': you have been logged out of your organisation space, or you are trying to access it from a new browser.
   'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logo, posters and presentations: find all the tools you need to share Nos Gestes Climat in this kit.'
   Simulation terminée: Completed simulation
-  Découvrez les résultats du groupe: Discover the group's results
   Utiliser mes données existantes: Use my existing data
   Commencer le test: Start the test
   Reprendre le test: Resume the test
@@ -624,7 +604,6 @@ entries:
   Supprimer cette question personnalisée ?: Delete this custom question?
   Cette action est définitive.: This action is definitive.
   Votre question à ajouter: Your question to add
-  Une erreur est survenue, veuillez réessayer.: An error has occurred, please try again.
   Vous accompagner pour mieux agir en <2>4 mails seulement</2>.: Support you to take better action in <2>just 4 emails</2>.
   Recevez nos <1>conseils transports</1> directement dans votre boite mail !: Receive our <1>transport advice</1> straight to your inbox!
   Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.: You can add additional questions to the test for your statistics. Your activated additional questions will be asked to each participant before the Nos Gestes Climat test. Answering them will be optional.
@@ -1143,7 +1122,6 @@ entries:
   Votre poste: Your position
   Le nombre de participants doit être supérieur à 0: The number of participants must be greater than 0
   Veuillez entrer un nombre positif: Please enter a positive number
-  Une erreur est survenue. Si le problème persiste, veuillez contacter notre support.: An error has occurred. If the problem persists, please contact our support team.
   Options: Options
   Impossible de copier le lien: Unable to copy the link
   Infolettre saisonnière de Nos Gestes Climat: Nos Gestes Climat seasonal newsletter
@@ -1191,7 +1169,6 @@ entries:
   Kiwi: Kiwi
   Poire: Pear
   Chargement des résultats détaillés de campagne...: Loading detailed campaign results...
-  Aie, une erreur est survenue lors du chargement de la campagne. Si le problème persiste merci de nous envoyer un message via notre page de contact.: Oops, there was an error loading the campaign. If the problem persists, please send us a message via our contact page.
   Navigation principale: Main navigation
   Page précédente: Previous page
   Menu principal: Main menu
@@ -1228,7 +1205,6 @@ entries:
   Paramètres de mon organisation - Nos Gestes Climat: Settings for my organisation - Nos Gestes Climat
   Rejoindre une campagne - Nos Gestes Climat: Join a campaign - Nos Gestes Climat
   Mon profil - Nos Gestes Climat: My profile - Nos Gestes Climat
-  Quiz - Nos Gestes Climat: Quiz - Nos Gestes Climat
   Tutoriel du calculateur - Nos Gestes Climat: Calculator tutorial - Nos Gestes Climat
   Question personnalisée, rejoindre une campagne - Nos Gestes Climat: Personalized question, join a campaign - Nos Gestes Climat
   Mes groupes d'amis, calculer vos empreintes carbone et eau à plusieurs - Nos Gestes Climat: My groups of friends, calculate your carbon and water footprints together - Nos Gestes Climat
@@ -1270,7 +1246,6 @@ entries:
   'Oups, la copie du lien a échoué, le voici :': 'Oops, copying the link failed, here it is:'
   Nous chargeons les données de l'organisation partenaire.: We load the data from the partner organisation.
   Une erreur s'est produite au moment de récupérer les informations liées à l'organisation partenaire. Veuillez réessayer plus tard ou contacter notre support.: An error has occurred while retrieving the information related to the partner organisation. Please try again later or contact our support team.
-  Oups ! Une erreur s'est produite, veuillez réessayer dans quelques instants.: Oops! An error has occurred. Please try again in a few moments.
   Les graphiques sont cachés pour les campagnes avec plus de 500 participations pour des raisons de performance. Nous travaillons à l'ajout de cette fonctionnalité pour les plus grosses campagnes.: The graphics are hidden for campaigns with more than 500 entries for performance reasons. We are working on adding this functionality for larger campaigns.
   Participation mise à jour: Updated participation
   Recommencer mon inscription: Repeat my registration
@@ -1324,3 +1299,10 @@ entries:
   Votre participation au jeu concours est enregistrée.: Your participation in the competition has been registered.
   Votre e-mail sera utilisé pour le tirage au sort.: Your e-mail address will be used for the prize draw.
   Oups ! Une erreur s'est produite au moment de récupérer les informations de la campagne. Veuillez réessayer ultérieurement.: Oops! An error has occurred while retrieving the campaign information. Please try again later.
+  L'adresse e-mail est invalide: The e-mail address is invalid
+  nous contacter: contact us
+  la page classement: the ranking page
+  Votre campagne a été mise à jour.: Your campaign has been updated.
+  Oups ! Une erreur s'est produite. Veuillez recharger la page. Si le problème persiste, vous pouvez: Oops! An error has occurred. Please reload the page. If the problem persists, you can
+  Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez: Oops! An error has occurred. Please try again later. If the problem persists, you can
+  "Oups ! Une erreur s'est produite au moment de récupérer les informations de votre campagne. Vous pouvez la retrouver depuis ": 'Oops! There was an error retrieving your campaign information. You can retrieve it from '
