@@ -4,6 +4,7 @@ import Link from '@/components/Link'
 import CountryFlag from '@/components/misc/CountryFlag'
 import { defaultModelRegionCode } from '@/constants/localisation/translation'
 import { trackingClickRegionBanner } from '@/constants/tracking/misc'
+import { SIMULATOR_PATH } from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import { useIframe } from '@/hooks/useIframe'
@@ -23,7 +24,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
   const pathname = usePathname()
 
   const isTutorialOrTest =
-    pathname.includes('/tutoriel') || pathname.includes('/simulateur/bilan')
+    pathname.includes('/tutoriel') || pathname.startsWith(SIMULATOR_PATH)
 
   const currentLocale = useLocale() as string
 

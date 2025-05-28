@@ -9,7 +9,6 @@ import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import { filterExtremes } from '@/helpers/organisations/filterExtremes'
 import { filterSimulations } from '@/helpers/organisations/filterSimulations'
-import { displayErrorToast } from '@/helpers/toasts/displayErrorToast'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import { useFetchPublicPollSimulations } from '@/hooks/organisations/polls/useFetchPublicPollSimulations'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
@@ -18,7 +17,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import dayjs from 'dayjs'
 import { useSearchParams } from 'next/navigation'
-import { useContext, useEffect, useMemo } from 'react'
+import { useContext, useMemo } from 'react'
 import AdminSection from './_components/AdminSection'
 import { FiltersContext } from './_components/FiltersProvider'
 import PollNotFound from './_components/PollNotFound'
@@ -70,16 +69,6 @@ export default function CampagnePage() {
       ageFilters,
       postalCodeFilters,
     })
-
-  useEffect(() => {
-    if (errorPoll || errorSimulations) {
-      displayErrorToast(
-        t(
-          'Aie, une erreur est survenue lors du chargement de la campagne. Si le problème persiste merci de nous envoyer un message via notre page de contact.'
-        )
-      )
-    }
-  }, [errorPoll, errorSimulations, t])
 
   // Organisation can only be fetched by a authentified organisation administrator
   const { data: organisation, isLoading: isLoadingOrganisation } =
@@ -141,7 +130,7 @@ export default function CampagnePage() {
         <AdminSection poll={poll} isAdmin={!!isAdmin} />
 
         <PollStatistics
-          simulationsCount={poll.simulations.count}
+          simulationsCount={poll.simulations.finished}
           simulationsWithoutExtremes={simulationsWithoutExtremes}
           funFacts={poll.funFacts}
           title={<Trans>Résultats de campagne</Trans>}
