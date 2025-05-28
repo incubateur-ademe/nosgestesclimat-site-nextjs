@@ -55,7 +55,7 @@ export default function TallyForm() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  if (!isFrench) return null
+  if (!isFrench || !FORM_ID) return null
 
   return (
     <button
