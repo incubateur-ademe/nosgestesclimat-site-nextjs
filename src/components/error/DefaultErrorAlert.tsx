@@ -12,6 +12,7 @@ export default function DefaultErrorAlert({
   return (
     <Alert
       type="error"
+      data-testid="default-error-alert"
       className={twMerge('mb-6', className)}
       description={children ?? <DefaultErrorMessage />}
     />

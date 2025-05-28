@@ -16,7 +16,7 @@ export default function PollsList({ organisations }: Props) {
   const [organisation] = organisations || []
 
   return (
-    <div className="mb-8 flex flex-col gap-3">
+    <div className="mb-8 flex flex-col gap-3" data-testid="poll-list">
       {!!organisation && (
         <>
           <h3 className="mb-0 text-base">
