@@ -1,3 +1,4 @@
+import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
 import '@testing-library/jest-dom'
 import { act, render, screen } from '@testing-library/react'
@@ -11,6 +12,10 @@ jest.mock('@/hooks/useClientTranslation', () => ({
 
 jest.mock('@/publicodes-state', () => ({
   useUser: jest.fn(),
+}))
+
+jest.mock('@/hooks/useLocale', () => ({
+  useLocale: jest.fn(),
 }))
 
 describe('<TallyForm />', () => {
@@ -33,6 +38,7 @@ describe('<TallyForm />', () => {
     ;(useUser as jest.Mock).mockReturnValue({
       simulations: [],
     })
+    ;(useLocale as jest.Mock).mockReturnValue('fr')
 
     // When
     render(<TallyForm />)
@@ -51,6 +57,7 @@ describe('<TallyForm />', () => {
     ;(useUser as jest.Mock).mockReturnValue({
       simulations: ['simulation1'],
     })
+    ;(useLocale as jest.Mock).mockReturnValue('fr')
 
     // When
     render(<TallyForm />)
@@ -67,6 +74,7 @@ describe('<TallyForm />', () => {
     ;(useUser as jest.Mock).mockReturnValue({
       simulations: ['simulation1', 'simulation2'],
     })
+    ;(useLocale as jest.Mock).mockReturnValue('fr')
 
     // When
     render(<TallyForm />)
@@ -76,5 +84,19 @@ describe('<TallyForm />', () => {
 
     // Then
     expect(mockTally.openPopup).not.toHaveBeenCalled()
+  })
+
+  it('should render nothing when locale is not fr', () => {
+    // Given
+    ;(useUser as jest.Mock).mockReturnValue({
+      simulations: [],
+    })
+    ;(useLocale as jest.Mock).mockReturnValue('en')
+
+    // When
+    const { container } = render(<TallyForm />)
+
+    // Then
+    expect(container).toBeEmptyDOMElement()
   })
 })
