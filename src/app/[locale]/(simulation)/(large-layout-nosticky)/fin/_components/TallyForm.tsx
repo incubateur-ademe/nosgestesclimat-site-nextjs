@@ -51,7 +51,10 @@ export default function TallyForm() {
         SHOW_POPUP_TIMEOUT
       )
 
-    return () => clearTimeout(timeoutRef.current)
+    return () => {
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = undefined
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
