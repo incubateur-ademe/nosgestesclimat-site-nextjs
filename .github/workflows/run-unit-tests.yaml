@@ -26,4 +26,6 @@ jobs:
         run: yarn install --immutable
 
       - name: Run unit tests
+        env:
+          NEXT_PUBLIC_TALLY_FORM_ID: ${{ vars.NEXT_PUBLIC_TALLY_FORM_ID }}
         run: yarn test --coverage
