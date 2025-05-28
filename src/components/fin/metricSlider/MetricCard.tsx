@@ -41,7 +41,7 @@ export default function MetricCard({
       <button
         onClick={handleSelectMetric}
         className={twMerge(
-          'border-primary-50 pointer-events-auto relative flex! h-full w-full flex-1 flex-col overflow-hidden rounded-xl border-[3px] bg-white',
+          'border-primary-100 pointer-events-auto relative flex! h-full w-full flex-1 flex-col overflow-hidden rounded-xl border-[3px] bg-white',
           isSelected && 'border-primary-700 bg-primary-50',
           isSticky && 'rounded-none rounded-br-xl rounded-bl-xl',
           metric === carboneMetric
