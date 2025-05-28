@@ -52,12 +52,14 @@ export default function MetricSlider({
   return (
     <div
       className={twMerge(
-        isStatic ? '' : 'pointer-events-none sticky top-2 z-40 mb-4 md:h-96'
+        isStatic
+          ? ''
+          : 'pointer-events-none sticky top-0 z-40 -mx-4 mb-4 md:mx-0 md:h-96'
       )}
       ref={myElementRef}>
       <div
         className={twMerge(
-          'relative mx-auto -mt-0.5 flex w-full gap-0 overflow-hidden px-0 transition-all duration-300 md:gap-4',
+          'relative mx-auto -mt-0.5 flex w-full gap-0 overflow-hidden px-0 transition-all duration-300',
           isSticky
             ? 'mt-2 h-28 overflow-hidden lg:h-32'
             : 'h-28 md:h-72 lg:h-80'

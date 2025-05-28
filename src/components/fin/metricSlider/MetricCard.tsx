@@ -1,3 +1,4 @@
+import { carboneMetric } from '@/constants/model/metric'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import type { Metric } from '@/publicodes-state/types'
@@ -36,12 +37,16 @@ export default function MetricCard({
   }
 
   return (
-    <div className="flex-1 p-1 md:p-2">
+    <div className="flex-1 rounded-b-xl bg-white">
       <button
         onClick={handleSelectMetric}
         className={twMerge(
           'border-primary-50 pointer-events-auto relative flex! h-full w-full flex-1 flex-col overflow-hidden rounded-xl border-[3px] bg-white',
-          isSelected && 'border-primary-700 bg-primary-50'
+          isSelected && 'border-primary-700 bg-primary-50',
+          isSticky && 'rounded-none rounded-br-xl rounded-bl-xl',
+          metric === carboneMetric
+            ? 'rounded-r-none rounded-bl-xl'
+            : 'rounded-l-none rounded-br-xl'
         )}
         aria-label={
           isSelected
@@ -56,7 +61,7 @@ export default function MetricCard({
         <div
           className={twMerge(
             'h-full w-full',
-            isSticky && 'pointer-events-none mt-1 max-h-28 overflow-hidden'
+            isSticky && 'pointer-events-none max-h-28 overflow-hidden md:mt-1'
           )}>
           {children}
         </div>
