@@ -12629,10 +12629,10 @@ react-transition-group@^4.3.0, react-transition-group@^4.4.5:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react-verification-input@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/react-verification-input/-/react-verification-input-4.2.0.tgz#98a673ed67c556fefbb48386dd1a70581def514b"
-  integrity sha512-+q6zqEi5n8bPyqXPe71ir9Qo2zX0xgPNyOSaPePerurLLHl2e0f0PMx9NltkbZB/E90vcrVMFjXRUS3bFngeiQ==
+react-verification-input@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/react-verification-input/-/react-verification-input-4.2.2.tgz#8d0e54705ed38b23adced59bd41a06ee6aa52a75"
+  integrity sha512-GqcsiZ5iwcXD4V0cKbZv1pbknqAZRszPoXzSKc5LLlfSdo3iOnxLxEbmDi+BWN1LfhCx2iXhEDGke9Bdk3q+4A==
 
 react-wavify@^1.11.1:
   version "1.11.1"
