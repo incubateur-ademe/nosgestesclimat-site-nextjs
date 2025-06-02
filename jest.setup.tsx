@@ -1,10 +1,6 @@
 import { afterAll, beforeAll } from '@jest/globals'
-import 'isomorphic-fetch'
 import type { ReactNode } from 'react'
-import { TextEncoder } from 'util'
 import { mswServer } from './src/__tests__/server'
-
-global.TextEncoder = TextEncoder
 
 jest.mock('next-i18n-router/client', () => ({
   useCurrentLocale: () => 'fr',
