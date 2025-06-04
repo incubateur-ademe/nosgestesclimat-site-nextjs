@@ -17,6 +17,7 @@ import { getIsIframe } from '@/utils/getIsIframe'
 import type { ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Carbone from './_components/Carbone'
+import CreateAccountBlock from './_components/CreateAccountBlock'
 import DocumentationBlock from './_components/DocumentationBlock'
 import Eau from './_components/Eau'
 import FeedbackBanner from './_components/FeedbackBanner'
@@ -70,6 +71,8 @@ export default function FinPage() {
           <CarboneTotalChart shouldShowOnlyGauge />
         </div>
       )}
+
+      <CreateAccountBlock />
 
       <div className="relative flex flex-col-reverse gap-8 md:gap-16 lg:flex-row lg:gap-10">
         <div className="relative flex flex-1 flex-col gap-16 lg:mt-7">
