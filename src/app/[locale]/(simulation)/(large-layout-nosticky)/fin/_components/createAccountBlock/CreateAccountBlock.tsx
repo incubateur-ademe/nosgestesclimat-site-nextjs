@@ -8,7 +8,9 @@ import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useState } from 'react'
+import AcceptedState from './AcceptedState'
 import DefautState from './DefautState'
+import RefusedState from './RefusedState'
 
 enum State {
   'default',
@@ -32,11 +34,19 @@ export default function CreateAccountBlock() {
     setState(State.refused)
   }
 
+  const onAfterSend = () => {
+    setState(State.thanks)
+  }
+
   return (
     <Card className="mb-12 items-start border-none bg-[#F4F5FB] p-8">
       {state === State.default && (
         <DefautState onAccept={onAccept} onRefuse={onRefuse} />
       )}
+
+      {state === State.accepted && <AcceptedState />}
+
+      {state === State.refused && <RefusedState onAfterSend={onAfterSend} />}
     </Card>
   )
 }
