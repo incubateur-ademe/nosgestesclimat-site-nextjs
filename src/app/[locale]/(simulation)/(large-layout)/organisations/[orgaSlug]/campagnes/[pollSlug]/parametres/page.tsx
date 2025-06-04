@@ -8,14 +8,25 @@ import Trans from '@/components/translation/trans/TransClient'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { useFetchPoll } from '@/hooks/organisations/polls/useFetchPoll'
-import { useUpdatePoll } from '@/hooks/organisations/polls/useUpdatePoll'
+import {
+  PollToUpdate,
+  useUpdatePoll,
+} from '@/hooks/organisations/polls/useUpdatePoll'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
+import { useQueryClient } from '@tanstack/react-query'
+import { useParams } from 'next/navigation'
 import PollNotFound from '../_components/PollNotFound'
 import DeletePollButton from './_components/DeletePollButton'
 import NameForm from './_components/NameForm'
 
 export default function ParametresPage() {
   const { data: organisation } = useFetchOrganisation()
+
+  const queryClient = useQueryClient()
+
+  const { pollSlug: pollIdOrSlug } = useParams() as {
+    pollSlug: string
+  }
 
   const {
     data: poll,
@@ -27,7 +38,17 @@ export default function ParametresPage() {
     mutate: updatePoll,
     status: updatePollStatus,
     isError: isErrorUpdate,
-  } = useUpdatePoll()
+  } = useUpdatePoll({
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['organisations', organisation?.slug, 'polls', pollIdOrSlug],
+      })
+    },
+  })
+
+  const updateAndRefetchPoll = (data: PollToUpdate) => {
+    updatePoll(data)
+  }
 
   if (isErrorFetchPoll) {
     return <PollNotFound />
@@ -55,7 +76,7 @@ export default function ParametresPage() {
         expectedNumberOfParticipants={
           poll?.expectedNumberOfParticipants ?? undefined
         }
-        updatePoll={updatePoll}
+        updatePoll={updateAndRefetchPoll}
         updatePollStatus={updatePollStatus}
         refetchPoll={refetchPoll}
       />
@@ -63,9 +84,8 @@ export default function ParametresPage() {
       <Separator />
 
       <QuestionsComplementaires
-        onChangeCustomQuestions={updatePoll}
+        onChange={updateAndRefetchPoll}
         organisation={organisation}
-        onChange={updatePoll}
         description={' '}
         poll={poll}
       />
