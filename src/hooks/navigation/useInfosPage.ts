@@ -7,6 +7,7 @@ import {
 } from '@/constants/organisations/infosPages'
 import { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
 import {
+  END_PAGE_PATH,
   POLL_BIRTHDAY_STEP,
   POLL_EMAIL_STEP,
   POLL_POSTAL_CODE_STEP,
@@ -134,8 +135,8 @@ export function useInfosPage() {
       if (curPage === START_PAGE) {
         return getLinkToSimulateur()
       }
-      // if there is no additional question, we return the start page link
-      return urlsInfosPages.start
+      // if there is no additional question, we return the end page link
+      return END_PAGE_PATH
     },
     [pollSlug, poll, isLoading, customAdditionalQuestions, urlsInfosPages]
   )

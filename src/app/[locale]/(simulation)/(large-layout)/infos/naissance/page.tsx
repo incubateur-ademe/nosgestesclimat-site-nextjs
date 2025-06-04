@@ -1,14 +1,16 @@
 'use client'
 
+import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
 import { BIRTHDATE_PAGE } from '@/constants/organisations/infosPages'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
+import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import type { ChangeEvent, FormEvent } from 'react'
-import { useCallback, useContext } from 'react'
-import { InfosContext } from '../_components/InfosProvider'
+import { useCallback, useEffect, useState } from 'react'
 import Navigation from '../_components/Navigation'
 
 export default function Birthdate() {
@@ -16,17 +18,60 @@ export default function Birthdate() {
 
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
 
-  const { birthdate, setBirthdate } = useContext(InfosContext)
+  const currentSimulation = useCurrentSimulation()
+
+  const { updateCurrentSimulation, defaultAdditionalQuestionsAnswers } =
+    currentSimulation || {}
+
+  const { saveSimulation } = useSaveSimulation()
+
+  const [shouldSaveAndGoNext, setShouldSaveAndGoNext] = useState(false)
+  useEffect(() => {
+    if (shouldSaveAndGoNext) {
+      try {
+        saveSimulation({
+          simulation: currentSimulation,
+        })
+
+        // Go to next page
+        router.push(getLinkToNextInfosPage({ curPage: BIRTHDATE_PAGE }))
+      } catch (e) {
+        setError(true)
+        return
+      }
+    }
+  }, [shouldSaveAndGoNext])
+
+  const [birthdate, setBirthdate] = useState<string | undefined>()
+  const [error, setError] = useState(false)
 
   const handleSubmit = useCallback(
     (event: MouseEvent | FormEvent) => {
       // Avoid reloading page
       event?.preventDefault()
+      setError(false)
 
-      // Go to next page
-      router.push(getLinkToNextInfosPage({ curPage: BIRTHDATE_PAGE }))
+      // Update simulation saved
+      if (birthdate) {
+        updateCurrentSimulation({
+          defaultAdditionalQuestionsAnswers: {
+            ...defaultAdditionalQuestionsAnswers,
+            birthdate,
+          },
+        })
+
+        setShouldSaveAndGoNext(true)
+      }
     },
-    [router, getLinkToNextInfosPage]
+    [
+      birthdate,
+      router,
+      getLinkToNextInfosPage,
+      updateCurrentSimulation,
+      defaultAdditionalQuestionsAnswers,
+      saveSimulation,
+      currentSimulation,
+    ]
   )
 
   return (
@@ -51,6 +96,8 @@ export default function Birthdate() {
           setBirthdate(e.target.value)
         }}
       />
+
+      {error && <DefaultSubmitErrorMessage />}
 
       <Navigation
         linkToPrev={getLinkToPrevInfosPage({ curPage: BIRTHDATE_PAGE })}

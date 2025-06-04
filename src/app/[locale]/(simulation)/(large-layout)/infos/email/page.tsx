@@ -62,13 +62,6 @@ export default function Email() {
     pollIdOrSlug: pollSlug,
   })
 
-  // useEffect(() => {
-  //   if (poll?.simulations.hasParticipated) {
-  //     router.push('/fin')
-  //     return
-  //   }
-  // }, [poll, router])
-  console.log(getLinkToNextInfosPage({ curPage: EMAIL_PAGE }))
   const onSubmit = useCallback(
     ({ email }: Inputs) => {
       const linkToNextPage = getLinkToNextInfosPage({ curPage: EMAIL_PAGE })

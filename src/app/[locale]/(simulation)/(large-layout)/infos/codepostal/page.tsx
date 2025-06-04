@@ -10,7 +10,7 @@ import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import type { FormEvent } from 'react'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Navigation from '../_components/Navigation'
 
 export default function PostalCode() {
@@ -27,6 +27,23 @@ export default function PostalCode() {
 
   const { saveSimulation } = useSaveSimulation()
 
+  const [shouldSaveAndGoNext, setShouldSaveAndGoNext] = useState(false)
+  useEffect(() => {
+    if (shouldSaveAndGoNext) {
+      try {
+        saveSimulation({
+          simulation: currentSimulation,
+        })
+
+        // Go to next page
+        router.push(getLinkToNextInfosPage({ curPage: POSTAL_CODE_PAGE }))
+      } catch (e) {
+        setError(true)
+        return
+      }
+    }
+  }, [shouldSaveAndGoNext])
+
   const handleSubmit = useCallback(
     (event: MouseEvent | FormEvent) => {
       // Avoid reloading page
@@ -42,18 +59,9 @@ export default function PostalCode() {
           },
         })
 
-        try {
-          saveSimulation({
-            simulation: currentSimulation,
-          })
-        } catch (e) {
-          setError(true)
-          return
-        }
+        // Trigger save in order to let state update before it
+        setShouldSaveAndGoNext(true)
       }
-
-      // Go to next page
-      router.push(getLinkToNextInfosPage({ curPage: POSTAL_CODE_PAGE }))
     },
     [
       postalCode,
