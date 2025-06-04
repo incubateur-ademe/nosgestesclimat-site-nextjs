@@ -26,6 +26,7 @@ export default function Birthdate() {
   const { saveSimulation } = useSaveSimulation()
 
   const [shouldSaveAndGoNext, setShouldSaveAndGoNext] = useState(false)
+  console.log(currentSimulation)
   useEffect(() => {
     if (shouldSaveAndGoNext) {
       try {

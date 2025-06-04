@@ -6,12 +6,14 @@ import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 
 import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
+import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
+import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { useParams, useRouter } from 'next/navigation'
-import { useContext } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
-import { InfosContext } from '../_components/InfosProvider'
 import Navigation from '../_components/Navigation'
 
 type Inputs = {
@@ -29,27 +31,55 @@ export default function CustomQuestion() {
 
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
 
+  const currentSimulation = useCurrentSimulation()
+
+  const { updateCurrentSimulation, customAdditionalQuestionsAnswers } =
+    currentSimulation || {}
+
   const { data: poll, isLoading, isError } = useFetchPublicPoll()
 
-  const { addCustomAnswer } = useContext(InfosContext)
+  const [error, setError] = useState(false)
 
   const customAdditionalQuestions = poll?.customAdditionalQuestions ?? []
 
   const customQuestion =
     customAdditionalQuestions[customQuestionIndex - 1].question
 
-  if (!customAdditionalQuestions?.length || isError) {
-    return <DefaultErrorAlert />
-  }
+  const { saveSimulation } = useSaveSimulation()
+
+  const [shouldSaveAndGoNext, setShouldSaveAndGoNext] = useState(false)
+
+  useEffect(() => {
+    if (shouldSaveAndGoNext) {
+      try {
+        saveSimulation({
+          simulation: currentSimulation,
+        })
+
+        // Go to next page
+        router.push(
+          getLinkToNextInfosPage({ curPage: params.question as string })
+        )
+      } catch (e) {
+        setError(true)
+        return
+      }
+    }
+  }, [shouldSaveAndGoNext])
 
   function onSubmit({ 'custom-answer': customAnswer }: Inputs) {
-    addCustomAnswer({
-      key: customQuestion,
-      answer: customAnswer,
+    updateCurrentSimulation({
+      customAdditionalQuestionsAnswers: {
+        ...customAdditionalQuestionsAnswers,
+        [customQuestion]: customAnswer,
+      },
     })
 
-    // Go to next page
-    router.push(getLinkToNextInfosPage({ curPage: params.question as string }))
+    setShouldSaveAndGoNext(true)
+  }
+
+  if (!customAdditionalQuestions?.length || isError) {
+    return <DefaultErrorAlert />
   }
 
   if (isLoading) {
@@ -77,6 +107,8 @@ export default function CustomQuestion() {
             label={customQuestion}
             {...register('custom-answer')}
           />
+
+          {error && <DefaultSubmitErrorMessage />}
 
           <Navigation
             linkToPrev={getLinkToPrevInfosPage({
