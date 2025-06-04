@@ -6,6 +6,11 @@ import {
   TUTORIEL_PAGE,
 } from '@/constants/organisations/infosPages'
 import { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
+import {
+  POLL_BIRTHDAY_STEP,
+  POLL_EMAIL_STEP,
+  POLL_POSTAL_CODE_STEP,
+} from '@/constants/urls/paths'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { usePollQueryParams } from '@/hooks/organisations/usePollQueryParams'
 import { useSearchParams } from 'next/navigation'
@@ -41,9 +46,9 @@ export function useInfosPage() {
   const urlsInfosPages = useMemo(() => {
     const pagePaths: Record<string, string> = {
       [TUTORIEL_PAGE]: `/tutoriel?${queryParamsString}`,
-      [EMAIL_PAGE]: `/infos/email?${queryParamsString}`,
-      [POSTAL_CODE_PAGE]: `/infos/codepostal?${queryParamsString}`,
-      [BIRTHDATE_PAGE]: `/infos/naissance?${queryParamsString}`,
+      [EMAIL_PAGE]: `${POLL_EMAIL_STEP}?${queryParamsString}`,
+      [POSTAL_CODE_PAGE]: `${POLL_POSTAL_CODE_STEP}?${queryParamsString}`,
+      [BIRTHDATE_PAGE]: `${POLL_BIRTHDAY_STEP}?${queryParamsString}`,
     }
 
     // Add the custom additionnal questions
@@ -51,9 +56,6 @@ export function useInfosPage() {
       pagePaths[`question-personnalisee-${index + 1}`] =
         `/infos/question-personnalisee-${index + 1}?${queryParamsString}`
     })
-
-    // Add the last path
-    pagePaths[START_PAGE] = `/infos/commencer?${queryParamsString}`
 
     return pagePaths
   }, [queryParamsString, customAdditionalQuestions])
@@ -76,7 +78,7 @@ export function useInfosPage() {
       }
 
       // if we are on the tutoriel, we return the email page
-      if (curPage === TUTORIEL_PAGE) {
+      if (curPage === START_PAGE) {
         return urlsInfosPages.email
       }
 

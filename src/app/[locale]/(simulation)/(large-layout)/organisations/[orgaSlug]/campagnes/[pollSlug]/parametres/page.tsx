@@ -27,8 +27,6 @@ export default function ParametresPage() {
     mutate: updatePoll,
     status: updatePollStatus,
     isError: isErrorUpdate,
-    isSuccess,
-    isPending,
   } = useUpdatePoll()
 
   if (isErrorFetchPoll) {
@@ -51,12 +49,6 @@ export default function ParametresPage() {
       />
 
       {isErrorUpdate && <DefaultSubmitErrorMessage />}
-
-      {isSuccess && !isPending && (
-        <p className="text-green-800">
-          <Trans>Votre campagne a été mise à jour.</Trans>
-        </p>
-      )}
 
       <NameForm
         nameValue={poll?.name ?? ''}

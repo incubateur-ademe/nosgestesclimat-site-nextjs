@@ -14,7 +14,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import Navigation from '../_components/Navigation'
 
@@ -52,7 +52,7 @@ export default function Email() {
   const currentSimulation = useCurrentSimulation()
 
   const pollSlug = polls ? polls[polls.length - 1] : undefined
-  console.log(polls)
+
   const {
     data: poll,
     isError,
@@ -61,19 +61,20 @@ export default function Email() {
     enabled: !!pollSlug,
     pollIdOrSlug: pollSlug,
   })
-  console.log(poll)
-  useEffect(() => {
-    if (poll?.simulations.hasParticipated) {
-      router.push('/fin')
-      return
-    }
-  }, [poll, router])
 
+  // useEffect(() => {
+  //   if (poll?.simulations.hasParticipated) {
+  //     router.push('/fin')
+  //     return
+  //   }
+  // }, [poll, router])
+  console.log(getLinkToNextInfosPage({ curPage: EMAIL_PAGE }))
   const onSubmit = useCallback(
     ({ email }: Inputs) => {
+      const linkToNextPage = getLinkToNextInfosPage({ curPage: EMAIL_PAGE })
       // Email is not mandatory
       if (!email) {
-        router.push(getLinkToNextInfosPage({ curPage: EMAIL_PAGE }))
+        router.push(linkToNextPage)
         return
       }
 
@@ -104,7 +105,7 @@ export default function Email() {
       }
 
       // Go to next page
-      router.push(getLinkToNextInfosPage({ curPage: EMAIL_PAGE }))
+      router.push(linkToNextPage)
     },
     [
       updateEmail,

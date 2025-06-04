@@ -35,8 +35,14 @@ export function useEndPage() {
   const [isNavigating, setIsNavigating] = useState(false)
 
   const redirectToPollQuestionsIfNecessary = useCallback(() => {
-    if (progression === 1 && currentSimulation.polls) {
-      router.push(POLL_EMAIL_STEP)
+    if (
+      progression === 1 &&
+      currentSimulation.polls &&
+      currentSimulation.polls.length > 0
+    ) {
+      router.push(
+        `${POLL_EMAIL_STEP}?poll=${currentSimulation.polls[currentSimulation.polls.length - 1]}`
+      )
       return true
     }
     return false
@@ -62,8 +68,7 @@ export function useEndPage() {
       if (
         progression === 1 &&
         isAllowedToSave &&
-        (currentSimulation.polls ||
-          currentSimulation.groups ||
+        (currentSimulation.groups ||
           // Simulation has already been saved during the test, save it one last time
           // to make sure the the latest version is saved
           currentSimulation.savedViaEmail)
