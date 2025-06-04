@@ -1,4 +1,5 @@
 import { defaultMetric } from '@/constants/model/metric'
+import { POLL_EMAIL_STEP } from '@/constants/urls/paths'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useCurrentSimulation } from '@/publicodes-state'
@@ -33,6 +34,14 @@ export function useEndPage() {
 
   const [isNavigating, setIsNavigating] = useState(false)
 
+  const redirectToPollQuestionsIfNecessary = useCallback(() => {
+    if (progression === 1 && currentSimulation.polls) {
+      router.push(POLL_EMAIL_STEP)
+      return true
+    }
+    return false
+  }, [currentSimulation.polls, progression, router])
+
   const goToEndPage = useCallback(
     ({
       isAllowedToSave = true,
@@ -43,6 +52,8 @@ export function useEndPage() {
         return
       }
       setIsNavigating(true)
+
+      if (redirectToPollQuestionsIfNecessary()) return
 
       // If the simulation is finished and
       // * is in a poll or a group
@@ -83,7 +94,14 @@ export function useEndPage() {
       // else we redirect to the results page
       router.push('/fin')
     },
-    [isNavigating, progression, currentSimulation, router, saveSimulation]
+    [
+      isNavigating,
+      redirectToPollQuestionsIfNecessary,
+      progression,
+      currentSimulation,
+      router,
+      saveSimulation,
+    ]
   )
 
   const getLinkToEndPage = useCallback(

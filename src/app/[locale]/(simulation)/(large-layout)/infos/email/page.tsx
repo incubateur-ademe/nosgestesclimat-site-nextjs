@@ -9,9 +9,9 @@ import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
+import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
-import { trackPageView } from '@/utils/analytics/trackEvent'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect } from 'react'
@@ -28,7 +28,7 @@ export default function Email() {
 
   const { user, updateEmail } = useUser()
 
-  const pollSlug = useSearchParams().get('poll')
+  const { polls } = useCurrentSimulation()
 
   const {
     register,
@@ -47,12 +47,27 @@ export default function Email() {
 
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
 
-  const { data: poll, isError, isLoading } = useFetchPublicPoll()
+  const { saveSimulation } = useSaveSimulation()
 
-  // We track a page view with the format of the shared link (/o/organisation/poll)
+  const currentSimulation = useCurrentSimulation()
+
+  const pollSlug = polls ? polls[polls.length - 1] : undefined
+  console.log(polls)
+  const {
+    data: poll,
+    isError,
+    isLoading,
+  } = useFetchPublicPoll({
+    enabled: !!pollSlug,
+    pollIdOrSlug: pollSlug,
+  })
+  console.log(poll)
   useEffect(() => {
-    trackPageView('/o/orga_slug/poll_slug/')
-  }, [])
+    if (poll?.simulations.hasParticipated) {
+      router.push('/fin')
+      return
+    }
+  }, [poll, router])
 
   const onSubmit = useCallback(
     ({ email }: Inputs) => {
@@ -71,21 +86,35 @@ export default function Email() {
         return
       }
 
-      if (poll?.simulations.hasParticipated) {
+      // If email is valid
+      updateEmail(email)
+
+      try {
+        saveSimulation({
+          simulation: currentSimulation,
+        })
+      } catch (e) {
         setError('email', {
-          message: t('Vous avez déjà participé à ce sondage.'),
-          type: 'manual',
+          type: 'validate',
+          message: t(
+            "Une erreur s'est produite au moment de sauvegarder vos données. Veuillez réessayer dans quelques instants."
+          ),
         })
         return
       }
 
-      // If email is valid
-      updateEmail(email)
-
       // Go to next page
       router.push(getLinkToNextInfosPage({ curPage: EMAIL_PAGE }))
     },
-    [poll, updateEmail, router, getLinkToNextInfosPage, setError, t]
+    [
+      updateEmail,
+      saveSimulation,
+      currentSimulation,
+      router,
+      getLinkToNextInfosPage,
+      setError,
+      t,
+    ]
   )
   return (
     <form>
@@ -136,7 +165,9 @@ export default function Email() {
               pattern: {
                 value:
                   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                message: t('Veuillez entrer une adresse email valide'),
+                message: t(
+                  'Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est : nom@exemple.org'
+                ),
               },
             })}
           />
