@@ -11,6 +11,7 @@ import { useState } from 'react'
 import AcceptedState from './AcceptedState'
 import DefautState from './DefautState'
 import RefusedState from './RefusedState'
+import ThanksState from './ThanksState'
 
 enum State {
   'default',
@@ -39,7 +40,7 @@ export default function CreateAccountBlock() {
   }
 
   return (
-    <Card className="mb-12 items-start border-none bg-[#F4F5FB] p-8">
+    <Card className="items-start border-none bg-[#F4F5FB] p-8 lg:my-12">
       {state === State.default && (
         <DefautState onAccept={onAccept} onRefuse={onRefuse} />
       )}
@@ -47,6 +48,8 @@ export default function CreateAccountBlock() {
       {state === State.accepted && <AcceptedState />}
 
       {state === State.refused && <RefusedState onAfterSend={onAfterSend} />}
+
+      {state === State.thanks && <ThanksState />}
     </Card>
   )
 }
