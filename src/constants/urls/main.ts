@@ -1,3 +1,5 @@
+import { SIMULATOR_PATH } from './paths'
+
 const secure = process.env.NODE_ENV === 'development' ? '' : 's'
 const protocol = `http${secure}://`
 
@@ -16,8 +18,6 @@ export const NORTHSTAR_RATING_URL = SERVER_URL + '/northstar-ratings/v1'
 
 export const ORGANISATION_URL = SERVER_URL + '/organisations/v1'
 
-export const QUIZZ_ANSWER_URL = SERVER_URL + '/quizz-answers/v1'
-
 export const SIMULATION_URL = SERVER_URL + '/simulations/v1'
 
 export const VERIFICATION_CODE_URL = SERVER_URL + '/verification-codes/v1'
@@ -32,7 +32,7 @@ export const getPreviewUrl = (PRNumber: string | number) => {
 
 export const HIDE_CTA_PATHS = [
   '/fin',
-  '/simulateur/bilan',
+  SIMULATOR_PATH,
   '/tutoriel',
   '/infos',
   '/organisations/infos',

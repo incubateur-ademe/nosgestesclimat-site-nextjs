@@ -1,6 +1,7 @@
 import type { ImageType, PopulatedArticleType } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
-import i18nConfig from '@/i18nConfig'
+import { getLocaleWithoutEs } from '@/helpers/language/getLocaleWithoutEs'
+import { type Locale } from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 
 export async function fetchArticlePageMetadata({
@@ -8,7 +9,7 @@ export async function fetchArticlePageMetadata({
   locale,
 }: {
   articleSlug: string
-  locale: string
+  locale: Locale
 }): Promise<
   | {
       metaTitle: string
@@ -19,7 +20,7 @@ export async function fetchArticlePageMetadata({
 > {
   try {
     const articleSearchParams = new URLSearchParams({
-      locale: locale ?? i18nConfig.defaultLocale,
+      locale: getLocaleWithoutEs(locale),
       'populate[0]': 'image',
       'populate[1]': 'pageMetadata',
       'filters[slug][$eq]': articleSlug,

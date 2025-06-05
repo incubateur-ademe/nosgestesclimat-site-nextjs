@@ -60,11 +60,11 @@ export default async function ViePriveePage({ params }: DefaultPageProps) {
         ]}
         thirdParties={[
           {
-            name: 'Vercel',
-            country: 'États-Unis',
-            hostingCountry: 'France (AWS cdg1)',
-            serviceType: 'Hébergement',
-            policyUrl: 'https://vercel.com/legal/privacy-policy',
+            name: 'Scalingo',
+            country: 'France',
+            hostingCountry: 'France',
+            serviceType: 'Hébergement site',
+            policyUrl: 'https://scalingo.com/legal-notice',
           },
           {
             name: 'Scalingo',

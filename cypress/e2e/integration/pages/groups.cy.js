@@ -6,7 +6,6 @@ import { fillGroupNameEmoji } from '../../../helpers/groups/fillGroupNameEmoji'
 import { click } from '../../../helpers/interactions/click'
 import { type } from '../../../helpers/interactions/type'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
-import { skipRiddle } from '../../../helpers/simulation/skipRiddle'
 
 describe('Group userflow', () => {
   let ownerUserId = ''
@@ -40,8 +39,6 @@ describe('Group userflow', () => {
         clickSkipTutorialButton()
 
         recursivelyFillSimulation(null, 'group')
-
-        skipRiddle()
 
         cy.get('[data-cypress-id="group-name"]')
 
@@ -100,8 +97,6 @@ describe('Group userflow', () => {
         recursivelyFillSimulation(null, 'group')
 
         cy.wait(2000)
-
-        skipRiddle()
 
         cy.get('[data-cypress-id="group-name"]')
 
