@@ -42,8 +42,8 @@ export default function RefusedState({
     setHasSubmitError(null)
 
     const data = {
-      date: dayjs().format('YYYY-MM-DD'),
-      time: dayjs().format('HH:mm'),
+      date: `'${dayjs().format('YYYY-MM-DD')}`,
+      time: `'${dayjs().format('HH:mm')}`,
       reasons: Object.entries(values)
         .reduce((resultArray, [currentKey, currentValue]) => {
           if (currentValue) {

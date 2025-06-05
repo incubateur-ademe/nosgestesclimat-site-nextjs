@@ -5,7 +5,6 @@ import {
   trackingUserAccountFakeDoorRefuse,
 } from '@/constants/tracking/misc'
 import Card from '@/design-system/layout/Card'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useState } from 'react'
 import AcceptedState from './AcceptedState'
@@ -22,8 +21,6 @@ enum State {
 
 export default function CreateAccountBlock() {
   const [state, setState] = useState(State.default)
-
-  const { t } = useClientTranslation()
 
   const onAccept = () => {
     trackEvent(trackingUserAccountFakeDoorAccept)
