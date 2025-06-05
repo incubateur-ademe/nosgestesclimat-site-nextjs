@@ -5,11 +5,12 @@ import DownArrow from '@/components/icons/DownArrow'
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
+import Loader from '@/design-system/layout/Loader'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { sendDataToGoogleSheet } from '@/services/webhooks/google-sheet'
 import dayjs from 'dayjs'
-import { type ReactNode, useEffect, useState } from 'react'
+import { type ReactNode, useEffect, useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 
 enum Inputs {
@@ -27,40 +28,45 @@ export default function RefusedState({
   onAfterSend: () => void
 }) {
   const { t } = useClientTranslation()
+
+  const [isPending, startTransition] = useTransition()
+
   const [error, setError] = useState<string | null>(null)
   const [hasSubmitError, setHasSubmitError] = useState<ReactNode | null>(null)
 
   const { register, handleSubmit, watch } = useForm<InputValues>()
 
-  const onSubmit = async (values: InputValues) => {
-    if (!Object.values(values).some((value) => !!value)) {
-      setError(t('Veuillez sélectionner au moins une option'))
-      return
-    }
+  const onSubmit = (values: InputValues) => {
+    startTransition(async () => {
+      if (!Object.values(values).some((value) => !!value)) {
+        setError(t('Veuillez sélectionner au moins une option'))
+        return
+      }
 
-    setError(null)
-    setHasSubmitError(null)
+      setError(null)
+      setHasSubmitError(null)
 
-    const data = {
-      date: `'${dayjs().format('YYYY-MM-DD')}`,
-      time: `'${dayjs().format('HH:mm')}`,
-      reasons: Object.entries(values)
-        .reduce((resultArray, [currentKey, currentValue]) => {
-          if (currentValue) {
-            resultArray.push(currentKey)
-          }
+      const data = {
+        date: `'${dayjs().format('YYYY-MM-DD')}`,
+        time: `'${dayjs().format('HH:mm')}`,
+        reasons: Object.entries(values)
+          .reduce((resultArray, [currentKey, currentValue]) => {
+            if (currentValue) {
+              resultArray.push(currentKey)
+            }
 
-          return resultArray
-        }, [] as string[])
-        .join(', '),
-    }
+            return resultArray
+          }, [] as string[])
+          .join(', '),
+      }
 
-    try {
-      await sendDataToGoogleSheet(data)
-      onAfterSend()
-    } catch (e) {
-      setHasSubmitError(true)
-    }
+      try {
+        await sendDataToGoogleSheet(data)
+        onAfterSend()
+      } catch (e) {
+        setHasSubmitError(true)
+      }
+    })
   }
 
   const dataPrivacy = watch(Inputs.data_privacy)
@@ -142,8 +148,16 @@ export default function RefusedState({
         )}
 
         <div>
-          <Button data-testid="send-button">
-            <DownArrow aria-hidden="true" className="mr-2 w-6 -rotate-90" />
+          <Button
+            disabled={isPending}
+            data-testid="send-button"
+            className="min-w-[154px]">
+            {isPending ? (
+              <Loader size="sm" />
+            ) : (
+              <DownArrow aria-hidden="true" className="mr-2 w-6 -rotate-90" />
+            )}
+
             <Trans>Envoyer</Trans>
           </Button>
         </div>
