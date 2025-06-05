@@ -6,41 +6,44 @@ if (!script) {
   console.error('Iframe Nos Gestes Climat: No target element found')
 }
 
-const integratorUrl = encodeURIComponent(window.location.href.toString())
+// Avoid unwanted reloading loop
+const currentParams = new URLSearchParams(window.location.search)
+if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
+  const integratorUrl = window.location.href.toString()
 
-const srcURL = new URL(script.src)
-const hostname = srcURL.origin || 'nosgestesclimat.fr'
+  const srcURL = new URL(script.src)
+  const hostname = srcURL.origin || 'nosgestesclimat.fr'
 
-const possibleOptions = [
-  { key: 'shareData', legacy: 'partagedatafinsimulation' },
-]
+  const possibleOptions = [
+    { key: 'shareData', legacy: 'partagedatafinsimulation' },
+  ]
 
-const url = new URL(hostname)
+  const url = new URL(hostname)
 
-url.searchParams.append('iframe', 'true')
-url.searchParams.append('integratorUrl', integratorUrl)
+  url.searchParams.append('iframe', 'true')
+  url.searchParams.append('integratorUrl', integratorUrl)
 
-possibleOptions.forEach(({ key, legacy }) => {
-  const value = script.dataset[key] || script.dataset[legacy]
+  possibleOptions.forEach(({ key, legacy }) => {
+    const value = script.dataset[key] || script.dataset[legacy]
 
-  url.searchParams.append(key, value)
-})
+    url.searchParams.append(key, value)
+  })
 
-const iframe = document.createElement('iframe')
+  const iframe = document.createElement('iframe')
 
-const iframeAttributes = {
-  src: url.toString(),
-  allowfullscreen: true,
-  webkitallowfullscreen: true,
-  mozallowfullscreen: true,
-  allow: 'fullscreen',
-  id: 'iframeNGC',
-}
+  const iframeAttributes = {
+    src: url.toString(),
+    allowfullscreen: true,
+    webkitallowfullscreen: true,
+    mozallowfullscreen: true,
+    allow: 'fullscreen',
+    id: 'iframeNGC',
+  }
 
-const color = '#32337b'
-document.head.insertAdjacentHTML(
-  'beforeend',
-  `<style>
+  const color = '#32337b'
+  document.head.insertAdjacentHTML(
+    'beforeend',
+    `<style>
     #iframeNGC {
       border: none;
       border-radius: 1rem;
@@ -67,33 +70,33 @@ document.head.insertAdjacentHTML(
       background: white;
     }
     </style>`
-)
+  )
 
-for (var key in iframeAttributes) {
-  iframe.setAttribute(key, iframeAttributes[key])
-}
+  for (var key in iframeAttributes) {
+    iframe.setAttribute(key, iframeAttributes[key])
+  }
 
-const link = document.createElement('div')
+  const link = document.createElement('div')
 
-link.innerHTML = `
+  link.innerHTML = `
   <a href="https://nosgestesclimat.fr" target="_blank">Calculer mon empreinte carbone et eau ⬇️</a>
 `
 
-link.style.cssText = `
+  link.style.cssText = `
   margin: 1rem auto .6rem;
   text-align: center;
 `
 
-const fullscreenButton = document.createElement('button')
+  const fullscreenButton = document.createElement('button')
 
-fullscreenButton.innerHTML = `
+  fullscreenButton.innerHTML = `
   <div style="display: flex; gap: 4px; margin: 0 auto;">
     <img width="14px" height="14px" src="https://nosgestesclimat.fr/images/fullscreen.svg" style="filter: invert(1); vertical-align: middle; cursor: pointer"/>
     Passer en mode plein écran
   </div>
 `
 
-fullscreenButton.style.cssText = `
+  fullscreenButton.style.cssText = `
   cursor:pointer;
   display: block;
   margin: 0 auto;
@@ -105,13 +108,14 @@ fullscreenButton.style.cssText = `
   color: white;
 `
 
-fullscreenButton.addEventListener('click', () => {
-  iframe.requestFullscreen()
-})
+  fullscreenButton.addEventListener('click', () => {
+    iframe.requestFullscreen()
+  })
 
-script.parentNode.insertBefore(link, script)
+  script.parentNode.insertBefore(link, script)
 
-script.parentNode.insertBefore(fullscreenButton, script)
-// TODO : works, but we need to let the user come back !
+  script.parentNode.insertBefore(fullscreenButton, script)
+  // TODO : works, but we need to let the user come back !
 
-script.parentNode.insertBefore(iframe, script)
+  script.parentNode.insertBefore(iframe, script)
+}
