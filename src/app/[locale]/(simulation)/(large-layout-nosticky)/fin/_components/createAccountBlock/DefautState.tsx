@@ -50,15 +50,15 @@ export default function DefautState({
         </li>
       </ul>
 
-      <Button onClick={onAccept} className="mb-2">
+      <Button onClick={onAccept} className="mb-4">
         <DownArrow aria-hidden="true" className="mr-2 w-6 -rotate-90" />
         <Trans>Je crée mon compte</Trans>
       </Button>
 
       <Button
         onClick={onRefuse}
-        color="text"
-        className="px-0! text-xs! underline!">
+        color="link"
+        className="p-0! text-xs! underline!">
         <Trans>Je ne préfère pas créer de compte</Trans>
       </Button>
     </>

@@ -1,13 +1,15 @@
 'use client'
 
+import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import DownArrow from '@/components/icons/DownArrow'
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { sendDataToGoogleSheet } from '@/services/webhooks/google-sheet'
 import dayjs from 'dayjs'
-import { useEffect, useState } from 'react'
+import { type ReactNode, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 enum Inputs {
@@ -26,16 +28,19 @@ export default function RefusedState({
 }) {
   const { t } = useClientTranslation()
   const [error, setError] = useState<string | null>(null)
+  const [hasSubmitError, setHasSubmitError] = useState<ReactNode | null>(null)
 
   const { register, handleSubmit, watch } = useForm<InputValues>()
 
-  const onSubmit = (values: InputValues) => {
+  const onSubmit = async (values: InputValues) => {
     if (!Object.values(values).some((value) => !!value)) {
       setError(t('Veuillez sélectionner au moins une option'))
       return
     }
 
     setError(null)
+    setHasSubmitError(null)
+
     const data = {
       date: dayjs().format('YYYY-MM-DD'),
       time: dayjs().format('HH:mm'),
@@ -50,9 +55,12 @@ export default function RefusedState({
         .join(', '),
     }
 
-    console.log(data)
-
-    onAfterSend()
+    try {
+      await sendDataToGoogleSheet(data)
+      onAfterSend()
+    } catch (e) {
+      setHasSubmitError(true)
+    }
   }
 
   const dataPrivacy = watch(Inputs.data_privacy)
@@ -124,10 +132,14 @@ export default function RefusedState({
         <li className="mb-4 text-sm font-bold text-red-800">{error}</li>
       )}
 
-      <Button className="">
-        <DownArrow aria-hidden="true" className="mr-2 w-6 -rotate-90" />
-        <Trans>Envoyer</Trans>
-      </Button>
+      {hasSubmitError && <DefaultSubmitErrorMessage className="mb-4 text-sm" />}
+
+      <div>
+        <Button>
+          <DownArrow aria-hidden="true" className="mr-2 w-6 -rotate-90" />
+          <Trans>Envoyer</Trans>
+        </Button>
+      </div>
     </form>
   )
 }
