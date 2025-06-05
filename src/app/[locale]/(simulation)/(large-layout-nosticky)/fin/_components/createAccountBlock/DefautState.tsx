@@ -50,18 +50,22 @@ export default function DefautState({
         </li>
       </ul>
 
-      <Button onClick={onAccept} data-testid="accept-button" className="mb-4">
-        <DownArrow aria-hidden="true" className="mr-2 w-6 -rotate-90" />
-        <Trans>Je crée mon compte</Trans>
-      </Button>
+      <div>
+        <Button onClick={onAccept} data-testid="accept-button" className="mb-4">
+          <DownArrow aria-hidden="true" className="mr-2 w-6 -rotate-90" />
+          <Trans>Je crée mon compte</Trans>
+        </Button>
+      </div>
 
-      <Button
-        onClick={onRefuse}
-        color="link"
-        className="p-0! text-xs! underline!"
-        data-testid="refuse-button">
-        <Trans>Je ne préfère pas créer de compte</Trans>
-      </Button>
+      <div>
+        <Button
+          onClick={onRefuse}
+          color="link"
+          className="p-0! text-xs! underline!"
+          data-testid="refuse-button">
+          <Trans>Je ne préfère pas créer de compte</Trans>
+        </Button>
+      </div>
     </div>
   )
 }
