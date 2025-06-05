@@ -17,7 +17,7 @@ export default function DefautState({
   const { t } = useClientTranslation()
 
   return (
-    <>
+    <div data-testid="default-state">
       <Title
         tag="h2"
         className="text-lg font-bold"
@@ -50,7 +50,7 @@ export default function DefautState({
         </li>
       </ul>
 
-      <Button onClick={onAccept} className="mb-4">
+      <Button onClick={onAccept} data-testid="accept-button" className="mb-4">
         <DownArrow aria-hidden="true" className="mr-2 w-6 -rotate-90" />
         <Trans>Je crée mon compte</Trans>
       </Button>
@@ -58,9 +58,10 @@ export default function DefautState({
       <Button
         onClick={onRefuse}
         color="link"
-        className="p-0! text-xs! underline!">
+        className="p-0! text-xs! underline!"
+        data-testid="refuse-button">
         <Trans>Je ne préfère pas créer de compte</Trans>
       </Button>
-    </>
+    </div>
   )
 }

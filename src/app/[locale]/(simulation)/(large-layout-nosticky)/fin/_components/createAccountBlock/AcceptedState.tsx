@@ -7,7 +7,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 export default function AcceptedState() {
   const { t } = useClientTranslation()
   return (
-    <>
+    <div data-testid="accepted-state">
       <Title
         tag="h2"
         className="text-lg font-bold"
@@ -20,6 +20,6 @@ export default function AcceptedState() {
           ici.
         </Trans>
       </p>
-    </>
+    </div>
   )
 }

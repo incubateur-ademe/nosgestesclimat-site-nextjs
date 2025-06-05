@@ -78,68 +78,76 @@ export default function RefusedState({
   }, [dataPrivacy, onlyResult, notSureAboutGain, tooManyAccounts, error])
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Title
-        tag="h2"
-        className="text-lg font-bold"
-        title={t('Merci pour votre réponse. Dites-nous en plus !')}
-      />
+    <div data-testid="refused-state">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Title
+          tag="h2"
+          className="text-lg font-bold"
+          title={t('Merci pour votre réponse. Dites-nous en plus !')}
+        />
 
-      <p>
-        <Trans>
-          Pour nous aider à mieux cerner vos attentes, précisez pourquoi vous ne
-          souhaitez pas créer de compte :
-        </Trans>
-      </p>
+        <p>
+          <Trans>
+            Pour nous aider à mieux cerner vos attentes, précisez pourquoi vous
+            ne souhaitez pas créer de compte :
+          </Trans>
+        </p>
 
-      <ul className="mb-8 flex flex-col gap-2">
-        <li>
-          <CheckboxInputGroup
-            label={t(
-              'Je ne veux pas que mes données personnelles soient stockées ou utilisées'
-            )}
-            {...register(Inputs.data_privacy)}
-          />
-        </li>
-        <li>
-          <CheckboxInputGroup
-            label={t(
-              'Je veux juste voir mes résultats et ne pas perdre de temps avec un compte'
-            )}
-            className="text-sm"
-            {...register(Inputs.only_result)}
-          />
-        </li>
-        <li>
-          <CheckboxInputGroup
-            label={t(
-              "Je ne suis pas sûr que ça m'apporte vraiment quelque chose"
-            )}
-            {...register(Inputs.not_sure_about_gain)}
-          />
-        </li>
-        <li>
-          <CheckboxInputGroup
-            label={t(
-              "J'ai déjà trop de comptes partout, je ne veux pas un de plus"
-            )}
-            {...register(Inputs.too_many_accounts)}
-          />
-        </li>
-      </ul>
+        <ul className="mb-8 flex flex-col gap-2">
+          <li>
+            <CheckboxInputGroup
+              label={t(
+                'Je ne veux pas que mes données personnelles soient stockées ou utilisées'
+              )}
+              data-testid="data-privacy-checkbox"
+              {...register(Inputs.data_privacy)}
+            />
+          </li>
+          <li>
+            <CheckboxInputGroup
+              label={t(
+                'Je veux juste voir mes résultats et ne pas perdre de temps avec un compte'
+              )}
+              className="text-sm"
+              data-testid="only-result-checkbox"
+              {...register(Inputs.only_result)}
+            />
+          </li>
+          <li>
+            <CheckboxInputGroup
+              label={t(
+                "Je ne suis pas sûr que ça m'apporte vraiment quelque chose"
+              )}
+              data-testid="not-sure-checkbox"
+              {...register(Inputs.not_sure_about_gain)}
+            />
+          </li>
+          <li>
+            <CheckboxInputGroup
+              label={t(
+                "J'ai déjà trop de comptes partout, je ne veux pas un de plus"
+              )}
+              data-testid="too-many-accounts-checkbox"
+              {...register(Inputs.too_many_accounts)}
+            />
+          </li>
+        </ul>
 
-      {error && (
-        <li className="mb-4 text-sm font-bold text-red-800">{error}</li>
-      )}
+        {error && (
+          <li className="mb-4 text-sm font-bold text-red-800">{error}</li>
+        )}
 
-      {hasSubmitError && <DefaultSubmitErrorMessage className="mb-4 text-sm" />}
+        {hasSubmitError && (
+          <DefaultSubmitErrorMessage className="mb-4 text-sm" />
+        )}
 
-      <div>
-        <Button>
-          <DownArrow aria-hidden="true" className="mr-2 w-6 -rotate-90" />
-          <Trans>Envoyer</Trans>
-        </Button>
-      </div>
-    </form>
+        <div>
+          <Button data-testid="send-button">
+            <DownArrow aria-hidden="true" className="mr-2 w-6 -rotate-90" />
+            <Trans>Envoyer</Trans>
+          </Button>
+        </div>
+      </form>
+    </div>
   )
 }
