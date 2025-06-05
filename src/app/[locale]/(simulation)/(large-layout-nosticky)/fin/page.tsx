@@ -126,7 +126,7 @@ export default function FinPage() {
         </div>
 
         <div className="block lg:hidden">
-          <CreateAccountBlock />
+          <CreateAccountBlock id="create-account-container-mobile" />
         </div>
 
         <div className="short:gap-2 top-40 flex w-full flex-col gap-4 self-start md:mb-8 lg:sticky lg:z-30 lg:w-[22rem]">

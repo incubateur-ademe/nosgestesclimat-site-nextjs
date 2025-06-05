@@ -6,7 +6,7 @@ import {
 } from '@/constants/tracking/misc'
 import Card from '@/design-system/layout/Card'
 import { trackEvent } from '@/utils/analytics/trackEvent'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import AcceptedState from './AcceptedState'
 import DefautState from './DefautState'
 import RefusedState from './RefusedState'
@@ -19,9 +19,7 @@ enum State {
   'thanks',
 }
 
-const CONTAINER_ID = 'create-account-container'
-
-export default function CreateAccountBlock() {
+export default function CreateAccountBlock({ id }: { id?: string }) {
   const [state, setState] = useState(State.default)
 
   const onAccept = () => {
@@ -36,20 +34,25 @@ export default function CreateAccountBlock() {
 
   const onAfterSend = () => {
     setState(State.thanks)
-
-    if (typeof document !== 'undefined') {
-      const el = document.getElementById(CONTAINER_ID)
-      if (el) {
-        el.scrollIntoView({ behavior: 'auto', block: 'end' })
-        setTimeout(() => window.scrollBy(0, -200))
-      }
-    }
   }
 
+  useEffect(() => {
+    if (state !== State.thanks) return
+
+    if (typeof document !== 'undefined' && id) {
+      const container = document.getElementById(id)
+
+      if (!container) return
+
+      if (window.innerWidth <= 787) {
+        container.scrollIntoView({ behavior: 'auto', block: 'start' })
+        window.scrollBy(0, -120)
+      }
+    }
+  }, [state, id])
+
   return (
-    <Card
-      className="items-start border-none bg-[#F4F5FB] p-8 lg:my-12"
-      id={CONTAINER_ID}>
+    <Card className="items-start border-none bg-[#F4F5FB] p-8 lg:my-12" id={id}>
       {state === State.default && (
         <DefautState onAccept={onAccept} onRefuse={onRefuse} />
       )}
