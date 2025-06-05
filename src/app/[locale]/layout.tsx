@@ -119,6 +119,7 @@ export default async function RootLayout({
               </Script>
             )
           }
+          <Script src="https://tally.so/widgets/embed.js"></Script>
         </head>
 
         <MainLayoutProviders>
