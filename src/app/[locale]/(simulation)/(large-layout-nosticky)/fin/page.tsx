@@ -26,6 +26,7 @@ import InformationBlock from './_components/InformationBlock'
 import PartnerRedirectionAlert from './_components/PartnerRedirectionAlert'
 import Poll from './_components/Poll'
 import ShareBlock from './_components/ShareBlock'
+import TallyForm from './_components/TallyForm'
 import FinPageSkeleton from './skeleton'
 
 const titles: Record<Metric, ReactElement> = {
@@ -51,6 +52,8 @@ export default function FinPage() {
   return (
     <div className="relative mt-12">
       {isIframe && isIframeShareData && <IframeDataShareModal />}
+
+      <TallyForm />
 
       <Poll />
 

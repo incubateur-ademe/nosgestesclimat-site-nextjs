@@ -51,6 +51,7 @@ const config: Config = {
   transformIgnorePatterns: [
     '/node_modules/(?!(next-i18n-router|yaml|@publicodes)/)',
   ],
+  setupFiles: ['dotenv/config'],
   setupFilesAfterEnv: ['./jest.setup.tsx'],
 }
 
