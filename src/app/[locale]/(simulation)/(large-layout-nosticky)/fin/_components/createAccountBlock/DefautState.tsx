@@ -46,7 +46,7 @@ export default function DefautState({
           <strong>
             <Trans>Bénéficier de conseils personnalisés</Trans>
           </strong>{' '}
-          <Trans>pour agit sur vos empreintes</Trans>
+          <Trans>pour agir sur vos empreintes</Trans>
         </li>
       </ul>
 

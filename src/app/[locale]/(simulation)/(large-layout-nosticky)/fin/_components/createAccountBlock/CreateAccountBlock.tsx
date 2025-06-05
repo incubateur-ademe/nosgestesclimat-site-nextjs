@@ -19,6 +19,8 @@ enum State {
   'thanks',
 }
 
+const CONTAINER_ID = 'create-account-container'
+
 export default function CreateAccountBlock() {
   const [state, setState] = useState(State.default)
 
@@ -34,10 +36,20 @@ export default function CreateAccountBlock() {
 
   const onAfterSend = () => {
     setState(State.thanks)
+
+    if (typeof document !== 'undefined') {
+      const el = document.getElementById(CONTAINER_ID)
+      if (el) {
+        el.scrollIntoView({ behavior: 'auto', block: 'end' })
+        setTimeout(() => window.scrollBy(0, -200))
+      }
+    }
   }
 
   return (
-    <Card className="items-start border-none bg-[#F4F5FB] p-8 lg:my-12">
+    <Card
+      className="items-start border-none bg-[#F4F5FB] p-8 lg:my-12"
+      id={CONTAINER_ID}>
       {state === State.default && (
         <DefautState onAccept={onAccept} onRefuse={onRefuse} />
       )}

@@ -1308,7 +1308,6 @@ entries:
   "Oups ! Une erreur s'est produite au moment de récupérer les informations de votre campagne. Vous pouvez la retrouver depuis ": 'Oops! There was an error retrieving your campaign information. You can retrieve it from '
   Je crée mon compte: I create my account
   Bénéficier de conseils personnalisés: Benefit from personalised advice
-  pour agit sur vos empreintes: to act on your prints
   Veuillez sélectionner au moins une option: Please select at least one option
   Je ne préfère pas créer de compte: I prefer not to create an account
   Merci de votre intérêt !: Thank you for your interest!
@@ -1323,3 +1322,4 @@ entries:
   Votre retour a été pris en compte, merci !: Your feedback has been taken into account, thank you!
   Je veux juste voir mes résultats et ne pas perdre de temps avec un compte: I just want to see my results and not waste time with an account
   Retrouver votre historique: Find your history
+  pour agir sur vos empreintes: to act on your footprints
