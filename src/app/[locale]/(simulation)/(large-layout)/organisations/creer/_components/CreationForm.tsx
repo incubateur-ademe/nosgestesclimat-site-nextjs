@@ -82,12 +82,14 @@ export default function CreationForm() {
         slug: organisationUpdated?.slug,
       })
 
+      userOrgaSlugRef.current = organisationUpdated?.slug || ''
+
       if (shouldNavigateToPollForm) {
-        setPathToNavigate(
+        router.push(
           `/organisations/${organisationUpdated?.slug}/creer-campagne`
         )
       } else {
-        setPathToNavigate(`/organisations/${organisationUpdated?.slug}`)
+        router.push(`/organisations/${organisationUpdated?.slug}`)
       }
     } catch (error: any) {
       captureException(error)
@@ -101,20 +103,8 @@ export default function CreationForm() {
     if (user?.organisation?.slug) {
       router.push(`/organisations/${user?.organisation?.slug}`)
     }
-  }, [router, user?.organisation?.slug])
-
-  // Handle redirection after submitting the form
-  useEffect(() => {
-    if (!pathToNavigateTo) return
-
-    if (
-      (userOrgaSlugRef.current || user?.organisation?.slug) &&
-      userOrgaSlugRef.current === user?.organisation?.slug
-    )
-      return
-
-    router.push(pathToNavigateTo)
-  }, [router, pathToNavigateTo, user?.organisation?.slug])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mb-12">
