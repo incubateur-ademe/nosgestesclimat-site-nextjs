@@ -5,8 +5,15 @@ import { useUser } from '@/publicodes-state'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 
-export function useDeleteGroup() {
+type Props = {
+  shouldInvalidateQueries?: boolean
+}
+
+export function useDeleteGroup(props?: Props) {
+  const { shouldInvalidateQueries = true } = props || {}
+
   const queryClient = useQueryClient()
+
   const { updateCurrentSimulation } = useUser()
 
   return useMutation({
@@ -14,7 +21,9 @@ export function useDeleteGroup() {
       axios.delete<void>(`${GROUP_URL}/${userId}/${groupId}`),
     onSuccess: (_, variables) => {
       updateCurrentSimulation({ groupToDelete: variables.groupId })
-      queryClient.invalidateQueries({ queryKey: ['groups'] })
+      if (shouldInvalidateQueries) {
+        queryClient.invalidateQueries({ queryKey: ['groups'] })
+      }
     },
   })
 }
