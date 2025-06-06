@@ -1,6 +1,8 @@
 'use client'
 
 import { PreventNavigationContext } from '@/app/[locale]/_components/mainLayoutProviders/PreventNavigationProvider'
+import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
+import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
 import { endClickPoll } from '@/constants/tracking/pages/end'
 import Confirmation from '@/design-system/alerts/Confirmation'
@@ -17,7 +19,11 @@ export default function Poll() {
 
   const lastPollSlug = polls?.[polls?.length - 1]
 
-  const { data: poll, isLoading } = useFetchPublicPoll({
+  const {
+    data: poll,
+    isLoading,
+    isError,
+  } = useFetchPublicPoll({
     pollIdOrSlug: lastPollSlug,
   })
 
@@ -38,6 +44,20 @@ export default function Poll() {
   // If the poll is not loading and there is still no poll, we don't display the block
   if (!isLoading && !poll) {
     return null
+  }
+
+  if (isError) {
+    return (
+      <DefaultErrorAlert>
+        <Trans>
+          Oups ! Une erreur s'est produite au moment de récupérer les
+          informations de votre campagne. Vous pouvez la retrouver depuis{' '}
+        </Trans>
+        <Link href="/classements">
+          <Trans>la page classement</Trans>
+        </Link>
+      </DefaultErrorAlert>
+    )
   }
 
   return (

@@ -32,6 +32,29 @@ export default function IframeDataShareModal() {
   //To delay the dialog show in to let the animation play
   const timeoutRef = useRef<NodeJS.Timeout>(undefined)
 
+  const resetOverflow = () => (document.body.style.overflow = 'auto')
+
+  const onReject = () => {
+    window.parent.postMessage(
+      {
+        messageType: 'ngc-iframe-share',
+        error: 'The user refused to share his result.',
+      },
+      '*'
+    )
+    setIsOpen(false)
+
+    resetOverflow()
+  }
+
+  const onAccept = () => {
+    window.parent.postMessage({ messageType: 'ngc-iframe-share', data }, '*')
+
+    setIsOpen(false)
+
+    resetOverflow()
+  }
+
   useEffect(() => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
     timeoutRef.current = setTimeout(() => {
@@ -45,47 +68,11 @@ export default function IframeDataShareModal() {
     }
   }, [])
 
-  const resetScrolling = () => (document.body.style.overflow = 'auto')
-
-  const onReject = () => {
-    window.parent.postMessage(
-      {
-        messageType: 'ngc-iframe-share',
-        error: 'The user refused to share his result.',
-      },
-      '*'
-    )
-    setIsOpen(false)
-
-    resetScrolling()
-  }
-
-  const onAccept = () => {
-    window.parent.postMessage({ messageType: 'ngc-iframe-share', data }, '*')
-
-    setIsOpen(false)
-
-    resetScrolling()
-  }
-
-  useEffect(() => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current)
-    timeoutRef.current = setTimeout(() => {
-      timeoutRef.current = undefined
-
-      setIsOpen(true)
-    }, shareDataPopupTimeout)
-
-    return () => {
-      resetScrolling()
-    }
-  }, [])
-
   useEffect(() => {
     document.body.style.overflow = 'hidden'
 
     return () => {
-      resetScrolling()
+      resetOverflow()
     }
   }, [])
 

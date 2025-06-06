@@ -1,5 +1,6 @@
 'use client'
 
+import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
 import { linkToGroupCreation } from '@/constants/group'
 import { ADMINISTRATOR_SEPARATOR } from '@/constants/organisations/administrator'
@@ -19,7 +20,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
 type Inputs = {
@@ -33,8 +34,6 @@ type Inputs = {
 }
 
 export default function CreationForm() {
-  const [pathToNavigateTo, setPathToNavigate] = useState('')
-
   const { user, updateUserOrganisation } = useUser()
 
   const { handleUpdateShouldPreventNavigation } = usePreventNavigation()
@@ -82,38 +81,24 @@ export default function CreationForm() {
       })
 
       if (shouldNavigateToPollForm) {
-        setPathToNavigate(
+        router.push(
           `/organisations/${organisationUpdated?.slug}/creer-campagne`
         )
       } else {
-        setPathToNavigate(`/organisations/${organisationUpdated?.slug}`)
+        router.push(`/organisations/${organisationUpdated?.slug}`)
       }
     } catch (error: any) {
       captureException(error)
     }
   }
 
-  const userOrgaSlugRef = useRef('')
-
   // Redirect to organisation page if user has already an organisation
   useEffect(() => {
     if (user?.organisation?.slug) {
       router.push(`/organisations/${user?.organisation?.slug}`)
     }
-  }, [router, user?.organisation?.slug])
-
-  // Handle redirection after submitting the form
-  useEffect(() => {
-    if (!pathToNavigateTo) return
-
-    if (
-      (userOrgaSlugRef.current || user?.organisation?.slug) &&
-      userOrgaSlugRef.current === user?.organisation?.slug
-    )
-      return
-
-    router.push(pathToNavigateTo)
-  }, [router, pathToNavigateTo, user?.organisation?.slug])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mb-12">
@@ -208,12 +193,6 @@ export default function CreationForm() {
         />
       </div>
 
-      {isErrorUpdateOrga && (
-        <div className="mt-4 rounded-xl bg-red-100 p-4 text-red-800">
-          <Trans>Une erreur est survenue, veuillez réessayer.</Trans>
-        </div>
-      )}
-
       <div className="mt-4 w-full md:w-1/2">
         <CheckboxInputGroup
           size="xl"
@@ -231,6 +210,8 @@ export default function CreationForm() {
           {...register('hasOptedInForCommunications')}
         />
       </div>
+
+      {isErrorUpdateOrga && <DefaultSubmitErrorMessage className="mt-4" />}
 
       <div className="mt-12 flex w-full gap-4">
         <Button

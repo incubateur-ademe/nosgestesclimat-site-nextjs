@@ -50,7 +50,7 @@ async function healthcheck() {
 
         try {
           // Attendre que l'iframe soit chargée
-          await page.waitForSelector(`#${iframeId}`, { timeout: 5000 })
+          await page.waitForSelector(`#${iframeId}`, { timeout: 15000 })
 
           // Utiliser frameLocator pour accéder à l'iframe
           const frame = page.frameLocator(`#${iframeId}`)

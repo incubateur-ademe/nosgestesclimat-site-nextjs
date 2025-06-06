@@ -5,7 +5,6 @@ import {
 import { clickSkipTutorialButton } from '../../../helpers/elements/buttons'
 import { visit } from '../../../helpers/interactions/visit'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
-import { skipRiddle } from '../../../helpers/simulation/skipRiddle'
 
 describe('The End page', () => {
   describe('Given an NGC user', () => {
@@ -31,8 +30,6 @@ describe('The End page', () => {
       clickSkipTutorialButton()
 
       recursivelyFillSimulation()
-
-      skipRiddle()
 
       // checkA11y() // TODO: fix A11Y test breaking only when running on CI
     })

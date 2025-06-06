@@ -195,7 +195,6 @@ entries:
   Le chargement prend parfois plusieurs minutes, visualiser ce dashboard demande un peu de patience ! 🕙: A veces tarda varios minutos en cargarse, ¡así que ver este tablero requiere un poco de paciencia! 🕙
   Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.: Averigua cómo puedes actuar por el clima hoy mismo, o haz la prueba para obtener recomendaciones personalizadas.
   Oups, nous n'avons pas d'article correspondant: Oops, no tenemos un artículo correspondiente
-  Oups, une erreur s'est produite au moment de récupérer les données du groupe.: Oops, hubo un error al recuperar los datos del grupo.
   Il sera visible uniquement par les participants du groupe: Sólo será visible para los participantes en el grupo
   model.questions: Consulte <2>la lista de preguntas disponibles en la plantilla</2>.
   model.questions.lock: Découvrez <2>la liste des questions disponibles dans le modèle</2>.
@@ -257,7 +256,6 @@ entries:
   publicodes.northstar.learned: ¿Le ha ayudado "Nos Gestes Climat" a aprender algo?
   publicodes.northstar.learned.lock: Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque chose ?
   'Total par an :': 'Total anual :'
-  revenir à l'accueil: volver a la página de inicio
   Logo de l'Association pour la transition Bas Carbone: Logotipo de la Low Carbon Transition Association
   'Vous faites cette simulation depuis :': 'Puede ejecutar esta simulación desde :'
   'Revenir à ma région par défaut ': 'Volver a mi región por defecto '
@@ -323,7 +321,6 @@ entries:
   Demander une démo: Solicitar una demostración
   Bienvenue sur votre espace !: ¡Bienvenido a tu espacio!
   Accédez à votre espace organisation: Acceda al área de su organización
-  L’adresse e-mail est invalide: La dirección de correo electrónico no es válida
   Votre prénom: Su nombre
   "Sur l'espace organisation de ": 'En el '
   2 petites minutes: 2 minutos
@@ -363,7 +360,6 @@ entries:
   Tranche d'âge: Edades
   Empreinte carbone: Huella de carbono
   Vous avez une question ?: ¿Tiene alguna pregunta?
-  Vous devez renseigner votre adresse e-mail: Debe introducir su dirección de correo electrónico
   Kit de diffusion: Kit de difusión
   Paramètres: Parámetros
   Organisations: Organizaciones
@@ -378,22 +374,16 @@ entries:
   Animez un atelier: Organizar un taller
   Calculez votre empreinte en: Calcule su huella mediante
   La valeur minimum pour ce champ est de: El valor mínimo de este campo es
-  Découvrez vos résultats détaillés: Descubra sus resultados detallados
-  Bien vu !: ¡Buena observación!
-  Avec: Con
   Administrateur·ice: Administrador
   Par catégorie: Por categoría
   Accéder au kit: Acceder al kit
   '{{value}} tonnes': '{{value}} toneladas'
   pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !: para crear una cuenta y podrá acceder gratuitamente a todos nuestros servicios
   '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{nombre del administrador del grupo} te ha invitado a unirte al grupo <3>{nombre del grupo}</3>'
-  D’après vous, quel est: ¿Qué opinas?
   Découvrez le calculateur, ouvrir dans un nouvel onglet: Descubrir el simulador, abrir en una nueva pestaña
   Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Descubrir los talleres ABC, abrir en una nueva pestaña
   'Moyenne :': 'Media :'
   Au total: En total
-  Effectivement, avec: De hecho, con
-  votre: su
   Mon organisation: Mi organización
   Votre résultat: Su resultado
   Votre code postal: Su código postal
@@ -401,26 +391,18 @@ entries:
   Revenir au formulaire de connexion: Volver al formulario de acceso
   Oups: Ups
   Votre date de naissance: Su fecha de nacimiento
-  Passer la question →: Saltar pregunta →
   Me connecter: Conéctame
-  Loupé !: ¡Fallaste!
-  Presque !: ¡Casi!
   Vous avez déjà commencé le test Nos Gestes Climat !: ¡Ya has empezado el test Nos Gestes Climat!
   Impact CO2: Impacto del CO2
-  revenir au test: volver a la prueba
   Télécharger le kit, ouvrir dans un nouvel onglet: Descargar el kit, abrir en una nueva pestaña
-  Une devinette pour finir !: Terminemos con una adivinanza
   Organisation: Organización
   Vous pouvez utiliser vos données existantes, ou recommencer le test.: Puede utilizar los datos existentes o iniciar de nuevo la prueba.
   C’est bien cette distance qui sera comptabilisée en fin de test.: Esta es la distancia que se contará al final de la prueba.
   Partagez le test pour obtenir vos premiers résultats.: Comparte la prueba para obtener tus primeros resultados.
   Moyenne du groupe par catégorie: Media del grupo por categoría
-  poste le plus important ?: ¿el puesto más importante?
   Veuillez entrer votre code postal: Introduzca su código postal
   Se déconnecter de votre espace organisation: Salir de su espacio de organización
-  est votre poste le plus important !: ¡es tu trabajo más importante!
   Valorisez vos données carbone: Añada valor a sus datos sobre el carbono
-  Voir mes résultats →: Ver mis resultados →
   Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.: ¿Estás seguro de que quieres abandonar esta página? Sus cambios se perderán.
   km par personne: km por persona
   Valider: Confirme
@@ -459,7 +441,6 @@ entries:
   Voir les résultats: Ver los resultados
   CGU - Nos Gestes Climat: CGU - Nos Gestes Climat
   par semaine, miam: por semana, yum
-  le poste: la posición
   Les nouveautés: ¿Qué hay de nuevo?
   Annuler: Cancelar
   Supprimer le groupe: Borrar grupo
@@ -548,7 +529,6 @@ entries:
   ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouveau navigateur.': se ha desconectado de su espacio de organización o está intentando acceder desde un nuevo navegador.
   Reprendre le test: Reanudar la prueba
   Utiliser mes données existantes: Utilizar mis datos actuales
-  Découvrez les résultats du groupe: Descubra los resultados del grupo
   Simulation terminée: Simulación completa
   Commencer le test: Prueba de inicio
   Diffusion: Difusión
@@ -622,7 +602,6 @@ entries:
   Ce champ est requis: Este campo es obligatorio
   Recevez nos <1>conseils transports</1> directement dans votre boite mail !: Reciba nuestros <1>consejos sobre transporte</1> directamente en su buzón
   Vous accompagner pour mieux agir en <2>4 mails seulement</2>.: Ayudarle a actuar mejor en <2>sólo 4 correos electrónicos</2>.
-  Une erreur est survenue, veuillez réessayer.: Se ha producido un error, inténtelo de nuevo.
   Chaque participation est représentée par une barre verticale. Votre score est affiché en <2>rose</2>.: Cada entrada está representada por una barra vertical. Su puntuación se muestra en <2>rosa</2>.
   Elle seront toutefois prises en compte lors de l'export de données.: No obstante, se tendrán en cuenta al exportar los datos.
   Pour faciliter la lecture, les valeurs supérieures à 100 t sont retirées.: Para facilitar la lectura, se eliminan los valores superiores a 100 t.
@@ -1138,7 +1117,6 @@ entries:
   Nombre de participants attendus: Número previsto de participantes
   Le nombre de participants doit être supérieur à 0: El número de participantes debe ser superior a 0
   Veuillez entrer un nombre positif: Introduzca un número positivo
-  Une erreur est survenue. Si le problème persiste, veuillez contacter notre support.: Se ha producido un error. Si el problema persiste, póngase en contacto con nuestro equipo de asistencia.
   Options: Opciones
   Impossible de copier le lien: No se puede copiar el enlace
   Infolettre saisonnière de Nos Gestes Climat: Boletín de temporada de Nos Gestes Climat
@@ -1185,7 +1163,6 @@ entries:
   Maïs: Maíz
   Raisin: Uva
   Poire: Pera
-  Aie, une erreur est survenue lors du chargement de la campagne. Si le problème persiste merci de nous envoyer un message via notre page de contact.: Oops, se ha producido un error al cargar la campaña. Si el problema persiste, envíanos un mensaje a través de nuestra página de contacto.
   Chargement des résultats détaillés de campagne...: Cargando resultados detallados de la campaña...
   Menu principal: Menú principal
   Menu déroulant: Menú desplegable
@@ -1235,7 +1212,6 @@ entries:
   'Empreinte carbone : comprendre, mesurer, réduire son impact - Nos Gestes Climat': 'Huella de carbono: conozca, mida y reduzca su impacto - Nos Gestes Climat'
   'Mes gestes : comment réduire mon empreinte climat - Nos Gestes Climat': 'Mis acciones: cómo reducir mi huella climática - Nos Gestes Climat'
   Liste des questions du calculateur - Nos Gestes Climat: Lista de preguntas de la calculadora - Nos Gestes Climat
-  Quiz - Nos Gestes Climat: Quiz - Nos Gestes Climat
   Votre email, rejoindre une campagne - Nos Gestes Climat: Tu correo electrónico, únete a una campaña - Nos Gestes Climat
   Le calculateur Nos Gestes Climat, pour les organisations: La calculadora de Nos Gestes Climat para organizaciones
   Votre date de naissance, rejoindre une campagne - Nos Gestes Climat: Tu fecha de nacimiento, únete a una campaña - Nos Gestes Climat
@@ -1265,7 +1241,6 @@ entries:
   'Oups, la copie du lien a échoué, le voici :': 'Oops, copiar el enlace falló, aquí está:'
   Nous chargeons les données de l'organisation partenaire.: Cargamos los datos de la organización asociada.
   Une erreur s'est produite au moment de récupérer les informations liées à l'organisation partenaire. Veuillez réessayer plus tard ou contacter notre support.: Se ha producido un error al recuperar la información relacionada con la organización asociada. Vuelva a intentarlo más tarde o póngase en contacto con nuestro equipo de asistencia.
-  Oups ! Une erreur s'est produite, veuillez réessayer dans quelques instants.: ¡Uy! Se ha producido un error. Por favor, inténtelo de nuevo en unos momentos.
   Les graphiques sont cachés pour les campagnes avec plus de 500 participations pour des raisons de performance. Nous travaillons à l'ajout de cette fonctionnalité pour les plus grosses campagnes.: Los gráficos están ocultos para las campañas con más de 500 entradas por razones de rendimiento. Estamos trabajando en añadir esta funcionalidad para campañas más grandes.
   Participation mise à jour: Participación actualizada
   Recommencer mon inscription: Repetir mi registro
@@ -1285,9 +1260,6 @@ entries:
   Vous pouvez mettre à jour le groupe avec votre simulation la plus récente réalisée en date du: Puede actualizar el grupo con su simulación más reciente realizada en
   Votre e-mail a été vérifié, vous êtes bien inscrit à notre infolettre.: Se ha comprobado su dirección de correo electrónico y se ha suscrito a nuestro boletín.
   Confirmation d'inscription à nos infolettres - Nos Gestes Climat: Confirmación de suscripción a nuestros boletines - Nos Gestes Climat
-  Vous débutez votre test avec un score de départ.: Comienzas tu prueba con una puntuación inicial.
-  Ce dernier est calculé à partir de réponses par défaut attribuées à l’avance à chaque question. Si vous passez une question, ces mêmes réponses seront prises en compte.: Se calcula a partir de las respuestas por defecto asignadas de antemano a cada pregunta. Si apruebas una pregunta, se tendrán en cuenta estas mismas respuestas.
-  Vous souhaitez recevoir nos derniers articles directement ?: ¿Desea recibir directamente nuestros últimos artículos?
   C'est chose faite !: Lo hemos conseguido
   seconde: segundo
   Aller sur le site partenaire maintenant: Ir al sitio asociado
@@ -1297,6 +1269,9 @@ entries:
   Oups ! Une erreur s'est produite au moment d'envoyer vos résultats à notre partenaire. Veuillez recommencer le parcours depuis l'interface du site partenaire.: ¡Uy! Se ha producido un error al enviar sus resultados a nuestro socio. Por favor, reinicie el curso desde la interfaz del sitio asociado.
   Merci d'avoir complété votre test.: Gracias por completar la prueba.
   'Nous vous redirigerons vers le site de notre partenaire dans :': 'Le redirigiremos al sitio de nuestro socio en :'
+  Vous débutez votre test avec un score de départ.: Comienzas tu prueba con una puntuación inicial.
+  Ce dernier est calculé à partir de réponses par défaut attribuées à l’avance à chaque question. Si vous passez une question, ces mêmes réponses seront prises en compte.: Se calcula a partir de las respuestas por defecto asignadas de antemano a cada pregunta. Si apruebas una pregunta, se tendrán en cuenta estas mismas respuestas.
+  Vous souhaitez recevoir nos derniers articles directement ?: ¿Desea recibir directamente nuestros últimos artículos?
   Partagez vos résultats avec notre partenaire - Nos Gestes Climat: Comparta sus resultados con nuestro socio - Nos Gestes Climat
   Notre partenaire: Nuestro socio
   vous a invité à lui transmettre vos empreintes carbone et eau.: le invita a presentar sus huellas de carbono y de agua.
@@ -1319,3 +1294,29 @@ entries:
   Votre participation au jeu concours est enregistrée.: Su participación en el concurso ha quedado registrada.
   Votre e-mail sera utilisé pour le tirage au sort.: Su dirección de correo electrónico se utilizará para el sorteo.
   Oups ! Une erreur s'est produite au moment de récupérer les informations de la campagne. Veuillez réessayer ultérieurement.: ¡Uy! Se ha producido un error al recuperar la información de la campaña. Vuelva a intentarlo más tarde.
+  nous contacter: contacto
+  L'adresse e-mail est invalide: La dirección de correo electrónico no es válida
+  la page classement: la página de clasificación
+  Votre campagne a été mise à jour.: Su campaña ha sido actualizada.
+  "Oups ! Une erreur s'est produite au moment de récupérer les informations de votre campagne. Vous pouvez la retrouver depuis ": '¡Uy! Se ha producido un error al recuperar la información de su campaña. Puede recuperarla desde '
+  Oups ! Une erreur s'est produite. Veuillez recharger la page. Si le problème persiste, vous pouvez: ¡Uy! Se ha producido un error. Vuelva a cargar la página. Si el problema persiste, puede
+  Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez: ¡Uy! Se ha producido un error. Vuelva a intentarlo más tarde. Si el problema persiste, puede
+  Retrouver votre historique: Encuentre su historia
+  de simulation à tout moment: simulación en cualquier momento
+  Veuillez sélectionner au moins une option: Seleccione al menos una opción
+  Merci de votre intérêt !: Gracias por su interés
+  Merci pour votre réponse. Dites-nous en plus !: Gracias por su respuesta. Cuéntenos más
+  Votre empreinte est un point de départ. Et si vous alliez plus loin ?: Tu huella es un punto de partida. Pero, ¿y si fueras más allá?
+  Je ne veux pas que mes données personnelles soient stockées ou utilisées: No quiero que se almacenen o utilicen mis datos personales
+  Je veux juste voir mes résultats et ne pas perdre de temps avec un compte: Sólo quiero ver mis resultados y no perder el tiempo con una cuenta
+  Je ne préfère pas créer de compte: Prefiero no crear una cuenta
+  Je crée mon compte: Creo mi cuenta
+  Votre retour a été pris en compte, merci !: Hemos tenido en cuenta sus comentarios, ¡gracias!
+  Je ne suis pas sûr que ça m'apporte vraiment quelque chose: No estoy seguro de si realmente estoy sacando algo de esto
+  La création de compte sera bientôt disponible, vous en serez informé ici.: La creación de cuentas estará disponible en breve, se le informará aquí.
+  Bénéficier de conseils personnalisés: Benefíciese de un asesoramiento personalizado
+  J'ai déjà trop de comptes partout, je ne veux pas un de plus: Ya tengo demasiadas cuentas en todas partes, no quiero una más
+  'Pour nous aider à mieux cerner vos attentes, précisez pourquoi vous ne souhaitez pas créer de compte :': 'Para ayudarnos a comprender mejor sus expectativas, especifique por qué no desea crear una cuenta:'
+  pour agir sur vos empreintes: actuar sobre tus huellas
+  Donner votre avis: Dar su opinión
+  Emoji main qui salue: Emoji mano saludando
