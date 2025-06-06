@@ -64,6 +64,7 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
         ? `max-height: ${script.dataset.maxHeight}px;`
         : ''
     }`,
+    title: 'Iframe Nos Gestes Climat',
   }
 
   for (var key in iframeAttributes) {

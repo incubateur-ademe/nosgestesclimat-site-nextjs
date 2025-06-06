@@ -38,6 +38,7 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
     mozallowfullscreen: true,
     allow: 'fullscreen',
     id: 'iframeNGC',
+    title: 'Iframe Nos Gestes Climat',
   }
 
   const color = '#32337b'
