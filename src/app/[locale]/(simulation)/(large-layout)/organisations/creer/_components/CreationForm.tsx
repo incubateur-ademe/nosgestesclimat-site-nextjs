@@ -20,7 +20,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
 type Inputs = {
@@ -34,8 +34,6 @@ type Inputs = {
 }
 
 export default function CreationForm() {
-  const [pathToNavigateTo, setPathToNavigate] = useState('')
-
   const { user, updateUserOrganisation } = useUser()
 
   const { handleUpdateShouldPreventNavigation } = usePreventNavigation()
@@ -82,8 +80,6 @@ export default function CreationForm() {
         slug: organisationUpdated?.slug,
       })
 
-      userOrgaSlugRef.current = organisationUpdated?.slug || ''
-
       if (shouldNavigateToPollForm) {
         router.push(
           `/organisations/${organisationUpdated?.slug}/creer-campagne`
@@ -95,8 +91,6 @@ export default function CreationForm() {
       captureException(error)
     }
   }
-
-  const userOrgaSlugRef = useRef('')
 
   // Redirect to organisation page if user has already an organisation
   useEffect(() => {
