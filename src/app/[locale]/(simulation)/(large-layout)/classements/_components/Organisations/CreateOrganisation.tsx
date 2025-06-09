@@ -4,23 +4,12 @@ import Baseline from '@/components/organisations/Baseline'
 import Trans from '@/components/translation/trans/TransClient'
 import { classementCreateOrganisation } from '@/constants/tracking/pages/classements'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
-import type { Organisation } from '@/types/organisations'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 
-type Props = {
-  organisations?: Organisation[]
-}
-
-export default function CreateOrganisation({
-  organisations: [organisation] = [],
-}: Props) {
-  if (organisation) {
-    return null
-  }
-
+export default function CreateOrganisation() {
   return (
     <>
-      <div className="max-w-3xl">
+      <div className="max-w-3xl" data-testid="create-organisation">
         <Baseline />
       </div>
 
