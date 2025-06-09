@@ -1,4 +1,5 @@
 import type { LocalStorage } from '@/publicodes-state/types'
+import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import { useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -8,11 +9,11 @@ type Props = {
 
 export default function useUpdateOldLocalStorage({ storageKey }: Props) {
   useEffect(() => {
-    const oldLocalStorage = localStorage.getItem(
+    const oldLocalStorage = safeLocalStorage.getItem(
       'ecolab-climat::persisted-simulation::v2'
     )
     const currentLocalStorage: LocalStorage = JSON.parse(
-      localStorage.getItem(storageKey) || '{}'
+      safeLocalStorage.getItem(storageKey) || '{}'
     )
     const objectOldLocalStorage = JSON.parse(oldLocalStorage || '{}')
 
@@ -26,7 +27,7 @@ export default function useUpdateOldLocalStorage({ storageKey }: Props) {
       !oldLocalStorage.includes('persona') &&
       isCurrentLocalStorageEmpty
     ) {
-      localStorage.setItem(
+      safeLocalStorage.setItem(
         storageKey,
         JSON.stringify({
           ...objectOldLocalStorage,
@@ -37,7 +38,7 @@ export default function useUpdateOldLocalStorage({ storageKey }: Props) {
         })
       )
 
-      localStorage.removeItem('ecolab-climat::persisted-simulation::v2')
+      safeLocalStorage.removeItem('ecolab-climat::persisted-simulation::v2')
     }
   }, [storageKey])
 }

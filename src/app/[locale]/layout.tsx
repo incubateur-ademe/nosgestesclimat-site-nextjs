@@ -71,7 +71,7 @@ export default async function RootLayout({
 
           <meta property="twitter:card" content="summary_large_image" />
 
-          <link rel="manifest" href="../manifest.webmanifest" />
+          <link rel="manifest" href="/manifest.webmanifest" />
 
           <meta name="theme-color" content="#4949ba" />
 
@@ -121,6 +121,7 @@ export default async function RootLayout({
               </Script>
             )
           }
+          <Script src="https://tally.so/widgets/embed.js"></Script>
         </head>
 
         <MainLayoutProviders>

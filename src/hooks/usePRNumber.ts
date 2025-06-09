@@ -1,12 +1,13 @@
 import { useIsClient } from '@/hooks/useIsClient'
+import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
 import { useSearchParams } from 'next/navigation'
 
 function getPRNumberFromStorage() {
-  return sessionStorage.getItem('PR') ?? ''
+  return safeSessionStorage.getItem('PR') ?? ''
 }
 
 function clearPRNumberFromStorage() {
-  sessionStorage.removeItem('PR')
+  safeSessionStorage.removeItem('PR')
 }
 
 export function usePRNumber(): {
@@ -36,7 +37,7 @@ export function usePRNumber(): {
   }
 
   if (PRNumberFromURL) {
-    sessionStorage.setItem('PR', PRNumberFromURL)
+    safeSessionStorage.setItem('PR', PRNumberFromURL)
   }
 
   return {

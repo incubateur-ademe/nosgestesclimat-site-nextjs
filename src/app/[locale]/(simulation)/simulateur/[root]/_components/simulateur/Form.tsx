@@ -5,9 +5,7 @@ import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import ContentLarge from '@/components/layout/ContentLarge'
 import questions from '@/components/specialQuestions'
-import { simulationSimulationCompleted } from '@/constants/tracking/simulation'
 import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
-import { uuidToNumber } from '@/helpers/uuidToNumber'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useTrackTimeOnSimulation } from '@/hooks/tracking/useTrackTimeOnSimulation'
 import { useDebug } from '@/hooks/useDebug'
@@ -18,7 +16,6 @@ import {
   useEngine,
   useFormState,
 } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useContext, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import FunFact from './form/FunFact'
@@ -56,21 +53,10 @@ export default function Form() {
   const [shouldGoToEndPage, setShouldGoToEndPage] = useState(false)
 
   useEffect(() => {
-    // We show the quiz for 10% of our users
-    const shouldShowQuiz = uuidToNumber(id ?? '') === 0
-
     if (shouldGoToEndPage && progression === 1) {
       trackTimeOnSimulation()
 
-      if (!shouldShowQuiz) {
-        trackEvent(
-          simulationSimulationCompleted({
-            bilan: getNumericValue('bilan'),
-          })
-        )
-      }
       goToEndPage({
-        shouldShowQuiz,
         allowedToGoToGroupDashboard: true,
       })
     }
@@ -130,7 +116,7 @@ export default function Form() {
       <ContentLarge className="px-4 pt-2">
         <ResultsBlocksMobile />
 
-        <div className="relative flex flex-1 flex-col gap-2 md:flex-row md:gap-8 lg:mt-0 lg:gap-24">
+        <div className="relative flex flex-1 flex-col gap-2 md:flex-row md:gap-8 lg:mt-0 lg:gap-12">
           <div className="relative flex flex-1 flex-col">
             <QuestionComponent
               question={currentQuestion}
@@ -139,8 +125,9 @@ export default function Form() {
               setTempValue={setTempValue}
             />
 
-            <div className={isIframe ? '' : 'hidden'}>
+            {isIframe && (
               <Navigation
+                key="iframe-navigation"
                 question={currentQuestion}
                 tempValue={tempValue}
                 onComplete={() => {
@@ -151,11 +138,11 @@ export default function Form() {
                   setShouldGoToEndPage(true)
                 }}
               />
-            </div>
+            )}
           </div>
 
           <div
-            className={`short:gap-2 flex flex-col gap-8 md:w-[20rem] md:self-start md:${getBgCategoryColor(currentCategory ?? 'transport', '500')}`}>
+            className={`short:gap-2 flex flex-col gap-8 md:w-60 md:self-start md:${getBgCategoryColor(currentCategory ?? 'transport', '500')}`}>
             <ResultsBlocksDesktop />
 
             <FunFact question={currentQuestion} />
@@ -171,8 +158,9 @@ export default function Form() {
         </div>
       </ContentLarge>
 
-      <div className={isIframe ? 'hidden' : ''}>
+      {!isIframe && (
         <Navigation
+          key="default-navigation"
           question={currentQuestion}
           tempValue={tempValue}
           onComplete={() => {
@@ -183,7 +171,7 @@ export default function Form() {
             setShouldGoToEndPage(true)
           }}
         />
-      </div>
+      )}
     </>
   )
 }

@@ -52,7 +52,7 @@ export default function CarboneTotalChart({
       {!shouldShowOnlyGauge && (
         <div
           className={twMerge(
-            'mb-4 pt-8 text-center font-medium whitespace-nowrap transition-transform duration-300 md:pt-12',
+            'pt-8 text-center font-medium whitespace-nowrap transition-transform duration-300 md:pt-12',
             isSmall ? 'md:scale-75 md:pt-6 lg:pt-0' : 'scale-100'
           )}
           style={{ color: cssColor }}>

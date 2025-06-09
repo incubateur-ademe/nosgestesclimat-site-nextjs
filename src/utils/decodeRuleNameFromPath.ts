@@ -1,6 +1,8 @@
-export function decodeRuleNameFromPath(path: string) {
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+
+export function decodeRuleNameFromPath(path: string): DottedName {
   return decodeURI(path)
     ?.replaceAll('/', ' . ')
-    .replaceAll('\u2011', '-') // replace with a insecable tiret to differenciate from space
     .replaceAll('-', ' ')
+    .replaceAll('\u2011', '-') as DottedName
 }

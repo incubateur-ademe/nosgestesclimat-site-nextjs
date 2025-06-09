@@ -66,3 +66,15 @@ export const trackingCategoryFilter = (category: DottedName, path: string) => [
   'Category filter',
   `Click Filter ${category}`,
 ]
+
+// User account fake door
+export const trackingUserAccountFakeDoorAccept = [
+  'trackEvent',
+  'Compte utilisateur',
+  'Click Je crée mon compte',
+]
+export const trackingUserAccountFakeDoorRefuse = [
+  'trackEvent',
+  'Compte utilisateur',
+  'Click Je ne préfère pas créer de compte',
+]
