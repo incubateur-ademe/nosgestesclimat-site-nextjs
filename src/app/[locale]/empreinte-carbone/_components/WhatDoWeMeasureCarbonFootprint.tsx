@@ -27,7 +27,7 @@ export default function WhatDoWeMeasureCarbon({ locale }: { locale: string }) {
               <Image
                 width={48}
                 height={48}
-                src="/images/icons/icone-velo.svg"
+                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_velo_79a1b493cb.svg"
                 alt=""
               />
             </div>
@@ -40,7 +40,7 @@ export default function WhatDoWeMeasureCarbon({ locale }: { locale: string }) {
               <Image
                 width={48}
                 height={48}
-                src="/images/icons/icone-viande.svg"
+                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_viande_65dd077a91.svg"
                 alt=""
               />
             </div>
@@ -53,7 +53,7 @@ export default function WhatDoWeMeasureCarbon({ locale }: { locale: string }) {
               <Image
                 width={48}
                 height={48}
-                src="/images/icons/icone-bois.svg"
+                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_bois_f585fa68a3.svg"
                 alt=""
               />
             </div>
@@ -67,7 +67,7 @@ export default function WhatDoWeMeasureCarbon({ locale }: { locale: string }) {
               <Image
                 width={48}
                 height={48}
-                src="/images/icons/icone-ordinateur.svg"
+                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_ordinateur_2f234e6e03.svg"
                 alt=""
               />
             </div>
