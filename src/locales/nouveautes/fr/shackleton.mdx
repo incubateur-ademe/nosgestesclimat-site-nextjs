@@ -1,0 +1,47 @@
+---
+title: Schakleton
+date: 2025-04-25T10:21:20Z
+image: https://upload.wikimedia.org/wikipedia/commons/6/6e/C84165s1_Ant.Map_Shackleton_Glacier.jpg
+---
+
+![Glacier Shackelton](https://upload.wikimedia.org/wikipedia/commons/6/6e/C84165s1_Ant.Map_Shackleton_Glacier.jpg)
+
+💧 Le glacier Shackleton, s'étendant sur près de 96 km à travers la chaîne de la Reine-Maud jusqu'à la barrière de Ross en Antarctique, porte le nom de l'explorateur Ernest Shackleton. Bien que moins médiatisé que d'autres glaciers, il incarne l'histoire des grandes expéditions polaires. Récemment, l'épave de l'Endurance, le navire de Shackleton, a été retrouvée dans un état remarquable !
+
+**En bref, sur ce mois d’avril :** 
+
+🎨 Nouvelle page pour les partenaires
+💅 Design & accessibilité améliorés (carrousel, clavier, titres des balises html, alertes, styles)
+⚙️ Tech : update NextJS, Tailwind, migration scalingo et bugs fix
+🚑 Corrections de perf et bugs lourds
+⬆️ Coté modèle : upgrade publicodes
+
+### **🎨 Refonte & contenus**
+
+- La page *Partenaires* a fait peau neuve et a été mise à jour
+    
+![Nouvelle page partenaire](https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/relays_2738d796fa.png)
+    
+
+- Traductions ajustées et coquilles corrigées
+- Ajout d’une bannière de com gérée via Strapi : ce petit outil fait maison nous permettra de vous prévenir des nouveautés ou informations importantes, comme la journée mondiale de l'eau par exemple !
+
+### **💅 Design & UX**
+
+Pour nous préparer au renouvellement de l'audit Accessibilité, nous avons fait plein d'optimisations :
+
+- Carrousel accessible au clavier sur la page d'accueil
+- Améliorations multiples pour l’accessibilité : navigation clavier, titres, labels ARIA (aperçu de l’outil Wave utilisé pour l’étape d’audit interne)
+
+![Améliorations d'accessibilité](https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/accessibility_6220b87f58.png)
+
+Et aussi :
+
+- Meilleur affichage des pages 404, fin de test, et autres petits détails qui font la différence
+- Le bouton de partage de résultat n'est plus seulement un lien copié et propose maintenant des passerelles vers tous vos réseaux sociaux préférés.
+- Nouveau composant Alert, avec son Storybook, pour vous permettre de mieux comprendre les différentes catégories de messages d'alerte en cas d'erreur sur le site.
+
+### **⚙️ Technique & infra**
+
+- Mise à jour de NextJS en 15.3.0 et de Tailwind à la version 4
+- Nettoyage des dépendances, suppression des paquets en conflit et divers bugs corrigés (hydration, nom des sondages, envoi d'emails en double)
