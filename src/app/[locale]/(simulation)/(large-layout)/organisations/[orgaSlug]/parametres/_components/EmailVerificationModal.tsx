@@ -51,8 +51,14 @@ export default function EmailVerificationModal({
           handleValidateVerificationCode={onSubmit}
         />
 
+        {isSuccess && (
+          <p className="mt-8 mb-0 text-green-700">
+            <Trans>Vos informations ont bien été mises à jour.</Trans>
+          </p>
+        )}
+
         {isErrorSendCode && (
-          <p className="mt-8 text-red-700">
+          <p className="mt-8 mb-0 text-red-700">
             <Trans>
               Oups ! Une erreur s'est produite au moment d'envoyer votre code de
               vérification par email. Vérifiez si votre nouvel e-mail est bien
