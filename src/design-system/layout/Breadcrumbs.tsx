@@ -31,9 +31,9 @@ export default function Breadcrumbs({
         aria-label={t('Chemin de navigation')}
         aria-labelledby="breadcrumbs-title"
         className="h-full w-full">
-        <h2 id="breadcrumbs-title" className="sr-only">
+        <p id="breadcrumbs-title" className="sr-only">
           <Trans>Chemin de navigation</Trans>
-        </h2>
+        </p>
         <ul className="mx-auto flex h-full w-full items-center gap-4 overflow-x-scroll sm:overflow-x-hidden">
           {items.map(({ href, label, isActive, isDisabled }, index) => (
             <Fragment key={`breadcrumb-item-${index}`}>
