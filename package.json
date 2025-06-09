@@ -41,7 +41,7 @@
     "storybook:build": "storybook build --output-dir .storybook-build && rm -rf public/storybook && mv .storybook-build public/storybook"
   },
   "dependencies": {
-    "@incubateur-ademe/legal-pages-react": "^0.3.0",
+    "@incubateur-ademe/legal-pages-react": "^0.4.1",
     "@incubateur-ademe/nosgestesclimat": "3.7.4",
     "@next/mdx": "^15.3.2",
     "@publicodes/react-ui": "^1.7.1",
