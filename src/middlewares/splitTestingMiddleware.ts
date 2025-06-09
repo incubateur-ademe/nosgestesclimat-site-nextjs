@@ -8,6 +8,11 @@ import userTriggeredFetchers from './excludedIPs/user-triggered-fetchers.json'
 const redirectUrl = `https://nosgestesclimat-site-preprod-pr${process.env.NEXT_PUBLIC_SPLIT_TESTING_PR_NUMBER}.osc-fr1.scalingo.io`
 const SPLIT_TESTING_COOKIE = 'ngc_split_testing'
 
+function isIPv4(ip: string) {
+  const ipv4Pattern = /^(\d{1,3}\.){3}\d{1,3}$/
+  return ipv4Pattern.test(ip)
+}
+
 // https://developers.google.com/search/docs/crawling-indexing/verifying-googlebot?hl=fr
 function isGoogleBot(ip: string) {
   return [
@@ -26,7 +31,7 @@ function isGoogleBot(ip: string) {
     ?.includes(ip)
 }
 
-export default async function splitTestingMiddleware(request: NextRequest) {
+export default function splitTestingMiddleware(request: NextRequest) {
   if (!process.env.NEXT_PUBLIC_SPLIT_TESTING_PR_NUMBER) {
     return NextResponse.next()
   }
@@ -35,7 +40,7 @@ export default async function splitTestingMiddleware(request: NextRequest) {
     request.headers.get('x-forwarded-for')?.split(',')[0] ||
     request.headers.get('x-real-ip')
 
-  if (!ip || isGoogleBot(ip)) {
+  if (!ip || !isIPv4(ip) || isGoogleBot(ip)) {
     return NextResponse.next()
   }
 
@@ -83,9 +88,4 @@ export default async function splitTestingMiddleware(request: NextRequest) {
 
     return response
   }
-}
-
-function isIPv4(ip: string) {
-  const ipv4Pattern = /^(\d{1,3}\.){3}\d{1,3}$/
-  return ipv4Pattern.test(ip)
 }

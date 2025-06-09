@@ -22,9 +22,10 @@ export async function middleware(request: NextRequest) {
     const middlewareResponse = middlewareFunction(request)
 
     if (
-      isRedirecting(middlewareResponse) ||
-      isRewriting(middlewareResponse) ||
-      isI18n(middlewareResponse)
+      middlewareResponse &&
+      (isRedirecting(middlewareResponse) ||
+        isRewriting(middlewareResponse) ||
+        isI18n(middlewareResponse))
     ) {
       return middlewareResponse
     }
