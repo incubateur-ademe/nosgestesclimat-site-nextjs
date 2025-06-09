@@ -41,7 +41,7 @@
     "storybook:build": "storybook build --output-dir .storybook-build && rm -rf public/storybook && mv .storybook-build public/storybook"
   },
   "dependencies": {
-    "@incubateur-ademe/legal-pages-react": "^0.3.0",
+    "@incubateur-ademe/legal-pages-react": "^0.4.1",
     "@incubateur-ademe/nosgestesclimat": "3.7.4",
     "@next/mdx": "^15.3.2",
     "@publicodes/react-ui": "^1.7.1",
@@ -68,9 +68,9 @@
     "postcss": "8.5.3",
     "process": "^0.11.10",
     "publicodes": "^1.8.5",
-    "react": "19.1.0",
+    "react": "18.2.0",
     "react-debounce-input": "^3.3.0",
-    "react-dom": "19.1.0",
+    "react-dom": "18.2.0",
     "react-easy-emoji": "^1.8.1",
     "react-hook-form": "^7.54.2",
     "react-i18next": "^15.4.0",
