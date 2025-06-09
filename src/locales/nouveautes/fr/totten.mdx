@@ -1,0 +1,39 @@
+---
+title: Totten
+date: 2025-03-25T10:21:20Z
+image: https://upload.wikimedia.org/wikipedia/commons/2/22/Knox%2C_Budd_and_Sabrina_Coasts%2C_Antarctica.jpg
+---
+
+![Glacier Totten](https://upload.wikimedia.org/wikipedia/commons/2/22/Knox%2C_Budd_and_Sabrina_Coasts%2C_Antarctica.jpg)
+
+💧 Le **glacier Totten**, c’est un mastodonte du sud, l’un des plus grands de l’hémisphère sud, capable à lui seul d’impacter le niveau des océans s’il venait à fondre trop vite — un vrai baromètre du changement climatique 🌡️.
+
+**En bref, sur ce début d’année**
+
+💧 L’eau est mieux mise en valeur
+🐛 On profite de l'hiver pour faire quelques réparations : redirections cassées, liens morts, hydration... on chasse le moindre grain de sable.
+🔧 On allège le serveur : MongoDB c'est fini, on prépare une migration sur Postgre et Scalingo
+
+### 💧 Affichage & UI
+
+- Meilleure mise en avant de l’empreinte eau dans tout le test : on vous avait annoncé sa sortie ici https://nosgestesclimat.fr/nouveautes/thwaites, l'empreinte eau est maintenant disponible dans le test, mais il nous restait encore à lui donner toute sa place dans le parcours et la page de résultat *Screenshot*
+
+![Meilleure intégration de l'empreinte eau](https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/water_footprint_d288432ed8.png)
+
+- Iframes améliorés côté affichage et suivi
+- Questions personnalisées activées par défaut
+- Suppression de la conso électrique dans les « fun facts »
+
+### 🐛 Bye bye bugs
+
+- Liens morts réparés sur pages fin de test et actualités
+- Mauvaise redirection sur la page de connexion des organisations réparée
+- Les admins d’organisations ne sont plus admins sur toutes les campagnes
+- et quelques autres correctifs liés aux emails envoyés dans le parcous organisations
+
+### 🔧 Stabilisation technique et nouvel outil de conversion
+
+- Passage au modèle 3.5.4 coté calculateur
+- Suppression de MongoDB au profit de Postgre
+- Début d'un POC technique avec 2 Tonnes pour les aider à convertir les résultats de votre empreinte sur Nos Gestes Climat vers leur modèle.
+- Intégration des PDF récents de l’ADEME dans certains messages d'info au sein du calculateur, sur le compostage (https://librairie.ademe.fr/7245-quel-equipement-pour-faire-son-compost-.html#/44-type_de_produit-format_electronique) , la fast fashion (https://librairie.ademe.fr/consommer-autrement/7747-tout-comprendre-les-impacts-de-la-mode-et-de-la-fast-fashion-9791029724602.html) ou encore la sobriété numérique (https://librairie.ademe.fr/consommer-autrement/7575-comment-adopter-la-sobriete-numerique--9791029724237.html)
