@@ -6,6 +6,7 @@ import specialCrawlers from './excludedIPs/special-crawlers.json'
 import userTriggeredFetchers from './excludedIPs/user-triggered-fetchers.json'
 
 const redirectUrl = `https://nosgestesclimat-site-preprod-pr${process.env.NEXT_PUBLIC_SPLIT_TESTING_PR_NUMBER}.osc-fr1.scalingo.io`
+const SPLIT_TESTING_COOKIE = 'ngc_split_testing'
 
 // https://developers.google.com/search/docs/crawling-indexing/verifying-googlebot?hl=fr
 function isGoogleBot(ip: string) {
@@ -25,26 +26,39 @@ function isGoogleBot(ip: string) {
     ?.includes(ip)
 }
 
-export default function splitTestingMiddleware(request: NextRequest) {
+export default async function splitTestingMiddleware(request: NextRequest) {
   if (!process.env.NEXT_PUBLIC_SPLIT_TESTING_PR_NUMBER) {
     return NextResponse.next()
   }
-  // This has become useless
-  const ip = '127.0.0.1' // request.ip
 
-  if (!ip || !isIPv4(ip) || isGoogleBot(ip)) {
+  const ip =
+    request.headers.get('x-forwarded-for')?.split(',')[0] ||
+    request.headers.get('x-real-ip')
+
+  if (!ip || isGoogleBot(ip)) {
     return NextResponse.next()
   }
 
-  const lastNumber = Number(ip.split('.').pop())
+  // Récupérer ou créer la valeur de split testing
+  let splitTestingValue = request.cookies.get(SPLIT_TESTING_COOKIE)?.value
+
+  if (!splitTestingValue) {
+    splitTestingValue = Math.random().toString()
+  }
 
   const shouldRedirectToChallenger =
-    Number(lastNumber / 255) <
+    Number(splitTestingValue) <
     Number(process.env.NEXT_PUBLIC_SPLIT_TESTING_PERCENTAGE ?? 0.5)
 
   if (!shouldRedirectToChallenger || redirectUrl === request.nextUrl.origin) {
     const response = NextResponse.next()
-    return response
+    // Si le cookie n'existe pas, on le crée
+    if (!request.cookies.get(SPLIT_TESTING_COOKIE)) {
+      response.cookies.set(SPLIT_TESTING_COOKIE, splitTestingValue, {
+        maxAge: 60 * 60 * 24 * 30, // 30 jours
+        path: '/',
+      })
+    }
   } else {
     const rewriteTo = `${redirectUrl}${request.nextUrl.href.replace(
       request.nextUrl.origin,
@@ -52,6 +66,14 @@ export default function splitTestingMiddleware(request: NextRequest) {
     )}`
 
     const response = NextResponse.rewrite(rewriteTo)
+
+    // Si le cookie n'existe pas, on le crée
+    if (!request.cookies.get(SPLIT_TESTING_COOKIE)) {
+      response.cookies.set(SPLIT_TESTING_COOKIE, splitTestingValue, {
+        maxAge: 60 * 60 * 24 * 30, // 30 jours
+        path: '/',
+      })
+    }
 
     // Add Matomo tracking event
     const trackingEvent = trackingSplitTestingRedirect(
