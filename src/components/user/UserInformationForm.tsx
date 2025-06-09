@@ -11,7 +11,6 @@ import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
-import { displayErrorToast } from '@/helpers/toasts/displayErrorToast'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -135,7 +134,6 @@ export default function UserInformationForm({
       }, 2500)
     } catch (error) {
       captureException(error)
-      displayErrorToast(t('Une erreur est survenue. Veuillez réessayer.'))
     }
   }
 
