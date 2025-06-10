@@ -4,6 +4,7 @@ import type {
   ExcelExportType,
   PublicOrganisationPoll,
 } from '@/types/organisations'
+import axios from 'axios'
 
 const isExcelExport = (
   data: AcceptedExcelExportType | ExcelExportType,
@@ -22,30 +23,30 @@ export const fetchPollResults = ({
 }) =>
   new Promise<ExcelExportType>((resolve, reject) => {
     const performRequest = async (jobId?: string) => {
-      const url = new URL(
-        `${ORGANISATION_URL}/${orgaIdOrSlug}/polls/${pollIdOrSlug}/simulations/download`
-      )
-
-      if (jobId) {
-        url.searchParams.set('jobId', jobId)
-      }
-
-      return fetch(url, {
-        credentials: 'include',
-      })
-        .then((response) =>
-          response
-            .json()
-            .then((data) =>
-              isExcelExport(data, response.status)
-                ? resolve(data)
-                : setTimeout(
-                    () => performRequest(data.id),
-                    FETCH_POLL_RESULTS_DELAY_MS
-                  )
-            )
+      try {
+        const url = new URL(
+          `${ORGANISATION_URL}/${orgaIdOrSlug}/polls/${pollIdOrSlug}/simulations/download`
         )
-        .catch(reject)
+
+        if (jobId) {
+          url.searchParams.set('jobId', jobId)
+        }
+
+        const { data, status } = await axios.get(url.toString(), {
+          withCredentials: true,
+        })
+
+        if (isExcelExport(data, status)) {
+          return resolve(data)
+        }
+
+        return setTimeout(
+          () => performRequest(data.id),
+          FETCH_POLL_RESULTS_DELAY_MS
+        )
+      } catch (e) {
+        return reject(e)
+      }
     }
 
     return performRequest()
