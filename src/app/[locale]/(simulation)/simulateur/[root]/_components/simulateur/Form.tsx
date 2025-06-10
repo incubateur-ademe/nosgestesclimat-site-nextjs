@@ -5,6 +5,7 @@ import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import ContentLarge from '@/components/layout/ContentLarge'
 import questions from '@/components/specialQuestions'
+import { simulationSimulationCompleted } from '@/constants/tracking/simulation'
 import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useTrackTimeOnSimulation } from '@/hooks/tracking/useTrackTimeOnSimulation'
@@ -16,6 +17,7 @@ import {
   useEngine,
   useFormState,
 } from '@/publicodes-state'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useContext, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import FunFact from './form/FunFact'
@@ -55,6 +57,12 @@ export default function Form() {
   useEffect(() => {
     if (shouldGoToEndPage && progression === 1) {
       trackTimeOnSimulation()
+
+      trackEvent(
+        simulationSimulationCompleted({
+          bilan: getNumericValue('bilan'),
+        })
+      )
 
       goToEndPage({
         allowedToGoToGroupDashboard: true,
