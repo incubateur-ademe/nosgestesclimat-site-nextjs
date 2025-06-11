@@ -14,13 +14,12 @@ import Card from '@/design-system/layout/Card'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
 import { sortSupportedRegions } from '@/helpers/localisation/sortSupportedRegions'
-import { displaySuccessToast } from '@/helpers/toasts/displaySuccessToast'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
+import { useState } from 'react'
 
 type Props = {
   isOpen?: boolean
@@ -31,9 +30,8 @@ export default function RegionSelector({
   isOpen = false,
   supportedRegions,
 }: Props) {
+  const [isUpdateSuccess, setIsUpdateSuccess] = useState(false)
   const locale = useLocale()
-
-  const { t } = useClientTranslation()
 
   const orderedSupportedRegions = sortSupportedRegions({
     supportedRegions,
@@ -50,7 +48,10 @@ export default function RegionSelector({
 
   return (
     <>
-      <details open={isOpen} className="rounded-xl bg-gray-100 p-2">
+      <details
+        aria-live="polite"
+        open={isOpen}
+        className="rounded-xl bg-gray-100 p-2">
         <summary
           className={`middle w-auto cursor-pointer p-4 ${
             isLoading ? 'pointer-events-none opacity-60' : ''
@@ -70,6 +71,7 @@ export default function RegionSelector({
         <RegionGrid
           supportedRegions={supportedRegions}
           updateCurrentRegion={(code: string) => {
+            setIsUpdateSuccess(false)
             trackEvent(profilClickRegion(code))
 
             updateRegion({
@@ -77,7 +79,7 @@ export default function RegionSelector({
               name: supportedRegions[code][locale]?.nom as unknown as string,
             })
 
-            displaySuccessToast(t('Votre région a bien été mise à jour.'))
+            setIsUpdateSuccess(true)
 
             if (tutorials.localisationBanner) {
               showTutorial('localisationBanner')
@@ -87,6 +89,13 @@ export default function RegionSelector({
           className={isLoading ? 'pointer-events-none opacity-60' : ''}
           aria-disabled={isLoading || undefined}
         />
+
+        {isUpdateSuccess && (
+          <p className="mt-4 mb-4 ml-2 text-sm text-green-700">
+            <Trans>Votre région a bien été mise à jour.</Trans>
+          </p>
+        )}
+
         <Card className="mt-4 flex-row items-center border-none bg-transparent shadow-none">
           <Emoji className="mr-2">🌐</Emoji>
           <p className="mb-0">
