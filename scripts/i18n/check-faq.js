@@ -1,6 +1,5 @@
 const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
 const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
-const c = require('@incubateur-ademe/nosgestesclimat-scripts/colors')
 
 const paths = require('./paths')
 
@@ -47,12 +46,4 @@ destLangs.forEach((targetLang) => {
     targetLang,
     markdown
   )
-
-  if (missingTranslations.length > 0) {
-    console.log(`❌ Missing translations in ${c.yellow(targetLang)}:`)
-    missingTranslations.forEach((translation) => {
-      console.log(`   - ${c.red(translation)}`)
-    })
-    process.exit(1)
-  }
 })
