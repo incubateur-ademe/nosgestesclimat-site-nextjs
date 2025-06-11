@@ -5,7 +5,6 @@
     "next/core-web-vitals",
     "next/typescript",
     "plugin:jsx-a11y/strict",
-    "plugin:cypress/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:storybook/recommended"
   ],
@@ -28,13 +27,58 @@
     {
       "files": ["*.js", "*.jsx"],
       "parser": "@babel/eslint-parser"
+    },
+    {
+      "files": ["scripts/**/*.js", "*.config.js", "*.setup.tsx"],
+      "env": {
+        "node": true
+      },
+      "rules": {
+        "@typescript-eslint/no-require-imports": "off",
+        "no-undef": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-unused-expressions": "off"
+      }
+    },
+    {
+      "files": ["cypress/**/*.js", "cypress/**/*.jsx", "cypress.config.js"],
+      "plugins": ["cypress"],
+      "rules": {
+        "cypress/no-assigning-return-values": "error",
+        "cypress/no-unnecessary-waiting": "error",
+        "cypress/assertion-before-screenshot": "warn",
+        "cypress/no-force": "warn",
+        "cypress/no-async-tests": "error",
+        "@typescript-eslint/no-namespace": "off"
+      }
+    },
+    {
+      "files": [
+        "**/__tests__/**/*",
+        "**/*.test.ts",
+        "**/*.test.tsx",
+        "jest.setup.tsx"
+      ],
+      "env": {
+        "jest": true
+      },
+      "globals": {
+        "describe": "readonly",
+        "it": "readonly",
+        "expect": "readonly",
+        "beforeEach": "readonly",
+        "afterEach": "readonly",
+        "beforeAll": "readonly",
+        "afterAll": "readonly"
+      }
     }
   ],
   "globals": {
     "React": "readonly",
     "NodeJS": "readonly",
     "JSX": "readonly",
-    "jest": "readonly"
+    "jest": "readonly",
+    "Promise": "readonly"
   },
   "rules": {
     "react/no-unescaped-entities": "off",

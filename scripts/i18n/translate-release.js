@@ -4,10 +4,13 @@
 	Command: yarn translate:release [options]
 */
 
-const fs = require('fs')
-const stringify = require('json-stable-stringify')
-const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
-const deepl = require('@incubateur-ademe/nosgestesclimat-scripts/deepl')
+import cli from '@incubateur-ademe/nosgestesclimat-scripts/cli'
+import deepl from '@incubateur-ademe/nosgestesclimat-scripts/deepl'
+import chalk from 'chalk'
+import fs from 'fs'
+import stringify from 'json-stable-stringify'
+
+const c = chalk
 
 const { srcLang, destLangs } = cli.getArgs(
   'Calls the DeepL API to translate the JSON release files.',
