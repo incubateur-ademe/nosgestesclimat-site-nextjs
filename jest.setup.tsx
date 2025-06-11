@@ -1,4 +1,6 @@
+import { afterAll, beforeAll } from '@jest/globals'
 import type { ReactNode } from 'react'
+import { mswServer } from './src/__tests__/server'
 
 jest.mock('next-i18n-router/client', () => ({
   useCurrentLocale: () => 'fr',
@@ -62,3 +64,19 @@ jest.mock('@/publicodes-state', () => ({
     },
   }),
 }))
+
+beforeAll(() => {
+  mswServer.listen({
+    onUnhandledRequest(_, print) {
+      print.warning()
+    },
+  })
+})
+
+afterEach(() => {
+  mswServer.resetHandlers()
+})
+
+afterAll(() => {
+  mswServer.close()
+})

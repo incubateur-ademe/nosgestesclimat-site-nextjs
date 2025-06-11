@@ -85,7 +85,7 @@ export default function EmailForm() {
         error={errors.email?.message}
       />
 
-      {isError && <DefaultSubmitErrorMessage />}
+      {isError && <DefaultSubmitErrorMessage className="mt-4" />}
 
       <Button
         type="submit"

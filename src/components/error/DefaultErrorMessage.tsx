@@ -9,7 +9,7 @@ export default function DefaultErrorMessage({
   className?: string
 }) {
   return (
-    <span className={twMerge('block font-bold text-red-800', className)}>
+    <span className={twMerge('block text-sm text-red-800', className)}>
       <Trans>
         Oups ! Une erreur s'est produite. Veuillez recharger la page. Si le
         problème persiste, vous pouvez
