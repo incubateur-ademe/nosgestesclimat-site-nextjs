@@ -220,7 +220,7 @@ const redirects = [
   },
   {
     source: '/blog/undefined/neuf-limites-planetaires-empreintes',
-    destination: '/blog',
+    destination: '/blog/environnement/neuf-limites-planetaires-empreintes',
     permanent: true,
   },
   // For now, we redirect actions/plus homepage to blog homepage. We still have each actions/plus page available but ghosted.
