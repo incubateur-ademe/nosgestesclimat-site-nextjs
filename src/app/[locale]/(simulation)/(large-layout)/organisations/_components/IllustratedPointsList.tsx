@@ -30,7 +30,7 @@ export default function IllustratedPointsList({ locale }: { locale: string }) {
           <div className="mx-auto flex max-w-full items-end overflow-hidden rounded-xl bg-gray-100 px-6 pt-6 md:w-[26rem]">
             <div className="mx-auto mt-4 flex items-end rounded-t-md bg-white p-4 pb-0 shadow-xs">
               <Image
-                src="/images/organisations/tutoriel.png"
+                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/tutoriel_7c9d75e8b1.png"
                 width="300"
                 height="200"
                 alt=""
@@ -67,7 +67,7 @@ export default function IllustratedPointsList({ locale }: { locale: string }) {
           <div className="mx-auto flex max-w-full items-end overflow-hidden rounded-xl bg-gray-100 px-6 pt-6 md:w-[26rem]">
             <div className="w-full">
               <Image
-                src="/images/organisations/orga-visuel-2.png"
+                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/orga_visuel_2_865f6fdd88.png"
                 width="360"
                 height="500"
                 alt=""

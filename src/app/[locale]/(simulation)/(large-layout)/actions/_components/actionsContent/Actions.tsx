@@ -106,7 +106,7 @@ export default function Actions({
       <div className="my-4 h-8 w-full text-center">
         <p className="bg-primary-700 inline-flex items-center rounded-full px-4 text-sm font-medium text-white">
           <Image
-            src="/images/misc/270A.svg"
+            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/270_A_0f004e2cbf.svg"
             className="mr-2 align-middle invert"
             height={36}
             width={36}
@@ -129,7 +129,7 @@ export default function Actions({
       <div className="my-4 h-8 w-full text-center">
         <p className="bg-primary-700 inline-flex items-center rounded-full px-4 text-sm font-medium text-white">
           <Image
-            src="/images/misc/26D4.svg"
+            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/26_D4_ca89de0959.svg"
             className="mr-2 invert"
             height={36}
             width={36}

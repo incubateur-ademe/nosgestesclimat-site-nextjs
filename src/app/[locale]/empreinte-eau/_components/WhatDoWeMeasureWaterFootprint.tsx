@@ -21,7 +21,7 @@ export default async function WhatDoWeMeasureWaterFootprint({
             <Image
               width={50}
               height={50}
-              src="/images/icons/icone-alimentation.svg"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_alimentation_6e24755b91.svg"
               alt={t('Une pomme, symbolisant le lien entre eau et agriculture')}
             />
           ),
@@ -36,7 +36,7 @@ export default async function WhatDoWeMeasureWaterFootprint({
             <Image
               width={50}
               height={50}
-              src="/images/icons/icone-textile.svg"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_textile_79b8884460.svg"
               alt={t(
                 "Un tee-shirt, symbolisant la consommation d'eau pour l'industrie textile"
               )}
@@ -51,7 +51,7 @@ export default async function WhatDoWeMeasureWaterFootprint({
             <Image
               width={50}
               height={50}
-              src="/images/icons/icone-agriculture.svg"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_agriculture_46d3a0599f.svg"
               alt={t('Un mouton, liant empreinte eau et élevage')}
             />
           ),
@@ -66,7 +66,7 @@ export default async function WhatDoWeMeasureWaterFootprint({
             <Image
               width={50}
               height={50}
-              src="/images/icons/icone-numerique.svg"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_ordinateur_2f234e6e03.svg"
               alt={t(
                 "Un ordinateur, illustrant la consommation d'eau par le numérique"
               )}
@@ -83,7 +83,7 @@ export default async function WhatDoWeMeasureWaterFootprint({
             <Image
               width={50}
               height={50}
-              src="/images/icons/icone-electricite.svg"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_electricite_9db0c4939f.svg"
               alt={t("Un éclair, symbolisant la production d'électricité")}
             />
           ),

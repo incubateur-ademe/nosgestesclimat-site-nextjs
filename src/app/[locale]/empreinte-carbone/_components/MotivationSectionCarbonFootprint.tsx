@@ -30,7 +30,7 @@ export default function MotivationSectionCarbonFootprint({
               <Image
                 width={32}
                 height={32}
-                src="/images/icons/icone-calculatrice.svg"
+                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_calculatrice_e37c20a6b4.svg"
                 alt=""
               />
             </div>
@@ -49,7 +49,7 @@ export default function MotivationSectionCarbonFootprint({
               <Image
                 width={32}
                 height={32}
-                src="/images/icons/icone-biceps.svg"
+                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_biceps_9065e62d79.svg"
                 alt=""
               />
             </div>
@@ -68,7 +68,7 @@ export default function MotivationSectionCarbonFootprint({
               <Image
                 width={48}
                 height={48}
-                src="/images/icons/icone-poignee-de-main.svg"
+                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_poignee_de_main_1bd31b7009.svg"
                 alt=""
               />
             </div>

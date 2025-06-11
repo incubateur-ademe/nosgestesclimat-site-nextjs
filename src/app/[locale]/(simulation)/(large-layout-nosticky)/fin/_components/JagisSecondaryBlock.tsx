@@ -31,7 +31,7 @@ export default function JagisSecondaryBlock() {
 
   return (
     <div className="rainbow-border relative rounded-xl border-2">
-      <div className="bg-[url('/images/misc/jagis-bg.svg')] bg-right-bottom bg-no-repeat px-4 py-6 lg:bg-[length:18rem]">
+      <div className="bg-[url('https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/jagis_bg_97afd09657.svg')] bg-right-bottom bg-no-repeat px-4 py-6 lg:bg-[length:18rem]">
         <div className="mb-4 flex gap-4">
           <Badge size="xs" color="green">
             <Trans>Aides financières</Trans>
@@ -85,7 +85,7 @@ export default function JagisSecondaryBlock() {
         )}
         <div className="flex items-center gap-4">
           <Image
-            src="/images/misc/jagis.svg"
+            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/jagis_b73fae459d.svg"
             alt={t(`Logo de J'agis`)}
             width="60"
             height="60"

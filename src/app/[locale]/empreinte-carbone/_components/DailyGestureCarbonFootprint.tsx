@@ -64,7 +64,8 @@ export default async function DailyGestureCarbonFootprint({
       }}
       gestures={{
         [gesturesKeysForTranslation.transport]: {
-          imageSrc: '/images/illustrations/empreinte-carbone-velo.svg',
+          imageSrc:
+            'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/empreinte_carbone_velo_143e4e14fc.svg',
           imageAlt: t(
             'Une mère et son fils sur un vélo, illustrant la possibilité de réduire son empreinte carbone en privilégiant les transports doux'
           ),
@@ -76,7 +77,7 @@ export default async function DailyGestureCarbonFootprint({
         },
         [gesturesKeysForTranslation.alimentation]: {
           imageSrc:
-            '/images/illustrations/empreinte-carbone-cuisine-alimentation.svg',
+            'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/empreinte_carbone_cuisine_alimentation_e46cf69693.svg',
           imageAlt: t(
             "Une jeune femme cuisinant, illustrant l'importance de ses choix d'alimentation dans le calcul de son empreinte carbone"
           ),
@@ -87,7 +88,8 @@ export default async function DailyGestureCarbonFootprint({
           ],
         },
         [gesturesKeysForTranslation.logement]: {
-          imageSrc: '/images/illustrations/empreinte-carbone-logement.svg',
+          imageSrc:
+            'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/empreinte_carbone_logement_9247115fd4.svg',
           imageAlt: t(
             "Une jeune femme lisant un journal, illustrant l'empreinte carbone liée à son logement"
           ),
@@ -101,7 +103,8 @@ export default async function DailyGestureCarbonFootprint({
           ],
         },
         [gesturesKeysForTranslation.consommation]: {
-          imageSrc: '/images/illustrations/empreinte-carbone-achats.svg',
+          imageSrc:
+            'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/empreinte_carbone_achats_182f659dfd.svg',
           imageAlt: t(
             "Une jeune femme réfléchissant à ses choix de consommation, illustrant l'importance de ses achats dans le calcul de son empreinte carbone"
           ),

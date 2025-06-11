@@ -6,7 +6,7 @@ export default function VisuelIframe() {
       <div className="absolute -bottom-[8%] left-[-16%] flex w-full -rotate-[15deg] items-end rounded-t-md bg-white p-2 pb-0 shadow-md">
         <Image
           className="rounded-xs"
-          src="/images/organisations/orga-visuel-3.png"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/orga_visuel_3_f0c54b5878.png"
           width="300"
           height="200"
           alt=""
@@ -16,7 +16,7 @@ export default function VisuelIframe() {
       <div className="absolute right-[-16%] -bottom-[8%] flex w-full rotate-[15deg] items-end rounded-t-md bg-white p-2 pb-0 shadow-md">
         <Image
           className="rounded-xs"
-          src="/images/organisations/orga-visuel-3.png"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/orga_visuel_3_f0c54b5878.png"
           width="300"
           height="200"
           alt=""
@@ -26,7 +26,7 @@ export default function VisuelIframe() {
       <div className="absolute bottom-0 left-1/2 flex w-full -translate-x-1/2 items-end rounded-t-md bg-white p-2 pb-0 shadow-md">
         <Image
           className="rounded-xs"
-          src="/images/organisations/orga-visuel-3.png"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/orga_visuel_3_f0c54b5878.png"
           width="260"
           height="200"
           alt=""

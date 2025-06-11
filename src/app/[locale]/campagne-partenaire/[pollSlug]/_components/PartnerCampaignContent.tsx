@@ -90,7 +90,7 @@ export default function PartnerCampaignContent({
             <Image
               src={
                 partnerCampaign.image?.url ??
-                '/images/illustrations/girl-holding-earth.svg'
+                'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_17e65580c7.svg'
               }
               width={300}
               height={300}
@@ -103,7 +103,7 @@ export default function PartnerCampaignContent({
           <Image
             src={
               partnerCampaign.image?.url ??
-              '/images/illustrations/girl-holding-earth.svg'
+              'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_17e65580c7.svg'
             }
             width={400}
             height={300}

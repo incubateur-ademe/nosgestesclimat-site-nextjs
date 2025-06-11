@@ -72,7 +72,7 @@ export default async function FAQPage({ params }: DefaultPageProps) {
 
         <Image
           className="-mt-4 ml-auto w-48 self-start md:w-full"
-          src="/images/illustrations/children-holding-hand.png"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/children_holding_hand_92205645da.png"
           width="300"
           height="400"
           alt={t("Des enfants sortant de l'école en se tenant la main.")}

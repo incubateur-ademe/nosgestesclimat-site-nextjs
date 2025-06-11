@@ -44,7 +44,7 @@ export default async function CollectivelyCommit({
           </p>
 
           <Image
-            src="/images/illustrations/engagement-collectif-pour-le-climat.svg"
+            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/engagement_collectif_pour_le_climat_26b91f3bb8.svg"
             alt={t(
               "Un groupe de personnes en conférence, illustrant l'engagement collectif pour le climat"
             )}

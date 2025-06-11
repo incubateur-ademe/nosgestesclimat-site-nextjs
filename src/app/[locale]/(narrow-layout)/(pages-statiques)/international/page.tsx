@@ -110,7 +110,7 @@ export default async function International({ params }: DefaultPageProps) {
               target="_blank">
               <Image
                 alt="Electricity Maps"
-                src="/images/misc/electricitymaps.svg"
+                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/electricitymaps_469ea4068b.svg"
                 className="ml-2 h-4"
                 width="100"
                 height="100"

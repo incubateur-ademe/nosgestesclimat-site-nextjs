@@ -56,9 +56,6 @@ const nextConfig: NextConfig = {
   productionBrowserSourceMaps: true,
   outputFileTracingExcludes: {
     '*': ['.next/cache/webpack', '.git/**/*', 'cypress/**/*'],
-    '/blog': ['public/NGC_Kit.diffusion.zip'],
-    '/nouveautes': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
-    '/sitemap.xml': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
   },
   turbopack: {
     rules: {

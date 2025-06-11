@@ -31,7 +31,7 @@ export default function JagisMainBlock() {
   }, [data, isSuccess])
 
   return (
-    <div className="relative flex items-center justify-between rounded-xl border-2 border-amber-200 bg-amber-50 bg-[url('/images/misc/jagis-coins-bg-mobile.svg')] bg-contain bg-[center_right_4rem] bg-no-repeat px-4 py-6 lg:bg-[url('/images/misc/jagis-coins-bg-desktop.svg')] lg:bg-[center_right_7rem]">
+    <div className="relative flex items-center justify-between rounded-xl border-2 border-amber-200 bg-amber-50 bg-[url('https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/jagis_coins_bg_mobile_2913b290f6.svg')] bg-contain bg-[center_right_4rem] bg-no-repeat px-4 py-6 lg:bg-[url('https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/jagis_coins_bg_desktop_12ce7b5fff.svg')] lg:bg-[center_right_7rem]">
       <div className="flex-1">
         <h3 className="mb-2 text-lg">
           <Trans>Un coup de pouce pour agir ?</Trans>
@@ -61,7 +61,7 @@ export default function JagisMainBlock() {
           <div className="flex items-center gap-4">
             <Marianne className="h-12 lg:h-auto" />
             <Image
-              src="/images/misc/jagis.svg"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/jagis_b73fae459d.svg"
               alt={t(`Logo de J'agis`)}
               width="60"
               height="60"

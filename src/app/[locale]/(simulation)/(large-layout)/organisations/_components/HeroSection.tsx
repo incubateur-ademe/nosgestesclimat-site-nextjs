@@ -47,7 +47,7 @@ export default function HeroSection() {
       <div>
         <Image
           className="self-start"
-          src="/images/illustrations/people-with-paperboard.png"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/people_with_paperboard_02aeb70378.png"
           width="400"
           height="400"
           alt={t('Groupe de personnes devant un paperboard')}
