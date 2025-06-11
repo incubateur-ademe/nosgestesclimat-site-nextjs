@@ -23,6 +23,7 @@ export default function AdminSection({ poll }: Props) {
   const {
     slug: pollSlug,
     organisation: { slug: orgaSlug },
+    simulations: { count },
   } = poll
 
   return (
@@ -54,14 +55,16 @@ export default function AdminSection({ poll }: Props) {
         </div>
 
         <div className="flex flex-1 flex-col justify-center gap-4 sm:flex-row md:flex-col">
-          <ExportDataButton
-            poll={poll}
-            color="secondary"
-            onClick={() => {
-              trackEvent(organisationsDashboardExportData)
-            }}
-            className="h-14"
-          />
+          {count >= 3 && (
+            <ExportDataButton
+              poll={poll}
+              color="secondary"
+              onClick={() => {
+                trackEvent(organisationsDashboardExportData)
+              }}
+              className="h-14"
+            />
+          )}
 
           <ButtonLink
             href={`/organisations/${orgaSlug}/campagnes/${pollSlug}/parametres`}
