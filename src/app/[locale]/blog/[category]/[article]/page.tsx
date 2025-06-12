@@ -52,6 +52,7 @@ export default async function ArticlePage({
   const { article, otherArticles } =
     (await fetchArticlePageContent({
       articleSlug: articleSlug,
+      categorySlug: category,
       locale,
     })) || {}
 
