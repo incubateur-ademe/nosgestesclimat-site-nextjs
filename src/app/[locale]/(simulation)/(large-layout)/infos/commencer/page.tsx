@@ -41,7 +41,6 @@ export default function Commencer() {
   const [shouldNavigate, setShouldNavigate] = useState(false)
 
   useEffect(() => {
-    console.log(shouldNavigate, polls)
     if (shouldNavigate && polls?.includes(pollSlug || '')) {
       setShouldNavigate(false)
       router.push(getLinkToNextInfosPage({ curPage: START_PAGE }))

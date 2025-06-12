@@ -14,7 +14,6 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useCallback } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import Navigation from '../_components/Navigation'
 
@@ -62,54 +61,43 @@ export default function Email() {
     pollIdOrSlug: pollSlug,
   })
 
-  const onSubmit = useCallback(
-    ({ email }: Inputs) => {
-      const linkToNextPage = getLinkToNextInfosPage({ curPage: EMAIL_PAGE })
-      // Email is not mandatory
-      if (!email) {
-        router.push(linkToNextPage)
-        return
-      }
+  const onSubmit = ({ email }: Inputs) => {
+    const linkToNextPage = getLinkToNextInfosPage({ curPage: EMAIL_PAGE })
+    // Email is not mandatory
+    if (!email) {
+      router.push(linkToNextPage)
+      return
+    }
 
-      // If email is not valid
-      if (!isEmailValid(email)) {
-        setError('email', {
-          type: 'validate',
-          message: t('Veuillez saisir une adresse email valide.'),
-        })
-        return
-      }
+    // If email is not valid
+    if (!isEmailValid(email)) {
+      setError('email', {
+        type: 'validate',
+        message: t('Veuillez saisir une adresse email valide.'),
+      })
+      return
+    }
 
-      // If email is valid
-      updateEmail(email)
+    // If email is valid
+    updateEmail(email)
 
-      try {
-        saveSimulation({
-          simulation: currentSimulation,
-        })
-      } catch (e) {
-        setError('email', {
-          type: 'validate',
-          message: t(
-            "Une erreur s'est produite au moment de sauvegarder vos données. Veuillez réessayer dans quelques instants."
-          ),
-        })
-        return
-      }
+    try {
+      saveSimulation({
+        simulation: currentSimulation,
+      })
 
       // Go to next page
       router.push(linkToNextPage)
-    },
-    [
-      updateEmail,
-      saveSimulation,
-      currentSimulation,
-      router,
-      getLinkToNextInfosPage,
-      setError,
-      t,
-    ]
-  )
+    } catch (e) {
+      setError('email', {
+        type: 'validate',
+        message: t(
+          "Une erreur s'est produite au moment de sauvegarder vos données. Veuillez réessayer dans quelques instants."
+        ),
+      })
+    }
+  }
+
   return (
     <form>
       <Title
