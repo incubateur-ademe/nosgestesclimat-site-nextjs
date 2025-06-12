@@ -6,73 +6,41 @@ import { POSTAL_CODE_PAGE } from '@/constants/organisations/infosPages'
 import PostalCodeInput from '@/design-system/inputs/PostalCodeInput'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
-import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
+import { useSaveAndGoNext } from '@/hooks/organisations/useSaveAndGoNext'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { useRouter } from 'next/navigation'
 import type { FormEvent } from 'react'
-import { useCallback, useEffect, useState } from 'react'
+import { useState } from 'react'
 import Navigation from '../_components/Navigation'
 
 export default function PostalCode() {
-  const router = useRouter()
-
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
   const { updateCurrentSimulation, defaultAdditionalQuestionsAnswers } =
     useCurrentSimulation()
 
   const [postalCode, setPostalCode] = useState<string | undefined>(undefined)
-  const [error, setError] = useState(false)
 
-  const currentSimulation = useCurrentSimulation()
+  // Handles saving the simulation current state and redirecting to next step
+  const { setShouldSaveAndGoNext, errorSaveSimulation } = useSaveAndGoNext({
+    curPage: POSTAL_CODE_PAGE,
+  })
 
-  const { saveSimulation } = useSaveSimulation()
+  const handleSubmit = (event: MouseEvent | FormEvent) => {
+    // Avoid reloading page
+    event?.preventDefault()
 
-  const [shouldSaveAndGoNext, setShouldSaveAndGoNext] = useState(false)
-  useEffect(() => {
-    if (shouldSaveAndGoNext) {
-      try {
-        saveSimulation({
-          simulation: currentSimulation,
-        })
+    // Update simulation saved
+    if (postalCode) {
+      updateCurrentSimulation({
+        defaultAdditionalQuestionsAnswers: {
+          ...defaultAdditionalQuestionsAnswers,
+          postalCode,
+        },
+      })
 
-        // Go to next page
-        router.push(getLinkToNextInfosPage({ curPage: POSTAL_CODE_PAGE }))
-      } catch (e) {
-        setError(true)
-        return
-      }
+      // Trigger save in order to let state update before it
+      setShouldSaveAndGoNext(true)
     }
-  }, [shouldSaveAndGoNext])
-
-  const handleSubmit = useCallback(
-    (event: MouseEvent | FormEvent) => {
-      // Avoid reloading page
-      event?.preventDefault()
-      setError(false)
-
-      // Update simulation saved
-      if (postalCode) {
-        updateCurrentSimulation({
-          defaultAdditionalQuestionsAnswers: {
-            ...defaultAdditionalQuestionsAnswers,
-            postalCode,
-          },
-        })
-
-        // Trigger save in order to let state update before it
-        setShouldSaveAndGoNext(true)
-      }
-    },
-    [
-      postalCode,
-      router,
-      getLinkToNextInfosPage,
-      updateCurrentSimulation,
-      defaultAdditionalQuestionsAnswers,
-      saveSimulation,
-      currentSimulation,
-    ]
-  )
+  }
 
   return (
     <form>
@@ -89,7 +57,7 @@ export default function PostalCode() {
 
       <PostalCodeInput postalCode={postalCode} setPostalCode={setPostalCode} />
 
-      {error && <DefaultSubmitErrorMessage />}
+      {errorSaveSimulation && <DefaultSubmitErrorMessage />}
 
       <Navigation
         linkToPrev={getLinkToPrevInfosPage({ curPage: POSTAL_CODE_PAGE })}
