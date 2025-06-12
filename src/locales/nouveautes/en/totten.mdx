@@ -1,0 +1,39 @@
+---
+title: Totten
+date: 2025-03-25T10:21:20Z
+image: https://upload.wikimedia.org/wikipedia/commons/2/22/Knox%2C_Budd_and_Sabrina_Coasts%2C_Antarctica.jpg
+---
+
+![glacier Totten](https://upload.wikimedia.org/wikipedia/commons/2/22/Knox%2C_Budd_and_Sabrina_Coasts%2C_Antarctica.jpg)
+
+💧 The **Totten Glacier** is a behemoth of the south, one of the largest in the southern hemisphere, capable on its own of impacting sea levels if it were to melt too quickly - a true barometer of climate change 🌡️.
+
+**In a nutshell, at the start of the year**, we have
+
+💧 Water is better highlighted
+🐛 We're taking advantage of the winter to make a few repairs: broken redirections, dead links, hydration... we're chasing away every last grain of sand.
+🔧 We're lightening the server: MongoDB is finished, we're preparing a migration to Postgre and Scalingo
+
+### 💧 Display & UI
+
+- Greater emphasis on the water footprint throughout the test: we announced its release here https://nosgestesclimat.fr/nouveautes/thwaites, the water footprint is now available in the test, but we still had to give it its rightful place in the path and the results page *Screenshot*
+
+![better integration of the water footprint](https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/water_footprint_d288432ed8.png)
+
+- Improved display and tracking iframes
+- Customised questions activated by default
+- Removal of electricity consumption from 'fun facts
+
+### 🐛 Bye bye bugs
+
+- Dead links fixed on end of test and news pages
+- Bad redirection on organisation login page fixed
+- Organisation admins are no longer admins on all campaigns
+- and a few other fixes related to emails sent in the organisations folder
+
+### Technical stabilisation and new conversion tool
+
+- Switch to the 3.5.4 model on the calculator side
+- MongoDB removed in favour of Postgre
+- Start of a technical POC with 2 Tons to help them convert the results of your footprint on Nos Gestes Climat to their model.
+- Integration of recent ADEME PDFs into certain info messages within the calculator, on composting (https://librairie.ademe.fr/7245-quel-equipement-pour-faire-son-compost-.html#/44-type_de_produit-format_electronique), fast fashion (https://librairie.ademe.fr/consommer-autrement/7747-tout-comprendre-les-impacts-de-la-mode-et-de-la-fast-fashion-9791029724602.html) and digital sobriety (https://librairie.ademe.fr/consommer-autrement/7575-comment-adopter-la-sobriete-numerique--9791029724237.html)
