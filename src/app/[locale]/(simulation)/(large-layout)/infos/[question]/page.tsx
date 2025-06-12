@@ -11,7 +11,7 @@ import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import { useSaveAndGoNext } from '@/hooks/organisations/useSaveAndGoNext'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { useParams, useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import Navigation from '../_components/Navigation'
 
@@ -25,8 +25,6 @@ export default function CustomQuestion() {
   const params = useParams<{ question: string }>()
 
   const customQuestionIndex = parseInt(params.question.slice(-1))
-
-  const router = useRouter()
 
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
 
