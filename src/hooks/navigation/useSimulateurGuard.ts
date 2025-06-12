@@ -43,6 +43,7 @@ export function useSimulateurGuard() {
     setIsGuardInit(true)
 
     // if the user has completed the test, we redirect him to the results page
+    // when visiting /simulateur/bilan without search params
     if (progression === 1 && !questionInQueryParams) {
       goToEndPage()
       setIsGuardRedirecting(true)

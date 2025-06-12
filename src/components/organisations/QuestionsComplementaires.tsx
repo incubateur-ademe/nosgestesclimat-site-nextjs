@@ -18,14 +18,12 @@ type Props = {
     'customAdditionalQuestions' | 'defaultAdditionalQuestions'
   >
   onChange: (pollToUpdate: PollToUpdate) => void
-  onChangeCustomQuestions: (changes: PollToUpdate) => void
   description?: string | ReactNode
 }
 
 export default function QuestionsComplementaires({
   poll,
   onChange,
-  onChangeCustomQuestions,
   description,
   organisation,
 }: Props) {
@@ -40,7 +38,7 @@ export default function QuestionsComplementaires({
       <p className="mb-8">
         {description ?? (
           <Trans>
-            Vous avez la possibilité d’ajouter des questions complémentaires au
+            Vous avez la possibilité d'ajouter des questions complémentaires au
             test pour vos statistiques. Vos questions additionnelles activées
             seront posées à chaque participant en amont du test Nos Gestes
             Climat. Leur réponse sera facultative.
@@ -96,7 +94,7 @@ export default function QuestionsComplementaires({
         <CustomQuestions
           organisation={organisation}
           poll={poll}
-          onChange={onChangeCustomQuestions}
+          onChange={onChange}
         />
       )}
 
@@ -104,7 +102,7 @@ export default function QuestionsComplementaires({
         <CustomQuestionForm
           organisation={organisation}
           poll={poll}
-          onCompleted={onChangeCustomQuestions}
+          onCompleted={onChange}
         />
       </div>
     </section>

@@ -3,7 +3,7 @@
 import type { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
 import { ORGANISATION_URL } from '@/constants/urls/main'
 import type { OrganisationPoll } from '@/types/organisations'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, type UseMutationOptions } from '@tanstack/react-query'
 import axios from 'axios'
 import { useParams } from 'next/navigation'
 
@@ -14,7 +14,9 @@ export type PollToUpdate = {
   customAdditionalQuestions?: { question: string; isEnabled: boolean }[]
 }
 
-export function useUpdatePoll() {
+export function useUpdatePoll(
+  options?: UseMutationOptions<OrganisationPoll, Error, PollToUpdate>
+) {
   const { orgaSlug, pollSlug } = useParams()
 
   return useMutation({
@@ -29,5 +31,6 @@ export function useUpdatePoll() {
           }
         )
         .then((res) => res.data),
+    ...options,
   })
 }

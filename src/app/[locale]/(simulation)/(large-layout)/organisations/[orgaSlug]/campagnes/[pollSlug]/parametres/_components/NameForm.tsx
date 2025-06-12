@@ -23,14 +23,11 @@ export default function NameForm({
   nameValue,
   expectedNumberOfParticipants,
   updatePoll,
-  updatePollStatus,
-  refetchPoll,
 }: Props) {
   const {
     register,
     handleSubmit,
     formState: { errors, isDirty },
-    setError,
   } = useReactHookForm({
     defaultValues: {
       name: nameValue,
@@ -59,7 +56,6 @@ export default function NameForm({
               ? null
               : undefined,
       })
-      refetchPoll()
     } catch (e) {
       // Error is caught in the parent component
     }

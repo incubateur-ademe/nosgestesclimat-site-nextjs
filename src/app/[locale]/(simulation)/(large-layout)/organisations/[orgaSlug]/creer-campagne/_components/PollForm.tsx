@@ -114,9 +114,6 @@ export default function PollForm({ organisation }: Props) {
         onChange={(updates: Record<string, unknown>) =>
           setPollInfo((prevPollInfo) => ({ ...prevPollInfo, ...updates }))
         }
-        onChangeCustomQuestions={(updates: Record<string, unknown>) =>
-          setPollInfo((prevPollInfo) => ({ ...prevPollInfo, ...updates }))
-        }
       />
 
       {isError && (
