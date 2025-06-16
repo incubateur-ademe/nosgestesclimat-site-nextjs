@@ -56,6 +56,7 @@ export async function getLangButtonsDisplayed({
   if (category && article) {
     const result = await fetchArticlePageContent({
       articleSlug: article,
+      categorySlug: category,
       locale: 'en',
     })
 

@@ -17,8 +17,6 @@ import { captureException } from '@sentry/nextjs'
 import type { QueryObserverResult } from '@tanstack/react-query'
 import isMobile from 'is-mobile'
 import { useState } from 'react'
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 import { twMerge } from 'tailwind-merge'
 
 const getRank = (index: number) => {
@@ -107,12 +105,7 @@ export default function RankingMember({
       await refetchGroup()
 
       setIsConfirmationModalOpen(false)
-
-      toast.success(t('Participant supprimé avec succès'))
     } catch (error) {
-      toast.error(t('Une erreur est survenue'), {
-        autoClose: false,
-      })
       captureException(error)
     }
   }

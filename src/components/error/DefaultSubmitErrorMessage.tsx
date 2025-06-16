@@ -10,7 +10,9 @@ export default function DefaultSubmitErrorMessage({
   className?: string
 }) {
   return (
-    <span className={twMerge('block text-sm text-red-800', className)}>
+    <span
+      role="alert"
+      className={twMerge('block font-bold text-red-800', className)}>
       <Trans>
         Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le
         problème persiste, vous pouvez

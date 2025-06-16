@@ -11,8 +11,6 @@ import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
-import { displayErrorToast } from '@/helpers/toasts/displayErrorToast'
-import { displaySuccessToast } from '@/helpers/toasts/displaySuccessToast'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -103,6 +101,7 @@ export default function UserInformationForm({
     mutateAsync: updateUserSettings,
     isPending,
     isError,
+    isSuccess,
   } = useUpdateUserSettings({
     email: user?.email ?? '',
     userId: user?.userId,
@@ -130,14 +129,11 @@ export default function UserInformationForm({
         updateName(data.name)
       }
 
-      displaySuccessToast(t('Vos informations ont bien été mises à jour.'))
-
       timeoutRef.current = setTimeout(() => {
         onCompleted(data)
       }, 2500)
     } catch (error) {
       captureException(error)
-      displayErrorToast(t('Une erreur est survenue. Veuillez réessayer.'))
     }
   }
 
@@ -246,6 +242,12 @@ export default function UserInformationForm({
             }
             {...register('newsletter-logement')}
           />
+        )}
+
+        {isSuccess && (
+          <p role="alert" className="mt-4 mb-4 text-green-700">
+            <Trans>Vos informations ont bien été mises à jour.</Trans>
+          </p>
         )}
 
         {isError && <DefaultSubmitErrorMessage />}
