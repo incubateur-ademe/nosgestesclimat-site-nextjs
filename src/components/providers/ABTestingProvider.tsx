@@ -1,6 +1,18 @@
-import { createContext, PropsWithChildren, useEffect, useState } from 'react'
+import {
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
-const ABTestingContext = createContext({})
+type ABTestingContextType = {
+  abTests: Record<string, boolean>
+}
+
+const ABTestingContext = createContext<ABTestingContextType>({
+  abTests: {},
+})
 
 export const ABTestingProvider = ({ children }: PropsWithChildren) => {
   const [abTests, setABTests] = useState<Record<string, boolean>>({})
@@ -64,3 +76,5 @@ export const ABTestingProvider = ({ children }: PropsWithChildren) => {
     </ABTestingContext>
   )
 }
+
+export const useABTesting = () => useContext(ABTestingContext)

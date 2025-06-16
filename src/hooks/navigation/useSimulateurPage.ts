@@ -1,3 +1,4 @@
+import { useABTesting } from '@/components/providers/ABTestingProvider'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
@@ -29,6 +30,8 @@ export function useSimulateurPage() {
 
   const { goToEndPage, getLinkToEndPage } = useEndPage()
 
+  const { abTests } = useABTesting()
+
   const tutorielSeen = tutorials.testIntro
 
   const { progression } = useCurrentSimulation()
@@ -55,7 +58,7 @@ export function useSimulateurPage() {
       }
 
       // If the user has seen the tutoriel we redirect him to the test
-      if (tutorielSeen) {
+      if (tutorielSeen || abTests['hide-tutorial']) {
         router.replace(getLinkToSimulateur())
         return
       }

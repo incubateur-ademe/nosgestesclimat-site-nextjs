@@ -1,3 +1,4 @@
+import { useABTesting } from '@/components/providers/ABTestingProvider'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -22,6 +23,8 @@ export function useSimulateurGuard() {
 
   const [isGuardInit, setIsGuardInit] = useState(false)
   const [isGuardRedirecting, setIsGuardRedirecting] = useState(false)
+
+  const { abTests } = useABTesting()
 
   const { simulationIdInQueryParams } = useSimulationIdInQueryParams()
 
@@ -50,7 +53,7 @@ export function useSimulateurGuard() {
     }
 
     // if the user has not seen the test intro, we redirect him to the tutorial page
-    if (!tutorials.testIntro) {
+    if (!tutorials.testIntro && !abTests['hide-tutorial']) {
       router.replace('/tutoriel')
       setIsGuardRedirecting(true)
     }
