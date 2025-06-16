@@ -1,4 +1,9 @@
 import {
+  abTestingVisitOriginal,
+  getAbTestingVisitVariation,
+} from '@/constants/tracking/ab-testing'
+import { trackEvent } from '@/utils/analytics/trackEvent'
+import {
   createContext,
   PropsWithChildren,
   useContext,
@@ -13,6 +18,10 @@ type ABTestingContextType = {
 const ABTestingContext = createContext<ABTestingContextType>({
   abTests: {},
 })
+
+export const AB_TESTS_LABELS = {
+  hideTutorial: 'hide tutorial',
+}
 
 export const ABTestingProvider = ({ children }: PropsWithChildren) => {
   const [abTests, setABTests] = useState<Record<string, boolean>>({})
@@ -52,14 +61,25 @@ export const ABTestingProvider = ({ children }: PropsWithChildren) => {
             name: 'original',
             activate: function (event: any) {
               // usually nothing needs to be done here
+              console.log('[AB Testing] Original version')
+              console.log(event)
+
+              trackEvent(abTestingVisitOriginal)
             },
           },
           {
             name: '17',
             activate: function (event: any) {
+              console.log('[AB Testing] Hide tutorial version')
+              console.log(event)
+
               setABTests({
-                'hide-tutorial': true,
+                [AB_TESTS_LABELS.hideTutorial]: true,
               })
+
+              trackEvent(
+                getAbTestingVisitVariation(AB_TESTS_LABELS.hideTutorial)
+              )
             },
           },
         ],

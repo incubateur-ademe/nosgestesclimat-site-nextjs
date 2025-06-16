@@ -1,4 +1,7 @@
-import { useABTesting } from '@/components/providers/ABTestingProvider'
+import {
+  AB_TESTS_LABELS,
+  useABTesting,
+} from '@/components/providers/ABTestingProvider'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
@@ -58,7 +61,7 @@ export function useSimulateurPage() {
       }
 
       // If the user has seen the tutoriel we redirect him to the test
-      if (tutorielSeen || abTests['hide-tutorial']) {
+      if (tutorielSeen || abTests[AB_TESTS_LABELS.hideTutorial]) {
         router.replace(getLinkToSimulateur())
         return
       }
@@ -81,7 +84,7 @@ export function useSimulateurPage() {
       }
 
       // If the user has seen the tutoriel we return the test page link
-      if (tutorielSeen) {
+      if (tutorielSeen || abTests[AB_TESTS_LABELS.hideTutorial]) {
         return getLinkToSimulateur()
       }
 
