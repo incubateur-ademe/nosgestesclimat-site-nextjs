@@ -42,7 +42,7 @@ export default function MotivationSectionWaterFootprint({
             <Image
               width={50}
               height={50}
-              src="/images/icons/icone-eau.svg"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_eau_b3359cd291.svg"
               alt=""
             />
           ),
@@ -59,7 +59,7 @@ export default function MotivationSectionWaterFootprint({
             <Image
               width={50}
               height={50}
-              src="/images/icons/icone-pollution.svg"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_pollution_0e4dfad167.svg"
               alt=""
             />
           ),
@@ -77,7 +77,7 @@ export default function MotivationSectionWaterFootprint({
             <Image
               width={50}
               height={50}
-              src="/images/icons/icone-robinet.svg"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_robinet_135c8f1f00.svg"
               alt=""
             />
           ),
