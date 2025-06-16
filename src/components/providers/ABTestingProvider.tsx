@@ -31,6 +31,7 @@ export const ABTestingProvider = ({ children }: PropsWithChildren) => {
   }, [])
 
   const handleInitABTesting = () => {
+    console.log('[AB Testing] in handleInitABTesting')
     // Vérifier si Matomo est activé
     if (
       process.env.NEXT_PUBLIC_MATOMO_ID !== '1' &&
@@ -51,7 +52,7 @@ export const ABTestingProvider = ({ children }: PropsWithChildren) => {
     _paq.push([
       'AbTesting::create',
       {
-        name: '10',
+        name: '12',
         includedTargets: [
           { attribute: 'url', inverted: '0', type: 'any', value: '' },
         ],
@@ -68,7 +69,7 @@ export const ABTestingProvider = ({ children }: PropsWithChildren) => {
             },
           },
           {
-            name: '17',
+            name: '19',
             activate: function (event: any) {
               console.log('[AB Testing] Hide tutorial version')
               console.log(event)
