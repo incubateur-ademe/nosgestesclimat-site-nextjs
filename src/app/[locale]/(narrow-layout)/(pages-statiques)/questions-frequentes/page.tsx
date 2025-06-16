@@ -7,7 +7,6 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { Locale } from '@/i18nConfig'
-import { getCurrentLangInfos } from '@/locales/translation'
 import { fetchFaq } from '@/services/cms/fetchFAQ'
 import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
@@ -36,15 +35,12 @@ export default async function FAQPage({
   params,
 }: DefaultPageProps<{ params: { locale: Locale } }>) {
   const { locale } = await params
-  const { i18n, t } = await getServerTranslation({ locale })
+  const { t } = await getServerTranslation({ locale })
 
   const faqCategories =
     (await fetchFaq({
       locale,
     })) ?? []
-
-  const FAQContent = getCurrentLangInfos(i18n)
-    .faqContent as unknown as FAQType[]
 
   return (
     <>
