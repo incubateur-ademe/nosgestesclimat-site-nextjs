@@ -40,9 +40,9 @@ try {
     fs.unlinkSync(paths.staticAnalysisFrRes)
   }
   child_process.execSync(`i18next`)
-} catch (error) {
-  console.error('ERROR: an error occured during the analysis!', error.message)
-  cli.printErr(error.message)
+} catch (err) {
+  cli.printErr('ERROR: an error occured during the analysis!')
+  cli.printErr(err.message)
   process.exit(1)
 }
 
@@ -59,8 +59,8 @@ try {
     en: utils.readYAML(paths.UI.en.withLock).entries,
     es: utils.readYAML(paths.UI.es.withLock).entries,
   }
-} catch (error) {
-  console.error('Error reading resources:', error.message)
+} catch (err) {
+  cli.printErr(err.message)
   oldResources = {
     fr: {},
     en: {},
@@ -138,9 +138,8 @@ try {
   Object.entries(oldResources).forEach(([lang, resource]) => {
     utils.writeYAML(paths.UI[lang].withLock, { entries: resource })
   })
-} catch (error) {
-  console.error('ERROR: an error occured while writing!', error.message)
+} catch (err) {
   cli.printErr('ERROR: an error occured while writing!')
-  cli.printErr(error.message)
+  cli.printErr(err.message)
   process.exit(1)
 }
