@@ -27,7 +27,6 @@ export default function ExportDataButton({
 
   const handleClick = () => {
     startTransition(async () => {
-      console.log('toto')
       if (onClick) {
         onClick()
       }
