@@ -9,7 +9,6 @@ import { organisationsParametersUpdateInformations } from '@/constants/tracking/
 import Form from '@/design-system/form/Form'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
-import { displaySuccessToast } from '@/helpers/toasts/displaySuccessToast'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -136,8 +135,6 @@ export default function ParametresPage() {
         organisationIdOrSlug: organisation.slug,
         formData,
       })
-
-      displaySuccessToast(t('Vos informations ont bien été mises à jour.'))
     } catch (error) {
       setError(t('Une erreur est survenue. Veuillez réessayer.'))
       captureException(error)
@@ -173,8 +170,6 @@ export default function ParametresPage() {
     })
 
     setShouldDisplayModal(false)
-
-    displaySuccessToast(t('Vos informations ont bien été mises à jour.'))
 
     // BUG : without a timeout, the organisation is not modified (weird I know)
     timeoutRef.current = setTimeout(() => {
@@ -226,6 +221,12 @@ export default function ParametresPage() {
         </h2>
 
         <PersonalInfoFields defaultValues={defaultValues} register={register} />
+
+        {isSuccessUpdate && (
+          <p className="mt-4 mb-0 text-green-700">
+            <Trans>Vos informations ont bien été mises à jour.</Trans>
+          </p>
+        )}
       </Form>
 
       {shouldDisplayModal && (

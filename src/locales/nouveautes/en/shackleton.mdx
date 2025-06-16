@@ -1,0 +1,47 @@
+---
+title: Schakleton
+date: 2025-04-25T10:21:20Z
+image: https://upload.wikimedia.org/wikipedia/commons/6/6e/C84165s1_Ant.Map_Shackleton_Glacier.jpg
+---
+
+![shackelton Glacier](https://upload.wikimedia.org/wikipedia/commons/6/6e/C84165s1_Ant.Map_Shackleton_Glacier.jpg)
+
+💧 The Shackleton Glacier, stretching almost 96 km across the Queen Maud Range to the Ross Gap in Antarctica, is named after the explorer Ernest Shackleton. Although it receives less media coverage than other glaciers, it embodies the history of the great polar expeditions. Recently, the wreck of the Endurance, Shackleton's ship, was found in remarkable condition!
+
+**In brief, the month of April:** 
+
+🎨 New page for partners
+💅 Improved design & accessibility (carousel, keyboard, html tag titles, alerts, styles)
+⚙️ Tech: update NextJS, Tailwind, scalingo migration and bug fixes
+🚑 Perf fixes and heavy bugs
+⬆️ Model side: publicodes upgrade
+
+### **🎨 Redesign & content**
+
+- The *Partners* page has been revamped and updated
+    
+![new partner page](https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/relays_2738d796fa.png)
+    
+
+- Translations adjusted and typos corrected
+- Addition of a com banner managed via Strapi: this little homemade tool will enable us to warn you of news or important information, such as World Water Day for example!
+
+### **💅 Design & UX**
+
+To prepare for the renewed Accessibility audit, we've made a whole host of optimisations:
+
+- Keyboard-accessible carousel on the home page
+- Multiple accessibility improvements: keyboard navigation, titles, ARIA labels (preview of the Wave tool used for the internal audit stage)
+
+![Accessibility improvements](https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/accessibility_6220b87f58.png)
+
+And also :
+
+- Better display of 404 pages, end of test, and other little details that make all the difference
+- The result sharing button is no longer just a copied link, and now offers gateways to all your favourite social networks.
+- New Alert component, with its Storybook, to give you a better understanding of the different categories of alert messages in the event of an error on the site.
+
+### **⚙️ Technical & infra**
+
+- NextJS updated to 15.3.0 and Tailwind to version 4
+- Cleaned up dependencies, removed conflicting packages and fixed various bugs (hydration, poll names, sending duplicate emails)
