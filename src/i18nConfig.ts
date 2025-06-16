@@ -1,29 +1,13 @@
+import { Config } from 'next-i18n-router/dist/types'
+import { NextRequest } from 'next/server'
+
 export const LOCALE_EN_KEY = 'en'
 export const LOCALE_ES_KEY = 'es'
 export const LOCALE_FR_KEY = 'fr'
 
 export type Locale = 'fr' | 'en' | 'es'
 
-interface Request {
-  cookies: {
-    get: (name: string) => { value: string } | undefined
-  }
-  headers: {
-    get: (name: string) => string | null
-  }
-  nextUrl: {
-    searchParams: {
-      get: (name: string) => string | null
-    }
-  }
-}
-
-interface Config {
-  locales: readonly string[]
-  defaultLocale: string
-}
-
-const i18nConfig = {
+const i18nConfig: Config = {
   locales: [LOCALE_FR_KEY, LOCALE_EN_KEY, LOCALE_ES_KEY] as Locale[],
   defaultLocale: LOCALE_FR_KEY as Locale,
   cookieOptions: {
@@ -32,7 +16,7 @@ const i18nConfig = {
     maxAge: 31536000,
     secure: process.env.NEXT_PUBLIC_ENV === 'production',
   },
-  localeDetector: (request: Request, config: Config): string => {
+  localeDetector: (request: NextRequest, config: Config): string => {
     // Check for NEXT_LOCALE cookie
     const nextLocale = request.cookies.get('NEXT_LOCALE')?.value
     if (nextLocale && config.locales.includes(nextLocale)) {
