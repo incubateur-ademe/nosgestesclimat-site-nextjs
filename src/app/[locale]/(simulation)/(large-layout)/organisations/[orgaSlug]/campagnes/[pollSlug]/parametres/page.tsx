@@ -9,7 +9,7 @@ import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 import { useFetchPoll } from '@/hooks/organisations/polls/useFetchPoll'
 import {
-  PollToUpdate,
+  type PollToUpdate,
   useUpdatePoll,
 } from '@/hooks/organisations/polls/useUpdatePoll'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'

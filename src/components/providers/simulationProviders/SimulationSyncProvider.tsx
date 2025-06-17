@@ -71,7 +71,6 @@ export default function SimulationSyncProvider({
     progression,
     user.email,
     groups,
-    polls,
     savedViaEmail,
     computedResults,
     isInitialized,

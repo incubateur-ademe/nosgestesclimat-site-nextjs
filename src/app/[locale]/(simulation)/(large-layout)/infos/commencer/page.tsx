@@ -45,13 +45,20 @@ export default function Commencer() {
       setShouldNavigate(false)
       router.push(getLinkToNextInfosPage({ curPage: START_PAGE }))
     }
-  }, [goToSimulateurPage, polls, pollSlug, shouldNavigate])
+  }, [
+    goToSimulateurPage,
+    polls,
+    pollSlug,
+    shouldNavigate,
+    router,
+    getLinkToNextInfosPage,
+  ])
 
   useEffect(() => {
     if (typeof progression !== 'undefined' && progression !== 1) {
       router.push(SIMULATOR_PATH)
     }
-  }, [progression])
+  }, [progression, router])
 
   return (
     <Card className={'items-start border-none bg-gray-100 p-8'}>
