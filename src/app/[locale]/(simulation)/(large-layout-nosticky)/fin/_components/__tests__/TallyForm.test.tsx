@@ -2,7 +2,7 @@ import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
 import '@testing-library/jest-dom'
 import { act, render, screen } from '@testing-library/react'
-import TallyForm from './TallyForm'
+import TallyForm from '../TallyForm'
 
 jest.mock('@/hooks/useClientTranslation', () => ({
   useClientTranslation: () => ({
