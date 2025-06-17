@@ -71,8 +71,7 @@ export default function CampagnePage() {
     })
 
   // Organisation can only be fetched by a authentified organisation administrator
-  const { data: organisation, isLoading: isLoadingOrganisation } =
-    useFetchOrganisation()
+  const { data: organisation } = useFetchOrganisation()
 
   const { user } = useUser()
 
@@ -127,7 +126,7 @@ export default function CampagnePage() {
       />
 
       <div className="mt-8">
-        <AdminSection poll={poll} isAdmin={!!isAdmin} />
+        {!!isAdmin && <AdminSection poll={poll} />}
 
         <PollStatistics
           simulationsCount={poll.simulations.finished}
