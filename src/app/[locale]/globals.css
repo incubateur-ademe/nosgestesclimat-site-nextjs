@@ -503,7 +503,7 @@ html[data-useragent*='Trident'] #js {
 }
 
 .markdown figcaption {
-  @apply text-sm text-gray-700 italic;
+  @apply -mt-2 text-sm text-gray-700 italic;
 }
 
 @keyframes rainbow {
