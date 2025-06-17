@@ -1,7 +1,7 @@
+import CloseIcon from '@/components/icons/Close'
 import Link from '@/components/Link'
 import { useIframe } from '@/hooks/useIframe'
 import { usePRNumber } from '@/hooks/usePRNumber'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
 export default function PRIndicator() {
@@ -29,13 +29,7 @@ export default function PRIndicator() {
           clearPRNumber()
           router.refresh()
         }}>
-        <Image
-          className="w-4"
-          src="/images/misc/close-plain.svg"
-          alt=""
-          width="1"
-          height="1"
-        />
+        <CloseIcon />
       </button>
     </div>
   )

@@ -60,6 +60,7 @@ try {
     es: utils.readYAML(paths.UI.es.withLock).entries,
   }
 } catch (err) {
+  cli.printErr(err.message)
   oldResources = {
     fr: {},
     en: {},
