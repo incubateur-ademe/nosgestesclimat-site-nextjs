@@ -104,7 +104,6 @@ export default async function RootLayout({
                 var _paq = window._paq = window._paq || [];
                 /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
                 _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
-                /* TODO remove below */
                 _paq.push(["setCookieDomain", "${process.env.NEXT_PUBLIC_MATOMO_DOMAIN}"]);
                 _paq.push(['setCookieSameSite', 'None']);
                 _paq.push(['enableLinkTracking']);
