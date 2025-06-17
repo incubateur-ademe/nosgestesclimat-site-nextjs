@@ -33,7 +33,7 @@ export const ABTestingProvider = ({ children }: PropsWithChildren) => {
       process.env.NEXT_PUBLIC_MATOMO_ID !== '1' &&
       process.env.NEXT_PUBLIC_MATOMO_ID !== '2'
     ) {
-      console.log('Matomo not enabled in this environment')
+      console.log('[AB Testing] Matomo not enabled in this environment')
       return
     }
 
@@ -48,7 +48,7 @@ export const ABTestingProvider = ({ children }: PropsWithChildren) => {
     _paq.push([
       'AbTesting::create',
       {
-        name: '12',
+        name: 'AvecOuSansTutoriel',
         includedTargets: [
           { attribute: 'url', inverted: '0', type: 'any', value: '' },
         ],
@@ -59,16 +59,14 @@ export const ABTestingProvider = ({ children }: PropsWithChildren) => {
             activate: function (event: any) {
               // usually nothing needs to be done here
               console.log('[AB Testing] Original version')
-              console.log(event)
 
               trackEvent(abTestingVisitOriginal)
             },
           },
           {
-            name: '19',
+            name: 'Variation1',
             activate: function (event: any) {
               console.log('[AB Testing] Hide tutorial version')
-              console.log(event)
 
               setABTests({
                 [AB_TESTS_LABELS.hideTutorial]: true,
