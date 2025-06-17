@@ -34,6 +34,10 @@ export default function Birthdate() {
     // Avoid reloading page
     event?.preventDefault()
 
+    if (!birthdate) {
+      router.push(getLinkToNextInfosPage({ curPage: BIRTHDATE_PAGE }))
+    }
+
     // Update simulation saved
     if (birthdate) {
       updateCurrentSimulation({

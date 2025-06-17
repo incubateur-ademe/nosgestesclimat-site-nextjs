@@ -8,6 +8,7 @@ import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 import { useSaveAndGoNext } from '@/hooks/organisations/useSaveAndGoNext'
 import { useCurrentSimulation } from '@/publicodes-state'
+import { useRouter } from 'next/navigation'
 import type { FormEvent } from 'react'
 import { useState } from 'react'
 import Navigation from '../_components/Navigation'
@@ -16,6 +17,8 @@ export default function PostalCode() {
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
   const { updateCurrentSimulation, defaultAdditionalQuestionsAnswers } =
     useCurrentSimulation()
+
+  const router = useRouter()
 
   const [postalCode, setPostalCode] = useState<string | undefined>(undefined)
 
@@ -27,6 +30,10 @@ export default function PostalCode() {
   const handleSubmit = (event: MouseEvent | FormEvent) => {
     // Avoid reloading page
     event?.preventDefault()
+
+    if (!postalCode) {
+      router.push(getLinkToNextInfosPage({ curPage: POSTAL_CODE_PAGE }))
+    }
 
     // Update simulation saved
     if (postalCode) {

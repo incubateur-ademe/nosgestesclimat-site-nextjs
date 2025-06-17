@@ -18,6 +18,8 @@ export function useSaveAndGoNext({ curPage }: { curPage: string }) {
 
   useEffect(() => {
     if (shouldSaveAndGoNext) {
+      setError(false)
+
       try {
         saveSimulation({
           simulation: currentSimulation,
@@ -30,6 +32,7 @@ export function useSaveAndGoNext({ curPage }: { curPage: string }) {
         return
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shouldSaveAndGoNext])
 
   return { setShouldSaveAndGoNext, errorSaveSimulation: error }
