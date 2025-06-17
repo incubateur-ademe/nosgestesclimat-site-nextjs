@@ -2,7 +2,7 @@
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
-import { Locale } from '@/i18nConfig'
+import type { Locale } from '@/i18nConfig'
 import Image from 'next/image'
 
 const getLocalisedSrc = (locale: Locale) => {
