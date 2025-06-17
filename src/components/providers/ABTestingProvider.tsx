@@ -5,7 +5,7 @@ import {
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import {
   createContext,
-  PropsWithChildren,
+  type PropsWithChildren,
   useContext,
   useEffect,
   useState,
@@ -25,10 +25,6 @@ export const AB_TESTS_LABELS = {
 
 export const ABTestingProvider = ({ children }: PropsWithChildren) => {
   const [abTests, setABTests] = useState<Record<string, boolean>>({})
-
-  useEffect(() => {
-    handleInitABTesting()
-  }, [])
 
   const handleInitABTesting = () => {
     console.log('[AB Testing] in handleInitABTesting')
@@ -87,6 +83,11 @@ export const ABTestingProvider = ({ children }: PropsWithChildren) => {
       },
     ])
   }
+
+  useEffect(() => {
+    handleInitABTesting()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <ABTestingContext

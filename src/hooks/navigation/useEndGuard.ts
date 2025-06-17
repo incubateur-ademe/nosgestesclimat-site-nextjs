@@ -46,7 +46,14 @@ export function useEndGuard() {
     // we redirect the user to the test page
     router.replace(getLinkToSimulateur())
     setIsGuardRedirecting(true)
-  }, [isGuardInit, simulationIdInQueryParams, progression, router, tutorials])
+  }, [
+    isGuardInit,
+    simulationIdInQueryParams,
+    progression,
+    router,
+    tutorials,
+    abTests,
+  ])
 
   return { isGuardInit, isGuardRedirecting }
 }

@@ -71,7 +71,7 @@ export function useSimulateurPage() {
         scroll: false,
       })
     },
-    [tutorielSeen, router, initSimulation, progression, goToEndPage]
+    [progression, tutorielSeen, abTests, router, initSimulation, goToEndPage]
   )
 
   const getLinkToSimulateurPage = useCallback(
@@ -91,7 +91,7 @@ export function useSimulateurPage() {
       // else we return the tutoriel page link
       return '/tutoriel'
     },
-    [tutorielSeen, progression, getLinkToEndPage]
+    [progression, tutorielSeen, abTests, getLinkToEndPage]
   )
 
   const linkToSimulateurPageLabel = useMemo(() => {

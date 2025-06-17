@@ -70,6 +70,7 @@ export function useSimulateurGuard() {
     questionInQueryParams,
     simulationIdInQueryParams,
     isCorrectSimulationSet,
+    abTests,
   ])
 
   return { isGuardInit, isGuardRedirecting }
