@@ -20,6 +20,7 @@ export async function fetchBanner(locale: Locale): Promise<BannerType | null> {
       'filters[$and][1][endDate][$gte]': dayjs(new Date())
         .startOf('day')
         .toISOString(),
+      'pagination[limit]': '1',
       populate: '*',
     })
 
