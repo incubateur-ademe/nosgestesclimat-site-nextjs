@@ -14,6 +14,9 @@ jest.mock('@/constants/tracking/ab-testing', () => ({
     `abTestingVisitVariation-${label}`,
 }))
 
+// Mock de setTimeout
+jest.useFakeTimers()
+
 // Composant de test pour accéder au contexte
 const TestComponent = () => {
   const { abTests } = useABTesting()
@@ -24,9 +27,15 @@ describe('ABTestingProvider', () => {
   beforeEach(() => {
     // Reset des mocks
     jest.clearAllMocks()
+    jest.clearAllTimers()
 
     // Mock de window._paq
     window._paq = []
+
+    // Mock de window.Matomo
+    ;(window as any).Matomo = {
+      AbTesting: {},
+    }
 
     // Mock de process.env
     process.env.NEXT_PUBLIC_MATOMO_ID = '2'
@@ -35,6 +44,7 @@ describe('ABTestingProvider', () => {
   afterEach(() => {
     // Cleanup
     window._paq = []
+    delete (window as any).Matomo
     process.env.NEXT_PUBLIC_MATOMO_ID = undefined
   })
 
@@ -60,7 +70,47 @@ describe('ABTestingProvider', () => {
     expect(window._paq).toEqual([])
   })
 
-  it('should initialize AB testing when Matomo is enabled', () => {
+  it('should retry initialization when Matomo is not available', () => {
+    // Supprimer Matomo temporairement
+    delete (window as any).Matomo
+
+    render(
+      <ABTestingProvider>
+        <TestComponent />
+      </ABTestingProvider>
+    )
+
+    // Vérifier qu'aucun test A/B n'a été configuré immédiatement
+    expect(window._paq).toEqual([])
+
+    // Remettre Matomo et avancer le timer
+    ;(window as any).Matomo = {
+      AbTesting: {},
+    }
+
+    act(() => {
+      jest.advanceTimersByTime(500)
+    })
+
+    // Maintenant le test A/B devrait être configuré
+    expect(window._paq.length).toBeGreaterThan(0)
+    expect(window._paq[0][0]).toBe('AbTesting::create')
+  })
+
+  it('should not initialize AB testing when Matomo.AbTesting is not available', () => {
+    // Matomo existe mais pas AbTesting
+    ;(window as any).Matomo = {}
+
+    render(
+      <ABTestingProvider>
+        <TestComponent />
+      </ABTestingProvider>
+    )
+
+    expect(window._paq).toEqual([])
+  })
+
+  it('should initialize AB testing when Matomo and AbTesting are available', () => {
     render(
       <ABTestingProvider>
         <TestComponent />
