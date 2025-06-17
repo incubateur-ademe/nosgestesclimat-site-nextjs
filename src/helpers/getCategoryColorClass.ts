@@ -1,17 +1,17 @@
 export function getTextDarkColor(category?: string | null) {
   switch (category) {
     case 'transport':
-      return `text-transport-800`
+      return `text-transport-900`
     case 'alimentation':
-      return `text-alimentation-800`
+      return `text-alimentation-900`
     case 'logement':
-      return `text-logement-800`
+      return `text-logement-900`
     case 'divers':
-      return `text-divers-800`
+      return `text-divers-900`
     case 'services sociétaux':
-      return `text-servicessocietaux-800`
+      return `text-servicessocietaux-900`
     default:
-      return 'text-primary-800'
+      return 'text-primary-900'
   }
 }
 
@@ -46,6 +46,23 @@ export function getBackgroundLightColor(category?: string | null) {
       return `bg-servicessocietaux-100`
     default:
       return 'bg-primary-100'
+  }
+}
+
+export function getBackgroundDarkColor(category?: string | null) {
+  switch (category) {
+    case 'transport':
+      return `bg-transport-900`
+    case 'alimentation':
+      return `bg-alimentation-900`
+    case 'logement':
+      return `bg-logement-900`
+    case 'divers':
+      return `bg-divers-900`
+    case 'services sociétaux':
+      return `bg-servicessocietaux-900`
+    default:
+      return 'bg-primary-900'
   }
 }
 

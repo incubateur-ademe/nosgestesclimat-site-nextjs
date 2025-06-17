@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Modal from '@/design-system/modals/Modal'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useIframe } from '@/hooks/useIframe'
@@ -98,18 +98,24 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
       buttons={
         <>
           {!currentSimulation.savedViaEmail && mode === 'save' ? (
-            <Button color="secondary" onClick={closeModal}>
+            <Button color="secondary" size="sm" onClick={closeModal}>
               <Trans>Non, merci</Trans>
             </Button>
           ) : (
-            <Button color="secondary" onClick={() => router.push('/')}>
+            <Button
+              color="secondary"
+              size="sm"
+              onClick={() => router.push('/')}>
               <Trans>Revenir à l'accueil</Trans>
             </Button>
           )}
           {currentSimulation.savedViaEmail ? (
-            <Button onClick={closeModal}>Continuer mon test</Button>
+            <Button size="sm" onClick={closeModal}>
+              Continuer mon test
+            </Button>
           ) : (
             <Button
+              size="sm"
               type="submit"
               form={'save-form'}
               disabled={isPending}

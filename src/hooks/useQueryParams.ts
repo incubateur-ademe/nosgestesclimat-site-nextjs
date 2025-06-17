@@ -1,8 +1,5 @@
 'use client'
 
-/**
- * https://github.com/vercel/next.js/discussions/47583
- */
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 export function useQueryParams<T>() {

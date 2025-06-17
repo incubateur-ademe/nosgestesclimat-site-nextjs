@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useState } from 'react'
@@ -22,7 +22,7 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
 
   if (!isOpen) {
     return (
-      <div className="absolute right-0 top-1 text-right">
+      <div className="absolute top-1 right-0 text-right">
         <button
           title={t('Ouvrir les options de tri')}
           onClick={() => setIsOpen(true)}

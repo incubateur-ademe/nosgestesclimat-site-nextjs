@@ -2,7 +2,7 @@
 
 import InformationIconWithTooltip from '@/components/messages/InformationIconWithTooltip'
 import Trans from '@/components/translation/trans/TransClient'
-import { carboneMetric } from '@/constants/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import Separator from '@/design-system/layout/Separator'
 import type { PublicPollSimulation } from '@/types/organisations'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -83,7 +83,7 @@ export default function PollStatisticsCharts({
   if (!simulations || simulations?.length < 3) return null
 
   return (
-    <section className="my-12 rounded-xl bg-gray-100 px-8 pb-4 pt-8">
+    <section className="my-12 rounded-xl bg-gray-100 px-8 pt-8 pb-4">
       <h2>
         <Trans>Répartition des empreintes carbone</Trans>
         <InformationIconWithTooltip
@@ -94,7 +94,7 @@ export default function PollStatisticsCharts({
               <Trans>
                 Chaque participation est représentée par une barre verticale.
                 Votre score est affiché en{' '}
-                <span className="font-bold text-secondary-700">rose</span>.
+                <span className="text-secondary-700 font-bold">rose</span>.
               </Trans>
             </p>
             <p className="mb-0 text-sm">
@@ -160,7 +160,7 @@ export default function PollStatisticsCharts({
 
             {hasCurrentUser && (
               <div className="flex items-center gap-3">
-                <div className="h-4 w-1 bg-secondary-700" />
+                <div className="bg-secondary-700 h-4 w-1" />
                 <p className="mb-0 text-sm text-gray-600">
                   <Trans>Votre résultat</Trans>
                 </p>

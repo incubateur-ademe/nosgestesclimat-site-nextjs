@@ -1,13 +1,12 @@
 'use client'
 
-import { defaultMetric } from '@/constants/metric'
+import { defaultMetric } from '@/constants/model/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
+import { useGetDifference } from '@/hooks/simulation/useGetDifference'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
-import { useForm, useRule } from '@/publicodes-state'
 import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
 import { usePathname } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 export default function ValueChangeDisplay({
@@ -24,57 +23,32 @@ export default function ValueChangeDisplay({
 
   const pathname = usePathname()
 
-  const { currentQuestion } = useForm()
+  const { difference, updateKey } = useGetDifference({
+    metric,
+  })
 
-  const { numericValue } = useRule('bilan', metric)
+  const isNegative = difference < 0
 
-  const prevValue = useRef(numericValue)
-
-  const [displayDifference, setDisplayDifference] = useState(0)
-
-  const prevQuestion = useRef(currentQuestion)
-
-  // We need this value to force the component to re-render when the numericValue changes
-  // We don't use numericValue directly because it update before the displayDifference
-  const [keyFromNumericValue, setKeyFromNumericValue] = useState(numericValue)
-
-  useEffect(() => {
-    if (prevQuestion.current !== currentQuestion) {
-      setDisplayDifference(0)
-    }
-  }, [currentQuestion])
-
-  useEffect(() => {
-    const difference = numericValue - prevValue.current
-
-    setDisplayDifference(difference)
-    setKeyFromNumericValue(numericValue)
-
-    prevValue.current = numericValue
-  }, [numericValue, locale])
-
-  const isNegative = displayDifference < 0
-
-  const { formattedValue, unit } = formatFootprint(displayDifference, {
+  const { formattedValue, unit } = formatFootprint(difference, {
     locale,
     metric,
     t,
   })
 
-  if (displayDifference === 0 || !pathname.includes('simulateur/bilan')) {
+  if (difference === 0 || !pathname.includes('simulateur/bilan')) {
     return null
   }
 
   return (
     <div
       className={twMerge(
-        'absolute right-2 top-1 -z-0 w-auto whitespace-nowrap',
+        'absolute -top-0.5 right-2 -z-0 w-auto whitespace-nowrap sm:top-1',
         isNegative
           ? 'animate-valuechange-reverse text-green-700'
           : 'animate-valuechange text-red-700',
         className
       )}
-      key={keyFromNumericValue}
+      key={updateKey}
       aria-label={t(
         '{{signe}} {{value}} {{unit}} sur votre empreinte {{metric}}',
         {
@@ -86,10 +60,10 @@ export default function ValueChangeDisplay({
       )}>
       <span
         className={twMerge(
-          'text-sm font-semibold',
+          'text-xs font-semibold sm:text-sm',
           size === 'md' ? 'text-base' : ''
         )}>
-        {displayDifference > 0 ? '+' : ''}
+        {difference > 0 ? '+' : ''}
         {formattedValue}
       </span>{' '}
       <span

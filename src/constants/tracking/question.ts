@@ -80,3 +80,10 @@ export const questionClickSuggestion = ({ question, answer }: Props) => [
   question,
   String(answer),
 ]
+
+export const openSubQuestion = ({ question }: Props) => [
+  'trackEvent',
+  'Simulateur',
+  'Open Sub Question',
+  question,
+]

@@ -85,6 +85,7 @@ export type Simulation = {
   polls?: string[] | null
   groups?: string[] | null
   savedViaEmail?: boolean
+  model?: string
 }
 
 export type LocalStorage = {
@@ -108,4 +109,9 @@ export type MissingVariables = Record<DottedName, number>
 export type FormattedSuggestion = {
   label: string
   value: SuggestionValue | Record<string, SuggestionValue>
+}
+
+export type Action = {
+  dottedName: DottedName
+  value: number
 }

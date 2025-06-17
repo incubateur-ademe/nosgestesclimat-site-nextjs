@@ -6,7 +6,7 @@ import {
   infosCommencerClickCtaCommencer,
   infosCommencerClickNewTest,
 } from '@/constants/tracking/pages/infos'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
@@ -20,7 +20,7 @@ import { InfosContext } from '../_components/InfosProvider'
 const titles = {
   notStarted: (
     <span className="flex items-center">
-      <Trans>Envie de connaître votre empreinte carbone ?</Trans>{' '}
+      <Trans>Envie de connaître vos empreintes carbone et eau ?</Trans>{' '}
       <Emoji className="ml-1">🤓</Emoji>
     </span>
   ),
@@ -41,7 +41,7 @@ const texts = {
   notStarted: (
     <>
       <Trans>Calculez votre empreinte en</Trans>{' '}
-      <span className="font-bold text-primary-700">
+      <span className="text-primary-700 font-bold">
         <Trans>10 minutes</Trans>
       </span>{' '}
       <Trans>

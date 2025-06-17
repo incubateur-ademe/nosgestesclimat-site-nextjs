@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { BIRTHDATE_PAGE } from '@/constants/infosPages'
+import { BIRTHDATE_PAGE } from '@/constants/organisations/infosPages'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
@@ -36,7 +36,7 @@ export default function Birthdate() {
         className="text-lg md:text-2xl"
         title={<Trans>Votre date de naissance</Trans>}
         subtitle={
-          <span className="font-bold italic text-secondary-700">
+          <span className="text-secondary-700 font-bold italic">
             <Trans>Facultatif</Trans>
           </span>
         }

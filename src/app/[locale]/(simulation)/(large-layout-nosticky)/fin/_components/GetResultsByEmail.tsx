@@ -1,14 +1,15 @@
 'use client'
 
+import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   LIST_MAIN_NEWSLETTER,
   LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
   LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
 } from '@/constants/brevo'
-import { defaultMetric } from '@/constants/metric'
+import { defaultMetric } from '@/constants/model/metric'
 import { endClickSaveSimulation } from '@/constants/tracking/pages/end'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import Card from '@/design-system/layout/Card'
@@ -262,9 +263,7 @@ export default function GetResultsByEmail({
             <Trans>Envoyer</Trans>
           </Button>
 
-          {isError && (
-            <div className="mt-4 text-red-600">{error?.toString()}</div>
-          )}
+          {isError && <DefaultSubmitErrorMessage />}
         </form>
       </Card>
     </div>

@@ -1,7 +1,8 @@
 'use client'
 
+import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Title from '@/design-system/layout/Title'
 import { linkToClassement } from '@/helpers/navigation/classementPages'
 import { useDeleteGroup } from '@/hooks/groups/useDeleteGroup'
@@ -84,14 +85,7 @@ export default function SupprimerGroupePage({
         </p>
       )}
 
-      {isError && (
-        <p className="mt-4 text-red-600">
-          <Trans>
-            Oups, une erreur s'est produite au moment de récupérer les données
-            du groupe.
-          </Trans>
-        </p>
-      )}
+      {isError && <DefaultSubmitErrorMessage className="mt-4" />}
 
       <Button
         disabled={!!isError || !group || isSuccess}

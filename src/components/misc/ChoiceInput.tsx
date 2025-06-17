@@ -56,10 +56,10 @@ export default function ChoiceInput({
             {...props}
           />
           <span
-            className={`${checkClassNames[status]} relative flex h-5 w-5 items-center justify-center rounded-full border-2 text-sm before:absolute before:top-1/2 before:left-1/2 before:h-3 before:w-3 before:-translate-x-1/2 before:-translate-y-1/2 before:transform before:rounded-full before:p-1 md:h-5 md:w-5 md:text-base md:before:h-3 md:before:w-3`}
+            className={`${checkClassNames[status]} relative flex h-5 w-5 items-center justify-center rounded-full border-2 text-sm before:absolute before:top-0.5 before:left-0.5 before:h-3 before:w-3 before:rounded-full before:p-1 md:h-5 md:w-5 md:text-base md:before:h-3 md:before:w-3`}
           />
           <span
-            className={`inline flex-1 align-middle text-sm md:text-lg ${labelClassNames[status]}`}>
+            className={`text-default inline flex-1 align-middle text-sm md:text-base ${labelClassNames[status]}`}>
             {label ?? children}
           </span>
         </label>

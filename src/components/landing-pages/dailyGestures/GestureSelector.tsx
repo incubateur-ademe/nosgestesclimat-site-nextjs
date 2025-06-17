@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { baseClassNames, sizeClassNames } from '@/design-system/inputs/Button'
+import { baseClassNames, sizeClassNames } from '@/design-system/buttons/Button'
 import type { GesturesType } from '@/types/landing-page'
 import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
@@ -26,7 +26,7 @@ export default function GestureSelector({
                 className={twMerge(
                   baseClassNames,
                   sizeClassNames.xs,
-                  'my-1 border-2 border-primary-100 bg-primary-50 text-primary-800 transition-colors hover:bg-primary-100',
+                  'border-primary-100 bg-primary-50 text-primary-800 hover:bg-primary-100 my-1 border-2 transition-colors',
                   selectedCategory === categoryName &&
                     'border-primary-500 bg-primary-100 text-primary-800'
                 )}
@@ -49,7 +49,7 @@ export default function GestureSelector({
               {gestures[selectedCategory].gestureList.map((gesture, index) => (
                 <li
                   key={`gesture-${index}`}
-                  className="flex items-baseline gap-1 text-sm font-bold text-primary-600 md:text-lg">
+                  className="text-primary-600 flex items-baseline gap-1 text-sm font-bold md:text-lg">
                   <Trans>{gesture}</Trans>
                 </li>
               ))}

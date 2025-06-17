@@ -1,7 +1,7 @@
 'use client'
 
 import { marianne } from '@/app/[locale]/layout'
-import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
+import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import Loader from '@/design-system/layout/Loader'
 import type { DetailedHTMLProps, InputHTMLAttributes } from 'react'
@@ -49,7 +49,7 @@ export default function VerificationCodeInput({
 
       {inputError && (
         <div>
-          <p className="mt-2 text-sm text-red-700">
+          <p className="mt-2 text-sm text-red-800">
             <Trans>Le code est invalide</Trans>
           </p>
         </div>

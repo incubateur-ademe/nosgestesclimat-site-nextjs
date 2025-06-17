@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: remoteImagesPatterns,
   },
+  // eslint-disable-next-line @typescript-eslint/require-await
   async redirects() {
     return redirects
   },
@@ -26,21 +27,11 @@ const nextConfig: NextConfig = {
     { dev, isServer }: { dev: boolean; isServer: boolean }
   ) => {
     if (isServer) {
-      config.ignoreWarnings = [{ module: /opentelemetry/ }]
-    }
-
-    if (config.cache) {
-      if (dev) {
-        // Development configuration
-        config.cache = {
-          type: 'filesystem',
-        }
-      } else {
-        // Use cache in production
-        config.cache = Object.freeze({
-          type: 'memory',
-        })
-      }
+      config.ignoreWarnings = [
+        { module: /opentelemetry/ },
+        { module: /mdx-js-loader/ },
+        { module: /next\.config\.compiled\.js/ },
+      ]
     }
 
     // Add a rule for YAML files
@@ -48,6 +39,12 @@ const nextConfig: NextConfig = {
       test: /\.ya?ml$/,
       use: 'yaml-loader',
     })
+
+    if (!dev) {
+      config.cache = Object.freeze({
+        type: 'memory',
+      })
+    }
 
     // Enable source maps
     if (!dev && !isServer) {
@@ -59,20 +56,17 @@ const nextConfig: NextConfig = {
   productionBrowserSourceMaps: true,
   outputFileTracingExcludes: {
     '*': ['.next/cache/webpack', '.git/**/*', 'cypress/**/*'],
-    '/blog': ['public/NGC_Kit.diffusion.zip'],
-    '/nouveautes': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
-    '/sitemap.xml': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
+  },
+  turbopack: {
+    rules: {
+      '*.yaml': {
+        loaders: ['yaml-loader'],
+      },
+    },
   },
   experimental: {
     optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
     webpackBuildWorker: true,
-    turbo: {
-      rules: {
-        '*.yaml': {
-          loaders: ['yaml-loader'],
-        },
-      },
-    },
   },
 }
 

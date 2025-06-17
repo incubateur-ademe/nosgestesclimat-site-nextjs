@@ -11,7 +11,7 @@ const TwoGraphsIllustration = dynamic(
   {
     loading: () => (
       <Image
-        src="/images/misc/graphiques-empreinte-carbone-eau-fr.png"
+        src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/graphiques_empreinte_carbone_eau_fr_7df50f7102.png"
         className="hidden md:block"
         alt="Deux représentations graphiques de l'empreinte carbone et eau"
         width={600}
@@ -26,7 +26,7 @@ const CarbonGraphIllustration = dynamic(
   {
     loading: () => (
       <Image
-        src="/images/misc/graphique-empreinte-carbone.png"
+        src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/graphique_empreinte_carbone_fr_5077492f48.png"
         alt="Graphique de l'empreinte carbone"
         width={300}
         height={300}
@@ -40,7 +40,7 @@ const WaterGraphIllustration = dynamic(
   {
     loading: () => (
       <Image
-        src="/images/misc/graphique-empreinte-eau.png"
+        src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/graphique_empreinte_eau_fr_de3e685ba4.png"
         alt="Graphique de l'empreinte eau"
         width={300}
         height={300}
@@ -56,7 +56,7 @@ export default function TwoFootprints({ locale }: { locale: string }) {
         <h2 className="mb-0 text-center text-2xl md:text-3xl">
           <Trans locale={locale}>Un calculateur, deux empreintes</Trans>
         </h2>
-        <ColorLine className="bg-rainbow absolute bottom-0 left-[15%] h-[3px] w-[70%] animate-rainbow-slow transition-all md:left-0 md:w-full" />
+        <ColorLine className="bg-rainbow animate-rainbow-slow absolute bottom-0 left-[15%] h-[3px] w-[70%] transition-all md:left-0 md:w-full" />
       </div>
 
       {/* Displayed on desktop only */}

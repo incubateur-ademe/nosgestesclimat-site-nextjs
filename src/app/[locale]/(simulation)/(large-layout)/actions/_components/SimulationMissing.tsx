@@ -2,7 +2,7 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useCurrentSimulation } from '@/publicodes-state'
@@ -40,7 +40,7 @@ export default function SimulationMissing() {
           </ButtonLink>
         </div>
 
-        <p className="mb-0 mt-4">
+        <p className="mt-4 mb-0">
           <small>
             <Trans i18nKey={'publicodes.SimulationMissing.personnas'}>
               Vous pouvez aussi continuer avec un{' '}

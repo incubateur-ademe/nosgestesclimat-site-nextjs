@@ -3,6 +3,7 @@ import NumberInput from '@/components/form/question/NumberInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useRule } from '@/publicodes-state'
+import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { useEffect, useMemo, useRef, useState } from 'react'
@@ -28,7 +29,7 @@ export default function ThreeYearsInput({ question, setTempValue }: Props) {
   const [isInitialized, setIsInitialized] = useState(false)
 
   useEffect(() => {
-    const years = JSON.parse(localStorage.getItem(question) || '[0, 0, 0]')
+    const years = JSON.parse(safeLocalStorage.getItem(question) || '[0, 0, 0]')
     setCurrentYearValue(years[0])
     setLastYearValue(years[1])
     setYearBeforeLastValue(years[2])
@@ -37,7 +38,7 @@ export default function ThreeYearsInput({ question, setTempValue }: Props) {
 
   useEffect(() => {
     if (isInitialized) {
-      localStorage.setItem(
+      safeLocalStorage.setItem(
         question,
         JSON.stringify([currentYearValue, lastYearValue, yearBeforeLastValue])
       )
@@ -69,7 +70,7 @@ export default function ThreeYearsInput({ question, setTempValue }: Props) {
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
-      className="mb-2 rounded-xl border-2 border-primary-50 bg-white p-4">
+      className="border-primary-50 mb-2 rounded-xl border-2 bg-white p-4">
       <Label question={question} size="sm" label={String(currentYear)} />
       <NumberInput
         unit={unit}
@@ -102,7 +103,7 @@ export default function ThreeYearsInput({ question, setTempValue }: Props) {
         isMissing={yearBeforeLastValue ? false : true}
         className="mb-2 justify-start"
       />
-      <p className="mb-0 rounded-xl bg-primary-200 p-4 font-bold">
+      <p className="bg-primary-200 mb-0 rounded-xl p-4 font-bold">
         {t('Total\u202f:')}{' '}
         {(
           currentYearValue +

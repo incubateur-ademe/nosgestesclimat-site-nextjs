@@ -1,5 +1,5 @@
 import Trans from '@/components/translation/trans/TransClient'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import type { DefaultPageProps } from '@/types'
@@ -31,7 +31,7 @@ export default async function ActionDetailPage({
 }: DefaultPageProps<{ params: { dottedName: DottedName[] } }>) {
   const paramsAwaited = await params
   return (
-    <div className="mx-auto max-w-[600px]">
+    <div className="mx-auto my-12 max-w-[600px]">
       <ButtonLink
         size="sm"
         color="text"

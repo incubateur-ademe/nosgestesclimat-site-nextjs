@@ -23,7 +23,7 @@ export const generateMetadata = getCommonMetadata({
 
 export default async function Releases({ params }: DefaultPageProps) {
   const { locale } = await params
-  const releases = await getPosts(`src/locales/nouveautes/${locale}/`)
+  const releases = getPosts(`src/locales/nouveautes/${locale}/`)
 
   const { t } = await getServerTranslation({ locale })
 
@@ -38,12 +38,12 @@ export default async function Releases({ params }: DefaultPageProps) {
             title={
               <span className="flex items-center">
                 <Trans locale={locale}>Les nouveautés</Trans>
-                <SparklesIcon className="ml-2 fill-divers-300" />
+                <SparklesIcon className="fill-divers-300 ml-2" />
               </span>
             }
           />
 
-          <p className="max-w-74 mb-0">
+          <p className="mb-0 max-w-74">
             <Trans locale={locale}>
               Nous améliorons le site en continu à partir de{' '}
               <InlineLink href="/contact">vos retours</InlineLink>. Découvrez la
@@ -54,7 +54,7 @@ export default async function Releases({ params }: DefaultPageProps) {
 
         <Image
           className="ml-auto w-32 md:-mt-4 md:w-48"
-          src="/images/illustrations/girl-cooking.png"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_cooking_0ec332454e.png"
           width="200"
           height="400"
           alt={t('Une femme préparant un bon petit plat.')}

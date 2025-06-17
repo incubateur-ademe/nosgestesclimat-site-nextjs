@@ -1,7 +1,7 @@
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { FocusEvent } from 'react'
 import { useRef, useState } from 'react'
-import Button from './Button'
+import Button from '../buttons/Button'
 
 type Props = {
   name: string
@@ -69,7 +69,7 @@ export default function InlineTextInput({
           type={type}
           autoComplete="off"
           placeholder={placeholder}
-          className={`max-w-[30rem] flex-1 rounded-s-md border-2 border-solid border-gray-200 bg-gray-100 !p-4 text-base transition-colors focus:border-primary-700 focus:ring-2 focus:ring-primary-700 ${
+          className={`focus:border-primary-700 focus:ring-primary-700 max-w-[30rem] flex-1 rounded-s-md border-2 border-solid border-gray-200 bg-gray-100 !p-4 text-base transition-colors focus:ring-2 ${
             error ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : ''
           }`}
           aria-describedby={`error-${name}`}
@@ -82,7 +82,7 @@ export default function InlineTextInput({
           {...props}
         />
         <Button
-          className="rounded-s-none border-2! border-primary-700!"
+          className="border-primary-700! rounded-s-none border-2!"
           id="inline-input-button"
           onClick={handleSubmit}
           aria-label={t('Ok, sauvegarder la modification')}

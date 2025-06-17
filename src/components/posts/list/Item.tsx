@@ -16,7 +16,7 @@ export default function Item({ item, path, locale }: Props) {
       <Card
         tag={Link}
         href={`${path}/${item.slug}`}
-        className="h-full w-full justify-between border-0 bg-primary-50 p-4 text-default no-underline">
+        className="bg-primary-50 text-default h-full w-full justify-between border-0 p-4 no-underline">
         <div>
           {item.data.image ? (
             <Image
@@ -27,12 +27,9 @@ export default function Item({ item, path, locale }: Props) {
               alt={`Illustration: ${item.data.title}`}
             />
           ) : null}
-          <p
-            className="mb-4 mt-4 text-center text-lg font-bold"
-            dangerouslySetInnerHTML={{
-              __html: item.data.title || item.slug || '',
-            }}
-          />
+          <p className="mt-4 mb-4 text-center text-lg font-bold">
+            {item.data.title || item.slug || ''}
+          </p>
         </div>
         {item.data.date ? (
           <p className="text-center">

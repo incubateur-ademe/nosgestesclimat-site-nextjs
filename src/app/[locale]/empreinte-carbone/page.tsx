@@ -1,5 +1,6 @@
 import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
 import Partners from '@/components/landing-pages/Partners'
+import Footer from '@/components/layout/Footer'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/trans/TransServer'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
@@ -120,7 +121,7 @@ export default async function CarbonFootprintLandingPage({
               <Image
                 width={280}
                 height={280}
-                src="/images/illustrations/girl-holding-earth.svg"
+                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_17e65580c7.svg"
                 alt=""
               />
             </div>
@@ -131,7 +132,7 @@ export default async function CarbonFootprintLandingPage({
             <Image
               width={400}
               height={400}
-              src="/images/illustrations/girl-holding-earth.svg"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_17e65580c7.svg"
               alt=""
             />
           </div>
@@ -154,6 +155,8 @@ export default async function CarbonFootprintLandingPage({
 
         <FAQCarbonFootprint locale={locale} />
       </LandingPage>
+
+      <Footer />
     </>
   )
 }

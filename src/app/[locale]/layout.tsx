@@ -1,5 +1,4 @@
 import ErrorContent from '@/components/error/ErrorContent'
-import Footer from '@/components/layout/Footer'
 import SkipToMainContentLink from '@/design-system/accessibility/SkipToMainContentLink'
 import Banner from '@/design-system/cms/Banner'
 import type { Locale } from '@/i18nConfig'
@@ -69,7 +68,7 @@ export default async function RootLayout({
 
           <meta property="twitter:card" content="summary_large_image" />
 
-          <link rel="manifest" href="../manifest.webmanifest" />
+          <link rel="manifest" href="/manifest.webmanifest" />
 
           <meta name="theme-color" content="#4949ba" />
 
@@ -119,6 +118,7 @@ export default async function RootLayout({
               </Script>
             )
           }
+          <Script src="https://tally.so/widgets/embed.js"></Script>
         </head>
 
         <MainLayoutProviders>
@@ -127,8 +127,6 @@ export default async function RootLayout({
           <Banner locale={locale as Locale} />
 
           {children}
-
-          <Footer />
         </MainLayoutProviders>
       </html>
     )
@@ -136,7 +134,7 @@ export default async function RootLayout({
     captureException(error)
     return (
       <html lang="fr">
-        <body className={`${marianne.className} bg-white text-default`}>
+        <body className={`${marianne.className} text-default bg-white`}>
           <div className="flex h-screen flex-col items-center justify-center">
             <ErrorContent />
           </div>

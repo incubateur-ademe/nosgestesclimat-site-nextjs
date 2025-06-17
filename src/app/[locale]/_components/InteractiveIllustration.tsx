@@ -11,7 +11,7 @@ export default function InteractiveIllustration() {
   return (
     <div className="relative mx-auto sm:max-w-[380px] md:max-w-none">
       <Image
-        src="/images/illustrations/empreinte-carbone-eau-objets-du-quotidien.svg"
+        src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/empreinte_carbone_eau_objets_du_quotidien_8717e67e8e.svg"
         alt={t(
           "Une fille tapant sur son ordinateur, entouré d'objets aux empreintes carbone et eau variées."
         )}
@@ -31,7 +31,7 @@ export default function InteractiveIllustration() {
 
         {/* Shirt */}
         <PulsatingDot
-          className="right-[35%] top-[40%]"
+          className="top-[40%] right-[35%]"
           itemTitle={<Trans>Chemisier</Trans>}
           itemKey="shirt"
           carbonScore={3}

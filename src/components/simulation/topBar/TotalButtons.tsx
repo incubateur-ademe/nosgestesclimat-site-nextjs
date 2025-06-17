@@ -7,7 +7,7 @@ import SaveIcon from '@/components/icons/SaveIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import { simulateurOpenScoreInfo } from '@/constants/tracking/pages/simulateur'
 import { TUTORIALS } from '@/constants/tutorial'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { twMerge } from 'tailwind-merge'
@@ -34,7 +34,7 @@ export default function TotalButtons({
           trackEvent(simulateurOpenScoreInfo)
           showTutorial(TUTORIALS.SCORE_EXPLANATION)
         }}>
-        <HelpCircleIcon className="h-6 w-6 stroke-primary-700" />
+        <HelpCircleIcon className="stroke-primary-700 h-6 w-6" />
 
         <span className="hidden lg:inline">
           <Trans>Aide</Trans>
@@ -48,7 +48,7 @@ export default function TotalButtons({
         onClick={() => {
           toggleQuestionList()
         }}>
-        <ListIcon className="h-6 w-6 fill-primary-700" />
+        <ListIcon className="fill-primary-700 h-6 w-6" />
         <span className="hidden lg:inline">
           <Trans>Liste des questions</Trans>
         </span>
@@ -63,9 +63,9 @@ export default function TotalButtons({
             toggleSaveModal()
           }}>
           {savedViaEmail ? (
-            <SaveCheckIcon className="h-6 w-6 fill-primary-700" />
+            <SaveCheckIcon className="fill-primary-700 h-6 w-6" />
           ) : (
-            <SaveIcon className="h-6 w-6 fill-primary-700" />
+            <SaveIcon className="fill-primary-700 h-6 w-6" />
           )}
           <span className="hidden lg:inline">
             <Trans>Reprendre plus tard</Trans>

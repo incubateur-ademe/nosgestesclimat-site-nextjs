@@ -14,14 +14,13 @@ export default function WaterTotalChart({ total, isSmall }: Props) {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       className={twMerge(
-        'relative flex h-full w-full flex-1 flex-col justify-between transition-all duration-300',
-        isSmall && 'mt-0.5 lg:mt-0.5'
+        'relative flex h-full w-full flex-1 flex-col justify-between transition-all duration-300'
       )}>
       <WaterTotalNumber total={total} isSmall={isSmall} />
-      <p className="relative mx-2 mb-0 mt-8 hidden text-sm md:block">
+      <p className="relative mx-2 mt-8 mb-0 hidden text-sm md:block">
         <Trans>Ce chiffre vous semble impressionnant ?</Trans>
       </p>
-      <p className="relative mx-2 mb-0 mt-2 hidden text-sm md:block">
+      <p className="relative mx-2 mt-2 mb-0 hidden text-sm md:block">
         <Trans>
           C'est pourtant bien l'eau qui sert à produire ce que vous consommez :
           votre empreinte eau, c'est l'impact de votre mode de vie sur les

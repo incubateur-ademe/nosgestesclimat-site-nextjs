@@ -9,10 +9,12 @@ export const cmsClient = async <T>(
   const fullUrl = new URL(`${process.env.CMS_URL}${path}`)
   const headers = {
     ...options.headers,
+    cache: 'force-cache',
     Authorization: `Bearer ${process.env.CMS_TOKEN}`,
   }
 
-  fullUrl.searchParams.set('status', isProduction ? 'published' : 'draft')
+  // Passing an empty string returns both draft and published
+  fullUrl.searchParams.set('status', isProduction ? 'published' : '')
 
   try {
     const response = await fetch(fullUrl, {
@@ -172,3 +174,32 @@ export type BannerType = {
   startDate: string
   endDate: string
 } & DefaultAttributesType
+
+export type PartnerCategoryType = {
+  category: string
+}
+
+export type PartnerType = {
+  name: string
+  imageSrc: string
+  link: string
+  displayOrder?: number
+  category: PartnerCategoryType
+  displayOnLandingPage?: boolean
+}
+
+export type PartnerCampaignType = {
+  title: string
+  pollSlug: string
+  content: string
+  htmlContent: string
+  labelCTA?: string
+  image?: ImageType | null
+  logo: ImageType
+  backgroundColor?: string
+  questions?: {
+    question: string
+    answer: string
+    htmlAnswer: string
+  }[]
+}

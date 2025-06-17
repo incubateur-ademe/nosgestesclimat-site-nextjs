@@ -1,7 +1,7 @@
+import CloseIcon from '@/components/icons/Close'
 import Link from '@/components/Link'
 import { useIframe } from '@/hooks/useIframe'
 import { usePRNumber } from '@/hooks/usePRNumber'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
 export default function PRIndicator() {
@@ -14,9 +14,9 @@ export default function PRIndicator() {
   if (!PRNumber || iframeRegion) return null
 
   return (
-    <div className="flex items-center gap-2 rounded-xl bg-gray-100 p-2 text-center font-bold uppercase text-white ">
+    <div className="flex items-center gap-2 rounded-xl bg-gray-100 p-2 text-center font-bold text-white uppercase">
       <Link
-        className="font-base text-sm text-primary-700"
+        className="font-base text-primary-700 text-sm"
         target="_blank"
         href={
           'https://github.com/incubateur-ademe/nosgestesclimat/pull/' + PRNumber
@@ -29,13 +29,7 @@ export default function PRIndicator() {
           clearPRNumber()
           router.refresh()
         }}>
-        <Image
-          className="w-4"
-          src="/images/misc/close-plain.svg"
-          alt=""
-          width="1"
-          height="1"
-        />
+        <CloseIcon />
       </button>
     </div>
   )

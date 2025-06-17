@@ -1,6 +1,6 @@
 'use client'
 
-import CheckIcon from '@/components/icons/CheckIcon'
+import CheckIcon from '@/components/icons/status/CheckIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   LIST_MAIN_NEWSLETTER,
@@ -18,7 +18,7 @@ import { formatEmail } from '@/utils/format/formatEmail'
 import { useEffect, useRef } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
-import Button from '../inputs/Button'
+import Button from '../buttons/Button'
 import CheckboxInputGroup from '../inputs/CheckboxInputGroup'
 import EmailInput from '../inputs/EmailInput'
 
@@ -131,7 +131,9 @@ export default function NewslettersBlock() {
       ) : (
         <>
           <h3 className="mb-2">
-            Vous souhaitez recevoir nos derniers articles directement ?
+            <Trans>
+              Vous souhaitez recevoir nos derniers articles directement ?
+            </Trans>
           </h3>
 
           <p className="mb-6 flex items-center">

@@ -6,14 +6,6 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 // Figma comment #67
 export const actionsClickStart = ['trackEvent', 'Actions', 'Click Démarrer']
 
-// Figma comment #68
-export const actionsClickFilter = (category: DottedName) => [
-  'trackEvent',
-  'Actions',
-  'Click Filter',
-  `Click Filter ${category}`,
-]
-
 // Figma comment #69
 export const actionsClickYes = (action: DottedName) => [
   'trackEvent',

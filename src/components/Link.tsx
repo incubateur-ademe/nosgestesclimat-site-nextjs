@@ -1,7 +1,6 @@
 'use client'
 
 import { PreventNavigationContext } from '@/app/[locale]/_components/mainLayoutProviders/PreventNavigationProvider'
-import { languages } from '@/constants/translation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import i18nConfig from '@/i18nConfig'
 import { useCurrentLocale } from 'next-i18n-router/client'
@@ -11,7 +10,7 @@ import type {
   MouseEventHandler,
   PropsWithChildren,
 } from 'react'
-import { useContext, useMemo } from 'react'
+import { useContext } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -37,15 +36,6 @@ export default function Link({
   const { shouldPreventNavigation, handleUpdateShouldPreventNavigation } =
     useContext(PreventNavigationContext)
 
-  // If href includes ":" it must be an external link
-  const localisedHref = useMemo(() => {
-    // We check if it is an external link (it has a protocol)
-    if (href?.includes(':')) {
-      return href
-    }
-    return `${locale !== languages[0] ? `/${locale}` : ''}${href}`
-  }, [href, locale])
-
   function preventNavigation(e: React.MouseEvent<HTMLAnchorElement>) {
     if (shouldPreventNavigation) {
       if (
@@ -68,7 +58,7 @@ export default function Link({
 
   return (
     <NextLink
-      href={localisedHref}
+      href={href}
       className={twMerge(
         'text-primary-700 hover:text-primary-800 break-words underline transition-colors',
         className

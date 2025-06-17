@@ -2,9 +2,10 @@
 
 import Link from '@/components/Link'
 import CountryFlag from '@/components/misc/CountryFlag'
+import { defaultModelRegionCode } from '@/constants/localisation/translation'
 import { trackingClickRegionBanner } from '@/constants/tracking/misc'
-import { defaultModelRegionCode } from '@/constants/translation'
-import Button from '@/design-system/inputs/Button'
+import { SIMULATOR_PATH } from '@/constants/urls/paths'
+import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
@@ -23,7 +24,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
   const pathname = usePathname()
 
   const isTutorialOrTest =
-    pathname.includes('/tutoriel') || pathname.includes('/simulateur/bilan')
+    pathname.includes('/tutoriel') || pathname.startsWith(SIMULATOR_PATH)
 
   const currentLocale = useLocale() as string
 
@@ -54,7 +55,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
   return (
     <Card
       className={twMerge(
-        'fixed bottom-0 left-4 right-4 z-50 mx-auto mb-8 flex-row bg-primary-50 sm:left-auto sm:right-8',
+        'bg-primary-50 fixed right-4 bottom-0 left-4 z-50 mx-auto mb-8 flex-row sm:right-8 sm:left-auto',
         isTutorialOrTest && 'bottom-12'
       )}>
       <div className="flex w-full gap-4">

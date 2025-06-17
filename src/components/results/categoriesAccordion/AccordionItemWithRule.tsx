@@ -2,13 +2,13 @@
 
 import HorizontalBarChartItem from '@/components/charts/HorizontalBarChartItem'
 import Trans from '@/components/translation/trans/TransClient'
-import { defaultMetric } from '@/constants/metric'
+import { defaultMetric } from '@/constants/model/metric'
 import { endClickCategory } from '@/constants/tracking/pages/end'
 import Card from '@/design-system/layout/Card'
 import AccordionItem from '@/design-system/layout/accordion/AccordionItem'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
-import { useRule, useSimulation } from '@/publicodes-state'
+import { useEngine, useRule } from '@/publicodes-state'
 import type { Metric } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -28,7 +28,7 @@ export default function AccordionItemWithRule({
 }: Props) {
   const { title, icons, numericValue } = useRule(dottedName, metric)
 
-  const { subcategories } = useSimulation()
+  const { subcategories } = useEngine()
 
   const { formattedValue, unit } = formatFootprint(numericValue, { metric })
 

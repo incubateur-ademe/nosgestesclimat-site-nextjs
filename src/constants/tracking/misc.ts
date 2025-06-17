@@ -1,6 +1,8 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+
 export const trackingIframeVisit = (url: string) => [
   'trackEvent',
   'Misc',
@@ -49,3 +51,23 @@ export const trackingSplitTesting = (branch: string) => [
 
 // Banner
 export const trackingBannerClick = ['trackEvent', 'Bannière', 'Click lien']
+
+// Category filter
+export const trackingCategoryFilter = (category: DottedName, path: string) => [
+  'trackEvent',
+  path,
+  'Category filter',
+  `Click Filter ${category}`,
+]
+
+// User account fake door
+export const trackingUserAccountFakeDoorAccept = [
+  'trackEvent',
+  'Compte utilisateur',
+  'Click Je crée mon compte',
+]
+export const trackingUserAccountFakeDoorRefuse = [
+  'trackEvent',
+  'Compte utilisateur',
+  'Click Je ne préfère pas créer de compte',
+]

@@ -10,38 +10,22 @@ import {
   pollDashboardClickParameters,
   pollDashboardCopyLink,
 } from '@/constants/tracking/pages/pollDashboard'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import CopyInput from '@/design-system/inputs/CopyInput'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
-import { useUser } from '@/publicodes-state'
 import type { PublicOrganisationPoll } from '@/types/organisations'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useParams } from 'next/navigation'
 
 type Props = {
   poll?: PublicOrganisationPoll | null
+  isAdmin: boolean
 }
 
-export default function AdminSection({ poll }: Props) {
+export default function AdminSection({ poll, isAdmin }: Props) {
   const { orgaSlug, pollSlug } = useParams()
 
-  const { user } = useUser()
-
-  // Organisation can only be fetched by a authentified organisation administrator
-  const { data: organisation, isLoading: isLoadingOrganisation } =
-    useFetchOrganisation()
-
-  // Temp hotfix to display the admin section
-  const isAdmin =
-    poll?.organisation.administrators ||
-    organisation?.administrators.find(
-      ({ userId, email }) =>
-        userId === user.userId ||
-        // Cover possible edge case where admin changes browser and looses his/her original userId
-        email === user.organisation?.administratorEmail ||
-        // Unsecure remove as soon as possible
-        organisation?.slug === user.organisation?.slug
-    )
+  const { isLoading: isLoadingOrganisation } = useFetchOrganisation()
 
   if (!isAdmin || isLoadingOrganisation) return null
 
@@ -89,7 +73,7 @@ export default function AdminSection({ poll }: Props) {
             color="text"
             data-cypress-id="poll-admin-section-see-parameters-button"
             className="flex items-center">
-            <SettingsIcon className="mr-2 fill-primary-700" />
+            <SettingsIcon className="fill-primary-700 mr-2" />
 
             <Trans>Voir les paramètres</Trans>
           </ButtonLink>

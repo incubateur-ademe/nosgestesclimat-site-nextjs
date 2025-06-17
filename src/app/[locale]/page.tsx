@@ -1,4 +1,5 @@
 import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
+import Footer from '@/components/layout/Footer'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/trans/TransServer'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
@@ -59,7 +60,6 @@ export default async function Homepage({ params }: DefaultPageProps) {
           },
         ]}
       />
-
       <LandingPage
         heroIllustration={<InteractiveIllustration />}
         heroTitle={
@@ -136,6 +136,8 @@ export default async function Homepage({ params }: DefaultPageProps) {
 
         <TheySpeakAboutUs locale={locale} />
       </LandingPage>
+
+      <Footer />
     </>
   )
 }

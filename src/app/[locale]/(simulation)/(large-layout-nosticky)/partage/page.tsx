@@ -2,7 +2,7 @@
 
 import MetricSlider from '@/components/fin/MetricSlider'
 import Trans from '@/components/translation/trans/TransClient'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useGetShareInfosParams } from '@/hooks/useGetShareInfosParams'

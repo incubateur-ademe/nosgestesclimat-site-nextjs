@@ -1,11 +1,12 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import type { PollToUpdate } from '@/hooks/organisations/polls/useUpdatePoll'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEffect } from 'react'
+import type { OrganisationPoll } from '@/types/organisations'
+import type { QueryObserverResult, RefetchOptions } from '@tanstack/react-query'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
 type Props = {
@@ -13,6 +14,9 @@ type Props = {
   expectedNumberOfParticipants?: number
   updatePoll: (pollToUpdate: PollToUpdate) => void
   updatePollStatus: string
+  refetchPoll: (
+    options?: RefetchOptions
+  ) => Promise<QueryObserverResult<OrganisationPoll, Error>>
 }
 
 export default function NameForm({
@@ -20,6 +24,7 @@ export default function NameForm({
   expectedNumberOfParticipants,
   updatePoll,
   updatePollStatus,
+  refetchPoll,
 }: Props) {
   const {
     register,
@@ -42,32 +47,23 @@ export default function NameForm({
     name: string
     expectedNumberOfParticipants?: number
   }) {
-    updatePoll({
-      name,
-      expectedNumberOfParticipants:
-        newExpectedNumberOfParticipants !== undefined
-          ? newExpectedNumberOfParticipants
-          : // If the expectedNumberOfParticipants is empty, we set it to undefined
-            // otherwise reset its value to null
-            expectedNumberOfParticipants
-            ? null
-            : undefined,
-    })
-  }
-
-  useEffect(() => {
-    if (updatePollStatus === 'error') {
-      setError('name', {
-        type: 'manual',
-        message: 'Une erreur est survenue',
+    try {
+      updatePoll({
+        name,
+        expectedNumberOfParticipants:
+          newExpectedNumberOfParticipants !== undefined
+            ? newExpectedNumberOfParticipants
+            : // If the expectedNumberOfParticipants is empty, we set it to undefined
+              // otherwise reset its value to null
+              expectedNumberOfParticipants
+              ? null
+              : undefined,
       })
-    } else {
-      setError('name', {
-        type: 'manual',
-        message: '',
-      })
+      refetchPoll()
+    } catch (e) {
+      // Error is caught in the parent component
     }
-  }, [updatePollStatus, setError])
+  }
 
   return (
     <form
@@ -88,7 +84,7 @@ export default function NameForm({
           }
           value={nameValue}
           error={errors.name?.message}
-          {...register('name', { required: 'Ce champ est requis' })}
+          {...register('name', { required: t('Ce champ est requis') })}
         />
         <TextInputGroup
           label={

@@ -16,6 +16,7 @@ export default forwardRef(function Select(
     helperText,
     className,
     containerClassName,
+    labelClassName,
     onChange,
     value,
     required = false,
@@ -27,6 +28,7 @@ export default forwardRef(function Select(
     helperText?: string
     className?: string
     containerClassName?: string
+    labelClassName?: string
     onChange?: (e: ChangeEvent<HTMLSelectElement>) => void
     value?: string | number
     required?: boolean
@@ -37,14 +39,18 @@ export default forwardRef(function Select(
     <div
       className={twMerge('flex flex-col', containerClassName)}
       aria-live="polite">
-      <label
-        htmlFor={name}
-        id={`label-${name}`}
-        className={`max-w-[30rem] text-sm font-bold text-slate-900 ${
-          error ? 'text-red-700!' : ''
-        }`}>
-        {label}
-      </label>
+      {label && (
+        <label
+          htmlFor={name}
+          id={`label-${name}`}
+          className={twMerge(
+            'max-w-[30rem] text-sm font-bold text-slate-900',
+            error ? 'text-red-700!' : '',
+            labelClassName
+          )}>
+          {label}
+        </label>
+      )}
 
       {helperText && (
         <span className="mt-1 max-w-[30rem] text-xs text-slate-500">
@@ -61,8 +67,8 @@ export default forwardRef(function Select(
         aria-labelledby={`label-${name}`}
         required={required}
         className={twMerge(
-          'mt-3 h-[56px] max-w-[30rem] cursor-pointer! rounded-xl border-2 border-solid border-gray-300 bg-gray-100 p-4 text-sm transition-colors focus:border-primary-700 focus:ring-2 focus:ring-primary-700',
-          `${className} ${helperText || label ? ' mt-3' : ''} ${
+          'focus:border-primary-700 focus:ring-primary-700 mt-3 h-[56px] max-w-[30rem] cursor-pointer! rounded-xl border-2 border-solid border-gray-300 bg-white p-4 text-sm transition-colors focus:ring-2',
+          `${className} ${helperText || label ? 'mt-3' : ''} ${
             error ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : ''
           }`
         )}

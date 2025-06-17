@@ -12,10 +12,10 @@ interface Heading {
 
 export default function Summary({ headings }: { headings: Heading[] }) {
   return (
-    <div className="relative w-full rounded-xl bg-gray-100 p-4 before:absolute before:-left-8 before:top-0 before:h-full before:w-1 before:border-l before:border-gray-300 before:content-['']">
-      <h2 className="mb-2 text-xl font-bold">
+    <div className="relative w-full rounded-xl bg-gray-100 p-4 before:absolute before:top-0 before:-left-8 before:h-full before:w-1 before:border-l before:border-gray-300 before:content-['']">
+      <p className="mb-2 text-xl font-bold">
         <Trans>Sommaire</Trans>
-      </h2>
+      </p>
 
       <nav>
         <ul className="space-y-2">
@@ -29,7 +29,7 @@ export default function Summary({ headings }: { headings: Heading[] }) {
               <Link
                 href={`#${heading.id}`}
                 className={twMerge(
-                  'hover:text-primary block text-sm text-default no-underline transition-colors duration-200',
+                  'hover:text-primary text-default block text-sm no-underline transition-colors duration-200',
                   'w-full truncate text-left'
                 )}>
                 {heading.text}

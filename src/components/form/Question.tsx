@@ -13,9 +13,9 @@ import {
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
 import { questionChooseAnswer } from '@/constants/tracking/question'
-import Button from '@/design-system/inputs/Button'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useForm, useRule } from '@/publicodes-state'
+import Button from '@/design-system/buttons/Button'
+import { useUpdatePageTitle } from '@/hooks/simulation/useUpdatePageTitle'
+import { useFormState, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect, useRef, useState } from 'react'
@@ -28,6 +28,7 @@ type Props = {
   tempValue?: number | undefined
   setTempValue?: (value: number | undefined) => void
   showInputsLabel?: React.ReactNode | string
+  headingLevel?: number
   className?: string
 }
 
@@ -36,6 +37,7 @@ export default function Question({
   tempValue,
   setTempValue,
   showInputsLabel,
+  headingLevel,
   className,
 }: Props) {
   const {
@@ -57,9 +59,7 @@ export default function Question({
     category,
   } = useRule(question)
 
-  const { remainingQuestionsByCategories, questionsByCategories } = useForm()
-
-  const { t } = useClientTranslation()
+  const { questionsByCategories } = useFormState()
 
   // It should happen only on mount (the component remount every time the question changes)
   const prevQuestion = useRef('')
@@ -80,14 +80,13 @@ export default function Question({
 
   const refCurrentCategoryQuestions = useRef(currentCategoryQuestions)
 
-  // Update the page title when the question changes
-  useEffect(() => {
-    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-      document.title = t(
-        `Calculateur, question ${refCurrentCategoryQuestions.current.indexOf(question) + 1} sur ${currentCategoryQuestions.length} de la catégorie ${category} - Nos Gestes Climat`
-      )
-    }
-  }, [currentCategoryQuestions, category, t, question, prevQuestion])
+  // Set dynamically the page title
+  useUpdatePageTitle({
+    category,
+    countCategoryQuestions: currentCategoryQuestions.length,
+    currentQuestionIndex:
+      refCurrentCategoryQuestions.current.indexOf(question) + 1,
+  })
 
   const [isOpen, setIsOpen] = useState(showInputsLabel ? false : true)
 
@@ -98,6 +97,7 @@ export default function Question({
           question={question}
           label={label}
           description={description}
+          headingLevel={headingLevel}
           id="question-label"
           htmlFor={DEFAULT_FOCUS_ELEMENT_ID}
         />

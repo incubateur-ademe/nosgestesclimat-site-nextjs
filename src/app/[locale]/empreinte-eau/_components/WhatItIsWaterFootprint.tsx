@@ -36,7 +36,7 @@ export default async function WhatItIsWaterFootprint({
             <Trans locale={locale}>
               Empreinte eau et{' '}
               <Link
-                className="font-bold text-primary-600"
+                className="text-primary-600 font-bold"
                 href="/empreinte-carbone">
                 empreinte carbone
               </Link>{' '}
@@ -55,7 +55,7 @@ export default async function WhatItIsWaterFootprint({
           width={500}
           height={500}
           className="px-5 md:px-0"
-          src="/images/illustrations/definition-empreinte-eau.svg"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/definition_empreinte_eau_ddc70af1e4.svg"
           alt={t(
             "Une balance indiquant la quantité d'eau nécessaire pour produire un ordinateur"
           )}

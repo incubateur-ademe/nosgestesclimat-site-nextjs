@@ -213,6 +213,16 @@ const redirects = [
       '/blog/alimentation/8-facons-ameliorer-empreinte-de-mon-assiette',
     permanent: true,
   },
+  {
+    source: '/blog/environment/definition-empreinte-carbone',
+    destination: '/blog/environnement/definition-empreinte-carbone',
+    permanent: true,
+  },
+  {
+    source: '/blog/undefined/neuf-limites-planetaires-empreintes',
+    destination: '/blog/environnement/neuf-limites-planetaires-empreintes',
+    permanent: true,
+  },
   // For now, we redirect actions/plus homepage to blog homepage. We still have each actions/plus page available but ghosted.
   {
     source: '/actions/plus',

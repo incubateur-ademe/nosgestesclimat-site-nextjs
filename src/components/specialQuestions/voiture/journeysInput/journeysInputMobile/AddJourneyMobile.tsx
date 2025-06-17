@@ -1,11 +1,12 @@
 'use client'
 
+import CloseIcon from '@/components/icons/Close'
 import {
   labels,
   periods,
 } from '@/components/specialQuestions/voiture/journeysInput/_components/JourneyItem'
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -29,10 +30,11 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
   const [passengers, setPassengers] = useState(1)
 
   return (
-    <tr className={twMerge('block border-b border-primary-700 p-2', className)}>
+    <tr className={twMerge('border-primary-700 block border-b p-2', className)}>
       <td className="mb-4 block text-sm">
         <Select
-          className="w-48 text-sm"
+          className="w-full text-sm"
+          containerClassName="w-full"
           value={label}
           name="label"
           label={t('Label')}
@@ -46,10 +48,11 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
           })}
         </Select>
       </td>
-      <td className="block border-primary-700 pb-4 text-sm">
-        <span className="flex items-end gap-4">
+      <td className="border-primary-700 block pb-4 text-sm">
+        <span className="flex items-end gap-2">
           <TextInputGroup
-            className="w-12 text-sm md:w-16"
+            className="text-sm"
+            containerClassName="w-32"
             name="distance"
             type="number"
             label={t('Distance')}
@@ -59,10 +62,11 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
           <span className="mb-4 inline-block">km</span>
         </span>
       </td>
-      <td className="block border-primary-700 pb-4 text-sm">
-        <span className="flex items-end gap-4">
+      <td className="border-primary-700 block pb-4 text-sm">
+        <div className="flex items-end gap-4">
           <TextInputGroup
-            className="w-16 text-sm"
+            className="w-20 text-sm"
+            containerClassName="w-20"
             name="frequence"
             type="number"
             label={t('Fréquence')}
@@ -70,8 +74,10 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
             onChange={(e) =>
               setReccurrence(Number((e.target as HTMLInputElement).value))
             }
-          />{' '}
-          <span className="mb-4 inline-block">x</span>
+          />
+          <div className="mb-4 inline-block">
+            <CloseIcon className="w-4" />
+          </div>
           <Select
             className="text-sm"
             value={period}
@@ -86,11 +92,11 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
               )
             })}
           </Select>
-        </span>
+        </div>
       </td>
-      <td className="block border-primary-700 pb-4 text-sm">
+      <td className="border-primary-700 block pb-4 text-sm">
         <Select
-          className="w-16 text-sm"
+          className="w-20 text-sm"
           name="passengers"
           value={passengers}
           label={t('Passagers')}
@@ -104,7 +110,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
           })}
         </Select>
       </td>
-      <td className="block border-primary-700 pl-2 text-right text-sm">
+      <td className="border-primary-700 block pl-2 text-right text-sm">
         <Button
           size="sm"
           onClick={() =>

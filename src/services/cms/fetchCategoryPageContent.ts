@@ -4,17 +4,19 @@ import type {
   PopulatedCategoryType,
 } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
-import i18nConfig from '@/i18nConfig'
-import { captureException } from '@sentry/nextjs'
+import { getLocaleWithoutEs } from '@/helpers/language/getLocaleWithoutEs'
+import { type Locale } from '@/i18nConfig'
 
 const PAGE_SIZE = 12
 
 export async function fetchCategoryPageContent({
   slug,
   page,
+  locale,
 }: {
   slug: string
   page: number
+  locale: Locale
 }): Promise<
   | (Partial<
       PopulatedCategoryType<'questions' | 'image'> & {
@@ -27,8 +29,9 @@ export async function fetchCategoryPageContent({
   | undefined
 > {
   try {
+    const localeUsed = getLocaleWithoutEs(locale)
     const categorySearchParams = new URLSearchParams({
-      locale: i18nConfig.defaultLocale,
+      locale: localeUsed,
       'filters[slug][$eq]': slug,
       'populate[0]': 'image',
       'populate[1]': 'questions',
@@ -58,7 +61,7 @@ export async function fetchCategoryPageContent({
     const { documentId } = mainArticle || {}
 
     const articlesSearchParams = new URLSearchParams({
-      locale: i18nConfig.defaultLocale,
+      locale: localeUsed,
       'fields[0]': 'title',
       'fields[1]': 'description',
       'fields[2]': 'slug',
@@ -90,7 +93,6 @@ export async function fetchCategoryPageContent({
       faqDescription: category.faqDescription,
     }
   } catch (error) {
-    captureException(error)
     return undefined
   }
 }

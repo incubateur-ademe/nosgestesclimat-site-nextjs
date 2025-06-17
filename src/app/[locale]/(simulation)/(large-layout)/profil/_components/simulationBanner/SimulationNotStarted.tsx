@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { profilClickCtaCommencer } from '@/constants/tracking/pages/profil'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
@@ -15,7 +15,7 @@ export default function SimulationNotStarted() {
         <span
           role="img"
           aria-label="hole emoji"
-          className="mb-2 block text-center text-3xl md:mb-0 md:mr-4 md:inline-block">
+          className="mb-2 block text-center text-3xl md:mr-4 md:mb-0 md:inline-block">
           🕳️
         </span>
         <Trans>Vous n'avez pas encore fait le test.</Trans>

@@ -1,4 +1,4 @@
-import { SIMULATION_URL } from '@/constants/urls'
+import { SIMULATION_URL } from '@/constants/urls/main'
 import { mapNewSimulationToOld } from '@/helpers/simulation/mapNewSimulation'
 import { useUser } from '@/publicodes-state'
 import { unformatSituation } from '@/utils/formatDataForDB'

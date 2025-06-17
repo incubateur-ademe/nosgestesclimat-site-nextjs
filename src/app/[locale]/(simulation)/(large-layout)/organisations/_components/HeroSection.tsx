@@ -6,7 +6,7 @@ import {
   organisationsAccueilClickCommencer,
   organisationsAccueilClickDemo,
 } from '@/constants/tracking/pages/organisationsAccueil'
-import ButtonLink from '@/design-system/inputs/ButtonLink'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import Image from 'next/image'
@@ -47,7 +47,7 @@ export default function HeroSection() {
       <div>
         <Image
           className="self-start"
-          src="/images/illustrations/people-with-paperboard.png"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/people_with_paperboard_02aeb70378.png"
           width="400"
           height="400"
           alt={t('Groupe de personnes devant un paperboard')}

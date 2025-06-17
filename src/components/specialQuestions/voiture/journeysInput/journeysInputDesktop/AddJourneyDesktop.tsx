@@ -5,7 +5,7 @@ import {
   periods,
 } from '@/components/specialQuestions/voiture/journeysInput/_components/JourneyItem'
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -30,9 +30,10 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
 
   return (
     <tr className={twMerge('block md:table-row', className)}>
-      <td className="block border-t border-primary-700 py-2 pr-2 text-xs md:table-cell md:pr-2">
+      <td className="border-primary-700 block border-t py-2 pr-2 text-xs md:table-cell md:pr-2">
         <Select
-          className="p-2 text-xs"
+          aria-labelledby="label-label"
+          className="mt-0 p-2 text-xs"
           value={label}
           name="label"
           onChange={(e) => setLabel(e.target.value)}>
@@ -45,10 +46,11 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
           })}
         </Select>
       </td>
-      <td className="block border-primary-700 py-2 text-xs md:table-cell md:border-t md:px-2">
-        <span className="flex items-center gap-4">
+      <td className="border-primary-700 block h-full py-2 text-xs md:table-cell md:border-t md:px-2">
+        <span className="flex h-full items-center gap-4">
           <TextInputGroup
-            className="w-12 p-2 text-xs md:w-16"
+            className="h-14 w-12 p-2 text-xs md:w-16"
+            aria-labelledby="label-distance"
             name="distance"
             type="number"
             value={distance}
@@ -57,11 +59,12 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
           km
         </span>
       </td>
-      <td className="block border-primary-700 py-2 text-xs md:table-cell md:border-t md:px-2">
+      <td className="border-primary-700 block py-2 text-xs md:table-cell md:border-t md:px-2">
         <span className="flex items-center gap-4">
           <TextInputGroup
-            className="w-12 p-2 text-xs md:w-16"
-            name="distance"
+            className="h-14 w-12 p-2 text-xs md:w-16"
+            name="reccurrence"
+            aria-labelledby="label-frequency"
             type="number"
             value={reccurrence}
             onChange={(e) =>
@@ -70,8 +73,10 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
           />{' '}
           x
           <Select
-            className="p-2 text-xs"
+            className="mt-0! p-2 text-xs"
             value={period}
+            label={t('Période')}
+            labelClassName="sr-only p-0 m-0"
             name="period"
             onChange={(e) => setPeriod(e.target.value)}>
             {Object.entries(periods).map(([key, period], i) => {
@@ -84,10 +89,11 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
           </Select>
         </span>
       </td>
-      <td className="block border-primary-700 py-2 text-xs md:table-cell md:border-t md:px-2">
+      <td className="border-primary-700 block py-2 text-xs md:table-cell md:border-t md:px-2">
         <Select
           name="passengers"
-          className="p-2 text-xs"
+          aria-labelledby="label-passengers"
+          className="mt-0 p-2 text-xs"
           value={passengers}
           onChange={(e) => setPassengers(Number(e.target.value))}>
           {new Array(5).fill(0).map((_, i) => {
@@ -99,7 +105,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
           })}
         </Select>
       </td>
-      <td className="block border-primary-700 py-2 pl-2 text-right text-xs md:table-cell md:border-t">
+      <td className="border-primary-700 block py-2 pl-2 text-right text-xs md:table-cell md:border-t">
         <Button
           size="sm"
           onClick={() =>

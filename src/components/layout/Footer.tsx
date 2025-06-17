@@ -16,19 +16,34 @@ import {
   footerClickOrganisations,
   footerClickPlanSite,
   footerClickQuiSommesNous,
+  footerClickStats,
 } from '@/constants/tracking/layout'
 import InlineLink from '@/design-system/inputs/InlineLink'
+import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDisplayed'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 import Link from '../Link'
-import Logo from '../misc/Logo'
+import LogoLink from '../misc/LogoLink'
 import LanguageSwitchButton from '../translation/LanguageSwitchButton'
 import Trans from '../translation/trans/TransClient'
 
-export default function Footer({ className = '' }) {
+const WHITE_BACKGROUND_PATHS = new Set([
+  '/empreinte-eau',
+  '/empreinte-carbone',
+  '/blog',
+  '/organisations',
+])
+
+export default function Footer({
+  className = '',
+  langButtonsDisplayed,
+}: {
+  className?: string
+  langButtonsDisplayed?: LangButtonsConfigType
+}) {
   const pathname = usePathname()
   const locale = useLocale()
 
@@ -39,8 +54,7 @@ export default function Footer({ className = '' }) {
   const shouldUseWhiteBackground =
     pathname === '/' ||
     pathname === `/${locale}` ||
-    pathname.includes('/empreinte-eau') ||
-    pathname.includes('/empreinte-carbone') ||
+    WHITE_BACKGROUND_PATHS.has(pathname) ||
     pathname.includes('/blog')
 
   return (
@@ -52,105 +66,115 @@ export default function Footer({ className = '' }) {
         shouldUseWhiteBackground ? 'bg-white' : ''
       )}>
       <div className="md:mx-auto md:max-w-5xl">
-        <Logo className="mb-8" onClick={() => trackEvent(footerClickLogo)} />
+        <LogoLink
+          className="mb-8"
+          onClick={() => trackEvent(footerClickLogo)}
+        />
 
         <div className="mb-10 flex flex-col flex-wrap justify-start gap-x-16 gap-y-8 pt-4 md:flex-row lg:flex-nowrap">
           <div className="flex flex-col gap-y-2">
-            <h2 className="mb-0 text-sm font-bold text-default">
+            <p className="text-default mb-0 text-sm font-bold">
               <Trans>À propos</Trans>
-            </h2>
+            </p>
             <InlineLink
               href="/a-propos"
               onClick={() => trackEvent(footerClickQuiSommesNous)}
-              className="text-sm text-default no-underline hover:underline">
+              className="text-default text-sm no-underline hover:underline">
               <Trans>Qui sommes-nous</Trans>
             </InlineLink>
 
             <InlineLink
               href="/plan-du-site"
               onClick={() => trackEvent(footerClickPlanSite)}
-              className="text-sm text-default no-underline hover:underline">
+              className="text-default text-sm no-underline hover:underline">
               <Trans>Plan du site</Trans>
             </InlineLink>
 
             <InlineLink
               href="/contact"
               onClick={() => trackEvent(footerClickContact)}
-              className="text-sm text-default no-underline hover:underline">
+              className="text-default text-sm no-underline hover:underline">
               <Trans>Contact</Trans>
             </InlineLink>
 
             <InlineLink
               href="/international"
               onClick={() => trackEvent(footerClickInternational)}
-              className="text-sm text-default no-underline hover:underline">
+              className="text-default text-sm no-underline hover:underline">
               <Trans>International</Trans>
+            </InlineLink>
+
+            <InlineLink
+              href="/stats"
+              onClick={() => trackEvent(footerClickStats)}
+              className="text-default text-sm no-underline hover:underline">
+              <Trans>Statistiques</Trans>
             </InlineLink>
           </div>
 
           <div className="flex flex-col gap-y-2">
-            <h2 className="mb-0 text-sm font-bold text-default">
+            <p className="text-default mb-0 text-sm font-bold">
               <Trans>Diffusion</Trans>
-            </h2>
+            </p>
             <InlineLink
               href="/diffuser"
               onClick={() => trackEvent(footerClickDiffusion)}
-              className="text-sm text-default no-underline hover:underline">
+              className="text-default text-sm no-underline hover:underline">
               <Trans>Diffuser Nos Gestes Climat</Trans>
             </InlineLink>
 
             <InlineLink
               href="/organisations"
               onClick={() => trackEvent(footerClickOrganisations)}
-              className="text-sm text-default no-underline hover:underline">
+              className="text-default text-sm no-underline hover:underline">
               <Trans>Organisations</Trans>
             </InlineLink>
 
             <InlineLink
               href="/nos-relais"
               onClick={() => trackEvent(footerClickAmbassadeurs)}
-              className="text-sm text-default no-underline hover:underline">
+              className="text-default text-sm no-underline hover:underline">
               <Trans>Relais et partenaires</Trans>
             </InlineLink>
           </div>
 
           <div className="flex flex-col gap-y-2">
-            <h2 className="mb-0 text-sm font-bold text-default">
+            <p className="text-default mb-0 text-sm font-bold">
               <Trans>Ressources</Trans>
-            </h2>
+            </p>
 
             <InlineLink
               href="/blog"
               onClick={() => trackEvent(footerClickBlog)}
-              className="text-sm text-default no-underline hover:underline">
+              className="text-default text-sm no-underline hover:underline">
               <Trans>Blog</Trans>
             </InlineLink>
 
             <InlineLink
               href="/documentation"
               onClick={() => trackEvent(footerClickDocumentation)}
-              className="text-sm text-default no-underline hover:underline">
+              className="text-default text-sm no-underline hover:underline">
               <Trans>Documentation</Trans>
             </InlineLink>
 
             <InlineLink
               href="/questions-frequentes"
               onClick={() => trackEvent(footerClickFAQ)}
-              className="text-sm text-default no-underline hover:underline">
+              className="text-default text-sm no-underline hover:underline">
               <Trans>FAQ</Trans>
             </InlineLink>
 
             <InlineLink
               href="/nouveautes"
               onClick={() => trackEvent(footerClickNouveautes)}
-              className="text-sm text-default no-underline hover:underline">
+              className="text-default text-sm no-underline hover:underline">
               <Trans>Nouveautés</Trans>
             </InlineLink>
 
             <InlineLink
               href="https://impactco2.fr"
               target="_blank"
-              className="text-sm text-default no-underline hover:underline"
+              className="text-default text-sm no-underline hover:underline"
               onClick={() => trackEvent(footerClickImpactco2)}>
               Impact CO2
             </InlineLink>
@@ -160,7 +184,9 @@ export default function Footer({ className = '' }) {
         <div className="flex flex-wrap justify-between gap-8 md:flex-row md:flex-nowrap">
           <div>
             <div className="mt-6 flex flex-wrap items-start justify-between gap-10">
-              <LanguageSwitchButton />
+              <LanguageSwitchButton
+                langButtonsDisplayed={langButtonsDisplayed}
+              />
             </div>
 
             <div className="mt-4 text-xs">
@@ -200,7 +226,6 @@ export default function Footer({ className = '' }) {
           </div>
         </div>
       </div>
-
       <div id="modal" />
     </footer>
   )

@@ -2,6 +2,7 @@ import Route404 from '@/components/layout/404'
 import Main from '@/design-system/layout/Main'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import i18nConfig from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
 
 export async function generateMetadata(props: DefaultPageProps) {
@@ -20,12 +21,12 @@ export async function generateMetadata(props: DefaultPageProps) {
   })
 }
 
-export default function NotFound() {
+export default async function NotFound({ params }: DefaultPageProps) {
+  const { locale } = (await params) ?? {}
+
   return (
-    <>
-      <Main>
-        <Route404 />
-      </Main>
-    </>
+    <Main>
+      <Route404 locale={locale ?? i18nConfig.defaultLocale} />
+    </Main>
   )
 }

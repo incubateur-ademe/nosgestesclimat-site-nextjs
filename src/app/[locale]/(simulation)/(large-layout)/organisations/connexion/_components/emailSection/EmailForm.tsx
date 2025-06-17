@@ -1,7 +1,8 @@
 'use client'
 
+import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCreateVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
@@ -9,6 +10,11 @@ import { useUser } from '@/publicodes-state'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { isEmailValid } from '@/utils/isEmailValid'
 import React from 'react'
+import { useForm } from 'react-hook-form'
+
+type FormData = {
+  email: string
+}
 
 export default function EmailForm() {
   const [inputError, setInputError] = React.useState<string | undefined>()
@@ -22,29 +28,19 @@ export default function EmailForm() {
     updateEmail,
   } = useUser()
 
-  const { mutateAsync: createVerificationCode } = useCreateVerificationCode()
+  const { mutateAsync: createVerificationCode, isError } =
+    useCreateVerificationCode()
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>()
+
+  async function onSubmit(data: FormData) {
     setInputError(undefined)
 
-    const input = event.currentTarget.elements.namedItem(
-      'email'
-    ) as HTMLInputElement
-
-    const email = formatEmail(input.value)
-
-    // Validation
-    if (!email || !isEmailValid(email)) {
-      if (!email) {
-        setInputError(t('Vous devez renseigner votre adresse e-mail'))
-      }
-      if (email && !isEmailValid(email)) {
-        setInputError(t('L’adresse e-mail est invalide'))
-      }
-
-      return
-    }
+    const email = formatEmail(data.email)
 
     const { expirationDate } = await createVerificationCode({
       email,
@@ -68,13 +64,12 @@ export default function EmailForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <TextInputGroup
-        name="email"
         type="email"
         data-cypress-id="organisation-connexion-email-input"
         value={user?.organisation?.administratorEmail || user?.email || ''}
-        label={<Trans>Votre adresse e-mail</Trans>}
+        label={<Trans>Votre adresse electronique</Trans>}
         placeholder="jeanmarc@nosgestesclimat.fr"
         helperText={
           <Trans>
@@ -82,11 +77,15 @@ export default function EmailForm() {
             inscription
           </Trans>
         }
-        required
-        error={inputError}
+        {...register('email', {
+          required: t('Ce champ est requis'),
+          validate: (value) =>
+            isEmailValid(value) || t("L'adresse e-mail est invalide"),
+        })}
+        error={errors.email?.message}
       />
 
-      {inputError && <p className="mt-2 text-sm text-red-600">{inputError}</p>}
+      {isError && <DefaultSubmitErrorMessage />}
 
       <Button
         type="submit"

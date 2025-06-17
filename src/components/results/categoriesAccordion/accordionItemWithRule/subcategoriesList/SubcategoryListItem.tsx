@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { defaultMetric } from '@/constants/metric'
+import { defaultMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useRule } from '@/publicodes-state'
@@ -40,7 +40,7 @@ export default function SubcategoryListItem({
           <div className="mt-2">
             <div>
               <div
-                className="h-[6px] rounded-xl bg-primary-700"
+                className="bg-primary-700 h-[6px] rounded-xl"
                 style={{ width: `calc(${percentageOfCategoryValue} * 100%)` }}
               />
             </div>

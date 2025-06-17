@@ -47,7 +47,7 @@ export default function OrganisationFields({
         label={
           <p className="mb-0 flex w-full justify-between">
             <Trans>Nombre de collaborateurs</Trans>{' '}
-            <span className="font-bold italic text-secondary-700">
+            <span className="text-secondary-700 font-bold italic">
               {' '}
               <Trans>facultatif</Trans>
             </span>
@@ -58,6 +58,10 @@ export default function OrganisationFields({
           min: {
             value: 0,
             message: t('Veuillez entrer un nombre positif'),
+          },
+          max: {
+            value: 100_000_000,
+            message: t('Veuillez entrer un nombre inférieur à 100 millions'),
           },
         })}
         error={(errors.numberOfCollaborators?.message as string) || ''}

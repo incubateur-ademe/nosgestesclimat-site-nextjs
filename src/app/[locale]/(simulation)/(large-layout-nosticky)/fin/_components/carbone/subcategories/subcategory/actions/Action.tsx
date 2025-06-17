@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { defaultMetric } from '@/constants/metric'
+import { defaultMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import {
   getBackgroundLightColor,
@@ -40,7 +40,7 @@ export default function Action({
   return (
     <div
       className={twMerge(
-        'max-w-80 flex-1 flex-col justify-between rounded-xl border-2 px-3 pb-4 pt-6 lg:flex',
+        'max-w-80 flex-1 flex-col justify-between rounded-xl border-2 px-3 pt-6 pb-4 lg:flex',
         colorClassName[index],
         getTextDarkColor(category),
         isActionChoosen
@@ -56,13 +56,13 @@ export default function Action({
         <div className="mb-2 flex flex-1 items-center justify-center">
           <Emoji className="inline-flex justify-center">{icons}</Emoji>
         </div>
-        <div className="text-center text-sm font-bold leading-tight lg:text-base">
+        <div className="text-center text-sm leading-tight font-bold lg:text-base">
           {title}
         </div>
       </div>
       {!hasNoValue && (
         <div className="text-center text-base leading-tight">
-          <span className="block text-2xl font-black text-secondary-700">
+          <span className="text-secondary-700 block text-2xl font-black">
             {percent || 1} %
           </span>
           <Trans> de votre empreinte</Trans>

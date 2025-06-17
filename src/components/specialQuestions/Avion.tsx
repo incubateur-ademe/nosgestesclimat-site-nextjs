@@ -2,7 +2,7 @@
 
 import Question from '@/components/form/Question'
 import Trans from '@/components/translation/trans/TransClient'
-import Button from '@/design-system/inputs/Button'
+import Button from '@/design-system/buttons/Button'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
 import PencilIcon from '../icons/PencilIcon'
@@ -24,7 +24,7 @@ export default function Avion({ question, ...props }: Props) {
             <Trans>Fermer</Trans>
           ) : (
             <>
-              <PencilIcon className="mr-2 stroke-primary-700" width="16" />
+              <PencilIcon className="stroke-primary-700 mr-2" width="16" />
               <Trans>Répondre sur les 3 dernières années</Trans>
             </>
           )}

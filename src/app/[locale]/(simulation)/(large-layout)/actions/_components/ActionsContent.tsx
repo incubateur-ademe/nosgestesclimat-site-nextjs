@@ -1,34 +1,39 @@
 'use client'
 
+import CategoryFilters from '@/components/filtering/CategoryFilters'
+import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
 import getActions from '@/helpers/actions/getActions'
 import {
   useCurrentSimulation,
   useEngine,
-  useSimulation,
   useTempEngine,
 } from '@/publicodes-state'
+import type { Action } from '@/publicodes-state/types'
+import { capitalizeString } from '@/utils/capitalizeString'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import Actions from './actionsContent/Actions'
 import AllerPlusLoin from './actionsContent/AllerPlusLoin'
-import CategoryFilters from './actionsContent/CategoryFilters'
 import OptionBar from './actionsContent/OptionBar'
 
 export default function ActionsContent() {
-  const { getCategory } = useEngine()
+  const { getCategory, safeEvaluate } = useEngine()
   const containerRef = useRef<HTMLDivElement>(null)
 
   const [radical, setRadical] = useState(true)
 
   const searchParams = useSearchParams()
 
-  const category = searchParams.get('catégorie')
+  const category = decodeURIComponent(
+    searchParams.get(FILTER_SEARCH_PARAM_KEY) ?? ''
+  )
 
   const { actionChoices, progression } = useCurrentSimulation()
 
   const { rules, getSpecialRuleObject } = useTempEngine()
 
-  const { safeEvaluate } = useSimulation()
+  const { categories } = useEngine()
+
   const actions = getActions({
     rules,
     radical,
@@ -86,7 +91,15 @@ export default function ActionsContent() {
       } text-center`}
       aria-hidden={isSimulationWellStarted ? false : true}>
       <div className="relative">
-        <CategoryFilters actions={actionsDisplayed} />
+        <CategoryFilters
+          categories={categories.map((category) => ({
+            title: capitalizeString(category) ?? '',
+            dottedName: category,
+            count: actionsDisplayed.filter((action: Action) =>
+              action.dottedName.startsWith(category)
+            ).length,
+          }))}
+        />
 
         <OptionBar
           setRadical={setRadical}

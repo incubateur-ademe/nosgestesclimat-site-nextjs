@@ -30,7 +30,7 @@ export default function PostThumbnail({
         'flex h-full rounded-xl no-underline! duration-300! md:flex-col md:transition-transform md:hover:translate-y-[-6px]',
         className
       )}
-      onClick={() => trackEvent(trackingEvent)}>
+      onClick={trackingEvent ? () => trackEvent(trackingEvent) : undefined}>
       <ImageWithCategory
         category={category}
         imageSrc={imageSrc}
@@ -41,15 +41,15 @@ export default function PostThumbnail({
 
       <div className="mt-4 flex w-full flex-col md:flex-1">
         {/* Hidden on desktop */}
-        <p className="mb-2 px-4 text-xs font-bold text-primary-700 md:hidden md:pt-4 md:text-[13px]">
+        <p className="text-primary-700 mb-2 px-4 text-xs font-bold md:hidden md:pt-4 md:text-[13px]">
           {category}
         </p>
 
-        <h3 className="mb-auto pl-4 pr-2 text-[13px] font-normal text-default no-underline! md:mb-2 md:px-4 md:text-base">
+        <h3 className="text-default mb-auto pr-2 pl-4 text-[13px] font-normal no-underline! md:mb-2 md:px-4 md:text-base">
           {title}
         </h3>
 
-        <div className="mt-auto cursor-pointer p-4 pt-0 text-left text-[13px] text-primary-700 underline md:text-right md:text-base">
+        <div className="text-primary-700 mt-auto cursor-pointer p-4 pt-0 text-left text-[13px] underline md:text-right md:text-base">
           <Trans>Lire la suite</Trans>
         </div>
       </div>
