@@ -1,4 +1,6 @@
-const shouldUseDevTracker = process.env.NODE_ENV === 'development'
+const shouldUseDevTracker =
+  process.env.NODE_ENV === 'development' ||
+  process.env.NEXT_PUBLIC_MATOMO_ID !== '1'
 
 declare global {
   interface Window {
