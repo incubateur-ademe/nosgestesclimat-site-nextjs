@@ -38,12 +38,14 @@ export const ABTestingProvider = ({ children }: PropsWithChildren) => {
     }
 
     const _paq = window._paq || undefined
+    const Matomo = window.Matomo
 
-    if (!_paq) {
-      console.log('Matomo not initialized, retrying in 500ms.')
+    if (!Matomo) {
       setTimeout(() => handleInitABTesting(), 500)
       return
     }
+
+    if (!Matomo.AbTesting) return
 
     _paq.push([
       'AbTesting::create',

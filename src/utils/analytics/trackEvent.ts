@@ -5,6 +5,7 @@ const shouldUseDevTracker =
 declare global {
   interface Window {
     _paq: any[]
+    Matomo: Record<string, unknown>
   }
 }
 
