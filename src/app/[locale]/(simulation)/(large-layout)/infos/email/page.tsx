@@ -73,7 +73,9 @@ export default function Email() {
     if (!isEmailValid(email)) {
       setError('email', {
         type: 'validate',
-        message: t('Veuillez saisir une adresse email valide.'),
+        message: t(
+          'Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org'
+        ),
       })
       return
     }
@@ -143,15 +145,7 @@ export default function Email() {
             readOnly={fixedEmail}
             value={user?.email || user?.organisation?.administratorEmail || ''}
             error={errors?.email?.message}
-            {...register('email', {
-              pattern: {
-                value:
-                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                message: t(
-                  'Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est : nom@exemple.org'
-                ),
-              },
-            })}
+            {...register('email')}
           />
 
           <Navigation

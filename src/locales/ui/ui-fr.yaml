@@ -174,7 +174,6 @@ entries:
   10 minutes: 10 minutes
   Avant de commencer: Avant de commencer
   Bientôt disponible: Bientôt disponible
-  C'est parti ! →: C'est parti ! →
   C'est un test individuel !: C'est un test individuel !
   Calcul d'empreinte carbone manquant: Calcul d'empreinte carbone manquant
   Comparez vos résultats avec votre famille ou un groupe d’ami·e·s: Comparez vos résultats avec votre famille ou un groupe d’ami·e·s
@@ -326,7 +325,6 @@ entries:
   '{linkToSimulateurPageLabel}': '{linkToSimulateurPageLabel}'
   Accéder au kit: Accéder au kit
   Administrateur·ice: Administrateur·ice
-  Calculez votre empreinte en: Calculez votre empreinte en
   Découvrez le calculateur, ouvrir dans un nouvel onglet: Découvrez le calculateur, ouvrir dans un nouvel onglet
   Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet
   Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.: Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.
@@ -345,7 +343,6 @@ entries:
   Partagez le test pour obtenir vos premiers résultats.: Partagez le test pour obtenir vos premiers résultats.
   Pour conserver vos résultats et les retrouver à l’avenir: Pour conserver vos résultats et les retrouver à l’avenir
   précédent: précédent
-  puis comparez vos résultats à ceux des autres participants.: puis comparez vos résultats à ceux des autres participants.
   Revenir au formulaire de connexion: Revenir au formulaire de connexion
   Se déconnecter de votre espace organisation: Se déconnecter de votre espace organisation
   Seules les options incluant plus de 3 participants sont accessibles, et ce, dans un objectif de préservation de l’anonymat des participants.: Seules les options incluant plus de 3 participants sont accessibles, et ce, dans un objectif de préservation de l’anonymat des participants.
@@ -358,9 +355,7 @@ entries:
   Votre code postal: Votre code postal
   Votre date de naissance: Votre date de naissance
   Votre résultat: Votre résultat
-  Vous pouvez reprendre votre test en cours, ou en recommencer un.: Vous pouvez reprendre votre test en cours, ou en recommencer un.
   Vous pouvez utiliser vos données existantes, ou recommencer le test.: Vous pouvez utiliser vos données existantes, ou recommencer le test.
-  Vous avez déjà commencé le test Nos Gestes Climat !: Vous avez déjà commencé le test Nos Gestes Climat !
   Vous avez déjà réalisé le test Nos Gestes Climat !: Vous avez déjà réalisé le test Nos Gestes Climat !
   Au total: Au total
   C’est bien cette distance qui sera comptabilisée en fin de test.: C’est bien cette distance qui sera comptabilisée en fin de test.
@@ -380,7 +375,6 @@ entries:
   Nous pourrons vous contacter en cas de problème lors de votre inscription: Nous pourrons vous contacter en cas de problème lors de votre inscription
   top chrono.: top chrono.
   Vous avez déja participé à ce sondage.: Vous avez déja participé à ce sondage.
-  Vous avez déjà participé à ce sondage.: Vous avez déjà participé à ce sondage.
   Découvrir le calculateur: Découvrir le calculateur
   écartez celles qui vous semblent trop ambitieuses ou déplacées.: écartez celles qui vous semblent trop ambitieuses ou déplacées.
   Empreinte: Empreinte
@@ -471,8 +465,6 @@ entries:
   Reconnectez vous en cliquant sur le bouton ci-dessous.: Reconnectez vous en cliquant sur le bouton ci-dessous.
   ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouveau navigateur.': ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouveau navigateur.'
   'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.'
-  Commencer le test: Commencer le test
-  Reprendre le test: Reprendre le test
   Utiliser mes données existantes: Utiliser mes données existantes
   Simulation terminée: Simulation terminée
   Diffusion: Diffusion
@@ -543,7 +535,6 @@ entries:
   Votre inscription est validée ! <1>✨</1>: Votre inscription est validée ! <1>✨</1>
   Votre question à ajouter: Votre question à ajouter
   Vous accompagner pour mieux agir en <2>4 mails seulement</2>.: Vous accompagner pour mieux agir en <2>4 mails seulement</2>.
-  Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.: Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.
   Chaque participation est représentée par une barre verticale. Votre score est affiché en <2>rose</2>.: Chaque participation est représentée par une barre verticale. Votre score est affiché en <2>rose</2>.
   Elle seront toutefois prises en compte lors de l'export de données.: Elle seront toutefois prises en compte lors de l'export de données.
   Pour faciliter la lecture, les valeurs supérieures à 100 t sont retirées.: Pour faciliter la lecture, les valeurs supérieures à 100 t sont retirées.
@@ -669,9 +660,7 @@ entries:
   Pour faire joli et le reconnaitre !: Pour faire joli et le reconnaitre !
   Pour le retrouver facilement dans votre liste: Pour le retrouver facilement dans votre liste
   sur: sur
-  Veuillez entrer une adresse email valide: Veuillez entrer une adresse email valide
   Veuillez entrer une adresse email valide.: Veuillez entrer une adresse email valide.
-  Veuillez saisir une adresse email valide.: Veuillez saisir une adresse email valide.
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Rien à l'horizon ! <1></1>La page recherchée n'existe pas.
   Un bonhomme se demandant où il est: Un bonhomme se demandant où il est
   Acquisition: Acquisition
@@ -751,7 +740,6 @@ entries:
   Sauvegarder <2>ma progression</2>: Sauvegarder <2>ma progression</2>
   Votre région a bien été mise à jour.: Votre région a bien été mise à jour.
   '{{name}}, supprimer cette participation': '{{name}}, supprimer cette participation'
-  Participant supprimé avec succès: Participant supprimé avec succès
   Supprimer ce participant ? Cette opération est définitive.: Supprimer ce participant ? Cette opération est définitive.
   Une erreur est survenue: Une erreur est survenue
   Des enfants qui se tiennent la main: Des enfants qui se tiennent la main
@@ -877,13 +865,11 @@ entries:
   Et la vôtre ?: Et la vôtre ?
   Impressionnant, non ?: Impressionnant, non ?
   L'empreinte carbone: L'empreinte carbone
-  'L’empreinte carbone : une empreinte parmi d’autres !': 'L’empreinte carbone : une empreinte parmi d’autres !'
   L'empreinte carbone moyenne d'un français est de <2>9,1 tonnes de CO2e par an</2>.: L'empreinte carbone moyenne d'un français est de <2>9,1 tonnes de CO2e par an</2>.
   L'empreinte eau: L'empreinte eau
   L'empreinte eau moyenne d'un français se compte <2>milliers de litres par jour</2>.: L'empreinte eau moyenne d'un français se compte <2>milliers de litres par jour</2>.
   La production d'un jean nécessite près de <2>30 000 litres d'eau</2>.: La production d'un jean nécessite près de <2>30 000 litres d'eau</2>.
   Lancez une campagne dans votre organisation: Lancez une campagne dans votre organisation
-  Le lexique pour tout comprendre à l'eau: Le lexique pour tout comprendre à l'eau
   Les lignes de code, les données et même une grande partie des réflexions méthodologiques derrière le calculateur sont toutes <2>accessibles</2>, ce qui permet à qui veut de <5>contribuer et améliorer l’outil</5>.: Les lignes de code, les données et même une grande partie des réflexions méthodologiques derrière le calculateur sont toutes <2>accessibles</2>, ce qui permet à qui veut de <5>contribuer et améliorer l’outil</5>.
   Mobilisez votre entourage pour la planète !: Mobilisez votre entourage pour la planète !
   Ordinateur: Ordinateur
@@ -1226,7 +1212,6 @@ entries:
   Partagez vos résultats avec notre partenaire - Nos Gestes Climat: Partagez vos résultats avec notre partenaire - Nos Gestes Climat
   Notre partenaire: Notre partenaire
   vous a invité à lui transmettre vos empreintes carbone et eau.: vous a invité à lui transmettre vos empreintes carbone et eau.
-  Envie de connaître vos empreintes carbone et eau ?: Envie de connaître vos empreintes carbone et eau ?
   Courses: Courses
   Domicile-Travail: Domicile-Travail
   Mobilité académique: Mobilité académique
@@ -1251,28 +1236,10 @@ entries:
   "Oups ! Une erreur s'est produite au moment de récupérer les informations de votre campagne. Vous pouvez la retrouver depuis ": "Oups ! Une erreur s'est produite au moment de récupérer les informations de votre campagne. Vous pouvez la retrouver depuis "
   Oups ! Une erreur s'est produite. Veuillez recharger la page. Si le problème persiste, vous pouvez: Oups ! Une erreur s'est produite. Veuillez recharger la page. Si le problème persiste, vous pouvez
   Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez: Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez
-  Votre campagne a été mise à jour.: Votre campagne a été mise à jour.
-  Bénéficier de conseils personnalisés: Bénéficier de conseils personnalisés
-  de simulation à tout moment: de simulation à tout moment
-  J'ai déjà trop de comptes partout, je ne veux pas un de plus: J'ai déjà trop de comptes partout, je ne veux pas un de plus
-  Je crée mon compte: Je crée mon compte
-  Je ne préfère pas créer de compte: Je ne préfère pas créer de compte
-  Je ne suis pas sûr que ça m'apporte vraiment quelque chose: Je ne suis pas sûr que ça m'apporte vraiment quelque chose
-  Je ne veux pas que mes données personnelles soient stockées ou utilisées: Je ne veux pas que mes données personnelles soient stockées ou utilisées
-  Je veux juste voir mes résultats et ne pas perdre de temps avec un compte: Je veux juste voir mes résultats et ne pas perdre de temps avec un compte
-  La création de compte sera bientôt disponible, vous en serez informé ici.: La création de compte sera bientôt disponible, vous en serez informé ici.
-  Merci de votre intérêt !: Merci de votre intérêt !
-  Merci pour votre réponse. Dites-nous en plus !: Merci pour votre réponse. Dites-nous en plus !
-  'Pour nous aider à mieux cerner vos attentes, précisez pourquoi vous ne souhaitez pas créer de compte :': 'Pour nous aider à mieux cerner vos attentes, précisez pourquoi vous ne souhaitez pas créer de compte :'
-  Retrouver votre historique: Retrouver votre historique
-  Veuillez sélectionner au moins une option: Veuillez sélectionner au moins une option
-  Votre empreinte est un point de départ. Et si vous alliez plus loin ?: Votre empreinte est un point de départ. Et si vous alliez plus loin ?
-  Votre retour a été pris en compte, merci !: Votre retour a été pris en compte, merci !
-  pour agir sur vos empreintes: pour agir sur vos empreintes
   Donner votre avis: Donner votre avis
   Emoji main qui salue: Emoji main qui salue
   C'est parti !: C'est parti !
-  'Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est : nom@exemple.org': 'Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est : nom@exemple.org'
   Une erreur s'est produite au moment de sauvegarder vos données. Veuillez réessayer dans quelques instants.: Une erreur s'est produite au moment de sauvegarder vos données. Veuillez réessayer dans quelques instants.
   Vous avez la possibilité d'ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.: Vous avez la possibilité d'ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.
   Chargement en cours...: Chargement en cours...
+  Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org: Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org
