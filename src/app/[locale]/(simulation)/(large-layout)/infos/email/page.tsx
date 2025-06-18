@@ -63,11 +63,6 @@ export default function Email() {
 
   const onSubmit = ({ email }: Inputs) => {
     const linkToNextPage = getLinkToNextInfosPage({ curPage: EMAIL_PAGE })
-    // Email is not mandatory
-    if (!email) {
-      router.push(linkToNextPage)
-      return
-    }
 
     // If email is not valid
     if (!isEmailValid(email)) {
@@ -79,9 +74,12 @@ export default function Email() {
     }
 
     // If email is valid
-    updateEmail(email)
+    if (email) {
+      updateEmail(email)
+    }
 
     try {
+      // In any case save simulation as user is at end of poll userflow
       saveSimulation({
         simulation: currentSimulation,
       })
