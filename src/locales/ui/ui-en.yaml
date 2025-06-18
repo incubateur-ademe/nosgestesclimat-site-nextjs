@@ -1330,3 +1330,5 @@ entries:
   C'est parti !: We're off!
   'Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est : nom@exemple.org': 'The format of the e-mail address entered is invalid. The expected format is: nom@exemple.org'
   Chargement en cours...: Loading in progress...
+  Conditions d’utilisation des données « Base Empreinte »: Conditions of use of "Base Empreinte" data
+  'Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est : nom@exemple.org.lock': 'Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est : nom@exemple.org'
