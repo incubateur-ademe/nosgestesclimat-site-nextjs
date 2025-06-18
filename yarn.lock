@@ -2104,17 +2104,17 @@
   resolved "https://registry.yarnpkg.com/@img/sharp-win32-x64/-/sharp-win32-x64-0.34.1.tgz#8a7922fec949f037c204c79f6b83238d2482384b"
   integrity sha512-hw1iIAHpNE8q3uMIRCgGOeDoz9KtFNarFLQclLxr/LK1VBkj8nby18RjFvr6aP7USRYAjTZW6yisnBWMX571Tw==
 
-"@incubateur-ademe/legal-pages-markdown@0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@incubateur-ademe/legal-pages-markdown/-/legal-pages-markdown-0.3.0.tgz#bd29f2de5992a451b44e53f911cbfefe4c5e4c26"
-  integrity sha512-DJ6OE+h/vaAFtGxwM1o0sRQvkQWvqQgMsFF9N/JVsVT21+DpR2wBSKWeBKZUxp75jeOqqGa8AGB1hS3kCR1xGQ==
+"@incubateur-ademe/legal-pages-markdown@0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@incubateur-ademe/legal-pages-markdown/-/legal-pages-markdown-0.5.0.tgz#738d1a50ceef6a26c583c931663cf434d057517d"
+  integrity sha512-GBzX8IvgzcH9CAHZvQmNfIkbiU63ttvrkuRdFxj6L9JTI3DWzcJQ8Vl6SCGuKiS8A+ldyZdM97zTN21TUPn3WA==
 
-"@incubateur-ademe/legal-pages-react@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@incubateur-ademe/legal-pages-react/-/legal-pages-react-0.3.0.tgz#cb9f6d6e319383b5cfc6a4cfd3a9d1edb3628f38"
-  integrity sha512-69Z9SbyFzj3Y8BO8PWWpTOTJlgA9pT7oc4E19P4HtfVCo9wEP30BqsXgATE2P8wGWpklKm9GHA9S8ingfdVXuQ==
+"@incubateur-ademe/legal-pages-react@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@incubateur-ademe/legal-pages-react/-/legal-pages-react-0.5.0.tgz#3921d1e7f3ed499aafe89da0fcd1e86e0391d3f7"
+  integrity sha512-xdSuds4poR6f8fOq8CYF2gVJzuqmCL6veJId0ISn8UDf12LECON0oK+e2S7xO8Kz6hPNuJ5ZnS7qS2am3Lx12w==
   dependencies:
-    "@incubateur-ademe/legal-pages-markdown" "0.3.0"
+    "@incubateur-ademe/legal-pages-markdown" "0.5.0"
     mustache "^4.2.0"
 
 "@incubateur-ademe/nosgestesclimat-scripts@^0.6.0":
