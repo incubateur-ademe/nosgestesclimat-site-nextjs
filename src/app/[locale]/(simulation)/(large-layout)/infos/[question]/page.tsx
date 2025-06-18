@@ -6,12 +6,13 @@ import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 
 import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
+import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
-import { useParams, useRouter } from 'next/navigation'
-import { useContext } from 'react'
+import { useSaveAndGoNext } from '@/hooks/organisations/useSaveAndGoNext'
+import { useCurrentSimulation } from '@/publicodes-state'
+import { useParams } from 'next/navigation'
 import { useForm as useReactHookForm } from 'react-hook-form'
-import { InfosContext } from '../_components/InfosProvider'
 import Navigation from '../_components/Navigation'
 
 type Inputs = {
@@ -21,35 +22,42 @@ type Inputs = {
 export default function CustomQuestion() {
   const { register, handleSubmit } = useReactHookForm<Inputs>()
 
-  const params = useParams()
+  const params = useParams<{ question: string }>()
 
-  const customQuestionIndex = parseInt((params.question as string).slice(-1))
-
-  const router = useRouter()
+  const customQuestionIndex = parseInt(params.question.slice(-1))
 
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
 
-  const { data: poll, isLoading, isError } = useFetchPublicPoll()
+  const currentSimulation = useCurrentSimulation()
 
-  const { addCustomAnswer } = useContext(InfosContext)
+  const { updateCurrentSimulation, customAdditionalQuestionsAnswers } =
+    currentSimulation || {}
+
+  const { data: poll, isLoading, isError } = useFetchPublicPoll()
 
   const customAdditionalQuestions = poll?.customAdditionalQuestions ?? []
 
   const customQuestion =
     customAdditionalQuestions[customQuestionIndex - 1].question
 
-  if (!customAdditionalQuestions?.length || isError) {
-    return <DefaultErrorAlert />
-  }
+  // Handles saving the simulation current state and redirecting to next step
+  const { setShouldSaveAndGoNext, errorSaveSimulation } = useSaveAndGoNext({
+    curPage: params.question,
+  })
 
   function onSubmit({ 'custom-answer': customAnswer }: Inputs) {
-    addCustomAnswer({
-      key: customQuestion,
-      answer: customAnswer,
+    updateCurrentSimulation({
+      customAdditionalQuestionsAnswers: {
+        ...customAdditionalQuestionsAnswers,
+        [customQuestion]: customAnswer,
+      },
     })
 
-    // Go to next page
-    router.push(getLinkToNextInfosPage({ curPage: params.question as string }))
+    setShouldSaveAndGoNext(true)
+  }
+
+  if (!customAdditionalQuestions?.length || isError) {
+    return <DefaultErrorAlert />
   }
 
   if (isLoading) {
@@ -77,6 +85,8 @@ export default function CustomQuestion() {
             label={customQuestion}
             {...register('custom-answer')}
           />
+
+          {errorSaveSimulation && <DefaultSubmitErrorMessage />}
 
           <Navigation
             linkToPrev={getLinkToPrevInfosPage({
