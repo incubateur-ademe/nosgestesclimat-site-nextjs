@@ -19,7 +19,7 @@ export async function fetchArticles(
       locale: locale as string,
       ...params,
     })
-    console.log(articlesSearchParams)
+
     const articlesResponse = await cmsClient<{ data: ArticleType[] }>(
       `/api/articles?${articlesSearchParams}`
     )
