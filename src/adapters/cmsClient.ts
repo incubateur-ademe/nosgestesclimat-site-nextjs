@@ -14,9 +14,7 @@ export const cmsClient = async <T>(
   }
 
   // Passing an empty string returns both draft and published
-  if (isProduction) {
-    fullUrl.searchParams.set('status', 'published')
-  }
+  fullUrl.searchParams.set('status', isProduction ? 'published' : '')
 
   try {
     const response = await fetch(fullUrl, {
