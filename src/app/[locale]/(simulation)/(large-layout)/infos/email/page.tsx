@@ -9,12 +9,11 @@ import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
+import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
-import { trackPageView } from '@/utils/analytics/trackEvent'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useCallback, useEffect } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import Navigation from '../_components/Navigation'
 
@@ -28,7 +27,7 @@ export default function Email() {
 
   const { user, updateEmail } = useUser()
 
-  const pollSlug = useSearchParams().get('poll')
+  const { polls } = useCurrentSimulation()
 
   const {
     register,
@@ -47,46 +46,58 @@ export default function Email() {
 
   const { getLinkToNextInfosPage, getLinkToPrevInfosPage } = useInfosPage()
 
-  const { data: poll, isError, isLoading } = useFetchPublicPoll()
+  const { saveSimulation } = useSaveSimulation()
 
-  // We track a page view with the format of the shared link (/o/organisation/poll)
-  useEffect(() => {
-    trackPageView('/o/orga_slug/poll_slug/')
-  }, [])
+  const currentSimulation = useCurrentSimulation()
 
-  const onSubmit = useCallback(
-    ({ email }: Inputs) => {
-      // Email is not mandatory
-      if (!email) {
-        router.push(getLinkToNextInfosPage({ curPage: EMAIL_PAGE }))
-        return
-      }
+  const pollSlug = polls ? polls[polls.length - 1] : undefined
 
-      // If email is not valid
-      if (!isEmailValid(email)) {
-        setError('email', {
-          type: 'validate',
-          message: t('Veuillez saisir une adresse email valide.'),
-        })
-        return
-      }
+  const {
+    data: poll,
+    isError,
+    isLoading,
+  } = useFetchPublicPoll({
+    enabled: !!pollSlug,
+    pollIdOrSlug: pollSlug,
+  })
 
-      if (poll?.simulations.hasParticipated) {
-        setError('email', {
-          message: t('Vous avez déjà participé à ce sondage.'),
-          type: 'manual',
-        })
-        return
-      }
+  const onSubmit = ({ email }: Inputs) => {
+    const linkToNextPage = getLinkToNextInfosPage({ curPage: EMAIL_PAGE })
+    // Email is not mandatory
+    if (!email) {
+      router.push(linkToNextPage)
+      return
+    }
 
-      // If email is valid
-      updateEmail(email)
+    // If email is not valid
+    if (!isEmailValid(email)) {
+      setError('email', {
+        type: 'validate',
+        message: t('Veuillez saisir une adresse email valide.'),
+      })
+      return
+    }
+
+    // If email is valid
+    updateEmail(email)
+
+    try {
+      saveSimulation({
+        simulation: currentSimulation,
+      })
 
       // Go to next page
-      router.push(getLinkToNextInfosPage({ curPage: EMAIL_PAGE }))
-    },
-    [poll, updateEmail, router, getLinkToNextInfosPage, setError, t]
-  )
+      router.push(linkToNextPage)
+    } catch (e) {
+      setError('email', {
+        type: 'validate',
+        message: t(
+          "Une erreur s'est produite au moment de sauvegarder vos données. Veuillez réessayer dans quelques instants."
+        ),
+      })
+    }
+  }
+
   return (
     <form>
       <Title
@@ -136,7 +147,9 @@ export default function Email() {
               pattern: {
                 value:
                   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                message: t('Veuillez entrer une adresse email valide'),
+                message: t(
+                  'Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est : nom@exemple.org'
+                ),
               },
             })}
           />
