@@ -28,12 +28,16 @@ export const ABTestingProvider = ({ children }: PropsWithChildren) => {
 
   const handleInitABTesting = () => {
     console.log('[AB Testing] in handleInitABTesting')
-    // Vérifier si Matomo est activé
+
+    // Désactiver les AB Tests dans l'environnement Cypress
     if (
-      process.env.NEXT_PUBLIC_MATOMO_ID !== '1' &&
-      process.env.NEXT_PUBLIC_MATOMO_ID !== '2'
+      (process.env.NEXT_PUBLIC_MATOMO_ID !== '1' &&
+        process.env.NEXT_PUBLIC_MATOMO_ID !== '2') ||
+      (typeof window !== 'undefined' && (window as any).Cypress)
     ) {
-      console.log('[AB Testing] Matomo not enabled in this environment')
+      console.log(
+        '[AB Testing] Matomo not enabled in this environment or Cypress detected'
+      )
       return
     }
 
