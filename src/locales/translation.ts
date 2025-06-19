@@ -5,9 +5,6 @@
 import type { LangInfos, YamlEntry } from '@/types/translation'
 import { Lang } from '@/types/translation'
 import type { i18n } from 'i18next'
-import faqEnYaml from './faq/FAQ-en.yaml'
-import faqEsYaml from './faq/FAQ-es.yaml'
-import faqFrYaml from './faq/FAQ-fr.yaml'
 import uiEnYaml from './ui/ui-en.yaml'
 import uiEsYaml from './ui/ui-es.yaml'
 import uiFrYaml from './ui/ui-fr.yaml'
@@ -34,10 +31,6 @@ const uiFr = parseYaml(uiFrYaml as unknown as YamlEntry)
 const uiEn = parseYaml(uiEnYaml as unknown as YamlEntry)
 const uiEs = parseYaml(uiEsYaml as unknown as YamlEntry)
 
-const faqFr = parseYaml(faqFrYaml as unknown as YamlEntry)
-const faqEn = parseYaml(faqEnYaml as unknown as YamlEntry)
-const faqEs = parseYaml(faqEsYaml as unknown as YamlEntry)
-
 function getLangInfos(lang: Lang): LangInfos {
   switch (lang) {
     case Lang.En: {
@@ -45,7 +38,6 @@ function getLangInfos(lang: Lang): LangInfos {
         name: 'English',
         abrv: 'en',
         abrvLocale: 'en',
-        faqContent: faqEn as unknown as string,
         uiTrad: uiEn.entries,
       }
     }
@@ -54,7 +46,6 @@ function getLangInfos(lang: Lang): LangInfos {
         name: 'Español',
         abrv: 'es',
         abrvLocale: 'es',
-        faqContent: faqEs as unknown as string,
         uiTrad: uiEs.entries,
       }
     }
@@ -64,7 +55,6 @@ function getLangInfos(lang: Lang): LangInfos {
         name: 'Français',
         abrv: 'fr',
         abrvLocale: 'fr-FR',
-        faqContent: faqFr as unknown as string,
         uiTrad: uiFr.entries,
       }
     }
