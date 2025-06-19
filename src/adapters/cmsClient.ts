@@ -203,3 +203,9 @@ export type PartnerCampaignType = {
     htmlAnswer: string
   }[]
 }
+
+export type FAQType = {
+  category: string
+  order: number
+  questions: QuestionType[]
+}
