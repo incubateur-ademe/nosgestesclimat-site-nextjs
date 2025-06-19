@@ -38,10 +38,7 @@ export default function LanguageSwitchButton({
 
   // Check without the
   const langButtonsDisplayedWithFilteredEs = NO_ES_PATHNAMES.has(
-    pathname.replace(
-      `/^/(${i18nConfig.locales[1]}|${i18nConfig.locales[2]})/`,
-      ''
-    )
+    pathname.replace(new RegExp(`^/(${i18nConfig.locales.join('|')})`), '')
   )
     ? { ...langButtonsDisplayed, es: false }
     : langButtonsDisplayed
