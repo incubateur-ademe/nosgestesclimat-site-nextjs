@@ -45,7 +45,7 @@ export default async function WhatItIsCarbon({ locale }: { locale: string }) {
         <Image
           width={450}
           height={450}
-          src="/images/illustrations/expliquer-empreinte-carbone.svg"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/expliquer_empreinte_carbone_dd91541799.svg"
           className="py-6 md:py-10"
           alt={t(
             "Deux personnes accolées levant le bras en signe de succès, illustrant l'importance du collectif dans la réduction de nos empreintes carbone"
