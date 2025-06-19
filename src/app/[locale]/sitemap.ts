@@ -26,6 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     'guide',
     'international',
     'mentions-legales',
+    'mentions-legales-base-empreinte',
     'modele',
     'nos-relais',
     'nouveautes',

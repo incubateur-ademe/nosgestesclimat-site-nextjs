@@ -1,5 +1,6 @@
 import { PARTNER_KEY } from '@/constants/partners'
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
+import i18nConfig from '@/i18nConfig'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { verifyPartner } from '@/services/partners/verifyPartner'
 import '@testing-library/jest-dom'
@@ -24,7 +25,7 @@ describe('PartnerPage', () => {
     const searchParams = Promise.resolve({
       [PARTNER_KEY]: 'test-partner',
     })
-    const params = Promise.resolve({ locale: 'fr' })
+    const params = Promise.resolve({ locale: i18nConfig.defaultLocale })
 
     // When
     await act(async () => {
@@ -44,7 +45,7 @@ describe('PartnerPage', () => {
   it('should redirect to /404 if no partner search param is provided', async () => {
     // Given
     const searchParams = Promise.resolve({})
-    const params = Promise.resolve({ locale: 'fr' })
+    const params = Promise.resolve({ locale: i18nConfig.defaultLocale })
 
     // When
     await act(async () => {
@@ -62,7 +63,7 @@ describe('PartnerPage', () => {
     const searchParams = Promise.resolve({
       [PARTNER_KEY]: 'invalid-partner',
     })
-    const params = Promise.resolve({ locale: 'fr' })
+    const params = Promise.resolve({ locale: i18nConfig.defaultLocale })
 
     // When
     await act(async () => {
@@ -80,7 +81,7 @@ describe('PartnerPage', () => {
     const searchParams = Promise.resolve({
       [PARTNER_KEY]: 'test-partner',
     })
-    const params = Promise.resolve({ locale: 'fr' })
+    const params = Promise.resolve({ locale: i18nConfig.defaultLocale })
 
     ;(useCurrentSimulation as jest.Mock).mockReturnValue({ progression: 0 })
 

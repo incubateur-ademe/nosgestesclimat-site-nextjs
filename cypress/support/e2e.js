@@ -6,3 +6,14 @@ Cypress.on('test:before:run', () => {
     },
   })
 })
+
+// Désactiver les AB Tests globalement pour tous les tests Cypress
+beforeEach(() => {
+  // Définir une variable globale pour désactiver les AB Tests
+  cy.window().then((win) => {
+    win.Cypress = true
+    console.log(
+      '[Cypress] AB Testing disabled via window.disable_matomo_ab_test'
+    )
+  })
+})
