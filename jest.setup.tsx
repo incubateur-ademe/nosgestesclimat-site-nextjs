@@ -42,6 +42,12 @@ jest.mock('@/helpers/getServerTranslation', () => ({
   }),
 }))
 
+jest.mock('@/hooks/useClientTranslation', () => ({
+  useClientTranslation: jest.fn().mockResolvedValue({
+    t: (key: string) => key,
+  }),
+}))
+
 jest.mock('next/navigation', () => ({
   redirect: jest.fn(),
   useRouter: () => ({
@@ -51,6 +57,10 @@ jest.mock('next/navigation', () => ({
     get: jest.fn(),
   }),
   usePathname: () => '',
+}))
+
+jest.mock('uuid', () => ({
+  v4: () => 'test-uuid-1234',
 }))
 
 beforeAll(() => {

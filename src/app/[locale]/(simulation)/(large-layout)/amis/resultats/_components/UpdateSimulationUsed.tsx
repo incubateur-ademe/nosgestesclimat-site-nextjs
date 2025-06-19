@@ -51,8 +51,6 @@ export default function UpdateSimulationUsed({ group, refetchGroup }: Props) {
       .sort((a, b) => dayjs(b.date).diff(dayjs(a.date)))
       .shift()
 
-    console.log('ici', simulation)
-
     setLatestSimulation(simulation)
   }, [groupSimulation?.date, latestSimulation, simulations])
 

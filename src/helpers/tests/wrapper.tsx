@@ -118,14 +118,16 @@ const defaultSimulation: Simulation = {
 }
 
 const defaultUser = {
-  user: {
-    userId: '1',
-    name: 'Test User',
-    email: 'test@example.com',
-  },
+  userId: '1',
+  name: 'Test User',
+  email: 'test@example.com',
+}
+
+const defaultState = {
+  user: defaultUser,
   tutorials: {},
   simulations: [defaultSimulation],
-  currentSimulation: defaultSimulation,
+  currentSimulationId: defaultSimulation.id,
   updateCurrentSimulation: jest.fn(),
 }
 
@@ -231,19 +233,15 @@ export const renderWithWrapper = (
     ...defaultUser,
     ...user,
   }
-  console.log('currentSimulation', currentSimulation)
-  const simulationsMerged = simulations ?? [
-    defaultSimulation,
-    ...(currentSimulation ? [currentSimulation] : []),
-  ]
 
+  console.log('USER', user)
   localStorage.setItem(
     'nosgestesclimat::v3',
     JSON.stringify({
+      ...defaultState,
       user: userMerged,
-      simulations: simulationsMerged,
-      currentSimulationId:
-        userMerged.currentSimulation?.id ?? defaultSimulation?.id,
+      simulations,
+      currentSimulationId: currentSimulation?.id ?? defaultSimulation?.id,
       tutorials: {},
     })
   )

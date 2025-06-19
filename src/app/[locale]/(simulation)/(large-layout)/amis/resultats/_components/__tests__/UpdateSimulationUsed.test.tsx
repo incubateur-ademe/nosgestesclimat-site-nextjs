@@ -31,7 +31,6 @@ const mockSimulation = {
   situation: {},
   foldedSteps: [],
   actionChoices: {},
-  severity: 1,
 }
 
 const mockGroupSimulation = {
@@ -85,16 +84,14 @@ describe('UpdateSimulationUsed', () => {
 
   it('should display the update alert when detecting a more recent simulation with a different result', async () => {
     // When
-
     renderWithWrapper(<UpdateSimulationUsed {...mockProps} />, {
       user: {
-        user: {
-          userId: '1',
-          name: 'Test User',
-          email: 'test@example.com',
-        },
-        simulations: [mockGroupSimulation, mockSimulation],
+        userId: '1',
+        name: 'Test User',
+        email: 'test@example.com',
       },
+      simulations: [mockGroupSimulation, mockSimulation],
+      currentSimulation: mockSimulation,
       providers: {
         user: true,
       },
@@ -117,12 +114,14 @@ describe('UpdateSimulationUsed', () => {
     // When
     renderWithWrapper(<UpdateSimulationUsed {...mockProps} />, {
       user: {
-        user: {
-          userId: '1',
-          name: 'Test User',
-          email: 'test@example.com',
-        },
-        simulations: [mockSimulation],
+        userId: '1',
+        name: 'Test User',
+        email: 'test@example.com',
+      },
+      simulations: [mockGroupSimulation, mockSimulation],
+      currentSimulation: mockSimulation,
+      providers: {
+        user: true,
       },
     })
     await userEvent.click(screen.getByTestId('update-button'))
@@ -141,12 +140,14 @@ describe('UpdateSimulationUsed', () => {
     // When
     renderWithWrapper(<UpdateSimulationUsed {...mockProps} />, {
       user: {
-        user: {
-          userId: '1',
-          name: 'Test User',
-          email: 'test@example.com',
-        },
-        simulations: [mockSimulation],
+        userId: '1',
+        name: 'Test User',
+        email: 'test@example.com',
+      },
+      simulations: [mockGroupSimulation, mockSimulation],
+      currentSimulation: mockSimulation,
+      providers: {
+        user: true,
       },
     })
     await userEvent.click(screen.getByTestId('update-button'))
