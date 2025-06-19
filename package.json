@@ -85,7 +85,7 @@
     "tailwindcss": "^4.1.8",
     "use-count-up": "^3.0.1",
     "uuid": "^11.0.5",
-    "yargs": "^17.7.2"
+    "yargs": "^18.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.26.8",
