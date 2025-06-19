@@ -1,0 +1,47 @@
+---
+título: Schakleton
+fecha: 2025-04-25T10:21:20Z
+imagen: https://upload.wikimedia.org/wikipedia/commons/6/6e/C84165s1_Ant.Map_Shackleton_Glacier.jpg
+---
+
+![glaciar Shackelton](https://upload.wikimedia.org/wikipedia/commons/6/6e/C84165s1_Ant.Map_Shackleton_Glacier.jpg)
+
+💧 El glaciar Shackleton, que se extiende casi 96 km a través de la cordillera Queen Maud hasta la brecha Ross en la Antártida, lleva el nombre del explorador Ernest Shackleton. Aunque recibe menos cobertura mediática que otros glaciares, encarna la historia de las grandes expediciones polares. Recientemente se han encontrado los restos del Endurance, el barco de Shackleton, en un estado extraordinario
+
+**En resumen, el mes de abril:** 
+
+🎨 Nueva página para socios
+💅 Diseño y accesibilidad mejorados (carrusel, teclado, títulos de etiquetas html, alertas, estilos)
+⚙️ Tech: actualización de NextJS, Tailwind, migración a scalingo y corrección de errores
+🚑 Perf correcciones y errores pesados
+⬆️ Lado modelo: actualización publicodes
+
+### **🎨 Rediseño y contenido**
+
+- La página *Partners* ha sido renovada y actualizada
+    
+![nueva página de socios](https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/relays_2738d796fa.png)
+    
+
+- Traducciones ajustadas y erratas corregidas
+- Incorporación de un banner com gestionado a través de Strapi: esta pequeña herramienta casera nos permitirá avisarle de noticias o información importante, ¡como el Día Mundial del Agua, por ejemplo!
+
+### **💅 Diseño y UX**
+
+Para preparar la nueva auditoría de accesibilidad, hemos realizado toda una serie de optimizaciones:
+
+- Carrusel accesible desde el teclado en la página de inicio
+- Múltiples mejoras de accesibilidad: navegación por teclado, títulos, etiquetas ARIA (vista previa de la herramienta Wave utilizada para la fase de auditoría interna)
+
+![mejoras de accesibilidad](https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/accessibility_6220b87f58.png)
+
+Y también :
+
+- Mejor visualización de las páginas 404, fin de la prueba y otros pequeños detalles que marcan la diferencia
+- El botón para compartir resultados ya no es sólo un enlace copiado, y ahora ofrece pasarelas a todas tus redes sociales favoritas.
+- Nuevo componente Alerta, con su Storybook, para comprender mejor las diferentes categorías de mensajes de alerta en caso de error en el sitio.
+
+### **⚙️ Técnica e infra**
+
+- NextJS actualizado a 15.3.0 y Tailwind a la versión 4
+- Limpieza de dependencias, eliminación de paquetes conflictivos y corrección de varios errores (hidratación, nombres de encuestas, envío de correos duplicados)

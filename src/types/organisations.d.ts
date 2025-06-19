@@ -124,3 +124,11 @@ export type OrgaSettingsInputsType = {
   hasOptedInForCommunications?: boolean
   organisationType: OrganisationTypeEnum
 }
+
+export type AcceptedExcelExportType = {
+  id: string
+}
+
+export type ExcelExportType = {
+  url: string
+}
