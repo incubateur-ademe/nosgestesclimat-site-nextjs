@@ -9,22 +9,15 @@ import SimulationSyncProvider from '@/components/providers/simulationProviders/S
 import { STORAGE_KEY } from '@/constants/storage'
 import { PartnerProvider } from '@/contexts/partner/PartnerContext'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
-import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import UserProvider from '@/publicodes-state/providers/userProvider/provider'
 import type { Simulation } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json'
 import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
+import '@testing-library/jest-dom'
 import type { RenderOptions } from '@testing-library/react'
 import { render } from '@testing-library/react'
 import type { ReactElement } from 'react'
-import { useState } from 'react'
-
-// Mock the hooks
-jest.mock('@/publicodes-state', () => ({
-  useUser: jest.fn(),
-  useCurrentSimulation: jest.fn(),
-}))
 
 // Mock useRules
 jest.mock('@/hooks/useRules', () => ({
@@ -41,55 +34,55 @@ jest.mock('@/helpers/api/getGeolocation', () => ({
 }))
 
 // Mock usePersistentUser
-jest.mock(
-  '@/publicodes-state/providers/userProvider/hooks/usePersistentUser',
-  () => ({
-    __esModule: true,
-    default: () => ({
-      user: {
-        userId: '1',
-        name: 'Test User',
-        email: 'test@example.com',
-      },
-      setUser: jest.fn(),
-    }),
-  })
-)
+// jest.mock(
+//   '@/publicodes-state/providers/userProvider/hooks/usePersistentUser',
+//   () => ({
+//     __esModule: true,
+//     default: () => ({
+//       user: {
+//         userId: '1',
+//         name: 'Test User',
+//         email: 'test@example.com',
+//       },
+//       setUser: jest.fn(),
+//     }),
+//   })
+// )
 
 // Mock usePersistentTutorials
-jest.mock(
-  '@/publicodes-state/providers/userProvider/hooks/usePersistentTutorials',
-  () => ({
-    __esModule: true,
-    default: () => ({
-      tutorials: {},
-      setTutorials: jest.fn(),
-    }),
-  })
-)
+// jest.mock(
+//   '@/publicodes-state/providers/userProvider/hooks/usePersistentTutorials',
+//   () => ({
+//     __esModule: true,
+//     default: () => ({
+//       tutorials: {},
+//       setTutorials: jest.fn(),
+//     }),
+//   })
+// )
 
 // Mock usePersistentSimulations
-jest.mock(
-  '@/publicodes-state/providers/userProvider/hooks/usePersistentSimulations',
-  () => ({
-    __esModule: true,
-    default: () => ({
-      simulations: [],
-      setSimulations: jest.fn(),
-      currentSimulationId: null,
-      setCurrentSimulationId: jest.fn(),
-    }),
-  })
-)
+// jest.mock(
+//   '@/publicodes-state/providers/userProvider/hooks/usePersistentSimulations',
+//   () => ({
+//     __esModule: true,
+//     default: () => ({
+//       simulations: [],
+//       setSimulations: jest.fn(),
+//       currentSimulationId: null,
+//       setCurrentSimulationId: jest.fn(),
+//     }),
+//   })
+// )
 
 // Mock useUpdateOldLocalStorage
-jest.mock(
-  '@/publicodes-state/providers/userProvider/hooks/useOldLocalStorage',
-  () => ({
-    __esModule: true,
-    default: jest.fn(),
-  })
-)
+// jest.mock(
+//   '@/publicodes-state/providers/userProvider/hooks/useOldLocalStorage',
+//   () => ({
+//     __esModule: true,
+//     default: jest.fn(),
+//   })
+// )
 
 // Default mock values
 const defaultSimulation: Simulation = {
@@ -156,8 +149,6 @@ const TestWrapper = ({
   children: ReactElement
   providers: ProviderConfig
 }) => {
-  const [PRNumber, setPRNumber] = useState<string | undefined>(undefined)
-
   let wrapped = children
 
   if (providers.simulationSync) {
@@ -212,7 +203,7 @@ const TestWrapper = ({
 
   return (
     <>
-      {providers.prNumber && <PRNumberHook setPRNumber={setPRNumber} />}
+      {providers.prNumber && <PRNumberHook setPRNumber={() => {}} />}
       {wrapped}
     </>
   )
@@ -223,6 +214,7 @@ export const renderWithWrapper = (
   {
     user = defaultUser,
     currentSimulation = defaultSimulation,
+    simulations = [defaultSimulation],
     providers = {
       queryClient: true,
       errorBoundary: true,
@@ -231,14 +223,30 @@ export const renderWithWrapper = (
   }: RenderOptions & {
     user?: Partial<typeof defaultUser>
     currentSimulation?: Partial<typeof defaultSimulation>
+    simulations?: Simulation[]
     providers?: ProviderConfig
-  } = {}
+  }
 ) => {
-  ;(useUser as jest.Mock).mockReturnValue({ ...defaultUser, ...user })
-  ;(useCurrentSimulation as jest.Mock).mockReturnValue({
-    ...defaultSimulation,
-    ...currentSimulation,
-  })
+  const userMerged = {
+    ...defaultUser,
+    ...user,
+  }
+  console.log('currentSimulation', currentSimulation)
+  const simulationsMerged = simulations ?? [
+    defaultSimulation,
+    ...(currentSimulation ? [currentSimulation] : []),
+  ]
+
+  localStorage.setItem(
+    'nosgestesclimat::v3',
+    JSON.stringify({
+      user: userMerged,
+      simulations: simulationsMerged,
+      currentSimulationId:
+        userMerged.currentSimulation?.id ?? defaultSimulation?.id,
+      tutorials: {},
+    })
+  )
 
   return render(<TestWrapper providers={providers}>{ui}</TestWrapper>, options)
 }

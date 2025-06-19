@@ -40,7 +40,7 @@ export default function UserProvider({
   useUpdateOldLocalStorage({ storageKey })
 
   const { user, setUser } = usePersistentUser({ storageKey, initialRegion })
-
+  console.log(user)
   const { tutorials, setTutorials } = usePersistentTutorials({ storageKey })
 
   const {

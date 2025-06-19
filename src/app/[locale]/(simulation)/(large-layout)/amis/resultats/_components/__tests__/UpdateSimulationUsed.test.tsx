@@ -1,14 +1,16 @@
-import { updateGroupParticipant } from '@/services/groups/updateGroupParticipant'
-
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import { screen, waitFor } from '@testing-library/dom'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import UpdateSimulationUsed from '../UpdateSimulationUsed'
 
-jest.mock('@/services/groups/updateGroupParticipant', () => ({
-  updateGroupParticipant: jest.fn(),
-}))
+const mockUpdateGroupParticipant = jest.fn()
+
+jest.mock('@/services/groups/updateGroupParticipant', () => {
+  return {
+    updateGroupParticipant: () => mockUpdateGroupParticipant(),
+  }
+})
 
 const mockRefetchGroup = jest.fn()
 
@@ -83,6 +85,7 @@ describe('UpdateSimulationUsed', () => {
 
   it('should display the update alert when detecting a more recent simulation with a different result', async () => {
     // When
+
     renderWithWrapper(<UpdateSimulationUsed {...mockProps} />, {
       user: {
         user: {
@@ -90,7 +93,10 @@ describe('UpdateSimulationUsed', () => {
           name: 'Test User',
           email: 'test@example.com',
         },
-        simulations: [mockSimulation],
+        simulations: [mockGroupSimulation, mockSimulation],
+      },
+      providers: {
+        user: true,
       },
     })
 
@@ -102,7 +108,7 @@ describe('UpdateSimulationUsed', () => {
 
   it('should display success alert when update is successful', async () => {
     // Given
-    ;(updateGroupParticipant as jest.Mock).mockResolvedValue({
+    mockUpdateGroupParticipant.mockResolvedValue({
       data: {
         success: true,
       },
@@ -130,9 +136,7 @@ describe('UpdateSimulationUsed', () => {
 
   it('should display error alert when update fails', async () => {
     // Given
-    ;(updateGroupParticipant as jest.Mock).mockRejectedValue(
-      new Error('Update failed')
-    )
+    mockUpdateGroupParticipant.mockRejectedValue(new Error('Update failed'))
 
     // When
     renderWithWrapper(<UpdateSimulationUsed {...mockProps} />, {

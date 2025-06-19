@@ -1,4 +1,3 @@
-import { usePathname } from 'next/navigation'
 import type { ReactNode } from 'react'
 
 jest.mock('next-i18n-router/client', () => ({
@@ -50,16 +49,4 @@ jest.mock('next/navigation', () => ({
     get: jest.fn(),
   }),
   usePathname: () => '',
-}))
-
-jest.mock('@/publicodes-state', () => ({
-  useCurrentSimulation: () => ({
-    situation: {},
-  }),
-  useUser: () => ({
-    user: {},
-    tutorials: {
-      testIntro: false,
-    },
-  }),
 }))

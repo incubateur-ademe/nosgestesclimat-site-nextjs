@@ -8,7 +8,6 @@ import { usePartner } from '@/contexts/partner/PartnerContext'
 import Alert from '@/design-system/alerts/alert/Alert'
 import Emoji from '@/design-system/utils/Emoji'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
 import RedirectLink from './RedirectLink'
 
@@ -18,9 +17,8 @@ const PARTNER_NAMES = {
 }
 
 export default function AdaptiveMessage({ partner }: { partner: string }) {
-  const { t } = useClientTranslation()
-  const { progression } = useCurrentSimulation()
-
+  const { progression, id } = useCurrentSimulation()
+  console.log(progression, id)
   const isTestCompleted = progression === 1
 
   const { redirectUrl, alertToDisplay } = usePartner()
@@ -29,7 +27,7 @@ export default function AdaptiveMessage({ partner }: { partner: string }) {
 
   const isError = alertToDisplay?.type === 'error'
   const partnerName = PARTNER_NAMES[partner as keyof typeof PARTNER_NAMES]
-
+  console.log(href)
   return (
     <MessageTemplate
       title={

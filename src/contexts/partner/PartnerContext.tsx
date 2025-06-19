@@ -11,7 +11,7 @@ import {
 } from '@/helpers/partners/storage'
 import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
-import { useCurrentSimulation } from '@/publicodes-state'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
 import { useRouter, useSearchParams } from 'next/navigation'
 import {
@@ -50,6 +50,8 @@ export function PartnerProvider({ children }: PropsWithChildren) {
   const searchParams = useSearchParams()
 
   const { progression, situation } = useCurrentSimulation()
+  const currentSimulation = useCurrentSimulation()
+  const user = useUser()
 
   const { exportSituationAsync } = useExportSituation()
 
@@ -71,7 +73,6 @@ export function PartnerProvider({ children }: PropsWithChildren) {
 
       return Object.keys(params).length ? params : undefined
     } catch (error) {
-      console.error('Error processing partner params:', error)
       return undefined
     }
   }, [searchParams])
