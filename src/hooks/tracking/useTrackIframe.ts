@@ -23,7 +23,7 @@ export function useTrackIframe(isIframe: boolean) {
     const isIframeParameterDefined = urlParams.get('iframe') !== null
 
     if (isIframe && !isIframeParameterDefined) {
-      urlParams.set('iframe', '')
+      urlParams.set('iframe', 'true')
       urlParams.set(
         'integratorUrl',
         document.location.ancestorOrigins &&

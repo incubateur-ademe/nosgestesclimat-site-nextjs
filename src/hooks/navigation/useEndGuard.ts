@@ -1,3 +1,7 @@
+import {
+  AB_TESTS_LABELS,
+  useABTesting,
+} from '@/components/providers/ABTestingProvider'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
@@ -15,6 +19,8 @@ export function useEndGuard() {
   const [isGuardInit, setIsGuardInit] = useState(false)
   const [isGuardRedirecting, setIsGuardRedirecting] = useState(false)
 
+  const { abTests } = useABTesting()
+
   useEffect(() => {
     // we only run the guard at mount
     if (isGuardInit) return
@@ -31,7 +37,7 @@ export function useEndGuard() {
     }
 
     // if the user didn't see the tutoriel we redirect him to the tutorial page
-    if (!tutorials.testIntro) {
+    if (!tutorials.testIntro && !abTests[AB_TESTS_LABELS.hideTutorial]) {
       router.replace('/tutoriel')
       setIsGuardRedirecting(true)
       return
@@ -40,7 +46,14 @@ export function useEndGuard() {
     // we redirect the user to the test page
     router.replace(getLinkToSimulateur())
     setIsGuardRedirecting(true)
-  }, [isGuardInit, simulationIdInQueryParams, progression, router, tutorials])
+  }, [
+    isGuardInit,
+    simulationIdInQueryParams,
+    progression,
+    router,
+    tutorials,
+    abTests,
+  ])
 
   return { isGuardInit, isGuardRedirecting }
 }

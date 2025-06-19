@@ -1,45 +1,56 @@
 'use client'
 
+import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import MaxWidthContent from '@/components/layout/MaxWidthContent'
 import PollLoader from '@/components/organisations/PollLoader'
 import QuestionsComplementaires from '@/components/organisations/QuestionsComplementaires'
 import Trans from '@/components/translation/trans/TransClient'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
-import { displaySuccessToast } from '@/helpers/toasts/displaySuccessToast'
 import { useFetchPoll } from '@/hooks/organisations/polls/useFetchPoll'
-import { useUpdatePoll } from '@/hooks/organisations/polls/useUpdatePoll'
+import {
+  type PollToUpdate,
+  useUpdatePoll,
+} from '@/hooks/organisations/polls/useUpdatePoll'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEffect } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
+import { useParams } from 'next/navigation'
 import PollNotFound from '../_components/PollNotFound'
 import DeletePollButton from './_components/DeletePollButton'
 import NameForm from './_components/NameForm'
 
 export default function ParametresPage() {
-  const { t } = useClientTranslation()
-
   const { data: organisation } = useFetchOrganisation()
+
+  const queryClient = useQueryClient()
+
+  const { pollSlug: pollIdOrSlug } = useParams() as {
+    pollSlug: string
+  }
 
   const {
     data: poll,
-    isError,
+    isError: isErrorFetchPoll,
     refetch: refetchPoll,
   } = useFetchPoll(organisation)
 
-  const { mutate: updatePoll, status: updatePollStatus } = useUpdatePoll()
+  const {
+    mutate: updatePoll,
+    status: updatePollStatus,
+    isError: isErrorUpdate,
+  } = useUpdatePoll({
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['organisations', organisation?.slug, 'polls', pollIdOrSlug],
+      })
+    },
+  })
 
-  // If the mutation status (of updatePoll or updatePollCustomQuestions) change to success,
-  // we refetch the poll and display a confirmation message
-  useEffect(() => {
-    if (updatePollStatus === 'success') {
-      displaySuccessToast(t('Vos informations ont bien été mises à jour.'))
+  const updateAndRefetchPoll = (data: PollToUpdate) => {
+    updatePoll(data)
+  }
 
-      refetchPoll()
-    }
-  }, [updatePollStatus, refetchPoll, t])
-
-  if (isError) {
+  if (isErrorFetchPoll) {
     return <PollNotFound />
   }
 
@@ -58,21 +69,23 @@ export default function ParametresPage() {
         }
       />
 
+      {isErrorUpdate && <DefaultSubmitErrorMessage />}
+
       <NameForm
         nameValue={poll?.name ?? ''}
         expectedNumberOfParticipants={
           poll?.expectedNumberOfParticipants ?? undefined
         }
-        updatePoll={updatePoll}
+        updatePoll={updateAndRefetchPoll}
         updatePollStatus={updatePollStatus}
+        refetchPoll={refetchPoll}
       />
 
       <Separator />
 
       <QuestionsComplementaires
-        onChangeCustomQuestions={updatePoll}
+        onChange={updateAndRefetchPoll}
         organisation={organisation}
-        onChange={updatePoll}
         description={' '}
         poll={poll}
       />

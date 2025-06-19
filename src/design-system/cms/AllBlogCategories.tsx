@@ -1,5 +1,6 @@
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
+import type { Locale } from '@/i18nConfig'
 import { fetchCategories } from '@/services/cms/fetchCategories'
 import { twMerge } from 'tailwind-merge'
 import Badge from '../layout/Badge'
@@ -10,7 +11,7 @@ export default async function AllBlogCategories({
   locale,
 }: {
   className?: string
-  locale: string
+  locale: Locale
 }) {
   const categories = await fetchCategories({ locale })
 

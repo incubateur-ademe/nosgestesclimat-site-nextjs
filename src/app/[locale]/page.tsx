@@ -12,6 +12,7 @@ import {
   getLandingClickCTAResume,
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
+import type { Locale } from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
 import dynamic from 'next/dynamic'
 import { headers } from 'next/headers'
@@ -128,7 +129,7 @@ export default async function Homepage({ params }: DefaultPageProps) {
 
         <Mobilise locale={locale} />
 
-        <DecryptChallenges locale={locale} />
+        <DecryptChallenges locale={locale as Locale} />
 
         <CollectivelyCommit locale={locale} />
 

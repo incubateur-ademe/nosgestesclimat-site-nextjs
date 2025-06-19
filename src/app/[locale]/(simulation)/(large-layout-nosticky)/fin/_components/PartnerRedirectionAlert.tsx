@@ -2,7 +2,7 @@
 
 import { usePartner } from '@/contexts/partner/PartnerContext'
 import Alert from '@/design-system/alerts/alert/Alert'
-import Card from '@/design-system/layout/Card'
+import Confirmation from '@/design-system/alerts/Confirmation'
 
 export default function PartnerRedirectionAlert() {
   const { alertToDisplay } = usePartner()
@@ -19,10 +19,5 @@ export default function PartnerRedirectionAlert() {
     )
   }
 
-  return (
-    <Card
-      className={'mb-8 inline-block items-start border-none bg-[#F4F5FB] p-8'}>
-      {alertToDisplay.content}
-    </Card>
-  )
+  return <Confirmation>{alertToDisplay.content}</Confirmation>
 }

@@ -1,5 +1,6 @@
 import Trans from '@/components/translation/trans/TransServer'
 import { linkToGroupCreation } from '@/constants/group'
+import { SIMULATOR_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
@@ -26,7 +27,7 @@ export default async function PlanDuSitePage({ params }: DefaultPageProps) {
     'Nos outils': {
       bilan: {
         title: t('Le test'),
-        href: '/simulateur/bilan',
+        href: SIMULATOR_PATH,
       },
       profil: {
         title: t('Votre profil'),
@@ -64,9 +65,21 @@ export default async function PlanDuSitePage({ params }: DefaultPageProps) {
         title: t('Contact'),
         href: '/contact',
       },
-      viePrivee: {
-        title: t('Vie privée'),
-        href: '/vie-privee',
+      legalMentions: {
+        title: t('Mentions légales'),
+        href: '/mentions-legales',
+      },
+      legalMentionsBaseEmpreinte: {
+        title: t('Conditions d’utilisation des données « Base Empreinte »'),
+        href: '/mentions-legales-base-empreinte',
+      },
+      privacyPolicy: {
+        title: t('Politique de confidentialité'),
+        href: '/politique-de-confidentialite',
+      },
+      cookiePolicy: {
+        title: t('Politique des cookies'),
+        href: '/politique-des-cookies',
       },
       partenaires: {
         title: t('Partenaires'),

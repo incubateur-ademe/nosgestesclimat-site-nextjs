@@ -23,7 +23,7 @@ export const generateMetadata = getCommonMetadata({
 
 export default async function Releases({ params }: DefaultPageProps) {
   const { locale } = await params
-  const releases = await getPosts(`src/locales/nouveautes/${locale}/`)
+  const releases = getPosts(`src/locales/nouveautes/${locale}/`)
 
   const { t } = await getServerTranslation({ locale })
 
@@ -54,7 +54,7 @@ export default async function Releases({ params }: DefaultPageProps) {
 
         <Image
           className="ml-auto w-32 md:-mt-4 md:w-48"
-          src="/images/illustrations/girl-cooking.png"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_cooking_0ec332454e.png"
           width="200"
           height="400"
           alt={t('Une femme préparant un bon petit plat.')}

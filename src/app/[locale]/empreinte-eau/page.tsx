@@ -125,7 +125,7 @@ export default async function WaterFootprintLandingPage(
               <Image
                 width={560}
                 height={560}
-                src="/images/illustrations/mon-empreinte-eau.svg"
+                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/mon_empreinte_eau_b46dda2e00.svg"
                 alt={t(
                   "Un homme dans un magasin réfléchissant à l'empreinte eau du tee-shirt qu'il tient"
                 )}
@@ -137,7 +137,7 @@ export default async function WaterFootprintLandingPage(
           <Image
             width={560}
             height={560}
-            src="/images/illustrations/mon-empreinte-eau.svg"
+            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/mon_empreinte_eau_b46dda2e00.svg"
             alt={t(
               "Un homme dans un magasin réfléchissant à l'empreinte eau du tee-shirt qu'il tient"
             )}

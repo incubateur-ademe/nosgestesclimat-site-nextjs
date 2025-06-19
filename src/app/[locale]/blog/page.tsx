@@ -10,6 +10,7 @@ import NewslettersBlock from '@/design-system/cms/NewslettersBlock'
 import NewslettersBlockSkeleton from '@/design-system/cms/NewslettersBlockSkeleton'
 import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import type { Locale } from '@/i18nConfig'
 import { fetchHomepageContent } from '@/services/cms/fetchHomepageContent'
 import { fetchHomepageMetadata } from '@/services/cms/fetchHomepageMetadata'
 import type { DefaultPageProps } from '@/types'
@@ -17,7 +18,9 @@ import { notFound } from 'next/navigation'
 import BlogHero from './_components/BlogHero'
 import GroupBlock from './_components/GroupBlock'
 
-export async function generateMetadata({ params }: DefaultPageProps) {
+export async function generateMetadata({
+  params,
+}: DefaultPageProps<{ params: { locale: Locale } }>) {
   const { locale } = await params
 
   const { metaTitle, metaDescription, image } =
@@ -43,7 +46,7 @@ export default async function BlogHomePage({
   params,
 }: DefaultPageProps<{
   searchParams: { page: string }
-  params: { locale: string }
+  params: { locale: Locale }
 }>) {
   const { locale } = await params
 

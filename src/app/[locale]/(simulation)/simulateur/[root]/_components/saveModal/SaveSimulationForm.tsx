@@ -52,7 +52,7 @@ export default function SaveSimulationForm({
         />
 
         {isError && (
-          <p className="mt-4 text-sm text-red-700">
+          <p className="mt-4 text-sm text-red-800">
             <Trans>Une erreur s'est produite au moment de la sauvegarde.</Trans>
           </p>
         )}

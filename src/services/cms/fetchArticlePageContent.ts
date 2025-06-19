@@ -3,7 +3,8 @@ import type {
   PopulatedAuthorType,
 } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
-import i18nConfig from '@/i18nConfig'
+import { getLocaleWithoutEs } from '@/helpers/language/getLocaleWithoutEs'
+import { type Locale } from '@/i18nConfig'
 
 type Article = PopulatedArticleType<'image' | 'category'> & {
   author: PopulatedAuthorType<'image'>
@@ -11,10 +12,12 @@ type Article = PopulatedArticleType<'image' | 'category'> & {
 
 export async function fetchArticlePageContent({
   articleSlug,
+  categorySlug,
   locale,
 }: {
   articleSlug: string
-  locale: string
+  categorySlug: string
+  locale: Locale
 }): Promise<
   | {
       article?: Article
@@ -23,13 +26,15 @@ export async function fetchArticlePageContent({
   | undefined
 > {
   try {
+    const localeUsed = getLocaleWithoutEs(locale)
     const articleSearchParams = new URLSearchParams({
-      locale: locale ?? i18nConfig.defaultLocale,
+      locale: localeUsed,
       'populate[0]': 'image',
       'populate[1]': 'category',
       'populate[2]': 'author',
       'populate[3]': 'author.image',
       'filters[slug][$eq]': articleSlug,
+      'filters[category][slug][$eq]': categorySlug,
       sort: 'publishedAt:desc',
     })
 
@@ -48,9 +53,8 @@ export async function fetchArticlePageContent({
       data: [article],
     } = articleResponse
 
-    const categorySlug = article.category?.slug
     const otherArticlesSearchParams = new URLSearchParams({
-      locale: locale ?? i18nConfig.defaultLocale,
+      locale: localeUsed,
       'populate[0]': 'image',
       'populate[1]': 'category',
       ...(categorySlug ? { 'filters[category][slug][$eq]': categorySlug } : {}),

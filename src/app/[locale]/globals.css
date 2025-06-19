@@ -468,6 +468,9 @@ html[data-useragent*='Trident'] #js {
 .markdown p {
   @apply mb-6;
 }
+.markdown p:last-child {
+  @apply mb-0;
+}
 
 .markdown blockquote {
   @apply mb-6;
@@ -497,6 +500,10 @@ html[data-useragent*='Trident'] #js {
 
 .markdown img {
   @apply mb-6 rounded-md border border-gray-200;
+}
+
+.markdown figcaption {
+  @apply -mt-2 text-sm text-gray-700 italic;
 }
 
 @keyframes rainbow {
@@ -648,69 +655,6 @@ html[data-useragent*='Trident'] #js {
 .injected-svg {
   max-width: 100%;
   height: auto;
-}
-
-/*
-  Toast styles
-*/
-:root {
-  --toastify-color-success: #15803d !important;
-  --toastify-icon-color-success: #15803d !important;
-  --toastify-text-color-success: #15803d !important;
-  --toastify-color-error: rgb(185 28 28) !important;
-  --toastify-icon-color-error: rgb(185 28 28) !important;
-  --toastify-text-color-error: rgb(185 28 28) !important;
-  --toastify-font-family: 'Marianne', sans-serif !important;
-  --toastify-text-color-light: #1a1a1a !important;
-  --toastify-toast-bd-radius: 0.5rem !important;
-}
-
-.Toastify__toast--error {
-  @apply bg-red-50! text-red-700!;
-}
-.Toastify__close-button--light {
-  opacity: 1 !important;
-  @apply text-gray-700!;
-}
-.Toastify__progress-bar {
-  background: linear-gradient(
-    270deg,
-    #a2d2fd,
-    #cef1d5,
-    #ffefbc,
-    #ffdbbc,
-    #fd69d0,
-    #a2d2fd,
-    #cef1d5,
-    #ffefbc,
-    #ffdbbc,
-    #fd69d0,
-    #a2d2fd
-  ) !important;
-  background-size: 200% 200% !important;
-}
-
-.Toastify__toast-icon {
-  display: none !important;
-}
-
-.Toastify__progress-bar--bg {
-  @apply bg-gray-100!;
-  opacity: 1 !important;
-}
-
-.animation-once {
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-}
-
-.custom-scrollbar {
-  scrollbar-width: none; /* For Firefox */
-  -ms-overflow-style: none; /* For Internet Explorer and Edge */
-}
-
-.custom-scrollbar::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Opera */
 }
 
 /*

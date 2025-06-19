@@ -1,4 +1,5 @@
 import type { PartnerType } from '@/adapters/cmsClient'
+import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import CategoryFilters from '@/components/filtering/CategoryFilters'
 import Trans from '@/components/translation/trans/TransServer'
 import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
@@ -51,7 +52,7 @@ export default async function OurPartners({
 
   const { t } = await getServerTranslation({ locale })
 
-  const partners = await fetchPartners()
+  const { data: partners, isError } = await fetchPartners()
 
   const partnersByCategories = getPartnersByCategory(partners)
 
@@ -107,62 +108,67 @@ export default async function OurPartners({
           alt={t(
             'Un grand-père et sa petite-fille au cinéma, mangeant du pop-corn.'
           )}
-          src="/images/illustrations/at-the-cinema.svg"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/at_the_cinema_b6daa5ffb0.svg"
         />
       </div>
 
-      <CategoryFilters
-        categories={Object.keys(partnersByCategories).map(
-          (category: string) => ({
-            title: category,
-            dottedName: category as DottedName,
-            count: partnersByCategories[category].length,
-          })
-        )}
-        className="mb-6"
-      />
+      {isError && <DefaultErrorAlert />}
 
-      {Object.keys(partnersByCategories)
-        .filter((category: string) =>
-          typeof categoryFilter !== 'undefined'
-            ? categoryFilter === encodeDottedNameAsURI(category)
-            : true
-        )
-        .map((category: string) => (
-          <div key={category} className="mb-16">
-            <h2>{category}</h2>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-              {partnersByCategories[category].map((partner) => (
-                <Card
-                  key={partner.name}
-                  href={partner.link}
-                  tag="a"
-                  className="bg-primary-50 flex flex-col justify-between border-none no-underline"
-                  target="_blank">
-                  <Image
-                    src={partner.imageSrc}
-                    width="100"
-                    height="100"
-                    className="mx-auto mb-4 h-36 w-2/3 object-contain"
-                    alt={partner.name}
-                  />
-                  <section>
-                    <p className="mb-1 font-bold">{partner.name}</p>
-                    <p className="my-0 text-sm underline">
-                      {' '}
-                      {
-                        partner.link
-                          .replace('https://', '')
-                          .replace('www.', '')
-                          .split('/')[0]
-                      }
-                    </p>
-                  </section>
-                </Card>
-              ))}
-            </div>
-          </div>
-        ))}
+      {partnersByCategories && (
+        <>
+          <CategoryFilters
+            categories={Object.keys(partnersByCategories).map(
+              (category: string) => ({
+                title: category,
+                dottedName: category as DottedName,
+                count: partnersByCategories[category].length,
+              })
+            )}
+            className="mb-6"
+          />
+          {Object.keys(partnersByCategories)
+            .filter((category: string) =>
+              typeof categoryFilter !== 'undefined'
+                ? categoryFilter === encodeDottedNameAsURI(category)
+                : true
+            )
+            .map((category: string) => (
+              <div key={category} className="mb-16">
+                <h2>{category}</h2>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                  {partnersByCategories[category].map((partner) => (
+                    <Card
+                      key={partner.name}
+                      href={partner.link}
+                      tag="a"
+                      className="bg-primary-50 flex flex-col justify-between border-none no-underline"
+                      target="_blank">
+                      <Image
+                        src={partner.imageSrc}
+                        width="100"
+                        height="100"
+                        className="mx-auto mb-4 h-36 w-2/3 object-contain"
+                        alt={partner.name}
+                      />
+                      <section>
+                        <p className="mb-1 font-bold">{partner.name}</p>
+                        <p className="my-0 text-sm underline">
+                          {' '}
+                          {
+                            partner.link
+                              .replace('https://', '')
+                              .replace('www.', '')
+                              .split('/')[0]
+                          }
+                        </p>
+                      </section>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            ))}
+        </>
+      )}
     </div>
   )
 }

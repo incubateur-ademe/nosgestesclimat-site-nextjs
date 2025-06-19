@@ -57,7 +57,8 @@ export default function SimulationSyncProvider({
       return false
     }
 
-    if ((groups?.length || polls?.length) && progression === 1) {
+    // Auto save for groups
+    if (groups?.length && progression === 1) {
       return true
     }
 
@@ -70,7 +71,6 @@ export default function SimulationSyncProvider({
     progression,
     user.email,
     groups,
-    polls,
     savedViaEmail,
     computedResults,
     isInitialized,

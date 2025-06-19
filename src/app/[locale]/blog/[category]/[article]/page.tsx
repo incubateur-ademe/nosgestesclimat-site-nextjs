@@ -6,6 +6,7 @@ import { fetchArticlePageMetadata } from '@/services/cms/fetchArticlePageMetadat
 import Footer from '@/components/layout/Footer'
 import Badge from '@/design-system/layout/Badge'
 import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
+import type { Locale } from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
@@ -18,14 +19,14 @@ import StickySidebar from './_components/StickySidebar'
 export async function generateMetadata({
   params,
 }: DefaultPageProps<{
-  params: { category: string; article: string }
+  params: { category: string; article: string; locale: Locale }
 }>) {
   const { category, article, locale } = await params
 
   const { metaTitle, metaDescription, image } =
     (await fetchArticlePageMetadata({
       articleSlug: article,
-      locale,
+      locale: locale,
     })) || {}
 
   return getMetadataObject({
@@ -44,13 +45,14 @@ export async function generateMetadata({
 export default async function ArticlePage({
   params,
 }: {
-  params: Promise<{ category: string; article: string; locale: string }>
+  params: Promise<{ category: string; article: string; locale: Locale }>
 }) {
   const { category, article: articleSlug, locale } = await params
 
   const { article, otherArticles } =
     (await fetchArticlePageContent({
       articleSlug: articleSlug,
+      categorySlug: category,
       locale,
     })) || {}
 

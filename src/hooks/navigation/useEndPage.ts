@@ -1,6 +1,6 @@
 import { defaultMetric } from '@/constants/model/metric'
+import { POLL_EMAIL_STEP } from '@/constants/urls/paths'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
-import { linkToQuiz } from '@/helpers/navigation/quizPages'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
@@ -10,21 +10,17 @@ import { useCallback, useState } from 'react'
 type GoToEndPageProps = {
   isAllowedToSave?: boolean
   allowedToGoToGroupDashboard?: boolean
-  shouldShowQuiz?: boolean
 }
 const goToEndPagePropsDefault = {
   isAllowedToSave: true,
   allowedToGoToGroupDashboard: false,
-  shouldShowQuiz: false,
 }
 
 type GetLinkToEndPageProps = {
   allowedToGoToGroupDashboard?: boolean
-  shouldShowQuiz?: boolean
 }
 const GetLinkToEndPagePropsDefault = {
   allowedToGoToGroupDashboard: false,
-  shouldShowQuiz: false,
 }
 
 export function useEndPage() {
@@ -38,47 +34,32 @@ export function useEndPage() {
 
   const [isNavigating, setIsNavigating] = useState(false)
 
-  const handleRedirection = useCallback(
-    ({
-      allowedToGoToGroupDashboard,
-      shouldShowQuiz,
-    }: {
-      allowedToGoToGroupDashboard: boolean
-      shouldShowQuiz: boolean
-    }) => {
-      // If we should show the quiz, we redirect to the quiz page
-      // TODO: This is maybe in the wrong place. Should check it later
-      if (shouldShowQuiz) {
-        router.push(linkToQuiz)
-        return
-      }
-
-      // if the simulation is in a group and we are allowed to, we redirect to the group results page
-      if (currentSimulation.groups?.length && allowedToGoToGroupDashboard) {
-        const lastGroupId =
-          currentSimulation.groups[currentSimulation.groups.length - 1]
-
-        router.push(getLinkToGroupDashboard({ groupId: lastGroupId }))
-        return
-      }
-
-      // else we redirect to the results page
-      router.push('/fin')
-    },
-    [currentSimulation.groups, router]
-  )
+  const redirectToPollQuestionsIfNecessary = useCallback(() => {
+    if (
+      progression === 1 &&
+      currentSimulation.polls &&
+      currentSimulation.polls.length > 0
+    ) {
+      router.push(
+        `${POLL_EMAIL_STEP}?poll=${currentSimulation.polls[currentSimulation.polls.length - 1]}`
+      )
+      return true
+    }
+    return false
+  }, [currentSimulation.polls, progression, router])
 
   const goToEndPage = useCallback(
     ({
       isAllowedToSave = true,
       allowedToGoToGroupDashboard = false,
-      shouldShowQuiz = false,
     }: GoToEndPageProps = goToEndPagePropsDefault) => {
       // If we are already navigating, we don't do anything
       if (isNavigating) {
         return
       }
       setIsNavigating(true)
+
+      if (redirectToPollQuestionsIfNecessary()) return
 
       // If the simulation is finished and
       // * is in a poll or a group
@@ -87,8 +68,7 @@ export function useEndPage() {
       if (
         progression === 1 &&
         isAllowedToSave &&
-        (currentSimulation.polls ||
-          currentSimulation.groups ||
+        (currentSimulation.groups ||
           // Simulation has already been saved during the test, save it one last time
           // to make sure the the latest version is saved
           currentSimulation.savedViaEmail)
@@ -116,30 +96,23 @@ export function useEndPage() {
         return
       }
 
-      // If we should show the quiz, we redirect to the quiz page
-      // TODO: This is maybe in the wrong place. Should check it later
-      if (shouldShowQuiz) {
-        router.push(linkToQuiz)
-        return
-      }
-
       // else we redirect to the results page
       router.push('/fin')
     },
-    [isNavigating, progression, currentSimulation, router, saveSimulation]
+    [
+      isNavigating,
+      redirectToPollQuestionsIfNecessary,
+      progression,
+      currentSimulation,
+      router,
+      saveSimulation,
+    ]
   )
 
   const getLinkToEndPage = useCallback(
     ({
       allowedToGoToGroupDashboard = false,
-      shouldShowQuiz = false,
     }: GetLinkToEndPageProps = GetLinkToEndPagePropsDefault): string => {
-      // If we should show the quiz, we redirect to the quiz page
-      // TODO: This is maybe in the wrong place. Should check it later
-      if (shouldShowQuiz) {
-        return linkToQuiz
-      }
-
       // if the simulation is in a group and we are allowed to, we redirect to the group results page
       if (currentSimulation.groups && allowedToGoToGroupDashboard) {
         const lastGroupId =

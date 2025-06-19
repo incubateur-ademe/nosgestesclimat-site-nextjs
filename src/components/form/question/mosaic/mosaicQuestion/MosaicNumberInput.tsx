@@ -40,7 +40,7 @@ export default function NumberInput({
       }>
       <div>
         {title && icons ? (
-          <span className="mb-1 block text-sm font-medium md:text-xl">
+          <span className="mb-1 block text-sm font-medium md:text-base">
             {title}{' '}
             <Emoji className="inline-flex items-center leading-tight">
               {icons}
