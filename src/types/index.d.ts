@@ -1,3 +1,5 @@
+import type { Locale } from '@/i18nConfig'
+
 declare module '@getbrevo/brevo'
 
 export type DefaultPageProps<
@@ -6,7 +8,7 @@ export type DefaultPageProps<
     searchParams?: Record<string, string | string[]>
   },
 > = {
-  params: Promise<{ locale: string } & T['params']>
+  params: Promise<{ locale: Locale } & T['params']>
   searchParams?: Promise<
     { [key: string]: string | string[] | undefined } & T['searchParams']
   >
