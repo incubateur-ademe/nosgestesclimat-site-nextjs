@@ -42,27 +42,28 @@ jest.mock('@/helpers/getServerTranslation', () => ({
   }),
 }))
 
+jest.mock('@/hooks/useClientTranslation', () => ({
+  useClientTranslation: jest.fn().mockReturnValue({
+    t: (key: string) => key,
+    i18n: {
+      changeLanguage: () => new Promise(() => {}),
+    },
+  }),
+}))
+
 jest.mock('next/navigation', () => ({
   redirect: jest.fn(),
   useRouter: () => ({
     push: jest.fn(),
   }),
-  useSearchParams: () => ({
+  useSearchParams: jest.fn(() => ({
     get: jest.fn(),
-  }),
+  })),
   usePathname: () => '',
 }))
 
-jest.mock('@/publicodes-state', () => ({
-  useCurrentSimulation: () => ({
-    situation: {},
-  }),
-  useUser: () => ({
-    user: {},
-    tutorials: {
-      testIntro: false,
-    },
-  }),
+jest.mock('uuid', () => ({
+  v4: () => 'test-uuid-1234',
 }))
 
 beforeAll(() => {

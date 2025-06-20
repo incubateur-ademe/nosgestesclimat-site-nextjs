@@ -21,7 +21,6 @@ export const generateMetadata = getCommonMetadata({
 })
 
 export default async function PartenairePage({
-  params,
   searchParams,
 }: DefaultPageProps<{ searchParams: SearchParams }>) {
   const searchParamsObject = (await searchParams) ?? { partner: '' }
