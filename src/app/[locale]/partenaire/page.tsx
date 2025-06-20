@@ -21,7 +21,6 @@ export const generateMetadata = getCommonMetadata({
 })
 
 export default async function PartenairePage({
-  params,
   searchParams,
 }: DefaultPageProps<{ searchParams: SearchParams }>) {
   const searchParamsObject = (await searchParams) ?? { partner: '' }
@@ -33,7 +32,7 @@ export default async function PartenairePage({
   }
 
   const partnerInfo = await verifyPartner(partner)
-
+  console.log('partnerInfo', partnerInfo)
   if (!partnerInfo) {
     return redirect('/404')
   }

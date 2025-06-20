@@ -50,8 +50,6 @@ export function PartnerProvider({ children }: PropsWithChildren) {
   const searchParams = useSearchParams()
 
   const { progression, situation } = useCurrentSimulation()
-  const currentSimulation = useCurrentSimulation()
-  const user = useUser()
 
   const { exportSituationAsync } = useExportSituation()
 

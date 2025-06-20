@@ -227,14 +227,13 @@ export const renderWithWrapper = (
     currentSimulation?: Partial<typeof defaultSimulation>
     simulations?: Simulation[]
     providers?: ProviderConfig
-  }
+  } = {}
 ) => {
   const userMerged = {
     ...defaultUser,
     ...user,
   }
 
-  console.log('USER', user)
   localStorage.setItem(
     'nosgestesclimat::v3',
     JSON.stringify({

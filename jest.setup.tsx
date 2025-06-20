@@ -43,8 +43,11 @@ jest.mock('@/helpers/getServerTranslation', () => ({
 }))
 
 jest.mock('@/hooks/useClientTranslation', () => ({
-  useClientTranslation: jest.fn().mockResolvedValue({
+  useClientTranslation: jest.fn().mockReturnValue({
     t: (key: string) => key,
+    i18n: {
+      changeLanguage: () => new Promise(() => {}),
+    },
   }),
 }))
 
@@ -53,9 +56,9 @@ jest.mock('next/navigation', () => ({
   useRouter: () => ({
     push: jest.fn(),
   }),
-  useSearchParams: () => ({
+  useSearchParams: jest.fn(() => ({
     get: jest.fn(),
-  }),
+  })),
   usePathname: () => '',
 }))
 
