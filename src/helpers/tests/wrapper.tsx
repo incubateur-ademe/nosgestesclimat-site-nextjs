@@ -33,57 +33,6 @@ jest.mock('@/helpers/api/getGeolocation', () => ({
   getGeolocation: () => Promise.resolve(undefined),
 }))
 
-// Mock usePersistentUser
-// jest.mock(
-//   '@/publicodes-state/providers/userProvider/hooks/usePersistentUser',
-//   () => ({
-//     __esModule: true,
-//     default: () => ({
-//       user: {
-//         userId: '1',
-//         name: 'Test User',
-//         email: 'test@example.com',
-//       },
-//       setUser: jest.fn(),
-//     }),
-//   })
-// )
-
-// Mock usePersistentTutorials
-// jest.mock(
-//   '@/publicodes-state/providers/userProvider/hooks/usePersistentTutorials',
-//   () => ({
-//     __esModule: true,
-//     default: () => ({
-//       tutorials: {},
-//       setTutorials: jest.fn(),
-//     }),
-//   })
-// )
-
-// Mock usePersistentSimulations
-// jest.mock(
-//   '@/publicodes-state/providers/userProvider/hooks/usePersistentSimulations',
-//   () => ({
-//     __esModule: true,
-//     default: () => ({
-//       simulations: [],
-//       setSimulations: jest.fn(),
-//       currentSimulationId: null,
-//       setCurrentSimulationId: jest.fn(),
-//     }),
-//   })
-// )
-
-// Mock useUpdateOldLocalStorage
-// jest.mock(
-//   '@/publicodes-state/providers/userProvider/hooks/useOldLocalStorage',
-//   () => ({
-//     __esModule: true,
-//     default: jest.fn(),
-//   })
-// )
-
 // Default mock values
 const defaultSimulation: Simulation = {
   id: '1',

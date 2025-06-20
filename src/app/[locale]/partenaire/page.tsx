@@ -32,7 +32,7 @@ export default async function PartenairePage({
   }
 
   const partnerInfo = await verifyPartner(partner)
-  console.log('partnerInfo', partnerInfo)
+
   if (!partnerInfo) {
     return redirect('/404')
   }
