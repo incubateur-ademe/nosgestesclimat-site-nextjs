@@ -12,13 +12,13 @@ import { useEffect } from 'react'
 type Props = {
   category: DottedName
   onComplete: () => void
-  setFocusedAction: (dottedName: string) => void
+  setActionWithFormOpen: (dottedName: string) => void
 }
 
 export default function ActionForm({
   category,
   onComplete,
-  setFocusedAction,
+  setActionWithFormOpen,
 }: Props) {
   const {
     currentQuestion,
@@ -53,21 +53,21 @@ export default function ActionForm({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
       className="bg-primary-100 rounded-xl border-none p-4 pr-10 text-left shadow-lg">
+      <button
+        className="absolute top-3 right-4"
+        onClick={() => setActionWithFormOpen('')}>
+        <CloseIcon />
+        <span className="sr-only">
+          <Trans>Fermer</Trans>
+        </span>
+      </button>
+
       <Question question={currentQuestion} key={currentQuestion} />
       <Navigation
         question={currentQuestion}
         onComplete={onComplete}
         isEmbedded
       />
-
-      <button
-        className="absolute top-3 right-4"
-        onClick={() => setFocusedAction('')}>
-        <CloseIcon />
-        <span className="sr-only">
-          <Trans>Fermer</Trans>
-        </span>
-      </button>
     </motion.div>
   )
 }

@@ -18,23 +18,23 @@ type Props = {
   actions: any[]
   rules: any
   bilan: any
-  focusedAction: string
-  setFocusedAction: (dottedName: string) => void
+  actionWithFormOpen: string
+  setActionWithFormOpen: (dottedName: string) => void
 }
 
 export default function ActionList({
   actions,
   rules,
   bilan,
-  focusedAction,
-  setFocusedAction,
+  actionWithFormOpen,
+  setActionWithFormOpen,
 }: Props) {
   const { getCategory } = useEngine()
   const { toggleActionChoice } = useUser()
 
   const { actionChoices } = useCurrentSimulation()
 
-  const isFocusedActionCustom = getIsCustomAction(focusedAction)
+  const isFocusedActionCustom = getIsCustomAction(actionWithFormOpen)
 
   const formRef = useRef<HTMLDivElement>(null)
   const [formStyle, setFormStyle] = useState<React.CSSProperties>({
@@ -45,7 +45,7 @@ export default function ActionList({
 
   useLayoutEffect(() => {
     const calculatePosition = () => {
-      const cardElement = document.getElementById(focusedAction)
+      const cardElement = document.getElementById(actionWithFormOpen)
       const formElement = formRef.current
 
       if (!cardElement || !formElement) return
@@ -73,7 +73,7 @@ export default function ActionList({
       })
     }
 
-    if (focusedAction) {
+    if (actionWithFormOpen) {
       // Delay calculation to ensure form is rendered and has dimensions
       const timer = setTimeout(calculatePosition, 50)
       window.addEventListener('resize', calculatePosition)
@@ -87,17 +87,17 @@ export default function ActionList({
         })
       }
     }
-  }, [focusedAction])
+  }, [actionWithFormOpen])
 
   return (
     <ul className="mt-4 flex list-none flex-wrap items-center justify-center p-0">
       {actions.map((action) => {
-        const isActionFocused = focusedAction === action.dottedName
+        const isActionFocused = actionWithFormOpen === action.dottedName
 
         const cardComponent = (
           <div id={action.dottedName}>
             <ActionCard
-              setFocusedAction={setFocusedAction}
+              setActionWithFormOpen={setActionWithFormOpen}
               isFocused={isActionFocused}
               rule={rules[action.dottedName]}
               action={action}
@@ -120,7 +120,7 @@ export default function ActionList({
                   <FormProvider root={action.dottedName}>
                     <ActionForm
                       key={action.dottedName}
-                      setFocusedAction={setFocusedAction}
+                      setActionWithFormOpen={setActionWithFormOpen}
                       category={getCategory(action.dottedName)}
                       onComplete={() => {
                         toggleActionChoice(action.dottedName)
@@ -128,18 +128,7 @@ export default function ActionList({
                         if (!actionChoices[action.dottedName]) {
                           trackEvent(actionsClickYes(action.dottedName))
                         }
-                        setFocusedAction('')
-
-                        setTimeout(() => {
-                          const el = document.getElementById(action.dottedName)
-                          if (el) {
-                            el.scrollIntoView({
-                              behavior: 'smooth',
-                              block: 'center',
-                              inline: 'center',
-                            })
-                          }
-                        }, 100)
+                        setActionWithFormOpen('')
                       }}
                     />
                   </FormProvider>
@@ -154,7 +143,7 @@ export default function ActionList({
                   <CustomActionForm
                     key={`${action.dottedName}-custom-form`}
                     dottedName={action.dottedName}
-                    setFocusedAction={setFocusedAction}
+                    setActionWithFormOpen={setActionWithFormOpen}
                   />
                 </div>
               )}

@@ -20,7 +20,7 @@ export default function Actions({
   radical,
   rules,
 }: Props) {
-  const [focusedAction, setFocusedAction] = useState<string>('')
+  const [actionWithFormOpen, setActionWithFormOpen] = useState<string>('')
 
   const { t } = useClientTranslation()
   const { getValue } = useEngine()
@@ -72,8 +72,8 @@ export default function Actions({
           actions={thresholdActions}
           rules={rules}
           bilan={bilan}
-          focusedAction={focusedAction}
-          setFocusedAction={setFocusedAction}
+          actionWithFormOpen={actionWithFormOpen}
+          setActionWithFormOpen={setActionWithFormOpen}
         />
 
         <div className="my-4 h-8 w-full text-center">
@@ -122,8 +122,8 @@ export default function Actions({
         )}
         rules={rules}
         bilan={bilan}
-        setFocusedAction={setFocusedAction}
-        focusedAction={focusedAction}
+        setActionWithFormOpen={setActionWithFormOpen}
+        actionWithFormOpen={actionWithFormOpen}
       />
 
       <div className="my-4 h-8 w-full text-center">
@@ -143,8 +143,8 @@ export default function Actions({
         actions={notRejected.filter((a: { value: any }) => a.value < 0)}
         rules={rules}
         bilan={bilan}
-        setFocusedAction={setFocusedAction}
-        focusedAction={focusedAction}
+        setActionWithFormOpen={setActionWithFormOpen}
+        actionWithFormOpen={actionWithFormOpen}
       />
 
       {rejected.length > 0 && (
@@ -156,8 +156,8 @@ export default function Actions({
             actions={rejected}
             rules={rules}
             bilan={bilan}
-            setFocusedAction={setFocusedAction}
-            focusedAction={focusedAction}
+            setActionWithFormOpen={setActionWithFormOpen}
+            actionWithFormOpen={actionWithFormOpen}
           />
         </div>
       )}

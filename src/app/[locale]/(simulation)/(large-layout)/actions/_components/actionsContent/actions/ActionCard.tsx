@@ -37,7 +37,7 @@ type Props = {
   action: any
   total: number
   rule: any
-  setFocusedAction: (dottedName: DottedName) => void
+  setActionWithFormOpen: (dottedName: DottedName) => void
   isFocused: boolean
   isIrrelevant: boolean
 }
@@ -46,7 +46,7 @@ export default function ActionCard({
   action,
   total,
   rule,
-  setFocusedAction,
+  setActionWithFormOpen,
   isIrrelevant,
 }: Props) {
   const { t } = useClientTranslation()
@@ -104,7 +104,7 @@ export default function ActionCard({
     if (isDisabled) return
 
     if (hasRemainingQuestions || isCustomAction) {
-      setFocusedAction(dottedName)
+      setActionWithFormOpen(dottedName)
       return null
     }
 
@@ -118,7 +118,7 @@ export default function ActionCard({
     hasRemainingQuestions,
     isDisabled,
     isSelected,
-    setFocusedAction,
+    setActionWithFormOpen,
     toggleActionChoice,
     isCustomAction,
   ])
@@ -175,7 +175,7 @@ export default function ActionCard({
           {hasRemainingQuestions && (
             <>
               <NotificationBubble
-                onClick={() => setFocusedAction(dottedName)}
+                onClick={() => setActionWithFormOpen(dottedName)}
                 title={remainingQuestionsText}
                 number={nbRemainingQuestions}
               />
@@ -183,7 +183,7 @@ export default function ActionCard({
                 className="text-primary-700 cursor-pointer text-sm"
                 onClick={() => {
                   trackEvent(actionsClickAdditionalQuestion(dottedName))
-                  setFocusedAction(dottedName)
+                  setActionWithFormOpen(dottedName)
                 }}>
                 {remainingQuestionsText}
               </button>
