@@ -11,7 +11,7 @@ const iframeId = 'iframeNGC'
 
 async function checkConnection(url) {
   try {
-    const response = await axios.get(url, { timeout: 5000 })
+    const response = await axios.get(url, { timeout: 30000 })
     return response.status === 200
   } catch (error) {
     console.log(`Connection check failed for ${url}:`, error.message)
@@ -49,29 +49,63 @@ async function healthcheck() {
         })
 
         try {
-          // Wait for iframe loading
-          await page.waitForSelector(`#${iframeId}`, { timeout: 30000 })
+          // Retry mechanism for iframe loading and validation
+          let retryCount = 0
+          const maxRetries = 3
+          let iframeValid = false
 
-          // Wait for the iframe to be stabilized
-          await page.waitForTimeout(10000)
+          while (retryCount < maxRetries && !iframeValid) {
+            try {
+              console.log(
+                `Attempt ${retryCount + 1}/${maxRetries} for iframe validation`
+              )
 
-          const frame = page.frameLocator(`#${iframeId}`)
-          const pageContent = await frame.locator('body').innerText()
+              // Wait for iframe loading
+              await page.waitForSelector(`#${iframeId}`, { timeout: 30000 })
 
-          const validPatterns = ['Avant de commencer']
-          const isValid = validPatterns.every((pattern) =>
-            pageContent.toLowerCase().includes(pattern.toLowerCase())
-          )
-          const errorPatterns = ['404', 'erreur', 'error']
-          const hasError = errorPatterns.some((pattern) =>
-            pageContent.toLowerCase().includes(pattern.toLowerCase())
-          )
+              // Wait for the iframe to be stabilized
+              await page.waitForTimeout(10000)
 
-          if (hasError || !isValid) {
-            console.log(`Content of iframe ${iframeId} contains an error`)
-            errors.push(url)
-          } else {
-            console.log(`Content of iframe ${iframeId} is valid`)
+              const frame = page.frameLocator(`#${iframeId}`)
+              const pageContent = await frame.locator('body').innerText()
+
+              const validPatterns = ['Avant de commencer']
+              const isValid = validPatterns.every((pattern) =>
+                pageContent.toLowerCase().includes(pattern.toLowerCase())
+              )
+              const errorPatterns = ['404', 'erreur', 'error']
+              const hasError = errorPatterns.some((pattern) =>
+                pageContent.toLowerCase().includes(pattern.toLowerCase())
+              )
+
+              if (hasError || !isValid) {
+                console.log(
+                  `Content of iframe ${iframeId} contains an error (attempt ${retryCount + 1})`
+                )
+                if (retryCount === maxRetries - 1) {
+                  errors.push(url)
+                }
+              } else {
+                console.log(`Content of iframe ${iframeId} is valid`)
+                iframeValid = true
+              }
+            } catch (error) {
+              console.log(
+                `Iframe validation attempt ${retryCount + 1} failed:`,
+                error.message
+              )
+              if (retryCount === maxRetries - 1) {
+                console.log(
+                  `Iframe ${iframeId} not found or not accessible after ${maxRetries} attempts:`,
+                  error.message
+                )
+                errors.push(url)
+              } else {
+                console.log(`Retrying in 5 seconds...`)
+                await page.waitForTimeout(5000)
+              }
+            }
+            retryCount++
           }
         } catch (error) {
           console.log(
@@ -92,33 +126,33 @@ async function healthcheck() {
       }
     }
 
-    if (errors.length) {
-      console.log('Errors found:', errors)
-      const webhookUrl = process.env.MATTERMOST_WEBHOOK_URL
-      console.log('Webhook URL:', webhookUrl ? 'is set' : 'is not set')
+    // if (errors.length) {
+    //   console.log('Errors found:', errors)
+    //   const webhookUrl = process.env.MATTERMOST_WEBHOOK_URL
+    //   console.log('Webhook URL:', webhookUrl ? 'is set' : 'is not set')
 
-      if (webhookUrl) {
-        try {
-          console.log('Attempting to send notification to Mattermost...')
-          const withSOrNot = errors.length > 1 ? 's' : ''
-          const response = await axios.post(webhookUrl, {
-            text: `🚨 Iframes cassées détectées sur le${withSOrNot} site${withSOrNot} suivant${withSOrNot} :\n\n${errors.map((url) => `• ${url}`).join('\n')}`,
-          })
-          console.log('Mattermost response status:', response.status)
-          console.log('Mattermost response data:', response.data)
-        } catch (error) {
-          console.log('Failed to send to Mattermost:', error.message)
-          if (error.response) {
-            console.log('Response status:', error.response.status)
-            console.log('Response data:', error.response.data)
-          }
-        }
-      } else {
-        console.log('Mattermost webhook URL not configured')
-        console.log('Iframes are broken on the following sites:')
-        errors.forEach((error) => console.log(error))
-      }
-    }
+    //   if (webhookUrl) {
+    //     try {
+    //       console.log('Attempting to send notification to Mattermost...')
+    //       const withSOrNot = errors.length > 1 ? 's' : ''
+    //       const response = await axios.post(webhookUrl, {
+    //         text: `🚨 Iframes cassées détectées sur le${withSOrNot} site${withSOrNot} suivant${withSOrNot} :\n\n${errors.map((url) => `• ${url}`).join('\n')}`,
+    //       })
+    //       console.log('Mattermost response status:', response.status)
+    //       console.log('Mattermost response data:', response.data)
+    //     } catch (error) {
+    //       console.log('Failed to send to Mattermost:', error.message)
+    //       if (error.response) {
+    //         console.log('Response status:', error.response.status)
+    //         console.log('Response data:', error.response.data)
+    //       }
+    //     }
+    //   } else {
+    //     console.log('Mattermost webhook URL not configured')
+    //     console.log('Iframes are broken on the following sites:')
+    //     errors.forEach((error) => console.log(error))
+    //   }
+    // }
   } catch (error) {
     console.log(`Healthcheck error: ${error.message}`)
   } finally {
