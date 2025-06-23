@@ -42,10 +42,10 @@ export default function ActionForm({ category, onComplete }: Props) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, y: '1rem' }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="bg-primary-100 mb-4 rounded-xl p-4 text-left">
+      className="bg-primary-100 rounded-xl border-none p-4 pr-10 text-left shadow-lg">
       <Question question={currentQuestion} key={currentQuestion} />
       <Navigation
         question={currentQuestion}
