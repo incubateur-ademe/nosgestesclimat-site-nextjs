@@ -2,6 +2,8 @@
 
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
+import CloseIcon from '@/components/icons/Close'
+import Trans from '@/components/translation/trans/TransClient'
 import { useFormState } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
@@ -10,9 +12,14 @@ import { useEffect } from 'react'
 type Props = {
   category: DottedName
   onComplete: () => void
+  setFocusedAction: (dottedName: string) => void
 }
 
-export default function ActionForm({ category, onComplete }: Props) {
+export default function ActionForm({
+  category,
+  onComplete,
+  setFocusedAction,
+}: Props) {
   const {
     currentQuestion,
     remainingQuestionsByCategories,
@@ -52,6 +59,15 @@ export default function ActionForm({ category, onComplete }: Props) {
         onComplete={onComplete}
         isEmbedded
       />
+
+      <button
+        className="absolute top-3 right-4"
+        onClick={() => setFocusedAction('')}>
+        <CloseIcon />
+        <span className="sr-only">
+          <Trans>Fermer</Trans>
+        </span>
+      </button>
     </motion.div>
   )
 }

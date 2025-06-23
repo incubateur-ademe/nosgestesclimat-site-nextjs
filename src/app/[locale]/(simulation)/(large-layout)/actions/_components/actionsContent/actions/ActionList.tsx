@@ -1,7 +1,5 @@
 'use client'
 
-import CloseIcon from '@/components/icons/Close'
-import Trans from '@/components/translation/trans/TransClient'
 import { actionsClickYes } from '@/constants/tracking/pages/actions'
 import { getIsCustomAction } from '@/helpers/actions/getIsCustomAction'
 import {
@@ -122,6 +120,7 @@ export default function ActionList({
                   <FormProvider root={action.dottedName}>
                     <ActionForm
                       key={action.dottedName}
+                      setFocusedAction={setFocusedAction}
                       category={getCategory(action.dottedName)}
                       onComplete={() => {
                         toggleActionChoice(action.dottedName)
@@ -143,14 +142,6 @@ export default function ActionList({
                         }, 100)
                       }}
                     />
-                    <button
-                      className="absolute top-4 right-4"
-                      onClick={() => setFocusedAction('')}>
-                      <CloseIcon />
-                      <span className="sr-only">
-                        <Trans>Fermer</Trans>
-                      </span>
-                    </button>
                   </FormProvider>
                 </div>
               )}
@@ -159,7 +150,7 @@ export default function ActionList({
                 <div
                   ref={formRef}
                   style={formStyle}
-                  className="w-4xl max-w-screen border-none">
+                  className="w-4xl max-w-[calc(100vw-2rem)] border-none">
                   <CustomActionForm
                     key={`${action.dottedName}-custom-form`}
                     dottedName={action.dottedName}
