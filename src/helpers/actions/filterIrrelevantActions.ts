@@ -1,57 +1,70 @@
-import getNamespace from '@/publicodes-state/helpers/getNamespace'
+import type {
+  DottedName,
+  NGCRuleNode,
+  NGCRules,
+} from '@incubateur-ademe/nosgestesclimat'
+import type { EvaluatedNode } from 'publicodes'
+import { getIsActionDisabled } from './getIsActionDisabled'
 
-// TODO : refactor this function which seems overly complex
-export const filterIrrelevantActions = ({ actions, actionChoices }: any) => {
-  // pour chaque action choisie, on regarde ses frères et soeurs en récupérant
-  // la catégorie de l'action
-  const testedActions = Object.keys(actionChoices || {})?.reduce(
-    (acc: any[], actionChoiceKey: any) => {
-      if (!actionChoices[actionChoiceKey]) return acc
+type ActionWithIrrelevant = (EvaluatedNode & NGCRuleNode) & {
+  isIrrelevant?: boolean
+}
 
-      // NOTE: we can't use the `getCategory` function from the `useEngine` hook
-      // here.
-      const category = getNamespace(actionChoiceKey)
+export const filterIrrelevantActions = ({
+  actions,
+  actionChoices,
+  rules,
+}: {
+  actions: (EvaluatedNode & NGCRuleNode)[]
+  actionChoices: Record<DottedName, boolean>
+  rules?: NGCRules
+}) => {
+  // Créer une Map pour stocker les actions modifiées
+  const actionsMap = new Map<string, ActionWithIrrelevant>()
 
-      const actionObject = actions.find((action: any) => {
-        return action.dottedName === actionChoiceKey
-      })
+  // Initialiser la Map avec toutes les actions originales
+  actions.forEach((action) => {
+    actionsMap.set(action.dottedName, action)
+  })
 
-      const sameCategoryActions = actions.filter((action: any) => {
-        return getNamespace(action.dottedName) === category
-      })
+  // Pour chaque action choisie, traiter les actions de la même catégorie
+  Object.entries(actionChoices).forEach(([actionChoiceKey, isChosen]) => {
+    if (!isChosen) return
 
-      const actionsWithIrrelevant = sameCategoryActions.map((action: any) => {
-        if (
-          actionObject?.rawNode?.action?.dépasse?.includes(action.dottedName)
-        ) {
-          return {
-            ...action,
-            isIrrelevant: true,
-          }
-        }
-        return action
-      })
+    const chosenAction = actions.find(
+      (action) => action.dottedName === actionChoiceKey
+    )
 
-      return [
-        ...acc.filter(
-          (action: any) =>
-            !actionsWithIrrelevant.some((actionWithIrrelevant: any) => {
-              return actionWithIrrelevant.dottedName === action.dottedName
-            })
-        ),
-        ...actionsWithIrrelevant,
-      ]
-    },
-    []
-  )
+    if (!chosenAction?.rawNode?.action?.dépasse) return
 
-  return [
-    ...actions.filter(
-      (action: any) =>
-        !testedActions.some((actionWithIrrelevant: any) => {
-          return actionWithIrrelevant.dottedName === action.dottedName
+    // Marquer les actions "dépassées" comme irrelevant
+    const actionsToMarkAsIrrelevant = chosenAction.rawNode.action.dépasse
+
+    actionsToMarkAsIrrelevant.forEach((actionName) => {
+      const actionToUpdate = actionsMap.get(actionName)
+      if (actionToUpdate) {
+        actionsMap.set(actionName, {
+          ...actionToUpdate,
+          isIrrelevant: true,
         })
-    ),
-    ...testedActions,
-  ]
+      }
+    })
+  })
+
+  // Filtrer les actions désactivées si les règles sont fournies
+  let filteredActions = Array.from(actionsMap.values())
+
+  if (rules) {
+    filteredActions = filteredActions.filter((action) => {
+      const flatRule = rules[action.dottedName as DottedName] as {
+        formule: string
+      }
+      return !getIsActionDisabled(
+        flatRule,
+        action.nodeValue as number | boolean | undefined
+      )
+    })
+  }
+
+  return filteredActions
 }

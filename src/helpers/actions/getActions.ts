@@ -10,7 +10,6 @@ import type {
 } from '@incubateur-ademe/nosgestesclimat'
 import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { filterIrrelevantActions } from './filterIrrelevantActions'
-import { getIsActionDisabled } from './getIsActionDisabled'
 
 type Props = {
   rules?: NGCRules
@@ -30,24 +29,31 @@ export default function getActions({
   if (!rules) return []
 
   const actionsObject = rules.actions
-  const somme = getSomme(actionsObject) ?? []
+  const somme = (getSomme(actionsObject) ?? []) as DottedName[]
 
-  const actions = somme
-    .filter(
-      (actionRuleName: DottedName) =>
-        safeEvaluate({ 'est applicable': actionRuleName })?.nodeValue === true
-    )
-    .map((actionRuleName: DottedName) => {
-      const ruleContent = getSpecialRuleObject(actionRuleName)
-      return {
-        ...ruleContent,
-        dottedName: actionRuleName,
-      }
-    }) as EvaluatedNode[]
+  const actions = somme.reduce(
+    (acc: (EvaluatedNode & NGCRuleNode)[], actionDottedName) => {
+      if (
+        safeEvaluate({ 'est applicable': actionDottedName })?.nodeValue !== true
+      )
+        return acc
+
+      const ruleContent = getSpecialRuleObject(actionDottedName)
+      return [
+        ...acc,
+        {
+          ...ruleContent,
+          dottedName: actionDottedName,
+        },
+      ]
+    },
+    []
+  )
 
   const relevantActions = filterIrrelevantActions({
     actions,
     actionChoices,
+    rules,
   }) as NGCRule[]
 
   const sortedActionsByImpact = sortBy(
@@ -55,12 +61,5 @@ export default function getActions({
       (radical ? 1 : -1) * (getCorrectedValue(value as EvaluatedNode) || 1)
   )(relevantActions) as Action[]
 
-  // Filter disabled actions
-  return sortedActionsByImpact.filter((action: any) => {
-    const flatRule = rules[action.dottedName as DottedName] as {
-      formule: string
-    }
-
-    return !getIsActionDisabled(flatRule, action.nodeValue)
-  })
+  return sortedActionsByImpact
 }
