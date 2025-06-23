@@ -17,7 +17,7 @@ const PARTNER_NAMES = {
 }
 
 export default function AdaptiveMessage({ partner }: { partner: string }) {
-  const { progression, id } = useCurrentSimulation()
+  const { progression } = useCurrentSimulation()
 
   const isTestCompleted = progression === 1
 

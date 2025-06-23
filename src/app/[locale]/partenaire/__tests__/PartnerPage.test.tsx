@@ -2,9 +2,7 @@ import { PARTNER_JAGIS, PARTNER_KEY } from '@/constants/partners'
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
-import i18nConfig from '@/i18nConfig'
-import { useCurrentSimulation } from '@/publicodes-state'
-import { verifyPartner } from '@/services/partners/verifyPartner'
+import { faker } from '@faker-js/faker'
 import '@testing-library/jest-dom'
 import { act, screen, waitFor } from '@testing-library/react'
 import { redirect } from 'next/navigation'
@@ -24,7 +22,7 @@ describe('PartnerPage', () => {
   const defaultParams = Promise.resolve({ locale: 'fr' as const })
 
   const defaultSimulation = generateSimulation({
-    id: 'io',
+    id: faker.string.uuid(),
     progression: 1,
   })
 

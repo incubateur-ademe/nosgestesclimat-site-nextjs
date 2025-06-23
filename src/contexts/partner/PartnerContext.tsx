@@ -11,7 +11,7 @@ import {
 } from '@/helpers/partners/storage'
 import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
-import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
 import { useRouter, useSearchParams } from 'next/navigation'
 import {

@@ -1,13 +1,14 @@
+import { faker } from '@faker-js/faker'
 import { afterAll, beforeAll } from '@jest/globals'
 import type { ReactNode } from 'react'
 import { mswServer } from './src/__tests__/server'
 
 jest.mock('next-i18n-router/client', () => ({
-  useCurrentLocale: () => 'fr',
+  useCurrentLocale: jest.fn(() => 'fr'),
 }))
 
 jest.mock('@/hooks/useLocale', () => ({
-  useLocale: () => 'fr',
+  useLocale: jest.fn(() => 'fr'),
 }))
 
 jest.mock('@/components/translation/trans/TransClient', () => ({
@@ -25,14 +26,14 @@ jest.mock('react-i18next', () => ({
     type: 'i18next',
     init: () => {},
   },
-  useTranslation: () => {
+  useTranslation: jest.fn(() => {
     return {
       t: (str: string) => str,
       i18n: {
         changeLanguage: () => new Promise(() => {}),
       },
     }
-  },
+  }),
   Trans: (children: ReactNode) => children,
 }))
 
@@ -53,17 +54,17 @@ jest.mock('@/hooks/useClientTranslation', () => ({
 
 jest.mock('next/navigation', () => ({
   redirect: jest.fn(),
-  useRouter: () => ({
+  useRouter: jest.fn(() => ({
     push: jest.fn(),
-  }),
+  })),
   useSearchParams: jest.fn(() => ({
     get: jest.fn(),
   })),
-  usePathname: () => '',
+  usePathname: jest.fn(() => ''),
 }))
 
 jest.mock('uuid', () => ({
-  v4: () => 'test-uuid-1234',
+  v4: jest.fn(() => faker.string.uuid()),
 }))
 
 beforeAll(() => {

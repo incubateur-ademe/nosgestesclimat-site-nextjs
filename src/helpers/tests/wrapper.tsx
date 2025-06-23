@@ -11,6 +11,7 @@ import { PartnerProvider } from '@/contexts/partner/PartnerContext'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import UserProvider from '@/publicodes-state/providers/userProvider/provider'
 import type { Simulation } from '@/publicodes-state/types'
+import { faker } from '@faker-js/faker'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json'
 import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
@@ -35,7 +36,7 @@ jest.mock('@/helpers/api/getGeolocation', () => ({
 
 // Default mock values
 const defaultSimulation: Simulation = {
-  id: '1',
+  id: faker.string.uuid(),
   date: new Date(),
   situation: {},
   foldedSteps: [],
@@ -67,9 +68,9 @@ const defaultSimulation: Simulation = {
 }
 
 const defaultUser = {
-  userId: '1',
-  name: 'Test User',
-  email: 'test@example.com',
+  userId: faker.string.uuid(),
+  name: faker.person.fullName(),
+  email: faker.internet.email(),
 }
 
 const defaultState = {

@@ -1,4 +1,5 @@
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
+import { faker } from '@faker-js/faker'
 import { screen, waitFor } from '@testing-library/dom'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
@@ -53,13 +54,15 @@ const mockGroupSimulation = {
   severity: 1,
 }
 
+const mockUserId = faker.string.uuid()
+
 const mockProps = {
   group: {
     id: 'test-group-id',
     name: 'Test Group',
     emoji: '👥',
     administrator: {
-      id: '1',
+      id: mockUserId,
       name: 'Admin User',
       email: 'admin@example.com',
     },
@@ -67,7 +70,7 @@ const mockProps = {
     participants: [
       {
         id: 'participant-1',
-        userId: '1',
+        userId: mockUserId,
         name: 'Test User',
         severity: 1,
         simulation: mockGroupSimulation,
@@ -75,6 +78,12 @@ const mockProps = {
     ],
   },
   refetchGroup: mockRefetchGroup,
+}
+
+const mockUser = {
+  userId: mockUserId,
+  name: faker.person.fullName(),
+  email: faker.internet.email(),
 }
 
 describe('UpdateSimulationUsed', () => {
@@ -85,11 +94,7 @@ describe('UpdateSimulationUsed', () => {
   it('should display the update alert when detecting a more recent simulation with a different result', async () => {
     // When
     renderWithWrapper(<UpdateSimulationUsed {...mockProps} />, {
-      user: {
-        userId: '1',
-        name: 'Test User',
-        email: 'test@example.com',
-      },
+      user: mockUser,
       simulations: [mockGroupSimulation, mockSimulation],
       currentSimulation: mockSimulation,
       providers: {
@@ -113,11 +118,7 @@ describe('UpdateSimulationUsed', () => {
 
     // When
     renderWithWrapper(<UpdateSimulationUsed {...mockProps} />, {
-      user: {
-        userId: '1',
-        name: 'Test User',
-        email: 'test@example.com',
-      },
+      user: mockUser,
       simulations: [mockGroupSimulation, mockSimulation],
       currentSimulation: mockSimulation,
       providers: {
@@ -139,11 +140,7 @@ describe('UpdateSimulationUsed', () => {
 
     // When
     renderWithWrapper(<UpdateSimulationUsed {...mockProps} />, {
-      user: {
-        userId: '1',
-        name: 'Test User',
-        email: 'test@example.com',
-      },
+      user: mockUser,
       simulations: [mockGroupSimulation, mockSimulation],
       currentSimulation: mockSimulation,
       providers: {
