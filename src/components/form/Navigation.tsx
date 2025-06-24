@@ -33,7 +33,7 @@ export default function Navigation({
   tempValue?: number
   onComplete?: () => void
   isEmbedded?: boolean
-  remainingQuestions: DottedName[]
+  remainingQuestions?: DottedName[]
 }) {
   const { t } = useClientTranslation()
 
@@ -56,6 +56,7 @@ export default function Navigation({
 
   const isSingleQuestionEmbedded =
     isEmbedded &&
+    remainingQuestions &&
     remainingQuestions.length === 1 &&
     remainingQuestions[0] === question
 

@@ -46,23 +46,11 @@ export const filterRelevantMissingVariables = ({
     const isMustNotAskQuestion = MUST_NOT_ASK_QUESTIONS?.has(dottedName)
     const isRelevantQuestion = everyQuestions.includes(dottedName)
 
-    // Vérification d'applicabilité via Publicodes
     const isApplicable = checkIfDottedNameShouldNotBeIgnored({
       dottedName,
       safeEvaluate,
       rawMissingVariables,
     })
-    if (dottedName.startsWith('logement . construction')) {
-      console.log({
-        dottedName,
-        result: checkIfDottedNameShouldNotBeIgnored({
-          dottedName,
-          safeEvaluate,
-          rawMissingVariables: {} as MissingVariables,
-        }),
-        evaluation: safeEvaluate(dottedName),
-      })
-    }
 
     return (
       !isManuallyExcluded &&
