@@ -12,7 +12,7 @@ import Engine from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
 
 const demoDottedNames: DottedName[] = [
-  'commun . intensité électricité' as DottedName,
+  'commun . mix électrique . empreinte carbone',
   'transport . voiture . thermique . empreinte au litre',
 ]
 

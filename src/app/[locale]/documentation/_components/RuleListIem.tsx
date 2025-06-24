@@ -10,7 +10,7 @@ export default function RuleListItem({
   item,
   matches = undefined,
 }: {
-  rules: NGCRules
+  rules: Partial<NGCRules>
   item: SearchItem
   matches: FuseResultMatch[] | undefined
 }) {

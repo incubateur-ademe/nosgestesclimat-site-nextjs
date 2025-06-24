@@ -12,7 +12,7 @@ import type { EvaluatedNode } from 'publicodes'
  */
 export default function useTempEngine(): {
   getSpecialRuleObject: (dottedName: DottedName) => EvaluatedNode & NGCRuleNode
-  rules: NGCRules | undefined
+  rules: Partial<NGCRules> | undefined
   extendedFoldedSteps: DottedName[]
 } {
   const { safeEvaluate, rules, safeGetRule, everyMosaicChildrenWithParent } =

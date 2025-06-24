@@ -12,7 +12,7 @@ import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { filterIrrelevantActions } from './filterIrrelevantActions'
 
 type Props = {
-  rules?: NGCRules
+  rules?: Partial<NGCRules>
   radical: boolean
   safeEvaluate: (rule: PublicodesExpression) => EvaluatedNode | null
   getSpecialRuleObject: (dottedName: DottedName) => EvaluatedNode & NGCRuleNode

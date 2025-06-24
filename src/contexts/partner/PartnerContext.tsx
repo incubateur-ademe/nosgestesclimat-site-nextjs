@@ -71,7 +71,6 @@ export function PartnerProvider({ children }: PropsWithChildren) {
 
       return Object.keys(params).length ? params : undefined
     } catch (error) {
-      console.error('Error processing partner params:', error)
       return undefined
     }
   }, [searchParams])
