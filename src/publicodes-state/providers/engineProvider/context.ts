@@ -15,7 +15,7 @@ import type {
 } from '../../types'
 
 type EngineContextType = {
-  rules: NGCRules | undefined
+  rules: Partial<NGCRules> | undefined
   engine: Engine | undefined
   pristineEngine?: Engine | null
   safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
