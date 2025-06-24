@@ -1,19 +1,22 @@
-import { updateGroupParticipant } from '@/services/groups/updateGroupParticipant'
-
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
+import { faker } from '@faker-js/faker'
 import { screen, waitFor } from '@testing-library/dom'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import UpdateSimulationUsed from '../UpdateSimulationUsed'
 
-jest.mock('@/services/groups/updateGroupParticipant', () => ({
-  updateGroupParticipant: jest.fn(),
-}))
+const mockUpdateGroupParticipant = jest.fn()
+
+jest.mock('@/services/groups/updateGroupParticipant', () => {
+  return {
+    updateGroupParticipant: () => mockUpdateGroupParticipant(),
+  }
+})
 
 const mockRefetchGroup = jest.fn()
 
 const mockSimulation = {
-  id: 'simulation-1',
+  id: faker.string.uuid(),
   progression: 1,
   computedResults: {
     carbone: {
@@ -29,11 +32,10 @@ const mockSimulation = {
   situation: {},
   foldedSteps: [],
   actionChoices: {},
-  severity: 1,
 }
 
 const mockGroupSimulation = {
-  id: 'simulation-2',
+  id: faker.string.uuid(),
   progression: 1,
   computedResults: {
     carbone: {
@@ -52,22 +54,24 @@ const mockGroupSimulation = {
   severity: 1,
 }
 
+const mockUserId = faker.string.uuid()
+
 const mockProps = {
   group: {
-    id: 'test-group-id',
-    name: 'Test Group',
+    id: faker.string.uuid(),
+    name: faker.person.fullName(),
     emoji: '👥',
     administrator: {
-      id: '1',
-      name: 'Admin User',
-      email: 'admin@example.com',
+      id: mockUserId,
+      name: faker.person.fullName(),
+      email: faker.internet.email(),
     },
     severity: 1,
     participants: [
       {
-        id: 'participant-1',
-        userId: '1',
-        name: 'Test User',
+        id: faker.string.uuid(),
+        userId: mockUserId,
+        name: faker.person.fullName(),
         severity: 1,
         simulation: mockGroupSimulation,
       },
@@ -76,21 +80,27 @@ const mockProps = {
   refetchGroup: mockRefetchGroup,
 }
 
+let mockUser: Record<string, string>
+
 describe('UpdateSimulationUsed', () => {
   beforeEach(() => {
     jest.clearAllMocks()
+
+    mockUser = {
+      userId: mockUserId,
+      name: faker.person.fullName(),
+      email: faker.internet.email(),
+    }
   })
 
   it('should display the update alert when detecting a more recent simulation with a different result', async () => {
     // When
     renderWithWrapper(<UpdateSimulationUsed {...mockProps} />, {
-      user: {
-        user: {
-          userId: '1',
-          name: 'Test User',
-          email: 'test@example.com',
-        },
-        simulations: [mockSimulation],
+      user: mockUser,
+      simulations: [mockGroupSimulation, mockSimulation],
+      currentSimulation: mockSimulation,
+      providers: {
+        user: true,
       },
     })
 
@@ -102,7 +112,7 @@ describe('UpdateSimulationUsed', () => {
 
   it('should display success alert when update is successful', async () => {
     // Given
-    ;(updateGroupParticipant as jest.Mock).mockResolvedValue({
+    mockUpdateGroupParticipant.mockResolvedValue({
       data: {
         success: true,
       },
@@ -110,13 +120,11 @@ describe('UpdateSimulationUsed', () => {
 
     // When
     renderWithWrapper(<UpdateSimulationUsed {...mockProps} />, {
-      user: {
-        user: {
-          userId: '1',
-          name: 'Test User',
-          email: 'test@example.com',
-        },
-        simulations: [mockSimulation],
+      user: mockUser,
+      simulations: [mockGroupSimulation, mockSimulation],
+      currentSimulation: mockSimulation,
+      providers: {
+        user: true,
       },
     })
     await userEvent.click(screen.getByTestId('update-button'))
@@ -130,19 +138,15 @@ describe('UpdateSimulationUsed', () => {
 
   it('should display error alert when update fails', async () => {
     // Given
-    ;(updateGroupParticipant as jest.Mock).mockRejectedValue(
-      new Error('Update failed')
-    )
+    mockUpdateGroupParticipant.mockRejectedValue(new Error('Update failed'))
 
     // When
     renderWithWrapper(<UpdateSimulationUsed {...mockProps} />, {
-      user: {
-        user: {
-          userId: '1',
-          name: 'Test User',
-          email: 'test@example.com',
-        },
-        simulations: [mockSimulation],
+      user: mockUser,
+      simulations: [mockGroupSimulation, mockSimulation],
+      currentSimulation: mockSimulation,
+      providers: {
+        user: true,
       },
     })
     await userEvent.click(screen.getByTestId('update-button'))
