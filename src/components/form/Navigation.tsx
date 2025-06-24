@@ -27,11 +27,13 @@ export default function Navigation({
   tempValue,
   onComplete = () => '',
   isEmbedded,
+  remainingQuestions,
 }: {
   question: DottedName
   tempValue?: number
   onComplete?: () => void
   isEmbedded?: boolean
+  remainingQuestions: DottedName[]
 }) {
   const { t } = useClientTranslation()
 
@@ -51,6 +53,16 @@ export default function Navigation({
   })
 
   const isNextDisabled = isBelowFloor || isOverCeiling
+
+  const isSingleQuestionEmbedded =
+    isEmbedded &&
+    remainingQuestions.length === 1 &&
+    remainingQuestions[0] === question
+
+  console.log(remainingQuestions)
+
+  const finalNoNextQuestion = isSingleQuestionEmbedded ? true : noNextQuestion
+  const finalNoPrevQuestion = isSingleQuestionEmbedded ? true : noPrevQuestion
 
   // Start time of the question
   //(we need to use question to update the start time when the question changes, but it is not exactly usefull as a dependency)
@@ -82,7 +94,7 @@ export default function Navigation({
 
       handleMoveFocus()
 
-      if (noNextQuestion) {
+      if (finalNoNextQuestion) {
         onComplete()
         return
       }
@@ -92,7 +104,7 @@ export default function Navigation({
     [
       question,
       gotoNextQuestion,
-      noNextQuestion,
+      finalNoNextQuestion,
       isMissing,
       value,
       onComplete,
@@ -145,16 +157,16 @@ export default function Navigation({
           onClick={() => {
             trackEvent(questionClickPrevious({ question }))
 
-            if (!noPrevQuestion) {
+            if (!finalNoPrevQuestion) {
               gotoPrevQuestion()
             }
 
             handleMoveFocus()
           }}
-          disabled={noPrevQuestion}
+          disabled={finalNoPrevQuestion}
           color="text"
           className={twMerge('px-3')}>
-          <span className="hidden md:inline">←</span> {t('Précédent')}
+          <span className="hidden md:inline">←</span> {t('Précédent')}
         </Button>
 
         <Button
@@ -164,7 +176,7 @@ export default function Navigation({
           size="md"
           data-cypress-id="next-question-button"
           onClick={handleGoToNextQuestion}>
-          {noNextQuestion
+          {finalNoNextQuestion
             ? t('Terminer')
             : isMissing
               ? t('Passer la question') + ' →'

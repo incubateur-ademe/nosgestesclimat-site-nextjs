@@ -22,6 +22,7 @@ import {
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import {
   useCurrentSimulation,
+  useEngine,
   useRule,
   useTempEngine,
   useUser,
@@ -51,18 +52,23 @@ export default function ActionCard({
 }: Props) {
   const { t } = useClientTranslation()
 
+  const { everyQuestions, safeEvaluate, rawMissingVariables } = useEngine()
+
   const { rules, extendedFoldedSteps } = useTempEngine()
 
   const { toggleActionChoice, rejectAction } = useUser()
 
   const currentSimulation = useCurrentSimulation()
 
-  const { dottedName, title, missingVariables, traversedVariables } = action
+  const { dottedName, title, traversedVariables, missingVariables } = action
 
   const { icônes: icons } = rule || action
   const remainingQuestions = filterRelevantMissingVariables({
+    everyQuestions,
     missingVariables: Object.keys(missingVariables || {}) as DottedName[],
     extendedFoldedSteps,
+    safeEvaluate,
+    rawMissingVariables,
   })
 
   const nbRemainingQuestions = remainingQuestions?.length
@@ -164,13 +170,19 @@ export default function ActionCard({
 
       <div className="mt-3 flex w-full flex-1 flex-col justify-between">
         <div className="relative">
-          <ActionValue
-            dottedName={dottedName}
-            total={total}
-            isDisabled={isDisabled}
-            hasFormula={hasFormula}
-            isBlurred={hasRemainingQuestions}
-          />
+          <button
+            onClick={() => {
+              trackEvent(actionsClickAdditionalQuestion(dottedName))
+              setActionWithFormOpen(dottedName)
+            }}>
+            <ActionValue
+              dottedName={dottedName}
+              total={total}
+              isDisabled={isDisabled}
+              hasFormula={hasFormula}
+              isBlurred={hasRemainingQuestions}
+            />
+          </button>
 
           {hasRemainingQuestions && (
             <>

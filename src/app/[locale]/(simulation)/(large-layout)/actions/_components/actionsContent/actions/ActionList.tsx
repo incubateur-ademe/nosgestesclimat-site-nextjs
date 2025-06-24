@@ -8,15 +8,17 @@ import {
   useEngine,
   useUser,
 } from '@/publicodes-state'
+import type { Action } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/analytics/trackEvent'
+import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { Fragment, useLayoutEffect, useRef, useState } from 'react'
 import ActionCard from './ActionCard'
 import ActionForm from './ActionForm'
 import CustomActionForm from './actionList/CustomActionForm'
 
 type Props = {
-  actions: any[]
-  rules: any
+  actions: (Action & { isIrrelevant: boolean; value?: number })[]
+  rules: Partial<NGCRules>
   bilan: any
   actionWithFormOpen: string
   setActionWithFormOpen: (dottedName: string) => void
@@ -42,6 +44,14 @@ export default function ActionList({
     position: 'absolute',
     zIndex: -1,
   })
+
+  // This allows us to keep actions displayed even after they have been
+  // made unapplicable
+  const actionsPersistedRef = useRef(actions)
+
+  const handleUpdatePersistedActions = () => {
+    actionsPersistedRef.current = actions
+  }
 
   useLayoutEffect(() => {
     const calculatePosition = () => {
@@ -87,12 +97,18 @@ export default function ActionList({
         })
       }
     }
-  }, [actionWithFormOpen])
+  }, [actionWithFormOpen, actionsPersistedRef.current.length])
 
   return (
     <ul className="mt-4 flex list-none flex-wrap items-center justify-center p-0">
-      {actions.map((action) => {
+      {actionsPersistedRef.current.reduce<React.ReactNode[]>((acc, action) => {
         const isActionFocused = actionWithFormOpen === action.dottedName
+        const isIrrelevant = (action as Action & { isIrrelevant: boolean })
+          .isIrrelevant
+
+        if (isIrrelevant) {
+          return acc
+        }
 
         const cardComponent = (
           <div id={action.dottedName}>
@@ -102,12 +118,12 @@ export default function ActionList({
               rule={rules[action.dottedName]}
               action={action}
               total={bilan?.nodeValue}
-              isIrrelevant={action.isIrrelevant}
+              isIrrelevant={isIrrelevant}
             />
           </div>
         )
 
-        return (
+        acc.push(
           <Fragment key={action.dottedName}>
             <li className="relative m-2 w-[12rem]">
               {cardComponent}
@@ -116,10 +132,11 @@ export default function ActionList({
                 <div
                   ref={formRef}
                   style={formStyle}
-                  className="w-4xl max-w-[calc(100vw-2rem)] border-none">
+                  className="w-4xl max-w-[calc(100vw-2rem)]">
                   <FormProvider root={action.dottedName}>
                     <ActionForm
                       key={action.dottedName}
+                      action={action}
                       setActionWithFormOpen={setActionWithFormOpen}
                       category={getCategory(action.dottedName)}
                       onComplete={() => {
@@ -130,6 +147,9 @@ export default function ActionList({
                         }
                         setActionWithFormOpen('')
                       }}
+                      handleUpdatePersistedActions={
+                        handleUpdatePersistedActions
+                      }
                     />
                   </FormProvider>
                 </div>
@@ -139,7 +159,7 @@ export default function ActionList({
                 <div
                   ref={formRef}
                   style={formStyle}
-                  className="w-4xl max-w-[calc(100vw-2rem)] border-none">
+                  className="w-4xl max-w-[calc(100vw-2rem)]">
                   <CustomActionForm
                     key={`${action.dottedName}-custom-form`}
                     dottedName={action.dottedName}
@@ -150,7 +170,9 @@ export default function ActionList({
             </li>
           </Fragment>
         )
-      })}
+
+        return acc
+      }, [])}
     </ul>
   )
 }

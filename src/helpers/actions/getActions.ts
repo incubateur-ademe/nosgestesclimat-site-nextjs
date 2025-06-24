@@ -58,7 +58,7 @@ export default function getActions({
 
   const sortedActionsByImpact = sortBy(
     (value) =>
-      (radical ? 1 : -1) * (getCorrectedValue(value as EvaluatedNode) || 1)
+      (radical ? -1 : 1) * (getCorrectedValue(value as EvaluatedNode) || 1)
   )(relevantActions) as Action[]
 
   return sortedActionsByImpact

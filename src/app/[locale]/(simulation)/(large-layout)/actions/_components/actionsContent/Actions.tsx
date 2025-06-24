@@ -4,13 +4,15 @@ import Trans from '@/components/translation/trans/TransClient'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useEngine } from '@/publicodes-state'
+import type { Action } from '@/publicodes-state/types'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
 import { useState } from 'react'
 import ActionList from './actions/ActionList'
 
 type Props = {
-  actions: any
+  actions: (Action & { isIrrelevant: boolean })[]
   rules: any
   radical: boolean
 }
@@ -27,7 +29,7 @@ export default function Actions({
 
   const bilan = { nodeValue: getValue('bilan'), dottedName: 'bilan' }
 
-  const thresholds = [
+  const thresholds: [number, string][] = [
     [10000, t('plus de 10 tonnes')],
     [1000, t("plus d'1 tonne")],
     [100, t('plus de 100 kg')],
@@ -37,31 +39,34 @@ export default function Actions({
 
   const { actionChoices } = useCurrentSimulation()
 
-  const actions = rawActions.map((a: any) => ({
-    ...a,
-    value: getCorrectedValue(a),
-  }))
+  const actions = rawActions.map((action) => ({
+    ...action,
+    value: getCorrectedValue(action),
+  })) as (Action & { isIrrelevant: boolean; value: number | undefined })[]
 
   const rejected = actions.filter(
-    (a: any) => actionChoices?.[a.dottedName] === false
+    (action) => actionChoices?.[action.dottedName] === false
   )
 
   const notRejected = actions.filter(
-    (a: any) => actionChoices?.[a.dottedName] !== false
+    (action) => actionChoices?.[action.dottedName] !== false
   )
 
   const maxImpactAction = notRejected.reduce(
-    (acc: any, next: any) => {
-      return next.value > acc.value ? next : acc
-    },
-    { value: 0 } as { value: number }
+    (max, action) => ((action.value ?? 0) > (max.value ?? 0) ? action : max),
+    {
+      value: 0,
+      dottedName: '' as DottedName,
+      isIrrelevant: false,
+    } as Action & { isIrrelevant: boolean; value: number | undefined }
   )
 
   const numberedActions = thresholds.map(([threshold, label], index) => {
     const thresholdActions = notRejected.filter(
-      (a: { value: any }) =>
-        a.value >= threshold &&
-        (index === 0 || a.value < thresholds[index - 1][0])
+      (action) =>
+        action.value &&
+        action.value >= threshold &&
+        (index === 0 || action.value < thresholds[index - 1][0])
     )
 
     if (!thresholdActions.length) return null
@@ -87,7 +92,7 @@ export default function Actions({
 
   return (
     <>
-      {maxImpactAction.value < 100 && (
+      {maxImpactAction.value && maxImpactAction.value < 100 && (
         <Card className="my-8">
           <Trans i18nKey={'publicodes.AllActions.msgPlusActions'}>
             <p>
@@ -117,9 +122,7 @@ export default function Actions({
       </div>
 
       <ActionList
-        actions={notRejected.filter(
-          (a: { value: any; isIrrelevant: boolean }) => a.value === undefined
-        )}
+        actions={notRejected.filter((action) => action.value === undefined)}
         rules={rules}
         bilan={bilan}
         setActionWithFormOpen={setActionWithFormOpen}
