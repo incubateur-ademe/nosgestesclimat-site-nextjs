@@ -50,7 +50,7 @@
     "@socialgouv/react-departements": "^3.0.0",
     "@splidejs/react-splide": "^0.7.12",
     "@tailwindcss/postcss": "^4.1.10",
-    "@tanstack/react-query": "^5.66.0",
+    "@tanstack/react-query": "^5.81.2",
     "axios": "^1.8.2",
     "dayjs": "^1.11.13",
     "framer-motion": "^12.4.7",
