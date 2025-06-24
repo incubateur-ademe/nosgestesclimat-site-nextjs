@@ -8,7 +8,6 @@ import { usePartner } from '@/contexts/partner/PartnerContext'
 import Alert from '@/design-system/alerts/alert/Alert'
 import Emoji from '@/design-system/utils/Emoji'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
 import RedirectLink from './RedirectLink'
 
@@ -18,7 +17,6 @@ const PARTNER_NAMES = {
 }
 
 export default function AdaptiveMessage({ partner }: { partner: string }) {
-  const { t } = useClientTranslation()
   const { progression } = useCurrentSimulation()
 
   const isTestCompleted = progression === 1
