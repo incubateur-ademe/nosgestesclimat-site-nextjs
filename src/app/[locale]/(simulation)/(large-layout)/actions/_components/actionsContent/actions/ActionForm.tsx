@@ -5,7 +5,12 @@ import Question from '@/components/form/Question'
 import CloseIcon from '@/components/icons/Close'
 import Trans from '@/components/translation/trans/TransClient'
 import { filterRelevantMissingVariables } from '@/helpers/actions/filterRelevantMissingVariables'
-import { useEngine, useFormState, useTempEngine } from '@/publicodes-state'
+import {
+  useEngine,
+  useFormState,
+  useRule,
+  useTempEngine,
+} from '@/publicodes-state'
 import { checkIfDottedNameShouldNotBeIgnored } from '@/publicodes-state/helpers/checkIfDottedNameShouldNotBeIgnored'
 import type { Action, MissingVariables } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -39,6 +44,8 @@ export default function ActionForm({
 
   const { extendedFoldedSteps } = useTempEngine()
 
+  const { numericValue } = useRule(action.dottedName)
+
   const { missingVariables } = action
 
   const remainingQuestions = filterRelevantMissingVariables({
@@ -49,11 +56,12 @@ export default function ActionForm({
     safeEvaluate,
   })
 
-  const isActionApplicable = checkIfDottedNameShouldNotBeIgnored({
-    dottedName: action.dottedName,
-    safeEvaluate,
-    rawMissingVariables: {} as MissingVariables,
-  })
+  const isActionApplicable =
+    checkIfDottedNameShouldNotBeIgnored({
+      dottedName: action.dottedName,
+      safeEvaluate,
+      rawMissingVariables: {} as MissingVariables,
+    }) && numericValue !== 0
 
   useEffect(() => {
     if (category && !currentCategory) {
