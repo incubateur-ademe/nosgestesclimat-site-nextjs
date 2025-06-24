@@ -16,7 +16,7 @@ jest.mock('@/services/groups/updateGroupParticipant', () => {
 const mockRefetchGroup = jest.fn()
 
 const mockSimulation = {
-  id: 'simulation-1',
+  id: faker.string.uuid(),
   progression: 1,
   computedResults: {
     carbone: {
@@ -35,7 +35,7 @@ const mockSimulation = {
 }
 
 const mockGroupSimulation = {
-  id: 'simulation-2',
+  id: faker.string.uuid(),
   progression: 1,
   computedResults: {
     carbone: {
@@ -58,20 +58,20 @@ const mockUserId = faker.string.uuid()
 
 const mockProps = {
   group: {
-    id: 'test-group-id',
-    name: 'Test Group',
+    id: faker.string.uuid(),
+    name: faker.person.fullName(),
     emoji: '👥',
     administrator: {
       id: mockUserId,
-      name: 'Admin User',
-      email: 'admin@example.com',
+      name: faker.person.fullName(),
+      email: faker.internet.email(),
     },
     severity: 1,
     participants: [
       {
-        id: 'participant-1',
+        id: faker.string.uuid(),
         userId: mockUserId,
-        name: 'Test User',
+        name: faker.person.fullName(),
         severity: 1,
         simulation: mockGroupSimulation,
       },
@@ -80,15 +80,17 @@ const mockProps = {
   refetchGroup: mockRefetchGroup,
 }
 
-const mockUser = {
-  userId: mockUserId,
-  name: faker.person.fullName(),
-  email: faker.internet.email(),
-}
+let mockUser: Record<string, string>
 
 describe('UpdateSimulationUsed', () => {
   beforeEach(() => {
     jest.clearAllMocks()
+
+    mockUser = {
+      userId: mockUserId,
+      name: faker.person.fullName(),
+      email: faker.internet.email(),
+    }
   })
 
   it('should display the update alert when detecting a more recent simulation with a different result', async () => {
