@@ -4,12 +4,10 @@ import Link from '@/components/Link'
 import CloseIcon from '@/components/icons/Close'
 import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import {
-  actionsClickAdditionalQuestion,
   actionsClickNo,
   actionsClickYes,
   actionsOpenAction,
 } from '@/constants/tracking/pages/actions'
-import NotificationBubble from '@/design-system/alerts/NotificationBubble'
 import Emoji from '@/design-system/utils/Emoji'
 import { filterRelevantMissingVariables } from '@/helpers/actions/filterRelevantMissingVariables'
 import { getIsActionDisabled } from '@/helpers/actions/getIsActionDisabled'
@@ -74,16 +72,6 @@ export default function ActionCard({
   const nbRemainingQuestions = remainingQuestions?.length
 
   const hasRemainingQuestions = nbRemainingQuestions > 0
-
-  const pluralSuffix = nbRemainingQuestions > 1 ? 's' : ''
-
-  const remainingQuestionsText = t(
-    'publicodes.ActionVignette.questionsRestantesText',
-    {
-      nbRemainingQuestions,
-      pluralSuffix,
-    }
-  )
 
   const { category } = useRule(dottedName)
 
@@ -170,37 +158,14 @@ export default function ActionCard({
 
       <div className="mt-3 flex w-full flex-1 flex-col justify-between">
         <div className="relative">
-          <button
-            onClick={() => {
-              trackEvent(actionsClickAdditionalQuestion(dottedName))
-              setActionWithFormOpen(dottedName)
-            }}>
-            <ActionValue
-              dottedName={dottedName}
-              total={total}
-              isDisabled={isDisabled}
-              hasFormula={hasFormula}
-              isBlurred={hasRemainingQuestions}
-            />
-          </button>
-
-          {hasRemainingQuestions && (
-            <>
-              <NotificationBubble
-                onClick={() => setActionWithFormOpen(dottedName)}
-                title={remainingQuestionsText}
-                number={nbRemainingQuestions}
-              />
-              <button
-                className="text-primary-700 cursor-pointer text-sm"
-                onClick={() => {
-                  trackEvent(actionsClickAdditionalQuestion(dottedName))
-                  setActionWithFormOpen(dottedName)
-                }}>
-                {remainingQuestionsText}
-              </button>
-            </>
-          )}
+          <ActionValue
+            dottedName={dottedName}
+            total={total}
+            isDisabled={isDisabled}
+            hasFormula={hasFormula}
+            setActionWithFormOpen={setActionWithFormOpen}
+            remainingQuestions={remainingQuestions}
+          />
         </div>
         <div className="self-bottom flex w-full justify-between px-2">
           <button
