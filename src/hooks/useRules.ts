@@ -16,7 +16,7 @@ export function useRules(
     isOptim: true,
     region: 'FR',
   }
-): UseQueryResult<NGCRules, Error> {
+): UseQueryResult<Partial<NGCRules>, Error> {
   const locale = useLocale()
   const { user } = useUser()
 
