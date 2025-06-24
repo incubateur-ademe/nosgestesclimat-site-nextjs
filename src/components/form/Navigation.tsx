@@ -39,8 +39,13 @@ export default function Navigation({
 
   const { isIframe } = useIframe()
 
-  const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
-    useFormState()
+  const {
+    gotoPrevQuestion,
+    gotoNextQuestion,
+    noPrevQuestion,
+    noNextQuestion,
+    setCurrentQuestion,
+  } = useFormState()
 
   const { isMissing, plancher, plafond, value } = useRule(question)
 
@@ -99,7 +104,11 @@ export default function Navigation({
         return
       }
 
-      gotoNextQuestion()
+      if (isEmbedded && remainingQuestions && remainingQuestions.length > 0) {
+        setCurrentQuestion(remainingQuestions.shift() as DottedName | null)
+      } else {
+        gotoNextQuestion()
+      }
     },
     [
       question,
@@ -110,6 +119,9 @@ export default function Navigation({
       onComplete,
       updateCurrentSimulation,
       startTime,
+      isEmbedded,
+      setCurrentQuestion,
+      remainingQuestions,
     ]
   )
 
