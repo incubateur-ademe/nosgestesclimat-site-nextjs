@@ -91,7 +91,7 @@
     "@babel/core": "^7.26.8",
     "@babel/eslint-parser": "^7.26.8",
     "@chromatic-com/storybook": "^3",
-    "@faker-js/faker": "^9.5.0",
+    "@faker-js/faker": "^9.8.0",
     "@incubateur-ademe/nosgestesclimat-scripts": "^0.6.0",
     "@jest/globals": "^29.7.0",
     "@mdx-js/loader": "^3.1.0",
