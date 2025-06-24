@@ -55,10 +55,11 @@ export default function Navigation({
   const isNextDisabled = isBelowFloor || isOverCeiling
 
   const isSingleQuestionEmbedded =
-    isEmbedded &&
-    remainingQuestions &&
-    remainingQuestions.length === 1 &&
-    remainingQuestions[0] === question
+    (isEmbedded &&
+      remainingQuestions &&
+      remainingQuestions.length === 1 &&
+      remainingQuestions[0] === question) ||
+    (remainingQuestions && remainingQuestions.length === 0)
 
   const finalNoNextQuestion = isSingleQuestionEmbedded ? true : noNextQuestion
   const finalNoPrevQuestion = isSingleQuestionEmbedded ? true : noPrevQuestion
@@ -165,7 +166,7 @@ export default function Navigation({
           disabled={finalNoPrevQuestion}
           color="text"
           className={twMerge('px-3')}>
-          <span className="hidden md:inline">←</span> {t('Précédent')}
+          <span className="hidden md:inline">←</span> {t('Précédent')}
         </Button>
 
         <Button
