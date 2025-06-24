@@ -59,8 +59,6 @@ export default function Navigation({
     remainingQuestions.length === 1 &&
     remainingQuestions[0] === question
 
-  console.log(remainingQuestions)
-
   const finalNoNextQuestion = isSingleQuestionEmbedded ? true : noNextQuestion
   const finalNoPrevQuestion = isSingleQuestionEmbedded ? true : noPrevQuestion
 
