@@ -20,21 +20,22 @@ export default function GestureSelector({
     <>
       <div className="flex-1 text-left">
         <ul className="mb-8 flex gap-1 overflow-x-auto overflow-y-visible px-1 py-2 md:overflow-x-hidden md:py-0">
-          {Object.keys(gestures).map((categoryName: string) => (
-            <li key={categoryName}>
-              <button
-                className={twMerge(
-                  baseClassNames,
-                  sizeClassNames.xs,
-                  'border-primary-100 bg-primary-50 text-primary-800 hover:bg-primary-100 my-1 border-2 transition-colors',
-                  selectedCategory === categoryName &&
-                    'border-primary-500 bg-primary-100 text-primary-800'
-                )}
-                onClick={() => setSelectedCategory(categoryName)}>
-                <Trans>{categoryName}</Trans>
-              </button>
-            </li>
-          ))}
+          {Object.keys(gestures).length > 1 &&
+            Object.keys(gestures).map((categoryName: string) => (
+              <li key={categoryName}>
+                <button
+                  className={twMerge(
+                    baseClassNames,
+                    sizeClassNames.xs,
+                    'border-primary-100 bg-primary-50 text-primary-800 hover:bg-primary-100 my-1 border-2 transition-colors',
+                    selectedCategory === categoryName &&
+                      'border-primary-500 bg-primary-100 text-primary-800'
+                  )}
+                  onClick={() => setSelectedCategory(categoryName)}>
+                  <Trans>{categoryName}</Trans>
+                </button>
+              </li>
+            ))}
         </ul>
 
         <div className="relative h-[120px] md:h-[300px]">

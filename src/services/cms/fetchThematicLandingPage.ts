@@ -8,6 +8,10 @@ type ThematicLandingPage = PopulatedThematicLandingPageType<
   | 'heroImage'
   | 'secondBlockImage'
   | 'actionsBlockImage'
+  | 'thirdBlockList'
+  | 'carouselItems'
+  | 'actionsBlockList'
+  | 'seventhBlockList'
 >
 
 export async function fetchThematicLandingPage({
@@ -17,7 +21,6 @@ export async function fetchThematicLandingPage({
 }): Promise<
   | {
       thematicLandingPage?: ThematicLandingPage
-      error?: boolean
     }
   | undefined
 > {
@@ -28,6 +31,14 @@ export async function fetchThematicLandingPage({
       'populate[1]': 'articlesBlockArticles',
       'populate[2]': 'secondBlockImage',
       'populate[3]': 'actionsBlockImage',
+      'populate[4]': 'articlesBlockArticles.image',
+      'populate[5]': 'thirdBlockList',
+      'populate[6]': 'carouselItems',
+      'populate[7]': 'actionsBlockList',
+      'populate[8]': 'seventhBlockList',
+      'populate[9]': 'thirdBlockList.icon',
+      'populate[10]': 'seventhBlockList.icon',
+      'populate[11]': 'carouselItems.icon',
       'filters[slug][$eq]': landingPageSlug,
       sort: 'publishedAt:desc',
     })
@@ -51,9 +62,6 @@ export async function fetchThematicLandingPage({
       thematicLandingPage: thematicLP,
     }
   } catch (error) {
-    return {
-      thematicLandingPage: undefined,
-      error: true,
-    }
+    return {}
   }
 }

@@ -234,13 +234,13 @@ export type ThematicLandingPage = {
   thirdBlockTitle: string
   thirdBlockText: string
   htmlThirdBlockText: string
-  thirdBlockList: IconBlockType[]
-  carouselItems: CarouselItemType[]
+  thirdBlockList?: IconBlockType[]
+  carouselItems?: CarouselItemType[]
   actionsBlockTitle: string
   actionsBlockImage?: ImageType
   actionsBlockText: string
   htmlActionsBlockText: string
-  actionsBlockList: IconBlockType[]
+  actionsBlockList?: { title: string }[]
   articlesBlockTitle: string
   articlesBlockText: string
   htmlArticlesBlockText: string
@@ -250,7 +250,7 @@ export type ThematicLandingPage = {
   seventhBlockTitle: string
   seventhBlockText: string
   htmlSeventhBlockText: string
-  seventhBlockList: IconBlockType[]
+  seventhBlockList?: IconBlockType[]
   faq?: FAQType
   metadata?: MetaType
   slug: string
