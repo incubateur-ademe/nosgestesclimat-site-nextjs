@@ -23,6 +23,8 @@ export default function Actions({
   rules,
 }: Props) {
   const [actionWithFormOpen, setActionWithFormOpen] = useState<string>('')
+  const [shouldUpdatePersistedActions, setShouldUpdatePersistedActions] =
+    useState(false)
 
   const { t } = useClientTranslation()
   const { getValue } = useEngine()
@@ -62,12 +64,13 @@ export default function Actions({
   )
 
   const numberedActions = thresholds.map(([threshold, label], index) => {
-    const thresholdActions = notRejected.filter(
-      (action) =>
+    const thresholdActions = notRejected.filter((action) => {
+      return (
         action.value &&
         action.value >= threshold &&
         (index === 0 || action.value < thresholds[index - 1][0])
-    )
+      )
+    })
 
     if (!thresholdActions.length) return null
 
@@ -79,6 +82,8 @@ export default function Actions({
           bilan={bilan}
           actionWithFormOpen={actionWithFormOpen}
           setActionWithFormOpen={setActionWithFormOpen}
+          shouldUpdatePersistedActions={shouldUpdatePersistedActions}
+          setShouldUpdatePersistedActions={setShouldUpdatePersistedActions}
         />
 
         <div className="my-4 h-8 w-full text-center">
@@ -127,6 +132,8 @@ export default function Actions({
         bilan={bilan}
         setActionWithFormOpen={setActionWithFormOpen}
         actionWithFormOpen={actionWithFormOpen}
+        shouldUpdatePersistedActions={shouldUpdatePersistedActions}
+        setShouldUpdatePersistedActions={setShouldUpdatePersistedActions}
       />
 
       <div className="my-4 h-8 w-full text-center">
@@ -148,6 +155,8 @@ export default function Actions({
         bilan={bilan}
         setActionWithFormOpen={setActionWithFormOpen}
         actionWithFormOpen={actionWithFormOpen}
+        shouldUpdatePersistedActions={shouldUpdatePersistedActions}
+        setShouldUpdatePersistedActions={setShouldUpdatePersistedActions}
       />
 
       {rejected.length > 0 && (
@@ -161,6 +170,8 @@ export default function Actions({
             bilan={bilan}
             setActionWithFormOpen={setActionWithFormOpen}
             actionWithFormOpen={actionWithFormOpen}
+            shouldUpdatePersistedActions={shouldUpdatePersistedActions}
+            setShouldUpdatePersistedActions={setShouldUpdatePersistedActions}
           />
         </div>
       )}

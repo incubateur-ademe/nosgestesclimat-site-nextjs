@@ -11,7 +11,7 @@ import {
 import type { Action } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import { Fragment, useLayoutEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import ActionCard from './ActionCard'
 import ActionForm from './ActionForm'
 import CustomActionForm from './actionList/CustomActionForm'
@@ -22,6 +22,8 @@ type Props = {
   bilan: any
   actionWithFormOpen: string
   setActionWithFormOpen: (dottedName: string) => void
+  shouldUpdatePersistedActions: boolean
+  setShouldUpdatePersistedActions: (value: boolean) => void
 }
 
 export default function ActionList({
@@ -30,6 +32,8 @@ export default function ActionList({
   bilan,
   actionWithFormOpen,
   setActionWithFormOpen,
+  shouldUpdatePersistedActions,
+  setShouldUpdatePersistedActions,
 }: Props) {
   const { getCategory } = useEngine()
   const { toggleActionChoice } = useUser()
@@ -47,11 +51,20 @@ export default function ActionList({
 
   // This allows us to keep actions displayed even after they have been
   // made unapplicable
-  const actionsPersistedRef = useRef(actions)
+  const [actionsPersisted, setActionsPersisted] = useState(actions)
 
   const handleUpdatePersistedActions = () => {
-    actionsPersistedRef.current = actions
+    setTimeout(() => {
+      setShouldUpdatePersistedActions(true)
+    }, 1000)
   }
+
+  useEffect(() => {
+    if (shouldUpdatePersistedActions) {
+      setActionsPersisted(actions)
+      setShouldUpdatePersistedActions(false)
+    }
+  }, [actions, setShouldUpdatePersistedActions, shouldUpdatePersistedActions])
 
   useLayoutEffect(() => {
     const calculatePosition = () => {
@@ -97,16 +110,17 @@ export default function ActionList({
         })
       }
     }
-  }, [actionWithFormOpen, actionsPersistedRef.current.length])
+  }, [actionWithFormOpen])
 
   return (
     <ul className="mt-4 flex list-none flex-wrap items-center justify-center p-0">
-      {actionsPersistedRef.current.reduce<React.ReactNode[]>((acc, action) => {
+      {actionsPersisted.reduce<React.ReactNode[]>((acc, action) => {
         const isActionFocused = actionWithFormOpen === action.dottedName
         const isIrrelevant = (action as Action & { isIrrelevant: boolean })
           .isIrrelevant
 
         if (isIrrelevant) {
+          console.log('irrelevant Action =>', action)
           return acc
         }
 

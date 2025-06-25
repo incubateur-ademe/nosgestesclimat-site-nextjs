@@ -18,7 +18,7 @@ import getValueIsOverFloorOrCeiling from '@/publicodes-state/helpers/getValueIsO
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { MouseEvent } from 'react'
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 import SyncIndicator from './navigation/SyncIndicator'
 
@@ -38,6 +38,8 @@ export default function Navigation({
   const { t } = useClientTranslation()
 
   const { isIframe } = useIframe()
+
+  const persistedRemainingQuestionsRef = useRef(remainingQuestions)
 
   const {
     gotoPrevQuestion,
@@ -150,6 +152,25 @@ export default function Navigation({
     })
   }
 
+  const handleGoToPrevQuestion = () => {
+    if (isEmbedded) {
+      setCurrentQuestion(
+        persistedRemainingQuestionsRef.current?.find(
+          (dottedName, index) =>
+            index ===
+            (persistedRemainingQuestionsRef.current?.indexOf(question) || 0) - 1
+        ) ?? null
+      )
+    } else {
+      gotoPrevQuestion()
+    }
+  }
+
+  const isFirstOrOnlyQuestion =
+    persistedRemainingQuestionsRef.current?.indexOf(question) === 0 ||
+    persistedRemainingQuestionsRef.current?.indexOf(question) ===
+      (persistedRemainingQuestionsRef.current?.length || 0) - 1
+
   return (
     <div
       className={twMerge(
@@ -169,13 +190,11 @@ export default function Navigation({
           onClick={() => {
             trackEvent(questionClickPrevious({ question }))
 
-            if (!finalNoPrevQuestion) {
-              gotoPrevQuestion()
-            }
+            handleGoToPrevQuestion()
 
             handleMoveFocus()
           }}
-          disabled={finalNoPrevQuestion}
+          disabled={isFirstOrOnlyQuestion}
           color="text"
           className={twMerge('px-3')}>
           <span className="hidden md:inline">←</span> {t('Précédent')}

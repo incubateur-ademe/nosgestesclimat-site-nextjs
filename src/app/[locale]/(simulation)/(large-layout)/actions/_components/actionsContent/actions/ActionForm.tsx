@@ -71,14 +71,9 @@ export default function ActionForm({
 
   useEffect(() => {
     if (currentCategory && !currentQuestion) {
-      setCurrentQuestion(remainingQuestionsByCategories[currentCategory]?.[0])
+      setCurrentQuestion(remainingQuestions?.[0])
     }
-  }, [
-    currentCategory,
-    currentQuestion,
-    remainingQuestionsByCategories,
-    setCurrentQuestion,
-  ])
+  }, [currentCategory, currentQuestion, remainingQuestions, setCurrentQuestion])
 
   if (!currentQuestion || !currentCategory) return null
 
