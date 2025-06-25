@@ -106,8 +106,19 @@ export default function Navigation({
         return
       }
 
-      if (isEmbedded && remainingQuestions && remainingQuestions.length > 0) {
-        setCurrentQuestion(remainingQuestions.shift() as DottedName | null)
+      if (
+        isEmbedded &&
+        persistedRemainingQuestionsRef.current &&
+        persistedRemainingQuestionsRef.current.length > 0
+      ) {
+        setCurrentQuestion(
+          persistedRemainingQuestionsRef.current?.find(
+            (dottedName, index) =>
+              index ===
+              (persistedRemainingQuestionsRef.current?.indexOf(question) || 0) +
+                1
+          ) ?? null
+        )
       } else {
         gotoNextQuestion()
       }
@@ -123,7 +134,6 @@ export default function Navigation({
       startTime,
       isEmbedded,
       setCurrentQuestion,
-      remainingQuestions,
     ]
   )
 
