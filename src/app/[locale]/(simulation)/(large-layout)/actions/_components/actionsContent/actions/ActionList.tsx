@@ -54,10 +54,16 @@ export default function ActionList({
   const [actionsPersisted, setActionsPersisted] = useState(actions)
 
   const handleUpdatePersistedActions = () => {
-    setTimeout(() => {
-      setShouldUpdatePersistedActions(true)
-    }, 1000)
+    setShouldUpdatePersistedActions(true)
   }
+
+  const prevActionWithFormOpen = useRef(actionWithFormOpen)
+
+  useEffect(() => {
+    if (actionWithFormOpen && !prevActionWithFormOpen.current) {
+      prevActionWithFormOpen.current = actionWithFormOpen
+    }
+  }, [actionWithFormOpen])
 
   useEffect(() => {
     if (shouldUpdatePersistedActions) {
@@ -65,6 +71,24 @@ export default function ActionList({
       setShouldUpdatePersistedActions(false)
     }
   }, [actions, setShouldUpdatePersistedActions, shouldUpdatePersistedActions])
+
+  // Effet séparé pour gérer le scroll après que les actions sont mises à jour
+  useEffect(() => {
+    if (prevActionWithFormOpen.current && actionsPersisted.length > 0) {
+      // Utiliser requestAnimationFrame pour s'assurer que le DOM est mis à jour
+      requestAnimationFrame(() => {
+        const element = document.getElementById(prevActionWithFormOpen.current)
+        if (element) {
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'center',
+          })
+        }
+        prevActionWithFormOpen.current = ''
+      })
+    }
+  }, [actionsPersisted])
 
   useLayoutEffect(() => {
     const calculatePosition = () => {
@@ -120,12 +144,11 @@ export default function ActionList({
           .isIrrelevant
 
         if (isIrrelevant) {
-          console.log('irrelevant Action =>', action)
           return acc
         }
 
         const cardComponent = (
-          <div id={action.dottedName}>
+          <div>
             <ActionCard
               setActionWithFormOpen={setActionWithFormOpen}
               isFocused={isActionFocused}
