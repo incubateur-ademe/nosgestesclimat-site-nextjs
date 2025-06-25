@@ -13,7 +13,6 @@ import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPo
 import { useFetchPublicPollSimulations } from '@/hooks/organisations/polls/useFetchPublicPollSimulations'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedirectFromLegacy'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import dayjs from 'dayjs'
 import { useSearchParams } from 'next/navigation'
@@ -32,8 +31,6 @@ export default function CampagnePage() {
   const isRedirectFromLegacy = Boolean(searchParams.get('isRedirectFromLegacy'))
 
   useHandleRedirectFromLegacy()
-
-  const { t } = useClientTranslation()
 
   const {
     data: poll,
