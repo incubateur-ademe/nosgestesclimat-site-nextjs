@@ -1,3 +1,5 @@
+import posthog from 'posthog-js'
+
 const shouldUseDevTracker =
   process.env.NODE_ENV === 'development' ||
   process.env.NEXT_PUBLIC_MATOMO_ID !== '1'
@@ -32,6 +34,8 @@ export const trackPageView = (url: string) => {
     console.debug('trackPageView => ' + url)
     return
   }
+
+  posthog.capture('$pageview', { $current_url: url })
 
   window?._paq?.push(['setCustomUrl', url])
   window?._paq?.push(['setDocumentTitle', document?.title])
