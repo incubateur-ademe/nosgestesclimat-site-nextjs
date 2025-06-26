@@ -3,6 +3,7 @@ import PostThumbnail from '@/design-system/cms/PostThumbnail'
 import ColorLine from '@/design-system/layout/ColorLine'
 import { getLandingClickPostThumbnail } from '@/helpers/tracking/landings'
 import type { LandingPagePostType } from '@/types/landing-page'
+import type { JSX } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/trans/TransServer'
 
@@ -13,8 +14,8 @@ export default function UnderstandToAct({
   pathname,
   locale,
 }: {
-  title?: string
-  description?: string
+  title?: JSX.Element | string
+  description?: JSX.Element | string
   posts: Omit<LandingPagePostType, 'trackingEvent'>[]
   pathname: string
   locale: string

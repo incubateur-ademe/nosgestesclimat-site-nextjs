@@ -1,13 +1,14 @@
 import Separator from '@/design-system/layout/Separator'
 import Image from 'next/image'
+import type { JSX } from 'react'
 
 export default function MotivationSection({
   title,
   description,
   motivationItems,
 }: {
-  title: string
-  description: string
+  title: JSX.Element | string
+  description: JSX.Element | string
   motivationItems?: {
     title: string
     icon: {
