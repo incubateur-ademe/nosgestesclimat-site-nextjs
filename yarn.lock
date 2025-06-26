@@ -2135,6 +2135,10 @@
   resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-3.8.0.tgz#f65fc1b488923b2688fd606fc0dab92d8536132b"
   integrity sha512-Q0W+6OUmJZQTozFOxXVgMM+WI8y+ccXMxf5/RlpL7q72C4Dok2D3AHBUQFkxRvbrwXaTW2GWFM112XSBHVmreA==
 
+"@incubateur-ademe/nosgestesclimat@https://pkg.pr.new/@incubateur-ademe/nosgestesclimat@2583.tgz":
+  version "3.8.0"
+  resolved "https://pkg.pr.new/@incubateur-ademe/nosgestesclimat@2583.tgz#f569ccb88b2cc06fa8e00d01864faff6dea59dc2"
+
 "@inquirer/confirm@^5.0.0":
   version "5.1.12"
   resolved "https://registry.yarnpkg.com/@inquirer/confirm/-/confirm-5.1.12.tgz#387037889a5a558ceefe52e978228630aa6e7d0e"
