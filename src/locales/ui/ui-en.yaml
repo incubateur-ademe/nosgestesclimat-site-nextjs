@@ -1299,3 +1299,6 @@ entries:
   Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org: The format of the email address entered is invalid. The expected format is nom@exemple.org
   Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org.lock: Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org
   Conditions d’utilisation des données « Base Empreinte »: Conditions of use of "Base Empreinte" data
+  Cookies utilisés par PostHog: Cookies used by PostHog
+  Voir la liste des cookies utilisés par PostHog: See the list of cookies used by PostHog
+  "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :": 'We also use PostHog to measure the audience for our site. The list of cookies used is available here :'
