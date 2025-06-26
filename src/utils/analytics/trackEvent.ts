@@ -1,6 +1,8 @@
 import posthog from 'posthog-js'
 
-const shouldUseDevTracker =
+const shouldNotTrack = process.env.NODE_ENV === 'development'
+
+const shouldLogTracking =
   process.env.NODE_ENV === 'development' ||
   process.env.NEXT_PUBLIC_MATOMO_ID !== '1'
 
@@ -12,9 +14,12 @@ declare global {
 }
 
 export const trackEvent = (args: (string | null)[]) => {
-  if (shouldUseDevTracker || !window?._paq) {
+  if (shouldLogTracking) {
     console.log(args)
     console.debug(args.join(' => '))
+  }
+
+  if (shouldNotTrack || !window?._paq) {
     return
   }
 
@@ -30,8 +35,11 @@ export const trackEvent = (args: (string | null)[]) => {
 }
 
 export const trackPageView = (url: string) => {
-  if (shouldUseDevTracker || !window?._paq) {
+  if (shouldLogTracking) {
     console.debug('trackPageView => ' + url)
+  }
+
+  if (shouldNotTrack || !window?._paq) {
     return
   }
 
