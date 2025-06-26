@@ -1,5 +1,4 @@
 import DailyGestures from '@/components/landing-pages/DailyGestures'
-import Trans from '@/components/translation/trans/TransServer'
 import { trackingActionClickPageBottom } from '@/constants/tracking/actions'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import {
@@ -24,30 +23,8 @@ export default async function DailyGestureCarbonFootprint({
 
   return (
     <DailyGestures
-      title={
-        <Trans locale={locale}>
-          Les actions pour réduire son empreinte carbone{' '}
-        </Trans>
-      }
-      description={
-        <>
-          <p className="mb-0">
-            <Trans locale={locale}>
-              Pour un mode de vie plus durable, certaines actions{' '}
-              <strong className="text-primary-600">
-                ont un impact plus fort que d’autres
-              </strong>
-              . En intégrant ces gestes dans votre quotidien, vous pouvez
-              fortement{' '}
-              <strong className="text-primary-600">
-                réduire vos émissions de Co2
-              </strong>
-              .
-            </Trans>{' '}
-            <Trans locale={locale}>Voici quelques idées :</Trans>
-          </p>
-        </>
-      }
+      title="Les actions pour réduire son empreinte carbone"
+      description="<p class='mb-0'>Pour un mode de vie plus durable, certaines actions <strong class='text-primary-600'>ont un impact plus fort que d'autres</strong>. En intégrant ces gestes dans votre quotidien, vous pouvez fortement <strong class='text-primary-600'>réduire vos émissions de Co2</strong>. Voici quelques idées :</p>"
       trackingEvents={{
         start: getLandingClickCTAStart(
           '/empreinte-carbone',
@@ -95,7 +72,7 @@ export default async function DailyGestureCarbonFootprint({
           ),
           gestureList: [
             t(
-              'Réaliser des travaux d’isolation de son logement (pour les propriétaires)'
+              "Réaliser des travaux d'isolation de son logement (pour les propriétaires)"
             ),
             t(
               'Privilégier les modes de chauffage peu émetteurs de CO2 (électricité, bois, biomasse)'

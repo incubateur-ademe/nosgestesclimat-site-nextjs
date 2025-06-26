@@ -1,17 +1,21 @@
 import Separator from '@/design-system/layout/Separator'
-import type { ReactNode } from 'react'
+import Image from 'next/image'
+import type { JSX } from 'react'
 
 export default function MotivationSection({
   title,
   description,
   motivationItems,
 }: {
-  title: ReactNode
-  description: ReactNode
+  title: JSX.Element | string
+  description: JSX.Element | string
   motivationItems?: {
-    title: ReactNode
-    icon: ReactNode
-    description: ReactNode
+    title: string
+    icon: {
+      url: string
+      alternativeText: string
+    }
+    description: string
   }[]
 }) {
   return (
@@ -21,9 +25,10 @@ export default function MotivationSection({
 
         <Separator className="mx-auto my-0" />
 
-        <div className="text-center text-sm md:mx-auto md:max-w-[850px] md:text-lg">
-          {description}
-        </div>
+        <div
+          className="text-center text-sm md:mx-auto md:max-w-[850px] md:text-lg"
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
 
         {motivationItems && (
           <ul className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
@@ -31,7 +36,16 @@ export default function MotivationSection({
               <li
                 key={`motivation-item-${index}`}
                 className="flex flex-col gap-2 text-center">
-                <div className="flex justify-center">{item.icon}</div>
+                <div className="flex justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center">
+                    <Image
+                      width={32}
+                      height={32}
+                      src={item.icon.url}
+                      alt={item.icon.alternativeText}
+                    />
+                  </div>
+                </div>
 
                 <h3 className="mb-0 text-sm font-bold md:text-lg">
                   {item.title}

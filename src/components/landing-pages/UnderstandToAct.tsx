@@ -3,7 +3,7 @@ import PostThumbnail from '@/design-system/cms/PostThumbnail'
 import ColorLine from '@/design-system/layout/ColorLine'
 import { getLandingClickPostThumbnail } from '@/helpers/tracking/landings'
 import type { LandingPagePostType } from '@/types/landing-page'
-import type { ReactNode } from 'react'
+import type { JSX } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/trans/TransServer'
 
@@ -14,8 +14,8 @@ export default function UnderstandToAct({
   pathname,
   locale,
 }: {
-  title?: ReactNode
-  description?: ReactNode
+  title?: JSX.Element | string
+  description?: JSX.Element | string
   posts: Omit<LandingPagePostType, 'trackingEvent'>[]
   pathname: string
   locale: string
@@ -32,9 +32,10 @@ export default function UnderstandToAct({
         </h2>
 
         {description && (
-          <section className="mb-10 text-center text-sm md:mx-auto md:max-w-[850px] md:text-lg">
-            {description}
-          </section>
+          <section
+            className="mb-10 text-center text-sm md:mx-auto md:max-w-[850px] md:text-lg"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         )}
 
         <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">

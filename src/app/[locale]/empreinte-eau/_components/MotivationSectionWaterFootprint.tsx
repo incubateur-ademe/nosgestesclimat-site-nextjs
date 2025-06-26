@@ -1,6 +1,4 @@
 import MotivationSection from '@/components/landing-pages/MotivationSection'
-import Trans from '@/components/translation/trans/TransServer'
-import Image from 'next/image'
 
 export default function MotivationSectionWaterFootprint({
   locale,
@@ -9,85 +7,35 @@ export default function MotivationSectionWaterFootprint({
 }) {
   return (
     <MotivationSection
-      title={
-        <Trans locale={locale}>
-          Économiser l’eau, un enjeu de développement durable
-        </Trans>
-      }
-      description={
-        <p className="mb-0">
-          <Trans locale={locale}>
-            Avec les pressions croissantes exercées par les activités humaines
-            et le changement climatique, la gestion durable de l’eau est devenue{' '}
-            <strong className="text-primary-600">un défi planétaire</strong>.
-            Que ce soit pour l’agriculture, l’industrie ou l’usage domestique,
-            cette ressource limitée fait face à des menaces importantes.{' '}
-            <strong className="text-primary-600">
-              Réduire notre consommation d’eau
-            </strong>{' '}
-            et adopter des pratiques responsables est donc{' '}
-            <strong className="text-primary-600">
-              nécessaire pour préserver les ressources
-            </strong>{' '}
-            et répondre aux défis environnementaux mondiaux.
-          </Trans>
-        </p>
-      }
+      title="Économiser l'eau, un enjeu de développement durable"
+      description="<p class='mb-0'>Avec les pressions croissantes exercées par les activités humaines et le changement climatique, la gestion durable de l'eau est devenue <strong class='text-primary-600'>un défi planétaire</strong>. Que ce soit pour l'agriculture, l'industrie ou l'usage domestique, cette ressource limitée fait face à des menaces importantes. <strong class='text-primary-600'>Réduire notre consommation d'eau</strong> et adopter des pratiques responsables est donc <strong class='text-primary-600'>nécessaire pour préserver les ressources</strong> et répondre aux défis environnementaux mondiaux.</p>"
       motivationItems={[
         {
-          title: (
-            <Trans locale={locale}>Ressources en eau douce limitées</Trans>
-          ),
-          icon: (
-            <Image
-              width={50}
-              height={50}
-              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_eau_b3359cd291.svg"
-              alt=""
-            />
-          ),
-          description: (
-            <Trans locale={locale}>
-              Bien que l’eau soit abondante sur Terre, seule 1 % de l’eau est
-              douce et accessible pour la consommation humaine.
-            </Trans>
-          ),
+          title: 'Ressources en eau douce limitées',
+          icon: {
+            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_eau_b3359cd291.svg',
+            alternativeText: '',
+          },
+          description:
+            "Bien que l'eau soit abondante sur Terre, seule 1 % de l'eau est douce et accessible pour la consommation humaine.",
         },
         {
-          title: <Trans locale={locale}>Pollution des eaux</Trans>,
-          icon: (
-            <Image
-              width={50}
-              height={50}
-              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_pollution_0e4dfad167.svg"
-              alt=""
-            />
-          ),
-          description: (
-            <Trans locale={locale}>
-              Les pratiques agricoles intensives et les rejets industriels
-              contaminent les ressources en eau, menacent les écosystèmes et
-              notre santé.
-            </Trans>
-          ),
+          title: 'Pollution des eaux',
+          icon: {
+            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_pollution_0e4dfad167.svg',
+            alternativeText: '',
+          },
+          description:
+            'Les pratiques agricoles intensives et les rejets industriels contaminent les ressources en eau, menacent les écosystèmes et notre santé.',
         },
         {
-          title: <Trans locale={locale}>Accès à l'eau</Trans>,
-          icon: (
-            <Image
-              width={50}
-              height={50}
-              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_robinet_135c8f1f00.svg"
-              alt=""
-            />
-          ),
-          description: (
-            <Trans locale={locale}>
-              Les activités humaines perturbent le cycle de l’eau et
-              compromettent l’accès à l’eau potable, entraînant conflits, perte
-              de biodiversité et déplacements de populations.
-            </Trans>
-          ),
+          title: "Accès à l'eau",
+          icon: {
+            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_robinet_135c8f1f00.svg',
+            alternativeText: '',
+          },
+          description:
+            "Les activités humaines perturbent le cycle de l'eau et compromettent l'accès à l'eau potable, entraînant conflits, perte de biodiversité et déplacements de populations.",
         },
       ]}
     />
