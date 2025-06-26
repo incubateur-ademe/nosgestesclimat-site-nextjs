@@ -39,6 +39,7 @@ type Props = {
   setActionWithFormOpen: (dottedName: DottedName) => void
   isFocused: boolean
   isIrrelevant: boolean
+  handleUpdatePersistedActions: () => void
 }
 
 export default function ActionCard({
@@ -47,6 +48,7 @@ export default function ActionCard({
   rule,
   setActionWithFormOpen,
   isIrrelevant,
+  handleUpdatePersistedActions,
 }: Props) {
   const { t } = useClientTranslation()
 
@@ -117,6 +119,18 @@ export default function ActionCard({
     isCustomAction,
   ])
 
+  const handleRejectAction = () => {
+    if (isDisabled) return
+
+    rejectAction(dottedName)
+
+    handleUpdatePersistedActions()
+
+    if (!isSelected) {
+      trackEvent(actionsClickNo(dottedName))
+    }
+  }
+
   if (!currentSimulation || !rules) {
     return null
   }
@@ -186,19 +200,7 @@ export default function ActionCard({
           {!Object.keys(actionChoices || {}).some((key) => {
             return key === dottedName && actionChoices?.[key]
           }) && (
-            <button
-              title={t("Rejeter l'action")}
-              onClick={(e) => {
-                if (isDisabled) return
-
-                rejectAction(dottedName)
-
-                if (!isSelected) {
-                  trackEvent(actionsClickNo(dottedName))
-                }
-                e.stopPropagation()
-                e.preventDefault()
-              }}>
+            <button title={t("Rejeter l'action")} onClick={handleRejectAction}>
               <CloseIcon width="40" height="40" className="fill-gray-600" />
             </button>
           )}

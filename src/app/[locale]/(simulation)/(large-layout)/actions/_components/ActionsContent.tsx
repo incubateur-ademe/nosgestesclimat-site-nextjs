@@ -95,7 +95,7 @@ export default function ActionsContent() {
           categories={categories.map((category) => ({
             title: capitalizeString(category) ?? '',
             dottedName: category,
-            count: actionsFilteredCategorically.filter((action: Action) =>
+            count: actions.filter((action: Action) =>
               action.dottedName.startsWith(category)
             ).length,
           }))}
@@ -114,6 +114,7 @@ export default function ActionsContent() {
         }
         rules={rules}
         radical={radical}
+        key={`update-key-${category}`}
       />
 
       <AllerPlusLoin />
