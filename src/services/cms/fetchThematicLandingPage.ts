@@ -39,6 +39,8 @@ export async function fetchThematicLandingPage({
       'populate[9]': 'thirdBlockList.icon',
       'populate[10]': 'seventhBlockList.icon',
       'populate[11]': 'carouselItems.icon',
+      'populate[12]': 'articlesBlockArticles.category',
+      'populate[13]': 'heroImage',
       'filters[slug][$eq]': landingPageSlug,
       sort: 'publishedAt:desc',
     })

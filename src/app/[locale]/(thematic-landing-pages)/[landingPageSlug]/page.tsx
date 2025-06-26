@@ -41,7 +41,7 @@ export default async function ThematicLandingPage({
   if (!thematicLandingPage) {
     redirect('/404')
   }
-  console.log(thematicLandingPage)
+
   const {
     heroTitle,
     heroImage,
@@ -65,7 +65,7 @@ export default async function ThematicLandingPage({
     seventhBlockList,
     faq,
   } = thematicLandingPage
-
+  console.log(heroImage)
   return (
     <>
       <JSONLD
@@ -125,8 +125,8 @@ export default async function ThematicLandingPage({
               <Image
                 width={280}
                 height={280}
-                src={heroImage.url ?? ''}
-                alt={heroImage.alternativeText}
+                src={heroImage?.url ?? undefined}
+                alt={heroImage?.alternativeText ?? ''}
               />
             </div>
           </div>
@@ -136,55 +136,40 @@ export default async function ThematicLandingPage({
             <Image
               width={400}
               height={400}
-              src={heroImage.url ?? ''}
-              alt={heroImage.alternativeText}
+              src={heroImage?.url ?? undefined}
+              alt={heroImage?.alternativeText ?? ''}
             />
           </div>
         }
         heroPartners={<Partners locale={locale} />}>
         <WhatItIs
           title={secondBlockTitle}
-          description={
-            <div dangerouslySetInnerHTML={{ __html: htmlSecondBlockText }} />
-          }
-          illustration={
-            <Image
-              width={450}
-              height={450}
-              src={secondBlockImage.url}
-              className="py-6 md:py-10"
-              alt={secondBlockImage.alternativeText}
-            />
-          }
+          description={htmlSecondBlockText}
+          illustration={{
+            url: secondBlockImage?.url ?? '',
+            alternativeText: secondBlockImage?.alternativeText ?? '',
+            className: 'py-6 md:py-10',
+          }}
         />
 
         <WhatDoWeMeasure
           title={thirdBlockTitle}
-          description={
-            <div dangerouslySetInnerHTML={{ __html: htmlThirdBlockText }} />
-          }
-          listItems={thirdBlockList.map(({ title, icon }) => ({
+          description={htmlThirdBlockText}
+          listItems={thirdBlockList?.map(({ title, icon }) => ({
             title,
-            icon: (
-              <div className="flex h-12 w-12 items-center justify-center">
-                <Image
-                  width={48}
-                  height={48}
-                  src={icon.url}
-                  alt={icon.alternativeText}
-                />
-              </div>
-            ),
+            icon: {
+              url: icon?.url ?? '',
+              alternativeText: icon?.alternativeText ?? '',
+            },
           }))}
         />
 
         <DidYouKnowSlider
-          slides={carouselItems.map(({ text, icon }) => ({
+          slides={carouselItems?.map(({ text, icon }) => ({
             content: text,
-            illustration: icon.url,
+            illustration: icon?.url ?? undefined,
           }))}
         />
-
         <DailyGestures
           trackingEvents={{
             start: getLandingClickCTAStart(
@@ -201,14 +186,12 @@ export default async function ThematicLandingPage({
             ),
           }}
           title={actionsBlockTitle}
-          description={
-            <div dangerouslySetInnerHTML={{ __html: htmlActionsBlockText }} />
-          }
+          description={htmlActionsBlockText}
           gestures={{
             default: {
-              imageAlt: actionsBlockImage.alternativeText,
-              imageSrc: actionsBlockImage.url,
-              gestureList: actionsBlockList.map(({ title }) => title),
+              imageAlt: actionsBlockImage?.alternativeText ?? '',
+              imageSrc: actionsBlockImage?.url ?? undefined,
+              gestureList: actionsBlockList?.map(({ title }) => title),
             },
           }}
         />
@@ -217,10 +200,8 @@ export default async function ThematicLandingPage({
           locale={locale}
           pathname={`/${landingPageSlug}`}
           title={articlesBlockTitle}
-          description={
-            <div dangerouslySetInnerHTML={{ __html: htmlArticlesBlockText }} />
-          }
-          posts={articlesBlockArticles.map(
+          description={htmlArticlesBlockText}
+          posts={articlesBlockArticles?.map(
             ({ category, title, slug, image }) => ({
               category: category?.title ?? '',
               title,
@@ -236,26 +217,18 @@ export default async function ThematicLandingPage({
 
         <MotivationSection
           title={seventhBlockTitle}
-          description={
-            <div dangerouslySetInnerHTML={{ __html: htmlSeventhBlockText }} />
-          }
-          motivationItems={seventhBlockList.map(({ title, icon, text }) => ({
+          description={htmlSeventhBlockText}
+          motivationItems={seventhBlockList?.map(({ title, icon, text }) => ({
             title,
-            icon: (
-              <div className="flex h-12 w-12 items-center justify-center">
-                <Image
-                  width={32}
-                  height={32}
-                  src={icon.url}
-                  alt={icon.alternativeText}
-                />
-              </div>
-            ),
-            description: text,
+            icon: {
+              url: icon?.url ?? '',
+              alternativeText: icon?.alternativeText ?? '',
+            },
+            description: text ?? '',
           }))}
         />
 
-        <FAQ questions={faq.questions} />
+        <FAQ questions={faq?.questions ?? []} />
       </LandingPage>
 
       <Footer />
