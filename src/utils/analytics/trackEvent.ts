@@ -34,6 +34,24 @@ export const trackEvent = (args: (string | null)[]) => {
   window?._paq?.push([...args])
 }
 
+export const trackPosthogEvent = (args: {
+  eventName: string
+  properties: {
+    [key: string]: string | number | boolean | null | undefined
+  }
+}) => {
+  if (shouldLogTracking) {
+    console.log(args)
+    console.debug('posthog', `"${args.eventName}" =>`, args.properties)
+  }
+
+  if (shouldNotTrack || !window?._paq) {
+    return
+  }
+
+  posthog.capture(args.eventName, { ...args.properties })
+}
+
 export const trackPageView = (url: string) => {
   if (shouldLogTracking) {
     console.debug('trackPageView => ' + url)

@@ -4,6 +4,7 @@ import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
+import { captureClickFormNav } from '@/constants/tracking/posthogTrackers'
 import {
   questionClickPass,
   questionClickPrevious,
@@ -15,7 +16,7 @@ import { useIframe } from '@/hooks/useIframe'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import { useCurrentSimulation, useFormState, useRule } from '@/publicodes-state'
 import getValueIsOverFloorOrCeiling from '@/publicodes-state/helpers/getValueIsOverFloorOrCeiling'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { MouseEvent } from 'react'
 import { useCallback, useMemo } from 'react'
@@ -70,9 +71,29 @@ export default function Navigation({
 
       if (isMissing) {
         trackEvent(questionClickPass({ question, timeSpentOnQuestion }))
+        trackPosthogEvent(
+          captureClickFormNav({
+            actionType: 'passer',
+            question,
+            answer: value,
+            timeSpentOnQuestion,
+          })
+        )
       } else {
         trackEvent(
-          questionClickSuivant({ question, answer: value, timeSpentOnQuestion })
+          questionClickSuivant({
+            question,
+            answer: value,
+            timeSpentOnQuestion,
+          })
+        )
+        trackPosthogEvent(
+          captureClickFormNav({
+            actionType: 'suivant',
+            question,
+            answer: value,
+            timeSpentOnQuestion,
+          })
         )
       }
 
@@ -99,6 +120,31 @@ export default function Navigation({
       updateCurrentSimulation,
       startTime,
     ]
+  )
+
+  const handleGoToPrevQuestion = useCallback(
+    (e: KeyboardEvent | MouseEvent) => {
+      e.preventDefault()
+
+      const endTime = Date.now()
+      const timeSpentOnQuestion = endTime - startTime
+      trackEvent(questionClickPrevious({ question }))
+      trackPosthogEvent(
+        captureClickFormNav({
+          actionType: 'précédent',
+          question,
+          answer: value,
+          timeSpentOnQuestion,
+        })
+      )
+
+      if (!noPrevQuestion) {
+        gotoPrevQuestion()
+      }
+
+      handleMoveFocus()
+    },
+    [startTime, question, value, noPrevQuestion, gotoPrevQuestion]
   )
 
   useMagicKey({
@@ -142,15 +188,7 @@ export default function Navigation({
         )}>
         <Button
           size="md"
-          onClick={() => {
-            trackEvent(questionClickPrevious({ question }))
-
-            if (!noPrevQuestion) {
-              gotoPrevQuestion()
-            }
-
-            handleMoveFocus()
-          }}
+          onClick={handleGoToPrevQuestion}
           disabled={noPrevQuestion}
           color="text"
           className={twMerge('px-3')}>
