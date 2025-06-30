@@ -1,7 +1,6 @@
 import Header from '@/components/layout/Header'
 import { PARTNER_KEY } from '@/constants/partners'
 import Main from '@/design-system/layout/Main'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { verifyPartner } from '@/services/partners/verifyPartner'
@@ -22,13 +21,8 @@ export const generateMetadata = getCommonMetadata({
 })
 
 export default async function PartenairePage({
-  params,
   searchParams,
 }: DefaultPageProps<{ searchParams: SearchParams }>) {
-  const { locale } = await params
-
-  const { t } = await getServerTranslation({ locale })
-
   const searchParamsObject = (await searchParams) ?? { partner: '' }
 
   const partner = (searchParamsObject[PARTNER_KEY] as string) ?? ''

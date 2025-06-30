@@ -32,7 +32,7 @@ const searchWeights = [
   },
 ]
 
-export default function SearchBar({ rules }: { rules: NGCRules }) {
+export default function SearchBar({ rules }: { rules: Partial<NGCRules> }) {
   const [input, setInput] = useState('')
   const [results, setResults] = useState<FuseResult<SearchItem>[]>([])
 

@@ -16,7 +16,7 @@ import { utils } from 'publicodes'
 type Props = {
   dottedName: DottedName
   summary: string
-  rule: NGCRule
+  rule?: NGCRule
 }
 
 export default function DocumentationLandingCard({

@@ -11,7 +11,7 @@ import { useRules } from './hooks/useRules'
 import { useSetComputedResults } from './hooks/useSetComputedResults'
 
 type Props = {
-  rules?: NGCRules
+  rules?: Partial<NGCRules>
   root?: DottedName
   shouldAlwaysDisplayChildren?: boolean
 }
