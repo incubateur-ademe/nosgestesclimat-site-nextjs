@@ -1,6 +1,7 @@
 'use client'
 
 import ErrorBoundary from '@/components/error/ErrorBoundary'
+import { GoogleTagIframe } from '@/components/googleTagManager/GoogleTagIframe'
 import { ABTestingProvider } from '@/components/providers/ABTestingProvider'
 import { STORAGE_KEY } from '@/constants/storage'
 import { PartnerProvider } from '@/contexts/partner/PartnerContext'
@@ -29,6 +30,8 @@ export default function MainLayoutProviders({ children }: PropsWithChildren) {
                       <body
                         className={`${marianne.className} text-default bg-white transition-colors duration-700`}
                         ref={containerRef}>
+                        <GoogleTagIframe />
+
                         {children}
                       </body>
                     </MainHooks>

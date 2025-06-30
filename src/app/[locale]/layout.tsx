@@ -1,3 +1,4 @@
+import CookieConsentBannerAndManagement from '@/components/cookies/CookieConsentBannerAndManagement'
 import ErrorContent from '@/components/error/ErrorContent'
 import SkipToMainContentLink from '@/design-system/accessibility/SkipToMainContentLink'
 import Banner from '@/design-system/cms/Banner'
@@ -11,6 +12,7 @@ import localFont from 'next/font/local'
 import Script from 'next/script'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
+
 export const marianne = localFont({
   src: [
     {
@@ -123,6 +125,8 @@ export default async function RootLayout({
 
         <MainLayoutProviders>
           <SkipToMainContentLink />
+
+          <CookieConsentBannerAndManagement />
 
           <Banner locale={locale as Locale} />
 
