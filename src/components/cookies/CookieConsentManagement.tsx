@@ -4,6 +4,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
+import { CookieConsentChoices } from '@/types/cookies'
 import { useForm } from 'react-hook-form'
 
 type CookieFormData = {
@@ -43,19 +44,24 @@ export default function CookieConsentManagement({
   closeSettings: () => void
   refuseAll: () => void
   acceptAll: () => void
-  confirmChoices: (data: CookieFormData) => void
+  confirmChoices: (data: CookieConsentChoices) => void
 }) {
   const { register, handleSubmit, watch, setValue } = useForm<CookieFormData>({
     defaultValues: {
-      googleAds: 'refuse',
+      googleAds: 'accept',
     },
   })
 
   const googleAdsValue = watch('googleAds')
 
   const onSubmit = (data: CookieFormData) => {
-    console.log(data)
-    confirmChoices(data)
+    const choices: CookieConsentChoices = Object.fromEntries(
+      Object.entries(data).map(([key, value]) => [
+        key,
+        value === 'accept' ? true : false,
+      ])
+    ) as CookieConsentChoices
+    confirmChoices(choices)
   }
 
   return (

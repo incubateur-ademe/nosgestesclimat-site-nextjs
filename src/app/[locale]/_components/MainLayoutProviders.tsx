@@ -1,5 +1,6 @@
 'use client'
 
+import { CookieConsentProvider } from '@/components/cookies/CookieConsentProvider'
 import ErrorBoundary from '@/components/error/ErrorBoundary'
 import { GoogleTagIframe } from '@/components/googleTagManager/GoogleTagIframe'
 import { ABTestingProvider } from '@/components/providers/ABTestingProvider'
@@ -18,29 +19,31 @@ export default function MainLayoutProviders({ children }: PropsWithChildren) {
   return (
     <ErrorBoundary>
       <ABTestingProvider>
-        <QueryClientProviderWrapper>
-          <UserProvider
-            storageKey={STORAGE_KEY}
-            migrationInstructions={migrationInstructions}>
-            <PartnerProvider>
-              <IframeOptionsProvider>
-                {(containerRef: React.RefObject<HTMLBodyElement | null>) => (
-                  <PreventNavigationProvider>
-                    <MainHooks>
-                      <body
-                        className={`${marianne.className} text-default bg-white transition-colors duration-700`}
-                        ref={containerRef}>
-                        <GoogleTagIframe />
+        <CookieConsentProvider>
+          <QueryClientProviderWrapper>
+            <UserProvider
+              storageKey={STORAGE_KEY}
+              migrationInstructions={migrationInstructions}>
+              <PartnerProvider>
+                <IframeOptionsProvider>
+                  {(containerRef: React.RefObject<HTMLBodyElement | null>) => (
+                    <PreventNavigationProvider>
+                      <MainHooks>
+                        <body
+                          className={`${marianne.className} text-default bg-white transition-colors duration-700`}
+                          ref={containerRef}>
+                          <GoogleTagIframe />
 
-                        {children}
-                      </body>
-                    </MainHooks>
-                  </PreventNavigationProvider>
-                )}
-              </IframeOptionsProvider>
-            </PartnerProvider>
-          </UserProvider>
-        </QueryClientProviderWrapper>
+                          {children}
+                        </body>
+                      </MainHooks>
+                    </PreventNavigationProvider>
+                  )}
+                </IframeOptionsProvider>
+              </PartnerProvider>
+            </UserProvider>
+          </QueryClientProviderWrapper>
+        </CookieConsentProvider>
       </ABTestingProvider>
     </ErrorBoundary>
   )

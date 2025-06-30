@@ -1,34 +1,45 @@
 'use client'
 
+import {
+  COOKIE_CONSENT_KEY,
+  COOKIE_CUSTOM_CHOICE_KEY,
+} from '@/constants/state/cookies'
+import { CookieChoice, type CookieConsentChoices } from '@/types/cookies'
+import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import { useEffect, useState } from 'react'
 import CookieConsentBanner from './CookieConsentBanner'
 import CookieConsentManagement from './CookieConsentManagement'
+import { useCookieConsent } from './CookieConsentProvider'
 
 export default function CookieConsentBannerAndManagement() {
   const [isVisible, setIsVisible] = useState(false)
   const [isBoardOpen, setIsBoardOpen] = useState(false)
 
+  const { triggerConsentDetection } = useCookieConsent()
+
   useEffect(() => {
-    // Vérifier si l'utilisateur a déjà donné son consentement
-    const hasConsent = localStorage.getItem('cookie-consent')
+    const hasConsent = safeLocalStorage.getItem(COOKIE_CONSENT_KEY)
+
     if (!hasConsent) {
       setIsVisible(true)
     }
   }, [])
 
+  const setConsent = (consent: CookieChoice) =>
+    safeLocalStorage.setItem(COOKIE_CONSENT_KEY, consent)
+
   const acceptAll = () => {
-    localStorage.setItem('cookie-consent', 'all')
+    setConsent(CookieChoice.all)
     setIsVisible(false)
+    setIsBoardOpen(false)
+
+    triggerConsentDetection()
   }
 
   const refuseAll = () => {
-    localStorage.setItem('cookie-consent', 'refuse')
+    setConsent(CookieChoice.refuse)
     setIsVisible(false)
-  }
-
-  const acceptEssential = () => {
-    localStorage.setItem('cookie-consent', 'essential')
-    setIsVisible(false)
+    setIsBoardOpen(false)
   }
 
   const openSettings = () => {
@@ -40,9 +51,17 @@ export default function CookieConsentBannerAndManagement() {
     setIsVisible(true)
   }
 
-  const confirmChoices = () => {
+  const confirmChoices = (choices: CookieConsentChoices) => {
+    setConsent(CookieChoice.custom)
+    safeLocalStorage.setItem(
+      COOKIE_CUSTOM_CHOICE_KEY,
+      JSON.stringify({ ...choices })
+    )
+
     setIsBoardOpen(false)
     setIsVisible(false)
+
+    triggerConsentDetection()
   }
 
   return (
@@ -56,7 +75,6 @@ export default function CookieConsentBannerAndManagement() {
         acceptAll={acceptAll}
       />
 
-      {/* Modal de gestion des cookies */}
       <CookieConsentManagement
         isBoardOpen={isBoardOpen}
         closeSettings={closeSettings}

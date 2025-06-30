@@ -1,5 +1,7 @@
 import CookieConsentBannerAndManagement from '@/components/cookies/CookieConsentBannerAndManagement'
 import ErrorContent from '@/components/error/ErrorContent'
+import { GoogleTagIframe } from '@/components/googleTagManager/GoogleTagIframe'
+import { GoogleTagScript } from '@/components/googleTagManager/GoogleTagScript'
 import SkipToMainContentLink from '@/design-system/accessibility/SkipToMainContentLink'
 import Banner from '@/design-system/cms/Banner'
 import type { Locale } from '@/i18nConfig'
@@ -121,6 +123,8 @@ export default async function RootLayout({
             )
           }
           <Script src="https://tally.so/widgets/embed.js"></Script>
+
+          <GoogleTagScript />
         </head>
 
         <MainLayoutProviders>
@@ -131,6 +135,8 @@ export default async function RootLayout({
           <Banner locale={locale as Locale} />
 
           {children}
+
+          <GoogleTagIframe />
         </MainLayoutProviders>
       </html>
     )

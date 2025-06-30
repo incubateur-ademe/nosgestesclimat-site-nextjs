@@ -1,6 +1,17 @@
 'use client'
 
+import { useCookieConsent } from '../cookies/CookieConsentProvider'
+
 export function GoogleTagIframe() {
+  const { cookieConsent, cookieCustomChoice } = useCookieConsent()
+
+  const hasConsent =
+    cookieConsent === 'all' || (cookieCustomChoice as any)?.['googleAds']
+
+  if (!hasConsent) {
+    return null
+  }
+
   return (
     <noscript>
       <iframe
