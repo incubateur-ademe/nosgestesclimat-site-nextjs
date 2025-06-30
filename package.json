@@ -133,7 +133,7 @@
     "cypress-axe": "^1.6.0",
     "cypress-plugin-tab": "^1.0.5",
     "cypress-recurse": "^1.35.2",
-    "deepl-node": "^1.16.0",
+    "deepl-node": "^1.19.0",
     "dotenv": "^16.4.7",
     "eslint": "^8.52.0",
     "eslint-config-next": "15.3.0",
