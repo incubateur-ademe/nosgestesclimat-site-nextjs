@@ -2,6 +2,7 @@ import { IframeOptionsProvider } from '@/app/[locale]/_components/mainLayoutProv
 import MainHooks from '@/app/[locale]/_components/mainLayoutProviders/MainHooks'
 import { PreventNavigationProvider } from '@/app/[locale]/_components/mainLayoutProviders/PreventNavigationProvider'
 import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
+import { CookieConsentProvider } from '@/components/cookies/CookieConsentProvider'
 import ErrorBoundary from '@/components/error/ErrorBoundary'
 import EngineProviders from '@/components/providers/EngineProviders'
 import PRNumberHook from '@/components/providers/simulationProviders/PRNumberHook'
@@ -92,6 +93,7 @@ type ProviderConfig = {
   engine?: boolean
   prNumber?: boolean
   simulationSync?: boolean
+  cookieConsent?: boolean
 }
 
 const TestWrapper = ({
@@ -149,6 +151,10 @@ const TestWrapper = ({
     wrapped = <QueryClientProviderWrapper>{wrapped}</QueryClientProviderWrapper>
   }
 
+  if (providers.cookieConsent) {
+    wrapped = <CookieConsentProvider>{wrapped}</CookieConsentProvider>
+  }
+
   if (providers.errorBoundary) {
     wrapped = <ErrorBoundary>{wrapped}</ErrorBoundary>
   }
@@ -170,6 +176,7 @@ export const renderWithWrapper = (
     providers = {
       queryClient: true,
       errorBoundary: true,
+      cookieConsent: true,
     },
     ...options
   }: RenderOptions & {
