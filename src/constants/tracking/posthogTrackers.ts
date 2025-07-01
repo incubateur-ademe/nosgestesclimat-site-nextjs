@@ -82,3 +82,21 @@ export const captureSimulationCompleted = ({
     },
   }
 }
+
+export const captureIframeVisit = (url: string) => {
+  return {
+    eventName: 'iframe visit',
+    properties: {
+      referrerUrl: url,
+    },
+  }
+}
+
+export const captureIframeInteraction = (url: string) => {
+  return {
+    eventName: 'iframe visit',
+    properties: {
+      referrerUrl: url,
+    },
+  }
+}
