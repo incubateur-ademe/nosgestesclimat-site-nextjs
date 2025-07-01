@@ -1244,3 +1244,21 @@ entries:
   Chargement en cours...: Chargement en cours...
   Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org: Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org
   Conditions d’utilisation des données « Base Empreinte »: Conditions d’utilisation des données « Base Empreinte »
+  cookies.banner.acceptAll: Tout accepter
+  cookies.banner.customize: Personnaliser
+  cookies.banner.description: Bienvenue ! Nous utilisons des cookies pour améliorer votre expérience et les services disponibles sur ce site. Pour en savoir plus, visitez la page <2><0>Données personnelles et cookies</0></2>.<4> </4><5>Vous pouvez, à tout moment, avoir le contrôle sur les cookies que vous souhaitez activer.</5>
+  cookies.banner.privacyLink: Données personnelles et cookies
+  cookies.banner.refuseAll: Tout refuser
+  cookies.banner.title: À propos des cookies sur Nos Gestes Climat
+  cookies.management.accept: Accepter
+  cookies.management.acceptAll: Tout accepter
+  cookies.management.confirm: Confirmer mes choix
+  cookies.management.googleAds.description: Nous utilisons des cookies pour calibrer et nos publicités en ligne.
+  cookies.management.googleAds.title: Google Ads
+  cookies.management.preferences: 'Préférences pour tous les services. '
+  cookies.management.privacyLink: Données personnelles et cookies
+  cookies.management.refuse: Refuser
+  cookies.management.refuseAll: Tout refuser
+  cookies.management.required.description: Ce site utilise des cookies nécessaires à son bon fonctionnement qui ne peuvent pas être désactivés.
+  cookies.management.required.title: Cookies obligatoires
+  cookies.management.title: Panneau de gestion des cookies

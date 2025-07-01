@@ -1294,3 +1294,39 @@ entries:
   Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org: El formato de la dirección de correo electrónico introducida no es válido. El formato esperado es nom@exemple.org
   Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org.lock: Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org
   Conditions d’utilisation des données « Base Empreinte »: Condiciones de uso de los datos de "Base Empreinte
+  cookies.management.googleAds.title: Anuncios Google
+  cookies.management.googleAds.title.lock: Google Ads
+  cookies.management.acceptAll: Aceptar todo
+  cookies.management.acceptAll.lock: Tout accepter
+  cookies.banner.acceptAll: Aceptar todo
+  cookies.banner.acceptAll.lock: Tout accepter
+  cookies.management.accept: Acepte
+  cookies.management.accept.lock: Accepter
+  cookies.management.confirm: Confirmar mis elecciones
+  cookies.management.confirm.lock: Confirmer mes choix
+  cookies.management.refuseAll: Rechazar todo
+  cookies.management.refuseAll.lock: Tout refuser
+  cookies.management.required.title: Cookies obligatorias
+  cookies.management.required.title.lock: Cookies obligatoires
+  cookies.banner.refuseAll: Rechazar todo
+  cookies.banner.refuseAll.lock: Tout refuser
+  cookies.management.title: Panel de gestión de cookies
+  cookies.management.title.lock: Panneau de gestion des cookies
+  cookies.banner.customize: Personalice
+  cookies.banner.customize.lock: Personnaliser
+  cookies.management.refuse: Desechos
+  cookies.management.refuse.lock: Refuser
+  cookies.banner.privacyLink: Datos personales y cookies
+  cookies.banner.privacyLink.lock: Données personnelles et cookies
+  cookies.management.preferences: 'Preferencias para todos los servicios. '
+  cookies.management.preferences.lock: 'Préférences pour tous les services. '
+  cookies.banner.description: Bienvenido a nuestro sitio web Utilizamos cookies para mejorar su experiencia y los servicios disponibles en este sitio. Para obtener más información, visite la página <2><0>Datos personales y cookies</0></2>.<4> </4><5>Usted puede, en cualquier momento, controlar qué cookies desea activar.</5>
+  cookies.banner.description.lock: Bienvenue ! Nous utilisons des cookies pour améliorer votre expérience et les services disponibles sur ce site. Pour en savoir plus, visitez la page <2><0>Données personnelles et cookies</0></2>.<4> </4><5>Vous pouvez, à tout moment, avoir le contrôle sur les cookies que vous souhaitez activer.</5>
+  cookies.management.privacyLink: Datos personales y cookies
+  cookies.management.privacyLink.lock: Données personnelles et cookies
+  cookies.banner.title: Acerca de las cookies en Nos Gestes Climat
+  cookies.banner.title.lock: À propos des cookies sur Nos Gestes Climat
+  cookies.management.required.description: Este sitio utiliza cookies que son necesarias para su correcto funcionamiento y que no pueden desactivarse.
+  cookies.management.required.description.lock: Ce site utilise des cookies nécessaires à son bon fonctionnement qui ne peuvent pas être désactivés.
+  cookies.management.googleAds.description: Utilizamos cookies para calibrar nuestra publicidad en línea.
+  cookies.management.googleAds.description.lock: Nous utilisons des cookies pour calibrer et nos publicités en ligne.

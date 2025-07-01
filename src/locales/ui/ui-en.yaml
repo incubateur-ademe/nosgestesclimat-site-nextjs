@@ -1299,3 +1299,39 @@ entries:
   Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org: The format of the email address entered is invalid. The expected format is nom@exemple.org
   Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org.lock: Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org
   Conditions d’utilisation des données « Base Empreinte »: Conditions of use of "Base Empreinte" data
+  cookies.banner.refuseAll: Refuse everything
+  cookies.banner.refuseAll.lock: Tout refuser
+  cookies.banner.customize: Customise
+  cookies.banner.customize.lock: Personnaliser
+  cookies.banner.privacyLink: Personal data and cookies
+  cookies.banner.privacyLink.lock: Données personnelles et cookies
+  cookies.management.googleAds.title: Google Ads
+  cookies.management.googleAds.title.lock: Google Ads
+  cookies.management.googleAds.description: We use cookies to calibrate our online advertising.
+  cookies.management.googleAds.description.lock: Nous utilisons des cookies pour calibrer et nos publicités en ligne.
+  cookies.management.refuseAll: Refuse everything
+  cookies.management.refuseAll.lock: Tout refuser
+  cookies.management.privacyLink: Personal data and cookies
+  cookies.management.privacyLink.lock: Données personnelles et cookies
+  cookies.management.confirm: Confirm my choices
+  cookies.management.confirm.lock: Confirmer mes choix
+  cookies.management.preferences: 'Preferences for all services. '
+  cookies.management.preferences.lock: 'Préférences pour tous les services. '
+  cookies.banner.description: Welcome to our website! We use cookies to improve your experience and the services available on this site. To find out more, visit the <2><0>Personal data and cookies</0></2>.<4> </4><5>You can, at any time, control which cookies you wish to activate.</5>
+  cookies.banner.description.lock: Bienvenue ! Nous utilisons des cookies pour améliorer votre expérience et les services disponibles sur ce site. Pour en savoir plus, visitez la page <2><0>Données personnelles et cookies</0></2>.<4> </4><5>Vous pouvez, à tout moment, avoir le contrôle sur les cookies que vous souhaitez activer.</5>
+  cookies.banner.title: About cookies on Nos Gestes Climat
+  cookies.banner.title.lock: À propos des cookies sur Nos Gestes Climat
+  cookies.management.acceptAll: Accept all
+  cookies.management.acceptAll.lock: Tout accepter
+  cookies.management.required.title: Mandatory cookies
+  cookies.management.required.title.lock: Cookies obligatoires
+  cookies.banner.acceptAll: Accept all
+  cookies.banner.acceptAll.lock: Tout accepter
+  cookies.management.refuse: Refuse
+  cookies.management.refuse.lock: Refuser
+  cookies.management.accept: Accept
+  cookies.management.accept.lock: Accepter
+  cookies.management.required.description: This site uses cookies which are necessary for its proper operation and which cannot be deactivated.
+  cookies.management.required.description.lock: Ce site utilise des cookies nécessaires à son bon fonctionnement qui ne peuvent pas être désactivés.
+  cookies.management.title: Cookie management panel
+  cookies.management.title.lock: Panneau de gestion des cookies
