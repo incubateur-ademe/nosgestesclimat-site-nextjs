@@ -29,7 +29,9 @@ const Radio = ({ id, name, checked, disabled, label, ...props }: any) => (
       <span
         className={`absolute top-1/2 left-1/2 block h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full ${checked ? 'bg-blue-800' : ''}`}></span>
     </span>
-    <span className="text-base font-medium text-gray-900">{label}</span>
+    <span className="text-sm font-medium text-gray-900 md:text-base">
+      {label}
+    </span>
   </label>
 )
 
@@ -70,8 +72,8 @@ export default function CookieConsentManagement({
       closeModal={closeSettings}
       hasAbortCross={true}
       hasAbortButton={false}
-      className="!max-w-2xl overflow-hidden !rounded-2xl !p-0 !shadow-2xl">
-      <div className="mx-auto flex w-full max-w-2xl flex-col rounded-2xl bg-white p-0 shadow-2xl">
+      className="!w-3xl max-w-screen overflow-hidden !rounded-2xl !p-0 !shadow-2xl">
+      <div className="mx-auto flex w-full max-w-3xl flex-col rounded-2xl bg-white p-0 shadow-2xl">
         <div className="flex items-center justify-between px-8 pt-8 pb-2">
           <h1 className="text-xl font-bold text-gray-900">
             <Trans i18nKey="cookies.management.title">
@@ -81,8 +83,8 @@ export default function CookieConsentManagement({
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="max-h-[50vh] flex-1 overflow-y-auto px-8 pb-8">
-            <div className="flex flex-row">
-              <div className="mb-6">
+            <div className="mb-6 flex flex-col gap-4 md:flex-row">
+              <div>
                 <span className="text-base font-medium text-gray-900">
                   <Trans i18nKey="cookies.management.preferences">
                     Préférences pour tous les services.{' '}
@@ -94,7 +96,7 @@ export default function CookieConsentManagement({
                   </Trans>
                 </InlineLink>
               </div>
-              <div className="mb-8 flex gap-3">
+              <div className="mb-8 flex flex-wrap gap-3 md:flex-nowrap">
                 <Button
                   type="button"
                   color="secondary"
@@ -122,9 +124,9 @@ export default function CookieConsentManagement({
               </div>
             </div>
 
-            <fieldset className="border-t border-gray-200 pt-8 pb-6">
-              <legend className="mb-2 flex w-full items-center justify-between">
-                <span className="text-lg font-bold text-gray-900">
+            <fieldset className="mb-6 border-t border-gray-200">
+              <legend className="mb-2 flex w-full flex-col flex-wrap justify-between gap-2 sm:flex-row sm:items-center">
+                <span className="text-base font-bold whitespace-nowrap text-gray-900 md:text-lg">
                   <Trans i18nKey="cookies.management.required.title">
                     Cookies obligatoires
                   </Trans>
@@ -160,9 +162,9 @@ export default function CookieConsentManagement({
               </p>
             </fieldset>
 
-            <fieldset className="border-t border-gray-200 pt-8 pb-6">
-              <legend className="mb-2 flex w-full items-center justify-between">
-                <span className="text-lg font-bold text-gray-900">
+            <fieldset className="border-t border-gray-200">
+              <legend className="mb-2 flex w-full flex-col justify-between gap-2 sm:flex-row sm:items-center">
+                <span className="text-base font-bold whitespace-nowrap text-gray-900 md:text-lg">
                   <Trans i18nKey="cookies.management.googleAds.title">
                     Google Ads
                   </Trans>

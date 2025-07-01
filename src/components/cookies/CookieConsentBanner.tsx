@@ -23,7 +23,7 @@ export default function CookieConsentBanner({
     <ReactModal
       isOpen={isVisible && !isBoardOpen}
       onAfterClose={() => setIsVisible(false)}
-      className="!mr-auto !mb-8 !ml-8 !w-[500px] !max-w-[calc(100vw-1rem)] !rounded-[2.5rem] !border-0 !p-0 !shadow-2xl"
+      className="!mr-auto !w-[500px] !max-w-[calc(100vw-1rem)] !rounded-[2.5rem] !border-0 !p-0 !shadow-2xl md:!mb-8 md:!ml-8"
       overlayClassName="!bg-black/0 !backdrop-blur-none !fixed !bottom-0 !left-0 !right-0 !top-auto !z-[10000]"
       contentLabel="Bannière de consentement aux cookies"
       style={{
