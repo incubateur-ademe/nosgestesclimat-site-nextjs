@@ -97,12 +97,6 @@ entries:
   publicodes.Profil.simulations: Chaque simulation que vous faite est sauvegardée dans votre navigateur Web. Vous êtes le seul à y avoir accès.
   publicodes.SimulationMissing.personnas: Vous pouvez aussi continuer avec un <2>profil type</2>.
   publicodes.SimulationMissing.simulationManquante: Pour débloquer ce parcours, vous devez d'abord terminer le test.
-  publicodes.northstar.title: Petite question entre nous...
-  publicodes.northstar.action: Nos Gestes Climat vous donne envie d'agir pour réduire votre empreinte carbone ?
-  Pas vraiment, envoyer cette réponse: Pas vraiment, envoyer cette réponse
-  Oui plutôt, envoyer cette réponse: Oui plutôt, envoyer cette réponse
-  Moyennement, envoyer cette réponse: Moyennement, envoyer cette réponse
-  Tout à fait, envoyer cette réponse: Tout à fait, envoyer cette réponse
   publicodes.planDuSite.title: Plan du site
   publicodes.planDuSite.actionsPlus: Les actions
   semaines: semaines
@@ -129,8 +123,6 @@ entries:
   Oups, nous n'avons pas d'article correspondant: Oups, nous n'avons pas d'article correspondant
   Blog: Blog
   simulations terminées: simulations terminées
-  Statistiques Northstar: Statistiques Northstar
-  Le chargement prend parfois plusieurs minutes, visualiser ce dashboard demande un peu de patience ! 🕙: Le chargement prend parfois plusieurs minutes, visualiser ce dashboard demande un peu de patience ! 🕙
   Nombre de: Nombre de
   'pour les ': 'pour les '
   Contact: Contact
@@ -181,7 +173,6 @@ entries:
   'Date complète :': 'Date complète :'
   disponibles: disponibles
   Entrez des mots-clefs de recherche: Entrez des mots-clefs de recherche
-  Fermer le bandeau de feedback: Fermer le bandeau de feedback
   'Identifiant :': 'Identifiant :'
   Il concerne votre vie personnelle, et non pas votre boulot.: Il concerne votre vie personnelle, et non pas votre boulot.
   international.comment.2: Explorez en détail les spécificités de chaque pays.
@@ -216,10 +207,8 @@ entries:
   Passagers: Passagers
   Télécharger l'image: Télécharger l'image
   'Total par an :': 'Total par an :'
-  Merci pour votre retour !: Merci pour votre retour !
   'Total :': 'Total :'
   Comment agir ?: Comment agir ?
-  publicodes.northstar.learned: Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque chose ?
   Ajouter: Ajouter
   'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': 'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !'
   Détailler mes trajets: Détailler mes trajets
@@ -472,7 +461,6 @@ entries:
   Mes classements: Mes classements
   Mon empreinte: Mon empreinte
   Répondre sur les 3 dernières années: Répondre sur les 3 dernières années
-  Une erreur est survenue !: Une erreur est survenue !
   '<0>Infolettre saisonnière de Nos Gestes Climat</0> : actualités climat, initiatives positives et nouveautés': '<0>Infolettre saisonnière de Nos Gestes Climat</0> : actualités climat, initiatives positives et nouveautés'
   "<0>Nos Gestes Transports</0> : tout savoir ou presque sur l'impact carbone des transports, en 4 e-mails": "<0>Nos Gestes Transports</0> : tout savoir ou presque sur l'impact carbone des transports, en 4 e-mails"
   Ce champ est requis.: Ce champ est requis.

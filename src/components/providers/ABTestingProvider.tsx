@@ -1,9 +1,4 @@
 import {
-  abTestingVisitOriginal,
-  getAbTestingVisitVariation,
-} from '@/constants/tracking/ab-testing'
-import { trackEvent } from '@/utils/analytics/trackEvent'
-import {
   createContext,
   type PropsWithChildren,
   useContext,
@@ -23,10 +18,14 @@ export const AB_TESTS_LABELS = {
   hideTutorial: 'hide tutorial',
 }
 
+const IS_MATOMO_AB_TEST_ENABLED = false
+
 export const ABTestingProvider = ({ children }: PropsWithChildren) => {
   const [abTests, setABTests] = useState<Record<string, boolean>>({})
 
   const handleInitABTesting = () => {
+    if (!IS_MATOMO_AB_TEST_ENABLED) return
+
     console.log('[AB Testing] in handleInitABTesting')
 
     // Désactiver les AB Tests dans l'environnement Cypress
@@ -51,44 +50,45 @@ export const ABTestingProvider = ({ children }: PropsWithChildren) => {
 
     if (!Matomo.AbTesting) return
 
-    _paq.push([
-      'AbTesting::create',
-      {
-        name: 'AvecOuSansTutoriel',
-        includedTargets: [
-          { attribute: 'url', inverted: '0', type: 'any', value: '' },
-        ],
-        excludedTargets: [],
-        variations: [
-          {
-            name: 'original',
-            activate: function (event: any) {
-              // usually nothing needs to be done here
-              console.log('[AB Testing] Original version')
+    // _paq.push([
+    //   'AbTesting::create',
+    //   {
+    //     name: 'AvecOuSansTutoriel',
+    //     includedTargets: [
+    //       { attribute: 'url', inverted: '0', type: 'any', value: '' },
+    //     ],
+    //     excludedTargets: [],
+    //     variations: [
+    //       {
+    //         name: 'original',
+    //         activate: function (event: any) {
+    //           // usually nothing needs to be done here
+    //           console.log('[AB Testing] Original version')
 
-              trackEvent(abTestingVisitOriginal)
-            },
-          },
-          {
-            name: 'Variation1',
-            activate: function (event: any) {
-              console.log('[AB Testing] Hide tutorial version')
+    //           trackEvent(abTestingVisitOriginal)
+    //         },
+    //       },
+    //       {
+    //         name: 'Variation1',
+    //         activate: function (event: any) {
+    //           console.log('[AB Testing] Hide tutorial version')
 
-              setABTests({
-                [AB_TESTS_LABELS.hideTutorial]: true,
-              })
+    //           setABTests({
+    //             [AB_TESTS_LABELS.hideTutorial]: true,
+    //           })
 
-              trackEvent(
-                getAbTestingVisitVariation(AB_TESTS_LABELS.hideTutorial)
-              )
-            },
-          },
-        ],
-      },
-    ])
+    //           trackEvent(
+    //             getAbTestingVisitVariation(AB_TESTS_LABELS.hideTutorial)
+    //           )
+    //         },
+    //       },
+    //     ],
+    //   },
+    // ])
   }
 
   useEffect(() => {
+    if (!IS_MATOMO_AB_TEST_ENABLED) return
     handleInitABTesting()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
