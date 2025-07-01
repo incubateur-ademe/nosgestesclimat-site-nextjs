@@ -5,11 +5,15 @@ import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import ContentLarge from '@/components/layout/ContentLarge'
 import questions from '@/components/specialQuestions'
-import { simulationSimulationCompleted } from '@/constants/tracking/simulation'
+import {
+  gtmSimulationCompleted,
+  simulationSimulationCompleted,
+} from '@/constants/tracking/simulation'
 import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useTrackTimeOnSimulation } from '@/hooks/tracking/useTrackTimeOnSimulation'
 import { useDebug } from '@/hooks/useDebug'
+import { useGTM } from '@/hooks/useGTM'
 import { useIframe } from '@/hooks/useIframe'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import {
@@ -18,6 +22,7 @@ import {
   useFormState,
 } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackGTMEvent } from '@/utils/analytics/trackGTMEvent'
 import { useContext, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import FunFact from './form/FunFact'
@@ -45,6 +50,8 @@ export default function Form() {
 
   const { isIframe } = useIframe()
 
+  const { isGTMAvailable } = useGTM()
+
   const [isInitialized, setIsInitialized] = useState(false)
 
   const { trackTimeOnSimulation } = useTrackTimeOnSimulation()
@@ -58,11 +65,15 @@ export default function Form() {
     if (shouldGoToEndPage && progression === 1) {
       trackTimeOnSimulation()
 
-      trackEvent(
-        simulationSimulationCompleted({
-          bilan: getNumericValue('bilan'),
-        })
-      )
+      const bilan = getNumericValue('bilan')
+
+      // Track Matomo event
+      trackEvent(simulationSimulationCompleted(bilan))
+
+      // Track GTM event if available
+      if (isGTMAvailable) {
+        trackGTMEvent(gtmSimulationCompleted)
+      }
 
       goToEndPage({
         allowedToGoToGroupDashboard: true,
@@ -75,6 +86,7 @@ export default function Form() {
     getNumericValue,
     id,
     trackTimeOnSimulation,
+    isGTMAvailable,
   ])
 
   const [tempValue, setTempValue] = useState<number | undefined>(undefined)

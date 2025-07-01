@@ -4,7 +4,14 @@ import {
   COOKIE_CONSENT_KEY,
   COOKIE_CUSTOM_CHOICE_KEY,
 } from '@/constants/state/cookies'
+import {
+  trackingCookiesAccept,
+  trackingCookiesCustomChoice,
+  trackingCookiesCustomChoiceSave,
+  trackingCookiesRefuse,
+} from '@/constants/tracking/misc'
 import { CookieChoice, type CookieConsentChoices } from '@/types/cookies'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import { useEffect, useState } from 'react'
 import CookieConsentBanner from './CookieConsentBanner'
@@ -34,16 +41,21 @@ export default function CookieConsentBannerAndManagement() {
     setIsBoardOpen(false)
 
     triggerConsentDetection()
+
+    trackEvent(trackingCookiesAccept)
   }
 
   const refuseAll = () => {
     setConsent(CookieChoice.refuse)
     setIsVisible(false)
     setIsBoardOpen(false)
+
+    trackEvent(trackingCookiesRefuse)
   }
 
   const openSettings = () => {
     setIsBoardOpen(true)
+    trackEvent(trackingCookiesCustomChoice)
   }
 
   const closeSettings = () => {
@@ -62,6 +74,8 @@ export default function CookieConsentBannerAndManagement() {
     setIsVisible(false)
 
     triggerConsentDetection()
+
+    trackEvent(trackingCookiesCustomChoiceSave)
   }
 
   return (

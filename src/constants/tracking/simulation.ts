@@ -34,15 +34,8 @@ export const simulationSimulationHalfCompleted = [
 ]
 
 // Triggered when we answered all the questions of the simulation AND navigate to the end page.
-// The timeSpentOnSimulation is the time spent on the simulation rounded to the minute
 // The bilan is the result of the simulation rounded to the ton
-type SimulationCompletedProps = {
-  bilan?: number
-  timeSpentOnSimulation?: number
-}
-export const simulationSimulationCompleted = ({
-  bilan,
-}: SimulationCompletedProps) => [
+export const simulationSimulationCompleted = (bilan: number) => [
   'trackEvent',
   'Simulation',
   'Simulation Completed',
@@ -50,12 +43,19 @@ export const simulationSimulationCompleted = ({
   String(Math.round((bilan ?? 0) / 100) / 10),
 ]
 
-export const simulationSimulationCompletedTime = ({
-  timeSpentOnSimulation,
-}: SimulationCompletedProps) => [
+export const simulationSimulationTime = (time: number) => [
   'trackEvent',
   'Simulation',
   'Simulation Time',
   null,
-  String(Math.round((timeSpentOnSimulation ?? 0) / 1000)),
+  String(time),
 ]
+
+// GTM Event for simulation completion
+export const gtmSimulationCompleted = {
+  event: 'end_form',
+}
+
+export const gtmSimulationStarted = {
+  event: 'start_form',
+}
