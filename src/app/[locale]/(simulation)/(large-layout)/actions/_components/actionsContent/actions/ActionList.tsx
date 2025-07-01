@@ -72,10 +72,9 @@ export default function ActionList({
     }
   }, [actions, setShouldUpdatePersistedActions, shouldUpdatePersistedActions])
 
-  // Effet séparé pour gérer le scroll après que les actions sont mises à jour
+  // Handle scrolling after actions have been updated
   useEffect(() => {
     if (prevActionWithFormOpen.current && actionsPersisted.length > 0) {
-      // Utiliser requestAnimationFrame pour s'assurer que le DOM est mis à jour
       requestAnimationFrame(() => {
         const element = document.getElementById(prevActionWithFormOpen.current)
         if (element) {

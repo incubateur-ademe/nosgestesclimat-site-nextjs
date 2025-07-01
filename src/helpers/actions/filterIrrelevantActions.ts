@@ -19,15 +19,15 @@ export const filterIrrelevantActions = ({
   actionChoices: Record<DottedName, boolean>
   rules?: Partial<NGCRules>
 }) => {
-  // Créer une Map pour stocker les actions modifiées
+  // Create a Map to store modified actions
   const actionsMap = new Map<string, ActionWithIrrelevant>()
 
-  // Initialiser la Map avec toutes les actions originales
+  // Initialize the Map with all original actions
   actions.forEach((action) => {
     actionsMap.set(action.dottedName, action)
   })
 
-  // Pour chaque action choisie, traiter les actions de la même catégorie
+  // For each chosen action, process actions in the same category
   Object.entries(actionChoices).forEach(([actionChoiceKey, isChosen]) => {
     if (!isChosen) return
 
@@ -37,7 +37,7 @@ export const filterIrrelevantActions = ({
 
     if (!chosenAction?.rawNode?.action?.dépasse) return
 
-    // Marquer les actions "dépassées" comme irrelevant
+    // Mark "surpassed" actions as irrelevant
     const actionsToMarkAsIrrelevant = chosenAction.rawNode.action.dépasse
 
     actionsToMarkAsIrrelevant.forEach((actionName) => {
@@ -51,7 +51,7 @@ export const filterIrrelevantActions = ({
     })
   })
 
-  // Filtrer les actions désactivées si les règles sont fournies
+  // Filter disabled actions if rules are provided
   let filteredActions = Array.from(actionsMap.values())
 
   if (rules) {

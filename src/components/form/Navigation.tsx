@@ -61,15 +61,14 @@ export default function Navigation({
 
   const isNextDisabled = isBelowFloor || isOverCeiling
 
-  const isSingleQuestionEmbedded =
+  const isSingleQuestionEmbeddedFinal =
     (isEmbedded &&
       remainingQuestions &&
       remainingQuestions.length === 1 &&
       remainingQuestions[0] === question) ||
     (remainingQuestions && remainingQuestions.length === 0)
 
-  const finalNoNextQuestion = isSingleQuestionEmbedded ? true : noNextQuestion
-  const finalNoPrevQuestion = isSingleQuestionEmbedded ? true : noPrevQuestion
+  const finalNoNextQuestion = isSingleQuestionEmbeddedFinal ?? noNextQuestion
 
   // Start time of the question
   //(we need to use question to update the start time when the question changes, but it is not exactly usefull as a dependency)
