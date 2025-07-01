@@ -1,8 +1,8 @@
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
+import InlineLink from '@/design-system/inputs/InlineLink'
 import type { Dispatch, SetStateAction } from 'react'
 import ReactModal from 'react-modal'
-import Link from '../Link'
 
 export default function CookieConsentBanner({
   isVisible,
@@ -53,22 +53,21 @@ export default function CookieConsentBanner({
           </Trans>
         </h2>
 
-        <p className="mb-2 text-sm text-gray-800">
+        <p className="mb-2 text-sm">
           <Trans i18nKey="cookies.banner.description">
             Bienvenue ! Nous utilisons des cookies pour améliorer votre
-            expérience et les services disponibles sur ce site. Pour en savoir
-            plus, visitez la page{' '}
-            <Link
-              href="/politique-de-confidentialite#cookies"
-              className="text-blue-800 underline hover:text-blue-900">
+            expérience et les services proposés sur ce site, tout en veillant à
+            la protection de vos données personnelles. Pour en savoir plus,
+            consultez notre page{' '}
+            <InlineLink href="/politique-de-confidentialite#cookies">
               <Trans i18nKey="cookies.banner.privacyLink">
                 Données personnelles et cookies
               </Trans>
-            </Link>
+            </InlineLink>
             .<span className="hidden sm:inline">&nbsp;</span>
             <span className="block sm:inline">
-              Vous pouvez, à tout moment, avoir le contrôle sur les cookies que
-              vous souhaitez activer.
+              Vous gardez, à tout moment, le contrôle sur les cookies que vous
+              souhaitez activer.
             </span>
           </Trans>
         </p>

@@ -18,7 +18,7 @@ export function GoogleTagIframe() {
       <iframe
         id="google-tag-iframe"
         title="google-tag-iframe"
-        src="https://www.googletagmanager.com/ns.html?id=GTM-PVK9L8MK"
+        src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GOOGLE_TAG_ID}`}
         height="0"
         width="0"
         style={{ display: 'none', visibility: 'hidden' }}
