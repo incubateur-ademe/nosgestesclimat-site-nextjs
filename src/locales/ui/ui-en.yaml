@@ -1302,3 +1302,6 @@ entries:
   Cookies utilisés par PostHog: Cookies used by PostHog
   Voir la liste des cookies utilisés par PostHog: See the list of cookies used by PostHog
   "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :": 'We also use PostHog to measure the audience for our site. The list of cookies used is available here :'
+  Accepter les cookies: Accept cookies
+  Refuser les cookies: Refuse cookies
+  Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.: We use cookies to understand how you use the product and to help us improve it. If you do not wish to be tracked, you can refuse them.

@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/trans/TransClient'
 import { usePostHog } from 'posthog-js/react'
 import { useEffect, useState } from 'react'
 
@@ -43,15 +44,18 @@ export default function PostHogCookieConsentButton() {
       {consentGiven === 'undecided' && (
         <div>
           <p>
-            We use tracking cookies to understand how you use the product and
-            help us improve it. Please accept cookies to help us improve.
+            <Trans>
+              Nous utilisons des cookies pour comprendre comment vous utilisez
+              le produit et nous aider à l'améliorer. Si vous ne souhaitez pas
+              être suivis, vous pouvez les refuser.
+            </Trans>
           </p>
           <button type="button" onClick={handleAcceptCookies}>
-            Accept cookies
+            <Trans>Accepter les cookies</Trans>
           </button>
           <span> </span>
           <button type="button" onClick={handleDeclineCookies}>
-            Decline cookies
+            <Trans>Refuser les cookies</Trans>
           </button>
         </div>
       )}
