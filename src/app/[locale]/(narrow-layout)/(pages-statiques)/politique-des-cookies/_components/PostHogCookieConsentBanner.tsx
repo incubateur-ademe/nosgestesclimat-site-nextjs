@@ -1,11 +1,12 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import { usePostHog } from 'posthog-js/react'
 import { useEffect, useState } from 'react'
 
 export function cookieConsentGiven() {
-  if (!localStorage.getItem('cookie_consent')) {
+  if (!safeLocalStorage.getItem('cookie_consent')) {
     return 'undecided'
   }
   return localStorage.getItem('cookie_consent')
