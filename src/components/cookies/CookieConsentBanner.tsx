@@ -47,19 +47,23 @@ export default function CookieConsentBanner({
         },
       }}>
       <div className="flex w-full flex-col rounded-[2.5rem] bg-white px-6 py-8 shadow-2xl sm:px-8 sm:py-8">
-        <h2 className="mb-6 text-center text-lg font-bold text-gray-900 sm:text-left sm:text-xl">
+        <h2
+          className="mb-6 text-center text-lg font-bold text-gray-900 sm:text-left sm:text-xl"
+          data-testid="cookie-banner-title">
           <Trans i18nKey="cookies.banner.title">
             À propos des cookies sur Nos Gestes Climat
           </Trans>
         </h2>
 
-        <p className="mb-2 text-sm">
+        <p className="mb-2 text-sm" data-testid="cookie-banner-description">
           <Trans i18nKey="cookies.banner.description">
             Bienvenue ! Nous utilisons des cookies pour améliorer votre
             expérience et les services proposés sur ce site, tout en veillant à
             la protection de vos données personnelles. Pour en savoir plus,
             consultez notre page{' '}
-            <InlineLink href="/politique-de-confidentialite#cookies">
+            <InlineLink
+              href="/politique-de-confidentialite#cookies"
+              data-testid="cookie-banner-privacy-link">
               <Trans i18nKey="cookies.banner.privacyLink">
                 Données personnelles et cookies
               </Trans>
@@ -72,13 +76,25 @@ export default function CookieConsentBanner({
           </Trans>
         </p>
         <div className="mt-6 flex w-full flex-col items-center justify-center gap-2 sm:flex-row">
-          <Button size="sm" color="secondary" onClick={openSettings}>
+          <Button
+            size="sm"
+            color="secondary"
+            onClick={openSettings}
+            data-testid="cookie-banner-customize-button">
             <Trans i18nKey="cookies.banner.customize">Personnaliser</Trans>
           </Button>
-          <Button size="sm" color="secondary" onClick={refuseAll}>
+          <Button
+            size="sm"
+            color="secondary"
+            onClick={refuseAll}
+            data-testid="cookie-banner-refuse-button">
             <Trans i18nKey="cookies.banner.refuseAll">Tout refuser</Trans>
           </Button>
-          <Button size="sm" color="primary" onClick={acceptAll}>
+          <Button
+            size="sm"
+            color="primary"
+            onClick={acceptAll}
+            data-testid="cookie-banner-accept-button">
             <Trans i18nKey="cookies.banner.acceptAll">Tout accepter</Trans>
           </Button>
         </div>

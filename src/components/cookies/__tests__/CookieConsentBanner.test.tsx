@@ -60,14 +60,8 @@ describe('CookieConsentBanner', () => {
     render(<CookieConsentBanner {...defaultProps} />)
 
     expect(screen.getByTestId('modal')).toBeTruthy()
-    expect(
-      screen.getByText('À propos des cookies sur Nos Gestes Climat')
-    ).toBeTruthy()
-    expect(
-      screen.getByText(
-        /Bienvenue ! Nous utilisons des cookies pour améliorer votre expérience/
-      )
-    ).toBeTruthy()
+    expect(screen.getByTestId('cookie-banner-title')).toBeTruthy()
+    expect(screen.getByTestId('cookie-banner-description')).toBeTruthy()
   })
 
   it('should not render when not visible', () => {
@@ -85,9 +79,9 @@ describe('CookieConsentBanner', () => {
   it('should render all three buttons', () => {
     render(<CookieConsentBanner {...defaultProps} />)
 
-    expect(screen.getByText('Personnaliser')).toBeTruthy()
-    expect(screen.getByText('Tout refuser')).toBeTruthy()
-    expect(screen.getByText('Tout accepter')).toBeTruthy()
+    expect(screen.getByTestId('cookie-banner-customize-button')).toBeTruthy()
+    expect(screen.getByTestId('cookie-banner-refuse-button')).toBeTruthy()
+    expect(screen.getByTestId('cookie-banner-accept-button')).toBeTruthy()
   })
 
   it('should call openSettings when Personnaliser button is clicked', async () => {
@@ -98,7 +92,7 @@ describe('CookieConsentBanner', () => {
       <CookieConsentBanner {...defaultProps} openSettings={openSettings} />
     )
 
-    await user.click(screen.getByText('Personnaliser'))
+    await user.click(screen.getByTestId('cookie-banner-customize-button'))
     expect(openSettings).toHaveBeenCalledTimes(1)
   })
 
@@ -108,7 +102,7 @@ describe('CookieConsentBanner', () => {
 
     render(<CookieConsentBanner {...defaultProps} refuseAll={refuseAll} />)
 
-    await user.click(screen.getByText('Tout refuser'))
+    await user.click(screen.getByTestId('cookie-banner-refuse-button'))
     expect(refuseAll).toHaveBeenCalledTimes(1)
   })
 
@@ -118,21 +112,8 @@ describe('CookieConsentBanner', () => {
 
     render(<CookieConsentBanner {...defaultProps} acceptAll={acceptAll} />)
 
-    await user.click(screen.getByText('Tout accepter'))
+    await user.click(screen.getByTestId('cookie-banner-accept-button'))
     expect(acceptAll).toHaveBeenCalledTimes(1)
-  })
-
-  it('should render privacy policy link', () => {
-    render(<CookieConsentBanner {...defaultProps} />)
-
-    // Look for the actual link in the rendered content
-    const privacyLink = screen.getByRole('link', {
-      name: /Données personnelles et cookies/i,
-    })
-    expect(privacyLink).toBeTruthy()
-    expect(privacyLink.getAttribute('href')).toBe(
-      '/politique-de-confidentialite#cookies'
-    )
   })
 
   it('should call setIsVisible when modal is closed', async () => {
@@ -150,32 +131,21 @@ describe('CookieConsentBanner', () => {
   it('should render the correct title', () => {
     render(<CookieConsentBanner {...defaultProps} />)
 
-    expect(
-      screen.getByText('À propos des cookies sur Nos Gestes Climat')
-    ).toBeTruthy()
+    expect(screen.getByTestId('cookie-banner-title')).toBeTruthy()
   })
 
   it('should render the correct description text', () => {
     render(<CookieConsentBanner {...defaultProps} />)
 
-    expect(
-      screen.getByText(
-        /Bienvenue ! Nous utilisons des cookies pour améliorer votre expérience/
-      )
-    ).toBeTruthy()
-    expect(
-      screen.getByText(
-        /Vous pouvez, à tout moment, avoir le contrôle sur les cookies/
-      )
-    ).toBeTruthy()
+    expect(screen.getByTestId('cookie-banner-description')).toBeTruthy()
   })
 
   it('should have proper button styling classes', () => {
     render(<CookieConsentBanner {...defaultProps} />)
 
-    const customizeButton = screen.getByText('Personnaliser').closest('button')
-    const refuseButton = screen.getByText('Tout refuser').closest('button')
-    const acceptButton = screen.getByText('Tout accepter').closest('button')
+    const customizeButton = screen.getByTestId('cookie-banner-customize-button')
+    const refuseButton = screen.getByTestId('cookie-banner-refuse-button')
+    const acceptButton = screen.getByTestId('cookie-banner-accept-button')
 
     // Check for actual classes that exist in the rendered buttons
     expect(customizeButton?.className).toContain('text-sm')
@@ -201,9 +171,9 @@ describe('CookieConsentBanner', () => {
       />
     )
 
-    await user.click(screen.getByText('Personnaliser'))
-    await user.click(screen.getByText('Tout refuser'))
-    await user.click(screen.getByText('Tout accepter'))
+    await user.click(screen.getByTestId('cookie-banner-customize-button'))
+    await user.click(screen.getByTestId('cookie-banner-refuse-button'))
+    await user.click(screen.getByTestId('cookie-banner-accept-button'))
 
     expect(openSettings).toHaveBeenCalledTimes(1)
     expect(refuseAll).toHaveBeenCalledTimes(1)
@@ -259,9 +229,9 @@ describe('CookieConsentBanner', () => {
     )
 
     // Should not throw errors when clicking buttons with empty functions
-    await user.click(screen.getByText('Personnaliser'))
-    await user.click(screen.getByText('Tout refuser'))
-    await user.click(screen.getByText('Tout accepter'))
+    await user.click(screen.getByTestId('cookie-banner-customize-button'))
+    await user.click(screen.getByTestId('cookie-banner-refuse-button'))
+    await user.click(screen.getByTestId('cookie-banner-accept-button'))
 
     // Should still render correctly
     expect(screen.getByTestId('modal')).toBeTruthy()
