@@ -4,11 +4,11 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
-import type { CookieConsentChoices } from '@/types/cookies'
+import { type CookieConsentChoices, CookieConsentKey } from '@/types/cookies'
 import { useForm } from 'react-hook-form'
 
 type CookieFormData = {
-  googleAds: 'accept' | 'refuse'
+  [CookieConsentKey.googleAds]: 'accept' | 'refuse'
 }
 
 const Radio = ({ id, name, checked, disabled, label, ...props }: any) => (
@@ -50,19 +50,17 @@ export default function CookieConsentManagement({
 }) {
   const { register, handleSubmit, watch, setValue } = useForm<CookieFormData>({
     defaultValues: {
-      googleAds: 'accept',
+      [CookieConsentKey.googleAds]: 'accept',
     },
   })
 
   const googleAdsValue = watch('googleAds')
 
   const onSubmit = (data: CookieFormData) => {
-    const choices: CookieConsentChoices = Object.fromEntries(
-      Object.entries(data).map(([key, value]) => [
-        key,
-        value === 'accept' ? true : false,
-      ])
-    ) as CookieConsentChoices
+    const choices: CookieConsentChoices = {
+      [CookieConsentKey.googleAds]:
+        data[CookieConsentKey.googleAds] === 'accept',
+    }
     confirmChoices(choices)
   }
 
@@ -101,7 +99,7 @@ export default function CookieConsentManagement({
                   type="button"
                   color="secondary"
                   onClick={() => {
-                    setValue('googleAds', 'refuse')
+                    setValue(CookieConsentKey.googleAds, 'refuse')
                     refuseAll()
                   }}
                   size="sm">
@@ -113,7 +111,7 @@ export default function CookieConsentManagement({
                   type="button"
                   color="primary"
                   onClick={() => {
-                    setValue('googleAds', 'accept')
+                    setValue(CookieConsentKey.googleAds, 'accept')
                     acceptAll()
                   }}
                   size="sm">
@@ -179,7 +177,7 @@ export default function CookieConsentManagement({
                         Accepter
                       </Trans>
                     }
-                    {...register('googleAds')}
+                    {...register(CookieConsentKey.googleAds)}
                   />
                   <Radio
                     id="googleAds-refuse"
@@ -188,7 +186,7 @@ export default function CookieConsentManagement({
                     label={
                       <Trans i18nKey="cookies.management.refuse">Refuser</Trans>
                     }
-                    {...register('googleAds')}
+                    {...register(CookieConsentKey.googleAds)}
                   />
                 </div>
               </legend>
