@@ -158,16 +158,6 @@ entries:
   Ce modèle a été conçu par: This model was designed by
   model.questions: Discover the <2>list of questions available in the template</2>.
   model.questions.lock: Découvrez <2>la liste des questions disponibles dans le modèle</2>.
-  publicodes.northstar.title: Just a quick question between us...
-  publicodes.northstar.title.lock: Petite question entre nous...
-  Oui plutôt, envoyer cette réponse: Yes, send this answer instead
-  Tout à fait, envoyer cette réponse: Absolutely, send this answer
-  publicodes.northstar.action: Does Nos Gestes Climat make you want to take action to reduce your carbon footprint?
-  publicodes.northstar.action.lock: Nos Gestes Climat vous donne envie d'agir pour réduire votre empreinte carbone ?
-  Moyennement, envoyer cette réponse: Moderately, send this answer
-  Pas vraiment, envoyer cette réponse: Not really, send this answer
-  publicodes.northstar.learned: Have you learned anything from Nos Gestes Climat?
-  publicodes.northstar.learned.lock: Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque chose ?
   Oups, nous n'avons pas d'article correspondant: Oops, we don't have a matching article
   Blog: Blog
   simulations terminées: completed simulations
@@ -175,8 +165,6 @@ entries:
   publicodes.planDuSite.actionsPlus.lock: Les actions
   publicodes.planDuSite.title: Sitemap
   publicodes.planDuSite.title.lock: Plan du site
-  Statistiques Northstar: Northstar statistics
-  Le chargement prend parfois plusieurs minutes, visualiser ce dashboard demande un peu de patience ! 🕙: Loading sometimes takes several minutes, so viewing this dashboard requires a little patience! 🕙
   Nombre de: Number of
   'pour les ': 'for '
   Contact: Contact
@@ -228,7 +216,6 @@ entries:
   'Date complète :': 'Full date :'
   Consultez la FAQ: Consult the FAQ
   Avant de commencer: Before you start
-  Fermer le bandeau de feedback: Close the feedback banner
   Entrez des mots-clefs de recherche: Enter search keywords
   international.comment.2: Explore the specific features of each country in detail.
   international.comment.2.lock: Explorez en détail les spécificités de chaque pays.
@@ -267,7 +254,6 @@ entries:
   Télécharger l'image: Download image
   'Total par an :': 'Total per year :'
   Vous avez terminé le test !: You've completed the test!
-  Merci pour votre retour !: Thanks for your feedback!
   'Total :': 'Total :'
   Comment agir ?: What can you do?
   Ajouter: Add
@@ -534,7 +520,6 @@ entries:
   Diffusion: Broadcast
   Répondre sur les 3 dernières années: Answer for the last 3 years
   Créer mon organisation: Create my organisation
-  Une erreur est survenue !: An error has occurred!
   Une erreur s'est produite au moment de la sauvegarde de vos paramètres: An error occurred when saving your settings
   Mettre à jour mes informations: Update my information
   Simulations terminées: Completed simulations
