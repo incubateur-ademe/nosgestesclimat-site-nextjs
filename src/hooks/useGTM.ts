@@ -15,17 +15,41 @@ export const useGTM = () => {
       return
     }
 
+    let retryCount = 0
+    const maxRetries = 10
+
     // Check if GTM is loaded by looking for dataLayer
     const checkGTM = () => {
-      if (typeof window !== 'undefined' && window.dataLayer) {
+      if (
+        typeof window !== 'undefined' &&
+        window.dataLayer &&
+        Array.isArray(window.dataLayer)
+      ) {
         setIsGTMLoaded(true)
       } else {
-        // Retry after a short delay in case GTM is still loading
-        setTimeout(checkGTM, 100)
+        retryCount++
+        if (retryCount <= maxRetries) {
+          // Retry after a longer delay in case GTM is still loading
+          setTimeout(checkGTM, 500)
+        }
       }
     }
 
+    // Initial check
     checkGTM()
+
+    // Also check after a longer delay to ensure GTM has time to load
+    const timeoutId = setTimeout(() => {
+      if (
+        typeof window !== 'undefined' &&
+        window.dataLayer &&
+        Array.isArray(window.dataLayer)
+      ) {
+        setIsGTMLoaded(true)
+      }
+    }, 3000)
+
+    return () => clearTimeout(timeoutId)
   }, [hasConsent])
 
   return {

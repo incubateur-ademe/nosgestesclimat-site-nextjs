@@ -53,9 +53,9 @@ export const simulationSimulationTime = (time: number) => [
 
 // GTM Event for simulation completion
 export const gtmSimulationCompleted = {
-  event: 'end_form',
+  event: 'end-form',
 }
 
 export const gtmSimulationStarted = {
-  event: 'start_form',
+  event: 'start-form',
 }
