@@ -10,13 +10,6 @@ import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { useCookieConsent } from '../CookieConsentProvider'
 
-// Mock window.dispatchEvent
-const mockDispatchEvent = jest.fn()
-Object.defineProperty(window, 'dispatchEvent', {
-  value: mockDispatchEvent,
-  writable: true,
-})
-
 // Test component to access context
 const TestComponent = () => {
   const { cookieConsent, cookieCustomChoice, triggerConsentDetection } =
@@ -37,7 +30,6 @@ const TestComponent = () => {
 
 describe('CookieConsentProvider', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
     // Clear localStorage before each test
     localStorage.removeItem(COOKIE_CONSENT_KEY)
     localStorage.removeItem(COOKIE_CUSTOM_CHOICE_KEY)
@@ -61,21 +53,6 @@ describe('CookieConsentProvider', () => {
         CookieChoice.all
       )
     })
-    const eventCall = mockDispatchEvent.mock.calls.find(
-      ([evt]) =>
-        evt &&
-        typeof evt === 'object' &&
-        'type' in evt &&
-        (evt as CustomEvent).type === 'cookieConsentChanged'
-    )
-    expect(eventCall).toBeTruthy()
-    if (eventCall) {
-      const evt = eventCall[0] as CustomEvent
-      expect(evt.detail).toEqual({
-        consent: CookieChoice.all,
-        customChoice: undefined,
-      })
-    }
   })
 
   it('should detect and set consent when "refuse" choice is stored', async () => {
@@ -86,21 +63,6 @@ describe('CookieConsentProvider', () => {
         CookieChoice.refuse
       )
     })
-    const eventCall = mockDispatchEvent.mock.calls.find(
-      ([evt]) =>
-        evt &&
-        typeof evt === 'object' &&
-        'type' in evt &&
-        (evt as CustomEvent).type === 'cookieConsentChanged'
-    )
-    expect(eventCall).toBeTruthy()
-    if (eventCall) {
-      const evt = eventCall[0] as CustomEvent
-      expect(evt.detail).toEqual({
-        consent: CookieChoice.refuse,
-        customChoice: undefined,
-      })
-    }
   })
 
   it('should detect and set custom consent with choices when "custom" choice is stored', async () => {
@@ -119,21 +81,6 @@ describe('CookieConsentProvider', () => {
         JSON.stringify(customChoices)
       )
     })
-    const eventCall = mockDispatchEvent.mock.calls.find(
-      ([evt]) =>
-        evt &&
-        typeof evt === 'object' &&
-        'type' in evt &&
-        (evt as CustomEvent).type === 'cookieConsentChanged'
-    )
-    expect(eventCall).toBeTruthy()
-    if (eventCall) {
-      const evt = eventCall[0] as CustomEvent
-      expect(evt.detail).toEqual({
-        consent: CookieChoice.custom,
-        customChoice: JSON.stringify(customChoices),
-      })
-    }
   })
 
   it('should handle invalid JSON in custom choices gracefully', async () => {
@@ -141,7 +88,12 @@ describe('CookieConsentProvider', () => {
     localStorage.setItem(COOKIE_CUSTOM_CHOICE_KEY, 'invalid-json')
     renderWithWrapper(<TestComponent />)
     await waitFor(() => {
-      expect(screen.getByText(/Oups ! Une erreur est survenue/)).toBeTruthy()
+      expect(screen.getByTestId('consent').textContent).toEqual(
+        CookieChoice.custom
+      )
+      expect(screen.getByTestId('custom-choice').textContent).toEqual(
+        'undefined'
+      )
     })
   })
 
@@ -159,36 +111,18 @@ describe('CookieConsentProvider', () => {
         CookieChoice.all
       )
     })
-    const eventCall = mockDispatchEvent.mock.calls.find(
-      ([evt]) =>
-        evt &&
-        typeof evt === 'object' &&
-        'type' in evt &&
-        (evt as CustomEvent).type === 'cookieConsentChanged'
-    )
-    expect(eventCall).toBeTruthy()
-    if (eventCall) {
-      const evt = eventCall[0] as CustomEvent
-      expect(evt.detail).toEqual({
-        consent: CookieChoice.all,
-        customChoice: undefined,
-      })
-    }
   })
 
-  it('should not dispatch event when no consent is found', async () => {
+  it('should not update consent when no consent is found during trigger', async () => {
+    const user = userEvent.setup()
     renderWithWrapper(<TestComponent />)
     await waitFor(() => {
       expect(screen.getByTestId('consent').textContent).toEqual('undefined')
     })
-    const eventCall = mockDispatchEvent.mock.calls.find(
-      ([evt]) =>
-        evt &&
-        typeof evt === 'object' &&
-        'type' in evt &&
-        (evt as CustomEvent).type === 'cookieConsentChanged'
-    )
-    expect(eventCall).toBeFalsy()
+    await user.click(screen.getByTestId('trigger'))
+    await waitFor(() => {
+      expect(screen.getByTestId('consent').textContent).toEqual('undefined')
+    })
   })
 
   it('should provide triggerConsentDetection function in context', async () => {

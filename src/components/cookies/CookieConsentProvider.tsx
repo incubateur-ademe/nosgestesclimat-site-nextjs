@@ -39,24 +39,18 @@ export const CookieConsentProvider = ({ children }: PropsWithChildren) => {
 
     let customChoiceFromStorage
     if (consentFromStorage === CookieChoice.custom) {
-      customChoiceFromStorage = safeLocalStorage.getItem(
-        COOKIE_CUSTOM_CHOICE_KEY
-      )
-      const value =
-        customChoiceFromStorage && JSON.parse(customChoiceFromStorage)
-      if (value) setCookieCustomChoice(value)
+      customChoiceFromStorage =
+        safeLocalStorage.getItem(COOKIE_CUSTOM_CHOICE_KEY) ?? ''
+
+      try {
+        customChoiceFromStorage = JSON.parse(customChoiceFromStorage)
+        setCookieCustomChoice(customChoiceFromStorage)
+      } catch (e) {
+        // Do nothing, JSON is invalid
+      }
     }
 
     setCookieConsent(consentFromStorage as CookieChoice)
-
-    window.dispatchEvent(
-      new CustomEvent('cookieConsentChanged', {
-        detail: {
-          consent: consentFromStorage,
-          customChoice: customChoiceFromStorage,
-        },
-      })
-    )
   }
 
   useEffect(() => {
