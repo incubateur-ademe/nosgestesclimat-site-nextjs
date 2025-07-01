@@ -127,12 +127,8 @@ entries:
   tonne: tonelada
   international.comment.titre: ¿Cómo funciona?
   international.comment.titre.lock: Comment ça marche ?
-  Pas vraiment, envoyer cette réponse: En realidad no, envíe esta respuesta
-  publicodes.northstar.title: Sólo una pregunta rápida entre nosotros...
-  publicodes.northstar.title.lock: Petite question entre nous...
   publicodes.SimulationMissing.personnas: También puede continuar con un <2>perfil estándar</2>.
   publicodes.SimulationMissing.personnas.lock: Vous pouvez aussi continuer avec un <2>profil type</2>.
-  Oui plutôt, envoyer cette réponse: Sí, envíe esta respuesta en su lugar
   international.ensuite.titre: ¿No encuentra su país?
   international.ensuite.titre.lock: Vous ne trouvez pas votre pays ?
   👤 Vous utilisez actuellement le persona: estás utilizando la persona
@@ -154,10 +150,6 @@ entries:
   components.localisation.LocalisationMessage.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut
   international.pourquoi.1: Los estilos de vida difieren según el país en el que se viva. Algunos países tienen una red ferroviaria muy desarrollada, mientras que otros son islas y, por tanto, dependen más de transbordadores y aviones.
   international.pourquoi.1.lock: Les modes de vies ne sont pas les mêmes en fonction du pays dans lequel on vit. Certains pays ont un réseau ferré très développé, d'autres sont insulaires et donc reposent davantage sur le ferry et l'avion.
-  publicodes.northstar.action: ¿Nos Gestes Climat le da ganas de actuar para reducir su huella de carbono?
-  publicodes.northstar.action.lock: Nos Gestes Climat vous donne envie d'agir pour réduire votre empreinte carbone ?
-  Tout à fait, envoyer cette réponse: Por supuesto, envíe esta respuesta
-  Moyennement, envoyer cette réponse: Enviar esta respuesta
   sites.publicodes.Tutorial.questionE: 💡 Pero, ¿qué significa esa pequeña <1>e</1>?
   sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
   publicodes.Profil.simulations: Cada simulación que ejecutas se guarda en tu navegador. Sólo tú tienes acceso a ella.
@@ -171,7 +163,6 @@ entries:
   Créer le groupe: Crear un grupo
   Copié !: ¡Copiado!
   'pour les ': 'para '
-  Statistiques Northstar: Estadísticas de Northstar
   Vos points faibles: Sus puntos débiles
   Rejoindre: Póngase en contacto con
   Créer un groupe d'amis: Crear un grupo de amigos
@@ -192,7 +183,6 @@ entries:
   Contact: Póngase en contacto con
   Partager: Compartir
   Comparez vos résultats avec votre famille ou un groupe d’amis: Compara tus resultados con los de tu familia o grupo de amigos
-  Le chargement prend parfois plusieurs minutes, visualiser ce dashboard demande un peu de patience ! 🕙: A veces tarda varios minutos en cargarse, ¡así que ver este tablero requiere un poco de paciencia! 🕙
   Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.: Averigua cómo puedes actuar por el clima hoy mismo, o haz la prueba para obtener recomendaciones personalizadas.
   Oups, nous n'avons pas d'article correspondant: Oops, no tenemos un artículo correspondiente
   Il sera visible uniquement par les participants du groupe: Sólo será visible para los participantes en el grupo
@@ -212,7 +202,6 @@ entries:
   Bientôt disponible: Disponible en breve
   Veuillez renseigner un nom.: Por favor, introduzca un nombre.
   ' Retour à la liste': ' Volver a la lista'
-  Fermer le bandeau de feedback: Cerrar el banner de comentarios
   Nos équipes ont été prévenues ; veuillez réessayer d'accéder à cette page plus tard.: Nuestros equipos han sido avisados; por favor, intente acceder a esta página de nuevo más tarde.
   Entrez des mots-clefs de recherche: Introducir palabras clave de búsqueda
   Personas: Personas
@@ -252,14 +241,11 @@ entries:
   publicodes.Tutoriel.slide1.p2.lock: Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer ce qu'on appelle l'empreinte carbone individuelle de consommation.
   international.comment.2: Explore en detalle las características específicas de cada país.
   international.comment.2.lock: Explorez en détail les spécificités de chaque pays.
-  publicodes.northstar.learned: ¿Le ha ayudado "Nos Gestes Climat" a aprender algo?
-  publicodes.northstar.learned.lock: Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque chose ?
   'Total par an :': 'Total anual :'
   Logo de l'Association pour la transition Bas Carbone: Logotipo de la Low Carbon Transition Association
   'Vous faites cette simulation depuis :': 'Puede ejecutar esta simulación desde :'
   'Revenir à ma région par défaut ': 'Volver a mi región por defecto '
   Sélectionné·e: Selección
-  Merci pour votre retour !: Gracias por sus comentarios
   Vous utilisez la version: Está utilizando el
   'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': 'Por supuesto, algunas cosas son compartidas (en mi casa con mi familia, el coche con mis compañeros de viaje): esto se tendrá en cuenta a la hora de calcular tu huella de carbono, ¡así que no te preocupes!'
   publicodes.Tutoriel.slide2.blockquote: '<2></2> <6></6> Otros gases, especialmente el metano y el óxido nitroso, también calientan el planeta: convertimos su potencial de calentamiento en CO₂e para simplificar la medición.'
@@ -529,7 +515,6 @@ entries:
   International: Internacional
   Répondre sur les 3 dernières années: Respuesta de los últimos 3 años
   Créer mon organisation: Crear mi organización
-  Une erreur est survenue !: Se ha producido un error
   Mettre à jour mes informations: Actualizar mis datos
   Votre nom: Su nombre
   Ce champ est requis.: Este campo es obligatorio.
