@@ -2,7 +2,7 @@ import {
   COOKIE_CONSENT_KEY,
   COOKIE_CUSTOM_CHOICE_KEY,
 } from '@/constants/state/cookies'
-import { CookieChoice, CookieConsentChoices } from '@/types/cookies'
+import { CookieChoice, type CookieConsentChoices } from '@/types/cookies'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import {
   createContext,

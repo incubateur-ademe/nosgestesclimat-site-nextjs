@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import CookieConsentBanner from '../CookieConsentBanner'

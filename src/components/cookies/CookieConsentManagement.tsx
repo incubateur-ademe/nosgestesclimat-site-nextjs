@@ -4,7 +4,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
-import { CookieConsentChoices } from '@/types/cookies'
+import type { CookieConsentChoices } from '@/types/cookies'
 import { useForm } from 'react-hook-form'
 
 type CookieFormData = {
