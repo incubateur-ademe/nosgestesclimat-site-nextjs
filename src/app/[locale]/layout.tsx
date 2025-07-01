@@ -123,8 +123,6 @@ export default async function RootLayout({
             )
           }
           <Script src="https://tally.so/widgets/embed.js"></Script>
-
-          <GoogleTagScript />
         </head>
 
         <MainLayoutProviders>
@@ -136,6 +134,7 @@ export default async function RootLayout({
 
           {children}
 
+          <GoogleTagScript />
           <GoogleTagIframe />
         </MainLayoutProviders>
       </html>

@@ -1,75 +1,13 @@
 'use client'
 
-import {
-  COOKIE_CONSENT_KEY,
-  COOKIE_CUSTOM_CHOICE_KEY,
-} from '@/constants/state/cookies'
-import { CookieChoice, CookieConsentKey } from '@/types/cookies'
-import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import Script from 'next/script'
-import { useEffect, useState } from 'react'
+import { useCookieConsent } from '../cookies/CookieConsentProvider'
 
 export function GoogleTagScript() {
-  const [hasConsent, setHasConsent] = useState(false)
+  const { cookieConsent, cookieCustomChoice } = useCookieConsent()
 
-  useEffect(() => {
-    const checkConsent = () => {
-      const consentFromStorage = safeLocalStorage.getItem(COOKIE_CONSENT_KEY)
-
-      if (consentFromStorage === CookieChoice.all) {
-        setHasConsent(true)
-        return
-      }
-
-      if (consentFromStorage === CookieChoice.custom) {
-        const customChoiceFromStorage = safeLocalStorage.getItem(
-          COOKIE_CUSTOM_CHOICE_KEY
-        )
-
-        if (customChoiceFromStorage) {
-          try {
-            const choices = JSON.parse(customChoiceFromStorage)
-
-            if (choices[CookieConsentKey.googleAds]) {
-              setHasConsent(true)
-              return
-            }
-          } catch (e) {
-            console.error('Error parsing custom choices:', e)
-          }
-        }
-      }
-
-      setHasConsent(false)
-    }
-
-    const handleConsentChange = () => {
-      checkConsent()
-    }
-
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === COOKIE_CONSENT_KEY || e.key === COOKIE_CUSTOM_CHOICE_KEY) {
-        checkConsent()
-      }
-    }
-
-    window.addEventListener(
-      'cookieConsentChanged',
-      handleConsentChange as EventListener
-    )
-
-    window.addEventListener('storage', handleStorageChange)
-
-    checkConsent()
-
-    return () => {
-      window.removeEventListener(
-        'cookieConsentChanged',
-        handleConsentChange as EventListener
-      )
-      window.removeEventListener('storage', handleStorageChange)
-    }
-  }, [])
+  const hasConsent =
+    cookieConsent === 'all' || (cookieCustomChoice as any)?.['googleAds']
 
   if (!hasConsent) {
     return null
