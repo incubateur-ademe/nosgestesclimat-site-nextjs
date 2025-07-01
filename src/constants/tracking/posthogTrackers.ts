@@ -94,7 +94,7 @@ export const captureIframeVisit = (url: string) => {
 
 export const captureIframeInteraction = (url: string) => {
   return {
-    eventName: 'iframe visit',
+    eventName: 'iframe interaction',
     properties: {
       referrerUrl: url,
     },
