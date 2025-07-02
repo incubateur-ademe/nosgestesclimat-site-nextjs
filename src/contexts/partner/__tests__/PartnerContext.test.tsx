@@ -7,17 +7,47 @@ import '@testing-library/jest-dom'
 import { act, screen, waitFor } from '@testing-library/react'
 import { useSearchParams } from 'next/navigation'
 
-jest.mock('@/hooks/partners/useExportSituation', () => ({
-  useExportSituation: jest.fn(),
+// Mock the hooks
+jest.mock('@/hooks/partners/useExportSituation')
+jest.mock('@/hooks/partners/useVerifyPartner')
+
+// Les services API sont maintenant gérés par MSW dans src/__tests__/server.ts
+
+// Mock Sentry to avoid issues in tests
+jest.mock('@sentry/nextjs', () => ({
+  captureException: jest.fn(),
 }))
 
-jest.mock('@/hooks/partners/useVerifyPartner', () => ({
-  useVerifyPartner: jest.fn(),
-}))
+// Mock the hooks with proper return values
+const mockUseExportSituation = useExportSituation as jest.MockedFunction<
+  typeof useExportSituation
+>
+const mockUseVerifyPartner = useVerifyPartner as jest.MockedFunction<
+  typeof useVerifyPartner
+>
+const mockUseSearchParams = useSearchParams as jest.MockedFunction<
+  typeof useSearchParams
+>
+
+// Mock sessionStorage
+const mockSessionStorage = {
+  getItem: jest.fn(),
+  setItem: jest.fn(),
+  removeItem: jest.fn(),
+  clear: jest.fn(),
+}
+Object.defineProperty(window, 'sessionStorage', {
+  value: mockSessionStorage,
+  writable: true,
+})
 
 describe('PartnerContext', () => {
   beforeEach(() => {
     jest.clearAllMocks()
+    mockSessionStorage.getItem.mockReturnValue(null)
+    mockSessionStorage.setItem.mockImplementation(() => {})
+    mockSessionStorage.removeItem.mockImplementation(() => {})
+    mockSessionStorage.clear.mockImplementation(() => {})
   })
 
   const defaultSimulation = generateSimulation({
@@ -29,8 +59,19 @@ describe('PartnerContext', () => {
   describe('given undefined search params', () => {
     it('should not crash the app', () => {
       // Given
-      ;(useExportSituation as jest.Mock).mockReturnValue({
+      mockUseSearchParams.mockReturnValue({
+        entries: () => new Map().entries(),
+        get: jest.fn(),
+      } as any)
+      mockUseVerifyPartner.mockReturnValue(false)
+      mockUseExportSituation.mockReturnValue({
         exportSituationAsync: jest.fn().mockResolvedValue({ redirectUrl }),
+        exportSituation: jest.fn(),
+        isPending: false,
+        isSuccess: false,
+        isError: false,
+        error: null,
+        data: null,
       })
 
       // When
@@ -47,19 +88,27 @@ describe('PartnerContext', () => {
       expect(screen.queryByTestId('error-500')).not.toBeInTheDocument()
     })
   })
+
   describe('given a user with a completed test', () => {
     it("should send the user's situation to the back-end and redirect to the obtained URL", async () => {
       // Mock hooks
-      ;(useSearchParams as jest.Mock).mockReturnValue({
+      mockUseSearchParams.mockReturnValue({
         entries: () =>
           new Map([
             ['partner', 'test'],
             ['partner-test', 'test'],
           ]).entries(),
-      })
-      ;(useVerifyPartner as jest.Mock).mockReturnValue(true)
-      ;(useExportSituation as jest.Mock).mockReturnValue({
+        get: jest.fn(),
+      } as any)
+      mockUseVerifyPartner.mockReturnValue(true)
+      mockUseExportSituation.mockReturnValue({
         exportSituationAsync: jest.fn().mockResolvedValue({ redirectUrl }),
+        exportSituation: jest.fn(),
+        isPending: false,
+        isSuccess: false,
+        isError: false,
+        error: null,
+        data: null,
       })
 
       // When
@@ -80,22 +129,30 @@ describe('PartnerContext', () => {
       expect(redirectButton).toHaveAttribute('href', redirectUrl)
     })
   })
+
   describe('given a user with an incompleted test', () => {
     it('should save the partner params to the session storage and redirect to the test', async () => {
       // Given
       const incompleteSimulation = generateSimulation({
         progression: 0,
       })
-      ;(useSearchParams as jest.Mock).mockReturnValue({
+      mockUseSearchParams.mockReturnValue({
         entries: () =>
           new Map([
             ['partner', 'test'],
             ['partner-test', 'test'],
           ]).entries(),
-      })
-      ;(useVerifyPartner as jest.Mock).mockReturnValue(true)
-      ;(useExportSituation as jest.Mock).mockReturnValue({
+        get: jest.fn(),
+      } as any)
+      mockUseVerifyPartner.mockReturnValue(true)
+      mockUseExportSituation.mockReturnValue({
         exportSituationAsync: jest.fn().mockResolvedValue({ redirectUrl }),
+        exportSituation: jest.fn(),
+        isPending: false,
+        isSuccess: false,
+        isError: false,
+        error: null,
+        data: null,
       })
 
       // When
