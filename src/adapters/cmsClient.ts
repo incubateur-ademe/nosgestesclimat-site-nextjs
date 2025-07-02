@@ -238,6 +238,10 @@ type TitleImageListDescriptionWithHTML = {
 }
 
 export type ThematicLandingPage = {
+  id: string
+  documentId: string
+  publishedAt: string
+  updatedAt: string
   title: string
   block1: TitleImageListDescriptionWithHTML
   block2: TitleImageListDescriptionWithHTML
@@ -250,7 +254,7 @@ export type ThematicLandingPage = {
   articlesCTALink?: string
   block7: TitleImageListDescriptionWithHTML
   faq?: FAQType
-  metadata?: MetaType
+  metadata?: PageMetadataType
   slug: string
 }
 

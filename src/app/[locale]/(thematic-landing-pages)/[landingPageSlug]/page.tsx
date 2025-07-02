@@ -14,6 +14,7 @@ import {
   trackingActionClickPageBottom,
 } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
+import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import {
   getLandingClickCTARestart,
   getLandingClickCTAResults,
@@ -22,10 +23,37 @@ import {
 } from '@/helpers/tracking/landings'
 import type { Locale } from '@/i18nConfig'
 import { fetchThematicLandingPage } from '@/services/cms/fetchThematicLandingPage'
+import { fetchThematicLandingPageMetadata } from '@/services/cms/fetchThematicLandingPageMetadata'
 import type { DefaultPageProps } from '@/types'
 import { getArticleHref } from '@/utils/cms/getArticleHref'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
+
+export async function generateMetadata({
+  params,
+}: DefaultPageProps<{
+  params: Promise<{ landingPageSlug: string; locale: Locale }>
+}>) {
+  const { landingPageSlug, locale } = await params
+
+  const { thematicLandingPageMetadata } =
+    (await fetchThematicLandingPageMetadata({
+      landingPageSlug,
+    })) || {}
+
+  return getMetadataObject({
+    locale,
+    title:
+      thematicLandingPageMetadata?.metadata?.title ||
+      thematicLandingPageMetadata?.title ||
+      'Landing page thématique - Nos Gestes Climat',
+    description:
+      'Découvrez des conseils pratiques pour réduire votre empreinte écologique.',
+    alternates: {
+      canonical: `/${landingPageSlug}`,
+    },
+  })
+}
 
 export default async function ThematicLandingPage({
   params,
@@ -85,7 +113,10 @@ export default async function ThematicLandingPage({
         heroTitle={block1.title}
         heroDescription={
           <div className="flex flex-col items-start gap-4 md:gap-6">
-            <p dangerouslySetInnerHTML={{ __html: block1.htmlDescription ?? '' }}></p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: block1.htmlDescription ?? '',
+              }}></p>
             <div className="flex w-full justify-center md:justify-start">
               <DynamicCTAButtons
                 trackingEvents={{
@@ -189,8 +220,8 @@ export default async function ThematicLandingPage({
           pathname={`/${landingPageSlug}`}
           title={block6.title}
           description={block6.htmlDescription}
-          posts={articlesList?.map(
-            ({ category, title, slug, image }) => ({
+          posts={
+            articlesList?.map(({ category, title, slug, image }) => ({
               category: category?.title ?? '',
               title,
               href: getArticleHref({
@@ -199,21 +230,23 @@ export default async function ThematicLandingPage({
               }),
               imageSrc: image?.url ?? '',
               imageAlt: image?.alternativeText ?? '',
-            })
-          )}
+            })) ?? []
+          }
         />
 
         <MotivationSection
           title={block7.title}
           description={block7.htmlDescription ?? ''}
-          motivationItems={block7.listItems?.map(({ title, image, description }) => ({
-            title,
-            icon: {
-              url: image?.url ?? '',
-              alternativeText: image?.alternativeText ?? '',
-            },
-            description: description ?? '',
-          }))}
+          motivationItems={block7.listItems?.map(
+            ({ title, image, description }) => ({
+              title,
+              icon: {
+                url: image?.url ?? '',
+                alternativeText: image?.alternativeText ?? '',
+              },
+              description: description ?? '',
+            })
+          )}
         />
 
         <FAQ questions={faq?.questions ?? []} />
