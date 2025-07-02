@@ -6,6 +6,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { QUESTION_DESCRIPTION_BUTTON_ID } from '@/constants/accessibility'
+import { captureClickInfo } from '@/constants/tracking/posthogTrackers'
 import {
   questionCloseInfo,
   questionOpenInfo,
@@ -14,7 +15,7 @@ import Button from '@/design-system/buttons/Button'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { QuestionSize } from '@/types/values'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
@@ -86,8 +87,14 @@ export default function Label({
             onClick={() => {
               if (isOpen) {
                 trackEvent(questionCloseInfo({ question }))
+                trackPosthogEvent(
+                  captureClickInfo({ question, state: 'closed' })
+                )
               } else {
                 trackEvent(questionOpenInfo({ question }))
+                trackPosthogEvent(
+                  captureClickInfo({ question, state: 'opened' })
+                )
               }
               setIsOpen((previsOpen) => !previsOpen)
             }}

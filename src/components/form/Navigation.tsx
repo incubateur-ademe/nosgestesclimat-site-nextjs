@@ -4,6 +4,7 @@ import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
+import { captureClickFormNav } from '@/constants/tracking/posthogTrackers'
 import {
   questionClickPass,
   questionClickPrevious,
@@ -15,7 +16,7 @@ import { useIframe } from '@/hooks/useIframe'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import { useCurrentSimulation, useFormState, useRule } from '@/publicodes-state'
 import getValueIsOverFloorOrCeiling from '@/publicodes-state/helpers/getValueIsOverFloorOrCeiling'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { MouseEvent } from 'react'
 import { useCallback, useMemo, useRef } from 'react'
@@ -70,6 +71,12 @@ export default function Navigation({
 
   const finalNoNextQuestion = isSingleQuestionEmbeddedFinal ?? noNextQuestion
 
+  const isFirstOrOnlyQuestion =
+    noPrevQuestion ||
+    persistedRemainingQuestionsRef.current?.indexOf(question) === 0 ||
+    persistedRemainingQuestionsRef.current?.indexOf(question) ===
+      (persistedRemainingQuestionsRef.current?.length || 0) - 1
+
   // Start time of the question
   //(we need to use question to update the start time when the question changes, but it is not exactly usefull as a dependency)
   const startTime = useMemo(() => {
@@ -88,9 +95,29 @@ export default function Navigation({
 
       if (isMissing) {
         trackEvent(questionClickPass({ question, timeSpentOnQuestion }))
+        trackPosthogEvent(
+          captureClickFormNav({
+            actionType: 'passer',
+            question,
+            answer: value,
+            timeSpentOnQuestion,
+          })
+        )
       } else {
         trackEvent(
-          questionClickSuivant({ question, answer: value, timeSpentOnQuestion })
+          questionClickSuivant({
+            question,
+            answer: value,
+            timeSpentOnQuestion,
+          })
+        )
+        trackPosthogEvent(
+          captureClickFormNav({
+            actionType: 'suivant',
+            question,
+            answer: value,
+            timeSpentOnQuestion,
+          })
         )
       }
 
@@ -104,7 +131,6 @@ export default function Navigation({
         onComplete()
         return
       }
-
       if (
         isEmbedded &&
         persistedRemainingQuestionsRef.current &&
@@ -136,6 +162,52 @@ export default function Navigation({
     ]
   )
 
+  const handleGoToPrevQuestion = useCallback(
+    (e: KeyboardEvent | MouseEvent) => {
+      e.preventDefault()
+
+      if (isFirstOrOnlyQuestion) {
+        return
+      }
+
+      const endTime = Date.now()
+      const timeSpentOnQuestion = endTime - startTime
+      trackEvent(questionClickPrevious({ question }))
+      trackPosthogEvent(
+        captureClickFormNav({
+          actionType: 'précédent',
+          question,
+          answer: value,
+          timeSpentOnQuestion,
+        })
+      )
+
+      if (isEmbedded) {
+        setCurrentQuestion(
+          persistedRemainingQuestionsRef.current?.find(
+            (dottedName, index) =>
+              index ===
+              (persistedRemainingQuestionsRef.current?.indexOf(question) || 0) -
+                1
+          ) ?? null
+        )
+      } else {
+        gotoPrevQuestion()
+      }
+
+      handleMoveFocus()
+    },
+    [
+      isFirstOrOnlyQuestion,
+      startTime,
+      question,
+      value,
+      isEmbedded,
+      setCurrentQuestion,
+      gotoPrevQuestion,
+    ]
+  )
+
   useMagicKey({
     gotToNextQuestion: handleGoToNextQuestion,
   })
@@ -161,25 +233,6 @@ export default function Navigation({
     })
   }
 
-  const handleGoToPrevQuestion = () => {
-    if (isEmbedded) {
-      setCurrentQuestion(
-        persistedRemainingQuestionsRef.current?.find(
-          (dottedName, index) =>
-            index ===
-            (persistedRemainingQuestionsRef.current?.indexOf(question) || 0) - 1
-        ) ?? null
-      )
-    } else {
-      gotoPrevQuestion()
-    }
-  }
-
-  const isFirstOrOnlyQuestion =
-    persistedRemainingQuestionsRef.current?.indexOf(question) === 0 ||
-    persistedRemainingQuestionsRef.current?.indexOf(question) ===
-      (persistedRemainingQuestionsRef.current?.length || 0) - 1
-
   return (
     <div
       className={twMerge(
@@ -196,13 +249,7 @@ export default function Navigation({
         )}>
         <Button
           size="md"
-          onClick={() => {
-            trackEvent(questionClickPrevious({ question }))
-
-            handleGoToPrevQuestion()
-
-            handleMoveFocus()
-          }}
+          onClick={handleGoToPrevQuestion}
           disabled={isFirstOrOnlyQuestion}
           color="text"
           className={twMerge('px-3')}>
