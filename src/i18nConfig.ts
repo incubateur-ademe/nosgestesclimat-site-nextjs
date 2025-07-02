@@ -1,5 +1,5 @@
-import { Config } from 'next-i18n-router/dist/types'
-import { NextRequest } from 'next/server'
+import type { Config } from 'next-i18n-router/dist/types'
+import type { NextRequest } from 'next/server'
 
 export const LOCALE_EN_KEY = 'en'
 export const LOCALE_ES_KEY = 'es'
