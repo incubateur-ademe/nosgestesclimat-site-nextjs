@@ -16,6 +16,7 @@ import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
 import { getSaveSimulationListIds } from '@/helpers/brevo/getSaveSimulationListIds'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
+import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
@@ -103,6 +104,8 @@ export default function GetResultsByEmail({
 
   const { data: mainNewsletter } = useMainNewsletter()
 
+  const { mutate: updateUserSettings } = useUpdateUserSettings()
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     // If the mutation is pending, we do nothing
     if (isPending) {
@@ -127,15 +130,28 @@ export default function GetResultsByEmail({
       return
     }
 
-    // We save the simulation (and signify the backend to send the email)
-    saveSimulation({
-      simulation: {
-        ...currentSimulation,
-        savedViaEmail: true,
-      },
-      newsletters,
-      sendEmail: true,
-    })
+    try {
+      // Handles saving the simulation and sending the results by email
+      saveSimulation({
+        simulation: {
+          ...currentSimulation,
+          savedViaEmail: true,
+        },
+        sendEmail: true,
+      })
+
+      // Handles updating the newsletters subscriptions and sending the subscription confirmation email
+      if (newsletters.length > 0) {
+        updateUserSettings({
+          newsletterIds: newsletters,
+          userId: user?.userId,
+          email: formattedEmail,
+          name: data.name,
+        })
+      }
+    } catch (error) {
+      captureException(error)
+    }
   }
 
   useEffect(() => {
