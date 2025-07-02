@@ -72,13 +72,15 @@ export default function GestureSelector({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4 }}
           className="flex w-[400px] max-w-full justify-center md:justify-end">
-          <Image
-            src={gestures[selectedCategory].imageSrc}
-            alt={gestures[selectedCategory].imageAlt ?? ''}
-            width="400"
-            height="400"
-            className="w-auto object-contain px-4"
-          />
+          {gestures[selectedCategory].imageSrc && (
+            <Image
+              src={gestures[selectedCategory].imageSrc}
+              alt={gestures[selectedCategory].imageAlt ?? ''}
+              width="400"
+              height="400"
+              className="w-auto object-contain px-4"
+            />
+          )}
         </motion.div>
       </AnimatePresence>
     </>

@@ -265,7 +265,7 @@ export default async function ThematicLandingPage({
         <FAQ questions={faq?.questions ?? []} />
       </LandingPage>
 
-      <Footer />
+      <Footer langButtonsDisplayed={{ fr: false, en: false, es: false }} />
     </>
   )
 }

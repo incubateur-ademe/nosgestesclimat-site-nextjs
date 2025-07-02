@@ -70,12 +70,14 @@ export default function WhatDoWeMeasure({
             key={`list-item-${title}-${index}`}
             className="border-heroLightBackground bg-primary-50 flex flex-col items-center gap-2 rounded-xl border-2 p-4">
             <div className="flex h-12 w-12 items-center justify-center">
-              <Image
-                width={48}
-                height={48}
-                src={icon.url}
-                alt={icon.alternativeText}
-              />
+              {icon.url && (
+                <Image
+                  width={48}
+                  height={48}
+                  src={icon.url}
+                  alt={icon.alternativeText}
+                />
+              )}
             </div>
             <span className="text-center">{title}</span>
           </li>
