@@ -131,7 +131,6 @@ export default function Navigation({
         onComplete()
         return
       }
-
       if (
         isEmbedded &&
         persistedRemainingQuestionsRef.current &&
@@ -167,15 +166,8 @@ export default function Navigation({
     (e: KeyboardEvent | MouseEvent) => {
       e.preventDefault()
 
-      if (isEmbedded) {
-        setCurrentQuestion(
-          persistedRemainingQuestionsRef.current?.find(
-            (dottedName, index) =>
-              index ===
-              (persistedRemainingQuestionsRef.current?.indexOf(question) || 0) -
-                1
-          ) ?? null
-        )
+      if (isFirstOrOnlyQuestion) {
+        return
       }
 
       const endTime = Date.now()
@@ -190,18 +182,27 @@ export default function Navigation({
         })
       )
 
-      if (!noPrevQuestion) {
+      if (isEmbedded) {
+        setCurrentQuestion(
+          persistedRemainingQuestionsRef.current?.find(
+            (dottedName, index) =>
+              index ===
+              (persistedRemainingQuestionsRef.current?.indexOf(question) || 0) -
+                1
+          ) ?? null
+        )
+      } else {
         gotoPrevQuestion()
       }
 
       handleMoveFocus()
     },
     [
-      isEmbedded,
+      isFirstOrOnlyQuestion,
       startTime,
       question,
       value,
-      noPrevQuestion,
+      isEmbedded,
       setCurrentQuestion,
       gotoPrevQuestion,
     ]
