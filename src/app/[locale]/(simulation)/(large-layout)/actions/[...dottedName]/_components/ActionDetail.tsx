@@ -14,10 +14,12 @@ import {
   useTempEngine,
   useUser,
 } from '@/publicodes-state'
+import type { Action } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
+import { useState } from 'react'
 import ActionForm from '../../_components/actionsContent/actions/ActionForm'
 
 const { decodeRuleName } = utils
@@ -27,7 +29,8 @@ export default function ActionDetail({
 }: {
   params: { dottedName: DottedName[] }
 }) {
-  const { getCategory } = useEngine()
+  const { getCategory, rawMissingVariables, safeEvaluate, everyQuestions } =
+    useEngine()
   const pathParamsDottedName = params?.dottedName
 
   const formattedDottedName = pathParamsDottedName
@@ -47,10 +50,15 @@ export default function ActionDetail({
       getSpecialRuleObject(dottedName).missingVariables || {}
     ) as DottedName[],
     extendedFoldedSteps,
+    everyQuestions,
+    rawMissingVariables,
+    safeEvaluate,
   })
 
-  const nbRemainingQuestions = remainingQuestions?.length
   const rule = useRule(dottedName)
+
+  const [persistedRemainingQuestions, setPersistedRemainingQuestions] =
+    useState<DottedName[] | undefined>(remainingQuestions)
 
   if (!rules) {
     return null
@@ -60,15 +68,14 @@ export default function ActionDetail({
 
   const { description, icônes: icons } = rules[dottedName] ?? {}
 
-  // Typing is shit here but it's the `actions` rule from model.
-  const flatActions = rules['actions'] as { somme: DottedName[] }
+  const flatActions = rules['actions'] as { formule: { somme: DottedName[] } }
 
-  const relatedActions: NGCRuleNode[] = flatActions?.somme
-    .filter(
+  const relatedActions: NGCRuleNode[] = flatActions?.formule?.somme
+    ?.filter(
       (action: DottedName) =>
         action !== dottedName && getCategory(dottedName) === getCategory(action)
     )
-    .map((name: DottedName) => getSpecialRuleObject(name))
+    ?.map((name: DottedName) => getSpecialRuleObject(name))
 
   return (
     <>
@@ -99,27 +106,31 @@ export default function ActionDetail({
         </div>
       </Card>
 
-      {nbRemainingQuestions > 0 && (
-        <>
-          <h3 className="mt-4">
-            <Trans>Personnalisez cette estimation</Trans>
-          </h3>
+      {persistedRemainingQuestions &&
+        persistedRemainingQuestions.length > 0 && (
+          <>
+            <h3 className="mt-4">
+              <Trans>Personnalisez cette estimation</Trans>
+            </h3>
 
-          <FormProvider root={dottedName}>
-            <ActionForm
-              key={dottedName}
-              category={getCategory(dottedName)}
-              onComplete={() => {
-                toggleActionChoice(dottedName)
+            <FormProvider root={dottedName}>
+              <ActionForm
+                key={dottedName}
+                category={getCategory(dottedName)}
+                onComplete={() => {
+                  toggleActionChoice(dottedName)
 
-                if (!actionChoices[dottedName]) {
-                  trackEvent(actionsClickYes(dottedName))
-                }
-              }}
-            />
-          </FormProvider>
-        </>
-      )}
+                  setPersistedRemainingQuestions(undefined)
+
+                  if (!actionChoices[dottedName]) {
+                    trackEvent(actionsClickYes(dottedName))
+                  }
+                }}
+                action={{ ...rule, dottedName } as unknown as Action}
+              />
+            </FormProvider>
+          </>
+        )}
 
       {relatedActions && (
         <div className="mt-8">
