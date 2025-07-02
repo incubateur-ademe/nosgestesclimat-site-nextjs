@@ -11,6 +11,7 @@ import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
+import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -102,10 +103,7 @@ export default function UserInformationForm({
     isPending,
     isError,
     isSuccess,
-  } = useUpdateUserSettings({
-    email: user?.email ?? '',
-    userId: user?.userId,
-  })
+  } = useUpdateUserSettings()
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const newsletterIds = {
@@ -117,8 +115,9 @@ export default function UserInformationForm({
     try {
       await updateUserSettings({
         name: data.name,
-        email: data.email,
-        newsletterIds,
+        email: data.email ?? '',
+        newsletterIds: formatListIdsFromObject(newsletterIds),
+        userId: user?.userId,
       })
 
       if (data.email && (!user?.email || shouldForceEmailEditable)) {

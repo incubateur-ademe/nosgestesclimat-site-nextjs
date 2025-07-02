@@ -8,6 +8,7 @@ import {
   LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
 } from '@/constants/brevo'
 import { subscribeToNewsletterBlog } from '@/constants/tracking/pages/newsletter'
+import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useLocale } from '@/hooks/useLocale'
@@ -67,10 +68,7 @@ export default function NewslettersBlock() {
     mutateAsync: updateUserSettings,
     isPending,
     isSuccess,
-  } = useUpdateUserSettings({
-    email: emailRef?.current ?? '',
-    userId: user?.userId ?? '',
-  })
+  } = useUpdateUserSettings()
 
   const {
     register,
@@ -119,7 +117,12 @@ export default function NewslettersBlock() {
     updateEmail(formattedEmail)
 
     // We save the simulation (and signify the backend to send the email)
-    updateUserSettings({ newsletterIds: listIds })
+    updateUserSettings({
+      newsletterIds: formatListIdsFromObject(listIds),
+      userId: user?.userId,
+      email: formattedEmail,
+      name: data.name,
+    })
   }
 
   return (

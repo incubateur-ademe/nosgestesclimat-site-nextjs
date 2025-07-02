@@ -14,7 +14,7 @@ import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
-import { getSaveSimulationListIds } from '@/helpers/brevo/getSaveSimulationListIds'
+import { getListIds } from '@/helpers/brevo/getListIds'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
@@ -114,7 +114,7 @@ export default function GetResultsByEmail({
 
     trackEvent(endClickSaveSimulation)
 
-    const newsletters = getSaveSimulationListIds(data)
+    const newsletters = getListIds(data)
 
     const formattedEmail = formatEmail(data.email)
 
