@@ -64,7 +64,6 @@ export async function fetchThematicLandingPage({
     const thematicLPResponse = await cmsClient<{
       data: [ThematicLandingPage]
     }>(`/api/landing-thematiques?${thematicLPSearchParams}`)
-    console.log('ici', thematicLPResponse)
     if (thematicLPResponse.data?.length !== 1) {
       console.error(
         `Error: fetch thematic LP error for slug: ${landingPageSlug}`
@@ -80,7 +79,6 @@ export async function fetchThematicLandingPage({
       thematicLandingPage: thematicLP,
     }
   } catch (error) {
-    console.log(error)
     return {}
   }
 }

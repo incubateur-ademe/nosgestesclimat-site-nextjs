@@ -42,7 +42,6 @@ export default function WhatDoWeMeasure({
   shouldDescriptionBeBeforeList?: boolean
   shouldUseDescriptionMaxWidth?: boolean
 }) {
-  console.log(description)
   return (
     <div className="mb-16 flex max-w-full flex-col gap-10 md:mx-auto md:mb-20 md:max-w-5xl md:px-0">
       <h2 className="mb-0 px-4 text-center text-2xl md:px-0 md:text-3xl">
@@ -63,7 +62,7 @@ export default function WhatDoWeMeasure({
 
       <ul
         className={twMerge(
-          `order hidden grid-cols-1 gap-5 md:grid md:grid-cols-2 ${getGridColsClassname(listItems.length)}`,
+          `order hidden grid-cols-1 gap-5 md:grid md:grid-cols-2 ${getGridColsClassname(listItems?.length ?? 0)}`,
           shouldUseDescriptionMaxWidth ? 'max-w-[800px]' : ''
         )}>
         {listItems?.map(({ icon, title }, index) => (
@@ -85,7 +84,7 @@ export default function WhatDoWeMeasure({
 
       <div className="flex overflow-x-auto md:hidden">
         <div className="flex gap-5 px-[calc(50vw-6.5rem)]">
-          {listItems.map(({ icon, title }, index) => (
+          {listItems?.map(({ icon, title }, index) => (
             <li
               key={`list-item-${title}-${index}`}
               className="border-heroLightBackground bg-primary-50 flex! h-40! w-52! shrink-0 flex-col items-center justify-center gap-2 rounded-xl border-2 p-4">
