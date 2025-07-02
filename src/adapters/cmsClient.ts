@@ -209,3 +209,49 @@ export type FAQType = {
   order: number
   questions: QuestionType[]
 }
+
+type CarouselItemType = {
+  image?: ImageType
+  text: string
+  htmlText?: string
+  pinkText: string
+}
+
+type TitleImageDescription = {
+  title: string
+  image?: ImageType
+  description?: string
+}
+
+type TitleImageListDescriptionWithHTML = {
+  title: string
+  image?: ImageType
+  description: string
+  htmlDescription?: string
+  listItems?: TitleImageDescription[]
+}
+
+export type ThematicLandingPage = {
+  id: string
+  documentId: string
+  publishedAt: string
+  updatedAt: string
+  title: string
+  block1?: TitleImageListDescriptionWithHTML
+  block2?: TitleImageListDescriptionWithHTML
+  block3?: TitleImageListDescriptionWithHTML
+  block4?: CarouselItemType[]
+  block5?: TitleImageListDescriptionWithHTML
+  block6?: TitleImageListDescriptionWithHTML
+  articlesList?: ArticleType[]
+  articlesCTALabel?: string
+  articlesCTALink?: string
+  block7?: TitleImageListDescriptionWithHTML
+  faq?: FAQType
+  metadata?: PageMetadataType
+  slug: string
+}
+
+export type PopulatedThematicLandingPageType<
+  K extends OptionalKeys<ThematicLandingPage>,
+> = Populate<ThematicLandingPage, K>
