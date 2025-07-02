@@ -2,6 +2,7 @@
 
 import CheckIcon from '@/components/icons/status/CheckIcon'
 import Trans from '@/components/translation/trans/TransClient'
+import NewsletterFields from '@/components/user/NewsletterFields'
 import {
   LIST_MAIN_NEWSLETTER,
   LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
@@ -19,7 +20,6 @@ import { useEffect, useRef } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import Button from '../buttons/Button'
-import CheckboxInputGroup from '../inputs/CheckboxInputGroup'
 import EmailInput from '../inputs/EmailInput'
 
 type Inputs = {
@@ -150,44 +150,7 @@ export default function NewslettersBlock() {
             className="flex h-full flex-col items-start"
             onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-4 flex w-full flex-col gap-2">
-              <CheckboxInputGroup
-                label={
-                  <p className="mb-0 text-sm">
-                    <span>
-                      <Trans>Je m'inscris à l'infolettre</Trans>
-                    </span>{' '}
-                    -{' '}
-                    <span className="text-gray-700">
-                      <Trans>1 par mois max</Trans>
-                    </span>
-                  </p>
-                }
-                {...register('newsletter-saisonniere')}
-              />
-
-              <CheckboxInputGroup
-                label={
-                  <p className="mb-0 text-sm">
-                    <span>Nos Gestes Transports</span> -{' '}
-                    <span className="text-gray-700">
-                      <Trans>4 infolettres l’impact des transports</Trans>
-                    </span>
-                  </p>
-                }
-                {...register('newsletter-transports')}
-              />
-
-              <CheckboxInputGroup
-                label={
-                  <p className="mb-0 text-sm">
-                    <span>Nos Gestes Logement</span> -{' '}
-                    <span className="text-gray-700">
-                      <Trans>5 infolettres sur l’impact du logement</Trans>
-                    </span>
-                  </p>
-                }
-                {...register('newsletter-logement')}
-              />
+              <NewsletterFields register={register} />
 
               <div className="mt-10 flex w-full flex-col gap-8 md:flex-row">
                 <EmailInput
