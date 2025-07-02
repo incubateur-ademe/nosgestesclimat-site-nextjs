@@ -15,8 +15,8 @@ export default function StatsContent() {
           <Trans>Visites et simulations</Trans>
         </h2>
         <MetabaseIframe
-          id="stats-quali"
-          titre="stats-quali"
+          id="stats-general"
+          titre="stats-general"
           src="http://metabase.nosgestesclimat.fr/public/dashboard/b69428fd-f60f-478a-b3b1-0d0e98d64547#titled=false"
           height="800px"
         />{' '}
