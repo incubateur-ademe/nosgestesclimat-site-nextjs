@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@incubateur-ademe/legal-pages-react": "^0.5.0",
-    "@incubateur-ademe/nosgestesclimat": "https://pkg.pr.new/@incubateur-ademe/nosgestesclimat@91ae8d2.tgz",
+    "@incubateur-ademe/nosgestesclimat": "https://pkg.pr.new/incubateur-ademe/nosgestesclimat/@incubateur-ademe/nosgestesclimat@1b36428.tgz",
     "@next/mdx": "^15.3.2",
     "@publicodes/react-ui": "^1.7.1",
     "@publicodes/tools": "^1.7.2",
