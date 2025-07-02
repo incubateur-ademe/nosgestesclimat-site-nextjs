@@ -9,7 +9,7 @@ export function cookieConsentGiven() {
   if (!safeLocalStorage.getItem('cookie_consent')) {
     return 'undecided'
   }
-  return localStorage.getItem('cookie_consent')
+  return safeLocalStorage.getItem('cookie_consent')
 }
 
 export default function PostHogCookieConsentButton() {
@@ -31,12 +31,12 @@ export default function PostHogCookieConsentButton() {
   }, [consentGiven, posthog])
 
   const handleAcceptCookies = () => {
-    localStorage.setItem('cookie_consent', 'yes')
+    safeLocalStorage.setItem('cookie_consent', 'yes')
     setConsentGiven('yes')
   }
 
   const handleDeclineCookies = () => {
-    localStorage.setItem('cookie_consent', 'no')
+    safeLocalStorage.setItem('cookie_consent', 'no')
     setConsentGiven('no')
   }
 
