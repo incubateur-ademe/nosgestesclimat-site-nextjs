@@ -17,16 +17,17 @@ const i18nConfig: Config = {
     secure: process.env.NEXT_PUBLIC_ENV === 'production',
   },
   localeDetector: (request: NextRequest, config: Config): string => {
+    const langParam = request.nextUrl.searchParams.get('lang')
+
+    // Check first for lang param
+    if (langParam && config.locales.includes(langParam)) {
+      return langParam
+    }
+
     // Check for NEXT_LOCALE cookie
     const nextLocale = request.cookies.get('NEXT_LOCALE')?.value
     if (nextLocale && config.locales.includes(nextLocale)) {
       return nextLocale
-    }
-
-    // Check for lang query parameter
-    const langParam = request.nextUrl.searchParams.get('lang')
-    if (langParam && config.locales.includes(langParam)) {
-      return langParam
     }
 
     // Check browser language
