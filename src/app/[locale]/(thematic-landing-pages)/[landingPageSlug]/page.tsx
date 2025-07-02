@@ -43,29 +43,17 @@ export default async function ThematicLandingPage({
   }
 
   const {
-    heroTitle,
-    heroImage,
-    htmlHeroText,
-    secondBlockTitle,
-    secondBlockImage,
-    htmlSecondBlockText,
-    thirdBlockTitle,
-    htmlThirdBlockText,
-    thirdBlockList,
-    actionsBlockTitle,
-    actionsBlockImage,
-    htmlActionsBlockText,
-    actionsBlockList,
-    articlesBlockTitle,
-    htmlArticlesBlockText,
-    articlesBlockArticles,
-    seventhBlockTitle,
-    carouselItems,
-    htmlSeventhBlockText,
-    seventhBlockList,
+    block1,
+    block2,
+    block3,
+    block4,
+    block5,
+    block6,
+    block7,
+    articlesList,
     faq,
   } = thematicLandingPage
-  console.log(heroImage)
+
   return (
     <>
       <JSONLD
@@ -94,10 +82,10 @@ export default async function ThematicLandingPage({
       />
 
       <LandingPage
-        heroTitle={heroTitle}
+        heroTitle={block1.title}
         heroDescription={
           <div className="flex flex-col items-start gap-4 md:gap-6">
-            <p dangerouslySetInnerHTML={{ __html: htmlHeroText }}></p>
+            <p dangerouslySetInnerHTML={{ __html: block1.htmlDescription ?? '' }}></p>
             <div className="flex w-full justify-center md:justify-start">
               <DynamicCTAButtons
                 trackingEvents={{
@@ -125,8 +113,8 @@ export default async function ThematicLandingPage({
               <Image
                 width={280}
                 height={280}
-                src={heroImage?.url ?? undefined}
-                alt={heroImage?.alternativeText ?? ''}
+                src={block1?.image?.url ?? ''}
+                alt={block1.image?.alternativeText ?? ''}
               />
             </div>
           </div>
@@ -136,38 +124,38 @@ export default async function ThematicLandingPage({
             <Image
               width={400}
               height={400}
-              src={heroImage?.url ?? undefined}
-              alt={heroImage?.alternativeText ?? ''}
+              src={block1.image?.url ?? ''}
+              alt={block1.image?.alternativeText ?? ''}
             />
           </div>
         }
         heroPartners={<Partners locale={locale} />}>
         <WhatItIs
-          title={secondBlockTitle}
-          description={htmlSecondBlockText}
+          title={block2.title}
+          description={block2.htmlDescription ?? ''}
           illustration={{
-            url: secondBlockImage?.url ?? '',
-            alternativeText: secondBlockImage?.alternativeText ?? '',
+            url: block2.image?.url ?? '',
+            alternativeText: block2.image?.alternativeText ?? '',
             className: 'py-6 md:py-10',
           }}
         />
 
         <WhatDoWeMeasure
-          title={thirdBlockTitle}
-          description={htmlThirdBlockText}
-          listItems={thirdBlockList?.map(({ title, icon }) => ({
+          title={block3.title}
+          description={block3.htmlDescription ?? ''}
+          listItems={block3.listItems?.map(({ title, image }) => ({
             title,
             icon: {
-              url: icon?.url ?? '',
-              alternativeText: icon?.alternativeText ?? '',
+              url: image?.url ?? '',
+              alternativeText: image?.alternativeText ?? '',
             },
           }))}
         />
 
         <DidYouKnowSlider
-          slides={carouselItems?.map(({ text, icon }) => ({
+          slides={block4?.map(({ text, image }) => ({
             content: text,
-            illustration: icon?.url ?? undefined,
+            illustration: image?.url ?? undefined,
           }))}
         />
         <DailyGestures
@@ -185,13 +173,13 @@ export default async function ThematicLandingPage({
               trackingActionClickPageBottom
             ),
           }}
-          title={actionsBlockTitle}
-          description={htmlActionsBlockText}
+          title={block5.title}
+          description={block5?.htmlDescription ?? ''}
           gestures={{
             default: {
-              imageAlt: actionsBlockImage?.alternativeText ?? '',
-              imageSrc: actionsBlockImage?.url ?? undefined,
-              gestureList: actionsBlockList?.map(({ title }) => title),
+              imageAlt: block5.image?.alternativeText ?? '',
+              imageSrc: block5.image?.url ?? '',
+              gestureList: block5.listItems?.map(({ title }) => title),
             },
           }}
         />
@@ -199,9 +187,9 @@ export default async function ThematicLandingPage({
         <UnderstandToAct
           locale={locale}
           pathname={`/${landingPageSlug}`}
-          title={articlesBlockTitle}
-          description={htmlArticlesBlockText}
-          posts={articlesBlockArticles?.map(
+          title={block6.title}
+          description={block6.htmlDescription}
+          posts={articlesList?.map(
             ({ category, title, slug, image }) => ({
               category: category?.title ?? '',
               title,
@@ -216,15 +204,15 @@ export default async function ThematicLandingPage({
         />
 
         <MotivationSection
-          title={seventhBlockTitle}
-          description={htmlSeventhBlockText}
-          motivationItems={seventhBlockList?.map(({ title, icon, text }) => ({
+          title={block7.title}
+          description={block7.htmlDescription ?? ''}
+          motivationItems={block7.listItems?.map(({ title, image, description }) => ({
             title,
             icon: {
-              url: icon?.url ?? '',
-              alternativeText: icon?.alternativeText ?? '',
+              url: image?.url ?? '',
+              alternativeText: image?.alternativeText ?? '',
             },
-            description: text ?? '',
+            description: description ?? '',
           }))}
         />
 

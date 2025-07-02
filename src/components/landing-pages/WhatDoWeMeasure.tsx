@@ -31,7 +31,7 @@ export default function WhatDoWeMeasure({
   shouldUseDescriptionMaxWidth,
 }: {
   title: JSX.Element | string
-  listItems: {
+  listItems?: {
     title: string
     icon: {
       url: string
@@ -66,7 +66,7 @@ export default function WhatDoWeMeasure({
           `order hidden grid-cols-1 gap-5 md:grid md:grid-cols-2 ${getGridColsClassname(listItems.length)}`,
           shouldUseDescriptionMaxWidth ? 'max-w-[800px]' : ''
         )}>
-        {listItems.map(({ icon, title }, index) => (
+        {listItems?.map(({ icon, title }, index) => (
           <li
             key={`list-item-${title}-${index}`}
             className="border-heroLightBackground bg-primary-50 flex flex-col items-center gap-2 rounded-xl border-2 p-4">

@@ -217,40 +217,38 @@ type IconBlockType = {
 }
 
 type CarouselItemType = {
+  image: ImageType
   text: string
-  icon: ImageType
+  htmlText?: string
+  pinkText: string
+}
+
+type TitleImageDescription = {
+  title: string
+  image?: ImageType
+  description: string
+}
+
+type TitleImageListDescriptionWithHTML = {
+  title: string
+  image?: ImageType
+  description: string
+  htmlDescription?: string
+  listItems?: TitleImageDescription[]
 }
 
 export type ThematicLandingPage = {
   title: string
-  heroTitle: string
-  heroImage?: ImageType
-  heroText: string
-  htmlHeroText: string
-  secondBlockTitle: string
-  secondBlockImage?: ImageType
-  secondBlockText: string
-  htmlSecondBlockText: string
-  thirdBlockTitle: string
-  thirdBlockText: string
-  htmlThirdBlockText: string
-  thirdBlockList?: IconBlockType[]
-  carouselItems?: CarouselItemType[]
-  actionsBlockTitle: string
-  actionsBlockImage?: ImageType
-  actionsBlockText: string
-  htmlActionsBlockText: string
-  actionsBlockList?: { title: string }[]
-  articlesBlockTitle: string
-  articlesBlockText: string
-  htmlArticlesBlockText: string
-  articlesBlockArticles?: ArticleType[]
-  articlesBlockCTALabel?: string
-  articlesBlockCTALink?: string
-  seventhBlockTitle: string
-  seventhBlockText: string
-  htmlSeventhBlockText: string
-  seventhBlockList?: IconBlockType[]
+  block1: TitleImageListDescriptionWithHTML
+  block2: TitleImageListDescriptionWithHTML
+  block3: TitleImageListDescriptionWithHTML
+  block4: CarouselItemType[]
+  block5: TitleImageListDescriptionWithHTML
+  block6: TitleImageListDescriptionWithHTML
+  articlesList?: ArticleType[]
+  articlesCTALabel?: string
+  articlesCTALink?: string
+  block7: TitleImageListDescriptionWithHTML
   faq?: FAQType
   metadata?: MetaType
   slug: string

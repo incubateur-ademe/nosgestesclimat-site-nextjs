@@ -13,9 +13,14 @@ export default function GestureSelector({
 }: {
   gestures: GesturesType
 }) {
+  const gesturesKeys = Object.keys(gestures)
+
   const [selectedCategory, setSelectedCategory] = useState<string>(
-    Object.keys(gestures)[0]
+    gesturesKeys[0]
   )
+
+  if (!gesturesKeys?.length) return null
+
   return (
     <>
       <div className="flex-1 text-left">
@@ -47,7 +52,7 @@ export default function GestureSelector({
               exit={{ opacity: 0, y: -5 }}
               transition={{ duration: 0.2 }}
               className="absolute flex w-full flex-1 flex-col gap-6">
-              {gestures[selectedCategory].gestureList.map((gesture, index) => (
+              {gestures[selectedCategory].gestureList?.map((gesture, index) => (
                 <li
                   key={`gesture-${index}`}
                   className="text-primary-600 flex items-baseline gap-1 text-sm font-bold md:text-lg">
