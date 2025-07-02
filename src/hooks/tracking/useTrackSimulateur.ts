@@ -1,3 +1,4 @@
+import { captureSimulationStarted } from '@/constants/tracking/posthogTrackers'
 import {
   simulationCategoryCompleted,
   simulationCategoryStarted,
@@ -5,7 +6,7 @@ import {
   simulationSimulationStarted,
 } from '@/constants/tracking/simulation'
 import { useCurrentSimulation, useFormState } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useEffect, useRef } from 'react'
 
 export function useTrackSimulateur() {
@@ -13,6 +14,7 @@ export function useTrackSimulateur() {
     isFirstQuestionOfCategory,
     isLastQuestionOfCategory,
     currentCategory,
+    relevantAnsweredQuestions,
   } = useFormState()
 
   const { progression } = useCurrentSimulation()
@@ -22,12 +24,18 @@ export function useTrackSimulateur() {
   useEffect(() => {
     if (prevProgression.current === 0 && progression > 0) {
       trackEvent(simulationSimulationStarted)
+      trackPosthogEvent(
+        captureSimulationStarted({
+          question:
+            relevantAnsweredQuestions[relevantAnsweredQuestions.length - 1],
+        })
+      )
     }
     if (prevProgression.current < 0.5 && progression >= 0.5) {
       trackEvent(simulationSimulationHalfCompleted)
     }
     prevProgression.current = progression
-  }, [progression])
+  }, [relevantAnsweredQuestions, progression])
 
   useEffect(() => {
     if (!currentCategory) return
