@@ -4,7 +4,6 @@ import { useContext } from 'react'
 
 import userContext from '../../providers/userProvider/context'
 import useActions from './hooks/useActions'
-import useNorthStar from './hooks/useNorthStar'
 import useSimulations from './hooks/useSimulations'
 import useTutorials from './hooks/useTutorials'
 import useUserDetails from './hooks/useUserDetails'
@@ -55,8 +54,6 @@ export default function useUser() {
 
   const { hideTutorial, showTutorial } = useTutorials({ setTutorials })
 
-  const { updateNorthStarRatings } = useNorthStar({ setUser })
-
   return {
     /**
      * A boolean indicating if the user and their simulations have been initialized
@@ -103,10 +100,6 @@ export default function useUser() {
      * Set a tutorial to seen (it should not be displayed)
      */
     hideTutorial,
-    /**
-     * Update the specified north star rating
-     */
-    updateNorthStarRatings,
     /**
      * A list of every simulations of the user (and their associated informations)
      */
