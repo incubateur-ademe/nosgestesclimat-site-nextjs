@@ -1,5 +1,6 @@
 import { getPosts } from '@/helpers/markdown/getPosts'
 import { fetchAllArticleTitlesAndSlugs } from '@/services/cms/fetchAllArticleTitlesAndSlugs'
+import { fetchThematicLandingPages } from '@/services/cms/fetchThematicLandingPages'
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json'
 import type { MetadataRoute } from 'next'
 import { utils } from 'publicodes'
@@ -73,5 +74,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
-  return [...staticUrls, ...blogUrls, ...releaseUrls, ...documentationUrls]
+  const thematicLandingPagesResult = await fetchThematicLandingPages()
+  const thematicLandingUrls =
+    thematicLandingPagesResult?.thematicLandingPages?.map((page) => ({
+      url: `https://nosgestesclimat.fr/${page.slug}`,
+      lastModified: new Date(),
+      priority: 0.8,
+    })) || []
+
+  return [
+    ...staticUrls,
+    ...blogUrls,
+    ...releaseUrls,
+    ...documentationUrls,
+    ...thematicLandingUrls,
+  ]
 }
