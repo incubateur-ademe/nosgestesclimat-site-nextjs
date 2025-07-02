@@ -127,12 +127,8 @@ entries:
   tonne: tonelada
   international.comment.titre: ¿Cómo funciona?
   international.comment.titre.lock: Comment ça marche ?
-  Pas vraiment, envoyer cette réponse: En realidad no, envíe esta respuesta
-  publicodes.northstar.title: Sólo una pregunta rápida entre nosotros...
-  publicodes.northstar.title.lock: Petite question entre nous...
   publicodes.SimulationMissing.personnas: También puede continuar con un <2>perfil estándar</2>.
   publicodes.SimulationMissing.personnas.lock: Vous pouvez aussi continuer avec un <2>profil type</2>.
-  Oui plutôt, envoyer cette réponse: Sí, envíe esta respuesta en su lugar
   international.ensuite.titre: ¿No encuentra su país?
   international.ensuite.titre.lock: Vous ne trouvez pas votre pays ?
   👤 Vous utilisez actuellement le persona: estás utilizando la persona
@@ -154,10 +150,6 @@ entries:
   components.localisation.LocalisationMessage.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut
   international.pourquoi.1: Los estilos de vida difieren según el país en el que se viva. Algunos países tienen una red ferroviaria muy desarrollada, mientras que otros son islas y, por tanto, dependen más de transbordadores y aviones.
   international.pourquoi.1.lock: Les modes de vies ne sont pas les mêmes en fonction du pays dans lequel on vit. Certains pays ont un réseau ferré très développé, d'autres sont insulaires et donc reposent davantage sur le ferry et l'avion.
-  publicodes.northstar.action: ¿Nos Gestes Climat le da ganas de actuar para reducir su huella de carbono?
-  publicodes.northstar.action.lock: Nos Gestes Climat vous donne envie d'agir pour réduire votre empreinte carbone ?
-  Tout à fait, envoyer cette réponse: Por supuesto, envíe esta respuesta
-  Moyennement, envoyer cette réponse: Enviar esta respuesta
   sites.publicodes.Tutorial.questionE: 💡 Pero, ¿qué significa esa pequeña <1>e</1>?
   sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
   publicodes.Profil.simulations: Cada simulación que ejecutas se guarda en tu navegador. Sólo tú tienes acceso a ella.
@@ -171,7 +163,6 @@ entries:
   Créer le groupe: Crear un grupo
   Copié !: ¡Copiado!
   'pour les ': 'para '
-  Statistiques Northstar: Estadísticas de Northstar
   Vos points faibles: Sus puntos débiles
   Rejoindre: Póngase en contacto con
   Créer un groupe d'amis: Crear un grupo de amigos
@@ -192,7 +183,6 @@ entries:
   Contact: Póngase en contacto con
   Partager: Compartir
   Comparez vos résultats avec votre famille ou un groupe d’amis: Compara tus resultados con los de tu familia o grupo de amigos
-  Le chargement prend parfois plusieurs minutes, visualiser ce dashboard demande un peu de patience ! 🕙: A veces tarda varios minutos en cargarse, ¡así que ver este tablero requiere un poco de paciencia! 🕙
   Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.: Averigua cómo puedes actuar por el clima hoy mismo, o haz la prueba para obtener recomendaciones personalizadas.
   Oups, nous n'avons pas d'article correspondant: Oops, no tenemos un artículo correspondiente
   Il sera visible uniquement par les participants du groupe: Sólo será visible para los participantes en el grupo
@@ -212,8 +202,6 @@ entries:
   Bientôt disponible: Disponible en breve
   Veuillez renseigner un nom.: Por favor, introduzca un nombre.
   ' Retour à la liste': ' Volver a la lista'
-  Fermer le bandeau de feedback: Cerrar el banner de comentarios
-  C'est parti ! →: ¡Allá vamos! →
   Nos équipes ont été prévenues ; veuillez réessayer d'accéder à cette page plus tard.: Nuestros equipos han sido avisados; por favor, intente acceder a esta página de nuevo más tarde.
   Entrez des mots-clefs de recherche: Introducir palabras clave de búsqueda
   Personas: Personas
@@ -253,14 +241,11 @@ entries:
   publicodes.Tutoriel.slide1.p2.lock: Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer ce qu'on appelle l'empreinte carbone individuelle de consommation.
   international.comment.2: Explore en detalle las características específicas de cada país.
   international.comment.2.lock: Explorez en détail les spécificités de chaque pays.
-  publicodes.northstar.learned: ¿Le ha ayudado "Nos Gestes Climat" a aprender algo?
-  publicodes.northstar.learned.lock: Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque chose ?
   'Total par an :': 'Total anual :'
   Logo de l'Association pour la transition Bas Carbone: Logotipo de la Low Carbon Transition Association
   'Vous faites cette simulation depuis :': 'Puede ejecutar esta simulación desde :'
   'Revenir à ma région par défaut ': 'Volver a mi región por defecto '
   Sélectionné·e: Selección
-  Merci pour votre retour !: Gracias por sus comentarios
   Vous utilisez la version: Está utilizando el
   'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': 'Por supuesto, algunas cosas son compartidas (en mi casa con mi familia, el coche con mis compañeros de viaje): esto se tendrá en cuenta a la hora de calcular tu huella de carbono, ¡así que no te preocupes!'
   publicodes.Tutoriel.slide2.blockquote: '<2></2> <6></6> Otros gases, especialmente el metano y el óxido nitroso, también calientan el planeta: convertimos su potencial de calentamiento en CO₂e para simplificar la medición.'
@@ -372,7 +357,6 @@ entries:
   Oups, une erreur s'est produite au moment de l'envoi de votre code...: Oops, hubo un error al enviar tu código...
   Mes informations: Mi información
   Animez un atelier: Organizar un taller
-  Calculez votre empreinte en: Calcule su huella mediante
   La valeur minimum pour ce champ est de: El valor mínimo de este campo es
   Administrateur·ice: Administrador
   Par catégorie: Por categoría
@@ -392,7 +376,6 @@ entries:
   Oups: Ups
   Votre date de naissance: Su fecha de nacimiento
   Me connecter: Conéctame
-  Vous avez déjà commencé le test Nos Gestes Climat !: ¡Ya has empezado el test Nos Gestes Climat!
   Impact CO2: Impacto del CO2
   Télécharger le kit, ouvrir dans un nouvel onglet: Descargar el kit, abrir en una nueva pestaña
   Organisation: Organización
@@ -411,8 +394,6 @@ entries:
   précédent: anterior
   Facultatif: Opcional
   Vous avez déjà réalisé le test Nos Gestes Climat !: ¡Ya has realizado el test Nos Gestes Climat!
-  Vous pouvez reprendre votre test en cours, ou en recommencer un.: Puede reanudar su prueba actual o iniciar una nueva.
-  puis comparez vos résultats à ceux des autres participants.: y compare sus resultados con los de los demás participantes.
   km sont parcourus par an, avec en moyenne: km se recorren al año, con una media de
   Vos données seront stockées de manière sécurisée et anonyme. Elles seront agrégées à des fins statistiques ; lesdites statistiques seront consultables sur la page "Rapport détaillé" de votre sondage en fin de parcours. Cette page restera exclusivement accessible aux participant·es ainsi qu'aux organisateur·ices.: Sus datos se almacenarán de forma segura y anónima. Se agregarán con fines estadísticos; estas estadísticas estarán disponibles en la página "Informe detallado" de su encuesta al final del curso. A esta página sólo podrán acceder los participantes y los organizadores.
   Seules les options incluant plus de 3 participants sont accessibles, et ce, dans un objectif de préservation de l’anonymat des participants.: Sólo son accesibles las opciones con más de 3 participantes, para preservar el anonimato de los participantes.
@@ -433,7 +414,6 @@ entries:
   Oups ! Une erreur est survenue: ¡Uy! Se ha producido un error
   Découvrir le calculateur: Descubra el simulador
   Découvrez les conseils de l'ADEME, ouvrir dans un nouvel onglet: Más información sobre los consejos de ADEME, abrir en una pestaña nueva
-  Vous avez déjà participé à ce sondage.: Ya ha participado en esta encuesta.
   Vous avez déja participé à ce sondage.: Ya ha participado en esta encuesta.
   En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.: Al hacer clic en el botón Aceptar, autoriza a {{ parent }} a recuperar su huella climática.
   (Données consultables à partir de 3 participants, dans un souci d'anonymat): (Pueden consultarse los datos de 3 o más participantes, para garantizar el anonimato)
@@ -527,17 +507,14 @@ entries:
   Reconnectez vous en cliquant sur le bouton ci-dessous.: Vuelva a conectarse haciendo clic en el botón de abajo.
   'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logotipos, carteles y presentaciones: en este kit encontrarás todas las herramientas que necesitas para compartir Nos Gestes Climat.'
   ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouveau navigateur.': se ha desconectado de su espacio de organización o está intentando acceder desde un nuevo navegador.
-  Reprendre le test: Reanudar la prueba
   Utiliser mes données existantes: Utilizar mis datos actuales
   Simulation terminée: Simulación completa
-  Commencer le test: Prueba de inicio
   Diffusion: Difusión
   Mon empreinte: Mi huella
   Mes classements: Mi clasificación
   International: Internacional
   Répondre sur les 3 dernières années: Respuesta de los últimos 3 años
   Créer mon organisation: Crear mi organización
-  Une erreur est survenue !: Se ha producido un error
   Mettre à jour mes informations: Actualizar mis datos
   Votre nom: Su nombre
   Ce champ est requis.: Este campo es obligatorio.
@@ -589,7 +566,6 @@ entries:
   2 tonnes: 2 toneladas
   Cette action est définitive.: Esta acción es definitiva.
   Une erreur est survenue. Veuillez réessayer.: Se ha producido un error. Por favor, inténtelo de nuevo.
-  Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.: Puede añadir preguntas adicionales a la prueba para sus estadísticas. Las preguntas adicionales activadas por usted se plantearán a cada participante antes de la prueba Nos Gestes Climat. Responderlas será opcional.
   Supprimer cette question personnalisée ?: ¿Borrar esta pregunta personalizada?
   Question personnalisée de: Pregunta personalizada de
   Modifier: Modifique
@@ -724,10 +700,8 @@ entries:
   Pour faire joli et le reconnaitre !: Para que quede bonito y reconocible
   En particulier, nous suivons l'adresse de la page de fin de simulation, qui contient le total de votre empreinte et sa répartition en grande catégories (transport, logement, etc.): En concreto, rastreamos la dirección de la página al final de la simulación, que contiene su huella total y su desglose en las principales categorías (transporte, vivienda, etc.)
   Choisissez un nom pour ce groupe: Elija un nombre para este grupo
-  Veuillez saisir une adresse email valide.: Introduzca una dirección de correo electrónico válida.
   Veuillez entrer une adresse email valide.: Introduzca una dirección de correo electrónico válida.
   Ce champ est trop long: Este campo es demasiado largo
-  Veuillez entrer une adresse email valide: Introduzca una dirección de correo electrónico válida
   Ce champ est obligatoire.: Este campo es obligatorio.
   Pour le retrouver facilement dans votre liste: Para encontrarlo fácilmente en su lista
   Un bonhomme se demandant où il est: Un hombre preguntándose dónde está
@@ -810,7 +784,6 @@ entries:
   Reprendre plus tard: Reanudar más tarde
   Une erreur est survenue: Se ha producido un error
   '{{name}}, supprimer cette participation': '{{name}}cancelar esta participación'
-  Participant supprimé avec succès: Participante eliminado con éxito
   Supprimer ce participant ? Cette opération est définitive.: ¿Borrar a este participante? Esta operación es definitiva.
   Non, merci: No, gracias
   Une fille qui cuisine: Una chica que cocina
@@ -931,10 +904,8 @@ entries:
   Défiez votre entourage: Desafía a los que te rodean
   L'empreinte carbone: Huella de carbono
   Considérable, non ?: Considerable, ¿no?
-  'L’empreinte carbone : une empreinte parmi d’autres !': 'La huella de carbono: ¡una huella entre muchas!'
   Mobilisez votre entourage pour la planète !: Haz que tus amigos y familiares se impliquen en ayudar al planeta
   La production d'un jean nécessite près de <2>30 000 litres d'eau</2>.: Se necesitan casi <2>30.000 litros de agua</2> para producir un par de vaqueros.
-  Le lexique pour tout comprendre à l'eau: Un glosario para entenderlo todo sobre el agua
   Et la vôtre ?: ¿Y la tuya?
   'Entreprises, collectivités, associations, écoles ou festivals : <2>engagez votre organisation dans une démarche durable</2> avec une campagne Nos Gestes Climat. Sensibilisez vos parties prenantes à l’empreinte carbone et à l’empreinte eau <6>grâce à nos outils clés en main</6>.': 'Empresas, ayuntamientos, asociaciones, escuelas o festivales: <2>comprometa a su organización con un enfoque sostenible</2> mediante una campaña Nos Gestes Climat. Sensibilice a sus interlocutores sobre su huella de carbono y de agua <6>con nuestras herramientas llave en mano</6>.'
   Décryptez les défis environnementaux: Descifrar los retos medioambientales
@@ -1275,7 +1246,6 @@ entries:
   Partagez vos résultats avec notre partenaire - Nos Gestes Climat: Comparta sus resultados con nuestro socio - Nos Gestes Climat
   Notre partenaire: Nuestro socio
   vous a invité à lui transmettre vos empreintes carbone et eau.: le invita a presentar sus huellas de carbono y de agua.
-  Envie de connaître vos empreintes carbone et eau ?: ¿Quiere conocer su huella de carbono y de agua?
   Sport ou Loisir: Deporte u ocio
   Vacances: Vacaciones
   Domicile-Travail: Trabajo a domicilio
@@ -1297,26 +1267,15 @@ entries:
   nous contacter: contacto
   L'adresse e-mail est invalide: La dirección de correo electrónico no es válida
   la page classement: la página de clasificación
-  Votre campagne a été mise à jour.: Su campaña ha sido actualizada.
   "Oups ! Une erreur s'est produite au moment de récupérer les informations de votre campagne. Vous pouvez la retrouver depuis ": '¡Uy! Se ha producido un error al recuperar la información de su campaña. Puede recuperarla desde '
   Oups ! Une erreur s'est produite. Veuillez recharger la page. Si le problème persiste, vous pouvez: ¡Uy! Se ha producido un error. Vuelva a cargar la página. Si el problema persiste, puede
   Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez: ¡Uy! Se ha producido un error. Vuelva a intentarlo más tarde. Si el problema persiste, puede
-  Retrouver votre historique: Encuentre su historia
-  de simulation à tout moment: simulación en cualquier momento
-  Veuillez sélectionner au moins une option: Seleccione al menos una opción
-  Merci de votre intérêt !: Gracias por su interés
-  Merci pour votre réponse. Dites-nous en plus !: Gracias por su respuesta. Cuéntenos más
-  Votre empreinte est un point de départ. Et si vous alliez plus loin ?: Tu huella es un punto de partida. Pero, ¿y si fueras más allá?
-  Je ne veux pas que mes données personnelles soient stockées ou utilisées: No quiero que se almacenen o utilicen mis datos personales
-  Je veux juste voir mes résultats et ne pas perdre de temps avec un compte: Sólo quiero ver mis resultados y no perder el tiempo con una cuenta
-  Je ne préfère pas créer de compte: Prefiero no crear una cuenta
-  Je crée mon compte: Creo mi cuenta
-  Votre retour a été pris en compte, merci !: Hemos tenido en cuenta sus comentarios, ¡gracias!
-  Je ne suis pas sûr que ça m'apporte vraiment quelque chose: No estoy seguro de si realmente estoy sacando algo de esto
-  La création de compte sera bientôt disponible, vous en serez informé ici.: La creación de cuentas estará disponible en breve, se le informará aquí.
-  Bénéficier de conseils personnalisés: Benefíciese de un asesoramiento personalizado
-  J'ai déjà trop de comptes partout, je ne veux pas un de plus: Ya tengo demasiadas cuentas en todas partes, no quiero una más
-  'Pour nous aider à mieux cerner vos attentes, précisez pourquoi vous ne souhaitez pas créer de compte :': 'Para ayudarnos a comprender mejor sus expectativas, especifique por qué no desea crear una cuenta:'
-  pour agir sur vos empreintes: actuar sobre tus huellas
   Donner votre avis: Dar su opinión
   Emoji main qui salue: Emoji mano saludando
+  C'est parti !: ¡Nos vamos!
+  Une erreur s'est produite au moment de sauvegarder vos données. Veuillez réessayer dans quelques instants.: Se ha producido un error al guardar los datos. Vuelva a intentarlo en breve.
+  Vous avez la possibilité d'ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.: Puede añadir preguntas adicionales a la prueba para sus estadísticas. Las preguntas adicionales activadas por usted se plantearán a cada participante antes de la prueba Nos Gestes Climat. Responderlas será opcional.
+  Chargement en cours...: Carga en curso...
+  Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org: El formato de la dirección de correo electrónico introducida no es válido. El formato esperado es nom@exemple.org
+  Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org.lock: Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org
+  Conditions d’utilisation des données « Base Empreinte »: Condiciones de uso de los datos de "Base Empreinte

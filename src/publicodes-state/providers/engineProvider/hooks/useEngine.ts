@@ -19,7 +19,7 @@ import { useCallback, useMemo } from 'react'
  *
  * And a pristine engine wich can be used to assess rules without any situation (for exemple, we can reliably sort the subcategories this way)
  */
-export function useEngine(rules?: NGCRules) {
+export function useEngine(rules?: Partial<NGCRules>) {
   const engine = useMemo(() => {
     if (!rules) return undefined
 

@@ -1,99 +1,145 @@
-import { PARTNER_KEY } from '@/constants/partners'
+import { PARTNER_JAGIS, PARTNER_KEY } from '@/constants/partners'
+import { generateSimulation } from '@/helpers/simulation/generateSimulation'
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
-import { useCurrentSimulation } from '@/publicodes-state'
-import { verifyPartner } from '@/services/partners/verifyPartner'
+import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
+import { faker } from '@faker-js/faker'
 import '@testing-library/jest-dom'
 import { act, screen, waitFor } from '@testing-library/react'
 import { redirect } from 'next/navigation'
 import PartnerPage from '../page'
 
-// Mock the verifyPartner function
+const mockVerifyPartner = jest.fn()
+const mockRedirect = redirect as jest.MockedFunction<typeof redirect>
+
 jest.mock('@/services/partners/verifyPartner', () => ({
-  verifyPartner: jest.fn(),
+  verifyPartner: () => mockVerifyPartner(),
 }))
 
 describe('PartnerPage', () => {
+  const defaultSearchParams = Promise.resolve({
+    [PARTNER_KEY]: PARTNER_JAGIS,
+  })
+  const defaultParams = Promise.resolve({ locale: 'fr' as const })
+
+  const defaultSimulation = generateSimulation({
+    id: faker.string.uuid(),
+    progression: 1,
+  })
+
   beforeEach(() => {
     jest.clearAllMocks()
+    safeLocalStorage.clear()
   })
 
-  it('should display a message indicating the upcoming redirection if user has a simulation', async () => {
-    // Given
-    ;(verifyPartner as jest.Mock).mockResolvedValue({ name: 'Test Partner' })
+  describe('when user has a simulation', () => {
+    it('should display a message indicating the upcoming redirection', async () => {
+      // Given
+      mockVerifyPartner.mockResolvedValue({ name: 'Test Partner' })
 
-    const searchParams = Promise.resolve({
-      [PARTNER_KEY]: 'test-partner',
-    })
-    const params = Promise.resolve({ locale: 'fr' })
+      // When
+      await act(async () => {
+        renderWithWrapper(
+          await PartnerPage({
+            params: defaultParams,
+            searchParams: defaultSearchParams,
+          }),
+          {
+            providers: {
+              queryClient: true,
+              errorBoundary: true,
+              user: true,
+              partner: true,
+            },
+            currentSimulation: defaultSimulation,
+            simulations: [defaultSimulation],
+          }
+        )
+      })
 
-    // When
-    await act(async () => {
-      renderWithWrapper(await PartnerPage({ params, searchParams }), {
-        currentSimulation: {
-          progression: 1,
-        },
+      // Then
+      await waitFor(() => {
+        expect(screen.getByTestId('redirection-message')).toBeInTheDocument()
       })
     })
-
-    // Then
-    await waitFor(() => {
-      expect(screen.getByTestId('redirection-message')).toBeInTheDocument()
-    })
   })
 
-  it('should redirect to /404 if no partner search param is provided', async () => {
-    // Given
-    const searchParams = Promise.resolve({})
-    const params = Promise.resolve({ locale: 'fr' })
+  describe('when no partner search param is provided', () => {
+    it('should redirect to /404', async () => {
+      // Given
+      const searchParams = Promise.resolve({})
 
-    // When
-    await act(async () => {
-      renderWithWrapper(await PartnerPage({ params, searchParams }))
-    })
-
-    // Then
-    expect(redirect).toHaveBeenCalledWith('/404')
-  })
-
-  it("should redirect to /404 if the partner isn't verified", async () => {
-    // Given
-    ;(verifyPartner as jest.Mock).mockResolvedValue(null)
-
-    const searchParams = Promise.resolve({
-      [PARTNER_KEY]: 'invalid-partner',
-    })
-    const params = Promise.resolve({ locale: 'fr' })
-
-    // When
-    await act(async () => {
-      renderWithWrapper(await PartnerPage({ params, searchParams }))
-    })
-
-    // Then
-    expect(redirect).toHaveBeenCalledWith('/404')
-  })
-
-  it("should redirect to /simulateur/bilan if the user hasn't completed his/her test", async () => {
-    // Given
-    ;(verifyPartner as jest.Mock).mockResolvedValue({ name: 'Test Partner' })
-
-    const searchParams = Promise.resolve({
-      [PARTNER_KEY]: 'test-partner',
-    })
-    const params = Promise.resolve({ locale: 'fr' })
-
-    ;(useCurrentSimulation as jest.Mock).mockReturnValue({ progression: 0 })
-
-    // When
-    await act(async () => {
-      renderWithWrapper(await PartnerPage({ params, searchParams }), {
-        currentSimulation: {
-          progression: 0,
-        },
+      // When
+      await act(async () => {
+        renderWithWrapper(
+          await PartnerPage({ params: defaultParams, searchParams }),
+          {
+            providers: {
+              queryClient: true,
+              errorBoundary: true,
+            },
+          }
+        )
       })
-    })
 
-    // Then
-    expect(screen.getByTestId('test-message')).toBeInTheDocument()
+      // Then
+      expect(mockRedirect).toHaveBeenCalledWith('/404')
+    })
+  })
+
+  describe('when partner is not verified', () => {
+    it('should redirect to /404', async () => {
+      // Given
+      mockVerifyPartner.mockResolvedValue(null)
+
+      // When
+      await act(async () => {
+        renderWithWrapper(
+          await PartnerPage({
+            params: defaultParams,
+            searchParams: defaultSearchParams,
+          }),
+          {
+            providers: {
+              queryClient: true,
+              errorBoundary: true,
+            },
+          }
+        )
+      })
+
+      // Then
+      expect(mockRedirect).toHaveBeenCalledWith('/404')
+    })
+  })
+
+  describe('when user has not completed the test', () => {
+    it('should redirect to /simulateur/bilan', async () => {
+      // Given
+      mockVerifyPartner.mockResolvedValue({ name: 'Test Partner' })
+
+      // When
+      await act(async () =>
+        renderWithWrapper(
+          await PartnerPage({
+            params: defaultParams,
+            searchParams: defaultSearchParams,
+          }),
+          {
+            providers: {
+              queryClient: true,
+              errorBoundary: true,
+              user: true,
+              partner: true,
+            },
+            currentSimulation: {
+              progression: 0,
+            },
+          }
+        )
+      )
+
+      // Then
+      expect(screen.getByTestId('test-message')).toBeInTheDocument()
+    })
   })
 })

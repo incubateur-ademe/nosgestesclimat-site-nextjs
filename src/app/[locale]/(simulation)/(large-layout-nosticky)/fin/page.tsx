@@ -17,10 +17,8 @@ import { getIsIframe } from '@/utils/getIsIframe'
 import type { ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Carbone from './_components/Carbone'
-import CreateAccountBlock from './_components/createAccountBlock/CreateAccountBlock'
 import DocumentationBlock from './_components/DocumentationBlock'
 import Eau from './_components/Eau'
-import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
 import InformationBlock from './_components/InformationBlock'
 import PartnerRedirectionAlert from './_components/PartnerRedirectionAlert'
@@ -75,10 +73,6 @@ export default function FinPage() {
         </div>
       )}
 
-      <div className="hidden lg:block">
-        <CreateAccountBlock />
-      </div>
-
       <div className="relative flex flex-col-reverse gap-8 lg:flex-row lg:gap-10">
         <div className="relative flex flex-1 flex-col gap-16 lg:mt-7">
           <div
@@ -114,22 +108,7 @@ export default function FinPage() {
             <CategoriesAccordion metric={currentMetric} />
           </div>
 
-          <FeedbackBanner
-            className="mt-12 mb-8"
-            text={
-              <Trans i18nKey="publicodes.northstar.learned">
-                Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque
-                chose ?
-              </Trans>
-            }
-            type="learned"
-          />
-
           <DocumentationBlock />
-        </div>
-
-        <div className="block lg:hidden">
-          <CreateAccountBlock id="create-account-container-mobile" />
         </div>
 
         <div className="short:gap-2 top-40 flex w-full flex-col gap-4 self-start md:mb-8 lg:sticky lg:z-30 lg:w-[22rem]">

@@ -1,6 +1,7 @@
 'use client'
 
 import { footerClickLanguage } from '@/constants/tracking/layout'
+import { FAQ_PATH } from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDisplayed'
@@ -10,8 +11,11 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
+import { usePathname } from 'next/navigation'
 import { useCallback, useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
+
+const NO_ES_PATHNAMES = new Set([FAQ_PATH])
 
 export default function LanguageSwitchButton({
   langButtonsDisplayed = {
@@ -29,6 +33,15 @@ export default function LanguageSwitchButton({
   const { t } = useClientTranslation()
 
   const currentLocale = useCurrentLocale(i18nConfig)
+
+  const pathname = usePathname()
+
+  // Check without the
+  const langButtonsDisplayedWithFilteredEs = NO_ES_PATHNAMES.has(
+    pathname.replace(new RegExp(`^/(${i18nConfig.locales.join('|')})`), '')
+  )
+    ? { ...langButtonsDisplayed, es: false }
+    : langButtonsDisplayed
 
   useEffect(() => {
     // If the current locale is different than the NEXT_LOCALE cookie, we update it
@@ -64,7 +77,7 @@ export default function LanguageSwitchButton({
         'flex flex-wrap items-center gap-1 sm:gap-2',
         className
       )}>
-      {langButtonsDisplayed.fr && (
+      {langButtonsDisplayedWithFilteredEs.fr && (
         <Button
           lang="fr"
           color={currentLocale === 'fr' ? 'primary' : 'secondary'}
@@ -77,7 +90,7 @@ export default function LanguageSwitchButton({
         </Button>
       )}
 
-      {langButtonsDisplayed.en && (
+      {langButtonsDisplayedWithFilteredEs.en && (
         <Button
           lang="en"
           color={currentLocale === 'en' ? 'primary' : 'secondary'}
@@ -90,7 +103,7 @@ export default function LanguageSwitchButton({
         </Button>
       )}
 
-      {langButtonsDisplayed.es && (
+      {langButtonsDisplayedWithFilteredEs.es && (
         <Button
           lang="es"
           color={currentLocale === 'es' ? 'primary' : 'secondary'}

@@ -8,12 +8,12 @@ import { useCurrentSimulation, useUser } from '@/publicodes-state'
 
 type Props = {
   dottedName: string
-  setFocusedAction: (focusedAction: string) => void
+  setActionWithFormOpen: (focusedAction: string) => void
 }
 
 export default function CustomActionForm({
   dottedName,
-  setFocusedAction,
+  setActionWithFormOpen,
 }: Props) {
   const { t } = useClientTranslation()
 
@@ -42,7 +42,7 @@ export default function CustomActionForm({
             ) {
               toggleActionChoice(dottedName)
               refreshNewsletterSubcriptions()
-              setFocusedAction('')
+              setActionWithFormOpen('')
             }
           }}
           shouldForceEmailEditable={true}

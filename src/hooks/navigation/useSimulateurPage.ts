@@ -1,3 +1,7 @@
+import {
+  AB_TESTS_LABELS,
+  useABTesting,
+} from '@/components/providers/ABTestingProvider'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
@@ -29,6 +33,8 @@ export function useSimulateurPage() {
 
   const { goToEndPage, getLinkToEndPage } = useEndPage()
 
+  const { abTests } = useABTesting()
+
   const tutorielSeen = tutorials.testIntro
 
   const { progression } = useCurrentSimulation()
@@ -55,7 +61,7 @@ export function useSimulateurPage() {
       }
 
       // If the user has seen the tutoriel we redirect him to the test
-      if (tutorielSeen) {
+      if (tutorielSeen || abTests[AB_TESTS_LABELS.hideTutorial]) {
         router.replace(getLinkToSimulateur())
         return
       }
@@ -65,7 +71,7 @@ export function useSimulateurPage() {
         scroll: false,
       })
     },
-    [tutorielSeen, router, initSimulation, progression, goToEndPage]
+    [progression, tutorielSeen, abTests, router, initSimulation, goToEndPage]
   )
 
   const getLinkToSimulateurPage = useCallback(
@@ -78,14 +84,14 @@ export function useSimulateurPage() {
       }
 
       // If the user has seen the tutoriel we return the test page link
-      if (tutorielSeen) {
+      if (tutorielSeen || abTests[AB_TESTS_LABELS.hideTutorial]) {
         return getLinkToSimulateur()
       }
 
       // else we return the tutoriel page link
       return '/tutoriel'
     },
-    [tutorielSeen, progression, getLinkToEndPage]
+    [progression, tutorielSeen, abTests, getLinkToEndPage]
   )
 
   const linkToSimulateurPageLabel = useMemo(() => {

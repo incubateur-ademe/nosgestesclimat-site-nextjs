@@ -4,13 +4,15 @@ import Trans from '@/components/translation/trans/TransClient'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useEngine } from '@/publicodes-state'
+import type { Action } from '@/publicodes-state/types'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
 import { useState } from 'react'
 import ActionList from './actions/ActionList'
 
 type Props = {
-  actions: any
+  actions: (Action & { isIrrelevant: boolean })[]
   rules: any
   radical: boolean
 }
@@ -20,14 +22,16 @@ export default function Actions({
   radical,
   rules,
 }: Props) {
-  const [focusedAction, setFocusedAction] = useState<string>('')
+  const [actionWithFormOpen, setActionWithFormOpen] = useState<string>('')
+  const [shouldUpdatePersistedActions, setShouldUpdatePersistedActions] =
+    useState(false)
 
   const { t } = useClientTranslation()
   const { getValue } = useEngine()
 
   const bilan = { nodeValue: getValue('bilan'), dottedName: 'bilan' }
 
-  const thresholds = [
+  const thresholds: [number, string][] = [
     [10000, t('plus de 10 tonnes')],
     [1000, t("plus d'1 tonne")],
     [100, t('plus de 100 kg')],
@@ -37,32 +41,36 @@ export default function Actions({
 
   const { actionChoices } = useCurrentSimulation()
 
-  const actions = rawActions.map((a: any) => ({
-    ...a,
-    value: getCorrectedValue(a),
-  }))
+  const actions = rawActions.map((action) => ({
+    ...action,
+    value: getCorrectedValue(action),
+  })) as (Action & { isIrrelevant: boolean; value: number | undefined })[]
 
   const rejected = actions.filter(
-    (a: any) => actionChoices?.[a.dottedName] === false
+    (action) => actionChoices?.[action.dottedName] === false
   )
 
   const notRejected = actions.filter(
-    (a: any) => actionChoices?.[a.dottedName] !== false
+    (action) => actionChoices?.[action.dottedName] !== false
   )
 
   const maxImpactAction = notRejected.reduce(
-    (acc: any, next: any) => {
-      return next.value > acc.value ? next : acc
-    },
-    { value: 0 } as { value: number }
+    (max, action) => ((action.value ?? 0) > (max.value ?? 0) ? action : max),
+    {
+      value: 0,
+      dottedName: '' as DottedName,
+      isIrrelevant: false,
+    } as Action & { isIrrelevant: boolean; value: number | undefined }
   )
 
   const numberedActions = thresholds.map(([threshold, label], index) => {
-    const thresholdActions = notRejected.filter(
-      (a: { value: any }) =>
-        a.value >= threshold &&
-        (index === 0 || a.value < thresholds[index - 1][0])
-    )
+    const thresholdActions = notRejected.filter((action) => {
+      return (
+        action.value &&
+        action.value >= threshold &&
+        (index === 0 || action.value < thresholds[index - 1][0])
+      )
+    })
 
     if (!thresholdActions.length) return null
 
@@ -72,8 +80,10 @@ export default function Actions({
           actions={thresholdActions}
           rules={rules}
           bilan={bilan}
-          focusedAction={focusedAction}
-          setFocusedAction={setFocusedAction}
+          actionWithFormOpen={actionWithFormOpen}
+          setActionWithFormOpen={setActionWithFormOpen}
+          shouldUpdatePersistedActions={shouldUpdatePersistedActions}
+          setShouldUpdatePersistedActions={setShouldUpdatePersistedActions}
         />
 
         <div className="my-4 h-8 w-full text-center">
@@ -87,7 +97,7 @@ export default function Actions({
 
   return (
     <>
-      {maxImpactAction.value < 100 && (
+      {maxImpactAction.value && maxImpactAction.value < 100 && (
         <Card className="my-8">
           <Trans i18nKey={'publicodes.AllActions.msgPlusActions'}>
             <p>
@@ -106,7 +116,7 @@ export default function Actions({
       <div className="my-4 h-8 w-full text-center">
         <p className="bg-primary-700 inline-flex items-center rounded-full px-4 text-sm font-medium text-white">
           <Image
-            src="/images/misc/270A.svg"
+            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/270_A_0f004e2cbf.svg"
             className="mr-2 align-middle invert"
             height={36}
             width={36}
@@ -117,19 +127,19 @@ export default function Actions({
       </div>
 
       <ActionList
-        actions={notRejected.filter(
-          (a: { value: any; isIrrelevant: boolean }) => a.value === undefined
-        )}
+        actions={notRejected.filter((action) => action.value === undefined)}
         rules={rules}
         bilan={bilan}
-        setFocusedAction={setFocusedAction}
-        focusedAction={focusedAction}
+        setActionWithFormOpen={setActionWithFormOpen}
+        actionWithFormOpen={actionWithFormOpen}
+        shouldUpdatePersistedActions={shouldUpdatePersistedActions}
+        setShouldUpdatePersistedActions={setShouldUpdatePersistedActions}
       />
 
       <div className="my-4 h-8 w-full text-center">
         <p className="bg-primary-700 inline-flex items-center rounded-full px-4 text-sm font-medium text-white">
           <Image
-            src="/images/misc/26D4.svg"
+            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/26_D4_ca89de0959.svg"
             className="mr-2 invert"
             height={36}
             width={36}
@@ -143,8 +153,10 @@ export default function Actions({
         actions={notRejected.filter((a: { value: any }) => a.value < 0)}
         rules={rules}
         bilan={bilan}
-        setFocusedAction={setFocusedAction}
-        focusedAction={focusedAction}
+        setActionWithFormOpen={setActionWithFormOpen}
+        actionWithFormOpen={actionWithFormOpen}
+        shouldUpdatePersistedActions={shouldUpdatePersistedActions}
+        setShouldUpdatePersistedActions={setShouldUpdatePersistedActions}
       />
 
       {rejected.length > 0 && (
@@ -156,8 +168,10 @@ export default function Actions({
             actions={rejected}
             rules={rules}
             bilan={bilan}
-            setFocusedAction={setFocusedAction}
-            focusedAction={focusedAction}
+            setActionWithFormOpen={setActionWithFormOpen}
+            actionWithFormOpen={actionWithFormOpen}
+            shouldUpdatePersistedActions={shouldUpdatePersistedActions}
+            setShouldUpdatePersistedActions={setShouldUpdatePersistedActions}
           />
         </div>
       )}

@@ -158,16 +158,6 @@ entries:
   Ce modèle a été conçu par: This model was designed by
   model.questions: Discover the <2>list of questions available in the template</2>.
   model.questions.lock: Découvrez <2>la liste des questions disponibles dans le modèle</2>.
-  publicodes.northstar.title: Just a quick question between us...
-  publicodes.northstar.title.lock: Petite question entre nous...
-  Oui plutôt, envoyer cette réponse: Yes, send this answer instead
-  Tout à fait, envoyer cette réponse: Absolutely, send this answer
-  publicodes.northstar.action: Does Nos Gestes Climat make you want to take action to reduce your carbon footprint?
-  publicodes.northstar.action.lock: Nos Gestes Climat vous donne envie d'agir pour réduire votre empreinte carbone ?
-  Moyennement, envoyer cette réponse: Moderately, send this answer
-  Pas vraiment, envoyer cette réponse: Not really, send this answer
-  publicodes.northstar.learned: Have you learned anything from Nos Gestes Climat?
-  publicodes.northstar.learned.lock: Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque chose ?
   Oups, nous n'avons pas d'article correspondant: Oops, we don't have a matching article
   Blog: Blog
   simulations terminées: completed simulations
@@ -175,8 +165,6 @@ entries:
   publicodes.planDuSite.actionsPlus.lock: Les actions
   publicodes.planDuSite.title: Sitemap
   publicodes.planDuSite.title.lock: Plan du site
-  Statistiques Northstar: Northstar statistics
-  Le chargement prend parfois plusieurs minutes, visualiser ce dashboard demande un peu de patience ! 🕙: Loading sometimes takes several minutes, so viewing this dashboard requires a little patience! 🕙
   Nombre de: Number of
   'pour les ': 'for '
   Contact: Contact
@@ -225,11 +213,9 @@ entries:
   'Identifiant :': 'Identifier :'
   disponibles: available
   Mes réponses: My answers
-  C'est parti ! →: Start →
   'Date complète :': 'Full date :'
   Consultez la FAQ: Consult the FAQ
   Avant de commencer: Before you start
-  Fermer le bandeau de feedback: Close the feedback banner
   Entrez des mots-clefs de recherche: Enter search keywords
   international.comment.2: Explore the specific features of each country in detail.
   international.comment.2.lock: Explorez en détail les spécificités de chaque pays.
@@ -268,7 +254,6 @@ entries:
   Télécharger l'image: Download image
   'Total par an :': 'Total per year :'
   Vous avez terminé le test !: You've completed the test!
-  Merci pour votre retour !: Thanks for your feedback!
   'Total :': 'Total :'
   Comment agir ?: What can you do?
   Ajouter: Add
@@ -400,16 +385,13 @@ entries:
   'Moyenne :': 'Average :'
   Votre code postal: Your postcode
   Modifications sauvegardées: Changes saved
-  Calculez votre empreinte en: Calculate your footprint by
   Pour conserver vos résultats et les retrouver à l’avenir: To keep your results and find them again in the future
   Se déconnecter de votre espace organisation: Logging out of your organisation space
   Veuillez entrer votre code postal: Please enter your postcode
   Groupes d'amis: Groups of friends
   Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.: Are you sure you want to leave this page? Your changes will be lost.
   Accéder au kit: Access the kit
-  puis comparez vos résultats à ceux des autres participants.: then compare your results with those of the other participants.
   Partagez le test pour obtenir vos premiers résultats.: Share the test to get your first results.
-  Vous pouvez reprendre votre test en cours, ou en recommencer un.: You can resume your current test, or start a new one.
   Télécharger le kit, ouvrir dans un nouvel onglet: Download the kit, open in a new tab
   Me connecter: Connect me
   Découvrez le calculateur, ouvrir dans un nouvel onglet: Discover the simulator, open in a new tab
@@ -419,7 +401,6 @@ entries:
   Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}: See {String(group.participants.length - 5)} other{withS} participant{withS}
   Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}.lock: Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}
   Seules les options incluant plus de 3 participants sont accessibles, et ce, dans un objectif de préservation de l’anonymat des participants.: Only options with more than 3 participants are accessible, in order to preserve the anonymity of the participants.
-  Vous avez déjà commencé le test Nos Gestes Climat !: You've already started the Nos Gestes Climat test!
   Vous avez déjà réalisé le test Nos Gestes Climat !: You've already taken the Nos Gestes Climat test!
   Au total: In total
   C’est bien cette distance qui sera comptabilisée en fin de test.: This is the distance that will be counted at the end of the test.
@@ -434,7 +415,6 @@ entries:
   En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.: By clicking on the Accept button, you authorise {{ parent }} to retrieve your climate footprint.
   Aller plus loin: Going further
   en 10 minutes: in 10 minutes
-  Vous avez déjà participé à ce sondage.: You have already taken part in this survey.
   top chrono.: top time.
   Calculez votre empreinte sur le climat: Calculate your climate footprint
   Découvrez les conseils de l'ADEME, ouvrir dans un nouvel onglet: Find out more about ADEME's advice, open in a new tab
@@ -534,15 +514,12 @@ entries:
   'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logo, posters and presentations: find all the tools you need to share Nos Gestes Climat in this kit.'
   Simulation terminée: Completed simulation
   Utiliser mes données existantes: Use my existing data
-  Commencer le test: Start the test
-  Reprendre le test: Resume the test
   International: International
   Mes classements: My rankings
   Mon empreinte: My footprint
   Diffusion: Broadcast
   Répondre sur les 3 dernières années: Answer for the last 3 years
   Créer mon organisation: Create my organisation
-  Une erreur est survenue !: An error has occurred!
   Une erreur s'est produite au moment de la sauvegarde de vos paramètres: An error occurred when saving your settings
   Mettre à jour mes informations: Update my information
   Simulations terminées: Completed simulations
@@ -606,7 +583,6 @@ entries:
   Votre question à ajouter: Your question to add
   Vous accompagner pour mieux agir en <2>4 mails seulement</2>.: Support you to take better action in <2>just 4 emails</2>.
   Recevez nos <1>conseils transports</1> directement dans votre boite mail !: Receive our <1>transport advice</1> straight to your inbox!
-  Vous avez la possibilité d’ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.: You can add additional questions to the test for your statistics. Your activated additional questions will be asked to each participant before the Nos Gestes Climat test. Answering them will be optional.
   Chaque participation est représentée par une barre verticale. Votre score est affiché en <2>rose</2>.: Each entry is represented by a vertical bar. Your score is shown in <2>pink</2>.
   Elle seront toutefois prises en compte lors de l'export de données.: However, they will be taken into account when the data is exported.
   Pour faciliter la lecture, les valeurs supérieures à 100 t sont retirées.: For ease of reading, values above 100 t are removed.
@@ -726,9 +702,7 @@ entries:
   Ce champ est trop long: This field is too long
   Ce champ est obligatoire.: This field is mandatory.
   Pour le retrouver facilement dans votre liste: To find it easily in your list
-  Veuillez entrer une adresse email valide: Please enter a valid email address
   Choisissez un nom pour ce groupe: Choose a name for this group
-  Veuillez saisir une adresse email valide.: Please enter a valid email address.
   Veuillez entrer une adresse email valide.: Please enter a valid email address.
   Politique des cookies - Nos Gestes Climat: Cookie policy - Nos Gestes Climat
   Pour faire joli et le reconnaitre !: To make it look pretty and recognisable!
@@ -815,7 +789,6 @@ entries:
   Une erreur s'est produite au moment de la sauvegarde.: An error has occurred during backup.
   '{{name}}, supprimer cette participation': '{{name}}cancel this shareholding'
   Supprimer ce participant ? Cette opération est définitive.: Delete this participant? This operation is definitive.
-  Participant supprimé avec succès: Participant successfully deleted
   Une erreur est survenue: An error has occurred
   Des enfants qui se tiennent la main: Children holding hands
   Une fille qui cuisine: A girl who cooks
@@ -919,7 +892,6 @@ entries:
   Empreinte eau: Water footprint
   Chemisier: Blouse
   Basé sur les données de l’ADEME: Based on ADEME data
-  'L’empreinte carbone : une empreinte parmi d’autres !': 'The carbon footprint: one footprint among many!'
   Découvrir la documentation: Discover the documentation
   Connaissez-vous votre empreinte écologique ?: Do you know your ecological footprint?
   Décryptez les défis environnementaux: Deciphering environmental challenges
@@ -941,7 +913,6 @@ entries:
   Mobilisez votre entourage pour la planète !: Get your friends and family involved in helping the planet!
   En savoir plus sur l'empreinte eau: Find out more about our water footprint
   Ordinateur: Computer
-  Le lexique pour tout comprendre à l'eau: A glossary to help you understand everything about water
   'Transports : les modes à fuir, ceux à chérir': 'Transport: modes to avoid, those to cherish'
   Un modèle de calcul fiable: A reliable calculation model
   Un calculateur, deux empreintes: One calculator, two footprints
@@ -1280,7 +1251,6 @@ entries:
   Partagez vos résultats avec notre partenaire - Nos Gestes Climat: Share your results with our partner - Nos Gestes Climat
   vous a invité à lui transmettre vos empreintes carbone et eau.: has invited you to submit your carbon and water footprints.
   Notre partenaire: Our partner
-  Envie de connaître vos empreintes carbone et eau ?: Want to know your carbon and water footprints?
   Sport ou Loisir: Sport or Leisure
   RDV médicaux: Medical appointments
   Courses: Races
@@ -1302,26 +1272,15 @@ entries:
   L'adresse e-mail est invalide: The e-mail address is invalid
   nous contacter: contact us
   la page classement: the ranking page
-  Votre campagne a été mise à jour.: Your campaign has been updated.
   Oups ! Une erreur s'est produite. Veuillez recharger la page. Si le problème persiste, vous pouvez: Oops! An error has occurred. Please reload the page. If the problem persists, you can
   Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez: Oops! An error has occurred. Please try again later. If the problem persists, you can
   "Oups ! Une erreur s'est produite au moment de récupérer les informations de votre campagne. Vous pouvez la retrouver depuis ": 'Oops! There was an error retrieving your campaign information. You can retrieve it from '
-  Je crée mon compte: I create my account
-  Bénéficier de conseils personnalisés: Benefit from personalised advice
-  Veuillez sélectionner au moins une option: Please select at least one option
-  Je ne préfère pas créer de compte: I prefer not to create an account
-  Merci de votre intérêt !: Thank you for your interest!
-  La création de compte sera bientôt disponible, vous en serez informé ici.: Account creation will be available soon, you will be informed here.
-  Je ne veux pas que mes données personnelles soient stockées ou utilisées: I do not want my personal data to be stored or used
-  Je ne suis pas sûr que ça m'apporte vraiment quelque chose: I'm not sure I'm really getting anything out of it
-  J'ai déjà trop de comptes partout, je ne veux pas un de plus: I already have too many accounts everywhere, I don't want one more
-  de simulation à tout moment: simulation at any time
-  Merci pour votre réponse. Dites-nous en plus !: Thank you for your reply. Tell us more!
-  Votre empreinte est un point de départ. Et si vous alliez plus loin ?: Your footprint is a starting point. But what if you went further?
-  'Pour nous aider à mieux cerner vos attentes, précisez pourquoi vous ne souhaitez pas créer de compte :': 'To help us better understand your expectations, please specify why you do not wish to create an account:'
-  Votre retour a été pris en compte, merci !: Your feedback has been taken into account, thank you!
-  Je veux juste voir mes résultats et ne pas perdre de temps avec un compte: I just want to see my results and not waste time with an account
-  Retrouver votre historique: Find your history
-  pour agir sur vos empreintes: to act on your footprints
   Donner votre avis: Give feedback
   Emoji main qui salue: Emoji waving hand
+  Une erreur s'est produite au moment de sauvegarder vos données. Veuillez réessayer dans quelques instants.: An error has occurred while saving your data. Please try again shortly.
+  Vous avez la possibilité d'ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.: You can add additional questions to the test for your statistics. Your activated additional questions will be asked to each participant before the Nos Gestes Climat test. Answering them will be optional.
+  C'est parti !: We're off!
+  Chargement en cours...: Loading in progress...
+  Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org: The format of the email address entered is invalid. The expected format is nom@exemple.org
+  Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org.lock: Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org
+  Conditions d’utilisation des données « Base Empreinte »: Conditions of use of "Base Empreinte" data
