@@ -3,6 +3,7 @@ import { useUser } from '@/publicodes-state'
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import type { UseQueryResult } from '@tanstack/react-query'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import { useFeatureFlagVariantKey } from 'posthog-js/react'
 import { useLocale } from './useLocale'
 
 type Props = {
@@ -20,6 +21,7 @@ export function useRules(
   const locale = useLocale()
   const { user } = useUser()
 
+  const flagValue = useFeatureFlagVariantKey('ab-test-first-question')
   const regionCode =
     user?.region?.code != undefined && user?.region?.code !== ''
       ? user?.region?.code
@@ -27,7 +29,14 @@ export function useRules(
 
   return useQuery({
     queryKey: ['rules', locale, regionCode, isOptim, PRNumber],
-    queryFn: () => getRules({ locale, regionCode, isOptim, PRNumber }),
+    queryFn: () =>
+      getRules({
+        locale,
+        regionCode,
+        isOptim,
+        PRNumber,
+        ABtesting: flagValue === 'change-first-question',
+      }),
     placeholderData: keepPreviousData,
     staleTime: Infinity, // We don't want to import the rule multiple times
   })
