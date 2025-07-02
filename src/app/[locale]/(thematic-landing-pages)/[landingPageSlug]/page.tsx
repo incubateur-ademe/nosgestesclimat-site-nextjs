@@ -110,12 +110,12 @@ export default async function ThematicLandingPage({
       />
 
       <LandingPage
-        heroTitle={block1.title}
+        heroTitle={block1?.title}
         heroDescription={
           <div className="flex flex-col items-start gap-4 md:gap-6">
             <p
               dangerouslySetInnerHTML={{
-                __html: block1.htmlDescription ?? '',
+                __html: block1?.htmlDescription ?? '',
               }}></p>
             <div className="flex w-full justify-center md:justify-start">
               <DynamicCTAButtons
@@ -145,7 +145,7 @@ export default async function ThematicLandingPage({
                 width={280}
                 height={280}
                 src={block1?.image?.url ?? ''}
-                alt={block1.image?.alternativeText ?? ''}
+                alt={block1?.image?.alternativeText ?? ''}
               />
             </div>
           </div>
@@ -155,99 +155,112 @@ export default async function ThematicLandingPage({
             <Image
               width={400}
               height={400}
-              src={block1.image?.url ?? ''}
-              alt={block1.image?.alternativeText ?? ''}
+              src={block1?.image?.url ?? ''}
+              alt={block1?.image?.alternativeText ?? ''}
             />
           </div>
         }
         heroPartners={<Partners locale={locale} />}>
-        <WhatItIs
-          title={block2.title}
-          description={block2.htmlDescription ?? ''}
-          illustration={{
-            url: block2.image?.url ?? '',
-            alternativeText: block2.image?.alternativeText ?? '',
-            className: 'py-6 md:py-10',
-          }}
-        />
+        {block2 && (
+          <WhatItIs
+            title={block2?.title}
+            description={block2?.htmlDescription ?? ''}
+            illustration={{
+              url: block2?.image?.url ?? '',
+              alternativeText: block2?.image?.alternativeText ?? '',
+              className: 'py-6 md:py-10',
+            }}
+          />
+        )}
 
-        <WhatDoWeMeasure
-          title={block3.title}
-          description={block3.htmlDescription ?? ''}
-          listItems={block3.listItems?.map(({ title, image }) => ({
-            title,
-            icon: {
-              url: image?.url ?? '',
-              alternativeText: image?.alternativeText ?? '',
-            },
-          }))}
-        />
-
-        <DidYouKnowSlider
-          slides={block4?.map(({ text, image }) => ({
-            content: text,
-            illustration: image?.url ?? undefined,
-          }))}
-        />
-        <DailyGestures
-          trackingEvents={{
-            start: getLandingClickCTAStart(
-              `/${landingPageSlug}`,
-              trackingActionClickPageBottom
-            ),
-            resume: getLandingClickCTAResume(
-              `/${landingPageSlug}`,
-              trackingActionClickPageBottom
-            ),
-            results: getLandingClickCTAResults(
-              `/${landingPageSlug}`,
-              trackingActionClickPageBottom
-            ),
-          }}
-          title={block5.title}
-          description={block5?.htmlDescription ?? ''}
-          gestures={{
-            default: {
-              imageAlt: block5.image?.alternativeText ?? '',
-              imageSrc: block5.image?.url ?? '',
-              gestureList: block5.listItems?.map(({ title }) => title),
-            },
-          }}
-        />
-
-        <UnderstandToAct
-          locale={locale}
-          pathname={`/${landingPageSlug}`}
-          title={block6.title}
-          description={block6.htmlDescription}
-          posts={
-            articlesList?.map(({ category, title, slug, image }) => ({
-              category: category?.title ?? '',
-              title,
-              href: getArticleHref({
-                categorySlug: category?.slug ?? '',
-                articleSlug: slug,
-              }),
-              imageSrc: image?.url ?? '',
-              imageAlt: image?.alternativeText ?? '',
-            })) ?? []
-          }
-        />
-
-        <MotivationSection
-          title={block7.title}
-          description={block7.htmlDescription ?? ''}
-          motivationItems={block7.listItems?.map(
-            ({ title, image, description }) => ({
+        {block3 && (
+          <WhatDoWeMeasure
+            title={block3.title}
+            description={block3.htmlDescription ?? ''}
+            listItems={block3.listItems?.map(({ title, image }) => ({
               title,
               icon: {
                 url: image?.url ?? '',
                 alternativeText: image?.alternativeText ?? '',
               },
-              description: description ?? '',
-            })
-          )}
-        />
+            }))}
+          />
+        )}
+
+        {block4 && (
+          <DidYouKnowSlider
+            slides={block4?.map(({ text, image }) => ({
+              content: text,
+              illustration: image?.url ?? '',
+            }))}
+          />
+        )}
+
+        {block5 && (
+          <DailyGestures
+            trackingEvents={{
+              start: getLandingClickCTAStart(
+                `/${landingPageSlug}`,
+                trackingActionClickPageBottom
+              ),
+              resume: getLandingClickCTAResume(
+                `/${landingPageSlug}`,
+                trackingActionClickPageBottom
+              ),
+              results: getLandingClickCTAResults(
+                `/${landingPageSlug}`,
+                trackingActionClickPageBottom
+              ),
+            }}
+            title={block5.title}
+            description={block5?.htmlDescription ?? ''}
+            gestures={{
+              default: {
+                imageAlt: block5.image?.alternativeText ?? '',
+                imageSrc: block5.image?.url ?? '',
+                gestureList: block5.listItems?.map(({ title }) => title),
+              },
+            }}
+          />
+        )}
+
+        {block6 && (
+          <UnderstandToAct
+            locale={locale}
+            pathname={`/${landingPageSlug}`}
+            title={block6.title}
+            description={block6.htmlDescription}
+            posts={
+              articlesList?.map(({ category, title, slug, image }) => ({
+                category: category?.title ?? '',
+                title,
+                href: getArticleHref({
+                  categorySlug: category?.slug ?? '',
+                  articleSlug: slug,
+                }),
+                imageSrc: image?.url ?? '',
+                imageAlt: image?.alternativeText ?? '',
+              })) ?? []
+            }
+          />
+        )}
+
+        {block7 && (
+          <MotivationSection
+            title={block7.title}
+            description={block7.htmlDescription ?? ''}
+            motivationItems={block7.listItems?.map(
+              ({ title, image, description }) => ({
+                title,
+                icon: {
+                  url: image?.url ?? '',
+                  alternativeText: image?.alternativeText ?? '',
+                },
+                description: description ?? '',
+              })
+            )}
+          />
+        )}
 
         <FAQ questions={faq?.questions ?? []} />
       </LandingPage>

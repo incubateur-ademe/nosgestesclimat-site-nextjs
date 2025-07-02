@@ -210,14 +210,8 @@ export type FAQType = {
   questions: QuestionType[]
 }
 
-type IconBlockType = {
-  title: string
-  icon: ImageType
-  text?: string
-}
-
 type CarouselItemType = {
-  image: ImageType
+  image?: ImageType
   text: string
   htmlText?: string
   pinkText: string
@@ -226,7 +220,7 @@ type CarouselItemType = {
 type TitleImageDescription = {
   title: string
   image?: ImageType
-  description: string
+  description?: string
 }
 
 type TitleImageListDescriptionWithHTML = {
@@ -243,16 +237,16 @@ export type ThematicLandingPage = {
   publishedAt: string
   updatedAt: string
   title: string
-  block1: TitleImageListDescriptionWithHTML
-  block2: TitleImageListDescriptionWithHTML
-  block3: TitleImageListDescriptionWithHTML
-  block4: CarouselItemType[]
-  block5: TitleImageListDescriptionWithHTML
-  block6: TitleImageListDescriptionWithHTML
+  block1?: TitleImageListDescriptionWithHTML
+  block2?: TitleImageListDescriptionWithHTML
+  block3?: TitleImageListDescriptionWithHTML
+  block4?: CarouselItemType[]
+  block5?: TitleImageListDescriptionWithHTML
+  block6?: TitleImageListDescriptionWithHTML
   articlesList?: ArticleType[]
   articlesCTALabel?: string
   articlesCTALink?: string
-  block7: TitleImageListDescriptionWithHTML
+  block7?: TitleImageListDescriptionWithHTML
   faq?: FAQType
   metadata?: PageMetadataType
   slug: string

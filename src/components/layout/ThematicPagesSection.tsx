@@ -33,7 +33,9 @@ export default function ThematicPagesSection() {
   return (
     <div className="flex flex-col gap-y-2">
       <p className="text-default mb-0 text-sm font-bold">
-        <Trans>Pages thématiques</Trans>
+        <Trans i18nKey="footer.thematicLandingPages.title">
+          Pages thématiques
+        </Trans>
       </p>
       {thematicPages.map((page) => (
         <InlineLink
