@@ -38,7 +38,6 @@ type Props = {
   rule: any
   setActionWithFormOpen: (dottedName: DottedName) => void
   isFocused: boolean
-  isIrrelevant: boolean
   handleUpdatePersistedActions: () => void
 }
 
@@ -47,7 +46,6 @@ export default function ActionCard({
   total,
   rule,
   setActionWithFormOpen,
-  isIrrelevant,
   handleUpdatePersistedActions,
 }: Props) {
   const { t } = useClientTranslation()
@@ -142,14 +140,12 @@ export default function ActionCard({
         'relative flex h-[18rem] w-full flex-col items-center justify-center overflow-auto rounded-xl border-2 border-solid p-4',
         isSelected
           ? 'border-green-500 bg-green-500/[0.23]'
-          : getBorderColor(category),
-        isIrrelevant && 'border-gray-300 bg-gray-500/[0.1]'
+          : getBorderColor(category)
       )}>
       <div
         className={twMerge(
           'flex h-[6rem] w-full items-center rounded-xl p-2',
-          getBackgroundLightColor(category),
-          isIrrelevant && 'bg-gray-500/[0.1]'
+          getBackgroundLightColor(category)
         )}>
         <Link
           className="z-10 w-full no-underline"
@@ -162,8 +158,7 @@ export default function ActionCard({
           <h2
             className={twMerge(
               'mb-0 inline-block w-full text-center text-sm font-bold',
-              getTextDarkColor(category),
-              isIrrelevant && 'text-gray-800'
+              getTextDarkColor(category)
             )}>
             {title}
           </h2>
@@ -186,9 +181,7 @@ export default function ActionCard({
             title={t("Choisir l'action")}
             type="button"
             aria-pressed={actionChoices?.[dottedName]}
-            className={twMerge(
-              hasRemainingQuestions || isIrrelevant ? 'grayscale' : ''
-            )}
+            className={twMerge(hasRemainingQuestions ? 'grayscale' : '')}
             onClick={handleChooseAction}>
             <CheckCircleIcon
               className="fill-green-500"
