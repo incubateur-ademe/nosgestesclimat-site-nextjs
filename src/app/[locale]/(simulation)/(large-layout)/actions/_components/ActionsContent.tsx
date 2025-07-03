@@ -98,7 +98,8 @@ export default function ActionsContent() {
             count: actions.filter(
               (action) =>
                 action.dottedName.startsWith(category) &&
-                !(action as Action & { isIrrelevant: boolean }).isIrrelevant
+                !(action as Action & { isIrrelevant: boolean }).isIrrelevant &&
+                action.nodeValue !== 0
             ).length,
           }))}
         />
