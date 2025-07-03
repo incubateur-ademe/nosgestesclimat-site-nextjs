@@ -1,10 +1,12 @@
+import { NEXT_LOCALE_COOKIE_NAME } from '/src/i18nConfig'
+
 describe('Paramètre lang dans l’URL', () => {
   it('redirige vers /en et met à jour le cookie quand ?lang=en', () => {
     cy.clearCookies()
     cy.visit('/?lang=en')
     cy.url().should('include', '/en')
     cy.url().should('not.include', 'lang=')
-    cy.getCookie('NEXT_LOCALE').should('have.property', 'value', 'en')
+    cy.getCookie(NEXT_LOCALE_COOKIE_NAME).should('have.property', 'value', 'en')
     cy.contains('Take the test') // Vérifie que la page est bien en anglais
   })
 
@@ -13,7 +15,7 @@ describe('Paramètre lang dans l’URL', () => {
     cy.visit('/en?lang=fr')
     cy.url().should('not.include', '/en')
     cy.url().should('not.include', 'lang=')
-    cy.getCookie('NEXT_LOCALE').should('have.property', 'value', 'fr')
+    cy.getCookie(NEXT_LOCALE_COOKIE_NAME).should('have.property', 'value', 'fr')
     cy.contains('Passer le test') // Vérifie que la page est bien en français
   })
 
@@ -22,7 +24,7 @@ describe('Paramètre lang dans l’URL', () => {
     cy.visit('/?lang=es')
     cy.url().should('include', '/es')
     cy.url().should('not.include', 'lang=')
-    cy.getCookie('NEXT_LOCALE').should('have.property', 'value', 'es')
+    cy.getCookie(NEXT_LOCALE_COOKIE_NAME).should('have.property', 'value', 'es')
     cy.contains('prueba')
   })
 
@@ -31,13 +33,13 @@ describe('Paramètre lang dans l’URL', () => {
     cy.visit('/en?lang=en')
     cy.url().should('include', '/en')
     cy.url().should('not.include', 'lang=')
-    cy.getCookie('NEXT_LOCALE').should('have.property', 'value', 'en')
+    cy.getCookie(NEXT_LOCALE_COOKIE_NAME).should('have.property', 'value', 'en')
   })
 
   it('ignore un paramètre lang invalide', () => {
     cy.clearCookies()
     cy.visit('/?lang=de')
     cy.url().should('not.include', '/de')
-    cy.getCookie('NEXT_LOCALE').should('not.exist')
+    cy.getCookie(NEXT_LOCALE_COOKIE_NAME).should('not.exist')
   })
 })

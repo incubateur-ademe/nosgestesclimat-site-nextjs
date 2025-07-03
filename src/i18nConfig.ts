@@ -5,6 +5,8 @@ export const LOCALE_EN_KEY = 'en'
 export const LOCALE_ES_KEY = 'es'
 export const LOCALE_FR_KEY = 'fr'
 
+export const NEXT_LOCALE_COOKIE_NAME = 'NEXT_LOCALE'
+
 export type Locale = 'fr' | 'en' | 'es'
 
 const i18nConfig: Config = {
@@ -25,7 +27,7 @@ const i18nConfig: Config = {
     }
 
     // Check for NEXT_LOCALE cookie
-    const nextLocale = request.cookies.get('NEXT_LOCALE')?.value
+    const nextLocale = request.cookies.get(NEXT_LOCALE_COOKIE_NAME)?.value
     if (nextLocale && config.locales.includes(nextLocale)) {
       return nextLocale
     }
