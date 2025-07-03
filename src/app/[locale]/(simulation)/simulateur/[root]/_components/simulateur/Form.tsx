@@ -5,6 +5,7 @@ import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import ContentLarge from '@/components/layout/ContentLarge'
 import questions from '@/components/specialQuestions'
+import { captureSimulationCompleted } from '@/constants/tracking/posthogTrackers'
 import {
   gtmSimulationCompleted,
   simulationSimulationCompleted,
@@ -21,7 +22,7 @@ import {
   useEngine,
   useFormState,
 } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { trackGTMEvent } from '@/utils/analytics/trackGTMEvent'
 import { useContext, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -63,7 +64,7 @@ export default function Form() {
 
   useEffect(() => {
     if (shouldGoToEndPage && progression === 1) {
-      trackTimeOnSimulation()
+      const timeSpentOnSimulation = trackTimeOnSimulation()
 
       const bilan = getNumericValue('bilan')
 
@@ -75,14 +76,23 @@ export default function Form() {
         trackGTMEvent(gtmSimulationCompleted)
       }
 
+      trackPosthogEvent(
+        captureSimulationCompleted({
+          bilanCarbone: getNumericValue('bilan'),
+          bilanEau: getNumericValue('bilan', 'eau'),
+          timeSpentOnSimulation,
+        })
+      )
+
       goToEndPage({
         allowedToGoToGroupDashboard: true,
       })
     }
+    // goToEndPage was triggered twice in a row
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     shouldGoToEndPage,
     progression,
-    goToEndPage,
     getNumericValue,
     id,
     trackTimeOnSimulation,

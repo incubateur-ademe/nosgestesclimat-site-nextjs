@@ -1315,3 +1315,10 @@ entries:
   cookies.management.required.description.lock: Ce site utilise des cookies nécessaires à son bon fonctionnement qui ne peuvent pas être désactivés.
   cookies.management.googleAds.description: Utilizamos cookies para calibrar nuestra publicidad en línea.
   cookies.management.googleAds.description.lock: Nous utilisons des cookies pour calibrer et nos publicités en ligne.
+  Voir la liste des cookies utilisés par PostHog: Ver la lista de cookies utilizadas por PostHog
+  Cookies utilisés par PostHog: Cookies utilizadas por PostHog
+  "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :": 'También utilizamos PostHog para medir la audiencia de nuestro sitio. La lista de cookies utilizadas está disponible aquí :'
+  Refuser les cookies: Rechazar cookies
+  Accepter les cookies: Aceptar cookies
+  Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.: Utilizamos cookies para entender cómo utiliza el producto y ayudarnos a mejorarlo. Si no desea ser rastreado, puede rechazarlas.
+  Vos réponses ne vous permettent pas de sélectionner ce geste ; il va être retiré de la liste de vos actions suggérées.: Sus respuestas no le permiten seleccionar esta acción; se eliminará de la lista de acciones sugeridas.

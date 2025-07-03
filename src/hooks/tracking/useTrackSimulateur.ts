@@ -1,3 +1,4 @@
+import { captureSimulationStarted } from '@/constants/tracking/posthogTrackers'
 import {
   gtmSimulationStarted,
   simulationCategoryCompleted,
@@ -6,7 +7,7 @@ import {
   simulationSimulationStarted,
 } from '@/constants/tracking/simulation'
 import { useCurrentSimulation, useFormState } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { trackGTMEvent } from '@/utils/analytics/trackGTMEvent'
 import { useEffect, useRef } from 'react'
 import { useGTM } from '../useGTM'
@@ -16,6 +17,7 @@ export function useTrackSimulateur() {
     isFirstQuestionOfCategory,
     isLastQuestionOfCategory,
     currentCategory,
+    relevantAnsweredQuestions,
   } = useFormState()
 
   const { progression } = useCurrentSimulation()
@@ -32,6 +34,12 @@ export function useTrackSimulateur() {
       if (isGTMAvailable) {
         trackGTMEvent(gtmSimulationStarted)
       }
+      trackPosthogEvent(
+        captureSimulationStarted({
+          question:
+            relevantAnsweredQuestions[relevantAnsweredQuestions.length - 1],
+        })
+      )
     }
 
     if (prevProgression.current < 0.5 && progression >= 0.5) {
@@ -39,7 +47,7 @@ export function useTrackSimulateur() {
     }
 
     prevProgression.current = progression
-  }, [progression, isGTMAvailable])
+  }, [relevantAnsweredQuestions, progression, isGTMAvailable])
 
   useEffect(() => {
     if (!currentCategory) return
