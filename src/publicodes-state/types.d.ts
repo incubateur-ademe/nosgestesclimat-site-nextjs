@@ -2,10 +2,12 @@ import type { Group } from '@/types/groups'
 import type {
   DottedName,
   Metrics,
+  NGCRuleNode,
   SuggestionValue,
 } from '@incubateur-ademe/nosgestesclimat'
 import type PublicodesEngine from 'publicodes'
 import type {
+  EvaluatedNode,
   ParsedRules as PublicodesParsedRules,
   Situation as PublicodesSituation,
 } from 'publicodes'
@@ -114,4 +116,4 @@ export type FormattedSuggestion = {
 export type Action = {
   dottedName: DottedName
   value: number
-}
+} & (EvaluatedNode & NGCRuleNode)

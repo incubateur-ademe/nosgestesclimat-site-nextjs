@@ -4,12 +4,10 @@ import Link from '@/components/Link'
 import CloseIcon from '@/components/icons/Close'
 import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import {
-  actionsClickAdditionalQuestion,
   actionsClickNo,
   actionsClickYes,
   actionsOpenAction,
 } from '@/constants/tracking/pages/actions'
-import NotificationBubble from '@/design-system/alerts/NotificationBubble'
 import Emoji from '@/design-system/utils/Emoji'
 import { filterRelevantMissingVariables } from '@/helpers/actions/filterRelevantMissingVariables'
 import { getIsActionDisabled } from '@/helpers/actions/getIsActionDisabled'
@@ -22,6 +20,7 @@ import {
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import {
   useCurrentSimulation,
+  useEngine,
   useRule,
   useTempEngine,
   useUser,
@@ -37,19 +36,21 @@ type Props = {
   action: any
   total: number
   rule: any
-  setFocusedAction: (dottedName: DottedName) => void
+  setActionWithFormOpen: (dottedName: DottedName) => void
   isFocused: boolean
-  isIrrelevant: boolean
+  handleUpdatePersistedActions: () => void
 }
 
 export default function ActionCard({
   action,
   total,
   rule,
-  setFocusedAction,
-  isIrrelevant,
+  setActionWithFormOpen,
+  handleUpdatePersistedActions,
 }: Props) {
   const { t } = useClientTranslation()
+
+  const { everyQuestions, safeEvaluate, rawMissingVariables } = useEngine()
 
   const { rules, extendedFoldedSteps } = useTempEngine()
 
@@ -57,27 +58,20 @@ export default function ActionCard({
 
   const currentSimulation = useCurrentSimulation()
 
-  const { dottedName, title, missingVariables, traversedVariables } = action
+  const { dottedName, title, traversedVariables, missingVariables } = action
 
   const { icônes: icons } = rule || action
   const remainingQuestions = filterRelevantMissingVariables({
+    everyQuestions,
     missingVariables: Object.keys(missingVariables || {}) as DottedName[],
     extendedFoldedSteps,
+    safeEvaluate,
+    rawMissingVariables,
   })
 
   const nbRemainingQuestions = remainingQuestions?.length
 
   const hasRemainingQuestions = nbRemainingQuestions > 0
-
-  const pluralSuffix = nbRemainingQuestions > 1 ? 's' : ''
-
-  const remainingQuestionsText = t(
-    'publicodes.ActionVignette.questionsRestantesText',
-    {
-      nbRemainingQuestions,
-      pluralSuffix,
-    }
-  )
 
   const { category } = useRule(dottedName)
 
@@ -104,7 +98,7 @@ export default function ActionCard({
     if (isDisabled) return
 
     if (hasRemainingQuestions || isCustomAction) {
-      setFocusedAction(dottedName)
+      setActionWithFormOpen(dottedName)
       return null
     }
 
@@ -118,10 +112,22 @@ export default function ActionCard({
     hasRemainingQuestions,
     isDisabled,
     isSelected,
-    setFocusedAction,
+    setActionWithFormOpen,
     toggleActionChoice,
     isCustomAction,
   ])
+
+  const handleRejectAction = () => {
+    if (isDisabled) return
+
+    rejectAction(dottedName)
+
+    handleUpdatePersistedActions()
+
+    if (!isSelected) {
+      trackEvent(actionsClickNo(dottedName))
+    }
+  }
 
   if (!currentSimulation || !rules) {
     return null
@@ -134,14 +140,12 @@ export default function ActionCard({
         'relative flex h-[18rem] w-full flex-col items-center justify-center overflow-auto rounded-xl border-2 border-solid p-4',
         isSelected
           ? 'border-green-500 bg-green-500/[0.23]'
-          : getBorderColor(category),
-        isIrrelevant && 'border-gray-300 bg-gray-500/[0.1]'
+          : getBorderColor(category)
       )}>
       <div
         className={twMerge(
           'flex h-[6rem] w-full items-center rounded-xl p-2',
-          getBackgroundLightColor(category),
-          isIrrelevant && 'bg-gray-500/[0.1]'
+          getBackgroundLightColor(category)
         )}>
         <Link
           className="z-10 w-full no-underline"
@@ -154,8 +158,7 @@ export default function ActionCard({
           <h2
             className={twMerge(
               'mb-0 inline-block w-full text-center text-sm font-bold',
-              getTextDarkColor(category),
-              isIrrelevant && 'text-gray-800'
+              getTextDarkColor(category)
             )}>
             {title}
           </h2>
@@ -169,35 +172,16 @@ export default function ActionCard({
             total={total}
             isDisabled={isDisabled}
             hasFormula={hasFormula}
-            isBlurred={hasRemainingQuestions}
+            setActionWithFormOpen={setActionWithFormOpen}
+            remainingQuestions={remainingQuestions}
           />
-
-          {hasRemainingQuestions && (
-            <>
-              <NotificationBubble
-                onClick={() => setFocusedAction(dottedName)}
-                title={remainingQuestionsText}
-                number={nbRemainingQuestions}
-              />
-              <button
-                className="text-primary-700 cursor-pointer text-sm"
-                onClick={() => {
-                  trackEvent(actionsClickAdditionalQuestion(dottedName))
-                  setFocusedAction(dottedName)
-                }}>
-                {remainingQuestionsText}
-              </button>
-            </>
-          )}
         </div>
         <div className="self-bottom flex w-full justify-between px-2">
           <button
             title={t("Choisir l'action")}
             type="button"
             aria-pressed={actionChoices?.[dottedName]}
-            className={twMerge(
-              hasRemainingQuestions || isIrrelevant ? 'grayscale' : ''
-            )}
+            className={twMerge(hasRemainingQuestions ? 'grayscale' : '')}
             onClick={handleChooseAction}>
             <CheckCircleIcon
               className="fill-green-500"
@@ -209,19 +193,7 @@ export default function ActionCard({
           {!Object.keys(actionChoices || {}).some((key) => {
             return key === dottedName && actionChoices?.[key]
           }) && (
-            <button
-              title={t("Rejeter l'action")}
-              onClick={(e) => {
-                if (isDisabled) return
-
-                rejectAction(dottedName)
-
-                if (!isSelected) {
-                  trackEvent(actionsClickNo(dottedName))
-                }
-                e.stopPropagation()
-                e.preventDefault()
-              }}>
+            <button title={t("Rejeter l'action")} onClick={handleRejectAction}>
               <CloseIcon width="40" height="40" className="fill-gray-600" />
             </button>
           )}

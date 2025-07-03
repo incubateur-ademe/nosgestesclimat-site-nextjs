@@ -5,6 +5,7 @@ import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import ContentLarge from '@/components/layout/ContentLarge'
 import questions from '@/components/specialQuestions'
+import { captureSimulationCompleted } from '@/constants/tracking/posthogTrackers'
 import { simulationSimulationCompleted } from '@/constants/tracking/simulation'
 import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
@@ -17,7 +18,7 @@ import {
   useEngine,
   useFormState,
 } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useContext, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import FunFact from './form/FunFact'
@@ -56,7 +57,7 @@ export default function Form() {
 
   useEffect(() => {
     if (shouldGoToEndPage && progression === 1) {
-      trackTimeOnSimulation()
+      const timeSpentOnSimulation = trackTimeOnSimulation()
 
       trackEvent(
         simulationSimulationCompleted({
@@ -64,14 +65,23 @@ export default function Form() {
         })
       )
 
+      trackPosthogEvent(
+        captureSimulationCompleted({
+          bilanCarbone: getNumericValue('bilan'),
+          bilanEau: getNumericValue('bilan', 'eau'),
+          timeSpentOnSimulation,
+        })
+      )
+
       goToEndPage({
         allowedToGoToGroupDashboard: true,
       })
     }
+    // goToEndPage was triggered twice in a row
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     shouldGoToEndPage,
     progression,
-    goToEndPage,
     getNumericValue,
     id,
     trackTimeOnSimulation,

@@ -1,4 +1,5 @@
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import rulesToTest from '@incubateur-ademe/nosgestesclimat-test/public/co2-model.FR-lang.fr.json'
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json'
 import { getSupportedRegions } from './getSupportedRegions'
 import { importPreviewFile } from './importPreviewFile'
@@ -9,12 +10,14 @@ type Props = {
   regionCode?: string
   locale?: string
   PRNumber?: string
+  ABtesting?: boolean
 }
 
 export const defaultProps = {
   isOptim: true,
   regionCode: 'FR',
   locale: 'fr',
+  ABtesting: false,
 }
 
 /*
@@ -25,6 +28,7 @@ export async function getRules({
   regionCode = 'FR',
   locale = 'fr',
   PRNumber,
+  ABtesting = false,
 }: Props = defaultProps): Promise<Partial<NGCRules>> {
   const supportedRegions = getSupportedRegions()
 
@@ -45,8 +49,9 @@ export async function getRules({
 
   if (regionCodeToProvide === 'FR' && locale === 'fr' && isOptim) {
     // We need to cast the rules as Partial<NGCRules> because the rules are optimized rules here (and some rules are voluntarily removed)
-    return Promise.resolve(rules as Partial<NGCRules>)
+    const rulesToBeUsed = ABtesting ? rulesToTest : rules
+    return Promise.resolve(rulesToBeUsed as Partial<NGCRules>)
   }
 
-  return importRulesFromModel({ fileName })
+  return importRulesFromModel({ fileName, ABtesting })
 }

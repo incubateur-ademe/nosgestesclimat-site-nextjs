@@ -1,4 +1,8 @@
-const shouldUseDevTracker =
+import posthog from 'posthog-js'
+
+const shouldNotTrack = process.env.NODE_ENV === 'development'
+
+const shouldLogTracking =
   process.env.NODE_ENV === 'development' ||
   process.env.NEXT_PUBLIC_MATOMO_ID !== '1'
 
@@ -10,9 +14,12 @@ declare global {
 }
 
 export const trackEvent = (args: (string | null)[]) => {
-  if (shouldUseDevTracker || !window?._paq) {
+  if (shouldLogTracking) {
     console.log(args)
     console.debug(args.join(' => '))
+  }
+
+  if (shouldNotTrack || !window?._paq) {
     return
   }
 
@@ -27,11 +34,34 @@ export const trackEvent = (args: (string | null)[]) => {
   window?._paq?.push([...args])
 }
 
-export const trackPageView = (url: string) => {
-  if (shouldUseDevTracker || !window?._paq) {
-    console.debug('trackPageView => ' + url)
+export const trackPosthogEvent = (args: {
+  eventName: string
+  properties: {
+    [key: string]: string | number | boolean | null | undefined
+  }
+}) => {
+  if (shouldLogTracking) {
+    console.log(args)
+    console.debug('posthog', `"${args.eventName}" =>`, args.properties)
+  }
+
+  if (shouldNotTrack || !window?._paq) {
     return
   }
+
+  posthog.capture(args.eventName, { ...args.properties })
+}
+
+export const trackPageView = (url: string) => {
+  if (shouldLogTracking) {
+    console.debug('trackPageView => ' + url)
+  }
+
+  if (shouldNotTrack || !window?._paq) {
+    return
+  }
+
+  posthog.capture('$pageview', { $current_url: url })
 
   window?._paq?.push(['setCustomUrl', url])
   window?._paq?.push(['setDocumentTitle', document?.title])

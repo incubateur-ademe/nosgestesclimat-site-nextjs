@@ -1,4 +1,3 @@
-import NorthStarBanner from '@/components/northstar/NorthstarBanner'
 import TopBar from '@/components/simulation/TopBar'
 import Trans from '@/components/translation/trans/TransServer'
 import { noIndexObject } from '@/constants/metadata'
@@ -31,8 +30,6 @@ export default async function ActionsLayout({
       <Title title={<Trans locale={locale}>Mes&#160;gestes</Trans>} />
 
       <TopBar simulationMode={false} showTotal />
-
-      <NorthStarBanner type="action" />
 
       <div>{children}</div>
     </FormProvider>

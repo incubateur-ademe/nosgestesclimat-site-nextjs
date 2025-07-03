@@ -2,10 +2,11 @@
 
 import Question from '@/components/form/Question'
 import Trans from '@/components/translation/trans/TransClient'
+import { captureSubQuestion } from '@/constants/tracking/posthogTrackers'
 import { openSubQuestion } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
 import { useCurrentSimulation, useRule } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
 import { useEffect } from 'react'
@@ -68,6 +69,12 @@ export default function Textile({ question, ...props }: Props) {
             size="xs"
             onClick={() => {
               trackEvent(openSubQuestion({ question }))
+              trackPosthogEvent(
+                captureSubQuestion({
+                  question,
+                  state: preciseChoice ? 'closed' : 'opened',
+                })
+              )
               setPreciseChoice(preciseChoice ? 'non' : 'oui')
 
               updateCurrentSimulation({

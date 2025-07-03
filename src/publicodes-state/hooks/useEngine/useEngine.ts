@@ -33,11 +33,11 @@ export default function useEngine({ metric }: { metric?: Metric } = {}) {
     safeEvaluate(dottedName)?.nodeValue
 
   const getNumericValue = useCallback(
-    (dottedName: DottedName): number => {
+    (dottedName: DottedName, metric?: Metric): number => {
       const nodeValue = safeEvaluate(dottedName, metric)?.nodeValue
       return Number(nodeValue) === nodeValue ? nodeValue : 0
     },
-    [safeEvaluate, metric]
+    [safeEvaluate]
   )
 
   const getCategory = (dottedName: DottedName): DottedName =>

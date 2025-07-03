@@ -19,7 +19,6 @@ import { twMerge } from 'tailwind-merge'
 import Carbone from './_components/Carbone'
 import DocumentationBlock from './_components/DocumentationBlock'
 import Eau from './_components/Eau'
-import FeedbackBanner from './_components/FeedbackBanner'
 import GetResultsByEmail from './_components/GetResultsByEmail'
 import InformationBlock from './_components/InformationBlock'
 import PartnerRedirectionAlert from './_components/PartnerRedirectionAlert'
@@ -108,17 +107,6 @@ export default function FinPage() {
             </Title>
             <CategoriesAccordion metric={currentMetric} />
           </div>
-
-          <FeedbackBanner
-            className="mt-12 mb-8"
-            text={
-              <Trans i18nKey="publicodes.northstar.learned">
-                Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque
-                chose ?
-              </Trans>
-            }
-            type="learned"
-          />
 
           <DocumentationBlock />
         </div>

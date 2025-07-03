@@ -1,6 +1,9 @@
+import Trans from '@/components/translation/trans/TransServer'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
+import type { DefaultPageProps } from '@/types'
 import { CookiesPolicy } from '@incubateur-ademe/legal-pages-react/CookiesPolicy'
+import PostHogCookieConsentBanner from './_components/PostHogCookieConsentBanner'
 
 export const generateMetadata = getCommonMetadata({
   title: t('Politique des cookies - Nos Gestes Climat'),
@@ -12,7 +15,9 @@ export const generateMetadata = getCommonMetadata({
   },
 })
 
-export default function CookiesPolicyPage() {
+export default async function CookiesPolicyPage({ params }: DefaultPageProps) {
+  const { locale } = await params
+
   return (
     <div className="markdown">
       <CookiesPolicy
@@ -29,6 +34,25 @@ export default function CookiesPolicyPage() {
         }
         siteName="Nos Gestes Climat"
       />
+
+      <h2>
+        <Trans locale={locale}>Cookies utilisés par PostHog</Trans>
+      </h2>
+      <p>
+        <Trans locale={locale}>
+          Nous utilisons également PostHog pour mesurer l'audience de notre
+          site. La liste des cookies utilisés est disponible ici :
+        </Trans>
+      </p>
+      <p>
+        <a href="https://www.cookie.is/service/posthog-analytics#">
+          <Trans locale={locale}>
+            Voir la liste des cookies utilisés par PostHog
+          </Trans>
+        </a>
+      </p>
+
+      <PostHogCookieConsentBanner />
     </div>
   )
 }

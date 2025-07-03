@@ -1,7 +1,5 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
-
-import type { NorthStarType, NorthStarValue } from '@/types/northstar'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 // Figma comment #57
@@ -53,19 +51,6 @@ export const endClickDocumentation = [
   'trackEvent',
   'Fin',
   'Click Documentation',
-]
-
-// Figma comment #66
-type NorthstarProps = {
-  type: NorthStarType
-  value: NorthStarValue
-}
-export const endClickNorthstar = ({ type, value }: NorthstarProps) => [
-  'trackEvent',
-  'Fin',
-  'Click Northstar',
-  `Click Northstar ${type}`,
-  String(value),
 ]
 
 export const endClickDomesticWater = [

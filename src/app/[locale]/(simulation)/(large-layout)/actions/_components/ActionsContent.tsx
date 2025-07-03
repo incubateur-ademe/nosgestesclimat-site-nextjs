@@ -42,7 +42,7 @@ export default function ActionsContent() {
     actionChoices,
   })
 
-  const actionsDisplayed = actions.filter((action: any) =>
+  const actionsFilteredCategorically = actions.filter((action) =>
     category ? getCategory(action.dottedName) === category : true
   )
 
@@ -95,8 +95,11 @@ export default function ActionsContent() {
           categories={categories.map((category) => ({
             title: capitalizeString(category) ?? '',
             dottedName: category,
-            count: actionsDisplayed.filter((action: Action) =>
-              action.dottedName.startsWith(category)
+            count: actions.filter(
+              (action) =>
+                action.dottedName.startsWith(category) &&
+                !(action as Action & { isIrrelevant: boolean }).isIrrelevant &&
+                action.nodeValue !== 0
             ).length,
           }))}
         />
@@ -104,14 +107,17 @@ export default function ActionsContent() {
         <OptionBar
           setRadical={setRadical}
           radical={radical}
-          actions={actionsDisplayed}
+          actions={actionsFilteredCategorically}
         />
       </div>
 
       <Actions
-        actions={actionsDisplayed.reverse()}
+        actions={
+          actionsFilteredCategorically as (Action & { isIrrelevant: boolean })[]
+        }
         rules={rules}
         radical={radical}
+        key={`update-key-${category}`}
       />
 
       <AllerPlusLoin />

@@ -25,7 +25,9 @@ export default function Notification({ notification }: Props) {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
       className={`mb-4 flex flex-col items-end rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} !${getTextCategoryColor(currentCategory, '700')} p-4 text-sm`}>
-      <Markdown className="notification pb-0">{description}</Markdown>
+      <div className="mb-2 w-full">
+        <Markdown className="notification pb-0">{description}</Markdown>
+      </div>
       <Button size="sm" color={'secondary'} onClick={() => setValue(false)}>
         <Trans>J'ai compris</Trans>
       </Button>

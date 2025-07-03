@@ -13,6 +13,7 @@ export function useTrackTimeOnSimulation() {
         timeSpentOnSimulation,
       })
     )
+    return timeSpentOnSimulation
   }, [startTime])
 
   return { trackTimeOnSimulation }
