@@ -1234,20 +1234,20 @@ entries:
   Conditions d’utilisation des données « Base Empreinte »: Conditions d’utilisation des données « Base Empreinte »
   cookies.banner.acceptAll: Tout accepter
   cookies.banner.customize: Personnaliser
-  cookies.banner.description: Bienvenue ! Nous utilisons des cookies pour améliorer votre expérience et les services disponibles sur ce site. Pour en savoir plus, visitez la page <2><0>Données personnelles et cookies</0></2>.<4> </4><5>Vous pouvez, à tout moment, avoir le contrôle sur les cookies que vous souhaitez activer.</5>
+  cookies.banner.description: Nous utilisons des cookies, juste ce qu’il faut pour faire fonctionner le site, améliorer l’expérience et mesurer de manière anonyme l’audience. Avec votre accord, nous activons aussi un suivi simple de nos campagnes pour mieux comprendre ce qui fonctionne.
   cookies.banner.privacyLink: Données personnelles et cookies
   cookies.banner.refuseAll: Tout refuser
-  cookies.banner.title: À propos des cookies sur Nos Gestes Climat
+  cookies.banner.title: Chez Nos Gestes Climat, votre vie privée compte
   cookies.management.accept: Accepter
   cookies.management.acceptAll: Tout accepter
   cookies.management.confirm: Confirmer mes choix
-  cookies.management.googleAds.description: Nous utilisons des cookies pour calibrer et nos publicités en ligne.
+  cookies.management.googleAds.description: Nous utilisons des cookies pour mesurer et calibrer l’efficacité de nos campagnes et publicités en ligne.
   cookies.management.googleAds.title: Google Ads
   cookies.management.preferences: 'Préférences pour tous les services. '
   cookies.management.privacyLink: Données personnelles et cookies
   cookies.management.refuse: Refuser
   cookies.management.refuseAll: Tout refuser
-  cookies.management.required.description: Ce site utilise des cookies nécessaires à son bon fonctionnement qui ne peuvent pas être désactivés.
+  cookies.management.required.description: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucune donnée personnelle et ne peuvent pas être désactivés.
   cookies.management.required.title: Cookies obligatoires
   cookies.management.title: Panneau de gestion des cookies
   Cookies utilisés par PostHog: Cookies utilisés par PostHog
@@ -1257,3 +1257,4 @@ entries:
   Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.: Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.
   Refuser les cookies: Refuser les cookies
   Vos réponses ne vous permettent pas de sélectionner ce geste ; il va être retiré de la liste de vos actions suggérées.: Vos réponses ne vous permettent pas de sélectionner ce geste ; il va être retiré de la liste de vos actions suggérées.
+  Bannière de consentement aux cookies: cookies.banner.contentLabel

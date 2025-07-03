@@ -73,11 +73,11 @@ export default function CookieConsentManagement({
       className="!w-3xl max-w-screen overflow-hidden !rounded-2xl !p-0 !shadow-2xl">
       <div className="mx-auto flex w-full max-w-3xl flex-col rounded-2xl bg-white p-0 shadow-2xl">
         <div className="flex items-center justify-between px-8 pt-8 pb-2">
-          <h1 className="text-xl font-bold text-gray-900">
+          <h2 className="text-xl font-bold text-gray-900">
             <Trans i18nKey="cookies.management.title">
               Panneau de gestion des cookies
             </Trans>
-          </h1>
+          </h2>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="max-h-[50vh] flex-1 overflow-y-auto px-8 pb-8">
@@ -154,8 +154,10 @@ export default function CookieConsentManagement({
               </legend>
               <p className="mt-2 text-base text-gray-700">
                 <Trans i18nKey="cookies.management.required.description">
-                  Ce site utilise des cookies nécessaires à son bon
-                  fonctionnement qui ne peuvent pas être désactivés.
+                  Notre site utilise des cookies indispensables à son bon
+                  fonctionnement (sécurité, choix de langue, authentification).
+                  Ils ne contiennent aucune donnée personnelle et ne peuvent pas
+                  être désactivés.
                 </Trans>
               </p>
             </fieldset>
@@ -192,8 +194,8 @@ export default function CookieConsentManagement({
               </legend>
               <p className="mt-2 text-base text-gray-700">
                 <Trans i18nKey="cookies.management.googleAds.description">
-                  Nous utilisons des cookies pour calibrer et nos publicités en
-                  ligne.
+                  Nous utilisons des cookies pour mesurer et calibrer
+                  l’efficacité de nos campagnes et publicités en ligne.
                 </Trans>
               </p>
             </fieldset>

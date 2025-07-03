@@ -1305,16 +1305,16 @@ entries:
   cookies.banner.privacyLink.lock: Données personnelles et cookies
   cookies.management.preferences: 'Preferencias para todos los servicios. '
   cookies.management.preferences.lock: 'Préférences pour tous les services. '
-  cookies.banner.description: Bienvenido a nuestro sitio web Utilizamos cookies para mejorar su experiencia y los servicios disponibles en este sitio. Para obtener más información, visite la página <2><0>Datos personales y cookies</0></2>.<4> </4><5>Usted puede, en cualquier momento, controlar qué cookies desea activar.</5>
-  cookies.banner.description.lock: Bienvenue ! Nous utilisons des cookies pour améliorer votre expérience et les services disponibles sur ce site. Pour en savoir plus, visitez la page <2><0>Données personnelles et cookies</0></2>.<4> </4><5>Vous pouvez, à tout moment, avoir le contrôle sur les cookies que vous souhaitez activer.</5>
+  cookies.banner.description: Utilizamos cookies, lo justo para mantener el sitio en funcionamiento, mejorar la experiencia y medir la audiencia de forma anónima. Con su consentimiento, también permitimos un seguimiento sencillo de nuestras campañas para comprender mejor qué está funcionando.
+  cookies.banner.description.lock: Nous utilisons des cookies, juste ce qu’il faut pour faire fonctionner le site, améliorer l’expérience et mesurer de manière anonyme l’audience. Avec votre accord, nous activons aussi un suivi simple de nos campagnes pour mieux comprendre ce qui fonctionne.
   cookies.management.privacyLink: Datos personales y cookies
   cookies.management.privacyLink.lock: Données personnelles et cookies
-  cookies.banner.title: Acerca de las cookies en Nos Gestes Climat
-  cookies.banner.title.lock: À propos des cookies sur Nos Gestes Climat
-  cookies.management.required.description: Este sitio utiliza cookies que son necesarias para su correcto funcionamiento y que no pueden desactivarse.
-  cookies.management.required.description.lock: Ce site utilise des cookies nécessaires à son bon fonctionnement qui ne peuvent pas être désactivés.
-  cookies.management.googleAds.description: Utilizamos cookies para calibrar nuestra publicidad en línea.
-  cookies.management.googleAds.description.lock: Nous utilisons des cookies pour calibrer et nos publicités en ligne.
+  cookies.banner.title: En Nos Gestes Climat, su privacidad cuenta
+  cookies.banner.title.lock: Chez Nos Gestes Climat, votre vie privée compte
+  cookies.management.required.description: Nuestro sitio utiliza cookies, que son esenciales para su correcto funcionamiento (seguridad, selección de idioma, autenticación). No contienen datos personales y no pueden desactivarse.
+  cookies.management.required.description.lock: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucune donnée personnelle et ne peuvent pas être désactivés.
+  cookies.management.googleAds.description: Utilizamos cookies para medir y calibrar la eficacia de nuestras campañas y publicidad en línea.
+  cookies.management.googleAds.description.lock: Nous utilisons des cookies pour mesurer et calibrer l’efficacité de nos campagnes et publicités en ligne.
   Voir la liste des cookies utilisés par PostHog: Ver la lista de cookies utilizadas por PostHog
   Cookies utilisés par PostHog: Cookies utilizadas por PostHog
   "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :": 'También utilizamos PostHog para medir la audiencia de nuestro sitio. La lista de cookies utilizadas está disponible aquí :'
@@ -1322,3 +1322,4 @@ entries:
   Accepter les cookies: Aceptar cookies
   Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.: Utilizamos cookies para entender cómo utiliza el producto y ayudarnos a mejorarlo. Si no desea ser rastreado, puede rechazarlas.
   Vos réponses ne vous permettent pas de sélectionner ce geste ; il va être retiré de la liste de vos actions suggérées.: Sus respuestas no le permiten seleccionar esta acción; se eliminará de la lista de acciones sugeridas.
+  Bannière de consentement aux cookies: cookies.banner.contentLabel

@@ -1,9 +1,11 @@
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
-import InlineLink from '@/design-system/inputs/InlineLink'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Dispatch, SetStateAction } from 'react'
 import ReactModal from 'react-modal'
+
+// Type assertion to resolve React types version mismatch
+const Modal = ReactModal as any
 
 export default function CookieConsentBanner({
   isVisible,
@@ -22,7 +24,7 @@ export default function CookieConsentBanner({
 }) {
   const { t } = useClientTranslation()
   return (
-    <ReactModal
+    <Modal
       isOpen={isVisible && !isBoardOpen}
       onAfterClose={() => setIsVisible(false)}
       className="!mr-auto !w-[500px] !max-w-[calc(100vw-1rem)] !rounded-[2.5rem] !border-0 !p-0 !shadow-2xl md:!mb-8 md:!ml-8"
@@ -56,28 +58,16 @@ export default function CookieConsentBanner({
           className="mb-6 text-center text-lg font-bold text-gray-900 sm:text-left sm:text-xl"
           data-testid="cookie-banner-title">
           <Trans i18nKey="cookies.banner.title">
-            À propos des cookies sur Nos Gestes Climat
+            Chez Nos Gestes Climat, votre vie privée compte
           </Trans>
         </h2>
 
         <p className="mb-2 text-sm" data-testid="cookie-banner-description">
           <Trans i18nKey="cookies.banner.description">
-            Bienvenue ! Nous utilisons des cookies pour améliorer votre
-            expérience et les services proposés sur ce site, tout en veillant à
-            la protection de vos données personnelles. Pour en savoir plus,
-            consultez notre page{' '}
-            <InlineLink
-              href="/politique-de-confidentialite#cookies"
-              data-testid="cookie-banner-privacy-link">
-              <Trans i18nKey="cookies.banner.privacyLink">
-                Données personnelles et cookies
-              </Trans>
-            </InlineLink>
-            .<span className="hidden sm:inline">&nbsp;</span>
-            <span className="block sm:inline">
-              Vous gardez, à tout moment, le contrôle sur les cookies que vous
-              souhaitez activer.
-            </span>
+            Nous utilisons des cookies, juste ce qu’il faut pour faire
+            fonctionner le site, améliorer l’expérience et mesurer de manière
+            anonyme l’audience. Avec votre accord, nous activons aussi un suivi
+            simple de nos campagnes pour mieux comprendre ce qui fonctionne.
           </Trans>
         </p>
         <div className="mt-6 flex w-full flex-col items-center justify-center gap-2 sm:flex-row">
@@ -104,6 +94,6 @@ export default function CookieConsentBanner({
           </Button>
         </div>
       </div>
-    </ReactModal>
+    </Modal>
   )
 }
