@@ -202,13 +202,14 @@ export default function GetResultsByEmail({
             />
 
             {(!isSubscribedMainNewsletter ||
-              !isSubscribedTransportNewsletter) && (
-              <p className="mb-0">
-                <Trans>
-                  Recevez des conseils pour réduire votre empreinte :
-                </Trans>
-              </p>
-            )}
+              !isSubscribedTransportNewsletter) &&
+              isFrench && (
+                <p className="mb-0">
+                  <Trans>
+                    Recevez des conseils pour réduire votre empreinte :
+                  </Trans>
+                </p>
+              )}
 
             {!isSubscribedMainNewsletter && isFrench && (
               <CheckboxInputGroup
