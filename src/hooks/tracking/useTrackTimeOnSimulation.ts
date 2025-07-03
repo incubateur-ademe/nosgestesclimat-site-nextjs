@@ -1,3 +1,4 @@
+import { simulationSimulationTime } from '@/constants/tracking/simulation'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useCallback, useMemo } from 'react'
 
@@ -7,11 +8,8 @@ export function useTrackTimeOnSimulation() {
   const trackTimeOnSimulation = useCallback(() => {
     const endTime = Date.now()
     const timeSpentOnSimulation = endTime - startTime
-    trackEvent(
-      simulationSimulationCompletedTime({
-        timeSpentOnSimulation,
-      })
-    )
+    trackEvent(simulationSimulationTime(timeSpentOnSimulation))
+
     return timeSpentOnSimulation
   }, [startTime])
 
