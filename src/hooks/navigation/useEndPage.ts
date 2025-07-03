@@ -54,6 +54,7 @@ export function useEndPage() {
       allowedToGoToGroupDashboard = false,
     }: GoToEndPageProps = goToEndPagePropsDefault) => {
       // If we are already navigating, we don't do anything
+      // TODO: seems to not be useful ? Function is triggered multiple times (at least twice)
       if (isNavigating) {
         return
       }

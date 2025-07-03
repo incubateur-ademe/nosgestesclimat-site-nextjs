@@ -2,7 +2,15 @@ import {
   trackingIframeInteraction,
   trackingIframeVisit,
 } from '@/constants/tracking/misc'
-import { trackEvent, trackPageView } from '@/utils/analytics/trackEvent'
+import {
+  captureIframeInteraction,
+  captureIframeVisit,
+} from '@/constants/tracking/posthogTrackers'
+import {
+  trackEvent,
+  trackPageView,
+  trackPosthogEvent,
+} from '@/utils/analytics/trackEvent'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { useGetTrackedUrl } from './useGetTrackedUrl'
@@ -87,6 +95,7 @@ export function useTrackIframe(isIframe: boolean) {
       const urlInteractor = getIntegratorUrl(isIframe)
 
       trackEvent(trackingIframeVisit(urlInteractor))
+      trackPosthogEvent(captureIframeVisit(urlInteractor))
     }
   }, [entry, observed, url, isIframe])
 
@@ -102,6 +111,7 @@ export function useTrackIframe(isIframe: boolean) {
       const urlInteractor = getIntegratorUrl(isIframe)
 
       trackEvent(trackingIframeInteraction(urlInteractor))
+      trackPosthogEvent(captureIframeInteraction(urlInteractor))
     }
   }, [entry, observed, path, isIframe, hasInteracted])
 
