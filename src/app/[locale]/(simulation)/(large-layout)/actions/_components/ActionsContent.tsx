@@ -95,8 +95,11 @@ export default function ActionsContent() {
           categories={categories.map((category) => ({
             title: capitalizeString(category) ?? '',
             dottedName: category,
-            count: actions.filter((action: Action) =>
-              action.dottedName.startsWith(category)
+            count: actions.filter(
+              (action) =>
+                action.dottedName.startsWith(category) &&
+                !(action as Action & { isIrrelevant: boolean }).isIrrelevant &&
+                action.nodeValue !== 0
             ).length,
           }))}
         />
