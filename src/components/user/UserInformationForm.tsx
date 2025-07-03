@@ -14,6 +14,8 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useLocale } from '@/hooks/useLocale'
+import i18nConfig from '@/i18nConfig'
 import { useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
 import type { ReactNode } from 'react'
@@ -63,6 +65,8 @@ export default function UserInformationForm({
   defaultValues,
 }: Props) {
   const { t } = useClientTranslation()
+
+  const locale = useLocale()
 
   const { user, updateEmail, updateName } = useUser()
 
@@ -145,6 +149,8 @@ export default function UserInformationForm({
     }
   }, [])
 
+  const isFrench = locale === i18nConfig.defaultLocale
+
   return (
     <div className={twMerge('flex flex-col items-start', className)}>
       {title}
@@ -195,7 +201,7 @@ export default function UserInformationForm({
         <p className="text-sm text-gray-600">
           <Trans>Vous pouvez vous désincrire à tout moment</Trans>
         </p>
-        {inputsDisplayed.includes('newsletter-saisonniere') && (
+        {inputsDisplayed.includes('newsletter-saisonniere') && isFrench && (
           <CheckboxInputGroup
             size="lg"
             disableSubmitOnEnter
@@ -211,7 +217,7 @@ export default function UserInformationForm({
             {...register('newsletter-saisonniere')}
           />
         )}
-        {inputsDisplayed.includes('newsletter-transports') && (
+        {inputsDisplayed.includes('newsletter-transports') && isFrench && (
           <CheckboxInputGroup
             size="lg"
             disableSubmitOnEnter
@@ -227,7 +233,7 @@ export default function UserInformationForm({
             {...register('newsletter-transports')}
           />
         )}
-        {inputsDisplayed.includes('newsletter-logement') && (
+        {inputsDisplayed.includes('newsletter-logement') && isFrench && (
           <CheckboxInputGroup
             size="lg"
             disableSubmitOnEnter
