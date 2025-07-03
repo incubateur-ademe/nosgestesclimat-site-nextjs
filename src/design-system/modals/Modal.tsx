@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import ReactModal from 'react-modal'
 import { twMerge } from 'tailwind-merge'
 import Button from '../buttons/Button'
+const ModalComponent = ReactModal as any
 
 // Set the app element once when the module is loaded
 if (typeof document !== 'undefined') {
@@ -58,7 +59,7 @@ export default function Modal({
   }
 
   return (
-    <ReactModal
+    <ModalComponent
       isOpen={isOpen}
       onRequestClose={!isLoading ? closeDelayed : undefined}
       className={twMerge(
@@ -100,6 +101,6 @@ export default function Modal({
           {buttons ? buttons : null}
         </div>
       ) : null}
-    </ReactModal>
+    </ModalComponent>
   )
 }

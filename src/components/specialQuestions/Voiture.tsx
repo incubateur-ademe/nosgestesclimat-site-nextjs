@@ -2,9 +2,10 @@
 
 import Question from '@/components/form/Question'
 import Trans from '@/components/translation/trans/TransClient'
+import { captureSubQuestion } from '@/constants/tracking/posthogTrackers'
 import { openSubQuestion } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
 import PencilIcon from '../icons/PencilIcon'
@@ -22,6 +23,12 @@ export default function Voiture({ question, ...props }: Props) {
           size="xs"
           onClick={() => {
             trackEvent(openSubQuestion({ question }))
+            trackPosthogEvent(
+              captureSubQuestion({
+                question,
+                state: isOpen ? 'closed' : 'opened',
+              })
+            )
             setIsOpen((prevIsOpen) => !prevIsOpen)
           }}
           className="mb-2">

@@ -1232,3 +1232,9 @@ entries:
   Chargement en cours...: Chargement en cours...
   Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org: Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org
   Conditions d’utilisation des données « Base Empreinte »: Conditions d’utilisation des données « Base Empreinte »
+  Cookies utilisés par PostHog: Cookies utilisés par PostHog
+  "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :": "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :"
+  Voir la liste des cookies utilisés par PostHog: Voir la liste des cookies utilisés par PostHog
+  Accepter les cookies: Accepter les cookies
+  Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.: Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.
+  Refuser les cookies: Refuser les cookies
