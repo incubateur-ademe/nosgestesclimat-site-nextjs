@@ -1,3 +1,4 @@
+import { ABTEST_KEY, FLAG_VARIANT_KEY } from '@/constants/ab-test'
 import { getRules } from '@/helpers/modelFetching/getRules'
 import { useUser } from '@/publicodes-state'
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
@@ -21,7 +22,7 @@ export function useRules(
   const locale = useLocale()
   const { user } = useUser()
 
-  const flagValue = useFeatureFlagVariantKey('ab-test-first-question')
+  const flagValue = useFeatureFlagVariantKey(ABTEST_KEY)
   const regionCode =
     user?.region?.code != undefined && user?.region?.code !== ''
       ? user?.region?.code
@@ -35,7 +36,7 @@ export function useRules(
         regionCode,
         isOptim,
         PRNumber,
-        ABtesting: flagValue === 'change-first-question',
+        ABtesting: flagValue === FLAG_VARIANT_KEY,
       }),
     placeholderData: keepPreviousData,
     staleTime: Infinity, // We don't want to import the rule multiple times
