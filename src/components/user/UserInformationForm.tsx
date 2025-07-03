@@ -13,6 +13,7 @@ import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
+import { useUnsubscribeFromNewsletters } from '@/hooks/settings/useUnsubscribeFromNewsletters'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
@@ -85,16 +86,20 @@ export default function UserInformationForm({
 
     setValue(
       'newsletter-saisonniere',
-      newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER)
+      newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER) ?? false
     )
     setValue(
       'newsletter-transports',
-      newsletterSubscriptions?.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER) ||
-        defaultValues?.['newsletter-transports']
+      (newsletterSubscriptions?.includes(
+        LIST_NOS_GESTES_TRANSPORT_NEWSLETTER
+      ) ||
+        defaultValues?.['newsletter-transports']) ??
+        false
     )
     setValue(
       'newsletter-logement',
-      newsletterSubscriptions?.includes(LIST_NOS_GESTES_LOGEMENT_NEWSLETTER)
+      newsletterSubscriptions?.includes(LIST_NOS_GESTES_LOGEMENT_NEWSLETTER) ??
+        false
     )
   }, [newsletterSubscriptions, setValue, defaultValues])
 
@@ -105,6 +110,15 @@ export default function UserInformationForm({
     isSuccess,
   } = useUpdateUserSettings()
 
+  const {
+    mutateAsync: unsubscribeFromNewsletters,
+    isPending: isPendingUnsubscribe,
+    isError: isErrorUnsubscribe,
+  } = useUnsubscribeFromNewsletters({
+    email: user.email ?? '',
+    userId: user.userId,
+  })
+
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const newsletterIds = {
       [LIST_MAIN_NEWSLETTER]: data['newsletter-saisonniere'],
@@ -113,12 +127,22 @@ export default function UserInformationForm({
     }
 
     try {
+      const newslettersArray = formatListIdsFromObject(newsletterIds)
+
       await updateUserSettings({
         name: data.name,
-        email: data.email ?? '',
-        newsletterIds: formatListIdsFromObject(newsletterIds),
+        email: user.email ?? '',
+        newsletterIds: newslettersArray,
         userId: user?.userId,
       })
+
+      if (newslettersArray && newslettersArray.length === 0) {
+        await unsubscribeFromNewsletters({
+          name: data.name,
+          email: user.email ?? '',
+          newsletterIds,
+        })
+      }
 
       if (data.email && (!user?.email || shouldForceEmailEditable)) {
         updateEmail(data.email)
@@ -249,14 +273,16 @@ export default function UserInformationForm({
           </p>
         )}
 
-        {isError && <DefaultSubmitErrorMessage />}
+        {(isError || isErrorUnsubscribe) && <DefaultSubmitErrorMessage />}
 
         <div>
           <Button
             type="submit"
             className="mt-6 gap-2 self-start"
-            disabled={isPending}>
-            {isPending && <Loader size="sm" color="light" />}
+            disabled={isPending || isPendingUnsubscribe}>
+            {(isPending || isPendingUnsubscribe) && (
+              <Loader size="sm" color="light" />
+            )}
 
             {submitLabel ?? <Trans>Mettre à jour mes informations</Trans>}
           </Button>

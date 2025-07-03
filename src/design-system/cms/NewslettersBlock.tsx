@@ -1,5 +1,6 @@
 'use client'
 
+import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import CheckIcon from '@/components/icons/status/CheckIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import {
@@ -10,13 +11,14 @@ import {
 import { subscribeToNewsletterBlog } from '@/constants/tracking/pages/newsletter'
 import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
+import { useUnsubscribeFromNewsletters } from '@/hooks/settings/useUnsubscribeFromNewsletters'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useLocale } from '@/hooks/useLocale'
 import { useMainNewsletter } from '@/hooks/useMainNewsletter'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import Button from '../buttons/Button'
@@ -31,7 +33,7 @@ type Inputs = {
   'newsletter-logement': boolean
 }
 
-function SuccessMessage({ locale }: { locale: string }) {
+function SuccessMessage() {
   return (
     <div className="flex flex-col items-center justify-center text-center">
       <CheckIcon className="mb-4 h-12 w-12 fill-green-500" />
@@ -57,18 +59,23 @@ export default function NewslettersBlock() {
 
   const { user, updateEmail } = useUser()
 
-  // Avoid refetching useGetNewsletterSubscriptions when defining an email for the first time
-  const emailRef = useRef<string>(user?.email ?? '')
-
-  const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
-    emailRef?.current ?? ''
-  )
-
+  const { data: newsletterSubscriptions, error } =
+    useGetNewsletterSubscriptions(user?.email ?? '')
   const {
     mutateAsync: updateUserSettings,
     isPending,
     isSuccess,
+    isError,
   } = useUpdateUserSettings()
+
+  const {
+    mutateAsync: unsubscribeFromNewsletters,
+    isPending: isPendingUnsubscribe,
+    isError: isErrorUnsubscribe,
+  } = useUnsubscribeFromNewsletters({
+    email: user.email ?? '',
+    userId: user.userId,
+  })
 
   const {
     register,
@@ -81,6 +88,7 @@ export default function NewslettersBlock() {
   })
 
   useEffect(() => {
+    console.log('newsletterSubscriptions', newsletterSubscriptions)
     if (!newsletterSubscriptions) return
 
     setValue(
@@ -98,9 +106,15 @@ export default function NewslettersBlock() {
     )
   }, [newsletterSubscriptions, setValue])
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  useEffect(() => {
+    if (user?.email) {
+      setValue('email', user.email)
+    }
+  }, [user?.email, setValue])
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
     // If the mutation is pending, we do nothing
-    if (isPending) {
+    if (isPending || isPendingUnsubscribe) {
       return
     }
 
@@ -117,12 +131,21 @@ export default function NewslettersBlock() {
     updateEmail(formattedEmail)
 
     // We save the simulation (and signify the backend to send the email)
-    updateUserSettings({
-      newsletterIds: formatListIdsFromObject(listIds),
+    const newslettersArray = formatListIdsFromObject(listIds)
+    await updateUserSettings({
+      newsletterIds: newslettersArray,
       userId: user?.userId,
       email: formattedEmail,
       name: data.name,
     })
+
+    if (newslettersArray && newslettersArray.length === 0) {
+      await unsubscribeFromNewsletters({
+        name: data.name,
+        email: user.email ?? '',
+        newsletterIds: listIds,
+      })
+    }
   }
 
   return (
@@ -130,7 +153,7 @@ export default function NewslettersBlock() {
       className="rainbow-border w-full rounded-xl bg-white p-8 md:w-4/6"
       aria-live="polite">
       {isSuccess ? (
-        <SuccessMessage locale={locale} />
+        <SuccessMessage />
       ) : (
         <>
           <h3 className="mb-2">
@@ -208,6 +231,10 @@ export default function NewslettersBlock() {
                   data-cypress-id="fin-email-input"
                   className="h-full"
                 />
+
+                {(isError || isErrorUnsubscribe) && (
+                  <DefaultSubmitErrorMessage />
+                )}
 
                 <Button size="lg" type="submit">
                   <Trans>S'inscrire</Trans>

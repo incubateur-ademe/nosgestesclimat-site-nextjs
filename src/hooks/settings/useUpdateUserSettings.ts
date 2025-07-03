@@ -20,11 +20,12 @@ export function useUpdateUserSettings() {
         .put(`${SERVER_URL}/users/v1/${userId}`, {
           email,
           name,
-          contact: newsletterIds
-            ? {
-                listIds: newsletterIds,
-              }
-            : undefined,
+          contact:
+            newsletterIds && newsletterIds.length > 0
+              ? {
+                  listIds: newsletterIds,
+                }
+              : undefined,
         })
         .then((res) => res.data)
     },
