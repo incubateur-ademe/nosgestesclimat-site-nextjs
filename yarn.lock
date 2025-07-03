@@ -1761,15 +1761,15 @@
     prompt-sync "^4.2.0"
     yargs "^17.7.2"
 
-"@incubateur-ademe/nosgestesclimat-test@npm:@incubateur-ademe/nosgestesclimat@3.9.0-rc.1":
-  version "3.9.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-3.9.0-rc.1.tgz#aa0591e82d2bdac671f33a7d9a3cfb97afbebb6c"
-  integrity sha512-hGN7fTeZpqEHK6g2CbWTASdygrZUBp+yssbh78pFE0Xi8mtZvP18ohAX9LPJ5RbWMgNCFa32Q0egop+FgQ/UnA==
+"@incubateur-ademe/nosgestesclimat-test@npm:@incubateur-ademe/nosgestesclimat@3.9.0-rc.2":
+  version "3.9.0-rc.2"
+  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-3.9.0-rc.2.tgz#0511197316eb0454a54733d0b10dd50531f313e9"
+  integrity sha512-rCMyuBru3rp7oLWeuFBTl5rjW3jWSm3Wz4Y/UNn//f9PSmTlOECme6hZ71S1E2vvWmdA0WYBqe94p+GvQHkfNg==
 
-"@incubateur-ademe/nosgestesclimat@3.8.1":
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-3.8.1.tgz#013ac4438a3021b1e978ec67a8589c27920cab67"
-  integrity sha512-zdK4aRFns0Pu7zVVGls1lZa8kn3lf6uPQL4/1X2cPu9gDSCC1rk6FfPmMbhoB7AmlL1Yo3MdlWCn57Z7gB4peg==
+"@incubateur-ademe/nosgestesclimat@3.8.2":
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-3.8.2.tgz#f806a1258d6cecc02fef97b8d7ba5e1937b17b46"
+  integrity sha512-F3SsZIMAvEIxqMBZr4K/l+f9T/P4zxaHtEAoVVuAPsk0fT5HFrZCYSne1YpCZs4xdgEaqhSjnKZlDC6JF1dyBg==
 
 "@inquirer/confirm@^5.0.0":
   version "5.1.13"
