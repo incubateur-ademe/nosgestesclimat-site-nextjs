@@ -73,22 +73,28 @@ export default function CookieConsentManagement({
       className="!w-3xl max-w-screen overflow-hidden !rounded-2xl !p-0 !shadow-2xl">
       <div className="mx-auto flex w-full max-w-3xl flex-col rounded-2xl bg-white p-0 shadow-2xl">
         <div className="flex items-center justify-between px-8 pt-8 pb-2">
-          <h2 className="text-xl font-bold text-gray-900">
+          <h2
+            className="text-xl font-bold text-gray-900"
+            data-testid="cookie-management-title">
             <Trans i18nKey="cookies.management.title">
               Panneau de gestion des cookies
             </Trans>
           </h2>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} data-testid="cookie-form">
           <div className="max-h-[50vh] flex-1 overflow-y-auto px-8 pb-8">
             <div className="mb-6 flex flex-col gap-4 md:flex-row">
               <div>
-                <span className="text-base font-medium text-gray-900">
+                <span
+                  className="text-base font-medium text-gray-900"
+                  data-testid="preferences-text">
                   <Trans i18nKey="cookies.management.preferences">
                     Préférences pour tous les services.{' '}
                   </Trans>
                 </span>
-                <InlineLink href="/politique-de-confidentialite#cookies">
+                <InlineLink
+                  href="/politique-de-confidentialite#cookies"
+                  data-testid="privacy-link">
                   <Trans i18nKey="cookies.management.privacyLink">
                     Données personnelles et cookies
                   </Trans>
@@ -102,7 +108,8 @@ export default function CookieConsentManagement({
                     setValue(CookieConsentKey.googleAds, 'refuse')
                     refuseAll()
                   }}
-                  size="sm">
+                  size="sm"
+                  data-testid="refuse-all-button">
                   <Trans i18nKey="cookies.management.refuseAll">
                     Tout refuser
                   </Trans>
@@ -114,7 +121,8 @@ export default function CookieConsentManagement({
                     setValue(CookieConsentKey.googleAds, 'accept')
                     acceptAll()
                   }}
-                  size="sm">
+                  size="sm"
+                  data-testid="accept-all-button">
                   <Trans i18nKey="cookies.management.acceptAll">
                     Tout accepter
                   </Trans>
@@ -124,7 +132,9 @@ export default function CookieConsentManagement({
 
             <fieldset className="mb-6 border-t border-gray-200">
               <legend className="mb-2 flex w-full flex-col flex-wrap justify-between gap-2 sm:flex-row sm:items-center">
-                <span className="text-base font-bold whitespace-nowrap text-gray-900 md:text-lg">
+                <span
+                  className="text-base font-bold whitespace-nowrap text-gray-900 md:text-lg"
+                  data-testid="required-cookies-title">
                   <Trans i18nKey="cookies.management.required.title">
                     Cookies obligatoires
                   </Trans>
@@ -135,6 +145,7 @@ export default function CookieConsentManagement({
                     name="oblig"
                     checked={true}
                     disabled
+                    data-testid="required-accept-radio"
                     label={
                       <Trans i18nKey="cookies.management.accept">
                         Accepter
@@ -146,13 +157,16 @@ export default function CookieConsentManagement({
                     name="oblig"
                     checked={false}
                     disabled
+                    data-testid="required-refuse-radio"
                     label={
                       <Trans i18nKey="cookies.management.refuse">Refuser</Trans>
                     }
                   />
                 </div>
               </legend>
-              <p className="mt-2 text-base text-gray-700">
+              <p
+                className="mt-2 text-base text-gray-700"
+                data-testid="required-cookies-description">
                 <Trans i18nKey="cookies.management.required.description">
                   Notre site utilise des cookies indispensables à son bon
                   fonctionnement (sécurité, choix de langue, authentification).
@@ -164,7 +178,9 @@ export default function CookieConsentManagement({
 
             <fieldset className="border-t border-gray-200">
               <legend className="mb-2 flex w-full flex-col justify-between gap-2 sm:flex-row sm:items-center">
-                <span className="text-base font-bold whitespace-nowrap text-gray-900 md:text-lg">
+                <span
+                  className="text-base font-bold whitespace-nowrap text-gray-900 md:text-lg"
+                  data-testid="google-ads-title">
                   <Trans i18nKey="cookies.management.googleAds.title">
                     Google Ads
                   </Trans>
@@ -174,6 +190,7 @@ export default function CookieConsentManagement({
                     id="googleAds-accept"
                     value="accept"
                     checked={googleAdsValue === 'accept'}
+                    data-testid="google-ads-accept-radio"
                     label={
                       <Trans i18nKey="cookies.management.accept">
                         Accepter
@@ -185,6 +202,7 @@ export default function CookieConsentManagement({
                     id="googleAds-refuse"
                     value="refuse"
                     checked={googleAdsValue === 'refuse'}
+                    data-testid="google-ads-refuse-radio"
                     label={
                       <Trans i18nKey="cookies.management.refuse">Refuser</Trans>
                     }
@@ -192,16 +210,21 @@ export default function CookieConsentManagement({
                   />
                 </div>
               </legend>
-              <p className="mt-2 text-base text-gray-700">
+              <p
+                className="mt-2 text-base text-gray-700"
+                data-testid="google-ads-description">
                 <Trans i18nKey="cookies.management.googleAds.description">
                   Nous utilisons des cookies pour mesurer et calibrer
-                  l’efficacité de nos campagnes et publicités en ligne.
+                  l'efficacité de nos campagnes et publicités en ligne.
                 </Trans>
               </p>
             </fieldset>
           </div>
           <div className="flex justify-start border-t border-gray-100 bg-white px-8 pt-4 pb-8">
-            <Button type="submit" color="primary">
+            <Button
+              type="submit"
+              color="primary"
+              data-testid="confirm-choices-button">
               <Trans i18nKey="cookies.management.confirm">
                 Confirmer mes choix
               </Trans>

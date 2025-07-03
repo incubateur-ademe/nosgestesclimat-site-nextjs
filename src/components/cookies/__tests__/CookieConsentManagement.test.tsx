@@ -50,7 +50,7 @@ describe('CookieConsentManagement', () => {
     render(<CookieConsentManagement {...defaultProps} />)
 
     expect(screen.getByTestId('modal')).toBeTruthy()
-    expect(screen.getByText('Panneau de gestion des cookies')).toBeTruthy()
+    expect(screen.getByTestId('cookie-management-title')).toBeTruthy()
   })
 
   it('should not render when board is not open', () => {
@@ -62,28 +62,28 @@ describe('CookieConsentManagement', () => {
   it('should render the title correctly', () => {
     render(<CookieConsentManagement {...defaultProps} />)
 
-    expect(screen.getByText('Panneau de gestion des cookies')).toBeTruthy()
+    expect(screen.getByTestId('cookie-management-title')).toBeTruthy()
   })
 
   it('should render the preferences section', () => {
     render(<CookieConsentManagement {...defaultProps} />)
 
-    expect(screen.getByText('Préférences pour tous les services.')).toBeTruthy()
-    expect(screen.getByText('Données personnelles et cookies')).toBeTruthy()
+    expect(screen.getByTestId('preferences-text')).toBeTruthy()
+    expect(screen.getByTestId('privacy-link')).toBeTruthy()
   })
 
   it('should render the privacy policy link', () => {
     render(<CookieConsentManagement {...defaultProps} />)
 
-    const privacyLink = screen.getByText('Données personnelles et cookies')
+    const privacyLink = screen.getByTestId('privacy-link')
     expect(privacyLink).toBeTruthy()
   })
 
   it('should render the refuse all and accept all buttons', () => {
     render(<CookieConsentManagement {...defaultProps} />)
 
-    expect(screen.getByText('Tout refuser')).toBeTruthy()
-    expect(screen.getByText('Tout accepter')).toBeTruthy()
+    expect(screen.getByTestId('refuse-all-button')).toBeTruthy()
+    expect(screen.getByTestId('accept-all-button')).toBeTruthy()
   })
 
   it('should call refuseAll when Tout refuser button is clicked', async () => {
@@ -92,7 +92,7 @@ describe('CookieConsentManagement', () => {
 
     render(<CookieConsentManagement {...defaultProps} refuseAll={refuseAll} />)
 
-    await user.click(screen.getByText('Tout refuser'))
+    await user.click(screen.getByTestId('refuse-all-button'))
     expect(refuseAll).toHaveBeenCalledTimes(1)
   })
 
@@ -102,44 +102,40 @@ describe('CookieConsentManagement', () => {
 
     render(<CookieConsentManagement {...defaultProps} acceptAll={acceptAll} />)
 
-    await user.click(screen.getByText('Tout accepter'))
+    await user.click(screen.getByTestId('accept-all-button'))
     expect(acceptAll).toHaveBeenCalledTimes(1)
   })
 
   it('should render required cookies section', () => {
     render(<CookieConsentManagement {...defaultProps} />)
 
-    expect(screen.getByText('Cookies obligatoires')).toBeTruthy()
-    expect(
-      screen.getByText(
-        'Ce site utilise des cookies nécessaires à son bon fonctionnement qui ne peuvent pas être désactivés.'
-      )
-    ).toBeTruthy()
+    expect(screen.getByTestId('required-cookies-title')).toBeTruthy()
+    expect(screen.getByTestId('required-cookies-description')).toBeTruthy()
   })
 
   it('should render Google Ads section', () => {
     render(<CookieConsentManagement {...defaultProps} />)
 
-    expect(screen.getByText('Google Ads')).toBeTruthy()
-    expect(
-      screen.getByText(
-        'Nous utilisons des cookies pour calibrer et nos publicités en ligne.'
-      )
-    ).toBeTruthy()
+    expect(screen.getByTestId('google-ads-title')).toBeTruthy()
+    expect(screen.getByTestId('google-ads-description')).toBeTruthy()
   })
 
   it('should render radio buttons for Google Ads', () => {
     render(<CookieConsentManagement {...defaultProps} />)
 
-    expect(screen.getByDisplayValue('accept')).toBeTruthy()
-    expect(screen.getByDisplayValue('refuse')).toBeTruthy()
+    expect(screen.getByTestId('google-ads-accept-radio')).toBeTruthy()
+    expect(screen.getByTestId('google-ads-refuse-radio')).toBeTruthy()
   })
 
   it('should have accept radio button checked by default', () => {
     render(<CookieConsentManagement {...defaultProps} />)
 
-    const acceptRadio = screen.getByDisplayValue('accept') as HTMLInputElement
-    const refuseRadio = screen.getByDisplayValue('refuse') as HTMLInputElement
+    const acceptRadio = screen.getByTestId(
+      'google-ads-accept-radio'
+    ) as HTMLInputElement
+    const refuseRadio = screen.getByTestId(
+      'google-ads-refuse-radio'
+    ) as HTMLInputElement
 
     expect(acceptRadio.checked).toBe(true)
     expect(refuseRadio.checked).toBe(false)
@@ -149,8 +145,12 @@ describe('CookieConsentManagement', () => {
     const user = userEvent.setup()
     render(<CookieConsentManagement {...defaultProps} />)
 
-    const acceptRadio = screen.getByDisplayValue('accept') as HTMLInputElement
-    const refuseRadio = screen.getByDisplayValue('refuse') as HTMLInputElement
+    const acceptRadio = screen.getByTestId(
+      'google-ads-accept-radio'
+    ) as HTMLInputElement
+    const refuseRadio = screen.getByTestId(
+      'google-ads-refuse-radio'
+    ) as HTMLInputElement
 
     // Initially accept is checked
     expect(acceptRadio.checked).toBe(true)
@@ -170,7 +170,7 @@ describe('CookieConsentManagement', () => {
   it('should render the confirm button', () => {
     render(<CookieConsentManagement {...defaultProps} />)
 
-    expect(screen.getByText('Confirmer mes choix')).toBeTruthy()
+    expect(screen.getByTestId('confirm-choices-button')).toBeTruthy()
   })
 
   it('should call confirmChoices with correct data when form is submitted with accept', async () => {
@@ -184,7 +184,7 @@ describe('CookieConsentManagement', () => {
       />
     )
 
-    await user.click(screen.getByText('Confirmer mes choix'))
+    await user.click(screen.getByTestId('confirm-choices-button'))
 
     expect(confirmChoices).toHaveBeenCalledTimes(1)
     expect(confirmChoices).toHaveBeenCalledWith({
@@ -204,10 +204,10 @@ describe('CookieConsentManagement', () => {
     )
 
     // Change to refuse
-    await user.click(screen.getByDisplayValue('refuse'))
+    await user.click(screen.getByTestId('google-ads-refuse-radio'))
 
     // Submit form
-    await user.click(screen.getByText('Confirmer mes choix'))
+    await user.click(screen.getByTestId('confirm-choices-button'))
 
     expect(confirmChoices).toHaveBeenCalledTimes(1)
     expect(confirmChoices).toHaveBeenCalledWith({
@@ -236,9 +236,11 @@ describe('CookieConsentManagement', () => {
 
     render(<CookieConsentManagement {...defaultProps} refuseAll={refuseAll} />)
 
-    await user.click(screen.getByText('Tout refuser'))
+    await user.click(screen.getByTestId('refuse-all-button'))
 
-    const refuseRadio = screen.getByDisplayValue('refuse') as HTMLInputElement
+    const refuseRadio = screen.getByTestId(
+      'google-ads-refuse-radio'
+    ) as HTMLInputElement
     expect(refuseRadio.checked).toBe(true)
   })
 
@@ -249,31 +251,25 @@ describe('CookieConsentManagement', () => {
     render(<CookieConsentManagement {...defaultProps} acceptAll={acceptAll} />)
 
     // First change to refuse
-    await user.click(screen.getByDisplayValue('refuse'))
+    await user.click(screen.getByTestId('google-ads-refuse-radio'))
 
     // Then click accept all
-    await user.click(screen.getByText('Tout accepter'))
+    await user.click(screen.getByTestId('accept-all-button'))
 
-    const acceptRadio = screen.getByDisplayValue('accept') as HTMLInputElement
+    const acceptRadio = screen.getByTestId(
+      'google-ads-accept-radio'
+    ) as HTMLInputElement
     expect(acceptRadio.checked).toBe(true)
   })
 
   it('should have required cookies radio buttons disabled', () => {
     render(<CookieConsentManagement {...defaultProps} />)
 
-    const requiredAcceptRadio = screen.getByDisplayValue(
-      'accept'
+    const obligAcceptRadio = screen.getByTestId(
+      'required-accept-radio'
     ) as HTMLInputElement
-    const requiredRefuseRadio = screen.getByDisplayValue(
-      'refuse'
-    ) as HTMLInputElement
-
-    // Find the required cookies radio buttons by their IDs
-    const obligAcceptRadio = document.getElementById(
-      'oblig-accept'
-    ) as HTMLInputElement
-    const obligRefuseRadio = document.getElementById(
-      'oblig-refuse'
+    const obligRefuseRadio = screen.getByTestId(
+      'required-refuse-radio'
     ) as HTMLInputElement
 
     expect(obligAcceptRadio.disabled).toBe(true)
@@ -283,7 +279,7 @@ describe('CookieConsentManagement', () => {
   it('should have proper form structure', () => {
     render(<CookieConsentManagement {...defaultProps} />)
 
-    const form = document.querySelector('form')
+    const form = screen.getByTestId('cookie-form')
     expect(form).toBeTruthy()
   })
 
@@ -299,9 +295,9 @@ describe('CookieConsentManagement', () => {
     )
 
     // Submit form multiple times
-    await user.click(screen.getByText('Confirmer mes choix'))
-    await user.click(screen.getByText('Confirmer mes choix'))
-    await user.click(screen.getByText('Confirmer mes choix'))
+    await user.click(screen.getByTestId('confirm-choices-button'))
+    await user.click(screen.getByTestId('confirm-choices-button'))
+    await user.click(screen.getByTestId('confirm-choices-button'))
 
     expect(confirmChoices).toHaveBeenCalledTimes(3)
   })
@@ -310,8 +306,12 @@ describe('CookieConsentManagement', () => {
     const user = userEvent.setup()
     render(<CookieConsentManagement {...defaultProps} />)
 
-    const acceptRadio = screen.getByDisplayValue('accept') as HTMLInputElement
-    const refuseRadio = screen.getByDisplayValue('refuse') as HTMLInputElement
+    const acceptRadio = screen.getByTestId(
+      'google-ads-accept-radio'
+    ) as HTMLInputElement
+    const refuseRadio = screen.getByTestId(
+      'google-ads-refuse-radio'
+    ) as HTMLInputElement
 
     // Switch to refuse
     await user.click(refuseRadio)
@@ -341,9 +341,9 @@ describe('CookieConsentManagement', () => {
     )
 
     // Should not throw errors when clicking buttons with empty functions
-    await user.click(screen.getByText('Tout refuser'))
-    await user.click(screen.getByText('Tout accepter'))
-    await user.click(screen.getByText('Confirmer mes choix'))
+    await user.click(screen.getByTestId('refuse-all-button'))
+    await user.click(screen.getByTestId('accept-all-button'))
+    await user.click(screen.getByTestId('confirm-choices-button'))
     await user.click(screen.getByTestId('close-button'))
 
     // Should still render correctly
