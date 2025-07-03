@@ -154,7 +154,6 @@ export default function ActionList({
               rule={rules[action.dottedName]}
               action={action}
               total={bilan?.nodeValue}
-              isIrrelevant={isIrrelevant}
               handleUpdatePersistedActions={handleUpdatePersistedActions}
             />
           </div>
