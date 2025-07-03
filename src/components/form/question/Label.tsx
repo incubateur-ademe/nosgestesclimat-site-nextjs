@@ -51,6 +51,11 @@ export default function Label({
 
   const { t } = useClientTranslation()
 
+  const mustShowDescriptionQuestion: DottedName[] = [
+    'transport . voiture . utilisateur',
+    'logement . âge',
+  ]
+
   if (!label) return
   return (
     <>
@@ -76,7 +81,7 @@ export default function Label({
           data-cypress-id="question-label">
           {label}
         </h2>{' '}
-        {description ? (
+        {description && !mustShowDescriptionQuestion.includes(question) ? (
           <Button
             type="button"
             onClick={() => {
@@ -101,35 +106,32 @@ export default function Label({
           </Button>
         ) : null}
       </label>
-      {question === 'logement . âge' && (
-        <div className="mt-2 mb-6 text-xs italic md:text-sm">
-          <Trans>
-            Un petit doute ? L'info sera sûrement dans votre contrat d'assurance
-            logement.
-          </Trans>
-        </div>
-      )}
-      {isOpen && description ? (
-        <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.2 }}
-          className="border-primary-50 mb-3 origin-top rounded-xl border-2 bg-gray-100 p-3 text-sm">
-          <Markdown className="[&>blockquote]:text-default [&>blockquote]:mt-0 [&>blockquote]:mb-2 [&>blockquote]:p-0 [&>p]:mb-2">
+      {description &&
+        (mustShowDescriptionQuestion.includes(question) ? (
+          <div className="mt-2 mb-6 text-xs italic md:text-sm">
             {description}
-          </Markdown>{' '}
-          <Button
-            size="xs"
-            color={'secondary'}
-            onClick={() => {
-              trackEvent(questionCloseInfo({ question }))
-              setIsOpen(false)
-            }}
-            title={t('Fermer')}>
-            <Trans>Fermer</Trans>
-          </Button>
-        </motion.div>
-      ) : null}
+          </div>
+        ) : isOpen ? (
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.2 }}
+            className="border-primary-50 mb-3 origin-top rounded-xl border-2 bg-gray-100 p-3 text-sm">
+            <Markdown className="[&>blockquote]:text-default [&>blockquote]:mt-0 [&>blockquote]:mb-2 [&>blockquote]:p-0 [&>p]:mb-2">
+              {description}
+            </Markdown>{' '}
+            <Button
+              size="xs"
+              color={'secondary'}
+              onClick={() => {
+                trackEvent(questionCloseInfo({ question }))
+                setIsOpen(false)
+              }}
+              title={t('Fermer')}>
+              <Trans>Fermer</Trans>
+            </Button>
+          </motion.div>
+        ) : null)}
     </>
   )
 }

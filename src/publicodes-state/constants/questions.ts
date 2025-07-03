@@ -28,10 +28,13 @@ export const MUST_NOT_ASK_QUESTIONS: Set<DottedName> = new Set([
 export const PRIORITY_QUESTIONS: Set<DottedName> = new Set([
   'alimentation . plats',
   'logement . chauffage . bois . type',
+  'transport . voiture . km',
+  'transport . voiture . voyageurs',
 ])
 
 export const NON_PRIORITY_QUESTIONS: Set<DottedName> = new Set([
   'logement . électricité . réseau . consommation',
+  'transport . voiture . thermique . consommation aux 100',
 ])
 
 export const MUST_ASK_QUESTIONS: Set<DottedName> = new Set([
