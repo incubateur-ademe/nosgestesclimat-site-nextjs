@@ -3,17 +3,16 @@ import { faker } from '@faker-js/faker'
 import { screen, waitFor } from '@testing-library/dom'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
+import { vi } from 'vitest'
 import UpdateSimulationUsed from '../UpdateSimulationUsed'
 
-const mockUpdateGroupParticipant = jest.fn()
-
-jest.mock('@/services/groups/updateGroupParticipant', () => {
+vi.mock('@/services/groups/updateGroupParticipant', () => {
   return {
-    updateGroupParticipant: () => mockUpdateGroupParticipant(),
+    updateGroupParticipant: vi.fn(),
   }
 })
 
-const mockRefetchGroup = jest.fn()
+const mockRefetchGroup = vi.fn()
 
 const mockSimulation = {
   id: faker.string.uuid(),
@@ -84,7 +83,7 @@ let mockUser: Record<string, string>
 
 describe('UpdateSimulationUsed', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
 
     mockUser = {
       userId: mockUserId,
@@ -112,7 +111,10 @@ describe('UpdateSimulationUsed', () => {
 
   it('should display success alert when update is successful', async () => {
     // Given
-    mockUpdateGroupParticipant.mockResolvedValue({
+    const { updateGroupParticipant } = await import(
+      '@/services/groups/updateGroupParticipant'
+    )
+    ;(updateGroupParticipant as any).mockResolvedValue({
       data: {
         success: true,
       },
@@ -138,7 +140,12 @@ describe('UpdateSimulationUsed', () => {
 
   it('should display error alert when update fails', async () => {
     // Given
-    mockUpdateGroupParticipant.mockRejectedValue(new Error('Update failed'))
+    const { updateGroupParticipant } = await import(
+      '@/services/groups/updateGroupParticipant'
+    )
+    ;(updateGroupParticipant as any).mockRejectedValue(
+      new Error('Update failed')
+    )
 
     // When
     renderWithWrapper(<UpdateSimulationUsed {...mockProps} />, {

@@ -5,12 +5,13 @@ import { captureException } from '@sentry/nextjs'
 import '@testing-library/jest-dom'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { http, HttpResponse } from 'msw'
+import { vi } from 'vitest'
 import { ORGANISATION_URL } from '../../../constants/urls/main'
 import ExportDataButton from '../ExportDataButton'
 
 describe('ExportDataButton', () => {
   it('should ask server for an excel file', async () => {
-    jest.spyOn(window, 'open').mockImplementation()
+    vi.spyOn(window, 'open').mockImplementation(() => null)
 
     //Given
     const poll = createPublicOrganisationPoll()

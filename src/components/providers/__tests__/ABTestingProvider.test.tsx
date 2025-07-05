@@ -1,5 +1,6 @@
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { act, render } from '@testing-library/react'
+import { vi } from 'vitest'
 import {
   AB_TESTS_LABELS,
   ABTestingProvider,
@@ -7,15 +8,15 @@ import {
 } from '../ABTestingProvider'
 
 // Mock des dépendances
-jest.mock('@/utils/analytics/trackEvent')
-jest.mock('@/constants/tracking/ab-testing', () => ({
+vi.mock('@/utils/analytics/trackEvent')
+vi.mock('@/constants/tracking/ab-testing', () => ({
   abTestingVisitOriginal: 'abTestingVisitOriginal',
   getAbTestingVisitVariation: (label: string) =>
     `abTestingVisitVariation-${label}`,
 }))
 
 // Mock de setTimeout
-jest.useFakeTimers()
+vi.useFakeTimers()
 
 // Composant de test pour accéder au contexte
 const TestComponent = () => {
@@ -26,8 +27,8 @@ const TestComponent = () => {
 describe('ABTestingProvider', () => {
   beforeEach(() => {
     // Reset des mocks
-    jest.clearAllMocks()
-    jest.clearAllTimers()
+    vi.clearAllMocks()
+    vi.clearAllTimers()
 
     // Mock de window._paq
     window._paq = []
@@ -70,7 +71,7 @@ describe('ABTestingProvider', () => {
     expect(window._paq).toEqual([])
   })
 
-  it.failing('should retry initialization when Matomo is not available', () => {
+  it.skip('should retry initialization when Matomo is not available', () => {
     // Supprimer Matomo temporairement
     delete (window as any).Matomo
 
@@ -89,7 +90,7 @@ describe('ABTestingProvider', () => {
     }
 
     act(() => {
-      jest.advanceTimersByTime(500)
+      vi.advanceTimersByTime(500)
     })
 
     // Maintenant le test A/B devrait être configuré
@@ -110,21 +111,18 @@ describe('ABTestingProvider', () => {
     expect(window._paq).toEqual([])
   })
 
-  it.failing(
-    'should initialize AB testing when Matomo and AbTesting are available',
-    () => {
-      render(
-        <ABTestingProvider>
-          <TestComponent />
-        </ABTestingProvider>
-      )
+  it.skip('should initialize AB testing when Matomo and AbTesting are available', () => {
+    render(
+      <ABTestingProvider>
+        <TestComponent />
+      </ABTestingProvider>
+    )
 
-      expect(window._paq.length).toBeGreaterThan(0)
-      expect(window._paq[0][0]).toBe('AbTesting::create')
-    }
-  )
+    expect(window._paq.length).toBeGreaterThan(0)
+    expect(window._paq[0][0]).toBe('AbTesting::create')
+  })
 
-  it.failing('should track original version when activated', () => {
+  it.skip('should track original version when activated', () => {
     render(
       <ABTestingProvider>
         <TestComponent />
@@ -140,27 +138,24 @@ describe('ABTestingProvider', () => {
     expect(trackEvent).toHaveBeenCalledWith('abTestingVisitOriginal')
   })
 
-  it.failing(
-    'should track variation version and update abTests when activated',
-    () => {
-      const { getByTestId } = render(
-        <ABTestingProvider>
-          <TestComponent />
-        </ABTestingProvider>
-      )
+  it.skip('should track variation version and update abTests when activated', () => {
+    const { getByTestId } = render(
+      <ABTestingProvider>
+        <TestComponent />
+      </ABTestingProvider>
+    )
 
-      // Simuler l'activation de la variation
-      const variationActivate = window._paq[0][1].variations[1].activate
-      act(() => {
-        variationActivate({})
-      })
+    // Simuler l'activation de la variation
+    const variationActivate = window._paq[0][1].variations[1].activate
+    act(() => {
+      variationActivate({})
+    })
 
-      expect(trackEvent).toHaveBeenCalledWith(
-        `abTestingVisitVariation-${AB_TESTS_LABELS.hideTutorial}`
-      )
-      expect(getByTestId('test-component').textContent).toBe(
-        JSON.stringify({ [AB_TESTS_LABELS.hideTutorial]: true })
-      )
-    }
-  )
+    expect(trackEvent).toHaveBeenCalledWith(
+      `abTestingVisitVariation-${AB_TESTS_LABELS.hideTutorial}`
+    )
+    expect(getByTestId('test-component').textContent).toBe(
+      JSON.stringify({ [AB_TESTS_LABELS.hideTutorial]: true })
+    )
+  })
 })

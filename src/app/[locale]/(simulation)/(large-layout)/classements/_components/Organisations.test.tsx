@@ -1,145 +1,188 @@
-import { useFetchPolls } from '@/hooks/organisations/polls/useFetchPolls'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import '@testing-library/jest-dom'
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import { vi } from 'vitest'
+
 import Organisations from './Organisations'
 
-jest.mock('axios')
+vi.mock('axios')
 
-// Mock useParams
-jest.mock('next/navigation', () => ({
-  useParams: () => ({
-    orgaSlug: 'test-organisation',
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: vi.fn(),
+    replace: vi.fn(),
+    prefetch: vi.fn(),
+    back: vi.fn(),
+    forward: vi.fn(),
+    refresh: vi.fn(),
   }),
+  useSearchParams: () => new URLSearchParams(),
+  usePathname: () => '/test',
+}))
+
+vi.mock('@/hooks/organisations/useFetchOrganisations', () => ({
+  default: vi.fn(),
+}))
+
+vi.mock('@/hooks/organisations/polls/useFetchPolls', () => ({
+  useFetchPolls: vi.fn(),
 }))
 
 const mockOrganisations = [
   {
     id: '1',
-    name: 'Test Organisation',
-    description: 'Test Description',
-    slug: 'test-organisation',
-    administrators: [],
-    polls: [],
-    type: 'company',
-    numberOfCollaborators: 10,
-    hasCustomQuestionEnabled: false,
+    name: 'Test Organisation 1',
+    slug: 'test-org-1',
+    description: 'Test Description 1',
+    logo: 'test-logo-1.png',
+    website: 'https://test1.com',
+    createdAt: '2024-01-01',
+    updatedAt: '2024-01-01',
+  },
+  {
+    id: '2',
+    name: 'Test Organisation 2',
+    slug: 'test-org-2',
+    description: 'Test Description 2',
+    logo: 'test-logo-2.png',
+    website: 'https://test2.com',
+    createdAt: '2024-01-02',
+    updatedAt: '2024-01-02',
+  },
+]
+
+const mockPolls = [
+  {
+    id: '1',
+    name: 'Test Poll',
+    slug: 'test-poll',
+    description: 'Test Poll Description',
+    status: 'active',
+    startDate: '2024-01-01',
+    endDate: '2024-12-31',
+    organisationId: '1',
     createdAt: '2024-01-01',
     updatedAt: '2024-01-01',
   },
 ]
 
-// Mock useFetchOrganisations
-const mockUseFetchOrganisations = jest.fn()
-jest.mock('@/hooks/organisations/useFetchOrganisations', () => ({
-  __esModule: true,
-  default: () => mockUseFetchOrganisations(),
-}))
-
-// Mock useFetchPolls
-jest.mock('@/hooks/organisations/polls/useFetchPolls', () => ({
-  useFetchPolls: jest.fn(() => ({
-    data: [
-      {
-        id: '1',
-        name: 'Test Poll',
-        slug: 'test-poll',
-        description: 'Test Poll Description',
-        status: 'active',
-        startDate: '2024-01-01',
-        endDate: '2024-12-31',
-        organisationId: '1',
-        createdAt: '2024-01-01',
-        updatedAt: '2024-01-01',
-      },
-    ],
-    isLoading: false,
-    error: null,
-  })),
-}))
-
 describe('Organisations', () => {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        retry: false,
-      },
-    },
-  })
-
-  const wrapper = ({ children }: { children: React.ReactNode }) => (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  )
-
   beforeEach(() => {
-    jest.clearAllMocks()
-    mockUseFetchOrganisations.mockReturnValue({
-      data: mockOrganisations,
-      isLoading: false,
-      error: null,
-    })
+    vi.clearAllMocks()
   })
 
-  it('should show loading state initially', () => {
-    mockUseFetchOrganisations.mockReturnValueOnce({
+  it('should show loading state initially', async () => {
+    const useFetchOrganisations = (
+      await import('@/hooks/organisations/useFetchOrganisations')
+    ).default
+    ;(useFetchOrganisations as any).mockReturnValue({
       data: undefined,
       isLoading: true,
       error: null,
     })
 
-    render(<Organisations />, { wrapper })
+    render(<Organisations />)
 
     expect(screen.getByTestId('block-skeleton')).toBeInTheDocument()
   })
 
   it('should show organisations list when data is loaded', async () => {
-    render(<Organisations />, { wrapper })
+    const useFetchOrganisations = (
+      await import('@/hooks/organisations/useFetchOrganisations')
+    ).default
+    const { useFetchPolls } = await import(
+      '@/hooks/organisations/polls/useFetchPolls'
+    )
 
-    await waitFor(() => {
-      expect(screen.getByTestId('poll-list')).toBeInTheDocument()
+    ;(useFetchOrganisations as any).mockReturnValue({
+      data: mockOrganisations,
+      isLoading: false,
+      error: null,
     })
+    ;(useFetchPolls as any).mockReturnValue({
+      data: mockPolls,
+      isLoading: false,
+      error: null,
+    })
+
+    render(<Organisations />)
+
+    await screen.findByTestId('poll-list')
   })
 
   it('should show create organisation when no organisations exist', async () => {
-    mockUseFetchOrganisations.mockReturnValueOnce({
+    const useFetchOrganisations = (
+      await import('@/hooks/organisations/useFetchOrganisations')
+    ).default
+    const { useFetchPolls } = await import(
+      '@/hooks/organisations/polls/useFetchPolls'
+    )
+
+    ;(useFetchOrganisations as any).mockReturnValue({
       data: [],
       isLoading: false,
       error: null,
     })
-    ;(useFetchPolls as jest.Mock).mockReturnValueOnce({
+    ;(useFetchPolls as any).mockReturnValue({
       data: undefined,
       isLoading: false,
       error: null,
     })
 
-    render(<Organisations />, { wrapper })
+    render(<Organisations />)
 
-    await waitFor(() => {
-      expect(screen.getByTestId('create-organisation')).toBeInTheDocument()
-    })
+    expect(screen.getByTestId('create-organisation')).toBeInTheDocument()
   })
 
   it('should show error alert on error except unauthorized', async () => {
-    mockUseFetchOrganisations.mockReturnValueOnce({
+    const useFetchOrganisations = (
+      await import('@/hooks/organisations/useFetchOrganisations')
+    ).default
+    ;(useFetchOrganisations as any).mockReturnValue({
       data: undefined,
       isLoading: false,
-      error: { status: 500 },
+      error: { status: 500, message: 'Internal Server Error' },
     })
 
-    render(<Organisations />, { wrapper })
+    render(<Organisations />)
 
-    expect(await screen.findByTestId('default-error-alert')).toBeInTheDocument()
+    expect(screen.getByTestId('default-error-alert')).toBeInTheDocument()
   })
 
-  it('should not show error alert on unauthorized error', () => {
-    mockUseFetchOrganisations.mockReturnValueOnce({
+  it('should not show error alert on unauthorized error', async () => {
+    const useFetchOrganisations = (
+      await import('@/hooks/organisations/useFetchOrganisations')
+    ).default
+    ;(useFetchOrganisations as any).mockReturnValue({
       data: undefined,
       isLoading: false,
-      error: { status: 401 },
+      error: { status: 401, message: 'Unauthorized' },
     })
 
-    render(<Organisations />, { wrapper })
+    render(<Organisations />)
 
     expect(screen.queryByTestId('default-error-alert')).not.toBeInTheDocument()
+  })
+
+  it('should render polls when available', async () => {
+    const useFetchOrganisations = (
+      await import('@/hooks/organisations/useFetchOrganisations')
+    ).default
+    const { useFetchPolls } = await import(
+      '@/hooks/organisations/polls/useFetchPolls'
+    )
+
+    ;(useFetchOrganisations as any).mockReturnValue({
+      data: mockOrganisations,
+      isLoading: false,
+      error: null,
+    })
+    ;(useFetchPolls as any).mockReturnValue({
+      data: mockPolls,
+      isLoading: false,
+      error: null,
+    })
+
+    render(<Organisations />)
+
+    expect(screen.getByTestId('poll-list')).toBeInTheDocument()
   })
 })

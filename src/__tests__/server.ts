@@ -61,5 +61,49 @@ export const mswServer = setupServer(
         },
       })
     }
-  )
+  ),
+
+  // Handler pour l'endpoint CMS des partenaires
+  http.get('*/api/partners*', () => {
+    return HttpResponse.json({
+      data: [
+        {
+          id: '1',
+          attributes: {
+            name: 'Partner 1',
+            imageSrc: '/partner1.png',
+            link: 'https://partner1.com',
+            displayOrder: 1,
+            displayOnLandingPage: true,
+            category: {
+              data: {
+                id: '1',
+                attributes: {
+                  category: 'Category 1',
+                },
+              },
+            },
+          },
+        },
+        {
+          id: '2',
+          attributes: {
+            name: 'Partner 2',
+            imageSrc: '/partner2.png',
+            link: 'https://partner2.com',
+            displayOrder: 2,
+            displayOnLandingPage: true,
+            category: {
+              data: {
+                id: '2',
+                attributes: {
+                  category: 'Category 2',
+                },
+              },
+            },
+          },
+        },
+      ],
+    })
+  })
 )

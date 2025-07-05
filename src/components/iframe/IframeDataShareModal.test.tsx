@@ -1,105 +1,149 @@
-import { useIframe } from '@/hooks/useIframe'
-import { useCurrentSimulation } from '@/publicodes-state'
-import { getIsIframe } from '@/utils/getIsIframe'
+import { IframeOptionsProvider } from '@/app/[locale]/_components/mainLayoutProviders/IframeOptionsContext'
 import '@testing-library/jest-dom'
 import { act, fireEvent, render, screen } from '@testing-library/react'
+import { vi } from 'vitest'
 import IframeDataShareModal from './IframeDataShareModal'
 
 // Mock des hooks et fonctions
-jest.mock('@/hooks/useIframe', () => ({
-  useIframe: jest.fn(),
+const mockUseIframe = vi.fn()
+vi.mock('@/hooks/useIframe', () => ({
+  useIframe: () => mockUseIframe(),
 }))
 
-jest.mock('@/publicodes-state', () => ({
-  useCurrentSimulation: jest.fn(),
+const mockGetIsIframe = vi.fn()
+vi.mock('@/utils/getIsIframe', () => ({
+  getIsIframe: () => mockGetIsIframe(),
 }))
 
-jest.mock('@/utils/getIsIframe', () => ({
-  getIsIframe: jest.fn(),
-}))
-
-jest.mock('@/hooks/useClientTranslation', () => ({
+// Mock simple pour useClientTranslation
+vi.mock('@/hooks/useClientTranslation', () => ({
   useClientTranslation: () => ({
-    t: (str: string) => str,
+    t: (key: string) => {
+      if (key === 'Partage de vos résultats à {{ parent }} ?') {
+        return 'Partage de vos résultats à site parent inconnu ?'
+      }
+      if (key === 'Accepter') return 'Accepter'
+      if (key === 'Refuser') return 'Refuser'
+      return key
+    },
   }),
 }))
 
-describe('IframeDataShareModal', () => {
-  const mockComputedResults = {
-    carbone: {
-      categories: {
-        transport: 1000,
-        alimentation: 2000,
-        logement: 3000,
-        divers: 4000,
-        'services sociétaux': 5000,
+// Mock pour useCurrentSimulation
+vi.mock('@/publicodes-state', () => ({
+  useCurrentSimulation: () => ({
+    computedResults: {
+      carbone: {
+        bilan: 15000,
+        categories: {
+          transport: 1000,
+          alimentation: 2000,
+          logement: 3000,
+          divers: 4000,
+          'services sociétaux': 5000,
+        },
+      },
+      eau: {
+        bilan: 0,
+        categories: {
+          transport: 0,
+          alimentation: 0,
+          logement: 0,
+          divers: 0,
+          'services sociétaux': 0,
+        },
       },
     },
-  }
+  }),
+}))
 
+// Wrapper simple pour le test
+const TestWrapper = ({ children }: { children: React.ReactNode }) => (
+  <IframeOptionsProvider>
+    {(containerRef) => <div ref={containerRef as any}>{children}</div>}
+  </IframeOptionsProvider>
+)
+
+describe('IframeDataShareModal', () => {
   beforeEach(() => {
-    jest.useFakeTimers()
-    ;(getIsIframe as jest.Mock).mockReturnValue(true)
-    ;(useIframe as jest.Mock).mockReturnValue({ isIframeShareData: true })
-    ;(useCurrentSimulation as jest.Mock).mockReturnValue({
-      computedResults: mockComputedResults,
-    })
+    vi.useFakeTimers()
+    vi.clearAllMocks()
+    mockGetIsIframe.mockReturnValue(true)
+    mockUseIframe.mockReturnValue({ isIframeShareData: true })
   })
 
   afterEach(() => {
-    jest.useRealTimers()
-    jest.clearAllMocks()
+    vi.useRealTimers()
+    vi.clearAllMocks()
   })
 
   it('should not render when not in iframe', () => {
     // Given
-    ;(getIsIframe as jest.Mock).mockReturnValue(false)
+    mockGetIsIframe.mockReturnValue(false)
 
     // When
-    const { container } = render(<IframeDataShareModal />)
+    const { container } = render(
+      <TestWrapper>
+        <IframeDataShareModal />
+      </TestWrapper>
+    )
 
     // Then
-    expect(container).toBeEmptyDOMElement()
+    expect(container.firstChild).toBeInstanceOf(HTMLDivElement)
+    expect(container.firstChild).toBeEmptyDOMElement()
   })
 
   it('should not render when iframe share data is disabled', () => {
     // Given
-    ;(useIframe as jest.Mock).mockReturnValue({ isIframeShareData: false })
+    mockUseIframe.mockReturnValue({ isIframeShareData: false })
 
     // When
-    const { container } = render(<IframeDataShareModal />)
+    const { container } = render(
+      <TestWrapper>
+        <IframeDataShareModal />
+      </TestWrapper>
+    )
 
     // Then
-    expect(container).toBeEmptyDOMElement()
+    expect(container.firstChild).toBeInstanceOf(HTMLDivElement)
+    expect(container.firstChild).toBeEmptyDOMElement()
   })
 
   it('should show modal after timeout', () => {
     // Given
-    render(<IframeDataShareModal />)
+    render(
+      <TestWrapper>
+        <IframeDataShareModal />
+      </TestWrapper>
+    )
 
     // When
     act(() => {
-      jest.advanceTimersByTime(3500)
+      vi.advanceTimersByTime(3500)
     })
 
     // Then
-    expect(screen.getByText(/^Partage de vos résultats/)).toBeInTheDocument()
+    expect(screen.getByTestId('iframe-datashare-title')).toBeInTheDocument()
     expect(document.body.style.overflow).toBe('hidden')
   })
 
-  it('should send data to parent window when accepting', async () => {
+  it('should send data to parent window when accepting', () => {
     // Given
-    const mockPostMessage = jest.fn()
+    const mockPostMessage = vi.fn()
     window.parent.postMessage = mockPostMessage
-    render(<IframeDataShareModal />)
+    render(
+      <TestWrapper>
+        <IframeDataShareModal />
+      </TestWrapper>
+    )
 
     // When
     act(() => {
-      jest.advanceTimersByTime(3500)
+      vi.advanceTimersByTime(3500)
     })
 
     // Vérifier que le bouton est bien détecté
-    const acceptButton = await screen.findByText('Accepter')
+    const acceptButton = screen.getByTestId('iframe-datashare-accepter')
     expect(acceptButton).toBeInTheDocument()
     expect(acceptButton).toBeEnabled()
 
@@ -125,16 +169,20 @@ describe('IframeDataShareModal', () => {
 
   it('should send error message to parent window when rejecting', () => {
     // Given
-    const mockPostMessage = jest.fn()
+    const mockPostMessage = vi.fn()
     window.parent.postMessage = mockPostMessage
-    render(<IframeDataShareModal />)
+    render(
+      <TestWrapper>
+        <IframeDataShareModal />
+      </TestWrapper>
+    )
 
     // When
     act(() => {
-      jest.advanceTimersByTime(3500)
+      vi.advanceTimersByTime(3500)
     })
 
-    fireEvent.click(screen.getByText('Refuser'))
+    fireEvent.click(screen.getByTestId('iframe-datashare-refuser'))
 
     // Then
     expect(mockPostMessage).toHaveBeenCalledWith(
@@ -148,11 +196,15 @@ describe('IframeDataShareModal', () => {
 
   it('should reset body overflow when modal is closed', () => {
     // Given
-    render(<IframeDataShareModal />)
+    render(
+      <TestWrapper>
+        <IframeDataShareModal />
+      </TestWrapper>
+    )
 
     // When
     act(() => {
-      jest.advanceTimersByTime(3500)
+      vi.advanceTimersByTime(3500)
     })
 
     fireEvent.click(screen.getByText('Accepter'))

@@ -1,6 +1,6 @@
-import { beforeAll } from '@jest/globals'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { vi } from 'vitest'
 import CopyButton from '../CopyButton'
 
 const DUMMY_TEXT = 'copy this'
@@ -9,14 +9,14 @@ describe('CopyButton', () => {
   beforeAll(() => {
     Object.assign(navigator, {
       clipboard: {
-        writeText: jest.fn().mockResolvedValue(undefined),
+        writeText: vi.fn().mockResolvedValue(undefined),
       },
     })
   })
 
   it('should copy text to clipboard when clicked', async () => {
     //Given
-    const writeTextMock = jest
+    const writeTextMock = vi
       .spyOn(navigator.clipboard, 'writeText')
       .mockResolvedValue()
 

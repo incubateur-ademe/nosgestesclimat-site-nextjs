@@ -1,18 +1,28 @@
+import { mswServer } from '@/__tests__/server'
 import { PARTNER_JAGIS, PARTNER_KEY } from '@/constants/partners'
+import { INTEGRATION_URL } from '@/constants/urls/main'
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import { faker } from '@faker-js/faker'
 import '@testing-library/jest-dom'
 import { act, screen, waitFor } from '@testing-library/react'
-import { redirect } from 'next/navigation'
+import { http, HttpResponse } from 'msw'
+import { vi } from 'vitest'
 import PartnerPage from '../page'
 
-const mockVerifyPartner = jest.fn()
-const mockRedirect = redirect as jest.MockedFunction<typeof redirect>
-
-jest.mock('@/services/partners/verifyPartner', () => ({
-  verifyPartner: () => mockVerifyPartner(),
+vi.mock('next/navigation', () => ({
+  redirect: vi.fn(),
+  useSearchParams: () => new URLSearchParams(),
+  useRouter: vi.fn(() => ({
+    push: vi.fn(),
+    replace: vi.fn(),
+    back: vi.fn(),
+    forward: vi.fn(),
+    refresh: vi.fn(),
+    prefetch: vi.fn(),
+  })),
+  usePathname: vi.fn(() => ''),
 }))
 
 describe('PartnerPage', () => {
@@ -27,14 +37,18 @@ describe('PartnerPage', () => {
   })
 
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
     safeLocalStorage.clear()
   })
 
   describe('when user has a simulation', () => {
     it('should display a message indicating the upcoming redirection', async () => {
       // Given
-      mockVerifyPartner.mockResolvedValue({ name: 'Test Partner' })
+      mswServer.use(
+        http.get(`${INTEGRATION_URL}/${PARTNER_JAGIS}`, () => {
+          return HttpResponse.json({ name: 'Test Partner' })
+        })
+      )
 
       // When
       await act(async () => {
@@ -82,14 +96,19 @@ describe('PartnerPage', () => {
       })
 
       // Then
-      expect(mockRedirect).toHaveBeenCalledWith('/404')
+      const { redirect } = await import('next/navigation')
+      expect(redirect).toHaveBeenCalledWith('/404')
     })
   })
 
   describe('when partner is not verified', () => {
     it('should redirect to /404', async () => {
       // Given
-      mockVerifyPartner.mockResolvedValue(null)
+      mswServer.use(
+        http.get(`${INTEGRATION_URL}/${PARTNER_JAGIS}`, () => {
+          return HttpResponse.error()
+        })
+      )
 
       // When
       await act(async () => {
@@ -108,14 +127,19 @@ describe('PartnerPage', () => {
       })
 
       // Then
-      expect(mockRedirect).toHaveBeenCalledWith('/404')
+      const { redirect } = await import('next/navigation')
+      expect(redirect).toHaveBeenCalledWith('/404')
     })
   })
 
   describe('when user has not completed the test', () => {
     it('should redirect to /simulateur/bilan', async () => {
       // Given
-      mockVerifyPartner.mockResolvedValue({ name: 'Test Partner' })
+      mswServer.use(
+        http.get(`${INTEGRATION_URL}/${PARTNER_JAGIS}`, () => {
+          return HttpResponse.json({ name: 'Test Partner' })
+        })
+      )
 
       // When
       await act(async () =>
