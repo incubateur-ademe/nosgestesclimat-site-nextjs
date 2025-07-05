@@ -46,11 +46,6 @@ export default function TallyForm() {
 
   useEffect(() => {
     // Open form only for new users, that have only one simulation
-    console.log('APPELE', isFrench, FORM_ID, simulations, simulations.length)
-
-    if (isFrench && FORM_ID && simulations && simulations.length === 1) {
-      console.log('APPELE 2')
-    }
     timeoutRef.current = setTimeout(() => handleOpenForm(), SHOW_POPUP_TIMEOUT)
 
     return () => {
