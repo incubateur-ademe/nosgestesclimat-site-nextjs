@@ -16,7 +16,7 @@ const withMDX = createMDX({
 const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
-  // Optimisations for Scalingo
+  // Optimizations for Scalingo
   poweredByHeader: false,
   compress: true,
   images: {
@@ -31,17 +31,17 @@ const nextConfig: NextConfig = {
     config: Configuration,
     { dev, isServer }: { dev: boolean; isServer: boolean }
   ) => {
-    // Ignorer les warnings pour tous les environnements
+    // Ignore warnings for all environments
     config.ignoreWarnings = [
       { module: /opentelemetry/ },
       { module: /mdx-js-loader/ },
       { module: /next\.config\.compiled\.js/ },
       { module: /importRulesFromModel/ },
-      // Ignorer les erreurs de cache webpack - regex plus large pour Scalingo
+      // Ignore webpack cache errors - broader regex for Scalingo
       { message: /Can't resolve.*next\.config\.compiled\.js/ },
       { message: /Caching failed for pack/ },
       { message: /\[webpack\.cache\.PackFileCacheStrategy\]/ },
-      // Ignorer les peer dependencies warnings
+      // Ignore peer dependencies warnings
       { message: /has incorrect peer dependency/ },
       { message: /has unmet peer dependency/ },
     ]
