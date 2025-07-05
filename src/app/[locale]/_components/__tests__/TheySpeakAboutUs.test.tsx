@@ -1,11 +1,9 @@
+import { mswServer } from '@/__tests__/server'
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
-import { beforeAll, vi } from 'vitest'
+import { http, HttpResponse } from 'msw'
+import { beforeAll, describe, expect, it } from 'vitest'
 import TheySpeakAboutUs from '../TheySpeakAboutUs'
-
-import { fetchPartners } from '@/services/cms/fetchPartners'
-
-vi.mock('@/services/cms/fetchPartners')
 
 const mockPartners = [
   {
@@ -26,7 +24,41 @@ const mockPartners = [
 
 describe('TheySpeakAboutUs component', () => {
   beforeAll(() => {
-    ;(fetchPartners as vi.Mock).mockResolvedValue({ data: mockPartners })
+    // Mock des variables d'environnement CMS
+    process.env.CMS_URL = 'http://localhost'
+    process.env.CMS_TOKEN = 'fake-token'
+    mswServer.use(
+      http.get('*/api/partners*', () => {
+        return HttpResponse.json({
+          data: [
+            {
+              id: '1',
+              name: mockPartners[0].name,
+              imageSrc: mockPartners[0].imageSrc,
+              link: mockPartners[0].link,
+              displayOrder: mockPartners[0].displayOrder,
+              displayOnLandingPage: true,
+              category: {
+                category: mockPartners[0].category.category,
+                id: '1',
+              },
+            },
+            {
+              id: '2',
+              name: mockPartners[1].name,
+              imageSrc: mockPartners[1].imageSrc,
+              link: mockPartners[1].link,
+              displayOrder: mockPartners[1].displayOrder,
+              displayOnLandingPage: true,
+              category: {
+                category: mockPartners[1].category.category,
+                id: '2',
+              },
+            },
+          ],
+        })
+      })
+    )
   })
 
   it('should display partners correctly', async () => {
