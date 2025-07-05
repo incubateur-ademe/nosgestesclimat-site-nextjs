@@ -1,12 +1,12 @@
 import { fetchPartners } from '@/services/cms/fetchPartners'
 import type { DefaultPageProps } from '@/types'
-import { beforeAll } from '@jest/globals'
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
+import { beforeAll, vi } from 'vitest'
 import OurPartners from '../page'
 
 // Mock de la fonction fetchPartners
-jest.mock('@/services/cms/fetchPartners')
+vi.mock('@/services/cms/fetchPartners')
 
 const mockPartners = [
   {
@@ -27,7 +27,7 @@ const mockPartners = [
 
 describe('OurPartners page', () => {
   beforeAll(() => {
-    ;(fetchPartners as jest.Mock).mockResolvedValue({ data: mockPartners })
+    ;(fetchPartners as vi.Mock).mockResolvedValue({ data: mockPartners })
   })
 
   it('should display partners correctly', async () => {
