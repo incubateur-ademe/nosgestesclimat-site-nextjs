@@ -1,12 +1,10 @@
-import { fetchPartners } from '@/services/cms/fetchPartners'
+import { mswServer } from '@/__tests__/server'
 import type { DefaultPageProps } from '@/types'
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
-import { beforeAll, vi } from 'vitest'
+import { http, HttpResponse } from 'msw'
+import { beforeAll, describe, expect, it } from 'vitest'
 import OurPartners from '../page'
-
-// Mock de la fonction fetchPartners
-vi.mock('@/services/cms/fetchPartners')
 
 const mockPartners = [
   {
@@ -27,7 +25,42 @@ const mockPartners = [
 
 describe('OurPartners page', () => {
   beforeAll(() => {
-    ;(fetchPartners as vi.Mock).mockResolvedValue({ data: mockPartners })
+    // Mock des variables d'environnement CMS
+    process.env.CMS_URL = 'http://localhost'
+    process.env.CMS_TOKEN = 'fake-token'
+    mswServer.use(
+      http.get('*/api/partners*', () => {
+        return HttpResponse.json({
+          data: [
+            {
+              id: '1',
+
+              name: mockPartners[0].name,
+              imageSrc: mockPartners[0].imageSrc,
+              link: mockPartners[0].link,
+              displayOrder: mockPartners[0].displayOrder,
+              displayOnLandingPage: true,
+              category: {
+                category: mockPartners[0].category.category,
+                id: '1',
+              },
+            },
+            {
+              id: '2',
+              name: mockPartners[1].name,
+              imageSrc: mockPartners[1].imageSrc,
+              link: mockPartners[1].link,
+              displayOrder: mockPartners[1].displayOrder,
+              displayOnLandingPage: true,
+              category: {
+                category: mockPartners[1].category.category,
+                id: '2',
+              },
+            },
+          ],
+        })
+      })
+    )
   })
 
   it('should display partners correctly', async () => {
@@ -41,15 +74,23 @@ describe('OurPartners page', () => {
     render(await OurPartners(props))
 
     // Then
-    // The categories are displayed
+    // The categories are displayed in h2 tags
     expect(
-      screen.queryAllByText(mockPartners[0].category.category)[0]
+      await screen.findByRole('heading', {
+        level: 2,
+        name: mockPartners[0].category.category,
+      })
     ).toBeInTheDocument()
     expect(
-      screen.queryAllByText(mockPartners[1].category.category)[0]
+      await screen.findByRole('heading', {
+        level: 2,
+        name: mockPartners[1].category.category,
+      })
     ).toBeInTheDocument()
     // The partners are displayed
-    expect(screen.queryByText(mockPartners[0].name)).toBeInTheDocument()
-    expect(screen.queryByText(mockPartners[1].name)).toBeInTheDocument()
+    expect(await screen.findByText(mockPartners[0].name)).toBeInTheDocument()
+    expect(await screen.findByText(mockPartners[1].name)).toBeInTheDocument()
+    // No error alert
+    expect(screen.queryByTestId('default-error-alert')).not.toBeInTheDocument()
   })
 })
