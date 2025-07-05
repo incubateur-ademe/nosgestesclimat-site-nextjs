@@ -16,6 +16,9 @@ const withMDX = createMDX({
 const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
+  // Optimisations for Scalingo
+  poweredByHeader: false,
+  compress: true,
   images: {
     remotePatterns: remoteImagesPatterns,
     minimumCacheTTL: 60 * 60 * 24 * 30,
@@ -34,21 +37,13 @@ const nextConfig: NextConfig = {
       { module: /mdx-js-loader/ },
       { module: /next\.config\.compiled\.js/ },
       { module: /importRulesFromModel/ },
-      // Ignorer les erreurs de cache webpack - regex exacte
-      {
-        message:
-          /Can't resolve.*next\.config\.compiled\.js.*while resolving.*next\.config\.compiled\.js/,
-      },
-      {
-        message:
-          /Caching failed for pack.*Error: Can't resolve.*next\.config\.compiled\.js/,
-      },
-      {
-        message:
-          /\[webpack\.cache\.PackFileCacheStrategy\] Caching failed for pack/,
-      },
-      // Ignorer tous les warnings liés au cache
+      // Ignorer les erreurs de cache webpack - regex plus large pour Scalingo
+      { message: /Can't resolve.*next\.config\.compiled\.js/ },
       { message: /Caching failed for pack/ },
+      { message: /\[webpack\.cache\.PackFileCacheStrategy\]/ },
+      // Ignorer les peer dependencies warnings
+      { message: /has incorrect peer dependency/ },
+      { message: /has unmet peer dependency/ },
     ]
 
     // Add a rule for YAML files

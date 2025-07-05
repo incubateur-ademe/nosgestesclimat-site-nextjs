@@ -1,5 +1,4 @@
 /.cache
-/.next/cache
 /cypress
 /scripts
 .github
