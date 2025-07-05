@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next'
+import path from 'path'
 import type { Configuration } from 'webpack'
 
 import createMDX from '@next/mdx'
@@ -17,6 +18,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
     remotePatterns: remoteImagesPatterns,
+    minimumCacheTTL: 60 * 60 * 24 * 30,
   },
   // eslint-disable-next-line @typescript-eslint/require-await
   async redirects() {
@@ -31,41 +33,66 @@ const nextConfig: NextConfig = {
         { module: /opentelemetry/ },
         { module: /mdx-js-loader/ },
         { module: /next\.config\.compiled\.js/ },
+        { module: /importRulesFromModel/ },
       ]
     }
 
     // Add a rule for YAML files
     config.module?.rules?.push({
       test: /\.ya?ml$/,
-      use: 'yaml-loader',
+      use: [{ loader: 'yaml-loader' }],
     })
 
     if (!dev) {
-      config.cache = Object.freeze({
-        type: 'memory',
-      })
+      config.cache = {
+        type: 'filesystem',
+        buildDependencies: { config: [__filename] },
+        cacheDirectory: path.resolve(process.cwd(), '.next/cache/webpack'),
+        compression: 'gzip',
+        maxAge: 172800000,
+        allowCollectingMemory: true,
+        memoryCacheUnaffected: true,
+      }
     }
 
     // Enable source maps
     if (!dev && !isServer) {
-      config.devtool = 'source-map'
+      config.devtool = 'hidden-source-map'
     }
 
     return config
   },
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: false,
   outputFileTracingExcludes: {
-    '*': ['.next/cache/webpack', '.git/**/*', 'cypress/**/*'],
+    '*': [
+      '.next/cache/webpack',
+      '.git/**/*',
+      'cypress/**/*',
+      'node_modules/@swc/core-linux-x64-gnu',
+      'node_modules/@swc/core-linux-x64-musl',
+      'node_modules/@esbuild/linux-x64',
+      'node_modules/sharp/vendor/**/*',
+    ],
   },
   turbopack: {
     rules: {
       '*.yaml': {
         loaders: ['yaml-loader'],
       },
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
     },
   },
   experimental: {
-    optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
+    optimizePackageImports: [
+      '@incubateur-ademe/nosgestesclimat',
+      'react',
+      'react-dom',
+      'lodash',
+      'date-fns',
+    ],
     webpackBuildWorker: true,
   },
 }
@@ -93,6 +120,11 @@ const sentryConfig = {
   disableLogger: true,
 
   telemetry: process.env.NODE_ENV !== 'development',
+
+  hideSourceMaps: true,
+  autoDiscoverRelease: true,
+  include: '.',
+  ignore: ['node_modules', '.next', 'cypress'],
 }
 
 module.exports =
