@@ -11,7 +11,7 @@ import ExportDataButton from '../ExportDataButton'
 
 describe('ExportDataButton', () => {
   it('should ask server for an excel file', async () => {
-    vi.spyOn(window, 'open').mockImplementation()
+    vi.spyOn(window, 'open').mockImplementation(() => null)
 
     //Given
     const poll = createPublicOrganisationPoll()
