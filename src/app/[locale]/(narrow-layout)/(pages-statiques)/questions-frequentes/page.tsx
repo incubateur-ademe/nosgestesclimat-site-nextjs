@@ -1,4 +1,5 @@
 import Link from '@/components/Link'
+import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/trans/TransServer'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
@@ -13,13 +14,6 @@ import Image from 'next/image'
 import DoTheTest from './_components/DoTheTest'
 import FAQListItem from './_components/FAQListItem'
 import Scroller from './_components/Scroller'
-
-type FAQType = {
-  question: string
-  réponse: string
-  catégorie: string
-  id: string
-}
 
 export const generateMetadata = getCommonMetadata({
   title: t('Questions fréquentes - Nos Gestes Climat'),
@@ -44,6 +38,31 @@ export default async function FAQPage({
 
   return (
     <>
+      <JSONLD
+        jsonLd={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            url: 'https://nosgestesclimat.fr',
+            name: 'Nos Gestes Climat',
+            logo: 'https://nosgestesclimat.fr/_next/image?url=%2Fimages%2Fmisc%2Fpetit-logo%403x.png&w=640&q=75',
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: faqCategories
+              .flatMap((faq) => faq.questions)
+              .map((question) => ({
+                '@type': 'Question',
+                name: question.question,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: question.answer,
+                },
+              })),
+          },
+        ]}
+      />
       <div className="flex flex-wrap gap-8 pb-8 md:flex-nowrap">
         <div className="mt-8">
           <Title title={t('Questions fréquentes')} />
