@@ -7,9 +7,16 @@ export async function importRulesFromModel({
   fileName: string
   ABtesting: boolean
 }) {
-  const filePath = `@incubateur-ademe/nosgestesclimat${ABtesting ? '-test' : ''}/public/${fileName}`
   try {
-    return await import(filePath).then((module) => module.default)
+    if (ABtesting) {
+      return await import(
+        `@incubateur-ademe/nosgestesclimat-test/public/${fileName}`
+      ).then((module) => module.default)
+    } else {
+      return await import(
+        `@incubateur-ademe/nosgestesclimat/public/${fileName}`
+      ).then((module) => module.default)
+    }
   } catch (e) {
     captureException(e)
     return {}
