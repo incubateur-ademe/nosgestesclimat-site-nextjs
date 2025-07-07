@@ -1,7 +1,5 @@
 import { captureException } from '@sentry/nextjs'
 
-// Import statique des modules principaux pour éviter les problèmes de build
-
 export async function importRulesFromModel({
   fileName,
   ABtesting = false,
@@ -10,13 +8,19 @@ export async function importRulesFromModel({
   ABtesting: boolean
 }) {
   try {
-    // Import direct du module principal
-    const importedModule = await import(
-      /* webpackChunkName: "nosgestesclimat" */
-      `@incubateur-ademe/nosgestesclimat/public/${fileName}`
-    )
-    return importedModule.default
+    if (ABtesting) {
+      // Import direct sans variable intermédiaire
+      return await import(
+        `@incubateur-ademe/nosgestesclimat-test/public/${fileName}`
+      ).then((module) => module.default)
+    } else {
+      // Import direct sans variable intermédiaire
+      return await import(
+        `@incubateur-ademe/nosgestesclimat/public/${fileName}`
+      ).then((module) => module.default)
+    }
   } catch (e) {
+    console.error(`Failed to import ${fileName}:`, e)
     captureException(e)
     return {}
   }

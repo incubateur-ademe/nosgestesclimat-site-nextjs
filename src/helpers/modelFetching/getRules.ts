@@ -53,5 +53,8 @@ export async function getRules({
     return Promise.resolve(rulesToBeUsed as Partial<NGCRules>)
   }
 
-  return importRulesFromModel({ fileName, ABtesting })
+  return importRulesFromModel({
+    fileName,
+    ABtesting,
+  })
 }
