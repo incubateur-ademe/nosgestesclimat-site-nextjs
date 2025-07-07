@@ -20,6 +20,6 @@
     }
   },
   "scripts": {
-    "build": "yarn build:scalingo"
+    "build": "yarn build"
   }
 }
