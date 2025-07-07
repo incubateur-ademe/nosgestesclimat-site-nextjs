@@ -43,7 +43,15 @@ export default function GestureSelector({
             ))}
         </ul>
 
-        <div className="relative h-[120px] md:h-[300px]">
+        <div
+          className="relative"
+          style={{
+            height: `${
+              gestures[selectedCategory].gestureList?.length
+                ? gestures[selectedCategory].gestureList?.length * 70
+                : 120
+            }px`,
+          }}>
           <AnimatePresence mode="wait">
             <motion.ul
               key={selectedCategory}

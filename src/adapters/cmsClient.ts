@@ -208,6 +208,7 @@ export type FAQType = {
   category: string
   order: number
   questions: QuestionType[]
+  subTitle?: string
 }
 
 type CarouselItemType = {

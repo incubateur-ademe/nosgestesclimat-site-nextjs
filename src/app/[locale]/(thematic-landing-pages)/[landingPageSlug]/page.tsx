@@ -8,6 +8,7 @@ import UnderstandToAct from '@/components/landing-pages/UnderstandToAct'
 import WhatDoWeMeasure from '@/components/landing-pages/WhatDoWeMeasure'
 import WhatItIs from '@/components/landing-pages/WhatItIs'
 import Footer from '@/components/layout/Footer'
+import Link from '@/components/Link'
 import JSONLD from '@/components/seo/JSONLD'
 import {
   trackingActionClickCTA,
@@ -79,6 +80,8 @@ export default async function ThematicLandingPage({
     block6,
     block7,
     articlesList,
+    articlesCTALink,
+    articlesCTALabel,
     faq,
   } = thematicLandingPage
 
@@ -184,14 +187,16 @@ export default async function ThematicLandingPage({
                 alternativeText: image?.alternativeText ?? '',
               },
             }))}
+            shouldDescriptionBeBeforeList
           />
         )}
 
         {block4 && (
           <DidYouKnowSlider
-            slides={block4?.map(({ text, image }) => ({
+            slides={block4?.map(({ text, image, pinkText }) => ({
               content: text,
               illustration: image?.url ?? '',
+              highlight: pinkText ?? '',
             }))}
           />
         )}
@@ -242,6 +247,12 @@ export default async function ThematicLandingPage({
                 imageAlt: image?.alternativeText ?? '',
               })) ?? []
             }
+            ctaLink={
+              articlesCTALink &&
+              articlesCTALabel && (
+                <Link href={articlesCTALink}>{articlesCTALabel}</Link>
+              )
+            }
           />
         )}
 
@@ -262,7 +273,7 @@ export default async function ThematicLandingPage({
           />
         )}
 
-        <FAQ questions={faq?.questions ?? []} />
+        <FAQ questions={faq?.questions ?? []} subTitle={faq?.subTitle} />
       </LandingPage>
 
       <Footer langButtonsDisplayed={{ fr: false, en: false, es: false }} />

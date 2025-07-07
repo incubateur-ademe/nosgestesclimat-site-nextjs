@@ -50,11 +50,14 @@ export default function WhatDoWeMeasure({
 
       <section
         className={twMerge(
-          'mx-auto w-[800px] max-w-full px-4 text-sm md:px-0 md:text-lg',
+          'mx-auto w-[800px] max-w-full px-4 text-center text-sm md:px-0 md:text-lg',
           shouldDescriptionBeBeforeList ? '' : 'hidden'
         )}>
         {typeof description === 'string' ? (
-          <div dangerouslySetInnerHTML={{ __html: description }} />
+          <div
+            className="text-center"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         ) : (
           description
         )}
