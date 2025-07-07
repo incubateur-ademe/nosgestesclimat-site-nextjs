@@ -44,8 +44,6 @@ entries:
   'Quelques suggestions ': 'Quelques suggestions '
   Questions fréquentes: Questions fréquentes
   Rejeter l'action: Rejeter l'action
-  Réseaux Sociaux: Réseaux Sociaux
-  Sites Web: Sites Web
   Suivant: Suivant
   Suivez le guide !: Suivez le guide !
   Sur le même sujet: Sur le même sujet
@@ -60,10 +58,7 @@ entries:
   components.localisation.Localisation.warnMessage2: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut.
   components.localisation.LocalisationMessage.betaMsg: Elle est actuellement en version <1>bêta</1>.
   components.localisation.LocalisationMessage.warnMessage: Votre région n'est pas encore supportée, le modèle Français vous est proposé par défaut
-  derniers: derniers
-  dernières: dernières
   et: et
-  jours: jours
   le + d'impact climat: le + d'impact climat
   le - d'impact climat: le - d'impact climat
   model.active.documented: La construction du modèle (pistes de travail, réflexions en cours, feuille de route, etc.) est amplement <2>documentée publiquement</2>.
@@ -75,7 +70,6 @@ entries:
   model.modern4: Le modèle de calcul est directement embarqué chez le client, le calcul a lieu là dans votre navigateur, pas sur nos serveurs. Les données collectées sont si descriptives de la vie des utilisateurs, donc sensibles en termes de vie privée, que faire les calculs côté serveur <2>et les stocker</2> poserait un risque trop élevé.
   model.stats: Le modèle comprend aujourd'hui <1></1> règles de calcul. Parmi elles, <3></3> règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.
   model.stats2: Il est constitué d'une combinaison de centaines de modèles micro "bottom-up" pour les consommations carbonées de notre vie quotidienne, et d'un modèle "top-down" dérivé des travaux du SDES pour estimer l'empreinte par personne des services dits sociétaux (services publics et services de base tels les télécom). <2>En savoir plus sur cette hybridation</2>.
-  mois: mois
   noresults: Aucun résultat ne correspond à cette recherche
   participant: participant
   plus d'1 kg: plus d'1 kg
@@ -99,12 +93,10 @@ entries:
   publicodes.SimulationMissing.simulationManquante: Pour débloquer ce parcours, vous devez d'abord terminer le test.
   publicodes.planDuSite.title: Plan du site
   publicodes.planDuSite.actionsPlus: Les actions
-  semaines: semaines
   sites.publicodes.Tutorial.questionE: 💡 Mais que veut dire ce petit <1>e</1> ?
   sélectionnées: sélectionnées
   tonne: tonne
   tonnes: tonnes
-  visites: visites
   '{unit}': '{unit}'
   À propos: À propos
   👤 Vous utilisez actuellement le persona: 👤 Vous utilisez actuellement le persona
@@ -122,9 +114,6 @@ entries:
   model.questions: Découvrez <2>la liste des questions disponibles dans le modèle</2>.
   Oups, nous n'avons pas d'article correspondant: Oups, nous n'avons pas d'article correspondant
   Blog: Blog
-  simulations terminées: simulations terminées
-  Nombre de: Nombre de
-  'pour les ': 'pour les '
   Contact: Contact
   Comparez vos résultats avec votre famille ou un groupe d'amis.: Comparez vos résultats avec votre famille ou un groupe d'amis.
   Comparez vos résultats avec votre famille ou un groupe d’amis: Comparez vos résultats avec votre famille ou un groupe d’amis
@@ -231,7 +220,6 @@ entries:
   Nos actions pour réduire votre empreinte: Nos actions pour réduire votre empreinte
   Partenaires: Partenaires
   Statistiques: Statistiques
-  Vie privée: Vie privée
   Votre profil: Votre profil
   Comment cette donnée est-elle calculée ?: Comment cette donnée est-elle calculée ?
   Le calculateur d’empreinte climat international: Le calculateur d’empreinte climat international
@@ -420,13 +408,11 @@ entries:
   Mentions légales - Nos Gestes Climat: Mentions légales - Nos Gestes Climat
   Mentions légales du site Nos Gestes Climat.: Mentions légales du site Nos Gestes Climat.
   Nos personas d'utilisateurs types - Nos Gestes Climat: Nos personas d'utilisateurs types - Nos Gestes Climat
-  Nos statistiques "phares" - Nos Gestes Climat: Nos statistiques "phares" - Nos Gestes Climat
   Nos Statistiques d'utilisation - Nos Gestes Climat: Nos Statistiques d'utilisation - Nos Gestes Climat
   Notre documentation détaille les calculs qui nous ont permis de calculer votre bilan carbone personnel.: Notre documentation détaille les calculs qui nous ont permis de calculer votre bilan carbone personnel.
   Notre modèle de données - Nos Gestes Climat: Notre modèle de données - Nos Gestes Climat
   nouveautés - Nos Gestes Climat: nouveautés - Nos Gestes Climat
   Observez l'évolution de l'impact de Nos Gestes Climat en mesures chiffrées.: Observez l'évolution de l'impact de Nos Gestes Climat en mesures chiffrées.
-  Observez nos l'évolution de nos deux mesures d'impact principales.: Observez nos l'évolution de nos deux mesures d'impact principales.
   Organisations, accéder à mon espace - Nos Gestes Climat: Organisations, accéder à mon espace - Nos Gestes Climat
   Oups, vous êtes bien sur Nos Gestes Climat, mais cette page n'existe pas.: Oups, vous êtes bien sur Nos Gestes Climat, mais cette page n'existe pas.
   Plan du site - Nos Gestes Climat: Plan du site - Nos Gestes Climat
@@ -651,17 +637,8 @@ entries:
   Veuillez entrer une adresse email valide.: Veuillez entrer une adresse email valide.
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Rien à l'horizon ! <1></1>La page recherchée n'existe pas.
   Un bonhomme se demandant où il est: Un bonhomme se demandant où il est
-  Acquisition: Acquisition
-  de visites via iframe ce mois-ci: de visites via iframe ce mois-ci
   Données qualitatives: Données qualitatives
-  inscrits à l'infolettre: inscrits à l'infolettre
   Modes "Groupes": Modes "Groupes"
-  partages du calculateur: partages du calculateur
-  Récupération des données: Récupération des données
-  simulations terminées depuis le lancement: simulations terminées depuis le lancement
-  Une erreur est survenue lors de la récupération des données: Une erreur est survenue lors de la récupération des données
-  visites ce mois-ci (en cours): visites ce mois-ci (en cours)
-  visites depuis le lancement: visites depuis le lancement
   Visites et simulations: Visites et simulations
   'Ils relaient ': 'Ils relaient '
   Nos Gestes Climat: Nos Gestes Climat
@@ -1022,7 +999,6 @@ entries:
   En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.: En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.
   '{{signe}} {{value}} {{unit}} sur votre empreinte {{metric}}': '{{signe}} {{value}} {{unit}} sur votre empreinte {{metric}}'
   Aide: Aide
-  Cette section statistique est générée via Metabase.: Cette section statistique est générée via Metabase.
   Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.: Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.
   Affichez le détail de votre empreinte carbone ou eau en cliquant sur les cartes ci-dessus.: Affichez le détail de votre empreinte carbone ou eau en cliquant sur les cartes ci-dessus.
   "C'est pourtant bien l'eau qui sert à produire ce que vous consommez : votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.": "C'est pourtant bien l'eau qui sert à produire ce que vous consommez : votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau."
@@ -1094,16 +1070,13 @@ entries:
   Menu déroulant: Menu déroulant
   Menu principal: Menu principal
   Navigation principale: Navigation principale
-  Nombre de jours, semaines ou mois à afficher: Nombre de jours, semaines ou mois à afficher
   Ouvrir: Ouvrir
   Page {{page}}: Page {{page}}
   Page précédente: Page précédente
   Page suivante: Page suivante
-  Période à afficher: Période à afficher
   Sélectionner l'empreinte carbone, voir le détail ci-dessous: Sélectionner l'empreinte carbone, voir le détail ci-dessous
   Voir le détail ci-dessous: Voir le détail ci-dessous
   Découvrir: Découvrir
-  simulations terminées ce mois-ci (en cours): simulations terminées ce mois-ci (en cours)
   Envoyez-nous votre logo via notre page de contact: Envoyez-nous votre logo via notre page de contact
   partagent Nos Gestes Climat via leur site ou des campagnes (mails, réseaux sociaux, affichage), nous permettant de sensibiliser près de 2 000 personnes chaque jour. Un grand merci à eux !: partagent Nos Gestes Climat via leur site ou des campagnes (mails, réseaux sociaux, affichage), nous permettant de sensibiliser près de 2 000 personnes chaque jour. Un grand merci à eux !
   Plusieurs milliers d’organisations: Plusieurs milliers d’organisations
@@ -1144,7 +1117,6 @@ entries:
   Contenu: Contenu
   Menu: Menu
   Pied de page: Pied de page
-  Un petit doute ? L'info sera sûrement dans votre contrat d'assurance logement.: Un petit doute ? L'info sera sûrement dans votre contrat d'assurance logement.
   9,5 kg de vêtements... mais n'en trient que 3,4 kg !: 9,5 kg de vêtements... mais n'en trient que 3,4 kg !
   En moyenne, les Français achètent chaque année,: En moyenne, les Français achètent chaque année,
   Je détaille ma garde-robe: Je détaille ma garde-robe
@@ -1234,14 +1206,13 @@ entries:
   Conditions d’utilisation des données « Base Empreinte »: Conditions d’utilisation des données « Base Empreinte »
   cookies.banner.acceptAll: Tout accepter
   cookies.banner.customize: Personnaliser
-  cookies.banner.description: Nous utilisons des cookies, juste ce qu’il faut pour faire fonctionner le site, améliorer l’expérience et mesurer de manière anonyme l’audience. Avec votre accord, nous activons aussi un suivi simple de nos campagnes pour mieux comprendre ce qui fonctionne.
-  cookies.banner.privacyLink: Données personnelles et cookies
+  cookies.banner.description: Nous utilisons des cookies, juste ce qu’il faut pour faire fonctionner le site, améliorer l’expérience et mesurer de manière anonyme l’audience. Avec votre accord, nous activons aussi un suivi simple de nos campagnes pour mieux comprendre ce qui fonctionne et mieux piloter notre budget.
   cookies.banner.refuseAll: Tout refuser
   cookies.banner.title: Chez Nos Gestes Climat, votre vie privée compte
   cookies.management.accept: Accepter
   cookies.management.acceptAll: Tout accepter
   cookies.management.confirm: Confirmer mes choix
-  cookies.management.googleAds.description: Nous utilisons des cookies pour mesurer et calibrer l’efficacité de nos campagnes et publicités en ligne.
+  cookies.management.googleAds.description: Nous utilisons des cookies pour mesurer et calibrer l'efficacité de nos campagnes et publicités en ligne.
   cookies.management.googleAds.title: Google Ads
   cookies.management.preferences: 'Préférences pour tous les services. '
   cookies.management.privacyLink: Données personnelles et cookies

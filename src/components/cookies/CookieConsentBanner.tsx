@@ -67,7 +67,8 @@ export default function CookieConsentBanner({
             Nous utilisons des cookies, juste ce qu’il faut pour faire
             fonctionner le site, améliorer l’expérience et mesurer de manière
             anonyme l’audience. Avec votre accord, nous activons aussi un suivi
-            simple de nos campagnes pour mieux comprendre ce qui fonctionne.
+            simple de nos campagnes pour mieux comprendre ce qui fonctionne et
+            mieux piloter notre budget.
           </Trans>
         </p>
         <div className="mt-6 flex w-full flex-col items-center justify-center gap-2 sm:flex-row">

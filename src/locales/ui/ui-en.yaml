@@ -49,8 +49,6 @@ entries:
   'Quelques suggestions ': 'Some suggestions '
   Questions fréquentes: Frequently asked questions
   Rejeter l'action: Reject the action
-  Réseaux Sociaux: Social Networks
-  Sites Web: Websites
   Suivant: Next
   Suivez le guide !: Follow the guide!
   Sur le même sujet: On the same subject
@@ -66,10 +64,7 @@ entries:
   components.localisation.LocalisationMessage.betaMsg.lock: Elle est actuellement en version <1>bêta</1>.
   components.localisation.LocalisationMessage.warnMessage: Your region is not yet supported, the French model is proposed by default
   components.localisation.LocalisationMessage.warnMessage.lock: Votre région n'est pas encore supportée, le modèle Français vous est proposé par défaut
-  derniers: latest
-  dernières: latest
   et: and
-  jours: days
   le + d'impact climat: the + of climate impact
   le - d'impact climat: the - climate impact
   minutes: minutes
@@ -91,7 +86,6 @@ entries:
   model.stats.lock: Le modèle comprend aujourd'hui <1></1> règles de calcul. Parmi elles, <3></3> règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.
   model.stats2: It consists of a combination of hundreds of "bottom-up" micro models for the carbon consumption of our daily lives, and a "top-down" model derived from the work of the SDES to estimate the per capita footprint of so-called societal services (public services and basic services such as telecommunications). <2>Learn more about this hybridization</2>.
   model.stats2.lock: Il est constitué d'une combinaison de centaines de modèles micro "bottom-up" pour les consommations carbonées de notre vie quotidienne, et d'un modèle "top-down" dérivé des travaux du SDES pour estimer l'empreinte par personne des services dits sociétaux (services publics et services de base tels les télécom). <2>En savoir plus sur cette hybridation</2>.
-  mois: month
   noresults: No results were found for this search
   participant: participant
   plus d'1 kg: more than 1 kg
@@ -125,7 +119,6 @@ entries:
   publicodes.SimulationMissing.personnas.lock: Vous pouvez aussi continuer avec un <2>profil type</2>.
   publicodes.SimulationMissing.simulationManquante: To unlock this course, you must first complete the test.
   publicodes.SimulationMissing.simulationManquante.lock: Pour débloquer ce parcours, vous devez d'abord terminer le test.
-  semaines: weeks
   sites.publicodes.Tutorial.questionE: 💡 But what does that little <1>e</1> mean?
   sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
   sélectionnées: selected
@@ -133,7 +126,6 @@ entries:
   tonne.lock: ton
   tonnes: tons
   tonnes.lock: tons
-  visites: visits
   À propos: About us
   👤 Vous utilisez actuellement le persona: 👤 You are currently using the persona
   components.localisation.LocalisationMessage.warnMessage2: We could not detect your country of simulation, the French model is proposed by default
@@ -160,13 +152,10 @@ entries:
   model.questions.lock: Découvrez <2>la liste des questions disponibles dans le modèle</2>.
   Oups, nous n'avons pas d'article correspondant: Oops, we don't have a matching article
   Blog: Blog
-  simulations terminées: completed simulations
   publicodes.planDuSite.actionsPlus: The actions
   publicodes.planDuSite.actionsPlus.lock: Les actions
   publicodes.planDuSite.title: Sitemap
   publicodes.planDuSite.title.lock: Plan du site
-  Nombre de: Number of
-  'pour les ': 'for '
   Contact: Contact
   Partager: Share
   facultatif: optional
@@ -272,7 +261,6 @@ entries:
   N'hésitez pas à consulter notre <2>FAQ</2> avant de nous écrire, vous y trouverez sans doute la réponse à votre question !: Don't hesitate to consult our <2>FAQ</2> before writing to us - you're sure to find the answer to your question there!
   Le modèle Nos Gestes Climat: The Nos Gestes Climat model
   Votre profil: Your profile
-  Vie privée: Privacy policy
   Nos actions pour réduire votre empreinte: Our actions to reduce your footprint
   Statistiques: Statistics
   FAQ: FAQ
@@ -448,7 +436,6 @@ entries:
   Notes: Notes
   404 - Nos Gestes Climat: 404 - Nos Gestes Climat
   Comprenez comment calculer votre empreinte sur le climat en 10min chrono.: Find out how to calculate your climate footprint in 10 minutes.
-  Observez nos l'évolution de nos deux mesures d'impact principales.: Take a look at our two main impact measurements.
   Informations relatives au budget de Nos Gestes Climat.: Budget information for Nos Gestes Climat.
   À propos - Nos Gestes Climat: About us - Nos Gestes Climat
   Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.: Check out the new features and latest news from Nos Gestes Climat.
@@ -486,7 +473,6 @@ entries:
   Diffuser notre calculateur d'empreinte climat - Nos Gestes Climat: Distribute our climate footprint simulator - Nos Gestes Climat
   Politique de confidentialité - Nos Gestes Climat: Privacy policy - Nos Gestes Climat
   Mentions légales du site Nos Gestes Climat.: Legal information about Nos Gestes Climat.
-  Nos statistiques "phares" - Nos Gestes Climat: Our key statistics - Nos Gestes Climat
   Notre documentation détaille les calculs qui nous ont permis de calculer votre bilan carbone personnel.: Our documentation details the calculations we used to calculate your personal carbon footprint.
   Notre modèle de données - Nos Gestes Climat: Our data model - Nos Gestes Climat
   Informations relatives à Nos Gestes Climat.: Information about Nos Gestes Climat.
@@ -711,18 +697,9 @@ entries:
   La simulation et les calculs se font dans votre navigateur Web, donc les réponses aux questions restent chez vous, nous n'en collectons aucune.: The simulation and calculations are done in your web browser, so the answers to the questions stay with you, we don't collect any of them.
   Un bonhomme se demandant où il est: A man wondering where he is
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Nothing on the horizon! <1></1>The page you are looking for does not exist.
-  Récupération des données: Data recovery
-  Acquisition: Acquisition
-  visites depuis le lancement: visits since launch
-  simulations terminées depuis le lancement: simulations completed since launch
   Visites et simulations: Visits and simulations
   Modes "Groupes": Group modes
   Données qualitatives: Qualitative data
-  de visites via iframe ce mois-ci: visits via iframe this month
-  inscrits à l'infolettre: newsletter subscribers
-  partages du calculateur: sharing the simulator
-  visites ce mois-ci (en cours): visits this month (in progress)
-  Une erreur est survenue lors de la récupération des données: An error has occurred during data recovery
   Nos Gestes Climat: Nos Gestes Climat
   'Ils relaient ': 'They relay '
   Vous avez sélectionné: You have selected
@@ -1077,7 +1054,6 @@ entries:
   En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.: By taking part, you agree to your results being shared anonymously with this organisation.
   Aide: Help
   Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.: We are talking here about the "Organisations" and "Challenge your friends" modes. This section is generated via Metabase.
-  Cette section statistique est générée via Metabase.: This statistical section is generated via Metabase.
   Empreinte eau, voir le détail ci-dessous: Water footprint, see details below
   Empreinte carbone, voir le détail ci-dessous: Carbon footprint, see details below
   Empreinte eau, sélectionné, voir le détail ci-dessous: Water footprint, selected, see details below
@@ -1149,12 +1125,9 @@ entries:
   Page {{page}}: Page {{page}}
   Page suivante: Next page
   Sélectionner l'empreinte carbone, voir le détail ci-dessous: Select carbon footprint, see details below
-  Période à afficher: Period to be displayed
   Menu déroulant: Drop-down menu
   '{{name}} lecture seule': '{{name}} read only'
   Ouvrir: Open
-  Nombre de jours, semaines ou mois à afficher: Number of days, weeks or months to display
-  simulations terminées ce mois-ci (en cours): simulations completed this month (in progress)
   Plusieurs milliers d’organisations: Several thousand organisations
   Vous relayez Nos Gestes Climat et souhaitez apparaître dans notre galerie ?: Do you relay Nos Gestes Climat and want to appear in our gallery?
   Envoyez-nous votre logo via notre page de contact: Send us your logo via our contact page
@@ -1195,7 +1168,6 @@ entries:
   Pied de page: Footer
   Menu: Menu
   Contenu: Content
-  Un petit doute ? L'info sera sûrement dans votre contrat d'assurance logement.: A little doubt? You'll find the information in your home insurance policy.
   'Pour plus de précision:': 'For more information:'
   Je détaille ma garde-robe: Detailing my wardrobe
   En moyenne, les Français achètent chaque année,: On average, the French buy something every year,
@@ -1288,12 +1260,10 @@ entries:
   cookies.banner.refuseAll.lock: Tout refuser
   cookies.banner.customize: Customise
   cookies.banner.customize.lock: Personnaliser
-  cookies.banner.privacyLink: Personal data and cookies
-  cookies.banner.privacyLink.lock: Données personnelles et cookies
   cookies.management.googleAds.title: Google Ads
   cookies.management.googleAds.title.lock: Google Ads
   cookies.management.googleAds.description: We use cookies to measure and calibrate the effectiveness of our online campaigns and advertising.
-  cookies.management.googleAds.description.lock: Nous utilisons des cookies pour mesurer et calibrer l’efficacité de nos campagnes et publicités en ligne.
+  cookies.management.googleAds.description.lock: Nous utilisons des cookies pour mesurer et calibrer l'efficacité de nos campagnes et publicités en ligne.
   cookies.management.refuseAll: Refuse everything
   cookies.management.refuseAll.lock: Tout refuser
   cookies.management.privacyLink: Personal data and cookies
@@ -1302,8 +1272,8 @@ entries:
   cookies.management.confirm.lock: Confirmer mes choix
   cookies.management.preferences: 'Preferences for all services. '
   cookies.management.preferences.lock: 'Préférences pour tous les services. '
-  cookies.banner.description: We use cookies, just enough to keep the site running, improve the experience and anonymously measure the audience. With your consent, we also enable simple tracking of our campaigns to better understand what's working.
-  cookies.banner.description.lock: Nous utilisons des cookies, juste ce qu’il faut pour faire fonctionner le site, améliorer l’expérience et mesurer de manière anonyme l’audience. Avec votre accord, nous activons aussi un suivi simple de nos campagnes pour mieux comprendre ce qui fonctionne.
+  cookies.banner.description: We use cookies, just enough to keep the site running, improve the experience and measure the audience anonymously. With your agreement, we also activate a simple tracking system for our campaigns to better understand what works and better manage our budget.
+  cookies.banner.description.lock: Nous utilisons des cookies, juste ce qu’il faut pour faire fonctionner le site, améliorer l’expérience et mesurer de manière anonyme l’audience. Avec votre accord, nous activons aussi un suivi simple de nos campagnes pour mieux comprendre ce qui fonctionne et mieux piloter notre budget.
   cookies.banner.title: At Nos Gestes Climat, your privacy counts
   cookies.banner.title.lock: Chez Nos Gestes Climat, votre vie privée compte
   cookies.management.acceptAll: Accept all
