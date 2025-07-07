@@ -12,6 +12,7 @@ import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletter
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useLocale } from '@/hooks/useLocale'
 import { useMainNewsletter } from '@/hooks/useMainNewsletter'
+import i18nConfig from '@/i18nConfig'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
@@ -30,7 +31,7 @@ type Inputs = {
   'newsletter-logement': boolean
 }
 
-function SuccessMessage({ locale }: { locale: string }) {
+function SuccessMessage() {
   return (
     <div className="flex flex-col items-center justify-center text-center">
       <CheckIcon className="mb-4 h-12 w-12 fill-green-500" />
@@ -122,12 +123,16 @@ export default function NewslettersBlock() {
     updateUserSettings({ newsletterIds: listIds })
   }
 
+  const isFrench = locale === i18nConfig.defaultLocale
+
+  if (!isFrench) return null
+
   return (
     <div
       className="rainbow-border w-full rounded-xl bg-white p-8 md:w-4/6"
       aria-live="polite">
       {isSuccess ? (
-        <SuccessMessage locale={locale} />
+        <SuccessMessage />
       ) : (
         <>
           <h3 className="mb-2">
