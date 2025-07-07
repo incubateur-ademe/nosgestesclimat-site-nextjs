@@ -74,7 +74,7 @@
     "react-debounce-input": "^3.3.0",
     "react-dom": "19.1.0",
     "react-easy-emoji": "^1.8.1",
-    "react-hook-form": "^7.54.2",
+    "react-hook-form": "^7.60.0",
     "react-i18next": "^15.4.0",
     "react-modal": "^3.16.3",
     "react-number-format": "^5.4.4",
