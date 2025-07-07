@@ -9,12 +9,10 @@ export async function importRulesFromModel({
 }) {
   try {
     if (ABtesting) {
-      // Import direct sans variable intermédiaire
       return await import(
         `@incubateur-ademe/nosgestesclimat-test/public/${fileName}`
       ).then((module) => module.default)
     } else {
-      // Import direct sans variable intermédiaire
       return await import(
         `@incubateur-ademe/nosgestesclimat/public/${fileName}`
       ).then((module) => module.default)
