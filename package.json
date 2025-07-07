@@ -163,7 +163,7 @@
     "prettier-plugin-organize-imports": "^4.1.0",
     "prettier-plugin-tailwindcss": "^0.6.12",
     "puppeteer": "^24.8.2",
-    "ramda": "^0.30.1",
+    "ramda": "^0.31.3",
     "storybook": "^8.6.12",
     "ts-node": "^10.9.2",
     "ts-prune": "^0.10.3",
