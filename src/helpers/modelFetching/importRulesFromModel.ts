@@ -18,7 +18,6 @@ export async function importRulesFromModel({
       ).then((module) => module.default)
     }
   } catch (e) {
-    console.error(`Failed to import ${fileName}:`, e)
     captureException(e)
     return {}
   }
