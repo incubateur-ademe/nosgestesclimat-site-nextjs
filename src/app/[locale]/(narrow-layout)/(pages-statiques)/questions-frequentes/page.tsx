@@ -1,4 +1,3 @@
-import Link from '@/components/Link'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/trans/TransServer'
 import Card from '@/design-system/layout/Card'
@@ -11,6 +10,7 @@ import type { Locale } from '@/i18nConfig'
 import { fetchFaq } from '@/services/cms/fetchFAQ'
 import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
+import ContactUsLink from './_components/ContactUsLink'
 import DoTheTest from './_components/DoTheTest'
 import FAQListItem from './_components/FAQListItem'
 import Scroller from './_components/Scroller'
@@ -128,7 +128,7 @@ export default async function FAQPage({
         <p className="mb-0">
           <Trans locale={locale}>
             Vous pouvez nous contacter via notre page de contact :{' '}
-            <Link href="/contact">accéder à notre page de contact</Link>.
+            <ContactUsLink />.
           </Trans>
         </p>
       </Card>
