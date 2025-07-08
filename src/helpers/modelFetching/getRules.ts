@@ -1,9 +1,11 @@
+import i18nConfig from '@/i18nConfig'
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import rulesToTest from '@incubateur-ademe/nosgestesclimat-test/public/co2-model.FR-lang.fr.json'
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json'
 import { getSupportedRegions } from './getSupportedRegions'
 import { importPreviewFile } from './importPreviewFile'
-import { importRulesFromModel } from './importRulesFromModel'
+import { importRulesFromModelEsEnLang } from './importRulesFromModelEsEnLang'
+import { importRulesFromModelFrLang } from './importRulesFromModelFrLang'
 
 type Props = {
   isOptim?: boolean
@@ -35,13 +37,7 @@ export async function getRules({
   // We provide the FR version of the model if the region is not supported
   const regionCodeToProvide = supportedRegions[regionCode] ? regionCode : 'FR'
 
-  let fileName = ''
-  // We provide optimized version of the model only for the FR region
-  if (regionCodeToProvide === 'FR') {
-    fileName = `co2-model.FR-lang.${locale}${isOptim ? '-opti' : ''}.json`
-  } else {
-    fileName = `co2-model.${regionCodeToProvide}-lang.${locale}.json`
-  }
+  const fileName = `co2-model.FR-lang.${locale}${isOptim && regionCodeToProvide === 'FR' ? '-opti' : ''}.json`
 
   if (PRNumber) {
     return importPreviewFile({ fileName, PRNumber })
@@ -53,8 +49,17 @@ export async function getRules({
     return Promise.resolve(rulesToBeUsed as Partial<NGCRules>)
   }
 
-  return importRulesFromModel({
-    fileName,
-    ABtesting,
-  })
+  if (locale === i18nConfig.defaultLocale) {
+    return importRulesFromModelFrLang({
+      fileName,
+      ABtesting,
+    })
+  } else {
+    return importRulesFromModelEsEnLang({
+      fileName:
+        locale === 'en'
+          ? `co2-model.${regionCodeToProvide}-lang.en.json`
+          : `co2-model.${regionCodeToProvide}-lang.es.json`,
+    })
+  }
 }
