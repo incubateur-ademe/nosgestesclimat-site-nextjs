@@ -1,6 +1,6 @@
 import i18nConfig from '@/i18nConfig'
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import rulesToTest from '@incubateur-ademe/nosgestesclimat-test/public/co2-model.FR-lang.fr.json'
+import rulesToTest from '@incubateur-ademe/nosgestesclimat-test/public/co2-model.FR-lang.fr-opti.json'
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json'
 import { getSupportedRegions } from './getSupportedRegions'
 import { importPreviewFile } from './importPreviewFile'
