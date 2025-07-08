@@ -24,7 +24,7 @@ export function useRules(
   const { user } = useUser()
 
   const flagValue = useFeatureFlagVariantKey(
-    locale === i18nConfig.defaultLocale ? ABTEST_KEY : undefined
+    locale === i18nConfig.defaultLocale ? ABTEST_KEY : ''
   )
   const regionCode =
     user?.region?.code != undefined && user?.region?.code !== ''
