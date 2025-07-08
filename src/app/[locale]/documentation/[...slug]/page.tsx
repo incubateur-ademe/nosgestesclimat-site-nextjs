@@ -68,7 +68,6 @@ export default async function DocumentationPage({
   return (
     <DocumentationRouter
       supportedRegions={supportedRegions}
-      rules={rules}
       slug={slug}
       serverComponent={
         <DocumentationServer locale={locale} slugs={slug} rules={rules} />
