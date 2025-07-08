@@ -1,31 +1,32 @@
 import { useCurrentSimulation } from '@/publicodes-state'
 import { act, renderHook } from '@testing-library/react'
 import { useRouter } from 'next/navigation'
+import { vi } from 'vitest'
 import { useInfosPage } from '../../navigation/useInfosPage'
 import { useSaveSimulation } from '../../simulation/useSaveSimulation'
 import { useSaveAndGoNext } from '../useSaveAndGoNext'
 
 // Mock dependencies
-jest.mock('next/navigation', () => ({
-  useRouter: jest.fn(),
+vi.mock('next/navigation', () => ({
+  useRouter: vi.fn(),
 }))
 
-jest.mock('@/publicodes-state', () => ({
-  useCurrentSimulation: jest.fn(),
+vi.mock('@/publicodes-state', () => ({
+  useCurrentSimulation: vi.fn(),
 }))
 
-jest.mock('../../navigation/useInfosPage', () => ({
-  useInfosPage: jest.fn(),
+vi.mock('../../navigation/useInfosPage', () => ({
+  useInfosPage: vi.fn(),
 }))
 
-jest.mock('../../simulation/useSaveSimulation', () => ({
-  useSaveSimulation: jest.fn(),
+vi.mock('../../simulation/useSaveSimulation', () => ({
+  useSaveSimulation: vi.fn(),
 }))
 
 describe('useSaveAndGoNext', () => {
   // Mocks
   const mockRouter = {
-    push: jest.fn(),
+    push: vi.fn(),
   }
 
   const mockCurrentSimulation = {
@@ -38,19 +39,19 @@ describe('useSaveAndGoNext', () => {
     progression: 0.5,
   }
 
-  const mockSaveSimulation = jest.fn()
-  const mockGetLinkToNextInfosPage = jest.fn()
+  const mockSaveSimulation = vi.fn()
+  const mockGetLinkToNextInfosPage = vi.fn()
 
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
 
     // Setup default mocks
-    ;(useRouter as jest.Mock).mockReturnValue(mockRouter)
-    ;(useCurrentSimulation as jest.Mock).mockReturnValue(mockCurrentSimulation)
-    ;(useSaveSimulation as jest.Mock).mockReturnValue({
+    ;(useRouter as any).mockReturnValue(mockRouter)
+    ;(useCurrentSimulation as any).mockReturnValue(mockCurrentSimulation)
+    ;(useSaveSimulation as any).mockReturnValue({
       saveSimulation: mockSaveSimulation,
     })
-    ;(useInfosPage as jest.Mock).mockReturnValue({
+    ;(useInfosPage as any).mockReturnValue({
       getLinkToNextInfosPage: mockGetLinkToNextInfosPage,
     })
   })
@@ -128,8 +129,7 @@ describe('useSaveAndGoNext', () => {
       id: 'custom-simulation-id',
       progression: 1,
     }
-
-    ;(useCurrentSimulation as jest.Mock).mockReturnValue(customSimulation)
+    ;(useCurrentSimulation as any).mockReturnValue(customSimulation)
 
     const { result } = renderHook(() => useSaveAndGoNext({ curPage }))
 
