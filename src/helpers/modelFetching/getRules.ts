@@ -5,7 +5,7 @@ import rulesOpti from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lan
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr.json'
 import { getSupportedRegions } from './getSupportedRegions'
 import { importPreviewFile } from './importPreviewFile'
-import { importRulesFromModelEsEnLang } from './importRulesFromModelEsEnLang'
+import { importRulesFromModel } from './importRulesFromModel'
 
 type Props = {
   isOptim?: boolean
@@ -77,7 +77,7 @@ export async function getRules({
         break
     }
 
-    return importRulesFromModelEsEnLang({
+    return importRulesFromModel({
       fileName,
     })
   }
