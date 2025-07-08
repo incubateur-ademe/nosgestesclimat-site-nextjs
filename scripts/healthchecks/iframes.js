@@ -4,7 +4,7 @@ require('dotenv').config()
 
 const urls = [
   'https://www.lemonde.fr/chaleur-humaine/article/2025/01/30/mesurez-votre-impact-environnement-avec-le-calculateur-d-empreinte-carbone-et-eau_6523433_6125299.html',
-  'https://geneve.nosgestesclimat.ch/',
+  'https://geneve.nosgestesclimat.ch/fr',
 ]
 
 const iframeId = 'iframeNGC'
@@ -63,24 +63,94 @@ async function healthcheck() {
               // Wait for iframe loading
               await page.waitForSelector(`#${iframeId}`, { timeout: 30000 })
 
-              // Wait for the iframe to be stabilized
-              await page.waitForTimeout(10000)
-
+              // Wait for the iframe content to be loaded and stable
               const frame = page.frameLocator(`#${iframeId}`)
+
+              // Wait for content to be loaded with retry mechanism
+              let contentLoaded = false
+              let attempts = 0
+              const maxContentAttempts = 10 // 10 attempts × 2 seconds = 20 seconds max
+
+              while (!contentLoaded && attempts < maxContentAttempts) {
+                try {
+                  // Wait a bit for any redirects or dynamic content to load
+                  await page.waitForTimeout(2000)
+
+                  const pageContent = await frame.locator('body').innerText()
+
+                  // Debug: Log what we actually see in the iframe
+                  console.log(
+                    `\n--- Iframe content (attempt ${attempts + 1}) ---`
+                  )
+                  console.log('Content length:', pageContent.length)
+                  console.log(
+                    'First 500 characters:',
+                    pageContent.substring(0, 500)
+                  )
+                  if (pageContent.length > 500) {
+                    console.log('... (truncated)')
+                  }
+                  console.log('--- End iframe content ---\n')
+
+                  // Check if the expected content is present
+                  const validPatterns = [
+                    'Avant de commencer',
+                    'Passer la question',
+                  ]
+                  const isValid = validPatterns.some((pattern) => {
+                    const found = pageContent
+                      .toLowerCase()
+                      .includes(pattern.toLowerCase())
+                    console.log(`Pattern "${pattern}" found:`, found)
+                    return found
+                  })
+
+                  if (isValid) {
+                    console.log('Expected content found, iframe is ready')
+                    contentLoaded = true
+                  } else {
+                    console.log(
+                      `Attempt ${attempts + 1}/${maxContentAttempts}: Content not ready yet, retrying...`
+                    )
+                    attempts++
+                  }
+                } catch (error) {
+                  console.log(
+                    `Attempt ${attempts + 1}/${maxContentAttempts}: Error reading iframe content:`,
+                    error.message
+                  )
+                  attempts++
+                }
+              }
+
+              if (!contentLoaded) {
+                console.log(
+                  'Content not loaded within timeout, proceeding with validation anyway...'
+                )
+              }
+
+              // Get final content for validation
               const pageContent = await frame.locator('body').innerText()
 
-              const validPatterns = ['Avant de commencer']
-              const isValid = validPatterns.every((pattern) =>
-                pageContent.toLowerCase().includes(pattern.toLowerCase())
-              )
               const errorPatterns = ['404', 'erreur', 'error']
-              const hasError = errorPatterns.some((pattern) =>
-                pageContent.toLowerCase().includes(pattern.toLowerCase())
-              )
+              const hasError = errorPatterns.some((pattern) => {
+                console.log(
+                  pattern,
+                  pageContent.toLowerCase().includes(pattern.toLowerCase())
+                )
+                return pageContent.toLowerCase().includes(pattern.toLowerCase())
+              })
 
-              if (hasError || !isValid) {
+              if (hasError) {
                 console.log(
                   `Content of iframe ${iframeId} contains an error (attempt ${retryCount + 1})`
+                )
+                if (retryCount === maxRetries - 1) {
+                  errors.push(url)
+                }
+              } else if (!contentLoaded) {
+                console.log(
+                  `Content of iframe ${iframeId} not fully loaded (attempt ${retryCount + 1})`
                 )
                 if (retryCount === maxRetries - 1) {
                   errors.push(url)
