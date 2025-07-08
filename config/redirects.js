@@ -223,6 +223,11 @@ const redirects = [
     destination: '/blog/environnement/neuf-limites-planetaires-empreintes',
     permanent: true,
   },
+  {
+    source: '/es/blog/:path*',
+    destination: '/',
+    permanent: true,
+  },
   // For now, we redirect actions/plus homepage to blog homepage. We still have each actions/plus page available but ghosted.
   {
     source: '/actions/plus',
