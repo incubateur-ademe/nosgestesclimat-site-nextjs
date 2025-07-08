@@ -14,6 +14,8 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useLocale } from '@/hooks/useLocale'
+import i18nConfig from '@/i18nConfig'
 import { useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
 import type { ReactNode } from 'react'
@@ -63,6 +65,8 @@ export default function UserInformationForm({
   defaultValues,
 }: Props) {
   const { t } = useClientTranslation()
+
+  const locale = useLocale()
 
   const { user, updateEmail, updateName } = useUser()
 
@@ -145,8 +149,10 @@ export default function UserInformationForm({
     }
   }, [])
 
+  const isFrench = locale === i18nConfig.defaultLocale
+
   return (
-    <div className={twMerge('flex flex-col items-start', className)}>
+    <div className={twMerge('flex flex-1 flex-col items-start', className)}>
       {title}
 
       <form
@@ -188,62 +194,67 @@ export default function UserInformationForm({
           </>
         )}
 
-        <h3 className="mt-6 mb-0">
-          <Trans>Inscription à nos e-mails</Trans>
-        </h3>
+        {isFrench && (
+          <>
+            <h3 className="mt-6 mb-0">
+              <Trans>Inscription à nos e-mails</Trans>
+            </h3>
 
-        <p className="text-sm text-gray-600">
-          <Trans>Vous pouvez vous désincrire à tout moment</Trans>
-        </p>
-        {inputsDisplayed.includes('newsletter-saisonniere') && (
-          <CheckboxInputGroup
-            size="lg"
-            disableSubmitOnEnter
-            label={
-              <span>
-                <Emoji>☀️</Emoji>{' '}
-                <Trans>
-                  <strong>Infolettre saisonnière de Nos Gestes Climat</strong> :
-                  actualités climat, initiatives positives et nouveautés
-                </Trans>
-              </span>
-            }
-            {...register('newsletter-saisonniere')}
-          />
+            <p className="text-sm text-gray-600">
+              <Trans>Vous pouvez vous désincrire à tout moment</Trans>
+            </p>
+            {inputsDisplayed.includes('newsletter-saisonniere') && (
+              <CheckboxInputGroup
+                size="lg"
+                disableSubmitOnEnter
+                label={
+                  <span>
+                    <Emoji>☀️</Emoji>{' '}
+                    <Trans>
+                      <strong>
+                        Infolettre saisonnière de Nos Gestes Climat
+                      </strong>{' '}
+                      : actualités climat, initiatives positives et nouveautés
+                    </Trans>
+                  </span>
+                }
+                {...register('newsletter-saisonniere')}
+              />
+            )}
+            {inputsDisplayed.includes('newsletter-transports') && (
+              <CheckboxInputGroup
+                size="lg"
+                disableSubmitOnEnter
+                label={
+                  <span>
+                    <Emoji>🚗</Emoji>{' '}
+                    <Trans>
+                      <strong>Nos Gestes Transports</strong> : tout savoir ou
+                      presque sur l'impact carbone des transports, en 4 e-mails
+                    </Trans>
+                  </span>
+                }
+                {...register('newsletter-transports')}
+              />
+            )}
+            {inputsDisplayed.includes('newsletter-logement') && (
+              <CheckboxInputGroup
+                size="lg"
+                disableSubmitOnEnter
+                label={
+                  <span>
+                    <Emoji>🏡</Emoji>{' '}
+                    <Trans>
+                      <strong>Nos Gestes Logement</strong> : informez-vous sur
+                      l'impact carbone du logement, en quelques e-mails
+                    </Trans>
+                  </span>
+                }
+                {...register('newsletter-logement')}
+              />
+            )}
+          </>
         )}
-        {inputsDisplayed.includes('newsletter-transports') && (
-          <CheckboxInputGroup
-            size="lg"
-            disableSubmitOnEnter
-            label={
-              <span>
-                <Emoji>🚗</Emoji>{' '}
-                <Trans>
-                  <strong>Nos Gestes Transports</strong> : tout savoir ou
-                  presque sur l'impact carbone des transports, en 4 e-mails
-                </Trans>
-              </span>
-            }
-            {...register('newsletter-transports')}
-          />
-        )}
-        {inputsDisplayed.includes('newsletter-logement') && (
-          <CheckboxInputGroup
-            size="lg"
-            disableSubmitOnEnter
-            label={
-              <span>
-                <Emoji>🏡</Emoji>{' '}
-                <Trans>
-                  <strong>Nos Gestes Logement</strong> : informez-vous sur
-                  l'impact carbone du logement, en quelques e-mails
-                </Trans>
-              </span>
-            }
-            {...register('newsletter-logement')}
-          />
-        )}
-
         {isSuccess && (
           <p role="alert" className="mt-4 mb-4 text-green-700">
             <Trans>Vos informations ont bien été mises à jour.</Trans>
