@@ -5,6 +5,7 @@ import BilanChart from '@/components/charts/BilanChart'
 import ServicesChart from '@/components/charts/ServicesChart'
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import { defaultMetric } from '@/constants/model/metric'
+import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Markdown from '@/design-system/utils/Markdown'
 import { useLocale } from '@/hooks/useLocale'
 import { useRules } from '@/hooks/useRules'
@@ -25,12 +26,16 @@ export default function DocumentationClient({ slugs }: Props) {
   const path = decodeURI(slugs.join('/'))
   const documentationPath = '/documentation'
 
-  const rules = useRules({ isOptim: false })
+  const { data: rules, isPending } = useRules({ isOptim: false })
 
   const { situation } = useCurrentSimulation()
   const { engine } = useDisposableEngine({ rules, situation })
 
   const [metric, setMetric] = useState<Metric>(defaultMetric)
+
+  if (isPending) {
+    return <BlockSkeleton />
+  }
 
   return (
     <div className="mt-4 w-full">
