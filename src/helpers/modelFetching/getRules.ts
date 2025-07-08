@@ -57,7 +57,8 @@ export async function getRules({
   } else {
     return importRulesFromModelEsEnLang({
       fileName:
-        locale === 'en'
+        // en locale
+        locale === i18nConfig.locales[1]
           ? `co2-model.${regionCodeToProvide}-lang.en.json`
           : `co2-model.${regionCodeToProvide}-lang.es.json`,
     })
