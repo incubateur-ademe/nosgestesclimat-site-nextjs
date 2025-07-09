@@ -17,4 +17,3 @@ FICHEPRODUIT.md
 jest.config.ts
 README.md
 yarn.lock
-/node_modules
