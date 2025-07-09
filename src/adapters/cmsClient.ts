@@ -256,6 +256,7 @@ export type ThematicLandingPage = {
   faq?: FAQType
   metadata?: PageMetadataType
   slug: string
+  htmlLegend?: string
 }
 
 export type PopulatedThematicLandingPageType<

@@ -2,6 +2,7 @@ import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
 import DailyGestures from '@/components/landing-pages/DailyGestures'
 import DidYouKnowSlider from '@/components/landing-pages/DidYouKnowSlider'
 import FAQ from '@/components/landing-pages/FAQ'
+import Legend from '@/components/landing-pages/Legend'
 import MotivationSection from '@/components/landing-pages/MotivationSection'
 import Partners from '@/components/landing-pages/Partners'
 import UnderstandToAct from '@/components/landing-pages/UnderstandToAct'
@@ -83,6 +84,7 @@ export default async function ThematicLandingPage({
     articlesCTALink,
     articlesCTALabel,
     faq,
+    htmlLegend,
   } = thematicLandingPage
 
   return (
@@ -283,6 +285,8 @@ export default async function ThematicLandingPage({
           subTitle={faq?.subTitle}
           shouldUseDangerouslySetInnerHTML
         />
+
+        {htmlLegend && <Legend htmlLegend={htmlLegend} />}
       </LandingPage>
 
       <Footer langButtonsDisplayed={{ fr: false, en: false, es: false }} />
