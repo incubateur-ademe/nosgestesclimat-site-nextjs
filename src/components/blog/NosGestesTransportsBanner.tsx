@@ -28,7 +28,7 @@ export default function NosGestesTransportsBanner() {
   })
 
   const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
-    user?.email ?? ''
+    user?.userId ?? ''
   )
 
   const {

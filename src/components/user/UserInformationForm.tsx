@@ -82,9 +82,9 @@ export default function UserInformationForm({
   } = useReactHookForm<Inputs>({ defaultValues: { name: user?.name } })
 
   const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
-    user?.email ?? ''
+    user?.userId ?? ''
   )
-
+  console.log({ newsletterSubscriptions })
   useEffect(() => {
     if (!newsletterSubscriptions && !defaultValues) return
 

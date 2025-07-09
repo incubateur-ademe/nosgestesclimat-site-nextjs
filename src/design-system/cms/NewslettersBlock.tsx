@@ -60,8 +60,9 @@ export default function NewslettersBlock() {
 
   const { user, updateEmail } = useUser()
 
-  const { data: newsletterSubscriptions, error } =
-    useGetNewsletterSubscriptions(user?.email ?? '')
+  const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
+    user?.userId ?? ''
+  )
   const {
     mutateAsync: updateUserSettings,
     isPending,

@@ -26,7 +26,7 @@ import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { captureException } from '@sentry/nextjs'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
@@ -52,11 +52,8 @@ export default function GetResultsByEmail({
 
   const currentSimulation = useCurrentSimulation()
 
-  // Avoid refetching useGetNewsletterSubscriptions when defining an email for the first time
-  const emailRef = useRef<string>(user?.email ?? '')
-
   const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
-    emailRef?.current ?? ''
+    user?.userId ?? ''
   )
 
   const isSubscribedMainNewsletter =

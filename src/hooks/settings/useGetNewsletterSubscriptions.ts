@@ -2,16 +2,16 @@ import { SERVER_URL } from '@/constants/urls/main'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
-export function useGetNewsletterSubscriptions(email: string) {
+export function useGetNewsletterSubscriptions(userId: string) {
   return useQuery({
-    queryKey: ['getNewsletterSubscriptions', email],
-    queryFn: async () =>
-      axios
-        .get(
-          `${SERVER_URL}/get-newsletter-subscriptions?email=${encodeURIComponent(email)}`
-        )
-        .then((res) => res.data),
-    enabled: !!email,
+    queryKey: ['getNewsletterSubscriptions', userId],
+    queryFn: () =>
+      axios.get(`${SERVER_URL}/users/v1/${userId}/contact`).then((res) => {
+        console.log(res.data)
+        return res.data?.listIds ?? []
+      }),
+    enabled: !!userId,
     retry: false,
+    placeholderData: [],
   })
 }

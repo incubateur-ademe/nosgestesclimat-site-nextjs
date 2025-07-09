@@ -21,7 +21,7 @@ export default function CustomActionForm({
   const { actionChoices } = useCurrentSimulation()
 
   const { refetch: refreshNewsletterSubcriptions } =
-    useGetNewsletterSubscriptions(user?.email ?? '')
+    useGetNewsletterSubscriptions(user?.userId ?? '')
 
   if (dottedName === 'transport . infolettre')
     return (
