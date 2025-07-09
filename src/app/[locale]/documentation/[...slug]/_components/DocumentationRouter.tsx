@@ -2,21 +2,18 @@
 
 import EngineProviders from '@/components/providers/EngineProviders'
 import { useCurrentSimulation } from '@/publicodes-state'
-import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import type { JSX } from 'react'
 import { useContext, useEffect } from 'react'
 import { IsDocumentationClientContext } from '../../_contexts/DocumentationStateContext'
 import DocumentationClient from './documentationRouter/DocumentationClient'
 
 type Props = {
-  rules: NGCRules
   supportedRegions: any
   slug: string[]
   serverComponent: JSX.Element
 }
 
 export default function DocumentationRouter({
-  rules,
   supportedRegions,
   slug,
   serverComponent,
@@ -39,7 +36,7 @@ export default function DocumentationRouter({
   if (isDocumentationClient)
     return (
       <EngineProviders supportedRegions={supportedRegions} isOptim={false}>
-        <DocumentationClient slugs={slug} rules={rules} />
+        <DocumentationClient slugs={slug} />
       </EngineProviders>
     )
 

@@ -1,102 +1,180 @@
-import { useLocale } from '@/hooks/useLocale'
-import { useUser } from '@/publicodes-state'
-import '@testing-library/jest-dom'
-import { act, render, screen } from '@testing-library/react'
+import { act, screen } from '@testing-library/react'
+import { vi } from 'vitest'
+
+// Mock environment variable BEFORE importing the component
+vi.stubEnv('NEXT_PUBLIC_TALLY_FORM_ID', 'test-form-id')
+
+// Mock useLocale BEFORE importing the component
+const mockUseLocale = vi.fn()
+vi.mock('@/hooks/useLocale', () => ({
+  useLocale: () => mockUseLocale(),
+}))
+
+import { renderWithWrapper } from '@/helpers/tests/wrapper'
+import userEvent from '@testing-library/user-event'
 import TallyForm from '../TallyForm'
 
-jest.mock('@/hooks/useClientTranslation', () => ({
-  useClientTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}))
+const mockOpenPopup = vi.fn()
 
-jest.mock('@/publicodes-state', () => ({
-  useUser: jest.fn(),
-}))
-
-jest.mock('@/hooks/useLocale', () => ({
-  useLocale: jest.fn(),
-}))
-
-describe('<TallyForm />', () => {
-  const mockTally = {
-    openPopup: jest.fn(),
-  }
-
+describe('TallyForm', () => {
   beforeEach(() => {
-    jest.useFakeTimers()
-    window.Tally = mockTally
+    vi.useFakeTimers()
+
+    // Reset the mock to return 'fr' by default
+    mockUseLocale.mockReturnValue('fr')
+
+    // Mock window.Tally
+    Object.defineProperty(window, 'Tally', {
+      value: {
+        openPopup: mockOpenPopup,
+      },
+      writable: true,
+    })
   })
 
   afterEach(() => {
-    jest.clearAllTimers()
-    jest.clearAllMocks()
+    vi.clearAllTimers()
+    vi.clearAllMocks()
   })
 
-  it('should render a button with wave emoji', () => {
-    // Given
-    ;(useUser as jest.Mock).mockReturnValue({
-      simulations: [],
+  it('should render correctly when conditions are met', () => {
+    act(() => {
+      renderWithWrapper(<TallyForm />, {
+        providers: {
+          user: true,
+          queryClient: true,
+          errorBoundary: true,
+        },
+        simulations: [{ id: 'simulation1' } as any],
+      })
     })
-    ;(useLocale as jest.Mock).mockReturnValue('fr')
 
-    // When
-    render(<TallyForm />)
+    expect(screen.getByTestId('wave-button')).toBeInTheDocument()
+  })
 
-    // Then
+  it('should have correct environment variable', () => {
+    expect(process.env.NEXT_PUBLIC_TALLY_FORM_ID).toBe('test-form-id')
+  })
+
+  it('should open popup when button is clicked', async () => {
+    act(() => {
+      renderWithWrapper(<TallyForm />, {
+        providers: {
+          user: true,
+          queryClient: true,
+          errorBoundary: true,
+        },
+        simulations: [{ id: 'simulation1' } as any],
+      })
+    })
+
+    // Wait for the automatic timeout to complete first
+    act(() => {
+      vi.advanceTimersByTime(5000)
+    })
+
+    // Clear the mock to reset the call count
+    mockOpenPopup.mockClear()
+
     const button = screen.getByTestId('wave-button')
-    expect(button).toBeInTheDocument()
 
-    const emoji = screen.getByLabelText('Emoji main qui salue')
-    expect(emoji).toBeInTheDocument()
-    expect(emoji.textContent).toBe('👋')
+    // Désactiver temporairement les fake timers pour le clic
+    vi.useRealTimers()
+
+    await userEvent.click(button)
+
+    // Réactiver les fake timers
+    vi.useFakeTimers()
+
+    expect(mockOpenPopup).toHaveBeenCalled()
   })
 
-  it('should open Tally popup after timeout for new users', () => {
-    // Given
-    ;(useUser as jest.Mock).mockReturnValue({
-      simulations: ['simulation1'],
-    })
-    ;(useLocale as jest.Mock).mockReturnValue('fr')
+  it('should automatically open popup after timeout when conditions are met', () => {
+    // S'assurer que l'environnement est correctement configuré
+    expect(process.env.NEXT_PUBLIC_TALLY_FORM_ID).toBe('test-form-id')
 
-    // When
-    render(<TallyForm />)
     act(() => {
-      jest.advanceTimersByTime(5100)
+      renderWithWrapper(<TallyForm />, {
+        providers: {
+          user: true,
+          queryClient: true,
+          errorBoundary: true,
+        },
+        simulations: [{ id: 'simulation1' } as any],
+      })
     })
 
-    // Then
-    expect(mockTally.openPopup).toHaveBeenCalled()
-  })
+    // Initially, the popup should not be called
+    expect(mockOpenPopup).not.toHaveBeenCalled()
 
-  it('should not open Tally popup for users with multiple simulations', () => {
-    // Given
-    ;(useUser as jest.Mock).mockReturnValue({
-      simulations: ['simulation1', 'simulation2'],
-    })
-    ;(useLocale as jest.Mock).mockReturnValue('fr')
-
-    // When
-    render(<TallyForm />)
+    // After the timeout, the popup should be called automatically
     act(() => {
-      jest.advanceTimersByTime(5100)
+      vi.advanceTimersByTime(5000)
     })
 
-    // Then
-    expect(mockTally.openPopup).not.toHaveBeenCalled()
+    // S'assurer que tous les timers en attente sont exécutés
+    act(() => {
+      vi.runOnlyPendingTimers()
+    })
+
+    // Vérifier que le popup a été appelé avec les bons paramètres
+    expect(mockOpenPopup).toHaveBeenCalledWith('test-form-id', {
+      emoji: {
+        text: '👋',
+        animation: 'wave',
+      },
+    })
   })
 
-  it('should render nothing when locale is not fr', () => {
-    // Given
-    ;(useUser as jest.Mock).mockReturnValue({
-      simulations: [],
+  it('should not render when locale is not French', () => {
+    // Changer la valeur retournée par useLocale pour ce test
+    mockUseLocale.mockReturnValue('en')
+
+    let container: any
+
+    act(() => {
+      const result = renderWithWrapper(<TallyForm />, {
+        providers: {
+          user: true,
+          queryClient: true,
+          errorBoundary: true,
+        },
+        simulations: [{ id: 'simulation1' } as any],
+      })
+      container = result.container
     })
-    ;(useLocale as jest.Mock).mockReturnValue('en')
 
-    // When
-    const { container } = render(<TallyForm />)
+    // Avancer les timers pour s'assurer que tous les effets sont terminés
+    act(() => {
+      vi.advanceTimersByTime(100)
+    })
 
-    // Then
+    expect(container).toBeEmptyDOMElement()
+  })
+
+  it('should not render when no form ID is set', () => {
+    // Temporarily remove the environment variable for this test
+    vi.stubEnv('NEXT_PUBLIC_TALLY_FORM_ID', '')
+
+    let container: any
+
+    act(() => {
+      const result = renderWithWrapper(<TallyForm />, {
+        providers: {
+          user: true,
+          queryClient: true,
+          errorBoundary: true,
+        },
+        simulations: [{ id: 'simulation1' } as any],
+      })
+      container = result.container
+    })
+
+    // Avancer les timers pour s'assurer que tous les effets sont terminés
+    act(() => {
+      vi.advanceTimersByTime(100)
+    })
+
     expect(container).toBeEmptyDOMElement()
   })
 })

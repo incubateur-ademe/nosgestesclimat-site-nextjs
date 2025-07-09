@@ -1,10 +1,11 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { vi } from 'vitest'
 import JagisSecondaryBlock from '../JagisSecondaryBlock'
 
-const mockExportSituation = jest.fn()
+const mockExportSituation = vi.fn()
 
-jest.mock('@/hooks/partners/useExportSituation', () => ({
+vi.mock('@/hooks/partners/useExportSituation', () => ({
   useExportSituation: () => ({
     exportSituation: mockExportSituation,
   }),

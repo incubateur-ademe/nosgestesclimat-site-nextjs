@@ -8,6 +8,8 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useLocale } from '@/hooks/useLocale'
+import i18nConfig from '@/i18nConfig'
 import { useUser } from '@/publicodes-state'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
@@ -17,6 +19,9 @@ type Inputs = { email: string }
 
 export default function NosGestesTransportsBanner() {
   const { t } = useClientTranslation()
+
+  const locale = useLocale()
+
   const { user, updateEmail } = useUser()
   const { register, handleSubmit } = useReactHookForm<Inputs>({
     defaultValues: { email: user?.email },
@@ -46,7 +51,11 @@ export default function NosGestesTransportsBanner() {
     }
   }
 
-  if (newsletterSubscriptions?.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER)) {
+  if (
+    newsletterSubscriptions?.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER) ||
+    // Hide for non frenchies
+    locale !== i18nConfig.defaultLocale
+  ) {
     return null
   }
 

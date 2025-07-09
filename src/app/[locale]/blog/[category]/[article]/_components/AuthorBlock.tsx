@@ -14,7 +14,7 @@ export default function AuthorBlock({
         <div className="min-w-24">
           {author.image ? (
             <Image
-              className="overflow-hidden rounded-full"
+              className="h-24 w-24 overflow-hidden rounded-full object-cover"
               src={author.image?.url}
               alt={author.image?.alternativeText ?? ''}
               width={200}

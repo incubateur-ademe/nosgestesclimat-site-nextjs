@@ -15,6 +15,7 @@ import { useUnsubscribeFromNewsletters } from '@/hooks/settings/useUnsubscribeFr
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useLocale } from '@/hooks/useLocale'
 import { useMainNewsletter } from '@/hooks/useMainNewsletter'
+import i18nConfig from '@/i18nConfig'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
@@ -147,6 +148,10 @@ export default function NewslettersBlock() {
       })
     }
   }
+
+  const isFrench = locale === i18nConfig.defaultLocale
+
+  if (!isFrench) return null
 
   return (
     <div

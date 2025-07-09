@@ -1,5 +1,6 @@
 import { ABTEST_KEY, FLAG_VARIANT_KEY } from '@/constants/ab-test'
 import { getRules } from '@/helpers/modelFetching/getRules'
+import i18nConfig from '@/i18nConfig'
 import { useUser } from '@/publicodes-state'
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import type { UseQueryResult } from '@tanstack/react-query'
@@ -22,7 +23,9 @@ export function useRules(
   const locale = useLocale()
   const { user } = useUser()
 
-  const flagValue = useFeatureFlagVariantKey(ABTEST_KEY)
+  const flagValue = useFeatureFlagVariantKey(
+    locale === i18nConfig.defaultLocale ? ABTEST_KEY : ''
+  )
   const regionCode =
     user?.region?.code != undefined && user?.region?.code !== ''
       ? user?.region?.code
@@ -40,5 +43,8 @@ export function useRules(
       }),
     placeholderData: keepPreviousData,
     staleTime: Infinity, // We don't want to import the rule multiple times
+    gcTime: 1000 * 60 * 60 * 24, // 24h
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   })
 }

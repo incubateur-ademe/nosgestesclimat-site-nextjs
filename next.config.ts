@@ -17,6 +17,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
     remotePatterns: remoteImagesPatterns,
+    minimumCacheTTL: 60 * 60 * 24 * 30,
   },
   // eslint-disable-next-line @typescript-eslint/require-await
   async redirects() {
@@ -26,34 +27,27 @@ const nextConfig: NextConfig = {
     config: Configuration,
     { dev, isServer }: { dev: boolean; isServer: boolean }
   ) => {
-    if (isServer) {
-      config.ignoreWarnings = [
-        { module: /opentelemetry/ },
-        { module: /mdx-js-loader/ },
-        { module: /next\.config\.compiled\.js/ },
-      ]
-    }
+    // Ignore warnings for all environments
+    config.ignoreWarnings = [
+      { module: /opentelemetry/ },
+      { module: /mdx-js-loader/ },
+      { module: /next\.config\.compiled\.js/ },
+    ]
 
     // Add a rule for YAML files
     config.module?.rules?.push({
       test: /\.ya?ml$/,
-      use: 'yaml-loader',
+      use: [{ loader: 'yaml-loader' }],
     })
-
-    if (!dev) {
-      config.cache = Object.freeze({
-        type: 'memory',
-      })
-    }
 
     // Enable source maps
     if (!dev && !isServer) {
-      config.devtool = 'source-map'
+      config.devtool = 'hidden-source-map'
     }
 
     return config
   },
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: false,
   outputFileTracingExcludes: {
     '*': ['.next/cache/webpack', '.git/**/*', 'cypress/**/*'],
   },
@@ -61,6 +55,15 @@ const nextConfig: NextConfig = {
     rules: {
       '*.yaml': {
         loaders: ['yaml-loader'],
+        as: '*.js',
+      },
+      '*.yml': {
+        loaders: ['yaml-loader'],
+        as: '*.js',
+      },
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
       },
     },
   },
@@ -71,17 +74,12 @@ const nextConfig: NextConfig = {
 }
 
 const sentryConfig = {
-  // For all available options, see:
-  // https://github.com/getsentry/sentry-webpack-plugin#options
-
   // Suppresses source map uploading logs during build
   silent: true,
   org: 'incubateur-ademe',
   project: 'nosgestesclimat-nextjs',
 
   authToken: process.env.SENTRY_AUTH_TOKEN,
-  // For all available options, see:
-  // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 
   // Upload a larger set of source maps for prettier stack traces (increases build time)
   widenClientFileUpload: false,
@@ -93,6 +91,11 @@ const sentryConfig = {
   disableLogger: true,
 
   telemetry: process.env.NODE_ENV !== 'development',
+
+  hideSourceMaps: true,
+  autoDiscoverRelease: true,
+  include: '.',
+  ignore: ['node_modules', '.next', 'cypress'],
 }
 
 module.exports =

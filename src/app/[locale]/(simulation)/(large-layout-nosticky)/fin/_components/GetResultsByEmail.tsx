@@ -21,6 +21,7 @@ import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useMainNewsletter } from '@/hooks/useMainNewsletter'
+import i18nConfig from '@/i18nConfig'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
@@ -161,6 +162,8 @@ export default function GetResultsByEmail({
     }
   }, [isSuccess, currentSimulation])
 
+  const isFrench = locale === i18nConfig.defaultLocale
+
   // If we successfully saved the simulation, we display the confirmation message
   // or if the simulation is already saved
   if (isSuccess || currentSimulation?.savedViaEmail) {
@@ -215,15 +218,16 @@ export default function GetResultsByEmail({
             />
 
             {(!isSubscribedMainNewsletter ||
-              !isSubscribedTransportNewsletter) && (
-              <p className="mb-0">
-                <Trans>
-                  Recevez des conseils pour réduire votre empreinte :
-                </Trans>
-              </p>
-            )}
+              !isSubscribedTransportNewsletter) &&
+              isFrench && (
+                <p className="mb-0">
+                  <Trans>
+                    Recevez des conseils pour réduire votre empreinte :
+                  </Trans>
+                </p>
+              )}
 
-            {!isSubscribedMainNewsletter && (
+            {!isSubscribedMainNewsletter && isFrench && (
               <CheckboxInputGroup
                 disableSubmitOnEnter
                 label={
@@ -238,7 +242,7 @@ export default function GetResultsByEmail({
               />
             )}
 
-            {!isSubscribedTransportNewsletter && (
+            {!isSubscribedTransportNewsletter && isFrench && (
               <CheckboxInputGroup
                 disableSubmitOnEnter
                 label={
@@ -254,7 +258,7 @@ export default function GetResultsByEmail({
               />
             )}
 
-            {!isSubscribedLogementNewsletter && (
+            {!isSubscribedLogementNewsletter && isFrench && (
               <CheckboxInputGroup
                 disableSubmitOnEnter
                 label={
