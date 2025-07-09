@@ -33,13 +33,6 @@ const nextConfig: NextConfig = {
       { module: /mdx-js-loader/ },
       { module: /next\.config\.compiled\.js/ },
       { module: /importRulesFromModel/ },
-      // Ignore webpack cache errors - broader regex for Scalingo
-      { message: /Can't resolve.*next\.config\.compiled\.js/ },
-      { message: /Caching failed for pack/ },
-      { message: /\[webpack\.cache\.PackFileCacheStrategy\]/ },
-      // Ignore peer dependencies warnings
-      { message: /has incorrect peer dependency/ },
-      { message: /has unmet peer dependency/ },
     ]
 
     // Add a rule for YAML files
@@ -47,30 +40,6 @@ const nextConfig: NextConfig = {
       test: /\.ya?ml$/,
       use: [{ loader: 'yaml-loader' }],
     })
-
-    if (!dev) {
-      // Optimiser la compression
-      config.optimization = {
-        ...config.optimization,
-        splitChunks: {
-          chunks: 'all',
-          cacheGroups: {
-            vendor: {
-              test: /[\\/]node_modules[\\/]/,
-              name: 'vendors',
-              chunks: 'all',
-            },
-            publicodes: {
-              test: /[\\/]node_modules[\\/]@incubateur-ademe[\\/]nosgestesclimat[\\/]/,
-              name: 'publicodes',
-              chunks: 'all',
-              priority: 10,
-            },
-          },
-        },
-        minimize: true,
-      }
-    }
 
     // Enable source maps
     if (!dev && !isServer) {
