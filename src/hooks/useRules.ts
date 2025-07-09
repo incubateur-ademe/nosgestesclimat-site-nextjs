@@ -43,5 +43,8 @@ export function useRules(
       }),
     placeholderData: keepPreviousData,
     staleTime: Infinity, // We don't want to import the rule multiple times
+    gcTime: 1000 * 60 * 60 * 24, // 24h
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   })
 }
