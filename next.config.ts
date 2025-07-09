@@ -14,6 +14,7 @@ const withMDX = createMDX({
 })
 
 const nextConfig: NextConfig = {
+  output: 'standalone',
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
   // Optimizations for Scalingo
@@ -146,6 +147,11 @@ const nextConfig: NextConfig = {
     rules: {
       '*.yaml': {
         loaders: ['yaml-loader'],
+        as: '*.js',
+      },
+      '*.yml': {
+        loaders: ['yaml-loader'],
+        as: '*.js',
       },
       '*.svg': {
         loaders: ['@svgr/webpack'],
