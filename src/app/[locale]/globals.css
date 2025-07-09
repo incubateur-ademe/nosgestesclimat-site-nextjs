@@ -499,7 +499,7 @@ html[data-useragent*='Trident'] #js {
 }
 
 .markdown img {
-  @apply mb-6 rounded-md border border-gray-200;
+  @apply mb-6 rounded-md;
 }
 
 .markdown figcaption {
