@@ -1,3 +1,4 @@
+import FAQTrackingWrapper from '@/components/questions-frequentes/FAQTrackingWrapper'
 import Card from '@/design-system/layout/Card'
 
 export default function FAQListItem({
@@ -11,7 +12,7 @@ export default function FAQListItem({
 }) {
   return (
     <li key={id} className="whitespace-wrap mb-2 list-none font-bold">
-      <details id={id}>
+      <FAQTrackingWrapper questionId={id}>
         <summary
           role="button"
           tabIndex={0}
@@ -22,7 +23,7 @@ export default function FAQListItem({
         <Card className="bg-primary-50 markdown m-4 rounded-sm border-none p-4 font-normal">
           <div dangerouslySetInnerHTML={{ __html: answer }} />
         </Card>
-      </details>
+      </FAQTrackingWrapper>
     </li>
   )
 }

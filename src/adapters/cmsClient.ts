@@ -180,6 +180,11 @@ export type PartnerCategoryType = {
 }
 
 export type PartnerType = {
+  id: string
+  documentId: string
+  createdAt: string
+  updatedAt: string
+  publishedAt: string
   name: string
   imageSrc: string
   link: string

@@ -31,6 +31,7 @@ export default function TallyForm() {
   const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
 
   const isFrench = useLocale() === i18nConfig.defaultLocale
+  const FORM_ID = process.env.NEXT_PUBLIC_TALLY_FORM_ID ?? ''
 
   const { simulations } = useUser()
 
@@ -45,11 +46,7 @@ export default function TallyForm() {
 
   useEffect(() => {
     // Open form only for new users, that have only one simulation
-    if (isFrench && FORM_ID && simulations && simulations.length === 1)
-      timeoutRef.current = setTimeout(
-        () => handleOpenForm(),
-        SHOW_POPUP_TIMEOUT
-      )
+    timeoutRef.current = setTimeout(() => handleOpenForm(), SHOW_POPUP_TIMEOUT)
 
     return () => {
       clearTimeout(timeoutRef.current)
@@ -57,7 +54,6 @@ export default function TallyForm() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
   if (!isFrench || !FORM_ID) return null
 
   return (
