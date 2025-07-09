@@ -1,5 +1,4 @@
 import type { NextConfig } from 'next'
-import path from 'path'
 import type { Configuration } from 'webpack'
 
 import createMDX from '@next/mdx'
@@ -16,9 +15,6 @@ const withMDX = createMDX({
 const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
-  // Optimizations for Scalingo
-  poweredByHeader: false,
-  compress: true,
   images: {
     remotePatterns: remoteImagesPatterns,
     minimumCacheTTL: 60 * 60 * 24 * 30,
@@ -53,12 +49,26 @@ const nextConfig: NextConfig = {
     })
 
     if (!dev) {
-      config.cache = {
-        type: 'filesystem',
-        buildDependencies: { config: [__filename] },
-        cacheDirectory: path.resolve(process.cwd(), '.next/cache/webpack'),
-        compression: 'gzip',
-        maxAge: 172800000,
+      // Optimiser la compression
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          chunks: 'all',
+          cacheGroups: {
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'all',
+            },
+            publicodes: {
+              test: /[\\/]node_modules[\\/]@incubateur-ademe[\\/]nosgestesclimat[\\/]/,
+              name: 'publicodes',
+              chunks: 'all',
+              priority: 10,
+            },
+          },
+        },
+        minimize: true,
       }
     }
 

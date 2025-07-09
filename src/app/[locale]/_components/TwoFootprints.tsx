@@ -18,6 +18,7 @@ const TwoGraphsIllustration = dynamic(
         height={800}
       />
     ),
+    ssr: false,
   }
 )
 
@@ -32,6 +33,7 @@ const CarbonGraphIllustration = dynamic(
         height={300}
       />
     ),
+    ssr: false,
   }
 )
 
@@ -46,6 +48,7 @@ const WaterGraphIllustration = dynamic(
         height={300}
       />
     ),
+    ssr: false,
   }
 )
 
