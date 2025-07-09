@@ -273,7 +273,16 @@ export default async function ThematicLandingPage({
           />
         )}
 
-        <FAQ questions={faq?.questions ?? []} subTitle={faq?.subTitle} />
+        <FAQ
+          questions={
+            faq?.questions?.map(({ question, htmlAnswer }) => ({
+              question,
+              answer: htmlAnswer,
+            })) ?? []
+          }
+          subTitle={faq?.subTitle}
+          shouldUseDangerouslySetInnerHTML
+        />
       </LandingPage>
 
       <Footer langButtonsDisplayed={{ fr: false, en: false, es: false }} />
