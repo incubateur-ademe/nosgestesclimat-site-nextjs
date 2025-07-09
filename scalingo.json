@@ -18,8 +18,5 @@
       "value": "*.osc-fr1.scalingo.io",
       "description": "Matomo domain for Scalingo review apps"
     }
-  },
-  "scripts": {
-    "build": "yarn build:turbo"
   }
 }
