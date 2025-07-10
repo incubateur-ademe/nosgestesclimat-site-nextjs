@@ -179,10 +179,12 @@ export default function UserInformationForm({
       {title}
 
       <form
+        data-testid="user-information-form"
         onSubmit={handleSubmit(onSubmit)}
         className="flex w-full flex-col items-start gap-4">
         {inputsDisplayed.includes('name') && (
           <TextInputGroup
+            data-testid="name-input"
             value={user?.name}
             label={t('Votre nom')}
             {...register('name', {
@@ -199,6 +201,7 @@ export default function UserInformationForm({
               // sinon on lui permet d'en définir un
               user?.email && !shouldForceEmailEditable ? (
                 <TextInputGroup
+                  data-testid="email-input-readonly"
                   name="email"
                   helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
                   label={t('Votre adresse electronique')}
@@ -207,6 +210,7 @@ export default function UserInformationForm({
                 />
               ) : (
                 <TextInputGroup
+                  data-testid="email-input-editable"
                   label={t('Votre adresse electronique')}
                   className="w-full"
                   value={user?.email ?? ''}
@@ -228,6 +232,7 @@ export default function UserInformationForm({
             </p>
             {inputsDisplayed.includes('newsletter-saisonniere') && (
               <CheckboxInputGroup
+                data-testid="newsletter-saisonniere-checkbox"
                 size="lg"
                 disableSubmitOnEnter
                 label={
@@ -246,6 +251,7 @@ export default function UserInformationForm({
             )}
             {inputsDisplayed.includes('newsletter-transports') && (
               <CheckboxInputGroup
+                data-testid="newsletter-transports-checkbox"
                 size="lg"
                 disableSubmitOnEnter
                 label={
@@ -262,6 +268,7 @@ export default function UserInformationForm({
             )}
             {inputsDisplayed.includes('newsletter-logement') && (
               <CheckboxInputGroup
+                data-testid="newsletter-logement-checkbox"
                 size="lg"
                 disableSubmitOnEnter
                 label={
@@ -279,15 +286,23 @@ export default function UserInformationForm({
           </>
         )}
         {isSuccess && (
-          <p role="alert" className="mt-4 mb-4 text-green-700">
+          <p
+            data-testid="success-message"
+            role="alert"
+            className="mt-4 mb-4 text-green-700">
             <Trans>Vos informations ont bien été mises à jour.</Trans>
           </p>
         )}
 
-        {(isError || isErrorUnsubscribe) && <DefaultSubmitErrorMessage />}
+        {(isError || isErrorUnsubscribe) && (
+          <div data-testid="error-message">
+            <DefaultSubmitErrorMessage />
+          </div>
+        )}
 
         <div>
           <Button
+            data-testid="submit-button"
             type="submit"
             className="mt-6 gap-2 self-start"
             disabled={isPending || isPendingUnsubscribe}>
