@@ -506,6 +506,10 @@ html[data-useragent*='Trident'] #js {
   @apply -mt-2 text-sm text-gray-700 italic;
 }
 
+.markdown figcaption {
+  @apply -mt-2 text-sm text-gray-700 italic;
+}
+
 @keyframes rainbow {
   0% {
     background-position: 100% 50%;
