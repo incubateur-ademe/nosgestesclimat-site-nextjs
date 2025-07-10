@@ -12,6 +12,7 @@ export default function DefaultSubmitErrorMessage({
   return (
     <span
       role="alert"
+      data-testid="submit-error-message"
       className={twMerge('block font-bold text-red-800', className)}>
       <Trans>
         Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le

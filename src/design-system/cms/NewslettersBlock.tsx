@@ -1,5 +1,6 @@
 'use client'
 
+import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import CheckIcon from '@/components/icons/status/CheckIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import {
@@ -8,15 +9,18 @@ import {
   LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
 } from '@/constants/brevo'
 import { subscribeToNewsletterBlog } from '@/constants/tracking/pages/newsletter'
+import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
+import { useUnsubscribeFromNewsletters } from '@/hooks/settings/useUnsubscribeFromNewsletters'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useMainNewsletter } from '@/hooks/useMainNewsletter'
 import i18nConfig from '@/i18nConfig'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import Button from '../buttons/Button'
@@ -33,7 +37,9 @@ type Inputs = {
 
 function SuccessMessage() {
   return (
-    <div className="flex flex-col items-center justify-center text-center">
+    <div
+      className="flex flex-col items-center justify-center text-center"
+      data-testid="success-message">
       <CheckIcon className="mb-4 h-12 w-12 fill-green-500" />
 
       <h3 className="mb-4 text-xl font-bold text-gray-800">
@@ -53,30 +59,36 @@ function SuccessMessage() {
 export default function NewslettersBlock() {
   const { data: mainNewsletter } = useMainNewsletter()
 
+  const { t } = useClientTranslation()
+
   const locale = useLocale()
 
   const { user, updateEmail } = useUser()
 
-  // Avoid refetching useGetNewsletterSubscriptions when defining an email for the first time
-  const emailRef = useRef<string>(user?.email ?? '')
-
   const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
-    emailRef?.current ?? ''
+    user?.userId ?? ''
   )
-
   const {
     mutateAsync: updateUserSettings,
     isPending,
     isSuccess,
-  } = useUpdateUserSettings({
-    email: emailRef?.current ?? '',
-    userId: user?.userId ?? '',
+    isError,
+  } = useUpdateUserSettings()
+
+  const {
+    mutateAsync: unsubscribeFromNewsletters,
+    isPending: isPendingUnsubscribe,
+    isError: isErrorUnsubscribe,
+  } = useUnsubscribeFromNewsletters({
+    email: user.email ?? '',
+    userId: user.userId,
   })
 
   const {
     register,
     handleSubmit,
     setValue,
+    setError,
     formState: { errors },
   } = useReactHookForm<Inputs>({
     defaultValues: { name: user?.name, email: user?.email },
@@ -101,13 +113,24 @@ export default function NewslettersBlock() {
     )
   }, [newsletterSubscriptions, setValue])
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  useEffect(() => {
+    if (user?.email) {
+      setValue('email', user.email)
+    }
+    if (user?.name) {
+      setValue('name', user.name)
+    }
+  }, [user?.email, user?.name, setValue])
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
     // If the mutation is pending, we do nothing
-    if (isPending) {
+    if (isPending || isPendingUnsubscribe) {
       return
     }
 
-    trackEvent(subscribeToNewsletterBlog)
+    if (!data.email) {
+      return
+    }
 
     const listIds = {
       [LIST_MAIN_NEWSLETTER]: data['newsletter-saisonniere'],
@@ -115,12 +138,44 @@ export default function NewslettersBlock() {
       [LIST_NOS_GESTES_LOGEMENT_NEWSLETTER]: data['newsletter-logement'],
     }
 
+    const newslettersArray = formatListIdsFromObject(listIds)
+
+    // If the user is not subscribed to any newsletter and has not selected any newsletter, we don't do anything
+    if (!newsletterSubscriptions?.length && newslettersArray.length === 0) {
+      setError('email', {
+        message: t('Veuillez sélectionner au moins une infolettre.'),
+      })
+      return
+    }
+
+    trackEvent(subscribeToNewsletterBlog)
+
     const formattedEmail = formatEmail(data.email)
 
     updateEmail(formattedEmail)
+    try {
+      // We save the simulation (and signify the backend to send the email)
+      await updateUserSettings({
+        newsletterIds: newslettersArray,
+        userId: user?.userId,
+        email: formattedEmail,
+        name: data.name,
+      })
 
-    // We save the simulation (and signify the backend to send the email)
-    updateUserSettings({ newsletterIds: listIds })
+      if (newslettersArray && newslettersArray.length === 0) {
+        await unsubscribeFromNewsletters({
+          name: data.name,
+          email: user.email ?? '',
+          newsletterIds: listIds,
+        })
+      }
+    } catch (error) {
+      setError('email', {
+        message: t(
+          "Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez nous contacter."
+        ),
+      })
+    }
   }
 
   const isFrench = locale === i18nConfig.defaultLocale
@@ -153,7 +208,8 @@ export default function NewslettersBlock() {
           <form
             id="newsletter-form"
             className="flex h-full flex-col items-start"
-            onSubmit={handleSubmit(onSubmit)}>
+            onSubmit={handleSubmit(onSubmit)}
+            data-testid="newsletter-form">
             <div className="mb-4 flex w-full flex-col gap-2">
               <CheckboxInputGroup
                 label={
@@ -168,6 +224,7 @@ export default function NewslettersBlock() {
                   </p>
                 }
                 {...register('newsletter-saisonniere')}
+                data-testid="newsletter-saisonniere-checkbox"
               />
 
               <CheckboxInputGroup
@@ -180,6 +237,7 @@ export default function NewslettersBlock() {
                   </p>
                 }
                 {...register('newsletter-transports')}
+                data-testid="newsletter-transports-checkbox"
               />
 
               <CheckboxInputGroup
@@ -192,26 +250,36 @@ export default function NewslettersBlock() {
                   </p>
                 }
                 {...register('newsletter-logement')}
+                data-testid="newsletter-logement-checkbox"
               />
 
               <div className="mt-10 flex w-full flex-col gap-8 md:flex-row">
                 <EmailInput
-                  value={user?.email}
+                  value={user?.email || ''}
                   {...register('email', {
-                    required: 'Veuillez renseigner un email.',
+                    required: t('Veuillez renseigner un email.'),
                     pattern: {
                       value:
                         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                      message: 'Veuillez entrer une adresse email valide',
+                      message: t('Veuillez entrer une adresse email valide'),
                     },
                   })}
-                  aria-label="Entrez votre adresse email"
+                  aria-label={t('Entrez votre adresse email')}
                   error={errors.email?.message}
                   data-cypress-id="fin-email-input"
+                  data-testid="newsletter-email-input"
                   className="h-full"
                 />
 
-                <Button size="lg" type="submit">
+                {(isError || isErrorUnsubscribe) && (
+                  <DefaultSubmitErrorMessage />
+                )}
+
+                <Button
+                  size="lg"
+                  className="self-start"
+                  type="submit"
+                  data-testid="newsletter-submit-button">
                   <Trans>S'inscrire</Trans>
                 </Button>
               </div>
