@@ -13,6 +13,7 @@ import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUnsubscribeFromNewsletters } from '@/hooks/settings/useUnsubscribeFromNewsletters'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useMainNewsletter } from '@/hooks/useMainNewsletter'
 import i18nConfig from '@/i18nConfig'
@@ -56,6 +57,8 @@ function SuccessMessage() {
 export default function NewslettersBlock() {
   const { data: mainNewsletter } = useMainNewsletter()
 
+  const { t } = useClientTranslation()
+
   const locale = useLocale()
 
   const { user, updateEmail } = useUser()
@@ -83,6 +86,7 @@ export default function NewslettersBlock() {
     register,
     handleSubmit,
     setValue,
+    setError,
     formState: { errors },
   } = useReactHookForm<Inputs>({
     defaultValues: { name: user?.name, email: user?.email },
@@ -90,7 +94,6 @@ export default function NewslettersBlock() {
   })
 
   useEffect(() => {
-    console.log('newsletterSubscriptions', newsletterSubscriptions)
     if (!newsletterSubscriptions) return
 
     setValue(
@@ -120,7 +123,9 @@ export default function NewslettersBlock() {
       return
     }
 
-    trackEvent(subscribeToNewsletterBlog)
+    if (!data.email) {
+      return
+    }
 
     const listIds = {
       [LIST_MAIN_NEWSLETTER]: data['newsletter-saisonniere'],
@@ -128,12 +133,23 @@ export default function NewslettersBlock() {
       [LIST_NOS_GESTES_LOGEMENT_NEWSLETTER]: data['newsletter-logement'],
     }
 
+    const newslettersArray = formatListIdsFromObject(listIds)
+
+    // If the user is not subscribed to any newsletter and has not selected any newsletter, we don't do anything
+    if (!newsletterSubscriptions?.length && newslettersArray.length === 0) {
+      setError('email', {
+        message: t('Veuillez sélectionner au moins une infolettre.'),
+      })
+      return
+    }
+
+    trackEvent(subscribeToNewsletterBlog)
+
     const formattedEmail = formatEmail(data.email)
 
     updateEmail(formattedEmail)
 
     // We save the simulation (and signify the backend to send the email)
-    const newslettersArray = formatListIdsFromObject(listIds)
     await updateUserSettings({
       newsletterIds: newslettersArray,
       userId: user?.userId,
@@ -225,14 +241,14 @@ export default function NewslettersBlock() {
                 <EmailInput
                   value={user?.email}
                   {...register('email', {
-                    required: 'Veuillez renseigner un email.',
+                    required: t('Veuillez renseigner un email.'),
                     pattern: {
                       value:
                         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                      message: 'Veuillez entrer une adresse email valide',
+                      message: t('Veuillez entrer une adresse email valide'),
                     },
                   })}
-                  aria-label="Entrez votre adresse email"
+                  aria-label={t('Entrez votre adresse email')}
                   error={errors.email?.message}
                   data-cypress-id="fin-email-input"
                   className="h-full"
@@ -242,7 +258,7 @@ export default function NewslettersBlock() {
                   <DefaultSubmitErrorMessage />
                 )}
 
-                <Button size="lg" type="submit">
+                <Button size="lg" className="self-start" type="submit">
                   <Trans>S'inscrire</Trans>
                 </Button>
               </div>

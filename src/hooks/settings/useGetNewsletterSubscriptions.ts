@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 export function useGetNewsletterSubscriptions(userId: string) {
-  return useQuery({
+  return useQuery<number[]>({
     queryKey: ['getNewsletterSubscriptions', userId],
     queryFn: () =>
       axios.get(`${SERVER_URL}/users/v1/${userId}/contact`).then((res) => {
