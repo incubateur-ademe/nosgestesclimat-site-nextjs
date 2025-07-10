@@ -4,10 +4,10 @@ import {
 } from '@/constants/state/cookies'
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import { CookieChoice } from '@/types/cookies'
-import { beforeEach } from '@jest/globals'
 import '@testing-library/jest-dom'
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { useCookieConsent } from '../CookieConsentProvider'
 
 // Test component to access context
