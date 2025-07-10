@@ -37,7 +37,9 @@ type Inputs = {
 
 function SuccessMessage() {
   return (
-    <div className="flex flex-col items-center justify-center text-center">
+    <div
+      className="flex flex-col items-center justify-center text-center"
+      data-testid="success-message">
       <CheckIcon className="mb-4 h-12 w-12 fill-green-500" />
 
       <h3 className="mb-4 text-xl font-bold text-gray-800">
@@ -115,7 +117,10 @@ export default function NewslettersBlock() {
     if (user?.email) {
       setValue('email', user.email)
     }
-  }, [user?.email, setValue])
+    if (user?.name) {
+      setValue('name', user.name)
+    }
+  }, [user?.email, user?.name, setValue])
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     // If the mutation is pending, we do nothing
@@ -148,20 +153,27 @@ export default function NewslettersBlock() {
     const formattedEmail = formatEmail(data.email)
 
     updateEmail(formattedEmail)
-
-    // We save the simulation (and signify the backend to send the email)
-    await updateUserSettings({
-      newsletterIds: newslettersArray,
-      userId: user?.userId,
-      email: formattedEmail,
-      name: data.name,
-    })
-
-    if (newslettersArray && newslettersArray.length === 0) {
-      await unsubscribeFromNewsletters({
+    try {
+      // We save the simulation (and signify the backend to send the email)
+      await updateUserSettings({
+        newsletterIds: newslettersArray,
+        userId: user?.userId,
+        email: formattedEmail,
         name: data.name,
-        email: user.email ?? '',
-        newsletterIds: listIds,
+      })
+
+      if (newslettersArray && newslettersArray.length === 0) {
+        await unsubscribeFromNewsletters({
+          name: data.name,
+          email: user.email ?? '',
+          newsletterIds: listIds,
+        })
+      }
+    } catch (error) {
+      setError('email', {
+        message: t(
+          "Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez nous contacter."
+        ),
       })
     }
   }
@@ -196,7 +208,8 @@ export default function NewslettersBlock() {
           <form
             id="newsletter-form"
             className="flex h-full flex-col items-start"
-            onSubmit={handleSubmit(onSubmit)}>
+            onSubmit={handleSubmit(onSubmit)}
+            data-testid="newsletter-form">
             <div className="mb-4 flex w-full flex-col gap-2">
               <CheckboxInputGroup
                 label={
@@ -211,6 +224,7 @@ export default function NewslettersBlock() {
                   </p>
                 }
                 {...register('newsletter-saisonniere')}
+                data-testid="newsletter-saisonniere-checkbox"
               />
 
               <CheckboxInputGroup
@@ -223,6 +237,7 @@ export default function NewslettersBlock() {
                   </p>
                 }
                 {...register('newsletter-transports')}
+                data-testid="newsletter-transports-checkbox"
               />
 
               <CheckboxInputGroup
@@ -235,11 +250,12 @@ export default function NewslettersBlock() {
                   </p>
                 }
                 {...register('newsletter-logement')}
+                data-testid="newsletter-logement-checkbox"
               />
 
               <div className="mt-10 flex w-full flex-col gap-8 md:flex-row">
                 <EmailInput
-                  value={user?.email}
+                  value={user?.email || ''}
                   {...register('email', {
                     required: t('Veuillez renseigner un email.'),
                     pattern: {
@@ -251,6 +267,7 @@ export default function NewslettersBlock() {
                   aria-label={t('Entrez votre adresse email')}
                   error={errors.email?.message}
                   data-cypress-id="fin-email-input"
+                  data-testid="newsletter-email-input"
                   className="h-full"
                 />
 
@@ -258,7 +275,11 @@ export default function NewslettersBlock() {
                   <DefaultSubmitErrorMessage />
                 )}
 
-                <Button size="lg" className="self-start" type="submit">
+                <Button
+                  size="lg"
+                  className="self-start"
+                  type="submit"
+                  data-testid="newsletter-submit-button">
                   <Trans>S'inscrire</Trans>
                 </Button>
               </div>
