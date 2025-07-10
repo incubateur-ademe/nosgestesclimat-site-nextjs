@@ -5,6 +5,7 @@ import Button from '@/design-system/buttons/Button'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
 import { type CookieConsentChoices, CookieConsentKey } from '@/types/cookies'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 type CookieFormData = {
@@ -41,16 +42,19 @@ export default function CookieConsentManagement({
   refuseAll,
   acceptAll,
   confirmChoices,
+  choices,
 }: {
   isBoardOpen: boolean
   closeSettings: () => void
   refuseAll: () => void
   acceptAll: () => void
   confirmChoices: (data: CookieConsentChoices) => void
+  choices?: CookieConsentChoices
 }) {
   const { register, handleSubmit, watch, setValue } = useForm<CookieFormData>({
     defaultValues: {
-      [CookieConsentKey.googleAds]: 'accept',
+      [CookieConsentKey.googleAds]:
+        choices?.[CookieConsentKey.googleAds] === false ? 'refuse' : 'accept',
     },
   })
 
@@ -63,6 +67,15 @@ export default function CookieConsentManagement({
     }
     confirmChoices(choices)
   }
+
+  useEffect(() => {
+    if (choices?.[CookieConsentKey.googleAds] !== undefined) {
+      setValue(
+        CookieConsentKey.googleAds,
+        choices[CookieConsentKey.googleAds] ? 'accept' : 'refuse'
+      )
+    }
+  }, [choices, setValue])
 
   return (
     <Modal

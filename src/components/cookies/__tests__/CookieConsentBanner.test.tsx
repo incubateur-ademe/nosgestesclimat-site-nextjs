@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { describe, expect, it, vi } from 'vitest'
 import CookieConsentBanner from '../CookieConsentBanner'
 
 // Mock ReactModal
-jest.mock('react-modal', () => {
-  return function MockReactModal({
+vi.mock('react-modal', () => ({
+  default: function MockReactModal({
     isOpen,
     children,
     onAfterClose,
@@ -20,12 +21,12 @@ jest.mock('react-modal', () => {
         {children}
       </div>
     )
-  }
-})
+  },
+}))
 
 // Mock Link component
-jest.mock('@/components/Link', () => {
-  return function MockLink({
+vi.mock('@/components/Link', () => ({
+  default: function MockLink({
     href,
     children,
     className,
@@ -39,54 +40,60 @@ jest.mock('@/components/Link', () => {
         {children}
       </a>
     )
-  }
-})
+  },
+}))
 
 describe('CookieConsentBanner', () => {
   const defaultProps = {
     isVisible: true,
-    setIsVisible: jest.fn(),
+    setIsVisible: vi.fn(),
     isBoardOpen: false,
-    openSettings: jest.fn(),
-    refuseAll: jest.fn(),
-    acceptAll: jest.fn(),
+    openSettings: vi.fn(),
+    refuseAll: vi.fn(),
+    acceptAll: vi.fn(),
   }
 
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   it('should render when visible and board is not open', () => {
     render(<CookieConsentBanner {...defaultProps} />)
 
-    expect(screen.getByTestId('modal')).toBeTruthy()
-    expect(screen.getByTestId('cookie-banner-title')).toBeTruthy()
-    expect(screen.getByTestId('cookie-banner-description')).toBeTruthy()
+    expect(screen.getByTestId('modal')).toBeInTheDocument()
+    expect(screen.getByTestId('cookie-banner-title')).toBeInTheDocument()
+    expect(screen.getByTestId('cookie-banner-description')).toBeInTheDocument()
   })
 
   it('should not render when not visible', () => {
     render(<CookieConsentBanner {...defaultProps} isVisible={false} />)
 
-    expect(screen.queryByTestId('modal')).not.toBeTruthy()
+    expect(screen.queryByTestId('modal')).not.toBeInTheDocument()
   })
 
   it('should not render when board is open', () => {
     render(<CookieConsentBanner {...defaultProps} isBoardOpen={true} />)
 
-    expect(screen.queryByTestId('modal')).not.toBeTruthy()
+    expect(screen.queryByTestId('modal')).not.toBeInTheDocument()
   })
 
   it('should render all three buttons', () => {
     render(<CookieConsentBanner {...defaultProps} />)
 
-    expect(screen.getByTestId('cookie-banner-customize-button')).toBeTruthy()
-    expect(screen.getByTestId('cookie-banner-refuse-button')).toBeTruthy()
-    expect(screen.getByTestId('cookie-banner-accept-button')).toBeTruthy()
+    expect(
+      screen.getByTestId('cookie-banner-customize-button')
+    ).toBeInTheDocument()
+    expect(
+      screen.getByTestId('cookie-banner-refuse-button')
+    ).toBeInTheDocument()
+    expect(
+      screen.getByTestId('cookie-banner-accept-button')
+    ).toBeInTheDocument()
   })
 
   it('should call openSettings when Personnaliser button is clicked', async () => {
     const user = userEvent.setup()
-    const openSettings = jest.fn()
+    const openSettings = vi.fn()
 
     render(
       <CookieConsentBanner {...defaultProps} openSettings={openSettings} />
@@ -98,7 +105,7 @@ describe('CookieConsentBanner', () => {
 
   it('should call refuseAll when Tout refuser button is clicked', async () => {
     const user = userEvent.setup()
-    const refuseAll = jest.fn()
+    const refuseAll = vi.fn()
 
     render(<CookieConsentBanner {...defaultProps} refuseAll={refuseAll} />)
 
@@ -108,7 +115,7 @@ describe('CookieConsentBanner', () => {
 
   it('should call acceptAll when Tout accepter button is clicked', async () => {
     const user = userEvent.setup()
-    const acceptAll = jest.fn()
+    const acceptAll = vi.fn()
 
     render(<CookieConsentBanner {...defaultProps} acceptAll={acceptAll} />)
 
@@ -118,7 +125,7 @@ describe('CookieConsentBanner', () => {
 
   it('should call setIsVisible when modal is closed', async () => {
     const user = userEvent.setup()
-    const setIsVisible = jest.fn()
+    const setIsVisible = vi.fn()
 
     render(
       <CookieConsentBanner {...defaultProps} setIsVisible={setIsVisible} />
@@ -131,13 +138,13 @@ describe('CookieConsentBanner', () => {
   it('should render the correct title', () => {
     render(<CookieConsentBanner {...defaultProps} />)
 
-    expect(screen.getByTestId('cookie-banner-title')).toBeTruthy()
+    expect(screen.getByTestId('cookie-banner-title')).toBeInTheDocument()
   })
 
   it('should render the correct description text', () => {
     render(<CookieConsentBanner {...defaultProps} />)
 
-    expect(screen.getByTestId('cookie-banner-description')).toBeTruthy()
+    expect(screen.getByTestId('cookie-banner-description')).toBeInTheDocument()
   })
 
   it('should have proper button styling classes', () => {
@@ -158,9 +165,9 @@ describe('CookieConsentBanner', () => {
 
   it('should handle multiple button clicks correctly', async () => {
     const user = userEvent.setup()
-    const openSettings = jest.fn()
-    const refuseAll = jest.fn()
-    const acceptAll = jest.fn()
+    const openSettings = vi.fn()
+    const refuseAll = vi.fn()
+    const acceptAll = vi.fn()
 
     render(
       <CookieConsentBanner
@@ -184,18 +191,18 @@ describe('CookieConsentBanner', () => {
     render(<CookieConsentBanner {...defaultProps} />)
 
     const modal = screen.getByTestId('modal')
-    expect(modal).toBeTruthy()
+    expect(modal).toBeInTheDocument()
   })
 
   it('should handle state changes correctly', () => {
     const { rerender } = render(<CookieConsentBanner {...defaultProps} />)
 
     // Initially visible
-    expect(screen.getByTestId('modal')).toBeTruthy()
+    expect(screen.getByTestId('modal')).toBeInTheDocument()
 
     // Hide when isVisible is false
     rerender(<CookieConsentBanner {...defaultProps} isVisible={false} />)
-    expect(screen.queryByTestId('modal')).not.toBeTruthy()
+    expect(screen.queryByTestId('modal')).not.toBeInTheDocument()
 
     // Hide when isBoardOpen is true
     rerender(
@@ -205,14 +212,14 @@ describe('CookieConsentBanner', () => {
         isBoardOpen={true}
       />
     )
-    expect(screen.queryByTestId('modal')).not.toBeTruthy()
+    expect(screen.queryByTestId('modal')).not.toBeInTheDocument()
   })
 
   it('should render accessibility attributes correctly', () => {
     render(<CookieConsentBanner {...defaultProps} />)
 
     const modal = screen.getByTestId('modal')
-    expect(modal).toBeTruthy()
+    expect(modal).toBeInTheDocument()
   })
 
   it('should handle edge cases with empty functions', async () => {
@@ -234,6 +241,6 @@ describe('CookieConsentBanner', () => {
     await user.click(screen.getByTestId('cookie-banner-accept-button'))
 
     // Should still render correctly
-    expect(screen.getByTestId('modal')).toBeTruthy()
+    expect(screen.getByTestId('modal')).toBeInTheDocument()
   })
 })
