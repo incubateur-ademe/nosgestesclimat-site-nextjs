@@ -49,6 +49,8 @@ export const marianne = localFont({
     },
   ],
   variable: '--font-marianne',
+  display: 'swap',
+  preload: true,
 })
 
 export default async function RootLayout({
@@ -122,7 +124,9 @@ export default async function RootLayout({
               </Script>
             )
           }
-          <Script src="https://tally.so/widgets/embed.js"></Script>
+          <Script
+            src="https://tally.so/widgets/embed.js"
+            strategy="lazyOnload"></Script>
         </head>
 
         <MainLayoutProviders>

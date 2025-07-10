@@ -111,7 +111,7 @@ export default async function ArticlePage({
 
           <div className="md:w-4/12">
             <Image
-              className="rounded-md border border-gray-200"
+              className="rounded-md"
               src={article.image?.url ?? ''}
               alt={article.image?.alternativeText ?? ''}
               width={420}

@@ -256,7 +256,6 @@ entries:
   Question pour l'utilisateur: Question for the user
   Fermer le menu: Close menu
   Plan du site: Site map
-  'Vous pouvez nous contacter via notre page de contact : <2>accéder à notre page de contact</2>.': 'You can contact us via our contact page: <2>go to our contact page</2>.'
   Pour toute autre remarque ou question, vous pouvez nous envoyer un message via le formulaire de contact ci-dessous.: If you have any other comments or questions, please send us a message using the contact form below.
   N'hésitez pas à consulter notre <2>FAQ</2> avant de nous écrire, vous y trouverez sans doute la réponse à votre question !: Don't hesitate to consult our <2>FAQ</2> before writing to us - you're sure to find the answer to your question there!
   Le modèle Nos Gestes Climat: The Nos Gestes Climat model
@@ -372,7 +371,6 @@ entries:
   '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.administrator?.name} has invited you to join the <3>{group?.name}</3> group'
   'Moyenne :': 'Average :'
   Votre code postal: Your postcode
-  Modifications sauvegardées: Changes saved
   Pour conserver vos résultats et les retrouver à l’avenir: To keep your results and find them again in the future
   Se déconnecter de votre espace organisation: Logging out of your organisation space
   Veuillez entrer votre code postal: Please enter your postcode
@@ -506,7 +504,6 @@ entries:
   Diffusion: Broadcast
   Répondre sur les 3 dernières années: Answer for the last 3 years
   Créer mon organisation: Create my organisation
-  Une erreur s'est produite au moment de la sauvegarde de vos paramètres: An error occurred when saving your settings
   Mettre à jour mes informations: Update my information
   Simulations terminées: Completed simulations
   Ce champ est requis.: This field is required.
@@ -1052,7 +1049,6 @@ entries:
   La valeur maximum pour ce champ est de: The maximum value for this field is
   La valeur pour ce champ est comprise entre: The value for this field is between
   En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.: By taking part, you agree to your results being shared anonymously with this organisation.
-  Aide: Help
   Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.: We are talking here about the "Organisations" and "Challenge your friends" modes. This section is generated via Metabase.
   Empreinte eau, voir le détail ci-dessous: Water footprint, see details below
   Empreinte carbone, voir le détail ci-dessous: Carbon footprint, see details below
@@ -1158,7 +1154,6 @@ entries:
   Votre code postal, rejoindre une campagne - Nos Gestes Climat: Your postcode, join a campaign - Nos Gestes Climat
   Mon groupe - Nos Gestes Climat: My Group - Nos Gestes Climat
   Les nouveautés du calculateur - Nos Gestes Climat: Changelog - Nos Gestes Climat
-  Nos Gestes Climat, calculez votre empreinte carbone et eau: Nos Gestes Climat, calculate your carbon and water footprint
   Votre date de naissance, rejoindre une campagne - Nos Gestes Climat: Your date of birth, join a campaign - Nos Gestes Climat
   Mes empreintes carbone et eau partagées - Nos Gestes Climat: My shared carbon and water footprints - Nos Gestes Climat
   Nos Gestes Climat, calculez votre empreinte climatique, mode intégré: Nos Gestes Climat, calculate your climate footprint, integrated mode
@@ -1298,3 +1293,6 @@ entries:
   Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.: We use cookies to understand how you use the product and to help us improve it. If you do not wish to be tracked, you can refuse them.
   Vos réponses ne vous permettent pas de sélectionner ce geste ; il va être retiré de la liste de vos actions suggérées.: Your answers do not allow you to select this action; it will be removed from the list of suggested actions.
   Bannière de consentement aux cookies: cookies.banner.contentLabel
+  'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'You can contact us via our contact page: <2></2>.'
+  Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calculate your carbon and water footprint with Nos Gestes Climat
+  Comme 2 millions de personnes, mesurez votre empreinte en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Like 2 million other people, measure your footprint in 10 minutes. A free tool to take stock and reduce your CO2 emissions.

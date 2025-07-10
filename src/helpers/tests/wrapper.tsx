@@ -20,9 +20,10 @@ import '@testing-library/jest-dom'
 import type { RenderOptions } from '@testing-library/react'
 import { render } from '@testing-library/react'
 import type { ReactElement } from 'react'
+import { vi } from 'vitest'
 
 // Mock useRules
-jest.mock('@/hooks/useRules', () => ({
+vi.mock('@/hooks/useRules', () => ({
   useRules: () => ({
     data: rules,
     isLoading: false,
@@ -31,7 +32,7 @@ jest.mock('@/hooks/useRules', () => ({
 }))
 
 // Mock getGeolocation
-jest.mock('@/helpers/api/getGeolocation', () => ({
+vi.mock('@/helpers/api/getGeolocation', () => ({
   getGeolocation: () => Promise.resolve(undefined),
 }))
 
@@ -79,7 +80,7 @@ const defaultState = {
   tutorials: {},
   simulations: [defaultSimulation],
   currentSimulationId: defaultSimulation.id,
-  updateCurrentSimulation: jest.fn(),
+  updateCurrentSimulation: vi.fn(),
 }
 
 type ProviderConfig = {

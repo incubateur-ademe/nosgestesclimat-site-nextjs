@@ -214,7 +214,6 @@ entries:
   N'hésitez pas à consulter notre <2>FAQ</2> avant de nous écrire, vous y trouverez sans doute la réponse à votre question !: N'hésitez pas à consulter notre <2>FAQ</2> avant de nous écrire, vous y trouverez sans doute la réponse à votre question !
   Plan du site: Plan du site
   Pour toute autre remarque ou question, vous pouvez nous envoyer un message via le formulaire de contact ci-dessous.: Pour toute autre remarque ou question, vous pouvez nous envoyer un message via le formulaire de contact ci-dessous.
-  'Vous pouvez nous contacter via notre page de contact : <2>accéder à notre page de contact</2>.': 'Vous pouvez nous contacter via notre page de contact : <2>accéder à notre page de contact</2>.'
   FAQ: FAQ
   Le modèle Nos Gestes Climat: Le modèle Nos Gestes Climat
   Nos actions pour réduire votre empreinte: Nos actions pour réduire votre empreinte
@@ -310,7 +309,6 @@ entries:
   Impact CO2: Impact CO2
   Me connecter: Me connecter
   Mes données restent-elles privées ?: Mes données restent-elles privées ?
-  Modifications sauvegardées: Modifications sauvegardées
   Mon organisation: Mon organisation
   'Moyenne :': 'Moyenne :'
   Moyenne du groupe par catégorie: Moyenne du groupe par catégorie
@@ -454,7 +452,6 @@ entries:
   Inscription à nos e-mails: Inscription à nos e-mails
   Mettre à jour mes informations: Mettre à jour mes informations
   Simulations terminées: Simulations terminées
-  Une erreur s'est produite au moment de la sauvegarde de vos paramètres: Une erreur s'est produite au moment de la sauvegarde de vos paramètres
   Votre nom: Votre nom
   Vous pouvez vous désincrire à tout moment: Vous pouvez vous désincrire à tout moment
   Questions complémentaires: Questions complémentaires
@@ -998,7 +995,6 @@ entries:
   La valeur pour ce champ est comprise entre: La valeur pour ce champ est comprise entre
   En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.: En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.
   '{{signe}} {{value}} {{unit}} sur votre empreinte {{metric}}': '{{signe}} {{value}} {{unit}} sur votre empreinte {{metric}}'
-  Aide: Aide
   Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.: Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.
   Affichez le détail de votre empreinte carbone ou eau en cliquant sur les cartes ci-dessus.: Affichez le détail de votre empreinte carbone ou eau en cliquant sur les cartes ci-dessus.
   "C'est pourtant bien l'eau qui sert à produire ce que vous consommez : votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.": "C'est pourtant bien l'eau qui sert à produire ce que vous consommez : votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau."
@@ -1101,7 +1097,6 @@ entries:
   Mes groupes d'amis, calculer vos empreintes carbone et eau à plusieurs - Nos Gestes Climat: Mes groupes d'amis, calculer vos empreintes carbone et eau à plusieurs - Nos Gestes Climat
   Mon groupe - Nos Gestes Climat: Mon groupe - Nos Gestes Climat
   Mon profil - Nos Gestes Climat: Mon profil - Nos Gestes Climat
-  Nos Gestes Climat, calculez votre empreinte carbone et eau: Nos Gestes Climat, calculez votre empreinte carbone et eau
   Nos Gestes Climat, calculez votre empreinte climatique, mode intégré: Nos Gestes Climat, calculez votre empreinte climatique, mode intégré
   Paramètres de ma campagne - Nos Gestes Climat: Paramètres de ma campagne - Nos Gestes Climat
   Paramètres de mon organisation - Nos Gestes Climat: Paramètres de mon organisation - Nos Gestes Climat
@@ -1229,3 +1224,6 @@ entries:
   Refuser les cookies: Refuser les cookies
   Vos réponses ne vous permettent pas de sélectionner ce geste ; il va être retiré de la liste de vos actions suggérées.: Vos réponses ne vous permettent pas de sélectionner ce geste ; il va être retiré de la liste de vos actions suggérées.
   Bannière de consentement aux cookies: cookies.banner.contentLabel
+  Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calculez votre empreinte carbone et eau avec Nos Gestes Climat
+  Comme 2 millions de personnes, mesurez votre empreinte en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Comme 2 millions de personnes, mesurez votre empreinte en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.
+  'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'Vous pouvez nous contacter via notre page de contact : <2></2>.'

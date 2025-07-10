@@ -260,7 +260,6 @@ module.exports = {
       },
       screens: {
         xs: '320px',
-        short: { raw: '(max-height: 600px)' },
       },
     },
   },
