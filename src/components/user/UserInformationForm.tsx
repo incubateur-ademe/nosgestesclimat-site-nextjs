@@ -84,7 +84,7 @@ export default function UserInformationForm({
   const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
     user?.userId ?? ''
   )
-  console.log({ newsletterSubscriptions })
+
   useEffect(() => {
     if (!newsletterSubscriptions && !defaultValues) return
 
@@ -135,7 +135,7 @@ export default function UserInformationForm({
 
       await updateUserSettings({
         name: data.name,
-        email: user.email ?? '',
+        email: user.email ?? data.email ?? '',
         newsletterIds: newslettersArray,
         userId: user?.userId,
       })
