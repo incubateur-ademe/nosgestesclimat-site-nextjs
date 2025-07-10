@@ -31,11 +31,11 @@ const DynamicCTAButtons = dynamic(
   { loading: () => <CTAButtonsPlaceholder /> }
 )
 export const generateMetadata = getCommonMetadata({
-  title: t('Nos Gestes Climat, calculez votre empreinte carbone et eau'),
+  title: t('Calculez votre empreinte carbone et eau avec Nos Gestes Climat'),
   image:
     'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/calculer_empreinte_carbone_et_eau_7d061171e4.png',
   description: t(
-    "2 millions de personnes ont déjà calculé leur empreinte sur le climat avec le calculateur Nos Gestes Climat ! Et vous, qu'attendez-vous pour faire le test ?"
+    'Comme 2 millions de personnes, mesurez votre empreinte en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.'
   ),
   alternates: {
     canonical: '',
