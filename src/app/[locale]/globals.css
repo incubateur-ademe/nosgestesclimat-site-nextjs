@@ -506,6 +506,14 @@ html[data-useragent*='Trident'] #js {
   @apply -mt-2 text-sm text-gray-700 italic;
 }
 
+.markdown ol {
+  @apply list-decimal!;
+}
+
+.markdown ol > li {
+  @apply mb-2;
+}
+
 @keyframes rainbow {
   0% {
     background-position: 100% 50%;
