@@ -1,4 +1,4 @@
-import type { JSX, PropsWithChildren } from 'react'
+import type { ElementType, PropsWithChildren } from 'react'
 
 export default function Container({
   children,
@@ -7,7 +7,7 @@ export default function Container({
   maxWidth,
 }: PropsWithChildren<{
   className?: string
-  tag?: () => JSX.Element
+  tag?: ElementType
   maxWidth?: string
 }>) {
   const Tag = tag ?? 'div'
