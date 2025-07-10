@@ -1,12 +1,10 @@
 name: Storybook
 
 on:
-  pull_request:
-    types: [opened, synchronize]
+  workflow_dispatch:
   push:
     branches:
-      - '!main'
-      - '!preprod'
+      - 'preprod'
 
 jobs:
   build_and_deploy:
