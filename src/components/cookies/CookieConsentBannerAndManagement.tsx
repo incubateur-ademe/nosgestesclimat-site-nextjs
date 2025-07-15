@@ -28,6 +28,9 @@ export default function CookieConsentBannerAndManagement() {
     cookieConsent,
     cookieCustomChoice,
   } = useCookieConsent()
+  console.log('isBoardOpen', isBoardOpen)
+  console.log('cookieConsent', cookieConsent)
+  console.log('cookieCustomChoice', cookieCustomChoice)
 
   useEffect(() => {
     const hasConsent = safeLocalStorage.getItem(COOKIE_CONSENT_KEY)
