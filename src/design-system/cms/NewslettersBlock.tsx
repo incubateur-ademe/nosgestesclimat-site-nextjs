@@ -125,6 +125,8 @@ export default function NewslettersBlock() {
   }, [user?.email, user?.name, setValue])
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setIsNewsletterError(false)
+
     // If the mutation is pending, we do nothing
     if (isPending || isPendingUnsubscribe) {
       return
