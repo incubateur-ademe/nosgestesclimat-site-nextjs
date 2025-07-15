@@ -189,6 +189,50 @@ describe('UserInformationForm', () => {
         screen.queryByTestId('email-input-readonly')
       ).not.toBeInTheDocument()
     })
+
+    it('should not display newsletter section when locale is not French', () => {
+      mockUseLocale.mockReturnValue('en')
+
+      renderComponent()
+
+      expect(
+        screen.queryByText('Inscription à nos e-mails')
+      ).not.toBeInTheDocument()
+      expect(
+        screen.queryByTestId('newsletter-saisonniere-checkbox')
+      ).not.toBeInTheDocument()
+      expect(
+        screen.queryByTestId('newsletter-transports-checkbox')
+      ).not.toBeInTheDocument()
+      expect(
+        screen.queryByTestId('newsletter-logement-checkbox')
+      ).not.toBeInTheDocument()
+    })
+
+    it('should display custom submit label when provided', () => {
+      renderComponent({
+        submitLabel: 'Custom Submit Label',
+      })
+
+      expect(screen.getByText('Custom Submit Label')).toBeInTheDocument()
+    })
+
+    it('should display default submit label when not provided', () => {
+      renderComponent()
+
+      expect(
+        screen.getByText('Mettre à jour mes informations')
+      ).toBeInTheDocument()
+    })
+
+    it('should apply custom className when provided', () => {
+      const { container } = renderComponent({
+        className: 'custom-class',
+      })
+
+      const formContainer = container.firstChild as HTMLElement
+      expect(formContainer).toHaveClass('custom-class')
+    })
   })
 
   describe('Form submission', () => {
@@ -267,6 +311,75 @@ describe('UserInformationForm', () => {
       })
     })
 
+    it('should use legacy hook when shouldUseLegacyHook is true', async () => {
+      const user = userEvent.setup()
+
+      renderComponent({
+        shouldUseLegacyHook: true,
+      })
+
+      const nameInput = screen.getByTestId('name-input')
+      await user.clear(nameInput)
+      await user.type(nameInput, 'John Doe')
+
+      const submitButton = screen.getByTestId('submit-button')
+      await user.click(submitButton)
+
+      await waitFor(() => {
+        expect(mockUnsubscribeFromNewsletters).toHaveBeenCalledWith({
+          name: 'John Doe',
+          email: 'john@example.com',
+          newsletterIds: {
+            [LIST_MAIN_NEWSLETTER]: true,
+            [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: true,
+            [LIST_NOS_GESTES_LOGEMENT_NEWSLETTER]: false,
+          },
+        })
+      })
+
+      expect(mockUpdateUserSettings).not.toHaveBeenCalled()
+    })
+
+    it('should use legacy hook when shouldUseLegacyHook is true even with increased subscriptions', async () => {
+      const user = userEvent.setup()
+
+      // User is subscribed to 1 newsletter
+      mockUseGetNewsletterSubscriptions.mockReturnValue({
+        data: [LIST_MAIN_NEWSLETTER],
+      })
+
+      renderComponent({
+        shouldUseLegacyHook: true,
+      })
+
+      const nameInput = screen.getByTestId('name-input')
+      await user.clear(nameInput)
+      await user.type(nameInput, 'John Doe')
+
+      // Check transport newsletter to increase subscriptions
+      const transportCheckbox = screen.getByTestId(
+        'newsletter-transports-checkbox'
+      )
+      await user.click(transportCheckbox)
+
+      const submitButton = screen.getByTestId('submit-button')
+      await user.click(submitButton)
+
+      await waitFor(() => {
+        expect(mockUnsubscribeFromNewsletters).toHaveBeenCalledWith({
+          name: 'John Doe',
+          email: 'john@example.com',
+          newsletterIds: {
+            [LIST_MAIN_NEWSLETTER]: true,
+            [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: true,
+            [LIST_NOS_GESTES_LOGEMENT_NEWSLETTER]: false,
+          },
+        })
+      })
+
+      expect(mockUpdateUserSettings).not.toHaveBeenCalled()
+    })
+
     it('should update user email when shouldForceEmailEditable is true', async () => {
       const user = userEvent.setup()
 
@@ -299,6 +412,80 @@ describe('UserInformationForm', () => {
         },
         { timeout: 3000 }
       )
+    })
+
+    it('should update user email when user has no email and new email is provided', async () => {
+      const user = userEvent.setup()
+
+      mockUseUser.mockReturnValue({
+        user: { ...mockUser, email: undefined },
+        updateEmail: mockUpdateEmail,
+        updateName: mockUpdateName,
+      })
+
+      renderWithWrapper(<UserInformationForm title={<h2>Test Form</h2>} />, {
+        user: { ...mockUser, email: undefined },
+        providers: {
+          queryClient: true,
+          errorBoundary: true,
+          user: true,
+        },
+      })
+
+      const nameInput = screen.getByTestId('name-input')
+      await user.clear(nameInput)
+      await user.type(nameInput, 'John Doe')
+
+      const emailInput = screen.getByTestId('email-input-editable')
+      await user.clear(emailInput)
+      await user.type(emailInput, 'newemail@example.com')
+
+      const submitButton = screen.getByTestId('submit-button')
+      await user.click(submitButton)
+
+      await waitFor(() => {
+        expect(mockUpdateEmail).toHaveBeenCalledWith('newemail@example.com')
+      })
+    })
+
+    it('should not update user email when no email is provided in form', async () => {
+      const user = userEvent.setup()
+
+      renderComponent({
+        shouldForceEmailEditable: true,
+      })
+
+      const nameInput = screen.getByTestId('name-input')
+      await user.clear(nameInput)
+      await user.type(nameInput, 'John Doe')
+
+      // Clear the email field to ensure no email is provided
+      const emailInput = screen.getByTestId('email-input-editable')
+      await user.clear(emailInput)
+
+      const submitButton = screen.getByTestId('submit-button')
+      await user.click(submitButton)
+
+      await waitFor(() => {
+        expect(mockUpdateEmail).not.toHaveBeenCalled()
+      })
+    })
+
+    it('should not update user name when no name is provided in form', async () => {
+      const user = userEvent.setup()
+
+      renderComponent()
+
+      // Clear the name field to ensure no name is provided
+      const nameInput = screen.getByTestId('name-input')
+      await user.clear(nameInput)
+
+      const submitButton = screen.getByTestId('submit-button')
+      await user.click(submitButton)
+
+      await waitFor(() => {
+        expect(mockUpdateName).not.toHaveBeenCalled()
+      })
     })
 
     it('should display success message after successful submission', async () => {
@@ -391,6 +578,40 @@ describe('UserInformationForm', () => {
         { timeout: 3000 }
       )
     })
+
+    it('should handle form submission with empty name when user has no name', async () => {
+      const user = userEvent.setup()
+
+      mockUseUser.mockReturnValue({
+        user: { ...mockUser, name: undefined },
+        updateEmail: mockUpdateEmail,
+        updateName: mockUpdateName,
+      })
+
+      renderWithWrapper(<UserInformationForm title={<h2>Test Form</h2>} />, {
+        user: { ...mockUser, name: undefined },
+        providers: {
+          queryClient: true,
+          errorBoundary: true,
+          user: true,
+        },
+      })
+
+      const submitButton = screen.getByTestId('submit-button')
+      await user.click(submitButton)
+
+      await waitFor(() => {
+        expect(mockUpdateUserSettings).toHaveBeenCalledWith({
+          name: '',
+          email: 'john@example.com',
+          newsletterIds: [
+            LIST_MAIN_NEWSLETTER,
+            LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
+          ],
+          userId: 'test-user-id',
+        })
+      })
+    })
   })
 
   describe('Default values handling', () => {
@@ -448,6 +669,24 @@ describe('UserInformationForm', () => {
         screen.getByTestId('newsletter-logement-checkbox')
       ).toBeInTheDocument()
     })
+
+    it('should handle defaultValues with false value', () => {
+      mockUseGetNewsletterSubscriptions.mockReturnValue({
+        data: [LIST_MAIN_NEWSLETTER, LIST_NOS_GESTES_TRANSPORT_NEWSLETTER],
+      })
+
+      renderComponent({
+        defaultValues: {
+          'newsletter-transports': false,
+        },
+      })
+
+      // The checkbox should still be present
+      const transportsCheckbox = screen.getByTestId(
+        'newsletter-transports-checkbox'
+      )
+      expect(transportsCheckbox).toBeInTheDocument()
+    })
   })
 
   describe('Loading states', () => {
@@ -476,6 +715,131 @@ describe('UserInformationForm', () => {
 
       const submitButton = screen.getByTestId('submit-button')
       expect(submitButton).toHaveAttribute('aria-disabled', 'true')
+    })
+
+    it('should show loading state when both hooks are pending', () => {
+      mockUseUpdateUserSettings.mockReturnValue({
+        mutateAsync: mockUpdateUserSettings,
+        isPending: true,
+        isError: false,
+        isSuccess: false,
+      })
+      mockUseUnsubscribeFromNewsletters.mockReturnValue({
+        mutateAsync: mockUnsubscribeFromNewsletters,
+        isPending: true,
+        isError: false,
+      })
+
+      renderComponent()
+
+      const submitButton = screen.getByTestId('submit-button')
+      expect(submitButton).toHaveAttribute('aria-disabled', 'true')
+    })
+  })
+
+  describe('Form validation', () => {
+    it('should show validation error when name is required and empty', async () => {
+      const user = userEvent.setup()
+
+      renderComponent()
+
+      const nameInput = screen.getByTestId('name-input')
+      await user.clear(nameInput)
+
+      const submitButton = screen.getByTestId('submit-button')
+      await user.click(submitButton)
+
+      await waitFor(() => {
+        expect(screen.getByText('Ce champ est requis.')).toBeInTheDocument()
+      })
+    })
+
+    it('should not show validation error when name is required but user has no name', async () => {
+      const user = userEvent.setup()
+
+      mockUseUser.mockReturnValue({
+        user: { ...mockUser, name: undefined },
+        updateEmail: mockUpdateEmail,
+        updateName: mockUpdateName,
+      })
+
+      renderWithWrapper(<UserInformationForm title={<h2>Test Form</h2>} />, {
+        user: { ...mockUser, name: undefined },
+        providers: {
+          queryClient: true,
+          errorBoundary: true,
+          user: true,
+        },
+      })
+
+      const submitButton = screen.getByTestId('submit-button')
+      await user.click(submitButton)
+
+      // Should not show validation error since name is not required when user has no name
+      expect(screen.queryByText('Ce champ est requis.')).not.toBeInTheDocument()
+    })
+  })
+
+  describe('Newsletter interactions', () => {
+    it('should handle newsletter checkbox interactions', async () => {
+      const user = userEvent.setup()
+
+      renderComponent()
+
+      const saisonniereCheckbox = screen.getByTestId(
+        'newsletter-saisonniere-checkbox'
+      )
+      const transportsCheckbox = screen.getByTestId(
+        'newsletter-transports-checkbox'
+      )
+      const logementCheckbox = screen.getByTestId(
+        'newsletter-logement-checkbox'
+      )
+
+      // Initially all should be checked based on mock data
+      expect(saisonniereCheckbox).toBeChecked()
+      expect(transportsCheckbox).toBeChecked()
+      expect(logementCheckbox).not.toBeChecked()
+
+      // Toggle logement newsletter
+      await user.click(logementCheckbox)
+      expect(logementCheckbox).toBeChecked()
+
+      // Toggle saisonniere newsletter
+      await user.click(saisonniereCheckbox)
+      expect(saisonniereCheckbox).not.toBeChecked()
+    })
+
+    it('should submit form with correct newsletter state after interactions', async () => {
+      const user = userEvent.setup()
+
+      renderComponent()
+
+      const saisonniereCheckbox = screen.getByTestId(
+        'newsletter-saisonniere-checkbox'
+      )
+      const logementCheckbox = screen.getByTestId(
+        'newsletter-logement-checkbox'
+      )
+
+      // Toggle newsletters
+      await user.click(saisonniereCheckbox) // uncheck
+      await user.click(logementCheckbox) // check
+
+      const submitButton = screen.getByTestId('submit-button')
+      await user.click(submitButton)
+
+      await waitFor(() => {
+        expect(mockUpdateUserSettings).toHaveBeenCalledWith({
+          name: 'John Doe',
+          email: 'john@example.com',
+          newsletterIds: [
+            LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
+            LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
+          ],
+          userId: 'test-user-id',
+        })
+      })
     })
   })
 })

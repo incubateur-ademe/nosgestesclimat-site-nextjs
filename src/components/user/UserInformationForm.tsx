@@ -134,7 +134,7 @@ export default function UserInformationForm({
       const newslettersArray = formatListIdsFromObject(newsletterIds)
 
       if (
-        !shouldUseLegacyHook ||
+        shouldUseLegacyHook ||
         (newsletterSubscriptions &&
           newslettersArray.length < newsletterSubscriptions.length)
       ) {
