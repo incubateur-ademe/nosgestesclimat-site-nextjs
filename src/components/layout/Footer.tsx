@@ -25,6 +25,7 @@ import { useLocale } from '@/hooks/useLocale'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
+import { useCookieConsent } from '../cookies/CookieConsentProvider'
 import Link from '../Link'
 import LogoLink from '../misc/LogoLink'
 import LanguageSwitchButton from '../translation/LanguageSwitchButton'
@@ -46,6 +47,8 @@ export default function Footer({
 }) {
   const pathname = usePathname()
   const locale = useLocale()
+
+  const { setIsBoardOpen } = useCookieConsent()
 
   const { isIframeOnlySimulation } = useIframe()
 
@@ -76,108 +79,129 @@ export default function Footer({
             <p className="text-default mb-0 text-sm font-bold">
               <Trans>À propos</Trans>
             </p>
-            <InlineLink
-              href="/a-propos"
-              onClick={() => trackEvent(footerClickQuiSommesNous)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans>Qui sommes-nous</Trans>
-            </InlineLink>
-
-            <InlineLink
-              href="/plan-du-site"
-              onClick={() => trackEvent(footerClickPlanSite)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans>Plan du site</Trans>
-            </InlineLink>
-
-            <InlineLink
-              href="/contact"
-              onClick={() => trackEvent(footerClickContact)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans>Contact</Trans>
-            </InlineLink>
-
-            <InlineLink
-              href="/international"
-              onClick={() => trackEvent(footerClickInternational)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans>International</Trans>
-            </InlineLink>
-
-            <InlineLink
-              href="/stats"
-              onClick={() => trackEvent(footerClickStats)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans>Statistiques</Trans>
-            </InlineLink>
+            <ul>
+              <li>
+                <InlineLink
+                  href="/a-propos"
+                  onClick={() => trackEvent(footerClickQuiSommesNous)}
+                  className="text-default text-sm no-underline hover:underline">
+                  <Trans>Qui sommes-nous</Trans>
+                </InlineLink>
+              </li>
+              <li>
+                <InlineLink
+                  href="/plan-du-site"
+                  onClick={() => trackEvent(footerClickPlanSite)}
+                  className="text-default text-sm no-underline hover:underline">
+                  <Trans>Plan du site</Trans>
+                </InlineLink>
+              </li>
+              <li>
+                <InlineLink
+                  href="/contact"
+                  onClick={() => trackEvent(footerClickContact)}
+                  className="text-default text-sm no-underline hover:underline">
+                  <Trans>Contact</Trans>
+                </InlineLink>
+              </li>
+              <li>
+                <InlineLink
+                  href="/international"
+                  onClick={() => trackEvent(footerClickInternational)}
+                  className="text-default text-sm no-underline hover:underline">
+                  <Trans>International</Trans>
+                </InlineLink>
+              </li>
+              <li>
+                <InlineLink
+                  href="/stats"
+                  onClick={() => trackEvent(footerClickStats)}
+                  className="text-default text-sm no-underline hover:underline">
+                  <Trans>Statistiques</Trans>
+                </InlineLink>
+              </li>
+            </ul>
           </div>
 
           <div className="flex flex-col gap-y-2">
             <p className="text-default mb-0 text-sm font-bold">
               <Trans>Diffusion</Trans>
             </p>
-            <InlineLink
-              href="/diffuser"
-              onClick={() => trackEvent(footerClickDiffusion)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans>Diffuser Nos Gestes Climat</Trans>
-            </InlineLink>
-
-            <InlineLink
-              href="/organisations"
-              onClick={() => trackEvent(footerClickOrganisations)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans>Organisations</Trans>
-            </InlineLink>
-
-            <InlineLink
-              href="/nos-relais"
-              onClick={() => trackEvent(footerClickAmbassadeurs)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans>Relais et partenaires</Trans>
-            </InlineLink>
+            <ul>
+              <li>
+                <InlineLink
+                  href="/diffuser"
+                  onClick={() => trackEvent(footerClickDiffusion)}
+                  className="text-default text-sm no-underline hover:underline">
+                  <Trans>Diffuser Nos Gestes Climat</Trans>
+                </InlineLink>
+              </li>
+              <li>
+                <InlineLink
+                  href="/organisations"
+                  onClick={() => trackEvent(footerClickOrganisations)}
+                  className="text-default text-sm no-underline hover:underline">
+                  <Trans>Organisations</Trans>
+                </InlineLink>
+              </li>
+              <li>
+                <InlineLink
+                  href="/nos-relais"
+                  onClick={() => trackEvent(footerClickAmbassadeurs)}
+                  className="text-default text-sm no-underline hover:underline">
+                  <Trans>Relais et partenaires</Trans>
+                </InlineLink>
+              </li>
+            </ul>
           </div>
 
           <div className="flex flex-col gap-y-2">
             <p className="text-default mb-0 text-sm font-bold">
               <Trans>Ressources</Trans>
             </p>
-
-            <InlineLink
-              href="/blog"
-              onClick={() => trackEvent(footerClickBlog)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans>Blog</Trans>
-            </InlineLink>
-
-            <InlineLink
-              href="/documentation"
-              onClick={() => trackEvent(footerClickDocumentation)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans>Documentation</Trans>
-            </InlineLink>
-
-            <InlineLink
-              href="/questions-frequentes"
-              onClick={() => trackEvent(footerClickFAQ)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans>FAQ</Trans>
-            </InlineLink>
-
-            <InlineLink
-              href="/nouveautes"
-              onClick={() => trackEvent(footerClickNouveautes)}
-              className="text-default text-sm no-underline hover:underline">
-              <Trans>Nouveautés</Trans>
-            </InlineLink>
-
-            <InlineLink
-              href="https://impactco2.fr"
-              target="_blank"
-              className="text-default text-sm no-underline hover:underline"
-              onClick={() => trackEvent(footerClickImpactco2)}>
-              Impact CO2
-            </InlineLink>
+            <ul>
+              <li>
+                <InlineLink
+                  href="/blog"
+                  onClick={() => trackEvent(footerClickBlog)}
+                  className="text-default text-sm no-underline hover:underline">
+                  <Trans>Blog</Trans>
+                </InlineLink>
+              </li>
+              <li>
+                <InlineLink
+                  href="/documentation"
+                  onClick={() => trackEvent(footerClickDocumentation)}
+                  className="text-default text-sm no-underline hover:underline">
+                  <Trans>Documentation</Trans>
+                </InlineLink>
+              </li>
+              <li>
+                <InlineLink
+                  href="/questions-frequentes"
+                  onClick={() => trackEvent(footerClickFAQ)}
+                  className="text-default text-sm no-underline hover:underline">
+                  <Trans>FAQ</Trans>
+                </InlineLink>
+              </li>
+              <li>
+                <InlineLink
+                  href="/nouveautes"
+                  onClick={() => trackEvent(footerClickNouveautes)}
+                  className="text-default text-sm no-underline hover:underline">
+                  <Trans>Nouveautés</Trans>
+                </InlineLink>
+              </li>
+              <li>
+                <InlineLink
+                  href="https://impactco2.fr"
+                  target="_blank"
+                  className="text-default text-sm no-underline hover:underline"
+                  onClick={() => trackEvent(footerClickImpactco2)}>
+                  Impact CO2
+                </InlineLink>
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -190,30 +214,49 @@ export default function Footer({
             </div>
 
             <div className="mt-4 text-xs">
-              <InlineLink href="/accessibilite">
-                <Trans>Accessibilité : partiellement conforme</Trans>
-              </InlineLink>
-              <span aria-hidden="true" className="mx-1 hidden sm:inline">
-                |
-              </span>
-              <br className="md:hidden" />
-              <InlineLink href="/mentions-legales">
-                <Trans>Mentions légales</Trans>
-              </InlineLink>
-              <span aria-hidden="true" className="mx-1 hidden sm:inline">
-                |
-              </span>
-              <br className="md:hidden" />
-              <InlineLink href="/politique-de-confidentialite">
-                <Trans>Politique de confidentialité</Trans>
-              </InlineLink>
-              <span aria-hidden="true" className="mx-1 hidden sm:inline">
-                |
-              </span>
-              <br className="md:hidden" />
-              <InlineLink href="/politique-des-cookies">
-                <Trans>Politique des cookies</Trans>
-              </InlineLink>
+              <ul>
+                <li className="block md:inline">
+                  <InlineLink href="/accessibilite">
+                    <Trans>Accessibilité : partiellement conforme</Trans>
+                  </InlineLink>
+                  <span aria-hidden="true" className="mx-1 hidden sm:inline">
+                    |
+                  </span>
+                </li>
+                <li className="block md:inline">
+                  <InlineLink href="/mentions-legales">
+                    <Trans>Mentions légales</Trans>
+                  </InlineLink>
+                  <span aria-hidden="true" className="mx-1 hidden sm:inline">
+                    |
+                  </span>
+                </li>
+                <li className="block md:inline">
+                  <InlineLink href="/politique-de-confidentialite">
+                    <Trans>Politique de confidentialité</Trans>
+                  </InlineLink>
+                  <span aria-hidden="true" className="mx-1 hidden sm:inline">
+                    |
+                  </span>
+                </li>
+                <li className="block md:inline">
+                  <InlineLink href="/politique-des-cookies">
+                    <Trans>Politique des cookies</Trans>
+                  </InlineLink>
+
+                  <span aria-hidden="true" className="mx-1 hidden sm:inline">
+                    |
+                  </span>
+                </li>
+                <li className="block md:inline">
+                  <button
+                    data-testid="cookie-footer-button"
+                    className="text-primary-700 text-xs underline"
+                    onClick={() => setIsBoardOpen(true)}>
+                    <Trans>Gestion des cookies</Trans>
+                  </button>
+                </li>
+              </ul>
             </div>
           </div>
 

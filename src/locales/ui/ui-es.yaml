@@ -1246,6 +1246,40 @@ entries:
   Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org: El formato de la dirección de correo electrónico introducida no es válido. El formato esperado es nom@exemple.org
   Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org.lock: Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org
   Conditions d’utilisation des données « Base Empreinte »: Condiciones de uso de los datos de "Base Empreinte
+  cookies.management.googleAds.title: Anuncios Google
+  cookies.management.googleAds.title.lock: Google Ads
+  cookies.management.acceptAll: Aceptar todo
+  cookies.management.acceptAll.lock: Tout accepter
+  cookies.banner.acceptAll: Aceptar todo
+  cookies.banner.acceptAll.lock: Tout accepter
+  cookies.management.accept: Acepte
+  cookies.management.accept.lock: Accepter
+  cookies.management.confirm: Confirmar mis elecciones
+  cookies.management.confirm.lock: Confirmer mes choix
+  cookies.management.refuseAll: Rechazar todo
+  cookies.management.refuseAll.lock: Tout refuser
+  cookies.management.required.title: Cookies obligatorias
+  cookies.management.required.title.lock: Cookies obligatoires
+  cookies.banner.refuseAll: Rechazar todo
+  cookies.banner.refuseAll.lock: Tout refuser
+  cookies.management.title: Panel de gestión de cookies
+  cookies.management.title.lock: Panneau de gestion des cookies
+  cookies.banner.customize: Personalice
+  cookies.banner.customize.lock: Personnaliser
+  cookies.management.refuse: Desechos
+  cookies.management.refuse.lock: Refuser
+  cookies.management.preferences: 'Preferencias para todos los servicios. '
+  cookies.management.preferences.lock: 'Préférences pour tous les services. '
+  cookies.banner.description: Utilizamos cookies, lo justo para mantener el sitio en funcionamiento, mejorar la experiencia y medir la audiencia de forma anónima. Con su consentimiento, también activamos un sencillo sistema de seguimiento de nuestras campañas para comprender mejor lo que funciona y gestionar mejor nuestro presupuesto.
+  cookies.banner.description.lock: Nous utilisons des cookies, juste ce qu’il faut pour faire fonctionner le site, améliorer l’expérience et mesurer de manière anonyme l’audience. Avec votre accord, nous activons aussi un suivi simple de nos campagnes pour mieux comprendre ce qui fonctionne et mieux piloter notre budget.
+  cookies.management.privacyLink: Datos personales y cookies
+  cookies.management.privacyLink.lock: Données personnelles et cookies
+  cookies.banner.title: En Nos Gestes Climat, su privacidad cuenta
+  cookies.banner.title.lock: Chez Nos Gestes Climat, votre vie privée compte
+  cookies.management.required.description: Nuestro sitio utiliza cookies, que son esenciales para su correcto funcionamiento (seguridad, selección de idioma, autenticación). No contienen datos personales y no pueden desactivarse.
+  cookies.management.required.description.lock: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucune donnée personnelle et ne peuvent pas être désactivés.
+  cookies.management.googleAds.description: Utilizamos cookies para medir y calibrar la eficacia de nuestras campañas y publicidad en línea.
+  cookies.management.googleAds.description.lock: Nous utilisons des cookies pour mesurer et calibrer l'efficacité de nos campagnes et publicités en ligne.
   Voir la liste des cookies utilisés par PostHog: Ver la lista de cookies utilizadas por PostHog
   Cookies utilisés par PostHog: Cookies utilizadas por PostHog
   "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :": 'También utilizamos PostHog para medir la audiencia de nuestro sitio. La lista de cookies utilizadas está disponible aquí :'
@@ -1253,9 +1287,11 @@ entries:
   Accepter les cookies: Aceptar cookies
   Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.: Utilizamos cookies para entender cómo utiliza el producto y ayudarnos a mejorarlo. Si no desea ser rastreado, puede rechazarlas.
   Vos réponses ne vous permettent pas de sélectionner ce geste ; il va être retiré de la liste de vos actions suggérées.: Sus respuestas no le permiten seleccionar esta acción; se eliminará de la lista de acciones sugeridas.
+  Bannière de consentement aux cookies: cookies.banner.contentLabel
   'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'Puede ponerse en contacto con nosotros a través de nuestra página de contacto: <2></2>.'
   Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calcula tu huella de carbono y de agua con Nos Gestes Climat
   Comme 2 millions de personnes, mesurez votre empreinte en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Como otros 2 millones de personas, mide tu huella en 10 minutos. Una herramienta gratuita para hacer balance y reducir tus emisiones de CO2.
+  Gestion des cookies: Gestión de cookies
   Entrez votre adresse email: Introduzca su dirección de correo electrónico
   Veuillez renseigner un email.: Introduzca una dirección de correo electrónico.
   Veuillez entrer une adresse email valide: Introduzca una dirección de correo electrónico válida
