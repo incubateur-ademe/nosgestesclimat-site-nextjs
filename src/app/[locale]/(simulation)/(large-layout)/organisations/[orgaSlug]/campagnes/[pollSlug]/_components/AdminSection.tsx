@@ -4,6 +4,7 @@ import EyeIcon from '@/components/icons/EyeIcon'
 import SettingsIcon from '@/components/icons/SettingsIcon'
 import InformationIconWithTooltip from '@/components/messages/InformationIconWithTooltip'
 import ExportDataButton from '@/components/organisations/ExportDataButton'
+import QRCode from '@/components/sharing/QRCode'
 import Trans from '@/components/translation/trans/TransClient'
 import { organisationsDashboardExportData } from '@/constants/tracking/pages/organisationsDashboard'
 import {
@@ -39,6 +40,8 @@ export default function AdminSection({ poll }: Props) {
           </p>
         </InformationIconWithTooltip>
       </h3>
+
+      <QRCode value={`${window.location.origin}/o/${orgaSlug}/${pollSlug}`} />
 
       <div className="flex flex-wrap gap-8 md:flex-nowrap">
         <div className="rainbow-border w-full rounded-xl p-4 md:w-2/3">
