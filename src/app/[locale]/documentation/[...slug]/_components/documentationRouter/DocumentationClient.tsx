@@ -38,7 +38,7 @@ export default function DocumentationClient({ slugs }: Props) {
   }
 
   return (
-    <div className="mt-4 w-full">
+    <div className="mt-4 mb-16 w-full">
       <PasserTestBanner />
       <MetricSwitchButton
         metric={metric}

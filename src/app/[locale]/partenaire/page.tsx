@@ -1,5 +1,6 @@
 import Header from '@/components/layout/Header'
 import { PARTNER_KEY } from '@/constants/partners'
+import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Main from '@/design-system/layout/Main'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
@@ -28,13 +29,13 @@ export default async function PartenairePage({
   const partner = (searchParamsObject[PARTNER_KEY] as string) ?? ''
 
   if (!partner) {
-    return redirect('/404')
+    return redirect(NOT_FOUND_PATH)
   }
 
   const partnerInfo = await verifyPartner(partner)
 
   if (!partnerInfo) {
-    return redirect('/404')
+    return redirect(NOT_FOUND_PATH)
   }
 
   return (
