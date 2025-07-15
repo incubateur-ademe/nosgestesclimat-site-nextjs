@@ -1268,15 +1268,51 @@ entries:
   <0>L'empreinte eau</0> correspond à l'ensemble de l'eau douce utilisée pour produire, distribuer et traiter en fin de vie des produits, biens ou services, que nous consommons au quotidien.: <0>The water footprint</0> is the total amount of freshwater used to produce, distribute and end-of-life treat the products, goods and services we consume every day.
   L'empreinte eau, <2>calculée en milliers de litres par jour</2>, tient compte de <5>l'eau nécessaire</5> à la production, la distribution et au traitement des biens et services consommés. Ce calcul prend également en considération <8>le stress hydrique</8> et pondère les consommations d'eau en fonction de <12>la rareté de la ressource</12> dans les territoires concernés.: The water footprint, <2>calculated in thousands of litres per day</2>, takes into account the <5>water needed</5> to produce, distribute and process the goods and services consumed. This calculation also takes into account <8>water stress</8> and weights water consumption according to <12>the scarcity of the resource</12> in the areas concerned.
   "Depuis le siècle dernier, <2>la concentration du carbone dans l'atmosphère augmente</2>, si bien que le climat subit de graves bouleversements : montée des eaux, destruction du vivant, augmentation des températures, etc.": 'Since the last century, <2>the concentration of carbon in the atmosphere has been rising</2>, causing serious upheavals in the climate: rising sea levels, destruction of living organisms, rising temperatures, and so on.'
+  cookies.banner.refuseAll: Refuse everything
+  cookies.banner.refuseAll.lock: Tout refuser
+  cookies.banner.customize: Customise
+  cookies.banner.customize.lock: Personnaliser
+  cookies.management.googleAds.title: Google Ads
+  cookies.management.googleAds.title.lock: Google Ads
+  cookies.management.googleAds.description: We use cookies to measure and calibrate the effectiveness of our online campaigns and advertising.
+  cookies.management.googleAds.description.lock: Nous utilisons des cookies pour mesurer et calibrer l'efficacité de nos campagnes et publicités en ligne.
+  cookies.management.refuseAll: Refuse everything
+  cookies.management.refuseAll.lock: Tout refuser
+  cookies.management.privacyLink: Personal data and cookies
+  cookies.management.privacyLink.lock: Données personnelles et cookies
+  cookies.management.confirm: Confirm my choices
+  cookies.management.confirm.lock: Confirmer mes choix
+  cookies.management.preferences: 'Preferences for all services. '
+  cookies.management.preferences.lock: 'Préférences pour tous les services. '
+  cookies.banner.description: We use cookies, just enough to keep the site running, improve the experience and measure the audience anonymously. With your agreement, we also activate a simple tracking system for our campaigns to better understand what works and better manage our budget.
+  cookies.banner.description.lock: Nous utilisons des cookies, juste ce qu’il faut pour faire fonctionner le site, améliorer l’expérience et mesurer de manière anonyme l’audience. Avec votre accord, nous activons aussi un suivi simple de nos campagnes pour mieux comprendre ce qui fonctionne et mieux piloter notre budget.
+  cookies.banner.title: At Nos Gestes Climat, your privacy counts
+  cookies.banner.title.lock: Chez Nos Gestes Climat, votre vie privée compte
+  cookies.management.acceptAll: Accept all
+  cookies.management.acceptAll.lock: Tout accepter
+  cookies.management.required.title: Mandatory cookies
+  cookies.management.required.title.lock: Cookies obligatoires
+  cookies.banner.acceptAll: Accept all
+  cookies.banner.acceptAll.lock: Tout accepter
+  cookies.management.refuse: Refuse
+  cookies.management.refuse.lock: Refuser
+  cookies.management.accept: Accept
+  cookies.management.accept.lock: Accepter
+  cookies.management.required.description: Our site uses cookies, which are essential for its proper operation (security, language selection, authentication). They contain no personal data and cannot be deactivated.
+  cookies.management.required.description.lock: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucune donnée personnelle et ne peuvent pas être désactivés.
+  cookies.management.title: Cookie management panel
+  cookies.management.title.lock: Panneau de gestion des cookies
   Cookies utilisés par PostHog: Cookies used by PostHog
   Voir la liste des cookies utilisés par PostHog: See the list of cookies used by PostHog
   "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :": 'We also use PostHog to measure the audience for our site. The list of cookies used is available here :'
   Accepter les cookies: Accept cookies
   Refuser les cookies: Refuse cookies
   Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.: We use cookies to understand how you use the product and to help us improve it. If you do not wish to be tracked, you can refuse them.
+  Bannière de consentement aux cookies: cookies.banner.contentLabel
   'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'You can contact us via our contact page: <2></2>.'
   Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calculate your carbon and water footprint with Nos Gestes Climat
   Comme 2 millions de personnes, mesurez votre empreinte en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Like 2 million other people, measure your footprint in 10 minutes. A free tool to take stock and reduce your CO2 emissions.
+  Gestion des cookies: Cookie management
   Entrez votre adresse email: Enter your email address
   Veuillez renseigner un email.: Please enter an email address.
   Veuillez entrer une adresse email valide: Please enter a valid email address
