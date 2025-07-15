@@ -287,51 +287,47 @@ describe('NewslettersBlock', () => {
     ).toBeInTheDocument()
   })
 
-  // it('should show a required error if email is missing', async () => {
-  //   const user = userEvent.setup()
-  //   renderWithWrapper(<NewslettersBlock />)
+  it('should show a required error if email is missing', async () => {
+    const user = userEvent.setup()
+    renderWithWrapper(<NewslettersBlock />)
 
-  //   await user.click(screen.getByTestId('newsletter-saisonniere-checkbox'))
-  //   await user.click(screen.getByTestId('newsletter-submit-button'))
+    await user.click(screen.getByTestId('newsletter-saisonniere-checkbox'))
+    await user.click(screen.getByTestId('newsletter-submit-button'))
 
-  //   expect(await screen.findByTestId('error-message')).toHaveTextContent(
-  //     'Veuillez renseigner un email.'
-  //   )
-  // })
+    expect(screen.getByTestId('error-email')).toBeInTheDocument()
+  })
 
-  // it('should show an invalid format error for an incorrect email', async () => {
-  //   const user = userEvent.setup()
-  //   renderWithWrapper(<NewslettersBlock />)
+  it('should show an invalid format error for an incorrect email', async () => {
+    const user = userEvent.setup()
+    renderWithWrapper(<NewslettersBlock />)
 
-  //   await user.type(
-  //     screen.getByTestId('newsletter-email-input'),
-  //     'not-an-email'
-  //   )
-  //   await user.click(screen.getByTestId('newsletter-saisonniere-checkbox'))
-  //   await user.click(screen.getByTestId('newsletter-submit-button'))
+    await user.type(
+      screen.getByTestId('newsletter-email-input'),
+      'not-an-email'
+    )
+    await user.click(screen.getByTestId('newsletter-saisonniere-checkbox'))
+    await user.click(screen.getByTestId('newsletter-submit-button'))
 
-  //   expect(await screen.findByTestId('error-message')).toHaveTextContent(
-  //     'Veuillez entrer une adresse email valide'
-  //   )
-  // })
+    expect(screen.getByTestId('error-email')).toHaveTextContent(
+      'Veuillez entrer une adresse email valide'
+    )
+  })
 
-  // it('should show an error if no newsletter is selected for a new subscription', async () => {
-  //   const user = userEvent.setup()
-  //   // User has no initial subscriptions
-  //   mockedUseGetNewsletterSubscriptions.mockReturnValue({
-  //     data: [],
-  //   })
-  //   renderWithWrapper(<NewslettersBlock />)
+  it('should show an error if no newsletter is selected for a new subscription', async () => {
+    const user = userEvent.setup()
+    // User has no initial subscriptions
+    mockedUseGetNewsletterSubscriptions.mockReturnValue({
+      data: [],
+    })
+    renderWithWrapper(<NewslettersBlock />)
 
-  //   await user.type(
-  //     screen.getByTestId('newsletter-email-input'),
-  //     'test@test.com'
-  //   )
-  //   // No checkbox is clicked
-  //   await user.click(screen.getByTestId('newsletter-submit-button'))
+    await user.type(
+      screen.getByTestId('newsletter-email-input'),
+      'test@test.com'
+    )
+    // No checkbox is clicked
+    await user.click(screen.getByTestId('newsletter-submit-button'))
 
-  //   expect(await screen.findByTestId('error-message')).toHaveTextContent(
-  //     'Veuillez sélectionner au moins une infolettre.'
-  //   )
-  // })
+    expect(screen.getByTestId('newsletter-error')).toBeInTheDocument()
+  })
 })

@@ -104,7 +104,10 @@ export default forwardRef(function TextInputGroup(
       />
 
       {error && (
-        <span id={`error-${name}`} className="mt-2 text-xs text-red-700">
+        <span
+          id={`error-${name}`}
+          data-testid={`error-${name}`}
+          className="mt-2 text-xs text-red-700">
           {error}
         </span>
       )}

@@ -20,7 +20,8 @@ import i18nConfig from '@/i18nConfig'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
-import { useEffect } from 'react'
+import { isEmailValid } from '@/utils/isEmailValid'
+import { useEffect, useState } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import Button from '../buttons/Button'
@@ -57,6 +58,7 @@ function SuccessMessage() {
 }
 
 export default function NewslettersBlock() {
+  const [isNewsletterError, setIsNewsletterError] = useState(false)
   const { data: mainNewsletter } = useMainNewsletter()
 
   const { t } = useClientTranslation()
@@ -132,6 +134,13 @@ export default function NewslettersBlock() {
       return
     }
 
+    if (!isEmailValid(data.email)) {
+      setError('email', {
+        message: t('Veuillez entrer une adresse email valide'),
+      })
+      return
+    }
+
     const listIds = {
       [LIST_MAIN_NEWSLETTER]: data['newsletter-saisonniere'],
       [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: data['newsletter-transports'],
@@ -139,12 +148,9 @@ export default function NewslettersBlock() {
     }
 
     const newslettersArray = formatListIdsFromObject(listIds)
-
     // If the user is not subscribed to any newsletter and has not selected any newsletter, we don't do anything
-    if (!newsletterSubscriptions?.length && newslettersArray.length === 0) {
-      setError('email', {
-        message: t('Veuillez sélectionner au moins une infolettre.'),
-      })
+    if (!newsletterSubscriptions?.length && !newslettersArray?.length) {
+      setIsNewsletterError(true)
       return
     }
 
@@ -170,11 +176,7 @@ export default function NewslettersBlock() {
         })
       }
     } catch (error) {
-      setError('email', {
-        message: t(
-          "Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez nous contacter."
-        ),
-      })
+      // Message is already displayed
     }
   }
 
@@ -209,60 +211,84 @@ export default function NewslettersBlock() {
             id="newsletter-form"
             className="flex h-full flex-col items-start"
             onSubmit={handleSubmit(onSubmit)}
+            noValidate
             data-testid="newsletter-form">
             <div className="mb-4 flex w-full flex-col gap-2">
-              <CheckboxInputGroup
-                label={
-                  <p className="mb-0 text-sm">
-                    <span>
-                      <Trans>Je m'inscris à l'infolettre</Trans>
-                    </span>{' '}
-                    -{' '}
-                    <span className="text-gray-700">
-                      <Trans>1 par mois max</Trans>
-                    </span>
-                  </p>
+              <fieldset
+                className="flex flex-col gap-2"
+                aria-describedby={
+                  isNewsletterError ? 'newsletter-error' : undefined
                 }
-                {...register('newsletter-saisonniere')}
-                data-testid="newsletter-saisonniere-checkbox"
-              />
+                aria-invalid={isNewsletterError ? 'true' : undefined}>
+                <legend className="sr-only">
+                  <Trans>
+                    Sélectionnez les infolettres auxquelles vous souhaitez vous
+                    inscrire
+                  </Trans>
+                </legend>
+                <CheckboxInputGroup
+                  label={
+                    <p className="mb-0 text-sm">
+                      <span>
+                        <Trans>Je m'inscris à l'infolettre</Trans>
+                      </span>{' '}
+                      -{' '}
+                      <span className="text-gray-700">
+                        <Trans>1 par mois max</Trans>
+                      </span>
+                    </p>
+                  }
+                  {...register('newsletter-saisonniere')}
+                  error={errors['newsletter-saisonniere']?.message}
+                  data-testid="newsletter-saisonniere-checkbox"
+                />
 
-              <CheckboxInputGroup
-                label={
-                  <p className="mb-0 text-sm">
-                    <span>Nos Gestes Transports</span> -{' '}
-                    <span className="text-gray-700">
-                      <Trans>4 infolettres l’impact des transports</Trans>
-                    </span>
+                <CheckboxInputGroup
+                  label={
+                    <p className="mb-0 text-sm">
+                      <span>Nos Gestes Transports</span> -{' '}
+                      <span className="text-gray-700">
+                        <Trans>4 infolettres l’impact des transports</Trans>
+                      </span>
+                    </p>
+                  }
+                  {...register('newsletter-transports')}
+                  error={errors['newsletter-transports']?.message}
+                  data-testid="newsletter-transports-checkbox"
+                />
+
+                <CheckboxInputGroup
+                  label={
+                    <p className="mb-0 text-sm">
+                      <span>Nos Gestes Logement</span> -{' '}
+                      <span className="text-gray-700">
+                        <Trans>5 infolettres sur l’impact du logement</Trans>
+                      </span>
+                    </p>
+                  }
+                  {...register('newsletter-logement')}
+                  error={errors['newsletter-logement']?.message}
+                  data-testid="newsletter-logement-checkbox"
+                />
+
+                {isNewsletterError && (
+                  <p
+                    id="newsletter-error"
+                    data-testid="newsletter-error"
+                    className="mt-4 text-sm font-medium text-red-700"
+                    role="alert"
+                    aria-live="polite">
+                    <Trans>
+                      Veuillez sélectionner au moins une infolettre.
+                    </Trans>
                   </p>
-                }
-                {...register('newsletter-transports')}
-                data-testid="newsletter-transports-checkbox"
-              />
-
-              <CheckboxInputGroup
-                label={
-                  <p className="mb-0 text-sm">
-                    <span>Nos Gestes Logement</span> -{' '}
-                    <span className="text-gray-700">
-                      <Trans>5 infolettres sur l’impact du logement</Trans>
-                    </span>
-                  </p>
-                }
-                {...register('newsletter-logement')}
-                data-testid="newsletter-logement-checkbox"
-              />
-
+                )}
+              </fieldset>
               <div className="mt-10 flex w-full flex-col gap-8 md:flex-row">
                 <EmailInput
                   value={user?.email || ''}
                   {...register('email', {
                     required: t('Veuillez renseigner un email.'),
-                    pattern: {
-                      value:
-                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                      message: t('Veuillez entrer une adresse email valide'),
-                    },
                   })}
                   aria-label={t('Entrez votre adresse email')}
                   error={errors.email?.message}
