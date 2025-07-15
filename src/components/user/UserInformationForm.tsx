@@ -21,7 +21,7 @@ import i18nConfig from '@/i18nConfig'
 import { useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
 import type { ReactNode } from 'react'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
@@ -49,6 +49,7 @@ type Props = {
   className?: string
   shouldForceEmailEditable?: boolean
   defaultValues?: { 'newsletter-transports': boolean }
+  shouldUseLegacyHook?: boolean
 }
 
 export default function UserInformationForm({
@@ -65,14 +66,13 @@ export default function UserInformationForm({
   className,
   shouldForceEmailEditable = false,
   defaultValues,
+  shouldUseLegacyHook = false,
 }: Props) {
   const { t } = useClientTranslation()
 
   const locale = useLocale()
 
   const { user, updateEmail, updateName } = useUser()
-
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const {
     register,
@@ -134,8 +134,9 @@ export default function UserInformationForm({
       const newslettersArray = formatListIdsFromObject(newsletterIds)
 
       if (
-        newsletterSubscriptions &&
-        newslettersArray.length < newsletterSubscriptions.length
+        !shouldUseLegacyHook ||
+        (newsletterSubscriptions &&
+          newslettersArray.length < newsletterSubscriptions.length)
       ) {
         await unsubscribeFromNewsletters({
           name: data.name,
@@ -226,7 +227,6 @@ export default function UserInformationForm({
             {inputsDisplayed.includes('newsletter-saisonniere') && (
               <CheckboxInputGroup
                 data-testid="newsletter-saisonniere-checkbox"
-                size="lg"
                 disableSubmitOnEnter
                 label={
                   <span>
@@ -245,7 +245,6 @@ export default function UserInformationForm({
             {inputsDisplayed.includes('newsletter-transports') && (
               <CheckboxInputGroup
                 data-testid="newsletter-transports-checkbox"
-                size="lg"
                 disableSubmitOnEnter
                 label={
                   <span>
@@ -262,7 +261,6 @@ export default function UserInformationForm({
             {inputsDisplayed.includes('newsletter-logement') && (
               <CheckboxInputGroup
                 data-testid="newsletter-logement-checkbox"
-                size="lg"
                 disableSubmitOnEnter
                 label={
                   <span>

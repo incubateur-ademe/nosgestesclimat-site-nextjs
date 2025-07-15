@@ -61,7 +61,7 @@ export default forwardRef(function TextInputGroup(
         <label
           id={`label-${name}`}
           htmlFor={name}
-          className="w-full max-w-[30rem]">
+          className="w-full max-w-[30rem] text-left">
           <span
             className={`text-sm font-bold text-slate-900 ${
               error ? 'text-red-700!' : ''

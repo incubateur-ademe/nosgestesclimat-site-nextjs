@@ -25,7 +25,7 @@ export default function CustomActionForm({
 
   if (dottedName === 'transport . infolettre')
     return (
-      <div className="mt-4">
+      <div className="mt-4 text-left">
         <UserInformationForm
           title={
             <h3>
@@ -35,6 +35,7 @@ export default function CustomActionForm({
           inputsDisplayed={['email', 'newsletter-transports']}
           className="w-full rounded-xl bg-gray-100 p-8"
           submitLabel={t('Enregistrer')}
+          shouldUseLegacyHook
           onCompleted={(data: Record<string, unknown>) => {
             setTimeout(() => {
               if (
