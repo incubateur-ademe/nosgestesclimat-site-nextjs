@@ -3,11 +3,18 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { fetchArticlePageContent } from '@/services/cms/fetchArticlePageContent'
 import { fetchArticlePageMetadata } from '@/services/cms/fetchArticlePageMetadata'
 
+import ZoomOnClick from '@/components/blog/ZoomOnClick'
 import Footer from '@/components/layout/Footer'
 import Badge from '@/design-system/layout/Badge'
 import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import type { Locale } from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
+import parse, {
+  attributesToProps,
+  domToReact,
+  Element,
+  type DOMNode,
+} from 'html-react-parser'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import ArticleBreadcrumbs from './_components/ArticleBreadcrumbs'
@@ -128,10 +135,45 @@ export default async function ArticlePage({
 
         <div className="relative mt-8 flex max-w-5xl flex-col flex-nowrap gap-8 overflow-visible md:mx-auto md:mt-0 md:flex-row md:items-stretch">
           <div className="max-w-full md:w-8/12">
-            <div
-              className="markdown max-w-full border-b border-gray-300 pb-8"
-              dangerouslySetInnerHTML={{ __html: article.htmlContent ?? '' }}
-            />
+            <div className="markdown max-w-full border-b border-gray-300 pb-8">
+              {parse(article.htmlContent ?? '', {
+                replace: (domNode: DOMNode) => {
+                  if (!(domNode instanceof Element && domNode.type === 'tag')) {
+                    return domToReact([domNode])
+                  }
+
+                  // Look for a <p> tag that directly wraps an <img> tag.
+                  // This is a common pattern from Rich Text Editors in CMSs.
+                  if (
+                    domNode.name === 'p' &&
+                    domNode.children[0] &&
+                    domNode.children[0] instanceof Element &&
+                    domNode.children[0].name === 'img'
+                  ) {
+                    const imgNode = domNode.children[0]
+                    if (imgNode.attribs?.src) {
+                      console.log(
+                        'Image wrapped in a paragraph found. Replacing...'
+                      )
+                      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                      const { style, ...props } = attributesToProps(
+                        imgNode.attribs
+                      )
+                      return (
+                        <ZoomOnClick
+                          {...props}
+                          src={props.src as string}
+                          alt={props.alt as string}
+                        />
+                      )
+                    }
+                  }
+
+                  // Let the parser handle all other nodes as usual.
+                  return domToReact([domNode])
+                },
+              })}
+            </div>
           </div>
         </div>
       </div>
