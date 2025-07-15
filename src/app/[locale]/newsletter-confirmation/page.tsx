@@ -1,5 +1,6 @@
 import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'
+import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Main from '@/design-system/layout/Main'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
@@ -41,7 +42,7 @@ export default async function NewsletterConfirmationPage({
   const { success, status } = searchParams ? await searchParams : {}
 
   if (shouldRedirect404({ success, status })) {
-    return redirect('/404')
+    return redirect(NOT_FOUND_PATH)
   }
 
   return (

@@ -2,6 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { PARTNER_KEY } from '@/constants/partners'
+import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import type { AlertType } from '@/design-system/alerts/alert/Alert'
 import Emoji from '@/design-system/utils/Emoji'
 import {
@@ -124,7 +125,7 @@ export function PartnerProvider({ children }: PropsWithChildren) {
 
   useEffect(() => {
     if (!hasNoPartnerParam && isPartnerVerified === false) {
-      router.push('/404')
+      router.push(NOT_FOUND_PATH)
     }
   }, [isPartnerVerified, router, hasNoPartnerParam])
 

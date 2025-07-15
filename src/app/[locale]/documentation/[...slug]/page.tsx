@@ -1,3 +1,4 @@
+import { DOCUMENTATION_PATH, NOT_FOUND_PATH } from '@/constants/urls/paths'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getRules } from '@/helpers/modelFetching/getRules'
@@ -7,6 +8,7 @@ import type { DefaultPageProps } from '@/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { decodeRuleNameFromPath } from '@/utils/decodeRuleNameFromPath'
 import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import { redirect } from 'next/navigation'
 import DocumentationRouter from './_components/DocumentationRouter'
 import DocumentationServer from './_components/documentationRouter/DocumentationServer'
 
@@ -65,12 +67,29 @@ export default async function DocumentationPage({
     regionCode: 'FR',
   })) as NGCRules
 
+  const ruleName = decodeRuleNameFromPath(slug.join('/')) as DottedName
+
+  if (!ruleName) {
+    redirect(NOT_FOUND_PATH)
+  }
+
+  const rule = rules?.[ruleName]
+
+  if (!rule) {
+    redirect(DOCUMENTATION_PATH)
+  }
+
   return (
     <DocumentationRouter
       supportedRegions={supportedRegions}
       slug={slug}
       serverComponent={
-        <DocumentationServer locale={locale} slugs={slug} rules={rules} />
+        <DocumentationServer
+          locale={locale}
+          ruleName={ruleName}
+          rule={rule}
+          rules={rules}
+        />
       }
     />
   )

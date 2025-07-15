@@ -1,12 +1,16 @@
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import Trans from '@/components/translation/trans/TransServer'
+import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Markdown from '@/design-system/utils/Markdown'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { capitalizeString } from '@/utils/capitalizeString'
-import { decodeRuleNameFromPath } from '@/utils/decodeRuleNameFromPath'
-import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import type {
+  DottedName,
+  NGCRule,
+  NGCRules,
+} from '@incubateur-ademe/nosgestesclimat'
 import { redirect } from 'next/navigation'
 import ButtonLaunch from './documentationServer/ButtonLaunch'
 import CalculDetail from './documentationServer/CalculDetail'
@@ -14,21 +18,19 @@ import PagesProches from './documentationServer/PagesProches'
 import QuestionSection from './documentationServer/QuestionSection'
 
 type Props = {
-  slugs: string[]
+  rule: NGCRule
   rules: NGCRules
   locale: string
+  ruleName: DottedName
 }
-export default function DocumentationServer({ slugs, rules, locale }: Props) {
-  const ruleName = decodeRuleNameFromPath(slugs.join('/')) as DottedName
-
-  if (!ruleName) {
-    redirect('/404')
-  }
-
-  const rule = rules?.[ruleName]
-
+export default function DocumentationServer({
+  rule,
+  rules,
+  locale,
+  ruleName,
+}: Props) {
   if (!rule) {
-    redirect('/404')
+    return redirect(NOT_FOUND_PATH)
   }
 
   return (

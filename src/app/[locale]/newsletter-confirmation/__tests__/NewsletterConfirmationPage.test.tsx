@@ -1,3 +1,4 @@
+import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { act } from '@testing-library/react'
@@ -123,7 +124,7 @@ describe('NewsletterConfirmationPage', () => {
     })
 
     // Then
-    expect(redirect).toHaveBeenCalledWith('/404')
+    expect(redirect).toHaveBeenCalledWith(NOT_FOUND_PATH)
   })
 
   it('should redirect to the 404 page if wrong status param is passed', async () => {
@@ -143,6 +144,6 @@ describe('NewsletterConfirmationPage', () => {
     })
 
     // Then
-    expect(redirect).toHaveBeenCalledWith('/404')
+    expect(redirect).toHaveBeenCalledWith(NOT_FOUND_PATH)
   })
 })
