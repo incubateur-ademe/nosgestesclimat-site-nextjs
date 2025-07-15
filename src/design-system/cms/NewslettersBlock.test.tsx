@@ -330,4 +330,34 @@ describe('NewslettersBlock', () => {
 
     expect(screen.getByTestId('newsletter-error')).toBeInTheDocument()
   })
+
+  it('should not make API calls when user submits without modifying newsletter selection', async () => {
+    const user = userEvent.setup()
+    // User starts with existing subscriptions
+    mockedUseGetNewsletterSubscriptions.mockReturnValue({
+      data: [LIST_MAIN_NEWSLETTER, LIST_NOS_GESTES_TRANSPORT_NEWSLETTER],
+    })
+
+    renderWithWrapper(<NewslettersBlock />, {
+      user: { email: 'test@example.com', name: 'Test User' },
+      providers: {
+        user: true,
+      },
+    })
+
+    // Wait for the form to be rendered and checkboxes to be pre-filled
+    await screen.findByDisplayValue('test@example.com')
+
+    // Submit the form without changing any checkboxes
+    await act(async () => {
+      await user.click(screen.getByTestId('newsletter-submit-button'))
+    })
+
+    // Wait a bit to ensure any async operations would have completed
+    await waitFor(() => {
+      // Verify that no API calls were made
+      expect(mockUpdateUserSettings).not.toHaveBeenCalled()
+      expect(mockUnsubscribe).not.toHaveBeenCalled()
+    })
+  })
 })
