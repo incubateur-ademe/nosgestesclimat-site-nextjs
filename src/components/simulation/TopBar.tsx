@@ -10,7 +10,7 @@ import Category from './topBar/Category'
 import Progress from './topBar/Progress'
 import TotalButtons from './topBar/TotalButtons'
 
-export default function Total({
+export default function TopBar({
   toggleQuestionList,
   toggleBackHomeModal,
   toggleSaveModal,
@@ -44,7 +44,7 @@ export default function Total({
         )}>
         {simulationMode && <Progress />}
 
-        <div className="mb-0 flex w-full max-w-6xl justify-between overflow-visible pr-4 pl-1 lg:mx-auto lg:px-4">
+        <div className="mb-0 flex w-full max-w-5xl justify-between overflow-visible pr-4 pl-1 lg:mx-auto lg:px-4">
           <div className="relative flex items-center gap-1 lg:gap-4">
             {simulationMode && !isIframe && !isIframeOnlySimulation && (
               <ButtonBack
