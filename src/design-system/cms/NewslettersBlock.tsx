@@ -11,7 +11,6 @@ import {
 import { subscribeToNewsletterBlog } from '@/constants/tracking/pages/newsletter'
 import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
-import { useUnsubscribeFromNewsletters } from '@/hooks/settings/useUnsubscribeFromNewsletters'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
@@ -27,6 +26,7 @@ import { useForm as useReactHookForm } from 'react-hook-form'
 import Button from '../buttons/Button'
 import CheckboxInputGroup from '../inputs/CheckboxInputGroup'
 import EmailInput from '../inputs/EmailInput'
+import BlockSkeleton from '../layout/BlockSkeleton'
 
 type Inputs = {
   name: string
@@ -67,24 +67,17 @@ export default function NewslettersBlock() {
 
   const { user, updateEmail } = useUser()
 
-  const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
-    user?.userId ?? ''
-  )
+  const {
+    data: newsletterSubscriptions,
+    isFetching: isFetchingNewsletterSubscriptions,
+  } = useGetNewsletterSubscriptions(user?.userId ?? '')
+
   const {
     mutateAsync: updateUserSettings,
     isPending,
     isSuccess,
     isError,
   } = useUpdateUserSettings()
-
-  const {
-    mutateAsync: unsubscribeFromNewsletters,
-    isPending: isPendingUnsubscribe,
-    isError: isErrorUnsubscribe,
-  } = useUnsubscribeFromNewsletters({
-    email: user.email ?? '',
-    userId: user.userId,
-  })
 
   const {
     register,
@@ -128,7 +121,7 @@ export default function NewslettersBlock() {
     setIsNewsletterError(false)
 
     // If the mutation is pending, we do nothing
-    if (isPending || isPendingUnsubscribe) {
+    if (isPending) {
       return
     }
 
@@ -177,14 +170,6 @@ export default function NewslettersBlock() {
         email: formattedEmail,
         name: data.name,
       })
-
-      if (newslettersArray && newslettersArray.length === 0) {
-        await unsubscribeFromNewsletters({
-          name: data.name,
-          email: user.email ?? '',
-          newsletterIds: listIds,
-        })
-      }
     } catch (error) {
       // Message is already displayed
     }
@@ -198,131 +183,140 @@ export default function NewslettersBlock() {
     <div
       className="rainbow-border w-full rounded-xl bg-white p-8 md:w-4/6"
       aria-live="polite">
-      {isSuccess ? (
-        <SuccessMessage />
-      ) : (
-        <>
-          <h3 className="mb-2">
-            <Trans>
-              Vous souhaitez recevoir nos derniers articles directement ?
-            </Trans>
-          </h3>
+      {isFetchingNewsletterSubscriptions && <BlockSkeleton />}
 
-          <p className="mb-6 flex items-center">
-            <CheckIcon className="mr-2 h-4 w-4 stroke-green-500" aria-hidden />
+      {!isFetchingNewsletterSubscriptions ? (
+        isSuccess || newsletterSubscriptions?.length ? (
+          <SuccessMessage />
+        ) : (
+          <>
+            <h3 className="mb-2">
+              <Trans>
+                Vous souhaitez recevoir nos derniers articles directement ?
+              </Trans>
+            </h3>
 
-            <span className="text-sm text-gray-600">
-              {mainNewsletter?.totalSubscribers.toLocaleString(locale) ?? 0}{' '}
-              <Trans>personnes inscrites</Trans>
-            </span>
-          </p>
+            <p className="mb-6 flex items-center">
+              <CheckIcon
+                className="mr-2 h-4 w-4 stroke-green-500"
+                aria-hidden
+              />
 
-          <form
-            id="newsletter-form"
-            className="flex h-full flex-col items-start"
-            onSubmit={handleSubmit(onSubmit)}
-            noValidate
-            data-testid="newsletter-form">
-            <div className="mb-4 flex w-full flex-col gap-2">
-              <fieldset
-                className="flex flex-col gap-2"
-                aria-describedby={
-                  isNewsletterError ? 'newsletter-error' : undefined
-                }
-                aria-invalid={isNewsletterError ? 'true' : undefined}>
-                <legend className="sr-only">
-                  <Trans>
-                    Sélectionnez les infolettres auxquelles vous souhaitez vous
-                    inscrire
-                  </Trans>
-                </legend>
-                <CheckboxInputGroup
-                  label={
-                    <p className="mb-0 text-sm">
-                      <span>
-                        <Trans>Je m'inscris à l'infolettre</Trans>
-                      </span>{' '}
-                      -{' '}
-                      <span className="text-gray-700">
-                        <Trans>1 par mois max</Trans>
-                      </span>
-                    </p>
+              <span className="text-sm text-gray-600">
+                {mainNewsletter?.totalSubscribers.toLocaleString(locale) ?? 0}{' '}
+                <Trans>personnes inscrites</Trans>
+              </span>
+            </p>
+
+            <form
+              id="newsletter-form"
+              className="flex h-full flex-col items-start"
+              onSubmit={handleSubmit(onSubmit)}
+              noValidate
+              data-testid="newsletter-form">
+              <div className="mb-4 flex w-full flex-col gap-2">
+                <fieldset
+                  className="flex flex-col gap-2"
+                  aria-describedby={
+                    isNewsletterError ? 'newsletter-error' : undefined
                   }
-                  {...register('newsletter-saisonniere')}
-                  error={errors['newsletter-saisonniere']?.message}
-                  data-testid="newsletter-saisonniere-checkbox"
-                />
-
-                <CheckboxInputGroup
-                  label={
-                    <p className="mb-0 text-sm">
-                      <span>Nos Gestes Transports</span> -{' '}
-                      <span className="text-gray-700">
-                        <Trans>4 infolettres l’impact des transports</Trans>
-                      </span>
-                    </p>
-                  }
-                  {...register('newsletter-transports')}
-                  error={errors['newsletter-transports']?.message}
-                  data-testid="newsletter-transports-checkbox"
-                />
-
-                <CheckboxInputGroup
-                  label={
-                    <p className="mb-0 text-sm">
-                      <span>Nos Gestes Logement</span> -{' '}
-                      <span className="text-gray-700">
-                        <Trans>5 infolettres sur l’impact du logement</Trans>
-                      </span>
-                    </p>
-                  }
-                  {...register('newsletter-logement')}
-                  error={errors['newsletter-logement']?.message}
-                  data-testid="newsletter-logement-checkbox"
-                />
-
-                {isNewsletterError && (
-                  <p
-                    id="newsletter-error"
-                    data-testid="newsletter-error"
-                    className="mt-4 mb-0 text-sm font-medium text-red-700"
-                    role="alert"
-                    aria-live="polite">
+                  aria-invalid={isNewsletterError ? 'true' : undefined}>
+                  <legend className="sr-only">
                     <Trans>
-                      Veuillez sélectionner au moins une infolettre.
+                      Sélectionnez les infolettres auxquelles vous souhaitez
+                      vous inscrire
                     </Trans>
-                  </p>
-                )}
-              </fieldset>
-              <div className="mt-10 flex w-full flex-col gap-8 md:flex-row">
-                <EmailInput
-                  value={user?.email || ''}
-                  {...register('email', {
-                    required: t('Veuillez renseigner un email.'),
-                  })}
-                  aria-label={t('Entrez votre adresse email')}
-                  error={errors.email?.message}
-                  data-cypress-id="fin-email-input"
-                  data-testid="newsletter-email-input"
-                  className="h-full"
-                />
+                  </legend>
+                  <CheckboxInputGroup
+                    label={
+                      <p className="mb-0 text-sm">
+                        <span>
+                          <Trans>Je m'inscris à l'infolettre</Trans>
+                        </span>{' '}
+                        -{' '}
+                        <span className="text-gray-700">
+                          <Trans>1 par mois max</Trans>
+                        </span>
+                      </p>
+                    }
+                    {...register('newsletter-saisonniere')}
+                    error={errors['newsletter-saisonniere']?.message}
+                    data-testid="newsletter-saisonniere-checkbox"
+                  />
 
-                {(isError || isErrorUnsubscribe) && (
-                  <DefaultSubmitErrorMessage />
-                )}
+                  <CheckboxInputGroup
+                    label={
+                      <p className="mb-0 text-sm">
+                        <span>Nos Gestes Transports</span> -{' '}
+                        <span className="text-gray-700">
+                          <Trans>4 infolettres l’impact des transports</Trans>
+                        </span>
+                      </p>
+                    }
+                    {...register('newsletter-transports')}
+                    error={errors['newsletter-transports']?.message}
+                    data-testid="newsletter-transports-checkbox"
+                  />
 
-                <Button
-                  size="lg"
-                  className="self-start"
-                  type="submit"
-                  data-testid="newsletter-submit-button">
-                  <Trans>S'inscrire</Trans>
-                </Button>
+                  <CheckboxInputGroup
+                    label={
+                      <p className="mb-0 text-sm">
+                        <span>Nos Gestes Logement</span> -{' '}
+                        <span className="text-gray-700">
+                          <Trans>5 infolettres sur l’impact du logement</Trans>
+                        </span>
+                      </p>
+                    }
+                    {...register('newsletter-logement')}
+                    error={errors['newsletter-logement']?.message}
+                    data-testid="newsletter-logement-checkbox"
+                  />
+
+                  {isNewsletterError && (
+                    <p
+                      id="newsletter-error"
+                      data-testid="newsletter-error"
+                      className="mt-4 mb-0 text-sm font-medium text-red-700"
+                      role="alert"
+                      aria-live="polite">
+                      <Trans>
+                        Veuillez sélectionner au moins une infolettre.
+                      </Trans>
+                    </p>
+                  )}
+                </fieldset>
+                <div className="mt-10 flex w-full flex-col gap-8 md:flex-row">
+                  <div className="w-full">
+                    <EmailInput
+                      value={user?.email || ''}
+                      {...register('email', {
+                        required: t('Veuillez renseigner un email.'),
+                      })}
+                      aria-label={t('Entrez votre adresse email')}
+                      error={errors.email?.message}
+                      data-cypress-id="fin-email-input"
+                      data-testid="newsletter-email-input"
+                      className="h-full"
+                    />
+
+                    {isError && (
+                      <DefaultSubmitErrorMessage className="mt-2 text-sm" />
+                    )}
+                  </div>
+
+                  <Button
+                    size="lg"
+                    className="self-start"
+                    type="submit"
+                    data-testid="newsletter-submit-button">
+                    <Trans>S'inscrire</Trans>
+                  </Button>
+                </div>
               </div>
-            </div>
-          </form>
-        </>
-      )}
+            </form>
+          </>
+        )
+      ) : null}
     </div>
   )
 }

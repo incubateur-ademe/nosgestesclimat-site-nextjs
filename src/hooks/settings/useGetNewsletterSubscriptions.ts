@@ -7,7 +7,6 @@ export function useGetNewsletterSubscriptions(userId: string) {
     queryKey: ['getNewsletterSubscriptions', userId],
     queryFn: () =>
       axios.get(`${SERVER_URL}/users/v1/${userId}/contact`).then((res) => {
-        console.log(res.data)
         return res.data?.listIds ?? []
       }),
     enabled: !!userId,

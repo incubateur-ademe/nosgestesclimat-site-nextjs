@@ -36,14 +36,16 @@ export default function CustomActionForm({
           className="w-full rounded-xl bg-gray-100 p-8"
           submitLabel={t('Enregistrer')}
           onCompleted={(data: Record<string, unknown>) => {
-            if (
-              data['newsletter-transports'] !== undefined &&
-              data['newsletter-transports'] !== actionChoices?.[dottedName]
-            ) {
-              toggleActionChoice(dottedName)
-              refreshNewsletterSubcriptions()
-              setActionWithFormOpen('')
-            }
+            setTimeout(() => {
+              if (
+                data['newsletter-transports'] !== undefined &&
+                data['newsletter-transports'] !== actionChoices?.[dottedName]
+              ) {
+                toggleActionChoice(dottedName)
+                refreshNewsletterSubcriptions()
+                setActionWithFormOpen('')
+              }
+            }, 2500)
           }}
           shouldForceEmailEditable={true}
           defaultValues={{

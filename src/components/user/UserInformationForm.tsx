@@ -133,18 +133,21 @@ export default function UserInformationForm({
     try {
       const newslettersArray = formatListIdsFromObject(newsletterIds)
 
-      await updateUserSettings({
-        name: data.name,
-        email: user.email ?? data.email ?? '',
-        newsletterIds: newslettersArray,
-        userId: user?.userId,
-      })
-
-      if (newslettersArray && newslettersArray.length === 0) {
+      if (
+        newsletterSubscriptions &&
+        newslettersArray.length < newsletterSubscriptions.length
+      ) {
         await unsubscribeFromNewsletters({
           name: data.name,
           email: user.email ?? '',
           newsletterIds,
+        })
+      } else {
+        await updateUserSettings({
+          name: data.name,
+          email: user.email ?? data.email ?? '',
+          newsletterIds: newslettersArray,
+          userId: user?.userId,
         })
       }
 
@@ -156,21 +159,11 @@ export default function UserInformationForm({
         updateName(data.name)
       }
 
-      timeoutRef.current = setTimeout(() => {
-        onCompleted(data)
-      }, 2500)
+      onCompleted(data)
     } catch (error) {
       captureException(error)
     }
   }
-
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
-      }
-    }
-  }, [])
 
   const isFrench = locale === i18nConfig.defaultLocale
 
