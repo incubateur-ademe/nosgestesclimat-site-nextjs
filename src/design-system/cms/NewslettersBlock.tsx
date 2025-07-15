@@ -154,6 +154,14 @@ export default function NewslettersBlock() {
       return
     }
 
+    // If the user submits without having modified the newsletter selection, we don't do anything
+    if (
+      newsletterSubscriptions?.length === newslettersArray?.length &&
+      newsletterSubscriptions.every((id) => newslettersArray.includes(id))
+    ) {
+      return
+    }
+
     trackEvent(subscribeToNewsletterBlog)
 
     const formattedEmail = formatEmail(data.email)
@@ -275,7 +283,7 @@ export default function NewslettersBlock() {
                   <p
                     id="newsletter-error"
                     data-testid="newsletter-error"
-                    className="mt-4 text-sm font-medium text-red-700"
+                    className="mt-4 mb-0 text-sm font-medium text-red-700"
                     role="alert"
                     aria-live="polite">
                     <Trans>
