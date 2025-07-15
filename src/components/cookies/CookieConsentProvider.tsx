@@ -16,12 +16,16 @@ type CookieConsentContextType = {
   cookieConsent?: CookieChoice
   cookieCustomChoice?: CookieConsentChoices
   triggerConsentDetection: () => void
+  isBoardOpen: boolean
+  setIsBoardOpen: (isBoardOpen: boolean) => void
 }
 
 const CookieConsentContext = createContext<CookieConsentContextType>({
   cookieConsent: undefined,
   cookieCustomChoice: undefined,
   triggerConsentDetection: () => {},
+  isBoardOpen: false,
+  setIsBoardOpen: () => {},
 })
 
 export const CookieConsentProvider = ({ children }: PropsWithChildren) => {
@@ -31,6 +35,8 @@ export const CookieConsentProvider = ({ children }: PropsWithChildren) => {
   const [cookieCustomChoice, setCookieCustomChoice] = useState<
     CookieConsentChoices | undefined
   >()
+
+  const [isBoardOpen, setIsBoardOpen] = useState(false)
 
   const triggerConsentDetection = () => {
     const consentFromStorage = safeLocalStorage.getItem(COOKIE_CONSENT_KEY)
@@ -63,6 +69,8 @@ export const CookieConsentProvider = ({ children }: PropsWithChildren) => {
         cookieConsent,
         cookieCustomChoice,
         triggerConsentDetection,
+        isBoardOpen,
+        setIsBoardOpen,
       }}>
       {children}
     </CookieConsentContext>

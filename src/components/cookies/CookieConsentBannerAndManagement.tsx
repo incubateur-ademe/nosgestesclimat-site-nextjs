@@ -20,9 +20,14 @@ import { useCookieConsent } from './CookieConsentProvider'
 
 export default function CookieConsentBannerAndManagement() {
   const [isVisible, setIsVisible] = useState(false)
-  const [isBoardOpen, setIsBoardOpen] = useState(false)
 
-  const { triggerConsentDetection } = useCookieConsent()
+  const {
+    triggerConsentDetection,
+    isBoardOpen,
+    setIsBoardOpen,
+    cookieConsent,
+    cookieCustomChoice,
+  } = useCookieConsent()
 
   useEffect(() => {
     const hasConsent = safeLocalStorage.getItem(COOKIE_CONSENT_KEY)
@@ -60,7 +65,10 @@ export default function CookieConsentBannerAndManagement() {
 
   const closeSettings = () => {
     setIsBoardOpen(false)
-    setIsVisible(true)
+
+    if (!cookieConsent && !cookieCustomChoice) {
+      setIsVisible(true)
+    }
   }
 
   const confirmChoices = (choices: CookieConsentChoices) => {
