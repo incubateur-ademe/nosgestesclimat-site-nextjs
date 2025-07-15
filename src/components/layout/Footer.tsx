@@ -30,6 +30,7 @@ import Link from '../Link'
 import LogoLink from '../misc/LogoLink'
 import LanguageSwitchButton from '../translation/LanguageSwitchButton'
 import Trans from '../translation/trans/TransClient'
+import ThematicPagesSection from './ThematicPagesSection'
 
 const WHITE_BACKGROUND_PATHS = new Set([
   '/empreinte-eau',
@@ -203,6 +204,8 @@ export default function Footer({
               </li>
             </ul>
           </div>
+
+          <ThematicPagesSection />
         </div>
 
         <div className="flex flex-wrap justify-between gap-8 md:flex-row md:flex-nowrap">

@@ -1246,6 +1246,23 @@ entries:
   Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org: El formato de la dirección de correo electrónico introducida no es válido. El formato esperado es nom@exemple.org
   Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org.lock: Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org
   Conditions d’utilisation des données « Base Empreinte »: Condiciones de uso de los datos de "Base Empreinte
+  Qu'est-ce que l'empreinte eau ?: ¿Qué es la huella hídrica?
+  Qu'est-ce que l'empreinte carbone ?: ¿Cuál es la huella de carbono?
+  Avez-vous déjà entendu parler de maladaptation ?: ¿Ha oído hablar alguna vez de la inadaptación?
+  Que calcule-t-on dans l'empreinte eau ?: ¿Qué se calcula en la huella hídrica?
+  Réaliser des travaux d'isolation de son logement (pour les propriétaires): Aislar su casa (para propietarios)
+  Cette consommation d'eau, pourtant très importante, est <2>invisible à l'œil nu</2> mais son impact est bien réel.: Este consumo de agua, aunque muy significativo, es <2>invisible a simple vista</2>, pero su impacto es muy real.
+  Vos réponses ne vous permettent pas de sélectionner ce geste ; il va être retiré de la liste de vos actions suggérées.: Sus respuestas no le permiten seleccionar esta acción; se eliminará de la lista de acciones sugeridas.
+  <0>L'empreinte carbone</0> mesure la quantité totale de gaz à effet de serre (GES) émis par nos activités sur une année.: <0>La huella de carbono</0> mide la cantidad total de gases de efecto invernadero (GEI) emitidos por nuestras actividades a lo largo de un año.
+  "Attention : l'empreinte eau ne tient pas compte de la consommation d'eau domestique (douche, toilettes, cuisine, arrosage) !": 'Atención: la huella hídrica no tiene en cuenta el consumo doméstico de agua (duchas, inodoros, cocina, riego)'
+  Le calculateur carbone permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique et de saisir <2>les actions qui auraient le plus d'impact</2> pour le réduire.: La calculadora de carbono nos permite saber cuáles de nuestros usos contribuyen más al cambio climático e identificar <2>las acciones que tendrían un mayor impacto</2> para reducirlo.
+  Empreinte eau et <2>empreinte carbone</2> sont complémentaires, et les comprendre permet d'agir en faveur d'une gestion <6>plus durable des ressources naturelles</6> de la planète.: La huella hídrica y la <2>huella de carbono</2> son complementarias, y comprenderlas nos permite actuar en favor de una gestión <6>más sostenible de los recursos naturales</6> del planeta.
+  L'empreinte eau, <2>calculée en milliers de litres par jour</2>, tient compte de <5>l'eau nécessaire</5> à la production, la distribution et au traitement des biens et services consommés. Ce calcul prend également en considération <8>le stress hydrique</8> et pondère les consommations d'eau en fonction de <12>la rareté de la ressource</12> dans les territoires concernés.: La huella hídrica, <2>calculada en miles de litros al día</2>, tiene en cuenta el <5>agua necesaria</5> para producir, distribuir y procesar los bienes y servicios consumidos. Este cálculo también tiene en cuenta <8>el estrés hídrico</8> y pondera el consumo de agua en función de <12>la escasez del recurso</12> en las zonas afectadas.
+  <0>L'empreinte eau</0> correspond à l'ensemble de l'eau douce utilisée pour produire, distribuer et traiter en fin de vie des produits, biens ou services, que nous consommons au quotidien.: <0>La huella hídrica</0> es la cantidad total de agua dulce utilizada para producir, distribuir y tratar al final de su vida útil los productos, bienes y servicios que consumimos cada día.
+  "Depuis le siècle dernier, <2>la concentration du carbone dans l'atmosphère augmente</2>, si bien que le climat subit de graves bouleversements : montée des eaux, destruction du vivant, augmentation des températures, etc.": 'Desde el siglo pasado, <2>la concentración de carbono en la atmósfera no ha dejado de aumentar</2>, provocando graves trastornos en el clima: subida del nivel del mar, destrucción de organismos vivos, aumento de las temperaturas, etc.'
+  footer.thematicLandingPages.title: Páginas temáticas
+  footer.thematicLandingPages.title.lock: Pages thématiques
+  Pages thématiques: Páginas temáticas
   cookies.management.googleAds.title: Anuncios Google
   cookies.management.googleAds.title.lock: Google Ads
   cookies.management.acceptAll: Aceptar todo
@@ -1286,7 +1303,6 @@ entries:
   Refuser les cookies: Rechazar cookies
   Accepter les cookies: Aceptar cookies
   Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.: Utilizamos cookies para entender cómo utiliza el producto y ayudarnos a mejorarlo. Si no desea ser rastreado, puede rechazarlas.
-  Vos réponses ne vous permettent pas de sélectionner ce geste ; il va être retiré de la liste de vos actions suggérées.: Sus respuestas no le permiten seleccionar esta acción; se eliminará de la lista de acciones sugeridas.
   Bannière de consentement aux cookies: cookies.banner.contentLabel
   'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'Puede ponerse en contacto con nosotros a través de nuestra página de contacto: <2></2>.'
   Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calcula tu huella de carbono y de agua con Nos Gestes Climat
