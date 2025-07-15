@@ -21,11 +21,11 @@ export default function CustomActionForm({
   const { actionChoices } = useCurrentSimulation()
 
   const { refetch: refreshNewsletterSubcriptions } =
-    useGetNewsletterSubscriptions(user?.email ?? '')
+    useGetNewsletterSubscriptions(user?.userId ?? '')
 
   if (dottedName === 'transport . infolettre')
     return (
-      <div className="mt-4">
+      <div className="mt-4 text-left">
         <UserInformationForm
           title={
             <h3>
@@ -35,15 +35,18 @@ export default function CustomActionForm({
           inputsDisplayed={['email', 'newsletter-transports']}
           className="w-full rounded-xl bg-gray-100 p-8"
           submitLabel={t('Enregistrer')}
+          shouldUseLegacyHook
           onCompleted={(data: Record<string, unknown>) => {
-            if (
-              data['newsletter-transports'] !== undefined &&
-              data['newsletter-transports'] !== actionChoices?.[dottedName]
-            ) {
-              toggleActionChoice(dottedName)
-              refreshNewsletterSubcriptions()
-              setActionWithFormOpen('')
-            }
+            setTimeout(() => {
+              if (
+                data['newsletter-transports'] !== undefined &&
+                data['newsletter-transports'] !== actionChoices?.[dottedName]
+              ) {
+                toggleActionChoice(dottedName)
+                refreshNewsletterSubcriptions()
+                setActionWithFormOpen('')
+              }
+            }, 2500)
           }}
           shouldForceEmailEditable={true}
           defaultValues={{

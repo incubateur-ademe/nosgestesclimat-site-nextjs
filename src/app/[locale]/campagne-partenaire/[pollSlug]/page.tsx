@@ -1,5 +1,6 @@
 import FAQ from '@/components/landing-pages/FAQ'
 import Partners from '@/components/landing-pages/Partners'
+import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Markdown from '@/design-system/utils/Markdown'
 import type { Locale } from '@/i18nConfig'
 import { fetchPartnerCampaign } from '@/services/cms/fetchPartnerCampaign'
@@ -19,7 +20,7 @@ export default async function PartnerCampaignPage({
   })
 
   if (!partnerCampaign) {
-    redirect('/404')
+    redirect(NOT_FOUND_PATH)
   }
 
   return (

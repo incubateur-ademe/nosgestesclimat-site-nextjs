@@ -1,5 +1,6 @@
 import MDXContent from '@/components/mdx/MDXContent'
 import Trans from '@/components/translation/trans/TransServer'
+import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -45,7 +46,7 @@ export default async function CategoryGuidePage({
   const { category, locale } = await params
 
   if (!categories[category]) {
-    return redirect('/404')
+    return redirect(NOT_FOUND_PATH)
   }
 
   return (
