@@ -34,7 +34,7 @@ jobs:
           yarn
           yarn storybook:build
         env:
-          NEXT_PUBLIC_SITE_URL: https://nosgestesclimat.github.io/nosgestesclimat-site-nextjs
+          NEXT_PUBLIC_SITE_URL: https://storybook.nosgestesclimat.fr
 
       - name: Upload artifact 📦
         uses: actions/upload-pages-artifact@v3
