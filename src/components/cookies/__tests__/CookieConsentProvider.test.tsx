@@ -12,8 +12,12 @@ import { useCookieConsent } from '../CookieConsentProvider'
 
 // Test component to access context
 const TestComponent = () => {
-  const { cookieConsent, cookieCustomChoice, triggerConsentDetection } =
-    useCookieConsent()
+  const {
+    cookieConsent,
+    cookieCustomChoice,
+    triggerConsentDetection,
+    isBoardOpen,
+  } = useCookieConsent()
 
   return (
     <div>
@@ -21,6 +25,7 @@ const TestComponent = () => {
       <div data-testid="custom-choice">
         {JSON.stringify(cookieCustomChoice) || 'undefined'}
       </div>
+      <div data-testid="board-open">{isBoardOpen.toString()}</div>
       <button onClick={triggerConsentDetection} data-testid="trigger">
         Trigger Detection
       </button>
@@ -129,6 +134,13 @@ describe('CookieConsentProvider', () => {
     renderWithWrapper(<TestComponent />)
     await waitFor(() => {
       expect(screen.getByTestId('trigger')).toBeTruthy()
+    })
+  })
+
+  it('should provide isBoardOpen state and setIsBoardOpen function in context', async () => {
+    renderWithWrapper(<TestComponent />)
+    await waitFor(() => {
+      expect(screen.getByTestId('board-open').textContent).toEqual('false')
     })
   })
 })
