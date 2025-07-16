@@ -28,7 +28,7 @@ export default function NosGestesTransportsBanner() {
   })
 
   const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
-    user?.userId ?? ''
+    user?.email ?? ''
   )
 
   const {
@@ -36,14 +36,12 @@ export default function NosGestesTransportsBanner() {
     isPending,
     isError,
     isSuccess,
-  } = useUpdateUserSettings()
+  } = useUpdateUserSettings({ email: user?.email ?? '', userId: user?.userId })
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     await updateUserSettings({
       email: data.email,
-      newsletterIds: [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER],
-      userId: user?.userId,
-      name: user?.name ?? '',
+      newsletterIds: { [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: true },
     })
 
     if (data.email && !user?.email) {

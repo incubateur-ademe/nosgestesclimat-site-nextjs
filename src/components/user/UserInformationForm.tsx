@@ -11,9 +11,7 @@ import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
-import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
-import { useUnsubscribeFromNewsletters } from '@/hooks/settings/useUnsubscribeFromNewsletters'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
@@ -21,7 +19,7 @@ import i18nConfig from '@/i18nConfig'
 import { useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
 import type { ReactNode } from 'react'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
@@ -49,7 +47,6 @@ type Props = {
   className?: string
   shouldForceEmailEditable?: boolean
   defaultValues?: { 'newsletter-transports': boolean }
-  shouldUseLegacyHook?: boolean
 }
 
 export default function UserInformationForm({
@@ -66,13 +63,14 @@ export default function UserInformationForm({
   className,
   shouldForceEmailEditable = false,
   defaultValues,
-  shouldUseLegacyHook = false,
 }: Props) {
   const { t } = useClientTranslation()
 
   const locale = useLocale()
 
   const { user, updateEmail, updateName } = useUser()
+
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const {
     register,
@@ -82,7 +80,7 @@ export default function UserInformationForm({
   } = useReactHookForm<Inputs>({ defaultValues: { name: user?.name } })
 
   const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
-    user?.userId ?? ''
+    user?.email ?? ''
   )
 
   useEffect(() => {
@@ -90,20 +88,16 @@ export default function UserInformationForm({
 
     setValue(
       'newsletter-saisonniere',
-      newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER) ?? false
+      newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER)
     )
     setValue(
       'newsletter-transports',
-      (newsletterSubscriptions?.includes(
-        LIST_NOS_GESTES_TRANSPORT_NEWSLETTER
-      ) ||
-        defaultValues?.['newsletter-transports']) ??
-        false
+      newsletterSubscriptions?.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER) ||
+        defaultValues?.['newsletter-transports']
     )
     setValue(
       'newsletter-logement',
-      newsletterSubscriptions?.includes(LIST_NOS_GESTES_LOGEMENT_NEWSLETTER) ??
-        false
+      newsletterSubscriptions?.includes(LIST_NOS_GESTES_LOGEMENT_NEWSLETTER)
     )
   }, [newsletterSubscriptions, setValue, defaultValues])
 
@@ -112,15 +106,9 @@ export default function UserInformationForm({
     isPending,
     isError,
     isSuccess,
-  } = useUpdateUserSettings()
-
-  const {
-    mutateAsync: unsubscribeFromNewsletters,
-    isPending: isPendingUnsubscribe,
-    isError: isErrorUnsubscribe,
-  } = useUnsubscribeFromNewsletters({
-    email: user.email ?? '',
-    userId: user.userId,
+  } = useUpdateUserSettings({
+    email: user?.email ?? '',
+    userId: user?.userId,
   })
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -131,26 +119,11 @@ export default function UserInformationForm({
     }
 
     try {
-      const newslettersArray = formatListIdsFromObject(newsletterIds)
-
-      if (
-        shouldUseLegacyHook ||
-        (newsletterSubscriptions &&
-          newslettersArray.length < newsletterSubscriptions.length)
-      ) {
-        await unsubscribeFromNewsletters({
-          name: data.name,
-          email: user.email ?? '',
-          newsletterIds,
-        })
-      } else {
-        await updateUserSettings({
-          name: data.name,
-          email: user.email ?? data.email ?? '',
-          newsletterIds: newslettersArray,
-          userId: user?.userId,
-        })
-      }
+      await updateUserSettings({
+        name: data.name,
+        email: data.email,
+        newsletterIds,
+      })
 
       if (data.email && (!user?.email || shouldForceEmailEditable)) {
         updateEmail(data.email)
@@ -160,11 +133,21 @@ export default function UserInformationForm({
         updateName(data.name)
       }
 
-      onCompleted(data)
+      timeoutRef.current = setTimeout(() => {
+        onCompleted(data)
+      }, 2500)
     } catch (error) {
       captureException(error)
     }
   }
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
+  }, [])
 
   const isFrench = locale === i18nConfig.defaultLocale
 
@@ -173,12 +156,10 @@ export default function UserInformationForm({
       {title}
 
       <form
-        data-testid="user-information-form"
         onSubmit={handleSubmit(onSubmit)}
         className="flex w-full flex-col items-start gap-4">
         {inputsDisplayed.includes('name') && (
           <TextInputGroup
-            data-testid="name-input"
             value={user?.name}
             label={t('Votre nom')}
             {...register('name', {
@@ -195,7 +176,6 @@ export default function UserInformationForm({
               // sinon on lui permet d'en définir un
               user?.email && !shouldForceEmailEditable ? (
                 <TextInputGroup
-                  data-testid="email-input-readonly"
                   name="email"
                   helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
                   label={t('Votre adresse electronique')}
@@ -204,7 +184,6 @@ export default function UserInformationForm({
                 />
               ) : (
                 <TextInputGroup
-                  data-testid="email-input-editable"
                   label={t('Votre adresse electronique')}
                   className="w-full"
                   value={user?.email ?? ''}
@@ -226,7 +205,7 @@ export default function UserInformationForm({
             </p>
             {inputsDisplayed.includes('newsletter-saisonniere') && (
               <CheckboxInputGroup
-                data-testid="newsletter-saisonniere-checkbox"
+                size="lg"
                 disableSubmitOnEnter
                 label={
                   <span>
@@ -244,7 +223,7 @@ export default function UserInformationForm({
             )}
             {inputsDisplayed.includes('newsletter-transports') && (
               <CheckboxInputGroup
-                data-testid="newsletter-transports-checkbox"
+                size="lg"
                 disableSubmitOnEnter
                 label={
                   <span>
@@ -260,7 +239,7 @@ export default function UserInformationForm({
             )}
             {inputsDisplayed.includes('newsletter-logement') && (
               <CheckboxInputGroup
-                data-testid="newsletter-logement-checkbox"
+                size="lg"
                 disableSubmitOnEnter
                 label={
                   <span>
@@ -277,29 +256,19 @@ export default function UserInformationForm({
           </>
         )}
         {isSuccess && (
-          <p
-            data-testid="success-message"
-            role="alert"
-            className="mt-4 mb-4 text-green-700">
+          <p role="alert" className="mt-4 mb-4 text-green-700">
             <Trans>Vos informations ont bien été mises à jour.</Trans>
           </p>
         )}
 
-        {(isError || isErrorUnsubscribe) && (
-          <div data-testid="error-message">
-            <DefaultSubmitErrorMessage />
-          </div>
-        )}
+        {isError && <DefaultSubmitErrorMessage />}
 
         <div>
           <Button
-            data-testid="submit-button"
             type="submit"
             className="mt-6 gap-2 self-start"
-            disabled={isPending || isPendingUnsubscribe}>
-            {(isPending || isPendingUnsubscribe) && (
-              <Loader size="sm" color="light" />
-            )}
+            disabled={isPending}>
+            {isPending && <Loader size="sm" color="light" />}
 
             {submitLabel ?? <Trans>Mettre à jour mes informations</Trans>}
           </Button>
