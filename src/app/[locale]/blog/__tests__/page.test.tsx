@@ -24,97 +24,6 @@ vi.mock('@/helpers/language/getLangButtonsDisplayed', () => ({
   getLangButtonsDisplayed: vi.fn(),
 }))
 
-// Mock components
-vi.mock('@/components/layout/ContentLarge', () => ({
-  default: ({ children, ...props }: any) => (
-    <div data-testid="content-large" {...props}>
-      {children}
-    </div>
-  ),
-}))
-
-vi.mock('@/components/layout/Footer', () => ({
-  default: ({ langButtonsDisplayed, ...props }: any) => (
-    <footer data-testid="footer" {...props}>
-      Footer - {JSON.stringify(langButtonsDisplayed)}
-    </footer>
-  ),
-}))
-
-vi.mock('@/components/seo/JSONLD', () => ({
-  default: ({ jsonLd, ...props }: any) => (
-    <script data-testid="jsonld" {...props}>
-      {JSON.stringify(jsonLd)}
-    </script>
-  ),
-}))
-
-vi.mock('@/design-system/cms/AllBlogCategories', () => ({
-  default: ({ locale, ...props }: any) => (
-    <div data-testid="all-blog-categories" {...props}>
-      AllBlogCategories - {locale}
-    </div>
-  ),
-}))
-
-vi.mock('@/design-system/cms/ArticleList', () => ({
-  default: ({ locale, articles, pageCount, currentPage, ...props }: any) => (
-    <div data-testid="article-list" {...props}>
-      ArticleList - {locale} - {articles?.length || 0} articles - Page{' '}
-      {currentPage} of {pageCount}
-    </div>
-  ),
-}))
-
-vi.mock('@/design-system/cms/MainArticle', () => ({
-  default: ({
-    locale,
-    title,
-    description,
-    imageSrc,
-    imageAlt,
-    href,
-    category,
-    ...props
-  }: any) => (
-    <article data-testid="main-article" {...props}>
-      MainArticle - {locale} - {title} - {category}
-    </article>
-  ),
-}))
-
-vi.mock('@/design-system/cms/NewslettersBlock', () => ({
-  default: ({ ...props }: any) => (
-    <div data-testid="newsletters-block" {...props}>
-      NewslettersBlock
-    </div>
-  ),
-}))
-
-vi.mock('@/design-system/cms/NewslettersBlockSkeleton', () => ({
-  default: ({ ...props }: any) => (
-    <div data-testid="newsletters-block-skeleton" {...props}>
-      NewslettersBlockSkeleton
-    </div>
-  ),
-}))
-
-vi.mock('../_components/BlogHero', () => ({
-  default: ({ title, description, image, ...props }: any) => (
-    <div data-testid="blog-hero" {...props}>
-      BlogHero - {title} - {description}
-    </div>
-  ),
-}))
-
-vi.mock('../_components/GroupBlock', () => ({
-  default: ({ locale, ...props }: any) => (
-    <div data-testid="group-block" {...props}>
-      GroupBlock - {locale}
-    </div>
-  ),
-}))
-
 // Import mocked functions
 import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import { fetchHomepageContent } from '@/services/cms/fetchHomepageContent'
@@ -201,7 +110,7 @@ describe('BlogHomePage', () => {
     mockFetchHomepageMetadata.mockResolvedValue({
       metaTitle: 'Test Meta Title',
       metaDescription: 'Test Meta Description',
-      image: { url: 'meta-image.jpg', alternativeText: 'Meta Image' },
+      image: { url: 'test-meta-image.jpg', alternativeText: 'Test Meta Image' },
     })
 
     mockGetLangButtonsDisplayed.mockResolvedValue({

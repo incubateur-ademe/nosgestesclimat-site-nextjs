@@ -22,57 +22,6 @@ vi.mock('@/helpers/language/getLangButtonsDisplayed', () => ({
   getLangButtonsDisplayed: vi.fn(),
 }))
 
-// Mock components
-vi.mock('@/components/layout/Footer', () => ({
-  default: ({ langButtonsDisplayed, ...props }: any) => (
-    <footer data-testid="footer" {...props}>
-      Footer - {JSON.stringify(langButtonsDisplayed)}
-    </footer>
-  ),
-}))
-vi.mock('@/design-system/layout/Badge', () => ({
-  default: ({ children, ...props }: any) => (
-    <span data-testid="badge" {...props}>
-      {children}
-    </span>
-  ),
-}))
-vi.mock('@/components/translation/trans/TransServer', () => ({
-  default: ({ children, ...props }: any) => (
-    <span data-testid="trans" {...props}>
-      {children}
-    </span>
-  ),
-}))
-vi.mock('next/image', () => ({
-  default: ({ src, alt, ...props }: any) => (
-    <img data-testid="image" src={src} alt={alt} {...props} />
-  ),
-}))
-vi.mock('../_components/ArticleBreadcrumbs', () => ({
-  default: (props: any) => (
-    <nav data-testid="article-breadcrumbs">ArticleBreadcrumbs</nav>
-  ),
-}))
-vi.mock('../_components/ArticleJSONLD', () => ({
-  default: (props: any) => (
-    <script data-testid="article-jsonld">ArticleJSONLD</script>
-  ),
-}))
-vi.mock('../_components/AuthorBlock', () => ({
-  default: (props: any) => <div data-testid="author-block">AuthorBlock</div>,
-}))
-vi.mock('../_components/OtherArticles', () => ({
-  default: (props: any) => (
-    <div data-testid="other-articles">OtherArticles</div>
-  ),
-}))
-vi.mock('../_components/StickySidebar', () => ({
-  default: (props: any) => (
-    <div data-testid="sticky-sidebar">StickySidebar</div>
-  ),
-}))
-
 import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import { fetchArticlePageContent } from '@/services/cms/fetchArticlePageContent'
 import { fetchArticlePageMetadata } from '@/services/cms/fetchArticlePageMetadata'
@@ -119,17 +68,13 @@ describe('ArticlePage', () => {
           publishedAt: '2023-01-01T00:00:00.000Z',
         },
         author: {
-          id: 'author-1',
-          documentId: 'doc-author-1',
           name: 'Author Name',
-          bio: 'Author Bio',
-          avatar: {
+          description: 'Author Bio',
+          htmlDescription: 'Author HTML Bio',
+          image: {
             url: 'author-avatar.jpg',
             alternativeText: 'Author Avatar',
           },
-          createdAt: '2023-01-01T00:00:00.000Z',
-          updatedAt: '2023-01-01T00:00:00.000Z',
-          publishedAt: '2023-01-01T00:00:00.000Z',
         },
       },
       otherArticles: [
@@ -138,11 +83,19 @@ describe('ArticlePage', () => {
           documentId: 'doc-2',
           title: 'Other Article 1',
           description: 'Other Article 1 Description',
+          htmlDescription: 'Other Article 1 HTML Description',
+          content: 'Other Article 1 Content',
+          htmlContent: 'Other Article 1 HTML Content',
+          headings: [],
+          duration: 240,
           slug: 'other-article-1',
           image: {
             url: 'other-article-1-image.jpg',
             alternativeText: 'Other Article 1 Image',
           },
+          createdAt: '2023-01-01T00:00:00.000Z',
+          updatedAt: '2023-01-01T00:00:00.000Z',
+          publishedAt: '2023-01-01T00:00:00.000Z',
           category: {
             id: 'cat-2',
             documentId: 'doc-cat-2',
@@ -247,19 +200,15 @@ describe('ArticlePage', () => {
           createdAt: '2023-01-01T00:00:00.000Z',
           updatedAt: '2023-01-01T00:00:00.000Z',
           publishedAt: '2023-01-01T00:00:00.000Z',
-          category: undefined,
+          category: null,
           author: {
-            id: 'author-1',
-            documentId: 'doc-author-1',
             name: 'Author Name',
-            bio: 'Author Bio',
-            avatar: {
+            description: 'Author Bio',
+            htmlDescription: 'Author HTML Bio',
+            image: {
               url: 'author-avatar.jpg',
               alternativeText: 'Author Avatar',
             },
-            createdAt: '2023-01-01T00:00:00.000Z',
-            updatedAt: '2023-01-01T00:00:00.000Z',
-            publishedAt: '2023-01-01T00:00:00.000Z',
           },
         },
         otherArticles: [],
@@ -307,7 +256,15 @@ describe('ArticlePage', () => {
             updatedAt: '2023-01-01T00:00:00.000Z',
             publishedAt: '2023-01-01T00:00:00.000Z',
           },
-          author: undefined,
+          author: {
+            name: 'Author Name',
+            description: 'Author Bio',
+            htmlDescription: 'Author HTML Bio',
+            image: {
+              url: 'author-avatar.jpg',
+              alternativeText: 'Author Avatar',
+            },
+          },
         },
         otherArticles: [],
       })
@@ -333,7 +290,7 @@ describe('ArticlePage', () => {
           headings: [],
           duration: 300,
           slug: 'article-slug',
-          image: undefined,
+          image: null,
           createdAt: '2023-01-01T00:00:00.000Z',
           updatedAt: '2023-01-01T00:00:00.000Z',
           publishedAt: '2023-01-01T00:00:00.000Z',
@@ -352,17 +309,13 @@ describe('ArticlePage', () => {
             publishedAt: '2023-01-01T00:00:00.000Z',
           },
           author: {
-            id: 'author-1',
-            documentId: 'doc-author-1',
             name: 'Author Name',
-            bio: 'Author Bio',
-            avatar: {
+            description: 'Author Bio',
+            htmlDescription: 'Author HTML Bio',
+            image: {
               url: 'author-avatar.jpg',
               alternativeText: 'Author Avatar',
             },
-            createdAt: '2023-01-01T00:00:00.000Z',
-            updatedAt: '2023-01-01T00:00:00.000Z',
-            publishedAt: '2023-01-01T00:00:00.000Z',
           },
         },
         otherArticles: [],
@@ -393,7 +346,7 @@ describe('ArticlePage', () => {
             url: 'article-image.jpg',
             alternativeText: 'Article Image',
           },
-          createdAt: undefined,
+          createdAt: '2023-01-01T00:00:00.000Z',
           updatedAt: '2023-01-01T00:00:00.000Z',
           publishedAt: '2023-01-01T00:00:00.000Z',
           category: {
@@ -411,17 +364,13 @@ describe('ArticlePage', () => {
             publishedAt: '2023-01-01T00:00:00.000Z',
           },
           author: {
-            id: 'author-1',
-            documentId: 'doc-author-1',
             name: 'Author Name',
-            bio: 'Author Bio',
-            avatar: {
+            description: 'Author Bio',
+            htmlDescription: 'Author HTML Bio',
+            image: {
               url: 'author-avatar.jpg',
               alternativeText: 'Author Avatar',
             },
-            createdAt: '2023-01-01T00:00:00.000Z',
-            updatedAt: '2023-01-01T00:00:00.000Z',
-            publishedAt: '2023-01-01T00:00:00.000Z',
           },
         },
         otherArticles: [],

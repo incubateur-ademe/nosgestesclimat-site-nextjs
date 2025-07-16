@@ -22,69 +22,6 @@ vi.mock('@/helpers/language/getLangButtonsDisplayed', () => ({
   getLangButtonsDisplayed: vi.fn(),
 }))
 
-// Mock components
-vi.mock('@/components/layout/ContentLarge', () => ({
-  default: ({ children, ...props }: any) => (
-    <div data-testid="content-large" {...props}>
-      {children}
-    </div>
-  ),
-}))
-vi.mock('@/components/layout/Footer', () => ({
-  default: ({ langButtonsDisplayed, ...props }: any) => (
-    <footer data-testid="footer" {...props}>
-      Footer - {JSON.stringify(langButtonsDisplayed)}
-    </footer>
-  ),
-}))
-vi.mock('@/design-system/cms/AllBlogCategories', () => ({
-  default: ({ locale, ...props }: any) => (
-    <div data-testid="all-blog-categories" {...props}>
-      AllBlogCategories - {locale}
-    </div>
-  ),
-}))
-vi.mock('@/design-system/cms/ArticleList', () => ({
-  default: ({ locale, articles, pageCount, currentPage, ...props }: any) => (
-    <div data-testid="article-list" {...props}>
-      ArticleList - {locale} - {articles?.length || 0} articles - Page{' '}
-      {currentPage} of {pageCount}
-    </div>
-  ),
-}))
-vi.mock('@/design-system/cms/MainArticle', () => ({
-  default: ({
-    locale,
-    title,
-    description,
-    imageSrc,
-    imageAlt,
-    href,
-    category,
-    ...props
-  }: any) => (
-    <article data-testid="main-article" {...props}>
-      MainArticle - {locale} - {title} - {category}
-    </article>
-  ),
-}))
-vi.mock('@/components/landing-pages/FAQ', () => ({
-  default: (props: any) => <div data-testid="faq">FAQ</div>,
-}))
-vi.mock('../_components/AdditionalContent', () => ({
-  default: (props: any) => (
-    <div data-testid="additional-content">AdditionalContent</div>
-  ),
-}))
-vi.mock('../_components/CategoryHero', () => ({
-  default: (props: any) => <div data-testid="category-hero">CategoryHero</div>,
-}))
-vi.mock('../_components/CategoryJSONLD', () => ({
-  default: (props: any) => (
-    <div data-testid="category-jsonld">CategoryJSONLD</div>
-  ),
-}))
-
 import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import { fetchCategoryPageContent } from '@/services/cms/fetchCategoryPageContent'
 import { fetchCategoryPageMetadata } from '@/services/cms/fetchCategoryPageMetadata'
