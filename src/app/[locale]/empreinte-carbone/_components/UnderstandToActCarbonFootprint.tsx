@@ -1,5 +1,4 @@
 import UnderstandToAct from '@/components/landing-pages/UnderstandToAct'
-import Trans from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function UnderstandToActCarbonFootprint({
@@ -15,18 +14,7 @@ export default async function UnderstandToActCarbonFootprint({
     <UnderstandToAct
       locale={locale}
       pathname={pathname}
-      description={
-        <p className="mb-0">
-          <Trans locale={locale}>
-            Réduire efficacement son empreinte sur l’environnement nécessite de{' '}
-            <strong className="text-primary-600">
-              s’informer sur les enjeux du réchauffement climatique
-            </strong>
-            , s'inspirer des bonnes pratiques et{' '}
-            <strong className="text-primary-600">passer à l’action</strong>.
-          </Trans>
-        </p>
-      }
+      description="<p class='mb-0'>Réduire efficacement son empreinte sur l'environnement nécessite de <strong class='text-primary-600'>s'informer sur les enjeux du réchauffement climatique</strong>, s'inspirer des bonnes pratiques et <strong class='text-primary-600'>passer à l'action</strong>.</p>"
       posts={[
         {
           category: t('Empreinte carbone'),
@@ -50,7 +38,7 @@ export default async function UnderstandToActCarbonFootprint({
         },
         {
           category: t('Empreinte carbone'),
-          title: t('Avez-vous déjà entendu parler de maladaptation ?'),
+          title: t('Avez-vous déjà entendu parler de maladaptation ?'),
           href: '/blog/environnement/maladaptation',
           imageSrc:
             'https://s3.fr-par.scw.cloud/nosgestesclimat-prod/cms/william_bossen_fonte_glaces_a3dd8ea653.jpg',

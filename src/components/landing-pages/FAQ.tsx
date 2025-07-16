@@ -57,7 +57,7 @@ export default function FAQ({
                   <div className="overflow-hidden">
                     {shouldUseDangerouslySetInnerHTML ? (
                       <div
-                        className="pt-4 text-sm last:mb-0 md:text-base"
+                        className="markdown pt-4 text-sm last:mb-0 md:text-base"
                         dangerouslySetInnerHTML={{
                           __html: answer as string,
                         }}

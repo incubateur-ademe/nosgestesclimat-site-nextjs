@@ -6,35 +6,30 @@ import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
 import '@testing-library/jest-dom'
 import { act, screen, waitFor } from '@testing-library/react'
 import { useSearchParams } from 'next/navigation'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock the hooks
-jest.mock('@/hooks/partners/useExportSituation')
-jest.mock('@/hooks/partners/useVerifyPartner')
+vi.mock('@/hooks/partners/useExportSituation')
+vi.mock('@/hooks/partners/useVerifyPartner')
 
 // Les services API sont maintenant gérés par MSW dans src/__tests__/server.ts
 
 // Mock Sentry to avoid issues in tests
-jest.mock('@sentry/nextjs', () => ({
-  captureException: jest.fn(),
+vi.mock('@sentry/nextjs', () => ({
+  captureException: vi.fn(),
 }))
 
 // Mock the hooks with proper return values
-const mockUseExportSituation = useExportSituation as jest.MockedFunction<
-  typeof useExportSituation
->
-const mockUseVerifyPartner = useVerifyPartner as jest.MockedFunction<
-  typeof useVerifyPartner
->
-const mockUseSearchParams = useSearchParams as jest.MockedFunction<
-  typeof useSearchParams
->
+const mockUseExportSituation = useExportSituation as ReturnType<typeof vi.fn>
+const mockUseVerifyPartner = useVerifyPartner as ReturnType<typeof vi.fn>
+const mockUseSearchParams = useSearchParams as ReturnType<typeof vi.fn>
 
 // Mock sessionStorage
 const mockSessionStorage = {
-  getItem: jest.fn(),
-  setItem: jest.fn(),
-  removeItem: jest.fn(),
-  clear: jest.fn(),
+  getItem: vi.fn(),
+  setItem: vi.fn(),
+  removeItem: vi.fn(),
+  clear: vi.fn(),
 }
 Object.defineProperty(window, 'sessionStorage', {
   value: mockSessionStorage,
@@ -43,7 +38,7 @@ Object.defineProperty(window, 'sessionStorage', {
 
 describe('PartnerContext', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
     mockSessionStorage.getItem.mockReturnValue(null)
     mockSessionStorage.setItem.mockImplementation(() => {})
     mockSessionStorage.removeItem.mockImplementation(() => {})
@@ -61,12 +56,12 @@ describe('PartnerContext', () => {
       // Given
       mockUseSearchParams.mockReturnValue({
         entries: () => new Map().entries(),
-        get: jest.fn(),
+        get: vi.fn(),
       } as any)
       mockUseVerifyPartner.mockReturnValue(false)
       mockUseExportSituation.mockReturnValue({
-        exportSituationAsync: jest.fn().mockResolvedValue({ redirectUrl }),
-        exportSituation: jest.fn(),
+        exportSituationAsync: vi.fn().mockResolvedValue({ redirectUrl }),
+        exportSituation: vi.fn(),
         isPending: false,
         isSuccess: false,
         isError: false,
@@ -98,12 +93,12 @@ describe('PartnerContext', () => {
             ['partner', 'test'],
             ['partner-test', 'test'],
           ]).entries(),
-        get: jest.fn(),
+        get: vi.fn(),
       } as any)
       mockUseVerifyPartner.mockReturnValue(true)
       mockUseExportSituation.mockReturnValue({
-        exportSituationAsync: jest.fn().mockResolvedValue({ redirectUrl }),
-        exportSituation: jest.fn(),
+        exportSituationAsync: vi.fn().mockResolvedValue({ redirectUrl }),
+        exportSituation: vi.fn(),
         isPending: false,
         isSuccess: false,
         isError: false,
@@ -142,12 +137,12 @@ describe('PartnerContext', () => {
             ['partner', 'test'],
             ['partner-test', 'test'],
           ]).entries(),
-        get: jest.fn(),
+        get: vi.fn(),
       } as any)
       mockUseVerifyPartner.mockReturnValue(true)
       mockUseExportSituation.mockReturnValue({
-        exportSituationAsync: jest.fn().mockResolvedValue({ redirectUrl }),
-        exportSituation: jest.fn(),
+        exportSituationAsync: vi.fn().mockResolvedValue({ redirectUrl }),
+        exportSituation: vi.fn(),
         isPending: false,
         isSuccess: false,
         isError: false,

@@ -1,4 +1,7 @@
+import CookieConsentBannerAndManagement from '@/components/cookies/CookieConsentBannerAndManagement'
 import ErrorContent from '@/components/error/ErrorContent'
+import { GoogleTagIframe } from '@/components/googleTagManager/GoogleTagIframe'
+import { GoogleTagScript } from '@/components/googleTagManager/GoogleTagScript'
 import SkipToMainContentLink from '@/design-system/accessibility/SkipToMainContentLink'
 import Banner from '@/design-system/cms/Banner'
 import type { Locale } from '@/i18nConfig'
@@ -11,6 +14,7 @@ import localFont from 'next/font/local'
 import Script from 'next/script'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
+
 export const marianne = localFont({
   src: [
     {
@@ -45,6 +49,8 @@ export const marianne = localFont({
     },
   ],
   variable: '--font-marianne',
+  display: 'swap',
+  preload: true,
 })
 
 export default async function RootLayout({
@@ -118,15 +124,22 @@ export default async function RootLayout({
               </Script>
             )
           }
-          <Script src="https://tally.so/widgets/embed.js"></Script>
+          <Script
+            src="https://tally.so/widgets/embed.js"
+            strategy="lazyOnload"></Script>
         </head>
 
         <MainLayoutProviders>
           <SkipToMainContentLink />
 
+          <CookieConsentBannerAndManagement />
+
           <Banner locale={locale as Locale} />
 
           {children}
+
+          <GoogleTagScript />
+          <GoogleTagIframe />
         </MainLayoutProviders>
       </html>
     )

@@ -3,6 +3,7 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import FAQ from '@/components/landing-pages/FAQ'
 import ContentLarge from '@/components/layout/ContentLarge'
 import Footer from '@/components/layout/Footer'
+import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
@@ -78,7 +79,7 @@ export default async function CategoryPage({
   })
 
   if (!title || !description) {
-    return redirect('/404')
+    return redirect(NOT_FOUND_PATH)
   }
 
   return (

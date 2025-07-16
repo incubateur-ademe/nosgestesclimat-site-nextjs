@@ -180,6 +180,11 @@ export type PartnerCategoryType = {
 }
 
 export type PartnerType = {
+  id: string
+  documentId: string
+  createdAt: string
+  updatedAt: string
+  publishedAt: string
   name: string
   imageSrc: string
   link: string
@@ -208,4 +213,52 @@ export type FAQType = {
   category: string
   order: number
   questions: QuestionType[]
+  subTitle?: string
 }
+
+type CarouselItemType = {
+  image?: ImageType
+  text: string
+  htmlText?: string
+  pinkText: string
+}
+
+type TitleImageDescription = {
+  title: string
+  image?: ImageType
+  description?: string
+}
+
+type TitleImageListDescriptionWithHTML = {
+  title: string
+  image?: ImageType
+  description: string
+  htmlDescription?: string
+  listItems?: TitleImageDescription[]
+}
+
+export type ThematicLandingPage = {
+  id: string
+  documentId: string
+  publishedAt: string
+  updatedAt: string
+  title: string
+  block1?: TitleImageListDescriptionWithHTML
+  block2?: TitleImageListDescriptionWithHTML
+  block3?: TitleImageListDescriptionWithHTML
+  block4?: CarouselItemType[]
+  block5?: TitleImageListDescriptionWithHTML
+  block6?: TitleImageListDescriptionWithHTML
+  articlesList?: ArticleType[]
+  articlesCTALabel?: string
+  articlesCTALink?: string
+  block7?: TitleImageListDescriptionWithHTML
+  faq?: FAQType
+  metadata?: PageMetadataType
+  slug: string
+  htmlLegend?: string
+}
+
+export type PopulatedThematicLandingPageType<
+  K extends OptionalKeys<ThematicLandingPage>,
+> = Populate<ThematicLandingPage, K>

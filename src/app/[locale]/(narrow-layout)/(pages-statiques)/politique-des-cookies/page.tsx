@@ -29,7 +29,7 @@ export default async function CookiesPolicyPage({ params }: DefaultPageProps) {
         cookieConsentButton={
           <iframe
             title="matomo"
-            src="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr&backgroundColor=&fontColor=&fontSize=&fontFamily="
+            src="https://stats.beta.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr&backgroundColor=&fontColor=&fontSize=&fontFamily="
           />
         }
         siteName="Nos Gestes Climat"

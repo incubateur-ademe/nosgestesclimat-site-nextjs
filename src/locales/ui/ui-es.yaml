@@ -45,23 +45,19 @@ entries:
   Vous n'avez pas encore fait le test.: Aún no has hecho la prueba.
   Une question, un problème ?: ¿Tiene alguna pregunta o problema?
   Passer à l'action !: Actúa
-  Réseaux Sociaux: Redes sociales
   Suivez le guide !: Sigue la guía
   Personnalisez cette estimation: Personalice este presupuesto
   Ouvrir les options de tri: Abrir opciones de clasificación
   Profil: Perfil
   Suivant: Siguiente
   Oui: Sí
-  dernières: última
   components.localisation.Localisation.warnMessage: Por el momento, no existe un modelo de cálculo para {{countryName}}, el modelo francés se propone por defecto.
   components.localisation.Localisation.warnMessage.lock: Pour le moment, il n'existe pas de modèle de calcul pour {{countryName}}, le modèle Français vous est proposé par défaut.
-  Sites Web: Páginas web
   components.localisation.LocalisationMessage.warnMessage: Su región aún no es compatible, el modelo francés se propone por defecto
   components.localisation.LocalisationMessage.warnMessage.lock: Votre région n'est pas encore supportée, le modèle Français vous est proposé par défaut
   actions choisies: acciones seleccionadas
   Une technologie moderne: Tecnología moderna
   Questions fréquentes: Preguntas más frecuentes
-  derniers: última
   Non: No
   Nouveautés: Noticias
   components.localisation.Localisation.warnMessage2: No hemos podido detectar su país de simulación, por lo que se propone por defecto el modelo francés.
@@ -70,7 +66,6 @@ entries:
   publicodes.ActionVignette.questionsRestantesText.lock: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
   minutes: minutos
   participant: participante
-  jours: días
   et: y
   plus de 10 kg: más de 10 kg
   plus d'1 tonne: más de 1 tonelada
@@ -79,7 +74,6 @@ entries:
   publicodes.ActionTutorial.msgPrésentation.lock: "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"
   publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} acciones disponibles,'
   publicodes.ActionsOptionsBar.actionsRecap.lock: '{{numberOfAvailableFinalActions}} actions disponibles,'
-  mois: mes
   plus de 100 kg: más de 100 kg
   plus d'1 kg: más de 1 kg
   le - d'impact climat: el - impacto climático
@@ -117,13 +111,11 @@ entries:
   publicodes.Personas.description.lock: 'Nous les avons définis pour qu’ils représentent la diversité des cas d’usage du calculateur.<1>Toute ressemblance avec une personne existant ou ayant existé serait purement fortuite !</1>En aucune mesure, on ne peut dire qu’ils sont représentatifs de la distribution de la population française : il ne s’agit pas de coller aux statistiques de la population, mais de retrouver parmi nos dix personas au moins un qui représente chaque usage majeur et différenciant pour le calculateur. Ainsi, nous avons fait varier pour chacun d’entre eux :<3><0>Leur genre : même s’il n’influe pas sur l’empreinte, il serait étonnant de n’avoir que des personas “femmes”</0><1>Leur âge et situation personnelle / professionnelle : au moins un étudiant, un retraité, un adulte au foyer, un actif</1><2>La taille de leur foyer : de 1 personne à famille nombreuse</2><3>Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans le nord, dans le sud, les plaines, la montagne et sur une île</3><4>Leur logement : de l’appartement à la maison, du neuf à l’ancien</4><5>Leurs modes de transport : de la marche à la voiture en passant par le ferry et l’avion</5><6>Leur régime alimentaire : au moins un végétalien, un végétarien, une personne ne mangeant que du poisson, et un amateur de viande rouge</6><7>Leur tendance à l’achat : du tout occasion au tout neuf, de l’acheteur compulsif à celui ou celle qui n’achète presque rien</7><8>Leur façon de partir en vacances : mode de transport, hébergement, on trouve de tout</8><9>Leurs loisirs : de la culture, du sport, du bien-être…</9></3>'
   model.stats: El modelo incluye ahora <1></1> reglas de cálculo. Entre ellas, <3></3> reglas son preguntas que deben formularse al usuario para calcular un resultado preciso.
   model.stats.lock: Le modèle comprend aujourd'hui <1></1> règles de calcul. Parmi elles, <3></3> règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.
-  visites: visita
   À venir !: Próximamente
   publicodes.planDuSite.actionsPlus: Las acciones
   publicodes.planDuSite.actionsPlus.lock: Les actions
   sélectionnées: seleccionado
   tonnes: toneladas
-  semaines: semanas
   tonne: tonelada
   international.comment.titre: ¿Cómo funciona?
   international.comment.titre.lock: Comment ça marche ?
@@ -162,7 +154,6 @@ entries:
   facultatif: opcional
   Créer le groupe: Crear un grupo
   Copié !: ¡Copiado!
-  'pour les ': 'para '
   Vos points faibles: Sus puntos débiles
   Rejoindre: Póngase en contacto con
   Créer un groupe d'amis: Crear un grupo de amigos
@@ -172,9 +163,7 @@ entries:
   Créer un autre groupe: Crear otro grupo
   Données supprimées.: Datos borrados.
   Le classement: Clasificación
-  Nombre de: Número de
   Vos points forts: Sus puntos fuertes
-  simulations terminées: simulaciones completadas
   Retour: Volver
   Créez votre premier groupe: Cree su primer grupo
   Ok, sauvegarder la modification: Ok, guardar la modificación
@@ -279,7 +268,6 @@ entries:
   Informations: Información
   Nos outils: Nuestras herramientas
   Période: Periodo
-  Vie privée: Política de privacidad
   Sauvegarder: Guardar
   Statistiques: Estadísticas
   Plan du site: Mapa del sitio
@@ -299,7 +287,6 @@ entries:
   Vous pouvez supprimer le groupe en cliquant sur le bouton ci-dessous. Il sera supprimé définitivement pour tous ses autres membres puisque vous en êtes l'administrateur.: Puedes eliminar el grupo haciendo clic en el botón de abajo. Se eliminará permanentemente para todos sus demás miembros, ya que usted es el administrador.
   Cette opération est définitive et supprimera le groupe pour tous ses membres.: Esta operación es definitiva y borrará el grupo para todos sus miembros.
   Ce groupe n'existe pas ou a été supprimé.: Este grupo no existe o ha sido eliminado.
-  'Vous pouvez nous contacter via notre page de contact : <2>accéder à notre page de contact</2>.': 'Puede ponerse en contacto con nosotros a través de nuestra página de <2>contacto: vaya a nuestra página de contacto</2>.'
   Le calculateur d’empreinte climat international: Calculadora internacional de la huella climática
   Vous avez quitté ce groupe. Vous allez être redirigé vers la page d'accueil du mode groupe: Has abandonado este grupo. Serás redirigido a la página de inicio del modo grupo
   Renvoyer le code: Reenviar código
@@ -390,7 +377,6 @@ entries:
   km par personne: km por persona
   Valider: Confirme
   Groupes d'amis: Grupos de amigos
-  Modifications sauvegardées: Cambios guardados
   précédent: anterior
   Facultatif: Opcional
   Vous avez déjà réalisé le test Nos Gestes Climat !: ¡Ya has realizado el test Nos Gestes Climat!
@@ -447,7 +433,6 @@ entries:
   Informations relatives au budget de Nos Gestes Climat.: Información sobre el presupuesto de Nos Gestes Climat.
   Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personnelle: El núcleo de Nos Gestes Climat es **la evaluación de la huella climática personal**
   Découvrez les nouveautés du site Nos Gestes Climat.: Descubra las novedades en el sitio web de Nos Gestes Climat.
-  Nos statistiques "phares" - Nos Gestes Climat: Nuestras estadísticas clave - Nos Gestes Climat
   Découvrez comment nous utilisons vos données personnelles pour vous proposer un calculateur de bilan carbone personnel.: Descubra cómo utilizamos sus datos personales para ofrecerle un simulador personal de la huella de carbono.
   Rejoindre un groupe - Nos Gestes Climat: Únete a un grupo - Nos Gestes Climat
   Comprenez comment calculer votre empreinte sur le climat en 10min chrono.: Descubra cómo calcular su huella climática en 10 minutos.
@@ -488,7 +473,6 @@ entries:
   Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.: Consulta las novedades y últimas noticias de Nos Gestes Climat.
   Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.: Acceda a servicios a medida para sensibilizar a sus socios dentro de su organización.
   Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**: La mayor huella media, el inevitable **coche individual**
-  Observez nos l'évolution de nos deux mesures d'impact principales.: Eche un vistazo a nuestras dos principales medidas de impacto.
   Supprimez vos données de groupe enregistrées dans le calculateur Nos Gestes Climat.: Borra los datos de tu grupo guardados en el simulador Nos Gestes Climat.
   Nos personas d'utilisateurs types - Nos Gestes Climat: Nuestros usuarios tipo - Nos Gestes Climat
   Découvrez les actions que vous pouvez mettre en place pour réduire votre empreinte carbone.: Averigüe qué puede hacer para reducir su huella de carbono.
@@ -521,7 +505,6 @@ entries:
   Inscription à nos e-mails: Suscríbase a nuestros correos electrónicos
   Simulations terminées: Simulaciones completadas
   Vous pouvez vous désincrire à tout moment: Puede darse de baja en cualquier momento
-  Une erreur s'est produite au moment de la sauvegarde de vos paramètres: Se ha producido un error al guardar la configuración
   "<0>Nos Gestes Transports</0> : tout savoir ou presque sur l'impact carbone des transports, en 4 e-mails": '<0>Nos Gestes Transports</0>: todo lo que necesita saber sobre el impacto del transporte en el carbono, en 4 e-mails'
   '<0>Infolettre saisonnière de Nos Gestes Climat</0> : actualités climat, initiatives positives et nouveautés': '<0>Boletín estacional de Nos Gestes Climat</0>: noticias sobre el clima, iniciativas positivas y nuevos productos'
   Questions complémentaires: Preguntas adicionales
@@ -708,16 +691,7 @@ entries:
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Nada en el horizonte <1></1>La página que busca no existe.
   Données qualitatives: Datos cualitativos
   Modes "Groupes": Modos de grupo
-  partages du calculateur: compartir el simulador
-  Acquisition: Adquisición
-  Récupération des données: Recuperación de datos
-  visites depuis le lancement: visitas desde el lanzamiento
-  de visites via iframe ce mois-ci: visitas a través de iframe este mes
   Visites et simulations: Visitas y simulaciones
-  visites ce mois-ci (en cours): visitas este mes (en curso)
-  simulations terminées depuis le lancement: simulaciones realizadas desde el lanzamiento
-  inscrits à l'infolettre: suscriptores del boletín
-  Une erreur est survenue lors de la récupération des données: Se ha producido un error durante la recuperación de datos
   Nos Gestes Climat: Nos Gestes Climat
   'Ils relaient ': 'Transmiten '
   sur les 14 habituels: de los 14 habituales
@@ -1070,8 +1044,6 @@ entries:
   La valeur maximum pour ce champ est de: El valor máximo de este campo es
   La valeur pour ce champ est comprise entre: El valor de este campo está comprendido entre
   En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.: Al participar, acepta que sus resultados se compartan de forma anónima con esta organización.
-  Aide: Ayuda
-  Cette section statistique est générée via Metabase.: Esta sección estadística se genera a través de Metabase.
   Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.: Nos referimos a los modos "Organizaciones" y "Desafía a tus amigos". Esta sección se genera a través de Metabase.
   Empreinte eau, sélectionné, voir le détail ci-dessous: Huella hídrica, seleccionada, ver detalles más abajo
   Empreinte carbone, voir le détail ci-dessous: Huella de carbono, ver detalles más abajo
@@ -1139,7 +1111,6 @@ entries:
   Menu déroulant: Menú desplegable
   '{{name}} lecture seule': '{{name}} sólo lectura'
   Chemin de navigation: Ruta de navegación
-  Période à afficher: Período que debe mostrarse
   Voir le détail ci-dessous: Más información
   '{{name}} menu déroulant': '{{name}} menú desplegable'
   Page précédente: Página anterior
@@ -1148,8 +1119,6 @@ entries:
   Page {{page}}: Página {{page}}
   Navigation principale: Navegación principal
   Sélectionner l'empreinte carbone, voir le détail ci-dessous: Seleccione la huella de carbono, ver detalles más abajo
-  Nombre de jours, semaines ou mois à afficher: Número de días, semanas o meses a visualizar
-  simulations terminées ce mois-ci (en cours): simulaciones realizadas este mes (en curso)
   partagent Nos Gestes Climat via leur site ou des campagnes (mails, réseaux sociaux, affichage), nous permettant de sensibiliser près de 2 000 personnes chaque jour. Un grand merci à eux !: comparten Nos Gestes Climat a través de su página web o de campañas (correo electrónico, redes sociales, carteles), lo que nos permite sensibilizar a casi 2.000 personas cada día. ¡Muchas gracias a todos ellos!
   Envoyez-nous votre logo via notre page de contact: Envíenos su logotipo a través de nuestra página de contacto
   Plusieurs milliers d’organisations: Varios miles de organizaciones
@@ -1159,7 +1128,6 @@ entries:
   Mes empreintes carbone et eau - Nos Gestes Climat: Mi huella de carbono y de agua - Nos Gestes Climat
   Paramètres de ma campagne - Nos Gestes Climat: La configuración de mi campaña - Nos Gestes Climat
   'Documentation, de la règle : {{ruleTitle}} - Nos Gestes Climat': 'Documentación, de la regla: {{ruleTitle}} - Nos Gestes Climat'
-  Nos Gestes Climat, calculez votre empreinte carbone et eau: Nos Gestes Climat, calcula tu huella de carbono y de agua
   Questions fréquentes - Nos Gestes Climat: Preguntas frecuentes - Nos Gestes Climat
   Mon profil - Nos Gestes Climat: Mi perfil - Nos Gestes Climat
   Paramètres de mon organisation - Nos Gestes Climat: Parámetros de mi organización - Nos Gestes Climat
@@ -1190,7 +1158,6 @@ entries:
   Menu: Menú
   Contenu: Contenido
   Pied de page: Pie de página
-  Un petit doute ? L'info sera sûrement dans votre contrat d'assurance logement.: ¿Alguna duda? Encontrará la información en su póliza de seguro de hogar.
   'Pour plus de précision:': 'Para más información:'
   Je détaille ma garde-robe: Detallando mi armario
   En moyenne, les Français achètent chaque année,: Por término medio, los franceses compran algo cada año,
@@ -1279,10 +1246,64 @@ entries:
   Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org: El formato de la dirección de correo electrónico introducida no es válido. El formato esperado es nom@exemple.org
   Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org.lock: Le format de l’adresse electronique saisie n’est pas valide. Le format attendu est nom@exemple.org
   Conditions d’utilisation des données « Base Empreinte »: Condiciones de uso de los datos de "Base Empreinte
+  Qu'est-ce que l'empreinte eau ?: ¿Qué es la huella hídrica?
+  Qu'est-ce que l'empreinte carbone ?: ¿Cuál es la huella de carbono?
+  Avez-vous déjà entendu parler de maladaptation ?: ¿Ha oído hablar alguna vez de la inadaptación?
+  Que calcule-t-on dans l'empreinte eau ?: ¿Qué se calcula en la huella hídrica?
+  Réaliser des travaux d'isolation de son logement (pour les propriétaires): Aislar su casa (para propietarios)
+  Cette consommation d'eau, pourtant très importante, est <2>invisible à l'œil nu</2> mais son impact est bien réel.: Este consumo de agua, aunque muy significativo, es <2>invisible a simple vista</2>, pero su impacto es muy real.
+  Vos réponses ne vous permettent pas de sélectionner ce geste ; il va être retiré de la liste de vos actions suggérées.: Sus respuestas no le permiten seleccionar esta acción; se eliminará de la lista de acciones sugeridas.
+  <0>L'empreinte carbone</0> mesure la quantité totale de gaz à effet de serre (GES) émis par nos activités sur une année.: <0>La huella de carbono</0> mide la cantidad total de gases de efecto invernadero (GEI) emitidos por nuestras actividades a lo largo de un año.
+  "Attention : l'empreinte eau ne tient pas compte de la consommation d'eau domestique (douche, toilettes, cuisine, arrosage) !": 'Atención: la huella hídrica no tiene en cuenta el consumo doméstico de agua (duchas, inodoros, cocina, riego)'
+  Le calculateur carbone permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique et de saisir <2>les actions qui auraient le plus d'impact</2> pour le réduire.: La calculadora de carbono nos permite saber cuáles de nuestros usos contribuyen más al cambio climático e identificar <2>las acciones que tendrían un mayor impacto</2> para reducirlo.
+  Empreinte eau et <2>empreinte carbone</2> sont complémentaires, et les comprendre permet d'agir en faveur d'une gestion <6>plus durable des ressources naturelles</6> de la planète.: La huella hídrica y la <2>huella de carbono</2> son complementarias, y comprenderlas nos permite actuar en favor de una gestión <6>más sostenible de los recursos naturales</6> del planeta.
+  L'empreinte eau, <2>calculée en milliers de litres par jour</2>, tient compte de <5>l'eau nécessaire</5> à la production, la distribution et au traitement des biens et services consommés. Ce calcul prend également en considération <8>le stress hydrique</8> et pondère les consommations d'eau en fonction de <12>la rareté de la ressource</12> dans les territoires concernés.: La huella hídrica, <2>calculada en miles de litros al día</2>, tiene en cuenta el <5>agua necesaria</5> para producir, distribuir y procesar los bienes y servicios consumidos. Este cálculo también tiene en cuenta <8>el estrés hídrico</8> y pondera el consumo de agua en función de <12>la escasez del recurso</12> en las zonas afectadas.
+  <0>L'empreinte eau</0> correspond à l'ensemble de l'eau douce utilisée pour produire, distribuer et traiter en fin de vie des produits, biens ou services, que nous consommons au quotidien.: <0>La huella hídrica</0> es la cantidad total de agua dulce utilizada para producir, distribuir y tratar al final de su vida útil los productos, bienes y servicios que consumimos cada día.
+  "Depuis le siècle dernier, <2>la concentration du carbone dans l'atmosphère augmente</2>, si bien que le climat subit de graves bouleversements : montée des eaux, destruction du vivant, augmentation des températures, etc.": 'Desde el siglo pasado, <2>la concentración de carbono en la atmósfera no ha dejado de aumentar</2>, provocando graves trastornos en el clima: subida del nivel del mar, destrucción de organismos vivos, aumento de las temperaturas, etc.'
+  footer.thematicLandingPages.title: Páginas temáticas
+  footer.thematicLandingPages.title.lock: Pages thématiques
+  Pages thématiques: Páginas temáticas
+  cookies.management.googleAds.title: Anuncios Google
+  cookies.management.googleAds.title.lock: Google Ads
+  cookies.management.acceptAll: Aceptar todo
+  cookies.management.acceptAll.lock: Tout accepter
+  cookies.banner.acceptAll: Aceptar todo
+  cookies.banner.acceptAll.lock: Tout accepter
+  cookies.management.accept: Acepte
+  cookies.management.accept.lock: Accepter
+  cookies.management.confirm: Confirmar mis elecciones
+  cookies.management.confirm.lock: Confirmer mes choix
+  cookies.management.refuseAll: Rechazar todo
+  cookies.management.refuseAll.lock: Tout refuser
+  cookies.management.required.title: Cookies obligatorias
+  cookies.management.required.title.lock: Cookies obligatoires
+  cookies.banner.refuseAll: Rechazar todo
+  cookies.banner.refuseAll.lock: Tout refuser
+  cookies.management.title: Panel de gestión de cookies
+  cookies.management.title.lock: Panneau de gestion des cookies
+  cookies.banner.customize: Personalice
+  cookies.banner.customize.lock: Personnaliser
+  cookies.management.refuse: Desechos
+  cookies.management.refuse.lock: Refuser
+  cookies.management.preferences: 'Preferencias para todos los servicios. '
+  cookies.management.preferences.lock: 'Préférences pour tous les services. '
+  cookies.banner.description: Utilizamos cookies, lo justo para mantener el sitio en funcionamiento, mejorar la experiencia y medir la audiencia de forma anónima. Con su consentimiento, también activamos un sencillo sistema de seguimiento de nuestras campañas para comprender mejor lo que funciona y gestionar mejor nuestro presupuesto.
+  cookies.banner.description.lock: Nous utilisons des cookies, juste ce qu’il faut pour faire fonctionner le site, améliorer l’expérience et mesurer de manière anonyme l’audience. Avec votre accord, nous activons aussi un suivi simple de nos campagnes pour mieux comprendre ce qui fonctionne et mieux piloter notre budget.
+  cookies.management.privacyLink: Datos personales y cookies
+  cookies.management.privacyLink.lock: Données personnelles et cookies
+  cookies.banner.title: En Nos Gestes Climat, su privacidad cuenta
+  cookies.banner.title.lock: Chez Nos Gestes Climat, votre vie privée compte
+  cookies.management.required.description: Nuestro sitio utiliza cookies, que son esenciales para su correcto funcionamiento (seguridad, selección de idioma, autenticación). No contienen datos personales y no pueden desactivarse.
+  cookies.management.required.description.lock: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucune donnée personnelle et ne peuvent pas être désactivés.
+  cookies.management.googleAds.description: Utilizamos cookies para medir y calibrar la eficacia de nuestras campañas y publicidad en línea.
+  cookies.management.googleAds.description.lock: Nous utilisons des cookies pour mesurer et calibrer l'efficacité de nos campagnes et publicités en ligne.
   Voir la liste des cookies utilisés par PostHog: Ver la lista de cookies utilizadas por PostHog
   Cookies utilisés par PostHog: Cookies utilizadas por PostHog
   "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :": 'También utilizamos PostHog para medir la audiencia de nuestro sitio. La lista de cookies utilizadas está disponible aquí :'
   Refuser les cookies: Rechazar cookies
   Accepter les cookies: Aceptar cookies
   Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.: Utilizamos cookies para entender cómo utiliza el producto y ayudarnos a mejorarlo. Si no desea ser rastreado, puede rechazarlas.
-  Vos réponses ne vous permettent pas de sélectionner ce geste ; il va être retiré de la liste de vos actions suggérées.: Sus respuestas no le permiten seleccionar esta acción; se eliminará de la lista de acciones sugeridas.
+  Bannière de consentement aux cookies: cookies.banner.contentLabel
+  'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'Puede ponerse en contacto con nosotros a través de nuestra página de contacto: <2></2>.'
+  Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calcula tu huella de carbono y de agua con Nos Gestes Climat
+  Comme 2 millions de personnes, mesurez votre empreinte en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Como otros 2 millones de personas, mide tu huella en 10 minutos. Una herramienta gratuita para hacer balance y reducir tus emisiones de CO2.

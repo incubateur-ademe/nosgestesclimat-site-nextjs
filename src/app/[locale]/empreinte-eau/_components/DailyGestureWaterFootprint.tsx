@@ -1,5 +1,4 @@
 import DailyGestures from '@/components/landing-pages/DailyGestures'
-import Trans from '@/components/translation/trans/TransServer'
 import { trackingActionClickPageBottom } from '@/constants/tracking/actions'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import {
@@ -22,35 +21,8 @@ export default async function DailyGestureWaterFootprint({
 
   return (
     <DailyGestures
-      title={
-        <Trans locale={locale}>
-          Les gestes du quotidien pour préserver nos ressources en eau
-        </Trans>
-      }
-      description={
-        <>
-          <p>
-            <Trans locale={locale}>
-              L’eau est{' '}
-              <strong className="text-primary-600">au cœur de nos vies</strong>{' '}
-              et de notre consommation quotidienne, bien{' '}
-              <strong className="text-primary-600">
-                au-delà de ce que nous observons à la maison
-              </strong>
-              . Chaque jour, des milliers de litres d’eau sont utilisés pour
-              produire les aliments que nous mangeons, les vêtements que nous
-              portons et l’énergie que nous consommons.
-            </Trans>
-          </p>
-
-          <p className="mb-0">
-            <Trans locale={locale}>
-              Voici quelques exemples de gestes qui auront un impact important
-              sur votre consommation eau indirecte :
-            </Trans>
-          </p>
-        </>
-      }
+      title="Les gestes du quotidien pour préserver nos ressources en eau"
+      description="<p>L'eau est <strong class='text-primary-600'>au cœur de nos vies</strong> et de notre consommation quotidienne, bien <strong class='text-primary-600'>au-delà de ce que nous observons à la maison</strong>. Chaque jour, des milliers de litres d'eau sont utilisés pour produire les aliments que nous mangeons, les vêtements que nous portons et l'énergie que nous consommons.</p><p class='mb-0'>Voici quelques exemples de gestes qui auront un impact important sur votre consommation eau indirecte :</p>"
       trackingEvents={{
         start: getLandingClickCTAStart(
           '/empreinte-eau',

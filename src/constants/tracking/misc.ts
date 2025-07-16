@@ -71,3 +71,28 @@ export const trackingUserAccountFakeDoorRefuse = [
   'Compte utilisateur',
   'Click Je ne préfère pas créer de compte',
 ]
+
+// Cookies
+export const trackingCookiesAccept = [
+  'trackEvent',
+  'Cookies',
+  'Click accepter tout',
+]
+
+export const trackingCookiesRefuse = [
+  'trackEvent',
+  'Cookies',
+  'Click tout refuser',
+]
+
+export const trackingCookiesCustomChoice = [
+  'trackEvent',
+  'Cookies',
+  'Click choix personnalisés',
+]
+
+export const trackingCookiesCustomChoiceSave = [
+  'trackEvent',
+  'Cookies',
+  'Enregistrer choix personnalisés',
+]
