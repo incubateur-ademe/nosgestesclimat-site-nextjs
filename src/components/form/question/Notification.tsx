@@ -11,11 +11,28 @@ import {
 import { useFormState, useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
-type Props = { notification: DottedName }
-export default function Notification({ notification }: Props) {
-  const { description, setValue } = useRule(notification)
+import { useEffect, useRef } from 'react'
 
+type Props = {
+  notification: DottedName
+  currentQuestion?: DottedName
+}
+
+export default function Notification({ notification, currentQuestion }: Props) {
+  const { description, setValue } = useRule(notification)
   const { currentCategory } = useFormState()
+  const prevQuestionRef = useRef<DottedName | undefined>(currentQuestion)
+
+  // Close notification when question changes
+  useEffect(() => {
+    if (
+      prevQuestionRef.current &&
+      prevQuestionRef.current !== currentQuestion
+    ) {
+      setValue(false, {})
+    }
+    prevQuestionRef.current = currentQuestion
+  }, [currentQuestion, setValue])
 
   if (!description) return
 
@@ -28,7 +45,7 @@ export default function Notification({ notification }: Props) {
       <div className="mb-2 w-full">
         <Markdown className="notification pb-0">{description}</Markdown>
       </div>
-      <Button size="sm" color={'secondary'} onClick={() => setValue(false)}>
+      <Button size="sm" color={'secondary'} onClick={() => setValue(false, {})}>
         <Trans>J'ai compris</Trans>
       </Button>
     </motion.div>

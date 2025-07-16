@@ -21,18 +21,15 @@ export default function useNotifications({
 }: Props) {
   const notifications = useMemo(
     () =>
-      everyNotifications.filter(
-        (notification) => {
-          const splitNotification = notification.split(' . ')
-          // If notification dottedName has only two names (itself and its category), it should apply to the whole category.
-          if (splitNotification.length <= 2) {
-            return splitNotification[0] === getNamespace(dottedName)
-          }
-          // If not, it should apply to the subcategory
-          return splitNotification[1] === dottedName.split(' . ')[1]
-        },
-        [dottedName, everyNotifications]
-      ),
+      everyNotifications.filter((notification) => {
+        const splitNotification = notification.split(' . ')
+        // If notification dottedName has only two names (itself and its category), it should apply to the whole category.
+        if (splitNotification.length <= 2) {
+          return splitNotification[0] === getNamespace(dottedName)
+        }
+        // If not, it should apply to the subcategory
+        return splitNotification[1] === dottedName.split(' . ')[1]
+      }),
     [dottedName, everyNotifications]
   )
 

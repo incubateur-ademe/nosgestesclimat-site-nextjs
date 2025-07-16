@@ -215,7 +215,11 @@ export default function Question({
       ) : null}
 
       {activeNotifications.map((notification) => (
-        <Notification key={notification} notification={notification} />
+        <Notification
+          key={notification}
+          notification={notification}
+          currentQuestion={question}
+        />
       ))}
     </>
   )
