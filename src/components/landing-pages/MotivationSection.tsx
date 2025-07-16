@@ -25,10 +25,16 @@ export default function MotivationSection({
 
         <Separator className="mx-auto my-0" />
 
-        <div
-          className="text-center text-sm md:mx-auto md:max-w-[850px] md:text-lg"
-          dangerouslySetInnerHTML={{ __html: description }}
-        />
+        {typeof description === 'string' ? (
+          <div
+            className="text-center text-sm md:mx-auto md:max-w-[850px] md:text-lg"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
+        ) : (
+          <div className="text-center text-sm md:mx-auto md:max-w-[850px] md:text-lg">
+            {description}
+          </div>
+        )}
 
         {motivationItems && (
           <ul className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
