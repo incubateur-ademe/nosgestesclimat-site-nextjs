@@ -25,7 +25,7 @@ export default function ImageWithCategory({
   return (
     <div className={twMerge('relative', containerClassName)}>
       <Image
-        src={imageSrc}
+        src={imageSrc ?? null}
         alt={imageAlt ?? ''}
         width={width}
         height={height}

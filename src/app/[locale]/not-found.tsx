@@ -1,4 +1,5 @@
 import Route404 from '@/components/layout/404'
+import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Main from '@/design-system/layout/Main'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -16,7 +17,7 @@ export async function generateMetadata(props: DefaultPageProps) {
       "Oups, vous êtes bien sur Nos Gestes Climat, mais cette page n'existe pas."
     ),
     alternates: {
-      canonical: '/404',
+      canonical: NOT_FOUND_PATH,
     },
   })
 }

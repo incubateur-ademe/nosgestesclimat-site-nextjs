@@ -1,4 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react'
+// eslint-disable-next-line storybook/no-renderer-packages
+import type { Meta, StoryObj } from '@storybook/nextjs'
 import Button from './Button'
 
 const meta: Meta<typeof Button> = {

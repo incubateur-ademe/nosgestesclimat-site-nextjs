@@ -2,6 +2,7 @@ import { IframeOptionsProvider } from '@/app/[locale]/_components/mainLayoutProv
 import MainHooks from '@/app/[locale]/_components/mainLayoutProviders/MainHooks'
 import { PreventNavigationProvider } from '@/app/[locale]/_components/mainLayoutProviders/PreventNavigationProvider'
 import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
+import { CookieConsentProvider } from '@/components/cookies/CookieConsentProvider'
 import ErrorBoundary from '@/components/error/ErrorBoundary'
 import EngineProviders from '@/components/providers/EngineProviders'
 import PRNumberHook from '@/components/providers/simulationProviders/PRNumberHook'
@@ -19,9 +20,10 @@ import '@testing-library/jest-dom'
 import type { RenderOptions } from '@testing-library/react'
 import { render } from '@testing-library/react'
 import type { ReactElement } from 'react'
+import { vi } from 'vitest'
 
 // Mock useRules
-jest.mock('@/hooks/useRules', () => ({
+vi.mock('@/hooks/useRules', () => ({
   useRules: () => ({
     data: rules,
     isLoading: false,
@@ -30,7 +32,7 @@ jest.mock('@/hooks/useRules', () => ({
 }))
 
 // Mock getGeolocation
-jest.mock('@/helpers/api/getGeolocation', () => ({
+vi.mock('@/helpers/api/getGeolocation', () => ({
   getGeolocation: () => Promise.resolve(undefined),
 }))
 
@@ -78,7 +80,7 @@ const defaultState = {
   tutorials: {},
   simulations: [defaultSimulation],
   currentSimulationId: defaultSimulation.id,
-  updateCurrentSimulation: jest.fn(),
+  updateCurrentSimulation: vi.fn(),
 }
 
 type ProviderConfig = {
@@ -92,6 +94,7 @@ type ProviderConfig = {
   engine?: boolean
   prNumber?: boolean
   simulationSync?: boolean
+  cookieConsent?: boolean
 }
 
 const TestWrapper = ({
@@ -149,6 +152,10 @@ const TestWrapper = ({
     wrapped = <QueryClientProviderWrapper>{wrapped}</QueryClientProviderWrapper>
   }
 
+  if (providers.cookieConsent) {
+    wrapped = <CookieConsentProvider>{wrapped}</CookieConsentProvider>
+  }
+
   if (providers.errorBoundary) {
     wrapped = <ErrorBoundary>{wrapped}</ErrorBoundary>
   }
@@ -170,6 +177,7 @@ export const renderWithWrapper = (
     providers = {
       queryClient: true,
       errorBoundary: true,
+      cookieConsent: true,
     },
     ...options
   }: RenderOptions & {

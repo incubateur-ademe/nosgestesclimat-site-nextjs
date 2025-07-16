@@ -1,3 +1,4 @@
+import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Markdown from '@/design-system/utils/Markdown'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPost } from '@/helpers/markdown/getPost'
@@ -31,7 +32,7 @@ export default async function ActionPlus({
   )
 
   if (!action) {
-    return redirect('/404')
+    return redirect(NOT_FOUND_PATH)
   }
 
   return <Markdown>{action?.content}</Markdown>

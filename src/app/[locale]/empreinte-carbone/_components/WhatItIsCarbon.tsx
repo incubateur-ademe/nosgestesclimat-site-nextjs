@@ -1,19 +1,18 @@
 import WhatItIs from '@/components/landing-pages/WhatItIs'
 import Trans from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import Image from 'next/image'
 
 export default async function WhatItIsCarbon({ locale }: { locale: string }) {
   const { t } = await getServerTranslation({ locale })
 
   return (
     <WhatItIs
-      title={<Trans locale={locale}>Qu’est-ce que l’empreinte carbone ?</Trans>}
+      title={<Trans locale={locale}>Qu'est-ce que l'empreinte carbone ?</Trans>}
       description={
         <div>
           <p>
             <Trans locale={locale}>
-              <strong className="text-primary-600">L’empreinte carbone</strong>{' '}
+              <strong className="text-primary-600">L'empreinte carbone</strong>{' '}
               mesure la quantité totale de gaz à effet de serre (GES) émis par
               nos activités sur une année.
             </Trans>
@@ -22,7 +21,7 @@ export default async function WhatItIsCarbon({ locale }: { locale: string }) {
             <Trans locale={locale}>
               Depuis le siècle dernier,{' '}
               <strong className="text-primary-600">
-                la concentration du carbone dans l’atmosphère augmente
+                la concentration du carbone dans l'atmosphère augmente
               </strong>
               , si bien que le climat subit de graves bouleversements : montée
               des eaux, destruction du vivant, augmentation des températures,
@@ -41,17 +40,12 @@ export default async function WhatItIsCarbon({ locale }: { locale: string }) {
           </p>
         </div>
       }
-      illustration={
-        <Image
-          width={450}
-          height={450}
-          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/expliquer_empreinte_carbone_dd91541799.svg"
-          className="py-6 md:py-10"
-          alt={t(
-            "Deux personnes accolées levant le bras en signe de succès, illustrant l'importance du collectif dans la réduction de nos empreintes carbone"
-          )}
-        />
-      }
+      illustration={{
+        url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/expliquer_empreinte_carbone_dd91541799.svg',
+        alternativeText: t(
+          "Deux personnes accolées levant le bras en signe de succès, illustrant l'importance du collectif dans la réduction de nos empreintes carbone"
+        ),
+      }}
     />
   )
 }
