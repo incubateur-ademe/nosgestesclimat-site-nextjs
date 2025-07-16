@@ -27,7 +27,7 @@ export default function CookieConsentBanner({
     <Modal
       isOpen={isVisible && !isBoardOpen}
       onAfterClose={() => setIsVisible(false)}
-      className="!mr-auto !w-[500px] !max-w-[calc(100vw-1rem)] !rounded-[2.5rem] !border-0 !p-0 !shadow-2xl md:!mb-8 md:!ml-8"
+      className="!fixed !top-1/2 !left-1/2 !z-[10001] !mr-auto !w-[500px] !max-w-[calc(100vw-1rem)] !-translate-x-1/2 !-translate-y-1/2 rounded-2xl !border-0 !p-0 !shadow-2xl md:!top-auto md:!bottom-0 md:!left-0 md:!mb-8 md:!ml-8 md:!translate-x-0 md:!translate-y-0 md:!rounded-4xl"
       overlayClassName="!bg-black/0 !backdrop-blur-none !fixed !bottom-0 !left-0 !right-0 !top-auto !z-[10000]"
       contentLabel={t(
         'Bannière de consentement aux cookies',
@@ -40,12 +40,12 @@ export default function CookieConsentBanner({
           left: '0',
           right: '0',
           top: 'auto',
-          borderRadius: '2.5rem',
           padding: 0,
           border: 'none',
           maxWidth: '48rem',
           width: 'calc(100vw - 1rem)',
           boxShadow: '0 8px 32px 0 rgba(0,0,0,0.10)',
+          inset: 'auto',
         },
         overlay: {
           background: 'transparent',
@@ -53,9 +53,9 @@ export default function CookieConsentBanner({
           pointerEvents: 'auto',
         },
       }}>
-      <div className="flex w-full flex-col rounded-[2.5rem] bg-white px-6 py-8 shadow-2xl sm:px-8 sm:py-8">
+      <div className="flex w-full flex-col rounded-2xl bg-white px-6 py-6 shadow-2xl sm:px-8 sm:py-8 md:rounded-4xl">
         <h2
-          className="mb-6 text-center text-lg font-bold text-gray-900 sm:text-left sm:text-xl"
+          className="mb-6 text-left text-lg font-bold text-gray-900 sm:text-xl"
           data-testid="cookie-banner-title">
           <Trans i18nKey="cookies.banner.title">
             Chez Nos Gestes Climat, votre vie privée compte
@@ -71,7 +71,7 @@ export default function CookieConsentBanner({
             mieux piloter notre budget.
           </Trans>
         </p>
-        <div className="mt-6 flex w-full flex-col items-center justify-center gap-2 sm:flex-row">
+        <div className="mt-6 flex w-full flex-col items-start justify-center gap-2 md:flex-row md:items-center">
           <Button
             size="sm"
             color="secondary"
