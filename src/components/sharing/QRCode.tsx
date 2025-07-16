@@ -1,7 +1,10 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import { pollDashboardClickQRCodeDownload } from '@/constants/tracking/pages/pollDashboard'
 import Button from '@/design-system/buttons/Button'
+import { trackEvent } from '@/utils/analytics/trackEvent'
+import JSZip from 'jszip'
 import { useRef } from 'react'
 import QRCodeLib from 'react-qr-code'
 import { twMerge } from 'tailwind-merge'
@@ -14,58 +17,68 @@ type QRCodeProps = {
 export default function QRCode({ value, className }: QRCodeProps) {
   const qrRef = useRef<HTMLDivElement>(null)
 
-  const downloadQRCode = () => {
+  const downloadQRCodeZip = () => {
     if (!qrRef.current) return
 
     const svg = qrRef.current.querySelector('svg')
     if (!svg) return
 
-    // Get the actual size of the QR code element
+    trackEvent(pollDashboardClickQRCodeDownload)
+
+    const zip = new JSZip()
+
+    // Get SVG content
+    const svgData = new XMLSerializer().serializeToString(svg)
+    zip.file('qrcode.svg', svgData)
+
+    // Create PNG version
     const qrElement = qrRef.current
     const rect = qrElement.getBoundingClientRect()
-
-    // Add padding for better scanability (20% of QR code size)
     const padding = rect.width * 0.2
-
-    // Create a high-resolution canvas (4x for better quality)
     const scale = 4
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d', { alpha: false })
 
     if (!ctx) return
 
-    // Enable image smoothing for better quality
     ctx.imageSmoothingEnabled = true
     ctx.imageSmoothingQuality = 'high'
-
-    // Set canvas size to include padding
     canvas.width = (rect.width + padding * 2) * scale
     canvas.height = (rect.height + padding * 2) * scale
-
-    // Scale the context to match the canvas size
     ctx.scale(scale, scale)
 
     // Set white background
     ctx.fillStyle = 'white'
     ctx.fillRect(0, 0, rect.width + padding * 2, rect.height + padding * 2)
 
-    const svgData = new XMLSerializer().serializeToString(svg)
     const img = new Image()
 
     img.onload = () => {
-      // Draw the SVG with padding around it
       ctx.drawImage(img, padding, padding, rect.width, rect.height)
 
-      // Convert to PNG with maximum quality
-      const pngFile = canvas.toDataURL('image/png', 1.0)
+      // Convert to PNG blob
+      canvas.toBlob(
+        (blob) => {
+          if (blob) {
+            zip.file('qrcode.png', blob)
 
-      const downloadLink = document.createElement('a')
-      downloadLink.download = 'qrcode.png'
-      downloadLink.href = pngFile
-      downloadLink.click()
+            // Generate and download zip
+            zip.generateAsync({ type: 'blob' }).then((zipBlob) => {
+              const downloadLink = document.createElement('a')
+              downloadLink.download = 'qrcode.zip'
+              downloadLink.href = URL.createObjectURL(zipBlob)
+              downloadLink.click()
+
+              // Clean up the object URL
+              setTimeout(() => URL.revokeObjectURL(downloadLink.href), 100)
+            })
+          }
+        },
+        'image/png',
+        1.0
+      )
     }
 
-    // Use proper SVG data URL encoding
     const encodedSvg = encodeURIComponent(svgData)
     img.src = 'data:image/svg+xml;charset=utf-8,' + encodedSvg
   }
@@ -98,7 +111,7 @@ export default function QRCode({ value, className }: QRCodeProps) {
         color="secondary"
         className="px-3"
         size="sm"
-        onClick={downloadQRCode}>
+        onClick={downloadQRCodeZip}>
         <Trans>Télécharger le QR Code</Trans>
       </Button>
     </div>
