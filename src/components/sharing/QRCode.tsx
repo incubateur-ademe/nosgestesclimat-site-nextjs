@@ -4,12 +4,14 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import { useRef } from 'react'
 import QRCodeLib from 'react-qr-code'
+import { twMerge } from 'tailwind-merge'
 
 type QRCodeProps = {
   value: string
+  className?: string
 }
 
-export default function QRCode({ value }: QRCodeProps) {
+export default function QRCode({ value, className }: QRCodeProps) {
   const qrRef = useRef<HTMLDivElement>(null)
 
   const downloadQRCode = () => {
@@ -25,12 +27,16 @@ export default function QRCode({ value }: QRCodeProps) {
     // Add padding for better scanability (20% of QR code size)
     const padding = rect.width * 0.2
 
-    // Create a high-resolution canvas (2x for better quality)
-    const scale = 2
+    // Create a high-resolution canvas (4x for better quality)
+    const scale = 4
     const canvas = document.createElement('canvas')
-    const ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext('2d', { alpha: false })
 
     if (!ctx) return
+
+    // Enable image smoothing for better quality
+    ctx.imageSmoothingEnabled = true
+    ctx.imageSmoothingQuality = 'high'
 
     // Set canvas size to include padding
     canvas.width = (rect.width + padding * 2) * scale
@@ -65,10 +71,14 @@ export default function QRCode({ value }: QRCodeProps) {
   }
 
   return (
-    <div className="flex flex-row items-center gap-4 md:flex-col md:gap-6">
+    <div
+      className={twMerge(
+        'flex flex-row items-center gap-4 md:flex-col! md:gap-6',
+        className
+      )}>
       <div
         ref={qrRef}
-        className="rounded-xl border-2 border-gray-200 bg-white p-4">
+        className="w-20 rounded-xl border-2 border-gray-200 bg-white p-2 md:w-28 md:p-4">
         <QRCodeLib
           value={value}
           style={{
@@ -80,8 +90,12 @@ export default function QRCode({ value }: QRCodeProps) {
           fgColor="#373978"
         />
       </div>
-      <Button onClick={downloadQRCode}>
-        <Trans>Télécharger le QR code</Trans>
+      <Button
+        color="secondary"
+        className="px-3"
+        size="sm"
+        onClick={downloadQRCode}>
+        <Trans>Télécharger le QR Code</Trans>
       </Button>
     </div>
   )
