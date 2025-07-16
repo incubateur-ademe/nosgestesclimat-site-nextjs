@@ -71,7 +71,7 @@ export default function CookieConsentBanner({
             mieux piloter notre budget.
           </Trans>
         </p>
-        <div className="mt-6 flex w-full flex-col items-start justify-center gap-2 md:flex-row md:items-center">
+        <div className="mt-6 flex w-full flex-row flex-wrap items-start justify-start gap-2 md:flex-nowrap md:items-center">
           <Button
             size="sm"
             color="secondary"
