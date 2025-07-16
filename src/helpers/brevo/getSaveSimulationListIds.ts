@@ -10,7 +10,7 @@ type Inputs = {
   'newsletter-logement': boolean
 }
 
-export function getListIds(data: Inputs) {
+export function getSaveSimulationListIds(data: Inputs) {
   const listIds = []
 
   if (data['newsletter-saisonniere']) {
