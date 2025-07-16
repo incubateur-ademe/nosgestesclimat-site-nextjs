@@ -72,14 +72,17 @@ export default function QRCode({ value, className }: QRCodeProps) {
 
   return (
     <div
+      data-testid="qrcode-container"
       className={twMerge(
         'flex flex-row items-center gap-4 md:flex-col! md:gap-6',
         className
       )}>
       <div
         ref={qrRef}
+        data-testid="qrcode-wrapper"
         className="w-20 rounded-xl border-2 border-gray-200 bg-white p-2 md:w-28 md:p-4">
         <QRCodeLib
+          data-testid="qrcode-svg"
           value={value}
           style={{
             height: 'auto',
@@ -91,6 +94,7 @@ export default function QRCode({ value, className }: QRCodeProps) {
         />
       </div>
       <Button
+        data-testid="qrcode-download-button"
         color="secondary"
         className="px-3"
         size="sm"
