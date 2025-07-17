@@ -33,7 +33,7 @@ import BottomMenu from './header/headerMobile/BottomMenu'
 import FoldableMenu from './header/headerMobile/FoldableMenu'
 
 type Props = {
-  isSticky: boolean
+  isSticky?: boolean
 }
 
 const DynamicCTAButton = dynamic(
@@ -44,7 +44,7 @@ const DynamicCTAButton = dynamic(
   }
 )
 
-export default function HeaderDesktop({ isSticky }: Props) {
+export default function HeaderDesktop({ isSticky = true }: Props) {
   const { t } = useClientTranslation()
 
   const pathname = usePathname()
