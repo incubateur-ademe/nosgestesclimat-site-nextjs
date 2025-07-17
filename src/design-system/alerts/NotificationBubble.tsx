@@ -9,12 +9,10 @@ export default function NotificationBubble({
   number,
   onClick,
   ...props
-}: Props & HTMLAttributes<HTMLButtonElement>) {
+}: Props & HTMLAttributes<HTMLDivElement>) {
   return (
-    <button
-      className={`absolute -top-3 right-4 h-10 w-10 rounded-sm text-center ${
-        onClick ? 'cursor-pointer' : ''
-      }`}
+    <div
+      className={`absolute -top-3 right-4 h-10 w-10 rounded-sm text-center`}
       {...props}>
       <svg
         className="w-10"
@@ -44,6 +42,6 @@ export default function NotificationBubble({
       <span className="absolute top-2 left-1/2 -translate-x-1/2 font-bold text-white">
         {number}
       </span>
-    </button>
+    </div>
   )
 }
