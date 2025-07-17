@@ -5,8 +5,7 @@ import type {
   PopulatedHomePageType,
 } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
-import { getLocaleWithoutEs } from '@/helpers/language/getLocaleWithoutEs'
-import i18nConfig, { type Locale } from '@/i18nConfig'
+import { type Locale } from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 
 const PAGE_SIZE = 12
@@ -27,7 +26,7 @@ export async function fetchHomepageContent({
 > {
   try {
     const homepageSearchParams = new URLSearchParams({
-      locale: getLocaleWithoutEs(locale),
+      locale,
       'populate[0]': 'image',
       'populate[1]': 'mainArticle',
       'populate[2]': 'mainArticle.image',
@@ -48,7 +47,7 @@ export async function fetchHomepageContent({
     const { mainArticle, image, title, description } = homepageResponse.data
 
     const articlesSearchParams: Record<string, string> = {
-      locale: locale ?? i18nConfig.defaultLocale,
+      locale,
       'fields[0]': 'title',
       'fields[1]': 'description',
       'fields[2]': 'slug',

@@ -1,6 +1,5 @@
 import type { ImageType, PopulatedHomePageType } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
-import { getLocaleWithoutEs } from '@/helpers/language/getLocaleWithoutEs'
 import { type Locale } from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 
@@ -18,7 +17,7 @@ export async function fetchHomepageMetadata({
 > {
   try {
     const searchParams = new URLSearchParams({
-      locale: getLocaleWithoutEs(locale),
+      locale,
       'populate[0]': 'image',
       'populate[1]': 'pageMetadata',
     })
