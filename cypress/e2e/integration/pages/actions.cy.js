@@ -28,8 +28,6 @@ describe('Action userflow', () => {
           )
           .should('be.visible')
 
-        // checkA11y() // TODO: fix A11Y test breaking only when running on CI
-
         // Actions when user has completed the simulation
         cy.visit('/')
 
@@ -42,6 +40,12 @@ describe('Action userflow', () => {
         cy.visit('/actions')
 
         cy.wait(2000)
+
+        cy.get('h1')
+          .contains(
+            Cypress.env('testLangURL') === 'en' ? 'My gestures' : 'Mes gestes'
+          )
+          .should('be.visible')
 
         checkA11y()
       })
