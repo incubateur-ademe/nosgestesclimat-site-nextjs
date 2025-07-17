@@ -37,15 +37,22 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const prs = await github.rest.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              head: context.repo.owner + ':' + '${{ github.event.inputs.branch }}'
-            });
-            if (prs.data.length > 0) {
-              return prs.data[0].number;
+            // For workflow_dispatch events, we need to find the PR for the specified branch
+            if (context.eventName === 'workflow_dispatch') {
+              const prs = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                head: context.repo.owner + ':' + '${{ github.event.inputs.branch }}',
+                sort: 'created',
+                direction: 'desc'
+              });
+              if (prs.data.length > 0) {
+                return prs.data[0].number;
+              }
+              return '';
             }
-            return '';
+            // For pull_request events, we can get the PR number directly
+            return context.payload.pull_request.number;
 
       - name: Set test URL
         id: set-url
