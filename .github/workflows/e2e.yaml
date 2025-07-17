@@ -43,9 +43,10 @@ jobs:
               head: context.repo.owner + ':' + '${{ github.event.inputs.branch }}'
             });
             if (prs.data.length > 0) {
-              return prs.data[0].number;
+              core.setOutput('result', prs.data[0].number.toString());
+            } else {
+              core.setOutput('result', '');
             }
-            return '';
 
       - name: Set test URL
         id: set-url
