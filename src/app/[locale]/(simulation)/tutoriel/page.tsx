@@ -1,17 +1,20 @@
+'use client'
+
 import Title from '@/design-system/layout/Title'
 import ButtonStart from './_components/ButtonStart'
 
 import ContentLarge from '@/components/layout/ContentLarge'
 import ContentNarrow from '@/components/layout/ContentNarrow'
-import Trans from '@/components/translation/trans/TransServer'
-import { noIndexObject } from '@/constants/metadata'
+import Trans from '@/components/translation/trans/TransClient'
+import {
+  NEW_TUTORIAL_FLAG_KEY,
+  NEW_TUTORIAL_VARIANT_KEY,
+} from '@/constants/ab-test'
 import { SIMULATOR_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { t } from '@/helpers/metadata/fakeMetadataT'
-import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
-import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
-import posthog from 'posthog-js'
+import { useFeatureFlagVariantKey } from 'posthog-js/react'
 import { twMerge } from 'tailwind-merge'
 import AutresQuestions from './_components/AutresQuestions'
 import AvantDeCommencer from './_components/AvantDeCommencer'
@@ -20,21 +23,10 @@ import CategoriesProgressBar from './_components/CategoriesProgressBar'
 import OrganisationMessage from './_components/OrganisationMessage'
 import TutorialListItem from './_components/TutorialListItem'
 
-export const generateMetadata = getCommonMetadata({
-  title: t('Tutoriel du calculateur - Nos Gestes Climat'),
-  description: t(
-    'Comprenez comment calculer votre empreinte sur le climat en 10min chrono.'
-  ),
-  alternates: { canonical: '/tutoriel' },
-  robots: noIndexObject,
-})
-
-export default async function Tutoriel({ params }: DefaultPageProps) {
-  const { locale } = await params
-  console.log(posthog.getFeatureFlag('ab-test-nouvelle-page-tutoriel'))
-  if (
-    posthog.getFeatureFlag('ab-test-nouvelle-page-tutoriel') === 'new-tutorial'
-  ) {
+export default function Tutoriel() {
+  const flagValue = useFeatureFlagVariantKey(NEW_TUTORIAL_FLAG_KEY)
+  console.log('AB test tutoriel, variant :', flagValue)
+  if (flagValue === NEW_TUTORIAL_VARIANT_KEY) {
     return (
       <ContentNarrow className="text-center">
         <div className="hidden text-center md:block">
@@ -42,11 +34,11 @@ export default async function Tutoriel({ params }: DefaultPageProps) {
         </div>
 
         <p className="text-secondary-800 mb-2 text-lg font-bold">
-          <Trans locale={locale}>Règles du test</Trans>
+          <Trans>Règles du test</Trans>
         </p>
 
         <h1 className="mb-10 text-2xl font-medium sm:text-4xl">
-          <Trans locale={locale}>Comment ça marche ? </Trans>
+          <Trans>Comment ça marche ? </Trans>
         </h1>
 
         <ol className="mb-6 flex flex-col gap-4 md:mb-16">
@@ -55,13 +47,11 @@ export default async function Tutoriel({ params }: DefaultPageProps) {
             title={
               <>
                 <strong>
-                  <Trans locale={locale}>C’est un test personnel</Trans>
+                  <Trans>C’est un test personnel</Trans>
                 </strong>{' '}
                 -{' '}
                 <span>
-                  <Trans locale={locale}>
-                    répondez pour vous uniquement, pas votre foyer
-                  </Trans>
+                  <Trans>répondez pour vous uniquement, pas votre foyer</Trans>
                 </span>
               </>
             }
@@ -72,11 +62,11 @@ export default async function Tutoriel({ params }: DefaultPageProps) {
             title={
               <>
                 <strong>
-                  <Trans locale={locale}>On parle de votre vie privée</Trans>
+                  <Trans>On parle de votre vie privée</Trans>
                 </strong>{' '}
                 -{' '}
                 <span>
-                  <Trans locale={locale}>pas de votre travail</Trans>
+                  <Trans>pas de votre travail</Trans>
                 </span>
               </>
             }
@@ -87,11 +77,11 @@ export default async function Tutoriel({ params }: DefaultPageProps) {
             title={
               <>
                 <strong>
-                  <Trans locale={locale}>Aucune pression</Trans>
+                  <Trans>Aucune pression</Trans>
                 </strong>{' '}
                 -{' '}
                 <span>
-                  <Trans locale={locale}>
+                  <Trans>
                     il ne s’agit pas d’être parfait, mais de comprendre son
                     impact
                   </Trans>
@@ -102,7 +92,7 @@ export default async function Tutoriel({ params }: DefaultPageProps) {
         </ol>
 
         <ButtonLink size="xl" className="self-center" href={SIMULATOR_PATH}>
-          <Trans locale={locale}>Démarrer</Trans>{' '}
+          <Trans>Démarrer</Trans>{' '}
           <span
             className="ml-2 inline-flex h-6 items-center text-2xl"
             aria-hidden>
@@ -129,9 +119,9 @@ export default async function Tutoriel({ params }: DefaultPageProps) {
             title={
               <>
                 <span className="text-secondary-700 inline">
-                  <Trans locale={locale}>10 minutes</Trans>
+                  <Trans>10 minutes</Trans>
                 </span>{' '}
-                <Trans locale={locale}>
+                <Trans>
                   chrono pour calculer votre empreinte carbone et eau
                 </Trans>
               </>
