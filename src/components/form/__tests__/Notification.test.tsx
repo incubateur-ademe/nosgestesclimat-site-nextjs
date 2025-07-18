@@ -61,7 +61,7 @@ vi.mock('@/design-system/buttons/Button', () => ({
 
 describe('Notification', () => {
   const mockNotification = 'test.notification' as DottedName
-  const mockCurrentQuestion = 'test.question' as DottedName
+  const mockPrevQuestion = 'test.question' as DottedName
 
   beforeEach(() => {
     vi.clearAllMocks()
@@ -73,7 +73,7 @@ describe('Notification', () => {
     })
 
     mockUseFormState.mockReturnValue({
-      currentCategory: 'test-category',
+      currentQuestion: 'test-category',
     })
   })
 
@@ -81,7 +81,7 @@ describe('Notification', () => {
     render(
       <Notification
         notification={mockNotification}
-        currentQuestion={mockCurrentQuestion}
+        prevQuestion={mockPrevQuestion}
       />
     )
 
@@ -105,7 +105,7 @@ describe('Notification', () => {
     const { container } = render(
       <Notification
         notification={mockNotification}
-        currentQuestion={mockCurrentQuestion}
+        prevQuestion={mockPrevQuestion}
       />
     )
 
@@ -121,7 +121,7 @@ describe('Notification', () => {
     const { container } = render(
       <Notification
         notification={mockNotification}
-        currentQuestion={mockCurrentQuestion}
+        prevQuestion={mockPrevQuestion}
       />
     )
 
@@ -132,7 +132,7 @@ describe('Notification', () => {
     render(
       <Notification
         notification={mockNotification}
-        currentQuestion={mockCurrentQuestion}
+        prevQuestion={mockPrevQuestion}
       />
     )
 
@@ -142,19 +142,28 @@ describe('Notification', () => {
     expect(mockSetValue).toHaveBeenCalledWith(false, {})
   })
 
-  it('should close notification when question changes', async () => {
+  it('should close notification when current question changes from prev question', async () => {
+    // Set up initial state where prevQuestion matches currentQuestion
+    mockUseFormState.mockReturnValue({
+      currentQuestion: mockPrevQuestion,
+    })
+
     const { rerender } = render(
       <Notification
         notification={mockNotification}
-        currentQuestion={mockCurrentQuestion}
+        prevQuestion={mockPrevQuestion}
       />
     )
 
-    // Change the current question
+    // Change the current question to be different from prevQuestion
+    mockUseFormState.mockReturnValue({
+      currentQuestion: 'different.question',
+    })
+
     rerender(
       <Notification
         notification={mockNotification}
-        currentQuestion={'different.question' as DottedName}
+        prevQuestion={mockPrevQuestion}
       />
     )
 
@@ -163,41 +172,58 @@ describe('Notification', () => {
     })
   })
 
-  it('should not close notification on initial render', () => {
+  it('should not close notification on initial render when prevQuestion matches currentQuestion', () => {
+    mockUseFormState.mockReturnValue({
+      currentQuestion: mockPrevQuestion,
+    })
+
     render(
       <Notification
         notification={mockNotification}
-        currentQuestion={mockCurrentQuestion}
+        prevQuestion={mockPrevQuestion}
       />
     )
 
     expect(mockSetValue).not.toHaveBeenCalled()
   })
 
-  it('should not close notification when currentQuestion is undefined initially', () => {
+  it('should close notification when currentQuestion is different from prevQuestion initially', () => {
+    mockUseFormState.mockReturnValue({
+      currentQuestion: 'different.question',
+    })
+
     render(
       <Notification
         notification={mockNotification}
-        currentQuestion={undefined}
+        prevQuestion={mockPrevQuestion}
       />
     )
 
-    expect(mockSetValue).not.toHaveBeenCalled()
+    expect(mockSetValue).toHaveBeenCalledWith(false, {})
   })
 
   it('should close notification when question changes from defined to different defined', async () => {
+    // Initial state
+    mockUseFormState.mockReturnValue({
+      currentQuestion: mockPrevQuestion,
+    })
+
     const { rerender } = render(
       <Notification
         notification={mockNotification}
-        currentQuestion={mockCurrentQuestion}
+        prevQuestion={mockPrevQuestion}
       />
     )
 
-    // Change to a different defined question
+    // Change to a different question
+    mockUseFormState.mockReturnValue({
+      currentQuestion: 'different.question',
+    })
+
     rerender(
       <Notification
         notification={mockNotification}
-        currentQuestion={'different.question' as DottedName}
+        prevQuestion={mockPrevQuestion}
       />
     )
 
@@ -207,18 +233,27 @@ describe('Notification', () => {
   })
 
   it('should handle multiple question changes correctly', async () => {
+    // Initial state
+    mockUseFormState.mockReturnValue({
+      currentQuestion: mockPrevQuestion,
+    })
+
     const { rerender } = render(
       <Notification
         notification={mockNotification}
-        currentQuestion={mockCurrentQuestion}
+        prevQuestion={mockPrevQuestion}
       />
     )
 
     // First change
+    mockUseFormState.mockReturnValue({
+      currentQuestion: 'question1',
+    })
+
     rerender(
       <Notification
         notification={mockNotification}
-        currentQuestion={'question1' as DottedName}
+        prevQuestion={mockPrevQuestion}
       />
     )
 
@@ -227,10 +262,14 @@ describe('Notification', () => {
     })
 
     // Second change
+    mockUseFormState.mockReturnValue({
+      currentQuestion: 'question2',
+    })
+
     rerender(
       <Notification
         notification={mockNotification}
-        currentQuestion={'question2' as DottedName}
+        prevQuestion={mockPrevQuestion}
       />
     )
 
@@ -251,18 +290,18 @@ describe('Notification', () => {
     render(
       <Notification
         notification={mockNotification}
-        currentQuestion={mockCurrentQuestion}
+        prevQuestion={mockPrevQuestion}
       />
     )
 
     expect(screen.getByTestId('markdown')).toHaveTextContent(complexDescription)
   })
 
-  it('should handle empty currentQuestion prop', () => {
+  it('should handle string prevQuestion prop', () => {
     render(
       <Notification
         notification={mockNotification}
-        currentQuestion={undefined}
+        prevQuestion="string.question"
       />
     )
 

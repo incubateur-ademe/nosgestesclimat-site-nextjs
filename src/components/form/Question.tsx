@@ -218,7 +218,7 @@ export default function Question({
         <Notification
           key={notification}
           notification={notification}
-          currentQuestion={question}
+          prevQuestion={prevQuestion.current as DottedName | ''}
         />
       ))}
     </>

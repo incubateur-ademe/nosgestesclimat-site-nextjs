@@ -11,37 +11,31 @@ import {
 import { useFormState, useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 
 type Props = {
   notification: DottedName
-  currentQuestion?: DottedName
+  prevQuestion: DottedName | string
 }
 
-export default function Notification({ notification, currentQuestion }: Props) {
+export default function Notification({ notification, prevQuestion }: Props) {
   const { description, setValue } = useRule(notification)
-  const { currentCategory } = useFormState()
-  const prevQuestionRef = useRef<DottedName | undefined>(currentQuestion)
+  const { currentQuestion } = useFormState()
 
-  // Close notification when question changes
   useEffect(() => {
-    if (
-      prevQuestionRef.current &&
-      prevQuestionRef.current !== currentQuestion
-    ) {
+    if (prevQuestion !== currentQuestion) {
       setValue(false, {})
     }
-    prevQuestionRef.current = currentQuestion
-  }, [currentQuestion, setValue])
+  }, [currentQuestion, prevQuestion, setValue])
 
   if (!description) return
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.2 }}
-      className={`mb-4 flex flex-col items-end rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} !${getTextCategoryColor(currentCategory, '700')} p-4 text-sm`}>
+      initial={{ opacity: 0, transform: 'translateY(10%)' }}
+      animate={{ opacity: 1, transform: 'translateY(0)' }}
+      transition={{ duration: 0.3 }}
+      className={`mb-4 flex flex-col items-end rounded-xl border-2 ${getBorderCategoryColor(currentQuestion, '200')} ${getBgCategoryColor(currentQuestion, '100')} !${getTextCategoryColor(currentQuestion, '700')} p-4 text-sm`}>
       <div className="mb-2 w-full">
         <Markdown className="notification pb-0">{description}</Markdown>
       </div>
