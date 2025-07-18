@@ -23,9 +23,12 @@ export function useRules(
   const locale = useLocale()
   const { user } = useUser()
 
+  // This is used to load the rules from the test model in case of AB testing
+  // otherwise it has no effect
   const flagValue = useFeatureFlagVariantKey(
     locale === i18nConfig.defaultLocale ? ABTEST_KEY : ''
   )
+
   const regionCode =
     user?.region?.code != undefined && user?.region?.code !== ''
       ? user?.region?.code
