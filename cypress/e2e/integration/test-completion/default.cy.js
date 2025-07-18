@@ -10,6 +10,13 @@ describe('The simulation', () => {
   })
 
   it('can be finished with the default values', () => {
+    // Wait for the simulation to be properly initialized
+    cy.url().should('include', '/simulateur/bilan')
+    cy.get('body').should('be.visible')
+
+    // Ensure we're on a simulation page with questions
+    cy.get('input', { timeout: 10000 }).should('exist')
+
     recursivelyFillSimulation()
   })
 })

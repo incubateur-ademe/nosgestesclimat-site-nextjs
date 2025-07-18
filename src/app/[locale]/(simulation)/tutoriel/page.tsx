@@ -37,7 +37,9 @@ export default function Tutoriel() {
           <Trans>Règles du test</Trans>
         </p>
 
-        <h1 className="mb-10 text-2xl font-medium sm:text-4xl">
+        <h1
+          data-testid="tutoriel-title"
+          className="mb-10 text-2xl font-medium sm:text-4xl">
           <Trans>Comment ça marche ? </Trans>
         </h1>
 
@@ -91,7 +93,11 @@ export default function Tutoriel() {
           />
         </ol>
 
-        <ButtonLink size="xl" className="self-center" href={SIMULATOR_PATH}>
+        <ButtonLink
+          size="xl"
+          data-testid="tutoriel-button-start"
+          className="self-center"
+          href={SIMULATOR_PATH}>
           <Trans>Démarrer</Trans>{' '}
           <span
             className="ml-2 inline-flex h-6 items-center text-2xl"

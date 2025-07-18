@@ -1,5 +1,6 @@
 import 'cypress-axe'
 import { checkA11y } from '../../../helpers/accessibility/checkA11y'
+import { dismissCookieBanner } from '../../../helpers/cookies/dismissCookieBanner'
 
 // Define the pages to test
 const staticPagesToTest = [
@@ -49,6 +50,11 @@ describe('Accessibility Tests', () => {
       cy.injectAxe()
 
       // Run accessibility checks
+      checkA11y()
+
+      dismissCookieBanner()
+
+      // Run accessibility checks after dismissing the cookie banner
       checkA11y()
     })
 

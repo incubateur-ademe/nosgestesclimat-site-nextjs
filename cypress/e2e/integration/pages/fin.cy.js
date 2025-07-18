@@ -30,8 +30,6 @@ describe('The End page', () => {
       clickSkipTutorialButton()
 
       recursivelyFillSimulation()
-
-      // checkA11y() // TODO: fix A11Y test breaking only when running on CI
     })
 
     describe('When he saves his/her simulation on the end page', () => {
