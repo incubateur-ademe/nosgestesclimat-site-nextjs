@@ -7,7 +7,6 @@ import { fetchPollResults } from '@/services/organisations/fetchPollResults'
 import type { PublicOrganisationPoll } from '@/types/organisations'
 import { captureException } from '@sentry/nextjs'
 import { useTransition } from 'react'
-import { twMerge } from 'tailwind-merge'
 import DownloadIcon from '../icons/DownloadIcon'
 import Trans from '../translation/trans/TransClient'
 
@@ -42,14 +41,15 @@ export default function ExportDataButton({
   }
 
   return (
-    <div className="relative w-full pb-11" aria-live="polite">
+    <div className="relative pb-11" aria-live="polite">
       <Button
-        className={twMerge(className, 'w-full')}
+        className={className}
         color={color}
         disabled={isPending}
         onClick={handleClick}
+        size="sm"
         {...props}>
-        <DownloadIcon className="fill-primary-700 mr-2" />
+        <DownloadIcon className="fill-primary-700 mr-2 w-6 leading-none" />
         <Trans>Exporter les données</Trans>
       </Button>
 

@@ -4,7 +4,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import i18nConfig from '@/i18nConfig'
-import { useUser } from '@/publicodes-state'
+import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import { useEffect, useRef } from 'react'
 
 declare global {
@@ -23,8 +23,8 @@ declare global {
   }
 }
 
-const FORM_ID = process.env.NEXT_PUBLIC_TALLY_FORM_ID ?? ''
 const SHOW_POPUP_TIMEOUT = 5000
+const TALLY_SEEN_KEY = 'tally-seen'
 
 export default function TallyForm() {
   const { t } = useClientTranslation()
@@ -33,8 +33,6 @@ export default function TallyForm() {
   const isFrench = useLocale() === i18nConfig.defaultLocale
   const FORM_ID = process.env.NEXT_PUBLIC_TALLY_FORM_ID ?? ''
 
-  const { simulations } = useUser()
-
   const handleOpenForm = () => {
     window.Tally.openPopup(FORM_ID, {
       emoji: {
@@ -42,9 +40,11 @@ export default function TallyForm() {
         animation: 'wave',
       },
     })
+    safeLocalStorage.setItem(TALLY_SEEN_KEY, 'true')
   }
 
   useEffect(() => {
+    if (safeLocalStorage.getItem(TALLY_SEEN_KEY)) return
     // Open form only for new users, that have only one simulation
     timeoutRef.current = setTimeout(() => handleOpenForm(), SHOW_POPUP_TIMEOUT)
 

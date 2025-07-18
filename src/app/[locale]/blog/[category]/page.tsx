@@ -9,6 +9,7 @@ import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
 import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import type { Locale } from '@/i18nConfig'
+import i18nConfig from '@/i18nConfig'
 import { fetchCategoryPageContent } from '@/services/cms/fetchCategoryPageContent'
 import { fetchCategoryPageMetadata } from '@/services/cms/fetchCategoryPageMetadata'
 import type { DefaultPageProps } from '@/types'
@@ -77,6 +78,16 @@ export default async function CategoryPage({
   const langButtonsDisplayed = await getLangButtonsDisplayed({
     category,
   })
+
+  //  Firstly redirect to french version if the page is not available in the current locale
+  if (locale !== i18nConfig.defaultLocale && (!title || !description)) {
+    return redirect(`/blog/${category}?lang=fr`)
+  }
+
+  //  If the page is not available in the default locale, redirect to the not found page
+  if (locale === i18nConfig.defaultLocale && (!title || !description)) {
+    return redirect(NOT_FOUND_PATH)
+  }
 
   if (!title || !description) {
     return redirect(NOT_FOUND_PATH)

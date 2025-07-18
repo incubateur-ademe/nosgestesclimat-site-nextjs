@@ -4,12 +4,14 @@ import { fetchArticlePageContent } from '@/services/cms/fetchArticlePageContent'
 import { fetchArticlePageMetadata } from '@/services/cms/fetchArticlePageMetadata'
 
 import Footer from '@/components/layout/Footer'
+import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Badge from '@/design-system/layout/Badge'
 import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import type { Locale } from '@/i18nConfig'
+import i18nConfig from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import ArticleBreadcrumbs from './_components/ArticleBreadcrumbs'
 import ArticleJSONLD from './_components/ArticleJSONLD'
 import AuthorBlock from './_components/AuthorBlock'
@@ -61,8 +63,18 @@ export default async function ArticlePage({
     article: articleSlug,
   })
 
+  //  Firstly redirect to french version if the page is not available in the current locale
+  if (locale !== i18nConfig.defaultLocale && !article) {
+    return redirect(`/blog/${category}/${articleSlug}?lang=fr`)
+  }
+
+  //  If the page is not available in the default locale, redirect to the not found page
+  if (locale === i18nConfig.defaultLocale && !article) {
+    return redirect(NOT_FOUND_PATH)
+  }
+
   if (!article) {
-    return notFound()
+    return redirect(NOT_FOUND_PATH)
   }
 
   return (

@@ -9,3 +9,9 @@ export const pollDashboardClickParameters = [
   'Poll Dashboard',
   'Click Paramètres',
 ]
+
+export const pollDashboardClickQRCodeDownload = [
+  'trackEvent',
+  'Poll Dashboard',
+  'Download QR Code',
+]

@@ -6,22 +6,25 @@ import CookieConsentBanner from '../CookieConsentBanner'
 
 // Mock ReactModal
 vi.mock('react-modal', () => ({
-  default: function MockReactModal({
-    isOpen,
-    children,
-    onAfterClose,
-  }: {
-    isOpen: boolean
-    children: React.ReactNode
-    onAfterClose: () => void
-  }) {
-    if (!isOpen) return null
-    return (
-      <div data-testid="modal" onClick={onAfterClose}>
-        {children}
-      </div>
-    )
-  },
+  default: Object.assign(
+    function MockReactModal({
+      isOpen,
+      children,
+      onAfterClose,
+    }: {
+      isOpen: boolean
+      children: React.ReactNode
+      onAfterClose: () => void
+    }) {
+      if (!isOpen) return null
+      return (
+        <div data-testid="modal" onClick={onAfterClose}>
+          {children}
+        </div>
+      )
+    },
+    { setAppElement: vi.fn() }
+  ),
 }))
 
 // Mock Link component

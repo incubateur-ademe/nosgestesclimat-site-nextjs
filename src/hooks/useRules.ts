@@ -1,11 +1,9 @@
-import { ABTEST_KEY, FLAG_VARIANT_KEY } from '@/constants/ab-test'
+import { FLAG_VARIANT_KEY } from '@/constants/ab-test'
 import { getRules } from '@/helpers/modelFetching/getRules'
-import i18nConfig from '@/i18nConfig'
 import { useUser } from '@/publicodes-state'
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import type { UseQueryResult } from '@tanstack/react-query'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
-import { useFeatureFlagVariantKey } from 'posthog-js/react'
 import { useLocale } from './useLocale'
 
 type Props = {
@@ -23,9 +21,12 @@ export function useRules(
   const locale = useLocale()
   const { user } = useUser()
 
-  const flagValue = useFeatureFlagVariantKey(
+  // This is used to load the rules from the test model in case of AB testing
+  // uncomment when needed
+  const flagValue = undefined /* useFeatureFlagVariantKey(
     locale === i18nConfig.defaultLocale ? ABTEST_KEY : ''
-  )
+  )*/
+
   const regionCode =
     user?.region?.code != undefined && user?.region?.code !== ''
       ? user?.region?.code
