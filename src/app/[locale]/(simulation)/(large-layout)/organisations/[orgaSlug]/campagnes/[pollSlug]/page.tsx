@@ -116,19 +116,21 @@ export default function CampagnePage() {
           }
         />
 
-        <div>
-          <ButtonLink
-            href={`/organisations/${orgaSlug}/campagnes/${pollSlug}/parametres`}
-            trackingEvent={pollDashboardClickParameters}
-            color="secondary"
-            size="sm"
-            data-cypress-id="poll-admin-section-see-parameters-button"
-            className="flex items-center">
-            <SettingsIcon className="fill-primary-700 mr-2" />
+        {!!isAdmin && (
+          <div>
+            <ButtonLink
+              href={`/organisations/${orgaSlug}/campagnes/${pollSlug}/parametres`}
+              trackingEvent={pollDashboardClickParameters}
+              color="secondary"
+              size="sm"
+              data-cypress-id="poll-admin-section-see-parameters-button"
+              className="flex items-center">
+              <SettingsIcon className="fill-primary-700 mr-2" />
 
-            <Trans>Voir les paramètres</Trans>
-          </ButtonLink>
-        </div>
+              <Trans>Voir les paramètres</Trans>
+            </ButtonLink>
+          </div>
+        )}
       </div>
 
       <div className="mt-8">
@@ -140,6 +142,7 @@ export default function CampagnePage() {
           funFacts={poll.funFacts}
           title={<Trans>Résultats de campagne</Trans>}
           poll={poll}
+          isAdmin={!!isAdmin}
         />
 
         {

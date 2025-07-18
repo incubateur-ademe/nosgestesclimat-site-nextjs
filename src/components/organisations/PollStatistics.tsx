@@ -20,12 +20,14 @@ export default function PollStatistics({
   simulationsWithoutExtremes,
   funFacts,
   poll,
+  isAdmin,
 }: {
   title?: string | ReactNode
   simulationsCount: number
   simulationsWithoutExtremes: PublicPollSimulation[]
   funFacts?: FunFacts | null
   poll: PublicOrganisationPoll
+  isAdmin: boolean
 }) {
   const hasAtLeastThreeParticipants = simulationsCount > 2
 
@@ -34,7 +36,7 @@ export default function PollStatistics({
       <div className="flex flex-col items-baseline justify-between sm:flex-row md:flex-nowrap">
         <h2 className="flex-1">{title ?? <Trans>Statistiques</Trans>}</h2>
 
-        {poll.simulations.count >= 3 && (
+        {poll.simulations.count >= 3 && isAdmin && (
           <ExportDataButton
             poll={poll}
             color="secondary"
