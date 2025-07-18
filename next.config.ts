@@ -40,6 +40,12 @@ const nextConfig: NextConfig = {
       use: [{ loader: 'yaml-loader' }],
     })
 
+    if (!dev) {
+      config.cache = Object.freeze({
+        type: 'memory',
+      })
+    }
+
     // Enable source maps
     if (!dev && !isServer) {
       config.devtool = 'hidden-source-map'

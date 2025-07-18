@@ -1,6 +1,6 @@
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import rulesToTestOpti from '@incubateur-ademe/nosgestesclimat-test/public/co2-model.FR-lang.fr-opti.json'
-import rulesToTest from '@incubateur-ademe/nosgestesclimat-test/public/co2-model.FR-lang.fr.json'
+// import rulesToTestOpti from '@incubateur-ademe/nosgestesclimat-test/public/co2-model.FR-lang.fr-opti.json'
+// import rulesToTest from '@incubateur-ademe/nosgestesclimat-test/public/co2-model.FR-lang.fr.json'
 import rulesOpti from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json'
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr.json'
 import { getSupportedRegions } from './getSupportedRegions'
@@ -57,8 +57,9 @@ export async function getRules({
     // We need to cast the rules as Partial<NGCRules> because the rules are optimized rules here (and some rules are voluntarily removed)
     const rulesToBeUsed = ABtesting
       ? isOptim
-        ? rulesToTestOpti
-        : rulesToTest
+        ? // Replace those with the rulesToTestOpti and rulesToTest when AB testing is needed
+          rulesOpti
+        : rules
       : isOptim
         ? rulesOpti
         : rules

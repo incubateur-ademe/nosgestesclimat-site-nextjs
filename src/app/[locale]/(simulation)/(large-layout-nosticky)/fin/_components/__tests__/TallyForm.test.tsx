@@ -10,7 +10,17 @@ vi.mock('@/hooks/useLocale', () => ({
   useLocale: () => mockUseLocale(),
 }))
 
+// Mock safeLocalStorage BEFORE importing the component
+vi.mock('@/utils/browser/safeLocalStorage', () => ({
+  safeLocalStorage: {
+    getItem: vi.fn(),
+    setItem: vi.fn(),
+    removeItem: vi.fn(), // Added removeItem to fix provider errors
+  },
+}))
+
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
+import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import userEvent from '@testing-library/user-event'
 import TallyForm from '../TallyForm'
 
@@ -22,6 +32,10 @@ describe('TallyForm', () => {
 
     // Reset the mock to return 'fr' by default
     mockUseLocale.mockReturnValue('fr')
+
+    // Reset localStorage mocks
+    vi.mocked(safeLocalStorage.getItem).mockReturnValue(null)
+    vi.mocked(safeLocalStorage.setItem).mockClear()
 
     // Mock window.Tally
     Object.defineProperty(window, 'Tally', {
@@ -56,7 +70,7 @@ describe('TallyForm', () => {
     expect(process.env.NEXT_PUBLIC_TALLY_FORM_ID).toBe('test-form-id')
   })
 
-  it('should open popup when button is clicked', async () => {
+  it('should open popup when button is clicked and set localStorage', async () => {
     act(() => {
       renderWithWrapper(<TallyForm />, {
         providers: {
@@ -86,10 +100,16 @@ describe('TallyForm', () => {
     // Réactiver les fake timers
     vi.useFakeTimers()
 
-    expect(mockOpenPopup).toHaveBeenCalled()
+    expect(mockOpenPopup).toHaveBeenCalledWith('test-form-id', {
+      emoji: {
+        text: '👋',
+        animation: 'wave',
+      },
+    })
+    expect(safeLocalStorage.setItem).toHaveBeenCalledWith('tally-seen', 'true')
   })
 
-  it('should automatically open popup after timeout when conditions are met', () => {
+  it('should automatically open popup after timeout when conditions are met and set localStorage', () => {
     // S'assurer que l'environnement est correctement configuré
     expect(process.env.NEXT_PUBLIC_TALLY_FORM_ID).toBe('test-form-id')
 
@@ -124,6 +144,73 @@ describe('TallyForm', () => {
         animation: 'wave',
       },
     })
+    expect(safeLocalStorage.setItem).toHaveBeenCalledWith('tally-seen', 'true')
+  })
+
+  it('should not automatically open popup if user has already seen it', () => {
+    // Mock that the user has already seen the popup
+    vi.mocked(safeLocalStorage.getItem).mockReturnValue('true')
+
+    act(() => {
+      renderWithWrapper(<TallyForm />, {
+        providers: {
+          user: true,
+          queryClient: true,
+          errorBoundary: true,
+        },
+        simulations: [{ id: 'simulation1' } as any],
+      })
+    })
+
+    // Advance timers to trigger the automatic popup
+    act(() => {
+      vi.advanceTimersByTime(5000)
+    })
+
+    // The popup should not be called because user has already seen it
+    expect(mockOpenPopup).not.toHaveBeenCalled()
+  })
+
+  it('should still allow manual popup opening even if user has seen it before', async () => {
+    // Mock that the user has already seen the popup
+    vi.mocked(safeLocalStorage.getItem).mockReturnValue('true')
+
+    act(() => {
+      renderWithWrapper(<TallyForm />, {
+        providers: {
+          user: true,
+          queryClient: true,
+          errorBoundary: true,
+        },
+        simulations: [{ id: 'simulation1' } as any],
+      })
+    })
+
+    // Clear the mock to reset the call count
+    mockOpenPopup.mockClear()
+    vi.mocked(safeLocalStorage.setItem).mockClear()
+
+    // The button should still be present
+    const button = screen.getByTestId('wave-button')
+
+    // Désactiver temporairement les fake timers pour le clic
+    vi.useRealTimers()
+
+    await act(async () => {
+      await userEvent.click(button)
+    })
+
+    // Réactiver les fake timers
+    vi.useFakeTimers()
+
+    // Manual click should still work
+    expect(mockOpenPopup).toHaveBeenCalledWith('test-form-id', {
+      emoji: {
+        text: '👋',
+        animation: 'wave',
+      },
+    })
+    expect(safeLocalStorage.setItem).toHaveBeenCalledWith('tally-seen', 'true')
   })
 
   it('should not render when locale is not French', () => {
