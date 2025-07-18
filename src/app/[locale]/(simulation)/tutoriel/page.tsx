@@ -91,7 +91,11 @@ export default function Tutoriel() {
           />
         </ol>
 
-        <ButtonLink size="xl" className="self-center" href={SIMULATOR_PATH}>
+        <ButtonLink
+          size="xl"
+          data-testid="tutoriel-button-start"
+          className="self-center"
+          href={SIMULATOR_PATH}>
           <Trans>Démarrer</Trans>{' '}
           <span
             className="ml-2 inline-flex h-6 items-center text-2xl"
