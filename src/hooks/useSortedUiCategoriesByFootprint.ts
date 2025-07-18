@@ -8,7 +8,7 @@ type Props = {
   metric?: Metric
 }
 export function useSortedUiCategoriesByFootprint({ metric }: Props = {}) {
-  const { getNumericValue, everyUiCategories } = useEngine({ metric })
+  const { getNumericValue, everyUiCategories } = useEngine()
 
   // This is temporary until we decide if we want to show the repas categories in the water footprint
   const everyUiCategoriesWithRepasAjusted = useMemo(

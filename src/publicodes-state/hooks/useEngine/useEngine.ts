@@ -8,7 +8,7 @@ import { useCallback, useContext } from 'react'
 /**
  * A hook that make available some information on the current instanciated simulation.
  */
-export default function useEngine({ metric }: { metric?: Metric } = {}) {
+export default function useEngine() {
   const {
     rules,
     engine,

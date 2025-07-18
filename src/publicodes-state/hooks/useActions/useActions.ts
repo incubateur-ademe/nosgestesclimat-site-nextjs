@@ -23,7 +23,7 @@ type ActionObject = {
 export default function useActions(
   { metric }: Props = { metric: carboneMetric }
 ) {
-  const { getNumericValue, engine } = useEngine({ metric })
+  const { getNumericValue, engine } = useEngine()
 
   const { actionChoices } = useCurrentSimulation()
 
