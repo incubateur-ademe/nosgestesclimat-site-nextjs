@@ -38,7 +38,6 @@ function setLocaleCookie(response: NextResponse, locale: string): void {
 }
 
 function i18nMiddleware(request: NextRequest) {
-  const response = i18nRouter(request, i18nConfig)
   const langParam = request.nextUrl.searchParams.get('lang')
   const { locales, defaultLocale } = i18nConfig
 
@@ -66,7 +65,18 @@ function i18nMiddleware(request: NextRequest) {
       return redirectResponse
     }
 
-    // Clean URL if locale is already correct
+    // Special case for iframe
+    if (
+      langParam === defaultLocale &&
+      request.nextUrl.searchParams.has('iframe')
+    ) {
+      // Set the cookie but don't redirect
+      const response = NextResponse.next()
+      setLocaleCookie(response, langParam)
+      return response
+    }
+
+    // Clean URL if locale is already correct (non-default locales)
     if (request.nextUrl.searchParams.has('lang')) {
       const url = new URL(request.url)
       url.searchParams.delete('lang')
@@ -77,7 +87,7 @@ function i18nMiddleware(request: NextRequest) {
     }
   }
 
-  return response
+  return i18nRouter(request, i18nConfig)
 }
 
 export default i18nMiddleware
