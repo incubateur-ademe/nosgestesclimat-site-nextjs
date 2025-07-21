@@ -11,8 +11,10 @@ import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useMemo } from 'react'
+
 const TEST_INTRO_TUTO_KEY = 'testIntro'
-export default function ButtonStart() {
+
+export default function ButtonStart({ label }: { label?: React.ReactNode }) {
   const { hideTutorial, tutorials } = useUser()
 
   const searchParams = useSearchParams()?.toString()
@@ -64,6 +66,8 @@ export default function ButtonStart() {
       }}>
       {isLoading ? (
         <Loader size="sm" />
+      ) : label ? (
+        label
       ) : (
         <>
           <Trans>C'est parti !</Trans> <span aria-hidden="true">→</span>

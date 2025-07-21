@@ -10,11 +10,7 @@ import {
   NEW_TUTORIAL_FLAG_KEY,
   NEW_TUTORIAL_VARIANT_KEY,
 } from '@/constants/ab-test'
-import { tutorielClickSuivant } from '@/constants/tracking/pages/tutoriel'
-import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { t } from '@/helpers/metadata/fakeMetadataT'
-import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import Image from 'next/image'
 import { useFeatureFlagVariantKey } from 'posthog-js/react'
 import { twMerge } from 'tailwind-merge'
@@ -27,9 +23,9 @@ import TutorialListItem from './_components/TutorialListItem'
 
 export default function Tutoriel() {
   const flagValue = useFeatureFlagVariantKey(NEW_TUTORIAL_FLAG_KEY)
-  const { getLinkToSimulateurPage } = useSimulateurPage()
 
   console.log('AB test tutoriel, variant :', flagValue)
+
   if (flagValue === NEW_TUTORIAL_VARIANT_KEY) {
     return (
       <ContentNarrow className="text-center">
@@ -95,20 +91,7 @@ export default function Tutoriel() {
           />
         </ol>
 
-        <ButtonLink
-          size="xl"
-          className="self-center"
-          href={getLinkToSimulateurPage()}
-          onClick={() => {
-            trackEvent(tutorielClickSuivant(0))
-          }}>
-          <Trans>Démarrer</Trans>{' '}
-          <span
-            className="ml-2 inline-flex h-6 items-center text-2xl"
-            aria-hidden>
-            →
-          </span>
-        </ButtonLink>
+        <ButtonStart label={<Trans>Démarrer</Trans>} />
 
         <Image
           src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/comparer_empreinte_carbone_et_eau_entre_amis_4d3765d837.svg"
