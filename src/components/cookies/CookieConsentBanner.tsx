@@ -7,6 +7,11 @@ import ReactModal from 'react-modal'
 // Type assertion to resolve React types version mismatch
 const Modal = ReactModal as any
 
+// Set the app element once when the module is loaded
+if (typeof document !== 'undefined') {
+  ReactModal.setAppElement(document.body)
+}
+
 export default function CookieConsentBanner({
   isVisible,
   setIsVisible,
