@@ -1,18 +1,34 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 import i18nMiddleware from './middlewares/i18nMiddleware'
+import splitTestingMiddleware from './middlewares/splitTestingMiddleware'
 
+function isRedirecting(response: NextResponse): boolean {
+  return response.status === 307 || response.status === 308
+}
+function isRewriting(response: NextResponse): boolean {
+  return response.headers.has('x-middleware-rewrite')
+}
 function isI18n(response: NextResponse): boolean {
   return response.headers.has('x-next-i18n-router-locale')
 }
 
-export function middleware(request: NextRequest) {
+export const middlewares = [splitTestingMiddleware, i18nMiddleware]
+
+export async function middleware(request: NextRequest) {
   const response = NextResponse.next()
 
-  if (isI18n(response)) {
-    return i18nMiddleware(request)
-  }
+  for await (const middlewareFunction of middlewares) {
+    const middlewareResponse = middlewareFunction(request)
 
+    if (
+      isRedirecting(middlewareResponse) ||
+      isRewriting(middlewareResponse) ||
+      isI18n(middlewareResponse)
+    ) {
+      return middlewareResponse
+    }
+  }
   return response
 }
 
@@ -29,7 +45,7 @@ export const config = {
      */
     {
       source:
-        '/((?!api|_next/static|_next/image|favicon.ico|favicon.png|images|manifest.webmanifest|demos|misc|videos|robots.txt).*)',
+        '/((?!api|_next/static|_next/image|favicon.ico|favicon.png|images|manifest.webmanifest|scripts|demos|misc|videos|robots.txt).*)',
       missing: [
         { type: 'header', key: 'next-router-prefetch' },
         { type: 'header', key: 'purpose', value: 'prefetch' },
