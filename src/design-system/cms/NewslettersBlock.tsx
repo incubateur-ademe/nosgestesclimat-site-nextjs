@@ -8,8 +8,14 @@ import {
   LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
   LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
 } from '@/constants/brevo'
+import {
+  LOGEMENT_NEWSLETTER_LABEL,
+  SEASONAL_NEWSLETTER_LABEL,
+  TRANSPORTS_NEWSLETTER_LABEL,
+} from '@/constants/forms/newsletters'
 import { subscribeToNewsletterBlog } from '@/constants/tracking/pages/newsletter'
 import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
+import { getIsUserVerified } from '@/helpers/user/getIsVerified'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -31,15 +37,15 @@ import BlockSkeleton from '../layout/BlockSkeleton'
 type Inputs = {
   name: string
   email?: string
-  'newsletter-saisonniere': boolean
-  'newsletter-transports': boolean
-  'newsletter-logement': boolean
+  [SEASONAL_NEWSLETTER_LABEL]: boolean
+  [TRANSPORTS_NEWSLETTER_LABEL]: boolean
+  [LOGEMENT_NEWSLETTER_LABEL]: boolean
 }
 
 function SuccessMessage() {
   return (
     <div
-      className="flex flex-col items-center justify-center text-center"
+      className="flex h-full flex-1 flex-col items-center justify-center text-center"
       data-testid="success-message">
       <CheckIcon className="mb-4 h-12 w-12 fill-green-500" />
 
@@ -67,6 +73,9 @@ export default function NewslettersBlock() {
 
   const { user, updateEmail } = useUser()
 
+  // TODO : replace this with a proper check by calling the backend
+  const isVerified = getIsUserVerified()
+
   const {
     data: newsletterSubscriptions,
     isFetching: isFetchingNewsletterSubscriptions,
@@ -85,6 +94,7 @@ export default function NewslettersBlock() {
     setValue,
     setError,
     formState: { errors },
+    getValues,
   } = useReactHookForm<Inputs>({
     defaultValues: { name: user?.name, email: user?.email },
     mode: 'onSubmit',
@@ -94,16 +104,16 @@ export default function NewslettersBlock() {
     if (!newsletterSubscriptions) return
 
     setValue(
-      'newsletter-saisonniere',
+      SEASONAL_NEWSLETTER_LABEL,
       newsletterSubscriptions.includes(LIST_MAIN_NEWSLETTER)
     )
     setValue(
-      'newsletter-transports',
+      TRANSPORTS_NEWSLETTER_LABEL,
       newsletterSubscriptions.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER)
     )
 
     setValue(
-      'newsletter-logement',
+      LOGEMENT_NEWSLETTER_LABEL,
       newsletterSubscriptions.includes(LIST_NOS_GESTES_LOGEMENT_NEWSLETTER)
     )
   }, [newsletterSubscriptions, setValue])
@@ -137,9 +147,9 @@ export default function NewslettersBlock() {
     }
 
     const listIds = {
-      [LIST_MAIN_NEWSLETTER]: data['newsletter-saisonniere'],
-      [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: data['newsletter-transports'],
-      [LIST_NOS_GESTES_LOGEMENT_NEWSLETTER]: data['newsletter-logement'],
+      [LIST_MAIN_NEWSLETTER]: data[SEASONAL_NEWSLETTER_LABEL],
+      [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: data[TRANSPORTS_NEWSLETTER_LABEL],
+      [LIST_NOS_GESTES_LOGEMENT_NEWSLETTER]: data[LOGEMENT_NEWSLETTER_LABEL],
     }
 
     const newslettersArray = formatListIdsFromObject(listIds)
@@ -239,8 +249,11 @@ export default function NewslettersBlock() {
                         </span>
                       </p>
                     }
-                    {...register('newsletter-saisonniere')}
-                    error={errors['newsletter-saisonniere']?.message}
+                    disabled={
+                      !isVerified && !!getValues(SEASONAL_NEWSLETTER_LABEL)
+                    }
+                    {...register(SEASONAL_NEWSLETTER_LABEL)}
+                    error={errors[SEASONAL_NEWSLETTER_LABEL]?.message}
                     data-testid="newsletter-saisonniere-checkbox"
                   />
 
@@ -253,8 +266,11 @@ export default function NewslettersBlock() {
                         </span>
                       </p>
                     }
-                    {...register('newsletter-transports')}
-                    error={errors['newsletter-transports']?.message}
+                    disabled={
+                      !isVerified && !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
+                    }
+                    {...register(TRANSPORTS_NEWSLETTER_LABEL)}
+                    error={errors[TRANSPORTS_NEWSLETTER_LABEL]?.message}
                     data-testid="newsletter-transports-checkbox"
                   />
 
@@ -267,8 +283,11 @@ export default function NewslettersBlock() {
                         </span>
                       </p>
                     }
-                    {...register('newsletter-logement')}
-                    error={errors['newsletter-logement']?.message}
+                    disabled={
+                      !isVerified && !!getValues(LOGEMENT_NEWSLETTER_LABEL)
+                    }
+                    {...register(LOGEMENT_NEWSLETTER_LABEL)}
+                    error={errors[LOGEMENT_NEWSLETTER_LABEL]?.message}
                     data-testid="newsletter-logement-checkbox"
                   />
 

@@ -6,6 +6,11 @@ import {
   LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
   LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
 } from '@/constants/brevo'
+import {
+  LOGEMENT_NEWSLETTER_LABEL,
+  SEASONAL_NEWSLETTER_LABEL,
+  TRANSPORTS_NEWSLETTER_LABEL,
+} from '@/constants/forms/newsletters'
 import Button from '@/design-system/buttons/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
@@ -21,15 +26,11 @@ import i18nConfig from '@/i18nConfig'
 import { useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
 import type { ReactNode } from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import DefaultSubmitErrorMessage from '../error/DefaultSubmitErrorMessage'
-
-const SEASONAL_NEWSLETTER_LABEL = 'newsletter-saisonniere'
-const TRANSPORTS_NEWSLETTER_LABEL = 'newsletter-transports'
-const LOGEMENT_NEWSLETTER_LABEL = 'newsletter-logement'
 
 type Inputs = {
   name: string
@@ -79,20 +80,12 @@ export default function UserInformationForm({
   // TODO : replace this with a proper check by calling the backend
   const isVerified = getIsUserVerified()
 
-  const [
-    tempSavedNewsletterIdsForUnverifiedUsers,
-    setTempSavedNewsletterIdsForUnverifiedUsers,
-  ] = useState<Record<string, boolean>>({
-    [SEASONAL_NEWSLETTER_LABEL]: false,
-    [TRANSPORTS_NEWSLETTER_LABEL]: false,
-    [LOGEMENT_NEWSLETTER_LABEL]: false,
-  })
-
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
+    getValues,
   } = useReactHookForm<Inputs>({ defaultValues: { name: user?.name } })
 
   const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
@@ -119,18 +112,6 @@ export default function UserInformationForm({
       newsletterSubscriptions?.includes(LIST_NOS_GESTES_LOGEMENT_NEWSLETTER) ??
         false
     )
-    setTempSavedNewsletterIdsForUnverifiedUsers({
-      [SEASONAL_NEWSLETTER_LABEL]:
-        newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER) ?? false,
-      [TRANSPORTS_NEWSLETTER_LABEL]:
-        newsletterSubscriptions?.includes(
-          LIST_NOS_GESTES_TRANSPORT_NEWSLETTER
-        ) ?? false,
-      [LOGEMENT_NEWSLETTER_LABEL]:
-        newsletterSubscriptions?.includes(
-          LIST_NOS_GESTES_LOGEMENT_NEWSLETTER
-        ) ?? false,
-    })
   }, [newsletterSubscriptions, setValue, defaultValues])
 
   const {
@@ -254,12 +235,7 @@ export default function UserInformationForm({
                     </Trans>
                   </span>
                 }
-                disabled={
-                  !isVerified &&
-                  tempSavedNewsletterIdsForUnverifiedUsers[
-                    SEASONAL_NEWSLETTER_LABEL
-                  ]
-                }
+                disabled={!isVerified && !!getValues(SEASONAL_NEWSLETTER_LABEL)}
                 {...register(SEASONAL_NEWSLETTER_LABEL)}
               />
             )}
@@ -277,10 +253,7 @@ export default function UserInformationForm({
                   </span>
                 }
                 disabled={
-                  !isVerified &&
-                  tempSavedNewsletterIdsForUnverifiedUsers[
-                    TRANSPORTS_NEWSLETTER_LABEL
-                  ]
+                  !isVerified && !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
                 }
                 {...register(TRANSPORTS_NEWSLETTER_LABEL)}
               />
@@ -298,12 +271,7 @@ export default function UserInformationForm({
                     </Trans>
                   </span>
                 }
-                disabled={
-                  !isVerified &&
-                  tempSavedNewsletterIdsForUnverifiedUsers[
-                    LOGEMENT_NEWSLETTER_LABEL
-                  ]
-                }
+                disabled={!isVerified && !!getValues(LOGEMENT_NEWSLETTER_LABEL)}
                 {...register(LOGEMENT_NEWSLETTER_LABEL)}
               />
             )}
