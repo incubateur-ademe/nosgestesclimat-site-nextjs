@@ -12,8 +12,8 @@ import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
+import { getIsUserVerified } from '@/helpers/user/getIsVerified'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
-import { useUnsubscribeFromNewsletters } from '@/hooks/settings/useUnsubscribeFromNewsletters'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
@@ -21,18 +21,22 @@ import i18nConfig from '@/i18nConfig'
 import { useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
 import type { ReactNode } from 'react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import DefaultSubmitErrorMessage from '../error/DefaultSubmitErrorMessage'
 
+const SEASONAL_NEWSLETTER_LABEL = 'newsletter-saisonniere'
+const TRANSPORTS_NEWSLETTER_LABEL = 'newsletter-transports'
+const LOGEMENT_NEWSLETTER_LABEL = 'newsletter-logement'
+
 type Inputs = {
   name: string
   email?: string
-  'newsletter-saisonniere': boolean
-  'newsletter-transports': boolean
-  'newsletter-logement': boolean
+  [SEASONAL_NEWSLETTER_LABEL]: boolean
+  [TRANSPORTS_NEWSLETTER_LABEL]: boolean
+  [LOGEMENT_NEWSLETTER_LABEL]: boolean
 }
 
 type Props = {
@@ -49,7 +53,6 @@ type Props = {
   className?: string
   shouldForceEmailEditable?: boolean
   defaultValues?: { 'newsletter-transports': boolean }
-  shouldUseLegacyHook?: boolean
 }
 
 export default function UserInformationForm({
@@ -57,22 +60,33 @@ export default function UserInformationForm({
   inputsDisplayed = [
     'name',
     'email',
-    'newsletter-saisonniere',
-    'newsletter-transports',
-    'newsletter-logement',
+    SEASONAL_NEWSLETTER_LABEL,
+    TRANSPORTS_NEWSLETTER_LABEL,
+    LOGEMENT_NEWSLETTER_LABEL,
   ],
   submitLabel,
   onCompleted = () => {},
   className,
   shouldForceEmailEditable = false,
   defaultValues,
-  shouldUseLegacyHook = false,
 }: Props) {
   const { t } = useClientTranslation()
 
   const locale = useLocale()
 
   const { user, updateEmail, updateName } = useUser()
+
+  // TODO : replace this with a proper check by calling the backend
+  const isVerified = getIsUserVerified()
+
+  const [
+    tempSavedNewsletterIdsForUnverifiedUsers,
+    setTempSavedNewsletterIdsForUnverifiedUsers,
+  ] = useState<Record<string, boolean>>({
+    [SEASONAL_NEWSLETTER_LABEL]: false,
+    [TRANSPORTS_NEWSLETTER_LABEL]: false,
+    [LOGEMENT_NEWSLETTER_LABEL]: false,
+  })
 
   const {
     register,
@@ -89,7 +103,7 @@ export default function UserInformationForm({
     if (!newsletterSubscriptions && !defaultValues) return
 
     setValue(
-      'newsletter-saisonniere',
+      SEASONAL_NEWSLETTER_LABEL,
       newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER) ?? false
     )
     setValue(
@@ -105,6 +119,18 @@ export default function UserInformationForm({
       newsletterSubscriptions?.includes(LIST_NOS_GESTES_LOGEMENT_NEWSLETTER) ??
         false
     )
+    setTempSavedNewsletterIdsForUnverifiedUsers({
+      [SEASONAL_NEWSLETTER_LABEL]:
+        newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER) ?? false,
+      [TRANSPORTS_NEWSLETTER_LABEL]:
+        newsletterSubscriptions?.includes(
+          LIST_NOS_GESTES_TRANSPORT_NEWSLETTER
+        ) ?? false,
+      [LOGEMENT_NEWSLETTER_LABEL]:
+        newsletterSubscriptions?.includes(
+          LIST_NOS_GESTES_LOGEMENT_NEWSLETTER
+        ) ?? false,
+    })
   }, [newsletterSubscriptions, setValue, defaultValues])
 
   const {
@@ -113,15 +139,6 @@ export default function UserInformationForm({
     isError,
     isSuccess,
   } = useUpdateUserSettings()
-
-  const {
-    mutateAsync: unsubscribeFromNewsletters,
-    isPending: isPendingUnsubscribe,
-    isError: isErrorUnsubscribe,
-  } = useUnsubscribeFromNewsletters({
-    email: user.email ?? '',
-    userId: user.userId,
-  })
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const newsletterIds = {
@@ -133,24 +150,12 @@ export default function UserInformationForm({
     try {
       const newslettersArray = formatListIdsFromObject(newsletterIds)
 
-      if (
-        shouldUseLegacyHook ||
-        (newsletterSubscriptions &&
-          newslettersArray.length < newsletterSubscriptions.length)
-      ) {
-        await unsubscribeFromNewsletters({
-          name: data.name,
-          email: user.email ?? '',
-          newsletterIds,
-        })
-      } else {
-        await updateUserSettings({
-          name: data.name,
-          email: user.email ?? data.email ?? '',
-          newsletterIds: newslettersArray,
-          userId: user?.userId,
-        })
-      }
+      await updateUserSettings({
+        name: data.name,
+        email: user.email ?? data.email ?? '',
+        newsletterIds: newslettersArray,
+        userId: user?.userId,
+      })
 
       if (data.email && (!user?.email || shouldForceEmailEditable)) {
         updateEmail(data.email)
@@ -221,9 +226,19 @@ export default function UserInformationForm({
               <Trans>Inscription à nos e-mails</Trans>
             </h3>
 
-            <p className="text-sm text-gray-600">
-              <Trans>Vous pouvez vous désincrire à tout moment</Trans>
-            </p>
+            {isVerified ? (
+              <p className="text-sm text-gray-600">
+                <Trans>Vous pouvez vous désincrire à tout moment</Trans>
+              </p>
+            ) : (
+              <p className="text-sm text-gray-600">
+                <Emoji>⚠️</Emoji>{' '}
+                <Trans>
+                  Pour vous désinscrire, passez par le lien en bas de l'email
+                  reçu
+                </Trans>
+              </p>
+            )}
             {inputsDisplayed.includes('newsletter-saisonniere') && (
               <CheckboxInputGroup
                 data-testid="newsletter-saisonniere-checkbox"
@@ -239,7 +254,13 @@ export default function UserInformationForm({
                     </Trans>
                   </span>
                 }
-                {...register('newsletter-saisonniere')}
+                disabled={
+                  !isVerified &&
+                  tempSavedNewsletterIdsForUnverifiedUsers[
+                    SEASONAL_NEWSLETTER_LABEL
+                  ]
+                }
+                {...register(SEASONAL_NEWSLETTER_LABEL)}
               />
             )}
             {inputsDisplayed.includes('newsletter-transports') && (
@@ -255,7 +276,13 @@ export default function UserInformationForm({
                     </Trans>
                   </span>
                 }
-                {...register('newsletter-transports')}
+                disabled={
+                  !isVerified &&
+                  tempSavedNewsletterIdsForUnverifiedUsers[
+                    TRANSPORTS_NEWSLETTER_LABEL
+                  ]
+                }
+                {...register(TRANSPORTS_NEWSLETTER_LABEL)}
               />
             )}
             {inputsDisplayed.includes('newsletter-logement') && (
@@ -271,7 +298,13 @@ export default function UserInformationForm({
                     </Trans>
                   </span>
                 }
-                {...register('newsletter-logement')}
+                disabled={
+                  !isVerified &&
+                  tempSavedNewsletterIdsForUnverifiedUsers[
+                    LOGEMENT_NEWSLETTER_LABEL
+                  ]
+                }
+                {...register(LOGEMENT_NEWSLETTER_LABEL)}
               />
             )}
           </>
@@ -285,7 +318,7 @@ export default function UserInformationForm({
           </p>
         )}
 
-        {(isError || isErrorUnsubscribe) && (
+        {isError && (
           <div data-testid="error-message">
             <DefaultSubmitErrorMessage />
           </div>
@@ -296,10 +329,8 @@ export default function UserInformationForm({
             data-testid="submit-button"
             type="submit"
             className="mt-6 gap-2 self-start"
-            disabled={isPending || isPendingUnsubscribe}>
-            {(isPending || isPendingUnsubscribe) && (
-              <Loader size="sm" color="light" />
-            )}
+            disabled={isPending}>
+            {isPending && <Loader size="sm" color="light" />}
 
             {submitLabel ?? <Trans>Mettre à jour mes informations</Trans>}
           </Button>
