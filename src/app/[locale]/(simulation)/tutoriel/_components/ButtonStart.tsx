@@ -5,7 +5,6 @@ import { tutorielClickSuivant } from '@/constants/tracking/pages/tutoriel'
 import { POLL_START_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Loader from '@/design-system/layout/Loader'
-import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
@@ -18,13 +17,9 @@ export default function ButtonStart() {
 
   const searchParams = useSearchParams()?.toString()
 
-  const { getLinkToNextInfosPage } = useInfosPage()
-
   const { progression, updateCurrentSimulation, polls } = useCurrentSimulation()
 
   const { getLinkToSimulateurPage } = useSimulateurPage()
-
-  const linkToSimulatorPage = getLinkToSimulateurPage()
 
   // When component renders, user has seen the tutorial
   useEffect(() => {
@@ -53,7 +48,7 @@ export default function ButtonStart() {
       href={
         shouldRedirectToChoicePage
           ? `${POLL_START_PATH}?${searchParams}`
-          : linkToSimulatorPage
+          : getLinkToSimulateurPage()
       }
       data-cypress-id="skip-tutorial-button"
       aria-disabled={isLoading}
