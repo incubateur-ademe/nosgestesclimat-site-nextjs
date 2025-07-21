@@ -214,9 +214,11 @@ export default function Question({
         />
       ) : null}
 
-      {activeNotifications.map((notification) => (
-        <Notification key={notification} notification={notification} />
-      ))}
+      {activeNotifications.length > 0 && (
+        <Notification
+          notification={activeNotifications[activeNotifications.length - 1]}
+        />
+      )}
     </>
   )
 }

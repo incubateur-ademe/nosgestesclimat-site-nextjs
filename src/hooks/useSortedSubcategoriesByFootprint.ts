@@ -11,7 +11,7 @@ export function useSortedSubcategoriesByFootprint({
   metric,
   withServiceSocietaux,
 }: Props = {}) {
-  const { getNumericValue, subcategories } = useEngine({ metric })
+  const { getNumericValue, subcategories } = useEngine()
 
   const everySubcategories = useMemo(
     () =>
