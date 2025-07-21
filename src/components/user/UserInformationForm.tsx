@@ -208,11 +208,15 @@ export default function UserInformationForm({
             </h3>
 
             {isVerified ? (
-              <p className="text-sm text-gray-600">
+              <p
+                data-testid="verified-message"
+                className="text-sm text-gray-600">
                 <Trans>Vous pouvez vous désincrire à tout moment</Trans>
               </p>
             ) : (
-              <p className="text-sm text-gray-600">
+              <p
+                data-testid="unverified-message"
+                className="text-sm text-gray-600">
                 <Emoji>⚠️</Emoji>{' '}
                 <Trans>
                   Pour vous désinscrire, passez par le lien en bas de l'email
@@ -300,7 +304,13 @@ export default function UserInformationForm({
             disabled={isPending}>
             {isPending && <Loader size="sm" color="light" />}
 
-            {submitLabel ?? <Trans>Mettre à jour mes informations</Trans>}
+            {submitLabel ? (
+              <span data-testid="custom-submit-label">{submitLabel}</span>
+            ) : (
+              <span data-testid="default-submit-label">
+                <Trans>Mettre à jour mes informations</Trans>
+              </span>
+            )}
           </Button>
         </div>
       </form>

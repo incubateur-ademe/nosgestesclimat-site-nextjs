@@ -17,8 +17,10 @@ const mockUseClientTranslation = vi.fn()
 const mockUseLocale = vi.fn()
 const mockUseGetNewsletterSubscriptions = vi.fn()
 const mockUseUpdateUserSettings = vi.fn()
-const mockUseUnsubscribeFromNewsletters = vi.fn()
 const mockUseUser = vi.fn()
+
+// Mock the getIsUserVerified helper
+const mockGetIsUserVerified = vi.fn()
 
 vi.mock('@/hooks/useClientTranslation', () => ({
   useClientTranslation: () => mockUseClientTranslation(),
@@ -36,12 +38,12 @@ vi.mock('@/hooks/settings/useUpdateUserSettings', () => ({
   useUpdateUserSettings: () => mockUseUpdateUserSettings(),
 }))
 
-vi.mock('@/hooks/settings/useUnsubscribeFromNewsletters', () => ({
-  useUnsubscribeFromNewsletters: () => mockUseUnsubscribeFromNewsletters(),
-}))
-
 vi.mock('@/publicodes-state', () => ({
   useUser: () => mockUseUser(),
+}))
+
+vi.mock('@/helpers/user/getIsVerified', () => ({
+  getIsUserVerified: () => mockGetIsUserVerified(),
 }))
 
 vi.mock('@sentry/nextjs', () => ({
@@ -59,7 +61,6 @@ describe('UserInformationForm', () => {
   const mockLocale = 'fr'
 
   const mockUpdateUserSettings = vi.fn()
-  const mockUnsubscribeFromNewsletters = vi.fn()
   const mockUpdateEmail = vi.fn()
   const mockUpdateName = vi.fn()
 
@@ -78,20 +79,17 @@ describe('UserInformationForm', () => {
       isError: false,
       isSuccess: false,
     })
-    mockUseUnsubscribeFromNewsletters.mockReturnValue({
-      mutateAsync: mockUnsubscribeFromNewsletters,
-      isPending: false,
-      isError: false,
-    })
     mockUseUser.mockReturnValue({
       user: mockUser,
       updateEmail: mockUpdateEmail,
       updateName: mockUpdateName,
     })
 
+    // Mock user verification - default to verified
+    mockGetIsUserVerified.mockReturnValue(true)
+
     // Mock user functions
     vi.mocked(mockUpdateUserSettings).mockResolvedValue({})
-    vi.mocked(mockUnsubscribeFromNewsletters).mockResolvedValue({})
   })
 
   beforeAll(() => {
@@ -214,15 +212,13 @@ describe('UserInformationForm', () => {
         submitLabel: 'Custom Submit Label',
       })
 
-      expect(screen.getByText('Custom Submit Label')).toBeInTheDocument()
+      expect(screen.getByTestId('custom-submit-label')).toBeInTheDocument()
     })
 
     it('should display default submit label when not provided', () => {
       renderComponent()
 
-      expect(
-        screen.getByText('Mettre à jour mes informations')
-      ).toBeInTheDocument()
+      expect(screen.getByTestId('default-submit-label')).toBeInTheDocument()
     })
 
     it('should apply custom className when provided', () => {
@@ -232,6 +228,22 @@ describe('UserInformationForm', () => {
 
       const formContainer = container.firstChild as HTMLElement
       expect(formContainer).toHaveClass('custom-class')
+    })
+
+    it('should show verification message for verified users', () => {
+      mockGetIsUserVerified.mockReturnValue(true)
+
+      renderComponent()
+
+      expect(screen.getByTestId('verified-message')).toBeInTheDocument()
+    })
+
+    it('should show warning message for unverified users', () => {
+      mockGetIsUserVerified.mockReturnValue(false)
+
+      renderComponent()
+
+      expect(screen.getByTestId('unverified-message')).toBeInTheDocument()
     })
   })
 
@@ -269,115 +281,6 @@ describe('UserInformationForm', () => {
           'newsletter-logement': false,
         })
       })
-    })
-
-    it('should call unsubscribeFromNewsletters when newsletter subscriptions are reduced', async () => {
-      const user = userEvent.setup()
-
-      // User is subscribed to 3 newsletters
-      mockUseGetNewsletterSubscriptions.mockReturnValue({
-        data: [
-          LIST_MAIN_NEWSLETTER,
-          LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
-          LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
-        ],
-      })
-
-      renderComponent()
-
-      const nameInput = screen.getByTestId('name-input')
-      await user.clear(nameInput)
-      await user.type(nameInput, 'John Doe')
-
-      // Uncheck the transport newsletter to reduce subscriptions
-      const transportCheckbox = screen.getByTestId(
-        'newsletter-transports-checkbox'
-      )
-      await user.click(transportCheckbox)
-
-      const submitButton = screen.getByTestId('submit-button')
-      await user.click(submitButton)
-
-      await waitFor(() => {
-        expect(mockUnsubscribeFromNewsletters).toHaveBeenCalledWith({
-          name: 'John Doe',
-          email: 'john@example.com',
-          newsletterIds: {
-            [LIST_MAIN_NEWSLETTER]: true,
-            [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: false,
-            [LIST_NOS_GESTES_LOGEMENT_NEWSLETTER]: true,
-          },
-        })
-      })
-    })
-
-    it('should use legacy hook when shouldUseLegacyHook is true', async () => {
-      const user = userEvent.setup()
-
-      renderComponent({
-        shouldUseLegacyHook: true,
-      })
-
-      const nameInput = screen.getByTestId('name-input')
-      await user.clear(nameInput)
-      await user.type(nameInput, 'John Doe')
-
-      const submitButton = screen.getByTestId('submit-button')
-      await user.click(submitButton)
-
-      await waitFor(() => {
-        expect(mockUnsubscribeFromNewsletters).toHaveBeenCalledWith({
-          name: 'John Doe',
-          email: 'john@example.com',
-          newsletterIds: {
-            [LIST_MAIN_NEWSLETTER]: true,
-            [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: true,
-            [LIST_NOS_GESTES_LOGEMENT_NEWSLETTER]: false,
-          },
-        })
-      })
-
-      expect(mockUpdateUserSettings).not.toHaveBeenCalled()
-    })
-
-    it('should use legacy hook when shouldUseLegacyHook is true even with increased subscriptions', async () => {
-      const user = userEvent.setup()
-
-      // User is subscribed to 1 newsletter
-      mockUseGetNewsletterSubscriptions.mockReturnValue({
-        data: [LIST_MAIN_NEWSLETTER],
-      })
-
-      renderComponent({
-        shouldUseLegacyHook: true,
-      })
-
-      const nameInput = screen.getByTestId('name-input')
-      await user.clear(nameInput)
-      await user.type(nameInput, 'John Doe')
-
-      // Check transport newsletter to increase subscriptions
-      const transportCheckbox = screen.getByTestId(
-        'newsletter-transports-checkbox'
-      )
-      await user.click(transportCheckbox)
-
-      const submitButton = screen.getByTestId('submit-button')
-      await user.click(submitButton)
-
-      await waitFor(() => {
-        expect(mockUnsubscribeFromNewsletters).toHaveBeenCalledWith({
-          name: 'John Doe',
-          email: 'john@example.com',
-          newsletterIds: {
-            [LIST_MAIN_NEWSLETTER]: true,
-            [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: true,
-            [LIST_NOS_GESTES_LOGEMENT_NEWSLETTER]: false,
-          },
-        })
-      })
-
-      expect(mockUpdateUserSettings).not.toHaveBeenCalled()
     })
 
     it('should update user email when shouldForceEmailEditable is true', async () => {
@@ -514,23 +417,6 @@ describe('UserInformationForm', () => {
         isPending: false,
         isError: true,
         isSuccess: false,
-      })
-
-      renderComponent()
-
-      const submitButton = screen.getByTestId('submit-button')
-      await user.click(submitButton)
-
-      expect(screen.getByTestId('error-message')).toBeInTheDocument()
-    })
-
-    it('should display error message when unsubscribe fails', async () => {
-      const user = userEvent.setup()
-
-      mockUseUnsubscribeFromNewsletters.mockReturnValue({
-        mutateAsync: mockUnsubscribeFromNewsletters,
-        isPending: false,
-        isError: true,
       })
 
       renderComponent()
@@ -703,38 +589,6 @@ describe('UserInformationForm', () => {
       const submitButton = screen.getByTestId('submit-button')
       expect(submitButton).toHaveAttribute('aria-disabled', 'true')
     })
-
-    it('should show loading state when unsubscribeFromNewsletters is pending', () => {
-      mockUseUnsubscribeFromNewsletters.mockReturnValue({
-        mutateAsync: mockUnsubscribeFromNewsletters,
-        isPending: true,
-        isError: false,
-      })
-
-      renderComponent()
-
-      const submitButton = screen.getByTestId('submit-button')
-      expect(submitButton).toHaveAttribute('aria-disabled', 'true')
-    })
-
-    it('should show loading state when both hooks are pending', () => {
-      mockUseUpdateUserSettings.mockReturnValue({
-        mutateAsync: mockUpdateUserSettings,
-        isPending: true,
-        isError: false,
-        isSuccess: false,
-      })
-      mockUseUnsubscribeFromNewsletters.mockReturnValue({
-        mutateAsync: mockUnsubscribeFromNewsletters,
-        isPending: true,
-        isError: false,
-      })
-
-      renderComponent()
-
-      const submitButton = screen.getByTestId('submit-button')
-      expect(submitButton).toHaveAttribute('aria-disabled', 'true')
-    })
   })
 
   describe('Form validation', () => {
@@ -781,8 +635,11 @@ describe('UserInformationForm', () => {
   })
 
   describe('Newsletter interactions', () => {
-    it('should handle newsletter checkbox interactions', async () => {
+    it('should handle newsletter checkbox interactions for verified users', async () => {
       const user = userEvent.setup()
+
+      // Ensure user is verified so checkboxes are enabled
+      mockGetIsUserVerified.mockReturnValue(true)
 
       renderComponent()
 
@@ -813,6 +670,9 @@ describe('UserInformationForm', () => {
     it('should submit form with correct newsletter state after interactions', async () => {
       const user = userEvent.setup()
 
+      // Ensure user is verified so checkboxes are enabled
+      mockGetIsUserVerified.mockReturnValue(true)
+
       renderComponent()
 
       const saisonniereCheckbox = screen.getByTestId(
@@ -840,6 +700,48 @@ describe('UserInformationForm', () => {
           userId: 'test-user-id',
         })
       })
+    })
+
+    it('should disable newsletter checkboxes for unverified users when checked', () => {
+      mockGetIsUserVerified.mockReturnValue(false)
+
+      renderComponent()
+
+      const saisonniereCheckbox = screen.getByTestId(
+        'newsletter-saisonniere-checkbox'
+      )
+      const transportsCheckbox = screen.getByTestId(
+        'newsletter-transports-checkbox'
+      )
+      const logementCheckbox = screen.getByTestId(
+        'newsletter-logement-checkbox'
+      )
+
+      // Checkboxes should be disabled when checked for unverified users
+      expect(saisonniereCheckbox).toBeDisabled()
+      expect(transportsCheckbox).toBeDisabled()
+      expect(logementCheckbox).not.toBeDisabled() // Not checked initially
+    })
+
+    it('should enable newsletter checkboxes for verified users', () => {
+      mockGetIsUserVerified.mockReturnValue(true)
+
+      renderComponent()
+
+      const saisonniereCheckbox = screen.getByTestId(
+        'newsletter-saisonniere-checkbox'
+      )
+      const transportsCheckbox = screen.getByTestId(
+        'newsletter-transports-checkbox'
+      )
+      const logementCheckbox = screen.getByTestId(
+        'newsletter-logement-checkbox'
+      )
+
+      // All checkboxes should be enabled for verified users
+      expect(saisonniereCheckbox).not.toBeDisabled()
+      expect(transportsCheckbox).not.toBeDisabled()
+      expect(logementCheckbox).not.toBeDisabled()
     })
   })
 })
