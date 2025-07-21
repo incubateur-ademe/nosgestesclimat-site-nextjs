@@ -91,7 +91,9 @@ export default function Tutoriel() {
           />
         </ol>
 
-        <ButtonStart label={<Trans>Démarrer</Trans>} />
+        <div className="text-center">
+          <ButtonStart size="xl" label={<Trans>Démarrer</Trans>} />
+        </div>
 
         <Image
           src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/comparer_empreinte_carbone_et_eau_entre_amis_4d3765d837.svg"
