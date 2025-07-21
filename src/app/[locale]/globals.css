@@ -411,23 +411,6 @@ html[data-useragent*='Trident'] #js {
 }
 
 /*
-  Accessibility
-*/
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-.not-sr-only {
-  @apply static! m-0! h-auto! w-auto! p-0!;
-}
-
-/*
   Markdown
 */
 .markdown a {
@@ -506,8 +489,12 @@ html[data-useragent*='Trident'] #js {
   @apply -mt-2 text-sm text-gray-700 italic;
 }
 
-.markdown figcaption {
-  @apply -mt-2 text-sm text-gray-700 italic;
+.markdown ol {
+  @apply list-decimal!;
+}
+
+.markdown ol > li {
+  @apply mb-2;
 }
 
 @keyframes rainbow {

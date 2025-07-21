@@ -9,7 +9,7 @@ export type GesturesType = {
   [category: string]: {
     imageSrc: string
     imageAlt: string
-    gestureList: ReactNode[]
+    gestureList?: ReactNode[]
   }
 }
 

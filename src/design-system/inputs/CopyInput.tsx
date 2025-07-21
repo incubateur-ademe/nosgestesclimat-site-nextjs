@@ -60,13 +60,13 @@ export default function CopyInput({
       <div className={`flex ${className}`}>
         <input
           type="text"
-          className="block w-full min-w-0 flex-1 rounded-none rounded-l-md border-2 border-r-0 border-solid border-gray-200 bg-gray-100 py-3 pr-2 pl-4 text-gray-600 sm:text-sm"
+          className="hidden w-full min-w-0 flex-1 rounded-none rounded-l-md border-2 border-r-0 border-solid border-gray-200 bg-gray-100 py-3 pr-2 pl-4 text-gray-600 sm:text-sm md:block"
           value={textToDisplay ?? textToCopy}
           readOnly
         />
         <Button
           size="sm"
-          className="min-w-[9rem]! shrink-0 justify-center rounded-l-none px-4 py-2"
+          className="min-w-[9rem]! shrink-0 justify-center md:mx-0 md:rounded-l-none md:px-4 md:py-2"
           onClick={() => {
             if (canShare && isShareDefined) {
               handleShare()

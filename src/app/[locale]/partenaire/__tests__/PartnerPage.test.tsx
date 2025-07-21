@@ -1,6 +1,7 @@
 import { mswServer } from '@/__tests__/server'
 import { PARTNER_JAGIS, PARTNER_KEY } from '@/constants/partners'
 import { INTEGRATION_URL } from '@/constants/urls/main'
+import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
@@ -97,7 +98,7 @@ describe('PartnerPage', () => {
 
       // Then
       const { redirect } = await import('next/navigation')
-      expect(redirect).toHaveBeenCalledWith('/404')
+      expect(redirect).toHaveBeenCalledWith(NOT_FOUND_PATH)
     })
   })
 
@@ -128,7 +129,7 @@ describe('PartnerPage', () => {
 
       // Then
       const { redirect } = await import('next/navigation')
-      expect(redirect).toHaveBeenCalledWith('/404')
+      expect(redirect).toHaveBeenCalledWith(NOT_FOUND_PATH)
     })
   })
 

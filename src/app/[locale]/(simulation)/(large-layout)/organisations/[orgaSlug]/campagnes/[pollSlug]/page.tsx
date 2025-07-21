@@ -1,8 +1,11 @@
 'use client'
 
+import SettingsIcon from '@/components/icons/SettingsIcon'
 import PollLoader from '@/components/organisations/PollLoader'
 import PollStatistics from '@/components/organisations/PollStatistics'
 import Trans from '@/components/translation/trans/TransClient'
+import { pollDashboardClickParameters } from '@/constants/tracking/pages/pollDashboard'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import Loader from '@/design-system/layout/Loader'
 import Title from '@/design-system/layout/Title'
@@ -13,10 +16,9 @@ import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPo
 import { useFetchPublicPollSimulations } from '@/hooks/organisations/polls/useFetchPublicPollSimulations'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedirectFromLegacy'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import dayjs from 'dayjs'
-import { useSearchParams } from 'next/navigation'
+import { useParams, useSearchParams } from 'next/navigation'
 import { useContext, useMemo } from 'react'
 import AdminSection from './_components/AdminSection'
 import { FiltersContext } from './_components/FiltersProvider'
@@ -27,13 +29,12 @@ import PollStatisticsFilters from './_components/PollStatisticsFilters'
 const MAX_NUMBER_POLL_SIMULATIONS = 500
 
 export default function CampagnePage() {
+  const { orgaSlug, pollSlug } = useParams()
   const searchParams = useSearchParams()
 
   const isRedirectFromLegacy = Boolean(searchParams.get('isRedirectFromLegacy'))
 
   useHandleRedirectFromLegacy()
-
-  const { t } = useClientTranslation()
 
   const {
     data: poll,
@@ -97,33 +98,40 @@ export default function CampagnePage() {
 
   return (
     <div className="mb-4 flex flex-col justify-between md:flex-nowrap">
-      <Title
-        title={
-          <>
-            <span className="mr-2">
-              <span className="text-primary-700">{poll.name}</span>
-            </span>{' '}
-            {!!poll.organisation.administrators && (
-              <span className="text-sm text-gray-600">
-                <Trans>(définissez un titre dans les paramètres)</Trans>
+      <div className="flex flex-col items-start justify-between sm:flex-row md:items-center">
+        <Title
+          title={<span className="text-primary-700">{poll.name}</span>}
+          subtitle={
+            poll ? (
+              <span>
+                <Trans>Campagne créée par</Trans>{' '}
+                <strong className="text-primary-700">
+                  {poll.organisation.name}
+                </strong>
+                <Trans>, le</Trans> {dayjs(poll.createdAt).format('DD/MM/YYYY')}
               </span>
-            )}
-          </>
-        }
-        subtitle={
-          poll ? (
-            <span>
-              <Trans>Campagne créée par</Trans>{' '}
-              <strong className="text-primary-700">
-                {poll.organisation.name}
-              </strong>
-              <Trans>, le</Trans> {dayjs(poll.createdAt).format('DD/MM/YYYY')}
-            </span>
-          ) : (
-            ''
-          )
-        }
-      />
+            ) : (
+              ''
+            )
+          }
+        />
+
+        {!!isAdmin && (
+          <div>
+            <ButtonLink
+              href={`/organisations/${orgaSlug}/campagnes/${pollSlug}/parametres`}
+              trackingEvent={pollDashboardClickParameters}
+              color="secondary"
+              size="sm"
+              data-cypress-id="poll-admin-section-see-parameters-button"
+              className="flex items-center">
+              <SettingsIcon className="fill-primary-700 mr-2" />
+
+              <Trans>Voir les paramètres</Trans>
+            </ButtonLink>
+          </div>
+        )}
+      </div>
 
       <div className="mt-8">
         {!!isAdmin && <AdminSection poll={poll} />}
@@ -133,6 +141,8 @@ export default function CampagnePage() {
           simulationsWithoutExtremes={simulationsWithoutExtremes}
           funFacts={poll.funFacts}
           title={<Trans>Résultats de campagne</Trans>}
+          poll={poll}
+          isAdmin={!!isAdmin}
         />
 
         {

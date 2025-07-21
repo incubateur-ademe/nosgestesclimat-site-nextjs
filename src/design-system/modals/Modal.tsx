@@ -79,6 +79,7 @@ export default function Modal({
           <button
             className="p-4 leading-none"
             disabled={isLoading}
+            data-testid="modal-close-button"
             onClick={!isLoading ? closeDelayed : () => {}}
             title={t('Fermer')}>
             <CloseIcon className="w-4" />
