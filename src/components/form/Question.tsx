@@ -214,13 +214,11 @@ export default function Question({
         />
       ) : null}
 
-      {activeNotifications.map((notification) => (
+      {activeNotifications.length > 0 && (
         <Notification
-          key={notification}
-          notification={notification}
-          prevQuestion={prevQuestion.current as DottedName | ''}
+          notification={activeNotifications[activeNotifications.length - 1]}
         />
-      ))}
+      )}
     </>
   )
 }

@@ -11,24 +11,16 @@ import {
 import { useFormState, useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
-import { useEffect } from 'react'
 
 type Props = {
   notification: DottedName
-  prevQuestion: DottedName | string
 }
 
-export default function Notification({ notification, prevQuestion }: Props) {
+export default function Notification({ notification }: Props) {
   const { description, setValue } = useRule(notification)
   const { currentQuestion } = useFormState()
 
-  useEffect(() => {
-    if (prevQuestion !== currentQuestion) {
-      setValue(false, {})
-    }
-  }, [currentQuestion, prevQuestion, setValue])
-
-  if (!description) return
+  if (!notification || !description) return null
 
   return (
     <motion.div
