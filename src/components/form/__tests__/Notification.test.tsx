@@ -1,5 +1,5 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import Notification from '../question/Notification'
 
@@ -61,7 +61,6 @@ vi.mock('@/design-system/buttons/Button', () => ({
 
 describe('Notification', () => {
   const mockNotification = 'test.notification' as DottedName
-  const mockPrevQuestion = 'test.question' as DottedName
 
   beforeEach(() => {
     vi.clearAllMocks()
@@ -78,12 +77,7 @@ describe('Notification', () => {
   })
 
   it('should render notification with description and button', () => {
-    render(
-      <Notification
-        notification={mockNotification}
-        prevQuestion={mockPrevQuestion}
-      />
-    )
+    render(<Notification notification={mockNotification} />)
 
     expect(screen.getByTestId('motion-div')).toBeInTheDocument()
     expect(screen.getByTestId('markdown')).toBeInTheDocument()
@@ -103,10 +97,7 @@ describe('Notification', () => {
     })
 
     const { container } = render(
-      <Notification
-        notification={mockNotification}
-        prevQuestion={mockPrevQuestion}
-      />
+      <Notification notification={mockNotification} />
     )
 
     expect(container.firstChild).toBeNull()
@@ -119,163 +110,27 @@ describe('Notification', () => {
     })
 
     const { container } = render(
-      <Notification
-        notification={mockNotification}
-        prevQuestion={mockPrevQuestion}
-      />
+      <Notification notification={mockNotification} />
+    )
+
+    expect(container.firstChild).toBeNull()
+  })
+
+  it('should not render when notification is empty', () => {
+    const { container } = render(
+      <Notification notification={'' as DottedName} />
     )
 
     expect(container.firstChild).toBeNull()
   })
 
   it('should call setValue with false when button is clicked', () => {
-    render(
-      <Notification
-        notification={mockNotification}
-        prevQuestion={mockPrevQuestion}
-      />
-    )
+    render(<Notification notification={mockNotification} />)
 
     const button = screen.getByTestId('notification-button')
     fireEvent.click(button)
 
     expect(mockSetValue).toHaveBeenCalledWith(false, {})
-  })
-
-  it('should close notification when current question changes from prev question', async () => {
-    // Set up initial state where prevQuestion matches currentQuestion
-    mockUseFormState.mockReturnValue({
-      currentQuestion: mockPrevQuestion,
-    })
-
-    const { rerender } = render(
-      <Notification
-        notification={mockNotification}
-        prevQuestion={mockPrevQuestion}
-      />
-    )
-
-    // Change the current question to be different from prevQuestion
-    mockUseFormState.mockReturnValue({
-      currentQuestion: 'different.question',
-    })
-
-    rerender(
-      <Notification
-        notification={mockNotification}
-        prevQuestion={mockPrevQuestion}
-      />
-    )
-
-    await waitFor(() => {
-      expect(mockSetValue).toHaveBeenCalledWith(false, {})
-    })
-  })
-
-  it('should not close notification on initial render when prevQuestion matches currentQuestion', () => {
-    mockUseFormState.mockReturnValue({
-      currentQuestion: mockPrevQuestion,
-    })
-
-    render(
-      <Notification
-        notification={mockNotification}
-        prevQuestion={mockPrevQuestion}
-      />
-    )
-
-    expect(mockSetValue).not.toHaveBeenCalled()
-  })
-
-  it('should close notification when currentQuestion is different from prevQuestion initially', () => {
-    mockUseFormState.mockReturnValue({
-      currentQuestion: 'different.question',
-    })
-
-    render(
-      <Notification
-        notification={mockNotification}
-        prevQuestion={mockPrevQuestion}
-      />
-    )
-
-    expect(mockSetValue).toHaveBeenCalledWith(false, {})
-  })
-
-  it('should close notification when question changes from defined to different defined', async () => {
-    // Initial state
-    mockUseFormState.mockReturnValue({
-      currentQuestion: mockPrevQuestion,
-    })
-
-    const { rerender } = render(
-      <Notification
-        notification={mockNotification}
-        prevQuestion={mockPrevQuestion}
-      />
-    )
-
-    // Change to a different question
-    mockUseFormState.mockReturnValue({
-      currentQuestion: 'different.question',
-    })
-
-    rerender(
-      <Notification
-        notification={mockNotification}
-        prevQuestion={mockPrevQuestion}
-      />
-    )
-
-    await waitFor(() => {
-      expect(mockSetValue).toHaveBeenCalledWith(false, {})
-    })
-  })
-
-  it('should handle multiple question changes correctly', async () => {
-    // Initial state
-    mockUseFormState.mockReturnValue({
-      currentQuestion: mockPrevQuestion,
-    })
-
-    const { rerender } = render(
-      <Notification
-        notification={mockNotification}
-        prevQuestion={mockPrevQuestion}
-      />
-    )
-
-    // First change
-    mockUseFormState.mockReturnValue({
-      currentQuestion: 'question1',
-    })
-
-    rerender(
-      <Notification
-        notification={mockNotification}
-        prevQuestion={mockPrevQuestion}
-      />
-    )
-
-    await waitFor(() => {
-      expect(mockSetValue).toHaveBeenCalledTimes(1)
-    })
-
-    // Second change
-    mockUseFormState.mockReturnValue({
-      currentQuestion: 'question2',
-    })
-
-    rerender(
-      <Notification
-        notification={mockNotification}
-        prevQuestion={mockPrevQuestion}
-      />
-    )
-
-    await waitFor(() => {
-      expect(mockSetValue).toHaveBeenCalledTimes(2)
-    })
   })
 
   it('should render with complex markdown content', () => {
@@ -287,23 +142,35 @@ describe('Notification', () => {
       setValue: mockSetValue,
     })
 
-    render(
-      <Notification
-        notification={mockNotification}
-        prevQuestion={mockPrevQuestion}
-      />
-    )
+    render(<Notification notification={mockNotification} />)
 
     expect(screen.getByTestId('markdown')).toHaveTextContent(complexDescription)
   })
 
-  it('should handle string prevQuestion prop', () => {
-    render(
-      <Notification
-        notification={mockNotification}
-        prevQuestion="string.question"
-      />
+  it('should apply correct styling classes based on current question', () => {
+    render(<Notification notification={mockNotification} />)
+
+    const motionDiv = screen.getByTestId('motion-div')
+    expect(motionDiv).toHaveClass(
+      'mb-4',
+      'flex',
+      'flex-col',
+      'items-end',
+      'rounded-xl',
+      'border-2'
     )
+  })
+
+  it('should render button with correct props', () => {
+    render(<Notification notification={mockNotification} />)
+
+    const button = screen.getByTestId('notification-button')
+    expect(button).toHaveAttribute('data-size', 'sm')
+    expect(button).toHaveAttribute('data-color', 'secondary')
+  })
+
+  it('should handle notification prop as string', () => {
+    render(<Notification notification={'string.notification' as DottedName} />)
 
     expect(screen.getByTestId('motion-div')).toBeInTheDocument()
     expect(screen.getByTestId('notification-button')).toBeInTheDocument()
