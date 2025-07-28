@@ -130,7 +130,7 @@ describe('Notification', () => {
     const button = screen.getByTestId('notification-button')
     fireEvent.click(button)
 
-    expect(mockSetValue).toHaveBeenCalledWith(false, {})
+    expect(mockSetValue).toHaveBeenCalledWith(false)
   })
 
   it('should render with complex markdown content', () => {
