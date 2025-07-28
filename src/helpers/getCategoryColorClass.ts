@@ -561,17 +561,161 @@ export function getTextCategoryColor(
 ) {
   switch (category) {
     case 'transport':
-      return `text-transport-${variation}`
+      switch (variation) {
+        case '50':
+          return 'text-transport-50'
+        case '100':
+          return 'text-transport-100'
+        case '200':
+          return 'text-transport-200'
+        case '300':
+          return 'text-transport-300'
+        case '400':
+          return 'text-transport-400'
+        case '500':
+          return 'text-transport-500'
+        case '600':
+          return 'text-transport-600'
+        case '700':
+          return 'text-transport-700'
+        case '800':
+          return 'text-transport-800'
+        case '900':
+          return 'text-transport-900'
+        case '950':
+          return 'text-transport-950'
+      }
+      break
     case 'alimentation':
-      return `text-alimentation-${variation}`
+      switch (variation) {
+        case '50':
+          return 'text-alimentation-50'
+        case '100':
+          return 'text-alimentation-100'
+        case '200':
+          return 'text-alimentation-200'
+        case '300':
+          return 'text-alimentation-300'
+        case '400':
+          return 'text-alimentation-400'
+        case '500':
+          return 'text-alimentation-500'
+        case '600':
+          return 'text-alimentation-600'
+        case '700':
+          return 'text-alimentation-700'
+        case '800':
+          return 'text-alimentation-800'
+        case '900':
+          return 'text-alimentation-900'
+        case '950':
+          return 'text-alimentation-950'
+      }
+      break
     case 'logement':
-      return `text-logement-${variation}`
+      switch (variation) {
+        case '50':
+          return 'text-logement-50'
+        case '100':
+          return 'text-logement-100'
+        case '200':
+          return 'text-logement-200'
+        case '300':
+          return 'text-logement-300'
+        case '400':
+          return 'text-logement-400'
+        case '500':
+          return 'text-logement-500'
+        case '600':
+          return 'text-logement-600'
+        case '700':
+          return 'text-logement-700'
+        case '800':
+          return 'text-logement-800'
+        case '900':
+          return 'text-logement-900'
+        case '950':
+          return 'text-logement-950'
+      }
+      break
     case 'divers':
-      return `text-divers-${variation}`
+      switch (variation) {
+        case '50':
+          return 'text-divers-50'
+        case '100':
+          return 'text-divers-100'
+        case '200':
+          return 'text-divers-200'
+        case '300':
+          return 'text-divers-300'
+        case '400':
+          return 'text-divers-400'
+        case '500':
+          return 'text-divers-500'
+        case '600':
+          return 'text-divers-600'
+        case '700':
+          return 'text-divers-700'
+        case '800':
+          return 'text-divers-800'
+        case '900':
+          return 'text-divers-900'
+        case '950':
+          return 'text-divers-950'
+      }
+      break
     case 'services sociétaux':
-      return `text-servicessocietaux-${variation}`
+      switch (variation) {
+        case '50':
+          return 'text-servicessocietaux-50'
+        case '100':
+          return 'text-servicessocietaux-100'
+        case '200':
+          return 'text-servicessocietaux-200'
+        case '300':
+          return 'text-servicessocietaux-300'
+        case '400':
+          return 'text-servicessocietaux-400'
+        case '500':
+          return 'text-servicessocietaux-500'
+        case '600':
+          return 'text-servicessocietaux-600'
+        case '700':
+          return 'text-servicessocietaux-700'
+        case '800':
+          return 'text-servicessocietaux-800'
+        case '900':
+          return 'text-servicessocietaux-900'
+        case '950':
+          return 'text-servicessocietaux-950'
+      }
+      break
     default:
-      return `text-primary-${variation}`
+      switch (variation) {
+        case '50':
+          return 'text-primary-50'
+        case '100':
+          return 'text-primary-100'
+        case '200':
+          return 'text-primary-200'
+        case '300':
+          return 'text-primary-300'
+        case '400':
+          return 'text-primary-400'
+        case '500':
+          return 'text-primary-500'
+        case '600':
+          return 'text-primary-600'
+        case '700':
+          return 'text-primary-700'
+        case '800':
+          return 'text-primary-800'
+        case '900':
+          return 'text-primary-900'
+        case '950':
+          return 'text-primary-950'
+      }
+      break
   }
 }
 
