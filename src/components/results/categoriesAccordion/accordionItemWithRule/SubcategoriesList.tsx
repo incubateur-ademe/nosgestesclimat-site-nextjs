@@ -14,7 +14,7 @@ export default function SubcategoriesList({
   subcategories,
   metric = defaultMetric,
 }: Props) {
-  const { getNumericValue, checkIfValid } = useEngine({ metric })
+  const { getNumericValue, checkIfValid } = useEngine()
 
   const sortedSubcategories = subcategories
     ?.filter(

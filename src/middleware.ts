@@ -1,7 +1,6 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 import i18nMiddleware from './middlewares/i18nMiddleware'
-import splitTestingMiddleware from './middlewares/splitTestingMiddleware'
 
 function isRedirecting(response: NextResponse): boolean {
   return response.status === 307 || response.status === 308
@@ -13,23 +12,18 @@ function isI18n(response: NextResponse): boolean {
   return response.headers.has('x-next-i18n-router-locale')
 }
 
-export const middlewares = [splitTestingMiddleware, i18nMiddleware]
+export function middleware(request: NextRequest) {
+  const middlewareResponse = i18nMiddleware(request)
 
-export async function middleware(request: NextRequest) {
-  const response = NextResponse.next()
-
-  for await (const middlewareFunction of middlewares) {
-    const middlewareResponse = middlewareFunction(request)
-
-    if (
-      isRedirecting(middlewareResponse) ||
-      isRewriting(middlewareResponse) ||
-      isI18n(middlewareResponse)
-    ) {
-      return middlewareResponse
-    }
+  if (
+    isRedirecting(middlewareResponse) ||
+    isRewriting(middlewareResponse) ||
+    isI18n(middlewareResponse)
+  ) {
+    return middlewareResponse
   }
-  return response
+
+  return NextResponse.next()
 }
 
 export const config = {
