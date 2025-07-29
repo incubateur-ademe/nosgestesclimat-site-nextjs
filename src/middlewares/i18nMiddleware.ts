@@ -104,15 +104,6 @@ function i18nMiddleware(request: NextRequest) {
       return redirectResponse
     }
 
-    // Special case for iframe - handle all locales, not just default
-    if (request.nextUrl.searchParams.has('iframe')) {
-      // Set the cookie but don't redirect
-      const response = NextResponse.next()
-      setLocaleCookie(response, langParam)
-
-      return response
-    }
-
     // Clean URL if locale is already correct (non-default locales)
     if (request.nextUrl.searchParams.has('lang')) {
       const url = new URL(request.url)
