@@ -39,6 +39,7 @@ export default function Tutoriel() {
 
         <h1
           data-testid="tutoriel-title"
+          data-cypress-id="tutoriel-title"
           className="mb-10 text-2xl font-medium sm:text-4xl">
           <Trans>Comment ça marche ? </Trans>
         </h1>
