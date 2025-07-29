@@ -2,16 +2,21 @@ import {
   AB_TESTS_LABELS,
   useABTesting,
 } from '@/components/providers/ABTestingProvider'
+import { getLinkToTutoriel } from '@/helpers/navigation/simulateurPages'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useSetCurrentSimulationFromParams } from '../simulation/useSetCurrentSimulationFromParams'
 import { useSimulationIdInQueryParams } from '../simulation/useSimulationIdInQueryParams'
 import { useDebug } from '../useDebug'
+import { useLocale } from '../useLocale'
 import { useQuestionInQueryParams } from '../useQuestionInQueryParams'
 import { useEndPage } from './useEndPage'
+
 export function useSimulateurGuard() {
   const router = useRouter()
+
+  const locale = useLocale()
 
   const { goToEndPage } = useEndPage()
 
@@ -58,7 +63,7 @@ export function useSimulateurGuard() {
 
     // if the user has not seen the test intro, we redirect him to the tutorial page
     if (!tutorials.testIntro && !abTests[AB_TESTS_LABELS.hideTutorial]) {
-      router.replace('/tutoriel')
+      router.replace(getLinkToTutoriel({ locale }))
       setIsGuardRedirecting(true)
     }
   }, [
@@ -72,6 +77,7 @@ export function useSimulateurGuard() {
     simulationIdInQueryParams,
     isCorrectSimulationSet,
     abTests,
+    locale,
   ])
 
   return { isGuardInit, isGuardRedirecting }
