@@ -5,6 +5,11 @@ type Props = {
   question?: DottedName
   locale?: string
 }
+
+type TutorielProps = {
+  locale?: string
+}
+
 export const getLinkToSimulateur = ({ question, locale }: Props = {}) => {
   const basePath = locale ? `/${locale}` : ''
   // If no question is provided, we return
@@ -15,4 +20,9 @@ export const getLinkToSimulateur = ({ question, locale }: Props = {}) => {
   return `${basePath}${SIMULATOR_PATH}?question=${question
     .replaceAll(' . ', '.')
     .replaceAll(' ', '_')}`
+}
+
+export const getLinkToTutoriel = ({ locale }: TutorielProps = {}) => {
+  const basePath = locale ? `/${locale}` : ''
+  return `${basePath}/tutoriel`
 }

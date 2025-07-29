@@ -38,9 +38,46 @@ function setLocaleCookie(response: NextResponse, locale: string): void {
 }
 
 function i18nMiddleware(request: NextRequest) {
-  const response = i18nRouter(request, i18nConfig)
   const langParam = request.nextUrl.searchParams.get('lang')
   const { locales, defaultLocale } = i18nConfig
+
+  // Check if this is an iframe request (either via iframe param or referer)
+  const isIframeRequest =
+    request.nextUrl.searchParams.has('iframe') ||
+    (request.headers.get('referer') &&
+      request.headers.get('referer')?.includes('iframe=true'))
+
+  // Special handling for iframe without cookies (e.g., incognito mode)
+  if (isIframeRequest && request.cookies.getAll().length === 0) {
+    // Try to get locale from pathname first
+    const pathnameLocale = getCurrentLocale(
+      request.nextUrl.pathname,
+      locales,
+      defaultLocale
+    )
+
+    // If we have a lang param, use it
+    if (langParam && locales.includes(langParam)) {
+      const response = NextResponse.next()
+      setLocaleCookie(response, langParam)
+      return response
+    }
+
+    // If we have a locale in pathname, use it
+    if (pathnameLocale !== defaultLocale) {
+      const response = NextResponse.next()
+      setLocaleCookie(response, pathnameLocale)
+      return response
+    }
+
+    // If no specific locale found, let i18nRouter handle it but set cookie based on referer
+    const referer = request.headers.get('referer')
+    if (referer && referer.includes('lang=fr')) {
+      const response = NextResponse.next()
+      setLocaleCookie(response, i18nConfig.defaultLocale)
+      return response
+    }
+  }
 
   // Handle locale change via query parameter
   if (langParam && locales.includes(langParam)) {
@@ -63,21 +100,34 @@ function i18nMiddleware(request: NextRequest) {
 
       const redirectResponse = NextResponse.redirect(url, 307)
       setLocaleCookie(redirectResponse, langParam)
+
       return redirectResponse
     }
 
-    // Clean URL if locale is already correct
+    // Special case for iframe - handle all locales, not just default
+    if (request.nextUrl.searchParams.has('iframe')) {
+      // Set the cookie but don't redirect
+      const response = NextResponse.next()
+      setLocaleCookie(response, langParam)
+
+      return response
+    }
+
+    // Clean URL if locale is already correct (non-default locales)
     if (request.nextUrl.searchParams.has('lang')) {
       const url = new URL(request.url)
       url.searchParams.delete('lang')
 
       const cleanResponse = NextResponse.redirect(url, 307)
       setLocaleCookie(cleanResponse, langParam)
+
       return cleanResponse
     }
   }
 
-  return response
+  const result = i18nRouter(request, i18nConfig)
+
+  return result
 }
 
 export default i18nMiddleware
