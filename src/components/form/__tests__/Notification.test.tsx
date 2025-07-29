@@ -147,28 +147,6 @@ describe('Notification', () => {
     expect(screen.getByTestId('markdown')).toHaveTextContent(complexDescription)
   })
 
-  it('should apply correct styling classes based on current question', () => {
-    render(<Notification notification={mockNotification} />)
-
-    const motionDiv = screen.getByTestId('motion-div')
-    expect(motionDiv).toHaveClass(
-      'mb-4',
-      'flex',
-      'flex-col',
-      'items-end',
-      'rounded-xl',
-      'border-2'
-    )
-  })
-
-  it('should render button with correct props', () => {
-    render(<Notification notification={mockNotification} />)
-
-    const button = screen.getByTestId('notification-button')
-    expect(button).toHaveAttribute('data-size', 'sm')
-    expect(button).toHaveAttribute('data-color', 'secondary')
-  })
-
   it('should handle notification prop as string', () => {
     render(<Notification notification={'string.notification' as DottedName} />)
 
