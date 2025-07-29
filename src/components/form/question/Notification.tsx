@@ -31,7 +31,11 @@ export default function Notification({ notification }: Props) {
       <div className="mb-2 w-full">
         <Markdown className="notification pb-0">{description}</Markdown>
       </div>
-      <Button size="sm" color="secondary" onClick={() => setValue(false)}>
+      <Button
+        size="sm"
+        color="secondary"
+        data-testid="notification-button"
+        onClick={() => setValue(false)}>
         <Trans>J'ai compris</Trans>
       </Button>
     </motion.div>

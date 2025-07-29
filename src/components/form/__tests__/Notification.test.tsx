@@ -13,52 +13,6 @@ vi.mock('@/publicodes-state', () => ({
   useFormState: () => mockUseFormState(),
 }))
 
-// Mock framer-motion to avoid animation issues in tests
-vi.mock('framer-motion', () => ({
-  motion: {
-    div: ({ children, ...props }: any) => (
-      <div data-testid="motion-div" {...props}>
-        {children}
-      </div>
-    ),
-  },
-}))
-
-// Mock the category color helpers
-vi.mock('@/helpers/getCategoryColorClass', () => ({
-  getBgCategoryColor: vi.fn(() => 'bg-test-100'),
-  getBorderCategoryColor: vi.fn(() => 'border-test-200'),
-  getTextCategoryColor: vi.fn(() => 'text-test-700'),
-}))
-
-// Mock the Markdown component
-vi.mock('@/design-system/utils/Markdown', () => ({
-  default: ({
-    children,
-    className,
-  }: {
-    children: string
-    className: string
-  }) => (
-    <div data-testid="markdown" className={className}>
-      {children}
-    </div>
-  ),
-}))
-
-// Mock the Button component
-vi.mock('@/design-system/buttons/Button', () => ({
-  default: ({ children, onClick, size, color }: any) => (
-    <button
-      data-testid="notification-button"
-      onClick={onClick}
-      data-size={size}
-      data-color={color}>
-      {children}
-    </button>
-  ),
-}))
-
 describe('Notification', () => {
   const mockNotification = 'test.notification' as DottedName
 
@@ -79,7 +33,6 @@ describe('Notification', () => {
   it('should render notification with description and button', () => {
     render(<Notification notification={mockNotification} />)
 
-    expect(screen.getByTestId('motion-div')).toBeInTheDocument()
     expect(screen.getByTestId('markdown')).toBeInTheDocument()
     expect(screen.getByTestId('markdown')).toHaveTextContent(
       'Test notification description'
@@ -136,6 +89,7 @@ describe('Notification', () => {
   it('should render with complex markdown content', () => {
     const complexDescription =
       '**Bold text** and *italic text* with [link](https://example.com)'
+    const renderedComplexDescription = 'Bold text and italic text with link'
 
     mockUseRule.mockReturnValue({
       description: complexDescription,
@@ -144,13 +98,14 @@ describe('Notification', () => {
 
     render(<Notification notification={mockNotification} />)
 
-    expect(screen.getByTestId('markdown')).toHaveTextContent(complexDescription)
+    expect(screen.getByTestId('markdown')).toHaveTextContent(
+      renderedComplexDescription
+    )
   })
 
   it('should handle notification prop as string', () => {
     render(<Notification notification={'string.notification' as DottedName} />)
 
-    expect(screen.getByTestId('motion-div')).toBeInTheDocument()
     expect(screen.getByTestId('notification-button')).toBeInTheDocument()
   })
 })
