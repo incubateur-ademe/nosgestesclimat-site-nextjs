@@ -573,7 +573,6 @@ entries:
   Nom de la campagne: Nombre de la campaña
   Cette opération est définitive.: Esta operación es definitiva.
   Supprimer cette campagne ?: ¿Borrar esta campaña?
-  Visible uniquement par vous: Visible sólo para ti
   Mes campagnes: Mis campañas
   Paramètres de: Parámetros de
   Créer une campagne: Crear una campaña
@@ -598,7 +597,6 @@ entries:
   Voir toutes les campagnes: Ver todas las campañas
   Masquer les autres campagnes: Ocultar otras campañas
   Sans titre: Sin título
-  (définissez un titre dans les paramètres): (defina un título en los parámetros)
   Date (anciennes > récentes): Fecha (antigua > reciente)
   Répartition des empreintes carbone: Desglose de la huella de carbono
   Nom (A > Z): Nombre (A > Z)
@@ -1274,3 +1272,4 @@ entries:
   répondez pour vous uniquement, pas votre foyer: responda sólo por usted, no por su familia
   il ne s’agit pas d’être parfait, mais de comprendre son impact: no se trata de ser perfecto, sino de comprender tu impacto
   Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Como otros 2 millones de personas, mide tu huella ecológica en 10 minutos. Una herramienta gratuita para hacer balance y reducir tus emisiones de CO2.
+  Pour vous désinscrire, passez par le lien en bas de l'email reçu: Para darse de baja, utilice el enlace que encontrará al final del correo electrónico que reciba

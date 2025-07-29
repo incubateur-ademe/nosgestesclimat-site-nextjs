@@ -20,7 +20,7 @@ export default function Markdown({
   ...otherProps
 }: MarkdownProps) {
   return (
-    <div className="markdown">
+    <div className="markdown" data-testid="markdown">
       <MarkdownToJsx
         {...otherProps}
         options={{

@@ -2,26 +2,32 @@ import { SERVER_URL } from '@/constants/urls/main'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
-type Props = {
-  email: string
-  userId: string
-}
-
-type FuncProps = {
-  name?: string
-  newsletterIds: Record<number, boolean>
-  email?: string
-}
-
-export function useUpdateUserSettings({ email, userId }: Props) {
+export function useUpdateUserSettings() {
   return useMutation({
-    mutationKey: ['updateUserSettings', email, userId],
-    mutationFn: async ({ name, newsletterIds, email: emailParam }: FuncProps) =>
-      axios.post(SERVER_URL + '/update-settings', {
-        email: emailParam || email,
-        userId,
-        name,
-        newsletterIds,
-      }),
+    mutationKey: ['updateUserSettings'],
+    mutationFn: async ({
+      newsletterIds,
+      userId,
+      email,
+      name,
+    }: {
+      newsletterIds?: number[]
+      userId: string
+      email?: string
+      name?: string
+    }) => {
+      return await axios
+        .put(`${SERVER_URL}/users/v1/${userId}`, {
+          email,
+          name,
+          contact:
+            newsletterIds && newsletterIds.length > 0
+              ? {
+                  listIds: newsletterIds,
+                }
+              : undefined,
+        })
+        .then((res) => res.data)
+    },
   })
 }
