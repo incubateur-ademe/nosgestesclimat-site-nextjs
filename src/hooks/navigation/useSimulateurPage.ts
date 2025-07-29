@@ -2,12 +2,16 @@ import {
   AB_TESTS_LABELS,
   useABTesting,
 } from '@/components/providers/ABTestingProvider'
-import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
+import {
+  getLinkToSimulateur,
+  getLinkToTutoriel,
+} from '@/helpers/navigation/simulateurPages'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
 import { useRouter } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
 import { useClientTranslation } from '../useClientTranslation'
+import { useLocale } from '../useLocale'
 import { useEndPage } from './useEndPage'
 
 type GoToSimulateurPageProps = {
@@ -28,6 +32,8 @@ export function useSimulateurPage() {
   const router = useRouter()
 
   const { t } = useClientTranslation()
+
+  const locale = useLocale()
 
   const { tutorials, initSimulation } = useUser()
 
@@ -67,9 +73,17 @@ export function useSimulateurPage() {
       }
 
       // else we redirect him to the tutoriel page
-      router.push('/tutoriel')
+      router.push(getLinkToTutoriel({ locale }))
     },
-    [progression, tutorielSeen, abTests, router, initSimulation, goToEndPage]
+    [
+      progression,
+      tutorielSeen,
+      abTests,
+      router,
+      initSimulation,
+      goToEndPage,
+      locale,
+    ]
   )
 
   const getLinkToSimulateurPage = useCallback(
@@ -87,9 +101,9 @@ export function useSimulateurPage() {
       }
 
       // else we return the tutoriel page link
-      return '/tutoriel'
+      return getLinkToTutoriel({ locale })
     },
-    [progression, tutorielSeen, abTests, getLinkToEndPage]
+    [progression, tutorielSeen, abTests, getLinkToEndPage, locale]
   )
 
   const linkToSimulateurPageLabel = useMemo(() => {

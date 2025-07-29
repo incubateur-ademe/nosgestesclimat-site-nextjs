@@ -9,7 +9,7 @@ type Props = {
 export function useSortedCategoriesByFootprint(
   { metric }: Props = { metric: defaultMetric }
 ) {
-  const { getNumericValue, categories } = useEngine({ metric })
+  const { getNumericValue, categories } = useEngine()
 
   const filteredCategories = useMemo(() => {
     return categories.filter((category) => getNumericValue(category))
