@@ -5,26 +5,29 @@ import { tutorielClickSuivant } from '@/constants/tracking/pages/tutoriel'
 import { POLL_START_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Loader from '@/design-system/layout/Loader'
-import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useMemo } from 'react'
+
 const TEST_INTRO_TUTO_KEY = 'testIntro'
-export default function ButtonStart() {
+
+export default function ButtonStart({
+  label,
+  size = undefined,
+}: {
+  label?: React.ReactNode
+  size?: 'xl' | 'lg'
+}) {
   const { hideTutorial, tutorials } = useUser()
 
   const searchParams = useSearchParams()?.toString()
 
-  const { getLinkToNextInfosPage } = useInfosPage()
-
   const { progression, updateCurrentSimulation, polls } = useCurrentSimulation()
 
   const { getLinkToSimulateurPage } = useSimulateurPage()
-
-  const linkToSimulatorPage = getLinkToSimulateurPage()
 
   // When component renders, user has seen the tutorial
   useEffect(() => {
@@ -53,11 +56,12 @@ export default function ButtonStart() {
       href={
         shouldRedirectToChoicePage
           ? `${POLL_START_PATH}?${searchParams}`
-          : linkToSimulatorPage
+          : getLinkToSimulateurPage()
       }
       data-cypress-id="skip-tutorial-button"
       aria-disabled={isLoading}
       className="min-w-[167px]!"
+      size={size}
       onClick={() => {
         if (isLoading) {
           return
@@ -69,6 +73,8 @@ export default function ButtonStart() {
       }}>
       {isLoading ? (
         <Loader size="sm" />
+      ) : label ? (
+        label
       ) : (
         <>
           <Trans>C'est parti !</Trans> <span aria-hidden="true">→</span>
