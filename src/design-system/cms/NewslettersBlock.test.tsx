@@ -20,8 +20,6 @@ import { useLocale } from '@/hooks/useLocale'
 import userEvent from '@testing-library/user-event'
 vi.mock('@/hooks/useLocale')
 
-vi.mock('@/utils/analytics/trackEvent')
-
 // We need to provide a mock for the Trans component for i18n
 vi.mock('@/components/translation/trans/TransClient', () => ({
   default: ({ children }: { children: React.ReactNode }) => <>{children}</>,

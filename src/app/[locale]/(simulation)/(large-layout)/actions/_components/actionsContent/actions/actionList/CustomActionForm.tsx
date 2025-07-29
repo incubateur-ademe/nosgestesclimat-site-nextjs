@@ -36,6 +36,7 @@ export default function CustomActionForm({
           className="w-full rounded-xl bg-gray-100 p-8"
           submitLabel={t('Enregistrer')}
           onCompleted={(data: Record<string, unknown>) => {
+            // Add a delay to avoid instant closing of the form after submission
             setTimeout(() => {
               if (
                 data['newsletter-transports'] !== undefined &&

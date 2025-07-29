@@ -576,7 +576,6 @@ entries:
   Section administrateur: Administrator section
   Résultats de campagne: Campaign results
   Lancer ma campagne: Launch my campaign
-  Visible uniquement par vous: Visible only to you
   c'est l’objectif pour 2050,: is the target for 2050,
   on s'y met ?: shall we get started?
   Partagez votre campagne: Share your campaign
@@ -606,7 +605,6 @@ entries:
   Nom (A > Z): Name (A > Z)
   Nom (Z > A): Name (Z &gt; A)
   Voir toutes les campagnes: See all campaigns
-  (définissez un titre dans les paramètres): (define a title in the parameters)
   Répartition des empreintes carbone: Breakdown of carbon footprints
   Empreinte carbone totale: Total carbon footprint
   Entreprises: Companies
@@ -1262,7 +1260,6 @@ entries:
   Bannière de consentement aux cookies: cookies.banner.contentLabel
   'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'You can contact us via our contact page: <2></2>.'
   Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calculate your carbon and water footprint with Nos Gestes Climat
-  Comme 2 millions de personnes, mesurez votre empreinte en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Like 2 million other people, measure your footprint in 10 minutes. A free tool to take stock and reduce your CO2 emissions.
   Gestion des cookies: Cookie management
   Entrez votre adresse email: Enter your email address
   Veuillez renseigner un email.: Please enter an email address.
@@ -1280,3 +1277,4 @@ entries:
   On parle de votre vie privée: We're talking about your private life
   Un groupe d’amis jouant à un jeu de société.: A group of friends playing a board game.
   Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Like 2 million other people, measure your ecological footprint in 10 minutes. A free tool to take stock and reduce your CO2 emissions.
+  Pour vous désinscrire, passez par le lien en bas de l'email reçu: To unsubscribe, use the link at the bottom of the email you receive
