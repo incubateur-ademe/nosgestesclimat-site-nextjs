@@ -50,7 +50,21 @@ export default function Navigation({
     setCurrentQuestion,
   } = useFormState()
 
-  const { isMissing, plancher, plafond, value } = useRule(question)
+  const { isMissing, plancher, plafond, value, activeNotifications } =
+    useRule(question)
+
+  // Hack in order to reset the notification when the question changes
+  const hasActiveNotifications = activeNotifications?.length > 0
+  const { setValue: setNotificationValue } = useRule(
+    hasActiveNotifications
+      ? activeNotifications?.[activeNotifications.length - 1]
+      : question
+  )
+  const resetNotification = useCallback(() => {
+    if (hasActiveNotifications) {
+      setNotificationValue(false, {})
+    }
+  }, [hasActiveNotifications, setNotificationValue])
 
   const { updateCurrentSimulation } = useCurrentSimulation()
 
@@ -127,6 +141,9 @@ export default function Navigation({
 
       handleMoveFocus()
 
+      // Hack in order to reset the notifications when the question changes
+      resetNotification()
+
       if (finalNoNextQuestion) {
         onComplete()
         return
@@ -159,6 +176,7 @@ export default function Navigation({
       startTime,
       isEmbedded,
       setCurrentQuestion,
+      resetNotification,
     ]
   )
 
@@ -195,6 +213,9 @@ export default function Navigation({
         gotoPrevQuestion()
       }
 
+      // Hack in order to reset the notifications when the question changes
+      resetNotification()
+
       handleMoveFocus()
     },
     [
@@ -205,6 +226,7 @@ export default function Navigation({
       isEmbedded,
       setCurrentQuestion,
       gotoPrevQuestion,
+      resetNotification,
     ]
   )
 

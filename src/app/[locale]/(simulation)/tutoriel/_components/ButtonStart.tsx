@@ -11,8 +11,16 @@ import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useMemo } from 'react'
+
 const TEST_INTRO_TUTO_KEY = 'testIntro'
-export default function ButtonStart() {
+
+export default function ButtonStart({
+  label,
+  size = undefined,
+}: {
+  label?: React.ReactNode
+  size?: 'xl' | 'lg'
+}) {
   const { hideTutorial, tutorials } = useUser()
 
   const searchParams = useSearchParams()?.toString()
@@ -53,6 +61,7 @@ export default function ButtonStart() {
       data-cypress-id="skip-tutorial-button"
       aria-disabled={isLoading}
       className="min-w-[167px]!"
+      size={size}
       onClick={() => {
         if (isLoading) {
           return
@@ -64,6 +73,8 @@ export default function ButtonStart() {
       }}>
       {isLoading ? (
         <Loader size="sm" />
+      ) : label ? (
+        label
       ) : (
         <>
           <Trans>C'est parti !</Trans> <span aria-hidden="true">→</span>

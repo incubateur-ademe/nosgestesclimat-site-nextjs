@@ -6,11 +6,18 @@ import {
   LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
   LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
 } from '@/constants/brevo'
+import {
+  LOGEMENT_NEWSLETTER_LABEL,
+  SEASONAL_NEWSLETTER_LABEL,
+  TRANSPORTS_NEWSLETTER_LABEL,
+} from '@/constants/forms/newsletters'
 import Button from '@/design-system/buttons/Button'
 import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
+import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
+import { getIsUserVerified } from '@/helpers/user/getIsVerified'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -19,7 +26,7 @@ import i18nConfig from '@/i18nConfig'
 import { useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
 import type { ReactNode } from 'react'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
@@ -28,9 +35,9 @@ import DefaultSubmitErrorMessage from '../error/DefaultSubmitErrorMessage'
 type Inputs = {
   name: string
   email?: string
-  'newsletter-saisonniere': boolean
-  'newsletter-transports': boolean
-  'newsletter-logement': boolean
+  [SEASONAL_NEWSLETTER_LABEL]: boolean
+  [TRANSPORTS_NEWSLETTER_LABEL]: boolean
+  [LOGEMENT_NEWSLETTER_LABEL]: boolean
 }
 
 type Props = {
@@ -54,9 +61,9 @@ export default function UserInformationForm({
   inputsDisplayed = [
     'name',
     'email',
-    'newsletter-saisonniere',
-    'newsletter-transports',
-    'newsletter-logement',
+    SEASONAL_NEWSLETTER_LABEL,
+    TRANSPORTS_NEWSLETTER_LABEL,
+    LOGEMENT_NEWSLETTER_LABEL,
   ],
   submitLabel,
   onCompleted = () => {},
@@ -70,34 +77,40 @@ export default function UserInformationForm({
 
   const { user, updateEmail, updateName } = useUser()
 
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+  // TODO : replace this with a proper check by calling the backend
+  const isVerified = getIsUserVerified()
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
+    getValues,
   } = useReactHookForm<Inputs>({ defaultValues: { name: user?.name } })
 
   const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
-    user?.email ?? ''
+    user?.userId ?? ''
   )
 
   useEffect(() => {
     if (!newsletterSubscriptions && !defaultValues) return
 
     setValue(
-      'newsletter-saisonniere',
-      newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER)
+      SEASONAL_NEWSLETTER_LABEL,
+      newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER) ?? false
     )
     setValue(
       'newsletter-transports',
-      newsletterSubscriptions?.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER) ||
-        defaultValues?.['newsletter-transports']
+      (newsletterSubscriptions?.includes(
+        LIST_NOS_GESTES_TRANSPORT_NEWSLETTER
+      ) ||
+        defaultValues?.['newsletter-transports']) ??
+        false
     )
     setValue(
       'newsletter-logement',
-      newsletterSubscriptions?.includes(LIST_NOS_GESTES_LOGEMENT_NEWSLETTER)
+      newsletterSubscriptions?.includes(LIST_NOS_GESTES_LOGEMENT_NEWSLETTER) ??
+        false
     )
   }, [newsletterSubscriptions, setValue, defaultValues])
 
@@ -106,10 +119,7 @@ export default function UserInformationForm({
     isPending,
     isError,
     isSuccess,
-  } = useUpdateUserSettings({
-    email: user?.email ?? '',
-    userId: user?.userId,
-  })
+  } = useUpdateUserSettings()
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const newsletterIds = {
@@ -119,10 +129,13 @@ export default function UserInformationForm({
     }
 
     try {
+      const newslettersArray = formatListIdsFromObject(newsletterIds)
+
       await updateUserSettings({
         name: data.name,
-        email: data.email,
-        newsletterIds,
+        email: user.email ?? data.email ?? '',
+        newsletterIds: newslettersArray,
+        userId: user?.userId,
       })
 
       if (data.email && (!user?.email || shouldForceEmailEditable)) {
@@ -133,21 +146,11 @@ export default function UserInformationForm({
         updateName(data.name)
       }
 
-      timeoutRef.current = setTimeout(() => {
-        onCompleted(data)
-      }, 2500)
+      onCompleted(data)
     } catch (error) {
       captureException(error)
     }
   }
-
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
-      }
-    }
-  }, [])
 
   const isFrench = locale === i18nConfig.defaultLocale
 
@@ -156,10 +159,12 @@ export default function UserInformationForm({
       {title}
 
       <form
+        data-testid="user-information-form"
         onSubmit={handleSubmit(onSubmit)}
         className="flex w-full flex-col items-start gap-4">
         {inputsDisplayed.includes('name') && (
           <TextInputGroup
+            data-testid="name-input"
             value={user?.name}
             label={t('Votre nom')}
             {...register('name', {
@@ -176,6 +181,7 @@ export default function UserInformationForm({
               // sinon on lui permet d'en définir un
               user?.email && !shouldForceEmailEditable ? (
                 <TextInputGroup
+                  data-testid="email-input-readonly"
                   name="email"
                   helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
                   label={t('Votre adresse electronique')}
@@ -184,6 +190,7 @@ export default function UserInformationForm({
                 />
               ) : (
                 <TextInputGroup
+                  data-testid="email-input-editable"
                   label={t('Votre adresse electronique')}
                   className="w-full"
                   value={user?.email ?? ''}
@@ -200,12 +207,26 @@ export default function UserInformationForm({
               <Trans>Inscription à nos e-mails</Trans>
             </h3>
 
-            <p className="text-sm text-gray-600">
-              <Trans>Vous pouvez vous désincrire à tout moment</Trans>
-            </p>
+            {isVerified ? (
+              <p
+                data-testid="verified-message"
+                className="text-sm text-gray-600">
+                <Trans>Vous pouvez vous désincrire à tout moment</Trans>
+              </p>
+            ) : (
+              <p
+                data-testid="unverified-message"
+                className="text-sm text-gray-600">
+                <Emoji>⚠️</Emoji>{' '}
+                <Trans>
+                  Pour vous désinscrire, passez par le lien en bas de l'email
+                  reçu
+                </Trans>
+              </p>
+            )}
             {inputsDisplayed.includes('newsletter-saisonniere') && (
               <CheckboxInputGroup
-                size="lg"
+                data-testid="newsletter-saisonniere-checkbox"
                 disableSubmitOnEnter
                 label={
                   <span>
@@ -218,12 +239,13 @@ export default function UserInformationForm({
                     </Trans>
                   </span>
                 }
-                {...register('newsletter-saisonniere')}
+                disabled={!isVerified && !!getValues(SEASONAL_NEWSLETTER_LABEL)}
+                {...register(SEASONAL_NEWSLETTER_LABEL)}
               />
             )}
             {inputsDisplayed.includes('newsletter-transports') && (
               <CheckboxInputGroup
-                size="lg"
+                data-testid="newsletter-transports-checkbox"
                 disableSubmitOnEnter
                 label={
                   <span>
@@ -234,12 +256,15 @@ export default function UserInformationForm({
                     </Trans>
                   </span>
                 }
-                {...register('newsletter-transports')}
+                disabled={
+                  !isVerified && !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
+                }
+                {...register(TRANSPORTS_NEWSLETTER_LABEL)}
               />
             )}
             {inputsDisplayed.includes('newsletter-logement') && (
               <CheckboxInputGroup
-                size="lg"
+                data-testid="newsletter-logement-checkbox"
                 disableSubmitOnEnter
                 label={
                   <span>
@@ -250,27 +275,42 @@ export default function UserInformationForm({
                     </Trans>
                   </span>
                 }
-                {...register('newsletter-logement')}
+                disabled={!isVerified && !!getValues(LOGEMENT_NEWSLETTER_LABEL)}
+                {...register(LOGEMENT_NEWSLETTER_LABEL)}
               />
             )}
           </>
         )}
         {isSuccess && (
-          <p role="alert" className="mt-4 mb-4 text-green-700">
+          <p
+            data-testid="success-message"
+            role="alert"
+            className="mt-4 mb-4 text-green-700">
             <Trans>Vos informations ont bien été mises à jour.</Trans>
           </p>
         )}
 
-        {isError && <DefaultSubmitErrorMessage />}
+        {isError && (
+          <div data-testid="error-message">
+            <DefaultSubmitErrorMessage />
+          </div>
+        )}
 
         <div>
           <Button
+            data-testid="submit-button"
             type="submit"
             className="mt-6 gap-2 self-start"
             disabled={isPending}>
             {isPending && <Loader size="sm" color="light" />}
 
-            {submitLabel ?? <Trans>Mettre à jour mes informations</Trans>}
+            {submitLabel ? (
+              <span data-testid="custom-submit-label">{submitLabel}</span>
+            ) : (
+              <span data-testid="default-submit-label">
+                <Trans>Mettre à jour mes informations</Trans>
+              </span>
+            )}
           </Button>
         </div>
       </form>
