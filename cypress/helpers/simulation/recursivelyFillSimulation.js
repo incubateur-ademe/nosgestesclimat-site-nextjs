@@ -11,6 +11,7 @@ export async function recursivelyFillSimulation(persona = {}) {
     function answerCurrentQuestion() {
       // Wait for the page to be ready and check if we're still on a simulation page
       cy.url().then((url) => {
+        cy.log('url', url)
         // If we're not on a simulation page anymore, we're done
         if (!url.includes('/simulateur/bilan')) {
           resolve()
