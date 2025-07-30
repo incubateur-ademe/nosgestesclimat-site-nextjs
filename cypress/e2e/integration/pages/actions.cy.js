@@ -1,5 +1,5 @@
 import 'cypress-axe'
-import { skipTutoIfExists } from '../../../helpers/elements/buttons'
+import { dismissCookieBanner } from '../../../helpers/cookies/dismissCookieBanner'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 import { setupSimulation } from '../../../helpers/simulation/setupSimulation'
 
@@ -19,13 +19,13 @@ describe('Action userflow', () => {
 
         cy.wait(2000)
 
+        dismissCookieBanner()
+
         cy.get('h1')
           .contains(
             Cypress.env('testLangURL') === 'en' ? 'My gestures' : 'Mes gestes'
           )
           .should('be.visible')
-
-        // checkA11y() // TODO: fix A11Y test breaking only when running on CI
 
         // Actions when user has completed the simulation
         cy.visit('/')
@@ -34,15 +34,17 @@ describe('Action userflow', () => {
 
         recursivelyFillSimulation()
 
-        skipTutoIfExists()
-
         cy.wait(4000)
 
         cy.visit('/actions')
 
         cy.wait(2000)
 
-        // checkA11y() // TODO: fix A11Y test breaking only when running on CI
+        cy.get('h1')
+          .contains(
+            Cypress.env('testLangURL') === 'en' ? 'My gestures' : 'Mes gestes'
+          )
+          .should('be.visible')
       })
     })
   })
