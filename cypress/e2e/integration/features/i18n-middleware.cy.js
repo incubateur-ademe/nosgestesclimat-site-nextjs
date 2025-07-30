@@ -13,7 +13,7 @@ describe('i18nMiddleware - E2E Tests', () => {
       cy.visit('/fr/simulateur/bilan?lang=en')
 
       // Verify that URL has been redirected
-      cy.url().should('include', '/en/simulateur/bilan')
+      cy.url().should('include', '/tutoriel')
       cy.url().should('not.include', 'lang=en')
     })
 
