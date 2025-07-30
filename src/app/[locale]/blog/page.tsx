@@ -71,7 +71,7 @@ export default async function BlogHomePage({
     return redirect('/blog?lang=fr')
   }
 
-  if (!title || !description || !image || !articles) {
+  if (!title || !description || !articles) {
     notFound()
   }
 
