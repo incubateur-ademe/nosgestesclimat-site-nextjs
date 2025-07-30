@@ -34,7 +34,9 @@ describe('Group userflow', () => {
 
         recursivelyFillSimulation(null, 'group')
 
-        cy.get('[data-cypress-id="group-name"]')
+        cy.get('[data-cypress-id="group-name"]').should('be.visible', {
+          timeout: 10000,
+        })
 
         // And that we can delete it
         click('button-delete-group')

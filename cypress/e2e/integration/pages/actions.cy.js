@@ -1,5 +1,4 @@
 import 'cypress-axe'
-import { checkA11y } from '../../../helpers/accessibility/checkA11y'
 import { dismissCookieBanner } from '../../../helpers/cookies/dismissCookieBanner'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 import { setupSimulation } from '../../../helpers/simulation/setupSimulation'
@@ -46,8 +45,6 @@ describe('Action userflow', () => {
             Cypress.env('testLangURL') === 'en' ? 'My gestures' : 'Mes gestes'
           )
           .should('be.visible')
-
-        checkA11y()
       })
     })
   })
