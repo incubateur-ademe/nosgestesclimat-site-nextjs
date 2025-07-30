@@ -30,7 +30,7 @@ export default function Textile({ question, ...props }: Props) {
   const { value: preciseChoice, setValue: setPreciseChoice } = useRule(
     'divers . textile . choix précis'
   )
-  const { setValue } = useRule(question)
+  const { value, setValue } = useRule(question)
 
   const { updateCurrentSimulation } = useCurrentSimulation()
 
@@ -77,7 +77,7 @@ export default function Textile({ question, ...props }: Props) {
               setPreciseChoice(preciseChoice ? 'non' : 'oui')
 
               updateCurrentSimulation({
-                foldedStepToAdd: question,
+                foldedStepToAdd: { foldedStep: question, value: value },
               })
             }}
             className="mt-1 md:mt-0 md:ml-2">
