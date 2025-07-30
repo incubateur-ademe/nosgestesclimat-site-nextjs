@@ -23,15 +23,17 @@ export default function BlogHero({
           dangerouslySetInnerHTML={{ __html: description ?? '' }}
         />
       </div>
-      <div className="flex items-center justify-center">
-        <Image
-          src={image?.url ?? ''}
-          width="350"
-          height="400"
-          className="w-44 md:w-auto"
-          alt={image?.alternativeText ?? ''}
-        />
-      </div>
+      {image && (
+        <div className="flex items-center justify-center">
+          <Image
+            src={image?.url ?? ''}
+            width="350"
+            height="400"
+            className="w-44 md:w-auto"
+            alt={image?.alternativeText ?? ''}
+          />
+        </div>
+      )}
     </div>
   )
 }
