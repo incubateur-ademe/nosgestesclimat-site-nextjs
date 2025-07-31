@@ -46,6 +46,7 @@ export default function SaveSimulationForm({
         <TextInputGroup
           required
           type="email"
+          autoComplete="email"
           aria-label="Entrez votre adresse email"
           data-cypress-id="save-modal-email-input"
           {...register('email')}

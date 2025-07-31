@@ -106,6 +106,7 @@ export default function CreationForm() {
         <TextInputGroup
           className="col-span-1"
           label={<Trans>Votre organisation</Trans>}
+          autoComplete="organization"
           data-cypress-id="organisation-name-input"
           error={formState.errors.name?.message}
           {...register('name', {
@@ -161,6 +162,7 @@ export default function CreationForm() {
         <TextInputGroup
           className="col-span-1"
           label={<Trans>Votre prénom</Trans>}
+          autoComplete="given-name"
           data-cypress-id="organisation-administrator-first-name-input"
           error={formState.errors.administratorFirstName?.message}
           {...register('administratorFirstName', {
@@ -171,6 +173,7 @@ export default function CreationForm() {
         <TextInputGroup
           className="col-span-1"
           label={<Trans>Votre nom</Trans>}
+          autoComplete="family-name"
           data-cypress-id="organisation-administrator-last-name-input"
           error={formState.errors.administratorLastName?.message}
           {...register('administratorLastName', {
@@ -180,6 +183,7 @@ export default function CreationForm() {
 
         <TextInputGroup
           className="col-span-1"
+          autoComplete="organization-title"
           data-cypress-id="organisation-administrator-position-input"
           label={
             <p className="mb-0 flex items-center justify-between">

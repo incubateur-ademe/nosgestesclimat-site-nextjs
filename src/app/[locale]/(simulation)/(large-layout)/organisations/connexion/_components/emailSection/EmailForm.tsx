@@ -67,6 +67,7 @@ export default function EmailForm() {
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <TextInputGroup
         type="email"
+        autoComplete="email"
         data-cypress-id="organisation-connexion-email-input"
         value={user?.organisation?.administratorEmail || user?.email || ''}
         label={<Trans>Votre adresse electronique</Trans>}

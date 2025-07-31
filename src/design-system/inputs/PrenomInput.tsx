@@ -16,6 +16,7 @@ export default forwardRef(function PrenomInput(
   return (
     <TextInputGroup
       label={t('Votre prénom (ou pseudo)')}
+      autoComplete="given-name"
       helperText={t(
         'Il sera visible uniquement par les participants du groupe'
       )}

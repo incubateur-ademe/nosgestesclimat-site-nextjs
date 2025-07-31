@@ -29,6 +29,7 @@ export default forwardRef(function EmailInput(
       helperText={helperText}
       name="email"
       type="email"
+      autoComplete="email"
       placeholder="nom@exemple.fr"
       className={className}
       readOnly={readOnly}

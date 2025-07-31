@@ -165,7 +165,10 @@ export default function UserInformationForm({
         {inputsDisplayed.includes('name') && (
           <TextInputGroup
             data-testid="name-input"
+            autoComplete="name"
             value={user?.name}
+            helperText={t('Ce champ est requis.')}
+            placeholder={t('Votre nom')}
             label={t('Votre nom')}
             {...register('name', {
               required: user?.name ? t('Ce champ est requis.') : false,
@@ -194,6 +197,7 @@ export default function UserInformationForm({
                   label={t('Votre adresse electronique')}
                   className="w-full"
                   value={user?.email ?? ''}
+                  autoComplete="email"
                   {...register('email')}
                 />
               )

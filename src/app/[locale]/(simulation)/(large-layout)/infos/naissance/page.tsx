@@ -69,6 +69,7 @@ export default function Birthdate() {
         type="date"
         className="cursor-pointer"
         value={birthdate}
+        autoComplete="bdate"
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
           setBirthdate(e.target.value)
         }}

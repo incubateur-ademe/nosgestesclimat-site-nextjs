@@ -21,6 +21,7 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
     <div className="flex flex-col gap-4">
       <TextInputGroup
         label={<Trans>Votre prénom</Trans>}
+        autoComplete="given-name"
         value={defaultValues.administratorFirstName}
         {...register('administratorFirstName', {
           required: t('Ce champ est requis'),
@@ -29,6 +30,7 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
 
       <TextInputGroup
         label={<Trans>Votre nom</Trans>}
+        autoComplete="family-name"
         value={defaultValues.administratorLastName}
         {...register('administratorLastName', {
           required: t('Ce champ est requis'),
@@ -45,6 +47,7 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
           </p>
         }
         value={defaultValues.position}
+        autoComplete="organization-title"
         {...register('position')}
       />
 
@@ -58,6 +61,7 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
             </span>
           </p>
         }
+        autoComplete="tel"
         value={defaultValues.administratorTelephone}
         {...register('administratorTelephone')}
       />
@@ -65,6 +69,7 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
       <TextInputGroup
         label={<Trans>Votre e-mail</Trans>}
         value={defaultValues.email}
+        autoComplete="email"
         {...register('email', {
           required: t('Ce champ est requis'),
         })}

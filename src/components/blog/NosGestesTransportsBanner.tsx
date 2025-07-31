@@ -96,6 +96,7 @@ export default function NosGestesTransportsBanner() {
           <div className="relative w-full">
             <TextInputGroup
               aria-label={t('Votre e-mail')}
+              autoComplete="email"
               className="w-full rounded-full pr-16"
               value={user?.email ?? ''}
               placeholder={t('Votre e-mail')}
