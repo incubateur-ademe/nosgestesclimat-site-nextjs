@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import TextInput from '@/design-system/inputs/TextInput'
 import Title from '@/design-system/layout/Title'
 import type { ReactNode } from 'react'
 import type {
@@ -43,7 +43,7 @@ export default function SaveSimulationForm({
       </Title>
 
       <div className="flex w-full flex-col items-start gap-4">
-        <TextInputGroup
+        <TextInput
           required
           type="email"
           autoComplete="email"

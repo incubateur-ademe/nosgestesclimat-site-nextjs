@@ -10,9 +10,9 @@ import {
 } from '@/constants/organisations/organisationTypes'
 import Button from '@/design-system/buttons/Button'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
-import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
-import Select from '@/design-system/inputs/Select'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import CheckboxInput from '@/design-system/inputs/CheckboxInput'
+import SelectInput from '@/design-system/inputs/SelectInput'
+import TextInput from '@/design-system/inputs/TextInput'
 import Separator from '@/design-system/layout/Separator'
 import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
 import { useCreateOrganisation } from '@/hooks/organisations/useCreateOrganisation'
@@ -103,7 +103,7 @@ export default function CreationForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mb-12">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <TextInputGroup
+        <TextInput
           className="col-span-1"
           label={<Trans>Votre organisation</Trans>}
           autoComplete="organization"
@@ -115,7 +115,7 @@ export default function CreationForm() {
         />
 
         <div>
-          <Select
+          <SelectInput
             containerClassName="pt-[3px]"
             label={<Trans>Type d'organisation</Trans>}
             data-cypress-id="organisation-type-select"
@@ -128,7 +128,7 @@ export default function CreationForm() {
                 {value}
               </option>
             ))}
-          </Select>
+          </SelectInput>
 
           {watch('organisationType') ===
             OrganisationTypeEnum.groupOfFriends && (
@@ -159,7 +159,7 @@ export default function CreationForm() {
       <Separator />
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <TextInputGroup
+        <TextInput
           className="col-span-1"
           label={<Trans>Votre prénom</Trans>}
           autoComplete="given-name"
@@ -170,7 +170,7 @@ export default function CreationForm() {
           })}
         />
 
-        <TextInputGroup
+        <TextInput
           className="col-span-1"
           label={<Trans>Votre nom</Trans>}
           autoComplete="family-name"
@@ -181,7 +181,7 @@ export default function CreationForm() {
           })}
         />
 
-        <TextInputGroup
+        <TextInput
           className="col-span-1"
           autoComplete="organization-title"
           data-cypress-id="organisation-administrator-position-input"
@@ -198,7 +198,7 @@ export default function CreationForm() {
       </div>
 
       <div className="mt-4 w-full md:w-1/2">
-        <CheckboxInputGroup
+        <CheckboxInput
           size="xl"
           label={
             <span>

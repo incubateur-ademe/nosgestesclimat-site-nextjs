@@ -2,7 +2,7 @@
 
 import { LIST_NOS_GESTES_TRANSPORT_NEWSLETTER } from '@/constants/brevo'
 import Button from '@/design-system/buttons/Button'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import TextInput from '@/design-system/inputs/TextInput'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
@@ -94,7 +94,7 @@ export default function NosGestesTransportsBanner() {
           onSubmit={handleSubmit(onSubmit)}
           className="flex w-full min-w-80 flex-col items-start gap-4">
           <div className="relative w-full">
-            <TextInputGroup
+            <TextInput
               aria-label={t('Votre e-mail')}
               autoComplete="email"
               className="w-full rounded-full pr-16"

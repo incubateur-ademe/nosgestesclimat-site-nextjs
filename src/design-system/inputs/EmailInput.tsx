@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { forwardRef } from 'react'
-import TextInputGroup from './TextInputGroup'
+import TextInput from './TextInput'
 
 type Props = {
   label?: ReactNode | string
@@ -24,7 +24,7 @@ export default forwardRef(function EmailInput(
   ref
 ) {
   return (
-    <TextInputGroup
+    <TextInput
       label={label}
       helperText={helperText}
       name="email"

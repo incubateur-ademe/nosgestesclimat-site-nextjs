@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import TextInput from '@/design-system/inputs/TextInput'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 
@@ -81,7 +81,7 @@ export default function CustomQuestion() {
 
       {poll && (
         <>
-          <TextInputGroup
+          <TextInput
             label={customQuestion}
             {...register('custom-answer')}
           />

@@ -7,6 +7,7 @@ import type {
 import { forwardRef, useId } from 'react'
 import { DebounceInput } from 'react-debounce-input'
 import { twMerge } from 'tailwind-merge'
+import InputGroup from './InputGroup'
 
 type Props = {
   name: string
@@ -31,7 +32,7 @@ type Props = {
   mention?: string
 }
 
-export default forwardRef(function TextInputGroup(
+export default forwardRef(function TextInput(
   {
     name,
     label,
@@ -56,52 +57,17 @@ export default forwardRef(function TextInputGroup(
 ) {
   const id = useId()
   const inputId = `input-${id}`
-  const helperTextId = `helper-${id}`
-  const errorId = `error-${id}`
-  const successId = `success-${id}`
-
-  const describedBy = [
-    helperText ? helperTextId : undefined,
-    error ? errorId : undefined,
-    successMessage ? successId : undefined,
-  ]
-    .filter(Boolean)
-    .join(' ')
 
   return (
-    <div
-      className={twMerge(
-        'flex w-full flex-col items-start',
-        containerClassName
-      )}>
-      {label ? (
-        <label
-          htmlFor={inputId}
-          className="flex w-full max-w-[30rem] justify-between text-left">
-          <span
-            className={twMerge(
-              `text-base font-bold text-slate-900`,
-              error ? 'text-red-700' : ''
-            )}>
-            {label}
-          </span>
-          {mention && (
-            <span className="text-base font-bold text-pink-600">{mention}</span>
-          )}
-        </label>
-      ) : null}
-
-      {helperText ? (
-        <span
-          id={helperTextId}
-          className={twMerge(
-            'mt-1 text-base text-slate-900',
-            error ? 'text-red-700' : ''
-          )}>
-          {helperText}
-        </span>
-      ) : null}
-
+    <InputGroup
+      name={name}
+      label={label}
+      error={typeof error === 'string' ? error : undefined}
+      helperText={typeof helperText === 'string' ? helperText : undefined}
+      containerClassName={containerClassName}
+      required={required}
+      disabled={disabled}
+      mention={mention}>
       <DebounceInput
         id={inputId}
         inputRef={ref}
@@ -111,7 +77,6 @@ export default forwardRef(function TextInputGroup(
         type={type}
         placeholder={placeholder}
         onChange={onChange ?? (() => null)}
-        aria-describedby={describedBy || undefined}
         value={value}
         required={required}
         aria-disabled={disabled}
@@ -129,25 +94,6 @@ export default forwardRef(function TextInputGroup(
           className
         )}
       />
-
-      {error && (
-        <span
-          id={errorId}
-          role="alert"
-          data-testid={`error-${name}`}
-          className="mt-2 text-xs text-red-700">
-          {error}
-        </span>
-      )}
-
-      {successMessage && (
-        <span
-          id={successId}
-          role="status"
-          className="mt-2 text-xs text-green-700">
-          {successMessage}
-        </span>
-      )}
-    </div>
+    </InputGroup>
   )
 })

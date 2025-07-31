@@ -3,7 +3,7 @@
 import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
 import { BIRTHDATE_PAGE } from '@/constants/organisations/infosPages'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import TextInput from '@/design-system/inputs/TextInput'
 import Title from '@/design-system/layout/Title'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 import { useSaveAndGoNext } from '@/hooks/organisations/useSaveAndGoNext'
@@ -64,7 +64,7 @@ export default function Birthdate() {
         }
       />
 
-      <TextInputGroup
+      <TextInput
         name="birthdate"
         type="date"
         className="cursor-pointer"

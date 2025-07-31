@@ -1,6 +1,6 @@
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { forwardRef } from 'react'
-import TextInputGroup from './TextInputGroup'
+import TextInput from './TextInput'
 
 type Props = {
   error?: string
@@ -14,7 +14,7 @@ export default forwardRef(function PrenomInput(
   const { t } = useClientTranslation()
 
   return (
-    <TextInputGroup
+    <TextInput
       label={t('Votre prénom (ou pseudo)')}
       autoComplete="given-name"
       helperText={t(

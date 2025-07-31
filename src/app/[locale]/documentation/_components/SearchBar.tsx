@@ -1,6 +1,6 @@
 import SearchIcon from '@/components/icons/SearchIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import TextInput from '@/design-system/inputs/TextInput'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -133,7 +133,7 @@ export default function SearchBar({ rules }: { rules: Partial<NGCRules> }) {
           <Trans i18nKey="documentation.search.h2">Explorez nos modèles</Trans>
         </h2>
 
-        <TextInputGroup
+        <TextInput
           ref={searchInputRef}
           name="search"
           label={t('documentation.search.input.label', 'Entrez des mots clefs')}

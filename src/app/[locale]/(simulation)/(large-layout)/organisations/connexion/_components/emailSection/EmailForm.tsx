@@ -3,7 +3,7 @@
 import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import TextInput from '@/design-system/inputs/TextInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCreateVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
 import { useUser } from '@/publicodes-state'
@@ -65,7 +65,7 @@ export default function EmailForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <TextInputGroup
+      <TextInput
         type="email"
         autoComplete="email"
         data-cypress-id="organisation-connexion-email-input"
