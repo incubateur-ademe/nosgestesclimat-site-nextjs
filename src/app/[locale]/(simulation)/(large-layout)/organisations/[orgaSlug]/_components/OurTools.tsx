@@ -7,6 +7,7 @@ import {
   organisationsDashboardClickImpactCo2,
   organisationsDashboardDownloadKit,
 } from '@/constants/tracking/pages/organisationsDashboard'
+import { MATOMO_CAMPAIGN_KEY } from '@/constants/urls/matomo'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -84,7 +85,7 @@ export default function OurTools() {
           <ButtonLink
             className="mt-auto w-full justify-center align-bottom"
             color="secondary"
-            href="https://impactco2.fr/comparateur?mtm_campaign=ngc-orga"
+            href={`https://impactco2.fr/comparateur?${MATOMO_CAMPAIGN_KEY}=ngc-orga`}
             target="_blank"
             trackingEvent={organisationsDashboardClickImpactCo2}
             aria-label={t(
