@@ -54,7 +54,7 @@ export default function Groups() {
 
             <Image
               className="w-60 self-start md:-mt-12 md:w-80"
-              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/people_playing_54d067d915.png"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_people_playing_6e045e4217.png"
               width="380"
               height="400"
               alt={t("Un groupe d'amis jouant à un jeu de société.")}

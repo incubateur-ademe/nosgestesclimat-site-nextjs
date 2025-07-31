@@ -13,7 +13,7 @@ export default function MotivationSectionCarbonFootprint({
         {
           title: 'Passer le test',
           icon: {
-            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_calculatrice_e37c20a6b4.svg',
+            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_calculatrice_59c4502e6f.svg',
             alternativeText: '',
           },
           description:
@@ -22,7 +22,7 @@ export default function MotivationSectionCarbonFootprint({
         {
           title: 'Agir au quotidien',
           icon: {
-            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_biceps_9065e62d79.svg',
+            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_biceps_37c35c3709.svg',
             alternativeText: '',
           },
           description:
@@ -31,7 +31,7 @@ export default function MotivationSectionCarbonFootprint({
         {
           title: "S'engager collectivement",
           icon: {
-            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_poignee_de_main_1bd31b7009.svg',
+            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_poignee_de_main_8a9e5792cb.svg',
             alternativeText: '',
           },
           description:

@@ -39,7 +39,29 @@ function setLocaleCookie(response: NextResponse, locale: string): void {
 
 function i18nMiddleware(request: NextRequest) {
   const langParam = request.nextUrl.searchParams.get('lang')
-  const { locales, defaultLocale } = i18nConfig
+  const { locales } = i18nConfig
+
+  if (
+    request.nextUrl.searchParams.get('iframe') &&
+    langParam &&
+    locales.includes(langParam)
+  ) {
+    const newPath = buildUrlWithLocale(
+      request.nextUrl.pathname,
+      langParam,
+      locales
+    )
+    const url = new URL(request.url)
+    url.pathname = newPath
+    url.searchParams.delete('lang')
+
+    const redirectResponse = NextResponse.redirect(url, 307)
+    setLocaleCookie(redirectResponse, langParam)
+
+    return redirectResponse
+  }
+
+  const { defaultLocale } = i18nConfig
 
   // Check if this is an iframe request (either via iframe param or referer)
   const isIframeRequest =
@@ -105,7 +127,7 @@ function i18nMiddleware(request: NextRequest) {
     }
 
     // Clean URL if locale is already correct (non-default locales)
-    if (request.nextUrl.searchParams.has('lang')) {
+    if (request.nextUrl.searchParams.has('lang') && !isIframeRequest) {
       const url = new URL(request.url)
       url.searchParams.delete('lang')
 

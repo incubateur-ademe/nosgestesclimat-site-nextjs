@@ -57,7 +57,7 @@ describe('i18nMiddleware', () => {
       expect(cookie?.value).toBe('en')
     })
 
-    it('should use lang parameter for iframes', async () => {
+    it('should redirect to locale-prefixed URL for iframes with lang parameter', async () => {
       const request = createMockRequest(
         '/simulateur/bilan',
         { iframe: 'true', lang: 'en' },
@@ -66,7 +66,15 @@ describe('i18nMiddleware', () => {
 
       const response = await i18nMiddleware(request)
 
-      expect(response).toBeInstanceOf(NextResponse)
+      // It should redirect
+      expect(response.status).toBe(307)
+      const location = response.headers.get('location')
+      // The new URL should be prefixed with the locale, and keep the iframe param
+      expect(location).toContain('/en/simulateur/bilan')
+      expect(location).toContain('iframe=true')
+      // The lang param should be removed
+      expect(location).not.toContain('lang=en')
+      // The cookie should be set
       expect(response.cookies.get('NEXT_LOCALE')?.value).toBe('en')
     })
 

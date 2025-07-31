@@ -13,7 +13,7 @@ export default function MotivationSectionWaterFootprint({
         {
           title: 'Ressources en eau douce limitées',
           icon: {
-            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_eau_b3359cd291.svg',
+            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_eau_c22d6f0b6e.svg',
             alternativeText: '',
           },
           description:
@@ -22,7 +22,7 @@ export default function MotivationSectionWaterFootprint({
         {
           title: 'Pollution des eaux',
           icon: {
-            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_pollution_0e4dfad167.svg',
+            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_pollution_338f41ac90.svg',
             alternativeText: '',
           },
           description:
@@ -31,7 +31,7 @@ export default function MotivationSectionWaterFootprint({
         {
           title: "Accès à l'eau",
           icon: {
-            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_robinet_135c8f1f00.svg',
+            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_robinet_5ac677e900.svg',
             alternativeText: '',
           },
           description:

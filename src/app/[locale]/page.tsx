@@ -33,7 +33,7 @@ const DynamicCTAButtons = dynamic(
 export const generateMetadata = getCommonMetadata({
   title: t('Calculez votre empreinte carbone et eau avec Nos Gestes Climat'),
   image:
-    'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/calculer_empreinte_carbone_et_eau_7d061171e4.png',
+    'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/calculer_empreinte_carbone_et_eau_ecccc9a625.png',
   description: t(
     'Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.'
   ),
@@ -57,7 +57,7 @@ export default async function Homepage({ params }: DefaultPageProps) {
             '@type': 'Organization',
             url: 'https://nosgestesclimat.fr',
             name: 'Nos Gestes Climat',
-            logo: 'https://nosgestesclimat.fr/_next/image?url=%2Fimages%2Fmisc%2Fpetit-logo%403x.png&w=640&q=75',
+            logo: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/petit_logo_006dd01955.png',
           },
         ]}
       />
