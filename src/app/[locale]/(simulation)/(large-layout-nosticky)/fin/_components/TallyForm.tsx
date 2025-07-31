@@ -23,7 +23,7 @@ declare global {
   }
 }
 
-const SHOW_POPUP_TIMEOUT = 5000
+const SHOW_POPUP_TIMEOUT = 10_000
 const TALLY_SEEN_KEY = 'tally-seen'
 
 export default function TallyForm() {

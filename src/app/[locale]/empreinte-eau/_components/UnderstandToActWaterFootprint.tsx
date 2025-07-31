@@ -21,7 +21,7 @@ export default async function UnderstandToActWaterFootprint({
           title: t("Le lexique pour tout comprendre à l'empreinte eau"),
           href: '/blog/environnement/lexique-eau-tout-comprendre',
           imageSrc:
-            'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/philip_junior_mail_Bp_Uk_WK_6hf_JA_unsplash_0f0f3b01c2.jpg',
+            'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_philip_junior_mail_Bp_Uk_WK_6hf_JA_unsplash_0f0f3b01c2.jpg',
           imageAlt: t(
             "Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau"
           ),
@@ -33,7 +33,7 @@ export default async function UnderstandToActWaterFootprint({
           ),
           href: '/blog/consommation/reflexes-textile-econome-empreinte-eau',
           imageSrc:
-            'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/priscilla_du_preez_9d7a6e02a2.jpg',
+            'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_priscilla_du_preez_9d7a6e02a2.jpg',
           imageAlt: t('Une garde-robe économe en eau'),
         },
         {
@@ -43,7 +43,7 @@ export default async function UnderstandToActWaterFootprint({
           ),
           href: '/blog/actualites-et-fonctionnalites/empreinte-eau-pourquoi-comment',
           imageSrc:
-            'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/trisha_downing_champ_coton_3ffd08e0f4.jpg',
+            'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_trisha_downing_champ_coton_3ffd08e0f4.jpg',
           imageAlt: t(
             "Un champ de coton, illustrant le calcul de l'empreinte eau"
           ),

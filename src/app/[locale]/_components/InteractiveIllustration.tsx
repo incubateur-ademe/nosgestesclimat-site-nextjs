@@ -11,7 +11,7 @@ export default function InteractiveIllustration() {
   return (
     <div className="relative mx-auto sm:max-w-[380px] md:max-w-none">
       <Image
-        src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/empreinte_carbone_eau_objets_du_quotidien_8717e67e8e.svg"
+        src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/empreinte_carbone_eau_objets_du_quotidien_72c0224fcc.svg"
         alt={t(
           "Une fille tapant sur son ordinateur, entouré d'objets aux empreintes carbone et eau variées."
         )}
