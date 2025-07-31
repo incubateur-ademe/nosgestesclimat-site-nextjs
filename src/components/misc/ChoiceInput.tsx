@@ -14,16 +14,16 @@ type Props = {
 }
 
 const buttonClassNames = {
-  checked: 'border-primary-700 text-primary-700',
-  unchecked: 'border-primary-200 hover:bg-primary-50',
+  checked: 'border-primary-700 text-primary-900',
+  unchecked: 'border-slate-500 hover:bg-primary-50',
 }
 const checkClassNames = {
   checked: 'border-primary-700 before:bg-primary-700',
-  unchecked: 'border-primary-300',
+  unchecked: 'border-slate-400',
 }
 const labelClassNames = {
-  checked: 'text-primary-700',
-  unchecked: 'text-gray-700',
+  checked: 'text-primary-800',
+  unchecked: 'text-slate-950',
 }
 
 export default function ChoiceInput({
@@ -44,7 +44,7 @@ export default function ChoiceInput({
       <div className="flex items-center gap-2">
         <label
           htmlFor={id}
-          className={`relative flex cursor-pointer items-center gap-2 rounded-xl border-2 bg-white px-4 py-2 text-left transition-colors ${buttonClassNames[status]} focus-within:ring-primary-700 focus-within:ring-2`}
+          className={`relative flex cursor-pointer items-center gap-2 rounded-xl border-2 bg-white px-4 py-2 text-left transition-colors ${buttonClassNames[status]} focus-within:ring-primary-700 focus-within:ring-2 focus-within:ring-offset-2`}
           data-cypress-id={`${props['data-cypress-id']}-label`}>
           <input
             type="radio"

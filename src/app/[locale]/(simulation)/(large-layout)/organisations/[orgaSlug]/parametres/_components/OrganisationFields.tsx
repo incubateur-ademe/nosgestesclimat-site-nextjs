@@ -2,8 +2,8 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { ORGANISATION_TYPES } from '@/constants/organisations/organisationTypes'
-import Select from '@/design-system/inputs/Select'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import SelectInput from '@/design-system/inputs/SelectInput'
+import TextInput from '@/design-system/inputs/TextInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { OrgaSettingsInputsType } from '@/types/organisations'
 import type { FieldErrors, UseFormRegister } from 'react-hook-form'
@@ -25,12 +25,12 @@ export default function OrganisationFields({
 
   return (
     <div className="flex flex-col gap-4">
-      <TextInputGroup
+      <TextInput
         label={<Trans>Votre organisation</Trans>}
         value={defaultValues.name}
         {...register('name')}
       />
-      <Select
+      <SelectInput
         label={<Trans>Type d'organisation</Trans>}
         value={defaultValues.organisationType}
         {...register('organisationType', {
@@ -41,8 +41,8 @@ export default function OrganisationFields({
             {value}
           </option>
         ))}
-      </Select>
-      <TextInputGroup
+      </SelectInput>
+      <TextInput
         type="number"
         label={
           <p className="mb-0 flex w-full justify-between">

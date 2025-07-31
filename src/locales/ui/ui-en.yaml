@@ -87,6 +87,9 @@ entries:
   model.stats2: It consists of a combination of hundreds of "bottom-up" micro models for the carbon consumption of our daily lives, and a "top-down" model derived from the work of the SDES to estimate the per capita footprint of so-called societal services (public services and basic services such as telecommunications). <2>Learn more about this hybridization</2>.
   model.stats2.lock: Il est constitué d'une combinaison de centaines de modèles micro "bottom-up" pour les consommations carbonées de notre vie quotidienne, et d'un modèle "top-down" dérivé des travaux du SDES pour estimer l'empreinte par personne des services dits sociétaux (services publics et services de base tels les télécom). <2>En savoir plus sur cette hybridation</2>.
   noresults: No results were found for this search
+  search.results: '{{count}} result(s) found'
+  search.results.label: Search results
+  search.documentation.label: Search in documentation
   participant: participant
   plus d'1 kg: more than 1 kg
   plus d'1 tonne: more than 1 tonne

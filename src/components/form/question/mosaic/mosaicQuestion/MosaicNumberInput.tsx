@@ -36,7 +36,7 @@ export default function NumberInput({
   return (
     <div
       className={
-        'border-primary-200 flex items-center justify-between gap-4 rounded-xl border-2 bg-white p-2 py-3'
+        'focus-within:ring-primary-700 flex items-center justify-between gap-4 rounded-xl border-2 border-slate-500 bg-white p-2 py-3 focus-within:ring-2 focus-within:ring-offset-2'
       }>
       <div>
         {title && icons ? (
