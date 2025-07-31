@@ -50,7 +50,7 @@ export default async function WhatItIsWaterFootprint({
         </section>
       }
       illustration={{
-        url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/definition_empreinte_eau_ddc70af1e4.svg',
+        url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/definition_empreinte_eau_39d3fa00e2.svg',
         alternativeText: t(
           "Une balance indiquant la quantité d'eau nécessaire pour produire un ordinateur"
         ),

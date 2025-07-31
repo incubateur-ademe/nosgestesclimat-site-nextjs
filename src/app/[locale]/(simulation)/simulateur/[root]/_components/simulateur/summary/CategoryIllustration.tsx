@@ -31,7 +31,7 @@ export default function CategoryIllustration({
         }
       case 'logement':
         return {
-          src: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_reading_newspaper_d9b25f4338.png',
+          src: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_reading_newspaper_d171290d3d.png',
           alt: t('Une fille qui lit un journal'),
           className: 'min-w-[200px]',
         }
