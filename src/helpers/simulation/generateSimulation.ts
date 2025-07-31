@@ -8,11 +8,13 @@ import type {
 import type { Migration } from '@publicodes/tools/migration'
 import { captureException } from '@sentry/nextjs'
 import { v4 as uuidv4 } from 'uuid'
+import { getInitialExtendedSituation } from '../modelFetching/getInitialExtendedSituation'
 
 export function generateSimulation({
   id = uuidv4(),
   date = new Date().toISOString(),
   situation = {},
+  extendedSituation = getInitialExtendedSituation(),
   foldedSteps = [],
   actionChoices = {},
   persona,
@@ -37,6 +39,7 @@ export function generateSimulation({
     date,
     situation,
     foldedSteps,
+    extendedSituation,
     actionChoices,
     persona,
     computedResults,

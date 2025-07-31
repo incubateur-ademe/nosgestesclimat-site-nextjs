@@ -50,8 +50,14 @@ export default function Navigation({
     setCurrentQuestion,
   } = useFormState()
 
-  const { isMissing, plancher, plafond, value, activeNotifications } =
-    useRule(question)
+  const {
+    isMissing,
+    plancher,
+    plafond,
+    value,
+    activeNotifications,
+    questionsOfMosaicFromParent,
+  } = useRule(question)
 
   // Hack in order to reset the notification when the question changes
   const hasActiveNotifications = activeNotifications?.length > 0
@@ -136,7 +142,26 @@ export default function Navigation({
       }
 
       if (isMissing) {
-        updateCurrentSimulation({ foldedStepToAdd: question })
+        if (questionsOfMosaicFromParent?.length > 0) {
+          //TODO: handle mosaic questions default value
+          questionsOfMosaicFromParent.forEach((question) => {
+            updateCurrentSimulation({
+              foldedStepToAdd: {
+                foldedStep: question,
+                value: null,
+                isMosaicChild: true,
+              },
+            })
+          })
+        }
+
+        updateCurrentSimulation({
+          foldedStepToAdd: {
+            foldedStep: question,
+            value: value,
+            isMosaicParent: questionsOfMosaicFromParent?.length > 0,
+          },
+        })
       }
 
       handleMoveFocus()
@@ -166,17 +191,18 @@ export default function Navigation({
       }
     },
     [
-      question,
-      gotoNextQuestion,
-      finalNoNextQuestion,
-      isMissing,
-      value,
-      onComplete,
-      updateCurrentSimulation,
       startTime,
-      isEmbedded,
-      setCurrentQuestion,
+      isMissing,
       resetNotification,
+      finalNoNextQuestion,
+      isEmbedded,
+      question,
+      value,
+      questionsOfMosaicFromParent,
+      updateCurrentSimulation,
+      onComplete,
+      setCurrentQuestion,
+      gotoNextQuestion,
     ]
   )
 
