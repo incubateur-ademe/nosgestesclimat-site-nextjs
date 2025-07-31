@@ -17,19 +17,23 @@ export const filterRelevantMissingVariables = ({
   safeEvaluate: (rule: PublicodesExpression) => EvaluatedNode | null
   rawMissingVariables: MissingVariables
 }) => {
-  return missingVariables.filter((dottedName: DottedName) => {
-    const isFolded = extendedFoldedSteps.indexOf(dottedName) >= 0
-    const isMustNotAskQuestion = MUST_NOT_ASK_QUESTIONS?.has(dottedName)
-    const isRelevantQuestion = everyQuestions.includes(dottedName)
+  const filteredMissingVariables = missingVariables.filter(
+    (dottedName: DottedName) => {
+      const isFolded = extendedFoldedSteps.indexOf(dottedName) >= 0
+      const isMustNotAskQuestion = MUST_NOT_ASK_QUESTIONS?.has(dottedName)
+      const isRelevantQuestion = everyQuestions.includes(dottedName)
 
-    const isApplicable = checkIfDottedNameShouldNotBeIgnored({
-      dottedName,
-      safeEvaluate,
-      rawMissingVariables,
-    })
+      const isApplicable = checkIfDottedNameShouldNotBeIgnored({
+        dottedName,
+        safeEvaluate,
+        rawMissingVariables,
+      })
 
-    return (
-      !isFolded && !isMustNotAskQuestion && isRelevantQuestion && isApplicable
-    )
-  })
+      return (
+        !isFolded && !isMustNotAskQuestion && isRelevantQuestion && isApplicable
+      )
+    }
+  )
+
+  return filteredMissingVariables
 }
