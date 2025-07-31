@@ -38,7 +38,7 @@ export default async function Mobilise({ locale }: { locale: string }) {
 
         <div className="order-first py-8 md:order-last">
           <Image
-            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/comparer_empreinte_carbone_et_eau_entre_amis_4d3765d837.svg"
+            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/comparer_empreinte_carbone_et_eau_entre_amis_ddbfa5e83d.svg"
             alt={t(
               "Un groupe d'amis comparant leurs empreintes carbone et eau"
             )}
@@ -51,7 +51,7 @@ export default async function Mobilise({ locale }: { locale: string }) {
       <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:gap-24">
         <div className="py-14">
           <Image
-            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/reflechir_impacts_de_son_empreinte_en_entreprise_8d6a780668.svg"
+            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/reflechir_impacts_de_son_empreinte_en_entreprise_7a723d7c8b.svg"
             alt={t(
               'un groupe de personnes en train de réfléchir à leurs impacts et leur bilan carbone et eau'
             )}
