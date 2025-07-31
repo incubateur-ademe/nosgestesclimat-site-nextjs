@@ -121,7 +121,7 @@ export default async function CarbonFootprintLandingPage({
               <Image
                 width={280}
                 height={280}
-                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_17e65580c7.svg"
+                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_3373a344b0.svg"
                 alt=""
               />
             </div>
@@ -132,7 +132,7 @@ export default async function CarbonFootprintLandingPage({
             <Image
               width={400}
               height={400}
-              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_17e65580c7.svg"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_3373a344b0.svg"
               alt=""
             />
           </div>
