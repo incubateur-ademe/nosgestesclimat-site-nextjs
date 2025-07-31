@@ -85,7 +85,7 @@ export default forwardRef(function TextInput(
         {...props}
         className={twMerge(
           helperText || label ? 'mt-3!' : '',
-          `w-full max-w-[30rem] rounded-xl border border-solid border-slate-500 bg-white p-4 text-sm transition-colors placeholder:text-slate-500`,
+          `w-full max-w-[30rem] rounded-xl border-2 border-solid border-slate-500 bg-white p-4 text-sm transition-colors placeholder:text-slate-500`,
           error ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : '',
           disabled ? 'cursor-not-allowed opacity-50' : '',
           readOnly
