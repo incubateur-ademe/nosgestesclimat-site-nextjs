@@ -8,6 +8,7 @@ import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
 import NewslettersBlock from '@/design-system/cms/NewslettersBlock'
 import NewslettersBlockSkeleton from '@/design-system/cms/NewslettersBlockSkeleton'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import type { Locale } from '@/i18nConfig'
@@ -51,6 +52,8 @@ export default async function BlogHomePage({
 }>) {
   const { locale } = await params
 
+  const { t } = await getServerTranslation({ locale })
+
   // Get the page number from the query params from the server side
   const pageParam = searchParams ? (await searchParams).page : undefined
   const page = Number(pageParam) || 1
@@ -90,8 +93,19 @@ export default async function BlogHomePage({
       />
 
       <ContentLarge tag="div" className="overflow-hidden px-4 lg:px-0">
-        {title && description && image && (
-          <BlogHero title={title} description={description} image={image} />
+        {title && description && (
+          <BlogHero
+            title={title}
+            description={description}
+            image={
+              image ?? {
+                url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_reading_newspaper_d171290d3d.png',
+                alternativeText: t(
+                  'Un femme lisant le journal au coin du feu avec un chien assoupi.'
+                ),
+              }
+            }
+          />
         )}
 
         {mainArticle && (
