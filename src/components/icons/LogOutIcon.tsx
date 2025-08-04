@@ -1,13 +1,12 @@
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { twMerge } from 'tailwind-merge'
 
-export default function LogOutIcon({
-  className,
-  ...props
-}: {
+type Props = {
   className?: string
-}) {
-  const { t } = useClientTranslation()
+  width?: string
+  height?: string
+}
+
+export default function LogOutIcon({ className, ...props }: Props) {
   return (
     <svg
       width="24"

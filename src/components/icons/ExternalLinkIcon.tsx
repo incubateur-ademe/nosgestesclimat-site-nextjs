@@ -1,7 +1,4 @@
-import { useClientTranslation } from '@/hooks/useClientTranslation'
-
 export default function ExternalLinkIcon({ className = '', ...props }) {
-  const { t } = useClientTranslation()
   return (
     <svg
       width="16px"

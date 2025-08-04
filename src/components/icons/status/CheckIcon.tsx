@@ -1,4 +1,3 @@
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { twMerge } from 'tailwind-merge'
 
 export default function CheckIcon({
@@ -7,8 +6,6 @@ export default function CheckIcon({
 }: {
   className?: string
 }) {
-  const { t } = useClientTranslation()
-
   return (
     <svg
       width="24"

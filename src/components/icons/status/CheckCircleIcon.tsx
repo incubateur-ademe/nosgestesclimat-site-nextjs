@@ -1,4 +1,3 @@
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -9,8 +8,6 @@ type Props = {
 }
 
 export default function CheckCircleIcon({ className, ...props }: Props) {
-  const { t } = useClientTranslation()
-
   return (
     <svg
       width="24"

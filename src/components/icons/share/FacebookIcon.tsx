@@ -1,9 +1,6 @@
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { twMerge } from 'tailwind-merge'
 
 export default function FacebookIcon({ className }: { className?: string }) {
-  const { t } = useClientTranslation()
-
   return (
     <svg
       width="17"

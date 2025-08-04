@@ -1,4 +1,3 @@
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -6,8 +5,6 @@ type Props = {
 }
 
 export default function ChevronLeft({ className }: Props) {
-  const { t } = useClientTranslation()
-
   return (
     <svg
       width="24"
