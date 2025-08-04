@@ -8,6 +8,7 @@ import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Hero from '@/design-system/layout/landingPage/Hero'
 import Loader from '@/design-system/layout/Loader'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 import type { ReactNode } from 'react'
 import PartnerCampaignHeader from './PartnerCampaignHeader'
@@ -23,6 +24,8 @@ export default function PartnerCampaignContent({
   partnersComponent: ReactNode
   faqComponent?: ReactNode
 }) {
+  const { t } = useClientTranslation()
+
   const {
     data: pollInfo,
     isError,
@@ -95,7 +98,10 @@ export default function PartnerCampaignContent({
               width={300}
               height={300}
               className="mx-auto mt-6 block text-center md:hidden"
-              alt=""
+              alt={t(
+                'partnerCampaignContent.illustration.alt',
+                'Illustration de la campagne partenaire'
+              )}
             />
           </>
         }
@@ -108,7 +114,10 @@ export default function PartnerCampaignContent({
             width={400}
             height={300}
             className="w-96"
-            alt=""
+            alt={t(
+              'partnerCampaignContent.illustration.alt',
+              'Illustration de la campagne partenaire'
+            )}
           />
         }
       />

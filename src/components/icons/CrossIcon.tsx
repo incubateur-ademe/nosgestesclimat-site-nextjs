@@ -1,7 +1,7 @@
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { twMerge } from 'tailwind-merge'
 
-export default function DotIcon({ className }: { className?: string }) {
+export default function CrossIcon({ className }: { className?: string }) {
   const { t } = useClientTranslation()
   return (
     <svg
@@ -11,8 +11,9 @@ export default function DotIcon({ className }: { className?: string }) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={twMerge('fill-default inline-block stroke-[1.5]', className)}
-      aria-hidden="true">
-      <circle cx="6" cy="6" r="3" />
+      role="img"
+      aria-label={t('icons.cross.ariaLabel', 'Fermer')}>
+      {/* ... */}
     </svg>
   )
 }

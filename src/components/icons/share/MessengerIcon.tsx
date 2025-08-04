@@ -1,6 +1,9 @@
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { twMerge } from 'tailwind-merge'
 
 export default function MessengerIcon({ className }: { className?: string }) {
+  const { t } = useClientTranslation()
+
   return (
     <svg
       width="15"
@@ -8,7 +11,9 @@ export default function MessengerIcon({ className }: { className?: string }) {
       viewBox="0 0 15 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={twMerge('stroke-default inline-block stroke-2', className)}>
+      className={twMerge('stroke-default inline-block stroke-2', className)}
+      role="img"
+      aria-label={t('icons.messenger.ariaLabel', 'Partager sur Messenger')}>
       <g clip-path="url(#clip0_54647_13205)">
         <path
           d="M7.5 0.75C11.4887 0.75 14.7499 3.88451 14.75 7.75488C14.75 11.6253 11.4887 14.7598 7.5 14.7598C6.72305 14.7598 5.94704 14.6323 5.18457 14.374L3.63184 15.1729L3.63086 15.1719C3.52652 15.2303 3.41257 15.25 3.32129 15.25C3.20125 15.2499 3.08845 15.2152 2.99316 15.1641L2.98828 15.1611C2.78426 15.0454 2.66616 14.8283 2.66602 14.6084V12.9355C1.13016 11.6 0.25 9.73288 0.25 7.75488C0.250064 3.88451 3.51134 0.75 7.5 0.75ZM7.5 2.04102C4.22036 2.04102 1.56267 4.61823 1.5625 7.76172C1.5625 9.34019 2.25581 10.8412 3.48535 11.9316L3.73828 12.1445L3.74121 12.1465L3.79492 12.1953C3.91327 12.3152 3.97754 12.4724 3.97754 12.6484V13.54L4.8252 13.1045C4.99156 13.0154 5.19449 13.0064 5.36621 13.0713H5.36719C6.0819 13.3349 6.79236 13.4688 7.5 13.4688C10.7794 13.4688 13.4307 10.892 13.4307 7.74805C13.4307 4.60479 10.7801 2.04102 7.5 2.04102Z"

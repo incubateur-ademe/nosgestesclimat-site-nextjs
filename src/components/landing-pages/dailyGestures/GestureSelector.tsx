@@ -2,6 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { baseClassNames, sizeClassNames } from '@/design-system/buttons/Button'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { GesturesType } from '@/types/landing-page'
 import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
@@ -14,6 +15,7 @@ export default function GestureSelector({
   gestures: GesturesType
 }) {
   const gesturesKeys = Object.keys(gestures)
+  const { t } = useClientTranslation()
 
   const [selectedCategory, setSelectedCategory] = useState<string>(
     gesturesKeys[0]
@@ -83,7 +85,13 @@ export default function GestureSelector({
           {gestures[selectedCategory].imageSrc && (
             <Image
               src={gestures[selectedCategory].imageSrc}
-              alt={gestures[selectedCategory].imageAlt ?? ''}
+              alt={
+                gestures[selectedCategory].imageAlt ??
+                t(
+                  'gestureSelector.defaultAlt',
+                  'Illustration des gestes quotidiens'
+                )
+              }
               width="400"
               height="400"
               className="w-auto object-contain px-4"

@@ -120,7 +120,7 @@ export default function Actions({
             className="mr-2 align-middle invert"
             height={36}
             width={36}
-            alt=""
+            alt={t('actions.engagementIcon.alt', "Icône d'engagement")}
           />
           <Trans>Actions d'engagement</Trans> &#9660;
         </p>
@@ -143,7 +143,7 @@ export default function Actions({
             className="mr-2 invert"
             height={36}
             width={36}
-            alt=""
+            alt={t('actions.negativeIcon.alt', "Icône d'actions négatives")}
           />
           <Trans>Actions négatives</Trans> &#9660;
         </p>

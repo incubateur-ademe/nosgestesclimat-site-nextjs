@@ -1,6 +1,9 @@
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
-export default function VisuelIframe() {
+export default async function VisuelIframe({ locale }: { locale: string }) {
+  const { t } = await getServerTranslation({ locale })
+
   return (
     <div className="relative mx-auto min-h-[15rem] w-2/3 md:min-h-[18rem]">
       <div className="absolute -bottom-[8%] left-[-16%] flex w-full -rotate-[15deg] items-end rounded-t-md bg-white p-2 pb-0 shadow-md">
@@ -9,7 +12,10 @@ export default function VisuelIframe() {
           src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/orga_visuel_3_2f5ec010f4.png"
           width="300"
           height="200"
-          alt=""
+          alt={t(
+            'visuelIframe.screenshot.alt',
+            "Capture d'écran de l'interface Nos Gestes Climat"
+          )}
         />
       </div>
 
@@ -19,7 +25,10 @@ export default function VisuelIframe() {
           src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/orga_visuel_3_2f5ec010f4.png"
           width="300"
           height="200"
-          alt=""
+          alt={t(
+            'visuelIframe.screenshot.alt',
+            "Capture d'écran de l'interface Nos Gestes Climat"
+          )}
         />
       </div>
 
@@ -29,7 +38,10 @@ export default function VisuelIframe() {
           src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/orga_visuel_3_2f5ec010f4.png"
           width="260"
           height="200"
-          alt=""
+          alt={t(
+            'visuelIframe.screenshot.alt',
+            "Capture d'écran de l'interface Nos Gestes Climat"
+          )}
         />
       </div>
     </div>

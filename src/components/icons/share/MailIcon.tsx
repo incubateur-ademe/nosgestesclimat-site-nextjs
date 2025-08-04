@@ -1,3 +1,4 @@
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { twMerge } from 'tailwind-merge'
 
 export default function MailIcon({
@@ -6,6 +7,8 @@ export default function MailIcon({
 }: {
   className?: string
 }) {
+  const { t } = useClientTranslation()
+
   return (
     <svg
       width="24"
@@ -14,6 +17,8 @@ export default function MailIcon({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={twMerge('fill-default inline-block stroke-[1.5]', className)}
+      role="img"
+      aria-label={t('icons.mail.ariaLabel', 'Partager par email')}
       {...props}>
       <path
         fillRule="evenodd"
