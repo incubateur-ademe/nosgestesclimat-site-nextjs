@@ -1194,6 +1194,10 @@ entries:
   "Oups ! Une erreur s'est produite au moment de récupérer les informations de votre campagne. Vous pouvez la retrouver depuis ": 'Oops! There was an error retrieving your campaign information. You can retrieve it from '
   Donner votre avis: Give feedback
   Emoji main qui salue: Emoji waving hand
+  endPage.tallyForm.buttonLabel: Give feedback
+  endPage.tallyForm.emojiLabel: Emoji waving hand
+  endPage.carboneChart.gaugeDescription: Chart showing your carbon footprint of {{currentValue}} {{unit}} per year, which is {{percentage}}% of the maximum scale. The 2050 target is {{targetValue}} tons per year.
+  endPage.carboneChart.progressBarLabel: Carbon footprint progress bar
   Une erreur s'est produite au moment de sauvegarder vos données. Veuillez réessayer dans quelques instants.: An error has occurred while saving your data. Please try again shortly.
   Vous avez la possibilité d'ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.: You can add additional questions to the test for your statistics. Your activated additional questions will be asked to each participant before the Nos Gestes Climat test. Answering them will be optional.
   C'est parti !: We're off!

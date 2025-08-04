@@ -4,9 +4,11 @@ import ExternalLinkIcon from '@/components/icons/ExternalLinkIcon'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 
 export default function WaterActions() {
+  const { t } = useClientTranslation()
   return (
     <div>
       <Title tag="h2">
@@ -48,7 +50,14 @@ export default function WaterActions() {
           </div>
           <div className="text-primary-700 text-center text-sm underline">
             <Trans>Lire l'article</Trans>{' '}
-            <ExternalLinkIcon className="stroke-primary-700" />
+            <ExternalLinkIcon
+              role="img"
+              aria-label={t(
+                'endPage.waterActions.lireArticle',
+                "Ouvrir l'article dans une nouvelle fenêtre"
+              )}
+              className="stroke-primary-700 ml-2"
+            />
           </div>
         </Link>
         <Link
@@ -73,7 +82,14 @@ export default function WaterActions() {
           </div>
           <div className="text-primary-700 text-center text-sm underline">
             <Trans>Lire l'article</Trans>{' '}
-            <ExternalLinkIcon className="stroke-primary-700" />
+            <ExternalLinkIcon
+              role="img"
+              aria-label={t(
+                'endPage.waterActions.lireArticle',
+                "Ouvrir l'article dans une nouvelle fenêtre"
+              )}
+              className="stroke-primary-700 ml-2"
+            />
           </div>
         </Link>
       </div>

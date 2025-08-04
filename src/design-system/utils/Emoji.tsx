@@ -11,8 +11,7 @@ export default function Emoji({
   return (
     // Emojis are decorative and don't need to be read by screen readers
     <span
-      aria-hidden
-      alt=""
+      aria-hidden="true"
       className={twMerge('*:inline-block', className)}
       {...props}>
       {emoji(children, {
@@ -21,6 +20,8 @@ export default function Emoji({
         size: '',
         props: {
           className: 'border-none',
+          ariaHidden: true,
+          alt: '',
         },
       })}
     </span>

@@ -1143,6 +1143,10 @@ entries:
   Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez: Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez
   Donner votre avis: Donner votre avis
   Emoji main qui salue: Emoji main qui salue
+  endPage.tallyForm.buttonLabel: Donner votre avis
+  endPage.tallyForm.emojiLabel: Emoji main qui salue
+  endPage.carboneChart.gaugeDescription: Graphique montrant votre empreinte carbone de {{currentValue}} {{unit}} par an, soit {{percentage}}% de l'échelle maximale. L'objectif 2050 est de {{targetValue}} tonnes par an.
+  endPage.carboneChart.progressBarLabel: Barre de progression de votre empreinte carbone
   C'est parti !: C'est parti !
   Une erreur s'est produite au moment de sauvegarder vos données. Veuillez réessayer dans quelques instants.: Une erreur s'est produite au moment de sauvegarder vos données. Veuillez réessayer dans quelques instants.
   Vous avez la possibilité d'ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.: Vous avez la possibilité d'ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.
