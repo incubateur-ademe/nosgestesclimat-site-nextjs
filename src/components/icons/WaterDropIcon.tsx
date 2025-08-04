@@ -3,9 +3,9 @@ import { twMerge } from 'tailwind-merge'
 export default function WaterDropIcon({ className }: { className?: string }) {
   return (
     <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={twMerge('fill-default inline-block stroke-[1.5]', className)}

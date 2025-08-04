@@ -73,10 +73,7 @@ export default function DidYouKnowSlider({
                 <Image
                   src={slide.illustration}
                   className="w-12 md:w-20"
-                  alt={t(
-                    'didYouKnowSlider.illustration.alt',
-                    'Illustration du saviez-vous'
-                  )}
+                  alt=""
                   width="80"
                   height="80"
                 />

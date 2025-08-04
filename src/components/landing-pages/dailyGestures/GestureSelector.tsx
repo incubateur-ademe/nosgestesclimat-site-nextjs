@@ -85,13 +85,7 @@ export default function GestureSelector({
           {gestures[selectedCategory].imageSrc && (
             <Image
               src={gestures[selectedCategory].imageSrc}
-              alt={
-                gestures[selectedCategory].imageAlt ??
-                t(
-                  'gestureSelector.defaultAlt',
-                  'Illustration des gestes quotidiens'
-                )
-              }
+              alt=""
               width="400"
               height="400"
               className="w-auto object-contain px-4"

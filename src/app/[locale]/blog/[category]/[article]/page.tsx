@@ -6,7 +6,6 @@ import { fetchArticlePageMetadata } from '@/services/cms/fetchArticlePageMetadat
 import Footer from '@/components/layout/Footer'
 import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Badge from '@/design-system/layout/Badge'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import type { Locale } from '@/i18nConfig'
 import i18nConfig from '@/i18nConfig'
@@ -51,7 +50,6 @@ export default async function ArticlePage({
   params: Promise<{ category: string; article: string; locale: Locale }>
 }) {
   const { category, article: articleSlug, locale } = await params
-  const { t } = await getServerTranslation({ locale })
 
   const { article, otherArticles } =
     (await fetchArticlePageContent({

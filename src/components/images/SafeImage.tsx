@@ -15,7 +15,7 @@ export default function SafeImage({ alt, src, ...props }: ImageProps) {
     <Image
       {...props}
       src={src}
-      alt={alt ?? t('safeImage.defaultAlt', 'Image sans description')}
+      alt={alt ?? ''}
       onError={({ currentTarget }) => {
         currentTarget.onerror = null
         setIsErrorLoading(true)

@@ -8,7 +8,6 @@ import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Hero from '@/design-system/layout/landingPage/Hero'
 import Loader from '@/design-system/layout/Loader'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 import type { ReactNode } from 'react'
 import PartnerCampaignHeader from './PartnerCampaignHeader'
@@ -24,8 +23,6 @@ export default function PartnerCampaignContent({
   partnersComponent: ReactNode
   faqComponent?: ReactNode
 }) {
-  const { t } = useClientTranslation()
-
   const {
     data: pollInfo,
     isError,

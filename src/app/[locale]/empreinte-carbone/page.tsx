@@ -5,7 +5,6 @@ import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/trans/TransServer'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import {
@@ -48,7 +47,6 @@ export default async function CarbonFootprintLandingPage({
   params,
 }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
 
   return (
     <>
