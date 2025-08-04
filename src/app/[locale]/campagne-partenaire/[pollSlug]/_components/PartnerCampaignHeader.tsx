@@ -3,7 +3,6 @@
 import CloseIcon from '@/components/icons/Close'
 import Logo from '@/components/misc/Logo'
 import LanguageSwitchButton from '@/components/translation/LanguageSwitchButton'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 
 export default function PartnerCampaignHeader({
@@ -11,8 +10,6 @@ export default function PartnerCampaignHeader({
 }: {
   logoSrc: string
 }) {
-  const { t } = useClientTranslation()
-
   return (
     <header className="border-b border-gray-200 bg-white shadow-xs">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-1 px-4 py-3 sm:gap-4 sm:px-0 sm:py-3">
@@ -27,10 +24,7 @@ export default function PartnerCampaignHeader({
               className="h-full max-h-12 w-auto object-contain"
               width="100"
               height="100"
-              alt={t(
-                'partnerCampaignHeader.partnerLogo.alt',
-                'Logo du partenaire'
-              )}
+              alt=""
             />
           </div>
         </div>

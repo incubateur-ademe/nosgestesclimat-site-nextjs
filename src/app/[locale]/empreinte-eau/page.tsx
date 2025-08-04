@@ -143,7 +143,7 @@ export default async function WaterFootprintLandingPage(
             )}
           />
         }
-        heroPartners={<WaterFootprintPartners locale={locale} />}>
+        heroPartners={<WaterFootprintPartners />}>
         <WhatItIsWaterFootprint locale={locale} />
 
         <WhatDoWeMeasureWaterFootprint locale={locale} />

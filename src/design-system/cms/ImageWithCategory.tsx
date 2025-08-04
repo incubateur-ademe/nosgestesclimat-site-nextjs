@@ -1,4 +1,3 @@
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -23,15 +22,11 @@ export default function ImageWithCategory({
   category: ReactNode | string
   hideBadgeOnMobile?: boolean
 }) {
-  const { t } = useClientTranslation()
-
   return (
     <div className={twMerge('relative', containerClassName)}>
       <Image
         src={imageSrc ?? null}
-        alt={
-          imageAlt ?? t('imageWithCategory.defaultAlt', 'Image avec catégorie')
-        }
+        alt={imageAlt ?? ''}
         width={width}
         height={height}
         className={twMerge(

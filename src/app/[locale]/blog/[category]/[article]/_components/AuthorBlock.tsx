@@ -1,5 +1,4 @@
 import type { AuthorType } from '@/adapters/cmsClient'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 
 export default function AuthorBlock({
@@ -7,8 +6,6 @@ export default function AuthorBlock({
 }: {
   author?: AuthorType | null
 }) {
-  const { t } = useClientTranslation()
-
   if (!author) return null
 
   return (
@@ -19,10 +16,7 @@ export default function AuthorBlock({
             <Image
               className="h-24 w-24 overflow-hidden rounded-full object-cover"
               src={author.image?.url}
-              alt={
-                author.image?.alternativeText ??
-                t('authorBlock.defaultAlt', "Photo de l'auteur")
-              }
+              alt={author.image?.alternativeText ?? ''}
               width={200}
               height={200}
             />

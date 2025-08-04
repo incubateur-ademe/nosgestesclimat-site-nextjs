@@ -7,7 +7,6 @@ import {
   getLandingDidYouKnowSliderValue,
 } from '@/helpers/tracking/landings'
 // @ts-expect-error package types are wrongly exported
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import '@splidejs/react-splide/css'
 import dynamic from 'next/dynamic'
@@ -34,7 +33,6 @@ export default function DidYouKnowSlider({
   titleTag?: 'h2' | 'h3'
 }) {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const { t } = useClientTranslation()
 
   const pathname = usePathname()
 
@@ -73,10 +71,7 @@ export default function DidYouKnowSlider({
                 <Image
                   src={slide.illustration}
                   className="w-12 md:w-20"
-                  alt={t(
-                    'didYouKnowSlider.illustration.alt',
-                    'Illustration du saviez-vous'
-                  )}
+                  alt=""
                   width="80"
                   height="80"
                 />

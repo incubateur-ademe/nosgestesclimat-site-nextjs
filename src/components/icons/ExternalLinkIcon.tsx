@@ -1,7 +1,4 @@
-import { useClientTranslation } from '@/hooks/useClientTranslation'
-
-export default function ExternalLinkIcon({ className = '', ...props }) {
-  const { t } = useClientTranslation()
+export default function ExternalLinkIcon({ className = '' }) {
   return (
     <svg
       width="16px"
@@ -9,10 +6,7 @@ export default function ExternalLinkIcon({ className = '', ...props }) {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={`inline ${className}`}
-      role="img"
-      aria-label={t('icons.externalLink.ariaLabel', 'Lien externe')}
-      {...props}>
+      className={`inline ${className}`}>
       <g id="Interface / External_Link">
         <path
           id="Vector"

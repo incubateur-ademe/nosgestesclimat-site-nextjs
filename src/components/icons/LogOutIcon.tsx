@@ -1,4 +1,3 @@
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { twMerge } from 'tailwind-merge'
 
 export default function LogOutIcon({
@@ -7,7 +6,6 @@ export default function LogOutIcon({
 }: {
   className?: string
 }) {
-  const { t } = useClientTranslation()
   return (
     <svg
       width="24"
@@ -16,8 +14,6 @@ export default function LogOutIcon({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={twMerge('fill-default inline-block stroke-[1.5]', className)}
-      role="img"
-      aria-label={t('icons.logOut.ariaLabel', 'Déconnexion')}
       {...props}>
       <path
         fillRule="evenodd"

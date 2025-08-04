@@ -5,7 +5,6 @@ import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/trans/TransServer'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import {
@@ -48,8 +47,6 @@ export default async function CarbonFootprintLandingPage({
   params,
 }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
-
   return (
     <>
       <JSONLD
@@ -79,7 +76,7 @@ export default async function CarbonFootprintLandingPage({
       <LandingPage
         heroTitle={
           <Trans locale={locale}>
-            L'empreinte carbone, une première étape pour passer à l'action
+            L'empreinte carbone, une première étape pour passer à l’action
           </Trans>
         }
         heroDescription={
@@ -125,10 +122,7 @@ export default async function CarbonFootprintLandingPage({
                 width={280}
                 height={280}
                 src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_3373a344b0.svg"
-                alt={t(
-                  'empreinteCarbone.heroIllustration.alt',
-                  'Une fille tenant la Terre dans ses mains'
-                )}
+                alt=""
               />
             </div>
           </div>
@@ -139,10 +133,7 @@ export default async function CarbonFootprintLandingPage({
               width={400}
               height={400}
               src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_3373a344b0.svg"
-              alt={t(
-                'empreinteCarbone.heroIllustration.alt',
-                'Une fille tenant la Terre dans ses mains'
-              )}
+              alt=""
             />
           </div>
         }

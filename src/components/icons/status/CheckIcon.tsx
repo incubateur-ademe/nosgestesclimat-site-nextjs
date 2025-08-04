@@ -1,4 +1,3 @@
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { twMerge } from 'tailwind-merge'
 
 export default function CheckIcon({
@@ -7,8 +6,6 @@ export default function CheckIcon({
 }: {
   className?: string
 }) {
-  const { t } = useClientTranslation()
-
   return (
     <svg
       width="24"
@@ -17,8 +14,6 @@ export default function CheckIcon({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={twMerge('fill-default inline-block stroke-[1.5]', className)}
-      role="img"
-      aria-label={t('icons.check.ariaLabel', 'Vérifié')}
       {...props}>
       <path
         fillRule="evenodd"

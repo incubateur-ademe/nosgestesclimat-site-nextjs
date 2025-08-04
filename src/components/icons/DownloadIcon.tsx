@@ -1,18 +1,20 @@
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { twMerge } from 'tailwind-merge'
 
-export default function DownloadIcon({ className }: { className?: string }) {
-  const { t } = useClientTranslation()
+export default function DownloadIcon({
+  className,
+  ...props
+}: {
+  className?: string
+}) {
   return (
     <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
+      width="28"
+      height="28"
+      viewBox="0 0 28 28"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={twMerge('fill-default inline-block stroke-[1.5]', className)}
-      role="img"
-      aria-label={t('icons.download.ariaLabel', 'Télécharger')}>
+      {...props}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
