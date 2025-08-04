@@ -2,6 +2,7 @@
 
 import Link from '@/components/Link'
 import NosGestesTransportsBanner from '@/components/blog/NosGestesTransportsBanner'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import MarkdownToJsx from 'markdown-to-jsx'
 import Image from 'next/image'
@@ -19,6 +20,8 @@ export default function Markdown({
   components = {},
   ...otherProps
 }: MarkdownProps) {
+  const { t } = useClientTranslation()
+
   return (
     <div className="markdown" data-testid="markdown">
       <MarkdownToJsx
@@ -35,7 +38,10 @@ export default function Markdown({
                   width={props.width ?? 900}
                   height={props.height ?? 500}
                   style={{ width: '100%', height: 'auto' }}
-                  alt={(props.alt as string) ?? ''}
+                  alt={
+                    (props.alt as string) ??
+                    t('markdown.image.defaultAlt', 'Image sans description')
+                  }
                   {...(props as any)}
                 />
               ),

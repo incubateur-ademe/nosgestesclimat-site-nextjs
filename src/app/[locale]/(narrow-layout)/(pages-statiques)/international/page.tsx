@@ -42,7 +42,10 @@ export default async function International({ params }: DefaultPageProps) {
 
             <Image
               src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/international_illustration_a376930f53.jpeg"
-              alt=""
+              alt={t(
+                'international.illustration.alt',
+                'Illustration du calculateur international'
+              )}
               className="mx-auto max-w-12 py-8 md:hidden"
               width="100"
               height="100"
@@ -67,7 +70,10 @@ export default async function International({ params }: DefaultPageProps) {
 
           <Image
             src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/international_illustration_a376930f53.jpeg"
-            alt=""
+            alt={t(
+              'international.illustration.alt',
+              'Illustration du calculateur international'
+            )}
             aria-hidden="true"
             className="mx-auto hidden max-w-md p-8 md:block"
             width="300"

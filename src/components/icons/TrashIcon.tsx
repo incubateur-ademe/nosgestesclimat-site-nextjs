@@ -1,3 +1,4 @@
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -7,6 +8,7 @@ type Props = {
 }
 
 export default function TrashIcon({ className, ...props }: Props) {
+  const { t } = useClientTranslation()
   return (
     <svg
       width="24"
@@ -14,7 +16,9 @@ export default function TrashIcon({ className, ...props }: Props) {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={twMerge('fill-default inline-block stroke-none', className)}
+      className={twMerge('fill-default inline-block stroke-[1.5]', className)}
+      role="img"
+      aria-label={t('icons.trash.ariaLabel', 'Supprimer')}
       {...props}>
       <path
         fillRule="evenodd"

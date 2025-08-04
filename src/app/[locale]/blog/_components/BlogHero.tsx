@@ -1,3 +1,4 @@
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 
 export default function BlogHero({
@@ -9,6 +10,8 @@ export default function BlogHero({
   description: string
   image: { url: string; alternativeText: string }
 }) {
+  const { t } = useClientTranslation()
+
   return (
     <div className="my-10 flex flex-col justify-between gap-8 overflow-x-hidden md:my-20 md:flex-row">
       <div className="md:max-w-[36rem]">
@@ -30,7 +33,10 @@ export default function BlogHero({
             width="350"
             height="400"
             className="w-44 md:w-auto"
-            alt={image?.alternativeText ?? ''}
+            alt={
+              image?.alternativeText ??
+              t('blogHero.defaultAlt', 'Image du blog')
+            }
           />
         </div>
       )}

@@ -1,3 +1,4 @@
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -7,6 +8,8 @@ type Props = {
 }
 
 export default function SearchIcon({ className, ...props }: Props) {
+  const { t } = useClientTranslation()
+
   return (
     <svg
       width="24"
@@ -15,6 +18,8 @@ export default function SearchIcon({ className, ...props }: Props) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={twMerge('fill-default inline-block stroke-[1.5]', className)}
+      role="img"
+      aria-label={t('icons.search.ariaLabel', 'Rechercher')}
       {...props}>
       <path
         fillRule="evenodd"

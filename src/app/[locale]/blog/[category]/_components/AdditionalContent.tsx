@@ -1,3 +1,4 @@
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 
 export default function AdditionalContent({
@@ -7,6 +8,8 @@ export default function AdditionalContent({
   content: string
   image: { url: string; alternativeText: string }
 }) {
+  const { t } = useClientTranslation()
+
   return (
     <div className="flex flex-col justify-between gap-8 overflow-x-hidden md:flex-row">
       <div className="md:max-w-[30rem]">
@@ -20,7 +23,10 @@ export default function AdditionalContent({
           src={image?.url ?? ''}
           width="350"
           height="400"
-          alt={image?.alternativeText ?? ''}
+          alt={
+            image?.alternativeText ??
+            t('additionalContent.defaultAlt', 'Image du contenu additionnel')
+          }
         />
       </div>
     </div>
