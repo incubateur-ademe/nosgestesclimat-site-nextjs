@@ -6,8 +6,8 @@ import {
   getLandingDidYouKnowSlider,
   getLandingDidYouKnowSliderValue,
 } from '@/helpers/tracking/landings'
-// @ts-expect-error package types are wrongly exported
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+// @ts-expect-error package types are wrongly exported
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import '@splidejs/react-splide/css'
 import dynamic from 'next/dynamic'
