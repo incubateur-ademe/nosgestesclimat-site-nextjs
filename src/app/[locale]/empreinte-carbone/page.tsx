@@ -125,10 +125,7 @@ export default async function CarbonFootprintLandingPage({
                 width={280}
                 height={280}
                 src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_3373a344b0.svg"
-                alt={t(
-                  'empreinteCarbone.heroIllustration.alt',
-                  'Une fille tenant la Terre dans ses mains'
-                )}
+                alt=""
               />
             </div>
           </div>
@@ -139,10 +136,7 @@ export default async function CarbonFootprintLandingPage({
               width={400}
               height={400}
               src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_3373a344b0.svg"
-              alt={t(
-                'empreinteCarbone.heroIllustration.alt',
-                'Une fille tenant la Terre dans ses mains'
-              )}
+              alt=""
             />
           </div>
         }

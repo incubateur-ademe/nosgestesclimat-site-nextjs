@@ -33,10 +33,7 @@ export default function BlogHero({
             width="350"
             height="400"
             className="w-44 md:w-auto"
-            alt={
-              image?.alternativeText ??
-              t('blogHero.defaultAlt', 'Image du blog')
-            }
+            alt={image?.alternativeText ?? ''}
           />
         </div>
       )}

@@ -11,8 +11,7 @@ export default function DownloadIcon({ className }: { className?: string }) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={twMerge('fill-default inline-block stroke-[1.5]', className)}
-      role="img"
-      aria-label={t('icons.download.ariaLabel', 'Télécharger')}>
+      aria-hidden="true">
       <path
         fillRule="evenodd"
         clipRule="evenodd"

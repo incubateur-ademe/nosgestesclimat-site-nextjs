@@ -21,7 +21,7 @@ export default function AuthorBlock({
               src={author.image?.url}
               alt={
                 author.image?.alternativeText ??
-                t('authorBlock.defaultAlt', "Photo de l'auteur")
+                t('authorBlock.defaultAlt', "Photo de l'auteur ou de l'autrice")
               }
               width={200}
               height={200}

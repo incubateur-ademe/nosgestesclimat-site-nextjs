@@ -181,6 +181,10 @@ export default function ActionCard({
             title={t("Choisir l'action")}
             type="button"
             aria-pressed={actionChoices?.[dottedName]}
+            aria-label={t(
+              'actions.chooseAction.ariaLabel',
+              `${title} - ${actionChoices?.[dottedName] ? 'Action sélectionnée' : 'Sélectionner cette action'}`
+            )}
             className={twMerge(hasRemainingQuestions ? 'grayscale' : '')}
             onClick={handleChooseAction}>
             <CheckCircleIcon
@@ -193,7 +197,13 @@ export default function ActionCard({
           {!Object.keys(actionChoices || {}).some((key) => {
             return key === dottedName && actionChoices?.[key]
           }) && (
-            <button title={t("Rejeter l'action")} onClick={handleRejectAction}>
+            <button
+              title={t("Rejeter l'action")}
+              onClick={handleRejectAction}
+              aria-label={t(
+                'actions.rejectAction.ariaLabel',
+                `${title} - ${actionChoices?.[dottedName] ? 'Action rejetée' : 'Rejeter cette action'}`
+              )}>
               <CloseIcon width="40" height="40" className="fill-gray-600" />
             </button>
           )}

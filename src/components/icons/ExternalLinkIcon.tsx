@@ -10,8 +10,7 @@ export default function ExternalLinkIcon({ className = '', ...props }) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={`inline ${className}`}
-      role="img"
-      aria-label={t('icons.externalLink.ariaLabel', 'Lien externe')}
+      aria-hidden="true"
       {...props}>
       <g id="Interface / External_Link">
         <path

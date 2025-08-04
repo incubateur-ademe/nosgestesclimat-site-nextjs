@@ -127,10 +127,7 @@ export default async function ArticlePage({
             <Image
               className="rounded-md"
               src={article.image?.url ?? ''}
-              alt={
-                article.image?.alternativeText ??
-                t('articlePage.defaultAlt', "Image de l'article")
-              }
+              alt={article.image?.alternativeText ?? ''}
               width={420}
               height={420}
             />

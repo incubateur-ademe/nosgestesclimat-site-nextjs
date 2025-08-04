@@ -1,15 +1,8 @@
 import Trans from '@/components/translation/trans/TransServer'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 import VisuelIframe from './VisuelIframe'
 
-export default async function IllustratedPointsList({
-  locale,
-}: {
-  locale: string
-}) {
-  const { t } = await getServerTranslation({ locale })
-
+export default function IllustratedPointsList({ locale }: { locale: string }) {
   return (
     <ul className="flex flex-col gap-28">
       <li>
@@ -40,10 +33,7 @@ export default async function IllustratedPointsList({
                 src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/tutoriel_276d608be8.png"
                 width="300"
                 height="200"
-                alt={t(
-                  'illustratedPointsList.campaignScreenshot.alt',
-                  "Capture d'écran du tutoriel de campagne personnalisée"
-                )}
+                alt=""
               />
             </div>
           </div>
@@ -80,10 +70,7 @@ export default async function IllustratedPointsList({
                 src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/orga_visuel_2_43f01617de.png"
                 width="360"
                 height="500"
-                alt={t(
-                  'illustratedPointsList.dashboardScreenshot.alt',
-                  "Capture d'écran du tableau de bord d'analyse des données"
-                )}
+                alt=""
               />
             </div>
           </div>
@@ -114,7 +101,7 @@ export default async function IllustratedPointsList({
           </div>
 
           <div className="mx-auto flex w-[26rem] max-w-full items-end overflow-hidden rounded-xl bg-gray-100 px-6 pt-6 md:w-[26rem]">
-            <VisuelIframe locale={locale} />
+            <VisuelIframe />
           </div>
         </section>
       </li>

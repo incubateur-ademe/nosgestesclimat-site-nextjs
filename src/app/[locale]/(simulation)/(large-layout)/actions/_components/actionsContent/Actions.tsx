@@ -120,9 +120,18 @@ export default function Actions({
             className="mr-2 align-middle invert"
             height={36}
             width={36}
-            alt={t('actions.engagementIcon.alt', "Icône d'engagement")}
+            alt=""
           />
-          <Trans>Actions d'engagement</Trans> &#9660;
+          <Trans>Actions d'engagement</Trans>{' '}
+          <span
+            role="img"
+            aria-label={t(
+              'actions.engagementIcon.ariaLabel',
+              ', les actions se trouvent en dessous'
+            )}
+            aria-hidden="true">
+            &#9660;
+          </span>
         </p>
       </div>
 
@@ -143,9 +152,18 @@ export default function Actions({
             className="mr-2 invert"
             height={36}
             width={36}
-            alt={t('actions.negativeIcon.alt', "Icône d'actions négatives")}
+            alt=""
           />
-          <Trans>Actions négatives</Trans> &#9660;
+          <Trans>Actions négatives</Trans>{' '}
+          <span
+            role="img"
+            aria-label={t(
+              'actions.engagementIcon.ariaLabel',
+              ', les actions se trouvent en dessous'
+            )}
+            aria-hidden="true">
+            &#9660;
+          </span>
         </p>
       </div>
 

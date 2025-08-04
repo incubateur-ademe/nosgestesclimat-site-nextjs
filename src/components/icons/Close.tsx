@@ -19,8 +19,7 @@ export default function CloseIcon({ className, ...props }: Props) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={twMerge('fill-default inline-block stroke-[1.5]', className)}
-      role="img"
-      aria-label={t('icons.close.ariaLabel', 'Fermer')}
+      aria-hidden="true"
       {...props}>
       <path
         fillRule="evenodd"

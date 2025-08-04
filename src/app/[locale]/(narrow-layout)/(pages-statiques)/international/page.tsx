@@ -41,11 +41,8 @@ export default async function International({ params }: DefaultPageProps) {
             />
 
             <Image
-              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/international_illustration_a376930f53.jpeg"
-              alt={t(
-                'international.illustration.alt',
-                'Illustration du calculateur international'
-              )}
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/international_illustration_b4030014c1.jpeg"
+              alt=""
               className="mx-auto max-w-12 py-8 md:hidden"
               width="100"
               height="100"
@@ -70,10 +67,7 @@ export default async function International({ params }: DefaultPageProps) {
 
           <Image
             src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/international_illustration_a376930f53.jpeg"
-            alt={t(
-              'international.illustration.alt',
-              'Illustration du calculateur international'
-            )}
+            alt=""
             aria-hidden="true"
             className="mx-auto hidden max-w-md p-8 md:block"
             width="300"
@@ -113,13 +107,18 @@ export default async function International({ params }: DefaultPageProps) {
             <Link
               className="inline"
               href="https://app.electricitymaps.com/map"
-              target="_blank">
+              target="_blank"
+              aria-label={t(
+                'international.electricityMaps.ariaLabel',
+                "Visiter le site Electricity Maps (s'ouvre dans un nouvel onglet)"
+              )}>
               <Image
-                alt="Electricity Maps"
+                alt=""
                 src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/electricitymaps_469ea4068b.svg"
                 className="ml-2 h-4"
                 width="100"
                 height="100"
+                aria-hidden="true"
               />
             </Link>
           </p>

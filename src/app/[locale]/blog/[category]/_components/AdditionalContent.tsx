@@ -23,10 +23,7 @@ export default function AdditionalContent({
           src={image?.url ?? ''}
           width="350"
           height="400"
-          alt={
-            image?.alternativeText ??
-            t('additionalContent.defaultAlt', 'Image du contenu additionnel')
-          }
+          alt={image?.alternativeText ?? ''}
         />
       </div>
     </div>
