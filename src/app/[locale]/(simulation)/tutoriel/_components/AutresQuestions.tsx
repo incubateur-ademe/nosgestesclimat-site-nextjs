@@ -46,7 +46,7 @@ export default function AutresQuestions() {
                 </Trans>
               </p>
               <Image
-                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/greenhouse_effect_3e1b98a2a7.svg"
+                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/greenhouse_effect_5fc8193750.svg"
                 alt="Effet de serre"
                 className="mx-auto w-1/3"
                 width={100}
@@ -78,7 +78,7 @@ export default function AutresQuestions() {
                   Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde
                   de carbone{' '}
                   <Image
-                    src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/co2_2801251b57.svg"
+                    src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/co2_acd306ef6d.svg"
                     alt="CO₂"
                     className="inline-block w-8"
                     width={100}
@@ -89,7 +89,7 @@ export default function AutresQuestions() {
                 </Trans>
               </p>
               <Image
-                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/co2e_e4de1e8647.svg"
+                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/co2e_dab11345cd.svg"
                 alt="CO₂e"
                 className="mx-auto mb-2 w-24"
                 width={100}
@@ -118,7 +118,7 @@ export default function AutresQuestions() {
                   <Trans i18nKey={'publicodes.Tutoriel.slide2.blockquote'}>
                     D'autres gaz, surtout le méthane{' '}
                     <Image
-                      src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/methane_8b81815304.svg"
+                      src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/methane_dcd07779af.svg"
                       alt="methane"
                       className="inline-block w-8"
                       width={100}
@@ -126,7 +126,7 @@ export default function AutresQuestions() {
                     />{' '}
                     et le protoxyde d'azote{' '}
                     <Image
-                      src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/n2o_91c177e75a.svg"
+                      src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/n2o_33197c87d4.svg"
                       alt="N2O"
                       className="inline-block w-8"
                       width={100}
