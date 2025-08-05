@@ -61,7 +61,7 @@ export default function JagisMainBlock() {
           <div className="flex items-center gap-4">
             <Marianne className="h-12 lg:h-auto" />
             <Image
-              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/jagis_b73fae459d.svg"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/jagis_df8fe4f4ff.svg"
               alt={t(`Logo de J'agis`)}
               width="60"
               height="60"
