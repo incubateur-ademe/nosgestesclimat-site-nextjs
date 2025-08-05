@@ -178,12 +178,16 @@ export default function ActionCard({
         </div>
         <div className="self-bottom flex w-full justify-between px-2">
           <button
-            title={t("Choisir l'action")}
+            title={t(
+              actionChoices?.[dottedName]
+                ? 'Annuler la sélection'
+                : "Choisir l'action"
+            )}
             type="button"
             aria-pressed={actionChoices?.[dottedName]}
             aria-label={t(
               'actions.chooseAction.ariaLabel',
-              `${title} - ${actionChoices?.[dottedName] ? 'Action sélectionnée' : 'Sélectionner cette action'}`
+              `${title} - ${actionChoices?.[dottedName] ? 'Action sélectionnée, annuler la sélection' : 'Sélectionner cette action'}`
             )}
             className={twMerge(hasRemainingQuestions ? 'grayscale' : '')}
             onClick={handleChooseAction}>

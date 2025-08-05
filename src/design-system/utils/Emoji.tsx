@@ -5,6 +5,7 @@ import { twMerge } from 'tailwind-merge'
 export default function Emoji({
   children = '...',
   className,
+  alt,
   ...props
 }: HTMLAttributes<HTMLSpanElement> &
   PropsWithChildren<{ className?: string; alt?: string }>) {
@@ -21,7 +22,7 @@ export default function Emoji({
         props: {
           className: 'border-none',
           ariaHidden: true,
-          alt: '',
+          alt: alt || '',
         },
       })}
     </span>
