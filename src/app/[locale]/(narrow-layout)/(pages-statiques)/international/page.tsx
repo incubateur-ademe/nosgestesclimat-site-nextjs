@@ -41,7 +41,7 @@ export default async function International({ params }: DefaultPageProps) {
             />
 
             <Image
-              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/international_illustration_b4030014c1.jpeg"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_international_illustration_b4030014c1.jpeg"
               alt=""
               className="mx-auto max-w-12 py-8 md:hidden"
               width="100"
@@ -66,7 +66,7 @@ export default async function International({ params }: DefaultPageProps) {
           </div>
 
           <Image
-            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/international_illustration_a376930f53.jpeg"
+            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_international_illustration_b4030014c1.jpeg"
             alt=""
             aria-hidden="true"
             className="mx-auto hidden max-w-md p-8 md:block"
@@ -113,8 +113,8 @@ export default async function International({ params }: DefaultPageProps) {
                 "Visiter le site Electricity Maps (s'ouvre dans un nouvel onglet)"
               )}>
               <Image
-                alt=""
-                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/electricitymaps_469ea4068b.svg"
+                alt="Electricity Maps"
+                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/electricitymaps_4108b9d71a.svg"
                 className="ml-2 h-4"
                 width="100"
                 height="100"

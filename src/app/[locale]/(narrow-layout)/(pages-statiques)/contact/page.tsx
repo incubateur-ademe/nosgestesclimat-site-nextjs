@@ -52,7 +52,7 @@ export default async function Contact({ params }: DefaultPageProps) {
 
         <Image
           className="max-w-[50vw] self-start"
-          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/delivering_mail_196f6dee24.png"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_delivering_mail_b981de31a3.png"
           width="300"
           height="400"
           alt=""

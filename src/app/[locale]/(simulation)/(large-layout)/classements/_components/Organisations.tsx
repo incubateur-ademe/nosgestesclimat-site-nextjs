@@ -38,7 +38,7 @@ export default function Organisations() {
           </div>
           <Image
             className="-mt-12 mb-12 w-60 self-start md:w-80"
-            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/people_with_paperboard_02aeb70378.png"
+            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_people_with_paperboard_9c8d47f4b3.png"
             width="380"
             height="400"
             alt={t('Un groupe de personnes discutant devant un paperboard.')}
