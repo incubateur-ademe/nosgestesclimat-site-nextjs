@@ -41,7 +41,7 @@ export default async function Profil({ params }: DefaultPageProps) {
         <SimulationBanner />
         <Image
           className="ml-auto hidden md:block"
-          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_thinking_f4660010e4.png"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_girl_thinking_0b84734c12.png"
           width="360"
           height="400"
           alt={t('Une fille réfléchissant à son empreinte carbone.')}
@@ -66,7 +66,7 @@ export default async function Profil({ params }: DefaultPageProps) {
         />
         <Image
           className="-mt-12 ml-auto w-48 self-end md:mt-auto md:w-auto"
-          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/delivering_mail_196f6dee24.png"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_delivering_mail_b981de31a3.png"
           width="350"
           height="400"
           alt={t('Une personne livrant du courrier.')}
