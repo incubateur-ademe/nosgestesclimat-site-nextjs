@@ -159,7 +159,7 @@
     "playwright": "^1.52.0",
     "postcss-loader": "^8.1.0",
     "prettier": "^3.5.3",
-    "prettier-plugin-organize-imports": "^4.1.0",
+    "prettier-plugin-organize-imports": "^4.2.0",
     "prettier-plugin-tailwindcss": "^0.6.12",
     "puppeteer": "^24.8.2",
     "ramda": "^0.31.3",
