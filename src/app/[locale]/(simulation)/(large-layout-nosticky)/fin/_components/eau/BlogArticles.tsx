@@ -22,7 +22,7 @@ export default function BlogArticles() {
           className="border-primary-50 hover:bg-primary-100 relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 bg-gray-100 pb-4 no-underline lg:p-4">
           <div>
             <Image
-              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/philip_junior_mail_Bp_Uk_WK_6hf_JA_unsplash_0f0f3b01c2.jpg"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_philip_junior_mail_Bp_Uk_WK_6hf_JA_unsplash_0f0f3b01c2.jpg"
               width="400"
               height="200"
               className="mx-auto mb-3 h-24 w-full object-cover lg:h-36"
@@ -45,7 +45,7 @@ export default function BlogArticles() {
           className="border-primary-50 hover:bg-primary-100 relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 bg-gray-100 pb-4 no-underline lg:p-4">
           <div>
             <Image
-              src="https://s3.fr-par.scw.cloud/nosgestesclimat-prod/cms/william_bossen_fonte_glaces_a3dd8ea653.jpg"
+              src="https://s3.fr-par.scw.cloud/nosgestesclimat-prod/cms/medium_william_bossen_fonte_glaces_a3dd8ea653.jpg"
               width="400"
               height="200"
               className="mx-auto mb-3 h-24 w-full object-cover lg:h-36"
