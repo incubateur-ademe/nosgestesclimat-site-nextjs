@@ -96,7 +96,7 @@ export default function Tutoriel() {
         </div>
 
         <Image
-          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/comparer_empreinte_carbone_et_eau_entre_amis_4d3765d837.svg"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/comparer_empreinte_carbone_et_eau_entre_amis_ddbfa5e83d.svg"
           alt={t('Un groupe d’amis jouant à un jeu de société.')}
           width={400}
           height={400}
