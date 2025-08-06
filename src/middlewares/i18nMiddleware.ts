@@ -41,65 +41,7 @@ function i18nMiddleware(request: NextRequest) {
   const langParam = request.nextUrl.searchParams.get('lang')
   const { locales } = i18nConfig
 
-  if (
-    request.nextUrl.searchParams.get('iframe') &&
-    langParam &&
-    locales.includes(langParam)
-  ) {
-    const newPath = buildUrlWithLocale(
-      request.nextUrl.pathname,
-      langParam,
-      locales
-    )
-    const url = new URL(request.url)
-    url.pathname = newPath
-    url.searchParams.delete('lang')
-
-    const redirectResponse = NextResponse.redirect(url, 307)
-    setLocaleCookie(redirectResponse, langParam)
-
-    return redirectResponse
-  }
-
   const { defaultLocale } = i18nConfig
-
-  // Check if this is an iframe request (either via iframe param or referer)
-  const isIframeRequest =
-    request.nextUrl.searchParams.has('iframe') ||
-    (request.headers.get('referer') &&
-      request.headers.get('referer')?.includes('iframe=true'))
-
-  // Special handling for iframe without cookies (e.g., incognito mode)
-  if (isIframeRequest && request.cookies.getAll().length === 0) {
-    // Try to get locale from pathname first
-    const pathnameLocale = getCurrentLocale(
-      request.nextUrl.pathname,
-      locales,
-      defaultLocale
-    )
-
-    // If we have a lang param, use it
-    if (langParam && locales.includes(langParam)) {
-      const response = NextResponse.next()
-      setLocaleCookie(response, langParam)
-      return response
-    }
-
-    // If we have a locale in pathname, use it
-    if (pathnameLocale !== defaultLocale) {
-      const response = NextResponse.next()
-      setLocaleCookie(response, pathnameLocale)
-      return response
-    }
-
-    // If no specific locale found, let i18nRouter handle it but set cookie based on referer
-    const referer = request.headers.get('referer')
-    if (referer && referer.includes('lang=fr')) {
-      const response = NextResponse.next()
-      setLocaleCookie(response, i18nConfig.defaultLocale)
-      return response
-    }
-  }
 
   // Handle locale change via query parameter
   if (langParam && locales.includes(langParam)) {
@@ -127,7 +69,7 @@ function i18nMiddleware(request: NextRequest) {
     }
 
     // Clean URL if locale is already correct (non-default locales)
-    if (request.nextUrl.searchParams.has('lang') && !isIframeRequest) {
+    if (request.nextUrl.searchParams.has('lang')) {
       const url = new URL(request.url)
       url.searchParams.delete('lang')
 

@@ -21,7 +21,7 @@ const i18nConfig: Config = {
   localeDetector: (request: NextRequest, config: Config): string => {
     const langParam = request.nextUrl.searchParams.get('lang')
 
-    // Check first for lang param
+    // Check first for lang param (prioritized for iframes)
     if (langParam && config.locales.includes(langParam)) {
       return langParam
     }
@@ -32,12 +32,20 @@ const i18nConfig: Config = {
       return nextLocale
     }
 
-    // Check browser language
-    const acceptLanguage = request.headers.get('accept-language')
-    if (acceptLanguage) {
-      const browserLang = acceptLanguage.split(',')[0].split('-')[0]
-      if (config.locales.includes(browserLang)) {
-        return browserLang
+    // Check if this is an iframe request
+    const isIframeRequest =
+      request.nextUrl.searchParams.has('iframe') ||
+      (request.headers.get('referer') &&
+        request.headers.get('referer')?.includes('iframe=true'))
+
+    // Check browser language (only for non-iframe requests)
+    if (!isIframeRequest) {
+      const acceptLanguage = request.headers.get('accept-language')
+      if (acceptLanguage) {
+        const browserLang = acceptLanguage.split(',')[0].split('-')[0]
+        if (config.locales.includes(browserLang)) {
+          return browserLang
+        }
       }
     }
 
