@@ -11,7 +11,7 @@ describe('404 Page', () => {
     cy.visit('/definitely-not-a-page-url', { failOnStatusCode: false })
 
     // Verify that we're on the 404 page
-    cy.url().should('include', '/definitely-not-a-page-url')
+    cy.url().should('include', '/404')
 
     // Check for common 404 page elements
     cy.get('h1').should('exist')

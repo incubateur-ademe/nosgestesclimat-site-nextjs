@@ -37,7 +37,10 @@ export default function Tutoriel() {
           <Trans>Règles du test</Trans>
         </p>
 
-        <h1 className="mb-10 text-2xl font-medium sm:text-4xl">
+        <h1
+          data-testid="tutoriel-title"
+          data-cypress-id="tutoriel-title"
+          className="mb-10 text-2xl font-medium sm:text-4xl">
           <Trans>Comment ça marche ? </Trans>
         </h1>
 
