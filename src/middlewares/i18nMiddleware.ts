@@ -37,10 +37,18 @@ function setLocaleCookie(response: NextResponse, locale: string): void {
   })
 }
 
+// Helper function to check if request is an iframe
+function isIframeRequest(request: NextRequest): boolean {
+  const referer = request.headers.get('referer')
+  return (
+    request.nextUrl.searchParams.has('iframe') ||
+    (referer !== null && referer.includes('iframe=true'))
+  )
+}
+
 function i18nMiddleware(request: NextRequest) {
   const langParam = request.nextUrl.searchParams.get('lang')
   const { locales } = i18nConfig
-
   const { defaultLocale } = i18nConfig
 
   // Handle locale change via query parameter
@@ -77,6 +85,23 @@ function i18nMiddleware(request: NextRequest) {
       setLocaleCookie(cleanResponse, langParam)
 
       return cleanResponse
+    }
+  }
+
+  // Handle iframe requests without cookies
+  if (isIframeRequest(request)) {
+    const currentLocale = getCurrentLocale(
+      request.nextUrl.pathname,
+      locales,
+      defaultLocale
+    )
+
+    // If no cookies exist and we have a non-default locale in the URL
+    const hasNextLocaleCookie = request.cookies.has(NEXT_LOCALE_COOKIE_NAME)
+    if (!hasNextLocaleCookie && currentLocale !== defaultLocale) {
+      const response = NextResponse.next()
+      setLocaleCookie(response, currentLocale)
+      return response
     }
   }
 
