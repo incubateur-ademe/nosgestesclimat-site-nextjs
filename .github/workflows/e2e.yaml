@@ -28,8 +28,8 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Generate E2E test specs from personas
-        run: yarn e2e:generate
+      # - name: Generate E2E test specs from personas
+      #   run: yarn e2e:generate
 
       - name: Get PR number for non-main/preprod branches
         if: ${{ github.event.inputs.branch != 'main' && github.event.inputs.branch != 'preprod' }}

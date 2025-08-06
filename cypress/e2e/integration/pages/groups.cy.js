@@ -32,7 +32,10 @@ describe('Group userflow', () => {
         // Fill simulation
         clickSkipTutorialButton()
 
-        recursivelyFillSimulation(null, 'group')
+        // Wait for the page to be redirected after skipping tutorial
+        cy.url().should('include', '/simulateur/bilan')
+
+        recursivelyFillSimulation()
 
         cy.get('[data-cypress-id="group-name"]').should('be.visible', {
           timeout: 10000,
@@ -86,7 +89,10 @@ describe('Group userflow', () => {
         click('button-join-group')
 
         clickSkipTutorialButton()
-        recursivelyFillSimulation(null, 'group')
+
+        // Wait for the page to be redirected after skipping tutorial
+        cy.url().should('include', '/simulateur/bilan')
+        recursivelyFillSimulation()
 
         cy.wait(2000)
 
