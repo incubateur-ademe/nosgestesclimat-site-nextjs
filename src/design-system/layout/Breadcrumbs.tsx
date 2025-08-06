@@ -45,11 +45,12 @@ export default function Breadcrumbs({
                     }
                     trackEvent(breadcrumbClickLink(href))
                   }}
+                  title={`${label} - ${isActive ? t('Page active') : t('Visiter cette page')}`}
                   aria-current={isActive}
                   className={twMerge(
-                    'text-primary-700 hover:text-primary-700 max-w-full text-sm text-ellipsis whitespace-nowrap capitalize hover:underline',
+                    'text-default hover:text-primary-700 max-w-full text-sm text-ellipsis whitespace-nowrap capitalize hover:underline',
                     isActive
-                      ? 'text-default hover:text-default cursor-default no-underline hover:no-underline'
+                      ? 'text-primary-700 hover:text-primary-700 cursor-default font-bold no-underline hover:no-underline'
                       : '',
                     isDisabled ? 'cursor-default' : '',
                     linkClassName
