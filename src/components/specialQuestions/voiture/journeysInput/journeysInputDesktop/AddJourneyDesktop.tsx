@@ -5,8 +5,8 @@ import {
   periods,
 } from '@/components/specialQuestions/voiture/journeysInput/_components/JourneyItem'
 import Button from '@/design-system/buttons/Button'
-import Select from '@/design-system/inputs/Select'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import SelectInput from '@/design-system/inputs/SelectInput'
+import TextInput from '@/design-system/inputs/TextInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Journey } from '@/types/journey'
 import type { Dispatch, SetStateAction } from 'react'
@@ -30,7 +30,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
   return (
     <tr className={twMerge('block md:table-row', className)}>
       <td className="border-primary-700 block border-t py-2 pr-2 text-xs md:table-cell md:pr-2">
-        <Select
+        <SelectInput
           aria-labelledby="label-label"
           className="mt-0 p-2 text-xs"
           value={label}
@@ -43,11 +43,11 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
               </option>
             )
           })}
-        </Select>
+        </SelectInput>
       </td>
       <td className="border-primary-700 block h-full py-2 text-xs md:table-cell md:border-t md:px-2">
         <span className="flex h-full items-center gap-4">
-          <TextInputGroup
+          <TextInput
             className="h-14 w-12 p-2 text-xs md:w-16"
             aria-labelledby="label-distance"
             name="distance"
@@ -60,7 +60,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
       </td>
       <td className="border-primary-700 block py-2 text-xs md:table-cell md:border-t md:px-2">
         <span className="flex items-center gap-4">
-          <TextInputGroup
+          <TextInput
             className="h-14 w-12 p-2 text-xs md:w-16"
             name="reccurrence"
             aria-labelledby="label-frequency"
@@ -71,7 +71,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
             }
           />{' '}
           x
-          <Select
+          <SelectInput
             className="mt-0! p-2 text-xs"
             value={period}
             label={t('Période')}
@@ -85,11 +85,11 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
                 </option>
               )
             })}
-          </Select>
+          </SelectInput>
         </span>
       </td>
       <td className="border-primary-700 block py-2 text-xs md:table-cell md:border-t md:px-2">
-        <Select
+        <SelectInput
           name="passengers"
           aria-labelledby="label-passengers"
           className="mt-0 p-2 text-xs"
@@ -102,7 +102,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
               </option>
             )
           })}
-        </Select>
+        </SelectInput>
       </td>
       <td className="border-primary-700 block py-2 pl-2 text-right text-xs md:table-cell md:border-t">
         <Button

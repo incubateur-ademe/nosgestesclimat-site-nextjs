@@ -21,14 +21,14 @@ type Props = {
 
 const buttonClassNames = {
   inactive:
-    'border-primary-200 text-primary-700 cursor-default border-2 bg-gray-100',
+    'border-slate-500 text-primary-700 cursor-default border-2 bg-gray-100',
   checked: 'border-primary-700 text-primary-700 border-2 cursor-pointer ',
-  unchecked: 'border-primary-200 hover:bg-primary-50 border-2 cursor-pointer ',
+  unchecked: 'border-slate-500 hover:bg-primary-50 border-2 cursor-pointer ',
 }
 const checkClassNames = {
-  inactive: 'border-primary-200',
+  inactive: 'border-slate-400',
   checked: 'border-primary-700',
-  unchecked: 'border-primary-200',
+  unchecked: 'border-slate-400',
 }
 
 export default function MosaicBooleanInput({
@@ -58,7 +58,7 @@ export default function MosaicBooleanInput({
     <div className="flex md:block">
       <label
         className={twMerge(
-          `focus-within:ring-primary-700 relative flex h-full items-center gap-2 rounded-xl border bg-white px-4 py-2 text-left transition-colors focus-within:ring-2`,
+          `focus-within:ring-primary-700 relative flex h-full items-center gap-2 rounded-xl border! bg-white px-4 py-2 text-left transition-colors focus-within:ring-2 focus-within:ring-offset-2`,
           buttonClassNames[status]
         )}
         // We set the input id via the props for the first element, in order to link the question
@@ -102,7 +102,7 @@ export default function MosaicBooleanInput({
           {title && icons ? (
             <span
               aria-label={`${title} ${isInactive ? t('Bientôt disponible') : ''}`}
-              className="text-default inline-block align-middle text-sm md:text-base">
+              className="inline-block align-middle text-sm md:text-base">
               {title} <Emoji className="leading-tight">{icons ?? null}</Emoji>
             </span>
           ) : null}
