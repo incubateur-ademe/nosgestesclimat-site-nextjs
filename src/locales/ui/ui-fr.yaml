@@ -1223,3 +1223,19 @@ entries:
   documentation.search.results_many: '{{count}} résultat(s) trouvé(s)'
   documentation.search.results_other: '{{count}} résultat(s) trouvé(s)'
   documentation.search.results.label: Résultats de recherche
+  Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.: Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.
+  Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.: Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.
+  Chargement du tableau de bord...: Chargement du tableau de bord...
+  Formulaire - Demander une démo: Formulaire - Demander une démo
+  Formulaire - Désactiver les cookies de mesure d'audience via Matomo: Formulaire - Désactiver les cookies de mesure d'audience via Matomo
+  Formulaire - nous faire part de vos remarques sur le site: Formulaire - nous faire part de vos remarques sur le site
+  Graphique de distribution des résultats de simulation pour le mois dernier: Graphique de distribution des résultats de simulation pour le mois dernier
+  Graphiques du nombre de visites et de simulations sur le site: Graphiques du nombre de visites et de simulations sur le site
+  Iframe - Google Tag Manager: Iframe - Google Tag Manager
+  Impossible de charger le tableau de bord. Veuillez réessayer plus tard.: Impossible de charger le tableau de bord. Veuillez réessayer plus tard.
+  organisations.poll.create.custom_question.add_button.label: Ajouter une question personnalisée
+  organisations.poll.create.custom_question.add_button.max_reached: Vous avez atteint le nombre maximum de questions personnalisées
+  Statistiques d'usage du mode "Challenge tes amis": Statistiques d'usage du mode "Challenge tes amis"
+  Statistiques d'usage du mode "Organisations": Statistiques d'usage du mode "Organisations"
+  Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.: Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.
+  Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.: Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.
