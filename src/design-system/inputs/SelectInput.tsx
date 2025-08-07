@@ -7,6 +7,7 @@ import type {
 import { forwardRef, useId } from 'react'
 import { twMerge } from 'tailwind-merge'
 import InputGroup from './InputGroup'
+import { defaultInputStyleClassNames } from './TextInput'
 
 export default forwardRef(function SelectInput(
   {
@@ -62,8 +63,8 @@ export default forwardRef(function SelectInput(
         required={required}
         aria-disabled={disabled}
         className={twMerge(
-          helperText || label ? 'mt-3!' : '',
-          `w-full max-w-[30rem] rounded-xl border-2 border-solid border-slate-500 bg-white p-4 text-sm transition-colors`,
+          defaultInputStyleClassNames,
+          'w-full max-w-[30rem] p-4 text-sm',
           error ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : '',
           disabled ? 'pointer-events-none cursor-not-allowed opacity-50' : '',
           'focus:border-primary-700 focus:ring-primary-700 focus:ring-2',

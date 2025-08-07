@@ -57,7 +57,8 @@ export default function MyPolls({ polls }: Props) {
             onChange={(e: ChangeEvent<HTMLSelectElement>) => {
               setSort(e.target.value)
             }}
-            className="p-2 text-sm"
+            className="max-w-[15rem] p-2 text-sm"
+            containerClassName="max-w-[15rem]"
             name="sortOrder">
             <option value="date-old">
               <Trans>Date (anciennes &gt; récentes)</Trans>

@@ -48,7 +48,7 @@ export default function InputGroup({
       {label ? (
         <label
           htmlFor={fieldId}
-          className="flex w-full max-w-[30rem] justify-between text-left">
+          className="mb-2 flex w-full max-w-[30rem] justify-between text-left">
           <span
             className={twMerge(
               `text-base font-bold text-slate-900`,
@@ -66,7 +66,7 @@ export default function InputGroup({
         <span
           id={helperTextId}
           className={twMerge(
-            'mt-1 text-base text-slate-900',
+            '-mt-1 mb-2 text-base text-slate-900',
             error ? 'text-red-700' : ''
           )}>
           {helperText}
