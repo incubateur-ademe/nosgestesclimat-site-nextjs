@@ -1,8 +1,13 @@
+'use client'
+
+import { useClientTranslation } from '@/hooks/useClientTranslation'
+
 type Props = {
   className?: string
 }
 
 export default function Marianne({ className }: Props) {
+  const { t } = useClientTranslation()
   return (
     <svg
       width="68"
@@ -10,8 +15,9 @@ export default function Marianne({ className }: Props) {
       viewBox="0 0 57 50"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={className}>
-      <title>République Française</title>
+      className={className}
+      role="img"
+      aria-label={t('common.marianne.ariaLabel', 'République Française')}>
       <path
         fill="#000000"
         d="M0.0358429 13.215H2.06009C3.50599 13.215 4.40967 13.9753 4.40967 15.2063C4.40967 16.0029 4.01205 16.5822 3.3614 16.908L5.45795 19.8407H3.86746L2.06009 17.1614H1.37329V19.8407H0.0358429V13.215ZM1.37329 14.3736V16.0391H2.13239C2.71075 16.0391 3.03607 15.7494 3.03607 15.2063C3.03607 14.6995 2.71075 14.4098 2.13239 14.4098L1.37329 14.3736Z"
