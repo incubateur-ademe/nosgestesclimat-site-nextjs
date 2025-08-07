@@ -9,7 +9,6 @@ entries:
   Charger: Load
   Chargée: Loaded
   Chargée.lock: Loaded
-  Choisir l'action: Choose the action
   Choisir le type de tri des actions: Choose the type of stock sorting
   Choisir une autre région: Choose another region
   Choisissez une région parmi celles disponibles !: Choose a region among those available!
@@ -87,6 +86,9 @@ entries:
   model.stats2: It consists of a combination of hundreds of "bottom-up" micro models for the carbon consumption of our daily lives, and a "top-down" model derived from the work of the SDES to estimate the per capita footprint of so-called societal services (public services and basic services such as telecommunications). <2>Learn more about this hybridization</2>.
   model.stats2.lock: Il est constitué d'une combinaison de centaines de modèles micro "bottom-up" pour les consommations carbonées de notre vie quotidienne, et d'un modèle "top-down" dérivé des travaux du SDES pour estimer l'empreinte par personne des services dits sociétaux (services publics et services de base tels les télécom). <2>En savoir plus sur cette hybridation</2>.
   noresults: No results were found for this search
+  search.results: '{{count}} result(s) found'
+  search.results.label: Search results
+  search.documentation.label: Documentation search
   participant: participant
   plus d'1 kg: more than 1 kg
   plus d'1 tonne: more than 1 tonne
@@ -217,7 +219,6 @@ entries:
   publicodes.Tutoriel.slide6.lock: <0>Prendre la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter une TV...</0><1>L'empreinte de notre consommation individuelle, c'est la somme de toutes ces activités qui font notre vie moderne.</1>
   publicodes.Tutoriel.slide2.p1: 'With a unit with a barbaric name: the CO₂ equivalent. Carbon dioxide <2></2>, you know it: we breathe it out all day long, but it has no influence on the climate.'
   publicodes.Tutoriel.slide2.p1.lock: "Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone <2></2>, vous le connaissez : on l'expire toute la journée, mais sans influence sur le climat."
-  Logo de l'Association pour la transition Bas Carbone: Logo of the Low Carbon Transition Association
   Il concerne votre vie personnelle, et non pas votre boulot.: It's about your personal life, not your job.
   Comparez vos résultats avec votre famille ou un groupe d’ami·e·s: Compare your results with your family or a group of friends
   publicodes.Tutoriel.slide1.p1: It's a fact that the climate is warming because of human activity. Everything we consume, use and then throw away requires materials and energy. Whether it's during the production, use or end-of-life phase of the good or service. So all our activities contribute to greenhouse gas emissions. Some a great deal, others very little. But what is our impact, as individual citizens?
@@ -360,7 +361,6 @@ entries:
   Votre date de naissance: Your date of birth
   Organisation: Organisation
   Valider: Confirm
-  Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Discover the ABC workshops, open in a new tab
   Revenir au formulaire de connexion: Back to the login form
   Moyenne du groupe par catégorie: Group average by category
   Mes données restent-elles privées ?: Will my data remain private?
@@ -380,7 +380,6 @@ entries:
   Partagez le test pour obtenir vos premiers résultats.: Share the test to get your first results.
   Télécharger le kit, ouvrir dans un nouvel onglet: Download the kit, open in a new tab
   Me connecter: Connect me
-  Découvrez le calculateur, ouvrir dans un nouvel onglet: Discover the simulator, open in a new tab
   Vous pouvez utiliser vos données existantes, ou recommencer le test.: You can use your existing data, or start the test again.
   Organisez des temps d’animation et d’échanges physiques autour de Nos Gestes Climat pour fédérer et renforcer la compréhension des participants.: Organise events and physical exchanges around Nos Gestes Climat to bring people together and reinforce their understanding.
   Oups: Oops
@@ -517,7 +516,6 @@ entries:
   Le détail de mon empreinte: Details of my footprint
   Mes principaux postes d’émissions: My main emissions
   Comment est calculée votre empreinte ?: How is your footprint calculated?
-  l’objectif pour 2050: the target for 2050
   <0>2 tonnes</0> en 2050 ?: <0>2 tonnes</0> by 2050?
   par an: per year
   Par où commencer ?: Where to start?
@@ -622,7 +620,6 @@ entries:
   Intégrez Nos Gestes Climat directement à vos services: Integrate Nos Gestes Climat directly into your services
   Lancez une campagne Nos Gestes Climat personnalisée: Launch a personalised Nos Gestes Climat campaign
   vous souhaitez lancer une campagne Nos Gestes Climat et sensibiliser toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !: would you like to launch an Nos Gestes Climat campaign and raise awareness among all your stakeholders? Discover our 100% free tools!
-  Permettez à vos cibles (clients, étudiants, participants, habitants..) de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d’autres modes d’intégration prêts à l’emploi.: Allow your target audiences (customers, students, participants, residents, etc.) to calculate and reduce their carbon footprint directly from your web and mobile platforms, using a dedicated link or other ready-to-use integration methods.
   Ils ont testé: They tested
   Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.: Visit the nosgestesclimat.fr website to calculate your carbon footprint.
   Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone..lock: Retrouvez toutes les pages du site nosgestesclimat.fr pour calculer votre empreinte carbone.
@@ -644,16 +641,12 @@ entries:
   Campagne de: Campaign for
   Un grand-père et sa petite-fille au cinéma, mangeant du pop-corn.: A grandfather and his granddaughter at the cinema, eating popcorn.
   Des enfants sortant de l'école en se tenant la main.: Children leaving school holding hands.
-  Une personne livrant du courrier.: A person delivering mail.
-  Groupe de personnes devant un paperboard: Group of people in front of a flipchart
   Un groupe d'amis jouant à un jeu de société.: A group of friends playing a board game.
   Une femme préparant un bon petit plat.: A woman preparing a tasty dish.
   Un femme lisant le journal au coin du feu avec un chien assoupi.: A woman reading the newspaper by the fire with a dozing dog.
   Nous améliorons le site en continu à partir de <2>vos retours</2>. Découvrez la tambouille interne de Nos Gestes Climat.: We're constantly improving the site based on <2>your feedback</2>. Find out more about Nos Gestes Climat.
   Le calculateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.: The Nos Gestes Climat simulator is based on the calculation model of the same name, made up of a set of building blocks.
   Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul. À lire tranquillement au coin du feu.: This documentation gives you transparent access to all the variables involved in the calculation. Read it by the fire.
-  Une fille réfléchissant à son empreinte carbone.: A girl thinking about her carbon footprint.
-  Personne sur un vélo récupérant du courrier dans une boîte aux lettres: Person on a bicycle collecting mail from a letterbox
   Deux personnes se faisant une accolade en levant le bras en signe de victoire.: Two people hugging and raising their arms in victory.
   plus: more
   et vous aura la plus faible empreinte ?: and you will have the smallest footprint?
@@ -876,7 +869,6 @@ entries:
   les données du Ministère de la Transition Écologique, nouvelle fenêtre: data from the Ministry for Ecological Transition, new window
   'Quelles sont les principales sources d’émissions de CO2e ? ': 'What are the main sources of CO2e emissions? '
   'Les émissions de gaz à effet de serre proviennent de différents secteurs de l’activité humaine. Les principales sources sont :': 'Greenhouse gas emissions come from various sectors of human activity. The main sources are :'
-  L'empreinte carbone, une première étape pour passer à l’action: The carbon footprint, a first step towards action
   Comment calculer son empreinte carbone ?: How do you calculate your carbon footprint?
   Qu’est-ce que le carbone et pourquoi est-il important ?: What is carbon and why is it important?
   "L'empreinte carbone : une empreinte parmi d'autres !": 'The carbon footprint: one footprint among many!'
@@ -957,16 +949,10 @@ entries:
   'Privilégier les matériaux durables (lin, chanvre, laine, et si coton : recyclé)': 'Favour sustainable materials (linen, hemp, wool, and if cotton: recycled)'
   Deux mini-vans, illustrant l'empreinte carbone des transports: Two minivans, illustrating the carbon footprint of transport
   Calculez votre <2>empreinte carbone</2> et votre <6>empreinte eau</6> en <9>seulement 10 minutes</9>.: Calculate your <2>carbon</2> and <6>water</6> <2>footprints</2> in <9>just 10 minutes</9>.
-  Deux représentations graphiques de l'empreinte carbone et eau: Two graphical representations of the carbon and water footprints
   Chez Nos Gestes Climat, nous croyons au pouvoir de <2>l’action collective</2> pour relever les défis environnementaux. Notre mission est de <6>sensibiliser</6> et d’accompagner chacun, citoyens, entreprises et collectivités, à mieux comprendre son empreinte écologique, carbone ou eau, <9>identifier les gestes</9> pour la réduire et <13>entraîner leur entourage</13> dans ce mouvement.: At Nos Gestes Climat, we believe in the power of <2>collective action</2> to meet environmental challenges. Our mission is to <6>raise awareness</6> and help everyone - citizens, businesses and local authorities - to better understand their ecological, carbon and water footprints, to <9>identify the steps</9> they can take to reduce them and to <13>involve those around them</13> in this movement.
-  un groupe de personnes en train de réfléchir à leurs impacts et leur bilan carbone et eau: a group of people thinking about their impact and their carbon and water footprints
-  Un groupe d'amis comparant leurs empreintes carbone et eau: A group of friends comparing their carbon and water footprints
-  Un groupe de personnes en conférence, illustrant l'engagement collectif pour le climat: A group of people at a conference, illustrating their collective commitment to the climate
   Une fille tapant sur son ordinateur, entouré d'objets aux empreintes carbone et eau variées.: A girl typing on her computer, surrounded by objects with various carbon and water footprints.
   Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone: An event for the climate, illustrating actions to reduce one's carbon footprint
   Le saviez vous ?: Did you know?
-  Graphique de l'empreinte eau: Water footprint graph
-  Graphique de l'empreinte carbone: Carbon footprint graph
   Une jeune femme lisant un journal, illustrant l'empreinte carbone liée à son logement: A young woman reading a newspaper, illustrating the carbon footprint of her home
   Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique: An ice pack sparse in the sunlight, illustrating our maladaptation to climate change
   Une jeune femme cuisinant, illustrant l'importance de ses choix d'alimentation dans le calcul de son empreinte carbone: A young woman cooking, illustrating the importance of her food choices in calculating her carbon footprint
@@ -984,7 +970,6 @@ entries:
   5 infolettres sur l’impact du logement: 5 newsletters on the impact of housing
   <0>Comparez vos résultats avec</0> <2>vos proches</2>: <0>Compare your results with</0> <2>your friends</2>
   4 infolettres l’impact des transports: 4 newsletters the impact of transport
-  Comparez vos résultats avec vos proches: Compare your results with those around you
   Je m'inscris à l'infolettre: Subscribe to our newsletter
   À la une !: Featured article
   D'autres articles sur le même sujet: Other articles on the same subject
@@ -1192,8 +1177,9 @@ entries:
   Oups ! Une erreur s'est produite. Veuillez recharger la page. Si le problème persiste, vous pouvez: Oops! An error has occurred. Please reload the page. If the problem persists, you can
   Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez: Oops! An error has occurred. Please try again later. If the problem persists, you can
   "Oups ! Une erreur s'est produite au moment de récupérer les informations de votre campagne. Vous pouvez la retrouver depuis ": 'Oops! There was an error retrieving your campaign information. You can retrieve it from '
-  Donner votre avis: Give feedback
-  Emoji main qui salue: Emoji waving hand
+  endPage.tallyForm.buttonLabel: Give your opinion
+  endPage.carboneChart.gaugeDescription: Graph showing your carbon footprint of {{currentValue}} {{unit}} par an, soit {{percentage}}% de l'échelle maximale. L'objectif 2050 est de {{targetValue}} tonnes per year.
+  endPage.carboneChart.progressBarLabel: Carbon footprint progress bar
   Une erreur s'est produite au moment de sauvegarder vos données. Veuillez réessayer dans quelques instants.: An error has occurred while saving your data. Please try again shortly.
   Vous avez la possibilité d'ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.: You can add additional questions to the test for your statistics. Your activated additional questions will be asked to each participant before the Nos Gestes Climat test. Answering them will be optional.
   C'est parti !: We're off!
@@ -1278,3 +1264,87 @@ entries:
   Un groupe d’amis jouant à un jeu de société.: A group of friends playing a board game.
   Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Like 2 million other people, measure your ecological footprint in 10 minutes. A free tool to take stock and reduce your CO2 emissions.
   Pour vous désinscrire, passez par le lien en bas de l'email reçu: To unsubscribe, use the link at the bottom of the email you receive
+  Page active: Active page
+  Sélectionner ce filtre et afficher uniquement les actions de cette catégorie: Select this filter to display only the shares in this category
+  Eau, évaluer la métrique eau: Water, assess the water metric
+  Carbone, évaluer la métrique carbone: Carbon, assessing the carbon metric
+  Connexion: Connection
+  Visiter cette page: Visit this page
+  endPage.tallyForm.buttonLabel.lock: Donner votre avis
+  actions.engagementIcon.ariaLabel: shares are located below
+  actions.engagementIcon.ariaLabel.lock: ', les actions se trouvent en dessous'
+  endPage.waterActions.lireArticle: Open article in a new window
+  endPage.waterActions.lireArticle.lock: Ouvrir l'article dans une nouvelle fenêtre
+  organisations.ourTools.newTab: Open in a new window
+  organisations.ourTools.newTab.lock: Ouvrir dans une nouvelle fenêtre
+  endPage.carboneTarget.enSavoirPlus: Open the page in a new window
+  endPage.carboneTarget.enSavoirPlus.lock: Ouvrir la page dans une nouvelle fenêtre
+  endPage.carboneChart.progressBarLabel.lock: Barre de progression de votre empreinte carbone
+  common.partners.abc.ariaLabel: Association for the Low Carbon Transition
+  common.partners.abc.ariaLabel.lock: Association pour la transition Bas Carbone
+  authorBlock.defaultAlt: Photo of the author
+  authorBlock.defaultAlt.lock: Photo de l'auteur ou de l'autrice
+  international.electricityMaps.ariaLabel: Visit the Electricity Maps website (opens in a new tab)
+  international.electricityMaps.ariaLabel.lock: Visiter le site Electricity Maps (s'ouvre dans un nouvel onglet)
+  endPage.carboneChart.gaugeDescription.lock: Graphique montrant votre empreinte carbone de {{currentValue}} {{unit}} par an, soit {{percentage}}% de l'échelle maximale. L'objectif 2050 est de {{targetValue}} tonnes par an.
+  endPage.blogArticles.lireArticle: Open article in a new window
+  endPage.blogArticles.lireArticle.lock: Ouvrir l'article dans une nouvelle fenêtre
+  Découvrez le calculateur, ouvrir dans une nouvelle fenêtre: Discover the calculator, open in a new window
+  Découvrez les ateliers de l’ABC, ouvrir dans une nouvelle fenêtre: Discover the ABC workshops, open in a new window
+  l'objectif pour 2050: the target for 2050
+  common.marianne.ariaLabel: French Republic
+  common.marianne.ariaLabel.lock: République Française
+  Permettez à vos cibles (clients, étudiants, participants, habitants..) de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d'autres modes d'intégration prêts à l'emploi.: Allow your target audiences (customers, students, participants, residents, etc.) to calculate and reduce their carbon footprint directly from your web and mobile platforms, using a dedicated link or other ready-to-use integration methods.
+  actions.buttons.reject: Reject the action
+  actions.buttons.reject.lock: Rejeter l'action
+  actions.buttons.select: Select action
+  actions.buttons.select.lock: Sélectionner l'action
+  empreinte-carbone.heroTitle: The carbon footprint, a first step towards action
+  empreinte-carbone.heroTitle.lock: L'empreinte carbone, une première étape pour passer à l'action
+  actions.chooseAction.ariaLabel.unselected: Select this action
+  actions.chooseAction.ariaLabel.unselected.lock: Sélectionner cette action
+  actions.rejectAction.ariaLabel.selected: Action dismissed
+  actions.rejectAction.ariaLabel.selected.lock: Action rejetée
+  actions.rejectAction.ariaLabel.unselected: Reject this action
+  actions.rejectAction.ariaLabel.unselected.lock: Rejeter cette action
+  actions.chooseAction.ariaLabel.selected: Action selected, cancel selection
+  actions.chooseAction.ariaLabel.selected.lock: Action sélectionnée, annuler la sélection
+  documentation.search.results_one: '{{count}} result(s) found'
+  documentation.search.results_one.lock: '{{count}} résultat(s) trouvé(s)'
+  search.results.lock: '{{count}} résultat(s) trouvé(s)'
+  documentation.search.input.label: Enter keywords
+  documentation.search.input.label.lock: Entrez des mots clefs
+  Formulaire - Demander une démo: Form - Request a demo
+  documentation.search.h2: Explore our models
+  documentation.search.h2.lock: Explorez nos modèles
+  documentation.search.label: Documentation search
+  documentation.search.label.lock: Recherche dans la documentation
+  search.results.label.lock: Résultats de recherche
+  documentation.search.results_many: '{{count}} result(s) found'
+  documentation.search.results_many.lock: '{{count}} résultat(s) trouvé(s)'
+  documentation.search.input.placeholder: Enter search keywords
+  documentation.search.input.placeholder.lock: Entrez des mots-clefs de recherche
+  search.documentation.label.lock: Recherche dans la documentation
+  documentation.noresults: No results were found for this search
+  documentation.noresults.lock: Aucun résultat ne correspond à cette recherche
+  documentation.search.results_other: '{{count}} result(s) found'
+  documentation.search.results_other.lock: '{{count}} résultat(s) trouvé(s)'
+  Chargement du tableau de bord...: Loading the dashboard...
+  organisations.poll.create.custom_question.add_button.label: Add a custom question
+  organisations.poll.create.custom_question.add_button.label.lock: Ajouter une question personnalisée
+  documentation.search.results.label: Search results
+  documentation.search.results.label.lock: Résultats de recherche
+  Formulaire - Désactiver les cookies de mesure d'audience via Matomo: Form - Deactivate audience measurement cookies via Matomo
+  Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.: This graph shows the distribution of users' simulation results, enabling trends and behaviour to be analysed.
+  Formulaire - nous faire part de vos remarques sur le site: Form - send us your comments on the site
+  Iframe - Google Tag Manager: Iframe - Google Tag Manager
+  organisations.poll.create.custom_question.add_button.max_reached: You have reached the maximum number of personalised questions
+  organisations.poll.create.custom_question.add_button.max_reached.lock: Vous avez atteint le nombre maximum de questions personnalisées
+  Graphique de distribution des résultats de simulation pour le mois dernier: Graph showing the distribution of simulation results for last month
+  Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.: This dashboard displays site traffic statistics, including the number of visits, simulations completed and usage trends.
+  Statistiques d'usage du mode "Challenge tes amis": Usage statistics for the "Challenge your friends" mode
+  Graphiques du nombre de visites et de simulations sur le site: Graphs showing the number of visits and simulations on the site
+  Impossible de charger le tableau de bord. Veuillez réessayer plus tard.: Unable to load the dashboard. Please try again later.
+  Statistiques d'usage du mode "Organisations": Statistics on the use of the "Organisations" mode
+  Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.: Detailed statistics on the use of Organisations mode, including the number of organisations created, participants and actions completed.
+  Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.: Statistics on the use of Challenge mode, including the number of challenges created, participants and results shared.

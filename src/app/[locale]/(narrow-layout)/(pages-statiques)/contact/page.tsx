@@ -3,7 +3,6 @@ import MailIcon from '@/components/icons/share/MailIcon'
 import Trans from '@/components/translation/trans/TransServer'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import type { DefaultPageProps } from '@/types'
@@ -20,7 +19,6 @@ export const generateMetadata = getCommonMetadata({
 
 export default async function Contact({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
 
   return (
     <div className="pb-4">
@@ -57,18 +55,16 @@ export default async function Contact({ params }: DefaultPageProps) {
           src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_delivering_mail_b981de31a3.png"
           width="300"
           height="400"
-          alt={t(
-            'Personne sur un vélo récupérant du courrier dans une boîte aux lettres'
-          )}
+          alt=""
         />
       </div>
       <Card>
         <iframe
+          title={t('Formulaire - nous faire part de vos remarques sur le site')}
           data-tally-src="https://tally.so/embed/w59G1Z?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
           loading="lazy"
           width="100%"
-          height="1306"
-          title="Vous avez un retour sur Nos Gestes Climat ?"></iframe>
+          height="1306"></iframe>
       </Card>
 
       <Script id="tally">{`var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}`}</Script>

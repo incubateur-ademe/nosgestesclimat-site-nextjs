@@ -1,10 +1,10 @@
 // eslint-disable-next-line storybook/no-renderer-packages
 import type { Meta, StoryObj } from '@storybook/nextjs'
-import CheckboxInputGroup from './CheckboxInputGroup'
+import CheckboxInput from './CheckboxInput'
 
-const meta: Meta<typeof CheckboxInputGroup> = {
-  title: 'Design System/Inputs/CheckboxInputGroup',
-  component: CheckboxInputGroup,
+const meta: Meta<typeof CheckboxInput> = {
+  title: 'Design System/Inputs/CheckboxInput',
+  component: CheckboxInput,
   parameters: {
     layout: 'centered',
   },
@@ -26,9 +26,17 @@ const meta: Meta<typeof CheckboxInputGroup> = {
       control: 'text',
       description: 'Error message to display',
     },
+    helperText: {
+      control: 'text',
+      description: 'Helper text below the checkbox',
+    },
     className: {
       control: 'text',
       description: 'Additional CSS classes',
+    },
+    containerClassName: {
+      control: 'text',
+      description: 'Additional CSS classes for the container',
     },
     value: {
       control: 'boolean',
@@ -42,6 +50,10 @@ const meta: Meta<typeof CheckboxInputGroup> = {
       control: 'boolean',
       description: 'Whether the checkbox is required',
     },
+    disabled: {
+      control: 'boolean',
+      description: 'Whether the checkbox is disabled',
+    },
     size: {
       control: 'select',
       options: ['sm', 'lg', 'xl'],
@@ -51,6 +63,10 @@ const meta: Meta<typeof CheckboxInputGroup> = {
       control: 'boolean',
       description: 'Whether to disable form submission on Enter key',
     },
+    mention: {
+      control: 'text',
+      description: 'Additional mention text to display next to label',
+    },
     onChange: {
       action: 'changed',
       description: 'Change handler',
@@ -59,7 +75,7 @@ const meta: Meta<typeof CheckboxInputGroup> = {
 }
 
 export default meta
-type Story = StoryObj<typeof CheckboxInputGroup>
+type Story = StoryObj<typeof CheckboxInput>
 
 export const Default: Story = {
   args: {
@@ -84,11 +100,29 @@ export const WithError: Story = {
   },
 }
 
+export const WithHelperText: Story = {
+  args: {
+    name: 'example-helper',
+    label: 'Recevoir les notifications',
+    helperText:
+      'Vous recevrez des emails occasionnels avec nos dernières nouvelles',
+  },
+}
+
 export const Required: Story = {
   args: {
     name: 'example-required',
     label: "J'accepte les conditions d'utilisation",
     required: true,
+  },
+}
+
+export const Disabled: Story = {
+  args: {
+    name: 'example-disabled',
+    label: 'Checkbox désactivé',
+    disabled: true,
+    defaultChecked: true,
   },
 }
 
@@ -129,5 +163,13 @@ export const Controlled: Story = {
     name: 'example-controlled',
     label: 'Checkbox contrôlé',
     value: true,
+  },
+}
+
+export const WithMention: Story = {
+  args: {
+    name: 'example-mention',
+    label: 'Checkbox optionnel',
+    mention: 'Optionnel',
   },
 }

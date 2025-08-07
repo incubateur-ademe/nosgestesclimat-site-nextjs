@@ -41,7 +41,14 @@ export default function OurTools() {
             target="_blank"
             aria-label={t('Télécharger le kit, ouvrir dans un nouvel onglet')}>
             <Trans>Accéder au kit</Trans>
-            <ExternalLinkIcon className="stroke-primary-700 ml-2" />
+            <ExternalLinkIcon
+              role="img"
+              aria-label={t(
+                'organisations.ourTools.newTab',
+                'Ouvrir dans une nouvelle fenêtre'
+              )}
+              className="stroke-primary-700 ml-2"
+            />
           </ButtonLink>
         </CTACard>
 
@@ -63,10 +70,17 @@ export default function OurTools() {
             href="https://drive.google.com/drive/folders/1dORmBbDLDG31PLLOblP8Wg5CrrksAfjV"
             target="_blank"
             aria-label={t(
-              'Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet'
+              'Découvrez les ateliers de l’ABC, ouvrir dans une nouvelle fenêtre'
             )}>
             <Trans>Accéder aux ressources</Trans>
-            <ExternalLinkIcon className="stroke-primary-700 ml-2" />
+            <ExternalLinkIcon
+              role="img"
+              aria-label={t(
+                'organisations.ourTools.newTab',
+                'Ouvrir dans une nouvelle fenêtre'
+              )}
+              className="stroke-primary-700 ml-2"
+            />
           </ButtonLink>
         </CTACard>
 
@@ -88,10 +102,17 @@ export default function OurTools() {
             target="_blank"
             trackingEvent={organisationsDashboardClickImpactCo2}
             aria-label={t(
-              'Découvrez le calculateur, ouvrir dans un nouvel onglet'
+              'Découvrez le calculateur, ouvrir dans une nouvelle fenêtre'
             )}>
             <Trans>Découvrir le calculateur</Trans>
-            <ExternalLinkIcon className="stroke-primary-700 ml-2" />
+            <ExternalLinkIcon
+              role="img"
+              aria-label={t(
+                'organisations.ourTools.newTab',
+                'Ouvrir dans une nouvelle fenêtre'
+              )}
+              className="stroke-primary-700 ml-2"
+            />
           </ButtonLink>
         </CTACard>
       </div>

@@ -17,7 +17,7 @@ export default async function GroupBlock({ locale }: { locale: string }) {
 
       <Image
         src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_comparer_empreinte_carbone_et_eau_entre_amis_ddbfa5e83d.svg"
-        alt={t('Comparez vos résultats avec vos proches')}
+        alt=""
         width={240}
         height={240}
       />
