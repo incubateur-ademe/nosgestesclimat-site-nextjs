@@ -9,7 +9,7 @@ export default function StatsContent() {
   const { t } = useClientTranslation()
 
   return (
-    <main className="my-12" role="main">
+    <div className="my-12">
       <Title>
         <Trans>Statistiques</Trans>
       </Title>
@@ -94,6 +94,6 @@ export default function StatsContent() {
           />
         </article>
       </section>
-    </main>
+    </div>
   )
 }
