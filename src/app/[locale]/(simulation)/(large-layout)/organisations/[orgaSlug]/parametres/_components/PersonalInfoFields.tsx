@@ -1,8 +1,8 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import CheckboxInput from '@/design-system/inputs/CheckboxInput'
+import TextInput from '@/design-system/inputs/TextInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { OrgaSettingsInputsType } from '@/types/organisations'
 import type { UseFormRegister } from 'react-hook-form'
@@ -19,23 +19,25 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <TextInputGroup
+      <TextInput
         label={<Trans>Votre prénom</Trans>}
+        autoComplete="given-name"
         value={defaultValues.administratorFirstName}
         {...register('administratorFirstName', {
           required: t('Ce champ est requis'),
         })}
       />
 
-      <TextInputGroup
+      <TextInput
         label={<Trans>Votre nom</Trans>}
+        autoComplete="family-name"
         value={defaultValues.administratorLastName}
         {...register('administratorLastName', {
           required: t('Ce champ est requis'),
         })}
       />
 
-      <TextInputGroup
+      <TextInput
         label={
           <p className="mb-0 flex items-center justify-between">
             <Trans>Votre poste</Trans>
@@ -45,10 +47,11 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
           </p>
         }
         value={defaultValues.position}
+        autoComplete="organization-title"
         {...register('position')}
       />
 
-      <TextInputGroup
+      <TextInput
         label={
           <p className="mb-0 flex w-full justify-between">
             <Trans>Votre téléphone</Trans>{' '}
@@ -58,20 +61,22 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
             </span>
           </p>
         }
+        autoComplete="tel"
         value={defaultValues.administratorTelephone}
         {...register('administratorTelephone')}
       />
 
-      <TextInputGroup
+      <TextInput
         label={<Trans>Votre e-mail</Trans>}
         value={defaultValues.email}
+        autoComplete="email"
         {...register('email', {
           required: t('Ce champ est requis'),
         })}
       />
 
       <div className="w-[32rem]">
-        <CheckboxInputGroup
+        <CheckboxInput
           size="xl"
           disableSubmitOnEnter
           defaultChecked={defaultValues.hasOptedInForCommunications}
