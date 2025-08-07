@@ -88,7 +88,7 @@ entries:
   noresults: No results were found for this search
   search.results: '{{count}} result(s) found'
   search.results.label: Search results
-  search.documentation.label: Search in documentation
+  search.documentation.label: Documentation search
   participant: participant
   plus d'1 kg: more than 1 kg
   plus d'1 tonne: more than 1 tonne
@@ -1303,3 +1303,42 @@ entries:
   actions.rejectAction.ariaLabel.unselected.lock: Rejeter cette action
   actions.chooseAction.ariaLabel.selected: Action selected, cancel selection
   actions.chooseAction.ariaLabel.selected.lock: Action sélectionnée, annuler la sélection
+  documentation.search.results_one: '{{count}} result(s) found'
+  documentation.search.results_one.lock: '{{count}} résultat(s) trouvé(s)'
+  search.results.lock: '{{count}} résultat(s) trouvé(s)'
+  documentation.search.input.label: Enter keywords
+  documentation.search.input.label.lock: Entrez des mots clefs
+  Formulaire - Demander une démo: Form - Request a demo
+  documentation.search.h2: Explore our models
+  documentation.search.h2.lock: Explorez nos modèles
+  documentation.search.label: Documentation search
+  documentation.search.label.lock: Recherche dans la documentation
+  search.results.label.lock: Résultats de recherche
+  documentation.search.results_many: '{{count}} result(s) found'
+  documentation.search.results_many.lock: '{{count}} résultat(s) trouvé(s)'
+  documentation.search.input.placeholder: Enter search keywords
+  documentation.search.input.placeholder.lock: Entrez des mots-clefs de recherche
+  search.documentation.label.lock: Recherche dans la documentation
+  documentation.noresults: No results were found for this search
+  documentation.noresults.lock: Aucun résultat ne correspond à cette recherche
+  documentation.search.results_other: '{{count}} result(s) found'
+  documentation.search.results_other.lock: '{{count}} résultat(s) trouvé(s)'
+  Chargement du tableau de bord...: Loading the dashboard...
+  organisations.poll.create.custom_question.add_button.label: Add a custom question
+  organisations.poll.create.custom_question.add_button.label.lock: Ajouter une question personnalisée
+  documentation.search.results.label: Search results
+  documentation.search.results.label.lock: Résultats de recherche
+  Formulaire - Désactiver les cookies de mesure d'audience via Matomo: Form - Deactivate audience measurement cookies via Matomo
+  Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.: This graph shows the distribution of users' simulation results, enabling trends and behaviour to be analysed.
+  Formulaire - nous faire part de vos remarques sur le site: Form - send us your comments on the site
+  Iframe - Google Tag Manager: Iframe - Google Tag Manager
+  organisations.poll.create.custom_question.add_button.max_reached: You have reached the maximum number of personalised questions
+  organisations.poll.create.custom_question.add_button.max_reached.lock: Vous avez atteint le nombre maximum de questions personnalisées
+  Graphique de distribution des résultats de simulation pour le mois dernier: Graph showing the distribution of simulation results for last month
+  Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.: This dashboard displays site traffic statistics, including the number of visits, simulations completed and usage trends.
+  Statistiques d'usage du mode "Challenge tes amis": Usage statistics for the "Challenge your friends" mode
+  Graphiques du nombre de visites et de simulations sur le site: Graphs showing the number of visits and simulations on the site
+  Impossible de charger le tableau de bord. Veuillez réessayer plus tard.: Unable to load the dashboard. Please try again later.
+  Statistiques d'usage du mode "Organisations": Statistics on the use of the "Organisations" mode
+  Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.: Detailed statistics on the use of Organisations mode, including the number of organisations created, participants and actions completed.
+  Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.: Statistics on the use of Challenge mode, including the number of challenges created, participants and results shared.
