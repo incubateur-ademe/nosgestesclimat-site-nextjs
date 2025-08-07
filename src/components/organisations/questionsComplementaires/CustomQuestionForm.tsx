@@ -107,6 +107,17 @@ export default function CustomQuestionForm({
         color="link"
         size="sm"
         aria-disabled={hasReachedMaxQuestions}
+        aria-label={
+          hasReachedMaxQuestions
+            ? t(
+                'organisations.poll.create.custom_question.add_button.max_reached',
+                'Vous avez atteint le nombre maximum de questions personnalisées'
+              )
+            : t(
+                'organisations.poll.create.custom_question.add_button.label',
+                'Ajouter une question personnalisée'
+              )
+        }
         onClick={
           hasReachedMaxQuestions
             ? () => {}
