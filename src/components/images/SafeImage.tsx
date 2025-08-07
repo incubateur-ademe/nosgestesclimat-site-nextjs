@@ -19,7 +19,6 @@ export default function SafeImage({ alt, src, ...props }: ImageProps) {
         setIsErrorLoading(true)
       }}
       crossOrigin="anonymous">
-      {' '}
       <></>
     </Image>
   )

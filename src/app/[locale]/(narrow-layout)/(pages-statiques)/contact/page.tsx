@@ -3,7 +3,6 @@ import MailIcon from '@/components/icons/share/MailIcon'
 import Trans from '@/components/translation/trans/TransServer'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import type { DefaultPageProps } from '@/types'
@@ -20,7 +19,6 @@ export const generateMetadata = getCommonMetadata({
 
 export default async function Contact({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
 
   return (
     <div className="pb-4">
@@ -57,9 +55,7 @@ export default async function Contact({ params }: DefaultPageProps) {
           src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_delivering_mail_b981de31a3.png"
           width="300"
           height="400"
-          alt={t(
-            'Personne sur un vélo récupérant du courrier dans une boîte aux lettres'
-          )}
+          alt=""
         />
       </div>
       <Card>

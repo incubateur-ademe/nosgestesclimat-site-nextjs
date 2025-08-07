@@ -7,7 +7,6 @@ entries:
   'Actions écartées :': 'Actions écartées :'
   Charger: Charger
   Chargée: Chargée
-  Choisir l'action: Choisir l'action
   Choisir le type de tri des actions: Choisir le type de tri des actions
   Choisir une autre région: Choisir une autre région
   Choisissez une région parmi celles disponibles !: Choisissez une région parmi celles disponibles !
@@ -71,6 +70,9 @@ entries:
   model.stats: Le modèle comprend aujourd'hui <1></1> règles de calcul. Parmi elles, <3></3> règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.
   model.stats2: Il est constitué d'une combinaison de centaines de modèles micro "bottom-up" pour les consommations carbonées de notre vie quotidienne, et d'un modèle "top-down" dérivé des travaux du SDES pour estimer l'empreinte par personne des services dits sociétaux (services publics et services de base tels les télécom). <2>En savoir plus sur cette hybridation</2>.
   noresults: Aucun résultat ne correspond à cette recherche
+  search.results: '{{count}} résultat(s) trouvé(s)'
+  search.results.label: Résultats de recherche
+  search.documentation.label: Recherche dans la documentation
   participant: participant
   plus d'1 kg: plus d'1 kg
   plus d'1 tonne: plus d'1 tonne
@@ -166,7 +168,6 @@ entries:
   Il concerne votre vie personnelle, et non pas votre boulot.: Il concerne votre vie personnelle, et non pas votre boulot.
   international.comment.2: Explorez en détail les spécificités de chaque pays.
   Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.
-  Logo de l'Association pour la transition Bas Carbone: Logo de l'Association pour la transition Bas Carbone
   Mes réponses: Mes réponses
   Passer en français: Passer en français
   publicodes.Tutoriel.slide1.p1: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
@@ -301,8 +302,6 @@ entries:
   '{linkToSimulateurPageLabel}': '{linkToSimulateurPageLabel}'
   Accéder au kit: Accéder au kit
   Administrateur·ice: Administrateur·ice
-  Découvrez le calculateur, ouvrir dans un nouvel onglet: Découvrez le calculateur, ouvrir dans un nouvel onglet
-  Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet
   Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.: Êtes-vous sûr de vouloir quitter cette page ? Vos modifications seront perdues.
   Facultatif: Facultatif
   Groupes d'amis: Groupes d'amis
@@ -478,7 +477,6 @@ entries:
   De plus, la disparition de leur environnement naturel, due à la déforestation et à l'urbanisation, réduit leurs zones de vie potentielles, augmentant ainsi leur vulnérabilité face aux prédateurs et aux maladies.: De plus, la disparition de leur environnement naturel, due à la déforestation et à l'urbanisation, réduit leurs zones de vie potentielles, augmentant ainsi leur vulnérabilité face aux prédateurs et aux maladies.
   Découvre mon bilan carbone sur Nos Gestes Climat.: Découvre mon bilan carbone sur Nos Gestes Climat.
   Est-ce que je peux y arriver tout seul ?: Est-ce que je peux y arriver tout seul ?
-  l’objectif pour 2050: l’objectif pour 2050
   Le détail de mon empreinte: Le détail de mon empreinte
   Les hérissons sont menacé⋅e⋅s par le changement climatique et la perte de biodiversité. L'augmentation des températures et les conditions climatiques extrêmes perturbent leur habitat naturel, rendant difficile la recherche de nourriture et la reproduction.: Les hérissons sont menacé⋅e⋅s par le changement climatique et la perte de biodiversité. L'augmentation des températures et les conditions climatiques extrêmes perturbent leur habitat naturel, rendant difficile la recherche de nourriture et la reproduction.
   Maintenant que vous avez fait votre bilan carbone et que vous avez pris conscience de votre empreinte, vous pouvez découvrir <2>l’ensemble des gestes</2> qui vous permettront d’atteindre progressivement l’objectif de 2 tonnes.: Maintenant que vous avez fait votre bilan carbone et que vous avez pris conscience de votre empreinte, vous pouvez découvrir <2>l’ensemble des gestes</2> qui vous permettront d’atteindre progressivement l’objectif de 2 tonnes.
@@ -560,7 +558,6 @@ entries:
   Intégrez Nos Gestes Climat directement à vos services: Intégrez Nos Gestes Climat directement à vos services
   Lancez une campagne Nos Gestes Climat personnalisée: Lancez une campagne Nos Gestes Climat personnalisée
   Les ressources de l'ABC: Les ressources de l'ABC
-  Permettez à vos cibles (clients, étudiants, participants, habitants..) de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d’autres modes d’intégration prêts à l’emploi.: Permettez à vos cibles (clients, étudiants, participants, habitants..) de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d’autres modes d’intégration prêts à l’emploi.
   Tableau de bord: Tableau de bord
   vous souhaitez lancer une campagne Nos Gestes Climat et sensibiliser toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !: vous souhaitez lancer une campagne Nos Gestes Climat et sensibiliser toutes vos parties prenantes ? Découvrez nos outils 100% gratuits !
   Ils ont testé: Ils ont testé
@@ -585,16 +582,12 @@ entries:
   Un grand-père et sa petite-fille au cinéma, mangeant du pop-corn.: Un grand-père et sa petite-fille au cinéma, mangeant du pop-corn.
   Des enfants sortant de l'école en se tenant la main.: Des enfants sortant de l'école en se tenant la main.
   Deux personnes se faisant une accolade en levant le bras en signe de victoire.: Deux personnes se faisant une accolade en levant le bras en signe de victoire.
-  Groupe de personnes devant un paperboard: Groupe de personnes devant un paperboard
   Le calculateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.: Le calculateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.
   Nous améliorons le site en continu à partir de <2>vos retours</2>. Découvrez la tambouille interne de Nos Gestes Climat.: Nous améliorons le site en continu à partir de <2>vos retours</2>. Découvrez la tambouille interne de Nos Gestes Climat.
-  Personne sur un vélo récupérant du courrier dans une boîte aux lettres: Personne sur un vélo récupérant du courrier dans une boîte aux lettres
   Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul. À lire tranquillement au coin du feu.: Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul. À lire tranquillement au coin du feu.
   Un femme lisant le journal au coin du feu avec un chien assoupi.: Un femme lisant le journal au coin du feu avec un chien assoupi.
   Un groupe d'amis jouant à un jeu de société.: Un groupe d'amis jouant à un jeu de société.
   Une femme préparant un bon petit plat.: Une femme préparant un bon petit plat.
-  Une fille réfléchissant à son empreinte carbone.: Une fille réfléchissant à son empreinte carbone.
-  Une personne livrant du courrier.: Une personne livrant du courrier.
   (Cela peut durer quelques dizaines de secondes pour les campagnes avec un grand nombre de participants ! Merci pour votre patience.): (Cela peut durer quelques dizaines de secondes pour les campagnes avec un grand nombre de participants ! Merci pour votre patience.)
   à la moyenne du groupe: à la moyenne du groupe
   cliquez ici pour le reprendre !: cliquez ici pour le reprendre !
@@ -829,7 +822,6 @@ entries:
   L’empreinte carbone moyenne d’un Français est d’environ 9 tonnes de CO2e par an bien au-dessus de l’objectif de 2 tonnes en 2050 par personne par an recommandé par les Nations Unies pour limiter le dérèglement climatique.: L’empreinte carbone moyenne d’un Français est d’environ 9 tonnes de CO2e par an bien au-dessus de l’objectif de 2 tonnes en 2050 par personne par an recommandé par les Nations Unies pour limiter le dérèglement climatique.
   "L'empreinte carbone moyenne d'un français est de <2>9 tonnes de CO2e par an</2>. Objectif 2050 : 2 tonnes !": "L'empreinte carbone moyenne d'un français est de <2>9 tonnes de CO2e par an</2>. Objectif 2050 : 2 tonnes !"
   L’empreinte carbone n’est pas un bilan carbone. Même s’ils mesurent tous deux les émissions de gaz à effet de serre (GES), ils ne se calculent pas de la même manière et n’ont pas le même objectif.: L’empreinte carbone n’est pas un bilan carbone. Même s’ils mesurent tous deux les émissions de gaz à effet de serre (GES), ils ne se calculent pas de la même manière et n’ont pas le même objectif.
-  L'empreinte carbone, une première étape pour passer à l’action: L'empreinte carbone, une première étape pour passer à l’action
   La Chine et les États-Unis sont les deux plus grands émetteurs de gaz à effet de serre en raison de leur forte dépendance aux énergies fossiles (charbon, pétrole, gaz), de leurs industries énergivores ainsi que de la croissance rapide de leurs secteurs de transport et de production manufacturière.: La Chine et les États-Unis sont les deux plus grands émetteurs de gaz à effet de serre en raison de leur forte dépendance aux énergies fossiles (charbon, pétrole, gaz), de leurs industries énergivores ainsi que de la croissance rapide de leurs secteurs de transport et de production manufacturière.
   La France représente environ 1% des émissions globales mais une partie majeure de son impact est indirecte et liée aux importations de produits fabriqués massivement à l’étranger.: La France représente environ 1% des émissions globales mais une partie majeure de son impact est indirecte et liée aux importations de produits fabriqués massivement à l’étranger.
   La méthodologie du bilan carbone a été développée par l’ADEME (Agence de la transition écologique).: La méthodologie du bilan carbone a été développée par l’ADEME (Agence de la transition écologique).
@@ -901,15 +893,9 @@ entries:
   Calculez votre <2>empreinte carbone</2> et votre <6>empreinte eau</6> en <9>seulement 10 minutes</9>.: Calculez votre <2>empreinte carbone</2> et votre <6>empreinte eau</6> en <9>seulement 10 minutes</9>.
   Chez Nos Gestes Climat, nous croyons au pouvoir de <2>l’action collective</2> pour relever les défis environnementaux. Notre mission est de <6>sensibiliser</6> et d’accompagner chacun, citoyens, entreprises et collectivités, à mieux comprendre son empreinte écologique, carbone ou eau, <9>identifier les gestes</9> pour la réduire et <13>entraîner leur entourage</13> dans ce mouvement.: Chez Nos Gestes Climat, nous croyons au pouvoir de <2>l’action collective</2> pour relever les défis environnementaux. Notre mission est de <6>sensibiliser</6> et d’accompagner chacun, citoyens, entreprises et collectivités, à mieux comprendre son empreinte écologique, carbone ou eau, <9>identifier les gestes</9> pour la réduire et <13>entraîner leur entourage</13> dans ce mouvement.
   Deux mini-vans, illustrant l'empreinte carbone des transports: Deux mini-vans, illustrant l'empreinte carbone des transports
-  Deux représentations graphiques de l'empreinte carbone et eau: Deux représentations graphiques de l'empreinte carbone et eau
-  Un groupe d'amis comparant leurs empreintes carbone et eau: Un groupe d'amis comparant leurs empreintes carbone et eau
-  Un groupe de personnes en conférence, illustrant l'engagement collectif pour le climat: Un groupe de personnes en conférence, illustrant l'engagement collectif pour le climat
-  un groupe de personnes en train de réfléchir à leurs impacts et leur bilan carbone et eau: un groupe de personnes en train de réfléchir à leurs impacts et leur bilan carbone et eau
   Une fille tapant sur son ordinateur, entouré d'objets aux empreintes carbone et eau variées.: Une fille tapant sur son ordinateur, entouré d'objets aux empreintes carbone et eau variées.
   Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone: Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone
   Le saviez vous ?: Le saviez vous ?
-  Graphique de l'empreinte carbone: Graphique de l'empreinte carbone
-  Graphique de l'empreinte eau: Graphique de l'empreinte eau
   Calculez votre <2>empreinte carbone</2> en quelques minutes et découvrez les <6>actions</6> les plus efficaces pour <9>réduire vos émissions</9> de gaz à effet de serre.: Calculez votre <2>empreinte carbone</2> en quelques minutes et découvrez les <6>actions</6> les plus efficaces pour <9>réduire vos émissions</9> de gaz à effet de serre.
   Deux personnes accolées levant le bras en signe de succès, illustrant l'importance du collectif dans la réduction de nos empreintes carbone: Deux personnes accolées levant le bras en signe de succès, illustrant l'importance du collectif dans la réduction de nos empreintes carbone
   Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique: Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique
@@ -926,7 +912,6 @@ entries:
   5 infolettres sur l’impact du logement: 5 infolettres sur l’impact du logement
   À la une !: À la une !
   Accueil Blog: Accueil Blog
-  Comparez vos résultats avec vos proches: Comparez vos résultats avec vos proches
   D'autres articles sur le même sujet: D'autres articles sur le même sujet
   Je m'inscris à l'infolettre: Je m'inscris à l'infolettre
   Merci de votre inscription !: Merci de votre inscription !
@@ -1141,8 +1126,9 @@ entries:
   "Oups ! Une erreur s'est produite au moment de récupérer les informations de votre campagne. Vous pouvez la retrouver depuis ": "Oups ! Une erreur s'est produite au moment de récupérer les informations de votre campagne. Vous pouvez la retrouver depuis "
   Oups ! Une erreur s'est produite. Veuillez recharger la page. Si le problème persiste, vous pouvez: Oups ! Une erreur s'est produite. Veuillez recharger la page. Si le problème persiste, vous pouvez
   Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez: Oups ! Une erreur s'est produite. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez
-  Donner votre avis: Donner votre avis
-  Emoji main qui salue: Emoji main qui salue
+  endPage.tallyForm.buttonLabel: Donner votre avis
+  endPage.carboneChart.gaugeDescription: Graphique montrant votre empreinte carbone de {{currentValue}} {{unit}} par an, soit {{percentage}}% de l'échelle maximale. L'objectif 2050 est de {{targetValue}} tonnes par an.
+  endPage.carboneChart.progressBarLabel: Barre de progression de votre empreinte carbone
   C'est parti !: C'est parti !
   Une erreur s'est produite au moment de sauvegarder vos données. Veuillez réessayer dans quelques instants.: Une erreur s'est produite au moment de sauvegarder vos données. Veuillez réessayer dans quelques instants.
   Vous avez la possibilité d'ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.: Vous avez la possibilité d'ajouter des questions complémentaires au test pour vos statistiques. Vos questions additionnelles activées seront posées à chaque participant en amont du test Nos Gestes Climat. Leur réponse sera facultative.
@@ -1166,7 +1152,7 @@ entries:
   footer.thematicLandingPages.title: Pages thématiques
   cookies.banner.acceptAll: Tout accepter
   cookies.banner.customize: Personnaliser
-  cookies.banner.description: Nous utilisons des cookies, juste ce qu’il faut pour faire fonctionner le site, améliorer l’expérience et mesurer de manière anonyme l’audience. Avec votre accord, nous activons aussi un suivi simple de nos campagnes pour mieux comprendre ce qui fonctionne et mieux piloter notre budget.
+  cookies.banner.description: Nous utilisons des cookies, juste ce qu'il faut pour faire fonctionner le site, améliorer l'expérience et mesurer de manière anonyme l'audience. Avec votre accord, nous activons aussi un suivi simple de nos campagnes pour mieux comprendre ce qui fonctionne et mieux piloter notre budget.
   cookies.banner.refuseAll: Tout refuser
   cookies.banner.title: Chez Nos Gestes Climat, votre vie privée compte
   cookies.management.accept: Accepter
@@ -1208,3 +1194,32 @@ entries:
   Un groupe d’amis jouant à un jeu de société.: Un groupe d’amis jouant à un jeu de société.
   Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.
   Pour vous désinscrire, passez par le lien en bas de l'email reçu: Pour vous désinscrire, passez par le lien en bas de l'email reçu
+  actions.engagementIcon.ariaLabel: ', les actions se trouvent en dessous'
+  authorBlock.defaultAlt: Photo de l'auteur ou de l'autrice
+  common.marianne.ariaLabel: République Française
+  common.partners.abc.ariaLabel: Association pour la transition Bas Carbone
+  Découvrez le calculateur, ouvrir dans une nouvelle fenêtre: Découvrez le calculateur, ouvrir dans une nouvelle fenêtre
+  Découvrez les ateliers de l’ABC, ouvrir dans une nouvelle fenêtre: Découvrez les ateliers de l’ABC, ouvrir dans une nouvelle fenêtre
+  endPage.blogArticles.lireArticle: Ouvrir l'article dans une nouvelle fenêtre
+  endPage.carboneTarget.enSavoirPlus: Ouvrir la page dans une nouvelle fenêtre
+  endPage.waterActions.lireArticle: Ouvrir l'article dans une nouvelle fenêtre
+  international.electricityMaps.ariaLabel: Visiter le site Electricity Maps (s'ouvre dans un nouvel onglet)
+  l'objectif pour 2050: l'objectif pour 2050
+  organisations.ourTools.newTab: Ouvrir dans une nouvelle fenêtre
+  Permettez à vos cibles (clients, étudiants, participants, habitants..) de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d'autres modes d'intégration prêts à l'emploi.: Permettez à vos cibles (clients, étudiants, participants, habitants..) de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d'autres modes d'intégration prêts à l'emploi.
+  actions.buttons.reject: Rejeter l'action
+  actions.buttons.select: Sélectionner l'action
+  empreinte-carbone.heroTitle: L'empreinte carbone, une première étape pour passer à l'action
+  actions.chooseAction.ariaLabel.selected: Action sélectionnée, annuler la sélection
+  actions.chooseAction.ariaLabel.unselected: Sélectionner cette action
+  actions.rejectAction.ariaLabel.selected: Action rejetée
+  actions.rejectAction.ariaLabel.unselected: Rejeter cette action
+  documentation.noresults: Aucun résultat ne correspond à cette recherche
+  documentation.search.h2: Explorez nos modèles
+  documentation.search.input.label: Entrez des mots clefs
+  documentation.search.input.placeholder: Entrez des mots-clefs de recherche
+  documentation.search.label: Recherche dans la documentation
+  documentation.search.results_one: '{{count}} résultat(s) trouvé(s)'
+  documentation.search.results_many: '{{count}} résultat(s) trouvé(s)'
+  documentation.search.results_other: '{{count}} résultat(s) trouvé(s)'
+  documentation.search.results.label: Résultats de recherche
