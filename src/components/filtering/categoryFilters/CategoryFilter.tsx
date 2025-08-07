@@ -5,12 +5,15 @@ import { trackingCategoryFilter } from '@/constants/tracking/misc'
 import {
   getBackgroundColor,
   getBackgroundLightColor,
+  getBorderColor,
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { encodeDottedNameAsURI } from '@/utils/format/encodeDottedNameAsURI'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   title: string
@@ -20,6 +23,8 @@ type Props = {
 
 export default function CategoryFilter({ title, dottedName, count }: Props) {
   const router = useRouter()
+
+  const { t } = useClientTranslation()
 
   const categorySelected = useSearchParams().get(FILTER_SEARCH_PARAM_KEY) || ''
 
@@ -41,16 +46,21 @@ export default function CategoryFilter({ title, dottedName, count }: Props) {
 
   return (
     <li
-      className={`height-[1.8rem] rounded-md transition-colors ${
+      className={twMerge(
+        'height-[1.8rem] rounded-md border-2 border-transparent transition-colors',
         !categorySelected || isSelected
-          ? getBackgroundLightColor(dottedName)
-          : 'bg-gray-200'
-      }`}
+          ? `${getBackgroundLightColor(dottedName)} ${getBorderColor(dottedName)}`
+          : `bg-gray-100`
+      )}
       style={{
         backgroundColor: getBackgroundColor(),
       }}>
       <button
-        className={`p-2 text-xs font-bold ${getTextDarkColor(dottedName)}`}
+        title={`${title} - ${isSelected ? t('Page active') : t('Sélectionner ce filtre et afficher uniquement les actions de cette catégorie')}`}
+        className={twMerge(
+          'p-2 text-xs font-bold',
+          getTextDarkColor(dottedName)
+        )}
         onClick={() => {
           trackEvent(
             trackingCategoryFilter(dottedName, window.location.pathname)
