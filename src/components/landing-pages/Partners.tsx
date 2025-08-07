@@ -19,7 +19,10 @@ export default async function Partners({ locale }: { locale: string }) {
           <Image
             priority
             src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/logo_abc_web_01c99cfe74.webp"
-            alt={t("Logo de l'Association pour la transition Bas Carbone")}
+            alt={t(
+              'common.partners.abc.ariaLabel',
+              'Association pour la transition Bas Carbone'
+            )}
             width="90"
             height="30"
             className="h-auto w-14"

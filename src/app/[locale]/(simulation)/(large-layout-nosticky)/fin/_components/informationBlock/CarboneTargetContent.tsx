@@ -4,6 +4,7 @@ import Link from '@/components/Link'
 import ExternalLinkIcon from '@/components/icons/ExternalLinkIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import TargetQuestions from './carboneTargetContent/AdditionalQuestions'
@@ -48,6 +49,8 @@ const questions = [
 ]
 
 export default function CarboneTargetContent({ isOpen, isHedgehog }: Props) {
+  const { t } = useClientTranslation()
+
   const [isQuestionOpen, setIsQuestionOpen] = useState(false)
 
   return (
@@ -100,7 +103,14 @@ export default function CarboneTargetContent({ isOpen, isHedgehog }: Props) {
         <div className="flex justify-end">
           <Link className="text-sm" href="/empreinte-climat" target="_blank">
             <Trans>En savoir plus</Trans>{' '}
-            <ExternalLinkIcon className="stroke-primary-700" />
+            <ExternalLinkIcon
+              role="img"
+              aria-label={t(
+                'endPage.carboneTarget.enSavoirPlus',
+                'Ouvrir la page dans une nouvelle fenêtre'
+              )}
+              className="stroke-primary-700 ml-2"
+            />
           </Link>
         </div>
       </div>
