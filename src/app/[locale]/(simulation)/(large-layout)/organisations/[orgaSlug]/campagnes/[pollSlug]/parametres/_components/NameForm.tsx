@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import TextInput from '@/design-system/inputs/TextInput'
 import type { PollToUpdate } from '@/hooks/organisations/polls/useUpdatePoll'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { OrganisationPoll } from '@/types/organisations'
@@ -71,7 +71,7 @@ export default function NameForm({
             }
       }>
       <div className="relative grid w-full grid-cols-1 gap-4 pb-4 md:grid-cols-2">
-        <TextInputGroup
+        <TextInput
           containerClassName="max-w-[30rem]"
           label={
             <span className="text-lg font-medium">
@@ -82,7 +82,7 @@ export default function NameForm({
           error={errors.name?.message}
           {...register('name', { required: t('Ce champ est requis') })}
         />
-        <TextInputGroup
+        <TextInput
           label={
             <p className="mb-0 flex w-full justify-between">
               <Trans>Nombre de participants attendus</Trans>

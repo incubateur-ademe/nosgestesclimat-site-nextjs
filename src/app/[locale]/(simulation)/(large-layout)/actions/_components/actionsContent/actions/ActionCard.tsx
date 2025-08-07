@@ -189,7 +189,7 @@ export default function ActionCard({
             className={twMerge(hasRemainingQuestions ? 'grayscale' : '')}
             onClick={handleChooseAction}>
             <CheckCircleIcon
-              className="fill-green-500"
+              className="fill-green-700"
               width="40"
               height="40"
             />

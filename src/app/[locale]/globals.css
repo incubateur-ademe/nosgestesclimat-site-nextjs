@@ -704,3 +704,10 @@ html[data-useragent*='Trident'] #js {
     margin-top: 3rem;
   }
 }
+
+/*
+ * Documentation
+*/
+#documentation-search-input {
+  @apply border-slate-700;
+}
