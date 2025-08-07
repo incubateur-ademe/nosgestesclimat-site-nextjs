@@ -52,7 +52,9 @@ export default function ActionsTutorial() {
 
       <ul className="list-none">
         <li className="flex items-center">
-          <Emoji className="mr-2" alt={t("Sélectionner l'action")}>
+          <Emoji
+            className="mr-2"
+            alt={t('actions.buttons.select', "Sélectionner l'action")}>
             ✅
           </Emoji>
 
@@ -60,7 +62,9 @@ export default function ActionsTutorial() {
         </li>
 
         <li className="flex items-center">
-          <Emoji className="mr-2" alt={t("Rejeter l'action")}>
+          <Emoji
+            className="mr-2"
+            alt={t('actions.buttons.reject', "Rejeter l'action")}>
             ❌
           </Emoji>
 
