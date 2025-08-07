@@ -32,7 +32,7 @@ export default async function DecryptChallenges({
         title,
         category: blogCategory?.title ?? '',
         imageSrc: image?.url ?? '',
-        imageAlt: image?.alternativeText ?? '',
+        imageAlt: '',
         href: getArticleHref({
           categorySlug: blogCategory?.slug ?? '',
           articleSlug: slug,
