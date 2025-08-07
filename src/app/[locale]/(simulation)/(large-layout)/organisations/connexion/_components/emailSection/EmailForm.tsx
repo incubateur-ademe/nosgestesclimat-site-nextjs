@@ -9,7 +9,6 @@ import { useCreateVerificationCode } from '@/hooks/verification-codes/useCreateV
 import { useUser } from '@/publicodes-state'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { isEmailValid } from '@/utils/isEmailValid'
-import React from 'react'
 import { useForm } from 'react-hook-form'
 
 type FormData = {
@@ -17,8 +16,6 @@ type FormData = {
 }
 
 export default function EmailForm() {
-  const [inputError, setInputError] = React.useState<string | undefined>()
-
   const { t } = useClientTranslation()
 
   const {
@@ -38,8 +35,6 @@ export default function EmailForm() {
   } = useForm<FormData>()
 
   async function onSubmit(data: FormData) {
-    setInputError(undefined)
-
     const email = formatEmail(data.email)
 
     const { expirationDate } = await createVerificationCode({
