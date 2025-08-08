@@ -47,7 +47,7 @@
     "@incubateur-ademe/legal-pages-react": "^0.5.0",
     "@incubateur-ademe/nosgestesclimat": "3.9.0",
     "@next/mdx": "^15.3.2",
-    "@publicodes/react-ui": "portal:/Users/benjaminarias/Documents/GitHub/publicodes/packages/react-ui",
+    "@publicodes/react-ui": "^1.7.1",
     "@publicodes/tools": "^1.7.2",
     "@sentry/nextjs": "^9.38.0",
     "@socialgouv/react-departements": "^3.0.0",
@@ -177,8 +177,5 @@
     "workerDirectory": [
       "public"
     ]
-  },
-  "resolutions": {
-    "@publicodes/react-ui": "portal:/Users/benjaminarias/Documents/GitHub/publicodes/packages/react-ui"
   }
 }

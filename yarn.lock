@@ -3431,9 +3431,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@publicodes/react-ui@portal:/Users/benjaminarias/Documents/GitHub/publicodes/packages/react-ui::locator=nosgestesclimat-site-nextjs%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@publicodes/react-ui@portal:/Users/benjaminarias/Documents/GitHub/publicodes/packages/react-ui::locator=nosgestesclimat-site-nextjs%40workspace%3A."
+"@publicodes/react-ui@npm:^1.7.0, @publicodes/react-ui@npm:^1.7.1":
+  version: 1.7.1
+  resolution: "@publicodes/react-ui@npm:1.7.1"
   dependencies:
     fuse.js: "npm:^7.0.0"
     styled-components: "npm:^6.1.1"
@@ -3441,8 +3441,9 @@ __metadata:
     publicodes: ^1.5.3
     react: ^18 || ^19
     react-dom: ^18 || ^19
+  checksum: 10c0/581a7c4daa5af63d2111139dacba7054d4d7382e417d06885c88c7eff6606ba7dd4371a928dac157e072026232aa65a0b8e02bfd42d2222e04d6ab9745856558
   languageName: node
-  linkType: soft
+  linkType: hard
 
 "@publicodes/tools@npm:^1.7.2":
   version: 1.7.2
