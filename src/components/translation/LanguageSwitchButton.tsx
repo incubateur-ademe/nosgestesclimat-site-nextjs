@@ -2,7 +2,7 @@
 
 import { footerClickLanguage } from '@/constants/tracking/layout'
 import { FAQ_PATH } from '@/constants/urls/paths'
-import Button from '@/design-system/buttons/Button'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Emoji from '@/design-system/utils/Emoji'
 import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDisplayed'
 import { updateLang } from '@/helpers/language/updateLang'
@@ -78,10 +78,10 @@ export default function LanguageSwitchButton({
         className
       )}>
       {langButtonsDisplayedWithFilteredEs.fr && (
-        <Button
+        <ButtonLink
           lang="fr"
+          href={`${pathname}?lang=fr`}
           color={currentLocale === 'fr' ? 'primary' : 'secondary'}
-          onClick={() => handleChange('fr')}
           size={size}
           aria-label="Passer en français"
           title={
@@ -92,14 +92,14 @@ export default function LanguageSwitchButton({
           className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
           data-cypress-id="language-switch-button-fr">
           <span>FR</span> <Emoji>🇫🇷</Emoji>
-        </Button>
+        </ButtonLink>
       )}
 
       {langButtonsDisplayedWithFilteredEs.en && (
-        <Button
+        <ButtonLink
           lang="en"
+          href={`${pathname}?lang=en`}
           color={currentLocale === 'en' ? 'primary' : 'secondary'}
-          onClick={() => handleChange('en')}
           size={size}
           aria-label="Switch to english"
           title={
@@ -110,14 +110,14 @@ export default function LanguageSwitchButton({
           className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
           data-cypress-id="language-switch-button-en">
           <span>EN</span> <Emoji>🇬🇧</Emoji>
-        </Button>
+        </ButtonLink>
       )}
 
       {langButtonsDisplayedWithFilteredEs.es && (
-        <Button
+        <ButtonLink
           lang="es"
+          href={`${pathname}?lang=es`}
           color={currentLocale === 'es' ? 'primary' : 'secondary'}
-          onClick={() => handleChange('es')}
           size="sm"
           aria-label="Cambiar a español"
           title={
@@ -128,7 +128,7 @@ export default function LanguageSwitchButton({
           className="flex gap-2 px-2 py-2 sm:px-4 sm:py-3"
           data-cypress-id="language-switch-button-es">
           <span>ES</span> <Emoji>🇪🇸</Emoji>
-        </Button>
+        </ButtonLink>
       )}
     </div>
   )
