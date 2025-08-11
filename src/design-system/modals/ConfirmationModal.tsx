@@ -12,6 +12,7 @@ type Props = {
   closeModal: () => void
   isLoading?: boolean
   children: ReactNode
+  ariaLabel: string
 }
 
 export default function ConfirmationModal({
@@ -19,15 +20,19 @@ export default function ConfirmationModal({
   closeModal,
   children,
   isLoading,
+  ariaLabel,
 }: Props) {
   const { t } = useClientTranslation()
 
   return (
     <Modal
-      ariaLabel={t(
-        'common.modal.confirmation.title',
-        "Fenêtre modale de confirmation d'action"
-      )}
+      ariaLabel={
+        ariaLabel ??
+        t(
+          'common.modal.confirmation.title',
+          "Fenêtre modale de confirmation d'action"
+        )
+      }
       isOpen
       closeModal={closeModal}
       hasAbortButton={false}>
