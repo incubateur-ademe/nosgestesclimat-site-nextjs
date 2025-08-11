@@ -21,7 +21,7 @@ export default function Emoji({
         size: '',
         props: {
           className: 'border-none',
-          ariaHidden: true,
+          'aria-hidden': true,
           alt: alt || '',
         },
       })}
