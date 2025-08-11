@@ -2,6 +2,7 @@
 
 import Link from '@/components/Link'
 import CountryFlag from '@/components/misc/CountryFlag'
+import { LOCALISATION_BANNER_ID } from '@/constants/ids'
 import { defaultModelRegionCode } from '@/constants/localisation/translation'
 import { trackingClickRegionBanner } from '@/constants/tracking/misc'
 import { SIMULATOR_PATH } from '@/constants/urls/paths'
@@ -52,10 +53,14 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
   if (code === defaultModelRegionCode) return null
 
+  if (pathname === '/profil') return null
+
   return (
     <Card
+      tabIndex={-1}
+      id={LOCALISATION_BANNER_ID}
       className={twMerge(
-        'bg-primary-50 fixed right-4 bottom-0 left-4 z-50 mx-auto mb-8 flex-row sm:right-8 sm:left-auto',
+        'bg-primary-50 fixed right-4 bottom-10 left-4 z-50 mx-auto mb-8 flex-row sm:right-8 sm:left-auto md:bottom-0',
         isTutorialOrTest && 'bottom-12'
       )}>
       <div className="flex w-full gap-4">
