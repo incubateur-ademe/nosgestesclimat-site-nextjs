@@ -21,6 +21,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { MouseEvent } from 'react'
 import { useCallback, useMemo, useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
+import Trans from '../translation/trans/TransClient'
 import SyncIndicator from './navigation/SyncIndicator'
 
 export default function Navigation({
@@ -279,7 +280,10 @@ export default function Navigation({
             'common.navigation.previousButton.label',
             'Aller à la question précédente'
           )}>
-          <span className="hidden md:inline">←</span> {t('Précédent')}
+          <span aria-hidden className="hidden md:inline">
+            ←
+          </span>
+           {t('Précédent')}
         </Button>
 
         <Button
@@ -305,11 +309,17 @@ export default function Navigation({
                   )
           }
           onClick={handleGoToNextQuestion}>
-          {finalNoNextQuestion
-            ? t('Terminer')
-            : isMissing
-              ? t('Passer la question') + ' →'
-              : t('Suivant') + ' →'}
+          {finalNoNextQuestion ? (
+            t('Terminer')
+          ) : isMissing ? (
+            <>
+              <Trans>Passer la question</Trans> <span aria-hidden>→</span>
+            </>
+          ) : (
+            <>
+              <Trans>Suivant</Trans> <span aria-hidden>→</span>
+            </>
+          )}
         </Button>
       </div>
     </div>

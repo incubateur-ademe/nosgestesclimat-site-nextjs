@@ -55,7 +55,15 @@ export default function MainSubcategory({
         getBorderColor(category),
         isLink ? 'cursor-pointer' : 'cursor-default'
       )}
-      aria-label={isLink ? t('Voir le détail ci-dessous') : ''}>
+      aria-label={
+        isLink
+          ? t(
+              'results.mainSubcategories.mainSubcategory.seeDetail',
+              '{{title}}, voir le détail ci-dessous',
+              { title }
+            )
+          : ''
+      }>
       <div
         className={twMerge(
           'flex items-center gap-2 leading-none',
