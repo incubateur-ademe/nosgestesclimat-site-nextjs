@@ -144,7 +144,10 @@ export default function BurgerMenu({
             </h2>
             <Button
               color="text"
-              aria-label={t('Fermer le menu')}
+              aria-label={t(
+                'common.burgerMenu.title',
+                'Fermer le menu de navigation'
+              )}
               onClick={handleToggleMenu}
               className={twMerge(
                 'absolute top-4 right-4 z-100 flex h-[44px] w-[44px] flex-col items-center justify-center p-0!',
