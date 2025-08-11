@@ -274,7 +274,11 @@ export default function Navigation({
           onClick={handleGoToPrevQuestion}
           disabled={isFirstOrOnlyQuestion}
           color="text"
-          className={twMerge('px-3')}>
+          className={twMerge('px-3')}
+          title={t(
+            'common.navigation.previousButton.label',
+            'Aller à la question précédente'
+          )}>
           <span className="hidden md:inline">←</span> {t('Précédent')}
         </Button>
 
@@ -284,6 +288,22 @@ export default function Navigation({
           className="p-3 text-sm"
           size="md"
           data-cypress-id="next-question-button"
+          title={
+            finalNoNextQuestion
+              ? t(
+                  'common.navigation.nextQuestion.finish.label',
+                  'Terminer le test et accéder à la page de résultats'
+                )
+              : isMissing
+                ? t(
+                    'common.navigation.nextQuestion.pass.label',
+                    'Passer et aller à la question suivante'
+                  ) + ' →'
+                : t(
+                    'common.navigation.nextQuestion.next.label',
+                    'Aller à la question suivante'
+                  )
+          }
           onClick={handleGoToNextQuestion}>
           {finalNoNextQuestion
             ? t('Terminer')
