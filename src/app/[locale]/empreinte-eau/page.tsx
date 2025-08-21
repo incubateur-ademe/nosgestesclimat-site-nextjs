@@ -41,7 +41,7 @@ export const generateMetadata = getCommonMetadata({
     'Découvrez les litres d’eau cachés derrière chacun de vos repas, vêtements, appareils… Adoptez des actions concrètes pour réduire votre empreinte eau'
   ),
   image:
-    'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/calculer_son_empreinte_eau_f3f7c34d45.png',
+    'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/calculer_son_empreinte_eau_9e5f8be16c.png',
   alternates: {
     canonical: '/empreinte-eau',
   },
@@ -62,7 +62,7 @@ export default async function WaterFootprintLandingPage(
             '@type': 'Organization',
             url: 'https://nosgestesclimat.fr',
             name: 'Nos Gestes Climat',
-            logo: 'https://nosgestesclimat.fr/_next/image?url=%2Fimages%2Fmisc%2Fpetit-logo%403x.png&w=640&q=75',
+            logo: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/petit_logo_006dd01955.png',
           },
           {
             '@context': 'https://schema.org',
@@ -125,7 +125,7 @@ export default async function WaterFootprintLandingPage(
               <Image
                 width={560}
                 height={560}
-                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/mon_empreinte_eau_b46dda2e00.svg"
+                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/mon_empreinte_eau_79e7327871.svg"
                 alt={t(
                   "Un homme dans un magasin réfléchissant à l'empreinte eau du tee-shirt qu'il tient"
                 )}
@@ -137,13 +137,13 @@ export default async function WaterFootprintLandingPage(
           <Image
             width={560}
             height={560}
-            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/mon_empreinte_eau_b46dda2e00.svg"
+            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/mon_empreinte_eau_79e7327871.svg"
             alt={t(
               "Un homme dans un magasin réfléchissant à l'empreinte eau du tee-shirt qu'il tient"
             )}
           />
         }
-        heroPartners={<WaterFootprintPartners />}>
+        heroPartners={<WaterFootprintPartners locale={locale} />}>
         <WhatItIsWaterFootprint locale={locale} />
 
         <WhatDoWeMeasureWaterFootprint locale={locale} />

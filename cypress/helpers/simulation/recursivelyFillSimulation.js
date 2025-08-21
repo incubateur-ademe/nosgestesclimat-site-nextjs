@@ -9,14 +9,23 @@ const LAST_QUESTION_ID = 'services sociétaux . question rhétorique-ok'
 export async function recursivelyFillSimulation(persona = {}) {
   return new Promise((resolve) => {
     function answerCurrentQuestion() {
-      const inputPromise = cy.get('input')
+      // Wait for the page to be ready and check if we're still on a simulation page
+      cy.url().then((url) => {
+        cy.log('url', url)
+        // If we're not on a simulation page anymore, we're done
+        if (!url.includes('/simulateur/bilan')) {
+          resolve()
+          return
+        }
 
-      // Cypress doesn't handle async/await
-      inputPromise.then((input) => {
-        // All questions have been answered
-        // get current url with cy method
-        cy.url().then((url) => {
-          if (input.length <= 0 || !url.includes('/simulateur/bilan')) {
+        // Wait for the page to be fully loaded
+        cy.get('body').should('be.visible')
+
+        // Check if there are any inputs on the page with a reasonable timeout
+        // Use Cypress's built-in retry mechanism
+        cy.get('input', { timeout: 15000 }).then((input) => {
+          // All questions have been answered
+          if (input.length <= 0) {
             resolve()
             return
           }

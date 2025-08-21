@@ -62,7 +62,7 @@ export default function DocumentationLanding() {
 
           <div>
             <Link href="/modele" className="flex items-center">
-              <LightBulbIcon className="fill-primary-700 mr-1 h-4 w-4" />
+              <LightBulbIcon className="mr-1 h-4 w-4 fill-primary-700" />
               <Trans> En savoir plus sur notre modèle</Trans>
             </Link>
           </div>
@@ -70,7 +70,7 @@ export default function DocumentationLanding() {
         {/* Displayed on mobile only */}
         <Image
           className="ml-auto h-auto w-48 md:hidden md:w-full"
-          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_reading_newspaper_d9b25f4338.png"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_girl_reading_newspaper_d171290d3d.png"
           width="400"
           height="300"
           alt={t(
@@ -81,7 +81,7 @@ export default function DocumentationLanding() {
         <SquareImageContainer className="hidden max-w-96 md:flex">
           <Image
             className="ml-auto h-auto w-48 md:w-full"
-            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_reading_newspaper_d9b25f4338.png"
+            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_girl_reading_newspaper_d171290d3d.png"
             width="400"
             height="300"
             alt={t(

@@ -33,7 +33,10 @@ export default function PartnerCampaignContent({
 
   return (
     <>
-      <PartnerCampaignHeader logoSrc={partnerCampaign.logo.url} />
+      <PartnerCampaignHeader
+        logoSrc={partnerCampaign.logo.url}
+        alt={partnerCampaign.logo.alternativeText ?? ''}
+      />
       <Hero
         title={
           <span className="block w-full text-left">
@@ -90,12 +93,12 @@ export default function PartnerCampaignContent({
             <Image
               src={
                 partnerCampaign.image?.url ??
-                'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_17e65580c7.svg'
+                'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_3373a344b0.svg'
               }
               width={300}
               height={300}
               className="mx-auto mt-6 block text-center md:hidden"
-              alt=""
+              alt={partnerCampaign.image?.alternativeText ?? ''}
             />
           </>
         }
@@ -103,12 +106,12 @@ export default function PartnerCampaignContent({
           <Image
             src={
               partnerCampaign.image?.url ??
-              'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_17e65580c7.svg'
+              'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_3373a344b0.svg'
             }
             width={400}
             height={300}
             className="w-96"
-            alt=""
+            alt={partnerCampaign.image?.alternativeText ?? ''}
           />
         }
       />

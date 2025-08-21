@@ -22,21 +22,21 @@ export default function WhatDoWeMeasureCarbon({ locale }: { locale: string }) {
       listItems={[
         {
           icon: {
-            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_velo_79a1b493cb.svg',
+            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_velo_0b190d715c.svg',
             alternativeText: '',
           },
           title: 'Vos modes de déplacement',
         },
         {
           icon: {
-            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_viande_65dd077a91.svg',
+            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_viande_b8d5c03c9b.svg',
             alternativeText: '',
           },
           title: 'Votre régime alimentaire',
         },
         {
           icon: {
-            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_bois_f585fa68a3.svg',
+            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_bois_aa65836769.svg',
             alternativeText: '',
           },
           title: 'Vos consommations énergétiques',
@@ -44,7 +44,7 @@ export default function WhatDoWeMeasureCarbon({ locale }: { locale: string }) {
 
         {
           icon: {
-            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_ordinateur_2f234e6e03.svg',
+            url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_ordinateur_392d915ff0.svg',
             alternativeText: '',
           },
           title: 'Vos achats',

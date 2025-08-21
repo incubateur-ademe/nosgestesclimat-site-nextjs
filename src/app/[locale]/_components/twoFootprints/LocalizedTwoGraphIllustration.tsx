@@ -1,6 +1,5 @@
 'use client'
 
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import type { Locale } from '@/i18nConfig'
 import Image from 'next/image'
@@ -19,13 +18,12 @@ const getLocalisedSrc = (locale: Locale) => {
 
 export default function LocalizedTwoGraphsIllustration() {
   const locale = useLocale() as Locale
-  const { t } = useClientTranslation()
 
   return (
     <Image
       src={getLocalisedSrc(locale)}
       className="hidden md:block"
-      alt={t("Deux représentations graphiques de l'empreinte carbone et eau")}
+      alt=""
       width={600}
       height={800}
     />

@@ -1,11 +1,12 @@
 import { twMerge } from 'tailwind-merge'
 
-export default function SaveIcon({
-  className,
-  ...props
-}: {
+type Props = {
   className?: string
-}) {
+  width?: string
+  height?: string
+}
+
+export default function SaveIcon({ className, ...props }: Props) {
   return (
     <svg
       width="24"
@@ -14,6 +15,7 @@ export default function SaveIcon({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={twMerge('fill-default inline-block stroke-[1.5]', className)}
+      aria-hidden="true"
       {...props}>
       <path
         fillRule="evenodd"

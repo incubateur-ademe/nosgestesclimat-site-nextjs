@@ -4,9 +4,11 @@ import ExternalLinkIcon from '@/components/icons/ExternalLinkIcon'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 
 export default function WaterActions() {
+  const { t } = useClientTranslation()
   return (
     <div>
       <Title tag="h2">
@@ -34,7 +36,7 @@ export default function WaterActions() {
           className="border-primary-50 hover:bg-primary-100 relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 bg-gray-100 pb-4 no-underline lg:p-4">
           <div>
             <Image
-              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/priscilla_du_preez_9d7a6e02a2.jpg"
+              src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_priscilla_du_preez_9d7a6e02a2.jpg"
               width="400"
               height="200"
               className="mx-auto mb-3 h-24 w-full object-cover lg:h-36"
@@ -48,7 +50,14 @@ export default function WaterActions() {
           </div>
           <div className="text-primary-700 text-center text-sm underline">
             <Trans>Lire l'article</Trans>{' '}
-            <ExternalLinkIcon className="stroke-primary-700" />
+            <ExternalLinkIcon
+              role="img"
+              aria-label={t(
+                'endPage.waterActions.lireArticle',
+                "Ouvrir l'article dans une nouvelle fenêtre"
+              )}
+              className="stroke-primary-700 ml-2"
+            />
           </div>
         </Link>
         <Link
@@ -59,7 +68,7 @@ export default function WaterActions() {
           className="border-primary-50 hover:bg-primary-100 relative flex flex-1 flex-col justify-between overflow-hidden rounded-xl border-2 bg-gray-100 pb-4 no-underline lg:p-4">
           <div>
             <Image
-              src="https://s3.fr-par.scw.cloud/nosgestesclimat-prod/cms/lumin_osity_arrosage_champ_eeafa85606.jpg"
+              src="https://s3.fr-par.scw.cloud/nosgestesclimat-prod/cms/medium_lumin_osity_arrosage_champ_eeafa85606.jpg"
               width="400"
               height="200"
               className="mx-auto mb-3 h-24 w-full object-cover lg:h-36"
@@ -73,7 +82,14 @@ export default function WaterActions() {
           </div>
           <div className="text-primary-700 text-center text-sm underline">
             <Trans>Lire l'article</Trans>{' '}
-            <ExternalLinkIcon className="stroke-primary-700" />
+            <ExternalLinkIcon
+              role="img"
+              aria-label={t(
+                'endPage.waterActions.lireArticle',
+                "Ouvrir l'article dans une nouvelle fenêtre"
+              )}
+              className="stroke-primary-700 ml-2"
+            />
           </div>
         </Link>
       </div>
