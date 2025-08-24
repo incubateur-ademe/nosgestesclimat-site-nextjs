@@ -1,4 +1,4 @@
-import type { CategoryType } from '@/adapters/cmsClient'
+import type { BlogCategoryType } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
 import { getLocaleWithoutEs } from '@/helpers/language/getLocaleWithoutEs'
 import { type Locale } from '@/i18nConfig'
@@ -8,15 +8,15 @@ export async function fetchCategories({
   locale,
 }: {
   locale: Locale
-}): Promise<CategoryType[]> {
+}): Promise<BlogCategoryType[]> {
   try {
     const categoriesSearchParams = new URLSearchParams({
       locale: getLocaleWithoutEs(locale),
       sort: 'order',
     })
 
-    const categoriesResponse = await cmsClient<{ data: CategoryType[] }>(
-      `/api/categories?${categoriesSearchParams}`
+    const categoriesResponse = await cmsClient<{ data: BlogCategoryType[] }>(
+      `/api/blog-categories?${categoriesSearchParams}`
     )
 
     return categoriesResponse.data

@@ -5,7 +5,7 @@ import type {
 import { cmsClient } from '@/adapters/cmsClient'
 import { type Locale } from '@/i18nConfig'
 
-type Article = PopulatedArticleType<'image' | 'category'> & {
+type Article = PopulatedArticleType<'image' | 'blogCategory'> & {
   author: PopulatedAuthorType<'image'>
 }
 
@@ -20,7 +20,7 @@ export async function fetchArticlePageContent({
 }): Promise<
   | {
       article?: Article
-      otherArticles?: PopulatedArticleType<'image' | 'category'>[]
+      otherArticles?: PopulatedArticleType<'image' | 'blogCategory'>[]
     }
   | undefined
 > {
@@ -28,11 +28,11 @@ export async function fetchArticlePageContent({
     const articleSearchParams = new URLSearchParams({
       locale,
       'populate[0]': 'image',
-      'populate[1]': 'category',
+      'populate[1]': 'blogCategory',
       'populate[2]': 'author',
       'populate[3]': 'author.image',
       'filters[slug][$eq]': articleSlug,
-      'filters[category][slug][$eq]': categorySlug,
+      'filters[blogCategory][slug][$eq]': categorySlug,
       sort: 'publishedAt:desc',
     })
 
@@ -54,8 +54,10 @@ export async function fetchArticlePageContent({
     const otherArticlesSearchParams = new URLSearchParams({
       locale,
       'populate[0]': 'image',
-      'populate[1]': 'category',
-      ...(categorySlug ? { 'filters[category][slug][$eq]': categorySlug } : {}),
+      'populate[1]': 'blogCategory',
+      ...(categorySlug
+        ? { 'filters[blogCategory][slug][$eq]': categorySlug }
+        : {}),
       'filters[slug][$ne]': articleSlug,
       sort: 'createdAt:desc',
       'pagination[start]': '0',
@@ -63,7 +65,7 @@ export async function fetchArticlePageContent({
     })
 
     const otherArticlesResponse = await cmsClient<{
-      data: PopulatedArticleType<'image' | 'category'>[]
+      data: PopulatedArticleType<'image' | 'blogCategory'>[]
     }>(`/api/articles?${otherArticlesSearchParams}`)
 
     return {

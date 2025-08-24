@@ -17,12 +17,12 @@ export async function fetchPartnerCampaign({
       'filters[pollSlug][$eq]': pollSlug,
       'populate[0]': 'logo',
       'populate[1]': 'image',
-      'populate[2]': 'questions',
+      'populate[2]': 'faq.questions',
     })
 
     const partnerCampaignsResponse = await cmsClient<{
       data: PartnerCampaignType[]
-    }>(`/api/partner-campaigns?${partnerCampaignSearchParams}`)
+    }>(`/api/landing-campaigns?${partnerCampaignSearchParams}`)
 
     return partnerCampaignsResponse.data[0]
   } catch (error) {
