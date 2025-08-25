@@ -2,6 +2,7 @@
 
 import ChoicesValue from '@/components/misc/ChoicesValue'
 import NumberValue from '@/components/misc/NumberValue'
+import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -19,7 +20,7 @@ export default function MosaicQuestion({ question, isMissing }: Props) {
   return (
     <span className="bg-primary-100 relative flex justify-between rounded-xl p-4 text-sm">
       <span className="flex-1">
-        {icons} {title}
+        <Emoji className="mr-2">{icons}</Emoji> {title}
       </span>
       {!isMissing ? (
         <strong>

@@ -26,7 +26,14 @@ export default function EmailVerificationModal({
   const { t } = useClientTranslation()
 
   return (
-    <Modal isOpen closeModal={closeModal} hasAbortCross={false}>
+    <Modal
+      ariaLabel={t(
+        'organisations.emailVerificationModal.title',
+        'Fenêtre modale de confirmation d\email'
+      )}
+      isOpen
+      closeModal={closeModal}
+      hasAbortCross={false}>
       <form>
         <h3>
           <Trans>Vous devez valider votre changement d'adresse e-mail.</Trans>

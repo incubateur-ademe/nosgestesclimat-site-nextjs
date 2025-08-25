@@ -8,5 +8,9 @@ export default function Accordion({
   children?: ReactElement<AccordionItemType> | ReactElement<AccordionItemType>[]
   className?: string
 }) {
-  return <ul className={className}>{children}</ul>
+  return (
+    <ul className={className} role="list">
+      {children}
+    </ul>
+  )
 }

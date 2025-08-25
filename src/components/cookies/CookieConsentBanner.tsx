@@ -31,6 +31,12 @@ export default function CookieConsentBanner({
   return (
     <Modal
       isOpen={isVisible && !isBoardOpen}
+      aria={{
+        ariaLabel: t(
+          'cookieConsent.board.title',
+          'Panneau de gestion des cookies'
+        ),
+      }}
       onAfterClose={() => setIsVisible(false)}
       className="!fixed !top-1/2 !left-1/2 !z-[10001] !mr-auto !w-[500px] !max-w-[calc(100vw-1rem)] !-translate-x-1/2 !-translate-y-1/2 rounded-2xl !border-0 !p-0 !shadow-2xl md:!top-auto md:!bottom-0 md:!left-0 md:!mb-8 md:!ml-8 md:!translate-x-0 md:!translate-y-0 md:!rounded-4xl"
       overlayClassName="!bg-black/0 !backdrop-blur-none !fixed !bottom-0 !left-0 !right-0 !top-auto !z-[10000]"
