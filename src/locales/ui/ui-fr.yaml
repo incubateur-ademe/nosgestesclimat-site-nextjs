@@ -18,10 +18,8 @@ entries:
   Démarrer: Démarrer
   En développement actif: En développement actif
   En savoir plus: En savoir plus
-  Entrez des mots clefs: Entrez des mots clefs
   Envie de contribuer à une version pour votre région ?: Envie de contribuer à une version pour votre région ?
   Envoyer: Envoyer
-  Explorez nos modèles: Explorez nos modèles
   Faire le test: Faire le test
   Fermer: Fermer
   Fermer les options de tri: Fermer les options de tri
@@ -69,10 +67,6 @@ entries:
   model.modern4: Le modèle de calcul est directement embarqué chez le client, le calcul a lieu là dans votre navigateur, pas sur nos serveurs. Les données collectées sont si descriptives de la vie des utilisateurs, donc sensibles en termes de vie privée, que faire les calculs côté serveur <2>et les stocker</2> poserait un risque trop élevé.
   model.stats: Le modèle comprend aujourd'hui <1></1> règles de calcul. Parmi elles, <3></3> règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.
   model.stats2: Il est constitué d'une combinaison de centaines de modèles micro "bottom-up" pour les consommations carbonées de notre vie quotidienne, et d'un modèle "top-down" dérivé des travaux du SDES pour estimer l'empreinte par personne des services dits sociétaux (services publics et services de base tels les télécom). <2>En savoir plus sur cette hybridation</2>.
-  noresults: Aucun résultat ne correspond à cette recherche
-  search.results: '{{count}} résultat(s) trouvé(s)'
-  search.results.label: Résultats de recherche
-  search.documentation.label: Recherche dans la documentation
   participant: participant
   plus d'1 kg: plus d'1 kg
   plus d'1 tonne: plus d'1 tonne
@@ -163,13 +157,11 @@ entries:
   Consultez la FAQ: Consultez la FAQ
   'Date complète :': 'Date complète :'
   disponibles: disponibles
-  Entrez des mots-clefs de recherche: Entrez des mots-clefs de recherche
   'Identifiant :': 'Identifiant :'
   Il concerne votre vie personnelle, et non pas votre boulot.: Il concerne votre vie personnelle, et non pas votre boulot.
   international.comment.2: Explorez en détail les spécificités de chaque pays.
   Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.
   Mes réponses: Mes réponses
-  Passer en français: Passer en français
   publicodes.Tutoriel.slide1.p1: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
   publicodes.Tutoriel.slide1.p2: Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer ce qu'on appelle l'empreinte carbone individuelle de consommation.
   publicodes.Tutoriel.slide2.blockquote: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en CO₂e pour simplifier la mesure. "
@@ -183,7 +175,6 @@ entries:
   Sélectionné·e: Sélectionné·e
   Sélectionner: Sélectionner
   Supprimer: Supprimer
-  Switch to english: Switch to english
   Voir plus d'informations: Voir plus d'informations
   Vous: Vous
   'Vous faites cette simulation depuis :': 'Vous faites cette simulation depuis :'
@@ -426,7 +417,6 @@ entries:
   Ce test vous est proposé par: Ce test vous est proposé par
   par semaine, miam: par semaine, miam
   repas: repas
-  Cambiar a español: Cambiar a español
   Reprendre mon test: Reprendre mon test
   Voir mon résultat: Voir mon résultat
   Pour cela,: Pour cela,
@@ -650,8 +640,6 @@ entries:
   eau: eau
   En 10 minutes, obtenez une estimation de vos empreintes carbone et eau.: En 10 minutes, obtenez une estimation de vos empreintes carbone et eau.
   Est-ce que c'est <2>beaucoup ?</2>: Est-ce que c'est <2>beaucoup ?</2>
-  Evaluer la métrique carbone: Evaluer la métrique carbone
-  Evaluer la métrique eau: Evaluer la métrique eau
   l’alimentation des <2>animaux</2> que vous consommez: l’alimentation des <2>animaux</2> que vous consommez
   L’eau domestique peut avoir un <2>impact très fort</2> selon la <6>saison et la localisation.</6>: L’eau domestique peut avoir un <2>impact très fort</2> selon la <6>saison et la localisation.</6>
   L’eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu’elle est restituée. Par exemple, l’eau de votre douche, après dépollution, est rendue aux cours d’eau de votre territoire.: L’eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu’elle est restituée. Par exemple, l’eau de votre douche, après dépollution, est rendue aux cours d’eau de votre territoire.
@@ -1183,15 +1171,6 @@ entries:
   Veuillez sélectionner au moins une infolettre.: Veuillez sélectionner au moins une infolettre.
   Sélectionnez les infolettres auxquelles vous souhaitez vous inscrire: Sélectionnez les infolettres auxquelles vous souhaitez vous inscrire
   Télécharger le QR Code: Télécharger le QR Code
-  Aucune pression: Aucune pression
-  C’est un test personnel: C’est un test personnel
-  'Comment ça marche ? ': 'Comment ça marche ? '
-  il ne s’agit pas d’être parfait, mais de comprendre son impact: il ne s’agit pas d’être parfait, mais de comprendre son impact
-  On parle de votre vie privée: On parle de votre vie privée
-  pas de votre travail: pas de votre travail
-  Règles du test: Règles du test
-  répondez pour vous uniquement, pas votre foyer: répondez pour vous uniquement, pas votre foyer
-  Un groupe d’amis jouant à un jeu de société.: Un groupe d’amis jouant à un jeu de société.
   Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.
   Pour vous désinscrire, passez par le lien en bas de l'email reçu: Pour vous désinscrire, passez par le lien en bas de l'email reçu
   Carbone, évaluer la métrique carbone: Carbone, évaluer la métrique carbone
