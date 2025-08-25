@@ -1,5 +1,6 @@
 'use client'
 
+import CloseIcon from '@/components/icons/Close'
 import Trans from '@/components/translation/trans/TransClient'
 import { trackingActionClickSortingButton } from '@/constants/tracking/actions'
 import Button from '@/design-system/buttons/Button'
@@ -43,9 +44,13 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
   return (
     <div className="mx-auto my-2 flex items-center justify-center">
       <small role="status">
-        {t('publicodes.ActionsOptionsBar.actionsRecap', {
-          numberOfAvailableFinalActions,
-        })}
+        {t(
+          'publicodes.ActionsOptionsBar.actionsRecap',
+          '{{numberOfAvailableFinalActions}} actions disponibles, ',
+          {
+            numberOfAvailableFinalActions,
+          }
+        )}
 
         <ActionsChosenIndicator />
       </small>{' '}
@@ -74,9 +79,7 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
       <button
         title={t('Fermer les options de tri')}
         onClick={() => setIsOpen(false)}>
-        <span role="img" aria-label={t('Fermer les options de tri')}>
-          ❌
-        </span>
+        <CloseIcon />
       </button>
     </div>
   )

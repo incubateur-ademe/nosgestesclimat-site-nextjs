@@ -12,7 +12,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { encodeDottedNameAsURI } from '@/utils/format/encodeDottedNameAsURI'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -21,8 +21,9 @@ type Props = {
   count: number
   index: number
   isActive: boolean
-  isSelected: boolean
+
   onTabActivate: () => void
+  categorySelected?: string
 }
 
 export default function CategoryFilter({
@@ -31,13 +32,17 @@ export default function CategoryFilter({
   count,
   index,
   isActive,
-  isSelected,
+
   onTabActivate,
+  categorySelected,
 }: Props) {
   const router = useRouter()
   const { t } = useClientTranslation()
-  const categorySelected = useSearchParams().get(FILTER_SEARCH_PARAM_KEY) || ''
+
   const encodedDottedName = encodeDottedNameAsURI(dottedName)
+
+  const isSelected =
+    categorySelected && encodedDottedName === categorySelected ? true : false
 
   const buildURL = () => {
     const siteURL = new URL(window.location.href)
@@ -76,7 +81,7 @@ export default function CategoryFilter({
       title={`${title} - ${isSelected ? t('Page active') : t('Sélectionner ce filtre et afficher uniquement les actions de cette catégorie')}`}
       className={twMerge(
         'height-[1.8rem] rounded-md border-2 border-transparent p-2 text-xs font-bold transition-colors',
-        isSelected
+        isSelected || !categorySelected
           ? `${getBackgroundLightColor(dottedName)} ${getBorderColor(dottedName)}`
           : `bg-gray-100 hover:bg-gray-200`
       )}

@@ -44,7 +44,6 @@ describe('CategoryFilter', () => {
     count: 5,
     index: 0,
     isActive: false,
-    isSelected: false,
     onTabActivate: vi.fn(),
   }
 
@@ -70,7 +69,9 @@ describe('CategoryFilter', () => {
   })
 
   it('renders with correct ARIA attributes when selected', () => {
-    render(<CategoryFilter {...defaultProps} isSelected={true} />)
+    render(
+      <CategoryFilter {...defaultProps} categorySelected="test.category" />
+    )
 
     const button = screen.getByRole('tab')
     expect(button).toHaveAttribute('aria-selected', 'true')
@@ -87,7 +88,11 @@ describe('CategoryFilter', () => {
 
   it('renders with correct ARIA attributes when both active and selected', () => {
     render(
-      <CategoryFilter {...defaultProps} isActive={true} isSelected={true} />
+      <CategoryFilter
+        {...defaultProps}
+        isActive={true}
+        categorySelected="test.category"
+      />
     )
 
     const button = screen.getByRole('tab')
@@ -117,9 +122,10 @@ describe('CategoryFilter', () => {
   })
 
   it('removes category filter when already selected', () => {
-    mockSearchParams.get.mockReturnValue('test.category')
-
-    render(<CategoryFilter {...defaultProps} isSelected={true} />)
+    // Set up the component as selected
+    render(
+      <CategoryFilter {...defaultProps} categorySelected="test.category" />
+    )
 
     const button = screen.getByRole('tab')
     fireEvent.click(button)
@@ -159,14 +165,18 @@ describe('CategoryFilter', () => {
   })
 
   it('applies correct styling when selected', () => {
-    render(<CategoryFilter {...defaultProps} isSelected={true} />)
+    render(
+      <CategoryFilter {...defaultProps} categorySelected="test.category" />
+    )
 
     const button = screen.getByRole('tab')
     expect(button).toHaveClass('bg-blue-100', 'border-blue-500')
   })
 
   it('applies correct styling when not selected', () => {
-    render(<CategoryFilter {...defaultProps} isSelected={false} />)
+    render(
+      <CategoryFilter {...defaultProps} categorySelected="other.category" />
+    )
 
     const button = screen.getByRole('tab')
     expect(button).toHaveClass('bg-gray-100', 'hover:bg-gray-200')

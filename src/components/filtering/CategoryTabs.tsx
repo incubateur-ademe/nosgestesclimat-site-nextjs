@@ -89,8 +89,6 @@ export default function CategoryTabs({
         )}
         onKeyDown={handleKeyDown}>
         {categories?.map(({ title, dottedName, count }, index) => {
-          const isSelected =
-            encodeDottedNameAsURI(dottedName) === categorySelected
           return (
             <CategoryFilter
               key={title}
@@ -99,7 +97,7 @@ export default function CategoryTabs({
               count={count}
               index={index}
               isActive={index === activeTabIndex}
-              isSelected={isSelected}
+              categorySelected={categorySelected}
               onTabActivate={() => setActiveTabIndex(index)}
             />
           )
