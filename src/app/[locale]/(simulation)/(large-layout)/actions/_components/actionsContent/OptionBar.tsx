@@ -1,9 +1,11 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import { trackingActionClickSortingButton } from '@/constants/tracking/actions'
 import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useState } from 'react'
 import ActionsChosenIndicator from '../ActionsChosenIndicator'
 
@@ -25,7 +27,10 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
       <div className="absolute top-1 right-0 text-right">
         <button
           title={t('Ouvrir les options de tri')}
-          onClick={() => setIsOpen(true)}
+          onClick={() => {
+            setIsOpen(true)
+            trackEvent(trackingActionClickSortingButton)
+          }}
           className="text-orange-dark">
           <Emoji role="img" aria-label={t('Ouvrir les options de tri')}>
             ⚙️

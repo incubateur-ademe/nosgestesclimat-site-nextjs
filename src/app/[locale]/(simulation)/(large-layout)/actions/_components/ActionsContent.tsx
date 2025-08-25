@@ -88,8 +88,14 @@ export default function ActionsContent() {
       ref={containerRef}
       className={`${
         isSimulationWellStarted ? '' : 'pointer-events-none opacity-90'
-      } text-center`}
+      } relative text-center`}
       aria-hidden={isSimulationWellStarted ? false : true}>
+      <OptionBar
+        setRadical={setRadical}
+        radical={radical}
+        actions={actionsFilteredCategorically}
+      />
+
       <CategoryTabs
         categories={categories.map((category) => ({
           title: capitalizeString(category) ?? '',
@@ -101,14 +107,6 @@ export default function ActionsContent() {
               action.nodeValue !== 0
           ).length,
         }))}>
-        <div className="relative">
-          <OptionBar
-            setRadical={setRadical}
-            radical={radical}
-            actions={actionsFilteredCategorically}
-          />
-        </div>
-
         <Actions
           actions={
             actionsFilteredCategorically as (Action & {
