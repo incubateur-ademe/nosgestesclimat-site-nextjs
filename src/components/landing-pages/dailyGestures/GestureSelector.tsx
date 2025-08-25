@@ -83,7 +83,7 @@ export default function GestureSelector({
           {gestures[selectedCategory].imageSrc && (
             <Image
               src={gestures[selectedCategory].imageSrc}
-              alt={gestures[selectedCategory].imageAlt ?? ''}
+              alt=""
               width="400"
               height="400"
               className="w-auto object-contain px-4"

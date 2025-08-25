@@ -178,13 +178,18 @@ export default function ActionCard({
         </div>
         <div className="self-bottom flex w-full justify-between px-2">
           <button
-            title={t("Choisir l'action")}
+            title={t(
+              actionChoices?.[dottedName]
+                ? 'Annuler la sélection'
+                : "Choisir l'action"
+            )}
             type="button"
             aria-pressed={actionChoices?.[dottedName]}
+            aria-label={`${title} ${actionChoices?.[dottedName] ? t('actions.chooseAction.ariaLabel.selected', 'Action sélectionnée, annuler la sélection') : t('actions.chooseAction.ariaLabel.unselected', 'Sélectionner cette action')}`}
             className={twMerge(hasRemainingQuestions ? 'grayscale' : '')}
             onClick={handleChooseAction}>
             <CheckCircleIcon
-              className="fill-green-500"
+              className="fill-green-700"
               width="40"
               height="40"
             />
@@ -193,7 +198,10 @@ export default function ActionCard({
           {!Object.keys(actionChoices || {}).some((key) => {
             return key === dottedName && actionChoices?.[key]
           }) && (
-            <button title={t("Rejeter l'action")} onClick={handleRejectAction}>
+            <button
+              title={t("Rejeter l'action")}
+              onClick={handleRejectAction}
+              aria-label={`${title} ${actionChoices?.[dottedName] ? t('actions.rejectAction.ariaLabel.selected', 'Action rejetée') : t('actions.rejectAction.ariaLabel.unselected', 'Rejeter cette action')}`}>
               <CloseIcon width="40" height="40" className="fill-gray-600" />
             </button>
           )}

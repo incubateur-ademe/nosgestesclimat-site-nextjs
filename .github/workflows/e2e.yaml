@@ -3,10 +3,10 @@ name: E2E Tests
 on:
   pull_request:
     branches:
-      - main
+      - preprod
   push:
     branches:
-      - main
+      - preprod
   workflow_dispatch:
     inputs:
       branch:
@@ -28,21 +28,31 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      # - name: Generate E2E test specs from personas
+      #   run: yarn e2e:generate
+
       - name: Get PR number for non-main/preprod branches
         if: ${{ github.event.inputs.branch != 'main' && github.event.inputs.branch != 'preprod' }}
         id: pr
         uses: actions/github-script@v7
         with:
           script: |
-            const prs = await github.rest.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              head: context.repo.owner + ':' + '${{ github.event.inputs.branch }}'
-            });
-            if (prs.data.length > 0) {
-              return prs.data[0].number;
+            // For workflow_dispatch events, we need to find the PR for the specified branch
+            if (context.eventName === 'workflow_dispatch') {
+              const prs = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                head: context.repo.owner + ':' + '${{ github.event.inputs.branch }}',
+                sort: 'created',
+                direction: 'desc'
+              });
+              if (prs.data.length > 0) {
+                return prs.data[0].number;
+              }
+              return '';
             }
-            return '';
+            // For pull_request events, we can get the PR number directly
+            return context.payload.pull_request.number;
 
       - name: Set test URL
         id: set-url

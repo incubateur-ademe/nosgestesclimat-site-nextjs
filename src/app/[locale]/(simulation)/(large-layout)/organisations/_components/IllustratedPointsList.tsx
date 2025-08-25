@@ -28,7 +28,7 @@ export default function IllustratedPointsList({ locale }: { locale: string }) {
           </div>
 
           <div className="mx-auto flex max-w-full items-end overflow-hidden rounded-xl bg-gray-100 px-6 pt-6 md:w-[26rem]">
-            <div className="mx-auto mt-4 flex items-end rounded-t-md bg-white p-4 pb-0 shadow-xs">
+            <div className="shadow-xs mx-auto mt-4 flex items-end rounded-t-md bg-white p-4 pb-0">
               <Image
                 src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_tutoriel_276d608be8.png"
                 width="300"
@@ -95,7 +95,7 @@ export default function IllustratedPointsList({ locale }: { locale: string }) {
                 Permettez à vos cibles (clients, étudiants, participants,
                 habitants..) de calculer et réduire leur empreinte carbone
                 directement depuis vos plateformes web et mobile, avec un lien
-                dédié ou d’autres modes d’intégration prêts à l’emploi.
+                dédié ou d'autres modes d'intégration prêts à l'emploi.
               </Trans>
             </p>
           </div>

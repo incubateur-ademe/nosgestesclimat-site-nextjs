@@ -30,7 +30,7 @@ import { useEffect, useState } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import Button from '../buttons/Button'
-import CheckboxInputGroup from '../inputs/CheckboxInputGroup'
+import CheckboxInput from '../inputs/CheckboxInput'
 import EmailInput from '../inputs/EmailInput'
 import BlockSkeleton from '../layout/BlockSkeleton'
 
@@ -237,7 +237,7 @@ export default function NewslettersBlock() {
                       vous inscrire
                     </Trans>
                   </legend>
-                  <CheckboxInputGroup
+                  <CheckboxInput
                     label={
                       <p className="mb-0 text-sm">
                         <span>
@@ -257,7 +257,7 @@ export default function NewslettersBlock() {
                     data-testid="newsletter-saisonniere-checkbox"
                   />
 
-                  <CheckboxInputGroup
+                  <CheckboxInput
                     label={
                       <p className="mb-0 text-sm">
                         <span>Nos Gestes Transports</span> -{' '}
@@ -274,7 +274,7 @@ export default function NewslettersBlock() {
                     data-testid="newsletter-transports-checkbox"
                   />
 
-                  <CheckboxInputGroup
+                  <CheckboxInput
                     label={
                       <p className="mb-0 text-sm">
                         <span>Nos Gestes Logement</span> -{' '}

@@ -1,10 +1,10 @@
 // eslint-disable-next-line storybook/no-renderer-packages
 import type { Meta, StoryObj } from '@storybook/nextjs'
-import TextInputGroup from './TextInputGroup'
+import TextInput from './TextInput'
 
-const meta: Meta<typeof TextInputGroup> = {
-  title: 'Design System/Inputs/TextInputGroup',
-  component: TextInputGroup,
+const meta: Meta<typeof TextInput> = {
+  title: 'Design System/Inputs/TextInput',
+  component: TextInput,
   parameters: {
     layout: 'centered',
   },
@@ -63,6 +63,10 @@ const meta: Meta<typeof TextInputGroup> = {
       control: 'number',
       description: 'Debounce timeout in milliseconds',
     },
+    mention: {
+      control: 'text',
+      description: 'Additional mention text to display next to label',
+    },
     onChange: {
       action: 'changed',
       description: 'Change handler',
@@ -71,7 +75,7 @@ const meta: Meta<typeof TextInputGroup> = {
 }
 
 export default meta
-type Story = StoryObj<typeof TextInputGroup>
+type Story = StoryObj<typeof TextInput>
 
 export const Default: Story = {
   args: {
@@ -162,5 +166,14 @@ export const EmailInput: Story = {
     label: 'Adresse email',
     type: 'email',
     placeholder: 'exemple@domaine.com',
+  },
+}
+
+export const WithMention: Story = {
+  args: {
+    name: 'optional-field',
+    label: 'Champ optionnel',
+    placeholder: 'Ce champ est optionnel',
+    mention: 'Optionnel',
   },
 }
