@@ -48,10 +48,7 @@ export default function RegionSelector({
 
   return (
     <>
-      <details
-        aria-live="polite"
-        open={isOpen}
-        className="rounded-xl bg-gray-100 p-2">
+      <details open={isOpen} className="rounded-xl bg-gray-100 p-2">
         <summary
           className={`middle w-auto cursor-pointer p-4 ${
             isLoading ? 'pointer-events-none opacity-60' : ''
@@ -89,7 +86,11 @@ export default function RegionSelector({
         />
 
         {isUpdateSuccess && (
-          <p className="mt-4 mb-4 ml-2 text-sm text-green-700">
+          <p
+            aria-live="polite"
+            role="status"
+            aria-atomic="true"
+            className="mt-4 mb-4 ml-2 text-sm text-green-700">
             <Trans>Votre région a bien été mise à jour.</Trans>
           </p>
         )}
