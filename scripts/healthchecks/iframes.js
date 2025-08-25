@@ -239,6 +239,8 @@ async function healthcheck() {
         errors.push(url)
         continue
       }
+
+      await urlContext.close()
     }
 
     if (errors.length) {
@@ -272,7 +274,6 @@ async function healthcheck() {
     console.log(`Healthcheck error: ${error.message}`)
   } finally {
     await browser.close()
-    await urlContext.close()
   }
 }
 
