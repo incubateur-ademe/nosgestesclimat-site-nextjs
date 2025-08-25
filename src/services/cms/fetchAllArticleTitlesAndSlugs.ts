@@ -21,7 +21,7 @@ export async function fetchAllArticleTitlesAndSlugs({
         locale: getLocaleWithoutEs(locale) ?? i18nConfig.defaultLocale,
         'fields[0]': 'title',
         'fields[1]': 'slug',
-        'populate[0]': 'category',
+        'populate[0]': 'blogCategory',
         'pagination[page]': currentPage.toString(),
         'pagination[pageSize]': PAGE_SIZE.toString(),
         sort: 'createdAt:desc',
