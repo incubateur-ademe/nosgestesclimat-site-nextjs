@@ -14,7 +14,12 @@ import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useMagicKey } from '@/hooks/useMagicKey'
-import { useCurrentSimulation, useFormState, useRule } from '@/publicodes-state'
+import {
+  useCurrentSimulation,
+  useEngine,
+  useFormState,
+  useRule,
+} from '@/publicodes-state'
 import getValueIsOverFloorOrCeiling from '@/publicodes-state/helpers/getValueIsOverFloorOrCeiling'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -58,6 +63,8 @@ export default function Navigation({
     activeNotifications,
     questionsOfMosaicFromParent,
   } = useRule(question)
+
+  const { getValue } = useEngine()
 
   // Hack in order to reset the notification when the question changes
   const hasActiveNotifications = activeNotifications?.length > 0
@@ -143,12 +150,11 @@ export default function Navigation({
 
       if (isMissing) {
         if (questionsOfMosaicFromParent?.length > 0) {
-          //TODO: handle mosaic questions default value
           questionsOfMosaicFromParent.forEach((question) => {
             updateCurrentSimulation({
               foldedStepToAdd: {
                 foldedStep: question,
-                value: null,
+                value: getValue(question),
                 isMosaicChild: true,
               },
             })
@@ -200,6 +206,7 @@ export default function Navigation({
       value,
       questionsOfMosaicFromParent,
       updateCurrentSimulation,
+      getValue,
       onComplete,
       setCurrentQuestion,
       gotoNextQuestion,
