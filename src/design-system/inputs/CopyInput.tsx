@@ -1,6 +1,7 @@
 'use client'
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { captureException } from '@sentry/nextjs'
 import { useEffect, useRef, useState } from 'react'
 import Button from '../buttons/Button'
 
@@ -24,7 +25,6 @@ export default function CopyInput({
   canShare,
   inputLabel,
   inputId,
-  ...props
 }: Props) {
   const { t } = useClientTranslation()
   const [isCopied, setIsCopied] = useState(false)
@@ -53,40 +53,28 @@ export default function CopyInput({
   const isShareDefined =
     typeof navigator !== 'undefined' && navigator.share !== undefined
 
-  const handleShare = async () => {
+  const handleShareOrCopy = async () => {
     setIsLoading(true)
     setIsError(false)
 
-    try {
-      if (navigator.share) {
-        await navigator
-          .share({
-            url: textToCopy,
-            title: t(
-              'copyInput.shareTitle',
-              'Découvre mon empreinte carbone !'
-            ),
-          })
-          .catch(handleCopy)
-      } else {
-        await handleCopy()
+    // For mobile devices
+    if (navigator?.share) {
+      try {
+        return await navigator.share({
+          url: textToCopy,
+          title: t('copyInput.shareTitle', 'Découvre mon empreinte carbone !'),
+        })
+      } catch (err) {
+        captureException(err)
+        setIsError(true)
+      } finally {
+        setIsLoading(false)
       }
-    } catch (err) {
-      setIsError(true)
-    } finally {
-      setIsLoading(false)
     }
-  }
 
-  const handleCopy = async () => {
-    setIsLoading(true)
-    setIsError(false)
-
-    try {
-      if (
-        typeof navigator !== 'undefined' &&
-        navigator.clipboard !== undefined
-      ) {
+    // For desktop devices
+    if (navigator?.clipboard?.writeText) {
+      try {
         await navigator.clipboard.writeText(textToCopy)
         setIsCopied(true)
         timeoutRef.current = setTimeout(() => setIsCopied(false), 3000)
@@ -95,22 +83,17 @@ export default function CopyInput({
         setTimeout(() => {
           buttonRef.current?.focus()
         }, 100)
-      } else {
-        throw new Error('Clipboard not supported')
+      } catch (err) {
+        captureException(err)
+        setIsError(true)
+      } finally {
+        setIsLoading(false)
       }
-    } catch (err) {
-      setIsError(true)
-    } finally {
-      setIsLoading(false)
     }
   }
 
   const handleButtonClick = async () => {
-    if (canShare && isShareDefined) {
-      await handleShare()
-    } else {
-      await handleCopy()
-    }
+    await handleShareOrCopy()
 
     if (onClick) onClick()
   }
