@@ -98,10 +98,10 @@ export default async function FAQPage({
       <ul className="-mt-8 pb-4 md:-mt-16">
         {faqCategories
           .sort((a, b) => a.order - b.order)
-          .map(({ category, questions }) => {
+          .map(({ title, questions }) => {
             return (
-              <li key={category} className="list-none">
-                <h2 className="mt-8 capitalize">{category}</h2>
+              <li key={title} className="list-none">
+                <h2 className="mt-8 capitalize">{title}</h2>
                 <ul className="pl-2">
                   {questions.map(({ question, htmlAnswer, id }) => {
                     return (
