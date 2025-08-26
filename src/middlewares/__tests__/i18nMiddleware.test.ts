@@ -10,18 +10,6 @@ vi.mock('next-i18n-router', () => ({
   }),
 }))
 
-// Mock i18nConfig
-vi.mock('@/i18nConfig', () => ({
-  default: {
-    locales: ['fr', 'en'],
-    defaultLocale: 'fr',
-    cookieOptions: {
-      maxAge: 31536000,
-    },
-  },
-  NEXT_LOCALE_COOKIE_NAME: 'NEXT_LOCALE',
-}))
-
 describe('i18nMiddleware', () => {
   beforeEach(() => {
     vi.clearAllMocks()
