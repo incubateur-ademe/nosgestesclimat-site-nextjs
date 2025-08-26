@@ -21,6 +21,7 @@ export default function Emoji({
         size: '',
         props: {
           className: 'border-none',
+          'aria-hidden': true,
         },
       })}
     </span>
