@@ -37,6 +37,7 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
     url.pathname = `/${lang ? lang + '/' : ''}simulateur/bilan`
   }
 
+  url.searchParams.append('lang', lang)
   url.searchParams.append('iframe', 'true')
   url.searchParams.append('integratorUrl', integratorUrl)
 
