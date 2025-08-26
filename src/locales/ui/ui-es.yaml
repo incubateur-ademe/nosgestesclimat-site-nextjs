@@ -9,7 +9,6 @@ entries:
   404.action.lock: Revenir en lieu sûr
   Chargée: Director
   Fermer: Cerrar
-  Entrez des mots clefs: Introducir palabras clave
   Le modèle d'empreinte carbone de référence: El modelo de referencia de la huella de carbono
   Envie de contribuer à une version pour votre région ?: ¿Le gustaría contribuir a una versión para su región?
   En savoir plus: Más información
@@ -23,7 +22,6 @@ entries:
   Envoyer: Enviar
   J'ai compris: Comprendo
   Copier le lien: Copiar el enlace
-  Explorez nos modèles: Explore nuestros modelos
   Fermer les options de tri: Cerrar las opciones de clasificación
   Choisissez une région parmi celles disponibles !: Elija una región entre las disponibles
   Comprendre le calcul: Comprender los cálculos
@@ -76,10 +74,6 @@ entries:
   plus de 100 kg: más de 100 kg
   plus d'1 kg: más de 1 kg
   le - d'impact climat: el - impacto climático
-  noresults: No se han encontrado resultados para esta búsqueda
-  search.results: '{{count}} resultado(s) encontrado(s)'
-  search.results.label: Resultados de la búsqueda
-  search.documentation.label: Búsqueda de documentación
   publicodes.Profil.locationDonnées: <0>¿Dónde se almacenan mis datos? </0><1>Tus datos se almacenan en tu navegador, por lo que tienes un control total sobre ellos.</1>
   publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? </0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
   plus de 10 tonnes: más de 10 toneladas
@@ -194,7 +188,6 @@ entries:
   Veuillez renseigner un nom.: Por favor, introduzca un nombre.
   ' Retour à la liste': ' Volver a la lista'
   Nos équipes ont été prévenues ; veuillez réessayer d'accéder à cette page plus tard.: Nuestros equipos han sido avisados; por favor, intente acceder a esta página de nuevo más tarde.
-  Entrez des mots-clefs de recherche: Introducir palabras clave de búsqueda
   Personas: Personas
   Calcul d'empreinte carbone manquant: Falta el cálculo de la huella de carbono
   Il concerne votre vie personnelle, et non pas votre boulot.: Se trata de tu vida personal, no de tu trabajo.
@@ -213,12 +206,10 @@ entries:
   Détailler mes trajets: Detallar mis viajes
   Télécharger l'image: Descargar imagen
   Fréquence: Frecuencia
-  Passer en français: Cambiar al francés
   Supprimer: Borrar
   Voir toutes les actions: Ver todas las acciones
   Passagers: Pasajeros
   Distance: Distancia
-  Switch to english: Cambiar a inglés
   Vous: Usted
   Créer un groupe: Crear un grupo
   Ajouter: Añadir
@@ -402,7 +393,6 @@ entries:
   Vous avez déja participé à ce sondage.: Ya ha participado en esta encuesta.
   En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.: Al hacer clic en el botón Aceptar, autoriza a {{ parent }} a recuperar su huella climática.
   (Données consultables à partir de 3 participants, dans un souci d'anonymat): (Pueden consultarse los datos de 3 o más participantes, para garantizar el anonimato)
-  Cambiar a español: Change to English
   Voir les résultats: Ver los resultados
   CGU - Nos Gestes Climat: CGU - Nos Gestes Climat
   par semaine, miam: por semana, yum
@@ -692,7 +682,6 @@ entries:
   Découvre mes empreintes: Descubra mis grabados
   D’où vient mon empreinte ?: ¿De dónde viene mi huella?
   Est-ce que c'est <2>beaucoup ?</2>: ¿Es <2>mucho?</2>
-  Evaluer la métrique eau: Evaluar la métrica del agua
   C’est quoi mon empreinte carbone ?: ¿Cuál es mi huella de carbono?
   <0>L’empreinte eau,</0> c’est quoi ?: ¿Qué es <0>la huella hídrica</0>?
   'Retrouvez nos conseils dans ces articles :': 'Lee nuestros consejos en estos artículos:'
@@ -713,7 +702,6 @@ entries:
   'Nos articles sur le sujet :': 'Nuestros artículos sobre el tema :'
   l’extraction des matériaux de vos <2>appareils numériques</2>: extracción de materiales de sus <2>dispositivos digitales</2>
   la culture du <2>coton</2> que vous portez: el <2>algodón</2> que llevas
-  Evaluer la métrique carbone: Evaluar las métricas del carbono
   Vous souhaitez recevoir vos résultats ?: ¿Desea recibir sus resultados?
   <0>Eau, climat,</0> même combat ?: <0>Agua, clima, ¿</0> la misma batalla?
   Pourquoi avons-nous ajouté l’empreinte eau ?: ¿Por qué hemos añadido la huella hídrica?
@@ -1248,16 +1236,7 @@ entries:
   Veuillez sélectionner au moins une infolettre.: Seleccione al menos un boletín.
   Sélectionnez les infolettres auxquelles vous souhaitez vous inscrire: Seleccione los boletines a los que desea suscribirse
   Télécharger le QR Code: Descargar el código QR
-  'Comment ça marche ? ': '¿Cómo funciona? '
-  Aucune pression: Sin presión
-  C’est un test personnel: Es una prueba personal
-  Un groupe d’amis jouant à un jeu de société.: Un grupo de amigos jugando a un juego de mesa.
-  On parle de votre vie privée: Estamos hablando de tu vida privada
-  répondez pour vous uniquement, pas votre foyer: responda sólo por usted, no por su familia
-  il ne s’agit pas d’être parfait, mais de comprendre son impact: no se trata de ser perfecto, sino de comprender tu impacto
   Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Como otros 2 millones de personas, mide tu huella ecológica en 10 minutos. Una herramienta gratuita para hacer balance y reducir tus emisiones de CO2.
-  pas de votre travail: no tu trabajo
-  Règles du test: Normas de ensayo
   Pour vous désinscrire, passez par le lien en bas de l'email reçu: Para darse de baja, utilice el enlace que encontrará al final del correo electrónico que reciba
   Page active: Página activa
   Visiter cette page: Visite esta página
@@ -1306,13 +1285,10 @@ entries:
   actions.chooseAction.ariaLabel.selected.lock: Action sélectionnée, annuler la sélection
   documentation.search.h2: Explore nuestros modelos
   documentation.search.h2.lock: Explorez nos modèles
-  search.results.label.lock: Résultats de recherche
-  search.results.lock: '{{count}} résultat(s) trouvé(s)'
   documentation.search.input.label: Introducir palabras clave
   documentation.search.input.label.lock: Entrez des mots clefs
   documentation.search.label: Búsqueda de documentación
   documentation.search.label.lock: Recherche dans la documentation
-  search.documentation.label.lock: Recherche dans la documentation
   documentation.search.results.label: Resultados de la búsqueda
   documentation.search.results.label.lock: Résultats de recherche
   documentation.search.input.placeholder: Introducir palabras clave de búsqueda
