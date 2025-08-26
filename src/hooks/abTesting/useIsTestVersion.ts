@@ -6,8 +6,7 @@ export const useIsTestVersion = (variantKey: string) => {
   // Always exclude iframes from AB testing
   const isIframe = getIsIframe()
 
-  return (
-    !isIframe &&
-    useFeatureFlagVariantKey(variantKey) === DEFAULT_TEST_VARIANT_KEY
-  )
+  const flagValue = useFeatureFlagVariantKey(variantKey)
+
+  return !isIframe && flagValue === DEFAULT_TEST_VARIANT_KEY
 }
