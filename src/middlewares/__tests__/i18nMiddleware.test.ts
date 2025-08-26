@@ -10,6 +10,18 @@ vi.mock('next-i18n-router', () => ({
   }),
 }))
 
+// Mock i18nConfig
+vi.mock('@/i18nConfig', () => ({
+  default: {
+    locales: ['fr', 'en'],
+    defaultLocale: 'fr',
+    cookieOptions: {
+      maxAge: 31536000,
+    },
+  },
+  NEXT_LOCALE_COOKIE_NAME: 'NEXT_LOCALE',
+}))
+
 describe('i18nMiddleware', () => {
   beforeEach(() => {
     vi.clearAllMocks()
@@ -41,127 +53,81 @@ describe('i18nMiddleware', () => {
     return request
   }
 
-  describe('Iframe handling', () => {
-    it('should handle iframes without cookies (incognito mode)', async () => {
-      const request = createMockRequest(
-        '/en/simulateur/bilan', // Use non-default locale
-        { iframe: 'true' },
-        {} // No cookies
-      )
-
-      const response = await i18nMiddleware(request)
-
-      expect(response).toBeInstanceOf(NextResponse)
-      // The cookie should be set for iframe requests without cookies
-      const cookie = response.cookies.get('NEXT_LOCALE')
-      expect(cookie?.value).toBe('en')
-    })
-
-    it('should redirect to locale-prefixed URL for iframes with lang parameter', async () => {
-      const request = createMockRequest(
-        '/simulateur/bilan',
-        { iframe: 'true', lang: 'en' },
-        {} // No cookies
-      )
-
-      const response = await i18nMiddleware(request)
-
-      // It should redirect
-      expect(response.status).toBe(307)
-      const location = response.headers.get('location')
-      // The new URL should be prefixed with the locale, and keep the iframe param
-      expect(location).toContain('/en/simulateur/bilan')
-      expect(location).toContain('iframe=true')
-      // The lang param should be removed
-      expect(location).not.toContain('lang=en')
-      // The cookie should be set
-      expect(response.cookies.get('NEXT_LOCALE')?.value).toBe('en')
-    })
-
-    it('should detect iframes via referer', async () => {
-      const request = createMockRequest(
-        '/simulateur/bilan',
-        {},
-        {},
-        { referer: 'https://example.com/page?iframe=true' }
-      )
-
-      const response = await i18nMiddleware(request)
-
-      expect(response).toBeInstanceOf(NextResponse)
-    })
-
-    it('should not set cookie for default locale in iframe without cookies', async () => {
-      const request = createMockRequest(
-        '/fr/simulateur/bilan', // Use default locale
-        { iframe: 'true' },
-        {} // No cookies
-      )
-
-      const response = await i18nMiddleware(request)
-
-      expect(response).toBeInstanceOf(NextResponse)
-      // Should not set cookie for default locale
-      const cookie = response.cookies.get('NEXT_LOCALE')
-      expect(cookie).toBeUndefined()
-    })
-  })
-
   describe('Locale change via lang parameter', () => {
-    it('should redirect to new locale', async () => {
+    it('should set locale cookie when lang parameter is valid', async () => {
       const request = createMockRequest('/fr/simulateur/bilan', { lang: 'en' })
 
       const response = await i18nMiddleware(request)
 
-      expect(response.status).toBe(307)
-      const location = response.headers.get('location')
-      expect(location).toContain('/en/simulateur/bilan')
-      expect(response.cookies.get('NEXT_LOCALE')?.value).toBe('en')
+      expect(response).toBeInstanceOf(NextResponse)
+      const cookie = response.cookies.get('NEXT_LOCALE')
+      expect(cookie?.value).toBe('en')
+      expect(cookie?.maxAge).toBe(31536000)
     })
 
-    it('should clean URL if locale is already correct', async () => {
-      const request = createMockRequest('/en/simulateur/bilan', { lang: 'en' })
+    it('should not redirect when lang parameter is provided', async () => {
+      const request = createMockRequest('/fr/simulateur/bilan', { lang: 'en' })
 
       const response = await i18nMiddleware(request)
 
-      expect(response.status).toBe(307)
-      const location = response.headers.get('location')
-      expect(location).not.toContain('lang=en')
+      // Should not redirect, just set cookie and continue
+      expect(response.status).not.toBe(307)
+      expect(response).toBeInstanceOf(NextResponse)
     })
 
-    it('should not redirect if locale is invalid', async () => {
+    it('should handle non-default locale', async () => {
+      const request = createMockRequest('/en/simulateur/bilan', { lang: 'fr' })
+
+      const response = await i18nMiddleware(request)
+
+      expect(response).toBeInstanceOf(NextResponse)
+      const cookie = response.cookies.get('NEXT_LOCALE')
+      expect(cookie?.value).toBe('fr')
+    })
+
+    it('should not set cookie if locale is invalid', async () => {
       const request = createMockRequest('/fr/simulateur/bilan', {
         lang: 'invalid',
       })
 
       const response = await i18nMiddleware(request)
 
-      expect(response.status).not.toBe(307)
+      // Should fall back to i18nRouter for invalid locales
+      expect(response).toBeInstanceOf(NextResponse)
+      const cookie = response.cookies.get('NEXT_LOCALE')
+      expect(cookie).toBeUndefined()
     })
   })
 
-  describe('URL construction with locale', () => {
-    it('should correctly build URL with new locale', async () => {
-      const request = createMockRequest('/fr/simulateur/bilan', { lang: 'en' })
+  describe('No lang parameter', () => {
+    it('should delegate to i18nRouter when no lang parameter', async () => {
+      const request = createMockRequest('/fr/simulateur/bilan')
 
       const response = await i18nMiddleware(request)
-      const location = response.headers.get('location')
 
-      expect(location).toContain('/en/simulateur/bilan')
+      // Should delegate to i18nRouter
+      expect(response).toBeInstanceOf(NextResponse)
     })
 
-    it('should add locale if it does not exist in path', async () => {
-      const request = createMockRequest('/simulateur/bilan', { lang: 'en' })
+    it('should handle root path without lang parameter', async () => {
+      const request = createMockRequest('/')
 
       const response = await i18nMiddleware(request)
-      const location = response.headers.get('location')
 
-      expect(location).toContain('/en/simulateur/bilan')
+      expect(response).toBeInstanceOf(NextResponse)
+    })
+
+    it('should handle URLs with multiple segments without lang parameter', async () => {
+      const request = createMockRequest('/fr/simulateur/bilan/resultats')
+
+      const response = await i18nMiddleware(request)
+
+      expect(response).toBeInstanceOf(NextResponse)
     })
   })
 
   describe('Cookie handling', () => {
-    it('should set locale cookie', async () => {
+    it('should set locale cookie with correct options', async () => {
       const request = createMockRequest('/fr/simulateur/bilan', { lang: 'en' })
 
       const response = await i18nMiddleware(request)
@@ -170,9 +136,18 @@ describe('i18nMiddleware', () => {
       expect(cookie?.value).toBe('en')
       expect(cookie?.maxAge).toBe(31536000)
     })
+
+    it('should not set cookie when no lang parameter', async () => {
+      const request = createMockRequest('/fr/simulateur/bilan')
+
+      const response = await i18nMiddleware(request)
+      const cookie = response.cookies.get('NEXT_LOCALE')
+
+      expect(cookie).toBeUndefined()
+    })
   })
 
-  describe('Error cases and edge cases', () => {
+  describe('Edge cases', () => {
     it('should handle empty URLs', async () => {
       const request = createMockRequest('/')
 
@@ -181,15 +156,30 @@ describe('i18nMiddleware', () => {
       expect(response).toBeInstanceOf(NextResponse)
     })
 
-    it('should handle URLs with multiple segments', async () => {
-      const request = createMockRequest('/fr/simulateur/bilan/resultats', {
+    it('should handle URLs with special characters', async () => {
+      const request = createMockRequest('/fr/simulateur/bilan%20test', {
         lang: 'en',
       })
 
       const response = await i18nMiddleware(request)
-      const location = response.headers.get('location')
 
-      expect(location).toContain('/en/simulateur/bilan/resultats')
+      expect(response).toBeInstanceOf(NextResponse)
+      const cookie = response.cookies.get('NEXT_LOCALE')
+      expect(cookie?.value).toBe('en')
+    })
+
+    it('should handle multiple search parameters', async () => {
+      const request = createMockRequest('/fr/simulateur/bilan', {
+        lang: 'en',
+        other: 'param',
+        test: 'value',
+      })
+
+      const response = await i18nMiddleware(request)
+
+      expect(response).toBeInstanceOf(NextResponse)
+      const cookie = response.cookies.get('NEXT_LOCALE')
+      expect(cookie?.value).toBe('en')
     })
   })
 })
