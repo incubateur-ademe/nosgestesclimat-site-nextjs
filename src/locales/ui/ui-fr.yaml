@@ -67,10 +67,6 @@ entries:
   model.modern4: Le modèle de calcul est directement embarqué chez le client, le calcul a lieu là dans votre navigateur, pas sur nos serveurs. Les données collectées sont si descriptives de la vie des utilisateurs, donc sensibles en termes de vie privée, que faire les calculs côté serveur <2>et les stocker</2> poserait un risque trop élevé.
   model.stats: Le modèle comprend aujourd'hui <1></1> règles de calcul. Parmi elles, <3></3> règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.
   model.stats2: Il est constitué d'une combinaison de centaines de modèles micro "bottom-up" pour les consommations carbonées de notre vie quotidienne, et d'un modèle "top-down" dérivé des travaux du SDES pour estimer l'empreinte par personne des services dits sociétaux (services publics et services de base tels les télécom). <2>En savoir plus sur cette hybridation</2>.
-  noresults: Aucun résultat ne correspond à cette recherche
-  search.results: '{{count}} résultat(s) trouvé(s)'
-  search.results.label: Résultats de recherche
-  search.documentation.label: Recherche dans la documentation
   participant: participant
   plus d'1 kg: plus d'1 kg
   plus d'1 tonne: plus d'1 tonne
@@ -179,6 +175,7 @@ entries:
   Sélectionné·e: Sélectionné·e
   Sélectionner: Sélectionner
   Supprimer: Supprimer
+  Voir plus d'informations: Voir plus d'informations
   Vous: Vous
   'Vous faites cette simulation depuis :': 'Vous faites cette simulation depuis :'
   du test: du test
@@ -412,6 +409,8 @@ entries:
   Supprimez vos données de groupe enregistrées dans le calculateur Nos Gestes Climat.: Supprimez vos données de groupe enregistrées dans le calculateur Nos Gestes Climat.
   Vos résultats de tests de notre calculateur d'empreinte carbone.: Vos résultats de tests de notre calculateur d'empreinte carbone.
   Ce test vous est proposé par: Ce test vous est proposé par
+  par semaine, miam: par semaine, miam
+  repas: repas
   Reprendre mon test: Reprendre mon test
   Voir mon résultat: Voir mon résultat
   Pour cela,: Pour cela,

@@ -74,10 +74,6 @@ entries:
   plus de 100 kg: más de 100 kg
   plus d'1 kg: más de 1 kg
   le - d'impact climat: el - impacto climático
-  noresults: No se han encontrado resultados para esta búsqueda
-  search.results: '{{count}} resultado(s) encontrado(s)'
-  search.results.label: Resultados de la búsqueda
-  search.documentation.label: Búsqueda de documentación
   publicodes.Profil.locationDonnées: <0>¿Dónde se almacenan mis datos? </0><1>Tus datos se almacenan en tu navegador, por lo que tienes un control total sobre ellos.</1>
   publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? </0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
   plus de 10 tonnes: más de 10 toneladas
@@ -1343,13 +1339,10 @@ entries:
   actions.chooseAction.ariaLabel.selected.lock: Action sélectionnée, annuler la sélection
   documentation.search.h2: Explore nuestros modelos
   documentation.search.h2.lock: Explorez nos modèles
-  search.results.label.lock: Résultats de recherche
-  search.results.lock: '{{count}} résultat(s) trouvé(s)'
   documentation.search.input.label: Introducir palabras clave
   documentation.search.input.label.lock: Entrez des mots clefs
   documentation.search.label: Búsqueda de documentación
   documentation.search.label.lock: Recherche dans la documentation
-  search.documentation.label.lock: Recherche dans la documentation
   documentation.search.results.label: Resultados de la búsqueda
   documentation.search.results.label.lock: Résultats de recherche
   documentation.search.input.placeholder: Introducir palabras clave de búsqueda
