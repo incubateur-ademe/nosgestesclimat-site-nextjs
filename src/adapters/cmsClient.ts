@@ -113,7 +113,7 @@ export type ArticleType = {
   headings: HeadingType[]
   slug: string
   image?: ImageType | null
-  category?: CategoryType | null
+  blogCategory?: BlogCategoryType | null
   author?: AuthorType | null
   pageMetadata?: PageMetadataType
 } & DefaultAttributesType
@@ -134,7 +134,7 @@ export type PopulatedAuthorType<K extends OptionalKeys<AuthorType>> = Populate<
   K
 >
 
-export type CategoryType = {
+export type BlogCategoryType = {
   slug: string
   title: string
   description: string
@@ -144,25 +144,32 @@ export type CategoryType = {
   htmlTitle: string
   image?: ImageType | null
   articles?: ArticleType[] | null
-  questions?: QuestionType[] | null
+  faq?: FAQType | null
   pageMetadata?: PageMetadataType
   mainArticle?: ArticleType | null
 } & DefaultAttributesType
 
-export type PopulatedCategoryType<K extends OptionalKeys<CategoryType>> =
-  Populate<CategoryType, K>
+export type PopulatedBlogCategoryType<
+  K extends OptionalKeys<BlogCategoryType>,
+> = Populate<BlogCategoryType, K>
 
 export type QuestionType = {
   question: string
   answer: string
   htmlAnswer: string
   order: number
-  category?: CategoryType | null
+  blogCategory?: BlogCategoryType | null
 } & DefaultAttributesType
 
 export type ArticleItemType = Pick<
-  PopulatedArticleType<'image' | 'category'>,
-  'id' | 'documentId' | 'title' | 'description' | 'slug' | 'image' | 'category'
+  PopulatedArticleType<'image' | 'blogCategory'>,
+  | 'id'
+  | 'documentId'
+  | 'title'
+  | 'description'
+  | 'slug'
+  | 'image'
+  | 'blogCategory'
 >
 
 export type BannerType = {
@@ -202,15 +209,11 @@ export type PartnerCampaignType = {
   image?: ImageType | null
   logo: ImageType
   backgroundColor?: string
-  questions?: {
-    question: string
-    answer: string
-    htmlAnswer: string
-  }[]
+  faq?: FAQType | null
 }
 
 export type FAQType = {
-  category: string
+  title: string
   order: number
   questions: QuestionType[]
   subTitle?: string
@@ -249,7 +252,7 @@ export type ThematicLandingPage = {
   block4?: CarouselItemType[]
   block5?: TitleImageListDescriptionWithHTML
   block6?: TitleImageListDescriptionWithHTML
-  articlesList?: ArticleType[]
+  articles?: ArticleType[]
   articlesCTALabel?: string
   articlesCTALink?: string
   block7?: TitleImageListDescriptionWithHTML
