@@ -83,10 +83,6 @@ entries:
   model.stats.lock: Le modèle comprend aujourd'hui <1></1> règles de calcul. Parmi elles, <3></3> règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.
   model.stats2: It consists of a combination of hundreds of "bottom-up" micro models for the carbon consumption of our daily lives, and a "top-down" model derived from the work of the SDES to estimate the per capita footprint of so-called societal services (public services and basic services such as telecommunications). <2>Learn more about this hybridization</2>.
   model.stats2.lock: Il est constitué d'une combinaison de centaines de modèles micro "bottom-up" pour les consommations carbonées de notre vie quotidienne, et d'un modèle "top-down" dérivé des travaux du SDES pour estimer l'empreinte par personne des services dits sociétaux (services publics et services de base tels les télécom). <2>En savoir plus sur cette hybridation</2>.
-  noresults: No results were found for this search
-  search.results: '{{count}} result(s) found'
-  search.results.label: Search results
-  search.documentation.label: Documentation search
   participant: participant
   plus d'1 kg: more than 1 kg
   plus d'1 tonne: more than 1 tonne
@@ -1348,7 +1344,6 @@ entries:
   actions.chooseAction.ariaLabel.selected.lock: Action sélectionnée, annuler la sélection
   documentation.search.results_one: '{{count}} result(s) found'
   documentation.search.results_one.lock: '{{count}} résultat(s) trouvé(s)'
-  search.results.lock: '{{count}} résultat(s) trouvé(s)'
   documentation.search.input.label: Enter keywords
   documentation.search.input.label.lock: Entrez des mots clefs
   Formulaire - Demander une démo: Form - Request a demo
@@ -1356,12 +1351,10 @@ entries:
   documentation.search.h2.lock: Explorez nos modèles
   documentation.search.label: Documentation search
   documentation.search.label.lock: Recherche dans la documentation
-  search.results.label.lock: Résultats de recherche
   documentation.search.results_many: '{{count}} result(s) found'
   documentation.search.results_many.lock: '{{count}} résultat(s) trouvé(s)'
   documentation.search.input.placeholder: Enter search keywords
   documentation.search.input.placeholder.lock: Entrez des mots-clefs de recherche
-  search.documentation.label.lock: Recherche dans la documentation
   documentation.noresults: No results were found for this search
   documentation.noresults.lock: Aucun résultat ne correspond à cette recherche
   documentation.search.results_other: '{{count}} result(s) found'
