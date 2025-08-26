@@ -109,35 +109,52 @@ export default function useSimulations({
 
           if (situation !== undefined) {
             // We sync the extendedSituation with the situation detecting added, modified or removed dottedNames from the updated situation.
-            const addedOrChangedDottedNames = Object.keys(situation).filter(
-              (dottedName) =>
-                !Object.keys(simulationToUpdate.situation).includes(
-                  dottedName
-                ) ||
-                situation[dottedName as DottedName] !==
-                  simulationToUpdate.situation[dottedName as DottedName]
-            )
-            const removedDottedNames = Object.keys(
+
+            const situationKeys = Object.keys(situation)
+            const situationKeySet = new Set(situationKeys)
+
+            const simulationToUpdateSituationKeys = Object.keys(
               simulationToUpdate.situation
-            ).filter(
-              (dottedName) => !Object.keys(situation).includes(dottedName)
             )
-            addedOrChangedDottedNames.forEach((dottedName) => {
-              console.log('coucocuou')
-              simulationToUpdate.extendedSituation[
-                dottedName as keyof ExtendedSituation
-              ] = {
-                source: 'answered',
-                nodeValue: situation[dottedName as DottedName] as NodeValue,
-              }
-            })
-            removedDottedNames.forEach((dottedName) => {
-              simulationToUpdate.extendedSituation[
-                dottedName as keyof ExtendedSituation
-              ] = {
-                source: 'omitted',
-              }
-            })
+            const simulationToUpdateSituationKeysSet = new Set(
+              simulationToUpdateSituationKeys
+            )
+
+            const addedOrChangedDottedNames = situationKeys.reduce(
+              (acc, dottedName) => {
+                if (
+                  !simulationToUpdateSituationKeysSet.has(dottedName) ||
+                  situation[dottedName as DottedName] !==
+                    simulationToUpdate.situation[dottedName as DottedName]
+                ) {
+                  acc[dottedName as keyof ExtendedSituation] = {
+                    source: 'answered',
+                    nodeValue: situation[dottedName as DottedName] as NodeValue,
+                  }
+                }
+                return acc
+              },
+              {} as Partial<ExtendedSituation>
+            )
+
+            const removedDottedNames = simulationToUpdateSituationKeys.reduce(
+              (acc, dottedName) => {
+                if (!situationKeySet.has(dottedName)) {
+                  acc[dottedName as keyof ExtendedSituation] = {
+                    source: 'omitted',
+                  }
+                }
+                return acc
+              },
+              {} as Partial<ExtendedSituation>
+            )
+
+            simulationToUpdate.extendedSituation = {
+              ...simulationToUpdate.extendedSituation,
+              ...addedOrChangedDottedNames,
+              ...removedDottedNames,
+            }
+
             simulationToUpdate.situation = situation
           }
 
