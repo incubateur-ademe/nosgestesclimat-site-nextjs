@@ -58,11 +58,11 @@ export default function HeaderDesktop({ isSticky = true }: Props) {
   return (
     <header
       className={twMerge(
-        'h-20 items-center',
+        'h-20 items-center bg-white',
         isSticky ? 'sticky top-0 z-300' : ''
       )}>
       {/* Header mobile */}
-      <div className="relative flex h-full md:hidden">
+      <div className="relative flex h-full border-b border-gray-200 bg-white pl-2 shadow-xs md:hidden">
         {isIframeOnlySimulation ? (
           <Logo />
         ) : (
