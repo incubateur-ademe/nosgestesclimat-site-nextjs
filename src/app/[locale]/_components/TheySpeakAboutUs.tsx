@@ -22,7 +22,7 @@ export default async function TheySpeakAboutUs({
   return (
     <div
       className={twMerge(
-        'relative mb-10 px-4 py-16 md:mb-20 md:py-28 xl:mb-32',
+        'relative mb-10 max-w-screen overflow-hidden rounded-t-xl px-4 py-16 md:mb-20 md:py-28 xl:mb-32',
         className
       )}>
       {/* Helps cover the triangles of white shown because of the perspective change in Background */}
@@ -30,7 +30,7 @@ export default async function TheySpeakAboutUs({
 
       {/* Add the background along with the tilted colorline */}
       <Background
-        className="bg-heroLightBackground"
+        className="bg-heroLightBackground -mt-8"
         withColorLine
         direction="left"
       />

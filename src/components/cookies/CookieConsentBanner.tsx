@@ -32,7 +32,7 @@ export default function CookieConsentBanner({
     <Modal
       isOpen={isVisible && !isBoardOpen}
       onAfterClose={() => setIsVisible(false)}
-      className="!fixed !top-1/2 !left-1/2 !z-[10001] !mr-auto !w-[500px] !max-w-[calc(100vw-1rem)] !-translate-x-1/2 !-translate-y-1/2 rounded-2xl !border-0 !p-0 !shadow-2xl md:!top-auto md:!bottom-0 md:!left-0 md:!mb-8 md:!ml-8 md:!translate-x-0 md:!translate-y-0 md:!rounded-4xl"
+      className="!fixed !top-1/2 !left-1/2 !z-[10001] !w-[500px] !max-w-[calc(100vw-1rem)] !-translate-x-1/2 !-translate-y-1/2 rounded-2xl !border-0 !p-0 !shadow-2xl md:!top-auto md:!bottom-0 md:!left-0 md:!mb-8 md:!ml-8 md:!translate-x-0 md:!translate-y-0 md:!rounded-4xl"
       overlayClassName="!bg-black/0 !backdrop-blur-none !fixed !bottom-0 !left-0 !right-0 !top-auto !z-[10000]"
       contentLabel={t(
         'Bannière de consentement aux cookies',
@@ -44,27 +44,7 @@ export default function CookieConsentBanner({
       shouldCloseOnOverlayClick={false}
       shouldCloseOnEsc={false}
       preventScroll={false}
-      ariaHideApp={false}
-      style={{
-        content: {
-          margin: '0 auto',
-          bottom: '2rem',
-          left: '0',
-          right: '0',
-          top: 'auto',
-          padding: 0,
-          border: 'none',
-          maxWidth: '48rem',
-          width: 'calc(100vw - 1rem)',
-          boxShadow: '0 8px 32px 0 rgba(0,0,0,0.10)',
-          inset: 'auto',
-        },
-        overlay: {
-          background: 'transparent',
-          zIndex: 10000,
-          pointerEvents: 'auto',
-        },
-      }}>
+      ariaHideApp={false}>
       <div
         className="flex w-full flex-col rounded-2xl bg-white px-6 py-6 shadow-2xl sm:px-8 sm:py-8 md:rounded-4xl"
         aria-labelledby="cookie-banner-title"

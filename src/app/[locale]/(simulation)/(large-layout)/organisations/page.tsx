@@ -8,7 +8,7 @@ export default async function Page({ params }: DefaultPageProps) {
   const { locale } = await params
 
   return (
-    <section className="w-full bg-[#fff] md:mx-auto">
+    <section className="w-full max-w-full bg-white md:mx-auto">
       <div className="mx-4 lg:mx-0">
         <HeroSection />
 
@@ -16,12 +16,13 @@ export default async function Page({ params }: DefaultPageProps) {
 
         <IllustratedPointsList locale={locale} />
       </div>
-
-      <TheySpeakAboutUs
-        ctaHref="/organisations/creer"
-        className="mt-16"
-        locale={locale}
-      />
+      <div className="-mx-4 max-w-screen overflow-hidden md:mx-0 md:max-w-none md:overflow-auto">
+        <TheySpeakAboutUs
+          ctaHref="/organisations/creer"
+          className="mt-16"
+          locale={locale}
+        />
+      </div>
     </section>
   )
 }
