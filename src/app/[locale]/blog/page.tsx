@@ -58,13 +58,26 @@ export default async function BlogHomePage({
   const pageParam = searchParams ? (await searchParams).page : undefined
   const page = Number(pageParam) || 1
 
-  const { title, description, image, mainArticle, articles, pageCount } =
+  const {
+    title,
+    description,
+    image,
+    mainArticle,
+    articles,
+    pageCount,
+    metaTitle,
+  } =
     (await fetchHomepageContent({
       page,
       locale,
     })) ?? {}
 
   const langButtonsDisplayed = await getLangButtonsDisplayed()
+
+  // Update the page title by adding the page number
+  const pageTitle = metaTitle
+    ? `${metaTitle} - ${t('blog.dynamicPageNumber', 'page {{page}} sur {{pageCount}}', { page, pageCount })}`
+    : undefined
 
   // Only for ES locale, redirect to the FR version if !title || !description || !image || !articles
   if (

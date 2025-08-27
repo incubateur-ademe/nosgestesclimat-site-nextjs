@@ -17,10 +17,11 @@ export async function fetchHomepageContent({
   page: number
   locale: Locale
 }): Promise<
-  | (Partial<PopulatedHomePageType<'image'>> & {
+  | (Partial<PopulatedHomePageType<'image' | 'pageMetadata'>> & {
       pageCount: number
       mainArticle: PopulatedArticleType<'image' | 'blogCategory'>
       articles: ArticleItemType[]
+      metaTitle?: string
     })
   | undefined
 > {
@@ -31,10 +32,11 @@ export async function fetchHomepageContent({
       'populate[1]': 'mainArticle',
       'populate[2]': 'mainArticle.image',
       'populate[3]': 'mainArticle.blogCategory',
+      'populate[4]': 'pageMetadata',
     })
 
     const homepageResponse = await cmsClient<{
-      data: PopulatedHomePageType<'image'> & {
+      data: PopulatedHomePageType<'image' | 'pageMetadata'> & {
         mainArticle: PopulatedArticleType<'image' | 'blogCategory'>
       }
     }>(`/api/home-page?${homepageSearchParams}`)
@@ -44,7 +46,8 @@ export async function fetchHomepageContent({
       return undefined
     }
 
-    const { mainArticle, image, title, description } = homepageResponse.data
+    const { mainArticle, image, title, description, pageMetadata } =
+      homepageResponse.data
 
     const articlesSearchParams: Record<string, string> = {
       locale,
@@ -71,6 +74,7 @@ export async function fetchHomepageContent({
 
     return {
       title,
+      metaTitle: pageMetadata.title,
       description,
       image,
       mainArticle,
