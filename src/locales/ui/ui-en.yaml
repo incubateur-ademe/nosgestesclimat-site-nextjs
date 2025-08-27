@@ -22,10 +22,8 @@ entries:
   Démarrer: Start
   En développement actif: In active development
   En savoir plus: Read more
-  Entrez des mots clefs: Enter keywords
   Envie de contribuer à une version pour votre région ?: Want to contribute to a version for your region?
   Envoyer: Send
-  Explorez nos modèles: Explore our models
   Faire le test: Take the test
   Fermer: Close
   Fermer les options de tri: Close sorting options
@@ -205,13 +203,10 @@ entries:
   'Date complète :': 'Full date :'
   Consultez la FAQ: Consult the FAQ
   Avant de commencer: Before you start
-  Entrez des mots-clefs de recherche: Enter search keywords
   international.comment.2: Explore the specific features of each country in detail.
   international.comment.2.lock: Explorez en détail les spécificités de chaque pays.
-  Passer en français: Switch to French
   Sélectionner: Select
   Vous: You
-  Switch to english: Switch to english
   Supprimer: Delete
   publicodes.Tutoriel.slide6: <0>Driving a car, eating a steak, heating your home, getting medical treatment, buying a TV...</0><1>Our individual consumption footprint is the sum total of all the activities that make up our modern lives.</1>
   publicodes.Tutoriel.slide6.lock: <0>Prendre la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter une TV...</0><1>L'empreinte de notre consommation individuelle, c'est la somme de toutes ces activités qui font notre vie moderne.</1>
@@ -482,7 +477,6 @@ entries:
   par semaine, miam: per week, yum
   repas: meal
   Ce test vous est proposé par: This test is brought to you by
-  Cambiar a español: Cambiar a español
   Reprendre mon test: Resume my test
   Voir mon résultat: See my result
   Mon empreinte: My footprint
@@ -708,9 +702,7 @@ entries:
   D’où vient mon empreinte ?: Where does my footprint come from?
   Comment on la mesure ?: How is it measured?
   <0>Eau, climat,</0> même combat ?: <0>Water, climate,</0> same battle?
-  Evaluer la métrique eau: Assessing the water metric
   Découvre mes empreintes: Discover my footprints
-  Evaluer la métrique carbone: Assessing carbon metrics
   C’est quoi mon empreinte carbone ?: What's my carbon footprint?
   l’alimentation des <2>animaux</2> que vous consommez: the feed of the <2>animals</2> you eat
   chrono pour calculer votre empreinte carbone et eau: chrono to calculate your carbon and water footprint
@@ -1267,14 +1259,112 @@ entries:
   Veuillez sélectionner au moins une infolettre.: Please select at least one newsletter.
   Sélectionnez les infolettres auxquelles vous souhaitez vous inscrire: Select the newsletters you wish to subscribe to
   Télécharger le QR Code: Download the QR Code
-  répondez pour vous uniquement, pas votre foyer: answer for yourself only, not your household
-  il ne s’agit pas d’être parfait, mais de comprendre son impact: it's not about being perfect, it's about understanding your impact
-  pas de votre travail: not your work
-  'Comment ça marche ? ': 'How does it work? '
-  Règles du test: Test rules
-  Aucune pression: No pressure
-  C’est un test personnel: It's a personal test
-  On parle de votre vie privée: We're talking about your private life
-  Un groupe d’amis jouant à un jeu de société.: A group of friends playing a board game.
   Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Like 2 million other people, measure your ecological footprint in 10 minutes. A free tool to take stock and reduce your CO2 emissions.
   Pour vous désinscrire, passez par le lien en bas de l'email reçu: To unsubscribe, use the link at the bottom of the email you receive
+  copyInput.linkCopiedSuccess: Link successfully copied
+  copyInput.linkCopiedSuccess.lock: Lien copié avec succès
+  copyInput.copyError: Error copying link
+  copyInput.copyError.lock: Erreur lors de la copie du lien
+  copyInput.copyingInProgress: Copy in progress...
+  copyInput.copyingInProgress.lock: Copie en cours...
+  copyInput.copyLinkToClipboard: Copy link to clipboard
+  copyInput.copyLinkToClipboard.lock: Copier le lien dans le presse-papiers
+  copyInput.sharingInProgress: Sharing in progress...
+  copyInput.sharingInProgress.lock: Partage en cours...
+  copyInput.linkCopiedToClipboard: Link successfully copied to clipboard
+  copyInput.linkCopiedToClipboard.lock: Lien copié avec succès dans le presse-papiers
+  copyInput.share: Share
+  copyInput.share.lock: Partager
+  copyInput.shareTitle: Discover my carbon footprint!
+  copyInput.shareTitle.lock: Découvre mon empreinte carbone !
+  copyInput.copied: Copy!
+  copyInput.copied.lock: Copié !
+  copyInput.defaultLabel: Link to copy
+  copyInput.defaultLabel.lock: Lien à copier
+  copyInput.shareLink: Share this link
+  copyInput.shareLink.lock: Partager le lien
+  copyInput.copyErrorManual: Oops, I can't copy the link, you can copy it manually.
+  copyInput.copyErrorManual.lock: Oups, impossible de copier le lien, vous pouvez le copier manuellement.
+  copyInput.copyLink: Copy link
+  copyInput.copyLink.lock: Copier le lien
+  Page active: Active page
+  Sélectionner ce filtre et afficher uniquement les actions de cette catégorie: Select this filter to display only the shares in this category
+  Eau, évaluer la métrique eau: Water, assess the water metric
+  Carbone, évaluer la métrique carbone: Carbon, assessing the carbon metric
+  Connexion: Connection
+  Visiter cette page: Visit this page
+  endPage.tallyForm.buttonLabel.lock: Donner votre avis
+  actions.engagementIcon.ariaLabel: shares are located below
+  actions.engagementIcon.ariaLabel.lock: ', les actions se trouvent en dessous'
+  endPage.waterActions.lireArticle: Open article in a new window
+  endPage.waterActions.lireArticle.lock: Ouvrir l'article dans une nouvelle fenêtre
+  organisations.ourTools.newTab: Open in a new window
+  organisations.ourTools.newTab.lock: Ouvrir dans une nouvelle fenêtre
+  endPage.carboneTarget.enSavoirPlus: Open the page in a new window
+  endPage.carboneTarget.enSavoirPlus.lock: Ouvrir la page dans une nouvelle fenêtre
+  endPage.carboneChart.progressBarLabel.lock: Barre de progression de votre empreinte carbone
+  common.partners.abc.ariaLabel: Association for the Low Carbon Transition
+  common.partners.abc.ariaLabel.lock: Association pour la transition Bas Carbone
+  authorBlock.defaultAlt: Photo of the author
+  authorBlock.defaultAlt.lock: Photo de l'auteur ou de l'autrice
+  international.electricityMaps.ariaLabel: Visit the Electricity Maps website (opens in a new tab)
+  international.electricityMaps.ariaLabel.lock: Visiter le site Electricity Maps (s'ouvre dans un nouvel onglet)
+  endPage.carboneChart.gaugeDescription.lock: Graphique montrant votre empreinte carbone de {{currentValue}} {{unit}} par an, soit {{percentage}}% de l'échelle maximale. L'objectif 2050 est de {{targetValue}} tonnes par an.
+  endPage.blogArticles.lireArticle: Open article in a new window
+  endPage.blogArticles.lireArticle.lock: Ouvrir l'article dans une nouvelle fenêtre
+  Découvrez le calculateur, ouvrir dans une nouvelle fenêtre: Discover the calculator, open in a new window
+  Découvrez les ateliers de l’ABC, ouvrir dans une nouvelle fenêtre: Discover the ABC workshops, open in a new window
+  l'objectif pour 2050: the target for 2050
+  common.marianne.ariaLabel: French Republic
+  common.marianne.ariaLabel.lock: République Française
+  Permettez à vos cibles (clients, étudiants, participants, habitants..) de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d'autres modes d'intégration prêts à l'emploi.: Allow your target audiences (customers, students, participants, residents, etc.) to calculate and reduce their carbon footprint directly from your web and mobile platforms, using a dedicated link or other ready-to-use integration methods.
+  actions.buttons.reject: Reject the action
+  actions.buttons.reject.lock: Rejeter l'action
+  actions.buttons.select: Select action
+  actions.buttons.select.lock: Sélectionner l'action
+  empreinte-carbone.heroTitle: The carbon footprint, a first step towards action
+  empreinte-carbone.heroTitle.lock: L'empreinte carbone, une première étape pour passer à l'action
+  actions.chooseAction.ariaLabel.unselected: Select this action
+  actions.chooseAction.ariaLabel.unselected.lock: Sélectionner cette action
+  actions.rejectAction.ariaLabel.selected: Action dismissed
+  actions.rejectAction.ariaLabel.selected.lock: Action rejetée
+  actions.rejectAction.ariaLabel.unselected: Reject this action
+  actions.rejectAction.ariaLabel.unselected.lock: Rejeter cette action
+  actions.chooseAction.ariaLabel.selected: Action selected, cancel selection
+  actions.chooseAction.ariaLabel.selected.lock: Action sélectionnée, annuler la sélection
+  documentation.search.results_one: '{{count}} result(s) found'
+  documentation.search.results_one.lock: '{{count}} résultat(s) trouvé(s)'
+  documentation.search.input.label: Enter keywords
+  documentation.search.input.label.lock: Entrez des mots clefs
+  Formulaire - Demander une démo: Form - Request a demo
+  documentation.search.h2: Explore our models
+  documentation.search.h2.lock: Explorez nos modèles
+  documentation.search.label: Documentation search
+  documentation.search.label.lock: Recherche dans la documentation
+  documentation.search.results_many: '{{count}} result(s) found'
+  documentation.search.results_many.lock: '{{count}} résultat(s) trouvé(s)'
+  documentation.search.input.placeholder: Enter search keywords
+  documentation.search.input.placeholder.lock: Entrez des mots-clefs de recherche
+  documentation.noresults: No results were found for this search
+  documentation.noresults.lock: Aucun résultat ne correspond à cette recherche
+  documentation.search.results_other: '{{count}} result(s) found'
+  documentation.search.results_other.lock: '{{count}} résultat(s) trouvé(s)'
+  Chargement du tableau de bord...: Loading the dashboard...
+  organisations.poll.create.custom_question.add_button.label: Add a custom question
+  organisations.poll.create.custom_question.add_button.label.lock: Ajouter une question personnalisée
+  documentation.search.results.label: Search results
+  documentation.search.results.label.lock: Résultats de recherche
+  Formulaire - Désactiver les cookies de mesure d'audience via Matomo: Form - Deactivate audience measurement cookies via Matomo
+  Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.: This graph shows the distribution of users' simulation results, enabling trends and behaviour to be analysed.
+  Formulaire - nous faire part de vos remarques sur le site: Form - send us your comments on the site
+  Iframe - Google Tag Manager: Iframe - Google Tag Manager
+  organisations.poll.create.custom_question.add_button.max_reached: You have reached the maximum number of personalised questions
+  organisations.poll.create.custom_question.add_button.max_reached.lock: Vous avez atteint le nombre maximum de questions personnalisées
+  Graphique de distribution des résultats de simulation pour le mois dernier: Graph showing the distribution of simulation results for last month
+  Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.: This dashboard displays site traffic statistics, including the number of visits, simulations completed and usage trends.
+  Statistiques d'usage du mode "Challenge tes amis": Usage statistics for the "Challenge your friends" mode
+  Graphiques du nombre de visites et de simulations sur le site: Graphs showing the number of visits and simulations on the site
+  Impossible de charger le tableau de bord. Veuillez réessayer plus tard.: Unable to load the dashboard. Please try again later.
+  Statistiques d'usage du mode "Organisations": Statistics on the use of the "Organisations" mode
+  Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.: Detailed statistics on the use of Organisations mode, including the number of organisations created, participants and actions completed.
+  Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.: Statistics on the use of Challenge mode, including the number of challenges created, participants and results shared.

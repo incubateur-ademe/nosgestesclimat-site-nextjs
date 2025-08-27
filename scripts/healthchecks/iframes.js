@@ -230,4 +230,5 @@ async function healthcheck() {
   }
 }
 
-healthcheck()
+// TODO : uncomment when Tutorial Deletion AB test is completed
+// healthcheck()

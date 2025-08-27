@@ -19,10 +19,8 @@ entries:
   Démarrer: Démarrer
   En développement actif: En développement actif
   En savoir plus: En savoir plus
-  Entrez des mots clefs: Entrez des mots clefs
   Envie de contribuer à une version pour votre région ?: Envie de contribuer à une version pour votre région ?
   Envoyer: Envoyer
-  Explorez nos modèles: Explorez nos modèles
   Faire le test: Faire le test
   Fermer: Fermer
   Fermer les options de tri: Fermer les options de tri
@@ -161,14 +159,12 @@ entries:
   Consultez la FAQ: Consultez la FAQ
   'Date complète :': 'Date complète :'
   disponibles: disponibles
-  Entrez des mots-clefs de recherche: Entrez des mots-clefs de recherche
   'Identifiant :': 'Identifiant :'
   Il concerne votre vie personnelle, et non pas votre boulot.: Il concerne votre vie personnelle, et non pas votre boulot.
   international.comment.2: Explorez en détail les spécificités de chaque pays.
   Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.
   Logo de l'Association pour la transition Bas Carbone: Logo de l'Association pour la transition Bas Carbone
   Mes réponses: Mes réponses
-  Passer en français: Passer en français
   publicodes.Tutoriel.slide1.p1: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
   publicodes.Tutoriel.slide1.p2: Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer ce qu'on appelle l'empreinte carbone individuelle de consommation.
   publicodes.Tutoriel.slide2.blockquote: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en CO₂e pour simplifier la mesure. "
@@ -182,7 +178,6 @@ entries:
   Sélectionné·e: Sélectionné·e
   Sélectionner: Sélectionner
   Supprimer: Supprimer
-  Switch to english: Switch to english
   Voir plus d'informations: Voir plus d'informations
   Vous: Vous
   'Vous faites cette simulation depuis :': 'Vous faites cette simulation depuis :'
@@ -427,7 +422,6 @@ entries:
   Ce test vous est proposé par: Ce test vous est proposé par
   par semaine, miam: par semaine, miam
   repas: repas
-  Cambiar a español: Cambiar a español
   Reprendre mon test: Reprendre mon test
   Voir mon résultat: Voir mon résultat
   Pour cela,: Pour cela,
@@ -657,8 +651,6 @@ entries:
   eau: eau
   En 10 minutes, obtenez une estimation de vos empreintes carbone et eau.: En 10 minutes, obtenez une estimation de vos empreintes carbone et eau.
   Est-ce que c'est <2>beaucoup ?</2>: Est-ce que c'est <2>beaucoup ?</2>
-  Evaluer la métrique carbone: Evaluer la métrique carbone
-  Evaluer la métrique eau: Evaluer la métrique eau
   l’alimentation des <2>animaux</2> que vous consommez: l’alimentation des <2>animaux</2> que vous consommez
   L’eau domestique peut avoir un <2>impact très fort</2> selon la <6>saison et la localisation.</6>: L’eau domestique peut avoir un <2>impact très fort</2> selon la <6>saison et la localisation.</6>
   L’eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu’elle est restituée. Par exemple, l’eau de votre douche, après dépollution, est rendue aux cours d’eau de votre territoire.: L’eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu’elle est restituée. Par exemple, l’eau de votre douche, après dépollution, est rendue aux cours d’eau de votre territoire.
@@ -1197,14 +1189,69 @@ entries:
   Veuillez sélectionner au moins une infolettre.: Veuillez sélectionner au moins une infolettre.
   Sélectionnez les infolettres auxquelles vous souhaitez vous inscrire: Sélectionnez les infolettres auxquelles vous souhaitez vous inscrire
   Télécharger le QR Code: Télécharger le QR Code
-  Aucune pression: Aucune pression
-  C’est un test personnel: C’est un test personnel
-  'Comment ça marche ? ': 'Comment ça marche ? '
-  il ne s’agit pas d’être parfait, mais de comprendre son impact: il ne s’agit pas d’être parfait, mais de comprendre son impact
-  On parle de votre vie privée: On parle de votre vie privée
-  pas de votre travail: pas de votre travail
-  Règles du test: Règles du test
-  répondez pour vous uniquement, pas votre foyer: répondez pour vous uniquement, pas votre foyer
-  Un groupe d’amis jouant à un jeu de société.: Un groupe d’amis jouant à un jeu de société.
   Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.
   Pour vous désinscrire, passez par le lien en bas de l'email reçu: Pour vous désinscrire, passez par le lien en bas de l'email reçu
+  copyInput.copied: Copié !
+  copyInput.copyError: Erreur lors de la copie du lien
+  copyInput.copyErrorManual: Oups, impossible de copier le lien, vous pouvez le copier manuellement.
+  copyInput.copyingInProgress: Copie en cours...
+  copyInput.copyLink: Copier le lien
+  copyInput.copyLinkToClipboard: Copier le lien dans le presse-papiers
+  copyInput.defaultLabel: Lien à copier
+  copyInput.linkCopiedSuccess: Lien copié avec succès
+  copyInput.linkCopiedToClipboard: Lien copié avec succès dans le presse-papiers
+  copyInput.share: Partager
+  copyInput.shareLink: Partager le lien
+  copyInput.shareTitle: Découvre mon empreinte carbone !
+  copyInput.sharingInProgress: Partage en cours...
+  Carbone, évaluer la métrique carbone: Carbone, évaluer la métrique carbone
+  Connexion: Connexion
+  Eau, évaluer la métrique eau: Eau, évaluer la métrique eau
+  Page active: Page active
+  Sélectionner ce filtre et afficher uniquement les actions de cette catégorie: Sélectionner ce filtre et afficher uniquement les actions de cette catégorie
+  Visiter cette page: Visiter cette page
+  actions.engagementIcon.ariaLabel: ', les actions se trouvent en dessous'
+  authorBlock.defaultAlt: Photo de l'auteur ou de l'autrice
+  common.marianne.ariaLabel: République Française
+  common.partners.abc.ariaLabel: Association pour la transition Bas Carbone
+  Découvrez le calculateur, ouvrir dans une nouvelle fenêtre: Découvrez le calculateur, ouvrir dans une nouvelle fenêtre
+  Découvrez les ateliers de l’ABC, ouvrir dans une nouvelle fenêtre: Découvrez les ateliers de l’ABC, ouvrir dans une nouvelle fenêtre
+  endPage.blogArticles.lireArticle: Ouvrir l'article dans une nouvelle fenêtre
+  endPage.carboneTarget.enSavoirPlus: Ouvrir la page dans une nouvelle fenêtre
+  endPage.waterActions.lireArticle: Ouvrir l'article dans une nouvelle fenêtre
+  international.electricityMaps.ariaLabel: Visiter le site Electricity Maps (s'ouvre dans un nouvel onglet)
+  l'objectif pour 2050: l'objectif pour 2050
+  organisations.ourTools.newTab: Ouvrir dans une nouvelle fenêtre
+  Permettez à vos cibles (clients, étudiants, participants, habitants..) de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d'autres modes d'intégration prêts à l'emploi.: Permettez à vos cibles (clients, étudiants, participants, habitants..) de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d'autres modes d'intégration prêts à l'emploi.
+  actions.buttons.reject: Rejeter l'action
+  actions.buttons.select: Sélectionner l'action
+  empreinte-carbone.heroTitle: L'empreinte carbone, une première étape pour passer à l'action
+  actions.chooseAction.ariaLabel.selected: Action sélectionnée, annuler la sélection
+  actions.chooseAction.ariaLabel.unselected: Sélectionner cette action
+  actions.rejectAction.ariaLabel.selected: Action rejetée
+  actions.rejectAction.ariaLabel.unselected: Rejeter cette action
+  documentation.noresults: Aucun résultat ne correspond à cette recherche
+  documentation.search.h2: Explorez nos modèles
+  documentation.search.input.label: Entrez des mots clefs
+  documentation.search.input.placeholder: Entrez des mots-clefs de recherche
+  documentation.search.label: Recherche dans la documentation
+  documentation.search.results_one: '{{count}} résultat(s) trouvé(s)'
+  documentation.search.results_many: '{{count}} résultat(s) trouvé(s)'
+  documentation.search.results_other: '{{count}} résultat(s) trouvé(s)'
+  documentation.search.results.label: Résultats de recherche
+  Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.: Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.
+  Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.: Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.
+  Chargement du tableau de bord...: Chargement du tableau de bord...
+  Formulaire - Demander une démo: Formulaire - Demander une démo
+  Formulaire - Désactiver les cookies de mesure d'audience via Matomo: Formulaire - Désactiver les cookies de mesure d'audience via Matomo
+  Formulaire - nous faire part de vos remarques sur le site: Formulaire - nous faire part de vos remarques sur le site
+  Graphique de distribution des résultats de simulation pour le mois dernier: Graphique de distribution des résultats de simulation pour le mois dernier
+  Graphiques du nombre de visites et de simulations sur le site: Graphiques du nombre de visites et de simulations sur le site
+  Iframe - Google Tag Manager: Iframe - Google Tag Manager
+  Impossible de charger le tableau de bord. Veuillez réessayer plus tard.: Impossible de charger le tableau de bord. Veuillez réessayer plus tard.
+  organisations.poll.create.custom_question.add_button.label: Ajouter une question personnalisée
+  organisations.poll.create.custom_question.add_button.max_reached: Vous avez atteint le nombre maximum de questions personnalisées
+  Statistiques d'usage du mode "Challenge tes amis": Statistiques d'usage du mode "Challenge tes amis"
+  Statistiques d'usage du mode "Organisations": Statistiques d'usage du mode "Organisations"
+  Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.: Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.
+  Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.: Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.
