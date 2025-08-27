@@ -29,11 +29,11 @@ export default async function PartnerCampaignPage({
       partnerCampaign={partnerCampaign}
       partnersComponent={<Partners locale={locale} />}
       faqComponent={
-        !!partnerCampaign.questions?.length && (
+        !!partnerCampaign.faq?.questions?.length && (
           <FAQ
             isBackgroundSkewed={false}
             className="bg-white"
-            questions={partnerCampaign?.questions?.map((questionObject) => ({
+            questions={partnerCampaign.faq.questions.map((questionObject) => ({
               question: questionObject.question,
               answer: <Markdown>{questionObject.answer}</Markdown>,
             }))}

@@ -25,9 +25,9 @@ export default function OtherArticles({
               title={article.title}
               imageSrc={article.image?.url ?? ''}
               imageAlt={article.image?.alternativeText ?? ''}
-              href={`/blog/${article.category?.slug}/${article.slug}`}
+              href={`/blog/${article.blogCategory?.slug}/${article.slug}`}
               trackingEvent={['blog', 'other-articles']}
-              category={article.category?.title ?? ''}
+              category={article.blogCategory?.title ?? ''}
               className="bg-white"
             />
           ))}

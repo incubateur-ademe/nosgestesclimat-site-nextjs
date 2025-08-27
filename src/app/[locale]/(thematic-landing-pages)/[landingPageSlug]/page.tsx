@@ -80,7 +80,7 @@ export default async function ThematicLandingPage({
     block5,
     block6,
     block7,
-    articlesList,
+    articles,
     articlesCTALink,
     articlesCTALabel,
     faq,
@@ -238,11 +238,11 @@ export default async function ThematicLandingPage({
             title={block6.title}
             description={block6.htmlDescription}
             posts={
-              articlesList?.map(({ category, title, slug, image }) => ({
-                category: category?.title ?? '',
+              articles?.map(({ blogCategory, title, slug, image }) => ({
+                category: blogCategory?.title ?? '',
                 title,
                 href: getArticleHref({
-                  categorySlug: category?.slug ?? '',
+                  categorySlug: blogCategory?.slug ?? '',
                   articleSlug: slug,
                 }),
                 imageSrc: image?.url ?? '',

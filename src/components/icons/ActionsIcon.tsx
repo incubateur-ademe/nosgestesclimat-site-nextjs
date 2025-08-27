@@ -3,12 +3,13 @@ import { twMerge } from 'tailwind-merge'
 export default function ActionsIcon({ className }: { className?: string }) {
   return (
     <svg
-      className={twMerge('fill-default inline-block', className)}
       width="17"
       height="17"
       viewBox="0 0 24 24"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg">
+      xmlns="http://www.w3.org/2000/svg"
+      className={twMerge('fill-default inline-block stroke-[1.5]', className)}
+      aria-hidden="true">
       <path
         fillRule="evenodd"
         clipRule="evenodd"

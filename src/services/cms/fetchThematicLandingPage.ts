@@ -44,11 +44,11 @@ export async function fetchThematicLandingPage({
       'populate[20]': 'block6.listItems',
       'populate[21]': 'block6.listItems.image',
       // Articles
-      'populate[22]': 'articlesList',
-      'populate[23]': 'articlesList.image',
-      'populate[24]': 'articlesList.category',
-      'populate[25]': 'articlesList.author',
-      'populate[26]': 'articlesList.author.image',
+      'populate[22]': 'articles',
+      'populate[23]': 'articles.image',
+      'populate[24]': 'articles.blogCategory',
+      'populate[25]': 'articles.author',
+      'populate[26]': 'articles.author.image',
       // Block7
       'populate[27]': 'block7',
       'populate[28]': 'block7.image',

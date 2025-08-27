@@ -23,7 +23,7 @@ export default async function Route404({ locale }: { locale: string }) {
                 <span className="island relative leading-none">
                   <Image
                     className="hover:animate-jump absolute -top-8 right-0 left-0 m-auto w-10 md:top-3 md:w-12"
-                    src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/404_bonhomme_ede24318ed.svg"
+                    src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/404_bonhomme_17c7e762b9.svg"
                     width="60"
                     height="60"
                     alt={t('Un bonhomme se demandant où il est')}

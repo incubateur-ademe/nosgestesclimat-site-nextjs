@@ -105,18 +105,12 @@ export default function ActionValue({
       {remainingQuestions && remainingQuestions.length > 0 && (
         <>
           <NotificationBubble
-            onClick={() => setActionWithFormOpen(dottedName)}
             title={remainingQuestionsText}
             number={remainingQuestions.length}
           />
-          <button
-            className="text-primary-700 cursor-pointer text-sm"
-            onClick={() => {
-              trackEvent(actionsClickAdditionalQuestion(dottedName))
-              setActionWithFormOpen(dottedName)
-            }}>
+          <div className="text-primary-700 cursor-pointer text-sm">
             {remainingQuestionsText}
-          </button>
+          </div>
         </>
       )}
     </button>

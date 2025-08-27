@@ -1,10 +1,10 @@
 // eslint-disable-next-line storybook/no-renderer-packages
 import type { Meta, StoryObj } from '@storybook/nextjs'
-import Select from './Select'
+import SelectInput from './SelectInput'
 
-const meta: Meta<typeof Select> = {
-  title: 'Design System/Inputs/Select',
-  component: Select,
+const meta: Meta<typeof SelectInput> = {
+  title: 'Design System/Inputs/SelectInput',
+  component: SelectInput,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
   argTypes: {
@@ -16,12 +16,14 @@ const meta: Meta<typeof Select> = {
     error: { control: 'text', description: "Message d'erreur" },
     helperText: { control: 'text', description: "Texte d'aide" },
     required: { control: 'boolean', description: 'Champ requis' },
+    disabled: { control: 'boolean', description: 'Champ désactivé' },
+    mention: { control: 'text', description: 'Mention additionnelle' },
   },
 }
 
 export default meta
 
-type Story = StoryObj<typeof Select>
+type Story = StoryObj<typeof SelectInput>
 
 export const Default: Story = {
   args: {
@@ -76,6 +78,52 @@ export const WithHelperText: Story = {
         <option value="fr">France</option>
         <option value="es">Espagne</option>
         <option value="it">Italie</option>
+      </>
+    ),
+  },
+}
+
+export const Disabled: Story = {
+  args: {
+    name: 'select',
+    label: 'Champ désactivé',
+    disabled: true,
+    value: 'option1',
+    children: (
+      <>
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+      </>
+    ),
+  },
+}
+
+export const WithMention: Story = {
+  args: {
+    name: 'select',
+    label: 'Champ optionnel',
+    mention: 'Optionnel',
+    children: (
+      <>
+        <option value="">--Choisissez--</option>
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+      </>
+    ),
+  },
+}
+
+export const Required: Story = {
+  args: {
+    name: 'select',
+    label: 'Champ obligatoire',
+    required: true,
+    children: (
+      <>
+        <option value="">--Choisissez--</option>
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
       </>
     ),
   },

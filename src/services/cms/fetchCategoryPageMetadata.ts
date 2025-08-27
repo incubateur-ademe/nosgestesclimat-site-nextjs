@@ -1,4 +1,4 @@
-import type { ImageType, PopulatedCategoryType } from '@/adapters/cmsClient'
+import type { ImageType, PopulatedBlogCategoryType } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
 import { type Locale } from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
@@ -26,22 +26,22 @@ export async function fetchCategoryPageMetadata({
     })
 
     const categoryResponse = await cmsClient<{
-      data: [PopulatedCategoryType<'image' | 'pageMetadata'>]
-    }>(`/api/categories?${categorySearchParams}`)
+      data: [PopulatedBlogCategoryType<'image' | 'pageMetadata'>]
+    }>(`/api/blog-categories?${categorySearchParams}`)
 
     if (categoryResponse?.data.length !== 1) {
-      console.error(`Error: fetch category error for categorySlug: ${slug}`)
+      console.error(`Error: fetch blogCategory error for categorySlug: ${slug}`)
       return
     }
 
     const {
-      data: [category],
+      data: [blogCategory],
     } = categoryResponse
 
     return {
-      metaTitle: category.pageMetadata.title,
-      metaDescription: category.pageMetadata.description ?? '',
-      image: category.image,
+      metaTitle: blogCategory.pageMetadata.title,
+      metaDescription: blogCategory.pageMetadata.description ?? '',
+      image: blogCategory.image,
     }
   } catch (error) {
     captureException(error)

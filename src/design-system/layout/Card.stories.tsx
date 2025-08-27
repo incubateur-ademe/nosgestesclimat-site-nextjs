@@ -103,6 +103,7 @@ export const WithImage: Story = {
   args: {
     children: (
       <div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="https://via.placeholder.com/300x200"
           alt="Placeholder"

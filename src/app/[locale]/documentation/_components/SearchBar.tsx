@@ -1,12 +1,13 @@
 import SearchIcon from '@/components/icons/SearchIcon'
 import Trans from '@/components/translation/trans/TransClient'
+import TextInput from '@/design-system/inputs/TextInput'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import Fuse, { type FuseResult } from 'fuse.js'
 import { utils } from 'publicodes'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { type ChangeEvent, useEffect, useMemo, useRef, useState } from 'react'
 import RuleListItem from './RuleListIem'
 
 export type SearchItem = {
@@ -35,6 +36,9 @@ const searchWeights = [
 export default function SearchBar({ rules }: { rules: Partial<NGCRules> }) {
   const [input, setInput] = useState('')
   const [results, setResults] = useState<FuseResult<SearchItem>[]>([])
+  const [isExpanded, setIsExpanded] = useState(false)
+  const searchInputRef = useRef<HTMLInputElement>(null)
+  const resultsListRef = useRef<HTMLUListElement>(null)
 
   const rulesList: any[] = Object.entries(rules).map(([dottedName, rule]) => ({
     ...rule,
@@ -69,64 +73,113 @@ export default function SearchBar({ rules }: { rules: Partial<NGCRules> }) {
   )
 
   useEffect(() => {
-    if (input.length < 3) return
+    if (input.length < 3) {
+      setResults([])
+      setIsExpanded(false)
+      return
+    }
 
     const fuse = fuseSearchRef.current()
 
     const results = [...fuse.search(input + '|' + input.replace(/ /g, '|'))]
 
     setResults(results)
+    setIsExpanded(true)
   }, [searchIndex, input])
 
   const { t } = useClientTranslation()
 
-  return (
-    <>
-      <Card className="bg-primary-100 my-8 border-none">
-        <h2 className="flex items-center text-xl">
-          <SearchIcon className="mr-2" />
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value
+    setInput(input)
+  }
 
-          <Trans>Explorez nos modèles</Trans>
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setInput('')
+      setIsExpanded(false)
+      searchInputRef.current?.blur()
+    }
+  }
+
+  const getStatusMessage = () => {
+    if (input.length <= 2) return ''
+    if (!results.length) {
+      return t(
+        'documentation.noresults',
+        'Aucun résultat ne correspond à cette recherche'
+      )
+    }
+    return t(
+      'documentation.search.results',
+      '{{count}} résultat(s) trouvé(s)',
+      {
+        count: results.length,
+      }
+    )
+  }
+
+  return (
+    <div
+      className="search-container"
+      role="search"
+      aria-label={t(
+        'documentation.search.label',
+        'Recherche dans la documentation'
+      )}>
+      <Card className="bg-primary-50 my-8 border-none">
+        <h2 className="flex items-center text-xl">
+          <SearchIcon className="mr-2" aria-hidden="true" />
+          <Trans i18nKey="documentation.search.h2">Explorez nos modèles</Trans>
         </h2>
 
-        <label
-          title={t('Entrez des mots clefs')}
-          className="flex items-center py-2">
-          {' '}
-          <input
-            type="search"
-            value={input}
-            placeholder={t('Entrez des mots-clefs de recherche')}
-            className="border-primary-100 w-full rounded-xl border border-solid p-4"
-            onChange={(e) => {
-              const input = e.target.value
+        <TextInput
+          ref={searchInputRef}
+          name="search"
+          label={t('documentation.search.input.label', 'Entrez des mots clefs')}
+          placeholder={t(
+            'documentation.search.input.placeholder',
+            'Entrez des mots-clefs de recherche'
+          )}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          value={input}
+          aria-expanded={isExpanded}
+          aria-controls="search-results"
+          aria-describedby="search-status"
+          autoComplete="off"
+        />
 
-              setInput(input)
-            }}
-          />
-        </label>
-
-        {input.length > 2 && !results.length && (
-          <div role="status" className="mt-2 rounded-xs p-2">
-            <Trans i18nKey="noresults">
-              Aucun résultat ne correspond à cette recherche
-            </Trans>
-          </div>
-        )}
+        <div
+          id="search-status"
+          role="status"
+          aria-live="polite"
+          className="mt-2 text-sm text-slate-600">
+          {getStatusMessage()}
+        </div>
       </Card>
 
       {input.length > 2 && (
-        <ul className="m-0 list-none rounded-md bg-white px-4">
-          {results.map(({ item, matches }) => (
-            <RuleListItem
-              key={item.dottedName}
-              item={item}
-              matches={matches as Matches}
-              rules={rules}
-            />
-          ))}
-        </ul>
+        <div className="search-results-container">
+          <ul
+            ref={resultsListRef}
+            id="search-results"
+            aria-label={t(
+              'documentation.search.results.label',
+              'Résultats de recherche'
+            )}
+            className="m-0 list-none rounded-md bg-white px-4">
+            {results.map(({ item, matches }) => (
+              <RuleListItem
+                key={item.dottedName}
+                item={item}
+                matches={matches as Matches}
+                rules={rules}
+              />
+            ))}
+          </ul>
+        </div>
       )}
-    </>
+    </div>
   )
 }

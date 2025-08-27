@@ -36,7 +36,7 @@ export default function NumberInput({
   return (
     <div
       className={
-        'border-primary-200 flex items-center justify-between gap-4 rounded-xl border-2 bg-white p-2 py-3'
+        'focus-within:ring-primary-700 flex items-center justify-between gap-1 rounded-xl border border-slate-500 bg-white p-2 py-3 focus-within:ring-2 focus-within:ring-offset-2'
       }>
       <div>
         {title && icons ? (
@@ -55,7 +55,7 @@ export default function NumberInput({
           </>
         ) : null}
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center gap-1.5 p-2">
         <Button
           disabled={value === 0 || isMissing}
           onClick={() => setValue(Number(value) - 1)}
@@ -64,7 +64,7 @@ export default function NumberInput({
           <span className="mb-[1px] block">-</span>
         </Button>
         <input
-          className="w-8 text-center"
+          className="focus-within:border-primary-700 focus-within:ring-primary-700 w-8 rounded-sm text-center ring-offset-2 focus-within:ring-2 focus-visible:outline-none"
           type="number"
           inputMode="numeric"
           value={isMissing ? '' : Number(value)}

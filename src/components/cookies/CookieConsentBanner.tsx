@@ -38,6 +38,13 @@ export default function CookieConsentBanner({
         'Bannière de consentement aux cookies',
         'cookies.banner.contentLabel'
       )}
+      // Accessibility improvements for cookie consent banner
+      shouldFocusAfterRender={false}
+      shouldReturnFocusAfterClose={false}
+      shouldCloseOnOverlayClick={false}
+      shouldCloseOnEsc={false}
+      preventScroll={false}
+      ariaHideApp={false}
       style={{
         content: {
           margin: '0 auto',
@@ -58,8 +65,12 @@ export default function CookieConsentBanner({
           pointerEvents: 'auto',
         },
       }}>
-      <div className="flex w-full flex-col rounded-2xl bg-white px-6 py-6 shadow-2xl sm:px-8 sm:py-8 md:rounded-4xl">
+      <div
+        className="flex w-full flex-col rounded-2xl bg-white px-6 py-6 shadow-2xl sm:px-8 sm:py-8 md:rounded-4xl"
+        aria-labelledby="cookie-banner-title"
+        aria-describedby="cookie-banner-description">
         <h2
+          id="cookie-banner-title"
           className="mb-6 text-left text-lg font-bold text-gray-900 sm:text-xl"
           data-testid="cookie-banner-title">
           <Trans i18nKey="cookies.banner.title">
@@ -67,11 +78,14 @@ export default function CookieConsentBanner({
           </Trans>
         </h2>
 
-        <p className="mb-2 text-sm" data-testid="cookie-banner-description">
+        <p
+          id="cookie-banner-description"
+          className="mb-2 text-sm"
+          data-testid="cookie-banner-description">
           <Trans i18nKey="cookies.banner.description">
-            Nous utilisons des cookies, juste ce qu’il faut pour faire
-            fonctionner le site, améliorer l’expérience et mesurer de manière
-            anonyme l’audience. Avec votre accord, nous activons aussi un suivi
+            Nous utilisons des cookies, juste ce qu'il faut pour faire
+            fonctionner le site, améliorer l'expérience et mesurer de manière
+            anonyme l'audience. Avec votre accord, nous activons aussi un suivi
             simple de nos campagnes pour mieux comprendre ce qui fonctionne et
             mieux piloter notre budget.
           </Trans>

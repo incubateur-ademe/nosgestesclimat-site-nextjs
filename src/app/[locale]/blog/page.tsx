@@ -99,7 +99,7 @@ export default async function BlogHomePage({
             description={description}
             image={
               image ?? {
-                url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_reading_newspaper_d171290d3d.png',
+                url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_girl_reading_newspaper_d171290d3d.png',
                 alternativeText: t(
                   'Un femme lisant le journal au coin du feu avec un chien assoupi.'
                 ),
@@ -115,8 +115,8 @@ export default async function BlogHomePage({
             description={mainArticle.description}
             imageSrc={mainArticle.image?.url ?? ''}
             imageAlt={mainArticle.image?.alternativeText ?? ''}
-            href={`/blog/${mainArticle.category?.slug}/${mainArticle.slug}`}
-            category={mainArticle.category?.title ?? ''}
+            href={`/blog/${mainArticle.blogCategory?.slug}/${mainArticle.slug}`}
+            category={mainArticle.blogCategory?.title ?? ''}
           />
         )}
 

@@ -17,6 +17,7 @@ export default function Arrow({ className, ...props }: Props) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={twMerge('fill-secondary-700 stroke-primary-50', className)}
+      aria-hidden="true"
       {...props}>
       <path d="M24.24 0.500002L12.8887 20.0059L1.53745 0.5L24.24 0.500002Z" />
     </svg>

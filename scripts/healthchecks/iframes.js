@@ -22,15 +22,33 @@ async function checkConnection(url) {
 async function healthcheck() {
   const browser = await chromium.launch({
     headless: true,
+    args: [
+      '--disable-application-cache',
+      '--disable-cache',
+      '--disable-offline-load-stale-cache',
+      '--disk-cache-size=0',
+      '--disable-background-timer-throttling',
+      '--disable-backgrounding-occluded-windows',
+      '--disable-renderer-backgrounding',
+      '--disable-features=TranslateUI',
+      '--disable-ipc-flooding-protection',
+      '--no-first-run',
+      '--no-default-browser-check',
+      '--disable-default-apps',
+      '--disable-extensions',
+      '--disable-plugins',
+      '--disable-sync',
+      '--disable-translate',
+      '--hide-scrollbars',
+      '--mute-audio',
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+    ],
   })
 
-  try {
-    const context = await browser.newContext({
-      userAgent:
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-    })
-    const page = await context.newPage()
+  let urlContext
 
+  try {
     const errors = []
 
     for (const url of urls) {
@@ -41,6 +59,33 @@ async function healthcheck() {
         errors.push(url)
         continue
       }
+
+      // Create a new context for each URL to avoid persistence
+      urlContext = await browser.newContext({
+        userAgent:
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        // Clear cache and cookies on each run
+        ignoreHTTPSErrors: true,
+        bypassCSP: true,
+        // Disable cache
+        extraHTTPHeaders: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          Pragma: 'no-cache',
+          Expires: '0',
+        },
+      })
+
+      // Explicitly clear cache and cookies
+      await urlContext.clearCookies()
+
+      const page = await urlContext.newPage()
+
+      // Disable cache on page side
+      await page.setExtraHTTPHeaders({
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        Pragma: 'no-cache',
+        Expires: '0',
+      })
 
       try {
         await page.goto(url, {
@@ -194,6 +239,8 @@ async function healthcheck() {
         errors.push(url)
         continue
       }
+
+      await urlContext.close()
     }
 
     if (errors.length) {
@@ -230,4 +277,5 @@ async function healthcheck() {
   }
 }
 
-healthcheck()
+// TODO : uncomment when Tutorial Deletion AB test is completed
+// healthcheck()

@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/trans/TransServer'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import type { DefaultPageProps } from '@/types'
@@ -18,6 +19,8 @@ export const generateMetadata = getCommonMetadata({
 export default async function CookiesPolicyPage({ params }: DefaultPageProps) {
   const { locale } = await params
 
+  const { t } = await getServerTranslation({ locale })
+
   return (
     <div className="markdown">
       <CookiesPolicy
@@ -28,7 +31,9 @@ export default async function CookiesPolicyPage({ params }: DefaultPageProps) {
         }}
         cookieConsentButton={
           <iframe
-            title="matomo"
+            title={t(
+              "Formulaire - Désactiver les cookies de mesure d'audience via Matomo"
+            )}
             src="https://stats.beta.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr&backgroundColor=&fontColor=&fontSize=&fontFamily="
           />
         }

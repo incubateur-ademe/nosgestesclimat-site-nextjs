@@ -47,6 +47,7 @@ export default async function CarbonFootprintLandingPage({
   params,
 }: DefaultPageProps) {
   const { locale } = await params
+
   return (
     <>
       <JSONLD
@@ -75,8 +76,8 @@ export default async function CarbonFootprintLandingPage({
 
       <LandingPage
         heroTitle={
-          <Trans locale={locale}>
-            L'empreinte carbone, une première étape pour passer à l’action
+          <Trans i18nKey="empreinte-carbone.heroTitle" locale={locale}>
+            L'empreinte carbone, une première étape pour passer à l'action
           </Trans>
         }
         heroDescription={

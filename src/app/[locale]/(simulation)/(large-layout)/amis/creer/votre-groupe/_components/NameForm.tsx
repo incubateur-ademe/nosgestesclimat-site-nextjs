@@ -6,7 +6,7 @@ import { GROUP_EMOJIS } from '@/constants/group'
 import { amisCreationEtapeVosInformationsSuivant } from '@/constants/tracking/pages/amisCreation'
 import Button from '@/design-system/buttons/Button'
 import GridRadioInputs from '@/design-system/inputs/GridRadioInputs'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import TextInput from '@/design-system/inputs/TextInput'
 import { useCreateGroup } from '@/hooks/groups/useCreateGroup'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
@@ -108,7 +108,7 @@ export default function NameForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      <TextInputGroup
+      <TextInput
         label={<Trans>Choisissez un nom pour ce groupe</Trans>}
         helperText={
           <Trans>Pour le retrouver facilement dans votre liste</Trans>

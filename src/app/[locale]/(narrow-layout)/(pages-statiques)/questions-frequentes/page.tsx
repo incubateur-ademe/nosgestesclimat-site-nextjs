@@ -88,7 +88,7 @@ export default async function FAQPage({
 
         <Image
           className="-mt-4 ml-auto w-48 self-start md:w-full"
-          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/children_holding_hand_92205645da.png"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_children_holding_hand_6951392e78.png"
           width="300"
           height="400"
           alt={t("Des enfants sortant de l'école en se tenant la main.")}
@@ -98,10 +98,10 @@ export default async function FAQPage({
       <ul className="-mt-8 pb-4 md:-mt-16">
         {faqCategories
           .sort((a, b) => a.order - b.order)
-          .map(({ category, questions }) => {
+          .map(({ title, questions }) => {
             return (
-              <li key={category} className="list-none">
-                <h2 className="mt-8 capitalize">{category}</h2>
+              <li key={title} className="list-none">
+                <h2 className="mt-8 capitalize">{title}</h2>
                 <ul className="pl-2">
                   {questions.map(({ question, htmlAnswer, id }) => {
                     return (

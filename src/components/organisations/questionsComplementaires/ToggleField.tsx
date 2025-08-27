@@ -57,11 +57,30 @@ export default function ToggleField({
     <>
       <div
         className={twMerge(
-          'relative flex w-full flex-col items-center overflow-hidden rounded-xl border-2 border-gray-200 p-4 transition-colors',
-          `${isEnabled ? 'border-primary-300 bg-primary-100' : ''} ${className}`
+          'focus-within:ring-primary-700 relative flex w-full flex-col items-center overflow-hidden rounded-xl border border-slate-500 p-4 transition-colors focus-within:ring-2 focus-within:ring-offset-2',
+          isEnabled && 'border-primary-700 bg-primary-100',
+          className
         )}>
         <div className="flex w-full items-center justify-between">
-          <p className="mb-0 cursor-default">{label}</p>
+          <div className="relative inline-flex cursor-pointer items-center justify-between gap-4">
+            <div className="relative">
+              <div
+                tabIndex={0}
+                role="checkbox"
+                aria-checked="false"
+                aria-labelledby="toggleLabel"
+                aria-describedby="toggleDescription"
+                onKeyDown={onKeyDownHelper(handleKeyboardEvent)}
+                onClick={handleMouseEvent}
+                className={twMerge(
+                  "peer bg-primary-100 focus-within:ring-primary-700 h-6 w-11 rounded-full border border-slate-900 after:absolute after:top-0.5 after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-slate-900 after:bg-white after:transition-all after:content-[''] focus-within:ring-2 focus-within:ring-offset-2 focus-within:outline-none",
+                  isEnabled &&
+                    'bg-primary-700 after:translate-x-full after:border-white'
+                )}
+              />
+            </div>
+            <p className="mb-0 cursor-default">{label}</p>
+          </div>
 
           <div className="relative inline-flex cursor-pointer items-center justify-between">
             <input
@@ -93,21 +112,6 @@ export default function ToggleField({
                   </Button>
                 </div>
               )}
-              <div className="relative">
-                <div
-                  tabIndex={0}
-                  role="checkbox"
-                  aria-checked="false"
-                  aria-labelledby="toggleLabel"
-                  aria-describedby="toggleDescription"
-                  onKeyDown={onKeyDownHelper(handleKeyboardEvent)}
-                  onClick={handleMouseEvent}
-                  className={twMerge(
-                    "peer bg-primary-200 peer-focus:ring-primary-300 h-6 w-11 rounded-full after:absolute after:top-0.5 after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-['']",
-                    `${isEnabled ? 'bg-primary-700 after:translate-x-full after:border-white' : ''}`
-                  )}
-                />
-              </div>
             </div>
           </div>
         </div>

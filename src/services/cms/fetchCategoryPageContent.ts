@@ -1,7 +1,7 @@
 import type {
   ArticleItemType,
   PopulatedArticleType,
-  PopulatedCategoryType,
+  PopulatedBlogCategoryType,
 } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
 import { type Locale } from '@/i18nConfig'
@@ -18,7 +18,7 @@ export async function fetchCategoryPageContent({
   locale: Locale
 }): Promise<
   | (Partial<
-      PopulatedCategoryType<'questions' | 'image'> & {
+      PopulatedBlogCategoryType<'faq' | 'image'> & {
         mainArticle: PopulatedArticleType<'image'>
         articles: ArticleItemType[]
       }
@@ -32,29 +32,30 @@ export async function fetchCategoryPageContent({
       locale,
       'filters[slug][$eq]': slug,
       'populate[0]': 'image',
-      'populate[1]': 'questions',
-      'populate[2]': 'mainArticle',
-      'populate[3]': 'mainArticle.image',
-      sort: 'questions.order:asc',
+      'populate[1]': 'faq',
+      'populate[2]': 'faq.questions',
+      'populate[3]': 'mainArticle',
+      'populate[4]': 'mainArticle.image',
+      sort: 'faq.questions.order:asc',
     })
 
     const categoryResponse = await cmsClient<{
       data: [
-        PopulatedCategoryType<'questions' | 'image'> & {
+        PopulatedBlogCategoryType<'faq' | 'image'> & {
           mainArticle: PopulatedArticleType<'image'>
         },
       ]
-    }>(`/api/categories?${categorySearchParams}`)
+    }>(`/api/blog-categories?${categorySearchParams}`)
 
     if (categoryResponse?.data?.length !== 1) {
-      console.error(`Error: fetch category error for categorySlug: ${slug}`)
+      console.error(`Error: fetch blogCategory error for categorySlug: ${slug}`)
     }
 
     const {
-      data: [category],
+      data: [blogCategory],
     } = categoryResponse
 
-    const { id: categoryId, mainArticle } = category
+    const { id: categoryId, mainArticle } = blogCategory
 
     const { documentId } = mainArticle || {}
 
@@ -64,9 +65,9 @@ export async function fetchCategoryPageContent({
       'fields[1]': 'description',
       'fields[2]': 'slug',
       'populate[0]': 'image',
-      'populate[1]': 'category',
+      'populate[1]': 'blogCategory',
       ...(documentId ? { 'filters[documentId][$ne]': documentId } : {}),
-      ...(categoryId ? { 'filters[category][$eq]': categoryId } : {}),
+      ...(categoryId ? { 'filters[blogCategory][$eq]': categoryId } : {}),
       'pagination[page]': page.toString(),
       'pagination[pageSize]': PAGE_SIZE.toString(),
       sort: 'createdAt:desc',
@@ -80,15 +81,15 @@ export async function fetchCategoryPageContent({
     const { data: articles, meta } = articlesResponse
 
     return {
-      title: category.title,
-      description: category.description,
-      mainArticle: category.mainArticle,
-      additionalContent: category.htmlContent,
-      image: category.image,
+      title: blogCategory.title,
+      description: blogCategory.description,
+      mainArticle: blogCategory.mainArticle,
+      additionalContent: blogCategory.htmlContent,
+      image: blogCategory.image,
       articles,
       pageCount: meta.pagination.pageCount,
-      questions: category.questions,
-      faqDescription: category.faqDescription,
+      faq: blogCategory.faq,
+      faqDescription: blogCategory.faqDescription,
     }
   } catch (error) {
     return undefined

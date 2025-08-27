@@ -4,8 +4,13 @@ type Props = {
 
 export default function Ademe({ className }: Props) {
   return (
-    <svg width="57" height="67" viewBox="0 0 181 213" className={className}>
-      <title>ADEME</title>
+    <svg
+      width="57"
+      height="67"
+      viewBox="0 0 181 213"
+      className={className}
+      role="img"
+      aria-label="ADEME">
       <path d="M180.35 212.6H0V0H180.35V212.6Z" fill="#004899" />
       <path d="M176.33 4.00977H4.00977V208.59H176.33V4.00977Z" fill="white" />
       <path

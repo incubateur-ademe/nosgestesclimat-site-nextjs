@@ -83,7 +83,12 @@ export default function LanguageSwitchButton({
           color={currentLocale === 'fr' ? 'primary' : 'secondary'}
           onClick={() => handleChange('fr')}
           size={size}
-          aria-label={t('Passer en français')}
+          aria-label="Passer en français"
+          title={
+            currentLocale === 'fr'
+              ? 'FR - Langue active'
+              : 'FR - Sélectionner la langue française'
+          }
           className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
           data-cypress-id="language-switch-button-fr">
           <span>FR</span> <Emoji>🇫🇷</Emoji>
@@ -96,7 +101,12 @@ export default function LanguageSwitchButton({
           color={currentLocale === 'en' ? 'primary' : 'secondary'}
           onClick={() => handleChange('en')}
           size={size}
-          aria-label={t('Switch to english')}
+          aria-label="Switch to english"
+          title={
+            currentLocale === 'en'
+              ? 'EN - Active language'
+              : 'EN - Select English language'
+          }
           className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
           data-cypress-id="language-switch-button-en">
           <span>EN</span> <Emoji>🇬🇧</Emoji>
@@ -109,7 +119,12 @@ export default function LanguageSwitchButton({
           color={currentLocale === 'es' ? 'primary' : 'secondary'}
           onClick={() => handleChange('es')}
           size="sm"
-          aria-label={t('Cambiar a español')}
+          aria-label="Cambiar a español"
+          title={
+            currentLocale === 'es'
+              ? 'ES - Activa el idioma español'
+              : 'ES - Seleccionar el idioma español'
+          }
           className="flex gap-2 px-2 py-2 sm:px-4 sm:py-3"
           data-cypress-id="language-switch-button-es">
           <span>ES</span> <Emoji>🇪🇸</Emoji>

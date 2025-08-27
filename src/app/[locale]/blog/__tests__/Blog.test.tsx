@@ -59,7 +59,7 @@ describe('BlogHomePage', () => {
           url: 'main-article-image.jpg',
           alternativeText: 'Main Article Image',
         },
-        category: {
+        blogCategory: {
           id: 'cat-1',
           documentId: 'doc-cat-1',
           title: 'Test Category',
@@ -88,7 +88,7 @@ describe('BlogHomePage', () => {
             url: 'article-1-image.jpg',
             alternativeText: 'Article 1 Image',
           },
-          category: {
+          blogCategory: {
             id: 'cat-2',
             documentId: 'doc-cat-2',
             title: 'Category 1',
@@ -142,7 +142,7 @@ describe('BlogHomePage', () => {
             url: 'main-article-image.jpg',
             alternativeText: 'Main Article Image',
           },
-          category: {
+          blogCategory: {
             id: 'cat-1',
             documentId: 'doc-cat-1',
             title: 'Test Category',
@@ -194,7 +194,7 @@ describe('BlogHomePage', () => {
             url: 'main-article-image.jpg',
             alternativeText: 'Main Article Image',
           },
-          category: {
+          blogCategory: {
             id: 'cat-1',
             documentId: 'doc-cat-1',
             title: 'Test Category',
@@ -256,7 +256,7 @@ describe('BlogHomePage', () => {
             url: 'main-article-image.jpg',
             alternativeText: 'Main Article Image',
           },
-          category: {
+          blogCategory: {
             id: 'cat-1',
             documentId: 'doc-cat-1',
             title: 'Test Category',
@@ -308,7 +308,7 @@ describe('BlogHomePage', () => {
             url: 'main-article-image.jpg',
             alternativeText: 'Main Article Image',
           },
-          category: {
+          blogCategory: {
             id: 'cat-1',
             documentId: 'doc-cat-1',
             title: 'Test Category',
@@ -466,7 +466,7 @@ describe('BlogHomePage', () => {
             url: 'main-article-image.jpg',
             alternativeText: 'Main Article Image',
           },
-          category: {
+          blogCategory: {
             id: 'cat-1',
             documentId: 'doc-cat-1',
             title: 'Test Category',

@@ -33,7 +33,7 @@ export default function AddPollCard({ hasNoPollsYet }: Props) {
         <div className="mb-6 flex flex-1 items-center justify-center">
           <Image
             className="self-start"
-            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/people_raising_arm_b82c24ce29.png"
+            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_people_raising_arm_fe915601cd.png"
             width="200"
             height="400"
             alt={t(

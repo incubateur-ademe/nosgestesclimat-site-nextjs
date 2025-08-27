@@ -16,10 +16,12 @@ export default function AnimatedArrow({
       animate={{ opacity: 1, x: isSmall ? '1rem' : '-50%' }}
       transition={{ duration: 1.5 }}
       className="absolute bottom-10 z-10 transition-transform duration-300"
-      style={{ left: isSmall ? '50%' : `${position}%` }}>
+      style={{ left: isSmall ? '50%' : `${position}%` }}
+      aria-hidden="true">
       <Arrow
         style={{ fill: color }}
         className={isSmall ? 'pointer-events-none opacity-0! duration-300' : ''}
+        aria-hidden="true"
       />
     </motion.div>
   )

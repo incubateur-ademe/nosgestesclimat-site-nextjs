@@ -67,7 +67,7 @@ describe('CategoryPage', () => {
             url: 'article-1-image.jpg',
             alternativeText: 'Article 1 Image',
           },
-          category: {
+          blogCategory: {
             id: 'cat-2',
             documentId: 'doc-cat-2',
             title: 'Category 1',
@@ -84,19 +84,23 @@ describe('CategoryPage', () => {
         },
       ],
       pageCount: 3,
-      questions: [
-        {
-          id: 'q1',
-          documentId: 'doc-q1',
-          question: 'Q1',
-          htmlAnswer: 'A1',
-          answer: 'A1',
-          order: 1,
-          createdAt: '2023-01-01T00:00:00.000Z',
-          updatedAt: '2023-01-01T00:00:00.000Z',
-          publishedAt: '2023-01-01T00:00:00.000Z',
-        },
-      ],
+      faq: {
+        title: 'FAQ Title',
+        order: 0,
+        questions: [
+          {
+            id: 'q1',
+            documentId: 'doc-q1',
+            question: 'Q1',
+            htmlAnswer: 'A1',
+            answer: 'A1',
+            order: 1,
+            createdAt: '2023-01-01T00:00:00.000Z',
+            updatedAt: '2023-01-01T00:00:00.000Z',
+            publishedAt: '2023-01-01T00:00:00.000Z',
+          },
+        ],
+      },
       faqDescription: 'FAQ desc',
       additionalContent: 'Some content',
       image: { url: 'img.jpg', alternativeText: 'img' },

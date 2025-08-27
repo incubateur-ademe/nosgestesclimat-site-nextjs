@@ -28,6 +28,10 @@ const meta: Meta<typeof Loader> = {
       control: 'text',
       description: 'Classes CSS additionnelles',
     },
+    ariaLabel: {
+      control: 'text',
+      description: "Texte descriptif pour les lecteurs d'écran",
+    },
   },
 }
 
@@ -80,4 +84,13 @@ export const CustomClass: Story = {
     className: 'border-green-500 border-b-transparent',
   },
   decorators: [darkBackgroundDecorator],
+}
+
+export const WithCustomAriaLabel: Story = {
+  args: {
+    size: 'md',
+    color: 'dark',
+    ariaLabel: 'Chargement des données utilisateur',
+  },
+  decorators: [lightBackgroundDecorator],
 }

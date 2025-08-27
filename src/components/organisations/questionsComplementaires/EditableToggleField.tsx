@@ -18,7 +18,7 @@ export default forwardRef(function EditableToggleField(
     <>
       <div
         className={twMerge(
-          'relative flex w-full flex-col items-center overflow-hidden rounded-xl border-2 border-gray-200 p-4 transition-colors',
+          'focus-within:ring-primary-700 relative flex w-full flex-col items-center overflow-hidden rounded-xl border border-slate-700 p-4 transition-colors focus-within:ring-2 focus-within:ring-offset-2',
           className
         )}>
         <div className="flex w-full justify-between">
@@ -30,7 +30,7 @@ export default forwardRef(function EditableToggleField(
             type="text"
             // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus
-            className="focus:border-primary-500 mr-2 w-full bg-transparent px-1 pb-1 text-base outline-hidden focus:border-b-2!"
+            className="focus:border-primary-700 mr-2 w-full bg-transparent px-1 pb-1 text-base outline-hidden focus:border-b-2!"
           />
         </div>
       </div>

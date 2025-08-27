@@ -4,9 +4,12 @@ import type {
   HTMLAttributes,
   ReactNode,
 } from 'react'
-import { forwardRef } from 'react'
+import { forwardRef, useId } from 'react'
 import { DebounceInput } from 'react-debounce-input'
 import { twMerge } from 'tailwind-merge'
+import InputGroup from './InputGroup'
+
+export const defaultInputStyleClassNames = `rounded-md border border-solid border-slate-500 bg-white transition-colors placeholder:text-slate-500`
 
 type Props = {
   name: string
@@ -27,9 +30,11 @@ type Props = {
   debounceTimeout?: number
   readOnly?: boolean
   'data-cypress-id'?: string
+  autoComplete?: string
+  mention?: string
 }
 
-export default forwardRef(function TextInputGroup(
+export default forwardRef(function TextInput(
   {
     name,
     label,
@@ -37,6 +42,7 @@ export default forwardRef(function TextInputGroup(
     error,
     successMessage,
     helperText,
+    mention,
     className,
     containerClassName,
     placeholder,
@@ -46,54 +52,42 @@ export default forwardRef(function TextInputGroup(
     disabled,
     debounceTimeout = 100,
     readOnly = false,
+    autoComplete = 'off',
     ...props
   }: HTMLAttributes<HTMLInputElement> & Props,
   ref: ForwardedRef<HTMLInputElement>
 ) {
+  const id = useId()
+  const inputId = `input-${id}`
+
   return (
-    <div
-      className={twMerge(
-        'flex w-full flex-col items-start',
-        containerClassName
-      )}
-      aria-live="polite">
-      {label ? (
-        <label
-          id={`label-${name}`}
-          htmlFor={name}
-          className="w-full max-w-[30rem] text-left">
-          <span
-            className={`text-sm font-bold text-slate-900 ${
-              error ? 'text-red-700!' : ''
-            }`}>
-            {label}
-          </span>
-        </label>
-      ) : null}
-
-      {helperText ? (
-        <span className="mt-1 text-xs text-slate-500">{helperText}</span>
-      ) : null}
-
+    <InputGroup
+      name={name}
+      label={label}
+      error={typeof error === 'string' ? error : undefined}
+      helperText={typeof helperText === 'string' ? helperText : undefined}
+      containerClassName={containerClassName}
+      required={required}
+      disabled={disabled}
+      mention={mention}>
       <DebounceInput
+        id={inputId}
         inputRef={ref}
-        aria-labelledby={`label-${name}`}
         readOnly={readOnly}
         debounceTimeout={debounceTimeout}
         name={name}
         type={type}
         placeholder={placeholder}
         onChange={onChange ?? (() => null)}
-        aria-describedby={`error-${name}`}
         value={value}
         required={required}
         aria-disabled={disabled}
-        autoComplete="off"
+        autoComplete={autoComplete}
         data-cypress-id={`${props['data-cypress-id']}`}
         {...props}
         className={twMerge(
-          helperText || label ? 'mt-3!' : '',
-          `w-full max-w-[30rem] rounded-xl border-2 border-solid border-gray-300 bg-white p-4 text-sm transition-colors read-only:bg-gray-200`,
+          'w-full max-w-[30rem] p-4 text-sm',
+          defaultInputStyleClassNames,
           error ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : '',
           disabled ? 'cursor-not-allowed opacity-50' : '',
           readOnly
@@ -102,19 +96,6 @@ export default forwardRef(function TextInputGroup(
           className
         )}
       />
-
-      {error && (
-        <span
-          id={`error-${name}`}
-          data-testid={`error-${name}`}
-          className="mt-2 text-xs text-red-700">
-          {error}
-        </span>
-      )}
-
-      {successMessage && (
-        <span className="mt-2 text-xs text-green-700">{successMessage}</span>
-      )}
-    </div>
+    </InputGroup>
   )
 })

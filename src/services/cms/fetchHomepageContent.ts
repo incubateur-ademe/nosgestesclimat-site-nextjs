@@ -19,7 +19,7 @@ export async function fetchHomepageContent({
 }): Promise<
   | (Partial<PopulatedHomePageType<'image'>> & {
       pageCount: number
-      mainArticle: PopulatedArticleType<'image' | 'category'>
+      mainArticle: PopulatedArticleType<'image' | 'blogCategory'>
       articles: ArticleItemType[]
     })
   | undefined
@@ -30,12 +30,12 @@ export async function fetchHomepageContent({
       'populate[0]': 'image',
       'populate[1]': 'mainArticle',
       'populate[2]': 'mainArticle.image',
-      'populate[3]': 'mainArticle.category',
+      'populate[3]': 'mainArticle.blogCategory',
     })
 
     const homepageResponse = await cmsClient<{
       data: PopulatedHomePageType<'image'> & {
-        mainArticle: PopulatedArticleType<'image' | 'category'>
+        mainArticle: PopulatedArticleType<'image' | 'blogCategory'>
       }
     }>(`/api/home-page?${homepageSearchParams}`)
 
@@ -52,7 +52,7 @@ export async function fetchHomepageContent({
       'fields[1]': 'description',
       'fields[2]': 'slug',
       'populate[0]': 'image',
-      'populate[1]': 'category',
+      'populate[1]': 'blogCategory',
       'pagination[page]': page.toString(),
       'pagination[pageSize]': PAGE_SIZE.toString(),
       sort: 'createdAt:desc',

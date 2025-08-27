@@ -53,7 +53,7 @@ describe('ArticlePage', () => {
         createdAt: '2023-01-01T00:00:00.000Z',
         updatedAt: '2023-01-01T00:00:00.000Z',
         publishedAt: '2023-01-01T00:00:00.000Z',
-        category: {
+        blogCategory: {
           id: 'cat-1',
           documentId: 'doc-cat-1',
           title: 'Category Title',
@@ -96,7 +96,7 @@ describe('ArticlePage', () => {
           createdAt: '2023-01-01T00:00:00.000Z',
           updatedAt: '2023-01-01T00:00:00.000Z',
           publishedAt: '2023-01-01T00:00:00.000Z',
-          category: {
+          blogCategory: {
             id: 'cat-2',
             documentId: 'doc-cat-2',
             title: 'Category 2',
@@ -200,7 +200,7 @@ describe('ArticlePage', () => {
           createdAt: '2023-01-01T00:00:00.000Z',
           updatedAt: '2023-01-01T00:00:00.000Z',
           publishedAt: '2023-01-01T00:00:00.000Z',
-          category: null,
+          blogCategory: null,
           author: {
             name: 'Author Name',
             description: 'Author Bio',
@@ -242,7 +242,7 @@ describe('ArticlePage', () => {
           createdAt: '2023-01-01T00:00:00.000Z',
           updatedAt: '2023-01-01T00:00:00.000Z',
           publishedAt: '2023-01-01T00:00:00.000Z',
-          category: {
+          blogCategory: {
             id: 'cat-1',
             documentId: 'doc-cat-1',
             title: 'Category Title',
@@ -294,7 +294,7 @@ describe('ArticlePage', () => {
           createdAt: '2023-01-01T00:00:00.000Z',
           updatedAt: '2023-01-01T00:00:00.000Z',
           publishedAt: '2023-01-01T00:00:00.000Z',
-          category: {
+          blogCategory: {
             id: 'cat-1',
             documentId: 'doc-cat-1',
             title: 'Category Title',
@@ -349,7 +349,7 @@ describe('ArticlePage', () => {
           createdAt: '2023-01-01T00:00:00.000Z',
           updatedAt: '2023-01-01T00:00:00.000Z',
           publishedAt: '2023-01-01T00:00:00.000Z',
-          category: {
+          blogCategory: {
             id: 'cat-1',
             documentId: 'doc-cat-1',
             title: 'Category Title',
