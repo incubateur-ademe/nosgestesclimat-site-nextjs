@@ -1243,6 +1243,32 @@ entries:
   Télécharger le QR Code: Download the QR Code
   Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Like 2 million other people, measure your ecological footprint in 10 minutes. A free tool to take stock and reduce your CO2 emissions.
   Pour vous désinscrire, passez par le lien en bas de l'email reçu: To unsubscribe, use the link at the bottom of the email you receive
+  copyInput.linkCopiedSuccess: Link successfully copied
+  copyInput.linkCopiedSuccess.lock: Lien copié avec succès
+  copyInput.copyError: Error copying link
+  copyInput.copyError.lock: Erreur lors de la copie du lien
+  copyInput.copyingInProgress: Copy in progress...
+  copyInput.copyingInProgress.lock: Copie en cours...
+  copyInput.copyLinkToClipboard: Copy link to clipboard
+  copyInput.copyLinkToClipboard.lock: Copier le lien dans le presse-papiers
+  copyInput.sharingInProgress: Sharing in progress...
+  copyInput.sharingInProgress.lock: Partage en cours...
+  copyInput.linkCopiedToClipboard: Link successfully copied to clipboard
+  copyInput.linkCopiedToClipboard.lock: Lien copié avec succès dans le presse-papiers
+  copyInput.share: Share
+  copyInput.share.lock: Partager
+  copyInput.shareTitle: Discover my carbon footprint!
+  copyInput.shareTitle.lock: Découvre mon empreinte carbone !
+  copyInput.copied: Copy!
+  copyInput.copied.lock: Copié !
+  copyInput.defaultLabel: Link to copy
+  copyInput.defaultLabel.lock: Lien à copier
+  copyInput.shareLink: Share this link
+  copyInput.shareLink.lock: Partager le lien
+  copyInput.copyErrorManual: Oops, I can't copy the link, you can copy it manually.
+  copyInput.copyErrorManual.lock: Oups, impossible de copier le lien, vous pouvez le copier manuellement.
+  copyInput.copyLink: Copy link
+  copyInput.copyLink.lock: Copier le lien
   Page active: Active page
   Sélectionner ce filtre et afficher uniquement les actions de cette catégorie: Select this filter to display only the shares in this category
   Eau, évaluer la métrique eau: Water, assess the water metric
