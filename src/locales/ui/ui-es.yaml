@@ -1256,6 +1256,32 @@ entries:
   Télécharger le QR Code: Descargar el código QR
   Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Como otros 2 millones de personas, mide tu huella ecológica en 10 minutos. Una herramienta gratuita para hacer balance y reducir tus emisiones de CO2.
   Pour vous désinscrire, passez par le lien en bas de l'email reçu: Para darse de baja, utilice el enlace que encontrará al final del correo electrónico que reciba
+  copyInput.copyError: Error al copiar el enlace
+  copyInput.copyError.lock: Erreur lors de la copie du lien
+  copyInput.shareTitle: Descubra mi huella de carbono
+  copyInput.shareTitle.lock: Découvre mon empreinte carbone !
+  copyInput.linkCopiedSuccess: Enlace copiado correctamente
+  copyInput.linkCopiedSuccess.lock: Lien copié avec succès
+  copyInput.copyLink: Copiar enlace
+  copyInput.copyLink.lock: Copier le lien
+  copyInput.shareLink: Compartir este enlace
+  copyInput.shareLink.lock: Partager le lien
+  copyInput.share: Compartir
+  copyInput.share.lock: Partager
+  copyInput.copied: ¡Copiado!
+  copyInput.copied.lock: Copié !
+  copyInput.defaultLabel: Enlace a la copia
+  copyInput.defaultLabel.lock: Lien à copier
+  copyInput.copyingInProgress: Copia en curso...
+  copyInput.copyingInProgress.lock: Copie en cours...
+  copyInput.copyLinkToClipboard: Copiar enlace al portapapeles
+  copyInput.copyLinkToClipboard.lock: Copier le lien dans le presse-papiers
+  copyInput.sharingInProgress: Compartición en curso...
+  copyInput.sharingInProgress.lock: Partage en cours...
+  copyInput.linkCopiedToClipboard: Enlace copiado correctamente en el portapapeles
+  copyInput.linkCopiedToClipboard.lock: Lien copié avec succès dans le presse-papiers
+  copyInput.copyErrorManual: Uy, no puedo copiar el enlace, puedes copiarlo manualmente.
+  copyInput.copyErrorManual.lock: Oups, impossible de copier le lien, vous pouvez le copier manuellement.
   Page active: Página activa
   Visiter cette page: Visite esta página
   Connexion: Conexión

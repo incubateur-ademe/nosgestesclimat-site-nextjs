@@ -1191,3 +1191,67 @@ entries:
   Télécharger le QR Code: Télécharger le QR Code
   Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.
   Pour vous désinscrire, passez par le lien en bas de l'email reçu: Pour vous désinscrire, passez par le lien en bas de l'email reçu
+  copyInput.copied: Copié !
+  copyInput.copyError: Erreur lors de la copie du lien
+  copyInput.copyErrorManual: Oups, impossible de copier le lien, vous pouvez le copier manuellement.
+  copyInput.copyingInProgress: Copie en cours...
+  copyInput.copyLink: Copier le lien
+  copyInput.copyLinkToClipboard: Copier le lien dans le presse-papiers
+  copyInput.defaultLabel: Lien à copier
+  copyInput.linkCopiedSuccess: Lien copié avec succès
+  copyInput.linkCopiedToClipboard: Lien copié avec succès dans le presse-papiers
+  copyInput.share: Partager
+  copyInput.shareLink: Partager le lien
+  copyInput.shareTitle: Découvre mon empreinte carbone !
+  copyInput.sharingInProgress: Partage en cours...
+  Carbone, évaluer la métrique carbone: Carbone, évaluer la métrique carbone
+  Connexion: Connexion
+  Eau, évaluer la métrique eau: Eau, évaluer la métrique eau
+  Page active: Page active
+  Sélectionner ce filtre et afficher uniquement les actions de cette catégorie: Sélectionner ce filtre et afficher uniquement les actions de cette catégorie
+  Visiter cette page: Visiter cette page
+  actions.engagementIcon.ariaLabel: ', les actions se trouvent en dessous'
+  authorBlock.defaultAlt: Photo de l'auteur ou de l'autrice
+  common.marianne.ariaLabel: République Française
+  common.partners.abc.ariaLabel: Association pour la transition Bas Carbone
+  Découvrez le calculateur, ouvrir dans une nouvelle fenêtre: Découvrez le calculateur, ouvrir dans une nouvelle fenêtre
+  Découvrez les ateliers de l’ABC, ouvrir dans une nouvelle fenêtre: Découvrez les ateliers de l’ABC, ouvrir dans une nouvelle fenêtre
+  endPage.blogArticles.lireArticle: Ouvrir l'article dans une nouvelle fenêtre
+  endPage.carboneTarget.enSavoirPlus: Ouvrir la page dans une nouvelle fenêtre
+  endPage.waterActions.lireArticle: Ouvrir l'article dans une nouvelle fenêtre
+  international.electricityMaps.ariaLabel: Visiter le site Electricity Maps (s'ouvre dans un nouvel onglet)
+  l'objectif pour 2050: l'objectif pour 2050
+  organisations.ourTools.newTab: Ouvrir dans une nouvelle fenêtre
+  Permettez à vos cibles (clients, étudiants, participants, habitants..) de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d'autres modes d'intégration prêts à l'emploi.: Permettez à vos cibles (clients, étudiants, participants, habitants..) de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d'autres modes d'intégration prêts à l'emploi.
+  actions.buttons.reject: Rejeter l'action
+  actions.buttons.select: Sélectionner l'action
+  empreinte-carbone.heroTitle: L'empreinte carbone, une première étape pour passer à l'action
+  actions.chooseAction.ariaLabel.selected: Action sélectionnée, annuler la sélection
+  actions.chooseAction.ariaLabel.unselected: Sélectionner cette action
+  actions.rejectAction.ariaLabel.selected: Action rejetée
+  actions.rejectAction.ariaLabel.unselected: Rejeter cette action
+  documentation.noresults: Aucun résultat ne correspond à cette recherche
+  documentation.search.h2: Explorez nos modèles
+  documentation.search.input.label: Entrez des mots clefs
+  documentation.search.input.placeholder: Entrez des mots-clefs de recherche
+  documentation.search.label: Recherche dans la documentation
+  documentation.search.results_one: '{{count}} résultat(s) trouvé(s)'
+  documentation.search.results_many: '{{count}} résultat(s) trouvé(s)'
+  documentation.search.results_other: '{{count}} résultat(s) trouvé(s)'
+  documentation.search.results.label: Résultats de recherche
+  Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.: Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.
+  Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.: Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.
+  Chargement du tableau de bord...: Chargement du tableau de bord...
+  Formulaire - Demander une démo: Formulaire - Demander une démo
+  Formulaire - Désactiver les cookies de mesure d'audience via Matomo: Formulaire - Désactiver les cookies de mesure d'audience via Matomo
+  Formulaire - nous faire part de vos remarques sur le site: Formulaire - nous faire part de vos remarques sur le site
+  Graphique de distribution des résultats de simulation pour le mois dernier: Graphique de distribution des résultats de simulation pour le mois dernier
+  Graphiques du nombre de visites et de simulations sur le site: Graphiques du nombre de visites et de simulations sur le site
+  Iframe - Google Tag Manager: Iframe - Google Tag Manager
+  Impossible de charger le tableau de bord. Veuillez réessayer plus tard.: Impossible de charger le tableau de bord. Veuillez réessayer plus tard.
+  organisations.poll.create.custom_question.add_button.label: Ajouter une question personnalisée
+  organisations.poll.create.custom_question.add_button.max_reached: Vous avez atteint le nombre maximum de questions personnalisées
+  Statistiques d'usage du mode "Challenge tes amis": Statistiques d'usage du mode "Challenge tes amis"
+  Statistiques d'usage du mode "Organisations": Statistiques d'usage du mode "Organisations"
+  Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.: Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.
+  Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.: Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.
