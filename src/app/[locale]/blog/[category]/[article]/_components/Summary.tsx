@@ -17,7 +17,11 @@ export default function Summary({ headings }: { headings: Heading[] }) {
         <Trans>Sommaire</Trans>
       </p>
 
-      <nav>
+      <nav role="navigation" aria-labelledby="list-title">
+        <p id="list-title" className="sr-only">
+          <Trans>Sommaire</Trans>
+        </p>
+
         <ul className="space-y-2">
           {headings.map((heading) => (
             <li
