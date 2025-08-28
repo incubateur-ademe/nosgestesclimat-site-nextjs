@@ -64,6 +64,7 @@ export default function TopBar({
               <Category category={currentCategory} />
             )}
           </div>
+          <div>Progression: {currentSimulation.progression}</div>
           {toggleQuestionList ? (
             <TotalButtons
               toggleQuestionList={toggleQuestionList}
