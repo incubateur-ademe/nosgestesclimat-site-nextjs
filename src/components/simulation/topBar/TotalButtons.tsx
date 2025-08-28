@@ -6,6 +6,7 @@ import SaveIcon from '@/components/icons/SaveIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import { useDebug } from '@/hooks/useDebug'
+import { useIframe } from '@/hooks/useIframe'
 import { useCurrentSimulation } from '@/publicodes-state'
 
 type Props = { toggleQuestionList: () => void; toggleSaveModal?: () => void }
@@ -15,6 +16,8 @@ export default function TotalButtons({
   toggleSaveModal,
 }: Props) {
   const { savedViaEmail } = useCurrentSimulation()
+
+  const { isFrenchRegion } = useIframe()
 
   const isDebug = useDebug()
 
@@ -35,7 +38,7 @@ export default function TotalButtons({
         </Button>
       )}
 
-      {toggleSaveModal ? (
+      {toggleSaveModal && isFrenchRegion ? (
         <Button
           color="text"
           size="sm"

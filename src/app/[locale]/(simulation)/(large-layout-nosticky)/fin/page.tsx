@@ -41,7 +41,7 @@ export default function FinPage() {
   const { currentMetric } = useCurrentMetric()
 
   const isIframe = getIsIframe()
-  const { isIframeShareData } = useIframe()
+  const { isIframeShareData, isFrenchRegion } = useIframe()
 
   // If the simulationIdInQueryParams is set, it means that the simulation is not loaded yet
   if (!isGuardInit || isGuardRedirecting || !!simulationIdInQueryParams)
@@ -62,7 +62,7 @@ export default function FinPage() {
           <Trans>Mes empreintes</Trans>
         </Title>
 
-        <HeadingButtons />
+        {isFrenchRegion && <HeadingButtons />}
       </div>
 
       <MetricSlider />
@@ -94,9 +94,9 @@ export default function FinPage() {
             {currentMetric === eauMetric && <Eau />}
           </div>
 
-          <GetResultsByEmail />
+          {isFrenchRegion && <GetResultsByEmail />}
 
-          <ShareBlock />
+          {isFrenchRegion && <ShareBlock />}
 
           <div id="categories-block">
             <Title tag="h2" className="text-lg lg:text-2xl">
