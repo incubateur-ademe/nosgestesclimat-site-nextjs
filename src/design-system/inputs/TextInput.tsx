@@ -64,8 +64,8 @@ export default forwardRef(function TextInput(
     <InputGroup
       name={name}
       label={label}
-      error={typeof error === 'string' ? error : undefined}
-      helperText={typeof helperText === 'string' ? helperText : undefined}
+      error={error}
+      helperText={helperText}
       containerClassName={containerClassName}
       required={required}
       disabled={disabled}
@@ -86,7 +86,7 @@ export default forwardRef(function TextInput(
         data-cypress-id={`${props['data-cypress-id']}`}
         {...props}
         className={twMerge(
-          'w-full max-w-[30rem] p-4 text-sm',
+          'w-full max-w-[30rem] p-4 text-base',
           defaultInputStyleClassNames,
           error ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : '',
           disabled ? 'cursor-not-allowed opacity-50' : '',
