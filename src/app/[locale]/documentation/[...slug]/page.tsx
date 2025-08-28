@@ -1,4 +1,4 @@
-import { DOCUMENTATION_PATH, NOT_FOUND_PATH } from '@/constants/urls/paths'
+import { DOCUMENTATION_PATH } from '@/constants/urls/paths'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getRules } from '@/helpers/modelFetching/getRules'
@@ -7,7 +7,11 @@ import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import type { DefaultPageProps } from '@/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { decodeRuleNameFromPath } from '@/utils/decodeRuleNameFromPath'
-import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import type {
+  DottedName,
+  NGCRule,
+  NGCRules,
+} from '@incubateur-ademe/nosgestesclimat'
 import { redirect } from 'next/navigation'
 import DocumentationRouter from './_components/DocumentationRouter'
 import DocumentationServer from './_components/documentationRouter/DocumentationServer'
@@ -67,17 +71,17 @@ export default async function DocumentationPage({
     regionCode: 'FR',
   })) as NGCRules
 
+  const rulesSet = new Set(Object.keys(rules ?? {}))
+
   const ruleName = decodeRuleNameFromPath(slug.join('/')) as DottedName
 
-  if (!ruleName) {
-    redirect(NOT_FOUND_PATH)
-  }
+  const shouldRedirectToHome = !ruleName || !rulesSet.has(ruleName)
 
-  const rule = rules?.[ruleName]
-
-  if (!rule) {
+  if (shouldRedirectToHome) {
     redirect(DOCUMENTATION_PATH)
   }
+
+  const rule: NonNullable<NGCRule> = rules?.[ruleName] ?? {}
 
   return (
     <DocumentationRouter
