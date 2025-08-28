@@ -40,7 +40,7 @@ export default function FloatingInfo({
               <WaterDropIcon
                 key={index}
                 className={twMerge(
-                  'h-4 w-4',
+                  'h-4 w-4 fill-blue-600',
                   index + 1 > (waterScore ?? 0) ? 'fill-gray-300' : ''
                 )}
               />
