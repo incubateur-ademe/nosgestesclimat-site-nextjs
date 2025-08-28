@@ -1,5 +1,6 @@
 'use client'
 
+import { getIsFrenchRegion } from '@/helpers/regions/getIsFrenchRegion'
 import { useTrackIframe } from '@/hooks/tracking/useTrackIframe'
 import { useIsClient } from '@/hooks/useIsClient'
 import { getIsIframe } from '@/utils/getIsIframe'
@@ -11,6 +12,7 @@ export const IframeOptionsContext = createContext<{
   iframeRegion?: string | null
   isIframeOnlySimulation?: boolean
   iframeLang?: string | null
+  isFrenchRegion?: boolean
 }>({})
 
 const nullDecode = (string: string) =>
@@ -83,6 +85,8 @@ export const IframeOptionsProvider = ({
     }
   }, [isIframeOnlySimulation])
 
+  const isFrenchRegion = getIsFrenchRegion({ isIframe, iframeRegion })
+
   return (
     <IframeOptionsContext.Provider
       value={{
@@ -92,6 +96,7 @@ export const IframeOptionsProvider = ({
         isIframe,
         isIframeOnlySimulation,
         iframeLang,
+        isFrenchRegion,
       }}>
       {children(containerRef)}
     </IframeOptionsContext.Provider>
