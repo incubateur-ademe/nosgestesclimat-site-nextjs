@@ -6,8 +6,9 @@ import {
   getLandingDidYouKnowSlider,
   getLandingDidYouKnowSliderValue,
 } from '@/helpers/tracking/landings'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 // @ts-expect-error package types are wrongly exported
-import { Splide, SplideSlide } from '@splidejs/react-splide'
+import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
 import '@splidejs/react-splide/css'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
@@ -16,6 +17,7 @@ import type { ReactNode } from 'react'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import CTAButtonsPlaceholder from '../cta/CTAButtonsPlaceholder'
+import PlaySignIcon from '../icons/PlaySignIcon'
 import Trans from '../translation/trans/TransClient'
 
 const DynamicCTAButtons = dynamic(
@@ -33,6 +35,8 @@ export default function DidYouKnowSlider({
   titleTag?: 'h2' | 'h3'
 }) {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(true)
+  const { t } = useClientTranslation()
 
   const pathname = usePathname()
 
@@ -55,6 +59,7 @@ export default function DidYouKnowSlider({
             interval: 5500,
             reducedMotion: true,
           }}
+          hasTrack={false}
           onMoved={(slide: unknown, nextSlideIndex: number) =>
             setCurrentSlide(nextSlideIndex)
           }
@@ -63,37 +68,63 @@ export default function DidYouKnowSlider({
           }
           className="relative max-w-[594px]"
           role="group">
-          {slides.map((slide, index) => (
-            <SplideSlide
-              className="mx-auto flex! w-full max-w-[90vw] flex-col items-start gap-10 md:flex-row"
-              key={`slide-${index}`}>
-              <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-white md:mx-0 md:h-40 md:w-40">
-                <Image
-                  src={slide.illustration}
-                  className="w-12 md:w-20"
-                  alt=""
-                  width="80"
-                  height="80"
-                />
-              </div>
+          <SplideTrack>
+            {slides.map((slide, index) => (
+              <SplideSlide
+                className="mx-auto flex! w-full max-w-[90vw] flex-col items-start gap-10 md:flex-row"
+                key={`slide-${index}`}>
+                <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-white md:mx-0 md:h-40 md:w-40">
+                  <Image
+                    src={slide.illustration}
+                    className="w-12 md:w-20"
+                    alt=""
+                    width="80"
+                    height="80"
+                  />
+                </div>
 
-              <div className="w-full flex-1">
-                <Title className="text-center text-xl md:text-left md:text-3xl">
-                  <Trans>Le saviez vous ?</Trans>
-                </Title>
+                <div className="w-full flex-1">
+                  <Title className="text-center text-xl md:text-left md:text-3xl">
+                    <Trans>Le saviez vous ?</Trans>
+                  </Title>
 
-                <Separator className="mx-auto my-4 md:mx-0" />
+                  <Separator className="mx-auto my-4 md:mx-0" />
 
-                <p className="mb-2 text-center text-sm md:text-left md:text-lg">
-                  {slide.content}
-                </p>
+                  <p className="mb-2 text-center text-sm md:text-left md:text-lg">
+                    {slide.content}
+                  </p>
 
-                <p className="text-secondary-700 mt-4 mb-0 pb-4 text-center text-sm font-bold md:text-left md:text-lg">
-                  {slide.highlight}
-                </p>
-              </div>
-            </SplideSlide>
-          ))}
+                  <p className="text-secondary-700 mt-4 mb-0 pb-4 text-center text-sm font-bold md:text-left md:text-lg">
+                    {slide.highlight}
+                  </p>
+                </div>
+              </SplideSlide>
+            ))}
+          </SplideTrack>
+
+          <button
+            tabIndex={0}
+            title={
+              isPlaying ? t('Arrêter le défilement') : t('Lancer le défilement')
+            }
+            className="splide__toggle mb-2 flex h-[44px]! w-[44px]! items-center justify-center rounded-lg"
+            onClick={() => {
+              setIsPlaying((prev) => !prev)
+            }}
+            type="button">
+            <span className="splide__toggle__play">
+              <PlaySignIcon className="fill-primary-800 stroke-primary-800 block h-[44px]!" />
+            </span>
+            <span
+              className="splide__toggle__pause text-primary-800 mb-2.5 h-[44px]! text-4xl leading-0"
+              aria-hidden>
+              &#x23F9;
+            </span>
+          </button>
+          <div className="splide__arrows" />
+          <div className="splide__progress">
+            <div className="splide__progress__bar" />
+          </div>
         </Splide>
         <div>
           <DynamicCTAButtons
