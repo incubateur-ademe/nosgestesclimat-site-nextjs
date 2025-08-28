@@ -8,6 +8,8 @@ import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
 import NewslettersBlock from '@/design-system/cms/NewslettersBlock'
 import NewslettersBlockSkeleton from '@/design-system/cms/NewslettersBlockSkeleton'
+import { getDynamicPageTitleWithPagination } from '@/helpers/blog/getDynamicPageTitleWithPagination'
+import { getPageNumber } from '@/helpers/blog/getPageNumber'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -22,20 +24,43 @@ import GroupBlock from './_components/GroupBlock'
 
 export async function generateMetadata({
   params,
-}: DefaultPageProps<{ params: { locale: Locale } }>) {
+  searchParams,
+}: DefaultPageProps<{
+  params: { locale: Locale }
+  searchParams: { page: string }
+}>) {
   const { locale } = await params
 
-  const { metaTitle, metaDescription, image } =
-    (await fetchHomepageMetadata({ locale })) || {}
+  const pageNumber = await getPageNumber(searchParams)
+
+  const { t } = await getServerTranslation({ locale })
+
+  const { metaTitle, metaDescription, image, pageCount } =
+    (await fetchHomepageMetadata({ locale, pageNumber })) || {}
+
+  const dynamicTitle = getDynamicPageTitleWithPagination({
+    metaTitle,
+    pageCount,
+    pageNumber,
+    t,
+  })
+
+  console.log(dynamicTitle)
 
   return getMetadataObject({
     locale,
     title:
-      metaTitle ??
-      'Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat',
+      dynamicTitle ??
+      t(
+        'blog.homepage.defaultTitle',
+        'Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat'
+      ),
     description:
       metaDescription ??
-      'Découvrez des conseils pratiques pour réduire votre empreinte écologique.',
+      t(
+        'blog.homepage.defaultDescription',
+        'Découvrez des conseils pratiques pour réduire votre empreinte écologique.'
+      ),
     image: image?.url ?? '',
     alternates: {
       canonical: '/blog',
@@ -54,30 +79,15 @@ export default async function BlogHomePage({
 
   const { t } = await getServerTranslation({ locale })
 
-  // Get the page number from the query params from the server side
-  const pageParam = searchParams ? (await searchParams).page : undefined
-  const page = Number(pageParam) || 1
+  const pageNumber = await getPageNumber(searchParams)
 
-  const {
-    title,
-    description,
-    image,
-    mainArticle,
-    articles,
-    pageCount,
-    metaTitle,
-  } =
+  const { title, description, image, mainArticle, articles, pageCount } =
     (await fetchHomepageContent({
-      page,
+      page: pageNumber,
       locale,
     })) ?? {}
 
   const langButtonsDisplayed = await getLangButtonsDisplayed()
-
-  // Update the page title by adding the page number
-  const pageTitle = metaTitle
-    ? `${metaTitle} - ${t('blog.dynamicPageNumber', 'page {{page}} sur {{pageCount}}', { page, pageCount })}`
-    : undefined
 
   // Only for ES locale, redirect to the FR version if !title || !description || !image || !articles
   if (
@@ -138,7 +148,7 @@ export default async function BlogHomePage({
             locale={locale}
             articles={articles}
             pageCount={pageCount ?? 0}
-            currentPage={page}
+            currentPage={pageNumber}
           />
         )}
 

@@ -5,10 +5,9 @@ import type {
   PopulatedHomePageType,
 } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
+import { PAGE_SIZE } from '@/constants/blog/pagination'
 import { type Locale } from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
-
-const PAGE_SIZE = 12
 
 export async function fetchHomepageContent({
   page,
@@ -21,7 +20,6 @@ export async function fetchHomepageContent({
       pageCount: number
       mainArticle: PopulatedArticleType<'image' | 'blogCategory'>
       articles: ArticleItemType[]
-      metaTitle?: string
     })
   | undefined
 > {
@@ -32,7 +30,6 @@ export async function fetchHomepageContent({
       'populate[1]': 'mainArticle',
       'populate[2]': 'mainArticle.image',
       'populate[3]': 'mainArticle.blogCategory',
-      'populate[4]': 'pageMetadata',
     })
 
     const homepageResponse = await cmsClient<{
@@ -74,7 +71,6 @@ export async function fetchHomepageContent({
 
     return {
       title,
-      metaTitle: pageMetadata.title,
       description,
       image,
       mainArticle,
