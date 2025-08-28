@@ -75,9 +75,9 @@ export default async function DocumentationPage({
 
   const ruleName = decodeRuleNameFromPath(slug.join('/')) as DottedName
 
-  const shouldRedirectToDocumentationHome = !ruleName || !rulesSet.has(ruleName)
+  const shouldRedirectToHome = !ruleName || !rulesSet.has(ruleName)
 
-  if (shouldRedirectToDocumentationHome) {
+  if (shouldRedirectToHome) {
     redirect(DOCUMENTATION_PATH)
   }
 
