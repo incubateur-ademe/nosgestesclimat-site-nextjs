@@ -280,12 +280,12 @@ const redirects = [
   // Landings thématiques
   {
     source: '/empreinte-carbone-alimentation',
-    destination: '/thematic-landing-page/empreinte-carbone-alimentation',
+    destination: '/themes/empreinte-carbone-alimentation',
     permanent: true,
   },
   {
     source: '/empreinte-carbone-transport',
-    destination: '/thematic-landing-page/empreinte-carbone-transport',
+    destination: '/themes/empreinte-carbone-transport',
     permanent: true,
   },
 ]
