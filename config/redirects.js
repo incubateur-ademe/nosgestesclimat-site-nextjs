@@ -277,6 +277,17 @@ const redirects = [
     destination: '/misc/NGC_Kit.diffusion.zip',
     permanent: true,
   },
+  // Landings thématiques
+  {
+    source: '/empreinte-carbone-alimentation',
+    destination: '/thematic-landing-page/empreinte-carbone-alimentation',
+    permanent: true,
+  },
+  {
+    source: '/empreinte-carbone-transport',
+    destination: '/thematic-landing-page/empreinte-carbone-transport',
+    permanent: true,
+  },
 ]
 
 module.exports = redirects
