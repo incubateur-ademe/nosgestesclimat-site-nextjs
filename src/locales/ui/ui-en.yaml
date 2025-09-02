@@ -21,10 +21,8 @@ entries:
   Démarrer: Start
   En développement actif: In active development
   En savoir plus: Read more
-  Entrez des mots clefs: Enter keywords
   Envie de contribuer à une version pour votre région ?: Want to contribute to a version for your region?
   Envoyer: Send
-  Explorez nos modèles: Explore our models
   Faire le test: Take the test
   Fermer: Close
   Fermer les options de tri: Close sorting options
@@ -85,10 +83,6 @@ entries:
   model.stats.lock: Le modèle comprend aujourd'hui <1></1> règles de calcul. Parmi elles, <3></3> règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.
   model.stats2: It consists of a combination of hundreds of "bottom-up" micro models for the carbon consumption of our daily lives, and a "top-down" model derived from the work of the SDES to estimate the per capita footprint of so-called societal services (public services and basic services such as telecommunications). <2>Learn more about this hybridization</2>.
   model.stats2.lock: Il est constitué d'une combinaison de centaines de modèles micro "bottom-up" pour les consommations carbonées de notre vie quotidienne, et d'un modèle "top-down" dérivé des travaux du SDES pour estimer l'empreinte par personne des services dits sociétaux (services publics et services de base tels les télécom). <2>En savoir plus sur cette hybridation</2>.
-  noresults: No results were found for this search
-  search.results: '{{count}} result(s) found'
-  search.results.label: Search results
-  search.documentation.label: Documentation search
   participant: participant
   plus d'1 kg: more than 1 kg
   plus d'1 tonne: more than 1 tonne
@@ -207,13 +201,10 @@ entries:
   'Date complète :': 'Full date :'
   Consultez la FAQ: Consult the FAQ
   Avant de commencer: Before you start
-  Entrez des mots-clefs de recherche: Enter search keywords
   international.comment.2: Explore the specific features of each country in detail.
   international.comment.2.lock: Explorez en détail les spécificités de chaque pays.
-  Passer en français: Switch to French
   Sélectionner: Select
   Vous: You
-  Switch to english: Switch to english
   Supprimer: Delete
   publicodes.Tutoriel.slide6: <0>Driving a car, eating a steak, heating your home, getting medical treatment, buying a TV...</0><1>Our individual consumption footprint is the sum total of all the activities that make up our modern lives.</1>
   publicodes.Tutoriel.slide6.lock: <0>Prendre la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter une TV...</0><1>L'empreinte de notre consommation individuelle, c'est la somme de toutes ces activités qui font notre vie moderne.</1>
@@ -481,7 +472,6 @@ entries:
   par semaine, miam: per week, yum
   repas: meal
   Ce test vous est proposé par: This test is brought to you by
-  Cambiar a español: Cambiar a español
   Reprendre mon test: Resume my test
   Voir mon résultat: See my result
   Mon empreinte: My footprint
@@ -701,9 +691,7 @@ entries:
   D’où vient mon empreinte ?: Where does my footprint come from?
   Comment on la mesure ?: How is it measured?
   <0>Eau, climat,</0> même combat ?: <0>Water, climate,</0> same battle?
-  Evaluer la métrique eau: Assessing the water metric
   Découvre mes empreintes: Discover my footprints
-  Evaluer la métrique carbone: Assessing carbon metrics
   C’est quoi mon empreinte carbone ?: What's my carbon footprint?
   l’alimentation des <2>animaux</2> que vous consommez: the feed of the <2>animals</2> you eat
   chrono pour calculer votre empreinte carbone et eau: chrono to calculate your carbon and water footprint
@@ -1253,17 +1241,34 @@ entries:
   Veuillez sélectionner au moins une infolettre.: Please select at least one newsletter.
   Sélectionnez les infolettres auxquelles vous souhaitez vous inscrire: Select the newsletters you wish to subscribe to
   Télécharger le QR Code: Download the QR Code
-  répondez pour vous uniquement, pas votre foyer: answer for yourself only, not your household
-  il ne s’agit pas d’être parfait, mais de comprendre son impact: it's not about being perfect, it's about understanding your impact
-  pas de votre travail: not your work
-  'Comment ça marche ? ': 'How does it work? '
-  Règles du test: Test rules
-  Aucune pression: No pressure
-  C’est un test personnel: It's a personal test
-  On parle de votre vie privée: We're talking about your private life
-  Un groupe d’amis jouant à un jeu de société.: A group of friends playing a board game.
   Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Like 2 million other people, measure your ecological footprint in 10 minutes. A free tool to take stock and reduce your CO2 emissions.
   Pour vous désinscrire, passez par le lien en bas de l'email reçu: To unsubscribe, use the link at the bottom of the email you receive
+  copyInput.linkCopiedSuccess: Link successfully copied
+  copyInput.linkCopiedSuccess.lock: Lien copié avec succès
+  copyInput.copyError: Error copying link
+  copyInput.copyError.lock: Erreur lors de la copie du lien
+  copyInput.copyingInProgress: Copy in progress...
+  copyInput.copyingInProgress.lock: Copie en cours...
+  copyInput.copyLinkToClipboard: Copy link to clipboard
+  copyInput.copyLinkToClipboard.lock: Copier le lien dans le presse-papiers
+  copyInput.sharingInProgress: Sharing in progress...
+  copyInput.sharingInProgress.lock: Partage en cours...
+  copyInput.linkCopiedToClipboard: Link successfully copied to clipboard
+  copyInput.linkCopiedToClipboard.lock: Lien copié avec succès dans le presse-papiers
+  copyInput.share: Share
+  copyInput.share.lock: Partager
+  copyInput.shareTitle: Discover my carbon footprint!
+  copyInput.shareTitle.lock: Découvre mon empreinte carbone !
+  copyInput.copied: Copy!
+  copyInput.copied.lock: Copié !
+  copyInput.defaultLabel: Link to copy
+  copyInput.defaultLabel.lock: Lien à copier
+  copyInput.shareLink: Share this link
+  copyInput.shareLink.lock: Partager le lien
+  copyInput.copyErrorManual: Oops, I can't copy the link, you can copy it manually.
+  copyInput.copyErrorManual.lock: Oups, impossible de copier le lien, vous pouvez le copier manuellement.
+  copyInput.copyLink: Copy link
+  copyInput.copyLink.lock: Copier le lien
   Page active: Active page
   Sélectionner ce filtre et afficher uniquement les actions de cette catégorie: Select this filter to display only the shares in this category
   Eau, évaluer la métrique eau: Water, assess the water metric
@@ -1311,7 +1316,6 @@ entries:
   actions.chooseAction.ariaLabel.selected.lock: Action sélectionnée, annuler la sélection
   documentation.search.results_one: '{{count}} result(s) found'
   documentation.search.results_one.lock: '{{count}} résultat(s) trouvé(s)'
-  search.results.lock: '{{count}} résultat(s) trouvé(s)'
   documentation.search.input.label: Enter keywords
   documentation.search.input.label.lock: Entrez des mots clefs
   Formulaire - Demander une démo: Form - Request a demo
@@ -1319,12 +1323,10 @@ entries:
   documentation.search.h2.lock: Explorez nos modèles
   documentation.search.label: Documentation search
   documentation.search.label.lock: Recherche dans la documentation
-  search.results.label.lock: Résultats de recherche
   documentation.search.results_many: '{{count}} result(s) found'
   documentation.search.results_many.lock: '{{count}} résultat(s) trouvé(s)'
   documentation.search.input.placeholder: Enter search keywords
   documentation.search.input.placeholder.lock: Entrez des mots-clefs de recherche
-  search.documentation.label.lock: Recherche dans la documentation
   documentation.noresults: No results were found for this search
   documentation.noresults.lock: Aucun résultat ne correspond à cette recherche
   documentation.search.results_other: '{{count}} result(s) found'

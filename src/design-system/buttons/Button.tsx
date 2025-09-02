@@ -3,6 +3,7 @@ import type {
   HtmlHTMLAttributes,
   MouseEventHandler,
   PropsWithChildren,
+  RefObject,
 } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -16,6 +17,7 @@ export type ButtonProps = {
   id?: string
   title?: string
   form?: string
+  ref?: RefObject<HTMLButtonElement | null>
 } & PropsWithChildren
 
 export const colorClassNames = {
