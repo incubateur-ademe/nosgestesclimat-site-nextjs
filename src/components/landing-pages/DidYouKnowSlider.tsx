@@ -155,50 +155,6 @@ export default function DidYouKnowSlider({
           onAutoplayPlay={(slide: unknown, nextSlideIndex: number) =>
             setCurrentSlide(nextSlideIndex)
           }
-          onMounted={(splide: any) => {
-            setTimeout(() => {
-              const prevButton = splide.root.querySelector(
-                '.splide__arrow--prev'
-              )
-              const nextButton = splide.root.querySelector(
-                '.splide__arrow--next'
-              )
-
-              if (prevButton) {
-                prevButton.setAttribute(
-                  'aria-label',
-                  t(
-                    'common.slider.buttons.previous',
-                    'Aller à la diapositive précédente'
-                  )
-                )
-                prevButton.setAttribute(
-                  'title',
-                  t(
-                    'common.slider.buttons.previous',
-                    'Aller à la diapositive précédente'
-                  )
-                )
-              }
-
-              if (nextButton) {
-                nextButton.setAttribute(
-                  'aria-label',
-                  t(
-                    'common.slider.buttons.next',
-                    'Aller à la diapositive suivante'
-                  )
-                )
-                nextButton.setAttribute(
-                  'title',
-                  t(
-                    'common.slider.buttons.next',
-                    'Aller à la diapositive suivante'
-                  )
-                )
-              }
-            }, 100)
-          }}
           className="relative max-w-[594px]"
           role="group">
           {slides.map((slide, index) => (

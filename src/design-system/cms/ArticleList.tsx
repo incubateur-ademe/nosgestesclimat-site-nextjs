@@ -16,7 +16,6 @@ export default function ArticleList({
   currentPage: number
   locale: string
 }) {
-  console.log(pageCount)
   return (
     <section className="mb-20 scroll-mt-40" id="articles">
       <h2 className="mb-8 font-medium">

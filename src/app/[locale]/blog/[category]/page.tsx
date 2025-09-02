@@ -51,10 +51,18 @@ export async function generateMetadata({
 
   return getMetadataObject({
     locale,
-    title: dynamicTitle ?? 'Blog - Nos Gestes Climat',
+    title:
+      dynamicTitle ??
+      t(
+        'blog.homepage.defaultTitle',
+        'Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat'
+      ),
     description:
       metaDescription ??
-      'Découvrez des conseils pratiques pour réduire votre empreinte écologique.',
+      t(
+        'blog.homepage.defaultDescription',
+        'Découvrez des conseils pratiques pour réduire votre empreinte écologique.'
+      ),
     image: image?.url ?? '',
     alternates: {
       canonical: `/blog/${category}`,
