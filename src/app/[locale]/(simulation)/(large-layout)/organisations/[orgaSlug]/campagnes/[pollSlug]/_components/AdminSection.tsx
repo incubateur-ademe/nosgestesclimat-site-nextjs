@@ -3,6 +3,10 @@
 import QRCode from '@/components/sharing/QRCode'
 import Trans from '@/components/translation/trans/TransClient'
 import { pollDashboardCopyLink } from '@/constants/tracking/pages/pollDashboard'
+import {
+  MATOMO_CAMPAIGN_KEY,
+  MATOMO_KEYWORD_KEY,
+} from '@/constants/urls/matomo'
 import CopyInput from '@/design-system/inputs/CopyInput'
 import type { PublicOrganisationPoll } from '@/types/organisations'
 import { trackEvent } from '@/utils/analytics/trackEvent'
@@ -11,10 +15,25 @@ type Props = {
   poll: PublicOrganisationPoll
 }
 
+const buildLink = ({
+  orgaSlug,
+  pollSlug,
+  orgaName,
+  pollName,
+}: {
+  orgaSlug: string
+  pollSlug: string
+  orgaName: string
+  pollName: string
+}) => {
+  return `${window.location.origin}/o/${orgaSlug}/${pollSlug}?${MATOMO_CAMPAIGN_KEY}=Organisation_${encodeURIComponent(orgaName)}&${MATOMO_KEYWORD_KEY}=${encodeURIComponent(pollName)}`
+}
+
 export default function AdminSection({ poll }: Props) {
   const {
     slug: pollSlug,
-    organisation: { slug: orgaSlug },
+    name: pollName,
+    organisation: { slug: orgaSlug, name: orgaName },
   } = poll
 
   return (
@@ -30,8 +49,18 @@ export default function AdminSection({ poll }: Props) {
               <Trans>Partagez votre campagne</Trans>
             </h2>
             <CopyInput
-              textToDisplay={`${window.location.host}/o/${orgaSlug}/${pollSlug}`}
-              textToCopy={`${window.location.origin}/o/${orgaSlug}/${pollSlug}`}
+              textToDisplay={buildLink({
+                orgaSlug,
+                pollSlug,
+                orgaName,
+                pollName,
+              })}
+              textToCopy={buildLink({
+                orgaSlug,
+                pollSlug,
+                orgaName,
+                pollName,
+              })}
               onClick={() => {
                 trackEvent(pollDashboardCopyLink)
               }}
@@ -40,7 +69,12 @@ export default function AdminSection({ poll }: Props) {
         </div>
 
         <QRCode
-          value={`${window.location.origin}/o/${orgaSlug}/${pollSlug}`}
+          value={buildLink({
+            orgaSlug,
+            pollSlug,
+            orgaName,
+            pollName,
+          })}
           className="md:flex-1"
         />
       </div>

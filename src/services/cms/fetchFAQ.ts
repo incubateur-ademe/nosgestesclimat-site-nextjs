@@ -12,15 +12,15 @@ export async function fetchFaq({
   try {
     const faqSearchParams = new URLSearchParams({
       locale: getLocaleWithoutEs(locale),
-      sort: 'order',
-      populate: 'questions',
+      sort: 'faqs.order',
+      populate: 'faqs.questions',
     })
 
-    const faqResponse = await cmsClient<{ data: FAQType[] }>(
-      `/api/faq-categories?${faqSearchParams}`
+    const faqResponse = await cmsClient<{ data: { faqs: FAQType[] } }>(
+      `/api/faq-page?${faqSearchParams}`
     )
 
-    return faqResponse.data
+    return faqResponse.data.faqs
   } catch (error) {
     captureException(error)
 

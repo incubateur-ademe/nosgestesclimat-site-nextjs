@@ -1,4 +1,3 @@
-import { FLAG_VARIANT_KEY } from '@/constants/ab-test'
 import { getRules } from '@/helpers/modelFetching/getRules'
 import { useUser } from '@/publicodes-state'
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
@@ -40,7 +39,6 @@ export function useRules(
         regionCode,
         isOptim,
         PRNumber,
-        ABtesting: flagValue === FLAG_VARIANT_KEY,
       }),
     placeholderData: keepPreviousData,
     staleTime: Infinity, // We don't want to import the rule multiple times
