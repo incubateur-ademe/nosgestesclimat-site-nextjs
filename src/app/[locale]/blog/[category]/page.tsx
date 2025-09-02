@@ -136,7 +136,6 @@ export default async function CategoryPage({
           {mainArticle && (
             <MainArticle
               imageSrc={mainArticle.image?.url ?? ''}
-              imageAlt={mainArticle.image?.alternativeText ?? ''}
               title={mainArticle.title}
               description={mainArticle.description}
               category={title}
