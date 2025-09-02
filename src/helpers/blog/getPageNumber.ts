@@ -1,4 +1,4 @@
-import { SearchParams } from 'next/dist/server/request/search-params'
+import type { SearchParams } from 'next/dist/server/request/search-params'
 
 export const getPageNumber = async (
   searchParams: Promise<SearchParams> | undefined

@@ -2,6 +2,8 @@ import { DEFAULT_TEST_VARIANT_KEY } from '@/constants/ab-test'
 import { useFeatureFlagVariantKey } from 'posthog-js/react'
 
 export const useIsTestVersion = (variantKey: string) => {
+  const flagValue = useFeatureFlagVariantKey(variantKey)
+
   // Disable the AB testing in the preview environments
   if (
     process.env.NEXT_PUBLIC_ENV !== 'production' &&
@@ -9,8 +11,6 @@ export const useIsTestVersion = (variantKey: string) => {
   ) {
     return false
   }
-
-  const flagValue = useFeatureFlagVariantKey(variantKey)
 
   return flagValue && flagValue === DEFAULT_TEST_VARIANT_KEY
 }
