@@ -59,7 +59,7 @@ export function createGroup({
       // We set the first participant as the current user
       userId: !index ? currentUserId : faker.string.uuid(),
       simulation: createSimulation({ persona: p }),
-      name: p || faker.name.firstName(),
+      name: p || faker.person.fullName(),
       _id: faker.database.mongodbObjectId(),
     })),
   }
