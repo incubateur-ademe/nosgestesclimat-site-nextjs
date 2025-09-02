@@ -20,8 +20,8 @@ export default function PartnersDisplay({
   const currentCategoryFilter =
     searchParams.get(FILTER_SEARCH_PARAM_KEY) || categoryFilter
 
-  // Si aucune catégorie n'est sélectionnée, afficher toutes les catégories
-  // Sinon, afficher seulement la catégorie sélectionnée
+  // If no category is selected, display all categories
+  // Otherwise, display only the selected category
   const categoriesToShow = currentCategoryFilter
     ? Object.keys(partnersByCategories).filter(
         (category) => currentCategoryFilter === encodeDottedNameAsURI(category)
