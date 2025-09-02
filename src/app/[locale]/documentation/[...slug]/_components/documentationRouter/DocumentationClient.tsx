@@ -57,7 +57,7 @@ export default function DocumentationClient({ slugs }: Props) {
         engine={engine as Engine}
         documentationPath={documentationPath}
         searchBar={true}
-        rulesToHide={RULES_TO_HIDE}
+        rulesToHide={Array.from(RULES_TO_HIDE)}
         renderers={{
           Head,
           Link: ({ children, to }) => <Link href={to || ''}>{children}</Link>,

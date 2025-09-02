@@ -1,12 +1,12 @@
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
-export const RULES_TO_HIDE: DottedName[] = [
+export const RULES_TO_HIDE: Set<DottedName> = new Set([
   'commun . mix électrique . empreinte eau',
   'transport . voiture . entretien',
   'transport . voiture . barème construction . barème thermique . empreinte par kg',
   'transport . voiture . barème construction . barème électrique . empreinte par kg',
   'transport . voiture . barème construction . barème hybride . moteur électrique . empreinte',
-]
+])
 
 export const KEYS_TO_OMIT = [
   'titre',

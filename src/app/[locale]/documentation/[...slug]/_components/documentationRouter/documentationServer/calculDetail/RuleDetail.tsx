@@ -66,10 +66,8 @@ export default function RuleDetail({
     }
   }
 
-  const rulesToHideSet = new Set(RULES_TO_HIDE)
-
   if (typeof ruleFormatted === 'number') {
-    if (rulesToHideSet.has(context.dottedName)) {
+    if (RULES_TO_HIDE.has(context.dottedName)) {
       return <span>masquée par l'intégrateur</span>
     } else {
       return <span>{ruleFormatted}</span>
