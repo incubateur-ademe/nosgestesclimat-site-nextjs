@@ -1380,11 +1380,13 @@ entries:
   Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.: Statistics on the use of Challenge mode, including the number of challenges created, participants and results shared.
   blog.homepage.defaultDescription: Discover practical tips for reducing your ecological footprint.
   blog.homepage.defaultDescription.lock: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
-  common.slider.buttons.next: Go to next slide
-  common.slider.buttons.next.lock: Aller à la diapositive suivante
+  common.slider.buttons.next: Go to slide number {{number}}
+  common.slider.buttons.next.lock: Aller à la diapositive numéro {{number}}
   common.slider.buttons.previous: Go to previous slide
   common.slider.buttons.previous.lock: Aller à la diapositive précédente
   blog.homePage.dynamicPageNumber: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
   blog.homePage.dynamicPageNumber.lock: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
   blog.homepage.defaultTitle: Blog, discover our articles and advice on the climate - Nos Gestes Climat
   blog.homepage.defaultTitle.lock: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
+  documentation.total_category_block.title: of the total, see documentation
+  documentation.total_category_block.title.lock: du total, voir la documentation
