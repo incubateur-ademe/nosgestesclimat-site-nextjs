@@ -78,7 +78,7 @@ export default function CategoryFilter({
       aria-selected={isSelected}
       aria-controls={`category-panel-${index}`}
       tabIndex={isActive ? 0 : -1}
-      title={`${title} - ${isSelected ? t('Page active') : t('Sélectionner ce filtre et afficher uniquement les actions de cette catégorie')}`}
+      title={`${title} - ${isSelected ? t('Page active') : t('Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie')}`}
       className={twMerge(
         'height-[1.8rem] rounded-md border-2 border-transparent p-2 text-xs font-bold transition-colors',
         isSelected || !categorySelected
