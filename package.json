@@ -8,7 +8,7 @@
     "url": "https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs.git"
   },
   "engines": {
-    "node": "^22"
+    "node": "22.14.0"
   },
   "scripts": {
     "test": "vitest run",
