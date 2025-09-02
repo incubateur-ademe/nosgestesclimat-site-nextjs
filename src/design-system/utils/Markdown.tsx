@@ -6,6 +6,7 @@ import type { MarkdownToJSX } from 'markdown-to-jsx'
 import MarkdownToJsx from 'markdown-to-jsx'
 import Image from 'next/image'
 import type { ComponentProps } from 'react'
+import { twMerge } from 'tailwind-merge'
 import ButtonLink from '../buttons/ButtonLink'
 
 type MarkdownProps = ComponentProps<typeof MarkdownToJsx> & {
@@ -27,6 +28,11 @@ export default function Markdown({
           ...otherProps.options,
           forceBlock: true,
           overrides: {
+            blockquote: {
+              component: ({ ...props }) => (
+                <p {...props} className={twMerge(props.className, 'mb-2!')} />
+              ),
+            },
             a: Link,
             img: {
               component: ({ ...props }) => (
