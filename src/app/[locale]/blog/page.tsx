@@ -45,8 +45,6 @@ export async function generateMetadata({
     t,
   })
 
-  console.log(dynamicTitle)
-
   return getMetadataObject({
     locale,
     title:
