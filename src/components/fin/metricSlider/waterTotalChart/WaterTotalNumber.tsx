@@ -21,7 +21,7 @@ export default function WaterTotalNumber({ total, isSmall }: Props) {
   const realFormattedValue = (
     Math.round(Number(formattedValue) / 100) * 100
   ).toLocaleString('fr-FR')
-  console.log(realFormattedValue)
+
   return (
     <div
       className={twMerge(

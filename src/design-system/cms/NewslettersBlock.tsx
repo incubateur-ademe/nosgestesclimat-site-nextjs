@@ -317,18 +317,6 @@ export default function NewslettersBlock() {
                     }
                   />
 
-                  {!isVerified && (
-                    <p
-                      id="verification-required"
-                      className="mt-2 rounded border border-amber-200 bg-amber-50 p-2 text-sm text-amber-700"
-                      role="note">
-                      <Trans>
-                        ⚠️ La vérification de votre compte est requise pour vous
-                        inscrire aux infolettres.
-                      </Trans>
-                    </p>
-                  )}
-
                   {isNewsletterError && (
                     <p
                       id="newsletter-error"
