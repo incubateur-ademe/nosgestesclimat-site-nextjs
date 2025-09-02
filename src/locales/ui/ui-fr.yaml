@@ -1254,5 +1254,6 @@ entries:
   blog.homepage.defaultDescription: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
   blog.homepage.defaultTitle: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
   blog.homePage.dynamicPageNumber: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
-  common.slider.buttons.next: Aller à la diapositive suivante
+  common.slider.buttons.next: Aller à la diapositive numéro {{number}}
   common.slider.buttons.previous: Aller à la diapositive précédente
+  documentation.total_category_block.title: du total, voir la documentation
