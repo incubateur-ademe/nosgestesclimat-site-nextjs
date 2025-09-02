@@ -5,14 +5,12 @@ import { FAQ_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Emoji from '@/design-system/utils/Emoji'
 import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDisplayed'
-import { updateLang } from '@/helpers/language/updateLang'
 import { updateLangCookie } from '@/helpers/language/updateLangCookie'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import { usePathname } from 'next/navigation'
-import { useCallback, useEffect } from 'react'
+import { useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const NO_ES_PATHNAMES = new Set([FAQ_PATH])
@@ -30,8 +28,6 @@ export default function LanguageSwitchButton({
   size?: 'xs' | 'sm'
   className?: string
 }) {
-  const { t } = useClientTranslation()
-
   const currentLocale = useCurrentLocale(i18nConfig)
 
   const pathname = usePathname()
@@ -49,21 +45,25 @@ export default function LanguageSwitchButton({
       currentLocale &&
       document.cookie.indexOf(`NEXT_LOCALE=${currentLocale}`) === -1
     ) {
-      updateLangCookie(currentLocale)
     }
   }, [currentLocale])
 
-  const handleChange = useCallback(
-    (newLocale: Locale) => {
-      trackEvent(footerClickLanguage(newLocale))
+  const handleChange = (newLocale: Locale) => {
+    trackEvent(footerClickLanguage(newLocale))
 
-      updateLang({
-        newLocale,
-        currentLocale: currentLocale ?? '',
-      })
-    },
-    [currentLocale]
-  )
+    updateLangCookie(newLocale)
+  }
+
+  const getHref = (newLocale: Locale) => {
+    let newPathname = pathname
+    if (currentLocale === i18nConfig.defaultLocale) {
+      newPathname = `/${newLocale}/${pathname}`
+    } else {
+      newPathname = pathname.replace(`/${currentLocale}`, `/${newLocale}`)
+    }
+
+    return newPathname
+  }
 
   if (
     Object.entries(langButtonsDisplayed ?? {}).every(([_, value]) => !value)
@@ -80,7 +80,8 @@ export default function LanguageSwitchButton({
       {langButtonsDisplayedWithFilteredEs.fr && (
         <ButtonLink
           lang="fr"
-          href={`${pathname}?lang=fr`}
+          href={getHref('fr')}
+          onClick={() => handleChange('fr')}
           color={currentLocale === 'fr' ? 'primary' : 'secondary'}
           size={size}
           aria-label="Passer en français"
@@ -98,7 +99,8 @@ export default function LanguageSwitchButton({
       {langButtonsDisplayedWithFilteredEs.en && (
         <ButtonLink
           lang="en"
-          href={`${pathname}?lang=en`}
+          href={getHref('en')}
+          onClick={() => handleChange('en')}
           color={currentLocale === 'en' ? 'primary' : 'secondary'}
           size={size}
           aria-label="Switch to english"
@@ -116,7 +118,8 @@ export default function LanguageSwitchButton({
       {langButtonsDisplayedWithFilteredEs.es && (
         <ButtonLink
           lang="es"
-          href={`${pathname}?lang=es`}
+          href={getHref('es')}
+          onClick={() => handleChange('es')}
           color={currentLocale === 'es' ? 'primary' : 'secondary'}
           size="sm"
           aria-label="Cambiar a español"
