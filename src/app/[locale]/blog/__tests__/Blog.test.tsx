@@ -111,6 +111,7 @@ describe('BlogHomePage', () => {
       metaTitle: 'Test Meta Title',
       metaDescription: 'Test Meta Description',
       image: { url: 'test-meta-image.jpg', alternativeText: 'Test Meta Image' },
+      pageCount: 0,
     })
 
     mockGetLangButtonsDisplayed.mockResolvedValue({
