@@ -21,9 +21,16 @@ export default function BurgerMenu({
   const openButtonRef = useRef<HTMLButtonElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
 
-  const handleClickMask = (event: MouseEvent) => {
+  const handleClickMask = (event: React.MouseEvent) => {
     event.stopPropagation()
     setIsOpen(false)
+  }
+
+  const handleMaskKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      setIsOpen(false)
+    }
   }
 
   function handleToggleMenu() {
@@ -88,12 +95,18 @@ export default function BurgerMenu({
     const active = document.activeElement as HTMLElement | null
 
     if (event.shiftKey) {
-      if (active === first || active === panel) {
+      if (active === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (active === panel) {
         event.preventDefault()
         last.focus()
       }
     } else {
       if (active === last) {
+        event.preventDefault()
+        first.focus()
+      } else if (active === panel) {
         event.preventDefault()
         first.focus()
       }
@@ -122,21 +135,26 @@ export default function BurgerMenu({
           {isOpen && (
             <div
               className="fixed top-0 left-0 h-screen w-screen"
-              aria-hidden="true"
-              onClick={handleClickMask as any}
+              role="button"
+              tabIndex={0}
+              aria-label={t('Fermer le menu')}
+              onClick={handleClickMask}
+              onKeyDown={handleMaskKeyDown}
             />
           )}
 
-          <div
+          {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */}
+          <section
             className={twMerge(
-              'pointer-events-none fixed top-0 right-0 z-50 h-screen w-[90vw] max-w-[20rem] translate-x-full bg-white p-4 pt-16 opacity-0 shadow-md transition-all duration-300 ease-in-out',
+              'pointer-events-none fixed top-0 right-0 z-50 h-screen w-[90vw] max-w-[20rem] translate-x-full bg-white p-4 pt-16 opacity-0 shadow-md transition-all duration-300 ease-in-out focus:outline-none',
               isOpen ? 'pointer-events-auto translate-x-0 opacity-100' : ''
             )}
             id="burger-menu-panel"
             role="dialog"
             aria-modal="true"
             aria-labelledby="burger-menu-title"
-            tabIndex={-1}
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-noninteractive-tabindex
+            tabIndex={0}
             ref={panelRef}
             onKeyDown={handlePanelKeyDown}>
             <h2 id="burger-menu-title" className="sr-only">
@@ -155,12 +173,11 @@ export default function BurgerMenu({
               )}>
               <CloseIcon />
             </Button>
-
             {children({
               closeMenu: () => setIsOpen(false),
               onFocus: () => setIsOpen(true),
             })}
-          </div>
+          </section>
         </>
       </div>
     </div>

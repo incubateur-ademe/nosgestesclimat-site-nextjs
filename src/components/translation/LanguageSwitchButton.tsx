@@ -10,7 +10,6 @@ import i18nConfig, { type Locale } from '@/i18nConfig'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import { usePathname } from 'next/navigation'
-import { useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const NO_ES_PATHNAMES = new Set([FAQ_PATH])
@@ -38,15 +37,6 @@ export default function LanguageSwitchButton({
   )
     ? { ...langButtonsDisplayed, es: false }
     : langButtonsDisplayed
-
-  useEffect(() => {
-    // If the current locale is different than the NEXT_LOCALE cookie, we update it
-    if (
-      currentLocale &&
-      document.cookie.indexOf(`NEXT_LOCALE=${currentLocale}`) === -1
-    ) {
-    }
-  }, [currentLocale])
 
   const handleChange = (newLocale: Locale) => {
     trackEvent(footerClickLanguage(newLocale))

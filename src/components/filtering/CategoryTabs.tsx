@@ -4,7 +4,7 @@ import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
 import { encodeDottedNameAsURI } from '@/utils/format/encodeDottedNameAsURI'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import CategoryFilter from './categoryFilters/CategoryFilter'
 
@@ -28,12 +28,12 @@ export default function CategoryTabs({
   const categorySelected = searchParams.get(FILTER_SEARCH_PARAM_KEY) || ''
 
   // Find the active tab index based on the selected category
-  const getActiveTabIndex = () => {
+  const getActiveTabIndex = useCallback(() => {
     if (!categorySelected) return 0
     return categories.findIndex(
       (cat) => encodeDottedNameAsURI(cat.dottedName) === categorySelected
     )
-  }
+  }, [categorySelected, categories])
 
   const [activeTabIndex, setActiveTabIndex] =
     useState<number>(getActiveTabIndex())
@@ -41,7 +41,7 @@ export default function CategoryTabs({
   // Update active tab when URL changes
   useEffect(() => {
     setActiveTabIndex(getActiveTabIndex())
-  }, [categorySelected, categories])
+  }, [categorySelected, categories, getActiveTabIndex])
 
   // Handle keyboard navigation
   const handleKeyDown = (event: React.KeyboardEvent) => {
@@ -82,6 +82,7 @@ export default function CategoryTabs({
       <div
         ref={tablistRef}
         role="tablist"
+        tabIndex={0}
         aria-label="Filtres par catégorie"
         className={twMerge(
           'mb-4 flex flex-wrap justify-start gap-1',

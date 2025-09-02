@@ -29,7 +29,7 @@ export default function EmailVerificationModal({
     <Modal
       ariaLabel={t(
         'organisations.emailVerificationModal.title',
-        'Fenêtre modale de confirmation d\email'
+        "Fenêtre modale de confirmation d'email"
       )}
       isOpen
       closeModal={closeModal}

@@ -65,6 +65,7 @@ export default function MetricSlider({
             : 'h-28 md:h-72 lg:h-80'
         )}
         role="tablist"
+        tabIndex={0}
         aria-label={t('Choix de la métrique') as string}
         onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
           const left = 'ArrowLeft'
