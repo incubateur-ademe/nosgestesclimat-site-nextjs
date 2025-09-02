@@ -62,7 +62,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const blogPosts = await fetchAllArticleTitlesAndSlugs({ locale: 'fr' })
 
   const blogUrls = blogPosts.map((post) => ({
-    url: `https://nosgestesclimat.fr/blog/${post.category?.slug}/${post.slug}`,
+    url: `https://nosgestesclimat.fr/blog/${post.blogCategory?.slug}/${post.slug}`,
     lastModified: new Date(),
     priority: 1,
   }))

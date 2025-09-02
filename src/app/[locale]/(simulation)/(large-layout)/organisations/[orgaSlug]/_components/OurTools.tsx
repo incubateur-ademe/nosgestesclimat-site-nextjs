@@ -7,6 +7,7 @@ import {
   organisationsDashboardClickImpactCo2,
   organisationsDashboardDownloadKit,
 } from '@/constants/tracking/pages/organisationsDashboard'
+import { MATOMO_CAMPAIGN_KEY } from '@/constants/urls/matomo'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -41,7 +42,14 @@ export default function OurTools() {
             target="_blank"
             aria-label={t('Télécharger le kit, ouvrir dans un nouvel onglet')}>
             <Trans>Accéder au kit</Trans>
-            <ExternalLinkIcon className="stroke-primary-700 ml-2" />
+            <ExternalLinkIcon
+              role="img"
+              aria-label={t(
+                'organisations.ourTools.newTab',
+                'Ouvrir dans une nouvelle fenêtre'
+              )}
+              className="stroke-primary-700 ml-2"
+            />
           </ButtonLink>
         </CTACard>
 
@@ -63,10 +71,17 @@ export default function OurTools() {
             href="https://drive.google.com/drive/folders/1dORmBbDLDG31PLLOblP8Wg5CrrksAfjV"
             target="_blank"
             aria-label={t(
-              'Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet'
+              'Découvrez les ateliers de l’ABC, ouvrir dans une nouvelle fenêtre'
             )}>
             <Trans>Accéder aux ressources</Trans>
-            <ExternalLinkIcon className="stroke-primary-700 ml-2" />
+            <ExternalLinkIcon
+              role="img"
+              aria-label={t(
+                'organisations.ourTools.newTab',
+                'Ouvrir dans une nouvelle fenêtre'
+              )}
+              className="stroke-primary-700 ml-2"
+            />
           </ButtonLink>
         </CTACard>
 
@@ -84,14 +99,21 @@ export default function OurTools() {
           <ButtonLink
             className="mt-auto w-full justify-center align-bottom"
             color="secondary"
-            href="https://impactco2.fr/comparateur?mtm_campaign=ngc-orga"
+            href={`https://impactco2.fr/comparateur?${MATOMO_CAMPAIGN_KEY}=ngc-orga`}
             target="_blank"
             trackingEvent={organisationsDashboardClickImpactCo2}
             aria-label={t(
-              'Découvrez le calculateur, ouvrir dans un nouvel onglet'
+              'Découvrez le calculateur, ouvrir dans une nouvelle fenêtre'
             )}>
             <Trans>Découvrir le calculateur</Trans>
-            <ExternalLinkIcon className="stroke-primary-700 ml-2" />
+            <ExternalLinkIcon
+              role="img"
+              aria-label={t(
+                'organisations.ourTools.newTab',
+                'Ouvrir dans une nouvelle fenêtre'
+              )}
+              className="stroke-primary-700 ml-2"
+            />
           </ButtonLink>
         </CTACard>
       </div>

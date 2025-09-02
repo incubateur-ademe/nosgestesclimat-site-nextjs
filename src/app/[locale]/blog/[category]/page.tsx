@@ -64,7 +64,7 @@ export default async function CategoryPage({
     mainArticle,
     articles,
     pageCount,
-    questions,
+    faq,
     faqDescription,
     additionalContent,
     image,
@@ -93,12 +93,14 @@ export default async function CategoryPage({
     return redirect(NOT_FOUND_PATH)
   }
 
+  const questions = faq?.questions ?? []
+
   return (
     <>
       <div className="-mt-12">
         <CategoryJSONLD
           title={title}
-          questions={questions ?? []}
+          questions={questions}
           categorySlug={category}
         />
 
@@ -126,7 +128,7 @@ export default async function CategoryPage({
           )}
         </ContentLarge>
 
-        {questions && questions.length > 0 && (
+        {questions.length > 0 && (
           <FAQ
             className="pb-10!"
             questions={questions.map((question) => ({

@@ -83,7 +83,8 @@
     @apply mb-4;
   }
 
-  blockquote {
+  blockquote,
+  .blog-frame {
     @apply bg-gray-100;
     @apply rounded-md;
     padding: 1rem 1rem 0.25rem;
@@ -479,6 +480,7 @@ html[data-useragent*='Trident'] #js {
 
 .markdown code {
   @apply mb-6;
+  @apply text-sm;
 }
 
 .markdown img {
@@ -703,4 +705,11 @@ html[data-useragent*='Trident'] #js {
   .short\:mt-12 {
     margin-top: 3rem;
   }
+}
+
+/*
+ * Documentation
+*/
+#documentation-search-input {
+  @apply border-slate-700;
 }

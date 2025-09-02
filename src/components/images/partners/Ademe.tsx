@@ -14,6 +14,7 @@ export default function Ademe({
       height="67"
       viewBox="0 0 181 213"
       className={className}
+      role="img"
       {...props}>
       <title>ADEME</title>
       <path d="M180.35 212.6H0V0H180.35V212.6Z" fill="#004899" />

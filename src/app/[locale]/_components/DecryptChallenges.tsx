@@ -13,7 +13,7 @@ export default async function DecryptChallenges({
     params: {
       sort: 'createdAt:desc',
       'populate[0]': 'image',
-      'populate[1]': 'category',
+      'populate[1]': 'blogCategory',
       'pagination[limit]': '3',
     },
     locale,
@@ -28,13 +28,13 @@ export default async function DecryptChallenges({
       title={
         <Trans locale={locale}>Décryptez les défis environnementaux</Trans>
       }
-      posts={articles.map(({ title, category, image, slug }) => ({
+      posts={articles.map(({ title, blogCategory, image, slug }) => ({
         title,
-        category: category?.title ?? '',
+        category: blogCategory?.title ?? '',
         imageSrc: image?.url ?? '',
-        imageAlt: image?.alternativeText ?? '',
+        imageAlt: '',
         href: getArticleHref({
-          categorySlug: category?.slug ?? '',
+          categorySlug: blogCategory?.slug ?? '',
           articleSlug: slug,
         }),
       }))}

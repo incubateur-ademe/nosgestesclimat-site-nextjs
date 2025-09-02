@@ -50,7 +50,7 @@ export default function HeroSection() {
           src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_people_with_paperboard_9c8d47f4b3.png"
           width="400"
           height="400"
-          alt={t('Groupe de personnes devant un paperboard')}
+          alt=""
         />
       </div>
     </div>
