@@ -114,7 +114,7 @@ export default function DidYouKnowSlider({
         }
       })
     }
-  }, [currentSlide])
+  }, [currentSlide, t])
 
   return (
     <div
