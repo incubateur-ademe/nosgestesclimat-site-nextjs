@@ -1,18 +1,9 @@
 name: E2E Tests
 
 on:
-  pull_request:
-    branches:
-      - preprod
   push:
     branches:
       - preprod
-  workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Branch to test'
-        required: true
-        type: string
 
 jobs:
   e2e:
