@@ -28,10 +28,9 @@ export default function ArticleList({
           <li key={article.documentId} className="h-full">
             <PostThumbnail
               title={article.title}
-              category={article.category?.title ?? ''}
+              category={article.blogCategory?.title ?? ''}
               imageSrc={article.image?.url ?? ''}
-              imageAlt={article.image?.alternativeText ?? ''}
-              href={`/blog/${article.category?.slug}/${article.slug}`}
+              href={`/blog/${article.blogCategory?.slug}/${article.slug}`}
               trackingEvent={getPostThumbnailClickEvent(article.slug)}
               className="bg-gray-50"
             />
@@ -51,10 +50,9 @@ export default function ArticleList({
             <li key={article.documentId}>
               <PostThumbnail
                 title={article.title}
-                category={article.category?.title ?? ''}
+                category={article.blogCategory?.title ?? ''}
                 imageSrc={article.image?.url ?? ''}
-                imageAlt={article.image?.alternativeText ?? ''}
-                href={`/blog/${article.category?.slug}/${article.slug}`}
+                href={`/blog/${article.blogCategory?.slug}/${article.slug}`}
                 trackingEvent={['blog', 'article', article.slug]}
                 className="bg-gray-50"
               />

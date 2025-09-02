@@ -1221,17 +1221,34 @@ entries:
   Veuillez sélectionner au moins une infolettre.: Seleccione al menos un boletín.
   Sélectionnez les infolettres auxquelles vous souhaitez vous inscrire: Seleccione los boletines a los que desea suscribirse
   Télécharger le QR Code: Descargar el código QR
-  'Comment ça marche ? ': '¿Cómo funciona? '
-  Aucune pression: Sin presión
-  C’est un test personnel: Es una prueba personal
-  Un groupe d’amis jouant à un jeu de société.: Un grupo de amigos jugando a un juego de mesa.
-  On parle de votre vie privée: Estamos hablando de tu vida privada
-  répondez pour vous uniquement, pas votre foyer: responda sólo por usted, no por su familia
-  il ne s’agit pas d’être parfait, mais de comprendre son impact: no se trata de ser perfecto, sino de comprender tu impacto
   Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Como otros 2 millones de personas, mide tu huella ecológica en 10 minutos. Una herramienta gratuita para hacer balance y reducir tus emisiones de CO2.
-  pas de votre travail: no tu trabajo
-  Règles du test: Normas de ensayo
   Pour vous désinscrire, passez par le lien en bas de l'email reçu: Para darse de baja, utilice el enlace que encontrará al final del correo electrónico que reciba
+  copyInput.copyError: Error al copiar el enlace
+  copyInput.copyError.lock: Erreur lors de la copie du lien
+  copyInput.shareTitle: Descubra mi huella de carbono
+  copyInput.shareTitle.lock: Découvre mon empreinte carbone !
+  copyInput.linkCopiedSuccess: Enlace copiado correctamente
+  copyInput.linkCopiedSuccess.lock: Lien copié avec succès
+  copyInput.copyLink: Copiar enlace
+  copyInput.copyLink.lock: Copier le lien
+  copyInput.shareLink: Compartir este enlace
+  copyInput.shareLink.lock: Partager le lien
+  copyInput.share: Compartir
+  copyInput.share.lock: Partager
+  copyInput.copied: ¡Copiado!
+  copyInput.copied.lock: Copié !
+  copyInput.defaultLabel: Enlace a la copia
+  copyInput.defaultLabel.lock: Lien à copier
+  copyInput.copyingInProgress: Copia en curso...
+  copyInput.copyingInProgress.lock: Copie en cours...
+  copyInput.copyLinkToClipboard: Copiar enlace al portapapeles
+  copyInput.copyLinkToClipboard.lock: Copier le lien dans le presse-papiers
+  copyInput.sharingInProgress: Compartición en curso...
+  copyInput.sharingInProgress.lock: Partage en cours...
+  copyInput.linkCopiedToClipboard: Enlace copiado correctamente en el portapapeles
+  copyInput.linkCopiedToClipboard.lock: Lien copié avec succès dans le presse-papiers
+  copyInput.copyErrorManual: Uy, no puedo copiar el enlace, puedes copiarlo manualmente.
+  copyInput.copyErrorManual.lock: Oups, impossible de copier le lien, vous pouvez le copier manuellement.
   Page active: Página activa
   Visiter cette page: Visite esta página
   Connexion: Conexión
@@ -1376,3 +1393,13 @@ entries:
   common.interactiveIllustration.item.computer.lock: Ordinateur
   organisations.polls.settings.confirmDeletion: Ventana modal de confirmación de la supresión de la campaña
   organisations.polls.settings.confirmDeletion.lock: Fenêtre modale de confirmation de suppression de la campagne
+  common.slider.buttons.previous: Ir a la diapositiva anterior
+  common.slider.buttons.previous.lock: Aller à la diapositive précédente
+  common.slider.buttons.next: Ir a la siguiente diapositiva
+  common.slider.buttons.next.lock: Aller à la diapositive suivante
+  blog.homepage.defaultDescription: Descubra consejos prácticos para reducir su huella ecológica.
+  blog.homepage.defaultDescription.lock: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
+  blog.homePage.dynamicPageNumber: página {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
+  blog.homePage.dynamicPageNumber.lock: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
+  blog.homepage.defaultTitle: Blog, descubra nuestros artículos y consejos sobre el clima - Nos Gestes Climat
+  blog.homepage.defaultTitle.lock: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat

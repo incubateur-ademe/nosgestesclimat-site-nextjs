@@ -86,13 +86,13 @@ export default async function ArticlePage({
           categorySlug={category}
           articleSlug={articleSlug}
           articleTitle={article.title}
-          categoryTitle={article.category?.title ?? ''}
+          categoryTitle={article.blogCategory?.title ?? ''}
         />
 
         <div className="mb-16 flex flex-col items-start gap-8 md:flex-row md:justify-between">
           <div className="flex flex-col items-start md:w-8/12">
             <Badge className="mb-4" size="sm">
-              {article.category?.title ?? ''}
+              {article.blogCategory?.title ?? ''}
             </Badge>
 
             <h1 className="mb-6 text-3xl font-bold md:text-5xl">

@@ -1226,17 +1226,34 @@ entries:
   Veuillez sélectionner au moins une infolettre.: Please select at least one newsletter.
   Sélectionnez les infolettres auxquelles vous souhaitez vous inscrire: Select the newsletters you wish to subscribe to
   Télécharger le QR Code: Download the QR Code
-  répondez pour vous uniquement, pas votre foyer: answer for yourself only, not your household
-  il ne s’agit pas d’être parfait, mais de comprendre son impact: it's not about being perfect, it's about understanding your impact
-  pas de votre travail: not your work
-  'Comment ça marche ? ': 'How does it work? '
-  Règles du test: Test rules
-  Aucune pression: No pressure
-  C’est un test personnel: It's a personal test
-  On parle de votre vie privée: We're talking about your private life
-  Un groupe d’amis jouant à un jeu de société.: A group of friends playing a board game.
   Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Like 2 million other people, measure your ecological footprint in 10 minutes. A free tool to take stock and reduce your CO2 emissions.
   Pour vous désinscrire, passez par le lien en bas de l'email reçu: To unsubscribe, use the link at the bottom of the email you receive
+  copyInput.linkCopiedSuccess: Link successfully copied
+  copyInput.linkCopiedSuccess.lock: Lien copié avec succès
+  copyInput.copyError: Error copying link
+  copyInput.copyError.lock: Erreur lors de la copie du lien
+  copyInput.copyingInProgress: Copy in progress...
+  copyInput.copyingInProgress.lock: Copie en cours...
+  copyInput.copyLinkToClipboard: Copy link to clipboard
+  copyInput.copyLinkToClipboard.lock: Copier le lien dans le presse-papiers
+  copyInput.sharingInProgress: Sharing in progress...
+  copyInput.sharingInProgress.lock: Partage en cours...
+  copyInput.linkCopiedToClipboard: Link successfully copied to clipboard
+  copyInput.linkCopiedToClipboard.lock: Lien copié avec succès dans le presse-papiers
+  copyInput.share: Share
+  copyInput.share.lock: Partager
+  copyInput.shareTitle: Discover my carbon footprint!
+  copyInput.shareTitle.lock: Découvre mon empreinte carbone !
+  copyInput.copied: Copy!
+  copyInput.copied.lock: Copié !
+  copyInput.defaultLabel: Link to copy
+  copyInput.defaultLabel.lock: Lien à copier
+  copyInput.shareLink: Share this link
+  copyInput.shareLink.lock: Partager le lien
+  copyInput.copyErrorManual: Oops, I can't copy the link, you can copy it manually.
+  copyInput.copyErrorManual.lock: Oups, impossible de copier le lien, vous pouvez le copier manuellement.
+  copyInput.copyLink: Copy link
+  copyInput.copyLink.lock: Copier le lien
   Page active: Active page
   Sélectionner ce filtre et afficher uniquement les actions de cette catégorie: Select this filter to display only the shares in this category
   Eau, évaluer la métrique eau: Water, assess the water metric
@@ -1381,3 +1398,13 @@ entries:
   cookieConsent.board.title.lock: Panneau de gestion des cookies
   common.interactiveIllustration.item.coffee: Café
   common.interactiveIllustration.item.coffee.lock: Café
+  blog.homepage.defaultDescription: Discover practical tips for reducing your ecological footprint.
+  blog.homepage.defaultDescription.lock: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
+  common.slider.buttons.next: Go to next slide
+  common.slider.buttons.next.lock: Aller à la diapositive suivante
+  common.slider.buttons.previous: Go to previous slide
+  common.slider.buttons.previous.lock: Aller à la diapositive précédente
+  blog.homePage.dynamicPageNumber: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
+  blog.homePage.dynamicPageNumber.lock: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
+  blog.homepage.defaultTitle: Blog, discover our articles and advice on the climate - Nos Gestes Climat
+  blog.homepage.defaultTitle.lock: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat

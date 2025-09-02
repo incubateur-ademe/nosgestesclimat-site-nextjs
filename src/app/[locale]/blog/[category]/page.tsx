@@ -7,12 +7,16 @@ import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
+import { getDynamicPageTitleWithPagination } from '@/helpers/blog/getDynamicPageTitleWithPagination'
+import { getPageNumber } from '@/helpers/blog/getPageNumber'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import type { Locale } from '@/i18nConfig'
 import i18nConfig from '@/i18nConfig'
 import { fetchCategoryPageContent } from '@/services/cms/fetchCategoryPageContent'
 import { fetchCategoryPageMetadata } from '@/services/cms/fetchCategoryPageMetadata'
 import type { DefaultPageProps } from '@/types'
+import { SearchParams } from 'next/dist/server/request/search-params'
 import { redirect } from 'next/navigation'
 import AdditionalContent from './_components/AdditionalContent'
 import CategoryHero from './_components/CategoryHero'
@@ -20,23 +24,45 @@ import CategoryJSONLD from './_components/CategoryJSONLD'
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: DefaultPageProps<{
   params: { category: string; locale: Locale }
+  searchParams: Promise<SearchParams>
 }>) {
   const { category, locale } = await params
 
-  const { metaTitle, metaDescription, image } =
+  const { t } = await getServerTranslation({ locale })
+
+  const pageNumber = await getPageNumber(searchParams)
+
+  const { metaTitle, metaDescription, image, pageCount } =
     (await fetchCategoryPageMetadata({
       slug: category,
       locale,
+      pageNumber,
     })) || {}
+
+  const dynamicTitle = getDynamicPageTitleWithPagination({
+    metaTitle,
+    pageCount,
+    pageNumber,
+    t,
+  })
 
   return getMetadataObject({
     locale,
-    title: metaTitle ?? 'Blog - Nos Gestes Climat',
+    title:
+      dynamicTitle ??
+      t(
+        'blog.homepage.defaultTitle',
+        'Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat'
+      ),
     description:
       metaDescription ??
-      'Découvrez des conseils pratiques pour réduire votre empreinte écologique.',
+      t(
+        'blog.homepage.defaultDescription',
+        'Découvrez des conseils pratiques pour réduire votre empreinte écologique.'
+      ),
     image: image?.url ?? '',
     alternates: {
       canonical: `/blog/${category}`,
@@ -64,7 +90,7 @@ export default async function CategoryPage({
     mainArticle,
     articles,
     pageCount,
-    questions,
+    faq,
     faqDescription,
     additionalContent,
     image,
@@ -93,12 +119,14 @@ export default async function CategoryPage({
     return redirect(NOT_FOUND_PATH)
   }
 
+  const questions = faq?.questions ?? []
+
   return (
     <>
       <div className="-mt-12">
         <CategoryJSONLD
           title={title}
-          questions={questions ?? []}
+          questions={questions}
           categorySlug={category}
         />
 
@@ -108,7 +136,6 @@ export default async function CategoryPage({
           {mainArticle && (
             <MainArticle
               imageSrc={mainArticle.image?.url ?? ''}
-              imageAlt={mainArticle.image?.alternativeText ?? ''}
               title={mainArticle.title}
               description={mainArticle.description}
               category={title}
@@ -127,7 +154,7 @@ export default async function CategoryPage({
           )}
         </ContentLarge>
 
-        {questions && questions.length > 0 && (
+        {questions.length > 0 && (
           <FAQ
             className="pb-10!"
             questions={questions.map((question) => ({

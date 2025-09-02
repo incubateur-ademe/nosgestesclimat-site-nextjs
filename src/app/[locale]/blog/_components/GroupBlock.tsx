@@ -16,7 +16,7 @@ export default async function GroupBlock({ locale }: { locale: string }) {
       </h3>
 
       <Image
-        src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_comparer_empreinte_carbone_et_eau_entre_amis_ddbfa5e83d.svg"
+        src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/comparer_empreinte_carbone_et_eau_entre_amis_ddbfa5e83d.svg"
         alt=""
         width={240}
         height={240}
