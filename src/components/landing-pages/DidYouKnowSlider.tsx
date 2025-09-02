@@ -6,6 +6,7 @@ import {
   getLandingDidYouKnowSlider,
   getLandingDidYouKnowSliderValue,
 } from '@/helpers/tracking/landings'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 // @ts-expect-error package types are wrongly exported
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import '@splidejs/react-splide/css'
@@ -13,7 +14,7 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import type { ReactNode } from 'react'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import CTAButtonsPlaceholder from '../cta/CTAButtonsPlaceholder'
 import Trans from '../translation/trans/TransClient'
@@ -33,10 +34,87 @@ export default function DidYouKnowSlider({
   titleTag?: 'h2' | 'h3'
 }) {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const splideRef = useRef<any>(null)
+
+  const { t } = useClientTranslation()
 
   const pathname = usePathname()
 
   const Title = titleTag === 'h2' ? 'h2' : 'h3'
+
+  // Personnaliser les attributs ARIA et autres propriétés après le montage
+  useEffect(() => {
+    if (splideRef.current) {
+      const splide = splideRef.current.splide
+
+      const prevButton = splide.root.querySelector('.splide__arrow--prev')
+      const nextButton = splide.root.querySelector('.splide__arrow--next')
+
+      if (prevButton) {
+        prevButton.setAttribute(
+          'aria-label',
+          t(
+            'common.slider.buttons.previous',
+            'Aller à la diapositive précédente'
+          )
+        )
+        prevButton.setAttribute(
+          'title',
+          t(
+            'common.slider.buttons.previous',
+            'Aller à la diapositive précédente'
+          )
+        )
+      }
+
+      if (nextButton) {
+        nextButton.setAttribute(
+          'aria-label',
+          t('common.slider.buttons.next', 'Aller à la diapositive suivante')
+        )
+        nextButton.setAttribute(
+          'title',
+          t('common.slider.buttons.next', 'Aller à la diapositive suivante')
+        )
+      }
+
+      // Personnaliser les boutons de pagination
+      const paginationButtons = splide.root.querySelectorAll(
+        '.splide__pagination__page'
+      )
+      paginationButtons.forEach((button: Element, index: number) => {
+        button.setAttribute(
+          'aria-label',
+          t(
+            'common.slider.buttons.next',
+            'Aller à la diapositive numéro {{number}}',
+            {
+              number: index + 1,
+            }
+          )
+        )
+        button.setAttribute(
+          'title',
+          t(
+            'common.slider.buttons.next',
+            'Aller à la diapositive numéro {{number}}',
+            {
+              number: index + 1,
+            }
+          )
+        )
+
+        // Ajouter des attributs personnalisés pour le slide actuel
+        if (index === currentSlide) {
+          button.setAttribute('aria-current', 'true')
+          button.setAttribute('data-active', 'true')
+        } else {
+          button.setAttribute('aria-current', 'false')
+          button.setAttribute('data-active', 'false')
+        }
+      })
+    }
+  }, [currentSlide, t])
 
   return (
     <div
@@ -46,6 +124,7 @@ export default function DidYouKnowSlider({
       )}>
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-10 lg:flex-row lg:gap-0">
         <Splide
+          ref={splideRef}
           options={{
             autoplay: true,
             pauseOnHover: true,
@@ -54,6 +133,21 @@ export default function DidYouKnowSlider({
             rewind: true,
             interval: 5500,
             reducedMotion: true,
+            classes: {
+              arrow: 'splide__arrow custom-arrow',
+              prev: 'splide__arrow--prev custom-prev',
+              next: 'splide__arrow--next custom-next',
+              pagination: 'splide__pagination custom-pagination',
+              page: 'splide__pagination__page custom-page',
+            },
+            a11y: {
+              container: 'slider-container',
+              items: 'slider-items',
+              prev: 'slider-prev',
+              next: 'slider-next',
+              pagination: 'slider-pagination',
+              page: 'slider-page',
+            },
           }}
           onMoved={(slide: unknown, nextSlideIndex: number) =>
             setCurrentSlide(nextSlideIndex)
