@@ -109,6 +109,7 @@ describe('CategoryPage', () => {
       metaTitle: 'Meta Title',
       metaDescription: 'Meta Desc',
       image: { url: 'meta.jpg', alternativeText: 'meta' },
+      pageCount: 0,
     })
     mockGetLangButtonsDisplayed.mockResolvedValue({
       fr: true,
