@@ -1,5 +1,6 @@
 'use client'
 
+import Button from '@/design-system/buttons/Button'
 import ColorLine from '@/design-system/layout/ColorLine'
 import Separator from '@/design-system/layout/Separator'
 import {
@@ -194,25 +195,34 @@ export default function DidYouKnowSlider({
             ))}
           </SplideTrack>
 
-          <button
+          <Button
             tabIndex={0}
+            color="secondary"
             title={
               isPlaying ? t('Arrêter le défilement') : t('Lancer le défilement')
             }
-            className="splide__toggle mb-2 flex h-[44px]! w-[44px]! items-center justify-center rounded-lg"
-            onClick={() => {
-              setIsPlaying((prev) => !prev)
-            }}
+            className="splide__toggle"
+            onClick={() => setIsPlaying((prev) => !prev)}
             type="button">
-            <span className="splide__toggle__play">
-              <PlaySignIcon className="fill-primary-800 stroke-primary-800 block h-[44px]!" />
-            </span>
-            <span
-              className="splide__toggle__pause text-primary-800 mb-2.5 h-[44px]! text-4xl leading-0"
-              aria-hidden>
-              &#x23F9;
-            </span>
-          </button>
+            {isPlaying ? (
+              <>
+                <PlaySignIcon className="fill-primary-800 stroke-primary-800 block w-5" />
+                <span className="ml-2 text-sm">
+                  {t('common.slider.play', 'Lecture')}
+                </span>
+              </>
+            ) : (
+              <span className="flex items-center gap-1">
+                <span className="h-[24px]! text-2xl leading-6!" aria-hidden>
+                  &#x23F9;
+                </span>
+                 
+                <span className="text-sm">
+                  {t('common.slider.stop', 'Arrêter')}
+                </span>
+              </span>
+            )}
+          </Button>
           <div className="splide__arrows" />
           <div className="splide__progress">
             <div className="splide__progress__bar" />

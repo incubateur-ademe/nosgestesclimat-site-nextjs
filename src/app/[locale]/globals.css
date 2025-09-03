@@ -690,7 +690,7 @@ html[data-useragent*='Trident'] #js {
 }
 
 .splide__progress__bar {
-  @apply bg-primary-700! mb-3;
+  @apply hidden;
 }
 
 .splide__pagination {
