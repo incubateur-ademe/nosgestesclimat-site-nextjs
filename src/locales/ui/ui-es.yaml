@@ -1345,3 +1345,15 @@ entries:
   Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.: Este panel muestra las estadísticas de tráfico del sitio, incluido el número de visitas, las simulaciones realizadas y las tendencias de uso.
   Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.: Estadísticas sobre el uso del modo Desafío, incluido el número de desafíos creados, participantes y resultados compartidos.
   Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.: Estadísticas detalladas sobre el uso del modo Organizaciones, incluido el número de organizaciones creadas, participantes y acciones completadas.
+  common.slider.buttons.previous: Ir a la diapositiva anterior
+  common.slider.buttons.previous.lock: Aller à la diapositive précédente
+  common.slider.buttons.next: Ir al número de diapositiva {{number}}
+  common.slider.buttons.next.lock: Aller à la diapositive numéro {{number}}
+  blog.homepage.defaultDescription: Descubra consejos prácticos para reducir su huella ecológica.
+  blog.homepage.defaultDescription.lock: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
+  blog.homePage.dynamicPageNumber: página {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
+  blog.homePage.dynamicPageNumber.lock: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
+  blog.homepage.defaultTitle: Blog, descubra nuestros artículos y consejos sobre el clima - Nos Gestes Climat
+  blog.homepage.defaultTitle.lock: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
+  documentation.total_category_block.title: del total, consulte la documentación
+  documentation.total_category_block.title.lock: du total, voir la documentation
