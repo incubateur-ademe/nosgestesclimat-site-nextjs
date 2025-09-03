@@ -55,7 +55,7 @@ export default function JourneyItem({ journey, odd, setJourneys }: Props) {
         className={`block sm:table-cell lg:border-x ${
           odd ? 'border-white' : 'border-primary-200'
         } p-2 text-left text-xs`}>
-        {journey.reccurrence} x {t(periods[journey.period])}
+        {journey.reccurrence}
       </td>
 
       <td
@@ -74,6 +74,10 @@ export default function JourneyItem({ journey, odd, setJourneys }: Props) {
         <Button
           color="text"
           size="sm"
+          title={t(
+            'simulator.customQuestions.voiture.deleteItem',
+            'Supprimer ce trajet'
+          )}
           onClick={() =>
             setJourneys((prevJourneys) =>
               prevJourneys.filter(
