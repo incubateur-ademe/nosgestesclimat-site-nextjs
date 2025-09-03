@@ -5,6 +5,7 @@ import ShareIcon from '@/components/icons/ShareIcon'
 import CheckIcon from '@/components/icons/status/CheckIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import { getShareTrackEvent } from '@/helpers/tracking/share'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import getIsMobile from 'is-mobile'
 import { type ReactNode, useState } from 'react'
@@ -38,6 +39,8 @@ export default function Share({
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
+  const { t } = useClientTranslation()
+
   const isMobile = getIsMobile()
 
   return (
@@ -61,6 +64,7 @@ export default function Share({
       {isModalOpen && (
         <Modal
           isOpen
+          ariaLabel={t('Fenêtre modale de partage')}
           hasAbortButton={false}
           closeModal={() => setIsModalOpen(false)}
           className="w-96 max-w-screen"

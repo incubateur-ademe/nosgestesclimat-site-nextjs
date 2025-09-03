@@ -24,7 +24,7 @@ type Props = {
   hasAbortButton?: boolean
   buttons?: ReactNode
   className?: string
-  ariaLabel?: string
+  ariaLabel: string
 }
 
 export default function Modal({
@@ -63,7 +63,7 @@ export default function Modal({
   return (
     <ModalComponent
       aria={{
-        label: ariaLabel,
+        ariaLabel,
       }}
       isOpen={isOpen}
       onRequestClose={!isLoading ? closeDelayed : undefined}
