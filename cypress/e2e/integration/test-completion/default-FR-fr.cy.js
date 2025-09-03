@@ -1,13 +1,10 @@
+import { visit } from '../../../helpers/interactions/visit'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 import { setupSimulation } from '../../../helpers/simulation/setupSimulation'
 
 describe('The simulation', () => {
   before(() => {
-    cy.visit(
-      `/?loc=${Cypress.env('localisation_param')}&lang=${Cypress.env(
-        'language_param'
-      )}`
-    )
+    visit(`/?loc=${Cypress.env('localisation_param')}`)
 
     setupSimulation()
   })
