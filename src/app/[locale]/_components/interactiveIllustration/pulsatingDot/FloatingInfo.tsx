@@ -21,6 +21,7 @@ export default function FloatingInfo({
 }) {
   return (
     <div
+      aria-hidden
       className={twMerge(
         'absolute w-36 -translate-y-[120%] rounded-xl bg-white px-3 py-2 shadow-lg md:-translate-y-1/2',
         orientation === 'left'

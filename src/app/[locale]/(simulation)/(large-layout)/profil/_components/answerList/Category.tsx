@@ -29,11 +29,19 @@ export default function Category({ category }: Props) {
 
   const subcategoriesOfCategory = getSubcatsOfCategory(category, subcategories)
 
+  const safeId = `category-${String(category).replace(/[^a-zA-Z0-9_-]/g, '-')}`
+  const buttonId = `${safeId}-button`
+  const panelId = `${safeId}-panel`
+
   return (
-    <div className="relative mb-4 w-full">
+    <li className="relative mb-4 w-full" role="listitem">
       <button
+        id={buttonId}
+        type="button"
+        aria-expanded={isOpen}
+        aria-controls={panelId}
         disabled={!subcategoriesOfCategory?.length}
-        className="block w-full"
+        className="focus-visible:outline-primary-600 block w-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2"
         onClick={() => {
           trackEvent(profilClickCategory(category))
           setIsOpen((prevIsOpen) => !prevIsOpen)
@@ -56,15 +64,21 @@ export default function Category({ category }: Props) {
       </button>
 
       {isOpen ? (
-        <ul>
-          {subcategoriesOfCategory?.map((subcategory) => (
-            <li key={subcategory}>
-              <Subcategory subcategory={subcategory} />
-            </li>
-          ))}
-          <QuestionsWithoutSubcategory category={category} />
-        </ul>
+        <div
+          id={panelId}
+          role="region"
+          aria-labelledby={buttonId}
+          hidden={!isOpen}>
+          <ul role="list" className="mt-2 list-none p-0">
+            {subcategoriesOfCategory?.map((subcategory) => (
+              <li key={subcategory}>
+                <Subcategory subcategory={subcategory} />
+              </li>
+            ))}
+            <QuestionsWithoutSubcategory category={category} />
+          </ul>
+        </div>
       ) : null}
-    </div>
+    </li>
   )
 }

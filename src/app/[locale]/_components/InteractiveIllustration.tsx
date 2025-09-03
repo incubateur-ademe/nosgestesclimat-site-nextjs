@@ -21,7 +21,10 @@ export default function InteractiveIllustration() {
         {/* Computer */}
         <PulsatingDot
           className="bottom-[15%] left-[50%]"
-          itemTitle={t('Ordinateur')}
+          itemTitle={t(
+            'common.interactiveIllustration.item.computer',
+            'Ordinateur'
+          )}
           itemKey="computer"
           carbonScore={4}
           waterScore={4}
@@ -31,7 +34,10 @@ export default function InteractiveIllustration() {
         {/* Shirt */}
         <PulsatingDot
           className="top-[40%] right-[35%]"
-          itemTitle={t('Chemisier')}
+          itemTitle={t(
+            'common.interactiveIllustration.item.shirt',
+            'Chemisier'
+          )}
           itemKey="shirt"
           carbonScore={3}
           waterScore={5}
@@ -41,7 +47,7 @@ export default function InteractiveIllustration() {
         {/* Coffee */}
         <PulsatingDot
           className="bottom-[41%] left-[12%]"
-          itemTitle={t('Café')}
+          itemTitle={t('common.interactiveIllustration.item.coffee', 'Café')}
           itemKey="coffee"
           carbonScore={4}
           waterScore={3}
@@ -50,7 +56,7 @@ export default function InteractiveIllustration() {
         {/* Car */}
         <PulsatingDot
           className="bottom-[15%] left-[10%]"
-          itemTitle={t('Voiture')}
+          itemTitle={t('common.interactiveIllustration.item.car', 'Voiture')}
           carbonScore={5}
           itemKey="car"
         />

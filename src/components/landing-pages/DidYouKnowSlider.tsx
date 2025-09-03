@@ -127,6 +127,7 @@ export default function DidYouKnowSlider({
       )}>
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-10 lg:flex-row lg:gap-0">
         <Splide
+          aria-label={t('Le saviez vous ?')}
           ref={splideRef}
           options={{
             autoplay: true,
@@ -161,9 +162,10 @@ export default function DidYouKnowSlider({
           }
           className="relative max-w-[594px]"
           role="group">
-          <SplideTrack>
+          <SplideTrack aria-live="polite">
             {slides.map((slide, index) => (
               <SplideSlide
+                role="group"
                 className="mx-auto flex! w-full max-w-[90vw] flex-col items-start gap-10 md:flex-row"
                 key={`slide-${index}`}>
                 <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-white md:mx-0 md:h-40 md:w-40">

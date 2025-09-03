@@ -80,12 +80,21 @@ export default function PulsatingDot({
         onTouchStart={handleEnter}
         title={`${t(
           'homePage.interactiveIllustration.itemTitle',
-          '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5',
-          {
-            itemTitle,
-            carbonScore,
-            waterScore,
-          }
+          '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'
+        )}${
+          waterScore
+            ? `${t(
+                'homePage.interactiveIllustration.waterScore',
+                ' et empreinte eau notée {{waterScore}} sur 5',
+                {
+                  waterScore,
+                }
+              )}`
+            : ''
+        }`}
+        aria-label={`${t(
+          'homePage.interactiveIllustration.itemTitle',
+          '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'
         )}${
           waterScore
             ? `${t(
