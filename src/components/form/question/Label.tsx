@@ -100,15 +100,37 @@ export default function Label({
             }}
             color="secondary"
             size="xs"
+            aria-expanded={isOpen ? true : false}
+            aria-controls={`${QUESTION_DESCRIPTION_BUTTON_ID}-content`}
             className={`inline-flex h-6 w-6 items-center justify-center rounded-full p-0 align-text-bottom font-mono`}
-            title={t("Voir plus d'informations")}>
-            i
+            title={t(
+              'simulator.label.moreInfoButton',
+              "Plus d'informations - {{label}}",
+              { label }
+            )}
+            aria-label={t(
+              'simulator.label.moreInfoButton',
+              "Plus d'informations - {{label}}",
+              { label }
+            )}>
+            <span aria-hidden="true">i</span>
+            <span className="sr-only">
+              {t(
+                'simulator.label.moreInfoButton',
+                "Plus d'informations - {{label}}",
+                { label }
+              )}
+            </span>
           </Button>
         ) : null}
       </label>
       {description &&
         (mustShowDescriptionQuestion.includes(question) ? (
-          <div className="mt-2 mb-6 text-xs italic md:text-sm">
+          <div
+            id={`${QUESTION_DESCRIPTION_BUTTON_ID}-content`}
+            role="region"
+            aria-labelledby={QUESTION_DESCRIPTION_BUTTON_ID}
+            className="mt-2 mb-6 text-xs italic md:text-sm">
             {description}
           </div>
         ) : isOpen ? (
@@ -116,7 +138,10 @@ export default function Label({
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
-            className="border-primary-50 mb-3 origin-top rounded-xl border-2 bg-gray-100 p-3 text-sm">
+            id={`${QUESTION_DESCRIPTION_BUTTON_ID}-content`}
+            role="region"
+            aria-labelledby={QUESTION_DESCRIPTION_BUTTON_ID}
+            className="border-primary-50 mb-3 w-full origin-top rounded-xl border-2 bg-gray-100 p-3 text-sm">
             <Markdown className="[&>blockquote]:text-default [&>blockquote]:mt-0 [&>blockquote]:mb-2 [&>blockquote]:p-0 [&>p]:mb-2">
               {description}
             </Markdown>{' '}

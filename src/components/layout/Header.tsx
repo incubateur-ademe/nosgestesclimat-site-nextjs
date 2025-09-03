@@ -5,8 +5,6 @@ import ActionsIcon from '@/components/icons/ActionsIcon'
 import AmisIcon from '@/components/icons/AmisIcon'
 import BilanIcon from '@/components/icons/BilanIcon'
 import PRIndicator from '@/components/layout/header/headerDesktop/PRIndicator'
-import Logo from '@/components/misc/Logo'
-import LogoLink from '@/components/misc/LogoLink'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   headerClickActions,
@@ -25,16 +23,14 @@ import { trackEvent } from '@/utils/analytics/trackEvent'
 import dynamic from 'next/dynamic'
 import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
+import Logo from '../misc/Logo'
+import LogoLink from '../misc/LogoLink'
 import NavLink from './header/NavLink'
 import OrganisationLink from './header/_components/OrganisationLink'
 import ProfileIcon from './header/_components/ProfileIcon'
 import DebugIndicator from './header/headerDesktop/DebugIndicator'
 import BottomMenu from './header/headerMobile/BottomMenu'
 import FoldableMenu from './header/headerMobile/FoldableMenu'
-
-type Props = {
-  isSticky?: boolean
-}
 
 const DynamicCTAButton = dynamic(
   () => import('./header/headerDesktop/MenuCTAButton'),
@@ -44,21 +40,24 @@ const DynamicCTAButton = dynamic(
   }
 )
 
-export default function HeaderDesktop({ isSticky = true }: Props) {
-  const { t } = useClientTranslation()
-
-  const pathname = usePathname()
-
-  const { user } = useUser()
+type Props = {
+  isSticky?: boolean
+}
+export default function Header({ isSticky = true }: Props) {
+  const { isIframeOnlySimulation } = useIframe()
 
   const { getLinkToSimulateurPage } = useSimulateurPage()
 
-  const { isIframeOnlySimulation } = useIframe()
+  const { t } = useClientTranslation()
+
+  const { user } = useUser()
+
+  const pathname = usePathname()
 
   return (
     <header
       className={twMerge(
-        'h-20 items-center shadow-xs bg-white',
+        'h-20 items-center bg-white shadow-sm',
         isSticky ? 'sticky top-0 z-300' : ''
       )}>
       {/* Header mobile */}

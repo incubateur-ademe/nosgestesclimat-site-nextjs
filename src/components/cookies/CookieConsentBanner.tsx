@@ -32,9 +32,9 @@ export default function CookieConsentBanner({
     <Modal
       isOpen={isVisible && !isBoardOpen}
       aria={{
-        label: t(
+        ariaLabel: t(
           'cookieConsent.board.title',
-          'Bannière de consentement aux cookies'
+          'Panneau de gestion des cookies'
         ),
       }}
       onAfterClose={() => setIsVisible(false)}

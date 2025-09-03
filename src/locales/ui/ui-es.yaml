@@ -69,8 +69,8 @@ entries:
   le + d'impact climat: el + impacto climático
   publicodes.ActionTutorial.msgPrésentation: 'Para ayudarle, le presentamos <2>una lista de acciones</2>:'
   publicodes.ActionTutorial.msgPrésentation.lock: "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"
-  publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} acciones disponibles,'
-  publicodes.ActionsOptionsBar.actionsRecap.lock: '{{numberOfAvailableFinalActions}} actions disponibles,'
+  publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} acciones disponibles, '
+  publicodes.ActionsOptionsBar.actionsRecap.lock: '{{numberOfAvailableFinalActions}} actions disponibles, '
   plus de 100 kg: más de 100 kg
   plus d'1 kg: más de 1 kg
   le - d'impact climat: el - impacto climático
@@ -203,11 +203,9 @@ entries:
   publicodes.Personas.maj: Para garantizar que siguen representando la diversidad de casos de uso del simulador de huella de carbono, los editamos cada vez que se añade o modifica el simulador, de acuerdo con las siguientes reglas:<1><0>Cada respuesta posible se asigna al menos a una persona</0><1>Al menos una persona no responde a la pregunta (por lo que se le asigna el valor por defecto dado en el simulador).</1></1>
   publicodes.Personas.maj.lock: Pour qu’ils ou elles continuent de représenter la diversité des cas d’usage du calculateur d’empreinte carbone, nous les éditons à chaque ajout ou modification de ce dernier, en respectant les règles suivantes :<1><0>Chaque réponse possible est attribuée à au moins un persona</0><1>Au moins un persona ne répond rien à la question (il lui est donc attribué la valeur par défaut donnée dans le calculateur).</1></1>
   Cette page vous permet de naviguer dans les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.: Esta página le permite navegar por los itinerarios de Nos Gestes Climat como si fuera uno de los perfiles típicos que hemos enumerado.
-  Voir plus d'informations: Más información
   Label: Etiqueta
   Comment agir ?: ¿Qué podemos hacer?
   Recommencer: Volver a empezar
-  Détailler mes trajets: Detallar mis viajes
   Télécharger l'image: Descargar imagen
   Fréquence: Frecuencia
   Supprimer: Borrar
@@ -787,8 +785,6 @@ entries:
   Empreinte eau: Huella hídrica
   Voir les nouveautés: Novedades
   Un modèle de calcul fiable: Un modelo de cálculo fiable
-  Voiture: Coche
-  Café: Café
   Un calculateur, deux empreintes: Un ordenador, dos huellas
   Accélérons l’impact collectif avec Nos Gestes Climat !: ¡Aceleremos nuestro impacto colectivo con Nos Gestes Climat!
   <0>L’empreinte eau</0> mesure la quantité totale d’eau utilisée pour produire les biens et services que nous consommons. Contrairement à l’eau domestique, <4>elle inclut l’eau invisible</4> nécessaire pour cultiver nos aliments, fabriquer nos vêtements et produire de l’énergie.: <0>La huella hídrica</0> mide la cantidad total de agua utilizada para producir los bienes y servicios que consumimos. A diferencia del agua doméstica, <4>incluye el agua invisible</4> necesaria para cultivar nuestros alimentos, confeccionar nuestra ropa y producir energía.
@@ -799,7 +795,6 @@ entries:
   Un aller-retour Paris-Athènes en avion représente <2>800 kg de CO2e</2>.: Un viaje de ida y vuelta de París a Atenas en avión representa <2>800 kg de CO2e</2>.
   Impressionnant, non ?: Impresionante, ¿verdad?
   <0>2 millions de personnes</0> ont déjà calculé leur empreinte !: ¡<0>2 millones de personas</0> ya han calculado su huella!
-  Chemisier: Blusa
   Découvrir la documentation: Descubra la documentación
   Défiez votre entourage: Desafía a los que te rodean
   L'empreinte carbone: Huella de carbono
@@ -813,7 +808,6 @@ entries:
   En savoir plus sur l'empreinte eau: Más información sobre nuestra huella hídrica
   'Transports : les modes à fuir, ceux à chérir': 'Transporte: modos a evitar, modos a apreciar'
   En savoir plus sur l'empreinte carbone: Más información sobre nuestra huella de carbono
-  Ordinateur: Ordenador
   L'empreinte eau moyenne d'un français se compte <2>milliers de litres par jour</2>.: La huella hídrica de un francés medio es de <2>miles de litros al día</2>.
   Créez un groupe avec vos proches et <2>lancez-vous dans un défi collectif</2> pour réduire votre empreinte. Comparez vos résultats, suivez vos progrès et voyez qui parvient à réduire le plus ses émissions de carbone ou sa consommation d’eau.: Crea un grupo con tus amigos y <2>acepta un reto colectivo</2> para reducir tu huella. Compara tus resultados, sigue tus progresos y comprueba quién consigue reducir más sus emisiones de carbono o su consumo de agua.
   L'empreinte carbone moyenne d'un français est de <2>9,1 tonnes de CO2e par an</2>.: La huella de carbono media de un francés es de <2>9,1 toneladas de CO2e al año</2>.
@@ -935,11 +929,7 @@ entries:
   La valeur pour ce champ est comprise entre: El valor de este campo está comprendido entre
   En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.: Al participar, acepta que sus resultados se compartan de forma anónima con esta organización.
   Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.: Nos referimos a los modos "Organizaciones" y "Desafía a tus amigos". Esta sección se genera a través de Metabase.
-  Empreinte eau, sélectionné, voir le détail ci-dessous: Huella hídrica, seleccionada, ver detalles más abajo
-  Empreinte carbone, voir le détail ci-dessous: Huella de carbono, ver detalles más abajo
   Affichez le détail de votre empreinte carbone ou eau en cliquant sur les cartes ci-dessus.: Vea los detalles de su huella de carbono o de agua haciendo clic en los mapas de arriba.
-  Empreinte eau, voir le détail ci-dessous: Huella hídrica, ver detalles más abajo
-  Empreinte carbone, sélectionné, voir le détail ci-dessous: Huella de carbono, seleccionada, ver detalles más abajo
   "C'est pourtant bien l'eau qui sert à produire ce que vous consommez : votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.": 'Sin embargo, es agua lo que se utiliza para producir lo que consumes: tu huella hídrica es el impacto de tu estilo de vida en los ciclos naturales del agua.'
   Ressources: Recursos
   Qui sommes-nous: Quiénes somos
@@ -996,17 +986,12 @@ entries:
   Raisin: Uva
   Poire: Pera
   Menu principal: Menú principal
-  Menu déroulant: Menú desplegable
-  '{{name}} lecture seule': '{{name}} sólo lectura'
   Chemin de navigation: Ruta de navegación
-  Voir le détail ci-dessous: Más información
-  '{{name}} menu déroulant': '{{name}} menú desplegable'
   Page précédente: Página anterior
   Ouvrir: Abrir
   Page suivante: Página siguiente
   Page {{page}}: Página {{page}}
   Navigation principale: Navegación principal
-  Sélectionner l'empreinte carbone, voir le détail ci-dessous: Seleccione la huella de carbono, ver detalles más abajo
   partagent Nos Gestes Climat via leur site ou des campagnes (mails, réseaux sociaux, affichage), nous permettant de sensibiliser près de 2 000 personnes chaque jour. Un grand merci à eux !: comparten Nos Gestes Climat a través de su página web o de campañas (correo electrónico, redes sociales, carteles), lo que nos permite sensibilizar a casi 2.000 personas cada día. ¡Muchas gracias a todos ellos!
   Envoyez-nous votre logo via notre page de contact: Envíenos su logotipo a través de nuestra página de contacto
   Plusieurs milliers d’organisations: Varios miles de organizaciones
@@ -1359,6 +1344,8 @@ entries:
   Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.: Estadísticas detalladas sobre el uso del modo Organizaciones, incluido el número de organizaciones creadas, participantes y acciones completadas.
   common.buttons.close: Cerrar
   common.buttons.close.lock: Fermer
+  common.interactiveIllustration.pulsatingDotLabel: "{{itemTitle}} : score de consommation carbone de {{carbonScore}} sur 5 et score de consommation d'eau de {{waterScore}} de 5"
+  common.interactiveIllustration.pulsatingDotLabel.lock: "{{itemTitle}} : score de consommation carbone de {{carbonScore}} sur 5 et score de consommation d'eau de {{waterScore}} sur 5"
   Ouvrir le menu: Abrir el menú
   actions.form.modal.ariaLabel: Ventana modal del formulario de acción
   actions.form.modal.ariaLabel.lock: Fenêtre modale du formulaire d'action
@@ -1424,6 +1411,7 @@ entries:
   blog.homePage.dynamicPageNumber.lock: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
   blog.homepage.defaultTitle: Blog, descubra nuestros artículos y consejos sobre el clima - Nos Gestes Climat
   blog.homepage.defaultTitle.lock: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
+  Voir plus d'informations: Más información
   Inscription en cours...: Registro en curso...
   Entrez votre adresse email pour recevoir les infolettres sélectionnées.: Introduzca su dirección de correo electrónico para recibir los boletines seleccionados.
   5 infolettres sur l'impact du logement: 5 boletines sobre el impacto de la vivienda
@@ -1431,103 +1419,5 @@ entries:
   documentation.total_category_block.title: del total, consulte la documentación
   documentation.total_category_block.title.lock: du total, voir la documentation
   Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.: Marque las casillas correspondientes a los boletines a los que desea suscribirse.
+  ⚠️ La vérification de votre compte est requise pour vous inscrire aux infolettres.: ⚠️ Es necesario verificar su cuenta para suscribirse a los boletines.
   Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie: Seleccione este filtro para mostrar sólo los artículos de esta categoría
-  common.slider.play: Lectura
-  common.slider.play.lock: Lecture
-  common.slider.stop: Stop
-  common.slider.stop.lock: Arrêter
-  Accès rapide: Acceso rápido
-  homePage.interactiveIllustration.waterScore: ' y huella hídrica: {{waterScore}} sobre 5'
-  homePage.interactiveIllustration.waterScore.lock: ' et empreinte eau notée {{waterScore}} sur 5'
-  Lancer le défilement: Iniciar desplazamiento
-  Arrêter le défilement: Detener el desplazamiento
-  homePage.interactiveIllustration.itemTitle: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} de 5'
-  homePage.interactiveIllustration.itemTitle.lock: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'
-  common.category.divers: Varios
-  common.category.divers.lock: Divers
-  pollResults.categoryDistribution.accessibleDescription.category: '{{name}}: {{value}} {{unit}}.'
-  pollResults.categoryDistribution.accessibleDescription.category.lock: '{{name}}: {{value}} {{unit}}.'
-  common.category.transport: Transporte
-  common.category.transport.lock: Transport
-  common.category.services: Servicios
-  common.category.services.lock: Services
-  common.category.alimentation: Alimentación
-  common.category.alimentation.lock: Alimentation
-  common.category.logement: Vivienda
-  common.category.logement.lock: Logement
-  pollResults.footprintBarChart.accessibleDescription.lower: inferior
-  pollResults.footprintBarChart.accessibleDescription.lower.lock: inférieure
-  pollResults.footprintBarChart.accessibleDescription.higher: superior
-  pollResults.footprintBarChart.accessibleDescription.higher.lock: supérieure
-  pollResults.categoryDistribution.accessibleDescription.chart: 'Gráfico de donuts que muestra el desglose de las emisiones por categorías. '
-  pollResults.categoryDistribution.accessibleDescription.chart.lock: 'Graphique en donut montrant la répartition des émissions par catégorie. '
-  pollResults.pollResults.distribution.category_distribution.title_detail: (medias)
-  pollResults.pollResults.distribution.category_distribution.title_detail.lock: (moyennes)
-  pollResults.footprintBarChart.accessibleDescription.groupFootprint: La huella media del Grupo es {{value}} {{unit}}.
-  pollResults.footprintBarChart.accessibleDescription.groupFootprint.lock: L'empreinte moyenne du groupe est de {{value}} {{unit}}.
-  pollResults.footprintBarChart.userFootprint: Tu huella
-  pollResults.footprintBarChart.userFootprint.lock: Votre empreinte
-  pollResults.footprintBarChart.legend.userFootprint: Tu huella
-  pollResults.footprintBarChart.legend.userFootprint.lock: Votre empreinte
-  pollResults.footprintBarChart.legend.groupFootprint: Huella media del Grupo
-  pollResults.footprintBarChart.legend.groupFootprint.lock: Empreinte moyenne du groupe
-  pollResults.footprintBarChart.accessibleDescription.userComparison: Su huella es {{comparison}}.
-  pollResults.footprintBarChart.accessibleDescription.userComparison.lock: Votre empreinte est {{comparison}} à celle du groupe.
-  pollResults.pollResults.distribution.category_distribution.title: Desglose por categoría de emisión
-  pollResults.pollResults.distribution.category_distribution.title.lock: Répartition par poste d'émission
-  pollResults.distribution.title: Desglose de la huella de carbono
-  pollResults.distribution.title.lock: Répartition des empreintes carbone
-  pollResults.footprintBarChart.targetLabel: Objetivo 2050
-  pollResults.footprintBarChart.targetLabel.lock: Objectif 2050
-  pollResults.footprintBarChart.accessibleDescription.groupComparison: La huella del Grupo es {{comparison}}.
-  pollResults.footprintBarChart.accessibleDescription.groupComparison.lock: L'empreinte du groupe est {{comparison}} à l'objectif.
-  pollResults.footprintBarChart.accessibleDescription.chart: 'Gráfico de barras que muestra la comparación de las huellas de carbono. '
-  pollResults.footprintBarChart.accessibleDescription.chart.lock: 'Graphique en barres montrant la comparaison des empreintes carbone. '
-  pollResults.footprintBarChart.groupFootprint: Huella media del Grupo
-  pollResults.footprintBarChart.groupFootprint.lock: Empreinte moyenne du groupe
-  pollResults.mean_footprint_distribution.title: Huella de carbono media de
-  pollResults.mean_footprint_distribution.title.lock: Empreinte carbone moyenne de
-  pollResults.footprintBarChart.accessibleDescription.userFootprint: Su huella personal es {{value}} {{unit}}.
-  pollResults.footprintBarChart.accessibleDescription.userFootprint.lock: Votre empreinte personnelle est de {{value}} {{unit}}.
-  pollResults.footprintBarChart.accessibleDescription.target: El objetivo es {{year}} est de {{value}} {{unit}}.
-  pollResults.footprintBarChart.accessibleDescription.target.lock: L'objectif à atteindre d'ici {{year}} est de {{value}} {{unit}}.
-  pollResults.radarChart.accessibleDescription.category: '{{category}}: vos résultats {{user}} {{comparison}} à la moyenne {{average}}.'
-  pollResults.radarChart.accessibleDescription.category.lock: '{{category}}: vos résultats {{user}} {{comparison}} à la moyenne {{average}}.'
-  pollResults.radarChart.legend.userResults: Mis resultados
-  pollResults.radarChart.legend.userResults.lock: Mes résultats
-  pollResults.radarChart.accessibleDescription.lower: inferior
-  pollResults.radarChart.accessibleDescription.lower.lock: inférieur
-  pollResults.radarChart.legend.average: Media
-  pollResults.radarChart.legend.average.lock: Moyenne
-  pollResults.radarChart.accessibleDescription.higher: superior
-  pollResults.radarChart.accessibleDescription.higher.lock: supérieur
-  copyButton.shareAriaLabel: Compartir este enlace
-  copyButton.shareAriaLabel.lock: Partager le lien
-  pollResults.adminSection.shareDirectly: O compartir directamente
-  pollResults.adminSection.shareDirectly.lock: Ou partagez directement
-  pollResults.adminSection.title: Invite a gente nueva
-  pollResults.adminSection.title.lock: Invitez de nouvelles personnes
-  copyButton.copyAriaLabel: Copiar enlace al portapapeles
-  copyButton.copyAriaLabel.lock: Copier le lien dans le presse-papiers
-  copyButton.copiedAriaLabel: Enlace copiado en el portapapeles
-  copyButton.copiedAriaLabel.lock: Lien copié dans le presse-papiers
-  C'est prêt ! Voici votre lien à partager: Ya está todo listo Aquí tienes el enlace para compartir
-  pollResults.radarChart.accessibleDescription.chart: 'Gráfico de radar que compara sus resultados con los promedios de la categoría. '
-  pollResults.radarChart.accessibleDescription.chart.lock: 'Graphique radar comparant vos résultats aux moyennes par catégorie. '
-  pollResults.radarChart.title: Su huella en relación con otros participantes
-  pollResults.radarChart.title.lock: Votre empreinte par rapport aux autres participants
-  copyButton.shareTitle: Descubra mi huella de carbono
-  copyButton.shareTitle.lock: Découvre mon empreinte carbone !
-  pollResults.footprintBarChart.targetLabelMobile: 'Objetivo 2050:'
-  pollResults.footprintBarChart.targetLabelMobile.lock: 'Objectif 2050 :'
-  common.category.alimentationShort: Alimentación
-  common.category.alimentationShort.lock: Alim.
-  Empreinte carbone moyenne: Huella de carbono media
-  Empreinte eau moyenne: Huella hídrica media
-  pollResults.footprintBarChart.targetLabelUnit: toneladas
-  pollResults.footprintBarChart.targetLabelUnit.lock: tonnes
-  L'empreinte carbone du transport: La huella de carbono del transporte
-  L'empreinte carbone du logement: La huella de carbono de la vivienda
-  L'empreinte carbone de l'alimentation: La huella de carbono de los alimentos
-  Chargement des résultats détaillés de campagne...: Cargando resultados detallados de la campaña...
-  4 infolettres l’impact des transports: 4 boletines informativos sobre el impacto del transporte

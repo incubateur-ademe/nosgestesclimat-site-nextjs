@@ -69,8 +69,11 @@ export default function FinPage() {
         </div>
       )}
 
-      <div className="relative flex flex-col-reverse gap-8 lg:flex-row lg:gap-10">
+      <div className="relative flex gap-8 lg:flex-row lg:gap-10">
         <div className="relative flex flex-1 flex-col gap-16 lg:mt-7">
+          <div className="short:gap-2 mt-8 flex w-full flex-col gap-4 md:hidden">
+            <InformationBlock />
+          </div>
           <div
             className={twMerge(
               'transition-opacity duration-500',
@@ -107,7 +110,7 @@ export default function FinPage() {
           <DocumentationBlock />
         </div>
 
-        <div className="short:gap-2 top-40 flex w-full flex-col gap-4 self-start md:mb-8 lg:sticky lg:z-30 lg:w-[22rem]">
+        <div className="short:gap-2 top-40 hidden w-full flex-col gap-4 self-start md:mb-8 md:flex lg:sticky lg:z-30 lg:w-[22rem]">
           <InformationBlock />
         </div>
       </div>

@@ -48,7 +48,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
       <td className="border-primary-700 block h-full py-2 text-xs md:table-cell md:border-t md:px-2">
         <span className="flex h-full items-center gap-4">
           <TextInput
-            className="h-14 w-12 p-2 text-xs md:w-16"
+            className="max-h-14 w-12 p-2 text-xs md:w-16"
             aria-labelledby="label-distance"
             name="distance"
             type="number"
@@ -61,7 +61,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
       <td className="border-primary-700 block py-2 text-xs md:table-cell md:border-t md:px-2">
         <span className="flex items-center gap-4">
           <TextInput
-            className="h-14 w-12 p-2 text-xs md:w-16"
+            className="max-h-14 w-12 p-2 text-xs md:w-16"
             name="reccurrence"
             aria-labelledby="label-frequency"
             type="number"
@@ -71,22 +71,24 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
             }
           />{' '}
           x
-          <SelectInput
-            className="mt-0! p-2 text-xs"
-            value={period}
-            label={t('Période')}
-            labelClassName="sr-only p-0 m-0"
-            name="period"
-            onChange={(e) => setPeriod(e.target.value)}>
-            {Object.entries(periods).map(([key, period], i) => {
-              return (
-                <option key={i} value={key}>
-                  {t(period)}
-                </option>
-              )
-            })}
-          </SelectInput>
         </span>
+      </td>
+      <td className="border-primary-700 block py-2 text-xs md:table-cell md:border-t md:px-2">
+        <SelectInput
+          className="mt-0! p-2 text-xs"
+          value={period}
+          aria-labelledby="label-time"
+          labelClassName="sr-only p-0 m-0"
+          name="period"
+          onChange={(e) => setPeriod(e.target.value)}>
+          {Object.entries(periods).map(([key, period], i) => {
+            return (
+              <option key={i} value={key}>
+                {t(period)}
+              </option>
+            )
+          })}
+        </SelectInput>
       </td>
       <td className="border-primary-700 block py-2 text-xs md:table-cell md:border-t md:px-2">
         <SelectInput
