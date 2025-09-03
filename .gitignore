@@ -68,6 +68,3 @@ coverage
 .husky/pre-push-custom
 
 *.log
-
-# Storybook
-/public/mockServiceWorker.js
