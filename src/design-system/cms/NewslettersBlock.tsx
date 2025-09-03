@@ -200,11 +200,11 @@ export default function NewslettersBlock() {
           <SuccessMessage />
         ) : (
           <>
-            <h3 className="mb-2">
+            <h2 className="mb-2">
               <Trans>
                 Vous souhaitez recevoir nos derniers articles directement ?
               </Trans>
-            </h3>
+            </h2>
 
             <p className="mb-6 flex items-center">
               <CheckIcon

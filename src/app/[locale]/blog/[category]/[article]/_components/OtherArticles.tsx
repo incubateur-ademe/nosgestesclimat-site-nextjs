@@ -18,19 +18,21 @@ export default function OtherArticles({
           <Trans locale={locale}>D'autres articles sur le même sujet</Trans>
         </h2>
 
-        <div className="relative flex flex-col gap-4 md:grid md:grid-cols-3">
+        <ul className="relative flex flex-col gap-4 md:grid md:grid-cols-3">
           {articles.map((article) => (
-            <PostThumbnail
-              key={article.slug}
-              title={article.title}
-              imageSrc={article.image?.url ?? ''}
-              href={`/blog/${article.blogCategory?.slug}/${article.slug}`}
-              trackingEvent={['blog', 'other-articles']}
-              category={article.blogCategory?.title ?? ''}
-              className="bg-white"
-            />
+            <li>
+              <PostThumbnail
+                key={article.slug}
+                title={article.title}
+                imageSrc={article.image?.url ?? ''}
+                href={`/blog/${article.blogCategory?.slug}/${article.slug}`}
+                trackingEvent={['blog', 'other-articles']}
+                category={article.blogCategory?.title ?? ''}
+                className="bg-white"
+              />
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </div>
   )
