@@ -288,7 +288,9 @@ export default function UserInformationForm({
         {isSuccess && (
           <p
             data-testid="success-message"
-            role="alert"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
             className="mt-4 mb-4 text-green-700">
             <Trans>Vos informations ont bien été mises à jour.</Trans>
           </p>
