@@ -57,11 +57,13 @@ export default function Actions({ subcategory, noNumberedFootprint }: Props) {
           </Trans>
         </p>
       )}
-      <div className="mb-4 flex flex-row-reverse justify-center gap-4">
+      <ul className="mb-4 flex items-stretch justify-center gap-4">
         {firstThreeActions.map((action, index) => (
-          <Action key={action} action={action} index={index} />
+          <li key={action} className="flex h-full flex-1 flex-col">
+            <Action action={action} index={index} />
+          </li>
         ))}
-      </div>
+      </ul>
       {!noNumberedFootprint && (
         <div className="flex justify-center">
           <Link
