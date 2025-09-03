@@ -1,9 +1,12 @@
 'use client'
 
+import CloseIcon from '@/components/icons/Close'
 import Trans from '@/components/translation/trans/TransClient'
+import { trackingActionClickSortingButton } from '@/constants/tracking/actions'
 import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useState } from 'react'
 import ActionsChosenIndicator from '../ActionsChosenIndicator'
 
@@ -25,7 +28,10 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
       <div className="absolute top-1 right-0 text-right">
         <button
           title={t('Ouvrir les options de tri')}
-          onClick={() => setIsOpen(true)}
+          onClick={() => {
+            setIsOpen(true)
+            trackEvent(trackingActionClickSortingButton)
+          }}
           className="text-orange-dark">
           <Emoji role="img" aria-label={t('Ouvrir les options de tri')}>
             ⚙️
@@ -38,9 +44,13 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
   return (
     <div className="mx-auto my-2 flex items-center justify-center">
       <small role="status">
-        {t('publicodes.ActionsOptionsBar.actionsRecap', {
-          numberOfAvailableFinalActions,
-        })}
+        {t(
+          'publicodes.ActionsOptionsBar.actionsRecap',
+          '{{numberOfAvailableFinalActions}} actions disponibles, ',
+          {
+            numberOfAvailableFinalActions,
+          }
+        )}
 
         <ActionsChosenIndicator />
       </small>{' '}
@@ -69,9 +79,7 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
       <button
         title={t('Fermer les options de tri')}
         onClick={() => setIsOpen(false)}>
-        <span role="img" aria-label={t('Fermer les options de tri')}>
-          ❌
-        </span>
+        <CloseIcon />
       </button>
     </div>
   )

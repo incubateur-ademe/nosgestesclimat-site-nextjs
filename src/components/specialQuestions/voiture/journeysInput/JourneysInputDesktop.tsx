@@ -45,6 +45,9 @@ export function JourneysInputDesktop({
               id="label-frequency">
               <Trans>Fréquence</Trans>
             </th>
+            <th className="table-cell p-2 text-left text-xs" id="label-time">
+              <Trans>Période</Trans>
+            </th>
             <th
               className="table-cell p-2 text-left text-xs"
               id="label-passengers">
