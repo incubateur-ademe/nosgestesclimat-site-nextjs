@@ -92,7 +92,7 @@ export default async function BlogHomePage({
     locale === i18nConfig.locales[2] &&
     (!title || !description || !image || !articles)
   ) {
-    return redirect('/blog?lang=fr')
+    return redirect('/fr/blog')
   }
 
   if (!title || !description || !articles) {
