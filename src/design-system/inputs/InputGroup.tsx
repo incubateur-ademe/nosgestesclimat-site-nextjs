@@ -5,8 +5,8 @@ import { twMerge } from 'tailwind-merge'
 type InputGroupProps = {
   name: string
   label?: string | ReactNode
-  error?: string
-  helperText?: string
+  error?: string | ReactNode
+  helperText?: string | ReactNode
   containerClassName?: string
   labelClassName?: string
   required?: boolean

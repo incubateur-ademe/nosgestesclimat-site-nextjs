@@ -4,6 +4,7 @@ import Link from '@/components/Link'
 import BilanChart from '@/components/charts/BilanChart'
 import ServicesChart from '@/components/charts/ServicesChart'
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
+import { RULES_TO_HIDE } from '@/constants/documentation'
 import { defaultMetric } from '@/constants/model/metric'
 import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Markdown from '@/design-system/utils/Markdown'
@@ -56,6 +57,7 @@ export default function DocumentationClient({ slugs }: Props) {
         engine={engine as Engine}
         documentationPath={documentationPath}
         searchBar={true}
+        rulesToHide={Array.from(RULES_TO_HIDE)}
         renderers={{
           Head,
           Link: ({ children, to }) => <Link href={to || ''}>{children}</Link>,
