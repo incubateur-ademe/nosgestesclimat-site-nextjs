@@ -2,6 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { amisDashboardCopyLink } from '@/constants/tracking/pages/amisDashboard'
+import { MATOMO_CAMPAIGN_KEY } from '@/constants/urls/matomo'
 import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import type { Group } from '@/types/groups'
@@ -51,7 +52,7 @@ export default function InviteBlock({ group }: { group: Group }) {
     navigator.share !== undefined &&
     window.innerWidth <= 768
 
-  const sharedURL = `${window.location.origin}/amis/invitation?groupId=${group.id}&mtm_campaign=challenge-amis`
+  const sharedURL = `${window.location.origin}/amis/invitation?groupId=${group.id}&${MATOMO_CAMPAIGN_KEY}=challenge-amis`
 
   const handleShare = async () => {
     if (shouldUseShareAPI) {

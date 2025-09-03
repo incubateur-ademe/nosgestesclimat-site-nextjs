@@ -83,7 +83,8 @@
     @apply mb-4;
   }
 
-  blockquote {
+  blockquote,
+  .blog-frame {
     @apply bg-gray-100;
     @apply rounded-md;
     padding: 1rem 1rem 0.25rem;

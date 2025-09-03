@@ -1,4 +1,5 @@
 import Link from '@/components/Link'
+import { KEYS_TO_OMIT, RULES_TO_HIDE } from '@/constants/documentation'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import type {
@@ -7,25 +8,6 @@ import type {
   NGCRules,
 } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
-
-const KEYS_TO_OMIT = [
-  'titre',
-  'couleur',
-  'abréviation',
-  'icônes',
-  'description',
-  'résumé',
-  'exposé',
-  'unité',
-  'question',
-  'note',
-  'références',
-  // specific to NGC actions
-  'effort',
-  'inactive',
-  // specific to NGC form generation, could be cool to visualize, but in a <details> tag, since it's big
-  'mosaique',
-]
 
 const getRuleFormatted = (rule: NGCRule): NGCRule => {
   const ruleFormatted = { ...rule }
@@ -85,7 +67,11 @@ export default function RuleDetail({
   }
 
   if (typeof ruleFormatted === 'number') {
-    return <span>{ruleFormatted}</span>
+    if (RULES_TO_HIDE.has(context.dottedName)) {
+      return <span>masquée par l'intégrateur</span>
+    } else {
+      return <span>{ruleFormatted}</span>
+    }
   }
 
   if (isArray) {

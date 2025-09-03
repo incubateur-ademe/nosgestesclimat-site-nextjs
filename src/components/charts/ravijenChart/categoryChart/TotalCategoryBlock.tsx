@@ -2,6 +2,7 @@
 
 import Link from '@/components/Link'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
@@ -13,6 +14,8 @@ export default function TotalCategoryBlock({
 }) {
   const { numericValue: totalNumericValue } = useRule('bilan')
 
+  const { t } = useClientTranslation()
+
   const { title, numericValue } = useRule(category)
 
   const { formattedValue, unit } = formatCarbonFootprint(numericValue, {
@@ -23,13 +26,13 @@ export default function TotalCategoryBlock({
 
   return (
     <Link
-      title={`${title}, ${formattedValue} ${unit}, ${percentage}% du total, voir la documentation`}
+      title={`${title}, ${formattedValue} ${unit}, ${percentage}% ${t('documentation.total_category_block.title', 'du total, voir la documentation')}`}
       href={`/documentation/${category}`}
       className="flex h-[7rem] flex-col items-center justify-center bg-gray-500 py-2 text-white! no-underline! hover:underline!">
       <Image
         style={{ filter: 'grayscale(1) invert(1) brightness(1.8)' }}
         src={`/images/model/${category}.svg`}
-        alt={`${title}, ${formattedValue} ${unit}`}
+        alt=""
         width={24}
         height={24}
         className="h-6 md:w-6"

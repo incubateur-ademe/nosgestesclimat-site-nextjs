@@ -34,10 +34,10 @@ export default function Subcategory({ subcategory, index }: Props) {
           <h3 className="mb-1 text-2xl">
             {index + 1}. {title}
           </h3>
-          <div className="text-base">
+          <p className="mb-0 text-base">
             <span className="text-secondary-700 font-black">{percent} %</span>{' '}
             <Trans>de votre empreinte</Trans>
-          </div>
+          </p>
         </div>
         <Emoji className="text-4xl lg:text-6xl">{icons?.slice(0, 2)}</Emoji>
       </div>

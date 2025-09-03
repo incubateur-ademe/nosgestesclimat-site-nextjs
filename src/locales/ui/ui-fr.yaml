@@ -1173,6 +1173,19 @@ entries:
   Télécharger le QR Code: Télécharger le QR Code
   Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.
   Pour vous désinscrire, passez par le lien en bas de l'email reçu: Pour vous désinscrire, passez par le lien en bas de l'email reçu
+  copyInput.copied: Copié !
+  copyInput.copyError: Erreur lors de la copie du lien
+  copyInput.copyErrorManual: Oups, impossible de copier le lien, vous pouvez le copier manuellement.
+  copyInput.copyingInProgress: Copie en cours...
+  copyInput.copyLink: Copier le lien
+  copyInput.copyLinkToClipboard: Copier le lien dans le presse-papiers
+  copyInput.defaultLabel: Lien à copier
+  copyInput.linkCopiedSuccess: Lien copié avec succès
+  copyInput.linkCopiedToClipboard: Lien copié avec succès dans le presse-papiers
+  copyInput.share: Partager
+  copyInput.shareLink: Partager le lien
+  copyInput.shareTitle: Découvre mon empreinte carbone !
+  copyInput.sharingInProgress: Partage en cours...
   Carbone, évaluer la métrique carbone: Carbone, évaluer la métrique carbone
   Connexion: Connexion
   Eau, évaluer la métrique eau: Eau, évaluer la métrique eau
@@ -1224,3 +1237,9 @@ entries:
   Statistiques d'usage du mode "Organisations": Statistiques d'usage du mode "Organisations"
   Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.: Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.
   Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.: Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.
+  blog.homepage.defaultDescription: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
+  blog.homepage.defaultTitle: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
+  blog.homePage.dynamicPageNumber: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
+  common.slider.buttons.next: Aller à la diapositive numéro {{number}}
+  common.slider.buttons.previous: Aller à la diapositive précédente
+  documentation.total_category_block.title: du total, voir la documentation
