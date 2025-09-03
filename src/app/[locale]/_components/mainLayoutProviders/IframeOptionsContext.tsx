@@ -75,6 +75,7 @@ export const IframeOptionsProvider = ({
     if (!iframeLang) {
       setIframeLang(urlParams.get('lang'))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isIframe])
 
   useEffect(() => {
