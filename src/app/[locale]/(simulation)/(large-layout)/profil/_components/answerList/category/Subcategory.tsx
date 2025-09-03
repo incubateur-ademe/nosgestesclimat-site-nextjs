@@ -1,7 +1,6 @@
 'use client'
 
 import { profilClickSubCategory } from '@/constants/tracking/pages/profil'
-import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import {
   getBackgroundColor,
@@ -34,53 +33,33 @@ export default function SubCategory({ subcategory }: Props) {
   )
 
   if (!answeredQuestionOfSubcategory.length) return null
-
-  const safeId = `subcategory-${String(subcategory).replace(/[^a-zA-Z0-9_-]/g, '-')}`
-  const buttonId = `${safeId}-button`
-  const panelId = `${safeId}-panel`
-
   return (
-    <li
-      className="relative mt-2 w-full list-none rounded-xl bg-gray-50"
-      role="listitem">
+    <div className="relative mt-2 w-full rounded-xl bg-gray-50">
       <button
-        id={buttonId}
-        type="button"
-        aria-expanded={isOpen}
-        aria-controls={panelId}
         onClick={() => {
           trackEvent(profilClickSubCategory(subcategory))
           setIsOpen((prevIsOpen) => !prevIsOpen)
         }}
-        className="focus-visible:outline-primary-600 relative flex w-full items-center justify-between gap-4 overflow-hidden rounded-xl p-4 pl-6 text-lg font-bold focus-visible:outline-2 focus-visible:outline-offset-2">
+        className="relative flex w-full items-center justify-between gap-4 overflow-hidden rounded-xl p-4 pl-6 text-lg font-bold">
         <div
           className={`absolute top-0 bottom-0 left-0 w-2 ${getBackgroundColor(
             category
           )}`}
         />
-        <span>
-          <Emoji className="mr-2">{icons}</Emoji> {title}{' '}
-        </span>
+        {icons} {title}{' '}
         <span
           className={`block rounded-xl border-2 ${getBorderColor(category)} bg-white px-4 py-2 text-sm ${getTextDarkColor(category)}`}>
           {formattedCarbonFootprint.formattedValue}{' '}
           {formattedCarbonFootprint.unit}
         </span>
       </button>
-      <div
-        id={panelId}
-        role="group"
-        aria-labelledby={buttonId}
-        hidden={!isOpen}
-        className="pr-4 pb-2 pl-6">
-        <ul role="list" className="m-0 list-none p-0">
+      {isOpen ? (
+        <div className="pr-4 pb-2 pl-6">
           {answeredQuestionOfSubcategory.map((question) => (
-            <li key={question} className="list-none">
-              <Question question={question} />
-            </li>
+            <Question key={question} question={question} />
           ))}
-        </ul>
-      </div>
-    </li>
+        </div>
+      ) : null}
+    </div>
   )
 }

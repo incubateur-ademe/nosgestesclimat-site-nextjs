@@ -136,7 +136,7 @@ export default function Question({
                 min={0}
                 data-cypress-id={question}
                 id={DEFAULT_FOCUS_ELEMENT_ID}
-                aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content`}
+                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
                 aria-labelledby="question-label"
               />
             )}
@@ -156,7 +156,7 @@ export default function Question({
                 data-cypress-id={question}
                 label={label || ''}
                 firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
-                aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content`}
+                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
                 aria-labelledby="question-label"
               />
             )}
@@ -178,7 +178,7 @@ export default function Question({
                 data-cypress-id={question}
                 label={label || ''}
                 firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
-                aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content`}
+                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
                 aria-labelledby="question-label"
               />
             )}
@@ -187,7 +187,7 @@ export default function Question({
               <Mosaic
                 question={question}
                 questionsOfMosaic={questionsOfMosaicFromParent}
-                aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content`}
+                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
                 aria-labelledby="question-label"
                 firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
                 label={label || ''}

@@ -1,10 +1,10 @@
 'use client'
 
 import Question from '@/components/form/Question'
+import Trans from '@/components/translation/trans/TransClient'
 import { captureSubQuestion } from '@/constants/tracking/posthogTrackers'
 import { openSubQuestion } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
@@ -14,8 +14,6 @@ import JourneysInput from './voiture/JourneysInput'
 type Props = { question: DottedName }
 export default function Voiture({ question, ...props }: Props) {
   const [isOpen, setIsOpen] = useState(false)
-
-  const { t } = useClientTranslation()
   return (
     <>
       <Question question={question} className="mb-4" {...props} />
@@ -35,7 +33,7 @@ export default function Voiture({ question, ...props }: Props) {
           }}
           className="mb-2">
           {isOpen ? (
-            t('common.buttons.close', 'Fermer')
+            <Trans>Fermer</Trans>
           ) : (
             <span className="flex items-center">
               <PencilIcon
@@ -44,10 +42,7 @@ export default function Voiture({ question, ...props }: Props) {
                 height="16"
               />
 
-              {t(
-                'simulator.customQuestions.voiture.open',
-                'Détailler mes trajets'
-              )}
+              <Trans>Détailler mes trajets</Trans>
             </span>
           )}
         </Button>

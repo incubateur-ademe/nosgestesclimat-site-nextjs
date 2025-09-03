@@ -50,18 +50,15 @@ export default function Question({ question }: Props) {
         ) : null}
       </span>
       {questionsOfMosaicFromParent.length ? (
-        <ul
-          role="list"
-          className="mt-2 grid list-none gap-2 p-0 md:grid-cols-2">
+        <div className="mt-2 grid gap-2 md:grid-cols-2">
           {questionsOfMosaicFromParent.map((questionOfMosaic) => (
-            <li key={questionOfMosaic} className="list-none">
-              <MosaicQuestion
-                question={questionOfMosaic}
-                isMissing={isMissing}
-              />
-            </li>
+            <MosaicQuestion
+              key={questionOfMosaic}
+              question={questionOfMosaic}
+              isMissing={isMissing}
+            />
           ))}
-        </ul>
+        </div>
       ) : null}
     </Link>
   )

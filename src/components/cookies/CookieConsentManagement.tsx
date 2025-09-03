@@ -4,7 +4,6 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { type CookieConsentChoices, CookieConsentKey } from '@/types/cookies'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
@@ -52,8 +51,6 @@ export default function CookieConsentManagement({
   confirmChoices: (data: CookieConsentChoices) => void
   choices?: CookieConsentChoices
 }) {
-  const { t } = useClientTranslation()
-
   const { register, handleSubmit, watch, setValue } = useForm<CookieFormData>({
     defaultValues: {
       [CookieConsentKey.googleAds]:
@@ -83,10 +80,6 @@ export default function CookieConsentManagement({
   return (
     <Modal
       isOpen={isBoardOpen}
-      ariaLabel={t(
-        'cookieConsent.banner.title',
-        'Fenêtre modale de gestion des cookies'
-      )}
       closeModal={closeSettings}
       hasAbortCross={true}
       hasAbortButton={false}

@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/trans/TransClient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 import { FloatingElementDisplayedProvider } from './interactiveIllustration/FloatingElementDisplayedProvider'
@@ -21,10 +22,7 @@ export default function InteractiveIllustration() {
         {/* Computer */}
         <PulsatingDot
           className="bottom-[15%] left-[50%]"
-          itemTitle={t(
-            'common.interactiveIllustration.item.computer',
-            'Ordinateur'
-          )}
+          itemTitle={<Trans>Ordinateur</Trans>}
           itemKey="computer"
           carbonScore={4}
           waterScore={4}
@@ -34,10 +32,7 @@ export default function InteractiveIllustration() {
         {/* Shirt */}
         <PulsatingDot
           className="top-[40%] right-[35%]"
-          itemTitle={t(
-            'common.interactiveIllustration.item.shirt',
-            'Chemisier'
-          )}
+          itemTitle={<Trans>Chemisier</Trans>}
           itemKey="shirt"
           carbonScore={3}
           waterScore={5}
@@ -47,7 +42,7 @@ export default function InteractiveIllustration() {
         {/* Coffee */}
         <PulsatingDot
           className="bottom-[41%] left-[12%]"
-          itemTitle={t('common.interactiveIllustration.item.coffee', 'Café')}
+          itemTitle={<Trans>Café</Trans>}
           itemKey="coffee"
           carbonScore={4}
           waterScore={3}
@@ -56,7 +51,7 @@ export default function InteractiveIllustration() {
         {/* Car */}
         <PulsatingDot
           className="bottom-[15%] left-[10%]"
-          itemTitle={t('common.interactiveIllustration.item.car', 'Voiture')}
+          itemTitle={<Trans>Voiture</Trans>}
           carbonScore={5}
           itemKey="car"
         />

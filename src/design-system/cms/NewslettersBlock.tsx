@@ -46,15 +46,12 @@ function SuccessMessage() {
   return (
     <div
       className="flex h-full flex-1 flex-col items-center justify-center text-center"
-      data-testid="success-message"
-      role="status"
-      aria-live="polite"
-      aria-atomic="true">
-      <CheckIcon className="mb-4 h-12 w-12 fill-green-500" aria-hidden="true" />
+      data-testid="success-message">
+      <CheckIcon className="mb-4 h-12 w-12 fill-green-500" />
 
-      <h2 className="mb-4 text-xl font-bold text-gray-800">
+      <h3 className="mb-4 text-xl font-bold text-gray-800">
         <Trans>Merci de votre inscription !</Trans>
-      </h2>
+      </h3>
 
       <p className="text-gray-600">
         <Trans>
@@ -193,10 +190,9 @@ export default function NewslettersBlock() {
   if (!isFrench) return null
 
   return (
-    <section
+    <div
       className="rainbow-border w-full rounded-xl bg-white p-8 md:w-4/6"
-      aria-labelledby="newsletter-title"
-      aria-describedby="newsletter-description">
+      aria-live="polite">
       {isFetchingNewsletterSubscriptions && <BlockSkeleton />}
 
       {!isFetchingNewsletterSubscriptions ? (
@@ -204,23 +200,19 @@ export default function NewslettersBlock() {
           <SuccessMessage />
         ) : (
           <>
-            <h2
-              id="newsletter-title"
-              className="mb-2 text-lg font-semibold text-gray-900">
+            <h3 className="mb-2">
               <Trans>
                 Vous souhaitez recevoir nos derniers articles directement ?
               </Trans>
-            </h2>
+            </h3>
 
-            <p
-              id="newsletter-description"
-              className="mb-6 flex items-center text-sm text-gray-600">
+            <p className="mb-6 flex items-center">
               <CheckIcon
                 className="mr-2 h-4 w-4 stroke-green-500"
-                aria-hidden="true"
+                aria-hidden
               />
 
-              <span>
+              <span className="text-sm text-gray-600">
                 {mainNewsletter?.totalSubscribers.toLocaleString(locale) ?? 0}{' '}
                 <Trans>personnes inscrites</Trans>
               </span>
@@ -231,23 +223,20 @@ export default function NewslettersBlock() {
               className="flex h-full flex-col items-start"
               onSubmit={handleSubmit(onSubmit)}
               noValidate
-              data-testid="newsletter-form"
-              aria-labelledby="newsletter-title"
-              aria-describedby="newsletter-description">
+              data-testid="newsletter-form">
               <div className="mb-4 flex w-full flex-col gap-2">
                 <fieldset
                   className="flex flex-col gap-2"
                   aria-describedby={
-                    isNewsletterError ? 'newsletter-error' : 'newsletter-help'
+                    isNewsletterError ? 'newsletter-error' : undefined
                   }
-                  aria-invalid={isNewsletterError ? 'true' : 'false'}>
+                  aria-invalid={isNewsletterError ? 'true' : undefined}>
                   <legend className="sr-only">
                     <Trans>
                       Sélectionnez les infolettres auxquelles vous souhaitez
                       vous inscrire
                     </Trans>
                   </legend>
-
                   <CheckboxInput
                     label={
                       <p className="mb-0 text-sm">
@@ -266,11 +255,6 @@ export default function NewslettersBlock() {
                     {...register(SEASONAL_NEWSLETTER_LABEL)}
                     error={errors[SEASONAL_NEWSLETTER_LABEL]?.message}
                     data-testid="newsletter-saisonniere-checkbox"
-                    aria-describedby={
-                      !isVerified && !!getValues(SEASONAL_NEWSLETTER_LABEL)
-                        ? 'verification-required'
-                        : undefined
-                    }
                   />
 
                   <CheckboxInput
@@ -278,7 +262,7 @@ export default function NewslettersBlock() {
                       <p className="mb-0 text-sm">
                         <span>Nos Gestes Transports</span> -{' '}
                         <span className="text-gray-700">
-                          <Trans>4 infolettres l'impact des transports</Trans>
+                          <Trans>4 infolettres l’impact des transports</Trans>
                         </span>
                       </p>
                     }
@@ -288,11 +272,6 @@ export default function NewslettersBlock() {
                     {...register(TRANSPORTS_NEWSLETTER_LABEL)}
                     error={errors[TRANSPORTS_NEWSLETTER_LABEL]?.message}
                     data-testid="newsletter-transports-checkbox"
-                    aria-describedby={
-                      !isVerified && !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
-                        ? 'verification-required'
-                        : undefined
-                    }
                   />
 
                   <CheckboxInput
@@ -300,7 +279,7 @@ export default function NewslettersBlock() {
                       <p className="mb-0 text-sm">
                         <span>Nos Gestes Logement</span> -{' '}
                         <span className="text-gray-700">
-                          <Trans>5 infolettres sur l'impact du logement</Trans>
+                          <Trans>5 infolettres sur l’impact du logement</Trans>
                         </span>
                       </p>
                     }
@@ -310,35 +289,21 @@ export default function NewslettersBlock() {
                     {...register(LOGEMENT_NEWSLETTER_LABEL)}
                     error={errors[LOGEMENT_NEWSLETTER_LABEL]?.message}
                     data-testid="newsletter-logement-checkbox"
-                    aria-describedby={
-                      !isVerified && !!getValues(LOGEMENT_NEWSLETTER_LABEL)
-                        ? 'verification-required'
-                        : undefined
-                    }
                   />
 
                   {isNewsletterError && (
                     <p
                       id="newsletter-error"
                       data-testid="newsletter-error"
-                      className="mt-4 mb-0 rounded border border-red-200 bg-red-50 p-2 text-sm font-medium text-red-700"
+                      className="mt-4 mb-0 text-sm font-medium text-red-700"
                       role="alert"
-                      aria-live="assertive"
-                      aria-atomic="true">
+                      aria-live="polite">
                       <Trans>
                         Veuillez sélectionner au moins une infolettre.
                       </Trans>
                     </p>
                   )}
-
-                  <p id="newsletter-help" className="sr-only">
-                    <Trans>
-                      Cochez les cases correspondant aux infolettres auxquelles
-                      vous souhaitez vous inscrire.
-                    </Trans>
-                  </p>
                 </fieldset>
-
                 <div className="mt-10 flex w-full flex-col gap-8 md:flex-row">
                   <div className="w-full">
                     <EmailInput
@@ -347,33 +312,11 @@ export default function NewslettersBlock() {
                         required: t('Veuillez renseigner un email.'),
                       })}
                       aria-label={t('Entrez votre adresse email')}
-                      aria-required="true"
-                      aria-invalid={errors.email ? 'true' : 'false'}
-                      aria-describedby={
-                        errors.email ? 'email-error' : 'email-help'
-                      }
                       error={errors.email?.message}
                       data-cypress-id="fin-email-input"
                       data-testid="newsletter-email-input"
                       className="h-full"
                     />
-
-                    {errors.email && (
-                      <p
-                        id="email-error"
-                        className="mt-2 text-sm text-red-700"
-                        role="alert"
-                        aria-live="polite">
-                        {errors.email.message}
-                      </p>
-                    )}
-
-                    <p id="email-help" className="sr-only">
-                      <Trans>
-                        Entrez votre adresse email pour recevoir les infolettres
-                        sélectionnées.
-                      </Trans>
-                    </p>
 
                     {isError && (
                       <DefaultSubmitErrorMessage className="mt-2 text-sm" />
@@ -384,21 +327,8 @@ export default function NewslettersBlock() {
                     size="lg"
                     className="self-start"
                     type="submit"
-                    disabled={isPending}
-                    aria-describedby={isPending ? 'submit-loading' : undefined}
                     data-testid="newsletter-submit-button">
-                    {isPending ? (
-                      <>
-                        <span aria-hidden="true">
-                          <Trans>S'inscrire</Trans>
-                        </span>
-                        <span id="submit-loading" className="sr-only">
-                          <Trans>Inscription en cours...</Trans>
-                        </span>
-                      </>
-                    ) : (
-                      <Trans>S'inscrire</Trans>
-                    )}
+                    <Trans>S'inscrire</Trans>
                   </Button>
                 </div>
               </div>
@@ -406,6 +336,6 @@ export default function NewslettersBlock() {
           </>
         )
       ) : null}
-    </section>
+    </div>
   )
 }

@@ -24,7 +24,6 @@ type Props = {
   hasAbortButton?: boolean
   buttons?: ReactNode
   className?: string
-  ariaLabel: string
 }
 
 export default function Modal({
@@ -36,7 +35,6 @@ export default function Modal({
   hasAbortButton = true,
   buttons,
   className,
-  ariaLabel,
   ...props
 }: Props) {
   const [isVisible, setIsVisible] = useState(false)
@@ -62,9 +60,6 @@ export default function Modal({
 
   return (
     <ModalComponent
-      aria={{
-        ariaLabel,
-      }}
       isOpen={isOpen}
       onRequestClose={!isLoading ? closeDelayed : undefined}
       className={twMerge(

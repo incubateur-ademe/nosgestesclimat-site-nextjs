@@ -10,22 +10,20 @@ export default function AnswerList() {
 
   const { getCategory, categories } = useEngine()
   return (
-    <section aria-labelledby="answer-list-heading">
-      <h2 id="answer-list-heading" className="flex items-center">
+    <div>
+      <h2 className="flex items-center">
         <AnswersIcon className="fill-primary-700 mr-3" />
 
         <Trans>Mes réponses</Trans>
       </h2>
 
-      <ul role="list" className="mt-4 list-none p-0">
-        {categories.map((category) =>
-          relevantAnsweredQuestions.find(
-            (question) => getCategory(question) === category
-          ) ? (
-            <Category key={category} category={category} />
-          ) : null
-        )}
-      </ul>
-    </section>
+      {categories.map((category) =>
+        relevantAnsweredQuestions.find(
+          (question) => getCategory(question) === category
+        ) ? (
+          <Category key={category} category={category} />
+        ) : null
+      )}
+    </div>
   )
 }

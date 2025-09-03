@@ -24,12 +24,7 @@ const ModalWrapper = (args: any) => {
   return (
     <>
       <Button onClick={openModal}>Ouvrir la modale</Button>
-      <Modal
-        {...args}
-        ariaLabel="Modale storybook"
-        isOpen={isOpen}
-        closeModal={closeModal}
-      />
+      <Modal {...args} isOpen={isOpen} closeModal={closeModal} />
     </>
   )
 }

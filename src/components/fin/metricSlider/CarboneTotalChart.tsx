@@ -93,7 +93,7 @@ export default function CarboneTotalChart({
                 thousandsSeparator=" "
               />
             </strong>
-             
+
             <span className="text-lg md:text-3xl lg:text-4xl lg:leading-tight">
               {unit}
             </span>

@@ -24,7 +24,7 @@ export default function SubcategoryListItem({
     1 - (categoryValue - numericValue) / categoryValue
 
   return (
-    <li className="p-3" role="listitem">
+    <li className="p-3">
       <div className="flex items-baseline gap-4">
         {/* @bjlaa: flex w-4 is required here because of a bug of react-easy-emoji that creates a duplicate empty element */}
         <Emoji className="flex w-4">{icons}</Emoji>
@@ -38,11 +38,7 @@ export default function SubcategoryListItem({
             </div>
           </div>
           <div className="mt-2">
-            <div
-              role="img"
-              aria-label={`Part de la sous-catégorie: ${Math.round(
-                percentageOfCategoryValue * 100
-              )}%`}>
+            <div>
               <div
                 className="bg-primary-700 h-[6px] rounded-xl"
                 style={{ width: `calc(${percentageOfCategoryValue} * 100%)` }}

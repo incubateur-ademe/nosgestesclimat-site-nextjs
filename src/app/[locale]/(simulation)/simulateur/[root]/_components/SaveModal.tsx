@@ -4,7 +4,6 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import Modal from '@/design-system/modals/Modal'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
@@ -27,8 +26,6 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
     useState(false)
 
   const currentSimulation = useCurrentSimulation()
-
-  const { t } = useClientTranslation()
 
   const { user, updateEmail } = useUser()
 
@@ -96,10 +93,6 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
   return (
     <Modal
       isOpen={isOpen}
-      ariaLabel={t(
-        'simulateur.saveModal.title',
-        'Fenêtre modale de sauvegarde de test'
-      )}
       closeModal={closeModal}
       hasAbortButton={false}
       buttons={

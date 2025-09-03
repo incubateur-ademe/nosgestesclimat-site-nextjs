@@ -1,7 +1,8 @@
 import ChevronRight from '@/components/icons/ChevronRight'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { motion } from 'framer-motion'
 import type { ReactNode } from 'react'
-import { useId, useState } from 'react'
+import { useState } from 'react'
 
 export type AccordionItemType = {
   title: ReactNode
@@ -10,7 +11,6 @@ export type AccordionItemType = {
   className?: string
   isReadOnly?: boolean
   onClick?: () => void
-  ariaLabel?: string
 }
 
 export default function AccordionItem({
@@ -19,29 +19,29 @@ export default function AccordionItem({
   content,
   isReadOnly = false,
   onClick,
-  ariaLabel,
 }: AccordionItemType) {
   const [isOpen, setIsOpen] = useState(false)
-  const buttonId = useId()
-  const panelId = useId()
+
+  const { t } = useClientTranslation()
 
   return (
-    <li role="listitem">
+    <li>
       <button
-        type="button"
-        id={buttonId}
-        aria-label={ariaLabel ?? name}
         onClick={() => {
-          if (isReadOnly) return
-          setIsOpen((prevState) => !prevState)
+          if (!isReadOnly) {
+            setIsOpen((prevState) => !prevState)
+          }
           if (onClick) {
             onClick()
           }
         }}
         className={`relative z-10 flex w-full items-end justify-between py-2 ${isReadOnly ? 'cursor-default!' : ''}`}
         aria-disabled={isReadOnly}
-        aria-expanded={isOpen}
-        aria-controls={panelId}>
+        aria-label={
+          isReadOnly
+            ? t('{{name}} lecture seule', { name })
+            : t('{{name}} menu déroulant', { name })
+        }>
         <div className="flex flex-1 items-center gap-4">{title}</div>
 
         <div className="flex items-center gap-4">
@@ -55,10 +55,6 @@ export default function AccordionItem({
 
       {isOpen && (
         <motion.div
-          id={panelId}
-          role="region"
-          aria-labelledby={buttonId}
-          tabIndex={-1}
           initial={{ opacity: 0.6, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           className="z-0">

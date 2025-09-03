@@ -6,7 +6,6 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import ConfirmationModal from '@/design-system/modals/ConfirmationModal'
 import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { KeyboardEvent } from 'react'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -36,8 +35,6 @@ export default function ToggleField({
 }: Props) {
   const [isEnabled, setIsEnabled] = useState<boolean>(value)
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false)
-
-  const { t } = useClientTranslation()
 
   const handleMouseEvent = () => {
     setIsEnabled((prev) => !prev)
@@ -121,10 +118,6 @@ export default function ToggleField({
       </div>
       {isConfirmingDelete && (
         <ConfirmationModal
-          ariaLabel={t(
-            'organisations.additionalQuestions.deletion.modal.ariaLabel',
-            'Fenêtre de confirmation de suppression de la question personnalisée'
-          )}
           onConfirm={handleDelete}
           closeModal={() => setIsConfirmingDelete(false)}
           isLoading={isLoadingUpdate}>

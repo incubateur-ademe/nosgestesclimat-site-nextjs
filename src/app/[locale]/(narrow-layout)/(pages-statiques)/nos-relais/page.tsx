@@ -1,9 +1,10 @@
 import type { PartnerType } from '@/adapters/cmsClient'
 import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
-import CategoryTabs from '@/components/filtering/CategoryTabs'
+import CategoryFilters from '@/components/filtering/CategoryFilters'
 import Trans from '@/components/translation/trans/TransServer'
 import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
 import InlineLink from '@/design-system/inputs/InlineLink'
+import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -11,9 +12,9 @@ import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { fetchPartners } from '@/services/cms/fetchPartners'
 import type { DefaultPageProps } from '@/types'
+import { encodeDottedNameAsURI } from '@/utils/format/encodeDottedNameAsURI'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
-import PartnersDisplay from './_components/PartnersDisplay'
 
 export const generateMetadata = getCommonMetadata({
   title: t('Nos relais - Nos Gestes Climat'),
@@ -115,7 +116,7 @@ export default async function OurPartners({
 
       {partnersByCategories && (
         <>
-          <CategoryTabs
+          <CategoryFilters
             categories={Object.keys(partnersByCategories).map(
               (category: string) => ({
                 title: category,
@@ -123,12 +124,49 @@ export default async function OurPartners({
                 count: partnersByCategories[category].length,
               })
             )}
-            className="mb-6">
-            <PartnersDisplay
-              partnersByCategories={partnersByCategories}
-              categoryFilter={categoryFilter}
-            />
-          </CategoryTabs>
+            className="mb-6"
+          />
+          {Object.keys(partnersByCategories)
+            .filter((category: string) =>
+              typeof categoryFilter !== 'undefined'
+                ? categoryFilter === encodeDottedNameAsURI(category)
+                : true
+            )
+            .map((category: string) => (
+              <div key={category} className="mb-16">
+                <h2>{category}</h2>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                  {partnersByCategories[category].map((partner) => (
+                    <Card
+                      key={partner.name}
+                      href={partner.link}
+                      tag="a"
+                      className="bg-primary-50 flex flex-col justify-between border-none no-underline"
+                      target="_blank">
+                      <Image
+                        src={partner.imageSrc.trim()}
+                        width="100"
+                        height="100"
+                        className="mx-auto mb-4 h-36 w-2/3 object-contain"
+                        alt={partner.name}
+                      />
+                      <section>
+                        <p className="mb-1 font-bold">{partner.name}</p>
+                        <p className="my-0 text-sm underline">
+                          {' '}
+                          {
+                            partner.link
+                              .replace('https://', '')
+                              .replace('www.', '')
+                              .split('/')[0]
+                          }
+                        </p>
+                      </section>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            ))}
         </>
       )}
     </div>

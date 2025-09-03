@@ -40,7 +40,7 @@ export default function HorizontalBarChartItem({
         )}
       </div>
 
-      <div className="mr-4 flex-1" aria-hidden>
+      <div className="mr-4 flex-1">
         <BarChart
           type="horizontal"
           value={`${percentageOfTotalValue}%`}

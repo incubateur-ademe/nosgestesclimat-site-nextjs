@@ -2,6 +2,7 @@
 
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
+import CloseIcon from '@/components/icons/Close'
 import Trans from '@/components/translation/trans/TransClient'
 import { filterRelevantMissingVariables } from '@/helpers/actions/filterRelevantMissingVariables'
 import {
@@ -13,6 +14,7 @@ import {
 import { checkIfDottedNameShouldNotBeIgnored } from '@/publicodes-state/helpers/checkIfDottedNameShouldNotBeIgnored'
 import type { Action, MissingVariables } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { motion } from 'framer-motion'
 import { useEffect } from 'react'
 
 type Props = {
@@ -76,7 +78,21 @@ export default function ActionForm({
   if (!currentQuestion || !currentCategory) return null
 
   return (
-    <div aria-live="polite" className="text-left">
+    <motion.div
+      initial={{ opacity: 0, y: '1rem' }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      aria-live="polite"
+      className="bg-primary-100 rounded-xl border-none p-4 pr-10 text-left shadow-lg">
+      <button
+        className="absolute top-3 right-4"
+        onClick={() => setActionWithFormOpen('')}>
+        <CloseIcon />
+        <span className="sr-only">
+          <Trans>Fermer</Trans>
+        </span>
+      </button>
+
       <Question question={currentQuestion} key={currentQuestion} />
 
       {!isActionApplicable && (
@@ -97,6 +113,6 @@ export default function ActionForm({
         isEmbedded
         remainingQuestions={remainingQuestions}
       />
-    </div>
+    </motion.div>
   )
 }

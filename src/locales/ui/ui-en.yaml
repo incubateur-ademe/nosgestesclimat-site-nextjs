@@ -214,6 +214,7 @@ entries:
   Comparez vos résultats avec votre famille ou un groupe d’ami·e·s: Compare your results with your family or a group of friends
   publicodes.Tutoriel.slide1.p1: It's a fact that the climate is warming because of human activity. Everything we consume, use and then throw away requires materials and energy. Whether it's during the production, use or end-of-life phase of the good or service. So all our activities contribute to greenhouse gas emissions. Some a great deal, others very little. But what is our impact, as individual citizens?
   publicodes.Tutoriel.slide1.p1.lock: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
+  Voir plus d'informations: See more information
   'Revenir à ma région par défaut ': 'Return to my default region '
   Revoir le tutoriel: Review the tutorial
   'Vous faites cette simulation depuis :': 'You can run this simulation from :'
@@ -238,6 +239,7 @@ entries:
   Comment agir ?: What can you do?
   Ajouter: Add
   'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': "Of course, some things are shared (in my home with my family, the car with my carpoolers): this will be taken into account when calculating your carbon footprint, so don't worry!"
+  Détailler mes trajets: Detail my journeys
   Retour à la liste des nouveautes: Back to the list of new products
   Nos outils: Our tools
   Documentations: Documentation
@@ -283,8 +285,8 @@ entries:
   Oups ! Nous n'avons pas trouvé votre groupe: Oops! We couldn't find your group
   components.localisation.Localisation.warnMessage2: We were unable to detect your simulation country, so the French model is proposed by default.
   components.localisation.Localisation.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut.
-  publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} shares available, '
-  publicodes.ActionsOptionsBar.actionsRecap.lock: '{{numberOfAvailableFinalActions}} actions disponibles, '
+  publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} shares available,'
+  publicodes.ActionsOptionsBar.actionsRecap.lock: '{{numberOfAvailableFinalActions}} actions disponibles,'
   components.localisation.Localisation.warnMessage: For the moment, there is no calculation model for {{countryName}}, the French model is proposed by default.
   components.localisation.Localisation.warnMessage.lock: Pour le moment, il n'existe pas de modèle de calcul pour {{countryName}}, le modèle Français vous est proposé par défaut.
   Lien personnalisé & iframes: Custom links & iframes
@@ -814,6 +816,7 @@ entries:
   Réduire la consommation de viande: Reducing meat consumption
   Privilégier les produits d'occasion: Favour second-hand products
   Empreinte eau: Water footprint
+  Chemisier: Blouse
   Basé sur les données de l’ADEME: Based on ADEME data
   Découvrir la documentation: Discover the documentation
   Connaissez-vous votre empreinte écologique ?: Do you know your ecological footprint?
@@ -835,6 +838,7 @@ entries:
   Accélérons l’impact collectif avec Nos Gestes Climat !: Accelerate your collective impact with Nos Gestes Climat!
   Mobilisez votre entourage pour la planète !: Get your friends and family involved in helping the planet!
   En savoir plus sur l'empreinte eau: Find out more about our water footprint
+  Ordinateur: Computer
   'Transports : les modes à fuir, ceux à chérir': 'Transport: modes to avoid, those to cherish'
   Un modèle de calcul fiable: A reliable calculation model
   Un calculateur, deux empreintes: One calculator, two footprints
@@ -842,8 +846,10 @@ entries:
   Impressionnant, non ?: Impressive, isn't it?
   S’engager collectivement autour des enjeux du climat: Making a collective commitment to climate issues
   Un aller-retour Paris-Athènes en avion représente <2>800 kg de CO2e</2>.: A round trip from Paris to Athens by plane represents <2>800 kg of CO2e</2>.
+  Café: Coffee
   Et la vôtre ?: What about yours?
   'Entreprises, collectivités, associations, écoles ou festivals : <2>engagez votre organisation dans une démarche durable</2> avec une campagne Nos Gestes Climat. Sensibilisez vos parties prenantes à l’empreinte carbone et à l’empreinte eau <6>grâce à nos outils clés en main</6>.': "Businesses, local authorities, associations, schools or festivals: <2>get your organisation involved in a sustainable approach</2> with an Nos Gestes Climat campaign. Raise your stakeholders' awareness of your carbon and water footprints <6>using our turnkey tools</6>."
+  Voiture: Car
   Consommation: Consumption
   Comment définir l'empreinte carbone ?: How do you define a carbon footprint?
   Calculer son empreinte carbone: Calculate your carbon footprint
@@ -967,8 +973,12 @@ entries:
   La valeur pour ce champ est comprise entre: The value for this field is between
   En participant vous acceptez que vos résultats soient partagés anonymement avec cette organisation.: By taking part, you agree to your results being shared anonymously with this organisation.
   Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.: We are talking here about the "Organisations" and "Challenge your friends" modes. This section is generated via Metabase.
+  Empreinte eau, voir le détail ci-dessous: Water footprint, see details below
+  Empreinte carbone, voir le détail ci-dessous: Carbon footprint, see details below
+  Empreinte eau, sélectionné, voir le détail ci-dessous: Water footprint, selected, see details below
   Affichez le détail de votre empreinte carbone ou eau en cliquant sur les cartes ci-dessus.: View details of your carbon or water footprint by clicking on the maps above.
   "C'est pourtant bien l'eau qui sert à produire ce que vous consommez : votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.": 'Yet it is water that is used to produce what you consume: your water footprint is the impact of your lifestyle on natural water cycles.'
+  Empreinte carbone, sélectionné, voir le détail ci-dessous: Carbon footprint, selected, see details below
   Ressources: Resources
   Qui sommes-nous: Who we are
   Relais et partenaires: Relays and partners
@@ -1028,9 +1038,14 @@ entries:
   Navigation principale: Main navigation
   Page précédente: Previous page
   Menu principal: Main menu
+  '{{name}} menu déroulant': '{{name}} drop-down menu'
   Chemin de navigation: Navigation path
+  Voir le détail ci-dessous: See details below
   Page {{page}}: Page {{page}}
   Page suivante: Next page
+  Sélectionner l'empreinte carbone, voir le détail ci-dessous: Select carbon footprint, see details below
+  Menu déroulant: Drop-down menu
+  '{{name}} lecture seule': '{{name}} read only'
   Ouvrir: Open
   Plusieurs milliers d’organisations: Several thousand organisations
   Vous relayez Nos Gestes Climat et souhaitez apparaître dans notre galerie ?: Do you relay Nos Gestes Climat and want to appear in our gallery?
@@ -1335,69 +1350,6 @@ entries:
   Statistiques d'usage du mode "Organisations": Statistics on the use of the "Organisations" mode
   Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.: Detailed statistics on the use of Organisations mode, including the number of organisations created, participants and actions completed.
   Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.: Statistics on the use of Challenge mode, including the number of challenges created, participants and results shared.
-  common.interactiveIllustration.item.car: Car
-  common.interactiveIllustration.item.car.lock: Voiture
-  common.interactiveIllustration.item.computer: Computer
-  common.interactiveIllustration.item.computer.lock: Ordinateur
-  common.interactiveIllustration.pulsatingDotLabel: "{{itemTitle}} : score de consommation carbone de {{carbonScore}} sur 5 et score de consommation d'eau de {{waterScore}} out of 5"
-  common.interactiveIllustration.pulsatingDotLabel.lock: "{{itemTitle}} : score de consommation carbone de {{carbonScore}} sur 5 et score de consommation d'eau de {{waterScore}} sur 5"
-  Ouvrir le menu: Open the menu
-  simulator.customQuestions.voiture.deleteItem: Delete this route
-  simulator.customQuestions.voiture.deleteItem.lock: Supprimer ce trajet
-  actions.form.modal.ariaLabel: Action form modal window
-  actions.form.modal.ariaLabel.lock: Fenêtre modale du formulaire d'action
-  common.modal.confirmation.title: Action confirmation modal window
-  common.modal.confirmation.title.lock: Fenêtre modale de confirmation d'action
-  Choix de la métrique: Choice of metric
-  common.navigation.nextQuestion.finish.label: Complete the test and go to the results page
-  common.navigation.nextQuestion.finish.label.lock: Terminer le test et accéder à la page de résultats
-  simulator.customQuestions.voiture.open: Detail my journeys
-  simulator.customQuestions.voiture.open.lock: Détailler mes trajets
-  simulator.mosaicNumberInput: 'Remove an item : {{title}}'
-  simulator.mosaicNumberInput.lock: 'Retirer un élément : {{title}}'
-  simulateur.saveModal.title: Test backup mode window
-  simulateur.saveModal.title.lock: Fenêtre modale de sauvegarde de test
-  results.mainSubcategories.mainSubcategory.seeDetail: '{{title}}see details below'
-  results.mainSubcategories.mainSubcategory.seeDetail.lock: '{{title}}, voir le détail ci-dessous'
-  group.results.rankingMember.delete.modal.ariaLabel: Modal window confirming deletion of group member
-  group.results.rankingMember.delete.modal.ariaLabel.lock: Fenêtre modale de confirmation de suppression du membre du groupe
-  common.navigation.nextQuestion.pass.label: Move on to the next question
-  common.navigation.nextQuestion.pass.label.lock: Passer et aller à la question suivante
-  cookieConsent.banner.title: Modal window for managing cookies
-  cookieConsent.banner.title.lock: Fenêtre modale de gestion des cookies
-  common.burgerMenu.title: Close the navigation menu
-  common.burgerMenu.title.lock: Fermer le menu de navigation
-  common.navigation.previousButton.label: Go to previous question
-  common.navigation.previousButton.label.lock: Aller à la question précédente
-  simulator.label.moreInfoButton: For more information, click here {{label}}
-  simulator.label.moreInfoButton.lock: Plus d'informations - {{label}}
-  results.informationBlock.carbon.openButton: See details of the 2-tonne target for 2050
-  results.informationBlock.carbon.openButton.lock: Voir le détail de l'objectif 2 tonnes en 2050
-  common.interactiveIllustration.item.shirt: Blouse
-  common.interactiveIllustration.item.shirt.lock: Chemisier
-  Fenêtre modale de partage: Modal sharing window
-  results.informationBlock.water.openButton: See the explanation of the water footprint
-  results.informationBlock.water.openButton.lock: Voir l'explication sur l'empreinte eau
-  actions.form.custom.modal.ariaLabel: Customised action form modal window
-  actions.form.custom.modal.ariaLabel.lock: Fenêtre modale du formulaire d'action personnalisée
-  common.buttons.close: Close
-  common.buttons.close.lock: Fermer
-  organisations.polls.settings.confirmDeletion: Modal window confirming deletion of the campaign
-  organisations.polls.settings.confirmDeletion.lock: Fenêtre modale de confirmation de suppression de la campagne
-  common.navigation.nextQuestion.next.label: Go to next question
-  common.navigation.nextQuestion.next.label.lock: Aller à la question suivante
-  organisations.emailVerificationModal.title: Email confirmation modal window
-  organisations.emailVerificationModal.title.lock: Fenêtre modale de confirmation d'email
-  simulator.topBar.totalButtons.saveButton.ariaLabel: Save and resume later
-  simulator.topBar.totalButtons.saveButton.ariaLabel.lock: Enregistrer et reprendre plus tard
-  results.informationBlock.carbon.closeButton: Close the water footprint explanation
-  results.informationBlock.carbon.closeButton.lock: Fermer l'explication sur l'empreinte eau
-  organisations.additionalQuestions.deletion.modal.ariaLabel: Customised question deletion confirmation window
-  organisations.additionalQuestions.deletion.modal.ariaLabel.lock: Fenêtre de confirmation de suppression de la question personnalisée
-  cookieConsent.board.title: Cookie management panel
-  cookieConsent.board.title.lock: Panneau de gestion des cookies
-  common.interactiveIllustration.item.coffee: Café
-  common.interactiveIllustration.item.coffee.lock: Café
   blog.homepage.defaultDescription: Discover practical tips for reducing your ecological footprint.
   blog.homepage.defaultDescription.lock: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
   common.slider.buttons.next: Go to slide number {{number}}
@@ -1408,13 +1360,5 @@ entries:
   blog.homePage.dynamicPageNumber.lock: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
   blog.homepage.defaultTitle: Blog, discover our articles and advice on the climate - Nos Gestes Climat
   blog.homepage.defaultTitle.lock: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
-  4 infolettres l'impact des transports: 4 newsletters the impact of transport
-  Voir plus d'informations: See more information
-  5 infolettres sur l'impact du logement: 5 newsletters on the impact of housing
-  ⚠️ La vérification de votre compte est requise pour vous inscrire aux infolettres.: ⚠️ Verification of your account is required to sign up for newsletters.
-  Entrez votre adresse email pour recevoir les infolettres sélectionnées.: Enter your email address to receive the selected newsletters.
   documentation.total_category_block.title: of the total, see documentation
   documentation.total_category_block.title.lock: du total, voir la documentation
-  Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.: Tick the boxes corresponding to the newsletters you wish to subscribe to.
-  Inscription en cours...: Registration in progress...
-  Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie: Select this filter to display only items in this category

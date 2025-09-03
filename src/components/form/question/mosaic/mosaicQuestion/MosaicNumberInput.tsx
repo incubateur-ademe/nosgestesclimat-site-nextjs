@@ -1,7 +1,6 @@
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 type Props = {
@@ -14,7 +13,7 @@ type Props = {
   parentMosaic: string
 }
 
-export default function MosaicNumberInput({
+export default function NumberInput({
   question,
   title,
   icons,
@@ -25,8 +24,6 @@ export default function MosaicNumberInput({
   ...props
 }: Props) {
   const { value, isMissing, plafond } = useRule(question)
-
-  const { t } = useClientTranslation()
 
   const isPlusDisabled =
     value !== undefined &&
@@ -63,13 +60,6 @@ export default function MosaicNumberInput({
           disabled={value === 0 || isMissing}
           onClick={() => setValue(Number(value) - 1)}
           size="sm"
-          title={t(
-            'simulator.mosaicNumberInput',
-            'Ajouter un élémént : {{title}}',
-            {
-              title,
-            }
-          )}
           className="z-10 h-8 w-8 items-center justify-center p-0 md:h-8 md:w-8">
           <span className="mb-[1px] block">-</span>
         </Button>
@@ -87,10 +77,6 @@ export default function MosaicNumberInput({
         <Button
           disabled={isPlusDisabled}
           onClick={() => setValue(isMissing ? 1 : Number(value) + 1)}
-          title={t(
-            'simulator.mosaicNumberInput',
-            'Retirer un élément : {{title}}'
-          )}
           size="sm"
           className="z-10 h-8 w-8 items-center justify-center p-0 md:h-8 md:w-8">
           <span className="mb-[1px] block">+</span>

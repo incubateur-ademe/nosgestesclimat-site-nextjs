@@ -1,6 +1,6 @@
 'use client'
 
-import CategoryTabs from '@/components/filtering/CategoryTabs'
+import CategoryFilters from '@/components/filtering/CategoryFilters'
 import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
 import getActions from '@/helpers/actions/getActions'
 import {
@@ -88,38 +88,39 @@ export default function ActionsContent() {
       ref={containerRef}
       className={`${
         isSimulationWellStarted ? '' : 'pointer-events-none opacity-90'
-      } relative text-center`}
+      } text-center`}
       aria-hidden={isSimulationWellStarted ? false : true}>
-      <OptionBar
-        setRadical={setRadical}
-        radical={radical}
-        actions={actionsFilteredCategorically}
-      />
-
-      <CategoryTabs
-        categories={categories.map((category) => ({
-          title: capitalizeString(category) ?? '',
-          dottedName: category,
-          count: actions.filter(
-            (action) =>
-              action.dottedName.startsWith(category) &&
-              !(action as Action & { isIrrelevant: boolean }).isIrrelevant &&
-              action.nodeValue !== 0
-          ).length,
-        }))}>
-        <Actions
-          actions={
-            actionsFilteredCategorically as (Action & {
-              isIrrelevant: boolean
-            })[]
-          }
-          rules={rules}
-          radical={radical}
-          key={`update-key-${category}`}
+      <div className="relative">
+        <CategoryFilters
+          categories={categories.map((category) => ({
+            title: capitalizeString(category) ?? '',
+            dottedName: category,
+            count: actions.filter(
+              (action) =>
+                action.dottedName.startsWith(category) &&
+                !(action as Action & { isIrrelevant: boolean }).isIrrelevant &&
+                action.nodeValue !== 0
+            ).length,
+          }))}
         />
 
-        <AllerPlusLoin />
-      </CategoryTabs>
+        <OptionBar
+          setRadical={setRadical}
+          radical={radical}
+          actions={actionsFilteredCategorically}
+        />
+      </div>
+
+      <Actions
+        actions={
+          actionsFilteredCategorically as (Action & { isIrrelevant: boolean })[]
+        }
+        rules={rules}
+        radical={radical}
+        key={`update-key-${category}`}
+      />
+
+      <AllerPlusLoin />
     </div>
   )
 }

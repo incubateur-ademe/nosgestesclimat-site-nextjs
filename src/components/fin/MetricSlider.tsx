@@ -19,7 +19,7 @@ export default function MetricSlider({
 }: Props) {
   const [isSticky, setIsSticky] = useState(false)
 
-  const { currentMetric, setCurrentMetric } = useCurrentMetric()
+  const { currentMetric } = useCurrentMetric()
 
   const { t } = useClientTranslation()
 
@@ -59,50 +59,11 @@ export default function MetricSlider({
       ref={myElementRef}>
       <div
         className={twMerge(
-          'relative mx-auto -mt-0.5 flex w-full gap-0 px-0 transition-all duration-300',
+          'relative mx-auto -mt-0.5 flex w-full gap-0 overflow-hidden px-0 transition-all duration-300',
           isSticky
             ? 'mt-2 h-28 overflow-hidden lg:h-32'
             : 'h-28 md:h-72 lg:h-80'
-        )}
-        role="tablist"
-        tabIndex={0}
-        aria-label={t('Choix de la métrique') as string}
-        onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
-          const left = 'ArrowLeft'
-          const right = 'ArrowRight'
-          const home = 'Home'
-          const end = 'End'
-          const keys = [left, right, home, end]
-          if (!keys.includes(e.key)) return
-
-          e.preventDefault()
-          const order = [carboneMetric, eauMetric]
-          const currentIndex = order.indexOf(currentMetric)
-          let nextIndex = currentIndex
-          if (e.key === right) nextIndex = (currentIndex + 1) % order.length
-          if (e.key === left)
-            nextIndex = (currentIndex - 1 + order.length) % order.length
-          if (e.key === home) nextIndex = 0
-          if (e.key === end) nextIndex = order.length - 1
-
-          const nextMetric = order[nextIndex]
-          if (nextMetric !== currentMetric) {
-            setCurrentMetric(nextMetric)
-            const nextTabId =
-              nextMetric === carboneMetric
-                ? 'tab-metric-carbone'
-                : 'tab-metric-eau'
-            requestAnimationFrame(() => {
-              const el = document.getElementById(nextTabId)
-              el?.focus()
-            })
-
-            window.scrollTo({
-              top: 0,
-              behavior: 'smooth',
-            })
-          }
-        }}>
+        )}>
         <MetricCard
           metric={carboneMetric}
           metricTitle={{
@@ -110,11 +71,11 @@ export default function MetricSlider({
             mobile: <Trans>Empreinte carbone</Trans>,
           }}
           isSticky={isSticky}
-          tabId="tab-metric-carbone"
-          panelId="panel-metric-carbone"
-          onKeyDown={(e: React.KeyboardEvent) => {
-            // Let the tablist parent handle the keydown
-          }}>
+          aria-label={
+            currentMetric === carboneMetric
+              ? t('Empreinte carbone, sélectionné, voir le détail ci-dessous')
+              : t('Empreinte carbone, voir le détail ci-dessous')
+          }>
           <div className="w-full flex-1 px-4">
             <CarboneTotalChart isSmall={isSticky} total={carboneTotal} />
           </div>
@@ -127,11 +88,11 @@ export default function MetricSlider({
             mobile: <Trans>Empreinte eau</Trans>,
           }}
           isSticky={isSticky}
-          tabId="tab-metric-eau"
-          panelId="panel-metric-eau"
-          onKeyDown={(e: React.KeyboardEvent) => {
-            // Let the tablist parent handle the keydown
-          }}>
+          aria-label={
+            currentMetric === eauMetric
+              ? t('Empreinte eau, sélectionné, voir le détail ci-dessous')
+              : t('Empreinte eau, voir le détail ci-dessous')
+          }>
           <WaterTotalChart isSmall={isSticky} total={waterTotal} />
         </MetricCard>
       </div>

@@ -1,5 +1,4 @@
 'use client'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { ReactNode } from 'react'
 import { useContext, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -28,8 +27,6 @@ export default function PulsatingDot({
   )
 
   const [isHovered, setIsHovered] = useState(false)
-
-  const { t } = useClientTranslation()
 
   // Default open the floating info if the user is on mobile and the shouldDefaultDisplayFloatingInfo is true
   useEffect(() => {
@@ -77,15 +74,7 @@ export default function PulsatingDot({
         tabIndex={-1}
         role="button"
         onTouchStart={handleEnter}
-        aria-label={t(
-          'common.interactiveIllustration.pulsatingDotLabel',
-          "{{itemTitle}} : score de consommation carbone de {{carbonScore}} sur 5 et score de consommation d'eau de {{waterScore}} sur 5",
-          {
-            itemTitle,
-            carbonScore,
-            waterScore,
-          }
-        )}>
+        aria-hidden>
         <div
           className={twMerge(
             'bg-secondary-600 absolute inset-0 scale-[0.15] rounded-full transition-all duration-500',

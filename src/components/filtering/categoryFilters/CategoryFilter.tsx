@@ -12,37 +12,23 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { encodeDottedNameAsURI } from '@/utils/format/encodeDottedNameAsURI'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
   title: string
   dottedName: DottedName
   count: number
-  index: number
-  isActive: boolean
-
-  onTabActivate: () => void
-  categorySelected?: string
 }
 
-export default function CategoryFilter({
-  title,
-  dottedName,
-  count,
-  index,
-  isActive,
-
-  onTabActivate,
-  categorySelected,
-}: Props) {
+export default function CategoryFilter({ title, dottedName, count }: Props) {
   const router = useRouter()
+
   const { t } = useClientTranslation()
 
-  const encodedDottedName = encodeDottedNameAsURI(dottedName)
+  const categorySelected = useSearchParams().get(FILTER_SEARCH_PARAM_KEY) || ''
 
-  const isSelected =
-    categorySelected && encodedDottedName === categorySelected ? true : false
+  const encodedDottedName = encodeDottedNameAsURI(dottedName)
 
   const buildURL = () => {
     const siteURL = new URL(window.location.href)
@@ -56,47 +42,39 @@ export default function CategoryFilter({
     return siteURL.toString()
   }
 
-  const handleClick = () => {
-    onTabActivate()
-    trackEvent(trackingCategoryFilter(dottedName, window.location.pathname))
-    router.replace(buildURL(), {
-      scroll: false,
-    })
-  }
-
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault()
-      handleClick()
-    }
-  }
+  const isSelected = categorySelected === encodedDottedName
 
   return (
-    <button
-      role="tab"
-      id={`category-tab-${index}`}
-      aria-selected={isSelected}
-      aria-controls={`category-panel-${index}`}
-      tabIndex={isActive ? 0 : -1}
-      title={`${title} - ${isSelected ? t('Page active') : t('Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie')}`}
+    <li
       className={twMerge(
-        'height-[1.8rem] rounded-md border-2 border-transparent p-2 text-xs font-bold transition-colors',
-        isSelected || !categorySelected
+        'height-[1.8rem] rounded-md border-2 border-transparent transition-colors',
+        !categorySelected || isSelected
           ? `${getBackgroundLightColor(dottedName)} ${getBorderColor(dottedName)}`
-          : `bg-gray-100 hover:bg-gray-200`
+          : `bg-gray-100`
       )}
       style={{
-        backgroundColor: isSelected ? getBackgroundColor() : undefined,
-      }}
-      onClick={handleClick}
-      onKeyDown={handleKeyDown}>
-      <span className={getTextDarkColor(dottedName)}>
+        backgroundColor: getBackgroundColor(),
+      }}>
+      <button
+        title={`${title} - ${isSelected ? t('Page active') : t('Sélectionner ce filtre et afficher uniquement les actions de cette catégorie')}`}
+        className={twMerge(
+          'p-2 text-xs font-bold',
+          getTextDarkColor(dottedName)
+        )}
+        onClick={() => {
+          trackEvent(
+            trackingCategoryFilter(dottedName, window.location.pathname)
+          )
+          router.replace(buildURL(), {
+            scroll: false,
+          })
+        }}>
         {title}{' '}
         <span
           className={`ml-2 inline-block w-4 rounded-full bg-white ${getTextDarkColor(dottedName)}`}>
           {count ?? 0}
         </span>
-      </span>
-    </button>
+      </button>
+    </li>
   )
 }

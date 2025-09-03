@@ -58,7 +58,7 @@ export default function HeaderDesktop({ isSticky = true }: Props) {
   return (
     <header
       className={twMerge(
-        'h-20 items-center bg-white shadow-sm',
+        'h-20 items-center',
         isSticky ? 'sticky top-0 z-300' : ''
       )}>
       {/* Header mobile */}
