@@ -52,7 +52,7 @@ describe('Loading the simulation from the sid parameter', () => {
         beforeEach(() => {
           cy.clearLocalStorage()
 
-          cy.visit(`/simulateur/bilan?sid=${simulationId}`)
+          visit(`/simulateur/bilan?sid=${simulationId}`)
         })
 
         it('then it should load the simulation with the correct total footprint number', () => {
