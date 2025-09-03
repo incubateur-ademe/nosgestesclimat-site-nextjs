@@ -1377,8 +1377,8 @@ entries:
   common.navigation.previousButton.label: Ir a la pregunta anterior
   common.navigation.previousButton.label.lock: Aller à la question précédente
   Fenêtre modale de partage: Ventana modal para compartir
-  organisations.emailVerificationModal.title: Ventana modal de confirmación de correo
-  organisations.emailVerificationModal.title.lock: Fenêtre modale de confirmation demail
+  organisations.emailVerificationModal.title: Ventana modal de confirmación por correo electrónico
+  organisations.emailVerificationModal.title.lock: Fenêtre modale de confirmation d'email
   simulator.topBar.totalButtons.saveButton.ariaLabel: Guardar y reanudar más tarde
   simulator.topBar.totalButtons.saveButton.ariaLabel.lock: Enregistrer et reprendre plus tard
   cookieConsent.banner.title: Ventana modal para la gestión de cookies
@@ -1412,3 +1412,4 @@ entries:
   documentation.total_category_block.title.lock: du total, voir la documentation
   Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.: Marque las casillas correspondientes a los boletines a los que desea suscribirse.
   ⚠️ La vérification de votre compte est requise pour vous inscrire aux infolettres.: ⚠️ Es necesario verificar su cuenta para suscribirse a los boletines.
+  Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie: Seleccione este filtro para mostrar sólo los artículos de esta categoría
