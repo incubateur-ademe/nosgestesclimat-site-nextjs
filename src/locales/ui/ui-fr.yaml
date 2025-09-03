@@ -79,7 +79,7 @@ entries:
   publicodes.ActionTutorial.msgPrécision: Pour améliorer la précision, certaines actions vous poseront quelques questions en plus.
   publicodes.ActionTutorial.msgPrésentation: "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"
   publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
-  publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} actions disponibles,'
+  publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} actions disponibles, '
   publicodes.AllActions.msgPlusActions: <0>Nous n'avons plus d'actions chiffrées très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes pour agir autrement ⏬</1>
   publicodes.Personas.description: 'Nous les avons définis pour qu’ils représentent la diversité des cas d’usage du calculateur.<1>Toute ressemblance avec une personne existant ou ayant existé serait purement fortuite !</1>En aucune mesure, on ne peut dire qu’ils sont représentatifs de la distribution de la population française : il ne s’agit pas de coller aux statistiques de la population, mais de retrouver parmi nos dix personas au moins un qui représente chaque usage majeur et différenciant pour le calculateur. Ainsi, nous avons fait varier pour chacun d’entre eux :<3><0>Leur genre : même s’il n’influe pas sur l’empreinte, il serait étonnant de n’avoir que des personas “femmes”</0><1>Leur âge et situation personnelle / professionnelle : au moins un étudiant, un retraité, un adulte au foyer, un actif</1><2>La taille de leur foyer : de 1 personne à famille nombreuse</2><3>Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans le nord, dans le sud, les plaines, la montagne et sur une île</3><4>Leur logement : de l’appartement à la maison, du neuf à l’ancien</4><5>Leurs modes de transport : de la marche à la voiture en passant par le ferry et l’avion</5><6>Leur régime alimentaire : au moins un végétalien, un végétarien, une personne ne mangeant que du poisson, et un amateur de viande rouge</6><7>Leur tendance à l’achat : du tout occasion au tout neuf, de l’acheteur compulsif à celui ou celle qui n’achète presque rien</7><8>Leur façon de partir en vacances : mode de transport, hébergement, on trouve de tout</8><9>Leurs loisirs : de la culture, du sport, du bien-être…</9></3>'
   publicodes.Profil.locationDonnées: <0>Où sont mes données ? </0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
@@ -192,7 +192,6 @@ entries:
   Comment agir ?: Comment agir ?
   Ajouter: Ajouter
   'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': 'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !'
-  Détailler mes trajets: Détailler mes trajets
   Retour à la liste des nouveautes: Retour à la liste des nouveautes
   Documentations: Documentations
   Informations: Informations
@@ -762,8 +761,6 @@ entries:
   <0>L’empreinte eau</0> mesure la quantité totale d’eau utilisée pour produire les biens et services que nous consommons. Contrairement à l’eau domestique, <4>elle inclut l’eau invisible</4> nécessaire pour cultiver nos aliments, fabriquer nos vêtements et produire de l’énergie.: <0>L’empreinte eau</0> mesure la quantité totale d’eau utilisée pour produire les biens et services que nous consommons. Contrairement à l’eau domestique, <4>elle inclut l’eau invisible</4> nécessaire pour cultiver nos aliments, fabriquer nos vêtements et produire de l’énergie.
   Accélérons l’impact collectif avec Nos Gestes Climat !: Accélérons l’impact collectif avec Nos Gestes Climat !
   Basé sur les données de l’ADEME: Basé sur les données de l’ADEME
-  Café: Café
-  Chemisier: Chemisier
   CO₂e: CO₂e
   Connaissez-vous votre empreinte écologique ?: Connaissez-vous votre empreinte écologique ?
   Considérable, non ?: Considérable, non ?
@@ -786,14 +783,12 @@ entries:
   Lancez une campagne dans votre organisation: Lancez une campagne dans votre organisation
   Les lignes de code, les données et même une grande partie des réflexions méthodologiques derrière le calculateur sont toutes <2>accessibles</2>, ce qui permet à qui veut de <5>contribuer et améliorer l’outil</5>.: Les lignes de code, les données et même une grande partie des réflexions méthodologiques derrière le calculateur sont toutes <2>accessibles</2>, ce qui permet à qui veut de <5>contribuer et améliorer l’outil</5>.
   Mobilisez votre entourage pour la planète !: Mobilisez votre entourage pour la planète !
-  Ordinateur: Ordinateur
   S’engager collectivement autour des enjeux du climat: S’engager collectivement autour des enjeux du climat
   'Transports : les modes à fuir, ceux à chérir': 'Transports : les modes à fuir, ceux à chérir'
   Un aller-retour Paris-Athènes en avion représente <2>800 kg de CO2e</2>.: Un aller-retour Paris-Athènes en avion représente <2>800 kg de CO2e</2>.
   Un calculateur, deux empreintes: Un calculateur, deux empreintes
   Un modèle de calcul fiable: Un modèle de calcul fiable
   Voir les nouveautés: Voir les nouveautés
-  Voiture: Voiture
   À l’échelle nationale, la France s’est fixée pour objectif d’atteindre la neutralité carbone d’ici 2050, ce qui implique de réduire drastiquement les émissions dans tous les secteurs.: À l’échelle nationale, la France s’est fixée pour objectif d’atteindre la neutralité carbone d’ici 2050, ce qui implique de réduire drastiquement les émissions dans tous les secteurs.
   Calculer son empreinte carbone: Calculer son empreinte carbone
   'Calculer son empreinte carbone consiste à additionner l’ensemble des gaz à effet de serre émis par ses activités quotidiennes, en tenant compte de plusieurs facteurs comme les déplacements, l’alimentation, le logement et la consommation de biens et services. ': 'Calculer son empreinte carbone consiste à additionner l’ensemble des gaz à effet de serre émis par ses activités quotidiennes, en tenant compte de plusieurs facteurs comme les déplacements, l’alimentation, le logement et la consommation de biens et services. '
@@ -921,10 +916,6 @@ entries:
   Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.: Il est question ici des modes "Organisations" et "Challenge tes amis". Cette section est générée via Metabase.
   Affichez le détail de votre empreinte carbone ou eau en cliquant sur les cartes ci-dessus.: Affichez le détail de votre empreinte carbone ou eau en cliquant sur les cartes ci-dessus.
   "C'est pourtant bien l'eau qui sert à produire ce que vous consommez : votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau.": "C'est pourtant bien l'eau qui sert à produire ce que vous consommez : votre empreinte eau, c'est l'impact de votre mode de vie sur les cycles naturels de l'eau."
-  Empreinte carbone, sélectionné, voir le détail ci-dessous: Empreinte carbone, sélectionné, voir le détail ci-dessous
-  Empreinte carbone, voir le détail ci-dessous: Empreinte carbone, voir le détail ci-dessous
-  Empreinte eau, sélectionné, voir le détail ci-dessous: Empreinte eau, sélectionné, voir le détail ci-dessous
-  Empreinte eau, voir le détail ci-dessous: Empreinte eau, voir le détail ci-dessous
   Diffuser Nos Gestes Climat: Diffuser Nos Gestes Climat
   Qui sommes-nous: Qui sommes-nous
   Relais et partenaires: Relais et partenaires
@@ -983,18 +974,13 @@ entries:
   Pomme: Pomme
   Raisin: Raisin
   Chargement des résultats détaillés de campagne...: Chargement des résultats détaillés de campagne...
-  '{{name}} lecture seule': '{{name}} lecture seule'
-  '{{name}} menu déroulant': '{{name}} menu déroulant'
   Chemin de navigation: Chemin de navigation
-  Menu déroulant: Menu déroulant
   Menu principal: Menu principal
   Navigation principale: Navigation principale
   Ouvrir: Ouvrir
   Page {{page}}: Page {{page}}
   Page précédente: Page précédente
   Page suivante: Page suivante
-  Sélectionner l'empreinte carbone, voir le détail ci-dessous: Sélectionner l'empreinte carbone, voir le détail ci-dessous
-  Voir le détail ci-dessous: Voir le détail ci-dessous
   Découvrir: Découvrir
   Envoyez-nous votre logo via notre page de contact: Envoyez-nous votre logo via notre page de contact
   partagent Nos Gestes Climat via leur site ou des campagnes (mails, réseaux sociaux, affichage), nous permettant de sensibiliser près de 2 000 personnes chaque jour. Un grand merci à eux !: partagent Nos Gestes Climat via leur site ou des campagnes (mails, réseaux sociaux, affichage), nous permettant de sensibiliser près de 2 000 personnes chaque jour. Un grand merci à eux !
@@ -1237,9 +1223,49 @@ entries:
   Statistiques d'usage du mode "Organisations": Statistiques d'usage du mode "Organisations"
   Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.: Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.
   Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.: Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.
+  actions.form.custom.modal.ariaLabel: Fenêtre modale du formulaire d'action personnalisée
+  actions.form.modal.ariaLabel: Fenêtre modale du formulaire d'action
+  Choix de la métrique: Choix de la métrique
+  common.burgerMenu.title: Fermer le menu de navigation
+  common.buttons.close: Fermer
+  common.interactiveIllustration.item.car: Voiture
+  common.interactiveIllustration.item.coffee: Café
+  common.interactiveIllustration.item.computer: Ordinateur
+  common.interactiveIllustration.item.shirt: Chemisier
+  common.interactiveIllustration.pulsatingDotLabel: "{{itemTitle}} : score de consommation carbone de {{carbonScore}} sur 5 et score de consommation d'eau de {{waterScore}} sur 5"
+  common.modal.confirmation.title: Fenêtre modale de confirmation d'action
+  common.navigation.nextQuestion.finish.label: Terminer le test et accéder à la page de résultats
+  common.navigation.nextQuestion.next.label: Aller à la question suivante
+  common.navigation.nextQuestion.pass.label: Passer et aller à la question suivante
+  common.navigation.previousButton.label: Aller à la question précédente
+  cookieConsent.banner.title: Fenêtre modale de gestion des cookies
+  cookieConsent.board.title: Panneau de gestion des cookies
+  Fenêtre modale de partage: Fenêtre modale de partage
+  group.results.rankingMember.delete.modal.ariaLabel: Fenêtre modale de confirmation de suppression du membre du groupe
+  organisations.additionalQuestions.deletion.modal.ariaLabel: Fenêtre de confirmation de suppression de la question personnalisée
+  organisations.emailVerificationModal.title: Fenêtre modale de confirmation d'email
+  organisations.polls.settings.confirmDeletion: Fenêtre modale de confirmation de suppression de la campagne
+  Ouvrir le menu: Ouvrir le menu
+  results.informationBlock.carbon.closeButton: Fermer l'explication sur l'empreinte eau
+  results.informationBlock.carbon.openButton: Voir le détail de l'objectif 2 tonnes en 2050
+  results.informationBlock.water.openButton: Voir l'explication sur l'empreinte eau
+  results.mainSubcategories.mainSubcategory.seeDetail: '{{title}}, voir le détail ci-dessous'
+  simulateur.saveModal.title: Fenêtre modale de sauvegarde de test
+  simulator.customQuestions.voiture.deleteItem: Supprimer ce trajet
+  simulator.customQuestions.voiture.open: Détailler mes trajets
+  simulator.label.moreInfoButton: Plus d'informations - {{label}}
+  simulator.mosaicNumberInput: 'Retirer un élément : {{title}}'
+  simulator.topBar.totalButtons.saveButton.ariaLabel: Enregistrer et reprendre plus tard
   blog.homepage.defaultDescription: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
   blog.homepage.defaultTitle: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
   blog.homePage.dynamicPageNumber: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
   common.slider.buttons.next: Aller à la diapositive numéro {{number}}
   common.slider.buttons.previous: Aller à la diapositive précédente
+  ⚠️ La vérification de votre compte est requise pour vous inscrire aux infolettres.: ⚠️ La vérification de votre compte est requise pour vous inscrire aux infolettres.
+  4 infolettres l'impact des transports: 4 infolettres l'impact des transports
+  5 infolettres sur l'impact du logement: 5 infolettres sur l'impact du logement
+  Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.: Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.
   documentation.total_category_block.title: du total, voir la documentation
+  Entrez votre adresse email pour recevoir les infolettres sélectionnées.: Entrez votre adresse email pour recevoir les infolettres sélectionnées.
+  Inscription en cours...: Inscription en cours...
+  Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie: Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie
