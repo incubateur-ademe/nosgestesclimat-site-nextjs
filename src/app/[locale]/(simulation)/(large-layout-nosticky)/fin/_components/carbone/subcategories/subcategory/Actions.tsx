@@ -59,7 +59,7 @@ export default function Actions({ subcategory, noNumberedFootprint }: Props) {
       )}
       <ul className="mb-4 flex items-stretch justify-center gap-4">
         {firstThreeActions.map((action, index) => (
-          <li key={action} className="flex h-[200px] flex-1 flex-col">
+          <li key={action} className="flex flex-1 flex-col">
             <Action action={action} index={index} />
           </li>
         ))}
