@@ -33,7 +33,7 @@ export default function QuestionsWithoutSubcategory({ category }: Props) {
     })
 
   return answeredQuestionOfCategoryWithoutSubcategory.map((question) => (
-    <div
+    <li
       key={question}
       className="bg-primary-100 relative mt-2 w-full overflow-hidden rounded-xl">
       <div
@@ -45,6 +45,6 @@ export default function QuestionsWithoutSubcategory({ category }: Props) {
       <div className="pt-4 pr-4 pb-2 pl-6">
         <Question question={question} />
       </div>
-    </div>
+    </li>
   ))
 }

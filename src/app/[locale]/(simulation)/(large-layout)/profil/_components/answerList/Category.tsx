@@ -56,12 +56,14 @@ export default function Category({ category }: Props) {
       </button>
 
       {isOpen ? (
-        <>
+        <ul>
           {subcategoriesOfCategory?.map((subcategory) => (
-            <Subcategory key={subcategory} subcategory={subcategory} />
+            <li key={subcategory}>
+              <Subcategory subcategory={subcategory} />
+            </li>
           ))}
           <QuestionsWithoutSubcategory category={category} />
-        </>
+        </ul>
       ) : null}
     </div>
   )

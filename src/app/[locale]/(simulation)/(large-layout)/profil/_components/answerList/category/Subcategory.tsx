@@ -1,6 +1,7 @@
 'use client'
 
 import { profilClickSubCategory } from '@/constants/tracking/pages/profil'
+import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import {
   getBackgroundColor,
@@ -46,7 +47,9 @@ export default function SubCategory({ subcategory }: Props) {
             category
           )}`}
         />
-        {icons} {title}{' '}
+        <h4>
+          <Emoji>{icons}</Emoji> {title}{' '}
+        </h4>
         <span
           className={`block rounded-xl border-2 ${getBorderColor(category)} bg-white px-4 py-2 text-sm ${getTextDarkColor(category)}`}>
           {formattedCarbonFootprint.formattedValue}{' '}
