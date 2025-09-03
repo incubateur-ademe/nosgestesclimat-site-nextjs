@@ -69,5 +69,3 @@ coverage
 
 *.log
 
-# Storybook
-/public/mockServiceWorker.js

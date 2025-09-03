@@ -1,6 +1,5 @@
 import 'cypress-axe'
 import { dismissCookieBanner } from '../../../helpers/cookies/dismissCookieBanner'
-import { visit } from '../../../helpers/interactions/visit'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 import { setupSimulation } from '../../../helpers/simulation/setupSimulation'
 
@@ -16,7 +15,7 @@ describe('Action userflow', () => {
         cy.intercept({ resourceType: /xhr|fetch|uncaught/ }, { log: false })
 
         // Actions when user hasn't completed the simulation
-        visit('/actions')
+        cy.visit('/actions')
 
         cy.wait(2000)
 
@@ -29,7 +28,7 @@ describe('Action userflow', () => {
           .should('be.visible')
 
         // Actions when user has completed the simulation
-        visit('/')
+        cy.visit('/')
 
         setupSimulation()
 
@@ -37,7 +36,7 @@ describe('Action userflow', () => {
 
         cy.wait(4000)
 
-        visit('/actions')
+        cy.visit('/actions')
 
         cy.wait(2000)
 

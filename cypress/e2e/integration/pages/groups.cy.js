@@ -5,7 +5,6 @@ import { fillGroupCreationFirstStep } from '../../../helpers/groups/fillGroupCre
 import { fillGroupNameEmoji } from '../../../helpers/groups/fillGroupNameEmoji'
 import { click } from '../../../helpers/interactions/click'
 import { type } from '../../../helpers/interactions/type'
-import { visit } from '../../../helpers/interactions/visit'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 
 describe('Group userflow', () => {
@@ -13,7 +12,7 @@ describe('Group userflow', () => {
   describe('Given a user', () => {
     describe('When he creates a new group', () => {
       it('then it should succeed and return no accessibility violations', () => {
-        visit('/classements')
+        cy.visit('/classements')
 
         cy.clearLocalStorage()
 

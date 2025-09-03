@@ -1,12 +1,11 @@
 import { clickNextButton } from '../../../helpers/elements/buttons'
-import { visit } from '../../../helpers/interactions/visit'
 import { setupSimulation } from '../../../helpers/simulation/setupSimulation'
 
 const thirdQuestion = 'transport.deux_roues.usager'
 
 describe('Simulation page', () => {
   it(`should redirect to the last question answered when the "bilan" root is defined`, () => {
-    visit(`/`)
+    cy.visit(`/`)
 
     setupSimulation()
 
@@ -16,7 +15,7 @@ describe('Simulation page', () => {
 
     cy.url().should('includes', `?question=${thirdQuestion}`)
 
-    visit(`/simulateur/bilan?question=logement.surface`)
+    cy.visit(`/simulateur/bilan?question=logement.surface`)
 
     cy.url().should('includes', `?question=${thirdQuestion}`)
   })

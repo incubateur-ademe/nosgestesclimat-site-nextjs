@@ -1,8 +1,6 @@
-import { visit } from '../../../helpers/interactions/visit'
-
 describe('Our iframe demo', () => {
   beforeEach(() => {
-    visit('/demo-iframe.html')
+    cy.visit('/demo-iframe.html')
   })
 
   it('displays the iframe correctly', () => {
@@ -17,7 +15,7 @@ describe('Our iframe demo', () => {
 
 describe('Our iframe simulation demo', () => {
   beforeEach(() => {
-    visit('/demo-iframeSimulation.html')
+    cy.visit('/demo-iframeSimulation.html')
   })
 
   it('displays the iframe correctly', () => {
