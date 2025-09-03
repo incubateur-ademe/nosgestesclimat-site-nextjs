@@ -17,7 +17,6 @@ export type LandingPagePostType = {
   category: ReactNode
   title: ReactNode
   imageSrc: string
-  imageAlt: string
   href: string
   trackingEvent: string[]
 }

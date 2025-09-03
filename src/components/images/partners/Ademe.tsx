@@ -1,8 +1,13 @@
+import type { SVGProps } from 'react'
+
 type Props = {
   className?: string
 }
 
-export default function Ademe({ className }: Props) {
+export default function Ademe({
+  className,
+  ...props
+}: Props & SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="57"
@@ -10,7 +15,8 @@ export default function Ademe({ className }: Props) {
       viewBox="0 0 181 213"
       className={className}
       role="img"
-      aria-label="ADEME">
+      {...props}>
+      <title>ADEME</title>
       <path d="M180.35 212.6H0V0H180.35V212.6Z" fill="#004899" />
       <path d="M176.33 4.00977H4.00977V208.59H176.33V4.00977Z" fill="white" />
       <path
