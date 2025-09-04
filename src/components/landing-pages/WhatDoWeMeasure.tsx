@@ -67,7 +67,8 @@ export default function WhatDoWeMeasure({
         className={twMerge(
           `order hidden grid-cols-1 gap-5 md:grid md:grid-cols-2 ${getGridColsClassname(listItems?.length ?? 0)}`,
           shouldUseDescriptionMaxWidth ? 'max-w-[800px]' : ''
-        )}>
+        )}
+        role="list">
         {listItems?.map(({ icon, title }, index) => (
           <li
             key={`list-item-${title}-${index}`}

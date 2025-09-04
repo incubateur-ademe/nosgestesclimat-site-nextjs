@@ -26,6 +26,8 @@ type Props = {
   setActionWithFormOpen: (dottedName: string) => void
   shouldUpdatePersistedActions: boolean
   setShouldUpdatePersistedActions: (value: boolean) => void
+  ariaLabelledBy?: string
+  listId?: string
 }
 
 export default function ActionList({
@@ -36,6 +38,8 @@ export default function ActionList({
   setActionWithFormOpen,
   shouldUpdatePersistedActions,
   setShouldUpdatePersistedActions,
+  ariaLabelledBy,
+  listId,
 }: Props) {
   const { getCategory } = useEngine()
   const { toggleActionChoice } = useUser()
@@ -89,7 +93,11 @@ export default function ActionList({
   // Inline positioning replaced by accessible modal managed by design-system
 
   return (
-    <ul className="mt-4 flex list-none flex-wrap items-center justify-center p-0">
+    <ul
+      id={listId}
+      className="mt-4 flex list-none flex-wrap items-center justify-center p-0"
+      aria-labelledby={ariaLabelledBy}
+      role="list">
       {actionsPersisted.reduce<React.ReactNode[]>((acc, action) => {
         const isActionFocused = actionWithFormOpen === action.dottedName
         const isIrrelevant = (action as Action & { isIrrelevant: boolean })

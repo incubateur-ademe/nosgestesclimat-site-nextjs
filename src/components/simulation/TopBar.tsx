@@ -58,7 +58,7 @@ export default function TopBar({
             {showTotal ? (
               <TotalFootprintNumber
                 size="lg"
-                className="flex-row items-baseline md:gap-1"
+                className="flex-row items-baseline bg-white md:gap-1"
               />
             ) : (
               <Category category={currentCategory} />
