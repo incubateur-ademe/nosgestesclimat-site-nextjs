@@ -39,61 +39,68 @@ export default function DynamicCTAButtons({
     setIsClient(true)
   }, [])
 
+  const ContainerTag = withRestart && progression > 0 ? 'ul' : 'div'
+  const MainButtonContainerTag = withRestart && progression > 0 ? 'li' : 'div'
+
   if (!isClient) {
     return null
   }
 
   return (
-    <div className="flex flex-col flex-wrap items-center justify-center gap-2 md:items-start lg:flex-row lg:flex-nowrap">
-      <ButtonLink
-        size="xl"
-        className={twMerge(
-          'hover:bg-primary-900 transition-all duration-300',
-          className
-        )}
-        href={getLinkToSimulateurPage()}
-        data-cypress-id="do-the-test-link"
-        onMouseEnter={() => setIsHover(true)}
-        onMouseLeave={() => setIsHover(false)}
-        onClick={() => {
-          if (progression === 1) {
-            trackEvent(trackingEvents?.results)
-            return
-          }
-
-          if (progression > 0) {
-            trackEvent(trackingEvents?.resume)
-            return
-          }
-
-          trackEvent(trackingEvents?.start)
-        }}>
-        <span
-          className={twMerge(
-            isHover
-              ? 'bg-rainbow animate-rainbow-fast bg-clip-text! text-transparent! duration-1000'
-              : '',
-            'leading-none'
-          )}>
-          <Trans>{linkToSimulateurPageLabel}</Trans>
-        </span>
-      </ButtonLink>
-
-      {withRestart && progression > 0 && (
+    <ContainerTag className="flex flex-col flex-wrap items-center justify-center gap-2 md:items-start lg:flex-row lg:flex-nowrap">
+      <MainButtonContainerTag>
         <ButtonLink
           size="xl"
-          color="secondary"
-          className="leading-none"
-          trackingEvent={trackingEvents?.restart}
+          className={twMerge(
+            'hover:bg-primary-900 transition-all duration-300',
+            className
+          )}
+          href={getLinkToSimulateurPage()}
+          data-cypress-id="do-the-test-link"
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
           onClick={() => {
-            goToSimulateurPage({ noNavigation: true, newSimulation: {} })
-          }}
-          href={getLinkToSimulateurPage({ newSimulation: true })}>
-          <RestartIcon className="fill-primary-700 mr-2" />
+            if (progression === 1) {
+              trackEvent(trackingEvents?.results)
+              return
+            }
 
-          <Trans>Recommencer</Trans>
+            if (progression > 0) {
+              trackEvent(trackingEvents?.resume)
+              return
+            }
+
+            trackEvent(trackingEvents?.start)
+          }}>
+          <span
+            className={twMerge(
+              isHover
+                ? 'bg-rainbow animate-rainbow-fast bg-clip-text! text-transparent! duration-1000'
+                : '',
+              'leading-none'
+            )}>
+            <Trans>{linkToSimulateurPageLabel}</Trans>
+          </span>
         </ButtonLink>
+      </MainButtonContainerTag>
+
+      {withRestart && progression > 0 && (
+        <li>
+          <ButtonLink
+            size="xl"
+            color="secondary"
+            className="leading-none"
+            trackingEvent={trackingEvents?.restart}
+            onClick={() => {
+              goToSimulateurPage({ noNavigation: true, newSimulation: {} })
+            }}
+            href={getLinkToSimulateurPage({ newSimulation: true })}>
+            <RestartIcon className="fill-primary-700 mr-2" />
+
+            <Trans>Recommencer</Trans>
+          </ButtonLink>
+        </li>
       )}
-    </div>
+    </ContainerTag>
   )
 }
