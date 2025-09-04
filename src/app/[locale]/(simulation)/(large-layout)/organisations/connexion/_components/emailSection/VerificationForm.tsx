@@ -129,7 +129,7 @@ export default function VerificationForm({
     isPendingValidate || isSuccessValidate || isPendingResend || timeLeft > 0
 
   return (
-    <div className="rounded-xl bg-gray-100 p-4 md:p-8">
+    <div className="mb-8 rounded-xl bg-gray-100 p-4 md:p-8">
       <div>
         <VerificationContent
           email={user?.organisation?.administratorEmail ?? ''}

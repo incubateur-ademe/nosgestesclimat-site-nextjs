@@ -75,7 +75,7 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
         })}
       />
 
-      <div className="w-[32rem]">
+      <div className="w-[32rem] max-w-full">
         <CheckboxInput
           size="xl"
           disableSubmitOnEnter
