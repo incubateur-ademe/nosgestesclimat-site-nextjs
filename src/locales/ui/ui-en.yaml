@@ -1391,8 +1391,8 @@ entries:
   group.results.rankingMember.delete.modal.ariaLabel.lock: Fenêtre modale de confirmation de suppression du membre du groupe
   common.navigation.nextQuestion.pass.label: Move on to the next question
   common.navigation.nextQuestion.pass.label.lock: Passer et aller à la question suivante
-  cookieConsent.banner.title: Modal window for managing cookies
-  cookieConsent.banner.title.lock: Fenêtre modale de gestion des cookies
+  cookieConsent.banner.title: Cookie management panel
+  cookieConsent.banner.title.lock: Panneau de gestion des cookies
   common.burgerMenu.title: Close the navigation menu
   common.burgerMenu.title.lock: Fermer le menu de navigation
   common.navigation.previousButton.label: Go to previous question
@@ -1422,8 +1422,8 @@ entries:
   results.informationBlock.carbon.closeButton.lock: Fermer l'explication sur l'empreinte eau
   organisations.additionalQuestions.deletion.modal.ariaLabel: Customised question deletion confirmation window
   organisations.additionalQuestions.deletion.modal.ariaLabel.lock: Fenêtre de confirmation de suppression de la question personnalisée
-  cookieConsent.board.title: Cookie management panel
-  cookieConsent.board.title.lock: Panneau de gestion des cookies
+  cookieConsent.board.title: Cookie consent banner
+  cookieConsent.board.title.lock: Bannière de consentement aux cookies
   common.interactiveIllustration.item.coffee: Café
   common.interactiveIllustration.item.coffee.lock: Café
   blog.homepage.defaultDescription: Discover practical tips for reducing your ecological footprint.

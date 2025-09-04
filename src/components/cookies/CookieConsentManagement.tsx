@@ -85,7 +85,7 @@ export default function CookieConsentManagement({
       isOpen={isBoardOpen}
       ariaLabel={t(
         'cookieConsent.banner.title',
-        'Fenêtre modale de gestion des cookies'
+        'Panneau de gestion des cookies'
       )}
       closeModal={closeSettings}
       hasAbortCross={true}
