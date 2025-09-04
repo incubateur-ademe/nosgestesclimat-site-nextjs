@@ -63,7 +63,7 @@ export default function MetricSlider({
         metric: currentMetric === carboneMetric ? 'carbone' : 'eau',
       }
     )
-  }, [currentMetric])
+  }, [currentMetric, t])
 
   return (
     <div
