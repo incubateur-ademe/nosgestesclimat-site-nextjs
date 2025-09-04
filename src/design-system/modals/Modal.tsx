@@ -63,7 +63,7 @@ export default function Modal({
   return (
     <ModalComponent
       aria={{
-        ariaLabel,
+        label: ariaLabel,
       }}
       isOpen={isOpen}
       onRequestClose={!isLoading ? closeDelayed : undefined}
