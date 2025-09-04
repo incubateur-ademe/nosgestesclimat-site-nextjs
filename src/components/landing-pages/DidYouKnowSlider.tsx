@@ -1,5 +1,6 @@
 'use client'
 
+import Button from '@/design-system/buttons/Button'
 import ColorLine from '@/design-system/layout/ColorLine'
 import Separator from '@/design-system/layout/Separator'
 import {
@@ -17,6 +18,7 @@ import type { ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import CTAButtonsPlaceholder from '../cta/CTAButtonsPlaceholder'
+import PlaySignIcon from '../icons/PlaySignIcon'
 import Trans from '../translation/trans/TransClient'
 
 const DynamicCTAButtons = dynamic(
@@ -34,6 +36,7 @@ export default function DidYouKnowSlider({
   titleTag?: 'h2' | 'h3'
 }) {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(true)
   const splideRef = useRef<any>(null)
 
   const { t } = useClientTranslation()
@@ -150,6 +153,7 @@ export default function DidYouKnowSlider({
               page: 'slider-page',
             },
           }}
+          hasTrack={false}
           onMoved={(slide: unknown, nextSlideIndex: number) =>
             setCurrentSlide(nextSlideIndex)
           }
@@ -157,8 +161,7 @@ export default function DidYouKnowSlider({
             setCurrentSlide(nextSlideIndex)
           }
           className="relative max-w-[594px]"
-          role="group"
-          hasTrack={false}>
+          role="group">
           <SplideTrack aria-live="polite">
             {slides.map((slide, index) => (
               <SplideSlide
@@ -193,6 +196,39 @@ export default function DidYouKnowSlider({
               </SplideSlide>
             ))}
           </SplideTrack>
+
+          <Button
+            tabIndex={0}
+            color="secondary"
+            title={
+              isPlaying ? t('Arrêter le défilement') : t('Lancer le défilement')
+            }
+            className="splide__toggle"
+            onClick={() => setIsPlaying((prev) => !prev)}
+            type="button">
+            {isPlaying ? (
+              <>
+                <PlaySignIcon className="fill-primary-800 stroke-primary-800 block w-5" />
+                <span className="ml-2 text-sm">
+                  {t('common.slider.play', 'Lecture')}
+                </span>
+              </>
+            ) : (
+              <span className="flex items-center gap-1">
+                <span className="h-[24px]! text-2xl leading-6!" aria-hidden>
+                  &#x23F9;
+                </span>
+                 
+                <span className="text-sm">
+                  {t('common.slider.stop', 'Arrêter')}
+                </span>
+              </span>
+            )}
+          </Button>
+          <div className="splide__arrows" />
+          <div className="splide__progress">
+            <div className="splide__progress__bar" />
+          </div>
         </Splide>
         <div>
           <DynamicCTAButtons

@@ -1282,3 +1282,10 @@ entries:
   Entrez votre adresse email pour recevoir les infolettres sélectionnées.: Entrez votre adresse email pour recevoir les infolettres sélectionnées.
   Inscription en cours...: Inscription en cours...
   Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie: Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie
+  Accès rapide: Accès rapide
+  Arrêter le défilement: Arrêter le défilement
+  common.slider.play: Lecture
+  common.slider.stop: Arrêter
+  homePage.interactiveIllustration.itemTitle: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'
+  homePage.interactiveIllustration.waterScore: ' et empreinte eau notée {{waterScore}} sur 5'
+  Lancer le défilement: Lancer le défilement

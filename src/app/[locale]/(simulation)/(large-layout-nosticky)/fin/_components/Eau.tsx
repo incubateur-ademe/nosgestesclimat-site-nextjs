@@ -12,15 +12,19 @@ import AgirSecondaryBlock from './JagisSecondaryBlock'
 
 export default function Eau() {
   const { isFrenchRegion } = useIframe()
+
   return (
     <div className="flex flex-1 flex-col gap-16">
       <WaterDisclaimer />
+
       <ClimateAndWater />
+
       <MainSubcategories isLink={false} />
 
       {isFrenchRegion && <AgirMainBlock />}
 
       <WaterActions />
+
       <DomesticWater />
 
       {isFrenchRegion && <AgirSecondaryBlock />}
