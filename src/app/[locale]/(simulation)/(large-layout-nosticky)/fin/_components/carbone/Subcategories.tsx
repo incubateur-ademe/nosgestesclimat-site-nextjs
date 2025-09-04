@@ -1,3 +1,4 @@
+import { useIframe } from '@/hooks/useIframe'
 import { useSortedSubcategoriesByFootprint } from '@/hooks/useSortedSubcategoriesByFootprint'
 import { useSortedUiCategoriesByFootprint } from '@/hooks/useSortedUiCategoriesByFootprint'
 import AgirSecondaryBlock from '../JagisSecondaryBlock'
@@ -5,6 +6,8 @@ import OtherWays from './OtherWays'
 import Subcategory from './subcategories/Subcategory'
 
 export default function Subcategories() {
+  const { isFrenchRegion } = useIframe()
+
   const { sortedSubcategories } = useSortedSubcategoriesByFootprint()
 
   const { sortedUiCategories } = useSortedUiCategoriesByFootprint()
@@ -22,7 +25,7 @@ export default function Subcategories() {
           </li>
         ))}
       </ol>
-      <AgirSecondaryBlock />
+      {isFrenchRegion && <AgirSecondaryBlock />}
       <OtherWays />
     </>
   )
