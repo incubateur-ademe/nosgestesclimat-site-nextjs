@@ -11,7 +11,7 @@ export default function DemanderDemoPage() {
 
   return (
     <section className="w-full bg-[#fff]">
-      <div className="mx-auto max-w-5xl px-6 py-10 lg:px-0">
+      <div className="mx-auto max-w-5xl py-10">
         <Title
           title={<Trans>Demander une démo</Trans>}
           subtitle={
