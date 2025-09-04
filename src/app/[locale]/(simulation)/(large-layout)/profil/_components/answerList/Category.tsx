@@ -63,18 +63,22 @@ export default function Category({ category }: Props) {
         </h3>
       </button>
 
-      <div
-        id={panelId}
-        role="region"
-        aria-labelledby={buttonId}
-        hidden={!isOpen}>
-        <ul role="list" className="mt-2 list-none p-0">
-          {subcategoriesOfCategory?.map((subcategory) => (
-            <Subcategory key={subcategory} subcategory={subcategory} />
-          ))}
-          <QuestionsWithoutSubcategory category={category} />
-        </ul>
-      </div>
+      {isOpen ? (
+        <div
+          id={panelId}
+          role="region"
+          aria-labelledby={buttonId}
+          hidden={!isOpen}>
+          <ul role="list" className="mt-2 list-none p-0">
+            {subcategoriesOfCategory?.map((subcategory) => (
+              <li key={subcategory}>
+                <Subcategory subcategory={subcategory} />
+              </li>
+            ))}
+            <QuestionsWithoutSubcategory category={category} />
+          </ul>
+        </div>
+      ) : null}
     </li>
   )
 }

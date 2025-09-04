@@ -36,6 +36,11 @@
     -moz-appearance: textfield !important;
   }
 
+  html {
+    background-color: #fff;
+    color: #1a1a1a;
+  }
+
   button {
     @apply cursor-pointer;
   }
@@ -656,7 +661,7 @@ html[data-useragent*='Trident'] #js {
   @apply max-w-[90vw]!;
 }
 .splide__arrow {
-  @apply bg-transparent!;
+  @apply bg-transparent! opacity-100!;
 }
 .splide__arrow--next {
   @apply right-0 md:-right-8!;
@@ -670,12 +675,21 @@ html[data-useragent*='Trident'] #js {
   @apply fill-primary-900! z-10;
 }
 
-.splide__arrow {
-  @apply opacity-100!;
-}
-
 .splide__arrow:disabled svg {
   @apply fill-gray-500!;
+}
+
+/* Focus styles for Splide arrows - same as Button component */
+.splide__arrow:focus {
+  @apply ring-primary-700! ring-2! ring-offset-3! outline-hidden!;
+}
+
+.splide__toggle:focus {
+  @apply ring-primary-700! ring-2! ring-offset-3! outline-hidden!;
+}
+
+.splide__progress__bar {
+  @apply hidden;
 }
 
 .splide__pagination {
@@ -687,6 +701,11 @@ html[data-useragent*='Trident'] #js {
 }
 .splide__pagination button.is-active {
   @apply bg-primary-700 w-6 transform-none! transition-all! duration-500!;
+}
+
+/* Focus styles for Splide pagination buttons - same as Button component */
+.splide__pagination button:focus {
+  @apply ring-primary-700! ring-2! ring-offset-3! outline-hidden!;
 }
 
 /* Custom short screen utilities to replace short: breakpoint */

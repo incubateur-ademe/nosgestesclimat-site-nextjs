@@ -1420,3 +1420,14 @@ entries:
   Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.: Marque las casillas correspondientes a los boletines a los que desea suscribirse.
   ⚠️ La vérification de votre compte est requise pour vous inscrire aux infolettres.: ⚠️ Es necesario verificar su cuenta para suscribirse a los boletines.
   Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie: Seleccione este filtro para mostrar sólo los artículos de esta categoría
+  common.slider.play: Lectura
+  common.slider.play.lock: Lecture
+  common.slider.stop: Stop
+  common.slider.stop.lock: Arrêter
+  Accès rapide: Acceso rápido
+  homePage.interactiveIllustration.waterScore: ' y huella hídrica: {{waterScore}} sobre 5'
+  homePage.interactiveIllustration.waterScore.lock: ' et empreinte eau notée {{waterScore}} sur 5'
+  Lancer le défilement: Iniciar desplazamiento
+  Arrêter le défilement: Detener el desplazamiento
+  homePage.interactiveIllustration.itemTitle: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} de 5'
+  homePage.interactiveIllustration.itemTitle.lock: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'

@@ -38,11 +38,11 @@ export default function NotReceived({
 
   return (
     <>
-      <p className="mt-12">
+      <h3 className="mt-12 text-base">
         <strong>
           <Trans>Vous n'avez pas reçu de code ?</Trans>
         </strong>
-      </p>
+      </h3>
       <p className="mb-1 flex items-center text-sm">
         <EyeIcon className="mr-2 h-4 w-4" />{' '}
         <Trans>Avez-vous pensé à vérifier votre outil anti-spams ?</Trans>
