@@ -28,22 +28,33 @@ export default async function Pagination({
           </Link>
         )}
 
-        <ul className="flex gap-3">
-          {Array.from({ length: totalPages }, (_, index) => (
-            <li key={index}>
-              <Link
-                className={twMerge(
-                  'text-lg',
-                  currentPage === index + 1
-                    ? 'text-primary-700 font-medium underline'
-                    : 'text-gray-600! no-underline'
-                )}
-                href={`/blog?page=${index + 1}#articles`}
-                aria-label={t('Page {{page}}', { page: index + 1 })}>
-                {index + 1}
-              </Link>
-            </li>
-          ))}
+        <ul className="flex gap-3" role="list">
+          {Array.from({ length: totalPages }, (_, index) => {
+            const isCurrentPage = currentPage === index + 1
+            return (
+              <li key={index}>
+                <Link
+                  className={twMerge(
+                    'text-lg',
+                    isCurrentPage
+                      ? 'text-primary-700 font-medium underline'
+                      : 'text-gray-600! no-underline'
+                  )}
+                  href={`/blog?page=${index + 1}#articles`}
+                  aria-label={
+                    isCurrentPage
+                      ? t('Page {{page}} (page actuelle)', { page: index + 1 })
+                      : t('Page {{page}}', { page: index + 1 })
+                  }
+                  aria-current={isCurrentPage ? 'page' : undefined}>
+                  {index + 1}
+                  {isCurrentPage && (
+                    <span className="sr-only"> {t('(page actuelle)')}</span>
+                  )}
+                </Link>
+              </li>
+            )
+          })}
         </ul>
 
         {currentPage < totalPages && (

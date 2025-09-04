@@ -56,7 +56,7 @@ export default function Breadcrumbs({
                     linkClassName
                   )}
                   href={href}>
-                  {label}
+                  <span className="whitespace-break-spaces">{label}</span>
                 </Link>
                 {index < items.length - 1 && (
                   <svg
