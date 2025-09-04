@@ -1418,3 +1418,14 @@ entries:
   Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.: Tick the boxes corresponding to the newsletters you wish to subscribe to.
   Inscription en cours...: Registration in progress...
   Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie: Select this filter to display only items in this category
+  homePage.interactiveIllustration.itemTitle: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} out of 5'
+  homePage.interactiveIllustration.itemTitle.lock: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'
+  common.slider.play: Reading
+  common.slider.play.lock: Lecture
+  Accès rapide: Quick access
+  Arrêter le défilement: Stop scrolling
+  homePage.interactiveIllustration.waterScore: ' and water footprint rated {{waterScore}} out of 5'
+  homePage.interactiveIllustration.waterScore.lock: ' et empreinte eau notée {{waterScore}} sur 5'
+  Lancer le défilement: Start scrolling
+  common.slider.stop: Stop
+  common.slider.stop.lock: Arrêter

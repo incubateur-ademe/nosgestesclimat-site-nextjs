@@ -58,9 +58,9 @@ export default function SubCategory({ subcategory }: Props) {
             category
           )}`}
         />
-        <span>
+        <h4>
           <Emoji className="mr-2">{icons}</Emoji> {title}{' '}
-        </span>
+        </h4>
         <span
           className={`block rounded-xl border-2 ${getBorderColor(category)} bg-white px-4 py-2 text-sm ${getTextDarkColor(category)}`}>
           {formattedCarbonFootprint.formattedValue}{' '}
