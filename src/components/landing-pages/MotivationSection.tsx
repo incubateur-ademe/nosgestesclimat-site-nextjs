@@ -50,7 +50,8 @@ export default function MotivationSection({
         {motivationItems && motivationItems.length > 0 && (
           <ul
             className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3"
-            data-testid="motivation-list">
+            data-testid="motivation-list"
+            role="list">
             {motivationItems.map((item, index) => (
               <li
                 key={`motivation-item-${index}`}

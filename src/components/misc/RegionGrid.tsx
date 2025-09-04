@@ -31,7 +31,10 @@ export default function RegionGrid({
   })
 
   return (
-    <ul className={`region-grid mt-4 grid gap-4 p-0 ${className}`} {...props}>
+    <ul
+      className={`region-grid mt-4 grid gap-4 p-0 ${className}`}
+      role="list"
+      {...props}>
       {Object.entries(sortedSupportedRegions).map(([code, params]) => {
         return typeof params !== 'string' ? (
           <li className="my-2 flex list-none justify-center" key={code}>

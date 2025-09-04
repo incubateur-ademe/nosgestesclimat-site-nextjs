@@ -33,7 +33,7 @@ export default function SimulationList() {
           Web. Vous êtes le seul à y avoir accès.
         </Trans>
       </p>
-      <ul>
+      <ul role="list">
         {simulations.map((simulation: Simulation) => {
           const simulationDate =
             simulation.date !== undefined
@@ -93,7 +93,7 @@ export default function SimulationList() {
                     Cliquez pour afficher les détails de la simulation
                   </span>
                 </summary>
-                <ul>
+                <ul role="list">
                   <li>
                     <Trans>Date complète :</Trans>
                     {simulationDate.toLocaleDateString()}{' '}
