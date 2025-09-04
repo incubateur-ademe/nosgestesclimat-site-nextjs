@@ -45,6 +45,12 @@ export default function RegionGrid({
           </li>
         ) : null
       })}
+      <li className="sr-only">
+        <span>
+          Utilisez les flèches directionnelles pour naviguer entre les régions,
+          Entrée ou Espace pour sélectionner une région.
+        </span>
+      </li>
     </ul>
   )
 }

@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
@@ -25,12 +22,26 @@ export default function AutresQuestions() {
           <details>
             <summary
               className="text-primary-700 cursor-pointer text-sm font-bold md:text-lg"
+              role="button"
+              tabIndex={0}
+              aria-expanded="false"
               onClick={() =>
                 trackEvent(
-                  tutorielClickQuestion('C’est quoi mon empreinte carbone ?')
+                  tutorielClickQuestion('C'est quoi mon empreinte carbone ?')
                 )
-              }>
-              <Trans>C’est quoi mon empreinte carbone ?</Trans>
+              }
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  const details = e.currentTarget.parentElement as HTMLDetailsElement
+                  details.open = !details.open
+                  trackEvent(
+                    tutorielClickQuestion('C'est quoi mon empreinte carbone ?')
+                  )
+                }
+              }}>
+              <Trans>C'est quoi mon empreinte carbone ?</Trans>
+              <span className="sr-only">Cliquez pour afficher la réponse</span>
             </summary>
             <div className="my-2 ml-3.5 text-sm">
               <p>
@@ -67,10 +78,22 @@ export default function AutresQuestions() {
           <details>
             <summary
               className="text-primary-700 cursor-pointer text-sm font-bold md:text-lg"
+              role="button"
+              tabIndex={0}
+              aria-expanded="false"
               onClick={() =>
                 trackEvent(tutorielClickQuestion('Comment on la mesure ?'))
-              }>
-              <Trans>Comment on la mesure ?</Trans>
+              }
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  const details = e.currentTarget.parentElement as HTMLDetailsElement
+                  details.open = !details.open
+                  trackEvent(tutorielClickQuestion('Comment on la mesure ?'))
+                }
+              }}>
+              <Trans>Comment on la mesure ?</Trans>
+              <span className="sr-only">Cliquez pour afficher la réponse</span>
             </summary>
             <div className="my-2 ml-3.5 text-sm">
               <p>
@@ -106,14 +129,28 @@ export default function AutresQuestions() {
               <blockquote>
                 <details className="text-sm">
                   <summary
+                    role="button"
+                    tabIndex={0}
+                    aria-expanded="false"
                     onClick={() =>
                       trackEvent(
                         tutorielClickQuestion('Mais que veut dire ce petit e ?')
                       )
-                    }>
+                    }
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault()
+                        const details = e.currentTarget.parentElement as HTMLDetailsElement
+                        details.open = !details.open
+                        trackEvent(
+                          tutorielClickQuestion('Mais que veut dire ce petit e ?')
+                        )
+                      }
+                    }}>
                     <Trans i18nKey={'sites.publicodes.Tutorial.questionE'}>
-                      💡 Mais que veut dire ce petit <em>e</em> ?
+                      💡 Mais que veut dire ce petit <em>e</em> ?
                     </Trans>
+                    <span className="sr-only">Cliquez pour afficher la réponse</span>
                   </summary>{' '}
                   <Trans i18nKey={'publicodes.Tutoriel.slide2.blockquote'}>
                     D'autres gaz, surtout le méthane{' '}
@@ -144,10 +181,22 @@ export default function AutresQuestions() {
           <details id={'categories'} className="text-sm">
             <summary
               className="text-primary-700 cursor-pointer text-sm font-bold md:text-lg"
+              role="button"
+              tabIndex={0}
+              aria-expanded="false"
               onClick={() =>
-                trackEvent(tutorielClickQuestion('D’où vient mon empreinte ?'))
-              }>
-              <Trans>D’où vient mon empreinte ?</Trans>
+                trackEvent(tutorielClickQuestion('D'où vient mon empreinte ?'))
+              }
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  const details = e.currentTarget.parentElement as HTMLDetailsElement
+                  details.open = !details.open
+                  trackEvent(tutorielClickQuestion('D'où vient mon empreinte ?'))
+                }
+              }}>
+              <Trans>D'où vient mon empreinte ?</Trans>
+              <span className="sr-only">Cliquez pour afficher la réponse</span>
             </summary>
             <div className="my-2 ml-3.5">
               <Trans i18nKey={'publicodes.Tutoriel.slide6'}>
@@ -168,10 +217,22 @@ export default function AutresQuestions() {
           <details id={'eau'} className="text-sm">
             <summary
               className="text-primary-700 cursor-pointer text-sm font-bold md:text-lg"
+              role="button"
+              tabIndex={0}
+              aria-expanded="false"
               onClick={() =>
-                trackEvent(tutorielClickQuestion('D’où vient mon empreinte ?'))
-              }>
-              <Trans>Pourquoi avons-nous ajouté l’empreinte eau ?</Trans>
+                trackEvent(tutorielClickQuestion('D'où vient mon empreinte ?'))
+              }
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  const details = e.currentTarget.parentElement as HTMLDetailsElement
+                  details.open = !details.open
+                  trackEvent(tutorielClickQuestion('D'où vient mon empreinte ?'))
+                }
+              }}>
+              <Trans>Pourquoi avons-nous ajouté l'empreinte eau ?</Trans>
+              <span className="sr-only">Cliquez pour afficher la réponse</span>
             </summary>
             <div className="my-2 ml-3.5">
               <p>

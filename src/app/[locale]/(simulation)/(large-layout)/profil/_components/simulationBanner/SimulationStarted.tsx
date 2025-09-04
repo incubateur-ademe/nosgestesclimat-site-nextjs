@@ -53,8 +53,24 @@ export default function SimulationStarted() {
 
         <details className="mt-3 max-w-full text-sm">
           <Trans i18nKey={'publicodes.Profil.locationDonnées'}>
-            <summary className="mb-2 cursor-pointer">
+            <summary
+              className="mb-2 cursor-pointer"
+              role="button"
+              tabIndex={0}
+              aria-expanded="false"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  const details = e.currentTarget
+                    .parentElement as HTMLDetailsElement
+                  details.open = !details.open
+                }
+              }}>
               Où sont mes données ?{' '}
+              <span className="sr-only">
+                Cliquez pour afficher les informations sur la localisation des
+                données
+              </span>
             </summary>
             <span className="text-xs!">
               Vos données sont stockées dans votre navigateur, vous avez donc le
