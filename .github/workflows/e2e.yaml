@@ -1,9 +1,6 @@
 name: E2E Tests
 
 on:
-  pull_request:
-    branches:
-      - preprod
   push:
     branches:
       - preprod
@@ -23,7 +20,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '22.14'
 
       - name: Install dependencies
         run: yarn install

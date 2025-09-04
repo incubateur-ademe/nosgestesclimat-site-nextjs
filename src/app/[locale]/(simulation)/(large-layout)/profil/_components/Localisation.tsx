@@ -43,11 +43,11 @@ export default function Localisation({ supportedRegions }: Props) {
       </h2>
       {region?.code && (
         <div className="my-4">
-          <span>
+          <p className="mb-0">
             <Trans>Vous faites cette simulation depuis :</Trans>{' '}
             <strong>{region.name}</strong>
             <CountryFlag code={region.code} className="ml-2 inline-block" />.
-          </span>
+          </p>
           {!isRegionSupported && (
             <>
               {t('components.localisation.Localisation.warnMessage', {
