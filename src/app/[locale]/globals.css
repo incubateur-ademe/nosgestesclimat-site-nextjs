@@ -24,9 +24,7 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
-}
 
-@layer base {
   input[type='number']::-webkit-outer-spin-button,
   input[type='number']::-webkit-inner-spin-button,
   input[type='number'] {
@@ -121,6 +119,11 @@
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  background-color: #fff;
+  color: #000;
 }
 
 body {

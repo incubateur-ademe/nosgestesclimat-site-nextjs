@@ -32,20 +32,23 @@ export default function JagisSecondaryBlock() {
   return (
     <div className="rainbow-border relative rounded-xl border-2">
       <div className="bg-[url('https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/jagis_bg_97afd09657.svg')] bg-right-bottom bg-no-repeat px-4 py-6 lg:bg-[length:18rem]">
-        <div className="mb-4 flex gap-4">
-          <Badge size="xs" color="green">
-            <Trans>Aides financières</Trans>
-          </Badge>
-          <Badge size="xs" color="green">
-            <Trans>Bons plans</Trans>
-          </Badge>
-          <Badge size="xs" color="green">
-            <Trans>Idées</Trans>
-          </Badge>
+        <div className="flex flex-col">
+          <h2 className="order-1 mb-2">
+            <Trans>Que faire pour réduire mon empreinte ?</Trans>
+          </h2>
+          <div className="-order-1 mb-4 flex gap-4">
+            <Badge size="xs" color="green">
+              <Trans>Aides financières</Trans>
+            </Badge>
+            <Badge size="xs" color="green">
+              <Trans>Bons plans</Trans>
+            </Badge>
+            <Badge size="xs" color="green">
+              <Trans>Idées</Trans>
+            </Badge>
+          </div>
         </div>
-        <h2 className="mb-2">
-          <Trans>Que faire pour réduire mon empreinte ?</Trans>
-        </h2>
+
         <p>
           <Trans>À partir de votre bilan,</Trans> <strong>J’agis</strong>{' '}
           <Trans>
