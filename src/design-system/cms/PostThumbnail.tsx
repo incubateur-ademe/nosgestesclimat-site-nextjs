@@ -29,15 +29,7 @@ export default function PostThumbnail({
         className
       )}
       onClick={trackingEvent ? () => trackEvent(trackingEvent) : undefined}>
-      <ImageWithCategory
-        category={category}
-        imageSrc={imageSrc}
-        imageAlt=""
-        imageClassName="min-h-[134px] w-1/3 min-w-28 md:h-[240px] md:w-full"
-        containerClassName="w-1/3 md:w-full"
-      />
-
-      <div className="mt-4 flex w-full flex-col md:flex-1">
+      <div className="order-1 mt-4 flex w-full flex-col md:flex-1">
         {/* Hidden on desktop */}
         <p className="text-primary-700 mb-2 px-4 text-xs font-bold md:hidden md:pt-4 md:text-[13px]">
           {category}
@@ -51,6 +43,14 @@ export default function PostThumbnail({
           <Trans>Lire la suite</Trans>
         </div>
       </div>
+
+      <ImageWithCategory
+        category={category}
+        imageSrc={imageSrc}
+        imageAlt=""
+        imageClassName="min-h-[134px] w-1/3 min-w-28 md:h-[240px] md:w-full"
+        containerClassName="w-1/3 md:w-full -order-1"
+      />
     </a>
   )
 }
