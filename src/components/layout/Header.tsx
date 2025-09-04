@@ -92,6 +92,7 @@ export default function HeaderDesktop({ isSticky = true }: Props) {
               <nav
                 className="h-full"
                 id="header-navigation"
+                role="navigation"
                 aria-label={t('Navigation principale')}
                 aria-labelledby="header-navigation-title">
                 <p id="header-navigation-title" className="sr-only">
