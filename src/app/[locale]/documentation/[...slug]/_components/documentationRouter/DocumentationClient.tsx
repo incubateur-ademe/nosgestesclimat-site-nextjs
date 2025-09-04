@@ -39,7 +39,7 @@ export default function DocumentationClient({ slugs }: Props) {
   }
 
   return (
-    <div className="mt-4 mb-16 w-full">
+    <div className="mt-4 mb-16 w-full px-2">
       <PasserTestBanner />
       <MetricSwitchButton
         metric={metric}
