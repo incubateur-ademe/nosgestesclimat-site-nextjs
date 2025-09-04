@@ -2,6 +2,7 @@
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { captureException } from '@sentry/nextjs'
+import isMobile from 'is-mobile'
 import { useEffect, useRef, useState } from 'react'
 import Button from '../buttons/Button'
 
@@ -58,7 +59,7 @@ export default function CopyInput({
     setIsError(false)
 
     // For mobile devices
-    if (navigator?.share) {
+    if (navigator?.share && isMobile()) {
       try {
         return await navigator.share({
           url: textToCopy,
@@ -149,7 +150,7 @@ export default function CopyInput({
           ref={inputRef}
           id={generatedInputId}
           type="text"
-          className="hidden w-full min-w-0 flex-1 rounded-none rounded-l-md border-2 border-r-0 border-solid border-gray-200 bg-gray-100 py-3 pr-2 pl-4 text-gray-600 sm:text-sm md:block"
+          className="hidden w-full min-w-0 flex-1 rounded-none rounded-l-md border border-r-0 border-solid border-gray-700 bg-gray-100 py-3 pr-2 pl-4 text-gray-600 sm:text-sm md:block"
           value={textToDisplay ?? textToCopy}
           readOnly
         />

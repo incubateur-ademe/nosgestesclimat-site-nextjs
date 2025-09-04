@@ -11,12 +11,19 @@ export default function Eau() {
   return (
     <div className="flex flex-1 flex-col gap-16">
       <WaterDisclaimer />
+
       <ClimateAndWater />
+
       <MainSubcategories isLink={false} />
+
       <AgirMainBlock />
+
       <WaterActions />
+
       <DomesticWater />
+
       <AgirSecondaryBlock />
+
       <BlogArticles />
     </div>
   )
