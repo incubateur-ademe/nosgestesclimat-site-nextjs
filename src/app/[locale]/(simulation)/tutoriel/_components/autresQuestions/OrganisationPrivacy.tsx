@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
@@ -24,12 +21,27 @@ export default function OrganisationPrivacy() {
       <details>
         <summary
           className="text-primary-700 cursor-pointer text-sm font-bold md:text-lg"
+          role="button"
+          tabIndex={0}
+          aria-expanded="false"
           onClick={() =>
             trackEvent(
               tutorielClickQuestion('Mes données restent-elles privées ?')
             )
-          }>
+          }
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault()
+              const details = e.currentTarget
+                .parentElement as HTMLDetailsElement
+              details.open = !details.open
+              trackEvent(
+                tutorielClickQuestion('Mes données restent-elles privées ?')
+              )
+            }
+          }}>
           {t('Mes données restent-elles privées\u202f?')}
+          <span className="sr-only">Cliquez pour afficher la réponse</span>
         </summary>
         <div className="my-2 ml-3.5">
           <p>

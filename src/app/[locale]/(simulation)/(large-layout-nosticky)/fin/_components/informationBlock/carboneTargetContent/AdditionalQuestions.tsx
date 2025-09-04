@@ -36,8 +36,21 @@ export default function AdditionalQuestions({
               return prevQuestionsOpen.filter((question) => question !== slug)
             })
           }}>
-          <summary className="text-primary-700 mb-2 cursor-pointer">
+          <summary
+            className="text-primary-700 mb-2 cursor-pointer"
+            role="button"
+            tabIndex={0}
+            aria-expanded="false"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                const details = e.currentTarget
+                  .parentElement as HTMLDetailsElement
+                details.open = !details.open
+              }
+            }}>
             {question}
+            <span className="sr-only">Cliquez pour afficher la réponse</span>
           </summary>
           <div className="my-2 ml-3.5">{answer}</div>
         </details>

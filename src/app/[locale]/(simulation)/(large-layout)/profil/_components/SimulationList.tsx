@@ -43,7 +43,18 @@ export default function SimulationList() {
           return (
             <li key={simulation.id} className="mb-2 list-none">
               <details>
-                <summary>
+                <summary
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded="false"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      const details = e.currentTarget
+                        .parentElement as HTMLDetailsElement
+                      details.open = !details.open
+                    }
+                  }}>
                   <div className="inline-flex">
                     <span>{simulationDate.toLocaleDateString()}</span>
                     <span className="ml-1 hidden w-[8rem] overflow-hidden text-ellipsis whitespace-nowrap md:inline-block">
@@ -78,6 +89,9 @@ export default function SimulationList() {
                       </span>
                     )}
                   </div>
+                  <span className="sr-only">
+                    Cliquez pour afficher les détails de la simulation
+                  </span>
                 </summary>
                 <ul>
                   <li>
