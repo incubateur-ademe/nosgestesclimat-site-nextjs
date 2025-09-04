@@ -29,7 +29,7 @@ vi.mock('@/hooks/useClientTranslation', () => ({
   }),
 }))
 
-// Mock pour useCurrentSimulation
+// Mock pour useCurrentSimulation et useUser
 vi.mock('@/publicodes-state', () => ({
   useCurrentSimulation: () => ({
     computedResults: {
@@ -52,6 +52,13 @@ vi.mock('@/publicodes-state', () => ({
           divers: 0,
           'services sociétaux': 0,
         },
+      },
+    },
+  }),
+  useUser: () => ({
+    user: {
+      region: {
+        code: 'FR',
       },
     },
   }),
