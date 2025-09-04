@@ -8,7 +8,7 @@ export default async function Page({ params }: DefaultPageProps) {
   const { locale } = await params
 
   return (
-    <section className="w-full bg-[#fff] md:mx-auto">
+    <section className="w-full overflow-hidden bg-[#fff] md:mx-auto">
       <div className="mx-4 lg:mx-0">
         <HeroSection />
 

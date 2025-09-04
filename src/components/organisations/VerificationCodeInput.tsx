@@ -21,19 +21,32 @@ export default function VerificationCodeInput({
   handleValidateVerificationCode,
 }: Props) {
   return (
-    <>
+    <fieldset className="m-0 border-0 p-0">
+      <legend className="sr-only">
+        <Trans>Entrez votre code de vérification pour continuer</Trans>
+      </legend>
       <VerificationInput
         length={6}
         inputProps={
           {
             'data-cypress-id': 'organisation-connexion-verification-code-input',
+            'aria-label': 'Entrez votre code de vérification pour continuer',
+            'aria-describedby':
+              [
+                inputError ? 'verification-error' : null,
+                isPendingValidate ? 'verification-status' : null,
+                isSuccessValidate ? 'verification-status' : null,
+              ]
+                .filter(Boolean)
+                .join(' ') || undefined,
+            'aria-invalid': inputError ? 'true' : 'false',
           } as DetailedHTMLProps<
             InputHTMLAttributes<HTMLInputElement>,
             HTMLInputElement
           >
         }
         classNames={{
-          container: 'container w-[16rem] md:w-[20rem]',
+          container: 'container max-w-full w-[16rem] md:w-[20rem]',
           character: `border-2! border-gray-300! rounded-xl w-[2rem] text-primary-700! font-medium ${
             marianne.className
           } ${inputError ? 'border-red-700! border-2' : ''} ${
@@ -49,14 +62,18 @@ export default function VerificationCodeInput({
 
       {inputError && (
         <div>
-          <p className="mt-2 text-sm text-red-800">
+          <p id="verification-error" className="mt-2 text-sm text-red-800">
             <Trans>Le code est invalide</Trans>
           </p>
         </div>
       )}
 
       {isPendingValidate && (
-        <div className="mt-2 flex items-baseline gap-2 pl-2 text-xs">
+        <div
+          id="verification-status"
+          className="mt-2 flex items-baseline gap-2 pl-2 text-xs"
+          role="status"
+          aria-live="polite">
           <Loader color="dark" size="sm" />
 
           <span>
@@ -66,14 +83,21 @@ export default function VerificationCodeInput({
       )}
 
       {isSuccessValidate && (
-        <div className="mt-4 flex items-baseline gap-2 pl-2 text-sm">
-          <CheckCircleIcon className="h-4 w-4 fill-green-700" />
+        <div
+          id="verification-status"
+          className="mt-4 flex items-baseline gap-2 pl-2 text-sm"
+          role="status"
+          aria-live="polite">
+          <CheckCircleIcon
+            className="h-4 w-4 fill-green-700"
+            aria-hidden="true"
+          />
 
           <span className="text-green-700">
             <Trans>Votre code est valide !</Trans>
           </span>
         </div>
       )}
-    </>
+    </fieldset>
   )
 }

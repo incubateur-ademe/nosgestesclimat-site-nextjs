@@ -205,8 +205,9 @@ export default function CopyInput({
           aria-live="assertive">
           {t(
             'copyInput.copyErrorManual',
-            'Oups, impossible de copier le lien, vous pouvez le copier manuellement.'
+            'Oups, impossible de copier le lien, vous pouvez le copier manuellement : {{textToCopy}}'
           )}
+          {textToCopy}
         </p>
       )}
     </div>

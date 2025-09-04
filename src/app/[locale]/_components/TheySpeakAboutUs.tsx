@@ -26,7 +26,7 @@ export default async function TheySpeakAboutUs({
         className
       )}>
       {/* Helps cover the triangles of white shown because of the perspective change in Background */}
-      <div className="bg-heroLightBackground absolute top-0 left-0 h-1/2 w-[200%]" />
+      {/* <div className="bg-heroLightBackground absolute top-0 left-0 h-1/2 w-[200%]" /> */}
 
       {/* Add the background along with the tilted colorline */}
       <Background

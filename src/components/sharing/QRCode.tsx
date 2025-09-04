@@ -112,7 +112,9 @@ export default function QRCode({ value, className }: QRCodeProps) {
         className="px-3"
         size="sm"
         onClick={downloadQRCodeZip}>
-        <Trans>Télécharger le QR Code</Trans>
+        <span className="whitespace-normal">
+          <Trans>Télécharger le QR Code</Trans>
+        </span>
       </Button>
     </div>
   )

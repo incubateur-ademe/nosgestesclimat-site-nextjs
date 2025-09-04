@@ -15,7 +15,7 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
 
   return (
     <div className="relative col-span-1 sm:col-span-2 lg:col-span-3">
-      <div className="absolute top-0 left-0 z-10 h-full w-full p-10 pb-0">
+      <div className="absolute top-0 left-0 z-10 h-full w-full p-2 pb-0 md:p-10">
         <div className="absolute top-0 right-0 bottom-0 left-0 -z-10 bg-white opacity-50" />
 
         <Card className="w-full flex-row flex-wrap items-center justify-between gap-4 p-4 md:flex-nowrap">
