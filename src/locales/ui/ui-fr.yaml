@@ -1255,6 +1255,39 @@ entries:
   Statistiques d'usage du mode "Organisations": Statistiques d'usage du mode "Organisations"
   Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.: Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.
   Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.: Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.
+  actions.form.custom.modal.ariaLabel: Fenêtre modale du formulaire d'action personnalisée
+  actions.form.modal.ariaLabel: Fenêtre modale du formulaire d'action
+  Choix de la métrique: Choix de la métrique
+  common.burgerMenu.title: Fermer le menu de navigation
+  common.buttons.close: Fermer
+  common.interactiveIllustration.item.car: Voiture
+  common.interactiveIllustration.item.coffee: Café
+  common.interactiveIllustration.item.computer: Ordinateur
+  common.interactiveIllustration.item.shirt: Chemisier
+  common.interactiveIllustration.pulsatingDotLabel: "{{itemTitle}} : score de consommation carbone de {{carbonScore}} sur 5 et score de consommation d'eau de {{waterScore}} sur 5"
+  common.modal.confirmation.title: Fenêtre modale de confirmation d'action
+  common.navigation.nextQuestion.finish.label: Terminer le test et accéder à la page de résultats
+  common.navigation.nextQuestion.next.label: Aller à la question suivante
+  common.navigation.nextQuestion.pass.label: Passer et aller à la question suivante
+  common.navigation.previousButton.label: Aller à la question précédente
+  cookieConsent.banner.title: Panneau de gestion des cookies
+  cookieConsent.board.title: Bannière de consentement aux cookies
+  Fenêtre modale de partage: Fenêtre modale de partage
+  group.results.rankingMember.delete.modal.ariaLabel: Fenêtre modale de confirmation de suppression du membre du groupe
+  organisations.additionalQuestions.deletion.modal.ariaLabel: Fenêtre de confirmation de suppression de la question personnalisée
+  organisations.emailVerificationModal.title: Fenêtre modale de confirmation d'email
+  organisations.polls.settings.confirmDeletion: Fenêtre modale de confirmation de suppression de la campagne
+  Ouvrir le menu: Ouvrir le menu
+  results.informationBlock.carbon.closeButton: Fermer l'explication sur l'empreinte eau
+  results.informationBlock.carbon.openButton: Voir le détail de l'objectif 2 tonnes en 2050
+  results.informationBlock.water.openButton: Voir l'explication sur l'empreinte eau
+  results.mainSubcategories.mainSubcategory.seeDetail: '{{title}}, voir le détail ci-dessous'
+  simulateur.saveModal.title: Fenêtre modale de sauvegarde de test
+  simulator.customQuestions.voiture.deleteItem: Supprimer ce trajet
+  simulator.customQuestions.voiture.open: Détailler mes trajets
+  simulator.label.moreInfoButton: Plus d'informations - {{label}}
+  simulator.mosaicNumberInput: 'Retirer un élément : {{title}}'
+  simulator.topBar.totalButtons.saveButton.ariaLabel: Enregistrer et reprendre plus tard
   blog.homepage.defaultDescription: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
   blog.homepage.defaultTitle: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
   blog.homePage.dynamicPageNumber: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
