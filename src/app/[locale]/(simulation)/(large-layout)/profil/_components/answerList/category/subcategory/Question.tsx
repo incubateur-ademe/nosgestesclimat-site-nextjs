@@ -49,6 +49,7 @@ export default function Question({ question }: Props) {
           </strong>
         ) : null}
       </span>
+
       {questionsOfMosaicFromParent.length ? (
         <ul
           role="list"

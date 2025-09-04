@@ -1,11 +1,5 @@
 'use client'
 
-import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
-import ActionsIcon from '@/components/icons/ActionsIcon'
-import AmisIcon from '@/components/icons/AmisIcon'
-import BilanIcon from '@/components/icons/BilanIcon'
-import PRIndicator from '@/components/layout/header/headerDesktop/PRIndicator'
-import Trans from '@/components/translation/trans/TransClient'
 import {
   headerClickActions,
   headerClickClassements,
@@ -23,14 +17,20 @@ import { trackEvent } from '@/utils/analytics/trackEvent'
 import dynamic from 'next/dynamic'
 import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
+import CTAButtonsPlaceholder from '../cta/CTAButtonsPlaceholder'
+import ActionsIcon from '../icons/ActionsIcon'
+import AmisIcon from '../icons/AmisIcon'
+import BilanIcon from '../icons/BilanIcon'
 import Logo from '../misc/Logo'
 import LogoLink from '../misc/LogoLink'
-import NavLink from './header/NavLink'
+import Trans from '../translation/trans/TransClient'
 import OrganisationLink from './header/_components/OrganisationLink'
 import ProfileIcon from './header/_components/ProfileIcon'
 import DebugIndicator from './header/headerDesktop/DebugIndicator'
+import PRIndicator from './header/headerDesktop/PRIndicator'
 import BottomMenu from './header/headerMobile/BottomMenu'
 import FoldableMenu from './header/headerMobile/FoldableMenu'
+import NavLink from './header/NavLink'
 
 const DynamicCTAButton = dynamic(
   () => import('./header/headerDesktop/MenuCTAButton'),
@@ -46,9 +46,9 @@ type Props = {
 export default function Header({ isSticky = true }: Props) {
   const { isIframeOnlySimulation } = useIframe()
 
-  const { getLinkToSimulateurPage } = useSimulateurPage()
-
   const { t } = useClientTranslation()
+
+  const { getLinkToSimulateurPage } = useSimulateurPage()
 
   const { user } = useUser()
 
