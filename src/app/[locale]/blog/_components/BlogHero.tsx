@@ -11,7 +11,7 @@ export default function BlogHero({
 }) {
   return (
     <div className="my-10 flex flex-col justify-between gap-8 overflow-x-hidden md:my-20 md:flex-row">
-      <div className="md:max-w-[36rem]">
+      <div className="bg-white md:max-w-[36rem]">
         <h1
           data-cypress-id="blog-title"
           className="text-3xl md:text-5xl"
