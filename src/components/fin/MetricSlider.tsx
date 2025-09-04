@@ -55,6 +55,16 @@ export default function MetricSlider({
     }
   }, [isStatic])
 
+  useEffect(() => {
+    document.title = t(
+      'endpage.title.custom',
+      'Mes empreintes carbone et eau, empreinte {{metric}} sélectionnée - Nos Gestes Climat',
+      {
+        metric: currentMetric === carboneMetric ? 'carbone' : 'eau',
+      }
+    )
+  }, [currentMetric])
+
   return (
     <div
       className={twMerge(
@@ -94,6 +104,7 @@ export default function MetricSlider({
           const nextMetric = order[nextIndex]
           if (nextMetric !== currentMetric) {
             setCurrentMetric(nextMetric)
+
             const nextTabId =
               nextMetric === carboneMetric
                 ? 'tab-metric-carbone'
