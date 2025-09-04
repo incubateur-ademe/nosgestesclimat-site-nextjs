@@ -93,7 +93,6 @@ export default function RegionSelector({
           }}
           selectedRegionCode={region?.code}
           className={isLoading ? 'pointer-events-none opacity-60' : ''}
-          aria-disabled={isLoading || undefined}
           role="region"
           aria-label="Liste des régions disponibles"
         />
