@@ -20,9 +20,8 @@ export default function OtherArticles({
 
         <ul className="relative flex flex-col gap-4 md:grid md:grid-cols-3">
           {articles.map((article) => (
-            <li>
+            <li key={article.slug}>
               <PostThumbnail
-                key={article.slug}
                 title={article.title}
                 imageSrc={article.image?.url ?? ''}
                 href={`/blog/${article.blogCategory?.slug}/${article.slug}`}
