@@ -27,16 +27,17 @@ export default function AutresQuestions() {
               aria-expanded="false"
               onClick={() =>
                 trackEvent(
-                  tutorielClickQuestion('C'est quoi mon empreinte carbone ?')
+                  tutorielClickQuestion("C'est quoi mon empreinte carbone ?")
                 )
               }
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault()
-                  const details = e.currentTarget.parentElement as HTMLDetailsElement
+                  const details = e.currentTarget
+                    .parentElement as HTMLDetailsElement
                   details.open = !details.open
                   trackEvent(
-                    tutorielClickQuestion('C'est quoi mon empreinte carbone ?')
+                    tutorielClickQuestion("C'est quoi mon empreinte carbone ?")
                   )
                 }
               }}>
@@ -87,7 +88,8 @@ export default function AutresQuestions() {
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault()
-                  const details = e.currentTarget.parentElement as HTMLDetailsElement
+                  const details = e.currentTarget
+                    .parentElement as HTMLDetailsElement
                   details.open = !details.open
                   trackEvent(tutorielClickQuestion('Comment on la mesure ?'))
                 }
@@ -140,17 +142,22 @@ export default function AutresQuestions() {
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault()
-                        const details = e.currentTarget.parentElement as HTMLDetailsElement
+                        const details = e.currentTarget
+                          .parentElement as HTMLDetailsElement
                         details.open = !details.open
                         trackEvent(
-                          tutorielClickQuestion('Mais que veut dire ce petit e ?')
+                          tutorielClickQuestion(
+                            'Mais que veut dire ce petit e ?'
+                          )
                         )
                       }
                     }}>
                     <Trans i18nKey={'sites.publicodes.Tutorial.questionE'}>
                       💡 Mais que veut dire ce petit <em>e</em> ?
                     </Trans>
-                    <span className="sr-only">Cliquez pour afficher la réponse</span>
+                    <span className="sr-only">
+                      Cliquez pour afficher la réponse
+                    </span>
                   </summary>{' '}
                   <Trans i18nKey={'publicodes.Tutoriel.slide2.blockquote'}>
                     D'autres gaz, surtout le méthane{' '}
@@ -185,14 +192,17 @@ export default function AutresQuestions() {
               tabIndex={0}
               aria-expanded="false"
               onClick={() =>
-                trackEvent(tutorielClickQuestion('D'où vient mon empreinte ?'))
+                trackEvent(tutorielClickQuestion("D'où vient mon empreinte ?"))
               }
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault()
-                  const details = e.currentTarget.parentElement as HTMLDetailsElement
+                  const details = e.currentTarget
+                    .parentElement as HTMLDetailsElement
                   details.open = !details.open
-                  trackEvent(tutorielClickQuestion('D'où vient mon empreinte ?'))
+                  trackEvent(
+                    tutorielClickQuestion("D'où vient mon empreinte ?")
+                  )
                 }
               }}>
               <Trans>D'où vient mon empreinte ?</Trans>
@@ -221,14 +231,17 @@ export default function AutresQuestions() {
               tabIndex={0}
               aria-expanded="false"
               onClick={() =>
-                trackEvent(tutorielClickQuestion('D'où vient mon empreinte ?'))
+                trackEvent(tutorielClickQuestion("D'où vient mon empreinte ?"))
               }
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault()
-                  const details = e.currentTarget.parentElement as HTMLDetailsElement
+                  const details = e.currentTarget
+                    .parentElement as HTMLDetailsElement
                   details.open = !details.open
-                  trackEvent(tutorielClickQuestion('D'où vient mon empreinte ?'))
+                  trackEvent(
+                    tutorielClickQuestion("D'où vient mon empreinte ?")
+                  )
                 }
               }}>
               <Trans>Pourquoi avons-nous ajouté l'empreinte eau ?</Trans>
