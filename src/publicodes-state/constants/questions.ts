@@ -13,6 +13,7 @@ export const PRIORITY_QUESTIONS: Set<DottedName> = new Set([
   'logement . chauffage . bois . type',
   'transport . voiture . km',
   'transport . voiture . voyageurs',
+  'divers . numérique . internet . durée journalière',
 ])
 
 export const NON_PRIORITY_QUESTIONS: Set<DottedName> = new Set([
