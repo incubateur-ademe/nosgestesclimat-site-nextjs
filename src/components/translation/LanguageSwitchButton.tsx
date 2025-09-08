@@ -40,17 +40,17 @@ export default function LanguageSwitchButton({
 
   const handleChange = (newLocale: Locale) => {
     trackEvent(footerClickLanguage(newLocale))
-
+    console.log('Changing locale for => ', newLocale)
     updateLangCookie(newLocale)
   }
 
   const getHref = (newLocale: Locale) => {
     let newPathname = pathname
-    if (currentLocale === i18nConfig.defaultLocale) {
-      newPathname = `/${newLocale}/${pathname}`
-    } else {
-      newPathname = pathname.replace(`/${currentLocale}`, `/${newLocale}`)
-    }
+    // if (currentLocale === i18nConfig.defaultLocale) {
+    //   newPathname = `/${newLocale}/${pathname}`
+    // } else {
+    newPathname = pathname.replace(`/${currentLocale}`, `/${newLocale}`)
+    // }
 
     return newPathname
   }
