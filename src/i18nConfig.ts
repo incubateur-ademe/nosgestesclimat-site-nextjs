@@ -1,5 +1,4 @@
 import type { Config } from 'next-i18n-router/dist/types'
-import type { NextRequest } from 'next/server'
 
 export const LOCALE_EN_KEY = 'en'
 export const LOCALE_ES_KEY = 'es'
@@ -17,25 +16,6 @@ const i18nConfig: Config = {
     path: '/',
     maxAge: 31536000,
     secure: true, // Required when using SameSite=None
-  },
-  localeDetector: (request: NextRequest, config: Config): string => {
-    // Check for NEXT_LOCALE cookie
-    const nextLocale = request.cookies.get(NEXT_LOCALE_COOKIE_NAME)?.value
-    if (nextLocale && config.locales.includes(nextLocale)) {
-      return nextLocale
-    }
-
-    // Check browser language
-    const acceptLanguage = request.headers.get('accept-language')
-    if (acceptLanguage) {
-      const browserLang = acceptLanguage.split(',')[0].split('-')[0]
-      if (config.locales.includes(browserLang)) {
-        return browserLang
-      }
-    }
-
-    // Return default locale
-    return config.defaultLocale
   },
 }
 
