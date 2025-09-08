@@ -19,6 +19,7 @@ type Props = {
   onClick?: MouseEventHandler<HTMLAnchorElement>
   title?: string
   target?: string
+  shouldUseUnlocalizedHref?: boolean
 }
 
 export default function Link({
@@ -28,6 +29,7 @@ export default function Link({
   onClick,
   title,
   target,
+  shouldUseUnlocalizedHref,
   ...props
 }: PropsWithChildren<HTMLAttributes<HTMLAnchorElement> & Props>) {
   const locale = useCurrentLocale(i18nConfig)
@@ -56,9 +58,18 @@ export default function Link({
     }
   }
 
+  // If href includes ":" it must be an external link
+  const localisedHref = (() => {
+    // We check if it is an external link (it has a protocol)
+    if (href?.includes(':')) {
+      return href
+    }
+    return `${locale !== i18nConfig.locales[0] ? `/${locale}` : ''}${href}`
+  })()
+
   return (
     <NextLink
-      href={href}
+      href={shouldUseUnlocalizedHref ? href : localisedHref}
       className={twMerge(
         'text-primary-700 hover:text-primary-800 break-words underline transition-colors',
         className

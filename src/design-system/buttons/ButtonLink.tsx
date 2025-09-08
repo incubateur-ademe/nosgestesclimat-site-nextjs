@@ -21,6 +21,7 @@ type Props = {
   onKeyDown?: (e: KeyboardEvent<HTMLAnchorElement>) => void
   trackingEvent?: (string | null)[]
   target?: string
+  shouldUseUnlocalizedHref?: boolean
 }
 
 export default function ButtonLink({
@@ -34,6 +35,7 @@ export default function ButtonLink({
   onKeyDown,
   trackingEvent,
   target = '_self',
+  shouldUseUnlocalizedHref,
   ...props
 }: PropsWithChildren<Props & HtmlHTMLAttributes<HTMLAnchorElement>>) {
   return (
@@ -62,6 +64,7 @@ export default function ButtonLink({
         className
       )}
       target={target}
+      shouldUseUnlocalizedHref={shouldUseUnlocalizedHref}
       {...props}>
       {children}
     </Link>

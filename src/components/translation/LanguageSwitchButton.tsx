@@ -40,12 +40,12 @@ export default function LanguageSwitchButton({
 
   const handleChange = (newLocale: Locale) => {
     trackEvent(footerClickLanguage(newLocale))
-    console.log('Changing locale for => ', newLocale)
     updateLangCookie(newLocale)
   }
 
   const getHref = (newLocale: Locale) => {
     let newPathname = pathname
+
     if (currentLocale === i18nConfig.defaultLocale) {
       newPathname = `/${newLocale}/${pathname}`
     } else {
@@ -81,7 +81,8 @@ export default function LanguageSwitchButton({
               : 'FR - Sélectionner la langue française'
           }
           className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
-          data-cypress-id="language-switch-button-fr">
+          data-cypress-id="language-switch-button-fr"
+          shouldUseUnlocalizedHref>
           <span>FR</span> <Emoji>🇫🇷</Emoji>
         </ButtonLink>
       )}
@@ -100,7 +101,8 @@ export default function LanguageSwitchButton({
               : 'EN - Select English language'
           }
           className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
-          data-cypress-id="language-switch-button-en">
+          data-cypress-id="language-switch-button-en"
+          shouldUseUnlocalizedHref>
           <span>EN</span> <Emoji>🇬🇧</Emoji>
         </ButtonLink>
       )}
@@ -119,7 +121,8 @@ export default function LanguageSwitchButton({
               : 'ES - Seleccionar el idioma español'
           }
           className="flex gap-2 px-2 py-2 sm:px-4 sm:py-3"
-          data-cypress-id="language-switch-button-es">
+          data-cypress-id="language-switch-button-es"
+          shouldUseUnlocalizedHref>
           <span>ES</span> <Emoji>🇪🇸</Emoji>
         </ButtonLink>
       )}
