@@ -42,7 +42,7 @@ export default function LanguageSwitchButton({
     ? { ...langButtonsDisplayed, [ES_LOCALE]: false }
     : langButtonsDisplayed
 
-  const getHref = (newLocale: Locale, shouldAddSuffix?: boolean) => {
+  const getHref = (newLocale: Locale) => {
     let newPathname = pathname
 
     if (currentLocale === i18nConfig.defaultLocale) {
@@ -51,7 +51,7 @@ export default function LanguageSwitchButton({
       newPathname = pathname.replace(`/${currentLocale}`, `/${newLocale}`)
     }
 
-    return newPathname + (shouldAddSuffix ? '?toto=prout' : '')
+    return newPathname
   }
 
   const handleClick =
@@ -61,9 +61,9 @@ export default function LanguageSwitchButton({
       trackEvent(footerClickLanguage(newLocale))
       updateLangCookie(newLocale)
 
-      // Navigate manually after updating the cookie
+      // Force a complete page reload with the new locale
       const newPathname = getHref(newLocale)
-      router.push(newPathname)
+      window.location.href = newPathname
     }
 
   if (
@@ -81,7 +81,7 @@ export default function LanguageSwitchButton({
       {langButtonsDisplayedWithFilteredEs.fr && (
         <ButtonLink
           lang={i18nConfig.locales[0]}
-          href={getHref(FR_LOCALE, true)}
+          href={getHref(FR_LOCALE)}
           onClick={handleClick(FR_LOCALE)}
           color={currentLocale === FR_LOCALE ? 'primary' : 'secondary'}
           size={size}
@@ -100,7 +100,7 @@ export default function LanguageSwitchButton({
       {langButtonsDisplayedWithFilteredEs.en && (
         <ButtonLink
           lang="en"
-          href={getHref(EN_LOCALE, true)}
+          href={getHref(EN_LOCALE)}
           onClick={handleClick(EN_LOCALE)}
           color={currentLocale === EN_LOCALE ? 'primary' : 'secondary'}
           size={size}
@@ -119,7 +119,7 @@ export default function LanguageSwitchButton({
       {langButtonsDisplayedWithFilteredEs.es && (
         <ButtonLink
           lang={ES_LOCALE}
-          href={getHref(ES_LOCALE, true)}
+          href={getHref(ES_LOCALE)}
           onClick={handleClick(ES_LOCALE)}
           color={currentLocale === ES_LOCALE ? 'primary' : 'secondary'}
           size="sm"
