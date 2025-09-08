@@ -46,11 +46,11 @@ export default function LanguageSwitchButton({
 
   const getHref = (newLocale: Locale) => {
     let newPathname = pathname
-    // if (currentLocale === i18nConfig.defaultLocale) {
-    //   newPathname = `/${newLocale}/${pathname}`
-    // } else {
-    newPathname = pathname.replace(`/${currentLocale}`, `/${newLocale}`)
-    // }
+    if (currentLocale === i18nConfig.defaultLocale) {
+      newPathname = `/${newLocale}/${pathname}`
+    } else {
+      newPathname = pathname.replace(`/${currentLocale}`, `/${newLocale}`)
+    }
 
     return newPathname
   }
