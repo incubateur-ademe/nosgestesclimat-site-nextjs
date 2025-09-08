@@ -9,7 +9,7 @@ import { updateLangCookie } from '@/helpers/language/updateLangCookie'
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
 const NO_ES_PATHNAMES = new Set([FAQ_PATH])
@@ -28,7 +28,7 @@ export default function LanguageSwitchButton({
   className?: string
 }) {
   const currentLocale = useCurrentLocale(i18nConfig)
-
+  const router = useRouter()
   const pathname = usePathname()
 
   // Check without the
@@ -38,10 +38,16 @@ export default function LanguageSwitchButton({
     ? { ...langButtonsDisplayed, es: false }
     : langButtonsDisplayed
 
-  const handleChange = (newLocale: Locale) => {
-    trackEvent(footerClickLanguage(newLocale))
-    updateLangCookie(newLocale)
-  }
+  const handleClick =
+    (newLocale: Locale) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault()
+      trackEvent(footerClickLanguage(newLocale))
+      updateLangCookie(newLocale)
+
+      // Navigate manually after updating the cookie
+      const newPathname = getHref(newLocale)
+      router.push(newPathname)
+    }
 
   const getHref = (newLocale: Locale) => {
     let newPathname = pathname
@@ -70,8 +76,8 @@ export default function LanguageSwitchButton({
       {langButtonsDisplayedWithFilteredEs.fr && (
         <ButtonLink
           lang="fr"
-          href={getHref('fr')}
-          onClick={() => handleChange('fr')}
+          href="#"
+          onClick={handleClick('fr')}
           color={currentLocale === 'fr' ? 'primary' : 'secondary'}
           size={size}
           aria-label="Passer en français"
@@ -90,8 +96,8 @@ export default function LanguageSwitchButton({
       {langButtonsDisplayedWithFilteredEs.en && (
         <ButtonLink
           lang="en"
-          href={getHref('en')}
-          onClick={() => handleChange('en')}
+          href="#"
+          onClick={handleClick('en')}
           color={currentLocale === 'en' ? 'primary' : 'secondary'}
           size={size}
           aria-label="Switch to english"
@@ -110,8 +116,8 @@ export default function LanguageSwitchButton({
       {langButtonsDisplayedWithFilteredEs.es && (
         <ButtonLink
           lang="es"
-          href={getHref('es')}
-          onClick={() => handleChange('es')}
+          href="#"
+          onClick={handleClick('es')}
           color={currentLocale === 'es' ? 'primary' : 'secondary'}
           size="sm"
           aria-label="Cambiar a español"

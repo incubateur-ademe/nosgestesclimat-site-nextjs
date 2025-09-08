@@ -69,7 +69,7 @@ export default function Link({
 
   return (
     <NextLink
-      href={shouldUseUnlocalizedHref ? href : localisedHref}
+      href={href}
       className={twMerge(
         'text-primary-700 hover:text-primary-800 break-words underline transition-colors',
         className
