@@ -14,6 +14,10 @@ import { twMerge } from 'tailwind-merge'
 
 const NO_ES_PATHNAMES = new Set([FAQ_PATH])
 
+const FR_LOCALE = i18nConfig.locales[0] as Locale
+const EN_LOCALE = i18nConfig.locales[1] as Locale
+const ES_LOCALE = i18nConfig.locales[2] as Locale
+
 export default function LanguageSwitchButton({
   langButtonsDisplayed = {
     fr: true,
@@ -35,21 +39,10 @@ export default function LanguageSwitchButton({
   const langButtonsDisplayedWithFilteredEs = NO_ES_PATHNAMES.has(
     pathname.replace(new RegExp(`^/(${i18nConfig.locales.join('|')})`), '')
   )
-    ? { ...langButtonsDisplayed, es: false }
+    ? { ...langButtonsDisplayed, [ES_LOCALE]: false }
     : langButtonsDisplayed
 
-  const handleClick =
-    (newLocale: Locale) => (e: React.MouseEvent<HTMLAnchorElement>) => {
-      e.preventDefault()
-      trackEvent(footerClickLanguage(newLocale))
-      updateLangCookie(newLocale)
-
-      // Navigate manually after updating the cookie
-      const newPathname = getHref(newLocale)
-      router.push(newPathname)
-    }
-
-  const getHref = (newLocale: Locale) => {
+  const getHref = (newLocale: Locale, shouldAddSuffix?: boolean) => {
     let newPathname = pathname
 
     if (currentLocale === i18nConfig.defaultLocale) {
@@ -58,8 +51,20 @@ export default function LanguageSwitchButton({
       newPathname = pathname.replace(`/${currentLocale}`, `/${newLocale}`)
     }
 
-    return newPathname
+    return newPathname + (shouldAddSuffix ? '?toto=prout' : '')
   }
+
+  const handleClick =
+    (newLocale: Locale) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault()
+      e.stopPropagation()
+      trackEvent(footerClickLanguage(newLocale))
+      updateLangCookie(newLocale)
+
+      // Navigate manually after updating the cookie
+      const newPathname = getHref(newLocale)
+      router.push(newPathname)
+    }
 
   if (
     Object.entries(langButtonsDisplayed ?? {}).every(([_, value]) => !value)
@@ -75,20 +80,19 @@ export default function LanguageSwitchButton({
       )}>
       {langButtonsDisplayedWithFilteredEs.fr && (
         <ButtonLink
-          lang="fr"
-          href="#"
-          onClick={handleClick('fr')}
-          color={currentLocale === 'fr' ? 'primary' : 'secondary'}
+          lang={i18nConfig.locales[0]}
+          href={getHref(FR_LOCALE, true)}
+          onClick={handleClick(FR_LOCALE)}
+          color={currentLocale === FR_LOCALE ? 'primary' : 'secondary'}
           size={size}
           aria-label="Passer en français"
           title={
-            currentLocale === 'fr'
+            currentLocale === FR_LOCALE
               ? 'FR - Langue active'
               : 'FR - Sélectionner la langue française'
           }
           className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
-          data-cypress-id="language-switch-button-fr"
-          shouldUseUnlocalizedHref>
+          data-cypress-id="language-switch-button-fr">
           <span>FR</span> <Emoji>🇫🇷</Emoji>
         </ButtonLink>
       )}
@@ -96,39 +100,37 @@ export default function LanguageSwitchButton({
       {langButtonsDisplayedWithFilteredEs.en && (
         <ButtonLink
           lang="en"
-          href="#"
-          onClick={handleClick('en')}
-          color={currentLocale === 'en' ? 'primary' : 'secondary'}
+          href={getHref(EN_LOCALE, true)}
+          onClick={handleClick(EN_LOCALE)}
+          color={currentLocale === EN_LOCALE ? 'primary' : 'secondary'}
           size={size}
           aria-label="Switch to english"
           title={
-            currentLocale === 'en'
+            currentLocale === EN_LOCALE
               ? 'EN - Active language'
               : 'EN - Select English language'
           }
           className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
-          data-cypress-id="language-switch-button-en"
-          shouldUseUnlocalizedHref>
+          data-cypress-id="language-switch-button-en">
           <span>EN</span> <Emoji>🇬🇧</Emoji>
         </ButtonLink>
       )}
 
       {langButtonsDisplayedWithFilteredEs.es && (
         <ButtonLink
-          lang="es"
-          href="#"
-          onClick={handleClick('es')}
-          color={currentLocale === 'es' ? 'primary' : 'secondary'}
+          lang={ES_LOCALE}
+          href={getHref(ES_LOCALE, true)}
+          onClick={handleClick(ES_LOCALE)}
+          color={currentLocale === ES_LOCALE ? 'primary' : 'secondary'}
           size="sm"
           aria-label="Cambiar a español"
           title={
-            currentLocale === 'es'
+            currentLocale === ES_LOCALE
               ? 'ES - Activa el idioma español'
               : 'ES - Seleccionar el idioma español'
           }
           className="flex gap-2 px-2 py-2 sm:px-4 sm:py-3"
-          data-cypress-id="language-switch-button-es"
-          shouldUseUnlocalizedHref>
+          data-cypress-id="language-switch-button-es">
           <span>ES</span> <Emoji>🇪🇸</Emoji>
         </ButtonLink>
       )}

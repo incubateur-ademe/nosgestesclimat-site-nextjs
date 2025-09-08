@@ -2,8 +2,6 @@
 
 import { PreventNavigationContext } from '@/app/[locale]/_components/mainLayoutProviders/PreventNavigationProvider'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import i18nConfig from '@/i18nConfig'
-import { useCurrentLocale } from 'next-i18n-router/client'
 import NextLink from 'next/link'
 import type {
   HTMLAttributes,
@@ -19,7 +17,6 @@ type Props = {
   onClick?: MouseEventHandler<HTMLAnchorElement>
   title?: string
   target?: string
-  shouldUseUnlocalizedHref?: boolean
 }
 
 export default function Link({
@@ -29,10 +26,8 @@ export default function Link({
   onClick,
   title,
   target,
-  shouldUseUnlocalizedHref,
   ...props
 }: PropsWithChildren<HTMLAttributes<HTMLAnchorElement> & Props>) {
-  const locale = useCurrentLocale(i18nConfig)
   const { t } = useClientTranslation()
 
   const { shouldPreventNavigation, handleUpdateShouldPreventNavigation } =
@@ -57,15 +52,6 @@ export default function Link({
       }
     }
   }
-
-  // If href includes ":" it must be an external link
-  const localisedHref = (() => {
-    // We check if it is an external link (it has a protocol)
-    if (href?.includes(':')) {
-      return href
-    }
-    return `${locale !== i18nConfig.locales[0] ? `/${locale}` : ''}${href}`
-  })()
 
   return (
     <NextLink
