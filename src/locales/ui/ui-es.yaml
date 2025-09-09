@@ -1452,3 +1452,51 @@ entries:
   Arrêter le défilement: Detener el desplazamiento
   homePage.interactiveIllustration.itemTitle: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} de 5'
   homePage.interactiveIllustration.itemTitle.lock: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'
+  common.category.divers: Varios
+  common.category.divers.lock: Divers
+  pollResults.categoryDistribution.accessibleDescription.category: '{{name}}: {{value}} {{unit}}.'
+  pollResults.categoryDistribution.accessibleDescription.category.lock: '{{name}}: {{value}} {{unit}}.'
+  common.category.transport: Transporte
+  common.category.transport.lock: Transport
+  common.category.services: Servicios comunitarios
+  common.category.services.lock: Services sociétaux
+  common.category.alimentation: Alimentación
+  common.category.alimentation.lock: Alimentation
+  common.category.logement: Vivienda
+  common.category.logement.lock: Logement
+  pollResults.footprintBarChart.accessibleDescription.lower: inferior
+  pollResults.footprintBarChart.accessibleDescription.lower.lock: inférieure
+  pollResults.footprintBarChart.accessibleDescription.higher: superior
+  pollResults.footprintBarChart.accessibleDescription.higher.lock: supérieure
+  pollResults.categoryDistribution.accessibleDescription.chart: 'Gráfico de donuts que muestra el desglose de las emisiones por categorías. '
+  pollResults.categoryDistribution.accessibleDescription.chart.lock: 'Graphique en donut montrant la répartition des émissions par catégorie. '
+  pollResults.pollResults.distribution.category_distribution.title_detail: (medias)
+  pollResults.pollResults.distribution.category_distribution.title_detail.lock: (moyennes)
+  pollResults.footprintBarChart.accessibleDescription.groupFootprint: La huella media del Grupo es {{value}} {{unit}}.
+  pollResults.footprintBarChart.accessibleDescription.groupFootprint.lock: L'empreinte moyenne du groupe est de {{value}} {{unit}}.
+  pollResults.footprintBarChart.userFootprint: Tu huella
+  pollResults.footprintBarChart.userFootprint.lock: Votre empreinte
+  pollResults.footprintBarChart.legend.userFootprint: Tu huella
+  pollResults.footprintBarChart.legend.userFootprint.lock: Votre empreinte
+  pollResults.footprintBarChart.legend.groupFootprint: Huella media del Grupo
+  pollResults.footprintBarChart.legend.groupFootprint.lock: Empreinte moyenne du groupe
+  pollResults.footprintBarChart.accessibleDescription.userComparison: Su huella es {{comparison}}.
+  pollResults.footprintBarChart.accessibleDescription.userComparison.lock: Votre empreinte est {{comparison}} à celle du groupe.
+  pollResults.pollResults.distribution.category_distribution.title: Desglose por categoría de emisión
+  pollResults.pollResults.distribution.category_distribution.title.lock: Répartition par poste d'émission
+  pollResults.distribution.title: Desglose de la huella de carbono
+  pollResults.distribution.title.lock: Répartition des empreintes carbone
+  pollResults.footprintBarChart.targetLabel: Objetivo {{year}}
+  pollResults.footprintBarChart.targetLabel.lock: Objectif {{year}}
+  pollResults.footprintBarChart.accessibleDescription.groupComparison: La huella del Grupo es {{comparison}}.
+  pollResults.footprintBarChart.accessibleDescription.groupComparison.lock: L'empreinte du groupe est {{comparison}} à l'objectif.
+  pollResults.footprintBarChart.accessibleDescription.chart: 'Gráfico de barras que muestra la comparación de las huellas de carbono. '
+  pollResults.footprintBarChart.accessibleDescription.chart.lock: 'Graphique en barres montrant la comparaison des empreintes carbone. '
+  pollResults.footprintBarChart.groupFootprint: Huella media del Grupo
+  pollResults.footprintBarChart.groupFootprint.lock: Empreinte moyenne du groupe
+  pollResults.mean_footprint_distribution.title: Huella de carbono media de
+  pollResults.mean_footprint_distribution.title.lock: Empreinte carbone moyenne de
+  pollResults.footprintBarChart.accessibleDescription.userFootprint: Su huella personal es {{value}} {{unit}}.
+  pollResults.footprintBarChart.accessibleDescription.userFootprint.lock: Votre empreinte personnelle est de {{value}} {{unit}}.
+  pollResults.footprintBarChart.accessibleDescription.target: El objetivo es {{year}} est de {{value}} {{unit}}.
+  pollResults.footprintBarChart.accessibleDescription.target.lock: L'objectif à atteindre d'ici {{year}} est de {{value}} {{unit}}.

@@ -1289,3 +1289,27 @@ entries:
   homePage.interactiveIllustration.itemTitle: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'
   homePage.interactiveIllustration.waterScore: ' et empreinte eau notée {{waterScore}} sur 5'
   Lancer le défilement: Lancer le défilement
+  common.category.alimentation: Alimentation
+  common.category.divers: Divers
+  common.category.logement: Logement
+  common.category.services: Services sociétaux
+  common.category.transport: Transport
+  pollResults.categoryDistribution.accessibleDescription.category: '{{name}}: {{value}} {{unit}}.'
+  pollResults.categoryDistribution.accessibleDescription.chart: 'Graphique en donut montrant la répartition des émissions par catégorie. '
+  pollResults.distribution.title: Répartition des empreintes carbone
+  pollResults.footprintBarChart.accessibleDescription.chart: 'Graphique en barres montrant la comparaison des empreintes carbone. '
+  pollResults.footprintBarChart.accessibleDescription.groupComparison: L'empreinte du groupe est {{comparison}} à l'objectif.
+  pollResults.footprintBarChart.accessibleDescription.groupFootprint: L'empreinte moyenne du groupe est de {{value}} {{unit}}.
+  pollResults.footprintBarChart.accessibleDescription.higher: supérieure
+  pollResults.footprintBarChart.accessibleDescription.lower: inférieure
+  pollResults.footprintBarChart.accessibleDescription.target: L'objectif à atteindre d'ici {{year}} est de {{value}} {{unit}}.
+  pollResults.footprintBarChart.accessibleDescription.userComparison: Votre empreinte est {{comparison}} à celle du groupe.
+  pollResults.footprintBarChart.accessibleDescription.userFootprint: Votre empreinte personnelle est de {{value}} {{unit}}.
+  pollResults.footprintBarChart.groupFootprint: Empreinte moyenne du groupe
+  pollResults.footprintBarChart.legend.groupFootprint: Empreinte moyenne du groupe
+  pollResults.footprintBarChart.legend.userFootprint: Votre empreinte
+  pollResults.footprintBarChart.targetLabel: Objectif {{year}}
+  pollResults.footprintBarChart.userFootprint: Votre empreinte
+  pollResults.mean_footprint_distribution.title: Empreinte carbone moyenne de
+  pollResults.pollResults.distribution.category_distribution.title: Répartition par poste d'émission
+  pollResults.pollResults.distribution.category_distribution.title_detail: (moyennes)
