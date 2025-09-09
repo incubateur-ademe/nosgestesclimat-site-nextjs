@@ -161,6 +161,8 @@ export default function CampagnePage() {
             />
 
             <FootprintDistribution />
+
+            {!!isAdmin && <AdminSection poll={poll} />}
           </>
         )}
       </div>
