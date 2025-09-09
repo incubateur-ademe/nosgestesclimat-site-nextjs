@@ -47,9 +47,7 @@ export default function Ameublement({ question }: Props) {
                   height="16"
                 />
 
-                <Trans>
-                  Je détaille mes meubles et appareils électroménagers
-                </Trans>
+                <Trans>Je détaille mes derniers achats</Trans>
               </span>
             )}
           </Button>
