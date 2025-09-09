@@ -6,10 +6,8 @@ import PollStatistics from '@/components/organisations/PollStatistics'
 import Trans from '@/components/translation/trans/TransClient'
 import { pollDashboardClickParameters } from '@/constants/tracking/pages/pollDashboard'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
-import Card from '@/design-system/layout/Card'
 import Loader from '@/design-system/layout/Loader'
 import Title from '@/design-system/layout/Title'
-import Emoji from '@/design-system/utils/Emoji'
 import { filterExtremes } from '@/helpers/organisations/filterExtremes'
 import { filterSimulations } from '@/helpers/organisations/filterSimulations'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
@@ -23,8 +21,8 @@ import { useContext, useMemo } from 'react'
 import AdminSection from './_components/AdminSection'
 import { FiltersContext } from './_components/FiltersProvider'
 import PollNotFound from './_components/PollNotFound'
-import PollStatisticsCharts from './_components/PollStatisticsCharts'
 import PollStatisticsFilters from './_components/PollStatisticsFilters'
+import FootprintDistribution from './_components/footPrintDistribution/FootprintDistribution'
 
 const MAX_NUMBER_POLL_SIMULATIONS = 500
 
@@ -145,21 +143,6 @@ export default function CampagnePage() {
           isAdmin={!!isAdmin}
         />
 
-        {
-          // Do not display message for unaware participants, but only for admins
-          pollHasTooManyParticipants && !!isAdmin && (
-            <Card className="border-primary-300 bg-primary-50 text-primary-950 mb-8 inline-block text-sm font-bold">
-              <Trans>
-                Les graphiques sont cachés pour les campagnes avec plus de 500
-                participations pour des raisons de performance. Nous travaillons
-                à l'ajout de cette fonctionnalité pour les plus grosses
-                campagnes.
-              </Trans>{' '}
-              <Emoji className="inline">💪</Emoji>
-            </Card>
-          )
-        }
-
         {isLoadingSimulations && !pollHasTooManyParticipants && (
           <div className="mb-8 flex h-full items-center gap-2">
             <Loader color="dark" size="sm" />
@@ -177,10 +160,7 @@ export default function CampagnePage() {
               }
             />
 
-            <PollStatisticsCharts
-              simulations={filteredSimulations ?? []}
-              isAdmin={!!poll?.organisation.administrators}
-            />
+            <FootprintDistribution />
           </>
         )}
       </div>
