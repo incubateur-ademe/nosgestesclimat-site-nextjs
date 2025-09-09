@@ -120,16 +120,18 @@ export default function Label({
             <Markdown className="[&>blockquote]:text-default [&>blockquote]:mt-0 [&>blockquote]:mb-2 [&>blockquote]:p-0 [&>p]:mb-2">
               {description}
             </Markdown>{' '}
-            <Button
-              size="xs"
-              color={'secondary'}
-              onClick={() => {
-                trackEvent(questionCloseInfo({ question }))
-                setIsOpen(false)
-              }}
-              title={t('Fermer')}>
-              <Trans>Fermer</Trans>
-            </Button>
+            <div className="mt-1 flex justify-end">
+              <Button
+                size="xs"
+                color="secondary"
+                onClick={() => {
+                  trackEvent(questionCloseInfo({ question }))
+                  setIsOpen(false)
+                }}
+                title={t('Fermer')}>
+                <Trans>Fermer</Trans>
+              </Button>
+            </div>
           </motion.div>
         ) : null)}
     </>
