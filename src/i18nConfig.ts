@@ -17,6 +17,7 @@ const i18nConfig: Config = {
     maxAge: 31536000,
     secure: true, // Required when using SameSite=None
   },
+  localeDetector: false,
 }
 
 export default i18nConfig
