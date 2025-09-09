@@ -59,6 +59,7 @@ export default function LanguageSwitchButton({
       e.preventDefault()
       e.stopPropagation()
       trackEvent(footerClickLanguage(newLocale))
+      console.log('CLICK handleclick in LanguageSwitchButton')
       updateLangCookie(newLocale)
 
       // Force a complete page reload with the new locale
