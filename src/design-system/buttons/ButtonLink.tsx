@@ -6,6 +6,7 @@ import { trackEvent } from '@/utils/analytics/trackEvent'
 import type {
   HtmlHTMLAttributes,
   KeyboardEvent,
+  MouseEvent,
   PropsWithChildren,
 } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -17,7 +18,7 @@ type Props = {
   color?: 'primary' | 'secondary' | 'text' | 'success'
   size?: ButtonSize
   title?: string
-  onClick?: () => void
+  onClick?: (e: MouseEvent<HTMLAnchorElement>) => void
   onKeyDown?: (e: KeyboardEvent<HTMLAnchorElement>) => void
   trackingEvent?: (string | null)[]
   target?: string

@@ -9,10 +9,14 @@ import { updateLangCookie } from '@/helpers/language/updateLangCookie'
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
 const NO_ES_PATHNAMES = new Set([FAQ_PATH])
+
+const FR_LOCALE = i18nConfig.locales[0] as Locale
+const EN_LOCALE = i18nConfig.locales[1] as Locale
+const ES_LOCALE = i18nConfig.locales[2] as Locale
 
 export default function LanguageSwitchButton({
   langButtonsDisplayed = {
@@ -28,24 +32,19 @@ export default function LanguageSwitchButton({
   className?: string
 }) {
   const currentLocale = useCurrentLocale(i18nConfig)
-
+  const router = useRouter()
   const pathname = usePathname()
 
   // Check without the
   const langButtonsDisplayedWithFilteredEs = NO_ES_PATHNAMES.has(
     pathname.replace(new RegExp(`^/(${i18nConfig.locales.join('|')})`), '')
   )
-    ? { ...langButtonsDisplayed, es: false }
+    ? { ...langButtonsDisplayed, [ES_LOCALE]: false }
     : langButtonsDisplayed
-
-  const handleChange = (newLocale: Locale) => {
-    trackEvent(footerClickLanguage(newLocale))
-
-    updateLangCookie(newLocale)
-  }
 
   const getHref = (newLocale: Locale) => {
     let newPathname = pathname
+
     if (currentLocale === i18nConfig.defaultLocale) {
       newPathname = `/${newLocale}/${pathname}`
     } else {
@@ -54,6 +53,19 @@ export default function LanguageSwitchButton({
 
     return newPathname
   }
+
+  const handleClick =
+    (newLocale: Locale) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault()
+      e.stopPropagation()
+      trackEvent(footerClickLanguage(newLocale))
+      console.log('CLICK handleclick in LanguageSwitchButton')
+      updateLangCookie(newLocale)
+
+      // Force a complete page reload with the new locale
+      const newPathname = getHref(newLocale)
+      window.location.href = newPathname
+    }
 
   if (
     Object.entries(langButtonsDisplayed ?? {}).every(([_, value]) => !value)
@@ -69,14 +81,14 @@ export default function LanguageSwitchButton({
       )}>
       {langButtonsDisplayedWithFilteredEs.fr && (
         <ButtonLink
-          lang="fr"
-          href={getHref('fr')}
-          onClick={() => handleChange('fr')}
-          color={currentLocale === 'fr' ? 'primary' : 'secondary'}
+          lang={i18nConfig.locales[0]}
+          href={getHref(FR_LOCALE)}
+          onClick={handleClick(FR_LOCALE)}
+          color={currentLocale === FR_LOCALE ? 'primary' : 'secondary'}
           size={size}
           aria-label="Passer en français"
           title={
-            currentLocale === 'fr'
+            currentLocale === FR_LOCALE
               ? 'FR - Langue active'
               : 'FR - Sélectionner la langue française'
           }
@@ -89,13 +101,13 @@ export default function LanguageSwitchButton({
       {langButtonsDisplayedWithFilteredEs.en && (
         <ButtonLink
           lang="en"
-          href={getHref('en')}
-          onClick={() => handleChange('en')}
-          color={currentLocale === 'en' ? 'primary' : 'secondary'}
+          href={getHref(EN_LOCALE)}
+          onClick={handleClick(EN_LOCALE)}
+          color={currentLocale === EN_LOCALE ? 'primary' : 'secondary'}
           size={size}
           aria-label="Switch to english"
           title={
-            currentLocale === 'en'
+            currentLocale === EN_LOCALE
               ? 'EN - Active language'
               : 'EN - Select English language'
           }
@@ -107,14 +119,14 @@ export default function LanguageSwitchButton({
 
       {langButtonsDisplayedWithFilteredEs.es && (
         <ButtonLink
-          lang="es"
-          href={getHref('es')}
-          onClick={() => handleChange('es')}
-          color={currentLocale === 'es' ? 'primary' : 'secondary'}
+          lang={ES_LOCALE}
+          href={getHref(ES_LOCALE)}
+          onClick={handleClick(ES_LOCALE)}
+          color={currentLocale === ES_LOCALE ? 'primary' : 'secondary'}
           size="sm"
           aria-label="Cambiar a español"
           title={
-            currentLocale === 'es'
+            currentLocale === ES_LOCALE
               ? 'ES - Activa el idioma español'
               : 'ES - Seleccionar el idioma español'
           }

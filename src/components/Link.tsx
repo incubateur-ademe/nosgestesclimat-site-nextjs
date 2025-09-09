@@ -2,8 +2,6 @@
 
 import { PreventNavigationContext } from '@/app/[locale]/_components/mainLayoutProviders/PreventNavigationProvider'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import i18nConfig from '@/i18nConfig'
-import { useCurrentLocale } from 'next-i18n-router/client'
 import NextLink from 'next/link'
 import type {
   HTMLAttributes,
@@ -30,7 +28,6 @@ export default function Link({
   target,
   ...props
 }: PropsWithChildren<HTMLAttributes<HTMLAnchorElement> & Props>) {
-  const locale = useCurrentLocale(i18nConfig)
   const { t } = useClientTranslation()
 
   const { shouldPreventNavigation, handleUpdateShouldPreventNavigation } =
