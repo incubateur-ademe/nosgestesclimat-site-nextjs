@@ -1238,8 +1238,8 @@ entries:
   common.navigation.nextQuestion.next.label: Aller à la question suivante
   common.navigation.nextQuestion.pass.label: Passer et aller à la question suivante
   common.navigation.previousButton.label: Aller à la question précédente
-  cookieConsent.banner.title: Fenêtre modale de gestion des cookies
-  cookieConsent.board.title: Panneau de gestion des cookies
+  cookieConsent.banner.title: Panneau de gestion des cookies
+  cookieConsent.board.title: Bannière de consentement aux cookies
   Fenêtre modale de partage: Fenêtre modale de partage
   group.results.rankingMember.delete.modal.ariaLabel: Fenêtre modale de confirmation de suppression du membre du groupe
   organisations.additionalQuestions.deletion.modal.ariaLabel: Fenêtre de confirmation de suppression de la question personnalisée
@@ -1269,3 +1269,10 @@ entries:
   Entrez votre adresse email pour recevoir les infolettres sélectionnées.: Entrez votre adresse email pour recevoir les infolettres sélectionnées.
   Inscription en cours...: Inscription en cours...
   Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie: Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie
+  Accès rapide: Accès rapide
+  Arrêter le défilement: Arrêter le défilement
+  common.slider.play: Lecture
+  common.slider.stop: Arrêter
+  homePage.interactiveIllustration.itemTitle: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'
+  homePage.interactiveIllustration.waterScore: ' et empreinte eau notée {{waterScore}} sur 5'
+  Lancer le défilement: Lancer le défilement

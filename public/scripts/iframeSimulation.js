@@ -28,7 +28,7 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
 
   const url = new URL(hostname)
 
-  // Check if withHomepage is true
+  // Display or not homepage or directly show the simulator
   const withHomepage = script.dataset.withHomepage
 
   if (withHomepage) {
@@ -37,7 +37,6 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
     url.pathname = `/${lang ? lang + '/' : ''}simulateur/bilan`
   }
 
-  url.searchParams.append('lang', lang)
   url.searchParams.append('iframe', 'true')
   url.searchParams.append('integratorUrl', integratorUrl)
 

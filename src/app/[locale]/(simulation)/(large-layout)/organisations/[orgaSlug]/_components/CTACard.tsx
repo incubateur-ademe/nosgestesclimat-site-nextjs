@@ -24,7 +24,7 @@ export default function CTACard({
   return (
     <div
       className={twMerge(
-        'flex flex-col rounded-xl bg-white px-8 py-6',
+        'flex h-full flex-col rounded-xl bg-white px-8 py-6',
         className
       )}
       id={id}>
