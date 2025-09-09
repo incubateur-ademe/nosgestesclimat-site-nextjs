@@ -1,6 +1,7 @@
 'use client'
 
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import {
   Bar,
   BarChart,
@@ -13,17 +14,10 @@ import {
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
-  /** Valeur de l'empreinte moyenne du groupe en tonnes */
   groupFootprint: number
-  /** Valeur de l'empreinte de l'utilisateur en tonnes (optionnelle) */
   userFootprint?: number
-  /** Objectif à atteindre en tonnes (par défaut 2 tonnes pour 2050) */
   targetValue?: number
-  /** Année de l'objectif (par défaut 2050) */
   targetYear?: number
-  /** Titre du graphique */
-  title?: string
-  /** Classe CSS personnalisée */
   className?: string
 }
 
@@ -32,9 +26,10 @@ export default function FootprintBarChart({
   userFootprint,
   targetValue = 2,
   targetYear = 2050,
-  title = 'Comparaison des empreintes carbone',
   className,
 }: Props) {
+  const { t } = useClientTranslation()
+
   const maxValue =
     Math.ceil(Math.max(groupFootprint, userFootprint || 0, targetValue) / 5) * 5
 
@@ -53,14 +48,20 @@ export default function FootprintBarChart({
 
   const data = [
     {
-      name: 'Empreinte moyenne du groupe',
+      name: t(
+        'pollResults.footprintBarChart.groupFootprint',
+        'Empreinte moyenne du groupe'
+      ),
       value: groupFootprint,
       formattedValue: `${groupFormatted.formattedValue} ${groupFormatted.unit}`,
     },
     ...(userFootprint
       ? [
           {
-            name: 'Votre empreinte',
+            name: t(
+              'pollResults.footprintBarChart.userFootprint',
+              'Votre empreinte'
+            ),
             value: userFootprint,
             formattedValue: `${userFormatted?.formattedValue} ${userFormatted?.unit}`,
           },
@@ -69,31 +70,87 @@ export default function FootprintBarChart({
   ]
 
   const getAccessibleDescription = () => {
-    let description = `Graphique en barres montrant la comparaison des empreintes carbone. `
-    description += `L'empreinte moyenne du groupe est de ${groupFormatted.formattedValue} ${groupFormatted.unit}. `
+    let description = t(
+      'pollResults.footprintBarChart.accessibleDescription.chart',
+      'Graphique en barres montrant la comparaison des empreintes carbone. '
+    )
+    description +=
+      t(
+        'pollResults.footprintBarChart.accessibleDescription.groupFootprint',
+        "L'empreinte moyenne du groupe est de {{value}} {{unit}}.",
+        {
+          value: groupFormatted.formattedValue,
+          unit: groupFormatted.unit,
+        }
+      ) + ' '
 
     if (userFootprint) {
-      description += `Votre empreinte personnelle est de ${userFormatted?.formattedValue} ${userFormatted?.unit}. `
+      description +=
+        t(
+          'pollResults.footprintBarChart.accessibleDescription.userFootprint',
+          'Votre empreinte personnelle est de {{value}} {{unit}}.',
+          {
+            value: userFormatted?.formattedValue,
+            unit: userFormatted?.unit,
+          }
+        ) + ' '
     }
 
-    description += `L'objectif à atteindre d'ici 2050 est de ${targetFormatted.formattedValue} ${targetFormatted.unit}. `
+    description +=
+      t(
+        'pollResults.footprintBarChart.accessibleDescription.target',
+        "L'objectif à atteindre d'ici {{year}} est de {{value}} {{unit}}.",
+        {
+          year: targetYear,
+          value: targetFormatted.formattedValue,
+          unit: targetFormatted.unit,
+        }
+      ) + ' '
 
     if (userFootprint) {
       const comparison =
-        userFootprint > groupFootprint ? 'supérieure' : 'inférieure'
-      description += `Votre empreinte est ${comparison} à celle du groupe. `
+        userFootprint > groupFootprint
+          ? t(
+              'pollResults.footprintBarChart.accessibleDescription.higher',
+              'supérieure'
+            )
+          : t(
+              'pollResults.footprintBarChart.accessibleDescription.lower',
+              'inférieure'
+            )
+      description +=
+        t(
+          'pollResults.footprintBarChart.accessibleDescription.userComparison',
+          'Votre empreinte est {{comparison}} à celle du groupe.',
+          {
+            comparison,
+          }
+        ) + ' '
     }
 
     const groupVsTarget =
-      groupFootprint > targetValue ? 'supérieure' : 'inférieure'
-    description += `L'empreinte du groupe est ${groupVsTarget} à l'objectif.`
+      groupFootprint > targetValue
+        ? t(
+            'pollResults.footprintBarChart.accessibleDescription.higher',
+            'supérieure'
+          )
+        : t(
+            'pollResults.footprintBarChart.accessibleDescription.lower',
+            'inférieure'
+          )
+    description += t(
+      'pollResults.footprintBarChart.accessibleDescription.groupComparison',
+      "L'empreinte du groupe est {{comparison}} à l'objectif.",
+      {
+        comparison: groupVsTarget,
+      }
+    )
 
     return description
   }
 
   const CustomBar = (props: any) => {
     const { payload, fill, x, y, width, height } = props
-    const value = payload?.value || 0
     const formattedValue = payload?.formattedValue || ''
 
     return (
@@ -125,8 +182,6 @@ export default function FootprintBarChart({
 
   return (
     <div className={twMerge('w-full', className)}>
-      <h3 className="sr-only">{title}</h3>
-
       <div className="sr-only" aria-live="polite">
         {getAccessibleDescription()}
       </div>
@@ -176,7 +231,11 @@ export default function FootprintBarChart({
               strokeDasharray="5 5"
               strokeWidth={2}
               label={{
-                value: `Objectif ${targetYear}`,
+                value: t(
+                  'pollResults.footprintBarChart.targetLabel',
+                  'Objectif {{year}}',
+                  { year: targetYear }
+                ),
                 position: 'right',
                 style: {
                   fill: '#d40d83',
@@ -209,12 +268,20 @@ export default function FootprintBarChart({
             <div className="flex items-center gap-2">
               <div className="bg-primary-400 h-4 w-4 rounded"></div>
               <span className="text-sm text-gray-700">
-                Empreinte moyenne du groupe
+                {t(
+                  'pollResults.footprintBarChart.legend.groupFootprint',
+                  'Empreinte moyenne du groupe'
+                )}
               </span>
             </div>
             <div className="flex items-center gap-2">
               <div className="bg-primary-700 h-4 w-4 rounded"></div>
-              <span className="text-sm text-gray-700">Votre empreinte</span>
+              <span className="text-sm text-gray-700">
+                {t(
+                  'pollResults.footprintBarChart.legend.userFootprint',
+                  'Votre empreinte'
+                )}
+              </span>
             </div>
           </div>
         )}
