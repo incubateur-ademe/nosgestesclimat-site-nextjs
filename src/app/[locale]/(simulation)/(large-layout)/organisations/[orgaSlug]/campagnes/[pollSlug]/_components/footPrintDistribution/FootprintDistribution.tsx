@@ -13,6 +13,7 @@ export default function FootprintDistribution() {
       <MeanFootprintDistribution
         organisationName="Toto corp"
         groupFootprint={10.2}
+        userFootprint={8.2}
       />
     </section>
   )
