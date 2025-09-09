@@ -267,7 +267,7 @@ export default function FootprintBarChart({
           <div className="mt-6 flex justify-center gap-8">
             <div className="flex items-center gap-2">
               <div className="bg-primary-400 h-4 w-4 rounded"></div>
-              <span className="text-sm text-gray-700">
+              <span className="text-xs text-gray-900">
                 {t(
                   'pollResults.footprintBarChart.legend.groupFootprint',
                   'Empreinte moyenne du groupe'
@@ -276,7 +276,7 @@ export default function FootprintBarChart({
             </div>
             <div className="flex items-center gap-2">
               <div className="bg-primary-700 h-4 w-4 rounded"></div>
-              <span className="text-sm text-gray-700">
+              <span className="text-xs text-gray-900">
                 {t(
                   'pollResults.footprintBarChart.legend.userFootprint',
                   'Votre empreinte'
