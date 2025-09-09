@@ -11,6 +11,11 @@ vi.mock('@/hooks/useDebug', () => ({
   useDebug: () => mockUseDebug(),
 }))
 
+const mockUseIframe = vi.fn()
+vi.mock('@/hooks/useIframe', () => ({
+  useIframe: () => mockUseIframe(),
+}))
+
 // We need to mock the whole module to spy on useCurrentSimulation
 vi.mock('@/publicodes-state', async () => {
   const actual = await vi.importActual('@/publicodes-state')
@@ -39,6 +44,9 @@ describe('TotalButtons', () => {
     vi.clearAllMocks()
     ;(useCurrentSimulation as jest.Mock).mockReturnValue({
       savedViaEmail: false,
+    })
+    mockUseIframe.mockReturnValue({
+      isFrenchRegion: true,
     })
   })
 

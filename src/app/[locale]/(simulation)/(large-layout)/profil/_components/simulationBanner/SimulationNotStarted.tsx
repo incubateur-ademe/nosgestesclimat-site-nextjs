@@ -21,16 +21,20 @@ export default function SimulationNotStarted() {
         <Trans>Vous n'avez pas encore fait le test.</Trans>
       </p>
 
-      <div className="flex w-full flex-col items-center justify-start gap-4 md:flex-row md:items-start">
-        <ButtonLink
-          href={getLinkToSimulateur()}
-          trackingEvent={profilClickCtaCommencer}>
-          <PlaySignIcon className="mr-2 fill-white" />
-          <Trans>Faire le test</Trans>
-        </ButtonLink>
+      <ul className="flex w-full flex-col items-center justify-start gap-4 md:flex-row md:items-start">
+        <li>
+          <ButtonLink
+            href={getLinkToSimulateur()}
+            trackingEvent={profilClickCtaCommencer}>
+            <PlaySignIcon className="mr-2 fill-white" />
+            <Trans>Faire le test</Trans>
+          </ButtonLink>
+        </li>
 
-        <TutorialLink className="w-auto" />
-      </div>
+        <li>
+          <TutorialLink className="w-auto" />
+        </li>
+      </ul>
     </Card>
   )
 }

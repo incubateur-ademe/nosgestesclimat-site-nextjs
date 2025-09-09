@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - preprod
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to test'
+        required: true
+        type: string
 
 jobs:
   e2e:

@@ -26,22 +26,26 @@ export default function HeroSection() {
         <div className="mb-12 text-sm md:text-lg">
           <Baseline />
         </div>
-        <div className="flex flex-col flex-wrap items-center gap-4 sm:flex-row sm:justify-start md:items-baseline md:gap-8 lg:justify-start">
-          <ButtonLink
-            href="/organisations/connexion"
-            trackingEvent={organisationsAccueilClickCommencer}>
-            <Trans>Commencer</Trans>
-          </ButtonLink>
+        <ul className="flex flex-col flex-wrap items-center gap-4 sm:flex-row sm:justify-start md:items-baseline md:gap-8 lg:justify-start">
+          <li>
+            <ButtonLink
+              href="/organisations/connexion"
+              trackingEvent={organisationsAccueilClickCommencer}>
+              <Trans>Commencer</Trans>
+            </ButtonLink>
+          </li>
 
-          <ButtonLink
-            color="text"
-            href="/organisations/demander-demo"
-            onClick={() => {
-              trackEvent(organisationsAccueilClickDemo)
-            }}>
-            <Trans>Demander une démo</Trans>
-          </ButtonLink>
-        </div>
+          <li>
+            <ButtonLink
+              color="text"
+              href="/organisations/demander-demo"
+              onClick={() => {
+                trackEvent(organisationsAccueilClickDemo)
+              }}>
+              <Trans>Demander une démo</Trans>
+            </ButtonLink>
+          </li>
+        </ul>
       </div>
 
       <div>

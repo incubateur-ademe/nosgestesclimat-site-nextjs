@@ -1,5 +1,5 @@
 'use client'
-import type { ReactNode } from 'react'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useContext, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { FloatingElementDisplayedContext } from './FloatingElementDisplayedProvider'
@@ -17,7 +17,7 @@ export default function PulsatingDot({
   className?: string
   carbonScore?: number
   waterScore?: number
-  itemTitle: ReactNode
+  itemTitle: string
   itemKey: string
   floatingInfoOrientation?: 'left' | 'right'
   shouldDefaultDisplayFloatingInfo?: boolean
@@ -25,6 +25,8 @@ export default function PulsatingDot({
   const { floatingElementDisplayed, setFloatingElementDisplayed } = useContext(
     FloatingElementDisplayedContext
   )
+
+  const { t } = useClientTranslation()
 
   const [isHovered, setIsHovered] = useState(false)
 
@@ -67,14 +69,43 @@ export default function PulsatingDot({
 
       <div
         className={twMerge(
-          'group absolute h-6 w-6 cursor-pointer rounded-full bg-white shadow-lg'
+          'group focus:ring-offset-primary-700 absolute h-6 w-6 cursor-pointer rounded-full bg-white shadow-lg focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none'
         )}
+        tabIndex={0}
         onMouseEnter={handleEnter}
         onMouseLeave={handleLeave}
-        tabIndex={-1}
+        onFocus={handleEnter}
+        onBlur={handleLeave}
         role="button"
         onTouchStart={handleEnter}
-        aria-hidden>
+        title={`${t(
+          'homePage.interactiveIllustration.itemTitle',
+          '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'
+        )}${
+          waterScore
+            ? `${t(
+                'homePage.interactiveIllustration.waterScore',
+                ' et empreinte eau notée {{waterScore}} sur 5',
+                {
+                  waterScore,
+                }
+              )}`
+            : ''
+        }`}
+        aria-label={`${t(
+          'homePage.interactiveIllustration.itemTitle',
+          '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'
+        )}${
+          waterScore
+            ? `${t(
+                'homePage.interactiveIllustration.waterScore',
+                ' et empreinte eau notée {{waterScore}} sur 5',
+                {
+                  waterScore,
+                }
+              )}`
+            : ''
+        }`}>
         <div
           className={twMerge(
             'bg-secondary-600 absolute inset-0 scale-[0.15] rounded-full transition-all duration-500',

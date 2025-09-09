@@ -1,7 +1,9 @@
 'use client'
 
+import { getIsFrenchRegion } from '@/helpers/regions/getIsFrenchRegion'
 import { useTrackIframe } from '@/hooks/tracking/useTrackIframe'
 import { useIsClient } from '@/hooks/useIsClient'
+import { useUser } from '@/publicodes-state'
 import { getIsIframe } from '@/utils/getIsIframe'
 import { createContext, useEffect, useState } from 'react'
 
@@ -11,6 +13,7 @@ export const IframeOptionsContext = createContext<{
   iframeRegion?: string | null
   isIframeOnlySimulation?: boolean
   iframeLang?: string | null
+  isFrenchRegion?: boolean
 }>({})
 
 const nullDecode = (string: string) =>
@@ -34,13 +37,14 @@ export const IframeOptionsProvider = ({
     integratorActionText: null,
   })
   const [isIframeShareData, setIsIframeShareData] = useState(false)
-  const [iframeRegion, setIframeRegion] = useState<string | null>(null)
   const [isIframeOnlySimulation, setIsIframeOnlySimulation] = useState(false)
   const [iframeLang, setIframeLang] = useState<string | null>(null)
 
   const containerRef = useTrackIframe(isIframe)
 
   useEffect(() => {
+    if (isIframe) return
+
     const urlParams = new URLSearchParams(window.location.search)
 
     setIframeIntegratorOptions(
@@ -60,13 +64,18 @@ export const IframeOptionsProvider = ({
       ) as any
     )
 
-    setIsIframeShareData(Boolean(urlParams.get('shareData')))
+    if (!isIframeShareData) {
+      setIsIframeShareData(Boolean(urlParams.get('shareData')))
+    }
 
-    setIframeRegion(urlParams.get('region'))
+    if (!isIframeOnlySimulation) {
+      setIsIframeOnlySimulation(Boolean(urlParams.get('onlySimulation')))
+    }
 
-    setIsIframeOnlySimulation(Boolean(urlParams.get('onlySimulation')))
-
-    setIframeLang(urlParams.get('lang'))
+    if (!iframeLang) {
+      setIframeLang(urlParams.get('lang'))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isIframe])
 
   useEffect(() => {
@@ -83,15 +92,25 @@ export const IframeOptionsProvider = ({
     }
   }, [isIframeOnlySimulation])
 
+  const { user } = useUser()
+
+  const regionCode = user?.region?.code
+
+  const isFrenchRegion = getIsFrenchRegion({
+    isIframe,
+    iframeRegion: regionCode,
+  })
+
   return (
     <IframeOptionsContext.Provider
       value={{
         ...iframeIntegratorOptions,
         isIframeShareData,
-        iframeRegion,
+        iframeRegion: regionCode,
         isIframe,
         isIframeOnlySimulation,
         iframeLang,
+        isFrenchRegion,
       }}>
       {children(containerRef)}
     </IframeOptionsContext.Provider>

@@ -27,6 +27,7 @@ export default function Breadcrumbs({
   return (
     <section className={twMerge('h-[75px] w-full', className)}>
       <nav
+        role="navigation"
         id="breadcrumbs-navigation"
         aria-label={t('Chemin de navigation')}
         aria-labelledby="breadcrumbs-title"

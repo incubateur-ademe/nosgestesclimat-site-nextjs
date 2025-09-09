@@ -217,17 +217,7 @@ export default function CreationForm() {
 
       {isErrorUpdateOrga && <DefaultSubmitErrorMessage className="mt-4" />}
 
-      <div className="mt-12 flex w-full gap-4">
-        <Button
-          color="secondary"
-          type="button"
-          onClick={handleSubmit(
-            async (props) =>
-              await onSubmit({ ...props, shouldNavigateToPollForm: false })
-          )}>
-          <Trans>Accéder à mon espace</Trans>
-        </Button>
-
+      <div className="mt-12">
         <Button type="submit" data-cypress-id="create-organisation-button">
           <Trans>Créer ma première campagne</Trans>
         </Button>

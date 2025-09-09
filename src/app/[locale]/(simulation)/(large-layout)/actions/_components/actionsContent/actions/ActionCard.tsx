@@ -155,13 +155,13 @@ export default function ActionCard({
             <Emoji className="inline-flex justify-center">{icons}</Emoji>
           )}
 
-          <h2
+          <h3
             className={twMerge(
               'mb-0 inline-block w-full text-center text-sm font-bold',
               getTextDarkColor(category)
             )}>
             {title}
-          </h2>
+          </h3>
         </Link>
       </div>
 

@@ -45,9 +45,9 @@ export default function AdminSection({ poll }: Props) {
           </h3>
 
           <div className="rainbow-border w-full rounded-xl p-4">
-            <h2 className="text-base md:text-lg">
+            <h4 className="mb-2">
               <Trans>Partagez votre campagne</Trans>
-            </h2>
+            </h4>
             <CopyInput
               textToDisplay={buildLink({
                 orgaSlug,

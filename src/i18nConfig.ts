@@ -13,19 +13,12 @@ const i18nConfig: Config = {
   locales: [LOCALE_FR_KEY, LOCALE_EN_KEY, LOCALE_ES_KEY] as Locale[],
   defaultLocale: LOCALE_FR_KEY as Locale,
   cookieOptions: {
-    sameSite: 'lax' as const,
+    sameSite: 'none' as const,
     path: '/',
     maxAge: 31536000,
-    secure: process.env.NEXT_PUBLIC_ENV === 'production',
+    secure: true, // Required when using SameSite=None
   },
   localeDetector: (request: NextRequest, config: Config): string => {
-    const langParam = request.nextUrl.searchParams.get('lang')
-
-    // Check first for lang param
-    if (langParam && config.locales.includes(langParam)) {
-      return langParam
-    }
-
     // Check for NEXT_LOCALE cookie
     const nextLocale = request.cookies.get(NEXT_LOCALE_COOKIE_NAME)?.value
     if (nextLocale && config.locales.includes(nextLocale)) {

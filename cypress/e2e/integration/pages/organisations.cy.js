@@ -16,6 +16,7 @@ import {
   POLL_NAME_INPUT,
 } from '../../../constants/elements-ids'
 import { checkA11y } from '../../../helpers/accessibility/checkA11y'
+import { visit } from '../../../helpers/interactions/visit'
 
 Cypress.on('uncaught:exception', (err) => {
   // Ignore uncaught exception failures for now
@@ -31,13 +32,13 @@ describe('On the organisation userflow', () => {
         () => {
           cy.intercept({ resourceType: /xhr|fetch|uncaught/ }, { log: false })
 
-          cy.visit('/organisations')
+          visit('/organisations')
 
           cy.wait(2000)
 
           checkA11y()
 
-          cy.visit('/organisations/connexion')
+          visit('/organisations/connexion')
 
           cy.wait(2000)
 
@@ -121,13 +122,13 @@ describe('On the organisation userflow', () => {
         () => {
           cy.intercept({ resourceType: /xhr|fetch|uncaught/ }, { log: false })
 
-          cy.visit('/organisations')
+          visit('/organisations')
 
           cy.wait(2000)
 
           checkA11y()
 
-          cy.visit('/organisations/connexion')
+          visit('/organisations/connexion')
 
           cy.wait(2000)
 

@@ -1,6 +1,11 @@
 import { twMerge } from 'tailwind-merge'
 
-export default function PlaySignIcon({ className }: { className?: string }) {
+export default function PlaySignIcon({
+  className,
+  ...props
+}: {
+  className?: string
+}) {
   return (
     <svg
       width="24"
@@ -9,7 +14,8 @@ export default function PlaySignIcon({ className }: { className?: string }) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={twMerge('fill-default inline-block stroke-[1.5]', className)}
-      aria-hidden="true">
+      aria-hidden="true"
+      {...props}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"

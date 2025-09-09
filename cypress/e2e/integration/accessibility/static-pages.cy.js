@@ -1,6 +1,7 @@
 import 'cypress-axe'
 import { checkA11y } from '../../../helpers/accessibility/checkA11y'
 import { dismissCookieBanner } from '../../../helpers/cookies/dismissCookieBanner'
+import { visit } from '../../../helpers/interactions/visit'
 
 // Define the pages to test
 const staticPagesToTest = [
@@ -43,7 +44,7 @@ describe('Accessibility Tests', () => {
       cy.viewport('iphone-6')
 
       // Visit the page
-      cy.visit(page)
+      visit(page)
 
       // Wait for the page to load completely
       cy.wait(800)
@@ -62,7 +63,7 @@ describe('Accessibility Tests', () => {
       cy.intercept({ resourceType: /xhr|fetch|uncaught/ }, { log: false })
 
       // Visit the page
-      cy.visit(page)
+      visit(page)
 
       // Wait for the page to load completely
       cy.wait(800)

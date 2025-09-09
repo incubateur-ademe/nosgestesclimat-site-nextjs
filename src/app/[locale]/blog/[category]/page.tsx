@@ -107,7 +107,7 @@ export default async function CategoryPage({
 
   //  Firstly redirect to french version if the page is not available in the current locale
   if (locale !== i18nConfig.defaultLocale && (!title || !description)) {
-    return redirect(`/blog/${category}?lang=fr`)
+    return redirect(`/fr/blog/${category}`)
   }
 
   //  If the page is not available in the default locale, redirect to the not found page
