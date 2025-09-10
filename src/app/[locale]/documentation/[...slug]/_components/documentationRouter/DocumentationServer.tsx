@@ -1,6 +1,5 @@
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import Trans from '@/components/translation/trans/TransServer'
-import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
 import Markdown from '@/design-system/utils/Markdown'
@@ -11,14 +10,13 @@ import type {
   NGCRule,
   NGCRules,
 } from '@incubateur-ademe/nosgestesclimat'
-import { redirect } from 'next/navigation'
 import ButtonLaunch from './documentationServer/ButtonLaunch'
 import CalculDetail from './documentationServer/CalculDetail'
 import PagesProches from './documentationServer/PagesProches'
 import QuestionSection from './documentationServer/QuestionSection'
 
 type Props = {
-  rule: NGCRule
+  rule: NonNullable<NGCRule>
   rules: NGCRules
   locale: string
   ruleName: DottedName
@@ -29,10 +27,6 @@ export default function DocumentationServer({
   locale,
   ruleName,
 }: Props) {
-  if (!rule) {
-    return redirect(NOT_FOUND_PATH)
-  }
-
   return (
     <div className="mt-12 w-full max-w-4xl p-4 md:mx-auto md:py-8">
       <PasserTestBanner />
