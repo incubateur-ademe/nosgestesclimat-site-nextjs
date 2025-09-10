@@ -59,6 +59,10 @@ export default function Question({
     category,
   } = useRule(question)
 
+  const [displayedValue, setDisplayedValue] = useState<string | undefined>(
+    String(value)
+  )
+
   const { questionsByCategories } = useFormState()
 
   // It should happen only on mount (the component remount every time the question changes)
@@ -107,6 +111,7 @@ export default function Question({
           setValue={(value) => {
             if (type === 'number') {
               if (setTempValue) setTempValue(value as number)
+              setDisplayedValue(value?.toString() ?? undefined)
             }
             setValue(value, { questionDottedName: question })
           }}
@@ -125,6 +130,8 @@ export default function Question({
             {type === 'number' && (
               <NumberInput
                 unit={unit}
+                displayedValue={displayedValue}
+                setDisplayedValue={setDisplayedValue}
                 value={setTempValue ? tempValue : numericValue}
                 setValue={(value) => {
                   if (setTempValue) {
