@@ -189,3 +189,32 @@ export const captureExportPollData = () => {
     },
   }
 }
+
+// Language / Region
+
+export const captureLocale = ({ locale }: Props) => {
+  return {
+    eventName: 'Locale used',
+    properties: {
+      language: locale,
+    },
+  }
+}
+
+export const captureFooterSwitchLanguage = (locale: string) => {
+  return {
+    eventName: 'Switch Language in Footer',
+    properties: {
+      language: locale,
+    },
+  }
+}
+
+export const captureRegion = ({ region }: Props) => {
+  return {
+    eventName: 'Region used',
+    properties: {
+      region,
+    },
+  }
+}
