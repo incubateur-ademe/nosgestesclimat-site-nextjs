@@ -7,11 +7,16 @@ import {
   organisationsDashboardClickImpactCo2,
   organisationsDashboardDownloadKit,
 } from '@/constants/tracking/pages/organisationsDashboard'
+import {
+  captureClickAteliers,
+  captureClickImpactCo2,
+  captureDownloadKit,
+} from '@/constants/tracking/posthogTrackers'
 import { MATOMO_CAMPAIGN_KEY } from '@/constants/urls/matomo'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import CTACard from './CTACard'
 
 export default function OurTools() {
@@ -37,6 +42,7 @@ export default function OurTools() {
             <ButtonLink
               onClick={() => {
                 trackEvent(organisationsDashboardDownloadKit)
+                trackPosthogEvent(captureDownloadKit())
               }}
               className="mt-auto w-full justify-center align-bottom"
               color="secondary"
@@ -73,7 +79,10 @@ export default function OurTools() {
             }>
             <ButtonLink
               color="secondary"
-              trackingEvent={organisationsDashboardClickAteliers}
+              onClick={() => {
+                trackEvent(organisationsDashboardClickAteliers)
+                trackPosthogEvent(captureClickAteliers())
+              }}
               className="mt-auto w-full justify-center"
               href="https://drive.google.com/drive/folders/1dORmBbDLDG31PLLOblP8Wg5CrrksAfjV"
               target="_blank"
@@ -111,7 +120,10 @@ export default function OurTools() {
               color="secondary"
               href={`https://impactco2.fr/comparateur?${MATOMO_CAMPAIGN_KEY}=ngc-orga`}
               target="_blank"
-              trackingEvent={organisationsDashboardClickImpactCo2}
+              onClick={() => {
+                trackEvent(organisationsDashboardClickImpactCo2)
+                trackPosthogEvent(captureClickImpactCo2())
+              }}
               aria-label={t(
                 'Découvrez le calculateur, ouvrir dans une nouvelle fenêtre'
               )}>
