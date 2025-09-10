@@ -17,7 +17,7 @@ import { useGetTrackedUrl } from './useGetTrackedUrl'
 export function useTrackIframe(isIframe: boolean) {
   const path = usePathname()
 
-  const url = useGetTrackedUrl()
+  const { url, anonymizedUrl } = useGetTrackedUrl()
 
   // inspired from https://usehooks-ts.com/react-hook/use-intersection-observer
   const ref = useRef<HTMLBodyElement | null>(null)
@@ -89,7 +89,7 @@ export function useTrackIframe(isIframe: boolean) {
 
     if (!observed && entry && entry.isIntersecting) {
       // Track the page view
-      trackPageView(url)
+      trackPageView(url, anonymizedUrl)
 
       // And with an event
       const urlInteractor = getIntegratorUrl(isIframe)
@@ -97,7 +97,7 @@ export function useTrackIframe(isIframe: boolean) {
       trackEvent(trackingIframeVisit(urlInteractor))
       trackPosthogEvent(captureIframeVisit(urlInteractor))
     }
-  }, [entry, observed, url, isIframe])
+  }, [entry, observed, url, isIframe, anonymizedUrl])
 
   // Track the iframe event when the iframe is visible AND has been interacted with
   useEffect(() => {
