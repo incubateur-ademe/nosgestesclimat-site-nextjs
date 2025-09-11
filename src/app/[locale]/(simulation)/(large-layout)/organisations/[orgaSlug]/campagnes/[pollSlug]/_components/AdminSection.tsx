@@ -105,7 +105,7 @@ export default function AdminSection({ poll, className, title }: Props) {
               pollName,
             })}
             color="primary"
-            className="mx-auto mt-4 w-auto"
+            className="mx-auto mt-4 h-11 w-40"
           />
         </Card>
       </div>
@@ -127,7 +127,7 @@ export default function AdminSection({ poll, className, title }: Props) {
           className="md:flex-1"
         />
 
-        <ul className="mt-6 flex w-full flex-col flex-wrap gap-2 md:flex-row">
+        <ul className="mt-6 flex w-full flex-wrap gap-2">
           {[
             {
               icon: <WhatsappIcon />,
@@ -176,10 +176,10 @@ export default function AdminSection({ poll, className, title }: Props) {
               }),
             },
           ].map(({ link, label, icon, eventTracked }, index) => (
-            <li key={link} className="flex flex-1">
+            <li key={link} className="flex max-w-48 flex-1">
               <ButtonLink
                 data-testid={`share-button-link-${index}`}
-                className="max-h-10 w-auto text-sm! lg:flex-1"
+                className="max-h-10 w-auto max-w-48 flex-1 text-sm!"
                 color="secondary"
                 target="_blank"
                 rel="noopener noreferrer"
