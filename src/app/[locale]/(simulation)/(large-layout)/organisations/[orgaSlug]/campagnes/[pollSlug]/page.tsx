@@ -112,6 +112,7 @@ export default function CampagnePage() {
             }
           />
         )}
+
         <PollStatistics
           simulationsCount={poll.simulations.finished}
           computedResults={poll.computedResults}
