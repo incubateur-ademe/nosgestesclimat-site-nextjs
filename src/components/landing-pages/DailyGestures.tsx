@@ -29,7 +29,6 @@ export default function DailyGestures({
     results: string[]
   }
 }) {
-  console.log(gestures)
   return (
     <div className="mx-auto mt-16 mb-20 w-full max-w-full px-4 text-center md:my-20 md:max-w-[850px] md:px-0">
       <h2 className="text-xl md:text-3xl">{title}</h2>

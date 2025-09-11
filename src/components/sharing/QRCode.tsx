@@ -2,8 +2,9 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { pollDashboardClickQRCodeDownload } from '@/constants/tracking/pages/pollDashboard'
+import { captureDownloadPollQRCode } from '@/constants/tracking/posthogTrackers'
 import Button from '@/design-system/buttons/Button'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import JSZip from 'jszip'
 import { useRef } from 'react'
 import QRCodeLib from 'react-qr-code'
@@ -24,6 +25,7 @@ export default function QRCode({ value, className }: QRCodeProps) {
     if (!svg) return
 
     trackEvent(pollDashboardClickQRCodeDownload)
+    trackPosthogEvent(captureDownloadPollQRCode())
 
     const zip = new JSZip()
 

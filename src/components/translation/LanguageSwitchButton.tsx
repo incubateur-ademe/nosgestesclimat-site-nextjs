@@ -1,13 +1,14 @@
 'use client'
 
 import { footerClickLanguage } from '@/constants/tracking/layout'
+import { captureFooterSwitchLanguage } from '@/constants/tracking/posthogTrackers'
 import { FAQ_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Emoji from '@/design-system/utils/Emoji'
 import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDisplayed'
 import { updateLangCookie } from '@/helpers/language/updateLangCookie'
 import i18nConfig, { type Locale } from '@/i18nConfig'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
@@ -40,6 +41,7 @@ export default function LanguageSwitchButton({
 
   const handleChange = (newLocale: Locale) => {
     trackEvent(footerClickLanguage(newLocale))
+    trackPosthogEvent(captureFooterSwitchLanguage(newLocale))
 
     updateLangCookie(newLocale)
   }

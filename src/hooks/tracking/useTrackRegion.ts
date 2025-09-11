@@ -1,6 +1,7 @@
 import { trackingRegion } from '@/constants/tracking/misc'
+import { captureRegion } from '@/constants/tracking/posthogTrackers'
 import { useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useEffect } from 'react'
 
 export function useTrackRegion() {
@@ -9,6 +10,8 @@ export function useTrackRegion() {
   const { region } = user
 
   useEffect(() => {
-    trackEvent(trackingRegion(region?.code || 'FR'))
+    const regionCode = region?.code || 'FR'
+    trackEvent(trackingRegion(regionCode))
+    trackPosthogEvent(captureRegion({ region: regionCode }))
   }, [region])
 }

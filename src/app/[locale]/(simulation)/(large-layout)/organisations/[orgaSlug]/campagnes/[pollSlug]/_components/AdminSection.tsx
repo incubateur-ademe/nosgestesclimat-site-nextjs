@@ -8,6 +8,8 @@ import WhatsappIcon from '@/components/icons/share/WhatsappIcon'
 import Link from '@/components/Link'
 import QRCode from '@/components/sharing/QRCode'
 import Trans from '@/components/translation/trans/TransClient'
+import { pollDashboardCopyLink } from '@/constants/tracking/pages/pollDashboard'
+import { captureCopyPollLink } from '@/constants/tracking/posthogTrackers'
 import {
   MATOMO_CAMPAIGN_KEY,
   MATOMO_KEYWORD_KEY,
@@ -24,7 +26,7 @@ import Card from '@/design-system/layout/Card'
 import { getShareTrackEvent } from '@/helpers/tracking/share'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { PublicOrganisationPoll } from '@/types/organisations'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import Image from 'next/image'
 import { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -106,6 +108,10 @@ export default function AdminSection({ poll, className, title }: Props) {
             })}
             color="primary"
             className="mx-auto mt-4 h-11 w-40"
+            onCopied={() => {
+              trackEvent(pollDashboardCopyLink)
+              trackPosthogEvent(captureCopyPollLink())
+            }}
           />
         </Card>
       </div>

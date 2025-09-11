@@ -141,20 +141,22 @@ export default function Label({
             id={`${QUESTION_DESCRIPTION_BUTTON_ID}-content`}
             role="region"
             aria-labelledby={QUESTION_DESCRIPTION_BUTTON_ID}
-            className="border-primary-50 mb-3 origin-top rounded-xl border-2 bg-gray-100 p-3 text-sm">
+            className="border-primary-50 mb-3 w-full origin-top rounded-xl border-2 bg-gray-100 p-3 text-sm">
             <Markdown className="[&>blockquote]:text-default [&>blockquote]:mt-0 [&>blockquote]:mb-2 [&>blockquote]:p-0 [&>p]:mb-2">
               {description}
             </Markdown>{' '}
-            <Button
-              size="xs"
-              color={'secondary'}
-              onClick={() => {
-                trackEvent(questionCloseInfo({ question }))
-                setIsOpen(false)
-              }}
-              title={t('Fermer')}>
-              <Trans>Fermer</Trans>
-            </Button>
+            <div className="mt-1 flex justify-end">
+              <Button
+                size="xs"
+                color="secondary"
+                onClick={() => {
+                  trackEvent(questionCloseInfo({ question }))
+                  setIsOpen(false)
+                }}
+                title={t('Fermer')}>
+                <Trans>Fermer</Trans>
+              </Button>
+            </div>
           </motion.div>
         ) : null)}
     </>

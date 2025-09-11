@@ -5,12 +5,14 @@ import PollLoader from '@/components/organisations/PollLoader'
 import PollStatistics from '@/components/organisations/PollStatistics'
 import Trans from '@/components/translation/trans/TransClient'
 import { pollDashboardClickParameters } from '@/constants/tracking/pages/pollDashboard'
+import { captureClickPollSettings } from '@/constants/tracking/posthogTrackers'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedirectFromLegacy'
 import { useUser } from '@/publicodes-state'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import dayjs from 'dayjs'
 import { useParams, useSearchParams } from 'next/navigation'
 import AdminSection from './_components/AdminSection'
@@ -84,7 +86,10 @@ export default function CampagnePage() {
           <div>
             <ButtonLink
               href={`/organisations/${orgaSlug}/campagnes/${pollSlug}/parametres`}
-              trackingEvent={pollDashboardClickParameters}
+              onClick={() => {
+                trackEvent(pollDashboardClickParameters)
+                trackPosthogEvent(captureClickPollSettings())
+              }}
               color="secondary"
               size="sm"
               data-cypress-id="poll-admin-section-see-parameters-button"

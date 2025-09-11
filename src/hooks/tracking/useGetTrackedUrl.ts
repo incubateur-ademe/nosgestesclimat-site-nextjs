@@ -38,9 +38,6 @@ export function useGetTrackedUrl() {
     }
   })
 
-  // We don't want to track the slugs of the organisations and theirs polls
-  url = handleOrganisationModifications(url)
-
   // We convert the question searchParams to a real url
   const questionParams = searchParams.get('question')
   if (questionParams) {
@@ -66,5 +63,8 @@ export function useGetTrackedUrl() {
     url += `?${search}`
   }
 
-  return url
+  // We don't want to track the slugs of the organisations and theirs polls on Matomo, as it is publicly accessible.
+  const anonymizedUrl = handleOrganisationModifications(url)
+
+  return { url, anonymizedUrl }
 }
