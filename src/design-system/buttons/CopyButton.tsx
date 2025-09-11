@@ -33,7 +33,6 @@ export default function CopyButton({
   const { t } = useClientTranslation()
   const [isCopied, setIsCopied] = useState(false)
   const [isError, setIsError] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
 
   const timeoutRef = useRef<NodeJS.Timeout>(undefined)
   const buttonRef = useRef<HTMLButtonElement>(null)
@@ -50,7 +49,6 @@ export default function CopyButton({
     typeof navigator !== 'undefined' && navigator.share !== undefined
 
   const handleShareOrCopy = async () => {
-    setIsLoading(true)
     setIsError(false)
 
     // For mobile devices with native sharing
@@ -66,8 +64,6 @@ export default function CopyButton({
       } catch (err) {
         captureException(err)
         setIsError(true)
-      } finally {
-        setIsLoading(false)
       }
     }
 
@@ -86,16 +82,11 @@ export default function CopyButton({
       } catch (err) {
         captureException(err)
         setIsError(true)
-      } finally {
-        setIsLoading(false)
       }
     }
   }
 
   const getButtonText = () => {
-    if (isLoading) {
-      return <Trans>Partage en cours...</Trans>
-    }
     if (isCopied) {
       return (
         copiedStateText ?? (
@@ -109,9 +100,6 @@ export default function CopyButton({
   }
 
   const getButtonAriaLabel = () => {
-    if (isLoading) {
-      return t('copyButton.loadingAriaLabel', 'Partage en cours...')
-    }
     if (isCopied) {
       return t(
         'copyButton.copiedAriaLabel',
@@ -134,10 +122,8 @@ export default function CopyButton({
         color={color}
         className={twMerge('w-full', className)}
         onClick={handleShareOrCopy}
-        disabled={isLoading}
         aria-label={getButtonAriaLabel()}
-        aria-live="polite"
-        aria-busy={isLoading}>
+        aria-live="polite">
         {getButtonText()}
       </Button>
 

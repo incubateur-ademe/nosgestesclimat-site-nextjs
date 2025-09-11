@@ -33,6 +33,8 @@ export default function CampagnePage() {
     enabled: !isRedirectFromLegacy,
   })
 
+  console.log(poll)
+
   // Organisation can only be fetched by a authentified organisation administrator
   const { data: organisation } = useFetchOrganisation()
 
@@ -111,6 +113,7 @@ export default function CampagnePage() {
         <PollStatistics
           simulationsCount={poll.simulations.finished}
           computedResults={poll.computedResults}
+          userComputedResults={poll.userComputedResults}
           funFacts={poll.funFacts}
           title={<Trans>Résultats de campagne</Trans>}
           poll={poll}
@@ -121,6 +124,7 @@ export default function CampagnePage() {
           computedResults={poll.computedResults}
           userComputedResults={poll.userComputedResults}
           simulationsCount={poll.simulations.count}
+          organisationName={poll.organisation.name}
         />
 
         {!!isAdmin && poll.simulations.count > 0 && (
