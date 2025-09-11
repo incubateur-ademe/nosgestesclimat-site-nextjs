@@ -30,8 +30,6 @@ export default function PollStatistics({
 }) {
   const hasAtLeastThreeParticipants = simulationsCount > 2
 
-  if (!computedResults) return null
-
   return (
     <>
       <div className="flex flex-col items-baseline justify-between sm:flex-row md:flex-nowrap">

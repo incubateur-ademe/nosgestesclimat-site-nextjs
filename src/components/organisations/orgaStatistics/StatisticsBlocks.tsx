@@ -34,13 +34,15 @@ export default function StatisticsBlocks({
   computedResults,
 }: {
   simulationsCount: number
-  computedResults: ComputedResults
+  computedResults?: ComputedResults | null
 }) {
   const locale = useLocale()
 
   const hasLessThan3Participants = simulationsCount < 3
 
   const result = hasLessThan3Participants ? mockResults : computedResults
+
+  if (!result) return null
 
   const { formattedValue, unit } = formatFootprint(result?.carbone?.bilan, {
     metric: carboneMetric,

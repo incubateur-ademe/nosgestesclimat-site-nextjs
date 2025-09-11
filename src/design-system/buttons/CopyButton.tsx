@@ -99,7 +99,7 @@ export default function CopyButton({
     if (isCopied) {
       return (
         copiedStateText ?? (
-          <span className="text-green-700">
+          <span>
             <Trans>Copié !</Trans>
           </span>
         )
