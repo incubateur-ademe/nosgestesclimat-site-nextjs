@@ -26,7 +26,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { PublicOrganisationPoll } from '@/types/organisations'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import Image from 'next/image'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
