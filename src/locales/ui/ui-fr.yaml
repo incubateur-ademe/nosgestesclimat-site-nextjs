@@ -269,27 +269,22 @@ entries:
   Animez un atelier: Animez un atelier
   Ce champ n'est pas modifiable: Ce champ n'est pas modifiable
   Dans quelle ville habitez-vous ?: Dans quelle ville habitez-vous ?
-  Département: Département
   Empreinte moyenne: Empreinte moyenne
   Exporter les données: Exporter les données
-  Filtrer par: Filtrer par
   Kit de diffusion: Kit de diffusion
   Mes informations: Mes informations
   Organisations: Organisations
   Oups, une erreur s'est produite au moment de l'envoi de votre code...: Oups, une erreur s'est produite au moment de l'envoi de votre code...
   Paramètres: Paramètres
   Quelle est votre année de naissance ?: Quelle est votre année de naissance ?
-  Tranche d'âge: Tranche d'âge
   Voir les paramètres: Voir les paramètres
   Votre e-mail: Votre e-mail
   Vous avez une question ?: Vous avez une question ?
   Voir mes résultats: Voir mes résultats
   Commencer un nouveau test: Commencer un nouveau test
   La valeur minimum pour ce champ est de: La valeur minimum pour ce champ est de
-  Par catégorie: Par catégorie
   pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !: pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !
   '{{category}}': '{{category}}'
-  '{{value}} tonnes': '{{value}} tonnes'
   '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>'
   '{linkToSimulateurPageLabel}': '{linkToSimulateurPageLabel}'
   Accéder au kit: Accéder au kit
@@ -303,8 +298,6 @@ entries:
   Me connecter: Me connecter
   Mes données restent-elles privées ?: Mes données restent-elles privées ?
   Mon organisation: Mon organisation
-  'Moyenne :': 'Moyenne :'
-  Moyenne du groupe par catégorie: Moyenne du groupe par catégorie
   Organisation: Organisation
   Organisez des temps d’animation et d’échanges physiques autour de Nos Gestes Climat pour fédérer et renforcer la compréhension des participants.: Organisez des temps d’animation et d’échanges physiques autour de Nos Gestes Climat pour fédérer et renforcer la compréhension des participants.
   Oups: Oups
@@ -313,7 +306,6 @@ entries:
   précédent: précédent
   Revenir au formulaire de connexion: Revenir au formulaire de connexion
   Se déconnecter de votre espace organisation: Se déconnecter de votre espace organisation
-  Seules les options incluant plus de 3 participants sont accessibles, et ce, dans un objectif de préservation de l’anonymat des participants.: Seules les options incluant plus de 3 participants sont accessibles, et ce, dans un objectif de préservation de l’anonymat des participants.
   Télécharger le kit, ouvrir dans un nouvel onglet: Télécharger le kit, ouvrir dans un nouvel onglet
   Valider: Valider
   Valorisez vos données carbone: Valorisez vos données carbone
@@ -322,7 +314,6 @@ entries:
   Vos données seront stockées de manière sécurisée et anonyme. Elles seront agrégées à des fins statistiques ; lesdites statistiques seront consultables sur la page "Rapport détaillé" de votre sondage en fin de parcours. Cette page restera exclusivement accessible aux participant·es ainsi qu'aux organisateur·ices.: Vos données seront stockées de manière sécurisée et anonyme. Elles seront agrégées à des fins statistiques ; lesdites statistiques seront consultables sur la page "Rapport détaillé" de votre sondage en fin de parcours. Cette page restera exclusivement accessible aux participant·es ainsi qu'aux organisateur·ices.
   Votre code postal: Votre code postal
   Votre date de naissance: Votre date de naissance
-  Votre résultat: Votre résultat
   Vous pouvez utiliser vos données existantes, ou recommencer le test.: Vous pouvez utiliser vos données existantes, ou recommencer le test.
   Vous avez déjà réalisé le test Nos Gestes Climat !: Vous avez déjà réalisé le test Nos Gestes Climat !
   (Données consultables à partir de 3 participants, dans un souci d'anonymat): (Données consultables à partir de 3 participants, dans un souci d'anonymat)
@@ -490,10 +481,6 @@ entries:
   Votre inscription est validée ! <1>✨</1>: Votre inscription est validée ! <1>✨</1>
   Votre question à ajouter: Votre question à ajouter
   Vous accompagner pour mieux agir en <2>4 mails seulement</2>.: Vous accompagner pour mieux agir en <2>4 mails seulement</2>.
-  Chaque participation est représentée par une barre verticale. Votre score est affiché en <2>rose</2>.: Chaque participation est représentée par une barre verticale. Votre score est affiché en <2>rose</2>.
-  Elle seront toutefois prises en compte lors de l'export de données.: Elle seront toutefois prises en compte lors de l'export de données.
-  Pour faciliter la lecture, les valeurs supérieures à 100 t sont retirées.: Pour faciliter la lecture, les valeurs supérieures à 100 t sont retirées.
-  c'est l’objectif pour 2050,: c'est l’objectif pour 2050,
   Cette opération est définitive.: Cette opération est définitive.
   'Créée le ': 'Créée le '
   Créer une campagne: Créer une campagne
@@ -506,14 +493,11 @@ entries:
   Nombre de collaborateurs: Nombre de collaborateurs
   Nous récupérons les données de la campagne...: Nous récupérons les données de la campagne...
   Nous récupérons les données de votre organisation...: Nous récupérons les données de votre organisation...
-  on s'y met ?: on s'y met ?
   Oups, nous n'avons pas trouvé les résultats de cette campagne: Oups, nous n'avons pas trouvé les résultats de cette campagne
   Paramètres de: Paramètres de
   'Paramètres de ': 'Paramètres de '
-  Partagez votre campagne: Partagez votre campagne
   Résultats de campagne: Résultats de campagne
   Retrouvez vos campagnes et suivez leurs statistiques.: Retrouvez vos campagnes et suivez leurs statistiques.
-  Section administrateur: Section administrateur
   Supprimer cette campagne: Supprimer cette campagne
   Supprimer cette campagne ?: Supprimer cette campagne ?
   Une erreur est survenue lors de la suppression de la campagne.: Une erreur est survenue lors de la suppression de la campagne.
@@ -524,11 +508,9 @@ entries:
   Vous retrouverez les réponses à ces questions dans l'export des réponses à la campagne.: Vous retrouverez les réponses à ces questions dans l'export des réponses à la campagne.
   Date (anciennes > récentes): Date (anciennes > récentes)
   Date (récentes > anciennes): Date (récentes > anciennes)
-  Empreinte carbone totale: Empreinte carbone totale
   Masquer les autres campagnes: Masquer les autres campagnes
   Nom (A > Z): Nom (A > Z)
   Nom (Z > A): Nom (Z > A)
-  Répartition des empreintes carbone: Répartition des empreintes carbone
   Sans titre: Sans titre
   Voir toutes les campagnes: Voir toutes les campagnes
   Accéder aux ressources: Accéder aux ressources
@@ -552,11 +534,9 @@ entries:
   Nos relais - Nos Gestes Climat: Nos relais - Nos Gestes Climat
   ', le': ', le'
   Campagne créée par: Campagne créée par
-  '{CATEGORY_LABELS[category as keyof typeof CATEGORY_LABELS]}': '{CATEGORY_LABELS[category as keyof typeof CATEGORY_LABELS]}'
   Alimentation: Alimentation
   Divers: Divers
   Logement: Logement
-  Services: Services
   Transport: Transport
   Voir tous les gestes: Voir tous les gestes
   '{label}': '{label}'
@@ -714,8 +694,6 @@ entries:
   Si le problème persiste, merci de: Si le problème persiste, merci de
   organisations.accueil.titre: Nos Gestes Climat pour les organisations
   / jour: / jour
-  t CO₂e / an: t CO₂e / an
-  tonnes CO₂e / an: tonnes CO₂e / an
   / an: / an
   Les 8 manières d’améliorer l'empreinte eau de mon assiette: Les 8 manières d’améliorer l'empreinte eau de mon assiette
   Comment calculer l’empreinte eau ?: Comment calculer l’empreinte eau ?
@@ -1051,7 +1029,6 @@ entries:
   'Oups, la copie du lien a échoué, le voici :': 'Oups, la copie du lien a échoué, le voici :'
   Nous chargeons les données de l'organisation partenaire.: Nous chargeons les données de l'organisation partenaire.
   Une erreur s'est produite au moment de récupérer les informations liées à l'organisation partenaire. Veuillez réessayer plus tard ou contacter notre support.: Une erreur s'est produite au moment de récupérer les informations liées à l'organisation partenaire. Veuillez réessayer plus tard ou contacter notre support.
-  Les graphiques sont cachés pour les campagnes avec plus de 500 participations pour des raisons de performance. Nous travaillons à l'ajout de cette fonctionnalité pour les plus grosses campagnes.: Les graphiques sont cachés pour les campagnes avec plus de 500 participations pour des raisons de performance. Nous travaillons à l'ajout de cette fonctionnalité pour les plus grosses campagnes.
   avec une empreinte carbone de: avec une empreinte carbone de
   Confirmation d'inscription à nos infolettres - Nos Gestes Climat: Confirmation d'inscription à nos infolettres - Nos Gestes Climat
   Confirmation de votre inscription à nos e-mails: Confirmation de votre inscription à nos e-mails
@@ -1218,7 +1195,6 @@ entries:
   Connexion: Connexion
   Eau, évaluer la métrique eau: Eau, évaluer la métrique eau
   Page active: Page active
-  Sélectionner ce filtre et afficher uniquement les actions de cette catégorie: Sélectionner ce filtre et afficher uniquement les actions de cette catégorie
   Visiter cette page: Visiter cette page
   actions.engagementIcon.ariaLabel: ', les actions se trouvent en dessous'
   authorBlock.defaultAlt: Photo de l'auteur ou de l'autrice
@@ -1274,7 +1250,6 @@ entries:
   common.interactiveIllustration.item.coffee: Café
   common.interactiveIllustration.item.computer: Ordinateur
   common.interactiveIllustration.item.shirt: Chemisier
-  common.interactiveIllustration.pulsatingDotLabel: "{{itemTitle}} : score de consommation carbone de {{carbonScore}} sur 5 et score de consommation d'eau de {{waterScore}} sur 5"
   common.modal.confirmation.title: Fenêtre modale de confirmation d'action
   common.navigation.nextQuestion.finish.label: Terminer le test et accéder à la page de résultats
   common.navigation.nextQuestion.next.label: Aller à la question suivante
@@ -1301,7 +1276,6 @@ entries:
   blog.homePage.dynamicPageNumber: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
   common.slider.buttons.next: Aller à la diapositive numéro {{number}}
   common.slider.buttons.previous: Aller à la diapositive précédente
-  ⚠️ La vérification de votre compte est requise pour vous inscrire aux infolettres.: ⚠️ La vérification de votre compte est requise pour vous inscrire aux infolettres.
   4 infolettres l'impact des transports: 4 infolettres l'impact des transports
   5 infolettres sur l'impact du logement: 5 infolettres sur l'impact du logement
   Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.: Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.
@@ -1319,7 +1293,7 @@ entries:
   common.category.alimentation: Alimentation
   common.category.divers: Divers
   common.category.logement: Logement
-  common.category.services: Services sociétaux
+  common.category.services: Services
   common.category.transport: Transport
   pollResults.categoryDistribution.accessibleDescription.category: '{{name}}: {{value}} {{unit}}.'
   pollResults.categoryDistribution.accessibleDescription.chart: 'Graphique en donut montrant la répartition des émissions par catégorie. '
@@ -1340,3 +1314,17 @@ entries:
   pollResults.mean_footprint_distribution.title: Empreinte carbone moyenne de
   pollResults.pollResults.distribution.category_distribution.title: Répartition par poste d'émission
   pollResults.pollResults.distribution.category_distribution.title_detail: (moyennes)
+  C'est prêt ! Voici votre lien à partager: C'est prêt ! Voici votre lien à partager
+  copyButton.copiedAriaLabel: Lien copié dans le presse-papiers
+  copyButton.copyAriaLabel: Copier le lien dans le presse-papiers
+  copyButton.shareAriaLabel: Partager le lien
+  copyButton.shareTitle: Découvre mon empreinte carbone !
+  pollResults.adminSection.shareDirectly: Ou partagez directement
+  pollResults.adminSection.title: Invitez de nouvelles personnes
+  pollResults.radarChart.accessibleDescription.category: '{{category}}: vos résultats {{user}} {{comparison}} à la moyenne {{average}}.'
+  pollResults.radarChart.accessibleDescription.chart: 'Graphique radar comparant vos résultats aux moyennes par catégorie. '
+  pollResults.radarChart.accessibleDescription.higher: supérieur
+  pollResults.radarChart.accessibleDescription.lower: inférieur
+  pollResults.radarChart.legend.average: Moyenne
+  pollResults.radarChart.legend.userResults: Mes résultats
+  pollResults.radarChart.title: Votre empreinte par rapport aux autres participants

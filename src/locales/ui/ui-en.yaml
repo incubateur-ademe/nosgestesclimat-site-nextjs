@@ -321,11 +321,9 @@ entries:
   Renvoyer le code, désactivé pendant 30 secondes: Resend code, deactivated for 30 seconds
   Recevoir ponctuellement par email les nouveaux services Nos Gestes Climat aux organisations: Receive occasional emails about new Nos Gestes Climat services for organisations
   Code renvoyé: Code returned
-  Filtrer par: Filter by
   Ce champ n'est pas modifiable: This field cannot be modified
   Accueil: Home
   Exporter les données: Exporting data
-  Département: Department
   Organisations: Organisations
   Empreinte moyenne: Average footprint
   Mes informations: My information
@@ -336,17 +334,14 @@ entries:
   Voir les paramètres: See the parameters
   Kit de diffusion: Broadcast kit
   Vous avez une question ?: Do you have a question?
-  Tranche d'âge: Age range
   Quelle est votre année de naissance ?: What year were you born?
   Animez un atelier: Run a workshop
   Oups, une erreur s'est produite au moment de l'envoi de votre code...: Oops, there was an error sending your code...
   Voir mes résultats: See my results
   Découvrir: Discover
   Commencer un nouveau test: Start a new test
-  Par catégorie: By category
   La valeur minimum pour ce champ est de: The minimum value for this field is
   pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !: to create an account, and you'll be able to access all our services free of charge!
-  Votre résultat: Your result
   précédent: previous
   Administrateur·ice: Administrator
   Valorisez vos données carbone: Add value to your carbon data
@@ -356,14 +351,11 @@ entries:
   Valider: Confirm
   Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Discover the ABC workshops, open in a new tab
   Revenir au formulaire de connexion: Back to the login form
-  Moyenne du groupe par catégorie: Group average by category
   Mes données restent-elles privées ?: Will my data remain private?
   Facultatif: Optional
   Impact CO2: CO2 impact
-  '{{value}} tonnes': '{{value}} tonnes'
   Mon organisation: My organisation
   '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.administrator?.name} has invited you to join the <3>{group?.name}</3> group'
-  'Moyenne :': 'Average :'
   Votre code postal: Your postcode
   Pour conserver vos résultats et les retrouver à l’avenir: To keep your results and find them again in the future
   Se déconnecter de votre espace organisation: Logging out of your organisation space
@@ -380,7 +372,6 @@ entries:
   Oups: Oops
   Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}: See {String(group.participants.length - 5)} other{withS} participant{withS}
   Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}.lock: Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}
-  Seules les options incluant plus de 3 participants sont accessibles, et ce, dans un objectif de préservation de l’anonymat des participants.: Only options with more than 3 participants are accessible, in order to preserve the anonymity of the participants.
   Vous avez déjà réalisé le test Nos Gestes Climat !: You've already taken the Nos Gestes Climat test!
   Oups ! Une erreur est survenue: Oops! An error has occurred
   Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.: Nosgestesclimat.fr is not affiliated to the {{ parent }} website.
@@ -551,19 +542,12 @@ entries:
   Votre question à ajouter: Your question to add
   Vous accompagner pour mieux agir en <2>4 mails seulement</2>.: Support you to take better action in <2>just 4 emails</2>.
   Recevez nos <1>conseils transports</1> directement dans votre boite mail !: Receive our <1>transport advice</1> straight to your inbox!
-  Chaque participation est représentée par une barre verticale. Votre score est affiché en <2>rose</2>.: Each entry is represented by a vertical bar. Your score is shown in <2>pink</2>.
-  Elle seront toutefois prises en compte lors de l'export de données.: However, they will be taken into account when the data is exported.
-  Pour faciliter la lecture, les valeurs supérieures à 100 t sont retirées.: For ease of reading, values above 100 t are removed.
   Créer une campagne: Create a campaign
   Paramètres de: Parameters of
   Mes campagnes: My campaigns
   Nombre de collaborateurs: Number of employees
-  Section administrateur: Administrator section
   Résultats de campagne: Campaign results
   Lancer ma campagne: Launch my campaign
-  c'est l’objectif pour 2050,: is the target for 2050,
-  on s'y met ?: shall we get started?
-  Partagez votre campagne: Share your campaign
   Vos informations personnelles: Your personal details
   'Créée le ': 'Created on '
   Supprimer cette campagne ?: Delete this campaign?
@@ -590,8 +574,6 @@ entries:
   Nom (A > Z): Name (A > Z)
   Nom (Z > A): Name (Z &gt; A)
   Voir toutes les campagnes: See all campaigns
-  Répartition des empreintes carbone: Breakdown of carbon footprints
-  Empreinte carbone totale: Total carbon footprint
   Entreprises: Companies
   collectivités: local authorities
   associations: associations
@@ -617,7 +599,6 @@ entries:
   Campagne créée par: Campaign created by
   Divers: Miscellaneous
   Transport: Transport
-  Services: Services
   Alimentation: Food
   Logement: Housing
   Voir tous les gestes: See all gestures
@@ -776,8 +757,6 @@ entries:
   organisations.accueil.titre: Nos Gestes Climat for organisations
   organisations.accueil.titre.lock: Nos Gestes Climat pour les organisations
   / jour: / day
-  t CO₂e / an: t CO₂e / year
-  tonnes CO₂e / an: tonnes CO₂e / year
   / an: / year
   Les 8 manières d’améliorer l'empreinte eau de mon assiette: 8 ways to improve the water footprint of my plate
   Comment calculer l’empreinte eau ?: How do you calculate your water footprint?
@@ -957,7 +936,6 @@ entries:
   S'inscrire: Sign up
   1 par mois max: 1 per month max
   <0>Comparez vos résultats avec</0> <2>vos proches</2>: <0>Compare your results with</0> <2>your friends</2>
-  4 infolettres l’impact des transports: 4 newsletters the impact of transport
   Je m'inscris à l'infolettre: Subscribe to our newsletter
   À la une !: Featured article
   D'autres articles sur le même sujet: Other articles on the same subject
@@ -1033,7 +1011,6 @@ entries:
   Brocoli: Broccoli
   Kiwi: Kiwi
   Poire: Pear
-  Chargement des résultats détaillés de campagne...: Loading detailed campaign results...
   Navigation principale: Main navigation
   Page précédente: Previous page
   Menu principal: Main menu
@@ -1104,7 +1081,6 @@ entries:
   'Oups, la copie du lien a échoué, le voici :': 'Oops, copying the link failed, here it is:'
   Nous chargeons les données de l'organisation partenaire.: We load the data from the partner organisation.
   Une erreur s'est produite au moment de récupérer les informations liées à l'organisation partenaire. Veuillez réessayer plus tard ou contacter notre support.: An error has occurred while retrieving the information related to the partner organisation. Please try again later or contact our support team.
-  Les graphiques sont cachés pour les campagnes avec plus de 500 participations pour des raisons de performance. Nous travaillons à l'ajout de cette fonctionnalité pour les plus grosses campagnes.: The graphics are hidden for campaigns with more than 500 entries for performance reasons. We are working on adding this functionality for larger campaigns.
   Participation mise à jour: Updated participation
   Recommencer mon inscription: Repeat my registration
   Votre adresse electronique: Your e-mail address
@@ -1315,7 +1291,6 @@ entries:
   Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau: A watered field, illustrating the lexicon for understanding the water footprint
   Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique: An ice pack sparse in the sunlight, illustrating our maladaptation to climate change
   Page active: Active page
-  Sélectionner ce filtre et afficher uniquement les actions de cette catégorie: Select this filter to display only the shares in this category
   Eau, évaluer la métrique eau: Water, assess the water metric
   Carbone, évaluer la métrique carbone: Carbon, assessing the carbon metric
   Connexion: Connection
@@ -1399,8 +1374,6 @@ entries:
   common.interactiveIllustration.item.car.lock: Voiture
   common.interactiveIllustration.item.computer: Computer
   common.interactiveIllustration.item.computer.lock: Ordinateur
-  common.interactiveIllustration.pulsatingDotLabel: "{{itemTitle}} : score de consommation carbone de {{carbonScore}} sur 5 et score de consommation d'eau de {{waterScore}} out of 5"
-  common.interactiveIllustration.pulsatingDotLabel.lock: "{{itemTitle}} : score de consommation carbone de {{carbonScore}} sur 5 et score de consommation d'eau de {{waterScore}} sur 5"
   Ouvrir le menu: Open the menu
   simulator.customQuestions.voiture.deleteItem: Delete this route
   simulator.customQuestions.voiture.deleteItem.lock: Supprimer ce trajet
@@ -1466,7 +1439,6 @@ entries:
   blog.homepage.defaultTitle.lock: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
   4 infolettres l'impact des transports: 4 newsletters the impact of transport
   5 infolettres sur l'impact du logement: 5 newsletters on the impact of housing
-  ⚠️ La vérification de votre compte est requise pour vous inscrire aux infolettres.: ⚠️ Verification of your account is required to sign up for newsletters.
   Entrez votre adresse email pour recevoir les infolettres sélectionnées.: Enter your email address to receive the selected newsletters.
   documentation.total_category_block.title: of the total, see documentation
   documentation.total_category_block.title.lock: du total, voir la documentation
@@ -1488,8 +1460,8 @@ entries:
   common.category.logement.lock: Logement
   pollResults.categoryDistribution.accessibleDescription.category: '{{name}}: {{value}} {{unit}}.'
   pollResults.categoryDistribution.accessibleDescription.category.lock: '{{name}}: {{value}} {{unit}}.'
-  common.category.services: Community services
-  common.category.services.lock: Services sociétaux
+  common.category.services: Services
+  common.category.services.lock: Services
   common.category.transport: Transport
   common.category.transport.lock: Transport
   common.category.alimentation: Power supply
@@ -1532,3 +1504,30 @@ entries:
   pollResults.pollResults.distribution.category_distribution.title_detail.lock: (moyennes)
   pollResults.categoryDistribution.accessibleDescription.chart: 'Donut chart showing the breakdown of emissions by category. '
   pollResults.categoryDistribution.accessibleDescription.chart.lock: 'Graphique en donut montrant la répartition des émissions par catégorie. '
+  pollResults.radarChart.legend.userResults: My results
+  pollResults.radarChart.legend.userResults.lock: Mes résultats
+  pollResults.radarChart.accessibleDescription.lower: lower
+  pollResults.radarChart.accessibleDescription.lower.lock: inférieur
+  pollResults.radarChart.accessibleDescription.higher: superior
+  pollResults.radarChart.accessibleDescription.higher.lock: supérieur
+  copyButton.shareAriaLabel: Share this link
+  copyButton.shareAriaLabel.lock: Partager le lien
+  C'est prêt ! Voici votre lien à partager: You're all set! Here's your link to share
+  copyButton.shareTitle: Discover my carbon footprint!
+  copyButton.shareTitle.lock: Découvre mon empreinte carbone !
+  copyButton.copyAriaLabel: Copy the link to the clipboard
+  copyButton.copyAriaLabel.lock: Copier le lien dans le presse-papiers
+  pollResults.radarChart.accessibleDescription.category: '{{category}}: vos résultats {{user}} {{comparison}} à la moyenne {{average}}.'
+  pollResults.radarChart.accessibleDescription.category.lock: '{{category}}: vos résultats {{user}} {{comparison}} à la moyenne {{average}}.'
+  pollResults.radarChart.legend.average: Average
+  pollResults.radarChart.legend.average.lock: Moyenne
+  pollResults.radarChart.accessibleDescription.chart: 'Radar graph comparing your results with the category averages. '
+  pollResults.radarChart.accessibleDescription.chart.lock: 'Graphique radar comparant vos résultats aux moyennes par catégorie. '
+  pollResults.adminSection.title: Invite new people
+  pollResults.adminSection.title.lock: Invitez de nouvelles personnes
+  pollResults.adminSection.shareDirectly: Or share directly
+  pollResults.adminSection.shareDirectly.lock: Ou partagez directement
+  copyButton.copiedAriaLabel: Link copied to clipboard
+  copyButton.copiedAriaLabel.lock: Lien copié dans le presse-papiers
+  pollResults.radarChart.title: Your footprint in relation to other participants
+  pollResults.radarChart.title.lock: Votre empreinte par rapport aux autres participants
