@@ -1,4 +1,3 @@
-import { TUTORIAL_DELETION_FEATURE_FLAG_KEY } from '@/constants/ab-test'
 import {
   getLinkToSimulateur,
   getLinkToTutoriel,
@@ -6,7 +5,6 @@ import {
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useIsTestVersion } from '../abTesting/useIsTestVersion'
 import { useSimulationIdInQueryParams } from '../simulation/useSimulationIdInQueryParams'
 import { useLocale } from '../useLocale'
 
@@ -22,8 +20,6 @@ export function useEndGuard() {
 
   const [isGuardInit, setIsGuardInit] = useState(false)
   const [isGuardRedirecting, setIsGuardRedirecting] = useState(false)
-
-  const isTestVersion = useIsTestVersion(TUTORIAL_DELETION_FEATURE_FLAG_KEY)
 
   useEffect(() => {
     // we only run the guard at mount
@@ -41,7 +37,7 @@ export function useEndGuard() {
     }
 
     // if the user didn't see the tutoriel we redirect him to the tutorial page
-    if (!tutorials.testIntro && !isTestVersion) {
+    if (!tutorials.testIntro) {
       router.replace(getLinkToTutoriel({ locale }))
       setIsGuardRedirecting(true)
       return
@@ -56,7 +52,6 @@ export function useEndGuard() {
     progression,
     router,
     tutorials,
-    isTestVersion,
     locale,
   ])
 
