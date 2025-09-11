@@ -277,6 +277,22 @@ const redirects = [
     destination: '/misc/NGC_Kit.diffusion.zip',
     permanent: true,
   },
+  // Landings thématiques
+  {
+    source: '/themes',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/empreinte-carbone-alimentation',
+    destination: '/themes/empreinte-carbone-alimentation',
+    permanent: true,
+  },
+  {
+    source: '/empreinte-carbone-transport',
+    destination: '/themes/empreinte-carbone-transport',
+    permanent: true,
+  },
   // Short URL for Brevo
   {
     source: '/infolettres',
