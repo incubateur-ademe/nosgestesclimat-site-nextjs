@@ -3,10 +3,8 @@
 import Trans from '@/components/translation/trans/TransClient'
 import { organisationsDashboardExportData } from '@/constants/tracking/pages/organisationsDashboard'
 import { captureExportPollData } from '@/constants/tracking/posthogTrackers'
-import type {
-  PublicOrganisationPoll,
-  PublicPollSimulation,
-} from '@/types/organisations'
+import { ComputedResults } from '@/publicodes-state/types'
+import type { PublicOrganisationPoll } from '@/types/organisations'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 import type { ReactNode } from 'react'
@@ -18,19 +16,21 @@ import StatisticsBlocks from './orgaStatistics/StatisticsBlocks'
 export default function PollStatistics({
   title,
   simulationsCount,
-  simulationsWithoutExtremes,
+  computedResults,
   funFacts,
   poll,
   isAdmin,
 }: {
   title?: string | ReactNode
   simulationsCount: number
-  simulationsWithoutExtremes: PublicPollSimulation[]
+  computedResults?: ComputedResults | null
   funFacts?: FunFacts | null
   poll: PublicOrganisationPoll
   isAdmin: boolean
 }) {
   const hasAtLeastThreeParticipants = simulationsCount > 2
+
+  if (!computedResults) return null
 
   return (
     <>
@@ -53,7 +53,7 @@ export default function PollStatistics({
       <section className="relative mb-8 flex gap-4">
         <StatisticsBlocks
           simulationsCount={simulationsCount}
-          simulationsWithoutExtremes={simulationsWithoutExtremes}
+          computedResults={computedResults}
         />
       </section>
 

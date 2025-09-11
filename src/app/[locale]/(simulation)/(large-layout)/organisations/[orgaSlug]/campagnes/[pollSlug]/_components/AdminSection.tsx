@@ -26,9 +26,13 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { PublicOrganisationPoll } from '@/types/organisations'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import Image from 'next/image'
+import { ReactNode } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   poll: PublicOrganisationPoll
+  className?: string
+  title?: ReactNode
 }
 
 const buildLink = ({
@@ -45,7 +49,7 @@ const buildLink = ({
   return `${window.location.origin}/o/${orgaSlug}/${pollSlug}?${MATOMO_CAMPAIGN_KEY}=Organisation_${encodeURIComponent(orgaName)}&${MATOMO_KEYWORD_KEY}=${encodeURIComponent(pollName)}`
 }
 
-export default function AdminSection({ poll }: Props) {
+export default function AdminSection({ poll, className, title }: Props) {
   const {
     slug: pollSlug,
     name: pollName,
@@ -62,12 +66,14 @@ export default function AdminSection({ poll }: Props) {
   })
 
   return (
-    <section className="mt-10">
+    <section className={twMerge('mt-10', className)}>
       <div className="flex flex-col items-start">
         <h2 className="mb-4">
-          <Trans i18nKey="pollResults.adminSection.title">
-            Invitez de nouvelles personnes
-          </Trans>
+          {title ?? (
+            <Trans i18nKey="pollResults.adminSection.title">
+              Invitez de nouvelles personnes
+            </Trans>
+          )}
         </h2>
 
         <Card className="bg-primary-100 flex w-full flex-col items-center justify-center border-0 p-8 shadow-none">

@@ -7,26 +7,17 @@ import Trans from '@/components/translation/trans/TransClient'
 import { pollDashboardClickParameters } from '@/constants/tracking/pages/pollDashboard'
 import { captureClickPollSettings } from '@/constants/tracking/posthogTrackers'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
-import Loader from '@/design-system/layout/Loader'
 import Title from '@/design-system/layout/Title'
-import { filterExtremes } from '@/helpers/organisations/filterExtremes'
-import { filterSimulations } from '@/helpers/organisations/filterSimulations'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
-import { useFetchPublicPollSimulations } from '@/hooks/organisations/polls/useFetchPublicPollSimulations'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedirectFromLegacy'
 import { useUser } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import dayjs from 'dayjs'
 import { useParams, useSearchParams } from 'next/navigation'
-import { useContext, useMemo } from 'react'
 import AdminSection from './_components/AdminSection'
-import { FiltersContext } from './_components/FiltersProvider'
 import PollNotFound from './_components/PollNotFound'
-import PollStatisticsFilters from './_components/PollStatisticsFilters'
 import FootprintDistribution from './_components/footPrintDistribution/FootprintDistribution'
-
-const MAX_NUMBER_POLL_SIMULATIONS = 500
 
 export default function CampagnePage() {
   const { orgaSlug, pollSlug } = useParams()
@@ -43,33 +34,6 @@ export default function CampagnePage() {
   } = useFetchPublicPoll({
     enabled: !isRedirectFromLegacy,
   })
-
-  const pollHasTooManyParticipants =
-    (poll?.simulations?.count ?? 0) > MAX_NUMBER_POLL_SIMULATIONS
-
-  const {
-    data: simulations,
-    isLoading: isLoadingSimulations,
-    error: errorSimulations,
-  } = useFetchPublicPollSimulations({
-    enabled: !!poll && !pollHasTooManyParticipants,
-  })
-
-  const { ageFilters, postalCodeFilters } = useContext(FiltersContext)
-
-  // Remove the values that are too high to avoid polluting the statistics
-  const simulationsWithoutExtremes = useMemo(
-    () => filterExtremes(simulations ?? []),
-    [simulations]
-  )
-
-  const filteredSimulations =
-    poll &&
-    filterSimulations({
-      simulations: simulationsWithoutExtremes,
-      ageFilters,
-      postalCodeFilters,
-    })
 
   // Organisation can only be fetched by a authentified organisation administrator
   const { data: organisation } = useFetchOrganisation()
@@ -137,38 +101,34 @@ export default function CampagnePage() {
       </div>
 
       <div className="mt-8">
-        {!!isAdmin && <AdminSection poll={poll} />}
-
+        {!!isAdmin && poll.simulations.count <= 0 && (
+          <AdminSection
+            className="mt-0"
+            poll={poll}
+            title={
+              <Trans className="pollResults.adminSection.customTitle">
+                C'est prêt ! Voici votre lien à partager
+              </Trans>
+            }
+          />
+        )}
         <PollStatistics
           simulationsCount={poll.simulations.finished}
-          simulationsWithoutExtremes={simulationsWithoutExtremes}
+          computedResults={poll.computedResults}
           funFacts={poll.funFacts}
           title={<Trans>Résultats de campagne</Trans>}
           poll={poll}
           isAdmin={!!isAdmin}
         />
 
-        {isLoadingSimulations && !pollHasTooManyParticipants && (
-          <div className="mb-8 flex h-full items-center gap-2">
-            <Loader color="dark" size="sm" />
-            <Trans>Chargement des résultats détaillés de campagne...</Trans>
-          </div>
-        )}
+        <FootprintDistribution
+          computedResults={poll.computedResults}
+          userComputedResults={poll.userComputedResults}
+          simulationsCount={poll.simulations.count}
+        />
 
-        {!isLoadingSimulations && !pollHasTooManyParticipants && (
-          <>
-            <PollStatisticsFilters
-              simulations={simulationsWithoutExtremes}
-              filteredSimulations={filteredSimulations ?? []}
-              defaultAdditionalQuestions={
-                poll?.defaultAdditionalQuestions ?? []
-              }
-            />
-
-            <FootprintDistribution />
-
-            {!!isAdmin && <AdminSection poll={poll} />}
-          </>
+        {!!isAdmin && poll.simulations.count > 0 && (
+          <AdminSection poll={poll} />
         )}
       </div>
     </div>
