@@ -27,6 +27,8 @@ type Props = {
   question: DottedName
   tempValue?: number | undefined
   setTempValue?: (value: number | undefined) => void
+  displayedValue?: string | undefined
+  setDisplayedValue?: (value: string | undefined) => void
   showInputsLabel?: React.ReactNode | string
   headingLevel?: number
   className?: string
@@ -36,6 +38,8 @@ export default function Question({
   question,
   tempValue,
   setTempValue,
+  displayedValue,
+  setDisplayedValue,
   showInputsLabel,
   headingLevel,
   className,
@@ -59,10 +63,6 @@ export default function Question({
     category,
   } = useRule(question)
 
-  const [displayedValue, setDisplayedValue] = useState<string | undefined>(
-    String(value)
-  )
-
   const { questionsByCategories } = useFormState()
 
   // It should happen only on mount (the component remount every time the question changes)
@@ -71,14 +71,16 @@ export default function Question({
   useEffect(() => {
     if (type !== 'number') {
       if (setTempValue) setTempValue(undefined)
+      if (setDisplayedValue) setDisplayedValue(undefined)
       return
     }
 
     if (prevQuestion.current !== question) {
       if (setTempValue) setTempValue(numericValue)
+      if (setDisplayedValue) setDisplayedValue(String(value))
       prevQuestion.current = question
     }
-  }, [type, numericValue, setTempValue, question])
+  }, [type, numericValue, setTempValue, question, setDisplayedValue, value])
 
   const currentCategoryQuestions = questionsByCategories[category]
 
@@ -111,7 +113,8 @@ export default function Question({
           setValue={(value) => {
             if (type === 'number') {
               if (setTempValue) setTempValue(value as number)
-              setDisplayedValue(value?.toString() ?? undefined)
+              if (setDisplayedValue)
+                setDisplayedValue(value?.toString() ?? undefined)
             }
             setValue(value, { questionDottedName: question })
           }}
