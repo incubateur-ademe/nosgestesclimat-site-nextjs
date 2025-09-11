@@ -2,7 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { organisationsDashboardExportData } from '@/constants/tracking/pages/organisationsDashboard'
-import { ComputedResults } from '@/publicodes-state/types'
+import type { ComputedResults } from '@/publicodes-state/types'
 
 import { captureExportPollData } from '@/constants/tracking/posthogTrackers'
 import type { PublicOrganisationPoll } from '@/types/organisations'
