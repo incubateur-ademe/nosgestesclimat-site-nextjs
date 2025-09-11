@@ -18,7 +18,7 @@ export default function SimulateurPage() {
   // Guarding the route and redirecting if necessary
   const { isGuardInit, isGuardRedirecting } = useSimulateurGuard()
 
-  const { isIframe } = useIframe()
+  const { isIframe, iframeRegion, isFrenchRegion } = useIframe()
 
   // We track the progression of the user in the simulation
   useTrackSimulateur()
@@ -63,11 +63,13 @@ export default function SimulateurPage() {
         isLoading={!isGuardInit || isGuardRedirecting}
       />
 
-      <SaveModal
-        isOpen={isSaveModalOpen || isBackHomeModalOpen}
-        closeModal={isSaveModalOpen ? toggleSaveModal : toggleBackHomeModal}
-        mode={isSaveModalOpen ? 'save' : 'backHome'}
-      />
+      {isFrenchRegion && (
+        <SaveModal
+          isOpen={isSaveModalOpen || isBackHomeModalOpen}
+          closeModal={isSaveModalOpen ? toggleSaveModal : toggleBackHomeModal}
+          mode={isSaveModalOpen ? 'save' : 'backHome'}
+        />
+      )}
     </div>
   )
 }
