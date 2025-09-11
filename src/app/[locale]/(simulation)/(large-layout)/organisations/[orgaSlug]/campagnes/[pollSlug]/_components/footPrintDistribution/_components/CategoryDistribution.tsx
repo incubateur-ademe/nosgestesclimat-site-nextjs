@@ -3,7 +3,7 @@
 import Trans from '@/components/translation/trans/TransClient'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { Categories } from '@incubateur-ademe/nosgestesclimat'
+import type { Categories } from '@incubateur-ademe/nosgestesclimat'
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts'
 
 type Props = {

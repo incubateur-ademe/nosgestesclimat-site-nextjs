@@ -1,6 +1,6 @@
 import Trans from '@/components/translation/trans/TransClient'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
-import { ComputedResults } from '@/publicodes-state/types'
+import type { ComputedResults } from '@/publicodes-state/types'
 import MeanFootprintDistribution from './_components/MeanFootprintDistribution'
 
 type Props = {
