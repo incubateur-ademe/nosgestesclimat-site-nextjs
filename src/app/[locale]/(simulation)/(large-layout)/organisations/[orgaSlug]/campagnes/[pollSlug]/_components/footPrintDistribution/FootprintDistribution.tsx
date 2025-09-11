@@ -7,17 +7,21 @@ type Props = {
   computedResults?: ComputedResults | null
   userComputedResults?: ComputedResults | null
   simulationsCount?: number
+  organisationName?: string
 }
 
 export default function FootprintDistribution({
   computedResults,
   userComputedResults,
   simulationsCount,
+  organisationName,
 }: Props) {
   if (!computedResults || typeof simulationsCount === 'undefined') return null
 
   const { formattedValue: groupFootprint } = formatCarbonFootprint(
-    computedResults.carbone.bilan / simulationsCount,
+    (computedResults.carbone.bilan -
+      (userComputedResults?.carbone?.bilan || 0)) /
+      simulationsCount,
     {
       maximumFractionDigits: 1,
     }
@@ -25,7 +29,7 @@ export default function FootprintDistribution({
 
   const { formattedValue: userFootprint } = userComputedResults
     ? formatCarbonFootprint(
-        userComputedResults?.carbone.bilan / simulationsCount,
+        userComputedResults?.carbone?.bilan / simulationsCount,
         {
           maximumFractionDigits: 1,
         }
@@ -41,9 +45,10 @@ export default function FootprintDistribution({
       </h2>
 
       <MeanFootprintDistribution
-        organisationName="Toto corp"
+        organisationName={organisationName}
         groupFootprint={parseFloat(groupFootprint)}
         userFootprint={userFootprint ? parseFloat(userFootprint) : undefined}
+        simulationsCount={simulationsCount}
       />
     </section>
   )
