@@ -3,13 +3,14 @@
 import QRCode from '@/components/sharing/QRCode'
 import Trans from '@/components/translation/trans/TransClient'
 import { pollDashboardCopyLink } from '@/constants/tracking/pages/pollDashboard'
+import { captureCopyPollLink } from '@/constants/tracking/posthogTrackers'
 import {
   MATOMO_CAMPAIGN_KEY,
   MATOMO_KEYWORD_KEY,
 } from '@/constants/urls/matomo'
 import CopyInput from '@/design-system/inputs/CopyInput'
 import type { PublicOrganisationPoll } from '@/types/organisations'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 
 type Props = {
   poll: PublicOrganisationPoll
@@ -63,6 +64,7 @@ export default function AdminSection({ poll }: Props) {
               })}
               onClick={() => {
                 trackEvent(pollDashboardCopyLink)
+                trackPosthogEvent(captureCopyPollLink())
               }}
             />
           </div>

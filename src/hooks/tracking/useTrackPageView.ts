@@ -6,7 +6,7 @@ import { useGetTrackedUrl } from './useGetTrackedUrl'
 export function useTrackPageView() {
   const searchParams = useSearchParams()
 
-  const url = useGetTrackedUrl()
+  const { url, anonymizedUrl } = useGetTrackedUrl()
 
   useEffect(() => {
     // Skip tracking if iframe=true is present
@@ -14,6 +14,6 @@ export function useTrackPageView() {
       return
     }
 
-    trackPageView(url)
-  }, [url, searchParams])
+    trackPageView(url, anonymizedUrl)
+  }, [url, searchParams, anonymizedUrl])
 }
