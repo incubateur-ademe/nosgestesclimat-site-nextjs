@@ -1,4 +1,3 @@
-import { TUTORIAL_DELETION_FEATURE_FLAG_KEY } from '@/constants/ab-test'
 import {
   getLinkToSimulateur,
   getLinkToTutoriel,
@@ -7,7 +6,6 @@ import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
 import { useRouter } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
-import { useIsTestVersion } from '../abTesting/useIsTestVersion'
 import { useClientTranslation } from '../useClientTranslation'
 import { useLocale } from '../useLocale'
 import { useEndPage } from './useEndPage'
@@ -37,8 +35,6 @@ export function useSimulateurPage() {
 
   const { goToEndPage, getLinkToEndPage } = useEndPage()
 
-  const isTestVersion = useIsTestVersion(TUTORIAL_DELETION_FEATURE_FLAG_KEY)
-
   const tutorielSeen = tutorials.testIntro
 
   const { progression } = useCurrentSimulation()
@@ -65,7 +61,7 @@ export function useSimulateurPage() {
       }
 
       // If the user has seen the tutoriel we redirect him to the test
-      if (tutorielSeen || isTestVersion) {
+      if (tutorielSeen) {
         router.replace(getLinkToSimulateur())
         return
       }
@@ -73,15 +69,7 @@ export function useSimulateurPage() {
       // else we redirect him to the tutoriel page
       router.push(getLinkToTutoriel({ locale }))
     },
-    [
-      progression,
-      tutorielSeen,
-      isTestVersion,
-      router,
-      initSimulation,
-      goToEndPage,
-      locale,
-    ]
+    [progression, tutorielSeen, router, initSimulation, goToEndPage, locale]
   )
 
   const getLinkToSimulateurPage = useCallback(
@@ -94,14 +82,14 @@ export function useSimulateurPage() {
       }
 
       // If the user has seen the tutoriel we return the test page link
-      if (tutorielSeen || isTestVersion) {
+      if (tutorielSeen) {
         return getLinkToSimulateur()
       }
 
       // else we return the tutoriel page link
       return getLinkToTutoriel({ locale })
     },
-    [progression, tutorielSeen, isTestVersion, getLinkToEndPage, locale]
+    [progression, tutorielSeen, getLinkToEndPage, locale]
   )
 
   const linkToSimulateurPageLabel = useMemo(() => {
