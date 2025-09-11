@@ -4,10 +4,8 @@ import VerticalBarChart from '@/components/charts/VerticalBarChart'
 import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
-import { getSimulationsAggregatedResult } from '@/helpers/organisations/getSimulationsAggregatedResult'
 import { useLocale } from '@/hooks/useLocale'
-import type { Entries } from '@/publicodes-state/types'
-import type { PublicPollSimulation } from '@/types/organisations'
+import type { ComputedResults, Entries } from '@/publicodes-state/types'
 import Wave from 'react-wavify'
 import CategoryChartItem from './statisticsBlocks/CategoryChartItem'
 import ResultsSoonBanner from './statisticsBlocks/ResultsSoonBanner'
@@ -33,18 +31,16 @@ const mockResults = {
 
 export default function StatisticsBlocks({
   simulationsCount,
-  simulationsWithoutExtremes,
+  computedResults,
 }: {
   simulationsCount: number
-  simulationsWithoutExtremes: PublicPollSimulation[]
+  computedResults: ComputedResults
 }) {
   const locale = useLocale()
 
   const hasLessThan3Participants = simulationsCount < 3
 
-  const result = hasLessThan3Participants
-    ? mockResults
-    : getSimulationsAggregatedResult(simulationsWithoutExtremes)
+  const result = hasLessThan3Participants ? mockResults : computedResults
 
   const { formattedValue, unit } = formatFootprint(result?.carbone?.bilan, {
     metric: carboneMetric,
@@ -79,7 +75,7 @@ export default function StatisticsBlocks({
 
       {
         // Display blocks only if simulations where fetched
-        !hasLessThan3Participants && !!simulationsWithoutExtremes?.length && (
+        !hasLessThan3Participants && !!computedResults && (
           <>
             <div className="bg-rainbow-rotation overflow-hidden rounded-xl p-8">
               <p className="text-primary-700 text-4xl font-bold">
