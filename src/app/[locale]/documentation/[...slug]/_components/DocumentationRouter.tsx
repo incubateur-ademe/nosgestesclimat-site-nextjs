@@ -22,16 +22,16 @@ export default function DocumentationRouter({
     IsDocumentationClientContext
   )
 
-  const { foldedSteps } = useCurrentSimulation()
+  const { progression } = useCurrentSimulation()
 
   // Switch to client side documentation if the simulation has been started
   useEffect(() => {
-    if (!foldedSteps) return
+    if (!progression) return
 
-    if (foldedSteps?.length > 0) {
+    if (progression > 0) {
       setIsDocumentationClient(true)
     }
-  }, [foldedSteps, setIsDocumentationClient])
+  }, [progression, setIsDocumentationClient])
 
   if (isDocumentationClient)
     return (

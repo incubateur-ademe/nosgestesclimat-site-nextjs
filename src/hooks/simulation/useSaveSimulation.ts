@@ -9,6 +9,7 @@ import type { Simulation } from '@/publicodes-state/types'
 import { updateGroupParticipant } from '@/services/groups/updateGroupParticipant'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
+import { useLocale } from '../useLocale'
 import { useBackgroundSyncSimulation } from './useBackgroundSyncSimulation'
 
 type Props = {
@@ -19,6 +20,7 @@ export function useSaveSimulation() {
   const {
     user: { userId, name, email },
   } = useUser()
+  const locale = useLocale()
 
   const { resetSyncTimer } = useBackgroundSyncSimulation()
 
@@ -68,7 +70,12 @@ export function useSaveSimulation() {
         return axios
           .post(
             `${ORGANISATION_URL}/${userId}/public-polls/${polls[polls.length - 1]}/simulations`,
-            payload
+            payload,
+            {
+              params: {
+                locale,
+              },
+            }
           )
           .then((response) => response.data)
       }

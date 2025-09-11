@@ -1,9 +1,7 @@
-import { TUTORIAL_DELETION_FEATURE_FLAG_KEY } from '@/constants/ab-test'
 import { getLinkToTutoriel } from '@/helpers/navigation/simulateurPages'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useIsTestVersion } from '../abTesting/useIsTestVersion'
 import { useSetCurrentSimulationFromParams } from '../simulation/useSetCurrentSimulationFromParams'
 import { useSimulationIdInQueryParams } from '../simulation/useSimulationIdInQueryParams'
 import { useDebug } from '../useDebug'
@@ -29,8 +27,6 @@ export function useSimulateurGuard() {
 
   const [isGuardInit, setIsGuardInit] = useState(false)
   const [isGuardRedirecting, setIsGuardRedirecting] = useState(false)
-
-  const isTestVersion = useIsTestVersion(TUTORIAL_DELETION_FEATURE_FLAG_KEY)
 
   const { simulationIdInQueryParams } = useSimulationIdInQueryParams()
 
@@ -60,7 +56,7 @@ export function useSimulateurGuard() {
     }
 
     // if the user has not seen the test intro, we redirect him to the tutorial page
-    if (!tutorials.testIntro && !isTestVersion) {
+    if (!tutorials.testIntro) {
       router.replace(getLinkToTutoriel({ locale }))
       setIsGuardRedirecting(true)
     }
@@ -74,7 +70,6 @@ export function useSimulateurGuard() {
     questionInQueryParams,
     simulationIdInQueryParams,
     isCorrectSimulationSet,
-    isTestVersion,
     locale,
   ])
 

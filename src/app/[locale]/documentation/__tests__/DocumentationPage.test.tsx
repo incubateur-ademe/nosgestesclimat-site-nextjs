@@ -76,6 +76,7 @@ describe('DocumentationPage', () => {
     Promise.resolve({ locale: 'fr' as Locale, slug })
 
   const createMockRules = (): Partial<NGCRules> => ({
+    transport: null,
     'transport . voiture': {
       titre: 'Voiture',
       description: "Calcul de l'empreinte voiture",
@@ -101,7 +102,7 @@ describe('DocumentationPage', () => {
     const params = createMockParams(slug)
 
     const result = await DocumentationPage({ params })
-    const { container } = render(result)
+    render(result)
 
     expect(mockGetRules).toHaveBeenCalledWith({
       isOptim: false,
@@ -125,33 +126,40 @@ describe('DocumentationPage', () => {
       'transport . voiture'
     )
     expect(screen.getByTestId('rule-title')).toHaveTextContent('Voiture')
-    expect(screen.getByTestId('rules-count')).toHaveTextContent('2')
+    expect(screen.getByTestId('rules-count')).toHaveTextContent('3')
   })
 
-  it('should redirect to NOT_FOUND_PATH when ruleName is null', async () => {
-    const slug = ['invalid', 'rule']
+  it('should render DocumentationRouter with correct props when rule exists but is empty', async () => {
+    const mockRules = createMockRules()
+    const slug = ['transport']
+    const ruleName = 'transport' as DottedName
 
-    mockGetRules.mockResolvedValue(createMockRules())
-    mockDecodeRuleNameFromPath.mockReturnValue(null)
+    mockGetRules.mockResolvedValue(mockRules)
+    mockDecodeRuleNameFromPath.mockReturnValue(ruleName)
 
     const params = createMockParams(slug)
 
-    await DocumentationPage({ params })
+    const result = await DocumentationPage({ params })
+    render(result)
 
-    expect(mockRedirect).toHaveBeenCalledWith('/404')
-  })
+    expect(mockGetRules).toHaveBeenCalledWith({
+      isOptim: false,
+      locale: 'fr',
+      regionCode: 'FR',
+    })
 
-  it('should redirect to NOT_FOUND_PATH when ruleName is undefined', async () => {
-    const slug = ['invalid', 'rule']
+    expect(mockDecodeRuleNameFromPath).toHaveBeenCalledWith('transport')
 
-    mockGetRules.mockResolvedValue(createMockRules())
-    mockDecodeRuleNameFromPath.mockReturnValue(undefined)
+    expect(screen.getByTestId('documentation-router')).toBeInTheDocument()
+    expect(screen.getByTestId('supported-regions')).toHaveTextContent(
+      '["FR","BE"]'
+    )
+    expect(screen.getByTestId('slug')).toHaveTextContent('["transport"]')
 
-    const params = createMockParams(slug)
-
-    await DocumentationPage({ params })
-
-    expect(mockRedirect).toHaveBeenCalledWith('/404')
+    expect(screen.getByTestId('documentation-server')).toBeInTheDocument()
+    expect(screen.getByTestId('locale')).toHaveTextContent('fr')
+    expect(screen.getByTestId('rule-name')).toHaveTextContent('transport')
+    expect(screen.getByTestId('rules-count')).toHaveTextContent('3')
   })
 
   it('should redirect to DOCUMENTATION_PATH when rule does not exist', async () => {
