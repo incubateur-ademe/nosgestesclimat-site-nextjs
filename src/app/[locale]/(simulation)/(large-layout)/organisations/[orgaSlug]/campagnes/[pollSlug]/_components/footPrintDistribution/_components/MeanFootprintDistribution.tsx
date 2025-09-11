@@ -1,22 +1,63 @@
 import Trans from '@/components/translation/trans/TransClient'
 import Card from '@/design-system/layout/Card'
+import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useIsOrganisationAdmin } from '@/hooks/organisations/useIsOrganisationAdmin'
+import { ComputedResults } from '@/publicodes-state/types'
+import { Categories } from '@incubateur-ademe/nosgestesclimat'
 import CategoryDistribution from './CategoryDistribution'
 import CategoryRadarChart from './CategoryRadarChart'
 import FootprintBarChart from './FootprintBarChart'
 
 type Props = {
-  organisationName: string
+  organisationName?: string
   groupFootprint: number
   userFootprint?: number
+  computedResults?: ComputedResults | null
+  userComputedResults?: ComputedResults | null
+  simulationsCount?: number
 }
 
 export default function MeanFootprintDistribution({
   organisationName,
   groupFootprint,
   userFootprint,
+  computedResults,
+  userComputedResults,
+  simulationsCount,
 }: Props) {
   const { isAdmin } = useIsOrganisationAdmin()
+
+  if (!computedResults) return null
+
+  const {
+    transport: meanTransport,
+    alimentation: meanAlimentation,
+    logement: meanLogement,
+    divers: meanDivers,
+    'services sociétaux': meanServices,
+  } = Object.entries(computedResults.carbone.categories).reduce(
+    (accObject, [key, value]) => {
+      const { formattedValue: meanValue } = formatCarbonFootprint(
+        value -
+          (userComputedResults?.carbone?.categories?.[key as Categories] || 0),
+        {
+          maximumFractionDigits: 1,
+        }
+      )
+
+      accObject[key as Categories] =
+        parseFloat(meanValue) / (simulationsCount ?? 1)
+
+      return accObject
+    },
+    {
+      transport: 0,
+      alimentation: 0,
+      logement: 0,
+      divers: 0,
+      'services sociétaux': 0,
+    } as Record<Categories, number>
+  )
 
   return (
     <div>
@@ -37,31 +78,43 @@ export default function MeanFootprintDistribution({
           </Card>
         </div>
         <div className="w-full">
-          {isAdmin ? (
+          {(isAdmin || !userComputedResults) && (
             <CategoryDistribution
               categoryValues={{
-                transport: 1,
-                alimentation: 2,
-                logement: 3,
-                divers: 4,
-                'services sociétaux': 5,
+                transport: meanTransport,
+                alimentation: meanAlimentation,
+                logement: meanLogement,
+                divers: meanDivers,
+                'services sociétaux': meanServices,
               }}
             />
-          ) : (
+          )}
+          {!isAdmin && userComputedResults && (
             <CategoryRadarChart
-              userValues={{
-                transport: 2.5,
-                alimentation: 3.8,
-                logement: 1.2,
-                divers: 4.5,
-                'services sociétaux': 5.2,
-              }}
+              userValues={Object.entries(
+                userComputedResults.carbone.categories
+              ).reduce(
+                (accObject, [key, value]) => {
+                  accObject[key as Categories] = parseFloat(
+                    formatCarbonFootprint(value, { maximumFractionDigits: 1 })
+                      .formattedValue
+                  )
+                  return accObject
+                },
+                {
+                  transport: 0,
+                  alimentation: 0,
+                  logement: 0,
+                  divers: 0,
+                  'services sociétaux': 0,
+                } as Record<Categories, number>
+              )}
               averageValues={{
-                transport: 0.8,
-                alimentation: 1.5,
-                logement: 0.3,
-                divers: 0.6,
-                'services sociétaux': 1.2,
+                transport: meanTransport,
+                alimentation: meanAlimentation,
+                logement: meanLogement,
+                divers: meanDivers,
+                'services sociétaux': meanServices,
               }}
             />
           )}

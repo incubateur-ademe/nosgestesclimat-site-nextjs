@@ -32,9 +32,11 @@ const mockResults = {
 export default function StatisticsBlocks({
   simulationsCount,
   computedResults,
+  userComputedResults,
 }: {
   simulationsCount: number
   computedResults?: ComputedResults | null
+  userComputedResults?: ComputedResults | null
 }) {
   const locale = useLocale()
 
@@ -44,14 +46,22 @@ export default function StatisticsBlocks({
 
   if (!result) return null
 
-  const { formattedValue, unit } = formatFootprint(result?.carbone?.bilan, {
-    metric: carboneMetric,
-    maximumFractionDigits: 1,
-    localize: true,
-  })
+  const { formattedValue, unit } = formatFootprint(
+    (result?.carbone?.bilan - (userComputedResults?.carbone?.bilan || 0)) /
+      simulationsCount,
+    {
+      metric: carboneMetric,
+      maximumFractionDigits: 1,
+      localize: true,
+    }
+  )
 
   const { formattedValue: formattedWaterValue, unit: waterUnit } =
-    formatFootprint(result.eau.bilan, { metric: eauMetric, localize: true })
+    formatFootprint(
+      (result?.eau?.bilan - (userComputedResults?.carbone?.bilan || 0)) /
+        simulationsCount,
+      { metric: eauMetric, localize: true }
+    )
 
   return (
     <div className="grid w-full auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
