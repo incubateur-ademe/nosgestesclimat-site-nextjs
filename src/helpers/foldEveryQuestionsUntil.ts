@@ -15,6 +15,8 @@ export function foldEveryQuestionsUntil({
   const indexOfQuestion = relevantQuestions.indexOf(question)
   const questionsToAnswer = relevantQuestions.slice(0, indexOfQuestion)
   questionsToAnswer.map((question) =>
-    updateCurrentSimulation({ foldedStepToAdd: question })
+    updateCurrentSimulation({
+      foldedStepToAdd: { foldedStep: question, value: null },
+    })
   )
 }
