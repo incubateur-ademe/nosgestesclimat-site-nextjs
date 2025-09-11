@@ -1,13 +1,11 @@
 'use client'
 
-import VerticalBarChart from '@/components/charts/VerticalBarChart'
 import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useLocale } from '@/hooks/useLocale'
-import type { ComputedResults, Entries } from '@/publicodes-state/types'
+import type { ComputedResults } from '@/publicodes-state/types'
 import Wave from 'react-wavify'
-import CategoryChartItem from './statisticsBlocks/CategoryChartItem'
 import ResultsSoonBanner from './statisticsBlocks/ResultsSoonBanner'
 
 // Create a mock results object with the default carbon footprints values for each category
@@ -127,30 +125,6 @@ export default function StatisticsBlocks({
                 </div>
               </div>
             )}
-
-            <div className="bg-primary-100/40 rounded-xl py-4">
-              <VerticalBarChart className="mt-0 h-auto bg-transparent px-1 pt-0 pb-2 sm:h-[calc(100%-48px)]">
-                {(
-                  Object.entries(result.carbone) as Entries<
-                    typeof result.carbone
-                  >
-                )
-                  .filter(([key]) => key !== 'bilan')
-                  .map(([key, value], index) => (
-                    <CategoryChartItem
-                      index={index}
-                      key={key}
-                      category={key}
-                      maxValue={result.carbone.bilan / 1000}
-                      value={value / 1000}
-                    />
-                  ))}
-              </VerticalBarChart>
-
-              <h3 className="mb-0 ml-6 text-sm">
-                <Trans>Moyenne du groupe par catégorie</Trans>
-              </h3>
-            </div>
           </>
         )
       }
