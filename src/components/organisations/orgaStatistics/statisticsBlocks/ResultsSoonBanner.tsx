@@ -1,12 +1,10 @@
 'use client'
 
-import VerticalBarChart from '@/components/charts/VerticalBarChart'
 import HourglassIcon from '@/components/icons/HourglassIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import Card from '@/design-system/layout/Card'
 import { useIsOrganisationAdmin } from '@/hooks/organisations/useIsOrganisationAdmin'
 import Wave from 'react-wavify'
-import CategoryChartItem from './CategoryChartItem'
 
 type Props = { hasLessThan3Participants: boolean }
 
@@ -86,44 +84,6 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
               </Trans>
             </p>
           </div>
-        </div>
-
-        <div className="hidden rounded-xl bg-gray-100 py-4 sm:block">
-          <VerticalBarChart className="mt-0 h-[calc(100%-48px)]">
-            <CategoryChartItem
-              index={0}
-              category="transport"
-              maxValue={8}
-              value={3}
-            />
-            <CategoryChartItem
-              index={1}
-              category="logement"
-              maxValue={8}
-              value={1}
-            />
-            <CategoryChartItem
-              index={2}
-              category="alimentation"
-              maxValue={8}
-              value={1}
-            />
-            <CategoryChartItem
-              index={3}
-              category="divers"
-              maxValue={8}
-              value={0.5}
-            />
-            <CategoryChartItem
-              index={4}
-              category="services sociétaux"
-              maxValue={8}
-              value={2}
-            />
-          </VerticalBarChart>
-          <h3 className="mt-4 mb-4 ml-6 text-sm">
-            <Trans>Moyenne du groupe par catégorie</Trans>
-          </h3>
         </div>
       </div>
     </div>
