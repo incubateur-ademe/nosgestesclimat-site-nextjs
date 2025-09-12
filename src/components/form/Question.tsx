@@ -221,6 +221,7 @@ export default function Question({
           question={question}
           assistance={assistance}
           setTempValue={setTempValue}
+          setDisplayedValue={setDisplayedValue}
         />
       ) : null}
 
