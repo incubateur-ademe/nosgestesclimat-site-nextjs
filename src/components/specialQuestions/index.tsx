@@ -4,6 +4,7 @@ import Textile from './Textile'
 import Voiture from './Voiture'
 
 type Props = {
+  setDisplayedValue?: (value: string | undefined) => void
   setTempValue?: (value: number | undefined) => void
   tempValue?: number
 }
