@@ -5,9 +5,10 @@ import personasFR from '@incubateur-ademe/nosgestesclimat/public/personas-fr.jso
 import { importPreviewFile } from './importPreviewFile'
 
 const personasByLocale: Record<string, Personas> = {
-  fr: personasFR,
-  en: personasEN,
-  es: personasES,
+  /* TypeScript widens JSON string literals to `string`, so values like "answered"or "default" don't match the expected union type. We import the JSON as `unknown` and assert it to `Personas` to bypass this limitation.*/
+  fr: personasFR as unknown as Personas,
+  en: personasEN as unknown as Personas,
+  es: personasES as unknown as Personas,
 }
 type Props = {
   locale?: string
