@@ -60,9 +60,9 @@ export default function PollStatistics({
 
       {hasAtLeastThreeParticipants && (
         <>
-          <FunFactsBlock funFacts={funFacts} className="mb-12" />
+          <FunFactsBlock funFacts={funFacts} className="md:mb-8" />
 
-          <DetailedStatistics funFacts={funFacts} />
+          <DetailedStatistics funFacts={funFacts} className="mb-8" />
         </>
       )}
     </>

@@ -7,6 +7,7 @@ import type { Categories } from '@incubateur-ademe/nosgestesclimat'
 import {
   PolarAngleAxis,
   PolarGrid,
+  PolarRadiusAxis,
   Radar,
   RadarChart,
   ResponsiveContainer,
@@ -51,10 +52,10 @@ export default function CategoryRadarChart({
       name: categoryLabels[category],
       user: userValue,
       average: averageValue,
-      userFormatted: formatCarbonFootprint(userValue * 1000, {
+      userFormatted: formatCarbonFootprint(userValue, {
         maximumFractionDigits: 1,
       }),
-      averageFormatted: formatCarbonFootprint(averageValue * 1000, {
+      averageFormatted: formatCarbonFootprint(averageValue, {
         maximumFractionDigits: 1,
       }),
     }
@@ -95,10 +96,10 @@ export default function CategoryRadarChart({
       const averageValue =
         payload.find((p: any) => p.dataKey === 'average')?.value || 0
 
-      const userFormatted = formatCarbonFootprint(userValue * 1000, {
+      const userFormatted = formatCarbonFootprint(userValue, {
         maximumFractionDigits: 1,
       })
-      const averageFormatted = formatCarbonFootprint(averageValue * 1000, {
+      const averageFormatted = formatCarbonFootprint(averageValue, {
         maximumFractionDigits: 1,
       })
 
@@ -149,26 +150,29 @@ export default function CategoryRadarChart({
           <RadarChart
             data={data}
             margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-            <PolarGrid stroke="#333" strokeDasharray="5 5" strokeWidth={1} />
+            <PolarGrid stroke="#444" strokeDasharray="5 5" strokeWidth={1} />
+
             <PolarAngleAxis
               dataKey="name"
-              tick={{ fontSize: 12, fill: '#444' }}
+              tick={{ fontSize: 12, fill: '#444', transform: 'rotate(0)' }}
               radius={10}
             />
-            {/* <PolarRadiusAxis
+
+            <PolarRadiusAxis
               domain={[0, maxValue]}
-              tick={{ fontSize: 10, fill: '#666' }}
+              tick={{ fontSize: 10, fill: 'black' }}
               tickFormatter={(value) => {
-                const formatted = formatCarbonFootprint(value * 1000, {
+                const formatted = formatCarbonFootprint(value, {
                   maximumFractionDigits: 1,
                 })
                 if (!formatted.formattedValue || value === maxValue) return ''
                 return `${formatted.formattedValue} ${formatted.unit ?? ''}`
               }}
-              angle={-90}
+              angle={65}
               tickLine={false}
               axisLine={false}
-            /> */}
+            />
+
             <Tooltip content={<CustomTooltip />} />
 
             <Radar

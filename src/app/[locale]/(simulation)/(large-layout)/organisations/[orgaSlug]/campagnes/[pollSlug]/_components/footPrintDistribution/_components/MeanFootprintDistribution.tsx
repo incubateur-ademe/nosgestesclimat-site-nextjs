@@ -1,6 +1,5 @@
 import Trans from '@/components/translation/trans/TransClient'
 import Card from '@/design-system/layout/Card'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useIsOrganisationAdmin } from '@/hooks/organisations/useIsOrganisationAdmin'
 import type { ComputedResults } from '@/publicodes-state/types'
 import type { Categories } from '@incubateur-ademe/nosgestesclimat'
@@ -37,16 +36,7 @@ export default function MeanFootprintDistribution({
     'services sociétaux': meanServices,
   } = Object.entries(computedResults.carbone.categories).reduce(
     (accObject, [key, value]) => {
-      const { formattedValue: meanValue } = formatCarbonFootprint(
-        value -
-          (userComputedResults?.carbone?.categories?.[key as Categories] || 0),
-        {
-          maximumFractionDigits: 1,
-        }
-      )
-
-      accObject[key as Categories] =
-        parseFloat(meanValue) / (simulationsCount ?? 1)
+      accObject[key as Categories] = value / (simulationsCount ?? 1)
 
       return accObject
     },
@@ -95,10 +85,7 @@ export default function MeanFootprintDistribution({
                 userComputedResults.carbone.categories
               ).reduce(
                 (accObject, [key, value]) => {
-                  accObject[key as Categories] = parseFloat(
-                    formatCarbonFootprint(value, { maximumFractionDigits: 1 })
-                      .formattedValue
-                  )
+                  accObject[key as Categories] = value
                   return accObject
                 },
                 {

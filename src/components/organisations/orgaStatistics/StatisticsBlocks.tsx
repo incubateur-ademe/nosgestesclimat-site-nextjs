@@ -62,7 +62,7 @@ export default function StatisticsBlocks({
     )
 
   return (
-    <div className="grid w-full auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid w-full auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       <div className="bg-primary-100 rounded-xl p-8">
         <p className="text-primary-700 text-4xl font-bold">
           {simulationsCount?.toLocaleString(locale)}
