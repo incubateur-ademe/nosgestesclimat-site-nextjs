@@ -1738,10 +1738,10 @@
     prompt-sync "^4.2.0"
     yargs "^17.7.2"
 
-"@incubateur-ademe/nosgestesclimat@^3.11.1":
-  version "3.11.1"
-  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-3.11.1.tgz#23737efe65ac155ce4c6e37f471e24d7f40763c5"
-  integrity sha512-iaZfRtWh+SSQAvKJlT/0+C7wIOoEPt8fqBxbDuFlaNXr0+w3BFKCK6xOoZ/Aw5or1aE0XV50dZXFXu1ZFk04WA==
+"@incubateur-ademe/nosgestesclimat@^3.11.2":
+  version "3.11.2"
+  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-3.11.2.tgz#c48170841d56539559576ad494fba5a64db1474b"
+  integrity sha512-UPvcCswMU48jx5ntV9SnXau+9H2hqRizCBcsGfz8y3J5ILfOhQLImGoI7ZtH0Ug8TKiPSHwe5y0Iwi23m5KuNw==
 
 "@inquirer/confirm@^5.0.0":
   version "5.1.13"
