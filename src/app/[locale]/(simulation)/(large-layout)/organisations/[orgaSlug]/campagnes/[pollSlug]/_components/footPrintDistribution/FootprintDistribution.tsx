@@ -28,16 +28,13 @@ export default function FootprintDistribution({
   )
 
   const { formattedValue: userFootprint } = userComputedResults
-    ? formatCarbonFootprint(
-        userComputedResults?.carbone?.bilan / simulationsCount,
-        {
-          maximumFractionDigits: 1,
-        }
-      )
+    ? formatCarbonFootprint(userComputedResults?.carbone?.bilan, {
+        maximumFractionDigits: 1,
+      })
     : { formattedValue: undefined }
 
   return (
-    <section>
+    <section className="mb-8">
       <h2>
         <Trans i18nKey="pollResults.distribution.title">
           Répartition des empreintes carbone
@@ -47,6 +44,8 @@ export default function FootprintDistribution({
       <MeanFootprintDistribution
         organisationName={organisationName}
         groupFootprint={parseFloat(groupFootprint)}
+        computedResults={computedResults}
+        userComputedResults={userComputedResults}
         userFootprint={userFootprint ? parseFloat(userFootprint) : undefined}
         simulationsCount={simulationsCount}
       />

@@ -49,7 +49,7 @@ const buildLink = ({
   return `${window.location.origin}/o/${orgaSlug}/${pollSlug}?${MATOMO_CAMPAIGN_KEY}=Organisation_${encodeURIComponent(orgaName)}&${MATOMO_KEYWORD_KEY}=${encodeURIComponent(pollName)}`
 }
 
-export default function AdminSection({ poll, className, title }: Props) {
+export default function ShareSection({ poll, className, title }: Props) {
   const {
     slug: pollSlug,
     name: pollName,

@@ -15,8 +15,8 @@ import { useUser } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import dayjs from 'dayjs'
 import { useParams, useSearchParams } from 'next/navigation'
-import AdminSection from './_components/AdminSection'
 import PollNotFound from './_components/PollNotFound'
+import ShareSection from './_components/ShareSection'
 import FootprintDistribution from './_components/footPrintDistribution/FootprintDistribution'
 
 export default function CampagnePage() {
@@ -35,7 +35,15 @@ export default function CampagnePage() {
     enabled: !isRedirectFromLegacy,
   })
 
-  console.log(poll)
+  const {
+    name,
+    organisation: pollOrganisation,
+    createdAt,
+    simulations,
+    computedResults,
+    userComputedResults,
+    funFacts,
+  } = poll ?? {}
 
   // Organisation can only be fetched by a authentified organisation administrator
   const { data: organisation } = useFetchOrganisation()
@@ -66,15 +74,15 @@ export default function CampagnePage() {
     <div className="mb-4 flex flex-col justify-between md:flex-nowrap">
       <div className="flex flex-col items-start justify-between sm:flex-row md:items-center">
         <Title
-          title={<span className="text-primary-700">{poll.name}</span>}
+          title={<span className="text-primary-700">{name}</span>}
           subtitle={
             poll ? (
               <span>
                 <Trans>Campagne créée par</Trans>{' '}
                 <strong className="text-primary-700">
-                  {poll.organisation.name}
+                  {pollOrganisation?.name}
                 </strong>
-                <Trans>, le</Trans> {dayjs(poll.createdAt).format('DD/MM/YYYY')}
+                <Trans>, le</Trans> {dayjs(createdAt).format('DD/MM/YYYY')}
               </span>
             ) : (
               ''
@@ -103,8 +111,8 @@ export default function CampagnePage() {
       </div>
 
       <div className="mt-8">
-        {!!isAdmin && poll.simulations.count <= 0 && (
-          <AdminSection
+        {!!isAdmin && simulations && simulations.count <= 0 && (
+          <ShareSection
             className="mt-0"
             poll={poll}
             title={
@@ -116,24 +124,24 @@ export default function CampagnePage() {
         )}
 
         <PollStatistics
-          simulationsCount={poll.simulations.finished}
-          computedResults={poll.computedResults}
-          userComputedResults={poll.userComputedResults}
-          funFacts={poll.funFacts}
+          simulationsCount={simulations?.finished ?? 0}
+          computedResults={computedResults}
+          userComputedResults={userComputedResults}
+          funFacts={funFacts}
           title={<Trans>Résultats de campagne</Trans>}
           poll={poll}
           isAdmin={!!isAdmin}
         />
 
         <FootprintDistribution
-          computedResults={poll.computedResults}
-          userComputedResults={poll.userComputedResults}
-          simulationsCount={poll.simulations.count}
-          organisationName={poll.organisation.name}
+          computedResults={computedResults}
+          userComputedResults={userComputedResults}
+          simulationsCount={simulations?.count}
+          organisationName={pollOrganisation?.name}
         />
 
-        {!!isAdmin && poll.simulations.count > 0 && (
-          <AdminSection poll={poll} />
+        {!!isAdmin && simulations && simulations.count > 0 && (
+          <ShareSection poll={poll} />
         )}
       </div>
     </div>
