@@ -1424,3 +1424,5 @@ entries:
   Arrêter le défilement: Detener el desplazamiento
   homePage.interactiveIllustration.itemTitle: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} de 5'
   homePage.interactiveIllustration.itemTitle.lock: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'
+  endPage.poll.seeResults.button.label: Ver los resultados
+  endPage.poll.seeResults.button.label.lock: Voir les résultats

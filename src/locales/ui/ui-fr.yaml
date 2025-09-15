@@ -1276,3 +1276,4 @@ entries:
   homePage.interactiveIllustration.itemTitle: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'
   homePage.interactiveIllustration.waterScore: ' et empreinte eau notée {{waterScore}} sur 5'
   Lancer le défilement: Lancer le défilement
+  endPage.poll.seeResults.button.label: Voir les résultats
