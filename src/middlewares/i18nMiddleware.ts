@@ -9,27 +9,23 @@ function i18nMiddleware(request: NextRequest) {
     response.headers.get('x-next-i18n-router-locale') ||
     i18nConfig.defaultLocale
 
-  const existingCookie = request.cookies.get('NEXT_LOCALE')?.value
+  const existingCookie = request.cookies.get('NEXT_LOCALE')
 
-  if (!existingCookie || existingCookie !== detectedLocale) {
-    const days = 30
+  if (!existingCookie || existingCookie.value !== detectedLocale) {
     const date = new Date()
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
-    const expires = '; expires=' + date.toUTCString()
+    date.setTime(date.getTime() + 365 * 24 * 60 * 60 * 1000)
 
-    const cookieString = `NEXT_LOCALE=${detectedLocale};expires=${expires}; path=/; SameSite=None; Secure`
+    const host = request.headers.get('host') || ''
+    const domain = host.startsWith('www.')
+      ? `.${host.substring(4)}`
+      : `.${host}`
 
     response.cookies.set('NEXT_LOCALE', detectedLocale, {
       expires: date,
       path: '/',
       sameSite: 'none',
       secure: true,
-    })
-
-    console.log('�� Setting NEXT_LOCALE cookie in middleware:', {
-      detectedLocale,
-      existingCookie,
-      cookieString,
+      domain: domain,
     })
   }
 
