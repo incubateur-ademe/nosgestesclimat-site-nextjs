@@ -4,7 +4,6 @@ import {
   labels,
   periods,
 } from '@/components/specialQuestions/voiture/journeysInput/_components/JourneyItem'
-import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import SelectInput from '@/design-system/inputs/SelectInput'
 import TextInput from '@/design-system/inputs/TextInput'
@@ -123,7 +122,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
               },
             ])
           }>
-          <Trans>Ajouter</Trans>
+          {t('Ajouter')}
         </Button>
       </td>
     </tr>

@@ -1,6 +1,5 @@
 'use client'
 
-import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -67,7 +66,8 @@ export default function JourneyItem({ journey, odd, setJourneys }: Props) {
       </td>
 
       <td className="inline-block p-2 text-left text-xs sm:table-cell">
-        {journey.passengers} <Trans>passager(s)</Trans>
+        {journey.passengers}{' '}
+        {t('simulator.customQuestions.voiture.passengers', 'passager(s)')}
       </td>
 
       <td className="absolute -top-2 -right-1 block py-2 pl-2 text-right text-xs sm:static sm:table-cell">

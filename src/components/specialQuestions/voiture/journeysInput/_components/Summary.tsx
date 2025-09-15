@@ -1,6 +1,6 @@
 'use client'
 
-import Trans from '@/components/translation/trans/TransClient'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 
 type Props = {
@@ -15,17 +15,31 @@ export default function Summary({
   totalForOnePassenger,
 }: Props) {
   const locale = useLocale()
+  const { t } = useClientTranslation()
 
   return (
     <div className="mt-4 px-2 text-right text-xs">
-      <Trans>Au total</Trans> {total.toLocaleString(locale)}{' '}
-      <Trans>km sont parcourus par an, avec en moyenne</Trans>{' '}
-      {averagePassengers.toLocaleString(locale)} <Trans>voyageurs, soit</Trans>{' '}
+      {t('simulator.customQuestions.voiture.summaryStart', 'Au total')}{' '}
+      {total.toLocaleString(locale)}{' '}
+      {t(
+        'simulator.customQuestions.voiture.summaryKmPerYear',
+        'km sont parcourus par an, avec en moyenne'
+      )}{' '}
+      {averagePassengers.toLocaleString(locale)}{' '}
+      {t(
+        'simulator.customQuestions.voiture.summaryPassengers',
+        'voyageurs, soit'
+      )}{' '}
       {(totalForOnePassenger ?? 0).toLocaleString(locale)}{' '}
-      <Trans>km par personne</Trans>. <br className="hidden md:inline" />
-      <Trans>
-        C’est bien cette distance qui sera comptabilisée en fin de test.
-      </Trans>
+      {t(
+        'simulator.customQuestions.voiture.summaryKmPerPerson',
+        'km par personne'
+      )}
+      . <br className="hidden md:inline" />
+      {t(
+        'simulator.customQuestions.voiture.summaryEnd',
+        'C’est bien cette distance qui sera comptabilisée en fin de test.'
+      )}
     </div>
   )
 }
