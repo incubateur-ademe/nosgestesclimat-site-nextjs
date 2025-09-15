@@ -1460,3 +1460,5 @@ entries:
   simulator.customQuestions.voiture.summaryKmPerYear.lock: km sont parcourus par an, avec en moyenne
   simulator.customQuestions.avion.openThreeYears: Respuesta de los últimos 3 años
   simulator.customQuestions.avion.openThreeYears.lock: Répondre sur les 3 dernières années
+  endPage.poll.seeResults.button.label: Ver los resultados
+  endPage.poll.seeResults.button.label.lock: Voir les résultats

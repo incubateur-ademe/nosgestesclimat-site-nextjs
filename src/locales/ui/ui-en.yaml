@@ -1464,3 +1464,5 @@ entries:
   simulator.customQuestions.voiture.summaryKmPerPerson.lock: km par personne
   simulator.customQuestions.avion.openThreeYears: Answer for the last 3 years
   simulator.customQuestions.avion.openThreeYears.lock: Répondre sur les 3 dernières années
+  endPage.poll.seeResults.button.label: See the results
+  endPage.poll.seeResults.button.label.lock: Voir les résultats

@@ -1297,3 +1297,4 @@ entries:
   simulator.customQuestions.voiture.summaryPassengers: voyageurs, soit
   simulator.customQuestions.voiture.summaryStart: Au total
   simulator.customQuestions.avion.openThreeYears: Répondre sur les 3 dernières années
+  endPage.poll.seeResults.button.label: Voir les résultats
