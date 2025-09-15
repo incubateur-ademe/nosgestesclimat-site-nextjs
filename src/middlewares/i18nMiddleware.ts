@@ -23,7 +23,7 @@ function i18nMiddleware(request: NextRequest) {
     response.cookies.set('NEXT_LOCALE', detectedLocale, {
       expires: date,
       path: '/',
-      sameSite: 'lax',
+      sameSite: 'none',
       secure: true,
       // domain: domain,
     })

@@ -4,5 +4,5 @@ export function updateLangCookie(locale: string) {
   //   ? '.nosgestesclimat.fr'
   //   : `.${window.location.hostname}`
 
-  document.cookie = `NEXT_LOCALE=${locale};max-age=${maxAge}; path=/; SameSite=Lax; Secure`
+  document.cookie = `NEXT_LOCALE=${locale};max-age=${maxAge}; path=/; SameSite=None; Secure`
 }
