@@ -293,6 +293,71 @@ const redirects = [
     destination: '/themes/empreinte-carbone-transport',
     permanent: true,
   },
+  {
+    source: '/guide',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/en/guide',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/es/guide',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/guide/numerique',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/en/guide/numerique',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/es/guide/numerique',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/guide/services-societaux',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/en/guide/services-societaux',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/es/guide/services-societaux',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/guide/transport',
+    destination: '/themes/empreinte-carbone-transport',
+    permanent: true,
+  },
+  {
+    source: '/en/guide/transport',
+    destination: '/themes/empreinte-carbone-transport',
+    permanent: true,
+  },
+  {
+    source: '/es/guide/transport',
+    destination: '/themes/empreinte-carbone-transport',
+    permanent: true,
+  },
+  {
+    source: '/empreinte-carbone-transport',
+    destination: '/themes/empreinte-carbone-transport',
+    permanent: true,
+  },
   // Short URL for Brevo
   {
     source: '/infolettres',
