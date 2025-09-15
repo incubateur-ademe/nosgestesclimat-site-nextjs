@@ -9,7 +9,7 @@ import { updateLangCookie } from '@/helpers/language/updateLangCookie'
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
 const NO_ES_PATHNAMES = new Set([FAQ_PATH])
@@ -32,7 +32,6 @@ export default function LanguageSwitchButton({
   className?: string
 }) {
   const currentLocale = useCurrentLocale(i18nConfig)
-  const router = useRouter()
   const pathname = usePathname()
 
   // Check without the
@@ -43,12 +42,12 @@ export default function LanguageSwitchButton({
     : langButtonsDisplayed
 
   const getHref = (newLocale: Locale) => {
-    let newPathname = pathname
+    let newPathname = String(pathname)
 
     if (currentLocale === i18nConfig.defaultLocale) {
-      newPathname = `/${newLocale}/${pathname}`
+      newPathname = `/${newLocale}/${newPathname}`
     } else {
-      newPathname = pathname.replace(`/${currentLocale}`, `/${newLocale}`)
+      newPathname = newPathname.replace(`/${currentLocale}`, `/${newLocale}`)
     }
 
     return newPathname
