@@ -1429,3 +1429,5 @@ entries:
   Lancer le défilement: Start scrolling
   common.slider.stop: Stop
   common.slider.stop.lock: Arrêter
+  endPage.poll.seeResults.button.label: See the results
+  endPage.poll.seeResults.button.label.lock: Voir les résultats
