@@ -12,7 +12,7 @@ const i18nConfig: Config = {
   locales: [LOCALE_FR_KEY, LOCALE_EN_KEY, LOCALE_ES_KEY] as Locale[],
   defaultLocale: LOCALE_FR_KEY as Locale,
   cookieOptions: {
-    sameSite: 'none' as const,
+    sameSite: 'lax' as const,
     path: '/',
     maxAge: 31536000,
     secure: true,
