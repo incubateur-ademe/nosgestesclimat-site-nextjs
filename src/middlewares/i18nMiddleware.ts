@@ -15,17 +15,17 @@ function i18nMiddleware(request: NextRequest) {
     const date = new Date()
     date.setTime(date.getTime() + 365 * 24 * 60 * 60 * 1000)
 
-    const host = request.headers.get('host') || ''
-    const domain = host.startsWith('www.')
-      ? `.${host.substring(4)}`
-      : `.${host}`
+    // const host = request.headers.get('host') || ''
+    // const domain = host.startsWith('www.')
+    //   ? `.${host.substring(4)}`
+    //   : `.${host}`
 
     response.cookies.set('NEXT_LOCALE', detectedLocale, {
       expires: date,
       path: '/',
       sameSite: 'none',
       secure: true,
-      domain: domain,
+      // domain: domain,
     })
   }
 
