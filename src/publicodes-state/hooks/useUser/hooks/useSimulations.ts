@@ -191,7 +191,11 @@ export default function useSimulations({
                 foldedStepToAdd.foldedStep as keyof ExtendedSituation
               ] = {
                 source: 'default',
-                nodeValue: foldedStepToAdd.value ?? 'non défini',
+                nodeValue:
+                  foldedStepToAdd.value !== undefined &&
+                  foldedStepToAdd.value !== null
+                    ? foldedStepToAdd.value
+                    : 'non défini',
               }
             }
           }
