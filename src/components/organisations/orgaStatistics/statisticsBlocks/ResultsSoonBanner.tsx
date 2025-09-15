@@ -12,7 +12,7 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
   const { isAdmin } = useIsOrganisationAdmin()
 
   return (
-    <div className="relative col-span-1 sm:col-span-2 lg:col-span-3">
+    <div className="relative col-span-1 sm:col-span-2">
       <div className="absolute top-0 left-0 z-10 h-full w-full p-10 pb-0">
         <div className="absolute top-0 right-0 bottom-0 left-0 -z-10 bg-white opacity-50" />
 
@@ -54,7 +54,7 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="bg-rainbow-rotation overflow-hidden rounded-xl bg-gray-100 p-8">
           <p className="text-primary-700 text-4xl font-bold">
             8,0 <span className="text-base font-normal">t CO₂e</span>
@@ -64,7 +64,7 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
           </p>
         </div>
 
-        <div className="relative hidden rounded-xl bg-gray-100 p-8 lg:block">
+        <div className="relative hidden overflow-hidden rounded-xl bg-gray-100 p-8 lg:block">
           <Wave
             fill="#5152D0"
             className="pointer-events-none absolute right-0 bottom-0 left-0 h-full w-full rounded-b-xl"
