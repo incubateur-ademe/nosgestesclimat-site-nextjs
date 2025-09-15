@@ -96,7 +96,9 @@ export default function Poll() {
             pollSlug: lastPollSlug || '',
           })}
           trackingEvent={endClickPoll}>
-          Voir les résultats
+          <Trans i18nKey="endPage.poll.seeResults.button.label">
+            Voir les résultats
+          </Trans>
         </ButtonLink>
       </div>
     </Confirmation>
