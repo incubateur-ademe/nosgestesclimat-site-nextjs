@@ -1,3 +1,4 @@
+import Ameublement from './Ameublement'
 import Avion from './Avion'
 import Plats from './Plats'
 import Textile from './Textile'
@@ -44,6 +45,13 @@ const specialQuestions: Record<string, any> = {
     <Textile
       key="divers . textile . volume"
       question="divers . textile . volume"
+      {...props}
+    />
+  ),
+  'divers . ameublement . préservation': (props: Props) => (
+    <Ameublement
+      key="divers . ameublement . préservation"
+      question="divers . ameublement . préservation"
       {...props}
     />
   ),
