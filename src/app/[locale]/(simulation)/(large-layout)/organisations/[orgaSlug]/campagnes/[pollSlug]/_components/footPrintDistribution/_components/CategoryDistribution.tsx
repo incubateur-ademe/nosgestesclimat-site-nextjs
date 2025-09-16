@@ -4,6 +4,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Categories } from '@incubateur-ademe/nosgestesclimat'
+import isMobile from 'is-mobile'
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts'
 
 type Props = {
@@ -33,12 +34,21 @@ export default function CategoryDistribution({
     'services sociétaux': t('common.category.services', 'Services sociétaux'),
   }
 
+  const categoryLabelsFull = {
+    transport: t('common.category.transport', 'Transport'),
+    alimentation: t('common.category.alimentation', 'Alimentation'),
+    logement: t('common.category.logement', 'Logement'),
+    divers: t('common.category.divers', 'Divers'),
+    'services sociétaux': t('common.category.services', 'Services sociétaux'),
+  }
+
   const formattedData = Object.entries(categoryValues).map(([key, value]) => {
-    const formattedValue = formatCarbonFootprint(value * 1000, {
+    const formattedValue = formatCarbonFootprint(value, {
       maximumFractionDigits: 1,
     })
     return {
       name: `${categoryLabels[key as Categories]}`,
+      nameFull: `${categoryLabelsFull[key as Categories]}`,
       value: value,
       color: COLORS[key as Categories],
       formattedValue,
@@ -56,7 +66,7 @@ export default function CategoryDistribution({
           'pollResults.categoryDistribution.accessibleDescription.category',
           '{{name}}: {{value}} {{unit}}.',
           {
-            name: item.name,
+            name: item.nameFull,
             value: item.formattedValue.formattedValue,
             unit: item.formattedValue.unit,
           }
@@ -69,7 +79,9 @@ export default function CategoryDistribution({
     const { cx, cy, midAngle, innerRadius, outerRadius, name, formattedValue } =
       props
     const RADIAN = Math.PI / 180
-    const radius = innerRadius + (outerRadius - innerRadius) * 1.5
+    const radius = isMobile()
+      ? innerRadius + (outerRadius - innerRadius) * 1.2
+      : innerRadius + (outerRadius - innerRadius) * 1.5
     const x = cx + radius * Math.cos(-midAngle * RADIAN)
     const y = cy + radius * Math.sin(-midAngle * RADIAN)
 
@@ -80,10 +92,14 @@ export default function CategoryDistribution({
         fill="black"
         textAnchor={x > cx ? 'start' : 'end'}
         dominantBaseline="central"
-        fontSize="12"
+        fontSize={isMobile() ? '10' : '12'}
         fontWeight="600">
         {name}
-        <tspan x={x} dy="16" fontWeight="normal">
+        <tspan
+          x={x}
+          dy={isMobile() ? '12' : '16'}
+          fontWeight="normal"
+          fontSize={isMobile() ? '9' : '12'}>
           {formattedValue.formattedValue} {formattedValue.unit}
         </tspan>
       </text>
@@ -108,7 +124,7 @@ export default function CategoryDistribution({
       </div>
 
       <div className="relative">
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer width="100%" height={isMobile() ? 250 : 300}>
           <PieChart>
             <Pie
               data={formattedData}
@@ -116,8 +132,8 @@ export default function CategoryDistribution({
               cy="50%"
               labelLine={false}
               label={CustomLabel}
-              outerRadius={100}
-              innerRadius={50}
+              outerRadius={isMobile() ? 80 : 100}
+              innerRadius={isMobile() ? 40 : 50}
               fill="#8884d8"
               dataKey="value">
               {formattedData.map((entry, index) => (

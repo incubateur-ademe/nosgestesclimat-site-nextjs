@@ -1280,7 +1280,7 @@ entries:
   pollResults.footprintBarChart.groupFootprint: Empreinte moyenne du groupe
   pollResults.footprintBarChart.legend.groupFootprint: Empreinte moyenne du groupe
   pollResults.footprintBarChart.legend.userFootprint: Votre empreinte
-  pollResults.footprintBarChart.targetLabel: Objectif {{year}}
+  pollResults.footprintBarChart.targetLabel: Objectif 2050
   pollResults.footprintBarChart.userFootprint: Votre empreinte
   pollResults.mean_footprint_distribution.title: Empreinte carbone moyenne de
   pollResults.pollResults.distribution.category_distribution.title: Répartition par poste d'émission
@@ -1299,3 +1299,5 @@ entries:
   pollResults.radarChart.legend.average: Moyenne
   pollResults.radarChart.legend.userResults: Mes résultats
   pollResults.radarChart.title: Votre empreinte par rapport aux autres participants
+  common.category.alimentationShort: Alim.
+  pollResults.footprintBarChart.targetLabelMobile: Objectif

@@ -732,10 +732,3 @@ html[data-useragent*='Trident'] #js {
 #documentation-search-input {
   @apply border-slate-700;
 }
-
-/**
-** Recharts
-*/
-.recharts-polar-radius-axis-tick-value {
-  transform: rotate(0deg) translateY(5px);
-}

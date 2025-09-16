@@ -1458,8 +1458,8 @@ entries:
   pollResults.pollResults.distribution.category_distribution.title.lock: Répartition par poste d'émission
   pollResults.distribution.title: Desglose de la huella de carbono
   pollResults.distribution.title.lock: Répartition des empreintes carbone
-  pollResults.footprintBarChart.targetLabel: Objetivo {{year}}
-  pollResults.footprintBarChart.targetLabel.lock: Objectif {{year}}
+  pollResults.footprintBarChart.targetLabel: Objetivo 2050
+  pollResults.footprintBarChart.targetLabel.lock: Objectif 2050
   pollResults.footprintBarChart.accessibleDescription.groupComparison: La huella del Grupo es {{comparison}}.
   pollResults.footprintBarChart.accessibleDescription.groupComparison.lock: L'empreinte du groupe est {{comparison}} à l'objectif.
   pollResults.footprintBarChart.accessibleDescription.chart: 'Gráfico de barras que muestra la comparación de las huellas de carbono. '
@@ -1499,3 +1499,7 @@ entries:
   pollResults.radarChart.title.lock: Votre empreinte par rapport aux autres participants
   copyButton.shareTitle: Descubra mi huella de carbono
   copyButton.shareTitle.lock: Découvre mon empreinte carbone !
+  pollResults.footprintBarChart.targetLabelMobile: Objetivo
+  pollResults.footprintBarChart.targetLabelMobile.lock: Objectif
+  common.category.alimentationShort: Alimentación
+  common.category.alimentationShort.lock: Alim.
