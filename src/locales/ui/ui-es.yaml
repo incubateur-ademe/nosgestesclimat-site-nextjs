@@ -1354,8 +1354,6 @@ entries:
   Choix de la métrique: Elección de la métrica
   common.navigation.nextQuestion.next.label: Ir a la siguiente pregunta
   common.navigation.nextQuestion.next.label.lock: Aller à la question suivante
-  cookieConsent.board.title: Banner de consentimiento de cookies
-  cookieConsent.board.title.lock: Bannière de consentement aux cookies
   simulator.label.moreInfoButton: Para más información, pulse aquí {{label}}
   simulator.label.moreInfoButton.lock: Plus d'informations - {{label}}
   common.navigation.nextQuestion.pass.label: Pasar a la siguiente pregunta
@@ -1383,8 +1381,6 @@ entries:
   organisations.emailVerificationModal.title.lock: Fenêtre modale de confirmation d'email
   simulator.topBar.totalButtons.saveButton.ariaLabel: Guardar y reanudar más tarde
   simulator.topBar.totalButtons.saveButton.ariaLabel.lock: Enregistrer et reprendre plus tard
-  cookieConsent.banner.title: Panel de gestión de cookies
-  cookieConsent.banner.title.lock: Panneau de gestion des cookies
   simulateur.saveModal.title: Ventana de prueba del modo de copia de seguridad
   simulateur.saveModal.title.lock: Fenêtre modale de sauvegarde de test
   results.informationBlock.carbon.closeButton: Cerrar la explicación de la huella hídrica
