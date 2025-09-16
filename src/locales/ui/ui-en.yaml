@@ -1535,3 +1535,5 @@ entries:
   pollResults.footprintBarChart.targetLabelMobile.lock: Objectif
   common.category.alimentationShort: Power supply
   common.category.alimentationShort.lock: Alim.
+  Empreinte carbone moyenne: Average carbon footprint
+  Empreinte eau moyenne: Average water footprint
