@@ -56,7 +56,12 @@ export default function FootprintDistribution({
   simulationsCount,
   organisationName,
 }: Props) {
-  if (!computedResults || typeof simulationsCount === 'undefined') return null
+  if (
+    !computedResults ||
+    typeof simulationsCount === 'undefined' ||
+    simulationsCount < 3
+  )
+    return null
 
   const groupComputedResults = getGroupComputedResults(
     computedResults,
