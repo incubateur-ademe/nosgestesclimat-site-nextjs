@@ -1499,8 +1499,8 @@ entries:
   pollResults.radarChart.title.lock: Votre empreinte par rapport aux autres participants
   copyButton.shareTitle: Descubra mi huella de carbono
   copyButton.shareTitle.lock: Découvre mon empreinte carbone !
-  pollResults.footprintBarChart.targetLabelMobile: Objetivo
-  pollResults.footprintBarChart.targetLabelMobile.lock: Objectif
+  pollResults.footprintBarChart.targetLabelMobile: 'Objetivo 2050:'
+  pollResults.footprintBarChart.targetLabelMobile.lock: 'Objectif 2050 :'
   common.category.alimentationShort: Alimentación
   common.category.alimentationShort.lock: Alim.
   Empreinte carbone moyenne: Huella de carbono media
