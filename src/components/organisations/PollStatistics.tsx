@@ -40,7 +40,7 @@ export default function PollStatistics({
         {poll.simulations.count >= 3 && isAdmin && (
           <ExportDataButton
             poll={poll}
-            color="secondary"
+            color="borderless"
             onClick={() => {
               trackEvent(organisationsDashboardExportData)
               trackPosthogEvent(captureExportPollData())
