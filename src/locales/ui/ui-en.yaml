@@ -958,7 +958,6 @@ entries:
   1 par mois max: 1 per month max
   <0>Comparez vos résultats avec</0> <2>vos proches</2>: <0>Compare your results with</0> <2>your friends</2>
   4 infolettres l’impact des transports: 4 newsletters the impact of transport
-  Comparez vos résultats avec vos proches: Compare your results with those around you
   Je m'inscris à l'infolettre: Subscribe to our newsletter
   À la une !: Featured article
   D'autres articles sur le même sujet: Other articles on the same subject
@@ -1265,176 +1264,10 @@ entries:
   copyInput.copyErrorManual.lock: Oups, impossible de copier le lien, vous pouvez le copier manuellement.
   copyInput.copyLink: Copy link
   copyInput.copyLink.lock: Copier le lien
-  Page active: Active page
-  Eau, évaluer la métrique eau: Water, assess the water metric
-  Carbone, évaluer la métrique carbone: Carbon, assessing the carbon metric
-  Connexion: Connection
-  Visiter cette page: Visit this page
-  endPage.tallyForm.buttonLabel.lock: Donner votre avis
-  actions.engagementIcon.ariaLabel: shares are located below
-  actions.engagementIcon.ariaLabel.lock: ', les actions se trouvent en dessous'
-  endPage.waterActions.lireArticle: Open article in a new window
-  endPage.waterActions.lireArticle.lock: Ouvrir l'article dans une nouvelle fenêtre
-  organisations.ourTools.newTab: Open in a new window
-  organisations.ourTools.newTab.lock: Ouvrir dans une nouvelle fenêtre
-  endPage.carboneTarget.enSavoirPlus: Open the page in a new window
-  endPage.carboneTarget.enSavoirPlus.lock: Ouvrir la page dans une nouvelle fenêtre
-  endPage.carboneChart.progressBarLabel.lock: Barre de progression de votre empreinte carbone
-  common.partners.abc.ariaLabel: Association for the Low Carbon Transition
-  common.partners.abc.ariaLabel.lock: Association pour la transition Bas Carbone
-  authorBlock.defaultAlt: Photo of the author
-  authorBlock.defaultAlt.lock: Photo de l'auteur ou de l'autrice
-  international.electricityMaps.ariaLabel: Visit the Electricity Maps website (opens in a new tab)
-  international.electricityMaps.ariaLabel.lock: Visiter le site Electricity Maps (s'ouvre dans un nouvel onglet)
-  endPage.carboneChart.gaugeDescription.lock: Graphique montrant votre empreinte carbone de {{currentValue}} {{unit}} par an, soit {{percentage}}% de l'échelle maximale. L'objectif 2050 est de {{targetValue}} tonnes par an.
-  endPage.blogArticles.lireArticle: Open article in a new window
-  endPage.blogArticles.lireArticle.lock: Ouvrir l'article dans une nouvelle fenêtre
-  Découvrez le calculateur, ouvrir dans une nouvelle fenêtre: Discover the calculator, open in a new window
-  Découvrez les ateliers de l’ABC, ouvrir dans une nouvelle fenêtre: Discover the ABC workshops, open in a new window
-  l'objectif pour 2050: the target for 2050
-  common.marianne.ariaLabel: French Republic
-  common.marianne.ariaLabel.lock: République Française
-  Permettez à vos cibles (clients, étudiants, participants, habitants..) de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d'autres modes d'intégration prêts à l'emploi.: Allow your target audiences (customers, students, participants, residents, etc.) to calculate and reduce their carbon footprint directly from your web and mobile platforms, using a dedicated link or other ready-to-use integration methods.
-  actions.buttons.reject: Reject the action
-  actions.buttons.reject.lock: Rejeter l'action
-  actions.buttons.select: Select action
-  actions.buttons.select.lock: Sélectionner l'action
-  empreinte-carbone.heroTitle: The carbon footprint, a first step towards action
-  empreinte-carbone.heroTitle.lock: L'empreinte carbone, une première étape pour passer à l'action
-  actions.chooseAction.ariaLabel.unselected: Select this action
-  actions.chooseAction.ariaLabel.unselected.lock: Sélectionner cette action
-  actions.rejectAction.ariaLabel.selected: Action dismissed
-  actions.rejectAction.ariaLabel.selected.lock: Action rejetée
-  actions.rejectAction.ariaLabel.unselected: Reject this action
-  actions.rejectAction.ariaLabel.unselected.lock: Rejeter cette action
-  actions.chooseAction.ariaLabel.selected: Action selected, cancel selection
-  actions.chooseAction.ariaLabel.selected.lock: Action sélectionnée, annuler la sélection
-  documentation.search.results_one: '{{count}} result(s) found'
-  documentation.search.results_one.lock: '{{count}} résultat(s) trouvé(s)'
-  documentation.search.input.label: Enter keywords
-  documentation.search.input.label.lock: Entrez des mots clefs
-  Formulaire - Demander une démo: Form - Request a demo
-  documentation.search.h2: Explore our models
-  documentation.search.h2.lock: Explorez nos modèles
-  documentation.search.label: Documentation search
-  documentation.search.label.lock: Recherche dans la documentation
-  documentation.search.results_many: '{{count}} result(s) found'
-  documentation.search.results_many.lock: '{{count}} résultat(s) trouvé(s)'
-  documentation.search.input.placeholder: Enter search keywords
-  documentation.search.input.placeholder.lock: Entrez des mots-clefs de recherche
-  documentation.noresults: No results were found for this search
-  documentation.noresults.lock: Aucun résultat ne correspond à cette recherche
-  documentation.search.results_other: '{{count}} result(s) found'
-  documentation.search.results_other.lock: '{{count}} résultat(s) trouvé(s)'
-  Chargement du tableau de bord...: Loading the dashboard...
-  organisations.poll.create.custom_question.add_button.label: Add a custom question
-  organisations.poll.create.custom_question.add_button.label.lock: Ajouter une question personnalisée
-  documentation.search.results.label: Search results
-  documentation.search.results.label.lock: Résultats de recherche
-  Formulaire - Désactiver les cookies de mesure d'audience via Matomo: Form - Deactivate audience measurement cookies via Matomo
-  Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.: This graph shows the distribution of users' simulation results, enabling trends and behaviour to be analysed.
-  Formulaire - nous faire part de vos remarques sur le site: Form - send us your comments on the site
-  Iframe - Google Tag Manager: Iframe - Google Tag Manager
-  organisations.poll.create.custom_question.add_button.max_reached: You have reached the maximum number of personalised questions
-  organisations.poll.create.custom_question.add_button.max_reached.lock: Vous avez atteint le nombre maximum de questions personnalisées
-  Graphique de distribution des résultats de simulation pour le mois dernier: Graph showing the distribution of simulation results for last month
-  Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.: This dashboard displays site traffic statistics, including the number of visits, simulations completed and usage trends.
-  Statistiques d'usage du mode "Challenge tes amis": Usage statistics for the "Challenge your friends" mode
-  Graphiques du nombre de visites et de simulations sur le site: Graphs showing the number of visits and simulations on the site
-  Impossible de charger le tableau de bord. Veuillez réessayer plus tard.: Unable to load the dashboard. Please try again later.
-  Statistiques d'usage du mode "Organisations": Statistics on the use of the "Organisations" mode
-  Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.: Detailed statistics on the use of Organisations mode, including the number of organisations created, participants and actions completed.
-  Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.: Statistics on the use of Challenge mode, including the number of challenges created, participants and results shared.
-  common.interactiveIllustration.item.car: Car
-  common.interactiveIllustration.item.car.lock: Voiture
-  common.interactiveIllustration.item.computer: Computer
-  common.interactiveIllustration.item.computer.lock: Ordinateur
-  Ouvrir le menu: Open the menu
-  simulator.customQuestions.voiture.deleteItem: Delete this route
-  simulator.customQuestions.voiture.deleteItem.lock: Supprimer ce trajet
-  actions.form.modal.ariaLabel: Action form modal window
-  actions.form.modal.ariaLabel.lock: Fenêtre modale du formulaire d'action
-  common.modal.confirmation.title: Action confirmation modal window
-  common.modal.confirmation.title.lock: Fenêtre modale de confirmation d'action
-  Choix de la métrique: Choice of metric
-  common.navigation.nextQuestion.finish.label: Complete the test and go to the results page
-  common.navigation.nextQuestion.finish.label.lock: Terminer le test et accéder à la page de résultats
-  simulator.customQuestions.voiture.open: Detail my journeys
-  simulator.customQuestions.voiture.open.lock: Détailler mes trajets
-  simulator.mosaicNumberInput: 'Remove an item : {{title}}'
-  simulator.mosaicNumberInput.lock: 'Retirer un élément : {{title}}'
-  simulateur.saveModal.title: Test backup mode window
-  simulateur.saveModal.title.lock: Fenêtre modale de sauvegarde de test
-  results.mainSubcategories.mainSubcategory.seeDetail: '{{title}}see details below'
-  results.mainSubcategories.mainSubcategory.seeDetail.lock: '{{title}}, voir le détail ci-dessous'
-  group.results.rankingMember.delete.modal.ariaLabel: Modal window confirming deletion of group member
-  group.results.rankingMember.delete.modal.ariaLabel.lock: Fenêtre modale de confirmation de suppression du membre du groupe
-  common.navigation.nextQuestion.pass.label: Move on to the next question
-  common.navigation.nextQuestion.pass.label.lock: Passer et aller à la question suivante
   cookieConsent.banner.title: Cookie management panel
   cookieConsent.banner.title.lock: Panneau de gestion des cookies
-  common.burgerMenu.title: Close the navigation menu
-  common.burgerMenu.title.lock: Fermer le menu de navigation
-  common.navigation.previousButton.label: Go to previous question
-  common.navigation.previousButton.label.lock: Aller à la question précédente
-  simulator.label.moreInfoButton: For more information, click here {{label}}
-  simulator.label.moreInfoButton.lock: Plus d'informations - {{label}}
-  results.informationBlock.carbon.openButton: See details of the 2-tonne target for 2050
-  results.informationBlock.carbon.openButton.lock: Voir le détail de l'objectif 2 tonnes en 2050
-  common.interactiveIllustration.item.shirt: Blouse
-  common.interactiveIllustration.item.shirt.lock: Chemisier
-  Fenêtre modale de partage: Modal sharing window
-  results.informationBlock.water.openButton: See the explanation of the water footprint
-  results.informationBlock.water.openButton.lock: Voir l'explication sur l'empreinte eau
-  actions.form.custom.modal.ariaLabel: Customised action form modal window
-  actions.form.custom.modal.ariaLabel.lock: Fenêtre modale du formulaire d'action personnalisée
-  common.buttons.close: Close
-  common.buttons.close.lock: Fermer
-  organisations.polls.settings.confirmDeletion: Modal window confirming deletion of the campaign
-  organisations.polls.settings.confirmDeletion.lock: Fenêtre modale de confirmation de suppression de la campagne
-  common.navigation.nextQuestion.next.label: Go to next question
-  common.navigation.nextQuestion.next.label.lock: Aller à la question suivante
-  organisations.emailVerificationModal.title: Email confirmation modal window
-  organisations.emailVerificationModal.title.lock: Fenêtre modale de confirmation d'email
-  simulator.topBar.totalButtons.saveButton.ariaLabel: Save and resume later
-  simulator.topBar.totalButtons.saveButton.ariaLabel.lock: Enregistrer et reprendre plus tard
-  results.informationBlock.carbon.closeButton: Close the water footprint explanation
-  results.informationBlock.carbon.closeButton.lock: Fermer l'explication sur l'empreinte eau
-  organisations.additionalQuestions.deletion.modal.ariaLabel: Customised question deletion confirmation window
-  organisations.additionalQuestions.deletion.modal.ariaLabel.lock: Fenêtre de confirmation de suppression de la question personnalisée
   cookieConsent.board.title: Cookie consent banner
   cookieConsent.board.title.lock: Bannière de consentement aux cookies
-  common.interactiveIllustration.item.coffee: Café
-  common.interactiveIllustration.item.coffee.lock: Café
-  blog.homepage.defaultDescription: Discover practical tips for reducing your ecological footprint.
-  blog.homepage.defaultDescription.lock: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
-  common.slider.buttons.next: Go to slide number {{number}}
-  common.slider.buttons.next.lock: Aller à la diapositive numéro {{number}}
-  common.slider.buttons.previous: Go to previous slide
-  common.slider.buttons.previous.lock: Aller à la diapositive précédente
-  blog.homePage.dynamicPageNumber: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
-  blog.homePage.dynamicPageNumber.lock: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
-  blog.homepage.defaultTitle: Blog, discover our articles and advice on the climate - Nos Gestes Climat
-  blog.homepage.defaultTitle.lock: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
-  4 infolettres l'impact des transports: 4 newsletters the impact of transport
-  5 infolettres sur l'impact du logement: 5 newsletters on the impact of housing
-  Entrez votre adresse email pour recevoir les infolettres sélectionnées.: Enter your email address to receive the selected newsletters.
-  documentation.total_category_block.title: of the total, see documentation
-  documentation.total_category_block.title.lock: du total, voir la documentation
-  Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.: Tick the boxes corresponding to the newsletters you wish to subscribe to.
-  Inscription en cours...: Registration in progress...
-  Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie: Select this filter to display only items in this category
-  homePage.interactiveIllustration.itemTitle: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} out of 5'
-  homePage.interactiveIllustration.itemTitle.lock: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'
-  common.slider.play: Reading
-  common.slider.play.lock: Lecture
-  Accès rapide: Quick access
-  Arrêter le défilement: Stop scrolling
-  homePage.interactiveIllustration.waterScore: ' and water footprint rated {{waterScore}} out of 5'
-  homePage.interactiveIllustration.waterScore.lock: ' et empreinte eau notée {{waterScore}} sur 5'
-  Lancer le défilement: Start scrolling
-  common.slider.stop: Stop
-  common.slider.stop.lock: Arrêter
   simulator.customQuestions.ameublement.inProgress: This feature is currently under development. Thank you for your interest!
   simulator.customQuestions.ameublement.inProgress.lock: Cette fonctionnalité est actuellement en cours de conception. Merci pour votre intérêt !
   simulator.customQuestions.textile.open: I want to detail my wardrobe
@@ -1466,3 +1299,18 @@ entries:
   simulator.customQuestions.avion.openThreeYears.lock: Répondre sur les 3 dernières années
   endPage.poll.seeResults.button.label: See the results
   endPage.poll.seeResults.button.label.lock: Voir les résultats
+  Passer en français: Switch to French
+  Entrez des mots-clefs de recherche: Enter search keywords
+  Une garde-robe économe en eau: A water-saving wardrobe
+  Explorez nos modèles: Explore our models
+  Entrez des mots clefs: Enter keywords
+  Cambiar a español: Cambiar a español
+  5 infolettres sur l’impact du logement: 5 newsletters on the impact of housing
+  Evaluer la métrique carbone: Assessing carbon metrics
+  Switch to english: Switch to english
+  Evaluer la métrique eau: Assessing the water metric
+  Deux mini-vans, illustrant l'empreinte carbone des transports: Two minivans, illustrating the carbon footprint of transport
+  Un champ de coton, illustrant le calcul de l'empreinte eau: A field of cotton, illustrating the calculation of the water footprint
+  Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone: An event for the climate, illustrating actions to reduce one's carbon footprint
+  Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau: A watered field, illustrating the lexicon for understanding the water footprint
+  Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique: An ice pack sparse in the sunlight, illustrating our maladaptation to climate change
