@@ -10,7 +10,6 @@ export const MUST_NOT_ASK_QUESTIONS: Set<DottedName> = new Set([
   'divers . partage NGC',
   'transport . infolettre',
   'métrique',
-  'déforestation',
   'logement . électricité verte',
   'logement . chauffage . électricité',
   'futureco-data . transport . ferry . distance aller . orthodromique',

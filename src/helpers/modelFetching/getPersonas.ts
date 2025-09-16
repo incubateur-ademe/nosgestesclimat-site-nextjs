@@ -5,9 +5,9 @@ import personasFR from '@incubateur-ademe/nosgestesclimat/public/personas-fr.jso
 import { importPreviewFile } from './importPreviewFile'
 
 const personasByLocale: Record<string, Personas> = {
-  fr: personasFR,
-  en: personasEN,
-  es: personasES,
+  fr: personasFR as Personas,
+  en: personasEN as Personas,
+  es: personasES as Personas,
 }
 type Props = {
   locale?: string
