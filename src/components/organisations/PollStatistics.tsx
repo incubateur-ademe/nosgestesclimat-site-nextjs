@@ -3,7 +3,7 @@
 import Trans from '@/components/translation/trans/TransClient'
 import { organisationsDashboardExportData } from '@/constants/tracking/pages/organisationsDashboard'
 import { captureExportPollData } from '@/constants/tracking/posthogTrackers'
-import { ComputedResults } from '@/publicodes-state/types'
+import type { ComputedResults } from '@/publicodes-state/types'
 import type { PublicOrganisationPoll } from '@/types/organisations'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { FunFacts } from '@incubateur-ademe/nosgestesclimat'
