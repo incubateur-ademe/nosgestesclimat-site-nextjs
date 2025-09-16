@@ -125,7 +125,7 @@ export default function CategoryDistribution({
       </div>
 
       <div className="relative">
-        <ResponsiveContainer width="100%" height={320}>
+        <ResponsiveContainer width="100%" height={isMobile() ? 240 : 320}>
           <PieChart>
             <Pie
               data={formattedData}

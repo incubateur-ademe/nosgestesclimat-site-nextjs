@@ -202,7 +202,7 @@ export default function FootprintBarChart({
         {getAccessibleDescription()}
       </div>
       <div className="w-full">
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer width="100%" height={isMobile() ? 240 : 300}>
           <BarChart
             data={data}
             margin={{
