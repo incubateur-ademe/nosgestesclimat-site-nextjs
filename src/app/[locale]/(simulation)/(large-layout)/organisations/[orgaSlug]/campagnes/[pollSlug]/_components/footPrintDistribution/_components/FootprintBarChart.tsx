@@ -2,6 +2,7 @@
 
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import isMobile from 'is-mobile'
 import {
   Bar,
   BarChart,
@@ -30,14 +31,25 @@ export default function FootprintBarChart({
 }: Props) {
   const { t } = useClientTranslation()
 
-  const maxValue =
-    Math.ceil(Math.max(groupFootprint, userFootprint || 0, targetValue) / 5) * 5
-
-  const groupFormatted = formatCarbonFootprint(groupFootprint * 1000, {
+  const groupFormatted = formatCarbonFootprint(groupFootprint, {
     maximumFractionDigits: 1,
   })
+
+  // Ajuster les valeurs selon l'unité de groupFormatted
+  const scaleFactor =
+    groupFormatted.unit === 'tonnes' || groupFormatted.unit === 't' ? 1000 : 1
+
+  const maxValue =
+    Math.ceil(
+      Math.max(
+        groupFootprint / scaleFactor,
+        (userFootprint || 0) / scaleFactor,
+        targetValue / scaleFactor
+      ) / 5
+    ) * 5
+
   const userFormatted = userFootprint
-    ? formatCarbonFootprint(userFootprint * 1000, {
+    ? formatCarbonFootprint(userFootprint, {
         maximumFractionDigits: 1,
       })
     : null
@@ -52,7 +64,7 @@ export default function FootprintBarChart({
         'pollResults.footprintBarChart.groupFootprint',
         'Empreinte moyenne du groupe'
       ),
-      value: groupFootprint,
+      value: groupFootprint / scaleFactor,
       formattedValue: `${groupFormatted.formattedValue} ${groupFormatted.unit}`,
     },
     ...(userFootprint
@@ -62,7 +74,7 @@ export default function FootprintBarChart({
               'pollResults.footprintBarChart.userFootprint',
               'Votre empreinte'
             ),
-            value: userFootprint,
+            value: userFootprint / scaleFactor,
             formattedValue: `${userFormatted?.formattedValue} ${userFormatted?.unit}`,
           },
         ]
@@ -172,7 +184,7 @@ export default function FootprintBarChart({
           textAnchor="middle"
           dominantBaseline="middle"
           fill="black"
-          fontSize="12"
+          fontSize="10"
           fontWeight="600">
           {formattedValue}
         </text>
@@ -181,18 +193,29 @@ export default function FootprintBarChart({
   }
 
   return (
-    <div className={twMerge('w-full', className)}>
+    <div
+      className={twMerge(
+        'flex h-full w-full flex-col items-center justify-center',
+        className
+      )}>
       <div className="sr-only" aria-live="polite">
         {getAccessibleDescription()}
       </div>
-
-      <div className="relative rounded-xl p-6">
+      <div className="w-full">
         <ResponsiveContainer width="100%" height={200}>
           <BarChart
             data={data}
-            margin={{ top: 0, right: 120, left: 0, bottom: 5 }}
-            barCategoryGap="20%"
-            maxBarSize={70}>
+            margin={{
+              top: 0,
+              right: isMobile() ? 0 : 120,
+              left: -5,
+              bottom: 5,
+            }}
+            barCategoryGap="10%"
+            style={{
+              minWidth: '200px',
+            }}
+            maxBarSize={200}>
             <XAxis
               dataKey="name"
               axisLine
@@ -206,9 +229,9 @@ export default function FootprintBarChart({
               axisLine
               tickLine
               tick={{ fontSize: 12, fill: '#444' }}
-              tickFormatter={(value) =>
-                `${value} ${parseFloat(targetFormatted.formattedValue ?? 0) > 1 ? targetFormatted.unit?.replace('s', '') : `${targetFormatted.unit}`}`
-              }
+              tickFormatter={(value) => {
+                return `${value} ${value > 1 ? groupFormatted.unit : `${groupFormatted.unit?.replace('s', '')}`}`
+              }}
               width={80}
               ticks={Array.from(
                 { length: Math.floor(maxValue / 5) + 1 },
@@ -216,7 +239,7 @@ export default function FootprintBarChart({
               )}
             />
 
-            <Bar dataKey="value" shape={<CustomBar />}>
+            <Bar width={200} dataKey="value" shape={<CustomBar />}>
               {data.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
@@ -230,62 +253,95 @@ export default function FootprintBarChart({
               stroke="#d40d83"
               strokeDasharray="5 5"
               strokeWidth={2}
-              label={{
-                value: t(
-                  'pollResults.footprintBarChart.targetLabel',
-                  'Objectif {{year}}',
-                  { year: targetYear }
-                ),
-                position: 'right',
-                style: {
-                  fill: '#d40d83',
-                  fontSize: '12px',
-                  fontWeight: '500',
-                  textAnchor: 'start',
-                },
-              }}
+              label={
+                isMobile()
+                  ? undefined
+                  : {
+                      value: t(
+                        'pollResults.footprintBarChart.targetLabel',
+                        'Objectif 2050'
+                      ),
+                      position: 'right',
+                      style: {
+                        fill: '#d40d83',
+                        fontSize: '12px',
+                        fontWeight: '500',
+                        textAnchor: 'start',
+                        whiteSpace: 'pre-line',
+                      },
+                    }
+              }
             />
 
             <ReferenceLine
               y={2}
               stroke="transparent"
-              label={{
-                value: `2 ${targetFormatted.unit}`,
-                position: 'left',
-                style: {
-                  fill: '#d40d83',
-                  fontSize: '12px',
-                  fontWeight: 'bold',
-                  transform: 'translateX(-2px)',
-                },
+              label={({ viewBox }) => {
+                const { x, y } = viewBox
+                return (
+                  <g>
+                    <text
+                      x={x - 60}
+                      y={isMobile() ? y - 5 : y}
+                      fill="#d40d83"
+                      fontSize="12px"
+                      fontWeight="bold"
+                      textAnchor="start">
+                      2 {targetFormatted.unit}
+                    </text>
+                    {isMobile() && (
+                      <>
+                        <text
+                          x={x - 60}
+                          y={y + 6}
+                          fill="#d40d83"
+                          fontSize="10px"
+                          textAnchor="start">
+                          {t(
+                            'pollResults.footprintBarChart.targetLabelMobile',
+                            'Objectif'
+                          )}
+                        </text>
+                        <text
+                          x={x - 60}
+                          y={y + 18}
+                          fill="#d40d83"
+                          fontSize="10px"
+                          textAnchor="start">
+                          2050
+                        </text>
+                      </>
+                    )}
+                  </g>
+                )
               }}
             />
           </BarChart>
         </ResponsiveContainer>
-
-        {userFootprint && (
-          <div className="mt-6 flex justify-center gap-8">
-            <div className="flex items-center gap-2">
-              <div className="bg-primary-400 h-4 w-4 rounded"></div>
-              <span className="text-xs text-gray-900">
-                {t(
-                  'pollResults.footprintBarChart.legend.groupFootprint',
-                  'Empreinte moyenne du groupe'
-                )}
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="bg-primary-700 h-4 w-4 rounded"></div>
-              <span className="text-xs text-gray-900">
-                {t(
-                  'pollResults.footprintBarChart.legend.userFootprint',
-                  'Votre empreinte'
-                )}
-              </span>
-            </div>
-          </div>
-        )}
       </div>
+
+      {userFootprint && (
+        <div className="mt-6 flex justify-center gap-3 md:gap-8">
+          <div className="flex items-center gap-2">
+            <div className="bg-primary-400 h-4 w-4 rounded"></div>
+            <span className="text-xs text-gray-900">
+              {t(
+                'pollResults.footprintBarChart.legend.groupFootprint',
+                'Empreinte moyenne du groupe'
+              )}
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="bg-primary-700 h-4 w-4 rounded"></div>
+            <span className="text-xs text-gray-900">
+              {t(
+                'pollResults.footprintBarChart.legend.userFootprint',
+                'Votre empreinte'
+              )}
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

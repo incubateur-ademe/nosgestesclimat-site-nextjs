@@ -9,24 +9,18 @@ import FootprintBarChart from './FootprintBarChart'
 
 type Props = {
   organisationName?: string
-  groupFootprint: number
-  userFootprint?: number
-  computedResults?: ComputedResults | null
+  groupComputedResults?: ComputedResults | null
   userComputedResults?: ComputedResults | null
-  simulationsCount?: number
 }
 
 export default function MeanFootprintDistribution({
   organisationName,
-  groupFootprint,
-  userFootprint,
-  computedResults,
+  groupComputedResults,
   userComputedResults,
-  simulationsCount,
 }: Props) {
   const { isAdmin } = useIsOrganisationAdmin()
 
-  if (!computedResults) return null
+  if (!groupComputedResults) return null
 
   const {
     transport: meanTransport,
@@ -34,9 +28,9 @@ export default function MeanFootprintDistribution({
     logement: meanLogement,
     divers: meanDivers,
     'services sociétaux': meanServices,
-  } = Object.entries(computedResults.carbone.categories).reduce(
+  } = Object.entries(groupComputedResults.carbone.categories).reduce(
     (accObject, [key, value]) => {
-      accObject[key as Categories] = value / (simulationsCount ?? 1)
+      accObject[key as Categories] = value
 
       return accObject
     },
@@ -52,7 +46,7 @@ export default function MeanFootprintDistribution({
   return (
     <div>
       <div className="flex flex-col gap-8 md:flex-row">
-        <div className="w-full">
+        <div className="flex w-full flex-col">
           <h3 className="mb-6 font-bold">
             <Trans i18nKey="pollResults.mean_footprint_distribution.title">
               Empreinte carbone moyenne de
@@ -60,10 +54,10 @@ export default function MeanFootprintDistribution({
             "{organisationName}"
           </h3>
 
-          <Card className="bg-primary-100 w-full border-0 p-6">
+          <Card className="bg-primary-100 w-full flex-1 items-center border-0 p-6">
             <FootprintBarChart
-              groupFootprint={groupFootprint}
-              userFootprint={userFootprint}
+              groupFootprint={groupComputedResults?.carbone?.bilan}
+              userFootprint={userComputedResults?.carbone?.bilan}
             />
           </Card>
         </div>

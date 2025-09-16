@@ -4,6 +4,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Categories } from '@incubateur-ademe/nosgestesclimat'
+import isMobile from 'is-mobile'
 import {
   PolarAngleAxis,
   PolarGrid,
@@ -30,6 +31,16 @@ export default function CategoryRadarChart({
 
   const categoryLabels = {
     transport: t('common.category.transport', 'Transport'),
+    alimentation: isMobile()
+      ? t('common.category.alimentationShort', 'Alim.')
+      : t('common.category.alimentation', 'Alimentation'),
+    logement: t('common.category.logement', 'Logement'),
+    divers: t('common.category.divers', 'Divers'),
+    'services sociétaux': t('common.category.services', 'Services'),
+  }
+
+  const categoryLabelsFull = {
+    transport: t('common.category.transport', 'Transport'),
     alimentation: t('common.category.alimentation', 'Alimentation'),
     logement: t('common.category.logement', 'Logement'),
     divers: t('common.category.divers', 'Divers'),
@@ -50,6 +61,7 @@ export default function CategoryRadarChart({
     return {
       category,
       name: categoryLabels[category],
+      nameFull: categoryLabelsFull[category],
       user: userValue,
       average: averageValue,
       userFormatted: formatCarbonFootprint(userValue, {
@@ -78,7 +90,7 @@ export default function CategoryRadarChart({
           'pollResults.radarChart.accessibleDescription.category',
           '{{category}}: vos résultats {{user}} {{comparison}} à la moyenne {{average}}.',
           {
-            category: item.name,
+            category: item.nameFull,
             user: `${item.userFormatted.formattedValue} ${item.userFormatted.unit}`,
             average: `${item.averageFormatted.formattedValue} ${item.averageFormatted.unit}`,
             comparison,
@@ -105,7 +117,9 @@ export default function CategoryRadarChart({
 
       return (
         <div className="rounded-lg border border-gray-200 bg-white p-3 shadow-lg">
-          <p className="mb-2 font-semibold text-gray-900">{label}</p>
+          <p className="mb-2 font-semibold text-gray-900">
+            {data.find((item) => item.name === label)?.nameFull || label}
+          </p>
           <div className="space-y-1">
             <div className="flex items-center gap-2">
               <div className="bg-primary-800 h-3 w-3 rounded"></div>
@@ -145,7 +159,7 @@ export default function CategoryRadarChart({
         {getAccessibleDescription()}
       </div>
 
-      <div className="relative rounded-xl bg-white p-6">
+      <div className="relative rounded-xl bg-white">
         <ResponsiveContainer width="100%" height={260}>
           <RadarChart
             data={data}
@@ -155,12 +169,17 @@ export default function CategoryRadarChart({
             <PolarAngleAxis
               dataKey="name"
               tick={{ fontSize: 12, fill: '#444', transform: 'rotate(0)' }}
-              radius={10}
+              radius={12}
             />
 
             <PolarRadiusAxis
               domain={[0, maxValue]}
-              tick={{ fontSize: 10, fill: 'black' }}
+              tick={{
+                fontSize: 10,
+                fill: 'black',
+                textAnchor: 'middle',
+                dominantBaseline: 'middle',
+              }}
               tickFormatter={(value) => {
                 const formatted = formatCarbonFootprint(value, {
                   maximumFractionDigits: 1,
@@ -168,7 +187,7 @@ export default function CategoryRadarChart({
                 if (!formatted.formattedValue || value === maxValue) return ''
                 return `${formatted.formattedValue} ${formatted.unit ?? ''}`
               }}
-              angle={65}
+              angle={90}
               tickLine={false}
               axisLine={false}
             />
@@ -197,17 +216,23 @@ export default function CategoryRadarChart({
           </RadarChart>
         </ResponsiveContainer>
 
-        <div className="mt-6 flex justify-center gap-8">
-          <div className="flex items-center gap-2">
-            <div className="bg-primary-800 h-4 w-4 rounded"></div>
-            <span className="text-xs text-gray-900">
-              {t('pollResults.radarChart.legend.userResults', 'Mes résultats')}
-            </span>
-          </div>
+        <div className="mt-6 flex justify-center gap-3 md:gap-8">
           <div className="flex items-center gap-2">
             <div className="h-4 w-4 rounded bg-pink-500"></div>
             <span className="text-xs text-gray-900">
-              {t('pollResults.radarChart.legend.average', 'Moyenne')}
+              {t(
+                'pollResults.footprintBarChart.legend.groupFootprint',
+                'Empreinte moyenne du groupe'
+              )}{' '}
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="bg-primary-800 h-4 w-4 rounded"></div>
+            <span className="text-xs text-gray-900">
+              {t(
+                'pollResults.footprintBarChart.legend.userFootprint',
+                'Votre empreinte'
+              )}{' '}
             </span>
           </div>
         </div>

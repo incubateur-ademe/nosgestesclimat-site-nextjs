@@ -1474,8 +1474,8 @@ entries:
   pollResults.footprintBarChart.accessibleDescription.higher.lock: supérieure
   pollResults.footprintBarChart.accessibleDescription.lower: lower
   pollResults.footprintBarChart.accessibleDescription.lower.lock: inférieure
-  pollResults.footprintBarChart.targetLabel: Objective {{year}}
-  pollResults.footprintBarChart.targetLabel.lock: Objectif {{year}}
+  pollResults.footprintBarChart.targetLabel: Objective 2050
+  pollResults.footprintBarChart.targetLabel.lock: Objectif 2050
   pollResults.footprintBarChart.userFootprint: Your footprint
   pollResults.footprintBarChart.userFootprint.lock: Votre empreinte
   pollResults.mean_footprint_distribution.title: Average carbon footprint of
@@ -1531,3 +1531,7 @@ entries:
   copyButton.copiedAriaLabel.lock: Lien copié dans le presse-papiers
   pollResults.radarChart.title: Your footprint in relation to other participants
   pollResults.radarChart.title.lock: Votre empreinte par rapport aux autres participants
+  pollResults.footprintBarChart.targetLabelMobile: Objective
+  pollResults.footprintBarChart.targetLabelMobile.lock: Objectif
+  common.category.alimentationShort: Power supply
+  common.category.alimentationShort.lock: Alim.

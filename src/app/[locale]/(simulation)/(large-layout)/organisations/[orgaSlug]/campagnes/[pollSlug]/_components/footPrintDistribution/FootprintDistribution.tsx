@@ -1,6 +1,6 @@
 import Trans from '@/components/translation/trans/TransClient'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import type { ComputedResults } from '@/publicodes-state/types'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import MeanFootprintDistribution from './_components/MeanFootprintDistribution'
 
 type Props = {
@@ -8,6 +8,46 @@ type Props = {
   userComputedResults?: ComputedResults | null
   simulationsCount?: number
   organisationName?: string
+}
+
+const getGroupComputedResults = (
+  computedResults: ComputedResults,
+  userComputedResults?: ComputedResults | null,
+  simulationsCount?: number
+) => {
+  const adjustedSimulationsCount = userComputedResults
+    ? (simulationsCount ?? 0) - 1
+    : (simulationsCount ?? 0)
+  // Copie profonde pour éviter de modifier l'objet original
+  const tempGroupComputedResults = {
+    ...computedResults,
+    carbone: {
+      ...computedResults.carbone,
+      categories: { ...computedResults.carbone.categories },
+    },
+  }
+
+  // Remove the user's footprint from the group's footprint
+  tempGroupComputedResults.carbone.bilan =
+    (tempGroupComputedResults.carbone.bilan -
+      (userComputedResults?.carbone?.bilan ?? 0)) /
+    (adjustedSimulationsCount || 1)
+
+  // Remove the user's footprint from the group's categories
+  tempGroupComputedResults.carbone.categories = Object.entries(
+    tempGroupComputedResults.carbone.categories
+  ).reduce(
+    (acc, [key, value]) => {
+      acc[key as DottedName] =
+        (value -
+          (userComputedResults?.carbone?.categories[key as DottedName] ?? 0)) /
+        (adjustedSimulationsCount || 1)
+      return acc
+    },
+    {} as Record<DottedName, number>
+  )
+
+  return tempGroupComputedResults
 }
 
 export default function FootprintDistribution({
@@ -18,20 +58,11 @@ export default function FootprintDistribution({
 }: Props) {
   if (!computedResults || typeof simulationsCount === 'undefined') return null
 
-  const { formattedValue: groupFootprint } = formatCarbonFootprint(
-    (computedResults.carbone.bilan -
-      (userComputedResults?.carbone?.bilan || 0)) /
-      simulationsCount,
-    {
-      maximumFractionDigits: 1,
-    }
+  const groupComputedResults = getGroupComputedResults(
+    computedResults,
+    userComputedResults,
+    simulationsCount
   )
-
-  const { formattedValue: userFootprint } = userComputedResults
-    ? formatCarbonFootprint(userComputedResults?.carbone?.bilan, {
-        maximumFractionDigits: 1,
-      })
-    : { formattedValue: undefined }
 
   return (
     <section className="mb-8">
@@ -43,11 +74,8 @@ export default function FootprintDistribution({
 
       <MeanFootprintDistribution
         organisationName={organisationName}
-        groupFootprint={parseFloat(groupFootprint)}
-        computedResults={computedResults}
+        groupComputedResults={groupComputedResults}
         userComputedResults={userComputedResults}
-        userFootprint={userFootprint ? parseFloat(userFootprint) : undefined}
-        simulationsCount={simulationsCount}
       />
     </section>
   )
