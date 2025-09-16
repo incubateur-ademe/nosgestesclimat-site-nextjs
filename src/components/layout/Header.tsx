@@ -44,7 +44,7 @@ const DynamicCTAButton = dynamic(
   }
 )
 
-export default function HeaderDesktop({ isSticky = true }: Props) {
+export default function Header({ isSticky = true }: Props) {
   const { t } = useClientTranslation()
 
   const pathname = usePathname()
@@ -58,7 +58,7 @@ export default function HeaderDesktop({ isSticky = true }: Props) {
   return (
     <header
       className={twMerge(
-        'h-20 items-center',
+        'h-20 items-center bg-white shadow-xs',
         isSticky ? 'sticky top-0 z-300' : ''
       )}>
       {/* Header mobile */}
