@@ -22,9 +22,6 @@ export default async function UnderstandToActCarbonFootprint({
           href: '/blog/mobilites/transports-fuir-transports-cherir',
           imageSrc:
             'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/van_bus_velo_elviss_railijs_bitans_dce5c98c2c.jpg',
-          imageAlt: t(
-            "Deux mini-vans, illustrant l'empreinte carbone des transports"
-          ),
         },
         {
           category: t('Empreinte carbone'),
@@ -32,9 +29,6 @@ export default async function UnderstandToActCarbonFootprint({
           href: '/blog/environnement/carbone-empreinte-parmi-autres',
           imageSrc:
             'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/markus_spiske_nature_future_0398daa4ed.jpg',
-          imageAlt: t(
-            'Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone'
-          ),
         },
         {
           category: t('Empreinte carbone'),
@@ -42,9 +36,6 @@ export default async function UnderstandToActCarbonFootprint({
           href: '/blog/environnement/maladaptation',
           imageSrc:
             'https://s3.fr-par.scw.cloud/nosgestesclimat-prod/cms/william_bossen_fonte_glaces_a3dd8ea653.jpg',
-          imageAlt: t(
-            'Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique'
-          ),
         },
       ]}
     />

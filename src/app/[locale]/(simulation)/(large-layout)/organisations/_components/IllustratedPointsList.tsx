@@ -95,7 +95,7 @@ export default function IllustratedPointsList({ locale }: { locale: string }) {
                 Permettez à vos cibles (clients, étudiants, participants,
                 habitants..) de calculer et réduire leur empreinte carbone
                 directement depuis vos plateformes web et mobile, avec un lien
-                dédié ou d’autres modes d’intégration prêts à l’emploi.
+                dédié ou d'autres modes d'intégration prêts à l'emploi.
               </Trans>
             </p>
           </div>

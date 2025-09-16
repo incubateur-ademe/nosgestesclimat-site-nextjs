@@ -24,7 +24,7 @@ type Props = {
   hasAbortButton?: boolean
   buttons?: ReactNode
   className?: string
-  ariaLabel?: string
+  ariaLabel: string
 }
 
 export default function Modal({

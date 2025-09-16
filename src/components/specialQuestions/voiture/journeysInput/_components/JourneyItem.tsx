@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -55,7 +56,7 @@ export default function JourneyItem({ journey, odd, setJourneys }: Props) {
         className={`block sm:table-cell lg:border-x ${
           odd ? 'border-white' : 'border-primary-200'
         } p-2 text-left text-xs`}>
-        {journey.reccurrence} x {t(periods[journey.period])}
+        {journey.reccurrence}
       </td>
 
       <td
@@ -66,14 +67,17 @@ export default function JourneyItem({ journey, odd, setJourneys }: Props) {
       </td>
 
       <td className="inline-block p-2 text-left text-xs sm:table-cell">
-        {journey.passengers}{' '}
-        {t('simulator.customQuestions.voiture.passengers', 'passager(s)')}
+        {journey.passengers} <Trans>passager(s)</Trans>
       </td>
 
       <td className="absolute -top-2 -right-1 block py-2 pl-2 text-right text-xs sm:static sm:table-cell">
         <Button
           color="text"
           size="sm"
+          title={t(
+            'simulator.customQuestions.voiture.deleteItem',
+            'Supprimer ce trajet'
+          )}
           onClick={() =>
             setJourneys((prevJourneys) =>
               prevJourneys.filter(

@@ -58,7 +58,7 @@ export default function HeaderDesktop({ isSticky = true }: Props) {
   return (
     <header
       className={twMerge(
-        'h-20 items-center',
+        'h-20 items-center bg-white shadow-sm',
         isSticky ? 'sticky top-0 z-300' : ''
       )}>
       {/* Header mobile */}
@@ -92,6 +92,7 @@ export default function HeaderDesktop({ isSticky = true }: Props) {
               <nav
                 className="h-full"
                 id="header-navigation"
+                role="navigation"
                 aria-label={t('Navigation principale')}
                 aria-labelledby="header-navigation-title">
                 <p id="header-navigation-title" className="sr-only">

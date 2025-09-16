@@ -107,13 +107,18 @@ export default async function International({ params }: DefaultPageProps) {
             <Link
               className="inline"
               href="https://app.electricitymaps.com/map"
-              target="_blank">
+              target="_blank"
+              aria-label={t(
+                'international.electricityMaps.ariaLabel',
+                "Visiter le site Electricity Maps (s'ouvre dans un nouvel onglet)"
+              )}>
               <Image
                 alt="Electricity Maps"
                 src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/electricitymaps_4108b9d71a.svg"
                 className="ml-2 h-4"
                 width="100"
                 height="100"
+                aria-hidden="true"
               />
             </Link>
           </p>

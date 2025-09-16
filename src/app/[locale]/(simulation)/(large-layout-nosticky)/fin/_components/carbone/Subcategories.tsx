@@ -25,6 +25,7 @@ export default function Subcategories() {
           </li>
         ))}
       </ol>
+
       {isFrenchRegion && <AgirSecondaryBlock />}
       <OtherWays />
     </>

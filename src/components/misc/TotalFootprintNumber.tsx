@@ -89,7 +89,11 @@ export default function TotalFootprintNumber({
         </strong>
       ) : (
         <div className="px-2">
-          <Loader color="dark" size="sm" />
+          <Loader
+            color="dark"
+            size="sm"
+            ariaLabel="Chargement de l'empreinte carbone"
+          />
         </div>
       )}
       <span

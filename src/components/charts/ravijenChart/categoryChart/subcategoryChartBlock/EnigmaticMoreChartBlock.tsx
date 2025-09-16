@@ -15,7 +15,7 @@ export default function EnigmaticMoreChartBlock({
         1
       )}% du total de la catégorie`}
       style={{ height: `${percentageSquashed}%` }}
-      className={`relative cursor-default font-bold text-white ${getBackgroundColor(
+      className={`text-default relative cursor-default font-bold ${getBackgroundColor(
         category
       )}`}>
       <div className="absolute top-1/2 left-1/2 h-8 -translate-x-1/2 -translate-y-1/2 transform">

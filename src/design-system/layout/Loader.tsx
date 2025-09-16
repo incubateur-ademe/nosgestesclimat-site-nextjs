@@ -6,6 +6,8 @@ type Props = {
   size?: LoaderSizes
   color?: 'light' | 'dark'
   className?: string
+  /** Texte descriptif pour les lecteurs d'écran */
+  ariaLabel?: string
 }
 
 const sizesClassNames = {
@@ -23,9 +25,13 @@ export default function Loader({
   size = 'md',
   color = 'light',
   className,
+  ariaLabel = 'Chargement en cours',
 }: Props) {
   return (
     <span
+      role="status"
+      aria-label={ariaLabel}
+      aria-live="polite"
       className={twMerge(
         `inline-block animate-spin rounded-[50%] border-solid ${sizesClassNames[size]} ${colorsClassNames[color]}`,
         className

@@ -6,8 +6,8 @@ import {
   periods,
 } from '@/components/specialQuestions/voiture/journeysInput/_components/JourneyItem'
 import Button from '@/design-system/buttons/Button'
-import Select from '@/design-system/inputs/Select'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import SelectInput from '@/design-system/inputs/SelectInput'
+import TextInput from '@/design-system/inputs/TextInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Journey } from '@/types/journey'
 import type { Dispatch, SetStateAction } from 'react'
@@ -31,7 +31,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
   return (
     <tr className={twMerge('border-primary-700 block border-b p-2', className)}>
       <td className="mb-4 block text-sm">
-        <Select
+        <SelectInput
           className="w-full text-sm"
           containerClassName="w-full"
           value={label}
@@ -45,11 +45,11 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
               </option>
             )
           })}
-        </Select>
+        </SelectInput>
       </td>
       <td className="border-primary-700 block pb-4 text-sm">
         <span className="flex items-end gap-2">
-          <TextInputGroup
+          <TextInput
             className="text-sm"
             containerClassName="w-32"
             name="distance"
@@ -63,7 +63,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
       </td>
       <td className="border-primary-700 block pb-4 text-sm">
         <div className="flex items-end gap-4">
-          <TextInputGroup
+          <TextInput
             className="w-20 text-sm"
             containerClassName="w-20"
             name="frequence"
@@ -77,7 +77,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
           <div className="mb-4 inline-block">
             <CloseIcon className="w-4" />
           </div>
-          <Select
+          <SelectInput
             className="text-sm"
             value={period}
             name="period"
@@ -90,11 +90,11 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
                 </option>
               )
             })}
-          </Select>
+          </SelectInput>
         </div>
       </td>
       <td className="border-primary-700 block pb-4 text-sm">
-        <Select
+        <SelectInput
           className="w-20 text-sm"
           name="passengers"
           value={passengers}
@@ -107,7 +107,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
               </option>
             )
           })}
-        </Select>
+        </SelectInput>
       </td>
       <td className="border-primary-700 block pl-2 text-right text-sm">
         <Button

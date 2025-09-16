@@ -77,10 +77,12 @@ export default function Footer({
 
         <div className="mb-10 flex flex-col flex-wrap justify-start gap-x-16 gap-y-8 pt-4 md:flex-row lg:flex-nowrap">
           <div className="flex flex-col gap-y-2">
-            <p className="text-default mb-0 text-sm font-bold">
+            <p
+              id="about-section"
+              className="text-default mb-0 text-sm font-bold">
               <Trans>À propos</Trans>
             </p>
-            <ul>
+            <ul aria-labelledby="about-section">
               <li>
                 <InlineLink
                   href="/a-propos"
@@ -125,10 +127,12 @@ export default function Footer({
           </div>
 
           <div className="flex flex-col gap-y-2">
-            <p className="text-default mb-0 text-sm font-bold">
+            <p
+              id="diffusion-section"
+              className="text-default mb-0 text-sm font-bold">
               <Trans>Diffusion</Trans>
             </p>
-            <ul>
+            <ul aria-labelledby="diffusion-section">
               <li>
                 <InlineLink
                   href="/diffuser"
@@ -157,10 +161,12 @@ export default function Footer({
           </div>
 
           <div className="flex flex-col gap-y-2">
-            <p className="text-default mb-0 text-sm font-bold">
+            <p
+              id="resources-section"
+              className="text-default mb-0 text-sm font-bold">
               <Trans>Ressources</Trans>
             </p>
-            <ul>
+            <ul aria-labelledby="resources-section">
               <li>
                 <InlineLink
                   href="/blog"
@@ -267,7 +273,11 @@ export default function Footer({
             <Marianne className="h-auto w-12 md:w-auto" />
 
             <Link href="https://ademe.fr" target="_blank">
-              <Ademe className="h-auto w-10 md:w-auto" />
+              <Ademe
+                className="h-auto w-10 md:w-auto"
+                aria-label="ADEME"
+                role="img"
+              />
             </Link>
           </div>
         </div>

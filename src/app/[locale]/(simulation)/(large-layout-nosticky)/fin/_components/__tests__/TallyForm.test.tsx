@@ -100,12 +100,7 @@ describe('TallyForm', () => {
     // Réactiver les fake timers
     vi.useFakeTimers()
 
-    expect(mockOpenPopup).toHaveBeenCalledWith('test-form-id', {
-      emoji: {
-        text: '👋',
-        animation: 'wave',
-      },
-    })
+    expect(mockOpenPopup).toHaveBeenCalledWith('test-form-id', {})
     expect(safeLocalStorage.setItem).toHaveBeenCalledWith('tally-seen', 'true')
   })
 
@@ -138,12 +133,7 @@ describe('TallyForm', () => {
     })
 
     // Vérifier que le popup a été appelé avec les bons paramètres
-    expect(mockOpenPopup).toHaveBeenCalledWith('test-form-id', {
-      emoji: {
-        text: '👋',
-        animation: 'wave',
-      },
-    })
+    expect(mockOpenPopup).toHaveBeenCalledWith('test-form-id', {})
     expect(safeLocalStorage.setItem).toHaveBeenCalledWith('tally-seen', 'true')
   })
 
@@ -204,12 +194,7 @@ describe('TallyForm', () => {
     vi.useFakeTimers()
 
     // Manual click should still work
-    expect(mockOpenPopup).toHaveBeenCalledWith('test-form-id', {
-      emoji: {
-        text: '👋',
-        animation: 'wave',
-      },
-    })
+    expect(mockOpenPopup).toHaveBeenCalledWith('test-form-id', {})
     expect(safeLocalStorage.setItem).toHaveBeenCalledWith('tally-seen', 'true')
   })
 

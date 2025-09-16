@@ -1,24 +1,23 @@
 'use client'
 
-import Trans from '@/components/translation/trans/TransClient'
 import type { User } from '@/publicodes-state/types'
 import type { PublicOrganisationPoll } from '@/types/organisations'
-import type { ReactNode } from 'react'
+import type { TFunction } from 'i18next'
 
 function formatSlugToName(slug: string) {
   return decodeURIComponent(slug).replaceAll('-', ' ')
 }
 
-function getBaseItems({ pathname }: { pathname: string }) {
+function getBaseItems({ pathname, t }: { pathname: string; t: TFunction }) {
   return [
     {
       href: '/',
-      label: <Trans>Accueil</Trans>,
+      label: t('Accueil'),
       isActive: pathname === '/',
     },
     {
       href: '/organisations',
-      label: <Trans>Organisations</Trans>,
+      label: t('Organisations'),
       isActive: pathname === '/organisations',
     },
   ]
@@ -30,19 +29,21 @@ function getOrganisationEspaceItems({
   user,
   isAdmin,
   poll,
+  t,
 }: {
   pathname: string
   params: any
   user: User
   isAdmin: boolean
   poll?: PublicOrganisationPoll | null
+  t: TFunction
 }) {
   const items = []
   if (params.orgaSlug) {
     if (isAdmin) {
       items.push({
         href: `/organisations/${params.orgaSlug}`,
-        label: <span>{formatSlugToName(params.orgaSlug)}</span>,
+        label: formatSlugToName(params.orgaSlug),
         isActive: pathname === `/organisations/${params.orgaSlug}`,
         isDisabled: !user?.organisation?.administratorEmail,
       })
@@ -51,15 +52,7 @@ function getOrganisationEspaceItems({
     if (pathname.includes('campagnes')) {
       items.push({
         href: `/organisations/${params.orgaSlug}/campagnes/${params.pollSlug}`,
-        label: (
-          <>
-            {poll?.name ?? (
-              <span>
-                <Trans>Campagne de</Trans> {poll?.organisation.name}
-              </span>
-            )}
-          </>
-        ),
+        label: poll?.name ?? t('Campagne de') + ' ' + poll?.organisation.name,
         isActive:
           pathname ===
           `/organisations/${params.orgaSlug}/campagnes/${params.pollSlug}`,
@@ -69,7 +62,7 @@ function getOrganisationEspaceItems({
     if (pathname.includes('parametres')) {
       items.push({
         href: `/organisations/${params.orgaSlug}/parametres`,
-        label: <Trans>Paramètres</Trans>,
+        label: t('Paramètres'),
         isActive:
           pathname === `/organisations/${params.orgaSlug}/parametres` ||
           pathname ===
@@ -77,6 +70,15 @@ function getOrganisationEspaceItems({
       })
     }
   }
+
+  if (pathname.includes('connexion')) {
+    items.push({
+      href: `/organisations/connexion`,
+      label: t('Connexion'),
+      isActive: pathname === `/organisations/connexion`,
+    })
+  }
+
   return items
 }
 
@@ -86,15 +88,17 @@ export function getOrganisationItems({
   user,
   isAdmin,
   poll,
+  t,
 }: {
   pathname: string
   params: any
   user: User
   isAdmin: boolean
   poll?: PublicOrganisationPoll | null
+  t: TFunction
 }): {
   href: string
-  label: string | ReactNode
+  label: string
   isActive: boolean
 }[] {
   if (!pathname.includes('organisations')) {
@@ -102,12 +106,12 @@ export function getOrganisationItems({
   }
 
   // These are the items for the organisation page, the connexion and the creation page
-  const items = [...getBaseItems({ pathname })]
+  const items = [...getBaseItems({ pathname, t })]
 
   if (pathname.includes('demander-demo')) {
     items.push({
       href: '/organisations/demander-demo',
-      label: <Trans>Demander une démo</Trans>,
+      label: t('Demander une démo'),
       isActive: pathname === '/organisations/demander-demo',
     })
     return items
@@ -115,7 +119,7 @@ export function getOrganisationItems({
 
   // These are the items for the organisation page
   items.push(
-    ...getOrganisationEspaceItems({ pathname, params, user, isAdmin, poll })
+    ...getOrganisationEspaceItems({ pathname, params, user, isAdmin, poll, t })
   )
 
   return items

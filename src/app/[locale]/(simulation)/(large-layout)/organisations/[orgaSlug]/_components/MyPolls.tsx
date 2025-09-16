@@ -2,10 +2,10 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
-import Select from '@/design-system/inputs/Select'
+import SelectInput from '@/design-system/inputs/SelectInput'
 import Title from '@/design-system/layout/Title'
 import type { OrganisationPoll } from '@/types/organisations'
-import { useMemo, useState } from 'react'
+import { type ChangeEvent, useMemo, useState } from 'react'
 import AddPollCard from './myPolls/AddPollCard'
 import PollCard from './myPolls/PollCard'
 
@@ -53,11 +53,12 @@ export default function MyPolls({ polls }: Props) {
         </Title>
 
         {pollsSorted.length > 0 && (
-          <Select
-            onChange={(e) => {
+          <SelectInput
+            onChange={(e: ChangeEvent<HTMLSelectElement>) => {
               setSort(e.target.value)
             }}
-            className="p-2 text-sm"
+            className="max-w-[15rem] p-2 text-sm"
+            containerClassName="max-w-[15rem]"
             name="sortOrder">
             <option value="date-old">
               <Trans>Date (anciennes &gt; récentes)</Trans>
@@ -71,7 +72,7 @@ export default function MyPolls({ polls }: Props) {
             <option value="anti-alphabetical">
               <Trans>Nom (Z &gt; A)</Trans>
             </option>
-          </Select>
+          </SelectInput>
         )}
       </div>
 

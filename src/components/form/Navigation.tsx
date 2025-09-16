@@ -14,13 +14,19 @@ import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useMagicKey } from '@/hooks/useMagicKey'
-import { useCurrentSimulation, useFormState, useRule } from '@/publicodes-state'
+import {
+  useCurrentSimulation,
+  useEngine,
+  useFormState,
+  useRule,
+} from '@/publicodes-state'
 import getValueIsOverFloorOrCeiling from '@/publicodes-state/helpers/getValueIsOverFloorOrCeiling'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { MouseEvent } from 'react'
 import { useCallback, useMemo, useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
+import Trans from '../translation/trans/TransClient'
 import SyncIndicator from './navigation/SyncIndicator'
 
 export default function Navigation({
@@ -50,8 +56,16 @@ export default function Navigation({
     setCurrentQuestion,
   } = useFormState()
 
-  const { isMissing, plancher, plafond, value, activeNotifications } =
-    useRule(question)
+  const {
+    isMissing,
+    plancher,
+    plafond,
+    value,
+    activeNotifications,
+    questionsOfMosaicFromParent,
+  } = useRule(question)
+
+  const { getValue } = useEngine()
 
   // Hack in order to reset the notification when the question changes
   const hasActiveNotifications = activeNotifications?.length > 0
@@ -136,7 +150,25 @@ export default function Navigation({
       }
 
       if (isMissing) {
-        updateCurrentSimulation({ foldedStepToAdd: question })
+        if (questionsOfMosaicFromParent?.length > 0) {
+          questionsOfMosaicFromParent.forEach((question) => {
+            updateCurrentSimulation({
+              foldedStepToAdd: {
+                foldedStep: question,
+                value: getValue(question),
+                isMosaicChild: true,
+              },
+            })
+          })
+        }
+
+        updateCurrentSimulation({
+          foldedStepToAdd: {
+            foldedStep: question,
+            value: value,
+            isMosaicParent: questionsOfMosaicFromParent?.length > 0,
+          },
+        })
       }
 
       handleMoveFocus()
@@ -166,17 +198,19 @@ export default function Navigation({
       }
     },
     [
-      question,
-      gotoNextQuestion,
-      finalNoNextQuestion,
-      isMissing,
-      value,
-      onComplete,
-      updateCurrentSimulation,
       startTime,
-      isEmbedded,
-      setCurrentQuestion,
+      isMissing,
       resetNotification,
+      finalNoNextQuestion,
+      isEmbedded,
+      question,
+      value,
+      questionsOfMosaicFromParent,
+      updateCurrentSimulation,
+      getValue,
+      onComplete,
+      setCurrentQuestion,
+      gotoNextQuestion,
     ]
   )
 
@@ -274,8 +308,15 @@ export default function Navigation({
           onClick={handleGoToPrevQuestion}
           disabled={isFirstOrOnlyQuestion}
           color="text"
-          className={twMerge('px-3')}>
-          <span className="hidden md:inline">←</span> {t('Précédent')}
+          className={twMerge('px-3')}
+          title={t(
+            'common.navigation.previousButton.label',
+            'Aller à la question précédente'
+          )}>
+          <span aria-hidden className="hidden md:inline">
+            ←
+          </span>
+           {t('Précédent')}
         </Button>
 
         <Button
@@ -284,12 +325,34 @@ export default function Navigation({
           className="p-3 text-sm"
           size="md"
           data-cypress-id="next-question-button"
+          title={
+            finalNoNextQuestion
+              ? t(
+                  'common.navigation.nextQuestion.finish.label',
+                  'Terminer le test et accéder à la page de résultats'
+                )
+              : isMissing
+                ? t(
+                    'common.navigation.nextQuestion.pass.label',
+                    'Passer et aller à la question suivante'
+                  ) + ' →'
+                : t(
+                    'common.navigation.nextQuestion.next.label',
+                    'Aller à la question suivante'
+                  )
+          }
           onClick={handleGoToNextQuestion}>
-          {finalNoNextQuestion
-            ? t('Terminer')
-            : isMissing
-              ? t('Passer la question') + ' →'
-              : t('Suivant') + ' →'}
+          {finalNoNextQuestion ? (
+            t('Terminer')
+          ) : isMissing ? (
+            <>
+              <Trans>Passer la question</Trans> <span aria-hidden>→</span>
+            </>
+          ) : (
+            <>
+              <Trans>Suivant</Trans> <span aria-hidden>→</span>
+            </>
+          )}
         </Button>
       </div>
     </div>

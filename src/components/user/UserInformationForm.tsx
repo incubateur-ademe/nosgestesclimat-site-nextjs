@@ -12,8 +12,8 @@ import {
   TRANSPORTS_NEWSLETTER_LABEL,
 } from '@/constants/forms/newsletters'
 import Button from '@/design-system/buttons/Button'
-import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import CheckboxInput from '@/design-system/inputs/CheckboxInput'
+import TextInput from '@/design-system/inputs/TextInput'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
@@ -163,9 +163,12 @@ export default function UserInformationForm({
         onSubmit={handleSubmit(onSubmit)}
         className="flex w-full flex-col items-start gap-4">
         {inputsDisplayed.includes('name') && (
-          <TextInputGroup
+          <TextInput
             data-testid="name-input"
+            autoComplete="name"
             value={user?.name}
+            helperText={t('Ce champ est requis.')}
+            placeholder={t('Votre nom')}
             label={t('Votre nom')}
             {...register('name', {
               required: user?.name ? t('Ce champ est requis.') : false,
@@ -180,7 +183,7 @@ export default function UserInformationForm({
               // On affiche le champ email en lecture seule si l'utilisateur a un email de défini
               // sinon on lui permet d'en définir un
               user?.email && !shouldForceEmailEditable ? (
-                <TextInputGroup
+                <TextInput
                   data-testid="email-input-readonly"
                   name="email"
                   helperText={<Trans>Ce champ n'est pas modifiable</Trans>}
@@ -189,11 +192,12 @@ export default function UserInformationForm({
                   readOnly
                 />
               ) : (
-                <TextInputGroup
+                <TextInput
                   data-testid="email-input-editable"
                   label={t('Votre adresse electronique')}
                   className="w-full"
                   value={user?.email ?? ''}
+                  autoComplete="email"
                   {...register('email')}
                 />
               )
@@ -225,7 +229,7 @@ export default function UserInformationForm({
               </p>
             )}
             {inputsDisplayed.includes('newsletter-saisonniere') && (
-              <CheckboxInputGroup
+              <CheckboxInput
                 data-testid="newsletter-saisonniere-checkbox"
                 disableSubmitOnEnter
                 label={
@@ -244,7 +248,7 @@ export default function UserInformationForm({
               />
             )}
             {inputsDisplayed.includes('newsletter-transports') && (
-              <CheckboxInputGroup
+              <CheckboxInput
                 data-testid="newsletter-transports-checkbox"
                 disableSubmitOnEnter
                 label={
@@ -263,7 +267,7 @@ export default function UserInformationForm({
               />
             )}
             {inputsDisplayed.includes('newsletter-logement') && (
-              <CheckboxInputGroup
+              <CheckboxInput
                 data-testid="newsletter-logement-checkbox"
                 disableSubmitOnEnter
                 label={
@@ -284,7 +288,9 @@ export default function UserInformationForm({
         {isSuccess && (
           <p
             data-testid="success-message"
-            role="alert"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
             className="mt-4 mb-4 text-green-700">
             <Trans>Vos informations ont bien été mises à jour.</Trans>
           </p>

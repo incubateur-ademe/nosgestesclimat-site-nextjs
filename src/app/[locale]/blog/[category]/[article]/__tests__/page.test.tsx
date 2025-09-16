@@ -137,7 +137,7 @@ describe('ArticlePage', () => {
         locale: 'en' as Locale,
       })
       await ArticlePage({ params })
-      expect(mockRedirect).toHaveBeenCalledWith('/blog/cat/art?lang=fr')
+      expect(mockRedirect).toHaveBeenCalledWith('/fr/blog/cat/art')
     })
 
     it('should redirect to NOT_FOUND_PATH if FR and missing article', async () => {
@@ -165,7 +165,7 @@ describe('ArticlePage', () => {
         locale: 'es' as Locale,
       })
       await ArticlePage({ params })
-      expect(mockRedirect).toHaveBeenCalledWith('/blog/cat/art?lang=fr')
+      expect(mockRedirect).toHaveBeenCalledWith('/fr/blog/cat/art')
     })
   })
 

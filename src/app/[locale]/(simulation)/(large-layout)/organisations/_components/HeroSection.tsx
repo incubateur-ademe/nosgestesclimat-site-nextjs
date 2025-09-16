@@ -26,22 +26,26 @@ export default function HeroSection() {
         <div className="mb-12 text-sm md:text-lg">
           <Baseline />
         </div>
-        <div className="flex flex-col flex-wrap items-center gap-4 sm:flex-row sm:justify-start md:items-baseline md:gap-8 lg:justify-start">
-          <ButtonLink
-            href="/organisations/connexion"
-            trackingEvent={organisationsAccueilClickCommencer}>
-            <Trans>Commencer</Trans>
-          </ButtonLink>
+        <ul className="flex flex-col flex-wrap items-center gap-4 sm:flex-row sm:justify-start md:items-baseline md:gap-8 lg:justify-start">
+          <li>
+            <ButtonLink
+              href="/organisations/connexion"
+              trackingEvent={organisationsAccueilClickCommencer}>
+              <Trans>Commencer</Trans>
+            </ButtonLink>
+          </li>
 
-          <ButtonLink
-            color="text"
-            href="/organisations/demander-demo"
-            onClick={() => {
-              trackEvent(organisationsAccueilClickDemo)
-            }}>
-            <Trans>Demander une démo</Trans>
-          </ButtonLink>
-        </div>
+          <li>
+            <ButtonLink
+              color="text"
+              href="/organisations/demander-demo"
+              onClick={() => {
+                trackEvent(organisationsAccueilClickDemo)
+              }}>
+              <Trans>Demander une démo</Trans>
+            </ButtonLink>
+          </li>
+        </ul>
       </div>
 
       <div>
@@ -50,7 +54,7 @@ export default function HeroSection() {
           src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_people_with_paperboard_9c8d47f4b3.png"
           width="400"
           height="400"
-          alt={t('Groupe de personnes devant un paperboard')}
+          alt=""
         />
       </div>
     </div>

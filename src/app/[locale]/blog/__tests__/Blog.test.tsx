@@ -111,6 +111,7 @@ describe('BlogHomePage', () => {
       metaTitle: 'Test Meta Title',
       metaDescription: 'Test Meta Description',
       image: { url: 'test-meta-image.jpg', alternativeText: 'Test Meta Image' },
+      pageCount: 0,
     })
 
     mockGetLangButtonsDisplayed.mockResolvedValue({
@@ -169,7 +170,7 @@ describe('BlogHomePage', () => {
 
       await BlogHomePage({ params, searchParams })
 
-      expect(mockRedirect).toHaveBeenCalledWith('/blog?lang=fr')
+      expect(mockRedirect).toHaveBeenCalledWith('/fr/blog')
       expect(mockNotFound).not.toHaveBeenCalled()
     })
 
@@ -221,7 +222,7 @@ describe('BlogHomePage', () => {
 
       await BlogHomePage({ params, searchParams })
 
-      expect(mockRedirect).toHaveBeenCalledWith('/blog?lang=fr')
+      expect(mockRedirect).toHaveBeenCalledWith('/fr/blog')
       expect(mockNotFound).not.toHaveBeenCalled()
     })
 

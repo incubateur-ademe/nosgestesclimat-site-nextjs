@@ -87,9 +87,9 @@ export default function Actions({
         />
 
         <div className="my-4 h-8 w-full text-center">
-          <p className="bg-primary-700 inline-block rounded-md px-4 py-1 text-sm font-medium text-white">
+          <h2 className="bg-primary-700 inline-block rounded-md px-4 py-1 text-sm font-medium text-white">
             <span>{label} &#9650;</span>
-          </p>
+          </h2>
         </div>
       </div>
     )
@@ -114,7 +114,7 @@ export default function Actions({
       {radical ? numberedActions : numberedActions.slice().reverse()}
 
       <div className="my-4 h-8 w-full text-center">
-        <p className="bg-primary-700 inline-flex items-center rounded-full px-4 text-sm font-medium text-white">
+        <h2 className="bg-primary-700 inline-flex items-center rounded-full px-4 text-sm font-medium text-white">
           <Image
             src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/270_A_cc8d6cb2b7.svg"
             className="mr-2 align-middle invert"
@@ -122,8 +122,17 @@ export default function Actions({
             width={36}
             alt=""
           />
-          <Trans>Actions d'engagement</Trans> &#9660;
-        </p>
+          <Trans>Actions d'engagement</Trans>{' '}
+          <span
+            role="img"
+            aria-label={t(
+              'actions.engagementIcon.ariaLabel',
+              ', les actions se trouvent en dessous'
+            )}
+            aria-hidden="true">
+            &#9660;
+          </span>
+        </h2>
       </div>
 
       <ActionList
@@ -137,7 +146,7 @@ export default function Actions({
       />
 
       <div className="my-4 h-8 w-full text-center">
-        <p className="bg-primary-700 inline-flex items-center rounded-full px-4 text-sm font-medium text-white">
+        <h2 className="bg-primary-700 inline-flex items-center rounded-full px-4 text-sm font-medium text-white">
           <Image
             src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/26_D4_0bb5aeaf38.svg"
             className="mr-2 invert"
@@ -145,8 +154,17 @@ export default function Actions({
             width={36}
             alt=""
           />
-          <Trans>Actions négatives</Trans> &#9660;
-        </p>
+          <Trans>Actions négatives</Trans>{' '}
+          <span
+            role="img"
+            aria-label={t(
+              'actions.engagementIcon.ariaLabel',
+              ', les actions se trouvent en dessous'
+            )}
+            aria-hidden="true">
+            &#9660;
+          </span>
+        </h2>
       </div>
 
       <ActionList

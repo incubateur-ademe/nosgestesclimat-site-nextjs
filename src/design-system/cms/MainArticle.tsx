@@ -5,7 +5,6 @@ import ColorLine from '@/design-system/layout/ColorLine'
 
 export default function MainArticle({
   imageSrc,
-  imageAlt,
   title,
   description,
   category,
@@ -13,7 +12,6 @@ export default function MainArticle({
   locale,
 }: {
   imageSrc: string
-  imageAlt: string
   title: string
   description: string
   category: string
@@ -29,7 +27,7 @@ export default function MainArticle({
       <div className="bg-heroLightBackground flex flex-col gap-6 rounded-xl md:flex-row">
         <ImageWithCategory
           imageSrc={imageSrc}
-          imageAlt={imageAlt}
+          imageAlt=""
           width={500}
           height={500}
           category={category}

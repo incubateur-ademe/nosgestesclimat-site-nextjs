@@ -2,7 +2,6 @@ import Trans from '@/components/translation/trans/TransServer'
 import UserInformationForm from '@/components/user/UserInformationForm'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
@@ -27,7 +26,6 @@ export const generateMetadata = getCommonMetadata({
 
 export default async function Profil({ params }: DefaultPageProps) {
   const { locale } = await params
-  const { t } = await getServerTranslation({ locale })
 
   const supportedRegions = getSupportedRegions()
 
@@ -39,12 +37,13 @@ export default async function Profil({ params }: DefaultPageProps) {
 
       <div className="flex flex-wrap items-start gap-20 md:flex-nowrap">
         <SimulationBanner />
+
         <Image
           className="ml-auto hidden md:block"
           src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_girl_thinking_0b84734c12.png"
           width="360"
           height="400"
-          alt={t('Une fille réfléchissant à son empreinte carbone.')}
+          alt=""
         />
       </div>
 
@@ -64,12 +63,13 @@ export default async function Profil({ params }: DefaultPageProps) {
             </h3>
           }
         />
+
         <Image
           className="-mt-12 ml-auto w-48 self-end md:mt-auto md:w-auto"
           src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_delivering_mail_b981de31a3.png"
           width="350"
           height="400"
-          alt={t('Une personne livrant du courrier.')}
+          alt=""
         />
       </div>
     </FormProvider>

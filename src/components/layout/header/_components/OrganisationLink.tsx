@@ -42,8 +42,7 @@ export default function OrganisationLink({
         trackEvent(headerClickOrganisation)
         onClick()
       }}
-      icon={OrganisationIcon}
-      title={t('Organisation')}>
+      icon={OrganisationIcon}>
       {isOrganisationFullyCreated ? (
         <span className="whitespace-nowrap">{formattedOrganisationName}</span>
       ) : (

@@ -2,7 +2,11 @@ import type { OrganisationTypeEnum } from '@/constants/organisations/organisatio
 import type { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
 import type { SimulationAdditionalQuestionAnswerType } from '@/constants/organisations/simulationAdditionalQuestionAnswerType'
 import type { ComputedResults, Situation } from '@/publicodes-state/types'
-import type { DottedName, FunFacts } from '@incubateur-ademe/nosgestesclimat'
+import type {
+  DottedName,
+  ExtendedSituation,
+  FunFacts,
+} from '@incubateur-ademe/nosgestesclimat'
 
 type CustomAdditionalQuestions = {
   question: string
@@ -106,6 +110,7 @@ export type Simulation = {
   id: string
   date: Date | string
   situation: Situation
+  extendedSituation: ExtendedSituation
   foldedSteps: DottedName[]
   actionChoices: Record<string, boolean>
   computedResults: ComputedResults

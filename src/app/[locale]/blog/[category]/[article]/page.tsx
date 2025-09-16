@@ -65,7 +65,7 @@ export default async function ArticlePage({
 
   //  Firstly redirect to french version if the page is not available in the current locale
   if (locale !== i18nConfig.defaultLocale && !article) {
-    return redirect(`/blog/${category}/${articleSlug}?lang=fr`)
+    return redirect(`/fr/blog/${category}/${articleSlug}`)
   }
 
   //  If the page is not available in the default locale, redirect to the not found page
@@ -148,7 +148,8 @@ export default async function ArticlePage({
         </div>
       </div>
 
-      <AuthorBlock author={article.author} />
+      <AuthorBlock locale={locale} author={article.author} />
+
       <OtherArticles articles={otherArticles} locale={locale} />
 
       <Footer langButtonsDisplayed={langButtonsDisplayed} />

@@ -54,6 +54,7 @@ export default function AccordionItemWithRule({
         />
       }
       name={title ?? ''}
+      ariaLabel={`${title} - ${formattedValue} ${unit}`}
       content={
         <Card
           className="mb-4 border-x-0 bg-gray-100"
