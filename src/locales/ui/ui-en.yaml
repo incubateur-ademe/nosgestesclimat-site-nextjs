@@ -958,7 +958,6 @@ entries:
   1 par mois max: 1 per month max
   <0>Comparez vos résultats avec</0> <2>vos proches</2>: <0>Compare your results with</0> <2>your friends</2>
   4 infolettres l’impact des transports: 4 newsletters the impact of transport
-  Comparez vos résultats avec vos proches: Compare your results with those around you
   Je m'inscris à l'infolettre: Subscribe to our newsletter
   À la une !: Featured article
   D'autres articles sur le même sujet: Other articles on the same subject
@@ -1374,68 +1373,8 @@ entries:
   common.navigation.nextQuestion.pass.label.lock: Passer et aller à la question suivante
   cookieConsent.banner.title: Cookie management panel
   cookieConsent.banner.title.lock: Panneau de gestion des cookies
-  common.burgerMenu.title: Close the navigation menu
-  common.burgerMenu.title.lock: Fermer le menu de navigation
-  common.navigation.previousButton.label: Go to previous question
-  common.navigation.previousButton.label.lock: Aller à la question précédente
-  simulator.label.moreInfoButton: For more information, click here {{label}}
-  simulator.label.moreInfoButton.lock: Plus d'informations - {{label}}
-  results.informationBlock.carbon.openButton: See details of the 2-tonne target for 2050
-  results.informationBlock.carbon.openButton.lock: Voir le détail de l'objectif 2 tonnes en 2050
-  common.interactiveIllustration.item.shirt: Blouse
-  common.interactiveIllustration.item.shirt.lock: Chemisier
-  Fenêtre modale de partage: Modal sharing window
-  results.informationBlock.water.openButton: See the explanation of the water footprint
-  results.informationBlock.water.openButton.lock: Voir l'explication sur l'empreinte eau
-  actions.form.custom.modal.ariaLabel: Customised action form modal window
-  actions.form.custom.modal.ariaLabel.lock: Fenêtre modale du formulaire d'action personnalisée
-  common.buttons.close: Close
-  common.buttons.close.lock: Fermer
-  organisations.polls.settings.confirmDeletion: Modal window confirming deletion of the campaign
-  organisations.polls.settings.confirmDeletion.lock: Fenêtre modale de confirmation de suppression de la campagne
-  common.navigation.nextQuestion.next.label: Go to next question
-  common.navigation.nextQuestion.next.label.lock: Aller à la question suivante
-  organisations.emailVerificationModal.title: Email confirmation modal window
-  organisations.emailVerificationModal.title.lock: Fenêtre modale de confirmation d'email
-  simulator.topBar.totalButtons.saveButton.ariaLabel: Save and resume later
-  simulator.topBar.totalButtons.saveButton.ariaLabel.lock: Enregistrer et reprendre plus tard
-  results.informationBlock.carbon.closeButton: Close the water footprint explanation
-  results.informationBlock.carbon.closeButton.lock: Fermer l'explication sur l'empreinte eau
-  organisations.additionalQuestions.deletion.modal.ariaLabel: Customised question deletion confirmation window
-  organisations.additionalQuestions.deletion.modal.ariaLabel.lock: Fenêtre de confirmation de suppression de la question personnalisée
   cookieConsent.board.title: Cookie consent banner
   cookieConsent.board.title.lock: Bannière de consentement aux cookies
-  common.interactiveIllustration.item.coffee: Café
-  common.interactiveIllustration.item.coffee.lock: Café
-  blog.homepage.defaultDescription: Discover practical tips for reducing your ecological footprint.
-  blog.homepage.defaultDescription.lock: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
-  common.slider.buttons.next: Go to slide number {{number}}
-  common.slider.buttons.next.lock: Aller à la diapositive numéro {{number}}
-  common.slider.buttons.previous: Go to previous slide
-  common.slider.buttons.previous.lock: Aller à la diapositive précédente
-  blog.homePage.dynamicPageNumber: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
-  blog.homePage.dynamicPageNumber.lock: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
-  blog.homepage.defaultTitle: Blog, discover our articles and advice on the climate - Nos Gestes Climat
-  blog.homepage.defaultTitle.lock: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
-  4 infolettres l'impact des transports: 4 newsletters the impact of transport
-  5 infolettres sur l'impact du logement: 5 newsletters on the impact of housing
-  Entrez votre adresse email pour recevoir les infolettres sélectionnées.: Enter your email address to receive the selected newsletters.
-  documentation.total_category_block.title: of the total, see documentation
-  documentation.total_category_block.title.lock: du total, voir la documentation
-  Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.: Tick the boxes corresponding to the newsletters you wish to subscribe to.
-  Inscription en cours...: Registration in progress...
-  Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie: Select this filter to display only items in this category
-  homePage.interactiveIllustration.itemTitle: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} out of 5'
-  homePage.interactiveIllustration.itemTitle.lock: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'
-  common.slider.play: Reading
-  common.slider.play.lock: Lecture
-  Accès rapide: Quick access
-  Arrêter le défilement: Stop scrolling
-  homePage.interactiveIllustration.waterScore: ' and water footprint rated {{waterScore}} out of 5'
-  homePage.interactiveIllustration.waterScore.lock: ' et empreinte eau notée {{waterScore}} sur 5'
-  Lancer le défilement: Start scrolling
-  common.slider.stop: Stop
-  common.slider.stop.lock: Arrêter
   simulator.customQuestions.ameublement.inProgress: This feature is currently under development. Thank you for your interest!
   simulator.customQuestions.ameublement.inProgress.lock: Cette fonctionnalité est actuellement en cours de conception. Merci pour votre intérêt !
   simulator.customQuestions.textile.open: I want to detail my wardrobe
@@ -1467,3 +1406,18 @@ entries:
   simulator.customQuestions.avion.openThreeYears.lock: Répondre sur les 3 dernières années
   endPage.poll.seeResults.button.label: See the results
   endPage.poll.seeResults.button.label.lock: Voir les résultats
+  Passer en français: Switch to French
+  Entrez des mots-clefs de recherche: Enter search keywords
+  Une garde-robe économe en eau: A water-saving wardrobe
+  Explorez nos modèles: Explore our models
+  Entrez des mots clefs: Enter keywords
+  Cambiar a español: Cambiar a español
+  5 infolettres sur l’impact du logement: 5 newsletters on the impact of housing
+  Evaluer la métrique carbone: Assessing carbon metrics
+  Switch to english: Switch to english
+  Evaluer la métrique eau: Assessing the water metric
+  Deux mini-vans, illustrant l'empreinte carbone des transports: Two minivans, illustrating the carbon footprint of transport
+  Un champ de coton, illustrant le calcul de l'empreinte eau: A field of cotton, illustrating the calculation of the water footprint
+  Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone: An event for the climate, illustrating actions to reduce one's carbon footprint
+  Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau: A watered field, illustrating the lexicon for understanding the water footprint
+  Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique: An ice pack sparse in the sunlight, illustrating our maladaptation to climate change

@@ -959,7 +959,6 @@ entries:
   S'inscrire: Inscríbete
   Accueil Blog: Inicio Blog
   Je m'inscris à l'infolettre: Suscríbase a nuestro boletín
-  Comparez vos résultats avec vos proches: Compara tus resultados con los de tu entorno
   4 infolettres l’impact des transports: 4 boletines informativos sobre el impacto del transporte
   'Publié le :': 'Publicado el :'
   Vous recevrez bientôt nos actualités et conseils directement dans votre boîte mail.: Pronto recibirás nuestras últimas noticias y consejos directamente en tu bandeja de entrada.
@@ -1364,74 +1363,8 @@ entries:
   common.navigation.nextQuestion.next.label.lock: Aller à la question suivante
   cookieConsent.board.title: Banner de consentimiento de cookies
   cookieConsent.board.title.lock: Bannière de consentement aux cookies
-  simulator.label.moreInfoButton: Para más información, pulse aquí {{label}}
-  simulator.label.moreInfoButton.lock: Plus d'informations - {{label}}
-  common.navigation.nextQuestion.pass.label: Pasar a la siguiente pregunta
-  common.navigation.nextQuestion.pass.label.lock: Passer et aller à la question suivante
-  common.interactiveIllustration.item.car: Coche
-  common.interactiveIllustration.item.car.lock: Voiture
-  simulator.customQuestions.voiture.deleteItem: Eliminar esta ruta
-  simulator.customQuestions.voiture.deleteItem.lock: Supprimer ce trajet
-  simulator.mosaicNumberInput: 'Eliminar un elemento : {{title}}'
-  simulator.mosaicNumberInput.lock: 'Retirer un élément : {{title}}'
-  organisations.additionalQuestions.deletion.modal.ariaLabel: Ventana de confirmación de eliminación de preguntas personalizada
-  organisations.additionalQuestions.deletion.modal.ariaLabel.lock: Fenêtre de confirmation de suppression de la question personnalisée
-  results.mainSubcategories.mainSubcategory.seeDetail: '{{title}}más información'
-  results.mainSubcategories.mainSubcategory.seeDetail.lock: '{{title}}, voir le détail ci-dessous'
-  group.results.rankingMember.delete.modal.ariaLabel: Ventana modal de confirmación de la supresión de un miembro del grupo
-  group.results.rankingMember.delete.modal.ariaLabel.lock: Fenêtre modale de confirmation de suppression du membre du groupe
-  simulator.customQuestions.voiture.open: Detallar mis viajes
-  simulator.customQuestions.voiture.open.lock: Détailler mes trajets
-  common.interactiveIllustration.item.coffee: Café
-  common.interactiveIllustration.item.coffee.lock: Café
-  common.navigation.previousButton.label: Ir a la pregunta anterior
-  common.navigation.previousButton.label.lock: Aller à la question précédente
-  Fenêtre modale de partage: Ventana modal para compartir
-  organisations.emailVerificationModal.title: Ventana modal de confirmación por correo electrónico
-  organisations.emailVerificationModal.title.lock: Fenêtre modale de confirmation d'email
-  simulator.topBar.totalButtons.saveButton.ariaLabel: Guardar y reanudar más tarde
-  simulator.topBar.totalButtons.saveButton.ariaLabel.lock: Enregistrer et reprendre plus tard
   cookieConsent.banner.title: Panel de gestión de cookies
   cookieConsent.banner.title.lock: Panneau de gestion des cookies
-  simulateur.saveModal.title: Ventana de prueba del modo de copia de seguridad
-  simulateur.saveModal.title.lock: Fenêtre modale de sauvegarde de test
-  results.informationBlock.carbon.closeButton: Cerrar la explicación de la huella hídrica
-  results.informationBlock.carbon.closeButton.lock: Fermer l'explication sur l'empreinte eau
-  common.burgerMenu.title: Cerrar el menú de navegación
-  common.burgerMenu.title.lock: Fermer le menu de navigation
-  common.interactiveIllustration.item.computer: Ordenador
-  common.interactiveIllustration.item.computer.lock: Ordinateur
-  organisations.polls.settings.confirmDeletion: Ventana modal de confirmación de la supresión de la campaña
-  organisations.polls.settings.confirmDeletion.lock: Fenêtre modale de confirmation de suppression de la campagne
-  common.slider.buttons.previous: Ir a la diapositiva anterior
-  common.slider.buttons.previous.lock: Aller à la diapositive précédente
-  common.slider.buttons.next: Ir al número de diapositiva {{number}}
-  common.slider.buttons.next.lock: Aller à la diapositive numéro {{number}}
-  blog.homepage.defaultDescription: Descubra consejos prácticos para reducir su huella ecológica.
-  blog.homepage.defaultDescription.lock: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
-  blog.homePage.dynamicPageNumber: página {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
-  blog.homePage.dynamicPageNumber.lock: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
-  blog.homepage.defaultTitle: Blog, descubra nuestros artículos y consejos sobre el clima - Nos Gestes Climat
-  blog.homepage.defaultTitle.lock: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
-  Inscription en cours...: Registro en curso...
-  Entrez votre adresse email pour recevoir les infolettres sélectionnées.: Introduzca su dirección de correo electrónico para recibir los boletines seleccionados.
-  5 infolettres sur l'impact du logement: 5 boletines sobre el impacto de la vivienda
-  4 infolettres l'impact des transports: 4 boletines informativos sobre el impacto del transporte
-  documentation.total_category_block.title: del total, consulte la documentación
-  documentation.total_category_block.title.lock: du total, voir la documentation
-  Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.: Marque las casillas correspondientes a los boletines a los que desea suscribirse.
-  Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie: Seleccione este filtro para mostrar sólo los artículos de esta categoría
-  common.slider.play: Lectura
-  common.slider.play.lock: Lecture
-  common.slider.stop: Stop
-  common.slider.stop.lock: Arrêter
-  Accès rapide: Acceso rápido
-  homePage.interactiveIllustration.waterScore: ' y huella hídrica: {{waterScore}} sobre 5'
-  homePage.interactiveIllustration.waterScore.lock: ' et empreinte eau notée {{waterScore}} sur 5'
-  Lancer le défilement: Iniciar desplazamiento
-  Arrêter le défilement: Detener el desplazamiento
-  homePage.interactiveIllustration.itemTitle: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} de 5'
-  homePage.interactiveIllustration.itemTitle.lock: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'
   simulator.customQuestions.textile.open: Detallando mi armario
   simulator.customQuestions.textile.open.lock: Je détaille ma garde-robe
   simulator.customQuestions.ameublement.inProgress: Esta función está actualmente en desarrollo. Gracias por su interés
@@ -1463,3 +1396,17 @@ entries:
   simulator.customQuestions.avion.openThreeYears.lock: Répondre sur les 3 dernières années
   endPage.poll.seeResults.button.label: Ver los resultados
   endPage.poll.seeResults.button.label.lock: Voir les résultats
+  Explorez nos modèles: Explore nuestros modelos
+  Cambiar a español: Change to English
+  Entrez des mots clefs: Introducir palabras clave
+  Entrez des mots-clefs de recherche: Introducir palabras clave de búsqueda
+  Passer en français: Cambiar al francés
+  Evaluer la métrique eau: Evaluar la métrica del agua
+  Evaluer la métrique carbone: Evaluar las métricas del carbono
+  Switch to english: Cambiar a inglés
+  Une garde-robe économe en eau: Un armario que ahorra agua
+  Deux mini-vans, illustrant l'empreinte carbone des transports: Dos monovolúmenes que ilustran la huella de carbono del transporte
+  5 infolettres sur l’impact du logement: 5 boletines sobre el impacto de la vivienda
+  Un champ de coton, illustrant le calcul de l'empreinte eau: Un campo de algodón, ilustrativo del cálculo de la huella hídrica
+  Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau: Un campo regado, ilustración del léxico para entender la huella hídrica
+  Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique: Una capa de hielo escasa a la luz del sol, ilustra nuestra inadaptación al cambio climático
