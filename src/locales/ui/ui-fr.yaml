@@ -229,7 +229,6 @@ entries:
   Vous avez quitté ce groupe. Vous allez être redirigé vers la page d'accueil du mode groupe: Vous avez quitté ce groupe. Vous allez être redirigé vers la page d'accueil du mode groupe
   Vous pouvez quitter le groupe en cliquant sur le bouton ci-dessous. Le groupe ne sera en revanche pas supprimé puisque vous n’en êtes pas l’administrateur.: Vous pouvez quitter le groupe en cliquant sur le bouton ci-dessous. Le groupe ne sera en revanche pas supprimé puisque vous n’en êtes pas l’administrateur.
   Vous pouvez supprimer le groupe en cliquant sur le bouton ci-dessous. Il sera supprimé définitivement pour tous ses autres membres puisque vous en êtes l'administrateur.: Vous pouvez supprimer le groupe en cliquant sur le bouton ci-dessous. Il sera supprimé définitivement pour tous ses autres membres puisque vous en êtes l'administrateur.
-  passager(s): passager(s)
   Période: Période
   'Vos trajets :': 'Vos trajets :'
   Ce groupe n'existe pas ou a été supprimé.: Ce groupe n'existe pas ou a été supprimé.
@@ -327,11 +326,6 @@ entries:
   Votre résultat: Votre résultat
   Vous pouvez utiliser vos données existantes, ou recommencer le test.: Vous pouvez utiliser vos données existantes, ou recommencer le test.
   Vous avez déjà réalisé le test Nos Gestes Climat !: Vous avez déjà réalisé le test Nos Gestes Climat !
-  Au total: Au total
-  C’est bien cette distance qui sera comptabilisée en fin de test.: C’est bien cette distance qui sera comptabilisée en fin de test.
-  km sont parcourus par an, avec en moyenne: km sont parcourus par an, avec en moyenne
-  km par personne: km par personne
-  voyageurs, soit: voyageurs, soit
   (Données consultables à partir de 3 participants, dans un souci d'anonymat): (Données consultables à partir de 3 participants, dans un souci d'anonymat)
   En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.: En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à récupérer le bilan de votre empreinte climat.
   Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.: Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.
@@ -438,7 +432,6 @@ entries:
   International: International
   Mes classements: Mes classements
   Mon empreinte: Mon empreinte
-  Répondre sur les 3 dernières années: Répondre sur les 3 dernières années
   '<0>Infolettre saisonnière de Nos Gestes Climat</0> : actualités climat, initiatives positives et nouveautés': '<0>Infolettre saisonnière de Nos Gestes Climat</0> : actualités climat, initiatives positives et nouveautés'
   "<0>Nos Gestes Transports</0> : tout savoir ou presque sur l'impact carbone des transports, en 4 e-mails": "<0>Nos Gestes Transports</0> : tout savoir ou presque sur l'impact carbone des transports, en 4 e-mails"
   Ce champ est requis.: Ce champ est requis.
@@ -628,8 +621,6 @@ entries:
   Visites et simulations: Visites et simulations
   'Ils relaient ': 'Ils relaient '
   Nos Gestes Climat: Nos Gestes Climat
-  sur les 14 habituels: sur les 14 habituels
-  Vous avez sélectionné: Vous avez sélectionné
   Le code n'est pas valide.: Le code n'est pas valide.
   Oups ! Une erreur s'est produite au moment d'envoyer votre code de vérification par email. Vérifiez si votre nouvel e-mail est bien valide et si le problème persiste, n'hésitez pas à <2>nous contacter</2>: Oups ! Une erreur s'est produite au moment d'envoyer votre code de vérification par email. Vérifiez si votre nouvel e-mail est bien valide et si le problème persiste, n'hésitez pas à <2>nous contacter</2>
   Vos informations ont bien été mises à jour.: Vos informations ont bien été mises à jour.
@@ -883,12 +874,9 @@ entries:
   Libre et documenté: Libre et documenté
   L’empreinte eau d'un jean est de 30 000 litres d'eau.: L’empreinte eau d'un jean est de 30 000 litres d'eau.
   La production d’un ordinateur nécessite 195 000 litres d’eau.: La production d’un ordinateur nécessite 195 000 litres d’eau.
-  Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau: Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau
-  Un champ de coton, illustrant le calcul de l'empreinte eau: Un champ de coton, illustrant le calcul de l'empreinte eau
   Un épi de maïs et un avocat, illustrant le fait d'économiser l'eau dans l'alimentation: Un épi de maïs et un avocat, illustrant le fait d'économiser l'eau dans l'alimentation
   Un homme dans un magasin réfléchissant à l'empreinte eau du tee-shirt qu'il tient: Un homme dans un magasin réfléchissant à l'empreinte eau du tee-shirt qu'il tient
   Une fille dans un magasin hésitant entre un pull en coton et un pull en lin, illustrant le fait de réduire l'utilisation d'eau des vêtements: Une fille dans un magasin hésitant entre un pull en coton et un pull en lin, illustrant le fait de réduire l'utilisation d'eau des vêtements
-  Une garde-robe économe en eau: Une garde-robe économe en eau
   'Privilégier les matériaux durables (lin, chanvre, laine, et si coton : recyclé)': 'Privilégier les matériaux durables (lin, chanvre, laine, et si coton : recyclé)'
   Calculez votre <2>empreinte carbone</2> et votre <6>empreinte eau</6> en <9>seulement 10 minutes</9>.: Calculez votre <2>empreinte carbone</2> et votre <6>empreinte eau</6> en <9>seulement 10 minutes</9>.
   Chez Nos Gestes Climat, nous croyons au pouvoir de <2>l’action collective</2> pour relever les défis environnementaux. Notre mission est de <6>sensibiliser</6> et d’accompagner chacun, citoyens, entreprises et collectivités, à mieux comprendre son empreinte écologique, carbone ou eau, <9>identifier les gestes</9> pour la réduire et <13>entraîner leur entourage</13> dans ce mouvement.: Chez Nos Gestes Climat, nous croyons au pouvoir de <2>l’action collective</2> pour relever les défis environnementaux. Notre mission est de <6>sensibiliser</6> et d’accompagner chacun, citoyens, entreprises et collectivités, à mieux comprendre son empreinte écologique, carbone ou eau, <9>identifier les gestes</9> pour la réduire et <13>entraîner leur entourage</13> dans ce mouvement.
@@ -898,13 +886,11 @@ entries:
   Un groupe de personnes en conférence, illustrant l'engagement collectif pour le climat: Un groupe de personnes en conférence, illustrant l'engagement collectif pour le climat
   un groupe de personnes en train de réfléchir à leurs impacts et leur bilan carbone et eau: un groupe de personnes en train de réfléchir à leurs impacts et leur bilan carbone et eau
   Une fille tapant sur son ordinateur, entouré d'objets aux empreintes carbone et eau variées.: Une fille tapant sur son ordinateur, entouré d'objets aux empreintes carbone et eau variées.
-  Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone: Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone
   Le saviez vous ?: Le saviez vous ?
   Graphique de l'empreinte carbone: Graphique de l'empreinte carbone
   Graphique de l'empreinte eau: Graphique de l'empreinte eau
   Calculez votre <2>empreinte carbone</2> en quelques minutes et découvrez les <6>actions</6> les plus efficaces pour <9>réduire vos émissions</9> de gaz à effet de serre.: Calculez votre <2>empreinte carbone</2> en quelques minutes et découvrez les <6>actions</6> les plus efficaces pour <9>réduire vos émissions</9> de gaz à effet de serre.
   Deux personnes accolées levant le bras en signe de succès, illustrant l'importance du collectif dans la réduction de nos empreintes carbone: Deux personnes accolées levant le bras en signe de succès, illustrant l'importance du collectif dans la réduction de nos empreintes carbone
-  Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique: Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique
   Une jeune femme cuisinant, illustrant l'importance de ses choix d'alimentation dans le calcul de son empreinte carbone: Une jeune femme cuisinant, illustrant l'importance de ses choix d'alimentation dans le calcul de son empreinte carbone
   Une jeune femme lisant un journal, illustrant l'empreinte carbone liée à son logement: Une jeune femme lisant un journal, illustrant l'empreinte carbone liée à son logement
   Une jeune femme réfléchissant à ses choix de consommation, illustrant l'importance de ses achats dans le calcul de son empreinte carbone: Une jeune femme réfléchissant à ses choix de consommation, illustrant l'importance de ses achats dans le calcul de son empreinte carbone
@@ -914,8 +900,6 @@ entries:
   Une fois utilisée, cette eau est <2>dépolluée</2> puis <5>renvoyée</5> dans les cours d'eau locaux.: Une fois utilisée, cette eau est <2>dépolluée</2> puis <5>renvoyée</5> dans les cours d'eau locaux.
   <0>Comparez vos résultats avec</0> <2>vos proches</2>: <0>Comparez vos résultats avec</0> <2>vos proches</2>
   1 par mois max: 1 par mois max
-  4 infolettres l’impact des transports: 4 infolettres l’impact des transports
-  5 infolettres sur l’impact du logement: 5 infolettres sur l’impact du logement
   À la une !: À la une !
   Accueil Blog: Accueil Blog
   Comparez vos résultats avec vos proches: Comparez vos résultats avec vos proches
@@ -956,7 +940,6 @@ entries:
   Coopérative: Coopérative
   Veuillez entrer un nombre positif: Veuillez entrer un nombre positif
   Empreinte eau et empreinte carbone se répondent.: Empreinte eau et empreinte carbone se répondent.
-  Impossible de copier le lien: Impossible de copier le lien
   Infolettre saisonnière de Nos Gestes Climat: Infolettre saisonnière de Nos Gestes Climat
   Options: Options
   Vous trouverez ici les réponses aux questions les plus fréquentes. S'il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !: Vous trouverez ici les réponses aux questions les plus fréquentes. S'il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !
@@ -1056,8 +1039,6 @@ entries:
   Pied de page: Pied de page
   9,5 kg de vêtements... mais n'en trient que 3,4 kg !: 9,5 kg de vêtements... mais n'en trient que 3,4 kg !
   En moyenne, les Français achètent chaque année,: En moyenne, les Français achètent chaque année,
-  Je détaille ma garde-robe: Je détaille ma garde-robe
-  'Pour plus de précision:': 'Pour plus de précision:'
   Plusieurs milliers d’organisations nous font confiance pour sensibiliser efficacement: Plusieurs milliers d’organisations nous font confiance pour sensibiliser efficacement
   Rejoignez-les: Rejoignez-les
   ": aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l'ADEME.": ": aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l'ADEME."
@@ -1158,7 +1139,7 @@ entries:
   footer.thematicLandingPages.title: Pages thématiques
   cookies.banner.acceptAll: Tout accepter
   cookies.banner.customize: Personnaliser
-  cookies.banner.description: Nous utilisons des cookies, juste ce qu’il faut pour faire fonctionner le site, améliorer l’expérience et mesurer de manière anonyme l’audience. Avec votre accord, nous activons aussi un suivi simple de nos campagnes pour mieux comprendre ce qui fonctionne et mieux piloter notre budget.
+  cookies.banner.description: Nous utilisons des cookies, juste ce qu'il faut pour faire fonctionner le site, améliorer l'expérience et mesurer de manière anonyme l'audience. Avec votre accord, nous activons aussi un suivi simple de nos campagnes pour mieux comprendre ce qui fonctionne et mieux piloter notre budget.
   cookies.banner.refuseAll: Tout refuser
   cookies.banner.title: Chez Nos Gestes Climat, votre vie privée compte
   cookies.management.accept: Accepter
@@ -1179,7 +1160,6 @@ entries:
   Accepter les cookies: Accepter les cookies
   Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.: Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.
   Refuser les cookies: Refuser les cookies
-  Bannière de consentement aux cookies: cookies.banner.contentLabel
   Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calculez votre empreinte carbone et eau avec Nos Gestes Climat
   'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'Vous pouvez nous contacter via notre page de contact : <2></2>.'
   Gestion des cookies: Gestion des cookies
@@ -1255,3 +1235,70 @@ entries:
   Statistiques d'usage du mode "Organisations": Statistiques d'usage du mode "Organisations"
   Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.: Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.
   Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.: Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.
+  actions.form.custom.modal.ariaLabel: Fenêtre modale du formulaire d'action personnalisée
+  actions.form.modal.ariaLabel: Fenêtre modale du formulaire d'action
+  Choix de la métrique: Choix de la métrique
+  common.burgerMenu.title: Fermer le menu de navigation
+  common.buttons.close: Fermer
+  common.interactiveIllustration.item.car: Voiture
+  common.interactiveIllustration.item.coffee: Café
+  common.interactiveIllustration.item.computer: Ordinateur
+  common.interactiveIllustration.item.shirt: Chemisier
+  common.modal.confirmation.title: Fenêtre modale de confirmation d'action
+  common.navigation.nextQuestion.finish.label: Terminer le test et accéder à la page de résultats
+  common.navigation.nextQuestion.next.label: Aller à la question suivante
+  common.navigation.nextQuestion.pass.label: Passer et aller à la question suivante
+  common.navigation.previousButton.label: Aller à la question précédente
+  cookieConsent.banner.title: Panneau de gestion des cookies
+  cookieConsent.board.title: Bannière de consentement aux cookies
+  Fenêtre modale de partage: Fenêtre modale de partage
+  group.results.rankingMember.delete.modal.ariaLabel: Fenêtre modale de confirmation de suppression du membre du groupe
+  organisations.additionalQuestions.deletion.modal.ariaLabel: Fenêtre de confirmation de suppression de la question personnalisée
+  organisations.emailVerificationModal.title: Fenêtre modale de confirmation d'email
+  organisations.polls.settings.confirmDeletion: Fenêtre modale de confirmation de suppression de la campagne
+  Ouvrir le menu: Ouvrir le menu
+  results.informationBlock.carbon.closeButton: Fermer l'explication sur l'empreinte eau
+  results.informationBlock.carbon.openButton: Voir le détail de l'objectif 2 tonnes en 2050
+  results.informationBlock.water.openButton: Voir l'explication sur l'empreinte eau
+  results.mainSubcategories.mainSubcategory.seeDetail: '{{title}}, voir le détail ci-dessous'
+  simulateur.saveModal.title: Fenêtre modale de sauvegarde de test
+  simulator.customQuestions.voiture.deleteItem: Supprimer ce trajet
+  simulator.customQuestions.voiture.open: Détailler mes trajets
+  simulator.label.moreInfoButton: Plus d'informations - {{label}}
+  simulator.mosaicNumberInput: 'Retirer un élément : {{title}}'
+  simulator.topBar.totalButtons.saveButton.ariaLabel: Enregistrer et reprendre plus tard
+  blog.homepage.defaultDescription: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
+  blog.homepage.defaultTitle: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
+  blog.homePage.dynamicPageNumber: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
+  common.slider.buttons.next: Aller à la diapositive numéro {{number}}
+  common.slider.buttons.previous: Aller à la diapositive précédente
+  4 infolettres l'impact des transports: 4 infolettres l'impact des transports
+  5 infolettres sur l'impact du logement: 5 infolettres sur l'impact du logement
+  Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.: Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.
+  documentation.total_category_block.title: du total, voir la documentation
+  Entrez votre adresse email pour recevoir les infolettres sélectionnées.: Entrez votre adresse email pour recevoir les infolettres sélectionnées.
+  Inscription en cours...: Inscription en cours...
+  Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie: Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie
+  Accès rapide: Accès rapide
+  Arrêter le défilement: Arrêter le défilement
+  common.slider.play: Lecture
+  common.slider.stop: Arrêter
+  homePage.interactiveIllustration.itemTitle: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'
+  homePage.interactiveIllustration.waterScore: ' et empreinte eau notée {{waterScore}} sur 5'
+  Lancer le défilement: Lancer le défilement
+  simulator.customQuestions.ameublement.inProgress: Cette fonctionnalité est actuellement en cours de conception. Merci pour votre intérêt !
+  simulator.customQuestions.ameublement.open: Je détaille mes derniers achats
+  simulator.customQuestions.textile.open: Je détaille ma garde-robe
+  'Pour plus de précision:': 'Pour plus de précision:'
+  simulator.customQuestions.plats.meals: repas
+  simulator.customQuestions.plats.perWeek: par semaine, miam
+  simulator.customQuestions.plats.selectionEnd: sur les 14 habituels
+  simulator.customQuestions.plats.selectionStart: Vous avez sélectionné
+  simulator.customQuestions.voiture.passengers: passager(s)
+  simulator.customQuestions.voiture.summaryEnd: C’est bien cette distance qui sera comptabilisée en fin de test.
+  simulator.customQuestions.voiture.summaryKmPerPerson: km par personne
+  simulator.customQuestions.voiture.summaryKmPerYear: km sont parcourus par an, avec en moyenne
+  simulator.customQuestions.voiture.summaryPassengers: voyageurs, soit
+  simulator.customQuestions.voiture.summaryStart: Au total
+  simulator.customQuestions.avion.openThreeYears: Répondre sur les 3 dernières années
+  endPage.poll.seeResults.button.label: Voir les résultats

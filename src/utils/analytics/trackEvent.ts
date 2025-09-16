@@ -52,9 +52,10 @@ export const trackPosthogEvent = (args: {
   posthog.capture(args.eventName, { ...args.properties })
 }
 
-export const trackPageView = (url: string) => {
+export const trackPageView = (url: string, anonymizedUrl: string) => {
   if (shouldLogTracking) {
     console.debug('trackPageView => ' + url)
+    console.debug('trackAnonymizedPageView => ' + anonymizedUrl)
   }
 
   if (shouldNotTrack || !window?._paq) {
@@ -63,7 +64,8 @@ export const trackPageView = (url: string) => {
 
   posthog.capture('$pageview', { $current_url: url })
 
-  window?._paq?.push(['setCustomUrl', url])
+  // We track "organisation anonymized" page view for Matomo, as it is public. We don't want anyone to check any poll results with the slug.
+  window?._paq?.push(['setCustomUrl', anonymizedUrl])
   window?._paq?.push(['setDocumentTitle', document?.title])
 
   // remove all previously assigned custom variables, requires Matomo (formerly Piwik) 3.0.2

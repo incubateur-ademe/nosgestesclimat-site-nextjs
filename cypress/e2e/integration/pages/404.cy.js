@@ -1,3 +1,5 @@
+import { visit } from '../../../helpers/interactions/visit'
+
 describe('404 Page', () => {
   it('should display 404 page when accessing non-existent URL', () => {
     // Intercept and handle the Next.js not found error
@@ -8,10 +10,10 @@ describe('404 Page', () => {
     })
 
     // Visit a URL that definitely doesn't exist
-    cy.visit('/definitely-not-a-page-url', { failOnStatusCode: false })
+    visit('/definitely-not-a-page-url', { failOnStatusCode: false })
 
     // Verify that we're on the 404 page
-    cy.url().should('include', '/definitely-not-a-page-url')
+    cy.url().should('include', '/404')
 
     // Check for common 404 page elements
     cy.get('h1').should('exist')
