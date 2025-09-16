@@ -168,7 +168,11 @@ export default function CategoryRadarChart({
 
             <PolarAngleAxis
               dataKey="name"
-              tick={{ fontSize: 12, fill: '#444', transform: 'rotate(0)' }}
+              tick={{
+                fontSize: isMobile() ? 12 : 16,
+                fill: '#444',
+                transform: 'rotate(0)',
+              }}
               radius={12}
             />
 
@@ -216,10 +220,10 @@ export default function CategoryRadarChart({
           </RadarChart>
         </ResponsiveContainer>
 
-        <div className="mt-6 flex justify-center gap-3 md:gap-8">
+        <div className="flex justify-center gap-3 md:gap-8">
           <div className="flex items-center gap-2">
             <div className="h-4 w-4 rounded bg-pink-500"></div>
-            <span className="text-xs text-gray-900">
+            <span className="text-xs text-gray-900 md:text-sm">
               {t(
                 'pollResults.footprintBarChart.legend.groupFootprint',
                 'Empreinte moyenne du groupe'
@@ -228,7 +232,7 @@ export default function CategoryRadarChart({
           </div>
           <div className="flex items-center gap-2">
             <div className="bg-primary-800 h-4 w-4 rounded"></div>
-            <span className="text-xs text-gray-900">
+            <span className="text-xs text-gray-900 md:text-sm">
               {t(
                 'pollResults.footprintBarChart.legend.userFootprint',
                 'Votre empreinte'

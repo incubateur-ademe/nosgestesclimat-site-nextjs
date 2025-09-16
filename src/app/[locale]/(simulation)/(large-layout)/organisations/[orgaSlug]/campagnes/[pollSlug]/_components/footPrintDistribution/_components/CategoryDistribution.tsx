@@ -92,14 +92,14 @@ export default function CategoryDistribution({
         fill="black"
         textAnchor={x > cx ? 'start' : 'end'}
         dominantBaseline="central"
-        fontSize={isMobile() ? '10' : '12'}
+        fontSize={isMobile() ? '10' : '16'}
         fontWeight="600">
         {name}
         <tspan
           x={x}
           dy={isMobile() ? '12' : '16'}
           fontWeight="normal"
-          fontSize={isMobile() ? '9' : '12'}>
+          fontSize={isMobile() ? '10' : '14'}>
           {formattedValue.formattedValue} {formattedValue.unit}
         </tspan>
       </text>

@@ -96,9 +96,7 @@ export default function StatisticsBlocks({
               </p>
 
               <p className="text-xl">
-                <Trans>
-                  <strong>Empreinte carbone</strong> moyenne
-                </Trans>
+                <Trans>Empreinte carbone moyenne</Trans>
               </p>
             </div>
 
@@ -118,9 +116,7 @@ export default function StatisticsBlocks({
                   </p>
 
                   <p className="text-xl text-white">
-                    <Trans>
-                      <strong>Empreinte eau</strong> moyenne
-                    </Trans>
+                    <Trans>Empreinte eau moyenne</Trans>
                   </p>
                 </div>
               </div>
