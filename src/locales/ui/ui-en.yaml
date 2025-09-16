@@ -1531,8 +1531,8 @@ entries:
   copyButton.copiedAriaLabel.lock: Lien copié dans le presse-papiers
   pollResults.radarChart.title: Your footprint in relation to other participants
   pollResults.radarChart.title.lock: Votre empreinte par rapport aux autres participants
-  pollResults.footprintBarChart.targetLabelMobile: Objective
-  pollResults.footprintBarChart.targetLabelMobile.lock: Objectif
+  pollResults.footprintBarChart.targetLabelMobile: 'Target 2050:'
+  pollResults.footprintBarChart.targetLabelMobile.lock: 'Objectif 2050 :'
   common.category.alimentationShort: Power supply
   common.category.alimentationShort.lock: Alim.
   Empreinte carbone moyenne: Average carbon footprint

@@ -5,6 +5,7 @@ import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprin
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Categories } from '@incubateur-ademe/nosgestesclimat'
 import isMobile from 'is-mobile'
+import { useState } from 'react'
 import {
   PolarAngleAxis,
   PolarGrid,
@@ -28,6 +29,7 @@ export default function CategoryRadarChart({
   className,
 }: Props) {
   const { t } = useClientTranslation()
+  const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
   const categoryLabels = {
     transport: t('common.category.transport', 'Transport'),
@@ -73,6 +75,32 @@ export default function CategoryRadarChart({
     }
   })
 
+  // Gestionnaire de navigation au clavier
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (data.length === 0) return
+
+    switch (event.key) {
+      case 'ArrowDown':
+      case 'ArrowRight':
+        event.preventDefault()
+        setActiveIndex((prev) =>
+          prev === null ? 0 : Math.min(prev + 1, data.length - 1)
+        )
+        break
+      case 'ArrowUp':
+      case 'ArrowLeft':
+        event.preventDefault()
+        setActiveIndex((prev) =>
+          prev === null ? data.length - 1 : Math.max(prev - 1, 0)
+        )
+        break
+      case 'Escape':
+        event.preventDefault()
+        setActiveIndex(null)
+        break
+    }
+  }
+
   const getAccessibleDescription = () => {
     let description = t(
       'pollResults.radarChart.accessibleDescription.chart',
@@ -91,8 +119,8 @@ export default function CategoryRadarChart({
           '{{category}}: vos résultats {{user}} {{comparison}} à la moyenne {{average}}.',
           {
             category: item.nameFull,
-            user: `${item.userFormatted.formattedValue} ${item.userFormatted.unit}`,
-            average: `${item.averageFormatted.formattedValue} ${item.averageFormatted.unit}`,
+            user: `${item.userFormatted.formattedValue} ${item.userFormatted.unit ?? ''}`,
+            average: `${item.averageFormatted.formattedValue} ${item.averageFormatted.unit ?? ''}`,
             comparison,
           }
         ) + ' '
@@ -160,10 +188,12 @@ export default function CategoryRadarChart({
       </div>
 
       <div className="relative rounded-xl bg-white">
-        <ResponsiveContainer width="100%" height={260}>
+        <ResponsiveContainer width="100%" height={isMobile() ? 240 : 330}>
           <RadarChart
+            accessibilityLayer
             data={data}
-            margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+            height={300}
+            margin={{ top: 20, right: 20, bottom: 0, left: 20 }}>
             <PolarGrid stroke="#444" strokeDasharray="5 5" strokeWidth={1} />
 
             <PolarAngleAxis
@@ -196,7 +226,7 @@ export default function CategoryRadarChart({
               axisLine={false}
             />
 
-            <Tooltip content={<CustomTooltip />} />
+            <Tooltip accessibilityLayer content={<CustomTooltip />} />
 
             <Radar
               name={t(
@@ -209,11 +239,12 @@ export default function CategoryRadarChart({
               fillOpacity={0.3}
               strokeWidth={2}
             />
+
             <Radar
               name={t('pollResults.radarChart.legend.average', 'Moyenne')}
               dataKey="average"
-              stroke="#EC4899"
-              fill="#EC4899"
+              stroke="#a60e66"
+              fill="#a60e66"
               fillOpacity={0.3}
               strokeWidth={2}
             />
@@ -222,7 +253,7 @@ export default function CategoryRadarChart({
 
         <div className="flex justify-center gap-3 md:gap-8">
           <div className="flex items-center gap-2">
-            <div className="h-4 w-4 rounded bg-pink-500"></div>
+            <div className="h-4 w-4 rounded bg-pink-800"></div>
             <span className="text-xs text-gray-900 md:text-sm">
               {t(
                 'pollResults.footprintBarChart.legend.groupFootprint',

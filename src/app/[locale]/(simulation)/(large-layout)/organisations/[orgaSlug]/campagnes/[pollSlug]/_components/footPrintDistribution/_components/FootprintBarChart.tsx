@@ -202,24 +202,22 @@ export default function FootprintBarChart({
         {getAccessibleDescription()}
       </div>
       <div className="w-full">
-        <ResponsiveContainer width="100%" height={data.length * 100 + 100}>
+        <ResponsiveContainer width="100%" height={300}>
           <BarChart
             data={data}
             margin={{
               top: 40,
-              right: 40,
+              right: 10,
               left: 0,
-              bottom: 40,
+              bottom: 0,
             }}
+            accessibilityLayer
             layout="vertical"
-            barCategoryGap="10%"
-            style={{
-              minWidth: '200px',
-            }}
-            maxBarSize={50}>
+            barGap={0}
+            barCategoryGap={0}>
             <XAxis
               type="number"
-              domain={[0, maxValue + 2]}
+              domain={[0, maxValue + 5]}
               axisLine
               tickLine
               tick={{ fontSize: isMobile() ? 12 : 16, fill: '#444' }}
@@ -239,11 +237,11 @@ export default function FootprintBarChart({
               axisLine
               tickLine={false}
               tick={false}
-              interval={0}
+              interval={-10}
               width={5}
             />
 
-            <Bar width={80} dataKey="value" shape={<CustomBar />}>
+            <Bar dataKey="value" barSize={50} shape={<CustomBar />}>
               {data.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
@@ -254,7 +252,7 @@ export default function FootprintBarChart({
 
             <ReferenceLine
               x={targetValue}
-              stroke="#d40d83"
+              stroke="#a60e66"
               strokeDasharray="5 5"
               strokeWidth={2}
             />
@@ -269,24 +267,15 @@ export default function FootprintBarChart({
                     <text
                       x={x}
                       y={y - 10}
-                      fill="#d40d83"
+                      fill="#a60e66"
                       fontSize="14px"
                       fontWeight="bold"
                       textAnchor="start">
-                      2 {targetFormatted.unit}
-                    </text>
-
-                    <text
-                      x={x}
-                      y={y + 2}
-                      fill="#d40d83"
-                      fontSize="12px"
-                      textAnchor="start">
                       {t(
                         'pollResults.footprintBarChart.targetLabelMobile',
-                        'Objectif'
+                        'Objectif 2050 :'
                       )}{' '}
-                      2050
+                      2 {targetFormatted.unit}
                     </text>
                   </g>
                 )
@@ -297,10 +286,10 @@ export default function FootprintBarChart({
       </div>
 
       {userFootprint && (
-        <div className="mt-6 flex justify-center gap-3 md:gap-8">
+        <div className="mt-2 flex justify-center gap-3 md:gap-8">
           <div className="flex items-center gap-2">
             <div className="bg-primary-400 h-4 w-4 rounded"></div>
-            <span className="text-sm text-gray-900">
+            <span className="text-xs text-gray-900 md:text-sm">
               {t(
                 'pollResults.footprintBarChart.legend.groupFootprint',
                 'Empreinte moyenne du groupe'
@@ -309,7 +298,7 @@ export default function FootprintBarChart({
           </div>
           <div className="flex items-center gap-2">
             <div className="bg-primary-700 h-4 w-4 rounded"></div>
-            <span className="text-sm text-gray-900">
+            <span className="text-xs text-gray-900 md:text-sm">
               {t(
                 'pollResults.footprintBarChart.legend.userFootprint',
                 'Votre empreinte'

@@ -1329,6 +1329,6 @@ entries:
   pollResults.radarChart.legend.userResults: Mes résultats
   pollResults.radarChart.title: Votre empreinte par rapport aux autres participants
   common.category.alimentationShort: Alim.
-  pollResults.footprintBarChart.targetLabelMobile: Objectif
+  pollResults.footprintBarChart.targetLabelMobile: 'Objectif 2050 :'
   Empreinte carbone moyenne: Empreinte carbone moyenne
   Empreinte eau moyenne: Empreinte eau moyenne

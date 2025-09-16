@@ -92,14 +92,15 @@ export default function CategoryDistribution({
         fill="black"
         textAnchor={x > cx ? 'start' : 'end'}
         dominantBaseline="central"
-        fontSize={isMobile() ? '10' : '16'}
+        fontSize={isMobile() ? '14' : '16'}
         fontWeight="600">
         {name}
         <tspan
           x={x}
+          y={y + 8}
           dy={isMobile() ? '12' : '16'}
           fontWeight="normal"
-          fontSize={isMobile() ? '10' : '14'}>
+          fontSize={isMobile() ? '12' : '14'}>
           {formattedValue.formattedValue} {formattedValue.unit}
         </tspan>
       </text>
@@ -124,7 +125,7 @@ export default function CategoryDistribution({
       </div>
 
       <div className="relative">
-        <ResponsiveContainer width="100%" height={isMobile() ? 250 : 300}>
+        <ResponsiveContainer width="100%" height={320}>
           <PieChart>
             <Pie
               data={formattedData}
