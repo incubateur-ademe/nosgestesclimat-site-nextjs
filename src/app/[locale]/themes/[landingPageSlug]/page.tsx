@@ -196,7 +196,7 @@ export default async function ThematicLandingPage({
         {block4 && (
           <DidYouKnowSlider
             slides={block4?.map(({ text, image, pinkText }) => ({
-              content: text,
+              content: <div dangerouslySetInnerHTML={{ __html: text}} />,
               illustration: image?.url ?? '',
               highlight: pinkText ?? '',
             }))}
