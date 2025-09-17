@@ -11,12 +11,14 @@ type Props = {
   organisationName?: string
   groupComputedResults?: ComputedResults | null
   userComputedResults?: ComputedResults | null
+  simulationsCount?: number
 }
 
 export default function MeanFootprintDistribution({
   organisationName,
   groupComputedResults,
   userComputedResults,
+  simulationsCount,
 }: Props) {
   const { isAdmin } = useIsOrganisationAdmin()
 
@@ -30,7 +32,7 @@ export default function MeanFootprintDistribution({
     'services sociétaux': meanServices,
   } = Object.entries(groupComputedResults.carbone.categories).reduce(
     (accObject, [key, value]) => {
-      accObject[key as Categories] = value
+      accObject[key as Categories] = value / (simulationsCount ?? 1)
 
       return accObject
     },
@@ -42,6 +44,7 @@ export default function MeanFootprintDistribution({
       'services sociétaux': 0,
     } as Record<Categories, number>
   )
+
 
   return (
     <div>
@@ -56,7 +59,7 @@ export default function MeanFootprintDistribution({
 
           <Card className="bg-primary-100 w-full flex-1 items-center border-0 p-6">
             <FootprintBarChart
-              groupFootprint={groupComputedResults?.carbone?.bilan}
+              groupFootprint={groupComputedResults?.carbone?.bilan / (simulationsCount ?? 1)}
               userFootprint={userComputedResults?.carbone?.bilan}
             />
           </Card>
@@ -68,7 +71,7 @@ export default function MeanFootprintDistribution({
                 transport: meanTransport,
                 alimentation: meanAlimentation,
                 logement: meanLogement,
-                divers: meanDivers,
+                divers: meanDivers ,
                 'services sociétaux': meanServices,
               }}
             />

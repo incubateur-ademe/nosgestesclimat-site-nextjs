@@ -10,46 +10,6 @@ type Props = {
   organisationName?: string
 }
 
-const getGroupComputedResults = (
-  computedResults: ComputedResults,
-  userComputedResults?: ComputedResults | null,
-  simulationsCount?: number
-) => {
-  const adjustedSimulationsCount = userComputedResults
-    ? (simulationsCount ?? 0) - 1
-    : (simulationsCount ?? 0)
-  // Copie profonde pour éviter de modifier l'objet original
-  const tempGroupComputedResults = {
-    ...computedResults,
-    carbone: {
-      ...computedResults.carbone,
-      categories: { ...computedResults.carbone.categories },
-    },
-  }
-
-  // Remove the user's footprint from the group's footprint
-  tempGroupComputedResults.carbone.bilan =
-    (tempGroupComputedResults.carbone.bilan -
-      (userComputedResults?.carbone?.bilan ?? 0)) /
-    (adjustedSimulationsCount || 1)
-
-  // Remove the user's footprint from the group's categories
-  tempGroupComputedResults.carbone.categories = Object.entries(
-    tempGroupComputedResults.carbone.categories
-  ).reduce(
-    (acc, [key, value]) => {
-      acc[key as DottedName] =
-        (value -
-          (userComputedResults?.carbone?.categories[key as DottedName] ?? 0)) /
-        (adjustedSimulationsCount || 1)
-      return acc
-    },
-    {} as Record<DottedName, number>
-  )
-
-  return tempGroupComputedResults
-}
-
 export default function FootprintDistribution({
   computedResults,
   userComputedResults,
@@ -63,11 +23,6 @@ export default function FootprintDistribution({
   )
     return null
 
-  const groupComputedResults = getGroupComputedResults(
-    computedResults,
-    userComputedResults,
-    simulationsCount
-  )
 
   return (
     <section className="mb-8">
@@ -79,8 +34,9 @@ export default function FootprintDistribution({
 
       <MeanFootprintDistribution
         organisationName={organisationName}
-        groupComputedResults={groupComputedResults}
+        groupComputedResults={computedResults}
         userComputedResults={userComputedResults}
+        simulationsCount={simulationsCount}
       />
     </section>
   )

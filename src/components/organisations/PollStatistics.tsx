@@ -54,7 +54,6 @@ export default function PollStatistics({
         <StatisticsBlocks
           simulationsCount={simulationsCount}
           computedResults={computedResults}
-          userComputedResults={userComputedResults}
         />
       </section>
 

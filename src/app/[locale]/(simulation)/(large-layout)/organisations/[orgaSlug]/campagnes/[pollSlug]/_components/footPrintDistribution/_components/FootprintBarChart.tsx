@@ -18,7 +18,6 @@ type Props = {
   groupFootprint: number
   userFootprint?: number
   targetValue?: number
-  targetYear?: number
   className?: string
 }
 
@@ -26,12 +25,11 @@ export default function FootprintBarChart({
   groupFootprint,
   userFootprint,
   targetValue = 2,
-  targetYear = 2050,
   className,
 }: Props) {
   const { t } = useClientTranslation()
 
-  const groupFormatted = formatCarbonFootprint(groupFootprint, {
+  const groupFormatted = formatCarbonFootprint(groupFootprint , {
     maximumFractionDigits: 1,
   })
 
@@ -53,10 +51,6 @@ export default function FootprintBarChart({
         maximumFractionDigits: 1,
       })
     : null
-
-  const targetFormatted = formatCarbonFootprint(targetValue * 1000, {
-    maximumFractionDigits: 1,
-  })
 
   const data = [
     {
@@ -113,9 +107,9 @@ export default function FootprintBarChart({
         'pollResults.footprintBarChart.accessibleDescription.target',
         "L'objectif à atteindre d'ici {{year}} est de {{value}} {{unit}}.",
         {
-          year: targetYear,
-          value: targetFormatted.formattedValue,
-          unit: targetFormatted.unit,
+          year: '2050',
+          value: '2',
+          unit: 'tonnes',
         }
       ) + ' '
 
@@ -207,7 +201,7 @@ export default function FootprintBarChart({
             data={data}
             margin={{
               top: 40,
-              right: 10,
+              right: maxValue > 100 ? 100 : maxValue > 15 ? 60 : 10,
               left: 0,
               bottom: 0,
             }}
@@ -275,7 +269,7 @@ export default function FootprintBarChart({
                         'pollResults.footprintBarChart.targetLabelMobile',
                         'Objectif 2050 :'
                       )}{' '}
-                      2 {targetFormatted.unit}
+                      2 {t('pollResults.footprintBarChart.targetLabelUnit', 'tonnes')}
                     </text>
                   </g>
                 )

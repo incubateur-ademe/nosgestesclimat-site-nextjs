@@ -30,11 +30,9 @@ const mockResults = {
 export default function StatisticsBlocks({
   simulationsCount,
   computedResults,
-  userComputedResults,
 }: {
   simulationsCount: number
   computedResults?: ComputedResults | null
-  userComputedResults?: ComputedResults | null
 }) {
   const locale = useLocale()
 
@@ -45,7 +43,7 @@ export default function StatisticsBlocks({
   if (!result) return null
 
   const { formattedValue, unit } = formatFootprint(
-    (result?.carbone?.bilan - (userComputedResults?.carbone?.bilan || 0)) /
+    (result?.carbone?.bilan) /
       simulationsCount,
     {
       metric: carboneMetric,
@@ -56,7 +54,7 @@ export default function StatisticsBlocks({
 
   const { formattedValue: formattedWaterValue, unit: waterUnit } =
     formatFootprint(
-      (result?.eau?.bilan - (userComputedResults?.carbone?.bilan || 0)) /
+      (result?.eau?.bilan) /
         simulationsCount,
       { metric: eauMetric, localize: true }
     )

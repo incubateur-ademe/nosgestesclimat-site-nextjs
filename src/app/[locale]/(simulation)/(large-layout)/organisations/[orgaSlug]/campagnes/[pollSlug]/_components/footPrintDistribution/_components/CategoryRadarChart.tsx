@@ -29,7 +29,6 @@ export default function CategoryRadarChart({
   className,
 }: Props) {
   const { t } = useClientTranslation()
-  const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
   const categoryLabels = {
     transport: t('common.category.transport', 'Transport'),
@@ -74,32 +73,6 @@ export default function CategoryRadarChart({
       }),
     }
   })
-
-  // Gestionnaire de navigation au clavier
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (data.length === 0) return
-
-    switch (event.key) {
-      case 'ArrowDown':
-      case 'ArrowRight':
-        event.preventDefault()
-        setActiveIndex((prev) =>
-          prev === null ? 0 : Math.min(prev + 1, data.length - 1)
-        )
-        break
-      case 'ArrowUp':
-      case 'ArrowLeft':
-        event.preventDefault()
-        setActiveIndex((prev) =>
-          prev === null ? data.length - 1 : Math.max(prev - 1, 0)
-        )
-        break
-      case 'Escape':
-        event.preventDefault()
-        setActiveIndex(null)
-        break
-    }
-  }
 
   const getAccessibleDescription = () => {
     let description = t(
