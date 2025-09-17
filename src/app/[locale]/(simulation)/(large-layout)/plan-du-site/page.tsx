@@ -53,6 +53,18 @@ export default async function PlanDuSitePage({ params }: DefaultPageProps) {
         title: t('Blog'),
         href: '/blog',
       },
+      thematicLandingPagesAlimentation: {
+        title: t('L\'empreinte carbone de l\'alimentation'),
+        href: '/themes/empreinte-carbone-alimentation',
+      },
+      thematicLandingPagesTransport: {
+        title: t('L\'empreinte carbone du transport'),
+        href: '/themes/empreinte-carbone-transport',
+      },
+      thematicLandingPagesLogement: {
+        title: t('L\'empreinte carbone du logement'),
+        href: '/themes/empreinte-carbone-logement',
+      },
       nouveautes: {
         title: t('Nouveautés'),
         href: '/nouveautes',
