@@ -49,7 +49,7 @@ export default function ExportDataButton({
         onClick={handleClick}
         size="sm"
         {...props}>
-        <DownloadIcon className="fill-primary-900 mr-2 w-6 leading-none" />
+        <DownloadIcon className="fill-primary-800 mr-2 w-6 leading-none" />
         <Trans>Exporter les données</Trans>
       </Button>
 

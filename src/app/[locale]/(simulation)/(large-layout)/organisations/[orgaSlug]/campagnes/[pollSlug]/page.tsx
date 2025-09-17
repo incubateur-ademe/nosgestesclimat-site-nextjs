@@ -136,7 +136,7 @@ export default function CampagnePage() {
         <FootprintDistribution
           computedResults={computedResults}
           userComputedResults={userComputedResults}
-          simulationsCount={simulations?.count}
+          simulationsCount={simulations?.finished ?? 0}
           organisationName={pollOrganisation?.name}
         />
 
