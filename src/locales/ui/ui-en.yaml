@@ -278,7 +278,6 @@ entries:
   Vous avez quitté ce groupe. Vous allez être redirigé vers la page d'accueil du mode groupe: You have left this group. You will be redirected to the group mode home page
   Sauvegarder: Save
   'Vos trajets :': 'Your routes :'
-  passager(s): passenger(s)
   Période: Period
   Créé par {{name}}: Created by {{name}}
   Vous êtes le premier: You're the first
@@ -383,11 +382,6 @@ entries:
   Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}.lock: Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}
   Seules les options incluant plus de 3 participants sont accessibles, et ce, dans un objectif de préservation de l’anonymat des participants.: Only options with more than 3 participants are accessible, in order to preserve the anonymity of the participants.
   Vous avez déjà réalisé le test Nos Gestes Climat !: You've already taken the Nos Gestes Climat test!
-  Au total: In total
-  C’est bien cette distance qui sera comptabilisée en fin de test.: This is the distance that will be counted at the end of the test.
-  km sont parcourus par an, avec en moyenne: km are travelled per year, with an average of
-  km par personne: km per person
-  voyageurs, soit: passengers, i.e
   Oups ! Une erreur est survenue: Oops! An error has occurred
   Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.: Nosgestesclimat.fr is not affiliated to the {{ parent }} website.
   Nosgestesclimat.fr n'est pas affilié au site {{ parent }}..lock: Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.
@@ -474,8 +468,6 @@ entries:
   Supprimer mes données de groupe - Nos Gestes Climat: Delete my group data - Nos Gestes Climat
   Plan du site - Nos Gestes Climat: Site map - Nos Gestes Climat
   Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.: Calculate your climate footprint in just 10 minutes. Discover the actions that really matter for the climate.
-  par semaine, miam: per week, yum
-  repas: meal
   Ce test vous est proposé par: This test is brought to you by
   Reprendre mon test: Resume my test
   Voir mon résultat: See my result
@@ -496,7 +488,6 @@ entries:
   Mes classements: My rankings
   Mon empreinte: My footprint
   Diffusion: Broadcast
-  Répondre sur les 3 dernières années: Answer for the last 3 years
   Créer mon organisation: Create my organisation
   Mettre à jour mes informations: Update my information
   Simulations terminées: Completed simulations
@@ -688,8 +679,6 @@ entries:
   Données qualitatives: Qualitative data
   Nos Gestes Climat: Nos Gestes Climat
   'Ils relaient ': 'They relay '
-  Vous avez sélectionné: You have selected
-  sur les 14 habituels: out of the usual 14
   Le code n'est pas valide.: The code is invalid.
   Vos informations ont bien été mises à jour.: Your information has been updated.
   Vous devez valider votre changement d'adresse e-mail.: You must confirm your change of e-mail address.
@@ -938,16 +927,12 @@ entries:
   Une balance indiquant la quantité d'eau nécessaire pour produire un ordinateur: A scale showing the amount of water needed to produce a computer
   Un mouton, liant empreinte eau et élevage: A sheep, linking water footprint and livestock farming
   Libre et documenté: Free and documented
-  Une garde-robe économe en eau: A water-saving wardrobe
   L’empreinte eau d'un jean est de 30 000 litres d'eau.: The water footprint of a pair of jeans is 30,000 litres of water.
   La production d’un ordinateur nécessite 195 000 litres d’eau.: It takes 195,000 litres of water to produce one computer.
-  Un champ de coton, illustrant le calcul de l'empreinte eau: A field of cotton, illustrating the calculation of the water footprint
   Un homme dans un magasin réfléchissant à l'empreinte eau du tee-shirt qu'il tient: A man in a shop thinking about the water footprint of the T-shirt he is holding
   Un épi de maïs et un avocat, illustrant le fait d'économiser l'eau dans l'alimentation: A cob of corn and an avocado, illustrating the importance of saving water in the diet
-  Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau: A watered field, illustrating the lexicon for understanding the water footprint
   Une fille dans un magasin hésitant entre un pull en coton et un pull en lin, illustrant le fait de réduire l'utilisation d'eau des vêtements: A girl in a shop hesitating between a cotton jumper and a linen jumper, illustrating how to reduce the use of water in clothing
   'Privilégier les matériaux durables (lin, chanvre, laine, et si coton : recyclé)': 'Favour sustainable materials (linen, hemp, wool, and if cotton: recycled)'
-  Deux mini-vans, illustrant l'empreinte carbone des transports: Two minivans, illustrating the carbon footprint of transport
   Calculez votre <2>empreinte carbone</2> et votre <6>empreinte eau</6> en <9>seulement 10 minutes</9>.: Calculate your <2>carbon</2> and <6>water</6> <2>footprints</2> in <9>just 10 minutes</9>.
   Deux représentations graphiques de l'empreinte carbone et eau: Two graphical representations of the carbon and water footprints
   Chez Nos Gestes Climat, nous croyons au pouvoir de <2>l’action collective</2> pour relever les défis environnementaux. Notre mission est de <6>sensibiliser</6> et d’accompagner chacun, citoyens, entreprises et collectivités, à mieux comprendre son empreinte écologique, carbone ou eau, <9>identifier les gestes</9> pour la réduire et <13>entraîner leur entourage</13> dans ce mouvement.: At Nos Gestes Climat, we believe in the power of <2>collective action</2> to meet environmental challenges. Our mission is to <6>raise awareness</6> and help everyone - citizens, businesses and local authorities - to better understand their ecological, carbon and water footprints, to <9>identify the steps</9> they can take to reduce them and to <13>involve those around them</13> in this movement.
@@ -955,12 +940,10 @@ entries:
   Un groupe d'amis comparant leurs empreintes carbone et eau: A group of friends comparing their carbon and water footprints
   Un groupe de personnes en conférence, illustrant l'engagement collectif pour le climat: A group of people at a conference, illustrating their collective commitment to the climate
   Une fille tapant sur son ordinateur, entouré d'objets aux empreintes carbone et eau variées.: A girl typing on her computer, surrounded by objects with various carbon and water footprints.
-  Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone: An event for the climate, illustrating actions to reduce one's carbon footprint
   Le saviez vous ?: Did you know?
   Graphique de l'empreinte eau: Water footprint graph
   Graphique de l'empreinte carbone: Carbon footprint graph
   Une jeune femme lisant un journal, illustrant l'empreinte carbone liée à son logement: A young woman reading a newspaper, illustrating the carbon footprint of her home
-  Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique: An ice pack sparse in the sunlight, illustrating our maladaptation to climate change
   Une jeune femme cuisinant, illustrant l'importance de ses choix d'alimentation dans le calcul de son empreinte carbone: A young woman cooking, illustrating the importance of her food choices in calculating her carbon footprint
   Une mère et son fils sur un vélo, illustrant la possibilité de réduire son empreinte carbone en privilégiant les transports doux: A mother and her son on a bicycle, illustrating how you can reduce your carbon footprint by using environmentally-friendly transport
   Une jeune femme réfléchissant à ses choix de consommation, illustrant l'importance de ses achats dans le calcul de son empreinte carbone: A young woman reflecting on her consumer choices, illustrating the importance of her purchases in calculating her carbon footprint
@@ -973,10 +956,8 @@ entries:
   'Publié le :': 'Published on :'
   S'inscrire: Sign up
   1 par mois max: 1 per month max
-  5 infolettres sur l’impact du logement: 5 newsletters on the impact of housing
   <0>Comparez vos résultats avec</0> <2>vos proches</2>: <0>Compare your results with</0> <2>your friends</2>
   4 infolettres l’impact des transports: 4 newsletters the impact of transport
-  Comparez vos résultats avec vos proches: Compare your results with those around you
   Je m'inscris à l'infolettre: Subscribe to our newsletter
   À la une !: Featured article
   D'autres articles sur le même sujet: Other articles on the same subject
@@ -1008,7 +989,6 @@ entries:
   Le nombre de participants doit être supérieur à 0: The number of participants must be greater than 0
   Veuillez entrer un nombre positif: Please enter a positive number
   Options: Options
-  Impossible de copier le lien: Unable to copy the link
   Infolettre saisonnière de Nos Gestes Climat: Nos Gestes Climat seasonal newsletter
   Vous trouverez ici les réponses aux questions les plus fréquentes. S'il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !: Here you'll find answers to the most frequently asked questions. If you still have questions or would like to suggest improvements, please go to the bottom of the page. We hope you enjoy reading!
   Empreinte eau et empreinte carbone se répondent.: Water footprint and carbon footprint go hand in hand.
@@ -1105,8 +1085,6 @@ entries:
   Pied de page: Footer
   Menu: Menu
   Contenu: Content
-  'Pour plus de précision:': 'For more information:'
-  Je détaille ma garde-robe: Detailing my wardrobe
   En moyenne, les Français achètent chaque année,: On average, the French buy something every year,
   9,5 kg de vêtements... mais n'en trient que 3,4 kg !: 9.5 kg of clothes... but only sort 3.4 kg!
   Rejoignez-les: Join them
@@ -1226,7 +1204,7 @@ entries:
   cookies.management.preferences: 'Preferences for all services. '
   cookies.management.preferences.lock: 'Préférences pour tous les services. '
   cookies.banner.description: We use cookies, just enough to keep the site running, improve the experience and measure the audience anonymously. With your agreement, we also activate a simple tracking system for our campaigns to better understand what works and better manage our budget.
-  cookies.banner.description.lock: Nous utilisons des cookies, juste ce qu’il faut pour faire fonctionner le site, améliorer l’expérience et mesurer de manière anonyme l’audience. Avec votre accord, nous activons aussi un suivi simple de nos campagnes pour mieux comprendre ce qui fonctionne et mieux piloter notre budget.
+  cookies.banner.description.lock: Nous utilisons des cookies, juste ce qu'il faut pour faire fonctionner le site, améliorer l'expérience et mesurer de manière anonyme l'audience. Avec votre accord, nous activons aussi un suivi simple de nos campagnes pour mieux comprendre ce qui fonctionne et mieux piloter notre budget.
   cookies.banner.title: At Nos Gestes Climat, your privacy counts
   cookies.banner.title.lock: Chez Nos Gestes Climat, votre vie privée compte
   cookies.management.acceptAll: Accept all
@@ -1249,7 +1227,6 @@ entries:
   Accepter les cookies: Accept cookies
   Refuser les cookies: Refuse cookies
   Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.: We use cookies to understand how you use the product and to help us improve it. If you do not wish to be tracked, you can refuse them.
-  Bannière de consentement aux cookies: cookies.banner.contentLabel
   'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'You can contact us via our contact page: <2></2>.'
   Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calculate your carbon and water footprint with Nos Gestes Climat
   Gestion des cookies: Cookie management
@@ -1287,84 +1264,53 @@ entries:
   copyInput.copyErrorManual.lock: Oups, impossible de copier le lien, vous pouvez le copier manuellement.
   copyInput.copyLink: Copy link
   copyInput.copyLink.lock: Copier le lien
-  Page active: Active page
-  Sélectionner ce filtre et afficher uniquement les actions de cette catégorie: Select this filter to display only the shares in this category
-  Eau, évaluer la métrique eau: Water, assess the water metric
-  Carbone, évaluer la métrique carbone: Carbon, assessing the carbon metric
-  Connexion: Connection
-  Visiter cette page: Visit this page
-  endPage.tallyForm.buttonLabel.lock: Donner votre avis
-  actions.engagementIcon.ariaLabel: shares are located below
-  actions.engagementIcon.ariaLabel.lock: ', les actions se trouvent en dessous'
-  endPage.waterActions.lireArticle: Open article in a new window
-  endPage.waterActions.lireArticle.lock: Ouvrir l'article dans une nouvelle fenêtre
-  organisations.ourTools.newTab: Open in a new window
-  organisations.ourTools.newTab.lock: Ouvrir dans une nouvelle fenêtre
-  endPage.carboneTarget.enSavoirPlus: Open the page in a new window
-  endPage.carboneTarget.enSavoirPlus.lock: Ouvrir la page dans une nouvelle fenêtre
-  endPage.carboneChart.progressBarLabel.lock: Barre de progression de votre empreinte carbone
-  common.partners.abc.ariaLabel: Association for the Low Carbon Transition
-  common.partners.abc.ariaLabel.lock: Association pour la transition Bas Carbone
-  authorBlock.defaultAlt: Photo of the author
-  authorBlock.defaultAlt.lock: Photo de l'auteur ou de l'autrice
-  international.electricityMaps.ariaLabel: Visit the Electricity Maps website (opens in a new tab)
-  international.electricityMaps.ariaLabel.lock: Visiter le site Electricity Maps (s'ouvre dans un nouvel onglet)
-  endPage.carboneChart.gaugeDescription.lock: Graphique montrant votre empreinte carbone de {{currentValue}} {{unit}} par an, soit {{percentage}}% de l'échelle maximale. L'objectif 2050 est de {{targetValue}} tonnes par an.
-  endPage.blogArticles.lireArticle: Open article in a new window
-  endPage.blogArticles.lireArticle.lock: Ouvrir l'article dans une nouvelle fenêtre
-  Découvrez le calculateur, ouvrir dans une nouvelle fenêtre: Discover the calculator, open in a new window
-  Découvrez les ateliers de l’ABC, ouvrir dans une nouvelle fenêtre: Discover the ABC workshops, open in a new window
-  l'objectif pour 2050: the target for 2050
-  common.marianne.ariaLabel: French Republic
-  common.marianne.ariaLabel.lock: République Française
-  Permettez à vos cibles (clients, étudiants, participants, habitants..) de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d'autres modes d'intégration prêts à l'emploi.: Allow your target audiences (customers, students, participants, residents, etc.) to calculate and reduce their carbon footprint directly from your web and mobile platforms, using a dedicated link or other ready-to-use integration methods.
-  actions.buttons.reject: Reject the action
-  actions.buttons.reject.lock: Rejeter l'action
-  actions.buttons.select: Select action
-  actions.buttons.select.lock: Sélectionner l'action
-  empreinte-carbone.heroTitle: The carbon footprint, a first step towards action
-  empreinte-carbone.heroTitle.lock: L'empreinte carbone, une première étape pour passer à l'action
-  actions.chooseAction.ariaLabel.unselected: Select this action
-  actions.chooseAction.ariaLabel.unselected.lock: Sélectionner cette action
-  actions.rejectAction.ariaLabel.selected: Action dismissed
-  actions.rejectAction.ariaLabel.selected.lock: Action rejetée
-  actions.rejectAction.ariaLabel.unselected: Reject this action
-  actions.rejectAction.ariaLabel.unselected.lock: Rejeter cette action
-  actions.chooseAction.ariaLabel.selected: Action selected, cancel selection
-  actions.chooseAction.ariaLabel.selected.lock: Action sélectionnée, annuler la sélection
-  documentation.search.results_one: '{{count}} result(s) found'
-  documentation.search.results_one.lock: '{{count}} résultat(s) trouvé(s)'
-  documentation.search.input.label: Enter keywords
-  documentation.search.input.label.lock: Entrez des mots clefs
-  Formulaire - Demander une démo: Form - Request a demo
-  documentation.search.h2: Explore our models
-  documentation.search.h2.lock: Explorez nos modèles
-  documentation.search.label: Documentation search
-  documentation.search.label.lock: Recherche dans la documentation
-  documentation.search.results_many: '{{count}} result(s) found'
-  documentation.search.results_many.lock: '{{count}} résultat(s) trouvé(s)'
-  documentation.search.input.placeholder: Enter search keywords
-  documentation.search.input.placeholder.lock: Entrez des mots-clefs de recherche
-  documentation.noresults: No results were found for this search
-  documentation.noresults.lock: Aucun résultat ne correspond à cette recherche
-  documentation.search.results_other: '{{count}} result(s) found'
-  documentation.search.results_other.lock: '{{count}} résultat(s) trouvé(s)'
-  Chargement du tableau de bord...: Loading the dashboard...
-  organisations.poll.create.custom_question.add_button.label: Add a custom question
-  organisations.poll.create.custom_question.add_button.label.lock: Ajouter une question personnalisée
-  documentation.search.results.label: Search results
-  documentation.search.results.label.lock: Résultats de recherche
-  Formulaire - Désactiver les cookies de mesure d'audience via Matomo: Form - Deactivate audience measurement cookies via Matomo
-  Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.: This graph shows the distribution of users' simulation results, enabling trends and behaviour to be analysed.
-  Formulaire - nous faire part de vos remarques sur le site: Form - send us your comments on the site
-  Iframe - Google Tag Manager: Iframe - Google Tag Manager
-  organisations.poll.create.custom_question.add_button.max_reached: You have reached the maximum number of personalised questions
-  organisations.poll.create.custom_question.add_button.max_reached.lock: Vous avez atteint le nombre maximum de questions personnalisées
-  Graphique de distribution des résultats de simulation pour le mois dernier: Graph showing the distribution of simulation results for last month
-  Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.: This dashboard displays site traffic statistics, including the number of visits, simulations completed and usage trends.
-  Statistiques d'usage du mode "Challenge tes amis": Usage statistics for the "Challenge your friends" mode
-  Graphiques du nombre de visites et de simulations sur le site: Graphs showing the number of visits and simulations on the site
-  Impossible de charger le tableau de bord. Veuillez réessayer plus tard.: Unable to load the dashboard. Please try again later.
-  Statistiques d'usage du mode "Organisations": Statistics on the use of the "Organisations" mode
-  Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.: Detailed statistics on the use of Organisations mode, including the number of organisations created, participants and actions completed.
-  Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.: Statistics on the use of Challenge mode, including the number of challenges created, participants and results shared.
+  cookieConsent.banner.title: Cookie management panel
+  cookieConsent.banner.title.lock: Panneau de gestion des cookies
+  cookieConsent.board.title: Cookie consent banner
+  cookieConsent.board.title.lock: Bannière de consentement aux cookies
+  simulator.customQuestions.ameublement.inProgress: This feature is currently under development. Thank you for your interest!
+  simulator.customQuestions.ameublement.inProgress.lock: Cette fonctionnalité est actuellement en cours de conception. Merci pour votre intérêt !
+  simulator.customQuestions.textile.open: I want to detail my wardrobe
+  simulator.customQuestions.textile.open.lock: Je détaille ma garde-robe
+  simulator.customQuestions.ameublement.open: I want to detail my latest purchases
+  simulator.customQuestions.ameublement.open.lock: Je détaille mes derniers achats
+  'Pour plus de précision:': 'More precision:'
+  simulator.customQuestions.plats.selectionStart: You have selected
+  simulator.customQuestions.plats.selectionStart.lock: Vous avez sélectionné
+  simulator.customQuestions.plats.meals: meal
+  simulator.customQuestions.plats.meals.lock: repas
+  simulator.customQuestions.plats.perWeek: per week, yum
+  simulator.customQuestions.plats.perWeek.lock: par semaine, miam
+  simulator.customQuestions.plats.selectionEnd: out of the usual 14
+  simulator.customQuestions.plats.selectionEnd.lock: sur les 14 habituels
+  simulator.customQuestions.voiture.passengers: passenger(s)
+  simulator.customQuestions.voiture.passengers.lock: passager(s)
+  simulator.customQuestions.voiture.summaryStart: In total
+  simulator.customQuestions.voiture.summaryStart.lock: Au total
+  simulator.customQuestions.voiture.summaryEnd: This is the distance that will be counted at the end of the test.
+  simulator.customQuestions.voiture.summaryEnd.lock: C’est bien cette distance qui sera comptabilisée en fin de test.
+  simulator.customQuestions.voiture.summaryPassengers: passengers, i.e
+  simulator.customQuestions.voiture.summaryPassengers.lock: voyageurs, soit
+  simulator.customQuestions.voiture.summaryKmPerYear: km are travelled per year, with an average of
+  simulator.customQuestions.voiture.summaryKmPerYear.lock: km sont parcourus par an, avec en moyenne
+  simulator.customQuestions.voiture.summaryKmPerPerson: km per person
+  simulator.customQuestions.voiture.summaryKmPerPerson.lock: km par personne
+  simulator.customQuestions.avion.openThreeYears: Answer for the last 3 years
+  simulator.customQuestions.avion.openThreeYears.lock: Répondre sur les 3 dernières années
+  endPage.poll.seeResults.button.label: See the results
+  endPage.poll.seeResults.button.label.lock: Voir les résultats
+  Passer en français: Switch to French
+  Entrez des mots-clefs de recherche: Enter search keywords
+  Une garde-robe économe en eau: A water-saving wardrobe
+  Explorez nos modèles: Explore our models
+  Entrez des mots clefs: Enter keywords
+  Cambiar a español: Cambiar a español
+  5 infolettres sur l’impact du logement: 5 newsletters on the impact of housing
+  Evaluer la métrique carbone: Assessing carbon metrics
+  Switch to english: Switch to english
+  Evaluer la métrique eau: Assessing the water metric
+  Deux mini-vans, illustrant l'empreinte carbone des transports: Two minivans, illustrating the carbon footprint of transport
+  Un champ de coton, illustrant le calcul de l'empreinte eau: A field of cotton, illustrating the calculation of the water footprint
+  Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone: An event for the climate, illustrating actions to reduce one's carbon footprint
+  Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau: A watered field, illustrating the lexicon for understanding the water footprint
+  Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique: An ice pack sparse in the sunlight, illustrating our maladaptation to climate change

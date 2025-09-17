@@ -1,5 +1,6 @@
 import { trackingLocale } from '@/constants/tracking/misc'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { captureLocale } from '@/constants/tracking/posthogTrackers'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useEffect } from 'react'
 import { useLocale } from '../useLocale'
 
@@ -8,5 +9,6 @@ export function useTrackLocale() {
 
   useEffect(() => {
     trackEvent(trackingLocale(locale))
+    trackPosthogEvent(captureLocale({ locale }))
   }, [locale])
 }

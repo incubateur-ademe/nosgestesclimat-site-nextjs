@@ -1,10 +1,10 @@
 'use client'
 
 import Question from '@/components/form/Question'
-import Trans from '@/components/translation/trans/TransClient'
 import { captureSubQuestion } from '@/constants/tracking/posthogTrackers'
 import { openSubQuestion } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useRule } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -23,6 +23,7 @@ const POSSIBLE_ANSWERS: Record<string, DottedName> = {
 }
 
 export default function Textile({ question, ...props }: Props) {
+  const { t } = useClientTranslation()
   const { numericValue: totalPiecesTextile } = useRule(
     'divers . textile . nombre total'
   )
@@ -60,9 +61,7 @@ export default function Textile({ question, ...props }: Props) {
         {...props}
       />
       <div className="flex flex-col items-start text-sm md:flex-row md:items-center">
-        <span>
-          <Trans>Pour plus de précision:</Trans>
-        </span>
+        <span>{t('Pour plus de précision:')}</span>
         <div>
           <Button
             color="link"
@@ -83,7 +82,7 @@ export default function Textile({ question, ...props }: Props) {
             }}
             className="mt-1 md:mt-0 md:ml-2">
             {preciseChoice ? (
-              <Trans>Fermer</Trans>
+              t('Fermer')
             ) : (
               <span className="flex items-center">
                 <PencilIcon
@@ -92,7 +91,10 @@ export default function Textile({ question, ...props }: Props) {
                   height="16"
                 />
 
-                <Trans>Je détaille ma garde-robe</Trans>
+                {t(
+                  'simulator.customQuestions.textile.open',
+                  'Je détaille ma garde-robe'
+                )}
               </span>
             )}
           </Button>

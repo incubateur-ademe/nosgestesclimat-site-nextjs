@@ -31,13 +31,22 @@ export default function CookieConsentBanner({
   return (
     <Modal
       isOpen={isVisible && !isBoardOpen}
+      aria={{
+        label: t(
+          'cookieConsent.board.title',
+          'Bannière de consentement aux cookies'
+        ),
+      }}
       onAfterClose={() => setIsVisible(false)}
       className="!fixed !top-1/2 !left-1/2 !z-[10001] !mr-auto !w-[500px] !max-w-[calc(100vw-1rem)] !-translate-x-1/2 !-translate-y-1/2 rounded-2xl !border-0 !p-0 !shadow-2xl md:!top-auto md:!bottom-0 md:!left-0 md:!mb-8 md:!ml-8 md:!translate-x-0 md:!translate-y-0 md:!rounded-4xl"
       overlayClassName="!bg-black/0 !backdrop-blur-none !fixed !bottom-0 !left-0 !right-0 !top-auto !z-[10000]"
-      contentLabel={t(
-        'Bannière de consentement aux cookies',
-        'cookies.banner.contentLabel'
-      )}
+      // Accessibility improvements for cookie consent banner
+      shouldFocusAfterRender={false}
+      shouldReturnFocusAfterClose={false}
+      shouldCloseOnOverlayClick={false}
+      shouldCloseOnEsc={false}
+      preventScroll={false}
+      ariaHideApp={false}
       style={{
         content: {
           margin: '0 auto',
@@ -58,8 +67,12 @@ export default function CookieConsentBanner({
           pointerEvents: 'auto',
         },
       }}>
-      <div className="flex w-full flex-col rounded-2xl bg-white px-6 py-6 shadow-2xl sm:px-8 sm:py-8 md:rounded-4xl">
+      <div
+        className="flex w-full flex-col rounded-2xl bg-white px-6 py-6 shadow-2xl sm:px-8 sm:py-8 md:rounded-4xl"
+        aria-labelledby="cookie-banner-title"
+        aria-describedby="cookie-banner-description">
         <h2
+          id="cookie-banner-title"
           className="mb-6 text-left text-lg font-bold text-gray-900 sm:text-xl"
           data-testid="cookie-banner-title">
           <Trans i18nKey="cookies.banner.title">
@@ -67,11 +80,14 @@ export default function CookieConsentBanner({
           </Trans>
         </h2>
 
-        <p className="mb-2 text-sm" data-testid="cookie-banner-description">
+        <p
+          id="cookie-banner-description"
+          className="mb-2 text-sm"
+          data-testid="cookie-banner-description">
           <Trans i18nKey="cookies.banner.description">
-            Nous utilisons des cookies, juste ce qu’il faut pour faire
-            fonctionner le site, améliorer l’expérience et mesurer de manière
-            anonyme l’audience. Avec votre accord, nous activons aussi un suivi
+            Nous utilisons des cookies, juste ce qu'il faut pour faire
+            fonctionner le site, améliorer l'expérience et mesurer de manière
+            anonyme l'audience. Avec votre accord, nous activons aussi un suivi
             simple de nos campagnes pour mieux comprendre ce qui fonctionne et
             mieux piloter notre budget.
           </Trans>

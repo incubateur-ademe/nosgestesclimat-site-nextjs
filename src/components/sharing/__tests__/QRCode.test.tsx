@@ -24,6 +24,7 @@ vi.mock('jszip', () => ({
 // Mock trackEvent
 vi.mock('@/utils/analytics/trackEvent', () => ({
   trackEvent: vi.fn(),
+  trackPosthogEvent: vi.fn(),
 }))
 
 // Mock URL.createObjectURL and URL.revokeObjectURL

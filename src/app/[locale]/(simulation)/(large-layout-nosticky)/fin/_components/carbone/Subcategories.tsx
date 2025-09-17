@@ -18,13 +18,13 @@ export default function Subcategories() {
 
   return (
     <>
-      {firstThreeSubcategories.map((subcategory, index) => (
-        <Subcategory
-          key={subcategory}
-          subcategory={subcategory}
-          index={index}
-        />
-      ))}
+      <ol>
+        {firstThreeSubcategories.map((subcategory, index) => (
+          <li key={subcategory}>
+            <Subcategory subcategory={subcategory} index={index} />
+          </li>
+        ))}
+      </ol>
       {isFrenchRegion && <AgirSecondaryBlock />}
       <OtherWays />
     </>

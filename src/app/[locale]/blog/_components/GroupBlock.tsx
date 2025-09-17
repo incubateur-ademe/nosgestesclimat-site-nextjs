@@ -1,11 +1,9 @@
 import Trans from '@/components/translation/trans/TransServer'
 import { linkToGroupCreation } from '@/constants/group'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 
-export default async function GroupBlock({ locale }: { locale: string }) {
-  const { t } = await getServerTranslation({ locale })
+export default function GroupBlock({ locale }: { locale: string }) {
   return (
     <div className="bg-heroLightBackground flex w-full flex-col items-start justify-between gap-8 rounded-xl px-8 py-6 md:w-4/12">
       <h3 className="mb-0 text-xl font-medium">
@@ -16,7 +14,7 @@ export default async function GroupBlock({ locale }: { locale: string }) {
       </h3>
 
       <Image
-        src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/comparer_empreinte_carbone_et_eau_entre_amis_ddbfa5e83d.svg"
+        src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_comparer_empreinte_carbone_et_eau_entre_amis_ddbfa5e83d.svg"
         alt=""
         width={240}
         height={240}

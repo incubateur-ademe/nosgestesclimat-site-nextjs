@@ -29,13 +29,14 @@ describe('The End page', () => {
 
       clickSkipTutorialButton()
 
-      recursivelyFillSimulation()
-
-      // checkA11y() // TODO: fix A11Y test breaking only when running on CI
+      // Wait for the page to be redirected after skipping tutorial
+      cy.url().should('include', '/simulateur/bilan')
     })
 
     describe('When he saves his/her simulation on the end page', () => {
       it('Then it should save the simulation only once', () => {
+        recursivelyFillSimulation()
+
         cy.get(`input[data-cypress-id="${FIN_EMAIL_INPUT}"]`).type(
           'test@test.com'
         )

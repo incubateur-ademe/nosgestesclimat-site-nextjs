@@ -31,7 +31,10 @@ export default function TallyForm() {
   const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
 
   const isFrench = useLocale() === i18nConfig.defaultLocale
-  const FORM_ID = process.env.NEXT_PUBLIC_TALLY_FORM_ID ?? ''
+  const FORM_ID =
+    (isFrench
+      ? process.env.NEXT_PUBLIC_TALLY_FORM_ID
+      : process.env.NEXT_PUBLIC_TALLY_FORM_ID_EN) ?? ''
 
   const handleOpenForm = () => {
     window.Tally.openPopup(FORM_ID, {
@@ -54,7 +57,7 @@ export default function TallyForm() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  if (!isFrench || !FORM_ID) return null
+  if (!FORM_ID) return null
 
   return (
     <button

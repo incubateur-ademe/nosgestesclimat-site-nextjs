@@ -1,5 +1,6 @@
 import 'cypress-axe'
-import { skipTutoIfExists } from '../../../helpers/elements/buttons'
+import { dismissCookieBanner } from '../../../helpers/cookies/dismissCookieBanner'
+import { visit } from '../../../helpers/interactions/visit'
 import { recursivelyFillSimulation } from '../../../helpers/simulation/recursivelyFillSimulation'
 import { setupSimulation } from '../../../helpers/simulation/setupSimulation'
 
@@ -15,7 +16,28 @@ describe('Action userflow', () => {
         cy.intercept({ resourceType: /xhr|fetch|uncaught/ }, { log: false })
 
         // Actions when user hasn't completed the simulation
-        cy.visit('/actions')
+        visit('/actions')
+
+        cy.wait(2000)
+
+        dismissCookieBanner()
+
+        cy.get('h1')
+          .contains(
+            Cypress.env('testLangURL') === 'en' ? 'My gestures' : 'Mes gestes'
+          )
+          .should('be.visible')
+
+        // Actions when user has completed the simulation
+        visit('/')
+
+        setupSimulation()
+
+        recursivelyFillSimulation()
+
+        cy.wait(4000)
+
+        visit('/actions')
 
         cy.wait(2000)
 
@@ -24,25 +46,6 @@ describe('Action userflow', () => {
             Cypress.env('testLangURL') === 'en' ? 'My gestures' : 'Mes gestes'
           )
           .should('be.visible')
-
-        // checkA11y() // TODO: fix A11Y test breaking only when running on CI
-
-        // Actions when user has completed the simulation
-        cy.visit('/')
-
-        setupSimulation()
-
-        recursivelyFillSimulation()
-
-        skipTutoIfExists()
-
-        cy.wait(4000)
-
-        cy.visit('/actions')
-
-        cy.wait(2000)
-
-        // checkA11y() // TODO: fix A11Y test breaking only when running on CI
       })
     })
   })

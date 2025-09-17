@@ -480,6 +480,7 @@ html[data-useragent*='Trident'] #js {
 
 .markdown code {
   @apply mb-6;
+  @apply text-sm;
 }
 
 .markdown img {

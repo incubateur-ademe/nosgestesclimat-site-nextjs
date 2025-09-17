@@ -1,6 +1,6 @@
 import {
   BACK_BUTTON,
-  CAR_OPTION_20_000_KM,
+  CAR_TYPE_INPUT,
   QUESTION_LABEL,
   SAVE_MODAL_EMAIL_INPUT,
   SAVE_MODAL_SUBMIT_BUTTON,
@@ -34,7 +34,7 @@ describe('Loading the simulation from the sid parameter', () => {
             initialValue = text
           })
 
-        click(CAR_OPTION_20_000_KM)
+        click(CAR_TYPE_INPUT)
         clickNextButton()
         click(BACK_BUTTON)
 
@@ -52,7 +52,7 @@ describe('Loading the simulation from the sid parameter', () => {
         beforeEach(() => {
           cy.clearLocalStorage()
 
-          cy.visit(`/simulateur/bilan?sid=${simulationId}`)
+          visit(`/simulateur/bilan?sid=${simulationId}`)
         })
 
         it('then it should load the simulation with the correct total footprint number', () => {
