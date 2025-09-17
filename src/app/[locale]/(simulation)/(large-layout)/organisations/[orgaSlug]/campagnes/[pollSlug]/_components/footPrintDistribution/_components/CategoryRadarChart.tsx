@@ -5,7 +5,6 @@ import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprin
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Categories } from '@incubateur-ademe/nosgestesclimat'
 import isMobile from 'is-mobile'
-import { useState } from 'react'
 import {
   PolarAngleAxis,
   PolarGrid,
@@ -133,7 +132,7 @@ export default function CategoryRadarChart({
               </span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded bg-pink-500"></div>
+              <div className="h-3 w-3 rounded bg-pink-800"></div>
               <span className="text-sm text-gray-700">
                 {t('pollResults.radarChart.legend.average', 'Moyenne')} :{' '}
                 {averageFormatted.formattedValue} {averageFormatted.unit}
