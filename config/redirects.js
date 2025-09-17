@@ -294,48 +294,24 @@ const redirects = [
     permanent: true,
   },
   {
+    source: '/empreinte-carbone-transport',
+    destination: '/themes/empreinte-carbone-transport',
+    permanent: true,
+  },
+  {
+    source: '/empreinte-carbone-logement',
+    destination: '/themes/empreinte-carbone-logement',
+    permanent: true,
+  },
+  // Guides fr
+  {
     source: '/guide',
     destination: '/',
     permanent: true,
   },
   {
-    source: '/en/guide',
-    destination: '/',
-    permanent: true,
-  },
-  {
-    source: '/es/guide',
-    destination: '/',
-    permanent: true,
-  },
-  {
-    source: '/guide/numerique',
-    destination: '/',
-    permanent: true,
-  },
-  {
-    source: '/en/guide/numerique',
-    destination: '/',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/numerique',
-    destination: '/',
-    permanent: true,
-  },
-  {
-    source: '/guide/services-societaux',
-    destination: '/',
-    permanent: true,
-  },
-  {
-    source: '/en/guide/services-societaux',
-    destination: '/',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/services-societaux',
-    destination: '/',
+    source: '/guide/alimentation',
+    destination: '/themes/empreinte-carbone-alimentation',
     permanent: true,
   },
   {
@@ -344,18 +320,95 @@ const redirects = [
     permanent: true,
   },
   {
+    source: '/guide/logement',
+    destination: '/themes/empreinte-carbone-logement',
+    permanent: true,
+  },
+  {
+    source: '/guide/numerique',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/guide/divers',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/guide/services-societaux',
+    destination: '/',
+    permanent: true,
+  },
+  // Guides en
+  {
+    source: '/en/guide',
+    destination: '/en',
+    permanent: true,
+  },
+  {
+    source: '/en/guide/alimentation',
+    destination: '/en',
+    permanent: true,
+  },
+  {
     source: '/en/guide/transport',
-    destination: '/themes/empreinte-carbone-transport',
+    destination: '/en',
+    permanent: true,
+  },
+  {
+    source: '/en/guide/logement',
+    destination: '/en',
+    permanent: true,
+  },
+  {
+    source: '/en/guide/divers',
+    destination: '/en',
+    permanent: true,
+  },
+  {
+    source: '/en/guide/numerique',
+    destination: '/en',
+    permanent: true,
+  },
+  {
+    source: '/en/guide/services-societaux',
+    destination: '/en',
+    permanent: true,
+  },
+  // Guides es
+  {
+    source: '/es/guide',
+    destination: '/es',
+    permanent: true,
+  },
+  {
+    source: '/es/guide/alimentation',
+    destination: '/es',
     permanent: true,
   },
   {
     source: '/es/guide/transport',
-    destination: '/themes/empreinte-carbone-transport',
+    destination: '/es',
     permanent: true,
   },
   {
-    source: '/empreinte-carbone-transport',
-    destination: '/themes/empreinte-carbone-transport',
+    source: '/es/guide/logement',
+    destination: '/es',
+    permanent: true,
+  },
+  {
+    source: '/es/guide/divers',
+    destination: '/es',
+    permanent: true,
+  },
+  {
+    source: '/es/guide/numerique',
+    destination: '/es',
+    permanent: true,
+  },
+  {
+    source: '/es/guide/services-societaux',
+    destination: '/es',
     permanent: true,
   },
   // Short URL for Brevo
