@@ -1224,8 +1224,6 @@ entries:
   common.navigation.nextQuestion.next.label: Aller à la question suivante
   common.navigation.nextQuestion.pass.label: Passer et aller à la question suivante
   common.navigation.previousButton.label: Aller à la question précédente
-  cookieConsent.banner.title: Panneau de gestion des cookies
-  cookieConsent.board.title: Bannière de consentement aux cookies
   Fenêtre modale de partage: Fenêtre modale de partage
   group.results.rankingMember.delete.modal.ariaLabel: Fenêtre modale de confirmation de suppression du membre du groupe
   organisations.additionalQuestions.deletion.modal.ariaLabel: Fenêtre de confirmation de suppression de la question personnalisée
