@@ -29,20 +29,26 @@ export default function FootprintBarChart({
 }: Props) {
   const { t } = useClientTranslation()
 
-  const groupFormatted = formatCarbonFootprint(groupFootprint , {
+  const groupFormatted = formatCarbonFootprint(groupFootprint, {
     maximumFractionDigits: 1,
   })
 
-  // Ajuster les valeurs selon l'unité de groupFormatted
-  const scaleFactor =
-    groupFormatted.unit === 'tonnes' || groupFormatted.unit === 't' ? 1000 : 1
+  // Convert to tonnes for consistent display
+  const groupFootprintInTonnes =
+    groupFootprint >= 1000 ? groupFootprint / 1000 : groupFootprint
+  const userFootprintInTonnes =
+    userFootprint && userFootprint >= 1000
+      ? userFootprint / 1000
+      : userFootprint
+  const targetValueInTonnes =
+    targetValue >= 1000 ? targetValue / 1000 : targetValue
 
   const maxValue =
     Math.ceil(
       Math.max(
-        groupFootprint / scaleFactor,
-        (userFootprint || 0) / scaleFactor,
-        targetValue / scaleFactor
+        groupFootprintInTonnes,
+        userFootprintInTonnes || 0,
+        targetValueInTonnes
       ) / 5
     ) * 5
 
@@ -58,7 +64,7 @@ export default function FootprintBarChart({
         'pollResults.footprintBarChart.groupFootprint',
         'Empreinte moyenne du groupe'
       ),
-      value: groupFootprint / scaleFactor,
+      value: groupFootprintInTonnes,
       formattedValue: `${groupFormatted.formattedValue} ${groupFormatted.unit}`,
     },
     ...(userFootprint
@@ -68,7 +74,7 @@ export default function FootprintBarChart({
               'pollResults.footprintBarChart.userFootprint',
               'Votre empreinte'
             ),
-            value: userFootprint / scaleFactor,
+            value: userFootprintInTonnes,
             formattedValue: `${userFormatted?.formattedValue} ${userFormatted?.unit}`,
           },
         ]
@@ -245,14 +251,14 @@ export default function FootprintBarChart({
             </Bar>
 
             <ReferenceLine
-              x={targetValue}
+              x={targetValueInTonnes}
               stroke="#a60e66"
               strokeDasharray="5 5"
               strokeWidth={2}
             />
 
             <ReferenceLine
-              x={2}
+              x={targetValueInTonnes}
               stroke="transparent"
               label={({ viewBox }) => {
                 const { x, y } = viewBox
@@ -269,7 +275,11 @@ export default function FootprintBarChart({
                         'pollResults.footprintBarChart.targetLabelMobile',
                         'Objectif 2050 :'
                       )}{' '}
-                      2 {t('pollResults.footprintBarChart.targetLabelUnit', 'tonnes')}
+                      {targetValueInTonnes}{' '}
+                      {t(
+                        'pollResults.footprintBarChart.targetLabelUnit',
+                        'tonnes'
+                      )}
                     </text>
                   </g>
                 )
