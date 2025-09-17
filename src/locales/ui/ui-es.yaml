@@ -317,13 +317,10 @@ entries:
   Contactez nous afin de convenir d'un temps de démonstration de notre outil pour les organisations.: Póngase en contacto con nosotros para concertar una demostración de nuestra herramienta para organizaciones.
   Recevoir ponctuellement par email les nouveaux services Nos Gestes Climat aux organisations: Reciba ocasionalmente correos electrónicos sobre los nuevos servicios de Nos Gestes Climat para organizaciones
   Votre e-mail: Tu e-mail
-  Département: Departamento
-  Filtrer par: Filtrar por
   Accueil: Inicio
   Quelle est votre année de naissance ?: ¿En qué año nació?
   Voir mes résultats: Ver mis resultados
   Empreinte moyenne: Huella media
-  Tranche d'âge: Edades
   Empreinte carbone: Huella de carbono
   Vous avez une question ?: ¿Tiene alguna pregunta?
   Kit de diffusion: Kit de difusión
@@ -340,16 +337,14 @@ entries:
   Animez un atelier: Organizar un taller
   La valeur minimum pour ce champ est de: El valor mínimo de este campo es
   Administrateur·ice: Administrador
-  Par catégorie: Por categoría
   Accéder au kit: Acceder al kit
-  '{{value}} tonnes': '{{value}} toneladas'
   pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !: para crear una cuenta y podrá acceder gratuitamente a todos nuestros servicios
   '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{nombre del administrador del grupo} te ha invitado a unirte al grupo <3>{nombre del grupo}</3>'
   Découvrez le calculateur, ouvrir dans un nouvel onglet: Descubrir el simulador, abrir en una nueva pestaña
   Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Descubrir los talleres ABC, abrir en una nueva pestaña
   'Moyenne :': 'Media :'
+  Au total: En total
   Mon organisation: Mi organización
-  Votre résultat: Su resultado
   Votre code postal: Su código postal
   Mes données restent-elles privées ?: ¿Mis datos seguirán siendo privados?
   Revenir au formulaire de connexion: Volver al formulario de acceso
@@ -361,7 +356,6 @@ entries:
   Organisation: Organización
   Vous pouvez utiliser vos données existantes, ou recommencer le test.: Puede utilizar los datos existentes o iniciar de nuevo la prueba.
   Partagez le test pour obtenir vos premiers résultats.: Comparte la prueba para obtener tus primeros resultados.
-  Moyenne du groupe par catégorie: Media del grupo por categoría
   Veuillez entrer votre code postal: Introduzca su código postal
   Se déconnecter de votre espace organisation: Salir de su espacio de organización
   Valorisez vos données carbone: Añada valor a sus datos sobre el carbono
@@ -372,7 +366,6 @@ entries:
   Facultatif: Opcional
   Vous avez déjà réalisé le test Nos Gestes Climat !: ¡Ya has realizado el test Nos Gestes Climat!
   Vos données seront stockées de manière sécurisée et anonyme. Elles seront agrégées à des fins statistiques ; lesdites statistiques seront consultables sur la page "Rapport détaillé" de votre sondage en fin de parcours. Cette page restera exclusivement accessible aux participant·es ainsi qu'aux organisateur·ices.: Sus datos se almacenarán de forma segura y anónima. Se agregarán con fines estadísticos; estas estadísticas estarán disponibles en la página "Informe detallado" de su encuesta al final del curso. A esta página sólo podrán acceder los participantes y los organizadores.
-  Seules les options incluant plus de 3 participants sont accessibles, et ce, dans un objectif de préservation de l’anonymat des participants.: Sólo son accesibles las opciones con más de 3 participantes, para preservar el anonimato de los participantes.
   Organisez des temps d’animation et d’échanges physiques autour de Nos Gestes Climat pour fédérer et renforcer la compréhension des participants.: Organizar actos e intercambios físicos en torno a Nos Gestes Climat para reunir a la gente y reforzar su comprensión.
   Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}: Ver {String(group.participants.length - 5)} otro{conS} participante{conS}
   Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}.lock: Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}
@@ -546,14 +539,9 @@ entries:
   Ce champ est requis: Este campo es obligatorio
   Recevez nos <1>conseils transports</1> directement dans votre boite mail !: Reciba nuestros <1>consejos sobre transporte</1> directamente en su buzón
   Vous accompagner pour mieux agir en <2>4 mails seulement</2>.: Ayudarle a actuar mejor en <2>sólo 4 correos electrónicos</2>.
-  Chaque participation est représentée par une barre verticale. Votre score est affiché en <2>rose</2>.: Cada entrada está representada por una barra vertical. Su puntuación se muestra en <2>rosa</2>.
-  Elle seront toutefois prises en compte lors de l'export de données.: No obstante, se tendrán en cuenta al exportar los datos.
-  Pour faciliter la lecture, les valeurs supérieures à 100 t sont retirées.: Para facilitar la lectura, se eliminan los valores superiores a 100 t.
-  on s'y met ?: ¿Empezamos?
   Résultats de campagne: Resultados de la campaña
   'Paramètres de ': 'Parámetros de '
   Supprimer cette campagne: Eliminar esta campaña
-  Section administrateur: Sección Administrador
   Lancer ma campagne: Lanzar mi campaña
   Nom de la campagne: Nombre de la campaña
   Cette opération est définitive.: Esta operación es definitiva.
@@ -561,10 +549,8 @@ entries:
   Mes campagnes: Mis campañas
   Paramètres de: Parámetros de
   Créer une campagne: Crear una campaña
-  c'est l’objectif pour 2050,: es el objetivo para 2050,
   Vous retrouverez les réponses à ces questions dans l'export des réponses à la campagne.: Puede encontrar las respuestas a estas preguntas en la exportación de las respuestas a la campaña.
   Votre téléphone: Su teléfono
-  Partagez votre campagne: Comparta su campaña
   Vos informations personnelles: Sus datos personales
   Voir le détail: Ver detalles
   'Créée le ': 'Creado el '
@@ -578,12 +564,10 @@ entries:
   Une erreur est survenue lors de la suppression de la campagne.: Se ha producido un error al eliminar la campaña.
   Retrouvez vos campagnes et suivez leurs statistiques.: Encuentra tus campañas y sigue sus estadísticas.
   Une erreur s'est produite lors de la création de la campagne. Veuillez réessayer.: Se ha producido un error al crear la campaña. Por favor, inténtelo de nuevo.
-  Empreinte carbone totale: Huella de carbono total
   Voir toutes les campagnes: Ver todas las campañas
   Masquer les autres campagnes: Ocultar otras campañas
   Sans titre: Sin título
   Date (anciennes > récentes): Fecha (antigua > reciente)
-  Répartition des empreintes carbone: Desglose de la huella de carbono
   Nom (A > Z): Nombre (A > Z)
   Date (récentes > anciennes): Fecha (reciente > antigua)
   Nom (Z > A): Nombre (Z > A)
@@ -613,7 +597,6 @@ entries:
   Alimentation: Alimentación
   Divers: Varios
   Logement: Vivienda
-  Services: Servicios
   Transport: Transporte
   Voir tous les gestes: Ver todos los gestos
   Partager mon résultat: Compartir mi resultado
@@ -771,8 +754,6 @@ entries:
   organisations.accueil.titre: Nos Gestes Climat pour les organisations
   organisations.accueil.titre.lock: Nos Gestes Climat pour les organisations
   / jour: / día
-  tonnes CO₂e / an: toneladas CO₂e / año
-  t CO₂e / an: t CO₂e / año
   / an: / año
   Les 8 manières d’améliorer l'empreinte eau de mon assiette: 8 formas de mejorar la huella hídrica de mi plato
   Le lexique pour tout comprendre à l'empreinte eau: Un glosario para entender la huella hídrica
@@ -959,7 +940,6 @@ entries:
   S'inscrire: Inscríbete
   Accueil Blog: Inicio Blog
   Je m'inscris à l'infolettre: Suscríbase a nuestro boletín
-  4 infolettres l’impact des transports: 4 boletines informativos sobre el impacto del transporte
   'Publié le :': 'Publicado el :'
   Vous recevrez bientôt nos actualités et conseils directement dans votre boîte mail.: Pronto recibirás nuestras últimas noticias y consejos directamente en tu bandeja de entrada.
   Nos derniers articles: Nuestros últimos artículos
@@ -1029,7 +1009,6 @@ entries:
   Maïs: Maíz
   Raisin: Uva
   Poire: Pera
-  Chargement des résultats détaillés de campagne...: Cargando resultados detallados de la campaña...
   Menu principal: Menú principal
   Menu déroulant: Menú desplegable
   '{{name}} lecture seule': '{{name}} sólo lectura'
@@ -1090,7 +1069,7 @@ entries:
   ": aucun acteur cité ci-dessous ne finance Nos Gestes Climat, qui est et restera un service public, indépendant et gratuit de l'ADEME.": ninguno de los actores mencionados a continuación financia Nos Gestes Climat, que es y seguirá siendo un servicio público, independiente y gratuito de la ADEME.
   Facebook: Facebook
   Linkedin: Linkedin
-  Envoyer par e-mail: Enviar por correo electrónico
+  Envoyer par e-mail: Enviar
   Whatsapp: Whatsapp
   Messenger: Mensajero
   Partager le simulateur: Compartir el simulador
@@ -1100,7 +1079,6 @@ entries:
   'Oups, la copie du lien a échoué, le voici :': 'Oops, copiar el enlace falló, aquí está:'
   Nous chargeons les données de l'organisation partenaire.: Cargamos los datos de la organización asociada.
   Une erreur s'est produite au moment de récupérer les informations liées à l'organisation partenaire. Veuillez réessayer plus tard ou contacter notre support.: Se ha producido un error al recuperar la información relacionada con la organización asociada. Vuelva a intentarlo más tarde o póngase en contacto con nuestro equipo de asistencia.
-  Les graphiques sont cachés pour les campagnes avec plus de 500 participations pour des raisons de performance. Nous travaillons à l'ajout de cette fonctionnalité pour les plus grosses campagnes.: Los gráficos están ocultos para las campañas con más de 500 entradas por razones de rendimiento. Estamos trabajando en añadir esta funcionalidad para campañas más grandes.
   Participation mise à jour: Participación actualizada
   Recommencer mon inscription: Repetir mi registro
   Votre adresse electronique: Su dirección de correo electrónico
@@ -1309,3 +1287,250 @@ entries:
   Un champ de coton, illustrant le calcul de l'empreinte eau: Un campo de algodón, ilustrativo del cálculo de la huella hídrica
   Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau: Un campo regado, ilustración del léxico para entender la huella hídrica
   Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique: Una capa de hielo escasa a la luz del sol, ilustra nuestra inadaptación al cambio climático
+  Page active: Página activa
+  Visiter cette page: Visite esta página
+  Connexion: Conexión
+  Carbone, évaluer la métrique carbone: Carbono, evaluación de la métrica del carbono
+  Eau, évaluer la métrique eau: Agua, evaluar la métrica del agua
+  endPage.tallyForm.buttonLabel.lock: Donner votre avis
+  authorBlock.defaultAlt: Foto del autor
+  authorBlock.defaultAlt.lock: Photo de l'auteur ou de l'autrice
+  endPage.carboneTarget.enSavoirPlus: Abrir la página en una ventana nueva
+  endPage.carboneTarget.enSavoirPlus.lock: Ouvrir la page dans une nouvelle fenêtre
+  common.partners.abc.ariaLabel: Asociación para la Transición hacia una Baja Emisión de Carbono
+  common.partners.abc.ariaLabel.lock: Association pour la transition Bas Carbone
+  endPage.blogArticles.lireArticle: Abrir el artículo en una ventana nueva
+  endPage.blogArticles.lireArticle.lock: Ouvrir l'article dans une nouvelle fenêtre
+  endPage.waterActions.lireArticle: Abrir el artículo en una ventana nueva
+  endPage.waterActions.lireArticle.lock: Ouvrir l'article dans une nouvelle fenêtre
+  endPage.carboneChart.progressBarLabel.lock: Barre de progression de votre empreinte carbone
+  l'objectif pour 2050: el objetivo para 2050
+  actions.engagementIcon.ariaLabel: acciones se encuentran a continuación
+  actions.engagementIcon.ariaLabel.lock: ', les actions se trouvent en dessous'
+  organisations.ourTools.newTab: Abrir en una ventana nueva
+  organisations.ourTools.newTab.lock: Ouvrir dans une nouvelle fenêtre
+  Découvrez les ateliers de l’ABC, ouvrir dans une nouvelle fenêtre: Descubra los talleres ABC, abrir en una ventana nueva
+  endPage.carboneChart.gaugeDescription.lock: Graphique montrant votre empreinte carbone de {{currentValue}} {{unit}} par an, soit {{percentage}}% de l'échelle maximale. L'objectif 2050 est de {{targetValue}} tonnes par an.
+  international.electricityMaps.ariaLabel: Visite el sitio web de Electricity Maps (se abre en una nueva pestaña)
+  international.electricityMaps.ariaLabel.lock: Visiter le site Electricity Maps (s'ouvre dans un nouvel onglet)
+  common.marianne.ariaLabel: República Francesa
+  common.marianne.ariaLabel.lock: République Française
+  Découvrez le calculateur, ouvrir dans une nouvelle fenêtre: Descubrir la calculadora, abrir en una ventana nueva
+  Permettez à vos cibles (clients, étudiants, participants, habitants..) de calculer et réduire leur empreinte carbone directement depuis vos plateformes web et mobile, avec un lien dédié ou d'autres modes d'intégration prêts à l'emploi.: Permita a su público objetivo (clientes, estudiantes, participantes, residentes, etc.) calcular y reducir su huella de carbono directamente desde sus plataformas web y móvil, mediante un enlace dedicado u otros métodos de integración listos para usar.
+  actions.buttons.select: Seleccionar acción
+  actions.buttons.select.lock: Sélectionner l'action
+  actions.buttons.reject: Rechazar la acción
+  actions.buttons.reject.lock: Rejeter l'action
+  empreinte-carbone.heroTitle: La huella de carbono, un primer paso hacia la acción
+  empreinte-carbone.heroTitle.lock: L'empreinte carbone, une première étape pour passer à l'action
+  actions.chooseAction.ariaLabel.unselected: Seleccione esta acción
+  actions.chooseAction.ariaLabel.unselected.lock: Sélectionner cette action
+  actions.rejectAction.ariaLabel.selected: Recurso desestimado
+  actions.rejectAction.ariaLabel.selected.lock: Action rejetée
+  actions.rejectAction.ariaLabel.unselected: Rechazar esta acción
+  actions.rejectAction.ariaLabel.unselected.lock: Rejeter cette action
+  actions.chooseAction.ariaLabel.selected: Acción seleccionada, cancelar selección
+  actions.chooseAction.ariaLabel.selected.lock: Action sélectionnée, annuler la sélection
+  documentation.search.h2: Explore nuestros modelos
+  documentation.search.h2.lock: Explorez nos modèles
+  documentation.search.input.label: Introducir palabras clave
+  documentation.search.input.label.lock: Entrez des mots clefs
+  documentation.search.label: Búsqueda de documentación
+  documentation.search.label.lock: Recherche dans la documentation
+  documentation.search.results.label: Resultados de la búsqueda
+  documentation.search.results.label.lock: Résultats de recherche
+  documentation.search.input.placeholder: Introducir palabras clave de búsqueda
+  documentation.search.input.placeholder.lock: Entrez des mots-clefs de recherche
+  documentation.search.results_many: '{{count}} resultado(s) encontrado(s)'
+  documentation.search.results_many.lock: '{{count}} résultat(s) trouvé(s)'
+  documentation.search.results_one: '{{count}} resultado(s) encontrado(s)'
+  documentation.search.results_one.lock: '{{count}} résultat(s) trouvé(s)'
+  Formulaire - Demander une démo: Formulario - Solicitar una demostración
+  organisations.poll.create.custom_question.add_button.label: Añadir una pregunta personalizada
+  organisations.poll.create.custom_question.add_button.label.lock: Ajouter une question personnalisée
+  documentation.search.results_other: '{{count}} resultado(s) encontrado(s)'
+  documentation.search.results_other.lock: '{{count}} résultat(s) trouvé(s)'
+  documentation.noresults: No se han encontrado resultados para esta búsqueda
+  documentation.noresults.lock: Aucun résultat ne correspond à cette recherche
+  Chargement du tableau de bord...: Cargando el salpicadero...
+  Iframe - Google Tag Manager: Iframe - Google Tag Manager
+  Formulaire - nous faire part de vos remarques sur le site: Formulario - envíenos sus comentarios sobre el sitio
+  Graphique de distribution des résultats de simulation pour le mois dernier: Gráfico de distribución de los resultados de la simulación del último mes
+  Impossible de charger le tableau de bord. Veuillez réessayer plus tard.: No se ha podido cargar el panel de control. Vuelva a intentarlo más tarde.
+  Statistiques d'usage du mode "Organisations": Estadísticas de utilización del modo "Organizaciones
+  Graphiques du nombre de visites et de simulations sur le site: Gráficos que muestran el número de visitas y simulaciones en el sitio web
+  organisations.poll.create.custom_question.add_button.max_reached: Ha alcanzado el número máximo de preguntas personalizadas
+  organisations.poll.create.custom_question.add_button.max_reached.lock: Vous avez atteint le nombre maximum de questions personnalisées
+  Formulaire - Désactiver les cookies de mesure d'audience via Matomo: Formulario - Desactivar las cookies de medición de audiencia a través de Matomo
+  Statistiques d'usage du mode "Challenge tes amis": Estadísticas de uso del modo "Desafía a tus amigos
+  Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.: Este gráfico muestra la distribución de los resultados de simulación de los usuarios, lo que permite analizar tendencias y comportamientos.
+  Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.: Este panel muestra las estadísticas de tráfico del sitio, incluido el número de visitas, las simulaciones realizadas y las tendencias de uso.
+  Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.: Estadísticas sobre el uso del modo Desafío, incluido el número de desafíos creados, participantes y resultados compartidos.
+  Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.: Estadísticas detalladas sobre el uso del modo Organizaciones, incluido el número de organizaciones creadas, participantes y acciones completadas.
+  common.buttons.close: Cerrar
+  common.buttons.close.lock: Fermer
+  Ouvrir le menu: Abrir el menú
+  actions.form.modal.ariaLabel: Ventana modal del formulario de acción
+  actions.form.modal.ariaLabel.lock: Fenêtre modale du formulaire d'action
+  common.interactiveIllustration.item.shirt: Blusa
+  common.interactiveIllustration.item.shirt.lock: Chemisier
+  results.informationBlock.water.openButton: Ver la explicación de la huella hídrica
+  results.informationBlock.water.openButton.lock: Voir l'explication sur l'empreinte eau
+  actions.form.custom.modal.ariaLabel: Ventana modal de formulario de acción personalizada
+  actions.form.custom.modal.ariaLabel.lock: Fenêtre modale du formulaire d'action personnalisée
+  common.navigation.nextQuestion.finish.label: Complete la prueba y vaya a la página de resultados
+  common.navigation.nextQuestion.finish.label.lock: Terminer le test et accéder à la page de résultats
+  results.informationBlock.carbon.openButton: Ver detalles del objetivo de 2 toneladas para 2050
+  results.informationBlock.carbon.openButton.lock: Voir le détail de l'objectif 2 tonnes en 2050
+  common.modal.confirmation.title: Ventana modal de confirmación de la acción
+  common.modal.confirmation.title.lock: Fenêtre modale de confirmation d'action
+  Choix de la métrique: Elección de la métrica
+  common.navigation.nextQuestion.next.label: Ir a la siguiente pregunta
+  common.navigation.nextQuestion.next.label.lock: Aller à la question suivante
+  simulator.label.moreInfoButton: Para más información, pulse aquí {{label}}
+  simulator.label.moreInfoButton.lock: Plus d'informations - {{label}}
+  common.navigation.nextQuestion.pass.label: Pasar a la siguiente pregunta
+  common.navigation.nextQuestion.pass.label.lock: Passer et aller à la question suivante
+  common.interactiveIllustration.item.car: Coche
+  common.interactiveIllustration.item.car.lock: Voiture
+  simulator.customQuestions.voiture.deleteItem: Eliminar esta ruta
+  simulator.customQuestions.voiture.deleteItem.lock: Supprimer ce trajet
+  simulator.mosaicNumberInput: 'Eliminar un elemento : {{title}}'
+  simulator.mosaicNumberInput.lock: 'Retirer un élément : {{title}}'
+  organisations.additionalQuestions.deletion.modal.ariaLabel: Ventana de confirmación de eliminación de preguntas personalizada
+  organisations.additionalQuestions.deletion.modal.ariaLabel.lock: Fenêtre de confirmation de suppression de la question personnalisée
+  results.mainSubcategories.mainSubcategory.seeDetail: '{{title}}más información'
+  results.mainSubcategories.mainSubcategory.seeDetail.lock: '{{title}}, voir le détail ci-dessous'
+  group.results.rankingMember.delete.modal.ariaLabel: Ventana modal de confirmación de la supresión de un miembro del grupo
+  group.results.rankingMember.delete.modal.ariaLabel.lock: Fenêtre modale de confirmation de suppression du membre du groupe
+  simulator.customQuestions.voiture.open: Detallar mis viajes
+  simulator.customQuestions.voiture.open.lock: Détailler mes trajets
+  common.interactiveIllustration.item.coffee: Café
+  common.interactiveIllustration.item.coffee.lock: Café
+  common.navigation.previousButton.label: Ir a la pregunta anterior
+  common.navigation.previousButton.label.lock: Aller à la question précédente
+  Fenêtre modale de partage: Ventana modal para compartir
+  organisations.emailVerificationModal.title: Ventana modal de confirmación por correo electrónico
+  organisations.emailVerificationModal.title.lock: Fenêtre modale de confirmation d'email
+  simulator.topBar.totalButtons.saveButton.ariaLabel: Guardar y reanudar más tarde
+  simulator.topBar.totalButtons.saveButton.ariaLabel.lock: Enregistrer et reprendre plus tard
+  simulateur.saveModal.title: Ventana de prueba del modo de copia de seguridad
+  simulateur.saveModal.title.lock: Fenêtre modale de sauvegarde de test
+  results.informationBlock.carbon.closeButton: Cerrar la explicación de la huella hídrica
+  results.informationBlock.carbon.closeButton.lock: Fermer l'explication sur l'empreinte eau
+  common.burgerMenu.title: Cerrar el menú de navegación
+  common.burgerMenu.title.lock: Fermer le menu de navigation
+  common.interactiveIllustration.item.computer: Ordenador
+  common.interactiveIllustration.item.computer.lock: Ordinateur
+  organisations.polls.settings.confirmDeletion: Ventana modal de confirmación de la supresión de la campaña
+  organisations.polls.settings.confirmDeletion.lock: Fenêtre modale de confirmation de suppression de la campagne
+  common.slider.buttons.previous: Ir a la diapositiva anterior
+  common.slider.buttons.previous.lock: Aller à la diapositive précédente
+  common.slider.buttons.next: Ir al número de diapositiva {{number}}
+  common.slider.buttons.next.lock: Aller à la diapositive numéro {{number}}
+  blog.homepage.defaultDescription: Descubra consejos prácticos para reducir su huella ecológica.
+  blog.homepage.defaultDescription.lock: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
+  blog.homePage.dynamicPageNumber: página {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
+  blog.homePage.dynamicPageNumber.lock: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
+  blog.homepage.defaultTitle: Blog, descubra nuestros artículos y consejos sobre el clima - Nos Gestes Climat
+  blog.homepage.defaultTitle.lock: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
+  Inscription en cours...: Registro en curso...
+  Entrez votre adresse email pour recevoir les infolettres sélectionnées.: Introduzca su dirección de correo electrónico para recibir los boletines seleccionados.
+  5 infolettres sur l'impact du logement: 5 boletines sobre el impacto de la vivienda
+  4 infolettres l'impact des transports: 4 boletines informativos sobre el impacto del transporte
+  documentation.total_category_block.title: del total, consulte la documentación
+  documentation.total_category_block.title.lock: du total, voir la documentation
+  Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.: Marque las casillas correspondientes a los boletines a los que desea suscribirse.
+  Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie: Seleccione este filtro para mostrar sólo los artículos de esta categoría
+  common.slider.play: Lectura
+  common.slider.play.lock: Lecture
+  common.slider.stop: Stop
+  common.slider.stop.lock: Arrêter
+  Accès rapide: Acceso rápido
+  homePage.interactiveIllustration.waterScore: ' y huella hídrica: {{waterScore}} sobre 5'
+  homePage.interactiveIllustration.waterScore.lock: ' et empreinte eau notée {{waterScore}} sur 5'
+  Lancer le défilement: Iniciar desplazamiento
+  Arrêter le défilement: Detener el desplazamiento
+  homePage.interactiveIllustration.itemTitle: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} de 5'
+  homePage.interactiveIllustration.itemTitle.lock: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'
+  common.category.divers: Varios
+  common.category.divers.lock: Divers
+  pollResults.categoryDistribution.accessibleDescription.category: '{{name}}: {{value}} {{unit}}.'
+  pollResults.categoryDistribution.accessibleDescription.category.lock: '{{name}}: {{value}} {{unit}}.'
+  common.category.transport: Transporte
+  common.category.transport.lock: Transport
+  common.category.services: Servicios
+  common.category.services.lock: Services
+  common.category.alimentation: Alimentación
+  common.category.alimentation.lock: Alimentation
+  common.category.logement: Vivienda
+  common.category.logement.lock: Logement
+  pollResults.footprintBarChart.accessibleDescription.lower: inferior
+  pollResults.footprintBarChart.accessibleDescription.lower.lock: inférieure
+  pollResults.footprintBarChart.accessibleDescription.higher: superior
+  pollResults.footprintBarChart.accessibleDescription.higher.lock: supérieure
+  pollResults.categoryDistribution.accessibleDescription.chart: 'Gráfico de donuts que muestra el desglose de las emisiones por categorías. '
+  pollResults.categoryDistribution.accessibleDescription.chart.lock: 'Graphique en donut montrant la répartition des émissions par catégorie. '
+  pollResults.pollResults.distribution.category_distribution.title_detail: (medias)
+  pollResults.pollResults.distribution.category_distribution.title_detail.lock: (moyennes)
+  pollResults.footprintBarChart.accessibleDescription.groupFootprint: La huella media del Grupo es {{value}} {{unit}}.
+  pollResults.footprintBarChart.accessibleDescription.groupFootprint.lock: L'empreinte moyenne du groupe est de {{value}} {{unit}}.
+  pollResults.footprintBarChart.userFootprint: Tu huella
+  pollResults.footprintBarChart.userFootprint.lock: Votre empreinte
+  pollResults.footprintBarChart.legend.userFootprint: Tu huella
+  pollResults.footprintBarChart.legend.userFootprint.lock: Votre empreinte
+  pollResults.footprintBarChart.legend.groupFootprint: Huella media del Grupo
+  pollResults.footprintBarChart.legend.groupFootprint.lock: Empreinte moyenne du groupe
+  pollResults.footprintBarChart.accessibleDescription.userComparison: Su huella es {{comparison}}.
+  pollResults.footprintBarChart.accessibleDescription.userComparison.lock: Votre empreinte est {{comparison}} à celle du groupe.
+  pollResults.pollResults.distribution.category_distribution.title: Desglose por categoría de emisión
+  pollResults.pollResults.distribution.category_distribution.title.lock: Répartition par poste d'émission
+  pollResults.distribution.title: Desglose de la huella de carbono
+  pollResults.distribution.title.lock: Répartition des empreintes carbone
+  pollResults.footprintBarChart.targetLabel: Objetivo 2050
+  pollResults.footprintBarChart.targetLabel.lock: Objectif 2050
+  pollResults.footprintBarChart.accessibleDescription.groupComparison: La huella del Grupo es {{comparison}}.
+  pollResults.footprintBarChart.accessibleDescription.groupComparison.lock: L'empreinte du groupe est {{comparison}} à l'objectif.
+  pollResults.footprintBarChart.accessibleDescription.chart: 'Gráfico de barras que muestra la comparación de las huellas de carbono. '
+  pollResults.footprintBarChart.accessibleDescription.chart.lock: 'Graphique en barres montrant la comparaison des empreintes carbone. '
+  pollResults.footprintBarChart.groupFootprint: Huella media del Grupo
+  pollResults.footprintBarChart.groupFootprint.lock: Empreinte moyenne du groupe
+  pollResults.mean_footprint_distribution.title: Huella de carbono media de
+  pollResults.mean_footprint_distribution.title.lock: Empreinte carbone moyenne de
+  pollResults.footprintBarChart.accessibleDescription.userFootprint: Su huella personal es {{value}} {{unit}}.
+  pollResults.footprintBarChart.accessibleDescription.userFootprint.lock: Votre empreinte personnelle est de {{value}} {{unit}}.
+  pollResults.footprintBarChart.accessibleDescription.target: El objetivo es {{year}} est de {{value}} {{unit}}.
+  pollResults.footprintBarChart.accessibleDescription.target.lock: L'objectif à atteindre d'ici {{year}} est de {{value}} {{unit}}.
+  pollResults.radarChart.accessibleDescription.category: '{{category}}: vos résultats {{user}} {{comparison}} à la moyenne {{average}}.'
+  pollResults.radarChart.accessibleDescription.category.lock: '{{category}}: vos résultats {{user}} {{comparison}} à la moyenne {{average}}.'
+  pollResults.radarChart.legend.userResults: Mis resultados
+  pollResults.radarChart.legend.userResults.lock: Mes résultats
+  pollResults.radarChart.accessibleDescription.lower: inferior
+  pollResults.radarChart.accessibleDescription.lower.lock: inférieur
+  pollResults.radarChart.legend.average: Media
+  pollResults.radarChart.legend.average.lock: Moyenne
+  pollResults.radarChart.accessibleDescription.higher: superior
+  pollResults.radarChart.accessibleDescription.higher.lock: supérieur
+  copyButton.shareAriaLabel: Compartir este enlace
+  copyButton.shareAriaLabel.lock: Partager le lien
+  pollResults.adminSection.shareDirectly: O compartir directamente
+  pollResults.adminSection.shareDirectly.lock: Ou partagez directement
+  pollResults.adminSection.title: Invite a gente nueva
+  pollResults.adminSection.title.lock: Invitez de nouvelles personnes
+  copyButton.copyAriaLabel: Copiar enlace al portapapeles
+  copyButton.copyAriaLabel.lock: Copier le lien dans le presse-papiers
+  copyButton.copiedAriaLabel: Enlace copiado en el portapapeles
+  copyButton.copiedAriaLabel.lock: Lien copié dans le presse-papiers
+  C'est prêt ! Voici votre lien à partager: Ya está todo listo Aquí tienes el enlace para compartir
+  pollResults.radarChart.accessibleDescription.chart: 'Gráfico de radar que compara sus resultados con los promedios de la categoría. '
+  pollResults.radarChart.accessibleDescription.chart.lock: 'Graphique radar comparant vos résultats aux moyennes par catégorie. '
+  pollResults.radarChart.title: Su huella en relación con otros participantes
+  pollResults.radarChart.title.lock: Votre empreinte par rapport aux autres participants
+  copyButton.shareTitle: Descubra mi huella de carbono
+  copyButton.shareTitle.lock: Découvre mon empreinte carbone !
+  pollResults.footprintBarChart.targetLabelMobile: 'Objetivo 2050:'
+  pollResults.footprintBarChart.targetLabelMobile.lock: 'Objectif 2050 :'
+  common.category.alimentationShort: Alimentación
+  common.category.alimentationShort.lock: Alim.
+  Empreinte carbone moyenne: Huella de carbono media
+  Empreinte eau moyenne: Huella hídrica media
