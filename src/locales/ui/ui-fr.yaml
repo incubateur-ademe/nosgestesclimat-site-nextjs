@@ -1332,3 +1332,7 @@ entries:
   pollResults.footprintBarChart.targetLabelMobile: 'Objectif 2050 :'
   Empreinte carbone moyenne: Empreinte carbone moyenne
   Empreinte eau moyenne: Empreinte eau moyenne
+  L'empreinte carbone de l'alimentation: L'empreinte carbone de l'alimentation
+  L'empreinte carbone du logement: L'empreinte carbone du logement
+  L'empreinte carbone du transport: L'empreinte carbone du transport
+  pollResults.footprintBarChart.targetLabelUnit: tonnes
