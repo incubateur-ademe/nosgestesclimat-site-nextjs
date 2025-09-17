@@ -52,7 +52,7 @@ export async function generateMetadata({
     description:
       'Découvrez des conseils pratiques pour réduire votre empreinte écologique.',
     alternates: {
-      canonical: `/${landingPageSlug}`,
+      canonical: `/themes/${landingPageSlug}`,
     },
   })
 }
