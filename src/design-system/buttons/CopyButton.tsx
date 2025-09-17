@@ -1,6 +1,9 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { captureException } from '@sentry/nextjs'
+import isMobile from 'is-mobile'
 import type { PropsWithChildren, ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -13,6 +16,8 @@ type Props = {
   className?: string
   copiedStateText?: ReactNode
   onCopied?: () => void
+  canShare?: boolean
+  shareTitle?: string
 }
 
 export default function CopyButton({
@@ -22,41 +27,107 @@ export default function CopyButton({
   className = '',
   copiedStateText,
   onCopied,
+  canShare = true,
+  shareTitle,
 }: PropsWithChildren<Props>) {
+  const { t } = useClientTranslation()
   const [isCopied, setIsCopied] = useState(false)
   const [isError, setIsError] = useState(false)
 
   const timeoutRef = useRef<NodeJS.Timeout>(undefined)
+  const buttonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
-    return () => clearTimeout(timeoutRef.current)
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
   }, [])
+
+  const isShareDefined =
+    typeof navigator !== 'undefined' && navigator.share !== undefined
+
+  const handleShareOrCopy = async () => {
+    setIsError(false)
+
+    // For mobile devices with native sharing
+    if (canShare && navigator?.share && isMobile()) {
+      try {
+        await navigator.share({
+          url: textToCopy,
+          title:
+            shareTitle ||
+            t('copyButton.shareTitle', 'Découvre mon empreinte carbone !'),
+        })
+        return
+      } catch (err) {
+        if (err instanceof DOMException && err.name === 'AbortError') {
+          return
+        }
+        captureException(err)
+        setIsError(true)
+      }
+    }
+
+    // For desktop devices or fallback
+    if (navigator?.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(textToCopy)
+        setIsCopied(true)
+        onCopied?.()
+        timeoutRef.current = setTimeout(() => setIsCopied(false), 3000)
+
+        // Focus on button after copy for accessibility
+        setTimeout(() => {
+          buttonRef.current?.focus()
+        }, 100)
+      } catch (err) {
+        captureException(err)
+        setIsError(true)
+      }
+    }
+  }
+
+  const getButtonText = () => {
+    if (isCopied) {
+      return (
+        copiedStateText ?? (
+          <span>
+            <Trans>Copié !</Trans>
+          </span>
+        )
+      )
+    }
+    return children ?? <Trans>Copier le lien</Trans>
+  }
+
+  const getButtonAriaLabel = () => {
+    if (isCopied) {
+      return t(
+        'copyButton.copiedAriaLabel',
+        'Lien copié dans le presse-papiers'
+      )
+    }
+    if (canShare && isShareDefined && isMobile()) {
+      return t('copyButton.shareAriaLabel', 'Partager le lien')
+    }
+    return t(
+      'copyButton.copyAriaLabel',
+      'Copier le lien dans le presse-papiers'
+    )
+  }
 
   return (
     <>
       <Button
+        ref={buttonRef}
         color={color}
         className={twMerge('w-full', className)}
-        onClick={async () => {
-          try {
-            await navigator.clipboard.writeText(textToCopy)
-
-            setIsCopied(true)
-
-            onCopied?.()
-
-            timeoutRef.current = setTimeout(() => setIsCopied(false), 3000)
-          } catch (err) {
-            setIsError(true)
-          }
-        }}>
-        {isCopied
-          ? (copiedStateText ?? (
-              <span className="text-green-700">
-                <Trans>Copié !</Trans>
-              </span>
-            ))
-          : (children ?? <Trans>Copier le lien</Trans>)}
+        onClick={handleShareOrCopy}
+        aria-label={getButtonAriaLabel()}
+        aria-live="polite">
+        {getButtonText()}
       </Button>
 
       {isError && (
