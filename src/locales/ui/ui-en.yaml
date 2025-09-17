@@ -1537,3 +1537,10 @@ entries:
   common.category.alimentationShort.lock: Alim.
   Empreinte carbone moyenne: Average carbon footprint
   Empreinte eau moyenne: Average water footprint
+  pollResults.footprintBarChart.targetLabelUnit: tonnes
+  pollResults.footprintBarChart.targetLabelUnit.lock: tonnes
+  L'empreinte carbone du logement: The carbon footprint of housing
+  L'empreinte carbone de l'alimentation: The carbon footprint of food
+  L'empreinte carbone du transport: The carbon footprint of transport
+  Chargement des résultats détaillés de campagne...: Loading detailed campaign results...
+  4 infolettres l’impact des transports: 4 newsletters the impact of transport
