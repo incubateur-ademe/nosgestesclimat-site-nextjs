@@ -66,6 +66,9 @@ export default function CopyInput({
           title: t('copyInput.shareTitle', 'Découvre mon empreinte carbone !'),
         })
       } catch (err) {
+        if (err instanceof DOMException && err.name === 'AbortError') {
+          return
+        }
         captureException(err)
         setIsError(true)
       } finally {

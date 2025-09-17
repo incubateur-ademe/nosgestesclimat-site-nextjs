@@ -62,6 +62,9 @@ export default function CopyButton({
         })
         return
       } catch (err) {
+        if (err instanceof DOMException && err.name === 'AbortError') {
+          return
+        }
         captureException(err)
         setIsError(true)
       }
