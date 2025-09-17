@@ -77,7 +77,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const thematicLandingPagesResult = await fetchThematicLandingPages()
   const thematicLandingUrls =
     thematicLandingPagesResult?.thematicLandingPages?.map((page) => ({
-      url: `https://nosgestesclimat.fr/${page.slug}`,
+      url: `https://nosgestesclimat.fr/themes/${page.slug}`,
       lastModified: new Date(),
       priority: 0.8,
     })) || []
