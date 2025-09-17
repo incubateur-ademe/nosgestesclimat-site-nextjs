@@ -9,10 +9,12 @@ const personasByLocale: Record<string, Personas> = {
   en: personasEN as Personas,
   es: personasES as Personas,
 }
+
 type Props = {
   locale?: string
   PRNumber?: string
 }
+
 /*
  * This function is used to get the personas. It can be called directly from a server component.
  */

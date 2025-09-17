@@ -23,18 +23,22 @@ type ShareItem = {
 }
 
 export default function Share({
+  className,
   buttonLabel,
   shareItems,
   modalTitle,
   modalDescription,
   linkShared,
+  shouldHideTextOnMobile = true,
   ...props
 }: {
+  className?: string
   buttonLabel: string
   shareItems: ShareItem[]
   modalTitle: ReactNode
   modalDescription: ReactNode
   linkShared: string
+  shouldHideTextOnMobile?: boolean
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -46,7 +50,8 @@ export default function Share({
         color="text"
         size="sm"
         className={twMerge(
-          'h-10 w-10 p-0! font-medium lg:w-auto lg:min-w-32 lg:gap-1 lg:px-4! lg:py-2!'
+          'h-10 w-10 p-0! font-medium lg:w-auto lg:min-w-32 lg:gap-1 lg:px-4! lg:py-2!',
+          className
         )}
         data-testid="share-button"
         onClick={() => setIsModalOpen(true)}
@@ -55,7 +60,13 @@ export default function Share({
           className={twMerge('fill-primary-700 mr-[1px] h-[28px] w-[28px]')}
         />
 
-        <span className="sr-only lg:not-sr-only!">{buttonLabel}</span>
+        <span
+          className={twMerge(
+            'sr-only lg:not-sr-only!',
+            shouldHideTextOnMobile && 'not-sr-only! hidden md:block'
+          )}>
+          {buttonLabel}
+        </span>
       </Button>
 
       {isModalOpen && (

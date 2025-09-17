@@ -89,7 +89,7 @@ export default function QRCode({ value, className }: QRCodeProps) {
     <div
       data-testid="qrcode-container"
       className={twMerge(
-        'flex flex-row items-center gap-4 md:flex-col! md:gap-6',
+        'flex flex-row items-center gap-4 md:gap-6',
         className
       )}>
       <div

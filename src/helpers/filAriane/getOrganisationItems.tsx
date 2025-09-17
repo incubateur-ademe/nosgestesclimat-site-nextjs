@@ -48,7 +48,7 @@ function getOrganisationEspaceItems({
       })
     }
 
-    if (pathname.includes('campagnes')) {
+    if (pathname.includes('campagnes') && poll) {
       items.push({
         href: `/organisations/${params.orgaSlug}/campagnes/${params.pollSlug}`,
         label: (
