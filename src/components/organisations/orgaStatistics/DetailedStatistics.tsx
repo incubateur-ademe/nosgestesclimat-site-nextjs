@@ -29,8 +29,8 @@ const plusFunFactsRules: { [k in keyof Partial<FunFacts>]: DottedName } =
     )
   )
 
-type Props = { funFacts?: FunFacts | null }
-export default function DetailedStatistics({ funFacts }: Props) {
+type Props = { funFacts?: FunFacts | null; className?: string }
+export default function DetailedStatistics({ funFacts, className }: Props) {
   const [isSectionVisible, setIsSectionVisible] = useState(false)
 
   const funFactsByCategory = {} as Record<
@@ -51,9 +51,9 @@ export default function DetailedStatistics({ funFacts }: Props) {
   if (!funFacts) return null
 
   return (
-    <div className="flex flex-col">
+    <div className={twMerge('flex flex-col', className)}>
       <Button
-        className="my-4 w-36 self-center px-4! md:self-end"
+        className="my-4 w-auto self-center px-4! no-underline md:self-end"
         color="link"
         onClick={() => {
           trackEvent(organisationsDashboardClickFunFacts)
@@ -66,7 +66,7 @@ export default function DetailedStatistics({ funFacts }: Props) {
             isSectionVisible && '-rotate-90'
           )}
         />
-        <span className="w-24">
+        <span>
           {!isSectionVisible ? (
             <Trans>Voir plus</Trans>
           ) : (

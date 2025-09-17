@@ -44,7 +44,7 @@ export default function ThematicPagesSection() {
       {thematicPages.map((page) => (
         <InlineLink
           key={page.id}
-          href={`/${page.slug}`}
+          href={`/themes/${page.slug}`}
           className="text-default text-sm no-underline hover:underline">
           {page.title}
         </InlineLink>

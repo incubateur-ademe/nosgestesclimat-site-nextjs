@@ -1,12 +1,10 @@
 'use client'
 
-import VerticalBarChart from '@/components/charts/VerticalBarChart'
 import HourglassIcon from '@/components/icons/HourglassIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import Card from '@/design-system/layout/Card'
 import { useIsOrganisationAdmin } from '@/hooks/organisations/useIsOrganisationAdmin'
 import Wave from 'react-wavify'
-import CategoryChartItem from './CategoryChartItem'
 
 type Props = { hasLessThan3Participants: boolean }
 
@@ -14,7 +12,7 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
   const { isAdmin } = useIsOrganisationAdmin()
 
   return (
-    <div className="relative col-span-1 sm:col-span-2 lg:col-span-3">
+    <div className="relative col-span-1 sm:col-span-2">
       <div className="absolute top-0 left-0 z-10 h-full w-full p-10 pb-0">
         <div className="absolute top-0 right-0 bottom-0 left-0 -z-10 bg-white opacity-50" />
 
@@ -56,7 +54,7 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="bg-rainbow-rotation overflow-hidden rounded-xl bg-gray-100 p-8">
           <p className="text-primary-700 text-4xl font-bold">
             8,0 <span className="text-base font-normal">t CO₂e</span>
@@ -66,7 +64,7 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
           </p>
         </div>
 
-        <div className="relative hidden rounded-xl bg-gray-100 p-8 lg:block">
+        <div className="relative hidden overflow-hidden rounded-xl bg-gray-100 p-8 lg:block">
           <Wave
             fill="#5152D0"
             className="pointer-events-none absolute right-0 bottom-0 left-0 h-full w-full rounded-b-xl"
@@ -86,44 +84,6 @@ export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
               </Trans>
             </p>
           </div>
-        </div>
-
-        <div className="hidden rounded-xl bg-gray-100 py-4 sm:block">
-          <VerticalBarChart className="mt-0 h-[calc(100%-48px)]">
-            <CategoryChartItem
-              index={0}
-              category="transport"
-              maxValue={8}
-              value={3}
-            />
-            <CategoryChartItem
-              index={1}
-              category="logement"
-              maxValue={8}
-              value={1}
-            />
-            <CategoryChartItem
-              index={2}
-              category="alimentation"
-              maxValue={8}
-              value={1}
-            />
-            <CategoryChartItem
-              index={3}
-              category="divers"
-              maxValue={8}
-              value={0.5}
-            />
-            <CategoryChartItem
-              index={4}
-              category="services sociétaux"
-              maxValue={8}
-              value={2}
-            />
-          </VerticalBarChart>
-          <h3 className="mt-4 mb-4 ml-6 text-sm">
-            <Trans>Moyenne du groupe par catégorie</Trans>
-          </h3>
         </div>
       </div>
     </div>

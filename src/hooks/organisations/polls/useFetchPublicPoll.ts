@@ -1,6 +1,6 @@
 import { ORGANISATION_URL } from '@/constants/urls/main'
 import type { PublicOrganisationPoll } from '@/types/organisations'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, type UseQueryResult } from '@tanstack/react-query'
 import axios from 'axios'
 import { useParams, useSearchParams } from 'next/navigation'
 import { useUser } from '../../../publicodes-state'
@@ -11,7 +11,7 @@ export const useFetchPublicPoll = ({
 }: {
   pollIdOrSlug?: string | string[] | null | undefined
   enabled?: boolean
-} = {}) => {
+} = {}): UseQueryResult<PublicOrganisationPoll, Error> => {
   const params = useParams()
   const searchParams = useSearchParams()
 
