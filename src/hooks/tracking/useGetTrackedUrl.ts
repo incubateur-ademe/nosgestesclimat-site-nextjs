@@ -27,7 +27,8 @@ function handleUrlAnonymisation(url: string) {
   }
 
   // Anonymise the group administrator information
-  const urlParams = new URLSearchParams(urlModified)
+  const urlParams = new URLSearchParams(urlModified.split('?')[1] ?? '')
+
   if (urlParams.get(ADMINISTRATOR_NAME_KEY)) {
     urlModified = urlModified.replace(
       urlParams.get(ADMINISTRATOR_NAME_KEY) || '',
@@ -36,7 +37,7 @@ function handleUrlAnonymisation(url: string) {
   }
   if (urlParams.get(ADMINISTRATOR_EMAIL_KEY)) {
     urlModified = urlModified.replace(
-      urlParams.get(ADMINISTRATOR_EMAIL_KEY) || '',
+      encodeURIComponent(urlParams.get(ADMINISTRATOR_EMAIL_KEY) || ''),
       'administrator_email'
     )
   }
