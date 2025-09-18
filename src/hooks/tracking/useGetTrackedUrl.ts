@@ -31,13 +31,13 @@ function handleUrlAnonymisation(url: string) {
 
   if (urlParams.get(ADMINISTRATOR_NAME_KEY)) {
     urlModified = urlModified.replace(
-      urlParams.get(ADMINISTRATOR_NAME_KEY) || '',
+      urlParams.get(ADMINISTRATOR_NAME_KEY) as string,
       'administrator_name'
     )
   }
   if (urlParams.get(ADMINISTRATOR_EMAIL_KEY)) {
     urlModified = urlModified.replace(
-      encodeURIComponent(urlParams.get(ADMINISTRATOR_EMAIL_KEY) || ''),
+      encodeURIComponent(urlParams.get(ADMINISTRATOR_EMAIL_KEY) as string),
       'administrator_email'
     )
   }
