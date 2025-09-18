@@ -177,7 +177,7 @@ export default function Form() {
           </div>
 
           <div
-            className={`short:gap-2 flex flex-col gap-8 md:w-60 md:self-start md:${getBgCategoryColor(currentCategory ?? 'transport', '500')}`}>
+            className={`short:gap-2 flex flex-col gap-8 md:min-w-60 md:self-start md:${getBgCategoryColor(currentCategory ?? 'transport', '500')}`}>
             <ResultsBlocksDesktop />
 
             <FunFact question={currentQuestion} />
