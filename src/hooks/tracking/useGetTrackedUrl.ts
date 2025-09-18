@@ -42,6 +42,11 @@ function handleUrlAnonymisation(url: string) {
     )
   }
 
+  // Anonymise the newsimulation searchParam
+  if (urlParams.get('email')) {
+    urlModified = urlModified.replace(urlParams.get('email') as string, 'email')
+  }
+
   return urlModified
 }
 
