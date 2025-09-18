@@ -1,9 +1,13 @@
+import {
+  ADMINISTRATOR_EMAIL_KEY,
+  ADMINISTRATOR_NAME_KEY,
+} from '@/constants/group'
 import i18nConfig from '@/i18nConfig'
 import { useSearchParams } from 'next/navigation'
 
 import { usePathname } from 'next/navigation'
 
-function handleOrganisationModifications(url: string) {
+function handleUrlAnonymisation(url: string) {
   // Replace the organisation slug by the placeholder
   const pathNameSegment = url.split('/').filter((segment) => segment !== '')
 
@@ -20,6 +24,21 @@ function handleOrganisationModifications(url: string) {
   // Replace the poll slug by the placeholder
   if (pathNameSegment[2] === 'campagnes') {
     urlModified = urlModified.replace(pathNameSegment[3], 'poll_slug')
+  }
+
+  // Anonymise the group administrator information
+  const urlParams = new URLSearchParams(urlModified)
+  if (urlParams.get(ADMINISTRATOR_NAME_KEY)) {
+    urlModified = urlModified.replace(
+      urlParams.get(ADMINISTRATOR_NAME_KEY) || '',
+      'administrator_name'
+    )
+  }
+  if (urlParams.get(ADMINISTRATOR_EMAIL_KEY)) {
+    urlModified = urlModified.replace(
+      urlParams.get(ADMINISTRATOR_EMAIL_KEY) || '',
+      'administrator_email'
+    )
   }
 
   return urlModified
@@ -64,7 +83,7 @@ export function useGetTrackedUrl() {
   }
 
   // We don't want to track the slugs of the organisations and theirs polls on Matomo, as it is publicly accessible.
-  const anonymizedUrl = handleOrganisationModifications(url)
+  const anonymizedUrl = handleUrlAnonymisation(url)
 
   return { url, anonymizedUrl }
 }
