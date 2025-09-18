@@ -9,7 +9,6 @@ import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import Title from '@/design-system/layout/Title'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
-import { useSimulationIdInQueryParams } from '@/hooks/simulation/useSimulationIdInQueryParams'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useIframe } from '@/hooks/useIframe'
 import type { Metric } from '@/publicodes-state/types'
@@ -36,16 +35,13 @@ export default function FinPage() {
   // Guarding the route and redirecting if necessary
   const { isGuardInit, isGuardRedirecting } = useEndGuard()
 
-  const { simulationIdInQueryParams } = useSimulationIdInQueryParams()
-
   const { currentMetric } = useCurrentMetric()
 
   const isIframe = getIsIframe()
   const { isIframeShareData, isFrenchRegion } = useIframe()
 
   // If the simulationIdInQueryParams is set, it means that the simulation is not loaded yet
-  if (!isGuardInit || isGuardRedirecting || !!simulationIdInQueryParams)
-    return <FinPageSkeleton />
+  if (!isGuardInit || isGuardRedirecting) return <FinPageSkeleton />
 
   return (
     <div className="relative mt-12">
