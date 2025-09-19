@@ -10,6 +10,7 @@ export default function MetricCard({
   metric,
   children,
   isSticky,
+  isSharePage,
   ...props
 }: PropsWithChildren<{
   metricTitle: {
@@ -18,12 +19,13 @@ export default function MetricCard({
   }
   metric: Metric
   isSticky?: boolean
+  isSharePage?: boolean
 }>) {
   const { currentMetric, setCurrentMetric } = useCurrentMetric()
 
   const { t } = useClientTranslation()
 
-  const isSelected = currentMetric === metric
+  const isSelected = isSharePage ? false : currentMetric === metric
 
   const handleSelectMetric = () => {
     if (isSelected) return
@@ -46,7 +48,8 @@ export default function MetricCard({
           isSticky && 'rounded-none rounded-br-xl rounded-bl-xl',
           metric === carboneMetric
             ? 'rounded-r-none rounded-bl-xl'
-            : 'rounded-l-none rounded-br-xl'
+            : 'rounded-l-none rounded-br-xl',
+          isSharePage && 'pointer-events-none'
         )}
         aria-label={
           isSelected
