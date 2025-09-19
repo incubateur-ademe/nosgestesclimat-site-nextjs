@@ -11,6 +11,8 @@ import { twMerge } from 'tailwind-merge'
 type Props = {
   unit?: string
   value?: number | string
+  displayedValue?: string
+  setDisplayedValue?: (value: string | undefined) => void
   isMissing: boolean
   setValue: (value: number | undefined) => void
   min?: number
@@ -22,6 +24,8 @@ type Props = {
 export default function NumberInput({
   unit,
   value = '',
+  displayedValue = '',
+  setDisplayedValue = () => {},
   isMissing,
   setValue,
   className,
@@ -56,8 +60,10 @@ export default function NumberInput({
   const setCorrectValue = (value: number | string) => {
     if (value === '') {
       setValue(undefined)
+      setDisplayedValue(undefined)
     } else {
       setValue(Number(value))
+      setDisplayedValue(String(value))
     }
   }
 
@@ -65,7 +71,7 @@ export default function NumberInput({
     <div
       className={twMerge(`flex items-center justify-start gap-1`, className)}>
       <NumericFormat
-        value={isMissing ? '' : value}
+        value={isMissing ? '' : displayedValue}
         placeholder={
           value.toLocaleString(locale, { maximumFractionDigits: 2 }) ?? '0'
         }
