@@ -2,7 +2,11 @@
 
 import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
-import { GROUP_EMOJIS } from '@/constants/group'
+import {
+  ADMINISTRATOR_EMAIL_KEY,
+  ADMINISTRATOR_NAME_KEY,
+  GROUP_EMOJIS,
+} from '@/constants/group'
 import { amisCreationEtapeVosInformationsSuivant } from '@/constants/tracking/pages/amisCreation'
 import Button from '@/design-system/buttons/Button'
 import GridRadioInputs from '@/design-system/inputs/GridRadioInputs'
@@ -77,9 +81,9 @@ export default function NameForm() {
   async function onSubmit({ name, emoji }: Inputs) {
     try {
       const administratorEmail = formatEmail(
-        searchParams.get('administratorEmail')
+        searchParams.get(ADMINISTRATOR_EMAIL_KEY)
       )
-      const administratorName = searchParams.get('administratorName')
+      const administratorName = searchParams.get(ADMINISTRATOR_NAME_KEY)
 
       const group = await createGroup({
         groupInfo: {

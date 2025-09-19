@@ -1,6 +1,10 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import {
+  ADMINISTRATOR_EMAIL_KEY,
+  ADMINISTRATOR_NAME_KEY,
+} from '@/constants/group'
 import { amisCreationEtapeVotreGroupeSuivant } from '@/constants/tracking/pages/amisCreation'
 import Button from '@/design-system/buttons/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
@@ -13,8 +17,8 @@ import { useRouter } from 'next/navigation'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
 type Inputs = {
-  administratorName: string
-  administratorEmail: string
+  [ADMINISTRATOR_NAME_KEY]: string
+  [ADMINISTRATOR_EMAIL_KEY]: string
 }
 
 export default function GroupCreationForm() {
@@ -29,8 +33,8 @@ export default function GroupCreationForm() {
   } = useReactHookForm<Inputs>({
     mode: 'onSubmit',
     defaultValues: {
-      administratorName: user.name ?? '',
-      administratorEmail: user.email ?? '',
+      [ADMINISTRATOR_NAME_KEY]: user.name ?? '',
+      [ADMINISTRATOR_EMAIL_KEY]: user.email ?? '',
     },
   })
 
@@ -38,7 +42,10 @@ export default function GroupCreationForm() {
 
   const router = useRouter()
 
-  function onSubmit({ administratorName, administratorEmail }: Inputs) {
+  function onSubmit({
+    [ADMINISTRATOR_NAME_KEY]: administratorName,
+    [ADMINISTRATOR_EMAIL_KEY]: administratorEmail,
+  }: Inputs) {
     trackEvent(amisCreationEtapeVotreGroupeSuivant)
 
     const formattedEmail = formatEmail(administratorEmail)
@@ -56,7 +63,7 @@ export default function GroupCreationForm() {
     <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <PrenomInput
         data-cypress-id="group-input-owner-name"
-        error={errors.administratorName?.message}
+        error={errors[ADMINISTRATOR_NAME_KEY]?.message}
         value={user.name ?? ''}
         {...register('administratorName', {
           required: t('Ce champ est requis.'),
@@ -66,7 +73,7 @@ export default function GroupCreationForm() {
       <div className="my-4">
         <EmailInput
           data-cypress-id="group-input-owner-email"
-          error={errors.administratorEmail?.message}
+          error={errors[ADMINISTRATOR_EMAIL_KEY]?.message}
           value={user.email ?? ''}
           label={
             <span>
@@ -77,7 +84,7 @@ export default function GroupCreationForm() {
               </span>
             </span>
           }
-          {...register('administratorEmail', {
+          {...register(ADMINISTRATOR_EMAIL_KEY, {
             pattern: {
               value:
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
