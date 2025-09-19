@@ -11,11 +11,17 @@ import CarboneTotalChart from './metricSlider/CarboneTotalChart'
 import MetricCard from './metricSlider/MetricCard'
 import WaterTotalChart from './metricSlider/WaterTotalChart'
 
-type Props = { carboneTotal?: number; waterTotal?: number; isStatic?: boolean }
+type Props = {
+  carboneTotal?: number
+  waterTotal?: number
+  isStatic?: boolean
+  isSharePage?: boolean
+}
 export default function MetricSlider({
   carboneTotal,
   waterTotal,
   isStatic,
+  isSharePage,
 }: Props) {
   const [isSticky, setIsSticky] = useState(false)
 
@@ -65,6 +71,7 @@ export default function MetricSlider({
             : 'h-28 md:h-72 lg:h-80'
         )}>
         <MetricCard
+          isSharePage={isSharePage}
           metric={carboneMetric}
           metricTitle={{
             desktop: <Trans>Mon empreinte carbone</Trans>,
@@ -82,6 +89,7 @@ export default function MetricSlider({
         </MetricCard>
 
         <MetricCard
+          isSharePage={isSharePage}
           metric={eauMetric}
           metricTitle={{
             desktop: <Trans>Mon empreinte eau</Trans>,
@@ -96,18 +104,19 @@ export default function MetricSlider({
           <WaterTotalChart isSmall={isSticky} total={waterTotal} />
         </MetricCard>
       </div>
-
-      <p
-        className={twMerge(
-          'text-default mt-2 inline-block w-full text-center text-xs transition-opacity duration-300 md:text-sm',
-          isSticky ? 'opacity-0' : ''
-        )}>
-        <Emoji>💡</Emoji>{' '}
-        <Trans>
-          Affichez le détail de votre empreinte carbone ou eau en cliquant sur
-          les cartes ci-dessus.
-        </Trans>
-      </p>
+      {!isSharePage && (
+        <p
+          className={twMerge(
+            'text-default mt-2 inline-block w-full text-center text-xs transition-opacity duration-300 md:text-sm',
+            isSticky ? 'opacity-0' : ''
+          )}>
+          <Emoji>💡</Emoji>{' '}
+          <Trans>
+            Affichez le détail de votre empreinte carbone ou eau en cliquant sur
+            les cartes ci-dessus.
+          </Trans>
+        </p>
+      )}
     </div>
   )
 }
