@@ -28,9 +28,9 @@ export default function Localisation({ supportedRegions }: Props) {
     (supportedRegion: string) => supportedRegion === region?.code
   )
 
-  const { iframeRegion } = useIframe()
+  const { isIframe } = useIframe()
 
-  if (iframeRegion) return null
+  if (isIframe) return null
 
   return (
     <div className="mt-4 mb-8 sm:mt-8">
