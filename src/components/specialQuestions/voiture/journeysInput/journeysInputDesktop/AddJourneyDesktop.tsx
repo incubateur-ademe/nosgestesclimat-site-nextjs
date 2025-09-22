@@ -108,6 +108,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
       </td>
       <td className="border-primary-700 block py-2 pl-2 text-right text-xs md:table-cell md:border-t">
         <Button
+          title={t('simulator.car.addTravel', 'Ajouter un trajet')}
           size="sm"
           onClick={() =>
             setJourneys((prevJourneys) => [

@@ -60,7 +60,6 @@ export default async function Contact({ params }: DefaultPageProps) {
       </div>
       <Card>
         <iframe
-          title={t('Formulaire - nous faire part de vos remarques sur le site')}
           data-tally-src="https://tally.so/embed/w59G1Z?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
           loading="lazy"></iframe>
       </Card>
