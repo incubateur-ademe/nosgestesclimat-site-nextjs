@@ -13,7 +13,7 @@ import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useIframe } from '@/hooks/useIframe'
 import type { Metric } from '@/publicodes-state/types'
 import { getIsIframe } from '@/utils/getIsIframe'
-import { type ReactElement } from 'react'
+import { useEffect, type ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Carbone from './_components/Carbone'
 import DocumentationBlock from './_components/DocumentationBlock'
@@ -39,6 +39,14 @@ export default function FinPage() {
 
   const isIframe = getIsIframe()
   const { isIframeShareData, isFrenchRegion } = useIframe()
+
+  useEffect(() => {
+    const titleTags = document.querySelectorAll('head > title')
+
+    if (titleTags.length > 1) {
+      titleTags[1].remove()
+    }
+  }, [])
 
   // If the simulationIdInQueryParams is set, it means that the simulation is not loaded yet
   if (!isGuardInit || isGuardRedirecting) return <FinPageSkeleton />
