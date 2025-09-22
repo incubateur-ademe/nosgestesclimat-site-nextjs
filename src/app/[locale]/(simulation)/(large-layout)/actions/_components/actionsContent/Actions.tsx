@@ -101,7 +101,10 @@ export default function Actions({
           <div id={`${headingId}-description`} className="sr-only">
             {t(
               'actions.thresholdDescription',
-              `Actions avec un impact de ${label} ou plus`
+              'Actions avec un impact de {{label}} ou plus',
+              {
+                label,
+              }
             )}
           </div>
         </div>

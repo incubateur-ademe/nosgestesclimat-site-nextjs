@@ -109,8 +109,8 @@ entries:
   publicodes.AllActions.msgPlusActions.lock: <0>Nous n'avons plus d'actions chiffrées très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes pour agir autrement ⏬</1>
   publicodes.Personas.description: "We have defined them so that they represent the diversity of the simulator's use cases<1>- any resemblance to an existing or former person would be purely coincidental!</1>In no way can we say that they are representative of the distribution of the French population: it is not a question of sticking to population statistics, but of finding among our ten personas at least one that represents each major and differentiating use for the simulator. We therefore varied the following for each persona:<3><0>Their gender: although this has no influence on the footprint, it would be surprising to have only 'female' personas</0><1>Their age and personal / professional situation: at least one student, one retired person, one adult at home, one working person</1><2>The size of their household: from 1 person to a large family</2><3>Where they live: urban, rural and suburban, in the north, south, plains, mountains and on an island</3><4>Where they live: from flats to houses, from new to old buildings</4><5>Means of transport: from walking to driving, from ferries to planes</5><6>Their diet: at least one vegan, one vegetarian, one person who eats only fish, and one red meat lover</6><7>Their buying habits: from second-hand to brand new, from compulsive buyers to people who buy almost nothing at all</7><8>The way they go on holiday: mode of transport, accommodation, there's something for everyone</8><9>Their hobbies: culture, sport, well-being..</9></3>"
   publicodes.Personas.description.lock: 'Nous les avons définis pour qu’ils représentent la diversité des cas d’usage du calculateur.<1>Toute ressemblance avec une personne existant ou ayant existé serait purement fortuite !</1>En aucune mesure, on ne peut dire qu’ils sont représentatifs de la distribution de la population française : il ne s’agit pas de coller aux statistiques de la population, mais de retrouver parmi nos dix personas au moins un qui représente chaque usage majeur et différenciant pour le calculateur. Ainsi, nous avons fait varier pour chacun d’entre eux :<3><0>Leur genre : même s’il n’influe pas sur l’empreinte, il serait étonnant de n’avoir que des personas “femmes”</0><1>Leur âge et situation personnelle / professionnelle : au moins un étudiant, un retraité, un adulte au foyer, un actif</1><2>La taille de leur foyer : de 1 personne à famille nombreuse</2><3>Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans le nord, dans le sud, les plaines, la montagne et sur une île</3><4>Leur logement : de l’appartement à la maison, du neuf à l’ancien</4><5>Leurs modes de transport : de la marche à la voiture en passant par le ferry et l’avion</5><6>Leur régime alimentaire : au moins un végétalien, un végétarien, une personne ne mangeant que du poisson, et un amateur de viande rouge</6><7>Leur tendance à l’achat : du tout occasion au tout neuf, de l’acheteur compulsif à celui ou celle qui n’achète presque rien</7><8>Leur façon de partir en vacances : mode de transport, hébergement, on trouve de tout</8><9>Leurs loisirs : de la culture, du sport, du bien-être…</9></3>'
-  publicodes.Profil.locationDonnées: <0>Where is my data stored? </0><1>Your data is stored in your browser, so you have complete control over it.</1>
-  publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? </0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
+  publicodes.Profil.locationDonnées: <0>Where is my data? <2>Click to display information on data location</2></0><1>Your data is stored in your browser, so you have complete control over it.</1>
+  publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? <2>Cliquez pour afficher les informations sur la localisation des données</2></0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
   publicodes.Profil.recap: You have completed the test at {{percentFinished}} % ({{answeredQuestionsLength}} questions), selected {{chosenActions}} action(s) and declined {{declinedActions}} action(s).
   publicodes.Profil.recap.lock: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions), choisi {{chosenActions}} action(s) et décliné {{declinedActions}} action(s).
   publicodes.Profil.simulations: Every simulation you make is saved in your web browser. Only you have access to it.
@@ -120,7 +120,7 @@ entries:
   publicodes.SimulationMissing.simulationManquante: To unlock this course, you must first complete the test.
   publicodes.SimulationMissing.simulationManquante.lock: Pour débloquer ce parcours, vous devez d'abord terminer le test.
   sites.publicodes.Tutorial.questionE: 💡 But what does that little <1>e</1> mean?
-  sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
+  sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
   sélectionnées: selected
   tonne: ton
   tonne.lock: ton
@@ -1208,14 +1208,14 @@ entries:
   copyInput.defaultLabel.lock: Lien à copier
   copyInput.shareLink: Share this link
   copyInput.shareLink.lock: Partager le lien
-  copyInput.copyErrorManual: Oops, I can't copy the link, you can copy it manually.
-  copyInput.copyErrorManual.lock: Oups, impossible de copier le lien, vous pouvez le copier manuellement.
+  copyInput.copyErrorManual: "Oops, I can't copy the link, you can copy it manually : {{textToCopy}}"
+  copyInput.copyErrorManual.lock: 'Oups, impossible de copier le lien, vous pouvez le copier manuellement : {{textToCopy}}'
   copyInput.copyLink: Copy link
   copyInput.copyLink.lock: Copier le lien
-  cookieConsent.banner.title: Cookie management panel
-  cookieConsent.banner.title.lock: Panneau de gestion des cookies
-  cookieConsent.board.title: Cookie consent banner
-  cookieConsent.board.title.lock: Bannière de consentement aux cookies
+  cookieConsent.banner.title: Modal window for managing cookies
+  cookieConsent.banner.title.lock: Fenêtre modale de gestion des cookies
+  cookieConsent.board.title: Cookie management panel
+  cookieConsent.board.title.lock: Panneau de gestion des cookies
   simulator.customQuestions.ameublement.inProgress: This feature is currently under development. Thank you for your interest!
   simulator.customQuestions.ameublement.inProgress.lock: Cette fonctionnalité est actuellement en cours de conception. Merci pour votre intérêt !
   simulator.customQuestions.textile.open: I want to detail my wardrobe
@@ -1268,8 +1268,8 @@ entries:
   Connexion: Connection
   Visiter cette page: Visit this page
   endPage.tallyForm.buttonLabel.lock: Donner votre avis
-  actions.engagementIcon.ariaLabel: shares are located below
-  actions.engagementIcon.ariaLabel.lock: ', les actions se trouvent en dessous'
+  actions.engagementIcon.ariaLabel: The actions are below
+  actions.engagementIcon.ariaLabel.lock: Les actions se trouvent en dessous
   endPage.waterActions.lireArticle: Open article in a new window
   endPage.waterActions.lireArticle.lock: Ouvrir l'article dans une nouvelle fenêtre
   organisations.ourTools.newTab: Open in a new window
@@ -1406,8 +1406,8 @@ entries:
   common.interactiveIllustration.item.coffee.lock: Café
   blog.homepage.defaultDescription: Discover practical tips for reducing your ecological footprint.
   blog.homepage.defaultDescription.lock: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
-  common.slider.buttons.next: Go to slide number {{number}}
-  common.slider.buttons.next.lock: Aller à la diapositive numéro {{number}}
+  common.slider.buttons.next: Go to next slide
+  common.slider.buttons.next.lock: Aller à la diapositive suivante
   common.slider.buttons.previous: Go to previous slide
   common.slider.buttons.previous.lock: Aller à la diapositive précédente
   blog.homePage.dynamicPageNumber: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
@@ -1523,3 +1523,33 @@ entries:
   L'empreinte carbone du transport: The carbon footprint of transport
   Chargement des résultats détaillés de campagne...: Loading detailed campaign results...
   4 infolettres l’impact des transports: 4 newsletters the impact of transport
+  common.slider.slide.ariaLabel: Slide {{index}} sur {{length}}
+  common.slider.slide.ariaLabel.lock: Diapositive {{index}} sur {{length}}
+  actions.negativeIcon.ariaLabel: The actions are below
+  actions.negativeIcon.ariaLabel.lock: Les actions se trouvent en dessous
+  common.slider.buttons.pagination: Go to slide number {{number}}
+  common.slider.buttons.pagination.lock: Aller à la diapositive numéro {{number}}
+  C'est quoi mon empreinte carbone ?: What's my carbon footprint?
+  (page actuelle): (current page)
+  actions.negativeIcon.alt: Icon representing negative actions
+  actions.negativeIcon.alt.lock: Icône représentant les actions négatives
+  Comment on la mesure ?: How is it measured?
+  Page {{page}} (page actuelle): Page {{page}} (current page)
+  actions.engagementIcon.alt: Icon representing commitment actions
+  actions.engagementIcon.alt.lock: Icône représentant les actions d'engagement
+  actions.thresholdIcon.ariaLabel: The actions are below
+  actions.thresholdIcon.ariaLabel.lock: Les actions se trouvent en dessous
+  actions.engagementDescription: Committed actions to reduce your carbon footprint
+  actions.engagementDescription.lock: Actions d'engagement pour réduire votre empreinte carbone
+  C'est gratuit, et ça prend une minute !: It's free, and only takes a minute!
+  Pourquoi avons-nous ajouté l'empreinte eau ?: Why have we added the water footprint?
+  actions.negativeDescription: Actions that increase your carbon footprint
+  actions.negativeDescription.lock: Actions qui augmentent votre empreinte carbone
+  D'où vient mon empreinte ?: Where does my footprint come from?
+  Cliquez pour ouvrir la liste des régions disponibles: Click to open the list of available regions
+  endpage.title.custom: My carbon and water footprints, footprint {{metric}} - Nos Gestes Climat
+  endpage.title.custom.lock: Mes empreintes carbone et eau, empreinte {{metric}} sélectionnée - Nos Gestes Climat
+  endpage.title.default: My carbon and water footprints, selected carbon footprints - Nos Gestes Climat
+  endpage.title.default.lock: Mes empreintes carbone et eau, empreinte carbone sélectionnée - Nos Gestes Climat
+  actions.thresholdDescription: Shares with an impact of {{label}} or more
+  actions.thresholdDescription.lock: Actions avec un impact de {{label}} ou plus

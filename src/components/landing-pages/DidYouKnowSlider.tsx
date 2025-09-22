@@ -89,7 +89,7 @@ export default function DidYouKnowSlider({
         button.setAttribute(
           'aria-label',
           t(
-            'common.slider.buttons.next',
+            'common.slider.buttons.pagination',
             'Aller à la diapositive numéro {{number}}',
             {
               number: index + 1,
@@ -99,7 +99,7 @@ export default function DidYouKnowSlider({
         button.setAttribute(
           'title',
           t(
-            'common.slider.buttons.next',
+            'common.slider.buttons.pagination',
             'Aller à la diapositive numéro {{number}}',
             {
               number: index + 1,
@@ -167,7 +167,15 @@ export default function DidYouKnowSlider({
               <SplideSlide
                 role="group"
                 className="mx-auto flex! w-full max-w-[90vw] flex-col items-start gap-10 md:flex-row"
-                key={`slide-${index}`}>
+                key={`slide-${index}`}
+                aria-label={t(
+                  'common.slider.slide.ariaLabel',
+                  'Diapositive {{index}} sur {{length}}',
+                  {
+                    index: index + 1,
+                    length: slides.length,
+                  }
+                )}>
                 <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-white md:mx-0 md:h-40 md:w-40">
                   <Image
                     src={slide.illustration}
