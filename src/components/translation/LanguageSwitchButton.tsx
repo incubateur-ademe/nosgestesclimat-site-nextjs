@@ -33,7 +33,9 @@ export default function LanguageSwitchButton({
 
   // Check without the
   const langButtonsDisplayedWithFilteredEs = NO_ES_PATHNAMES.has(
-    pathname.replace(new RegExp(`^/(${i18nConfig.locales.join('|')})`), '')
+    pathname
+      .toString()
+      .replace(new RegExp(`^/(${i18nConfig.locales.join('|')})`), '')
   )
     ? { ...langButtonsDisplayed, es: false }
     : langButtonsDisplayed
@@ -45,11 +47,12 @@ export default function LanguageSwitchButton({
   }
 
   const getHref = (newLocale: Locale) => {
-    let newPathname = pathname
+    let newPathname = pathname.toString()
+
     if (currentLocale === i18nConfig.defaultLocale) {
-      newPathname = `/${newLocale}/${pathname}`
+      newPathname = `/${newLocale}/${pathname.toString()}`
     } else {
-      newPathname = pathname.replace(`/${currentLocale}`, `/${newLocale}`)
+      newPathname = newPathname.replace(`/${currentLocale}`, `/${newLocale}`)
     }
 
     return newPathname
