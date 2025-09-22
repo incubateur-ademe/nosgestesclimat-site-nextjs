@@ -1,17 +1,22 @@
-import {
-  ADMINISTRATOR_EMAIL_KEY,
-  ADMINISTRATOR_NAME_KEY,
-} from '@/constants/group'
 import i18nConfig from '@/i18nConfig'
 import { useSearchParams } from 'next/navigation'
 
 import { usePathname } from 'next/navigation'
+
+// Params to anonymise and their replacement in the URL
+const PARAMS_TO_ANONYMISE = {
+  ADMINISTRATOR_NAME_KEY: 'administrator_name',
+  ADMINISTRATOR_EMAIL_KEY: 'administrator_email',
+  email: 'email',
+  'partner-token': 'partner-token',
+}
 
 function handleUrlAnonymisation(url: string) {
   // Replace the organisation slug by the placeholder
   const pathNameSegment = url.split('/').filter((segment) => segment !== '')
 
   let urlModified = url
+
   if (
     pathNameSegment[0] === 'organisations' &&
     !['connexion', 'creer', 'demander-demo', 'creer-campagne'].includes(
@@ -29,26 +34,12 @@ function handleUrlAnonymisation(url: string) {
   // Anonymise the group administrator information
   const urlParams = new URLSearchParams(urlModified.split('?')[1] ?? '')
 
-  if (urlParams.get(ADMINISTRATOR_NAME_KEY)) {
+  Object.entries(PARAMS_TO_ANONYMISE).forEach(([param, replacementKey]) => {
     urlModified = urlModified.replace(
-      urlParams.get(ADMINISTRATOR_NAME_KEY) as string,
-      'administrator_name'
+      urlParams.get(param) as string,
+      replacementKey
     )
-  }
-  if (urlParams.get(ADMINISTRATOR_EMAIL_KEY)) {
-    urlModified = urlModified.replace(
-      encodeURIComponent(urlParams.get(ADMINISTRATOR_EMAIL_KEY) as string),
-      'administrator_email'
-    )
-  }
-
-  // Anonymise the newsimulation searchParam
-  if (urlParams.get('email')) {
-    urlModified = urlModified.replace(
-      encodeURIComponent(urlParams.get('email') as string),
-      'email'
-    )
-  }
+  })
 
   return urlModified
 }
