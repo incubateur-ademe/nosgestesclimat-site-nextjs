@@ -735,3 +735,6 @@ html[data-useragent*='Trident'] #js {
 #documentation-search-input {
   @apply border-slate-700;
 }
+a[name='variations'] {
+  @apply bg-alimentation-800!;
+}
