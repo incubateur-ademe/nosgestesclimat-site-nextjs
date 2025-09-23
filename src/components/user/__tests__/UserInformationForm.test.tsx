@@ -105,21 +105,17 @@ describe('UserInformationForm', () => {
   })
 
   const renderComponent = (props = {}) => {
-    let result
-    act(() => {
-      result = renderWithWrapper(
-        <UserInformationForm title={<h2>Test Form</h2>} {...props} />,
-        {
-          user: mockUser,
-          providers: {
-            queryClient: true,
-            errorBoundary: true,
-            user: true,
-          },
-        }
-      )
-    })
-    return result
+    return renderWithWrapper(
+      <UserInformationForm title={<h2>Test Form</h2>} {...props} />,
+      {
+        user: mockUser,
+        providers: {
+          queryClient: true,
+          errorBoundary: true,
+          user: true,
+        },
+      }
+    )
   }
 
   describe('Component rendering', () => {
