@@ -98,7 +98,7 @@ export default async function BlogHomePage({
   if (!title || !description || !articles) {
     notFound()
   }
-
+  console.log(image)
   return (
     <>
       <JSONLD
@@ -119,12 +119,11 @@ export default async function BlogHomePage({
             title={title}
             description={description}
             image={
-              image ?? {
-                url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_girl_reading_newspaper_d171290d3d.png',
-                alternativeText: t(
-                  'Un femme lisant le journal au coin du feu avec un chien assoupi.'
-                ),
-              }
+              image
+                ? { url: image.url }
+                : {
+                    url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_girl_reading_newspaper_d171290d3d.png',
+                  }
             }
           />
         )}
