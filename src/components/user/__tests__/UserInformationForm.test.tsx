@@ -6,7 +6,7 @@ import {
 } from '@/constants/brevo'
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import '@testing-library/jest-dom'
-import { screen, waitFor } from '@testing-library/react'
+import { act, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { http, HttpResponse } from 'msw'
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -105,17 +105,21 @@ describe('UserInformationForm', () => {
   })
 
   const renderComponent = (props = {}) => {
-    return renderWithWrapper(
-      <UserInformationForm title={<h2>Test Form</h2>} {...props} />,
-      {
-        user: mockUser,
-        providers: {
-          queryClient: true,
-          errorBoundary: true,
-          user: true,
-        },
-      }
-    )
+    let result
+    act(() => {
+      result = renderWithWrapper(
+        <UserInformationForm title={<h2>Test Form</h2>} {...props} />,
+        {
+          user: mockUser,
+          providers: {
+            queryClient: true,
+            errorBoundary: true,
+            user: true,
+          },
+        }
+      )
+    })
+    return result
   }
 
   describe('Component rendering', () => {
@@ -173,13 +177,15 @@ describe('UserInformationForm', () => {
         updateName: mockUpdateName,
       })
 
-      renderWithWrapper(<UserInformationForm title={<h2>Test Form</h2>} />, {
-        user: { ...mockUser, email: undefined },
-        providers: {
-          queryClient: true,
-          errorBoundary: true,
-          user: true,
-        },
+      act(() => {
+        renderWithWrapper(<UserInformationForm title={<h2>Test Form</h2>} />, {
+          user: { ...mockUser, email: undefined },
+          providers: {
+            queryClient: true,
+            errorBoundary: true,
+            user: true,
+          },
+        })
       })
 
       expect(screen.getByTestId('email-input-editable')).toBeInTheDocument()
@@ -326,13 +332,15 @@ describe('UserInformationForm', () => {
         updateName: mockUpdateName,
       })
 
-      renderWithWrapper(<UserInformationForm title={<h2>Test Form</h2>} />, {
-        user: { ...mockUser, email: undefined },
-        providers: {
-          queryClient: true,
-          errorBoundary: true,
-          user: true,
-        },
+      act(() => {
+        renderWithWrapper(<UserInformationForm title={<h2>Test Form</h2>} />, {
+          user: { ...mockUser, email: undefined },
+          providers: {
+            queryClient: true,
+            errorBoundary: true,
+            user: true,
+          },
+        })
       })
 
       const nameInput = screen.getByTestId('name-input')
@@ -474,13 +482,15 @@ describe('UserInformationForm', () => {
         updateName: mockUpdateName,
       })
 
-      renderWithWrapper(<UserInformationForm title={<h2>Test Form</h2>} />, {
-        user: { ...mockUser, name: undefined },
-        providers: {
-          queryClient: true,
-          errorBoundary: true,
-          user: true,
-        },
+      act(() => {
+        renderWithWrapper(<UserInformationForm title={<h2>Test Form</h2>} />, {
+          user: { ...mockUser, name: undefined },
+          providers: {
+            queryClient: true,
+            errorBoundary: true,
+            user: true,
+          },
+        })
       })
 
       const submitButton = screen.getByTestId('submit-button')
@@ -619,13 +629,15 @@ describe('UserInformationForm', () => {
         updateName: mockUpdateName,
       })
 
-      renderWithWrapper(<UserInformationForm title={<h2>Test Form</h2>} />, {
-        user: { ...mockUser, name: undefined },
-        providers: {
-          queryClient: true,
-          errorBoundary: true,
-          user: true,
-        },
+      act(() => {
+        renderWithWrapper(<UserInformationForm title={<h2>Test Form</h2>} />, {
+          user: { ...mockUser, name: undefined },
+          providers: {
+            queryClient: true,
+            errorBoundary: true,
+            user: true,
+          },
+        })
       })
 
       const submitButton = screen.getByTestId('submit-button')
