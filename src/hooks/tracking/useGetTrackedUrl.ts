@@ -9,6 +9,7 @@ const PARAMS_TO_ANONYMISE = {
   ADMINISTRATOR_EMAIL_KEY: 'administrator_email',
   email: 'email',
   'partner-token': 'partner-token',
+  'partner-fallback': 'partner-fallback',
 }
 
 function handleUrlAnonymisation(url: string) {
