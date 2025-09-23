@@ -17,7 +17,7 @@
     "test:ui": "vitest --ui",
     "dev": "next dev",
     "dev:turbo": "next dev --turbopack",
-    "build": "node ./check-memory.mjs && NODE_OPTIONS=--max-old-space-size=4608 next build",
+    "build": "node ./check-memory.mjs && node --max-old-space-size=4608 --trace-gc-ignore-scavenger node_modules/next/dist/bin/next build",
     "build:analyze": "ANALYZE=true next build",
     "build:debug-memory": "next build --experimental-debug-memory-usage",
     "build:turbo": "next build --turbopack",
