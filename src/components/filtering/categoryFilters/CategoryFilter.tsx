@@ -2,10 +2,12 @@
 
 import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
 import { trackingCategoryFilter } from '@/constants/tracking/misc'
+import { baseClassNames } from "@/design-system/buttons/Button"
 import {
   getBackgroundColor,
   getBackgroundLightColor,
   getBorderColor,
+  getBorderDarkColor,
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -80,9 +82,10 @@ export default function CategoryFilter({
       tabIndex={isActive ? 0 : -1}
       title={`${title} - ${isSelected ? t('Page active') : t('Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie')}`}
       className={twMerge(
-        'height-[1.8rem] rounded-md border-2 border-transparent p-2 text-xs font-bold transition-colors',
+        'height-[1.8rem] rounded-md! border-2 border-transparent p-2 text-xs font-bold transition-colors',
+        baseClassNames,
         isSelected || !categorySelected
-          ? `${getBackgroundLightColor(dottedName)} ${getBorderColor(dottedName)}`
+          ? `${getBackgroundLightColor(dottedName)} ${getBorderDarkColor(dottedName)}`
           : `bg-gray-100 hover:bg-gray-200`
       )}
       style={{

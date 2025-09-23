@@ -15,6 +15,7 @@ export default function Ademe({
       viewBox="0 0 181 213"
       className={className}
       role="img"
+      aria-label="ADEME"
       {...props}>
       <title>ADEME</title>
       <path d="M180.35 212.6H0V0H180.35V212.6Z" fill="#004899" />

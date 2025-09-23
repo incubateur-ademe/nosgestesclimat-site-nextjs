@@ -78,8 +78,8 @@ entries:
   search.results: '{{count}} resultado(s) encontrado(s)'
   search.results.label: Resultados de la búsqueda
   search.documentation.label: Búsqueda de documentación
-  publicodes.Profil.locationDonnées: <0>¿Dónde se almacenan mis datos? </0><1>Tus datos se almacenan en tu navegador, por lo que tienes un control total sobre ellos.</1>
-  publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? </0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
+  publicodes.Profil.locationDonnées: <0>¿Dónde están mis datos? <2>Haga clic para ver información sobre la ubicación de los datos</2></0><1>Tus datos se almacenan en tu navegador, por lo que tienes un control total sobre ellos.</1>
+  publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? <2>Cliquez pour afficher les informations sur la localisation des données</2></0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
   plus de 10 tonnes: más de 10 toneladas
   model.active.documented: La construcción del modelo (vías de trabajo, reflexiones en curso, hoja de ruta, etc.) está ampliamente <2>documentada públicamente</2>.
   model.active.documented.lock: La construction du modèle (pistes de travail, réflexions en cours, feuille de route, etc.) est amplement <2>documentée publiquement</2>.
@@ -143,7 +143,7 @@ entries:
   international.pourquoi.1: Los estilos de vida difieren según el país en el que se viva. Algunos países tienen una red ferroviaria muy desarrollada, mientras que otros son islas y, por tanto, dependen más de transbordadores y aviones.
   international.pourquoi.1.lock: Les modes de vies ne sont pas les mêmes en fonction du pays dans lequel on vit. Certains pays ont un réseau ferré très développé, d'autres sont insulaires et donc reposent davantage sur le ferry et l'avion.
   sites.publicodes.Tutorial.questionE: 💡 Pero, ¿qué significa esa pequeña <1>e</1>?
-  sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
+  sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
   publicodes.Profil.simulations: Cada simulación que ejecutas se guarda en tu navegador. Sólo tú tienes acceso a ella.
   publicodes.Profil.simulations.lock: Chaque simulation que vous faite est sauvegardée dans votre navigateur Web. Vous êtes le seul à y avoir accès.
   international.pourquoi.2: A medida que la electricidad adquiere mayor importancia como consecuencia de la transición energética, la huella de carbono del mix eléctrico tiene una gran influencia en el cálculo de la huella climática.
@@ -1208,12 +1208,12 @@ entries:
   copyInput.sharingInProgress.lock: Partage en cours...
   copyInput.linkCopiedToClipboard: Enlace copiado correctamente en el portapapeles
   copyInput.linkCopiedToClipboard.lock: Lien copié avec succès dans le presse-papiers
-  copyInput.copyErrorManual: Uy, no puedo copiar el enlace, puedes copiarlo manualmente.
-  copyInput.copyErrorManual.lock: Oups, impossible de copier le lien, vous pouvez le copier manuellement.
-  cookieConsent.board.title: Banner de consentimiento de cookies
-  cookieConsent.board.title.lock: Bannière de consentement aux cookies
-  cookieConsent.banner.title: Panel de gestión de cookies
-  cookieConsent.banner.title.lock: Panneau de gestion des cookies
+  copyInput.copyErrorManual: 'Oops, no puedo copiar el enlace, puede copiarlo manualmente : {{textToCopy}}'
+  copyInput.copyErrorManual.lock: 'Oups, impossible de copier le lien, vous pouvez le copier manuellement : {{textToCopy}}'
+  cookieConsent.board.title: Panel de gestión de cookies
+  cookieConsent.board.title.lock: Panneau de gestion des cookies
+  cookieConsent.banner.title: Ventana modal para la gestión de cookies
+  cookieConsent.banner.title.lock: Fenêtre modale de gestion des cookies
   simulator.customQuestions.textile.open: Detallando mi armario
   simulator.customQuestions.textile.open.lock: Je détaille ma garde-robe
   simulator.customQuestions.ameublement.inProgress: Esta función está actualmente en desarrollo. Gracias por su interés
@@ -1277,8 +1277,8 @@ entries:
   endPage.waterActions.lireArticle.lock: Ouvrir l'article dans une nouvelle fenêtre
   endPage.carboneChart.progressBarLabel.lock: Barre de progression de votre empreinte carbone
   l'objectif pour 2050: el objetivo para 2050
-  actions.engagementIcon.ariaLabel: acciones se encuentran a continuación
-  actions.engagementIcon.ariaLabel.lock: ', les actions se trouvent en dessous'
+  actions.engagementIcon.ariaLabel: Las acciones son las siguientes
+  actions.engagementIcon.ariaLabel.lock: Les actions se trouvent en dessous
   organisations.ourTools.newTab: Abrir en una ventana nueva
   organisations.ourTools.newTab.lock: Ouvrir dans une nouvelle fenêtre
   Découvrez les ateliers de l’ABC, ouvrir dans une nouvelle fenêtre: Descubra los talleres ABC, abrir en una ventana nueva
@@ -1403,8 +1403,8 @@ entries:
   organisations.polls.settings.confirmDeletion.lock: Fenêtre modale de confirmation de suppression de la campagne
   common.slider.buttons.previous: Ir a la diapositiva anterior
   common.slider.buttons.previous.lock: Aller à la diapositive précédente
-  common.slider.buttons.next: Ir al número de diapositiva {{number}}
-  common.slider.buttons.next.lock: Aller à la diapositive numéro {{number}}
+  common.slider.buttons.next: Ir a la siguiente diapositiva
+  common.slider.buttons.next.lock: Aller à la diapositive suivante
   blog.homepage.defaultDescription: Descubra consejos prácticos para reducir su huella ecológica.
   blog.homepage.defaultDescription.lock: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
   blog.homePage.dynamicPageNumber: página {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
@@ -1432,3 +1432,121 @@ entries:
   Arrêter le défilement: Detener el desplazamiento
   homePage.interactiveIllustration.itemTitle: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} de 5'
   homePage.interactiveIllustration.itemTitle.lock: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'
+  pollResults.categoryDistribution.accessibleDescription.category: '{{name}}: {{value}} {{unit}}.'
+  pollResults.categoryDistribution.accessibleDescription.category.lock: '{{name}}: {{value}} {{unit}}.'
+  common.category.divers: Varios
+  common.category.divers.lock: Divers
+  common.category.services: Servicios
+  common.category.services.lock: Services
+  common.category.transport: Transporte
+  common.category.transport.lock: Transport
+  pollResults.footprintBarChart.accessibleDescription.lower: inferior
+  pollResults.footprintBarChart.accessibleDescription.lower.lock: inférieure
+  common.category.alimentation: Alimentación
+  common.category.alimentation.lock: Alimentation
+  common.category.logement: Vivienda
+  common.category.logement.lock: Logement
+  pollResults.footprintBarChart.accessibleDescription.higher: superior
+  pollResults.footprintBarChart.accessibleDescription.higher.lock: supérieure
+  pollResults.footprintBarChart.legend.groupFootprint: Huella media del Grupo
+  pollResults.footprintBarChart.legend.groupFootprint.lock: Empreinte moyenne du groupe
+  pollResults.footprintBarChart.accessibleDescription.groupComparison: La huella del Grupo es {{comparison}}.
+  pollResults.footprintBarChart.accessibleDescription.groupComparison.lock: L'empreinte du groupe est {{comparison}} à l'objectif.
+  pollResults.footprintBarChart.accessibleDescription.target: El objetivo es {{year}} est de {{value}} {{unit}}.
+  pollResults.footprintBarChart.accessibleDescription.target.lock: L'objectif à atteindre d'ici {{year}} est de {{value}} {{unit}}.
+  pollResults.distribution.title: Desglose de la huella de carbono
+  pollResults.distribution.title.lock: Répartition des empreintes carbone
+  4 infolettres l’impact des transports: 4 boletines informativos sobre el impacto del transporte
+  pollResults.footprintBarChart.targetLabel: Objetivo 2050
+  pollResults.footprintBarChart.targetLabel.lock: Objectif 2050
+  Chargement des résultats détaillés de campagne...: Cargando resultados detallados de la campaña...
+  pollResults.footprintBarChart.legend.userFootprint: Tu huella
+  pollResults.footprintBarChart.legend.userFootprint.lock: Votre empreinte
+  pollResults.footprintBarChart.userFootprint: Tu huella
+  pollResults.footprintBarChart.userFootprint.lock: Votre empreinte
+  pollResults.radarChart.accessibleDescription.category: '{{category}}: vos résultats {{user}} {{comparison}} à la moyenne {{average}}.'
+  pollResults.radarChart.accessibleDescription.category.lock: '{{category}}: vos résultats {{user}} {{comparison}} à la moyenne {{average}}.'
+  pollResults.footprintBarChart.accessibleDescription.groupFootprint: La huella media del Grupo es {{value}} {{unit}}.
+  pollResults.footprintBarChart.accessibleDescription.groupFootprint.lock: L'empreinte moyenne du groupe est de {{value}} {{unit}}.
+  pollResults.footprintBarChart.groupFootprint: Huella media del Grupo
+  pollResults.footprintBarChart.groupFootprint.lock: Empreinte moyenne du groupe
+  pollResults.mean_footprint_distribution.title: Huella de carbono media de
+  pollResults.mean_footprint_distribution.title.lock: Empreinte carbone moyenne de
+  pollResults.radarChart.accessibleDescription.higher: superior
+  pollResults.radarChart.accessibleDescription.higher.lock: supérieur
+  pollResults.footprintBarChart.accessibleDescription.userFootprint: Su huella personal es {{value}} {{unit}}.
+  pollResults.footprintBarChart.accessibleDescription.userFootprint.lock: Votre empreinte personnelle est de {{value}} {{unit}}.
+  C'est prêt ! Voici votre lien à partager: Ya está todo listo Aquí tienes el enlace para compartir
+  pollResults.footprintBarChart.accessibleDescription.chart: 'Gráfico de barras que muestra la comparación de las huellas de carbono. '
+  pollResults.footprintBarChart.accessibleDescription.chart.lock: 'Graphique en barres montrant la comparaison des empreintes carbone. '
+  pollResults.radarChart.accessibleDescription.lower: inferior
+  pollResults.radarChart.accessibleDescription.lower.lock: inférieur
+  pollResults.pollResults.distribution.category_distribution.title: Desglose por categoría de emisión
+  pollResults.pollResults.distribution.category_distribution.title.lock: Répartition par poste d'émission
+  pollResults.pollResults.distribution.category_distribution.title_detail: (medias)
+  pollResults.pollResults.distribution.category_distribution.title_detail.lock: (moyennes)
+  copyButton.shareAriaLabel: Compartir este enlace
+  copyButton.shareAriaLabel.lock: Partager le lien
+  common.category.alimentationShort: Alimentación
+  common.category.alimentationShort.lock: Alim.
+  pollResults.radarChart.legend.average: Media
+  pollResults.radarChart.legend.average.lock: Moyenne
+  pollResults.footprintBarChart.accessibleDescription.userComparison: Su huella es {{comparison}}.
+  pollResults.footprintBarChart.accessibleDescription.userComparison.lock: Votre empreinte est {{comparison}} à celle du groupe.
+  pollResults.adminSection.shareDirectly: O compartir directamente
+  pollResults.adminSection.shareDirectly.lock: Ou partagez directement
+  pollResults.radarChart.legend.userResults: Mis resultados
+  pollResults.radarChart.legend.userResults.lock: Mes résultats
+  pollResults.footprintBarChart.targetLabelUnit: toneladas
+  pollResults.footprintBarChart.targetLabelUnit.lock: tonnes
+  copyButton.copiedAriaLabel: Enlace copiado en el portapapeles
+  copyButton.copiedAriaLabel.lock: Lien copié dans le presse-papiers
+  copyButton.copyAriaLabel: Copiar el enlace en el portapapeles
+  copyButton.copyAriaLabel.lock: Copier le lien dans le presse-papiers
+  (page actuelle): (página actual)
+  pollResults.footprintBarChart.targetLabelMobile: 'Objetivo 2050:'
+  pollResults.footprintBarChart.targetLabelMobile.lock: 'Objectif 2050 :'
+  Empreinte eau moyenne: Huella hídrica media
+  Empreinte carbone moyenne: Huella de carbono media
+  actions.negativeIcon.alt: Icono que representa acciones negativas
+  actions.negativeIcon.alt.lock: Icône représentant les actions négatives
+  L'empreinte carbone du logement: La huella de carbono de la vivienda
+  actions.engagementDescription: Acciones comprometidas para reducir su huella de carbono
+  actions.engagementDescription.lock: Actions d'engagement pour réduire votre empreinte carbone
+  actions.engagementIcon.alt: Icono que representa las acciones de compromiso
+  actions.engagementIcon.alt.lock: Icône représentant les actions d'engagement
+  actions.negativeDescription: Acciones que aumentan su huella de carbono
+  actions.negativeDescription.lock: Actions qui augmentent votre empreinte carbone
+  L'empreinte carbone du transport: La huella de carbono del transporte
+  pollResults.radarChart.title: Su huella en relación con otros participantes
+  pollResults.radarChart.title.lock: Votre empreinte par rapport aux autres participants
+  actions.negativeIcon.ariaLabel: Las acciones son las siguientes
+  actions.negativeIcon.ariaLabel.lock: Les actions se trouvent en dessous
+  common.slider.slide.ariaLabel: Diapositiva {{index}} sur {{length}}
+  common.slider.slide.ariaLabel.lock: Diapositive {{index}} sur {{length}}
+  common.slider.buttons.pagination: Ir al número de diapositiva {{number}}
+  common.slider.buttons.pagination.lock: Aller à la diapositive numéro {{number}}
+  Comment on la mesure ?: ¿Cómo se mide?
+  C'est quoi mon empreinte carbone ?: ¿Cuál es mi huella de carbono?
+  Page {{page}} (page actuelle): Página {{page}} (página actual)
+  D'où vient mon empreinte ?: ¿De dónde viene mi huella?
+  C'est gratuit, et ça prend une minute !: Es gratis y sólo le llevará un minuto
+  Pourquoi avons-nous ajouté l'empreinte eau ?: ¿Por qué hemos añadido la huella hídrica?
+  endpage.title.default: Mis huellas de carbono y agua, huellas de carbono seleccionadas - Nos Gestes Climat
+  endpage.title.default.lock: Mes empreintes carbone et eau, empreinte carbone sélectionnée - Nos Gestes Climat
+  pollResults.adminSection.title: Invite a gente nueva
+  pollResults.adminSection.title.lock: Invitez de nouvelles personnes
+  pollResults.categoryDistribution.accessibleDescription.chart: 'Gráfico de donuts que muestra el desglose de las emisiones por categorías. '
+  pollResults.categoryDistribution.accessibleDescription.chart.lock: 'Graphique en donut montrant la répartition des émissions par catégorie. '
+  L'empreinte carbone de l'alimentation: La huella de carbono de los alimentos
+  copyButton.shareTitle: Descubra mi huella de carbono
+  copyButton.shareTitle.lock: Découvre mon empreinte carbone !
+  actions.thresholdIcon.ariaLabel: Las acciones son las siguientes
+  actions.thresholdIcon.ariaLabel.lock: Les actions se trouvent en dessous
+  Cliquez pour ouvrir la liste des régions disponibles: Haga clic para abrir la lista de regiones disponibles
+  pollResults.radarChart.accessibleDescription.chart: 'Gráfico de radar que compara sus resultados con los promedios de la categoría. '
+  pollResults.radarChart.accessibleDescription.chart.lock: 'Graphique radar comparant vos résultats aux moyennes par catégorie. '
+  endpage.title.custom: Mis huellas de carbono y agua, huella {{metric}} - Nos Gestes Climat
+  endpage.title.custom.lock: Mes empreintes carbone et eau, empreinte {{metric}} sélectionnée - Nos Gestes Climat
+  actions.thresholdDescription: 'Acciones con un impacto igual o superior a {{label}} '
+  actions.thresholdDescription.lock: Actions avec un impact de {{label}} ou plus

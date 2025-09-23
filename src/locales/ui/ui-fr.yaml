@@ -86,14 +86,14 @@ entries:
   publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} actions disponibles, '
   publicodes.AllActions.msgPlusActions: <0>Nous n'avons plus d'actions chiffrées très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes pour agir autrement ⏬</1>
   publicodes.Personas.description: 'Nous les avons définis pour qu’ils représentent la diversité des cas d’usage du calculateur.<1>Toute ressemblance avec une personne existant ou ayant existé serait purement fortuite !</1>En aucune mesure, on ne peut dire qu’ils sont représentatifs de la distribution de la population française : il ne s’agit pas de coller aux statistiques de la population, mais de retrouver parmi nos dix personas au moins un qui représente chaque usage majeur et différenciant pour le calculateur. Ainsi, nous avons fait varier pour chacun d’entre eux :<3><0>Leur genre : même s’il n’influe pas sur l’empreinte, il serait étonnant de n’avoir que des personas “femmes”</0><1>Leur âge et situation personnelle / professionnelle : au moins un étudiant, un retraité, un adulte au foyer, un actif</1><2>La taille de leur foyer : de 1 personne à famille nombreuse</2><3>Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans le nord, dans le sud, les plaines, la montagne et sur une île</3><4>Leur logement : de l’appartement à la maison, du neuf à l’ancien</4><5>Leurs modes de transport : de la marche à la voiture en passant par le ferry et l’avion</5><6>Leur régime alimentaire : au moins un végétalien, un végétarien, une personne ne mangeant que du poisson, et un amateur de viande rouge</6><7>Leur tendance à l’achat : du tout occasion au tout neuf, de l’acheteur compulsif à celui ou celle qui n’achète presque rien</7><8>Leur façon de partir en vacances : mode de transport, hébergement, on trouve de tout</8><9>Leurs loisirs : de la culture, du sport, du bien-être…</9></3>'
-  publicodes.Profil.locationDonnées: <0>Où sont mes données ? </0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
+  publicodes.Profil.locationDonnées: <0>Où sont mes données ? <2>Cliquez pour afficher les informations sur la localisation des données</2></0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
   publicodes.Profil.recap: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions), choisi {{chosenActions}} action(s) et décliné {{declinedActions}} action(s).
   publicodes.Profil.simulations: Chaque simulation que vous faite est sauvegardée dans votre navigateur Web. Vous êtes le seul à y avoir accès.
   publicodes.SimulationMissing.personnas: Vous pouvez aussi continuer avec un <2>profil type</2>.
   publicodes.SimulationMissing.simulationManquante: Pour débloquer ce parcours, vous devez d'abord terminer le test.
   publicodes.planDuSite.title: Plan du site
   publicodes.planDuSite.actionsPlus: Les actions
-  sites.publicodes.Tutorial.questionE: 💡 Mais que veut dire ce petit <1>e</1> ?
+  sites.publicodes.Tutorial.questionE: 💡 Mais que veut dire ce petit <1>e</1> ?
   sélectionnées: sélectionnées
   tonne: tonne
   tonnes: tonnes
@@ -1119,7 +1119,7 @@ entries:
   Pour vous désinscrire, passez par le lien en bas de l'email reçu: Pour vous désinscrire, passez par le lien en bas de l'email reçu
   copyInput.copied: Copié !
   copyInput.copyError: Erreur lors de la copie du lien
-  copyInput.copyErrorManual: Oups, impossible de copier le lien, vous pouvez le copier manuellement.
+  copyInput.copyErrorManual: 'Oups, impossible de copier le lien, vous pouvez le copier manuellement : {{textToCopy}}'
   copyInput.copyingInProgress: Copie en cours...
   copyInput.copyLink: Copier le lien
   copyInput.copyLinkToClipboard: Copier le lien dans le presse-papiers
@@ -1130,8 +1130,8 @@ entries:
   copyInput.shareLink: Partager le lien
   copyInput.shareTitle: Découvre mon empreinte carbone !
   copyInput.sharingInProgress: Partage en cours...
-  cookieConsent.banner.title: Panneau de gestion des cookies
-  cookieConsent.board.title: Bannière de consentement aux cookies
+  cookieConsent.banner.title: Fenêtre modale de gestion des cookies
+  cookieConsent.board.title: Panneau de gestion des cookies
   simulator.customQuestions.ameublement.inProgress: Cette fonctionnalité est actuellement en cours de conception. Merci pour votre intérêt !
   simulator.customQuestions.ameublement.open: Je détaille mes derniers achats
   simulator.customQuestions.textile.open: Je détaille ma garde-robe
@@ -1169,7 +1169,7 @@ entries:
   Eau, évaluer la métrique eau: Eau, évaluer la métrique eau
   Page active: Page active
   Visiter cette page: Visiter cette page
-  actions.engagementIcon.ariaLabel: ', les actions se trouvent en dessous'
+  actions.engagementIcon.ariaLabel: Les actions se trouvent en dessous
   authorBlock.defaultAlt: Photo de l'auteur ou de l'autrice
   common.marianne.ariaLabel: République Française
   common.partners.abc.ariaLabel: Association pour la transition Bas Carbone
@@ -1248,7 +1248,7 @@ entries:
   blog.homepage.defaultDescription: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
   blog.homepage.defaultTitle: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
   blog.homePage.dynamicPageNumber: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
-  common.slider.buttons.next: Aller à la diapositive numéro {{number}}
+  common.slider.buttons.next: Aller à la diapositive suivante
   common.slider.buttons.previous: Aller à la diapositive précédente
   ⚠️ La vérification de votre compte est requise pour vous inscrire aux infolettres.: ⚠️ La vérification de votre compte est requise pour vous inscrire aux infolettres.
   4 infolettres l'impact des transports: 4 infolettres l'impact des transports
@@ -1311,3 +1311,22 @@ entries:
   L'empreinte carbone du logement: L'empreinte carbone du logement
   L'empreinte carbone du transport: L'empreinte carbone du transport
   pollResults.footprintBarChart.targetLabelUnit: tonnes
+  (page actuelle): (page actuelle)
+  actions.engagementDescription: Actions d'engagement pour réduire votre empreinte carbone
+  actions.engagementIcon.alt: Icône représentant les actions d'engagement
+  actions.negativeDescription: Actions qui augmentent votre empreinte carbone
+  actions.negativeIcon.alt: Icône représentant les actions négatives
+  actions.negativeIcon.ariaLabel: Les actions se trouvent en dessous
+  actions.thresholdDescription: Actions avec un impact de {{label}} ou plus
+  actions.thresholdIcon.ariaLabel: Les actions se trouvent en dessous
+  C'est gratuit, et ça prend une minute !: C'est gratuit, et ça prend une minute !
+  C'est quoi mon empreinte carbone ?: C'est quoi mon empreinte carbone ?
+  Cliquez pour ouvrir la liste des régions disponibles: Cliquez pour ouvrir la liste des régions disponibles
+  Comment on la mesure ?: Comment on la mesure ?
+  common.slider.buttons.pagination: Aller à la diapositive numéro {{number}}
+  common.slider.slide.ariaLabel: Diapositive {{index}} sur {{length}}
+  D'où vient mon empreinte ?: D'où vient mon empreinte ?
+  endpage.title.custom: Mes empreintes carbone et eau, empreinte {{metric}} sélectionnée - Nos Gestes Climat
+  endpage.title.default: Mes empreintes carbone et eau, empreinte carbone sélectionnée - Nos Gestes Climat
+  Page {{page}} (page actuelle): Page {{page}} (page actuelle)
+  Pourquoi avons-nous ajouté l'empreinte eau ?: Pourquoi avons-nous ajouté l'empreinte eau ?

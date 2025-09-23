@@ -1,11 +1,13 @@
 import Markdown from '@/design-system/utils/Markdown'
 import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { HTMLAttributes, JSX, PropsWithChildren } from 'react'
 import { useState } from 'react'
 import QuestionButton from './QuestionButton'
 
 type Props = {
   label?: string | JSX.Element
+  labelText: string
   description?: string
   active: boolean
   onClick: any
@@ -28,6 +30,7 @@ const labelClassNames = {
 
 export default function ChoiceInput({
   label,
+  labelText,
   description,
   active,
   onClick,
@@ -36,6 +39,8 @@ export default function ChoiceInput({
   ...props
 }: HTMLAttributes<HTMLInputElement> & PropsWithChildren<Props>) {
   const [isOpen, setIsOpen] = useState(false)
+
+  const { t } = useClientTranslation()
 
   const status = active ? 'checked' : 'unchecked'
 
@@ -65,6 +70,13 @@ export default function ChoiceInput({
         </label>
         {description ? (
           <QuestionButton
+            title={t(
+              'simulator.inputs.choice.questionButton.title',
+              "Plus d'informations - {{label}}",
+              {
+                label: labelText,
+              }
+            )}
             onClick={() => setIsOpen((previsOpen) => !previsOpen)}
           />
         ) : null}

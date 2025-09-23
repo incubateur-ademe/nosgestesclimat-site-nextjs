@@ -89,6 +89,7 @@ export default function Header({ isSticky = true }: Props) {
           {!isIframeOnlySimulation && (
             <>
               <nav
+                role="navigation"
                 className="h-full"
                 id="header-navigation"
                 aria-label={t('Navigation principale')}

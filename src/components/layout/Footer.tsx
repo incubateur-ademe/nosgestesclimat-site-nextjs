@@ -273,11 +273,7 @@ export default function Footer({
             <Marianne className="h-auto w-12 md:w-auto" />
 
             <Link href="https://ademe.fr" target="_blank">
-              <Ademe
-                className="h-auto w-10 md:w-auto"
-                aria-label="ADEME"
-                role="img"
-              />
+              <Ademe className="h-auto w-10 md:w-auto" />
             </Link>
           </div>
         </div>

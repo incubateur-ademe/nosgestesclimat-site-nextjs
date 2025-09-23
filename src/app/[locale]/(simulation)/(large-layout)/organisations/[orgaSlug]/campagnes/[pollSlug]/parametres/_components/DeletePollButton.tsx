@@ -52,9 +52,10 @@ export default function DeletePollButton() {
             'organisations.polls.settings.confirmDeletion',
             'Fenêtre modale de confirmation de suppression de la campagne'
           )}
+          ariaLabelledBy="delete-poll-title"
           closeModal={() => setIsOpen(false)}
           onConfirm={handleDeletePoll}>
-          <h2>
+          <h2 id="delete-poll-title">
             <Trans>Supprimer cette campagne ?</Trans>
           </h2>
           <p>

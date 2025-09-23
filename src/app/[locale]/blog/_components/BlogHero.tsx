@@ -7,7 +7,7 @@ export default function BlogHero({
 }: {
   title: string
   description: string
-  image: { url: string; alternativeText: string }
+  image: { url: string; alternativeText?: string }
 }) {
   return (
     <div className="my-10 flex flex-col justify-between gap-8 overflow-x-hidden md:my-20 md:flex-row">
@@ -24,7 +24,7 @@ export default function BlogHero({
         />
       </div>
       {image && (
-        <div className="flex items-center justify-center">
+        <div className="flex flex-1 items-center justify-center">
           <Image
             src={image?.url ?? ''}
             width="350"

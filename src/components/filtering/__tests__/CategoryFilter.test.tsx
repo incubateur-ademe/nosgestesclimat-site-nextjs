@@ -27,6 +27,7 @@ vi.mock('@/helpers/getCategoryColorClass', () => ({
   getBackgroundColor: vi.fn(() => '#f0f0f0'),
   getBackgroundLightColor: vi.fn(() => 'bg-blue-100'),
   getBorderColor: vi.fn(() => 'border-blue-500'),
+  getBorderDarkColor: vi.fn(() => 'border-blue-500'),
   getTextDarkColor: vi.fn(() => 'text-blue-900'),
 }))
 

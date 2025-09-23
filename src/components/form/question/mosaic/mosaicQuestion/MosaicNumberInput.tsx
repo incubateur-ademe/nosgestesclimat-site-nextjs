@@ -64,8 +64,8 @@ export default function MosaicNumberInput({
           onClick={() => setValue(Number(value) - 1)}
           size="sm"
           title={t(
-            'simulator.mosaicNumberInput',
-            'Ajouter un élémént : {{title}}',
+            'simulator.mosaicNumberInput.remove',
+            'Retirer un élémént : {{title}}',
             {
               title,
             }
@@ -88,8 +88,11 @@ export default function MosaicNumberInput({
           disabled={isPlusDisabled}
           onClick={() => setValue(isMissing ? 1 : Number(value) + 1)}
           title={t(
-            'simulator.mosaicNumberInput',
-            'Retirer un élément : {{title}}'
+            'simulator.mosaicNumberInput.add',
+            'Ajouter un élément : {{title}}',
+            {
+              title,
+            }
           )}
           size="sm"
           className="z-10 h-8 w-8 items-center justify-center p-0 md:h-8 md:w-8">

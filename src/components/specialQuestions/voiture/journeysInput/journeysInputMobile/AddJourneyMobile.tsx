@@ -112,6 +112,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
       <td className="border-primary-700 block pl-2 text-right text-sm">
         <Button
           size="sm"
+          title={t('simulator.car.addTravel', 'Ajouter un trajet')}
           onClick={() =>
             setJourneys((prevJourneys) => [
               ...prevJourneys,

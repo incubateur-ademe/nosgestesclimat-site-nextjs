@@ -1,7 +1,6 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { ReactNode } from 'react'
 import Button from '../buttons/Button'
 import Loader from '../layout/Loader'
@@ -12,7 +11,8 @@ type Props = {
   closeModal: () => void
   isLoading?: boolean
   children: ReactNode
-  ariaLabel: string
+  ariaLabel?: string
+  ariaLabelledBy?: string
 }
 
 export default function ConfirmationModal({
@@ -21,18 +21,12 @@ export default function ConfirmationModal({
   children,
   isLoading,
   ariaLabel,
+  ariaLabelledBy,
 }: Props) {
-  const { t } = useClientTranslation()
-
   return (
     <Modal
-      ariaLabel={
-        ariaLabel ??
-        t(
-          'common.modal.confirmation.title',
-          "Fenêtre modale de confirmation d'action"
-        )
-      }
+      ariaLabel={ariaLabel}
+      ariaLabelledBy={ariaLabelledBy}
       isOpen
       closeModal={closeModal}
       hasAbortButton={false}>
