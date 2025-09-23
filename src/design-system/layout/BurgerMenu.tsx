@@ -144,11 +144,13 @@ export default function BurgerMenu({
               <div
                 className="fixed top-0 left-0 h-screen w-screen"
                 role="button"
+                // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
                 tabIndex={0}
                 aria-label={t('Fermer le menu')}
                 onClick={handleClickMask}
                 onKeyDown={handleMaskKeyDown}
               />
+              {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
               <section
                 className={twMerge(
                   'pointer-events-none fixed top-0 right-0 z-50 h-screen w-[90vw] max-w-[20rem] translate-x-full bg-white p-4 pt-16 opacity-0 shadow-md transition-all duration-300 ease-in-out focus:outline-none',
@@ -158,6 +160,7 @@ export default function BurgerMenu({
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="burger-menu-title"
+                // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
                 tabIndex={isOpen ? 0 : -1}
                 ref={panelRef}
                 onKeyDown={handlePanelKeyDown}>
