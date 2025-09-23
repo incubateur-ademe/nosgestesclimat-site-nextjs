@@ -346,6 +346,10 @@ export default function NewslettersBlock() {
                       {...register('email', {
                         required: t('Veuillez renseigner un email.'),
                       })}
+                      title={t(
+                        'common.inputs.email.label',
+                        'Entrez votre adresse e-mail'
+                      )}
                       aria-label={t('Entrez votre adresse email')}
                       aria-required="true"
                       aria-invalid={errors.email ? 'true' : 'false'}

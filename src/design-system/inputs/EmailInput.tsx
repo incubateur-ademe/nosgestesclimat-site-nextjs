@@ -9,6 +9,7 @@ type Props = {
   readOnly?: boolean
   error?: string
   value?: string
+  title?: string
 }
 
 export default forwardRef(function EmailInput(
@@ -19,6 +20,7 @@ export default forwardRef(function EmailInput(
     readOnly = false,
     error,
     value,
+    title,
     ...props
   }: Props,
   ref
@@ -36,6 +38,7 @@ export default forwardRef(function EmailInput(
       ref={ref as any}
       error={error}
       value={value}
+      title={title}
       {...props}
     />
   )

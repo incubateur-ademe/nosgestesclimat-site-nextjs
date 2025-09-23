@@ -68,9 +68,8 @@ export default function EmailForm() {
         label={<Trans>Votre adresse electronique</Trans>}
         placeholder="jeanmarc@nosgestesclimat.fr"
         helperText={
-          <Trans>
-            Nous pourrons vous contacter en cas de problème lors de votre
-            inscription
+          <Trans i18nKey="organisations.connexion.email.input.helper">
+            Format attendu : nom.prenom@domaine.fr
           </Trans>
         }
         {...register('email', {

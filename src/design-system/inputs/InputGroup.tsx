@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { useId } from 'react'
+import React, { useId } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type InputGroupProps = {
@@ -48,7 +48,10 @@ export default function InputGroup({
       {label ? (
         <label
           htmlFor={fieldId}
-          className="mb-2 flex w-full max-w-[30rem] justify-between text-left">
+          className={twMerge(
+            'mb-2 flex w-full max-w-[30rem] justify-between text-left',
+            labelClassName
+          )}>
           <span
             className={twMerge(
               `text-base font-bold text-slate-900`,
@@ -73,7 +76,16 @@ export default function InputGroup({
         </span>
       ) : null}
 
-      {children}
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(child, {
+            'aria-describedby': describedBy,
+            disabled,
+            required,
+          } as any)
+        }
+        return child
+      })}
 
       {error && (
         <span
