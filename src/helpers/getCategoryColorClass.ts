@@ -99,6 +99,23 @@ export function getBorderLightColor(category?: string | null) {
   }
 }
 
+export function getBorderDarkColor(category?: string | null) {
+  switch (category) {
+    case 'transport':
+      return `border-transport-800`
+    case 'alimentation':
+      return `border-alimentation-800`
+    case 'logement':
+      return `border-logement-800`
+    case 'divers':
+      return `border-divers-800`
+    case 'services sociétaux':
+      return `border-servicessocietaux-800`
+    default:
+      return 'border-primary-800'
+  }
+}
+
 export function getFillColor(category?: string | null) {
   switch (category) {
     case 'transport':

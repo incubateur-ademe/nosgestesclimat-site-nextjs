@@ -88,7 +88,7 @@ export default function ActionValue({
       <div
         className={`border-primary-700 bg-primary-700 mb-6 inline-block rounded-[0.25rem] border-2 border-solid pr-[2px] pl-2 text-white ${
           correctedValue != undefined && correctedValue < 0 ? 'bg-red-500' : ''
-        }${remainingQuestions && remainingQuestions.length > 0 ? 'blur-[2px] grayscale' : ''}`}>
+        }${remainingQuestions && remainingQuestions.length > 0 ? 'grayscale' : ''}`}>
         <span>
           {sign ?? ''}&nbsp;
           <strong>{stringValue}</strong>&nbsp;
@@ -103,15 +103,11 @@ export default function ActionValue({
       </div>
 
       {remainingQuestions && remainingQuestions.length > 0 && (
-        <>
-          <NotificationBubble
-            title={remainingQuestionsText}
-            number={remainingQuestions.length}
-          />
+        
           <div className="text-primary-700 cursor-pointer text-sm">
             {remainingQuestionsText}
           </div>
-        </>
+        
       )}
     </button>
   )
