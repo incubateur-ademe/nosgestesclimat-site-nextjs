@@ -18,7 +18,10 @@ export default function BottomMenu() {
   const { getLinkToSimulateurPage } = useSimulateurPage()
 
   return (
-    <nav role="navigation" aria-labelledby="bottom-menu-title">
+    <nav
+      role="navigation"
+      id="header-navigation-mobile"
+      aria-labelledby="bottom-menu-title">
       <p id="bottom-menu-title" className="sr-only">
         <Trans i18nKey="common.mobile.bottomMenu.title">Menu secondaire</Trans>
       </p>

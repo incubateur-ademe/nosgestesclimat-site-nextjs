@@ -37,6 +37,13 @@ export default function BurgerMenu({
     setIsOpen((prev) => !prev)
   }
 
+  const handleButtonKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      handleToggleMenu()
+    }
+  }
+
   // Focus management and body scroll lock
   useEffect(() => {
     if (isOpen) {
@@ -47,8 +54,7 @@ export default function BurgerMenu({
       })
     } else {
       document.body.style.overflow = 'auto'
-      // Return focus to the toggle button
-      openButtonRef.current?.focus()
+      // Focus will be managed by the other useEffect to avoid conflicts
     }
 
     return () => {
@@ -121,6 +127,7 @@ export default function BurgerMenu({
         aria-expanded={isOpen}
         aria-controls="burger-menu-panel"
         onClick={handleToggleMenu}
+        onKeyDown={handleButtonKeyDown}
         ref={openButtonRef}
         className={twMerge(
           'focus:ring-primary-700 absolute top-4 right-4 flex h-[44px] w-[44px] flex-col items-center justify-center p-0! focus:ring-2 focus:ring-offset-3 focus:outline-hidden',
@@ -133,51 +140,50 @@ export default function BurgerMenu({
       <div className="absolute top-0 left-0 z-100">
         <>
           {isOpen && (
-            <div
-              className="fixed top-0 left-0 h-screen w-screen"
-              role="button"
-              tabIndex={0}
-              aria-label={t('Fermer le menu')}
-              onClick={handleClickMask}
-              onKeyDown={handleMaskKeyDown}
-            />
+            <>
+              <div
+                className="fixed top-0 left-0 h-screen w-screen"
+                role="button"
+                tabIndex={0}
+                aria-label={t('Fermer le menu')}
+                onClick={handleClickMask}
+                onKeyDown={handleMaskKeyDown}
+              />
+              <section
+                className={twMerge(
+                  'pointer-events-none fixed top-0 right-0 z-50 h-screen w-[90vw] max-w-[20rem] translate-x-full bg-white p-4 pt-16 opacity-0 shadow-md transition-all duration-300 ease-in-out focus:outline-none',
+                  isOpen ? 'pointer-events-auto translate-x-0 opacity-100' : ''
+                )}
+                id="burger-menu-panel"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="burger-menu-title"
+                tabIndex={isOpen ? 0 : -1}
+                ref={panelRef}
+                onKeyDown={handlePanelKeyDown}>
+                <h2 id="burger-menu-title" className="sr-only">
+                  {t('common.burgerMenu.title', 'Menu de navigation')}
+                </h2>
+                <Button
+                  color="text"
+                  aria-label={t(
+                    'common.burgerMenu.title',
+                    'Fermer le menu de navigation'
+                  )}
+                  onClick={handleToggleMenu}
+                  className={twMerge(
+                    'absolute top-4 right-4 z-100 flex h-[44px] w-[44px] flex-col items-center justify-center p-0!',
+                    isOpen ? 'flex' : ''
+                  )}>
+                  <CloseIcon />
+                </Button>
+                {children({
+                  closeMenu: () => setIsOpen(false),
+                  onFocus: () => {},
+                })}
+              </section>
+            </>
           )}
-
-          {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */}
-          <section
-            className={twMerge(
-              'pointer-events-none fixed top-0 right-0 z-50 h-screen w-[90vw] max-w-[20rem] translate-x-full bg-white p-4 pt-16 opacity-0 shadow-md transition-all duration-300 ease-in-out focus:outline-none',
-              isOpen ? 'pointer-events-auto translate-x-0 opacity-100' : ''
-            )}
-            id="burger-menu-panel"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="burger-menu-title"
-            // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-noninteractive-tabindex
-            tabIndex={0}
-            ref={panelRef}
-            onKeyDown={handlePanelKeyDown}>
-            <h2 id="burger-menu-title" className="sr-only">
-              {t('common.burgerMenu.title', 'Menu de navigation')}
-            </h2>
-            <Button
-              color="text"
-              aria-label={t(
-                'common.burgerMenu.title',
-                'Fermer le menu de navigation'
-              )}
-              onClick={handleToggleMenu}
-              className={twMerge(
-                'absolute top-4 right-4 z-100 flex h-[44px] w-[44px] flex-col items-center justify-center p-0!',
-                isOpen ? 'flex' : ''
-              )}>
-              <CloseIcon />
-            </Button>
-            {children({
-              closeMenu: () => setIsOpen(false),
-              onFocus: () => setIsOpen(true),
-            })}
-          </section>
         </>
       </div>
     </div>

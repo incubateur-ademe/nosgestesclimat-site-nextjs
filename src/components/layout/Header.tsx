@@ -56,8 +56,9 @@ export default function Header({ isSticky = true }: Props) {
 
   return (
     <header
+      role="banner"
       className={twMerge(
-        'h-20 items-center bg-white shadow-sm',
+        'h-20 w-full items-center bg-white shadow-sm',
         isSticky ? 'sticky top-0 z-300' : ''
       )}>
       {/* Header mobile */}
@@ -76,7 +77,7 @@ export default function Header({ isSticky = true }: Props) {
         )}
       </div>
       {/* Header desktop */}
-      <div className="absolute top-0 right-0 bottom-0 left-0 hidden h-20 w-full items-center border-b border-gray-200 bg-white shadow-xs md:flex">
+      <div className="hidden h-20 w-full items-center md:flex">
         <div className="mx-auto flex h-full w-full max-w-5xl items-center justify-between gap-6">
           <div className="flex origin-left items-center justify-center">
             {isIframeOnlySimulation ? (
@@ -91,7 +92,7 @@ export default function Header({ isSticky = true }: Props) {
               <nav
                 role="navigation"
                 className="h-full"
-                id="header-navigation"
+                id="header-navigation-desktop"
                 aria-label={t('Navigation principale')}
                 aria-labelledby="header-navigation-title">
                 <p id="header-navigation-title" className="sr-only">
