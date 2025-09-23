@@ -1,6 +1,5 @@
 'use client'
 
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
 import { useMemo } from 'react'
@@ -13,8 +12,6 @@ export default function CategoryIllustration({
   category: DottedName
   shouldHideIllustration?: boolean
 }) {
-  const { t } = useClientTranslation()
-
   const categoryProps = useMemo(() => {
     switch (category) {
       case 'transport':
@@ -50,7 +47,7 @@ export default function CategoryIllustration({
       default:
         return null
     }
-  }, [category, t])
+  }, [category])
 
   if (!categoryProps || shouldHideIllustration) {
     return null
