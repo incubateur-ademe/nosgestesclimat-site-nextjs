@@ -64,6 +64,7 @@ export default function Footer({
   return (
     <footer
       id="footer"
+      tabIndex={-1}
       role="contentinfo"
       className={twMerge(
         'relative bg-gray-100 p-4 pb-32! sm:p-8',

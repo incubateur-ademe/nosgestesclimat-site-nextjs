@@ -21,6 +21,7 @@ export default function BottomMenu() {
     <nav
       role="navigation"
       id="header-navigation-mobile"
+      tabIndex={-1}
       aria-labelledby="bottom-menu-title">
       <p id="bottom-menu-title" className="sr-only">
         <Trans i18nKey="common.mobile.bottomMenu.title">Menu secondaire</Trans>

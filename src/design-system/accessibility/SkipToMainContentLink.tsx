@@ -1,26 +1,19 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
+import { useRef } from 'react'
 import ButtonLink from '../buttons/ButtonLink'
 
 export default function SkipToMainContentLink() {
-  const skipToFirstFocusableElement = (elementId: string) => {
-    ;(
-      document
-        .getElementById(elementId)
-        ?.querySelector('a, button') as HTMLElement
-    )?.focus()
-  }
-
-  const skipToElement = (elementId: string) => {
-    document.getElementById(elementId)?.focus()
-  }
+  const navRef = useRef<HTMLElement>(null)
 
   return (
-    <div className="skip-to-main-content sr-only flex !w-full items-center focus-within:not-sr-only! focus-within:top-0 focus-within:right-0 focus-within:left-0 focus-within:z-[100000] focus-within:h-auto! focus-within:p-2!">
+    <div className="skip-to-main-content sr-only flex !w-full items-center focus-within:not-sr-only! focus-within:top-0 focus-within:right-auto focus-within:left-0 focus-within:z-[100000] focus-within:h-auto! focus-within:p-2!">
       <nav
+        ref={navRef}
         role="navigation"
+        id="skip-to-main-content"
+        tabIndex={-1}
         aria-labelledby="skip-nav-title"
         className="flex w-full flex-col items-start gap-2 md:flex-row md:items-center">
         <p id="skip-nav-title" className="sr-only">
@@ -28,31 +21,28 @@ export default function SkipToMainContentLink() {
         </p>
         <ButtonLink
           color="secondary"
-          href="#contenu"
-          onClick={() => skipToFirstFocusableElement('main-content')}
-          onKeyDown={onKeyDownHelper(() =>
-            skipToFirstFocusableElement('main-content')
-          )}
+          href="#main-content"
           className="focus:ring-primary-700 focus:w-auto focus:ring-2 focus:ring-offset-[2px]">
           <Trans>Contenu</Trans>
         </ButtonLink>
 
         <ButtonLink
           color="secondary"
-          href="#nav-menu"
-          onClick={() => skipToElement('nav-first-link')}
-          onKeyDown={onKeyDownHelper(() => skipToElement('nav-first-link'))}
-          className="focus:ring-primary-700 focus:w-auto focus:ring-2 focus:ring-offset-[2px]">
+          href="#header-navigation-desktop"
+          className="focus:ring-primary-700 hidden focus:w-auto focus:ring-2 focus:ring-offset-[2px] md:flex">
+          <Trans>Menu</Trans>
+        </ButtonLink>
+
+        <ButtonLink
+          color="secondary"
+          href="#header-navigation-mobile"
+          className="focus:ring-primary-700 focus:w-auto focus:ring-2 focus:ring-offset-[2px] md:hidden">
           <Trans>Menu</Trans>
         </ButtonLink>
 
         <ButtonLink
           color="secondary"
           href="#footer"
-          onClick={() => skipToFirstFocusableElement('footer')}
-          onKeyDown={onKeyDownHelper(() =>
-            skipToFirstFocusableElement('footer')
-          )}
           className="focus:ring-primary-700 focus:w-auto focus:ring-2 focus:ring-offset-[2px]">
           <Trans>Pied de page</Trans>
         </ButtonLink>

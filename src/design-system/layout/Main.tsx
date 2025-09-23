@@ -23,6 +23,7 @@ export default function Main({
     <main
       id="main-content"
       role="main"
+      tabIndex={-1}
       className={`flex flex-col overflow-hidden ${maxWidthClass} ${className} ${
         isIframe || pathname.startsWith(SIMULATOR_PATH)
           ? ''

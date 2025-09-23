@@ -92,6 +92,7 @@ export default function Header({ isSticky = true }: Props) {
               <nav
                 role="navigation"
                 className="h-full"
+                tabIndex={-1}
                 id="header-navigation-desktop"
                 aria-label={t('Navigation principale')}
                 aria-labelledby="header-navigation-title">
