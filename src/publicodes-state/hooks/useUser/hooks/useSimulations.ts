@@ -123,9 +123,10 @@ export default function useSimulations({
             const addedOrChangedDottedNames = situationKeys.reduce(
               (acc, dottedName) => {
                 if (
-                  !simulationToUpdateSituationKeysSet.has(dottedName) ||
-                  situation[dottedName as DottedName] !==
-                    simulationToUpdate.situation[dottedName as DottedName]
+                  dottedName in simulationToUpdate.extendedSituation &&
+                  (!simulationToUpdateSituationKeysSet.has(dottedName) ||
+                    situation[dottedName as DottedName] !==
+                      simulationToUpdate.situation[dottedName as DottedName])
                 ) {
                   acc[dottedName as keyof ExtendedSituation] = {
                     source: 'answered',
