@@ -41,7 +41,7 @@ function handleUrlAnonymisation(url: string) {
 
   Object.entries(PARAMS_TO_ANONYMISE).forEach(([param, replacementKey]) => {
     urlModified = urlModified.replace(
-      urlParams.get(param) as string,
+      encodeURIComponent(urlParams.get(param) as string),
       replacementKey
     )
   })
