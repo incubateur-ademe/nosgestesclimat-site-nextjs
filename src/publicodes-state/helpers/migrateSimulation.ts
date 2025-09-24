@@ -22,7 +22,14 @@ export function migrateSimulation(
     simulation.foldedSteps = Object.keys(
       migrateSituation(
         Object.fromEntries(
-          simulation.foldedSteps.map((step) => [step, undefined])
+          simulation.foldedSteps.map((step) => {
+            // Somehow, foldedSteps can be double quoted in database, we remove it to keep a normal string format
+            if (step.startsWith('"') && step.endsWith('"')) {
+              return [step.slice(1, -1), undefined]
+            } else {
+              return [step, undefined]
+            }
+          })
         ),
         migrationInstructions
       )
