@@ -39,6 +39,7 @@ export const IframeOptionsProvider = ({
   const [isIframeShareData, setIsIframeShareData] = useState(false)
   const [isIframeOnlySimulation, setIsIframeOnlySimulation] = useState(false)
   const [iframeLang, setIframeLang] = useState<string | null>(null)
+  const [iframeRegion, setIframeRegion] = useState<string | null>(null)
 
   const containerRef = useTrackIframe(isIframe)
 
@@ -70,6 +71,10 @@ export const IframeOptionsProvider = ({
 
     if (!isIframeOnlySimulation) {
       setIsIframeOnlySimulation(Boolean(urlParams.get('onlySimulation')))
+    }
+
+    if (!iframeRegion) {
+      setIframeRegion(urlParams.get('region'))
     }
 
     if (!iframeLang) {
@@ -106,7 +111,7 @@ export const IframeOptionsProvider = ({
       value={{
         ...iframeIntegratorOptions,
         isIframeShareData,
-        iframeRegion: regionCode,
+        iframeRegion,
         isIframe,
         isIframeOnlySimulation,
         iframeLang,
