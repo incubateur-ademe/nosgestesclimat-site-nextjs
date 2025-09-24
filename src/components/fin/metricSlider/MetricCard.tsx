@@ -83,7 +83,8 @@ export default function MetricCard({
           metric === carboneMetric
             ? 'rounded-r-none rounded-bl-xl'
             : 'rounded-l-none rounded-br-xl',
-          isSharePage && 'pointer-events-none'
+          isSharePage && 'pointer-events-none',
+          isSticky && 'focus:ring-offset-none focus:ring-offset-0'
         )}>
         <span className="sr-only">{metricTitle.mobile}</span>
       </button>
