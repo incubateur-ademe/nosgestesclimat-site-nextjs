@@ -41,17 +41,16 @@ export function useInitializeSimulationWithEngine({
       // Check if the foldedStep is a mosaic child
       const parentMosaic = Object.entries(everyMosaicChildrenWithParent).find(
         ([_, children]) => children.includes(foldedStep)
-      )
+      )?.[0] as DottedName | undefined
 
       if (parentMosaic) {
-        const [parent] = parentMosaic
         // Remove the foldedStep from the foldedSteps
         newFoldedSteps = newFoldedSteps.filter(
-          (step) => step !== foldedStep && step !== parent
+          (step) => step !== foldedStep && step !== parentMosaic
         )
         // Add the parent to the foldedSteps if it is not already present
-        if (!newFoldedSteps.includes(parent)) {
-          newFoldedSteps.push(parent)
+        if (!newFoldedSteps.includes(parentMosaic)) {
+          newFoldedSteps.push(parentMosaic)
         }
       }
     })
