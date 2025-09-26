@@ -11,9 +11,14 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 type Props = {
   question: DottedName
   setTempValue?: (value: number | undefined) => void
+  setDisplayedValue?: (value: string | undefined) => void
 }
 
-export default function ThreeYearsInput({ question, setTempValue }: Props) {
+export default function ThreeYearsInput({
+  question,
+  setTempValue,
+  setDisplayedValue,
+}: Props) {
   const { t } = useClientTranslation()
 
   const locale = useLocale()
@@ -60,10 +65,11 @@ export default function ThreeYearsInput({ question, setTempValue }: Props) {
   useEffect(() => {
     if (totalValue !== prevTotalValue.current) {
       if (setTempValue) setTempValue(totalValue)
+      if (setDisplayedValue) setDisplayedValue(String(totalValue))
       setValue(totalValue, { questionDottedName: question })
     }
     prevTotalValue.current = totalValue
-  }, [totalValue, setValue, question, setTempValue])
+  }, [totalValue, setValue, question, setTempValue, setDisplayedValue])
 
   return (
     <motion.div
