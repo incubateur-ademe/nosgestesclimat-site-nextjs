@@ -169,7 +169,7 @@ describe('BlogHomePage', () => {
 
       await BlogHomePage({ params, searchParams })
 
-      expect(mockRedirect).toHaveBeenCalledWith('/blog?lang=fr')
+      expect(mockRedirect).toHaveBeenCalledWith('/fr/blog')
       expect(mockNotFound).not.toHaveBeenCalled()
     })
 
@@ -221,7 +221,7 @@ describe('BlogHomePage', () => {
 
       await BlogHomePage({ params, searchParams })
 
-      expect(mockRedirect).toHaveBeenCalledWith('/blog?lang=fr')
+      expect(mockRedirect).toHaveBeenCalledWith('/fr/blog')
       expect(mockNotFound).not.toHaveBeenCalled()
     })
 

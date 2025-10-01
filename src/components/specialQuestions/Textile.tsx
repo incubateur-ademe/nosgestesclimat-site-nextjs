@@ -50,6 +50,15 @@ export default function Textile({ question, ...props }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preciseChoice, totalPiecesTextile])
 
+  // When preciseChoice is true (ie 'divers . textile . choix précis' is "oui" in the situation), the question 'divers . textile . empreinte précise' is answered, so as 'divers . textile . volume', so we add it to the foldedSteps
+  useEffect(() => {
+    if (preciseChoice === true) {
+      updateCurrentSimulation({
+        foldedStepToAdd: question,
+      })
+    }
+  }, [preciseChoice, question, updateCurrentSimulation])
+
   return (
     <>
       <Question
@@ -75,10 +84,6 @@ export default function Textile({ question, ...props }: Props) {
                 })
               )
               setPreciseChoice(preciseChoice ? 'non' : 'oui')
-
-              updateCurrentSimulation({
-                foldedStepToAdd: question,
-              })
             }}
             className="mt-1 md:mt-0 md:ml-2">
             {preciseChoice ? (
