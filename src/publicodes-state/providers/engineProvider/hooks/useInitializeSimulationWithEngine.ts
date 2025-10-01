@@ -58,8 +58,6 @@ export function useInitializeSimulationWithEngine({
     return newFoldedSteps
   }, [everyMosaicChildrenWithParent, everyQuestions, foldedSteps])
 
-  console.log({ foldedSteps, filteredFoldedSteps })
-
   useEffect(() => {
     if (areArraysEqual(foldedSteps, filteredFoldedSteps)) return
 
