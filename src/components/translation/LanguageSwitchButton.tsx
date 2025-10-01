@@ -29,15 +29,16 @@ export default function LanguageSwitchButton({
   const pathname = usePathname()
 
   const langButtonsDisplayedWithFilteredEs = NO_ES_PATHNAMES.has(
-    pathname
-      .toString()
-      .replace(new RegExp(`^/(${i18nConfig.locales.join('|')})`), '')
+    String(pathname).replace(
+      new RegExp(`^/(${i18nConfig.locales.join('|')})`),
+      ''
+    )
   )
     ? { ...langButtonsDisplayed, es: false }
     : langButtonsDisplayed
 
   const getHref = (newLocale: Locale) => {
-    let newPathname = pathname.toString()
+    let newPathname = String(pathname)
 
     // Remove the current locale from the pathname if it exists
     const pathWithoutLocale = newPathname.replace(
