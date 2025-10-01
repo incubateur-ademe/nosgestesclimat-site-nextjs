@@ -12,15 +12,17 @@ const PARAMS_TO_ANONYMISE = {
   [ADMINISTRATOR_NAME_KEY]: 'administrator_name',
   [ADMINISTRATOR_EMAIL_KEY]: 'administrator_email',
   email: 'email',
-  'partner-token': 'partner-token',
-  'partner-fallback': 'partner-fallback',
+  'partner-token': 'partner_token',
+  'partner-fallback': 'partner_fallback',
 }
 
-function handleUrlAnonymisation(url: string) {
+function handlePathnameAnonymisation(pathname: string) {
   // Replace the organisation slug by the placeholder
-  const pathNameSegment = url.split('/').filter((segment) => segment !== '')
+  const pathNameSegment = pathname
+    .split('/')
+    .filter((segment) => segment !== '')
 
-  let urlModified = url
+  let pathnameModified = String(pathname)
 
   if (
     pathNameSegment[0] === 'organisations' &&
@@ -28,37 +30,37 @@ function handleUrlAnonymisation(url: string) {
       pathNameSegment[1]
     )
   ) {
-    urlModified = urlModified.replace(pathNameSegment[1], 'orga_slug')
+    pathnameModified = pathnameModified.replace(pathNameSegment[1], 'orga_slug')
   }
 
   // Replace the poll slug by the placeholder
   if (pathNameSegment[2] === 'campagnes') {
-    urlModified = urlModified.replace(pathNameSegment[3], 'poll_slug')
+    pathnameModified = pathnameModified.replace(pathNameSegment[3], 'poll_slug')
   }
 
-  // Anonymise the group administrator information
-  const urlParams = new URLSearchParams(urlModified.split('?')[1] ?? '')
+  // Anonymise other params
+  const urlParams = new URLSearchParams(pathnameModified.split('?')[1] ?? '')
 
   Object.entries(PARAMS_TO_ANONYMISE).forEach(([param, replacementKey]) => {
-    urlModified = urlModified.replace(
+    pathnameModified = pathnameModified.replace(
       encodeURIComponent(urlParams.get(param) as string),
       replacementKey
     )
   })
 
-  return urlModified
+  return pathnameModified
 }
 
 export function useGetTrackedUrl() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
-  let url = pathname
+  let pathnameUpdated = String(pathname)
 
   // We remove the lang prefix from the pathname
   i18nConfig.locales.map((locale) => {
     if (pathname?.startsWith(`/${locale}`)) {
-      url = pathname.slice(3)
+      pathnameUpdated = pathname.slice(3)
     }
   })
 
@@ -67,28 +69,28 @@ export function useGetTrackedUrl() {
   if (questionParams) {
     const category = questionParams.split('.')[0]
     const question = questionParams.replace(category + '.', '')
-    url += `/${category}/${question}`
+    pathnameUpdated += `/${category}/${question}`
   }
 
   // We convert the groupId to a real url
   const groupId = searchParams.get('groupId')
   if (groupId) {
-    url += `/${groupId}`
+    pathnameUpdated += `/${groupId}`
   }
 
   // We add a trailing slash
-  if (!url.endsWith('/')) {
-    url += '/'
+  if (!pathnameUpdated.endsWith('/')) {
+    pathnameUpdated += '/'
   }
 
   // We add the searchParams to the url
   const search = searchParams.toString()
   if (search) {
-    url += `?${search}`
+    pathnameUpdated += `?${search}`
   }
 
   // We don't want to track the slugs of the organisations and theirs polls on Matomo, as it is publicly accessible.
-  const anonymizedUrl = handleUrlAnonymisation(url)
+  const anonymizedUrl = handlePathnameAnonymisation(pathnameUpdated)
 
-  return { url, anonymizedUrl }
+  return { url: pathnameUpdated, anonymizedUrl }
 }
