@@ -8,7 +8,7 @@ export default function Layout({ children }: PropsWithChildren) {
   return (
     <IsDocumentationClientProvider>
       <Header />
-      <ContentLarge>{children}</ContentLarge>
+      {children}
       <Footer />
     </IsDocumentationClientProvider>
   )

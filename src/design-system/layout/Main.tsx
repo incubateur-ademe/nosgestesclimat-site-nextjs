@@ -10,6 +10,7 @@ export default function Main({
   children,
   maxWidth,
   className,
+  ...props
 }: PropsWithChildren<{ maxWidth?: string; className?: string }>) {
   const maxWidthClass = maxWidth ? `max-w-${maxWidth} mx-auto` : ''
 
@@ -28,7 +29,8 @@ export default function Main({
         isIframe || pathname.startsWith(SIMULATOR_PATH)
           ? ''
           : 'min-h-[calc(100vh-2rem)]'
-      }`}>
+      }`}
+      {...props}>
       {children}
     </main>
   )

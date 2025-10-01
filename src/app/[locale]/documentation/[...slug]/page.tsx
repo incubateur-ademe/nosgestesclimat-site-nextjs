@@ -1,3 +1,4 @@
+import ContentLarge from '@/components/layout/ContentLarge'
 import { DOCUMENTATION_PATH } from '@/constants/urls/paths'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -88,12 +89,14 @@ export default async function DocumentationPage({
       supportedRegions={supportedRegions}
       slug={slug}
       serverComponent={
-        <DocumentationServer
-          locale={locale}
-          ruleName={ruleName}
-          rule={rule}
-          rules={rules}
-        />
+        <ContentLarge>
+          <DocumentationServer
+            locale={locale}
+            ruleName={ruleName}
+            rule={rule}
+            rules={rules}
+          />
+        </ContentLarge>
       }
     />
   )

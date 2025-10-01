@@ -15,7 +15,8 @@ export default function MetricSwitchButton({ metric, setMetric }: Props) {
   const { t } = useClientTranslation()
 
   return (
-    <div className="mb-2 flex justify-center gap-2 lg:justify-end">
+    <ul className="mb-2 flex justify-center gap-2 lg:justify-end">
+      <li>
       <Button
         color={metric === carboneMetric ? 'primary' : 'secondary'}
         onClick={() => setMetric(carboneMetric)}
@@ -25,6 +26,8 @@ export default function MetricSwitchButton({ metric, setMetric }: Props) {
         className="flex items-center gap-2 px-4 py-3">
         <span>Carbone</span> <Emoji>⚫️</Emoji>
       </Button>
+      </li>
+      <li>
       <Button
         color={metric === eauMetric ? 'primary' : 'secondary'}
         onClick={() => setMetric(eauMetric)}
@@ -34,6 +37,7 @@ export default function MetricSwitchButton({ metric, setMetric }: Props) {
         className="flex items-center gap-2 px-4 py-3">
         <span>Eau</span> <Emoji>💧</Emoji>
       </Button>
-    </div>
+      </li>
+    </ul>
   )
 }

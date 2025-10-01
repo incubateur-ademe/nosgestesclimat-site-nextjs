@@ -3,6 +3,7 @@
 import Link from '@/components/Link'
 import BilanChart from '@/components/charts/BilanChart'
 import ServicesChart from '@/components/charts/ServicesChart'
+import ContentLarge from '@/components/layout/ContentLarge'
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import { RULES_TO_HIDE } from '@/constants/documentation'
 import { defaultMetric } from '@/constants/model/metric'
@@ -39,43 +40,46 @@ export default function DocumentationClient({ slugs }: Props) {
   }
 
   return (
-    <div className="mt-4 mb-16 w-full px-2">
-      <PasserTestBanner />
-      <MetricSwitchButton
-        metric={metric}
-        setMetric={(metric) => {
-          setMetric(metric)
-          engine.setSituation(
-            { métrique: `'${metric}'` },
-            { keepPreviousSituation: true }
-          )
-        }}
-      />
-      <RulePage
-        language={locale as 'fr' | 'en'}
-        rulePath={(path as string) ?? ''}
-        engine={engine as Engine}
-        documentationPath={documentationPath}
-        searchBar={true}
-        rulesToHide={Array.from(RULES_TO_HIDE)}
-        renderers={{
-          Head,
-          Link: ({ children, to }) => <Link href={to || ''}>{children}</Link>,
-          Text: ({ children }) => (
-            <>
-              <Markdown>
-                {children
-                  .replaceAll('<RavijenChart/>', '')
-                  .replaceAll('<RavijenChartSocietaux/>', '')}
-              </Markdown>
-              {children.includes('<RavijenChart/>') && <BilanChart />}
-              {children.includes('<RavijenChartSocietaux/>') && (
-                <ServicesChart />
-              )}
-            </>
-          ),
-        }}
-      />
-    </div>
+    <ContentLarge tabIndex={undefined} id={undefined}>
+      <div className="mt-4 mb-16 w-full px-2">
+        <PasserTestBanner />
+        <MetricSwitchButton
+          metric={metric}
+          setMetric={(metric) => {
+            setMetric(metric)
+            engine.setSituation(
+              { métrique: `'${metric}'` },
+              { keepPreviousSituation: true }
+            )
+          }}
+        />
+        <RulePage
+          language={locale as 'fr' | 'en'}
+          rulePath={(path as string) ?? ''}
+          engine={engine as Engine}
+          documentationPath={documentationPath}
+          searchBar={true}
+          rulesToHide={Array.from(RULES_TO_HIDE)}
+          renderers={{
+            Head,
+            Link: ({ children, to }) => <Link href={to || ''}>{children}</Link>,
+            Text: ({ children }) => (
+              <>
+                <Markdown>
+                  {children
+                    .replaceAll('<RavijenChart/>', '')
+                    .replaceAll('<RavijenChartSocietaux/>', '')}
+                </Markdown>
+                {children.includes('<RavijenChart/>') && <BilanChart />}
+                {children.includes('<RavijenChartSocietaux/>') && (
+                  <ServicesChart />
+                )}
+              </>
+            ),
+          }}
+          mainContentId="main-content"
+        />
+      </div>
+    </ContentLarge>
   )
 }
