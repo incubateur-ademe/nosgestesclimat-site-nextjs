@@ -7,8 +7,8 @@ import { EngineContext } from './context'
 import { useCategories } from './hooks/useCategories'
 import { useEngine } from './hooks/useEngine'
 import { useEngineSituation } from './hooks/useEngineSituation'
+import { useInitializeSimulationWithEngine } from './hooks/useInitializeSimulationWithEngine'
 import { useRules } from './hooks/useRules'
-import { useSetComputedResults } from './hooks/useSetComputedResults'
 
 type Props = {
   rules?: Partial<NGCRules>
@@ -46,9 +46,11 @@ export default function EngineProvider({
     rawMissingVariables,
   })
 
-  const { isInitialized } = useSetComputedResults({
+  const { isInitialized } = useInitializeSimulationWithEngine({
     categories,
     subcategories,
+    everyQuestions,
+    everyMosaicChildrenWithParent,
     isEngineInitialized,
     safeGetRule,
     safeEvaluate,
