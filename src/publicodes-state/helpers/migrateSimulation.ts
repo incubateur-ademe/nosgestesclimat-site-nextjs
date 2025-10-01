@@ -19,6 +19,7 @@ export function migrateSimulation(
 
     // NOTE: folded steps (i.e. answered rules) are can be map to a situation,
     // where the keys are the rule names and the value is undefined.
+    // NOTE: We should filter foldedSteps that are not questions here
     simulation.foldedSteps = Object.keys(
       migrateSituation(
         Object.fromEntries(
