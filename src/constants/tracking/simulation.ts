@@ -59,3 +59,31 @@ export const gtmSimulationCompleted = {
 export const gtmSimulationStarted = {
   event: 'start-form',
 }
+
+export const clickSaveSimulationEvent = ({
+  question,
+  completionPercentage,
+}: {
+  question: string
+  completionPercentage: number
+}) => [
+  'trackEvent',
+  'Simulation',
+  'Click save simulation',
+  question,
+  String(completionPercentage),
+]
+
+export const confirmSaveSimulationEvent = ({
+  question,
+  completionPercentage,
+}: {
+  question: string
+  completionPercentage: number
+}) => [
+  'trackEvent',
+  'Simulation',
+  'Confirm save simulation',
+  question,
+  String(completionPercentage),
+]

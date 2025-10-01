@@ -1,11 +1,13 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import { confirmSaveSimulationEvent } from '@/constants/tracking/simulation'
 import Button from '@/design-system/buttons/Button'
 import Modal from '@/design-system/modals/Modal'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useIframe } from '@/hooks/useIframe'
-import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useFormState, useUser } from '@/publicodes-state'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -26,6 +28,8 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
     useState(false)
 
   const currentSimulation = useCurrentSimulation()
+
+  const { currentQuestion } = useFormState()
 
   const { user, updateEmail } = useUser()
 
@@ -56,6 +60,14 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
       simulation: { ...currentSimulation, savedViaEmail: true },
       sendEmail: true,
     })
+
+    trackEvent(
+      confirmSaveSimulationEvent({
+        question: currentQuestion as string,
+        // progression is on a 0 to 1 scale
+        completionPercentage: currentSimulation?.progression * 100,
+      })
+    )
   }
 
   useEffect(() => {
