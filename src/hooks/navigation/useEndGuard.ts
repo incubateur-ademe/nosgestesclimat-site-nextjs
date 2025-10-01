@@ -5,6 +5,7 @@ import {
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { useSetCurrentSimulationFromParams } from '../simulation/useSetCurrentSimulationFromParams'
 import { useSimulationIdInQueryParams } from '../simulation/useSimulationIdInQueryParams'
 import { useLocale } from '../useLocale'
 
@@ -15,6 +16,8 @@ export function useEndGuard() {
 
   const { tutorials } = useUser()
   const { progression } = useCurrentSimulation()
+
+  const { isCorrectSimulationSet } = useSetCurrentSimulationFromParams()
 
   const { simulationIdInQueryParams } = useSimulationIdInQueryParams()
 
@@ -27,7 +30,7 @@ export function useEndGuard() {
     setIsGuardInit(true)
 
     // if there is a simulation id in the query params we do nothing
-    if (simulationIdInQueryParams) {
+    if (simulationIdInQueryParams && !isCorrectSimulationSet) {
       return
     }
 
@@ -49,6 +52,7 @@ export function useEndGuard() {
   }, [
     isGuardInit,
     simulationIdInQueryParams,
+    isCorrectSimulationSet,
     progression,
     router,
     tutorials,

@@ -132,7 +132,7 @@ describe('CategoryPage', () => {
       })
       const searchParams = Promise.resolve({ page: '1' })
       await CategoryPage({ params, searchParams })
-      expect(mockRedirect).toHaveBeenCalledWith('/blog/cat?lang=fr')
+      expect(mockRedirect).toHaveBeenCalledWith('/fr/blog/cat')
     })
     it('should redirect to FR if not FR and missing description', async () => {
       mockFetchCategoryPageContent.mockResolvedValue({
@@ -148,7 +148,7 @@ describe('CategoryPage', () => {
       })
       const searchParams = Promise.resolve({ page: '1' })
       await CategoryPage({ params, searchParams })
-      expect(mockRedirect).toHaveBeenCalledWith('/blog/cat?lang=fr')
+      expect(mockRedirect).toHaveBeenCalledWith('/fr/blog/cat')
     })
     it('should redirect to NOT_FOUND_PATH if FR and missing title', async () => {
       mockFetchCategoryPageContent.mockResolvedValue({
@@ -196,7 +196,7 @@ describe('CategoryPage', () => {
       })
       const searchParams = Promise.resolve({ page: '1' })
       await CategoryPage({ params, searchParams })
-      expect(mockRedirect).toHaveBeenCalledWith('/blog/cat?lang=fr')
+      expect(mockRedirect).toHaveBeenCalledWith('/fr/blog/cat')
     })
     it('should redirect to NOT_FOUND_PATH if missing description in any locale', async () => {
       mockFetchCategoryPageContent.mockResolvedValue({
@@ -212,7 +212,7 @@ describe('CategoryPage', () => {
       })
       const searchParams = Promise.resolve({ page: '1' })
       await CategoryPage({ params, searchParams })
-      expect(mockRedirect).toHaveBeenCalledWith('/blog/cat?lang=fr')
+      expect(mockRedirect).toHaveBeenCalledWith('/fr/blog/cat')
     })
   })
 

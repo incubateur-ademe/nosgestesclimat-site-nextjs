@@ -14,7 +14,7 @@ export default function PartagePage() {
     useSimulateurPage()
 
   return (
-    <div className="relative">
+    <div className="relative my-12">
       <div>
         <Title className="text-lg md:text-2xl">
           <Trans>Découvre mes empreintes</Trans>
@@ -24,6 +24,7 @@ export default function PartagePage() {
         carboneTotal={carboneTotal}
         waterTotal={waterTotal}
         isStatic
+        isSharePage
       />
       <div className="rainbow-border mt-10 items-start rounded-xl px-4 py-6">
         <Title
