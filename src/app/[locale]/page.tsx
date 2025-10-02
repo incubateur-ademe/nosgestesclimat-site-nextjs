@@ -112,10 +112,16 @@ export default async function Homepage({ params }: DefaultPageProps) {
 
               {/* Displayed on desktop only */}
               <p className="md:max-w-[300px]">
-                <Trans locale={locale}>
-                  <strong className="text-primary-700">
-                    2 millions de personnes
-                  </strong>{' '}
+                <strong className="text-primary-700">
+                  <Trans
+                    i18nKey="common.mainLandingPage.numberPersons"
+                    locale={locale}>
+                    2,5 millions de personnes
+                  </Trans>
+                </strong>{' '}
+                <Trans
+                  i18nKey="common.mainLandingPage.tookTheirTest"
+                  locale={locale}>
                   ont déjà calculé leur empreinte !
                 </Trans>
               </p>
