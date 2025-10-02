@@ -1,11 +1,8 @@
 import type { BannerType } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
-import i18nConfig, { type Locale } from '@/i18nConfig'
+import { type Locale } from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 import dayjs from 'dayjs'
-
-// Limit to the allowed locales fr and en, the only locales supported by the CMS
-const allowedLocales = [i18nConfig.locales[0], i18nConfig.locales[1]]
 
 export async function fetchBanner(locale: Locale): Promise<BannerType | null> {
   try {

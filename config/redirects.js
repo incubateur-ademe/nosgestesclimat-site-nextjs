@@ -375,42 +375,7 @@ const redirects = [
     destination: '/en',
     permanent: true,
   },
-  // Guides es
-  {
-    source: '/es/guide',
-    destination: '/en',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/alimentation',
-    destination: '/en',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/transport',
-    destination: '/en',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/logement',
-    destination: '/en',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/divers',
-    destination: '/en',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/numerique',
-    destination: '/en',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/services-societaux',
-    destination: '/en',
-    permanent: true,
-  },
+  // Do not remove this redirection - ES locale existed before
   {
     source: '/es/:path*',
     destination: '/en',
