@@ -79,7 +79,13 @@ export default async function ArticlePage({
 
   return (
     <>
-      <ArticleJSONLD article={article} />
+      <ArticleJSONLD
+        article={article}
+        articleTitle={article.title}
+        articleSlug={articleSlug}
+        categorySlug={category}
+        categoryTitle={article.blogCategory?.title ?? ''}
+      />
 
       <div className="relative max-w-5xl px-4 md:mx-auto lg:px-0">
         <ArticleBreadcrumbs
