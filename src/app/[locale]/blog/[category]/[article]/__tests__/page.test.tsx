@@ -121,7 +121,6 @@ describe('ArticlePage', () => {
     mockGetLangButtonsDisplayed.mockResolvedValue({
       fr: true,
       en: true,
-      es: false,
     })
   })
 
