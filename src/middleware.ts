@@ -23,7 +23,11 @@ export function middleware(request: NextRequest) {
     return middlewareResponse
   }
 
-  return NextResponse.next()
+  // Ajouter le pathname aux headers pour les composants serveur
+  const response = NextResponse.next()
+  response.headers.set('x-pathname', request.nextUrl.pathname)
+
+  return response
 }
 
 export const config = {

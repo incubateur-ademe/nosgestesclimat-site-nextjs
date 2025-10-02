@@ -1,4 +1,4 @@
-import Header from '@/components/layout/Header'
+import HeaderServer from '@/components/layout/HeaderServer'
 import type { DefaultPageProps } from '@/types'
 import type { PropsWithChildren } from 'react'
 import { ClientLayout } from '../_components/ClientLayout'
@@ -10,7 +10,7 @@ export default async function BlogLayout({ children, params }: LayoutProps) {
 
   return (
     <ClientLayout locale={locale}>
-      <Header isSticky={false} />
+      <HeaderServer locale={locale} isSticky={false} />
 
       <main className="flex w-full flex-1 flex-col overflow-visible lg:mx-auto lg:px-0">
         {children}

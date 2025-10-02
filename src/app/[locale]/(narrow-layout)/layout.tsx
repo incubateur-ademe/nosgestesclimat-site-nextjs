@@ -1,6 +1,6 @@
 import ContentNarrow from '@/components/layout/ContentNarrow'
 import Footer from '@/components/layout/Footer'
-import Header from '@/components/layout/Header'
+import Header from '@/components/layout/HeaderClient'
 import type { DefaultPageProps } from '@/types'
 import type { PropsWithChildren } from 'react'
 import { ClientLayout } from '../_components/ClientLayout'
