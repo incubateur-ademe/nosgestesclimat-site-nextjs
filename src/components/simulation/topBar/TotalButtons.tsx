@@ -4,12 +4,13 @@ import ListIcon from '@/components/icons/ListIcon'
 import SaveCheckIcon from '@/components/icons/SaveCheckIcon'
 import SaveIcon from '@/components/icons/SaveIcon'
 import Trans from '@/components/translation/trans/TransClient'
+import { clickSaveSimulation } from '@/constants/tracking/posthogTrackers'
 import { clickSaveSimulationEvent } from '@/constants/tracking/simulation'
 import Button from '@/design-system/buttons/Button'
 import { useDebug } from '@/hooks/useDebug'
 import { useIframe } from '@/hooks/useIframe'
 import { useCurrentSimulation, useFormState } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 
 type Props = { toggleQuestionList: () => void; toggleSaveModal?: () => void }
 
@@ -48,10 +49,10 @@ export default function TotalButtons({
           size="sm"
           className="h-10 w-10 gap-2 p-0! font-medium sm:w-auto lg:px-4! lg:py-2!"
           onClick={() => {
-            trackEvent(
-              clickSaveSimulationEvent({
+            trackEvent(clickSaveSimulationEvent)
+            trackPosthogEvent(
+              clickSaveSimulation({
                 question: currentQuestion as string,
-                // progression is on a 0 to 1 scale
                 completionPercentage: progression * 100,
               })
             )
