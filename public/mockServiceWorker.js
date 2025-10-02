@@ -7,8 +7,8 @@
  * - Please do NOT modify this file.
  */
 
-const PACKAGE_VERSION = '2.10.2'
-const INTEGRITY_CHECKSUM = 'f5825c521429caf22a4dd13b66e243af'
+const PACKAGE_VERSION = '2.11.3'
+const INTEGRITY_CHECKSUM = '4db4a41e972cec1b64cc569c66952d82'
 const IS_MOCKED_RESPONSE = Symbol('isMockedResponse')
 const activeClientIds = new Set()
 
@@ -21,16 +21,6 @@ addEventListener('activate', function (event) {
 })
 
 addEventListener('message', async function (event) {
-  const trustedOrigins = [
-    'https://incubateur-ademe.github.io',
-    'https://storybook.nosgestesclimat.fr',
-  ]
-  if (
-    !event.origin.startsWith('http://localhost') &&
-    !trustedOrigins.includes(event.origin)
-  ) {
-    return
-  }
   const clientId = Reflect.get(event.source || {}, 'id')
 
   if (!clientId || !self.clients) {
@@ -81,11 +71,6 @@ addEventListener('message', async function (event) {
       break
     }
 
-    case 'MOCK_DEACTIVATE': {
-      activeClientIds.delete(clientId)
-      break
-    }
-
     case 'CLIENT_CLOSED': {
       activeClientIds.delete(clientId)
 
@@ -104,6 +89,8 @@ addEventListener('message', async function (event) {
 })
 
 addEventListener('fetch', function (event) {
+  const requestInterceptedAt = Date.now()
+
   // Bypass navigation requests.
   if (event.request.mode === 'navigate') {
     return
@@ -120,23 +107,29 @@ addEventListener('fetch', function (event) {
 
   // Bypass all requests when there are no active clients.
   // Prevents the self-unregistered worked from handling requests
-  // after it's been deleted (still remains active until the next reload).
+  // after it's been terminated (still remains active until the next reload).
   if (activeClientIds.size === 0) {
     return
   }
 
   const requestId = crypto.randomUUID()
-  event.respondWith(handleRequest(event, requestId))
+  event.respondWith(handleRequest(event, requestId, requestInterceptedAt))
 })
 
 /**
  * @param {FetchEvent} event
  * @param {string} requestId
+ * @param {number} requestInterceptedAt
  */
-async function handleRequest(event, requestId) {
+async function handleRequest(event, requestId, requestInterceptedAt) {
   const client = await resolveMainClient(event)
   const requestCloneForEvents = event.request.clone()
-  const response = await getResponse(event, client, requestId)
+  const response = await getResponse(
+    event,
+    client,
+    requestId,
+    requestInterceptedAt,
+  )
 
   // Send back the response clone for the "response:*" life-cycle events.
   // Ensure MSW is active and ready to handle the message, otherwise
@@ -166,7 +159,7 @@ async function handleRequest(event, requestId) {
           },
         },
       },
-      responseClone.body ? [serializedRequest.body, responseClone.body] : []
+      responseClone.body ? [serializedRequest.body, responseClone.body] : [],
     )
   }
 
@@ -214,7 +207,7 @@ async function resolveMainClient(event) {
  * @param {string} requestId
  * @returns {Promise<Response>}
  */
-async function getResponse(event, client, requestId) {
+async function getResponse(event, client, requestId, requestInterceptedAt) {
   // Clone the request because it might've been already used
   // (i.e. its body has been read and sent to the client).
   const requestClone = event.request.clone()
@@ -231,7 +224,7 @@ async function getResponse(event, client, requestId) {
     if (acceptHeader) {
       const values = acceptHeader.split(',').map((value) => value.trim())
       const filteredValues = values.filter(
-        (value) => value !== 'msw/passthrough'
+        (value) => value !== 'msw/passthrough',
       )
 
       if (filteredValues.length > 0) {
@@ -265,10 +258,11 @@ async function getResponse(event, client, requestId) {
       type: 'REQUEST',
       payload: {
         id: requestId,
+        interceptedAt: requestInterceptedAt,
         ...serializedRequest,
       },
     },
-    [serializedRequest.body]
+    [serializedRequest.body],
   )
 
   switch (clientMessage.type) {
