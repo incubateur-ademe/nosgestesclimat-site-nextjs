@@ -378,37 +378,42 @@ const redirects = [
   // Guides es
   {
     source: '/es/guide',
-    destination: '/es',
+    destination: '/en',
     permanent: true,
   },
   {
     source: '/es/guide/alimentation',
-    destination: '/es',
+    destination: '/en',
     permanent: true,
   },
   {
     source: '/es/guide/transport',
-    destination: '/es',
+    destination: '/en',
     permanent: true,
   },
   {
     source: '/es/guide/logement',
-    destination: '/es',
+    destination: '/en',
     permanent: true,
   },
   {
     source: '/es/guide/divers',
-    destination: '/es',
+    destination: '/en',
     permanent: true,
   },
   {
     source: '/es/guide/numerique',
-    destination: '/es',
+    destination: '/en',
     permanent: true,
   },
   {
     source: '/es/guide/services-societaux',
-    destination: '/es',
+    destination: '/en',
+    permanent: true,
+  },
+  {
+    source: '/es/:path*',
+    destination: '/en',
     permanent: true,
   },
   // Short URL for Brevo
