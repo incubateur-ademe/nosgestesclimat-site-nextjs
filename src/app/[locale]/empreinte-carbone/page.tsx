@@ -16,7 +16,7 @@ import {
 import type { DefaultPageProps } from '@/types'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { ClientLayout } from '../_components/ClientLayout'
+import { ClientLayout } from '../../../components/layout/ClientLayout'
 import DailyGestureCarbonFootprint from './_components/DailyGestureCarbonFootprint'
 import DidYouKnowCarbon from './_components/DidYouKnowCarbonFootprint'
 import FAQCarbonFootprint from './_components/FAQCarbonFootprint'

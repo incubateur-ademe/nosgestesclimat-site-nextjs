@@ -16,9 +16,31 @@ import i18nConfig from '@/i18nConfig'
 import { fetchHomepageContent } from '@/services/cms/fetchHomepageContent'
 import { fetchHomepageMetadata } from '@/services/cms/fetchHomepageMetadata'
 import type { DefaultPageProps } from '@/types'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
+import QueryClientProviderWrapper from '../_components/mainLayoutProviders/QueryClientProviderWrapper'
 import BlogHero from './_components/BlogHero'
 import GroupBlock from './_components/GroupBlock'
+
+export async function generateStaticParams({
+  params,
+}: DefaultPageProps<{ params: { locale: Locale } }>) {
+  const { locale } = await params
+  const { pageCount } =
+    (await fetchHomepageContent({
+      page: 0,
+      locale,
+    })) ?? {}
+
+  const locales = i18nConfig.locales
+  const pages = Array.from(
+    { length: pageCount ?? 3 },
+    (_, index: number) => index
+  )
+
+  return locales.flatMap((locale) =>
+    pages.map((page) => ({ locale, page: (page + 1).toString() }))
+  )
+}
 
 export async function generateMetadata({
   params,
@@ -56,6 +78,7 @@ export default async function BlogHomePage({
 
   // Get the page number from the query params from the server side
   const pageParam = searchParams ? (await searchParams).page : undefined
+
   const page = Number(pageParam) || 1
 
   const { title, description, image, mainArticle, articles, pageCount } =
@@ -65,14 +88,6 @@ export default async function BlogHomePage({
     })) ?? {}
 
   const langButtonsDisplayed = await getLangButtonsDisplayed()
-
-  // Only for ES locale, redirect to the FR version if !title || !description || !image || !articles
-  if (
-    locale === i18nConfig.locales[2] &&
-    (!title || !description || !image || !articles)
-  ) {
-    return redirect('/fr/blog')
-  }
 
   if (!title || !description || !articles) {
     notFound()
@@ -130,9 +145,11 @@ export default async function BlogHomePage({
         )}
 
         <div className="flex flex-col gap-8 md:flex-row">
-          <Suspense fallback={<NewslettersBlockSkeleton />}>
-            <NewslettersBlock />
-          </Suspense>
+          <QueryClientProviderWrapper>
+            <Suspense fallback={<NewslettersBlockSkeleton />}>
+              <NewslettersBlock />
+            </Suspense>
+          </QueryClientProviderWrapper>
 
           <GroupBlock locale={locale} />
         </div>

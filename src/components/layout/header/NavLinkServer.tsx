@@ -12,7 +12,7 @@ type Props = {
   activeClassName?: string
 }
 
-export default async function NavLinkServer({
+export default function NavLinkServer({
   children,
   href,
   icon,

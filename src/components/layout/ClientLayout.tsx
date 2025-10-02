@@ -5,7 +5,7 @@ import SkipToMainContentLink from '@/design-system/accessibility/SkipToMainConte
 import Banner from '@/design-system/cms/Banner'
 import type { Locale } from '@/i18nConfig'
 import type { PropsWithChildren } from 'react'
-import MainLayoutProviders from './MainLayoutProviders'
+import MainLayoutProviders from '../../app/[locale]/_components/MainLayoutProviders'
 
 type RootLayoutProps = PropsWithChildren & {
   locale: Locale

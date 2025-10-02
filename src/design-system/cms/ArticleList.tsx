@@ -1,4 +1,5 @@
 import DidYouKnowMainLanding from '@/app/[locale]/_components/DidYouKnowMainLanding'
+import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import Trans from '@/components/translation/trans/TransServer'
 import PostThumbnail from '@/design-system/cms/PostThumbnail'
 import { getPostThumbnailClickEvent } from '@/helpers/tracking/blog'
@@ -39,11 +40,13 @@ export default function ArticleList({
         ))}
       </ul>
 
-      <DidYouKnowMainLanding
-        locale={locale}
-        className="mt-20 overflow-hidden rounded-lg px-10"
-        titleTag="h3"
-      />
+      <QueryClientProviderWrapper>
+        <DidYouKnowMainLanding
+          locale={locale}
+          className="mt-20 overflow-hidden rounded-lg px-10"
+          titleTag="h3"
+        />
+      </QueryClientProviderWrapper>
 
       {articles.length > 6 && (
         <ul className="mt-20 grid grid-cols-1 gap-8 md:grid-cols-3">

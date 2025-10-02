@@ -10,8 +10,8 @@ import { twMerge } from 'tailwind-merge'
 import LogoLinkServer from '../misc/LogoLinkServer'
 import Trans from '../translation/trans/TransServer'
 import ProfileIcon from './header/_components/ProfileIcon'
-import BottomMenu from './header/headerMobile/BottomMenu'
-import FoldableMenu from './header/headerMobile/FoldableMenu'
+import BottomMenuServer from './header/headerMobile/BottomMenuServer'
+import FoldableMenuNoDynamicCTA from './header/headerMobile/FoldableMenuNoDynamicCTA'
 import NavLinkServer from './header/NavLinkServer'
 
 type Props = {
@@ -33,8 +33,8 @@ export default async function HeaderServer({ isSticky = true, locale }: Props) {
         <LogoLinkServer />
 
         <>
-          <FoldableMenu />
-          <BottomMenu />
+          <FoldableMenuNoDynamicCTA />
+          <BottomMenuServer locale={locale} />
         </>
       </div>
       {/* Header desktop */}
@@ -96,7 +96,7 @@ export default async function HeaderServer({ isSticky = true, locale }: Props) {
               <Trans locale={locale}>Profil</Trans>
             </NavLinkServer>
 
-            <ButtonLink href="/simulateur/bilan">
+            <ButtonLink href={SIMULATOR_PATH}>
               <Trans locale={locale}>Accéder au test</Trans>
             </ButtonLink>
           </div>

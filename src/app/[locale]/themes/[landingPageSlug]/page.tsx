@@ -30,7 +30,7 @@ import type { DefaultPageProps } from '@/types'
 import { getArticleHref } from '@/utils/cms/getArticleHref'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
-import { ClientLayout } from '../../_components/ClientLayout'
+import { ClientLayout } from '../../../../components/layout/ClientLayout'
 
 export async function generateMetadata({
   params,

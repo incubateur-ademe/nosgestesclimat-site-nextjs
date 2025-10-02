@@ -5,7 +5,7 @@ import Main from '@/design-system/layout/Main'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import type { DefaultPageProps } from '@/types'
-import { ClientLayout } from '../_components/ClientLayout'
+import { ClientLayout } from '../../../components/layout/ClientLayout'
 
 export const generateMetadata = getCommonMetadata({
   title: t('404 - Nos Gestes Climat'),
