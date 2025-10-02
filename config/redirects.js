@@ -378,7 +378,7 @@ const redirects = [
   // Do not remove this redirection - ES locale existed before
   {
     source: '/es/:path*',
-    destination: '/en',
+    destination: '/en/:path*',
     permanent: true,
   },
   // Short URL for Brevo
