@@ -30,7 +30,7 @@ type Props = {
   displayedValue?: string | undefined
   setDisplayedValue?: (value: string | undefined) => void
   showInputsLabel?: React.ReactNode | string
-  headingLevel?: 1 | 2
+  headingLevel?: 1 | 2 | 3
   className?: string
 }
 

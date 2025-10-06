@@ -29,7 +29,7 @@ type Props = {
   size?: QuestionSize
   className?: string
   titleClassName?: string
-  headingLevel?: 1 | 2
+  headingLevel?: 1 | 2 | 3
   id?: string
   htmlFor?: string
 }
@@ -92,6 +92,17 @@ export default function Label({
             data-cypress-id="question-label">
             {label}
           </h2>
+        ) : headingLevel === 3 ? (
+          <h3
+            className={twMerge(
+              'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
+              titleClassName
+            )}
+            tabIndex={0}
+            id={QUESTION_DESCRIPTION_BUTTON_ID}
+            data-cypress-id="question-label">
+            {label}
+          </h3>
         ) : (
           ''
         )}
