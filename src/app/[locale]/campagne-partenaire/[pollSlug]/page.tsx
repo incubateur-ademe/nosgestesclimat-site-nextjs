@@ -5,6 +5,7 @@ import Markdown from '@/design-system/utils/Markdown'
 import type { Locale } from '@/i18nConfig'
 import { fetchPartnerCampaign } from '@/services/cms/fetchPartnerCampaign'
 import { redirect } from 'next/navigation'
+import { ClientLayout } from '../../_components/ClientLayout'
 import PartnerCampaignContent from './_components/PartnerCampaignContent'
 
 export default async function PartnerCampaignPage({
@@ -24,22 +25,26 @@ export default async function PartnerCampaignPage({
   }
 
   return (
-    <PartnerCampaignContent
-      pollSlug={pollSlug}
-      partnerCampaign={partnerCampaign}
-      partnersComponent={<Partners locale={locale} />}
-      faqComponent={
-        !!partnerCampaign.faq?.questions?.length && (
-          <FAQ
-            isBackgroundSkewed={false}
-            className="bg-white"
-            questions={partnerCampaign.faq.questions.map((questionObject) => ({
-              question: questionObject.question,
-              answer: <Markdown>{questionObject.answer}</Markdown>,
-            }))}
-          />
-        )
-      }
-    />
+    <ClientLayout locale={locale}>
+      <PartnerCampaignContent
+        pollSlug={pollSlug}
+        partnerCampaign={partnerCampaign}
+        partnersComponent={<Partners locale={locale} />}
+        faqComponent={
+          !!partnerCampaign.faq?.questions?.length && (
+            <FAQ
+              isBackgroundSkewed={false}
+              className="bg-white"
+              questions={partnerCampaign.faq.questions.map(
+                (questionObject) => ({
+                  question: questionObject.question,
+                  answer: <Markdown>{questionObject.answer}</Markdown>,
+                })
+              )}
+            />
+          )
+        }
+      />
+    </ClientLayout>
   )
 }

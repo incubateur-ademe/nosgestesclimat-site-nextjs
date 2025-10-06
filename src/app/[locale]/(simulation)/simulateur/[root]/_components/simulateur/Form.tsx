@@ -60,7 +60,9 @@ export default function Form() {
 
   // When we reach the end of the test (by clicking on the last navigation button),
   // we wait for the progression to be updated before redirecting to the end page
-  const [shouldGoToEndPage, setShouldGoToEndPage] = useState(false)
+  const [shouldGoToEndPage, setShouldGoToEndPage] = useState(
+    progression === 1 ? true : false
+  )
 
   useEffect(() => {
     if (shouldGoToEndPage && progression === 1) {
@@ -100,6 +102,9 @@ export default function Form() {
   ])
 
   const [tempValue, setTempValue] = useState<number | undefined>(undefined)
+  const [displayedValue, setDisplayedValue] = useState<string | undefined>(
+    undefined
+  )
 
   useEffect(() => {
     if (!isInitialized) {
@@ -153,6 +158,8 @@ export default function Form() {
               key={currentQuestion}
               tempValue={tempValue}
               setTempValue={setTempValue}
+              displayedValue={displayedValue}
+              setDisplayedValue={setDisplayedValue}
             />
 
             {isIframe && (
