@@ -39,7 +39,7 @@
     "pages:translate": "node scripts/i18n/translate-pages.cjs",
     "nouveautes:translate": "node scripts/i18n/translate-nouveautes.cjs",
     "prepare": "husky",
-    "ts:prune": "ts-prune | grep -v generateMetadata",
+    "ts:prune": "ts-prune",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "storybook:build:github-pages": "cp .storybook/main.github-pages.ts .storybook/main.ts && cp .storybook/preview.github-pages.ts .storybook/preview.ts && storybook build && git checkout .storybook/main.ts .storybook/preview.ts"

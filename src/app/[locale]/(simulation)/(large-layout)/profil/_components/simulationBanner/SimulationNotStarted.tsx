@@ -14,7 +14,7 @@ export default function SimulationNotStarted() {
       <p className="w-full text-center md:text-left">
         <span
           role="img"
-          aria-label="hole emoji"
+          aria-hidden
           className="mb-2 block text-center text-3xl md:mr-4 md:mb-0 md:inline-block">
           🕳️
         </span>

@@ -93,11 +93,7 @@ export default function ActionDetail({
             <ButtonLink
               color="secondary"
               href={'/documentation/' + encodeRuleName(dottedName)}>
-              <span
-                role="img"
-                aria-label="emoji book"
-                aria-hidden
-                className="mr-3 text-xl">
+              <span role="img" aria-hidden className="mr-3 text-xl">
                 📚
               </span>
               <Trans>Comprendre le calcul</Trans>
