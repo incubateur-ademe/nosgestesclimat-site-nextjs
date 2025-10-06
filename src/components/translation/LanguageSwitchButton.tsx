@@ -11,6 +11,27 @@ import { twMerge } from 'tailwind-merge'
 
 const NO_ES_PATHNAMES = new Set([FAQ_PATH])
 
+// Helper function to safely escape regex special characters
+function escapeRegex(string: string): string {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+// Helper function to safely remove locale from pathname
+function removeLocaleFromPathname(
+  pathname: string,
+  locales: readonly string[]
+): string {
+  if (!pathname || typeof pathname !== 'string') {
+    return pathname
+  }
+
+  // Create a safe regex pattern by escaping each locale
+  const escapedLocales = locales.map(escapeRegex).join('|')
+  const localePattern = new RegExp(`^/(${escapedLocales})(/|$)`)
+
+  return pathname.replace(localePattern, '/')
+}
+
 export default function LanguageSwitchButton({
   langButtonsDisplayed = {
     fr: true,
@@ -25,28 +46,36 @@ export default function LanguageSwitchButton({
   className?: string
 }) {
   const currentLocale = useCurrentLocale(i18nConfig)
+  const originalPathname = usePathname()
 
-  const pathname = new String(usePathname()).toString()
+  // Create a safe copy of the pathname to avoid any potential mutations
+  const pathname = String(originalPathname)
+
+  // Safely get pathname without locale for ES filtering
+  const pathWithoutLocale = removeLocaleFromPathname(
+    pathname,
+    i18nConfig.locales
+  )
 
   const langButtonsDisplayedWithFilteredEs = NO_ES_PATHNAMES.has(
-    pathname.replace(new RegExp(`^/(${i18nConfig.locales.join('|')})`), '')
+    pathWithoutLocale
   )
     ? { ...langButtonsDisplayed, es: false }
     : langButtonsDisplayed
 
   const getHref = (newLocale: Locale) => {
-    let newPathname = pathname
-
-    // Remove the current locale from the pathname if it exists
-    const pathWithoutLocale = newPathname.replace(
-      new RegExp(`^/(${i18nConfig.locales.join('|')})`),
-      ''
+    // Safely remove current locale from pathname
+    const pathWithoutCurrentLocale = removeLocaleFromPathname(
+      pathname,
+      i18nConfig.locales
     )
 
-    // Add the new locale
-    newPathname = `/${newLocale}${pathWithoutLocale}`
+    // Ensure path starts with / and add new locale
+    const cleanPath = pathWithoutCurrentLocale.startsWith('/')
+      ? pathWithoutCurrentLocale
+      : `/${pathWithoutCurrentLocale}`
 
-    return newPathname
+    return `/${newLocale}${cleanPath}`
   }
 
   if (
