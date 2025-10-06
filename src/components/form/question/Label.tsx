@@ -29,7 +29,7 @@ type Props = {
   size?: QuestionSize
   className?: string
   titleClassName?: string
-  headingLevel?: number
+  headingLevel?: 1 | 2
   id?: string
   htmlFor?: string
 }
@@ -70,17 +70,31 @@ export default function Label({
         // This is a hack to avoid the default <label> element behavior
         // of triggering the first input (here the button) it
         onClick={(e) => e.preventDefault()}>
-        <h2
-          className={twMerge(
-            'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
-            titleClassName
-          )}
-          aria-level={headingLevel}
-          tabIndex={0}
-          id={QUESTION_DESCRIPTION_BUTTON_ID}
-          data-cypress-id="question-label">
-          {label}
-        </h2>{' '}
+        {headingLevel === 1 ? (
+          <h1
+            className={twMerge(
+              'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
+              titleClassName
+            )}
+            tabIndex={0}
+            id={QUESTION_DESCRIPTION_BUTTON_ID}
+            data-cypress-id="question-label">
+            {label}
+          </h1>
+        ) : headingLevel === 2 ? (
+          <h2
+            className={twMerge(
+              'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
+              titleClassName
+            )}
+            tabIndex={0}
+            id={QUESTION_DESCRIPTION_BUTTON_ID}
+            data-cypress-id="question-label">
+            {label}
+          </h2>
+        ) : (
+          ''
+        )}
         {description && !mustShowDescriptionQuestion.includes(question) ? (
           <Button
             type="button"
