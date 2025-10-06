@@ -7,16 +7,12 @@ import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDis
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import { usePathname } from 'next/navigation'
+import { useMemo } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const NO_ES_PATHNAMES = new Set([FAQ_PATH])
 
-// Helper function to safely escape regex special characters
-function escapeRegex(string: string): string {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-}
-
-// Helper function to safely remove locale from pathname
+// Helper function to safely remove locale from pathname using string methods instead of regex
 function removeLocaleFromPathname(
   pathname: string,
   locales: readonly string[]
@@ -25,11 +21,17 @@ function removeLocaleFromPathname(
     return pathname
   }
 
-  // Create a safe regex pattern by escaping each locale
-  const escapedLocales = locales.map(escapeRegex).join('|')
-  const localePattern = new RegExp(`^/(${escapedLocales})(/|$)`)
+  // Use string methods instead of regex for more predictable behavior
+  for (const locale of locales) {
+    if (pathname.startsWith(`/${locale}/`)) {
+      return pathname.slice(`/${locale}`.length)
+    }
+    if (pathname === `/${locale}`) {
+      return '/'
+    }
+  }
 
-  return pathname.replace(localePattern, '/')
+  return pathname
 }
 
 export default function LanguageSwitchButton({
@@ -48,35 +50,42 @@ export default function LanguageSwitchButton({
   const currentLocale = useCurrentLocale(i18nConfig)
   const originalPathname = usePathname()
 
-  // Create a safe copy of the pathname to avoid any potential mutations
-  const pathname = String(originalPathname)
+  // Memoize the pathname processing to avoid unnecessary recalculations
+  const { pathWithoutLocale, getHref } = useMemo(() => {
+    // Create a safe copy of the pathname to avoid any potential mutations
+    const pathname = String(originalPathname)
 
-  // Safely get pathname without locale for ES filtering
-  const pathWithoutLocale = removeLocaleFromPathname(
-    pathname,
-    i18nConfig.locales
-  )
-
-  const langButtonsDisplayedWithFilteredEs = NO_ES_PATHNAMES.has(
-    pathWithoutLocale
-  )
-    ? { ...langButtonsDisplayed, es: false }
-    : langButtonsDisplayed
-
-  const getHref = (newLocale: Locale) => {
-    // Safely remove current locale from pathname
-    const pathWithoutCurrentLocale = removeLocaleFromPathname(
+    // Safely get pathname without locale for ES filtering
+    const pathWithoutLocale = removeLocaleFromPathname(
       pathname,
       i18nConfig.locales
     )
 
-    // Ensure path starts with / and add new locale
-    const cleanPath = pathWithoutCurrentLocale.startsWith('/')
-      ? pathWithoutCurrentLocale
-      : `/${pathWithoutCurrentLocale}`
+    const getHref = (newLocale: Locale) => {
+      // Safely remove current locale from pathname
+      const pathWithoutCurrentLocale = removeLocaleFromPathname(
+        pathname,
+        i18nConfig.locales
+      )
 
-    return `/${newLocale}${cleanPath}`
-  }
+      // Ensure path starts with / and add new locale
+      const cleanPath = pathWithoutCurrentLocale.startsWith('/')
+        ? pathWithoutCurrentLocale
+        : `/${pathWithoutCurrentLocale}`
+
+      return `/${newLocale}${cleanPath}`
+    }
+
+    return { pathWithoutLocale, getHref }
+  }, [originalPathname])
+
+  const langButtonsDisplayedWithFilteredEs = useMemo(
+    () =>
+      NO_ES_PATHNAMES.has(pathWithoutLocale)
+        ? { ...langButtonsDisplayed, es: false }
+        : langButtonsDisplayed,
+    [pathWithoutLocale, langButtonsDisplayed]
+  )
 
   if (
     Object.entries(langButtonsDisplayed ?? {}).every(([_, value]) => !value)
