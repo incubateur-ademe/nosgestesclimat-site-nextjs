@@ -28,6 +28,7 @@ import { twMerge } from 'tailwind-merge'
 import { useCookieConsent } from '../cookies/CookieConsentProvider'
 import Link from '../Link'
 import LogoLink from '../misc/LogoLink'
+import LanguageSwitchButton from '../translation/LanguageSwitchButton'
 import Trans from '../translation/trans/TransClient'
 import ThematicPagesSection from './ThematicPagesSection'
 
@@ -218,9 +219,9 @@ export default function Footer({
         <div className="flex flex-wrap justify-between gap-8 md:flex-row md:flex-nowrap">
           <div>
             <div className="mt-6 flex flex-wrap items-start justify-between gap-10">
-              {/* <LanguageSwitchButton
+              <LanguageSwitchButton
                 langButtonsDisplayed={langButtonsDisplayed}
-              /> */}
+              />
             </div>
 
             <div className="mt-4 text-xs">
