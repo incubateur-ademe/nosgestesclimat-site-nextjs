@@ -38,6 +38,7 @@ export default function MentionsLegalesPage() {
         Tél :{' '}
         <a
           target="_blank"
+          rel="noreferrer noopener nofollow"
           aria-label="Numéro de téléphone"
           href="tel:+33241204120">
           02 41 20 41 20
@@ -74,7 +75,10 @@ export default function MentionsLegalesPage() {
         <br />
         France
         <br />
-        <a target="_blank" href="mailto:support@scalingo.com">
+        <a
+          target="_blank"
+          rel="noreferrer noopener nofollow"
+          href="mailto:support@scalingo.com">
           support@scalingo.com
         </a>
       </address>
@@ -261,7 +265,10 @@ export default function MentionsLegalesPage() {
       <p>
         Pour en savoir plus sur ce traitement de données à caractère personnel
         et sur l’étendue de leurs droits, cliquez sur
-        <a target="_blank" href="/politique-de-confidentialite">
+        <a
+          target="_blank"
+          rel="noreferrer noopener nofollow"
+          href="/politique-de-confidentialite">
           /politique-de-confidentialite
         </a>
         .
@@ -277,7 +284,10 @@ export default function MentionsLegalesPage() {
       <p>
         Si vous rencontrez un défaut d’accessibilité vous empêchant d’accéder à
         un contenu ou une fonctionnalité du site, merci de nous en{' '}
-        <a target="_blank" href="mailto:contact@nosgestesclimat.fr">
+        <a
+          target="_blank"
+          rel="noreferrer noopener nofollow"
+          href="mailto:contact@nosgestesclimat.fr">
           faire part
         </a>
         . Si vous n’obtenez pas de réponse rapide de notre part, vous êtes en

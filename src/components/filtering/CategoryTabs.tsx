@@ -83,6 +83,7 @@ export default function CategoryTabs({
         ref={tablistRef}
         role="tablist"
         aria-label="Filtres par catégorie"
+        tabIndex={-1}
         className={twMerge(
           'mb-4 flex flex-wrap justify-start gap-1',
           className
