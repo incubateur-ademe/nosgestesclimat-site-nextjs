@@ -79,10 +79,9 @@ export default function CategoryTabs({
 
   return (
     <div className="w-full">
-      <ul
+      <div
         ref={tablistRef}
         role="tablist"
-        tabIndex={0}
         aria-label="Filtres par catégorie"
         className={twMerge(
           'mb-4 flex flex-wrap justify-start gap-1',
@@ -91,20 +90,19 @@ export default function CategoryTabs({
         onKeyDown={handleKeyDown}>
         {categories?.map(({ title, dottedName, count }, index) => {
           return (
-            <li key={title}>
-              <CategoryFilter
-                title={title}
-                dottedName={dottedName}
-                count={count}
-                index={index}
-                isActive={index === activeTabIndex}
-                categorySelected={categorySelected}
-                onTabActivate={() => setActiveTabIndex(index)}
-              />
-            </li>
+            <CategoryFilter
+              key={title}
+              title={title}
+              dottedName={dottedName}
+              count={count}
+              index={index}
+              isActive={index === activeTabIndex}
+              categorySelected={categorySelected}
+              onTabActivate={() => setActiveTabIndex(index)}
+            />
           )
         })}
-      </ul>
+      </div>
 
       <div
         role="tabpanel"
