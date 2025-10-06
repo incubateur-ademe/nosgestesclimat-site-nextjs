@@ -30,6 +30,7 @@ import type { DefaultPageProps } from '@/types'
 import { getArticleHref } from '@/utils/cms/getArticleHref'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
+import { ClientLayout } from '../../_components/ClientLayout'
 
 export async function generateMetadata({
   params,
@@ -88,7 +89,7 @@ export default async function ThematicLandingPage({
   } = thematicLandingPage
 
   return (
-    <>
+    <ClientLayout locale={locale}>
       <JSONLD
         jsonLd={[
           {
@@ -196,7 +197,7 @@ export default async function ThematicLandingPage({
         {block4 && (
           <DidYouKnowSlider
             slides={block4?.map(({ text, image, pinkText }) => ({
-              content: <div dangerouslySetInnerHTML={{ __html: text}} />,
+              content: <div dangerouslySetInnerHTML={{ __html: text }} />,
               illustration: image?.url ?? '',
               highlight: pinkText ?? '',
             }))}
@@ -290,6 +291,6 @@ export default async function ThematicLandingPage({
       </LandingPage>
 
       <Footer langButtonsDisplayed={{ fr: false, en: false, es: false }} />
-    </>
+    </ClientLayout>
   )
 }
