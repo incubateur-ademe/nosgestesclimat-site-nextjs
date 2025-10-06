@@ -16,6 +16,7 @@ import {
 import type { DefaultPageProps } from '@/types'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
+import { ClientLayout } from '../_components/ClientLayout'
 import DailyGestureWaterFootprint from './_components/DailyGestureWaterFootprint'
 import DidYouKnowWaterFootprint from './_components/DidYouKnowWaterFootprint'
 import FAQWaterFootprint from './_components/FAQWaterFootprint'
@@ -54,7 +55,7 @@ export default async function WaterFootprintLandingPage(
   const { locale } = await props.params
 
   return (
-    <>
+    <ClientLayout locale={locale}>
       <JSONLD
         jsonLd={[
           {
@@ -162,6 +163,6 @@ export default async function WaterFootprintLandingPage(
         <FAQWaterFootprint locale={locale} />
       </LandingPage>
       <Footer />
-    </>
+    </ClientLayout>
   )
 }

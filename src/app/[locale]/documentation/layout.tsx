@@ -1,15 +1,23 @@
 import ContentLarge from '@/components/layout/ContentLarge'
 import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'
+import type { DefaultPageProps } from '@/types'
 import type { PropsWithChildren } from 'react'
+import { ClientLayout } from '../_components/ClientLayout'
 import { IsDocumentationClientProvider } from './_contexts/DocumentationStateContext'
 
-export default function Layout({ children }: PropsWithChildren) {
+type LayoutProps = PropsWithChildren & DefaultPageProps
+
+export default async function Layout({ children, params }: LayoutProps) {
+  const { locale } = await params
+
   return (
-    <IsDocumentationClientProvider>
-      <Header />
-      {children}
-      <Footer />
-    </IsDocumentationClientProvider>
+    <ClientLayout locale={locale}>
+      <IsDocumentationClientProvider>
+        <Header />
+        <ContentLarge>{children}</ContentLarge>
+        <Footer />
+      </IsDocumentationClientProvider>
+    </ClientLayout>
   )
 }

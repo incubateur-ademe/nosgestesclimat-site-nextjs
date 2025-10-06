@@ -16,6 +16,7 @@ import {
 import type { DefaultPageProps } from '@/types'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
+import { ClientLayout } from '../_components/ClientLayout'
 import DailyGestureCarbonFootprint from './_components/DailyGestureCarbonFootprint'
 import DidYouKnowCarbon from './_components/DidYouKnowCarbonFootprint'
 import FAQCarbonFootprint from './_components/FAQCarbonFootprint'
@@ -49,7 +50,7 @@ export default async function CarbonFootprintLandingPage({
   const { locale } = await params
 
   return (
-    <>
+    <ClientLayout locale={locale}>
       <JSONLD
         jsonLd={[
           {
@@ -158,6 +159,6 @@ export default async function CarbonFootprintLandingPage({
       </LandingPage>
 
       <Footer />
-    </>
+    </ClientLayout>
   )
 }

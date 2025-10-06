@@ -1,16 +1,26 @@
 import Footer from '@/components/layout/Footer'
 import EngineProviders from '@/components/providers/EngineProviders'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
+import type { DefaultPageProps } from '@/types'
 import type { PropsWithChildren } from 'react'
+import { ClientLayout } from '../_components/ClientLayout'
 
-export default function SimulateurLayout({ children }: PropsWithChildren) {
+type LayoutProps = PropsWithChildren & DefaultPageProps
+
+export default async function SimulateurLayout({
+  children,
+  params,
+}: LayoutProps) {
+  const { locale } = await params
   const supportedRegions = getSupportedRegions()
 
   return (
-    <EngineProviders supportedRegions={supportedRegions}>
-      {children}
+    <ClientLayout locale={locale}>
+      <EngineProviders supportedRegions={supportedRegions}>
+        {children}
 
-      <Footer />
-    </EngineProviders>
+        <Footer />
+      </EngineProviders>
+    </ClientLayout>
   )
 }

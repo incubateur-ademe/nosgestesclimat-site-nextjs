@@ -721,7 +721,6 @@ entries:
   Un grand-père et sa petite fille qui regardent un film: A grandfather and his granddaughter watching a film
   Votre test est sauvegardé !: Your test is saved!
   <0>Empreinte eau</0> moyenne: 'Average <0>water footprint</0> '
-  <0>Empreinte carbone</0> moyenne: 'Average <0>carbon footprint</0> '
   Le lexique pour tout comprendre à l’empreinte eau: A glossary to help you understand the water footprint
   Lire l'article: Read the article
   Carbone: Carbon
@@ -1453,8 +1452,6 @@ entries:
   pollResults.footprintBarChart.accessibleDescription.higher.lock: supérieure
   pollResults.footprintBarChart.accessibleDescription.lower: lower
   pollResults.footprintBarChart.accessibleDescription.lower.lock: inférieure
-  pollResults.footprintBarChart.targetLabel: Objective 2050
-  pollResults.footprintBarChart.targetLabel.lock: Objectif 2050
   pollResults.footprintBarChart.userFootprint: Your footprint
   pollResults.footprintBarChart.userFootprint.lock: Votre empreinte
   pollResults.mean_footprint_distribution.title: Average carbon footprint of
@@ -1521,7 +1518,6 @@ entries:
   L'empreinte carbone du logement: The carbon footprint of housing
   L'empreinte carbone de l'alimentation: The carbon footprint of food
   L'empreinte carbone du transport: The carbon footprint of transport
-  Chargement des résultats détaillés de campagne...: Loading detailed campaign results...
   4 infolettres l’impact des transports: 4 newsletters the impact of transport
   common.slider.slide.ariaLabel: Slide {{index}} sur {{length}}
   common.slider.slide.ariaLabel.lock: Diapositive {{index}} sur {{length}}
@@ -1553,3 +1549,7 @@ entries:
   endpage.title.default.lock: Mes empreintes carbone et eau, empreinte carbone sélectionnée - Nos Gestes Climat
   actions.thresholdDescription: Shares with an impact of {{label}} or more
   actions.thresholdDescription.lock: Actions avec un impact de {{label}} ou plus
+  common.mainLandingPage.numberPersons: 2.5 million people
+  common.mainLandingPage.numberPersons.lock: 2,5 millions de personnes
+  common.mainLandingPage.tookTheirTest: have already calculated their footprint!
+  common.mainLandingPage.tookTheirTest.lock: ont déjà calculé leur empreinte !

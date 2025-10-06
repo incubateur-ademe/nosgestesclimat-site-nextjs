@@ -659,7 +659,6 @@ entries:
   Une mère et son enfant sur un vélo: Une mère et son enfant sur un vélo
   Votre test est sauvegardé !: Votre test est sauvegardé !
   Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par email.: Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par email.
-  <0>Empreinte carbone</0> moyenne: <0>Empreinte carbone</0> moyenne
   <0>Empreinte eau</0> moyenne: <0>Empreinte eau</0> moyenne
   Le lexique pour tout comprendre à l’empreinte eau: Le lexique pour tout comprendre à l’empreinte eau
   Lire l'article: Lire l'article
@@ -936,6 +935,8 @@ entries:
   Pomme: Pomme
   Raisin: Raisin
   Chargement des résultats détaillés de campagne...: Chargement des résultats détaillés de campagne...
+  '{{name}} lecture seule': '{{name}} lecture seule'
+  '{{name}} menu déroulant': '{{name}} menu déroulant'
   Chemin de navigation: Chemin de navigation
   Menu principal: Menu principal
   Navigation principale: Navigation principale
@@ -1284,7 +1285,6 @@ entries:
   pollResults.footprintBarChart.groupFootprint: Empreinte moyenne du groupe
   pollResults.footprintBarChart.legend.groupFootprint: Empreinte moyenne du groupe
   pollResults.footprintBarChart.legend.userFootprint: Votre empreinte
-  pollResults.footprintBarChart.targetLabel: Objectif 2050
   pollResults.footprintBarChart.userFootprint: Votre empreinte
   pollResults.mean_footprint_distribution.title: Empreinte carbone moyenne de
   pollResults.pollResults.distribution.category_distribution.title: Répartition par poste d'émission
@@ -1330,3 +1330,5 @@ entries:
   endpage.title.default: Mes empreintes carbone et eau, empreinte carbone sélectionnée - Nos Gestes Climat
   Page {{page}} (page actuelle): Page {{page}} (page actuelle)
   Pourquoi avons-nous ajouté l'empreinte eau ?: Pourquoi avons-nous ajouté l'empreinte eau ?
+  common.mainLandingPage.numberPersons: 2,5 millions de personnes
+  common.mainLandingPage.tookTheirTest: ont déjà calculé leur empreinte !
