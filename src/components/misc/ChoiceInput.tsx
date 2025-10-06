@@ -49,6 +49,7 @@ export default function ChoiceInput({
       <div className="flex items-center gap-2">
         <label
           htmlFor={id}
+          title={`${labelText} - ${active ? t('Option sélectionnée') : t('Sélectionner cette option')}`}
           className={`relative flex cursor-pointer items-center gap-2 rounded-xl border bg-white px-4 py-2 text-left transition-colors ${buttonClassNames[status]} focus-within:ring-primary-700 focus-within:ring-2 focus-within:ring-offset-2`}
           data-cypress-id={`${props['data-cypress-id']}-label`}>
           <input

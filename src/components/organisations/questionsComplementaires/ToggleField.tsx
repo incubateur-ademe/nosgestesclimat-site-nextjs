@@ -87,6 +87,7 @@ export default function ToggleField({
                 role="switch"
                 aria-checked={isEnabled}
                 aria-labelledby={`toggle-label-${name}`}
+                title={`${label} - ${isEnabled ? t('Activé') : t('Désactivé')}`}
               />
             </div>
             <label

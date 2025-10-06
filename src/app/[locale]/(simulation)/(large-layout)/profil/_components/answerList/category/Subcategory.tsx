@@ -8,6 +8,7 @@ import {
   getBorderColor,
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useFormState, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -20,7 +21,10 @@ type Props = {
 
 export default function SubCategory({ subcategory }: Props) {
   const { title, numericValue, icons, category } = useRule(subcategory)
+
   const { relevantAnsweredQuestions } = useFormState()
+
+  const { t } = useClientTranslation()
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -48,6 +52,7 @@ export default function SubCategory({ subcategory }: Props) {
         type="button"
         aria-expanded={isOpen}
         aria-controls={panelId}
+        title={`${title} - ${isOpen ? t('Fermer') : t('Ouvrir')}`}
         onClick={() => {
           trackEvent(profilClickSubCategory(subcategory))
           setIsOpen((prevIsOpen) => !prevIsOpen)

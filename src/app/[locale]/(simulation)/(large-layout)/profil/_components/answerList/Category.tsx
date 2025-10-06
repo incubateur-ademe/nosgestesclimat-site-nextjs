@@ -9,6 +9,7 @@ import {
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { getSubcatsOfCategory } from '@/helpers/publicodes/getSubcatsOfCategory'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -22,7 +23,10 @@ type Props = {
 
 export default function Category({ category }: Props) {
   const { title, numericValue, icons } = useRule(category)
+
   const { subcategories } = useEngine()
+
+  const { t } = useClientTranslation()
 
   const [isOpen, setIsOpen] = useState(false)
   const formattedCarbonFootprint = formatCarbonFootprint(numericValue)
@@ -41,6 +45,7 @@ export default function Category({ category }: Props) {
         aria-expanded={isOpen}
         aria-controls={panelId}
         disabled={!subcategoriesOfCategory?.length}
+        title={`${title} - ${isOpen ? t('Fermer') : t('Ouvrir')}`}
         className="focus-visible:outline-primary-600 block w-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2"
         onClick={() => {
           trackEvent(profilClickCategory(category))

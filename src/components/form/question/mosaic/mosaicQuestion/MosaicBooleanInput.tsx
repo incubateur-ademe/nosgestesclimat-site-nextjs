@@ -61,6 +61,7 @@ export default function MosaicBooleanInput({
           `focus-within:ring-primary-700 relative flex h-full items-center gap-2 rounded-xl border! bg-white px-4 py-2 text-left transition-colors focus-within:ring-2 focus-within:ring-offset-2`,
           buttonClassNames[status]
         )}
+        title={`${title} - ${status === 'checked' ? t('Sélectionné') : t('Sélectionner cette option')}`}
         // We set the input id via the props for the first element, in order to link the question
         // label to the inputs
         htmlFor={

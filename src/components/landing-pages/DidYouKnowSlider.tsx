@@ -96,24 +96,33 @@ export default function DidYouKnowSlider({
             }
           )
         )
-        button.setAttribute(
-          'title',
-          t(
-            'common.slider.buttons.pagination',
-            'Aller à la diapositive numéro {{number}}',
-            {
-              number: index + 1,
-            }
-          )
-        )
-
         // Ajouter des attributs personnalisés pour le slide actuel
         if (index === currentSlide) {
           button.setAttribute('aria-current', 'true')
           button.setAttribute('data-active', 'true')
+          button.setAttribute(
+            'title',
+            t(
+              'common.slider.buttons.pagination',
+              'Aller à la diapositive numéro {{number}} - actif',
+              {
+                number: index + 1,
+              }
+            )
+          )
         } else {
           button.setAttribute('aria-current', 'false')
           button.setAttribute('data-active', 'false')
+          button.setAttribute(
+            'title',
+            t(
+              'common.slider.buttons.pagination',
+              'Aller à la diapositive numéro {{number}}',
+              {
+                number: index + 1,
+              }
+            )
+          )
         }
       })
     }

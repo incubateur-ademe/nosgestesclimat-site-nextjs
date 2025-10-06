@@ -74,10 +74,6 @@ entries:
   plus de 100 kg: más de 100 kg
   plus d'1 kg: más de 1 kg
   le - d'impact climat: el - impacto climático
-  noresults: No se han encontrado resultados para esta búsqueda
-  search.results: '{{count}} resultado(s) encontrado(s)'
-  search.results.label: Resultados de la búsqueda
-  search.documentation.label: Búsqueda de documentación
   publicodes.Profil.locationDonnées: <0>¿Dónde están mis datos? <2>Haga clic para ver información sobre la ubicación de los datos</2></0><1>Tus datos se almacenan en tu navegador, por lo que tienes un control total sobre ellos.</1>
   publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? <2>Cliquez pour afficher les informations sur la localisation des données</2></0><1>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles.</1>
   plus de 10 tonnes: más de 10 toneladas
@@ -312,7 +308,6 @@ entries:
   Le code est invalide: El código no es válido
   Vérifiez votre boîte e-mail !: Compruebe su buzón de correo electrónico
   Renvoyer le code, désactivé pendant 30 secondes: Reenviar código, desactivado durante 30 segundos
-  C'est gratuit, et ça prend une minute !: Es gratis y sólo le llevará un minuto
   Contactez nous afin de convenir d'un temps de démonstration de notre outil pour les organisations.: Póngase en contacto con nosotros para concertar una demostración de nuestra herramienta para organizaciones.
   Recevoir ponctuellement par email les nouveaux services Nos Gestes Climat aux organisations: Reciba ocasionalmente correos electrónicos sobre los nuevos servicios de Nos Gestes Climat para organizaciones
   Votre e-mail: Tu e-mail
@@ -339,10 +334,6 @@ entries:
   Accéder au kit: Acceder al kit
   pour créer un compte, et vous pourrez retrouver tous nos services gratuitement !: para crear una cuenta y podrá acceder gratuitamente a todos nuestros servicios
   '{group?.administrator?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{nombre del administrador del grupo} te ha invitado a unirte al grupo <3>{nombre del grupo}</3>'
-  'Moyenne :': 'Media :'
-  Au total: En total
-  Découvrez le calculateur, ouvrir dans un nouvel onglet: Descubrir el simulador, abrir en una nueva pestaña
-  Découvrez les ateliers de l’ABC, ouvrir dans un nouvel onglet: Descubrir los talleres ABC, abrir en una nueva pestaña
   Mon organisation: Mi organización
   Votre code postal: Su código postal
   Mes données restent-elles privées ?: ¿Mis datos seguirán siendo privados?
@@ -377,7 +368,6 @@ entries:
   Calculez votre empreinte sur le climat: Calcula tu huella climática
   Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.: Nosgestesclimat.fr no está afiliado al sitio web {{ parent }}.
   Nosgestesclimat.fr n'est pas affilié au site {{ parent }}..lock: Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.
-  Nous pourrons vous contacter en cas de problème lors de votre inscription: Podemos ponernos en contacto con usted si hay algún problema con su inscripción
   Oups ! Une erreur est survenue: ¡Uy! Se ha producido un error
   Découvrir le calculateur: Descubra el simulador
   Découvrez les conseils de l'ADEME, ouvrir dans un nouvel onglet: Más información sobre los consejos de ADEME, abrir en una pestaña nueva
@@ -606,7 +596,6 @@ entries:
   Des enfants sortant de l'école en se tenant la main.: Niños saliendo de la escuela cogidos de la mano.
   Deux personnes se faisant une accolade en levant le bras en signe de victoire.: Dos personas se abrazan y levantan los brazos en señal de victoria.
   Une femme préparant un bon petit plat.: Una mujer prepara un sabroso plato.
-  Un groupe d'amis jouant à un jeu de société.: Un grupo de amigos jugando a un juego de mesa.
   Nous améliorons le site en continu à partir de <2>vos retours</2>. Découvrez la tambouille interne de Nos Gestes Climat.: Mejoramos constantemente el sitio gracias a <2>sus comentarios</2>. Descubra el funcionamiento interno de Nos Gestes Climat.
   Un femme lisant le journal au coin du feu avec un chien assoupi.: Una mujer leyendo el periódico junto al fuego con un perro adormilado.
   Le calculateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.: El simulador Nos Gestes Climat se basa en el modelo de cálculo del mismo nombre, compuesto por un conjunto de bloques de construcción.
@@ -622,7 +611,6 @@ entries:
   Vous avez commencé votre test,: Ha comenzado la prueba,
   cliquez ici pour le reprendre !: ¡haga clic aquí para recogerlo!
   (Cela peut durer quelques dizaines de secondes pour les campagnes avec un grand nombre de participants ! Merci pour votre patience.): (Esto puede tardar unas decenas de segundos en el caso de campañas con un gran número de participantes) Gracias por su paciencia)
-  Un groupe de personnes discutant devant un paperboard.: Un grupo de personas hablando delante de un rotafolio.
   Vous n'avez pas encore débuté votre test,: Aún no has empezado la prueba,
   Levez la main, on répond à vos questions !: Levante la mano y responderemos a sus preguntas
   et vous aura la plus faible empreinte ?: y tendrás la huella más pequeña?
@@ -656,9 +644,7 @@ entries:
   Vous allez recevoir sous peu un e-mail de notre part contenant un <2>code de vérification</2> à entrer dans cette fenêtre.: En breve recibirá un correo electrónico con un <2>código de verificación</2> que deberá introducir en esta ventana.
   Oups ! Une erreur s'est produite au moment d'envoyer votre code de vérification par email. Vérifiez si votre nouvel e-mail est bien valide et si le problème persiste, n'hésitez pas à <2>nous contacter</2>: ¡Uy! Se ha producido un error al enviar su código de verificación por correo electrónico. Por favor, compruebe que su nuevo correo electrónico es válido y si el problema persiste, <2>póngase en contacto con nosotros</2>
   Découvre mes empreintes: Descubra mis grabados
-  D’où vient mon empreinte ?: ¿De dónde viene mi huella?
   Est-ce que c'est <2>beaucoup ?</2>: ¿Es <2>mucho?</2>
-  C’est quoi mon empreinte carbone ?: ¿Cuál es mi huella de carbono?
   <0>L’empreinte eau,</0> c’est quoi ?: ¿Qué es <0>la huella hídrica</0>?
   'Retrouvez nos conseils dans ces articles :': 'Lee nuestros consejos en estos artículos:'
   l’alimentation des <2>animaux</2> que vous consommez: la alimentación de los <2>animales</2> que come
@@ -673,14 +659,12 @@ entries:
   Mes principaux postes d'usage: Mis principales ámbitos de uso
   En 10 minutes, obtenez une estimation de vos empreintes carbone et eau.: Obtén una estimación de tu huella de carbono e hídrica en sólo 10 minutos.
   L’eau domestique peut avoir un <2>impact très fort</2> selon la <6>saison et la localisation.</6>: El agua doméstica puede tener un <2>impacto muy fuerte</2> dependiendo de la <6>estación y la ubicación.</6>
-  Comment on la mesure ?: ¿Cómo se mide?
   la production de votre <2>électricité</2>: la producción de su <2>electricidad</2>
   'Nos articles sur le sujet :': 'Nuestros artículos sobre el tema :'
   l’extraction des matériaux de vos <2>appareils numériques</2>: extracción de materiales de sus <2>dispositivos digitales</2>
   la culture du <2>coton</2> que vous portez: el <2>algodón</2> que llevas
   Vous souhaitez recevoir vos résultats ?: ¿Desea recibir sus resultados?
   <0>Eau, climat,</0> même combat ?: <0>Agua, clima, ¿</0> la misma batalla?
-  Pourquoi avons-nous ajouté l’empreinte eau ?: ¿Por qué hemos añadido la huella hídrica?
   Les 3 réflexes à adopter pour une garde-robe économe en eau: 3 consejos para ahorrar agua en el armario
   Rendez-vous sur VigiEau pour en savoir plus.: Visite VigiEau para saber más.
   les <2>fruits, légumes et céréales</2> que vous mangez: la <2>fruta, la verdura y los cereales</2> que consume
@@ -712,13 +696,8 @@ entries:
   '{{name}}, supprimer cette participation': '{{name}}cancelar esta participación'
   Supprimer ce participant ? Cette opération est définitive.: ¿Borrar a este participante? Esta operación es definitiva.
   Non, merci: No, gracias
-  Une fille qui cuisine: Una chica que cocina
-  Une fille qui lit un journal: Una chica leyendo el periódico
   Votre test est sauvegardé !: Tu examen está guardado
-  Des enfants qui se tiennent la main: Niños cogidos de la mano
   Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par email.: Puede reanudarla más tarde haciendo clic en el enlace que recibió por correo electrónico.
-  Une mère et son enfant sur un vélo: Una madre y su hijo en bicicleta
-  Un grand-père et sa petite fille qui regardent un film: Un abuelo y su nieta viendo una película
   <0>Empreinte eau</0> moyenne: <0>Huella hídrica</0> media
   Le lexique pour tout comprendre à l’empreinte eau: Un glosario para entender la huella hídrica
   Lire l'article: Leer el artículo
@@ -896,7 +875,6 @@ entries:
   Un épi de maïs et un avocat, illustrant le fait d'économiser l'eau dans l'alimentation: Una mazorca de maíz y un aguacate, que ilustran la importancia de ahorrar agua en la dieta
   Une fille dans un magasin hésitant entre un pull en coton et un pull en lin, illustrant le fait de réduire l'utilisation d'eau des vêtements: Una chica en una tienda duda entre un jersey de algodón y otro de lino, lo que ilustra cómo reducir el uso de agua en la ropa
   'Privilégier les matériaux durables (lin, chanvre, laine, et si coton : recyclé)': 'Favorecer los materiales sostenibles (lino, cáñamo, lana, y si es algodón: reciclado)'
-  Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone: Un evento por el clima, que ilustra las acciones para reducir la propia huella de carbono
   Une fille tapant sur son ordinateur, entouré d'objets aux empreintes carbone et eau variées.: Una chica teclea en su ordenador, rodeada de objetos con diversas huellas de carbono y agua.
   Calculez votre <2>empreinte carbone</2> et votre <6>empreinte eau</6> en <9>seulement 10 minutes</9>.: Calcula tu <2>huella de carbono</2> y de <6>agua</6> <9>en sólo 10 minutos</9>.
   Chez Nos Gestes Climat, nous croyons au pouvoir de <2>l’action collective</2> pour relever les défis environnementaux. Notre mission est de <6>sensibiliser</6> et d’accompagner chacun, citoyens, entreprises et collectivités, à mieux comprendre son empreinte écologique, carbone ou eau, <9>identifier les gestes</9> pour la réduire et <13>entraîner leur entourage</13> dans ce mouvement.: En Nos Gestes Climat creemos en el poder de la <2>acción colectiva</2> para hacer frente a los retos medioambientales. Nuestra misión es <6>sensibilizar</6> y ayudar a todos -ciudadanos, empresas y autoridades locales- a conocer mejor su huella ecológica, de carbono y de agua, a <9>identificar las medidas</9> que pueden tomar para reducirla y a <13>implicar</13> en este movimiento <13>a quienes les rodean</13>.
@@ -999,7 +977,6 @@ entries:
   Vous relayez Nos Gestes Climat et souhaitez apparaître dans notre galerie ?: ¿Relevas Nos Gestes Climat y quieres aparecer en nuestra galería?
   Mon groupe - Nos Gestes Climat: Mi Grupo - Nos Gestes Climat
   International - Nos Gestes Climat: Internacional - Nos Gestes Climat
-  Mes empreintes carbone et eau - Nos Gestes Climat: Mi huella de carbono y de agua - Nos Gestes Climat
   Paramètres de ma campagne - Nos Gestes Climat: La configuración de mi campaña - Nos Gestes Climat
   'Documentation, de la règle : {{ruleTitle}} - Nos Gestes Climat': 'Documentación, de la regla: {{ruleTitle}} - Nos Gestes Climat'
   Questions fréquentes - Nos Gestes Climat: Preguntas frecuentes - Nos Gestes Climat
@@ -1246,20 +1223,6 @@ entries:
   simulator.customQuestions.avion.openThreeYears.lock: Répondre sur les 3 dernières années
   endPage.poll.seeResults.button.label: Ver los resultados
   endPage.poll.seeResults.button.label.lock: Voir les résultats
-  Explorez nos modèles: Explore nuestros modelos
-  Cambiar a español: Change to English
-  Entrez des mots clefs: Introducir palabras clave
-  Entrez des mots-clefs de recherche: Introducir palabras clave de búsqueda
-  Passer en français: Cambiar al francés
-  Evaluer la métrique eau: Evaluar la métrica del agua
-  Evaluer la métrique carbone: Evaluar las métricas del carbono
-  Switch to english: Cambiar a inglés
-  Une garde-robe économe en eau: Un armario que ahorra agua
-  Deux mini-vans, illustrant l'empreinte carbone des transports: Dos monovolúmenes que ilustran la huella de carbono del transporte
-  5 infolettres sur l’impact du logement: 5 boletines sobre el impacto de la vivienda
-  Un champ de coton, illustrant le calcul de l'empreinte eau: Un campo de algodón, ilustrativo del cálculo de la huella hídrica
-  Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau: Un campo regado, ilustración del léxico para entender la huella hídrica
-  Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique: Una capa de hielo escasa a la luz del sol, ilustra nuestra inadaptación al cambio climático
   Page active: Página activa
   Visiter cette page: Visite esta página
   Connexion: Conexión
@@ -1306,13 +1269,10 @@ entries:
   actions.chooseAction.ariaLabel.selected.lock: Action sélectionnée, annuler la sélection
   documentation.search.h2: Explore nuestros modelos
   documentation.search.h2.lock: Explorez nos modèles
-  search.results.label.lock: Résultats de recherche
-  search.results.lock: '{{count}} résultat(s) trouvé(s)'
   documentation.search.input.label: Introducir palabras clave
   documentation.search.input.label.lock: Entrez des mots clefs
   documentation.search.label: Búsqueda de documentación
   documentation.search.label.lock: Recherche dans la documentation
-  search.documentation.label.lock: Recherche dans la documentation
   documentation.search.results.label: Resultados de la búsqueda
   documentation.search.results.label.lock: Résultats de recherche
   documentation.search.input.placeholder: Introducir palabras clave de búsqueda
@@ -1345,8 +1305,6 @@ entries:
   Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.: Estadísticas detalladas sobre el uso del modo Organizaciones, incluido el número de organizaciones creadas, participantes y acciones completadas.
   common.buttons.close: Cerrar
   common.buttons.close.lock: Fermer
-  common.interactiveIllustration.pulsatingDotLabel: "{{itemTitle}} : score de consommation carbone de {{carbonScore}} sur 5 et score de consommation d'eau de {{waterScore}} de 5"
-  common.interactiveIllustration.pulsatingDotLabel.lock: "{{itemTitle}} : score de consommation carbone de {{carbonScore}} sur 5 et score de consommation d'eau de {{waterScore}} sur 5"
   Ouvrir le menu: Abrir el menú
   actions.form.modal.ariaLabel: Ventana modal del formulario de acción
   actions.form.modal.ariaLabel.lock: Fenêtre modale du formulaire d'action
@@ -1360,8 +1318,6 @@ entries:
   common.navigation.nextQuestion.finish.label.lock: Terminer le test et accéder à la page de résultats
   results.informationBlock.carbon.openButton: Ver detalles del objetivo de 2 toneladas para 2050
   results.informationBlock.carbon.openButton.lock: Voir le détail de l'objectif 2 tonnes en 2050
-  common.modal.confirmation.title: Ventana modal de confirmación de la acción
-  common.modal.confirmation.title.lock: Fenêtre modale de confirmation d'action
   Choix de la métrique: Elección de la métrica
   common.navigation.nextQuestion.next.label: Ir a la siguiente pregunta
   common.navigation.nextQuestion.next.label.lock: Aller à la question suivante
@@ -1373,8 +1329,6 @@ entries:
   common.interactiveIllustration.item.car.lock: Voiture
   simulator.customQuestions.voiture.deleteItem: Eliminar esta ruta
   simulator.customQuestions.voiture.deleteItem.lock: Supprimer ce trajet
-  simulator.mosaicNumberInput: 'Eliminar un elemento : {{title}}'
-  simulator.mosaicNumberInput.lock: 'Retirer un élément : {{title}}'
   organisations.additionalQuestions.deletion.modal.ariaLabel: Ventana de confirmación de eliminación de preguntas personalizada
   organisations.additionalQuestions.deletion.modal.ariaLabel.lock: Fenêtre de confirmation de suppression de la question personnalisée
   results.mainSubcategories.mainSubcategory.seeDetail: '{{title}}más información'
@@ -1412,7 +1366,6 @@ entries:
   blog.homePage.dynamicPageNumber.lock: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
   blog.homepage.defaultTitle: Blog, descubra nuestros artículos y consejos sobre el clima - Nos Gestes Climat
   blog.homepage.defaultTitle.lock: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
-  Voir plus d'informations: Más información
   Inscription en cours...: Registro en curso...
   Entrez votre adresse email pour recevoir les infolettres sélectionnées.: Introduzca su dirección de correo electrónico para recibir los boletines seleccionados.
   5 infolettres sur l'impact du logement: 5 boletines sobre el impacto de la vivienda
@@ -1420,7 +1373,6 @@ entries:
   documentation.total_category_block.title: del total, consulte la documentación
   documentation.total_category_block.title.lock: du total, voir la documentation
   Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.: Marque las casillas correspondientes a los boletines a los que desea suscribirse.
-  ⚠️ La vérification de votre compte est requise pour vous inscrire aux infolettres.: ⚠️ Es necesario verificar su cuenta para suscribirse a los boletines.
   Sélectionner ce filtre et afficher uniquement les éléments de cette catégorie: Seleccione este filtro para mostrar sólo los artículos de esta categoría
   common.slider.play: Lectura
   common.slider.play.lock: Lecture
@@ -1461,11 +1413,6 @@ entries:
   pollResults.footprintBarChart.accessibleDescription.groupComparison.lock: L'empreinte du groupe est {{comparison}} à l'objectif.
   pollResults.footprintBarChart.accessibleDescription.target: El objetivo es {{year}} est de {{value}} {{unit}}.
   pollResults.footprintBarChart.accessibleDescription.target.lock: L'objectif à atteindre d'ici {{year}} est de {{value}} {{unit}}.
-
-  4 infolettres l’impact des transports: 4 boletines informativos sobre el impacto del transporte
-  pollResults.footprintBarChart.targetLabel: Objetivo 2050
-  pollResults.footprintBarChart.targetLabel.lock: Objectif 2050
-  Chargement des résultats détaillés de campagne...: Cargando resultados detallados de la campaña...
   pollResults.footprintBarChart.legend.userFootprint: Tu huella
   pollResults.footprintBarChart.legend.userFootprint.lock: Votre empreinte
   pollResults.footprintBarChart.userFootprint: Tu huella
@@ -1556,3 +1503,24 @@ entries:
   common.mainLandingPage.tookTheirTest.lock: ont déjà calculé leur empreinte !
   common.mainLandingPage.numberPersons: 2,5 millones de personas
   common.mainLandingPage.numberPersons.lock: 2,5 millions de personnes
+  common.mobile.bottomMenu.title: Menú secundario
+  common.mobile.bottomMenu.title.lock: Menu secondaire
+  Option sélectionnée: Opción seleccionada
+  organisations.connexion.email.input.helper: 'Formato previsto: nom.prenom@domaine.fr'
+  organisations.connexion.email.input.helper.lock: 'Format attendu : nom.prenom@domaine.fr'
+  simulator.mosaicNumberInput.add: 'Añadir un elemento : {{title}}'
+  simulator.mosaicNumberInput.add.lock: 'Ajouter un élément : {{title}}'
+  Activé: Activado
+  Sélectionné: Selección
+  Sélectionner cette option: Seleccione esta opción
+  common.inputs.email.label: Introduzca su dirección de correo electrónico
+  common.inputs.email.label.lock: Entrez votre adresse e-mail
+  Métrique sélectionnée: Métrica seleccionada
+  Sélectionner cette métrique: Seleccione esta métrica
+  Désactivé: Fuera de
+  simulator.mosaicNumberInput.remove: 'Eliminar un elemento : {{title}}'
+  simulator.mosaicNumberInput.remove.lock: 'Retirer un élémént : {{title}}'
+  simulator.inputs.choice.questionButton.title: Para más información, pulse aquí {{label}}
+  simulator.inputs.choice.questionButton.title.lock: Plus d'informations - {{label}}
+  simulator.car.addTravel: Añadir un viaje
+  simulator.car.addTravel.lock: Ajouter un trajet

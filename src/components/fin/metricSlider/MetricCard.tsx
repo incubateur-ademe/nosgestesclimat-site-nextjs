@@ -1,4 +1,5 @@
 import { carboneMetric } from '@/constants/model/metric'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import type { Metric } from '@/publicodes-state/types'
 import type { KeyboardEvent, PropsWithChildren, ReactNode } from 'react'
@@ -24,6 +25,8 @@ export default function MetricCard({
   isSharePage?: boolean
 }>) {
   const { currentMetric, setCurrentMetric } = useCurrentMetric()
+
+  const { t } = useClientTranslation()
 
   const isSelected = isSharePage ? false : currentMetric === metric
 
@@ -76,6 +79,7 @@ export default function MetricCard({
         aria-selected={isSelected}
         aria-labelledby={headerId}
         tabIndex={isSelected ? 0 : -1}
+        title={`${metricTitle.mobile} - ${isSelected ? t('Métrique sélectionnée') : t('Sélectionner cette métrique')}`}
         onClick={handleSelectMetric}
         onKeyDown={onKeyDown}
         className={twMerge(

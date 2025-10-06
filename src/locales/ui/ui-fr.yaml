@@ -67,10 +67,6 @@ entries:
   model.modern4: Le modèle de calcul est directement embarqué chez le client, le calcul a lieu là dans votre navigateur, pas sur nos serveurs. Les données collectées sont si descriptives de la vie des utilisateurs, donc sensibles en termes de vie privée, que faire les calculs côté serveur <2>et les stocker</2> poserait un risque trop élevé.
   model.stats: Le modèle comprend aujourd'hui <1></1> règles de calcul. Parmi elles, <3></3> règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.
   model.stats2: Il est constitué d'une combinaison de centaines de modèles micro "bottom-up" pour les consommations carbonées de notre vie quotidienne, et d'un modèle "top-down" dérivé des travaux du SDES pour estimer l'empreinte par personne des services dits sociétaux (services publics et services de base tels les télécom). <2>En savoir plus sur cette hybridation</2>.
-  noresults: Aucun résultat ne correspond à cette recherche
-  search.results: '{{count}} résultat(s) trouvé(s)'
-  search.results.label: Résultats de recherche
-  search.documentation.label: Recherche dans la documentation
   participant: participant
   plus d'1 kg: plus d'1 kg
   plus d'1 tonne: plus d'1 tonne
@@ -243,7 +239,6 @@ entries:
   Accédez à votre espace organisation: Accédez à votre espace organisation
   Bienvenue: Bienvenue
   Bienvenue sur votre espace !: Bienvenue sur votre espace !
-  C'est gratuit, et ça prend une minute !: C'est gratuit, et ça prend une minute !
   code de vérification: code de vérification
   Contactez nous afin de convenir d'un temps de démonstration de notre outil pour les organisations.: Contactez nous afin de convenir d'un temps de démonstration de notre outil pour les organisations.
   Créer un compte: Créer un compte
@@ -324,7 +319,6 @@ entries:
   Découvrez les conseils de l'ADEME: Découvrez les conseils de l'ADEME
   Découvrez les conseils de l'ADEME, ouvrir dans un nouvel onglet: Découvrez les conseils de l'ADEME, ouvrir dans un nouvel onglet
   en 10 minutes: en 10 minutes
-  Nous pourrons vous contacter en cas de problème lors de votre inscription: Nous pourrons vous contacter en cas de problème lors de votre inscription
   top chrono.: top chrono.
   Vous avez déja participé à ce sondage.: Vous avez déja participé à ce sondage.
   Découvrir le calculateur: Découvrir le calculateur
@@ -549,7 +543,6 @@ entries:
   Nous améliorons le site en continu à partir de <2>vos retours</2>. Découvrez la tambouille interne de Nos Gestes Climat.: Nous améliorons le site en continu à partir de <2>vos retours</2>. Découvrez la tambouille interne de Nos Gestes Climat.
   Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul. À lire tranquillement au coin du feu.: Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul. À lire tranquillement au coin du feu.
   Un femme lisant le journal au coin du feu avec un chien assoupi.: Un femme lisant le journal au coin du feu avec un chien assoupi.
-  Un groupe d'amis jouant à un jeu de société.: Un groupe d'amis jouant à un jeu de société.
   Une femme préparant un bon petit plat.: Une femme préparant un bon petit plat.
   (Cela peut durer quelques dizaines de secondes pour les campagnes avec un grand nombre de participants ! Merci pour votre patience.): (Cela peut durer quelques dizaines de secondes pour les campagnes avec un grand nombre de participants ! Merci pour votre patience.)
   à la moyenne du groupe: à la moyenne du groupe
@@ -563,7 +556,6 @@ entries:
   plus: plus
   que la moyenne du groupe: que la moyenne du groupe
   'Qui de ': 'Qui de '
-  Un groupe de personnes discutant devant un paperboard.: Un groupe de personnes discutant devant un paperboard.
   Vous avez commencé votre test,: Vous avez commencé votre test,
   Vous n'avez pas encore débuté votre test,: Vous n'avez pas encore débuté votre test,
   Autres actions: Autres actions
@@ -600,13 +592,10 @@ entries:
   <0>L’empreinte eau,</0> c’est quoi ?: <0>L’empreinte eau,</0> c’est quoi ?
   <0>La majeure partie de l’empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombre de nos vêtements.: <0>La majeure partie de l’empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombre de nos vêtements.
   "attention : l'eau domestique (par exemple l’eau de vos douches) ne fait pas partie de l'empreinte eau": "attention : l'eau domestique (par exemple l’eau de vos douches) ne fait pas partie de l'empreinte eau"
-  C’est quoi mon empreinte carbone ?: C’est quoi mon empreinte carbone ?
   carbone: carbone
   chrono pour calculer votre empreinte carbone et eau: chrono pour calculer votre empreinte carbone et eau
   Comment <1>agir</1> ?: Comment <1>agir</1> ?
-  Comment on la mesure ?: Comment on la mesure ?
   d’eau domestique par jour: d’eau domestique par jour
-  D’où vient mon empreinte ?: D’où vient mon empreinte ?
   Découvre mes empreintes: Découvre mes empreintes
   eau: eau
   En 10 minutes, obtenez une estimation de vos empreintes carbone et eau.: En 10 minutes, obtenez une estimation de vos empreintes carbone et eau.
@@ -624,7 +613,6 @@ entries:
   Mes empreintes: Mes empreintes
   Mes principaux postes d'usage: Mes principaux postes d'usage
   'Nos articles sur le sujet :': 'Nos articles sur le sujet :'
-  Pourquoi avons-nous ajouté l’empreinte eau ?: Pourquoi avons-nous ajouté l’empreinte eau ?
   Rendez-vous sur VigiEau pour en savoir plus.: Rendez-vous sur VigiEau pour en savoir plus.
   'Retrouvez nos conseils dans ces articles :': 'Retrouvez nos conseils dans ces articles :'
   Sauvegarder: Sauvegarder
@@ -651,12 +639,7 @@ entries:
   '{{name}}, supprimer cette participation': '{{name}}, supprimer cette participation'
   Supprimer ce participant ? Cette opération est définitive.: Supprimer ce participant ? Cette opération est définitive.
   Une erreur est survenue: Une erreur est survenue
-  Des enfants qui se tiennent la main: Des enfants qui se tiennent la main
   Non, merci: Non, merci
-  Un grand-père et sa petite fille qui regardent un film: Un grand-père et sa petite fille qui regardent un film
-  Une fille qui cuisine: Une fille qui cuisine
-  Une fille qui lit un journal: Une fille qui lit un journal
-  Une mère et son enfant sur un vélo: Une mère et son enfant sur un vélo
   Votre test est sauvegardé !: Votre test est sauvegardé !
   Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par email.: Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par email.
   <0>Empreinte eau</0> moyenne: <0>Empreinte eau</0> moyenne
@@ -841,7 +824,6 @@ entries:
   'Privilégier les matériaux durables (lin, chanvre, laine, et si coton : recyclé)': 'Privilégier les matériaux durables (lin, chanvre, laine, et si coton : recyclé)'
   Calculez votre <2>empreinte carbone</2> et votre <6>empreinte eau</6> en <9>seulement 10 minutes</9>.: Calculez votre <2>empreinte carbone</2> et votre <6>empreinte eau</6> en <9>seulement 10 minutes</9>.
   Chez Nos Gestes Climat, nous croyons au pouvoir de <2>l’action collective</2> pour relever les défis environnementaux. Notre mission est de <6>sensibiliser</6> et d’accompagner chacun, citoyens, entreprises et collectivités, à mieux comprendre son empreinte écologique, carbone ou eau, <9>identifier les gestes</9> pour la réduire et <13>entraîner leur entourage</13> dans ce mouvement.: Chez Nos Gestes Climat, nous croyons au pouvoir de <2>l’action collective</2> pour relever les défis environnementaux. Notre mission est de <6>sensibiliser</6> et d’accompagner chacun, citoyens, entreprises et collectivités, à mieux comprendre son empreinte écologique, carbone ou eau, <9>identifier les gestes</9> pour la réduire et <13>entraîner leur entourage</13> dans ce mouvement.
-  Deux mini-vans, illustrant l'empreinte carbone des transports: Deux mini-vans, illustrant l'empreinte carbone des transports
   Une fille tapant sur son ordinateur, entouré d'objets aux empreintes carbone et eau variées.: Une fille tapant sur son ordinateur, entouré d'objets aux empreintes carbone et eau variées.
   Le saviez vous ?: Le saviez vous ?
   Calculez votre <2>empreinte carbone</2> en quelques minutes et découvrez les <6>actions</6> les plus efficaces pour <9>réduire vos émissions</9> de gaz à effet de serre.: Calculez votre <2>empreinte carbone</2> en quelques minutes et découvrez les <6>actions</6> les plus efficaces pour <9>réduire vos émissions</9> de gaz à effet de serre.
@@ -934,9 +916,6 @@ entries:
   Poire: Poire
   Pomme: Pomme
   Raisin: Raisin
-  Chargement des résultats détaillés de campagne...: Chargement des résultats détaillés de campagne...
-  '{{name}} lecture seule': '{{name}} lecture seule'
-  '{{name}} menu déroulant': '{{name}} menu déroulant'
   Chemin de navigation: Chemin de navigation
   Menu principal: Menu principal
   Navigation principale: Navigation principale
@@ -963,7 +942,6 @@ entries:
   Le calculateur Nos Gestes Climat, pour les organisations: Le calculateur Nos Gestes Climat, pour les organisations
   Les nouveautés du calculateur - Nos Gestes Climat: Les nouveautés du calculateur - Nos Gestes Climat
   Liste des questions du calculateur - Nos Gestes Climat: Liste des questions du calculateur - Nos Gestes Climat
-  Mes empreintes carbone et eau - Nos Gestes Climat: Mes empreintes carbone et eau - Nos Gestes Climat
   Mes empreintes carbone et eau partagées - Nos Gestes Climat: Mes empreintes carbone et eau partagées - Nos Gestes Climat
   'Mes gestes : comment réduire mon empreinte climat - Nos Gestes Climat': 'Mes gestes : comment réduire mon empreinte climat - Nos Gestes Climat'
   Mes groupes d'amis, calculer vos empreintes carbone et eau à plusieurs - Nos Gestes Climat: Mes groupes d'amis, calculer vos empreintes carbone et eau à plusieurs - Nos Gestes Climat
@@ -1149,22 +1127,6 @@ entries:
   simulator.customQuestions.voiture.summaryStart: Au total
   simulator.customQuestions.avion.openThreeYears: Répondre sur les 3 dernières années
   endPage.poll.seeResults.button.label: Voir les résultats
-  4 infolettres l’impact des transports: 4 infolettres l’impact des transports
-  5 infolettres sur l’impact du logement: 5 infolettres sur l’impact du logement
-  Cambiar a español: Cambiar a español
-  Entrez des mots clefs: Entrez des mots clefs
-  Entrez des mots-clefs de recherche: Entrez des mots-clefs de recherche
-  Evaluer la métrique carbone: Evaluer la métrique carbone
-  Evaluer la métrique eau: Evaluer la métrique eau
-  Explorez nos modèles: Explorez nos modèles
-  Passer en français: Passer en français
-  Switch to english: Switch to english
-  Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau: Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau
-  Un champ de coton, illustrant le calcul de l'empreinte eau: Un champ de coton, illustrant le calcul de l'empreinte eau
-  Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique: Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique
-  Une garde-robe économe en eau: Une garde-robe économe en eau
-  Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone: Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone
-  Voir plus d'informations: Voir plus d'informations
   Carbone, évaluer la métrique carbone: Carbone, évaluer la métrique carbone
   Connexion: Connexion
   Eau, évaluer la métrique eau: Eau, évaluer la métrique eau
@@ -1224,8 +1186,6 @@ entries:
   common.interactiveIllustration.item.coffee: Café
   common.interactiveIllustration.item.computer: Ordinateur
   common.interactiveIllustration.item.shirt: Chemisier
-  common.interactiveIllustration.pulsatingDotLabel: "{{itemTitle}} : score de consommation carbone de {{carbonScore}} sur 5 et score de consommation d'eau de {{waterScore}} sur 5"
-  common.modal.confirmation.title: Fenêtre modale de confirmation d'action
   common.navigation.nextQuestion.finish.label: Terminer le test et accéder à la page de résultats
   common.navigation.nextQuestion.next.label: Aller à la question suivante
   common.navigation.nextQuestion.pass.label: Passer et aller à la question suivante
@@ -1244,14 +1204,12 @@ entries:
   simulator.customQuestions.voiture.deleteItem: Supprimer ce trajet
   simulator.customQuestions.voiture.open: Détailler mes trajets
   simulator.label.moreInfoButton: Plus d'informations - {{label}}
-  simulator.mosaicNumberInput: 'Retirer un élément : {{title}}'
   simulator.topBar.totalButtons.saveButton.ariaLabel: Enregistrer et reprendre plus tard
   blog.homepage.defaultDescription: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
   blog.homepage.defaultTitle: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
   blog.homePage.dynamicPageNumber: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
   common.slider.buttons.next: Aller à la diapositive suivante
   common.slider.buttons.previous: Aller à la diapositive précédente
-  ⚠️ La vérification de votre compte est requise pour vous inscrire aux infolettres.: ⚠️ La vérification de votre compte est requise pour vous inscrire aux infolettres.
   4 infolettres l'impact des transports: 4 infolettres l'impact des transports
   5 infolettres sur l'impact du logement: 5 infolettres sur l'impact du logement
   Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.: Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.
@@ -1332,3 +1290,17 @@ entries:
   Pourquoi avons-nous ajouté l'empreinte eau ?: Pourquoi avons-nous ajouté l'empreinte eau ?
   common.mainLandingPage.numberPersons: 2,5 millions de personnes
   common.mainLandingPage.tookTheirTest: ont déjà calculé leur empreinte !
+  Activé: Activé
+  common.inputs.email.label: Entrez votre adresse e-mail
+  common.mobile.bottomMenu.title: Menu secondaire
+  Désactivé: Désactivé
+  Métrique sélectionnée: Métrique sélectionnée
+  Option sélectionnée: Option sélectionnée
+  organisations.connexion.email.input.helper: 'Format attendu : nom.prenom@domaine.fr'
+  Sélectionné: Sélectionné
+  Sélectionner cette métrique: Sélectionner cette métrique
+  Sélectionner cette option: Sélectionner cette option
+  simulator.car.addTravel: Ajouter un trajet
+  simulator.inputs.choice.questionButton.title: Plus d'informations - {{label}}
+  simulator.mosaicNumberInput.add: 'Ajouter un élément : {{title}}'
+  simulator.mosaicNumberInput.remove: 'Retirer un élémént : {{title}}'

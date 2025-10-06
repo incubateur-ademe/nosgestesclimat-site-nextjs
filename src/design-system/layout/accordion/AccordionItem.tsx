@@ -1,4 +1,5 @@
 import ChevronRight from '@/components/icons/ChevronRight'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { motion } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { useId, useState } from 'react'
@@ -21,6 +22,7 @@ export default function AccordionItem({
   onClick,
   ariaLabel,
 }: AccordionItemType) {
+  const { t } = useClientTranslation()
   const [isOpen, setIsOpen] = useState(false)
   const buttonId = useId()
   const panelId = useId()
@@ -31,6 +33,7 @@ export default function AccordionItem({
         type="button"
         id={buttonId}
         aria-label={ariaLabel ?? name}
+        title={`${ariaLabel ?? name} - ${isOpen ? t('Fermer') : t('Ouvrir')}`}
         onClick={() => {
           if (isReadOnly) return
           setIsOpen((prevState) => !prevState)
