@@ -14,6 +14,9 @@ export default forwardRef(function EditableToggleField(
   { name = 'newQuestion', onChange, className, error }: Props,
   ref: ForwardedRef<HTMLInputElement>
 ) {
+  const inputId = `editable-toggle-${name}`
+  const errorId = `error-${name}`
+
   return (
     <>
       <div
@@ -27,15 +30,23 @@ export default forwardRef(function EditableToggleField(
             onChange={onChange}
             debounceTimeout={500}
             name={name}
+            id={inputId}
             type="text"
             // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus
             className="focus:border-primary-700 mr-2 w-full bg-transparent px-1 pb-1 text-base outline-hidden focus:border-b-2!"
+            aria-describedby={error ? errorId : undefined}
+            aria-invalid={error ? 'true' : 'false'}
           />
         </div>
       </div>
       {error && (
-        <p className="mt-1 mb-2 text-left text-sm text-red-700">{error}</p>
+        <p
+          id={errorId}
+          className="mt-1 mb-2 text-left text-sm text-red-700"
+          role="alert">
+          {error}
+        </p>
       )}
     </>
   )

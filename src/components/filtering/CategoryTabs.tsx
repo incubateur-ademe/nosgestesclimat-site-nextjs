@@ -79,7 +79,7 @@ export default function CategoryTabs({
 
   return (
     <div className="w-full">
-      <div
+      <ul
         ref={tablistRef}
         role="tablist"
         tabIndex={0}
@@ -91,19 +91,20 @@ export default function CategoryTabs({
         onKeyDown={handleKeyDown}>
         {categories?.map(({ title, dottedName, count }, index) => {
           return (
-            <CategoryFilter
-              key={title}
-              title={title}
-              dottedName={dottedName}
-              count={count}
-              index={index}
-              isActive={index === activeTabIndex}
-              categorySelected={categorySelected}
-              onTabActivate={() => setActiveTabIndex(index)}
-            />
+            <li key={title}>
+              <CategoryFilter
+                title={title}
+                dottedName={dottedName}
+                count={count}
+                index={index}
+                isActive={index === activeTabIndex}
+                categorySelected={categorySelected}
+                onTabActivate={() => setActiveTabIndex(index)}
+              />
+            </li>
           )
         })}
-      </div>
+      </ul>
 
       <div
         role="tabpanel"

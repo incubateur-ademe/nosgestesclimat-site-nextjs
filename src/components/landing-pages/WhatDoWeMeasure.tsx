@@ -89,7 +89,7 @@ export default function WhatDoWeMeasure({
       </ul>
 
       <div className="flex overflow-x-auto md:hidden">
-        <div className="flex gap-5 px-[calc(50vw-6.5rem)]">
+        <ul className="flex gap-5 px-[calc(50vw-6.5rem)]">
           {listItems?.map(({ icon, title }, index) => (
             <li
               key={`list-item-${title}-${index}`}
@@ -109,7 +109,7 @@ export default function WhatDoWeMeasure({
               </p>
             </li>
           ))}
-        </div>
+        </ul>
       </div>
 
       <section

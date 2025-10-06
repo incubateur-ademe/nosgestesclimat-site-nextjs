@@ -49,11 +49,13 @@ export default function SaveSimulationForm({
           autoComplete="email"
           aria-label="Entrez votre adresse email"
           data-cypress-id="save-modal-email-input"
+          aria-describedby={isError ? 'save-error' : undefined}
+          aria-invalid={isError ? 'true' : 'false'}
           {...register('email')}
         />
 
         {isError && (
-          <p className="mt-4 text-sm text-red-800">
+          <p id="save-error" className="mt-4 text-sm text-red-800" role="alert">
             <Trans>Une erreur s'est produite au moment de la sauvegarde.</Trans>
           </p>
         )}

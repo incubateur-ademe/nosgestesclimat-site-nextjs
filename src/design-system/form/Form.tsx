@@ -18,11 +18,21 @@ export default function Form({
   className,
   ...props
 }: Props) {
+  const errorId = 'form-error'
+
   return (
     <form className={className} {...props}>
       {children}
 
-      {error && <p className="my-4 text-sm text-red-500">{error}</p>}
+      {error && (
+        <p
+          id={errorId}
+          className="my-4 text-sm text-red-500"
+          role="alert"
+          aria-live="assertive">
+          {error}
+        </p>
+      )}
 
       <Button className="mt-8" type="submit">
         {buttonLabel ?? <Trans>Enregistrer</Trans>}

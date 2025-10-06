@@ -133,17 +133,18 @@ export default function ActionDetail({
           <h3>
             <Trans>Sur le même sujet</Trans>
           </h3>
-          <div className="flex flex-wrap gap-2">
+          <ul className="flex flex-wrap gap-2">
             {relatedActions.map((action, index) => (
-              <ButtonLink
-                color="secondary"
-                key={`relatedAction${index}`}
-                href={'/actions/' + encodeRuleName(action.dottedName)}
-                size="sm">
-                {action.title}
-              </ButtonLink>
+              <li key={`relatedAction${index}`}>
+                <ButtonLink
+                  color="secondary"
+                  href={'/actions/' + encodeRuleName(action.dottedName)}
+                  size="sm">
+                  {action.title}
+                </ButtonLink>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       )}
     </>
