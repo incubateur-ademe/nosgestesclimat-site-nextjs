@@ -9205,10 +9205,10 @@ markdown-extensions@^2.0.0:
   resolved "https://registry.yarnpkg.com/markdown-extensions/-/markdown-extensions-2.0.0.tgz#34bebc83e9938cae16e0e017e4a9814a8330d3c4"
   integrity sha512-o5vL7aDWatOTX8LzaS1WMoaoxIiLRQJuIKKe2wAw6IeULDHaqbiqiggmx+pKvZDb1Sj+pE46Sn1T7lCqfFtg1Q==
 
-markdown-to-jsx@^7.7.3:
-  version "7.7.13"
-  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-7.7.13.tgz#8144d89e396cdf3264bec7c97a21bc47cfc0773b"
-  integrity sha512-DiueEq2bttFcSxUs85GJcQVrOr0+VVsPfj9AEUPqmExJ3f8P/iQNvZHltV4tm1XVhu1kl0vWBZWT3l99izRMaA==
+markdown-to-jsx@^7.7.14:
+  version "7.7.14"
+  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-7.7.14.tgz#cc68f1aec783afe6f9b708eadce62d17afb50380"
+  integrity sha512-OBq0NiByoHZTQk+CO0b4A6OJktyChs/L4E9SsrJ7z2FX3r4qQFcxOyytzW6GGVIL9wvjoxMdPySDxXyFIB64Qw==
 
 matcher-collection@^2.0.0:
   version "2.0.1"
@@ -10668,10 +10668,10 @@ postgres-interval@^1.1.0:
   dependencies:
     xtend "^4.0.0"
 
-posthog-js@^1.269.0:
-  version "1.269.0"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.269.0.tgz#26354cca16b4499a5a88afc35be331452bb51b6f"
-  integrity sha512-Qwa6hiAxfUFRihPpulCs13IicDGYLrkXpxaD+dRjuUjT8lIFW/O3PQOOKvs2QvaxnZYkM81ZYvwlsUvrgrdKiw==
+posthog-js@^1.271.0:
+  version "1.271.0"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.271.0.tgz#3f7bb4a15b75f66f7720c60f35d8201a78673754"
+  integrity sha512-jYsWrxO+xRkSm7Sigy6SAsnd688VPG0twL3nkonbjVEy+cB80967bhA2mgu2CDTvQ14sLgYfue8ukbSR0Rtvlw==
   dependencies:
     "@posthog/core" "1.2.2"
     core-js "^3.38.1"
