@@ -69,7 +69,7 @@ export default function PulsatingDot({
 
       <div
         className={twMerge(
-          'group focus:ring-offset-primary-700 absolute h-6 w-6 cursor-pointer rounded-full bg-white shadow-lg focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none'
+          'group focus:ring-primary-700 absolute h-6 w-6 cursor-pointer rounded-full bg-white shadow-lg focus:ring-2 focus:ring-offset-3 focus:outline-hidden'
         )}
         tabIndex={0}
         onMouseEnter={handleEnter}

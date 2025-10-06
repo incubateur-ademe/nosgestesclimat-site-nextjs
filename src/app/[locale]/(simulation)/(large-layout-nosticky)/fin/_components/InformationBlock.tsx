@@ -39,7 +39,7 @@ export default function InformationBlock() {
       <Button
         color={isOpen || isHedgehog ? 'text' : 'primary'}
         className={twMerge(
-          'focus:ring-primary-700 absolute top-4 right-4 h-12 w-12 p-0! focus:ring-2 focus:ring-offset-2 lg:hidden',
+          'focus:ring-primary-700 absolute top-4 right-4 h-12 w-12 p-0! focus:ring-2 focus:ring-offset-3 focus:outline-hidden lg:hidden',
           isHedgehog ? 'block!' : ''
         )}
         title={

@@ -22,7 +22,7 @@ export default function SkipToMainContentLink() {
         <ButtonLink
           color="secondary"
           href="#main-content"
-          className="focus:ring-primary-700 focus:w-auto focus:ring-2 focus:ring-offset-[2px]">
+          className="focus:ring-primary-700 focus:w-auto focus:ring-2 focus:ring-offset-3 focus:outline-hidden">
           <Trans>Contenu</Trans>
         </ButtonLink>
 
@@ -43,7 +43,7 @@ export default function SkipToMainContentLink() {
         <ButtonLink
           color="secondary"
           href="#footer"
-          className="focus:ring-primary-700 focus:w-auto focus:ring-2 focus:ring-offset-[2px]">
+          className="focus:ring-primary-700 focus:w-auto focus:ring-2 focus:ring-offset-3 focus:outline-hidden">
           <Trans>Pied de page</Trans>
         </ButtonLink>
       </nav>

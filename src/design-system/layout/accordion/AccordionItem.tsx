@@ -41,7 +41,7 @@ export default function AccordionItem({
             onClick()
           }
         }}
-        className={`relative z-10 flex w-full items-end justify-between py-2 ${isReadOnly ? 'cursor-default!' : ''}`}
+        className={`focus:ring-primary-700 relative z-10 flex w-full items-end justify-between py-2 focus:ring-2 focus:ring-offset-3 focus:outline-hidden ${isReadOnly ? 'cursor-default!' : ''}`}
         aria-disabled={isReadOnly}
         aria-expanded={isOpen}
         aria-controls={panelId}>

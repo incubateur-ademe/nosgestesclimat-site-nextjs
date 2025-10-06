@@ -262,7 +262,7 @@ export default function Footer({
                 <li className="block md:inline">
                   <button
                     data-testid="cookie-footer-button"
-                    className="text-primary-700 text-xs underline"
+                    className="text-primary-700 focus:ring-primary-700 text-xs underline focus:ring-2 focus:ring-offset-3 focus:outline-hidden"
                     onClick={() => setIsBoardOpen(true)}>
                     <Trans>Gestion des cookies</Trans>
                   </button>

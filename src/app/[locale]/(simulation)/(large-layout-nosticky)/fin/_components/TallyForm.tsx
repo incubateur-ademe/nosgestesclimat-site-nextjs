@@ -61,7 +61,7 @@ export default function TallyForm() {
       onClick={handleOpenForm}
       aria-label={t('endPage.tallyForm.buttonLabel', 'Donner votre avis')}
       title={t('endPage.tallyForm.buttonLabel', 'Donner votre avis')}
-      className="fixed right-2 bottom-17 z-[10000] h-13 w-13 rounded-full border border-gray-300 bg-white text-3xl shadow-sm transition-colors hover:bg-gray-100 md:bottom-2">
+      className="focus:ring-primary-700 fixed right-2 bottom-17 z-[10000] h-13 w-13 rounded-full border border-gray-300 bg-white text-3xl shadow-sm transition-colors hover:bg-gray-100 focus:ring-2 focus:ring-offset-3 focus:outline-hidden md:bottom-2">
       <span className="sr-only">
         <Trans i18nKey="endPage.tallyForm.buttonLabel">Donner votre avis</Trans>
       </span>

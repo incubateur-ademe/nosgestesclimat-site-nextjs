@@ -32,7 +32,7 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
             setIsOpen(true)
             trackEvent(trackingActionClickSortingButton)
           }}
-          className="text-orange-dark">
+          className="text-orange-dark focus:ring-primary-700 focus:ring-2 focus:ring-offset-3 focus:outline-hidden">
           <Emoji role="img" aria-label={t('Ouvrir les options de tri')}>
             ⚙️
           </Emoji>
@@ -78,7 +78,8 @@ export default function OptionBar({ actions, setRadical, radical }: Props) {
       </Button>
       <button
         title={t('Fermer les options de tri')}
-        onClick={() => setIsOpen(false)}>
+        onClick={() => setIsOpen(false)}
+        className="focus:ring-primary-700 focus:ring-2 focus:ring-offset-3 focus:outline-hidden">
         <CloseIcon />
       </button>
     </div>

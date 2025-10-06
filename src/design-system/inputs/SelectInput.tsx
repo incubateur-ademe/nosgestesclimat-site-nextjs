@@ -67,7 +67,7 @@ export default forwardRef(function SelectInput(
           'w-full max-w-[30rem] p-4 text-sm',
           error ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : '',
           disabled ? 'pointer-events-none cursor-not-allowed opacity-50' : '',
-          'focus:border-primary-700 focus:ring-primary-700 focus:ring-2',
+          'focus:ring-primary-700 focus:ring-2 focus:ring-offset-3 focus:outline-hidden',
           className
         )}
         {...props}>

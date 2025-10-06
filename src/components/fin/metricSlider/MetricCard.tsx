@@ -99,7 +99,7 @@ export default function MetricCard({
         aria-labelledby={tabId}
         className={twMerge(
           'h-full w-full',
-          isSticky && 'pointer-events-none max-h-28 overflow-hidden md:mt-1'
+          isSticky && 'pointer-events-none max-h-28 overflow-hidden md:mt-4'
         )}>
         {children}
       </div>

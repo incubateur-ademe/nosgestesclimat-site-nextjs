@@ -1,5 +1,4 @@
 import { actionsClickAdditionalQuestion } from '@/constants/tracking/pages/actions'
-import NotificationBubble from '@/design-system/alerts/NotificationBubble'
 import { getCarbonFootprint } from '@/helpers/actions/getCarbonFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
@@ -84,7 +83,8 @@ export default function ActionValue({
       onClick={() => {
         trackEvent(actionsClickAdditionalQuestion(dottedName))
         setActionWithFormOpen(dottedName)
-      }}>
+      }}
+      className="focus:ring-primary-700 focus:ring-2 focus:ring-offset-3 focus:outline-hidden">
       <div
         className={`border-primary-700 bg-primary-700 mb-6 inline-block rounded-[0.25rem] border-2 border-solid pr-[2px] pl-2 text-white ${
           correctedValue != undefined && correctedValue < 0 ? 'bg-red-500' : ''
@@ -103,11 +103,9 @@ export default function ActionValue({
       </div>
 
       {remainingQuestions && remainingQuestions.length > 0 && (
-        
-          <div className="text-primary-700 cursor-pointer text-sm">
-            {remainingQuestionsText}
-          </div>
-        
+        <div className="text-primary-700 cursor-pointer text-sm">
+          {remainingQuestionsText}
+        </div>
       )}
     </button>
   )

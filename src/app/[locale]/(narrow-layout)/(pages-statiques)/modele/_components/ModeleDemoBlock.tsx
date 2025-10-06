@@ -79,7 +79,7 @@ export default function ModeleDemoBlock() {
               <span>
                 <input
                   type="number"
-                  className="rounded-md border border-gray-300 pl-2"
+                  className="focus:ring-primary-700 rounded-md border border-gray-300 pl-2 focus:ring-2 focus:ring-offset-3 focus:outline-hidden"
                   value={situation[el] as number}
                   placeholder={defaultValues[el] as string}
                   onChange={(e) =>

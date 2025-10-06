@@ -712,6 +712,11 @@ html[data-useragent*='Trident'] #js {
   @apply ring-primary-700! ring-2! ring-offset-3! outline-hidden!;
 }
 
+/* Focus styles for all links - same as Button component */
+a:focus {
+  @apply ring-primary-700! ring-2! ring-offset-3! outline-hidden!;
+}
+
 /* Custom short screen utilities to replace short: breakpoint */
 @media (max-height: 600px) {
   .short\:gap-2 {

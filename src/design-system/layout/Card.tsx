@@ -34,7 +34,7 @@ export default function Card({
       className={twMerge(
         `flex list-none flex-col rounded-xl border-2 border-gray-200 bg-white p-4 transition-colors`,
         isInteractive
-          ? 'focus:ring-primary-700 cursor-pointer focus:ring-2 focus:ring-offset-2 focus:outline-none'
+          ? 'focus:ring-primary-700 cursor-pointer focus:ring-2 focus:ring-offset-3 focus:outline-hidden'
           : '',
         className
       )}

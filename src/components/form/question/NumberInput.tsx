@@ -77,7 +77,7 @@ export default function NumberInput({
         }
         className={twMerge(
           `max-w-[8rem] rounded-xl border border-solid border-slate-500 bg-white p-4 text-right text-sm transition-colors md:max-w-full`,
-          'focus:border-primary-700! focus:ring-primary-700! placeholder:text-slate-500! focus:ring-2! focus:ring-offset-2! focus:outline-none!',
+          'focus:ring-primary-700! placeholder:text-slate-500! focus:ring-2! focus:ring-offset-3! focus:outline-hidden!',
           className
         )}
         thousandSeparator={' '}

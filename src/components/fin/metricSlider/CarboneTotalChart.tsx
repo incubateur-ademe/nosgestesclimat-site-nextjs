@@ -110,7 +110,8 @@ export default function CarboneTotalChart({
       <div
         className={twMerge(
           'mt-4 hidden w-full md:block',
-          shouldShowOnlyGauge && 'block'
+          shouldShowOnlyGauge && 'block',
+          isSmall && 'mt-0'
         )}
         role="progressbar"
         aria-valuenow={currentValueInTons}

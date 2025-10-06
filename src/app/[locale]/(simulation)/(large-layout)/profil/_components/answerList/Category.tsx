@@ -46,7 +46,7 @@ export default function Category({ category }: Props) {
         aria-controls={panelId}
         disabled={!subcategoriesOfCategory?.length}
         title={`${title} - ${isOpen ? t('Fermer') : t('Ouvrir')}`}
-        className="focus-visible:outline-primary-600 block w-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2"
+        className="focus:ring-primary-700 block w-full rounded-xl focus:ring-2 focus:ring-offset-3 focus:outline-hidden"
         onClick={() => {
           trackEvent(profilClickCategory(category))
           setIsOpen((prevIsOpen) => !prevIsOpen)

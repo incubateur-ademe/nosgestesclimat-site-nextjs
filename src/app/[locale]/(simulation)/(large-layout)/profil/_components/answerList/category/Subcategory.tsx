@@ -57,7 +57,7 @@ export default function SubCategory({ subcategory }: Props) {
           trackEvent(profilClickSubCategory(subcategory))
           setIsOpen((prevIsOpen) => !prevIsOpen)
         }}
-        className="focus-visible:outline-primary-600 relative flex w-full items-center justify-between gap-4 overflow-hidden rounded-xl p-4 pl-6 text-lg font-bold focus-visible:outline-2 focus-visible:outline-offset-2">
+        className="focus:ring-primary-700 relative flex w-full items-center justify-between gap-4 overflow-hidden rounded-xl p-4 pl-6 text-lg font-bold focus:ring-2 focus:ring-offset-3 focus:outline-hidden">
         <div
           className={`absolute top-0 bottom-0 left-0 w-2 ${getBackgroundColor(
             category

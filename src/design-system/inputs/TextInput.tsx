@@ -92,7 +92,7 @@ export default forwardRef(function TextInput(
           disabled ? 'cursor-not-allowed opacity-50' : '',
           readOnly
             ? 'cursor-not-allowed'
-            : 'focus:border-primary-700 focus:ring-primary-700 focus:ring-2',
+            : 'focus:ring-primary-700 focus:ring-2 focus:ring-offset-3 focus:outline-hidden',
           className
         )}
       />
