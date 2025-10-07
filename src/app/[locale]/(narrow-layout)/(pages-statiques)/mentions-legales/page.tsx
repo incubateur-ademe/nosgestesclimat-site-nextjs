@@ -39,7 +39,7 @@ export default function MentionsLegalesPage() {
         <a
           target="_blank"
           rel="noreferrer noopener nofollow"
-          aria-label="Numéro de téléphone"
+          aria-label="Numéro de téléphone - 02 41 20 41 20"
           href="tel:+33241204120">
           02 41 20 41 20
         </a>
