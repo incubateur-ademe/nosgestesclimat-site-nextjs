@@ -15,6 +15,7 @@ import {
 } from '@/helpers/tracking/landings'
 import type { DefaultPageProps } from '@/types'
 import { headers } from 'next/headers'
+import { ClientLayout } from '../_components/ClientLayout'
 import InteractiveIllustration from '../_components/InteractiveIllustration'
 
 export const generateMetadata = getCommonMetadata({
@@ -38,7 +39,7 @@ export default async function Homepage({ params }: DefaultPageProps) {
   const pathname = headersList.get('x-pathname') || '/'
 
   return (
-    <>
+    <ClientLayout locale={locale}>
       <LandingPage
         heroIllustration={<InteractiveIllustration />}
         heroTitle={
@@ -106,6 +107,6 @@ export default async function Homepage({ params }: DefaultPageProps) {
       </LandingPage>
 
       <Footer />
-    </>
+    </ClientLayout>
   )
 }

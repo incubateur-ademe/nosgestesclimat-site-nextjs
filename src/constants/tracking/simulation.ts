@@ -59,3 +59,15 @@ export const gtmSimulationCompleted = {
 export const gtmSimulationStarted = {
   event: 'start-form',
 }
+
+export const clickSaveSimulationEvent = [
+  'trackEvent',
+  'Simulation',
+  'Click save simulation',
+]
+
+export const confirmSaveSimulationEvent = [
+  'trackEvent',
+  'Simulation',
+  'Confirm save simulation',
+]
