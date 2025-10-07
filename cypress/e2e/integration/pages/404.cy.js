@@ -10,7 +10,7 @@ describe('404 Page', () => {
     })
 
     // Visit a URL that definitely doesn't exist
-    visit('/definitely-not-a-page-url', { failOnStatusCode: false })
+    visit('definitely-not-a-page-url', { failOnStatusCode: false })
 
     // Verify that we're on the 404 page
     cy.url().should('include', '/404')
