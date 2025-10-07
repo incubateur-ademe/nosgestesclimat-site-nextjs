@@ -4,11 +4,14 @@ import ListIcon from '@/components/icons/ListIcon'
 import SaveCheckIcon from '@/components/icons/SaveCheckIcon'
 import SaveIcon from '@/components/icons/SaveIcon'
 import Trans from '@/components/translation/trans/TransClient'
+import { clickSaveSimulation } from '@/constants/tracking/posthogTrackers'
+import { clickSaveSimulationEvent } from '@/constants/tracking/simulation'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useDebug } from '@/hooks/useDebug'
 import { useIframe } from '@/hooks/useIframe'
-import { useCurrentSimulation } from '@/publicodes-state'
+import { useCurrentSimulation, useFormState } from '@/publicodes-state'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 
 type Props = { toggleQuestionList: () => void; toggleSaveModal?: () => void }
 
@@ -16,7 +19,9 @@ export default function TotalButtons({
   toggleQuestionList,
   toggleSaveModal,
 }: Props) {
-  const { savedViaEmail } = useCurrentSimulation()
+  const { savedViaEmail, progression } = useCurrentSimulation()
+
+  const { currentQuestion } = useFormState()
 
   const { isFrenchRegion } = useIframe()
   const { t } = useClientTranslation()
@@ -51,6 +56,13 @@ export default function TotalButtons({
             'Enregistrer et reprendre plus tard'
           )}
           onClick={() => {
+            trackEvent(clickSaveSimulationEvent)
+            trackPosthogEvent(
+              clickSaveSimulation({
+                question: currentQuestion as string,
+                completionPercentage: progression * 100,
+              })
+            )
             toggleSaveModal()
           }}>
           {savedViaEmail ? (
