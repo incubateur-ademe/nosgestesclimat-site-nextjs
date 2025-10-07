@@ -5,6 +5,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import i18nConfig from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
+import { ClientLayout } from './_components/ClientLayout'
 
 export async function generateMetadata(props: DefaultPageProps) {
   const { locale } = await props.params
@@ -26,8 +27,10 @@ export default async function NotFound({ params }: DefaultPageProps) {
   const { locale } = (await params) ?? {}
 
   return (
-    <Main>
-      <Route404 locale={locale ?? i18nConfig.defaultLocale} />
-    </Main>
+    <ClientLayout locale={locale ?? i18nConfig.defaultLocale}>
+      <Main>
+        <Route404 locale={locale ?? i18nConfig.defaultLocale} />
+      </Main>
+    </ClientLayout>
   )
 }
