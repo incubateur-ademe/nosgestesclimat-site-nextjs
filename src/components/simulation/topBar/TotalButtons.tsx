@@ -43,6 +43,7 @@ export default function TotalButtons({
       {toggleSaveModal && isFrenchRegion ? (
         <Button
           color="text"
+          title={t('Reprendre plus tard')}
           size="sm"
           className="h-10 w-10 gap-2 p-0! font-medium sm:w-auto lg:px-4! lg:py-2!"
           aria-label={t(

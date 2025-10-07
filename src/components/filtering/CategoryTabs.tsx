@@ -85,7 +85,7 @@ export default function CategoryTabs({
         aria-label="Filtres par catégorie"
         tabIndex={-1}
         className={twMerge(
-          'mb-4 flex flex-wrap justify-start gap-1',
+          'mb-4 flex flex-wrap justify-start gap-2',
           className
         )}
         onKeyDown={handleKeyDown}>

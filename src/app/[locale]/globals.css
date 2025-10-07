@@ -743,3 +743,7 @@ a:focus {
 a[name='variations'] {
   @apply bg-alimentation-800!;
 }
+#documentation-rule-root article > h1,
+#documentation-rule-root article h2 {
+  @apply text-base! font-normal!;
+}

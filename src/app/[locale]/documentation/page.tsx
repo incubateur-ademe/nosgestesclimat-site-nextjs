@@ -1,4 +1,3 @@
-import ContentLarge from '@/components/layout/ContentLarge'
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
@@ -18,12 +17,10 @@ export const generateMetadata = getCommonMetadata({
 
 export default function Documentation() {
   return (
-    <ContentLarge>
-      <div className="w-full max-w-4xl p-4 md:mx-auto md:py-8">
-        <PasserTestBanner />
+    <div className="w-full max-w-4xl p-4 md:mx-auto md:py-8">
+      <PasserTestBanner />
 
-        <DocumentationLanding />
-      </div>
-    </ContentLarge>
+      <DocumentationLanding />
+    </div>
   )
 }

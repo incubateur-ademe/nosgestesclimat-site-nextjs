@@ -208,7 +208,8 @@ export default function GetResultsByEmail({
                   message: 'Veuillez entrer une adresse email valide',
                 },
               })}
-              aria-label="Entrez votre adresse email"
+              aria-label={t('Entrez votre adresse email')}
+              title={t('Entrez votre adresse email')}
               error={errors.email?.message}
               data-cypress-id="fin-email-input"
               className="mb-2"

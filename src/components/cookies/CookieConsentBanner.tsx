@@ -89,29 +89,35 @@ export default function CookieConsentBanner({
             mieux piloter notre budget.
           </Trans>
         </p>
-        <div className="mt-6 flex w-full flex-row flex-wrap items-start justify-start gap-2 md:flex-nowrap md:items-center">
-          <Button
-            size="sm"
-            color="secondary"
-            onClick={openSettings}
-            data-testid="cookie-banner-customize-button">
-            <Trans i18nKey="cookies.banner.customize">Personnaliser</Trans>
-          </Button>
-          <Button
-            size="sm"
-            color="secondary"
-            onClick={refuseAll}
-            data-testid="cookie-banner-refuse-button">
-            <Trans i18nKey="cookies.banner.refuseAll">Tout refuser</Trans>
-          </Button>
-          <Button
-            size="sm"
-            color="primary"
-            onClick={acceptAll}
-            data-testid="cookie-banner-accept-button">
-            <Trans i18nKey="cookies.banner.acceptAll">Tout accepter</Trans>
-          </Button>
-        </div>
+        <ul className="mt-6 flex w-full flex-row flex-wrap items-start justify-start gap-2 md:flex-nowrap md:items-center">
+          <li>
+            <Button
+              size="sm"
+              color="secondary"
+              onClick={openSettings}
+              data-testid="cookie-banner-customize-button">
+              <Trans i18nKey="cookies.banner.customize">Personnaliser</Trans>
+            </Button>
+          </li>
+          <li>
+            <Button
+              size="sm"
+              color="secondary"
+              onClick={refuseAll}
+              data-testid="cookie-banner-refuse-button">
+              <Trans i18nKey="cookies.banner.refuseAll">Tout refuser</Trans>
+            </Button>
+          </li>
+          <li>
+            <Button
+              size="sm"
+              color="primary"
+              onClick={acceptAll}
+              data-testid="cookie-banner-accept-button">
+              <Trans i18nKey="cookies.banner.acceptAll">Tout accepter</Trans>
+            </Button>
+          </li>
+        </ul>
       </div>
     </Modal>
   )
