@@ -161,7 +161,7 @@ describe('ArticlePage', () => {
       const params = Promise.resolve({
         category: 'cat',
         article: 'art',
-        locale: 'es' as Locale,
+        locale: 'en' as Locale,
       })
       await ArticlePage({ params })
       expect(mockRedirect).toHaveBeenCalledWith('/fr/blog/cat/art')
