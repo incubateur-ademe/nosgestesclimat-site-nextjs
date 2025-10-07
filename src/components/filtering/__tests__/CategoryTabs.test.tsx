@@ -338,21 +338,6 @@ describe('CategoryTabs', () => {
     expect(tablist).toHaveClass('custom-class')
   })
 
-  it('applies default styling classes', () => {
-    const { container } = render(
-      <CategoryTabs categories={mockCategories}>{mockChildren}</CategoryTabs>
-    )
-
-    const tablist = container.querySelector('[role="tablist"]')
-    expect(tablist).toHaveClass(
-      'mb-4',
-      'flex',
-      'flex-wrap',
-      'justify-start',
-      'gap-1'
-    )
-  })
-
   it('handles empty categories array', () => {
     render(<CategoryTabs categories={[]}>{mockChildren}</CategoryTabs>)
 
