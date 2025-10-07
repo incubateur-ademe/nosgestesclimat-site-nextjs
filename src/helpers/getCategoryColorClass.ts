@@ -52,17 +52,17 @@ export function getBackgroundLightColor(category?: string | null) {
 export function getBackgroundDarkColor(category?: string | null) {
   switch (category) {
     case 'transport':
-      return `bg-transport-900`
+      return `bg-transport-800`
     case 'alimentation':
-      return `bg-alimentation-900`
+      return `bg-alimentation-800`
     case 'logement':
-      return `bg-logement-900`
+      return `bg-logement-800`
     case 'divers':
-      return `bg-divers-900`
+      return `bg-divers-800`
     case 'services sociétaux':
-      return `bg-servicessocietaux-900`
+      return `bg-servicessocietaux-800`
     default:
-      return 'bg-primary-900'
+      return 'bg-primary-800'
   }
 }
 
