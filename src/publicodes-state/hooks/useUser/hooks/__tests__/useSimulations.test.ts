@@ -17,7 +17,8 @@ const mockGenerateSimulation = vi.mocked(generateSimulation)
 
 describe('useSimulations', () => {
   const mockMigrationInstructions: Migration = {
-    version: '1.0.0',
+    keysToMigrate: {},
+    valuesToMigrate: {},
   } as unknown as Migration
 
   const createMockSimulation = (
@@ -197,7 +198,7 @@ describe('useSimulations', () => {
       })
     })
 
-    it('should handle foldedStepToAdd for regular questions', () => {
+    it('should handle foldedStepToAdd for regular questions (default)', () => {
       const currentSimulation = createMockSimulation({
         id: 'current-sim',
         foldedSteps: [],
@@ -219,7 +220,6 @@ describe('useSimulations', () => {
         result.current.updateCurrentSimulation({
           foldedStepToAdd: {
             foldedStep: 'divers . textile . volume' as DottedName,
-            value: 'minimum',
             isMosaicParent: false,
             isMosaicChild: false,
           },
@@ -237,11 +237,11 @@ describe('useSimulations', () => {
         updatedSimulation.extendedSituation['divers . textile . volume']
       ).toEqual({
         source: 'default',
-        nodeValue: 'minimum',
+        nodeValue: 'non défini',
       })
     })
 
-    it('should handle mosaic parent correctly', () => {
+    it('should handle default mosaic parent correctly', () => {
       const currentSimulation = createMockSimulation({
         id: 'current-sim',
         foldedSteps: [],
@@ -263,9 +263,8 @@ describe('useSimulations', () => {
         result.current.updateCurrentSimulation({
           foldedStepToAdd: {
             foldedStep: 'divers . ameublement . meubles' as DottedName,
-            value: 5,
+            value: null,
             isMosaicParent: true,
-            isMosaicChild: false,
           },
         })
       })
@@ -282,7 +281,7 @@ describe('useSimulations', () => {
       ).toBeUndefined()
     })
 
-    it('should handle mosaic child correctly', () => {
+    it('should handle default mosaic child correctly', () => {
       const currentSimulation = createMockSimulation({
         id: 'current-sim',
         foldedSteps: [],
@@ -305,7 +304,6 @@ describe('useSimulations', () => {
           foldedStepToAdd: {
             foldedStep: 'divers . ameublement . meubles . canapé' as DottedName,
             value: 1,
-            isMosaicParent: false,
             isMosaicChild: true,
           },
         })
