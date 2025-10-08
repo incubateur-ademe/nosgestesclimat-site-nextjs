@@ -4,10 +4,8 @@ import { FAQ_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Emoji from '@/design-system/utils/Emoji'
 import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDisplayed'
-import i18nConfig, { type Locale } from '@/i18nConfig'
+import i18nConfig from '@/i18nConfig'
 import { useCurrentLocale } from 'next-i18n-router/client'
-import { usePathname } from 'next/navigation'
-import { useCallback } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const NO_ES_PATHNAMES = new Set([FAQ_PATH])
@@ -48,26 +46,26 @@ export default function LanguageSwitchButton({
   className?: string
 }) {
   const currentLocale = useCurrentLocale(i18nConfig)
-  const pathname = usePathname()
+  // const pathname = usePathname()
 
   // Stable function to get href for a locale - memoized to prevent unnecessary re-renders
-  const getHref = useCallback(
-    (newLocale: Locale) => {
-      // Get pathname without current locale
-      const pathWithoutCurrentLocale = removeLocaleFromPathname(
-        pathname,
-        i18nConfig.locales
-      )
+  // const getHref = useCallback(
+  //   (newLocale: Locale) => {
+  //     // Get pathname without current locale
+  //     const pathWithoutCurrentLocale = removeLocaleFromPathname(
+  //       pathname,
+  //       i18nConfig.locales
+  //     )
 
-      // Ensure path starts with / and add new locale
-      const cleanPath = pathWithoutCurrentLocale.startsWith('/')
-        ? pathWithoutCurrentLocale
-        : `/${pathWithoutCurrentLocale}`
+  //     // Ensure path starts with / and add new locale
+  //     const cleanPath = pathWithoutCurrentLocale.startsWith('/')
+  //       ? pathWithoutCurrentLocale
+  //       : `/${pathWithoutCurrentLocale}`
 
-      return `/${newLocale}${cleanPath}`
-    },
-    [pathname]
-  )
+  //     return `/${newLocale}${cleanPath}`
+  //   },
+  //   [pathname]
+  // )
 
   // // Memoize the pathname without locale for ES filtering - only recalculate when pathname changes
   // const pathWithoutLocale = useMemo(() => {
