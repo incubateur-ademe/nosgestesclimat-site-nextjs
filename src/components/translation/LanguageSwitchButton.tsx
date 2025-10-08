@@ -5,6 +5,7 @@ import { FAQ_PATH } from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDisplayed'
+import { updateLang } from '@/helpers/language/updateLang'
 import { updateLangCookie } from '@/helpers/language/updateLangCookie'
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { trackEvent } from '@/utils/analytics/trackEvent'
@@ -51,7 +52,10 @@ export default function LanguageSwitchButton({
 
   const handleChange = (newLocale: Locale) => {
     trackEvent(footerClickLanguage(newLocale))
-    updateLangCookie(newLocale)
+    updateLang({
+      newLocale,
+      currentLocale: currentLocale || i18nConfig.defaultLocale,
+    })
   }
 
   if (
