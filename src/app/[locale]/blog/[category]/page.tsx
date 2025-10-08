@@ -123,14 +123,19 @@ export default async function CategoryPage({
 
   return (
     <>
-      <div className="-mt-12">
+      <div>
         <CategoryJSONLD
           title={title}
           questions={questions}
           categorySlug={category}
         />
 
-        <CategoryHero title={title} description={description} slug={category} />
+        <CategoryHero
+          className="mt-0"
+          title={title}
+          description={description}
+          slug={category}
+        />
 
         <ContentLarge tag="div" className="overflow-hidden px-4 lg:px-0">
           {mainArticle && (

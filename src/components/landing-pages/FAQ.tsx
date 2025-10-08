@@ -1,3 +1,5 @@
+'use client'
+
 import Separator from '@/design-system/layout/Separator'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'

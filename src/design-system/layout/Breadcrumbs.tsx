@@ -25,22 +25,24 @@ export default function Breadcrumbs({
   const { t } = useClientTranslation()
 
   const lastItem = items[items.length - 1]
+  const itemBeforeCurrent = items[items.length - 2]
 
   return (
-    <section className={twMerge('h-[75px] w-full', className)}>
+    <section
+      className={twMerge('flex h-[75px] w-full items-center', className)}>
       <nav
         role="navigation"
         id="breadcrumbs-navigation"
         aria-label={t('Chemin de navigation')}
         aria-labelledby="breadcrumbs-title"
-        className="h-full w-full">
+        className="w-full">
         <p id="breadcrumbs-title" className="sr-only">
           <Trans>Chemin de navigation</Trans>
         </p>
         {/* Mobile version */}
         <div className="mr-2 inline-flex items-center gap-2 last:mr-0 md:hidden">
           <svg
-            className="h-5 w-5 rotate-[90deg] text-gray-500"
+            className="h-5 w-5 rotate-[90deg] text-gray-700"
             fill="currentColor"
             viewBox="0 0 20 20"
             aria-hidden="true">
@@ -51,22 +53,26 @@ export default function Breadcrumbs({
             />
           </svg>
 
-          <Link
-            onClick={(e) => {
-              if (lastItem.isDisabled) {
-                e.preventDefault()
-              }
-              trackEvent(breadcrumbClickLink(lastItem.href))
-            }}
-            title={`${lastItem.label} - ${t('Visiter cette page')}`}
-            aria-current={lastItem.isActive}
-            className={twMerge(
-              'text-default hover:text-primary-700 max-w-full text-sm text-ellipsis whitespace-nowrap capitalize hover:underline',
-              linkClassName
-            )}
-            href={lastItem.href}>
-            <span className="whitespace-break-spaces">{lastItem.label}</span>
-          </Link>
+          {itemBeforeCurrent && (
+            <Link
+              onClick={(e) => {
+                if (itemBeforeCurrent.isDisabled) {
+                  e.preventDefault()
+                }
+                trackEvent(breadcrumbClickLink(itemBeforeCurrent.href))
+              }}
+              title={`${itemBeforeCurrent.label} - ${t('Visiter cette page')}`}
+              aria-current={itemBeforeCurrent.isActive}
+              className={twMerge(
+                'text-default hover:text-primary-700 max-w-full text-sm text-ellipsis whitespace-nowrap capitalize hover:underline',
+                linkClassName
+              )}
+              href={itemBeforeCurrent.href}>
+              <span className="whitespace-break-spaces">
+                {itemBeforeCurrent.label}
+              </span>
+            </Link>
+          )}
         </div>
         {/* Desktop version */}
         <ul className="mx-auto hidden h-full w-full flex-wrap items-center md:flex">
@@ -75,7 +81,7 @@ export default function Breadcrumbs({
               <li className="mr-2 inline-flex items-center gap-2 last:mr-0">
                 <Link
                   onClick={(e) => {
-                    if (isDisabled) {
+                    if (isDisabled || isActive) {
                       e.preventDefault()
                     }
                     trackEvent(breadcrumbClickLink(href))
@@ -95,7 +101,7 @@ export default function Breadcrumbs({
                 </Link>
                 {index < items.length - 1 && (
                   <svg
-                    className="h-5 w-5 rotate-[-90deg] text-gray-500"
+                    className="h-5 w-5 rotate-[-90deg] text-gray-700"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     aria-hidden="true">
