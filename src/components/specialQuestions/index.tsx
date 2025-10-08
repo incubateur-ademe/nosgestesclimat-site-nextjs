@@ -1,5 +1,6 @@
 import Ameublement from './Ameublement'
 import Avion from './Avion'
+import Chauffage from './Chauffage'
 import Plats from './Plats'
 import Textile from './Textile'
 import Voiture from './Voiture'
@@ -12,7 +13,11 @@ type Props = {
 
 const specialQuestions: Record<string, any> = {
   'alimentation . plats': (props: Props) => (
-    <Plats key="alimentation . plats" {...props} />
+    <Plats
+      key="alimentation . plats"
+      question="alimentation . plats"
+      {...props}
+    />
   ),
   'transport . avion . court courrier . heures de vol': (props: Props) => (
     <Avion
@@ -53,6 +58,13 @@ const specialQuestions: Record<string, any> = {
     <Ameublement
       key="divers . ameublement . préservation"
       question="divers . ameublement . préservation"
+      {...props}
+    />
+  ),
+  'logement . chauffage': (props: Props) => (
+    <Chauffage
+      key="logement . chauffage"
+      question="logement . chauffage"
       {...props}
     />
   ),

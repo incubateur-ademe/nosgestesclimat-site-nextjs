@@ -1,9 +1,18 @@
+import PencilIcon from '@/components/icons/PencilIcon'
+import { captureSubQuestion } from '@/constants/tracking/posthogTrackers'
+import { openSubQuestion } from '@/constants/tracking/question'
+import Button from '@/design-system/buttons/Button'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { motion } from 'framer-motion'
+import { useState } from 'react'
 import MosaicQuestion from './mosaic/MosaicQuestion'
 
 type Props = {
   question: DottedName
   questionsOfMosaic: DottedName[]
+  secondaryQuestionsOfMosaic?: DottedName[]
   firstInputId: string
   label: string
 }
@@ -11,26 +20,87 @@ type Props = {
 export default function Mosaic({
   question,
   questionsOfMosaic,
+  secondaryQuestionsOfMosaic,
   firstInputId,
   label,
   ...props
 }: Props) {
-  return (
-    <fieldset className="grid gap-2 md:grid-cols-2 md:gap-4">
-      <legend className="sr-only">{label}</legend>
+  const [isMoreOptionsVisible, setIsMoreOptionsVisible] = useState(false)
+  const { t } = useClientTranslation()
 
-      {questionsOfMosaic
-        ? questionsOfMosaic.map((questionOfMosaic, index) => (
-            <MosaicQuestion
-              key={questionOfMosaic}
-              parentMosaic={question}
-              question={questionOfMosaic}
-              index={index}
-              firstInputId={firstInputId}
-              {...props}
-            />
-          ))
-        : 'Cette mosaique n a pas d enfants.'}
-    </fieldset>
+  if (secondaryQuestionsOfMosaic && secondaryQuestionsOfMosaic.length > 0) {
+    questionsOfMosaic = questionsOfMosaic.filter((q) => {
+      return !secondaryQuestionsOfMosaic.includes(q)
+    })
+  }
+
+  return (
+    <>
+      <fieldset className="grid w-full gap-2 md:grid-cols-2 md:gap-4">
+        <legend className="sr-only">{label}</legend>
+
+        {questionsOfMosaic
+          ? questionsOfMosaic.map((questionOfMosaic, index) => (
+              <MosaicQuestion
+                key={questionOfMosaic}
+                parentMosaic={question}
+                question={questionOfMosaic}
+                index={index}
+                firstInputId={firstInputId}
+                {...props}
+              />
+            ))
+          : "Cette mosaique n'a pas d'enfants."}
+      </fieldset>
+
+      {secondaryQuestionsOfMosaic && secondaryQuestionsOfMosaic.length > 0 && (
+        <div className="w-full">
+          {isMoreOptionsVisible && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.1 }}>
+              <fieldset className="mt-2 grid gap-2 md:mt-4 md:grid-cols-2 md:gap-4">
+                {secondaryQuestionsOfMosaic.map((questionOfMosaic, index) => (
+                  <MosaicQuestion
+                    key={questionOfMosaic}
+                    parentMosaic={question}
+                    question={questionOfMosaic}
+                    index={questionsOfMosaic.length + index}
+                    firstInputId={firstInputId}
+                    {...props}
+                  />
+                ))}
+              </fieldset>
+            </motion.div>
+          )}
+          <Button
+            color="link"
+            size="sm"
+            onClick={() => {
+              trackEvent(openSubQuestion({ question }))
+              trackPosthogEvent(
+                captureSubQuestion({
+                  question,
+                  state: isMoreOptionsVisible ? 'closed' : 'opened',
+                })
+              )
+              setIsMoreOptionsVisible(!isMoreOptionsVisible)
+            }}
+            className="mt-2 md:mt-4">
+            <span className="flex items-center">
+              <PencilIcon
+                className="stroke-primary-700 mr-2"
+                width="16"
+                height="16"
+              />
+              {isMoreOptionsVisible
+                ? t('Fermer')
+                : t('simulator.mosaic.openMoreOptions', 'Plus d’options')}
+            </span>
+          </Button>
+        </div>
+      )}
+    </>
   )
 }
