@@ -85,9 +85,10 @@ export default function NameForm({
         <TextInput
           label={
             <p className="mb-0 flex w-full justify-between">
-              <Trans>Nombre de participants attendus</Trans>
+              <span>
+                <Trans>Nombre de participants attendus</Trans>
+              </span>{' '}
               <span className="text-secondary-700 font-bold italic">
-                {' '}
                 <Trans>facultatif</Trans>
               </span>
             </p>

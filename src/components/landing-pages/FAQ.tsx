@@ -1,5 +1,3 @@
-'use client'
-
 import Separator from '@/design-system/layout/Separator'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -47,24 +45,12 @@ export default function FAQ({
           {questions.map(({ question, answer }, index) => (
             <li key={`question-${index}`}>
               <details className="group rounded-lg bg-white px-4 py-4 transition-all duration-200">
-                <summary
-                  className="flex cursor-pointer list-none items-center justify-between gap-2 [&::-webkit-details-marker]:hidden [&::marker]:hidden"
-                  role="button"
-                  tabIndex={0}
-                  aria-expanded="false"
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault()
-                      const details = e.currentTarget
-                        .parentElement as HTMLDetailsElement
-                      details.open = !details.open
-                    }
-                  }}>
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-2 [&::-webkit-details-marker]:hidden [&::marker]:hidden">
                   <h3 className="mb-0 text-[13px] font-bold md:text-base">
                     {question}
                   </h3>
 
-                  <PlusIcon className="group-open:fill-primary-700 inline-block h-4 w-4 min-w-4 origin-center transform transition-transform duration-300 group-open:rotate-45" />
+                  <PlusIcon className="stroke-primary-700 inline-block h-4 w-4 min-w-4 origin-center transform transition-transform duration-300 group-open:rotate-45" />
                   <span className="sr-only">
                     Cliquez pour afficher la réponse
                   </span>
