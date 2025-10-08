@@ -169,6 +169,7 @@ export default async function CategoryPage({
             subTitle={faqDescription}
             isBackgroundSkewed={false}
             shouldUseDangerouslySetInnerHTML={true}
+            locale={locale}
           />
         )}
 
