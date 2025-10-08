@@ -7,7 +7,7 @@ import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDis
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import { usePathname } from 'next/navigation'
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const NO_ES_PATHNAMES = new Set([FAQ_PATH])
@@ -48,21 +48,12 @@ export default function LanguageSwitchButton({
   className?: string
 }) {
   const currentLocale = useCurrentLocale(i18nConfig)
-  const originalPathname = usePathname()
+  const pathname = usePathname()
 
-  // Memoize the pathname processing to avoid unnecessary recalculations
-  const { pathWithoutLocale, getHref } = useMemo(() => {
-    // Create a safe copy of the pathname to avoid any potential mutations
-    const pathname = String(originalPathname)
-
-    // Safely get pathname without locale for ES filtering
-    const pathWithoutLocale = removeLocaleFromPathname(
-      pathname,
-      i18nConfig.locales
-    )
-
-    const getHref = (newLocale: Locale) => {
-      // Safely remove current locale from pathname
+  // Stable function to get href for a locale - memoized to prevent unnecessary re-renders
+  const getHref = useCallback(
+    (newLocale: Locale) => {
+      // Get pathname without current locale
       const pathWithoutCurrentLocale = removeLocaleFromPathname(
         pathname,
         i18nConfig.locales
@@ -74,11 +65,16 @@ export default function LanguageSwitchButton({
         : `/${pathWithoutCurrentLocale}`
 
       return `/${newLocale}${cleanPath}`
-    }
+    },
+    [pathname]
+  )
 
-    return { pathWithoutLocale, getHref }
-  }, [originalPathname])
+  // Memoize the pathname without locale for ES filtering - only recalculate when pathname changes
+  const pathWithoutLocale = useMemo(() => {
+    return removeLocaleFromPathname(pathname, i18nConfig.locales)
+  }, [pathname])
 
+  // Memoize the filtered language buttons - only recalculate when pathname or config changes
   const langButtonsDisplayedWithFilteredEs = useMemo(
     () =>
       NO_ES_PATHNAMES.has(pathWithoutLocale)
@@ -87,6 +83,7 @@ export default function LanguageSwitchButton({
     [pathWithoutLocale, langButtonsDisplayed]
   )
 
+  // Early return if no buttons should be displayed
   if (
     Object.entries(langButtonsDisplayed ?? {}).every(([_, value]) => !value)
   ) {
