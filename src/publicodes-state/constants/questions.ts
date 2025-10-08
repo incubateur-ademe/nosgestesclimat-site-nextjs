@@ -10,6 +10,7 @@ export const MUST_NOT_ASK_QUESTIONS: Set<DottedName> = new Set([
 // We use the DottedName type from nosgestesclimat to make sure the build will break when using rules that are not in the model.
 export const PRIORITY_QUESTIONS: Set<DottedName> = new Set([
   'alimentation . plats',
+  'logement . type',
   'logement . chauffage . bois . type',
   'transport . voiture . km',
   'transport . voiture . voyageurs',
