@@ -7,6 +7,7 @@ type InputGroupProps = {
   label?: string | ReactNode
   error?: string | ReactNode
   helperText?: string | ReactNode
+  srOnlyHelperText?: string | ReactNode
   containerClassName?: string
   labelClassName?: string
   required?: boolean
@@ -20,6 +21,7 @@ export default function InputGroup({
   label,
   error,
   helperText,
+  srOnlyHelperText,
   containerClassName,
   labelClassName,
   required = false,
@@ -30,11 +32,13 @@ export default function InputGroup({
   const id = useId()
   const fieldId = `field-${id}`
   const helperTextId = `helper-${id}`
+  const srOnlyHelperTextId = `srOnlyHelper-${id}`
   const errorId = `error-${id}`
 
   const describedBy = [
     helperText ? helperTextId : undefined,
     error ? errorId : undefined,
+    srOnlyHelperText ? srOnlyHelperTextId : undefined,
   ]
     .filter(Boolean)
     .join(' ')
@@ -63,6 +67,14 @@ export default function InputGroup({
             <span className="text-base font-bold text-pink-600">{mention}</span>
           )}
         </label>
+      ) : null}
+
+      {srOnlyHelperText ? (
+        <span
+          id={helperTextId}
+          className={twMerge('sr-only -mt-1 mb-2 text-base text-slate-900')}>
+          {srOnlyHelperText}
+        </span>
       ) : null}
 
       {helperText ? (

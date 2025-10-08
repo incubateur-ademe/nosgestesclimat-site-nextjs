@@ -66,8 +66,8 @@ export default function EmailForm() {
         data-cypress-id="organisation-connexion-email-input"
         value={user?.organisation?.administratorEmail || user?.email || ''}
         label={<Trans>Votre adresse electronique</Trans>}
-        placeholder="jeanmarc@nosgestesclimat.fr"
-        helperText={
+        placeholder="nom.prenom@domaine.fr"
+        srOnlyHelperText={
           <Trans i18nKey="organisations.connexion.email.input.helper">
             Format attendu : nom.prenom@domaine.fr
           </Trans>

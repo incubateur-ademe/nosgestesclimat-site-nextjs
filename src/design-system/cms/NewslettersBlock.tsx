@@ -50,7 +50,7 @@ function SuccessMessage() {
       role="status"
       aria-live="polite"
       aria-atomic="true">
-      <CheckIcon className="mb-4 h-12 w-12 fill-green-500" aria-hidden="true" />
+      <CheckIcon className="mb-4 h-12 w-12 fill-green-700" aria-hidden="true" />
 
       <h2 className="mb-4 text-xl font-bold text-gray-800">
         <Trans>Merci de votre inscription !</Trans>

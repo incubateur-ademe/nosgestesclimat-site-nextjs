@@ -19,6 +19,7 @@ type Props = {
   error?: string | ReactNode
   successMessage?: ReactNode | string
   helperText?: string | ReactNode
+  srOnlyHelperText?: string | ReactNode
   className?: string
   containerClassName?: string
   placeholder?: string
@@ -42,6 +43,7 @@ export default forwardRef(function TextInput(
     error,
     successMessage,
     helperText,
+    srOnlyHelperText,
     mention,
     className,
     containerClassName,
@@ -66,6 +68,7 @@ export default forwardRef(function TextInput(
       label={label}
       error={error}
       helperText={helperText}
+      srOnlyHelperText={srOnlyHelperText}
       containerClassName={containerClassName}
       required={required}
       disabled={disabled}

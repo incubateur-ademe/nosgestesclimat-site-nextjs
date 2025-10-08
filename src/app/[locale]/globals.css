@@ -747,3 +747,10 @@ a[name='variations'] {
 #documentation-rule-root article h2 {
   @apply text-base! font-normal!;
 }
+
+/**
+** Tally
+**/
+iframe {
+  @apply bg-white;
+}
