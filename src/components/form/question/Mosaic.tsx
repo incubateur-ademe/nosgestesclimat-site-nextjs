@@ -55,25 +55,6 @@ export default function Mosaic({
 
       {secondaryQuestionsOfMosaic && secondaryQuestionsOfMosaic.length > 0 && (
         <div className="w-full">
-          {isMoreOptionsVisible && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.1 }}>
-              <fieldset className="mt-2 grid gap-2 md:mt-4 md:grid-cols-2 md:gap-4">
-                {secondaryQuestionsOfMosaic.map((questionOfMosaic, index) => (
-                  <MosaicQuestion
-                    key={questionOfMosaic}
-                    parentMosaic={question}
-                    question={questionOfMosaic}
-                    index={questionsOfMosaic.length + index}
-                    firstInputId={firstInputId}
-                    {...props}
-                  />
-                ))}
-              </fieldset>
-            </motion.div>
-          )}
           <Button
             color="link"
             size="sm"
@@ -98,7 +79,26 @@ export default function Mosaic({
                 ? t('Fermer')
                 : t('simulator.mosaic.openMoreOptions', 'Plus d’options')}
             </span>
-          </Button>
+          </Button>{' '}
+          {isMoreOptionsVisible && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.1 }}>
+              <fieldset className="mt-2 grid gap-2 md:mt-4 md:grid-cols-2 md:gap-4">
+                {secondaryQuestionsOfMosaic.map((questionOfMosaic, index) => (
+                  <MosaicQuestion
+                    key={questionOfMosaic}
+                    parentMosaic={question}
+                    question={questionOfMosaic}
+                    index={questionsOfMosaic.length + index}
+                    firstInputId={firstInputId}
+                    {...props}
+                  />
+                ))}
+              </fieldset>
+            </motion.div>
+          )}
         </div>
       )}
     </>
