@@ -7,6 +7,9 @@ export default function Chauffage({ question }: { question: DottedName }) {
     'logement . chauffage . bouteille gaz . présent',
     'logement . chauffage . fioul . présent',
     'logement . chauffage . citerne propane . présent',
+    'logement . chauffage . chauffe eau solaire . présent',
+    'logement . climatisation . présent',
+    'logement . électricité . photovoltaique . présent',
   ]
 
   return (
