@@ -1,4 +1,3 @@
-import PencilIcon from '@/components/icons/PencilIcon'
 import { captureSubQuestion } from '@/constants/tracking/posthogTrackers'
 import { openSubQuestion } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
@@ -68,17 +67,10 @@ export default function Mosaic({
               )
               setIsMoreOptionsVisible(!isMoreOptionsVisible)
             }}
-            className="mt-2 md:mt-4">
-            <span className="flex items-center">
-              <PencilIcon
-                className="stroke-primary-700 mr-2"
-                width="16"
-                height="16"
-              />
-              {isMoreOptionsVisible
-                ? t('Fermer')
-                : t('simulator.mosaic.openMoreOptions', 'Plus d’options')}
-            </span>
+            className="mt-2 w-30 md:mt-4">
+            {isMoreOptionsVisible
+              ? t('Fermer')
+              : t('simulator.mosaic.openMoreOptions', 'Plus d’options')}
           </Button>{' '}
           {isMoreOptionsVisible && (
             <motion.div
