@@ -52,7 +52,16 @@ export default function useSetValue({
             dottedName: mosaicChildDottedName,
             situation,
           })
-          if (!isMissing) return accumulator
+          const isAucunBeingSelected =
+            dottedName.includes('aucun') &&
+            safeEvaluate(dottedName)?.nodeValue === false
+
+          const isAucunSelected =
+            mosaicChildDottedName.includes('aucun') &&
+            safeEvaluate(mosaicChildDottedName)?.nodeValue === true
+
+          if (!isMissing && !isAucunBeingSelected && !isAucunSelected)
+            return accumulator
 
           const rule = safeGetRule(mosaicChildDottedName)
           const evaluation = safeEvaluate(mosaicChildDottedName)
@@ -79,7 +88,7 @@ export default function useSetValue({
 
       return situationToAdd
     },
-    [situation, safeEvaluate, safeGetRule]
+    [situation, dottedName, safeGetRule, safeEvaluate]
   )
 
   /**
