@@ -54,6 +54,7 @@ export default function Label({
   const mustShowDescriptionQuestion: DottedName[] = [
     'transport . voiture . utilisateur',
     'logement . âge',
+    'logement . chauffage',
   ]
 
   if (!label) return
@@ -109,7 +110,7 @@ export default function Label({
       {description &&
         (mustShowDescriptionQuestion.includes(question) ? (
           <div className="mt-2 mb-6 text-xs italic md:text-sm">
-            {description}
+            <Markdown>{description}</Markdown>{' '}
           </div>
         ) : isOpen ? (
           <motion.div
