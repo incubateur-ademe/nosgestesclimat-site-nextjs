@@ -1,5 +1,6 @@
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import { faker } from '@faker-js/faker'
+import type { ExtendedSituation } from '@incubateur-ademe/nosgestesclimat'
 import { screen, waitFor } from '@testing-library/dom'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
@@ -29,6 +30,7 @@ const mockSimulation = {
   },
   date: new Date('2024-03-20'),
   situation: {},
+  extendedSituation: {} as ExtendedSituation,
   foldedSteps: [],
   actionChoices: {},
 }
@@ -48,6 +50,7 @@ const mockGroupSimulation = {
   },
   date: new Date('2024-03-15'),
   situation: {},
+  extendedSituation: {} as ExtendedSituation,
   foldedSteps: [],
   actionChoices: {},
   severity: 1,
