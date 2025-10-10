@@ -1,8 +1,10 @@
 import type { Group } from '@/types/groups'
 import type {
   DottedName,
+  ExtendedSituation,
   Metrics,
   NGCRuleNode,
+  NodeValue,
   SuggestionValue,
 } from '@incubateur-ademe/nosgestesclimat'
 import type PublicodesEngine from 'publicodes'
@@ -58,9 +60,13 @@ export type ComputedResults = Record<Metric, ComputedResultsFootprint>
 
 export type UpdateCurrentSimulationProps = {
   situation?: Situation
-  situationToAdd?: Situation
   foldedSteps?: DottedName[]
-  foldedStepToAdd?: DottedName
+  foldedStepToAdd?: {
+    foldedStep: DottedName
+    value?: NodeValue
+    isMosaicParent?: boolean
+    isMosaicChild?: boolean
+  }
   actionChoices?: any
   defaultAdditionalQuestionsAnswers?: Record<string, string>
   customAdditionalQuestionsAnswers?: Record<string, string>
@@ -77,6 +83,7 @@ export type Simulation = {
   id: string
   date: Date | string
   situation: Situation
+  extendedSituation: ExtendedSituation
   foldedSteps: DottedName[]
   actionChoices: any
   persona?: string
