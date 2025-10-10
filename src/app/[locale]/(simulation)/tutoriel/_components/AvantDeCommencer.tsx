@@ -42,7 +42,7 @@ export default function AvantDeCommencer() {
         <h3 className="relative overflow-visible font-bold">
           <Emoji className="absolute top-0 -left-8">👤</Emoji>
           <Trans>
-            Il concerne votre vie personnelle, et non pas votre boulot.
+            Il concerne votre vie personnelle, et non pas votre activité.
           </Trans>
         </h3>
       </div>

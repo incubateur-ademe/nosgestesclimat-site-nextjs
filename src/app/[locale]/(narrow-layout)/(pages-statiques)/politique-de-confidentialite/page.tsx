@@ -22,7 +22,7 @@ export default async function ViePriveePage({ params }: DefaultPageProps) {
       <MDXContent
         contentEn={policy_en}
         contentFr={policy_fr}
-        contentEs={policy_fr}
+        contentEs={policy_en}
         locale={locale}
       />
     </div>
