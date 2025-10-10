@@ -20,7 +20,6 @@ const staticPagesToTest = [
   '/nouveautes',
   '/nouveautes/thwaites',
   '/politique-de-confidentialite',
-  '/politique-des-cookies',
   '/mentions-legales',
   // '/stats', // TODO: fix A11Y test breaking RANDOMLY when running on CI
   '/modele',

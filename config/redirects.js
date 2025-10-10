@@ -56,6 +56,11 @@ const redirects = [
     permanent: true,
   },
   {
+    source: '/politique-des-cookies',
+    destination: '/politique-de-confidentialite',
+    permanent: true,
+  },
+  {
     source: '/partenaires',
     destination: '/diffuser',
     permanent: true,
