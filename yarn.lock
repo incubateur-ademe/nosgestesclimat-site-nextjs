@@ -2423,10 +2423,10 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.29.tgz#5a40109a1ab5f84d6fd8fc928b19f367cbe7e7b1"
   integrity sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==
 
-"@posthog/core@1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.2.2.tgz#63382e2e208f501b2c22246ccaae55052f77ac1d"
-  integrity sha512-f16Ozx6LIigRG+HsJdt+7kgSxZTHeX5f1JlCGKI1lXcvlZgfsCR338FuMI2QRYXGl+jg/vYFzGOTQBxl90lnBg==
+"@posthog/core@1.2.4":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.2.4.tgz#4fc7af7e48902e0b0ef970e010afe72c478865aa"
+  integrity sha512-o2TkycuV98PtAkcqE8B1DJv5LBvHEDTWirK5TlkQMeF2MJg0BYliY95CeRZFILNgZJCbI3k/fhahSMRQlpXOMg==
 
 "@prisma/instrumentation@6.11.1":
   version "6.11.1"
@@ -7358,12 +7358,12 @@ forwarded-parse@2.1.2:
   resolved "https://registry.yarnpkg.com/forwarded-parse/-/forwarded-parse-2.1.2.tgz#08511eddaaa2ddfd56ba11138eee7df117a09325"
   integrity sha512-alTFZZQDKMporBH77856pXgzhEzaUVmLCDk+egLgIgHst3Tpndzz8MnKe+GzRJRfvVdn69HhpW7cmXzvtLvJAw==
 
-framer-motion@^12.23.22:
-  version "12.23.22"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-12.23.22.tgz#798333fdcc5cd65fabfc450985b7236bbdbf5d64"
-  integrity sha512-ZgGvdxXCw55ZYvhoZChTlG6pUuehecgvEAJz0BHoC5pQKW1EC5xf1Mul1ej5+ai+pVY0pylyFfdl45qnM1/GsA==
+framer-motion@^12.23.24:
+  version "12.23.24"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-12.23.24.tgz#4895b67e880bd2b1089e61fbaa32ae802fc24b8c"
+  integrity sha512-HMi5HRoRCTou+3fb3h9oTLyJGBxHfW+HnNE25tAXOvVx/IvwMHK0cx7IR4a2ZU6sh3IX1Z+4ts32PcYBOqka8w==
   dependencies:
-    motion-dom "^12.23.21"
+    motion-dom "^12.23.23"
     motion-utils "^12.23.6"
     tslib "^2.4.0"
 
@@ -8080,10 +8080,10 @@ i18next-resources-to-backend@^1.2.0:
   dependencies:
     "@babel/runtime" "^7.26.10"
 
-i18next@^25.5.3:
-  version "25.5.3"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-25.5.3.tgz#23a63f4aeb0a61cacf148a8d2bd83693d1e5e335"
-  integrity sha512-joFqorDeQ6YpIXni944upwnuHBf5IoPMuqAchGVeQLdWC2JOjxgM9V8UGLhNIIH/Q8QleRxIi0BSRQehSrDLcg==
+i18next@^25.6.0:
+  version "25.6.0"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-25.6.0.tgz#d1ed719b35af9db619738e9ce7408b75d6b7957f"
+  integrity sha512-tTn8fLrwBYtnclpL5aPXK/tAYBLWVvoHM1zdfXoRNLcI+RvtMsoZRV98ePlaW3khHYKuNh/Q65W/+NVFUeIwVw==
   dependencies:
     "@babel/runtime" "^7.27.6"
 
@@ -9222,10 +9222,10 @@ markdown-extensions@^2.0.0:
   resolved "https://registry.yarnpkg.com/markdown-extensions/-/markdown-extensions-2.0.0.tgz#34bebc83e9938cae16e0e017e4a9814a8330d3c4"
   integrity sha512-o5vL7aDWatOTX8LzaS1WMoaoxIiLRQJuIKKe2wAw6IeULDHaqbiqiggmx+pKvZDb1Sj+pE46Sn1T7lCqfFtg1Q==
 
-markdown-to-jsx@^7.7.14:
-  version "7.7.14"
-  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-7.7.14.tgz#cc68f1aec783afe6f9b708eadce62d17afb50380"
-  integrity sha512-OBq0NiByoHZTQk+CO0b4A6OJktyChs/L4E9SsrJ7z2FX3r4qQFcxOyytzW6GGVIL9wvjoxMdPySDxXyFIB64Qw==
+markdown-to-jsx@^7.7.15:
+  version "7.7.15"
+  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-7.7.15.tgz#7dad08e2b2cf35460a1c157f5d3e7bc875bcb511"
+  integrity sha512-U5dw5oRajrPTE2oJQWAbLK8RgbCDJ264AjW3fGABq+/rZjQ0E/WGVCLKAHvpKHQFUwoWoK8ZZWVPNLR/biYMhg==
 
 matcher-collection@^2.0.0:
   version "2.0.1"
@@ -9805,10 +9805,10 @@ module-details-from-path@^1.0.3:
   resolved "https://registry.yarnpkg.com/module-details-from-path/-/module-details-from-path-1.0.4.tgz#b662fdcd93f6c83d3f25289da0ce81c8d9685b94"
   integrity sha512-EGWKgxALGMgzvxYF1UyGTy0HXX/2vHLkw6+NvDKW2jypWbHpjQuj4UMcqQWXHERJhVGKikolT06G3bcKe4fi7w==
 
-motion-dom@^12.23.21:
-  version "12.23.21"
-  resolved "https://registry.yarnpkg.com/motion-dom/-/motion-dom-12.23.21.tgz#1efe2d1bdda31875f0ee56d06f02be7b562a0bdd"
-  integrity sha512-5xDXx/AbhrfgsQmSE7YESMn4Dpo6x5/DTZ4Iyy4xqDvVHWvFVoV+V2Ri2S/ksx+D40wrZ7gPYiMWshkdoqNgNQ==
+motion-dom@^12.23.23:
+  version "12.23.23"
+  resolved "https://registry.yarnpkg.com/motion-dom/-/motion-dom-12.23.23.tgz#8f874333ea1a04ee3a89eb928f518b463d589e0e"
+  integrity sha512-n5yolOs0TQQBRUFImrRfs/+6X4p3Q4n1dUEqt/H58Vx7OW6RF+foWEgmTVDhIWJIMXOuNNL0apKH2S16en9eiA==
   dependencies:
     motion-utils "^12.23.6"
 
@@ -10673,12 +10673,12 @@ postgres-interval@^1.1.0:
   dependencies:
     xtend "^4.0.0"
 
-posthog-js@^1.271.0:
-  version "1.271.0"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.271.0.tgz#3f7bb4a15b75f66f7720c60f35d8201a78673754"
-  integrity sha512-jYsWrxO+xRkSm7Sigy6SAsnd688VPG0twL3nkonbjVEy+cB80967bhA2mgu2CDTvQ14sLgYfue8ukbSR0Rtvlw==
+posthog-js@^1.275.1:
+  version "1.275.1"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.275.1.tgz#5ce7f1b0b1b90eb6631c31d8d8d08665a4d3045e"
+  integrity sha512-ILglAzeUQl7h7rB3axr5rn5j2wBp53XedzJoUha5IC594BsrScdOD9NjLpkDAqV/Q5IsRKXbYOkr+HKaxgb4FA==
   dependencies:
-    "@posthog/core" "1.2.2"
+    "@posthog/core" "1.2.4"
     core-js "^3.38.1"
     fflate "^0.4.8"
     preact "^10.19.3"
