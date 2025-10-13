@@ -2438,6 +2438,13 @@
     fuse.js "^7.0.0"
     styled-components "^6.1.1"
 
+"@publicodes/react-ui@https://pkg.pr.new/publicodes/publicodes/@publicodes/react-ui@6ca48c6":
+  version "1.9.1"
+  resolved "https://pkg.pr.new/publicodes/publicodes/@publicodes/react-ui@6ca48c6#261aab6ca41a48cd57549e7720017a7f30728da1"
+  dependencies:
+    fuse.js "^7.0.0"
+    styled-components "^6.1.1"
+
 "@publicodes/tools@^1.8.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@publicodes/tools/-/tools-1.8.0.tgz#ee48df9959dc8ca31e723dad972c43529736f897"
@@ -10832,7 +10839,7 @@ public-encrypt@^4.0.3:
     randombytes "^2.0.1"
     safe-buffer "^5.1.2"
 
-publicodes@^1.8.2, publicodes@^1.9.1:
+publicodes@^1.8.2:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.9.1.tgz#0c5031337e4515af81e5079fae29d34fbc8c0768"
   integrity sha512-sXBgGuAH/bIehF8waXm4Pp/EnqjFmxZJb6FNSAZ9FRO1neACHRYKv34lxFM3qZNyJ2RaI5jwtOupGlozMW0fcA==
