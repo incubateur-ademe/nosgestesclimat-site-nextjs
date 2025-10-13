@@ -1,4 +1,3 @@
-import { marianne } from '@/app/[locale]/layout'
 import CookieConsentBannerAndManagement from '@/components/cookies/CookieConsentBannerAndManagement'
 import { GoogleTagIframe } from '@/components/googleTagManager/GoogleTagIframe'
 import { GoogleTagScript } from '@/components/googleTagManager/GoogleTagScript'
@@ -12,7 +11,7 @@ type RootLayoutProps = PropsWithChildren & {
 }
 
 export const ServerLayout = ({ children, locale }: RootLayoutProps) => (
-  <body className={marianne.className}>
+  <>
     <SkipToMainContentLink />
 
     <CookieConsentBannerAndManagement />
@@ -23,5 +22,5 @@ export const ServerLayout = ({ children, locale }: RootLayoutProps) => (
 
     <GoogleTagScript />
     <GoogleTagIframe />
-  </body>
+  </>
 )
