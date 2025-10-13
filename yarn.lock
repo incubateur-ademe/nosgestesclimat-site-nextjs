@@ -2857,14 +2857,14 @@
     unplugin "1.0.1"
     uuid "^9.0.0"
 
-"@simonsmith/cypress-image-snapshot@^9.1.0":
-  version "9.1.0"
-  resolved "https://registry.yarnpkg.com/@simonsmith/cypress-image-snapshot/-/cypress-image-snapshot-9.1.0.tgz#13a95074627b682aaabc85c6edbb41fa4ff43b53"
-  integrity sha512-Lme+POO6mQi9eXEe3OB/6mBhdb73qbDgE/VkSCNZWVQlCt6wOOZCjVKCvfO8mPPmKjnEiePzSTSjTvpwDSogBg==
+"@simonsmith/cypress-image-snapshot@^10.0.2":
+  version "10.0.2"
+  resolved "https://registry.yarnpkg.com/@simonsmith/cypress-image-snapshot/-/cypress-image-snapshot-10.0.2.tgz#606aa4d684ee941cf30b85ec0bf0ecc160bc5ed8"
+  integrity sha512-FXapCkDKsL6F0M3Pqh8mIjhS5R4Jt8LaVxojLkGcza/WeqBxRYjkq+INfVV3hfzGRpQHsF3hklU1srALEDciQQ==
   dependencies:
-    "@types/jest-image-snapshot" "^6.1.0"
+    "@types/jest-image-snapshot" "^6.4.0"
     chalk "^4.1.2"
-    jest-image-snapshot "^6.1.0"
+    jest-image-snapshot "^6.5.1"
 
 "@sinclair/typebox@^0.34.0":
   version "0.34.41"
@@ -3664,7 +3664,7 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
-"@types/jest-image-snapshot@^6.1.0":
+"@types/jest-image-snapshot@^6.4.0":
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/@types/jest-image-snapshot/-/jest-image-snapshot-6.4.0.tgz#641054d2fa2ff130a49c844ee7a9a68f281b6017"
   integrity sha512-8TQ/EgqFCX0UWSpH488zAc21fCkJNpZPnnp3xWFMqElxApoJV5QOoqajnVRV7AhfF0rbQWTVyc04KG7tXnzCPA==
@@ -8642,7 +8642,7 @@ jest-diff@30.1.2:
     chalk "^4.1.2"
     pretty-format "30.0.5"
 
-jest-image-snapshot@^6.1.0:
+jest-image-snapshot@^6.5.1:
   version "6.5.1"
   resolved "https://registry.yarnpkg.com/jest-image-snapshot/-/jest-image-snapshot-6.5.1.tgz#cc714aff86187ecf38f90c506b443769aff87499"
   integrity sha512-xlJFufgfY2Z4DsRsjcnTwxuynvo1bKdhf4OfcEftNuUAK+BwSCUtPmwlBGJhQ0XJXfm9JMAi/4BhQiHbaV8HrA==

@@ -101,7 +101,7 @@
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
     "@next/bundle-analyzer": "15.5.4",
-    "@simonsmith/cypress-image-snapshot": "^9.1.0",
+    "@simonsmith/cypress-image-snapshot": "^10.0.2",
     "@storybook/addon-docs": "^9.1.10",
     "@storybook/addon-onboarding": "^9.1.10",
     "@storybook/addon-vitest": "9.1.10",
