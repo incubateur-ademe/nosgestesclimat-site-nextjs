@@ -35,7 +35,6 @@ export default function PartnerCampaignHeader({
             langButtonsDisplayed={{
               fr: true,
               en: true,
-              es: false,
             }}
             size="xs"
           />
@@ -47,7 +46,6 @@ export default function PartnerCampaignHeader({
             langButtonsDisplayed={{
               fr: true,
               en: true,
-              es: false,
             }}
           />
         </div>

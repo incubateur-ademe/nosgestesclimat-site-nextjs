@@ -57,14 +57,12 @@ try {
   oldResources = {
     fr: utils.readYAML(paths.UI.fr.withLock).entries,
     en: utils.readYAML(paths.UI.en.withLock).entries,
-    es: utils.readYAML(paths.UI.es.withLock).entries,
   }
 } catch (err) {
   cli.printErr(err.message)
   oldResources = {
     fr: {},
     en: {},
-    es: {},
   }
 }
 

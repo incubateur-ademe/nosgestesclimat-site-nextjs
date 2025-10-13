@@ -1,6 +1,5 @@
 import type { PartnerCampaignType } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
-import { getLocaleWithoutEs } from '@/helpers/language/getLocaleWithoutEs'
 import { type Locale } from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 
@@ -13,7 +12,7 @@ export async function fetchPartnerCampaign({
 }): Promise<PartnerCampaignType | null> {
   try {
     const partnerCampaignSearchParams = new URLSearchParams({
-      locale: getLocaleWithoutEs(locale),
+      locale,
       'filters[pollSlug][$eq]': pollSlug,
       'populate[0]': 'logo',
       'populate[1]': 'image',

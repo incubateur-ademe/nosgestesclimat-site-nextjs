@@ -12,11 +12,10 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import type { Locale } from '@/i18nConfig'
-import i18nConfig from '@/i18nConfig'
 import { fetchHomepageContent } from '@/services/cms/fetchHomepageContent'
 import { fetchHomepageMetadata } from '@/services/cms/fetchHomepageMetadata'
 import type { DefaultPageProps } from '@/types'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import BlogHero from './_components/BlogHero'
 import GroupBlock from './_components/GroupBlock'
 
@@ -65,14 +64,6 @@ export default async function BlogHomePage({
     })) ?? {}
 
   const langButtonsDisplayed = await getLangButtonsDisplayed()
-
-  // Only for ES locale, redirect to the FR version if !title || !description || !image || !articles
-  if (
-    locale === i18nConfig.locales[2] &&
-    (!title || !description || !image || !articles)
-  ) {
-    return redirect('/fr/blog')
-  }
 
   if (!title || !description || !articles) {
     notFound()
