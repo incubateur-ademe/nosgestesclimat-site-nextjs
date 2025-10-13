@@ -56,6 +56,11 @@ const redirects = [
     permanent: true,
   },
   {
+    source: '/politique-des-cookies',
+    destination: '/politique-de-confidentialite',
+    permanent: true,
+  },
+  {
     source: '/partenaires',
     destination: '/diffuser',
     permanent: true,
@@ -375,40 +380,10 @@ const redirects = [
     destination: '/en',
     permanent: true,
   },
-  // Guides es
+  // Do not remove this redirection - ES locale existed before
   {
-    source: '/es/guide',
-    destination: '/es',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/alimentation',
-    destination: '/es',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/transport',
-    destination: '/es',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/logement',
-    destination: '/es',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/divers',
-    destination: '/es',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/numerique',
-    destination: '/es',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/services-societaux',
-    destination: '/es',
+    source: '/es/:path*',
+    destination: '/en/:path*',
     permanent: true,
   },
   // Short URL for Brevo

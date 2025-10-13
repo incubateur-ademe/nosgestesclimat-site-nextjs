@@ -114,7 +114,6 @@ describe('CategoryPage', () => {
     mockGetLangButtonsDisplayed.mockResolvedValue({
       fr: true,
       en: true,
-      es: false,
     })
   })
 
@@ -193,7 +192,7 @@ describe('CategoryPage', () => {
       })
       const params = Promise.resolve({
         category: 'cat',
-        locale: 'es' as Locale,
+        locale: 'en' as Locale,
       })
       const searchParams = Promise.resolve({ page: '1' })
       await CategoryPage({ params, searchParams })
@@ -209,7 +208,7 @@ describe('CategoryPage', () => {
       })
       const params = Promise.resolve({
         category: 'cat',
-        locale: 'es' as Locale,
+        locale: 'en' as Locale,
       })
       const searchParams = Promise.resolve({ page: '1' })
       await CategoryPage({ params, searchParams })

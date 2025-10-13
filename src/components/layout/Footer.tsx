@@ -251,15 +251,6 @@ export default function Footer({
                   </span>
                 </li>
                 <li className="block md:inline">
-                  <InlineLink href="/politique-des-cookies">
-                    <Trans>Politique des cookies</Trans>
-                  </InlineLink>
-
-                  <span aria-hidden="true" className="mx-1 hidden sm:inline">
-                    |
-                  </span>
-                </li>
-                <li className="block md:inline">
                   <button
                     data-testid="cookie-footer-button"
                     className="text-primary-700 focus:ring-primary-700 text-xs underline focus:ring-2 focus:ring-offset-3 focus:outline-hidden"

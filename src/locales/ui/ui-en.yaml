@@ -1391,6 +1391,20 @@ entries:
   Lancer le défilement: Start scrolling
   common.slider.stop: Stop
   common.slider.stop.lock: Arrêter
+  Passer en français: Switch to French
+  Entrez des mots-clefs de recherche: Enter search keywords
+  Une garde-robe économe en eau: A water-saving wardrobe
+  Explorez nos modèles: Explore our models
+  Entrez des mots clefs: Enter keywords
+  5 infolettres sur l’impact du logement: 5 newsletters on the impact of housing
+  Evaluer la métrique carbone: Assessing carbon metrics
+  Switch to english: Switch to english
+  Evaluer la métrique eau: Assessing the water metric
+  Deux mini-vans, illustrant l'empreinte carbone des transports: Two minivans, illustrating the carbon footprint of transport
+  Un champ de coton, illustrant le calcul de l'empreinte eau: A field of cotton, illustrating the calculation of the water footprint
+  Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone: An event for the climate, illustrating actions to reduce one's carbon footprint
+  Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau: A watered field, illustrating the lexicon for understanding the water footprint
+  Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique: An ice pack sparse in the sunlight, illustrating our maladaptation to climate change
   common.category.logement: Housing
   common.category.logement.lock: Logement
   pollResults.categoryDistribution.accessibleDescription.category: '{{name}}: {{value}} {{unit}}.'

@@ -1,7 +1,6 @@
 'use client'
 
 import { footerClickLanguage } from '@/constants/tracking/layout'
-import { FAQ_PATH } from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDisplayed'
@@ -10,17 +9,13 @@ import { updateLangCookie } from '@/helpers/language/updateLangCookie'
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
-import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
-
-const NO_ES_PATHNAMES = new Set([FAQ_PATH])
 
 export default function LanguageSwitchButton({
   langButtonsDisplayed = {
     fr: true,
     en: true,
-    es: true,
   },
   size = 'sm',
   className,
@@ -30,15 +25,6 @@ export default function LanguageSwitchButton({
   className?: string
 }) {
   const currentLocale = useCurrentLocale(i18nConfig)
-
-  const pathname = usePathname()
-
-  // Check without the
-  const langButtonsDisplayedWithFilteredEs = NO_ES_PATHNAMES.has(
-    pathname.replace(new RegExp(`^/(${i18nConfig.locales.join('|')})`), '')
-  )
-    ? { ...langButtonsDisplayed, es: false }
-    : langButtonsDisplayed
 
   useEffect(() => {
     // If the current locale is different than the NEXT_LOCALE cookie, we update it
@@ -70,7 +56,7 @@ export default function LanguageSwitchButton({
         'flex flex-wrap items-center gap-1 sm:gap-2',
         className
       )}>
-      {langButtonsDisplayedWithFilteredEs.fr && (
+      {langButtonsDisplayed.fr && (
         <Button
           lang="fr"
           color={currentLocale === 'fr' ? 'primary' : 'secondary'}
@@ -88,7 +74,7 @@ export default function LanguageSwitchButton({
         </Button>
       )}
 
-      {langButtonsDisplayedWithFilteredEs.en && (
+      {langButtonsDisplayed.en && (
         <Button
           lang="en"
           color={currentLocale === 'en' ? 'primary' : 'secondary'}
@@ -103,24 +89,6 @@ export default function LanguageSwitchButton({
           className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
           data-cypress-id="language-switch-button-en">
           <span>EN</span> <Emoji>🇬🇧</Emoji>
-        </Button>
-      )}
-
-      {langButtonsDisplayedWithFilteredEs.es && (
-        <Button
-          lang="es"
-          color={currentLocale === 'es' ? 'primary' : 'secondary'}
-          onClick={() => handleChange('es')}
-          size="sm"
-          aria-label="Cambiar a español"
-          title={
-            currentLocale === 'es'
-              ? 'ES - Activa el idioma español'
-              : 'ES - Seleccionar el idioma español'
-          }
-          className="flex gap-2 px-2 py-2 sm:px-4 sm:py-3"
-          data-cypress-id="language-switch-button-es">
-          <span>ES</span> <Emoji>🇪🇸</Emoji>
         </Button>
       )}
     </div>
