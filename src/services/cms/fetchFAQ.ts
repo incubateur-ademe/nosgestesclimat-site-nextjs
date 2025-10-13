@@ -1,6 +1,5 @@
 import type { FAQType } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
-import { getLocaleWithoutEs } from '@/helpers/language/getLocaleWithoutEs'
 import { type Locale } from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 
@@ -11,7 +10,7 @@ export async function fetchFaq({
 }): Promise<FAQType[] | null> {
   try {
     const faqSearchParams = new URLSearchParams({
-      locale: getLocaleWithoutEs(locale),
+      locale,
       sort: 'faqs.order',
       populate: 'faqs.questions',
     })

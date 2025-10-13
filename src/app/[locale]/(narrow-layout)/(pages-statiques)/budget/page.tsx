@@ -3,8 +3,6 @@ import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import contentEnBottom from '@/locales/pages/en/budgetBottom.mdx'
 import contentEnTop from '@/locales/pages/en/budgetTop.mdx'
-import contentEsBottom from '@/locales/pages/es/budgetBottom.mdx'
-import contentEsTop from '@/locales/pages/es/budgetTop.mdx'
 import contentFrBottom from '@/locales/pages/fr/budgetBottom.mdx'
 import contentFrTop from '@/locales/pages/fr/budgetTop.mdx'
 import type { DefaultPageProps } from '@/types'
@@ -26,14 +24,12 @@ export default async function BudgetPage({ params }: DefaultPageProps) {
       <MDXContent
         contentEn={contentEnTop}
         contentFr={contentFrTop}
-        contentEs={contentEsTop}
         locale={locale}
       />
       <SelectYear />
       <MDXContent
         contentEn={contentEnBottom}
         contentFr={contentFrBottom}
-        contentEs={contentEsBottom}
         locale={locale}
       />
     </>

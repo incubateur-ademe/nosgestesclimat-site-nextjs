@@ -1,6 +1,5 @@
 import type { ArticleItemType } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
-import { getLocaleWithoutEs } from '@/helpers/language/getLocaleWithoutEs'
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 
@@ -18,7 +17,7 @@ export async function fetchAllArticleTitlesAndSlugs({
 
     while (hasMorePages) {
       const articlesSearchParams = new URLSearchParams({
-        locale: getLocaleWithoutEs(locale) ?? i18nConfig.defaultLocale,
+        locale: locale ?? i18nConfig.defaultLocale,
         'fields[0]': 'title',
         'fields[1]': 'slug',
         'populate[0]': 'blogCategory',
