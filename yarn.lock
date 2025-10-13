@@ -2421,9 +2421,9 @@
   dependencies:
     "@opentelemetry/instrumentation" "^0.52.0 || ^0.53.0 || ^0.54.0 || ^0.55.0 || ^0.56.0 || ^0.57.0"
 
-"@publicodes/react-ui@^1.8.0", "@publicodes/react-ui@https://pkg.pr.new/publicodes/publicodes/@publicodes/react-ui@6ca48c6":
+"@publicodes/react-ui@^1.8.0", "@publicodes/react-ui@https://pkg.pr.new/publicodes/publicodes/@publicodes/react-ui@8b65b64":
   version "1.9.1"
-  resolved "https://pkg.pr.new/publicodes/publicodes/@publicodes/react-ui@6ca48c6#261aab6ca41a48cd57549e7720017a7f30728da1"
+  resolved "https://pkg.pr.new/publicodes/publicodes/@publicodes/react-ui@8b65b64#9ae48bc697e7af07778fd3a2387f635af30a1831"
   dependencies:
     fuse.js "^7.0.0"
     styled-components "^6.1.1"
@@ -8363,11 +8363,6 @@ is-unicode-supported@^0.1.0:
   resolved "https://registry.yarnpkg.com/is-unicode-supported/-/is-unicode-supported-0.1.0.tgz#3f26c76a809593b52bfa2ecb5710ed2779b522a7"
   integrity sha512-knxG2q4UC3u8stRGyAVJCOdxFmv5DZiRcdlIaAQXAbSfJya+OhopNotLQrstBhququ4ZpuKbDc/8S6mgXgPFPw==
 
-is-unicode-supported@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/is-unicode-supported/-/is-unicode-supported-1.3.0.tgz#d824984b616c292a2e198207d4a609983842f714"
-  integrity sha512-43r2mRvz+8JRIKnWJ+3j8JtjRKZ6GmjzfaE/qiBJnikNnYv/6bagRJ1kUhNk8R5EX/GkobD+r+sfxCPJsiKBLQ==
-
 is-valid-glob@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-valid-glob/-/is-valid-glob-1.0.0.tgz#29bf3eff701be2d4d315dbacc39bc39fe8f601aa"
@@ -10682,7 +10677,7 @@ public-encrypt@^4.0.3:
     randombytes "^2.0.1"
     safe-buffer "^5.1.2"
 
-publicodes@^1.8.2, publicodes@^1.9.1:
+publicodes@^1.8.2:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.9.1.tgz#0c5031337e4515af81e5079fae29d34fbc8c0768"
   integrity sha512-sXBgGuAH/bIehF8waXm4Pp/EnqjFmxZJb6FNSAZ9FRO1neACHRYKv34lxFM3qZNyJ2RaI5jwtOupGlozMW0fcA==
