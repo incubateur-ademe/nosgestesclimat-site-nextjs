@@ -7727,10 +7727,10 @@ gzip-size@^6.0.0:
   dependencies:
     duplexer "^0.1.2"
 
-happy-dom@^19.0.2:
-  version "19.0.2"
-  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-19.0.2.tgz#ecb9d48b7fc802c70c59b7ec1148517c125f8b04"
-  integrity sha512-831CLbgDyjRbd2lApHZFsBDe56onuFcjsCBPodzWpzedTpeDr8CGZjs7iEIdNW1DVwSFRecfwzLpVyGBPamwGA==
+happy-dom@^20.0.0:
+  version "20.0.0"
+  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-20.0.0.tgz#7f4dcaf5eb828e697d5a6fee9dd7631814cd40e2"
+  integrity sha512-GkWnwIFxVGCf2raNrxImLo397RdGhLapj5cT3R2PT7FwL62Ze1DROhzmYW7+J3p9105DYMVenEejEbnq5wA37w==
   dependencies:
     "@types/node" "^20.0.0"
     "@types/whatwg-mimetype" "^3.0.2"
