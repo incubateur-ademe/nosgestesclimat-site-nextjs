@@ -350,7 +350,7 @@ export default function Navigation({
               <Trans i18nKey="simulator.navigation.nextButton.finished.next">
                 Suivant
               </Trans>{' '}
-              + <span aria-hidden>→</span>
+              <span aria-hidden>→</span>
             </span>
           )}
         </Button>
