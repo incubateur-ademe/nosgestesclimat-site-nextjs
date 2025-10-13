@@ -298,14 +298,14 @@ export default function Navigation({
       <Trans i18nKey="simulator.navigation.nextButton.dontKnow">
         Je ne sais pas
       </Trans>{' '}
-      + <span aria-hidden>→</span>
+      <span aria-hidden>→</span>
     </span>
   ) : (
     <span>
       <Trans i18nKey="simulator.navigation.nextButton.skip">
         Passer la question
       </Trans>{' '}
-      + <span aria-hidden>→</span>
+      <span aria-hidden>→</span>
     </span>
   )
 

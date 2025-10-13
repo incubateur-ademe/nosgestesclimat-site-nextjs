@@ -1377,3 +1377,11 @@ entries:
   common.mainLandingPage.numberPersons.lock: 2,5 millions de personnes
   common.mainLandingPage.tookTheirTest: have already calculated their footprint!
   common.mainLandingPage.tookTheirTest.lock: ont déjà calculé leur empreinte !
+  simulator.navigation.nextButton.finished.next: Next
+  simulator.navigation.nextButton.finished.next.lock: Suivant
+  simulator.navigation.nextButton.finished: Finish
+  simulator.navigation.nextButton.finished.lock: Terminer
+  simulator.navigation.nextButton.skip: Skip the question
+  simulator.navigation.nextButton.skip.lock: Passer la question
+  simulator.navigation.nextButton.dontKnow: I don't know
+  simulator.navigation.nextButton.dontKnow.lock: Je ne sais pas

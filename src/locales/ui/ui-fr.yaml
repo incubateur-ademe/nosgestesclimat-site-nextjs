@@ -1235,3 +1235,7 @@ entries:
   pollResults.footprintBarChart.targetLabelUnit: tonnes
   common.mainLandingPage.numberPersons: 2,5 millions de personnes
   common.mainLandingPage.tookTheirTest: ont déjà calculé leur empreinte !
+  simulator.navigation.nextButton.dontKnow: Je ne sais pas
+  simulator.navigation.nextButton.finished: Terminer
+  simulator.navigation.nextButton.finished.next: Suivant
+  simulator.navigation.nextButton.skip: Passer la question
