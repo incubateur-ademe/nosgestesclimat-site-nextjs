@@ -2,6 +2,7 @@ import { captureSubQuestion } from '@/constants/tracking/posthogTrackers'
 import { openSubQuestion } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useEngine } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
@@ -24,7 +25,14 @@ export default function Mosaic({
   label,
   ...props
 }: Props) {
-  const [isMoreOptionsVisible, setIsMoreOptionsVisible] = useState(false)
+  const { getValue } = useEngine()
+  const [isMoreOptionsVisible, setIsMoreOptionsVisible] = useState(
+    secondaryQuestionsOfMosaic &&
+      secondaryQuestionsOfMosaic.length > 0 &&
+      secondaryQuestionsOfMosaic.some(
+        (secondaryMosaicChild) => getValue(secondaryMosaicChild) === true
+      )
+  )
   const { t } = useClientTranslation()
 
   if (secondaryQuestionsOfMosaic && secondaryQuestionsOfMosaic.length > 0) {
