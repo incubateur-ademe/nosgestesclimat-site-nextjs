@@ -54,6 +54,7 @@ export default function Label({
   const mustShowDescriptionQuestion: DottedName[] = [
     'transport . voiture . utilisateur',
     'logement . âge',
+    'logement . surface',
   ]
 
   if (!label) return
