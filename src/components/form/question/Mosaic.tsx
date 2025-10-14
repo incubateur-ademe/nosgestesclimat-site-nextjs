@@ -77,7 +77,7 @@ export default function Mosaic({
             }}
             className="mt-2 w-30 md:mt-4">
             {isMoreOptionsVisible
-              ? t('Fermer')
+              ? t('simulator.mosaic.closeMoreOptions', 'Moins d’options')
               : t('simulator.mosaic.openMoreOptions', 'Plus d’options')}
           </Button>{' '}
           {isMoreOptionsVisible && (
