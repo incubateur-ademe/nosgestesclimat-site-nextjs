@@ -6,14 +6,5 @@ export const useIsTestVersion = (variantKey: string) => {
 
   console.log('AB test: ', flagValue, ' selected for', variantKey)
 
-  // Disable the AB testing in the preview environments
-  if (
-    process.env.NEXT_PUBLIC_ENV !== 'production' &&
-    process.env.NEXT_PUBLIC_ENV !== 'pre-production' &&
-    process.env.NEXT_PUBLIC_ENV !== 'development'
-  ) {
-    return false
-  }
-
   return flagValue && flagValue === DEFAULT_TEST_VARIANT_KEY
 }
