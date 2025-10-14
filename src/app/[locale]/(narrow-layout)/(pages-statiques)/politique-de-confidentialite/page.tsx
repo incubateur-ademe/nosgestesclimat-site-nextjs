@@ -19,12 +19,7 @@ export default async function ViePriveePage({ params }: DefaultPageProps) {
   const { locale } = await params
   return (
     <div className="markdown">
-      <MDXContent
-        contentEn={policy_en}
-        contentFr={policy_fr}
-        contentEs={policy_fr}
-        locale={locale}
-      />
+      <MDXContent contentEn={policy_en} contentFr={policy_fr} locale={locale} />
     </div>
   )
 }

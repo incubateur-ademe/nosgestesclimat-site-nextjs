@@ -4,7 +4,6 @@ import { fetchCategoryPageContent } from '@/services/cms/fetchCategoryPageConten
 export type LangButtonsConfigType = {
   fr: boolean
   en: boolean
-  es: boolean
 }
 
 type Props = {
@@ -15,24 +14,21 @@ type Props = {
 const ALL_TRUE_VALUE = {
   fr: true,
   en: true,
-  es: true,
 }
 const ALL_FALSE_VALUE = {
   fr: false,
   en: false,
-  es: false,
 }
 const FR_EN_ACTIVATED_VALUE = {
   fr: true,
   en: true,
-  es: false,
 }
 
 export async function getLangButtonsDisplayed({
   category,
   article,
 }: Props = {}) {
-  // Blog landing page - no es version
+  // Blog landing page
   if (!category && !article) {
     return FR_EN_ACTIVATED_VALUE
   }
