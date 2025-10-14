@@ -224,13 +224,6 @@ export default function DidYouKnowSlider({
             onClick={() => setIsPlaying((prev) => !prev)}
             type="button">
             {isPlaying ? (
-              <>
-                <PlaySignIcon className="fill-primary-800 stroke-primary-800 block w-5" />
-                <span className="ml-2 text-sm">
-                  {t('common.slider.play', 'Lecture')}
-                </span>
-              </>
-            ) : (
               <span className="flex items-center gap-1">
                 <span className="h-[24px]! text-2xl leading-6!" aria-hidden>
                   &#x23F9;
@@ -240,6 +233,13 @@ export default function DidYouKnowSlider({
                   {t('common.slider.stop', 'Arrêter')}
                 </span>
               </span>
+            ) : (
+              <>
+                <PlaySignIcon className="fill-primary-800 stroke-primary-800 block w-5" />
+                <span className="ml-2 text-sm">
+                  {t('common.slider.play', 'Lecture')}
+                </span>
+              </>
             )}
           </Button>
           <div className="splide__arrows" />
