@@ -713,3 +713,13 @@ html[data-useragent*='Trident'] #js {
 #documentation-search-input {
   @apply border-slate-700;
 }
+
+.markdown details {
+  @apply bg-primary-50 mt-3 mb-6 cursor-pointer rounded-lg px-4 py-4;
+}
+.markdown details summary {
+  @apply font-medium;
+}
+.markdown details summary + * {
+  @apply pt-4;
+}

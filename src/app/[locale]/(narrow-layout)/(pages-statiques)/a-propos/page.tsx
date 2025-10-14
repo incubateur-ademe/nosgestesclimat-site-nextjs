@@ -3,7 +3,6 @@ import MDXContent from '@/components/mdx/MDXContent'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import AboutEn from '@/locales/pages/en/about.mdx'
-import AboutEs from '@/locales/pages/es/about.mdx'
 import AboutFr from '@/locales/pages/fr/about.mdx'
 import type { DefaultPageProps } from '@/types'
 
@@ -22,12 +21,7 @@ export default async function AProposPage({ params }: DefaultPageProps) {
     <>
       <PasserTestBanner />
 
-      <MDXContent
-        contentEn={AboutEn}
-        contentFr={AboutFr}
-        contentEs={AboutEs}
-        locale={locale}
-      />
+      <MDXContent contentEn={AboutEn} contentFr={AboutFr} locale={locale} />
     </>
   )
 }

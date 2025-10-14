@@ -1,6 +1,5 @@
 import type { BlogCategoryType } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
-import { getLocaleWithoutEs } from '@/helpers/language/getLocaleWithoutEs'
 import { type Locale } from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 
@@ -11,7 +10,7 @@ export async function fetchCategories({
 }): Promise<BlogCategoryType[]> {
   try {
     const categoriesSearchParams = new URLSearchParams({
-      locale: getLocaleWithoutEs(locale),
+      locale,
       sort: 'order',
     })
 

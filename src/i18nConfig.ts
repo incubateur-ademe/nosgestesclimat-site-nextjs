@@ -2,15 +2,14 @@ import type { Config } from 'next-i18n-router/dist/types'
 import type { NextRequest } from 'next/server'
 
 export const LOCALE_EN_KEY = 'en'
-export const LOCALE_ES_KEY = 'es'
 export const LOCALE_FR_KEY = 'fr'
 
 export const NEXT_LOCALE_COOKIE_NAME = 'NEXT_LOCALE'
 
-export type Locale = 'fr' | 'en' | 'es'
+export type Locale = 'fr' | 'en'
 
 const i18nConfig: Config = {
-  locales: [LOCALE_FR_KEY, LOCALE_EN_KEY, LOCALE_ES_KEY] as Locale[],
+  locales: [LOCALE_FR_KEY, LOCALE_EN_KEY] as Locale[],
   defaultLocale: LOCALE_FR_KEY as Locale,
   cookieOptions: {
     sameSite: 'none' as const,

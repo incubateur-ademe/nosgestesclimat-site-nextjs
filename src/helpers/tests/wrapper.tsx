@@ -21,6 +21,7 @@ import type { RenderOptions } from '@testing-library/react'
 import { render } from '@testing-library/react'
 import type { ReactElement } from 'react'
 import { vi } from 'vitest'
+import { getInitialExtendedSituation } from '../modelFetching/getInitialExtendedSituation'
 
 // Mock useRules
 vi.mock('@/hooks/useRules', () => ({
@@ -41,6 +42,7 @@ const defaultSimulation: Simulation = {
   id: faker.string.uuid(),
   date: new Date(),
   situation: {},
+  extendedSituation: getInitialExtendedSituation(),
   foldedSteps: [],
   actionChoices: {},
   computedResults: {
