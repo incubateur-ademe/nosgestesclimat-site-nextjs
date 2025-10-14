@@ -48,7 +48,7 @@
     "@incubateur-ademe/legal-pages-react": "^0.5.0",
     "@incubateur-ademe/nosgestesclimat": "^4.0.0",
     "@next/mdx": "^15.5.4",
-    "@publicodes/react-ui": "https://pkg.pr.new/publicodes/publicodes/@publicodes/react-ui@8b65b64",
+    "@publicodes/react-ui": "https://pkg.pr.new/publicodes/publicodes/@publicodes/react-ui@e38f78e",
     "@publicodes/tools": "^1.8.0",
     "@sentry/nextjs": "^9.38.0",
     "@splidejs/react-splide": "^0.7.12",
