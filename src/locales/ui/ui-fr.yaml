@@ -1239,3 +1239,4 @@ entries:
   simulator.navigation.nextButton.finished: Terminer
   simulator.navigation.nextButton.finished.next: Suivant
   simulator.navigation.nextButton.skip: Passer la question
+  simulator.navigation.nextButton.next: Suivant
