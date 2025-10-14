@@ -347,7 +347,7 @@ export default function Navigation({
             skipText
           ) : (
             <span>
-              <Trans i18nKey="simulator.navigation.nextButton.finished.next">
+              <Trans i18nKey="simulator.navigation.nextButton.next">
                 Suivant
               </Trans>{' '}
               <span aria-hidden>→</span>
