@@ -60,3 +60,60 @@ export const Colors: Story = {
     colorGroup: tailwindConfig.theme?.extend?.colors ?? {},
   },
 }
+
+export const SlatePalette: Story = {
+  render: () => (
+    <div className="p-4">
+      <h1 className="mb-8 text-4xl font-bold">Palette Slate</h1>
+      <div className="mb-8">
+        <h2 className="mb-4 text-2xl font-bold capitalize">Slate</h2>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-10">
+          <div className="flex h-24 w-full flex-col justify-between rounded-lg bg-slate-50 p-2 shadow-md">
+            <span className="font-bold text-black">50</span>
+            <span className="text-sm text-black">bg-slate-50</span>
+          </div>
+          <div className="flex h-24 w-full flex-col justify-between rounded-lg bg-slate-100 p-2 shadow-md">
+            <span className="font-bold text-black">100</span>
+            <span className="text-sm text-black">bg-slate-100</span>
+          </div>
+          <div className="flex h-24 w-full flex-col justify-between rounded-lg bg-slate-200 p-2 shadow-md">
+            <span className="font-bold text-black">200</span>
+            <span className="text-sm text-black">bg-slate-200</span>
+          </div>
+          <div className="flex h-24 w-full flex-col justify-between rounded-lg bg-slate-300 p-2 shadow-md">
+            <span className="font-bold text-black">300</span>
+            <span className="text-sm text-black">bg-slate-300</span>
+          </div>
+          <div className="flex h-24 w-full flex-col justify-between rounded-lg bg-slate-400 p-2 shadow-md">
+            <span className="font-bold text-white">400</span>
+            <span className="text-sm text-white">bg-slate-400</span>
+          </div>
+          <div className="flex h-24 w-full flex-col justify-between rounded-lg bg-slate-500 p-2 shadow-md">
+            <span className="font-bold text-white">500</span>
+            <span className="text-sm text-white">bg-slate-500</span>
+          </div>
+          <div className="flex h-24 w-full flex-col justify-between rounded-lg bg-slate-600 p-2 shadow-md">
+            <span className="font-bold text-white">600</span>
+            <span className="text-sm text-white">bg-slate-600</span>
+          </div>
+          <div className="flex h-24 w-full flex-col justify-between rounded-lg bg-slate-700 p-2 shadow-md">
+            <span className="font-bold text-white">700</span>
+            <span className="text-sm text-white">bg-slate-700</span>
+          </div>
+          <div className="flex h-24 w-full flex-col justify-between rounded-lg bg-slate-800 p-2 shadow-md">
+            <span className="font-bold text-white">800</span>
+            <span className="text-sm text-white">bg-slate-800</span>
+          </div>
+          <div className="flex h-24 w-full flex-col justify-between rounded-lg bg-slate-900 p-2 shadow-md">
+            <span className="font-bold text-white">900</span>
+            <span className="text-sm text-white">bg-slate-900</span>
+          </div>
+          <div className="flex h-24 w-full flex-col justify-between rounded-lg bg-slate-950 p-2 shadow-md">
+            <span className="font-bold text-white">950</span>
+            <span className="text-sm text-white">bg-slate-950</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  ),
+}

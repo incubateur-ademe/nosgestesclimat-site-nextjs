@@ -121,7 +121,6 @@ describe('ArticlePage', () => {
     mockGetLangButtonsDisplayed.mockResolvedValue({
       fr: true,
       en: true,
-      es: false,
     })
   })
 
@@ -162,7 +161,7 @@ describe('ArticlePage', () => {
       const params = Promise.resolve({
         category: 'cat',
         article: 'art',
-        locale: 'es' as Locale,
+        locale: 'en' as Locale,
       })
       await ArticlePage({ params })
       expect(mockRedirect).toHaveBeenCalledWith('/fr/blog/cat/art')

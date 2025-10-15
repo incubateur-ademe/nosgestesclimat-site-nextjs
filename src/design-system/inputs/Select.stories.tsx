@@ -74,7 +74,7 @@ export const WithHelperText: Story = {
     children: (
       <>
         <option value="fr">France</option>
-        <option value="es">Espagne</option>
+        <option value="en">Angleterre</option>
         <option value="it">Italie</option>
       </>
     ),

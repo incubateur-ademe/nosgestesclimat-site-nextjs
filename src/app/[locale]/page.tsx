@@ -17,6 +17,7 @@ import type { DefaultPageProps } from '@/types'
 import dynamic from 'next/dynamic'
 import { headers } from 'next/headers'
 import Partners from '../../components/landing-pages/Partners'
+import { ClientLayout } from './_components/ClientLayout'
 import CollectivelyCommit from './_components/CollectivelyCommit'
 import DecryptChallenges from './_components/DecryptChallenges'
 import DidYouKnowMainLanding from './_components/DidYouKnowMainLanding'
@@ -49,7 +50,7 @@ export default async function Homepage({ params }: DefaultPageProps) {
   const pathname = headersList.get('x-pathname') || '/'
 
   return (
-    <>
+    <ClientLayout locale={locale}>
       <JSONLD
         jsonLd={[
           {
@@ -112,10 +113,16 @@ export default async function Homepage({ params }: DefaultPageProps) {
 
               {/* Displayed on desktop only */}
               <p className="md:max-w-[300px]">
-                <Trans locale={locale}>
-                  <strong className="text-primary-700">
-                    2 millions de personnes
-                  </strong>{' '}
+                <strong className="text-primary-700">
+                  <Trans
+                    i18nKey="common.mainLandingPage.numberPersons"
+                    locale={locale}>
+                    2,5 millions de personnes
+                  </Trans>
+                </strong>{' '}
+                <Trans
+                  i18nKey="common.mainLandingPage.tookTheirTest"
+                  locale={locale}>
                   ont déjà calculé leur empreinte !
                 </Trans>
               </p>
@@ -139,6 +146,6 @@ export default async function Homepage({ params }: DefaultPageProps) {
       </LandingPage>
 
       <Footer />
-    </>
+    </ClientLayout>
   )
 }

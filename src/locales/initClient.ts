@@ -16,9 +16,6 @@ i18next.use(initReactI18next).init({
   ...getOptions(),
   lng: getLanguageFromCookie(),
   resources: {
-    es: {
-      translation: translations['es'],
-    },
     en: {
       translation: translations['en'],
     },
