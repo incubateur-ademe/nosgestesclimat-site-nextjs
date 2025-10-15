@@ -6,7 +6,7 @@ import {
   simulateurOpenSommaire,
 } from '@/constants/tracking/pages/simulateur'
 import { useSimulateurGuard } from '@/hooks/navigation/useSimulateurGuard'
-import { useTrackSimulateur } from '@/hooks/tracking/useTrackSimulateur/useTrackSimulateur'
+import { useTrackSimulateur } from '@/hooks/tracking/useTrackSimulateur'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { trackEvent } from '@/utils/analytics/trackEvent'

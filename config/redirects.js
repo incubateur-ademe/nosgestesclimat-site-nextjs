@@ -395,4 +395,4 @@ const redirects = [
   },
 ]
 
-module.exports = redirects
+export default redirects
