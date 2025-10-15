@@ -1,10 +1,17 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import type { SkipLinksDisplayed } from '@/types'
 import { useRef } from 'react'
 import ButtonLink from '../buttons/ButtonLink'
 
-export default function SkipToMainContentLink() {
+type Props = {
+  skipLinksDisplayed?: SkipLinksDisplayed
+}
+
+export default function SkipToMainContentLink({
+  skipLinksDisplayed = new Set(['main', 'navigation', 'footer']),
+}: Props) {
   const navRef = useRef<HTMLElement>(null)
 
   return (
@@ -19,33 +26,41 @@ export default function SkipToMainContentLink() {
         <p id="skip-nav-title" className="sr-only">
           <Trans>Accès rapide</Trans>
         </p>
-        <ButtonLink
-          color="secondary"
-          href="#main-content"
-          className="focus:ring-primary-700 focus:w-auto focus:ring-2 focus:ring-offset-3 focus:outline-hidden">
-          <Trans>Contenu</Trans>
-        </ButtonLink>
+        {skipLinksDisplayed.has('main') && (
+          <ButtonLink
+            color="secondary"
+            href="#main-content"
+            className="focus:ring-primary-700 focus:w-auto focus:ring-2 focus:ring-offset-3 focus:outline-hidden">
+            <Trans>Contenu</Trans>
+          </ButtonLink>
+        )}
 
-        <ButtonLink
-          color="secondary"
-          href="#header-navigation-desktop"
-          className="focus:ring-primary-700 hidden focus:w-auto focus:ring-2 focus:ring-offset-[2px] md:flex">
-          <Trans>Menu</Trans>
-        </ButtonLink>
+        {skipLinksDisplayed.has('navigation') && (
+          <>
+            <ButtonLink
+              color="secondary"
+              href="#header-navigation-desktop"
+              className="focus:ring-primary-700 hidden focus:w-auto focus:ring-2 focus:ring-offset-[2px] md:flex">
+              <Trans>Menu</Trans>
+            </ButtonLink>
 
-        <ButtonLink
-          color="secondary"
-          href="#header-navigation-mobile"
-          className="focus:ring-primary-700 focus:w-auto focus:ring-2 focus:ring-offset-[2px] md:hidden">
-          <Trans>Menu</Trans>
-        </ButtonLink>
+            <ButtonLink
+              color="secondary"
+              href="#header-navigation-mobile"
+              className="focus:ring-primary-700 focus:w-auto focus:ring-2 focus:ring-offset-[2px] md:hidden">
+              <Trans>Menu</Trans>
+            </ButtonLink>
+          </>
+        )}
 
-        <ButtonLink
-          color="secondary"
-          href="#footer"
-          className="focus:ring-primary-700 focus:w-auto focus:ring-2 focus:ring-offset-3 focus:outline-hidden">
-          <Trans>Pied de page</Trans>
-        </ButtonLink>
+        {skipLinksDisplayed.has('footer') && (
+          <ButtonLink
+            color="secondary"
+            href="#footer"
+            className="focus:ring-primary-700 focus:w-auto focus:ring-2 focus:ring-offset-3 focus:outline-hidden">
+            <Trans>Pied de page</Trans>
+          </ButtonLink>
+        )}
       </nav>
     </div>
   )
