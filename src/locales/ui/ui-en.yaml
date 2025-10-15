@@ -213,7 +213,7 @@ entries:
   publicodes.Tutoriel.slide2.p1: 'With a unit with a barbaric name: the CO₂ equivalent. Carbon dioxide <2></2>, you know it: we breathe it out all day long, but it has no influence on the climate.'
   publicodes.Tutoriel.slide2.p1.lock: "Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone <2></2>, vous le connaissez : on l'expire toute la journée, mais sans influence sur le climat."
   Logo de l'Association pour la transition Bas Carbone: Logo of the Low Carbon Transition Association
-  Il concerne votre vie personnelle, et non pas votre boulot.: It's about your personal life, not your job.
+  Il concerne votre vie personnelle, et non pas votre activité.: It's about your personal life, not your activity.
   Comparez vos résultats avec votre famille ou un groupe d’ami·e·s: Compare your results with your family or a group of friends
   publicodes.Tutoriel.slide1.p1: It's a fact that the climate is warming because of human activity. Everything we consume, use and then throw away requires materials and energy. Whether it's during the production, use or end-of-life phase of the good or service. So all our activities contribute to greenhouse gas emissions. Some a great deal, others very little. But what is our impact, as individual citizens?
   publicodes.Tutoriel.slide1.p1.lock: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
@@ -730,7 +730,6 @@ entries:
   Un grand-père et sa petite fille qui regardent un film: A grandfather and his granddaughter watching a film
   Votre test est sauvegardé !: Your test is saved!
   <0>Empreinte eau</0> moyenne: 'Average <0>water footprint</0> '
-  <0>Empreinte carbone</0> moyenne: 'Average <0>carbon footprint</0> '
   Le lexique pour tout comprendre à l’empreinte eau: A glossary to help you understand the water footprint
   Lire l'article: Read the article
   Carbone: Carbon
@@ -1544,3 +1543,17 @@ entries:
   L'empreinte carbone du transport: The carbon footprint of transport
   Chargement des résultats détaillés de campagne...: Loading detailed campaign results...
   4 infolettres l’impact des transports: 4 newsletters the impact of transport
+  common.mainLandingPage.numberPersons: 2.5 million people
+  common.mainLandingPage.numberPersons.lock: 2,5 millions de personnes
+  common.mainLandingPage.tookTheirTest: have already calculated their footprint!
+  common.mainLandingPage.tookTheirTest.lock: ont déjà calculé leur empreinte !
+  simulator.navigation.nextButton.finished.next: Next
+  simulator.navigation.nextButton.finished.next.lock: Suivant
+  simulator.navigation.nextButton.finished: Finish
+  simulator.navigation.nextButton.finished.lock: Terminer
+  simulator.navigation.nextButton.skip: Skip the question
+  simulator.navigation.nextButton.skip.lock: Passer la question
+  simulator.navigation.nextButton.dontKnow: I don't know
+  simulator.navigation.nextButton.dontKnow.lock: Je ne sais pas
+  simulator.navigation.nextButton.next: Next
+  simulator.navigation.nextButton.next.lock: Suivant

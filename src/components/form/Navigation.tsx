@@ -1,5 +1,6 @@
 'use client'
 
+import { DONT_KNOW_FEATURE_FLAG_KEY } from '@/constants/ab-test'
 import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,
@@ -11,16 +12,23 @@ import {
   questionClickSuivant,
 } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
+import { useIsTestVersion } from '@/hooks/abTesting/useIsTestVersion'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useMagicKey } from '@/hooks/useMagicKey'
-import { useCurrentSimulation, useFormState, useRule } from '@/publicodes-state'
+import {
+  useCurrentSimulation,
+  useEngine,
+  useFormState,
+  useRule,
+} from '@/publicodes-state'
 import getValueIsOverFloorOrCeiling from '@/publicodes-state/helpers/getValueIsOverFloorOrCeiling'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { MouseEvent } from 'react'
 import { useCallback, useMemo, useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
+import Trans from '../translation/trans/TransClient'
 import SyncIndicator from './navigation/SyncIndicator'
 
 export default function Navigation({
@@ -42,6 +50,8 @@ export default function Navigation({
 
   const persistedRemainingQuestionsRef = useRef(remainingQuestions)
 
+  const isTestVersion = useIsTestVersion(DONT_KNOW_FEATURE_FLAG_KEY)
+
   const {
     gotoPrevQuestion,
     gotoNextQuestion,
@@ -50,8 +60,16 @@ export default function Navigation({
     setCurrentQuestion,
   } = useFormState()
 
-  const { isMissing, plancher, plafond, value, activeNotifications } =
-    useRule(question)
+  const {
+    isMissing,
+    plancher,
+    plafond,
+    value,
+    activeNotifications,
+    questionsOfMosaicFromParent,
+  } = useRule(question)
+
+  const { getValue } = useEngine()
 
   // Hack in order to reset the notification when the question changes
   const hasActiveNotifications = activeNotifications?.length > 0
@@ -136,7 +154,25 @@ export default function Navigation({
       }
 
       if (isMissing) {
-        updateCurrentSimulation({ foldedStepToAdd: question })
+        if (questionsOfMosaicFromParent?.length > 0) {
+          questionsOfMosaicFromParent.forEach((question) => {
+            updateCurrentSimulation({
+              foldedStepToAdd: {
+                foldedStep: question,
+                value: getValue(question),
+                isMosaicChild: true,
+              },
+            })
+          })
+        }
+
+        updateCurrentSimulation({
+          foldedStepToAdd: {
+            foldedStep: question,
+            value: value,
+            isMosaicParent: questionsOfMosaicFromParent?.length > 0,
+          },
+        })
       }
 
       handleMoveFocus()
@@ -166,17 +202,19 @@ export default function Navigation({
       }
     },
     [
-      question,
-      gotoNextQuestion,
-      finalNoNextQuestion,
-      isMissing,
-      value,
-      onComplete,
-      updateCurrentSimulation,
       startTime,
-      isEmbedded,
-      setCurrentQuestion,
+      isMissing,
       resetNotification,
+      finalNoNextQuestion,
+      isEmbedded,
+      question,
+      value,
+      questionsOfMosaicFromParent,
+      updateCurrentSimulation,
+      getValue,
+      onComplete,
+      setCurrentQuestion,
+      gotoNextQuestion,
     ]
   )
 
@@ -255,6 +293,22 @@ export default function Navigation({
     })
   }
 
+  const skipText = isTestVersion ? (
+    <span>
+      <Trans i18nKey="simulator.navigation.nextButton.dontKnow">
+        Je ne sais pas
+      </Trans>{' '}
+      <span aria-hidden>→</span>
+    </span>
+  ) : (
+    <span>
+      <Trans i18nKey="simulator.navigation.nextButton.skip">
+        Passer la question
+      </Trans>{' '}
+      <span aria-hidden>→</span>
+    </span>
+  )
+
   return (
     <div
       className={twMerge(
@@ -285,11 +339,20 @@ export default function Navigation({
           size="md"
           data-cypress-id="next-question-button"
           onClick={handleGoToNextQuestion}>
-          {finalNoNextQuestion
-            ? t('Terminer')
-            : isMissing
-              ? t('Passer la question') + ' →'
-              : t('Suivant') + ' →'}
+          {finalNoNextQuestion ? (
+            <Trans i18nKey="simulator.navigation.nextButton.finished">
+              Terminer
+            </Trans>
+          ) : isMissing ? (
+            skipText
+          ) : (
+            <span>
+              <Trans i18nKey="simulator.navigation.nextButton.next">
+                Suivant
+              </Trans>{' '}
+              <span aria-hidden>→</span>
+            </span>
+          )}
         </Button>
       </div>
     </div>

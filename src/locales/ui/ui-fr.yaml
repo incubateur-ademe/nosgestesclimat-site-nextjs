@@ -160,7 +160,7 @@ entries:
   'Date complète :': 'Date complète :'
   disponibles: disponibles
   'Identifiant :': 'Identifiant :'
-  Il concerne votre vie personnelle, et non pas votre boulot.: Il concerne votre vie personnelle, et non pas votre boulot.
+  Il concerne votre vie personnelle, et non pas votre activité.: Il concerne votre vie personnelle, et non pas votre activité.
   international.comment.2: Explorez en détail les spécificités de chaque pays.
   Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.
   Logo de l'Association pour la transition Bas Carbone: Logo de l'Association pour la transition Bas Carbone
@@ -667,7 +667,6 @@ entries:
   Une mère et son enfant sur un vélo: Une mère et son enfant sur un vélo
   Votre test est sauvegardé !: Votre test est sauvegardé !
   Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par email.: Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par email.
-  <0>Empreinte carbone</0> moyenne: <0>Empreinte carbone</0> moyenne
   <0>Empreinte eau</0> moyenne: <0>Empreinte eau</0> moyenne
   Le lexique pour tout comprendre à l’empreinte eau: Le lexique pour tout comprendre à l’empreinte eau
   Lire l'article: Lire l'article
@@ -958,7 +957,6 @@ entries:
   Poire: Poire
   Pomme: Pomme
   Raisin: Raisin
-  Chargement des résultats détaillés de campagne...: Chargement des résultats détaillés de campagne...
   '{{name}} lecture seule': '{{name}} lecture seule'
   '{{name}} menu déroulant': '{{name}} menu déroulant'
   Chemin de navigation: Chemin de navigation
@@ -1336,3 +1334,10 @@ entries:
   L'empreinte carbone du logement: L'empreinte carbone du logement
   L'empreinte carbone du transport: L'empreinte carbone du transport
   pollResults.footprintBarChart.targetLabelUnit: tonnes
+  common.mainLandingPage.numberPersons: 2,5 millions de personnes
+  common.mainLandingPage.tookTheirTest: ont déjà calculé leur empreinte !
+  simulator.navigation.nextButton.dontKnow: Je ne sais pas
+  simulator.navigation.nextButton.finished: Terminer
+  simulator.navigation.nextButton.finished.next: Suivant
+  simulator.navigation.nextButton.skip: Passer la question
+  simulator.navigation.nextButton.next: Suivant

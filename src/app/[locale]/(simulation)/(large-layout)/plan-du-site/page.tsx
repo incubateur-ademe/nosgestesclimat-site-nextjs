@@ -54,15 +54,15 @@ export default async function PlanDuSitePage({ params }: DefaultPageProps) {
         href: '/blog',
       },
       thematicLandingPagesAlimentation: {
-        title: t('L\'empreinte carbone de l\'alimentation'),
+        title: t("L'empreinte carbone de l'alimentation"),
         href: '/themes/empreinte-carbone-alimentation',
       },
       thematicLandingPagesTransport: {
-        title: t('L\'empreinte carbone du transport'),
+        title: t("L'empreinte carbone du transport"),
         href: '/themes/empreinte-carbone-transport',
       },
       thematicLandingPagesLogement: {
-        title: t('L\'empreinte carbone du logement'),
+        title: t("L'empreinte carbone du logement"),
         href: '/themes/empreinte-carbone-logement',
       },
       nouveautes: {
@@ -88,10 +88,6 @@ export default async function PlanDuSitePage({ params }: DefaultPageProps) {
       privacyPolicy: {
         title: t('Politique de confidentialité'),
         href: '/politique-de-confidentialite',
-      },
-      cookiePolicy: {
-        title: t('Politique des cookies'),
-        href: '/politique-des-cookies',
       },
       partenaires: {
         title: t('Partenaires'),

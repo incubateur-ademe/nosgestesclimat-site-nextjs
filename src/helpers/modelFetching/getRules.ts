@@ -69,9 +69,6 @@ export async function getRules({
       case 'en':
         fileName = `co2-model.${regionCodeToProvide}-lang.en.json`
         break
-      case 'es':
-        fileName = `co2-model.${regionCodeToProvide}-lang.es.json`
-        break
       case 'fr':
       default:
         fileName = `co2-model.${regionCodeToProvide}-lang.fr.json`
