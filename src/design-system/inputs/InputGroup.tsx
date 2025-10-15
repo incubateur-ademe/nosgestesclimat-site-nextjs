@@ -71,7 +71,7 @@ export default function InputGroup({
 
       {srOnlyHelperText ? (
         <span
-          id={helperTextId}
+          id={srOnlyHelperTextId}
           className={twMerge('sr-only -mt-1 mb-2 text-base text-slate-900')}>
           {srOnlyHelperText}
         </span>

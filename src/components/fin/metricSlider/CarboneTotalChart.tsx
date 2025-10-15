@@ -68,7 +68,10 @@ export default function CarboneTotalChart({
 
   return (
     <div
-      className="relative mx-auto flex w-full flex-col items-center justify-center"
+      className={twMerge(
+        'relative mx-auto flex w-full flex-col items-center justify-center',
+        isSmall ? 'mt-2 md:mt-4' : ''
+      )}
       role="img"
       aria-label={gaugeDescription}
       aria-live="polite"
@@ -77,11 +80,11 @@ export default function CarboneTotalChart({
         <div
           className={twMerge(
             'pt-8 text-center font-medium whitespace-nowrap transition-transform duration-300 md:pt-12',
-            isSmall ? 'md:scale-75 md:pt-6 lg:pt-0' : 'scale-100'
+            isSmall ? 'md:scale-75 md:pt-0' : 'scale-100'
           )}
           style={{ color: cssColor }}
           aria-hidden="true">
-          <p className="mb-0 leading-none">
+          <p className="mb-0 leading-none md:mb-1">
             <strong className="bottom-7 text-xl leading-none font-black md:text-4xl lg:bottom-7 lg:text-6xl">
               <CountUp
                 isCounting

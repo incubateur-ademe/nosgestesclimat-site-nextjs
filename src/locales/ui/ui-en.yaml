@@ -1544,3 +1544,18 @@ entries:
   simulator.car.addTravel.lock: Ajouter un trajet
   Métrique sélectionnée: Selected metric
   Sélectionné: Selected
+  results.metricSlider.water.desktop.mobile: Water footprint
+  results.metricSlider.water.desktop.mobile.lock: Empreinte eau
+  results.metricSlider.carbon.desktop.mobile: Carbon footprint
+  results.metricSlider.carbon.desktop.mobile.lock: Empreinte carbone
+  results.metricSlider.water.desktop.title: My water footprint
+  results.metricSlider.water.desktop.title.lock: Mon empreinte eau
+  results.metricSlider.carbon.desktop.title: My carbon footprint
+  results.metricSlider.carbon.desktop.title.lock: Mon empreinte carbone
+  actions.actionCard.actionValue.answerButton.label: Reply
+  actions.actionCard.actionValue.answerButton.label.lock: Répondre
+  actions.actionCard.actionValue.answerButton.title: Answer the remaining questions
+  actions.actionCard.actionValue.answerButton.title.lock: Répondre aux questions restantes
+  4 infolettres l’impact des transports: 4 newsletters the impact of transport
+  Cliquez pour afficher la réponse: Click to display the answer
+  Voir plus d'informations: See more information

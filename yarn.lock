@@ -2421,16 +2421,17 @@
   dependencies:
     "@opentelemetry/instrumentation" "^0.52.0 || ^0.53.0 || ^0.54.0 || ^0.55.0 || ^0.56.0 || ^0.57.0"
 
-"@publicodes/react-ui@^1.8.0", "@publicodes/react-ui@https://pkg.pr.new/publicodes/publicodes/@publicodes/react-ui@8b65b64":
+"@publicodes/react-ui@^1.8.0":
   version "1.9.1"
-  resolved "https://pkg.pr.new/publicodes/publicodes/@publicodes/react-ui@8b65b64#9ae48bc697e7af07778fd3a2387f635af30a1831"
+  resolved "https://pkg.pr.new/publicodes/publicodes/@publicodes/react-ui@e38f78e#bd7b863a8bb09f0068cfa3e9c804bfb402f6f04c"
   dependencies:
     fuse.js "^7.0.0"
     styled-components "^6.1.1"
 
-"@publicodes/react-ui@https://pkg.pr.new/publicodes/publicodes/@publicodes/react-ui@e38f78e":
+"@publicodes/react-ui@^1.9.1":
   version "1.9.1"
-  resolved "https://pkg.pr.new/publicodes/publicodes/@publicodes/react-ui@e38f78e#bd7b863a8bb09f0068cfa3e9c804bfb402f6f04c"
+  resolved "https://registry.yarnpkg.com/@publicodes/react-ui/-/react-ui-1.9.1.tgz#8c14162df2b3a1bf2cacd840ce532ecf374917e5"
+  integrity sha512-brnMDR0/J/53Cv6QATc6nr68FZzTuBiQyLBJqeZ4LSLDZuQHlhprCK0zIUgtcgjyYBBFF1KB0iVf0iesw5Hnew==
   dependencies:
     fuse.js "^7.0.0"
     styled-components "^6.1.1"
@@ -10684,7 +10685,7 @@ public-encrypt@^4.0.3:
     randombytes "^2.0.1"
     safe-buffer "^5.1.2"
 
-publicodes@^1.8.2:
+publicodes@^1.8.2, publicodes@^1.9.1:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.9.1.tgz#0c5031337e4515af81e5079fae29d34fbc8c0768"
   integrity sha512-sXBgGuAH/bIehF8waXm4Pp/EnqjFmxZJb6FNSAZ9FRO1neACHRYKv34lxFM3qZNyJ2RaI5jwtOupGlozMW0fcA==

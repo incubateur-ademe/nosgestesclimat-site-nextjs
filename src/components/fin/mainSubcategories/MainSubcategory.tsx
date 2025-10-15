@@ -2,6 +2,7 @@ import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import {
   getBackgroundLightColor,
   getBorderColor,
+  getBorderDarkColor,
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -52,7 +53,7 @@ export default function MainSubcategory({
         'focus:ring-primary-700 flex items-center justify-between gap-4 rounded-xl border-2 px-4 py-3 no-underline focus:ring-2 focus:ring-offset-3 focus:outline-hidden',
         widthClassName[index],
         getBackgroundLightColor(category),
-        getBorderColor(category),
+        getBorderDarkColor(category),
         isLink ? 'cursor-pointer' : 'cursor-default'
       )}
       aria-label={

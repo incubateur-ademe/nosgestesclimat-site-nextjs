@@ -148,7 +148,7 @@ export default function ActionCard({
           getBackgroundLightColor(category)
         )}>
         <Link
-          className="z-10 w-full no-underline"
+          className="z-10 w-full underline"
           onClick={() => trackEvent(actionsOpenAction(dottedName))}
           href={'/actions/' + encodeRuleName(dottedName)}>
           {icons && (
@@ -157,7 +157,7 @@ export default function ActionCard({
 
           <h3
             className={twMerge(
-              'mb-0 inline-block w-full text-center text-sm font-bold',
+              'mb-0 inline-block w-full text-center text-sm font-bold underline',
               getTextDarkColor(category)
             )}>
             {title}

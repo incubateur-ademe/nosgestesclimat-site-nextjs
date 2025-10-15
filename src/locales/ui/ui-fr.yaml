@@ -1319,3 +1319,10 @@ entries:
   simulator.inputs.choice.questionButton.title: Plus d'informations - {{label}}
   simulator.mosaicNumberInput.add: 'Ajouter un élément : {{title}}'
   simulator.mosaicNumberInput.remove: 'Retirer un élémént : {{title}}'
+  actions.actionCard.actionValue.answerButton.label: Répondre
+  actions.actionCard.actionValue.answerButton.title: Répondre aux questions restantes
+  Cliquez pour afficher la réponse: Cliquez pour afficher la réponse
+  results.metricSlider.carbon.desktop.mobile: Empreinte carbone
+  results.metricSlider.carbon.desktop.title: Mon empreinte carbone
+  results.metricSlider.water.desktop.mobile: Empreinte eau
+  results.metricSlider.water.desktop.title: Mon empreinte eau

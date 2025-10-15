@@ -52,9 +52,11 @@ export default function MetricCard({
   return (
     <div
       className={twMerge(
-        'flex-1 rounded-b-xl bg-white',
+        'flex-1 overflow-hidden rounded-b-xl bg-white',
         'border-primary-100 pointer-events-auto relative rounded-xl border-[3px]',
-        isSelected ? 'border-primary-700 bg-white' : 'bg-slate-100',
+        isSelected
+          ? 'border-primary-700 bg-white'
+          : 'border-slate-500 bg-slate-100',
         isSticky && 'rounded-none rounded-br-xl rounded-bl-xl',
         metric === carboneMetric
           ? 'rounded-r-none rounded-bl-xl'

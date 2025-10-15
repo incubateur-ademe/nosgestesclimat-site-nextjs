@@ -36,7 +36,7 @@ export default function JagisSecondaryBlock() {
           <h2 className="order-1 mb-2">
             <Trans>Que faire pour réduire mon empreinte ?</Trans>
           </h2>
-          <ul className="-order-1 mb-4 flex gap-4">
+          <ul className="-order-1 mb-4 flex flex-wrap gap-4">
             <li>
               <Badge size="xs" color="green">
                 <Trans>Aides financières</Trans>

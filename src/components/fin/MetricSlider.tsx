@@ -124,8 +124,14 @@ export default function MetricSlider({
           isSharePage={isSharePage}
           metric={carboneMetric}
           metricTitle={{
-            desktop: <Trans>Mon empreinte carbone</Trans>,
-            mobile: <Trans>Empreinte carbone</Trans>,
+            desktop: t(
+              'results.metricSlider.carbon.desktop.title',
+              'Mon empreinte carbone'
+            ),
+            mobile: t(
+              'results.metricSlider.carbon.desktop.mobile',
+              'Empreinte carbone'
+            ),
           }}
           isSticky={isSticky}
           tabId="tab-metric-carbone"
@@ -142,8 +148,14 @@ export default function MetricSlider({
           isSharePage={isSharePage}
           metric={eauMetric}
           metricTitle={{
-            desktop: <Trans>Mon empreinte eau</Trans>,
-            mobile: <Trans>Empreinte eau</Trans>,
+            desktop: t(
+              'results.metricSlider.water.desktop.title',
+              'Mon empreinte eau'
+            ),
+            mobile: t(
+              'results.metricSlider.water.desktop.mobile',
+              'Empreinte eau'
+            ),
           }}
           isSticky={isSticky}
           tabId="tab-metric-eau"
