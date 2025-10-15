@@ -19,6 +19,13 @@ export const simulationCategoryCompleted = (category: DottedName) => [
   `Category completed ${category}`,
 ]
 
+// Triggered when the user sees the first question of the test
+export const simulationSimulationFirstQuestionSeen = [
+  'trackEvent',
+  'Simulation',
+  'Simulation First question seen',
+]
+
 // Triggered when we answer the first question of the simulation
 export const simulationSimulationStarted = [
   'trackEvent',
