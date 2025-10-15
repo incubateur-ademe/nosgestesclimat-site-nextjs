@@ -1,6 +1,6 @@
-// @ts-ignore - vi is available in test environment
+// @ts-expect-error - vi is available in test environment
 export const parse = vi.fn()
-// @ts-ignore - vi is available in test environment
+// @ts-expect-error - vi is available in test environment
 export const stringify = vi.fn()
 
 const yaml = {
