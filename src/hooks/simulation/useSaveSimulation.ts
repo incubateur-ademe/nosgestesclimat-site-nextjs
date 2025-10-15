@@ -16,6 +16,7 @@ type Props = {
   simulation: Simulation
   sendEmail?: true
 }
+
 export function useSaveSimulation() {
   const {
     user: { userId, name, email },
@@ -32,7 +33,7 @@ export function useSaveSimulation() {
     error,
   } = useMutation({
     mutationFn: async ({
-      simulation: { groups, polls, ...simulation },
+      simulation: { groups, polls, isCompleted, ...simulation },
       sendEmail,
     }: Props) => {
       // We reset the sync timer to avoid saving the simulation in the background

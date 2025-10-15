@@ -100,6 +100,7 @@ export default function useSimulations({
       groupToAdd,
       groupToDelete,
       savedViaEmail,
+      isCompleted,
     }: UpdateCurrentSimulationProps) => {
       setSimulations((prevSimulations: Simulation[]) =>
         prevSimulations.map((simulation) => {
@@ -251,6 +252,10 @@ export default function useSimulations({
 
           if (savedViaEmail !== undefined) {
             simulationToUpdate.savedViaEmail = savedViaEmail
+          }
+
+          if (isCompleted !== undefined) {
+            simulation.isCompleted = isCompleted
           }
 
           return simulationToUpdate
