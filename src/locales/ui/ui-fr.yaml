@@ -179,7 +179,6 @@ entries:
   'Vous faites cette simulation depuis :': 'Vous faites cette simulation depuis :'
   du test: du test
   Vous utilisez la version: Vous utilisez la version
-  Terminer: Terminer
   Voir toutes les actions: Voir toutes les actions
   Distance: Distance
   Fréquence: Fréquence
@@ -569,8 +568,6 @@ entries:
   Étape: Étape
   Mentions légales: Mentions légales
   Politique de confidentialité: Politique de confidentialité
-  Politique des cookies: Politique des cookies
-  Politique des cookies - Nos Gestes Climat: Politique des cookies - Nos Gestes Climat
   Pour faire joli et le reconnaitre !: Pour faire joli et le reconnaitre !
   Pour le retrouver facilement dans votre liste: Pour le retrouver facilement dans votre liste
   sur: sur
@@ -626,12 +623,9 @@ entries:
   'L’empreinte eau : pourquoi et comment avons-nous travaillé…': 'L’empreinte eau : pourquoi et comment avons-nous travaillé…'
   litres par jour: litres par jour
   Et l'eau de <2>ma douche</2> dans tout ça ?: Et l'eau de <2>ma douche</2> dans tout ça ?
-  Mon empreinte carbone: Mon empreinte carbone
-  Mon empreinte eau: Mon empreinte eau
   d'eau par jour: d'eau par jour
   de CO₂e par an: de CO₂e par an
   Liste des questions: Liste des questions
-  Passer la question: Passer la question
   Recevez par email un lien pour reprendre votre test plus tard.: Recevez par email un lien pour reprendre votre test plus tard.
   Reprendre plus tard: Reprendre plus tard
   Sauvegarder <2>ma progression</2>: Sauvegarder <2>ma progression</2>
@@ -1079,12 +1073,6 @@ entries:
   cookies.management.required.description: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucune donnée personnelle et ne peuvent pas être désactivés.
   cookies.management.required.title: Cookies obligatoires
   cookies.management.title: Panneau de gestion des cookies
-  Cookies utilisés par PostHog: Cookies utilisés par PostHog
-  "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :": "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :"
-  Voir la liste des cookies utilisés par PostHog: Voir la liste des cookies utilisés par PostHog
-  Accepter les cookies: Accepter les cookies
-  Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.: Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.
-  Refuser les cookies: Refuser les cookies
   Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calculez votre empreinte carbone et eau avec Nos Gestes Climat
   'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'Vous pouvez nous contacter via notre page de contact : <2></2>.'
   Gestion des cookies: Gestion des cookies
@@ -1165,7 +1153,6 @@ entries:
   Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.: Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.
   Chargement du tableau de bord...: Chargement du tableau de bord...
   Formulaire - Demander une démo: Formulaire - Demander une démo
-  Formulaire - Désactiver les cookies de mesure d'audience via Matomo: Formulaire - Désactiver les cookies de mesure d'audience via Matomo
   Formulaire - nous faire part de vos remarques sur le site: Formulaire - nous faire part de vos remarques sur le site
   Graphique de distribution des résultats de simulation pour le mois dernier: Graphique de distribution des résultats de simulation pour le mois dernier
   Graphiques du nombre de visites et de simulations sur le site: Graphiques du nombre de visites et de simulations sur le site
@@ -1224,21 +1211,6 @@ entries:
   homePage.interactiveIllustration.itemTitle: '{{itemTitle}} : empreinte carbone notée {{carbonScore}} sur 5'
   homePage.interactiveIllustration.waterScore: ' et empreinte eau notée {{waterScore}} sur 5'
   Lancer le défilement: Lancer le défilement
-  4 infolettres l’impact des transports: 4 infolettres l’impact des transports
-  5 infolettres sur l’impact du logement: 5 infolettres sur l’impact du logement
-  Entrez des mots clefs: Entrez des mots clefs
-  Entrez des mots-clefs de recherche: Entrez des mots-clefs de recherche
-  Evaluer la métrique carbone: Evaluer la métrique carbone
-  Evaluer la métrique eau: Evaluer la métrique eau
-  Explorez nos modèles: Explorez nos modèles
-  Passer en français: Passer en français
-  Switch to english: Switch to english
-  Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau: Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau
-  Un champ de coton, illustrant le calcul de l'empreinte eau: Un champ de coton, illustrant le calcul de l'empreinte eau
-  Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique: Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique
-  Une garde-robe économe en eau: Une garde-robe économe en eau
-  Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone: Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone
-  Voir plus d'informations: Voir plus d'informations
   common.category.alimentation: Alimentation
   common.category.divers: Divers
   common.category.logement: Logement
@@ -1326,3 +1298,7 @@ entries:
   results.metricSlider.carbon.desktop.title: Mon empreinte carbone
   results.metricSlider.water.desktop.mobile: Empreinte eau
   results.metricSlider.water.desktop.title: Mon empreinte eau
+  simulator.navigation.nextButton.dontKnow: Je ne sais pas
+  simulator.navigation.nextButton.finished: Terminer
+  simulator.navigation.nextButton.skip: Passer la question
+  simulator.navigation.nextButton.next: Suivant

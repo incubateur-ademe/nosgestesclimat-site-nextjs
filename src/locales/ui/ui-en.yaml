@@ -210,7 +210,6 @@ entries:
   publicodes.Tutoriel.slide6.lock: <0>Prendre la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter une TV...</0><1>L'empreinte de notre consommation individuelle, c'est la somme de toutes ces activités qui font notre vie moderne.</1>
   publicodes.Tutoriel.slide2.p1: 'With a unit with a barbaric name: the CO₂ equivalent. Carbon dioxide <2></2>, you know it: we breathe it out all day long, but it has no influence on the climate.'
   publicodes.Tutoriel.slide2.p1.lock: "Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone <2></2>, vous le connaissez : on l'expire toute la journée, mais sans influence sur le climat."
-  Logo de l'Association pour la transition Bas Carbone: Logo of the Low Carbon Transition Association
   Il concerne votre vie personnelle, et non pas votre activité.: It's about your personal life, not your activity.
   Comparez vos résultats avec votre famille ou un groupe d’ami·e·s: Compare your results with your family or a group of friends
   publicodes.Tutoriel.slide1.p1: It's a fact that the climate is warming because of human activity. Everything we consume, use and then throw away requires materials and energy. Whether it's during the production, use or end-of-life phase of the good or service. So all our activities contribute to greenhouse gas emissions. Some a great deal, others very little. But what is our impact, as individual citizens?
@@ -230,7 +229,6 @@ entries:
   Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: The personas allow us to test the simulator from every angle, and to check that it can be adapted to all the life situations of metropolitan citizens. Their presence forces us to think about all the use cases, to project ourselves into different realities, and to include these realities in our redesigns of the test path and the actions proposed at the end of it.
   Vous utilisez la version: You are using the version
   du test: of the test
-  Terminer: Finish
   Passagers: Passengers
   Télécharger l'image: Download image
   'Total par an :': 'Total per year :'
@@ -625,7 +623,6 @@ entries:
   Il n'y a pas que sur votre empreinte que vous pouvez agir !: It's not just your footprint that you can influence!
   sur: on
   Continuer: Continue
-  Politique des cookies: Cookie policy
   Et une illustration: And an illustration
   Mentions légales: Legal information
   Étape: Step
@@ -635,7 +632,6 @@ entries:
   Pour le retrouver facilement dans votre liste: To find it easily in your list
   Choisissez un nom pour ce groupe: Choose a name for this group
   Veuillez entrer une adresse email valide.: Please enter a valid email address.
-  Politique des cookies - Nos Gestes Climat: Cookie policy - Nos Gestes Climat
   Pour faire joli et le reconnaitre !: To make it look pretty and recognisable!
   Un bonhomme se demandant où il est: A man wondering where he is
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Nothing on the horizon! <1></1>The page you are looking for does not exist.
@@ -686,8 +682,6 @@ entries:
   '*La moyenne française est de': '*The French average is'
   'L’empreinte eau : pourquoi et comment avons-nous travaillé…': 'The water footprint: why and how we worked..'
   litres par jour: litres per day
-  Mon empreinte carbone: My carbon footprint
-  Mon empreinte eau: My water footprint
   Et l'eau de <2>ma douche</2> dans tout ça ?: What about the water in <2>my shower</2>?
   Reprendre plus tard: Resume later
   Sauvegarder <2>ma progression</2>: Save <2>my progress</2>
@@ -696,7 +690,6 @@ entries:
   de CO₂e par an: of CO₂e per year
   Recevez par email un lien pour reprendre votre test plus tard.: Receive an email with a link to take your test again later.
   Liste des questions: List of questions
-  Passer la question: Skip the question
   Une erreur s'est produite au moment de la sauvegarde.: An error has occurred during backup.
   '{{name}}, supprimer cette participation': '{{name}}cancel this shareholding'
   Supprimer ce participant ? Cette opération est définitive.: Delete this participant? This operation is definitive.
@@ -1151,12 +1144,6 @@ entries:
   cookies.management.required.description.lock: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucune donnée personnelle et ne peuvent pas être désactivés.
   cookies.management.title: Cookie management panel
   cookies.management.title.lock: Panneau de gestion des cookies
-  Cookies utilisés par PostHog: Cookies used by PostHog
-  Voir la liste des cookies utilisés par PostHog: See the list of cookies used by PostHog
-  "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :": 'We also use PostHog to measure the audience for our site. The list of cookies used is available here :'
-  Accepter les cookies: Accept cookies
-  Refuser les cookies: Refuse cookies
-  Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.: We use cookies to understand how you use the product and to help us improve it. If you do not wish to be tracked, you can refuse them.
   'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'You can contact us via our contact page: <2></2>.'
   Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calculate your carbon and water footprint with Nos Gestes Climat
   Gestion des cookies: Cookie management
@@ -1295,7 +1282,6 @@ entries:
   organisations.poll.create.custom_question.add_button.label.lock: Ajouter une question personnalisée
   documentation.search.results.label: Search results
   documentation.search.results.label.lock: Résultats de recherche
-  Formulaire - Désactiver les cookies de mesure d'audience via Matomo: Form - Deactivate audience measurement cookies via Matomo
   Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.: This graph shows the distribution of users' simulation results, enabling trends and behaviour to be analysed.
   Formulaire - nous faire part de vos remarques sur le site: Form - send us your comments on the site
   Iframe - Google Tag Manager: Iframe - Google Tag Manager
@@ -1391,20 +1377,6 @@ entries:
   Lancer le défilement: Start scrolling
   common.slider.stop: Stop
   common.slider.stop.lock: Arrêter
-  Passer en français: Switch to French
-  Entrez des mots-clefs de recherche: Enter search keywords
-  Une garde-robe économe en eau: A water-saving wardrobe
-  Explorez nos modèles: Explore our models
-  Entrez des mots clefs: Enter keywords
-  5 infolettres sur l’impact du logement: 5 newsletters on the impact of housing
-  Evaluer la métrique carbone: Assessing carbon metrics
-  Switch to english: Switch to english
-  Evaluer la métrique eau: Assessing the water metric
-  Deux mini-vans, illustrant l'empreinte carbone des transports: Two minivans, illustrating the carbon footprint of transport
-  Un champ de coton, illustrant le calcul de l'empreinte eau: A field of cotton, illustrating the calculation of the water footprint
-  Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone: An event for the climate, illustrating actions to reduce one's carbon footprint
-  Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau: A watered field, illustrating the lexicon for understanding the water footprint
-  Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique: An ice pack sparse in the sunlight, illustrating our maladaptation to climate change
   common.category.logement: Housing
   common.category.logement.lock: Logement
   pollResults.categoryDistribution.accessibleDescription.category: '{{name}}: {{value}} {{unit}}.'
@@ -1556,6 +1528,12 @@ entries:
   actions.actionCard.actionValue.answerButton.label.lock: Répondre
   actions.actionCard.actionValue.answerButton.title: Answer the remaining questions
   actions.actionCard.actionValue.answerButton.title.lock: Répondre aux questions restantes
-  4 infolettres l’impact des transports: 4 newsletters the impact of transport
   Cliquez pour afficher la réponse: Click to display the answer
-  Voir plus d'informations: See more information
+  simulator.navigation.nextButton.finished: Finish
+  simulator.navigation.nextButton.finished.lock: Terminer
+  simulator.navigation.nextButton.skip: Skip the question
+  simulator.navigation.nextButton.skip.lock: Passer la question
+  simulator.navigation.nextButton.dontKnow: I don't know
+  simulator.navigation.nextButton.dontKnow.lock: Je ne sais pas
+  simulator.navigation.nextButton.next: Next
+  simulator.navigation.nextButton.next.lock: Suivant
