@@ -178,19 +178,24 @@ export default function ActionCard({
         </div>
         <div className="self-bottom flex w-full justify-between px-2">
           <button
-            title={t(
-              actionChoices?.[dottedName]
-                ? 'Annuler la sélection'
-                : "Choisir l'action"
-            )}
+            title={
+              remainingQuestions?.length > 0
+                ? t("Choisir l'action - désactivé")
+                : actionChoices?.[dottedName]
+                  ? t('Annuler la sélection')
+                  : t("Choisir l'action")
+            }
             type="button"
+            aria-disabled={remainingQuestions?.length > 0}
             aria-pressed={actionChoices?.[dottedName]}
             aria-label={`${title} ${actionChoices?.[dottedName] ? t('actions.chooseAction.ariaLabel.selected', 'Action sélectionnée, annuler la sélection') : t('actions.chooseAction.ariaLabel.unselected', 'Sélectionner cette action')}`}
             className={twMerge(
               hasRemainingQuestions ? 'grayscale' : '',
               'focus:ring-primary-700 focus:ring-2 focus:ring-offset-3 focus:outline-hidden'
             )}
-            onClick={handleChooseAction}>
+            onClick={
+              remainingQuestions?.length > 0 ? () => {} : handleChooseAction
+            }>
             <CheckCircleIcon
               className="fill-green-700"
               width="40"
