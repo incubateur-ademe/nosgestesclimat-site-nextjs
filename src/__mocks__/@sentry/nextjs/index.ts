@@ -1,1 +1,2 @@
-export const captureException = jest.fn()
+// @ts-ignore - vi is available in test environment
+export const captureException = vi.fn()

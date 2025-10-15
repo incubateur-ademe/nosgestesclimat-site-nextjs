@@ -6,8 +6,9 @@ import {
   simulateurOpenSommaire,
 } from '@/constants/tracking/pages/simulateur'
 import { useSimulateurGuard } from '@/hooks/navigation/useSimulateurGuard'
-import { useTrackSimulateur } from '@/hooks/tracking/useTrackSimulateur'
+import { useTrackSimulateur } from '@/hooks/tracking/useTrackSimulateur/useTrackSimulateur'
 import { useIframe } from '@/hooks/useIframe'
+import { useLocale } from '@/hooks/useLocale'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useCallback, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -15,10 +16,12 @@ import SaveModal from './_components/SaveModal'
 import Simulateur from './_components/Simulateur'
 
 export default function SimulateurPage() {
+  const locale = useLocale()
+
   // Guarding the route and redirecting if necessary
   const { isGuardInit, isGuardRedirecting } = useSimulateurGuard()
 
-  const { isIframe, iframeRegion, isFrenchRegion } = useIframe()
+  const { isIframe, isFrenchRegion } = useIframe()
 
   // We track the progression of the user in the simulation
   useTrackSimulateur()
