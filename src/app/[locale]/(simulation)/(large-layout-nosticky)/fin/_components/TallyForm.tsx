@@ -1,6 +1,8 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import { DONT_KNOW_FEATURE_FLAG_KEY } from '@/constants/ab-test'
+import { useIsTestVersion } from '@/hooks/abTesting/useIsTestVersion'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import i18nConfig from '@/i18nConfig'
@@ -35,6 +37,18 @@ export default function TallyForm() {
     (isFrench
       ? process.env.NEXT_PUBLIC_TALLY_FORM_ID
       : process.env.NEXT_PUBLIC_TALLY_FORM_ID_EN) ?? ''
+
+  const isTestVersion = useIsTestVersion(DONT_KNOW_FEATURE_FLAG_KEY)
+
+  // Add AB testing parameters to URL for Tally
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    params.set('featureFlagKey', DONT_KNOW_FEATURE_FLAG_KEY)
+    params.set('abTestVariant', isTestVersion ? 'test' : 'control')
+
+    const newUrl = `${window.location.pathname}?${params.toString()}`
+    window.history.replaceState({}, '', newUrl)
+  }, [isTestVersion])
 
   const handleOpenForm = () => {
     window.Tally.openPopup(FORM_ID, {
