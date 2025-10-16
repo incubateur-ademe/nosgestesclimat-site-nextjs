@@ -110,7 +110,7 @@ export default function Label({
       {description &&
         (mustShowDescriptionQuestion.includes(question) ? (
           <div className="mt-2 mb-6 text-xs italic md:text-sm">
-            <Markdown>{description}</Markdown>{' '}
+            <Markdown>{description}</Markdown>
           </div>
         ) : isOpen ? (
           <motion.div

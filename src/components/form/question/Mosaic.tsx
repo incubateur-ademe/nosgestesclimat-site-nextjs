@@ -19,23 +19,28 @@ type Props = {
 
 export default function Mosaic({
   question,
-  questionsOfMosaic,
+  questionsOfMosaic: questionsOfMosaicFromProps,
   secondaryQuestionsOfMosaic,
   firstInputId,
   label,
   ...props
 }: Props) {
   const { getValue } = useEngine()
+
+  const isSecondaryQuestionsOfMosaicNotEmpty =
+    secondaryQuestionsOfMosaic && secondaryQuestionsOfMosaic.length > 0
+
   const [isMoreOptionsVisible, setIsMoreOptionsVisible] = useState(
-    secondaryQuestionsOfMosaic &&
-      secondaryQuestionsOfMosaic.length > 0 &&
+    isSecondaryQuestionsOfMosaicNotEmpty &&
       secondaryQuestionsOfMosaic.some(
         (secondaryMosaicChild) => getValue(secondaryMosaicChild) === true
       )
   )
   const { t } = useClientTranslation()
 
-  if (secondaryQuestionsOfMosaic && secondaryQuestionsOfMosaic.length > 0) {
+  let questionsOfMosaic = [...questionsOfMosaicFromProps]
+
+  if (isSecondaryQuestionsOfMosaicNotEmpty) {
     questionsOfMosaic = questionsOfMosaic.filter((q) => {
       return !secondaryQuestionsOfMosaic.includes(q)
     })
@@ -57,10 +62,13 @@ export default function Mosaic({
                 {...props}
               />
             ))
-          : "Cette mosaique n'a pas d'enfants."}
+          : t(
+              'simulator.mosaic.noChildren',
+              "Cette mosaique n'a pas d'enfants."
+            )}
       </fieldset>
 
-      {secondaryQuestionsOfMosaic && secondaryQuestionsOfMosaic.length > 0 && (
+      {isSecondaryQuestionsOfMosaicNotEmpty && (
         <div className="w-full">
           <Button
             color="link"
@@ -82,9 +90,9 @@ export default function Mosaic({
           </Button>{' '}
           {isMoreOptionsVisible && (
             <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.1 }}>
+              initial={{ opacity: 0, y: '-1rem' }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}>
               <fieldset className="mt-2 grid gap-2 md:mt-4 md:grid-cols-2 md:gap-4">
                 {secondaryQuestionsOfMosaic.map((questionOfMosaic, index) => (
                   <MosaicQuestion

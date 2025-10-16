@@ -48,19 +48,24 @@ export default function useSetValue({
     (questionsOfMosaicFromSibling: DottedName[]): Situation => {
       const situationToAdd = questionsOfMosaicFromSibling.reduce(
         (accumulator, mosaicChildDottedName) => {
+          // We check if the dottedName is missing in the current situation
           const isMissing = getIsMissing({
             dottedName: mosaicChildDottedName,
             situation,
           })
-          const isAucunBeingSelected =
+
+          // We check if `aucun` option is being selected, ie, the dottedName we are selecting is an option `aucun` and its value is false before.
+          const isNoneOptionBeingSelected =
             dottedName.includes('aucun') &&
             safeEvaluate(dottedName)?.nodeValue === false
 
-          const isAucunSelected =
+          // We check if `aucun` option is already selected if we are selecting another option.
+          const isNoneOptionSelected =
             mosaicChildDottedName.includes('aucun') &&
             safeEvaluate(mosaicChildDottedName)?.nodeValue === true
 
-          if (!isMissing && !isAucunBeingSelected && !isAucunSelected)
+          // If the dottedName is not missing, and we are not selecting `aucun` option, and `aucun` option is not selected when selecting another option, we do not reset the value of the dottedName
+          if (!isMissing && !isNoneOptionBeingSelected && !isNoneOptionSelected)
             return accumulator
 
           const rule = safeGetRule(mosaicChildDottedName)

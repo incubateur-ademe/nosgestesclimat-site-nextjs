@@ -1,3 +1,4 @@
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Ameublement from './Ameublement'
 import Avion from './Avion'
 import Chauffage from './Chauffage'
@@ -11,60 +12,60 @@ type Props = {
   tempValue?: number
 }
 
+const PLAT_RULENAME: DottedName = 'alimentation . plats'
+const AVION_COURT_RULENAME: DottedName =
+  'transport . avion . court courrier . heures de vol'
+const AVION_MOYEN_RULENAME: DottedName =
+  'transport . avion . moyen courrier . heures de vol'
+const AVION_LONG_RULENAME: DottedName =
+  'transport . avion . long courrier . heures de vol'
+const VOITURE_RULENAME: DottedName = 'transport . voiture . km'
+const TEXTILE_RULENAME: DottedName = 'divers . textile . volume'
+const AMEUBLEMENT_RULENAME: DottedName = 'divers . ameublement . préservation'
+const CHAUFFAGE_RULENAME: DottedName = 'logement . chauffage'
+
 const specialQuestions: Record<string, any> = {
-  'alimentation . plats': (props: Props) => (
-    <Plats
-      key="alimentation . plats"
-      question="alimentation . plats"
-      {...props}
-    />
+  [PLAT_RULENAME]: (props: Props) => (
+    <Plats key={PLAT_RULENAME} question={PLAT_RULENAME} {...props} />
   ),
-  'transport . avion . court courrier . heures de vol': (props: Props) => (
+  [AVION_COURT_RULENAME]: (props: Props) => (
     <Avion
-      key="transport . avion . court courrier . heures de vol"
-      question="transport . avion . court courrier . heures de vol"
+      key={AVION_COURT_RULENAME}
+      question={AVION_COURT_RULENAME}
       {...props}
     />
   ),
-  'transport . avion . moyen courrier . heures de vol': (props: Props) => (
+  [AVION_MOYEN_RULENAME]: (props: Props) => (
     <Avion
-      key="transport . avion . moyen courrier . heures de vol"
-      question="transport . avion . moyen courrier . heures de vol"
+      key={AVION_MOYEN_RULENAME}
+      question={AVION_MOYEN_RULENAME}
       {...props}
     />
   ),
-  'transport . avion . long courrier . heures de vol': (props: Props) => (
+  [AVION_LONG_RULENAME]: (props: Props) => (
     <Avion
-      key="transport . avion . long courrier . heures de vol"
-      question="transport . avion . long courrier . heures de vol"
+      key={AVION_LONG_RULENAME}
+      question={AVION_LONG_RULENAME}
       {...props}
     />
   ),
-  'transport . voiture . km': (props: Props) => (
-    <Voiture
-      key="transport . voiture . km"
-      question="transport . voiture . km"
-      {...props}
-    />
+  [VOITURE_RULENAME]: (props: Props) => (
+    <Voiture key={VOITURE_RULENAME} question={VOITURE_RULENAME} {...props} />
   ),
-  'divers . textile . volume': (props: Props) => (
-    <Textile
-      key="divers . textile . volume"
-      question="divers . textile . volume"
-      {...props}
-    />
+  [TEXTILE_RULENAME]: (props: Props) => (
+    <Textile key={TEXTILE_RULENAME} question={TEXTILE_RULENAME} {...props} />
   ),
-  'divers . ameublement . préservation': (props: Props) => (
+  [AMEUBLEMENT_RULENAME]: (props: Props) => (
     <Ameublement
-      key="divers . ameublement . préservation"
-      question="divers . ameublement . préservation"
+      key={AMEUBLEMENT_RULENAME}
+      question={AMEUBLEMENT_RULENAME}
       {...props}
     />
   ),
-  'logement . chauffage': (props: Props) => (
+  [CHAUFFAGE_RULENAME]: (props: Props) => (
     <Chauffage
-      key="logement . chauffage"
-      question="logement . chauffage"
+      key={CHAUFFAGE_RULENAME}
+      question={CHAUFFAGE_RULENAME}
       {...props}
     />
   ),
