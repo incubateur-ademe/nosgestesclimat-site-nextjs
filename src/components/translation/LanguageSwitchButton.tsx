@@ -1,16 +1,32 @@
 'use client'
 
 import { footerClickLanguage } from '@/constants/tracking/layout'
-import Button from '@/design-system/buttons/Button'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Emoji from '@/design-system/utils/Emoji'
 import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDisplayed'
-import { updateLang } from '@/helpers/language/updateLang'
 import { updateLangCookie } from '@/helpers/language/updateLangCookie'
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import { useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
+
+// Fonction utilitaire pour générer l'URL de langue sans utiliser usePathname
+function generateLanguageUrl(newLocale: Locale, currentLocale: string): string {
+  if (typeof window === 'undefined') {
+    return '#'
+  }
+
+  const url = new URL(window.location.href)
+
+  if (currentLocale === i18nConfig.defaultLocale) {
+    url.pathname = `/${newLocale}${url.pathname}`
+  } else {
+    url.pathname = url.pathname.replace(`/${currentLocale}`, `/${newLocale}`)
+  }
+
+  return url.toString()
+}
 
 export default function LanguageSwitchButton({
   langButtonsDisplayed = {
@@ -36,12 +52,9 @@ export default function LanguageSwitchButton({
     }
   }, [currentLocale])
 
-  const handleChange = (newLocale: Locale) => {
+  const handleLanguageClick = (newLocale: Locale) => {
     trackEvent(footerClickLanguage(newLocale))
-    updateLang({
-      newLocale,
-      currentLocale: currentLocale || i18nConfig.defaultLocale,
-    })
+    updateLangCookie(newLocale)
   }
 
   if (
@@ -57,10 +70,13 @@ export default function LanguageSwitchButton({
         className
       )}>
       {langButtonsDisplayed.fr && (
-        <Button
-          lang="fr"
+        <ButtonLink
+          href={generateLanguageUrl(
+            'fr',
+            currentLocale || i18nConfig.defaultLocale
+          )}
           color={currentLocale === 'fr' ? 'primary' : 'secondary'}
-          onClick={() => handleChange('fr')}
+          onClick={() => handleLanguageClick('fr')}
           size={size}
           aria-label="Passer en français"
           title={
@@ -71,14 +87,17 @@ export default function LanguageSwitchButton({
           className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
           data-cypress-id="language-switch-button-fr">
           <span>FR</span> <Emoji>🇫🇷</Emoji>
-        </Button>
+        </ButtonLink>
       )}
 
       {langButtonsDisplayed.en && (
-        <Button
-          lang="en"
+        <ButtonLink
+          href={generateLanguageUrl(
+            'en',
+            currentLocale || i18nConfig.defaultLocale
+          )}
           color={currentLocale === 'en' ? 'primary' : 'secondary'}
-          onClick={() => handleChange('en')}
+          onClick={() => handleLanguageClick('en')}
           size={size}
           aria-label="Switch to english"
           title={
@@ -89,7 +108,7 @@ export default function LanguageSwitchButton({
           className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
           data-cypress-id="language-switch-button-en">
           <span>EN</span> <Emoji>🇬🇧</Emoji>
-        </Button>
+        </ButtonLink>
       )}
     </div>
   )
