@@ -10,7 +10,7 @@ import MainLayoutProviders from './MainLayoutProviders'
 
 type RootLayoutProps = PropsWithChildren & {
   locale: Locale
-  skipLinksDisplayed: SkipLinksDisplayed
+  skipLinksDisplayed?: SkipLinksDisplayed
 }
 
 export const ClientLayout = ({
