@@ -1,14 +1,14 @@
 'use client'
 
 import { footerClickLanguage } from '@/constants/tracking/layout'
-import ButtonLink from '@/design-system/buttons/ButtonLink'
+import ButtonAnchor from '@/design-system/buttons/ButtonAnchor'
 import Emoji from '@/design-system/utils/Emoji'
 import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDisplayed'
 import { updateLangCookie } from '@/helpers/language/updateLangCookie'
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 // Fonction utilitaire pour générer l'URL de langue sans utiliser usePathname
@@ -41,6 +41,11 @@ export default function LanguageSwitchButton({
   className?: string
 }) {
   const currentLocale = useCurrentLocale(i18nConfig)
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   useEffect(() => {
     // If the current locale is different than the NEXT_LOCALE cookie, we update it
@@ -70,11 +75,15 @@ export default function LanguageSwitchButton({
         className
       )}>
       {langButtonsDisplayed.fr && (
-        <ButtonLink
-          href={generateLanguageUrl(
-            'fr',
-            currentLocale || i18nConfig.defaultLocale
-          )}
+        <ButtonAnchor
+          href={
+            isClient
+              ? generateLanguageUrl(
+                  'fr',
+                  currentLocale || i18nConfig.defaultLocale
+                )
+              : '#'
+          }
           color={currentLocale === 'fr' ? 'primary' : 'secondary'}
           onClick={() => handleLanguageClick('fr')}
           size={size}
@@ -87,15 +96,19 @@ export default function LanguageSwitchButton({
           className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
           data-cypress-id="language-switch-button-fr">
           <span>FR</span> <Emoji>🇫🇷</Emoji>
-        </ButtonLink>
+        </ButtonAnchor>
       )}
 
       {langButtonsDisplayed.en && (
-        <ButtonLink
-          href={generateLanguageUrl(
-            'en',
-            currentLocale || i18nConfig.defaultLocale
-          )}
+        <ButtonAnchor
+          href={
+            isClient
+              ? generateLanguageUrl(
+                  'en',
+                  currentLocale || i18nConfig.defaultLocale
+                )
+              : '#'
+          }
           color={currentLocale === 'en' ? 'primary' : 'secondary'}
           onClick={() => handleLanguageClick('en')}
           size={size}
@@ -108,7 +121,7 @@ export default function LanguageSwitchButton({
           className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
           data-cypress-id="language-switch-button-en">
           <span>EN</span> <Emoji>🇬🇧</Emoji>
-        </ButtonLink>
+        </ButtonAnchor>
       )}
     </div>
   )
