@@ -1,7 +1,6 @@
-const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
-const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
-
-const paths = require('./paths')
+import cli from '@incubateur-ademe/nosgestesclimat-scripts/cli'
+import utils from '@incubateur-ademe/nosgestesclimat-scripts/utils'
+import * as paths from './paths.js'
 
 const { srcLang, destLangs, markdown } = cli.getArgs(
   'Check missing translations for UI texts.',

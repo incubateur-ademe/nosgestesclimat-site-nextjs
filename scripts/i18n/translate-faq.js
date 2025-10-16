@@ -4,12 +4,11 @@
 	Command: yarn translate:faq -- [options]
 */
 
-const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
-const deepl = require('@incubateur-ademe/nosgestesclimat-scripts/deepl')
-const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
-
-const paths = require('./paths')
-const c = require('ansi-colors')
+import cli from '@incubateur-ademe/nosgestesclimat-scripts/cli'
+import deepl from '@incubateur-ademe/nosgestesclimat-scripts/deepl'
+import utils from '@incubateur-ademe/nosgestesclimat-scripts/utils'
+import c from 'ansi-colors'
+import * as paths from './paths.js'
 
 const { srcLang, destLangs, force } = cli.getArgs(
   'Calls the DeepL API to translate the FAQ Yaml files.',
