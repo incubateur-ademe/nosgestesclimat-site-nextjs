@@ -4,9 +4,11 @@ import Trans from '@/components/translation/trans/TransClient'
 import { DONT_KNOW_FEATURE_FLAG_KEY } from '@/constants/ab-test'
 import { useIsTestVersion } from '@/hooks/abTesting/useIsTestVersion'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import i18nConfig from '@/i18nConfig'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
+import isMobile from 'is-mobile'
 import { useEffect, useRef } from 'react'
 
 declare global {
@@ -32,6 +34,8 @@ export default function TallyForm() {
   const { t } = useClientTranslation()
   const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
 
+  const { isIframe } = useIframe()
+
   const isFrench = useLocale() === i18nConfig.defaultLocale
   const FORM_ID =
     (isFrench
@@ -40,11 +44,13 @@ export default function TallyForm() {
 
   const isTestVersion = useIsTestVersion(DONT_KNOW_FEATURE_FLAG_KEY)
 
-  // Add AB testing parameters to URL for Tally
+  // Add hidden fields parameters to URL for Tally
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     params.set('featureFlagKey', DONT_KNOW_FEATURE_FLAG_KEY)
     params.set('abTestVariant', isTestVersion ? 'test' : 'control')
+    params.set('deviceType', isMobile() ? 'mobile' : 'desktop')
+    params.set('iframe', isIframe ? 'true' : 'false')
 
     const newUrl = `${window.location.pathname}?${params.toString()}`
     window.history.replaceState({}, '', newUrl)
