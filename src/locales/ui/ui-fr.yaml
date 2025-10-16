@@ -182,7 +182,6 @@ entries:
   'Vous faites cette simulation depuis :': 'Vous faites cette simulation depuis :'
   du test: du test
   Vous utilisez la version: Vous utilisez la version
-  Terminer: Terminer
   Voir toutes les actions: Voir toutes les actions
   Distance: Distance
   Fréquence: Fréquence
@@ -585,8 +584,6 @@ entries:
   Étape: Étape
   Mentions légales: Mentions légales
   Politique de confidentialité: Politique de confidentialité
-  Politique des cookies: Politique des cookies
-  Politique des cookies - Nos Gestes Climat: Politique des cookies - Nos Gestes Climat
   Pour faire joli et le reconnaitre !: Pour faire joli et le reconnaitre !
   Pour le retrouver facilement dans votre liste: Pour le retrouver facilement dans votre liste
   sur: sur
@@ -651,7 +648,6 @@ entries:
   d'eau par jour: d'eau par jour
   de CO₂e par an: de CO₂e par an
   Liste des questions: Liste des questions
-  Passer la question: Passer la question
   Recevez par email un lien pour reprendre votre test plus tard.: Recevez par email un lien pour reprendre votre test plus tard.
   Reprendre plus tard: Reprendre plus tard
   Sauvegarder <2>ma progression</2>: Sauvegarder <2>ma progression</2>
@@ -1125,12 +1121,6 @@ entries:
   cookies.management.required.description: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucune donnée personnelle et ne peuvent pas être désactivés.
   cookies.management.required.title: Cookies obligatoires
   cookies.management.title: Panneau de gestion des cookies
-  Cookies utilisés par PostHog: Cookies utilisés par PostHog
-  "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :": "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :"
-  Voir la liste des cookies utilisés par PostHog: Voir la liste des cookies utilisés par PostHog
-  Accepter les cookies: Accepter les cookies
-  Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.: Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.
-  Refuser les cookies: Refuser les cookies
   Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calculez votre empreinte carbone et eau avec Nos Gestes Climat
   'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'Vous pouvez nous contacter via notre page de contact : <2></2>.'
   Gestion des cookies: Gestion des cookies
@@ -1237,6 +1227,8 @@ entries:
   common.mainLandingPage.tookTheirTest: ont déjà calculé leur empreinte !
   simulator.navigation.nextButton.dontKnow: Je ne sais pas
   simulator.navigation.nextButton.finished: Terminer
-  simulator.navigation.nextButton.finished.next: Suivant
   simulator.navigation.nextButton.skip: Passer la question
   simulator.navigation.nextButton.next: Suivant
+  simulator.mosaic.closeMoreOptions: Moins d’options
+  simulator.mosaic.noChildren: Cette mosaique n'a pas d'enfants.
+  simulator.mosaic.openMoreOptions: Plus d’options
