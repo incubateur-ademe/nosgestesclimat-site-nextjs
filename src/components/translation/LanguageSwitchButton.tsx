@@ -18,11 +18,23 @@ function generateLanguageUrl(newLocale: Locale, currentLocale: string): string {
   }
 
   const url = new URL(window.location.href)
+  const { pathname } = url
 
-  if (currentLocale === i18nConfig.defaultLocale) {
-    url.pathname = `/${newLocale}${url.pathname}`
+  // Si la nouvelle locale est la locale par défaut
+  if (newLocale === i18nConfig.defaultLocale) {
+    // Enlever le préfixe de l'ancienne locale si elle existe
+    if (currentLocale !== i18nConfig.defaultLocale) {
+      url.pathname = pathname.replace(`/${currentLocale}`, '')
+    }
+    // Sinon, on garde le pathname tel quel
   } else {
-    url.pathname = url.pathname.replace(`/${currentLocale}`, `/${newLocale}`)
+    // Si on vient de la locale par défaut, ajouter le préfixe
+    if (currentLocale === i18nConfig.defaultLocale) {
+      url.pathname = `/${newLocale}${pathname}`
+    } else {
+      // Remplacer l'ancien préfixe par le nouveau
+      url.pathname = pathname.replace(`/${currentLocale}`, `/${newLocale}`)
+    }
   }
 
   return url.toString()
