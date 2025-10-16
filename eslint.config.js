@@ -183,6 +183,7 @@ export default [
       'public/mockServiceWorker.js',
       'next-env.d.ts',
       '**/*.stories.tsx',
+      '.storybook/**',
     ],
   },
 ]
