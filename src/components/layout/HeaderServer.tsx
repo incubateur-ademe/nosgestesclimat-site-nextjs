@@ -2,7 +2,7 @@ import ActionsIcon from '@/components/icons/ActionsIcon'
 import AmisIcon from '@/components/icons/AmisIcon'
 import BilanIcon from '@/components/icons/BilanIcon'
 import { SIMULATOR_PATH } from '@/constants/urls/paths'
-import ButtonLink from '@/design-system/buttons/ButtonLink'
+import ButtonLinkServer from '@/design-system/buttons/ButtonLinkServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { linkToClassement } from '@/helpers/navigation/classementPages'
 import type { Locale } from '@/i18nConfig'
@@ -11,7 +11,7 @@ import LogoLinkServer from '../misc/LogoLinkServer'
 import Trans from '../translation/trans/TransServer'
 import ProfileIcon from './header/_components/ProfileIcon'
 import BottomMenuServer from './header/headerMobile/BottomMenuServer'
-import FoldableMenuNoDynamicCTA from './header/headerMobile/FoldableMenuNoDynamicCTA'
+import FoldableMenuServer from './header/headerMobile/FoldableMenuServer'
 import NavLinkServer from './header/NavLinkServer'
 
 type Props = {
@@ -33,7 +33,7 @@ export default async function HeaderServer({ isSticky = true, locale }: Props) {
         <LogoLinkServer />
 
         <>
-          <FoldableMenuNoDynamicCTA />
+          <FoldableMenuServer />
           <BottomMenuServer locale={locale} />
         </>
       </div>
@@ -96,9 +96,9 @@ export default async function HeaderServer({ isSticky = true, locale }: Props) {
               <Trans locale={locale}>Profil</Trans>
             </NavLinkServer>
 
-            <ButtonLink href={SIMULATOR_PATH}>
+            <ButtonLinkServer href={SIMULATOR_PATH}>
               <Trans locale={locale}>Accéder au test</Trans>
-            </ButtonLink>
+            </ButtonLinkServer>
           </div>
         </div>
       </div>

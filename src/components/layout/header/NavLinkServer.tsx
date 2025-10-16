@@ -1,4 +1,3 @@
-import Link from '@/components/Link'
 import DefaultLink from 'next/link'
 import type { HTMLAttributes, JSX, PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -17,12 +16,11 @@ export default function NavLinkServer({
   href,
   icon,
   activeMatches,
-  shouldUseDefaultLink = false,
   className,
   activeClassName,
   ...props
 }: PropsWithChildren<Props> & HTMLAttributes<HTMLAnchorElement>) {
-  const Tag = shouldUseDefaultLink ? DefaultLink : Link
+  const Tag = DefaultLink
 
   const Icon = icon || (() => null)
 

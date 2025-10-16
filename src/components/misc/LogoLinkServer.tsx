@@ -1,5 +1,6 @@
 import { twMerge } from 'tailwind-merge'
-import Link from '../Link'
+
+import Link from 'next/link'
 import Logo from './Logo'
 
 type Props = {

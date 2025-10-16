@@ -25,7 +25,6 @@ export default async function PartenairePage({
   params,
   searchParams,
 }: DefaultPageProps<{ searchParams: SearchParams }>) {
-  const { locale } = await params
   const searchParamsObject = (await searchParams) ?? { partner: '' }
 
   const partner = (searchParamsObject[PARTNER_KEY] as string) ?? ''
