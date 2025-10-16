@@ -45,7 +45,6 @@ export default function MeanFootprintDistribution({
     } as Record<Categories, number>
   )
 
-
   return (
     <div>
       <div className="flex flex-col gap-8 md:flex-row">
@@ -59,7 +58,9 @@ export default function MeanFootprintDistribution({
 
           <Card className="bg-primary-100 w-full flex-1 items-center border-0 p-6">
             <FootprintBarChart
-              groupFootprint={groupComputedResults?.carbone?.bilan / (simulationsCount ?? 1)}
+              groupFootprint={
+                groupComputedResults?.carbone?.bilan / (simulationsCount ?? 1)
+              }
               userFootprint={userComputedResults?.carbone?.bilan}
             />
           </Card>
@@ -71,7 +72,7 @@ export default function MeanFootprintDistribution({
                 transport: meanTransport,
                 alimentation: meanAlimentation,
                 logement: meanLogement,
-                divers: meanDivers ,
+                divers: meanDivers,
                 'services sociétaux': meanServices,
               }}
             />
