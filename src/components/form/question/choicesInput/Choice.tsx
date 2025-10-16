@@ -5,7 +5,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type Props = {
   question: DottedName
-  choice: string
+  choice: string | number
   active: boolean
   setValue: any
   id?: string

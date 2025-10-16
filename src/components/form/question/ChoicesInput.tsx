@@ -12,6 +12,18 @@ type Props = {
   firstInputId?: string
 }
 
+function createGrid<T>(arr: T[], columns: number) {
+  const rows = Math.ceil(arr.length / columns)
+  const finalGrid: T[] = []
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < columns; c++) {
+      const idx = c * rows + r
+      if (idx < arr.length) finalGrid.push(arr[idx])
+    }
+  }
+  return finalGrid
+}
+
 export default function ChoicesInput(props: Props) {
   const {
     question,
@@ -23,12 +35,21 @@ export default function ChoicesInput(props: Props) {
     firstInputId,
     ...otherProps
   } = props
+
+  const isGrid = choices && choices.length > 4
+  const displayChoices = isGrid ? createGrid(choices, 2) : choices
+
   return (
-    <fieldset className="flex flex-col gap-2">
+    <fieldset
+      className={
+        isGrid
+          ? 'mt-2 grid grid-cols-2 gap-x-4 gap-y-2'
+          : 'mt-2 flex flex-col gap-2'
+      }>
       <legend className="sr-only">{label}</legend>
 
-      {choices &&
-        choices.map((choice: any, index: number) =>
+      {displayChoices &&
+        displayChoices.map((choice: string | number, index: number) =>
           choice ? (
             <Choice
               key={choice}
