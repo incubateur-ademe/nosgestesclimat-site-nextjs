@@ -54,7 +54,7 @@ export default function TallyForm() {
 
     const newUrl = `${window.location.pathname}?${params.toString()}`
     window.history.replaceState({}, '', newUrl)
-  }, [isTestVersion])
+  }, [isTestVersion, isIframe])
 
   const handleOpenForm = () => {
     window.Tally.openPopup(FORM_ID, {
@@ -77,6 +77,7 @@ export default function TallyForm() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
   if (!FORM_ID) return null
 
   return (
