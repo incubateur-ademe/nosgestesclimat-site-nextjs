@@ -32,6 +32,7 @@ type Props = {
   showInputsLabel?: React.ReactNode | string
   headingLevel?: number
   className?: string
+  secondaryQuestionsOfMosaic?: DottedName[]
 }
 
 export default function Question({
@@ -43,6 +44,7 @@ export default function Question({
   showInputsLabel,
   headingLevel,
   className,
+  secondaryQuestionsOfMosaic,
 }: Props) {
   const {
     type,
@@ -197,6 +199,7 @@ export default function Question({
               <Mosaic
                 question={question}
                 questionsOfMosaic={questionsOfMosaicFromParent}
+                secondaryQuestionsOfMosaic={secondaryQuestionsOfMosaic}
                 aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
                 aria-labelledby="question-label"
                 firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
