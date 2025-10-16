@@ -1730,10 +1730,10 @@
     prompt-sync "^4.2.0"
     yargs "^17.7.2"
 
-"@incubateur-ademe/nosgestesclimat@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-4.0.0.tgz#94e4c0e370f793f4c0a2397672287ffe5338a794"
-  integrity sha512-ube6joG3PR75B/vzEpbJW3mnlHFWGT+D+bIgE1KC3DKySWCF2+RN1Zxp+JktiKxj6KaaOJWp2HwkG4YaZwTvSg==
+"@incubateur-ademe/nosgestesclimat@^3.12.1":
+  version "3.12.1"
+  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-3.12.1.tgz#ac8f6d55ff634c772ffbf70d8d8def1394d1e588"
+  integrity sha512-jjYcabpz3xUh8zqWtmqqITkZr0WaM7669LKLd5jJu4mEmc2rdgqDCWBIIvm/PRognOBZmGfOm6oUArcxgQH1Xg==
 
 "@inquirer/ansi@^1.0.0":
   version "1.0.0"
@@ -5797,7 +5797,7 @@ cypress-recurse@^1.35.2:
   dependencies:
     humanize-duration "^3.27.3"
 
-cypress@^15.4.0:
+cypress@^15.3.0:
   version "15.4.0"
   resolved "https://registry.yarnpkg.com/cypress/-/cypress-15.4.0.tgz#067c414830c98c561742a106d03813a5e0e82459"
   integrity sha512-+GC/Y/LXAcaMCzfuM7vRx5okRmonceZbr0ORUAoOrZt/5n2eGK8yh04bok1bWSjZ32wRHrZESqkswQ6biArN5w==
@@ -7727,10 +7727,10 @@ gzip-size@^6.0.0:
   dependencies:
     duplexer "^0.1.2"
 
-happy-dom@^20.0.0:
-  version "20.0.0"
-  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-20.0.0.tgz#7f4dcaf5eb828e697d5a6fee9dd7631814cd40e2"
-  integrity sha512-GkWnwIFxVGCf2raNrxImLo397RdGhLapj5cT3R2PT7FwL62Ze1DROhzmYW7+J3p9105DYMVenEejEbnq5wA37w==
+happy-dom@^18.0.1:
+  version "18.0.1"
+  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-18.0.1.tgz#8f8a2199462842deb675f54e405af55f3b674540"
+  integrity sha512-qn+rKOW7KWpVTtgIUi6RVmTBZJSe2k0Db0vh1f7CWrWclkkc7/Q+FrOfkZIb2eiErLyqu5AXEzE7XthO9JVxRA==
   dependencies:
     "@types/node" "^20.0.0"
     "@types/whatwg-mimetype" "^3.0.2"
