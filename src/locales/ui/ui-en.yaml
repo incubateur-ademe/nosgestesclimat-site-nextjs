@@ -233,7 +233,6 @@ entries:
   Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: The personas allow us to test the simulator from every angle, and to check that it can be adapted to all the life situations of metropolitan citizens. Their presence forces us to think about all the use cases, to project ourselves into different realities, and to include these realities in our redesigns of the test path and the actions proposed at the end of it.
   Vous utilisez la version: You are using the version
   du test: of the test
-  Terminer: Finish
   Passagers: Passengers
   Télécharger l'image: Download image
   'Total par an :': 'Total per year :'
@@ -641,7 +640,6 @@ entries:
   Il n'y a pas que sur votre empreinte que vous pouvez agir !: It's not just your footprint that you can influence!
   sur: on
   Continuer: Continue
-  Politique des cookies: Cookie policy
   Et une illustration: And an illustration
   Mentions légales: Legal information
   Étape: Step
@@ -651,7 +649,6 @@ entries:
   Pour le retrouver facilement dans votre liste: To find it easily in your list
   Choisissez un nom pour ce groupe: Choose a name for this group
   Veuillez entrer une adresse email valide.: Please enter a valid email address.
-  Politique des cookies - Nos Gestes Climat: Cookie policy - Nos Gestes Climat
   Pour faire joli et le reconnaitre !: To make it look pretty and recognisable!
   Un bonhomme se demandant où il est: A man wondering where he is
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Nothing on the horizon! <1></1>The page you are looking for does not exist.
@@ -716,7 +713,6 @@ entries:
   de CO₂e par an: of CO₂e per year
   Recevez par email un lien pour reprendre votre test plus tard.: Receive an email with a link to take your test again later.
   Liste des questions: List of questions
-  Passer la question: Skip the question
   Une erreur s'est produite au moment de la sauvegarde.: An error has occurred during backup.
   '{{name}}, supprimer cette participation': '{{name}}cancel this shareholding'
   Supprimer ce participant ? Cette opération est définitive.: Delete this participant? This operation is definitive.
@@ -1196,12 +1192,6 @@ entries:
   cookies.management.required.description.lock: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucune donnée personnelle et ne peuvent pas être désactivés.
   cookies.management.title: Cookie management panel
   cookies.management.title.lock: Panneau de gestion des cookies
-  Cookies utilisés par PostHog: Cookies used by PostHog
-  Voir la liste des cookies utilisés par PostHog: See the list of cookies used by PostHog
-  "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :": 'We also use PostHog to measure the audience for our site. The list of cookies used is available here :'
-  Accepter les cookies: Accept cookies
-  Refuser les cookies: Refuse cookies
-  Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.: We use cookies to understand how you use the product and to help us improve it. If you do not wish to be tracked, you can refuse them.
   'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'You can contact us via our contact page: <2></2>.'
   Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calculate your carbon and water footprint with Nos Gestes Climat
   Gestion des cookies: Cookie management
@@ -1377,8 +1367,6 @@ entries:
   common.mainLandingPage.numberPersons.lock: 2,5 millions de personnes
   common.mainLandingPage.tookTheirTest: have already calculated their footprint!
   common.mainLandingPage.tookTheirTest.lock: ont déjà calculé leur empreinte !
-  simulator.navigation.nextButton.finished.next: Next
-  simulator.navigation.nextButton.finished.next.lock: Suivant
   simulator.navigation.nextButton.finished: Finish
   simulator.navigation.nextButton.finished.lock: Terminer
   simulator.navigation.nextButton.skip: Skip the question
