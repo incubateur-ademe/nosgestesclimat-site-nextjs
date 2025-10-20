@@ -33,7 +33,6 @@ export const mapNewSimulationToOld = (
 })
 
 export const mapOldSimulationToNew = ({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   polls: _,
   defaultAdditionalQuestionsAnswers,
   customAdditionalQuestionsAnswers,

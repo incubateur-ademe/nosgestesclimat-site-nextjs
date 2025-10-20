@@ -1,6 +1,5 @@
 import Trans from '@/components/translation/trans/TransClient'
 import type { ComputedResults } from '@/publicodes-state/types'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import MeanFootprintDistribution from './_components/MeanFootprintDistribution'
 
 type Props = {
@@ -22,7 +21,6 @@ export default function FootprintDistribution({
     simulationsCount < 3
   )
     return null
-
 
   return (
     <section className="mb-8">

@@ -308,6 +308,11 @@ const redirects = [
     destination: '/themes/empreinte-carbone-logement',
     permanent: true,
   },
+  {
+    source: '/en/themes/:restOfPath',
+    destination: '/themes/:restOfPath',
+    permanent: true,
+  },
   // Guides fr
   {
     source: '/guide',
@@ -395,4 +400,4 @@ const redirects = [
   },
 ]
 
-module.exports = redirects
+export default redirects

@@ -1302,3 +1302,6 @@ entries:
   simulator.navigation.nextButton.finished: Terminer
   simulator.navigation.nextButton.skip: Passer la question
   simulator.navigation.nextButton.next: Suivant
+  simulator.mosaic.closeMoreOptions: Moins d’options
+  simulator.mosaic.noChildren: Cette mosaique n'a pas d'enfants.
+  simulator.mosaic.openMoreOptions: Plus d’options

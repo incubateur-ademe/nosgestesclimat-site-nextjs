@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   contextSeparator: '_',
   // Key separator used in your translation keys
 
