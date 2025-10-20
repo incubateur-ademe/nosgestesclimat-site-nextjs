@@ -144,7 +144,6 @@ export default function BurgerMenu({
               <div
                 className="fixed top-0 left-0 h-screen w-screen"
                 role="button"
-                // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
                 tabIndex={0}
                 aria-label={t('Fermer le menu')}
                 onClick={handleClickMask}
