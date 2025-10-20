@@ -21,7 +21,7 @@ export const cmsClient = async <T>(
       ...options,
       headers,
       // In seconds, production => 5 minutes, dev => 5 seconds
-      next: { revalidate: isProduction ? 5 : 60 * 5 },
+      next: { revalidate: isProduction ? 60 * 5 : 5 },
     })
 
     if (!response.ok) {
