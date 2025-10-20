@@ -153,7 +153,7 @@ export default function CopyInput({
           ref={inputRef}
           id={generatedInputId}
           type="text"
-          className="hidden w-full min-w-0 flex-1 rounded-none rounded-l-md border-2 border-r-0 border-solid border-gray-200 bg-gray-100 py-3 pr-2 pl-4 text-gray-600 sm:text-sm md:block"
+          className="focus:ring-primary-700 hidden w-full min-w-0 flex-1 rounded-none rounded-l-md border border-r-0 border-solid border-gray-700 bg-gray-100 py-3 pr-2 pl-4 text-gray-600 focus:ring-2 focus:ring-offset-3 focus:outline-hidden sm:text-sm md:block"
           value={textToDisplay ?? textToCopy}
           readOnly
         />
@@ -209,8 +209,9 @@ export default function CopyInput({
           aria-live="assertive">
           {t(
             'copyInput.copyErrorManual',
-            'Oups, impossible de copier le lien, vous pouvez le copier manuellement.'
+            'Oups, impossible de copier le lien, vous pouvez le copier manuellement : {{textToCopy}}'
           )}
+          {textToCopy}
         </p>
       )}
     </div>

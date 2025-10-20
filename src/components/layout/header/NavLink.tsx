@@ -2,6 +2,7 @@
 
 import Link from '@/components/Link'
 import ColorLine from '@/design-system/layout/ColorLine'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import DefaultLink from 'next/link'
 import { usePathname } from 'next/navigation'
 import type { HTMLAttributes, JSX, PropsWithChildren } from 'react'
@@ -15,6 +16,7 @@ type Props = {
   onClick?: () => void
   className?: string
   activeClassName?: string
+  title?: string
 }
 
 export default function NavLink({
@@ -26,10 +28,11 @@ export default function NavLink({
   onClick,
   className,
   activeClassName,
+  title,
   ...props
 }: PropsWithChildren<Props> & HTMLAttributes<HTMLAnchorElement>) {
   const pathName = usePathname()
-
+  const { t } = useClientTranslation()
   const isActive =
     activeMatches?.some((matchString) => pathName.includes(matchString)) ||
     pathName.includes(href)
@@ -48,6 +51,7 @@ export default function NavLink({
           isActive ? activeClassName || 'text-primary-800 font-bold' : ''
         } ${className}`
       )}
+      title={`${title} - ${isActive ? t('Page active') : t('Visiter cette page')}`}
       {...props}>
       {isActive && (
         <ColorLine className="bg-primary-700 absolute bottom-0 left-0 rounded-full lg:h-[4px] lg:w-full" />

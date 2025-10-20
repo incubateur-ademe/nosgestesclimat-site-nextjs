@@ -75,18 +75,19 @@ export default function SubcategoryChartBlock({
     <Link
       title={`${titleFormatted}, ${formattedValue} ${unit}, voir la documentation`}
       href={`/documentation/${subcategory.replaceAll(' . ', '/')}`}
-      className={`relative flex items-center py-2 !text-white !no-underline hover:!underline ${
+      className={`!text-default relative flex items-center py-2 !no-underline hover:!underline ${
         isSmall ? 'flex-row justify-center gap-1' : 'flex-col flex-wrap'
       } ${getBackgroundColor(category)}`}
       style={{
         height: `${heightPercentage}%`,
       }}>
       <Image
-        style={{ filter: 'grayscale(1) invert(1) brightness(1.8)' }}
+        style={{ filter: 'grayscale(1) ' }}
         src={`/images/model/${subcategory}.svg`}
         alt={`${titleFormatted}, ${formattedValue} ${unit}`}
         width={20}
         height={20}
+        aria-hidden="true"
         className={`h-5 w-5 ${isSmall ? '' : 'mb-1'}`}
       />
 

@@ -1,6 +1,7 @@
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 type Props = {
@@ -13,7 +14,7 @@ type Props = {
   parentMosaic: string
 }
 
-export default function NumberInput({
+export default function MosaicNumberInput({
   question,
   title,
   icons,
@@ -24,6 +25,8 @@ export default function NumberInput({
   ...props
 }: Props) {
   const { value, isMissing, plafond } = useRule(question)
+
+  const { t } = useClientTranslation()
 
   const isPlusDisabled =
     value !== undefined &&
@@ -36,7 +39,7 @@ export default function NumberInput({
   return (
     <div
       className={
-        'border-primary-200 flex items-center justify-between gap-4 rounded-xl border-2 bg-white p-2 py-3'
+        'focus-within:ring-primary-700 flex items-center justify-between gap-1 rounded-xl border border-slate-500 bg-white p-2 py-3 focus-within:ring-2 focus-within:ring-offset-2'
       }>
       <div>
         {title && icons ? (
@@ -55,16 +58,23 @@ export default function NumberInput({
           </>
         ) : null}
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center gap-1.5 p-2">
         <Button
           disabled={value === 0 || isMissing}
           onClick={() => setValue(Number(value) - 1)}
           size="sm"
+          title={t(
+            'simulator.mosaicNumberInput.remove',
+            'Retirer un élémént : {{title}}',
+            {
+              title,
+            }
+          )}
           className="z-10 h-8 w-8 items-center justify-center p-0 md:h-8 md:w-8">
           <span className="mb-[1px] block">-</span>
         </Button>
         <input
-          className="w-8 text-center"
+          className="focus-within:border-primary-700 focus-within:ring-primary-700 w-8 rounded-sm text-center ring-offset-2 focus-within:ring-2 focus-visible:outline-none"
           type="number"
           inputMode="numeric"
           value={isMissing ? '' : Number(value)}
@@ -77,6 +87,13 @@ export default function NumberInput({
         <Button
           disabled={isPlusDisabled}
           onClick={() => setValue(isMissing ? 1 : Number(value) + 1)}
+          title={t(
+            'simulator.mosaicNumberInput.add',
+            'Ajouter un élément : {{title}}',
+            {
+              title,
+            }
+          )}
           size="sm"
           className="z-10 h-8 w-8 items-center justify-center p-0 md:h-8 md:w-8">
           <span className="mb-[1px] block">+</span>

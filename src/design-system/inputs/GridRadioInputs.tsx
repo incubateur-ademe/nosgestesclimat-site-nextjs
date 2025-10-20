@@ -1,8 +1,10 @@
 import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { ChangeEventHandler, HTMLAttributes, ReactNode } from 'react'
 import { Controller } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
+import { defaultInputStyleClassNames } from './TextInput'
 
 type Props = {
   name: string
@@ -41,6 +43,7 @@ export default function GridRadioInputs({
   rules,
   'data-cypress-id': dataCypressId,
 }: HTMLAttributes<HTMLInputElement> & Props) {
+  const { t } = useClientTranslation()
   return (
     <div
       className={twMerge(
@@ -83,8 +86,10 @@ export default function GridRadioInputs({
                     key={item.value}
                     data-cypress-id={dataCypressId + '-' + item.value}
                     aria-label={item.ariaLabel}
+                    title={`${item.ariaLabel} - ${value === item.value ? t('Sélectionné') : t('Sélectionner cette option')}`}
                     className={twMerge(
-                      'focus-within:ring-primary-700 relative flex cursor-pointer items-center justify-center rounded-xl border-2 border-gray-200 p-6 text-xl transition-colors focus-within:ring-2',
+                      'focus-within:ring-primary-700 relative flex cursor-pointer items-center justify-center rounded-xl p-6 text-xl focus-within:ring-2',
+                      defaultInputStyleClassNames,
                       'hover:bg-primary-50 hover:border-gray-300 focus:border-slate-300',
                       value === item.value
                         ? 'border-primary-700! bg-primary-50!'

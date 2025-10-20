@@ -32,20 +32,29 @@ export default function JagisSecondaryBlock() {
   return (
     <div className="rainbow-border relative rounded-xl border-2">
       <div className="bg-[url('https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/jagis_bg_97afd09657.svg')] bg-right-bottom bg-no-repeat px-4 py-6 lg:bg-[length:18rem]">
-        <div className="mb-4 flex gap-4">
-          <Badge size="xs" color="green">
-            <Trans>Aides financières</Trans>
-          </Badge>
-          <Badge size="xs" color="green">
-            <Trans>Bons plans</Trans>
-          </Badge>
-          <Badge size="xs" color="green">
-            <Trans>Idées</Trans>
-          </Badge>
+        <div className="flex flex-col">
+          <h2 className="order-1 mb-2">
+            <Trans>Que faire pour réduire mon empreinte ?</Trans>
+          </h2>
+          <ul className="-order-1 mb-4 flex flex-wrap gap-4">
+            <li>
+              <Badge size="xs" color="green">
+                <Trans>Aides financières</Trans>
+              </Badge>
+            </li>
+            <li>
+              <Badge size="xs" color="green">
+                <Trans>Bons plans</Trans>
+              </Badge>
+            </li>
+            <li>
+              <Badge size="xs" color="green">
+                <Trans>Idées</Trans>
+              </Badge>
+            </li>
+          </ul>
         </div>
-        <h2 className="mb-2">
-          <Trans>Que faire pour réduire mon empreinte ?</Trans>
-        </h2>
+
         <p>
           <Trans>À partir de votre bilan,</Trans> <strong>J’agis</strong>{' '}
           <Trans>
@@ -56,6 +65,15 @@ export default function JagisSecondaryBlock() {
         <Button
           disabled={isPending}
           className="mb-4"
+          aria-describedby={
+            isError
+              ? 'jagis-secondary-error'
+              : !data?.redirectUrl && isSuccess
+                ? 'jagis-secondary-redirect-error'
+                : !couldOpen && isSuccess
+                  ? 'jagis-secondary-popup-error'
+                  : undefined
+          }
           onClick={() => {
             trackEvent(endClickJagisSecondBlock)
             exportSituation({
@@ -67,14 +85,30 @@ export default function JagisSecondaryBlock() {
             Créer mon compte {isPending && <Loader className="ml-2" />}
           </Trans>
         </Button>
-        {isError && <div className="text-red-600">{error?.toString()}</div>}
+        {isError && (
+          <div
+            id="jagis-secondary-error"
+            className="text-red-600"
+            role="alert"
+            aria-live="assertive">
+            {error?.toString()}
+          </div>
+        )}
         {!data?.redirectUrl && isSuccess && (
-          <div className="text-red-600">
+          <div
+            id="jagis-secondary-redirect-error"
+            className="text-red-600"
+            role="alert"
+            aria-live="assertive">
             <Trans>Une erreur est survenue</Trans>
           </div>
         )}
         {!couldOpen && isSuccess && (
-          <div className="text-red-600">
+          <div
+            id="jagis-secondary-popup-error"
+            className="text-red-600"
+            role="alert"
+            aria-live="assertive">
             <Trans>
               Une erreur est survenue.{' '}
               <a href={data?.redirectUrl} rel="noreferrer" target="_blank">

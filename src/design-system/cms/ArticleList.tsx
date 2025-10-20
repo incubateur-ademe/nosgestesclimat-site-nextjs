@@ -23,14 +23,14 @@ export default function ArticleList({
       </h2>
       <ul
         className="grid grid-cols-1 gap-8 md:grid-cols-3"
-        data-cypress-id="blog-list">
+        data-cypress-id="blog-list"
+        role="list">
         {articles.slice(0, 6).map((article) => (
           <li key={article.documentId} className="h-full">
             <PostThumbnail
               title={article.title}
               category={article.blogCategory?.title ?? ''}
               imageSrc={article.image?.url ?? ''}
-              imageAlt={article.image?.alternativeText ?? ''}
               href={`/blog/${article.blogCategory?.slug}/${article.slug}`}
               trackingEvent={getPostThumbnailClickEvent(article.slug)}
               className="bg-gray-50"
@@ -46,14 +46,13 @@ export default function ArticleList({
       />
 
       {articles.length > 6 && (
-        <ul className="mt-20 grid grid-cols-1 gap-8 md:grid-cols-3">
+        <ul className="mt-20 grid grid-cols-1 gap-8 md:grid-cols-3" role="list">
           {articles.slice(6).map((article) => (
             <li key={article.documentId}>
               <PostThumbnail
                 title={article.title}
                 category={article.blogCategory?.title ?? ''}
                 imageSrc={article.image?.url ?? ''}
-                imageAlt={article.image?.alternativeText ?? ''}
                 href={`/blog/${article.blogCategory?.slug}/${article.slug}`}
                 trackingEvent={['blog', 'article', article.slug]}
                 className="bg-gray-50"

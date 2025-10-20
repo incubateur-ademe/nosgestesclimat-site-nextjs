@@ -74,21 +74,28 @@ export default function ModeleDemoBlock() {
       <ul>
         {demoDottedNames.map((el) => (
           <li key={el} className="mb-2">
-            <label className="flex justify-between">
-              <Link href={'/documentation/' + encodeRuleName(el)}>{el}</Link>{' '}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Link href={'/documentation/' + encodeRuleName(el)}>{el}</Link>
+                <label htmlFor={`input-${el}`} className="sr-only">
+                  Valeur pour {el}
+                </label>
+              </div>
               <span>
                 <input
+                  id={`input-${el}`}
                   type="number"
-                  className="rounded-md border border-gray-300 pl-2"
+                  className="focus:ring-primary-700 rounded-md border border-gray-300 pl-2 focus:ring-2 focus:ring-offset-3 focus:outline-hidden"
                   value={situation[el] as number}
                   placeholder={defaultValues[el] as string}
                   onChange={(e) =>
                     onChange(el, e.target.value === '' ? '' : e.target.value)
                   }
+                  aria-label={`Valeur pour ${el}`}
                 />
                 &nbsp;{rules?.[el]?.unité as string}
               </span>
-            </label>
+            </div>
           </li>
         ))}
       </ul>

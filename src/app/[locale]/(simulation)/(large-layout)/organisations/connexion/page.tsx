@@ -43,7 +43,7 @@ export default function Page() {
         </h1>
 
         <p>
-          <Trans>C'est gratuit, et ça prend une minute !</Trans>
+          <Trans>C'est gratuit, et ça prend une minute !</Trans>
         </p>
 
         <Separator />

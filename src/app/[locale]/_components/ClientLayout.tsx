@@ -4,16 +4,22 @@ import { GoogleTagScript } from '@/components/googleTagManager/GoogleTagScript'
 import SkipToMainContentLink from '@/design-system/accessibility/SkipToMainContentLink'
 import Banner from '@/design-system/cms/Banner'
 import type { Locale } from '@/i18nConfig'
+import type { SkipLinksDisplayed } from '@/types'
 import type { PropsWithChildren } from 'react'
 import MainLayoutProviders from './MainLayoutProviders'
 
 type RootLayoutProps = PropsWithChildren & {
   locale: Locale
+  skipLinksDisplayed?: SkipLinksDisplayed
 }
 
-export const ClientLayout = ({ children, locale }: RootLayoutProps) => (
+export const ClientLayout = ({
+  children,
+  skipLinksDisplayed,
+  locale,
+}: RootLayoutProps) => (
   <MainLayoutProviders>
-    <SkipToMainContentLink />
+    <SkipToMainContentLink skipLinksDisplayed={skipLinksDisplayed} />
 
     <CookieConsentBannerAndManagement />
 
