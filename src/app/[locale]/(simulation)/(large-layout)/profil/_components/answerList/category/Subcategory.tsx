@@ -52,12 +52,12 @@ export default function SubCategory({ subcategory }: Props) {
         type="button"
         aria-expanded={isOpen}
         aria-controls={panelId}
-        title={`${title} - ${isOpen ? t('Fermer') : t('Ouvrir')}`}
+        title={`${title} - ${isOpen ? t('profile.answers.subcategory.fold', 'Replier les questions pour cette sous-catégorie') : t('profile.answers.subcategory.unfold', 'Déplier les questions pour cette sous-catégorie')}`}
         onClick={() => {
           trackEvent(profilClickSubCategory(subcategory))
           setIsOpen((prevIsOpen) => !prevIsOpen)
         }}
-        className="focus:ring-primary-700 relative flex w-full items-center justify-between gap-4 overflow-hidden rounded-xl p-4 pl-6 text-lg font-bold focus:ring-2 focus:ring-offset-3 focus:outline-hidden">
+        className="focus:ring-primary-700 relative flex w-full items-center justify-between gap-4 overflow-hidden rounded-xl border-2 border-slate-600 px-4 py-2 pl-6 text-lg font-bold focus:ring-2 focus:ring-offset-3 focus:outline-hidden">
         <div
           className={`absolute top-0 bottom-0 left-0 w-2 ${getBackgroundColor(
             category

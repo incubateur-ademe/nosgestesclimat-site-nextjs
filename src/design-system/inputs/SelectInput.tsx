@@ -63,10 +63,10 @@ export default forwardRef(function SelectInput(
         required={required}
         aria-disabled={disabled}
         className={twMerge(
+          'w-full max-w-[30rem] p-4 text-base',
           defaultInputStyleClassNames,
-          'w-full max-w-[30rem] p-4 text-sm',
           error ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : '',
-          disabled ? 'pointer-events-none cursor-not-allowed opacity-50' : '',
+          disabled ? 'cursor-not-allowed opacity-50' : '',
           'focus:ring-primary-700 focus:ring-2 focus:ring-offset-3 focus:outline-hidden',
           className
         )}
