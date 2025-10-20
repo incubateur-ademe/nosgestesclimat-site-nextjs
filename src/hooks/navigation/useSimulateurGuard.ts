@@ -17,7 +17,7 @@ export function useSimulateurGuard() {
   const { goToEndPage } = useEndPage()
 
   const { tutorials } = useUser()
-  const { progression, isCompleted } = useCurrentSimulation()
+  const { progression } = useCurrentSimulation()
 
   const isDebug = useDebug()
 
@@ -49,10 +49,7 @@ export function useSimulateurGuard() {
 
     // If the user has completed the test, we redirect him to the results page
     // when visiting /simulateur/bilan without search params
-    //
-    // We check on progression AND isCompleted, as progression can be updated when the model
-    // version changes
-    if ((progression === 1 || isCompleted) && !questionInQueryParams) {
+    if (progression === 1 && !questionInQueryParams) {
       goToEndPage()
       setIsGuardRedirecting(true)
       return
@@ -68,7 +65,6 @@ export function useSimulateurGuard() {
     tutorials,
     router,
     progression,
-    isCompleted,
     goToEndPage,
     isDebug,
     questionInQueryParams,

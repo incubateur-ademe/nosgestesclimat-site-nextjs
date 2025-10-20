@@ -11,14 +11,11 @@ type Props = {
  * This function is used to save simulations for tracking purposes only
  */
 export async function saveSimulationForTracking({ simulation, user }: Props) {
-  // Remove isCompleted before sending to server
-  const { isCompleted, ...sanitizedSimulation } = simulation
-
   const payload = {
-    progression: sanitizedSimulation.progression,
+    progression: simulation.progression,
     situation: {},
-    computedResults: sanitizedSimulation.computedResults,
-    id: sanitizedSimulation.id,
+    computedResults: simulation.computedResults,
+    id: simulation.id,
   }
 
   const url = new URL(`${SIMULATION_URL}/${user.userId}`)

@@ -10,7 +10,6 @@ import {
   simulationCategoryStarted,
   simulationSimulationCompleted,
   simulationSimulationFirstQuestionSeen,
-  simulationSimulationHalfCompleted,
   simulationSimulationStarted,
 } from '@/constants/tracking/simulation'
 import { saveSimulationForTracking } from '@/helpers/simulation/saveSimulationForTracking'
@@ -24,15 +23,10 @@ import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { trackGTMEvent } from '@/utils/analytics/trackGTMEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback, useEffect } from 'react'
-import { useGTM } from '../../useGTM'
-import { useTrackTimeOnSimulation } from '../useTrackTimeOnSimulation'
-import {
-  getSimulationEvents,
-  markCategoryEventAsTracked,
-  markEventAsTracked,
-} from './helpers/trackingLocalStorage'
+import { useGTM } from '../useGTM'
+import { useTrackTimeOnSimulation } from './useTrackTimeOnSimulation'
 
-export function useTrackSimulateur() {
+export function useTrackSimulator() {
   const {
     isFirstQuestionOfCategory,
     isLastQuestionOfCategory,
@@ -44,16 +38,13 @@ export function useTrackSimulateur() {
 
   const { user } = useUser()
 
-  const { progression, isCompleted, id } = simulation || {}
+  const { progression, foldedSteps } = simulation || {}
 
   const { isGTMAvailable } = useGTM()
 
   const { getNumericValue } = useEngine()
 
   const { trackTimeOnSimulation } = useTrackTimeOnSimulation()
-
-  // Get tracked events for current simulation
-  const trackedEvents = simulation ? getSimulationEvents(simulation.id) : {}
 
   const trackSimulation = useCallback(async () => {
     await saveSimulationForTracking({
@@ -94,14 +85,8 @@ export function useTrackSimulateur() {
 
   // Track all users that start a new simulation
   useEffect(() => {
-    if (
-      progression === 0 &&
-      !trackedEvents.progression0 &&
-      id &&
-      !isCompleted
-    ) {
+    if (progression === 0 && foldedSteps.length === 0) {
       trackSimulation()
-      markEventAsTracked(id, 'progression0')
 
       trackEvent(simulationSimulationFirstQuestionSeen)
 
@@ -112,24 +97,11 @@ export function useTrackSimulateur() {
         })
       )
     }
-  }, [
-    progression,
-    trackSimulation,
-    trackedEvents.progression0,
-    relevantAnsweredQuestions,
-    simulation,
-    isCompleted,
-    id,
-  ])
+  }, [progression, foldedSteps, trackSimulation, relevantAnsweredQuestions])
 
-  // Track users that have answered at least one question
+  // Track users that have answered at first question
   useEffect(() => {
-    if (
-      progression > 0 &&
-      !trackedEvents.progressionStarted &&
-      id &&
-      !isCompleted
-    ) {
+    if (progression > 0 && foldedSteps.length === 1) {
       // Track for all users when the first answer is recorded
       trackSimulation()
 
@@ -146,38 +118,17 @@ export function useTrackSimulateur() {
             relevantAnsweredQuestions[relevantAnsweredQuestions.length - 1],
         })
       )
-
-      markEventAsTracked(id, 'progressionStarted')
     }
   }, [
     relevantAnsweredQuestions,
     progression,
+    foldedSteps,
     isGTMAvailable,
     trackSimulation,
-    trackedEvents.progressionStarted,
-    id,
-    isCompleted,
   ])
 
   useEffect(() => {
-    if (
-      progression >= 0.5 &&
-      !trackedEvents.progressionHalf &&
-      id &&
-      !isCompleted
-    ) {
-      trackEvent(simulationSimulationHalfCompleted)
-      markEventAsTracked(id, 'progressionHalf')
-    }
-  }, [progression, trackedEvents.progressionHalf, id, isCompleted])
-
-  useEffect(() => {
-    if (
-      progression === 1 &&
-      !trackedEvents.progressionCompleted &&
-      id &&
-      !isCompleted
-    ) {
+    if (progression === 1) {
       // Track all users that have completed their simulation
       trackSimulation()
 
@@ -200,8 +151,6 @@ export function useTrackSimulateur() {
           timeSpentOnSimulation,
         })
       )
-
-      markEventAsTracked(id, 'progressionCompleted')
     }
   }, [
     progression,
@@ -209,36 +158,17 @@ export function useTrackSimulateur() {
     trackTimeOnSimulation,
     getNumericValue,
     isGTMAvailable,
-    trackedEvents.progressionCompleted,
-    id,
-    isCompleted,
   ])
 
   useEffect(() => {
-    if (!currentCategory || isCompleted || !id) return
+    if (!currentCategory) return
 
-    if (
-      isFirstQuestionOfCategory &&
-      !trackedEvents.categoriesStarted?.[currentCategory]
-    ) {
+    if (isFirstQuestionOfCategory) {
       trackEvent(simulationCategoryStarted(currentCategory))
-      markCategoryEventAsTracked(id, 'categoriesStarted', currentCategory)
     }
 
-    if (
-      isLastQuestionOfCategory &&
-      !trackedEvents.categoriesCompleted?.[currentCategory]
-    ) {
+    if (isLastQuestionOfCategory) {
       trackEvent(simulationCategoryCompleted(currentCategory))
-      markCategoryEventAsTracked(id, 'categoriesCompleted', currentCategory)
     }
-  }, [
-    currentCategory,
-    isFirstQuestionOfCategory,
-    isLastQuestionOfCategory,
-    isCompleted,
-    id,
-    trackedEvents.categoriesStarted,
-    trackedEvents.categoriesCompleted,
-  ])
+  }, [currentCategory, isFirstQuestionOfCategory, isLastQuestionOfCategory])
 }

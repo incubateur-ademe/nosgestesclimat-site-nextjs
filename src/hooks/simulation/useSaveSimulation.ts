@@ -33,7 +33,7 @@ export function useSaveSimulation() {
     error,
   } = useMutation({
     mutationFn: async ({
-      simulation: { groups, polls, isCompleted, ...simulation },
+      simulation: { groups, polls, ...simulation },
       sendEmail,
     }: Props) => {
       // We reset the sync timer to avoid saving the simulation in the background

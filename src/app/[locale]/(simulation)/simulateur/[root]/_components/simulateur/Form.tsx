@@ -21,8 +21,7 @@ import CategoryIllustration from './summary/CategoryIllustration'
 export default function Form() {
   const isDebug = useDebug()
 
-  const { progression, isCompleted, updateCurrentSimulation } =
-    useCurrentSimulation()
+  const { progression } = useCurrentSimulation()
 
   const {
     remainingQuestions,
@@ -44,11 +43,11 @@ export default function Form() {
   // When we reach the end of the test (by clicking on the last navigation button),
   // we wait for the progression to be updated before redirecting to the end page
   const [shouldGoToEndPage, setShouldGoToEndPage] = useState(
-    isCompleted || progression === 1 ? true : false
+    progression === 1 ? true : false
   )
 
   useEffect(() => {
-    if (shouldGoToEndPage && progression === 1 && isCompleted) {
+    if (shouldGoToEndPage && progression === 1) {
       goToEndPage({
         allowedToGoToGroupDashboard: true,
       })
@@ -128,10 +127,6 @@ export default function Form() {
                     handleUpdateShouldPreventNavigation(false)
                   }
 
-                  updateCurrentSimulation({
-                    isCompleted: true,
-                  })
-
                   setShouldGoToEndPage(true)
                 }}
               />
@@ -164,10 +159,6 @@ export default function Form() {
             if (shouldPreventNavigation) {
               handleUpdateShouldPreventNavigation(false)
             }
-
-            updateCurrentSimulation({
-              isCompleted: true,
-            })
 
             setShouldGoToEndPage(true)
           }}

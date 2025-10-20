@@ -77,7 +77,6 @@ export type UpdateCurrentSimulationProps = {
   groupToAdd?: string | null
   groupToDelete?: string | null
   savedViaEmail?: boolean
-  isCompleted?: boolean
 }
 
 export type Simulation = {
@@ -96,7 +95,6 @@ export type Simulation = {
   groups?: string[] | null
   savedViaEmail?: boolean
   model?: string
-  isCompleted?: boolean
 }
 
 export type LocalStorage = {

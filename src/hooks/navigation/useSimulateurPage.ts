@@ -37,7 +37,7 @@ export function useSimulateurPage() {
 
   const tutorielSeen = tutorials.testIntro
 
-  const { progression, isCompleted } = useCurrentSimulation()
+  const { progression } = useCurrentSimulation()
 
   const goToSimulateurPage = useCallback(
     ({
@@ -55,7 +55,7 @@ export function useSimulateurPage() {
       }
 
       // If the user has completed the test we redirect him to the results page
-      if ((progression === 1 || isCompleted) && !newSimulation) {
+      if (progression === 1 && !newSimulation) {
         goToEndPage()
         return
       }
@@ -69,15 +69,7 @@ export function useSimulateurPage() {
       // else we redirect him to the tutoriel page
       router.push(getLinkToTutoriel({ locale }))
     },
-    [
-      progression,
-      isCompleted,
-      tutorielSeen,
-      router,
-      initSimulation,
-      goToEndPage,
-      locale,
-    ]
+    [progression, tutorielSeen, router, initSimulation, goToEndPage, locale]
   )
 
   const getLinkToSimulateurPage = useCallback(
