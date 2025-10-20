@@ -57,7 +57,7 @@ export default function Groups() {
               src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_people_playing_6e045e4217.png"
               width="380"
               height="400"
-              alt={t("Un groupe d'amis jouant à un jeu de société.")}
+              alt=""
             />
           </div>
         </>

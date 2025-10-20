@@ -40,7 +40,7 @@ export default function SelectYear() {
       <div className="mb-4 inline-flex items-center">
         <b>Année :</b>
         <select
-          className="mb-0 ml-4 w-[10rem]"
+          className="focus:ring-primary-700 mb-0 ml-4 w-[10rem] focus:ring-2 focus:ring-offset-3 focus:outline-hidden"
           name="année"
           value={selectedYear}
           onChange={(e) => {

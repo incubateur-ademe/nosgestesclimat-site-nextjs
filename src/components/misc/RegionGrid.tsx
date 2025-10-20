@@ -31,7 +31,10 @@ export default function RegionGrid({
   })
 
   return (
-    <ul className={`region-grid mt-4 grid gap-4 p-0 ${className}`} {...props}>
+    <ul
+      className={`region-grid mt-4 grid gap-4 p-0 ${className}`}
+      role="list"
+      {...props}>
       {Object.entries(sortedSupportedRegions).map(([code, params]) => {
         return typeof params !== 'string' ? (
           <li className="my-2 flex list-none justify-center" key={code}>
@@ -45,6 +48,12 @@ export default function RegionGrid({
           </li>
         ) : null
       })}
+      <li className="sr-only">
+        <span>
+          Utilisez les flèches directionnelles pour naviguer entre les régions,
+          Entrée ou Espace pour sélectionner une région.
+        </span>
+      </li>
     </ul>
   )
 }

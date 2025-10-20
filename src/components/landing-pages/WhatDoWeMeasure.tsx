@@ -67,7 +67,8 @@ export default function WhatDoWeMeasure({
         className={twMerge(
           `order hidden grid-cols-1 gap-5 md:grid md:grid-cols-2 ${getGridColsClassname(listItems?.length ?? 0)}`,
           shouldUseDescriptionMaxWidth ? 'max-w-[800px]' : ''
-        )}>
+        )}
+        role="list">
         {listItems?.map(({ icon, title }, index) => (
           <li
             key={`list-item-${title}-${index}`}
@@ -88,7 +89,7 @@ export default function WhatDoWeMeasure({
       </ul>
 
       <div className="flex overflow-x-auto md:hidden">
-        <div className="flex gap-5 px-[calc(50vw-6.5rem)]">
+        <ul className="flex gap-5 px-[calc(50vw-6.5rem)]">
           {listItems?.map(({ icon, title }, index) => (
             <li
               key={`list-item-${title}-${index}`}
@@ -108,7 +109,7 @@ export default function WhatDoWeMeasure({
               </p>
             </li>
           ))}
-        </div>
+        </ul>
       </div>
 
       <section

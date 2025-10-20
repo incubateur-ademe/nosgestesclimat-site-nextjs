@@ -70,6 +70,7 @@ export default [
       'react-hooks/exhaustive-deps': 'error',
 
       'jsx-a11y/label-has-associated-control': 'error',
+      'jsx-a11y/no-redundant-roles': 'off',
 
       'no-undef': 'error',
       'no-redeclare': 'error',
@@ -123,6 +124,7 @@ export default [
       'react-hooks/exhaustive-deps': 'error',
 
       'jsx-a11y/label-has-associated-control': 'error',
+      'jsx-a11y/no-redundant-roles': 'off',
 
       'no-undef': 'error',
       'no-redeclare': 'error',

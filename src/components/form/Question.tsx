@@ -30,7 +30,7 @@ type Props = {
   displayedValue?: string | undefined
   setDisplayedValue?: (value: string | undefined) => void
   showInputsLabel?: React.ReactNode | string
-  headingLevel?: number
+  headingLevel?: 1 | 2 | 3
   className?: string
   secondaryQuestionsOfMosaic?: DottedName[]
 }
@@ -107,7 +107,6 @@ export default function Question({
           description={description}
           headingLevel={headingLevel}
           id="question-label"
-          htmlFor={DEFAULT_FOCUS_ELEMENT_ID}
         />
 
         <Suggestions
@@ -148,7 +147,7 @@ export default function Question({
                 min={0}
                 data-cypress-id={question}
                 id={DEFAULT_FOCUS_ELEMENT_ID}
-                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+                aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content warning-message notification-message`}
                 aria-labelledby="question-label"
               />
             )}
@@ -168,7 +167,7 @@ export default function Question({
                 data-cypress-id={question}
                 label={label || ''}
                 firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
-                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+                aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content  warning-message notification-message`}
                 aria-labelledby="question-label"
               />
             )}
@@ -190,7 +189,7 @@ export default function Question({
                 data-cypress-id={question}
                 label={label || ''}
                 firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
-                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+                aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content  warning-message  notification-message`}
                 aria-labelledby="question-label"
               />
             )}
@@ -199,8 +198,8 @@ export default function Question({
               <Mosaic
                 question={question}
                 questionsOfMosaic={questionsOfMosaicFromParent}
+                aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content  warning-message notification-message`}
                 secondaryQuestionsOfMosaic={secondaryQuestionsOfMosaic}
-                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
                 aria-labelledby="question-label"
                 firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
                 label={label || ''}

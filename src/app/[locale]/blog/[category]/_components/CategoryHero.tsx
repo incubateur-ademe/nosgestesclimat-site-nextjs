@@ -1,16 +1,23 @@
+import { twMerge } from 'tailwind-merge'
 import CategoryBreadcrumbs from './categoryHero/CategoryBreadcrumbs'
 
 export default function CategoryHero({
   title,
   description,
   slug,
+  className,
 }: {
   title: string
   description: string
   slug: string
+  className?: string
 }) {
   return (
-    <div className="bg-heroLightBackground relative mt-12 mb-20 w-full px-4">
+    <div
+      className={twMerge(
+        'bg-heroLightBackground relative mt-12 mb-20 w-full px-4',
+        className
+      )}>
       <div className="mx-auto max-w-5xl">
         <CategoryBreadcrumbs slug={slug} title={title} />
 

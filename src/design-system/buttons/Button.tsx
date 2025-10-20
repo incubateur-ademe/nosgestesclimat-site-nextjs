@@ -41,7 +41,7 @@ export const sizeClassNames = {
 }
 
 export const baseClassNames =
-  'inline-flex items-center justify-center whitespace-nowrap rounded-full font-bold no-underline transition-colors focus:outline-hidden focus:ring-2 focus:ring-primary-700 focus:ring-offset-3 aria-disabled:opacity-50 leading-none!'
+  'inline-flex items-center opacity-100! justify-center whitespace-nowrap rounded-full font-bold no-underline transition-colors focus:outline-hidden focus:ring-2 focus:ring-primary-700 focus:ring-offset-3 aria-disabled:opacity-50 leading-none!'
 
 export default function Button({
   onClick,
@@ -54,6 +54,7 @@ export default function Button({
   id,
   title,
   form,
+  ref,
   ...props
 }: PropsWithChildren<ButtonProps & HtmlHTMLAttributes<HTMLButtonElement>>) {
   return (
@@ -65,6 +66,7 @@ export default function Button({
             }
           : onClick
       }
+      ref={ref}
       type={type}
       aria-disabled={disabled}
       title={title}

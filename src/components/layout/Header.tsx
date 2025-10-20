@@ -1,13 +1,5 @@
 'use client'
 
-import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
-import ActionsIcon from '@/components/icons/ActionsIcon'
-import AmisIcon from '@/components/icons/AmisIcon'
-import BilanIcon from '@/components/icons/BilanIcon'
-import PRIndicator from '@/components/layout/header/headerDesktop/PRIndicator'
-import Logo from '@/components/misc/Logo'
-import LogoLink from '@/components/misc/LogoLink'
-import Trans from '@/components/translation/trans/TransClient'
 import {
   headerClickActions,
   headerClickClassements,
@@ -25,16 +17,20 @@ import { trackEvent } from '@/utils/analytics/trackEvent'
 import dynamic from 'next/dynamic'
 import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
-import NavLink from './header/NavLink'
+import CTAButtonsPlaceholder from '../cta/CTAButtonsPlaceholder'
+import ActionsIcon from '../icons/ActionsIcon'
+import AmisIcon from '../icons/AmisIcon'
+import BilanIcon from '../icons/BilanIcon'
+import Logo from '../misc/Logo'
+import LogoLink from '../misc/LogoLink'
+import Trans from '../translation/trans/TransClient'
 import OrganisationLink from './header/_components/OrganisationLink'
 import ProfileIcon from './header/_components/ProfileIcon'
 import DebugIndicator from './header/headerDesktop/DebugIndicator'
+import PRIndicator from './header/headerDesktop/PRIndicator'
 import BottomMenu from './header/headerMobile/BottomMenu'
 import FoldableMenu from './header/headerMobile/FoldableMenu'
-
-type Props = {
-  isSticky?: boolean
-}
+import NavLink from './header/NavLink'
 
 const DynamicCTAButton = dynamic(
   () => import('./header/headerDesktop/MenuCTAButton'),
@@ -44,21 +40,25 @@ const DynamicCTAButton = dynamic(
   }
 )
 
-export default function HeaderDesktop({ isSticky = true }: Props) {
+type Props = {
+  isSticky?: boolean
+}
+export default function Header({ isSticky = true }: Props) {
+  const { isIframeOnlySimulation } = useIframe()
+
   const { t } = useClientTranslation()
-
-  const pathname = usePathname()
-
-  const { user } = useUser()
 
   const { getLinkToSimulateurPage } = useSimulateurPage()
 
-  const { isIframeOnlySimulation } = useIframe()
+  const { user } = useUser()
+
+  const pathname = usePathname()
 
   return (
     <header
+      role="banner"
       className={twMerge(
-        'h-20 items-center bg-white shadow-xs',
+        'h-20 w-full items-center bg-white shadow-sm',
         isSticky ? 'sticky top-0 z-300' : ''
       )}>
       {/* Header mobile */}
@@ -77,7 +77,7 @@ export default function HeaderDesktop({ isSticky = true }: Props) {
         )}
       </div>
       {/* Header desktop */}
-      <div className="absolute top-0 right-0 bottom-0 left-0 hidden h-20 w-full items-center border-b border-gray-200 bg-white shadow-xs md:flex">
+      <div className="hidden h-20 w-full items-center md:flex">
         <div className="mx-auto flex h-full w-full max-w-5xl items-center justify-between gap-6">
           <div className="flex origin-left items-center justify-center">
             {isIframeOnlySimulation ? (
@@ -90,8 +90,10 @@ export default function HeaderDesktop({ isSticky = true }: Props) {
           {!isIframeOnlySimulation && (
             <>
               <nav
+                role="navigation"
                 className="h-full"
-                id="header-navigation"
+                tabIndex={-1}
+                id="header-navigation-desktop"
                 aria-label={t('Navigation principale')}
                 aria-labelledby="header-navigation-title">
                 <p id="header-navigation-title" className="sr-only">

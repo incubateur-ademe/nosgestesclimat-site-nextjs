@@ -24,9 +24,7 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
-}
 
-@layer base {
   input[type='number']::-webkit-outer-spin-button,
   input[type='number']::-webkit-inner-spin-button,
   input[type='number'] {
@@ -34,6 +32,11 @@
     margin: 0;
     appearance: none;
     -moz-appearance: textfield !important;
+  }
+
+  html {
+    background-color: #fff;
+    color: #1a1a1a;
   }
 
   button {
@@ -121,6 +124,11 @@
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  background-color: #fff;
+  color: #000;
 }
 
 body {
@@ -488,7 +496,7 @@ html[data-useragent*='Trident'] #js {
 }
 
 .markdown figcaption {
-  @apply -mt-2 text-sm text-gray-700 italic;
+  @apply -mt-2 mb-6 text-sm text-gray-700 italic;
 }
 
 .markdown ol {
@@ -657,7 +665,7 @@ html[data-useragent*='Trident'] #js {
   @apply max-w-[90vw]!;
 }
 .splide__arrow {
-  @apply bg-transparent!;
+  @apply bg-transparent! opacity-100!;
 }
 .splide__arrow--next {
   @apply right-0 md:-right-8!;
@@ -671,12 +679,21 @@ html[data-useragent*='Trident'] #js {
   @apply fill-primary-900! z-10;
 }
 
-.splide__arrow {
-  @apply opacity-100!;
-}
-
 .splide__arrow:disabled svg {
   @apply fill-gray-500!;
+}
+
+/* Focus styles for Splide arrows - same as Button component */
+.splide__arrow:focus {
+  @apply ring-primary-700! ring-2! ring-offset-3! outline-hidden!;
+}
+
+.splide__toggle:focus {
+  @apply ring-primary-700! ring-2! ring-offset-3! outline-hidden!;
+}
+
+.splide__progress__bar {
+  @apply hidden;
 }
 
 .splide__pagination {
@@ -688,6 +705,16 @@ html[data-useragent*='Trident'] #js {
 }
 .splide__pagination button.is-active {
   @apply bg-primary-700 w-6 transform-none! transition-all! duration-500!;
+}
+
+/* Focus styles for Splide pagination buttons - same as Button component */
+.splide__pagination button:focus {
+  @apply ring-primary-700! ring-2! ring-offset-3! outline-hidden!;
+}
+
+/* Focus styles for all links - same as Button component */
+a:focus {
+  @apply ring-primary-700! ring-2! ring-offset-3! outline-hidden!;
 }
 
 /* Custom short screen utilities to replace short: breakpoint */
@@ -713,7 +740,20 @@ html[data-useragent*='Trident'] #js {
 #documentation-search-input {
   @apply border-slate-700;
 }
+a[name='variations'] {
+  @apply bg-alimentation-800!;
+}
+#documentation-rule-root article > h1,
+#documentation-rule-root article h2 {
+  @apply text-base! font-normal!;
+}
 
+/**
+** Tally
+**/
+iframe {
+  @apply bg-white;
+}
 .markdown details {
   @apply bg-primary-50 mt-3 mb-6 cursor-pointer rounded-lg px-4 py-4;
 }

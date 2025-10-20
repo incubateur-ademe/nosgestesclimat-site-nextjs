@@ -41,7 +41,7 @@ export default function Organisations() {
             src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_people_with_paperboard_9c8d47f4b3.png"
             width="380"
             height="400"
-            alt={t('Un groupe de personnes discutant devant un paperboard.')}
+            alt=""
           />
         </div>
       )}

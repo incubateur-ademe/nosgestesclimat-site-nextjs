@@ -15,17 +15,42 @@ export default function CountryListItem({
   isSelected,
   updateCurrentRegion,
 }: Props) {
+  const isInteractive = !!updateCurrentRegion
+
   return (
     <Card
-      tag={updateCurrentRegion ? 'button' : ''}
+      tag={isInteractive ? 'button' : ''}
       className={`bg-primary-100 text-default flex h-16 w-24 items-center justify-center gap-2 px-3 py-2 text-center text-xs shadow-none sm:h-12 sm:!w-36 sm:flex-row sm:justify-start sm:py-0 sm:text-left ${
         isSelected ? 'border-primary-800 bg-primary-100!' : ''
       }`}
-      onClick={
-        updateCurrentRegion ? () => updateCurrentRegion(code) : undefined
+      onClick={isInteractive ? () => updateCurrentRegion(code) : undefined}
+      aria-pressed={isInteractive ? isSelected : undefined}
+      aria-label={
+        isInteractive
+          ? `${label}${isSelected ? ', région sélectionnée' : ''}`
+          : undefined
+      }
+      role={isInteractive ? 'button' : undefined}
+      tabIndex={isInteractive ? 0 : undefined}
+      onKeyDown={
+        isInteractive
+          ? (e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                updateCurrentRegion(code)
+              }
+            }
+          : undefined
       }>
       <CountryFlag code={code} />
       {label}
+      {isInteractive && (
+        <span className="sr-only">
+          {isSelected
+            ? 'Région actuellement sélectionnée'
+            : 'Cliquez pour sélectionner cette région'}
+        </span>
+      )}
     </Card>
   )
 }
