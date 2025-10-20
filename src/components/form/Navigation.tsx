@@ -295,19 +295,29 @@ export default function Navigation({
 
   const skipText = isTestVersion ? (
     <span>
-      <Trans i18nKey="simulator.navigation.nextButton.dontKnow">
+      <Trans i18nKey="simulator.navigation.nextButton.dontKnow.label">
         Je ne sais pas
       </Trans>{' '}
       <span aria-hidden>→</span>
     </span>
   ) : (
     <span>
-      <Trans i18nKey="simulator.navigation.nextButton.skip">
+      <Trans i18nKey="simulator.navigation.nextButton.skip.label">
         Passer la question
       </Trans>{' '}
       <span aria-hidden>→</span>
     </span>
   )
+
+  const skipTitle = isTestVersion
+    ? t(
+        'common.navigation.nextQuestion.dontKnow.title',
+        'Je ne sais pas, passer et aller à la question suivante'
+      )
+    : t(
+        'common.navigation.nextQuestion.pass.title',
+        'Passer et aller à la question suivante'
+      )
 
   return (
     <div
@@ -352,10 +362,7 @@ export default function Navigation({
                   'Terminer le test et accéder à la page de résultats'
                 )
               : isMissing
-                ? t(
-                    'common.navigation.nextQuestion.pass.label',
-                    'Passer et aller à la question suivante'
-                  ) + ' →'
+                ? skipTitle
                 : t(
                     'common.navigation.nextQuestion.next.label',
                     'Aller à la question suivante'
