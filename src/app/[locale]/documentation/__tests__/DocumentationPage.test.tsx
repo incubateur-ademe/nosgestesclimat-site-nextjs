@@ -21,10 +21,12 @@ vi.mock('@/utils/decodeRuleNameFromPath', () => ({
 vi.mock('@/constants/urls/paths', () => ({
   DOCUMENTATION_PATH: '/documentation',
   NOT_FOUND_PATH: '/404',
+  SIMULATOR_PATH: '/simulateur',
 }))
 
 vi.mock('next/navigation', () => ({
   redirect: vi.fn(),
+  usePathname: vi.fn(() => '/documentation'),
 }))
 
 vi.mock(

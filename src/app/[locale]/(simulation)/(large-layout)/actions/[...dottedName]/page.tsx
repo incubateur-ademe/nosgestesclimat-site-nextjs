@@ -37,10 +37,7 @@ export default async function ActionDetailPage({
         color="text"
         href="/actions"
         className="flex items-center">
-        <span
-          role="img"
-          className="pr-2 text-[0.5rem]!"
-          aria-label="arrow pointing left">
+        <span role="img" className="pr-2 text-[0.5rem]!" aria-hidden>
           ◀
         </span>{' '}
         <Trans> Retour à la liste</Trans>

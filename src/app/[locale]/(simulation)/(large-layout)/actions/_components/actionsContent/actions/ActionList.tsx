@@ -1,7 +1,9 @@
 'use client'
 
 import { actionsClickYes } from '@/constants/tracking/pages/actions'
+import Modal from '@/design-system/modals/Modal'
 import { getIsCustomAction } from '@/helpers/actions/getIsCustomAction'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import {
   FormProvider,
   useCurrentSimulation,
@@ -11,7 +13,7 @@ import {
 import type { Action } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import { Fragment, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import ActionCard from './ActionCard'
 import ActionForm from './ActionForm'
 import CustomActionForm from './actionList/CustomActionForm'
@@ -24,6 +26,8 @@ type Props = {
   setActionWithFormOpen: (dottedName: string) => void
   shouldUpdatePersistedActions: boolean
   setShouldUpdatePersistedActions: (value: boolean) => void
+  ariaLabelledBy?: string
+  listId?: string
 }
 
 export default function ActionList({
@@ -34,6 +38,8 @@ export default function ActionList({
   setActionWithFormOpen,
   shouldUpdatePersistedActions,
   setShouldUpdatePersistedActions,
+  ariaLabelledBy,
+  listId,
 }: Props) {
   const { getCategory } = useEngine()
   const { toggleActionChoice } = useUser()
@@ -42,12 +48,7 @@ export default function ActionList({
 
   const isFocusedActionCustom = getIsCustomAction(actionWithFormOpen)
 
-  const formRef = useRef<HTMLDivElement>(null)
-  const [formStyle, setFormStyle] = useState<React.CSSProperties>({
-    opacity: 0,
-    position: 'absolute',
-    zIndex: -1,
-  })
+  const { t } = useClientTranslation()
 
   // This allows us to keep actions displayed even after they have been
   // made unapplicable
@@ -89,54 +90,14 @@ export default function ActionList({
     }
   }, [actionsPersisted])
 
-  useLayoutEffect(() => {
-    const calculatePosition = () => {
-      const cardElement = document.getElementById(actionWithFormOpen)
-      const formElement = formRef.current
-
-      if (!cardElement || !formElement) return
-
-      const cardRect = cardElement.getBoundingClientRect()
-      const liElement = cardElement.parentElement
-      if (!liElement) return
-
-      const liRect = liElement.getBoundingClientRect()
-      const formWidth = formElement.offsetWidth
-      const viewportWidth = window.innerWidth
-
-      const top = cardRect.height - 64
-
-      // Center the form horizontally relative to the viewport
-      const leftRelativeToLi = viewportWidth / 2 - formWidth / 2 - liRect.left
-
-      setFormStyle({
-        position: 'absolute',
-        top: `${top}px`,
-        left: `${leftRelativeToLi}px`,
-        zIndex: 100,
-        opacity: 1,
-        transition: 'opacity 0.2s ease-in-out',
-      })
-    }
-
-    if (actionWithFormOpen) {
-      // Delay calculation to ensure form is rendered and has dimensions
-      const timer = setTimeout(calculatePosition, 50)
-      window.addEventListener('resize', calculatePosition)
-      return () => {
-        clearTimeout(timer)
-        window.removeEventListener('resize', calculatePosition)
-        setFormStyle({
-          opacity: 0,
-          position: 'absolute',
-          zIndex: -1,
-        })
-      }
-    }
-  }, [actionWithFormOpen])
+  // Inline positioning replaced by accessible modal managed by design-system
 
   return (
-    <ul className="mt-4 flex list-none flex-wrap items-center justify-center p-0">
+    <ul
+      id={listId}
+      className="mt-4 flex list-none flex-wrap items-center justify-center p-0"
+      aria-labelledby={ariaLabelledBy}
+      role="list">
       {actionsPersisted.reduce<React.ReactNode[]>((acc, action) => {
         const isActionFocused = actionWithFormOpen === action.dottedName
         const isIrrelevant = (action as Action & { isIrrelevant: boolean })
@@ -165,43 +126,57 @@ export default function ActionList({
               {cardComponent}
 
               {isActionFocused && !isFocusedActionCustom && (
-                <div
-                  ref={formRef}
-                  style={formStyle}
-                  className="w-4xl max-w-[calc(100vw-2rem)]">
-                  <FormProvider root={action.dottedName}>
-                    <ActionForm
-                      key={action.dottedName}
-                      action={action}
-                      setActionWithFormOpen={setActionWithFormOpen}
-                      category={getCategory(action.dottedName)}
-                      onComplete={() => {
-                        toggleActionChoice(action.dottedName)
+                <Modal
+                  isOpen
+                  ariaLabel={t(
+                    'actions.form.modal.ariaLabel',
+                    "Fenêtre modale du formulaire d'action"
+                  )}
+                  closeModal={() => setActionWithFormOpen('')}
+                  hasAbortButton={false}
+                  hasAbortCross>
+                  <div className="w-full max-w-[40rem]">
+                    <FormProvider root={action.dottedName}>
+                      <ActionForm
+                        key={action.dottedName}
+                        action={action}
+                        setActionWithFormOpen={setActionWithFormOpen}
+                        category={getCategory(action.dottedName)}
+                        onComplete={() => {
+                          toggleActionChoice(action.dottedName)
 
-                        if (!actionChoices[action.dottedName]) {
-                          trackEvent(actionsClickYes(action.dottedName))
+                          if (!actionChoices[action.dottedName]) {
+                            trackEvent(actionsClickYes(action.dottedName))
+                          }
+                          setActionWithFormOpen('')
+                        }}
+                        handleUpdatePersistedActions={
+                          handleUpdatePersistedActions
                         }
-                        setActionWithFormOpen('')
-                      }}
-                      handleUpdatePersistedActions={
-                        handleUpdatePersistedActions
-                      }
-                    />
-                  </FormProvider>
-                </div>
+                      />
+                    </FormProvider>
+                  </div>
+                </Modal>
               )}
 
               {isActionFocused && isFocusedActionCustom && (
-                <div
-                  ref={formRef}
-                  style={formStyle}
-                  className="w-4xl max-w-[calc(100vw-2rem)]">
-                  <CustomActionForm
-                    key={`${action.dottedName}-custom-form`}
-                    dottedName={action.dottedName}
-                    setActionWithFormOpen={setActionWithFormOpen}
-                  />
-                </div>
+                <Modal
+                  isOpen
+                  ariaLabel={t(
+                    'actions.form.custom.modal.ariaLabel',
+                    "Fenêtre modale du formulaire d'action personnalisée"
+                  )}
+                  closeModal={() => setActionWithFormOpen('')}
+                  hasAbortButton={false}
+                  hasAbortCross>
+                  <div className="w-full max-w-[40rem]">
+                    <CustomActionForm
+                      key={`${action.dottedName}-custom-form`}
+                      dottedName={action.dottedName}
+                      setActionWithFormOpen={setActionWithFormOpen}
+                    />
+                  </div>
+                </Modal>
               )}
             </li>
           </Fragment>

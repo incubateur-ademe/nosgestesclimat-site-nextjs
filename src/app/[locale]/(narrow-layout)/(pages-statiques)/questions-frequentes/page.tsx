@@ -110,6 +110,7 @@ export default async function FAQPage({
                         key={id}
                         question={question}
                         answer={htmlAnswer}
+                        locale={locale}
                       />
                     )
                   })}

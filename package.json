@@ -41,7 +41,7 @@
     "pages:translate": "node scripts/i18n/translate-pages.cjs",
     "nouveautes:translate": "node scripts/i18n/translate-nouveautes.cjs",
     "prepare": "husky",
-    "ts:prune": "ts-prune | grep -v generateMetadata",
+    "ts:prune": "ts-prune",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "storybook:build:github-pages": "cp .storybook/main.github-pages.ts .storybook/main.ts && cp .storybook/preview.github-pages.ts .storybook/preview.ts && storybook build && git checkout .storybook/main.ts .storybook/preview.ts"
@@ -50,7 +50,7 @@
     "@incubateur-ademe/legal-pages-react": "^0.5.0",
     "@incubateur-ademe/nosgestesclimat": "4.1.0",
     "@next/mdx": "^15.5.4",
-    "@publicodes/react-ui": "^1.9.1",
+    "@publicodes/react-ui": "^1.10.0",
     "@publicodes/tools": "^1.8.0",
     "@sentry/nextjs": "^9.38.0",
     "@splidejs/react-splide": "^0.7.12",

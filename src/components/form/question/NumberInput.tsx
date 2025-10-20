@@ -75,8 +75,12 @@ export default function NumberInput({
         placeholder={
           value.toLocaleString(locale, { maximumFractionDigits: 2 }) ?? '0'
         }
-        className={`focus:ring-primary border-primary-200 focus:border-primary-700 max-w-[8rem] rounded-xl border-2 bg-white p-2 text-right transition-colors focus:ring-2 md:max-w-full`}
-        thousandSeparator={' '}
+        className={twMerge(
+          `max-w-[8rem] rounded-xl border border-solid border-slate-500 bg-white p-4 text-right text-sm transition-colors md:max-w-full`,
+          'focus:ring-primary-700! placeholder:text-slate-500! focus:ring-2! focus:ring-offset-3! focus:outline-hidden!',
+          className
+        )}
+        thousandSeparator={' '}
         decimalSeparator={','}
         allowNegative={false}
         autoComplete="off"

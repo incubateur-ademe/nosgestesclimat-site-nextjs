@@ -153,7 +153,7 @@ export default function RankingMember({
             <button
               onClick={() => setIsConfirmationModalOpen(true)}
               className={twMerge(
-                'inline-flex h-6 w-6 items-center justify-center p-0! transition-colors',
+                'focus:ring-primary-700 inline-flex h-6 w-6 items-center justify-center p-0! transition-colors focus:ring-2 focus:ring-offset-3 focus:outline-hidden',
                 textColor
               )}
               aria-label={t('{{name}}, supprimer cette participation', {
@@ -170,6 +170,10 @@ export default function RankingMember({
             {isConfirmationModalOpen && (
               <ConfirmationModal
                 onConfirm={handleDelete}
+                ariaLabel={t(
+                  'group.results.rankingMember.delete.modal.ariaLabel',
+                  'Fenêtre modale de confirmation de suppression du membre du groupe'
+                )}
                 closeModal={() => setIsConfirmationModalOpen(false)}>
                 <p className="text-sm md:text-base">
                   <Trans>

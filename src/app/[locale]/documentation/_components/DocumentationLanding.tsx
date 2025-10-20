@@ -97,7 +97,9 @@ export default function DocumentationLanding() {
         <Trans>Quelques suggestions </Trans>
       </h2>
 
-      <ul className="grid max-w-[60rem] grid-cols-1 flex-wrap gap-2 p-0 sm:grid-cols-2 md:grid-cols-3">
+      <ul
+        className="grid max-w-[60rem] grid-cols-1 flex-wrap gap-2 p-0 sm:grid-cols-2 md:grid-cols-3"
+        role="list">
         {(Object.keys(fixedCardSummaries.current) as DottedName[]).map(
           (dottedName) => {
             return (

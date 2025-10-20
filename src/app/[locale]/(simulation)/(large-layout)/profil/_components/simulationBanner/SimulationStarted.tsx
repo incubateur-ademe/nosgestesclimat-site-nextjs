@@ -53,8 +53,24 @@ export default function SimulationStarted() {
 
         <details className="mt-3 max-w-full text-sm">
           <Trans i18nKey={'publicodes.Profil.locationDonnées'}>
-            <summary className="mb-2 cursor-pointer">
+            <summary
+              className="mb-2 cursor-pointer"
+              role="button"
+              tabIndex={0}
+              aria-expanded="false"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  const details = e.currentTarget
+                    .parentElement as HTMLDetailsElement
+                  details.open = !details.open
+                }
+              }}>
               Où sont mes données ?{' '}
+              <span className="sr-only">
+                Cliquez pour afficher les informations sur la localisation des
+                données
+              </span>
             </summary>
             <span className="text-xs!">
               Vos données sont stockées dans votre navigateur, vous avez donc le
@@ -67,44 +83,52 @@ export default function SimulationStarted() {
         </details>
       </div>
 
-      <div className="my-4 flex flex-col items-start md:w-auto">
+      <ul className="my-4 flex flex-col items-start md:w-auto">
         {isFinished && (
-          <ButtonLink
-            className="w-full justify-center text-center leading-8"
-            color="primary"
-            href={getLinkToEndPage()}
-            trackingEvent={profilClickCtaResultats}>
-            <Trans>Voir mon résultat</Trans>
-          </ButtonLink>
+          <li>
+            <ButtonLink
+              className="w-full justify-center text-center leading-8"
+              color="primary"
+              href={getLinkToEndPage()}
+              trackingEvent={profilClickCtaResultats}>
+              <Trans>Voir mon résultat</Trans>
+            </ButtonLink>
+          </li>
         )}
 
         {!isFinished && (
-          <ButtonLink
-            color="primary"
-            className="w-full justify-center!"
-            href={getLinkToSimulateur()}
-            trackingEvent={profilClickCtaReprendre}>
-            <PlaySignIcon className="mr-2 fill-white" />
+          <li>
+            <ButtonLink
+              color="primary"
+              className="w-full justify-center!"
+              href={getLinkToSimulateur()}
+              trackingEvent={profilClickCtaReprendre}>
+              <PlaySignIcon className="mr-2 fill-white" />
 
-            <Trans>Reprendre mon test</Trans>
-          </ButtonLink>
+              <Trans>Reprendre mon test</Trans>
+            </ButtonLink>
+          </li>
         )}
 
-        <ButtonLink
-          color="secondary"
-          className="my-2 w-full text-center"
-          trackingEvent={profilClickRecommencer}
-          onClick={() => {
-            goToSimulateurPage({ noNavigation: true, newSimulation: {} })
-          }}
-          href={getLinkToSimulateurPage({ newSimulation: true })}>
-          <RestartIcon className="fill-primary-700 mr-2" />
+        <li>
+          <ButtonLink
+            color="secondary"
+            className="my-2 w-full text-center"
+            trackingEvent={profilClickRecommencer}
+            onClick={() => {
+              goToSimulateurPage({ noNavigation: true, newSimulation: {} })
+            }}
+            href={getLinkToSimulateurPage({ newSimulation: true })}>
+            <RestartIcon className="fill-primary-700 mr-2" />
 
-          <Trans>Recommencer</Trans>
-        </ButtonLink>
+            <Trans>Recommencer</Trans>
+          </ButtonLink>
+        </li>
 
-        <TutorialLink />
-      </div>
+        <li>
+          <TutorialLink />
+        </li>
+      </ul>
     </div>
   )
 }

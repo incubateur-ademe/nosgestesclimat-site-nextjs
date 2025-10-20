@@ -92,7 +92,7 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
 
   fullscreenButton.innerHTML = `
   <div style="display: flex; gap: 4px; margin: 0 auto;">
-    <img width="14px" height="14px" style="filter: invert(1); vertical-align: middle; cursor: pointer"/>
+    <img width="14px" height="14px" alt="" aria-hidden="true" style="filter: invert(1); vertical-align: middle; cursor: pointer"/>
     Passer en mode plein écran
   </div>
 `

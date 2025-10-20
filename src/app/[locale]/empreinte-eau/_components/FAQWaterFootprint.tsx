@@ -2,15 +2,17 @@ import FAQ from '@/components/landing-pages/FAQ'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import type { Locale } from '@/i18nConfig'
 export default async function FAQWaterFootprint({
   locale,
 }: {
-  locale: string
+  locale: Locale
 }) {
   const { t } = await getServerTranslation({ locale })
 
   return (
     <FAQ
+      locale={locale}
       className="mb-16"
       subTitle={
         <Trans locale={locale}>Vos questions sur l'empreinte eau</Trans>

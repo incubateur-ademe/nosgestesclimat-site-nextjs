@@ -4,10 +4,24 @@ export default function PersonaExplanations() {
   return (
     <div className="mt-8">
       <details className="pb-4">
-        <summary>
+        <summary
+          role="button"
+          tabIndex={0}
+          aria-expanded="false"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault()
+              const details = e.currentTarget
+                .parentElement as HTMLDetailsElement
+              details.open = !details.open
+            }
+          }}>
           <h2 className="inline">
             <Trans>Qui sont-ils ?</Trans>
           </h2>
+          <span className="sr-only">
+            Cliquez pour afficher la description des personas
+          </span>
         </summary>
 
         <div className="mt-4">
@@ -76,10 +90,25 @@ export default function PersonaExplanations() {
       </details>
 
       <details>
-        <summary>
+        <summary
+          role="button"
+          tabIndex={0}
+          aria-expanded="false"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault()
+              const details = e.currentTarget
+                .parentElement as HTMLDetailsElement
+              details.open = !details.open
+            }
+          }}>
           <h2 className="inline">
             <Trans>Comment les mettons-nous à jour ?</Trans>
           </h2>
+          <span className="sr-only">
+            Cliquez pour afficher les informations sur la mise à jour des
+            personas
+          </span>
         </summary>
 
         <div className="mt-4">

@@ -89,7 +89,7 @@ export default function RuleDetail({
   }
 
   return (
-    <ul className="mb-0 list-none">
+    <ul className="mb-0 list-none" role="list">
       {Object.entries(ruleFormatted).map(([key, value]: [string, any]) => {
         if (typeof value === 'string' || typeof value === 'number') {
           return (

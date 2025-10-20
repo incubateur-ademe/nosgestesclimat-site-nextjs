@@ -1,10 +1,10 @@
 'use client'
 
+import PlaySignIcon from '@/components/icons/PlaySignIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import { profilClickCtaCommencer } from '@/constants/tracking/pages/profil'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
-import ProgressCircle from '@/design-system/utils/ProgressCircle'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import TutorialLink from './_components/TutorialLink'
 
@@ -14,23 +14,27 @@ export default function SimulationNotStarted() {
       <p className="w-full text-center md:text-left">
         <span
           role="img"
-          aria-label="hole emoji"
+          aria-hidden
           className="mb-2 block text-center text-3xl md:mr-4 md:mb-0 md:inline-block">
           🕳️
         </span>
         <Trans>Vous n'avez pas encore fait le test.</Trans>
       </p>
 
-      <div className="flex w-full flex-col items-center justify-start gap-4 md:flex-row md:items-start">
-        <ButtonLink
-          href={getLinkToSimulateur()}
-          trackingEvent={profilClickCtaCommencer}>
-          <ProgressCircle className="mr-2" white />
-          <Trans>Faire le test</Trans>
-        </ButtonLink>
+      <ul className="flex w-full flex-col items-center justify-start gap-4 md:flex-row md:items-start">
+        <li>
+          <ButtonLink
+            href={getLinkToSimulateur()}
+            trackingEvent={profilClickCtaCommencer}>
+            <PlaySignIcon className="mr-2 fill-white" />
+            <Trans>Faire le test</Trans>
+          </ButtonLink>
+        </li>
 
-        <TutorialLink className="w-auto" />
-      </div>
+        <li>
+          <TutorialLink className="w-auto" />
+        </li>
+      </ul>
     </Card>
   )
 }

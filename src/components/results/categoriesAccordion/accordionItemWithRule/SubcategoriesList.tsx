@@ -31,7 +31,7 @@ export default function SubcategoriesList({
   const { numericValue: categoryValue } = useRule(category, metric)
 
   return (
-    <ul>
+    <ul role="list">
       {sortedSubcategories.map((name) => (
         <SubcategoryListItem
           key={name}
