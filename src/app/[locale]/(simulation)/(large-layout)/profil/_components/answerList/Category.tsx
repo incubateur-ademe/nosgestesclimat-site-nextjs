@@ -5,6 +5,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import {
   getBackgroundLightColor,
+  getBorderCategoryColor,
   getBorderColor,
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
@@ -45,7 +46,7 @@ export default function Category({ category }: Props) {
         aria-expanded={isOpen}
         aria-controls={panelId}
         disabled={!subcategoriesOfCategory?.length}
-        title={`${title} - ${isOpen ? t('Fermer') : t('Ouvrir')}`}
+        title={`${title} - ${isOpen ? t('profile.answers.category.fold', 'Replier les questions pour cette catégorie') : t('profile.answers.category.unfold', 'Déplier les questions pour cette catégorie')}`}
         className="focus:ring-primary-700 block w-full rounded-xl focus:ring-2 focus:ring-offset-3 focus:outline-hidden"
         onClick={() => {
           trackEvent(profilClickCategory(category))
@@ -54,7 +55,7 @@ export default function Category({ category }: Props) {
         <h3
           className={`mb-0 flex w-full items-center justify-between gap-4 rounded-xl p-4 ${getTextDarkColor(category)} ${getBackgroundLightColor(
             category
-          )} border-2 transition-colors ${getBorderColor(category)}`}>
+          )} border-2 transition-colors ${getBorderCategoryColor(category, '800')}`}>
           <div className="flex items-center">
             <Emoji className="mr-3">{icons}</Emoji>
             <span>{title}</span>{' '}
