@@ -1573,3 +1573,12 @@ entries:
   simulator.navigation.nextButton.dontKnow.lock: Je ne sais pas
   simulator.navigation.nextButton.next: Next
   simulator.navigation.nextButton.next.lock: Suivant
+  simulator.mosaic.closeMoreOptions: Fewer options
+  simulator.mosaic.closeMoreOptions.lock: Moins d’options
+  simulator.mosaic.openMoreOptions: More options
+  simulator.mosaic.openMoreOptions.lock: Plus d’options
+  Choisir l'action: Choose action
+  Annuler la sélection: Cancel selection
+  simulator.mosaic.noChildren: This mosaic has no children.
+  simulator.mosaic.noChildren.lock: Cette mosaique n'a pas d'enfants.
+  Choisir l'action - désactivé: Choose action - disabled
