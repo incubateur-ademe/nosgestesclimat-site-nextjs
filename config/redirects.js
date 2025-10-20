@@ -299,13 +299,23 @@ const redirects = [
     permanent: true,
   },
   {
-    source: '/empreinte-carbone-transport',
-    destination: '/themes/empreinte-carbone-transport',
+    source: '/empreinte-carbone-logement',
+    destination: '/themes/empreinte-carbone-logement',
     permanent: true,
   },
   {
-    source: '/empreinte-carbone-logement',
-    destination: '/themes/empreinte-carbone-logement',
+    source: '/en/themes/empreinte-carbone-alimentation',
+    destination: '/en',
+    permanent: true,
+  },
+  {
+    source: '/en/themes/empreinte-carbone-logement',
+    destination: '/en',
+    permanent: true,
+  },
+  {
+    source: '/en/themes/empreinte-carbone-transport',
+    destination: '/en',
     permanent: true,
   },
   {
