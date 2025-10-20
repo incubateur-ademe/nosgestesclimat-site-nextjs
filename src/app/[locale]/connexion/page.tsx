@@ -1,5 +1,6 @@
 import ContentLarge from '@/components/layout/ContentLarge'
 import Header from '@/components/layout/Header'
+import ColourBlock from '@/components/signIn/ColourBlock'
 import LoginSigninTabs, {
   LOGIN_MODE,
 } from '@/components/signIn/LoginSigninTabs'
@@ -38,6 +39,54 @@ export default async function Connexion({ params }: Props) {
 
             <SigninForm />
           </div>
+
+          <ColourBlock
+            highlights={[
+              <span key="highlight1">
+                <Trans i18nKey="login.colourBlock.highlight1" locale={locale}>
+                  Visualisez
+                </Trans>{' '}
+                <strong>
+                  <Trans
+                    i18nKey="login.colourBlock.login.highlight1.strong"
+                    locale={locale}>
+                    vos derniers résultats
+                  </Trans>
+                </strong>
+              </span>,
+              <span key="highlight2">
+                <Trans
+                  i18nKey="login.colourBlock.login.highlight2"
+                  locale={locale}>
+                  Continuez à
+                </Trans>{' '}
+                <strong>
+                  <Trans
+                    i18nKey="login.colourBlock.login.highlight2.strong"
+                    locale={locale}>
+                    progresser dans vos actions climat
+                  </Trans>
+                </strong>
+              </span>,
+              <span key="highlight3">
+                <Trans i18nKey="login.colourBlock.highlight3" locale={locale}>
+                  Accédez à
+                </Trans>{' '}
+                <strong>
+                  <Trans
+                    i18nKey="login.colourBlock.login.highlight3.strong"
+                    locale={locale}>
+                    vos défis collectifs
+                  </Trans>
+                </strong>{' '}
+                <Trans
+                  i18nKey="login.colourBlock.login.highlight3.end"
+                  locale={locale}>
+                  en cours
+                </Trans>
+              </span>,
+            ]}
+          />
         </div>
       </ContentLarge>
     </ClientLayout>
