@@ -1,6 +1,5 @@
 'use client'
 
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import type { Locale } from '@/i18nConfig'
 import Image from 'next/image'
@@ -17,14 +16,6 @@ const getLocalisedSrc = (locale: Locale) => {
 
 export default function LocalizedCarbonGraphIllustration() {
   const locale = useLocale() as Locale
-  const { t } = useClientTranslation()
 
-  return (
-    <Image
-      src={getLocalisedSrc(locale)}
-      alt={t("Graphique de l'empreinte carbone")}
-      width={300}
-      height={300}
-    />
-  )
+  return <Image src={getLocalisedSrc(locale)} alt="" width={300} height={300} />
 }

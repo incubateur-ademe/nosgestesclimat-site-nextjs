@@ -25,6 +25,7 @@ type Props = {
   buttons?: ReactNode
   className?: string
   ariaLabel?: string
+  ariaLabelledBy?: string
 }
 
 export default function Modal({
@@ -37,6 +38,7 @@ export default function Modal({
   buttons,
   className,
   ariaLabel,
+  ariaLabelledBy,
   ...props
 }: Props) {
   const [isVisible, setIsVisible] = useState(false)
@@ -64,6 +66,7 @@ export default function Modal({
     <ModalComponent
       aria={{
         label: ariaLabel,
+        labelledby: ariaLabelledBy,
       }}
       isOpen={isOpen}
       onRequestClose={!isLoading ? closeDelayed : undefined}
@@ -82,7 +85,7 @@ export default function Modal({
       {hasAbortCross && (
         <div className="absolute -top-1 right-0 flex justify-end leading-none">
           <button
-            className="p-4 leading-none"
+            className="focus:ring-primary-700 p-4 leading-none focus:ring-2 focus:ring-offset-3 focus:outline-hidden"
             disabled={isLoading}
             data-testid="modal-close-button"
             onClick={!isLoading ? closeDelayed : () => {}}

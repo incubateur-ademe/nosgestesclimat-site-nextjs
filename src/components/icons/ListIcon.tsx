@@ -1,11 +1,6 @@
 import { twMerge } from 'tailwind-merge'
 
-export default function ListIcon({
-  className,
-  ...props
-}: {
-  className?: string
-}) {
+export default function ListIcon({ className }: { className?: string }) {
   return (
     <svg
       width="24"
@@ -14,7 +9,7 @@ export default function ListIcon({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={twMerge('fill-default inline-block stroke-[1.5]', className)}
-      {...props}>
+      aria-hidden="true">
       <path
         fillRule="evenodd"
         clipRule="evenodd"

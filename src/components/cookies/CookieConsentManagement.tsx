@@ -85,7 +85,7 @@ export default function CookieConsentManagement({
       isOpen={isBoardOpen}
       ariaLabel={t(
         'cookieConsent.banner.title',
-        'Panneau de gestion des cookies'
+        'Fenêtre modale de gestion des cookies'
       )}
       closeModal={closeSettings}
       hasAbortCross={true}
@@ -120,34 +120,38 @@ export default function CookieConsentManagement({
                   </Trans>
                 </InlineLink>
               </div>
-              <div className="mb-8 flex flex-wrap gap-3 md:flex-nowrap">
-                <Button
-                  type="button"
-                  color="secondary"
-                  onClick={() => {
-                    setValue(CookieConsentKey.googleAds, 'refuse')
-                    refuseAll()
-                  }}
-                  size="sm"
-                  data-testid="refuse-all-button">
-                  <Trans i18nKey="cookies.management.refuseAll">
-                    Tout refuser
-                  </Trans>
-                </Button>
-                <Button
-                  type="button"
-                  color="primary"
-                  onClick={() => {
-                    setValue(CookieConsentKey.googleAds, 'accept')
-                    acceptAll()
-                  }}
-                  size="sm"
-                  data-testid="accept-all-button">
-                  <Trans i18nKey="cookies.management.acceptAll">
-                    Tout accepter
-                  </Trans>
-                </Button>
-              </div>
+              <ul className="mb-8 flex flex-wrap gap-3 md:flex-nowrap">
+                <li>
+                  <Button
+                    type="button"
+                    color="secondary"
+                    onClick={() => {
+                      setValue(CookieConsentKey.googleAds, 'refuse')
+                      refuseAll()
+                    }}
+                    size="sm"
+                    data-testid="refuse-all-button">
+                    <Trans i18nKey="cookies.management.refuseAll">
+                      Tout refuser
+                    </Trans>
+                  </Button>
+                </li>
+                <li>
+                  <Button
+                    type="button"
+                    color="primary"
+                    onClick={() => {
+                      setValue(CookieConsentKey.googleAds, 'accept')
+                      acceptAll()
+                    }}
+                    size="sm"
+                    data-testid="accept-all-button">
+                    <Trans i18nKey="cookies.management.acceptAll">
+                      Tout accepter
+                    </Trans>
+                  </Button>
+                </li>
+              </ul>
             </div>
 
             <fieldset className="mb-6 border-t border-gray-200">

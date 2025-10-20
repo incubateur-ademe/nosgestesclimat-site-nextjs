@@ -10,6 +10,7 @@ export default function Main({
   children,
   maxWidth,
   className,
+  ...props
 }: PropsWithChildren<{ maxWidth?: string; className?: string }>) {
   const maxWidthClass = maxWidth ? `max-w-${maxWidth} mx-auto` : ''
 
@@ -22,11 +23,14 @@ export default function Main({
   return (
     <main
       id="main-content"
+      role="main"
+      tabIndex={-1}
       className={`flex flex-col overflow-hidden ${maxWidthClass} ${className} ${
         isIframe || pathname.startsWith(SIMULATOR_PATH)
           ? ''
           : 'min-h-[calc(100vh-2rem)]'
-      }`}>
+      }`}
+      {...props}>
       {children}
     </main>
   )

@@ -47,16 +47,44 @@ export default function CarboneTotalChart({
   const color = getColorAtPosition(position / 100)
   const cssColor = `rgba(${color['r']},${color['g']},${color['b']},${color['a']})`
 
+  // Calcul des valeurs pour l'accessibilité
+  const targetValue = 2 // tonnes par an (objectif 2050)
+  const maxValue = 12 // tonnes par an (échelle maximale)
+  const currentValueInTons = usedValue / 1000
+  const percentage = Math.min((currentValueInTons / maxValue) * 100, 100)
+
+  // Description pour les lecteurs d'écran
+  const gaugeDescription = t(
+    'endPage.carboneChart.gaugeDescription',
+    `Graphique montrant votre empreinte carbone de ${formattedValue} ${unit} par an, soit ${Math.round(percentage)}% de l'échelle maximale. L'objectif 2050 est de ${targetValue} tonnes par an.`,
+    {
+      currentValue: formattedValue,
+      unit,
+      percentage: Math.round(percentage),
+      targetValue,
+      defaultValue: `Graphique montrant votre empreinte carbone de ${formattedValue} ${unit} par an, soit ${Math.round(percentage)}% de l'échelle maximale. L'objectif 2050 est de ${targetValue} tonnes par an.`,
+    }
+  )
+
   return (
-    <div className="relative mx-auto flex w-full flex-col items-center justify-center">
+    <div
+      className={twMerge(
+        'relative mx-auto flex w-full flex-col items-center justify-center',
+        isSmall ? 'mt-2 md:mt-4' : ''
+      )}
+      role="img"
+      aria-label={gaugeDescription}
+      aria-live="polite"
+      aria-atomic="true">
       {!shouldShowOnlyGauge && (
         <div
           className={twMerge(
             'pt-8 text-center font-medium whitespace-nowrap transition-transform duration-300 md:pt-12',
-            isSmall ? 'md:scale-75 md:pt-6 lg:pt-0' : 'scale-100'
+            isSmall ? 'md:scale-75 md:pt-0' : 'scale-100'
           )}
-          style={{ color: cssColor }}>
-          <p className="mb-0 leading-none">
+          style={{ color: cssColor }}
+          aria-hidden="true">
+          <p className="mb-0 leading-none md:mb-1">
             <strong className="bottom-7 text-xl leading-none font-black md:text-4xl lg:bottom-7 lg:text-6xl">
               <CountUp
                 isCounting
@@ -65,10 +93,10 @@ export default function CarboneTotalChart({
                 updateInterval={0.033}
                 easing="linear"
                 decimalSeparator=","
-                thousandsSeparator=" "
+                thousandsSeparator=" "
               />
             </strong>
-              
+             
             <span className="text-lg md:text-3xl lg:text-4xl lg:leading-tight">
               {unit}
             </span>
@@ -85,7 +113,17 @@ export default function CarboneTotalChart({
       <div
         className={twMerge(
           'mt-4 hidden w-full md:block',
-          shouldShowOnlyGauge && 'block'
+          shouldShowOnlyGauge && 'block',
+          isSmall && 'mt-0'
+        )}
+        role="progressbar"
+        aria-valuenow={currentValueInTons}
+        aria-valuemin={0}
+        aria-valuemax={maxValue}
+        aria-valuetext={`${formattedValue} ${unit} par an, ${Math.round(percentage)}% de l'échelle maximale`}
+        aria-label={t(
+          'endPage.carboneChart.progressBarLabel',
+          'Barre de progression de votre empreinte carbone'
         )}>
         <AnimatedArrow isSmall={isSmall} position={position} color={cssColor} />
         <Gauge isSmall={isSmall} total={total} />

@@ -10,7 +10,7 @@ import {
 import { defaultMetric } from '@/constants/model/metric'
 import { endClickSaveSimulation } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/buttons/Button'
-import CheckboxInputGroup from '@/design-system/inputs/CheckboxInputGroup'
+import CheckboxInput from '@/design-system/inputs/CheckboxInput'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
@@ -208,7 +208,8 @@ export default function GetResultsByEmail({
                   message: 'Veuillez entrer une adresse email valide',
                 },
               })}
-              aria-label="Entrez votre adresse email"
+              aria-label={t('Entrez votre adresse email')}
+              title={t('Entrez votre adresse email')}
               error={errors.email?.message}
               data-cypress-id="fin-email-input"
               className="mb-2"
@@ -225,8 +226,7 @@ export default function GetResultsByEmail({
               )}
 
             {!isSubscribedMainNewsletter && isFrench && (
-              <CheckboxInputGroup
-                disableSubmitOnEnter
+              <CheckboxInput
                 label={
                   <span>
                     <Emoji>☀️</Emoji>{' '}
@@ -240,8 +240,7 @@ export default function GetResultsByEmail({
             )}
 
             {!isSubscribedTransportNewsletter && isFrench && (
-              <CheckboxInputGroup
-                disableSubmitOnEnter
+              <CheckboxInput
                 label={
                   <span>
                     <Emoji>🚗</Emoji> <strong>Nos Gestes Transports</strong>
@@ -256,8 +255,7 @@ export default function GetResultsByEmail({
             )}
 
             {!isSubscribedLogementNewsletter && isFrench && (
-              <CheckboxInputGroup
-                disableSubmitOnEnter
+              <CheckboxInput
                 label={
                   <span>
                     <Emoji>🏡</Emoji>{' '}

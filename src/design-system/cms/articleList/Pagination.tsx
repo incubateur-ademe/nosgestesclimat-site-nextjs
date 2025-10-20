@@ -16,40 +16,58 @@ export default async function Pagination({
   locale: string
 }) {
   const { t } = await getServerTranslation({ locale })
+
   return (
     <div className="text-center">
       <div className="relative mt-16 inline-flex items-center justify-center gap-3">
         {currentPage > 1 && (
           <Link
             className="absolute top-1/2 -left-6 -translate-y-1/2"
-            href={`/blog?page=${currentPage - 1}#articles`}
+            href={`/blog?page=${currentPage - 1}#skip-to-main-content`}
             aria-label={t('Page précédente')}>
             <ChevronLeft className="h-3 w-3" />
           </Link>
         )}
 
-        <ul className="flex gap-3">
-          {Array.from({ length: totalPages }, (_, index) => (
-            <li key={index}>
-              <Link
-                className={twMerge(
-                  'text-lg',
-                  currentPage === index + 1
-                    ? 'text-primary-700 font-medium underline'
-                    : 'text-gray-600! no-underline'
-                )}
-                href={`/blog?page=${index + 1}#articles`}
-                aria-label={t('Page {{page}}', { page: index + 1 })}>
-                {index + 1}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <nav role="navigation">
+          <ul className="flex gap-3">
+            {Array.from({ length: totalPages }, (_, index) => {
+              const currentIndex = index + 1
+              const isCurrentPage = currentPage === index + 1
+
+              return (
+                <li key={index}>
+                  <Link
+                    className={twMerge(
+                      'text-lg',
+                      isCurrentPage
+                        ? 'text-primary-700 font-medium underline'
+                        : 'text-gray-600! no-underline'
+                    )}
+                    href={`/blog?page=${currentIndex}#skip-to-main-content`}
+                    aria-label={
+                      isCurrentPage
+                        ? t('Page {{page}} (page actuelle)', {
+                            page: currentIndex,
+                          })
+                        : t('Page {{page}}', { page: currentIndex })
+                    }
+                    aria-current={isCurrentPage ? 'page' : undefined}>
+                    {currentIndex}
+                    {isCurrentPage && (
+                      <span className="sr-only"> {t('(page actuelle)')}</span>
+                    )}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </nav>
 
         {currentPage < totalPages && (
           <Link
             className="absolute top-1/2 -right-6 -translate-y-1/2"
-            href={`/blog?page=${currentPage + 1}#articles`}
+            href={`/blog?page=${currentPage + 1}#skip-to-main-content`}
             aria-label={t('Page suivante')}>
             <ChevronRight className="h-3 w-3" />
           </Link>

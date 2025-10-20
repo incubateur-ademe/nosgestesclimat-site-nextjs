@@ -27,6 +27,7 @@ export default function Notification({ notification }: Props) {
       initial={{ opacity: 0, transform: 'translateY(10%)' }}
       animate={{ opacity: 1, transform: 'translateY(0)' }}
       transition={{ duration: 0.3 }}
+      id="notification-message"
       className={`mb-4 flex flex-col items-end rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} !${getTextCategoryColor(currentCategory, '700')} p-4 text-sm`}>
       <div className="mb-2 w-full">
         <Markdown className="notification pb-0">{description}</Markdown>

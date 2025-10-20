@@ -97,13 +97,14 @@ export default async function ArticlePage({
 
         <div className="mb-16 flex flex-col items-start gap-8 md:flex-row md:justify-between">
           <div className="flex flex-col items-start md:w-8/12">
-            <Badge className="mb-4" size="sm">
-              {article.blogCategory?.title ?? ''}
-            </Badge>
-
-            <h1 className="mb-6 text-3xl font-bold md:text-5xl">
-              {article.title}
-            </h1>
+            <div className="flex flex-col items-start">
+              <h1 className="order-1 mb-6 text-3xl font-bold md:text-5xl">
+                {article.title}
+              </h1>
+              <Badge className="-order-1 mb-4" size="sm">
+                {article.blogCategory?.title ?? ''}
+              </Badge>
+            </div>
 
             <div className="flex flex-row gap-3">
               <p className="mb-0 text-lg">
@@ -154,7 +155,8 @@ export default async function ArticlePage({
         </div>
       </div>
 
-      <AuthorBlock author={article.author} />
+      <AuthorBlock locale={locale} author={article.author} />
+
       <OtherArticles articles={otherArticles} locale={locale} />
 
       <Footer langButtonsDisplayed={langButtonsDisplayed} />

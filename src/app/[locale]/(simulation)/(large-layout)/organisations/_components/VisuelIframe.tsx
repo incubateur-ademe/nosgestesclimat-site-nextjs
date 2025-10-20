@@ -2,7 +2,10 @@ import Image from 'next/image'
 
 export default function VisuelIframe() {
   return (
-    <div className="relative mx-auto min-h-[15rem] w-2/3 md:min-h-[18rem]">
+    <div
+      className="relative mx-auto min-h-[15rem] w-2/3 md:min-h-[18rem]"
+      aria-hidden="true"
+      role="presentation">
       <div className="absolute -bottom-[8%] left-[-16%] flex w-full -rotate-[15deg] items-end rounded-t-md bg-white p-2 pb-0 shadow-md">
         <Image
           className="rounded-xs"
@@ -10,6 +13,7 @@ export default function VisuelIframe() {
           width="300"
           height="200"
           alt=""
+          aria-hidden="true"
         />
       </div>
 
@@ -20,6 +24,7 @@ export default function VisuelIframe() {
           width="300"
           height="200"
           alt=""
+          aria-hidden="true"
         />
       </div>
 
@@ -30,6 +35,7 @@ export default function VisuelIframe() {
           width="260"
           height="200"
           alt=""
+          aria-hidden="true"
         />
       </div>
     </div>

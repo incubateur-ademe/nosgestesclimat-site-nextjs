@@ -41,14 +41,30 @@ export default function JagisMainBlock() {
             Découvrez toutes les aides financières auxquelles vous avez droit
           </Trans>
         </p>
-        {isError && <div className="text-red-600">{error?.toString()}</div>}
+        {isError && (
+          <div
+            id="jagis-main-error"
+            className="text-red-600"
+            role="alert"
+            aria-live="polite">
+            {error?.toString()}
+          </div>
+        )}
         {!data?.redirectUrl && isSuccess && (
-          <div className="text-red-600">
+          <div
+            id="jagis-main-redirect-error"
+            className="text-red-600"
+            role="alert"
+            aria-live="polite">
             <Trans>Une erreur est survenue</Trans>
           </div>
         )}
         {!couldOpen && isSuccess && (
-          <div className="text-red-600">
+          <div
+            id="jagis-main-popup-error"
+            className="text-red-600"
+            role="alert"
+            aria-live="polite">
             <Trans>
               Une erreur est survenue.{' '}
               <a href={data?.redirectUrl} rel="noreferrer" target="_blank">
@@ -70,6 +86,15 @@ export default function JagisMainBlock() {
 
           <Button
             disabled={isPending}
+            aria-describedby={
+              isError
+                ? 'jagis-main-error'
+                : !data?.redirectUrl && isSuccess
+                  ? 'jagis-main-redirect-error'
+                  : !couldOpen && isSuccess
+                    ? 'jagis-main-popup-error'
+                    : undefined
+            }
             onClick={() => {
               trackEvent(endClickJagisFirstBlock)
               exportSituation({

@@ -26,12 +26,16 @@ export default function Card({
     } & HTMLAttributes<HTMLDivElement>
   >) {
   const Tag = tag || 'div'
+  const isInteractive = tag === 'button' || tag === 'a' || !!onClick
 
   return (
     <Tag
       onClick={onClick}
       className={twMerge(
-        `flex list-none flex-col rounded-xl border-2 border-gray-200 bg-white p-4 transition-colors`,
+        `flex list-none flex-col rounded-xl border-2 border-gray-500 bg-white p-4 transition-colors`,
+        isInteractive
+          ? 'focus:ring-primary-700 cursor-pointer focus:ring-2 focus:ring-offset-3 focus:outline-hidden'
+          : '',
         className
       )}
       href={href}

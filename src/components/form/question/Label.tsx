@@ -29,7 +29,7 @@ type Props = {
   size?: QuestionSize
   className?: string
   titleClassName?: string
-  headingLevel?: number
+  headingLevel?: 1 | 2 | 3
   id?: string
   htmlFor?: string
 }
@@ -70,17 +70,42 @@ export default function Label({
         // This is a hack to avoid the default <label> element behavior
         // of triggering the first input (here the button) it
         onClick={(e) => e.preventDefault()}>
-        <h2
-          className={twMerge(
-            'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
-            titleClassName
-          )}
-          aria-level={headingLevel}
-          tabIndex={0}
-          id={QUESTION_DESCRIPTION_BUTTON_ID}
-          data-cypress-id="question-label">
-          {label}
-        </h2>{' '}
+        {headingLevel === 1 ? (
+          <h1
+            className={twMerge(
+              'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
+              titleClassName
+            )}
+            tabIndex={0}
+            id={QUESTION_DESCRIPTION_BUTTON_ID}
+            data-cypress-id="question-label">
+            {label}
+          </h1>
+        ) : headingLevel === 2 ? (
+          <h2
+            className={twMerge(
+              'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
+              titleClassName
+            )}
+            tabIndex={0}
+            id={QUESTION_DESCRIPTION_BUTTON_ID}
+            data-cypress-id="question-label">
+            {label}
+          </h2>
+        ) : headingLevel === 3 ? (
+          <h3
+            className={twMerge(
+              'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
+              titleClassName
+            )}
+            tabIndex={0}
+            id={QUESTION_DESCRIPTION_BUTTON_ID}
+            data-cypress-id="question-label">
+            {label}
+          </h3>
+        ) : (
+          ''
+        )}
         {description && !mustShowDescriptionQuestion.includes(question) ? (
           <Button
             type="button"
@@ -100,22 +125,47 @@ export default function Label({
             }}
             color="secondary"
             size="xs"
+            aria-expanded={isOpen ? true : false}
+            aria-controls={`${QUESTION_DESCRIPTION_BUTTON_ID}-content`}
             className={`inline-flex h-6 w-6 items-center justify-center rounded-full p-0 align-text-bottom font-mono`}
-            title={t("Voir plus d'informations")}>
-            i
+            title={t(
+              'simulator.label.moreInfoButton',
+              "Plus d'informations - {{label}}",
+              { label }
+            )}
+            aria-label={t(
+              'simulator.label.moreInfoButton',
+              "Plus d'informations - {{label}}",
+              { label }
+            )}>
+            <span aria-hidden="true">i</span>
+            <span className="sr-only">
+              {t(
+                'simulator.label.moreInfoButton',
+                "Plus d'informations - {{label}}",
+                { label }
+              )}
+            </span>
           </Button>
         ) : null}
       </label>
       {description &&
         (mustShowDescriptionQuestion.includes(question) ? (
-          <div className="mt-2 mb-6 text-xs italic md:text-sm">
-            {description}
+          <div
+            id={`${QUESTION_DESCRIPTION_BUTTON_ID}-content`}
+            role="region"
+            aria-labelledby={QUESTION_DESCRIPTION_BUTTON_ID}
+            className="mt-2 mb-6 text-xs italic md:text-sm">
+            <Markdown>{description}</Markdown>
           </div>
         ) : isOpen ? (
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
+            id={`${QUESTION_DESCRIPTION_BUTTON_ID}-content`}
+            role="region"
+            aria-labelledby={QUESTION_DESCRIPTION_BUTTON_ID}
             className="border-primary-50 mb-3 w-full origin-top rounded-xl border-2 bg-gray-100 p-3 text-sm">
             <Markdown className="[&>blockquote]:text-default [&>blockquote]:mt-0 [&>blockquote]:mb-2 [&>blockquote]:p-0 [&>p]:mb-2">
               {description}

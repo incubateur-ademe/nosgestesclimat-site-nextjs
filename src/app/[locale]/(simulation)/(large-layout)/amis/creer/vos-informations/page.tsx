@@ -23,7 +23,7 @@ export default async function YourInfoPage({ params }: DefaultPageProps) {
   const { t } = await getServerTranslation(params)
 
   return (
-    <div className="p-4 md:p-8">
+    <div className="pb-8">
       <GoBackLink
         href={'/classements'}
         eventTracked={amisCreationVosInformationsRetour}
