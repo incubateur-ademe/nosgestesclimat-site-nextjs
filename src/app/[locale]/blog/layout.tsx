@@ -10,7 +10,7 @@ export default async function BlogLayout({ children, params }: LayoutProps) {
 
   return (
     <ServerLayout locale={locale}>
-      <HeaderServer locale={locale} isSticky={false} />
+      <HeaderServer locale={locale} />
 
       <main className="flex w-full flex-1 flex-col overflow-visible lg:mx-auto lg:px-0">
         {children}
