@@ -1547,3 +1547,19 @@ entries:
   simulator.mosaic.noChildren: This mosaic has no children.
   simulator.mosaic.noChildren.lock: Cette mosaique n'a pas d'enfants.
   Choisir l'action - désactivé: Choose action - disabled
+  simulator.navigation.nextButton.skip.label: Skip the question
+  simulator.navigation.nextButton.skip.label.lock: Passer la question
+  profile.answers.category.fold: Fold back the questions for this category
+  profile.answers.category.fold.lock: Replier les questions pour cette catégorie
+  simulator.navigation.nextButton.dontKnow.label: I don't know
+  simulator.navigation.nextButton.dontKnow.label.lock: Je ne sais pas
+  profile.answers.subcategory.fold: Fold back the questions for this sub-category
+  profile.answers.subcategory.fold.lock: Replier les questions pour cette sous-catégorie
+  profile.answers.subcategory.unfold: Unfold the questions for this sub-category
+  profile.answers.subcategory.unfold.lock: Déplier les questions pour cette sous-catégorie
+  profile.answers.category.unfold: Unfold the questions for this category
+  profile.answers.category.unfold.lock: Déplier les questions pour cette catégorie
+  common.navigation.nextQuestion.pass.title: Move on to the next question
+  common.navigation.nextQuestion.pass.title.lock: Passer et aller à la question suivante
+  common.navigation.nextQuestion.dontKnow.title: I don't know, skip to the next question
+  common.navigation.nextQuestion.dontKnow.title.lock: Je ne sais pas, passer et aller à la question suivante
