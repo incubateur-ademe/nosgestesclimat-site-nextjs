@@ -1,3 +1,5 @@
+'use client'
+
 import ErrorContent from '@/components/error/ErrorContent'
 import '@/locales/initClient'
 import '@/locales/initServer'
@@ -6,6 +8,7 @@ import { captureException } from '@sentry/nextjs'
 import { dir } from 'i18next'
 import localFont from 'next/font/local'
 import Script from 'next/script'
+import IframeStaticProvider from './_components/IframeStaticProvider'
 import './globals.css'
 
 export const marianne = localFont({
@@ -123,7 +126,7 @@ export default async function RootLayout({
         </head>
         <body
           className={`${marianne.className} text-default bg-white transition-colors duration-700`}>
-          {children}
+          <IframeStaticProvider>{children}</IframeStaticProvider>
         </body>
       </html>
     )

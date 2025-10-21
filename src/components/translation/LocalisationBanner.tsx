@@ -8,7 +8,7 @@ import { trackingClickRegionBanner } from '@/constants/tracking/misc'
 import { SIMULATOR_PATH } from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
-import { useIframe } from '@/hooks/useIframe'
+import { useIframeStatic } from '@/hooks/useIframeStatic'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
@@ -32,7 +32,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
   const region = user?.region
   const code = user?.region?.code ?? 'FR'
 
-  const { iframeRegion } = useIframe()
+  const { iframeRegion } = useIframeStatic()
 
   if (iframeRegion) return null
 

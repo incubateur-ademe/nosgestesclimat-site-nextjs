@@ -8,6 +8,7 @@ import {
 import { useSimulateurGuard } from '@/hooks/navigation/useSimulateurGuard'
 import { useTrackSimulateur } from '@/hooks/tracking/useTrackSimulateur'
 import { useIframe } from '@/hooks/useIframe'
+import { useIframeStatic } from '@/hooks/useIframeStatic'
 import { useLocale } from '@/hooks/useLocale'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useCallback, useState } from 'react'
@@ -21,7 +22,8 @@ export default function SimulateurPage() {
   // Guarding the route and redirecting if necessary
   const { isGuardInit, isGuardRedirecting } = useSimulateurGuard()
 
-  const { isIframe, isFrenchRegion } = useIframe()
+  const { isIframe } = useIframeStatic()
+  const { isFrenchRegion } = useIframe()
 
   // We track the progression of the user in the simulation
   useTrackSimulateur()

@@ -14,7 +14,7 @@ import {
 import Button from '@/design-system/buttons/Button'
 import { useIsTestVersion } from '@/hooks/abTesting/useIsTestVersion'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useIframe } from '@/hooks/useIframe'
+import { useIframeStatic } from '@/hooks/useIframeStatic'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import {
   useCurrentSimulation,
@@ -46,7 +46,7 @@ export default function Navigation({
 }) {
   const { t } = useClientTranslation()
 
-  const { isIframe } = useIframe()
+  const { isIframe } = useIframeStatic()
 
   const persistedRemainingQuestionsRef = useRef(remainingQuestions)
 

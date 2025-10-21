@@ -15,7 +15,7 @@ import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useTrackTimeOnSimulation } from '@/hooks/tracking/useTrackTimeOnSimulation'
 import { useDebug } from '@/hooks/useDebug'
 import { useGTM } from '@/hooks/useGTM'
-import { useIframe } from '@/hooks/useIframe'
+import { useIframeStatic } from '@/hooks/useIframeStatic'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import {
   useCurrentSimulation,
@@ -49,7 +49,7 @@ export default function Form() {
 
   const { goToEndPage } = useEndPage()
 
-  const { isIframe } = useIframe()
+  const { isIframe } = useIframeStatic()
 
   const { isGTMAvailable } = useGTM()
 

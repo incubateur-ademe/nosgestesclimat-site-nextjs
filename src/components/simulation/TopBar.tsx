@@ -1,6 +1,6 @@
 'use client'
 
-import { useIframe } from '@/hooks/useIframe'
+import { useIframeStatic } from '@/hooks/useIframeStatic'
 import { useCurrentSimulation, useFormState } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
@@ -23,7 +23,7 @@ export default function TopBar({
   simulationMode?: boolean
   showTotal?: boolean
 }) {
-  const { isIframe, isIframeOnlySimulation } = useIframe()
+  const { isIframe, isIframeOnlySimulation } = useIframeStatic()
 
   const { currentCategory } = useFormState()
 

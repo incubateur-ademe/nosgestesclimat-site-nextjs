@@ -11,6 +11,7 @@ import Title from '@/design-system/layout/Title'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useIframe } from '@/hooks/useIframe'
+import { useIframeStatic } from '@/hooks/useIframeStatic'
 import type { Metric } from '@/publicodes-state/types'
 import { getIsIframe } from '@/utils/getIsIframe'
 import { useEffect, type ReactElement } from 'react'
@@ -38,7 +39,8 @@ export default function FinPage() {
   const { currentMetric } = useCurrentMetric()
 
   const isIframe = getIsIframe()
-  const { isIframeShareData, isFrenchRegion } = useIframe()
+  const { isIframeShareData } = useIframeStatic()
+  const { isFrenchRegion } = useIframe()
 
   useEffect(() => {
     const titleTags = document.querySelectorAll('head > title')

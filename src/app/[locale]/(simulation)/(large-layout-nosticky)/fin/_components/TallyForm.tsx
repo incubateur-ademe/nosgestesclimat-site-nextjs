@@ -5,7 +5,7 @@ import { DONT_KNOW_FEATURE_FLAG_KEY } from '@/constants/ab-test'
 import Emoji from '@/design-system/utils/Emoji'
 import { useIsTestVersion } from '@/hooks/abTesting/useIsTestVersion'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useIframe } from '@/hooks/useIframe'
+import { useIframeStatic } from '@/hooks/useIframeStatic'
 import { useLocale } from '@/hooks/useLocale'
 import i18nConfig from '@/i18nConfig'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
@@ -35,7 +35,7 @@ export default function TallyForm() {
   const { t } = useClientTranslation()
   const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
 
-  const { isIframe } = useIframe()
+  const { isIframe } = useIframeStatic()
 
   const isFrench = useLocale() === i18nConfig.defaultLocale
   const FORM_ID =
