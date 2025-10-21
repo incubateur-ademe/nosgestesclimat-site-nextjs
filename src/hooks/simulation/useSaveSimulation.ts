@@ -16,6 +16,7 @@ type Props = {
   simulation: Simulation
   sendEmail?: true
 }
+
 export function useSaveSimulation() {
   const {
     user: { userId, name, email },
