@@ -6,6 +6,7 @@ type Props = {
   categories: string[]
   subcategories: string[]
   missingVariables: Record<string, number>
+  answeredQuestions?: DottedName[]
 }
 
 export default function getSortedQuestionsList({
@@ -13,6 +14,7 @@ export default function getSortedQuestionsList({
   categories,
   subcategories,
   missingVariables,
+  answeredQuestions = [],
 }: Props): DottedName[] {
   return questions.sort((a, b) => {
     const aSplittedName = a.split(' . ')
@@ -63,7 +65,18 @@ export default function getSortedQuestionsList({
       return -1
     }
 
-    // then by missing variables score
+    // then, if question is already answered, it must be before others : we can't have a non-answered question before an answered one
+    const aIsAnswered = answeredQuestions.includes(a)
+    const bIsAnswered = answeredQuestions.includes(b)
+
+    if (aIsAnswered && !bIsAnswered) {
+      return -1
+    }
+    if (!aIsAnswered && bIsAnswered) {
+      return 1
+    }
+
+    // then by missing variables score. Note that if the question is not a missing variable, the score is undefined, so it will be at the end of the list.
     return missingVariables[b] - missingVariables[a]
   })
 }

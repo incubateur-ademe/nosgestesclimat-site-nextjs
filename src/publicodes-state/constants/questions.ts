@@ -29,8 +29,8 @@ export const MUST_NOT_ASK_QUESTIONS: Set<DottedName> = new Set([
 export const PRIORITY_QUESTIONS: Set<DottedName> = new Set([
   'alimentation . plats',
   'logement . type',
+  'logement . propriétaire',
   'logement . chauffage',
-  'logement . chauffage . bois . type',
   'logement . électricité . réseau . consommation',
   'transport . voiture . km',
   'transport . voiture . voyageurs',

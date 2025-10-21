@@ -69,7 +69,7 @@ export default function useQuestions({
       // We artificially set the missing variables of the whiteList to a high value
       PRIORITY_QUESTIONS.forEach((dottedName) => {
         if (dottedName in tempMissingVariables) {
-          tempMissingVariables[dottedName] += 10000
+          tempMissingVariables[dottedName] += 100000
         }
       })
 
@@ -180,8 +180,15 @@ export default function useQuestions({
       categories,
       subcategories,
       missingVariables,
+      answeredQuestions: relevantAnsweredQuestions,
     })
-  }, [categories, missingVariables, subcategories, tempRelevantQuestions])
+  }, [
+    categories,
+    missingVariables,
+    subcategories,
+    tempRelevantQuestions,
+    relevantAnsweredQuestions,
+  ])
 
   const questionsByCategories = useMemo(
     () =>
