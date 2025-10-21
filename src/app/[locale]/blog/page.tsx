@@ -44,20 +44,42 @@ export async function generateStaticParams({
 
 export async function generateMetadata({
   params,
-}: DefaultPageProps<{ params: { locale: Locale } }>) {
+  searchParams,
+}: DefaultPageProps<{
+  params: { locale: Locale }
+  searchParams: { page: string }
+}>) {
   const { locale } = await params
+  const { t } = await getServerTranslation({ locale })
+
+  const pageParam = searchParams ? (await searchParams).page : undefined
+
+  const page = Number(pageParam) || 1
 
   const { metaTitle, metaDescription, image } =
     (await fetchHomepageMetadata({ locale })) || {}
 
+  const { pageCount } =
+    (await fetchHomepageContent({
+      page,
+      locale,
+    })) ?? {}
+
   return getMetadataObject({
     locale,
-    title:
-      metaTitle ??
-      'Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat',
+    title: metaTitle
+      ? `${metaTitle}${t('blog.metaTitleSuffix', ', page {{page}} sur {{pageCount}}', { page, pageCount })}`
+      : t(
+          'blog.metaTitle',
+          'Blog, découvrez nos articles et conseils sur le climat, page {{page}} sur {{pageCount}} - Nos Gestes Climat',
+          { page, pageCount }
+        ),
     description:
       metaDescription ??
-      'Découvrez des conseils pratiques pour réduire votre empreinte écologique.',
+      t(
+        'blog.metaDescription',
+        'Découvrez des conseils pratiques pour réduire votre empreinte écologique.'
+      ),
     image: image?.url ?? '',
     alternates: {
       canonical: '/blog',
