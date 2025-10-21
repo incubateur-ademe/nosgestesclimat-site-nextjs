@@ -23,7 +23,7 @@ export default async function Pagination({
         {currentPage > 1 && (
           <Link
             className="absolute top-1/2 -left-6 -translate-y-1/2"
-            href={`/blog?page=${currentPage - 1}#skip-to-main-content`}
+            href={`/blog?page=${currentPage - 1}#articles`}
             aria-label={t('Page précédente')}>
             <ChevronLeft className="h-3 w-3" />
           </Link>
@@ -44,7 +44,7 @@ export default async function Pagination({
                         ? 'text-primary-700 font-medium underline'
                         : 'text-gray-600! no-underline'
                     )}
-                    href={`/blog?page=${currentIndex}#skip-to-main-content`}
+                    href={`/blog?page=${currentIndex}#articles`}
                     aria-label={
                       isCurrentPage
                         ? t('Page {{page}} (page actuelle)', {
@@ -67,7 +67,7 @@ export default async function Pagination({
         {currentPage < totalPages && (
           <Link
             className="absolute top-1/2 -right-6 -translate-y-1/2"
-            href={`/blog?page=${currentPage + 1}#skip-to-main-content`}
+            href={`/blog?page=${currentPage + 1}#articles`}
             aria-label={t('Page suivante')}>
             <ChevronRight className="h-3 w-3" />
           </Link>

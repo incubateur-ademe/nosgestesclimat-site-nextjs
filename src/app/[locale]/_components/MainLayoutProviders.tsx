@@ -11,7 +11,6 @@ import { IframeOptionsProvider } from '../_components/mainLayoutProviders/Iframe
 import MainHooks from '../_components/mainLayoutProviders/MainHooks'
 import { PreventNavigationProvider } from '../_components/mainLayoutProviders/PreventNavigationProvider'
 import QueryClientProviderWrapper from '../_components/mainLayoutProviders/QueryClientProviderWrapper'
-import { marianne } from '../layout'
 
 export default function MainLayoutProviders({ children }: PropsWithChildren) {
   return (
@@ -23,14 +22,10 @@ export default function MainLayoutProviders({ children }: PropsWithChildren) {
             migrationInstructions={migrationInstructions}>
             <PartnerProvider>
               <IframeOptionsProvider>
-                {(containerRef: React.RefObject<HTMLBodyElement | null>) => (
+                {(containerRef: React.RefObject<HTMLDivElement | null>) => (
                   <PreventNavigationProvider>
                     <MainHooks>
-                      <body
-                        className={`${marianne.className} text-default bg-white transition-colors duration-700`}
-                        ref={containerRef}>
-                        {children}
-                      </body>
+                      <div ref={containerRef}>{children}</div>
                     </MainHooks>
                   </PreventNavigationProvider>
                 )}
