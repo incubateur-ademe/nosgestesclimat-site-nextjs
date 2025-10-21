@@ -19,11 +19,11 @@ export default async function Connexion({ params }: Props) {
     <ClientLayout locale={locale}>
       <Header />
 
-      <ContentLarge>
-        <div className="flex gap-14">
-          <div className="flex flex-col py-10">
+      <ContentLarge className="px-4 lg:px-0">
+        <div className="flex justify-center gap-14 pb-32 lg:justify-start">
+          <div className="flex flex-col py-6 lg:py-10">
             <LoginSigninTabs
-              className="-order-1 mb-14"
+              className="-order-1 mb-8 lg:mb-14"
               locale={locale}
               mode={LOGIN_MODE}
             />
@@ -41,6 +41,7 @@ export default async function Connexion({ params }: Props) {
           </div>
 
           <ColourBlock
+            className="hidden lg:block"
             highlights={[
               <span key="highlight1">
                 <Trans i18nKey="login.colourBlock.highlight1" locale={locale}>

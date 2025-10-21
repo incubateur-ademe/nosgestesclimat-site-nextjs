@@ -1,21 +1,35 @@
 import type { ReactNode } from 'react'
+import { twMerge } from 'tailwind-merge'
 import DownArrow from '../icons/DownArrow'
 
 type Props = {
   highlights: ReactNode[]
+  className?: string
 }
 
-export default function ColourBlock({ highlights }: Props) {
+export default function ColourBlock({ highlights, className }: Props) {
   return (
-    <div className="flex-1 rounded-2xl bg-blue-100 p-16">
+    <div
+      className={twMerge(
+        'mt-6 flex-1 rounded-2xl bg-blue-100 px-16 py-28',
+        className
+      )}>
       <ul role="list" className="flex max-w-96 flex-col gap-4">
         {highlights.map((highlight, index) => (
-          <li key={index} className="flex items-start gap-4">
-            <DownArrow className="min-w-10 -rotate-90 fill-black" />
-            {highlight}
+          <li key={index} className="flex items-baseline gap-4">
+            <DownArrow className="mb-2 block h-8 w-8 translate-y-2.5 -rotate-90 fill-black" />
+            <p className="mb-0">{highlight}</p>
           </li>
         ))}
       </ul>
+
+      <div className="mt-14">
+        <img
+          className="w-full"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/visuel_login_cbf2f03684.svg"
+          alt=""
+        />
+      </div>
     </div>
   )
 }
