@@ -1,16 +1,16 @@
 import { SIMULATION_URL } from '@/constants/urls/main'
-import type { Simulation, User } from '@/publicodes-state/types'
+import type { Simulation } from '@/publicodes-state/types'
 
 type Props = {
   simulation: Simulation
   sendEmail?: boolean
-  user: User
+  userId: string
 }
 
 /**
  * This function is used to save simulations for tracking purposes only
  */
-export async function saveSimulationForTracking({ simulation, user }: Props) {
+export async function saveSimulationForTracking({ simulation, userId }: Props) {
   const payload = {
     progression: simulation.progression,
     situation: {},
@@ -18,7 +18,7 @@ export async function saveSimulationForTracking({ simulation, user }: Props) {
     id: simulation.id,
   }
 
-  const url = new URL(`${SIMULATION_URL}/${user.userId}`)
+  const url = new URL(`${SIMULATION_URL}/${userId}`)
 
   url.searchParams.set('sendEmail', 'false')
 
