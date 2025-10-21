@@ -22,14 +22,37 @@ import {
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { trackGTMEvent } from '@/utils/analytics/trackGTMEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useGTM } from '../useGTM'
 import { useTrackTimeOnSimulation } from './useTrackTimeOnSimulation'
 
+const SIMULATOR_SEEN = 'simulator_seen'
+const FIRST_QUESTION = 'first_question'
+const TEST_COMPLETED = 'test_completed'
+
+const getTrackingKey = (simulationId: string, eventType: string): string => {
+  return `ngc_tracking_${eventType}_${simulationId}`
+}
+
+const getTrackingState = (simulationId: string, eventType: string): boolean => {
+  if (typeof window === 'undefined') return false
+  const key = getTrackingKey(simulationId, eventType)
+  return sessionStorage.getItem(key) === 'true'
+}
+
+const setTrackingState = (
+  simulationId: string,
+  eventType: string,
+  value: boolean
+): void => {
+  if (typeof window === 'undefined') return
+  const key = getTrackingKey(simulationId, eventType)
+  sessionStorage.setItem(key, value.toString())
+}
+
 export function useTrackSimulator() {
-  const [hasTrackedSimulatorSeen, setHasTrackedSimulatorSeen] = useState(false)
-  const [hasTrackedFirstQuestion, setHasTrackedFirstQuestion] = useState(false)
-  const [hasTrackedTestCompleted, setHasTrackedTestCompleted] = useState(false)
+  const currentSimulation = useCurrentSimulation()
+  const simulationId = currentSimulation.id
 
   const {
     isFirstQuestionOfCategory,
@@ -38,11 +61,9 @@ export function useTrackSimulator() {
     relevantAnsweredQuestions,
   } = useFormState()
 
-  const currentSimulation = useCurrentSimulation()
+  const simulationRef = useRef(currentSimulation)
 
-  const simulation = useRef(currentSimulation)
-
-  const userId = useRef(useUser().user.userId)
+  const userIdRef = useRef(useUser().user.userId)
 
   const { progression, foldedSteps } = currentSimulation
 
@@ -55,7 +76,7 @@ export function useTrackSimulator() {
   const trackSimulation = (progression: number) =>
     saveSimulationForTracking({
       simulation: {
-        ...simulation.current,
+        ...simulationRef.current,
         progression,
         computedResults: {
           carbone: {
@@ -86,18 +107,18 @@ export function useTrackSimulator() {
           },
         },
       },
-      userId: userId.current,
+      userId: userIdRef.current,
     })
 
-  console.log('ICI', { progression, hasTrackedSimulatorSeen })
   // Track all users that start a new simulation
   useEffect(() => {
     if (
       progression === 0 &&
       foldedSteps.length === 0 &&
-      !hasTrackedSimulatorSeen
+      !getTrackingState(simulationId, SIMULATOR_SEEN)
     ) {
-      console.log('TRACKING SEEN')
+      setTrackingState(simulationId, SIMULATOR_SEEN, true)
+
       trackSimulation(progression)
 
       trackEvent(simulationSimulationFirstQuestionSeen)
@@ -108,25 +129,16 @@ export function useTrackSimulator() {
             relevantAnsweredQuestions[relevantAnsweredQuestions.length - 1],
         })
       )
-
-      setHasTrackedSimulatorSeen(true)
     }
-  }, [
-    progression,
-    foldedSteps,
-    relevantAnsweredQuestions,
-    hasTrackedSimulatorSeen,
-  ])
+  }, [progression, foldedSteps, relevantAnsweredQuestions, simulationId])
 
   // Track users that have answered at first question
   useEffect(() => {
     if (
       progression > 0 &&
       foldedSteps.length === 1 &&
-      !hasTrackedFirstQuestion
+      !getTrackingState(simulationId, FIRST_QUESTION)
     ) {
-      console.log('TRACKING FIRST')
-
       // Track for all users when the first answer is recorded
       trackSimulation(progression)
 
@@ -144,20 +156,18 @@ export function useTrackSimulator() {
         })
       )
 
-      setHasTrackedFirstQuestion(true)
+      setTrackingState(simulationId, FIRST_QUESTION, true)
     }
   }, [
     relevantAnsweredQuestions,
     progression,
     foldedSteps,
     isGTMAvailable,
-    hasTrackedFirstQuestion,
+    simulationId,
   ])
 
   useEffect(() => {
-    if (progression === 1 && !hasTrackedTestCompleted) {
-      console.log('TRACKING COMPLETED')
-
+    if (progression === 1 && !getTrackingState(simulationId, TEST_COMPLETED)) {
       // Track all users that have completed their simulation
       trackSimulation(progression)
 
@@ -181,14 +191,14 @@ export function useTrackSimulator() {
         })
       )
 
-      setHasTrackedTestCompleted(true)
+      setTrackingState(simulationId, TEST_COMPLETED, true)
     }
   }, [
     progression,
     trackTimeOnSimulation,
     getNumericValue,
     isGTMAvailable,
-    hasTrackedTestCompleted,
+    simulationId,
   ])
 
   useEffect(() => {
