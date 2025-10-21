@@ -10,7 +10,7 @@ type Props = {
   locale: Locale
 }
 
-export default async function HeaderServer({ isSticky = true, locale }: Props) {
+export default function HeaderServer({ isSticky = true, locale }: Props) {
   return (
     <header
       className={twMerge(
