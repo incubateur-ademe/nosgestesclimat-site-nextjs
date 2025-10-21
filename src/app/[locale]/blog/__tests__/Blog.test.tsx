@@ -111,12 +111,12 @@ describe('BlogHomePage', () => {
       metaTitle: 'Test Meta Title',
       metaDescription: 'Test Meta Description',
       image: { url: 'test-meta-image.jpg', alternativeText: 'Test Meta Image' },
+      pageCount: 0,
     })
 
     mockGetLangButtonsDisplayed.mockResolvedValue({
       fr: true,
       en: true,
-      es: false,
     })
   })
 
@@ -281,7 +281,6 @@ describe('BlogHomePage', () => {
     it.each([
       ['fr', i18nConfig.locales[0]],
       ['en', i18nConfig.locales[1]],
-      ['es', i18nConfig.locales[2]],
     ])(
       'should handle %s locale correctly',
       async (localeName, expectedLocale) => {

@@ -7,8 +7,10 @@ import Image from 'next/image'
 
 export default function PartnerCampaignHeader({
   logoSrc,
+  alt,
 }: {
   logoSrc: string
+  alt: string
 }) {
   return (
     <header className="border-b border-gray-200 bg-white shadow-xs">
@@ -24,7 +26,7 @@ export default function PartnerCampaignHeader({
               className="h-full max-h-12 w-auto object-contain"
               width="100"
               height="100"
-              alt=""
+              alt={alt ?? ''}
             />
           </div>
         </div>
@@ -35,7 +37,6 @@ export default function PartnerCampaignHeader({
             langButtonsDisplayed={{
               fr: true,
               en: true,
-              es: false,
             }}
             size="xs"
           />
@@ -47,7 +48,6 @@ export default function PartnerCampaignHeader({
             langButtonsDisplayed={{
               fr: true,
               en: true,
-              es: false,
             }}
           />
         </div>

@@ -39,9 +39,30 @@ export default function InformationBlock() {
       <Button
         color={isOpen || isHedgehog ? 'text' : 'primary'}
         className={twMerge(
-          'absolute top-4 right-4 h-12 w-12 p-0! lg:hidden',
+          'focus:ring-primary-700 absolute top-4 right-4 h-12 w-12 p-0! focus:ring-2 focus:ring-offset-3 focus:outline-hidden lg:hidden',
           isHedgehog ? 'block!' : ''
         )}
+        title={
+          isOpen
+            ? currentMetric === carboneMetric
+              ? t(
+                  'results.informationBlock.carbon.openButton',
+                  "Voir le détail de l'objectif 2 tonnes en 2050"
+                )
+              : t(
+                  'results.informationBlock.water.openButton',
+                  "Voir l'explication sur l'empreinte eau"
+                )
+            : currentMetric === carboneMetric
+              ? t(
+                  'results.informationBlock.carbon.closeButton',
+                  "Fermer le détail sur l'objectif 2 tonnes en 2050"
+                )
+              : t(
+                  'results.informationBlock.carbon.closeButton',
+                  "Fermer l'explication sur l'empreinte eau"
+                )
+        }
         aria-label={isOpen || isHedgehog ? t('Fermer') : t('Ouvrir')}
         onClick={() => {
           setIsOpen((prevIsOpen) => !prevIsOpen)

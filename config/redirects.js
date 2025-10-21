@@ -56,6 +56,11 @@ const redirects = [
     permanent: true,
   },
   {
+    source: '/politique-des-cookies',
+    destination: '/politique-de-confidentialite',
+    permanent: true,
+  },
+  {
     source: '/partenaires',
     destination: '/diffuser',
     permanent: true,
@@ -294,13 +299,28 @@ const redirects = [
     permanent: true,
   },
   {
-    source: '/empreinte-carbone-transport',
-    destination: '/themes/empreinte-carbone-transport',
+    source: '/empreinte-carbone-logement',
+    destination: '/themes/empreinte-carbone-logement',
     permanent: true,
   },
   {
-    source: '/empreinte-carbone-logement',
-    destination: '/themes/empreinte-carbone-logement',
+    source: '/en/themes/empreinte-carbone-alimentation',
+    destination: '/en',
+    permanent: true,
+  },
+  {
+    source: '/en/themes/empreinte-carbone-logement',
+    destination: '/en',
+    permanent: true,
+  },
+  {
+    source: '/en/themes/empreinte-carbone-transport',
+    destination: '/en',
+    permanent: true,
+  },
+  {
+    source: '/en/themes/:restOfPath',
+    destination: '/themes/:restOfPath',
     permanent: true,
   },
   // Guides fr
@@ -375,40 +395,10 @@ const redirects = [
     destination: '/en',
     permanent: true,
   },
-  // Guides es
+  // Do not remove this redirection - ES locale existed before
   {
-    source: '/es/guide',
-    destination: '/es',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/alimentation',
-    destination: '/es',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/transport',
-    destination: '/es',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/logement',
-    destination: '/es',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/divers',
-    destination: '/es',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/numerique',
-    destination: '/es',
-    permanent: true,
-  },
-  {
-    source: '/es/guide/services-societaux',
-    destination: '/es',
+    source: '/es/:path*',
+    destination: '/en/:path*',
     permanent: true,
   },
   // Short URL for Brevo
@@ -420,4 +410,4 @@ const redirects = [
   },
 ]
 
-module.exports = redirects
+export default redirects

@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-
 'use client'
 
 import NewTabSvg from '@/components/icons/NewTabSvg'
@@ -40,7 +37,7 @@ export default function RegionSelector({
 
   const numberOfRegions = Object.entries(orderedSupportedRegions).length
 
-  const { updateRegion, user, tutorials, showTutorial } = useUser()
+  const { updateRegion, user, hideTutorial } = useUser()
 
   const { region } = user
 
@@ -48,15 +45,22 @@ export default function RegionSelector({
 
   return (
     <>
-      <details
-        aria-live="polite"
-        open={isOpen}
-        className="rounded-xl bg-gray-100 p-2">
+      <details open={isOpen} className="rounded-xl bg-gray-100 p-2">
         <summary
           className={`middle w-auto cursor-pointer p-4 ${
             isLoading ? 'pointer-events-none opacity-60' : ''
           }`}
-          onClick={() => trackEvent(profilOpenRegions)}>
+          onClick={() => trackEvent(profilOpenRegions)}
+          aria-expanded={isOpen}
+          aria-controls="region-grid"
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault()
+              trackEvent(profilOpenRegions)
+            }
+          }}>
           <span>
             <Trans>Choisir une autre région</Trans>{' '}
             <small title={`${numberOfRegions} régions`}>
@@ -66,9 +70,13 @@ export default function RegionSelector({
           {isLoading && (
             <Loader size="sm" color="dark" className="ml-4 text-right" />
           )}
+          <span className="sr-only">
+            <Trans>Cliquez pour ouvrir la liste des régions disponibles</Trans>
+          </span>
         </summary>
 
         <RegionGrid
+          id="region-grid"
           supportedRegions={supportedRegions}
           updateCurrentRegion={(code: string) => {
             setIsUpdateSuccess(false)
@@ -79,19 +87,22 @@ export default function RegionSelector({
               name: supportedRegions[code][locale]?.nom as unknown as string,
             })
 
-            setIsUpdateSuccess(true)
+            hideTutorial('localisation-banner')
 
-            if (tutorials.localisationBanner) {
-              showTutorial('localisationBanner')
-            }
+            setIsUpdateSuccess(true)
           }}
           selectedRegionCode={region?.code}
           className={isLoading ? 'pointer-events-none opacity-60' : ''}
-          aria-disabled={isLoading || undefined}
+          role="region"
+          aria-label="Liste des régions disponibles"
         />
 
         {isUpdateSuccess && (
-          <p className="mt-4 mb-4 ml-2 text-sm text-green-700">
+          <p
+            aria-live="polite"
+            role="status"
+            aria-atomic="true"
+            className="mt-4 mb-4 ml-2 text-sm text-green-700">
             <Trans>Votre région a bien été mise à jour.</Trans>
           </p>
         )}

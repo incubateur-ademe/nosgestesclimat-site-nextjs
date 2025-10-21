@@ -10,11 +10,12 @@ type LayoutProps = PropsWithChildren & DefaultPageProps
 
 export default async function Layout({ children, params }: LayoutProps) {
   const { locale } = await params
+
   return (
     <ClientLayout locale={locale}>
       <IsDocumentationClientProvider>
         <Header />
-        <ContentLarge>{children}</ContentLarge>
+        <ContentLarge tag="div">{children}</ContentLarge>
         <Footer />
       </IsDocumentationClientProvider>
     </ClientLayout>

@@ -36,6 +36,7 @@ export default function Choice({
           ) : null}
         </>
       }
+      labelText={title ?? ''}
       description={description}
       active={active}
       onClick={() => setValue(choice)}

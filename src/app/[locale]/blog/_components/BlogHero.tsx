@@ -7,12 +7,12 @@ export default function BlogHero({
 }: {
   title: string
   description: string
-  image: { url: string; alternativeText: string }
+  image: { url: string; alternativeText?: string }
 }) {
   console.log({ image })
   return (
     <div className="my-10 flex flex-col justify-between gap-8 overflow-x-hidden md:my-16 md:flex-row">
-      <div className="md:max-w-[36rem]">
+      <div className="bg-whitemd:max-w-[36rem]">
         <h1
           data-cypress-id="blog-title"
           className="text-3xl md:text-5xl"

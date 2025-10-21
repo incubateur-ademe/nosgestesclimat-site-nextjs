@@ -1,11 +1,15 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import { confirmSaveSimulation } from '@/constants/tracking/posthogTrackers'
+import { confirmSaveSimulationEvent } from '@/constants/tracking/simulation'
 import Button from '@/design-system/buttons/Button'
 import Modal from '@/design-system/modals/Modal'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
-import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useFormState, useUser } from '@/publicodes-state'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -26,6 +30,10 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
     useState(false)
 
   const currentSimulation = useCurrentSimulation()
+
+  const { t } = useClientTranslation()
+
+  const { currentQuestion } = useFormState()
 
   const { user, updateEmail } = useUser()
 
@@ -56,6 +64,15 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
       simulation: { ...currentSimulation, savedViaEmail: true },
       sendEmail: true,
     })
+
+    trackEvent(confirmSaveSimulationEvent)
+    trackPosthogEvent(
+      confirmSaveSimulation({
+        question: currentQuestion as string,
+        // progression is on a 0 to 1 scale
+        completionPercentage: currentSimulation?.progression * 100,
+      })
+    )
   }
 
   useEffect(() => {
@@ -93,6 +110,10 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
   return (
     <Modal
       isOpen={isOpen}
+      ariaLabel={t(
+        'simulateur.saveModal.title',
+        'Fenêtre modale de sauvegarde de test'
+      )}
       closeModal={closeModal}
       hasAbortButton={false}
       buttons={

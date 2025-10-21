@@ -10,6 +10,7 @@ import {
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { usePathname } from 'next/navigation'
@@ -17,6 +18,8 @@ import { usePathname } from 'next/navigation'
 export default function MenuCTAButton() {
   const { getLinkToSimulateurPage, linkToSimulateurPageLabel } =
     useSimulateurPage()
+
+  const { t } = useClientTranslation()
 
   const { progression } = useCurrentSimulation()
 
@@ -29,6 +32,7 @@ export default function MenuCTAButton() {
   return (
     <ButtonLink
       size="sm"
+      title={`${linkToSimulateurPageLabel} - ${t('Visiter cette page')}`}
       href={getLinkToSimulateurPage()}
       onClick={() => {
         if (progression === 1) {

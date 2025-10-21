@@ -5,10 +5,12 @@ import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import {
   getBackgroundLightColor,
+  getBorderCategoryColor,
   getBorderColor,
   getTextDarkColor,
 } from '@/helpers/getCategoryColorClass'
 import { getSubcatsOfCategory } from '@/helpers/publicodes/getSubcatsOfCategory'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEngine, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -22,18 +24,30 @@ type Props = {
 
 export default function Category({ category }: Props) {
   const { title, numericValue, icons } = useRule(category)
+
   const { subcategories } = useEngine()
+
+  const { t } = useClientTranslation()
 
   const [isOpen, setIsOpen] = useState(false)
   const formattedCarbonFootprint = formatCarbonFootprint(numericValue)
 
   const subcategoriesOfCategory = getSubcatsOfCategory(category, subcategories)
 
+  const safeId = `category-${String(category).replace(/[^a-zA-Z0-9_-]/g, '-')}`
+  const buttonId = `${safeId}-button`
+  const panelId = `${safeId}-panel`
+
   return (
-    <div className="relative mb-4 w-full">
+    <li className="relative mb-4 w-full" role="listitem">
       <button
+        id={buttonId}
+        type="button"
+        aria-expanded={isOpen}
+        aria-controls={panelId}
         disabled={!subcategoriesOfCategory?.length}
-        className="block w-full"
+        title={`${title} - ${isOpen ? t('profile.answers.category.fold', 'Replier les questions pour cette catégorie') : t('profile.answers.category.unfold', 'Déplier les questions pour cette catégorie')}`}
+        className="focus:ring-primary-700 block w-full rounded-xl focus:ring-2 focus:ring-offset-3 focus:outline-hidden"
         onClick={() => {
           trackEvent(profilClickCategory(category))
           setIsOpen((prevIsOpen) => !prevIsOpen)
@@ -41,7 +55,7 @@ export default function Category({ category }: Props) {
         <h3
           className={`mb-0 flex w-full items-center justify-between gap-4 rounded-xl p-4 ${getTextDarkColor(category)} ${getBackgroundLightColor(
             category
-          )} border-2 transition-colors ${getBorderColor(category)}`}>
+          )} border-2 transition-colors ${getBorderCategoryColor(category, '800')}`}>
           <div className="flex items-center">
             <Emoji className="mr-3">{icons}</Emoji>
             <span>{title}</span>{' '}
@@ -56,13 +70,21 @@ export default function Category({ category }: Props) {
       </button>
 
       {isOpen ? (
-        <>
-          {subcategoriesOfCategory?.map((subcategory) => (
-            <Subcategory key={subcategory} subcategory={subcategory} />
-          ))}
-          <QuestionsWithoutSubcategory category={category} />
-        </>
+        <div
+          id={panelId}
+          role="region"
+          aria-labelledby={buttonId}
+          hidden={!isOpen}>
+          <ul role="list" className="mt-2 list-none p-0">
+            {subcategoriesOfCategory?.map((subcategory) => (
+              <li key={subcategory}>
+                <Subcategory subcategory={subcategory} />
+              </li>
+            ))}
+            <QuestionsWithoutSubcategory category={category} />
+          </ul>
+        </div>
       ) : null}
-    </div>
+    </li>
   )
 }

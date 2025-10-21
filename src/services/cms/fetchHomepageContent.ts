@@ -5,10 +5,9 @@ import type {
   PopulatedHomePageType,
 } from '@/adapters/cmsClient'
 import { cmsClient } from '@/adapters/cmsClient'
+import { PAGE_SIZE } from '@/constants/blog/pagination'
 import { type Locale } from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
-
-const PAGE_SIZE = 12
 
 export async function fetchHomepageContent({
   page,
@@ -17,7 +16,7 @@ export async function fetchHomepageContent({
   page: number
   locale: Locale
 }): Promise<
-  | (Partial<PopulatedHomePageType<'image'>> & {
+  | (Partial<PopulatedHomePageType<'image' | 'pageMetadata'>> & {
       pageCount: number
       mainArticle: PopulatedArticleType<'image' | 'blogCategory'>
       articles: ArticleItemType[]
@@ -34,7 +33,7 @@ export async function fetchHomepageContent({
     })
 
     const homepageResponse = await cmsClient<{
-      data: PopulatedHomePageType<'image'> & {
+      data: PopulatedHomePageType<'image' | 'pageMetadata'> & {
         mainArticle: PopulatedArticleType<'image' | 'blogCategory'>
       }
     }>(`/api/home-page?${homepageSearchParams}`)
@@ -44,7 +43,8 @@ export async function fetchHomepageContent({
       return undefined
     }
 
-    const { mainArticle, image, title, description } = homepageResponse.data
+    const { mainArticle, image, title, description, pageMetadata } =
+      homepageResponse.data
 
     const articlesSearchParams: Record<string, string> = {
       locale,

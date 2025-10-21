@@ -34,7 +34,10 @@ export default function PartnerCampaignContent({
 
   return (
     <>
-      <PartnerCampaignHeader logoSrc={partnerCampaign.logo.url} />
+      <PartnerCampaignHeader
+        logoSrc={partnerCampaign.logo.url}
+        alt={partnerCampaign.logo.alternativeText ?? ''}
+      />
       <Main>
         <Hero
           title={
@@ -112,7 +115,7 @@ export default function PartnerCampaignContent({
               width={400}
               height={300}
               className="w-96"
-              alt=""
+              alt={partnerCampaign.image?.alternativeText ?? ''}
             />
           }
         />

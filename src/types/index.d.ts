@@ -13,3 +13,5 @@ export type DefaultPageProps<
     { [key: string]: string | string[] | undefined } & T['searchParams']
   >
 }
+
+export type SkipLinksDisplayed = Set<'main' | 'navigation' | 'footer'>

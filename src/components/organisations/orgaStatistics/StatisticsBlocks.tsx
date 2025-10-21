@@ -43,8 +43,7 @@ export default function StatisticsBlocks({
   if (!result) return null
 
   const { formattedValue, unit } = formatFootprint(
-    (result?.carbone?.bilan) /
-      simulationsCount,
+    result?.carbone?.bilan / simulationsCount,
     {
       metric: carboneMetric,
       maximumFractionDigits: 1,
@@ -53,11 +52,10 @@ export default function StatisticsBlocks({
   )
 
   const { formattedValue: formattedWaterValue, unit: waterUnit } =
-    formatFootprint(
-      (result?.eau?.bilan) /
-        simulationsCount,
-      { metric: eauMetric, localize: true }
-    )
+    formatFootprint(result?.eau?.bilan / simulationsCount, {
+      metric: eauMetric,
+      localize: true,
+    })
 
   return (
     <div className="grid w-full auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

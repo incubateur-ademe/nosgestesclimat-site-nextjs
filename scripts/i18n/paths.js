@@ -2,8 +2,8 @@
 	Simple module containing all paths implicated to the translation.
 */
 
-const path = require('path')
-const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
+import utils from '@incubateur-ademe/nosgestesclimat-scripts/utils'
+import path from 'path'
 
 const localesDir = path.resolve('./src/locales')
 const rulesTranslation = path.resolve('./src/locales/rules-en.yaml')
@@ -30,10 +30,4 @@ const FAQ = Object.fromEntries(
   ])
 )
 
-module.exports = {
-  localesDir,
-  rulesTranslation,
-  staticAnalysisFrRes,
-  UI,
-  FAQ,
-}
+export { FAQ, UI, localesDir, rulesTranslation, staticAnalysisFrRes }

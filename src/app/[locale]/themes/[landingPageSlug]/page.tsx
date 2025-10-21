@@ -277,6 +277,7 @@ export default async function ThematicLandingPage({
         )}
 
         <FAQ
+          locale={locale}
           questions={
             faq?.questions?.map(({ question, htmlAnswer }) => ({
               question,
@@ -290,7 +291,7 @@ export default async function ThematicLandingPage({
         {htmlLegend && <Legend htmlLegend={htmlLegend} />}
       </LandingPage>
 
-      <Footer langButtonsDisplayed={{ fr: false, en: false, es: false }} />
+      <Footer langButtonsDisplayed={{ fr: false, en: false }} />
     </ClientLayout>
   )
 }

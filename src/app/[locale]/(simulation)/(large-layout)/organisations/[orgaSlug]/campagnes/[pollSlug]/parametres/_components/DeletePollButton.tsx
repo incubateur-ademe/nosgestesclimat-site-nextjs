@@ -5,12 +5,15 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import ConfirmationModal from '@/design-system/modals/ConfirmationModal'
 import { useDeletePoll } from '@/hooks/organisations/polls/useDeletePoll'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { captureException } from '@sentry/nextjs'
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 export default function DeletePollButton() {
   const [isOpen, setIsOpen] = useState(false)
+
+  const { t } = useClientTranslation()
 
   const { orgaSlug } = useParams()
 
@@ -45,9 +48,14 @@ export default function DeletePollButton() {
 
       {isOpen && (
         <ConfirmationModal
+          ariaLabel={t(
+            'organisations.polls.settings.confirmDeletion',
+            'Fenêtre modale de confirmation de suppression de la campagne'
+          )}
+          ariaLabelledBy="delete-poll-title"
           closeModal={() => setIsOpen(false)}
           onConfirm={handleDeletePoll}>
-          <h2>
+          <h2 id="delete-poll-title">
             <Trans>Supprimer cette campagne ?</Trans>
           </h2>
           <p>
