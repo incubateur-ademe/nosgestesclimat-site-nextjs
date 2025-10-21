@@ -34,7 +34,7 @@ export default function TopBar({
   return (
     <header
       className={twMerge(
-        'fixed top-0 z-50 h-16 w-full bg-white',
+        'sticky top-0 z-50 h-16 w-full bg-white',
         !simulationMode && 'static z-0 bg-white'
       )}>
       <div
@@ -58,7 +58,7 @@ export default function TopBar({
             {showTotal ? (
               <TotalFootprintNumber
                 size="lg"
-                className="flex-row items-baseline md:gap-1"
+                className="flex-row items-baseline bg-white md:gap-1"
               />
             ) : (
               <Category category={currentCategory} />

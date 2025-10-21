@@ -1,6 +1,5 @@
 'use client'
 
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
 import { useMemo } from 'react'
@@ -13,44 +12,42 @@ export default function CategoryIllustration({
   category: DottedName
   shouldHideIllustration?: boolean
 }) {
-  const { t } = useClientTranslation()
-
   const categoryProps = useMemo(() => {
     switch (category) {
       case 'transport':
         return {
           src: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_mother_and_son_on_bike_5883583982.png',
-          alt: t('Une mère et son enfant sur un vélo'),
+          alt: '',
           className: '',
         }
       case 'alimentation':
         return {
           src: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_girl_cooking_fa71604f8d.png',
-          alt: t('Une fille qui cuisine'),
+          alt: '',
           className: '',
         }
       case 'logement':
         return {
           src: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_girl_reading_newspaper_d171290d3d.png',
-          alt: t('Une fille qui lit un journal'),
+          alt: '',
           className: 'min-w-[200px]',
         }
       case 'divers':
         return {
           src: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_at_the_cinema_00898dd691.png',
-          alt: t('Un grand-père et sa petite fille qui regardent un film'),
+          alt: '',
           className: '',
         }
       case 'services sociétaux':
         return {
           src: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_children_holding_hand_6951392e78.png',
-          alt: t('Des enfants qui se tiennent la main'),
+          alt: '',
           className: '',
         }
       default:
         return null
     }
-  }, [category, t])
+  }, [category])
 
   if (!categoryProps || shouldHideIllustration) {
     return null

@@ -3,13 +3,12 @@
 import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import TextInput from '@/design-system/inputs/TextInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCreateVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
 import { useUser } from '@/publicodes-state'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { isEmailValid } from '@/utils/isEmailValid'
-import React from 'react'
 import { useForm } from 'react-hook-form'
 
 type FormData = {
@@ -17,8 +16,6 @@ type FormData = {
 }
 
 export default function EmailForm() {
-  const [inputError, setInputError] = React.useState<string | undefined>()
-
   const { t } = useClientTranslation()
 
   const {
@@ -38,8 +35,6 @@ export default function EmailForm() {
   } = useForm<FormData>()
 
   async function onSubmit(data: FormData) {
-    setInputError(undefined)
-
     const email = formatEmail(data.email)
 
     const { expirationDate } = await createVerificationCode({
@@ -65,16 +60,16 @@ export default function EmailForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <TextInputGroup
+      <TextInput
         type="email"
+        autoComplete="email"
         data-cypress-id="organisation-connexion-email-input"
         value={user?.organisation?.administratorEmail || user?.email || ''}
         label={<Trans>Votre adresse electronique</Trans>}
-        placeholder="jeanmarc@nosgestesclimat.fr"
-        helperText={
-          <Trans>
-            Nous pourrons vous contacter en cas de problème lors de votre
-            inscription
+        placeholder="nom.prenom@domaine.fr"
+        srOnlyHelperText={
+          <Trans i18nKey="organisations.connexion.email.input.helper">
+            Format attendu : nom.prenom@domaine.fr
           </Trans>
         }
         {...register('email', {

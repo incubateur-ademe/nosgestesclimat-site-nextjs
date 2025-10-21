@@ -48,7 +48,7 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
 
   return (
     <>
-      <div className="my-4">
+      <div className="mb-4">
         {isEditingTitle ? (
           <InlineTextInput
             defaultValue={group?.name}

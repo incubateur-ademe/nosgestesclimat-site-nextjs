@@ -2,6 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { DONT_KNOW_FEATURE_FLAG_KEY } from '@/constants/ab-test'
+import Emoji from '@/design-system/utils/Emoji'
 import { useIsTestVersion } from '@/hooks/abTesting/useIsTestVersion'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
@@ -57,12 +58,7 @@ export default function TallyForm() {
   }, [isTestVersion, isIframe])
 
   const handleOpenForm = () => {
-    window.Tally.openPopup(FORM_ID, {
-      emoji: {
-        text: '👋',
-        animation: 'wave',
-      },
-    })
+    window.Tally.openPopup(FORM_ID, {})
     safeLocalStorage.setItem(TALLY_SEEN_KEY, 'true')
   }
 
@@ -84,12 +80,14 @@ export default function TallyForm() {
     <button
       data-testid="wave-button"
       onClick={handleOpenForm}
-      className="fixed right-2 bottom-17 z-[10000] h-13 w-13 rounded-full border border-gray-300 bg-white text-3xl shadow-sm transition-colors hover:bg-gray-100 md:bottom-2">
+      aria-label={t('endPage.tallyForm.buttonLabel', 'Donner votre avis')}
+      title={t('endPage.tallyForm.buttonLabel', 'Donner votre avis')}
+      className="focus:ring-primary-700 fixed right-2 bottom-17 z-[10000] h-13 w-13 rounded-full border border-gray-300 bg-white text-3xl shadow-sm transition-colors hover:bg-gray-100 focus:ring-2 focus:ring-offset-3 focus:outline-hidden md:bottom-2">
       <span className="sr-only">
-        <Trans>Donner votre avis</Trans>
+        <Trans i18nKey="endPage.tallyForm.buttonLabel">Donner votre avis</Trans>
       </span>
-      <span role="img" aria-label={t('Emoji main qui salue')}>
-        👋
+      <span>
+        <Emoji className="ml-2 block w-7">👋</Emoji>
       </span>
     </button>
   )

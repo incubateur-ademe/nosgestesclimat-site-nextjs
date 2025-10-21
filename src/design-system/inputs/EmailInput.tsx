@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { forwardRef } from 'react'
-import TextInputGroup from './TextInputGroup'
+import TextInput from './TextInput'
 
 type Props = {
   label?: ReactNode | string
@@ -9,6 +9,7 @@ type Props = {
   readOnly?: boolean
   error?: string
   value?: string
+  title?: string
 }
 
 export default forwardRef(function EmailInput(
@@ -19,22 +20,25 @@ export default forwardRef(function EmailInput(
     readOnly = false,
     error,
     value,
+    title,
     ...props
   }: Props,
   ref
 ) {
   return (
-    <TextInputGroup
+    <TextInput
       label={label}
       helperText={helperText}
       name="email"
       type="email"
+      autoComplete="email"
       placeholder="nom@exemple.fr"
       className={className}
       readOnly={readOnly}
       ref={ref as any}
       error={error}
       value={value}
+      title={title}
       {...props}
     />
   )

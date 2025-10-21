@@ -24,13 +24,14 @@ export default function CTACard({
   return (
     <div
       className={twMerge(
-        'flex flex-col rounded-xl bg-white px-8 py-6',
+        'flex h-full flex-col rounded-xl bg-white px-8 py-6',
         className
       )}
       id={id}>
-      <p className="text-secondary-700 font-medium">{overLabel}</p>
-
-      <Tag>{title}</Tag>
+      <div className="flex flex-col">
+        <Tag className="order-1">{title}</Tag>
+        <p className="text-secondary-700 -order-1 font-medium">{overLabel}</p>
+      </div>
 
       <p className="mb-12">{description}</p>
 

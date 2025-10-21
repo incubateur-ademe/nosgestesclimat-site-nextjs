@@ -254,10 +254,6 @@ export default {
         'fade-in': 'fade-in 0.2s ease-out',
         'pulse-scale': 'pulse-scale 2s ease-in-out infinite',
       },
-      backgroundImage: {
-        'icons-mobile':
-          "url('https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/mobile_Icons_69c35b3a7a.svg')",
-      },
       screens: {
         xs: '320px',
       },

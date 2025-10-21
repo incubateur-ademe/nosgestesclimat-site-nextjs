@@ -69,7 +69,7 @@ export default function InlineTextInput({
           type={type}
           autoComplete="off"
           placeholder={placeholder}
-          className={`focus:border-primary-700 focus:ring-primary-700 max-w-[30rem] flex-1 rounded-s-md border-2 border-solid border-gray-200 bg-gray-100 !p-4 text-base transition-colors focus:ring-2 ${
+          className={`focus:ring-primary-700 max-w-[30rem] flex-1 rounded-s-md border-2 border-solid border-gray-200 bg-gray-100 !p-4 text-base transition-colors focus:ring-2 focus:ring-offset-3 focus:outline-hidden ${
             error ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : ''
           }`}
           aria-describedby={`error-${name}`}

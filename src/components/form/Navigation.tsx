@@ -295,19 +295,29 @@ export default function Navigation({
 
   const skipText = isTestVersion ? (
     <span>
-      <Trans i18nKey="simulator.navigation.nextButton.dontKnow">
+      <Trans i18nKey="simulator.navigation.nextButton.dontKnow.label">
         Je ne sais pas
       </Trans>{' '}
       <span aria-hidden>→</span>
     </span>
   ) : (
     <span>
-      <Trans i18nKey="simulator.navigation.nextButton.skip">
+      <Trans i18nKey="simulator.navigation.nextButton.skip.label">
         Passer la question
       </Trans>{' '}
       <span aria-hidden>→</span>
     </span>
   )
+
+  const skipTitle = isTestVersion
+    ? t(
+        'common.navigation.nextQuestion.dontKnow.title',
+        'Je ne sais pas, passer et aller à la question suivante'
+      )
+    : t(
+        'common.navigation.nextQuestion.pass.title',
+        'Passer et aller à la question suivante'
+      )
 
   return (
     <div
@@ -328,8 +338,15 @@ export default function Navigation({
           onClick={handleGoToPrevQuestion}
           disabled={isFirstOrOnlyQuestion}
           color="text"
-          className={twMerge('px-3')}>
-          <span className="hidden md:inline">←</span> {t('Précédent')}
+          className={twMerge('px-3')}
+          title={t(
+            'common.navigation.previousButton.label',
+            'Aller à la question précédente'
+          )}>
+          <span aria-hidden className="hidden md:inline">
+            ←
+          </span>
+           {t('Précédent')}
         </Button>
 
         <Button
@@ -338,6 +355,19 @@ export default function Navigation({
           className="p-3 text-sm"
           size="md"
           data-cypress-id="next-question-button"
+          title={
+            finalNoNextQuestion
+              ? t(
+                  'common.navigation.nextQuestion.finish.label',
+                  'Terminer le test et accéder à la page de résultats'
+                )
+              : isMissing
+                ? skipTitle
+                : t(
+                    'common.navigation.nextQuestion.next.label',
+                    'Aller à la question suivante'
+                  )
+          }
           onClick={handleGoToNextQuestion}>
           {finalNoNextQuestion ? (
             <Trans i18nKey="simulator.navigation.nextButton.finished">

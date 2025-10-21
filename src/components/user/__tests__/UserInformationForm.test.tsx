@@ -6,7 +6,7 @@ import {
 } from '@/constants/brevo'
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import '@testing-library/jest-dom'
-import { screen, waitFor } from '@testing-library/react'
+import { act, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { http, HttpResponse } from 'msw'
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -173,13 +173,15 @@ describe('UserInformationForm', () => {
         updateName: mockUpdateName,
       })
 
-      renderWithWrapper(<UserInformationForm title={<h2>Test Form</h2>} />, {
-        user: { ...mockUser, email: undefined },
-        providers: {
-          queryClient: true,
-          errorBoundary: true,
-          user: true,
-        },
+      act(() => {
+        renderWithWrapper(<UserInformationForm title={<h2>Test Form</h2>} />, {
+          user: { ...mockUser, email: undefined },
+          providers: {
+            queryClient: true,
+            errorBoundary: true,
+            user: true,
+          },
+        })
       })
 
       expect(screen.getByTestId('email-input-editable')).toBeInTheDocument()
@@ -326,13 +328,15 @@ describe('UserInformationForm', () => {
         updateName: mockUpdateName,
       })
 
-      renderWithWrapper(<UserInformationForm title={<h2>Test Form</h2>} />, {
-        user: { ...mockUser, email: undefined },
-        providers: {
-          queryClient: true,
-          errorBoundary: true,
-          user: true,
-        },
+      act(() => {
+        renderWithWrapper(<UserInformationForm title={<h2>Test Form</h2>} />, {
+          user: { ...mockUser, email: undefined },
+          providers: {
+            queryClient: true,
+            errorBoundary: true,
+            user: true,
+          },
+        })
       })
 
       const nameInput = screen.getByTestId('name-input')
@@ -474,13 +478,15 @@ describe('UserInformationForm', () => {
         updateName: mockUpdateName,
       })
 
-      renderWithWrapper(<UserInformationForm title={<h2>Test Form</h2>} />, {
-        user: { ...mockUser, name: undefined },
-        providers: {
-          queryClient: true,
-          errorBoundary: true,
-          user: true,
-        },
+      act(() => {
+        renderWithWrapper(<UserInformationForm title={<h2>Test Form</h2>} />, {
+          user: { ...mockUser, name: undefined },
+          providers: {
+            queryClient: true,
+            errorBoundary: true,
+            user: true,
+          },
+        })
       })
 
       const submitButton = screen.getByTestId('submit-button')
@@ -604,7 +610,9 @@ describe('UserInformationForm', () => {
       await user.click(submitButton)
 
       await waitFor(() => {
-        expect(screen.getByText('Ce champ est requis.')).toBeInTheDocument()
+        // Use getAllByText to handle multiple elements with same text
+        const errorElements = screen.getAllByText('Ce champ est requis.')
+        expect(errorElements.length).toBeGreaterThan(0)
       })
     })
 
@@ -617,20 +625,23 @@ describe('UserInformationForm', () => {
         updateName: mockUpdateName,
       })
 
-      renderWithWrapper(<UserInformationForm title={<h2>Test Form</h2>} />, {
-        user: { ...mockUser, name: undefined },
-        providers: {
-          queryClient: true,
-          errorBoundary: true,
-          user: true,
-        },
+      act(() => {
+        renderWithWrapper(<UserInformationForm title={<h2>Test Form</h2>} />, {
+          user: { ...mockUser, name: undefined },
+          providers: {
+            queryClient: true,
+            errorBoundary: true,
+            user: true,
+          },
+        })
       })
 
       const submitButton = screen.getByTestId('submit-button')
       await user.click(submitButton)
 
       // Should not show validation error since name is not required when user has no name
-      expect(screen.queryByText('Ce champ est requis.')).not.toBeInTheDocument()
+      // The helper text might still be present, but the actual error should not be shown
+      expect(screen.queryByTestId('error-name')).not.toBeInTheDocument()
     })
   })
 
@@ -718,9 +729,10 @@ describe('UserInformationForm', () => {
       )
 
       // Checkboxes should be disabled when checked for unverified users
-      expect(saisonniereCheckbox).toBeDisabled()
-      expect(transportsCheckbox).toBeDisabled()
-      expect(logementCheckbox).not.toBeDisabled() // Not checked initially
+      // The component uses aria-disabled instead of disabled attribute
+      expect(saisonniereCheckbox).toHaveAttribute('aria-disabled', 'true')
+      expect(transportsCheckbox).toHaveAttribute('aria-disabled', 'true')
+      expect(logementCheckbox).not.toHaveAttribute('aria-disabled', 'true') // Not checked initially
     })
 
     it('should enable newsletter checkboxes for verified users', () => {

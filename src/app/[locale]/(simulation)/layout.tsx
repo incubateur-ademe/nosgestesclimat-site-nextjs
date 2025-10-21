@@ -15,7 +15,9 @@ export default async function SimulateurLayout({
   const supportedRegions = getSupportedRegions()
 
   return (
-    <ClientLayout locale={locale}>
+    <ClientLayout
+      skipLinksDisplayed={new Set(['main', 'footer'])}
+      locale={locale}>
       <EngineProviders supportedRegions={supportedRegions}>
         {children}
 
