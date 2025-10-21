@@ -9,8 +9,9 @@ export default function BlogHero({
   description: string
   image: { url: string; alternativeText: string }
 }) {
+  console.log({ image })
   return (
-    <div className="my-10 flex flex-col justify-between gap-8 overflow-x-hidden md:my-20 md:flex-row">
+    <div className="my-10 flex flex-col justify-between gap-8 overflow-x-hidden md:my-16 md:flex-row">
       <div className="md:max-w-[36rem]">
         <h1
           data-cypress-id="blog-title"
@@ -24,7 +25,7 @@ export default function BlogHero({
         />
       </div>
       {image && (
-        <div className="flex items-center justify-center">
+        <div className="flex flex-1 items-center justify-center">
           <Image
             src={image?.url ?? ''}
             width="350"

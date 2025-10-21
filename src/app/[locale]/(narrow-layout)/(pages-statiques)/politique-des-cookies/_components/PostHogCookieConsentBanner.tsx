@@ -5,7 +5,7 @@ import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import { usePostHog } from 'posthog-js/react'
 import { useEffect, useState } from 'react'
 
-export function cookieConsentGiven() {
+function cookieConsentGiven() {
   if (!safeLocalStorage.getItem('cookie_consent')) {
     return 'undecided'
   }
