@@ -16,13 +16,18 @@ export const useQuestionInQueryParams = () => {
     .replaceAll('_', ' ') as DottedName
 
   const setQuestionInQueryParams = useCallback(
-    (question: DottedName) =>
+    (question: DottedName) => {
+      const currentFromProfile = searchParams.get('fromProfile') === 'true'
       router.replace(
-        getLinkToSimulateur({ question, locale }),
-
+        getLinkToSimulateur({
+          question,
+          locale,
+          fromProfile: currentFromProfile,
+        }),
         { scroll: false }
-      ),
-    [router, locale]
+      )
+    },
+    [router, locale, searchParams]
   )
 
   return { questionInQueryParams, setQuestionInQueryParams }

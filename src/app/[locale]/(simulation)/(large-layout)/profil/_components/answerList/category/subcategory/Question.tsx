@@ -29,7 +29,7 @@ export default function Question({ question }: Props) {
 
   return (
     <Link
-      href={getLinkToSimulateur({ question })}
+      href={getLinkToSimulateur({ question, fromProfile: true })}
       onClick={() => trackEvent(profilClickQuestion(question))}
       className={`mb-2 block rounded-xl bg-white p-4 no-underline hover:underline`}>
       <span

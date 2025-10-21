@@ -11,6 +11,7 @@ import { useDebug } from '@/hooks/useDebug'
 import { useIframe } from '@/hooks/useIframe'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import { useCurrentSimulation, useFormState } from '@/publicodes-state'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useContext, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import FunFact from './form/FunFact'
@@ -20,8 +21,9 @@ import CategoryIllustration from './summary/CategoryIllustration'
 
 export default function Form() {
   const isDebug = useDebug()
-
+  const searchParams = useSearchParams()
   const { progression } = useCurrentSimulation()
+  const router = useRouter()
 
   const {
     remainingQuestions,
@@ -158,6 +160,14 @@ export default function Form() {
           onComplete={() => {
             if (shouldPreventNavigation) {
               handleUpdateShouldPreventNavigation(false)
+            }
+
+            // Temporary fix: redirect to end page if user is coming from profile modification
+            const isFromProfile = searchParams.get('fromProfile') === 'true'
+
+            if (isFromProfile) {
+              router.push('/fin')
+              return
             }
 
             setShouldGoToEndPage(true)

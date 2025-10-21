@@ -13,16 +13,20 @@ import { useEndPage } from './useEndPage'
 type GoToSimulateurPageProps = {
   noNavigation?: boolean
   newSimulation?: Partial<Simulation>
+  fromProfile?: boolean
 }
 const goToSimulateurPagePropsDefault = {
   noNavigation: false,
   newSimulation: undefined,
+  fromProfile: false,
 }
 type GetLinkToSimulateurPageProps = {
   newSimulation?: boolean
+  fromProfile?: boolean
 }
 const getLinkToSimulateurPagePropsDefault = {
   newSimulation: false,
+  fromProfile: false,
 }
 export function useSimulateurPage() {
   const router = useRouter()
@@ -43,6 +47,7 @@ export function useSimulateurPage() {
     ({
       noNavigation = false,
       newSimulation = undefined,
+      fromProfile = false,
     }: GoToSimulateurPageProps = goToSimulateurPagePropsDefault) => {
       // If there is no current simulation (or we want to force a new one), we init a new simulation
       if (newSimulation) {
@@ -55,14 +60,15 @@ export function useSimulateurPage() {
       }
 
       // If the user has completed the test we redirect him to the results page
-      if (progression === 1 && !newSimulation) {
+      // But not if they're coming from profile modification
+      if (progression === 1 && !newSimulation && !fromProfile) {
         goToEndPage()
         return
       }
 
       // If the user has seen the tutoriel we redirect him to the test
       if (tutorielSeen) {
-        router.replace(getLinkToSimulateur())
+        router.replace(getLinkToSimulateur({ fromProfile }))
         return
       }
 
@@ -75,15 +81,17 @@ export function useSimulateurPage() {
   const getLinkToSimulateurPage = useCallback(
     ({
       newSimulation,
+      fromProfile = false,
     }: GetLinkToSimulateurPageProps = getLinkToSimulateurPagePropsDefault): string => {
       // If the user has completed the test (and we are not initializing a new one) we return the results page link
-      if (progression === 1 && !newSimulation) {
+      // But not if they're coming from profile modification
+      if (progression === 1 && !newSimulation && !fromProfile) {
         return getLinkToEndPage()
       }
 
       // If the user has seen the tutoriel we return the test page link
       if (tutorielSeen) {
-        return getLinkToSimulateur()
+        return getLinkToSimulateur({ fromProfile })
       }
 
       // else we return the tutoriel page link

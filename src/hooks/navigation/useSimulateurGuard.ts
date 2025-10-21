@@ -1,6 +1,6 @@
 import { getLinkToTutoriel } from '@/helpers/navigation/simulateurPages'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useSetCurrentSimulationFromParams } from '../simulation/useSetCurrentSimulationFromParams'
 import { useSimulationIdInQueryParams } from '../simulation/useSimulationIdInQueryParams'
@@ -11,6 +11,7 @@ import { useEndPage } from './useEndPage'
 
 export function useSimulateurGuard() {
   const router = useRouter()
+  const searchParams = useSearchParams()
 
   const locale = useLocale()
 
@@ -29,6 +30,9 @@ export function useSimulateurGuard() {
   const [isGuardRedirecting, setIsGuardRedirecting] = useState(false)
 
   const { simulationIdInQueryParams } = useSimulationIdInQueryParams()
+
+  // Check if user is coming from profile modification
+  const isFromProfile = searchParams.get('fromProfile') === 'true'
 
   useEffect(() => {
     // we only run the guard at mount
@@ -49,7 +53,8 @@ export function useSimulateurGuard() {
 
     // If the user has completed the test, we redirect him to the results page
     // when visiting /simulateur/bilan without search params
-    if (progression === 1 && !questionInQueryParams) {
+    // But not if they're coming from profile modification
+    if (progression === 1 && !questionInQueryParams && !isFromProfile) {
       goToEndPage()
       setIsGuardRedirecting(true)
       return
@@ -71,6 +76,7 @@ export function useSimulateurGuard() {
     simulationIdInQueryParams,
     isCorrectSimulationSet,
     locale,
+    isFromProfile,
   ])
 
   return { isGuardInit, isGuardRedirecting }

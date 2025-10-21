@@ -22,11 +22,15 @@ import {
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { trackGTMEvent } from '@/utils/analytics/trackGTMEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useGTM } from '../useGTM'
 import { useTrackTimeOnSimulation } from './useTrackTimeOnSimulation'
 
 export function useTrackSimulator() {
+  const [hasTrackedSimulatorSeen, setHasTrackedSimulatorSeen] = useState(false)
+  const [hasTrackedFirstQuestion, setHasTrackedFirstQuestion] = useState(false)
+  const [hasTrackedTestCompleted, setHasTrackedTestCompleted] = useState(false)
+
   const {
     isFirstQuestionOfCategory,
     isLastQuestionOfCategory,
@@ -82,10 +86,15 @@ export function useTrackSimulator() {
       user,
     })
   }, [simulation, user])
-
+  console.log('ICI', { progression, hasTrackedSimulatorSeen })
   // Track all users that start a new simulation
   useEffect(() => {
-    if (progression === 0 && foldedSteps.length === 0) {
+    if (
+      progression === 0 &&
+      foldedSteps.length === 0 &&
+      !hasTrackedSimulatorSeen
+    ) {
+      console.log('TRACKING SEEN')
       trackSimulation()
 
       trackEvent(simulationSimulationFirstQuestionSeen)
@@ -96,12 +105,26 @@ export function useTrackSimulator() {
             relevantAnsweredQuestions[relevantAnsweredQuestions.length - 1],
         })
       )
+
+      setHasTrackedSimulatorSeen(true)
     }
-  }, [progression, foldedSteps, trackSimulation, relevantAnsweredQuestions])
+  }, [
+    progression,
+    foldedSteps,
+    trackSimulation,
+    relevantAnsweredQuestions,
+    hasTrackedSimulatorSeen,
+  ])
 
   // Track users that have answered at first question
   useEffect(() => {
-    if (progression > 0 && foldedSteps.length === 1) {
+    if (
+      progression > 0 &&
+      foldedSteps.length === 1 &&
+      !hasTrackedFirstQuestion
+    ) {
+      console.log('TRACKING FIRST')
+
       // Track for all users when the first answer is recorded
       trackSimulation()
 
@@ -118,6 +141,8 @@ export function useTrackSimulator() {
             relevantAnsweredQuestions[relevantAnsweredQuestions.length - 1],
         })
       )
+
+      setHasTrackedFirstQuestion(true)
     }
   }, [
     relevantAnsweredQuestions,
@@ -125,10 +150,13 @@ export function useTrackSimulator() {
     foldedSteps,
     isGTMAvailable,
     trackSimulation,
+    hasTrackedFirstQuestion,
   ])
 
   useEffect(() => {
-    if (progression === 1) {
+    if (progression === 1 && !hasTrackedTestCompleted) {
+      console.log('TRACKING COMPLETED')
+
       // Track all users that have completed their simulation
       trackSimulation()
 
@@ -151,6 +179,8 @@ export function useTrackSimulator() {
           timeSpentOnSimulation,
         })
       )
+
+      setHasTrackedTestCompleted(true)
     }
   }, [
     progression,
@@ -158,6 +188,7 @@ export function useTrackSimulator() {
     trackTimeOnSimulation,
     getNumericValue,
     isGTMAvailable,
+    hasTrackedTestCompleted,
   ])
 
   useEffect(() => {

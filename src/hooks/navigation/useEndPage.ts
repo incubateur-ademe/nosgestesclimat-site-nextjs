@@ -4,7 +4,7 @@ import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useState } from 'react'
 
 type GoToEndPageProps = {
@@ -25,6 +25,7 @@ const GetLinkToEndPagePropsDefault = {
 
 export function useEndPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
 
   const currentSimulation = useCurrentSimulation()
 
@@ -33,6 +34,9 @@ export function useEndPage() {
   const { saveSimulation } = useSaveSimulation()
 
   const [isNavigating, setIsNavigating] = useState(false)
+
+  // Check if user is coming from profile modification
+  const isFromProfile = searchParams.get('fromProfile') === 'true'
 
   const redirectToPollQuestionsIfNecessary = useCallback(() => {
     if (
@@ -96,9 +100,15 @@ export function useEndPage() {
         router.push(getLinkToGroupDashboard({ groupId: lastGroupId }))
         return
       }
-
       // else we redirect to the results page
-      router.push('/fin')
+      // But not if user is coming from profile modification
+      if (!isFromProfile) {
+        router.push('/fin')
+      } else {
+        console.log(
+          'User coming from profile modification, staying on simulateur page'
+        )
+      }
     },
     [
       isNavigating,
@@ -107,6 +117,7 @@ export function useEndPage() {
       currentSimulation,
       router,
       saveSimulation,
+      isFromProfile,
     ]
   )
 
