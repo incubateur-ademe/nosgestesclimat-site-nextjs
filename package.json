@@ -169,7 +169,7 @@
     "ts-prune": "^0.10.3",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.1",
-    "vite": "^5.4.10",
+    "vite": "^5.4.21",
     "vitest": "^3.2.4",
     "yaml-loader": "^0.8.1",
     "yargs": "^18.0.0"
