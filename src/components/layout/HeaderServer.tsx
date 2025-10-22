@@ -1,5 +1,6 @@
-import { SIMULATOR_PATH } from '@/constants/urls/paths'
+import { CONNEXION_PATH, MON_ESPACE_PATH } from '@/constants/urls/paths'
 import ButtonLinkServer from '@/design-system/buttons/ButtonLinkServer'
+import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthenticated'
 import type { Locale } from '@/i18nConfig'
 import { twMerge } from 'tailwind-merge'
 import LogoLinkServer from '../misc/LogoLinkServer'
@@ -10,7 +11,11 @@ type Props = {
   locale: Locale
 }
 
-export default function HeaderServer({ isSticky = true, locale }: Props) {
+const MAX_EMAIL_LENGTH = 20
+
+export default async function HeaderServer({ isSticky = true, locale }: Props) {
+  const authenticatedUser = await getIsUserAuthenticated()
+
   return (
     <header
       className={twMerge(
@@ -24,9 +29,30 @@ export default function HeaderServer({ isSticky = true, locale }: Props) {
           </div>
 
           <div className="flex h-full items-center">
-            <ButtonLinkServer color="secondary" href={SIMULATOR_PATH}>
-              <Trans locale={locale}>Accéder au test</Trans>
-            </ButtonLinkServer>
+            {authenticatedUser ? (
+              <ButtonLinkServer
+                size="sm"
+                color="secondary"
+                href={MON_ESPACE_PATH}
+                className="inline-block">
+                <Trans i18nKey="header.monEspace" locale={locale}>
+                  Mon Espace
+                </Trans>{' '}
+                <span>
+                  (
+                  {authenticatedUser.email.length > MAX_EMAIL_LENGTH
+                    ? `${authenticatedUser.email.substring(0, MAX_EMAIL_LENGTH)}...`
+                    : authenticatedUser.email}
+                  )
+                </span>
+              </ButtonLinkServer>
+            ) : (
+              <ButtonLinkServer color="secondary" href={CONNEXION_PATH}>
+                <Trans i18nKey="header.monEspace" locale={locale}>
+                  Mon Espace
+                </Trans>
+              </ButtonLinkServer>
+            )}
           </div>
         </div>
       </div>

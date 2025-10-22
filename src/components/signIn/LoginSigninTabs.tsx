@@ -1,4 +1,5 @@
 import { SIGNIN_MODE, SIGNUP_MODE } from '@/constants/authentication/modes'
+import { CONNEXION_PATH, INSCRIPTION_PATH } from '@/constants/urls/paths'
 import type { Locale } from '@/i18nConfig'
 import type { AuthenticationMode } from '@/types/authentication'
 import Link from 'next/link'
@@ -43,7 +44,7 @@ export default function LoginSigninTabs({ locale, mode, className }: Props) {
       <nav aria-label="Navigation connexion/inscription">
         <ul className="flex items-end">
           <li>
-            <TabLink href="/connexion" isActive={mode === SIGNIN_MODE}>
+            <TabLink href={CONNEXION_PATH} isActive={mode === SIGNIN_MODE}>
               <Trans i18nKey="login.list.login.label" locale={locale}>
                 Connexion
               </Trans>
@@ -51,7 +52,7 @@ export default function LoginSigninTabs({ locale, mode, className }: Props) {
           </li>
 
           <li>
-            <TabLink href="/inscription" isActive={mode === SIGNUP_MODE}>
+            <TabLink href={INSCRIPTION_PATH} isActive={mode === SIGNUP_MODE}>
               <Trans i18nKey="login.list.signin.label" locale={locale}>
                 Inscription
               </Trans>

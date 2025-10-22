@@ -37,4 +37,4 @@ export const HIDE_CTA_PATHS = [
   '/organisations/demander-demo',
 ]
 
-export const CHECK_USER_EXISTS_URL = SERVER_URL + '/v1/me'
+export const CHECK_USER_EXISTS_URL = SERVER_URL + '/users/v1/me'
