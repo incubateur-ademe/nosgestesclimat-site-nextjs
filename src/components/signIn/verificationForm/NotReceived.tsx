@@ -87,7 +87,7 @@ export default function NotReceived({
       <Button
         onClick={handleGoBackToForm}
         color="link"
-        className="-mt-2 -ml-2 flex items-center font-normal">
+        className="mt-2 -ml-2 flex items-center font-normal">
         <Trans i18nKey="signIn.verificationForm.notReceived.backButton">
           Retour à la connexion
         </Trans>

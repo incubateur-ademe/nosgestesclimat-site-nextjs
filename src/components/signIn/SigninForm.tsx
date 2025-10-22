@@ -4,6 +4,7 @@ import useLogin from '@/hooks/authentication/useLogin'
 import { useUser } from '@/publicodes-state'
 import type { AuthenticationMode } from '@/types/authentication'
 import dayjs from 'dayjs'
+import { useEffect } from 'react'
 import EmailSigninForm from './EmailSigninForm'
 import VerificationForm from './VerificationForm'
 
@@ -14,7 +15,13 @@ type Props = {
 }
 
 export default function SigninForm({ buttonLabel, mode, redirectURL }: Props) {
-  const { user } = useUser()
+  const { user, updateLoginExpirationDate } = useUser()
+
+  useEffect(() => {
+    if (user?.loginExpirationDate) {
+      updateLoginExpirationDate(undefined)
+    }
+  }, [user, updateLoginExpirationDate])
 
   const {
     mutateAsync: login,
