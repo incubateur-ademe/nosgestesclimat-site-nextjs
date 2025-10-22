@@ -1,15 +1,15 @@
 'use client'
 
 import useLogin from '@/hooks/authentication/useLogin'
-import type { Mode } from '@/hooks/verification-codes/useCreateVerificationCode'
 import { useUser } from '@/publicodes-state'
+import type { AuthenticationMode } from '@/types/authentication'
 import dayjs from 'dayjs'
 import EmailSigninForm from './EmailSigninForm'
 import VerificationForm from './VerificationForm'
 
 type Props = {
   buttonLabel?: string
-  mode?: Mode
+  mode?: AuthenticationMode
 }
 
 export default function SigninForm({ buttonLabel, mode = 'signIn' }: Props) {

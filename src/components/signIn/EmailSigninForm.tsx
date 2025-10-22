@@ -7,9 +7,9 @@ import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
 import TextInput from '@/design-system/inputs/TextInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import type { Mode } from '@/hooks/verification-codes/useCreateVerificationCode'
 import { useCreateVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
 import { useUser } from '@/publicodes-state'
+import type { AuthenticationMode } from '@/types/authentication'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { AxiosError } from 'axios'
@@ -17,7 +17,7 @@ import { useForm } from 'react-hook-form'
 
 type Props = {
   buttonLabel?: string
-  mode?: Mode
+  mode?: AuthenticationMode
 }
 
 type FormData = {

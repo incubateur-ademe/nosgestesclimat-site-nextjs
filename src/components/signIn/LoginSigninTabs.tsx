@@ -1,15 +1,12 @@
+import { SIGNIN_MODE, SIGNUP_MODE } from '@/constants/authentication/modes'
 import type { Locale } from '@/i18nConfig'
+import type { AuthenticationMode } from '@/types/authentication'
 import Link from 'next/link'
 import Trans from '../translation/trans/TransServer'
 
-export const LOGIN_MODE = 'login' as const
-export const SIGNIN_MODE = 'signin' as const
-
-type Mode = typeof LOGIN_MODE | typeof SIGNIN_MODE
-
 type Props = {
   locale: Locale
-  mode: Mode
+  mode: AuthenticationMode
   className?: string
 }
 
@@ -46,7 +43,7 @@ export default function LoginSigninTabs({ locale, mode, className }: Props) {
       <nav aria-label="Navigation connexion/inscription">
         <ul className="flex items-end">
           <li>
-            <TabLink href="/connexion" isActive={mode === LOGIN_MODE}>
+            <TabLink href="/connexion" isActive={mode === SIGNIN_MODE}>
               <Trans i18nKey="login.list.login.label" locale={locale}>
                 Connexion
               </Trans>
@@ -54,7 +51,7 @@ export default function LoginSigninTabs({ locale, mode, className }: Props) {
           </li>
 
           <li>
-            <TabLink href="/inscription" isActive={mode === SIGNIN_MODE}>
+            <TabLink href="/inscription" isActive={mode === SIGNUP_MODE}>
               <Trans i18nKey="login.list.signin.label" locale={locale}>
                 Inscription
               </Trans>

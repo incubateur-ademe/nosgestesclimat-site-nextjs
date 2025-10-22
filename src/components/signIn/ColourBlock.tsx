@@ -17,7 +17,7 @@ export default function ColourBlock({ highlights, className }: Props) {
       <ul role="list" className="flex max-w-96 flex-col gap-4">
         {highlights.map((highlight, index) => (
           <li key={index} className="flex items-baseline gap-4">
-            <DownArrow className="mb-2 block h-8 w-8 translate-y-2.5 -rotate-90 fill-black" />
+            <DownArrow className="mb-2 block h-8 w-8 min-w-8 translate-y-2.5 -rotate-90 fill-black" />
             <p className="mb-0">{highlight}</p>
           </li>
         ))}

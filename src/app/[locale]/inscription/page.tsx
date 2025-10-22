@@ -4,9 +4,10 @@ import ColourBlock from '@/components/signIn/ColourBlock'
 import LoginSigninTabs from '@/components/signIn/LoginSigninTabs'
 import SigninForm from '@/components/signIn/SigninForm'
 import Trans from '@/components/translation/trans/TransServer'
-import { SIGNIN_MODE } from '@/constants/authentication/modes'
+import { SIGNUP_MODE } from '@/constants/authentication/modes'
 import { STORAGE_KEY } from '@/constants/storage'
 import Title from '@/design-system/layout/Title'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
@@ -14,6 +15,8 @@ import QueryClientProviderWrapper from '../_components/mainLayoutProviders/Query
 
 export default async function Connexion({ params }: DefaultPageProps) {
   const { locale } = await params
+
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <>
@@ -25,14 +28,14 @@ export default async function Connexion({ params }: DefaultPageProps) {
             <LoginSigninTabs
               className="-order-1 mb-8 lg:mb-14"
               locale={locale}
-              mode={SIGNIN_MODE}
+              mode={SIGNUP_MODE}
             />
 
             <Title
               containerClassName="order-0 max-w-[430px] mb-4"
               title={
-                <Trans i18nKey="login.login.title" locale={locale}>
-                  Accédez à votre espace Nos Gestes Climat
+                <Trans i18nKey="signup.title" locale={locale}>
+                  Créez votre espace Nos Gestes Climat
                 </Trans>
               }
             />
@@ -41,55 +44,81 @@ export default async function Connexion({ params }: DefaultPageProps) {
               <UserProvider
                 storageKey={STORAGE_KEY}
                 migrationInstructions={migrationInstructions}>
-                <SigninForm mode="signIn" />
+                <SigninForm
+                  mode="signUp"
+                  buttonLabel={t('signup.button.label', "M'inscrire")}
+                />
               </UserProvider>
             </QueryClientProviderWrapper>
           </div>
 
           <ColourBlock
-            className="hidden lg:block"
+            className="hidden bg-fuchsia-50 lg:block"
             highlights={[
               <span key="highlight1">
-                <Trans i18nKey="login.colourBlock.highlight1" locale={locale}>
-                  Visualisez
+                <Trans
+                  i18nKey="signup.colourBlock.highlight1.title.prefix"
+                  locale={locale}>
+                  Retrouvez
                 </Trans>{' '}
                 <strong>
                   <Trans
-                    i18nKey="login.colourBlock.login.highlight1.strong"
+                    i18nKey="signup.colourBlock.highlight1.title.strong"
                     locale={locale}>
-                    vos derniers résultats
+                    vos résultats d’empreinte
                   </Trans>
                 </strong>
               </span>,
               <span key="highlight2">
                 <Trans
-                  i18nKey="login.colourBlock.login.highlight2"
+                  i18nKey="signup.colourBlock.highlight2.title.prefix"
                   locale={locale}>
-                  Continuez à
+                  Découvrez
                 </Trans>{' '}
                 <strong>
                   <Trans
-                    i18nKey="login.colourBlock.login.highlight2.strong"
+                    i18nKey="signup.colourBlock.highlight2.title.strong1"
                     locale={locale}>
-                    progresser dans vos actions climat
+                    vos actions climat personnalisées
+                  </Trans>
+                </strong>{' '}
+                <Trans
+                  i18nKey="signup.colourBlock.highlight2.title.middle"
+                  locale={locale}>
+                  et
+                </Trans>{' '}
+                <strong>
+                  <Trans
+                    i18nKey="signup.colourBlock.highlight2.title.strong2"
+                    locale={locale}>
+                    suivez vos progrès
                   </Trans>
                 </strong>
               </span>,
               <span key="highlight3">
-                <Trans i18nKey="login.colourBlock.highlight3" locale={locale}>
-                  Accédez à
+                <strong>
+                  <Trans
+                    i18nKey="signup.colourBlock.highlight3.title.strong1"
+                    locale={locale}>
+                    Lancez
+                  </Trans>
+                </strong>{' '}
+                <Trans
+                  i18nKey="signup.colourBlock.highlight3.title.middle"
+                  locale={locale}>
+                  et
                 </Trans>{' '}
                 <strong>
                   <Trans
-                    i18nKey="login.colourBlock.login.highlight3.strong"
+                    i18nKey="login.colourBlock.login.highlight3.strong2"
                     locale={locale}>
-                    vos défis collectifs
+                    retrouvez vos tests collectifs
                   </Trans>
                 </strong>{' '}
                 <Trans
                   i18nKey="login.colourBlock.login.highlight3.end"
                   locale={locale}>
-                  en cours
+                  (organisations, famille, amis...)
                 </Trans>
               </span>,
             ]}
