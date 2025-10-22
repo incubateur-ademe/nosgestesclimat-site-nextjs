@@ -1,5 +1,5 @@
 import ContentLarge from '@/components/layout/ContentLarge'
-import Header from '@/components/layout/Header'
+import HeaderServer from '@/components/layout/HeaderServer'
 import ColourBlock from '@/components/signIn/ColourBlock'
 import LoginSigninTabs, {
   LOGIN_MODE,
@@ -8,16 +8,13 @@ import SigninForm from '@/components/signIn/SigninForm'
 import Trans from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
 import type { DefaultPageProps } from '@/types'
-import { ClientLayout } from '../_components/ClientLayout'
 
-type Props = DefaultPageProps
-
-export default async function Connexion({ params }: Props) {
+export default async function Connexion({ params }: DefaultPageProps) {
   const { locale } = await params
 
   return (
-    <ClientLayout locale={locale}>
-      <Header />
+    <>
+      <HeaderServer locale={locale} />
 
       <ContentLarge className="px-4 lg:px-0">
         <div className="flex justify-center gap-14 pb-32 lg:justify-start">
@@ -90,6 +87,6 @@ export default async function Connexion({ params }: Props) {
           />
         </div>
       </ContentLarge>
-    </ClientLayout>
+    </>
   )
 }
