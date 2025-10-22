@@ -25,11 +25,11 @@ export default function NotReceived({
 }: Props) {
   const router = useRouter()
 
-  const { updateLoginExpirationDate } = useUser()
+  const { updateVerificationCodeExpirationDate } = useUser()
 
   function handleGoBackToForm() {
-    // Reset the login expiration date
-    updateLoginExpirationDate(undefined)
+    // Reset the verification code expiration date
+    updateVerificationCodeExpirationDate(undefined)
 
     router.refresh()
   }
@@ -73,7 +73,7 @@ export default function NotReceived({
               size="sm"
               onClick={() => {
                 if (typeof window === 'undefined') return
-                updateLoginExpirationDate(undefined)
+                updateVerificationCodeExpirationDate(undefined)
                 window.location.reload()
               }}>
               <Trans i18nKey="signIn.verificationForm.notReceived.reloadPage">

@@ -37,7 +37,8 @@ export default function EmailSigninForm({ buttonLabel, mode }: Props) {
   const { t } = useClientTranslation()
 
   const {
-    updateLoginExpirationDate,
+    updateVerificationCodeExpirationDate,
+    updateAuthenticationMode,
     updateUserOrganisation,
     user,
     updateEmail,
@@ -82,13 +83,15 @@ export default function EmailSigninForm({ buttonLabel, mode }: Props) {
       })
 
       // We update the expiration date of the code
-      updateLoginExpirationDate(expirationDate)
+      updateVerificationCodeExpirationDate(expirationDate)
+      updateAuthenticationMode(mode)
       updateUserOrganisation({ administratorEmail: email })
 
       if (!user.email) {
         updateEmail(email)
       }
     } catch (error) {
+      console.log(error)
       // Error is handled by the useCreateVerificationCode hook
       return
     }
@@ -102,7 +105,7 @@ export default function EmailSigninForm({ buttonLabel, mode }: Props) {
       )
     }
   }, [user?.organisation?.administratorEmail, user?.email, setValue])
-
+  console.log(errors)
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <TextInput

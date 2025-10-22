@@ -1349,7 +1349,8 @@ entries:
   signIn.verificationForm.notReceived.reloadPage: Recharger la page
   signIn.verificationForm.notReceived.resendButton: Renvoyer le code
   signIn.verificationForm.notReceived.resendButton.confirmation: Code renvoyé
-  signIn.verificationForm.notReceived.resendButton.timeLeft: (Attendre {timeLeft} secondes)
+  signIn.verificationForm.notReceived.resendButton.timeLeft: Attendre {{timeLeft}} secondes
   signIn.verificationForm.notReceived.text: Vérifiez vos spams ou outils anti-spam (MailinBlack, Altospam, etc...)
   signIn.verificationForm.notReceived.title: Vous n'avez pas reçu de code ?
   Vérifiez vos e-mails: Vérifiez vos e-mails
+  header.monEspace: Mon Espace

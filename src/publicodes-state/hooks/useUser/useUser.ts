@@ -30,7 +30,8 @@ export default function useUser() {
     updateEmail,
     updateRegion,
     updateInitialRegion,
-    updateLoginExpirationDate,
+    updateVerificationCodeExpirationDate,
+    updateAuthenticationMode,
     updateUserOrganisation,
   } = useUserDetails({ user, setUser })
 
@@ -80,14 +81,17 @@ export default function useUser() {
      */
     updateRegion,
     /**
-    /**
      * A setter for updating the user initial region (via the geolocation)
      */
     updateInitialRegion,
     /**
-     * A setter for updating the user login expiration date
+     * A setter for updating the user verification code expiration date
      */
-    updateLoginExpirationDate,
+    updateVerificationCodeExpirationDate,
+    /**
+     * A setter for updating the user authentication mode
+     */
+    updateAuthenticationMode,
     /**
      * A list of all tutorials seen by the user (that we do not need to show)
      */

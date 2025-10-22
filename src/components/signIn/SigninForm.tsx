@@ -22,15 +22,21 @@ export default function SigninForm({ buttonLabel, mode, redirectURL }: Props) {
     isSuccess: isSuccessValidate,
   } = useLogin()
 
-  const hasSavedValidLoginExpirationDate = user?.loginExpirationDate
-    ? dayjs(user?.loginExpirationDate).isAfter(dayjs())
-    : false
+  const hasSavedValidVerificationCodeExpirationDate =
+    user?.verificationCodeExpirationDate
+      ? dayjs(user?.verificationCodeExpirationDate).isAfter(dayjs())
+      : false
+
+  // Only show verification form if the current mode matches the saved authentication mode
+  const shouldShowVerificationForm =
+    hasSavedValidVerificationCodeExpirationDate &&
+    user.authenticationMode === mode
 
   if (!user) return null
 
   // We want to keep displaying the verification form when validated
   // until redirecting to the next page
-  if (hasSavedValidLoginExpirationDate || isSuccessValidate) {
+  if (shouldShowVerificationForm || isSuccessValidate) {
     return (
       <VerificationForm
         login={login}

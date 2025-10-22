@@ -1626,11 +1626,13 @@ entries:
   signIn.verificationForm.notReceived.title.lock: Vous n'avez pas reçu de code ?
   signIn.verificationForm.notReceived.resendButton.confirmation: Code returned
   signIn.verificationForm.notReceived.resendButton.confirmation.lock: Code renvoyé
-  signIn.verificationForm.notReceived.resendButton.timeLeft: (Wait {timeLeft} seconds)
-  signIn.verificationForm.notReceived.resendButton.timeLeft.lock: (Attendre {timeLeft} secondes)
+  signIn.verificationForm.notReceived.resendButton.timeLeft: Wait {{timeLeft}} seconds
+  signIn.verificationForm.notReceived.resendButton.timeLeft.lock: Attendre {{timeLeft}} secondes
   signIn.verificationForm.notReceived.backButton: Back to connection
   signIn.verificationForm.notReceived.backButton.lock: Retour à la connexion
   signIn.verificationForm.notReceived.error: Oops, there was an error sending your code...
   signIn.verificationForm.notReceived.error.lock: Oups, une erreur s'est produite au moment de l'envoi de votre code...
   signIn.verificationForm.notReceived.text: Check your spam or anti-spam tools (MailinBlack, Altospam, etc.)
   signIn.verificationForm.notReceived.text.lock: Vérifiez vos spams ou outils anti-spam (MailinBlack, Altospam, etc...)
+  header.monEspace: My Space
+  header.monEspace.lock: Mon Espace

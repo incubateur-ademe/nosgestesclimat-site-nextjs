@@ -97,9 +97,11 @@ export default function ResendButton({
       </Button>
       {isRetryButtonDisabled && timeLeft > 0 && (
         <span className="text-xs font-normal text-gray-500 no-underline!">
-          <Trans i18nKey="signIn.verificationForm.notReceived.resendButton.timeLeft">
-            (Attendre {timeLeft} secondes)
-          </Trans>
+          {t(
+            'signIn.verificationForm.notReceived.resendButton.timeLeft',
+            'Attendre {{timeLeft}} secondes',
+            { timeLeft }
+          )}
         </span>
       )}
     </div>

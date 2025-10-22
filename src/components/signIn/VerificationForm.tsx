@@ -32,7 +32,8 @@ export default function VerificationForm({
   isSuccessValidate,
   redirectURL,
 }: Props) {
-  const { updateLoginExpirationDate, user, updateUserOrganisation } = useUser()
+  const { updateVerificationCodeExpirationDate, user, updateUserOrganisation } =
+    useUser()
 
   const [email, setEmail] = useState<string | undefined>(
     user.organisation?.administratorEmail
@@ -48,16 +49,19 @@ export default function VerificationForm({
 
   const timeoutRef = useRef<NodeJS.Timeout>(undefined)
 
-  // Reset the login expiration date if the user is logged in
-  // and the login expiration date is in the past
+  // Reset the verification code expiration date if the user is logged in
+  // and the verification code expiration date is in the past
   useEffect(() => {
-    if (user.loginExpirationDate) {
+    if (user.verificationCodeExpirationDate) {
       return
     }
-    if (dayjs(user.loginExpirationDate).isBefore(dayjs())) {
-      updateLoginExpirationDate(undefined)
+    if (dayjs(user.verificationCodeExpirationDate).isBefore(dayjs())) {
+      updateVerificationCodeExpirationDate(undefined)
     }
-  }, [user.loginExpirationDate, updateLoginExpirationDate])
+  }, [
+    user.verificationCodeExpirationDate,
+    updateVerificationCodeExpirationDate,
+  ])
 
   const {
     mutateAsync: createVerificationCode,
@@ -105,8 +109,8 @@ export default function VerificationForm({
 
       timeoutRef.current = setTimeout(() => {
         if (!organisation) {
-          // Reset the login expiration date
-          updateLoginExpirationDate(undefined)
+          // Reset the verification code expiration date
+          updateVerificationCodeExpirationDate(undefined)
           router.push('/organisations/creer')
           return
         }
@@ -118,8 +122,8 @@ export default function VerificationForm({
 
         router.push(`/organisations/${organisation.slug}`)
 
-        // Reset the login expiration date
-        updateLoginExpirationDate(undefined)
+        // Reset the verification code expiration date
+        updateVerificationCodeExpirationDate(undefined)
       }, 1000)
     } catch (err) {
       setInputError(t('Le code est invalide'))
