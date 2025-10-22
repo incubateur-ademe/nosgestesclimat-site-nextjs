@@ -6,6 +6,10 @@ import {
   ERROR_MESSAGE_USER_ALREADY_EXISTS,
   ERROR_MESSAGE_USER_DOES_NOT_EXIST,
 } from '@/constants/errors/authentication'
+import {
+  captureClickSubmitEmail,
+  signinTrackEvent,
+} from '@/constants/tracking/pages/signin'
 import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
 import TextInput from '@/design-system/inputs/TextInput'
@@ -13,6 +17,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCreateVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
 import { useUser } from '@/publicodes-state'
 import type { AuthenticationMode } from '@/types/authentication'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { AxiosError } from 'axios'
@@ -58,6 +63,10 @@ export default function EmailSigninForm({ buttonLabel, mode }: Props) {
   async function onSubmit(data: FormData) {
     try {
       const email = formatEmail(data.email)
+
+      // Track the email signin form submission
+      trackEvent(signinTrackEvent(mode))
+      trackPosthogEvent(captureClickSubmitEmail({ mode }))
 
       const { expirationDate } = await createVerificationCode({
         email,

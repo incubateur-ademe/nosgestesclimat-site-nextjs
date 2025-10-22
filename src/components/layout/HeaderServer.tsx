@@ -2,6 +2,7 @@ import { CONNEXION_PATH, MON_ESPACE_PATH } from '@/constants/urls/paths'
 import ButtonLinkServer from '@/design-system/buttons/ButtonLinkServer'
 import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthenticated'
 import type { Locale } from '@/i18nConfig'
+import Script from 'next/script'
 import { twMerge } from 'tailwind-merge'
 import LogoLinkServer from '../misc/LogoLinkServer'
 import Trans from '../translation/trans/TransServer'
@@ -34,7 +35,11 @@ export default async function HeaderServer({ isSticky = true, locale }: Props) {
                 size="sm"
                 color="secondary"
                 href={MON_ESPACE_PATH}
-                className="inline-block">
+                className="inline-block"
+                data-track-event="Header|Click Mon Espace|Authenticated"
+                data-track-posthog={
+                  '{"eventName":"click header mon espace","properties":{"status":"authenticated"}}'
+                }>
                 <Trans i18nKey="header.monEspace" locale={locale}>
                   Mon Espace
                 </Trans>{' '}
@@ -47,7 +52,11 @@ export default async function HeaderServer({ isSticky = true, locale }: Props) {
                 </span>
               </ButtonLinkServer>
             ) : (
-              <ButtonLinkServer color="secondary" href={CONNEXION_PATH}>
+              <ButtonLinkServer
+                color="secondary"
+                href={CONNEXION_PATH}
+                data-track-event="Header|Click Mon Espace|Unauthenticated"
+                data-track-posthog='{"eventName":"click header mon espace","properties":{"status":"unauthenticated"}}'>
                 <Trans i18nKey="header.monEspace" locale={locale}>
                   Mon Espace
                 </Trans>
@@ -56,6 +65,32 @@ export default async function HeaderServer({ isSticky = true, locale }: Props) {
           </div>
         </div>
       </div>
+
+      <Script
+        id="header-tracking"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            document.addEventListener('click', (e) => {
+              const target = e.target.closest('[data-track-event]');
+              if (target) {
+                const eventData = target.dataset.trackEvent.split('|');
+                console.log('Matomo tracking:', eventData);
+                console.debug('Matomo tracking => ' + eventData.join(' => '));
+                window._paq?.push(['trackEvent', ...eventData]);
+              }
+              
+              const posthogTarget = e.target.closest('[data-track-posthog]');
+              if (posthogTarget) {
+                const { eventName, ...properties } = JSON.parse(posthogTarget.dataset.trackPosthog);
+                console.log('Posthog tracking:', { eventName, properties });
+                console.debug('Posthog tracking => "' + eventName + '" =>', properties);
+                window.posthog?.capture(eventName, properties);
+              }
+            });
+          `,
+        }}
+      />
     </header>
   )
 }
