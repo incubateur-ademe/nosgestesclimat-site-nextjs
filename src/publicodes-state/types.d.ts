@@ -1,3 +1,4 @@
+import type { AuthenticationMode } from '@/types/authentication'
 import type { Group } from '@/types/groups'
 import type {
   DottedName,
