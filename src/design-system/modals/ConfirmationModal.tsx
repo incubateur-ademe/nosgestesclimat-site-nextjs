@@ -11,6 +11,8 @@ type Props = {
   closeModal: () => void
   isLoading?: boolean
   children: ReactNode
+  ariaLabel?: string
+  ariaLabelledBy?: string
 }
 
 export default function ConfirmationModal({
@@ -18,9 +20,16 @@ export default function ConfirmationModal({
   closeModal,
   children,
   isLoading,
+  ariaLabel,
+  ariaLabelledBy,
 }: Props) {
   return (
-    <Modal isOpen closeModal={closeModal} hasAbortButton={false}>
+    <Modal
+      ariaLabel={ariaLabel}
+      ariaLabelledBy={ariaLabelledBy}
+      isOpen
+      closeModal={closeModal}
+      hasAbortButton={false}>
       <div>{children}</div>
 
       <div className="mt-12 flex flex-wrap justify-center gap-4 md:justify-normal">

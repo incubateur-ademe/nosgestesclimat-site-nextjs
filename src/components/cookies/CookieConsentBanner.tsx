@@ -32,10 +32,7 @@ export default function CookieConsentBanner({
     <Modal
       isOpen={isVisible && !isBoardOpen}
       aria={{
-        label: t(
-          'cookieConsent.board.title',
-          'Bannière de consentement aux cookies'
-        ),
+        label: t('cookieConsent.board.title', 'Panneau de gestion des cookies'),
       }}
       onAfterClose={() => setIsVisible(false)}
       className="!fixed !top-1/2 !left-1/2 !z-[10001] !mr-auto !w-[500px] !max-w-[calc(100vw-1rem)] !-translate-x-1/2 !-translate-y-1/2 rounded-2xl !border-0 !p-0 !shadow-2xl md:!top-auto md:!bottom-0 md:!left-0 md:!mb-8 md:!ml-8 md:!translate-x-0 md:!translate-y-0 md:!rounded-4xl"
@@ -92,29 +89,35 @@ export default function CookieConsentBanner({
             mieux piloter notre budget.
           </Trans>
         </p>
-        <div className="mt-6 flex w-full flex-row flex-wrap items-start justify-start gap-2 md:flex-nowrap md:items-center">
-          <Button
-            size="sm"
-            color="secondary"
-            onClick={openSettings}
-            data-testid="cookie-banner-customize-button">
-            <Trans i18nKey="cookies.banner.customize">Personnaliser</Trans>
-          </Button>
-          <Button
-            size="sm"
-            color="secondary"
-            onClick={refuseAll}
-            data-testid="cookie-banner-refuse-button">
-            <Trans i18nKey="cookies.banner.refuseAll">Tout refuser</Trans>
-          </Button>
-          <Button
-            size="sm"
-            color="primary"
-            onClick={acceptAll}
-            data-testid="cookie-banner-accept-button">
-            <Trans i18nKey="cookies.banner.acceptAll">Tout accepter</Trans>
-          </Button>
-        </div>
+        <ul className="mt-6 flex w-full flex-row flex-wrap items-start justify-start gap-2 md:flex-nowrap md:items-center">
+          <li>
+            <Button
+              size="sm"
+              color="secondary"
+              onClick={openSettings}
+              data-testid="cookie-banner-customize-button">
+              <Trans i18nKey="cookies.banner.customize">Personnaliser</Trans>
+            </Button>
+          </li>
+          <li>
+            <Button
+              size="sm"
+              color="secondary"
+              onClick={refuseAll}
+              data-testid="cookie-banner-refuse-button">
+              <Trans i18nKey="cookies.banner.refuseAll">Tout refuser</Trans>
+            </Button>
+          </li>
+          <li>
+            <Button
+              size="sm"
+              color="primary"
+              onClick={acceptAll}
+              data-testid="cookie-banner-accept-button">
+              <Trans i18nKey="cookies.banner.acceptAll">Tout accepter</Trans>
+            </Button>
+          </li>
+        </ul>
       </div>
     </Modal>
   )

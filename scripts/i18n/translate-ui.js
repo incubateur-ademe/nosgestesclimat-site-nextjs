@@ -4,15 +4,13 @@
 	Command: npm run translate:ui -- [options]
 */
 
-const cliProgress = require('cli-progress')
-const fs = require('fs')
-
-const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
-const deepl = require('@incubateur-ademe/nosgestesclimat-scripts/deepl')
-const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
-const c = require('ansi-colors')
-
-const paths = require('./paths')
+import cli from '@incubateur-ademe/nosgestesclimat-scripts/cli'
+import deepl from '@incubateur-ademe/nosgestesclimat-scripts/deepl'
+import utils from '@incubateur-ademe/nosgestesclimat-scripts/utils'
+import c from 'ansi-colors'
+import cliProgress from 'cli-progress'
+import fs from 'fs'
+import * as paths from './paths.js'
 
 const { srcLang, destLangs, force, remove } = cli.getArgs(
   'Calls the DeepL API to translate the UI from the French one.',

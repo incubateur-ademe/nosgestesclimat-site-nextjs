@@ -26,10 +26,10 @@ export default function WaterTotalNumber({ total, isSmall }: Props) {
     <div
       className={twMerge(
         'flex origin-top items-center justify-center pt-8 transition-transform duration-300 md:pt-12',
-        isSmall ? 'md:scale-75 md:pt-10 lg:pt-4' : 'scale-100'
+        isSmall ? 'md:scale-75 md:pt-4' : 'scale-100'
       )}>
       <div className="text-water text-center leading-0 font-medium whitespace-nowrap">
-        <span className="flex items-baseline justify-center gap-1">
+        <span className="mb flex items-baseline justify-center gap-1">
           <strong className="text-xl leading-none font-black md:text-4xl lg:text-6xl">
             {realFormattedValue}
           </strong>

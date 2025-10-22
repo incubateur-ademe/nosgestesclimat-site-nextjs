@@ -18,7 +18,7 @@ export default function ArticleBreadcrumbs({
 
   return (
     <Breadcrumbs
-      className="relative mb-10"
+      className="relative"
       linkClassName="normal-case"
       items={[
         { href: '/blog', label: t('Accueil Blog') },

@@ -148,20 +148,20 @@ export default function ActionCard({
           getBackgroundLightColor(category)
         )}>
         <Link
-          className="z-10 w-full no-underline"
+          className="z-10 w-full underline"
           onClick={() => trackEvent(actionsOpenAction(dottedName))}
           href={'/actions/' + encodeRuleName(dottedName)}>
           {icons && (
             <Emoji className="inline-flex justify-center">{icons}</Emoji>
           )}
 
-          <h2
+          <h3
             className={twMerge(
-              'mb-0 inline-block w-full text-center text-sm font-bold',
+              'mb-0 inline-block w-full text-center text-sm font-bold underline',
               getTextDarkColor(category)
             )}>
             {title}
-          </h2>
+          </h3>
         </Link>
       </div>
 
@@ -178,13 +178,26 @@ export default function ActionCard({
         </div>
         <div className="self-bottom flex w-full justify-between px-2">
           <button
-            title={t("Choisir l'action")}
+            title={
+              remainingQuestions?.length > 0
+                ? t("Choisir l'action - désactivé")
+                : actionChoices?.[dottedName]
+                  ? t('Annuler la sélection')
+                  : t("Choisir l'action")
+            }
             type="button"
+            aria-disabled={remainingQuestions?.length > 0}
             aria-pressed={actionChoices?.[dottedName]}
-            className={twMerge(hasRemainingQuestions ? 'grayscale' : '')}
-            onClick={handleChooseAction}>
+            aria-label={`${title} ${actionChoices?.[dottedName] ? t('actions.chooseAction.ariaLabel.selected', 'Action sélectionnée, annuler la sélection') : t('actions.chooseAction.ariaLabel.unselected', 'Sélectionner cette action')}`}
+            className={twMerge(
+              hasRemainingQuestions ? 'grayscale' : '',
+              'focus:ring-primary-700 focus:ring-2 focus:ring-offset-3 focus:outline-hidden'
+            )}
+            onClick={
+              remainingQuestions?.length > 0 ? () => {} : handleChooseAction
+            }>
             <CheckCircleIcon
-              className="fill-green-500"
+              className="fill-green-700"
               width="40"
               height="40"
             />
@@ -193,7 +206,11 @@ export default function ActionCard({
           {!Object.keys(actionChoices || {}).some((key) => {
             return key === dottedName && actionChoices?.[key]
           }) && (
-            <button title={t("Rejeter l'action")} onClick={handleRejectAction}>
+            <button
+              title={t("Rejeter l'action")}
+              onClick={handleRejectAction}
+              aria-label={`${title} ${actionChoices?.[dottedName] ? t('actions.rejectAction.ariaLabel.selected', 'Action rejetée') : t('actions.rejectAction.ariaLabel.unselected', 'Rejeter cette action')}`}
+              className="focus:ring-primary-700 focus:ring-2 focus:ring-offset-3 focus:outline-hidden">
               <CloseIcon width="40" height="40" className="fill-gray-600" />
             </button>
           )}

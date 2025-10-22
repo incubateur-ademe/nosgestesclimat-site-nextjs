@@ -1,6 +1,5 @@
-const { writeFileSync } = require('fs')
-
-const personas = require('@incubateur-ademe/nosgestesclimat/public/personas-fr.json')
+import personas from '@incubateur-ademe/nosgestesclimat/public/personas-fr.json' with { type: 'json' }
+import { writeFileSync } from 'fs'
 
 /**
  * @param {string} name

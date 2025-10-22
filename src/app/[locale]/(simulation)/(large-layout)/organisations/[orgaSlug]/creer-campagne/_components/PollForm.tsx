@@ -3,7 +3,7 @@
 import QuestionsComplementaires from '@/components/organisations/QuestionsComplementaires'
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
-import TextInputGroup from '@/design-system/inputs/TextInputGroup'
+import TextInput from '@/design-system/inputs/TextInput'
 import { useCreatePoll } from '@/hooks/organisations/polls/useCreatePoll'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Organisation } from '@/types/organisations'
@@ -68,7 +68,7 @@ export default function PollForm({ organisation }: Props) {
         onSubmit={isPending ? () => {} : handleSubmit(onSubmit)}
         id="poll-form">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <TextInputGroup
+          <TextInput
             label={<Trans>Nom de la campagne</Trans>}
             placeholder={t('ex : Campagne 2024, Classe de 6ème A, etc.')}
             {...register('name', {
@@ -78,12 +78,13 @@ export default function PollForm({ organisation }: Props) {
             data-cypress-id="poll-name-input"
           />
 
-          <TextInputGroup
+          <TextInput
             label={
               <p className="mb-0 flex w-full justify-between">
-                <Trans>Nombre de participants attendus</Trans>
+                <span>
+                  <Trans>Nombre de participants attendus</Trans>
+                </span>{' '}
                 <span className="text-secondary-700 font-bold italic">
-                  {' '}
                   <Trans>facultatif</Trans>
                 </span>
               </p>

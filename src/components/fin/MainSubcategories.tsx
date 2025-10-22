@@ -30,16 +30,17 @@ export default function MainSubcategories({ isLink }: Props) {
         className="text-lg md:text-2xl"
         title={titles[currentMetric]}
       />
-      <div className="flex flex-col items-start gap-4">
+      <ol className="flex flex-col items-start gap-4">
         {firstThreeSubcategories.map((subcategory, index) => (
-          <MainSubcategory
-            key={subcategory}
-            subcategory={subcategory}
-            index={index}
-            isLink={isLink}
-          />
+          <li className="w-full" key={subcategory}>
+            <MainSubcategory
+              subcategory={subcategory}
+              index={index}
+              isLink={isLink}
+            />
+          </li>
         ))}
-      </div>
+      </ol>
     </div>
   )
 }

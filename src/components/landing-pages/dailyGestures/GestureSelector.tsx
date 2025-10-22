@@ -32,7 +32,7 @@ export default function GestureSelector({
                   className={twMerge(
                     baseClassNames,
                     sizeClassNames.xs,
-                    'border-primary-100 bg-primary-50 text-primary-800 hover:bg-primary-100 my-1 border-2 transition-colors',
+                    'border-primary-100 bg-primary-50 text-primary-800 hover:bg-primary-100 focus:ring-primary-700 my-1 border-2 transition-colors focus:ring-2 focus:ring-offset-3 focus:outline-hidden',
                     selectedCategory === categoryName &&
                       'border-primary-500 bg-primary-100 text-primary-800'
                   )}
@@ -83,7 +83,7 @@ export default function GestureSelector({
           {gestures[selectedCategory].imageSrc && (
             <Image
               src={gestures[selectedCategory].imageSrc}
-              alt={gestures[selectedCategory].imageAlt ?? ''}
+              alt=""
               width="400"
               height="400"
               className="w-auto object-contain px-4"

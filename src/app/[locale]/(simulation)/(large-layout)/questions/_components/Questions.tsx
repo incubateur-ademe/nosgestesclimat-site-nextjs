@@ -18,7 +18,7 @@ export default function Questions() {
   )
 
   return (
-    <ul>
+    <ul role="list">
       {orderedQuestions.map((question) => (
         <Question key={question} question={question} />
       ))}

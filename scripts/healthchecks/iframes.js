@@ -1,6 +1,8 @@
-const axios = require('axios')
-const { chromium } = require('playwright')
-require('dotenv').config()
+import axios from 'axios'
+import dotenv from 'dotenv'
+import { chromium } from 'playwright'
+
+dotenv.config()
 
 const urls = [
   'https://www.lemonde.fr/chaleur-humaine/article/2025/01/30/mesurez-votre-impact-environnement-avec-le-calculateur-d-empreinte-carbone-et-eau_6523433_6125299.html',

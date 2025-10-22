@@ -12,7 +12,10 @@ export default async function BlogLayout({ children, params }: LayoutProps) {
     <ClientLayout locale={locale}>
       <Header isSticky={false} />
 
-      <main className="flex w-full flex-1 flex-col overflow-visible lg:mx-auto lg:px-0">
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="flex w-full flex-1 flex-col overflow-visible lg:mx-auto lg:px-0">
         {children}
       </main>
     </ClientLayout>

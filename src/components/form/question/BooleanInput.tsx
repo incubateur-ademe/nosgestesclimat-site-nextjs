@@ -27,6 +27,7 @@ export default function BooleanInput({
 
       <ChoiceInput
         label={t('Oui')}
+        labelText={t('Oui')}
         active={!isMissing && value ? true : false}
         onClick={() => setValue('oui')}
         {...props}
@@ -36,6 +37,7 @@ export default function BooleanInput({
 
       <ChoiceInput
         label={t('Non')}
+        labelText={t('Non')}
         active={!isMissing && !value ? true : false}
         onClick={() => setValue('non')}
         {...props}

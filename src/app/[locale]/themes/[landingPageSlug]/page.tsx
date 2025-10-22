@@ -277,6 +277,7 @@ export default async function ThematicLandingPage({
         )}
 
         <FAQ
+          locale={locale}
           questions={
             faq?.questions?.map(({ question, htmlAnswer }) => ({
               question,

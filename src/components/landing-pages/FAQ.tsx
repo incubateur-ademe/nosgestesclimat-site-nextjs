@@ -1,7 +1,9 @@
 import Separator from '@/design-system/layout/Separator'
+import type { Locale } from '@/i18nConfig'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 import PlusIcon from '../icons/PlusIcon'
+import Trans from '../translation/trans/TransServer'
 import Background from './Background'
 
 export default function FAQ({
@@ -10,6 +12,7 @@ export default function FAQ({
   isBackgroundSkewed = true,
   className,
   shouldUseDangerouslySetInnerHTML = false,
+  locale,
 }: {
   className?: string
   subTitle?: ReactNode
@@ -19,6 +22,7 @@ export default function FAQ({
   }[]
   isBackgroundSkewed?: boolean
   shouldUseDangerouslySetInnerHTML?: boolean
+  locale: Locale
 }) {
   return (
     <div
@@ -36,7 +40,9 @@ export default function FAQ({
 
       <div className="relative mx-auto flex w-full max-w-full flex-col gap-8 px-4 md:max-w-5xl md:flex-row md:gap-16 md:px-0">
         <div className="flex flex-col gap-4 pl-4 md:w-[240px] md:max-w-[240px] md:pl-0 md:text-left">
-          <h2 className="mb-0 text-2xl md:text-3xl">FAQ</h2>
+          <h2 className="mb-0 text-2xl md:text-3xl">
+            <Trans locale={locale}>FAQ</Trans>
+          </h2>
           <Separator className="my-0" />
           <p className="text-sm font-bold md:text-xl">{subTitle}</p>
         </div>
@@ -50,7 +56,12 @@ export default function FAQ({
                     {question}
                   </h3>
 
-                  <PlusIcon className="group-open:fill-primary-700 inline-block h-4 w-4 min-w-4 origin-center transform transition-transform duration-300 group-open:rotate-45" />
+                  <PlusIcon className="stroke-primary-700 inline-block h-4 w-4 min-w-4 origin-center transform transition-transform duration-300 group-open:rotate-45" />
+                  <span className="sr-only">
+                    <Trans locale={locale}>
+                      Cliquez pour afficher la réponse
+                    </Trans>
+                  </span>
                 </summary>
 
                 <div className="grid grid-rows-[0fr] transition-all duration-200 ease-in-out group-open:grid-rows-[1fr]">

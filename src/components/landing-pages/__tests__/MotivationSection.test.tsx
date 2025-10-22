@@ -5,7 +5,6 @@ import MotivationSection from '../MotivationSection'
 // Mock next/image to render a simple img for testing
 vi.mock('next/image', () => ({
   __esModule: true,
-  // eslint-disable-next-line @next/next/no-img-element
   default: (props: any) => <img alt="" {...props} />,
 }))
 

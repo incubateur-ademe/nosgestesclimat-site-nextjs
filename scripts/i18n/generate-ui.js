@@ -4,14 +4,13 @@
 	Command: npm run generate:ui
 */
 
-const fs = require('fs')
-const ramda = require('ramda')
-const child_process = require('child_process')
-const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
-const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
-const c = require('ansi-colors')
-
-const paths = require('./paths')
+import cli from '@incubateur-ademe/nosgestesclimat-scripts/cli'
+import utils from '@incubateur-ademe/nosgestesclimat-scripts/utils'
+import c from 'ansi-colors'
+import { execSync } from 'child_process'
+import fs from 'fs'
+import * as ramda from 'ramda'
+import * as paths from './paths.js'
 
 const { remove } = cli.getArgs(
   'Analyses the source code and extracts the corresponding i18next resource file.',
@@ -39,7 +38,7 @@ try {
   if (fs.existsSync(paths.staticAnalysisFrRes)) {
     fs.unlinkSync(paths.staticAnalysisFrRes)
   }
-  child_process.execSync(`i18next`)
+  execSync(`i18next`)
 } catch (err) {
   cli.printErr('ERROR: an error occured during the analysis!')
   cli.printErr(err.message)
@@ -51,7 +50,9 @@ if (!fs.existsSync(paths.staticAnalysisFrRes)) {
   process.exit(1)
 }
 
-const staticAnalysedFrResource = require(paths.staticAnalysisFrRes)
+const staticAnalysedFrResource = JSON.parse(
+  fs.readFileSync(paths.staticAnalysisFrRes, 'utf8')
+)
 let oldResources = {}
 try {
   oldResources = {
