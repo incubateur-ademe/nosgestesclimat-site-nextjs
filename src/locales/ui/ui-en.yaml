@@ -1611,3 +1611,26 @@ entries:
   signup.title.lock: Créez votre espace Nos Gestes Climat
   signIn.email.error.userAlreadyExists: You already have an account with this email address. Please log in directly.
   signIn.email.error.userAlreadyExists.lock: Ah ! Vous avez déjà un compte avec cet e-mail. Merci de vous connecter directement.
+  signIn.verificationForm.email.verificationCode.prefix: Enter the
+  signIn.verificationForm.email.verificationCode.prefix.lock: Entrez le
+  signIn.verificationForm.email.verificationCode.strong: verification code
+  signIn.verificationForm.email.verificationCode.strong.lock: code de vérification
+  signIn.verificationForm.email.verificationCode.suffix: 'sent to '
+  signIn.verificationForm.email.verificationCode.suffix.lock: 'envoyé à '
+  signIn.verificationForm.notReceived.resendButton: Resend code
+  signIn.verificationForm.notReceived.resendButton.lock: Renvoyer le code
+  signIn.verificationForm.notReceived.reloadPage: Reload page
+  signIn.verificationForm.notReceived.reloadPage.lock: Recharger la page
+  Vérifiez vos e-mails: Check your e-mails
+  signIn.verificationForm.notReceived.title: Didn't you receive a code?
+  signIn.verificationForm.notReceived.title.lock: Vous n'avez pas reçu de code ?
+  signIn.verificationForm.notReceived.resendButton.confirmation: Code returned
+  signIn.verificationForm.notReceived.resendButton.confirmation.lock: Code renvoyé
+  signIn.verificationForm.notReceived.resendButton.timeLeft: (Wait {timeLeft} seconds)
+  signIn.verificationForm.notReceived.resendButton.timeLeft.lock: (Attendre {timeLeft} secondes)
+  signIn.verificationForm.notReceived.backButton: Back to connection
+  signIn.verificationForm.notReceived.backButton.lock: Retour à la connexion
+  signIn.verificationForm.notReceived.error: Oops, there was an error sending your code...
+  signIn.verificationForm.notReceived.error.lock: Oups, une erreur s'est produite au moment de l'envoi de votre code...
+  signIn.verificationForm.notReceived.text: Check your spam or anti-spam tools (MailinBlack, Altospam, etc.)
+  signIn.verificationForm.notReceived.text.lock: Vérifiez vos spams ou outils anti-spam (MailinBlack, Altospam, etc...)

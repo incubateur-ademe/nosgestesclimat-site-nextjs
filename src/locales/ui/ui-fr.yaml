@@ -1341,3 +1341,15 @@ entries:
   signup.colourBlock.highlight3.title.strong1: Lancez
   signup.title: Créez votre espace Nos Gestes Climat
   signIn.email.error.userAlreadyExists: Ah ! Vous avez déjà un compte avec cet e-mail. Merci de vous connecter directement.
+  signIn.verificationForm.email.verificationCode.prefix: Entrez le
+  signIn.verificationForm.email.verificationCode.strong: code de vérification
+  signIn.verificationForm.email.verificationCode.suffix: 'envoyé à '
+  signIn.verificationForm.notReceived.backButton: Retour à la connexion
+  signIn.verificationForm.notReceived.error: Oups, une erreur s'est produite au moment de l'envoi de votre code...
+  signIn.verificationForm.notReceived.reloadPage: Recharger la page
+  signIn.verificationForm.notReceived.resendButton: Renvoyer le code
+  signIn.verificationForm.notReceived.resendButton.confirmation: Code renvoyé
+  signIn.verificationForm.notReceived.resendButton.timeLeft: (Attendre {timeLeft} secondes)
+  signIn.verificationForm.notReceived.text: Vérifiez vos spams ou outils anti-spam (MailinBlack, Altospam, etc...)
+  signIn.verificationForm.notReceived.title: Vous n'avez pas reçu de code ?
+  Vérifiez vos e-mails: Vérifiez vos e-mails
