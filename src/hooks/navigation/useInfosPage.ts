@@ -138,7 +138,14 @@ export function useInfosPage() {
       // if there is no additional question, we return the end page link
       return END_PAGE_PATH
     },
-    [pollSlug, poll, isLoading, customAdditionalQuestions, urlsInfosPages]
+    [
+      pollSlug,
+      poll,
+      isLoading,
+      customAdditionalQuestions,
+      searchParams,
+      urlsInfosPages,
+    ]
   )
 
   const getLinkToPrevInfosPage = useCallback(
