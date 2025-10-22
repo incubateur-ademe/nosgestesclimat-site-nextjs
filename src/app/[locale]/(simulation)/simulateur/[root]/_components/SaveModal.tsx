@@ -7,7 +7,7 @@ import Button from '@/design-system/buttons/Button'
 import Modal from '@/design-system/modals/Modal'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useIframe } from '@/hooks/useIframe'
+import { useIframeStatic } from '@/hooks/useIframeStatic'
 import { useCurrentSimulation, useFormState, useUser } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { isEmailValid } from '@/utils/isEmailValid'
@@ -104,7 +104,7 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
   ])
 
   // We do not display the component if we are in an iframeSimulation context
-  const { isIframeOnlySimulation } = useIframe()
+  const { isIframeOnlySimulation } = useIframeStatic()
   if (isIframeOnlySimulation) return null
 
   return (

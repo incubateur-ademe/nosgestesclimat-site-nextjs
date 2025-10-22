@@ -38,7 +38,7 @@ export default function FinPage() {
   const { currentMetric } = useCurrentMetric()
 
   const isIframe = getIsIframe()
-  const { isIframeShareData, isFrenchRegion } = useIframe()
+  const { isFrenchRegion, isIframeShareData } = useIframe()
 
   useEffect(() => {
     const titleTags = document.querySelectorAll('head > title')
@@ -48,6 +48,11 @@ export default function FinPage() {
     }
   }, [])
 
+  console.log({
+    isIframe,
+    isIframeShareData,
+    isFrenchRegion,
+  })
   // If the simulationIdInQueryParams is set, it means that the simulation is not loaded yet
   if (!isGuardInit || isGuardRedirecting) return <FinPageSkeleton />
 

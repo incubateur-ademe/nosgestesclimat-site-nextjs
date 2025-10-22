@@ -4,7 +4,7 @@ import {
 } from '@/helpers/navigation/simulateurPages'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
 import { useClientTranslation } from '../useClientTranslation'
 import { useLocale } from '../useLocale'
@@ -26,6 +26,7 @@ const getLinkToSimulateurPagePropsDefault = {
 }
 export function useSimulateurPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
 
   const { t } = useClientTranslation()
 
@@ -62,14 +63,27 @@ export function useSimulateurPage() {
 
       // If the user has seen the tutoriel we redirect him to the test
       if (tutorielSeen) {
-        router.replace(getLinkToSimulateur())
+        router.replace(
+          getLinkToSimulateur({
+            locale,
+            currentSearchParams: searchParams,
+          })
+        )
         return
       }
 
       // else we redirect him to the tutoriel page
       router.push(getLinkToTutoriel({ locale }))
     },
-    [progression, tutorielSeen, router, initSimulation, goToEndPage, locale]
+    [
+      progression,
+      tutorielSeen,
+      router,
+      initSimulation,
+      goToEndPage,
+      locale,
+      searchParams,
+    ]
   )
 
   const getLinkToSimulateurPage = useCallback(
@@ -83,13 +97,16 @@ export function useSimulateurPage() {
 
       // If the user has seen the tutoriel we return the test page link
       if (tutorielSeen) {
-        return getLinkToSimulateur()
+        return getLinkToSimulateur({
+          locale,
+          currentSearchParams: searchParams,
+        })
       }
 
       // else we return the tutoriel page link
       return getLinkToTutoriel({ locale })
     },
-    [progression, tutorielSeen, getLinkToEndPage, locale]
+    [progression, tutorielSeen, getLinkToEndPage, locale, searchParams]
   )
 
   const linkToSimulateurPageLabel = useMemo(() => {

@@ -18,11 +18,14 @@ export const useQuestionInQueryParams = () => {
   const setQuestionInQueryParams = useCallback(
     (question: DottedName) =>
       router.replace(
-        getLinkToSimulateur({ question, locale }),
-
+        getLinkToSimulateur({
+          question,
+          locale,
+          currentSearchParams: searchParams,
+        }),
         { scroll: false }
       ),
-    [router, locale]
+    [router, locale, searchParams]
   )
 
   return { questionInQueryParams, setQuestionInQueryParams }
