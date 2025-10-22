@@ -1,6 +1,5 @@
 'use client'
 
-import MailIcon from '@/components/icons/share/MailIcon'
 import VerificationCodeInput from '@/components/organisations/VerificationCodeInput'
 import Trans from '@/components/translation/trans/TransClient'
 
@@ -22,17 +21,22 @@ export default function VerificationContent({
   return (
     <>
       <h2 className="flex items-center gap-2">
-        <Trans>Vérifiez votre boîte e-mail !</Trans>
-        <MailIcon className="fill-primary-700 h-8 w-8" />
+        <Trans>Vérifiez vos e-mails</Trans>
       </h2>
 
       <p>
-        <Trans>Nous avons envoyé un</Trans>{' '}
+        <Trans i18nKey="signIn.verificationForm.email.verificationCode.prefix">
+          Entrez le
+        </Trans>{' '}
         <strong className="text-primary-700">
-          <Trans>code de vérification</Trans>
+          <Trans i18nKey="signIn.verificationForm.email.verificationCode.strong">
+            code de vérification
+          </Trans>
         </strong>{' '}
-        <Trans>à </Trans>
-        {email}.{' '}
+        <Trans i18nKey="signIn.verificationForm.email.verificationCode.suffix">
+          envoyé à{' '}
+        </Trans>
+        <span>{email}</span>.
       </p>
 
       <form>

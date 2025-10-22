@@ -1329,7 +1329,7 @@ entries:
   login.list.login.label: Connexion
   login.list.signin.label: Inscription
   login.login.title: Accédez à votre espace Nos Gestes Climat
-  signIn.email.error.userDoesNotExist: Nous n’avons pas d’e-mail enregistré à cette adresse. Veuillez vous inscrire pour accéder à votre espace.
+  signIn.email.error.userDoesNotExist: Ah ! Nous n’avons pas d’e-mail enregistré à cette adresse. Veuillez vous inscrire pour accéder à votre espace.
   signup.button.label: M'inscrire
   signup.colourBlock.highlight1.title.prefix: Retrouvez
   signup.colourBlock.highlight1.title.strong: vos résultats d’empreinte
@@ -1340,3 +1340,4 @@ entries:
   signup.colourBlock.highlight3.title.middle: et
   signup.colourBlock.highlight3.title.strong1: Lancez
   signup.title: Créez votre espace Nos Gestes Climat
+  signIn.email.error.userAlreadyExists: Ah ! Vous avez déjà un compte avec cet e-mail. Merci de vous connecter directement.

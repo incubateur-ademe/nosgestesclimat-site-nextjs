@@ -1,7 +1,6 @@
 'use client'
 
 import LockIcon from '@/components/icons/LockIcon'
-import SendIcon from '@/components/icons/SendIcon'
 import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import { organisationsConnexionClickCode } from '@/constants/tracking/pages/organisationsConnexion'
@@ -62,7 +61,6 @@ export default function ResendButton({
     <div className="flex items-center">
       <Button
         color="link"
-        size="sm"
         aria-disabled={isRetryButtonDisabled}
         aria-label={
           isRetryButtonDisabled
@@ -74,27 +72,34 @@ export default function ResendButton({
         {isRetryButtonDisabled && timeLeft > 0 && (
           <span className="mr-2 flex items-center">
             <LockIcon className="fill-primary-700 mr-2 h-4 w-4" />
-            <Trans>Renvoyer le code</Trans>
+            <Trans i18nKey="signIn.verificationForm.notReceived.resendButton">
+              Renvoyer le code
+            </Trans>
           </span>
         )}
 
         {shouldDisplayConfirmation && (
           <span className="flex items-center text-green-500 no-underline">
             <CheckCircleIcon className="mr-2 h-4 w-4 fill-green-500" />
-            <Trans>Code renvoyé</Trans>
+            <Trans i18nKey="signIn.verificationForm.notReceived.resendButton.confirmation">
+              Code renvoyé
+            </Trans>
           </span>
         )}
 
         {!shouldDisplayConfirmation && !isRetryButtonDisabled && (
           <span className="flex items-center underline">
-            <SendIcon className="fill-primary-700 mr-2 h-4 w-4" />
-            <Trans>Renvoyer le code</Trans>
+            <Trans i18nKey="signIn.verificationForm.notReceived.resendButton">
+              Renvoyer le code
+            </Trans>
           </span>
         )}
       </Button>
       {isRetryButtonDisabled && timeLeft > 0 && (
         <span className="text-xs font-normal text-gray-500 no-underline!">
-          <Trans>(Attendre</Trans> {timeLeft} <Trans>secondes)</Trans>
+          <Trans i18nKey="signIn.verificationForm.notReceived.resendButton.timeLeft">
+            (Attendre {timeLeft} secondes)
+          </Trans>
         </span>
       )}
     </div>

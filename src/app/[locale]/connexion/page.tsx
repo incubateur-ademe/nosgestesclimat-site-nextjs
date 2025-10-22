@@ -21,7 +21,7 @@ export default async function Connexion({ params }: DefaultPageProps) {
 
       <ContentLarge className="px-4 lg:px-0">
         <div className="flex justify-center gap-14 pb-32 lg:justify-start">
-          <div className="flex flex-col py-6 lg:max-w-1/2 lg:py-10">
+          <div className="flex flex-col py-6 lg:w-1/2 lg:py-10">
             <LoginSigninTabs
               className="-order-1 mb-8 lg:mb-14"
               locale={locale}
@@ -41,13 +41,13 @@ export default async function Connexion({ params }: DefaultPageProps) {
               <UserProvider
                 storageKey={STORAGE_KEY}
                 migrationInstructions={migrationInstructions}>
-                <SigninForm mode="signIn" />
+                <SigninForm mode="signIn" redirectURL="/profil" />
               </UserProvider>
             </QueryClientProviderWrapper>
           </div>
 
           <ColourBlock
-            className="hidden lg:block"
+            className="hidden w-1/2 lg:flex"
             highlights={[
               <span key="highlight1">
                 <Trans

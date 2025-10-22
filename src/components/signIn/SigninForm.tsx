@@ -10,9 +10,10 @@ import VerificationForm from './VerificationForm'
 type Props = {
   buttonLabel?: string
   mode?: AuthenticationMode
+  redirectURL?: string
 }
 
-export default function SigninForm({ buttonLabel, mode = 'signIn' }: Props) {
+export default function SigninForm({ buttonLabel, mode, redirectURL }: Props) {
   const { user } = useUser()
 
   const {
@@ -35,6 +36,7 @@ export default function SigninForm({ buttonLabel, mode = 'signIn' }: Props) {
         login={login}
         isPendingValidate={isPendingValidate}
         isSuccessValidate={isSuccessValidate}
+        redirectURL={redirectURL}
       />
     )
   }

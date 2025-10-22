@@ -11,11 +11,7 @@ import { useEffect, useRef, useState } from 'react'
 import NotReceived from './verificationForm/NotReceived'
 import VerificationContent from './verificationForm/VerificationContent'
 
-export default function VerificationForm({
-  login,
-  isPendingValidate,
-  isSuccessValidate,
-}: {
+type Props = {
   login: UseMutateAsyncFunction<
     any,
     Error,
@@ -27,7 +23,15 @@ export default function VerificationForm({
   >
   isPendingValidate: boolean
   isSuccessValidate: boolean
-}) {
+  redirectURL?: string
+}
+
+export default function VerificationForm({
+  login,
+  isPendingValidate,
+  isSuccessValidate,
+  redirectURL,
+}: Props) {
   const { updateLoginExpirationDate, user, updateUserOrganisation } = useUser()
 
   const [email, setEmail] = useState<string | undefined>(
@@ -87,6 +91,13 @@ export default function VerificationForm({
         code,
       })
 
+      // We want to bypass the organisation creation process if a redirect URL is provided
+      if (redirectURL) {
+        router.push(redirectURL)
+        return
+      }
+
+      // Otherwise, we fetch the organisations
       const { data: organisations } = await fetchOrganisations()
 
       // I don´t understand why refetch returns undefined
@@ -129,7 +140,7 @@ export default function VerificationForm({
     isPendingValidate || isSuccessValidate || isPendingResend || timeLeft > 0
 
   return (
-    <div className="mb-8 rounded-xl bg-gray-100 p-4 md:p-8">
+    <div className="mb-8 rounded-xl bg-[#F0F8FF] p-4 md:p-8">
       <div>
         <VerificationContent
           email={user?.organisation?.administratorEmail ?? ''}

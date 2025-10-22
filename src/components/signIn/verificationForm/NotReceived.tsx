@@ -1,7 +1,5 @@
 'use client'
 
-import EyeIcon from '@/components/icons/EyeIcon'
-import ReturnIcon from '@/components/icons/ReturnIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import { useUser } from '@/publicodes-state'
@@ -38,19 +36,17 @@ export default function NotReceived({
 
   return (
     <>
-      <h3 className="mt-12 text-base">
+      <h3 className="mt-12 text-lg">
         <strong>
-          <Trans>Vous n'avez pas reçu de code ?</Trans>
+          <Trans i18nKey="signIn.verificationForm.notReceived.title">
+            Vous n'avez pas reçu de code ?
+          </Trans>
         </strong>
       </h3>
-      <p className="mb-1 flex items-center text-sm">
-        <EyeIcon className="mr-2 h-4 w-4" />{' '}
-        <Trans>Avez-vous pensé à vérifier votre outil anti-spams ?</Trans>
-      </p>
-      <p className="mb-0 ml-6 text-xs text-gray-500">
-        <Trans>
-          Certaines organisations sont dotées d'un outil type MailinBlack,
-          Altospam, etc., qui bloque parfois nos emails.
+
+      <p className="mb-0">
+        <Trans i18nKey="signIn.verificationForm.notReceived.text">
+          Vérifiez vos spams ou outils anti-spam (MailinBlack, Altospam, etc...)
         </Trans>
       </p>
 
@@ -66,7 +62,7 @@ export default function NotReceived({
       {isErrorResend && (
         <div className="text-red-800">
           <p>
-            <Trans>
+            <Trans i18nKey="signIn.verificationForm.notReceived.error">
               Oups, une erreur s'est produite au moment de l'envoi de votre
               code...
             </Trans>
@@ -80,7 +76,9 @@ export default function NotReceived({
                 updateLoginExpirationDate(undefined)
                 window.location.reload()
               }}>
-              Recharger la page
+              <Trans i18nKey="signIn.verificationForm.notReceived.reloadPage">
+                Recharger la page
+              </Trans>
             </Button>
           </div>
         </div>
@@ -89,11 +87,10 @@ export default function NotReceived({
       <Button
         onClick={handleGoBackToForm}
         color="link"
-        size="sm"
         className="-mt-2 -ml-2 flex items-center font-normal">
-        <ReturnIcon className="fill-primary-700 mr-2 inline-block w-4" />
-
-        <Trans>Revenir au formulaire de connexion</Trans>
+        <Trans i18nKey="signIn.verificationForm.notReceived.backButton">
+          Retour à la connexion
+        </Trans>
       </Button>
     </>
   )

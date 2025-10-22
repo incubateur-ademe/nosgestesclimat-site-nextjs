@@ -1587,8 +1587,8 @@ entries:
   login.colourBlock.login.highlight3.end.lock: (organisations, famille, amis...)
   signup.button.label: Sign up
   signup.button.label.lock: M'inscrire
-  signIn.email.error.userDoesNotExist: We do not have an e-mail address registered at this address. Please register to access your space.
-  signIn.email.error.userDoesNotExist.lock: Nous n’avons pas d’e-mail enregistré à cette adresse. Veuillez vous inscrire pour accéder à votre espace.
+  signIn.email.error.userDoesNotExist: Oh, we don't have an e-mail address registered at this address. Please register to access your space.
+  signIn.email.error.userDoesNotExist.lock: Ah ! Nous n’avons pas d’e-mail enregistré à cette adresse. Veuillez vous inscrire pour accéder à votre espace.
   signup.colourBlock.highlight3.title.middle: and
   signup.colourBlock.highlight3.title.middle.lock: et
   login.list.login.label: Connection
@@ -1609,3 +1609,5 @@ entries:
   login.login.title.lock: Accédez à votre espace Nos Gestes Climat
   signup.title: Create your Nos Gestes Climat space
   signup.title.lock: Créez votre espace Nos Gestes Climat
+  signIn.email.error.userAlreadyExists: You already have an account with this email address. Please log in directly.
+  signIn.email.error.userAlreadyExists.lock: Ah ! Vous avez déjà un compte avec cet e-mail. Merci de vous connecter directement.

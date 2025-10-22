@@ -23,8 +23,8 @@ export default async function Connexion({ params }: DefaultPageProps) {
       <HeaderServer locale={locale} />
 
       <ContentLarge className="px-4 lg:px-0">
-        <div className="flex justify-center gap-14 pb-32 lg:justify-start">
-          <div className="flex flex-col py-6 lg:max-w-1/2 lg:py-10">
+        <div className="flex justify-center pb-32 lg:justify-start">
+          <div className="flex flex-col py-6 lg:w-1/2 lg:py-10 lg:pr-7">
             <LoginSigninTabs
               className="-order-1 mb-8 lg:mb-14"
               locale={locale}
@@ -47,13 +47,14 @@ export default async function Connexion({ params }: DefaultPageProps) {
                 <SigninForm
                   mode="signUp"
                   buttonLabel={t('signup.button.label', "M'inscrire")}
+                  redirectURL="/profil"
                 />
               </UserProvider>
             </QueryClientProviderWrapper>
           </div>
 
           <ColourBlock
-            className="hidden bg-fuchsia-50 lg:block"
+            className="ml-7 hidden w-1/2 bg-fuchsia-50 py-14 lg:flex"
             highlights={[
               <span key="highlight1">
                 <Trans

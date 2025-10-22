@@ -2,7 +2,10 @@
 
 import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
-import { ERROR_MESSAGE_USER_DOES_NOT_EXIST } from '@/constants/errors/authentication'
+import {
+  ERROR_MESSAGE_USER_ALREADY_EXISTS,
+  ERROR_MESSAGE_USER_DOES_NOT_EXIST,
+} from '@/constants/errors/authentication'
 import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
 import TextInput from '@/design-system/inputs/TextInput'
@@ -13,6 +16,7 @@ import type { AuthenticationMode } from '@/types/authentication'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { AxiosError } from 'axios'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 type Props = {
@@ -24,10 +28,7 @@ type FormData = {
   email: string
 }
 
-export default function EmailSigninForm({
-  buttonLabel,
-  mode = 'signIn',
-}: Props) {
+export default function EmailSigninForm({ buttonLabel, mode }: Props) {
   const { t } = useClientTranslation()
 
   const {
@@ -43,15 +44,15 @@ export default function EmailSigninForm({
     isError: isErrorCreateVerificationCode,
   } = useCreateVerificationCode()
 
-  const isUserDoesNotExistError =
+  const errorCode =
     errorCreateVerificationCode instanceof AxiosError &&
-    errorCreateVerificationCode.response?.data ===
-      ERROR_MESSAGE_USER_DOES_NOT_EXIST
+    errorCreateVerificationCode.response?.data
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<FormData>()
 
   async function onSubmit(data: FormData) {
@@ -84,6 +85,15 @@ export default function EmailSigninForm({
     }
   }
 
+  useEffect(() => {
+    if (user?.organisation?.administratorEmail || user?.email) {
+      setValue(
+        'email',
+        user?.organisation?.administratorEmail || user?.email || ''
+      )
+    }
+  }, [user?.organisation?.administratorEmail, user?.email, setValue])
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <TextInput
@@ -106,18 +116,33 @@ export default function EmailSigninForm({
         error={errors.email?.message}
       />
 
-      {isErrorCreateVerificationCode && !isUserDoesNotExistError && (
-        <DefaultSubmitErrorMessage className="mt-4" />
-      )}
+      {isErrorCreateVerificationCode &&
+        errorCode !== ERROR_MESSAGE_USER_DOES_NOT_EXIST &&
+        errorCode !== ERROR_MESSAGE_USER_ALREADY_EXISTS && (
+          <DefaultSubmitErrorMessage className="mt-4" />
+        )}
 
-      {isUserDoesNotExistError && (
+      {errorCode === ERROR_MESSAGE_USER_DOES_NOT_EXIST && (
         <Alert
           type="error"
           className="mt-4"
           description={
             <Trans i18nKey="signIn.email.error.userDoesNotExist">
-              Nous n’avons pas d’e-mail enregistré à cette adresse. Veuillez
-              vous inscrire pour accéder à votre espace.
+              Ah ! Nous n’avons pas d’e-mail enregistré à cette adresse.
+              Veuillez vous inscrire pour accéder à votre espace.
+            </Trans>
+          }
+        />
+      )}
+
+      {errorCode === ERROR_MESSAGE_USER_ALREADY_EXISTS && (
+        <Alert
+          type="error"
+          className="mt-4"
+          description={
+            <Trans i18nKey="signIn.email.error.userAlreadyExists">
+              Ah ! Vous avez déjà un compte avec cet e-mail. Merci de vous
+              connecter directement.
             </Trans>
           }
         />
