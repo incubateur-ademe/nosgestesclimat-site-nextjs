@@ -76,30 +76,6 @@ export default function getSortedQuestionsList({
       return 1
     }
 
-    // then, if other common category level exists, we keep questions within the same sub level category (and etc...) together. For exemple, rule names starting with "logement . chauffage . bois" must be together.
-
-    // We find the most common sub level category
-    let aSubLevelCategory = ''
-    let bSubLevelCategory = ''
-    for (
-      let i = 2;
-      i < Math.min(aSplittedName.length, bSplittedName.length);
-      i++
-    ) {
-      const possibleSubLevelCategory = aSplittedName.slice(0, i + 1).join(' . ')
-      if (
-        subcategories.includes(possibleSubLevelCategory) &&
-        possibleSubLevelCategory === bSplittedName.slice(0, i + 1).join(' . ')
-      ) {
-        aSubLevelCategory = possibleSubLevelCategory
-        bSubLevelCategory = possibleSubLevelCategory
-      }
-    }
-    // We keep them together
-    if (aSubLevelCategory === bSubLevelCategory) {
-      return 0
-    }
-
     // then by missing variables score. Note that if the question is not a missing variable, the score is undefined, so it will be at the end of the list.
     return missingVariables[b] - missingVariables[a]
   })
