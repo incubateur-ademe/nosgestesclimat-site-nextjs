@@ -1,9 +1,18 @@
 import ContentLarge from '@/components/layout/ContentLarge'
 import HeaderServer from '@/components/layout/HeaderServer'
+import { CONNEXION_PATH } from '@/constants/urls/paths'
+import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthenticated'
 import type { DefaultPageProps } from '@/types'
+import { redirect } from 'next/navigation'
 
 export default async function MonEspacePage({ params }: DefaultPageProps) {
   const { locale } = await params
+
+  const authenticatedUser = await getIsUserAuthenticated()
+
+  if (!authenticatedUser) {
+    redirect(CONNEXION_PATH)
+  }
 
   return (
     <>
