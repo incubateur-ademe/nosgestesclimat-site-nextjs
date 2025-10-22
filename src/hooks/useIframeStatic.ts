@@ -1,4 +1,4 @@
-import { IframeStaticContext } from '@/app/[locale]/_components/IframeStaticProvider'
+import { IframeOptionsContext } from '@/app/[locale]/_components/mainLayoutProviders/IframeOptionsContext'
 import { useContext } from 'react'
 
-export const useIframeStatic = () => useContext(IframeStaticContext)
+export const useIframeStatic = () => useContext(IframeOptionsContext)

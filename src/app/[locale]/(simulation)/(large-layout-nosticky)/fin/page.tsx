@@ -11,7 +11,6 @@ import Title from '@/design-system/layout/Title'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useIframe } from '@/hooks/useIframe'
-import { useIframeStatic } from '@/hooks/useIframeStatic'
 import type { Metric } from '@/publicodes-state/types'
 import { getIsIframe } from '@/utils/getIsIframe'
 import { useEffect, type ReactElement } from 'react'
@@ -39,8 +38,7 @@ export default function FinPage() {
   const { currentMetric } = useCurrentMetric()
 
   const isIframe = getIsIframe()
-  const { isIframeShareData } = useIframeStatic()
-  const { isFrenchRegion } = useIframe()
+  const { isFrenchRegion, isIframeShareData } = useIframe()
 
   useEffect(() => {
     const titleTags = document.querySelectorAll('head > title')
@@ -50,6 +48,11 @@ export default function FinPage() {
     }
   }, [])
 
+  console.log({
+    isIframe,
+    isIframeShareData,
+    isFrenchRegion,
+  })
   // If the simulationIdInQueryParams is set, it means that the simulation is not loaded yet
   if (!isGuardInit || isGuardRedirecting) return <FinPageSkeleton />
 
