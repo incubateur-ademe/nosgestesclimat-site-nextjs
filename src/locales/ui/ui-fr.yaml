@@ -1317,3 +1317,26 @@ entries:
   profile.answers.subcategory.unfold: Déplier les questions pour cette sous-catégorie
   simulator.navigation.nextButton.dontKnow.label: Je ne sais pas
   simulator.navigation.nextButton.skip.label: Passer la question
+  login.colourBlock.highlight1.title.prefix: Visualisez
+  login.colourBlock.highlight1.title.strong: vos derniers résultats
+  login.colourBlock.highlight2.title.prefix: Continuez à
+  login.colourBlock.highlight2.title.strong: progresser dans vos actions climat
+  login.colourBlock.highlight3.title.end: en cours
+  login.colourBlock.highlight3.title.prefix: Accédez à
+  login.colourBlock.highlight3.title.strong: vos défis collectifs
+  login.colourBlock.login.highlight3.end: (organisations, famille, amis...)
+  login.colourBlock.login.highlight3.strong2: retrouvez vos tests collectifs
+  login.list.login.label: Connexion
+  login.list.signin.label: Inscription
+  login.login.title: Accédez à votre espace Nos Gestes Climat
+  signIn.email.error.userDoesNotExist: Nous n’avons pas d’e-mail enregistré à cette adresse. Veuillez vous inscrire pour accéder à votre espace.
+  signup.button.label: M'inscrire
+  signup.colourBlock.highlight1.title.prefix: Retrouvez
+  signup.colourBlock.highlight1.title.strong: vos résultats d’empreinte
+  signup.colourBlock.highlight2.title.middle: et
+  signup.colourBlock.highlight2.title.prefix: Découvrez
+  signup.colourBlock.highlight2.title.strong1: vos actions climat personnalisées
+  signup.colourBlock.highlight2.title.strong2: suivez vos progrès
+  signup.colourBlock.highlight3.title.middle: et
+  signup.colourBlock.highlight3.title.strong1: Lancez
+  signup.title: Créez votre espace Nos Gestes Climat

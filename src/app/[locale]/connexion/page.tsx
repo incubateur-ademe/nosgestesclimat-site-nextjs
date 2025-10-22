@@ -50,12 +50,14 @@ export default async function Connexion({ params }: DefaultPageProps) {
             className="hidden lg:block"
             highlights={[
               <span key="highlight1">
-                <Trans i18nKey="login.colourBlock.highlight1" locale={locale}>
+                <Trans
+                  i18nKey="login.colourBlock.highlight1.title.prefix"
+                  locale={locale}>
                   Visualisez
                 </Trans>{' '}
                 <strong>
                   <Trans
-                    i18nKey="login.colourBlock.login.highlight1.strong"
+                    i18nKey="login.colourBlock.highlight1.title.strong"
                     locale={locale}>
                     vos derniers résultats
                   </Trans>
@@ -63,31 +65,33 @@ export default async function Connexion({ params }: DefaultPageProps) {
               </span>,
               <span key="highlight2">
                 <Trans
-                  i18nKey="login.colourBlock.login.highlight2"
+                  i18nKey="login.colourBlock.highlight2.title.prefix"
                   locale={locale}>
                   Continuez à
                 </Trans>{' '}
                 <strong>
                   <Trans
-                    i18nKey="login.colourBlock.login.highlight2.strong"
+                    i18nKey="login.colourBlock.highlight2.title.strong"
                     locale={locale}>
                     progresser dans vos actions climat
                   </Trans>
                 </strong>
               </span>,
               <span key="highlight3">
-                <Trans i18nKey="login.colourBlock.highlight3" locale={locale}>
+                <Trans
+                  i18nKey="login.colourBlock.highlight3.title.prefix"
+                  locale={locale}>
                   Accédez à
                 </Trans>{' '}
                 <strong>
                   <Trans
-                    i18nKey="login.colourBlock.login.highlight3.strong"
+                    i18nKey="login.colourBlock.highlight3.title.strong"
                     locale={locale}>
                     vos défis collectifs
                   </Trans>
                 </strong>{' '}
                 <Trans
-                  i18nKey="login.colourBlock.login.highlight3.end"
+                  i18nKey="login.colourBlock.highlight3.title.end"
                   locale={locale}>
                   en cours
                 </Trans>

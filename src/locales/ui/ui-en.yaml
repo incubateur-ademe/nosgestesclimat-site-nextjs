@@ -1563,3 +1563,49 @@ entries:
   common.navigation.nextQuestion.pass.title.lock: Passer et aller à la question suivante
   common.navigation.nextQuestion.dontKnow.title: I don't know, skip to the next question
   common.navigation.nextQuestion.dontKnow.title.lock: Je ne sais pas, passer et aller à la question suivante
+  signup.colourBlock.highlight3.title.strong1: Launch
+  signup.colourBlock.highlight3.title.strong1.lock: Lancez
+  login.colourBlock.highlight3.title.end: in progress
+  login.colourBlock.highlight3.title.end.lock: en cours
+  login.colourBlock.highlight3.title.strong: your collective challenges
+  login.colourBlock.highlight3.title.strong.lock: vos défis collectifs
+  login.list.signin.label: Registration
+  login.list.signin.label.lock: Inscription
+  signup.colourBlock.highlight2.title.middle: and
+  signup.colourBlock.highlight2.title.middle.lock: et
+  login.colourBlock.highlight1.title.strong: your latest results
+  login.colourBlock.highlight1.title.strong.lock: vos derniers résultats
+  login.colourBlock.highlight1.title.prefix: Visit
+  login.colourBlock.highlight1.title.prefix.lock: Visualisez
+  login.colourBlock.highlight2.title.prefix: Continue to
+  login.colourBlock.highlight2.title.prefix.lock: Continuez à
+  signup.colourBlock.highlight2.title.strong2: track your progress
+  signup.colourBlock.highlight2.title.strong2.lock: suivez vos progrès
+  login.colourBlock.login.highlight3.strong2: find your group tests
+  login.colourBlock.login.highlight3.strong2.lock: retrouvez vos tests collectifs
+  login.colourBlock.login.highlight3.end: (organisations, family, friends...)
+  login.colourBlock.login.highlight3.end.lock: (organisations, famille, amis...)
+  signup.button.label: Sign up
+  signup.button.label.lock: M'inscrire
+  signIn.email.error.userDoesNotExist: We do not have an e-mail address registered at this address. Please register to access your space.
+  signIn.email.error.userDoesNotExist.lock: Nous n’avons pas d’e-mail enregistré à cette adresse. Veuillez vous inscrire pour accéder à votre espace.
+  signup.colourBlock.highlight3.title.middle: and
+  signup.colourBlock.highlight3.title.middle.lock: et
+  login.list.login.label: Connection
+  login.list.login.label.lock: Connexion
+  signup.colourBlock.highlight1.title.strong: your impression results
+  signup.colourBlock.highlight1.title.strong.lock: vos résultats d’empreinte
+  signup.colourBlock.highlight1.title.prefix: Visit
+  signup.colourBlock.highlight1.title.prefix.lock: Retrouvez
+  login.colourBlock.highlight3.title.prefix: Go to
+  login.colourBlock.highlight3.title.prefix.lock: Accédez à
+  signup.colourBlock.highlight2.title.prefix: Discover
+  signup.colourBlock.highlight2.title.prefix.lock: Découvrez
+  signup.colourBlock.highlight2.title.strong1: your personalised climate actions
+  signup.colourBlock.highlight2.title.strong1.lock: vos actions climat personnalisées
+  login.colourBlock.highlight2.title.strong: make progress on your climate actions
+  login.colourBlock.highlight2.title.strong.lock: progresser dans vos actions climat
+  login.login.title: Access your Nos Gestes Climat area
+  login.login.title.lock: Accédez à votre espace Nos Gestes Climat
+  signup.title: Create your Nos Gestes Climat space
+  signup.title.lock: Créez votre espace Nos Gestes Climat
