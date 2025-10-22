@@ -1,4 +1,8 @@
-import { CONNEXION_PATH, MON_ESPACE_PATH } from '@/constants/urls/paths'
+import {
+  CONNEXION_PATH,
+  MON_ESPACE_PATH,
+  SIMULATOR_PATH,
+} from '@/constants/urls/paths'
 import ButtonLinkServer from '@/design-system/buttons/ButtonLinkServer'
 import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthenticated'
 import type { Locale } from '@/i18nConfig'
@@ -10,11 +14,16 @@ import Trans from '../translation/trans/TransServer'
 type Props = {
   isSticky?: boolean
   locale: Locale
+  isOldVersion?: boolean
 }
 
 const MAX_EMAIL_LENGTH = 20
 
-export default async function HeaderServer({ isSticky = true, locale }: Props) {
+export default async function HeaderServer({
+  isSticky = true,
+  locale,
+  isOldVersion = false,
+}: Props) {
   const authenticatedUser = await getIsUserAuthenticated()
 
   return (
@@ -29,40 +38,51 @@ export default async function HeaderServer({ isSticky = true, locale }: Props) {
             <LogoLinkServer />
           </div>
 
-          <div className="flex h-full items-center">
-            {authenticatedUser ? (
-              <ButtonLinkServer
-                size="sm"
-                color="secondary"
-                href={MON_ESPACE_PATH}
-                className="inline-block"
-                data-track-event="Header|Click Mon Espace|Authenticated"
-                data-track-posthog={
-                  '{"eventName":"click header mon espace","properties":{"status":"authenticated"}}'
-                }>
-                <Trans i18nKey="header.monEspace" locale={locale}>
-                  Mon Espace
-                </Trans>{' '}
-                <span>
-                  (
-                  {authenticatedUser.email.length > MAX_EMAIL_LENGTH
-                    ? `${authenticatedUser.email.substring(0, MAX_EMAIL_LENGTH)}...`
-                    : authenticatedUser.email}
-                  )
-                </span>
-              </ButtonLinkServer>
-            ) : (
-              <ButtonLinkServer
-                color="secondary"
-                href={CONNEXION_PATH}
-                data-track-event="Header|Click Mon Espace|Unauthenticated"
-                data-track-posthog='{"eventName":"click header mon espace","properties":{"status":"unauthenticated"}}'>
-                <Trans i18nKey="header.monEspace" locale={locale}>
-                  Mon Espace
+          {!isOldVersion && (
+            <div className="flex h-full items-center">
+              {authenticatedUser ? (
+                <ButtonLinkServer
+                  size="sm"
+                  color="secondary"
+                  href={MON_ESPACE_PATH}
+                  className="inline-block"
+                  data-track-event="Header|Click Mon Espace|Authenticated"
+                  data-track-posthog={
+                    '{"eventName":"click header mon espace","properties":{"status":"authenticated"}}'
+                  }>
+                  <Trans i18nKey="header.monEspace" locale={locale}>
+                    Mon Espace
+                  </Trans>{' '}
+                  <span>
+                    (
+                    {authenticatedUser.email.length > MAX_EMAIL_LENGTH
+                      ? `${authenticatedUser.email.substring(0, MAX_EMAIL_LENGTH)}...`
+                      : authenticatedUser.email}
+                    )
+                  </span>
+                </ButtonLinkServer>
+              ) : (
+                <ButtonLinkServer
+                  color="secondary"
+                  href={CONNEXION_PATH}
+                  data-track-event="Header|Click Mon Espace|Unauthenticated"
+                  data-track-posthog='{"eventName":"click header mon espace","properties":{"status":"unauthenticated"}}'>
+                  <Trans i18nKey="header.monEspace" locale={locale}>
+                    Mon Espace
+                  </Trans>
+                </ButtonLinkServer>
+              )}
+            </div>
+          )}
+          {isOldVersion && (
+            <div className="flex h-full items-center">
+              <ButtonLinkServer color="secondary" href={SIMULATOR_PATH}>
+                <Trans i18nKey="header.simulateur" locale={locale}>
+                  Accéder au test
                 </Trans>
               </ButtonLinkServer>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
 
