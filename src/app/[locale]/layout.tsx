@@ -121,8 +121,10 @@ export default async function RootLayout({
             src="https://tally.so/widgets/embed.js"
             strategy="lazyOnload"></Script>
         </head>
-
-        {children}
+        <body
+          className={`${marianne.className} text-default bg-white transition-colors duration-700`}>
+          {children}
+        </body>
       </html>
     )
   } catch (error) {

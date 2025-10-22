@@ -3,7 +3,7 @@ import EngineProviders from '@/components/providers/EngineProviders'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import type { DefaultPageProps } from '@/types'
 import type { PropsWithChildren } from 'react'
-import { ClientLayout } from '../_components/ClientLayout'
+import { ClientLayout } from '../../../components/layout/ClientLayout'
 
 type LayoutProps = PropsWithChildren & DefaultPageProps
 

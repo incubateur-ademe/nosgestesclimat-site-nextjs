@@ -15,7 +15,7 @@ import {
 } from '@/helpers/tracking/landings'
 import type { DefaultPageProps } from '@/types'
 import { headers } from 'next/headers'
-import { ClientLayout } from '../_components/ClientLayout'
+import { ClientLayout } from '../../../components/layout/ClientLayout'
 import InteractiveIllustration from '../_components/InteractiveIllustration'
 
 export const generateMetadata = getCommonMetadata({

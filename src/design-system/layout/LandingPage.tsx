@@ -1,4 +1,4 @@
-import Header from '@/components/layout/Header'
+import Header from '@/components/layout/HeaderClient'
 import type { ReactNode } from 'react'
 import Main from './Main'
 import Hero from './landingPage/Hero'

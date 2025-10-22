@@ -1277,6 +1277,7 @@ entries:
   Pourquoi avons-nous ajouté l'empreinte eau ?: Pourquoi avons-nous ajouté l'empreinte eau ?
   common.mainLandingPage.numberPersons: 2,5 millions de personnes
   common.mainLandingPage.tookTheirTest: ont déjà calculé leur empreinte !
+  Accéder au test: Accéder au test
   Activé: Activé
   common.inputs.email.label: Entrez votre adresse e-mail
   common.mobile.bottomMenu.title: Menu secondaire
@@ -1308,3 +1309,11 @@ entries:
   Annuler la sélection: Annuler la sélection
   Choisir l'action: Choisir l'action
   Choisir l'action - désactivé: Choisir l'action - désactivé
+  common.navigation.nextQuestion.dontKnow.title: Je ne sais pas, passer et aller à la question suivante
+  common.navigation.nextQuestion.pass.title: Passer et aller à la question suivante
+  profile.answers.category.fold: Replier les questions pour cette catégorie
+  profile.answers.category.unfold: Déplier les questions pour cette catégorie
+  profile.answers.subcategory.fold: Replier les questions pour cette sous-catégorie
+  profile.answers.subcategory.unfold: Déplier les questions pour cette sous-catégorie
+  simulator.navigation.nextButton.dontKnow.label: Je ne sais pas
+  simulator.navigation.nextButton.skip.label: Passer la question
