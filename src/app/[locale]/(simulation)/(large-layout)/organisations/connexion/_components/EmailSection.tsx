@@ -1,10 +1,10 @@
 'use client'
 
+import EmailSigninForm from '@/components/signIn/EmailSigninForm'
 import useLogin from '@/hooks/authentication/useLogin'
 import { useUser } from '@/publicodes-state'
 import dayjs from 'dayjs'
-import EmailForm from './emailSection/EmailForm'
-import VerificationForm from './emailSection/VerificationForm'
+import VerificationForm from '../../../../../../../components/signIn/VerificationForm'
 
 export default function EmailSection() {
   const { user } = useUser()
@@ -33,5 +33,5 @@ export default function EmailSection() {
     )
   }
 
-  return <EmailForm />
+  return <EmailSigninForm />
 }

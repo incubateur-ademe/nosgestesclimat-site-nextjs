@@ -36,3 +36,5 @@ export const HIDE_CTA_PATHS = [
   '/organisations/creer',
   '/organisations/demander-demo',
 ]
+
+export const CHECK_USER_EXISTS_URL = SERVER_URL + '/v1/me'

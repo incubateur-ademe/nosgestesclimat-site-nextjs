@@ -33,7 +33,7 @@ export default function NotReceived({
     // Reset the login expiration date
     updateLoginExpirationDate(undefined)
 
-    router.push('/organisations/connexion')
+    router.refresh()
   }
 
   return (

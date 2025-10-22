@@ -1,27 +1,43 @@
 'use client'
 
-import Button from '@/design-system/buttons/Button'
-import EmailInput from '@/design-system/inputs/EmailInput'
-import Trans from '../translation/trans/TransClient'
+import useLogin from '@/hooks/authentication/useLogin'
+import type { Mode } from '@/hooks/verification-codes/useCreateVerificationCode'
+import { useUser } from '@/publicodes-state'
+import dayjs from 'dayjs'
+import EmailSigninForm from './EmailSigninForm'
+import VerificationForm from './VerificationForm'
 
 type Props = {
   buttonLabel?: string
+  mode?: Mode
 }
 
-export default function SigninForm({ buttonLabel }: Props) {
-  return (
-    <form>
-      <EmailInput
-        label={<Trans i18nKey="login.emailInput.label">Adresse e-mail</Trans>}
-      />
+export default function SigninForm({ buttonLabel, mode = 'signIn' }: Props) {
+  const { user } = useUser()
 
-      <Button type="submit" className="mt-7">
-        {buttonLabel ?? (
-          <Trans i18nKey="login.emailInput.button.label">
-            Accéder à mon espace
-          </Trans>
-        )}
-      </Button>
-    </form>
-  )
+  const {
+    mutateAsync: login,
+    isPending: isPendingValidate,
+    isSuccess: isSuccessValidate,
+  } = useLogin()
+
+  const hasSavedValidLoginExpirationDate = user?.loginExpirationDate
+    ? dayjs(user?.loginExpirationDate).isAfter(dayjs())
+    : false
+
+  if (!user) return null
+
+  // We want to keep displaying the verification form when validated
+  // until redirecting to the next page
+  if (hasSavedValidLoginExpirationDate || isSuccessValidate) {
+    return (
+      <VerificationForm
+        login={login}
+        isPendingValidate={isPendingValidate}
+        isSuccessValidate={isSuccessValidate}
+      />
+    )
+  }
+
+  return <EmailSigninForm buttonLabel={buttonLabel} mode={mode} />
 }

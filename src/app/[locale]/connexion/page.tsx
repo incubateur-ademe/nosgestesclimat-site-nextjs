@@ -6,8 +6,12 @@ import LoginSigninTabs, {
 } from '@/components/signIn/LoginSigninTabs'
 import SigninForm from '@/components/signIn/SigninForm'
 import Trans from '@/components/translation/trans/TransServer'
+import { STORAGE_KEY } from '@/constants/storage'
 import Title from '@/design-system/layout/Title'
+import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
+import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
+import QueryClientProviderWrapper from '../_components/mainLayoutProviders/QueryClientProviderWrapper'
 
 export default async function Connexion({ params }: DefaultPageProps) {
   const { locale } = await params
@@ -18,7 +22,7 @@ export default async function Connexion({ params }: DefaultPageProps) {
 
       <ContentLarge className="px-4 lg:px-0">
         <div className="flex justify-center gap-14 pb-32 lg:justify-start">
-          <div className="flex flex-col py-6 lg:py-10">
+          <div className="flex flex-col py-6 lg:max-w-1/2 lg:py-10">
             <LoginSigninTabs
               className="-order-1 mb-8 lg:mb-14"
               locale={locale}
@@ -34,7 +38,13 @@ export default async function Connexion({ params }: DefaultPageProps) {
               }
             />
 
-            <SigninForm />
+            <QueryClientProviderWrapper>
+              <UserProvider
+                storageKey={STORAGE_KEY}
+                migrationInstructions={migrationInstructions}>
+                <SigninForm mode="signIn" />
+              </UserProvider>
+            </QueryClientProviderWrapper>
           </div>
 
           <ColourBlock
