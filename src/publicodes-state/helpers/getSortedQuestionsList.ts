@@ -1,3 +1,4 @@
+import { getGroupedQuestionsFromSubcat } from '@/helpers/publicodes/getGroupedQuestionsFromSubcat'
 import { getSubcatsOfCategory } from '@/helpers/publicodes/getSubcatsOfCategory'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
@@ -14,7 +15,6 @@ export default function getSortedQuestionsList({
   categories,
   subcategories,
   missingVariables,
-  answeredQuestions = [],
 }: Props): DottedName[] {
   return questions.sort((a, b) => {
     const aSplittedName = a.split(' . ')
@@ -65,9 +65,31 @@ export default function getSortedQuestionsList({
       return -1
     }
 
-    // then, if question is already answered, it must be before others : we can't have a non-answered question before an answered one
-    const aIsAnswered = answeredQuestions.includes(a)
-    const bIsAnswered = answeredQuestions.includes(b)
+    // At this point, both questions are in the same subcategory.
+
+    // then we make sure that questions with common 3 level subsubcategory stay together, and are ordered by missing variables score, and answered status
+    const subcatsOrderedQuestions = getGroupedQuestionsFromSubcat(
+      questions,
+      aCategoryAndSubcategory as DottedName,
+      missingVariables
+    )
+
+    if (
+      subcatsOrderedQuestions.indexOf(a) > subcatsOrderedQuestions.indexOf(b)
+    ) {
+      return 1
+    }
+    if (
+      subcatsOrderedQuestions.indexOf(a) < subcatsOrderedQuestions.indexOf(b)
+    ) {
+      return -1
+    }
+
+    // We should reach this point only for questions at the root level of a category.
+    // if question is already answered, it must be before others : we can't have a non-answered question before an answered one. A question is considered answered if its missingVariables score is undefined.
+
+    const aIsAnswered = missingVariables[a] === undefined
+    const bIsAnswered = missingVariables[b] === undefined
 
     if (aIsAnswered && !bIsAnswered) {
       return -1
@@ -75,8 +97,6 @@ export default function getSortedQuestionsList({
     if (!aIsAnswered && bIsAnswered) {
       return 1
     }
-
-    // then by missing variables score. Note that if the question is not a missing variable, the score is undefined, so it will be at the end of the list.
-    return missingVariables[b] - missingVariables[a]
+    return (missingVariables[b] ?? 0) - (missingVariables[a] ?? 0)
   })
 }

@@ -180,15 +180,8 @@ export default function useQuestions({
       categories,
       subcategories,
       missingVariables,
-      answeredQuestions: relevantAnsweredQuestions,
     })
-  }, [
-    categories,
-    missingVariables,
-    subcategories,
-    tempRelevantQuestions,
-    relevantAnsweredQuestions,
-  ])
+  }, [categories, missingVariables, subcategories, tempRelevantQuestions])
 
   const questionsByCategories = useMemo(
     () =>
