@@ -1,8 +1,11 @@
+import { SIGNUP_MODE } from '@/constants/authentication/modes'
+import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import useFetchOrganisations from '@/hooks/organisations/useFetchOrganisations'
 import useTimeLeft from '@/hooks/organisations/useTimeleft'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCreateVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
 import { useUser } from '@/publicodes-state'
+import type { AuthenticationMode } from '@/types/authentication'
 import { captureException } from '@sentry/nextjs'
 import type { UseMutateAsyncFunction } from '@tanstack/react-query'
 import dayjs from 'dayjs'
@@ -24,6 +27,7 @@ type Props = {
   isPendingValidate: boolean
   isSuccessValidate: boolean
   redirectURL?: string
+  mode?: AuthenticationMode
 }
 
 export default function VerificationForm({
@@ -31,6 +35,7 @@ export default function VerificationForm({
   isPendingValidate,
   isSuccessValidate,
   redirectURL,
+  mode,
 }: Props) {
   const { updateVerificationCodeExpirationDate, user, updateUserOrganisation } =
     useUser()
@@ -97,7 +102,9 @@ export default function VerificationForm({
 
       // We want to bypass the organisation creation process if a redirect URL is provided
       if (redirectURL) {
-        router.push(redirectURL)
+        router.push(
+          `${redirectURL}${mode === SIGNUP_MODE ? `?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true` : ''}`
+        )
         return
       }
 
