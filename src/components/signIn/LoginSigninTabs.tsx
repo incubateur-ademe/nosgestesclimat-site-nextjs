@@ -3,7 +3,6 @@ import { CONNEXION_PATH, INSCRIPTION_PATH } from '@/constants/urls/paths'
 import type { Locale } from '@/i18nConfig'
 import type { AuthenticationMode } from '@/types/authentication'
 import Link from 'next/link'
-import Script from 'next/script'
 import Trans from '../translation/trans/TransServer'
 
 type Props = {
@@ -74,7 +73,7 @@ export default function LoginSigninTabs({ locale, mode, className }: Props) {
         </ul>
       </nav>
 
-      <Script
+      {/* <Script
         id="login-signin-tabs-tracking-global"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
@@ -131,7 +130,7 @@ export default function LoginSigninTabs({ locale, mode, className }: Props) {
             }
           `,
         }}
-      />
+      /> */}
     </div>
   )
 }
