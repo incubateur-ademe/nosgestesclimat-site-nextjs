@@ -51,7 +51,6 @@ export default async function Connexion({ params }: DefaultPageProps) {
 
             <QueryClientProviderWrapper>
               <UserProvider
-                key="signup-form"
                 storageKey={STORAGE_KEY}
                 migrationInstructions={migrationInstructions}>
                 <SigninForm

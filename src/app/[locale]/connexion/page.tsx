@@ -48,7 +48,6 @@ export default async function Connexion({ params }: DefaultPageProps) {
 
             <QueryClientProviderWrapper>
               <UserProvider
-                key="signin-form"
                 storageKey={STORAGE_KEY}
                 migrationInstructions={migrationInstructions}>
                 <SigninForm mode="signIn" redirectURL={MON_ESPACE_PATH} />
