@@ -1557,3 +1557,9 @@ entries:
   common.navigation.nextQuestion.dontKnow.title.lock: Je ne sais pas, passer et aller à la question suivante
   90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² on average for a household of 2.2 people.
   sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: over the last 50 years, from 23 to 40 m² per inhabitant, i.e
+  simulator.navigation.nextButton.dontKnow: I don't know
+  simulator.navigation.nextButton.dontKnow.lock: Je ne sais pas
+  simulator.navigation.nextButton.skip: Skip the question
+  simulator.navigation.nextButton.skip.lock: Passer la question
+  common.navigation.nextQuestion.pass.label: Move on to the next question
+  common.navigation.nextQuestion.pass.label.lock: Passer et aller à la question suivante
