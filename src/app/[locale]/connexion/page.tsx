@@ -56,7 +56,7 @@ export default async function Connexion({ params }: DefaultPageProps) {
           </div>
 
           <ColourBlock
-            className="ml-7 hidden w-1/2 lg:flex"
+            className="ml-7 hidden w-1/2 self-start lg:flex"
             highlights={[
               <span key="highlight1">
                 <Trans

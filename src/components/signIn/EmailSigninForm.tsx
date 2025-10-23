@@ -27,13 +27,18 @@ import { useForm } from 'react-hook-form'
 type Props = {
   buttonLabel?: string
   mode?: AuthenticationMode
+  emailDefaultValue?: string
 }
 
 type FormData = {
   email: string
 }
 
-export default function EmailSigninForm({ buttonLabel, mode }: Props) {
+export default function EmailSigninForm({
+  buttonLabel,
+  mode,
+  emailDefaultValue,
+}: Props) {
   const { t } = useClientTranslation()
 
   const {
@@ -59,6 +64,7 @@ export default function EmailSigninForm({ buttonLabel, mode }: Props) {
     handleSubmit,
     formState: { errors },
     setValue,
+    getValues,
   } = useForm<FormData>()
 
   async function onSubmit(data: FormData) {
@@ -98,21 +104,30 @@ export default function EmailSigninForm({ buttonLabel, mode }: Props) {
   }
 
   useEffect(() => {
-    if (user?.organisation?.administratorEmail || user?.email) {
-      setValue(
-        'email',
-        user?.organisation?.administratorEmail || user?.email || ''
-      )
+    if (emailDefaultValue && getValues('email') === '') {
+      setValue('email', emailDefaultValue)
     }
-  }, [user?.organisation?.administratorEmail, user?.email, setValue])
-  console.log(errors)
+  }, [emailDefaultValue, setValue, getValues, user.email])
+
+  // In sign up mode, if the user already exists, we update the email with the value from the form
+  // so the user can login directly
+  useEffect(() => {
+    if (errorCode && errorCode === ERROR_MESSAGE_USER_ALREADY_EXISTS) {
+      const email = getValues('email')
+
+      if (email && email !== user.email) {
+        updateEmail(email)
+      }
+    }
+  }, [errorCode, getValues, updateEmail, user.email])
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <TextInput
         type="email"
+        shouldUseDebounce={false}
         autoComplete="email"
         data-cypress-id="organisation-connexion-email-input"
-        value={user?.organisation?.administratorEmail || user?.email || ''}
         label={<Trans>Votre adresse electronique</Trans>}
         placeholder="nom.prenom@domaine.fr"
         srOnlyHelperText={
