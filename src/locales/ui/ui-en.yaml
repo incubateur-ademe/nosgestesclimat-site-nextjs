@@ -1636,3 +1636,5 @@ entries:
   signIn.verificationForm.notReceived.text.lock: Vérifiez vos spams ou outils anti-spam (MailinBlack, Altospam, etc...)
   header.monEspace: My Space
   header.monEspace.lock: Mon Espace
+  header.simulateur: Access the test
+  header.simulateur.lock: Accéder au test

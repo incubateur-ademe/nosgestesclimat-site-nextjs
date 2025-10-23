@@ -1354,3 +1354,4 @@ entries:
   signIn.verificationForm.notReceived.title: Vous n'avez pas reçu de code ?
   Vérifiez vos e-mails: Vérifiez vos e-mails
   header.monEspace: Mon Espace
+  header.simulateur: Accéder au test
