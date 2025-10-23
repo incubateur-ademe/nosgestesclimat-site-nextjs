@@ -1,5 +1,4 @@
 import ContentLarge from '@/components/layout/ContentLarge'
-import HeaderServer from '@/components/layout/HeaderServer'
 import Trans from '@/components/translation/trans/TransServer'
 import {
   CONNEXION_PATH,
@@ -22,20 +21,16 @@ export default async function MonEspaceParametresPage({
   }
 
   return (
-    <>
-      <HeaderServer locale={locale} />
+    <ContentLarge className="mt-4 px-4 md:mt-10 lg:px-0">
+      <div className="flex flex-col">
+        <h1 className="sr-only mb-6 text-2xl font-bold">
+          <Trans i18nKey="mon-espace.settings.title" locale={locale}>
+            Paramètres
+          </Trans>
+        </h1>
 
-      <ContentLarge className="mt-4 px-4 md:mt-10 lg:px-0">
-        <div className="flex flex-col">
-          <h1 className="sr-only mb-6 text-2xl font-bold">
-            <Trans i18nKey="mon-espace.settings.title" locale={locale}>
-              Paramètres
-            </Trans>
-          </h1>
-
-          <ProfileTab locale={locale} activePath={MON_ESPACE_SETTINGS_PATH} />
-        </div>
-      </ContentLarge>
-    </>
+        <ProfileTab locale={locale} activePath={MON_ESPACE_SETTINGS_PATH} />
+      </div>
+    </ContentLarge>
   )
 }
