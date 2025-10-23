@@ -39,7 +39,7 @@ export default function MosaicNumberInput({
   return (
     <div
       className={
-        'focus-within:ring-primary-700 flex items-center justify-between gap-1 rounded-xl border border-slate-500 bg-white p-2 py-3 focus-within:ring-2 focus-within:ring-offset-2'
+        'focus-within:ring-primary-700 flex items-center justify-between gap-1 rounded-xl border border-slate-500 bg-white p-3 focus-within:ring-2 focus-within:ring-offset-2'
       }>
       <div>
         {title && icons ? (
@@ -70,7 +70,7 @@ export default function MosaicNumberInput({
               title,
             }
           )}
-          className="z-10 h-8 w-8 items-center justify-center p-0 md:h-8 md:w-8">
+          className="z-10 h-8 w-8 items-center justify-center p-0">
           <span className="mb-[1px] block">-</span>
         </Button>
         <input
@@ -95,7 +95,7 @@ export default function MosaicNumberInput({
             }
           )}
           size="sm"
-          className="z-10 h-8 w-8 items-center justify-center p-0 md:h-8 md:w-8">
+          className="z-10 h-8 w-8 items-center justify-center p-0">
           <span className="mb-[1px] block">+</span>
         </Button>
       </div>
