@@ -7,6 +7,7 @@ import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
 import { redirect } from 'next/navigation'
+import QueryClientProviderWrapper from '../_components/mainLayoutProviders/QueryClientProviderWrapper'
 import LatestResults from './_components/LatestResults'
 import ProfileTab from './_components/ProfileTabs'
 import WelcomeBanner from './_components/WelcomeBanner'
@@ -34,7 +35,9 @@ export default async function MonEspacePage({
       <ProfileTab locale={locale} activePath={MON_ESPACE_PATH} />
 
       <UserProvider migrationInstructions={migrationInstructions}>
-        <LatestResults locale={locale} />
+        <QueryClientProviderWrapper>
+          <LatestResults locale={locale} />
+        </QueryClientProviderWrapper>
       </UserProvider>
     </ContentLarge>
   )

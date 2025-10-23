@@ -16,12 +16,14 @@ type Props = {
   waterTotal?: number
   isStatic?: boolean
   isSharePage?: boolean
+  className?: string
 }
 export default function MetricSlider({
   carboneTotal,
   waterTotal,
   isStatic,
   isSharePage,
+  className,
 }: Props) {
   const [isSticky, setIsSticky] = useState(false)
 
@@ -70,7 +72,8 @@ export default function MetricSlider({
       className={twMerge(
         isStatic
           ? ''
-          : 'pointer-events-none sticky top-0 z-40 -mx-4 mb-4 md:mx-0 md:h-96'
+          : 'pointer-events-none sticky top-0 z-40 -mx-4 mb-4 md:mx-0 md:h-96',
+        className
       )}
       ref={myElementRef}>
       <div
