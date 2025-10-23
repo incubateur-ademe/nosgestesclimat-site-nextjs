@@ -12,6 +12,8 @@ type Props = {
   firstInputId?: string
 }
 
+const SHOULD_USE_GRID_THRESHOLD = 6
+
 export default function ChoicesInput(props: Props) {
   const {
     question,
@@ -25,8 +27,8 @@ export default function ChoicesInput(props: Props) {
   } = props
 
   // For now, it only concerns `DPE` question whose possibilities are very short, so 4 colomns is ok. However, we should have done a special question.
-  const shouldUseGridTreshold = 6
-  const isGrid = choices && choices.length > shouldUseGridTreshold
+
+  const isGrid = choices && choices.length > SHOULD_USE_GRID_THRESHOLD
 
   return (
     <fieldset
