@@ -15,6 +15,7 @@ export default function getSortedQuestionsList({
   categories,
   subcategories,
   missingVariables,
+  answeredQuestions = [],
 }: Props): DottedName[] {
   return questions.sort((a, b) => {
     const aSplittedName = a.split(' . ')
@@ -71,7 +72,8 @@ export default function getSortedQuestionsList({
     const subcatsOrderedQuestions = getGroupedQuestionsFromSubcat(
       questions,
       aCategoryAndSubcategory as DottedName,
-      missingVariables
+      missingVariables,
+      answeredQuestions
     )
 
     if (
@@ -86,10 +88,9 @@ export default function getSortedQuestionsList({
     }
 
     // We should reach this point only for questions at the root level of a category.
-    // if question is already answered, it must be before others : we can't have a non-answered question before an answered one. A question is considered answered if its missingVariables score is undefined.
-
-    const aIsAnswered = missingVariables[a] === undefined
-    const bIsAnswered = missingVariables[b] === undefined
+    // if question is already answered, it must be before others : we can't have a non-answered question before an answered one.
+    const aIsAnswered = answeredQuestions.includes(a)
+    const bIsAnswered = answeredQuestions.includes(b)
 
     if (aIsAnswered && !bIsAnswered) {
       return -1
