@@ -28,6 +28,7 @@ export default async function HeaderServer({
 
   return (
     <header
+      id="header-server-container"
       className={twMerge(
         'h-20 items-center bg-white shadow-xs',
         isSticky ? 'sticky top-0 z-300' : ''
@@ -91,55 +92,55 @@ export default async function HeaderServer({
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
-            // Prevent duplicate event listener registration
             if (!window.headerTrackingAdded) {
               window.headerTrackingAdded = true;
-              console.log('🔧 HeaderServer: Event listener registered');
               
-              document.addEventListener('click', (e) => {
-                console.log('🔧 HeaderServer: Click detected', {
-                  target: e.target,
-                  currentTarget: e.currentTarget,
-                  href: e.target?.closest('a')?.href,
-                  isLink: e.target?.closest('a') !== null,
-                  timestamp: Date.now()
-                });
+              // Wait for DOM to be ready
+              const initTracking = () => {
+                const container = document.getElementById('header-server-container');
                 
-                const target = e.target.closest('[data-track-event]');
-                const posthogTarget = e.target.closest('[data-track-posthog]');
-                
-                if (target || posthogTarget) {
-                  console.log('🔧 HeaderServer: Tracking targets found', {
-                    hasMatomoTarget: !!target,
-                    hasPosthogTarget: !!posthogTarget,
-                    matomoData: target?.dataset.trackEvent,
-                    posthogData: posthogTarget?.dataset.trackPosthog
-                  });
-                  
-                  // Execute tracking asynchronously to not block navigation
-                  setTimeout(() => {
-                    console.log('🔧 HeaderServer: Executing tracking (async)');
-                    
-                    if (target) {
-                      const eventData = target.dataset.trackEvent.split('|');
-                      console.log('Matomo tracking:', eventData);
-                      console.debug('Matomo tracking => ' + eventData.join(' => '));
-                      window._paq?.push(['trackEvent', ...eventData]);
-                    }
-                    
-                    if (posthogTarget) {
-                      const { eventName, ...properties } = JSON.parse(posthogTarget.dataset.trackPosthog);
-                      console.log('Posthog tracking:', { eventName, properties });
-                      console.debug('Posthog tracking => "' + eventName + '" =>', properties);
-                      window.posthog?.capture(eventName, properties);
-                    }
-                  }, 0);
-                } else {
-                  console.log('🔧 HeaderServer: No tracking targets found');
+                if (!container) {
+                  console.warn('🔧 HeaderServer: Container not found, retrying...');
+                  setTimeout(initTracking, 100);
+                  return;
                 }
-              });
-            } else {
-              console.log('🔧 HeaderServer: Event listener already registered, skipping');
+                
+                console.log('🔧 HeaderServer: Event listener registered on header');
+                
+                container.addEventListener('click', (e) => {
+                  const target = e.target.closest('[data-track-event]');
+                  const posthogTarget = e.target.closest('[data-track-posthog]');
+                  
+                  // Only process if the target is within this container
+                  if ((target && container.contains(target)) || (posthogTarget && container.contains(posthogTarget))) {
+                    console.log('🔧 HeaderServer: Click detected in header', {
+                      href: e.target?.closest('a')?.href,
+                      timestamp: Date.now()
+                    });
+                    
+                    // Execute tracking asynchronously
+                    setTimeout(() => {
+                      if (target) {
+                        const eventData = target.dataset.trackEvent.split('|');
+                        console.log('Matomo tracking:', eventData);
+                        window._paq?.push(['trackEvent', ...eventData]);
+                      }
+                      
+                      if (posthogTarget) {
+                        const { eventName, ...properties } = JSON.parse(posthogTarget.dataset.trackPosthog);
+                        console.log('Posthog tracking:', { eventName, properties });
+                        window.posthog?.capture(eventName, properties);
+                      }
+                    }, 0);
+                  }
+                });
+              };
+              
+              if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initTracking);
+              } else {
+                initTracking();
+              }
             }
           `,
         }}

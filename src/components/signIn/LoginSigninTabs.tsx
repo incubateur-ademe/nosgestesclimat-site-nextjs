@@ -45,7 +45,7 @@ const TabLink = ({
 
 export default function LoginSigninTabs({ locale, mode, className }: Props) {
   return (
-    <div className={className}>
+    <div className={className} id="login-signin-tabs-container">
       <nav aria-label="Navigation connexion/inscription">
         <ul className="flex items-end">
           <li>
@@ -79,55 +79,55 @@ export default function LoginSigninTabs({ locale, mode, className }: Props) {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
-            // Prevent duplicate event listener registration
             if (!window.loginSigninTabsTrackingAdded) {
               window.loginSigninTabsTrackingAdded = true;
-              console.log('🔧 LoginSigninTabs: Event listener registered');
               
-              document.addEventListener('click', (e) => {
-                console.log('🔧 LoginSigninTabs: Click detected', {
-                  target: e.target,
-                  currentTarget: e.currentTarget,
-                  href: e.target?.closest('a')?.href,
-                  isLink: e.target?.closest('a') !== null,
-                  timestamp: Date.now()
-                });
+              // Wait for DOM to be ready
+              const initTracking = () => {
+                const container = document.getElementById('login-signin-tabs-container');
                 
-                const target = e.target.closest('[data-track-event]');
-                const posthogTarget = e.target.closest('[data-track-posthog]');
-                
-                if (target || posthogTarget) {
-                  console.log('🔧 LoginSigninTabs: Tracking targets found', {
-                    hasMatomoTarget: !!target,
-                    hasPosthogTarget: !!posthogTarget,
-                    matomoData: target?.dataset.trackEvent,
-                    posthogData: posthogTarget?.dataset.trackPosthog
-                  });
-                  
-                  // Execute tracking asynchronously to not block navigation
-                  setTimeout(() => {
-                    console.log('🔧 LoginSigninTabs: Executing tracking (async)');
-                    
-                    if (target) {
-                      const eventData = target.dataset.trackEvent.split('|');
-                      console.log('Matomo tracking:', eventData);
-                      console.debug('Matomo tracking => ' + eventData.join(' => '));
-                      window._paq?.push(['trackEvent', ...eventData]);
-                    }
-                    
-                    if (posthogTarget) {
-                      const { eventName, ...properties } = JSON.parse(posthogTarget.dataset.trackPosthog);
-                      console.log('Posthog tracking:', { eventName, properties });
-                      console.debug('Posthog tracking => "' + eventName + '" =>', properties);
-                      window.posthog?.capture(eventName, properties);
-                    }
-                  }, 0);
-                } else {
-                  console.log('🔧 LoginSigninTabs: No tracking targets found');
+                if (!container) {
+                  console.warn('🔧 LoginSigninTabs: Container not found, retrying...');
+                  setTimeout(initTracking, 100);
+                  return;
                 }
-              });
-            } else {
-              console.log('🔧 LoginSigninTabs: Event listener already registered, skipping');
+                
+                console.log('🔧 LoginSigninTabs: Event listener registered on container');
+                
+                container.addEventListener('click', (e) => {
+                  const target = e.target.closest('[data-track-event]');
+                  const posthogTarget = e.target.closest('[data-track-posthog]');
+                  
+                  // Only process if the target is within this container
+                  if ((target && container.contains(target)) || (posthogTarget && container.contains(posthogTarget))) {
+                    console.log('🔧 LoginSigninTabs: Click detected in tabs', {
+                      href: e.target?.closest('a')?.href,
+                      timestamp: Date.now()
+                    });
+                    
+                    // Execute tracking asynchronously
+                    setTimeout(() => {
+                      if (target) {
+                        const eventData = target.dataset.trackEvent.split('|');
+                        console.log('Matomo tracking:', eventData);
+                        window._paq?.push(['trackEvent', ...eventData]);
+                      }
+                      
+                      if (posthogTarget) {
+                        const { eventName, ...properties } = JSON.parse(posthogTarget.dataset.trackPosthog);
+                        console.log('Posthog tracking:', { eventName, properties });
+                        window.posthog?.capture(eventName, properties);
+                      }
+                    }, 0);
+                  }
+                });
+              };
+              
+              if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initTracking);
+              } else {
+                initTracking();
+              }
             }
           `,
         }}
