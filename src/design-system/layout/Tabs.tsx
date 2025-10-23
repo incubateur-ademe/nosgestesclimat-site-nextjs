@@ -16,6 +16,7 @@ interface TabsProps {
   className?: string
   ariaLabel?: string
   containerId?: string
+  hideBorder?: boolean
 }
 
 const TabLink = ({
@@ -62,11 +63,12 @@ export default function Tabs({
   className,
   ariaLabel = 'Navigation par onglets',
   containerId,
+  hideBorder = false,
 }: TabsProps) {
+  const borderClasses = hideBorder ? '' : 'border-b-2 border-slate-200'
+
   return (
-    <div
-      className={twMerge('border-b-2 border-slate-200', className)}
-      id={containerId}>
+    <div className={twMerge(borderClasses, className)} id={containerId}>
       <nav aria-label={ariaLabel}>
         <ul className="flex items-end">
           {items.map(({ containerClassName, ...item }) => (
