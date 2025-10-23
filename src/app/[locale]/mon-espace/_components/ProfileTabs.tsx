@@ -3,9 +3,16 @@ import AmisIcon from '@/components/icons/AmisIcon'
 import BilanIcon from '@/components/icons/BilanIcon'
 import SettingsIcon from '@/components/icons/SettingsIcon'
 import Trans from '@/components/translation/trans/TransServer'
+import {
+  MON_ESPACE_ACTIONS_PATH,
+  MON_ESPACE_GROUPS_PATH,
+  MON_ESPACE_PATH,
+  MON_ESPACE_SETTINGS_PATH,
+} from '@/constants/urls/paths'
 import type { TabItem } from '@/design-system/layout/Tabs'
 import Tabs from '@/design-system/layout/Tabs'
 import type { Locale } from '@/i18nConfig'
+import { twMerge } from 'tailwind-merge'
 
 export default function ProfileTab({
   locale,
@@ -19,46 +26,67 @@ export default function ProfileTab({
       id: 'dashboard',
       label: (
         <span className="flex items-center gap-1">
-          <BilanIcon className="h-6 w-6" />
+          <BilanIcon
+            className={twMerge(
+              'h-6 w-6',
+              activePath === MON_ESPACE_PATH
+                ? 'fill-primary-600'
+                : 'fill-default'
+            )}
+          />
           <Trans i18nKey="mon-espace.tabs.results" locale={locale}>
             Mes résultats
           </Trans>
         </span>
       ),
-      href: '/mon-espace',
-      isActive: activePath === '/mon-espace',
+      href: MON_ESPACE_PATH,
+      isActive: activePath === MON_ESPACE_PATH,
       'data-track-event': 'Mon Espace|Click Tab|Results',
       'data-track-posthog':
         '{"eventName":"click tab mon espace","properties":{"tab":"results"}}',
     },
     {
-      id: 'profile',
+      id: 'actions',
       label: (
         <span className="flex items-center gap-1">
-          <ActionsIcon className="fill-primary-600 h-6 w-6" />
+          <ActionsIcon
+            className={twMerge(
+              'h-6 w-6',
+              activePath === MON_ESPACE_ACTIONS_PATH
+                ? 'fill-primary-600'
+                : 'fill-default'
+            )}
+          />
           <Trans i18nKey="mon-espace.tabs.actions" locale={locale}>
             Mes actions
           </Trans>
         </span>
       ),
-      href: '/mon-espace/actions',
-      isActive: activePath === '/mon-espace/actions',
+      href: MON_ESPACE_ACTIONS_PATH,
+      isActive: activePath === MON_ESPACE_ACTIONS_PATH,
       'data-track-event': 'Mon Espace|Click Tab|Actions',
       'data-track-posthog':
         '{"eventName":"click tab mon espace","properties":{"tab":"actions"}}',
     },
     {
-      id: 'simulations',
+      id: 'groups',
       label: (
         <span className="flex items-center gap-1">
-          <AmisIcon className="h-6 w-6" />
+          <AmisIcon
+            className={twMerge(
+              'h-6 w-6',
+              activePath === MON_ESPACE_GROUPS_PATH
+                ? 'stroke-primary-600 fill-primary-600'
+                : 'stroke-default'
+            )}
+          />
           <Trans i18nKey="mon-espace.tabs.groups" locale={locale}>
             Mes groupes
           </Trans>
         </span>
       ),
-      href: '/mon-espace/groupes',
-      isActive: activePath === '/mon-espace/groupes',
+      href: MON_ESPACE_GROUPS_PATH,
+      isActive: activePath === MON_ESPACE_GROUPS_PATH,
       'data-track-event': 'Mon Espace|Click Tab|Groups',
       'data-track-posthog':
         '{"eventName":"click tab mon espace","properties":{"tab":"groups"}}',
@@ -67,14 +95,21 @@ export default function ProfileTab({
       id: 'settings',
       label: (
         <span className="flex items-center gap-1">
-          <SettingsIcon className="h-6 w-6" />
+          <SettingsIcon
+            className={twMerge(
+              'h-6 w-6',
+              activePath === MON_ESPACE_SETTINGS_PATH
+                ? 'fill-primary-600'
+                : 'fill-default'
+            )}
+          />
           <Trans i18nKey="mon-espace.tabs.settings" locale={locale}>
             Paramètres
           </Trans>
         </span>
       ),
-      href: '/mon-espace/parametres',
-      isActive: activePath === '/mon-espace/parametres',
+      href: MON_ESPACE_SETTINGS_PATH,
+      isActive: activePath === MON_ESPACE_SETTINGS_PATH,
       containerClassName: 'ml-auto', // Aligne cet onglet à droite
       'data-track-event': 'Mon Espace|Click Tab|Settings',
       'data-track-posthog':
