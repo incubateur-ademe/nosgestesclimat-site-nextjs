@@ -7,7 +7,6 @@ type Props = {
   categories: string[]
   subcategories: string[]
   missingVariables: Record<string, number>
-  answeredQuestions?: DottedName[]
 }
 
 export default function getSortedQuestionsList({
@@ -15,7 +14,6 @@ export default function getSortedQuestionsList({
   categories,
   subcategories,
   missingVariables,
-  answeredQuestions = [],
 }: Props): DottedName[] {
   return questions.sort((a, b) => {
     const aSplittedName = a.split(' . ')
@@ -72,8 +70,7 @@ export default function getSortedQuestionsList({
     const subcatsOrderedQuestions = getGroupedQuestionsFromSubcat(
       questions,
       aCategoryAndSubcategory as DottedName,
-      missingVariables,
-      answeredQuestions
+      missingVariables
     )
 
     if (
@@ -88,16 +85,6 @@ export default function getSortedQuestionsList({
     }
 
     // We should reach this point only for questions at the root level of a category.
-    // if question is already answered, it must be before others : we can't have a non-answered question before an answered one.
-    const aIsAnswered = answeredQuestions.includes(a)
-    const bIsAnswered = answeredQuestions.includes(b)
-
-    if (aIsAnswered && !bIsAnswered) {
-      return -1
-    }
-    if (!aIsAnswered && bIsAnswered) {
-      return 1
-    }
-    return (missingVariables[b] ?? 0) - (missingVariables[a] ?? 0)
+    return missingVariables[b] - missingVariables[a]
   })
 }

@@ -3,8 +3,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 export function getGroupedQuestionsFromSubcat(
   questions: DottedName[],
   subcategory: DottedName,
-  missingVariables: Record<DottedName, number>,
-  answeredQuestions: DottedName[]
+  missingVariables: Record<DottedName, number>
 ): DottedName[] {
   // We make sure that questions with common root (third level) stay together and we sort questions within these groups by their missingVariables score
   const groupedQuestions: Record<string, DottedName[]> = questions.reduce(
@@ -21,17 +20,7 @@ export function getGroupedQuestionsFromSubcat(
       newGroupedQuestions.push(question)
 
       newGroupedQuestions.sort((a, b) => {
-        const aIsAnswered = answeredQuestions.includes(a)
-        const bIsAnswered = answeredQuestions.includes(b)
-
-        if (aIsAnswered && !bIsAnswered) {
-          return -1
-        }
-        if (!aIsAnswered && bIsAnswered) {
-          return 1
-        }
-
-        return (missingVariables[b] ?? 0) - (missingVariables[a] ?? 0)
+        return missingVariables[b] - missingVariables[a]
       })
 
       accGroupedQuestions[parent] = newGroupedQuestions
