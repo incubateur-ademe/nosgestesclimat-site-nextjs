@@ -82,13 +82,32 @@ export default function LoginSigninTabs({ locale, mode, className }: Props) {
             // Prevent duplicate event listener registration
             if (!window.loginSigninTabsTrackingAdded) {
               window.loginSigninTabsTrackingAdded = true;
+              console.log('🔧 LoginSigninTabs: Event listener registered');
+              
               document.addEventListener('click', (e) => {
+                console.log('🔧 LoginSigninTabs: Click detected', {
+                  target: e.target,
+                  currentTarget: e.currentTarget,
+                  href: e.target?.closest('a')?.href,
+                  isLink: e.target?.closest('a') !== null,
+                  timestamp: Date.now()
+                });
+                
                 const target = e.target.closest('[data-track-event]');
                 const posthogTarget = e.target.closest('[data-track-posthog]');
                 
-                // Execute tracking asynchronously to not block navigation
                 if (target || posthogTarget) {
+                  console.log('🔧 LoginSigninTabs: Tracking targets found', {
+                    hasMatomoTarget: !!target,
+                    hasPosthogTarget: !!posthogTarget,
+                    matomoData: target?.dataset.trackEvent,
+                    posthogData: posthogTarget?.dataset.trackPosthog
+                  });
+                  
+                  // Execute tracking asynchronously to not block navigation
                   setTimeout(() => {
+                    console.log('🔧 LoginSigninTabs: Executing tracking (async)');
+                    
                     if (target) {
                       const eventData = target.dataset.trackEvent.split('|');
                       console.log('Matomo tracking:', eventData);
@@ -103,8 +122,12 @@ export default function LoginSigninTabs({ locale, mode, className }: Props) {
                       window.posthog?.capture(eventName, properties);
                     }
                   }, 0);
+                } else {
+                  console.log('🔧 LoginSigninTabs: No tracking targets found');
                 }
               });
+            } else {
+              console.log('🔧 LoginSigninTabs: Event listener already registered, skipping');
             }
           `,
         }}
