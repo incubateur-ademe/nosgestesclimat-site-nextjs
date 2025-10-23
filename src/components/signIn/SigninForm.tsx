@@ -47,5 +47,15 @@ export default function SigninForm({ buttonLabel, mode, redirectURL }: Props) {
     )
   }
 
-  return <EmailSigninForm buttonLabel={buttonLabel} mode={mode} />
+  return (
+    <EmailSigninForm
+      emailDefaultValue={
+        mode !== undefined
+          ? user?.email
+          : user?.organisation?.administratorEmail || user?.email || ''
+      }
+      buttonLabel={buttonLabel}
+      mode={mode}
+    />
+  )
 }
