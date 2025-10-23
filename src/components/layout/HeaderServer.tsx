@@ -96,19 +96,25 @@ export default async function HeaderServer({
               window.headerTrackingAdded = true;
               document.addEventListener('click', (e) => {
                 const target = e.target.closest('[data-track-event]');
-                if (target) {
-                  const eventData = target.dataset.trackEvent.split('|');
-                  console.log('Matomo tracking:', eventData);
-                  console.debug('Matomo tracking => ' + eventData.join(' => '));
-                  window._paq?.push(['trackEvent', ...eventData]);
-                }
-                
                 const posthogTarget = e.target.closest('[data-track-posthog]');
-                if (posthogTarget) {
-                  const { eventName, ...properties } = JSON.parse(posthogTarget.dataset.trackPosthog);
-                  console.log('Posthog tracking:', { eventName, properties });
-                  console.debug('Posthog tracking => "' + eventName + '" =>', properties);
-                  window.posthog?.capture(eventName, properties);
+                
+                // Execute tracking asynchronously to not block navigation
+                if (target || posthogTarget) {
+                  setTimeout(() => {
+                    if (target) {
+                      const eventData = target.dataset.trackEvent.split('|');
+                      console.log('Matomo tracking:', eventData);
+                      console.debug('Matomo tracking => ' + eventData.join(' => '));
+                      window._paq?.push(['trackEvent', ...eventData]);
+                    }
+                    
+                    if (posthogTarget) {
+                      const { eventName, ...properties } = JSON.parse(posthogTarget.dataset.trackPosthog);
+                      console.log('Posthog tracking:', { eventName, properties });
+                      console.debug('Posthog tracking => "' + eventName + '" =>', properties);
+                      window.posthog?.capture(eventName, properties);
+                    }
+                  }, 0);
                 }
               });
             }
