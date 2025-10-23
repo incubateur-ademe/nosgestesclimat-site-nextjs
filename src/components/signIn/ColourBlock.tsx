@@ -11,7 +11,7 @@ export default function ColourBlock({ highlights, className }: Props) {
   return (
     <div
       className={twMerge(
-        'mt-6 flex flex-1 flex-col justify-between rounded-2xl bg-blue-100 px-16 py-28',
+        'mt-6 flex flex-1 flex-col justify-between rounded-2xl bg-blue-100 px-16 py-20',
         className
       )}>
       <ul role="list" className="flex max-w-96 flex-col gap-4">
