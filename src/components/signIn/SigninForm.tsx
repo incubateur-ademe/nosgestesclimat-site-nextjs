@@ -1,12 +1,19 @@
 'use client'
 
-import EmailSigninForm from '@/components/signIn/EmailSigninForm'
 import useLogin from '@/hooks/authentication/useLogin'
 import { useUser } from '@/publicodes-state'
+import type { AuthenticationMode } from '@/types/authentication'
 import dayjs from 'dayjs'
-import VerificationForm from '../../../../../../../components/signIn/VerificationForm'
+import EmailSigninForm from './EmailSigninForm'
+import VerificationForm from './VerificationForm'
 
-export default function EmailSection() {
+type Props = {
+  buttonLabel?: string
+  mode?: AuthenticationMode
+  redirectURL?: string
+}
+
+export default function SigninForm({ buttonLabel, mode, redirectURL }: Props) {
   const { user } = useUser()
 
   const {
@@ -20,10 +27,10 @@ export default function EmailSection() {
       ? dayjs(user?.verificationCodeExpirationDate).isAfter(dayjs())
       : false
 
-  // Only show verification form if the saved authentication mode is 'signIn' (default for organisations)
+  // Only show verification form if the current mode matches the saved authentication mode
   const shouldShowVerificationForm =
     hasSavedValidVerificationCodeExpirationDate &&
-    user.authenticationMode === 'signIn'
+    user.authenticationMode === mode
 
   if (!user) return null
 
@@ -35,9 +42,20 @@ export default function EmailSection() {
         login={login}
         isPendingValidate={isPendingValidate}
         isSuccessValidate={isSuccessValidate}
+        redirectURL={redirectURL}
       />
     )
   }
 
-  return <EmailSigninForm />
+  return (
+    <EmailSigninForm
+      emailDefaultValue={
+        mode !== undefined
+          ? user?.email
+          : user?.organisation?.administratorEmail || user?.email || ''
+      }
+      buttonLabel={buttonLabel}
+      mode={mode}
+    />
+  )
 }

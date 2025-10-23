@@ -19,7 +19,7 @@ export default function EmailForm() {
   const { t } = useClientTranslation()
 
   const {
-    updateLoginExpirationDate,
+    updateVerificationCodeExpirationDate,
     updateUserOrganisation,
     user,
     updateEmail,
@@ -50,7 +50,7 @@ export default function EmailForm() {
     })
 
     // We update the expiration date of the code
-    updateLoginExpirationDate(expirationDate)
+    updateVerificationCodeExpirationDate(expirationDate)
     updateUserOrganisation({ administratorEmail: email })
 
     if (!user.email) {

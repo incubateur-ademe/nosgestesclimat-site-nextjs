@@ -41,7 +41,7 @@ export default function Alert({
   return (
     <section
       className={twMerge(
-        'relative rounded-xl border-2 p-6',
+        'relative rounded-xl border-2 p-4 md:p-6',
         getTypeClassNames(type),
         onCloseClassName,
         className
