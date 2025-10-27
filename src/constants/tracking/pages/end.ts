@@ -41,7 +41,7 @@ export const endClickAction = (action: DottedName) => [
 export const endClickActions = ['trackEvent', 'Fin', 'Click Actions']
 
 export const endClickActionsPosthog = (subcategory: string) => ({
-  eventName: 'Click Actions',
+  eventName: 'Fin click Actions',
   properties: {
     subcategory,
   },

@@ -61,7 +61,7 @@ export const trackingCategoryFilter = (category: DottedName, path: string) => [
 ]
 
 export const trackingCategoryFilterPosthog = (category: DottedName) => ({
-  eventName: 'Category filter',
+  eventName: 'Actions click category filter',
   properties: {
     category,
   },
