@@ -1,6 +1,5 @@
 'use client'
 
-import { DONT_KNOW_FEATURE_FLAG_KEY } from '@/constants/ab-test'
 import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,
@@ -12,7 +11,6 @@ import {
   questionClickSuivant,
 } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
-import { useIsTestVersion } from '@/hooks/abTesting/useIsTestVersion'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useMagicKey } from '@/hooks/useMagicKey'
@@ -49,8 +47,6 @@ export default function Navigation({
   const { isIframe } = useIframe()
 
   const persistedRemainingQuestionsRef = useRef(remainingQuestions)
-
-  const isTestVersion = useIsTestVersion(DONT_KNOW_FEATURE_FLAG_KEY)
 
   const {
     gotoPrevQuestion,
