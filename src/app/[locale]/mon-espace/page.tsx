@@ -1,14 +1,13 @@
 import ContentLarge from '@/components/layout/ContentLarge'
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
-import { CONNEXION_PATH, MON_ESPACE_PATH } from '@/constants/urls/paths'
+import { CONNEXION_PATH } from '@/constants/urls/paths'
 import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthenticated'
 import { fetchUserSimulations } from '@/helpers/user/fetchUserSimulations'
 import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
 import QueryClientProviderWrapper from '../_components/mainLayoutProviders/QueryClientProviderWrapper'
-import InstructionsBanner from './_components/InstructionsBanner'
 import LatestResults from './_components/LatestResults'
-import ProfileTab from './_components/ProfileTabs'
+import NoResultsView from './_components/NoResultsView'
 import WelcomeBanner from './_components/WelcomeBanner'
 
 export default async function MonEspacePage({
@@ -37,9 +36,7 @@ export default async function MonEspacePage({
         <WelcomeBanner locale={locale} />
       )}
 
-      {!latestSimulation && <InstructionsBanner locale={locale} />}
-
-      <ProfileTab locale={locale} activePath={MON_ESPACE_PATH} />
+      {!latestSimulation && <NoResultsView locale={locale} />}
 
       <QueryClientProviderWrapper>
         <LatestResults locale={locale} simulation={latestSimulation} />

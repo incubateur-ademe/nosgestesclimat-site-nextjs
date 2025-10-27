@@ -17,9 +17,11 @@ import { twMerge } from 'tailwind-merge'
 export default function ProfileTab({
   locale,
   activePath,
+  isLocked = false,
 }: {
   locale: Locale
   activePath: string
+  isLocked?: boolean
 }) {
   const tabsItems: TabItem[] = [
     {
@@ -122,6 +124,7 @@ export default function ProfileTab({
       className="mb-8"
       ariaLabel="Navigation de mon espace"
       containerId="mon-espace-tabs"
+      isLocked={isLocked}
     />
   )
 }

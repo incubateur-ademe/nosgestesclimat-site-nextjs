@@ -17,15 +17,18 @@ interface TabsProps {
   ariaLabel?: string
   containerId?: string
   hideBorder?: boolean
+  isLocked?: boolean
 }
 
 const TabLink = ({
   item,
   children,
+  isLocked,
   ...props
 }: {
   item: TabItem
   children: ReactNode
+  isLocked?: boolean
 } & React.HTMLAttributes<HTMLElement>) => {
   const baseClasses =
     'inline-block px-4 py-3 text-lg border-b-3 border-transparent'
@@ -34,10 +37,27 @@ const TabLink = ({
 
   const { id, label, href, isActive, className, ...otherProps } = item
 
+  if (isLocked) {
+    return (
+      <span
+        className={twMerge(
+          baseClasses,
+          isActive ? activeClasses : '',
+          className
+        )}
+        {...otherProps}
+        {...props}>
+        {children}
+      </span>
+    )
+  }
+
   if (isActive) {
     return (
       <span
+        role="tab"
         aria-current="page"
+        aria-selected
         className={twMerge(baseClasses, activeClasses, className)}
         {...otherProps}
         {...props}>
@@ -48,6 +68,7 @@ const TabLink = ({
 
   return (
     <Link
+      role="tab"
       href={href}
       className={twMerge(baseClasses, className)}
       prefetch={false}
@@ -64,19 +85,21 @@ export default function Tabs({
   ariaLabel = 'Navigation par onglets',
   containerId,
   hideBorder = false,
+  isLocked = false,
 }: TabsProps) {
   const borderClasses = hideBorder ? '' : 'border-b-2 border-slate-200'
 
   return (
     <div className={twMerge(borderClasses, className)} id={containerId}>
       <nav aria-label={ariaLabel}>
-        <ul className="flex items-end">
+        <ul role={isLocked ? undefined : 'tablist'} className="flex items-end">
           {items.map(({ containerClassName, ...item }) => (
             <li
               key={item.id}
               className={twMerge('translate-y-0.5', containerClassName)}>
               <TabLink
                 item={item}
+                isLocked={isLocked}
                 data-track-event={item.trackingData?.event}
                 data-track-posthog={item.trackingData?.posthog}>
                 {item.label}
