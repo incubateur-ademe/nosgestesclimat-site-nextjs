@@ -20,6 +20,7 @@ vi.mock('next/navigation', () => ({
 // Mock trackEvent
 vi.mock('@/utils/analytics/trackEvent', () => ({
   trackEvent: vi.fn(),
+  trackPosthogEvent: vi.fn(),
 }))
 
 // Mock getCategoryColorClass helpers
