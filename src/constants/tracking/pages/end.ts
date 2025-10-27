@@ -40,6 +40,13 @@ export const endClickAction = (action: DottedName) => [
 // Figma comment #64
 export const endClickActions = ['trackEvent', 'Fin', 'Click Actions']
 
+export const endClickActionsPosthog = (subcategory: string) => ({
+  eventName: 'Click Actions',
+  properties: {
+    subcategory,
+  },
+})
+
 // Figma comment #65
 export const endClickDocumentation = [
   'trackEvent',

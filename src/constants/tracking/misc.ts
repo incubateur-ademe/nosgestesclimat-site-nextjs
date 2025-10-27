@@ -60,6 +60,12 @@ export const trackingCategoryFilter = (category: DottedName, path: string) => [
   `Click Filter ${category}`,
 ]
 
+export const trackingCategoryFilterPosthog = (category: DottedName) => ({
+  eventName: 'Category filter',
+  properties: {
+    category,
+  },
+})
 // User account fake door
 export const trackingUserAccountFakeDoorAccept = [
   'trackEvent',
