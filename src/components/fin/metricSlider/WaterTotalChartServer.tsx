@@ -4,7 +4,7 @@ import WaterTotalNumberServer from './waterTotalChart/WaterTotalNumberServer'
 import WaveContent from './waterTotalChart/WaveContent'
 
 type Props = { total: number; locale: Locale }
-export default async function WaterTotalChartServer({ total, locale }: Props) {
+export default function WaterTotalChartServer({ total, locale }: Props) {
   return (
     <div
       className={twMerge(

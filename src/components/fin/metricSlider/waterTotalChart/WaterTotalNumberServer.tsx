@@ -4,7 +4,7 @@ import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import type { Locale } from '@/i18nConfig'
 
 type Props = { total: number; locale: Locale }
-export default async function WaterTotalNumberServer({ total, locale }: Props) {
+export default function WaterTotalNumberServer({ total, locale }: Props) {
   const { formattedValue, unit } = formatFootprint(total, {
     metric: eauMetric,
     localize: false,
