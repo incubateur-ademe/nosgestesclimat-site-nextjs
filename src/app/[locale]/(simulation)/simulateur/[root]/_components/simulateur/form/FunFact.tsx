@@ -14,10 +14,10 @@ type Props = { question: DottedName }
 export default function FunFact({ question }: Props) {
   const { currentCategory } = useFormState()
 
-  if (question === 'logement . âge') {
+  if (question === 'logement . surface') {
     return (
       <div
-        className={`rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} px-4 py-6 text-sm`}>
+        className={`rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} hidden px-4 py-6 text-sm md:block`}>
         <h3 className="mb-2">
           <Emoji>💡</Emoji> Le saviez vous ?
         </h3>
@@ -28,11 +28,11 @@ export default function FunFact({ question }: Props) {
             </Trans>
           </strong>{' '}
           <Trans>
-            sur ces 50 dernières années, passant de 23 à 40,4 m² par habitant,
+            sur ces 50 dernières années, passant de 23 à 40 m² par habitant,
             soit
           </Trans>{' '}
           <strong>
-            <Trans>90,9 m² en moyenne pour un foyer de 2,2 personnes.</Trans>
+            <Trans>90 m² en moyenne pour un foyer de 2,2 personnes.</Trans>
           </strong>
         </p>
       </div>
@@ -42,7 +42,7 @@ export default function FunFact({ question }: Props) {
   if (question === 'divers . textile . volume') {
     return (
       <div
-        className={`rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} px-4 py-6 text-sm`}>
+        className={`rounded-xl border-2 ${getBorderCategoryColor(currentCategory, '200')} ${getBgCategoryColor(currentCategory, '100')} hidden px-4 py-6 text-sm md:block`}>
         <h3 className="mb-2">
           <Emoji>💡</Emoji> Le saviez vous ?
         </h3>
