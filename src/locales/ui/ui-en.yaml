@@ -1142,12 +1142,6 @@ entries:
   cookies.management.required.description.lock: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucune donnée personnelle et ne peuvent pas être désactivés.
   cookies.management.title: Cookie management panel
   cookies.management.title.lock: Panneau de gestion des cookies
-  Cookies utilisés par PostHog: Cookies used by PostHog
-  Voir la liste des cookies utilisés par PostHog: See the list of cookies used by PostHog
-  "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :": 'We also use PostHog to measure the audience for our site. The list of cookies used is available here :'
-  Accepter les cookies: Accept cookies
-  Refuser les cookies: Refuse cookies
-  Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.: We use cookies to understand how you use the product and to help us improve it. If you do not wish to be tracked, you can refuse them.
   'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'You can contact us via our contact page: <2></2>.'
   Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calculate your carbon and water footprint with Nos Gestes Climat
   Gestion des cookies: Cookie management
@@ -1220,21 +1214,6 @@ entries:
   simulator.customQuestions.avion.openThreeYears.lock: Répondre sur les 3 dernières années
   endPage.poll.seeResults.button.label: See the results
   endPage.poll.seeResults.button.label.lock: Voir les résultats
-  Passer en français: Switch to French
-  Entrez des mots-clefs de recherche: Enter search keywords
-  Une garde-robe économe en eau: A water-saving wardrobe
-  Explorez nos modèles: Explore our models
-  Entrez des mots clefs: Enter keywords
-  Cambiar a español: Cambiar a español
-  5 infolettres sur l’impact du logement: 5 newsletters on the impact of housing
-  Evaluer la métrique carbone: Assessing carbon metrics
-  Switch to english: Switch to english
-  Evaluer la métrique eau: Assessing the water metric
-  Deux mini-vans, illustrant l'empreinte carbone des transports: Two minivans, illustrating the carbon footprint of transport
-  Un champ de coton, illustrant le calcul de l'empreinte eau: A field of cotton, illustrating the calculation of the water footprint
-  Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone: An event for the climate, illustrating actions to reduce one's carbon footprint
-  Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau: A watered field, illustrating the lexicon for understanding the water footprint
-  Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique: An ice pack sparse in the sunlight, illustrating our maladaptation to climate change
   Page active: Active page
   Eau, évaluer la métrique eau: Water, assess the water metric
   Carbone, évaluer la métrique carbone: Carbon, assessing the carbon metric
@@ -1301,7 +1280,6 @@ entries:
   organisations.poll.create.custom_question.add_button.label.lock: Ajouter une question personnalisée
   documentation.search.results.label: Search results
   documentation.search.results.label.lock: Résultats de recherche
-  Formulaire - Désactiver les cookies de mesure d'audience via Matomo: Form - Deactivate audience measurement cookies via Matomo
   Ce graphique présente la distribution des résultats de simulation des utilisateurs, permettant d'analyser les tendances et les comportements.: This graph shows the distribution of users' simulation results, enabling trends and behaviour to be analysed.
   Formulaire - nous faire part de vos remarques sur le site: Form - send us your comments on the site
   Iframe - Google Tag Manager: Iframe - Google Tag Manager
@@ -1324,23 +1302,17 @@ entries:
   simulator.customQuestions.voiture.deleteItem.lock: Supprimer ce trajet
   actions.form.modal.ariaLabel: Action form modal window
   actions.form.modal.ariaLabel.lock: Fenêtre modale du formulaire d'action
-  common.modal.confirmation.title: Action confirmation modal window
-  common.modal.confirmation.title.lock: Fenêtre modale de confirmation d'action
   Choix de la métrique: Choice of metric
   common.navigation.nextQuestion.finish.label: Complete the test and go to the results page
   common.navigation.nextQuestion.finish.label.lock: Terminer le test et accéder à la page de résultats
   simulator.customQuestions.voiture.open: Detail my journeys
   simulator.customQuestions.voiture.open.lock: Détailler mes trajets
-  simulator.mosaicNumberInput: 'Remove an item : {{title}}'
-  simulator.mosaicNumberInput.lock: 'Retirer un élément : {{title}}'
   simulateur.saveModal.title: Test backup mode window
   simulateur.saveModal.title.lock: Fenêtre modale de sauvegarde de test
   results.mainSubcategories.mainSubcategory.seeDetail: '{{title}}see details below'
   results.mainSubcategories.mainSubcategory.seeDetail.lock: '{{title}}, voir le détail ci-dessous'
   group.results.rankingMember.delete.modal.ariaLabel: Modal window confirming deletion of group member
   group.results.rankingMember.delete.modal.ariaLabel.lock: Fenêtre modale de confirmation de suppression du membre du groupe
-  common.navigation.nextQuestion.pass.label: Move on to the next question
-  common.navigation.nextQuestion.pass.label.lock: Passer et aller à la question suivante
   common.burgerMenu.title: Close the navigation menu
   common.burgerMenu.title.lock: Fermer le menu de navigation
   common.navigation.previousButton.label: Go to previous question
@@ -1374,8 +1346,8 @@ entries:
   common.interactiveIllustration.item.coffee.lock: Café
   blog.homepage.defaultDescription: Discover practical tips for reducing your ecological footprint.
   blog.homepage.defaultDescription.lock: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
-  common.slider.buttons.next: Go to slide number {{number}}
-  common.slider.buttons.next.lock: Aller à la diapositive numéro {{number}}
+  common.slider.buttons.next: Go to next slide
+  common.slider.buttons.next.lock: Aller à la diapositive suivante
   common.slider.buttons.previous: Go to previous slide
   common.slider.buttons.previous.lock: Aller à la diapositive précédente
   blog.homePage.dynamicPageNumber: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
@@ -1419,8 +1391,6 @@ entries:
   pollResults.footprintBarChart.accessibleDescription.higher.lock: supérieure
   pollResults.footprintBarChart.accessibleDescription.lower: lower
   pollResults.footprintBarChart.accessibleDescription.lower.lock: inférieure
-  pollResults.footprintBarChart.targetLabel: Objective 2050
-  pollResults.footprintBarChart.targetLabel.lock: Objectif 2050
   pollResults.footprintBarChart.userFootprint: Your footprint
   pollResults.footprintBarChart.userFootprint.lock: Votre empreinte
   pollResults.mean_footprint_distribution.title: Average carbon footprint of
@@ -1487,8 +1457,6 @@ entries:
   L'empreinte carbone du logement: The carbon footprint of housing
   L'empreinte carbone de l'alimentation: The carbon footprint of food
   L'empreinte carbone du transport: The carbon footprint of transport
-  Chargement des résultats détaillés de campagne...: Loading detailed campaign results...
-  4 infolettres l’impact des transports: 4 newsletters the impact of transport
   common.slider.slide.ariaLabel: Slide {{index}} sur {{length}}
   common.slider.slide.ariaLabel.lock: Diapositive {{index}} sur {{length}}
   actions.negativeIcon.ariaLabel: The actions are below
@@ -1523,8 +1491,6 @@ entries:
   common.mainLandingPage.numberPersons.lock: 2,5 millions de personnes
   common.mainLandingPage.tookTheirTest: have already calculated their footprint!
   common.mainLandingPage.tookTheirTest.lock: ont déjà calculé leur empreinte !
-  simulator.navigation.nextButton.finished.next: Next
-  simulator.navigation.nextButton.finished.next.lock: Suivant
   Accéder au test: Access the test
   Option sélectionnée: Selected option
   Sélectionner cette option: Select this option
@@ -1562,10 +1528,6 @@ entries:
   Cliquez pour afficher la réponse: Click to display the answer
   simulator.navigation.nextButton.finished: Finish
   simulator.navigation.nextButton.finished.lock: Terminer
-  simulator.navigation.nextButton.skip: Skip the question
-  simulator.navigation.nextButton.skip.lock: Passer la question
-  simulator.navigation.nextButton.dontKnow: I don't know
-  simulator.navigation.nextButton.dontKnow.lock: Je ne sais pas
   simulator.navigation.nextButton.next: Next
   simulator.navigation.nextButton.next.lock: Suivant
   simulator.mosaic.closeMoreOptions: Fewer options
@@ -1577,8 +1539,6 @@ entries:
   simulator.mosaic.noChildren: This mosaic has no children.
   simulator.mosaic.noChildren.lock: Cette mosaique n'a pas d'enfants.
   Choisir l'action - désactivé: Choose action - disabled
-  simulator.navigation.nextButton.skip.label: Skip the question
-  simulator.navigation.nextButton.skip.label.lock: Passer la question
   profile.answers.category.fold: Fold back the questions for this category
   profile.answers.category.fold.lock: Replier les questions pour cette catégorie
   simulator.navigation.nextButton.dontKnow.label: I don't know
@@ -1589,8 +1549,6 @@ entries:
   profile.answers.subcategory.unfold.lock: Déplier les questions pour cette sous-catégorie
   profile.answers.category.unfold: Unfold the questions for this category
   profile.answers.category.unfold.lock: Déplier les questions pour cette catégorie
-  common.navigation.nextQuestion.pass.title: Move on to the next question
-  common.navigation.nextQuestion.pass.title.lock: Passer et aller à la question suivante
   common.navigation.nextQuestion.dontKnow.title: I don't know, skip to the next question
   common.navigation.nextQuestion.dontKnow.title.lock: Je ne sais pas, passer et aller à la question suivante
   90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² on average for a household of 2.2 people.
