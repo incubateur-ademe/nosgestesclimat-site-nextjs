@@ -6,7 +6,6 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import i18nConfig from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
-import { ClientLayout } from './_components/ClientLayout'
 
 export async function generateMetadata(props: DefaultPageProps) {
   const { locale } = await props.params
