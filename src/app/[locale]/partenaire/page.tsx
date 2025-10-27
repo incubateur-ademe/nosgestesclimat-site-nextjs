@@ -1,4 +1,4 @@
-import Header from '@/components/layout/Header'
+import Header from '@/components/layout/HeaderClient'
 import { PARTNER_KEY } from '@/constants/partners'
 import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Main from '@/design-system/layout/Main'

@@ -229,7 +229,6 @@ entries:
   Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: The personas allow us to test the simulator from every angle, and to check that it can be adapted to all the life situations of metropolitan citizens. Their presence forces us to think about all the use cases, to project ourselves into different realities, and to include these realities in our redesigns of the test path and the actions proposed at the end of it.
   Vous utilisez la version: You are using the version
   du test: of the test
-  Terminer: Finish
   Passagers: Passengers
   Télécharger l'image: Download image
   'Total par an :': 'Total per year :'
@@ -624,7 +623,6 @@ entries:
   Il n'y a pas que sur votre empreinte que vous pouvez agir !: It's not just your footprint that you can influence!
   sur: on
   Continuer: Continue
-  Politique des cookies: Cookie policy
   Et une illustration: And an illustration
   Mentions légales: Legal information
   Étape: Step
@@ -634,7 +632,6 @@ entries:
   Pour le retrouver facilement dans votre liste: To find it easily in your list
   Choisissez un nom pour ce groupe: Choose a name for this group
   Veuillez entrer une adresse email valide.: Please enter a valid email address.
-  Politique des cookies - Nos Gestes Climat: Cookie policy - Nos Gestes Climat
   Pour faire joli et le reconnaitre !: To make it look pretty and recognisable!
   Un bonhomme se demandant où il est: A man wondering where he is
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Nothing on the horizon! <1></1>The page you are looking for does not exist.
@@ -693,7 +690,6 @@ entries:
   de CO₂e par an: of CO₂e per year
   Recevez par email un lien pour reprendre votre test plus tard.: Receive an email with a link to take your test again later.
   Liste des questions: List of questions
-  Passer la question: Skip the question
   Une erreur s'est produite au moment de la sauvegarde.: An error has occurred during backup.
   '{{name}}, supprimer cette participation': '{{name}}cancel this shareholding'
   Supprimer ce participant ? Cette opération est définitive.: Delete this participant? This operation is definitive.
@@ -938,12 +934,10 @@ entries:
   Contactez-nous: Contact us
   'logement et consommation énergétique ': 'housing and energy consumption '
   énergie et production industrielle: energy and industrial production
-  90,9 m² en moyenne pour un foyer de 2,2 personnes.: 90.9 m² on average for a household of 2.2 people.
   La taille des logements français a très fortement augmenté: The size of French homes has risen sharply
   transports: transport
   agriculture et élevage: agriculture and livestock
   production de biens et consommation croissante: production of goods and growing consumption
-  sur ces 50 dernières années, passant de 23 à 40,4 m² par habitant, soit: over the last 50 years, from 23 to 40.4 m² per inhabitant, i.e
   ': le chauffage (et dans une moindre mesure, la climatisation) est le poste le plus important de consommation énergétique du logement, donc d’émission de GES. Il faut également y ajouter les consommations des appareils électroménagers ;': heating (and, to a lesser extent, air conditioning) is the largest single source of energy consumption in the home, and therefore of greenhouse gas emissions. To this must also be added the consumption of household appliances;
   ': la combustion d’énergies fossiles (charbon, pétrole, gaz naturel) pour produire de l’électricité mais aussi pour alimenter les industries est la première cause d’émissions de CO₂ dans le monde ;': combustion of fossil fuels (coal, oil, natural gas) to produce electricity and power industry is the leading cause of CO₂ emissions worldwide;
   ': la fabrication de biens (électronique, vêtements, équipements, loisirs) à travers le monde génère des émissions à chaque étape : extraction des matières premières, production, transport, distribution et élimination. Ces processus contribuent fortement à l’empreinte carbone globale en raison d’une demande toujours croissante.': 'the manufacture of goods (electronics, clothing, equipment, leisure) around the world generates emissions at every stage: extraction of raw materials, production, transport, distribution and disposal. These processes make a significant contribution to the global carbon footprint because of ever-increasing demand.'
@@ -1531,6 +1525,7 @@ entries:
   common.mainLandingPage.tookTheirTest.lock: ont déjà calculé leur empreinte !
   simulator.navigation.nextButton.finished.next: Next
   simulator.navigation.nextButton.finished.next.lock: Suivant
+  Accéder au test: Access the test
   Option sélectionnée: Selected option
   Sélectionner cette option: Select this option
   Sélectionner cette métrique: Select this metric
@@ -1582,3 +1577,21 @@ entries:
   simulator.mosaic.noChildren: This mosaic has no children.
   simulator.mosaic.noChildren.lock: Cette mosaique n'a pas d'enfants.
   Choisir l'action - désactivé: Choose action - disabled
+  simulator.navigation.nextButton.skip.label: Skip the question
+  simulator.navigation.nextButton.skip.label.lock: Passer la question
+  profile.answers.category.fold: Fold back the questions for this category
+  profile.answers.category.fold.lock: Replier les questions pour cette catégorie
+  simulator.navigation.nextButton.dontKnow.label: I don't know
+  simulator.navigation.nextButton.dontKnow.label.lock: Je ne sais pas
+  profile.answers.subcategory.fold: Fold back the questions for this sub-category
+  profile.answers.subcategory.fold.lock: Replier les questions pour cette sous-catégorie
+  profile.answers.subcategory.unfold: Unfold the questions for this sub-category
+  profile.answers.subcategory.unfold.lock: Déplier les questions pour cette sous-catégorie
+  profile.answers.category.unfold: Unfold the questions for this category
+  profile.answers.category.unfold.lock: Déplier les questions pour cette catégorie
+  common.navigation.nextQuestion.pass.title: Move on to the next question
+  common.navigation.nextQuestion.pass.title.lock: Passer et aller à la question suivante
+  common.navigation.nextQuestion.dontKnow.title: I don't know, skip to the next question
+  common.navigation.nextQuestion.dontKnow.title.lock: Je ne sais pas, passer et aller à la question suivante
+  90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² on average for a household of 2.2 people.
+  sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: over the last 50 years, from 23 to 40 m² per inhabitant, i.e

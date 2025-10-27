@@ -44,7 +44,7 @@ export default async function Pagination({
                         ? 'text-primary-700 font-medium underline'
                         : 'text-gray-600! no-underline'
                     )}
-                    href={`/blog?page=${currentIndex}#skip-to-main-content`}
+                    href={`/blog?page=${currentIndex}#articles`}
                     aria-label={
                       isCurrentPage
                         ? t('Page {{page}} (page actuelle)', {

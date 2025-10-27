@@ -73,7 +73,7 @@ export default function NumberInput({
       <NumericFormat
         value={isMissing ? '' : displayedValue}
         placeholder={
-          value.toLocaleString(locale, { maximumFractionDigits: 2 }) ?? '0'
+          value.toLocaleString(locale, { maximumFractionDigits: 0 }) ?? '0'
         }
         className={twMerge(
           `max-w-[8rem] rounded-xl border border-solid border-slate-500 bg-white p-4 text-right text-sm transition-colors md:max-w-full`,

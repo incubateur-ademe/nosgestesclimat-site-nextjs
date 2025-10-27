@@ -14,12 +14,39 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import type { Locale } from '@/i18nConfig'
+import i18nConfig from '@/i18nConfig'
 import { fetchHomepageContent } from '@/services/cms/fetchHomepageContent'
 import { fetchHomepageMetadata } from '@/services/cms/fetchHomepageMetadata'
 import type { DefaultPageProps } from '@/types'
 import { notFound } from 'next/navigation'
+import QueryClientProviderWrapper from '../_components/mainLayoutProviders/QueryClientProviderWrapper'
 import BlogHero from './_components/BlogHero'
 import GroupBlock from './_components/GroupBlock'
+
+export async function generateStaticParams({
+  params,
+  searchParams,
+}: DefaultPageProps<{
+  params: { locale: Locale }
+  searchParams: { page: string }
+}>) {
+  const { locale } = await params
+  const { pageCount } =
+    (await fetchHomepageContent({
+      page: 0,
+      locale,
+    })) ?? {}
+
+  const locales = i18nConfig.locales
+  const pages = Array.from(
+    { length: pageCount ?? 3 },
+    (_, index: number) => index
+  )
+
+  return locales.flatMap((locale) =>
+    pages.map((page) => ({ locale, page: (page + 1).toString() }))
+  )
+}
 
 export async function generateMetadata({
   params,
@@ -29,10 +56,9 @@ export async function generateMetadata({
   searchParams: { page: string }
 }>) {
   const { locale } = await params
+  const { t } = await getServerTranslation({ locale })
 
   const pageNumber = await getPageNumber(searchParams)
-
-  const { t } = await getServerTranslation({ locale })
 
   const { metaTitle, metaDescription, image, pageCount } =
     (await fetchHomepageMetadata({ locale, pageNumber })) || {}
@@ -44,14 +70,19 @@ export async function generateMetadata({
     t,
   })
 
+  const dynamicDefaultTitle = getDynamicPageTitleWithPagination({
+    metaTitle: t(
+      'blog.homepage.defaultTitle',
+      'Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat'
+    ),
+    pageCount,
+    pageNumber,
+    t,
+  })
+
   return getMetadataObject({
     locale,
-    title:
-      dynamicTitle ??
-      t(
-        'blog.homepage.defaultTitle',
-        'Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat'
-      ),
+    title: dynamicTitle ?? dynamicDefaultTitle,
     description:
       metaDescription ??
       t(
@@ -73,8 +104,6 @@ export default async function BlogHomePage({
   params: { locale: Locale }
 }>) {
   const { locale } = await params
-
-  const { t } = await getServerTranslation({ locale })
 
   const pageNumber = await getPageNumber(searchParams)
 
@@ -140,9 +169,11 @@ export default async function BlogHomePage({
         )}
 
         <div className="flex flex-col gap-8 md:flex-row">
-          <Suspense fallback={<NewslettersBlockSkeleton />}>
-            <NewslettersBlock />
-          </Suspense>
+          <QueryClientProviderWrapper>
+            <Suspense fallback={<NewslettersBlockSkeleton />}>
+              <NewslettersBlock />
+            </Suspense>
+          </QueryClientProviderWrapper>
 
           <GroupBlock locale={locale} />
         </div>
