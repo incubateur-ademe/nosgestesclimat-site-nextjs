@@ -1351,3 +1351,37 @@ entries:
   header.simulateur: Accéder au test
   90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² en moyenne pour un foyer de 2,2 personnes.
   sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit
+  Derniers résultats d’empreinte: Derniers résultats d’empreinte
+  mon-espace.actions.title: Mes actions
+  mon-espace.groups.title: Mes groupes
+  mon-espace.instructions.description.part1: Avant toute chose, nous vous invitons à
+  mon-espace.instructions.description.part2: passer le test
+  mon-espace.instructions.description.part3: 'pour :'
+  mon-espace.instructions.link.text: Passer le test
+  mon-espace.instructions.list.item1.part1: Retrouver ici
+  mon-espace.instructions.list.item1.part2: vos résultats d'empreinte
+  mon-espace.instructions.list.item2.part1: Découvrir
+  mon-espace.instructions.list.item2.part2: vos actions climat personnalisées
+  mon-espace.instructions.list.item2.part3: et
+  mon-espace.instructions.list.item2.part4: suivre vos progrès
+  mon-espace.instructions.list.item3.part1: Lancer
+  mon-espace.instructions.list.item3.part2: et
+  mon-espace.instructions.list.item3.part3: retrouver vos tests collectifs
+  mon-espace.instructions.list.item3.part4: (organisations, famille, amis...)
+  mon-espace.noResults.description: Passez le test pour débloquer le contenu ici
+  mon-espace.noResults.link.text: Je calcule mon empreinte
+  mon-espace.settings.title: Paramètres
+  mon-espace.tabs.actions: Mes actions
+  mon-espace.tabs.groups: Mes groupes
+  mon-espace.tabs.results: Mes résultats
+  mon-espace.tabs.settings: Paramètres
+  mon-espace.welcome.close-banner: Fermer la bannière de bienvenue
+  mon-espace.welcome.description.part1: Ici, vous pourrez
+  mon-espace.welcome.description.part2: suivre vos résultats
+  mon-espace.welcome.description.part3: ', passer à '
+  mon-espace.welcome.description.part4: l’action
+  mon-espace.welcome.description.part5: ', et'
+  mon-espace.welcome.description.part6: embarquer d’autres personnes
+  mon-espace.welcome.description.part7: avec vous.
+  mon-espace.welcome.title: Bienvenue dans votre espace Nos Gestes climat !
+  Test effectué le: Test effectué le

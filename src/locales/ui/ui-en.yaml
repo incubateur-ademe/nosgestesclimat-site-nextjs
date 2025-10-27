@@ -1628,3 +1628,71 @@ entries:
   header.simulateur.lock: Accéder au test
   90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² on average for a household of 2.2 people.
   sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: over the last 50 years, from 23 to 40 m² per inhabitant, i.e
+  mon-espace.groups.title: My groups
+  mon-espace.groups.title.lock: Mes groupes
+  mon-espace.instructions.list.item1.part2: your impression results
+  mon-espace.instructions.list.item1.part2.lock: vos résultats d'empreinte
+  Derniers résultats d’empreinte: Latest impression results
+  mon-espace.welcome.description.part1: Here you can
+  mon-espace.welcome.description.part1.lock: Ici, vous pourrez
+  mon-espace.tabs.actions: My actions
+  mon-espace.tabs.actions.lock: Mes actions
+  mon-espace.tabs.groups: My groups
+  mon-espace.tabs.groups.lock: Mes groupes
+  Test effectué le: Test performed on
+  mon-espace.instructions.link.text: Taking the test
+  mon-espace.instructions.link.text.lock: Passer le test
+  mon-espace.instructions.list.item3.part3: find your group tests
+  mon-espace.instructions.list.item3.part3.lock: retrouver vos tests collectifs
+  mon-espace.instructions.description.part2: take the test
+  mon-espace.instructions.description.part2.lock: passer le test
+  mon-espace.welcome.description.part2: track your results
+  mon-espace.welcome.description.part2.lock: suivre vos résultats
+  mon-espace.noResults.description: Take the test to unlock content here
+  mon-espace.noResults.description.lock: Passez le test pour débloquer le contenu ici
+  mon-espace.instructions.list.item1.part1: Find here
+  mon-espace.instructions.list.item1.part1.lock: Retrouver ici
+  mon-espace.instructions.list.item3.part2: and
+  mon-espace.instructions.list.item3.part2.lock: et
+  mon-espace.actions.title: My actions
+  mon-espace.actions.title.lock: Mes actions
+  mon-espace.instructions.list.item3.part4: (organisations, family, friends...)
+  mon-espace.instructions.list.item3.part4.lock: (organisations, famille, amis...)
+  mon-espace.instructions.list.item2.part3: and
+  mon-espace.instructions.list.item2.part3.lock: et
+  mon-espace.welcome.description.part6: take other people on board
+  mon-espace.welcome.description.part6.lock: embarquer d’autres personnes
+  mon-espace.settings.title: Parameters
+  mon-espace.settings.title.lock: Paramètres
+  mon-espace.tabs.results: My results
+  mon-espace.tabs.results.lock: Mes résultats
+  mon-espace.welcome.close-banner: Close the welcome banner
+  mon-espace.welcome.close-banner.lock: Fermer la bannière de bienvenue
+  mon-espace.instructions.list.item3.part1: Launch
+  mon-espace.instructions.list.item3.part1.lock: Lancer
+  mon-espace.welcome.description.part4: action
+  mon-espace.welcome.description.part4.lock: l’action
+  mon-espace.welcome.description.part3: 'go to '
+  mon-espace.welcome.description.part3.lock: ', passer à '
+  mon-espace.instructions.list.item2.part2: your personalised climate actions
+  mon-espace.instructions.list.item2.part2.lock: vos actions climat personnalisées
+  mon-espace.welcome.description.part5: and
+  mon-espace.welcome.description.part5.lock: ', et'
+  mon-espace.tabs.settings: Parameters
+  mon-espace.tabs.settings.lock: Paramètres
+  mon-espace.noResults.link.text: I calculate my footprint
+  mon-espace.noResults.link.text.lock: Je calcule mon empreinte
+  mon-espace.instructions.description.part3: 'for :'
+  mon-espace.instructions.description.part3.lock: 'pour :'
+  mon-espace.welcome.description.part7: with you.
+  mon-espace.welcome.description.part7.lock: avec vous.
+  simulator.navigation.nextButton.skip.label: Skip the question
+  simulator.navigation.nextButton.skip.label.lock: Passer la question
+  mon-espace.instructions.list.item2.part4: track your progress
+  mon-espace.instructions.list.item2.part4.lock: suivre vos progrès
+  mon-espace.welcome.title: Welcome to Nos Gestes Climat!
+  mon-espace.welcome.title.lock: Bienvenue dans votre espace Nos Gestes climat !
+  mon-espace.instructions.list.item2.part1: Discover
+  mon-espace.instructions.list.item2.part1.lock: Découvrir
+  mon-espace.instructions.description.part1: First and foremost, we invite you to
+  mon-espace.instructions.description.part1.lock: Avant toute chose, nous vous invitons à
