@@ -36,7 +36,7 @@ export const trackEvent = (args: (string | null)[]) => {
 
 export const trackPosthogEvent = (args: {
   eventName: string
-  properties: {
+  properties?: {
     [key: string]: string | number | boolean | null | undefined
   }
 }) => {
