@@ -2,7 +2,6 @@ import ContentLarge from '@/components/layout/ContentLarge'
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { CONNEXION_PATH, MON_ESPACE_PATH } from '@/constants/urls/paths'
 import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthenticated'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
@@ -19,8 +18,6 @@ export default async function MonEspacePage({
   const { locale } = await params
   const { [SHOW_WELCOME_BANNER_QUERY_PARAM]: showWelcomeBanner } =
     (await searchParams) || {}
-
-  const { t } = await getServerTranslation({ locale })
 
   const authenticatedUser = await getIsUserAuthenticated()
 
