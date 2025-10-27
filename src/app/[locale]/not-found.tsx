@@ -1,4 +1,5 @@
 import Route404 from '@/components/layout/404'
+import { ClientLayout } from '@/components/layout/ClientLayout'
 import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Main from '@/design-system/layout/Main'
 import { getServerTranslation } from '@/helpers/getServerTranslation'

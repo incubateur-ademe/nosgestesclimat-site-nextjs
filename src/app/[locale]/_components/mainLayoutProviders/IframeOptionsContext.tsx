@@ -23,7 +23,7 @@ export const IframeOptionsProvider = ({
   children,
 }: {
   children: (
-    containerRef: React.RefObject<HTMLBodyElement | null>
+    containerRef: React.RefObject<HTMLDivElement | null>
   ) => React.ReactNode
 }) => {
   const isClient = useIsClient()

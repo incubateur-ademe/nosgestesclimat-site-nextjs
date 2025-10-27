@@ -8,12 +8,6 @@ export const endClickPoll = ['trackEvent', 'Fin', 'Click Poll']
 // Figma comment #58
 export const endClickSaveShortcut = ['trackEvent', 'Fin', 'Click Save shortcut']
 
-export const endClickShareShortcut = [
-  'trackEvent',
-  'Fin',
-  'Click Share shortcut',
-]
-
 export const endClickShare = ['trackEvent', 'Fin', 'Click Share']
 
 export const endToggleTargetBlock = ['trackEvent', 'Fin', 'Toggle Target block']

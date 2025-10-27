@@ -1,9 +1,9 @@
 import ContentLarge from '@/components/layout/ContentLarge'
 import Footer from '@/components/layout/Footer'
-import Header from '@/components/layout/Header'
+import Header from '@/components/layout/HeaderClient'
 import type { DefaultPageProps } from '@/types'
 import type { PropsWithChildren } from 'react'
-import { ClientLayout } from '../_components/ClientLayout'
+import { ClientLayout } from '../../../components/layout/ClientLayout'
 import { IsDocumentationClientProvider } from './_contexts/DocumentationStateContext'
 
 type LayoutProps = PropsWithChildren & DefaultPageProps

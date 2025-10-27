@@ -54,6 +54,7 @@ export default function Label({
   const mustShowDescriptionQuestion: DottedName[] = [
     'transport . voiture . utilisateur',
     'logement . âge',
+    'logement . surface',
   ]
 
   if (!label) return
@@ -155,7 +156,7 @@ export default function Label({
             id={`${QUESTION_DESCRIPTION_BUTTON_ID}-content`}
             role="region"
             aria-labelledby={QUESTION_DESCRIPTION_BUTTON_ID}
-            className="mt-2 mb-6 text-xs italic md:text-sm">
+            className="my-2 text-xs italic md:text-sm">
             <Markdown>{description}</Markdown>
           </div>
         ) : isOpen ? (
