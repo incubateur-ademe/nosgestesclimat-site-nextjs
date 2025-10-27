@@ -1,3 +1,4 @@
+import { getGroupedQuestionsFromSubcat } from '@/helpers/publicodes/getGroupedQuestionsFromSubcat'
 import { getSubcatsOfCategory } from '@/helpers/publicodes/getSubcatsOfCategory'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
@@ -63,7 +64,27 @@ export default function getSortedQuestionsList({
       return -1
     }
 
-    // then by missing variables score
+    // At this point, both questions are in the same subcategory.
+
+    // then we make sure that questions with common 3 level subsubcategory stay together, and are ordered by missing variables score, and answered status
+    const subcatsOrderedQuestions = getGroupedQuestionsFromSubcat(
+      questions,
+      aCategoryAndSubcategory as DottedName,
+      missingVariables
+    )
+
+    if (
+      subcatsOrderedQuestions.indexOf(a) > subcatsOrderedQuestions.indexOf(b)
+    ) {
+      return 1
+    }
+    if (
+      subcatsOrderedQuestions.indexOf(a) < subcatsOrderedQuestions.indexOf(b)
+    ) {
+      return -1
+    }
+
+    // We should reach this point only for questions at the root level of a category.
     return missingVariables[b] - missingVariables[a]
   })
 }
