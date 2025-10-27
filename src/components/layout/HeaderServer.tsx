@@ -53,8 +53,9 @@ export default async function HeaderServer({
                   }>
                   <Trans i18nKey="header.monEspace" locale={locale}>
                     Mon Espace
-                  </Trans>{' '}
-                  <span>
+                  </Trans>
+                  <span className="hidden md:inline">
+                    {' '}
                     (
                     {authenticatedUser.email.length > MAX_EMAIL_LENGTH
                       ? `${authenticatedUser.email.substring(0, MAX_EMAIL_LENGTH)}...`

@@ -31,9 +31,9 @@ const TabLink = ({
   isLocked?: boolean
 } & React.HTMLAttributes<HTMLElement>) => {
   const baseClasses =
-    'inline-block px-4 py-3 text-lg border-b-3 border-transparent'
+    'inline-block px-1 md:px-4 py-3 text-lg border-b-3 border-transparent'
   const activeClasses =
-    'font-bold px-4 py-3 border-primary-600! border-current text-primary-600'
+    'font-bold px-1 md:px-4 py-3 border-primary-600! border-current text-primary-600'
 
   const { id, label, href, isActive, className, ...otherProps } = item
 
@@ -92,7 +92,9 @@ export default function Tabs({
   return (
     <div className={twMerge(borderClasses, className)} id={containerId}>
       <nav aria-label={ariaLabel}>
-        <ul role={isLocked ? undefined : 'tablist'} className="flex items-end">
+        <ul
+          role={isLocked ? undefined : 'tablist'}
+          className="flex items-end justify-between md:justify-start">
           {items.map(({ containerClassName, ...item }) => (
             <li
               key={item.id}

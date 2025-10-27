@@ -19,9 +19,9 @@ export default function NoResultsView({ locale }: { locale: Locale }) {
 
       <ProfileTab isLocked locale={locale} activePath={MON_ESPACE_PATH} />
 
-      <div className="mt-2 flex flex-col rounded-lg bg-slate-50 p-8">
+      <div className="mt-2 mb-16 flex flex-col rounded-lg bg-slate-50 p-8">
         <p className="mb-6 flex items-center justify-center text-lg font-bold">
-          <LockIcon className="fill-default mr-4 inline-block" />
+          <LockIcon className="fill-default mr-4 inline-block h-6 w-6 min-w-6" />
           <Trans locale={locale} i18nKey="mon-espace.noResults.description">
             Passez le test pour débloquer le contenu ici
           </Trans>

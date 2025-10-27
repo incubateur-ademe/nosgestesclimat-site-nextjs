@@ -9,7 +9,8 @@ export default async function Layout({
   const { locale } = await params
   return (
     <>
-      <HeaderServer locale={locale} />
+      <HeaderServer locale={locale} isSticky />
+
       {children}
     </>
   )

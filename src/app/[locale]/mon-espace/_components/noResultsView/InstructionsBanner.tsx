@@ -22,7 +22,7 @@ export default function InstructionsBanner({ locale }: { locale: Locale }) {
               {' '}
               <span className="inline-block text-xl md:text-2xl">
                 <Trans i18nKey="mon-espace.welcome.title" locale={locale}>
-                  Bienvenue dans votre espace Nos Gestes climat !
+                  Bienvenue dans votre espace Nos Gestes Climat !
                 </Trans>
                 <Emoji>👋</Emoji>
               </span>
@@ -31,7 +31,7 @@ export default function InstructionsBanner({ locale }: { locale: Locale }) {
           </div>
         </div>
 
-        <p className="mb-6">
+        <p className="mb-4 md:mb-6">
           <Trans
             locale={locale}
             i18nKey="mon-espace.instructions.description.part1">
@@ -50,9 +50,9 @@ export default function InstructionsBanner({ locale }: { locale: Locale }) {
             pour :
           </Trans>
         </p>
-        <ul className="mb-6 flex flex-col gap-6">
+        <ul className="mb-6 flex flex-col gap-3 md:gap-6">
           <li className="flex items-center gap-4">
-            <DownArrow className="fill-default -rotate-90" />
+            <DownArrow className="fill-default h-6 w-6 min-w-6 -rotate-90" />
             <p className="mb-0">
               <Trans
                 locale={locale}
@@ -69,7 +69,7 @@ export default function InstructionsBanner({ locale }: { locale: Locale }) {
             </p>
           </li>
           <li className="flex items-center gap-4">
-            <DownArrow className="fill-default -rotate-90" />
+            <DownArrow className="fill-default h-6 w-6 min-w-6 -rotate-90" />
             <p className="mb-0">
               <Trans
                 locale={locale}
@@ -99,7 +99,7 @@ export default function InstructionsBanner({ locale }: { locale: Locale }) {
           </li>
 
           <li className="flex items-center gap-4">
-            <DownArrow className="fill-default -rotate-90" />
+            <DownArrow className="fill-default h-6 w-6 min-w-6 -rotate-90" />
             <p className="mb-0">
               <strong>
                 <Trans

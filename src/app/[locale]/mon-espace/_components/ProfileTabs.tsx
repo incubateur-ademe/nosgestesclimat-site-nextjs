@@ -27,7 +27,7 @@ export default function ProfileTab({
     {
       id: 'dashboard',
       label: (
-        <span className="flex items-center gap-1">
+        <span className="flex flex-col items-center gap-1 md:flex-row">
           <BilanIcon
             className={twMerge(
               'h-6 w-6',
@@ -36,9 +36,16 @@ export default function ProfileTab({
                 : 'fill-default'
             )}
           />
-          <Trans i18nKey="mon-espace.tabs.results" locale={locale}>
-            Mes résultats
-          </Trans>
+          <span className="hidden md:block">
+            <Trans i18nKey="mon-espace.tabs.myResults" locale={locale}>
+              Mes résultats
+            </Trans>
+          </span>
+          <span className="block text-center text-sm md:hidden">
+            <Trans i18nKey="mon-espace.tabs.results" locale={locale}>
+              Résultats
+            </Trans>
+          </span>
         </span>
       ),
       href: MON_ESPACE_PATH,
@@ -50,7 +57,7 @@ export default function ProfileTab({
     {
       id: 'actions',
       label: (
-        <span className="flex items-center gap-1">
+        <span className="flex flex-col items-center gap-1 md:flex-row">
           <ActionsIcon
             className={twMerge(
               'h-6 w-6',
@@ -59,9 +66,16 @@ export default function ProfileTab({
                 : 'fill-default'
             )}
           />
-          <Trans i18nKey="mon-espace.tabs.actions" locale={locale}>
-            Mes actions
-          </Trans>
+          <span className="hidden md:block">
+            <Trans i18nKey="mon-espace.tabs.myActions" locale={locale}>
+              Mes actions
+            </Trans>
+          </span>
+          <span className="block text-center text-sm md:hidden">
+            <Trans i18nKey="mon-espace.tabs.actions" locale={locale}>
+              Actions
+            </Trans>
+          </span>
         </span>
       ),
       href: MON_ESPACE_ACTIONS_PATH,
@@ -73,7 +87,7 @@ export default function ProfileTab({
     {
       id: 'groups',
       label: (
-        <span className="flex items-center gap-1">
+        <span className="flex flex-col items-center gap-1 md:flex-row">
           <AmisIcon
             className={twMerge(
               'h-6 w-6',
@@ -82,9 +96,16 @@ export default function ProfileTab({
                 : 'stroke-default'
             )}
           />
-          <Trans i18nKey="mon-espace.tabs.groups" locale={locale}>
-            Mes groupes
-          </Trans>
+          <span className="hidden md:block">
+            <Trans i18nKey="mon-espace.tabs.myGroups" locale={locale}>
+              Mes groupes
+            </Trans>
+          </span>
+          <span className="block text-center text-sm md:hidden">
+            <Trans i18nKey="mon-espace.tabs.groups" locale={locale}>
+              Groupes
+            </Trans>
+          </span>
         </span>
       ),
       href: MON_ESPACE_GROUPS_PATH,
@@ -96,7 +117,7 @@ export default function ProfileTab({
     {
       id: 'settings',
       label: (
-        <span className="flex items-center gap-1">
+        <span className="flex flex-col items-center gap-1 md:flex-row">
           <SettingsIcon
             className={twMerge(
               'h-6 w-6',
@@ -105,14 +126,16 @@ export default function ProfileTab({
                 : 'fill-default'
             )}
           />
-          <Trans i18nKey="mon-espace.tabs.settings" locale={locale}>
-            Paramètres
-          </Trans>
+          <span className="text-sm md:text-base">
+            <Trans i18nKey="mon-espace.tabs.settings" locale={locale}>
+              Paramètres
+            </Trans>
+          </span>
         </span>
       ),
       href: MON_ESPACE_SETTINGS_PATH,
       isActive: activePath === MON_ESPACE_SETTINGS_PATH,
-      containerClassName: 'ml-auto', // Aligne cet onglet à droite
+      containerClassName: 'md:ml-auto',
       'data-track-event': 'Mon Espace|Click Tab|Settings',
       'data-track-posthog':
         '{"eventName":"click tab mon espace","properties":{"tab":"settings"}}',
