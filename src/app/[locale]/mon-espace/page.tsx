@@ -5,9 +5,8 @@ import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthen
 import { fetchUserSimulations } from '@/helpers/user/fetchUserSimulations'
 import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
-import QueryClientProviderWrapper from '../_components/mainLayoutProviders/QueryClientProviderWrapper'
-import LatestResults from './_components/LatestResults'
 import NoResultsView from './_components/NoResultsView'
+import ResultsView from './_components/ResultsView'
 import WelcomeBanner from './_components/WelcomeBanner'
 
 export default async function MonEspacePage({
@@ -38,9 +37,9 @@ export default async function MonEspacePage({
 
       {!latestSimulation && <NoResultsView locale={locale} />}
 
-      <QueryClientProviderWrapper>
-        <LatestResults locale={locale} simulation={latestSimulation} />
-      </QueryClientProviderWrapper>
+      {latestSimulation && (
+        <ResultsView locale={locale} simulation={latestSimulation} />
+      )}
     </ContentLarge>
   )
 }
