@@ -1539,8 +1539,6 @@ entries:
   simulator.mosaic.noChildren: This mosaic has no children.
   simulator.mosaic.noChildren.lock: Cette mosaique n'a pas d'enfants.
   Choisir l'action - désactivé: Choose action - disabled
-  simulator.navigation.nextButton.skip.label: Skip the question
-  simulator.navigation.nextButton.skip.label.lock: Passer la question
   profile.answers.category.fold: Fold back the questions for this category
   profile.answers.category.fold.lock: Replier les questions pour cette catégorie
   simulator.navigation.nextButton.dontKnow.label: I don't know
@@ -1551,15 +1549,7 @@ entries:
   profile.answers.subcategory.unfold.lock: Déplier les questions pour cette sous-catégorie
   profile.answers.category.unfold: Unfold the questions for this category
   profile.answers.category.unfold.lock: Déplier les questions pour cette catégorie
-  common.navigation.nextQuestion.pass.title: Move on to the next question
-  common.navigation.nextQuestion.pass.title.lock: Passer et aller à la question suivante
   common.navigation.nextQuestion.dontKnow.title: I don't know, skip to the next question
   common.navigation.nextQuestion.dontKnow.title.lock: Je ne sais pas, passer et aller à la question suivante
   90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² on average for a household of 2.2 people.
   sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: over the last 50 years, from 23 to 40 m² per inhabitant, i.e
-  simulator.navigation.nextButton.dontKnow: I don't know
-  simulator.navigation.nextButton.dontKnow.lock: Je ne sais pas
-  simulator.navigation.nextButton.skip: Skip the question
-  simulator.navigation.nextButton.skip.lock: Passer la question
-  common.navigation.nextQuestion.pass.label: Move on to the next question
-  common.navigation.nextQuestion.pass.label.lock: Passer et aller à la question suivante
