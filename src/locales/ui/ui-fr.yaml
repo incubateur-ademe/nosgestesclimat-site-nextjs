@@ -1071,12 +1071,6 @@ entries:
   cookies.management.required.description: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucune donnée personnelle et ne peuvent pas être désactivés.
   cookies.management.required.title: Cookies obligatoires
   cookies.management.title: Panneau de gestion des cookies
-  Cookies utilisés par PostHog: Cookies utilisés par PostHog
-  "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :": "Nous utilisons également PostHog pour mesurer l'audience de notre site. La liste des cookies utilisés est disponible ici :"
-  Voir la liste des cookies utilisés par PostHog: Voir la liste des cookies utilisés par PostHog
-  Accepter les cookies: Accepter les cookies
-  Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.: Nous utilisons des cookies pour comprendre comment vous utilisez le produit et nous aider à l'améliorer. Si vous ne souhaitez pas être suivis, vous pouvez les refuser.
-  Refuser les cookies: Refuser les cookies
   Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calculez votre empreinte carbone et eau avec Nos Gestes Climat
   'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'Vous pouvez nous contacter via notre page de contact : <2></2>.'
   Gestion des cookies: Gestion des cookies
@@ -1119,28 +1113,12 @@ entries:
   simulator.customQuestions.voiture.summaryStart: Au total
   simulator.customQuestions.avion.openThreeYears: Répondre sur les 3 dernières années
   endPage.poll.seeResults.button.label: Voir les résultats
-  4 infolettres l’impact des transports: 4 infolettres l’impact des transports
-  5 infolettres sur l’impact du logement: 5 infolettres sur l’impact du logement
-  Cambiar a español: Cambiar a español
-  Entrez des mots clefs: Entrez des mots clefs
-  Entrez des mots-clefs de recherche: Entrez des mots-clefs de recherche
-  Evaluer la métrique carbone: Evaluer la métrique carbone
-  Evaluer la métrique eau: Evaluer la métrique eau
-  Explorez nos modèles: Explorez nos modèles
-  Passer en français: Passer en français
-  Switch to english: Switch to english
-  Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau: Un champ arrosé, illustrant le lexique pour comprendre l'empreinte eau
-  Un champ de coton, illustrant le calcul de l'empreinte eau: Un champ de coton, illustrant le calcul de l'empreinte eau
-  Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique: Une banquise clairesemée sous le soleil, illustrant la maladaptation au changement climatique
-  Une garde-robe économe en eau: Une garde-robe économe en eau
-  Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone: Une manifestation pour le climat, illustrant les actions pour réduire son empreinte carbone
-  Voir plus d'informations: Voir plus d'informations
   Carbone, évaluer la métrique carbone: Carbone, évaluer la métrique carbone
   Connexion: Connexion
   Eau, évaluer la métrique eau: Eau, évaluer la métrique eau
   Page active: Page active
   Visiter cette page: Visiter cette page
-  actions.engagementIcon.ariaLabel: ', les actions se trouvent en dessous'
+  actions.engagementIcon.ariaLabel: Les actions se trouvent en dessous
   authorBlock.defaultAlt: Photo de l'auteur ou de l'autrice
   common.marianne.ariaLabel: République Française
   common.partners.abc.ariaLabel: Association pour la transition Bas Carbone
@@ -1173,7 +1151,6 @@ entries:
   Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.: Ce tableau de bord affiche les statistiques de fréquentation du site, incluant le nombre de visites, de simulations complétées, et les tendances d'utilisation.
   Chargement du tableau de bord...: Chargement du tableau de bord...
   Formulaire - Demander une démo: Formulaire - Demander une démo
-  Formulaire - Désactiver les cookies de mesure d'audience via Matomo: Formulaire - Désactiver les cookies de mesure d'audience via Matomo
   Formulaire - nous faire part de vos remarques sur le site: Formulaire - nous faire part de vos remarques sur le site
   Graphique de distribution des résultats de simulation pour le mois dernier: Graphique de distribution des résultats de simulation pour le mois dernier
   Graphiques du nombre de visites et de simulations sur le site: Graphiques du nombre de visites et de simulations sur le site
@@ -1194,10 +1171,8 @@ entries:
   common.interactiveIllustration.item.coffee: Café
   common.interactiveIllustration.item.computer: Ordinateur
   common.interactiveIllustration.item.shirt: Chemisier
-  common.modal.confirmation.title: Fenêtre modale de confirmation d'action
   common.navigation.nextQuestion.finish.label: Terminer le test et accéder à la page de résultats
   common.navigation.nextQuestion.next.label: Aller à la question suivante
-  common.navigation.nextQuestion.pass.label: Passer et aller à la question suivante
   common.navigation.previousButton.label: Aller à la question précédente
   Fenêtre modale de partage: Fenêtre modale de partage
   group.results.rankingMember.delete.modal.ariaLabel: Fenêtre modale de confirmation de suppression du membre du groupe
@@ -1213,12 +1188,11 @@ entries:
   simulator.customQuestions.voiture.deleteItem: Supprimer ce trajet
   simulator.customQuestions.voiture.open: Détailler mes trajets
   simulator.label.moreInfoButton: Plus d'informations - {{label}}
-  simulator.mosaicNumberInput: 'Retirer un élément : {{title}}'
   simulator.topBar.totalButtons.saveButton.ariaLabel: Enregistrer et reprendre plus tard
   blog.homepage.defaultDescription: Découvrez des conseils pratiques pour réduire votre empreinte écologique.
   blog.homepage.defaultTitle: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
   blog.homePage.dynamicPageNumber: page {{pageNumber}} sur {{pageCount}} - Nos Gestes Climat
-  common.slider.buttons.next: Aller à la diapositive numéro {{number}}
+  common.slider.buttons.next: Aller à la diapositive suivante
   common.slider.buttons.previous: Aller à la diapositive précédente
   4 infolettres l'impact des transports: 4 infolettres l'impact des transports
   5 infolettres sur l'impact du logement: 5 infolettres sur l'impact du logement
@@ -1253,7 +1227,6 @@ entries:
   pollResults.footprintBarChart.groupFootprint: Empreinte moyenne du groupe
   pollResults.footprintBarChart.legend.groupFootprint: Empreinte moyenne du groupe
   pollResults.footprintBarChart.legend.userFootprint: Votre empreinte
-  pollResults.footprintBarChart.targetLabel: Objectif 2050
   pollResults.footprintBarChart.userFootprint: Votre empreinte
   pollResults.mean_footprint_distribution.title: Empreinte carbone moyenne de
   pollResults.pollResults.distribution.category_distribution.title: Répartition par poste d'émission
@@ -1323,10 +1296,7 @@ entries:
   results.metricSlider.carbon.desktop.title: Mon empreinte carbone
   results.metricSlider.water.desktop.mobile: Empreinte eau
   results.metricSlider.water.desktop.title: Mon empreinte eau
-  simulator.navigation.nextButton.dontKnow: Je ne sais pas
   simulator.navigation.nextButton.finished: Terminer
-  simulator.navigation.nextButton.finished.next: Suivant
-  simulator.navigation.nextButton.skip: Passer la question
   simulator.navigation.nextButton.next: Suivant
   simulator.mosaic.closeMoreOptions: Moins d’options
   simulator.mosaic.noChildren: Cette mosaique n'a pas d'enfants.
@@ -1335,12 +1305,10 @@ entries:
   Choisir l'action: Choisir l'action
   Choisir l'action - désactivé: Choisir l'action - désactivé
   common.navigation.nextQuestion.dontKnow.title: Je ne sais pas, passer et aller à la question suivante
-  common.navigation.nextQuestion.pass.title: Passer et aller à la question suivante
   profile.answers.category.fold: Replier les questions pour cette catégorie
   profile.answers.category.unfold: Déplier les questions pour cette catégorie
   profile.answers.subcategory.fold: Replier les questions pour cette sous-catégorie
   profile.answers.subcategory.unfold: Déplier les questions pour cette sous-catégorie
   simulator.navigation.nextButton.dontKnow.label: Je ne sais pas
-  simulator.navigation.nextButton.skip.label: Passer la question
   90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² en moyenne pour un foyer de 2,2 personnes.
   sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit
