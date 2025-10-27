@@ -888,10 +888,8 @@ entries:
   'logement et consommation énergétique ': 'logement et consommation énergétique '
   production de biens et consommation croissante: production de biens et consommation croissante
   transports: transports
-  90,9 m² en moyenne pour un foyer de 2,2 personnes.: 90,9 m² en moyenne pour un foyer de 2,2 personnes.
   Contactez-nous: Contactez-nous
   La taille des logements français a très fortement augmenté: La taille des logements français a très fortement augmenté
-  sur ces 50 dernières années, passant de 23 à 40,4 m² par habitant, soit: sur ces 50 dernières années, passant de 23 à 40,4 m² par habitant, soit
   Retrouvez toute l’expertise de: Retrouvez toute l’expertise de
   l’Agence de la Transition Écologique: l’Agence de la Transition Écologique
   "dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action.": "dans le calculateur de Nos Gestes Climat : données, perspectives, leviers d'action."
@@ -1175,7 +1173,6 @@ entries:
   common.interactiveIllustration.item.shirt: Chemisier
   common.navigation.nextQuestion.finish.label: Terminer le test et accéder à la page de résultats
   common.navigation.nextQuestion.next.label: Aller à la question suivante
-  common.navigation.nextQuestion.pass.label: Passer et aller à la question suivante
   common.navigation.previousButton.label: Aller à la question précédente
   Fenêtre modale de partage: Fenêtre modale de partage
   group.results.rankingMember.delete.modal.ariaLabel: Fenêtre modale de confirmation de suppression du membre du groupe
@@ -1299,9 +1296,7 @@ entries:
   results.metricSlider.carbon.desktop.title: Mon empreinte carbone
   results.metricSlider.water.desktop.mobile: Empreinte eau
   results.metricSlider.water.desktop.title: Mon empreinte eau
-  simulator.navigation.nextButton.dontKnow: Je ne sais pas
   simulator.navigation.nextButton.finished: Terminer
-  simulator.navigation.nextButton.skip: Passer la question
   simulator.navigation.nextButton.next: Suivant
   simulator.mosaic.closeMoreOptions: Moins d’options
   simulator.mosaic.noChildren: Cette mosaique n'a pas d'enfants.
@@ -1310,7 +1305,6 @@ entries:
   Choisir l'action: Choisir l'action
   Choisir l'action - désactivé: Choisir l'action - désactivé
   common.navigation.nextQuestion.dontKnow.title: Je ne sais pas, passer et aller à la question suivante
-  common.navigation.nextQuestion.pass.title: Passer et aller à la question suivante
   profile.answers.category.fold: Replier les questions pour cette catégorie
   profile.answers.category.unfold: Déplier les questions pour cette catégorie
   profile.answers.subcategory.fold: Replier les questions pour cette sous-catégorie
@@ -1355,3 +1349,5 @@ entries:
   Vérifiez vos e-mails: Vérifiez vos e-mails
   header.monEspace: Mon Espace
   header.simulateur: Accéder au test
+  90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² en moyenne pour un foyer de 2,2 personnes.
+  sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit

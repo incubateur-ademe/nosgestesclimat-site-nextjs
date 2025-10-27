@@ -2,9 +2,12 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
-import { endClickActions } from '@/constants/tracking/pages/end'
+import {
+  endClickActions,
+  endClickActionsPosthog,
+} from '@/constants/tracking/pages/end'
 import { useEngine, useRule } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Action from './actions/Action'
 
@@ -67,7 +70,10 @@ export default function Actions({ subcategory, noNumberedFootprint }: Props) {
       {!noNumberedFootprint && (
         <div className="flex justify-center">
           <Link
-            onClick={() => trackEvent(endClickActions)}
+            onClick={() => {
+              trackEvent(endClickActions)
+              trackPosthogEvent(endClickActionsPosthog(title ?? ''))
+            }}
             href="/actions"
             className="text-center text-xs">
             <Trans>Voir tous les gestes</Trans> : {title}
