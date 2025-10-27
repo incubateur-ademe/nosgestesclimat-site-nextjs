@@ -1,6 +1,5 @@
 'use client'
 
-import { DONT_KNOW_FEATURE_FLAG_KEY } from '@/constants/ab-test'
 import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,
@@ -12,7 +11,6 @@ import {
   questionClickSuivant,
 } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
-import { useIsTestVersion } from '@/hooks/abTesting/useIsTestVersion'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useMagicKey } from '@/hooks/useMagicKey'
@@ -49,8 +47,6 @@ export default function Navigation({
   const { isIframe } = useIframe()
 
   const persistedRemainingQuestionsRef = useRef(remainingQuestions)
-
-  const isTestVersion = useIsTestVersion(DONT_KNOW_FEATURE_FLAG_KEY)
 
   const {
     gotoPrevQuestion,
@@ -293,31 +289,19 @@ export default function Navigation({
     })
   }
 
-  const skipText = isTestVersion ? (
+  const skipText = (
     <span>
       <Trans i18nKey="simulator.navigation.nextButton.dontKnow.label">
         Je ne sais pas
       </Trans>{' '}
       <span aria-hidden>→</span>
     </span>
-  ) : (
-    <span>
-      <Trans i18nKey="simulator.navigation.nextButton.skip.label">
-        Passer la question
-      </Trans>{' '}
-      <span aria-hidden>→</span>
-    </span>
   )
 
-  const skipTitle = isTestVersion
-    ? t(
-        'common.navigation.nextQuestion.dontKnow.title',
-        'Je ne sais pas, passer et aller à la question suivante'
-      )
-    : t(
-        'common.navigation.nextQuestion.pass.title',
-        'Passer et aller à la question suivante'
-      )
+  const skipTitle = t(
+    'common.navigation.nextQuestion.dontKnow.title',
+    'Je ne sais pas, passer et aller à la question suivante'
+  )
 
   return (
     <div
