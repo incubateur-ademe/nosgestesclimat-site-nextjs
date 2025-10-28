@@ -48,11 +48,6 @@ export default function FinPage() {
     }
   }, [])
 
-  console.log({
-    isIframe,
-    isIframeShareData,
-    isFrenchRegion,
-  })
   // If the simulationIdInQueryParams is set, it means that the simulation is not loaded yet
   if (!isGuardInit || isGuardRedirecting) return <FinPageSkeleton />
 
