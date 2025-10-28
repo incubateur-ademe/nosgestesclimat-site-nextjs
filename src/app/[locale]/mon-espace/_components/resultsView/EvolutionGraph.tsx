@@ -77,7 +77,7 @@ export default function EvolutionGraph({ locale, simulations }: Props) {
 
   return (
     <div className="mb-16">
-      <h2 className="mb-6">
+      <h2 className="mb-6 text-2xl md:mb-8">
         <Trans i18nKey="mon-espace.evolutionGraph.title">
           Evolution de mes résultats d'empreinte
         </Trans>

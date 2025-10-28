@@ -113,11 +113,21 @@ export default async function LatestResults({
         className="mb-0 h-auto"
       />
 
-      <div className="block md:hidden">
+      <div className="mt-4 block md:hidden">
         <div
           className="relative mx-auto mt-2 flex w-full flex-col items-center justify-center md:mt-4"
           role="img"
-          aria-label={`Graphique montrant votre empreinte carbone de ${formattedValue} ${unit} par an, soit ${Math.round(percentage)}% de l'échelle maximale. L'objectif 2050 est de 2 tonnes par an.`}
+          aria-label={t(
+            'mon-espace.latestResults.gaugeDescription',
+            "Graphique montrant votre empreinte carbone de {{currentValue}} {{unit}} par an, soit {{percentage}}% de l'échelle maximale. L'objectif 2050 est de {{targetValue}} tonnes par an.",
+            {
+              currentValue: formattedValue,
+              unit,
+              percentage: Math.round(percentage),
+              targetValue: 2,
+              interpolation: { escapeValue: false },
+            }
+          )}
           aria-live="polite"
           aria-atomic="true">
           <GaugeContainerServer

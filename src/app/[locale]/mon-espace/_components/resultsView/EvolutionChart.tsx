@@ -74,13 +74,14 @@ export default function EvolutionChart({
   return (
     <div
       className="w-full"
+      style={{ height: `${height}px` }}
       role="img"
       aria-label={chartLabel}
       aria-describedby={
         isMobile() ? 'evolution-chart-mobile-description' : undefined
       }
       id={chartId}>
-      <ResponsiveContainer width="100%" height={height}>
+      <ResponsiveContainer width="100%" height="100%">
         <LineChart
           data={chartData}
           margin={{

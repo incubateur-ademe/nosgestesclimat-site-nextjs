@@ -15,8 +15,8 @@ export default async function ResultsList({ locale, simulations }: Props) {
   const { t } = await getServerTranslation({ locale })
 
   return (
-    <div className="mb-16">
-      <h2>
+    <div className="mb-8 md:mb-10">
+      <h2 className="mb-6 text-2xl md:mb-8">
         <Trans locale={locale} i18nKey="mon-espace.resultsList.title">
           Tous mes résultats
         </Trans>

@@ -11,7 +11,7 @@ type Props = {
 export default async function ShareSimulator({ locale }: Props) {
   const { t } = await getServerTranslation({ locale })
   return (
-    <div className="py-10 text-center">
+    <div className="py-8 text-center md:py-10">
       <p>
         <Trans locale={locale} i18nKey="mon-espace.shareSimulator.title">
           Vous avez aimé calculer votre empreinte ?
