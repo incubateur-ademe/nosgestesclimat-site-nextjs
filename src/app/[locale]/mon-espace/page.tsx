@@ -18,7 +18,7 @@ export default async function MonEspacePage({
     (await searchParams) || {}
 
   const authenticatedUser = await getIsUserAuthenticated()
-  console.log('authenticatedUser', authenticatedUser)
+
   if (!authenticatedUser) {
     redirect(CONNEXION_PATH)
   }
@@ -30,7 +30,7 @@ export default async function MonEspacePage({
   const latestSimulation = simulations?.[0]
 
   return (
-    <ContentLarge className="mt-4 px-4 md:mt-10 lg:px-0">
+    <ContentLarge className="mt-4 px-3 md:mt-10 lg:px-0">
       {showWelcomeBanner && !!latestSimulation && (
         <WelcomeBanner locale={locale} />
       )}

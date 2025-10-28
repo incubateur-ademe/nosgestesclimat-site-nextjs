@@ -3,16 +3,17 @@ import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprin
 import { getColorAtPosition } from '@/helpers/getColorOfGradient'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
-import AnimatedArrowServer from './carboneTotalChart/AnimatedArrowServer'
-import GaugeServer from './carboneTotalChart/GaugeServer'
+import GaugeContainerServer from './GaugeContainerServer'
 
 type Props = {
   total: number
   locale: Locale
+  shouldHideGauge?: boolean
 }
 export default async function CarboneTotalChartServer({
   total,
   locale,
+  shouldHideGauge = false,
 }: Props) {
   const { t } = await getServerTranslation({ locale })
 
@@ -55,7 +56,7 @@ export default async function CarboneTotalChartServer({
           <strong className="bottom-7 text-xl leading-none font-black md:text-4xl lg:bottom-7 lg:text-6xl">
             {formattedValue}
           </strong>
-           
+
           <span className="text-lg md:text-3xl lg:text-4xl lg:leading-tight">
             {unit}
           </span>
@@ -68,21 +69,19 @@ export default async function CarboneTotalChartServer({
           </span>
         </p>
       </div>
-
-      <div
-        className="mt-4 hidden w-full md:block"
-        role="progressbar"
-        aria-valuenow={currentValueInTons}
-        aria-valuemin={0}
-        aria-valuemax={maxValue}
-        aria-valuetext={`${formattedValue} ${unit} par an, ${Math.round(percentage)}% de l'échelle maximale`}
-        aria-label={t(
-          'endPage.carboneChart.progressBarLabel',
-          'Barre de progression de votre empreinte carbone'
-        )}>
-        <AnimatedArrowServer position={position} color={cssColor} />
-        <GaugeServer total={total} locale={locale} />
-      </div>
+      {!shouldHideGauge && (
+        <GaugeContainerServer
+          total={total}
+          locale={locale}
+          currentValueInTons={currentValueInTons}
+          maxValue={maxValue}
+          formattedValue={formattedValue}
+          unit={unit ?? ''}
+          percentage={percentage}
+          position={position}
+          cssColor={cssColor}
+        />
+      )}
     </div>
   )
 }

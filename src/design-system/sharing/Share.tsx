@@ -55,7 +55,9 @@ export default function Share({
         color={buttonColor ?? 'text'}
         size="sm"
         className={twMerge(
-          'h-10 w-10 p-0! font-medium lg:w-auto lg:min-w-32 lg:gap-1 lg:px-4! lg:py-2!',
+          shouldHideTextOnMobile
+            ? 'h-10 w-10 p-0! font-medium lg:w-auto lg:min-w-32 lg:gap-1 lg:px-4! lg:py-2!'
+            : 'h-10 w-auto min-w-32 gap-1 px-4! py-2! font-medium',
           className
         )}
         data-testid="share-button"
@@ -67,8 +69,7 @@ export default function Share({
 
         <span
           className={twMerge(
-            'sr-only lg:not-sr-only!',
-            shouldHideTextOnMobile && 'not-sr-only! hidden md:block'
+            shouldHideTextOnMobile ? 'sr-only lg:not-sr-only!' : 'not-sr-only!'
           )}>
           {buttonLabel}
         </span>

@@ -41,7 +41,18 @@ export default async function MetricSliderServer({
             ),
           }}>
           <div className="w-full flex-1 px-4">
-            <CarboneTotalChartServer total={carboneTotal} locale={locale} />
+            {/* Mobile: show value only */}
+            <div className="block md:hidden">
+              <CarboneTotalChartServer
+                total={carboneTotal}
+                locale={locale}
+                shouldHideGauge={true}
+              />
+            </div>
+            {/* Desktop: show value + gauge */}
+            <div className="hidden md:block">
+              <CarboneTotalChartServer total={carboneTotal} locale={locale} />
+            </div>
           </div>
         </MetricCardServer>
 

@@ -18,14 +18,28 @@ export default async function ShareSimulator({ locale }: Props) {
         </Trans>
       </p>
 
-      <ShareSimulationButton
-        url={`https://nosgestesclimat.fr${SIMULATOR_PATH}`}
-        buttonLabel={t(
-          'mon-espace.shareSimulator.buttonLabel',
-          'Partager le test Nos Gestes Climat'
-        )}
-        buttonColor="secondary"
-      />
+      <span className="hidden md:block">
+        <ShareSimulationButton
+          url={`https://nosgestesclimat.fr${SIMULATOR_PATH}`}
+          buttonLabel={t(
+            'mon-espace.shareSimulator.buttonLabel.desktop',
+            'Partager le test Nos Gestes Climat'
+          )}
+          buttonColor="secondary"
+          shouldHideTextOnMobile={false}
+        />
+      </span>
+      <span className="block md:hidden">
+        <ShareSimulationButton
+          url={`https://nosgestesclimat.fr${SIMULATOR_PATH}`}
+          buttonLabel={t(
+            'mon-espace.shareSimulator.buttonLabel.mobile',
+            'Partager le test'
+          )}
+          buttonColor="secondary"
+          shouldHideTextOnMobile={false}
+        />
+      </span>
     </div>
   )
 }
