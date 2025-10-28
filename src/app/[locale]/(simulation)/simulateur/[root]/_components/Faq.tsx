@@ -4,11 +4,11 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
 import { simulateurClickFaq } from '@/constants/tracking/pages/simulateur'
 
-import { useIframeStatic } from '@/hooks/useIframeStatic'
+import { useIframe } from '@/hooks/useIframe'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 
 export default function Faq() {
-  const { isIframeOnlySimulation } = useIframeStatic()
+  const { isIframeOnlySimulation } = useIframe()
 
   if (isIframeOnlySimulation) return null
 

@@ -1,6 +1,6 @@
 import CloseIcon from '@/components/icons/Close'
 import Link from '@/components/Link'
-import { useIframeStatic } from '@/hooks/useIframeStatic'
+import { useIframe } from '@/hooks/useIframe'
 import { usePRNumber } from '@/hooks/usePRNumber'
 import { useRouter } from 'next/navigation'
 
@@ -9,7 +9,7 @@ export default function PRIndicator() {
 
   const { PRNumber, clearPRNumber } = usePRNumber()
 
-  const { iframeRegion } = useIframeStatic()
+  const { iframeRegion } = useIframe()
 
   if (!PRNumber || iframeRegion) return null
 

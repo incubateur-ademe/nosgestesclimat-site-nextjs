@@ -11,7 +11,7 @@ import { HIDE_CTA_PATHS } from '@/constants/urls/main'
 import { linkToClassement } from '@/helpers/navigation/classementPages'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useIframeStatic } from '@/hooks/useIframeStatic'
+import { useIframe } from '@/hooks/useIframe'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import dynamic from 'next/dynamic'
@@ -44,7 +44,7 @@ type Props = {
   isSticky?: boolean
 }
 export default function Header({ isSticky = true }: Props) {
-  const { isIframeOnlySimulation } = useIframeStatic()
+  const { isIframeOnlySimulation } = useIframe()
 
   const { t } = useClientTranslation()
 

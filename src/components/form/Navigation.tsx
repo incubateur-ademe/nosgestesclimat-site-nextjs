@@ -12,7 +12,7 @@ import {
 } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useIframeStatic } from '@/hooks/useIframeStatic'
+import { useIframe } from '@/hooks/useIframe'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import {
   useCurrentSimulation,
@@ -44,7 +44,7 @@ export default function Navigation({
 }) {
   const { t } = useClientTranslation()
 
-  const { isIframe } = useIframeStatic()
+  const { isIframe } = useIframe()
 
   const persistedRemainingQuestionsRef = useRef(remainingQuestions)
 

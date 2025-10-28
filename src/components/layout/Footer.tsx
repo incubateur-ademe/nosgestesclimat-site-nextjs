@@ -20,7 +20,7 @@ import {
 } from '@/constants/tracking/layout'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDisplayed'
-import { useIframeStatic } from '@/hooks/useIframeStatic'
+import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { usePathname } from 'next/navigation'
@@ -51,7 +51,7 @@ export default function Footer({
 
   const { setIsBoardOpen } = useCookieConsent()
 
-  const { isIframeOnlySimulation } = useIframeStatic()
+  const { isIframeOnlySimulation } = useIframe()
 
   if (isIframeOnlySimulation) return null
 

@@ -3,7 +3,7 @@
 import Trans from '@/components/translation/trans/TransClient'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useIframeStatic } from '@/hooks/useIframeStatic'
+import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import i18nConfig from '@/i18nConfig'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
@@ -33,7 +33,7 @@ export default function TallyForm() {
   const { t } = useClientTranslation()
   const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
 
-  const { isIframe } = useIframeStatic()
+  const { isIframe } = useIframe()
 
   const isFrench = useLocale() === i18nConfig.defaultLocale
   const FORM_ID =

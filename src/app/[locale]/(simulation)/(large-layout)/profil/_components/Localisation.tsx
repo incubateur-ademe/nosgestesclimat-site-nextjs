@@ -5,7 +5,7 @@ import CountryFlag from '@/components/misc/CountryFlag'
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useIframeStatic } from '@/hooks/useIframeStatic'
+import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
 import type { RegionFromGeolocation } from '@/publicodes-state/types'
@@ -28,7 +28,7 @@ export default function Localisation({ supportedRegions }: Props) {
     (supportedRegion: string) => supportedRegion === region?.code
   )
 
-  const { isIframe } = useIframeStatic()
+  const { isIframe } = useIframe()
 
   if (isIframe) return null
 
