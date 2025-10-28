@@ -13,7 +13,7 @@ export default function WaterTotalNumberServer({ total, locale }: Props) {
   // We round the value to the nearest hundred
   const realFormattedValue = (
     Math.round(Number(formattedValue) / 100) * 100
-  ).toLocaleString('fr-FR')
+  ).toLocaleString(locale === 'fr' ? 'fr-FR' : 'en-US')
 
   return (
     <div className="flex origin-top items-center justify-center pt-8 md:pt-12">

@@ -18,7 +18,8 @@ export default async function CarboneTotalChartServer({
 
   const { formattedValue, unit } = formatCarbonFootprint(total, {
     t,
-    localize: false,
+    locale,
+    localize: true,
   })
 
   const originPosition = (total / 1000 / 12) * 100
@@ -29,13 +30,11 @@ export default async function CarboneTotalChartServer({
   const color = getColorAtPosition(position / 100)
   const cssColor = `rgba(${color['r']},${color['g']},${color['b']},${color['a']})`
 
-  // Calcul des valeurs pour l'accessibilité
   const targetValue = 2 // tonnes par an (objectif 2050)
   const maxValue = 12 // tonnes par an (échelle maximale)
   const currentValueInTons = total / 1000
   const percentage = Math.min((currentValueInTons / maxValue) * 100, 100)
 
-  // Description pour les lecteurs d'écran
   const gaugeDescription = t(
     'endPage.carboneChart.gaugeDescription',
     `Graphique montrant votre empreinte carbone de ${formattedValue} ${unit} par an, soit ${Math.round(percentage)}% de l'échelle maximale. L'objectif 2050 est de ${targetValue} tonnes par an.`

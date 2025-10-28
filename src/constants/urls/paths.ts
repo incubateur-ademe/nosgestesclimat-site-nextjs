@@ -14,3 +14,5 @@ export const MON_ESPACE_RESULTS_PATH = '/mon-espace'
 export const MON_ESPACE_ACTIONS_PATH = '/mon-espace/actions'
 export const MON_ESPACE_GROUPS_PATH = '/mon-espace/groupes'
 export const MON_ESPACE_SETTINGS_PATH = '/mon-espace/parametres'
+export const MON_ESPACE_RESULTS_DETAIL_PATH =
+  '/mon-espace/resultats/:simulationId'

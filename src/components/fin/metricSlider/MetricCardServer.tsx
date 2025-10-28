@@ -22,8 +22,8 @@ export default function MetricCardServer({
     <div
       className={twMerge(
         'flex-1 overflow-hidden rounded-b-xl bg-white',
-        'border-primary-100 pointer-events-auto relative rounded-xl border-[3px]',
-        'border-slate-500 bg-slate-100',
+        'border-primary-100 pointer-events-auto relative rounded-xl border-2',
+        'bg-white',
         metric === carboneMetric
           ? 'rounded-r-none rounded-bl-xl'
           : 'rounded-l-none rounded-br-xl',
