@@ -18,7 +18,7 @@ export default async function MonEspacePage({
     (await searchParams) || {}
 
   const authenticatedUser = await getIsUserAuthenticated()
-
+  console.log('authenticatedUser', authenticatedUser)
   if (!authenticatedUser) {
     redirect(CONNEXION_PATH)
   }
@@ -38,7 +38,7 @@ export default async function MonEspacePage({
       {!latestSimulation && <NoResultsView locale={locale} />}
 
       {latestSimulation && (
-        <ResultsView locale={locale} simulation={latestSimulation} />
+        <ResultsView locale={locale} simulations={simulations} />
       )}
     </ContentLarge>
   )

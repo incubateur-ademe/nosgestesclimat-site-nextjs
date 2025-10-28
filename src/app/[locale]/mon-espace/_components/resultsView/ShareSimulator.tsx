@@ -1,0 +1,31 @@
+import ShareSimulationButton from '@/components/sharing/ShareSimulationButton'
+import Trans from '@/components/translation/trans/TransServer'
+import { SIMULATOR_PATH } from '@/constants/urls/paths'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
+import type { Locale } from '@/i18nConfig'
+
+type Props = {
+  locale: Locale
+}
+
+export default async function ShareSimulator({ locale }: Props) {
+  const { t } = await getServerTranslation({ locale })
+  return (
+    <div className="py-10 text-center">
+      <p>
+        <Trans locale={locale} i18nKey="mon-espace.shareSimulator.title">
+          Vous avez aimé calculer votre empreinte ?
+        </Trans>
+      </p>
+
+      <ShareSimulationButton
+        url={`https://nosgestesclimat.fr${SIMULATOR_PATH}`}
+        buttonLabel={t(
+          'mon-espace.shareSimulator.buttonLabel',
+          'Partager le test Nos Gestes Climat'
+        )}
+        buttonColor="secondary"
+      />
+    </div>
+  )
+}

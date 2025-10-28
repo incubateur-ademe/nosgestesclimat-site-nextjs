@@ -24,6 +24,7 @@ type ShareItem = {
 }
 
 export default function Share({
+  buttonColor,
   className,
   buttonLabel,
   shareItems,
@@ -33,6 +34,7 @@ export default function Share({
   shouldHideTextOnMobile = true,
   ...props
 }: {
+  buttonColor?: 'primary' | 'secondary' | 'text'
   className?: string
   buttonLabel: string
   shareItems: ShareItem[]
@@ -50,7 +52,7 @@ export default function Share({
   return (
     <>
       <Button
-        color="text"
+        color={buttonColor ?? 'text'}
         size="sm"
         className={twMerge(
           'h-10 w-10 p-0! font-medium lg:w-auto lg:min-w-32 lg:gap-1 lg:px-4! lg:py-2!',
