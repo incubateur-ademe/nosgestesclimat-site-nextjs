@@ -1377,8 +1377,8 @@ entries:
   common.category.logement.lock: Logement
   pollResults.categoryDistribution.accessibleDescription.category: '{{name}}: {{value}} {{unit}}.'
   pollResults.categoryDistribution.accessibleDescription.category.lock: '{{name}}: {{value}} {{unit}}.'
-  common.category.services: Services
-  common.category.services.lock: Services
+  common.category.services: Community services
+  common.category.services.lock: Services sociétaux
   common.category.transport: Transport
   common.category.transport.lock: Transport
   common.category.alimentation: Power supply
@@ -1698,7 +1698,39 @@ entries:
   mon-espace.instructions.description.part1.lock: Avant toute chose, nous vous invitons à
   mon-espace.tabs.myResults: My results
   mon-espace.tabs.myResults.lock: Mes résultats
+  mon-espace.evolutionGraph.title: Evolution of my carbon footprint results
+  mon-espace.evolutionGraph.title.lock: Evolution de mes résultats d'empreinte
+  mon-espace.evolutionGraph.tabs.global: Global view
+  mon-espace.evolutionGraph.tabs.global.lock: Vue globale
+  mon-espace.evolutionGraph.selectView: Select the view to display
+  mon-espace.evolutionGraph.selectView.lock: Sélectionner la vue à afficher
+  mon-espace.evolutionGraph.selectView.description: Rotate your mobile for optimal display
+  mon-espace.evolutionGraph.selectView.description.lock: Retournez votre mobile pour un affichage optimal
+  mon-espace.evolutionGraph.yAxis: Footprint in tonnes
+  mon-espace.evolutionGraph.yAxis.lock: Empreinte en tonnes
+  mon-espace.evolutionGraph.chartLabel: Carbon footprint evolution graph showing {{simulationsCount}} résultats de test. {{simulationsData}}
+  mon-espace.evolutionGraph.chartLabel.lock: Graphique d'évolution de l'empreinte carbone montrant {{simulationsCount}} résultats de test. {{simulationsData}}
   mon-espace.tabs.myActions: My actions
   mon-espace.tabs.myActions.lock: Mes actions
   mon-espace.tabs.myGroups: My groups
   mon-espace.tabs.myGroups.lock: Mes groupes
+  mon-espace.resultsList.result.viewDetail: See details
+  mon-espace.resultsList.result.viewDetail.lock: Voir le détail
+  mon-espace.resultsList.title: All my results
+  mon-espace.resultsList.title.lock: Tous mes résultats
+  mon-espace.latestResults.title: Latest impression results
+  mon-espace.latestResults.title.lock: Derniers résultats d'empreinte
+  mon-espace.shareSimulator.buttonLabel.mobile: Share the test
+  mon-espace.shareSimulator.buttonLabel.mobile.lock: Partager le test
+  mon-espace.latestResults.date: Test performed on
+  mon-espace.latestResults.date.lock: Test effectué le
+  mon-espace.latestResults.viewDetail: See details
+  mon-espace.latestResults.viewDetail.lock: Voir le détail
+  mon-espace.resultsList.result.title: 'Results from {{date}}:'
+  mon-espace.resultsList.result.title.lock: 'Résultats du {{date}} :'
+  mon-espace.shareSimulator.title: Did you enjoy calculating your footprint?
+  mon-espace.shareSimulator.title.lock: Vous avez aimé calculer votre empreinte ?
+  mon-espace.resultsList.result.unit: CO₂e / year
+  mon-espace.resultsList.result.unit.lock: CO₂e / an
+  mon-espace.shareSimulator.buttonLabel.desktop: Share Nos Gestes Climat test
+  mon-espace.shareSimulator.buttonLabel.desktop.lock: Partager le test Nos Gestes Climat

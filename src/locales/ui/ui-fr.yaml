@@ -1211,7 +1211,7 @@ entries:
   common.category.alimentation: Alimentation
   common.category.divers: Divers
   common.category.logement: Logement
-  common.category.services: Services
+  common.category.services: Services sociétaux
   common.category.transport: Transport
   pollResults.categoryDistribution.accessibleDescription.category: '{{name}}: {{value}} {{unit}}.'
   pollResults.categoryDistribution.accessibleDescription.chart: 'Graphique en donut montrant la répartition des émissions par catégorie. '
@@ -1388,3 +1388,19 @@ entries:
   mon-espace.tabs.myActions: Mes actions
   mon-espace.tabs.myGroups: Mes groupes
   mon-espace.tabs.myResults: Mes résultats
+  mon-espace.evolutionGraph.title: Evolution de mes résultats d'empreinte
+  mon-espace.evolutionGraph.tabs.global: Vue globale
+  mon-espace.evolutionGraph.selectView: Sélectionner la vue à afficher
+  mon-espace.evolutionGraph.selectView.description: Retournez votre mobile pour un affichage optimal
+  mon-espace.evolutionGraph.yAxis: Empreinte en tonnes
+  mon-espace.evolutionGraph.chartLabel: Graphique d'évolution de l'empreinte carbone montrant {{simulationsCount}} résultats de test. {{simulationsData}}
+  mon-espace.latestResults.date: Test effectué le
+  mon-espace.latestResults.title: Derniers résultats d'empreinte
+  mon-espace.latestResults.viewDetail: Voir le détail
+  mon-espace.resultsList.result.title: 'Résultats du {{date}} :'
+  mon-espace.resultsList.result.unit: CO₂e / an
+  mon-espace.resultsList.result.viewDetail: Voir le détail
+  mon-espace.resultsList.title: Tous mes résultats
+  mon-espace.shareSimulator.buttonLabel.desktop: Partager le test Nos Gestes Climat
+  mon-espace.shareSimulator.buttonLabel.mobile: Partager le test
+  mon-espace.shareSimulator.title: Vous avez aimé calculer votre empreinte ?
