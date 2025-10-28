@@ -1,4 +1,4 @@
-import Header from '@/components/layout/Header'
+import Header from '@/components/layout/HeaderClient'
 import { PARTNER_KEY } from '@/constants/partners'
 import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Main from '@/design-system/layout/Main'
@@ -25,7 +25,6 @@ export default async function PartenairePage({
   params,
   searchParams,
 }: DefaultPageProps<{ searchParams: SearchParams }>) {
-  const { locale } = await params
   const searchParamsObject = (await searchParams) ?? { partner: '' }
 
   const partner = (searchParamsObject[PARTNER_KEY] as string) ?? ''

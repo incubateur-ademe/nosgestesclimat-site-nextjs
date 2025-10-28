@@ -12,3 +12,7 @@ export const trackingActionClickSortingButton = [
   'Actions',
   'Click bouton tri',
 ]
+
+export const trackingActionClickSortingButtonPosthog = {
+  eventName: 'Actions click bouton tri',
+}

@@ -75,8 +75,7 @@ export default function DocumentationClient({ slugs }: Props) {
             </>
           ),
         }}
-        // TODO : uncomment prop after updating publicodes
-        // mainContentId="main-content"
+        mainContentId="main-content"
       />
     </div>
   )

@@ -5,7 +5,7 @@ import Markdown from '@/design-system/utils/Markdown'
 import type { Locale } from '@/i18nConfig'
 import { fetchPartnerCampaign } from '@/services/cms/fetchPartnerCampaign'
 import { redirect } from 'next/navigation'
-import { ClientLayout } from '../../_components/ClientLayout'
+import { ClientLayout } from '../../../../components/layout/ClientLayout'
 import PartnerCampaignContent from './_components/PartnerCampaignContent'
 
 export default async function PartnerCampaignPage({

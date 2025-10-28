@@ -16,7 +16,7 @@ import {
 import type { DefaultPageProps } from '@/types'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { ClientLayout } from '../_components/ClientLayout'
+import { ClientLayout } from '../../../components/layout/ClientLayout'
 import DailyGestureWaterFootprint from './_components/DailyGestureWaterFootprint'
 import DidYouKnowWaterFootprint from './_components/DidYouKnowWaterFootprint'
 import FAQWaterFootprint from './_components/FAQWaterFootprint'

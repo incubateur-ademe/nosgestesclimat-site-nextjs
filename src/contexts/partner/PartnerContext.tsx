@@ -37,7 +37,7 @@ type PartnerContextType = {
   redirectUrl: string
 }
 
-export const PartnerContext = createContext<PartnerContextType>({
+const PartnerContext = createContext<PartnerContextType>({
   alertToDisplay: undefined,
   redirectUrl: '',
 })

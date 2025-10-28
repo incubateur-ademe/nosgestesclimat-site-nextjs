@@ -934,12 +934,10 @@ entries:
   Contactez-nous: Contact us
   'logement et consommation énergétique ': 'housing and energy consumption '
   énergie et production industrielle: energy and industrial production
-  90,9 m² en moyenne pour un foyer de 2,2 personnes.: 90.9 m² on average for a household of 2.2 people.
   La taille des logements français a très fortement augmenté: The size of French homes has risen sharply
   transports: transport
   agriculture et élevage: agriculture and livestock
   production de biens et consommation croissante: production of goods and growing consumption
-  sur ces 50 dernières années, passant de 23 à 40,4 m² par habitant, soit: over the last 50 years, from 23 to 40.4 m² per inhabitant, i.e
   ': le chauffage (et dans une moindre mesure, la climatisation) est le poste le plus important de consommation énergétique du logement, donc d’émission de GES. Il faut également y ajouter les consommations des appareils électroménagers ;': heating (and, to a lesser extent, air conditioning) is the largest single source of energy consumption in the home, and therefore of greenhouse gas emissions. To this must also be added the consumption of household appliances;
   ': la combustion d’énergies fossiles (charbon, pétrole, gaz naturel) pour produire de l’électricité mais aussi pour alimenter les industries est la première cause d’émissions de CO₂ dans le monde ;': combustion of fossil fuels (coal, oil, natural gas) to produce electricity and power industry is the leading cause of CO₂ emissions worldwide;
   ': la fabrication de biens (électronique, vêtements, équipements, loisirs) à travers le monde génère des émissions à chaque étape : extraction des matières premières, production, transport, distribution et élimination. Ces processus contribuent fortement à l’empreinte carbone globale en raison d’une demande toujours croissante.': 'the manufacture of goods (electronics, clothing, equipment, leisure) around the world generates emissions at every stage: extraction of raw materials, production, transport, distribution and disposal. These processes make a significant contribution to the global carbon footprint because of ever-increasing demand.'
@@ -1315,8 +1313,6 @@ entries:
   results.mainSubcategories.mainSubcategory.seeDetail.lock: '{{title}}, voir le détail ci-dessous'
   group.results.rankingMember.delete.modal.ariaLabel: Modal window confirming deletion of group member
   group.results.rankingMember.delete.modal.ariaLabel.lock: Fenêtre modale de confirmation de suppression du membre du groupe
-  common.navigation.nextQuestion.pass.label: Move on to the next question
-  common.navigation.nextQuestion.pass.label.lock: Passer et aller à la question suivante
   common.burgerMenu.title: Close the navigation menu
   common.burgerMenu.title.lock: Fermer le menu de navigation
   common.navigation.previousButton.label: Go to previous question
@@ -1495,6 +1491,7 @@ entries:
   common.mainLandingPage.numberPersons.lock: 2,5 millions de personnes
   common.mainLandingPage.tookTheirTest: have already calculated their footprint!
   common.mainLandingPage.tookTheirTest.lock: ont déjà calculé leur empreinte !
+  Accéder au test: Access the test
   Option sélectionnée: Selected option
   Sélectionner cette option: Select this option
   Sélectionner cette métrique: Select this metric
@@ -1531,10 +1528,6 @@ entries:
   Cliquez pour afficher la réponse: Click to display the answer
   simulator.navigation.nextButton.finished: Finish
   simulator.navigation.nextButton.finished.lock: Terminer
-  simulator.navigation.nextButton.skip: Skip the question
-  simulator.navigation.nextButton.skip.lock: Passer la question
-  simulator.navigation.nextButton.dontKnow: I don't know
-  simulator.navigation.nextButton.dontKnow.lock: Je ne sais pas
   simulator.navigation.nextButton.next: Next
   simulator.navigation.nextButton.next.lock: Suivant
   simulator.mosaic.closeMoreOptions: Fewer options
@@ -1546,3 +1539,17 @@ entries:
   simulator.mosaic.noChildren: This mosaic has no children.
   simulator.mosaic.noChildren.lock: Cette mosaique n'a pas d'enfants.
   Choisir l'action - désactivé: Choose action - disabled
+  profile.answers.category.fold: Fold back the questions for this category
+  profile.answers.category.fold.lock: Replier les questions pour cette catégorie
+  simulator.navigation.nextButton.dontKnow.label: I don't know
+  simulator.navigation.nextButton.dontKnow.label.lock: Je ne sais pas
+  profile.answers.subcategory.fold: Fold back the questions for this sub-category
+  profile.answers.subcategory.fold.lock: Replier les questions pour cette sous-catégorie
+  profile.answers.subcategory.unfold: Unfold the questions for this sub-category
+  profile.answers.subcategory.unfold.lock: Déplier les questions pour cette sous-catégorie
+  profile.answers.category.unfold: Unfold the questions for this category
+  profile.answers.category.unfold.lock: Déplier les questions pour cette catégorie
+  common.navigation.nextQuestion.dontKnow.title: I don't know, skip to the next question
+  common.navigation.nextQuestion.dontKnow.title.lock: Je ne sais pas, passer et aller à la question suivante
+  90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² on average for a household of 2.2 people.
+  sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: over the last 50 years, from 23 to 40 m² per inhabitant, i.e

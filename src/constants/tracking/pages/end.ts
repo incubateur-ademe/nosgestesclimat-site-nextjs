@@ -8,12 +8,6 @@ export const endClickPoll = ['trackEvent', 'Fin', 'Click Poll']
 // Figma comment #58
 export const endClickSaveShortcut = ['trackEvent', 'Fin', 'Click Save shortcut']
 
-export const endClickShareShortcut = [
-  'trackEvent',
-  'Fin',
-  'Click Share shortcut',
-]
-
 export const endClickShare = ['trackEvent', 'Fin', 'Click Share']
 
 export const endToggleTargetBlock = ['trackEvent', 'Fin', 'Toggle Target block']
@@ -45,6 +39,13 @@ export const endClickAction = (action: DottedName) => [
 
 // Figma comment #64
 export const endClickActions = ['trackEvent', 'Fin', 'Click Actions']
+
+export const endClickActionsPosthog = (subcategory: string) => ({
+  eventName: 'Fin click Actions',
+  properties: {
+    subcategory,
+  },
+})
 
 // Figma comment #65
 export const endClickDocumentation = [
