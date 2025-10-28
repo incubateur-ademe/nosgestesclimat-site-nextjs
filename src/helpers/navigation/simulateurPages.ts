@@ -11,6 +11,7 @@ type Props = {
 
 type TutorielProps = {
   locale?: string
+  currentSearchParams?: ReadonlyURLSearchParams
 }
 
 export const getLinkToSimulateur = ({
@@ -41,7 +42,16 @@ export const getLinkToSimulateur = ({
   return `${pathname}?question=${questionParam}`
 }
 
-export const getLinkToTutoriel = ({ locale }: TutorielProps = {}) => {
+export const getLinkToTutoriel = ({
+  locale,
+  currentSearchParams,
+}: TutorielProps = {}) => {
   const basePath = locale ? `/${locale}` : ''
-  return `${basePath}/tutoriel`
+  const pathname = `${basePath}/tutoriel`
+
+  if (currentSearchParams) {
+    return buildUrlWithPreservedParams(pathname, currentSearchParams)
+  }
+
+  return pathname
 }
