@@ -3,6 +3,7 @@ import type { Locale } from '@/i18nConfig'
 import type { Simulation } from '@/publicodes-state/types'
 import LatestResults from './LatestResults'
 import ProfileTab from './ProfileTabs'
+import EvolutionGraph from './resultsView/EvolutionGraph'
 import ResultsList from './resultsView/ResultsList'
 import ShareSimulator from './resultsView/ShareSimulator'
 
@@ -21,6 +22,8 @@ export default function ResultsView({ locale, simulations }: Props) {
       <ShareSimulator locale={locale} />
 
       <ResultsList locale={locale} simulations={simulations} />
+
+      <EvolutionGraph locale={locale} simulations={simulations} />
     </>
   )
 }
