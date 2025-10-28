@@ -1183,12 +1183,8 @@ entries:
   cookieConsent.banner.title.lock: Fenêtre modale de gestion des cookies
   cookieConsent.board.title: Cookie management panel
   cookieConsent.board.title.lock: Panneau de gestion des cookies
-  simulator.customQuestions.ameublement.inProgress: This feature is currently under development. Thank you for your interest!
-  simulator.customQuestions.ameublement.inProgress.lock: Cette fonctionnalité est actuellement en cours de conception. Merci pour votre intérêt !
   simulator.customQuestions.textile.open: I want to detail my wardrobe
   simulator.customQuestions.textile.open.lock: Je détaille ma garde-robe
-  simulator.customQuestions.ameublement.open: I want to detail my latest purchases
-  simulator.customQuestions.ameublement.open.lock: Je détaille mes derniers achats
   'Pour plus de précision:': 'More precision:'
   simulator.customQuestions.plats.selectionStart: You have selected
   simulator.customQuestions.plats.selectionStart.lock: Vous avez sélectionné

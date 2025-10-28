@@ -1097,8 +1097,6 @@ entries:
   copyInput.sharingInProgress: Partage en cours...
   cookieConsent.banner.title: Fenêtre modale de gestion des cookies
   cookieConsent.board.title: Panneau de gestion des cookies
-  simulator.customQuestions.ameublement.inProgress: Cette fonctionnalité est actuellement en cours de conception. Merci pour votre intérêt !
-  simulator.customQuestions.ameublement.open: Je détaille mes derniers achats
   simulator.customQuestions.textile.open: Je détaille ma garde-robe
   'Pour plus de précision:': 'Pour plus de précision:'
   simulator.customQuestions.plats.meals: repas
