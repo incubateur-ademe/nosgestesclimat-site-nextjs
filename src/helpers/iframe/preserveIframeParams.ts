@@ -13,12 +13,6 @@ export const IFRAME_PARAMS = [
   'PR',
 ] as const
 
-/**
- * Preserves iframe-related parameters from current searchParams when building new URLs
- * @param currentSearchParams - Current URL search parameters
- * @param newParams - New parameters to add/override
- * @returns URLSearchParams with preserved iframe params + new params
- */
 export function preserveIframeParams(
   currentSearchParams: ReadonlyURLSearchParams,
   newParams: Record<string, string | null | undefined> = {}
@@ -43,13 +37,6 @@ export function preserveIframeParams(
   return preservedParams
 }
 
-/**
- * Helper to build a URL with preserved iframe params
- * @param pathname - The pathname for the URL
- * @param currentSearchParams - Current URL search parameters
- * @param newParams - New parameters to add/override
- * @returns Complete URL string
- */
 export function buildUrlWithPreservedParams(
   pathname: string,
   currentSearchParams: ReadonlyURLSearchParams,
