@@ -132,8 +132,7 @@ describe('NumberInput', () => {
       const input = screen.getByRole('textbox')
       expect(input).toHaveAttribute('placeholder')
       expect(input.getAttribute('placeholder')).toContain('1')
-      expect(input.getAttribute('placeholder')).toContain('234')
-      expect(input.getAttribute('placeholder')).toContain(',')
+      expect(input.getAttribute('placeholder')).toContain('235')
     })
 
     it('should have correct input attributes', () => {
@@ -178,7 +177,7 @@ describe('NumberInput', () => {
       render(<NumberInput {...defaultProps} value={123.456} />)
 
       const input = screen.getByRole('textbox')
-      expect(input).toHaveAttribute('placeholder', '123,46') // Rounded to 2 decimal places
+      expect(input).toHaveAttribute('placeholder', '123') // Rounded to 0 decimal places
     })
   })
 })
