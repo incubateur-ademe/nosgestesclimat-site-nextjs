@@ -7,15 +7,13 @@ type Props = {
   userId: string
 }
 
-/**
- * This function is used to save simulations for tracking purposes only
- */
-export async function saveSimulationForTracking({ simulation, userId }: Props) {
+// TODO : factorize to use this helper everywhere
+export async function saveSimulation({ simulation, userId, sendEmail }: Props) {
   const payload = { ...simulation }
 
   const url = new URL(`${SIMULATION_URL}/${userId}`)
 
-  url.searchParams.set('sendEmail', 'false')
+  url.searchParams.set('sendEmail', sendEmail?.toString() || 'false')
 
   const response = await fetch(url.toString(), {
     method: 'POST',
@@ -28,4 +26,6 @@ export async function saveSimulationForTracking({ simulation, userId }: Props) {
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`)
   }
+
+  return response.json()
 }

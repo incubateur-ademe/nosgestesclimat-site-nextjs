@@ -1,9 +1,10 @@
-import { ORGANISATION_URL, SIMULATION_URL } from '@/constants/urls/main'
+import { ORGANISATION_URL } from '@/constants/urls/main'
 import { getModelVersion } from '@/helpers/modelFetching/getModelVersion'
 import {
   mapNewSimulationToOld,
   mapOldSimulationToNew,
 } from '@/helpers/simulation/mapNewSimulation'
+import { saveSimulation as saveSimulationHelper } from '@/helpers/simulation/saveSimulation'
 import { useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
 import { updateGroupParticipant } from '@/services/groups/updateGroupParticipant'
@@ -81,13 +82,14 @@ export function useSaveSimulation() {
           .then((response) => response.data)
       }
 
-      return axios
-        .post(`${SIMULATION_URL}/${userId}`, payload, {
-          params: { sendEmail },
-        })
-        .then((response) => mapNewSimulationToOld(response.data))
+      return saveSimulationHelper({
+        simulation: payload,
+        userId,
+        sendEmail,
+      }).then((response) => mapNewSimulationToOld(response.data))
     },
   })
+
   return {
     saveSimulation,
     isPending,

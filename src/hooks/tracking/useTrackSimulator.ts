@@ -1,6 +1,5 @@
 import {
   captureSimulationCompleted,
-  captureSimulationFirstQuestionSeen,
   captureSimulationStarted,
 } from '@/constants/tracking/posthogTrackers'
 import {
@@ -9,19 +8,18 @@ import {
   simulationCategoryCompleted,
   simulationCategoryStarted,
   simulationSimulationCompleted,
-  simulationSimulationFirstQuestionSeen,
   simulationSimulationStarted,
 } from '@/constants/tracking/simulation'
-import { saveSimulationForTracking } from '@/helpers/simulation/saveSimulationForTracking'
+import { saveSimulation } from '@/helpers/simulation/saveSimulation'
 import {
   useCurrentSimulation,
   useEngine,
   useFormState,
   useUser,
 } from '@/publicodes-state'
+import type { Simulation } from '@/publicodes-state/types'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { trackGTMEvent } from '@/utils/analytics/trackGTMEvent'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect, useRef } from 'react'
 import { useGTM } from '../useGTM'
 import { useTrackTimeOnSimulation } from './useTrackTimeOnSimulation'
@@ -73,41 +71,17 @@ export function useTrackSimulator() {
 
   const { trackTimeOnSimulation } = useTrackTimeOnSimulation()
 
-  const trackSimulation = (progression: number) =>
-    saveSimulationForTracking({
-      simulation: {
-        ...simulationRef.current,
-        progression,
-        computedResults: {
-          carbone: {
-            bilan: 0,
-            categories: {
-              transport: 0,
-              alimentation: 0,
-              logement: 0,
-              divers: 0,
-              'services sociétaux': 0,
-            } as Record<DottedName, number>,
-            subcategories: {
-              'divers . ameublement': 0,
-            } as Record<DottedName, number>,
-          },
-          eau: {
-            bilan: 0,
-            categories: {
-              transport: 0,
-              alimentation: 0,
-              logement: 0,
-              divers: 0,
-              'services sociétaux': 0,
-            } as Record<DottedName, number>,
-            subcategories: {
-              'divers . ameublement': 0,
-            } as Record<DottedName, number>,
-          },
-        },
-      },
-      userId: userIdRef.current,
+  const trackSimulation = ({
+    userId,
+    simulation,
+  }: {
+    userId: string
+    simulation: Simulation
+  }) =>
+    saveSimulation({
+      simulation,
+      userId,
+      sendEmail: false,
     })
 
   // Track all users that start a new simulation
@@ -119,18 +93,12 @@ export function useTrackSimulator() {
     ) {
       setTrackingState(simulationId, SIMULATOR_SEEN, true)
 
-      trackSimulation(progression)
-
-      trackEvent(simulationSimulationFirstQuestionSeen)
-
-      trackPosthogEvent(
-        captureSimulationFirstQuestionSeen({
-          question:
-            relevantAnsweredQuestions[relevantAnsweredQuestions.length - 1],
-        })
-      )
+      trackSimulation({
+        userId: userIdRef.current,
+        simulation: { ...currentSimulation },
+      })
     }
-  }, [progression, foldedSteps, relevantAnsweredQuestions, simulationId])
+  }, [currentSimulation, foldedSteps, simulationId, progression])
 
   // Track users that have answered at first question
   useEffect(() => {
@@ -140,7 +108,10 @@ export function useTrackSimulator() {
       !getTrackingState(simulationId, FIRST_QUESTION)
     ) {
       // Track for all users when the first answer is recorded
-      trackSimulation(progression)
+      trackSimulation({
+        userId: userIdRef.current,
+        simulation: { ...currentSimulation },
+      })
 
       trackEvent(simulationSimulationStarted)
 
@@ -164,12 +135,16 @@ export function useTrackSimulator() {
     foldedSteps,
     isGTMAvailable,
     simulationId,
+    currentSimulation,
   ])
 
   useEffect(() => {
     if (progression === 1 && !getTrackingState(simulationId, TEST_COMPLETED)) {
       // Track all users that have completed their simulation
-      trackSimulation(progression)
+      trackSimulation({
+        userId: userIdRef.current,
+        simulation: { ...currentSimulation },
+      })
 
       const timeSpentOnSimulation = trackTimeOnSimulation()
 
