@@ -20,16 +20,11 @@ export default function EmailSection() {
       ? dayjs(user?.verificationCodeExpirationDate).isAfter(dayjs())
       : false
 
-  // Only show verification form if the saved authentication mode is 'signIn' (default for organisations)
-  const shouldShowVerificationForm =
-    hasSavedValidVerificationCodeExpirationDate &&
-    user.authenticationMode === 'signIn'
-
   if (!user) return null
 
   // We want to keep displaying the verification form when validated
   // until redirecting to the next page
-  if (shouldShowVerificationForm || isSuccessValidate) {
+  if (hasSavedValidVerificationCodeExpirationDate || isSuccessValidate) {
     return (
       <VerificationForm
         login={login}

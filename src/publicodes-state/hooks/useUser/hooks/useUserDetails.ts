@@ -3,7 +3,6 @@ import type {
   User,
   UserOrganisationInfo,
 } from '@/publicodes-state/types'
-import type { AuthenticationMode } from '@/types/authentication'
 import type { Dispatch, SetStateAction } from 'react'
 import { useCallback } from 'react'
 
@@ -43,12 +42,6 @@ export default function useUserDetails({ setUser }: Props) {
     [setUser]
   )
 
-  const updateAuthenticationMode = useCallback(
-    (authenticationMode: AuthenticationMode | undefined) =>
-      setUser((prevUser: User) => ({ ...prevUser, authenticationMode })),
-    [setUser]
-  )
-
   const updateUserOrganisation = useCallback(
     (organisation: UserOrganisationInfo) => {
       const organisationModifications: UserOrganisationInfo = {}
@@ -83,7 +76,6 @@ export default function useUserDetails({ setUser }: Props) {
     updateRegion,
     updateInitialRegion,
     updateVerificationCodeExpirationDate,
-    updateAuthenticationMode,
     updateUserOrganisation,
   }
 }

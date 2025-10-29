@@ -19,3 +19,23 @@ export const signinTrackEvent = (mode?: AuthenticationMode) => [
   'Click Submit Email',
   mode ?? '',
 ]
+
+export const captureClickTab = ({
+  tab,
+}: {
+  tab: 'connexion' | 'inscription'
+}) => {
+  return {
+    eventName: 'click tab',
+    properties: {
+      tab,
+    },
+  }
+}
+
+export const tabTrackEvent = (tab: 'connexion' | 'inscription') => [
+  'trackEvent',
+  'Authentication',
+  'Click Tab',
+  tab === 'connexion' ? 'Connexion' : 'Inscription',
+]
