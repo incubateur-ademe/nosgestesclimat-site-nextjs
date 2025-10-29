@@ -63,6 +63,15 @@ export const captureSubQuestion = ({ question, state }: Props) => {
   }
 }
 
+export const captureSimulationFirstQuestionSeen = ({ question }: Props) => {
+  return {
+    eventName: 'simulation first question seen',
+    properties: {
+      question,
+    },
+  }
+}
+
 export const captureSimulationStarted = ({ question }: Props) => {
   return {
     eventName: 'simulation started',

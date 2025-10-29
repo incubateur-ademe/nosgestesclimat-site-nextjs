@@ -5,25 +5,13 @@ import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import ContentLarge from '@/components/layout/ContentLarge'
 import questions from '@/components/specialQuestions'
-import { captureSimulationCompleted } from '@/constants/tracking/posthogTrackers'
-import {
-  gtmSimulationCompleted,
-  simulationSimulationCompleted,
-} from '@/constants/tracking/simulation'
 import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
-import { useTrackTimeOnSimulation } from '@/hooks/tracking/useTrackTimeOnSimulation'
 import { useDebug } from '@/hooks/useDebug'
-import { useGTM } from '@/hooks/useGTM'
 import { useIframe } from '@/hooks/useIframe'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
-import {
-  useCurrentSimulation,
-  useEngine,
-  useFormState,
-} from '@/publicodes-state'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
-import { trackGTMEvent } from '@/utils/analytics/trackGTMEvent'
+import { useCurrentSimulation, useFormState } from '@/publicodes-state'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useContext, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import FunFact from './form/FunFact'
@@ -33,8 +21,9 @@ import CategoryIllustration from './summary/CategoryIllustration'
 
 export default function Form() {
   const isDebug = useDebug()
-
-  const { progression, id } = useCurrentSimulation()
+  const searchParams = useSearchParams()
+  const { progression } = useCurrentSimulation()
+  const router = useRouter()
 
   const {
     remainingQuestions,
@@ -51,12 +40,7 @@ export default function Form() {
 
   const { isIframe } = useIframe()
 
-  const { isGTMAvailable } = useGTM()
-
   const [isInitialized, setIsInitialized] = useState(false)
-
-  const { trackTimeOnSimulation } = useTrackTimeOnSimulation()
-  const { getNumericValue } = useEngine()
 
   // When we reach the end of the test (by clicking on the last navigation button),
   // we wait for the progression to be updated before redirecting to the end page
@@ -66,40 +50,13 @@ export default function Form() {
 
   useEffect(() => {
     if (shouldGoToEndPage && progression === 1) {
-      const timeSpentOnSimulation = trackTimeOnSimulation()
-
-      const bilan = getNumericValue('bilan')
-
-      // Track Matomo event
-      trackEvent(simulationSimulationCompleted(bilan))
-
-      // Track GTM event if available
-      if (isGTMAvailable) {
-        trackGTMEvent(gtmSimulationCompleted)
-      }
-
-      trackPosthogEvent(
-        captureSimulationCompleted({
-          bilanCarbone: getNumericValue('bilan'),
-          bilanEau: getNumericValue('bilan', 'eau'),
-          timeSpentOnSimulation,
-        })
-      )
-
       goToEndPage({
         allowedToGoToGroupDashboard: true,
       })
     }
     // goToEndPage was triggered twice in a row
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    shouldGoToEndPage,
-    progression,
-    getNumericValue,
-    id,
-    trackTimeOnSimulation,
-    isGTMAvailable,
-  ])
+  }, [shouldGoToEndPage, progression])
 
   const [tempValue, setTempValue] = useState<number | undefined>(undefined)
   const [displayedValue, setDisplayedValue] = useState<string | undefined>(
@@ -203,6 +160,14 @@ export default function Form() {
           onComplete={() => {
             if (shouldPreventNavigation) {
               handleUpdateShouldPreventNavigation(false)
+            }
+
+            // Temporary fix: redirect to end page if user is coming from profile modification
+            const isFromProfile = searchParams.get('fromProfile') === 'true'
+
+            if (isFromProfile) {
+              router.push('/fin')
+              return
             }
 
             setShouldGoToEndPage(true)
