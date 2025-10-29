@@ -33,7 +33,6 @@ export default async function Connexion({ params }: DefaultPageProps) {
           <div className="flex flex-col py-6 lg:w-1/2 lg:py-10 lg:pr-7">
             <SigninSignupTabs
               className="-order-1 mb-8 lg:mb-14"
-              locale={locale}
               mode={SIGNIN_MODE}
             />
 

@@ -2,7 +2,7 @@ import ContentLarge from '@/components/layout/ContentLarge'
 import HeaderServer from '@/components/layout/HeaderServer'
 import ColourBlock from '@/components/signIn/ColourBlock'
 import SigninForm from '@/components/signIn/SigninForm'
-import LoginSigninTabs from '@/components/signIn/SigninSignupTabs'
+import SigninSignupTabs from '@/components/signIn/SigninSignupTabs'
 import Trans from '@/components/translation/trans/TransServer'
 import { SIGNUP_MODE } from '@/constants/authentication/modes'
 import { STORAGE_KEY } from '@/constants/storage'
@@ -34,9 +34,8 @@ export default async function Connexion({ params }: DefaultPageProps) {
       <ContentLarge className="px-4 lg:px-0">
         <div className="flex justify-center pb-32 lg:justify-start">
           <div className="flex flex-col py-6 lg:w-1/2 lg:py-10 lg:pr-7">
-            <LoginSigninTabs
+            <SigninSignupTabs
               className="-order-1 mb-8 lg:mb-14"
-              locale={locale}
               mode={SIGNUP_MODE}
             />
 

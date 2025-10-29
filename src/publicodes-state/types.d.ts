@@ -1,4 +1,3 @@
-import type { AuthenticationMode } from '@/types/authentication'
 import type { Group } from '@/types/groups'
 import type {
   DottedName,
@@ -38,7 +37,6 @@ export type User = {
   initialRegion?: RegionFromGeolocation
   northStarRatings?: any // TODO: should be NorthStartType or something
   verificationCodeExpirationDate?: Date
-  authenticationMode?: AuthenticationMode
   organisation?: UserOrganisationInfo
   administratorEmail?: string
 }
