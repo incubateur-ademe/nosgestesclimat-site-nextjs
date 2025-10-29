@@ -11,12 +11,7 @@ type Props = {
  * This function is used to save simulations for tracking purposes only
  */
 export async function saveSimulationForTracking({ simulation, userId }: Props) {
-  const payload = {
-    progression: simulation.progression,
-    situation: {},
-    computedResults: simulation.computedResults,
-    id: simulation.id,
-  }
+  const payload = { ...simulation }
 
   const url = new URL(`${SIMULATION_URL}/${userId}`)
 

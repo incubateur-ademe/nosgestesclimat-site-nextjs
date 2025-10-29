@@ -168,15 +168,8 @@ export function useTrackSimulator() {
 
   useEffect(() => {
     if (progression === 1 && !getTrackingState(simulationId, TEST_COMPLETED)) {
-      // Skip saving completed event for simulations with groups or polls to avoid overwriting data
-      const hasGroupOrPoll =
-        (currentSimulation.groups?.length ?? 0) > 0 ||
-        (currentSimulation.polls?.length ?? 0) > 0
-
-      if (!hasGroupOrPoll) {
-        // Track all users that have completed their simulation
-        trackSimulation(progression)
-      }
+      // Track all users that have completed their simulation
+      trackSimulation(progression)
 
       const timeSpentOnSimulation = trackTimeOnSimulation()
 
