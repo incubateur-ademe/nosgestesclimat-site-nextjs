@@ -6,6 +6,7 @@ import { profilClickTutoriel } from '@/constants/tracking/pages/profil'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getLinkToTutoriel } from '@/helpers/navigation/simulateurPages'
 import { useLocale } from '@/hooks/useLocale'
+import { useSearchParams } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -14,11 +15,12 @@ type Props = {
 
 export default function TutorialLink({ className }: Props) {
   const locale = useLocale()
+  const searchParams = useSearchParams()
 
   return (
     <ButtonLink
       color="text"
-      href={getLinkToTutoriel({ locale })}
+      href={getLinkToTutoriel({ locale, currentSearchParams: searchParams })}
       className={twMerge('flex w-full justify-center', className)}
       trackingEvent={profilClickTutoriel}>
       <GlassesIcon className="fill-primary-700 mr-2" />

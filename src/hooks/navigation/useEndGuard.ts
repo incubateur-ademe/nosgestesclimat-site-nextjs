@@ -3,7 +3,7 @@ import {
   getLinkToTutoriel,
 } from '@/helpers/navigation/simulateurPages'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useSetCurrentSimulationFromParams } from '../simulation/useSetCurrentSimulationFromParams'
 import { useSimulationIdInQueryParams } from '../simulation/useSimulationIdInQueryParams'
@@ -11,6 +11,7 @@ import { useLocale } from '../useLocale'
 
 export function useEndGuard() {
   const router = useRouter()
+  const searchParams = useSearchParams()
 
   const locale = useLocale()
 
@@ -41,7 +42,9 @@ export function useEndGuard() {
 
     // if the user didn't see the tutoriel we redirect him to the tutorial page
     if (!tutorials.testIntro) {
-      router.replace(getLinkToTutoriel({ locale }))
+      router.replace(
+        getLinkToTutoriel({ locale, currentSearchParams: searchParams })
+      )
       setIsGuardRedirecting(true)
       return
     }
@@ -57,6 +60,7 @@ export function useEndGuard() {
     router,
     tutorials,
     locale,
+    searchParams,
   ])
 
   return { isGuardInit, isGuardRedirecting }
