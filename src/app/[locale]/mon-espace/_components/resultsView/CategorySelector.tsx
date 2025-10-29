@@ -8,12 +8,14 @@ type Props = {
   activeTab: TabId
   setActiveTab: (tab: TabId) => void
   categoryLabels: Partial<Record<DottedName, string>>
+  disabled?: boolean
 }
 
 export default function CategorySelector({
   activeTab,
   setActiveTab,
   categoryLabels,
+  disabled = false,
 }: Props) {
   return (
     <div className="mb-6 hidden border-b-2 border-slate-200 md:block">
@@ -25,12 +27,13 @@ export default function CategorySelector({
               role="tab"
               aria-current={activeTab === 'global'}
               aria-selected={activeTab === 'global'}
+              aria-disabled={disabled}
               className={`inline-block px-1 py-3 text-base md:px-4 md:text-lg ${
                 activeTab === 'global'
                   ? 'border-primary-600 text-primary-600 border-b-3 font-bold'
                   : 'border-b-3 border-transparent text-slate-600'
-              }`}
-              onClick={() => setActiveTab('global')}>
+              } ${disabled ? 'cursor-not-allowed' : ''}`}
+              onClick={disabled ? () => {} : () => setActiveTab('global')}>
               <Trans i18nKey="mon-espace.evolutionGraph.tabs.global">
                 Vue globale
               </Trans>
@@ -44,12 +47,13 @@ export default function CategorySelector({
                 role="tab"
                 aria-current={activeTab === category}
                 aria-selected={activeTab === category}
+                aria-disabled={disabled}
                 className={`inline-block px-1 py-3 text-base md:px-4 md:text-lg ${
                   activeTab === category
                     ? 'border-primary-600 text-primary-600 border-b-3 font-bold'
                     : 'border-b-3 border-transparent text-slate-600'
-                }`}
-                onClick={() => setActiveTab(category)}>
+                } ${disabled ? 'cursor-not-allowed' : ''}`}
+                onClick={disabled ? () => {} : () => setActiveTab(category)}>
                 {categoryLabels[category]}
               </button>
             </li>

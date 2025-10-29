@@ -13,12 +13,14 @@ type Props = {
   activeTab: TabId
   setActiveTab: (tab: TabId) => void
   categoryLabels: Partial<Record<DottedName, string>>
+  disabled?: boolean
 }
 
 export default function CategorySelectorMobile({
   activeTab,
   setActiveTab,
   categoryLabels,
+  disabled = false,
 }: Props) {
   const { t } = useClientTranslation()
 
@@ -43,6 +45,7 @@ export default function CategorySelectorMobile({
         name="category-selector"
         value={activeTab}
         onChange={(e) => setActiveTab(e.target.value as TabId)}
+        disabled={disabled}
         containerClassName="w-full">
         {options.map((option) => (
           <option key={option.value} value={option.value}>

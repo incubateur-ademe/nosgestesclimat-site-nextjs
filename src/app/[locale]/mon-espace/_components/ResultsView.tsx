@@ -13,6 +13,8 @@ type Props = {
 }
 
 export default function ResultsView({ locale, simulations }: Props) {
+  const hasSingleSimulation = simulations.length === 1
+
   return (
     <>
       <ProfileTab locale={locale} activePath={MON_ESPACE_PATH} />
@@ -23,7 +25,11 @@ export default function ResultsView({ locale, simulations }: Props) {
 
       <ResultsList locale={locale} simulations={simulations} />
 
-      <EvolutionGraph locale={locale} simulations={simulations} />
+      <EvolutionGraph
+        locale={locale}
+        simulations={simulations}
+        hasSingleSimulation={hasSingleSimulation}
+      />
     </>
   )
 }

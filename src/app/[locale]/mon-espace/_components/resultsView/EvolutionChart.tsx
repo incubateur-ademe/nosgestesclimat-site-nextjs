@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/trans/TransClient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Locale } from '@/i18nConfig'
 import isMobile from 'is-mobile'
@@ -24,6 +25,7 @@ type Props = {
   lineColor: string
   minValue: number
   maxValue: number
+  disabled: boolean
 }
 
 export default function EvolutionChart({
@@ -32,6 +34,7 @@ export default function EvolutionChart({
   lineColor,
   minValue,
   maxValue,
+  disabled,
 }: Props) {
   const { t } = useClientTranslation()
 
@@ -73,7 +76,7 @@ export default function EvolutionChart({
 
   return (
     <div
-      className="w-full"
+      className="relative w-full"
       style={{ height: `${height}px` }}
       role="img"
       aria-label={chartLabel}
@@ -81,6 +84,20 @@ export default function EvolutionChart({
         isMobile() ? 'evolution-chart-mobile-description' : undefined
       }
       id={chartId}>
+      {disabled && (
+        <div className="border-primary-400 absolute top-1/2 left-1/2 z-10 flex max-w-96 -translate-x-1/2 -translate-y-full items-center justify-center rounded-xl border-2 bg-white p-6">
+          <p className="mb-0 text-center">
+            <strong className="text-primary-700">
+              <Trans i18nKey="mon-espace.evolutionGraph.chartDisabledTitle.part1">
+                Faites une nouvelle simulation
+              </Trans>
+            </strong>{' '}
+            <Trans i18nKey="mon-espace.evolutionGraph.chartDisabledTitle.part2">
+              pour avoir accès à l’évolution de votre empreinte
+            </Trans>
+          </p>
+        </div>
+      )}
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
           data={chartData}

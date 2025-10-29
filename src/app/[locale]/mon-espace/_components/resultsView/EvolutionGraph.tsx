@@ -15,6 +15,7 @@ type TabId = 'global' | DottedName
 type Props = {
   locale: Locale
   simulations: Simulation[]
+  hasSingleSimulation: boolean
 }
 
 const COLORS: Partial<Record<DottedName, string>> = {
@@ -25,7 +26,11 @@ const COLORS: Partial<Record<DottedName, string>> = {
   divers: '#b1500c',
 }
 
-export default function EvolutionGraph({ locale, simulations }: Props) {
+export default function EvolutionGraph({
+  locale,
+  simulations,
+  hasSingleSimulation,
+}: Props) {
   const [activeTab, setActiveTab] = useState<TabId>('global')
   const { t } = useClientTranslation()
 
@@ -38,31 +43,65 @@ export default function EvolutionGraph({ locale, simulations }: Props) {
     'services sociétaux': t('common.category.services', 'Services sociétaux'),
   }
 
-  // Sort simulations by date (oldest to newest)
-  const sortedSimulations = [...simulations].sort((a, b) => {
-    const dateA = new Date(a.date).getTime()
-    const dateB = new Date(b.date).getTime()
-    return dateA - dateB
-  })
+  // Generate mocked data when there's only one simulation
+  const chartData = hasSingleSimulation
+    ? [
+        {
+          date: new Date('2020-05-20'),
+          dateStr: '20/05/20',
+          value: 12000,
+        },
+        {
+          date: new Date('2021-05-20'),
+          dateStr: '20/05/21',
+          value: 10000,
+        },
+        {
+          date: new Date('2022-05-20'),
+          dateStr: '20/05/22',
+          value: 8000,
+        },
+        {
+          date: new Date('2024-05-20'),
+          dateStr: '20/05/24',
+          value: 7000,
+        },
+        {
+          date: new Date('2025-05-25'),
+          dateStr: '25/05/25',
+          value: 6000,
+        },
+      ]
+    : (() => {
+        // Sort simulations by date (oldest to newest)
+        const sortedSimulations = [...simulations].sort((a, b) => {
+          const dateA = new Date(a.date).getTime()
+          const dateB = new Date(b.date).getTime()
+          return dateA - dateB
+        })
 
-  // Transform data for the chart
-  const chartData = sortedSimulations.map((simulation) => {
-    const date = new Date(simulation.date)
-    const value =
-      activeTab === 'global'
-        ? simulation.computedResults.carbone.bilan
-        : simulation.computedResults.carbone.categories[activeTab] || 0
+        // Transform data for the chart
+        return sortedSimulations.map((simulation) => {
+          const date = new Date(simulation.date)
+          const value =
+            activeTab === 'global'
+              ? simulation.computedResults.carbone.bilan
+              : simulation.computedResults.carbone.categories[activeTab] || 0
 
-    return {
-      date,
-      dateStr: date.toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
-        day: '2-digit',
-        month: '2-digit',
-        year: '2-digit',
-      }),
-      value,
-    }
-  })
+          return {
+            date,
+            dateStr: date.toLocaleDateString(
+              locale === 'fr' ? 'fr-FR' : 'en-US',
+              {
+                day: '2-digit',
+                month: '2-digit',
+                year: '2-digit',
+              }
+            ),
+            value,
+          }
+        })
+      })()
 
   // Get line color based on active tab
   const lineColor =
@@ -88,6 +127,7 @@ export default function EvolutionGraph({ locale, simulations }: Props) {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         categoryLabels={categoryLabels}
+        disabled={hasSingleSimulation}
       />
 
       {/* Desktop tabs */}
@@ -95,6 +135,7 @@ export default function EvolutionGraph({ locale, simulations }: Props) {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         categoryLabels={categoryLabels}
+        disabled={hasSingleSimulation}
       />
 
       {/* Chart */}
@@ -104,6 +145,7 @@ export default function EvolutionGraph({ locale, simulations }: Props) {
         lineColor={lineColor}
         minValue={minValue}
         maxValue={maxValue}
+        disabled={hasSingleSimulation}
       />
     </div>
   )
