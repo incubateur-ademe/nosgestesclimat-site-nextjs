@@ -1,12 +1,8 @@
 import type { OrganisationTypeEnum } from '@/constants/organisations/organisationTypes'
 import type { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
 import type { SimulationAdditionalQuestionAnswerType } from '@/constants/organisations/simulationAdditionalQuestionAnswerType'
-import type { ComputedResults, Situation } from '@/publicodes-state/types'
-import type {
-  DottedName,
-  ExtendedSituation,
-  FunFacts,
-} from '@incubateur-ademe/nosgestesclimat'
+import type { ComputedResults, Simulation } from '@/publicodes-state/types'
+import type { FunFacts } from '@incubateur-ademe/nosgestesclimat'
 
 type CustomAdditionalQuestions = {
   question: string
@@ -105,24 +101,6 @@ export type AdditionalQuestionsAnswer =
       key: string
       answer: string
     }
-
-export type Simulation = {
-  id: string
-  date: Date | string
-  situation: Situation
-  extendedSituation: ExtendedSituation
-  foldedSteps: DottedName[]
-  actionChoices: Record<string, boolean>
-  computedResults: ComputedResults
-  progression: number
-  additionalQuestionsAnswers: AdditionalQuestionsAnswer[]
-  savedViaEmail?: boolean
-  /**
-   * user is defined only for the current user and undefined for others
-   */
-  user?: User
-  polls?: Array<{ id: string; slug: string }>
-}
 
 export type PublicPollSimulation = Pick<
   Simulation,

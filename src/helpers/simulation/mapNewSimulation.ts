@@ -1,43 +1,16 @@
 import { SimulationAdditionalQuestionAnswerType } from '@/constants/organisations/simulationAdditionalQuestionAnswerType'
-import type { Simulation as OldSimulation } from '@/publicodes-state/types'
 import type {
-  AdditionalQuestionsAnswer,
-  Simulation as NewSimulation,
-} from '@/types/organisations'
-
-export const mapNewSimulationToOld = (
-  simulation: NewSimulation
-): OldSimulation => ({
-  ...simulation,
-  defaultAdditionalQuestionsAnswers:
-    simulation.additionalQuestionsAnswers.reduce(
-      (acc: Record<string, string>, { answer, key, type }) => {
-        if (type === SimulationAdditionalQuestionAnswerType.default) {
-          acc[key] = answer
-        }
-        return acc
-      },
-      {}
-    ),
-  customAdditionalQuestionsAnswers:
-    simulation.additionalQuestionsAnswers.reduce(
-      (acc: Record<string, string>, { answer, key, type }) => {
-        if (type === SimulationAdditionalQuestionAnswerType.custom) {
-          acc[key] = answer
-        }
-        return acc
-      },
-      {}
-    ),
-  polls: simulation.polls?.map(({ slug }) => slug),
-})
+  LocalStorageSimulation,
+  Simulation,
+} from '@/publicodes-state/types'
+import type { AdditionalQuestionsAnswer } from '@/types/organisations'
 
 export const mapOldSimulationToNew = ({
   polls: _,
   defaultAdditionalQuestionsAnswers,
   customAdditionalQuestionsAnswers,
   ...simulation
-}: OldSimulation): NewSimulation => ({
+}: LocalStorageSimulation): Simulation => ({
   ...simulation,
   additionalQuestionsAnswers: [
     ...Object.entries(defaultAdditionalQuestionsAnswers || {}).map(

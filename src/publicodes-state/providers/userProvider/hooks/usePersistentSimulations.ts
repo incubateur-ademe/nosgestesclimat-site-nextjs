@@ -1,8 +1,9 @@
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
+import { mapOldSimulationToNew } from '@/helpers/simulation/mapNewSimulation'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import type { Migration } from '@publicodes/tools/migration'
 import { useEffect, useState } from 'react'
-import type { Simulation } from '../../../types'
+import type { LocalStorageSimulation, Simulation } from '../../../types'
 
 type Props = {
   storageKey: string
@@ -20,7 +21,13 @@ export default function usePersistentSimulations({
     const currentStorage = safeLocalStorage.getItem(storageKey)
     const parsedStorage = JSON.parse(currentStorage || '{}')
 
-    const localSimulations: Simulation[] | undefined = parsedStorage.simulations
+    const localSimulations: Simulation[] | undefined =
+      // Here we map the local storage simulations to the new simulation type
+      // for users having old local storage simulations
+      parsedStorage.simulations.map((simulation: LocalStorageSimulation) =>
+        mapOldSimulationToNew(simulation)
+      )
+
     const localCurrentSimulationId: string | undefined =
       parsedStorage.currentSimulationId
 

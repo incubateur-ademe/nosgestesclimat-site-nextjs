@@ -1,4 +1,5 @@
 import type { Group } from '@/types/groups'
+import type { AdditionalQuestionsAnswer } from '@/types/organisations'
 import type {
   DottedName,
   ExtendedSituation,
@@ -68,8 +69,7 @@ export type UpdateCurrentSimulationProps = {
     isMosaicChild?: boolean
   }
   actionChoices?: any
-  defaultAdditionalQuestionsAnswers?: Record<string, string>
-  customAdditionalQuestionsAnswers?: Record<string, string>
+  additionalQuestionsAnswers?: AdditionalQuestionsAnswer[]
   computedResults?: ComputedResults
   progression?: number
   pollToAdd?: string | null
@@ -89,12 +89,18 @@ export type Simulation = {
   persona?: string
   computedResults: ComputedResults
   progression: number
-  defaultAdditionalQuestionsAnswers?: Record<string, string>
-  customAdditionalQuestionsAnswers?: Record<string, string>
-  polls?: string[] | null
+  additionalQuestionsAnswers?: AdditionalQuestionsAnswer[]
+  polls?: Array<{ id: string; slug: string }>
   groups?: string[] | null
   savedViaEmail?: boolean
   model?: string
+  user?: User
+}
+
+export type LocalStorageSimulation = Simulation & {
+  polls?: string[]
+  defaultAdditionalQuestionsAnswers?: Record<string, string>
+  customAdditionalQuestionsAnswers?: Record<string, string>
 }
 
 export type LocalStorage = {

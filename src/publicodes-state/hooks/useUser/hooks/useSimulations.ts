@@ -38,7 +38,7 @@ export default function useSimulations({
       persona,
       computedResults,
       progression,
-      defaultAdditionalQuestionsAnswers,
+      additionalQuestionsAnswers,
       polls,
       groups,
       savedViaEmail,
@@ -55,7 +55,7 @@ export default function useSimulations({
         persona,
         computedResults,
         progression,
-        defaultAdditionalQuestionsAnswers,
+        additionalQuestionsAnswers,
         polls,
         groups,
         savedViaEmail,
@@ -91,8 +91,7 @@ export default function useSimulations({
       foldedSteps,
       foldedStepToAdd,
       actionChoices,
-      defaultAdditionalQuestionsAnswers,
-      customAdditionalQuestionsAnswers,
+      additionalQuestionsAnswers,
       computedResults,
       progression,
       pollToAdd,
@@ -205,14 +204,9 @@ export default function useSimulations({
             simulationToUpdate.actionChoices = actionChoices
           }
 
-          if (defaultAdditionalQuestionsAnswers !== undefined) {
-            simulationToUpdate.defaultAdditionalQuestionsAnswers =
-              defaultAdditionalQuestionsAnswers
-          }
-
-          if (customAdditionalQuestionsAnswers !== undefined) {
-            simulationToUpdate.customAdditionalQuestionsAnswers =
-              customAdditionalQuestionsAnswers
+          if (additionalQuestionsAnswers !== undefined) {
+            simulationToUpdate.additionalQuestionsAnswers =
+              additionalQuestionsAnswers
           }
 
           if (computedResults !== undefined) {
@@ -226,13 +220,13 @@ export default function useSimulations({
           if (pollToAdd) {
             simulationToUpdate.polls = [
               ...(simulationToUpdate.polls ?? []),
-              pollToAdd,
+              { id: pollToAdd, slug: pollToAdd },
             ]
           }
 
           if (pollToDelete && simulationToUpdate.polls) {
             simulationToUpdate.polls = simulationToUpdate.polls.filter(
-              (poll) => poll !== pollToDelete
+              (poll) => poll.id !== pollToDelete
             )
           }
 

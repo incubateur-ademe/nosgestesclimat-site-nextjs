@@ -1,9 +1,6 @@
 import { ORGANISATION_URL, SIMULATION_URL } from '@/constants/urls/main'
 import { getModelVersion } from '@/helpers/modelFetching/getModelVersion'
-import {
-  mapNewSimulationToOld,
-  mapOldSimulationToNew,
-} from '@/helpers/simulation/mapNewSimulation'
+import { mapOldSimulationToNew } from '@/helpers/simulation/mapNewSimulation'
 import { useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
 import { updateGroupParticipant } from '@/services/groups/updateGroupParticipant'
@@ -84,7 +81,7 @@ export function useSaveSimulation() {
         .post(`${SIMULATION_URL}/${userId}`, payload, {
           params: { sendEmail },
         })
-        .then((response) => mapNewSimulationToOld(response.data))
+        .then((response) => response.data)
     },
   })
   return {
