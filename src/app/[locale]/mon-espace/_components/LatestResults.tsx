@@ -91,8 +91,7 @@ export default async function LatestResults({
           isStatic
           isSharePage
         />
-        {/* Bloc Gauge dédié en mobile uniquement (hors du MetricSlider) */}
-        <div className="mt-4 block md:hidden">
+        <div className="my-8 block md:hidden">
           <Gauge total={simulation.computedResults.carbone.bilan} />
         </div>
       </EngineProvider>

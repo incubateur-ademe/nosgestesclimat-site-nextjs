@@ -31,7 +31,7 @@ const TabLink = ({
   isLocked?: boolean
 } & React.HTMLAttributes<HTMLElement>) => {
   const baseClasses =
-    'inline-block px-1 md:px-4 py-3 text-lg border-b-3 border-transparent'
+    'inline-block w-full md:w-auto px-1 md:px-4 py-3 text-lg border-b-3 border-transparent'
   const activeClasses =
     'font-bold px-1 md:px-4 py-3 border-primary-600! border-current text-primary-600'
 
@@ -98,7 +98,10 @@ export default function Tabs({
           {items.map(({ containerClassName, ...item }) => (
             <li
               key={item.id}
-              className={twMerge('translate-y-0.5', containerClassName)}>
+              className={twMerge(
+                'flex-1 translate-y-0.5 md:flex-none',
+                containerClassName
+              )}>
               <TabLink item={item} isLocked={isLocked}>
                 {item.label}
               </TabLink>

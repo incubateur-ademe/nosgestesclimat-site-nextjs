@@ -8,7 +8,6 @@ import Trans from '@/components/translation/trans/TransClient'
 import {
   captureClickMonEspaceTab,
   monEspaceTabTrackEvent,
-  type MonEspaceTab,
 } from '@/constants/tracking/pages/mon-espace'
 import {
   MON_ESPACE_ACTIONS_PATH,
@@ -18,17 +17,11 @@ import {
 } from '@/constants/urls/paths'
 import type { TabItem } from '@/design-system/layout/Tabs'
 import Tabs from '@/design-system/layout/Tabs'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Locale } from '@/i18nConfig'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useRouter } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
-
-const tabIndexToKey: { [key: string]: MonEspaceTab } = {
-  dashboard: 'results',
-  actions: 'actions',
-  groups: 'groups',
-  settings: 'settings',
-}
 
 export default function ProfileTab({
   locale,
@@ -40,6 +33,7 @@ export default function ProfileTab({
   isLocked?: boolean
 }) {
   const router = useRouter()
+  const { t } = useClientTranslation()
   const tabsItems: TabItem[] = [
     {
       id: 'dashboard',
@@ -71,9 +65,6 @@ export default function ProfileTab({
           router.push(MON_ESPACE_PATH)
         }
       },
-      'data-track-event': 'Mon Espace|Click Tab|Results',
-      'data-track-posthog':
-        '{"eventName":"click tab mon espace","properties":{"tab":"results"}}',
     },
     {
       id: 'actions',
@@ -105,9 +96,6 @@ export default function ProfileTab({
           router.push(MON_ESPACE_ACTIONS_PATH)
         }
       },
-      'data-track-event': 'Mon Espace|Click Tab|Actions',
-      'data-track-posthog':
-        '{"eventName":"click tab mon espace","properties":{"tab":"actions"}}',
     },
     {
       id: 'groups',
@@ -139,9 +127,6 @@ export default function ProfileTab({
           router.push(MON_ESPACE_GROUPS_PATH)
         }
       },
-      'data-track-event': 'Mon Espace|Click Tab|Groups',
-      'data-track-posthog':
-        '{"eventName":"click tab mon espace","properties":{"tab":"groups"}}',
     },
     {
       id: 'settings',
@@ -170,9 +155,6 @@ export default function ProfileTab({
           router.push(MON_ESPACE_SETTINGS_PATH)
         }
       },
-      'data-track-event': 'Mon Espace|Click Tab|Settings',
-      'data-track-posthog':
-        '{"eventName":"click tab mon espace","properties":{"tab":"settings"}}',
       containerClassName: 'md:ml-auto',
     },
   ]
@@ -180,7 +162,7 @@ export default function ProfileTab({
     <Tabs
       items={tabsItems}
       className="mb-8"
-      ariaLabel="Navigation de mon espace"
+      ariaLabel={t('Navigation de mon espace')}
       containerId="mon-espace-tabs"
       isLocked={isLocked}
     />

@@ -138,6 +138,7 @@ export default function MetricSlider({
           isSticky={isSticky}
           tabId="tab-metric-carbone"
           panelId="panel-metric-carbone"
+          isStatic={isStatic}
           onKeyDown={(e: React.KeyboardEvent) => {
             // Let the tablist parent handle the keydown
           }}>
@@ -162,6 +163,7 @@ export default function MetricSlider({
           isSticky={isSticky}
           tabId="tab-metric-eau"
           panelId="panel-metric-eau"
+          isStatic={isStatic}
           onKeyDown={(e: React.KeyboardEvent) => {
             // Let the tablist parent handle the keydown
           }}>
