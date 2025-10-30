@@ -1,6 +1,6 @@
-import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
-import type { Simulation, User } from '@/publicodes-state/types'
 import { mergeSimulations } from '@/helpers/simulation/mergeSimulations'
+import type { Simulation, User } from '@/publicodes-state/types'
+import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 
 type Params = {
   storageKey: string
@@ -32,7 +32,8 @@ export function reconcileOnAuth({
 
   const localUser: User | undefined = parsed.user
   const localSimulations: Simulation[] = parsed.simulations || []
-  const localCurrentSimulationId: string | undefined = parsed.currentSimulationId
+  const localCurrentSimulationId: string | undefined =
+    parsed.currentSimulationId
 
   // Build merged user: override userId with server
   const mergedUser: User = {
@@ -62,5 +63,3 @@ export function reconcileOnAuth({
     simulationsToSync: syncToServer ? simulationsToSync : [],
   }
 }
-
-

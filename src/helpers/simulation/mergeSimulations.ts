@@ -1,5 +1,5 @@
-import { v4 as uuid } from 'uuid'
 import type { Simulation } from '@/publicodes-state/types'
+import { v4 as uuid } from 'uuid'
 
 type MergeResult = {
   mergedSimulations: Simulation[]
@@ -27,7 +27,10 @@ function pickWinner(a: Simulation, b: Simulation): 'a' | 'b' {
   return ta >= tb ? 'a' : 'b'
 }
 
-function shallowMergeByWinner(winner: Simulation, loser: Simulation): Simulation {
+function shallowMergeByWinner(
+  winner: Simulation,
+  loser: Simulation
+): Simulation {
   // Winner precedence; keep loser fields that are missing in winner for stability
   return {
     ...loser,
@@ -89,7 +92,10 @@ export function mergeSimulations(
 
   // Determine currentSimulationId
   let currentSimulationId = ''
-  if (localCurrentSimulationId && merged.some((s) => s.id === localCurrentSimulationId)) {
+  if (
+    localCurrentSimulationId &&
+    merged.some((s) => s.id === localCurrentSimulationId)
+  ) {
     currentSimulationId = localCurrentSimulationId
   } else if (merged[0]?.id) {
     currentSimulationId = merged[0].id
@@ -97,5 +103,3 @@ export function mergeSimulations(
 
   return { mergedSimulations: merged, currentSimulationId, simulationsToSync }
 }
-
-

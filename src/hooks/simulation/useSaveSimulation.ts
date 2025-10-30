@@ -31,21 +31,21 @@ export function useSaveSimulation() {
     isError,
     error,
   } = useMutation({
-    mutationFn: async ({
-      simulation: { groups, polls, createdAt, updatedAt, user: _user, model: _model, ...simulation },
-      sendEmail,
-    }: Props) => {
+    mutationFn: async ({ simulation, sendEmail }: Props) => {
       // We reset the sync timer to avoid saving the simulation in the background
       resetSyncTimer()
 
       const modelVersion = await getModelVersion()
+
+      const groups = (simulation as any).groups as string[] | undefined
+      const polls = (simulation as any).polls as string[] | undefined
 
       if (groups?.length) {
         return updateGroupParticipant({
           groupId: groups[groups.length - 1],
           email,
           simulation: {
-            ...simulation,
+            ...(simulation as any),
             model: modelVersion,
           },
           userId,
@@ -53,9 +53,14 @@ export function useSaveSimulation() {
         }).then((response) => response.data.simulation)
       }
 
+      // Strip unrecognized keys before mapping and posting
+      const sanitized: any = { ...(simulation as any) }
+      delete sanitized.createdAt
+      delete sanitized.updatedAt
+      delete sanitized.user
+
       const payload = {
-        // Strip unrecognized keys before mapping and posting
-        ...mapOldSimulationToNew(simulation),
+        ...mapOldSimulationToNew(sanitized),
         model: modelVersion,
         ...(name || email
           ? {
