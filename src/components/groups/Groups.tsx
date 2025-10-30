@@ -34,6 +34,7 @@ export default function Groups({ groups, locale }: Props) {
           <GroupContent groups={groups} />
         </div>
 
+        {/* Desktop */}
         <CTACard
           href="/mon-espace/groupes/creer"
           className="hidden md:block"
@@ -49,6 +50,7 @@ export default function Groups({ groups, locale }: Props) {
           ctaClassName="min-w-64"
         />
 
+        {/* Mobile */}
         <Link
           href="/mon-espace/groupes/creer"
           className={twMerge(

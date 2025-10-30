@@ -13,7 +13,6 @@ export async function fetchUserGroups(userId: string) {
 
     return { groups: data, isError: false }
   } catch (error) {
-    console.error(error)
     captureException(error)
     return { groups: [], isError: true }
   }
