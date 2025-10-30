@@ -6,17 +6,19 @@ import type { RegionFromGeolocation, User } from '../../../types'
 type Props = {
   storageKey: string
   initialRegion?: RegionFromGeolocation
+  initialUserId?: string
 }
 export default function usePersistentUser({
   storageKey,
   initialRegion,
+  initialUserId,
 }: Props) {
   const [initialized, setInitialized] = useState<boolean>(false)
 
   const [user, setUser] = useState<User>({
     region: initialRegion,
     initialRegion: initialRegion,
-    userId: uuid(),
+    userId: initialUserId || uuid(),
   })
 
   // Update the user region if it is not set and user is not saved in local storage
@@ -30,6 +32,14 @@ export default function usePersistentUser({
     }
   }, [initialRegion, user])
 
+  // If an initialUserId is provided, ensure it is reflected in state
+  useEffect(() => {
+    if (initialUserId && user.userId !== initialUserId) {
+      setUser({ ...user, userId: initialUserId })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialUserId])
+
   // Upon first render, check if there is a user in local storage and format it
   // and save it to the user state
   useEffect(() => {
@@ -38,10 +48,15 @@ export default function usePersistentUser({
     const localUser: User | undefined = parsedStorage.user
 
     if (localUser) {
-      setUser(formatUser({ user: localUser }))
+      const formatted = formatUser({ user: localUser })
+      setUser(
+        initialUserId && formatted.userId !== initialUserId
+          ? { ...formatted, userId: initialUserId }
+          : formatted
+      )
     }
     setInitialized(true)
-  }, [storageKey])
+  }, [storageKey, initialUserId])
 
   // Save the user to local storage after initialization
   useEffect(() => {

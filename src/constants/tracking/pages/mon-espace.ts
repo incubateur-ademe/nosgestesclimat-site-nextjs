@@ -11,3 +11,9 @@ export const captureClickMonEspaceTab = ({ tab }: { tab: MonEspaceTab }) => ({
   eventName: 'click tab mon espace',
   properties: { tab },
 })
+
+export const clickJagisActionBanner = [
+  'trackEvent',
+  'Mon Espace - Actions',
+  'Click Jagis action banner',
+]

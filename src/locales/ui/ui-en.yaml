@@ -1743,3 +1743,31 @@ entries:
   navigation.connexionInscription.lock: Navigation connexion/inscription
   mon-espace.evolutionGraph.chartDisabledTitle.part2: to view the evolution of your footprint
   mon-espace.evolutionGraph.chartDisabledTitle.part2.lock: pour avoir accès à l’évolution de votre empreinte
+  mon-espace.actions.jagis.description.part5: and
+  mon-espace.actions.jagis.description.part5.lock: et
+  mon-espace.actions.jagis.description.part2: <0>Taking action</0>
+  mon-espace.actions.jagis.description.part2.lock: <0>J’agis</0>
+  mon-espace.actions.jagis.error.redirect.message: An error has occurred.
+  mon-espace.actions.jagis.error.redirect.message.lock: Une erreur est survenue.
+  mon-espace.actions.jagis.description.part6: adapted
+  mon-espace.actions.jagis.description.part6.lock: adaptées
+  mon-espace.actions.jagis.description.part4: concrete actions
+  mon-espace.actions.jagis.description.part4.lock: actions concrètes
+  mon-espace.actions.jagis.description.part8: to your desires and your means to reduce your footprint.
+  mon-espace.actions.jagis.description.part8.lock: à vos envies et vos moyens pour réduire votre empreinte.
+  mon-espace.actions.jagis.title: 'What can I do to reduce my footprint? '
+  mon-espace.actions.jagis.title.lock: 'Que faire pour réduire mon empreinte ? '
+  mon-espace.actions.jagis.description.part3: offers you
+  mon-espace.actions.jagis.description.part3.lock: vous propose des
+  common.partners.jagis.ariaLabel: Taking action
+  common.partners.jagis.ariaLabel.lock: J'agis
+  mon-espace.actions.jagis.error.redirect: An error has occurred
+  mon-espace.actions.jagis.error.redirect.lock: Une erreur est survenue
+  mon-espace.actions.jagis.description.part1: From your balance sheet,
+  mon-espace.actions.jagis.description.part1.lock: À partir de votre bilan,
+  mon-espace.actions.jagis.button: Going further with J'agis
+  mon-espace.actions.jagis.button.lock: Aller plus loin avec J’agis
+  mon-espace.actions.jagis.description.part7: to your desires and your means to reduce your footprint.
+  mon-espace.actions.jagis.description.part7.lock: à vos envies et vos moyens pour réduire votre empreinte.
+  mon-espace.actions.jagis.error.redirect.link: Click on this link to navigate to J'agis.
+  mon-espace.actions.jagis.error.redirect.link.lock: Cliquez sur ce lien pour naviguer vers J'agis.
