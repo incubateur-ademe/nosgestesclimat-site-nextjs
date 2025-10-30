@@ -25,7 +25,7 @@ export default function Title({
   const Tag = tag
   return (
     <div className={twMerge('relative', containerClassName)}>
-      <div className="mb-8">
+      <div className="mb-6">
         <Tag className={twMerge('mb-2', className)} {...props}>
           {title ?? children}
         </Tag>

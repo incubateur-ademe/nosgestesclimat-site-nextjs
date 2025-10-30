@@ -1,54 +1,33 @@
-'use client'
-
-import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
-import Trans from '@/components/translation/trans/TransClient'
-import { STATUS_UNAUTHORISED } from '@/constants/requests/status'
-import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
+import Trans from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
-import useFetchOrganisations from '@/hooks/organisations/useFetchOrganisations'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
-import type { AxiosError } from 'axios'
-import Image from 'next/image'
+import type { Locale } from '@/i18nConfig'
+import type { Organisation } from '@/types/organisations'
 import CreateOrganisation from './Organisations/CreateOrganisation'
 import PollsList from './Organisations/PollsList'
 
-export default function Organisations() {
-  const { t } = useClientTranslation()
-
-  const { data: organisations, isLoading, error } = useFetchOrganisations()
-
+export default function Organisations({
+  organisations,
+  locale,
+}: {
+  organisations: Organisation[]
+  locale: Locale
+}) {
   return (
-    <>
+    <div className="mb-10">
       <Title
         tag="h2"
-        className="mt-16"
-        title={<Trans>Organisations et campagnes</Trans>}
+        title={
+          <Trans locale={locale} i18nKey="mon-espace.organisations.title">
+            Mes organisations
+          </Trans>
+        }
       />
 
-      {isLoading && <BlockSkeleton />}
-
-      {!isLoading && (
-        <div className="flex flex-wrap justify-center gap-16 md:flex-nowrap">
-          <div className="flex-1">
-            <PollsList organisations={organisations} />
-
-            {(!organisations || organisations?.length === 0) && (
-              <CreateOrganisation />
-            )}
-          </div>
-          <Image
-            className="-mt-12 mb-12 w-60 self-start md:w-80"
-            src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_people_with_paperboard_9c8d47f4b3.png"
-            width="380"
-            height="400"
-            alt=""
-          />
-        </div>
+      {!((organisations.length ?? 0) > 0) ? (
+        <CreateOrganisation />
+      ) : (
+        <PollsList organisations={organisations} />
       )}
-
-      {error && (error as AxiosError).status !== STATUS_UNAUTHORISED && (
-        <DefaultErrorAlert />
-      )}
-    </>
+    </div>
   )
 }
