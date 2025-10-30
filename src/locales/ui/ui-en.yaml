@@ -1377,8 +1377,8 @@ entries:
   common.category.logement.lock: Logement
   pollResults.categoryDistribution.accessibleDescription.category: '{{name}}: {{value}} {{unit}}.'
   pollResults.categoryDistribution.accessibleDescription.category.lock: '{{name}}: {{value}} {{unit}}.'
-  common.category.services: Services
-  common.category.services.lock: Services
+  common.category.services: Community services
+  common.category.services.lock: Services sociétaux
   common.category.transport: Transport
   common.category.transport.lock: Transport
   common.category.alimentation: Power supply
@@ -1628,3 +1628,118 @@ entries:
   header.simulateur.lock: Accéder au test
   90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² on average for a household of 2.2 people.
   sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: over the last 50 years, from 23 to 40 m² per inhabitant, i.e
+  mon-espace.groups.title: My groups
+  mon-espace.groups.title.lock: Mes groupes
+  mon-espace.instructions.list.item1.part2: your impression results
+  mon-espace.instructions.list.item1.part2.lock: vos résultats d'empreinte
+  Derniers résultats d’empreinte: Latest impression results
+  mon-espace.welcome.description.part1: Here you can
+  mon-espace.welcome.description.part1.lock: Ici, vous pourrez
+  mon-espace.tabs.actions: Actions
+  mon-espace.tabs.actions.lock: Actions
+  mon-espace.tabs.groups: Groups
+  mon-espace.tabs.groups.lock: Groupes
+  Test effectué le: Test performed on
+  mon-espace.instructions.link.text: Taking the test
+  mon-espace.instructions.link.text.lock: Passer le test
+  mon-espace.instructions.list.item3.part3: find your group tests
+  mon-espace.instructions.list.item3.part3.lock: retrouver vos tests collectifs
+  mon-espace.instructions.description.part2: take the test
+  mon-espace.instructions.description.part2.lock: passer le test
+  mon-espace.welcome.description.part2: track your results
+  mon-espace.welcome.description.part2.lock: suivre vos résultats
+  mon-espace.noResults.description: Take the test to unlock content here
+  mon-espace.noResults.description.lock: Passez le test pour débloquer le contenu ici
+  mon-espace.instructions.list.item1.part1: Find here
+  mon-espace.instructions.list.item1.part1.lock: Retrouver ici
+  mon-espace.instructions.list.item3.part2: and
+  mon-espace.instructions.list.item3.part2.lock: et
+  mon-espace.actions.title: My actions
+  mon-espace.actions.title.lock: Mes actions
+  mon-espace.instructions.list.item3.part4: (organisations, family, friends...)
+  mon-espace.instructions.list.item3.part4.lock: (organisations, famille, amis...)
+  mon-espace.instructions.list.item2.part3: and
+  mon-espace.instructions.list.item2.part3.lock: et
+  mon-espace.welcome.description.part6: take other people on board
+  mon-espace.welcome.description.part6.lock: embarquer d’autres personnes
+  mon-espace.settings.title: Parameters
+  mon-espace.settings.title.lock: Paramètres
+  mon-espace.tabs.results: Results
+  mon-espace.tabs.results.lock: Résultats
+  mon-espace.welcome.close-banner: Close the welcome banner
+  mon-espace.welcome.close-banner.lock: Fermer la bannière de bienvenue
+  mon-espace.instructions.list.item3.part1: Launch
+  mon-espace.instructions.list.item3.part1.lock: Lancer
+  mon-espace.welcome.description.part4: action
+  mon-espace.welcome.description.part4.lock: l’action
+  mon-espace.welcome.description.part3: 'go to '
+  mon-espace.welcome.description.part3.lock: ', passer à '
+  mon-espace.instructions.list.item2.part2: your personalised climate actions
+  mon-espace.instructions.list.item2.part2.lock: vos actions climat personnalisées
+  mon-espace.welcome.description.part5: and
+  mon-espace.welcome.description.part5.lock: ', et'
+  mon-espace.tabs.settings: Parameters
+  mon-espace.tabs.settings.lock: Paramètres
+  mon-espace.noResults.link.text: I calculate my footprint
+  mon-espace.noResults.link.text.lock: Je calcule mon empreinte
+  mon-espace.instructions.description.part3: 'for :'
+  mon-espace.instructions.description.part3.lock: 'pour :'
+  mon-espace.welcome.description.part7: with you.
+  mon-espace.welcome.description.part7.lock: avec vous.
+  simulator.navigation.nextButton.skip.label: Skip the question
+  simulator.navigation.nextButton.skip.label.lock: Passer la question
+  mon-espace.instructions.list.item2.part4: track your progress
+  mon-espace.instructions.list.item2.part4.lock: suivre vos progrès
+  mon-espace.welcome.title: Welcome to Nos Gestes Climat!
+  mon-espace.welcome.title.lock: Bienvenue dans votre espace Nos Gestes climat !
+  mon-espace.instructions.list.item2.part1: Discover
+  mon-espace.instructions.list.item2.part1.lock: Découvrir
+  mon-espace.instructions.description.part1: First and foremost, we invite you to
+  mon-espace.instructions.description.part1.lock: Avant toute chose, nous vous invitons à
+  mon-espace.tabs.myResults: My results
+  mon-espace.tabs.myResults.lock: Mes résultats
+  mon-espace.evolutionGraph.title: Evolution of my carbon footprint results
+  mon-espace.evolutionGraph.title.lock: Evolution de mes résultats d'empreinte
+  mon-espace.evolutionGraph.tabs.global: Global view
+  mon-espace.evolutionGraph.tabs.global.lock: Vue globale
+  mon-espace.evolutionGraph.selectView: Select the view to display
+  mon-espace.evolutionGraph.selectView.lock: Sélectionner la vue à afficher
+  mon-espace.evolutionGraph.selectView.description: Rotate your mobile for optimal display
+  mon-espace.evolutionGraph.selectView.description.lock: Retournez votre mobile pour un affichage optimal
+  mon-espace.evolutionGraph.yAxis: Footprint in tonnes
+  mon-espace.evolutionGraph.yAxis.lock: Empreinte en tonnes
+  mon-espace.evolutionGraph.chartLabel: Carbon footprint evolution graph showing {{simulationsCount}} résultats de test. {{simulationsData}}
+  mon-espace.evolutionGraph.chartLabel.lock: Graphique d'évolution de l'empreinte carbone montrant {{simulationsCount}} résultats de test. {{simulationsData}}
+  mon-espace.tabs.myActions: My actions
+  mon-espace.tabs.myActions.lock: Mes actions
+  mon-espace.tabs.myGroups: My groups
+  mon-espace.tabs.myGroups.lock: Mes groupes
+  mon-espace.resultsList.result.viewDetail: See details
+  mon-espace.resultsList.result.viewDetail.lock: Voir le détail
+  mon-espace.resultsList.title: All my results
+  mon-espace.resultsList.title.lock: Tous mes résultats
+  mon-espace.latestResults.title: Latest impression results
+  mon-espace.latestResults.title.lock: Derniers résultats d'empreinte
+  mon-espace.shareSimulator.buttonLabel.mobile: Share the test
+  mon-espace.shareSimulator.buttonLabel.mobile.lock: Partager le test
+  mon-espace.latestResults.date: Test performed on
+  mon-espace.latestResults.date.lock: Test effectué le
+  mon-espace.latestResults.viewDetail: See details
+  mon-espace.latestResults.viewDetail.lock: Voir le détail
+  mon-espace.resultsList.result.title: 'Results from {{date}}:'
+  mon-espace.resultsList.result.title.lock: 'Résultats du {{date}} :'
+  mon-espace.shareSimulator.title: Did you enjoy calculating your footprint?
+  mon-espace.shareSimulator.title.lock: Vous avez aimé calculer votre empreinte ?
+  mon-espace.resultsList.result.unit: CO₂e / year
+  mon-espace.resultsList.result.unit.lock: CO₂e / an
+  mon-espace.shareSimulator.buttonLabel.desktop: Share Nos Gestes Climat test
+  mon-espace.shareSimulator.buttonLabel.desktop.lock: Partager le test Nos Gestes Climat
+  mon-espace.evolutionGraph.simulationData: 'Test result no.{{simulationNumber}} du {{simulationDate}} : {{simulationValue}} tonnes'
+  mon-espace.evolutionGraph.simulationData.lock: 'Résultat de test n°{{simulationNumber}} du {{simulationDate}} : {{simulationValue}} tonnes'
+  mon-espace.evolutionGraph.chartDisabledTitle.part1: Run a new simulation
+  mon-espace.evolutionGraph.chartDisabledTitle.part1.lock: Faites une nouvelle simulation
+  Navigation de mon espace: Navigating my space
+  navigation.connexionInscription: Login/registration navigation
+  navigation.connexionInscription.lock: Navigation connexion/inscription
+  mon-espace.evolutionGraph.chartDisabledTitle.part2: to view the evolution of your footprint
+  mon-espace.evolutionGraph.chartDisabledTitle.part2.lock: pour avoir accès à l’évolution de votre empreinte

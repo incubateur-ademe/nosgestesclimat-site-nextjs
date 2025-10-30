@@ -11,6 +11,7 @@ export default function MetricCard({
   children,
   isSticky,
   isSharePage,
+  isStatic,
   ...props
 }: PropsWithChildren<{
   metricTitle: {
@@ -23,6 +24,7 @@ export default function MetricCard({
   panelId?: string
   onKeyDown?: (e: KeyboardEvent) => void
   isSharePage?: boolean
+  isStatic?: boolean
 }>) {
   const { currentMetric, setCurrentMetric } = useCurrentMetric()
 
@@ -52,15 +54,15 @@ export default function MetricCard({
   return (
     <div
       className={twMerge(
-        'flex-1 overflow-hidden rounded-b-xl bg-white',
-        'border-primary-100 pointer-events-auto relative rounded-xl border-[3px]',
+        'border-primary-100 pointer-events-auto relative flex-1 rounded-xl rounded-b-xl border-[3px] bg-white',
         isSelected
           ? 'border-primary-700 bg-white'
           : 'border-slate-500 bg-slate-100',
         isSticky && 'rounded-none rounded-br-xl rounded-bl-xl',
         metric === carboneMetric
-          ? 'rounded-r-none rounded-bl-xl'
-          : 'rounded-l-none rounded-br-xl'
+          ? 'rounded-none rounded-l-xl'
+          : 'rounded-none rounded-r-xl',
+        isStatic && 'border-primary-200 pointer-events-none border bg-white'
       )}>
       <div
         id={headerId}
@@ -85,12 +87,11 @@ export default function MetricCard({
         onClick={handleSelectMetric}
         onKeyDown={onKeyDown}
         className={twMerge(
-          'focus:ring-primary-700 pointer-events-auto absolute inset-0 z-10 block h-full w-full rounded-xl focus:ring-4 focus:ring-offset-2 focus:ring-offset-white focus-visible:outline-none',
+          'focus:ring-primary-700 pointer-events-auto absolute inset-0 z-10 block h-full w-full rounded-xl focus:ring-3 focus:ring-offset-3 focus:outline-hidden',
           metric === carboneMetric
             ? 'rounded-r-none rounded-bl-xl'
             : 'rounded-l-none rounded-br-xl',
-          isSharePage && 'pointer-events-none',
-          isSticky && 'focus:ring-offset-none focus:ring-offset-0'
+          isSharePage && 'pointer-events-none'
         )}>
         <span className="sr-only">{metricTitle.mobile}</span>
       </button>

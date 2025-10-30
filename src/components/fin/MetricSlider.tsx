@@ -4,6 +4,7 @@ import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
+import type { Metric } from '@/publicodes-state/types'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/trans/TransClient'
@@ -16,18 +17,20 @@ type Props = {
   waterTotal?: number
   isStatic?: boolean
   isSharePage?: boolean
+  className?: string
 }
 export default function MetricSlider({
   carboneTotal,
   waterTotal,
   isStatic,
   isSharePage,
+  className,
 }: Props) {
   const [isSticky, setIsSticky] = useState(false)
 
-  const { currentMetric, setCurrentMetric } = useCurrentMetric()
-
   const { t } = useClientTranslation()
+
+  const { currentMetric, setCurrentMetric } = useCurrentMetric()
 
   const myElementRef = useRef<HTMLDivElement>(null)
 
@@ -56,21 +59,27 @@ export default function MetricSlider({
   }, [isStatic])
 
   useEffect(() => {
+    const metricString =
+      currentMetric === carboneMetric
+        ? t('common.metric.carbon', 'carbone')
+        : t('common.metric.water', 'eau')
+
     document.title = t(
       'endpage.title.custom',
       'Mes empreintes carbone et eau, empreinte {{metric}} sélectionnée - Nos Gestes Climat',
       {
-        metric: currentMetric === carboneMetric ? 'carbone' : 'eau',
+        metric: metricString,
       }
     )
-  }, [currentMetric, t])
+  }, [t, currentMetric])
 
   return (
     <div
       className={twMerge(
         isStatic
           ? ''
-          : 'pointer-events-none sticky top-0 z-40 -mx-4 mb-4 md:mx-0 md:h-96'
+          : 'pointer-events-none sticky top-0 z-40 -mx-4 mb-4 md:mx-0 md:h-96',
+        className
       )}
       ref={myElementRef}>
       <div
@@ -81,6 +90,7 @@ export default function MetricSlider({
             : 'h-28 md:h-72 lg:h-80'
         )}
         role="tablist"
+        aria-orientation="horizontal"
         tabIndex={0}
         aria-label={t('Choix de la métrique') as string}
         onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -103,10 +113,10 @@ export default function MetricSlider({
 
           const nextMetric = order[nextIndex]
           if (nextMetric !== currentMetric) {
+            // Automatic activation per ARIA Tabs pattern
             setCurrentMetric(nextMetric)
-
             const nextTabId =
-              nextMetric === carboneMetric
+              nextMetric === (carboneMetric as Metric)
                 ? 'tab-metric-carbone'
                 : 'tab-metric-eau'
             requestAnimationFrame(() => {
@@ -136,6 +146,7 @@ export default function MetricSlider({
           isSticky={isSticky}
           tabId="tab-metric-carbone"
           panelId="panel-metric-carbone"
+          isStatic={isStatic}
           onKeyDown={(e: React.KeyboardEvent) => {
             // Let the tablist parent handle the keydown
           }}>
@@ -160,6 +171,7 @@ export default function MetricSlider({
           isSticky={isSticky}
           tabId="tab-metric-eau"
           panelId="panel-metric-eau"
+          isStatic={isStatic}
           onKeyDown={(e: React.KeyboardEvent) => {
             // Let the tablist parent handle the keydown
           }}>

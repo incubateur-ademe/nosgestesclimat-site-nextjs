@@ -38,6 +38,7 @@ export default function SigninForm({ buttonLabel, mode, redirectURL }: Props) {
         isPendingValidate={isPendingValidate}
         isSuccessValidate={isSuccessValidate}
         redirectURL={redirectURL}
+        mode={mode}
       />
     )
   }

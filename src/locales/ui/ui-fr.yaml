@@ -1211,7 +1211,7 @@ entries:
   common.category.alimentation: Alimentation
   common.category.divers: Divers
   common.category.logement: Logement
-  common.category.services: Services
+  common.category.services: Services sociétaux
   common.category.transport: Transport
   pollResults.categoryDistribution.accessibleDescription.category: '{{name}}: {{value}} {{unit}}.'
   pollResults.categoryDistribution.accessibleDescription.chart: 'Graphique en donut montrant la répartition des émissions par catégorie. '
@@ -1351,3 +1351,61 @@ entries:
   header.simulateur: Accéder au test
   90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² en moyenne pour un foyer de 2,2 personnes.
   sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit
+  Derniers résultats d’empreinte: Derniers résultats d’empreinte
+  mon-espace.actions.title: Mes actions
+  mon-espace.groups.title: Mes groupes
+  mon-espace.instructions.description.part1: Avant toute chose, nous vous invitons à
+  mon-espace.instructions.description.part2: passer le test
+  mon-espace.instructions.description.part3: 'pour :'
+  mon-espace.instructions.link.text: Passer le test
+  mon-espace.instructions.list.item1.part1: Retrouver ici
+  mon-espace.instructions.list.item1.part2: vos résultats d'empreinte
+  mon-espace.instructions.list.item2.part1: Découvrir
+  mon-espace.instructions.list.item2.part2: vos actions climat personnalisées
+  mon-espace.instructions.list.item2.part3: et
+  mon-espace.instructions.list.item2.part4: suivre vos progrès
+  mon-espace.instructions.list.item3.part1: Lancer
+  mon-espace.instructions.list.item3.part2: et
+  mon-espace.instructions.list.item3.part3: retrouver vos tests collectifs
+  mon-espace.instructions.list.item3.part4: (organisations, famille, amis...)
+  mon-espace.noResults.description: Passez le test pour débloquer le contenu ici
+  mon-espace.noResults.link.text: Je calcule mon empreinte
+  mon-espace.settings.title: Paramètres
+  mon-espace.tabs.actions: Actions
+  mon-espace.tabs.groups: Groupes
+  mon-espace.tabs.results: Résultats
+  mon-espace.tabs.settings: Paramètres
+  mon-espace.welcome.close-banner: Fermer la bannière de bienvenue
+  mon-espace.welcome.description.part1: Ici, vous pourrez
+  mon-espace.welcome.description.part2: suivre vos résultats
+  mon-espace.welcome.description.part3: ', passer à '
+  mon-espace.welcome.description.part4: l’action
+  mon-espace.welcome.description.part5: ', et'
+  mon-espace.welcome.description.part6: embarquer d’autres personnes
+  mon-espace.welcome.description.part7: avec vous.
+  mon-espace.welcome.title: Bienvenue dans votre espace Nos Gestes climat !
+  Test effectué le: Test effectué le
+  mon-espace.tabs.myActions: Mes actions
+  mon-espace.tabs.myGroups: Mes groupes
+  mon-espace.tabs.myResults: Mes résultats
+  mon-espace.evolutionGraph.title: Evolution de mes résultats d'empreinte
+  mon-espace.evolutionGraph.tabs.global: Vue globale
+  mon-espace.evolutionGraph.selectView: Sélectionner la vue à afficher
+  mon-espace.evolutionGraph.selectView.description: Retournez votre mobile pour un affichage optimal
+  mon-espace.evolutionGraph.yAxis: Empreinte en tonnes
+  mon-espace.evolutionGraph.chartLabel: Graphique d'évolution de l'empreinte carbone montrant {{simulationsCount}} résultats de test. {{simulationsData}}
+  mon-espace.latestResults.date: Test effectué le
+  mon-espace.latestResults.title: Derniers résultats d'empreinte
+  mon-espace.latestResults.viewDetail: Voir le détail
+  mon-espace.resultsList.result.title: 'Résultats du {{date}} :'
+  mon-espace.resultsList.result.unit: CO₂e / an
+  mon-espace.resultsList.result.viewDetail: Voir le détail
+  mon-espace.resultsList.title: Tous mes résultats
+  mon-espace.shareSimulator.buttonLabel.desktop: Partager le test Nos Gestes Climat
+  mon-espace.shareSimulator.buttonLabel.mobile: Partager le test
+  mon-espace.shareSimulator.title: Vous avez aimé calculer votre empreinte ?
+  mon-espace.evolutionGraph.chartDisabledTitle.part1: Faites une nouvelle simulation
+  mon-espace.evolutionGraph.chartDisabledTitle.part2: pour avoir accès à l’évolution de votre empreinte
+  mon-espace.evolutionGraph.simulationData: 'Résultat de test n°{{simulationNumber}} du {{simulationDate}} : {{simulationValue}} tonnes'
+  Navigation de mon espace: Navigation de mon espace
+  navigation.connexionInscription: Navigation connexion/inscription
