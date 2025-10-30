@@ -33,6 +33,7 @@ type Props = {
   'data-cypress-id'?: string
   autoComplete?: string
   mention?: string
+  shouldUseDebounce?: boolean
 }
 
 export default forwardRef(function TextInput(
@@ -55,6 +56,7 @@ export default forwardRef(function TextInput(
     debounceTimeout = 100,
     readOnly = false,
     autoComplete = 'off',
+    shouldUseDebounce = true,
     ...props
   }: HTMLAttributes<HTMLInputElement> & Props,
   ref: ForwardedRef<HTMLInputElement>
@@ -73,32 +75,60 @@ export default forwardRef(function TextInput(
       required={required}
       disabled={disabled}
       mention={mention}>
-      <DebounceInput
-        id={inputId}
-        inputRef={ref}
-        readOnly={readOnly}
-        debounceTimeout={debounceTimeout}
-        name={name}
-        type={type}
-        placeholder={placeholder}
-        onChange={onChange ?? (() => null)}
-        value={value}
-        required={required}
-        aria-disabled={disabled}
-        autoComplete={autoComplete}
-        data-cypress-id={`${props['data-cypress-id']}`}
-        {...props}
-        className={twMerge(
-          'w-full max-w-[30rem] p-4 text-base',
-          defaultInputStyleClassNames,
-          error ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : '',
-          disabled ? 'cursor-not-allowed opacity-50' : '',
-          readOnly
-            ? 'cursor-not-allowed'
-            : 'focus:ring-primary-700 focus:ring-2 focus:ring-offset-3 focus:outline-hidden',
-          className
-        )}
-      />
+      {shouldUseDebounce ? (
+        <DebounceInput
+          id={inputId}
+          inputRef={ref}
+          readOnly={readOnly}
+          debounceTimeout={debounceTimeout}
+          name={name}
+          type={type}
+          placeholder={placeholder}
+          onChange={onChange ?? (() => null)}
+          value={value}
+          required={required}
+          aria-disabled={disabled}
+          autoComplete={autoComplete}
+          data-cypress-id={`${props['data-cypress-id']}`}
+          {...props}
+          className={twMerge(
+            'w-full max-w-[30rem] p-4 text-base',
+            defaultInputStyleClassNames,
+            error ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : '',
+            disabled ? 'cursor-not-allowed opacity-50' : '',
+            readOnly
+              ? 'cursor-not-allowed'
+              : 'focus:ring-primary-700 focus:ring-2 focus:ring-offset-3 focus:outline-hidden',
+            className
+          )}
+        />
+      ) : (
+        <input
+          ref={ref}
+          id={inputId}
+          readOnly={readOnly}
+          name={name}
+          type={type}
+          placeholder={placeholder}
+          onChange={onChange ?? (() => null)}
+          value={value}
+          required={required}
+          aria-disabled={disabled}
+          autoComplete={autoComplete}
+          data-cypress-id={`${props['data-cypress-id']}`}
+          {...props}
+          className={twMerge(
+            'w-full max-w-[30rem] p-4 text-base',
+            defaultInputStyleClassNames,
+            error ? 'border-red-200! bg-red-50! ring-2 ring-red-700!' : '',
+            disabled ? 'cursor-not-allowed opacity-50' : '',
+            readOnly
+              ? 'cursor-not-allowed'
+              : 'focus:ring-primary-700 focus:ring-2 focus:ring-offset-3 focus:outline-hidden',
+            className
+          )}
+        />
+      )}
     </InputGroup>
   )
 })

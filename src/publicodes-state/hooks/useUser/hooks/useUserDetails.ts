@@ -33,9 +33,12 @@ export default function useUserDetails({ setUser }: Props) {
     [setUser]
   )
 
-  const updateLoginExpirationDate = useCallback(
-    (loginExpirationDate: Date | undefined) =>
-      setUser((prevUser: User) => ({ ...prevUser, loginExpirationDate })),
+  const updateVerificationCodeExpirationDate = useCallback(
+    (verificationCodeExpirationDate: Date | undefined) =>
+      setUser((prevUser: User) => ({
+        ...prevUser,
+        verificationCodeExpirationDate,
+      })),
     [setUser]
   )
 
@@ -72,7 +75,7 @@ export default function useUserDetails({ setUser }: Props) {
     updateEmail,
     updateRegion,
     updateInitialRegion,
-    updateLoginExpirationDate,
+    updateVerificationCodeExpirationDate,
     updateUserOrganisation,
   }
 }

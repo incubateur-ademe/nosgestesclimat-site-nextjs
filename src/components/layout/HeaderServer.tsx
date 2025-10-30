@@ -1,6 +1,12 @@
-import { SIMULATOR_PATH } from '@/constants/urls/paths'
+import {
+  CONNEXION_PATH,
+  MON_ESPACE_PATH,
+  SIMULATOR_PATH,
+} from '@/constants/urls/paths'
 import ButtonLinkServer from '@/design-system/buttons/ButtonLinkServer'
+import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthenticated'
 import type { Locale } from '@/i18nConfig'
+import Script from 'next/script'
 import { twMerge } from 'tailwind-merge'
 import LogoLinkServer from '../misc/LogoLinkServer'
 import Trans from '../translation/trans/TransServer'
@@ -8,11 +14,21 @@ import Trans from '../translation/trans/TransServer'
 type Props = {
   isSticky?: boolean
   locale: Locale
+  isOldVersion?: boolean
 }
 
-export default function HeaderServer({ isSticky = true, locale }: Props) {
+const MAX_EMAIL_LENGTH = 20
+
+export default async function HeaderServer({
+  isSticky = true,
+  locale,
+  isOldVersion = false,
+}: Props) {
+  const authenticatedUser = await getIsUserAuthenticated()
+
   return (
     <header
+      id="header-server-container"
       className={twMerge(
         'h-20 items-center bg-white shadow-xs',
         isSticky ? 'sticky top-0 z-300' : ''
@@ -23,13 +39,112 @@ export default function HeaderServer({ isSticky = true, locale }: Props) {
             <LogoLinkServer />
           </div>
 
-          <div className="flex h-full items-center">
-            <ButtonLinkServer color="secondary" href={SIMULATOR_PATH}>
-              <Trans locale={locale}>Accéder au test</Trans>
-            </ButtonLinkServer>
-          </div>
+          {!isOldVersion && (
+            <div className="flex h-full items-center">
+              {authenticatedUser ? (
+                <ButtonLinkServer
+                  size="sm"
+                  color="secondary"
+                  href={MON_ESPACE_PATH}
+                  className="inline-block"
+                  data-track-event="Header|Click Mon Espace|Authenticated"
+                  data-track-posthog={
+                    '{"eventName":"click header mon espace","properties":{"status":"authenticated"}}'
+                  }>
+                  <Trans i18nKey="header.monEspace" locale={locale}>
+                    Mon Espace
+                  </Trans>{' '}
+                  <span>
+                    (
+                    {authenticatedUser.email.length > MAX_EMAIL_LENGTH
+                      ? `${authenticatedUser.email.substring(0, MAX_EMAIL_LENGTH)}...`
+                      : authenticatedUser.email}
+                    )
+                  </span>
+                </ButtonLinkServer>
+              ) : (
+                <ButtonLinkServer
+                  color="secondary"
+                  href={CONNEXION_PATH}
+                  data-track-event="Header|Click Mon Espace|Unauthenticated"
+                  data-track-posthog='{"eventName":"click header mon espace","properties":{"status":"unauthenticated"}}'>
+                  <Trans i18nKey="header.monEspace" locale={locale}>
+                    Mon Espace
+                  </Trans>
+                </ButtonLinkServer>
+              )}
+            </div>
+          )}
+          {isOldVersion && (
+            <div className="flex h-full items-center">
+              <ButtonLinkServer color="secondary" href={SIMULATOR_PATH}>
+                <Trans i18nKey="header.simulateur" locale={locale}>
+                  Accéder au test
+                </Trans>
+              </ButtonLinkServer>
+            </div>
+          )}
         </div>
       </div>
+
+      <Script
+        id="header-tracking-global"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            if (!window.headerTrackingAdded) {
+              window.headerTrackingAdded = true;
+              
+              // Wait for DOM to be ready
+              const initTracking = () => {
+                const container = document.getElementById('header-server-container');
+                
+                if (!container) {
+                  console.warn('🔧 HeaderServer: Container not found, retrying...');
+                  setTimeout(initTracking, 100);
+                  return;
+                }
+                
+                console.log('🔧 HeaderServer: Event listener registered on header');
+                
+                container.addEventListener('click', (e) => {
+                  const target = e.target.closest('[data-track-event]');
+                  const posthogTarget = e.target.closest('[data-track-posthog]');
+                  
+                  // Only process if the target is within this container
+                  if ((target && container.contains(target)) || (posthogTarget && container.contains(posthogTarget))) {
+                    console.log('🔧 HeaderServer: Click detected in header', {
+                      href: e.target?.closest('a')?.href,
+                      timestamp: Date.now()
+                    });
+                    
+                    // Execute tracking asynchronously
+                    setTimeout(() => {
+                      if (target) {
+                        const eventData = target.dataset.trackEvent.split('|');
+                        console.log('Matomo tracking:', eventData);
+                        window._paq?.push(['trackEvent', ...eventData]);
+                      }
+                      
+                      if (posthogTarget) {
+                        const { eventName, ...properties } = JSON.parse(posthogTarget.dataset.trackPosthog);
+                        console.log('Posthog tracking:', { eventName, properties });
+                        window.posthog?.capture(eventName, properties);
+                      }
+                    }, 0);
+                  }
+                });
+              };
+              
+              if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initTracking);
+              } else {
+                initTracking();
+              }
+            }
+          `,
+        }}
+      />
     </header>
   )
 }
