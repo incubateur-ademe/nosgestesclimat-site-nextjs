@@ -11,6 +11,7 @@ export default function MetricCard({
   children,
   isSticky,
   isSharePage,
+  isStatic,
   ...props
 }: PropsWithChildren<{
   metricTitle: {
@@ -23,6 +24,7 @@ export default function MetricCard({
   panelId?: string
   onKeyDown?: (e: KeyboardEvent) => void
   isSharePage?: boolean
+  isStatic?: boolean
 }>) {
   const { currentMetric, setCurrentMetric } = useCurrentMetric()
 
@@ -60,7 +62,8 @@ export default function MetricCard({
         isSticky && 'rounded-none rounded-br-xl rounded-bl-xl',
         metric === carboneMetric
           ? 'rounded-r-none rounded-bl-xl'
-          : 'rounded-l-none rounded-br-xl'
+          : 'rounded-l-none rounded-br-xl',
+        isStatic && 'border-primary-200 pointer-events-none border bg-white'
       )}>
       <div
         id={headerId}

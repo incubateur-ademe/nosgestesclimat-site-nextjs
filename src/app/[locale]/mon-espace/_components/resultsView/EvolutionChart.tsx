@@ -38,7 +38,6 @@ export default function EvolutionChart({
 }: Props) {
   const { t } = useClientTranslation()
 
-  const height = isMobile() ? 240 : 400
   const chartId = 'evolution-chart'
 
   const simulationDescriptionLabels = chartData
@@ -76,8 +75,7 @@ export default function EvolutionChart({
 
   return (
     <div
-      className="relative w-full"
-      style={{ height: `${height}px` }}
+      className="relative h-52 w-full md:h-96"
       role="img"
       aria-label={chartLabel}
       aria-describedby={
@@ -104,7 +102,7 @@ export default function EvolutionChart({
           margin={{
             top: 20,
             right: 30,
-            left: 0,
+            left: 10,
             bottom: 20,
           }}>
           <CartesianGrid

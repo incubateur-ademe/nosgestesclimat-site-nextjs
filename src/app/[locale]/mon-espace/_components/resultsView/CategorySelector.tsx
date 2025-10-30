@@ -1,5 +1,6 @@
 import Trans from '@/components/translation/trans/TransClient'
 import { orderedCategories } from '@/constants/model/orderedCategories'
+import Tabs, { type TabItem } from '@/design-system/layout/Tabs'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type TabId = 'global' | DottedName
@@ -17,49 +18,43 @@ export default function CategorySelector({
   categoryLabels,
   disabled = false,
 }: Props) {
-  return (
-    <div className="mb-6 hidden border-b-2 border-slate-200 md:block">
-      <nav aria-label="Navigation par catégorie">
-        <ul className="flex items-end gap-0 md:gap-4">
-          {/* Global view tab */}
-          <li className="translate-y-0.5">
-            <button
-              role="tab"
-              aria-current={activeTab === 'global'}
-              aria-selected={activeTab === 'global'}
-              aria-disabled={disabled}
-              className={`inline-block px-1 py-3 text-base md:px-4 md:text-lg ${
-                activeTab === 'global'
-                  ? 'border-primary-600 text-primary-600 border-b-3 font-bold'
-                  : 'border-b-3 border-transparent text-slate-600'
-              } ${disabled ? 'cursor-not-allowed' : ''}`}
-              onClick={disabled ? () => {} : () => setActiveTab('global')}>
-              <Trans i18nKey="mon-espace.evolutionGraph.tabs.global">
-                Vue globale
-              </Trans>
-            </button>
-          </li>
+  const globalTabId = 'global'
+  const tabsItems: TabItem[] = [
+    {
+      id: globalTabId,
+      label: (
+        <Trans i18nKey="mon-espace.evolutionGraph.tabs.global">
+          Vue globale
+        </Trans>
+      ),
+      href: '#',
+      isActive: activeTab === globalTabId,
+      onClick: (e: React.MouseEvent) => {
+        e.preventDefault()
+        if (!disabled) setActiveTab('global')
+      },
+      'aria-disabled': disabled,
+    },
+    ...orderedCategories.map((category) => ({
+      id: category,
+      label: categoryLabels[category] ?? category,
+      href: '#',
+      isActive: activeTab === category,
+      onClick: (e: React.MouseEvent) => {
+        e.preventDefault()
+        if (!disabled) setActiveTab(category)
+      },
+      'aria-disabled': disabled,
+    })),
+  ]
 
-          {/* Category tabs */}
-          {orderedCategories.map((category) => (
-            <li key={category} className="translate-y-0.5">
-              <button
-                role="tab"
-                aria-current={activeTab === category}
-                aria-selected={activeTab === category}
-                aria-disabled={disabled}
-                className={`inline-block px-1 py-3 text-base md:px-4 md:text-lg ${
-                  activeTab === category
-                    ? 'border-primary-600 text-primary-600 border-b-3 font-bold'
-                    : 'border-b-3 border-transparent text-slate-600'
-                } ${disabled ? 'cursor-not-allowed' : ''}`}
-                onClick={disabled ? () => {} : () => setActiveTab(category)}>
-                {categoryLabels[category]}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </nav>
+  return (
+    <div className="mb-6 hidden md:block">
+      <Tabs
+        items={tabsItems}
+        ariaLabel="Navigation par catégorie"
+        isLocked={disabled}
+      />
     </div>
   )
 }
