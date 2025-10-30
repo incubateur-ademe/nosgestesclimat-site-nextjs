@@ -13,6 +13,7 @@ import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
 import ArticleBreadcrumbs from './_components/ArticleBreadcrumbs'
+import ArticleDate from './_components/ArticleDate'
 import ArticleJSONLD from './_components/ArticleJSONLD'
 import AuthorBlock from './_components/AuthorBlock'
 import OtherArticles from './_components/OtherArticles'
@@ -106,8 +107,8 @@ export default async function ArticlePage({
               </Badge>
             </div>
 
-            <div className="flex flex-row gap-3">
-              <p className="mb-0 text-lg">
+            <div className="flex flex-col flex-wrap gap-1">
+              <p className="mb-0">
                 <span className="text-primary-600">
                   <Trans locale={locale}>Temps de lecture :</Trans>
                 </span>{' '}
@@ -115,16 +116,7 @@ export default async function ArticlePage({
                 <Trans locale={locale}>minutes</Trans>
               </p>
 
-              <span className="text-lg text-gray-500">|</span>
-
-              <p className="mb-0 text-lg">
-                <span className="text-primary-600">
-                  <Trans locale={locale}>Publié le :</Trans>
-                </span>{' '}
-                {article.createdAt
-                  ? new Date(article.createdAt).toLocaleDateString('fr')
-                  : ''}
-              </p>
+              <ArticleDate article={article} locale={locale} />
             </div>
           </div>
 
