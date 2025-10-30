@@ -21,11 +21,11 @@ export default function CarboneTotalChart({
   isSmall,
   shouldShowOnlyGauge = false,
 }: Props) {
-  const { numericValue } = useRule('bilan')
+  // Hook fallback si la prop n'est pas fournie
+  const hookValue = useRule('bilan').numericValue
+  const usedValue = total ?? hookValue
 
   const { t } = useClientTranslation()
-
-  const usedValue = total ?? numericValue
 
   const { formattedValue, unit } = formatCarbonFootprint(usedValue, {
     t,

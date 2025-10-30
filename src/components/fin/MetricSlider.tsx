@@ -3,7 +3,7 @@
 import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useCurrentMetric } from '@/hooks/useCurrentMetric'
+import type { Metric } from '@/publicodes-state/types'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/trans/TransClient'
@@ -26,8 +26,6 @@ export default function MetricSlider({
   className,
 }: Props) {
   const [isSticky, setIsSticky] = useState(false)
-
-  const { currentMetric, setCurrentMetric } = useCurrentMetric()
 
   const { t } = useClientTranslation()
 
@@ -62,10 +60,10 @@ export default function MetricSlider({
       'endpage.title.custom',
       'Mes empreintes carbone et eau, empreinte {{metric}} sélectionnée - Nos Gestes Climat',
       {
-        metric: currentMetric === carboneMetric ? 'carbone' : 'eau',
+        metric: carboneMetric,
       }
     )
-  }, [currentMetric, t])
+  }, [t])
 
   return (
     <div
@@ -96,7 +94,7 @@ export default function MetricSlider({
 
           e.preventDefault()
           const order = [carboneMetric, eauMetric]
-          const currentIndex = order.indexOf(currentMetric)
+          const currentIndex = order.indexOf(carboneMetric)
           let nextIndex = currentIndex
           if (e.key === right) nextIndex = (currentIndex + 1) % order.length
           if (e.key === left)
@@ -105,11 +103,12 @@ export default function MetricSlider({
           if (e.key === end) nextIndex = order.length - 1
 
           const nextMetric = order[nextIndex]
-          if (nextMetric !== currentMetric) {
-            setCurrentMetric(nextMetric)
+          if (nextMetric !== carboneMetric) {
+            // This part of the logic is now handled by the children
+            // setCurrentMetric(nextMetric)
 
             const nextTabId =
-              nextMetric === carboneMetric
+              nextMetric === (carboneMetric as Metric)
                 ? 'tab-metric-carbone'
                 : 'tab-metric-eau'
             requestAnimationFrame(() => {

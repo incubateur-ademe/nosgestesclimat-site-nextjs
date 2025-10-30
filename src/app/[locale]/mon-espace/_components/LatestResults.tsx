@@ -1,5 +1,5 @@
-import GaugeContainerServer from '@/components/fin/metricSlider/GaugeContainerServer'
-import MetricSliderServer from '@/components/fin/MetricSliderServer'
+import MetricSlider from '@/components/fin/MetricSlider'
+import Gauge from '@/components/fin/metricSlider/carboneTotalChart/Gauge'
 import Trans from '@/components/translation/trans/TransServer'
 import { MON_ESPACE_RESULTS_DETAIL_PATH } from '@/constants/urls/paths'
 import {
@@ -8,10 +8,9 @@ import {
   sizeClassNames,
 } from '@/design-system/buttons/Button'
 import Separator from '@/design-system/layout/Separator'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
-import { getColorAtPosition } from '@/helpers/getColorOfGradient'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { getRules } from '@/helpers/modelFetching/getRules'
 import type { Locale } from '@/i18nConfig'
+import EngineProvider from '@/publicodes-state/providers/engineProvider/provider'
 import type { Simulation } from '@/publicodes-state/types'
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
@@ -27,29 +26,7 @@ export default async function LatestResults({
     return null
   }
 
-  // Calculate gauge parameters for mobile display
-  const { t } = await getServerTranslation({ locale })
-  const { formattedValue, unit } = formatCarbonFootprint(
-    simulation.computedResults.carbone.bilan,
-    {
-      t,
-      locale,
-      localize: true,
-    }
-  )
-
-  const total = simulation.computedResults.carbone.bilan
-  const originPosition = (total / 1000 / 12) * 100
-  const position =
-    originPosition <= 0 ? 0 : originPosition >= 100 ? 100 : originPosition
-
-  const color = getColorAtPosition(position / 100)
-  const cssColor = `rgba(${color['r']},${color['g']},${color['b']},${color['a']})`
-
-  const targetValue = 2 // tonnes par an (objectif 2050)
-  const maxValue = 12 // tonnes par an (échelle maximale)
-  const currentValueInTons = total / 1000
-  const percentage = Math.min((currentValueInTons / maxValue) * 100, 100)
+  const rules = await getRules({ locale })
 
   return (
     <div className="border-primary-200 rounded-lg border-1 bg-white px-6 py-8">
@@ -106,43 +83,19 @@ export default async function LatestResults({
         </p>
       </div>
 
-      <MetricSliderServer
-        carboneTotal={simulation.computedResults.carbone.bilan}
-        waterTotal={simulation.computedResults.eau.bilan}
-        locale={locale}
-        className="mb-0 h-auto"
-      />
-
-      <div className="mt-4 block md:hidden">
-        <div
-          className="relative mx-auto mt-2 flex w-full flex-col items-center justify-center md:mt-4"
-          role="img"
-          aria-label={t(
-            'mon-espace.latestResults.gaugeDescription',
-            "Graphique montrant votre empreinte carbone de {{currentValue}} {{unit}} par an, soit {{percentage}}% de l'échelle maximale. L'objectif 2050 est de {{targetValue}} tonnes par an.",
-            {
-              currentValue: formattedValue,
-              unit,
-              percentage: Math.round(percentage),
-              targetValue: 2,
-              interpolation: { escapeValue: false },
-            }
-          )}
-          aria-live="polite"
-          aria-atomic="true">
-          <GaugeContainerServer
-            total={total}
-            locale={locale}
-            currentValueInTons={currentValueInTons}
-            maxValue={maxValue}
-            formattedValue={formattedValue}
-            unit={unit ?? ''}
-            percentage={percentage}
-            position={position}
-            cssColor={cssColor}
-          />
+      <EngineProvider rules={rules}>
+        <MetricSlider
+          carboneTotal={simulation.computedResults.carbone.bilan}
+          waterTotal={simulation.computedResults.eau.bilan}
+          className="mb-0 h-auto"
+          isStatic
+          isSharePage
+        />
+        {/* Bloc Gauge dédié en mobile uniquement (hors du MetricSlider) */}
+        <div className="mt-4 block md:hidden">
+          <Gauge total={simulation.computedResults.carbone.bilan} />
         </div>
-      </div>
+      </EngineProvider>
 
       <Link
         className={twMerge(
