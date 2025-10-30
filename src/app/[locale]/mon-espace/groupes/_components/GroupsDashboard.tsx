@@ -1,6 +1,6 @@
-import Groups from '@/app/[locale]/(simulation)/(large-layout)/classements/_components/Groups'
-import Organisations from '@/app/[locale]/(simulation)/(large-layout)/classements/_components/Organisations'
 import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
+import Groups from '@/components/groups/Groups'
+import Organisations from '@/components/groups/Organisations'
 import { fetchUserGroups } from '@/helpers/groups/fetchUserGroups'
 import { fetchOrganisations } from '@/helpers/organisations/fetchOrganisations'
 import type { Locale } from '@/i18nConfig'

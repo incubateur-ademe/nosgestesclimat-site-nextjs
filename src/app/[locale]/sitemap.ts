@@ -15,7 +15,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     'blog',
     'budget',
     'cgu',
-    'classements',
     'contact',
     'diffuser',
     'documentation/guide',
@@ -42,6 +41,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     'questions',
     'questions-frequentes',
     'stats',
+    'mon-espace',
+    'mon-espace/groupes',
+    'mon-espace/actions',
+    'mon-espace/parametres',
   ])
 
   const staticUrls = Array.from(staticPages).map((page) => ({
