@@ -99,11 +99,7 @@ export default function Tabs({
             <li
               key={item.id}
               className={twMerge('translate-y-0.5', containerClassName)}>
-              <TabLink
-                item={item}
-                isLocked={isLocked}
-                data-track-event={item.trackingData?.event}
-                data-track-posthog={item.trackingData?.posthog}>
+              <TabLink item={item} isLocked={isLocked}>
                 {item.label}
               </TabLink>
             </li>

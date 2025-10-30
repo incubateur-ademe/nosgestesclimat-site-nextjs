@@ -1,8 +1,15 @@
+'use client'
+
 import ActionsIcon from '@/components/icons/ActionsIcon'
 import AmisIcon from '@/components/icons/AmisIcon'
 import BilanIcon from '@/components/icons/BilanIcon'
 import SettingsIcon from '@/components/icons/SettingsIcon'
-import Trans from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransClient'
+import {
+  captureClickMonEspaceTab,
+  monEspaceTabTrackEvent,
+  type MonEspaceTab,
+} from '@/constants/tracking/pages/mon-espace'
 import {
   MON_ESPACE_ACTIONS_PATH,
   MON_ESPACE_GROUPS_PATH,
@@ -12,7 +19,16 @@ import {
 import type { TabItem } from '@/design-system/layout/Tabs'
 import Tabs from '@/design-system/layout/Tabs'
 import type { Locale } from '@/i18nConfig'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { useRouter } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
+
+const tabIndexToKey: { [key: string]: MonEspaceTab } = {
+  dashboard: 'results',
+  actions: 'actions',
+  groups: 'groups',
+  settings: 'settings',
+}
 
 export default function ProfileTab({
   locale,
@@ -23,6 +39,7 @@ export default function ProfileTab({
   activePath: string
   isLocked?: boolean
 }) {
+  const router = useRouter()
   const tabsItems: TabItem[] = [
     {
       id: 'dashboard',
@@ -37,19 +54,23 @@ export default function ProfileTab({
             )}
           />
           <span className="hidden md:block">
-            <Trans i18nKey="mon-espace.tabs.myResults" locale={locale}>
-              Mes résultats
-            </Trans>
+            <Trans i18nKey="mon-espace.tabs.myResults">Mes résultats</Trans>
           </span>
           <span className="block text-center text-sm md:hidden">
-            <Trans i18nKey="mon-espace.tabs.results" locale={locale}>
-              Résultats
-            </Trans>
+            <Trans i18nKey="mon-espace.tabs.results">Résultats</Trans>
           </span>
         </span>
       ),
       href: MON_ESPACE_PATH,
       isActive: activePath === MON_ESPACE_PATH,
+      onClick: (e: React.MouseEvent) => {
+        e.preventDefault()
+        if (activePath !== MON_ESPACE_PATH) {
+          trackEvent(monEspaceTabTrackEvent('results'))
+          trackPosthogEvent(captureClickMonEspaceTab({ tab: 'results' }))
+          router.push(MON_ESPACE_PATH)
+        }
+      },
       'data-track-event': 'Mon Espace|Click Tab|Results',
       'data-track-posthog':
         '{"eventName":"click tab mon espace","properties":{"tab":"results"}}',
@@ -67,19 +88,23 @@ export default function ProfileTab({
             )}
           />
           <span className="hidden md:block">
-            <Trans i18nKey="mon-espace.tabs.myActions" locale={locale}>
-              Mes actions
-            </Trans>
+            <Trans i18nKey="mon-espace.tabs.myActions">Mes actions</Trans>
           </span>
           <span className="block text-center text-sm md:hidden">
-            <Trans i18nKey="mon-espace.tabs.actions" locale={locale}>
-              Actions
-            </Trans>
+            <Trans i18nKey="mon-espace.tabs.actions">Actions</Trans>
           </span>
         </span>
       ),
       href: MON_ESPACE_ACTIONS_PATH,
       isActive: activePath === MON_ESPACE_ACTIONS_PATH,
+      onClick: (e: React.MouseEvent) => {
+        e.preventDefault()
+        if (activePath !== MON_ESPACE_ACTIONS_PATH) {
+          trackEvent(monEspaceTabTrackEvent('actions'))
+          trackPosthogEvent(captureClickMonEspaceTab({ tab: 'actions' }))
+          router.push(MON_ESPACE_ACTIONS_PATH)
+        }
+      },
       'data-track-event': 'Mon Espace|Click Tab|Actions',
       'data-track-posthog':
         '{"eventName":"click tab mon espace","properties":{"tab":"actions"}}',
@@ -97,19 +122,23 @@ export default function ProfileTab({
             )}
           />
           <span className="hidden md:block">
-            <Trans i18nKey="mon-espace.tabs.myGroups" locale={locale}>
-              Mes groupes
-            </Trans>
+            <Trans i18nKey="mon-espace.tabs.myGroups">Mes groupes</Trans>
           </span>
           <span className="block text-center text-sm md:hidden">
-            <Trans i18nKey="mon-espace.tabs.groups" locale={locale}>
-              Groupes
-            </Trans>
+            <Trans i18nKey="mon-espace.tabs.groups">Groupes</Trans>
           </span>
         </span>
       ),
       href: MON_ESPACE_GROUPS_PATH,
       isActive: activePath === MON_ESPACE_GROUPS_PATH,
+      onClick: (e: React.MouseEvent) => {
+        e.preventDefault()
+        if (activePath !== MON_ESPACE_GROUPS_PATH) {
+          trackEvent(monEspaceTabTrackEvent('groups'))
+          trackPosthogEvent(captureClickMonEspaceTab({ tab: 'groups' }))
+          router.push(MON_ESPACE_GROUPS_PATH)
+        }
+      },
       'data-track-event': 'Mon Espace|Click Tab|Groups',
       'data-track-posthog':
         '{"eventName":"click tab mon espace","properties":{"tab":"groups"}}',
@@ -127,18 +156,24 @@ export default function ProfileTab({
             )}
           />
           <span className="text-sm md:text-base">
-            <Trans i18nKey="mon-espace.tabs.settings" locale={locale}>
-              Paramètres
-            </Trans>
+            <Trans i18nKey="mon-espace.tabs.settings">Paramètres</Trans>
           </span>
         </span>
       ),
       href: MON_ESPACE_SETTINGS_PATH,
       isActive: activePath === MON_ESPACE_SETTINGS_PATH,
-      containerClassName: 'md:ml-auto',
+      onClick: (e: React.MouseEvent) => {
+        e.preventDefault()
+        if (activePath !== MON_ESPACE_SETTINGS_PATH) {
+          trackEvent(monEspaceTabTrackEvent('settings'))
+          trackPosthogEvent(captureClickMonEspaceTab({ tab: 'settings' }))
+          router.push(MON_ESPACE_SETTINGS_PATH)
+        }
+      },
       'data-track-event': 'Mon Espace|Click Tab|Settings',
       'data-track-posthog':
         '{"eventName":"click tab mon espace","properties":{"tab":"settings"}}',
+      containerClassName: 'md:ml-auto',
     },
   ]
   return (
