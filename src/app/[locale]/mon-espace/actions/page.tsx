@@ -30,7 +30,11 @@ export default async function MonEspaceActionsPage({
     userId: authenticatedUser.id,
   })
 
-  const latestSimulation = simulations?.[0]
+  const sortedSimulations = simulations.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  )
+
+  const latestSimulation = sortedSimulations[0]
 
   if (!authenticatedUser) {
     redirect(CONNEXION_PATH)
@@ -50,7 +54,7 @@ export default async function MonEspaceActionsPage({
         <UserProvider
           storageKey={STORAGE_KEY}
           migrationInstructions={migrationInstructions}
-          initialSimulations={simulations}
+          initialSimulations={sortedSimulations}
           initialCurrentSimulationId={latestSimulation?.id}
           initialUserId={authenticatedUser.id}>
           <QueryClientProviderWrapper>
