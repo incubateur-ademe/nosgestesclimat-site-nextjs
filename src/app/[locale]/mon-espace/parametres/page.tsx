@@ -4,10 +4,16 @@ import {
   CONNEXION_PATH,
   MON_ESPACE_SETTINGS_PATH,
 } from '@/constants/urls/paths'
+import Title from '@/design-system/layout/Title'
 import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthenticated'
+import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
+import QueryClientProviderWrapper from '../../_components/mainLayoutProviders/QueryClientProviderWrapper'
 import ProfileTab from '../_components/ProfileTabs'
+import DeleteAccountButton from './_components/DeleteAccountButton'
+import LocalisationSection from './_components/LocalisationSection'
+import UserInfosSection from './_components/UserInfosSection'
 
 export default async function MonEspaceParametresPage({
   params,
@@ -20,16 +26,36 @@ export default async function MonEspaceParametresPage({
     redirect(CONNEXION_PATH)
   }
 
+  const supportedRegions = getSupportedRegions()
+
   return (
     <ContentLarge className="mt-4 px-4 md:mt-10 lg:px-0">
       <div className="flex flex-col">
-        <h1 className="sr-only mb-6 text-2xl font-bold">
-          <Trans i18nKey="mon-espace.settings.title" locale={locale}>
-            Paramètres
-          </Trans>
-        </h1>
-
         <ProfileTab locale={locale} activePath={MON_ESPACE_SETTINGS_PATH} />
+
+        <div className="mb-6 flex w-full items-start justify-between">
+          <Title
+            title={
+              <span>
+                <Trans locale={locale} i18nKey="mon-espace.settings.title">
+                  Paramètres
+                </Trans>
+              </span>
+            }
+            className="mb-0"
+          />
+          <DeleteAccountButton className="hidden md:flex" />
+        </div>
+
+        <UserInfosSection locale={locale} />
+
+        <QueryClientProviderWrapper>
+          <LocalisationSection supportedRegions={supportedRegions} />
+        </QueryClientProviderWrapper>
+
+        <div className="mt-6 md:hidden">
+          <DeleteAccountButton />
+        </div>
       </div>
     </ContentLarge>
   )
