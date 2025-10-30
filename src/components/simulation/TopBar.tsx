@@ -16,12 +16,14 @@ export default function TopBar({
   toggleSaveModal,
   simulationMode = true,
   showTotal = false,
+  className,
 }: {
   toggleQuestionList?: () => void
   toggleBackHomeModal?: () => void
   toggleSaveModal?: () => void
   simulationMode?: boolean
   showTotal?: boolean
+  className?: string
 }) {
   const { isIframe, isIframeOnlySimulation } = useIframe()
 
@@ -35,7 +37,8 @@ export default function TopBar({
     <header
       className={twMerge(
         'sticky top-0 z-50 h-16 w-full bg-white',
-        !simulationMode && 'static z-0 bg-white'
+        !simulationMode && 'static z-0 bg-white',
+        className
       )}>
       <div
         className={twMerge(
