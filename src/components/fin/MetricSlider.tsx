@@ -3,6 +3,7 @@
 import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import type { Metric } from '@/publicodes-state/types'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -28,6 +29,8 @@ export default function MetricSlider({
   const [isSticky, setIsSticky] = useState(false)
 
   const { t } = useClientTranslation()
+
+  const { currentMetric, setCurrentMetric } = useCurrentMetric()
 
   const myElementRef = useRef<HTMLDivElement>(null)
 
@@ -56,14 +59,19 @@ export default function MetricSlider({
   }, [isStatic])
 
   useEffect(() => {
+    const metricString =
+      currentMetric === carboneMetric
+        ? t('common.metric.carbon', 'carbone')
+        : t('common.metric.water', 'eau')
+
     document.title = t(
       'endpage.title.custom',
       'Mes empreintes carbone et eau, empreinte {{metric}} sélectionnée - Nos Gestes Climat',
       {
-        metric: carboneMetric,
+        metric: metricString,
       }
     )
-  }, [t])
+  }, [t, currentMetric])
 
   return (
     <div
@@ -82,6 +90,7 @@ export default function MetricSlider({
             : 'h-28 md:h-72 lg:h-80'
         )}
         role="tablist"
+        aria-orientation="horizontal"
         tabIndex={0}
         aria-label={t('Choix de la métrique') as string}
         onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -94,7 +103,7 @@ export default function MetricSlider({
 
           e.preventDefault()
           const order = [carboneMetric, eauMetric]
-          const currentIndex = order.indexOf(carboneMetric)
+          const currentIndex = order.indexOf(currentMetric)
           let nextIndex = currentIndex
           if (e.key === right) nextIndex = (currentIndex + 1) % order.length
           if (e.key === left)
@@ -103,7 +112,9 @@ export default function MetricSlider({
           if (e.key === end) nextIndex = order.length - 1
 
           const nextMetric = order[nextIndex]
-          if (nextMetric !== carboneMetric) {
+          if (nextMetric !== currentMetric) {
+            // Automatic activation per ARIA Tabs pattern
+            setCurrentMetric(nextMetric)
             const nextTabId =
               nextMetric === (carboneMetric as Metric)
                 ? 'tab-metric-carbone'
