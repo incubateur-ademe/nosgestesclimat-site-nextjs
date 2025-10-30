@@ -1404,3 +1404,8 @@ entries:
   mon-espace.shareSimulator.buttonLabel.desktop: Partager le test Nos Gestes Climat
   mon-espace.shareSimulator.buttonLabel.mobile: Partager le test
   mon-espace.shareSimulator.title: Vous avez aimé calculer votre empreinte ?
+  mon-espace.evolutionGraph.chartDisabledTitle.part1: Faites une nouvelle simulation
+  mon-espace.evolutionGraph.chartDisabledTitle.part2: pour avoir accès à l’évolution de votre empreinte
+  mon-espace.evolutionGraph.simulationData: 'Résultat de test n°{{simulationNumber}} du {{simulationDate}} : {{simulationValue}} tonnes'
+  Navigation de mon espace: Navigation de mon espace
+  navigation.connexionInscription: Navigation connexion/inscription

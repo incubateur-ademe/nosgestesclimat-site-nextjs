@@ -1734,3 +1734,12 @@ entries:
   mon-espace.resultsList.result.unit.lock: CO₂e / an
   mon-espace.shareSimulator.buttonLabel.desktop: Share Nos Gestes Climat test
   mon-espace.shareSimulator.buttonLabel.desktop.lock: Partager le test Nos Gestes Climat
+  mon-espace.evolutionGraph.simulationData: 'Test result no.{{simulationNumber}} du {{simulationDate}} : {{simulationValue}} tonnes'
+  mon-espace.evolutionGraph.simulationData.lock: 'Résultat de test n°{{simulationNumber}} du {{simulationDate}} : {{simulationValue}} tonnes'
+  mon-espace.evolutionGraph.chartDisabledTitle.part1: Run a new simulation
+  mon-espace.evolutionGraph.chartDisabledTitle.part1.lock: Faites une nouvelle simulation
+  Navigation de mon espace: Navigating my space
+  navigation.connexionInscription: Login/registration navigation
+  navigation.connexionInscription.lock: Navigation connexion/inscription
+  mon-espace.evolutionGraph.chartDisabledTitle.part2: to view the evolution of your footprint
+  mon-espace.evolutionGraph.chartDisabledTitle.part2.lock: pour avoir accès à l’évolution de votre empreinte
