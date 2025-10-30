@@ -15,7 +15,7 @@ export default function Gauge({
   const hookValue = useRule('bilan').numericValue
   const usedValue = typeof total === 'number' ? total : hookValue
   const isOutOfRange = usedValue > 12000
-  console.log({ total: typeof total, hookValue })
+
   return (
     <div
       className={twMerge(

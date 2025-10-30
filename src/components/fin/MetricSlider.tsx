@@ -104,9 +104,6 @@ export default function MetricSlider({
 
           const nextMetric = order[nextIndex]
           if (nextMetric !== carboneMetric) {
-            // This part of the logic is now handled by the children
-            // setCurrentMetric(nextMetric)
-
             const nextTabId =
               nextMetric === (carboneMetric as Metric)
                 ? 'tab-metric-carbone'
