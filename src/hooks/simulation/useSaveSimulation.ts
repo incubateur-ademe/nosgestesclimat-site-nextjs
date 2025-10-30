@@ -32,7 +32,7 @@ export function useSaveSimulation() {
     error,
   } = useMutation({
     mutationFn: async ({
-      simulation: { groups, polls, ...simulation },
+      simulation: { groups, polls, createdAt, updatedAt, user: _user, model: _model, ...simulation },
       sendEmail,
     }: Props) => {
       // We reset the sync timer to avoid saving the simulation in the background
@@ -54,6 +54,7 @@ export function useSaveSimulation() {
       }
 
       const payload = {
+        // Strip unrecognized keys before mapping and posting
         ...mapOldSimulationToNew(simulation),
         model: modelVersion,
         ...(name || email

@@ -26,6 +26,7 @@ type Props = {
   migrationInstructions: Migration
   initialSimulations?: Simulation[]
   initialCurrentSimulationId?: string
+  initialUserId?: string
 }
 export default function UserProvider({
   children,
@@ -33,6 +34,7 @@ export default function UserProvider({
   migrationInstructions,
   initialSimulations,
   initialCurrentSimulationId,
+  initialUserId,
 }: PropsWithChildren<Props>) {
   const [initialRegion, setInitialRegion] = useState<
     RegionFromGeolocation | undefined
@@ -46,7 +48,11 @@ export default function UserProvider({
 
   useUpdateOldLocalStorage({ storageKey })
 
-  const { user, setUser } = usePersistentUser({ storageKey, initialRegion })
+  const { user, setUser } = usePersistentUser({
+    storageKey,
+    initialRegion,
+    initialUserId,
+  })
 
   const { tutorials, setTutorials } = usePersistentTutorials({ storageKey })
 

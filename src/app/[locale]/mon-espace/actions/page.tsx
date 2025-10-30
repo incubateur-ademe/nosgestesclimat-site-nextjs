@@ -49,7 +49,10 @@ export default async function MonEspaceActionsPage({
 
         <UserProvider
           storageKey={STORAGE_KEY}
-          migrationInstructions={migrationInstructions}>
+          migrationInstructions={migrationInstructions}
+          initialSimulations={simulations}
+          initialCurrentSimulationId={latestSimulation?.id}
+          initialUserId={authenticatedUser.id}>
           <QueryClientProviderWrapper>
             <EngineProvider rules={rules}>
               <FormProvider>
