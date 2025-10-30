@@ -32,8 +32,12 @@ export default function VerificationForm({
   isSuccessValidate,
   redirectURL,
 }: Props) {
-  const { updateVerificationCodeExpirationDate, user, updateUserOrganisation } =
-    useUser()
+  const {
+    updateVerificationCodeExpirationDate,
+    user,
+    updateUserOrganisation,
+    updateEmail,
+  } = useUser()
 
   const [email, setEmail] = useState<string | undefined>(
     user.organisation?.administratorEmail
@@ -94,6 +98,8 @@ export default function VerificationForm({
         email,
         code,
       })
+
+      updateEmail(email)
 
       // We want to bypass the organisation creation process if a redirect URL is provided
       if (redirectURL) {
