@@ -21,7 +21,7 @@ export default async function GroupsDashboard({ userId, locale }: Props) {
   if (isError) return <DefaultErrorAlert />
 
   if (!((groups?.length ?? 0) > 0) && !((organisations.length ?? 0) > 0)) {
-    return <EmptyState />
+    return <EmptyState locale={locale} />
   }
 
   return (
