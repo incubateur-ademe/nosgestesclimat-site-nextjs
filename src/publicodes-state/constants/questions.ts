@@ -47,3 +47,10 @@ export const MUST_ASK_QUESTIONS: Set<DottedName> = new Set([
   // With Publicodes >1.8.0, 'services sociétaux . question rhétorique' is not in the missing variable as it's a question "une possibilité" with only on possible answer... So logically,the question is already answered.
   'services sociétaux . question rhétorique',
 ])
+
+export const MUST_SHOW_DESCRIPTION: Set<DottedName> = new Set([
+  'transport . voiture . utilisateur',
+  'logement . âge',
+  'logement . surface',
+  'divers . animaux domestiques . empreinte',
+])
