@@ -78,7 +78,7 @@ export default function MosaicNumberInput({
           type="number"
           inputMode="numeric"
           value={isMissing ? '' : Number(value)}
-          placeholder={'0'}
+          placeholder={'_'}
           onChange={(event) => setValue(Number(event.target.value))}
           data-cypress-id={`${question}---${parentMosaic}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
