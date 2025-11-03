@@ -6,8 +6,8 @@ import { cookies } from 'next/headers'
 
 export async function getIsUserAuthenticated() {
   try {
-    const cookieStore = cookies()
-    const ngcjwt = (await cookieStore).get('ngcjwt')
+    const cookieStore = await cookies()
+    const ngcjwt = cookieStore.get('ngcjwt')
 
     const headers: HeadersInit = {
       'Content-Type': 'application/json',
