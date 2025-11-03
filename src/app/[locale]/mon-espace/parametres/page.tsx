@@ -11,7 +11,6 @@ import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
 import QueryClientProviderWrapper from '../../_components/mainLayoutProviders/QueryClientProviderWrapper'
 import ProfileTab from '../_components/ProfileTabs'
-import DeleteAccountButton from './_components/DeleteAccountButton'
 import LocalisationSection from './_components/LocalisationSection'
 import UserInfosSection from './_components/UserInfosSection'
 
@@ -44,7 +43,6 @@ export default async function MonEspaceParametresPage({
             }
             className="mb-0"
           />
-          <DeleteAccountButton className="hidden md:flex" />
         </div>
 
         <UserInfosSection locale={locale} />
@@ -52,10 +50,6 @@ export default async function MonEspaceParametresPage({
         <QueryClientProviderWrapper>
           <LocalisationSection supportedRegions={supportedRegions} />
         </QueryClientProviderWrapper>
-
-        <div className="mt-6 md:hidden">
-          <DeleteAccountButton />
-        </div>
       </div>
     </ContentLarge>
   )
