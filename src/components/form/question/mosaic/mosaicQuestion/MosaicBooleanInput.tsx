@@ -55,7 +55,7 @@ export default function MosaicBooleanInput({
   }
 
   return (
-    <div className="flex md:block">
+    <div>
       <label
         className={twMerge(
           `focus-within:ring-primary-700 relative flex h-full items-center gap-2 rounded-xl border! bg-white px-4 py-2 text-left transition-colors focus-within:ring-2 focus-within:ring-offset-2`,
