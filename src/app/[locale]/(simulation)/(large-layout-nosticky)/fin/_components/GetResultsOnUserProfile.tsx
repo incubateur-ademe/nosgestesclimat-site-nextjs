@@ -1,41 +1,19 @@
 'use client'
 
-import EmailSigninForm from '@/components/signIn/EmailSigninForm'
+import SigninForm from '@/components/signIn/SigninForm'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  LIST_MAIN_NEWSLETTER,
-  LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
-  LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
-} from '@/constants/brevo'
-import { defaultMetric } from '@/constants/model/metric'
-import { endClickSaveSimulation } from '@/constants/tracking/pages/end'
+import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
+import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import { getListIds } from '@/helpers/brevo/getListIds'
-import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
-import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useLocale } from '@/hooks/useLocale'
-import { useMainNewsletter } from '@/hooks/useMainNewsletter'
-import i18nConfig from '@/i18nConfig'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { captureException } from '@sentry/nextjs'
 import { useEffect } from 'react'
-import type { SubmitHandler } from 'react-hook-form'
-import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Confirmation from './carbone/getResultsByEmail/Confirmation'
-
-type Inputs = {
-  name: string
-  email?: string
-  'newsletter-saisonniere': boolean
-  'newsletter-transports': boolean
-  'newsletter-logement': boolean
-}
 
 export default function GetResultsOnUserProfile({
   className,
@@ -43,107 +21,34 @@ export default function GetResultsOnUserProfile({
   className?: string
 }) {
   const { t } = useClientTranslation()
-  const { user, updateEmail } = useUser()
-
-  const locale = useLocale()
+  const { updateEmail } = useUser()
 
   const currentSimulation = useCurrentSimulation()
-
-  const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
-    user?.userId ?? ''
-  )
-
-  const isSubscribedMainNewsletter =
-    newsletterSubscriptions?.includes(LIST_MAIN_NEWSLETTER)
-
-  const isSubscribedTransportNewsletter = newsletterSubscriptions?.includes(
-    LIST_NOS_GESTES_TRANSPORT_NEWSLETTER
-  )
-
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useReactHookForm<Inputs>({
-    defaultValues: {
-      name: user?.name,
-    },
-    mode: 'onSubmit',
-  })
-
-  const isSubscribedLogementNewsletter = newsletterSubscriptions?.includes(
-    LIST_NOS_GESTES_LOGEMENT_NEWSLETTER
-  )
-
-  useEffect(() => {
-    if (!newsletterSubscriptions) return
-
-    setValue(
-      'newsletter-saisonniere',
-      newsletterSubscriptions.includes(LIST_MAIN_NEWSLETTER)
-    )
-    setValue(
-      'newsletter-transports',
-      newsletterSubscriptions.includes(LIST_NOS_GESTES_TRANSPORT_NEWSLETTER)
-    )
-
-    setValue(
-      'newsletter-logement',
-      newsletterSubscriptions.includes(LIST_NOS_GESTES_LOGEMENT_NEWSLETTER)
-    )
-  }, [newsletterSubscriptions, setValue])
 
   const { saveSimulation, isPending, isSuccess, isError, error } =
     useSaveSimulation()
 
-  const { data: mainNewsletter } = useMainNewsletter()
-
-  const { mutate: updateUserSettings } = useUpdateUserSettings()
-
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit = (data: { email: string; code: string }) => {
     // If the mutation is pending, we do nothing
     if (isPending) {
       return
     }
 
-    trackEvent(endClickSaveSimulation)
-
-    const newsletters = getListIds(data)
-
     const formattedEmail = formatEmail(data.email)
 
     updateEmail(formattedEmail)
-
-    if (currentSimulation?.computedResults[defaultMetric].bilan === 0) {
-      // Send an error to Sentry
-      captureException(
-        new Error(
-          'GetResultsByEmail: computedResults[defaultMetric].bilan === 0'
-        )
-      )
-      return
-    }
-
+    console.log('data', data)
     try {
-      // Handles saving the simulation and sending the results by email
+      // Handles saving both completing the user signin / signup and saving the simulation
       saveSimulation({
         simulation: {
           ...currentSimulation,
           savedViaEmail: true,
         },
         sendEmail: true,
+        email: formattedEmail,
+        code: data.code,
       })
-
-      // Handles updating the newsletters subscriptions and sending the subscription confirmation email
-      if (newsletters.length > 0) {
-        updateUserSettings({
-          newsletterIds: newsletters,
-          userId: user?.userId,
-          email: formattedEmail,
-          name: data.name,
-        })
-      }
     } catch (error) {
       captureException(error)
     }
@@ -156,20 +61,17 @@ export default function GetResultsOnUserProfile({
     }
   }, [isSuccess, currentSimulation])
 
-  const isFrench = locale === i18nConfig.defaultLocale
-
   // If we successfully saved the simulation, we display the confirmation message
   // or if the simulation is already saved
   if (isSuccess || currentSimulation?.savedViaEmail) {
     return <Confirmation className={className} />
   }
 
-  // There is a padding/margin shenanigan here for the scroll
   return (
-    <div id="email-block" className="-mt-40 mb-6 pt-40">
+    <div id="email-block" className="mt-6 mb-6">
       <Card
         className={twMerge(
-          'bg-primary-50 flex flex-col items-start gap-2 rounded-xl border-none px-4 py-6 shadow-none md:flex-row md:gap-8',
+          'bg-primary-50 flex flex-col items-start gap-2 rounded-xl border-none px-4 pt-6 pb-4 shadow-none md:flex-row md:gap-8 md:py-6',
           className
         )}>
         <div className="flex-1">
@@ -180,7 +82,7 @@ export default function GetResultsOnUserProfile({
               'Retrouvez vos résultats à tout moment sur votre espace personnel'
             )}
           />
-          <EmailSigninForm
+          <SigninForm
             buttonLabel={
               <span>
                 <span className="text-lg" aria-hidden>
@@ -203,10 +105,13 @@ export default function GetResultsOnUserProfile({
                 </strong>
               </p>
             }
+            onVerificationSuccessOverride={onSubmit}
+            verificationOverrideError={error?.message ?? undefined}
+            redirectURL={`${MON_ESPACE_PATH}?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true`}
           />
         </div>
         <img
-          className="-mt-16 w-80"
+          className="mx-auto w-48 md:mx-0 md:-mt-16 md:w-80"
           src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_3373a344b0.svg"
           alt=""
         />
