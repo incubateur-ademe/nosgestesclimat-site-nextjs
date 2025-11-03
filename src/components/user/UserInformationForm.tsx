@@ -53,6 +53,7 @@ type Props = {
   className?: string
   shouldForceEmailEditable?: boolean
   defaultValues?: { 'newsletter-transports': boolean }
+  title?: string | ReactNode
 }
 
 export default function UserInformationForm({
@@ -68,6 +69,7 @@ export default function UserInformationForm({
   className,
   shouldForceEmailEditable = false,
   defaultValues,
+  title,
 }: Props) {
   const { t } = useClientTranslation()
 
@@ -154,6 +156,7 @@ export default function UserInformationForm({
 
   return (
     <div className={twMerge('flex flex-1 flex-col items-start', className)}>
+      {title && <h2 className="mb-4 text-2xl font-bold">{title}</h2>}
       <form
         data-testid="user-information-form"
         onSubmit={handleSubmit(onSubmit)}
