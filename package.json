@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@incubateur-ademe/legal-pages-react": "^0.5.0",
-    "@incubateur-ademe/nosgestesclimat": "4.1.0",
+    "@incubateur-ademe/nosgestesclimat": "^4.2.0",
     "@next/mdx": "^15.5.6",
     "@publicodes/react-ui": "^1.10.0",
     "@publicodes/tools": "^1.8.0",
@@ -137,7 +137,7 @@
     "cypress-plugin-tab": "^1.0.5",
     "cypress-recurse": "^1.35.2",
     "deepl-node": "^1.19.1",
-    "dotenv": "^16.4.7",
+    "dotenv": "^17.2.3",
     "eslint": "^9.38.0",
     "eslint-config-next": "15.5.6",
     "eslint-config-prettier": "^10.1.5",
