@@ -5,7 +5,9 @@ import CloseIcon from '@/components/icons/Close'
 import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import {
   actionsClickNo,
+  actionsClickNoPosthog,
   actionsClickYes,
+  actionsClickYesPosthog,
   actionsOpenAction,
 } from '@/constants/tracking/pages/actions'
 import Emoji from '@/design-system/utils/Emoji'
@@ -25,7 +27,7 @@ import {
   useTempEngine,
   useUser,
 } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback } from 'react'
@@ -106,6 +108,7 @@ export default function ActionCard({
 
     if (!isSelected) {
       trackEvent(actionsClickYes(dottedName))
+      trackPosthogEvent(actionsClickYesPosthog(dottedName))
     }
   }, [
     dottedName,
@@ -126,6 +129,7 @@ export default function ActionCard({
 
     if (!isSelected) {
       trackEvent(actionsClickNo(dottedName))
+      trackPosthogEvent(actionsClickNoPosthog(dottedName))
     }
   }
 

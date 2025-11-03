@@ -31,10 +31,13 @@ vi.mock('@/utils/analytics/trackEvent', () => ({
 const mockCreateObjectURL = vi.fn(() => 'mock-object-url')
 const mockRevokeObjectURL = vi.fn()
 
+// Preserve the URL constructor but mock the static methods
+const OriginalURL = globalThis.URL
+
 Object.defineProperty(global, 'URL', {
-  value: {
-    createObjectURL: mockCreateObjectURL,
-    revokeObjectURL: mockRevokeObjectURL,
+  value: class URL extends OriginalURL {
+    static createObjectURL = mockCreateObjectURL
+    static revokeObjectURL = mockRevokeObjectURL
   },
   writable: true,
 })
