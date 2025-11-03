@@ -1737,9 +1737,9 @@
     prompt-sync "^4.2.0"
     yargs "^17.7.2"
 
-"@incubateur-ademe/nosgestesclimat@https://pkg.pr.new/incubateur-ademe/nosgestesclimat/@incubateur-ademe/nosgestesclimat@239aea5.tgz":
+"@incubateur-ademe/nosgestesclimat@https://pkg.pr.new/incubateur-ademe/nosgestesclimat/@incubateur-ademe/nosgestesclimat@10c9515.tgz":
   version "4.2.0"
-  resolved "https://pkg.pr.new/incubateur-ademe/nosgestesclimat/@incubateur-ademe/nosgestesclimat@239aea5.tgz#78b98bdf7611abcc4d4e715d33531576838d3fed"
+  resolved "https://pkg.pr.new/incubateur-ademe/nosgestesclimat/@incubateur-ademe/nosgestesclimat@10c9515.tgz#f9d7982723afab928b9acd8a671eb702b4680303"
 
 "@inquirer/ansi@^1.0.0":
   version "1.0.0"
