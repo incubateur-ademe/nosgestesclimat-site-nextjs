@@ -1,6 +1,6 @@
 'use client'
 
-import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
+import EmailSigninForm from '@/components/signIn/EmailSigninForm'
 import Trans from '@/components/translation/trans/TransClient'
 import {
   LIST_MAIN_NEWSLETTER,
@@ -9,11 +9,8 @@ import {
 } from '@/constants/brevo'
 import { defaultMetric } from '@/constants/model/metric'
 import { endClickSaveSimulation } from '@/constants/tracking/pages/end'
-import Button from '@/design-system/buttons/Button'
-import CheckboxInput from '@/design-system/inputs/CheckboxInput'
-import EmailInput from '@/design-system/inputs/EmailInput'
 import Card from '@/design-system/layout/Card'
-import Emoji from '@/design-system/utils/Emoji'
+import Title from '@/design-system/layout/Title'
 import { getListIds } from '@/helpers/brevo/getListIds'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
@@ -40,7 +37,7 @@ type Inputs = {
   'newsletter-logement': boolean
 }
 
-export default function GetResultsByEmail({
+export default function GetResultsOnUserProfile({
   className,
 }: {
   className?: string
@@ -169,117 +166,50 @@ export default function GetResultsByEmail({
 
   // There is a padding/margin shenanigan here for the scroll
   return (
-    <div id="email-block" className="-mt-40 pt-40">
+    <div id="email-block" className="-mt-40 mb-6 pt-40">
       <Card
         className={twMerge(
-          'rainbow-border items-start rounded-xl px-4 py-6 shadow-none',
+          'bg-primary-50 flex flex-col items-start gap-2 rounded-xl border-none px-4 py-6 shadow-none md:flex-row md:gap-8',
           className
         )}>
-        <form
-          id="newsletter-form"
-          className="flex h-full flex-col items-start"
-          onSubmit={handleSubmit(onSubmit)}>
-          <h3 className="flex items-center text-base sm:text-lg">
-            <Trans>Vous souhaitez recevoir vos résultats ?</Trans>
-
-            <Emoji>💡</Emoji>
-          </h3>
-
-          <p className="text-sm sm:text-base">
-            <Trans>Pour cela,</Trans>{' '}
-            <strong className="text-primary-700">
-              <Trans>laissez-nous votre email,</Trans>{' '}
-            </strong>
-            {t('comme {{numberSubscribers}} personnes.', {
-              numberSubscribers:
-                mainNewsletter?.totalSubscribers.toLocaleString(locale, {
-                  maximumFractionDigits: 0,
-                }) ?? '---',
-            })}
-          </p>
-
-          <div className="mb-4 flex w-full flex-col gap-2">
-            <EmailInput
-              {...register('email', {
-                required: 'Veuillez renseigner un email.',
-                pattern: {
-                  value:
-                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                  message: 'Veuillez entrer une adresse email valide',
-                },
-              })}
-              aria-label={t('Entrez votre adresse email')}
-              title={t('Entrez votre adresse email')}
-              error={errors.email?.message}
-              data-cypress-id="fin-email-input"
-              className="mb-2"
-            />
-
-            {(!isSubscribedMainNewsletter ||
-              !isSubscribedTransportNewsletter) &&
-              isFrench && (
-                <p className="mb-0">
-                  <Trans>
-                    Recevez des conseils pour réduire votre empreinte :
-                  </Trans>
-                </p>
-              )}
-
-            {!isSubscribedMainNewsletter && isFrench && (
-              <CheckboxInput
-                label={
-                  <span>
-                    <Emoji>☀️</Emoji>{' '}
-                    <strong>
-                      <Trans>Infolettre saisonnière de Nos Gestes Climat</Trans>
-                    </strong>
-                  </span>
-                }
-                {...register('newsletter-saisonniere')}
-              />
+        <div className="flex-1">
+          <Title
+            className="text-lg font-bold"
+            title={t(
+              'fin.getResultsOnUserProfile.title',
+              'Retrouvez vos résultats à tout moment sur votre espace personnel'
             )}
-
-            {!isSubscribedTransportNewsletter && isFrench && (
-              <CheckboxInput
-                label={
-                  <span>
-                    <Emoji>🚗</Emoji> <strong>Nos Gestes Transports</strong>
-                    <Trans>
-                      : maîtrisez l'impact carbone de vos transports avec nos 4
-                      infolettres
-                    </Trans>
-                  </span>
-                }
-                {...register('newsletter-transports')}
-              />
-            )}
-
-            {!isSubscribedLogementNewsletter && isFrench && (
-              <CheckboxInput
-                label={
-                  <span>
-                    <Emoji>🏡</Emoji>{' '}
-                    <Trans>
-                      <strong>Nos Gestes Logement</strong> : informez-vous sur
-                      l'impact carbone du logement, en quelques e-mails
-                    </Trans>
-                  </span>
-                }
-                {...register('newsletter-logement')}
-              />
-            )}
-          </div>
-
-          <Button
-            type="submit"
-            disabled={isPending}
-            className="mt-auto items-start"
-            data-cypress-id="fin-email-submit-button">
-            <Trans>Envoyer</Trans>
-          </Button>
-
-          {isError && <DefaultSubmitErrorMessage />}
-        </form>
+          />
+          <EmailSigninForm
+            buttonLabel={
+              <span>
+                <span className="text-lg" aria-hidden>
+                  →
+                </span>{' '}
+                <Trans i18nKey="fin.getResultsOnUserProfile.buttonLabel">
+                  Sauvegarder mes résultats
+                </Trans>
+              </span>
+            }
+            inputLabel={
+              <p className="mb-0 font-normal">
+                <Trans>Laissez votre email pour</Trans>{' '}
+                <strong>
+                  <Trans>sauvegarder</Trans>
+                </strong>{' '}
+                <Trans>et</Trans>{' '}
+                <strong>
+                  <Trans>retrouver vos résultats :</Trans>
+                </strong>
+              </p>
+            }
+          />
+        </div>
+        <img
+          className="-mt-16 w-80"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_3373a344b0.svg"
+          alt=""
+        />
       </Card>
     </div>
   )

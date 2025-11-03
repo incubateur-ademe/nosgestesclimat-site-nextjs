@@ -18,7 +18,7 @@ import { twMerge } from 'tailwind-merge'
 import Carbone from './_components/Carbone'
 import DocumentationBlock from './_components/DocumentationBlock'
 import Eau from './_components/Eau'
-import GetResultsByEmail from './_components/GetResultsByEmail'
+import GetResultsOnUserProfile from './_components/GetResultsOnUserProfile'
 import InformationBlock from './_components/InformationBlock'
 import PartnerRedirectionAlert from './_components/PartnerRedirectionAlert'
 import Poll from './_components/Poll'
@@ -77,6 +77,8 @@ export default function FinPage() {
         </div>
       )}
 
+      {isFrenchRegion && <GetResultsOnUserProfile />}
+
       <div className="relative flex gap-8 lg:flex-row lg:gap-10">
         <div className="relative flex flex-1 flex-col gap-16 lg:mt-7">
           <div className="short:gap-2 mt-8 flex w-full flex-col gap-4 md:hidden">
@@ -100,8 +102,6 @@ export default function FinPage() {
             )}>
             {currentMetric === eauMetric && <Eau />}
           </div>
-
-          {isFrenchRegion && <GetResultsByEmail />}
 
           {isFrenchRegion && <ShareBlock />}
 
