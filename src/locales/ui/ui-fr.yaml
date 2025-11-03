@@ -1409,3 +1409,4 @@ entries:
   mon-espace.evolutionGraph.simulationData: 'Résultat de test n°{{simulationNumber}} du {{simulationDate}} : {{simulationValue}} tonnes'
   Navigation de mon espace: Navigation de mon espace
   navigation.connexionInscription: Navigation connexion/inscription
+  'Dernière mise à jour :': 'Dernière mise à jour :'
