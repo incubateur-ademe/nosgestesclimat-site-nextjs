@@ -6,7 +6,6 @@ import {
 } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
 import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthenticated'
-import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
 import QueryClientProviderWrapper from '../../_components/mainLayoutProviders/QueryClientProviderWrapper'
@@ -24,8 +23,6 @@ export default async function MonEspaceParametresPage({
   if (!authenticatedUser) {
     redirect(CONNEXION_PATH)
   }
-
-  const supportedRegions = getSupportedRegions()
 
   return (
     <ContentLarge className="mt-4 px-4 md:mt-10 lg:px-0">
@@ -48,7 +45,7 @@ export default async function MonEspaceParametresPage({
         <UserInfosSection locale={locale} />
 
         <QueryClientProviderWrapper>
-          <LocalisationSection supportedRegions={supportedRegions} />
+          <LocalisationSection />
         </QueryClientProviderWrapper>
       </div>
     </ContentLarge>

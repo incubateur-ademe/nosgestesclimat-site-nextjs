@@ -47,7 +47,7 @@ export default async function Profil({ params }: DefaultPageProps) {
         />
       </div>
 
-      <Localisation supportedRegions={supportedRegions} />
+      <Localisation />
 
       <AnswerList />
 
