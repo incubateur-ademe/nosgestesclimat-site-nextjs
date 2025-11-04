@@ -1,7 +1,5 @@
 import { SIGNUP_MODE } from '@/constants/authentication/modes'
-import { STORAGE_KEY } from '@/constants/storage'
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
-import { fetchUserSimulations } from '@/helpers/user/fetchUserSimulations'
 import { reconcileOnAuth } from '@/helpers/user/reconcileOnAuth'
 import useFetchOrganisations from '@/hooks/organisations/useFetchOrganisations'
 import useTimeLeft from '@/hooks/organisations/useTimeleft'
@@ -128,14 +126,8 @@ export default function VerificationForm({
         try {
           const serverUserId =
             (loginResponse && (loginResponse as any).id) || user.userId
-          const serverSimulations = await fetchUserSimulations({
-            userId: serverUserId,
-          })
-          reconcileOnAuth({
-            storageKey: STORAGE_KEY,
+          await reconcileOnAuth({
             serverUserId,
-            serverSimulations,
-            syncToServer: false,
           })
         } catch (e) {
           // Best-effort reconciliation; ignore errors here

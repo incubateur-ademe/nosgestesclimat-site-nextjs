@@ -1,9 +1,7 @@
-import { ORGANISATION_URL, SIMULATION_URL } from '@/constants/urls/main'
+import { ORGANISATION_URL } from '@/constants/urls/main'
 import { getModelVersion } from '@/helpers/modelFetching/getModelVersion'
-import {
-  mapNewSimulationToOld,
-  mapOldSimulationToNew,
-} from '@/helpers/simulation/mapNewSimulation'
+import { mapOldSimulationToNew } from '@/helpers/simulation/mapNewSimulation'
+import { saveSimulation as saveSimulationHelper } from '@/helpers/simulation/saveSimulation'
 import { useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
 import { updateGroupParticipant } from '@/services/groups/updateGroupParticipant'
@@ -20,7 +18,7 @@ type Props = {
 }
 export function useSaveSimulation() {
   const {
-    user: { userId, name, email },
+    user: { userId, name },
   } = useUser()
   const locale = useLocale()
 
@@ -33,7 +31,12 @@ export function useSaveSimulation() {
     isError,
     error,
   } = useMutation({
-    mutationFn: async ({ simulation, sendEmail, email, code }: Props) => {
+    mutationFn: async ({
+      simulation,
+      sendEmail,
+      email,
+      code,
+    }: Props): Promise<Simulation> => {
       // We reset the sync timer to avoid saving the simulation in the background
       resetSyncTimer()
 
@@ -88,12 +91,14 @@ export function useSaveSimulation() {
           .then((response) => response.data)
       }
 
-      return axios
-        .post(`${SIMULATION_URL}/${userId}`, payload, {
-          params: { sendEmail, email, code },
-          withCredentials: email && code ? true : false,
-        })
-        .then((response) => mapNewSimulationToOld(response.data))
+      return saveSimulationHelper({
+        simulation,
+        userId,
+        email,
+        name,
+        code,
+        sendEmail,
+      })
     },
   })
   return {
