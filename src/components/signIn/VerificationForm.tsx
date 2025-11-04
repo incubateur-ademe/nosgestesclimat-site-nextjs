@@ -1,5 +1,6 @@
 import { SIGNUP_MODE } from '@/constants/authentication/modes'
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
+import { reconcileOnAuth } from '@/helpers/user/reconcileOnAuth'
 import useFetchOrganisations from '@/hooks/organisations/useFetchOrganisations'
 import useTimeLeft from '@/hooks/organisations/useTimeleft'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -28,6 +29,11 @@ type Props = {
   isSuccessValidate: boolean
   redirectURL?: string
   mode?: AuthenticationMode
+  onVerificationSuccessOverride?: (data: {
+    email: string
+    code: string
+  }) => void
+  verificationOverrideError?: string
 }
 
 export default function VerificationForm({
@@ -36,6 +42,8 @@ export default function VerificationForm({
   isSuccessValidate,
   redirectURL,
   mode,
+  onVerificationSuccessOverride,
+  verificationOverrideError,
 }: Props) {
   const {
     updateVerificationCodeExpirationDate,
@@ -99,7 +107,14 @@ export default function VerificationForm({
     }
 
     try {
-      await login({
+      // If onVerificationSuccessOverride is provided, bypass the default flow
+      if (onVerificationSuccessOverride) {
+        onVerificationSuccessOverride({ email, code })
+
+        return
+      }
+
+      const loginResponse = await login({
         email,
         code,
       })
@@ -108,6 +123,15 @@ export default function VerificationForm({
 
       // We want to bypass the organisation creation process if a redirect URL is provided
       if (redirectURL) {
+        try {
+          const serverUserId =
+            (loginResponse && (loginResponse as any).id) || user.userId
+          await reconcileOnAuth({
+            serverUserId,
+          })
+        } catch (e) {
+          // Best-effort reconciliation; ignore errors here
+        }
         router.push(
           `${redirectURL}${mode === SIGNUP_MODE ? `?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true` : ''}`
         )
@@ -161,7 +185,7 @@ export default function VerificationForm({
       <div>
         <VerificationContent
           email={user?.organisation?.administratorEmail ?? ''}
-          inputError={inputError}
+          inputError={inputError || verificationOverrideError}
           isSuccessValidate={isSuccessValidate}
           isPendingValidate={isPendingValidate}
           handleValidateVerificationCode={handleValidateVerificationCode}

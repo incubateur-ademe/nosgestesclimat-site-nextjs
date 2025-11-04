@@ -1628,8 +1628,8 @@ entries:
   header.simulateur.lock: Accéder au test
   90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² on average for a household of 2.2 people.
   sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: over the last 50 years, from 23 to 40 m² per inhabitant, i.e
-  mon-espace.groups.title: My groups
-  mon-espace.groups.title.lock: Mes groupes
+  mon-espace.groups.title: My "Friends" and "Family" groups
+  mon-espace.groups.title.lock: Mes groupes "Amis" et "Famille"
   mon-espace.instructions.list.item1.part2: your impression results
   mon-espace.instructions.list.item1.part2.lock: vos résultats d'empreinte
   Derniers résultats d’empreinte: Latest impression results
@@ -1743,4 +1743,84 @@ entries:
   navigation.connexionInscription.lock: Navigation connexion/inscription
   mon-espace.evolutionGraph.chartDisabledTitle.part2: to view the evolution of your footprint
   mon-espace.evolutionGraph.chartDisabledTitle.part2.lock: pour avoir accès à l’évolution de votre empreinte
+  mon-espace.actions.jagis.description.part5: and
+  mon-espace.actions.jagis.description.part5.lock: et
+  mon-espace.actions.jagis.description.part2: <0>Taking action</0>
+  mon-espace.actions.jagis.description.part2.lock: <0>J’agis</0>
+  mon-espace.actions.jagis.error.redirect.message: An error has occurred.
+  mon-espace.actions.jagis.error.redirect.message.lock: Une erreur est survenue.
+  mon-espace.actions.jagis.description.part6: adapted
+  mon-espace.actions.jagis.description.part6.lock: adaptées
+  mon-espace.actions.jagis.description.part4: concrete actions
+  mon-espace.actions.jagis.description.part4.lock: actions concrètes
+  mon-espace.actions.jagis.description.part8: to your desires and your means to reduce your footprint.
+  mon-espace.actions.jagis.description.part8.lock: à vos envies et vos moyens pour réduire votre empreinte.
+  mon-espace.actions.jagis.title: 'What can I do to reduce my footprint? '
+  mon-espace.actions.jagis.title.lock: 'Que faire pour réduire mon empreinte ? '
+  mon-espace.actions.jagis.description.part3: offers you
+  mon-espace.actions.jagis.description.part3.lock: vous propose des
+  common.partners.jagis.ariaLabel: Taking action
+  common.partners.jagis.ariaLabel.lock: J'agis
+  mon-espace.actions.jagis.error.redirect: An error has occurred
+  mon-espace.actions.jagis.error.redirect.lock: Une erreur est survenue
+  mon-espace.actions.jagis.description.part1: From your balance sheet,
+  mon-espace.actions.jagis.description.part1.lock: À partir de votre bilan,
+  mon-espace.actions.jagis.button: Going further with J'agis
+  mon-espace.actions.jagis.button.lock: Aller plus loin avec J’agis
+  mon-espace.actions.jagis.description.part7: to your desires and your means to reduce your footprint.
+  mon-espace.actions.jagis.description.part7.lock: à vos envies et vos moyens pour réduire votre empreinte.
+  mon-espace.actions.jagis.error.redirect.link: Click on this link to navigate to J'agis.
+  mon-espace.actions.jagis.error.redirect.link.lock: Cliquez sur ce lien pour naviguer vers J'agis.
+  common.metric.water: water
+  common.metric.water.lock: eau
+  mon-espace.organisations.title: My organisations
+  mon-espace.organisations.title.lock: Mes organisations
+  common.metric.carbon: carbon
+  common.metric.carbon.lock: carbone
+  Challenger ma famille: Challenging my family
   'Dernière mise à jour :': 'Last update :'
+  Défier mes amis: Challenge my friends
+  Sensibiliser mon organisation: Raising awareness in my organisation
+  Invitez votre entourage à calculer leur empreinte: Invite your friends and family to calculate their footprint
+  Gratuit, 100 % anonyme et surtout sans jugement ni comparaison.: Free, 100% anonymous and, above all, without judgement or comparison.
+  Diffusez un lien collectif pour faire passer le test à vos amis ou votre famille, ou sensibilisez les membres de votre organisation.: Distribute a collective link so that your friends and family can take the test, or raise awareness among the members of your organisation.
+  mon-espace.settings.userInfos.submitLabel: Update my information
+  mon-espace.settings.userInfos.submitLabel.lock: Mettre à jour mes informations
+  fin.getResultsOnUserProfile.buttonLabel: Save my results
+  fin.getResultsOnUserProfile.buttonLabel.lock: Sauvegarder mes résultats
+  mon-espace.groups.create: Create a group
+  mon-espace.groups.create.lock: Créer un groupe
+  Mettre à jour mes coordonnées: Update my details
+  mon-espace.groups.empty.awareness: Raising awareness in my organisation
+  mon-espace.groups.empty.awareness.lock: Sensibiliser mon organisation
+  mon-espace.groups.empty.challenge1: Challenge my friends
+  mon-espace.groups.empty.challenge1.lock: Défier mes amis
+  Laissez votre email pour: Leave your email for
+  sauvegarder: save
+  mon-espace.groups.empty.challenge2: Challenging my family
+  mon-espace.groups.empty.challenge2.lock: Challenger ma famille
+  fin.getResultsOnUserProfile.title: Find your results at any time in your personal space
+  fin.getResultsOnUserProfile.title.lock: Retrouvez vos résultats à tout moment sur votre espace personnel
+  'retrouver vos résultats :': 'find your results :'
+  settings.newsletters.title: Subscribe to our content
+  settings.newsletters.title.lock: Inscription à nos contenus
+  mon-espace.settings.userInfos.title: My information
+  mon-espace.settings.userInfos.title.lock: Mes informations
+  mon-espace.groups.empty.description1: Distribute a collective link
+  mon-espace.groups.empty.description1.lock: Diffusez un lien collectif
+  mon-espace.groups.empty.description4: or
+  mon-espace.groups.empty.description4.lock: ou
+  mon-espace.groups.empty.description2: for
+  mon-espace.groups.empty.description2.lock: pour
+  Mettre à jour mes abonnements: Update my subscriptions
+  mon-espace.groups.empty.button: Start
+  mon-espace.groups.empty.button.lock: Commencer
+  Supprimer mon espace: Delete my space
+  mon-espace.groups.empty.description3: give the test to your friends
+  mon-espace.groups.empty.description3.lock: faire passer le test à vos amis
+  mon-espace.groups.empty.description5: raise awareness among the members of your organisation.
+  mon-espace.groups.empty.description5.lock: sensibilisez les membres de votre organisation.
+  mon-espace.groups.empty.title: Invite your friends and family to calculate their footprint
+  mon-espace.groups.empty.title.lock: Invitez votre entourage à calculer leur empreinte
+  mon-espace.groups.empty.description: Free, 100% anonymous and, above all, without judgement or comparison.
+  mon-espace.groups.empty.description.lock: Gratuit, 100 % anonyme et surtout sans jugement ni comparaison.

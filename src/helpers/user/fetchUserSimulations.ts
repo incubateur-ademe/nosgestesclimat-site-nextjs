@@ -1,4 +1,5 @@
 import { SIMULATION_URL } from '@/constants/urls/main'
+import { mapNewSimulationToOld } from '@/helpers/simulation/mapNewSimulation'
 import type { Simulation } from '@/publicodes-state/types'
 
 export async function fetchUserSimulations({
@@ -13,5 +14,8 @@ export async function fetchUserSimulations({
     throw new Error('Failed to fetch user simulations')
   }
 
-  return data
+  // Map from new format to old format
+  return Array.isArray(data)
+    ? data.map((simulation: any) => mapNewSimulationToOld(simulation))
+    : []
 }

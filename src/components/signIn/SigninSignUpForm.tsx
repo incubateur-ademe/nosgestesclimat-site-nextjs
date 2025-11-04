@@ -4,16 +4,30 @@ import useLogin from '@/hooks/authentication/useLogin'
 import { useUser } from '@/publicodes-state'
 import type { AuthenticationMode } from '@/types/authentication'
 import dayjs from 'dayjs'
+import type { ReactNode } from 'react'
 import EmailSigninForm from './EmailSigninForm'
 import VerificationForm from './VerificationForm'
 
 type Props = {
-  buttonLabel?: string
+  buttonLabel?: string | ReactNode
+  inputLabel?: ReactNode | string
   mode?: AuthenticationMode
   redirectURL?: string
+  onVerificationSuccessOverride?: (data: {
+    email: string
+    code: string
+  }) => void
+  verificationOverrideError?: string
 }
 
-export default function SigninForm({ buttonLabel, mode, redirectURL }: Props) {
+export default function SigninSignUpForm({
+  buttonLabel,
+  inputLabel,
+  mode,
+  redirectURL,
+  onVerificationSuccessOverride,
+  verificationOverrideError,
+}: Props) {
   const { user } = useUser()
 
   const {
@@ -39,6 +53,8 @@ export default function SigninForm({ buttonLabel, mode, redirectURL }: Props) {
         isSuccessValidate={isSuccessValidate}
         redirectURL={redirectURL}
         mode={mode}
+        onVerificationSuccessOverride={onVerificationSuccessOverride}
+        verificationOverrideError={verificationOverrideError}
       />
     )
   }
@@ -52,6 +68,7 @@ export default function SigninForm({ buttonLabel, mode, redirectURL }: Props) {
       }
       buttonLabel={buttonLabel}
       mode={mode}
+      inputLabel={inputLabel}
     />
   )
 }

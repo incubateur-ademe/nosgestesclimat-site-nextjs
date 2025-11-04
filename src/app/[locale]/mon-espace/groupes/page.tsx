@@ -5,6 +5,7 @@ import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthen
 import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
 import ProfileTab from '../_components/ProfileTabs'
+import GroupsDashboard from './_components/GroupsDashboard'
 
 export default async function MonEspaceGroupesPage({
   params,
@@ -26,7 +27,9 @@ export default async function MonEspaceGroupesPage({
           </Trans>
         </h1>
 
-        <ProfileTab locale={locale} activePath={MON_ESPACE_GROUPS_PATH} />
+        <ProfileTab activePath={MON_ESPACE_GROUPS_PATH} />
+
+        <GroupsDashboard locale={locale} userId={authenticatedUser.id} />
       </div>
     </ContentLarge>
   )

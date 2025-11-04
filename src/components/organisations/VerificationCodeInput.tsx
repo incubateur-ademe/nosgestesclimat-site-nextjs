@@ -6,6 +6,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import Loader from '@/design-system/layout/Loader'
 import type { DetailedHTMLProps, InputHTMLAttributes } from 'react'
 import VerificationInput from 'react-verification-input'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   inputError: string | undefined
@@ -47,11 +48,12 @@ export default function VerificationCodeInput({
         }
         classNames={{
           container: 'container max-w-full w-[16rem] md:w-[20rem]',
-          character: `border-2! border-slate-500! rounded-xl w-[2rem] text-primary-700! font-medium ${
-            marianne.className
-          } ${inputError ? 'border-red-700! border-2' : ''} ${
+          character: twMerge(
+            'border-2! border-slate-500! rounded-xl w-[2rem] text-primary-700! font-medium',
+            marianne.className,
+            inputError ? 'border-red-700! border-2!' : '',
             isSuccessValidate ? 'border-green-700! border-2' : ''
-          }`,
+          ),
           characterInactive: 'text-transparent',
           characterSelected: 'character--selected',
           characterFilled: 'text-primary-700!',

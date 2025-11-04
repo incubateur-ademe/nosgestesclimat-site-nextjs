@@ -1353,7 +1353,7 @@ entries:
   sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit
   Derniers résultats d’empreinte: Derniers résultats d’empreinte
   mon-espace.actions.title: Mes actions
-  mon-espace.groups.title: Mes groupes
+  mon-espace.groups.title: Mes groupes "Amis" et "Famille"
   mon-espace.instructions.description.part1: Avant toute chose, nous vous invitons à
   mon-espace.instructions.description.part2: passer le test
   mon-espace.instructions.description.part3: 'pour :'
@@ -1409,4 +1409,50 @@ entries:
   mon-espace.evolutionGraph.simulationData: 'Résultat de test n°{{simulationNumber}} du {{simulationDate}} : {{simulationValue}} tonnes'
   Navigation de mon espace: Navigation de mon espace
   navigation.connexionInscription: Navigation connexion/inscription
+  common.partners.jagis.ariaLabel: J'agis
+  mon-espace.actions.jagis.button: Aller plus loin avec J’agis
+  mon-espace.actions.jagis.description.part1: À partir de votre bilan,
+  mon-espace.actions.jagis.description.part2: <0>J’agis</0>
+  mon-espace.actions.jagis.description.part3: vous propose des
+  mon-espace.actions.jagis.description.part4: actions concrètes
+  mon-espace.actions.jagis.description.part5: et
+  mon-espace.actions.jagis.description.part6: adaptées
+  mon-espace.actions.jagis.description.part7: à vos envies et vos moyens pour réduire votre empreinte.
+  mon-espace.actions.jagis.description.part8: à vos envies et vos moyens pour réduire votre empreinte.
+  mon-espace.actions.jagis.error.redirect: Une erreur est survenue
+  mon-espace.actions.jagis.error.redirect.link: Cliquez sur ce lien pour naviguer vers J'agis.
+  mon-espace.actions.jagis.error.redirect.message: Une erreur est survenue.
+  mon-espace.actions.jagis.title: 'Que faire pour réduire mon empreinte ? '
+  Challenger ma famille: Challenger ma famille
+  common.metric.carbon: carbone
+  common.metric.water: eau
+  Défier mes amis: Défier mes amis
   'Dernière mise à jour :': 'Dernière mise à jour :'
+  Diffusez un lien collectif pour faire passer le test à vos amis ou votre famille, ou sensibilisez les membres de votre organisation.: Diffusez un lien collectif pour faire passer le test à vos amis ou votre famille, ou sensibilisez les membres de votre organisation.
+  Gratuit, 100 % anonyme et surtout sans jugement ni comparaison.: Gratuit, 100 % anonyme et surtout sans jugement ni comparaison.
+  Invitez votre entourage à calculer leur empreinte: Invitez votre entourage à calculer leur empreinte
+  mon-espace.organisations.title: Mes organisations
+  Sensibiliser mon organisation: Sensibiliser mon organisation
+  fin.getResultsOnUserProfile.buttonLabel: Sauvegarder mes résultats
+  fin.getResultsOnUserProfile.title: Retrouvez vos résultats à tout moment sur votre espace personnel
+  Laissez votre email pour: Laissez votre email pour
+  Mettre à jour mes abonnements: Mettre à jour mes abonnements
+  Mettre à jour mes coordonnées: Mettre à jour mes coordonnées
+  mon-espace.groups.create: Créer un groupe
+  mon-espace.groups.empty.awareness: Sensibiliser mon organisation
+  mon-espace.groups.empty.button: Commencer
+  mon-espace.groups.empty.challenge1: Défier mes amis
+  mon-espace.groups.empty.challenge2: Challenger ma famille
+  mon-espace.groups.empty.description: Gratuit, 100 % anonyme et surtout sans jugement ni comparaison.
+  mon-espace.groups.empty.description1: Diffusez un lien collectif
+  mon-espace.groups.empty.description2: pour
+  mon-espace.groups.empty.description3: faire passer le test à vos amis
+  mon-espace.groups.empty.description4: ou
+  mon-espace.groups.empty.description5: sensibilisez les membres de votre organisation.
+  mon-espace.groups.empty.title: Invitez votre entourage à calculer leur empreinte
+  mon-espace.settings.userInfos.submitLabel: Mettre à jour mes informations
+  mon-espace.settings.userInfos.title: Mes informations
+  'retrouver vos résultats :': 'retrouver vos résultats :'
+  sauvegarder: sauvegarder
+  settings.newsletters.title: Inscription à nos contenus
+  Supprimer mon espace: Supprimer mon espace

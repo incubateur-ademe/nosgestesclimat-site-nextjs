@@ -17,7 +17,7 @@ export default function NoResultsView({ locale }: { locale: Locale }) {
     <>
       <InstructionsBanner locale={locale} />
 
-      <ProfileTab isLocked locale={locale} activePath={MON_ESPACE_PATH} />
+      <ProfileTab isLocked activePath={MON_ESPACE_PATH} />
 
       <div className="mt-2 mb-16 flex flex-col rounded-lg bg-slate-50 p-8">
         <p className="mb-6 flex items-center justify-center text-lg font-bold">

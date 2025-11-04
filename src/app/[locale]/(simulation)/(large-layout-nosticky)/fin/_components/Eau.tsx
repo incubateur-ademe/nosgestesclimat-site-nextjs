@@ -8,7 +8,6 @@ import DomesticWater from './eau/DomesticWater'
 import WaterActions from './eau/WaterActions'
 import WaterDisclaimer from './eau/WaterDisclaimer'
 import AgirMainBlock from './JagisMainBlock'
-import AgirSecondaryBlock from './JagisSecondaryBlock'
 
 export default function Eau() {
   const { isFrenchRegion } = useIframe()
@@ -25,8 +24,6 @@ export default function Eau() {
       <WaterActions />
 
       <DomesticWater />
-
-      {isFrenchRegion && <AgirSecondaryBlock />}
 
       <BlogArticles />
     </div>
