@@ -22,10 +22,14 @@ export default function ResultsView({ locale, simulations }: Props) {
       initialSimulations={simulations}
       initialCurrentSimulationId={simulations?.[0]?.id ?? ''}
       migrationInstructions={migrationInstructions}>
-      <ProfileTab locale={locale} activePath={MON_ESPACE_PATH} />
+      <ProfileTab activePath={MON_ESPACE_PATH} />
+
       <LatestResults locale={locale} simulation={simulations[0]} />
+
       <ShareSimulator locale={locale} />
+
       <ResultsList locale={locale} simulations={simulations} />
+
       <EvolutionGraph
         locale={locale}
         simulations={simulations}
