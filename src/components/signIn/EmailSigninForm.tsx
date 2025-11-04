@@ -89,7 +89,6 @@ export default function EmailSigninForm({
 
       // We update the expiration date of the code
       updateVerificationCodeExpirationDate(expirationDate)
-      updateUserOrganisation({ administratorEmail: email })
 
       if (!user.email) {
         updateEmail(email)

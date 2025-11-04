@@ -6,8 +6,6 @@ import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
 
 export default async function MonEspacePage({ params }: DefaultPageProps) {
-  const { locale } = await params
-
   const authenticatedUser = await getIsUserAuthenticated()
 
   if (!authenticatedUser) {
@@ -16,7 +14,7 @@ export default async function MonEspacePage({ params }: DefaultPageProps) {
 
   return (
     <>
-      <HeaderServer locale={locale} />
+      <HeaderServer />
 
       <ContentLarge className="mt-4 px-4 md:mt-10 lg:px-0">
         <div className="flex flex-col items-center justify-center">
