@@ -3,13 +3,10 @@ import { linkToGroupCreation } from '@/constants/group'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import type { Locale } from '@/i18nConfig'
+import { getLocale } from '@/helpers/language/getLocale'
 
-type Props = {
-  locale: Locale
-}
-
-export default function EmptyState({ locale }: Props) {
+export default async function EmptyState() {
+  const locale = await getLocale()
   return (
     <div className="mt-6 flex gap-8">
       <section>

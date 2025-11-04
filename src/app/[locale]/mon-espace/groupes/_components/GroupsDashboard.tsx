@@ -3,15 +3,13 @@ import Groups from '@/components/groups/Groups'
 import Organisations from '@/components/groups/Organisations'
 import { fetchUserGroups } from '@/helpers/groups/fetchUserGroups'
 import { fetchOrganisations } from '@/helpers/organisations/fetchOrganisations'
-import type { Locale } from '@/i18nConfig'
 import EmptyState from './EmptyState'
 
 type Props = {
   userId: string
-  locale: Locale
 }
 
-export default async function GroupsDashboard({ userId, locale }: Props) {
+export default async function GroupsDashboard({ userId }: Props) {
   const { groups, isError: isErrorGroups } = await fetchUserGroups(userId)
   const { organisations, isError: isErrorOrganisations } =
     await fetchOrganisations()
@@ -21,14 +19,14 @@ export default async function GroupsDashboard({ userId, locale }: Props) {
   if (isError) return <DefaultErrorAlert />
 
   if (!((groups?.length ?? 0) > 0) && !((organisations.length ?? 0) > 0)) {
-    return <EmptyState locale={locale} />
+    return <EmptyState />
   }
 
   return (
     <>
-      <Organisations organisations={organisations} locale={locale} />
+      <Organisations organisations={organisations} />
 
-      <Groups groups={groups} locale={locale} />
+      <Groups groups={groups} />
     </>
   )
 }

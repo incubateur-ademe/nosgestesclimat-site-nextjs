@@ -1,17 +1,17 @@
 import Trans from '@/components/translation/trans/TransServer'
 import Title from '@/design-system/layout/Title'
-import type { Locale } from '@/i18nConfig'
+import { getLocale } from '@/helpers/language/getLocale'
 import type { Organisation } from '@/types/organisations'
 import CreateOrganisation from './Organisations/CreateOrganisation'
 import PollsList from './Organisations/PollsList'
 
-export default function Organisations({
+export default async function Organisations({
   organisations,
-  locale,
 }: {
   organisations: Organisation[]
-  locale: Locale
 }) {
+  const locale = await getLocale()
+
   return (
     <div className="mb-10">
       <Title

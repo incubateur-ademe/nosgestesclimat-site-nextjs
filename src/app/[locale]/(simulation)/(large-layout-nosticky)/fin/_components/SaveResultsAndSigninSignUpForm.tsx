@@ -37,7 +37,7 @@ export default function SaveResultsAndSigninSignUpForm({
     const formattedEmail = formatEmail(data.email)
 
     updateEmail(formattedEmail)
-    console.log('data', data)
+
     try {
       // Handles saving both completing the user signin / signup and saving the simulation
       saveSimulation({

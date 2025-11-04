@@ -4,7 +4,6 @@ import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
-import type { Metric } from '@/publicodes-state/types'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/trans/TransClient'
@@ -92,7 +91,7 @@ export default function MetricSlider({
         role="tablist"
         aria-orientation="horizontal"
         tabIndex={0}
-        aria-label={t('Choix de la métrique') as string}
+        aria-label={t('common.metric.choice', 'Choix de la métrique')}
         onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
           const left = 'ArrowLeft'
           const right = 'ArrowRight'
@@ -113,10 +112,9 @@ export default function MetricSlider({
 
           const nextMetric = order[nextIndex]
           if (nextMetric !== currentMetric) {
-            // Automatic activation per ARIA Tabs pattern
             setCurrentMetric(nextMetric)
             const nextTabId =
-              nextMetric === (carboneMetric as Metric)
+              nextMetric === carboneMetric
                 ? 'tab-metric-carbone'
                 : 'tab-metric-eau'
             requestAnimationFrame(() => {
