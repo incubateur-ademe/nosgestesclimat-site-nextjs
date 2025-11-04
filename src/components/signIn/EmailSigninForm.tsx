@@ -58,7 +58,7 @@ export default function EmailSigninOrSignupForm({
   const errorCode =
     errorCreateVerificationCode instanceof AxiosError &&
     errorCreateVerificationCode.response?.data
-  console.log('emailDefaultValue', emailDefaultValue)
+
   const {
     register,
     handleSubmit,
