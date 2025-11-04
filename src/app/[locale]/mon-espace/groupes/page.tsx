@@ -29,7 +29,7 @@ export default async function MonEspaceGroupesPage({
 
         <ProfileTab activePath={MON_ESPACE_GROUPS_PATH} />
 
-        <GroupsDashboard locale={locale} userId={authenticatedUser.id} />
+        <GroupsDashboard userId={authenticatedUser.id} />
       </div>
     </ContentLarge>
   )
