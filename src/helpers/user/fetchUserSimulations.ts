@@ -5,8 +5,12 @@ import type { Simulation } from '@/publicodes-state/types'
 export async function fetchUserSimulations({
   userId,
 }: {
-  userId: string
+  userId?: string
 }): Promise<Simulation[]> {
+  if (!userId) {
+    return []
+  }
+
   const response = await fetch(`${SIMULATION_URL}/${userId}`)
   const data = await response.json()
 

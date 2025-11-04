@@ -27,7 +27,7 @@ export default async function MonEspaceActionsPage({
   const authenticatedUser = await getIsUserAuthenticated()
 
   const simulations = await fetchUserSimulations({
-    userId: authenticatedUser.id,
+    userId: authenticatedUser?.userId,
   })
 
   const sortedSimulations = simulations.sort(
@@ -56,7 +56,7 @@ export default async function MonEspaceActionsPage({
           migrationInstructions={migrationInstructions}
           initialSimulations={sortedSimulations}
           initialCurrentSimulationId={latestSimulation?.id}
-          initialUserId={authenticatedUser.id}>
+          initialUserId={authenticatedUser.userId}>
           <QueryClientProviderWrapper>
             <EngineProvider rules={rules}>
               <FormProvider>
