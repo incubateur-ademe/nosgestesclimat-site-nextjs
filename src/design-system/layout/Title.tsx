@@ -25,14 +25,14 @@ export default function Title({
   const Tag = tag
   return (
     <div className={twMerge('relative', containerClassName)}>
-      <div className="mb-8">
+      <div className="mb-6">
         <Tag className={twMerge('mb-2', className)} {...props}>
           {title ?? children}
         </Tag>
 
         {subtitle && <p className="mb-0 text-slate-500">{subtitle}</p>}
       </div>
-      {hasSeparator ? <Separator className="mt-0 mb-4" /> : null}
+      {hasSeparator ? <Separator className="mt-0 mb-6" /> : null}
     </div>
   )
 }

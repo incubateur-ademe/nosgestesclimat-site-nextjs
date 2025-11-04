@@ -707,6 +707,7 @@ export default {
     'fill-logement-800',
     'fill-divers-800',
     'fill-servicessocietaux-800',
+    'stroke-primary-600',
   ],
   plugins: [
     function ({ addComponents }) {

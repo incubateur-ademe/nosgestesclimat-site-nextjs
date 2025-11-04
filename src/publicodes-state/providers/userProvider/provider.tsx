@@ -4,7 +4,10 @@ import type { PropsWithChildren } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 
 import { getGeolocation } from '@/helpers/api/getGeolocation'
-import type { RegionFromGeolocation } from '@/publicodes-state/types'
+import type {
+  RegionFromGeolocation,
+  Simulation,
+} from '@/publicodes-state/types'
 import type { Migration } from '@publicodes/tools/migration'
 import UserContext from './context'
 import useUpdateOldLocalStorage from './hooks/useOldLocalStorage'
@@ -21,11 +24,17 @@ type Props = {
    * The migration instructions for old localstorage
    */
   migrationInstructions: Migration
+  initialSimulations?: Simulation[]
+  initialCurrentSimulationId?: string
+  initialUserId?: string
 }
 export default function UserProvider({
   children,
   storageKey = 'ngc',
   migrationInstructions,
+  initialSimulations,
+  initialCurrentSimulationId,
+  initialUserId,
 }: PropsWithChildren<Props>) {
   const [initialRegion, setInitialRegion] = useState<
     RegionFromGeolocation | undefined
@@ -39,20 +48,45 @@ export default function UserProvider({
 
   useUpdateOldLocalStorage({ storageKey })
 
-  const { user, setUser } = usePersistentUser({ storageKey, initialRegion })
+  const { user, setUser } = usePersistentUser({
+    storageKey,
+    initialRegion,
+    initialUserId,
+  })
 
   const { tutorials, setTutorials } = usePersistentTutorials({ storageKey })
 
-  const {
-    simulations,
-    setSimulations,
-    currentSimulationId,
-    setCurrentSimulationId,
-  } = usePersistentSimulations({ storageKey, migrationInstructions })
+  // Dual mode: server-hydrated (no localStorage) vs localStorage
+  const [simulations, setSimulations] = useState<Simulation[]>(
+    initialSimulations ?? []
+  )
+  const [currentSimulationId, setCurrentSimulationId] = useState<string>(
+    initialCurrentSimulationId ?? ''
+  )
+  // If not provided by props, fallback to persistent localStorage version
+  const localSimStorage = usePersistentSimulations({
+    storageKey,
+    migrationInstructions,
+  })
+
+  const serverHydrated = typeof initialSimulations !== 'undefined'
+  // Choose source of truth depending on prop
+  const effectiveSimulations = serverHydrated
+    ? simulations
+    : localSimStorage.simulations
+  const effectiveSetSimulations = serverHydrated
+    ? setSimulations
+    : localSimStorage.setSimulations
+  const effectiveCurrentSimulationId = serverHydrated
+    ? currentSimulationId
+    : localSimStorage.currentSimulationId
+  const effectiveSetCurrentSimulationId = serverHydrated
+    ? setCurrentSimulationId
+    : localSimStorage.setCurrentSimulationId
 
   const isInitialized = useMemo(
-    () => user && !!simulations.length,
-    [user, simulations]
+    () => user && !!effectiveSimulations.length,
+    [user, effectiveSimulations]
   )
 
   return (
@@ -62,10 +96,10 @@ export default function UserProvider({
         setUser,
         tutorials,
         setTutorials,
-        simulations,
-        setSimulations,
-        currentSimulationId,
-        setCurrentSimulationId,
+        simulations: effectiveSimulations,
+        setSimulations: effectiveSetSimulations,
+        currentSimulationId: effectiveCurrentSimulationId,
+        setCurrentSimulationId: effectiveSetCurrentSimulationId,
         migrationInstructions,
         isInitialized,
       }}>

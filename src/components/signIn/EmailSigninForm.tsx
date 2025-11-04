@@ -22,13 +22,15 @@ import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { AxiosError } from 'axios'
+import type { ReactNode } from 'react'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 type Props = {
-  buttonLabel?: string
+  buttonLabel?: string | ReactNode
   mode?: AuthenticationMode
   emailDefaultValue?: string
+  inputLabel?: ReactNode | string
 }
 
 type FormData = {
@@ -39,6 +41,7 @@ export default function EmailSigninOrSignupForm({
   buttonLabel,
   mode,
   emailDefaultValue,
+  inputLabel,
 }: Props) {
   const { t } = useClientTranslation()
 
@@ -58,7 +61,7 @@ export default function EmailSigninOrSignupForm({
   const errorCode =
     errorCreateVerificationCode instanceof AxiosError &&
     errorCreateVerificationCode.response?.data
-  console.log('emailDefaultValue', emailDefaultValue)
+
   const {
     register,
     handleSubmit,
@@ -130,7 +133,7 @@ export default function EmailSigninOrSignupForm({
         shouldUseDebounce={false}
         autoComplete="email"
         data-cypress-id="organisation-connexion-email-input"
-        label={<Trans>Votre adresse electronique</Trans>}
+        label={inputLabel ?? <Trans>Votre adresse electronique</Trans>}
         placeholder="nom.prenom@domaine.fr"
         srOnlyHelperText={
           <Trans i18nKey="organisations.connexion.email.input.helper">
