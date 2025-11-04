@@ -10,7 +10,7 @@ export default async function BlogLayout({ children, params }: LayoutProps) {
 
   return (
     <ServerLayout locale={locale}>
-      <HeaderServer isOldVersion={true} />
+      <HeaderServer />
 
       <main
         id="main-content"
