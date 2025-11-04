@@ -2,6 +2,7 @@
 
 import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
+import { SIGNIN_MODE, SIGNUP_MODE } from '@/constants/authentication/modes'
 import {
   ERROR_MESSAGE_USER_ALREADY_EXISTS,
   ERROR_MESSAGE_USER_DOES_NOT_EXIST,
@@ -34,7 +35,7 @@ type FormData = {
   email: string
 }
 
-export default function EmailSigninForm({
+export default function EmailSigninOrSignupForm({
   buttonLabel,
   mode,
   emailDefaultValue,
@@ -57,14 +58,18 @@ export default function EmailSigninForm({
   const errorCode =
     errorCreateVerificationCode instanceof AxiosError &&
     errorCreateVerificationCode.response?.data
-
+  console.log('emailDefaultValue', emailDefaultValue)
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
     getValues,
-  } = useForm<FormData>()
+  } = useForm<FormData>({
+    defaultValues: {
+      email: emailDefaultValue,
+    },
+  })
 
   async function onSubmit(data: FormData) {
     try {
@@ -140,13 +145,8 @@ export default function EmailSigninForm({
         error={errors.email?.message}
       />
 
-      {isErrorCreateVerificationCode &&
-        errorCode !== ERROR_MESSAGE_USER_DOES_NOT_EXIST &&
-        errorCode !== ERROR_MESSAGE_USER_ALREADY_EXISTS && (
-          <DefaultSubmitErrorMessage className="mt-4" />
-        )}
-
-      {errorCode === ERROR_MESSAGE_USER_DOES_NOT_EXIST && (
+      {mode === SIGNIN_MODE &&
+      errorCode === ERROR_MESSAGE_USER_DOES_NOT_EXIST ? (
         <Alert
           type="error"
           className="mt-4"
@@ -157,9 +157,8 @@ export default function EmailSigninForm({
             </Trans>
           }
         />
-      )}
-
-      {errorCode === ERROR_MESSAGE_USER_ALREADY_EXISTS && (
+      ) : mode === SIGNUP_MODE &&
+        errorCode === ERROR_MESSAGE_USER_ALREADY_EXISTS ? (
         <Alert
           type="error"
           className="mt-4"
@@ -170,7 +169,9 @@ export default function EmailSigninForm({
             </Trans>
           }
         />
-      )}
+      ) : isErrorCreateVerificationCode ? (
+        <DefaultSubmitErrorMessage className="mt-4" />
+      ) : null}
 
       <Button
         type="submit"
