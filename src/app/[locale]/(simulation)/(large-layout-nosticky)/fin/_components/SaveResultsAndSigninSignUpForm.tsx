@@ -25,8 +25,7 @@ export default function SaveResultsAndSigninSignUpForm({
 
   const currentSimulation = useCurrentSimulation()
 
-  const { saveSimulation, isPending, isSuccess, isError, error } =
-    useSaveSimulation()
+  const { saveSimulation, isPending, isSuccess, error } = useSaveSimulation()
 
   const onSubmit = (data: { email: string; code: string }) => {
     // If the mutation is pending, we do nothing
