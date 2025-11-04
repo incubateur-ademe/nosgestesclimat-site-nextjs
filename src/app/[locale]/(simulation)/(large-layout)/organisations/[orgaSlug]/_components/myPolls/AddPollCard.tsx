@@ -1,9 +1,8 @@
 'use client'
 
+import NewItemCardLink from '@/components/cta/NewItemCardLink'
 import PlusIcon from '@/components/icons/PlusIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import CTACard from '@/design-system/actions/CTACard'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useParams } from 'next/navigation'
 
 type Props = {
@@ -13,11 +12,9 @@ type Props = {
 export default function AddPollCard({ hasNoPollsYet }: Props) {
   const { orgaSlug } = useParams()
 
-  const { t } = useClientTranslation()
-
   return (
     <li>
-      <CTACard
+      <NewItemCardLink
         href={`/organisations/${orgaSlug}/creer-campagne`}
         highlight={!!hasNoPollsYet}
         color={hasNoPollsYet ? 'primary' : 'secondary'}

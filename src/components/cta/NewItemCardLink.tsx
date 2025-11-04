@@ -8,8 +8,8 @@ import {
   baseClassNames,
   colorClassNames,
   sizeClassNames,
-} from '../buttons/Button'
-import Card from '../layout/Card'
+} from '../../design-system/buttons/Button'
+import Card from '../../design-system/layout/Card'
 
 type Props = {
   href: string
@@ -28,7 +28,7 @@ type Props = {
   target?: string
 }
 
-export default function CTACard({
+export default function NewItemCardLink({
   href,
   label,
   icon,

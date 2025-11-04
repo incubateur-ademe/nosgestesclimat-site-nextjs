@@ -1,6 +1,6 @@
+import NewItemCardLink from '@/components/cta/NewItemCardLink'
 import PlusIcon from '@/components/icons/PlusIcon'
 import Trans from '@/components/translation/trans/TransServer'
-import CTACard from '@/design-system/actions/CTACard'
 import {
   baseClassNames,
   colorClassNames,
@@ -35,7 +35,7 @@ export default function Groups({ groups, locale }: Props) {
         </div>
 
         {/* Desktop */}
-        <CTACard
+        <NewItemCardLink
           href="/mon-espace/groupes/creer"
           className="hidden md:block"
           label={
