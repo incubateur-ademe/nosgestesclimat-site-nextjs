@@ -3,7 +3,7 @@ import { getModelVersion } from '@/helpers/modelFetching/getModelVersion'
 import { mapOldSimulationToNew } from '@/helpers/simulation/mapNewSimulation'
 import { saveSimulation as saveSimulationHelper } from '@/helpers/simulation/saveSimulation'
 import { useUser } from '@/publicodes-state'
-import type { Simulation } from '@/publicodes-state/types'
+import type { Simulation, User } from '@/publicodes-state/types'
 import { updateGroupParticipant } from '@/services/groups/updateGroupParticipant'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
@@ -42,15 +42,14 @@ export function useSaveSimulation() {
 
       const modelVersion = await getModelVersion()
 
-      const groups = (simulation as any).groups as string[] | undefined
-      const polls = (simulation as any).polls as string[] | undefined
+      const { groups = [], polls = [] } = simulation
 
       if (groups?.length) {
         return updateGroupParticipant({
           groupId: groups[groups.length - 1],
           email,
           simulation: {
-            ...(simulation as any),
+            ...simulation,
             model: modelVersion,
           },
           userId,
@@ -59,10 +58,16 @@ export function useSaveSimulation() {
       }
 
       // Strip unrecognized keys before mapping and posting
-      const sanitized: any = { ...(simulation as any) }
+      const sanitized: Simulation & {
+        createdAt?: string
+        updatedAt?: string
+        user?: User
+      } = { ...simulation }
       delete sanitized.createdAt
       delete sanitized.updatedAt
       delete sanitized.user
+      delete sanitized.groups
+      delete sanitized.polls
 
       const payload = {
         ...mapOldSimulationToNew(sanitized),
