@@ -1,10 +1,13 @@
 'use server'
 
 import { CHECK_USER_EXISTS_URL } from '@/constants/urls/main'
+import type { AuthenticatedUser } from '@/types/authentication'
 import { captureException } from '@sentry/nextjs'
 import { cookies } from 'next/headers'
 
-export async function getIsUserAuthenticated() {
+export async function getIsUserAuthenticated(): Promise<
+  AuthenticatedUser | undefined
+> {
   try {
     const cookieStore = await cookies()
     const ngcjwt = cookieStore.get('ngcjwt')
@@ -28,9 +31,9 @@ export async function getIsUserAuthenticated() {
       return data
     }
 
-    return false
+    return undefined
   } catch (error) {
     captureException(error)
-    return false
+    return undefined
   }
 }
