@@ -5,7 +5,7 @@ import {
 } from '@/constants/urls/paths'
 import ButtonLinkServer from '@/design-system/buttons/ButtonLinkServer'
 import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthenticated'
-import type { Locale } from '@/i18nConfig'
+import { getLocale } from '@/helpers/language/getLocale'
 import Script from 'next/script'
 import { twMerge } from 'tailwind-merge'
 import LogoLinkServer from '../misc/LogoLinkServer'
@@ -13,7 +13,6 @@ import Trans from '../translation/trans/TransServer'
 
 type Props = {
   isSticky?: boolean
-  locale: Locale
   isOldVersion?: boolean
 }
 
@@ -21,10 +20,11 @@ const MAX_EMAIL_LENGTH = 20
 
 export default async function HeaderServer({
   isSticky = true,
-  locale,
   isOldVersion = false,
 }: Props) {
   const authenticatedUser = await getIsUserAuthenticated()
+
+  const locale = await getLocale()
 
   return (
     <header
