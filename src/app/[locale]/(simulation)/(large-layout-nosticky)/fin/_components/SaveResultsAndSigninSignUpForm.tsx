@@ -15,7 +15,7 @@ import { useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Confirmation from './carbone/getResultsByEmail/Confirmation'
 
-export default function GetResultsOnUserProfile({
+export default function SaveResultsAndSigninSignUpForm({
   className,
 }: {
   className?: string
