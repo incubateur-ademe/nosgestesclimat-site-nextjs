@@ -56,12 +56,10 @@ export default function ProfileTab({
       ),
       href: MON_ESPACE_PATH,
       isActive: activePath === MON_ESPACE_PATH,
-      onClick: (e: React.MouseEvent) => {
-        e.preventDefault()
+      onClick: () => {
         if (activePath !== MON_ESPACE_PATH) {
           trackEvent(monEspaceTabTrackEvent('results'))
           trackPosthogEvent(captureClickMonEspaceTab({ tab: 'results' }))
-          router.push(MON_ESPACE_PATH)
         }
       },
     },
@@ -87,12 +85,10 @@ export default function ProfileTab({
       ),
       href: MON_ESPACE_ACTIONS_PATH,
       isActive: activePath === MON_ESPACE_ACTIONS_PATH,
-      onClick: (e: React.MouseEvent) => {
-        e.preventDefault()
+      onClick: () => {
         if (activePath !== MON_ESPACE_ACTIONS_PATH) {
           trackEvent(monEspaceTabTrackEvent('actions'))
           trackPosthogEvent(captureClickMonEspaceTab({ tab: 'actions' }))
-          router.push(MON_ESPACE_ACTIONS_PATH)
         }
       },
     },
@@ -118,12 +114,10 @@ export default function ProfileTab({
       ),
       href: MON_ESPACE_GROUPS_PATH,
       isActive: activePath === MON_ESPACE_GROUPS_PATH,
-      onClick: (e: React.MouseEvent) => {
-        e.preventDefault()
+      onClick: () => {
         if (activePath !== MON_ESPACE_GROUPS_PATH) {
           trackEvent(monEspaceTabTrackEvent('groups'))
           trackPosthogEvent(captureClickMonEspaceTab({ tab: 'groups' }))
-          router.push(MON_ESPACE_GROUPS_PATH)
         }
       },
     },
@@ -146,12 +140,10 @@ export default function ProfileTab({
       ),
       href: MON_ESPACE_SETTINGS_PATH,
       isActive: activePath === MON_ESPACE_SETTINGS_PATH,
-      onClick: (e: React.MouseEvent) => {
-        e.preventDefault()
+      onClick: () => {
         if (activePath !== MON_ESPACE_SETTINGS_PATH) {
           trackEvent(monEspaceTabTrackEvent('settings'))
           trackPosthogEvent(captureClickMonEspaceTab({ tab: 'settings' }))
-          router.push(MON_ESPACE_SETTINGS_PATH)
         }
       },
       containerClassName: 'md:ml-auto',
