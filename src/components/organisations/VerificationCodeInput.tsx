@@ -21,7 +21,6 @@ export default function VerificationCodeInput({
   isPendingValidate,
   handleValidateVerificationCode,
 }: Props) {
-  console.log('inputError', inputError)
   return (
     <fieldset className="m-0 border-0 p-0">
       <legend className="sr-only">

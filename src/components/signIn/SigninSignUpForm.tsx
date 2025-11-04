@@ -20,7 +20,7 @@ type Props = {
   verificationOverrideError?: string
 }
 
-export default function SigninForm({
+export default function SigninSignUpForm({
   buttonLabel,
   inputLabel,
   mode,

@@ -1,7 +1,7 @@
 import ContentLarge from '@/components/layout/ContentLarge'
 import HeaderServer from '@/components/layout/HeaderServer'
 import ColourBlock from '@/components/signIn/ColourBlock'
-import SigninForm from '@/components/signIn/SigninForm'
+import SigninSignUpForm from '@/components/signIn/SigninSignUpForm'
 import SigninSignupTabs from '@/components/signIn/SigninSignupTabs'
 import Trans from '@/components/translation/trans/TransServer'
 import { SIGNUP_MODE } from '@/constants/authentication/modes'
@@ -52,7 +52,7 @@ export default async function Connexion({ params }: DefaultPageProps) {
               <UserProvider
                 storageKey={STORAGE_KEY}
                 migrationInstructions={migrationInstructions}>
-                <SigninForm
+                <SigninSignUpForm
                   mode="signUp"
                   buttonLabel={t('signup.button.label', "M'inscrire")}
                   redirectURL={MON_ESPACE_PATH}
