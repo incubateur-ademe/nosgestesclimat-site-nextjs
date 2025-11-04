@@ -11,7 +11,7 @@ import { redirect } from 'next/navigation'
 import QueryClientProviderWrapper from '../../_components/mainLayoutProviders/QueryClientProviderWrapper'
 import ProfileTab from '../_components/ProfileTabs'
 import LocalisationSection from './_components/LocalisationSection'
-import UserInfosSection from './_components/UserInfosSection'
+import UserInfoSection from './_components/UserInfoSection'
 
 export default async function MonEspaceParametresPage({
   params,
@@ -27,7 +27,7 @@ export default async function MonEspaceParametresPage({
   return (
     <ContentLarge className="mt-4 px-4 md:mt-10 lg:px-0">
       <div className="flex flex-col">
-        <ProfileTab locale={locale} activePath={MON_ESPACE_SETTINGS_PATH} />
+        <ProfileTab activePath={MON_ESPACE_SETTINGS_PATH} />
 
         <div className="mb-6 flex w-full items-start justify-between">
           <Title
@@ -42,7 +42,7 @@ export default async function MonEspaceParametresPage({
           />
         </div>
 
-        <UserInfosSection locale={locale} />
+        <UserInfoSection />
 
         <QueryClientProviderWrapper>
           <LocalisationSection />

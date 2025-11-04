@@ -2,12 +2,10 @@ import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutPro
 import Trans from '@/components/translation/trans/TransServer'
 import UserEmailForm from '@/components/user/UserEmailForm'
 import UserNewslettersForm from '@/components/user/UserNewslettersForm'
+import { getLocale } from '@/helpers/language/getLocale'
 
-type Props = {
-  locale: string
-}
-
-export default function UserInfosSection({ locale }: Props) {
+export default async function UserInfoSection() {
+  const locale = await getLocale()
   return (
     <section aria-labelledby="user-info-title" className="mb-10">
       <h2 id="user-info-title" className="mb-4">
