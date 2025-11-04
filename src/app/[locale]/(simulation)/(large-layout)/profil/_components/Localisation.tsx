@@ -4,22 +4,20 @@ import FlagIcon from '@/components/icons/FlagIcon'
 import CountryFlag from '@/components/misc/CountryFlag'
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
+import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { useUser } from '@/publicodes-state'
 import type { RegionFromGeolocation } from '@/publicodes-state/types'
-import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import RegionModelAuthors from './localisation/RegionModelAuthors'
 import RegionSelector from './localisation/RegionSelector'
 
-type Props = {
-  supportedRegions: SupportedRegions
-}
-
-export default function Localisation({ supportedRegions }: Props) {
+export default function Localisation() {
   const { t } = useClientTranslation()
   const locale = useLocale()
+
+  const supportedRegions = getSupportedRegions()
 
   const { user, updateRegion, tutorials, showTutorial } = useUser()
   const { region, initialRegion } = user || {}

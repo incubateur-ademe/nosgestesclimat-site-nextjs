@@ -15,6 +15,8 @@ import { useBackgroundSyncSimulation } from './useBackgroundSyncSimulation'
 type Props = {
   simulation: Simulation
   sendEmail?: true
+  email?: string
+  code?: string
 }
 export function useSaveSimulation() {
   const {
@@ -31,7 +33,7 @@ export function useSaveSimulation() {
     isError,
     error,
   } = useMutation({
-    mutationFn: async ({ simulation, sendEmail }: Props) => {
+    mutationFn: async ({ simulation, sendEmail, email, code }: Props) => {
       // We reset the sync timer to avoid saving the simulation in the background
       resetSyncTimer()
 
@@ -88,7 +90,8 @@ export function useSaveSimulation() {
 
       return axios
         .post(`${SIMULATION_URL}/${userId}`, payload, {
-          params: { sendEmail },
+          params: { sendEmail, email, code },
+          withCredentials: email && code ? true : false,
         })
         .then((response) => mapNewSimulationToOld(response.data))
     },

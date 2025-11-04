@@ -41,7 +41,6 @@ type Inputs = {
 }
 
 type Props = {
-  title: string | ReactNode
   inputsDisplayed?: Array<
     | 'name'
     | 'email'
@@ -54,10 +53,10 @@ type Props = {
   className?: string
   shouldForceEmailEditable?: boolean
   defaultValues?: { 'newsletter-transports': boolean }
+  title?: string | ReactNode
 }
 
 export default function UserInformationForm({
-  title,
   inputsDisplayed = [
     'name',
     'email',
@@ -70,6 +69,7 @@ export default function UserInformationForm({
   className,
   shouldForceEmailEditable = false,
   defaultValues,
+  title,
 }: Props) {
   const { t } = useClientTranslation()
 
@@ -156,8 +156,7 @@ export default function UserInformationForm({
 
   return (
     <div className={twMerge('flex flex-1 flex-col items-start', className)}>
-      {title}
-
+      {title && <h2 className="mb-4 text-2xl font-bold">{title}</h2>}
       <form
         data-testid="user-information-form"
         onSubmit={handleSubmit(onSubmit)}
@@ -207,9 +206,11 @@ export default function UserInformationForm({
 
         {isFrench && (
           <>
-            <h3 className="mt-6 mb-0">
-              <Trans>Inscription à nos e-mails</Trans>
-            </h3>
+            <h2 className="mt-6 mb-0">
+              <Trans i18nKey="settings.newsletters.title">
+                Inscription à nos contenus
+              </Trans>
+            </h2>
 
             {isVerified ? (
               <p
