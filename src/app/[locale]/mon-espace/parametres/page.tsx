@@ -13,9 +13,7 @@ import ProfileTab from '../_components/ProfileTabs'
 import LocalisationSection from './_components/LocalisationSection'
 import UserInfoSection from './_components/UserInfoSection'
 
-export default async function MonEspaceParametresPage({
-  params,
-}: DefaultPageProps) {
+export default async function SettingsPage({ params }: DefaultPageProps) {
   const { locale } = await params
 
   const authenticatedUser = await getIsUserAuthenticated()
