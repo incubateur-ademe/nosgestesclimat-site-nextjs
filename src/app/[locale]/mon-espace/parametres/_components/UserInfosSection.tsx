@@ -1,6 +1,6 @@
 import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import Trans from '@/components/translation/trans/TransServer'
-import UserContactForm from '@/components/user/UserContactForm'
+import UserEmailForm from '@/components/user/UserEmailForm'
 import UserNewslettersForm from '@/components/user/UserNewslettersForm'
 
 type Props = {
@@ -18,7 +18,7 @@ export default function UserInfosSection({ locale }: Props) {
 
       <QueryClientProviderWrapper>
         <div className="max-w-[720px]">
-          <UserContactForm
+          <UserEmailForm
             submitLabel={
               <Trans
                 i18nKey="mon-espace.settings.userInfos.submitLabel"

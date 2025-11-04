@@ -26,7 +26,7 @@ type Props = {
   className?: string
 }
 
-export default function UserContactForm({ submitLabel, className }: Props) {
+export default function UserEmailForm({ submitLabel, className }: Props) {
   const { t } = useClientTranslation()
   const { user, updateEmail } = useUser()
 
@@ -102,7 +102,6 @@ export default function UserContactForm({ submitLabel, className }: Props) {
         )}
 
         <TextInput
-          data-testid="email-input-editable"
           label={t('Votre adresse electronique')}
           className="w-full"
           value={user?.email ?? ''}
