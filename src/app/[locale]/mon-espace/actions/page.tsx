@@ -49,7 +49,7 @@ export default async function MonEspaceActionsPage({
           </Trans>
         </h1>
 
-        <ProfileTab locale={locale} activePath={MON_ESPACE_ACTIONS_PATH} />
+        <ProfileTab activePath={MON_ESPACE_ACTIONS_PATH} />
 
         <UserProvider
           storageKey={STORAGE_KEY}
