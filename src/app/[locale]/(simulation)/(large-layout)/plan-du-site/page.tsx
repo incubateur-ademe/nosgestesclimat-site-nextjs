@@ -29,10 +29,6 @@ export default async function PlanDuSitePage({ params }: DefaultPageProps) {
         title: t('Le test'),
         href: SIMULATOR_PATH,
       },
-      profil: {
-        title: t('Votre profil'),
-        href: '/profil',
-      },
       actions: {
         title: t('Nos actions pour réduire votre empreinte'),
         href: '/actions',

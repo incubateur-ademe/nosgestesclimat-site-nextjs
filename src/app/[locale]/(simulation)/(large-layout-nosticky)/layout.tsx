@@ -1,11 +1,11 @@
 import ContentLarge from '@/components/layout/ContentLarge'
-import Header from '@/components/layout/HeaderClient'
+import HeaderServer from '@/components/layout/HeaderServer'
 import type { PropsWithChildren } from 'react'
 
 export default function LargeLayoutNoSticky({ children }: PropsWithChildren) {
   return (
     <>
-      <Header isSticky={false} />
+      <HeaderServer isSticky={false} />
       <ContentLarge className="px-4 lg:px-0">{children}</ContentLarge>
     </>
   )

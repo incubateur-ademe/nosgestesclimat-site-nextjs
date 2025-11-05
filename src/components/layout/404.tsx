@@ -4,14 +4,15 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Image from 'next/image'
 import Wave from 'react-wavify'
 import Trans from '../translation/trans/TransServer'
-import Header from './HeaderClient'
+import HeaderServer from './HeaderServer'
 
 export default async function Route404({ locale }: { locale: string }) {
   const { t } = await getServerTranslation({ locale })
 
   return (
     <>
-      <Header />
+      <HeaderServer />
+
       <Main>
         <div className="relative h-svh" data-cypress-id="404">
           <div className="absolute top-20 right-0 bottom-0 left-0 bg-[#1617C5] opacity-75 lg:top-20" />

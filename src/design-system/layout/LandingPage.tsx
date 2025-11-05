@@ -1,4 +1,4 @@
-import Header from '@/components/layout/HeaderClient'
+import HeaderServer from '@/components/layout/HeaderServer'
 import type { ReactNode } from 'react'
 import Main from './Main'
 import Hero from './landingPage/Hero'
@@ -18,7 +18,7 @@ export default function LandingPage({
 }) {
   return (
     <>
-      <Header />
+      <HeaderServer />
 
       <Main>
         <Hero
