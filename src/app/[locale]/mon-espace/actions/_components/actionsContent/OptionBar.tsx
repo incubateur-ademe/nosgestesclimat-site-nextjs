@@ -11,7 +11,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useState } from 'react'
-import ActionsChosenIndicator from '../ActionsChosenIndicator'
+import ActionsChosenIndicator from './ActionsChosenIndicator'
 
 type Props = {
   actions: any

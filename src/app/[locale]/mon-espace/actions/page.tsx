@@ -8,11 +8,11 @@ import { fetchUserSimulations } from '@/helpers/user/fetchUserSimulations'
 import { EngineProvider, FormProvider, UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
-import ActionsContent from '../../(simulation)/(large-layout)/actions/_components/ActionsContent'
-import ActionsTutorial from '../../(simulation)/(large-layout)/actions/_components/ActionsTutorial'
 import QueryClientProviderWrapper from '../../_components/mainLayoutProviders/QueryClientProviderWrapper'
 import ProfileTab from '../_components/ProfileTabs'
 import ActionAutoSave from './_components/ActionAutoSave'
+import ActionsContent from './_components/ActionsContent'
+import ActionsTutorial from './_components/ActionsTutorial'
 import JagisActionBanner from './_components/JagisActionBanner'
 
 export default async function MonEspaceActionsPage({
