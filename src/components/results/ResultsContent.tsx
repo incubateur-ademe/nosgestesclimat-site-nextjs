@@ -1,5 +1,6 @@
 'use client'
 
+import { IframeOptionsProvider } from '@/app/[locale]/_components/mainLayoutProviders/IframeOptionsContext'
 import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import MetricSlider from '@/components/fin/MetricSlider'
 import CarboneTotalChart from '@/components/fin/metricSlider/CarboneTotalChart'
@@ -37,9 +38,11 @@ type Props = {
 function ResultsContentInner({
   isStatic,
   title,
+  containerRef,
 }: {
   isStatic?: boolean
   title?: string | ReactNode
+  containerRef: React.RefObject<HTMLDivElement | null>
 }) {
   const { currentMetric } = useCurrentMetric()
 
@@ -53,7 +56,7 @@ function ResultsContentInner({
 
   return (
     <EngineProvider rules={rules}>
-      <div className="relative">
+      <div className="relative" ref={containerRef}>
         <div className="flex justify-between">
           {title ?? (
             <Title tag="h1">
@@ -61,7 +64,7 @@ function ResultsContentInner({
             </Title>
           )}
 
-          {isFrenchRegion && <HeadingButtons />}
+          {isFrenchRegion && !isStatic && <HeadingButtons />}
         </div>
 
         <MetricSlider isStatic={isStatic} />
@@ -96,7 +99,7 @@ function ResultsContentInner({
               {currentMetric === eauMetric && <Eau />}
             </div>
 
-            {isFrenchRegion && <ShareBlock />}
+            {isFrenchRegion && !isStatic && <ShareBlock />}
 
             <div id="categories-block">
               <Title tag="h2" className="text-lg lg:text-2xl">
@@ -132,7 +135,15 @@ export default function ResultsContent({
         initialSimulations={[simulation]}
         initialCurrentSimulationId={simulation.id}
         initialUserId={userId}>
-        <ResultsContentInner isStatic={isStatic} title={title} />
+        <IframeOptionsProvider>
+          {(containerRef) => (
+            <ResultsContentInner
+              isStatic={isStatic}
+              title={title}
+              containerRef={containerRef}
+            />
+          )}
+        </IframeOptionsProvider>
       </UserProvider>
     </QueryClientProviderWrapper>
   )
