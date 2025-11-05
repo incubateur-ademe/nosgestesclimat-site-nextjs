@@ -21,6 +21,7 @@ const getTypeClassNames = (type: AlertType) => {
 }
 
 export default function Alert({
+  id,
   title,
   titleTag,
   description,
@@ -29,6 +30,7 @@ export default function Alert({
   className,
   ...otherProps
 }: {
+  id?: string
   title?: ReactNode | string
   titleTag?: string
   description: ReactNode | string
@@ -40,6 +42,7 @@ export default function Alert({
 
   return (
     <section
+      id={id}
       className={twMerge(
         'relative rounded-xl border-2 p-4 md:p-6',
         getTypeClassNames(type),

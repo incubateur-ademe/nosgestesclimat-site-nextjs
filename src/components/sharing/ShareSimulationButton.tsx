@@ -15,12 +15,24 @@ import MailIcon from '../icons/share/MailIcon'
 import MessengerIcon from '../icons/share/MessengerIcon'
 import WhatsappIcon from '../icons/share/WhatsappIcon'
 
-export default function ShareSimulationButton({ url }: { url: string }) {
+export default function ShareSimulationButton({
+  url,
+  buttonLabel,
+  buttonColor,
+  shouldHideTextOnMobile = true,
+}: {
+  url: string
+  buttonLabel?: string
+  buttonColor?: 'primary' | 'secondary' | 'text'
+  shouldHideTextOnMobile?: boolean
+}) {
   const { t } = useClientTranslation()
 
   return (
     <Share
-      buttonLabel={t('Partager')}
+      buttonLabel={buttonLabel ?? t('Partager')}
+      buttonColor={buttonColor ?? 'text'}
+      shouldHideTextOnMobile={shouldHideTextOnMobile}
       modalTitle={t('Partager le simulateur')}
       modalDescription={t(
         'Envoyez le simulateur à vos proches et faites votre 1ère bonne action !'

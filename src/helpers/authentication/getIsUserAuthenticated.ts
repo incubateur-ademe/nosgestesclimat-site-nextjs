@@ -9,8 +9,8 @@ export async function getIsUserAuthenticated(): Promise<
   AuthenticatedUser | undefined
 > {
   try {
-    const cookieStore = cookies()
-    const ngcjwt = (await cookieStore).get('ngcjwt')
+    const cookieStore = await cookies()
+    const ngcjwt = cookieStore.get('ngcjwt')
 
     const headers: HeadersInit = {
       'Content-Type': 'application/json',

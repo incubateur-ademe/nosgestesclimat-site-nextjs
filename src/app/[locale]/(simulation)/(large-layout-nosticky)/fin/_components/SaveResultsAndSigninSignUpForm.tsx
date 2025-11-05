@@ -1,0 +1,120 @@
+'use client'
+
+import SigninSignUpForm from '@/components/signIn/SigninSignUpForm'
+import Trans from '@/components/translation/trans/TransClient'
+import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
+import { MON_ESPACE_PATH } from '@/constants/urls/paths'
+import Card from '@/design-system/layout/Card'
+import Title from '@/design-system/layout/Title'
+import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { formatEmail } from '@/utils/format/formatEmail'
+import { captureException } from '@sentry/nextjs'
+import { useEffect } from 'react'
+import { twMerge } from 'tailwind-merge'
+import Confirmation from './carbone/getResultsByEmail/Confirmation'
+
+export default function SaveResultsAndSigninSignUpForm({
+  className,
+}: {
+  className?: string
+}) {
+  const { t } = useClientTranslation()
+  const { updateEmail } = useUser()
+
+  const currentSimulation = useCurrentSimulation()
+
+  const { saveSimulation, isPending, isSuccess, error } = useSaveSimulation()
+
+  const onSubmit = (data: { email: string; code: string }) => {
+    // If the mutation is pending, we do nothing
+    if (isPending) {
+      return
+    }
+
+    const formattedEmail = formatEmail(data.email)
+
+    updateEmail(formattedEmail)
+
+    try {
+      // Handles saving both completing the user signin / signup and saving the simulation
+      saveSimulation({
+        simulation: {
+          ...currentSimulation,
+          savedViaEmail: true,
+        },
+        sendEmail: true,
+        email: formattedEmail,
+        code: data.code,
+      })
+    } catch (error) {
+      captureException(error)
+    }
+  }
+
+  useEffect(() => {
+    if (isSuccess && !currentSimulation.savedViaEmail) {
+      // We update the simulation to signify that it has been saved (and not show the form anymore)
+      currentSimulation.update({ savedViaEmail: true })
+    }
+  }, [isSuccess, currentSimulation])
+
+  // If we successfully saved the simulation, we display the confirmation message
+  // or if the simulation is already saved
+  if (isSuccess || currentSimulation?.savedViaEmail) {
+    return <Confirmation className={className} />
+  }
+
+  return (
+    <div id="email-block" className="mt-6 mb-6">
+      <Card
+        className={twMerge(
+          'bg-primary-50 flex flex-col items-start gap-2 rounded-xl border-none px-4 pt-6 pb-4 shadow-none md:flex-row md:gap-8 md:py-6',
+          className
+        )}>
+        <div className="flex-1">
+          <Title
+            className="text-lg font-bold"
+            title={t(
+              'fin.getResultsOnUserProfile.title',
+              'Retrouvez vos résultats à tout moment sur votre espace personnel'
+            )}
+          />
+          <SigninSignUpForm
+            buttonLabel={
+              <span>
+                <span className="text-lg" aria-hidden>
+                  →
+                </span>{' '}
+                <Trans i18nKey="fin.getResultsOnUserProfile.buttonLabel">
+                  Sauvegarder mes résultats
+                </Trans>
+              </span>
+            }
+            inputLabel={
+              <p className="mb-0 font-normal">
+                <Trans>Laissez votre email pour</Trans>{' '}
+                <strong>
+                  <Trans>sauvegarder</Trans>
+                </strong>{' '}
+                <Trans>et</Trans>{' '}
+                <strong>
+                  <Trans>retrouver vos résultats :</Trans>
+                </strong>
+              </p>
+            }
+            onVerificationSuccessOverride={onSubmit}
+            verificationOverrideError={error?.message ?? undefined}
+            redirectURL={`${MON_ESPACE_PATH}?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true`}
+          />
+        </div>
+        <img
+          className="mx-auto w-48 md:mx-0 md:-mt-16 md:w-80"
+          src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_3373a344b0.svg"
+          alt=""
+        />
+      </Card>
+    </div>
+  )
+}
