@@ -1,43 +1,42 @@
-'use client'
-
-import Trans from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransServer'
 import {
-  captureClickHeaderMonEspaceAuthenticated,
-  captureClickHeaderMonEspaceUnauthenticated,
-  headerClickMonEspaceAuthenticated,
-  headerClickMonEspaceUnauthenticated,
+  captureClickHeaderMonEspaceAuthenticatedServer,
+  captureClickHeaderMonEspaceUnauthenticatedServer,
+  headerClickMonEspaceAuthenticatedServer,
+  headerClickMonEspaceUnauthenticatedServer,
 } from '@/constants/tracking/user-account'
 import { CONNEXION_PATH, MON_ESPACE_PATH } from '@/constants/urls/paths'
-import ButtonLink from '@/design-system/buttons/ButtonLink'
 import ButtonLinkServer from '@/design-system/buttons/ButtonLinkServer'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { getLocale } from '@/helpers/language/getLocale'
 import type { AuthenticatedUser } from '@/types/authentication'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 
 const MAX_EMAIL_LENGTH = 20
 
-export default function MySpaceButton({
+export default async function MySpaceButton({
   authenticatedUser,
 }: {
   authenticatedUser?: AuthenticatedUser
 }) {
-  const { t } = useClientTranslation()
+  const locale = await getLocale()
+
+  const { t } = await getServerTranslation({ locale })
 
   if (authenticatedUser) {
     return (
-      <ButtonLink
+      <ButtonLinkServer
         size="sm"
         color="secondary"
         href={MON_ESPACE_PATH}
         className="inline-block"
-        onClick={() => {
-          trackEvent(headerClickMonEspaceAuthenticated)
-          trackPosthogEvent(captureClickHeaderMonEspaceAuthenticated)
-        }}
+        data-track-event={headerClickMonEspaceAuthenticatedServer}
+        data-track-posthog={captureClickHeaderMonEspaceAuthenticatedServer}
         title={t('header.monEspace.titleEmail', 'Mon Espace ({{email}})', {
           email: authenticatedUser.email,
         })}>
-        <Trans i18nKey="header.monEspace.title">Mon Espace</Trans>{' '}
+        <Trans locale={locale} i18nKey="header.monEspace.title">
+          Mon Espace
+        </Trans>{' '}
         <span>
           (
           {authenticatedUser.email.length > MAX_EMAIL_LENGTH
@@ -45,7 +44,7 @@ export default function MySpaceButton({
             : authenticatedUser.email}
           )
         </span>
-      </ButtonLink>
+      </ButtonLinkServer>
     )
   }
 
@@ -53,11 +52,11 @@ export default function MySpaceButton({
     <ButtonLinkServer
       color="secondary"
       href={CONNEXION_PATH}
-      onClick={() => {
-        trackEvent(headerClickMonEspaceUnauthenticated)
-        trackPosthogEvent(captureClickHeaderMonEspaceUnauthenticated)
-      }}>
-      <Trans i18nKey="header.monEspace.title">Mon Espace</Trans>
+      data-track-event={headerClickMonEspaceUnauthenticatedServer}
+      data-track-posthog={captureClickHeaderMonEspaceUnauthenticatedServer}>
+      <Trans locale={locale} i18nKey="header.monEspace.title">
+        Mon Espace
+      </Trans>
     </ButtonLinkServer>
   )
 }
