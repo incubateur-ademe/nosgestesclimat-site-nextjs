@@ -14,7 +14,7 @@ type Props = {
   mode?: AuthenticationMode
   redirectURL?: string
   onComplete?: (email: string) => void
-  defaultEmail: string
+  defaultEmail?: string
 }
 
 export default function SignInOrSignUpForm({
@@ -27,7 +27,9 @@ export default function SignInOrSignUpForm({
 }: Props) {
   const { user } = useUser()
 
-  const [email, setEmail] = useState<string | undefined>(defaultEmail)
+  const [email, setEmail] = useState<string | undefined>(
+    defaultEmail ?? user?.email ?? ''
+  )
 
   const {
     mutateAsync: login,
