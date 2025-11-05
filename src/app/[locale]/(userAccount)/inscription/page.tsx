@@ -4,14 +4,12 @@ import SigninSignUpForm from '@/components/signIn/SigninSignUpForm'
 import SigninSignupTabs from '@/components/signIn/SigninSignupTabs'
 import Trans from '@/components/translation/trans/TransServer'
 import { SIGNUP_MODE } from '@/constants/authentication/modes'
-import { STORAGE_KEY } from '@/constants/storage'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
 import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthenticated'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
-import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
 import { redirect } from 'next/navigation'
 import QueryClientProviderWrapper from '../../_components/mainLayoutProviders/QueryClientProviderWrapper'
 
@@ -45,9 +43,7 @@ export default async function Connexion({ params }: DefaultPageProps) {
           />
 
           <QueryClientProviderWrapper>
-            <UserProvider
-              storageKey={STORAGE_KEY}
-              migrationInstructions={migrationInstructions}>
+            <UserProvider>
               <SigninSignUpForm
                 mode="signUp"
                 buttonLabel={t('signup.button.label', "M'inscrire")}

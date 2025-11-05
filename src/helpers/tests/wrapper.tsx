@@ -7,7 +7,6 @@ import ErrorBoundary from '@/components/error/ErrorBoundary'
 import EngineProviders from '@/components/providers/EngineProviders'
 import PRNumberHook from '@/components/providers/simulationProviders/PRNumberHook'
 import SimulationSyncProvider from '@/components/providers/simulationProviders/SimulationSyncProvider'
-import { STORAGE_KEY } from '@/constants/storage'
 import { PartnerProvider } from '@/contexts/partner/PartnerContext'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import UserProvider from '@/publicodes-state/providers/userProvider/provider'
@@ -15,7 +14,6 @@ import type { Simulation } from '@/publicodes-state/types'
 import { faker } from '@faker-js/faker'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json'
-import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
 import '@testing-library/jest-dom'
 import type { RenderOptions } from '@testing-library/react'
 import { render } from '@testing-library/react'
@@ -141,13 +139,7 @@ const TestWrapper = ({
   }
 
   if (providers.user) {
-    wrapped = (
-      <UserProvider
-        storageKey={STORAGE_KEY}
-        migrationInstructions={migrationInstructions}>
-        {wrapped}
-      </UserProvider>
-    )
+    wrapped = <UserProvider>{wrapped}</UserProvider>
   }
 
   if (providers.queryClient) {
