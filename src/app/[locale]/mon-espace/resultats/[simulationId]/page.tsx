@@ -1,0 +1,49 @@
+import ContentLarge from '@/components/layout/ContentLarge'
+import { CONNEXION_PATH, NOT_FOUND_PATH } from '@/constants/urls/paths'
+import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
+import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthenticated'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { fetchSimulation } from '@/helpers/simulation/fetchSimulation'
+import type { DefaultPageProps } from '@/types'
+import { redirect } from 'next/navigation'
+
+export default async function DetailledResultsPage({
+  params,
+}: DefaultPageProps<{ params: { locale: string; simulationId: string } }>) {
+  const { simulationId, locale } = await params
+
+  const { t } = await getServerTranslation({ locale })
+
+  const authenticatedUser = await getIsUserAuthenticated()
+
+  if (!authenticatedUser) {
+    redirect(CONNEXION_PATH)
+  }
+
+  const simulation = await fetchSimulation({
+    simulationId,
+    userId: authenticatedUser.id,
+  })
+
+  if (!simulation) {
+    redirect(NOT_FOUND_PATH)
+  }
+
+  return (
+    <ContentLarge>
+      <Breadcrumbs
+        items={[
+          {
+            href: '/mon-espace',
+            label: t('mon-espace.resultsDetail.title', 'Mes résultats'),
+          },
+          {
+            href: '/mon-espace/resultats/123',
+            label: t('mon-espace.resultsDetail.title', 'Détail des résultats'),
+            isActive: true,
+          },
+        ]}
+      />
+    </ContentLarge>
+  )
+}
