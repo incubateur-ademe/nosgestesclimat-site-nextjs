@@ -40,7 +40,7 @@ export default async function MySpaceButton({
         <span>
           (
           {authenticatedUser.email.length > MAX_EMAIL_LENGTH
-            ? `${authenticatedUser.email.substring(0, MAX_EMAIL_LENGTH)}...`
+            ? `${authenticatedUser.email.substring(0, MAX_EMAIL_LENGTH)}…`
             : authenticatedUser.email}
           )
         </span>
