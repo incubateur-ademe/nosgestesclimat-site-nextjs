@@ -31,6 +31,7 @@ type Props = {
   mode?: AuthenticationMode
   emailDefaultValue?: string
   inputLabel?: ReactNode | string
+  onEmailChange?: (email: string) => void
 }
 
 type FormData = {
@@ -42,6 +43,7 @@ export default function EmailSigninOrSignupForm({
   mode,
   emailDefaultValue,
   inputLabel,
+  onEmailChange,
 }: Props) {
   const { t } = useClientTranslation()
 
@@ -88,19 +90,20 @@ export default function EmailSigninOrSignupForm({
         mode,
       })
 
-      // Reset the organisation local state
+      // TODO : refacto email logic, duplicate email for user and organisation
       updateUserOrganisation({
         administratorEmail: email,
         slug: '',
         name: '',
       })
-
-      // We update the expiration date of the code
-      updateVerificationCodeExpirationDate(expirationDate)
-
       if (!user.email) {
         updateEmail(email)
       }
+
+      onEmailChange?.(email)
+
+      // We update the expiration date of the code
+      updateVerificationCodeExpirationDate(expirationDate)
     } catch (error) {
       console.log(error)
       // Error is handled by the useCreateVerificationCode hook

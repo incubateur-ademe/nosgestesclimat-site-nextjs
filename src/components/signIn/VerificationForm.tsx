@@ -1,7 +1,6 @@
 import { SIGNUP_MODE } from '@/constants/authentication/modes'
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { reconcileOnAuth } from '@/helpers/user/reconcileOnAuth'
-import useFetchOrganisations from '@/hooks/organisations/useFetchOrganisations'
 import useTimeLeft from '@/hooks/organisations/useTimeleft'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCreateVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
@@ -11,11 +10,12 @@ import { captureException } from '@sentry/nextjs'
 import type { UseMutateAsyncFunction } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import NotReceived from './verificationForm/NotReceived'
 import VerificationContent from './verificationForm/VerificationContent'
 
 type Props = {
+  email: string
   login: UseMutateAsyncFunction<
     any,
     Error,
@@ -29,32 +29,19 @@ type Props = {
   isSuccessValidate: boolean
   redirectURL?: string
   mode?: AuthenticationMode
-  onVerificationSuccessOverride?: (data: {
-    email: string
-    code: string
-  }) => void
-  verificationOverrideError?: string
+  onComplete?: (email: string) => void
 }
 
 export default function VerificationForm({
+  email,
   login,
   isPendingValidate,
   isSuccessValidate,
   redirectURL,
   mode,
-  onVerificationSuccessOverride,
-  verificationOverrideError,
+  onComplete,
 }: Props) {
-  const {
-    updateVerificationCodeExpirationDate,
-    user,
-    updateUserOrganisation,
-    updateEmail,
-  } = useUser()
-
-  const [email, setEmail] = useState<string | undefined>(
-    user.organisation?.administratorEmail
-  )
+  const { updateVerificationCodeExpirationDate, user, updateEmail } = useUser()
 
   const [inputError, setInputError] = useState<string | undefined>()
 
@@ -63,8 +50,6 @@ export default function VerificationForm({
   const { t } = useClientTranslation()
 
   const router = useRouter()
-
-  const timeoutRef = useRef<NodeJS.Timeout>(undefined)
 
   // Reset the verification code expiration date if the user is logged in
   // and the verification code expiration date is in the past
@@ -86,13 +71,7 @@ export default function VerificationForm({
     isPending: isPendingResend,
   } = useCreateVerificationCode()
 
-  const { refetch: fetchOrganisations } = useFetchOrganisations({
-    enabled: false,
-  })
-
   function sendVerificationCode(email: string) {
-    setEmail(email)
-
     return createVerificationCode({
       email,
       userId: user.userId,
@@ -107,19 +86,14 @@ export default function VerificationForm({
     }
 
     try {
-      // If onVerificationSuccessOverride is provided, bypass the default flow
-      if (onVerificationSuccessOverride) {
-        onVerificationSuccessOverride({ email, code })
-
-        return
-      }
-
       const loginResponse = await login({
         email,
         code,
       })
 
       updateEmail(email)
+
+      onComplete?.(email)
 
       // We want to bypass the organisation creation process if a redirect URL is provided
       if (redirectURL) {
@@ -137,45 +111,12 @@ export default function VerificationForm({
         )
         return
       }
-
-      // Otherwise, we fetch the organisations
-      const { data: organisations } = await fetchOrganisations()
-
-      // I don´t understand why refetch returns undefined
-      const [organisation] = organisations!
-
-      timeoutRef.current = setTimeout(() => {
-        if (!organisation) {
-          // Reset the verification code expiration date
-          updateVerificationCodeExpirationDate(undefined)
-          router.push('/organisations/creer')
-          return
-        }
-
-        updateUserOrganisation({
-          name: organisation.name,
-          slug: organisation.slug,
-        })
-
-        router.push(`/organisations/${organisation.slug}`)
-
-        // Reset the verification code expiration date
-        updateVerificationCodeExpirationDate(undefined)
-      }, 1000)
     } catch (err) {
       setInputError(t('Le code est invalide'))
       captureException(err)
       return
     }
   }
-
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
-      }
-    }
-  }, [])
 
   const isRetryButtonDisabled =
     isPendingValidate || isSuccessValidate || isPendingResend || timeLeft > 0
@@ -185,7 +126,7 @@ export default function VerificationForm({
       <div>
         <VerificationContent
           email={user?.organisation?.administratorEmail ?? ''}
-          inputError={inputError || verificationOverrideError}
+          inputError={inputError}
           isSuccessValidate={isSuccessValidate}
           isPendingValidate={isPendingValidate}
           handleValidateVerificationCode={handleValidateVerificationCode}

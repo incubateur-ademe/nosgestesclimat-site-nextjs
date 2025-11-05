@@ -4,7 +4,7 @@ import useLogin from '@/hooks/authentication/useLogin'
 import { useUser } from '@/publicodes-state'
 import type { AuthenticationMode } from '@/types/authentication'
 import dayjs from 'dayjs'
-import type { ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import EmailSigninForm from './EmailSigninForm'
 import VerificationForm from './VerificationForm'
 
@@ -13,11 +13,8 @@ type Props = {
   inputLabel?: ReactNode | string
   mode?: AuthenticationMode
   redirectURL?: string
-  onVerificationSuccessOverride?: (data: {
-    email: string
-    code: string
-  }) => void
-  verificationOverrideError?: string
+  onComplete?: (email: string) => void
+  defaultEmail: string
 }
 
 export default function SigninSignUpForm({
@@ -25,10 +22,12 @@ export default function SigninSignUpForm({
   inputLabel,
   mode,
   redirectURL,
-  onVerificationSuccessOverride,
-  verificationOverrideError,
+  onComplete,
+  defaultEmail,
 }: Props) {
   const { user } = useUser()
+
+  const [email, setEmail] = useState<string | undefined>(defaultEmail)
 
   const {
     mutateAsync: login,
@@ -48,13 +47,13 @@ export default function SigninSignUpForm({
   if (hasSavedValidVerificationCodeExpirationDate || isSuccessValidate) {
     return (
       <VerificationForm
+        email={email ?? ''}
         login={login}
         isPendingValidate={isPendingValidate}
         isSuccessValidate={isSuccessValidate}
         redirectURL={redirectURL}
         mode={mode}
-        onVerificationSuccessOverride={onVerificationSuccessOverride}
-        verificationOverrideError={verificationOverrideError}
+        onComplete={onComplete}
       />
     )
   }
@@ -69,6 +68,7 @@ export default function SigninSignUpForm({
       buttonLabel={buttonLabel}
       mode={mode}
       inputLabel={inputLabel}
+      onEmailChange={setEmail}
     />
   )
 }

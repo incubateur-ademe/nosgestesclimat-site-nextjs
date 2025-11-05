@@ -1,12 +1,14 @@
 'use client'
 
+import SigninSignUpForm from '@/components/signIn/SigninSignUpForm'
 import Trans from '@/components/translation/trans/TransClient'
 import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Separator from '@/design-system/layout/Separator'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
+import useFetchOrganisations from '@/hooks/organisations/useFetchOrganisations'
+import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import EmailSection from './_components/EmailSection'
 
 export default function Page() {
   const router = useRouter()
@@ -19,6 +21,13 @@ export default function Page() {
     data: organisation,
     isLoading,
   } = useFetchOrganisation()
+
+  const { refetch: fetchOrganisations } = useFetchOrganisations({
+    enabled: false,
+  })
+
+  const { updateVerificationCodeExpirationDate, user, updateUserOrganisation } =
+    useUser()
 
   // Redirect to the organisation page if the user
   // is already logged in (has a valid cookie stored)
@@ -34,6 +43,31 @@ export default function Page() {
       document.cookie = 'ngcjwt' + '=; Max-Age=0'
     }
   }, [isError])
+
+  const onSignInSignUpComplete = async () => {
+    // Otherwise, we fetch the organisations
+    const { data: organisations } = await fetchOrganisations()
+
+    // I don´t understand why refetch returns undefined
+    const [organisation] = organisations!
+
+    if (!organisation) {
+      // Reset the verification code expiration date
+      updateVerificationCodeExpirationDate(undefined)
+      router.push('/organisations/creer')
+      return
+    }
+
+    updateUserOrganisation({
+      name: organisation.name,
+      slug: organisation.slug,
+    })
+
+    router.push(`/organisations/${organisation.slug}`)
+
+    // Reset the verification code expiration date
+    updateVerificationCodeExpirationDate(undefined)
+  }
 
   return (
     <section className="w-full bg-[#fff]">
@@ -52,7 +86,12 @@ export default function Page() {
 
         {!isLoading && !organisation && (
           <div className="max-w-full md:w-[40rem]">
-            <EmailSection />
+            <SigninSignUpForm
+              defaultEmail={
+                user?.organisation?.administratorEmail ?? user?.email ?? ''
+              }
+              onComplete={onSignInSignUpComplete}
+            />
           </div>
         )}
       </div>

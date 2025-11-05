@@ -21,19 +21,22 @@ export default function SaveResultsAndSigninSignUpForm({
   className?: string
 }) {
   const { t } = useClientTranslation()
-  const { updateEmail } = useUser()
+  const {
+    updateEmail,
+    user: { email },
+  } = useUser()
 
   const currentSimulation = useCurrentSimulation()
 
   const { saveSimulation, isPending, isSuccess, error } = useSaveSimulation()
 
-  const onSubmit = (data: { email: string; code: string }) => {
+  const onSubmit = (email: string) => {
     // If the mutation is pending, we do nothing
     if (isPending) {
       return
     }
 
-    const formattedEmail = formatEmail(data.email)
+    const formattedEmail = formatEmail(email)
 
     updateEmail(formattedEmail)
 
@@ -45,8 +48,6 @@ export default function SaveResultsAndSigninSignUpForm({
           savedViaEmail: true,
         },
         sendEmail: true,
-        email: formattedEmail,
-        code: data.code,
       })
     } catch (error) {
       captureException(error)
@@ -104,9 +105,9 @@ export default function SaveResultsAndSigninSignUpForm({
                 </strong>
               </p>
             }
-            onVerificationSuccessOverride={onSubmit}
-            verificationOverrideError={error?.message ?? undefined}
+            onComplete={onSubmit}
             redirectURL={`${MON_ESPACE_PATH}?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true`}
+            defaultEmail={email ?? ''}
           />
         </div>
         <img
