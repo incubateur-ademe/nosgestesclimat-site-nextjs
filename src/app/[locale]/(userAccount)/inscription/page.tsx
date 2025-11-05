@@ -1,6 +1,6 @@
 import ContentLarge from '@/components/layout/ContentLarge'
 import ColourBlock from '@/components/signIn/ColourBlock'
-import SigninSignUpForm from '@/components/signIn/SigninSignUpForm'
+import SigninSignUpForm from '@/components/signIn/SignInOrSignUpForm'
 import SigninSignupTabs from '@/components/signIn/SigninSignupTabs'
 import Trans from '@/components/translation/trans/TransServer'
 import { SIGNUP_MODE } from '@/constants/authentication/modes'

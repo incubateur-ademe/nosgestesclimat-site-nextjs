@@ -1,6 +1,6 @@
 'use client'
 
-import SigninSignUpForm from '@/components/signIn/SigninSignUpForm'
+import SignInOrSignUpForm from '@/components/signIn/SignInOrSignUpForm'
 import Trans from '@/components/translation/trans/TransClient'
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
@@ -82,7 +82,7 @@ export default function SaveResultsAndSigninSignUpForm({
               'Retrouvez vos résultats à tout moment sur votre espace personnel'
             )}
           />
-          <SigninSignUpForm
+          <SignInOrSignUpForm
             buttonLabel={
               <span>
                 <span className="text-lg" aria-hidden>

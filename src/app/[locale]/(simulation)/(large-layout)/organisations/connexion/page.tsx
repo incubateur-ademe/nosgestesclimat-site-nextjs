@@ -1,6 +1,6 @@
 'use client'
 
-import SigninSignUpForm from '@/components/signIn/SigninSignUpForm'
+import SigninSignUpForm from '@/components/signIn/SignInOrSignUpForm'
 import Trans from '@/components/translation/trans/TransClient'
 import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Separator from '@/design-system/layout/Separator'

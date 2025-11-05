@@ -5,7 +5,7 @@ import { useUser } from '@/publicodes-state'
 import type { AuthenticationMode } from '@/types/authentication'
 import dayjs from 'dayjs'
 import { useState, type ReactNode } from 'react'
-import EmailSigninForm from './EmailSigninForm'
+import EmailSignInOrSignUpForm from './EmailSignInOrSignUpForm'
 import VerificationForm from './VerificationForm'
 
 type Props = {
@@ -17,7 +17,7 @@ type Props = {
   defaultEmail: string
 }
 
-export default function SigninSignUpForm({
+export default function SignInOrSignUpForm({
   buttonLabel,
   inputLabel,
   mode,
@@ -59,7 +59,7 @@ export default function SigninSignUpForm({
   }
 
   return (
-    <EmailSigninForm
+    <EmailSignInOrSignUpForm
       emailDefaultValue={
         mode !== undefined
           ? user?.email
