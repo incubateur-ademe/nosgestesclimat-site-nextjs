@@ -1,5 +1,6 @@
 'use client'
 
+import Confirmation from '@/components/results/carbone/getResultsByEmail/Confirmation'
 import SignInOrSignUpForm from '@/components/signIn/SignInOrSignUpForm'
 import Trans from '@/components/translation/trans/TransClient'
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
@@ -13,7 +14,6 @@ import { formatEmail } from '@/utils/format/formatEmail'
 import { captureException } from '@sentry/nextjs'
 import { useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
-import Confirmation from './carbone/getResultsByEmail/Confirmation'
 
 export default function SaveResultsAndSigninSignUpForm({
   className,

@@ -54,7 +54,7 @@ export default function MetricCard({
   return (
     <div
       className={twMerge(
-        'border-primary-100 pointer-events-auto relative flex-1 rounded-xl rounded-b-xl border-[3px] bg-white',
+        'border-primary-100 pointer-events-auto relative flex-1 rounded-xl rounded-b-xl border bg-white',
         isSelected
           ? 'border-primary-700 bg-white'
           : 'border-slate-500 bg-slate-100',
@@ -62,15 +62,14 @@ export default function MetricCard({
         metric === carboneMetric
           ? 'rounded-none rounded-l-xl'
           : 'rounded-none rounded-r-xl',
-        isStatic && 'border-primary-200 pointer-events-none border bg-white'
+        isStatic && 'pointer-events-none border-slate-600 bg-white'
       )}>
       <div
         id={headerId}
         className={twMerge(
           'border-primary-200 absolute top-0 right-0 left-0 mx-1 border-b py-1 text-center text-xs',
           isSelected && 'bg-primary-700 mx-0 text-white',
-          metric === carboneMetric ? 'rounded-tl-lg' : 'rounded-tr-lg',
-          isSticky && 'rounded-none'
+          metric === carboneMetric ? 'rounded-tl-lg' : 'rounded-tr-lg'
         )}>
         {metricTitle.mobile}
       </div>
