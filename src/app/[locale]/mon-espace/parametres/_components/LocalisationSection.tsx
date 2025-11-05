@@ -1,4 +1,4 @@
-import Localisation from '@/app/[locale]/(simulation)/(large-layout)/profil/_components/Localisation'
+import Localisation from '@/app/[locale]/mon-espace/parametres/_components/Localisation'
 import { UserProvider } from '@/publicodes-state'
 
 export default function LocalisationSection() {
