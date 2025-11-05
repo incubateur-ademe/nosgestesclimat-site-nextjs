@@ -1397,7 +1397,7 @@ entries:
   mon-espace.latestResults.date: Test effectué le
   mon-espace.latestResults.title: Derniers résultats d'empreinte
   mon-espace.latestResults.viewDetail: Voir le détail
-  mon-espace.resultsList.result.title: 'Résultats du {{date}} :'
+  mon-espace.resultsList.result.title: 'Le {{date}} :'
   mon-espace.resultsList.result.unit: CO₂e / an
   mon-espace.resultsList.result.viewDetail: Voir le détail
   mon-espace.resultsList.title: Tous mes résultats
@@ -1459,3 +1459,39 @@ entries:
   common.metric.choice: Choix de la métrique
   header.monEspace.title: Mon Espace
   header.monEspace.titleEmail: Mon Espace ({{email}})
+  <0>2 tonnes</0> en 2050 ?: <0>2 tonnes</0> en 2050 ?
+  <0>Eau, climat,</0> même combat ?: <0>Eau, climat,</0> même combat ?
+  <0>Hérissons</0> en danger ?: <0>Hérissons</0> en danger ?
+  <0>L'empreinte eau,</0> c'est quoi ?: <0>L'empreinte eau,</0> c'est quoi ?
+  <0>La majeure partie de l'empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombre de nos vêtements.: <0>La majeure partie de l'empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombre de nos vêtements.
+  "attention : l'eau domestique (par exemple l'eau de vos douches) ne fait pas partie de l'empreinte eau": "attention : l'eau domestique (par exemple l'eau de vos douches) ne fait pas partie de l'empreinte eau"
+  Bien joué 👏: Bien joué 👏
+  C'est l'objectif à atteindre pour espérer limiter le réchauffement climatique à 2 degrés.: C'est l'objectif à atteindre pour espérer limiter le réchauffement climatique à 2 degrés.
+  "Comme le climat, <2>le cycle de l'eau est fortement impacté partout dans le monde</2>: accès à l'eau potable, disparition et migration d'espèces (animales et végétales), déplacement de populations.": "Comme le climat, <2>le cycle de l'eau est fortement impacté partout dans le monde</2>: accès à l'eau potable, disparition et migration d'espèces (animales et végétales), déplacement de populations."
+  Comment <1>agir</1> ?: Comment <1>agir</1> ?
+  Comment est calculée votre empreinte ?: Comment est calculée votre empreinte ?
+  d'eau domestique par jour: d'eau domestique par jour
+  En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.
+  Est-ce que c'est <2>beaucoup ?</2>: Est-ce que c'est <2>beaucoup ?</2>
+  Est-ce que je peux y arriver tout seul ?: Est-ce que je peux y arriver tout seul ?
+  Et l'eau de <2>ma douche</2> dans tout ça ?: Et l'eau de <2>ma douche</2> dans tout ça ?
+  Il est quasiment impossible de vivre à moins de 2 tonnes dans notre société actuellement. <2>L'État, les collectivités locales, le secteur privé et les citoyens</2> devront tous contribuer pour atteindre cet objectif.: Il est quasiment impossible de vivre à moins de 2 tonnes dans notre société actuellement. <2>L'État, les collectivités locales, le secteur privé et les citoyens</2> devront tous contribuer pour atteindre cet objectif.
+  Il n'y a pas que sur votre empreinte que vous pouvez agir !: Il n'y a pas que sur votre empreinte que vous pouvez agir !
+  l'alimentation des <2>animaux</2> que vous consommez: l'alimentation des <2>animaux</2> que vous consommez
+  L'eau domestique peut avoir un <2>impact très fort</2> selon la <6>saison et la localisation.</6>: L'eau domestique peut avoir un <2>impact très fort</2> selon la <6>saison et la localisation.</6>
+  L'eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu'elle est restituée. Par exemple, l'eau de votre douche, après dépollution, est rendue aux cours d'eau de votre territoire.: L'eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu'elle est restituée. Par exemple, l'eau de votre douche, après dépollution, est rendue aux cours d'eau de votre territoire.
+  "L'empreinte eau : pourquoi et comment avons-nous travaillé…": "L'empreinte eau : pourquoi et comment avons-nous travaillé…"
+  "L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et distribuer les biens et services de votre quotidien. Par exemple il faut de l'eau pour :": "L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et distribuer les biens et services de votre quotidien. Par exemple il faut de l'eau pour :"
+  l'extraction des matériaux de vos <2>appareils numériques</2>: l'extraction des matériaux de vos <2>appareils numériques</2>
+  Les 8 manières d'améliorer l'empreinte eau de mon assiette: Les 8 manières d'améliorer l'empreinte eau de mon assiette
+  Maintenant que vous avez fait votre bilan carbone et que vous avez pris conscience de votre empreinte, vous pouvez découvrir <2>l'ensemble des gestes</2> qui vous permettront d'atteindre progressivement l'objectif de 2 tonnes.: Maintenant que vous avez fait votre bilan carbone et que vous avez pris conscience de votre empreinte, vous pouvez découvrir <2>l'ensemble des gestes</2> qui vous permettront d'atteindre progressivement l'objectif de 2 tonnes.
+  mon-espace.resultsDetail.date: Test effectué le {{date}}
+  mon-espace.resultsDetail.title: Détail des résultats
+  'Nos articles sur le sujet :': 'Nos articles sur le sujet :'
+  Notre calculateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Notre calculateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.
+  Par où commencer ?: Par où commencer ?
+  'Retrouvez nos conseils dans ces articles :': 'Retrouvez nos conseils dans ces articles :'
+  Tous ces modes d'action sont complémentaires !: Tous ces modes d'action sont complémentaires !
+  Un coup de pouce pour agir ?: Un coup de pouce pour agir ?
+  'Voici quelques idées pour vous aider à réduire votre impact :': 'Voici quelques idées pour vous aider à réduire votre impact :'
+  Votre simulation est sauvegardée !: Votre simulation est sauvegardée !

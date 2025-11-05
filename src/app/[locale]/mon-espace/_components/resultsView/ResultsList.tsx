@@ -35,10 +35,10 @@ export default async function ResultsList({ locale, simulations }: Props) {
               <li key={simulation.id}>
                 <article className="flex flex-col items-baseline gap-2 rounded-lg border border-slate-200 px-6 py-4 md:flex-row">
                   <div className="flex flex-col gap-1 md:flex-row md:items-baseline">
-                    <h1 className="mb-0 text-base font-bold md:text-lg">
+                    <h1 className="mb-0 text-base md:text-lg">
                       {t(
                         'mon-espace.resultsList.result.title',
-                        'Résultats du {{date}} :',
+                        'Le {{date}} :',
                         {
                           date: new Date(simulation.date).toLocaleDateString(
                             locale,
@@ -52,7 +52,7 @@ export default async function ResultsList({ locale, simulations }: Props) {
                       )}
                     </h1>
 
-                    <span className="mr-6 inline-block text-base md:text-lg">
+                    <span className="mr-6 inline-block text-base font-bold md:text-lg">
                       {formattedValue} {unit}{' '}
                       <Trans
                         locale={locale}

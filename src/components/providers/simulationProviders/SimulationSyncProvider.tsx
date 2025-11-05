@@ -2,6 +2,7 @@
 
 import { defaultMetric } from '@/constants/model/metric'
 import { compareTwoSimulations } from '@/helpers/simulation/compareTwoSimulations'
+import { useIsUserAuthenticated } from '@/hooks/authentication/useIsUserAuthenticated'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useCurrentSimulation, useEngine, useUser } from '@/publicodes-state'
 import { createContext, useCallback, useEffect, useMemo, useRef } from 'react'
@@ -48,6 +49,8 @@ export default function SimulationSyncProvider({
 
   const { saveSimulation, isPending } = useSaveSimulation()
 
+  const { data: authenticatedUser } = useIsUserAuthenticated()
+
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // If the simulation is unfinished, is not in a group, poll, or is not already saved via email, we do not save it
@@ -56,6 +59,11 @@ export default function SimulationSyncProvider({
 
     if (computedResults[defaultMetric].bilan === 0) {
       return false
+    }
+
+    // Auto save for authenticated users
+    if (authenticatedUser) {
+      return true
     }
 
     // Auto save for groups
@@ -75,6 +83,7 @@ export default function SimulationSyncProvider({
     savedViaEmail,
     computedResults,
     isInitialized,
+    authenticatedUser,
   ])
 
   const isSyncedWithBackend = timeoutRef.current || isPending ? false : true
