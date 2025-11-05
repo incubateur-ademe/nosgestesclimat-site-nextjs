@@ -1550,3 +1550,36 @@ entries:
   90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² on average for a household of 2.2 people.
   sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: over the last 50 years, from 23 to 40 m² per inhabitant, i.e
   'Dernière mise à jour :': 'Last update :'
+
+  landing.carbon.dailyGestures.description: 'For a more sustainable lifestyle, some actions have a <2>stronger impact than others</2>. By integrating these habits into your daily life, you can significantly <5>reduce your CO₂ emissions</5>. Examples:'
+  landing.carbon.dailyGestures.title: Actions to reduce your carbon footprint
+  landing.carbon.motivation.description: "It is urgent to reduce our greenhouse gas emissions and move toward low-carbon lifestyles. Individuals or organizations — it's time to act: <2>measuring your carbon footprint is the first step!</2>"
+  landing.carbon.motivation.items.actDaily: Act daily
+  landing.carbon.motivation.items.actDaily.description: Discover which actions have the greatest impact to reduce your carbon footprint.
+  landing.carbon.motivation.items.collectiveEngagement: Get involved collectively
+  landing.carbon.motivation.items.collectiveEngagement.description: Challenges between friends or within companies can help raise awareness and mobilize those around you.
+  landing.carbon.motivation.items.passTest: Take the test
+  landing.carbon.motivation.items.passTest.description: Evaluate your ecological footprint (carbon and water) to identify your main levers for action.
+  landing.carbon.motivation.title: Let's accelerate the ecological transition
+  landing.water.dailyGestures.description.1: Water is <2>at the heart of our lives</2> and of our daily consumption — far <6>beyond what we see at home</6>. Every day, thousands of litres of water are used to produce the food we eat, the clothes we wear, and the energy we consume.
+  landing.water.dailyGestures.description.2: 'Here are some examples of simple actions that can have a major impact on your indirect water consumption:'
+  landing.water.dailyGestures.title: Everyday actions to preserve our water resources
+  landing.water.motivation.description: With growing pressure from human activities and climate change, sustainable water management has become a <2>global challenge</2>. Whether for agriculture, industry or domestic use, this limited resource faces major threats. <5>Reducing our water consumption</5> and adopting responsible practices are therefore <9>essential to preserve resources</9> and meet global environmental challenges.
+  landing.water.motivation.items.access: Access to water
+  landing.water.motivation.items.access.description: Human activities disrupt the water cycle and compromise access to drinking water, leading to conflicts, biodiversity loss and population displacement.
+  landing.water.motivation.items.limitedRessource: Limited freshwater resources
+  landing.water.motivation.items.limitedRessource.description: Although water is abundant on Earth, only 1% is fresh and accessible for human consumption.
+  landing.water.motivation.items.pollution: Water pollution
+  landing.water.motivation.items.pollution.description: Intensive agricultural practices and industrial discharges contaminate water resources, threatening ecosystems and human health.
+  landing.water.understand.description: Better understanding <2>our impact on water resources</2> is essential to act effectively. Through a series of articles, we share practical advice, inspiring ideas, and key information to help you <6>reduce your water footprint</6>.
+  landing.water.whatDoWeMeasure.items.agriculture: The production of animal feed
+  landing.water.whatDoWeMeasure.items.digital: The extraction of materials for digital devices
+  landing.water.whatDoWeMeasure.items.electricity: The production of electricity
+  landing.water.whatDoWeMeasure.items.fruitsLegumesCereales: The cultivation of fruits, vegetables and cereals we eat
+  landing.water.whatDoWeMeasure.items.textile: The cultivation of cotton for our clothes
+  landing.water.whatDoWeMeasure.title: What is calculated in the water footprint
+  landing.carbon.understand.description: Reducing your environmental footprint effectively requires <2>understanding the causes of climate change</2>, drawing inspiration from good practices, and taking <5>action</5>.
+  landing.carbon.measure.energy: Your energy consumption
+  landing.carbon.measure.food: Your diet
+  landing.carbon.measure.modes: Your modes of transport
+  landing.carbon.measure.shopping: Your purchases
