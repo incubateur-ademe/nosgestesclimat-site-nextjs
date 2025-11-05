@@ -24,7 +24,7 @@ export default async function MonEspacePage({
   }
 
   const simulations = await fetchUserSimulations({
-    userId: authenticatedUser.userId,
+    userId: authenticatedUser.id,
   })
 
   const latestSimulation = simulations?.[0]

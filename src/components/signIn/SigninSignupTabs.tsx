@@ -10,7 +10,6 @@ import Tabs, { type TabItem } from '@/design-system/layout/Tabs'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { AuthenticationMode } from '@/types/authentication'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
-import { useRouter } from 'next/navigation'
 import Trans from '../translation/trans/TransClient'
 
 type Props = {
@@ -19,35 +18,31 @@ type Props = {
 }
 
 export default function SigninSignupTabs({ mode, className }: Props) {
-  const router = useRouter()
   const { t } = useClientTranslation()
+
   const tabItems: TabItem[] = [
     {
       id: 'connexion',
-      label: <Trans i18nKey="login.list.login.label">Connexion</Trans>,
+      label: <Trans i18nKey="login.list.login.label">Se connecter</Trans>,
       href: CONNEXION_PATH,
       isActive: mode === SIGNIN_MODE,
-      onClick: (e: React.MouseEvent) => {
-        e.preventDefault()
+      onClick: () => {
         if (mode !== SIGNIN_MODE) {
           trackEvent(tabTrackEvent('connexion'))
           trackPosthogEvent(captureClickTab({ tab: 'connexion' }))
-          router.push(CONNEXION_PATH)
         }
       },
       tab: 'connexion',
     },
     {
       id: 'inscription',
-      label: <Trans i18nKey="login.list.signin.label">Inscription</Trans>,
+      label: <Trans i18nKey="login.list.signin.label">Créer un compte</Trans>,
       href: INSCRIPTION_PATH,
       isActive: mode === SIGNUP_MODE,
-      onClick: (e: React.MouseEvent) => {
-        e.preventDefault()
+      onClick: () => {
         if (mode !== SIGNUP_MODE) {
           trackEvent(tabTrackEvent('inscription'))
           trackPosthogEvent(captureClickTab({ tab: 'inscription' }))
-          router.push(INSCRIPTION_PATH)
         }
       },
       tab: 'inscription',

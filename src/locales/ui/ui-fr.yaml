@@ -1320,8 +1320,8 @@ entries:
   login.colourBlock.highlight3.title.strong: vos défis collectifs
   login.colourBlock.login.highlight3.end: (organisations, famille, amis...)
   login.colourBlock.login.highlight3.strong2: retrouvez vos tests collectifs
-  login.list.login.label: Connexion
-  login.list.signin.label: Inscription
+  login.list.login.label: Se connecter
+  login.list.signin.label: Créer un compte
   login.login.title: Accédez à votre espace Nos Gestes Climat
   signIn.email.error.userDoesNotExist: Ah ! Nous n’avons pas d’e-mail enregistré à cette adresse. Veuillez vous inscrire pour accéder à votre espace.
   signup.button.label: M'inscrire
@@ -1456,3 +1456,6 @@ entries:
   sauvegarder: sauvegarder
   settings.newsletters.title: Inscription à nos contenus
   Supprimer mon espace: Supprimer mon espace
+  common.metric.choice: Choix de la métrique
+  header.monEspace.title: Mon Espace
+  header.monEspace.titleEmail: Mon Espace ({{email}})

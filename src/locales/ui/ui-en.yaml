@@ -1557,8 +1557,8 @@ entries:
   login.colourBlock.highlight3.title.end.lock: en cours
   login.colourBlock.highlight3.title.strong: your collective challenges
   login.colourBlock.highlight3.title.strong.lock: vos défis collectifs
-  login.list.signin.label: Registration
-  login.list.signin.label.lock: Inscription
+  login.list.signin.label: Create an account
+  login.list.signin.label.lock: Créer un compte
   signup.colourBlock.highlight2.title.middle: and
   signup.colourBlock.highlight2.title.middle.lock: et
   login.colourBlock.highlight1.title.strong: your latest results
@@ -1579,8 +1579,8 @@ entries:
   signIn.email.error.userDoesNotExist.lock: Ah ! Nous n’avons pas d’e-mail enregistré à cette adresse. Veuillez vous inscrire pour accéder à votre espace.
   signup.colourBlock.highlight3.title.middle: and
   signup.colourBlock.highlight3.title.middle.lock: et
-  login.list.login.label: Connection
-  login.list.login.label.lock: Connexion
+  login.list.login.label: Sign in
+  login.list.login.label.lock: Se connecter
   signup.colourBlock.highlight1.title.strong: your impression results
   signup.colourBlock.highlight1.title.strong.lock: vos résultats d’empreinte
   signup.colourBlock.highlight1.title.prefix: Visit
@@ -1824,3 +1824,9 @@ entries:
   mon-espace.groups.empty.title.lock: Invitez votre entourage à calculer leur empreinte
   mon-espace.groups.empty.description: Free, 100% anonymous and, above all, without judgement or comparison.
   mon-espace.groups.empty.description.lock: Gratuit, 100 % anonyme et surtout sans jugement ni comparaison.
+  header.monEspace.title: My Space
+  header.monEspace.title.lock: Mon Espace
+  common.metric.choice: Choice of metric
+  common.metric.choice.lock: Choix de la métrique
+  header.monEspace.titleEmail: My Space ({{email}})
+  header.monEspace.titleEmail.lock: Mon Espace ({{email}})
