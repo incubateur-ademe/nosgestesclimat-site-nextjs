@@ -2,7 +2,6 @@
 
 import { actionsClickYes } from '@/constants/tracking/pages/actions'
 import Modal from '@/design-system/modals/Modal'
-import { getIsCustomAction } from '@/helpers/actions/getIsCustomAction'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import {
   FormProvider,
@@ -16,7 +15,6 @@ import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import ActionCard from './ActionCard'
 import ActionForm from './ActionForm'
-import CustomActionForm from './actionList/CustomActionForm'
 
 type Props = {
   actions: (Action & { isIrrelevant: boolean; value?: number })[]
@@ -45,8 +43,6 @@ export default function ActionList({
   const { toggleActionChoice } = useUser()
 
   const { actionChoices } = useCurrentSimulation()
-
-  const isFocusedActionCustom = getIsCustomAction(actionWithFormOpen)
 
   const { t } = useClientTranslation()
 
@@ -125,7 +121,7 @@ export default function ActionList({
             <li className="relative m-2 w-[12rem]">
               {cardComponent}
 
-              {isActionFocused && !isFocusedActionCustom && (
+              {isActionFocused && (
                 <Modal
                   isOpen
                   ariaLabel={t(
@@ -155,26 +151,6 @@ export default function ActionList({
                         }
                       />
                     </FormProvider>
-                  </div>
-                </Modal>
-              )}
-
-              {isActionFocused && isFocusedActionCustom && (
-                <Modal
-                  isOpen
-                  ariaLabel={t(
-                    'actions.form.custom.modal.ariaLabel',
-                    "Fenêtre modale du formulaire d'action personnalisée"
-                  )}
-                  closeModal={() => setActionWithFormOpen('')}
-                  hasAbortButton={false}
-                  hasAbortCross>
-                  <div className="w-full max-w-[40rem]">
-                    <CustomActionForm
-                      key={`${action.dottedName}-custom-form`}
-                      dottedName={action.dottedName}
-                      setActionWithFormOpen={setActionWithFormOpen}
-                    />
                   </div>
                 </Modal>
               )}
