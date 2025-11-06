@@ -22,6 +22,11 @@ vi.mock('next/navigation', () => ({
   usePathname: vi.fn(() => ''),
 }))
 
+vi.mock('@/components/layout/HeaderServer', () => ({
+  __esModule: true,
+  default: vi.fn(() => null),
+}))
+
 vi.mock('../_components/NewsletterSuccessMessage', () => ({
   __esModule: true,
   default: vi.fn(() => null),
