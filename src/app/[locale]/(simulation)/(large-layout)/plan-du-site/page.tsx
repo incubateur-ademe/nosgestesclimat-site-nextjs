@@ -1,6 +1,10 @@
 import Trans from '@/components/translation/trans/TransServer'
-import { linkToGroupCreation } from '@/constants/group'
-import { SIMULATOR_PATH } from '@/constants/urls/paths'
+import {
+  CONNEXION_PATH,
+  INSCRIPTION_PATH,
+  MON_ESPACE_PATH,
+  SIMULATOR_PATH,
+} from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
@@ -29,19 +33,25 @@ export default async function PlanDuSitePage({ params }: DefaultPageProps) {
         title: t('Le test'),
         href: SIMULATOR_PATH,
       },
-      actions: {
-        title: t('Nos actions pour réduire votre empreinte'),
-        href: '/actions',
-      },
     },
     'Comparez votre empreinte': {
       organisation: {
         title: t('Au sein de votre organisation'),
         href: '/organisations',
       },
-      amis: {
-        title: t(`Dans un groupe d'amis`),
-        href: linkToGroupCreation,
+    },
+    'Votre espace': {
+      monEspace: {
+        title: t('Mon espace'),
+        href: MON_ESPACE_PATH,
+      },
+      connexion: {
+        title: t('Se connecter'),
+        href: CONNEXION_PATH,
+      },
+      inscription: {
+        title: t('Créer un compte'),
+        href: INSCRIPTION_PATH,
       },
     },
     Informations: {
