@@ -1,13 +1,11 @@
-'use client'
-
 import ActionsIcon from '@/components/icons/ActionsIcon'
 import AmisIcon from '@/components/icons/AmisIcon'
 import BilanIcon from '@/components/icons/BilanIcon'
 import SettingsIcon from '@/components/icons/SettingsIcon'
-import Trans from '@/components/translation/trans/TransClient'
+import Trans from '@/components/translation/trans/TransServer'
 import {
-  captureClickMonEspaceTab,
-  monEspaceTabTrackEvent,
+  captureClickMonEspaceTabServer,
+  monEspaceTabTrackEventServer,
 } from '@/constants/tracking/pages/mon-espace'
 import {
   MON_ESPACE_ACTIONS_PATH,
@@ -17,21 +15,19 @@ import {
 } from '@/constants/urls/paths'
 import type { TabItem } from '@/design-system/layout/Tabs'
 import Tabs from '@/design-system/layout/Tabs'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
-import { useRouter } from 'next/navigation'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { getLocale } from '@/helpers/language/getLocale'
 import { twMerge } from 'tailwind-merge'
 
-export default function ProfileTab({
+export default async function ProfileTab({
   activePath,
   isLocked = false,
 }: {
   activePath: string
   isLocked?: boolean
 }) {
-  const router = useRouter()
-
-  const { t } = useClientTranslation()
+  const locale = await getLocale()
+  const { t } = await getServerTranslation({ locale })
 
   const tabsItems: TabItem[] = [
     {
@@ -47,21 +43,27 @@ export default function ProfileTab({
             )}
           />
           <span className="hidden md:block">
-            <Trans i18nKey="mon-espace.tabs.myResults">Mes résultats</Trans>
+            <Trans locale={locale} i18nKey="mon-espace.tabs.myResults">
+              Mes résultats
+            </Trans>
           </span>
           <span className="block text-center text-sm md:hidden">
-            <Trans i18nKey="mon-espace.tabs.results">Résultats</Trans>
+            <Trans locale={locale} i18nKey="mon-espace.tabs.results">
+              Résultats
+            </Trans>
           </span>
         </span>
       ),
       href: MON_ESPACE_PATH,
       isActive: activePath === MON_ESPACE_PATH,
-      onClick: () => {
-        if (activePath !== MON_ESPACE_PATH) {
-          trackEvent(monEspaceTabTrackEvent('results'))
-          trackPosthogEvent(captureClickMonEspaceTab({ tab: 'results' }))
-        }
-      },
+      'data-track-event':
+        activePath !== MON_ESPACE_PATH
+          ? monEspaceTabTrackEventServer('results')
+          : undefined,
+      'data-track-posthog':
+        activePath !== MON_ESPACE_PATH
+          ? captureClickMonEspaceTabServer('results')
+          : undefined,
     },
     {
       id: 'actions',
@@ -76,21 +78,27 @@ export default function ProfileTab({
             )}
           />
           <span className="hidden md:block">
-            <Trans i18nKey="mon-espace.tabs.myActions">Mes actions</Trans>
+            <Trans locale={locale} i18nKey="mon-espace.tabs.myActions">
+              Mes actions
+            </Trans>
           </span>
           <span className="block text-center text-sm md:hidden">
-            <Trans i18nKey="mon-espace.tabs.actions">Actions</Trans>
+            <Trans locale={locale} i18nKey="mon-espace.tabs.actions">
+              Actions
+            </Trans>
           </span>
         </span>
       ),
       href: MON_ESPACE_ACTIONS_PATH,
       isActive: activePath === MON_ESPACE_ACTIONS_PATH,
-      onClick: () => {
-        if (activePath !== MON_ESPACE_ACTIONS_PATH) {
-          trackEvent(monEspaceTabTrackEvent('actions'))
-          trackPosthogEvent(captureClickMonEspaceTab({ tab: 'actions' }))
-        }
-      },
+      'data-track-event':
+        activePath !== MON_ESPACE_ACTIONS_PATH
+          ? monEspaceTabTrackEventServer('actions')
+          : undefined,
+      'data-track-posthog':
+        activePath !== MON_ESPACE_ACTIONS_PATH
+          ? captureClickMonEspaceTabServer('actions')
+          : undefined,
     },
     {
       id: 'groups',
@@ -105,21 +113,27 @@ export default function ProfileTab({
             )}
           />
           <span className="hidden md:block">
-            <Trans i18nKey="mon-espace.tabs.myGroups">Mes groupes</Trans>
+            <Trans locale={locale} i18nKey="mon-espace.tabs.myGroups">
+              Mes groupes
+            </Trans>
           </span>
           <span className="block text-center text-sm md:hidden">
-            <Trans i18nKey="mon-espace.tabs.groups">Groupes</Trans>
+            <Trans locale={locale} i18nKey="mon-espace.tabs.groups">
+              Groupes
+            </Trans>
           </span>
         </span>
       ),
       href: MON_ESPACE_GROUPS_PATH,
       isActive: activePath === MON_ESPACE_GROUPS_PATH,
-      onClick: () => {
-        if (activePath !== MON_ESPACE_GROUPS_PATH) {
-          trackEvent(monEspaceTabTrackEvent('groups'))
-          trackPosthogEvent(captureClickMonEspaceTab({ tab: 'groups' }))
-        }
-      },
+      'data-track-event':
+        activePath !== MON_ESPACE_GROUPS_PATH
+          ? monEspaceTabTrackEventServer('groups')
+          : undefined,
+      'data-track-posthog':
+        activePath !== MON_ESPACE_GROUPS_PATH
+          ? captureClickMonEspaceTabServer('groups')
+          : undefined,
     },
     {
       id: 'settings',
@@ -134,18 +148,22 @@ export default function ProfileTab({
             )}
           />
           <span className="text-sm md:text-base">
-            <Trans i18nKey="mon-espace.tabs.settings">Paramètres</Trans>
+            <Trans locale={locale} i18nKey="mon-espace.tabs.settings">
+              Paramètres
+            </Trans>
           </span>
         </span>
       ),
       href: MON_ESPACE_SETTINGS_PATH,
       isActive: activePath === MON_ESPACE_SETTINGS_PATH,
-      onClick: () => {
-        if (activePath !== MON_ESPACE_SETTINGS_PATH) {
-          trackEvent(monEspaceTabTrackEvent('settings'))
-          trackPosthogEvent(captureClickMonEspaceTab({ tab: 'settings' }))
-        }
-      },
+      'data-track-event':
+        activePath !== MON_ESPACE_SETTINGS_PATH
+          ? monEspaceTabTrackEventServer('settings')
+          : undefined,
+      'data-track-posthog':
+        activePath !== MON_ESPACE_SETTINGS_PATH
+          ? captureClickMonEspaceTabServer('settings')
+          : undefined,
       containerClassName: 'md:ml-auto',
     },
   ]

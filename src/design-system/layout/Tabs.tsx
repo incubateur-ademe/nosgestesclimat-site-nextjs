@@ -7,8 +7,8 @@ export interface TabItem {
   label: ReactNode
   href: string
   isActive?: boolean
-  className?: string // Classes Tailwind pour l'onglet individuel
-  [key: string]: any // Pour permettre d'autres props comme onClick, trackingData, etc.
+  className?: string
+  [key: string]: any
 }
 
 interface TabsProps {
@@ -71,7 +71,6 @@ const TabLink = ({
       role="tab"
       href={href}
       className={twMerge(baseClasses, className)}
-      prefetch={false}
       {...otherProps}
       {...props}>
       {children}

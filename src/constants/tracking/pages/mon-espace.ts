@@ -12,6 +12,16 @@ export const captureClickMonEspaceTab = ({ tab }: { tab: MonEspaceTab }) => ({
   properties: { tab },
 })
 
+// Server-side constants formatted for data-track-event and data-track-posthog attributes
+export const monEspaceTabTrackEventServer = (tab: MonEspaceTab) =>
+  `MonEspace|Click Tab|${tab.charAt(0).toUpperCase() + tab.slice(1)}`
+
+export const captureClickMonEspaceTabServer = (tab: MonEspaceTab) =>
+  JSON.stringify({
+    eventName: 'click tab mon espace',
+    properties: { tab },
+  })
+
 export const clickJagisActionBanner = [
   'trackEvent',
   'Mon Espace - Actions',
