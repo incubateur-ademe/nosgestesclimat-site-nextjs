@@ -1,12 +1,10 @@
-import Trans from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransClient'
 import { linkToGroupCreation } from '@/constants/group'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import { getLocale } from '@/helpers/language/getLocale'
 
-export default async function EmptyState() {
-  const locale = await getLocale()
+export default function EmptyState() {
   return (
     <div className="mt-6 flex gap-8">
       <section>
@@ -14,50 +12,38 @@ export default async function EmptyState() {
           tag="h2"
           className="mb-4 text-2xl font-medium md:text-3xl"
           title={
-            <Trans locale={locale} i18nKey="mon-espace.groups.empty.title">
+            <Trans i18nKey="mon-espace.groups.empty.title">
               Invitez votre entourage à calculer leur empreinte
             </Trans>
           }
         />
         <p className="mb-6">
           <strong>
-            <Trans
-              locale={locale}
-              i18nKey="mon-espace.groups.empty.description1">
+            <Trans i18nKey="mon-espace.groups.empty.description1">
               Diffusez un lien collectif
             </Trans>
           </strong>{' '}
-          <Trans locale={locale} i18nKey="mon-espace.groups.empty.description2">
-            pour
-          </Trans>{' '}
+          <Trans i18nKey="mon-espace.groups.empty.description2">pour</Trans>{' '}
           <strong>
-            <Trans
-              locale={locale}
-              i18nKey="mon-espace.groups.empty.description3">
+            <Trans i18nKey="mon-espace.groups.empty.description3">
               faire passer le test à vos amis
             </Trans>
           </strong>{' '}
-          <Trans locale={locale} i18nKey="mon-espace.groups.empty.description4">
-            ou
-          </Trans>{' '}
+          <Trans i18nKey="mon-espace.groups.empty.description4">ou</Trans>{' '}
           <strong>
-            <Trans
-              locale={locale}
-              i18nKey="mon-espace.groups.empty.description5">
+            <Trans i18nKey="mon-espace.groups.empty.description5">
               sensibilisez les membres de votre organisation.
             </Trans>
           </strong>
         </p>
 
         <p className="text-primary-700 mb-8 font-medium">
-          <Trans locale={locale} i18nKey="mon-espace.groups.empty.description">
+          <Trans i18nKey="mon-espace.groups.empty.description">
             Gratuit, 100 % anonyme et surtout sans jugement ni comparaison.
           </Trans>
         </p>
         <ButtonLink href={linkToGroupCreation}>
-          <Trans locale={locale} i18nKey="mon-espace.groups.empty.button">
-            Commencer
-          </Trans>
+          <Trans i18nKey="mon-espace.groups.empty.button">Commencer</Trans>
         </ButtonLink>
       </section>
 
@@ -72,7 +58,7 @@ export default async function EmptyState() {
             height={40}
           />
           <div className="text-primary-700 text-center text-lg font-semibold">
-            <Trans locale={locale} i18nKey="mon-espace.groups.empty.awareness">
+            <Trans i18nKey="mon-espace.groups.empty.awareness">
               Sensibiliser mon organisation
             </Trans>
           </div>
@@ -87,7 +73,7 @@ export default async function EmptyState() {
             height={40}
           />
           <div className="text-primary-700 text-center text-lg font-semibold">
-            <Trans locale={locale} i18nKey="mon-espace.groups.empty.challenge1">
+            <Trans i18nKey="mon-espace.groups.empty.challenge1">
               Défier mes amis
             </Trans>
           </div>
@@ -102,7 +88,7 @@ export default async function EmptyState() {
             height={40}
           />
           <div className="text-primary-700 text-center text-lg font-semibold">
-            <Trans locale={locale} i18nKey="mon-espace.groups.empty.challenge2">
+            <Trans i18nKey="mon-espace.groups.empty.challenge2">
               Challenger ma famille
             </Trans>
           </div>

@@ -1,13 +1,12 @@
 import NewItemCardLink from '@/components/cta/NewItemCardLink'
 import PlusIcon from '@/components/icons/PlusIcon'
-import Trans from '@/components/translation/trans/TransServer'
+import Trans from '@/components/translation/trans/TransClient'
 import {
   baseClassNames,
   colorClassNames,
   sizeClassNames,
 } from '@/design-system/buttons/Button'
 import Title from '@/design-system/layout/Title'
-import { getLocale } from '@/helpers/language/getLocale'
 import type { Group } from '@/types/groups'
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
@@ -17,14 +16,13 @@ type Props = {
   groups: Group[]
 }
 
-export default async function Groups({ groups }: Props) {
-  const locale = await getLocale()
+export default function Groups({ groups }: Props) {
   return (
     <>
       <Title
         tag="h2"
         title={
-          <Trans locale={locale} i18nKey="mon-espace.groups.title">
+          <Trans i18nKey="mon-espace.groups.title">
             Mes groupes "Amis" et "Famille"
           </Trans>
         }
@@ -39,9 +37,7 @@ export default async function Groups({ groups }: Props) {
           href="/mon-espace/groupes/creer"
           className="hidden md:block"
           label={
-            <Trans locale={locale} i18nKey="mon-espace.groups.create">
-              Créer un groupe
-            </Trans>
+            <Trans i18nKey="mon-espace.groups.create">Créer un groupe</Trans>
           }
           color="secondary"
           imageAlt=""
@@ -60,9 +56,7 @@ export default async function Groups({ groups }: Props) {
             colorClassNames.secondary
           )}>
           <PlusIcon className="stroke-primary-700 min-w-8" />
-          <Trans locale={locale} i18nKey="mon-espace.groups.create">
-            Créer un groupe
-          </Trans>
+          <Trans i18nKey="mon-espace.groups.create">Créer un groupe</Trans>
         </Link>
       </div>
     </>

@@ -1,47 +1,14 @@
 'use client'
 
 import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
+import EmptyState from '@/app/[locale]/mon-espace/groupes/_components/EmptyState'
 import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
-import { ORGANISATION_URL } from '@/constants/urls/main'
+import Groups from '@/components/groups/Groups'
+import Organisations from '@/components/groups/Organisations'
 import { fetchUserGroups } from '@/helpers/groups/fetchUserGroups'
+import { fetchOrganisationsClient } from '@/helpers/organisations/fetchOrganisationsClient'
 import { useGetAuthentifiedUser } from '@/hooks/authentication/useGetAuthentifiedUser'
 import { useQuery } from '@tanstack/react-query'
-import dynamic from 'next/dynamic'
-
-// Dynamically import server components with no SSR
-const Groups = dynamic(() => import('@/components/groups/Groups'), {
-  ssr: false,
-})
-const Organisations = dynamic(
-  () => import('@/components/groups/Organisations'),
-  { ssr: false }
-)
-const EmptyState = dynamic(
-  () => import('@/app/[locale]/mon-espace/groupes/_components/EmptyState'),
-  { ssr: false }
-)
-
-async function fetchOrganisationsClient() {
-  try {
-    const response = await fetch(ORGANISATION_URL, {
-      credentials: 'include', // Include cookies
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch organisations')
-    }
-
-    const data = await response.json()
-
-    return { organisations: data, isError: false }
-  } catch (error) {
-    // User may not have any organisations
-    return { organisations: [], isError: false }
-  }
-}
 
 export default function GroupsTabContent() {
   const { data: authenticatedUser } = useGetAuthentifiedUser()
