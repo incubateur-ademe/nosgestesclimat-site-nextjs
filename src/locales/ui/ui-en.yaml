@@ -1868,3 +1868,13 @@ entries:
   "Comme le climat, <2>le cycle de l'eau est fortement impacté partout dans le monde</2>: accès à l'eau potable, disparition et migration d'espèces (animales et végétales), déplacement de populations.": 'Like the climate, <2>the water cycle is having a major impact throughout the world</2>: access to drinking water, disappearance and migration of species (animal and plant), displacement of populations.'
   L'eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu'elle est restituée. Par exemple, l'eau de votre douche, après dépollution, est rendue aux cours d'eau de votre territoire.: Domestic water, i.e. the water that comes out of your taps, is not included in your water footprint, as it is returned to the environment. For example, the water from your shower, once it has been treated, is returned to the watercourses in your area.
   Maintenant que vous avez fait votre bilan carbone et que vous avez pris conscience de votre empreinte, vous pouvez découvrir <2>l'ensemble des gestes</2> qui vous permettront d'atteindre progressivement l'objectif de 2 tonnes.: Now that you've done your carbon footprint and are aware of your carbon footprint, you can find out about <2>the steps</2> you can take to gradually reach the 2 tonne target.
+  mon-espace.groups.loginBlock.buttonLabel: Next
+  mon-espace.groups.loginBlock.buttonLabel.lock: Suivant
+  mon-espace.resultsDetail.breadcrumb.resultDetail: Detailed results
+  mon-espace.resultsDetail.breadcrumb.resultDetail.lock: Détail des résultats
+  Mon espace: My space
+  Se connecter: Sign in
+  mon-espace.resultsDetail.breadcrumb.results: My results
+  mon-espace.resultsDetail.breadcrumb.results.lock: Mes résultats
+  mon-espace.groups.loginBlock.title: Already a group or organisation?
+  mon-espace.groups.loginBlock.title.lock: Déjà un groupe ou une organisation ?

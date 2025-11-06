@@ -31,7 +31,7 @@ export default function SaveResultsAndSigninSignUpForm({
 
   const { saveSimulation, isPending, isSuccess } = useSaveSimulation()
 
-  const authenticatedUser = useGetAuthentifiedUser()
+  const { data: authenticatedUser } = useGetAuthentifiedUser()
 
   // If the user is authenticated, we don't show the form as all
   // simulations are automatically saved to the user's profile

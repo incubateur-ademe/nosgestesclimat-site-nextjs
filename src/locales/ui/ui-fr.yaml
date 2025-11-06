@@ -1495,3 +1495,9 @@ entries:
   Un coup de pouce pour agir ?: Un coup de pouce pour agir ?
   'Voici quelques idées pour vous aider à réduire votre impact :': 'Voici quelques idées pour vous aider à réduire votre impact :'
   Votre simulation est sauvegardée !: Votre simulation est sauvegardée !
+  Mon espace: Mon espace
+  mon-espace.groups.loginBlock.buttonLabel: Suivant
+  mon-espace.groups.loginBlock.title: Déjà un groupe ou une organisation ?
+  mon-espace.resultsDetail.breadcrumb.resultDetail: Détail des résultats
+  mon-espace.resultsDetail.breadcrumb.results: Mes résultats
+  Se connecter: Se connecter

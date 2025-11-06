@@ -37,11 +37,17 @@ export default async function DetailledResultsPage({
         items={[
           {
             href: '/mon-espace',
-            label: t('mon-espace.resultsDetail.title', 'Mes résultats'),
+            label: t(
+              'mon-espace.resultsDetail.breadcrumb.results',
+              'Mes résultats'
+            ),
           },
           {
             href: `/mon-espace/resultats/${simulationId}`,
-            label: t('mon-espace.resultsDetail.title', 'Détail des résultats'),
+            label: t(
+              'mon-espace.resultsDetail.breadcrumb.resultDetail',
+              'Détail des résultats'
+            ),
             isActive: true,
           },
         ]}

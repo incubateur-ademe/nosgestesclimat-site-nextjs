@@ -17,7 +17,7 @@ import TextInput from '@/design-system/inputs/TextInput'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
-import { useGetAuthentifiedUser } from '@/helpers/user/getIsVerified'
+import { useGetAuthentifiedUser } from '@/hooks/authentication/useGetAuthentifiedUser'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -77,7 +77,9 @@ export default function UserInformationForm({
 
   const { user, updateEmail, updateName } = useUser()
 
-  const isVerified = useGetAuthentifiedUser()
+  const { data: authenticatedUser } = useGetAuthentifiedUser()
+
+  const isAuthenticated = !!authenticatedUser
 
   const {
     register,
@@ -211,7 +213,7 @@ export default function UserInformationForm({
               </Trans>
             </h2>
 
-            {isVerified ? (
+            {isAuthenticated ? (
               <p
                 data-testid="verified-message"
                 className="text-sm text-gray-600">
@@ -243,7 +245,9 @@ export default function UserInformationForm({
                     </Trans>
                   </span>
                 }
-                disabled={!isVerified && !!getValues(SEASONAL_NEWSLETTER_LABEL)}
+                disabled={
+                  !isAuthenticated && !!getValues(SEASONAL_NEWSLETTER_LABEL)
+                }
                 {...register(SEASONAL_NEWSLETTER_LABEL)}
               />
             )}
@@ -261,7 +265,7 @@ export default function UserInformationForm({
                   </span>
                 }
                 disabled={
-                  !isVerified && !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
+                  !isAuthenticated && !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
                 }
                 {...register(TRANSPORTS_NEWSLETTER_LABEL)}
               />
@@ -279,7 +283,9 @@ export default function UserInformationForm({
                     </Trans>
                   </span>
                 }
-                disabled={!isVerified && !!getValues(LOGEMENT_NEWSLETTER_LABEL)}
+                disabled={
+                  !isAuthenticated && !!getValues(LOGEMENT_NEWSLETTER_LABEL)
+                }
                 {...register(LOGEMENT_NEWSLETTER_LABEL)}
               />
             )}

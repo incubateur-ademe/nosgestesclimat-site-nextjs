@@ -9,7 +9,7 @@ export function useGetAuthentifiedUser(): UseQueryResult<
 > {
   return useQuery({
     queryKey: ['authenticatedUser'],
-    queryFn: getAuthentifiedUser,
+    queryFn: async () => await getAuthentifiedUser(),
     retry: false,
   })
 }
