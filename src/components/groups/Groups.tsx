@@ -7,7 +7,7 @@ import {
   sizeClassNames,
 } from '@/design-system/buttons/Button'
 import Title from '@/design-system/layout/Title'
-import { useLocale } from '@/hooks/useLocale'
+import { getLocale } from '@/helpers/language/getLocale'
 import type { Group } from '@/types/groups'
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
@@ -17,8 +17,8 @@ type Props = {
   groups: Group[]
 }
 
-export default function Groups({ groups }: Props) {
-  const locale = useLocale()
+export default async function Groups({ groups }: Props) {
+  const locale = await getLocale()
   return (
     <>
       <Title
