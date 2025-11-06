@@ -40,7 +40,7 @@ export default function Navigation({
   tempValue?: number
   onComplete?: () => void
   isEmbedded?: boolean
-  remainingQuestions?: DottedName[]
+  remainingQuestions: DottedName[]
 }) {
   const { t } = useClientTranslation()
 
@@ -175,7 +175,6 @@ export default function Navigation({
 
       // Hack in order to reset the notifications when the question changes
       resetNotification()
-
       if (finalNoNextQuestion) {
         onComplete()
         return
