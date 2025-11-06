@@ -19,7 +19,7 @@ type Props = {
 }
 export function useSaveSimulation() {
   const {
-    user: { userId, name },
+    user: { userId, name, email },
   } = useUser()
   const locale = useLocale()
 
@@ -35,8 +35,6 @@ export function useSaveSimulation() {
     mutationFn: async ({
       simulation,
       sendEmail,
-      email,
-      code,
     }: Props): Promise<Simulation | undefined> => {
       // We reset the sync timer to avoid saving the simulation in the background
       resetSyncTimer()

@@ -13,7 +13,6 @@ type SaveSimulationParams = {
   userId: string
   email?: string
   name?: string
-  code?: string
   sendEmail?: true
 }
 
