@@ -34,7 +34,7 @@ export default async function ResultsList({ locale, simulations }: Props) {
             return (
               <li key={simulation.id}>
                 <article className="flex flex-col items-baseline gap-2 rounded-lg border border-slate-200 px-6 py-4 md:flex-row">
-                  <div className="flex flex-col gap-1 md:w-[400px] md:flex-row md:items-baseline">
+                  <div className="flex flex-col items-baseline gap-1 sm:flex-row md:w-[400px]">
                     <h1 className="mb-0 text-base md:text-lg">
                       {t(
                         'mon-espace.resultsList.result.title',
