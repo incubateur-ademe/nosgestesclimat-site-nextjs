@@ -1,4 +1,4 @@
-export const getIsUserVerified = () => {
+export const useGetAuthentifiedUser = () => {
   if (typeof window === 'undefined') return false
 
   // Try getting ngcjwt cookie client side

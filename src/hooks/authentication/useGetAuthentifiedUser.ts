@@ -3,7 +3,7 @@ import type { AuthenticatedUser } from '@/types/authentication.d'
 import type { UseQueryResult } from '@tanstack/react-query'
 import { useQuery } from '@tanstack/react-query'
 
-export function useIsUserAuthenticated(): UseQueryResult<
+export function useGetAuthentifiedUser(): UseQueryResult<
   AuthenticatedUser | undefined,
   Error
 > {

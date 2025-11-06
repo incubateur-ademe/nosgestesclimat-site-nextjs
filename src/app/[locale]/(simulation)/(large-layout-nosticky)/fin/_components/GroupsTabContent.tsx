@@ -4,7 +4,7 @@ import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutPro
 import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import { ORGANISATION_URL } from '@/constants/urls/main'
 import { fetchUserGroups } from '@/helpers/groups/fetchUserGroups'
-import { useIsUserAuthenticated } from '@/hooks/authentication/useIsUserAuthenticated'
+import { useGetAuthentifiedUser } from '@/hooks/authentication/useGetAuthentifiedUser'
 import { useQuery } from '@tanstack/react-query'
 import dynamic from 'next/dynamic'
 
@@ -44,7 +44,7 @@ async function fetchOrganisationsClient() {
 }
 
 export default function GroupsTabContent() {
-  const { data: authenticatedUser } = useIsUserAuthenticated()
+  const { data: authenticatedUser } = useGetAuthentifiedUser()
 
   // Fetch groups if authenticated
   const {

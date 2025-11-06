@@ -1,16 +1,16 @@
 'use client'
 
-import TopBar from '@/components/simulation/TopBar'
-import { useIsUserAuthenticated } from '@/hooks/authentication/useIsUserAuthenticated'
-import { fetchUserSimulations } from '@/helpers/user/fetchUserSimulations'
-import { useRules } from '@/hooks/useRules'
-import { EngineProvider, FormProvider, UserProvider } from '@/publicodes-state'
-import { useQuery } from '@tanstack/react-query'
+import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import ActionAutoSave from '@/app/[locale]/mon-espace/actions/_components/ActionAutoSave'
 import ActionsContent from '@/app/[locale]/mon-espace/actions/_components/ActionsContent'
 import ActionsTutorial from '@/app/[locale]/mon-espace/actions/_components/ActionsTutorial'
 import JagisActionBanner from '@/app/[locale]/mon-espace/actions/_components/JagisActionBanner'
-import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
+import TopBar from '@/components/simulation/TopBar'
+import { fetchUserSimulations } from '@/helpers/user/fetchUserSimulations'
+import { useGetAuthentifiedUser } from '@/hooks/authentication/useGetAuthentifiedUser'
+import { useRules } from '@/hooks/useRules'
+import { EngineProvider, FormProvider, UserProvider } from '@/publicodes-state'
+import { useQuery } from '@tanstack/react-query'
 import { useMemo } from 'react'
 
 function ActionsContentInner() {
@@ -26,9 +26,9 @@ function ActionsContentInner() {
 }
 
 export default function ActionsTabContent() {
-  const { data: authenticatedUser } = useIsUserAuthenticated()
+  const { data: authenticatedUser } = useGetAuthentifiedUser()
   const { data: rules } = useRules({ isOptim: true })
-  
+
   // Fetch simulations if authenticated
   const { data: userSimulations = [] } = useQuery({
     queryKey: ['userSimulations', authenticatedUser?.id],
@@ -59,9 +59,7 @@ export default function ActionsTabContent() {
   if (authenticatedUser && sortedSimulations.length > 0) {
     return (
       <div className="flex flex-col">
-        <h1 className="sr-only mb-6 text-2xl font-bold">
-          Mes actions
-        </h1>
+        <h1 className="sr-only mb-6 text-2xl font-bold">Mes actions</h1>
 
         <UserProvider
           initialSimulations={sortedSimulations}
@@ -83,9 +81,7 @@ export default function ActionsTabContent() {
   // but we still need EngineProvider and FormProvider for actions
   return (
     <div className="flex flex-col">
-      <h1 className="sr-only mb-6 text-2xl font-bold">
-        Mes actions
-      </h1>
+      <h1 className="sr-only mb-6 text-2xl font-bold">Mes actions</h1>
 
       <QueryClientProviderWrapper>
         <EngineProvider rules={rules}>
@@ -97,4 +93,3 @@ export default function ActionsTabContent() {
     </div>
   )
 }
-

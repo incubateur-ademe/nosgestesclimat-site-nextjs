@@ -2,7 +2,7 @@
 
 import { defaultMetric } from '@/constants/model/metric'
 import { compareTwoSimulations } from '@/helpers/simulation/compareTwoSimulations'
-import { useIsUserAuthenticated } from '@/hooks/authentication/useIsUserAuthenticated'
+import { useGetAuthentifiedUser } from '@/hooks/authentication/useGetAuthentifiedUser'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useCurrentSimulation, useEngine, useUser } from '@/publicodes-state'
 import { createContext, useCallback, useEffect, useMemo, useRef } from 'react'
@@ -49,7 +49,7 @@ export default function SimulationSyncProvider({
 
   const { saveSimulation, isPending } = useSaveSimulation()
 
-  const { data: authenticatedUser } = useIsUserAuthenticated()
+  const { data: authenticatedUser } = useGetAuthentifiedUser()
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 

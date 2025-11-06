@@ -1,6 +1,6 @@
 'use client'
 
-import { useIsUserAuthenticated } from '@/hooks/authentication/useIsUserAuthenticated'
+import { useGetAuthentifiedUser } from '@/hooks/authentication/useGetAuthentifiedUser'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { useEffect, useRef } from 'react'
@@ -15,7 +15,7 @@ const SAVE_DELAY = 500
 export default function ActionAutoSave() {
   const currentSimulation = useCurrentSimulation()
   const { saveSimulation } = useSaveSimulation()
-  const { data: authenticatedUser } = useIsUserAuthenticated()
+  const { data: authenticatedUser } = useGetAuthentifiedUser()
 
   // Track previous actionChoices to detect changes (using a serialized string for comparison)
   const prevActionChoicesRef = useRef<string>('')

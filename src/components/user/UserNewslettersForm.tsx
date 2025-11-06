@@ -17,7 +17,7 @@ import CheckboxInput from '@/design-system/inputs/CheckboxInput'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
-import { getIsUserVerified } from '@/helpers/user/getIsVerified'
+import { useGetAuthentifiedUser } from '@/helpers/user/getIsVerified'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -45,7 +45,7 @@ export default function UserNewslettersForm({ className }: Props) {
   const isFrench = locale === i18nConfig.defaultLocale
   const { user } = useUser()
 
-  const isVerified = getIsUserVerified()
+  const isVerified = useGetAuthentifiedUser()
 
   const { register, handleSubmit, setValue, getValues } =
     useReactHookForm<Inputs>()

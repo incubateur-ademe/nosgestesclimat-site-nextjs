@@ -17,7 +17,7 @@ import TextInput from '@/design-system/inputs/TextInput'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
-import { getIsUserVerified } from '@/helpers/user/getIsVerified'
+import { useGetAuthentifiedUser } from '@/helpers/user/getIsVerified'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -78,7 +78,7 @@ export default function UserInformationForm({
   const { user, updateEmail, updateName } = useUser()
 
   // TODO : replace this with a proper check by calling the backend
-  const isVerified = getIsUserVerified()
+  const isVerified = useGetAuthentifiedUser()
 
   const {
     register,
