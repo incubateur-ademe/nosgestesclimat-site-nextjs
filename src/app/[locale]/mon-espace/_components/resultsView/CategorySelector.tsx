@@ -27,10 +27,8 @@ export default function CategorySelector({
           Vue globale
         </Trans>
       ),
-      href: '#',
       isActive: activeTab === globalTabId,
-      onClick: (e: React.MouseEvent) => {
-        e.preventDefault()
+      onClick: () => {
         if (!disabled) setActiveTab('global')
       },
       'aria-disabled': disabled,
@@ -38,10 +36,8 @@ export default function CategorySelector({
     ...orderedCategories.map((category) => ({
       id: category,
       label: categoryLabels[category] ?? category,
-      href: '#',
       isActive: activeTab === category,
-      onClick: (e: React.MouseEvent) => {
-        e.preventDefault()
+      onClick: () => {
         if (!disabled) setActiveTab(category)
       },
       'aria-disabled': disabled,

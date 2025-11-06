@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge'
 export interface TabItem {
   id: string
   label: ReactNode
-  href: string
+  href?: string
   isActive?: boolean
   className?: string
   [key: string]: any
@@ -52,6 +52,27 @@ const TabLink = ({
     )
   }
 
+  // Si pas de href, utiliser un button
+  if (!href) {
+    return (
+      <button
+        type="button"
+        role="tab"
+        aria-selected={isActive}
+        aria-current={isActive ? 'page' : undefined}
+        className={twMerge(
+          baseClasses,
+          isActive ? activeClasses : '',
+          className
+        )}
+        {...otherProps}
+        {...props}>
+        {children}
+      </button>
+    )
+  }
+
+  // Si href présent et actif, utiliser un span
   if (isActive) {
     return (
       <span
@@ -66,6 +87,7 @@ const TabLink = ({
     )
   }
 
+  // Si href présent et non actif, utiliser un Link
   return (
     <Link
       role="tab"
