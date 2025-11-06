@@ -1,8 +1,8 @@
 import Trans from '@/components/translation/trans/TransClient'
 import Title from '@/design-system/layout/Title'
 import type { Organisation } from '@/types/organisations'
-import CreateOrganisation from './Organisations/CreateOrganisation'
-import PollsList from './Organisations/PollsList'
+import CreateOrganisation from './organisations/CreateOrganisation'
+import PollsList from './organisations/PollsList'
 
 export default function Organisations({
   organisations,

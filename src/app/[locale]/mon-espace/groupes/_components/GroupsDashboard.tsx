@@ -1,6 +1,6 @@
 import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
-import Groups from '@/components/groups/Groups'
-import Organisations from '@/components/groups/Organisations'
+import Groups from '@/components/results/groups/Groups'
+import Organisations from '@/components/results/groups/Organisations'
 import { fetchUserGroups } from '@/helpers/groups/fetchUserGroups'
 import { fetchOrganisations } from '@/helpers/organisations/fetchOrganisations'
 import EmptyState from './EmptyState'
