@@ -4,8 +4,9 @@ import {
   mapNewSimulationToOld,
   mapOldSimulationToNew,
 } from '@/helpers/simulation/mapNewSimulation'
-import type { Simulation, User } from '@/publicodes-state/types'
+import type { Simulation } from '@/publicodes-state/types'
 import { captureException } from '@sentry/nextjs'
+import { sanitizeSimulation } from './sanitizeSimulation'
 
 type SaveSimulationParams = {
   simulation: Simulation
@@ -21,24 +22,15 @@ export async function saveSimulation({
   userId,
   email,
   name,
-  code,
   sendEmail,
 }: SaveSimulationParams): Promise<Simulation | undefined> {
   const modelVersion = await getModelVersion()
 
   // Strip unrecognized keys before mapping and posting
-  const sanitized: Simulation & {
-    createdAt?: string
-    updatedAt?: string
-    user?: User
-  } = { ...simulation }
-
-  delete sanitized.createdAt
-  delete sanitized.updatedAt
-  delete sanitized.user
+  const sanitizedSimulation = sanitizeSimulation(simulation)
 
   const payload = {
-    ...mapOldSimulationToNew(sanitized),
+    ...mapOldSimulationToNew(sanitizedSimulation),
     model: modelVersion,
     ...(name || email
       ? {
@@ -56,12 +48,6 @@ export async function saveSimulation({
   if (sendEmail) {
     url.searchParams.set('sendEmail', 'true')
   }
-  if (email) {
-    url.searchParams.set('email', email)
-  }
-  if (code) {
-    url.searchParams.set('code', code)
-  }
 
   try {
     const response = await fetch(url.toString(), {
@@ -70,7 +56,7 @@ export async function saveSimulation({
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
-      credentials: email && code ? 'include' : 'omit',
+      credentials: 'include',
     })
 
     if (!response.ok) {

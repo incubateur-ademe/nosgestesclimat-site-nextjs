@@ -54,7 +54,7 @@ export default function VerificationForm({
   // Reset the verification code expiration date if the user is logged in
   // and the verification code expiration date is in the past
   useEffect(() => {
-    if (user.verificationCodeExpirationDate) {
+    if (!user.verificationCodeExpirationDate) {
       return
     }
     if (dayjs(user.verificationCodeExpirationDate).isBefore(dayjs())) {
@@ -92,6 +92,7 @@ export default function VerificationForm({
       })
 
       updateEmail(email)
+      updateVerificationCodeExpirationDate(undefined)
 
       onComplete?.(email)
 
@@ -115,6 +116,8 @@ export default function VerificationForm({
       setInputError(t('Le code est invalide'))
       captureException(err)
       return
+    } finally {
+      updateVerificationCodeExpirationDate(undefined)
     }
   }
 

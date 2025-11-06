@@ -1,9 +1,10 @@
 import { ORGANISATION_URL } from '@/constants/urls/main'
 import { getModelVersion } from '@/helpers/modelFetching/getModelVersion'
 import { mapOldSimulationToNew } from '@/helpers/simulation/mapNewSimulation'
-import { saveSimulation as saveSimulationHelper } from '@/helpers/simulation/saveSimulation'
+import { sanitizeSimulation } from '@/helpers/simulation/sanitizeSimulation'
+import { saveSimulation } from '@/helpers/simulation/saveSimulation'
 import { useUser } from '@/publicodes-state'
-import type { Simulation, User } from '@/publicodes-state/types'
+import type { Simulation } from '@/publicodes-state/types'
 import { updateGroupParticipant } from '@/services/groups/updateGroupParticipant'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
@@ -25,7 +26,7 @@ export function useSaveSimulation() {
   const { resetSyncTimer } = useBackgroundSyncSimulation()
 
   const {
-    mutate: saveSimulation,
+    mutate: saveSimulationMutation,
     isPending,
     isSuccess,
     isError,
@@ -58,31 +59,22 @@ export function useSaveSimulation() {
       }
 
       // Strip unrecognized keys before mapping and posting
-      const sanitized: Simulation & {
-        createdAt?: string
-        updatedAt?: string
-        user?: User
-      } = { ...simulation }
-      delete sanitized.createdAt
-      delete sanitized.updatedAt
-      delete sanitized.user
-      delete sanitized.groups
-      delete sanitized.polls
-
-      const payload = {
-        ...mapOldSimulationToNew(sanitized),
-        model: modelVersion,
-        ...(name || email
-          ? {
-              user: {
-                ...(email ? { email } : {}),
-                ...(name ? { name } : {}),
-              },
-            }
-          : {}),
-      }
+      const sanitizedSimulation = sanitizeSimulation(simulation)
 
       if (polls?.length) {
+        const payload = {
+          ...mapOldSimulationToNew(sanitizedSimulation),
+          model: modelVersion,
+          ...(name || email
+            ? {
+                user: {
+                  ...(email ? { email } : {}),
+                  ...(name ? { name } : {}),
+                },
+              }
+            : {}),
+        }
+
         return axios
           .post(
             `${ORGANISATION_URL}/${userId}/public-polls/${polls[polls.length - 1]}/simulations`,
@@ -96,18 +88,17 @@ export function useSaveSimulation() {
           .then((response) => response.data)
       }
 
-      return saveSimulationHelper({
-        simulation,
+      return saveSimulation({
+        simulation: sanitizedSimulation,
         userId,
         email,
         name,
-        code,
         sendEmail,
       })
     },
   })
   return {
-    saveSimulation,
+    saveSimulation: saveSimulationMutation,
     isPending,
     isSuccess,
     isError,
