@@ -8,9 +8,7 @@ import { utils } from 'publicodes'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages = new Set([
     '',
-    'actions',
     'accessibilité',
-    'amis',
     'a-propos',
     'blog',
     'budget',
@@ -37,7 +35,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     'personas',
     'plan-du-site',
     'politique-de-confidentialite',
-    'profil',
     'questions',
     'questions-frequentes',
     'stats',
