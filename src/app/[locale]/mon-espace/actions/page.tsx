@@ -28,11 +28,11 @@ export default async function MonEspaceActionsPage({
     userId: authenticatedUser?.id,
   })
 
-  const sortedSimulations = simulations.sort(
+  const sortedSimulations = simulations?.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   )
 
-  const latestSimulation = sortedSimulations[0]
+  const latestSimulation = sortedSimulations?.[0]
 
   if (!authenticatedUser) {
     redirect(CONNEXION_PATH)

@@ -44,7 +44,7 @@ export async function reconcileOnAuth({
 
   // Create a Set of server simulation IDs for deduplication
   const serverSimulationIds = new Set(
-    serverSimulations.map((s) => s.id).filter(Boolean)
+    serverSimulations?.map((s) => s.id).filter(Boolean) ?? []
   )
 
   // Identify local-only simulations (not in server) with progression > 0
@@ -71,8 +71,8 @@ export async function reconcileOnAuth({
     )
 
     // Collect successfully saved simulations
-    saveResults.forEach((result) => {
-      if (result.status === 'fulfilled') {
+    saveResults?.forEach((result) => {
+      if (result.status === 'fulfilled' && result.value) {
         savedSimulations.push(result.value)
       }
       // Silently ignore failed saves (best-effort)
@@ -83,11 +83,13 @@ export async function reconcileOnAuth({
   // Use Set to deduplicate by ID
   const allSimulations = new Map<string, Simulation>()
 
-  ;[...serverSimulations, ...savedSimulations, ...localSimulations].forEach(
-    (simulation: Simulation) => {
-      allSimulations.set(simulation.id, simulation)
-    }
-  )
+  ;[
+    ...(serverSimulations ?? []),
+    ...savedSimulations,
+    ...localSimulations,
+  ].forEach((simulation: Simulation) => {
+    allSimulations.set(simulation.id, simulation)
+  })
 
   // Convert to array and sort by date desc
   const mergedSimulations = Array.from(allSimulations.values()).sort((a, b) => {

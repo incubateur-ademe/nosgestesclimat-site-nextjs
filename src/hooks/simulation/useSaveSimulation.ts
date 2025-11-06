@@ -36,7 +36,7 @@ export function useSaveSimulation() {
       sendEmail,
       email,
       code,
-    }: Props): Promise<Simulation> => {
+    }: Props): Promise<Simulation | undefined> => {
       // We reset the sync timer to avoid saving the simulation in the background
       resetSyncTimer()
 
