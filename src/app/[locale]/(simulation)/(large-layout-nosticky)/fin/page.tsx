@@ -60,16 +60,16 @@ export default function FinPage() {
   if (!isGuardInit || isGuardRedirecting) return <FinPageSkeleton />
 
   return (
-    <div className="relative mt-12">
+    <div className="relative mt-10 mb-16">
       {isIframe && isIframeShareData && <IframeDataShareModal />}
+
+      <FinTabs />
 
       <TallyForm />
 
       <Poll />
 
       <PartnerRedirectionAlert />
-
-      <FinTabs />
 
       {activeTab === 'results' && (
         <>

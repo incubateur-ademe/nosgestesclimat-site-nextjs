@@ -10,6 +10,7 @@ import VerificationForm from './VerificationForm'
 
 type Props = {
   buttonLabel?: string | ReactNode
+  buttonColor?: 'primary' | 'secondary'
   inputLabel?: ReactNode | string
   mode?: AuthenticationMode
   redirectURL?: string
@@ -19,6 +20,7 @@ type Props = {
 
 export default function SignInOrSignUpForm({
   buttonLabel,
+  buttonColor = 'primary',
   inputLabel,
   mode,
   redirectURL,
@@ -68,6 +70,7 @@ export default function SignInOrSignUpForm({
           : user?.organisation?.administratorEmail || user?.email || ''
       }
       buttonLabel={buttonLabel}
+      buttonColor={buttonColor}
       mode={mode}
       inputLabel={inputLabel}
       onEmailChange={setEmail}

@@ -7,6 +7,7 @@ import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
+import { useGetAuthentifiedUser } from '@/hooks/authentication/useGetAuthentifiedUser'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
@@ -28,7 +29,15 @@ export default function SaveResultsAndSigninSignUpForm({
 
   const currentSimulation = useCurrentSimulation()
 
-  const { saveSimulation, isPending, isSuccess, error } = useSaveSimulation()
+  const { saveSimulation, isPending, isSuccess } = useSaveSimulation()
+
+  const authenticatedUser = useGetAuthentifiedUser()
+
+  // If the user is authenticated, we don't show the form as all
+  // simulations are automatically saved to the user's profile
+  if (authenticatedUser) {
+    return null
+  }
 
   const onSubmit = (email: string) => {
     // If the mutation is pending, we do nothing

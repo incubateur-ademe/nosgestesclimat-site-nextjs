@@ -10,7 +10,7 @@ export default function Organisations({
   organisations: Organisation[]
 }) {
   return (
-    <div className="mb-10">
+    <div className="mb-10 max-w-[683px]">
       <Title
         tag="h2"
         title={

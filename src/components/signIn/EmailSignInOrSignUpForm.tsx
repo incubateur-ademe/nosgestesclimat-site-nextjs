@@ -28,6 +28,7 @@ import { useForm } from 'react-hook-form'
 
 type Props = {
   buttonLabel?: string | ReactNode
+  buttonColor?: 'primary' | 'secondary'
   mode?: AuthenticationMode
   emailDefaultValue?: string
   inputLabel?: ReactNode | string
@@ -40,6 +41,7 @@ type FormData = {
 
 export default function EmailSigninOrSignupForm({
   buttonLabel,
+  buttonColor = 'primary',
   mode,
   emailDefaultValue,
   inputLabel,
@@ -181,6 +183,7 @@ export default function EmailSigninOrSignupForm({
 
       <Button
         type="submit"
+        color={buttonColor}
         data-cypress-id="organisation-connexion-submit-button"
         className="mt-8">
         {buttonLabel ?? <Trans>Accéder à mon espace</Trans>}

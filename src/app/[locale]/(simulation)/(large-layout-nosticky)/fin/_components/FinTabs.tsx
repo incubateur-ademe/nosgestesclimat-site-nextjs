@@ -137,7 +137,7 @@ export default function FinTabs() {
   return (
     <Tabs
       items={tabsItems}
-      className="mb-8"
+      className="mb-12"
       ariaLabel={t('Navigation de mon espace')}
       containerId="fin-tabs"
       isLocked={false}
