@@ -9,6 +9,8 @@ import { twMerge } from 'tailwind-merge'
 type Props = { total?: number; isSmall?: boolean }
 export default function WaterTotalNumber({ total, isSmall }: Props) {
   const hookValue = useRule('bilan', eauMetric).numericValue
+
+  // Allow forcing the value to be displayed
   const usedValue = typeof total === 'number' ? total : hookValue
 
   const { formattedValue, unit } = formatFootprint(usedValue, {

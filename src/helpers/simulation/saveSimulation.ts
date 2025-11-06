@@ -5,6 +5,7 @@ import {
   mapOldSimulationToNew,
 } from '@/helpers/simulation/mapNewSimulation'
 import type { Simulation, User } from '@/publicodes-state/types'
+import { captureException } from '@sentry/nextjs'
 
 type SaveSimulationParams = {
   simulation: Simulation
@@ -22,7 +23,7 @@ export async function saveSimulation({
   name,
   code,
   sendEmail,
-}: SaveSimulationParams): Promise<Simulation> {
+}: SaveSimulationParams): Promise<Simulation | undefined> {
   const modelVersion = await getModelVersion()
 
   // Strip unrecognized keys before mapping and posting
@@ -62,19 +63,24 @@ export async function saveSimulation({
     url.searchParams.set('code', code)
   }
 
-  const response = await fetch(url.toString(), {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload),
-    credentials: email && code ? 'include' : 'omit',
-  })
+  try {
+    const response = await fetch(url.toString(), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+      credentials: email && code ? 'include' : 'omit',
+    })
 
-  if (!response.ok) {
-    throw new Error('Failed to save simulation')
+    if (!response.ok) {
+      throw new Error('Failed to save simulation')
+    }
+
+    const data = await response.json()
+    return mapNewSimulationToOld(data)
+  } catch (error) {
+    captureException(error)
+    return undefined
   }
-
-  const data = await response.json()
-  return mapNewSimulationToOld(data)
 }

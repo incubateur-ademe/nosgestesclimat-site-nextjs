@@ -27,7 +27,11 @@ export default async function MonEspacePage({
     userId: authenticatedUser.id,
   })
 
-  const latestSimulation = simulations?.[0]
+  const sortedSimulations = simulations?.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  )
+
+  const latestSimulation = sortedSimulations?.[0]
 
   return (
     <ContentLarge className="mt-4 px-3 md:mt-10 lg:px-0">
@@ -38,7 +42,7 @@ export default async function MonEspacePage({
       {!latestSimulation && <NoResultsView locale={locale} />}
 
       {latestSimulation && (
-        <ResultsView locale={locale} simulations={simulations} />
+        <ResultsView locale={locale} simulations={sortedSimulations} />
       )}
     </ContentLarge>
   )

@@ -53,7 +53,6 @@ export default function TabLink({
     <Link
       href={href}
       className={baseClasses}
-      prefetch={false}
       scroll={false}
       onClick={handleClick}
       {...props}>

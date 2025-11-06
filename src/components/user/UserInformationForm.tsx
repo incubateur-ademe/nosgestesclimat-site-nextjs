@@ -77,7 +77,6 @@ export default function UserInformationForm({
 
   const { user, updateEmail, updateName } = useUser()
 
-  // TODO : replace this with a proper check by calling the backend
   const isVerified = useGetAuthentifiedUser()
 
   const {

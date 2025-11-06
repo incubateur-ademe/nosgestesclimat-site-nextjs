@@ -8,10 +8,7 @@ import { useEffect, useRef } from 'react'
 // Delay before saving to avoid too many requests when multiple actions are selected quickly
 const SAVE_DELAY = 500
 
-/**
- * Component that automatically saves the simulation when actionChoices change.
- * Only used on the mon-espace/actions page to sync with the database.
- */
+// Auto save the simulation when actionChoices change
 export default function ActionAutoSave() {
   const currentSimulation = useCurrentSimulation()
   const { saveSimulation } = useSaveSimulation()

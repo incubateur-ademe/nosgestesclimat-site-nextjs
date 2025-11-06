@@ -52,7 +52,6 @@ const TabLink = ({
     )
   }
 
-  // Si pas de href, utiliser un button
   if (!href) {
     return (
       <button
@@ -72,7 +71,6 @@ const TabLink = ({
     )
   }
 
-  // Si href présent et actif, utiliser un span
   if (isActive) {
     return (
       <span
@@ -87,7 +85,6 @@ const TabLink = ({
     )
   }
 
-  // Si href présent et non actif, utiliser un Link
   return (
     <Link
       role="tab"

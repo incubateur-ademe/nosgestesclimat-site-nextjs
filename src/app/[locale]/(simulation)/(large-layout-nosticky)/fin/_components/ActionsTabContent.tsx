@@ -6,12 +6,8 @@ import ActionsContent from '@/components/results/actions/ActionsContent'
 import ActionsTutorial from '@/components/results/actions/ActionsTutorial'
 import JagisActionBanner from '@/components/results/actions/JagisActionBanner'
 import TopBar from '@/components/simulation/TopBar'
-import { fetchUserSimulations } from '@/helpers/user/fetchUserSimulations'
-import { useGetAuthentifiedUser } from '@/hooks/authentication/useGetAuthentifiedUser'
 import { useRules } from '@/hooks/useRules'
-import { EngineProvider, FormProvider, UserProvider } from '@/publicodes-state'
-import { useQuery } from '@tanstack/react-query'
-import { useMemo } from 'react'
+import { EngineProvider, FormProvider } from '@/publicodes-state'
 
 function ActionsContentInner() {
   return (
@@ -26,59 +22,12 @@ function ActionsContentInner() {
 }
 
 export default function ActionsTabContent() {
-  const { data: authenticatedUser } = useGetAuthentifiedUser()
   const { data: rules } = useRules({ isOptim: true })
 
-  // Fetch simulations if authenticated
-  const { data: userSimulations = [] } = useQuery({
-    queryKey: ['userSimulations', authenticatedUser?.id],
-    queryFn: () =>
-      fetchUserSimulations({
-        userId: authenticatedUser?.id,
-      }),
-    enabled: !!authenticatedUser?.id,
-  })
-
-  // Sort simulations by date (newest first)
-  const sortedSimulations = useMemo(() => {
-    if (!userSimulations.length) return []
-    return [...userSimulations].sort(
-      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-    )
-  }, [userSimulations])
-
-  const latestSimulation = sortedSimulations[0]
-
-  // Don't render until we have rules
   if (!rules) {
     return null
   }
 
-  // If we have authenticated user simulations, create a new UserProvider with them
-  // Otherwise, use the existing UserProvider context
-  if (authenticatedUser && sortedSimulations.length > 0) {
-    return (
-      <div className="flex flex-col">
-        <h1 className="sr-only mb-6 text-2xl font-bold">Mes actions</h1>
-
-        <UserProvider
-          initialSimulations={sortedSimulations}
-          initialCurrentSimulationId={latestSimulation?.id}
-          initialUserId={authenticatedUser.id}>
-          <QueryClientProviderWrapper>
-            <EngineProvider rules={rules}>
-              <FormProvider>
-                <ActionsContentInner />
-              </FormProvider>
-            </EngineProvider>
-          </QueryClientProviderWrapper>
-        </UserProvider>
-      </div>
-    )
-  }
-
-  // If not authenticated or no server simulations, use existing providers
-  // but we still need EngineProvider and FormProvider for actions
   return (
     <div className="flex flex-col">
       <h1 className="sr-only mb-6 text-2xl font-bold">Mes actions</h1>

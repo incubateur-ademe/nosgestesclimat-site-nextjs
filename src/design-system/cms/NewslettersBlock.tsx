@@ -76,7 +76,6 @@ export default function NewslettersBlock() {
 
   const { user, updateEmail } = useUser()
 
-  // TODO : replace this with a proper check by calling the backend
   const isVerified = useGetAuthentifiedUser()
 
   const {
