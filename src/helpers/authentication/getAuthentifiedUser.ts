@@ -5,7 +5,7 @@ import type { AuthenticatedUser } from '@/types/authentication'
 import { captureException } from '@sentry/nextjs'
 import { cookies } from 'next/headers'
 
-export async function getIsUserAuthenticated(): Promise<
+export async function getAuthentifiedUser(): Promise<
   AuthenticatedUser | undefined
 > {
   try {

@@ -1,7 +1,7 @@
 import ContentLarge from '@/components/layout/ContentLarge'
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { CONNEXION_PATH } from '@/constants/urls/paths'
-import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthenticated'
+import { getAuthentifiedUser } from '@/helpers/authentication/getAuthentifiedUser'
 import { fetchUserSimulations } from '@/helpers/user/fetchUserSimulations'
 import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
@@ -17,7 +17,7 @@ export default async function MonEspacePage({
   const { [SHOW_WELCOME_BANNER_QUERY_PARAM]: showWelcomeBanner } =
     (await searchParams) || {}
 
-  const authenticatedUser = await getIsUserAuthenticated()
+  const authenticatedUser = await getAuthentifiedUser()
 
   if (!authenticatedUser) {
     redirect(CONNEXION_PATH)

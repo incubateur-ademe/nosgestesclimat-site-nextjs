@@ -1,4 +1,4 @@
-import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthenticated'
+import { getAuthentifiedUser } from '@/helpers/authentication/getAuthentifiedUser'
 import { twMerge } from 'tailwind-merge'
 import LogoLinkServer from '../misc/LogoLinkServer'
 import MySpaceButton from './headerServer/MySpaceButton'
@@ -8,7 +8,7 @@ type Props = {
 }
 
 export default async function HeaderServer({ isSticky = true }: Props) {
-  const authenticatedUser = await getIsUserAuthenticated()
+  const authenticatedUser = await getAuthentifiedUser()
 
   return (
     <header

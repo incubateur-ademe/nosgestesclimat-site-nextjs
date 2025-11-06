@@ -6,7 +6,7 @@ import Trans from '@/components/translation/trans/TransServer'
 import { SIGNUP_MODE } from '@/constants/authentication/modes'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
-import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthenticated'
+import { getAuthentifiedUser } from '@/helpers/authentication/getAuthentifiedUser'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
@@ -18,7 +18,7 @@ export default async function Connexion({ params }: DefaultPageProps) {
 
   const { t } = await getServerTranslation({ locale })
 
-  const authenticatedUser = await getIsUserAuthenticated()
+  const authenticatedUser = await getAuthentifiedUser()
 
   if (authenticatedUser) {
     redirect(MON_ESPACE_PATH)

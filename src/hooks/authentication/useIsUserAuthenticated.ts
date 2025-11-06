@@ -1,4 +1,4 @@
-import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthenticated'
+import { getAuthentifiedUser } from '@/helpers/authentication/getAuthentifiedUser'
 import type { AuthenticatedUser } from '@/types/authentication.d'
 import type { UseQueryResult } from '@tanstack/react-query'
 import { useQuery } from '@tanstack/react-query'
@@ -9,7 +9,7 @@ export function useIsUserAuthenticated(): UseQueryResult<
 > {
   return useQuery({
     queryKey: ['authenticatedUser'],
-    queryFn: getIsUserAuthenticated,
+    queryFn: getAuthentifiedUser,
     retry: false,
   })
 }

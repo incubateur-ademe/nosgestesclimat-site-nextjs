@@ -3,7 +3,7 @@ import ResultsContent from '@/components/results/ResultsContent'
 import { CONNEXION_PATH, NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import Title from '@/design-system/layout/Title'
-import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthenticated'
+import { getAuthentifiedUser } from '@/helpers/authentication/getAuthentifiedUser'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { fetchSimulation } from '@/helpers/simulation/fetchSimulation'
 import type { DefaultPageProps } from '@/types'
@@ -16,7 +16,7 @@ export default async function DetailledResultsPage({
 
   const { t } = await getServerTranslation({ locale })
 
-  const authenticatedUser = await getIsUserAuthenticated()
+  const authenticatedUser = await getAuthentifiedUser()
 
   if (!authenticatedUser) {
     redirect(CONNEXION_PATH)

@@ -126,6 +126,7 @@ export function PartnerProvider({ children }: PropsWithChildren) {
   useEffect(() => {
     if (!hasNoPartnerParam && isPartnerVerified === false) {
       router.push(NOT_FOUND_PATH)
+      return
     }
   }, [isPartnerVerified, router, hasNoPartnerParam])
 

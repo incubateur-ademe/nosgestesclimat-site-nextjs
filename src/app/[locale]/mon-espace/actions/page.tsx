@@ -2,7 +2,7 @@ import ContentLarge from '@/components/layout/ContentLarge'
 import TopBar from '@/components/simulation/TopBar'
 import Trans from '@/components/translation/trans/TransServer'
 import { CONNEXION_PATH, MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
-import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthenticated'
+import { getAuthentifiedUser } from '@/helpers/authentication/getAuthentifiedUser'
 import { getRules } from '@/helpers/modelFetching/getRules'
 import { fetchUserSimulations } from '@/helpers/user/fetchUserSimulations'
 import { EngineProvider, FormProvider, UserProvider } from '@/publicodes-state'
@@ -22,7 +22,7 @@ export default async function MonEspaceActionsPage({
 
   const rules = await getRules()
 
-  const authenticatedUser = await getIsUserAuthenticated()
+  const authenticatedUser = await getAuthentifiedUser()
 
   const simulations = await fetchUserSimulations({
     userId: authenticatedUser?.id,

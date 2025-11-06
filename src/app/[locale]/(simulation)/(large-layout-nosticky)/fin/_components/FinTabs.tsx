@@ -62,9 +62,7 @@ export default function FinTabs() {
           <BilanIcon
             className={twMerge(
               'h-6 w-6',
-              activeTab === 'results'
-                ? 'fill-primary-600'
-                : 'fill-default'
+              activeTab === 'results' ? 'fill-primary-600' : 'fill-default'
             )}
           />
           <span className="hidden md:block">
@@ -77,7 +75,7 @@ export default function FinTabs() {
       ),
       href: `${pathname}${searchParams?.toString() ? `?${searchParams.toString()}` : ''}`,
       isActive: activeTab === 'results',
-      onClick: (e) => {
+      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault()
         handleTabClick('results')
       },
@@ -89,9 +87,7 @@ export default function FinTabs() {
           <ActionsIcon
             className={twMerge(
               'h-6 w-6',
-              activeTab === 'actions'
-                ? 'fill-primary-600'
-                : 'fill-default'
+              activeTab === 'actions' ? 'fill-primary-600' : 'fill-default'
             )}
           />
           <span className="hidden md:block">
@@ -104,7 +100,7 @@ export default function FinTabs() {
       ),
       href: `${pathname}${searchParams?.toString() ? `?${searchParams.toString()}` : ''}`,
       isActive: activeTab === 'actions',
-      onClick: (e) => {
+      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault()
         handleTabClick('actions')
       },
@@ -131,7 +127,7 @@ export default function FinTabs() {
       ),
       href: `${pathname}${searchParams?.toString() ? `?${searchParams.toString()}` : ''}`,
       isActive: activeTab === 'groups',
-      onClick: (e) => {
+      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault()
         handleTabClick('groups')
       },
@@ -148,4 +144,3 @@ export default function FinTabs() {
     />
   )
 }
-

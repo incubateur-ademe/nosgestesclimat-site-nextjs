@@ -1,7 +1,7 @@
 import { verifyPartner } from '@/services/partners/verifyPartner'
 import { useQuery } from '@tanstack/react-query'
 
-export function useVerifyPartner(partner?: string): boolean {
+export function useVerifyPartner(partner?: string): boolean | undefined {
   const { data } = useQuery({
     queryKey: ['verify-partner', partner],
     queryFn: async () => {
@@ -11,5 +11,5 @@ export function useVerifyPartner(partner?: string): boolean {
     },
   })
 
-  return data ?? undefined
+  return data
 }

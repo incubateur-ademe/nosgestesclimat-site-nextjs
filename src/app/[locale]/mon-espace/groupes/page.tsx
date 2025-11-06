@@ -1,7 +1,7 @@
 import ContentLarge from '@/components/layout/ContentLarge'
 import Trans from '@/components/translation/trans/TransServer'
 import { CONNEXION_PATH, MON_ESPACE_GROUPS_PATH } from '@/constants/urls/paths'
-import { getIsUserAuthenticated } from '@/helpers/authentication/getIsUserAuthenticated'
+import { getAuthentifiedUser } from '@/helpers/authentication/getAuthentifiedUser'
 import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
 import ProfileTab from '../_components/ProfileTabs'
@@ -12,7 +12,7 @@ export default async function MonEspaceGroupesPage({
 }: DefaultPageProps) {
   const { locale } = await params
 
-  const authenticatedUser = await getIsUserAuthenticated()
+  const authenticatedUser = await getAuthentifiedUser()
 
   if (!authenticatedUser) {
     redirect(CONNEXION_PATH)
