@@ -101,9 +101,10 @@ export default function Navigation({
 
   const isFirstOrOnlyQuestion =
     noPrevQuestion ||
-    persistedRemainingQuestionsRef.current?.indexOf(question) === 0 ||
-    persistedRemainingQuestionsRef.current?.indexOf(question) ===
-      (persistedRemainingQuestionsRef.current?.length || 0) - 1
+    (isEmbedded &&
+      (persistedRemainingQuestionsRef.current?.indexOf(question) === 0 ||
+        persistedRemainingQuestionsRef.current?.indexOf(question) ===
+          (persistedRemainingQuestionsRef.current?.length || 0) - 1))
 
   // Start time of the question
   //(we need to use question to update the start time when the question changes, but it is not exactly usefull as a dependency)
