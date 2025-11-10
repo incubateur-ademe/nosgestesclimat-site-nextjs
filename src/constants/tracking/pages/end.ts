@@ -71,3 +71,17 @@ export const endClickJagisSecondBlock = [
   'Fin',
   'Click Jagis second bloc',
 ]
+
+export type FinTab = 'results' | 'actions' | 'groups'
+
+export const finTabTrackEvent = (tab: FinTab) => [
+  'trackEvent',
+  'Fin',
+  'Click Tab',
+  tab.charAt(0).toUpperCase() + tab.slice(1),
+]
+
+export const captureClickFinTab = ({ tab }: { tab: FinTab }) => ({
+  eventName: 'click tab fin',
+  properties: { tab },
+})

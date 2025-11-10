@@ -1,9 +1,8 @@
-import { ORGANISATION_URL, SIMULATION_URL } from '@/constants/urls/main'
+import { ORGANISATION_URL } from '@/constants/urls/main'
 import { getModelVersion } from '@/helpers/modelFetching/getModelVersion'
-import {
-  mapNewSimulationToOld,
-  mapOldSimulationToNew,
-} from '@/helpers/simulation/mapNewSimulation'
+import { mapOldSimulationToNew } from '@/helpers/simulation/mapNewSimulation'
+import { sanitizeSimulation } from '@/helpers/simulation/sanitizeSimulation'
+import { saveSimulation } from '@/helpers/simulation/saveSimulation'
 import { useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
 import { updateGroupParticipant } from '@/services/groups/updateGroupParticipant'
@@ -15,6 +14,8 @@ import { useBackgroundSyncSimulation } from './useBackgroundSyncSimulation'
 type Props = {
   simulation: Simulation
   sendEmail?: true
+  email?: string
+  code?: string
 }
 export function useSaveSimulation() {
   const {
@@ -25,20 +26,22 @@ export function useSaveSimulation() {
   const { resetSyncTimer } = useBackgroundSyncSimulation()
 
   const {
-    mutate: saveSimulation,
+    mutate: saveSimulationMutation,
     isPending,
     isSuccess,
     isError,
     error,
   } = useMutation({
     mutationFn: async ({
-      simulation: { groups, polls, ...simulation },
+      simulation,
       sendEmail,
-    }: Props) => {
+    }: Props): Promise<Simulation | undefined> => {
       // We reset the sync timer to avoid saving the simulation in the background
       resetSyncTimer()
 
       const modelVersion = await getModelVersion()
+
+      const { groups = [], polls = [] } = simulation
 
       if (groups?.length) {
         return updateGroupParticipant({
@@ -53,20 +56,23 @@ export function useSaveSimulation() {
         }).then((response) => response.data.simulation)
       }
 
-      const payload = {
-        ...mapOldSimulationToNew(simulation),
-        model: modelVersion,
-        ...(name || email
-          ? {
-              user: {
-                ...(email ? { email } : {}),
-                ...(name ? { name } : {}),
-              },
-            }
-          : {}),
-      }
+      // Strip unrecognized keys before mapping and posting
+      const sanitizedSimulation = sanitizeSimulation(simulation)
 
       if (polls?.length) {
+        const payload = {
+          ...mapOldSimulationToNew(sanitizedSimulation),
+          model: modelVersion,
+          ...(name || email
+            ? {
+                user: {
+                  ...(email ? { email } : {}),
+                  ...(name ? { name } : {}),
+                },
+              }
+            : {}),
+        }
+
         return axios
           .post(
             `${ORGANISATION_URL}/${userId}/public-polls/${polls[polls.length - 1]}/simulations`,
@@ -80,15 +86,17 @@ export function useSaveSimulation() {
           .then((response) => response.data)
       }
 
-      return axios
-        .post(`${SIMULATION_URL}/${userId}`, payload, {
-          params: { sendEmail },
-        })
-        .then((response) => mapNewSimulationToOld(response.data))
+      return saveSimulation({
+        simulation: sanitizedSimulation,
+        userId,
+        email,
+        name,
+        sendEmail,
+      })
     },
   })
   return {
-    saveSimulation,
+    saveSimulation: saveSimulationMutation,
     isPending,
     isSuccess,
     isError,

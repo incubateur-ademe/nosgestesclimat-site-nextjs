@@ -1209,7 +1209,7 @@ entries:
   common.category.alimentation: Alimentation
   common.category.divers: Divers
   common.category.logement: Logement
-  common.category.services: Services
+  common.category.services: Services sociétaux
   common.category.transport: Transport
   pollResults.categoryDistribution.accessibleDescription.category: '{{name}}: {{value}} {{unit}}.'
   pollResults.categoryDistribution.accessibleDescription.chart: 'Graphique en donut montrant la répartition des émissions par catégorie. '
@@ -1308,6 +1308,194 @@ entries:
   profile.answers.subcategory.fold: Replier les questions pour cette sous-catégorie
   profile.answers.subcategory.unfold: Déplier les questions pour cette sous-catégorie
   simulator.navigation.nextButton.dontKnow.label: Je ne sais pas
+  simulator.navigation.nextButton.skip.label: Passer la question
+  login.colourBlock.highlight1.title.prefix: Visualisez
+  login.colourBlock.highlight1.title.strong: vos derniers résultats
+  login.colourBlock.highlight2.title.prefix: Continuez à
+  login.colourBlock.highlight2.title.strong: progresser dans vos actions climat
+  login.colourBlock.highlight3.title.end: en cours
+  login.colourBlock.highlight3.title.prefix: Accédez à
+  login.colourBlock.highlight3.title.strong: vos défis collectifs
+  login.colourBlock.login.highlight3.end: (organisations, famille, amis...)
+  login.colourBlock.login.highlight3.strong2: retrouvez vos tests collectifs
+  login.list.login.label: Se connecter
+  login.list.signin.label: Créer un compte
+  login.login.title: Accédez à votre espace Nos Gestes Climat
+  signIn.email.error.userDoesNotExist: Ah ! Nous n’avons pas d’e-mail enregistré à cette adresse. Veuillez vous inscrire pour accéder à votre espace.
+  signup.button.label: M'inscrire
+  signup.colourBlock.highlight1.title.prefix: Retrouvez
+  signup.colourBlock.highlight1.title.strong: vos résultats d’empreinte
+  signup.colourBlock.highlight2.title.middle: et
+  signup.colourBlock.highlight2.title.prefix: Découvrez
+  signup.colourBlock.highlight2.title.strong1: vos actions climat personnalisées
+  signup.colourBlock.highlight2.title.strong2: suivez vos progrès
+  signup.colourBlock.highlight3.title.middle: et
+  signup.colourBlock.highlight3.title.strong1: Lancez
+  signup.title: Créez votre espace Nos Gestes Climat
+  signIn.email.error.userAlreadyExists: Ah ! Vous avez déjà un compte avec cet e-mail. Merci de vous connecter directement.
+  signIn.verificationForm.email.verificationCode.prefix: Entrez le
+  signIn.verificationForm.email.verificationCode.strong: code de vérification
+  signIn.verificationForm.email.verificationCode.suffix: 'envoyé à '
+  signIn.verificationForm.notReceived.backButton: Retour à la connexion
+  signIn.verificationForm.notReceived.error: Oups, une erreur s'est produite au moment de l'envoi de votre code...
+  signIn.verificationForm.notReceived.reloadPage: Recharger la page
+  signIn.verificationForm.notReceived.resendButton: Renvoyer le code
+  signIn.verificationForm.notReceived.resendButton.confirmation: Code renvoyé
+  signIn.verificationForm.notReceived.resendButton.timeLeft: Attendre {{timeLeft}} secondes
+  signIn.verificationForm.notReceived.text: Vérifiez vos spams ou outils anti-spam (MailinBlack, Altospam, etc...)
+  signIn.verificationForm.notReceived.title: Vous n'avez pas reçu de code ?
+  Vérifiez vos e-mails: Vérifiez vos e-mails
+  header.monEspace: Mon Espace
+  header.simulateur: Accéder au test
   90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² en moyenne pour un foyer de 2,2 personnes.
   sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit
+  Derniers résultats d’empreinte: Derniers résultats d’empreinte
+  mon-espace.actions.title: Mes actions
+  mon-espace.groups.title: Mes groupes "Amis" et "Famille"
+  mon-espace.instructions.description.part1: Avant toute chose, nous vous invitons à
+  mon-espace.instructions.description.part2: passer le test
+  mon-espace.instructions.description.part3: 'pour :'
+  mon-espace.instructions.link.text: Passer le test
+  mon-espace.instructions.list.item1.part1: Retrouver ici
+  mon-espace.instructions.list.item1.part2: vos résultats d'empreinte
+  mon-espace.instructions.list.item2.part1: Découvrir
+  mon-espace.instructions.list.item2.part2: vos actions climat personnalisées
+  mon-espace.instructions.list.item2.part3: et
+  mon-espace.instructions.list.item2.part4: suivre vos progrès
+  mon-espace.instructions.list.item3.part1: Lancer
+  mon-espace.instructions.list.item3.part2: et
+  mon-espace.instructions.list.item3.part3: retrouver vos tests collectifs
+  mon-espace.instructions.list.item3.part4: (organisations, famille, amis...)
+  mon-espace.noResults.description: Passez le test pour débloquer le contenu ici
+  mon-espace.noResults.link.text: Je calcule mon empreinte
+  mon-espace.settings.title: Paramètres
+  mon-espace.tabs.actions: Actions
+  mon-espace.tabs.groups: Groupes
+  mon-espace.tabs.results: Résultats
+  mon-espace.tabs.settings: Paramètres
+  mon-espace.welcome.close-banner: Fermer la bannière de bienvenue
+  mon-espace.welcome.description.part1: Ici, vous pourrez
+  mon-espace.welcome.description.part2: suivre vos résultats
+  mon-espace.welcome.description.part3: ', passer à '
+  mon-espace.welcome.description.part4: l’action
+  mon-espace.welcome.description.part5: ', et'
+  mon-espace.welcome.description.part6: embarquer d’autres personnes
+  mon-espace.welcome.description.part7: avec vous.
+  mon-espace.welcome.title: Bienvenue dans votre espace Nos Gestes climat !
+  Test effectué le: Test effectué le
+  mon-espace.tabs.myActions: Mes actions
+  mon-espace.tabs.myGroups: Mes groupes
+  mon-espace.tabs.myResults: Mes résultats
+  mon-espace.evolutionGraph.title: Evolution de mes résultats d'empreinte
+  mon-espace.evolutionGraph.tabs.global: Vue globale
+  mon-espace.evolutionGraph.selectView: Sélectionner la vue à afficher
+  mon-espace.evolutionGraph.selectView.description: Retournez votre mobile pour un affichage optimal
+  mon-espace.evolutionGraph.yAxis: Empreinte en tonnes
+  mon-espace.evolutionGraph.chartLabel: Graphique d'évolution de l'empreinte carbone montrant {{simulationsCount}} résultats de test. {{simulationsData}}
+  mon-espace.latestResults.date: Test effectué le
+  mon-espace.latestResults.title: Derniers résultats d'empreinte
+  mon-espace.latestResults.viewDetail: Voir le détail
+  mon-espace.resultsList.result.title: 'Le {{date}} :'
+  mon-espace.resultsList.result.unit: CO₂e / an
+  mon-espace.resultsList.result.viewDetail: Voir le détail
+  mon-espace.resultsList.title: Tous mes résultats
+  mon-espace.shareSimulator.buttonLabel.desktop: Partager le test Nos Gestes Climat
+  mon-espace.shareSimulator.buttonLabel.mobile: Partager le test
+  mon-espace.shareSimulator.title: Vous avez aimé calculer votre empreinte ?
+  mon-espace.evolutionGraph.chartDisabledTitle.part1: Faites une nouvelle simulation
+  mon-espace.evolutionGraph.chartDisabledTitle.part2: pour avoir accès à l’évolution de votre empreinte
+  mon-espace.evolutionGraph.simulationData: 'Résultat de test n°{{simulationNumber}} du {{simulationDate}} : {{simulationValue}} tonnes'
+  Navigation de mon espace: Navigation de mon espace
+  navigation.connexionInscription: Navigation connexion/inscription
+  common.partners.jagis.ariaLabel: J'agis
+  mon-espace.actions.jagis.button: Aller plus loin avec J’agis
+  mon-espace.actions.jagis.description.part1: À partir de votre bilan,
+  mon-espace.actions.jagis.description.part2: <0>J’agis</0>
+  mon-espace.actions.jagis.description.part3: vous propose des
+  mon-espace.actions.jagis.description.part4: actions concrètes
+  mon-espace.actions.jagis.description.part5: et
+  mon-espace.actions.jagis.description.part6: adaptées
+  mon-espace.actions.jagis.description.part7: à vos envies et vos moyens pour réduire votre empreinte.
+  mon-espace.actions.jagis.description.part8: à vos envies et vos moyens pour réduire votre empreinte.
+  mon-espace.actions.jagis.error.redirect: Une erreur est survenue
+  mon-espace.actions.jagis.error.redirect.link: Cliquez sur ce lien pour naviguer vers J'agis.
+  mon-espace.actions.jagis.error.redirect.message: Une erreur est survenue.
+  mon-espace.actions.jagis.title: 'Que faire pour réduire mon empreinte ? '
+  Challenger ma famille: Challenger ma famille
+  common.metric.carbon: carbone
+  common.metric.water: eau
+  Défier mes amis: Défier mes amis
   'Dernière mise à jour :': 'Dernière mise à jour :'
+  Diffusez un lien collectif pour faire passer le test à vos amis ou votre famille, ou sensibilisez les membres de votre organisation.: Diffusez un lien collectif pour faire passer le test à vos amis ou votre famille, ou sensibilisez les membres de votre organisation.
+  Gratuit, 100 % anonyme et surtout sans jugement ni comparaison.: Gratuit, 100 % anonyme et surtout sans jugement ni comparaison.
+  Invitez votre entourage à calculer leur empreinte: Invitez votre entourage à calculer leur empreinte
+  mon-espace.organisations.title: Mes organisations
+  Sensibiliser mon organisation: Sensibiliser mon organisation
+  fin.getResultsOnUserProfile.buttonLabel: Sauvegarder mes résultats
+  fin.getResultsOnUserProfile.title: Retrouvez vos résultats à tout moment sur votre espace personnel
+  Laissez votre email pour: Laissez votre email pour
+  Mettre à jour mes abonnements: Mettre à jour mes abonnements
+  Mettre à jour mes coordonnées: Mettre à jour mes coordonnées
+  mon-espace.groups.create: Créer un groupe
+  mon-espace.groups.empty.awareness: Sensibiliser mon organisation
+  mon-espace.groups.empty.button: Commencer
+  mon-espace.groups.empty.challenge1: Défier mes amis
+  mon-espace.groups.empty.challenge2: Challenger ma famille
+  mon-espace.groups.empty.description: Gratuit, 100 % anonyme et surtout sans jugement ni comparaison.
+  mon-espace.groups.empty.description1: Diffusez un lien collectif
+  mon-espace.groups.empty.description2: pour
+  mon-espace.groups.empty.description3: faire passer le test à vos amis
+  mon-espace.groups.empty.description4: ou
+  mon-espace.groups.empty.description5: sensibilisez les membres de votre organisation.
+  mon-espace.groups.empty.title: Invitez votre entourage à calculer leur empreinte
+  mon-espace.settings.userInfos.submitLabel: Mettre à jour mes informations
+  mon-espace.settings.userInfos.title: Mes informations
+  'retrouver vos résultats :': 'retrouver vos résultats :'
+  sauvegarder: sauvegarder
+  settings.newsletters.title: Inscription à nos contenus
+  Supprimer mon espace: Supprimer mon espace
+  common.metric.choice: Choix de la métrique
+  header.monEspace.title: Mon Espace
+  header.monEspace.titleEmail: Mon Espace ({{email}})
+  <0>2 tonnes</0> en 2050 ?: <0>2 tonnes</0> en 2050 ?
+  <0>Eau, climat,</0> même combat ?: <0>Eau, climat,</0> même combat ?
+  <0>Hérissons</0> en danger ?: <0>Hérissons</0> en danger ?
+  <0>L'empreinte eau,</0> c'est quoi ?: <0>L'empreinte eau,</0> c'est quoi ?
+  <0>La majeure partie de l'empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombre de nos vêtements.: <0>La majeure partie de l'empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombre de nos vêtements.
+  "attention : l'eau domestique (par exemple l'eau de vos douches) ne fait pas partie de l'empreinte eau": "attention : l'eau domestique (par exemple l'eau de vos douches) ne fait pas partie de l'empreinte eau"
+  Bien joué 👏: Bien joué 👏
+  C'est l'objectif à atteindre pour espérer limiter le réchauffement climatique à 2 degrés.: C'est l'objectif à atteindre pour espérer limiter le réchauffement climatique à 2 degrés.
+  "Comme le climat, <2>le cycle de l'eau est fortement impacté partout dans le monde</2>: accès à l'eau potable, disparition et migration d'espèces (animales et végétales), déplacement de populations.": "Comme le climat, <2>le cycle de l'eau est fortement impacté partout dans le monde</2>: accès à l'eau potable, disparition et migration d'espèces (animales et végétales), déplacement de populations."
+  Comment <1>agir</1> ?: Comment <1>agir</1> ?
+  Comment est calculée votre empreinte ?: Comment est calculée votre empreinte ?
+  d'eau domestique par jour: d'eau domestique par jour
+  En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.
+  Est-ce que c'est <2>beaucoup ?</2>: Est-ce que c'est <2>beaucoup ?</2>
+  Est-ce que je peux y arriver tout seul ?: Est-ce que je peux y arriver tout seul ?
+  Et l'eau de <2>ma douche</2> dans tout ça ?: Et l'eau de <2>ma douche</2> dans tout ça ?
+  Il est quasiment impossible de vivre à moins de 2 tonnes dans notre société actuellement. <2>L'État, les collectivités locales, le secteur privé et les citoyens</2> devront tous contribuer pour atteindre cet objectif.: Il est quasiment impossible de vivre à moins de 2 tonnes dans notre société actuellement. <2>L'État, les collectivités locales, le secteur privé et les citoyens</2> devront tous contribuer pour atteindre cet objectif.
+  Il n'y a pas que sur votre empreinte que vous pouvez agir !: Il n'y a pas que sur votre empreinte que vous pouvez agir !
+  l'alimentation des <2>animaux</2> que vous consommez: l'alimentation des <2>animaux</2> que vous consommez
+  L'eau domestique peut avoir un <2>impact très fort</2> selon la <6>saison et la localisation.</6>: L'eau domestique peut avoir un <2>impact très fort</2> selon la <6>saison et la localisation.</6>
+  L'eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu'elle est restituée. Par exemple, l'eau de votre douche, après dépollution, est rendue aux cours d'eau de votre territoire.: L'eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu'elle est restituée. Par exemple, l'eau de votre douche, après dépollution, est rendue aux cours d'eau de votre territoire.
+  "L'empreinte eau : pourquoi et comment avons-nous travaillé…": "L'empreinte eau : pourquoi et comment avons-nous travaillé…"
+  "L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et distribuer les biens et services de votre quotidien. Par exemple il faut de l'eau pour :": "L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et distribuer les biens et services de votre quotidien. Par exemple il faut de l'eau pour :"
+  l'extraction des matériaux de vos <2>appareils numériques</2>: l'extraction des matériaux de vos <2>appareils numériques</2>
+  Les 8 manières d'améliorer l'empreinte eau de mon assiette: Les 8 manières d'améliorer l'empreinte eau de mon assiette
+  Maintenant que vous avez fait votre bilan carbone et que vous avez pris conscience de votre empreinte, vous pouvez découvrir <2>l'ensemble des gestes</2> qui vous permettront d'atteindre progressivement l'objectif de 2 tonnes.: Maintenant que vous avez fait votre bilan carbone et que vous avez pris conscience de votre empreinte, vous pouvez découvrir <2>l'ensemble des gestes</2> qui vous permettront d'atteindre progressivement l'objectif de 2 tonnes.
+  mon-espace.resultsDetail.date: Test effectué le {{date}}
+  mon-espace.resultsDetail.title: Détail des résultats
+  'Nos articles sur le sujet :': 'Nos articles sur le sujet :'
+  Notre calculateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Notre calculateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.
+  Par où commencer ?: Par où commencer ?
+  'Retrouvez nos conseils dans ces articles :': 'Retrouvez nos conseils dans ces articles :'
+  Tous ces modes d'action sont complémentaires !: Tous ces modes d'action sont complémentaires !
+  Un coup de pouce pour agir ?: Un coup de pouce pour agir ?
+  'Voici quelques idées pour vous aider à réduire votre impact :': 'Voici quelques idées pour vous aider à réduire votre impact :'
+  Votre simulation est sauvegardée !: Votre simulation est sauvegardée !
+  Mon espace: Mon espace
+  mon-espace.groups.loginBlock.buttonLabel: Suivant
+  mon-espace.groups.loginBlock.title: Déjà un groupe ou une organisation ?
+  mon-espace.resultsDetail.breadcrumb.resultDetail: Détail des résultats
+  mon-espace.resultsDetail.breadcrumb.results: Mes résultats
+  Se connecter: Se connecter

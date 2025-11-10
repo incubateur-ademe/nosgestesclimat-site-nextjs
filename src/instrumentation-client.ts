@@ -1,6 +1,12 @@
 import * as Sentry from '@sentry/nextjs'
 import posthog from 'posthog-js'
 
+declare global {
+  interface Window {
+    posthog: typeof posthog
+  }
+}
+
 if (process.env.NEXT_PUBLIC_POSTHOG_KEY !== undefined) {
   posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
     api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
@@ -10,6 +16,11 @@ if (process.env.NEXT_PUBLIC_POSTHOG_KEY !== undefined) {
     capture_pageleave: true, // Enable pageleave capture
     custom_campaign_params: ['mtm_campaign', 'mtm_kwd', 'mtm_keyword'],
   })
+
+  // Expose posthog globally for inline scripts
+  if (typeof window !== 'undefined') {
+    window.posthog = posthog
+  }
 }
 
 Sentry.init({

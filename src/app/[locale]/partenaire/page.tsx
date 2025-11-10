@@ -1,4 +1,4 @@
-import Header from '@/components/layout/HeaderClient'
+import HeaderServer from '@/components/layout/HeaderServer'
 import { PARTNER_KEY } from '@/constants/partners'
 import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Main from '@/design-system/layout/Main'
@@ -41,7 +41,8 @@ export default async function PartenairePage({
 
   return (
     <>
-      <Header />
+      <HeaderServer />
+
       <Main>
         <div className="min-h-screen">
           <div className="mt-36 text-center">

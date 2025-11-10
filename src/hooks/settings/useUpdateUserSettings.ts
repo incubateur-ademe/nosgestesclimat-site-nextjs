@@ -10,23 +10,33 @@ export function useUpdateUserSettings() {
       userId,
       email,
       name,
+      code,
     }: {
       newsletterIds?: number[]
       userId: string
       email?: string
       name?: string
+      code?: string
     }) => {
       return await axios
-        .put(`${SERVER_URL}/users/v1/${userId}`, {
-          email,
-          name,
-          contact:
-            newsletterIds && newsletterIds.length > 0
-              ? {
-                  listIds: newsletterIds,
-                }
-              : undefined,
-        })
+        .put(
+          `${SERVER_URL}/users/v1/${userId}`,
+          {
+            email,
+            name,
+            contact:
+              newsletterIds && newsletterIds.length > 0
+                ? {
+                    listIds: newsletterIds,
+                  }
+                : undefined,
+          },
+          {
+            params: {
+              code,
+            },
+          }
+        )
         .then((res) => res.data)
     },
   })

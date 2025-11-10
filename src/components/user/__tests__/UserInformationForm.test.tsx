@@ -19,7 +19,7 @@ const mockUseGetNewsletterSubscriptions = vi.fn()
 const mockUseUpdateUserSettings = vi.fn()
 const mockUseUser = vi.fn()
 
-// Mock the getIsUserVerified helper
+// Mock the useGetAuthentifiedUser helper
 const mockGetIsUserVerified = vi.fn()
 
 vi.mock('@/hooks/useClientTranslation', () => ({
@@ -43,7 +43,7 @@ vi.mock('@/publicodes-state', () => ({
 }))
 
 vi.mock('@/helpers/user/getIsVerified', () => ({
-  getIsUserVerified: () => mockGetIsUserVerified(),
+  useGetAuthentifiedUser: () => mockGetIsUserVerified(),
 }))
 
 vi.mock('@sentry/nextjs', () => ({
