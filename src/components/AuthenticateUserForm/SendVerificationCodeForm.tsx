@@ -5,11 +5,12 @@ import Trans from '@/components/translation/trans/TransClient'
 import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
 import TextInput from '@/design-system/inputs/TextInput'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import {
-  ERRORS,
+  CREATE_VERIFICATION_CODE_ERROR,
   useCreateVerificationCode,
-} from '@/hooks/verification-codes/useCreateVerificationCode'
+} from '@/hooks/authentication/useCreateVerificationCode'
+import type { PendingVerification } from '@/hooks/authentication/usePendingVerification'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { AuthenticationMode } from '@/types/authentication'
 import { isEmailValid } from '@/utils/isEmailValid'
 import type { ReactNode } from 'react'
@@ -19,7 +20,7 @@ type Props = {
   buttonLabel?: string | ReactNode
   buttonColor?: 'primary' | 'secondary'
   mode?: AuthenticationMode
-  onComplete: (email: string) => void
+  onCodeSent: (pendingVerification: PendingVerification) => void
   inputLabel?: ReactNode | string
 }
 
@@ -32,11 +33,11 @@ export default function SendVerificationCodeForm({
   buttonColor = 'primary',
   mode,
   inputLabel,
-  onComplete,
+  onCodeSent,
 }: Props) {
   const { t } = useClientTranslation()
   const { defaultEmail, createVerificationCodeError, createVerificationCode } =
-    useCreateVerificationCode({ onComplete, mode })
+    useCreateVerificationCode({ onComplete: onCodeSent, mode })
 
   const {
     register,
@@ -49,7 +50,9 @@ export default function SendVerificationCodeForm({
   })
 
   return (
-    <form onSubmit={handleSubmit(createVerificationCode)} noValidate>
+    <form
+      onSubmit={handleSubmit(({ email }) => createVerificationCode(email))}
+      noValidate>
       <TextInput
         type="email"
         shouldUseDebounce={false}
@@ -70,7 +73,8 @@ export default function SendVerificationCodeForm({
         error={formErrors.email?.message}
       />
 
-      {createVerificationCodeError === ERRORS.SIGNIN_USER_DOES_NOT_EXIST ? (
+      {createVerificationCodeError ===
+      CREATE_VERIFICATION_CODE_ERROR.SIGNIN_USER_DOES_NOT_EXIST ? (
         <Alert
           type="error"
           className="mt-4"
@@ -81,7 +85,8 @@ export default function SendVerificationCodeForm({
             </Trans>
           }
         />
-      ) : createVerificationCodeError === ERRORS.SIGNUP_USER_ALREADY_EXISTS ? (
+      ) : createVerificationCodeError ===
+        CREATE_VERIFICATION_CODE_ERROR.SIGNUP_USER_ALREADY_EXISTS ? (
         <Alert
           type="error"
           className="mt-4"
@@ -92,7 +97,8 @@ export default function SendVerificationCodeForm({
             </Trans>
           }
         />
-      ) : createVerificationCodeError === ERRORS.UNKNOWN_ERROR ? (
+      ) : createVerificationCodeError ===
+        CREATE_VERIFICATION_CODE_ERROR.UNKNOWN_ERROR ? (
         <DefaultSubmitErrorMessage className="mt-4" />
       ) : null}
 

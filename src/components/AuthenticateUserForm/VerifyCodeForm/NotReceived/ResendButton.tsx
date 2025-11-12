@@ -6,22 +6,18 @@ import Trans from '@/components/translation/trans/TransClient'
 import { organisationsConnexionClickCode } from '@/constants/tracking/pages/organisationsConnexion'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
-import type { UseMutateAsyncFunction } from '@tanstack/react-query'
-import React, { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 
 type Props = {
   isRetryButtonDisabled: boolean
-  sendVerificationCode: UseMutateAsyncFunction<any, Error, string, unknown>
-  setTimeLeft: React.Dispatch<React.SetStateAction<number>>
+  onResendVerificationCode: () => void
   timeLeft: number
 }
 
 export default function ResendButton({
   isRetryButtonDisabled,
-  sendVerificationCode,
-  setTimeLeft,
+  onResendVerificationCode,
   timeLeft,
 }: Props) {
   const [shouldDisplayConfirmation, setShouldDisplayConfirmation] =
@@ -29,33 +25,20 @@ export default function ResendButton({
 
   const { t } = useClientTranslation()
 
-  const { user } = useUser()
-
-  const timeoutRef = useRef<NodeJS.Timeout>(undefined)
-
-  async function handleResendVerificationCode() {
+  function handleResendVerificationCode() {
     if (isRetryButtonDisabled) {
       return
     }
 
     trackEvent(organisationsConnexionClickCode)
 
-    await sendVerificationCode(user?.organisation?.administratorEmail ?? '')
+    onResendVerificationCode()
     setShouldDisplayConfirmation(true)
 
-    timeoutRef.current = setTimeout(() => {
-      setTimeLeft(30)
+    setTimeout(() => {
       setShouldDisplayConfirmation(false)
     }, 1500)
   }
-
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
-      }
-    }
-  }, [])
 
   return (
     <div className="flex items-center">

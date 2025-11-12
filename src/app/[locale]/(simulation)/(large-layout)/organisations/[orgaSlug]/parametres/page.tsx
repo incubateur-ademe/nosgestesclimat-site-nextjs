@@ -9,10 +9,10 @@ import { organisationsParametersUpdateInformations } from '@/constants/tracking/
 import Form from '@/design-system/form/Form'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
+import { useCreateVerificationCode } from '@/hooks/authentication/useSignInWithVerificationCode'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { usePostVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
 import { useUser } from '@/publicodes-state'
 import type {
   Organisation,
@@ -89,8 +89,10 @@ export default function ParametresPage() {
     isPending: isPendingUpdate,
   } = useUpdateOrganisation()
 
-  const { mutateAsync: createVerificationCode, isError: isErrorSendCode } =
-    usePostVerificationCode()
+  const {
+    createVerificationCode,
+    createVerificationCodeError: isErrorSendCode,
+  } = useCreateVerificationCode()
 
   const defaultValues = getFormDefaultValues(organisation)
 
@@ -105,10 +107,7 @@ export default function ParametresPage() {
   function handleSaveDataForVerification(data: OrgaSettingsInputsType) {
     setDataTemporarySaved(data)
     setShouldDisplayModal(true)
-    createVerificationCode({
-      email: data.email,
-      userId: user.userId,
-    })
+    createVerificationCode(data.email)
   }
 
   const handleUpdateOrganisation: SubmitHandler<
@@ -236,7 +235,7 @@ export default function ParametresPage() {
           error={errorUpdate}
           isSuccess={isSuccessUpdate}
           isPending={isPendingUpdate}
-          isErrorSendCode={isErrorSendCode}
+          isErrorSendCode={!!isErrorSendCode}
         />
       )}
 

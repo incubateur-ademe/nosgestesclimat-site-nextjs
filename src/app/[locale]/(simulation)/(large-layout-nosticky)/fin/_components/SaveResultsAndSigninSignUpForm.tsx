@@ -1,7 +1,7 @@
 'use client'
 
+import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import Confirmation from '@/components/results/carbone/getResultsByEmail/Confirmation'
-import SignInOrSignUpForm from '@/components/signIn/SignInOrSignUpForm'
 import Trans from '@/components/translation/trans/TransClient'
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
@@ -11,7 +11,6 @@ import { useGetAuthentifiedUser } from '@/hooks/authentication/useGetAuthentifie
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { formatEmail } from '@/utils/format/formatEmail'
 import { captureException } from '@sentry/nextjs'
 import { useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -39,15 +38,11 @@ export default function SaveResultsAndSigninSignUpForm({
     return null
   }
 
-  const onSubmit = (email: string) => {
+  const onSubmit = () => {
     // If the mutation is pending, we do nothing
     if (isPending) {
       return
     }
-
-    const formattedEmail = formatEmail(email)
-
-    updateEmail(formattedEmail)
 
     try {
       // Handles saving both completing the user signin / signup and saving the simulation
@@ -91,7 +86,7 @@ export default function SaveResultsAndSigninSignUpForm({
               'Retrouvez vos résultats à tout moment sur votre espace personnel'
             )}
           />
-          <SignInOrSignUpForm
+          <AuthenticateUserForm
             buttonLabel={
               <span>
                 <span className="text-lg" aria-hidden>

@@ -1,6 +1,6 @@
+import DownArrow from '@/components/icons/DownArrow'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
-import DownArrow from '../icons/DownArrow'
 
 type Props = {
   highlights: ReactNode[]

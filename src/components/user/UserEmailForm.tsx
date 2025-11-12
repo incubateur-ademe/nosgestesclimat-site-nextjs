@@ -6,9 +6,9 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import TextInput from '@/design-system/inputs/TextInput'
 import Loader from '@/design-system/layout/Loader'
+import { useCreateVerificationCode } from '@/hooks/authentication/useSignInWithVerificationCode'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useCreateVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
 import { useUser } from '@/publicodes-state'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { captureException } from '@sentry/nextjs'
@@ -68,7 +68,7 @@ export default function UserEmailForm({ submitLabel, className }: Props) {
 
       if (nextEmail && (!user?.email || nextEmail !== user?.email)) {
         setPendingEmail(nextEmail)
-        createVerificationCode({ email: nextEmail })
+        createVerificationCode(nextEmail)
 
         setShouldDisplayModal(true)
 
