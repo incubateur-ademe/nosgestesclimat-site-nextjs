@@ -10,7 +10,6 @@ export const MUST_NOT_ASK_QUESTIONS: Set<DottedName> = new Set([
   'services sociétaux . voter',
   'divers . aider les autres',
   'divers . partage NGC',
-  'transport . infolettre',
   'métrique',
   'logement . électricité verte',
   'logement . chauffage . électricité',
