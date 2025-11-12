@@ -40,7 +40,7 @@ export default function Navigation({
   tempValue?: number
   onComplete?: () => void
   isEmbedded?: boolean
-  remainingQuestions?: DottedName[]
+  remainingQuestions: DottedName[]
 }) {
   const { t } = useClientTranslation()
 
@@ -101,9 +101,10 @@ export default function Navigation({
 
   const isFirstOrOnlyQuestion =
     noPrevQuestion ||
-    persistedRemainingQuestionsRef.current?.indexOf(question) === 0 ||
-    persistedRemainingQuestionsRef.current?.indexOf(question) ===
-      (persistedRemainingQuestionsRef.current?.length || 0) - 1
+    (isEmbedded &&
+      (persistedRemainingQuestionsRef.current?.indexOf(question) === 0 ||
+        persistedRemainingQuestionsRef.current?.indexOf(question) ===
+          (persistedRemainingQuestionsRef.current?.length || 0) - 1))
 
   // Start time of the question
   //(we need to use question to update the start time when the question changes, but it is not exactly usefull as a dependency)
@@ -175,7 +176,6 @@ export default function Navigation({
 
       // Hack in order to reset the notifications when the question changes
       resetNotification()
-
       if (finalNoNextQuestion) {
         onComplete()
         return

@@ -53,4 +53,5 @@ export const MUST_SHOW_DESCRIPTION: Set<DottedName> = new Set([
   'logement . âge',
   'logement . surface',
   'divers . animaux domestiques . empreinte',
+  'alimentation . local . consommation',
 ])
