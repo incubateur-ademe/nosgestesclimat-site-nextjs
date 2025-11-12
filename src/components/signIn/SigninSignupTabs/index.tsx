@@ -10,7 +10,7 @@ import Tabs, { type TabItem } from '@/design-system/layout/Tabs'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { AuthenticationMode } from '@/types/authentication'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
-import Trans from '../translation/trans/TransClient'
+import Trans from '../../translation/trans/TransClient'
 
 type Props = {
   mode: AuthenticationMode

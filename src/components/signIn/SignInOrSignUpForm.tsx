@@ -4,9 +4,11 @@ import useLogin from '@/hooks/authentication/useLogin'
 import { useUser } from '@/publicodes-state'
 import type { AuthenticationMode } from '@/types/authentication'
 import dayjs from 'dayjs'
-import { useState, type ReactNode } from 'react'
-import EmailSignInOrSignUpForm from './EmailSignInOrSignUpForm'
-import VerificationForm from './VerificationForm'
+import { type ReactNode } from 'react'
+import { useState } from 'storybook/internal/preview-api'
+
+import SendVerificationCodeForm from './SendVerificationCodeForm'
+import VerifyCodeForm from './VerifyCodeForm'
 
 type Props = {
   buttonLabel?: string | ReactNode
@@ -25,14 +27,9 @@ export default function SignInOrSignUpForm({
   mode,
   redirectURL,
   onComplete,
-  defaultEmail,
 }: Props) {
   const { user } = useUser()
-
-  const [email, setEmail] = useState<string | undefined>(
-    defaultEmail ?? user?.email ?? ''
-  )
-
+  const [email, setEmail] = useState<string | undefined>(user?.email)
   const {
     mutateAsync: login,
     isPending: isPendingValidate,
@@ -50,7 +47,7 @@ export default function SignInOrSignUpForm({
   // until redirecting to the next page
   if (hasSavedValidVerificationCodeExpirationDate || isSuccessValidate) {
     return (
-      <VerificationForm
+      <VerifyCodeForm
         email={email ?? ''}
         login={login}
         isPendingValidate={isPendingValidate}
@@ -63,17 +60,12 @@ export default function SignInOrSignUpForm({
   }
 
   return (
-    <EmailSignInOrSignUpForm
-      emailDefaultValue={
-        mode !== undefined
-          ? user?.email
-          : user?.organisation?.administratorEmail || user?.email || ''
-      }
+    <SendVerificationCodeForm
       buttonLabel={buttonLabel}
       buttonColor={buttonColor}
       mode={mode}
+      onComplete={setEmail}
       inputLabel={inputLabel}
-      onEmailChange={setEmail}
     />
   )
 }
