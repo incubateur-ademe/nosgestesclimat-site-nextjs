@@ -9,10 +9,11 @@ import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { useMutation } from '@tanstack/react-query'
 import axios, { AxiosError } from 'axios'
-import { useCallback } from 'storybook/internal/preview-api'
+import { useCallback } from 'react'
 import { useLocale } from '../useLocale'
+import type { PendingVerification } from './usePendingVerification'
 
-export const enum ERRORS {
+export const enum CREATE_VERIFICATION_CODE_ERROR {
   SIGNIN_USER_DOES_NOT_EXIST = 'User does not exist',
   SIGNUP_USER_ALREADY_EXISTS = 'User already exists',
   UNKNOWN_ERROR = 'An unknown error occurred',
@@ -23,67 +24,15 @@ export function useCreateVerificationCode({
   onComplete,
 }: {
   mode?: AuthenticationMode
-  onComplete?: (email: string) => void
+  onComplete?: (pendingVerification: PendingVerification) => void
 } = {}) {
-  const { mutateAsync: postVerificationCode, error } = usePostVerificationCode()
-
-  const errorCode: ERRORS | false =
-    error &&
-    ((error instanceof AxiosError && error.response?.data) ??
-      ERRORS.UNKNOWN_ERROR)
-
-  const {
-    updateVerificationCodeExpirationDate,
-    updateUserOrganisation,
-    user,
-    updateEmail,
-  } = useUser()
-
-  const createVerificationCode = useCallback(
-    async (data: { email: string }) => {
-      try {
-        const email = formatEmail(data.email)
-
-        // Track the email signin form submission
-        trackEvent(signinTrackEvent(mode))
-        trackPosthogEvent(captureClickSubmitEmail({ mode }))
-
-        const { expirationDate } = await postVerificationCode({
-          email,
-          userId: user.userId,
-          mode,
-        })
-
-        updateVerificationCodeExpirationDate(expirationDate)
-
-        onComplete?.(email)
-      } catch (error) {
-        console.error(error)
-        // Error is handled by the useCreateVerificationCode hook
-        return
-      }
-    },
-    [
-      mode,
-      onComplete,
-      postVerificationCode,
-      updateVerificationCodeExpirationDate,
-      user.userId,
-    ]
-  )
-
-  return {
-    createVerificationCode,
-    createVerificationCodeError: errorCode,
-    // @TODO
-    defaultEmail: '',
-  }
-}
-
-export function usePostVerificationCode() {
   const locale = useLocale()
 
-  return useMutation({
+  const {
+    mutateAsync: postVerificationCode,
+    error,
+    isPending,
+  } = useMutation({
     mutationFn: ({
       email,
       userId,
@@ -106,4 +55,44 @@ export function usePostVerificationCode() {
         )
         .then((response) => response.data),
   })
+
+  const errorCode: CREATE_VERIFICATION_CODE_ERROR | false =
+    error &&
+    ((error instanceof AxiosError && error.response?.data) ??
+      CREATE_VERIFICATION_CODE_ERROR.UNKNOWN_ERROR)
+
+  const { user } = useUser()
+
+  const createVerificationCode = useCallback(
+    async (email: string) => {
+      try {
+        email = formatEmail(email)
+        // Track the email signin form submission
+        // @TODO move
+        trackEvent(signinTrackEvent(mode))
+        trackPosthogEvent(captureClickSubmitEmail({ mode }))
+
+        const { expirationDate } = await postVerificationCode({
+          email,
+          userId: user.userId,
+          mode,
+        })
+
+        onComplete?.({ email, expirationDate })
+      } catch (error) {
+        console.error(error)
+        // Error is handled by the useCreateVerificationCode hook
+        return
+      }
+    },
+    [user.userId, mode, onComplete, postVerificationCode]
+  )
+
+  return {
+    createVerificationCode,
+    createVerificationCodeError: errorCode,
+    createVerificationCodePending: isPending,
+    // @TODO
+    defaultEmail: '',
+  }
 }

@@ -2,10 +2,10 @@
 
 import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import EmptyState from '@/app/[locale]/mon-espace/groupes/_components/EmptyState'
+import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import Groups from '@/components/results/groups/Groups'
 import Organisations from '@/components/results/groups/Organisations'
-import SignInOrSignUpForm from '@/components/signIn/SignInOrSignUpForm'
 import Trans from '@/components/translation/trans/TransClient'
 import { SIGNUP_MODE } from '@/constants/authentication/modes'
 import { fetchUserGroups } from '@/helpers/groups/fetchUserGroups'
@@ -69,7 +69,7 @@ export default function GroupsTabContent() {
                 Déjà un groupe ou une organisation ?
               </Trans>
             </h2>
-            <SignInOrSignUpForm
+            <AuthenticateUserForm
               buttonLabel={
                 <Trans i18nKey="mon-espace.groups.loginBlock.buttonLabel">
                   Suivant

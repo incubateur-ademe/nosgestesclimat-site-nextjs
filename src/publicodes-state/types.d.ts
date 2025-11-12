@@ -38,7 +38,7 @@ export type User = {
   region?: RegionFromGeolocation
   initialRegion?: RegionFromGeolocation
   northStarRatings?: any // TODO: should be NorthStartType or something
-  verificationCodeExpirationDate?: Date
+  pendingVerification?: { expirationDate: Date; email: string }
   organisation?: UserOrganisationInfo
   administratorEmail?: string
 }
