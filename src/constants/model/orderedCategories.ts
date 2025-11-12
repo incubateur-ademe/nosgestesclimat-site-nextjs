@@ -1,9 +1,9 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 export const orderedCategories: DottedName[] = [
-  'transport',
-  'alimentation',
   'logement',
+  'alimentation',
+  'transport',
   'divers',
   'services sociétaux',
 ]
