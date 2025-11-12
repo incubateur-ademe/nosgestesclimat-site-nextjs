@@ -3,7 +3,7 @@ import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { reconcileOnAuth } from '@/helpers/user/reconcileOnAuth'
 import useTimeLeft from '@/hooks/organisations/useTimeleft'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useCreateVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
+import { usePostVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
 import { useUser } from '@/publicodes-state'
 import type { AuthenticationMode } from '@/types/authentication'
 import { captureException } from '@sentry/nextjs'
@@ -11,8 +11,8 @@ import type { UseMutateAsyncFunction } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import NotReceived from './verificationForm/NotReceived'
-import VerificationContent from './verificationForm/VerificationContent'
+import NotReceived from './NotReceived'
+import VerificationContent from './VerificationContent'
 
 type Props = {
   email: string
@@ -69,7 +69,7 @@ export default function VerificationForm({
     mutateAsync: createVerificationCode,
     isError: isErrorResend,
     isPending: isPendingResend,
-  } = useCreateVerificationCode()
+  } = usePostVerificationCode()
 
   function sendVerificationCode(email: string) {
     return createVerificationCode({

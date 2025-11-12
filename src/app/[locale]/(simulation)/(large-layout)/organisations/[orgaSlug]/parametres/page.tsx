@@ -12,7 +12,7 @@ import Title from '@/design-system/layout/Title'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useCreateVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
+import { usePostVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
 import { useUser } from '@/publicodes-state'
 import type {
   Organisation,
@@ -90,7 +90,7 @@ export default function ParametresPage() {
   } = useUpdateOrganisation()
 
   const { mutateAsync: createVerificationCode, isError: isErrorSendCode } =
-    useCreateVerificationCode()
+    usePostVerificationCode()
 
   const defaultValues = getFormDefaultValues(organisation)
 
