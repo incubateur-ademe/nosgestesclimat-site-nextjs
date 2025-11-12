@@ -43,7 +43,7 @@ export default function MosaicNumberInput({
       }>
       <div>
         {title && icons ? (
-          <span className="mb-1 block text-sm font-medium md:text-base">
+          <span className="mb-1 block text-sm md:text-base">
             {title}{' '}
             <Emoji className="inline-flex items-center leading-tight">
               {icons}
