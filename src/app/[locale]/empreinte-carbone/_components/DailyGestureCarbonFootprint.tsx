@@ -1,4 +1,5 @@
 import DailyGestures from '@/components/landing-pages/DailyGestures'
+import Trans from '@/components/translation/trans/TransServer'
 import { trackingActionClickPageBottom } from '@/constants/tracking/actions'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import {
@@ -20,11 +21,30 @@ export default async function DailyGestureCarbonFootprint({
     logement: t('Logement'),
     consommation: t('Consommation'),
   }
-
   return (
     <DailyGestures
-      title="Les actions pour réduire son empreinte carbone"
-      description="<p class='mb-0'>Pour un mode de vie plus durable, certaines actions <strong class='text-primary-600'>ont un impact plus fort que d'autres</strong>. En intégrant ces gestes dans votre quotidien, vous pouvez fortement <strong class='text-primary-600'>réduire vos émissions de Co2</strong>. Voici quelques idées :</p>"
+      title={t(
+        'landing.carbon.dailyGestures.title',
+        'Les actions pour réduire son empreinte carbone'
+      )}
+      description={
+        <p className="mb-0">
+          <Trans
+            locale={locale}
+            i18nKey="landing.carbon.dailyGestures.description">
+            Pour un mode de vie plus durable, certaines actions{' '}
+            <strong className="text-primary-600">
+              ont un impact plus fort que d'autres
+            </strong>
+            . En intégrant ces gestes dans votre quotidien, vous pouvez
+            fortement{' '}
+            <strong className="text-primary-600">
+              réduire vos émissions de Co2
+            </strong>
+            . Voici quelques idées :
+          </Trans>
+        </p>
+      }
       trackingEvents={{
         start: getLandingClickCTAStart(
           '/empreinte-carbone',

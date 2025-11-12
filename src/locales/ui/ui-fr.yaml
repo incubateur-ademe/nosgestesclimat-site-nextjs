@@ -1311,3 +1311,35 @@ entries:
   90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² en moyenne pour un foyer de 2,2 personnes.
   sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit
   'Dernière mise à jour :': 'Dernière mise à jour :'
+  landing.carbon.dailyGestures.title: Les actions pour réduire son empreinte carbone
+  landing.carbon.motivation.description: "Il est urgent de réduire nos émissions de gaz à effet de serre et d'opérer une transition vers des modes de vie bas-carbone. Individus et organisations, il est temps d'agir : <2>mesurer son empreinte carbone est la première étape !</2>"
+  landing.carbon.motivation.items.actDaily: Agir au quotidien
+  landing.carbon.motivation.items.actDaily.description: Découvrir quelles actions ont le plus d'impact pour réduire son empreinte carbone.
+  landing.carbon.motivation.items.collectiveEngagement: S'engager collectivement
+  landing.carbon.motivation.items.collectiveEngagement.description: Les challenges entre amis ou la diffusion des outils en entreprise permettent de mobiliser votre entourage.
+  landing.carbon.motivation.items.passTest: Passer le test
+  landing.carbon.motivation.items.passTest.description: Évaluer son empreinte écologique (carbone et eau) pour identifier les principaux leviers d'action.
+  landing.carbon.motivation.title: Économiser l'eau, un enjeu de développement durable
+  landing.water.dailyGestures.description.1: L'eau est <2>au cœur de nos vies</2> et de notre consommation quotidienne, bien <6>au-delà de ce que nous observons à la maison</6>. Chaque jour, des milliers de litres d'eau sont utilisés pour produire les aliments que nous mangeons, les vêtements que nous portons et l'énergie que nous consommons.
+  landing.water.dailyGestures.description.2: 'Voici quelques exemples de gestes qui auront un impact important sur votre consommation eau indirecte :'
+  landing.water.dailyGestures.title: Les gestes du quotidien pour préserver nos ressources en eau
+  landing.water.motivation.description: Avec les pressions croissantes exercées par les activités humaines et le changement climatique, la gestion durable de l'eau est devenue <2>un défi planétaire</2>. Que ce soit pour l'agriculture, l'industrie ou l'usage domestique, cette ressource limitée fait face à des menaces importantes. <5>Réduire notre consommation d'eau</5> et adopter des pratiques responsables est donc <9>nécessaire pour préserver les ressources</9> et répondre aux défis environnementaux mondiaux.
+  landing.water.motivation.items.access: Accès à l'eau
+  landing.water.motivation.items.access.description: Les activités humaines perturbent le cycle de l'eau et compromettent l'accès à l'eau potable, entraînant conflits, perte de biodiversité et déplacements de populations.
+  landing.water.motivation.items.limitedRessource: Ressources en eau douce limitées
+  landing.water.motivation.items.limitedRessource.description: Bien que l'eau soit abondante sur Terre, seule 1 % de l'eau est douce et accessible pour la consommation humaine.
+  landing.water.motivation.items.pollution: Pollution des eaux
+  landing.water.motivation.items.pollution.description: Les pratiques agricoles intensives et les rejets industriels contaminent les ressources en eau, menacent les écosystèmes et notre santé.
+  landing.water.understand.description: Mieux comprendre <2>notre impact sur les ressources en eau</2> est essentiel pour pouvoir agir efficacement. À travers une série d'articles, nous vous proposons des conseils pratiques, des idées inspirantes et des informations clés pour <6>réduire votre empreinte eau</6>.
+  landing.water.whatDoWeMeasure.items.agriculture: La production d'aliments pour les animaux d'élevage
+  landing.water.whatDoWeMeasure.items.digital: L'extraction des matériaux pour le numérique
+  landing.water.whatDoWeMeasure.items.electricity: La production d'électricité
+  landing.water.whatDoWeMeasure.items.fruitsLegumesCereales: La culture des fruits, légumes et céréales que nous mangeons
+  landing.water.whatDoWeMeasure.items.textile: La culture du coton de nos vêtements
+  landing.water.whatDoWeMeasure.title: Que calcule-t-on dans l'empreinte eau ?
+  landing.carbon.understand.description: Réduire efficacement son empreinte sur l'environnement nécessite de <2>s'informer sur les enjeux du réchauffement climatique</2>, s'inspirer des bonnes pratiques et <5>passer à l'action</5>.
+  landing.carbon.dailyGestures.description: "Pour un mode de vie plus durable, certaines actions <2>ont un impact plus fort que d'autres</2>. En intégrant ces gestes dans votre quotidien, vous pouvez fortement <5>réduire vos émissions de Co2</5>. Voici quelques idées :"
+  landing.carbon.measure.energy: Vos consommations énergétiques
+  landing.carbon.measure.food: Votre régime alimentaire
+  landing.carbon.measure.modes: Vos modes de déplacement
+  landing.carbon.measure.shopping: Vos achats
