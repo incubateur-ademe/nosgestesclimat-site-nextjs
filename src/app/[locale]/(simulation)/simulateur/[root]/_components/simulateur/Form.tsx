@@ -24,7 +24,7 @@ import {
 } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { trackGTMEvent } from '@/utils/analytics/trackGTMEvent'
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import FunFact from './form/FunFact'
 import ResultsBlocksDesktop from './form/ResultsBlocksDesktop'
@@ -34,7 +34,7 @@ import CategoryIllustration from './summary/CategoryIllustration'
 export default function Form() {
   const isDebug = useDebug()
 
-  const { progression, id } = useCurrentSimulation()
+  const { progression } = useCurrentSimulation()
 
   const {
     remainingQuestions,
@@ -58,14 +58,8 @@ export default function Form() {
   const { trackTimeOnSimulation } = useTrackTimeOnSimulation()
   const { getNumericValue } = useEngine()
 
-  // When we reach the end of the test (by clicking on the last navigation button),
-  // we wait for the progression to be updated before redirecting to the end page
-  const [shouldGoToEndPage, setShouldGoToEndPage] = useState(
-    progression === 1 ? true : false
-  )
-
-  useEffect(() => {
-    if (shouldGoToEndPage && progression === 1) {
+  const handleOnComplete = useCallback(() => {
+    if (progression === 1) {
       const timeSpentOnSimulation = trackTimeOnSimulation()
 
       const bilan = getNumericValue('bilan')
@@ -90,15 +84,12 @@ export default function Form() {
         allowedToGoToGroupDashboard: true,
       })
     }
-    // goToEndPage was triggered twice in a row
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    shouldGoToEndPage,
     progression,
     getNumericValue,
-    id,
     trackTimeOnSimulation,
     isGTMAvailable,
+    goToEndPage,
   ])
 
   const [tempValue, setTempValue] = useState<number | undefined>(undefined)
@@ -167,12 +158,13 @@ export default function Form() {
                 key="iframe-navigation"
                 question={currentQuestion}
                 tempValue={tempValue}
+                remainingQuestions={remainingQuestions}
                 onComplete={() => {
                   if (shouldPreventNavigation) {
                     handleUpdateShouldPreventNavigation(false)
                   }
 
-                  setShouldGoToEndPage(true)
+                  handleOnComplete()
                 }}
               />
             )}
@@ -206,13 +198,14 @@ export default function Form() {
         <Navigation
           key="default-navigation"
           question={currentQuestion}
+          remainingQuestions={remainingQuestions}
           tempValue={tempValue}
           onComplete={() => {
             if (shouldPreventNavigation) {
               handleUpdateShouldPreventNavigation(false)
             }
 
-            setShouldGoToEndPage(true)
+            handleOnComplete()
           }}
         />
       )}
