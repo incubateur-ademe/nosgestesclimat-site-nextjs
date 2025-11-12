@@ -1,7 +1,5 @@
+import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import ContentLarge from '@/components/layout/ContentLarge'
-import ColourBlock from '@/components/signIn/ColourBlock'
-import SigninSignUpForm from '@/components/signIn/SignInOrSignUpForm'
-import SigninSignupTabs from '@/components/signIn/SigninSignupTabs'
 import Trans from '@/components/translation/trans/TransServer'
 import { SIGNIN_MODE } from '@/constants/authentication/modes'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
@@ -9,10 +7,11 @@ import Title from '@/design-system/layout/Title'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import QueryClientProviderWrapper from '../../_components/mainLayoutProviders/QueryClientProviderWrapper'
+import ColourBlock from '../_components/ColourBlocks'
+import SigninSignupTabs from '../_components/SigninSignupTabs'
 
 export default async function Connexion({ params }: DefaultPageProps) {
   const { locale } = await params
-
   return (
     <ContentLarge className="px-4 lg:px-0">
       <div className="flex justify-center pb-32 lg:justify-start">
@@ -33,7 +32,10 @@ export default async function Connexion({ params }: DefaultPageProps) {
 
           <QueryClientProviderWrapper>
             <UserProvider>
-              <SigninSignUpForm mode="signIn" redirectURL={MON_ESPACE_PATH} />
+              <AuthenticateUserForm
+                mode="signIn"
+                redirectURL={MON_ESPACE_PATH}
+              />
             </UserProvider>
           </QueryClientProviderWrapper>
         </div>
