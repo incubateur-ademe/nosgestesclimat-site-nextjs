@@ -1,6 +1,7 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 export const MUST_NOT_ASK_QUESTIONS: Set<DottedName> = new Set([
+  // Mosaic "Textile" is hidden but can be answered is "choix précis" is set to "oui".
   'divers . textile . empreinte précise',
   'divers . textile . choix précis',
   'divers . ameublement . meubles',

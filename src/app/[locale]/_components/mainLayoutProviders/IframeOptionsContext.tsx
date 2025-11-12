@@ -83,7 +83,7 @@ export const IframeOptionsProvider = ({
     <IframeOptionsContext.Provider
       value={{
         isIframeShareData,
-        iframeRegion,
+        iframeRegion: regionCode,
         isIframe,
         isIframeOnlySimulation,
         iframeLang,

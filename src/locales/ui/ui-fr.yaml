@@ -434,7 +434,6 @@ entries:
   (Attendre: (Attendre
   Avez-vous pensé à vérifier votre outil anti-spams ?: Avez-vous pensé à vérifier votre outil anti-spams ?
   Enregistrer: Enregistrer
-  S’abonner à la newsletter Nos Gestes Transport: S’abonner à la newsletter Nos Gestes Transport
   secondes): secondes)
   Vous n'avez pas reçu de code ?: Vous n'avez pas reçu de code ?
   <0>2 tonnes</0> en 2050 ?: <0>2 tonnes</0> en 2050 ?
@@ -1050,7 +1049,6 @@ entries:
   Le calculateur carbone permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique et de saisir <2>les actions qui auraient le plus d'impact</2> pour le réduire.: Le calculateur carbone permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique et de saisir <2>les actions qui auraient le plus d'impact</2> pour le réduire.
   Qu'est-ce que l'empreinte carbone ?: Qu'est-ce que l'empreinte carbone ?
   Qu'est-ce que l'empreinte eau ?: Qu'est-ce que l'empreinte eau ?
-  Que calcule-t-on dans l'empreinte eau ?: Que calcule-t-on dans l'empreinte eau ?
   Réaliser des travaux d'isolation de son logement (pour les propriétaires): Réaliser des travaux d'isolation de son logement (pour les propriétaires)
   Vos réponses ne vous permettent pas de sélectionner ce geste ; il va être retiré de la liste de vos actions suggérées.: Vos réponses ne vous permettent pas de sélectionner ce geste ; il va être retiré de la liste de vos actions suggérées.
   footer.thematicLandingPages.title: Pages thématiques
@@ -1160,7 +1158,6 @@ entries:
   Statistiques d'usage du mode "Organisations": Statistiques d'usage du mode "Organisations"
   Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.: Statistiques détaillées sur l'utilisation du mode Organisations, incluant le nombre d'organisations créées, de participants, et d'actions réalisées.
   Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.: Statistiques sur l'utilisation du mode Challenge, incluant le nombre de défis créés, de participants, et de résultats partagés.
-  actions.form.custom.modal.ariaLabel: Fenêtre modale du formulaire d'action personnalisée
   actions.form.modal.ariaLabel: Fenêtre modale du formulaire d'action
   Choix de la métrique: Choix de la métrique
   common.burgerMenu.title: Fermer le menu de navigation
