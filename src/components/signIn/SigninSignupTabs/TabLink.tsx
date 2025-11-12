@@ -8,7 +8,7 @@ import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import Link from 'next/link'
 import type { MouseEvent } from 'react'
 
-export default function TabLink({
+export default function SignInSignupTabs({
   href,
   isActive,
   children,

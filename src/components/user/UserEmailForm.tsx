@@ -42,32 +42,6 @@ export default function UserEmailForm({ submitLabel, className }: Props) {
     error,
   } = useUpdateUserSettings()
 
-  const { mutateAsync: createVerificationCode, isError: isErrorSendCode } =
-    useCreateVerificationCode()
-
-  const [shouldDisplayModal, setShouldDisplayModal] = useState(false)
-  const [pendingEmail, setPendingEmail] = useState<string | undefined>(
-    undefined
-  )
-
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    try {
-      const nextEmail = formatEmail(data.email ?? user.email)
-
-      if (nextEmail && (!user?.email || nextEmail !== user?.email)) {
-        setPendingEmail(nextEmail)
-
-        await createVerificationCode({ email: nextEmail, userId: user.userId })
-
-        setShouldDisplayModal(true)
-
-        return
-      }
-    } catch (error) {
-      captureException(error)
-    }
-  }
-
   async function handleValidateVerificationCode(verificationCode: string) {
     if (!pendingEmail || verificationCode.length < 6) return
 
@@ -85,6 +59,31 @@ export default function UserEmailForm({ submitLabel, className }: Props) {
     }
   }
 
+  const { createVerificationCode, createVerificationCodeError } =
+    useCreateVerificationCode()
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    try {
+      const nextEmail = formatEmail(data.email ?? user.email)
+
+      if (nextEmail && (!user?.email || nextEmail !== user?.email)) {
+        setPendingEmail(nextEmail)
+        createVerificationCode({ email: nextEmail })
+
+        setShouldDisplayModal(true)
+
+        return
+      }
+    } catch (error) {
+      captureException(error)
+    }
+  }
+
+  const [shouldDisplayModal, setShouldDisplayModal] = useState(false)
+  const [pendingEmail, setPendingEmail] = useState<string | undefined>(
+    undefined
+  )
+
   return (
     <div className={className}>
       <form
@@ -97,7 +96,7 @@ export default function UserEmailForm({ submitLabel, className }: Props) {
             error={(error as Error) ?? null}
             isSuccess={isSuccess}
             isPending={isPending}
-            isErrorSendCode={isErrorSendCode}
+            isErrorSendCode={!!createVerificationCodeError}
           />
         )}
 
