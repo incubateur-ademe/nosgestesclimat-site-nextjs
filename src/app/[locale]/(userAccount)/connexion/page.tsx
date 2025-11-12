@@ -6,20 +6,12 @@ import Trans from '@/components/translation/trans/TransServer'
 import { SIGNIN_MODE } from '@/constants/authentication/modes'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
-import { getAuthentifiedUser } from '@/helpers/authentication/getAuthentifiedUser'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
-import { redirect } from 'next/navigation'
 import QueryClientProviderWrapper from '../../_components/mainLayoutProviders/QueryClientProviderWrapper'
 
 export default async function Connexion({ params }: DefaultPageProps) {
   const { locale } = await params
-
-  const authenticatedUser = await getAuthentifiedUser()
-
-  if (authenticatedUser) {
-    redirect(MON_ESPACE_PATH)
-  }
 
   return (
     <ContentLarge className="px-4 lg:px-0">
