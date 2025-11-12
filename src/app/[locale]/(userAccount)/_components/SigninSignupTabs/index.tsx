@@ -1,5 +1,6 @@
 'use client'
 
+import Trans from '@/components/translation/trans/TransClient'
 import { SIGNIN_MODE, SIGNUP_MODE } from '@/constants/authentication/modes'
 import {
   captureClickTab,
@@ -10,7 +11,6 @@ import Tabs, { type TabItem } from '@/design-system/layout/Tabs'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { AuthenticationMode } from '@/types/authentication'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
-import Trans from '../../translation/trans/TransClient'
 
 type Props = {
   mode: AuthenticationMode

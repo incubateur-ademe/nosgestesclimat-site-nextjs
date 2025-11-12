@@ -1,6 +1,6 @@
 'use client'
 
-import SigninSignUpForm from '@/components/signIn/SignInOrSignUpForm'
+import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import Trans from '@/components/translation/trans/TransClient'
 import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Separator from '@/design-system/layout/Separator'
@@ -26,8 +26,7 @@ export default function Page() {
     enabled: false,
   })
 
-  const { updateVerificationCodeExpirationDate, user, updateUserOrganisation } =
-    useUser()
+  const { user, updateUserOrganisation } = useUser()
 
   // Redirect to the organisation page if the user
   // is already logged in (has a valid cookie stored)
@@ -53,7 +52,6 @@ export default function Page() {
 
     if (!organisation) {
       // Reset the verification code expiration date
-      updateVerificationCodeExpirationDate(undefined)
       router.push('/organisations/creer')
       return
     }
@@ -64,9 +62,6 @@ export default function Page() {
     })
 
     router.push(`/organisations/${organisation.slug}`)
-
-    // Reset the verification code expiration date
-    updateVerificationCodeExpirationDate(undefined)
   }
 
   return (
@@ -86,7 +81,7 @@ export default function Page() {
 
         {!isLoading && !organisation && (
           <div className="max-w-full md:w-[40rem]">
-            <SigninSignUpForm
+            <AuthenticateUserForm
               defaultEmail={
                 user?.organisation?.administratorEmail ?? user?.email ?? ''
               }
