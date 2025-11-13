@@ -1,28 +1,21 @@
+import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import ContentLarge from '@/components/layout/ContentLarge'
-import ColourBlock from '@/components/signIn/ColourBlock'
-import SigninSignUpForm from '@/components/signIn/SignInOrSignUpForm'
-import SigninSignupTabs from '@/components/signIn/SigninSignupTabs'
 import Trans from '@/components/translation/trans/TransServer'
 import { SIGNUP_MODE } from '@/constants/authentication/modes'
+import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
-import { getAuthentifiedUser } from '@/helpers/authentication/getAuthentifiedUser'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
-import { redirect } from 'next/navigation'
 import QueryClientProviderWrapper from '../../_components/mainLayoutProviders/QueryClientProviderWrapper'
+import ColourBlock from '../_components/ColourBlocks'
+import SigninSignupTabs from '../_components/SigninSignupTabs'
 
 export default async function Connexion({ params }: DefaultPageProps) {
   const { locale } = await params
 
   const { t } = await getServerTranslation({ locale })
-
-  const authenticatedUser = await getAuthentifiedUser()
-
-  if (authenticatedUser) {
-    redirect(MON_ESPACE_PATH)
-  }
 
   return (
     <ContentLarge className="px-4 lg:px-0">
@@ -44,10 +37,10 @@ export default async function Connexion({ params }: DefaultPageProps) {
 
           <QueryClientProviderWrapper>
             <UserProvider>
-              <SigninSignUpForm
+              <AuthenticateUserForm
                 mode="signUp"
                 buttonLabel={t('signup.button.label', "M'inscrire")}
-                redirectURL={MON_ESPACE_PATH}
+                redirectURL={`${MON_ESPACE_PATH}?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true`}
               />
             </UserProvider>
           </QueryClientProviderWrapper>

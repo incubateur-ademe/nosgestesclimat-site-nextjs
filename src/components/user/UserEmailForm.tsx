@@ -6,9 +6,9 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import TextInput from '@/design-system/inputs/TextInput'
 import Loader from '@/design-system/layout/Loader'
+import { useCreateVerificationCode } from '@/hooks/authentication/useCreateVerificationCode'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useCreateVerificationCode } from '@/hooks/verification-codes/useCreateVerificationCode'
 import { useUser } from '@/publicodes-state'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { captureException } from '@sentry/nextjs'
@@ -42,7 +42,7 @@ export default function UserEmailForm({ submitLabel, className }: Props) {
     error,
   } = useUpdateUserSettings()
 
-  const { mutateAsync: createVerificationCode, isError: isErrorSendCode } =
+  const { createVerificationCode, createVerificationCodeError } =
     useCreateVerificationCode()
 
   const [shouldDisplayModal, setShouldDisplayModal] = useState(false)
@@ -52,13 +52,11 @@ export default function UserEmailForm({ submitLabel, className }: Props) {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
-      const nextEmail = formatEmail(data.email ?? user.email)
+      const nextEmail = formatEmail(data.email)
 
-      if (nextEmail && (!user?.email || nextEmail !== user?.email)) {
+      if (nextEmail && nextEmail !== user.email) {
         setPendingEmail(nextEmail)
-
-        await createVerificationCode({ email: nextEmail, userId: user.userId })
-
+        await createVerificationCode(nextEmail)
         setShouldDisplayModal(true)
 
         return
@@ -97,7 +95,7 @@ export default function UserEmailForm({ submitLabel, className }: Props) {
             error={(error as Error) ?? null}
             isSuccess={isSuccess}
             isPending={isPending}
-            isErrorSendCode={isErrorSendCode}
+            isErrorSendCode={!!createVerificationCodeError}
           />
         )}
 
