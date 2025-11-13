@@ -6,7 +6,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import TextInput from '@/design-system/inputs/TextInput'
 import Loader from '@/design-system/layout/Loader'
-import { useCreateVerificationCode } from '@/hooks/authentication/useSignInWithVerificationCode'
+import { useCreateVerificationCode } from '@/hooks/authentication/useCreateVerificationCode'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
@@ -42,6 +42,30 @@ export default function UserEmailForm({ submitLabel, className }: Props) {
     error,
   } = useUpdateUserSettings()
 
+  const { createVerificationCode, createVerificationCodeError } =
+    useCreateVerificationCode()
+
+  const [shouldDisplayModal, setShouldDisplayModal] = useState(false)
+  const [pendingEmail, setPendingEmail] = useState<string | undefined>(
+    undefined
+  )
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      const nextEmail = formatEmail(data.email)
+
+      if (nextEmail && nextEmail !== user.email) {
+        setPendingEmail(nextEmail)
+        await createVerificationCode(nextEmail)
+        setShouldDisplayModal(true)
+
+        return
+      }
+    } catch (error) {
+      captureException(error)
+    }
+  }
+
   async function handleValidateVerificationCode(verificationCode: string) {
     if (!pendingEmail || verificationCode.length < 6) return
 
@@ -58,31 +82,6 @@ export default function UserEmailForm({ submitLabel, className }: Props) {
       captureException(err)
     }
   }
-
-  const { createVerificationCode, createVerificationCodeError } =
-    useCreateVerificationCode()
-
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    try {
-      const nextEmail = formatEmail(data.email ?? user.email)
-
-      if (nextEmail && (!user?.email || nextEmail !== user?.email)) {
-        setPendingEmail(nextEmail)
-        createVerificationCode(nextEmail)
-
-        setShouldDisplayModal(true)
-
-        return
-      }
-    } catch (error) {
-      captureException(error)
-    }
-  }
-
-  const [shouldDisplayModal, setShouldDisplayModal] = useState(false)
-  const [pendingEmail, setPendingEmail] = useState<string | undefined>(
-    undefined
-  )
 
   return (
     <div className={className}>

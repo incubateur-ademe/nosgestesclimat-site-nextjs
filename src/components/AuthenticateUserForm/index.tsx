@@ -4,6 +4,7 @@ import type { AuthenticationMode } from '@/types/authentication'
 import { useCallback, type ReactNode } from 'react'
 
 import { usePendingVerification } from '@/hooks/authentication/usePendingVerification'
+import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import SendVerificationCodeForm from './SendVerificationCodeForm'
 import VerifyCodeForm from './VerifyCodeForm'
@@ -15,7 +16,6 @@ type Props = {
   mode?: AuthenticationMode
   redirectURL?: string
   onComplete?: () => void
-  defaultEmail?: string
 }
 
 export default function AuthenticateUserForm({
@@ -34,6 +34,9 @@ export default function AuthenticateUserForm({
     }
     onComplete?.()
   }, [redirectURL, onComplete, router])
+
+  const { user } = useUser()
+  console.log(user)
 
   const {
     pendingVerification,

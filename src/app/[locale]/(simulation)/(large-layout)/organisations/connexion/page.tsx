@@ -81,12 +81,7 @@ export default function Page() {
 
         {!isLoading && !organisation && (
           <div className="max-w-full md:w-[40rem]">
-            <AuthenticateUserForm
-              defaultEmail={
-                user?.organisation?.administratorEmail ?? user?.email ?? ''
-              }
-              onComplete={onSignInSignUpComplete}
-            />
+            <AuthenticateUserForm onComplete={onSignInSignUpComplete} />
           </div>
         )}
       </div>
