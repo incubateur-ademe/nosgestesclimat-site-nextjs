@@ -109,7 +109,7 @@ export default function MosaicBooleanInput({
         {isInactive ? (
           <p
             id={`${title}-soon-available`}
-            className="border-secondary-200 bg-secondary-50 text-secondary-800 absolute right-0 -bottom-6 mb-0 flex items-center justify-center rounded-xl border-2 px-1.5 py-1 text-xs font-semibold">
+            className="border-secondary-200 bg-secondary-50 text-secondary-800 absolute right-1 mb-0 flex items-center justify-center rounded-xl border-2 px-1.5 py-1 text-xs font-semibold md:-bottom-4">
             <Trans>Bientôt disponible</Trans>
           </p>
         ) : null}
