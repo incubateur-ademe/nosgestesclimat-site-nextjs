@@ -11,9 +11,10 @@ export default async function WhatDoWeMeasureWaterFootprint({
 
   return (
     <WhatDoWeMeasure
-      title={
-        <Trans locale={locale}>Que calcule-t-on dans l'empreinte eau ?</Trans>
-      }
+      title={t(
+        'landing.water.whatDoWeMeasure.title',
+        "Que calcule-t-on dans l'empreinte eau ?"
+      )}
       listItems={[
         {
           icon: {
@@ -22,7 +23,10 @@ export default async function WhatDoWeMeasureWaterFootprint({
               'Une pomme, symbolisant le lien entre eau et agriculture'
             ),
           },
-          title: 'La culture des fruits, légumes et céréales que nous mangeons',
+          title: t(
+            'landing.water.whatDoWeMeasure.items.fruitsLegumesCereales',
+            'La culture des fruits, légumes et céréales que nous mangeons'
+          ),
         },
         {
           icon: {
@@ -31,14 +35,20 @@ export default async function WhatDoWeMeasureWaterFootprint({
               "Un tee-shirt, symbolisant la consommation d'eau pour l'industrie textile"
             ),
           },
-          title: 'La culture du coton de nos vêtements',
+          title: t(
+            'landing.water.whatDoWeMeasure.items.textile',
+            'La culture du coton de nos vêtements'
+          ),
         },
         {
           icon: {
             url: 'https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/icone_agriculture_fe3f833cc4.svg',
             alternativeText: t('Un mouton, liant empreinte eau et élevage'),
           },
-          title: "La production d'aliments pour les animaux d'élevage",
+          title: t(
+            'landing.water.whatDoWeMeasure.items.agriculture',
+            "La production d'aliments pour les animaux d'élevage"
+          ),
         },
         {
           icon: {
@@ -47,7 +57,10 @@ export default async function WhatDoWeMeasureWaterFootprint({
               "Un ordinateur, illustrant la consommation d'eau par le numérique"
             ),
           },
-          title: "L'extraction des matériaux pour le numérique",
+          title: t(
+            'landing.water.whatDoWeMeasure.items.digital',
+            "L'extraction des matériaux pour le numérique"
+          ),
         },
         {
           icon: {
@@ -56,7 +69,10 @@ export default async function WhatDoWeMeasureWaterFootprint({
               "Un éclair, symbolisant la production d'électricité"
             ),
           },
-          title: "La production d'électricité",
+          title: t(
+            'landing.water.whatDoWeMeasure.items.electricity',
+            "La production d'électricité"
+          ),
         },
       ]}
       description={

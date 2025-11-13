@@ -118,7 +118,6 @@ export default async function BlogHomePage({
   if (!title || !description || !articles) {
     notFound()
   }
-  console.log(image)
   return (
     <>
       <JSONLD
