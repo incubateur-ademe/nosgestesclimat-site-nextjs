@@ -1,6 +1,5 @@
 'use client'
 
-import { PreventNavigationContext } from '@/app/[locale]/_components/mainLayoutProviders/PreventNavigationProvider'
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import ContentLarge from '@/components/layout/ContentLarge'
@@ -12,7 +11,7 @@ import { useIframe } from '@/hooks/useIframe'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import { useCurrentSimulation, useFormState } from '@/publicodes-state'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import FunFact from './form/FunFact'
 import ResultsBlocksDesktop from './form/ResultsBlocksDesktop'
@@ -89,9 +88,6 @@ export default function Form() {
     }
   }, [setQuestionInQueryParams, currentQuestion, isInitialized])
 
-  const { handleUpdateShouldPreventNavigation, shouldPreventNavigation } =
-    useContext(PreventNavigationContext)
-
   if (!isInitialized || !currentQuestion) {
     return
   }
@@ -120,13 +116,7 @@ export default function Form() {
                 question={currentQuestion}
                 tempValue={tempValue}
                 remainingQuestions={remainingQuestions}
-                onComplete={() => {
-                  if (shouldPreventNavigation) {
-                    handleUpdateShouldPreventNavigation(false)
-                  }
-
-                  handleOnComplete()
-                }}
+                onComplete={handleOnComplete}
               />
             )}
           </div>
@@ -161,13 +151,7 @@ export default function Form() {
           question={currentQuestion}
           remainingQuestions={remainingQuestions}
           tempValue={tempValue}
-          onComplete={() => {
-            if (shouldPreventNavigation) {
-              handleUpdateShouldPreventNavigation(false)
-            }
-
-            handleOnComplete()
-          }}
+          onComplete={handleOnComplete}
         />
       )}
     </>
