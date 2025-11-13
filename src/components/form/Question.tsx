@@ -45,7 +45,6 @@ export default function Question({
     unit,
     value,
     situationValue,
-    numericValue,
     setValue,
     isMissing,
     choices,
@@ -72,10 +71,6 @@ export default function Question({
       refCurrentCategoryQuestions.current.indexOf(question) + 1,
   })
 
-  // Hack to update number input on suggestion click.
-  // Ideally, the suggestion component would be colocated in the numberInput
-  const [rerenderNumberInput, setRerenderNumberInput] = useState(0)
-
   const [isOpen, setIsOpen] = useState(showInputsLabel ? false : true)
 
   return (
@@ -92,7 +87,6 @@ export default function Question({
         <Suggestions
           question={question}
           setValue={(value) => {
-            setRerenderNumberInput((x) => x + 1)
             setValue(value, { questionDottedName: question })
           }}
         />
@@ -110,12 +104,11 @@ export default function Question({
             {type === 'number' && (
               <NumberInput
                 unit={unit}
-                value={numericValue}
+                value={value as number}
                 setValue={(value) => {
                   setValue(value, { questionDottedName: question })
                 }}
                 isMissing={isMissing}
-                key={rerenderNumberInput}
                 min={0}
                 data-cypress-id={question}
                 id={DEFAULT_FOCUS_ELEMENT_ID}
@@ -148,7 +141,7 @@ export default function Question({
               <ChoicesInput
                 question={question}
                 choices={choices}
-                value={String(value)}
+                value={situationValue as string}
                 setValue={(value) => {
                   {
                     setValue(value, { questionDottedName: question })

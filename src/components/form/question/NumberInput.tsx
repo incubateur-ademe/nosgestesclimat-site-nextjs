@@ -2,76 +2,56 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { useLocale } from '@/hooks/useLocale'
-import type { HTMLAttributes, SyntheticEvent } from 'react'
-import { useEffect, useRef, useState } from 'react'
+import { debounce } from '@/utils/debounce'
+import type { ComponentProps } from 'react'
+import { useMemo } from 'react'
 import type { NumberFormatValues } from 'react-number-format'
 import { NumericFormat } from 'react-number-format'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
   unit?: string
-  value?: number | string
+  value?: number | null
   isMissing: boolean
   setValue: (value: number | undefined) => void
-  min?: number
   id?: string
   className?: string
-  defaultValue?: string | number | null | undefined
 }
 
 export default function NumberInput({
   unit,
-  value = '',
+  value,
   isMissing,
   setValue,
   className,
   id,
   ...props
-}: HTMLAttributes<HTMLInputElement> & Props) {
+}: ComponentProps<typeof NumericFormat> & Props) {
   const locale = useLocale()
-  const [displayedValue, setDisplayedValue] = useState(value)
-  const timeoutRef = useRef<NodeJS.Timeout>(undefined)
 
-  const handleValueChange = (
-    values: NumberFormatValues,
-    sourceInfo: { event?: SyntheticEvent; source: 'event' | 'prop' }
-  ) => {
-    // If the value change because we typed something, we debounce it
-    if (sourceInfo.source === 'event') {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
-      }
-      timeoutRef.current = setTimeout(() => {
-        setCorrectValue(values.value)
-      }, 300)
-      return
-    }
-
-    // If not, we set it right away
-    setCorrectValue(values.value)
-  }
-
-  useEffect(() => clearTimeout(timeoutRef.current), [])
-
-  const setCorrectValue = (value: number | string) => {
+  const debouncedSetValue = useMemo(() => debounce(setValue, 500), [setValue])
+  const handleValueChange = (values: NumberFormatValues) => {
+    let { value }: { value: string | number | undefined } = values
+    console.log(value)
     if (value === '') {
-      setValue(undefined)
-      setDisplayedValue(undefined)
+      value = undefined
     } else {
-      setValue(Number(value))
-      setDisplayedValue(String(value))
+      value = Number(value)
     }
+    debouncedSetValue(value)
   }
 
   return (
     <div
       className={twMerge(`flex items-center justify-start gap-1`, className)}>
       <NumericFormat
-        value={isMissing ? '' : displayedValue}
+        value={isMissing ? '' : value}
         placeholder={
-          value.toLocaleString(locale, {
-            maximumFractionDigits: Number(value) < 10 ? 1 : 0,
-          }) ?? '0'
+          isMissing && value
+            ? value.toLocaleString(locale, {
+                maximumFractionDigits: Number(value) < 10 ? 1 : 0,
+              })
+            : ''
         }
         className={twMerge(
           `max-w-[8rem] rounded-xl border border-solid border-slate-500 bg-white p-4 text-right text-sm transition-colors md:max-w-full`,

@@ -25,7 +25,6 @@ export default function MosaicQuestion({
     useRule(question)
 
   const { title, icons, description } = useRule(parent)
-
   return (
     <>
       {type === 'number' && (
