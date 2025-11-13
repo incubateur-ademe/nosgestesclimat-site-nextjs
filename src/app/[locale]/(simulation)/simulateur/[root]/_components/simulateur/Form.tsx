@@ -42,8 +42,6 @@ export default function Form() {
 
   const { isIframe } = useIframe()
 
-  const [isInitialized, setIsInitialized] = useState(false)
-
   const handleOnComplete = useCallback(() => {
     if (progression === 1) {
       goToEndPage({
@@ -58,40 +56,36 @@ export default function Form() {
   )
 
   useEffect(() => {
-    if (!isInitialized) {
-      if (
-        questionInQueryParams &&
-        (relevantAnsweredQuestions.includes(questionInQueryParams) || isDebug)
-      ) {
-        setCurrentQuestion(questionInQueryParams)
-      } else {
-        setCurrentQuestion(remainingQuestions[0])
-      }
-      setIsInitialized(true)
+    if (!relevantAnsweredQuestions || currentQuestion) {
+      return
     }
+    if (
+      questionInQueryParams &&
+      (relevantAnsweredQuestions.includes(questionInQueryParams) || isDebug)
+    ) {
+      setCurrentQuestion(questionInQueryParams)
+    } else {
+      setCurrentQuestion(remainingQuestions[0])
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    isDebug,
-    questionInQueryParams,
-    remainingQuestions,
     relevantAnsweredQuestions,
     setCurrentQuestion,
-    isInitialized,
+    questionInQueryParams,
+    isDebug,
   ])
+
+  useEffect(() => {
+    if (currentQuestion) setQuestionInQueryParams(currentQuestion)
+  }, [currentQuestion, setQuestionInQueryParams])
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [currentQuestion])
 
-  useEffect(() => {
-    if (isInitialized && currentQuestion) {
-      setQuestionInQueryParams(currentQuestion)
-    }
-  }, [setQuestionInQueryParams, currentQuestion, isInitialized])
-
-  if (!isInitialized || !currentQuestion) {
+  if (!currentQuestion) {
     return
   }
-
   const QuestionComponent = questions[currentQuestion] || Question
 
   return (
