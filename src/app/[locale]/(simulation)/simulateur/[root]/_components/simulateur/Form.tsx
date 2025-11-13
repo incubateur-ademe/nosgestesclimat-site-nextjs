@@ -86,6 +86,7 @@ export default function Form() {
     }
   }, [
     progression,
+    goToEndPage,
     getNumericValue,
     trackTimeOnSimulation,
     isGTMAvailable,
@@ -128,9 +129,6 @@ export default function Form() {
     }
   }, [setQuestionInQueryParams, currentQuestion, isInitialized])
 
-  const { handleUpdateShouldPreventNavigation, shouldPreventNavigation } =
-    useContext(PreventNavigationContext)
-
   if (!isInitialized || !currentQuestion) {
     return
   }
@@ -160,11 +158,21 @@ export default function Form() {
                 tempValue={tempValue}
                 remainingQuestions={remainingQuestions}
                 onComplete={() => {
+<<<<<<< HEAD
                   if (shouldPreventNavigation) {
                     handleUpdateShouldPreventNavigation(false)
                   }
 
                   handleOnComplete()
+||||||| parent of 0b997dc5 (♻️ Remove unecessary useEffet in go to next question")
+                  if (shouldPreventNavigation) {
+                    handleUpdateShouldPreventNavigation(false)
+                  }
+
+                  setShouldGoToEndPage(true)
+=======
+                  handleGoToEndPage()
+>>>>>>> 0b997dc5 (♻️ Remove unecessary useEffet in go to next question")
                 }}
               />
             )}
@@ -204,8 +212,15 @@ export default function Form() {
             if (shouldPreventNavigation) {
               handleUpdateShouldPreventNavigation(false)
             }
+<<<<<<< HEAD
 
             handleOnComplete()
+||||||| parent of 0b997dc5 (♻️ Remove unecessary useEffet in go to next question")
+
+            setShouldGoToEndPage(true)
+=======
+            handleGoToEndPage()
+>>>>>>> 0b997dc5 (♻️ Remove unecessary useEffet in go to next question")
           }}
         />
       )}
