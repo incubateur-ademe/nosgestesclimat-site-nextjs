@@ -17,12 +17,7 @@ type Props = {
   setDisplayedValue?: (value: string | undefined) => void
 }
 
-export default function Assistance({
-  question,
-  assistance,
-  setTempValue,
-  setDisplayedValue,
-}: Props) {
+export default function Assistance({ question, assistance }: Props) {
   const { setValue: setValueOfQuestion, value: valueOfQuestion } =
     useRule(question)
 
@@ -49,22 +44,9 @@ export default function Assistance({
       prevNumericValueOfParent.current !== numericValueOfParent
     ) {
       setValueOfQuestion(numericValueOfParent, { questionDottedName: question })
-      if (setTempValue) {
-        setTempValue(numericValueOfParent)
-      }
-      if (setDisplayedValue) {
-        setDisplayedValue(String(numericValueOfParent))
-      }
     }
     prevNumericValueOfParent.current = numericValueOfParent
-  }, [
-    numericValueOfParent,
-    valueOfQuestion,
-    setValueOfQuestion,
-    setTempValue,
-    question,
-    setDisplayedValue,
-  ])
+  }, [numericValueOfParent, valueOfQuestion, setValueOfQuestion, question])
 
   return (
     <div

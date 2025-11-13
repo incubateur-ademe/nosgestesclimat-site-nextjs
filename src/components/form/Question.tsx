@@ -18,17 +18,13 @@ import { useUpdatePageTitle } from '@/hooks/simulation/useUpdatePageTitle'
 import { useFormState, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/trans/TransClient'
 import Warning from './question/Warning'
 
 type Props = {
   question: DottedName
-  tempValue?: number | undefined
-  setTempValue?: (value: number | undefined) => void
-  displayedValue?: string | undefined
-  setDisplayedValue?: (value: string | undefined) => void
   showInputsLabel?: React.ReactNode | string
   headingLevel?: 1 | 2 | 3
   className?: string
@@ -37,10 +33,6 @@ type Props = {
 
 export default function Question({
   question,
-  tempValue,
-  setTempValue,
-  displayedValue,
-  setDisplayedValue,
   showInputsLabel,
   headingLevel,
   className,
@@ -52,6 +44,7 @@ export default function Question({
     description,
     unit,
     value,
+    situationValue,
     numericValue,
     setValue,
     isMissing,
@@ -67,23 +60,6 @@ export default function Question({
 
   const { questionsByCategories } = useFormState()
 
-  // It should happen only on mount (the component remount every time the question changes)
-  const prevQuestion = useRef('')
-
-  useEffect(() => {
-    if (type !== 'number') {
-      if (setTempValue) setTempValue(undefined)
-      if (setDisplayedValue) setDisplayedValue(undefined)
-      return
-    }
-
-    if (prevQuestion.current !== question) {
-      if (setTempValue) setTempValue(numericValue)
-      if (setDisplayedValue) setDisplayedValue(String(value))
-      prevQuestion.current = question
-    }
-  }, [type, numericValue, setTempValue, question, setDisplayedValue, value])
-
   const currentCategoryQuestions = questionsByCategories[category]
 
   const refCurrentCategoryQuestions = useRef(currentCategoryQuestions)
@@ -95,6 +71,10 @@ export default function Question({
     currentQuestionIndex:
       refCurrentCategoryQuestions.current.indexOf(question) + 1,
   })
+
+  // Hack to update number input on suggestion click.
+  // Ideally, the suggestion component would be colocated in the numberInput
+  const [rerenderNumberInput, setRerenderNumberInput] = useState(0)
 
   const [isOpen, setIsOpen] = useState(showInputsLabel ? false : true)
 
@@ -112,11 +92,7 @@ export default function Question({
         <Suggestions
           question={question}
           setValue={(value) => {
-            if (type === 'number') {
-              if (setTempValue) setTempValue(value as number)
-              if (setDisplayedValue)
-                setDisplayedValue(value?.toString() ?? undefined)
-            }
+            setRerenderNumberInput((x) => x + 1)
             setValue(value, { questionDottedName: question })
           }}
         />
@@ -134,16 +110,12 @@ export default function Question({
             {type === 'number' && (
               <NumberInput
                 unit={unit}
-                displayedValue={displayedValue}
-                setDisplayedValue={setDisplayedValue}
-                value={setTempValue ? tempValue : numericValue}
+                value={numericValue}
                 setValue={(value) => {
-                  if (setTempValue) {
-                    setTempValue(value)
-                  }
                   setValue(value, { questionDottedName: question })
                 }}
                 isMissing={isMissing}
+                key={rerenderNumberInput}
                 min={0}
                 data-cypress-id={question}
                 id={DEFAULT_FOCUS_ELEMENT_ID}
@@ -208,23 +180,19 @@ export default function Question({
           </>
         )}
       </div>
-
-      <Warning
-        type={type}
-        plancher={plancher}
-        plafond={plafond}
-        warning={warning}
-        tempValue={tempValue}
-        unit={unit}
-      />
+      {typeof situationValue === 'number' && (
+        <Warning
+          type={type}
+          plancher={plancher}
+          plafond={plafond}
+          warning={warning}
+          value={situationValue as number}
+          unit={unit}
+        />
+      )}
 
       {assistance ? (
-        <Assistance
-          question={question}
-          assistance={assistance}
-          setTempValue={setTempValue}
-          setDisplayedValue={setDisplayedValue}
-        />
+        <Assistance question={question} assistance={assistance} />
       ) : null}
 
       {activeNotifications.length > 0 && (

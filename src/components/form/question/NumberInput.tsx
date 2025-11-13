@@ -3,7 +3,7 @@
 import Trans from '@/components/translation/trans/TransClient'
 import { useLocale } from '@/hooks/useLocale'
 import type { HTMLAttributes, SyntheticEvent } from 'react'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { NumberFormatValues } from 'react-number-format'
 import { NumericFormat } from 'react-number-format'
 import { twMerge } from 'tailwind-merge'
@@ -11,8 +11,6 @@ import { twMerge } from 'tailwind-merge'
 type Props = {
   unit?: string
   value?: number | string
-  displayedValue?: string
-  setDisplayedValue?: (value: string | undefined) => void
   isMissing: boolean
   setValue: (value: number | undefined) => void
   min?: number
@@ -24,8 +22,6 @@ type Props = {
 export default function NumberInput({
   unit,
   value = '',
-  displayedValue = '',
-  setDisplayedValue = () => {},
   isMissing,
   setValue,
   className,
@@ -33,7 +29,7 @@ export default function NumberInput({
   ...props
 }: HTMLAttributes<HTMLInputElement> & Props) {
   const locale = useLocale()
-
+  const [displayedValue, setDisplayedValue] = useState(value)
   const timeoutRef = useRef<NodeJS.Timeout>(undefined)
 
   const handleValueChange = (

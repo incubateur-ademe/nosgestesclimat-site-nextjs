@@ -1,6 +1,5 @@
 'use client'
 
-import { PreventNavigationContext } from '@/app/[locale]/_components/mainLayoutProviders/PreventNavigationProvider'
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import ContentLarge from '@/components/layout/ContentLarge'
@@ -12,6 +11,7 @@ import {
 } from '@/constants/tracking/simulation'
 import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
+import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
 import { useTrackTimeOnSimulation } from '@/hooks/tracking/useTrackTimeOnSimulation'
 import { useDebug } from '@/hooks/useDebug'
 import { useGTM } from '@/hooks/useGTM'
@@ -24,7 +24,7 @@ import {
 } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { trackGTMEvent } from '@/utils/analytics/trackGTMEvent'
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
 import FunFact from './form/FunFact'
 import ResultsBlocksDesktop from './form/ResultsBlocksDesktop'
@@ -55,8 +55,12 @@ export default function Form() {
 
   const { trackTimeOnSimulation } = useTrackTimeOnSimulation()
   const { getNumericValue } = useEngine()
-
+  const { handleUpdateShouldPreventNavigation, shouldPreventNavigation } =
+    usePreventNavigation()
   const handleOnComplete = useCallback(() => {
+    if (shouldPreventNavigation) {
+      handleUpdateShouldPreventNavigation(false)
+    }
     if (progression === 1) {
       const timeSpentOnSimulation = trackTimeOnSimulation()
 
@@ -88,13 +92,9 @@ export default function Form() {
     getNumericValue,
     trackTimeOnSimulation,
     isGTMAvailable,
-    goToEndPage,
+    handleUpdateShouldPreventNavigation,
+    shouldPreventNavigation,
   ])
-
-  const [tempValue, setTempValue] = useState<number | undefined>(undefined)
-  const [displayedValue, setDisplayedValue] = useState<string | undefined>(
-    undefined
-  )
 
   useEffect(() => {
     if (!relevantAnsweredQuestions || currentQuestion) {
@@ -139,34 +139,15 @@ export default function Form() {
             <QuestionComponent
               question={currentQuestion}
               key={currentQuestion}
-              tempValue={tempValue}
-              setTempValue={setTempValue}
-              displayedValue={displayedValue}
-              setDisplayedValue={setDisplayedValue}
             />
 
             {isIframe && (
               <Navigation
                 key="iframe-navigation"
                 question={currentQuestion}
-                tempValue={tempValue}
                 remainingQuestions={remainingQuestions}
                 onComplete={() => {
-<<<<<<< HEAD
-                  if (shouldPreventNavigation) {
-                    handleUpdateShouldPreventNavigation(false)
-                  }
-
                   handleOnComplete()
-||||||| parent of 0b997dc5 (♻️ Remove unecessary useEffet in go to next question")
-                  if (shouldPreventNavigation) {
-                    handleUpdateShouldPreventNavigation(false)
-                  }
-
-                  setShouldGoToEndPage(true)
-=======
-                  handleGoToEndPage()
->>>>>>> 0b997dc5 (♻️ Remove unecessary useEffet in go to next question")
                 }}
               />
             )}
@@ -201,20 +182,8 @@ export default function Form() {
           key="default-navigation"
           question={currentQuestion}
           remainingQuestions={remainingQuestions}
-          tempValue={tempValue}
           onComplete={() => {
-            if (shouldPreventNavigation) {
-              handleUpdateShouldPreventNavigation(false)
-            }
-<<<<<<< HEAD
-
             handleOnComplete()
-||||||| parent of 0b997dc5 (♻️ Remove unecessary useEffet in go to next question")
-
-            setShouldGoToEndPage(true)
-=======
-            handleGoToEndPage()
->>>>>>> 0b997dc5 (♻️ Remove unecessary useEffet in go to next question")
           }}
         />
       )}
