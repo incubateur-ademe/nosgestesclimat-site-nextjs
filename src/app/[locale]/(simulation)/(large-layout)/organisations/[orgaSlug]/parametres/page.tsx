@@ -9,7 +9,7 @@ import { organisationsParametersUpdateInformations } from '@/constants/tracking/
 import Form from '@/design-system/form/Form'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
-import { useCreateVerificationCode } from '@/hooks/authentication/useSignInWithVerificationCode'
+import { useCreateVerificationCode } from '@/hooks/authentication/useCreateVerificationCode'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useUpdateOrganisation } from '@/hooks/organisations/useUpdateOrganisation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'

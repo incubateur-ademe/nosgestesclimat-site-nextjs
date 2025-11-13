@@ -11,6 +11,7 @@ import {
 } from '@/hooks/authentication/useCreateVerificationCode'
 import type { PendingVerification } from '@/hooks/authentication/usePendingVerification'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useUser } from '@/publicodes-state'
 import type { AuthenticationMode } from '@/types/authentication'
 import { isEmailValid } from '@/utils/isEmailValid'
 import type { ReactNode } from 'react'
@@ -36,8 +37,10 @@ export default function SendVerificationCodeForm({
   onCodeSent,
 }: Props) {
   const { t } = useClientTranslation()
-  const { defaultEmail, createVerificationCodeError, createVerificationCode } =
+  const { createVerificationCodeError, createVerificationCode } =
     useCreateVerificationCode({ onComplete: onCodeSent, mode })
+
+  const defaultEmail = useUser().user.email
 
   const {
     register,
