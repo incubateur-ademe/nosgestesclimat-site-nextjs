@@ -92,7 +92,5 @@ export function useCreateVerificationCode({
     createVerificationCode,
     createVerificationCodeError: errorCode,
     createVerificationCodePending: isPending,
-    // @TODO
-    defaultEmail: '',
   }
 }
