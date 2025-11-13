@@ -3,7 +3,7 @@
 import { carboneMetric } from '@/constants/model/metric'
 import { useEngine } from '@/publicodes-state'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
-import type { EvaluatedNode } from 'publicodes'
+import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { utils } from 'publicodes'
 import { useMemo } from 'react'
 import type { Metric } from '../../types'
@@ -124,6 +124,10 @@ export default function useRule(
     rawMissingVariables,
   })
 
+  const situationValue =
+    situation[dottedName] &&
+    engine?.evaluate(situation[dottedName] as PublicodesExpression).nodeValue
+
   return {
     /**
      * The type of the question (set to "notQuestion" if not a question)
@@ -221,6 +225,10 @@ export default function useRule(
      * The value as a number (0 if the value is not a number)
      */
     numericValue,
+    /**
+     * The value of the rule, before publicodes mechanisms (plafond, arrondi, etc) where applied
+     */
+    situationValue,
     /**
      * True if the question is not answered
      */

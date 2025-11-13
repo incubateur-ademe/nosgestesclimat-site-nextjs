@@ -9,9 +9,10 @@ import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useDebug } from '@/hooks/useDebug'
 import { useIframe } from '@/hooks/useIframe'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
+
+import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
 import { useCurrentSimulation, useFormState } from '@/publicodes-state'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
 import FunFact from './form/FunFact'
 import ResultsBlocksDesktop from './form/ResultsBlocksDesktop'
@@ -22,10 +23,6 @@ export default function Form() {
   const isDebug = useDebug()
 
   const { progression } = useCurrentSimulation()
-
-  const searchParams = useSearchParams()
-
-  const router = useRouter()
 
   const {
     remainingQuestions,
@@ -42,18 +39,24 @@ export default function Form() {
 
   const { isIframe } = useIframe()
 
+  const { handleUpdateShouldPreventNavigation, shouldPreventNavigation } =
+    usePreventNavigation()
+
   const handleOnComplete = useCallback(() => {
+    if (shouldPreventNavigation) {
+      handleUpdateShouldPreventNavigation(false)
+    }
     if (progression === 1) {
       goToEndPage({
         allowedToGoToGroupDashboard: true,
       })
     }
-  }, [progression, goToEndPage])
-
-  const [tempValue, setTempValue] = useState<number | undefined>(undefined)
-  const [displayedValue, setDisplayedValue] = useState<string | undefined>(
-    undefined
-  )
+  }, [
+    shouldPreventNavigation,
+    progression,
+    handleUpdateShouldPreventNavigation,
+    goToEndPage,
+  ])
 
   useEffect(() => {
     if (!relevantAnsweredQuestions || currentQuestion) {
@@ -98,17 +101,12 @@ export default function Form() {
             <QuestionComponent
               question={currentQuestion}
               key={currentQuestion}
-              tempValue={tempValue}
-              setTempValue={setTempValue}
-              displayedValue={displayedValue}
-              setDisplayedValue={setDisplayedValue}
             />
 
             {isIframe && (
               <Navigation
                 key="iframe-navigation"
                 question={currentQuestion}
-                tempValue={tempValue}
                 remainingQuestions={remainingQuestions}
                 onComplete={handleOnComplete}
               />
@@ -144,7 +142,6 @@ export default function Form() {
           key="default-navigation"
           question={currentQuestion}
           remainingQuestions={remainingQuestions}
-          tempValue={tempValue}
           onComplete={handleOnComplete}
         />
       )}
