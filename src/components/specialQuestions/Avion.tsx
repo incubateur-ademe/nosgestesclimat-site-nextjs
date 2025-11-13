@@ -1,10 +1,13 @@
 'use client'
 
 import Question from '@/components/form/Question'
+import { captureSubQuestion } from '@/constants/tracking/posthogTrackers'
+import { openSubQuestion } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import PencilIcon from '../icons/PencilIcon'
 import ThreeYearsInput from './avion/ThreeYearsInput'
 
@@ -12,6 +15,13 @@ type Props = { question: DottedName }
 export default function Avion({ question, ...props }: Props) {
   const { t } = useClientTranslation()
   const [isOpen, setIsOpen] = useState(false)
+  const handleOpenSubQuestion = useCallback(() => {
+    trackEvent(openSubQuestion({ question }))
+    trackPosthogEvent(
+      captureSubQuestion({ question, state: isOpen ? 'closed' : 'opened' })
+    )
+    setIsOpen((isOpen) => !isOpen)
+  }, [question, isOpen])
   return (
     <>
       <Question question={question} className="mb-4" {...props} />
@@ -19,7 +29,7 @@ export default function Avion({ question, ...props }: Props) {
         <Button
           color="link"
           size="xs"
-          onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
+          onClick={handleOpenSubQuestion}
           className="mb-2">
           {isOpen ? (
             t('Fermer')
