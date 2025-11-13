@@ -10,7 +10,7 @@ import Title from '@/design-system/layout/Title'
 import { useGetAuthentifiedUser } from '@/hooks/authentication/useGetAuthentifiedUser'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
 import { useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -21,10 +21,6 @@ export default function SaveResultsAndSigninSignUpForm({
   className?: string
 }) {
   const { t } = useClientTranslation()
-  const {
-    updateEmail,
-    user: { email },
-  } = useUser()
 
   const currentSimulation = useCurrentSimulation()
 
@@ -111,7 +107,6 @@ export default function SaveResultsAndSigninSignUpForm({
             }
             onComplete={onSubmit}
             redirectURL={`${MON_ESPACE_PATH}?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true`}
-            defaultEmail={email ?? ''}
           />
         </div>
         <img

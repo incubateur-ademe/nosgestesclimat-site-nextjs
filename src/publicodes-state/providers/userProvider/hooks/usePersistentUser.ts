@@ -13,61 +13,32 @@ export default function usePersistentUser({
   initialRegion,
   initialUserId,
 }: Props) {
-  const [initialized, setInitialized] = useState<boolean>(false)
-
-  const [user, setUser] = useState<User>({
+  // Upon first render, check if there is a user in local storage and format it
+  // and save it to the user state
+  let localUser: User = {
     region: initialRegion,
     initialRegion: initialRegion,
     userId: initialUserId || uuid(),
-  })
-
-  // Update the user region if it is not set and user is not saved in local storage
-  useEffect(() => {
-    if (initialRegion && !user.region) {
-      setUser({
-        ...user,
-        region: initialRegion,
-        initialRegion: initialRegion,
-      })
-    }
-  }, [initialRegion, user])
-
-  // If an initialUserId is provided, ensure it is reflected in state
-  useEffect(() => {
-    if (initialUserId && user.userId !== initialUserId) {
-      setUser({ ...user, userId: initialUserId })
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialUserId])
-
-  // Upon first render, check if there is a user in local storage and format it
-  // and save it to the user state
-  useEffect(() => {
+  }
+  if (typeof window !== 'undefined') {
     const currentStorage = safeLocalStorage.getItem(storageKey)
     const parsedStorage = JSON.parse(currentStorage || '{}')
-    const localUser: User | undefined = parsedStorage.user
 
-    if (localUser) {
-      const formatted = formatUser({ user: localUser })
-      setUser(
-        initialUserId && formatted.userId !== initialUserId
-          ? { ...formatted, userId: initialUserId }
-          : formatted
-      )
+    if (parsedStorage.user) {
+      localUser = formatUser({ user: parsedStorage.user })
     }
-    setInitialized(true)
-  }, [storageKey, initialUserId])
+  }
+
+  const [user, setUser] = useState(localUser)
 
   // Save the user to local storage after initialization
   useEffect(() => {
-    if (initialized) {
-      const currentStorage = JSON.parse(
-        safeLocalStorage.getItem(storageKey) || '{}'
-      )
-      const updatedStorage = { ...currentStorage, user }
-      safeLocalStorage.setItem(storageKey, JSON.stringify(updatedStorage))
-    }
-  }, [storageKey, user, initialized])
+    const currentStorage = JSON.parse(
+      safeLocalStorage.getItem(storageKey) || '{}'
+    )
+    const updatedStorage = { ...currentStorage, user }
+    safeLocalStorage.setItem(storageKey, JSON.stringify(updatedStorage))
+  }, [storageKey, user])
 
   return { user, setUser }
 }
