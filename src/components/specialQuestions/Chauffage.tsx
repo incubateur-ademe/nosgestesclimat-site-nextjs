@@ -5,8 +5,6 @@ export default function Chauffage({ question }: { question: DottedName }) {
   // Order is defined here.
   const secondaryQuestionsOfMosaic: DottedName[] = [
     'logement . chauffage . chauffe eau solaire . présent',
-    'logement . climatisation . présent',
-    'logement . électricité . photovoltaique . présent',
     'logement . chauffage . réseau de chaleur . présent',
     'logement . chauffage . bouteille gaz . présent',
     'logement . chauffage . fioul . présent',
