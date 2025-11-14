@@ -39,9 +39,7 @@ describe('NumberInput', () => {
     })
 
     it('should render with initial value', () => {
-      render(
-        <NumberInput {...defaultProps} value={123.45} displayedValue="123,45" />
-      )
+      render(<NumberInput {...defaultProps} value={123.45} />)
 
       const input = screen.getByRole('textbox')
       expect(input).toHaveValue('123,45')
@@ -67,72 +65,23 @@ describe('NumberInput', () => {
       expect(input).toHaveAttribute('id', 'custom-id')
     })
 
-    it('should show placeholder when value is provided', () => {
-      render(<NumberInput {...defaultProps} value={1000} />)
+    it('should show placeholder when value is provided and the value is missing', () => {
+      render(<NumberInput {...defaultProps} isMissing value={100} />)
 
       const input = screen.getByRole('textbox')
       expect(input).toHaveAttribute('placeholder')
-      expect(input.getAttribute('placeholder')).toContain('1')
-      expect(input.getAttribute('placeholder')).toContain('000')
-    })
-  })
-
-  describe('Value handling', () => {
-    it('should call setValue when value changes', () => {
-      const setValue = vi.fn()
-      const setDisplayedValue = vi.fn()
-      const { rerender } = render(
-        <NumberInput
-          {...defaultProps}
-          setValue={setValue}
-          setDisplayedValue={setDisplayedValue}
-        />
-      )
-
-      // Simulate value change from props
-      rerender(
-        <NumberInput
-          {...defaultProps}
-          setValue={setValue}
-          setDisplayedValue={setDisplayedValue}
-          value={123}
-          displayedValue="123"
-        />
-      )
-
-      expect(setValue).toHaveBeenCalledWith(123)
-      expect(setDisplayedValue).toHaveBeenCalledWith('123')
-    })
-
-    it('should not debounce value changes from props', () => {
-      const setValue = vi.fn()
-      const { rerender } = render(
-        <NumberInput {...defaultProps} setValue={setValue} />
-      )
-
-      // Simulate value change from props (not user input)
-      rerender(
-        <NumberInput
-          {...defaultProps}
-          setValue={setValue}
-          value={456}
-          displayedValue="456"
-        />
-      )
-
-      // Should be called immediately without debouncing
-      expect(setValue).toHaveBeenCalledWith(456)
+      expect(input.getAttribute('placeholder')).toContain('100')
     })
   })
 
   describe('Number formatting', () => {
     it('should use correct separators for French locale', () => {
-      render(<NumberInput {...defaultProps} value={1234.56} />)
+      render(<NumberInput {...defaultProps} isMissing value={1234.56} />)
 
       const input = screen.getByRole('textbox')
       expect(input).toHaveAttribute('placeholder')
-      expect(input.getAttribute('placeholder')).toContain('1')
-      expect(input.getAttribute('placeholder')).toContain('235')
+      console.log(input.getAttribute('placeholder'))
+      expect(input.getAttribute('placeholder')).toMatch(/1\s235/)
     })
 
     it('should have correct input attributes', () => {
@@ -144,13 +93,6 @@ describe('NumberInput', () => {
   })
 
   describe('Edge cases', () => {
-    it('should handle empty string value', () => {
-      render(<NumberInput {...defaultProps} value="" displayedValue="" />)
-
-      const input = screen.getByRole('textbox')
-      expect(input).toHaveValue('')
-    })
-
     it('should handle undefined value', () => {
       render(<NumberInput {...defaultProps} value={undefined} />)
 
@@ -159,14 +101,14 @@ describe('NumberInput', () => {
     })
 
     it('should handle zero value', () => {
-      render(<NumberInput {...defaultProps} value={0} displayedValue="0" />)
+      render(<NumberInput {...defaultProps} value={0} />)
 
       const input = screen.getByRole('textbox')
       expect(input).toHaveValue('0')
     })
 
     it('should handle very large numbers', () => {
-      render(<NumberInput {...defaultProps} value={999999999} />)
+      render(<NumberInput {...defaultProps} isMissing value={999999999} />)
 
       const input = screen.getByRole('textbox')
       expect(input).toHaveAttribute('placeholder')
@@ -174,7 +116,7 @@ describe('NumberInput', () => {
     })
 
     it('should handle decimal numbers', () => {
-      render(<NumberInput {...defaultProps} value={123.456} />)
+      render(<NumberInput {...defaultProps} isMissing value={123.456} />)
 
       const input = screen.getByRole('textbox')
       expect(input).toHaveAttribute('placeholder', '123') // Rounded to 0 decimal places

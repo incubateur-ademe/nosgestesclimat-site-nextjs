@@ -11,7 +11,7 @@ type Props = {
   plancher?: number
   plafond?: number
   warning?: string
-  tempValue?: number
+  value?: number
   unit?: string
 }
 export default function Warning({
@@ -19,7 +19,7 @@ export default function Warning({
   plancher,
   plafond,
   warning,
-  tempValue,
+  value,
   unit,
 }: Props) {
   const locale = useLocale()
@@ -27,7 +27,7 @@ export default function Warning({
   if (type !== 'number') return null
 
   const { isOverCeiling, isBelowFloor } = getValueIsOverFloorOrCeiling({
-    value: tempValue,
+    value,
     plafond,
     plancher,
   })

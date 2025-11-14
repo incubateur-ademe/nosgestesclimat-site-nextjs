@@ -8,6 +8,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -40,19 +41,28 @@ export default function MosaicBooleanInput({
   index,
   ...props
 }: Props) {
-  const { value, isMissing, isInactive } = useRule(question)
-
+  const { value, isInactive } = useRule(question)
+  const [currentValue, setCurrentValue] = useState(value as boolean | undefined)
   const { t } = useClientTranslation()
 
   const status = isInactive
     ? 'inactive'
-    : !isMissing && value
+    : currentValue === true
       ? 'checked'
       : 'unchecked'
 
   const onClick = () => {
-    setValue(value ? 'non' : 'oui')
+    setCurrentValue(!currentValue)
+    requestIdleCallback(() => setValue(value ? 'non' : 'oui'))
   }
+
+  // Update the current value when the value prop changes because it can be changed by side-effect with a click on « Aucun »
+  useEffect(() => {
+    if (value !== currentValue) {
+      setCurrentValue(value as boolean)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value])
 
   return (
     <div>

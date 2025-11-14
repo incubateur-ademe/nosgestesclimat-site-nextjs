@@ -1,4 +1,5 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { useState } from 'react'
 import Choice from './choicesInput/Choice'
 
 type Props = {
@@ -30,6 +31,7 @@ export default function ChoicesInput(props: Props) {
 
   const isGrid = choices && choices.length > SHOULD_USE_GRID_THRESHOLD
 
+  const [currentValue, setCurrentValue] = useState(value)
   return (
     <fieldset
       className={
@@ -46,8 +48,11 @@ export default function ChoicesInput(props: Props) {
               key={choice}
               question={question}
               choice={choice}
-              active={!isMissing && value === choice}
-              setValue={setValue}
+              active={currentValue === choice}
+              setValue={(choice: string) => {
+                setCurrentValue(choice)
+                requestIdleCallback(() => setValue(choice))
+              }}
               {...otherProps}
               data-cypress-id={`${props['data-cypress-id']}-${choice}`}
               {...(index === 0 ? { id: firstInputId } : {})}
