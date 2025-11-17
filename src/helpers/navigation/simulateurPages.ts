@@ -22,28 +22,29 @@ export const getLinkToSimulateur = ({
   currentSearchParams,
 }: Props = {}) => {
   const basePath = locale ? `/${locale}` : ''
-  const params = new URLSearchParams(currentSearchParams)
   const pathname = `${basePath}${SIMULATOR_PATH}`
 
+  // Use currentSearchParams if available, otherwise create an empty URLSearchParams
+  // URLSearchParams is compatible with ReadonlyURLSearchParams
+  const searchParams: ReadonlyURLSearchParams =
+    currentSearchParams ?? (new URLSearchParams() as ReadonlyURLSearchParams)
+
+  const newParams: Record<string, string | null | undefined> = {}
+
   if (fromProfile) {
-    params.set('fromProfile', 'true')
+    newParams.fromProfile = 'true'
   }
 
   // If no question is provided, we return the base path
   if (!question) {
-    return buildUrlWithPreservedParams(
-      pathname,
-      params as ReadonlyURLSearchParams
-    )
+    return buildUrlWithPreservedParams(pathname, searchParams, newParams)
   }
 
   // Add question parameter
-  params.set('question', question.replaceAll(' . ', '.').replaceAll(' ', '_'))
+  newParams.question = question.replaceAll(' . ', '.').replaceAll(' ', '_')
 
-  return buildUrlWithPreservedParams(
-    pathname,
-    params as ReadonlyURLSearchParams
-  )
+  // Log params as an object
+  return buildUrlWithPreservedParams(pathname, searchParams, newParams)
 }
 
 export const getLinkToTutoriel = ({
