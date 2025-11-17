@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 import { clickSkipTutorialButton } from '../../helpers/elements/buttons'
 import { clickNextStepGroupCreation } from '../../helpers/groups/clickNextStepGroupCreation'
 import { clickValidateGroupCreation } from '../../helpers/groups/clickValidateGroupCreation'
@@ -22,7 +22,9 @@ test.describe('Group userflow', () => {
 
         await click(page, 'button-create-first-group')
 
-        await page.locator('input[data-cypress-id="group-input-owner-name"]').clear()
+        await page
+          .locator('input[data-cypress-id="group-input-owner-name"]')
+          .clear()
 
         // Check that we can create our first group
         await fillGroupCreationFirstStep(page)
@@ -41,9 +43,7 @@ test.describe('Group userflow', () => {
 
         await recursivelyFillSimulation(page)
 
-        expect(page.locator('[data-cypress-id="group-name"]')).toBeDefined({
-          timeout: 10000,
-        })
+        expect(page.locator('[data-cypress-id="group-name"]')).toBeDefined()
 
         // And that we can delete it
         await click(page, 'button-delete-group')
@@ -52,8 +52,12 @@ test.describe('Group userflow', () => {
         // Check that we can create a second group
         await click(page, 'button-create-first-group')
 
-        await page.locator('input[data-cypress-id="group-input-owner-name"]').clear()
-        await page.locator('input[data-cypress-id="group-input-owner-email"]').clear()
+        await page
+          .locator('input[data-cypress-id="group-input-owner-name"]')
+          .clear()
+        await page
+          .locator('input[data-cypress-id="group-input-owner-email"]')
+          .clear()
 
         await fillGroupCreationFirstStep(page)
 
@@ -69,12 +73,16 @@ test.describe('Group userflow', () => {
 
         const newName = 'Les amis de Jean-Marc'
 
-        await page.locator('input[data-cypress-id="group-edit-input-name"]').clear()
+        await page
+          .locator('input[data-cypress-id="group-edit-input-name"]')
+          .clear()
 
         await type(page, 'group-edit-input-name', newName)
         await click(page, 'button-inline-input')
 
-        expect(page.locator('[data-cypress-id="group-name"]')).toContainText(newName)
+        expect(page.locator('[data-cypress-id="group-name"]')).toContainText(
+          newName
+        )
 
         await page.evaluate(() => localStorage.clear())
         await page.reload()
@@ -96,9 +104,10 @@ test.describe('Group userflow', () => {
         // Check that the main sections are displayed
         // TODO: improve test to handle checking the display of the points forts and faibles
         // expect(page.locator('[data-cypress-id="points-fort-faibles-title"]')).toBeDefined()
-        expect(page.locator('[data-cypress-id="votre-empreinte-title"]')).toBeDefined()
+        expect(
+          page.locator('[data-cypress-id="votre-empreinte-title"]')
+        ).toBeDefined()
       })
     })
   })
 })
-

@@ -11,8 +11,6 @@ test.describe('The International page', () => {
       testLangURL === 'en'
         ? 'The international climate footprint calculator'
         : "Le calculateur d'empreinte climat international"
-    expect(
-      page.locator('h1').filter({ hasText: expectedText })
-    ).toBeDefined()
+    expect(page.locator('h1').filter({ hasText: expectedText })).toBeDefined()
   })
 })

@@ -5,4 +5,3 @@ export const CATEGORIES = [
   'divers',
   'services sociétaux',
 ]
-

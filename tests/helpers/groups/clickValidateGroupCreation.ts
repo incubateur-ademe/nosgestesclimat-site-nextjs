@@ -6,4 +6,3 @@ export async function clickValidateGroupCreation(page: Page): Promise<void> {
     .waitFor({ state: 'visible' })
   await page.locator('[data-cypress-id="button-validate-create-group"]').click()
 }
-

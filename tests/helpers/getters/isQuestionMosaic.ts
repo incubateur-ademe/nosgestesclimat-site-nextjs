@@ -5,4 +5,3 @@ export async function isMosaicQuestion(page: Page): Promise<boolean> {
   const count = await element.count()
   return count > 0
 }
-

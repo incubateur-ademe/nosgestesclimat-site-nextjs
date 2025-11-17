@@ -27,4 +27,3 @@ export function checkIfCategoryOrderIsRespected(questionId: string): void {
     categoriesOrderArray[indexCurrentCategory].hasBeenDisplayed = true
   }
 }
-

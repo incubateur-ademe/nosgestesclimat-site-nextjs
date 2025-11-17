@@ -6,4 +6,3 @@ export function encodeRuleName(ruleName: string): string {
       .replace(/\s/g, '-')
   )
 }
-

@@ -1,7 +1,9 @@
 import { spawn } from 'child_process'
 import { Client } from 'pg'
 
-export async function getVerificationCodeFromScalingo(): Promise<string | null> {
+export async function getVerificationCodeFromScalingo(): Promise<
+  string | null
+> {
   let tunnelProcess = null
   try {
     // Set up SSH tunnel to Scalingo
@@ -86,4 +88,3 @@ export async function getVerificationCodeFromScalingo(): Promise<string | null> 
     }
   }
 }
-

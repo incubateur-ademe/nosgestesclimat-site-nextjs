@@ -13,4 +13,3 @@ test.describe('The simulation', () => {
     await recursivelyFillSimulation(page)
   })
 })
-

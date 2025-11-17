@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 import { clickNextButton } from '../../helpers/elements/buttons'
 import { visit } from '../../helpers/interactions/visit'
 import { setupSimulation } from '../../helpers/simulation/setupSimulation'
@@ -24,4 +24,3 @@ test.describe('Simulation page', () => {
     expect(page).toHaveURL(new RegExp(`.*question=${thirdQuestion}`))
   })
 })
-

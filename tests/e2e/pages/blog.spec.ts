@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 import { visit } from '../../helpers/interactions/visit'
 
 test.describe('The Blog page', () => {
@@ -22,4 +22,3 @@ test.describe('The Blog page', () => {
     expect(page.locator('h1')).toBeDefined()
   })
 })
-

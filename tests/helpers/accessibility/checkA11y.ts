@@ -14,4 +14,3 @@ export const checkA11y = async (page: Page): Promise<void> => {
     )
   }
 }
-

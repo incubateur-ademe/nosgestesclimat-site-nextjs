@@ -6,4 +6,3 @@ export async function fillGroupNameEmoji(page: Page): Promise<void> {
   await type(page, 'group-name', 'Jean-Marc groupe')
   await click(page, 'group-select-emoji-🍋')
 }
-

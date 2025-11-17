@@ -7,8 +7,6 @@ test.describe('check for homepage status', () => {
   })
 
   test('has a start button', async ({ page }) => {
-    expect(
-      page.locator('[data-cypress-id="do-the-test-link"]')
-    ).toBeDefined()
+    expect(page.locator('[data-cypress-id="do-the-test-link"]')).toBeDefined()
   })
 })

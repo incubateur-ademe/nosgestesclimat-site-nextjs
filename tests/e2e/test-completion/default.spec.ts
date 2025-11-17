@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 import { visit } from '../../helpers/interactions/visit'
 import { recursivelyFillSimulation } from '../../helpers/simulation/recursivelyFillSimulation'
 import { setupSimulation } from '../../helpers/simulation/setupSimulation'
@@ -14,9 +14,8 @@ test.describe('The simulation', () => {
     expect(page.locator('body')).toBeDefined()
 
     // Ensure we're on a simulation page with questions
-    expect(page.locator('input').first()).toBeDefined({ timeout: 10000 })
+    expect(page.locator('input').first()).toBeDefined()
 
     await recursivelyFillSimulation(page)
   })
 })
-

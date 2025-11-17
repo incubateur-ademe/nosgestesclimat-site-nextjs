@@ -8,4 +8,3 @@ export async function waitWhileLoading(page: Page): Promise<void> {
     await page.waitForTimeout(4000)
   }
 }
-

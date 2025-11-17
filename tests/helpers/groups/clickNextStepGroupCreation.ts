@@ -6,4 +6,3 @@ export async function clickNextStepGroupCreation(page: Page): Promise<void> {
     .waitFor({ state: 'visible' })
   await page.locator('[data-cypress-id="button-continue-create-group"]').click()
 }
-

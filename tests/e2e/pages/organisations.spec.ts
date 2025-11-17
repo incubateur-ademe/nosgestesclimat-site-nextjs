@@ -49,7 +49,9 @@ test.describe('On the organisation userflow', () => {
           .fill(process.env.VERIFICATION_CODE_EMAIL || '')
 
         await page
-          .locator(`[data-cypress-id="${ORGANISATION_CONNEXION_SUBMIT_BUTTON}"]`)
+          .locator(
+            `[data-cypress-id="${ORGANISATION_CONNEXION_SUBMIT_BUTTON}"]`
+          )
           .click()
 
         await page.waitForTimeout(2000)
@@ -71,29 +73,43 @@ test.describe('On the organisation userflow', () => {
         await checkA11y(page)
 
         // Fill organisation fields
-        await page.locator(`[data-cypress-id="${ORGANISATION_NAME_INPUT}"]`).fill('Test Organisation')
+        await page
+          .locator(`[data-cypress-id="${ORGANISATION_NAME_INPUT}"]`)
+          .fill('Test Organisation')
 
         await page
-          .locator(`[data-cypress-id="${ORGANISATION_ADMINISTRATOR_FIRST_NAME_INPUT}"]`)
+          .locator(
+            `[data-cypress-id="${ORGANISATION_ADMINISTRATOR_FIRST_NAME_INPUT}"]`
+          )
           .fill('John')
         await page
-          .locator(`[data-cypress-id="${ORGANISATION_ADMINISTRATOR_LAST_NAME_INPUT}"]`)
+          .locator(
+            `[data-cypress-id="${ORGANISATION_ADMINISTRATOR_LAST_NAME_INPUT}"]`
+          )
           .fill('Doe')
 
         await page
-          .locator(`[data-cypress-id="${ORGANISATION_ADMINISTRATOR_POSITION_INPUT}"]`)
+          .locator(
+            `[data-cypress-id="${ORGANISATION_ADMINISTRATOR_POSITION_INPUT}"]`
+          )
           .fill('Manager')
 
-        await page.locator(`[data-cypress-id="${CREATE_ORGANISATION_BUTTON}"]`).click()
+        await page
+          .locator(`[data-cypress-id="${CREATE_ORGANISATION_BUTTON}"]`)
+          .click()
 
         await page.waitForTimeout(2000)
 
         await checkA11y(page)
 
         // Fill poll fields
-        await page.locator(`[data-cypress-id="${POLL_NAME_INPUT}"]`).fill('Test Poll')
         await page
-          .locator(`[data-cypress-id="${POLL_EXPECTED_NUMBER_OF_PARTICIPANTS_INPUT}"]`)
+          .locator(`[data-cypress-id="${POLL_NAME_INPUT}"]`)
+          .fill('Test Poll')
+        await page
+          .locator(
+            `[data-cypress-id="${POLL_EXPECTED_NUMBER_OF_PARTICIPANTS_INPUT}"]`
+          )
           .fill('10')
         // Activate postal code toggle
         await page
@@ -136,7 +152,9 @@ test.describe('On the organisation userflow', () => {
           .fill(process.env.VERIFICATION_CODE_EMAIL || '')
 
         await page
-          .locator(`[data-cypress-id="${ORGANISATION_CONNEXION_SUBMIT_BUTTON}"]`)
+          .locator(
+            `[data-cypress-id="${ORGANISATION_CONNEXION_SUBMIT_BUTTON}"]`
+          )
           .click()
 
         await page.waitForTimeout(2000)
@@ -159,7 +177,9 @@ test.describe('On the organisation userflow', () => {
 
         // Visit the organisation parameters page
         await page
-          .locator(`[data-cypress-id="${ORGANISATION_PAGE_SEE_PARAMETERS_BUTTON}"]`)
+          .locator(
+            `[data-cypress-id="${ORGANISATION_PAGE_SEE_PARAMETERS_BUTTON}"]`
+          )
           .click()
 
         await page.waitForTimeout(2000)
@@ -180,7 +200,9 @@ test.describe('On the organisation userflow', () => {
 
         // Visit the poll parameters page
         await page
-          .locator(`[data-cypress-id="${POLL_ADMIN_SECTION_SEE_PARAMETERS_BUTTON}"]`)
+          .locator(
+            `[data-cypress-id="${POLL_ADMIN_SECTION_SEE_PARAMETERS_BUTTON}"]`
+          )
           .click()
 
         await page.waitForTimeout(2000)
@@ -190,4 +212,3 @@ test.describe('On the organisation userflow', () => {
     })
   })
 })
-

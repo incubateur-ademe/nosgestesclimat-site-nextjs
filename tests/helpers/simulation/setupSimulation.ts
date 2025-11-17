@@ -1,5 +1,8 @@
 import { Page } from '@playwright/test'
-import { clickDoTheTestLink, clickSkipTutorialButton } from '../elements/buttons'
+import {
+  clickDoTheTestLink,
+  clickSkipTutorialButton,
+} from '../elements/buttons'
 
 export async function setupSimulation(page: Page): Promise<void> {
   await clickDoTheTestLink(page)
@@ -8,4 +11,3 @@ export async function setupSimulation(page: Page): Promise<void> {
   // Wait for the page to be redirected after skipping tutorial
   await page.waitForURL('**/simulateur/bilan')
 }
-
