@@ -20,7 +20,7 @@ const mockUseUpdateUserSettings = vi.fn()
 const mockUseUser = vi.fn()
 
 // Mock the useGetAuthentifiedUser helper
-const mockGetIsUserVerified = vi.fn()
+const mockUseGetAuthentifiedUser = vi.fn()
 
 vi.mock('@/hooks/useClientTranslation', () => ({
   useClientTranslation: () => mockUseClientTranslation(),
@@ -42,8 +42,8 @@ vi.mock('@/publicodes-state', () => ({
   useUser: () => mockUseUser(),
 }))
 
-vi.mock('@/helpers/user/getIsVerified', () => ({
-  useGetAuthentifiedUser: () => mockGetIsUserVerified(),
+vi.mock('@/hooks/authentication/useGetAuthentifiedUser', () => ({
+  useGetAuthentifiedUser: () => mockUseGetAuthentifiedUser(),
 }))
 
 vi.mock('@sentry/nextjs', () => ({
@@ -85,8 +85,10 @@ describe('UserInformationForm', () => {
       updateName: mockUpdateName,
     })
 
-    // Mock user verification - default to verified
-    mockGetIsUserVerified.mockReturnValue(true)
+    // Mock user verification - default to verified (return authenticated user object)
+    mockUseGetAuthentifiedUser.mockReturnValue({
+      data: { userId: 'test-user-id' }, // Return an authenticated user object
+    })
 
     // Mock user functions
     vi.mocked(mockUpdateUserSettings).mockResolvedValue({})
@@ -233,7 +235,9 @@ describe('UserInformationForm', () => {
     })
 
     it('should show verification message for verified users', () => {
-      mockGetIsUserVerified.mockReturnValue(true)
+      mockUseGetAuthentifiedUser.mockReturnValue({
+        data: { userId: 'test-user-id' }, // Return an authenticated user object
+      })
 
       renderComponent()
 
@@ -241,7 +245,9 @@ describe('UserInformationForm', () => {
     })
 
     it('should show warning message for unverified users', () => {
-      mockGetIsUserVerified.mockReturnValue(false)
+      mockUseGetAuthentifiedUser.mockReturnValue({
+        data: undefined, // Return undefined for unauthenticated user
+      })
 
       renderComponent()
 
@@ -650,7 +656,9 @@ describe('UserInformationForm', () => {
       const user = userEvent.setup()
 
       // Ensure user is verified so checkboxes are enabled
-      mockGetIsUserVerified.mockReturnValue(true)
+      mockUseGetAuthentifiedUser.mockReturnValue({
+        data: { userId: 'test-user-id' },
+      })
 
       renderComponent()
 
@@ -682,7 +690,9 @@ describe('UserInformationForm', () => {
       const user = userEvent.setup()
 
       // Ensure user is verified so checkboxes are enabled
-      mockGetIsUserVerified.mockReturnValue(true)
+      mockUseGetAuthentifiedUser.mockReturnValue({
+        data: { userId: 'test-user-id' },
+      })
 
       renderComponent()
 
@@ -714,7 +724,9 @@ describe('UserInformationForm', () => {
     })
 
     it('should disable newsletter checkboxes for unverified users when checked', () => {
-      mockGetIsUserVerified.mockReturnValue(false)
+      mockUseGetAuthentifiedUser.mockReturnValue({
+        data: undefined, // Return undefined for unauthenticated user
+      })
 
       renderComponent()
 
@@ -736,7 +748,9 @@ describe('UserInformationForm', () => {
     })
 
     it('should enable newsletter checkboxes for verified users', () => {
-      mockGetIsUserVerified.mockReturnValue(true)
+      mockUseGetAuthentifiedUser.mockReturnValue({
+        data: { userId: 'test-user-id' },
+      })
 
       renderComponent()
 
