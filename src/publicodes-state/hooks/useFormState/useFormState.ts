@@ -27,6 +27,7 @@ export default function useFormState() {
     noNextQuestion,
     isFirstQuestionOfCategory,
     isLastQuestionOfCategory,
+    testAdvancement,
   } = useNavigation({
     remainingQuestions,
     relevantQuestions,
@@ -95,5 +96,9 @@ export default function useFormState() {
      * Every missing questions needed to complete the form sorted by category
      */
     remainingQuestionsByCategories,
+    /**
+     * Advancement of the test between 0 and 1. This is different from "progression" which it is based on the current question index here and not on the number of answered questions.
+     */
+    testAdvancement,
   }
 }
