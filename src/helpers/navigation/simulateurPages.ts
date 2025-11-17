@@ -35,13 +35,10 @@ export const getLinkToSimulateur = ({
     newParams.fromProfile = 'true'
   }
 
-  // If no question is provided, we return the base path
-  if (!question) {
-    return buildUrlWithPreservedParams(pathname, searchParams, newParams)
-  }
-
   // Add question parameter
-  newParams.question = question.replaceAll(' . ', '.').replaceAll(' ', '_')
+  if (question) {
+    newParams.question = question.replaceAll(' . ', '.').replaceAll(' ', '_')
+  }
 
   // Log params as an object
   return buildUrlWithPreservedParams(pathname, searchParams, newParams)
