@@ -3,6 +3,7 @@
 import Separator from '@/design-system/layout/Separator'
 import type { GesturesType } from '@/types/landing-page'
 import dynamic from 'next/dynamic'
+import type { JSX } from 'react'
 import CTAButtonsPlaceholder from '../cta/CTAButtonsPlaceholder'
 import GestureSelector from './dailyGestures/GestureSelector'
 
@@ -21,7 +22,7 @@ export default function DailyGestures({
   trackingEvents,
 }: {
   title: string
-  description: string
+  description: string | JSX.Element
   gestures: GesturesType
   trackingEvents: {
     start: string[]
@@ -35,10 +36,7 @@ export default function DailyGestures({
 
       <Separator className="mx-auto my-4" />
 
-      <section
-        className="text-sm md:text-lg"
-        dangerouslySetInnerHTML={{ __html: description }}
-      />
+      <section className="text-sm md:text-lg"> {description}</section>
 
       <div className="mt-10 mb-24 flex w-full flex-col justify-between gap-10 md:mb-0 md:flex-row">
         <GestureSelector gestures={gestures} />

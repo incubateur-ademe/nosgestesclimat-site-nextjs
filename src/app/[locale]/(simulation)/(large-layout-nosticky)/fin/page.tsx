@@ -43,6 +43,7 @@ export default function FinPage() {
   const { currentMetric } = useCurrentMetric()
 
   const isIframe = getIsIframe()
+
   const { isFrenchRegion, isIframeShareData } = useIframe()
 
   const searchParams = useSearchParams()

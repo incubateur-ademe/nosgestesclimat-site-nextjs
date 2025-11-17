@@ -1,6 +1,7 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 export const MUST_NOT_ASK_QUESTIONS: Set<DottedName> = new Set([
+  // Mosaic "Textile" is hidden but can be answered is "choix précis" is set to "oui".
   'divers . textile . empreinte précise',
   'divers . textile . choix précis',
   'divers . ameublement . meubles',
@@ -10,7 +11,6 @@ export const MUST_NOT_ASK_QUESTIONS: Set<DottedName> = new Set([
   'services sociétaux . voter',
   'divers . aider les autres',
   'divers . partage NGC',
-  'transport . infolettre',
   'métrique',
   'logement . électricité verte',
   'logement . chauffage . électricité',
@@ -53,4 +53,5 @@ export const MUST_SHOW_DESCRIPTION: Set<DottedName> = new Set([
   'logement . âge',
   'logement . surface',
   'divers . animaux domestiques . empreinte',
+  'alimentation . local . consommation',
 ])

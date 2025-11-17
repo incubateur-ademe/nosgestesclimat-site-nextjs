@@ -1,4 +1,5 @@
 import UnderstandToAct from '@/components/landing-pages/UnderstandToAct'
+import Trans from '@/components/translation/trans/TransServer'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 export default async function UnderstandToActWaterFootprint({
@@ -14,7 +15,23 @@ export default async function UnderstandToActWaterFootprint({
     <UnderstandToAct
       locale={locale}
       pathname={pathname}
-      description="<p class='mb-0'>Mieux comprendre <strong class='text-primary-600'>notre impact sur les ressources en eau</strong> est essentiel pour pouvoir agir efficacement. À travers une série d'articles, nous vous proposons des conseils pratiques, des idées inspirantes et des informations clés pour <strong class='text-primary-600'>réduire votre empreinte eau</strong>.</p>"
+      description={
+        <p className="mb-0">
+          <Trans locale={locale} i18nKey="landing.water.understand.description">
+            Mieux comprendre{' '}
+            <strong className="text-primary-600">
+              notre impact sur les ressources en eau
+            </strong>{' '}
+            est essentiel pour pouvoir agir efficacement. À travers une série
+            d'articles, nous vous proposons des conseils pratiques, des idées
+            inspirantes et des informations clés pour{' '}
+            <strong className="text-primary-600">
+              réduire votre empreinte eau
+            </strong>
+            .
+          </Trans>
+        </p>
+      }
       posts={[
         {
           category: t('Empreinte eau'),
