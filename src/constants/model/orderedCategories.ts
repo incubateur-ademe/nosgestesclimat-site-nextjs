@@ -1,4 +1,4 @@
-import type { DottedName } from './../../../node_modules/@incubateur-ademe/nosgestesclimat/index.d'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 export const orderedCategories: DottedName[] = [
   'transport',
