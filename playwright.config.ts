@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test'
-import dotenv from 'dotenv'
 import { spawn } from 'child_process'
+import dotenv from 'dotenv'
 import { Client } from 'pg'
 
 dotenv.config()
@@ -60,7 +60,9 @@ export default defineConfig({
 })
 
 // Helper function to get verification code from Scalingo database
-export async function getVerificationCodeFromScalingo(): Promise<string | null> {
+export async function getVerificationCodeFromScalingo(): Promise<
+  string | null
+> {
   let tunnelProcess = null
   try {
     // Set up SSH tunnel to Scalingo
@@ -145,4 +147,3 @@ export async function getVerificationCodeFromScalingo(): Promise<string | null> 
     }
   }
 }
-

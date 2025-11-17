@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 import { visit } from '../../helpers/interactions/visit'
 
 test.describe('check for about page status', () => {
@@ -8,4 +8,3 @@ test.describe('check for about page status', () => {
     expect(page.locator('[data-cypress-id="news-title"]')).toBeDefined()
   })
 })
-

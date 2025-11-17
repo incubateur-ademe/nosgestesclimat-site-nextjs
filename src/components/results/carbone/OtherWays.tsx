@@ -62,4 +62,3 @@ export default function OtherWays({ isSmallFootprint }: Props) {
     </div>
   )
 }
-

@@ -32,4 +32,3 @@ export default function Confirmation({ className }: { className?: string }) {
     </Card>
   )
 }
-

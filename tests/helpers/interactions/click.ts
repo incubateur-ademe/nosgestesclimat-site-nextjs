@@ -5,4 +5,3 @@ export async function click(page: Page, elementId: string): Promise<void> {
   await locator.waitFor({ state: 'visible', timeout: 10000 })
   await locator.click()
 }
-

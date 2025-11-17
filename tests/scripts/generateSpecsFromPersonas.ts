@@ -6,7 +6,10 @@ import { writeFileSync } from 'fs'
  * @param {Record<string, string | number>} data
  * @returns {string}
  */
-const getFileContent = (name: string, data: Record<string, string | number>) => `
+const getFileContent = (
+  name: string,
+  data: Record<string, string | number>
+) => `
 import { test } from '@playwright/test'
 import { visit } from '../../helpers/interactions/visit'
 import { recursivelyFillSimulation } from '../../helpers/simulation/recursivelyFillSimulation'
@@ -29,4 +32,3 @@ Object.entries(personas).map(([dottedName, data]: [string, any]) => {
   )
   console.log(`[OK] persona-${name}.spec.ts`)
 })
-

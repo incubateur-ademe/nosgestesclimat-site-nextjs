@@ -45,4 +45,3 @@ export default function Subcategory({ subcategory, index }: Props) {
     </div>
   )
 }
-

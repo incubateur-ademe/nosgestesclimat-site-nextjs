@@ -14,4 +14,3 @@ export async function fillGroupCreationFirstStep(page: Page): Promise<void> {
     .locator('input[data-cypress-id="group-input-owner-email"]')
     .fill('jean@marc.com')
 }
-

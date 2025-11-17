@@ -50,4 +50,3 @@ export const ORGANISATION_ADMINISTRATOR_POSITION_INPUT =
 export const CAR_TYPE_INPUT =
   'transport . voiture . utilisateur-propriétaire-label'
 export const QUESTION_LABEL = 'question-label'
-

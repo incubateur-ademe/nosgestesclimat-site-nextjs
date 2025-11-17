@@ -4,4 +4,3 @@ export function decodeRuleName(ruleName: string): string {
     .replace('\u2011', '-') // replace with a insecable tiret to differenciate from space
     .replace('-', ' ')
 }
-

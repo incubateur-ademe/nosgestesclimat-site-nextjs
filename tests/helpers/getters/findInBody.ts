@@ -12,4 +12,3 @@ export async function findInBodyAndDo(
     await callback()
   }
 }
-
