@@ -169,7 +169,7 @@ export default [
   {
     ignores: [
       'node_modules/**',
-      'cypress/**/*',
+      'tests/**/*',
       '.next/**',
       'dist/**',
       'build/**',
