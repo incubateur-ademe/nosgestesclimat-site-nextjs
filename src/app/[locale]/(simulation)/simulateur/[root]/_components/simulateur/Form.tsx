@@ -12,7 +12,7 @@ import { useIframe } from '@/hooks/useIframe'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import { useCurrentSimulation, useFormState } from '@/publicodes-state'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import FunFact from './form/FunFact'
 import ResultsBlocksDesktop from './form/ResultsBlocksDesktop'
@@ -21,8 +21,11 @@ import CategoryIllustration from './summary/CategoryIllustration'
 
 export default function Form() {
   const isDebug = useDebug()
-  const searchParams = useSearchParams()
+
   const { progression } = useCurrentSimulation()
+
+  const searchParams = useSearchParams()
+
   const router = useRouter()
 
   const {
@@ -42,21 +45,13 @@ export default function Form() {
 
   const [isInitialized, setIsInitialized] = useState(false)
 
-  // When we reach the end of the test (by clicking on the last navigation button),
-  // we wait for the progression to be updated before redirecting to the end page
-  const [shouldGoToEndPage, setShouldGoToEndPage] = useState(
-    progression === 1 ? true : false
-  )
-
-  useEffect(() => {
-    if (shouldGoToEndPage && progression === 1) {
+  const handleOnComplete = useCallback(() => {
+    if (progression === 1) {
       goToEndPage({
         allowedToGoToGroupDashboard: true,
       })
     }
-    // goToEndPage was triggered twice in a row
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [shouldGoToEndPage, progression])
+  }, [progression, goToEndPage])
 
   const [tempValue, setTempValue] = useState<number | undefined>(undefined)
   const [displayedValue, setDisplayedValue] = useState<string | undefined>(
@@ -124,12 +119,13 @@ export default function Form() {
                 key="iframe-navigation"
                 question={currentQuestion}
                 tempValue={tempValue}
+                remainingQuestions={remainingQuestions}
                 onComplete={() => {
                   if (shouldPreventNavigation) {
                     handleUpdateShouldPreventNavigation(false)
                   }
 
-                  setShouldGoToEndPage(true)
+                  handleOnComplete()
                 }}
               />
             )}
@@ -141,13 +137,20 @@ export default function Form() {
 
             <FunFact question={currentQuestion} />
 
-            <div
-              className={twMerge(
-                'mt-auto mb-8 pb-16 md:pb-0',
-                isIframe && 'hidden'
-              )}>
-              <CategoryIllustration category={currentCategory ?? 'transport'} />
-            </div>
+            {
+              // TODO : temporary fix to hide the category illustration for first question
+              currentQuestion !== 'transport . voiture . utilisateur' && (
+                <div
+                  className={twMerge(
+                    'mt-auto mb-8 pb-16 md:pb-0',
+                    isIframe && 'hidden'
+                  )}>
+                  <CategoryIllustration
+                    category={currentCategory ?? 'transport'}
+                  />
+                </div>
+              )
+            }
           </div>
         </div>
       </ContentLarge>
@@ -156,6 +159,7 @@ export default function Form() {
         <Navigation
           key="default-navigation"
           question={currentQuestion}
+          remainingQuestions={remainingQuestions}
           tempValue={tempValue}
           onComplete={() => {
             if (shouldPreventNavigation) {
@@ -170,7 +174,7 @@ export default function Form() {
               return
             }
 
-            setShouldGoToEndPage(true)
+            handleOnComplete()
           }}
         />
       )}

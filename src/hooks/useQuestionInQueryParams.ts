@@ -22,6 +22,7 @@ export const useQuestionInQueryParams = () => {
         getLinkToSimulateur({
           question,
           locale,
+          currentSearchParams: searchParams,
           fromProfile: currentFromProfile,
         }),
         { scroll: false }
