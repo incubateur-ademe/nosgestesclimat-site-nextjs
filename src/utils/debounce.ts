@@ -1,5 +1,5 @@
 export function debounce<T extends unknown[]>(
-  func: (...args: T) => void,
+  func: (...args: T) => void | Promise<void>,
   wait: number
 ): (...args: T) => void {
   let timeout: ReturnType<typeof setTimeout> | null = null
