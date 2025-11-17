@@ -510,7 +510,6 @@ entries:
   Voir plus: See more
   (Attendre: (Wait for
   Enregistrer: Register
-  S’abonner à la newsletter Nos Gestes Transport: Subscribe to the Nos Gestes Transport newsletter
   Avez-vous pensé à vérifier votre outil anti-spams ?: Have you thought about checking your anti-spam tool?
   secondes): seconds)
   Vous n'avez pas reçu de code ?: Didn't you receive a code?
@@ -1098,7 +1097,6 @@ entries:
   Qu'est-ce que l'empreinte carbone ?: What is the carbon footprint?
   Qu'est-ce que l'empreinte eau ?: What is the water footprint?
   Avez-vous déjà entendu parler de maladaptation ?: Have you ever heard of maladaptation?
-  Que calcule-t-on dans l'empreinte eau ?: What is calculated in the water footprint?
   Réaliser des travaux d'isolation de son logement (pour les propriétaires): Insulating your home (for homeowners)
   Empreinte eau et <2>empreinte carbone</2> sont complémentaires, et les comprendre permet d'agir en faveur d'une gestion <6>plus durable des ressources naturelles</6> de la planète.: Water footprint and <2>carbon footprint</2> are complementary, and understanding them enables us to act in favour of <6>more sustainable</6> management of the planet's <6>natural resources</6>.
   Le calculateur carbone permet de comprendre quels sont nos usages qui contribuent le plus au changement climatique et de saisir <2>les actions qui auraient le plus d'impact</2> pour le réduire.: The carbon calculator enables us to understand which of our uses contribute most to climate change and to identify <2>the actions that would have the greatest impact</2> in reducing it.
@@ -1183,12 +1181,8 @@ entries:
   cookieConsent.banner.title.lock: Fenêtre modale de gestion des cookies
   cookieConsent.board.title: Cookie management panel
   cookieConsent.board.title.lock: Panneau de gestion des cookies
-  simulator.customQuestions.ameublement.inProgress: This feature is currently under development. Thank you for your interest!
-  simulator.customQuestions.ameublement.inProgress.lock: Cette fonctionnalité est actuellement en cours de conception. Merci pour votre intérêt !
   simulator.customQuestions.textile.open: I want to detail my wardrobe
   simulator.customQuestions.textile.open.lock: Je détaille ma garde-robe
-  simulator.customQuestions.ameublement.open: I want to detail my latest purchases
-  simulator.customQuestions.ameublement.open.lock: Je détaille mes derniers achats
   'Pour plus de précision:': 'More precision:'
   simulator.customQuestions.plats.selectionStart: You have selected
   simulator.customQuestions.plats.selectionStart.lock: Vous avez sélectionné
@@ -1326,8 +1320,6 @@ entries:
   Fenêtre modale de partage: Modal sharing window
   results.informationBlock.water.openButton: See the explanation of the water footprint
   results.informationBlock.water.openButton.lock: Voir l'explication sur l'empreinte eau
-  actions.form.custom.modal.ariaLabel: Customised action form modal window
-  actions.form.custom.modal.ariaLabel.lock: Fenêtre modale du formulaire d'action personnalisée
   common.buttons.close: Close
   common.buttons.close.lock: Fermer
   organisations.polls.settings.confirmDeletion: Modal window confirming deletion of the campaign
@@ -1554,3 +1546,67 @@ entries:
   90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² on average for a household of 2.2 people.
   sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: over the last 50 years, from 23 to 40 m² per inhabitant, i.e
   'Dernière mise à jour :': 'Last update :'
+  landing.carbon.dailyGestures.description: 'For a more sustainable lifestyle, some actions <2>have a greater impact than others</2>. By making these actions part of your daily routine, you can significantly <5>reduce your Co2 emissions</5>. Here are a few ideas:'
+  landing.carbon.dailyGestures.title: Actions to reduce your carbon footprint
+  landing.carbon.motivation.description: "We urgently need to reduce our greenhouse gas emissions and make the transition to a low-carbon lifestyle. Individuals and organisations, it's time to act: <2>measuring your carbon footprint is the first step!</2>"
+  landing.carbon.motivation.items.actDaily: Day-to-day action
+  landing.carbon.motivation.items.actDaily.description: Find out which actions have the biggest impact on reducing your carbon footprint.
+  landing.carbon.motivation.items.collectiveEngagement: Making a collective commitment
+  landing.carbon.motivation.items.collectiveEngagement.description: Challenges between friends or the distribution of tools within the company can mobilise your entourage.
+  landing.carbon.motivation.items.passTest: Taking the test
+  landing.carbon.motivation.items.passTest.description: Assess your ecological footprint (carbon and water) to identify the main levers for action.
+  landing.carbon.motivation.title: Saving water, a sustainable development issue
+  landing.water.dailyGestures.description.1: Water is <2>at the heart of our lives</2> and our daily consumption, far <6>beyond what we see at home</6>. Every day, thousands of litres of water are used to produce the food we eat, the clothes we wear and the energy we consume.
+  landing.water.dailyGestures.description.2: 'Here are a few examples of actions that will have a significant impact on your indirect water consumption:'
+  landing.water.dailyGestures.title: Everyday actions to preserve our water resources
+  landing.water.motivation.description: With increasing pressure from human activities and climate change, sustainable water management has become <2>a global challenge</2>. Whether for agriculture, industry or domestic use, this limited resource is facing major threats. <5>Reducing our water consumption</5> and adopting responsible practices is therefore <9>necessary to preserve resources</9> and meet global environmental challenges.
+  landing.water.motivation.items.access: Access to water
+  landing.water.motivation.items.access.description: Human activities are disrupting the water cycle and compromising access to drinking water, leading to conflict, loss of biodiversity and displacement of populations.
+  landing.water.motivation.items.limitedRessource: Limited freshwater resources
+  landing.water.motivation.items.limitedRessource.description: Although water is abundant on Earth, only 1% of it is fresh and accessible for human consumption.
+  landing.water.motivation.items.pollution: Water pollution
+  landing.water.motivation.items.pollution.description: Intensive farming practices and industrial waste are contaminating water resources, threatening ecosystems and our health.
+  landing.water.understand.description: Understanding <2>our impact on water resources</2> is essential if we are to take effective action. Through a series of articles, we offer practical advice, inspiring ideas and key information to help you <6>reduce your water footprint</6>.
+  landing.water.whatDoWeMeasure.items.agriculture: Production of feed for farm animals
+  landing.water.whatDoWeMeasure.items.digital: Extracting materials for digital applications
+  landing.water.whatDoWeMeasure.items.electricity: Electricity generation
+  landing.water.whatDoWeMeasure.items.fruitsLegumesCereales: Growing the fruit, vegetables and cereals we eat
+  landing.water.whatDoWeMeasure.items.textile: Growing the cotton used in our clothes
+  landing.water.whatDoWeMeasure.title: What is calculated in the water footprint?
+  landing.carbon.understand.description: To reduce your environmental footprint effectively, you need to <2>be informed about the challenges of global warming</2>, be inspired by good practice and <5>take action</5>.
+  landing.carbon.measure.energy: Your energy consumption
+  landing.carbon.measure.food: Your diet
+  landing.carbon.measure.modes: Your modes of transport
+  landing.carbon.measure.shopping: Your purchases
+  landing.carbon.motivation.items.collectiveEngagement.lock: S'engager collectivement
+  landing.carbon.motivation.items.passTest.lock: Passer le test
+  landing.water.dailyGestures.title.lock: Les gestes du quotidien pour préserver nos ressources en eau
+  landing.carbon.dailyGestures.title.lock: Les actions pour réduire son empreinte carbone
+  landing.carbon.motivation.items.actDaily.lock: Agir au quotidien
+  landing.carbon.motivation.title.lock: Économiser l'eau, un enjeu de développement durable
+  landing.water.motivation.items.access.lock: Accès à l'eau
+  landing.carbon.motivation.items.actDaily.description.lock: Découvrir quelles actions ont le plus d'impact pour réduire son empreinte carbone.
+  landing.water.motivation.items.limitedRessource.lock: Ressources en eau douce limitées
+  landing.carbon.motivation.items.collectiveEngagement.description.lock: Les challenges entre amis ou la diffusion des outils en entreprise permettent de mobiliser votre entourage.
+  landing.water.dailyGestures.description.2.lock: 'Voici quelques exemples de gestes qui auront un impact important sur votre consommation eau indirecte :'
+  landing.carbon.motivation.items.passTest.description.lock: Évaluer son empreinte écologique (carbone et eau) pour identifier les principaux leviers d'action.
+  landing.water.motivation.items.pollution.lock: Pollution des eaux
+  landing.water.whatDoWeMeasure.items.electricity.lock: La production d'électricité
+  landing.water.whatDoWeMeasure.items.digital.lock: L'extraction des matériaux pour le numérique
+  landing.water.motivation.description.lock: Avec les pressions croissantes exercées par les activités humaines et le changement climatique, la gestion durable de l'eau est devenue <2>un défi planétaire</2>. Que ce soit pour l'agriculture, l'industrie ou l'usage domestique, cette ressource limitée fait face à des menaces importantes. <5>Réduire notre consommation d'eau</5> et adopter des pratiques responsables est donc <9>nécessaire pour préserver les ressources</9> et répondre aux défis environnementaux mondiaux.
+  landing.water.dailyGestures.description.1.lock: L'eau est <2>au cœur de nos vies</2> et de notre consommation quotidienne, bien <6>au-delà de ce que nous observons à la maison</6>. Chaque jour, des milliers de litres d'eau sont utilisés pour produire les aliments que nous mangeons, les vêtements que nous portons et l'énergie que nous consommons.
+  landing.water.whatDoWeMeasure.items.agriculture.lock: La production d'aliments pour les animaux d'élevage
+  landing.water.motivation.items.limitedRessource.description.lock: Bien que l'eau soit abondante sur Terre, seule 1 % de l'eau est douce et accessible pour la consommation humaine.
+  landing.carbon.measure.modes.lock: Vos modes de déplacement
+  landing.carbon.motivation.description.lock: "Il est urgent de réduire nos émissions de gaz à effet de serre et d'opérer une transition vers des modes de vie bas-carbone. Individus et organisations, il est temps d'agir : <2>mesurer son empreinte carbone est la première étape !</2>"
+  landing.water.whatDoWeMeasure.items.fruitsLegumesCereales.lock: La culture des fruits, légumes et céréales que nous mangeons
+  landing.carbon.measure.energy.lock: Vos consommations énergétiques
+  landing.water.motivation.items.pollution.description.lock: Les pratiques agricoles intensives et les rejets industriels contaminent les ressources en eau, menacent les écosystèmes et notre santé.
+  landing.water.whatDoWeMeasure.items.textile.lock: La culture du coton de nos vêtements
+  landing.water.motivation.items.access.description.lock: Les activités humaines perturbent le cycle de l'eau et compromettent l'accès à l'eau potable, entraînant conflits, perte de biodiversité et déplacements de populations.
+  landing.carbon.measure.food.lock: Votre régime alimentaire
+  landing.water.whatDoWeMeasure.title.lock: Que calcule-t-on dans l'empreinte eau ?
+  landing.carbon.measure.shopping.lock: Vos achats
+  landing.water.understand.description.lock: Mieux comprendre <2>notre impact sur les ressources en eau</2> est essentiel pour pouvoir agir efficacement. À travers une série d'articles, nous vous proposons des conseils pratiques, des idées inspirantes et des informations clés pour <6>réduire votre empreinte eau</6>.
+  landing.carbon.dailyGestures.description.lock: "Pour un mode de vie plus durable, certaines actions <2>ont un impact plus fort que d'autres</2>. En intégrant ces gestes dans votre quotidien, vous pouvez fortement <5>réduire vos émissions de Co2</5>. Voici quelques idées :"
+  landing.carbon.understand.description.lock: Réduire efficacement son empreinte sur l'environnement nécessite de <2>s'informer sur les enjeux du réchauffement climatique</2>, s'inspirer des bonnes pratiques et <5>passer à l'action</5>.

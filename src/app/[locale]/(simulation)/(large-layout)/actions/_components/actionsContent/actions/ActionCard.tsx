@@ -13,7 +13,6 @@ import {
 import Emoji from '@/design-system/utils/Emoji'
 import { filterRelevantMissingVariables } from '@/helpers/actions/filterRelevantMissingVariables'
 import { getIsActionDisabled } from '@/helpers/actions/getIsActionDisabled'
-import { getIsCustomAction } from '@/helpers/actions/getIsCustomAction'
 import {
   getBackgroundLightColor,
   getBorderColor,
@@ -94,12 +93,10 @@ export default function ActionCard({
       })) ||
     action.isIrrelevant
 
-  const isCustomAction = getIsCustomAction(dottedName)
-
   const handleChooseAction = useCallback(() => {
     if (isDisabled) return
 
-    if (hasRemainingQuestions || isCustomAction) {
+    if (hasRemainingQuestions) {
       setActionWithFormOpen(dottedName)
       return null
     }
@@ -117,7 +114,6 @@ export default function ActionCard({
     isSelected,
     setActionWithFormOpen,
     toggleActionChoice,
-    isCustomAction,
   ])
 
   const handleRejectAction = () => {
