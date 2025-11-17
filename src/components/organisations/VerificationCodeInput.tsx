@@ -47,9 +47,9 @@ export default function VerificationCodeInput({
           >
         }
         classNames={{
-          container: 'container max-w-full w-[16rem] md:w-[20rem]',
+          container: 'container max-w-full w-3xs md:w-80',
           character: twMerge(
-            'border-2! border-slate-500! rounded-xl w-[2rem] text-primary-700! font-medium',
+            'border-2! border-slate-500! rounded-xl w-8 text-primary-700! font-medium',
             marianne.className,
             inputError ? 'border-red-700! border-2' : '',
             isSuccessValidate ? 'border-green-700! border-2' : ''
@@ -64,7 +64,7 @@ export default function VerificationCodeInput({
 
       {inputError && (
         <div>
-          <p id="verification-error" className="mt-2 text-sm text-red-800">
+          <p id="verification-error" className="w- mt-2 text-sm text-red-800">
             <Trans>Le code est invalide</Trans>
           </p>
         </div>
