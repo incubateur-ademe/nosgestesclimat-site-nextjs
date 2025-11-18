@@ -4,7 +4,7 @@ import {
   mapNewSimulationToOld,
   mapOldSimulationToNew,
 } from '@/helpers/simulation/mapNewSimulation'
-import { saveSimulation as saveSimulationHelper } from '@/helpers/simulation/saveSimulation'
+import { postSimulation } from '@/helpers/simulation/postSimulation'
 import { useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
 import { updateGroupParticipant } from '@/services/groups/updateGroupParticipant'
@@ -82,7 +82,7 @@ export function useSaveSimulation() {
           .then((response) => response.data)
       }
 
-      return saveSimulationHelper({
+      return postSimulation({
         simulation: payload,
         userId,
         sendEmail,

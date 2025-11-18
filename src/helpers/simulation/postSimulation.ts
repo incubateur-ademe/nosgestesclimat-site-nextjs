@@ -7,13 +7,16 @@ type Props = {
   userId: string
 }
 
-// TODO : factorize to use this helper everywhere
-export async function saveSimulation({ simulation, userId, sendEmail }: Props) {
+export async function postSimulation({
+  simulation,
+  userId,
+  sendEmail = false,
+}: Props) {
   const payload = { ...simulation }
 
   const url = new URL(`${SIMULATION_URL}/${userId}`)
 
-  url.searchParams.set('sendEmail', sendEmail?.toString() || 'false')
+  url.searchParams.set('sendEmail', sendEmail.toString())
 
   const response = await fetch(url.toString(), {
     method: 'POST',
