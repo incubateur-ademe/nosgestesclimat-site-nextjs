@@ -1,5 +1,5 @@
 import { defaultMetric } from '@/constants/model/metric'
-import { POLL_EMAIL_STEP } from '@/constants/urls/paths'
+import { END_PAGE_PATH, POLL_EMAIL_STEP } from '@/constants/urls/paths'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useCurrentSimulation } from '@/publicodes-state'
@@ -25,6 +25,7 @@ const GetLinkToEndPagePropsDefault = {
 
 export function useEndPage() {
   const router = useRouter()
+
   const searchParams = useSearchParams()
 
   const currentSimulation = useCurrentSimulation()
@@ -97,6 +98,11 @@ export function useEndPage() {
         router.push(getLinkToGroupDashboard({ groupId: lastGroupId }))
         return
       }
+
+      // else we redirect to the results page
+      router.push(
+        `${END_PAGE_PATH}${searchParams.size > 0 ? `?${searchParams.toString()}` : ''}`
+      )
     },
     [
       isNavigating,
@@ -105,6 +111,7 @@ export function useEndPage() {
       currentSimulation,
       router,
       saveSimulation,
+      searchParams,
     ]
   )
 
@@ -121,9 +128,9 @@ export function useEndPage() {
       }
 
       // else we return the results page
-      return '/fin'
+      return `${END_PAGE_PATH}${searchParams.size > 0 ? `?${searchParams.toString()}` : ''}`
     },
-    [currentSimulation]
+    [currentSimulation, searchParams]
   )
 
   return { goToEndPage, getLinkToEndPage, isNavigating }

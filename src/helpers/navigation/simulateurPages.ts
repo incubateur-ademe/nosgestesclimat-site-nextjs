@@ -1,52 +1,51 @@
 import { SIMULATOR_PATH } from '@/constants/urls/paths'
-import { buildUrlWithPreservedParams } from '@/helpers/iframe/preserveIframeParams'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { ReadonlyURLSearchParams } from 'next/navigation'
 
 type Props = {
   question?: DottedName
   locale?: string
-  currentSearchParams?: ReadonlyURLSearchParams
+  searchParams?: ReadonlyURLSearchParams
 }
 
 type TutorielProps = {
   locale?: string
-  currentSearchParams?: ReadonlyURLSearchParams
+  searchParams?: ReadonlyURLSearchParams
 }
 
 export const getLinkToSimulateur = ({
   question,
   locale,
-  currentSearchParams,
+  searchParams,
 }: Props = {}) => {
   const basePath = locale ? `/${locale}` : ''
   const pathname = `${basePath}${SIMULATOR_PATH}`
 
   // Use currentSearchParams if available, otherwise create an empty URLSearchParams
   // URLSearchParams is compatible with ReadonlyURLSearchParams
-  const searchParams: ReadonlyURLSearchParams =
-    currentSearchParams ?? (new URLSearchParams() as ReadonlyURLSearchParams)
-
-  const newParams: Record<string, string | null | undefined> = {}
+  const urlSearchParams = new URLSearchParams(searchParams?.toString() || '')
 
   // Add question parameter
   if (question) {
-    newParams.question = question.replaceAll(' . ', '.').replaceAll(' ', '_')
+    urlSearchParams.set(
+      'question',
+      question.replaceAll(' . ', '.').replaceAll(' ', '_')
+    )
   }
 
   // Log params as an object
-  return buildUrlWithPreservedParams(pathname, searchParams, newParams)
+  return `${pathname}${urlSearchParams.size > 0 ? `?${urlSearchParams.toString()}` : ''}`
 }
 
 export const getLinkToTutoriel = ({
   locale,
-  currentSearchParams,
+  searchParams,
 }: TutorielProps = {}) => {
   const basePath = locale ? `/${locale}` : ''
   const pathname = `${basePath}/tutoriel`
 
-  if (currentSearchParams) {
-    return buildUrlWithPreservedParams(pathname, currentSearchParams)
+  if (searchParams) {
+    return `${pathname}${searchParams.size > 0 ? `?${searchParams.toString()}` : ''}`
   }
 
   return pathname

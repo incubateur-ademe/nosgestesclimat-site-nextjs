@@ -67,16 +67,14 @@ export function useSimulateurPage() {
         router.replace(
           getLinkToSimulateur({
             locale,
-            currentSearchParams: searchParams,
+            searchParams,
           })
         )
         return
       }
 
       // else we redirect him to the tutoriel page
-      router.push(
-        getLinkToTutoriel({ locale, currentSearchParams: searchParams })
-      )
+      router.push(getLinkToTutoriel({ locale, searchParams }))
     },
     [
       progression,
@@ -102,12 +100,12 @@ export function useSimulateurPage() {
       if (tutorielSeen) {
         return getLinkToSimulateur({
           locale,
-          currentSearchParams: searchParams,
+          searchParams,
         })
       }
 
       // else we return the tutoriel page link
-      return getLinkToTutoriel({ locale, currentSearchParams: searchParams })
+      return getLinkToTutoriel({ locale, searchParams })
     },
     [progression, tutorielSeen, getLinkToEndPage, locale, searchParams]
   )

@@ -30,7 +30,6 @@ const getTrackingKey = (simulationId: string, eventType: string): string => {
 }
 
 const getTrackingState = (simulationId: string, eventType: string): boolean => {
-  if (typeof window === 'undefined') return false
   const key = getTrackingKey(simulationId, eventType)
   return safeLocalStorage.getItem(key) === 'true'
 }
@@ -40,8 +39,8 @@ const setTrackingState = (
   eventType: string,
   value: boolean
 ): void => {
-  if (typeof window === 'undefined') return
   const key = getTrackingKey(simulationId, eventType)
+
   safeLocalStorage.setItem(key, value.toString())
 }
 
