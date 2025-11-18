@@ -14,15 +14,14 @@ import {
   useCurrentSimulation,
   useEngine,
   useFormState,
-  useUser,
 } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { trackGTMEvent } from '@/utils/analytics/trackGTMEvent'
-import { useEffect, useRef } from 'react'
+import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
+import { useEffect } from 'react'
 import { useGTM } from '../useGTM'
 import { useTrackTimeOnSimulation } from './useTrackTimeOnSimulation'
 
-const SIMULATOR_SEEN = 'simulator_seen'
 const FIRST_QUESTION = 'first_question'
 const TEST_COMPLETED = 'test_completed'
 
@@ -33,7 +32,7 @@ const getTrackingKey = (simulationId: string, eventType: string): string => {
 const getTrackingState = (simulationId: string, eventType: string): boolean => {
   if (typeof window === 'undefined') return false
   const key = getTrackingKey(simulationId, eventType)
-  return sessionStorage.getItem(key) === 'true'
+  return safeLocalStorage.getItem(key) === 'true'
 }
 
 const setTrackingState = (
@@ -43,7 +42,7 @@ const setTrackingState = (
 ): void => {
   if (typeof window === 'undefined') return
   const key = getTrackingKey(simulationId, eventType)
-  sessionStorage.setItem(key, value.toString())
+  safeLocalStorage.setItem(key, value.toString())
 }
 
 export function useTrackSimulator() {
@@ -56,8 +55,6 @@ export function useTrackSimulator() {
     currentCategory,
     relevantAnsweredQuestions,
   } = useFormState()
-
-  const userIdRef = useRef(useUser().user.userId)
 
   const { progression, foldedSteps } = currentSimulation
 
