@@ -29,15 +29,17 @@ else
         echo "Modified files:"
         echo "$MODIFIED_FILES" | tr '\0' '\n' | sed 's/^/  - /'
         
-        # Check prettier formatting (handle files with spaces using -0 flag)
-        # MODIFIED_FILES already contains only lintable files
+        # Check prettier formatting
+        # MODIFIED_FILES already contains only lintable files (null-separated)
         if [ -n "$MODIFIED_FILES" ]; then
+          # Pass all files at once using xargs -0 (null-separated input)
           echo "$MODIFIED_FILES" | xargs -0 yarn prettier --check || exit 1
         fi
         
         # Lint with eslint (only files in src/ directory based on package.json)
         ESLINT_FILES=$(echo "$MODIFIED_FILES" | grep -zE '^src/.*\.(js|jsx|ts|tsx)$' || true)
         if [ -n "$ESLINT_FILES" ]; then
+          # Pass all files at once using xargs -0 (null-separated input)
           echo "$ESLINT_FILES" | xargs -0 yarn eslint --max-warnings 0 || exit 1
         else
           echo "No files in src/ directory to lint with eslint."

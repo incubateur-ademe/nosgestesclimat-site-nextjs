@@ -82,6 +82,7 @@ export default async function RootLayout({
                   _paq.push(["setCookieDomain", "*.nosgestesclimat.fr"]);
                   _paq.push(['setCookieSameSite', 'None']);
                   _paq.push(['enableLinkTracking']);
+
                   
                   (function() {
                     var u="https://stats.beta.gouv.fr/";
