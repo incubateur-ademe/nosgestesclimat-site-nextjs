@@ -1,3 +1,4 @@
+import { debounce } from '@/utils/debounce'
 import type {
   ChangeEventHandler,
   ForwardedRef,
@@ -5,7 +6,6 @@ import type {
   ReactNode,
 } from 'react'
 import { forwardRef, useId } from 'react'
-import { DebounceInput } from 'react-debounce-input'
 import { twMerge } from 'tailwind-merge'
 import InputGroup from './InputGroup'
 
@@ -61,7 +61,7 @@ export default forwardRef(function TextInput(
 ) {
   const id = useId()
   const inputId = `input-${id}`
-
+  const debouncedOnChange = debounce(onChange ?? (() => null), debounceTimeout)
   return (
     <InputGroup
       name={name}
@@ -73,16 +73,15 @@ export default forwardRef(function TextInput(
       required={required}
       disabled={disabled}
       mention={mention}>
-      <DebounceInput
+      <input
         id={inputId}
-        inputRef={ref}
+        ref={ref}
         readOnly={readOnly}
-        debounceTimeout={debounceTimeout}
         name={name}
         type={type}
         placeholder={placeholder}
-        onChange={onChange ?? (() => null)}
-        value={value}
+        onChange={debouncedOnChange}
+        defaultValue={value}
         required={required}
         aria-disabled={disabled}
         autoComplete={autoComplete}
