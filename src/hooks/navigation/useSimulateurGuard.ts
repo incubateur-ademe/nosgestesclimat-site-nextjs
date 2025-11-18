@@ -58,9 +58,7 @@ export function useSimulateurGuard() {
 
     // if the user has not seen the test intro, we redirect him to the tutorial page
     if (!tutorials.testIntro) {
-      router.replace(
-        getLinkToTutoriel({ locale, currentSearchParams: searchParams })
-      )
+      router.replace(getLinkToTutoriel({ locale, searchParams }))
       setIsGuardRedirecting(true)
     }
   }, [
