@@ -1,6 +1,50 @@
 #!/bin/sh
 
-yarn lint || exit 1
+# Get the base branch (default to preprod, but can be overridden)
+BASE_BRANCH="${BASE_BRANCH:-preprod}"
+
+# Get the current branch name
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# If we're on the base branch, lint all files
+if [ "$CURRENT_BRANCH" = "$BASE_BRANCH" ]; then
+  echo "On base branch ($BASE_BRANCH), linting all files..."
+  yarn lint || exit 1
+else
+    # Get the merge base with the base branch
+    MERGE_BASE=$(git merge-base HEAD origin/$BASE_BRANCH 2>/dev/null || git merge-base HEAD $BASE_BRANCH 2>/dev/null || echo "")
+    
+    if [ -z "$MERGE_BASE" ]; then
+      echo "Warning: Could not find merge base with $BASE_BRANCH. Linting all files..."
+      yarn lint || exit 1
+    else
+      # Get modified files on the current branch compared to the merge base
+      # Use -z flag to handle files with spaces in names
+      MODIFIED_FILES=$(git diff -z --name-only --diff-filter=ACMR $MERGE_BASE HEAD | grep -zE '\.(js|jsx|ts|tsx|md|json)$' || true)
+      
+      if [ -z "$MODIFIED_FILES" ]; then
+        echo "No lintable files modified on this branch. Skipping linting."
+      else
+        echo "Linting modified files on branch $CURRENT_BRANCH (compared to $BASE_BRANCH)..."
+        echo "Modified files:"
+        echo "$MODIFIED_FILES" | tr '\0' '\n' | sed 's/^/  - /'
+        
+        # Check prettier formatting (handle files with spaces using -0 flag)
+        # MODIFIED_FILES already contains only lintable files
+        if [ -n "$MODIFIED_FILES" ]; then
+          echo "$MODIFIED_FILES" | xargs -0 yarn prettier --check || exit 1
+        fi
+        
+        # Lint with eslint (only files in src/ directory based on package.json)
+        ESLINT_FILES=$(echo "$MODIFIED_FILES" | grep -zE '^src/.*\.(js|jsx|ts|tsx)$' || true)
+        if [ -n "$ESLINT_FILES" ]; then
+          echo "$ESLINT_FILES" | xargs -0 yarn eslint --max-warnings 0 || exit 1
+        else
+          echo "No files in src/ directory to lint with eslint."
+        fi
+      fi
+    fi
+  fi
 
 # Run TypeScript type checks and exit if there are errors
 yarn lint:types || exit 1
