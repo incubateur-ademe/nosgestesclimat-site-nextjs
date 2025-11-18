@@ -9,9 +9,7 @@ test.describe('The Plan du site page', () => {
   test('should render without breaking the app', async ({ page }) => {
     await visit(page, '/plan-du-site')
 
-    const testLangURL =
-      process.env.PLAYWRIGHT_testLangURL || process.env.testLangURL
-    const expectedText = testLangURL === 'en' ? 'Site map' : 'Plan du site'
+    const expectedText = 'Plan du site'
     expect(page.locator('h1').filter({ hasText: expectedText })).toBeDefined()
   })
 

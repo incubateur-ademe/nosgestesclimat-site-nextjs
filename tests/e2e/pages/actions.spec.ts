@@ -19,9 +19,7 @@ test.describe('Action userflow', () => {
 
         await dismissCookieBanner(page)
 
-        const testLangURL =
-          process.env.PLAYWRIGHT_testLangURL || process.env.testLangURL
-        const expectedText = testLangURL === 'en' ? 'My gestures' : 'Mes gestes'
+        const expectedText = 'Mes gestes'
 
         expect(
           page.locator('h1').filter({ hasText: expectedText })

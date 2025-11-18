@@ -7,9 +7,7 @@ test.describe('The À propos page', () => {
   })
 
   test('should render without breaking the app', async ({ page }) => {
-    const testLangURL =
-      process.env.PLAYWRIGHT_testLangURL || process.env.testLangURL
-    const expectedText = testLangURL === 'en' ? 'About us' : 'À propos'
+    const expectedText = 'À propos'
     expect(page.locator(`text=${expectedText}`)).toBeDefined()
   })
 })
