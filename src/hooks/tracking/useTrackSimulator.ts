@@ -10,14 +10,12 @@ import {
   simulationSimulationCompleted,
   simulationSimulationStarted,
 } from '@/constants/tracking/simulation'
-import { saveSimulation } from '@/helpers/simulation/saveSimulation'
 import {
   useCurrentSimulation,
   useEngine,
   useFormState,
   useUser,
 } from '@/publicodes-state'
-import type { Simulation } from '@/publicodes-state/types'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { trackGTMEvent } from '@/utils/analytics/trackGTMEvent'
 import { useEffect, useRef } from 'react'
@@ -59,8 +57,6 @@ export function useTrackSimulator() {
     relevantAnsweredQuestions,
   } = useFormState()
 
-  const simulationRef = useRef(currentSimulation)
-
   const userIdRef = useRef(useUser().user.userId)
 
   const { progression, foldedSteps } = currentSimulation
@@ -71,35 +67,6 @@ export function useTrackSimulator() {
 
   const { trackTimeOnSimulation } = useTrackTimeOnSimulation()
 
-  const trackSimulation = ({
-    userId,
-    simulation,
-  }: {
-    userId: string
-    simulation: Simulation
-  }) =>
-    saveSimulation({
-      simulation,
-      userId,
-      sendEmail: false,
-    })
-
-  // Track all users that start a new simulation
-  useEffect(() => {
-    if (
-      progression === 0 &&
-      foldedSteps.length === 0 &&
-      !getTrackingState(simulationId, SIMULATOR_SEEN)
-    ) {
-      setTrackingState(simulationId, SIMULATOR_SEEN, true)
-
-      trackSimulation({
-        userId: userIdRef.current,
-        simulation: { ...currentSimulation },
-      })
-    }
-  }, [currentSimulation, foldedSteps, simulationId, progression])
-
   // Track users that have answered at first question
   useEffect(() => {
     if (
@@ -107,12 +74,6 @@ export function useTrackSimulator() {
       foldedSteps.length === 1 &&
       !getTrackingState(simulationId, FIRST_QUESTION)
     ) {
-      // Track for all users when the first answer is recorded
-      trackSimulation({
-        userId: userIdRef.current,
-        simulation: { ...currentSimulation },
-      })
-
       trackEvent(simulationSimulationStarted)
 
       // Track GTM event if available
@@ -140,12 +101,6 @@ export function useTrackSimulator() {
 
   useEffect(() => {
     if (progression === 1 && !getTrackingState(simulationId, TEST_COMPLETED)) {
-      // Track all users that have completed their simulation
-      trackSimulation({
-        userId: userIdRef.current,
-        simulation: { ...currentSimulation },
-      })
-
       const timeSpentOnSimulation = trackTimeOnSimulation()
 
       const bilan = getNumericValue('bilan')
