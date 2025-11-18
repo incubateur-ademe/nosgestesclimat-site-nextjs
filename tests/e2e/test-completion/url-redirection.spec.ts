@@ -18,6 +18,8 @@ test.describe('Simulation page', () => {
 
     await dismissCookieBanner(page)
 
+    await page.waitForTimeout(1000)
+
     await setupSimulation(page)
 
     for (let i = 0; i < 2; i++) {
@@ -27,6 +29,8 @@ test.describe('Simulation page', () => {
     expect(page).toHaveURL(new RegExp(`.*question=${thirdQuestion}`))
 
     await visit(page, `/simulateur/bilan?question=logement.surface`)
+
+    await page.waitForTimeout(2000)
 
     expect(page).toHaveURL(new RegExp(`.*question=${thirdQuestion}`))
   })

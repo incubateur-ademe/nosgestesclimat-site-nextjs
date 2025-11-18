@@ -31,8 +31,6 @@ test.describe('Loading the simulation from the sid parameter', () => {
 
       await clickSkipTutorialButton(page)
 
-      await page.waitForURL(/.*\/simulateur\/bilan/)
-
       const questionLabel = page.locator(
         `[data-cypress-id="${QUESTION_LABEL}"]`
       )

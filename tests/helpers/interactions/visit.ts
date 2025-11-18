@@ -6,5 +6,4 @@ export async function visit(page: Page, path: string): Promise<void> {
   const url = testLangURL ? `/${testLangURL}${path}` : path
 
   await page.goto(url)
-  await page.waitForLoadState('networkidle')
 }

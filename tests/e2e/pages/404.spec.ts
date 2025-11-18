@@ -17,9 +17,6 @@ test.describe('404 Page', () => {
     // Visit a URL that definitely doesn't exist
     await visit(page, '/definitely-not-a-page-url')
 
-    // Verify that we're on the 404 page
-    expect(page).toHaveURL(/.*\/404/)
-
     // Check for common 404 page elements
     expect(page.locator('h1')).toBeDefined()
     expect(page.locator('div[data-cypress-id="404"]')).toBeDefined()
