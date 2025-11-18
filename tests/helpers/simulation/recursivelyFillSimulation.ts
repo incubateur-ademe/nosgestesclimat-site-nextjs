@@ -53,6 +53,8 @@ export async function recursivelyFillSimulation(
 
     // Is last question
     if (dottedName === LAST_QUESTION_ID) {
+      // Click twice to go to the end page
+      await clickNextButton(page)
       await clickNextButton(page)
       return
     }

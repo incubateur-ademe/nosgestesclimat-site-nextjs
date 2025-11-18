@@ -6,6 +6,7 @@ import {
   SAVE_MODAL_EMAIL_INPUT,
   SAVE_MODAL_SUBMIT_BUTTON,
 } from '../../constants/elements-ids'
+import { dismissCookieBanner } from '../../helpers/cookies/dismissCookieBanner'
 import {
   clickNextButton,
   clickSkipTutorialButton,
@@ -13,6 +14,10 @@ import {
 import { click } from '../../helpers/interactions/click'
 import { type } from '../../helpers/interactions/type'
 import { visit } from '../../helpers/interactions/visit'
+
+test.use({
+  storageState: undefined,
+})
 
 test.describe('Loading the simulation from the sid parameter', () => {
   test.describe('given the user saves their simulation after answering a question', () => {
@@ -22,7 +27,11 @@ test.describe('Loading the simulation from the sid parameter', () => {
     test.beforeEach(async ({ page }) => {
       await visit(page, '/tutoriel')
 
+      await dismissCookieBanner(page)
+
       await clickSkipTutorialButton(page)
+
+      await page.waitForURL(/.*\/simulateur\/bilan/)
 
       const questionLabel = page.locator(
         `[data-cypress-id="${QUESTION_LABEL}"]`
@@ -50,15 +59,11 @@ test.describe('Loading the simulation from the sid parameter', () => {
     })
 
     test.describe('when the user visits the simulation link', () => {
-      test.beforeEach(async ({ page }) => {
-        await page.evaluate(() => localStorage.clear())
-
-        await visit(page, `/simulateur/bilan?sid=${simulationId}`)
-      })
-
       test('then it should load the simulation with the correct total footprint number', async ({
         page,
       }) => {
+        await visit(page, `/simulateur/bilan?sid=${simulationId}`)
+
         await page.waitForTimeout(6000)
         const questionLabel = page.locator(
           `[data-cypress-id="${QUESTION_LABEL}"]`

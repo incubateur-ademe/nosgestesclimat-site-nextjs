@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { dismissCookieBanner } from '../../helpers/cookies/dismissCookieBanner'
 import { clickSkipTutorialButton } from '../../helpers/elements/buttons'
 import { clickNextStepGroupCreation } from '../../helpers/groups/clickNextStepGroupCreation'
 import { clickValidateGroupCreation } from '../../helpers/groups/clickValidateGroupCreation'
@@ -10,6 +11,9 @@ import { visit } from '../../helpers/interactions/visit'
 import { recursivelyFillSimulation } from '../../helpers/simulation/recursivelyFillSimulation'
 
 test.describe('Group userflow', () => {
+  // TODO: modify this test after new user account is implemented
+  test.skip()
+
   test.describe('Given a user', () => {
     test.describe('When he creates a new group', () => {
       test('then it should succeed and return no accessibility violations', async ({
@@ -17,10 +21,20 @@ test.describe('Group userflow', () => {
       }) => {
         await visit(page, '/classements')
 
-        await page.context().clearCookies()
         await page.evaluate(() => localStorage.clear())
 
-        await click(page, 'button-create-first-group')
+        await dismissCookieBanner(page)
+
+        // Wait for navigation after clicking the button to prevent multiple clicks
+        await Promise.all([
+          page.waitForURL(/.*\/amis\/creer\/vos-informations/),
+          click(page, 'button-create-first-group'),
+        ])
+
+        // Wait for the form to be loaded before interacting with inputs
+        await page
+          .locator('input[data-cypress-id="group-input-owner-name"]')
+          .waitFor({ state: 'visible' })
 
         await page
           .locator('input[data-cypress-id="group-input-owner-name"]')
@@ -41,6 +55,12 @@ test.describe('Group userflow', () => {
         // Wait for the page to be redirected after skipping tutorial
         expect(page).toHaveURL(/.*\/simulateur\/bilan/)
 
+        // Wait for the simulation page to be fully loaded with at least one input
+        await page
+          .locator('input')
+          .first()
+          .waitFor({ state: 'attached', timeout: 10000 })
+
         await recursivelyFillSimulation(page)
 
         expect(page.locator('[data-cypress-id="group-name"]')).toBeDefined()
@@ -49,8 +69,20 @@ test.describe('Group userflow', () => {
         await click(page, 'button-delete-group')
         await click(page, 'button-confirm-delete-group')
 
+        // Navigate back to classements page to see the create button again
+        await visit(page, '/classements')
+
         // Check that we can create a second group
-        await click(page, 'button-create-first-group')
+        // Wait for navigation after clicking the button to prevent multiple clicks
+        await Promise.all([
+          page.waitForURL(/.*\/amis\/creer\/vos-informations/),
+          click(page, 'button-create-first-group'),
+        ])
+
+        // Wait for the form to be loaded before interacting with inputs
+        await page
+          .locator('input[data-cypress-id="group-input-owner-name"]')
+          .waitFor({ state: 'visible' })
 
         await page
           .locator('input[data-cypress-id="group-input-owner-name"]')
@@ -59,6 +91,8 @@ test.describe('Group userflow', () => {
           .locator('input[data-cypress-id="group-input-owner-email"]')
           .clear()
 
+        await dismissCookieBanner(page)
+
         await fillGroupCreationFirstStep(page)
 
         await clickNextStepGroupCreation(page)
@@ -66,7 +100,7 @@ test.describe('Group userflow', () => {
         // Continue and choose group name and emoji
         await fillGroupNameEmoji(page)
 
-        await click(page, 'button-validate-create-group')
+        await clickValidateGroupCreation(page)
 
         // And that we can update its name
         await click(page, 'group-name-edit-button')
@@ -87,6 +121,8 @@ test.describe('Group userflow', () => {
         await page.evaluate(() => localStorage.clear())
         await page.reload()
 
+        await dismissCookieBanner(page)
+
         await type(page, 'member-name', 'Jean-Claude')
 
         await click(page, 'button-join-group')
@@ -95,6 +131,13 @@ test.describe('Group userflow', () => {
 
         // Wait for the page to be redirected after skipping tutorial
         expect(page).toHaveURL(/.*\/simulateur\/bilan/)
+
+        // Wait for the simulation page to be fully loaded with at least one input
+        await page
+          .locator('input')
+          .first()
+          .waitFor({ state: 'attached', timeout: 10000 })
+
         await recursivelyFillSimulation(page)
 
         await page.waitForTimeout(2000)

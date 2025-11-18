@@ -1,5 +1,10 @@
 import { expect, test } from '@playwright/test'
+import { dismissCookieBanner } from '../../helpers/cookies/dismissCookieBanner'
 import { visit } from '../../helpers/interactions/visit'
+
+test.use({
+  storageState: undefined,
+})
 
 test.describe('The Blog page', () => {
   test('should render without breaking the app', async ({ page }) => {
@@ -12,6 +17,7 @@ test.describe('The Blog page', () => {
     page,
   }) => {
     await visit(page, '/blog')
+    await dismissCookieBanner(page)
 
     expect(page.locator('ul[data-cypress-id="blog-list"]')).toBeDefined()
 

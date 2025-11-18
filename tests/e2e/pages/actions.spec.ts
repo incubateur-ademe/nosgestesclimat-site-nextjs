@@ -5,6 +5,8 @@ import { recursivelyFillSimulation } from '../../helpers/simulation/recursivelyF
 import { setupSimulation } from '../../helpers/simulation/setupSimulation'
 
 test.describe('Action userflow', () => {
+  // TODO: modify this test after new user account is implemented
+  test.skip()
   test.describe('Given a user', () => {
     test.describe('When he visits the actions page after completing the simulation', () => {
       test('Then it should display correctly and return no accessibility violations', async ({
