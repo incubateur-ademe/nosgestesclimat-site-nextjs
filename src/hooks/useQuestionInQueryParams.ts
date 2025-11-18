@@ -1,7 +1,7 @@
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useCallback, useMemo } from 'react'
+import { useCallback } from 'react'
 import { useLocale } from './useLocale'
 
 export const useQuestionInQueryParams = () => {
@@ -11,13 +11,9 @@ export const useQuestionInQueryParams = () => {
 
   const locale = useLocale()
   const question = searchParams.get('question')
-  const questionInQueryParams = useMemo(
-    () =>
-      decodeURI(question || '')
-        ?.replaceAll('.', ' . ')
-        .replaceAll('_', ' ') as DottedName,
-    [question]
-  )
+  const questionInQueryParams = decodeURI(question || '')
+    ?.replaceAll('.', ' . ')
+    .replaceAll('_', ' ') as DottedName
 
   const setQuestionInQueryParams = useCallback(
     (question: DottedName) => {

@@ -1,5 +1,6 @@
 import ChoiceInput from '@/components/misc/ChoiceInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { requestIdleCallback } from '@/utils/requestIdleCallback'
 import type { NodeValue } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
 

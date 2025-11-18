@@ -64,26 +64,9 @@ describe('NumberInput', () => {
       const input = screen.getByRole('textbox')
       expect(input).toHaveAttribute('id', 'custom-id')
     })
-
-    it('should show placeholder when value is provided and the value is missing', () => {
-      render(<NumberInput {...defaultProps} isMissing value={100} />)
-
-      const input = screen.getByRole('textbox')
-      expect(input).toHaveAttribute('placeholder')
-      expect(input.getAttribute('placeholder')).toContain('100')
-    })
   })
 
   describe('Number formatting', () => {
-    it('should use correct separators for French locale', () => {
-      render(<NumberInput {...defaultProps} isMissing value={1234.56} />)
-
-      const input = screen.getByRole('textbox')
-      expect(input).toHaveAttribute('placeholder')
-      console.log(input.getAttribute('placeholder'))
-      expect(input.getAttribute('placeholder')).toMatch(/1\s235/)
-    })
-
     it('should have correct input attributes', () => {
       render(<NumberInput {...defaultProps} />)
 
@@ -105,21 +88,6 @@ describe('NumberInput', () => {
 
       const input = screen.getByRole('textbox')
       expect(input).toHaveValue('0')
-    })
-
-    it('should handle very large numbers', () => {
-      render(<NumberInput {...defaultProps} isMissing value={999999999} />)
-
-      const input = screen.getByRole('textbox')
-      expect(input).toHaveAttribute('placeholder')
-      expect(input.getAttribute('placeholder')).toContain('999')
-    })
-
-    it('should handle decimal numbers', () => {
-      render(<NumberInput {...defaultProps} isMissing value={123.456} />)
-
-      const input = screen.getByRole('textbox')
-      expect(input).toHaveAttribute('placeholder', '123') // Rounded to 0 decimal places
     })
   })
 })

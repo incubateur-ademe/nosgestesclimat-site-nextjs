@@ -3,9 +3,9 @@ import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
-import { debounce } from '@/utils/debounce'
+import { useDebounce } from '@/utils/debounce'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 type Props = {
   question: DottedName
   title?: string
@@ -26,15 +26,17 @@ export default function MosaicNumberInput({
   parentMosaic,
   ...props
 }: Props) {
-  const { situationValue: value, plafond } = useRule(question)
-  const [currentValue, setCurrentValue] = useState(value as number | undefined)
+  const { situationValue: value, plafond } = useRule<number>(question)
+  const [currentValue, setCurrentValue] = useState(
+    value === null ? undefined : value
+  )
   useEffect(() => {
-    if (value !== currentValue) {
-      setCurrentValue(value as number | undefined)
+    if (value !== null && value !== currentValue) {
+      setCurrentValue(value)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value])
-  const debouncedSetValue = useMemo(() => debounce(setValue, 500), [setValue])
+  const debouncedSetValue = useDebounce(setValue, 500)
 
   const { t } = useClientTranslation()
 

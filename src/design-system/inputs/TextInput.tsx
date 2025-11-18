@@ -1,4 +1,4 @@
-import { debounce } from '@/utils/debounce'
+import { useDebounce } from '@/utils/debounce'
 import type {
   ChangeEventHandler,
   ForwardedRef,
@@ -61,7 +61,10 @@ export default forwardRef(function TextInput(
 ) {
   const id = useId()
   const inputId = `input-${id}`
-  const debouncedOnChange = debounce(onChange ?? (() => null), debounceTimeout)
+  const debouncedOnChange = useDebounce(
+    onChange ?? (() => null),
+    debounceTimeout
+  )
   return (
     <InputGroup
       name={name}

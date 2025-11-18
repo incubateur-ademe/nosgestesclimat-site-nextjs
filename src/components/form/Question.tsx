@@ -15,9 +15,11 @@ import {
 import { questionChooseAnswer } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
 import { useUpdatePageTitle } from '@/hooks/simulation/useUpdatePageTitle'
+import { useLocale } from '@/hooks/useLocale'
 import { useFormState, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { Evaluation } from 'publicodes'
 import { useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/trans/TransClient'
@@ -72,7 +74,7 @@ export default function Question({
   })
 
   const [isOpen, setIsOpen] = useState(showInputsLabel ? false : true)
-
+  const locale = useLocale()
   return (
     <>
       <div className={twMerge('mb-6 flex flex-col items-start', className)}>
@@ -104,12 +106,17 @@ export default function Question({
             {type === 'number' && (
               <NumberInput
                 unit={unit}
-                value={value as number}
+                value={situationValue as Evaluation<number>}
                 setValue={(value) => {
                   setValue(value, { questionDottedName: question })
                 }}
-                isMissing={isMissing}
-                min={0}
+                placeholder={
+                  isMissing && typeof value === 'number'
+                    ? value.toLocaleString(locale, {
+                        maximumFractionDigits: value < 10 ? 1 : 0,
+                      })
+                    : ''
+                }
                 data-cypress-id={question}
                 id={DEFAULT_FOCUS_ELEMENT_ID}
                 aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content warning-message notification-message`}
@@ -119,7 +126,7 @@ export default function Question({
 
             {type === 'boolean' && (
               <BooleanInput
-                value={value}
+                value={value as Evaluation<boolean>}
                 setValue={(value) => {
                   {
                     setValue(value, { questionDottedName: question })
@@ -141,7 +148,7 @@ export default function Question({
               <ChoicesInput
                 question={question}
                 choices={choices}
-                value={situationValue as string}
+                value={value as Evaluation<string>}
                 setValue={(value) => {
                   {
                     setValue(value, { questionDottedName: question })
@@ -179,7 +186,7 @@ export default function Question({
           plancher={plancher}
           plafond={plafond}
           warning={warning}
-          value={situationValue as number}
+          value={situationValue}
           unit={unit}
         />
       )}

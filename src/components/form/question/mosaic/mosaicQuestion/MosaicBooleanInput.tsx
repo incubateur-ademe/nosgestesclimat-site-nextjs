@@ -6,6 +6,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
+import { requestIdleCallback } from '@/utils/requestIdleCallback'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
@@ -41,8 +42,8 @@ export default function MosaicBooleanInput({
   index,
   ...props
 }: Props) {
-  const { value, isInactive } = useRule(question)
-  const [currentValue, setCurrentValue] = useState(value as boolean | undefined)
+  const { value, isInactive } = useRule<boolean>(question)
+  const [currentValue, setCurrentValue] = useState(value)
   const { t } = useClientTranslation()
 
   const status = isInactive

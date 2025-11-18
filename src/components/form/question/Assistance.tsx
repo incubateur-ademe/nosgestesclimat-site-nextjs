@@ -68,7 +68,6 @@ export default function Assistance({ question, assistance }: Props) {
           unit={unit ? unit.split('/')[0] : ''}
           value={numericValueOfAssistance}
           setValue={setValueOfAssistance}
-          isMissing={numericValueOfAssistance ? false : true}
         />
       )}
     </div>

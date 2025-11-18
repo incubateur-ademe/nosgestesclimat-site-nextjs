@@ -1,18 +1,17 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { useLocale } from '@/hooks/useLocale'
-import { debounce } from '@/utils/debounce'
-import type { ComponentProps } from 'react'
-import { useMemo } from 'react'
+import { useDebounce } from '@/utils/debounce'
+import type { Evaluation } from 'publicodes'
+import { useState, type ComponentProps } from 'react'
 import type { NumberFormatValues } from 'react-number-format'
 import { NumericFormat } from 'react-number-format'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
   unit?: string
-  value?: number | null
-  isMissing: boolean
+  value?: Evaluation<number>
+  placeholder?: string
   setValue: (value: number | undefined) => void
   id?: string
   className?: string
@@ -21,38 +20,25 @@ type Props = {
 export default function NumberInput({
   unit,
   value,
-  isMissing,
+  placeholder,
   setValue,
   className,
   id,
   ...props
 }: ComponentProps<typeof NumericFormat> & Props) {
-  const locale = useLocale()
-
-  const debouncedSetValue = useMemo(() => debounce(setValue, 500), [setValue])
-  const handleValueChange = (values: NumberFormatValues) => {
-    let { value }: { value: string | number | undefined } = values
-    console.log(value)
-    if (value === '') {
-      value = undefined
-    } else {
-      value = Number(value)
-    }
-    debouncedSetValue(value)
+  const debouncedSetValue = useDebounce(setValue, 300)
+  const handleValueChange = ({ floatValue }: NumberFormatValues) => {
+    setIsPristine(false)
+    debouncedSetValue(floatValue)
   }
+  const [isPristine, setIsPristine] = useState(true)
 
   return (
     <div
       className={twMerge(`flex items-center justify-start gap-1`, className)}>
       <NumericFormat
-        value={isMissing ? '' : value}
-        placeholder={
-          isMissing && value
-            ? value.toLocaleString(locale, {
-                maximumFractionDigits: Number(value) < 10 ? 1 : 0,
-              })
-            : ''
-        }
+        value={value}
+        placeholder={isPristine ? placeholder : ''}
         className={twMerge(
           `max-w-[8rem] rounded-xl border border-solid border-slate-500 bg-white p-4 text-right text-sm transition-colors md:max-w-full`,
           'focus:ring-primary-700! placeholder:text-slate-500! focus:ring-2! focus:ring-offset-3! focus:outline-hidden!',
@@ -63,6 +49,7 @@ export default function NumberInput({
         allowNegative={false}
         autoComplete="off"
         onValueChange={handleValueChange}
+        min={0}
         id={id}
         {...props}
       />

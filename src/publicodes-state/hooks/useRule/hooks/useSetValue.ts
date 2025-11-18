@@ -6,6 +6,7 @@ import getType from '@/publicodes-state/helpers/getType'
 import type {
   MissingVariables,
   ParsedRules,
+  SafeEvaluate,
   Situation,
   UpdateCurrentSimulationProps,
 } from '@/publicodes-state/types'
@@ -14,7 +15,7 @@ import type {
   NGCRuleNode,
   NodeValue,
 } from '@incubateur-ademe/nosgestesclimat'
-import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
+import type { EvaluatedNode } from 'publicodes'
 import { utils } from 'publicodes'
 import { useCallback } from 'react'
 
@@ -22,7 +23,7 @@ type Props = {
   dottedName: DottedName
   parsedRules: ParsedRules | undefined
   safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
-  safeEvaluate: (rule: PublicodesExpression) => EvaluatedNode | null
+  safeEvaluate: SafeEvaluate
   evaluation: EvaluatedNode | null
   type: string | undefined
   situation: Situation
@@ -214,6 +215,12 @@ const checkValueValidity = ({
       return undefined
     case 'mosaic':
       return 'mosaic'
+    case 'number':
+      return value === undefined
+        ? undefined
+        : typeof value === 'number'
+          ? value
+          : 0
     default:
       return !value ? 0 : value
   }

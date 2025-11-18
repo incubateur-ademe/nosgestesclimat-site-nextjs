@@ -1,4 +1,4 @@
-import { debounce } from '@/utils/debounce'
+import { useDebounce } from '@/utils/debounce'
 import type { ChangeEventHandler, ForwardedRef } from 'react'
 import { forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -16,7 +16,7 @@ export default forwardRef(function EditableToggleField(
 ) {
   const inputId = `editable-toggle-${name}`
   const errorId = `error-${name}`
-  const debouncedOnChange = debounce(onChange, 500)
+  const debouncedOnChange = useDebounce(onChange, 500)
   return (
     <>
       <div
