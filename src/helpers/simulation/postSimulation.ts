@@ -1,5 +1,6 @@
 import { SIMULATION_URL } from '@/constants/urls/main'
 import type { Simulation } from '@/publicodes-state/types'
+import { mapNewSimulationToOld } from './mapNewSimulation'
 
 type Props = {
   simulation: Simulation
@@ -30,5 +31,14 @@ export async function postSimulation({
     throw new Error(`HTTP error! status: ${response.status}`)
   }
 
-  return response.json()
+  let simulationSaved
+
+  try {
+    simulationSaved = await response.json()
+  } catch (error) {
+    console.error('Error parsing response:', error)
+    throw error
+  }
+
+  return mapNewSimulationToOld(simulationSaved)
 }
