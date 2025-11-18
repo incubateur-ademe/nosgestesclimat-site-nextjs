@@ -31,9 +31,6 @@ export function useSimulateurGuard() {
 
   const { simulationIdInQueryParams } = useSimulationIdInQueryParams()
 
-  // Check if user is coming from profile modification
-  const isFromProfile = searchParams.get('fromProfile') === 'true'
-
   useEffect(() => {
     // we only run the guard at mount
     if (isGuardInit) return
@@ -53,8 +50,7 @@ export function useSimulateurGuard() {
 
     // If the user has completed the test, we redirect him to the results page
     // when visiting /simulateur/bilan without search params
-    // But not if they're coming from profile modification
-    if (progression === 1 && !questionInQueryParams && !isFromProfile) {
+    if (progression === 1 && !questionInQueryParams) {
       goToEndPage()
       setIsGuardRedirecting(true)
       return
@@ -78,7 +74,6 @@ export function useSimulateurGuard() {
     simulationIdInQueryParams,
     isCorrectSimulationSet,
     locale,
-    isFromProfile,
     searchParams,
   ])
 

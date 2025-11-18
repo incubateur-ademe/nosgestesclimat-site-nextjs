@@ -17,13 +17,11 @@ export const useQuestionInQueryParams = () => {
 
   const setQuestionInQueryParams = useCallback(
     (question: DottedName) => {
-      const currentFromProfile = searchParams.get('fromProfile') === 'true'
       router.replace(
         getLinkToSimulateur({
           question,
           locale,
           currentSearchParams: searchParams,
-          fromProfile: currentFromProfile,
         }),
         { scroll: false }
       )

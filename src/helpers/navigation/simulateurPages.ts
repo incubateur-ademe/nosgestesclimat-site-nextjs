@@ -6,7 +6,6 @@ import type { ReadonlyURLSearchParams } from 'next/navigation'
 type Props = {
   question?: DottedName
   locale?: string
-  fromProfile?: boolean
   currentSearchParams?: ReadonlyURLSearchParams
 }
 
@@ -18,7 +17,6 @@ type TutorielProps = {
 export const getLinkToSimulateur = ({
   question,
   locale,
-  fromProfile,
   currentSearchParams,
 }: Props = {}) => {
   const basePath = locale ? `/${locale}` : ''
@@ -30,10 +28,6 @@ export const getLinkToSimulateur = ({
     currentSearchParams ?? (new URLSearchParams() as ReadonlyURLSearchParams)
 
   const newParams: Record<string, string | null | undefined> = {}
-
-  if (fromProfile) {
-    newParams.fromProfile = 'true'
-  }
 
   // Add question parameter
   if (question) {

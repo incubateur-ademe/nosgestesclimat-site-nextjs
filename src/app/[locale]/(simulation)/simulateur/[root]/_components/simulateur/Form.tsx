@@ -166,14 +166,6 @@ export default function Form() {
               handleUpdateShouldPreventNavigation(false)
             }
 
-            // Temporary fix: redirect to end page if user is coming from profile modification
-            const isFromProfile = searchParams.get('fromProfile') === 'true'
-
-            if (isFromProfile) {
-              router.push('/fin')
-              return
-            }
-
             handleOnComplete()
           }}
         />

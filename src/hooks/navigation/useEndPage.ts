@@ -35,9 +35,6 @@ export function useEndPage() {
 
   const [isNavigating, setIsNavigating] = useState(false)
 
-  // Check if user is coming from profile modification
-  const isFromProfile = searchParams.get('fromProfile') === 'true'
-
   const redirectToPollQuestionsIfNecessary = useCallback(() => {
     if (
       progression === 1 &&
@@ -100,15 +97,6 @@ export function useEndPage() {
         router.push(getLinkToGroupDashboard({ groupId: lastGroupId }))
         return
       }
-      // else we redirect to the results page
-      // But not if user is coming from profile modification
-      if (!isFromProfile) {
-        router.push('/fin')
-      } else {
-        console.log(
-          'User coming from profile modification, staying on simulateur page'
-        )
-      }
     },
     [
       isNavigating,
@@ -117,7 +105,6 @@ export function useEndPage() {
       currentSimulation,
       router,
       saveSimulation,
-      isFromProfile,
     ]
   )
 
