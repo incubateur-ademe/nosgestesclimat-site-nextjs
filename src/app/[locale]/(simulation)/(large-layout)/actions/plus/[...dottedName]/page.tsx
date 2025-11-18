@@ -1,11 +1,10 @@
-import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Markdown from '@/design-system/utils/Markdown'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPost } from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import type { DefaultPageProps } from '@/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 export async function generateMetadata({ params }: DefaultPageProps) {
   const { locale } = await params
   const { t } = await getServerTranslation({ locale })
@@ -32,7 +31,7 @@ export default async function ActionPlus({
   )
 
   if (!action) {
-    return redirect(NOT_FOUND_PATH)
+    notFound()
   }
 
   return <Markdown>{action?.content}</Markdown>
