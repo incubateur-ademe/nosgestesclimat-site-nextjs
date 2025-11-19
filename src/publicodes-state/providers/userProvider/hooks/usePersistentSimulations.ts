@@ -21,8 +21,7 @@ export default function usePersistentSimulations({
     const currentStorage = safeLocalStorage.getItem(storageKey)
     const parsedStorage = JSON.parse(currentStorage || '{}')
 
-    const localSimulations: Simulation[] | undefined =
-      parsedStorage.simulations ?? []
+    const localSimulations: Simulation[] = parsedStorage.simulations ?? []
 
     const localCurrentSimulationId: string | undefined =
       parsedStorage.currentSimulationId
