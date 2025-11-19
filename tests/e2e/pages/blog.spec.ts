@@ -23,7 +23,7 @@ test.describe('The Blog page', () => {
 
     await page.locator('ul[data-cypress-id="blog-list"] a').first().click()
 
-    await page.waitForTimeout(1000)
+    await page.waitForLoadState('networkidle')
 
     expect(page.locator('h1')).toBeDefined()
   })

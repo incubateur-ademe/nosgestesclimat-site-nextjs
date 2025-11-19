@@ -11,8 +11,7 @@ test.describe('The simulation', () => {
   test('can be finished with the default values and with loc=FR and lang=fr', async ({
     page,
   }) => {
-    const localisationParam = process.env.localisation_param || 'FR'
-    await visit(page, `/?loc=${localisationParam}`)
+    await visit(page, '/')
     await setupSimulation(page)
     await recursivelyFillSimulation(page)
   })

@@ -15,8 +15,6 @@ test.describe('Action userflow', () => {
         // Actions when user hasn't completed the simulation
         await visit(page, '/actions')
 
-        await page.waitForTimeout(2000)
-
         await dismissCookieBanner(page)
 
         const expectedText = 'Mes gestes'
@@ -32,11 +30,11 @@ test.describe('Action userflow', () => {
 
         await recursivelyFillSimulation(page)
 
-        await page.waitForTimeout(4000)
+        await page.waitForLoadState('networkidle')
 
         await visit(page, '/actions')
 
-        await page.waitForTimeout(2000)
+        await page.waitForLoadState('networkidle')
 
         expect(
           page.locator('h1').filter({ hasText: expectedText })

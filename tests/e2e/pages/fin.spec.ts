@@ -65,7 +65,7 @@ test.describe('The End page', () => {
 
         await recursivelyFillSimulation(page)
 
-        await page.waitForTimeout(5000)
+        await page.waitForLoadState('networkidle')
 
         await page
           .locator(`input[data-cypress-id="${FIN_EMAIL_INPUT}"]`)
@@ -75,7 +75,7 @@ test.describe('The End page', () => {
           .click()
 
         // Wait for the simulation to be saved
-        await page.waitForTimeout(4000)
+        await page.waitForLoadState('networkidle')
 
         expect(requestCount).toBe(1)
       })
