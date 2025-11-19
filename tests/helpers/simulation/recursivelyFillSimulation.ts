@@ -1,7 +1,7 @@
 import { Page } from '@playwright/test'
+import { NEXT_QUESTION_BUTTON } from '../../constants/elements-ids'
 import { checkIfCategoryOrderIsRespected } from '../categories/checkIfCategoryOrderIsRespected'
 import { dismissCookieBanner } from '../cookies/dismissCookieBanner'
-import { NEXT_QUESTION_BUTTON } from '../../constants/elements-ids'
 import { click } from '../interactions/click'
 
 const LAST_QUESTION_ID = 'services sociétaux . question rhétorique-ok'

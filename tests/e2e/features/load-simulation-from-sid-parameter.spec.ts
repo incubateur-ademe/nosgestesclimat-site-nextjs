@@ -2,15 +2,13 @@ import { expect, test } from '@playwright/test'
 import {
   BACK_BUTTON,
   CAR_TYPE_INPUT,
+  NEXT_QUESTION_BUTTON,
   QUESTION_LABEL,
   SAVE_MODAL_EMAIL_INPUT,
   SAVE_MODAL_SUBMIT_BUTTON,
-} from '../../constants/elements-ids'
-import { dismissCookieBanner } from '../../helpers/cookies/dismissCookieBanner'
-import {
-  NEXT_QUESTION_BUTTON,
   SKIP_TUTORIAL_BUTTON,
 } from '../../constants/elements-ids'
+import { dismissCookieBanner } from '../../helpers/cookies/dismissCookieBanner'
 import { click } from '../../helpers/interactions/click'
 import { type } from '../../helpers/interactions/type'
 

@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
-import { dismissCookieBanner } from '../../helpers/cookies/dismissCookieBanner'
 import { NEXT_QUESTION_BUTTON } from '../../constants/elements-ids'
+import { dismissCookieBanner } from '../../helpers/cookies/dismissCookieBanner'
 import { setupSimulation } from '../../helpers/simulation/setupSimulation'
 
 const thirdQuestion = 'transport.deux_roues.usager'
