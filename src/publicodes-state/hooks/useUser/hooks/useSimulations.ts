@@ -154,7 +154,7 @@ export default function useSimulations({
               ...simulationToUpdate.extendedSituation,
               ...addedOrChangedDottedNames,
               ...removedDottedNames,
-            }
+            } as ExtendedSituation
 
             simulationToUpdate.situation = situation
           }

@@ -7,3 +7,10 @@ export const orderedCategories: DottedName[] = [
   'divers',
   'services sociétaux',
 ]
+export const testOrderedCategories: DottedName[] = [
+  'logement',
+  'alimentation',
+  'transport',
+  'divers',
+  'services sociétaux',
+]

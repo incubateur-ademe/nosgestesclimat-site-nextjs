@@ -29,6 +29,7 @@ export default function useNavigation({
     () => currentQuestionIndex === 0,
     [currentQuestionIndex]
   )
+
   const noNextQuestion = useMemo<boolean>(
     () =>
       remainingQuestions.length === 0 ||
@@ -50,6 +51,14 @@ export default function useNavigation({
       currentQuestionNamespace,
     [currentQuestionNamespace, currentQuestionIndex, relevantQuestions]
   )
+
+  const testAdvancement = useMemo(() => {
+    const index = relevantQuestions.findIndex(
+      (question) => question === currentQuestion
+    )
+
+    return index === -1 ? 0 : index / relevantQuestions.length
+  }, [currentQuestion, relevantQuestions])
 
   const gotoPrevQuestion = () => {
     if (noPrevQuestion) {
@@ -83,5 +92,6 @@ export default function useNavigation({
     noNextQuestion,
     isFirstQuestionOfCategory,
     isLastQuestionOfCategory,
+    testAdvancement,
   }
 }
