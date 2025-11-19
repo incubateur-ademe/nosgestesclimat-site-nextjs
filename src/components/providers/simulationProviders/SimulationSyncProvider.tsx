@@ -1,9 +1,8 @@
 'use client'
 
-import { defaultMetric } from '@/constants/model/metric'
 import { compareTwoSimulations } from '@/helpers/simulation/compareTwoSimulations'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
-import { useCurrentSimulation, useEngine, useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useEngine } from '@/publicodes-state'
 import { createContext, useCallback, useEffect, useMemo, useRef } from 'react'
 
 // The max rate at which we save the simulation (in ms)
@@ -26,8 +25,6 @@ export default function SimulationSyncProvider({
 }: {
   children: React.ReactNode
 }) {
-  const { user } = useUser()
-
   const {
     id,
     date,
@@ -50,32 +47,12 @@ export default function SimulationSyncProvider({
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
-  // If the simulation is unfinished, is not in a group, poll, or is not already saved via email, we do not save it
+  // Save all simulations started when engine is initialized
   const shouldSyncWithBackend = useMemo<boolean>(() => {
     if (!isInitialized) return false
 
-    if (computedResults[defaultMetric].bilan === 0) {
-      return false
-    }
-
-    // Auto save for groups
-    if (groups?.length && progression === 1) {
-      return true
-    }
-
-    if (user.email && savedViaEmail) {
-      return true
-    }
-
-    return false
-  }, [
-    progression,
-    user.email,
-    groups,
-    savedViaEmail,
-    computedResults,
-    isInitialized,
-  ])
+    return true
+  }, [isInitialized])
 
   const isSyncedWithBackend = timeoutRef.current || isPending ? false : true
 
