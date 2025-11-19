@@ -38,7 +38,7 @@ export default function Form() {
 
   const { goToEndPage } = useEndPage()
 
-  const { isIframe, isIframeShareData } = useIframe()
+  const { isIframe, isIframeShareData, isIframeShareDataBypass } = useIframe()
 
   const [isInitialized, setIsInitialized] = useState(false)
 
@@ -122,7 +122,7 @@ export default function Form() {
                     handleUpdateShouldPreventNavigation(false)
                   }
                   // Share data if allowed
-                  if (isIframeShareData) {
+                  if (isIframeShareData && isIframeShareDataBypass) {
                     shareDataWithIntegrator(computedResults[carboneMetric])
                   }
 

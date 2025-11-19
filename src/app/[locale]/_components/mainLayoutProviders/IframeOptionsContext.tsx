@@ -10,6 +10,7 @@ import { createContext, useEffect, useState } from 'react'
 export const IframeOptionsContext = createContext<{
   isIframe?: boolean
   isIframeShareData?: boolean
+  isIframeShareDataBypass?: boolean
   iframeRegion?: string | null
   isIframeOnlySimulation?: boolean
   iframeLang?: string | null
@@ -34,6 +35,7 @@ export const IframeOptionsProvider = ({
   const [isIframeOnlySimulation, setIsIframeOnlySimulation] = useState(false)
   const [iframeLang, setIframeLang] = useState<string | null>(null)
   const [iframeRegion, setIframeRegion] = useState<string | null>(null)
+  const [isIframeShareDataBypass, setIsIframeShareDataBypass] = useState(false)
 
   const containerRef = useTrackIframe(isIframe)
 
@@ -43,6 +45,10 @@ export const IframeOptionsProvider = ({
 
     if (!isIframeShareData) {
       setIsIframeShareData(Boolean(searchParams.get('shareData')))
+    }
+
+    if (!isIframeShareDataBypass) {
+      setIsIframeShareDataBypass(Boolean(searchParams.get('shareDataBypass')))
     }
 
     if (!isIframeOnlySimulation) {
@@ -83,6 +89,7 @@ export const IframeOptionsProvider = ({
     <IframeOptionsContext.Provider
       value={{
         isIframeShareData,
+        isIframeShareDataBypass,
         iframeRegion: regionCode,
         isIframe,
         isIframeOnlySimulation,

@@ -39,7 +39,8 @@ export default function FinPage() {
 
   const isIframe = getIsIframe()
 
-  const { isFrenchRegion, isIframeShareData } = useIframe()
+  const { isFrenchRegion, isIframeShareData, isIframeShareDataBypass } =
+    useIframe()
 
   useEffect(() => {
     const titleTags = document.querySelectorAll('head > title')
@@ -54,7 +55,9 @@ export default function FinPage() {
 
   return (
     <div className="relative mt-12">
-      {isIframe && isIframeShareData && <IframeDataShareModal />}
+      {isIframe && isIframeShareData && !isIframeShareDataBypass && (
+        <IframeDataShareModal />
+      )}
 
       <TallyForm />
 
