@@ -89,7 +89,9 @@ describe('PartnerPage', () => {
       const searchParams = Promise.resolve({})
 
       // When & Then
-      await expect(PartnerPage({ params: defaultParams, searchParams })).rejects.toThrow('NEXT_NOT_FOUND')
+      await expect(
+        PartnerPage({ params: defaultParams, searchParams })
+      ).rejects.toThrow('NEXT_NOT_FOUND')
       expect(mockNotFound).toHaveBeenCalled()
     })
   })

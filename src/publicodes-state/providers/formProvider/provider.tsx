@@ -2,8 +2,8 @@
 
 import { useCurrentSimulation, useEngine } from '@/publicodes-state'
 
-import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { notFound } from 'next/navigation'
 import type { PropsWithChildren } from 'react'
 import { useMemo } from 'react'
 import FormContext from './context'
@@ -93,8 +93,7 @@ export default function FailSafeFormProvider({
   }, [safeEvaluate, root, rules])
 
   if (!isRootSafe) {
-    window.location.href = NOT_FOUND_PATH
-    return
+    notFound()
   }
   return <FormProvider root={root}>{children}</FormProvider>
 }

@@ -123,7 +123,9 @@ describe('NewsletterConfirmationPage', () => {
     }
 
     // When & Then
-    await expect(NewsletterConfirmationPage(props)).rejects.toThrow('NEXT_NOT_FOUND')
+    await expect(NewsletterConfirmationPage(props)).rejects.toThrow(
+      'NEXT_NOT_FOUND'
+    )
     expect(mockNotFound).toHaveBeenCalled()
   })
 
@@ -138,7 +140,9 @@ describe('NewsletterConfirmationPage', () => {
     }
 
     // When & Then
-    await expect(NewsletterConfirmationPage(props)).rejects.toThrow('NEXT_NOT_FOUND')
+    await expect(NewsletterConfirmationPage(props)).rejects.toThrow(
+      'NEXT_NOT_FOUND'
+    )
     expect(mockNotFound).toHaveBeenCalled()
   })
 })

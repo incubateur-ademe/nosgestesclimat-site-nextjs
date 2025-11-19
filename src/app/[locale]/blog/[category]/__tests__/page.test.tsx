@@ -166,7 +166,9 @@ describe('CategoryPage', () => {
         locale: 'fr' as Locale,
       })
       const searchParams = Promise.resolve({ page: '1' })
-      await expect(CategoryPage({ params, searchParams })).rejects.toThrow('NEXT_NOT_FOUND')
+      await expect(CategoryPage({ params, searchParams })).rejects.toThrow(
+        'NEXT_NOT_FOUND'
+      )
       expect(mockNotFound).toHaveBeenCalled()
     })
     it('should redirect to NOT_FOUND_PATH if FR and missing description', async () => {
@@ -182,7 +184,9 @@ describe('CategoryPage', () => {
         locale: 'fr' as Locale,
       })
       const searchParams = Promise.resolve({ page: '1' })
-      await expect(CategoryPage({ params, searchParams })).rejects.toThrow('NEXT_NOT_FOUND')
+      await expect(CategoryPage({ params, searchParams })).rejects.toThrow(
+        'NEXT_NOT_FOUND'
+      )
       expect(mockNotFound).toHaveBeenCalled()
     })
     it('should redirect to NOT_FOUND_PATH if missing title in any locale', async () => {
