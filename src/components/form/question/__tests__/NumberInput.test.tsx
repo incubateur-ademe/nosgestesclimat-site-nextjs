@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
+import { userEvent } from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import NumberInput from '../NumberInput'
-
 // Mock the useLocale hook
 vi.mock('@/hooks/useLocale', () => ({
   useLocale: vi.fn(() => 'fr'),
@@ -16,7 +16,6 @@ vi.mock('@/components/translation/trans/TransClient', () => ({
 
 describe('NumberInput', () => {
   const defaultProps = {
-    isMissing: false,
     setValue: vi.fn(),
   }
 
@@ -88,6 +87,33 @@ describe('NumberInput', () => {
 
       const input = screen.getByRole('textbox')
       expect(input).toHaveValue('0')
+    })
+
+    it('should handle number with `,` without removing the decimal separator when not needed', async () => {
+      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
+      render(<NumberInput {...defaultProps} />)
+      const input = screen.getByRole('textbox')
+
+      await user.type(input, '4,06')
+      vi.advanceTimersByTime(500)
+
+      expect(defaultProps.setValue).toHaveBeenCalledWith(4.06)
+      expect(input).toHaveValue('4,06')
+
+      await user.type(input, '{backspace}{backspace}')
+      vi.advanceTimersByTime(500)
+      expect(input).toHaveValue('4,')
+      expect(defaultProps.setValue).toHaveBeenCalledWith(4)
+    })
+
+    it('should not change value it props is updated but the value is the same', async () => {
+      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
+
+      const { rerender } = render(<NumberInput {...defaultProps} />)
+      const input = screen.getByRole('textbox')
+      await user.type(input, '4,')
+      rerender(<NumberInput {...defaultProps} value={4} />)
+      expect(input).toHaveValue('4,')
     })
   })
 })
