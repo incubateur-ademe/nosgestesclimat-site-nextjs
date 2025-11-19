@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test'
 import {
   FIN_EMAIL_INPUT,
   FIN_EMAIL_SUBMIT_BUTTON,
+  SKIP_TUTORIAL_BUTTON,
 } from '../../constants/elements-ids'
 import { dismissCookieBanner } from '../../helpers/cookies/dismissCookieBanner'
-import { clickSkipTutorialButton } from '../../helpers/elements/buttons'
 import { recursivelyFillSimulation } from '../../helpers/simulation/recursivelyFillSimulation'
 
 test.describe('The End page', () => {
@@ -37,7 +37,7 @@ test.describe('The End page', () => {
 
       await dismissCookieBanner(page)
 
-      await clickSkipTutorialButton(page)
+      await page.locator(`[data-cypress-id="${SKIP_TUTORIAL_BUTTON}"]`).click()
 
       // Wait for the page to be redirected after skipping tutorial
       expect(page).toHaveURL(/.*\/simulateur\/bilan/)

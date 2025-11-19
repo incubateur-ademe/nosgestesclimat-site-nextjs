@@ -1,12 +1,15 @@
 import { Page } from '@playwright/test'
 import {
-  clickDoTheTestLink,
-  clickSkipTutorialButton,
-} from '../elements/buttons'
+  DO_THE_TEST_LINK,
+  SKIP_TUTORIAL_BUTTON,
+} from '../../constants/elements-ids'
 
 export async function setupSimulation(page: Page): Promise<void> {
-  await clickDoTheTestLink(page)
-  await clickSkipTutorialButton(page)
+  await page.locator(`[data-cypress-id="${DO_THE_TEST_LINK}"]`).click()
+
+  await page.waitForLoadState('networkidle')
+
+  await page.locator(`[data-cypress-id="${SKIP_TUTORIAL_BUTTON}"]`).click()
 
   // Wait for the page to be redirected after skipping tutorial
   await page.waitForURL('**/simulateur/bilan')

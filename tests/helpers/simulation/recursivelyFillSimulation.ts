@@ -1,7 +1,7 @@
 import { Page } from '@playwright/test'
 import { checkIfCategoryOrderIsRespected } from '../categories/checkIfCategoryOrderIsRespected'
 import { dismissCookieBanner } from '../cookies/dismissCookieBanner'
-import { clickNextButton } from '../elements/buttons'
+import { NEXT_QUESTION_BUTTON } from '../../constants/elements-ids'
 import { click } from '../interactions/click'
 
 const LAST_QUESTION_ID = 'services sociétaux . question rhétorique-ok'
@@ -47,15 +47,15 @@ export async function recursivelyFillSimulation(
       : []
 
     async function skipQuestion(): Promise<void> {
-      await clickNextButton(page)
+      await page.locator(`[data-cypress-id="${NEXT_QUESTION_BUTTON}"]`).click()
       await answerCurrentQuestion()
     }
 
     // Is last question
     if (dottedName === LAST_QUESTION_ID) {
       // Click twice to go to the end page
-      await clickNextButton(page)
-      await clickNextButton(page)
+      await page.locator(`[data-cypress-id="${NEXT_QUESTION_BUTTON}"]`).click()
+      await page.locator(`[data-cypress-id="${NEXT_QUESTION_BUTTON}"]`).click()
       return
     }
 
@@ -107,7 +107,7 @@ export async function recursivelyFillSimulation(
       }
     }
 
-    await clickNextButton(page)
+    await page.locator(`[data-cypress-id="${NEXT_QUESTION_BUTTON}"]`).click()
 
     await page.waitForTimeout(100)
 

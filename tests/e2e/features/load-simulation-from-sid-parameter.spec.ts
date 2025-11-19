@@ -8,9 +8,9 @@ import {
 } from '../../constants/elements-ids'
 import { dismissCookieBanner } from '../../helpers/cookies/dismissCookieBanner'
 import {
-  clickNextButton,
-  clickSkipTutorialButton,
-} from '../../helpers/elements/buttons'
+  NEXT_QUESTION_BUTTON,
+  SKIP_TUTORIAL_BUTTON,
+} from '../../constants/elements-ids'
 import { click } from '../../helpers/interactions/click'
 import { type } from '../../helpers/interactions/type'
 
@@ -28,7 +28,7 @@ test.describe('Loading the simulation from the sid parameter', () => {
 
       await dismissCookieBanner(page)
 
-      await clickSkipTutorialButton(page)
+      await page.locator(`[data-cypress-id="${SKIP_TUTORIAL_BUTTON}"]`).click()
 
       const questionLabel = page.locator(
         `[data-cypress-id="${QUESTION_LABEL}"]`
@@ -37,7 +37,7 @@ test.describe('Loading the simulation from the sid parameter', () => {
       initialValue = (await questionLabel.textContent()) ?? undefined
 
       await click(page, CAR_TYPE_INPUT)
-      await clickNextButton(page)
+      await page.locator(`[data-cypress-id="${NEXT_QUESTION_BUTTON}"]`).click()
       await click(page, BACK_BUTTON)
 
       // Enter the email

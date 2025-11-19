@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 import { dismissCookieBanner } from '../../helpers/cookies/dismissCookieBanner'
-import { clickNextButton } from '../../helpers/elements/buttons'
+import { NEXT_QUESTION_BUTTON } from '../../constants/elements-ids'
 import { setupSimulation } from '../../helpers/simulation/setupSimulation'
 
 const thirdQuestion = 'transport.deux_roues.usager'
@@ -20,7 +20,7 @@ test.describe('Simulation page', () => {
     await setupSimulation(page)
 
     for (let i = 0; i < 2; i++) {
-      await clickNextButton(page)
+      await page.locator(`[data-cypress-id="${NEXT_QUESTION_BUTTON}"]`).click()
     }
 
     expect(page).toHaveURL(new RegExp(`.*question=${thirdQuestion}`))

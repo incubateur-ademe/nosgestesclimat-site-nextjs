@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 import { dismissCookieBanner } from '../../helpers/cookies/dismissCookieBanner'
-import { clickSkipTutorialButton } from '../../helpers/elements/buttons'
+import { SKIP_TUTORIAL_BUTTON } from '../../constants/elements-ids'
 import { clickNextStepGroupCreation } from '../../helpers/groups/clickNextStepGroupCreation'
 import { clickValidateGroupCreation } from '../../helpers/groups/clickValidateGroupCreation'
 import { fillGroupCreationFirstStep } from '../../helpers/groups/fillGroupCreationFirstStep'
@@ -49,7 +49,7 @@ test.describe('Group userflow', () => {
 
         await clickValidateGroupCreation(page)
         // Fill simulation
-        await clickSkipTutorialButton(page)
+        await page.locator(`[data-cypress-id="${SKIP_TUTORIAL_BUTTON}"]`).click()
 
         // Wait for the page to be redirected after skipping tutorial
         expect(page).toHaveURL(/.*\/simulateur\/bilan/)
@@ -126,7 +126,7 @@ test.describe('Group userflow', () => {
 
         await click(page, 'button-join-group')
 
-        await clickSkipTutorialButton(page)
+        await page.locator(`[data-cypress-id="${SKIP_TUTORIAL_BUTTON}"]`).click()
 
         // Wait for the page to be redirected after skipping tutorial
         expect(page).toHaveURL(/.*\/simulateur\/bilan/)
