@@ -13,6 +13,9 @@ type TutorielProps = {
   searchParams?: ReadonlyURLSearchParams
 }
 
+/**
+ * Get the link to the simulateur page with preserved search params
+ */
 export const getLinkToSimulateur = ({
   question,
   locale,
@@ -21,11 +24,8 @@ export const getLinkToSimulateur = ({
   const basePath = locale ? `/${locale}` : ''
   const pathname = `${basePath}${SIMULATOR_PATH}`
 
-  // Use currentSearchParams if available, otherwise create an empty URLSearchParams
-  // URLSearchParams is compatible with ReadonlyURLSearchParams
   const urlSearchParams = new URLSearchParams(searchParams?.toString() || '')
 
-  // Add question parameter
   if (question) {
     urlSearchParams.set(
       'question',
@@ -33,10 +33,12 @@ export const getLinkToSimulateur = ({
     )
   }
 
-  // Log params as an object
   return `${pathname}${urlSearchParams.size > 0 ? `?${urlSearchParams.toString()}` : ''}`
 }
 
+/**
+ * Get the link to the tutoriel page with preserved search params
+ */
 export const getLinkToTutoriel = ({
   locale,
   searchParams,

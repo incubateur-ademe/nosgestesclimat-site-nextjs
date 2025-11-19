@@ -1,5 +1,6 @@
 import { SIMULATION_URL } from '@/constants/urls/main'
 import type { Simulation } from '@/publicodes-state/types'
+import { captureException } from '@sentry/nextjs'
 import { mapNewSimulationToOld } from './mapNewSimulation'
 
 type Props = {
@@ -13,8 +14,6 @@ export async function postSimulation({
   userId,
   sendEmail = false,
 }: Props) {
-  const payload = { ...simulation }
-
   const url = new URL(`${SIMULATION_URL}/${userId}`)
 
   url.searchParams.set('sendEmail', sendEmail.toString())
@@ -24,7 +23,7 @@ export async function postSimulation({
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(simulation),
   })
 
   if (!response.ok) {
@@ -36,7 +35,7 @@ export async function postSimulation({
   try {
     simulationSaved = await response.json()
   } catch (error) {
-    console.error('Error parsing response:', error)
+    captureException(error)
     throw error
   }
 
