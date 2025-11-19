@@ -14,6 +14,7 @@ import {
 import Button from '@/design-system/buttons/Button'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { MUST_SHOW_DESCRIPTION } from '@/publicodes-state/constants/questions'
 import type { QuestionSize } from '@/types/values'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -50,12 +51,6 @@ export default function Label({
   const [isOpen, setIsOpen] = useState(false)
 
   const { t } = useClientTranslation()
-
-  const mustShowDescriptionQuestion: DottedName[] = [
-    'transport . voiture . utilisateur',
-    'logement . âge',
-    'logement . surface',
-  ]
 
   if (!label) return
   return (
@@ -107,7 +102,7 @@ export default function Label({
         ) : (
           ''
         )}
-        {description && !mustShowDescriptionQuestion.includes(question) ? (
+        {description && !MUST_SHOW_DESCRIPTION.has(question) ? (
           <Button
             type="button"
             onClick={() => {
@@ -151,7 +146,7 @@ export default function Label({
         ) : null}
       </label>
       {description &&
-        (mustShowDescriptionQuestion.includes(question) ? (
+        (MUST_SHOW_DESCRIPTION.has(question) ? (
           <div
             id={`${QUESTION_DESCRIPTION_BUTTON_ID}-content`}
             role="region"

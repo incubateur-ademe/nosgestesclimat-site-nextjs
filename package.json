@@ -1,7 +1,7 @@
 {
   "name": "nosgestesclimat-site-nextjs",
   "license": "MIT",
-  "version": "2.38.1",
+  "version": "2.44.0",
   "description": "The leading open source climate footprint calculator",
   "type": "module",
   "repository": {
@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@incubateur-ademe/legal-pages-react": "^0.5.0",
-    "@incubateur-ademe/nosgestesclimat": "^4.2.0",
+    "@incubateur-ademe/nosgestesclimat": "^4.4.0",
     "@next/mdx": "^15.5.6",
     "@publicodes/react-ui": "^1.10.0",
     "@publicodes/tools": "^1.8.0",

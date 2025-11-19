@@ -28,7 +28,7 @@ export const IframeOptionsProvider = ({
   const { user } = useUser()
 
   // Detect iframe mode using window check
-  const isIframe = typeof window !== 'undefined' && getIsIframe()
+  const isIframe = getIsIframe()
 
   const [isIframeShareData, setIsIframeShareData] = useState(false)
   const [isIframeOnlySimulation, setIsIframeOnlySimulation] = useState(false)
@@ -83,7 +83,7 @@ export const IframeOptionsProvider = ({
     <IframeOptionsContext.Provider
       value={{
         isIframeShareData,
-        iframeRegion,
+        iframeRegion: regionCode,
         isIframe,
         isIframeOnlySimulation,
         iframeLang,
