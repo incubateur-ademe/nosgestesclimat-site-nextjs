@@ -13,12 +13,11 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
 
   const srcURL = new URL(script.src)
   const hostname = srcURL.origin || 'nosgestesclimat.fr'
-  console.log(hostname)
+
   const possibleOptions = [
     { key: 'shareData', legacy: 'partagedatafinsimulation' },
   ]
 
-  // Fonction pour vérifier si l'origine est autorisée
   async function isOriginAllowed(origin) {
     try {
       const apiUrl = `${hostname}/api/iframe-config?origin=${encodeURIComponent(origin)}`
@@ -28,7 +27,7 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
       }
 
       const data = await response.json()
-      console.log(data)
+
       return data.isAllowed === true
     } catch (error) {
       console.warn(
@@ -39,7 +38,6 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
     }
   }
 
-  // Fonction principale asynchrone
   async function setupIframe() {
     const url = new URL(hostname)
 
@@ -151,6 +149,5 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
     script.parentNode.insertBefore(iframe, script)
   }
 
-  // Appeler la fonction asynchrone
   setupIframe()
 }

@@ -24,7 +24,6 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
     { key: 'maxHeight' },
   ]
 
-  // Fonction pour vérifier si l'origine est autorisée
   async function isOriginAllowed(origin) {
     try {
       const apiUrl = `${hostname}/api/iframe-config?origin=${encodeURIComponent(origin)}`
@@ -43,7 +42,6 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
     }
   }
 
-  // Fonction principale asynchrone
   async function setupIframe() {
     const lang = script.dataset.lang
 
@@ -70,7 +68,6 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
         url.searchParams.append(key === 'pr' ? 'PR' : key, value)
       }
 
-      // Vérifier si l'origine est autorisée pour shareDataBypass
       if (key === 'shareData' && value) {
         const originAllowed = await isOriginAllowed(hostname)
         if (originAllowed) {
@@ -103,6 +100,5 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
     script.parentNode.insertBefore(iframe, script)
   }
 
-  // Appeler la fonction asynchrone
   setupIframe()
 }
