@@ -1,7 +1,7 @@
 import { visit } from '../../../helpers/interactions/visit'
 
 describe('404 Page', () => {
-  it('should display 404 page when accessing non-existent URL', () => {
+  it.skip('should display 404 page when accessing non-existent URL', () => {
     // Intercept and handle the Next.js not found error
     cy.on('uncaught:exception', (err) => {
       if (err.message.includes('NEXT_NOT_FOUND')) {

@@ -20,7 +20,6 @@ vi.mock('@/utils/decodeRuleNameFromPath', () => ({
 
 vi.mock('@/constants/urls/paths', () => ({
   DOCUMENTATION_PATH: '/documentation',
-  NOT_FOUND_PATH: '/404',
   SIMULATOR_PATH: '/simulateur',
 }))
 
