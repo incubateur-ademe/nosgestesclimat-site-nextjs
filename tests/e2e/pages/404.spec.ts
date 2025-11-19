@@ -5,7 +5,7 @@ test.describe('404 Page', () => {
     page,
   }) => {
     // Visit a URL that doesn't exist
-    await page.goto('/fr/definitely-not-a-page-url')
+    await page.goto('/definitely-not-a-page-url')
 
     // Check for common 404 page elements
     expect(page.locator('h1')).toBeDefined()

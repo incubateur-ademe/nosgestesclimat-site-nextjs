@@ -1,10 +1,9 @@
 import { expect, test } from '@playwright/test'
 import { dismissCookieBanner } from '../../helpers/cookies/dismissCookieBanner'
-import { visit } from '../../helpers/interactions/visit'
 
 test.describe('check for homepage status', () => {
   test.beforeEach(async ({ page }) => {
-    await visit(page, '/')
+    await page.goto('/')
 
     await dismissCookieBanner(page)
   })

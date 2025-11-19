@@ -3,11 +3,10 @@ import {
   PLAN_ACTIONS_TITLE,
   PLAN_OUTILS_TITLE,
 } from '../../constants/elements-ids'
-import { visit } from '../../helpers/interactions/visit'
 
 test.describe('The Plan du site page', () => {
   test('should render without breaking the app', async ({ page }) => {
-    await visit(page, '/plan-du-site')
+    await page.goto('/plan-du-site')
 
     const expectedText = 'Plan du site'
     expect(page.locator('h1').filter({ hasText: expectedText })).toBeDefined()
@@ -16,7 +15,7 @@ test.describe('The Plan du site page', () => {
   test('should display hardcoded elements and dynamically generated elements (the actions list)', async ({
     page,
   }) => {
-    await visit(page, '/plan-du-site')
+    await page.goto('/plan-du-site')
 
     expect(
       page.locator(`h2[data-cypress-id="${PLAN_OUTILS_TITLE}"]`)

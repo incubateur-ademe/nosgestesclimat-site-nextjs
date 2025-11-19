@@ -5,14 +5,13 @@ import {
 } from '../../constants/elements-ids'
 import { dismissCookieBanner } from '../../helpers/cookies/dismissCookieBanner'
 import { clickSkipTutorialButton } from '../../helpers/elements/buttons'
-import { visit } from '../../helpers/interactions/visit'
 import { recursivelyFillSimulation } from '../../helpers/simulation/recursivelyFillSimulation'
 
 test.describe('The End page', () => {
   test.describe('Given an NGC user', () => {
     test.describe('When landing on the end page with no simulation', () => {
       test('Then it should redirect to the tutorial', async ({ page }) => {
-        await visit(page, '/fin')
+        await page.goto('/fin')
 
         expect(
           page.locator('h1[data-cypress-id="tutoriel-title"]')
@@ -34,7 +33,7 @@ test.describe('The End page', () => {
         }
       })
 
-      await visit(page, '/simulateur/bilan')
+      await page.goto('/simulateur/bilan')
 
       await dismissCookieBanner(page)
 

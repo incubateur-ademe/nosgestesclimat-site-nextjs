@@ -1,6 +1,5 @@
 import { expect, test } from '@playwright/test'
 import { dismissCookieBanner } from '../../helpers/cookies/dismissCookieBanner'
-import { visit } from '../../helpers/interactions/visit'
 import { recursivelyFillSimulation } from '../../helpers/simulation/recursivelyFillSimulation'
 import { setupSimulation } from '../../helpers/simulation/setupSimulation'
 
@@ -13,7 +12,7 @@ test.describe('Action userflow', () => {
         page,
       }) => {
         // Actions when user hasn't completed the simulation
-        await visit(page, '/actions')
+        await page.goto('/actions')
 
         await dismissCookieBanner(page)
 
@@ -24,7 +23,7 @@ test.describe('Action userflow', () => {
         ).toBeDefined()
 
         // Actions when user has completed the simulation
-        await visit(page, '/')
+        await page.goto('/')
 
         await setupSimulation(page)
 
@@ -32,7 +31,7 @@ test.describe('Action userflow', () => {
 
         await page.waitForLoadState('networkidle')
 
-        await visit(page, '/actions')
+        await page.goto('/actions')
 
         await page.waitForLoadState('networkidle')
 

@@ -1,9 +1,8 @@
 import { expect, test } from '@playwright/test'
-import { visit } from '../../helpers/interactions/visit'
 
 test.describe('The page relays', () => {
   test('should render without breaking the app', async ({ page }) => {
-    await visit(page, '/nos-relais')
+    await page.goto('/nos-relais')
 
     const expectedText = 'Ils relaient Nos Gestes Climat'
     expect(page.locator('h1').filter({ hasText: expectedText })).toBeDefined()

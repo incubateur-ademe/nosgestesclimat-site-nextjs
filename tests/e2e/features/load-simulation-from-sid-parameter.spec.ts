@@ -13,7 +13,6 @@ import {
 } from '../../helpers/elements/buttons'
 import { click } from '../../helpers/interactions/click'
 import { type } from '../../helpers/interactions/type'
-import { visit } from '../../helpers/interactions/visit'
 
 test.use({
   storageState: undefined,
@@ -25,7 +24,7 @@ test.describe('Loading the simulation from the sid parameter', () => {
     let initialValue: string | undefined
 
     test.beforeEach(async ({ page }) => {
-      await visit(page, '/tutoriel')
+      await page.goto('/tutoriel')
 
       await dismissCookieBanner(page)
 
@@ -60,7 +59,7 @@ test.describe('Loading the simulation from the sid parameter', () => {
       test('then it should load the simulation with the correct total footprint number', async ({
         page,
       }) => {
-        await visit(page, `/simulateur/bilan?sid=${simulationId}`)
+        await page.goto(`/simulateur/bilan?sid=${simulationId}`)
 
         await page.waitForTimeout(6000)
         const questionLabel = page.locator(

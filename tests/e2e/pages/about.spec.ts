@@ -1,9 +1,8 @@
 import { expect, test } from '@playwright/test'
-import { visit } from '../../helpers/interactions/visit'
 
 test.describe('The À propos page', () => {
   test.beforeEach(async ({ page }) => {
-    await visit(page, '/a-propos')
+    await page.goto('/a-propos')
   })
 
   test('should render without breaking the app', async ({ page }) => {

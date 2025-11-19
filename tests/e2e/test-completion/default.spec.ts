@@ -1,5 +1,4 @@
 import { expect, test } from '@playwright/test'
-import { visit } from '../../helpers/interactions/visit'
 import { recursivelyFillSimulation } from '../../helpers/simulation/recursivelyFillSimulation'
 import { setupSimulation } from '../../helpers/simulation/setupSimulation'
 
@@ -9,7 +8,7 @@ test.use({
 
 test.describe('The simulation', () => {
   test('can be finished with the default values', async ({ page }) => {
-    await visit(page, '/')
+    await page.goto('/')
 
     await setupSimulation(page)
 

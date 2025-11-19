@@ -1,9 +1,8 @@
 import { expect, test } from '@playwright/test'
-import { visit } from '../../helpers/interactions/visit'
 
 test.describe('Our iframe demo', () => {
   test.beforeEach(async ({ page }) => {
-    await visit(page, '/demo-iframe.html')
+    await page.goto('/demo-iframe.html')
   })
 
   test('displays the iframe correctly', async ({ page }) => {
@@ -14,7 +13,7 @@ test.describe('Our iframe demo', () => {
 
 test.describe('Our iframe simulation demo', () => {
   test.beforeEach(async ({ page }) => {
-    await visit(page, '/demo-iframeSimulation.html')
+    await page.goto('/demo-iframeSimulation.html')
   })
 
   test('displays the iframe correctly', async ({ page }) => {

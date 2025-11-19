@@ -7,7 +7,6 @@ import { fillGroupCreationFirstStep } from '../../helpers/groups/fillGroupCreati
 import { fillGroupNameEmoji } from '../../helpers/groups/fillGroupNameEmoji'
 import { click } from '../../helpers/interactions/click'
 import { type } from '../../helpers/interactions/type'
-import { visit } from '../../helpers/interactions/visit'
 import { recursivelyFillSimulation } from '../../helpers/simulation/recursivelyFillSimulation'
 
 test.describe('Group userflow', () => {
@@ -19,7 +18,7 @@ test.describe('Group userflow', () => {
       test('then it should succeed and return no accessibility violations', async ({
         page,
       }) => {
-        await visit(page, '/classements')
+        await page.goto('/classements')
 
         await page.evaluate(() => localStorage.clear())
 
@@ -70,7 +69,7 @@ test.describe('Group userflow', () => {
         await click(page, 'button-confirm-delete-group')
 
         // Navigate back to classements page to see the create button again
-        await visit(page, '/classements')
+        await page.goto('/classements')
 
         // Check that we can create a second group
         // Wait for navigation after clicking the button to prevent multiple clicks

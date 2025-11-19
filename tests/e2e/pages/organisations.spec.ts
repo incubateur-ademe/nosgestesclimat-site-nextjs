@@ -17,7 +17,6 @@ import {
   POLL_NAME_INPUT,
 } from '../../constants/elements-ids'
 import { checkA11y } from '../../helpers/accessibility/checkA11y'
-import { visit } from '../../helpers/interactions/visit'
 import { getVerificationCodeFromScalingo } from '../../utils/getVerificationCodeFromScalingo'
 
 test.describe('On the organisation userflow', () => {
@@ -31,13 +30,13 @@ test.describe('On the organisation userflow', () => {
       test('then it should succeed and return no accessibility violations', async ({
         page,
       }) => {
-        await visit(page, '/organisations')
+        await page.goto('/organisations')
 
         await page.waitForTimeout(2000)
 
         await checkA11y(page)
 
-        await visit(page, '/organisations/connexion')
+        await page.goto('/organisations/connexion')
 
         await page.waitForTimeout(2000)
 
@@ -134,13 +133,13 @@ test.describe('On the organisation userflow', () => {
       test('then it should succeed and return no accessibility violations', async ({
         page,
       }) => {
-        await visit(page, '/organisations')
+        await page.goto('/organisations')
 
         await page.waitForTimeout(2000)
 
         await checkA11y(page)
 
-        await visit(page, '/organisations/connexion')
+        await page.goto('/organisations/connexion')
 
         await page.waitForTimeout(2000)
 

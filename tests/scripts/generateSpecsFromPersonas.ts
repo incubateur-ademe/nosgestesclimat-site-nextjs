@@ -11,13 +11,12 @@ const getFileContent = (
   data: Record<string, string | number>
 ) => `
 import { test } from '@playwright/test'
-import { visit } from '../../helpers/interactions/visit'
 import { recursivelyFillSimulation } from '../../helpers/simulation/recursivelyFillSimulation'
 import { setupSimulation } from '../../helpers/simulation/setupSimulation'
 
 test.describe('Persona ${name}', () => {
   test("can finish the test filling it with their answer values", async ({ page }) => {
-    await visit(page, '/')
+    await page.goto('/')
     await setupSimulation(page)
     await recursivelyFillSimulation(page, ${JSON.stringify(data) ?? '{}'})
   })
