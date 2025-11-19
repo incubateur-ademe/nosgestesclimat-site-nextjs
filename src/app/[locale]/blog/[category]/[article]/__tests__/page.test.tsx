@@ -7,7 +7,9 @@ import ArticlePage from '../page'
 vi.mock('next/navigation', () => ({
   redirect: vi.fn(),
   notFound: vi.fn(() => {
-    throw new Error('NEXT_NOT_FOUND')
+    const error = new Error('NEXT_NOT_FOUND')
+    ;(error as any).digest = 'NEXT_NOT_FOUND'
+    throw error
   }),
 }))
 
@@ -149,11 +151,11 @@ describe('ArticlePage', () => {
       })
       const params = Promise.resolve({
         category: 'cat',
-        article: 'art',
+        article: 'toto',
         locale: 'fr' as Locale,
       })
+
       await expect(ArticlePage({ params })).rejects.toThrow('NEXT_NOT_FOUND')
-      expect(mockNotFound).toHaveBeenCalled()
     })
 
     it('should redirect to NOT_FOUND_PATH if missing article in any locale', async () => {

@@ -1,6 +1,6 @@
 import Route404 from '@/components/layout/404'
 import { ClientLayout } from '@/components/layout/ClientLayout'
-import { NOT_FOUND_PATH } from '@/constants/urls/paths'
+import { noIndexObject } from '@/constants/metadata'
 import Main from '@/design-system/layout/Main'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -18,9 +18,7 @@ export async function generateMetadata(props: DefaultPageProps) {
     description: t(
       "Oups, vous êtes bien sur Nos Gestes Climat, mais cette page n'existe pas."
     ),
-    alternates: {
-      canonical: NOT_FOUND_PATH,
-    },
+    robots: noIndexObject,
   })
 }
 
