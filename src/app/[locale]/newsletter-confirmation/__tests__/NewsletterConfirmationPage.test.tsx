@@ -1,7 +1,7 @@
-import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { act } from '@testing-library/react'
+import { notFound } from 'next/navigation'
 import { describe, expect, it, vi } from 'vitest'
 import NewsletterErrorMessage from '../_components/NewsletterErrorMessage'
 import NewsletterInvalidMessage from '../_components/NewsletterInvalidMessage'
@@ -10,6 +10,9 @@ import NewsletterConfirmationPage from '../page'
 
 vi.mock('next/navigation', () => ({
   redirect: vi.fn(),
+  notFound: vi.fn(() => {
+    throw new Error('NEXT_NOT_FOUND')
+  }),
   useSearchParams: () => new URLSearchParams(),
   useRouter: vi.fn(() => ({
     push: vi.fn(),
@@ -36,6 +39,8 @@ vi.mock('../_components/NewsletterInvalidMessage', () => ({
   __esModule: true,
   default: vi.fn(() => null),
 }))
+
+const mockNotFound = vi.mocked(notFound)
 
 describe('NewsletterConfirmationPage', () => {
   beforeEach(() => {
@@ -112,24 +117,18 @@ describe('NewsletterConfirmationPage', () => {
 
   it('should redirect to the 404 page if wrong success param is passed', async () => {
     // Given
-    const { redirect } = await import('next/navigation')
     const props = {
       params: Promise.resolve({ locale: i18nConfig.defaultLocale as Locale }),
       searchParams: Promise.resolve({ success: 'toto' as 'true' }),
     }
 
-    // When
-    await act(async () => {
-      renderWithWrapper(await NewsletterConfirmationPage(props))
-    })
-
-    // Then
-    expect(redirect).toHaveBeenCalledWith(NOT_FOUND_PATH)
+    // When & Then
+    await expect(NewsletterConfirmationPage(props)).rejects.toThrow('NEXT_NOT_FOUND')
+    expect(mockNotFound).toHaveBeenCalled()
   })
 
   it('should redirect to the 404 page if wrong status param is passed', async () => {
     // Given
-    const { redirect } = await import('next/navigation')
     const props = {
       params: Promise.resolve({ locale: i18nConfig.defaultLocale as Locale }),
       searchParams: Promise.resolve({
@@ -138,12 +137,8 @@ describe('NewsletterConfirmationPage', () => {
       }),
     }
 
-    // When
-    await act(async () => {
-      renderWithWrapper(await NewsletterConfirmationPage(props))
-    })
-
-    // Then
-    expect(redirect).toHaveBeenCalledWith(NOT_FOUND_PATH)
+    // When & Then
+    await expect(NewsletterConfirmationPage(props)).rejects.toThrow('NEXT_NOT_FOUND')
+    expect(mockNotFound).toHaveBeenCalled()
   })
 })

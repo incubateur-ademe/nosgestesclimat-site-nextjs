@@ -1,7 +1,6 @@
 import { mswServer } from '@/__tests__/server'
 import { PARTNER_JAGIS, PARTNER_KEY } from '@/constants/partners'
 import { INTEGRATION_URL } from '@/constants/urls/main'
-import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
@@ -9,11 +8,15 @@ import { faker } from '@faker-js/faker'
 import '@testing-library/jest-dom'
 import { act, screen, waitFor } from '@testing-library/react'
 import { http, HttpResponse } from 'msw'
+import { notFound } from 'next/navigation'
 import { vi } from 'vitest'
 import PartnerPage from '../page'
 
 vi.mock('next/navigation', () => ({
   redirect: vi.fn(),
+  notFound: vi.fn(() => {
+    throw new Error('NEXT_NOT_FOUND')
+  }),
   useSearchParams: () => new URLSearchParams(),
   useRouter: vi.fn(() => ({
     push: vi.fn(),
@@ -25,6 +28,8 @@ vi.mock('next/navigation', () => ({
   })),
   usePathname: vi.fn(() => ''),
 }))
+
+const mockNotFound = vi.mocked(notFound)
 
 describe('PartnerPage', () => {
   const defaultSearchParams = Promise.resolve({
@@ -83,22 +88,9 @@ describe('PartnerPage', () => {
       // Given
       const searchParams = Promise.resolve({})
 
-      // When
-      await act(async () => {
-        renderWithWrapper(
-          await PartnerPage({ params: defaultParams, searchParams }),
-          {
-            providers: {
-              queryClient: true,
-              errorBoundary: true,
-            },
-          }
-        )
-      })
-
-      // Then
-      const { redirect } = await import('next/navigation')
-      expect(redirect).toHaveBeenCalledWith(NOT_FOUND_PATH)
+      // When & Then
+      await expect(PartnerPage({ params: defaultParams, searchParams })).rejects.toThrow('NEXT_NOT_FOUND')
+      expect(mockNotFound).toHaveBeenCalled()
     })
   })
 
@@ -111,25 +103,14 @@ describe('PartnerPage', () => {
         })
       )
 
-      // When
-      await act(async () => {
-        renderWithWrapper(
-          await PartnerPage({
-            params: defaultParams,
-            searchParams: defaultSearchParams,
-          }),
-          {
-            providers: {
-              queryClient: true,
-              errorBoundary: true,
-            },
-          }
-        )
-      })
-
-      // Then
-      const { redirect } = await import('next/navigation')
-      expect(redirect).toHaveBeenCalledWith(NOT_FOUND_PATH)
+      // When & Then
+      await expect(
+        PartnerPage({
+          params: defaultParams,
+          searchParams: defaultSearchParams,
+        })
+      ).rejects.toThrow('NEXT_NOT_FOUND')
+      expect(mockNotFound).toHaveBeenCalled()
     })
   })
 

@@ -1,12 +1,14 @@
-import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import type { Locale } from '@/i18nConfig'
-import { redirect } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import CategoryPage from '../page'
 
 // Mock next/navigation
 vi.mock('next/navigation', () => ({
   redirect: vi.fn(),
+  notFound: vi.fn(() => {
+    throw new Error('NEXT_NOT_FOUND')
+  }),
 }))
 
 // Mock CMS services
@@ -30,6 +32,7 @@ const mockFetchCategoryPageContent = vi.mocked(fetchCategoryPageContent)
 const mockFetchCategoryPageMetadata = vi.mocked(fetchCategoryPageMetadata)
 const mockGetLangButtonsDisplayed = vi.mocked(getLangButtonsDisplayed)
 const mockRedirect = vi.mocked(redirect)
+const mockNotFound = vi.mocked(notFound)
 
 describe('CategoryPage', () => {
   beforeEach(() => {
@@ -163,8 +166,8 @@ describe('CategoryPage', () => {
         locale: 'fr' as Locale,
       })
       const searchParams = Promise.resolve({ page: '1' })
-      await CategoryPage({ params, searchParams })
-      expect(mockRedirect).toHaveBeenCalledWith(NOT_FOUND_PATH)
+      await expect(CategoryPage({ params, searchParams })).rejects.toThrow('NEXT_NOT_FOUND')
+      expect(mockNotFound).toHaveBeenCalled()
     })
     it('should redirect to NOT_FOUND_PATH if FR and missing description', async () => {
       mockFetchCategoryPageContent.mockResolvedValue({
@@ -179,8 +182,8 @@ describe('CategoryPage', () => {
         locale: 'fr' as Locale,
       })
       const searchParams = Promise.resolve({ page: '1' })
-      await CategoryPage({ params, searchParams })
-      expect(mockRedirect).toHaveBeenCalledWith(NOT_FOUND_PATH)
+      await expect(CategoryPage({ params, searchParams })).rejects.toThrow('NEXT_NOT_FOUND')
+      expect(mockNotFound).toHaveBeenCalled()
     })
     it('should redirect to NOT_FOUND_PATH if missing title in any locale', async () => {
       mockFetchCategoryPageContent.mockResolvedValue({
