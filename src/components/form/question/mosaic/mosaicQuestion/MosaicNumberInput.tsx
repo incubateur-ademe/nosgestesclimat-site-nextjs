@@ -30,6 +30,7 @@ export default function MosaicNumberInput({
   const [currentValue, setCurrentValue] = useState(
     value === null ? undefined : value
   )
+  // Update the current value when the value prop changes because it can be changed by side-effect with a click on « Aucun », or on a suggestion.
   useEffect(() => {
     if (value !== null && value !== currentValue) {
       setCurrentValue(value)
@@ -43,7 +44,7 @@ export default function MosaicNumberInput({
   const isPlusDisabled =
     typeof currentValue === 'number' &&
     typeof plafond === 'number' &&
-    currentValue === plafond
+    currentValue >= plafond
 
   function handleSetValue(value: number) {
     setCurrentValue(value)

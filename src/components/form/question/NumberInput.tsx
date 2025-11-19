@@ -37,10 +37,12 @@ export default function NumberInput({
     setCurrentValues(values)
     debouncedSetValue(values.floatValue)
   }
+
+  // La valeur peut être mise à jour depuis l'exterieur (via les boutons de suggestion par exemple)
+  // Quand ça arrive, la valeur de `value` et `currentValues` sont désynchronisées.
+  // Pour reset le champs avec la valeur passée en prop, on reset `currentValues.value` a undefined.
   useEffect(() => {
-    console.log(value, currentValues.floatValue)
     if (value !== null && value != currentValues.floatValue) {
-      console.log('ok', defaultValue)
       setCurrentValues(defaultValue)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

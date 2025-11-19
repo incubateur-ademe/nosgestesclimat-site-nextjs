@@ -126,7 +126,7 @@ export default function Question({
 
             {type === 'boolean' && (
               <BooleanInput
-                value={value as Evaluation<boolean>}
+                value={situationValue as Evaluation<boolean>}
                 setValue={(value) => {
                   {
                     setValue(value, { questionDottedName: question })
@@ -148,7 +148,7 @@ export default function Question({
               <ChoicesInput
                 question={question}
                 choices={choices}
-                value={value as Evaluation<string>}
+                value={situationValue as Evaluation<string>}
                 setValue={(value) => {
                   {
                     setValue(value, { questionDottedName: question })

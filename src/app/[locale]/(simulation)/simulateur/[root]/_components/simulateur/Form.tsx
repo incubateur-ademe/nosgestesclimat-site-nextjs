@@ -32,8 +32,7 @@ export default function Form() {
     currentCategory,
   } = useFormState()
 
-  const { questionInQueryParams, setQuestionInQueryParams } =
-    useQuestionInQueryParams()
+  const { questionInQueryParams } = useQuestionInQueryParams(currentQuestion)
 
   const { goToEndPage } = useEndPage()
 
@@ -77,10 +76,6 @@ export default function Form() {
     questionInQueryParams,
     isDebug,
   ])
-
-  useEffect(() => {
-    if (currentQuestion) setQuestionInQueryParams(currentQuestion)
-  }, [currentQuestion, setQuestionInQueryParams])
 
   useEffect(() => {
     window.scrollTo(0, 0)
