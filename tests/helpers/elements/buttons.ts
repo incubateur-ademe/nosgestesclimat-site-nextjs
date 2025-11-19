@@ -9,7 +9,6 @@ import {
   UNDERSTOOD_EXPLANATION_BUTTON,
   UNDERSTOOD_LOCALISATION_BUTTON,
 } from '../../constants/elements-ids'
-import { findInBodyAndDo } from '../getters/findInBody'
 import { click } from '../interactions/click'
 
 export async function clickUnderstoodExplanationButton(
@@ -21,11 +20,7 @@ export async function clickUnderstoodExplanationButton(
 export async function clickUnderstoodLocalisationButtonIfItExists(
   page: Page
 ): Promise<void> {
-  await findInBodyAndDo(
-    page,
-    `button[data-cypress-id="${UNDERSTOOD_LOCALISATION_BUTTON}"]`,
-    () => click(page, UNDERSTOOD_LOCALISATION_BUTTON)
-  )
+  await click(page, UNDERSTOOD_LOCALISATION_BUTTON)
 }
 
 export async function clickSkipTutorialButton(page: Page): Promise<void> {
@@ -33,19 +28,11 @@ export async function clickSkipTutorialButton(page: Page): Promise<void> {
 }
 
 export async function skipTutoIfExists(page: Page): Promise<void> {
-  await findInBodyAndDo(
-    page,
-    `[data-cypress-id="${SKIP_TUTORIAL_BUTTON}"]`,
-    () => clickSkipTutorialButton(page)
-  )
+  await clickSkipTutorialButton(page)
 }
 
 export async function clickUnderstoodButtonIfExist(page: Page): Promise<void> {
-  await findInBodyAndDo(
-    page,
-    `[data-cypress-id="${UNDERSTOOD_EXPLANATION_BUTTON}"]`,
-    () => clickUnderstoodExplanationButton(page)
-  )
+  await clickUnderstoodExplanationButton(page)
 }
 
 export async function clickDontKnowButton(page: Page): Promise<void> {

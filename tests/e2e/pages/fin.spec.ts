@@ -74,7 +74,11 @@ test.describe('The End page', () => {
           .click()
 
         // Wait for the simulation to be saved
-        await page.waitForLoadState('networkidle')
+        await page.waitForResponse(
+          (response) =>
+            response.request().method() === 'POST' &&
+            response.url().includes('/simulations/v1/')
+        )
 
         expect(requestCount).toBe(1)
       })
