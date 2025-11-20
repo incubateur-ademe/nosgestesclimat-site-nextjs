@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - preprod
-      - migrate-e2e
   workflow_dispatch:
     inputs:
       branch:
@@ -25,6 +24,7 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
+
       - name: Install Playwright
         run: yarn playwright install
 
@@ -90,11 +90,6 @@ jobs:
         run: echo "PLAYWRIGHT_baseUrl=${{ env.TEST_URL }}" >> $GITHUB_ENV
 
       - name: Run E2E tests
-        uses: nick-invision/retry@9417ab499314dfe692edb043ded2ff9b3f5f0a68
-        with:
-          timeout_minutes: 10
-          max_attempts: 3
-          retry_wait_seconds: 5
-          command: |
-            echo "Running tests against ${{ env.TEST_URL }}"
-            yarn e2e:ci
+        run: |
+          echo "Running tests against ${{ env.TEST_URL }}"
+          yarn e2e:ci
