@@ -168,6 +168,15 @@ describe('IframeDataShareModal', () => {
           l: 3000,
           d: 4000,
           s: 5000,
+          bilan: 15000,
+          categories: {
+            transport: 1000,
+            alimentation: 2000,
+            logement: 3000,
+            divers: 4000,
+            'services sociétaux': 5000,
+          },
+          subcategories: undefined,
         },
       },
       '*'

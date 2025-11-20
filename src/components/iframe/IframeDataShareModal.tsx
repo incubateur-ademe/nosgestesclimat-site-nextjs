@@ -1,8 +1,9 @@
 'use client'
 
-import { defaultMetric } from '@/constants/model/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
+import { shareDataWithIntegrator } from '@/helpers/iframe/shareDataWithIntegrator'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { useEffect, useRef, useState } from 'react'
@@ -16,18 +17,6 @@ export default function IframeDataShareModal() {
   const [isOpen, setIsOpen] = useState(false)
 
   const { computedResults } = useCurrentSimulation()
-
-  const categories = computedResults[defaultMetric].categories ?? {}
-
-  const data = Object.keys(categories).reduce(
-    (accumulator, categoryName) => ({
-      ...accumulator,
-      [categoryName.charAt(0)]: Math.round(
-        categories[categoryName as keyof typeof categories]
-      ),
-    }),
-    {}
-  )
 
   //To delay the dialog show in to let the animation play
   const timeoutRef = useRef<NodeJS.Timeout>(undefined)
@@ -48,7 +37,7 @@ export default function IframeDataShareModal() {
   }
 
   const onAccept = () => {
-    window.parent.postMessage({ messageType: 'ngc-iframe-share', data }, '*')
+    shareDataWithIntegrator(computedResults[carboneMetric])
 
     setIsOpen(false)
 
