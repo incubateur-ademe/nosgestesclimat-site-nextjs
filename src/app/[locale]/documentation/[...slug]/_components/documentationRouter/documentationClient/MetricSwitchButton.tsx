@@ -17,26 +17,26 @@ export default function MetricSwitchButton({ metric, setMetric }: Props) {
   return (
     <ul className="mb-2 flex justify-center gap-2 lg:justify-end">
       <li>
-      <Button
-        color={metric === carboneMetric ? 'primary' : 'secondary'}
-        onClick={() => setMetric(carboneMetric)}
-        size="sm"
-        aria-label={t('Carbone, évaluer la métrique carbone')}
-        title={`${t('Carbone, évaluer la métrique carbone')} - ${metric === carboneMetric ? t('Page active') : t('Visiter cette page')}`}
-        className="flex items-center gap-2 px-4 py-3">
-        <span>Carbone</span> <Emoji>⚫️</Emoji>
-      </Button>
+        <Button
+          color={metric === carboneMetric ? 'primary' : 'secondary'}
+          onClick={() => setMetric(carboneMetric)}
+          size="sm"
+          aria-label={t('Carbone, évaluer la métrique carbone')}
+          title={`${t('Carbone, évaluer la métrique carbone')} - ${metric === carboneMetric ? t('Page active') : t('Visiter cette page')}`}
+          className="flex items-center gap-2 px-4 py-3">
+          <span>Carbone</span> <Emoji>⚫️</Emoji>
+        </Button>
       </li>
       <li>
-      <Button
-        color={metric === eauMetric ? 'primary' : 'secondary'}
-        onClick={() => setMetric(eauMetric)}
-        size="sm"
-        aria-label={t('Eau, évaluer la métrique eau')}
-        title={`${t('Eau, évaluer la métrique eau')} - ${metric === eauMetric ? t('Page active') : t('Visiter cette page')}`}
-        className="flex items-center gap-2 px-4 py-3">
-        <span>Eau</span> <Emoji>💧</Emoji>
-      </Button>
+        <Button
+          color={metric === eauMetric ? 'primary' : 'secondary'}
+          onClick={() => setMetric(eauMetric)}
+          size="sm"
+          aria-label={t('Eau, évaluer la métrique eau')}
+          title={`${t('Eau, évaluer la métrique eau')} - ${metric === eauMetric ? t('Page active') : t('Visiter cette page')}`}
+          className="flex items-center gap-2 px-4 py-3">
+          <span>Eau</span> <Emoji>💧</Emoji>
+        </Button>
       </li>
     </ul>
   )
