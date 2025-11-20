@@ -12,7 +12,6 @@ import { useEndGuard } from '@/hooks/navigation/useEndGuard'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useIframe } from '@/hooks/useIframe'
 import type { Metric } from '@/publicodes-state/types'
-import { getIsIframe } from '@/utils/getIsIframe'
 import { useEffect, type ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Carbone from './_components/Carbone'
@@ -37,9 +36,11 @@ export default function FinPage() {
 
   const { currentMetric } = useCurrentMetric()
 
-  const isIframe = getIsIframe()
-
-  const { isFrenchRegion, isIframeShareData } = useIframe()
+  const {
+    isFrenchRegion,
+    isIframeShareData,
+    isIntegratorAllowedToBypassConsentDataShare,
+  } = useIframe()
 
   useEffect(() => {
     const titleTags = document.querySelectorAll('head > title')
@@ -54,7 +55,9 @@ export default function FinPage() {
 
   return (
     <div className="relative mt-12">
-      {isIframe && isIframeShareData && <IframeDataShareModal />}
+      {isIframeShareData && !isIntegratorAllowedToBypassConsentDataShare && (
+        <IframeDataShareModal />
+      )}
 
       <TallyForm />
 
