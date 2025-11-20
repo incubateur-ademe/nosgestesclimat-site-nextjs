@@ -18,61 +18,33 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
     { key: 'shareData', legacy: 'partagedatafinsimulation' },
   ]
 
-  async function isOriginAllowed(origin) {
-    try {
-      const apiUrl = `${hostname}/api/iframe-config?origin=${encodeURIComponent(origin)}`
-      const response = await fetch(apiUrl)
-      if (!response.ok) {
-        return false
-      }
+  const url = new URL(hostname)
 
-      const data = await response.json()
+  url.searchParams.append('iframe', 'true')
+  url.searchParams.append('integratorUrl', integratorUrl)
 
-      return data.isAllowed === true
-    } catch (error) {
-      console.warn(
-        "Iframe Nos Gestes Climat: Impossible de vérifier l'origine autorisée",
-        error
-      )
-      return false
-    }
+  possibleOptions.forEach(({ key, legacy }) => {
+    const value = script.dataset[key] || script.dataset[legacy]
+
+    url.searchParams.append(key, value)
+  })
+
+  const iframe = document.createElement('iframe')
+
+  const iframeAttributes = {
+    src: url.toString(),
+    allowfullscreen: true,
+    webkitallowfullscreen: true,
+    mozallowfullscreen: true,
+    allow: 'fullscreen',
+    id: 'iframeNGC',
+    title: 'Iframe Nos Gestes Climat',
   }
 
-  async function setupIframe() {
-    const url = new URL(hostname)
-
-    url.searchParams.append('iframe', 'true')
-    url.searchParams.append('integratorUrl', integratorUrl)
-
-    for (const { key, legacy } of possibleOptions) {
-      const value = script.dataset[key] || script.dataset[legacy]
-
-      url.searchParams.append(key, value)
-
-      if (key === 'shareData') {
-        const originAllowed = await isOriginAllowed(hostname)
-        if (originAllowed) {
-          url.searchParams.append('shareDataBypass', 'true')
-        }
-      }
-    }
-
-    const iframe = document.createElement('iframe')
-
-    const iframeAttributes = {
-      src: url.toString(),
-      allowfullscreen: true,
-      webkitallowfullscreen: true,
-      mozallowfullscreen: true,
-      allow: 'fullscreen',
-      id: 'iframeNGC',
-      title: 'Iframe Nos Gestes Climat',
-    }
-
-    const color = '#32337b'
-    document.head.insertAdjacentHTML(
-      'beforeend',
-      `<style>
+  const color = '#32337b'
+  document.head.insertAdjacentHTML(
+    'beforeend',
+    `<style>
     #iframeNGC {
       border: none;
       border-radius: 1rem;
@@ -99,33 +71,33 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
       background: white;
     }
     </style>`
-    )
+  )
 
-    for (var key in iframeAttributes) {
-      iframe.setAttribute(key, iframeAttributes[key])
-    }
+  for (var key in iframeAttributes) {
+    iframe.setAttribute(key, iframeAttributes[key])
+  }
 
-    const link = document.createElement('div')
+  const link = document.createElement('div')
 
-    link.innerHTML = `
+  link.innerHTML = `
   <a href="https://nosgestesclimat.fr" target="_blank">Calculer mon empreinte carbone et eau ⬇️</a>
 `
 
-    link.style.cssText = `
+  link.style.cssText = `
   margin: 1rem auto .6rem;
   text-align: center;
 `
 
-    const fullscreenButton = document.createElement('button')
+  const fullscreenButton = document.createElement('button')
 
-    fullscreenButton.innerHTML = `
+  fullscreenButton.innerHTML = `
   <div style="display: flex; gap: 4px; margin: 0 auto;">
     <img width="14px" height="14px" alt="" aria-hidden="true" style="filter: invert(1); vertical-align: middle; cursor: pointer"/>
     Passer en mode plein écran
   </div>
 `
 
-    fullscreenButton.style.cssText = `
+  fullscreenButton.style.cssText = `
   cursor:pointer;
   display: block;
   margin: 0 auto;
@@ -137,17 +109,14 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
   color: white;
 `
 
-    fullscreenButton.addEventListener('click', () => {
-      iframe.requestFullscreen()
-    })
+  fullscreenButton.addEventListener('click', () => {
+    iframe.requestFullscreen()
+  })
 
-    script.parentNode.insertBefore(link, script)
+  script.parentNode.insertBefore(link, script)
 
-    script.parentNode.insertBefore(fullscreenButton, script)
-    // TODO : works, but we need to let the user come back !
+  script.parentNode.insertBefore(fullscreenButton, script)
+  // TODO : works, but we need to let the user come back !
 
-    script.parentNode.insertBefore(iframe, script)
-  }
-
-  setupIframe()
+  script.parentNode.insertBefore(iframe, script)
 }
