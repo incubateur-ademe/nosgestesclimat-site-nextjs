@@ -10,7 +10,6 @@ import {
 import Separator from '@/design-system/layout/Separator'
 import { getRules } from '@/helpers/modelFetching/getRules'
 import type { Locale } from '@/i18nConfig'
-import EngineProvider from '@/publicodes-state/providers/engineProvider/provider'
 import type { Simulation } from '@/publicodes-state/types'
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
@@ -83,18 +82,16 @@ export default async function LatestResults({
         </p>
       </div>
 
-      <EngineProvider rules={rules}>
-        <MetricSlider
-          carboneTotal={simulation.computedResults.carbone.bilan}
-          waterTotal={simulation.computedResults.eau.bilan}
-          className="mb-0 h-auto"
-          isStatic
-          isSharePage
-        />
-        <div className="my-8 block md:hidden">
-          <Gauge total={simulation.computedResults.carbone.bilan} />
-        </div>
-      </EngineProvider>
+      <MetricSlider
+        carboneTotal={simulation.computedResults.carbone.bilan}
+        waterTotal={simulation.computedResults.eau.bilan}
+        className="mb-0 h-auto"
+        isStatic
+        isSharePage
+      />
+      <div className="my-8 block md:hidden">
+        <Gauge total={simulation.computedResults.carbone.bilan} />
+      </div>
 
       <Link
         className={twMerge(

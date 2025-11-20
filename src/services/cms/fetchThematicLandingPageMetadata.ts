@@ -38,7 +38,6 @@ export async function fetchThematicLandingPageMetadata({
       thematicLandingPageMetadata: thematicLPMetadata,
     }
   } catch (error) {
-    console.log(error)
     return {}
   }
 }
