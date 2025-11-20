@@ -1,6 +1,7 @@
 'use client'
 
 import { compareTwoSimulations } from '@/helpers/simulation/compareTwoSimulations'
+import { useGetAuthentifiedUser } from '@/hooks/authentication/useGetAuthentifiedUser'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useCurrentSimulation, useEngine } from '@/publicodes-state'
 import { createContext, useCallback, useEffect, useMemo, useRef } from 'react'
@@ -40,6 +41,8 @@ export default function SimulationSyncProvider({
   const { isInitialized } = useEngine()
 
   const { saveSimulation, isPending } = useSaveSimulation()
+
+  const { data: authenticatedUser } = useGetAuthentifiedUser()
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 

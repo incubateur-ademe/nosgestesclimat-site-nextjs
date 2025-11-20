@@ -15,7 +15,7 @@ import {
 } from '@/constants/forms/newsletters'
 import { subscribeToNewsletterBlog } from '@/constants/tracking/pages/newsletter'
 import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
-import { getIsUserVerified } from '@/helpers/user/getIsVerified'
+import { useGetAuthentifiedUser } from '@/hooks/authentication/useGetAuthentifiedUser'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -76,8 +76,8 @@ export default function NewslettersBlock() {
 
   const { user, updateEmail } = useUser()
 
-  // TODO : replace this with a proper check by calling the backend
-  const isVerified = getIsUserVerified()
+  const { data: authenticatedUser } = useGetAuthentifiedUser()
+  const isAuthenticated = !!authenticatedUser
 
   const {
     data: newsletterSubscriptions,
@@ -261,13 +261,13 @@ export default function NewslettersBlock() {
                       </p>
                     }
                     disabled={
-                      !isVerified && !!getValues(SEASONAL_NEWSLETTER_LABEL)
+                      !isAuthenticated && !!getValues(SEASONAL_NEWSLETTER_LABEL)
                     }
                     {...register(SEASONAL_NEWSLETTER_LABEL)}
                     error={errors[SEASONAL_NEWSLETTER_LABEL]?.message}
                     data-testid="newsletter-saisonniere-checkbox"
                     aria-describedby={
-                      !isVerified && !!getValues(SEASONAL_NEWSLETTER_LABEL)
+                      !isAuthenticated && !!getValues(SEASONAL_NEWSLETTER_LABEL)
                         ? 'verification-required'
                         : undefined
                     }
@@ -283,13 +283,15 @@ export default function NewslettersBlock() {
                       </p>
                     }
                     disabled={
-                      !isVerified && !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
+                      !isAuthenticated &&
+                      !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
                     }
                     {...register(TRANSPORTS_NEWSLETTER_LABEL)}
                     error={errors[TRANSPORTS_NEWSLETTER_LABEL]?.message}
                     data-testid="newsletter-transports-checkbox"
                     aria-describedby={
-                      !isVerified && !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
+                      !isAuthenticated &&
+                      !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
                         ? 'verification-required'
                         : undefined
                     }
@@ -305,13 +307,13 @@ export default function NewslettersBlock() {
                       </p>
                     }
                     disabled={
-                      !isVerified && !!getValues(LOGEMENT_NEWSLETTER_LABEL)
+                      !isAuthenticated && !!getValues(LOGEMENT_NEWSLETTER_LABEL)
                     }
                     {...register(LOGEMENT_NEWSLETTER_LABEL)}
                     error={errors[LOGEMENT_NEWSLETTER_LABEL]?.message}
                     data-testid="newsletter-logement-checkbox"
                     aria-describedby={
-                      !isVerified && !!getValues(LOGEMENT_NEWSLETTER_LABEL)
+                      !isAuthenticated && !!getValues(LOGEMENT_NEWSLETTER_LABEL)
                         ? 'verification-required'
                         : undefined
                     }

@@ -1,23 +1,28 @@
-import { AUTHENTICATION_URL } from '@/constants/urls/main'
 import { useUser } from '@/publicodes-state'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
+import { useLocale } from '../useLocale'
 
 export default function useLogin() {
   const {
     user: { userId },
   } = useUser()
+  const locale = useLocale()
+
   return useMutation({
     mutationFn: ({ email, code }: { email: string; code: string }) =>
       axios
         .post(
-          `${AUTHENTICATION_URL}/login`,
+          `/api/auth`,
           {
             code,
             email,
             userId,
           },
           {
+            params: {
+              locale,
+            },
             withCredentials: true,
           }
         )

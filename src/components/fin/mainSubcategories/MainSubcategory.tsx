@@ -50,7 +50,7 @@ export default function MainSubcategory({
       disabled={!isLink}
       onClick={() => handleScroll(`category-${index}-block`)}
       className={twMerge(
-        'focus:ring-primary-700 flex items-center justify-between gap-4 rounded-xl border-2 px-4 py-3 no-underline focus:ring-2 focus:ring-offset-3 focus:outline-hidden',
+        'focus:ring-primary-700 flex items-center justify-between gap-4 rounded-xl border px-4 py-3 no-underline focus:ring-2 focus:ring-offset-3 focus:outline-hidden',
         widthClassName[index],
         getBackgroundLightColor(category),
         getBorderDarkColor(category),

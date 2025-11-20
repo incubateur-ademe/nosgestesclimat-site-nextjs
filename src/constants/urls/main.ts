@@ -1,7 +1,7 @@
 import { SIMULATOR_PATH } from './paths'
 
-const secure = process.env.NODE_ENV === 'development' ? '' : 's'
-const protocol = `http${secure}://`
+const secure = process.env.NODE_ENV === 'development'
+const protocol = `http${secure ? 's' : ''}://`
 
 export const SERVER_URL =
   protocol + (process.env.NEXT_PUBLIC_SERVER_URL || 'localhost:3001')
@@ -36,3 +36,5 @@ export const HIDE_CTA_PATHS = [
   '/organisations/creer',
   '/organisations/demander-demo',
 ]
+
+export const CHECK_USER_EXISTS_URL = SERVER_URL + '/users/v1/me'

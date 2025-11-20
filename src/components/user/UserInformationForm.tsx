@@ -17,7 +17,7 @@ import TextInput from '@/design-system/inputs/TextInput'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
-import { getIsUserVerified } from '@/helpers/user/getIsVerified'
+import { useGetAuthentifiedUser } from '@/hooks/authentication/useGetAuthentifiedUser'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -41,7 +41,6 @@ type Inputs = {
 }
 
 type Props = {
-  title: string | ReactNode
   inputsDisplayed?: Array<
     | 'name'
     | 'email'
@@ -54,10 +53,10 @@ type Props = {
   className?: string
   shouldForceEmailEditable?: boolean
   defaultValues?: { 'newsletter-transports': boolean }
+  title?: string | ReactNode
 }
 
 export default function UserInformationForm({
-  title,
   inputsDisplayed = [
     'name',
     'email',
@@ -70,6 +69,7 @@ export default function UserInformationForm({
   className,
   shouldForceEmailEditable = false,
   defaultValues,
+  title,
 }: Props) {
   const { t } = useClientTranslation()
 
@@ -77,8 +77,9 @@ export default function UserInformationForm({
 
   const { user, updateEmail, updateName } = useUser()
 
-  // TODO : replace this with a proper check by calling the backend
-  const isVerified = getIsUserVerified()
+  const { data: authenticatedUser } = useGetAuthentifiedUser()
+
+  const isAuthenticated = !!authenticatedUser
 
   const {
     register,
@@ -156,8 +157,7 @@ export default function UserInformationForm({
 
   return (
     <div className={twMerge('flex flex-1 flex-col items-start', className)}>
-      {title}
-
+      {title && <h2 className="mb-4 text-2xl font-bold">{title}</h2>}
       <form
         data-testid="user-information-form"
         onSubmit={handleSubmit(onSubmit)}
@@ -207,11 +207,13 @@ export default function UserInformationForm({
 
         {isFrench && (
           <>
-            <h3 className="mt-6 mb-0">
-              <Trans>Inscription à nos e-mails</Trans>
-            </h3>
+            <h2 className="mt-6 mb-0">
+              <Trans i18nKey="settings.newsletters.title">
+                Inscription à nos contenus
+              </Trans>
+            </h2>
 
-            {isVerified ? (
+            {isAuthenticated ? (
               <p
                 data-testid="verified-message"
                 className="text-sm text-gray-600">
@@ -243,7 +245,9 @@ export default function UserInformationForm({
                     </Trans>
                   </span>
                 }
-                disabled={!isVerified && !!getValues(SEASONAL_NEWSLETTER_LABEL)}
+                disabled={
+                  !isAuthenticated && !!getValues(SEASONAL_NEWSLETTER_LABEL)
+                }
                 {...register(SEASONAL_NEWSLETTER_LABEL)}
               />
             )}
@@ -261,7 +265,7 @@ export default function UserInformationForm({
                   </span>
                 }
                 disabled={
-                  !isVerified && !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
+                  !isAuthenticated && !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
                 }
                 {...register(TRANSPORTS_NEWSLETTER_LABEL)}
               />
@@ -279,7 +283,9 @@ export default function UserInformationForm({
                     </Trans>
                   </span>
                 }
-                disabled={!isVerified && !!getValues(LOGEMENT_NEWSLETTER_LABEL)}
+                disabled={
+                  !isAuthenticated && !!getValues(LOGEMENT_NEWSLETTER_LABEL)
+                }
                 {...register(LOGEMENT_NEWSLETTER_LABEL)}
               />
             )}

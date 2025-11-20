@@ -1211,7 +1211,7 @@ entries:
   Page active: Active page
   Eau, évaluer la métrique eau: Water, assess the water metric
   Carbone, évaluer la métrique carbone: Carbon, assessing the carbon metric
-  Connexion: Connection
+  Connexion: Connexion
   Visiter cette page: Visit this page
   endPage.tallyForm.buttonLabel.lock: Donner votre avis
   actions.engagementIcon.ariaLabel: The actions are below
@@ -1369,8 +1369,8 @@ entries:
   common.category.logement.lock: Logement
   pollResults.categoryDistribution.accessibleDescription.category: '{{name}}: {{value}} {{unit}}.'
   pollResults.categoryDistribution.accessibleDescription.category.lock: '{{name}}: {{value}} {{unit}}.'
-  common.category.services: Services
-  common.category.services.lock: Services
+  common.category.services: Community services
+  common.category.services.lock: Services sociétaux
   common.category.transport: Transport
   common.category.transport.lock: Transport
   common.category.alimentation: Power supply
@@ -1543,9 +1543,333 @@ entries:
   profile.answers.category.unfold.lock: Déplier les questions pour cette catégorie
   common.navigation.nextQuestion.dontKnow.title: I don't know, skip to the next question
   common.navigation.nextQuestion.dontKnow.title.lock: Je ne sais pas, passer et aller à la question suivante
+  signup.colourBlock.highlight3.title.strong1: Launch
+  signup.colourBlock.highlight3.title.strong1.lock: Lancez
+  login.colourBlock.highlight3.title.end: in progress
+  login.colourBlock.highlight3.title.end.lock: en cours
+  login.colourBlock.highlight3.title.strong: your collective challenges
+  login.colourBlock.highlight3.title.strong.lock: vos défis collectifs
+  login.list.signin.label: Create an account
+  login.list.signin.label.lock: Créer un compte
+  signup.colourBlock.highlight2.title.middle: and
+  signup.colourBlock.highlight2.title.middle.lock: et
+  login.colourBlock.highlight1.title.strong: your latest results
+  login.colourBlock.highlight1.title.strong.lock: vos derniers résultats
+  login.colourBlock.highlight1.title.prefix: Visit
+  login.colourBlock.highlight1.title.prefix.lock: Visualisez
+  login.colourBlock.highlight2.title.prefix: Continue to
+  login.colourBlock.highlight2.title.prefix.lock: Continuez à
+  signup.colourBlock.highlight2.title.strong2: track your progress
+  signup.colourBlock.highlight2.title.strong2.lock: suivez vos progrès
+  login.colourBlock.login.highlight3.strong2: find your group tests
+  login.colourBlock.login.highlight3.strong2.lock: retrouvez vos tests collectifs
+  login.colourBlock.login.highlight3.end: (organisations, family, friends...)
+  login.colourBlock.login.highlight3.end.lock: (organisations, famille, amis...)
+  signup.button.label: Sign up
+  signup.button.label.lock: M'inscrire
+  signIn.email.error.userDoesNotExist: Oh, we don't have an e-mail address registered at this address. Please register to access your space.
+  signIn.email.error.userDoesNotExist.lock: Ah ! Nous n’avons pas d’e-mail enregistré à cette adresse. Veuillez vous inscrire pour accéder à votre espace.
+  signup.colourBlock.highlight3.title.middle: and
+  signup.colourBlock.highlight3.title.middle.lock: et
+  login.list.login.label: Sign in
+  login.list.login.label.lock: Se connecter
+  signup.colourBlock.highlight1.title.strong: your impression results
+  signup.colourBlock.highlight1.title.strong.lock: vos résultats d’empreinte
+  signup.colourBlock.highlight1.title.prefix: Visit
+  signup.colourBlock.highlight1.title.prefix.lock: Retrouvez
+  login.colourBlock.highlight3.title.prefix: Go to
+  login.colourBlock.highlight3.title.prefix.lock: Accédez à
+  signup.colourBlock.highlight2.title.prefix: Discover
+  signup.colourBlock.highlight2.title.prefix.lock: Découvrez
+  signup.colourBlock.highlight2.title.strong1: your personalised climate actions
+  signup.colourBlock.highlight2.title.strong1.lock: vos actions climat personnalisées
+  login.colourBlock.highlight2.title.strong: make progress on your climate actions
+  login.colourBlock.highlight2.title.strong.lock: progresser dans vos actions climat
+  login.login.title: Access your Nos Gestes Climat area
+  login.login.title.lock: Accédez à votre espace Nos Gestes Climat
+  signup.title: Create your Nos Gestes Climat space
+  signup.title.lock: Créez votre espace Nos Gestes Climat
+  signIn.email.error.userAlreadyExists: You already have an account with this email address. Please log in directly.
+  signIn.email.error.userAlreadyExists.lock: Ah ! Vous avez déjà un compte avec cet e-mail. Merci de vous connecter directement.
+  signIn.verificationForm.email.verificationCode.prefix: Enter the
+  signIn.verificationForm.email.verificationCode.prefix.lock: Entrez le
+  signIn.verificationForm.email.verificationCode.strong: verification code
+  signIn.verificationForm.email.verificationCode.strong.lock: code de vérification
+  signIn.verificationForm.email.verificationCode.suffix: 'sent to '
+  signIn.verificationForm.email.verificationCode.suffix.lock: 'envoyé à '
+  signIn.verificationForm.notReceived.resendButton: Resend code
+  signIn.verificationForm.notReceived.resendButton.lock: Renvoyer le code
+  signIn.verificationForm.notReceived.reloadPage: Reload page
+  signIn.verificationForm.notReceived.reloadPage.lock: Recharger la page
+  Vérifiez vos e-mails: Check your e-mails
+  signIn.verificationForm.notReceived.title: Didn't you receive a code?
+  signIn.verificationForm.notReceived.title.lock: Vous n'avez pas reçu de code ?
+  signIn.verificationForm.notReceived.resendButton.confirmation: Code returned
+  signIn.verificationForm.notReceived.resendButton.confirmation.lock: Code renvoyé
+  signIn.verificationForm.notReceived.resendButton.timeLeft: Wait {{timeLeft}} seconds
+  signIn.verificationForm.notReceived.resendButton.timeLeft.lock: Attendre {{timeLeft}} secondes
+  signIn.verificationForm.notReceived.backButton: Back to connection
+  signIn.verificationForm.notReceived.backButton.lock: Retour à la connexion
+  signIn.verificationForm.notReceived.error: Oops, there was an error sending your code...
+  signIn.verificationForm.notReceived.error.lock: Oups, une erreur s'est produite au moment de l'envoi de votre code...
+  signIn.verificationForm.notReceived.text: Check your spam or anti-spam tools (MailinBlack, Altospam, etc.)
+  signIn.verificationForm.notReceived.text.lock: Vérifiez vos spams ou outils anti-spam (MailinBlack, Altospam, etc...)
+  header.monEspace: My Space
+  header.monEspace.lock: Mon Espace
+  header.simulateur: Access the test
+  header.simulateur.lock: Accéder au test
   90 m² en moyenne pour un foyer de 2,2 personnes.: 90 m² on average for a household of 2.2 people.
   sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: over the last 50 years, from 23 to 40 m² per inhabitant, i.e
+  mon-espace.groups.title: My "Friends" and "Family" groups
+  mon-espace.groups.title.lock: Mes groupes "Amis" et "Famille"
+  mon-espace.instructions.list.item1.part2: your impression results
+  mon-espace.instructions.list.item1.part2.lock: vos résultats d'empreinte
+  Derniers résultats d’empreinte: Latest impression results
+  mon-espace.welcome.description.part1: Here you can
+  mon-espace.welcome.description.part1.lock: Ici, vous pourrez
+  mon-espace.tabs.actions: Actions
+  mon-espace.tabs.actions.lock: Actions
+  mon-espace.tabs.groups: Groups
+  mon-espace.tabs.groups.lock: Groupes
+  Test effectué le: Test performed on
+  mon-espace.instructions.link.text: Taking the test
+  mon-espace.instructions.link.text.lock: Passer le test
+  mon-espace.instructions.list.item3.part3: find your group tests
+  mon-espace.instructions.list.item3.part3.lock: retrouver vos tests collectifs
+  mon-espace.instructions.description.part2: take the test
+  mon-espace.instructions.description.part2.lock: passer le test
+  mon-espace.welcome.description.part2: track your results
+  mon-espace.welcome.description.part2.lock: suivre vos résultats
+  mon-espace.noResults.description: Take the test to unlock content here
+  mon-espace.noResults.description.lock: Passez le test pour débloquer le contenu ici
+  mon-espace.instructions.list.item1.part1: Find here
+  mon-espace.instructions.list.item1.part1.lock: Retrouver ici
+  mon-espace.instructions.list.item3.part2: and
+  mon-espace.instructions.list.item3.part2.lock: et
+  mon-espace.actions.title: My actions
+  mon-espace.actions.title.lock: Mes actions
+  mon-espace.instructions.list.item3.part4: (organisations, family, friends...)
+  mon-espace.instructions.list.item3.part4.lock: (organisations, famille, amis...)
+  mon-espace.instructions.list.item2.part3: and
+  mon-espace.instructions.list.item2.part3.lock: et
+  mon-espace.welcome.description.part6: take other people on board
+  mon-espace.welcome.description.part6.lock: embarquer d’autres personnes
+  mon-espace.settings.title: Parameters
+  mon-espace.settings.title.lock: Paramètres
+  mon-espace.tabs.results: Results
+  mon-espace.tabs.results.lock: Résultats
+  mon-espace.welcome.close-banner: Close the welcome banner
+  mon-espace.welcome.close-banner.lock: Fermer la bannière de bienvenue
+  mon-espace.instructions.list.item3.part1: Launch
+  mon-espace.instructions.list.item3.part1.lock: Lancer
+  mon-espace.welcome.description.part4: action
+  mon-espace.welcome.description.part4.lock: l’action
+  mon-espace.welcome.description.part3: 'go to '
+  mon-espace.welcome.description.part3.lock: ', passer à '
+  mon-espace.instructions.list.item2.part2: your personalised climate actions
+  mon-espace.instructions.list.item2.part2.lock: vos actions climat personnalisées
+  mon-espace.welcome.description.part5: and
+  mon-espace.welcome.description.part5.lock: ', et'
+  mon-espace.tabs.settings: Parameters
+  mon-espace.tabs.settings.lock: Paramètres
+  mon-espace.noResults.link.text: I calculate my footprint
+  mon-espace.noResults.link.text.lock: Je calcule mon empreinte
+  mon-espace.instructions.description.part3: 'for :'
+  mon-espace.instructions.description.part3.lock: 'pour :'
+  mon-espace.welcome.description.part7: with you.
+  mon-espace.welcome.description.part7.lock: avec vous.
+  simulator.navigation.nextButton.skip.label: Skip the question
+  simulator.navigation.nextButton.skip.label.lock: Passer la question
+  mon-espace.instructions.list.item2.part4: track your progress
+  mon-espace.instructions.list.item2.part4.lock: suivre vos progrès
+  mon-espace.welcome.title: Welcome to Nos Gestes Climat!
+  mon-espace.welcome.title.lock: Bienvenue dans votre espace Nos Gestes climat !
+  mon-espace.instructions.list.item2.part1: Discover
+  mon-espace.instructions.list.item2.part1.lock: Découvrir
+  mon-espace.instructions.description.part1: First and foremost, we invite you to
+  mon-espace.instructions.description.part1.lock: Avant toute chose, nous vous invitons à
+  mon-espace.tabs.myResults: My results
+  mon-espace.tabs.myResults.lock: Mes résultats
+  mon-espace.evolutionGraph.title: Evolution of my carbon footprint results
+  mon-espace.evolutionGraph.title.lock: Evolution de mes résultats d'empreinte
+  mon-espace.evolutionGraph.tabs.global: Global view
+  mon-espace.evolutionGraph.tabs.global.lock: Vue globale
+  mon-espace.evolutionGraph.selectView: Select the view to display
+  mon-espace.evolutionGraph.selectView.lock: Sélectionner la vue à afficher
+  mon-espace.evolutionGraph.selectView.description: Rotate your mobile for optimal display
+  mon-espace.evolutionGraph.selectView.description.lock: Retournez votre mobile pour un affichage optimal
+  mon-espace.evolutionGraph.yAxis: Footprint in tonnes
+  mon-espace.evolutionGraph.yAxis.lock: Empreinte en tonnes
+  mon-espace.evolutionGraph.chartLabel: Carbon footprint evolution graph showing {{simulationsCount}} résultats de test. {{simulationsData}}
+  mon-espace.evolutionGraph.chartLabel.lock: Graphique d'évolution de l'empreinte carbone montrant {{simulationsCount}} résultats de test. {{simulationsData}}
+  mon-espace.tabs.myActions: My actions
+  mon-espace.tabs.myActions.lock: Mes actions
+  mon-espace.tabs.myGroups: My groups
+  mon-espace.tabs.myGroups.lock: Mes groupes
+  mon-espace.resultsList.result.viewDetail: See details
+  mon-espace.resultsList.result.viewDetail.lock: Voir le détail
+  mon-espace.resultsList.title: All my results
+  mon-espace.resultsList.title.lock: Tous mes résultats
+  mon-espace.latestResults.title: Latest impression results
+  mon-espace.latestResults.title.lock: Derniers résultats d'empreinte
+  mon-espace.shareSimulator.buttonLabel.mobile: Share the test
+  mon-espace.shareSimulator.buttonLabel.mobile.lock: Partager le test
+  mon-espace.latestResults.date: Test performed on
+  mon-espace.latestResults.date.lock: Test effectué le
+  mon-espace.latestResults.viewDetail: See details
+  mon-espace.latestResults.viewDetail.lock: Voir le détail
+  mon-espace.resultsList.result.title: '{{date}}:'
+  mon-espace.resultsList.result.title.lock: 'Le {{date}} :'
+  mon-espace.shareSimulator.title: Did you enjoy calculating your footprint?
+  mon-espace.shareSimulator.title.lock: Vous avez aimé calculer votre empreinte ?
+  mon-espace.resultsList.result.unit: CO₂e / year
+  mon-espace.resultsList.result.unit.lock: CO₂e / an
+  mon-espace.shareSimulator.buttonLabel.desktop: Share Nos Gestes Climat test
+  mon-espace.shareSimulator.buttonLabel.desktop.lock: Partager le test Nos Gestes Climat
+  mon-espace.evolutionGraph.simulationData: 'Test result no.{{simulationNumber}} du {{simulationDate}} : {{simulationValue}} tonnes'
+  mon-espace.evolutionGraph.simulationData.lock: 'Résultat de test n°{{simulationNumber}} du {{simulationDate}} : {{simulationValue}} tonnes'
+  mon-espace.evolutionGraph.chartDisabledTitle.part1: Run a new simulation
+  mon-espace.evolutionGraph.chartDisabledTitle.part1.lock: Faites une nouvelle simulation
+  Navigation de mon espace: Navigating my space
+  navigation.connexionInscription: Login/registration navigation
+  navigation.connexionInscription.lock: Navigation connexion/inscription
+  mon-espace.evolutionGraph.chartDisabledTitle.part2: to view the evolution of your footprint
+  mon-espace.evolutionGraph.chartDisabledTitle.part2.lock: pour avoir accès à l’évolution de votre empreinte
+  mon-espace.actions.jagis.description.part5: and
+  mon-espace.actions.jagis.description.part5.lock: et
+  mon-espace.actions.jagis.description.part2: <0>Taking action</0>
+  mon-espace.actions.jagis.description.part2.lock: <0>J’agis</0>
+  mon-espace.actions.jagis.error.redirect.message: An error has occurred.
+  mon-espace.actions.jagis.error.redirect.message.lock: Une erreur est survenue.
+  mon-espace.actions.jagis.description.part6: adapted
+  mon-espace.actions.jagis.description.part6.lock: adaptées
+  mon-espace.actions.jagis.description.part4: concrete actions
+  mon-espace.actions.jagis.description.part4.lock: actions concrètes
+  mon-espace.actions.jagis.description.part8: to your desires and your means to reduce your footprint.
+  mon-espace.actions.jagis.description.part8.lock: à vos envies et vos moyens pour réduire votre empreinte.
+  mon-espace.actions.jagis.title: 'What can I do to reduce my footprint? '
+  mon-espace.actions.jagis.title.lock: 'Que faire pour réduire mon empreinte ? '
+  mon-espace.actions.jagis.description.part3: offers you
+  mon-espace.actions.jagis.description.part3.lock: vous propose des
+  common.partners.jagis.ariaLabel: Taking action
+  common.partners.jagis.ariaLabel.lock: J'agis
+  mon-espace.actions.jagis.error.redirect: An error has occurred
+  mon-espace.actions.jagis.error.redirect.lock: Une erreur est survenue
+  mon-espace.actions.jagis.description.part1: From your balance sheet,
+  mon-espace.actions.jagis.description.part1.lock: À partir de votre bilan,
+  mon-espace.actions.jagis.button: Going further with J'agis
+  mon-espace.actions.jagis.button.lock: Aller plus loin avec J’agis
+  mon-espace.actions.jagis.description.part7: to your desires and your means to reduce your footprint.
+  mon-espace.actions.jagis.description.part7.lock: à vos envies et vos moyens pour réduire votre empreinte.
+  mon-espace.actions.jagis.error.redirect.link: Click on this link to navigate to J'agis.
+  mon-espace.actions.jagis.error.redirect.link.lock: Cliquez sur ce lien pour naviguer vers J'agis.
+  common.metric.water: water
+  common.metric.water.lock: eau
+  mon-espace.organisations.title: My organisations
+  mon-espace.organisations.title.lock: Mes organisations
+  common.metric.carbon: carbon
+  common.metric.carbon.lock: carbone
+  Challenger ma famille: Challenging my family
   'Dernière mise à jour :': 'Last update :'
+  Défier mes amis: Challenge my friends
+  Sensibiliser mon organisation: Raising awareness in my organisation
+  Invitez votre entourage à calculer leur empreinte: Invite your friends and family to calculate their footprint
+  Gratuit, 100 % anonyme et surtout sans jugement ni comparaison.: Free, 100% anonymous and, above all, without judgement or comparison.
+  Diffusez un lien collectif pour faire passer le test à vos amis ou votre famille, ou sensibilisez les membres de votre organisation.: Distribute a collective link so that your friends and family can take the test, or raise awareness among the members of your organisation.
+  mon-espace.settings.userInfos.submitLabel: Update my information
+  mon-espace.settings.userInfos.submitLabel.lock: Mettre à jour mes informations
+  fin.getResultsOnUserProfile.buttonLabel: Save my results
+  fin.getResultsOnUserProfile.buttonLabel.lock: Sauvegarder mes résultats
+  mon-espace.groups.create: Create a group
+  mon-espace.groups.create.lock: Créer un groupe
+  Mettre à jour mes coordonnées: Update my details
+  mon-espace.groups.empty.awareness: Raising awareness in my organisation
+  mon-espace.groups.empty.awareness.lock: Sensibiliser mon organisation
+  mon-espace.groups.empty.challenge1: Challenge my friends
+  mon-espace.groups.empty.challenge1.lock: Défier mes amis
+  Laissez votre email pour: Leave your email for
+  sauvegarder: save
+  mon-espace.groups.empty.challenge2: Challenging my family
+  mon-espace.groups.empty.challenge2.lock: Challenger ma famille
+  fin.getResultsOnUserProfile.title: Find your results at any time in your personal space
+  fin.getResultsOnUserProfile.title.lock: Retrouvez vos résultats à tout moment sur votre espace personnel
+  'retrouver vos résultats :': 'find your results :'
+  settings.newsletters.title: Subscribe to our content
+  settings.newsletters.title.lock: Inscription à nos contenus
+  mon-espace.settings.userInfos.title: My information
+  mon-espace.settings.userInfos.title.lock: Mes informations
+  mon-espace.groups.empty.description1: Distribute a collective link
+  mon-espace.groups.empty.description1.lock: Diffusez un lien collectif
+  mon-espace.groups.empty.description4: or
+  mon-espace.groups.empty.description4.lock: ou
+  mon-espace.groups.empty.description2: for
+  mon-espace.groups.empty.description2.lock: pour
+  Mettre à jour mes abonnements: Update my subscriptions
+  mon-espace.groups.empty.button: Start
+  mon-espace.groups.empty.button.lock: Commencer
+  Supprimer mon espace: Delete my space
+  mon-espace.groups.empty.description3: give the test to your friends
+  mon-espace.groups.empty.description3.lock: faire passer le test à vos amis
+  mon-espace.groups.empty.description5: raise awareness among the members of your organisation.
+  mon-espace.groups.empty.description5.lock: sensibilisez les membres de votre organisation.
+  mon-espace.groups.empty.title: Invite your friends and family to calculate their footprint
+  mon-espace.groups.empty.title.lock: Invitez votre entourage à calculer leur empreinte
+  mon-espace.groups.empty.description: Free, 100% anonymous and, above all, without judgement or comparison.
+  mon-espace.groups.empty.description.lock: Gratuit, 100 % anonyme et surtout sans jugement ni comparaison.
+  header.monEspace.title: My Space
+  header.monEspace.title.lock: Mon Espace
+  common.metric.choice: Choice of metric
+  common.metric.choice.lock: Choix de la métrique
+  header.monEspace.titleEmail: My Space ({{email}})
+  header.monEspace.titleEmail.lock: Mon Espace ({{email}})
+  Comment <1>agir</1> ?: What can we <1>do</1>?
+  mon-espace.resultsDetail.date: Test performed on {{date}}
+  mon-espace.resultsDetail.date.lock: Test effectué le {{date}}
+  d'eau domestique par jour: of domestic water per day
+  <0>Eau, climat,</0> même combat ?: <0>Water, climate,</0> same battle?
+  Un coup de pouce pour agir ?: A helping hand to take action?
+  <0>L'empreinte eau,</0> c'est quoi ?: What is <0>the water footprint</0>?
+  <0>2 tonnes</0> en 2050 ?: <0>2 tonnes</0> by 2050?
+  Tous ces modes d'action sont complémentaires !: All these modes of action complement each other!
+  Comment est calculée votre empreinte ?: How is your footprint calculated?
+  Les 8 manières d'améliorer l'empreinte eau de mon assiette: 8 ways to improve the water footprint of my plate
+  "L'empreinte eau : pourquoi et comment avons-nous travaillé…": 'The water footprint: why and how we worked..'
+  Par où commencer ?: Where to start?
+  Et l'eau de <2>ma douche</2> dans tout ça ?: What about the water in <2>my shower</2>?
+  mon-espace.resultsDetail.title: Detailed results
+  mon-espace.resultsDetail.title.lock: Détail des résultats
+  Bien joué 👏: Well done 👏
+  Est-ce que c'est <2>beaucoup ?</2>: Is it <2>a lot?</2>
+  C'est l'objectif à atteindre pour espérer limiter le réchauffement climatique à 2 degrés.: This is the target we need to reach if we hope to limit global warming to 2 degrees.
+  <0>Hérissons</0> en danger ?: <0>Hedgehogs</0> in danger?
+  Il est quasiment impossible de vivre à moins de 2 tonnes dans notre société actuellement. <2>L'État, les collectivités locales, le secteur privé et les citoyens</2> devront tous contribuer pour atteindre cet objectif.: It is virtually impossible to live at less than 2 tonnes in our society today. <2>The State, local authorities, the private sector and individual citizens</2> will all have to contribute to achieving this objective.
+  'Nos articles sur le sujet :': 'Our articles on the subject :'
+  En règle générale, les valeurs d'empreinte eau varient <2>entre 3 000 et 9 000 litres par jour</2>. Contrairement au carbone, il n'existe pas d'objectif chiffré pour l'empreinte eau.: As a general rule, water footprint values vary <2>between 3,000 and 9,000 litres per day</2>. Unlike carbon, there is no quantified target for the water footprint.
+  l'extraction des matériaux de vos <2>appareils numériques</2>: extracting materials from your <2>digital devices</2>
+  Votre simulation est sauvegardée !: Your simulation is saved!
+  'Retrouvez nos conseils dans ces articles :': 'Read our advice in these articles:'
+  l'alimentation des <2>animaux</2> que vous consommez: the feed of the <2>animals</2> you eat
+  'Voici quelques idées pour vous aider à réduire votre impact :': 'Here are a few ideas to help you reduce your impact:'
+  Est-ce que je peux y arriver tout seul ?: Can I do it on my own?
+  Il n'y a pas que sur votre empreinte que vous pouvez agir !: It's not just your footprint that you can influence!
+  L'eau domestique peut avoir un <2>impact très fort</2> selon la <6>saison et la localisation.</6>: Domestic water can have a <2>very strong impact</2> depending on the <6>season and location.</6>
+  <0>La majeure partie de l'empreinte eau concerne la pousse des végétaux,</0> que ce soit pour nous alimenter, pour nourrir le bétail, ou pour obtenir la matière première de nombre de nos vêtements.: <0>Most of our water footprint is generated by growing plants,</0> whether to feed ourselves or our livestock, or to provide the raw material for many of our clothes.
+  Notre calculateur repose sur un modèle de données, dont l'intégralité des calculs est documentée ; les données affichées sont directement associées à votre test.: Our calculator is based on a data model, with all calculations documented; the data displayed is directly associated with your test.
+  "L'empreinte eau, c'est l'ensemble de l'eau consommée pour produire et distribuer les biens et services de votre quotidien. Par exemple il faut de l'eau pour :": 'The water footprint is the total amount of water consumed to produce and distribute the goods and services you use every day. For example, it takes water to :'
+  "attention : l'eau domestique (par exemple l'eau de vos douches) ne fait pas partie de l'empreinte eau": 'please note: domestic water (e.g. water from your showers) is not included in the water footprint'
+  "Comme le climat, <2>le cycle de l'eau est fortement impacté partout dans le monde</2>: accès à l'eau potable, disparition et migration d'espèces (animales et végétales), déplacement de populations.": 'Like the climate, <2>the water cycle is having a major impact throughout the world</2>: access to drinking water, disappearance and migration of species (animal and plant), displacement of populations.'
+  L'eau domestique, à savoir, celle qui sort de vos robinets n'est pas comprise dans votre empreinte eau, puisqu'elle est restituée. Par exemple, l'eau de votre douche, après dépollution, est rendue aux cours d'eau de votre territoire.: Domestic water, i.e. the water that comes out of your taps, is not included in your water footprint, as it is returned to the environment. For example, the water from your shower, once it has been treated, is returned to the watercourses in your area.
+  Maintenant que vous avez fait votre bilan carbone et que vous avez pris conscience de votre empreinte, vous pouvez découvrir <2>l'ensemble des gestes</2> qui vous permettront d'atteindre progressivement l'objectif de 2 tonnes.: Now that you've done your carbon footprint and are aware of your carbon footprint, you can find out about <2>the steps</2> you can take to gradually reach the 2 tonne target.
+  mon-espace.groups.loginBlock.buttonLabel: Next
+  mon-espace.groups.loginBlock.buttonLabel.lock: Suivant
+  mon-espace.resultsDetail.breadcrumb.resultDetail: Detailed results
+  mon-espace.resultsDetail.breadcrumb.resultDetail.lock: Détail des résultats
+  Mon espace: My space
+  Se connecter: Sign in
+  mon-espace.resultsDetail.breadcrumb.results: My results
+  mon-espace.resultsDetail.breadcrumb.results.lock: Mes résultats
+  mon-espace.groups.loginBlock.title: Already a group or organisation?
+  mon-espace.groups.loginBlock.title.lock: Déjà un groupe ou une organisation ?
   landing.carbon.dailyGestures.description: 'For a more sustainable lifestyle, some actions <2>have a greater impact than others</2>. By making these actions part of your daily routine, you can significantly <5>reduce your Co2 emissions</5>. Here are a few ideas:'
   landing.carbon.dailyGestures.title: Actions to reduce your carbon footprint
   landing.carbon.motivation.description: "We urgently need to reduce our greenhouse gas emissions and make the transition to a low-carbon lifestyle. Individuals and organisations, it's time to act: <2>measuring your carbon footprint is the first step!</2>"

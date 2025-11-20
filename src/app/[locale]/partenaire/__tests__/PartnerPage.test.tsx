@@ -26,6 +26,11 @@ vi.mock('next/navigation', () => ({
   usePathname: vi.fn(() => ''),
 }))
 
+vi.mock('@/components/layout/HeaderServer', () => ({
+  __esModule: true,
+  default: vi.fn(() => null),
+}))
+
 describe('PartnerPage', () => {
   const defaultSearchParams = Promise.resolve({
     [PARTNER_KEY]: PARTNER_JAGIS,

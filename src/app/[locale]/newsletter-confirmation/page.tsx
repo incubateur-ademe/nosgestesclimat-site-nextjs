@@ -1,5 +1,5 @@
 import Footer from '@/components/layout/Footer'
-import Header from '@/components/layout/HeaderClient'
+import HeaderServer from '@/components/layout/HeaderServer'
 import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Main from '@/design-system/layout/Main'
 import { t } from '@/helpers/metadata/fakeMetadataT'
@@ -47,7 +47,8 @@ export default async function NewsletterConfirmationPage({
 
   return (
     <>
-      <Header />
+      <HeaderServer />
+
       <Main>
         <div className="min-h-screen">
           <div className="mt-36 text-center">
