@@ -42,15 +42,13 @@ export function useEndGuard() {
 
     // if the user didn't see the tutoriel we redirect him to the tutorial page
     if (!tutorials.testIntro) {
-      router.replace(
-        getLinkToTutoriel({ locale, currentSearchParams: searchParams })
-      )
+      router.replace(getLinkToTutoriel({ locale, searchParams }))
       setIsGuardRedirecting(true)
       return
     }
 
     // we redirect the user to the test page
-    router.replace(getLinkToSimulateur())
+    router.replace(getLinkToSimulateur({ searchParams }))
     setIsGuardRedirecting(true)
   }, [
     isGuardInit,

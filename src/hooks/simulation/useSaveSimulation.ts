@@ -1,8 +1,8 @@
 import { ORGANISATION_URL } from '@/constants/urls/main'
 import { getModelVersion } from '@/helpers/modelFetching/getModelVersion'
 import { mapOldSimulationToNew } from '@/helpers/simulation/mapNewSimulation'
+import { postSimulation } from '@/helpers/simulation/postSimulation'
 import { sanitizeSimulation } from '@/helpers/simulation/sanitizeSimulation'
-import { saveSimulation } from '@/helpers/simulation/saveSimulation'
 import { useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
 import { updateGroupParticipant } from '@/services/groups/updateGroupParticipant'
@@ -17,6 +17,7 @@ type Props = {
   email?: string
   code?: string
 }
+
 export function useSaveSimulation() {
   const {
     user: { userId, name, email },
@@ -86,15 +87,14 @@ export function useSaveSimulation() {
           .then((response) => response.data)
       }
 
-      return saveSimulation({
+      return postSimulation({
         simulation: sanitizedSimulation,
         userId,
-        email,
-        name,
         sendEmail,
       })
     },
   })
+
   return {
     saveSimulation: saveSimulationMutation,
     isPending,

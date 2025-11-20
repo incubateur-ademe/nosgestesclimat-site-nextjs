@@ -16,11 +16,13 @@ export default function usePersistentSimulations({
   const [simulations, setSimulations] = useState<Simulation[]>([])
   const [currentSimulationId, setCurrentSimulationId] = useState<string>('')
 
+  // Get simulations from localStorage
   useEffect(() => {
     const currentStorage = safeLocalStorage.getItem(storageKey)
     const parsedStorage = JSON.parse(currentStorage || '{}')
 
-    const localSimulations: Simulation[] | undefined = parsedStorage.simulations
+    const localSimulations: Simulation[] = parsedStorage.simulations ?? []
+
     const localCurrentSimulationId: string | undefined =
       parsedStorage.currentSimulationId
 

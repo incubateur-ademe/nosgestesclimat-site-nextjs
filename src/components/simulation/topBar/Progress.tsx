@@ -2,16 +2,14 @@ import {
   getBackgroundDarkColor,
   getBackgroundLightColor,
 } from '@/helpers/getCategoryColorClass'
-import { useCurrentSimulation, useFormState } from '@/publicodes-state'
+import { useFormState } from '@/publicodes-state'
 import { twMerge } from 'tailwind-merge'
 
 export default function Progress() {
-  const { currentCategory } = useFormState()
-
-  const { progression } = useCurrentSimulation()
+  const { testAdvancement, currentCategory } = useFormState()
 
   // Calculer le pourcentage pour l'accessibilité
-  const percentage = Math.round(progression * 100)
+  const percentage = Math.round(testAdvancement * 100)
 
   return (
     <div
@@ -36,7 +34,7 @@ export default function Progress() {
           'absolute right-0 bottom-0 left-0 h-1 origin-left transition-transform',
           getBackgroundDarkColor(currentCategory)
         )}
-        style={{ transform: `scaleX(${progression})` }}
+        style={{ transform: `scaleX(${testAdvancement})` }}
         aria-hidden="true"
       />
     </div>

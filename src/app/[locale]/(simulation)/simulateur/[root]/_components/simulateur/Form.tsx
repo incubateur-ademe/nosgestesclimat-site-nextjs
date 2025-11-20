@@ -5,25 +5,13 @@ import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import ContentLarge from '@/components/layout/ContentLarge'
 import questions from '@/components/specialQuestions'
-import { captureSimulationCompleted } from '@/constants/tracking/posthogTrackers'
-import {
-  gtmSimulationCompleted,
-  simulationSimulationCompleted,
-} from '@/constants/tracking/simulation'
 import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
-import { useTrackTimeOnSimulation } from '@/hooks/tracking/useTrackTimeOnSimulation'
 import { useDebug } from '@/hooks/useDebug'
-import { useGTM } from '@/hooks/useGTM'
 import { useIframe } from '@/hooks/useIframe'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
-import {
-  useCurrentSimulation,
-  useEngine,
-  useFormState,
-} from '@/publicodes-state'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
-import { trackGTMEvent } from '@/utils/analytics/trackGTMEvent'
+import { useCurrentSimulation, useFormState } from '@/publicodes-state'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import FunFact from './form/FunFact'
@@ -35,6 +23,10 @@ export default function Form() {
   const isDebug = useDebug()
 
   const { progression } = useCurrentSimulation()
+
+  const searchParams = useSearchParams()
+
+  const router = useRouter()
 
   const {
     remainingQuestions,
@@ -51,46 +43,15 @@ export default function Form() {
 
   const { isIframe } = useIframe()
 
-  const { isGTMAvailable } = useGTM()
-
   const [isInitialized, setIsInitialized] = useState(false)
-
-  const { trackTimeOnSimulation } = useTrackTimeOnSimulation()
-  const { getNumericValue } = useEngine()
 
   const handleOnComplete = useCallback(() => {
     if (progression === 1) {
-      const timeSpentOnSimulation = trackTimeOnSimulation()
-
-      const bilan = getNumericValue('bilan')
-
-      // Track Matomo event
-      trackEvent(simulationSimulationCompleted(bilan))
-
-      // Track GTM event if available
-      if (isGTMAvailable) {
-        trackGTMEvent(gtmSimulationCompleted)
-      }
-
-      trackPosthogEvent(
-        captureSimulationCompleted({
-          bilanCarbone: getNumericValue('bilan'),
-          bilanEau: getNumericValue('bilan', 'eau'),
-          timeSpentOnSimulation,
-        })
-      )
-
       goToEndPage({
         allowedToGoToGroupDashboard: true,
       })
     }
-  }, [
-    progression,
-    getNumericValue,
-    trackTimeOnSimulation,
-    isGTMAvailable,
-    goToEndPage,
-  ])
+  }, [progression, goToEndPage])
 
   const [tempValue, setTempValue] = useState<number | undefined>(undefined)
   const [displayedValue, setDisplayedValue] = useState<string | undefined>(
