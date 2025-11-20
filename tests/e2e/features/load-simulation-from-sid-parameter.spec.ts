@@ -59,7 +59,6 @@ test.describe('Loading the simulation from the sid parameter', () => {
       }) => {
         await page.goto(`/simulateur/bilan?sid=${simulationId}`)
 
-        await page.waitForTimeout(6000)
         const questionLabel = page.locator(
           `[data-cypress-id="${QUESTION_LABEL}"]`
         )

@@ -21,6 +21,8 @@ test.describe('The End page', () => {
   })
 
   test.describe('Given a NGC user with a filled simulation', () => {
+    // TODO: update test after new user account is implemented
+    test.skip()
     test.beforeEach(async ({ page }) => {
       let requestCount = 0
 

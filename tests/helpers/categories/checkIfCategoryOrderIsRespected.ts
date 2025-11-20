@@ -10,12 +10,7 @@ export function checkIfCategoryOrderIsRespected(questionId: string): void {
   const indexCurrentCategory = categoriesOrderArray.findIndex(
     (category) => category.key === getNamespace(questionId)
   )
-  console.log(
-    'indexCurrentCategory',
-    indexCurrentCategory,
-    categoriesOrderArray[indexCurrentCategory - 1]?.key,
-    categoriesOrderArray[indexCurrentCategory - 1]?.hasBeenDisplayed
-  )
+
   if (
     indexCurrentCategory !== 0 &&
     !categoriesOrderArray[indexCurrentCategory - 1]?.hasBeenDisplayed

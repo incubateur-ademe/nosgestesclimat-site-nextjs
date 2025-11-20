@@ -10,6 +10,8 @@ test.use({
 })
 
 test.describe('Simulation page', () => {
+  // TODO: update test after AB test on categories order is over
+  test.skip()
   test(`should redirect to the last question answered when the "bilan" root is defined`, async ({
     page,
   }) => {

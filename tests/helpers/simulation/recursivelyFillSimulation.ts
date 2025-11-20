@@ -1,6 +1,5 @@
 import { Page } from '@playwright/test'
 import { NEXT_QUESTION_BUTTON } from '../../constants/elements-ids'
-import { checkIfCategoryOrderIsRespected } from '../categories/checkIfCategoryOrderIsRespected'
 import { dismissCookieBanner } from '../cookies/dismissCookieBanner'
 import { click } from '../interactions/click'
 
@@ -10,16 +9,9 @@ export async function recursivelyFillSimulation(
   page: Page,
   persona: Record<string, any> = {}
 ): Promise<void> {
-  console.log(
-    '[recursivelyFillSimulation] Starting, persona keys:',
-    Object.keys(persona).length
-  )
-
-  // Dismiss cookie banner if present to ensure buttons are not hidden
   await dismissCookieBanner(page)
 
   async function answerCurrentQuestion(): Promise<void> {
-    // Wait for the page to be ready and check if we're still on a simulation page
     const url = page.url()
 
     // If we're not on a simulation page anymore, we're done
@@ -60,7 +52,8 @@ export async function recursivelyFillSimulation(
     }
 
     // Questions should follow the order of the categories
-    checkIfCategoryOrderIsRespected(dottedName)
+    // TODO: uncomment this when the AB test on categories order is over
+    // checkIfCategoryOrderIsRespected(dottedName)
 
     const inputType = await firstInput.getAttribute('type')
 

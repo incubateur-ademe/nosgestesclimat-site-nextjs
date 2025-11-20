@@ -15,6 +15,5 @@ export const dismissCookieBanner = async (page: Page): Promise<void> => {
     await refuseButton.click()
   } else {
     // If no banner, just continue
-    console.log('Cookie banner not present')
   }
 }
