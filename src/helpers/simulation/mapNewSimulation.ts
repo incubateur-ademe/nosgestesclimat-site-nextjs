@@ -37,7 +37,7 @@ export const mapOldSimulationToNew = ({
   defaultAdditionalQuestionsAnswers,
   customAdditionalQuestionsAnswers,
   ...simulation
-}: OldSimulation): NewSimulation => ({
+}: OldSimulation): Omit<NewSimulation, 'polls'> => ({
   ...simulation,
   additionalQuestionsAnswers: [
     ...Object.entries(defaultAdditionalQuestionsAnswers || {}).map(
