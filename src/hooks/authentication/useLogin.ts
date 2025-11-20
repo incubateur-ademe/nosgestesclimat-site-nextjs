@@ -1,4 +1,3 @@
-import { AUTHENTICATION_URL } from '@/constants/urls/main'
 import { useUser } from '@/publicodes-state'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
@@ -14,7 +13,7 @@ export default function useLogin() {
     mutationFn: ({ email, code }: { email: string; code: string }) =>
       axios
         .post(
-          `${AUTHENTICATION_URL}/login`,
+          `/api/auth`,
           {
             code,
             email,
