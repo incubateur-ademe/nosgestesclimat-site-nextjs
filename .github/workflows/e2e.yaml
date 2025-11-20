@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - preprod
+      - migrate-e2e
   workflow_dispatch:
     inputs:
       branch:
