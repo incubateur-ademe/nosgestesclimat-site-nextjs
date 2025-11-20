@@ -27,7 +27,6 @@ import type { MouseEvent } from 'react'
 import { useCallback, useMemo, useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/trans/TransClient'
-import SyncIndicator from './navigation/SyncIndicator'
 
 export default function Navigation({
   question,
@@ -311,7 +310,6 @@ export default function Navigation({
         isIframe &&
           'relative right-auto bottom-auto left-auto z-0 bg-transparent'
       )}>
-      {!isIframe && !isEmbedded && <SyncIndicator />}
       <div
         className={twMerge(
           'relative mx-auto flex w-full max-w-6xl justify-between gap-1 px-4 md:gap-4 lg:justify-start',
