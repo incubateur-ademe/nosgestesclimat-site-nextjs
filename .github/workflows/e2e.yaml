@@ -25,6 +25,8 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
+      - name: Install Playwright
+        run: yarn playwright install
 
       # - name: Generate E2E test specs from personas
       #   run: yarn e2e:generate
