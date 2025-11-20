@@ -2,38 +2,23 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
-import { useUser } from '@/publicodes-state'
-import type { UseMutateAsyncFunction } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
-import React from 'react'
-import ResendButton from './notReceived/ResendButton'
+import ResendButton from './ResendButton'
 
 type Props = {
   isRetryButtonDisabled: boolean
   isErrorResend: boolean
-  sendVerificationCode: UseMutateAsyncFunction<any, Error, string, unknown>
-  setTimeLeft: React.Dispatch<React.SetStateAction<number>>
+  onReset: () => void
+  onResendVerificationCode: () => void
   timeLeft: number
 }
 
 export default function NotReceived({
   isRetryButtonDisabled,
   isErrorResend,
-  sendVerificationCode,
-  setTimeLeft,
+  onReset,
+  onResendVerificationCode,
   timeLeft,
 }: Props) {
-  const router = useRouter()
-
-  const { updateVerificationCodeExpirationDate } = useUser()
-
-  function handleGoBackToForm() {
-    // Reset the verification code expiration date
-    updateVerificationCodeExpirationDate(undefined)
-
-    router.refresh()
-  }
-
   return (
     <>
       <h3 className="mt-12 text-lg">
@@ -53,8 +38,7 @@ export default function NotReceived({
       {!isErrorResend && (
         <ResendButton
           isRetryButtonDisabled={isRetryButtonDisabled}
-          sendVerificationCode={sendVerificationCode}
-          setTimeLeft={setTimeLeft}
+          onResendVerificationCode={onResendVerificationCode}
           timeLeft={timeLeft}
         />
       )}
@@ -72,8 +56,6 @@ export default function NotReceived({
             <Button
               size="sm"
               onClick={() => {
-                if (typeof window === 'undefined') return
-                updateVerificationCodeExpirationDate(undefined)
                 window.location.reload()
               }}>
               <Trans i18nKey="signIn.verificationForm.notReceived.reloadPage">
@@ -85,7 +67,7 @@ export default function NotReceived({
       )}
 
       <Button
-        onClick={handleGoBackToForm}
+        onClick={onReset}
         color="link"
         className="mt-2 -ml-2 flex items-center font-normal">
         <Trans i18nKey="signIn.verificationForm.notReceived.backButton">
