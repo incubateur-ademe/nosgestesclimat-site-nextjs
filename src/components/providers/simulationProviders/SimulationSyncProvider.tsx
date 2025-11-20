@@ -10,15 +10,11 @@ const SAVE_DELAY = 3000
 
 type SimulationSyncContextType = {
   shouldSyncWithBackend: boolean
-  isSyncedWithBackend: boolean
   resetSyncTimer: () => void
-  saveDelay: number
 }
 export const SimulationSyncContext = createContext<SimulationSyncContextType>({
   shouldSyncWithBackend: false,
-  isSyncedWithBackend: false,
   resetSyncTimer: () => null,
-  saveDelay: SAVE_DELAY,
 })
 export default function SimulationSyncProvider({
   children,
@@ -53,8 +49,6 @@ export default function SimulationSyncProvider({
 
     return true
   }, [isInitialized])
-
-  const isSyncedWithBackend = timeoutRef.current || isPending ? false : true
 
   const resetSyncTimer = useCallback(() => {
     if (timeoutRef.current) {
@@ -182,9 +176,7 @@ export default function SimulationSyncProvider({
     <SimulationSyncContext.Provider
       value={{
         shouldSyncWithBackend,
-        isSyncedWithBackend,
         resetSyncTimer,
-        saveDelay: SAVE_DELAY,
       }}>
       {children}
     </SimulationSyncContext.Provider>
