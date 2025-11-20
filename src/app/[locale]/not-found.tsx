@@ -6,6 +6,8 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import i18nConfig from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
+import './globals.css'
+import { marianne } from './layout'
 
 export async function generateMetadata(props: DefaultPageProps) {
   const { locale } = await props.params
@@ -26,7 +28,7 @@ export default async function NotFound({ params }: DefaultPageProps) {
 
   return (
     <ClientLayout locale={locale ?? i18nConfig.defaultLocale}>
-      <Main>
+      <Main className={marianne.className}>
         <Route404 locale={locale ?? i18nConfig.defaultLocale} />
       </Main>
     </ClientLayout>
