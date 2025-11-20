@@ -86,8 +86,8 @@ jobs:
             fi
           fi
 
-      - name: Set CYPRESS_baseUrl
-        run: echo "CYPRESS_baseUrl=${{ env.TEST_URL }}" >> $GITHUB_ENV
+      - name: Set PLAYWRIGHT_baseUrl
+        run: echo "PLAYWRIGHT_baseUrl=${{ env.TEST_URL }}" >> $GITHUB_ENV
 
       - name: Run E2E tests
         run: |
