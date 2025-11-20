@@ -90,7 +90,7 @@ jobs:
         run: echo "PLAYWRIGHT_baseUrl=${{ env.TEST_URL }}" >> $GITHUB_ENV
 
       - name: Run E2E tests
-        uses: nick-invision/retry@v2
+        uses: nick-invision/retry@9417ab499314dfe692edb043ded2ff9b3f5f0a68
         with:
           timeout_minutes: 10
           max_attempts: 3
