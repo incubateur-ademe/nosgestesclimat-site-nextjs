@@ -48,7 +48,7 @@ export function useSimulateurGuard() {
     // Setting the guard init to true after the simulation is loaded
     setIsGuardInit(true)
 
-    // if the user has completed the test, we redirect him to the results page
+    // If the user has completed the test, we redirect him to the results page
     // when visiting /simulateur/bilan without search params
     if (progression === 1 && !questionInQueryParams) {
       goToEndPage()
@@ -58,9 +58,7 @@ export function useSimulateurGuard() {
 
     // if the user has not seen the test intro, we redirect him to the tutorial page
     if (!tutorials.testIntro) {
-      router.replace(
-        getLinkToTutoriel({ locale, currentSearchParams: searchParams })
-      )
+      router.replace(getLinkToTutoriel({ locale, searchParams }))
       setIsGuardRedirecting(true)
     }
   }, [

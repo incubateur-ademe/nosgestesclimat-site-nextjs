@@ -3,6 +3,7 @@ import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import type { Mock } from 'vitest'
 import { vi } from 'vitest'
 
 // Mock hooks
@@ -42,7 +43,7 @@ describe('TotalButtons', () => {
 
   beforeEach(() => {
     vi.clearAllMocks()
-    ;(useCurrentSimulation as jest.Mock).mockReturnValue({
+    ;(useCurrentSimulation as Mock).mockReturnValue({
       savedViaEmail: false,
     })
     mockUseIframe.mockReturnValue({
@@ -134,7 +135,7 @@ describe('TotalButtons', () => {
 
     it('should display SaveIcon when simulation is not saved via email', () => {
       mockUseDebug.mockReturnValue(false)
-      ;(useCurrentSimulation as jest.Mock).mockReturnValue({
+      ;(useCurrentSimulation as Mock).mockReturnValue({
         savedViaEmail: false,
       })
 
@@ -151,7 +152,7 @@ describe('TotalButtons', () => {
 
     it('should display SaveCheckIcon when simulation is saved via email', () => {
       mockUseDebug.mockReturnValue(false)
-      ;(useCurrentSimulation as jest.Mock).mockReturnValue({
+      ;(useCurrentSimulation as Mock).mockReturnValue({
         savedViaEmail: true,
       })
 
