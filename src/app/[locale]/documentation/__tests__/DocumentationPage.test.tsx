@@ -23,11 +23,6 @@ vi.mock('@/constants/urls/paths', () => ({
   SIMULATOR_PATH: '/simulateur',
 }))
 
-vi.mock('next/navigation', () => ({
-  redirect: vi.fn(),
-  usePathname: vi.fn(() => '/documentation'),
-}))
-
 vi.mock(
   '@/app/[locale]/documentation/[...slug]/_components/DocumentationRouter',
   () => ({

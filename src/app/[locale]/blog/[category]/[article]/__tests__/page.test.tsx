@@ -3,16 +3,6 @@ import { notFound, redirect } from 'next/navigation'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import ArticlePage from '../page'
 
-// Mock next/navigation
-vi.mock('next/navigation', () => ({
-  redirect: vi.fn(),
-  notFound: vi.fn(() => {
-    const error = new Error('NEXT_NOT_FOUND')
-    ;(error as any).digest = 'NEXT_NOT_FOUND'
-    throw error
-  }),
-}))
-
 // Mock CMS services
 vi.mock('@/services/cms/fetchArticlePageContent', () => ({
   fetchArticlePageContent: vi.fn(),

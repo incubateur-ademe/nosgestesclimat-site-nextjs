@@ -12,23 +12,6 @@ import { notFound } from 'next/navigation'
 import { vi } from 'vitest'
 import PartnerPage from '../page'
 
-vi.mock('next/navigation', () => ({
-  redirect: vi.fn(),
-  notFound: vi.fn(() => {
-    throw new Error('NEXT_NOT_FOUND')
-  }),
-  useSearchParams: () => new URLSearchParams(),
-  useRouter: vi.fn(() => ({
-    push: vi.fn(),
-    replace: vi.fn(),
-    back: vi.fn(),
-    forward: vi.fn(),
-    refresh: vi.fn(),
-    prefetch: vi.fn(),
-  })),
-  usePathname: vi.fn(() => ''),
-}))
-
 const mockNotFound = vi.mocked(notFound)
 
 describe('PartnerPage', () => {

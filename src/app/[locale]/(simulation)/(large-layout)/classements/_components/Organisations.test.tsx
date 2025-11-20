@@ -5,19 +5,6 @@ import Organisations from './Organisations'
 
 vi.mock('axios')
 
-vi.mock('next/navigation', () => ({
-  useRouter: () => ({
-    push: vi.fn(),
-    replace: vi.fn(),
-    prefetch: vi.fn(),
-    back: vi.fn(),
-    forward: vi.fn(),
-    refresh: vi.fn(),
-  }),
-  useSearchParams: () => new URLSearchParams(),
-  usePathname: () => '/test',
-}))
-
 vi.mock('@/hooks/organisations/useFetchOrganisations', () => ({
   default: vi.fn(),
 }))

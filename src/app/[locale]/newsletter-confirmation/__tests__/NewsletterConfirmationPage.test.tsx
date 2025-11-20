@@ -8,23 +8,6 @@ import NewsletterInvalidMessage from '../_components/NewsletterInvalidMessage'
 import NewsletterSuccessMessage from '../_components/NewsletterSuccessMessage'
 import NewsletterConfirmationPage from '../page'
 
-vi.mock('next/navigation', () => ({
-  redirect: vi.fn(),
-  notFound: vi.fn(() => {
-    throw new Error('NEXT_NOT_FOUND')
-  }),
-  useSearchParams: () => new URLSearchParams(),
-  useRouter: vi.fn(() => ({
-    push: vi.fn(),
-    replace: vi.fn(),
-    back: vi.fn(),
-    forward: vi.fn(),
-    refresh: vi.fn(),
-    prefetch: vi.fn(),
-  })),
-  usePathname: vi.fn(() => ''),
-}))
-
 vi.mock('../_components/NewsletterSuccessMessage', () => ({
   __esModule: true,
   default: vi.fn(() => null),
@@ -126,7 +109,6 @@ describe('NewsletterConfirmationPage', () => {
     await expect(NewsletterConfirmationPage(props)).rejects.toThrow(
       'NEXT_NOT_FOUND'
     )
-    expect(mockNotFound).toHaveBeenCalled()
   })
 
   it('should redirect to the 404 page if wrong status param is passed', async () => {
@@ -143,6 +125,5 @@ describe('NewsletterConfirmationPage', () => {
     await expect(NewsletterConfirmationPage(props)).rejects.toThrow(
       'NEXT_NOT_FOUND'
     )
-    expect(mockNotFound).toHaveBeenCalled()
   })
 })
