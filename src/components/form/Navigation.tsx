@@ -30,13 +30,11 @@ import Trans from '../translation/trans/TransClient'
 
 export default function Navigation({
   question,
-  tempValue,
   onComplete = () => '',
   isEmbedded,
   remainingQuestions,
 }: {
   question: DottedName
-  tempValue?: number
   onComplete?: () => void
   isEmbedded?: boolean
   remainingQuestions: DottedName[]
@@ -50,6 +48,7 @@ export default function Navigation({
   const {
     gotoPrevQuestion,
     gotoNextQuestion,
+
     noPrevQuestion,
     noNextQuestion,
     setCurrentQuestion,
@@ -59,6 +58,7 @@ export default function Navigation({
     isMissing,
     plancher,
     plafond,
+    situationValue,
     value,
     activeNotifications,
     questionsOfMosaicFromParent,
@@ -80,14 +80,15 @@ export default function Navigation({
   }, [hasActiveNotifications, setNotificationValue])
 
   const { updateCurrentSimulation } = useCurrentSimulation()
-
-  const { isBelowFloor, isOverCeiling } = getValueIsOverFloorOrCeiling({
-    value: tempValue,
-    plafond,
-    plancher,
-  })
-
-  const isNextDisabled = isBelowFloor || isOverCeiling
+  let isNextDisabled = false
+  if (typeof situationValue === 'number') {
+    const { isBelowFloor, isOverCeiling } = getValueIsOverFloorOrCeiling({
+      value: situationValue,
+      plafond,
+      plancher,
+    })
+    isNextDisabled = isBelowFloor || isOverCeiling
+  }
 
   const isSingleQuestionEmbeddedFinal =
     (isEmbedded &&

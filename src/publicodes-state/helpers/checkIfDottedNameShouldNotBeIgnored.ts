@@ -1,10 +1,9 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
-import type { MissingVariables } from '../types'
+import type { MissingVariables, SafeEvaluate } from '../types'
 
 type Props = {
   dottedName: DottedName
-  safeEvaluate: (rule: PublicodesExpression) => EvaluatedNode | null
+  safeEvaluate: SafeEvaluate
   rawMissingVariables: MissingVariables
 }
 

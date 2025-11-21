@@ -19,7 +19,6 @@ type Props = {
   action: Action
   category: DottedName
   onComplete: () => void
-  setActionWithFormOpen?: (dottedName: string) => void
   handleUpdatePersistedActions?: () => void
 }
 
@@ -27,12 +26,10 @@ export default function ActionForm({
   action,
   category,
   onComplete,
-  setActionWithFormOpen = () => {},
   handleUpdatePersistedActions = () => {},
 }: Props) {
   const {
     currentQuestion,
-    remainingQuestionsByCategories,
     setCurrentQuestion,
     setCurrentCategory,
     currentCategory,

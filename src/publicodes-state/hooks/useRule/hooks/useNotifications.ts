@@ -1,15 +1,14 @@
 'use client'
 
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
-import type { Situation } from '@/publicodes-state/types'
+import type { SafeEvaluate, Situation } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
 
 type Props = {
   dottedName: DottedName
   everyNotifications: DottedName[]
-  safeEvaluate: (rule: PublicodesExpression) => EvaluatedNode | null
+  safeEvaluate: SafeEvaluate
   situation: Situation
 }
 

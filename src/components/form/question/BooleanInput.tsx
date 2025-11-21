@@ -1,6 +1,8 @@
 import ChoiceInput from '@/components/misc/ChoiceInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { requestIdleCallback } from '@/utils/requestIdleCallback'
 import type { NodeValue } from '@incubateur-ademe/nosgestesclimat'
+import { useState } from 'react'
 
 type Props = {
   value: NodeValue
@@ -20,6 +22,7 @@ export default function BooleanInput({
   ...props
 }: Props) {
   const { t } = useClientTranslation()
+  const [currentValue, setCurrentValue] = useState(value)
 
   return (
     <fieldset className="flex flex-col gap-2">
@@ -28,8 +31,11 @@ export default function BooleanInput({
       <ChoiceInput
         label={t('Oui')}
         labelText={t('Oui')}
-        active={!isMissing && value ? true : false}
-        onClick={() => setValue('oui')}
+        active={currentValue === true}
+        onClick={() => {
+          setCurrentValue(true)
+          requestIdleCallback(() => setValue('oui'))
+        }}
         {...props}
         data-cypress-id={`${props['data-cypress-id']}-oui`}
         id={firstInputId}
@@ -38,8 +44,11 @@ export default function BooleanInput({
       <ChoiceInput
         label={t('Non')}
         labelText={t('Non')}
-        active={!isMissing && !value ? true : false}
-        onClick={() => setValue('non')}
+        active={currentValue === false}
+        onClick={() => {
+          setCurrentValue(false)
+          requestIdleCallback(() => setValue('non'))
+        }}
         {...props}
         data-cypress-id={`${props['data-cypress-id']}-non`}
       />
