@@ -1,13 +1,7 @@
-import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import type { Locale } from '@/i18nConfig'
-import { redirect } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import ArticlePage from '../page'
-
-// Mock next/navigation
-vi.mock('next/navigation', () => ({
-  redirect: vi.fn(),
-}))
 
 // Mock CMS services
 vi.mock('@/services/cms/fetchArticlePageContent', () => ({
@@ -30,6 +24,7 @@ const mockFetchArticlePageContent = vi.mocked(fetchArticlePageContent)
 const mockFetchArticlePageMetadata = vi.mocked(fetchArticlePageMetadata)
 const mockGetLangButtonsDisplayed = vi.mocked(getLangButtonsDisplayed)
 const mockRedirect = vi.mocked(redirect)
+const mockNotFound = vi.mocked(notFound)
 
 describe('ArticlePage', () => {
   beforeEach(() => {
@@ -146,11 +141,11 @@ describe('ArticlePage', () => {
       })
       const params = Promise.resolve({
         category: 'cat',
-        article: 'art',
+        article: 'toto',
         locale: 'fr' as Locale,
       })
-      await ArticlePage({ params })
-      expect(mockRedirect).toHaveBeenCalledWith(NOT_FOUND_PATH)
+
+      await expect(ArticlePage({ params })).rejects.toThrow('NEXT_NOT_FOUND')
     })
 
     it('should redirect to NOT_FOUND_PATH if missing article in any locale', async () => {

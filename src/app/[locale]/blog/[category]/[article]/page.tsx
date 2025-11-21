@@ -4,14 +4,13 @@ import { fetchArticlePageContent } from '@/services/cms/fetchArticlePageContent'
 import { fetchArticlePageMetadata } from '@/services/cms/fetchArticlePageMetadata'
 
 import Footer from '@/components/layout/Footer'
-import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Badge from '@/design-system/layout/Badge'
 import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import type { Locale } from '@/i18nConfig'
 import i18nConfig from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
-import { redirect } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import ArticleBreadcrumbs from './_components/ArticleBreadcrumbs'
 import ArticleDate from './_components/ArticleDate'
 import ArticleJSONLD from './_components/ArticleJSONLD'
@@ -71,11 +70,11 @@ export default async function ArticlePage({
 
   //  If the page is not available in the default locale, redirect to the not found page
   if (locale === i18nConfig.defaultLocale && !article) {
-    return redirect(NOT_FOUND_PATH)
+    notFound()
   }
 
   if (!article) {
-    return redirect(NOT_FOUND_PATH)
+    notFound()
   }
 
   return (

@@ -1,10 +1,9 @@
 import FAQ from '@/components/landing-pages/FAQ'
 import Partners from '@/components/landing-pages/Partners'
-import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Markdown from '@/design-system/utils/Markdown'
 import type { Locale } from '@/i18nConfig'
 import { fetchPartnerCampaign } from '@/services/cms/fetchPartnerCampaign'
-import { redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import { ClientLayout } from '../../../../components/layout/ClientLayout'
 import PartnerCampaignContent from './_components/PartnerCampaignContent'
 
@@ -21,7 +20,7 @@ export default async function PartnerCampaignPage({
   })
 
   if (!partnerCampaign) {
-    redirect(NOT_FOUND_PATH)
+    notFound()
   }
 
   return (

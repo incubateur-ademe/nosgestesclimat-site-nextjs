@@ -29,7 +29,7 @@ import { fetchThematicLandingPageMetadata } from '@/services/cms/fetchThematicLa
 import type { DefaultPageProps } from '@/types'
 import { getArticleHref } from '@/utils/cms/getArticleHref'
 import Image from 'next/image'
-import { redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import { ClientLayout } from '../../../../components/layout/ClientLayout'
 
 export async function generateMetadata({
@@ -70,7 +70,7 @@ export default async function ThematicLandingPage({
     })) ?? {}
 
   if (!thematicLandingPage) {
-    redirect('/404')
+    notFound()
   }
 
   const {

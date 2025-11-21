@@ -4,12 +4,6 @@ import { notFound, redirect } from 'next/navigation'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import BlogHomePage from '../page'
 
-// Mock next/navigation
-vi.mock('next/navigation', () => ({
-  redirect: vi.fn(),
-  notFound: vi.fn(),
-}))
-
 // Mock CMS services
 vi.mock('@/services/cms/fetchHomepageContent', () => ({
   fetchHomepageContent: vi.fn(),
@@ -221,9 +215,9 @@ describe('BlogHomePage', () => {
       const params = Promise.resolve({ locale: 'fr' as Locale })
       const searchParams = Promise.resolve({ page: '1' })
 
-      await BlogHomePage({ params, searchParams })
-
-      expect(mockNotFound).toHaveBeenCalled()
+      await expect(BlogHomePage({ params, searchParams })).rejects.toThrow(
+        'NEXT_NOT_FOUND'
+      )
     })
 
     it.skip('should handle fetchHomepageContent returning partial data', async () => {

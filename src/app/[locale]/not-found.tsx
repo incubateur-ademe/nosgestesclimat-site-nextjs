@@ -1,11 +1,13 @@
 import Route404 from '@/components/layout/404'
 import { ClientLayout } from '@/components/layout/ClientLayout'
-import { NOT_FOUND_PATH } from '@/constants/urls/paths'
+import { noIndexObject } from '@/constants/metadata'
 import Main from '@/design-system/layout/Main'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import i18nConfig from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
+import './globals.css'
+import { marianne } from './layout'
 
 export async function generateMetadata(props: DefaultPageProps) {
   const { locale } = await props.params
@@ -17,9 +19,7 @@ export async function generateMetadata(props: DefaultPageProps) {
     description: t(
       "Oups, vous êtes bien sur Nos Gestes Climat, mais cette page n'existe pas."
     ),
-    alternates: {
-      canonical: NOT_FOUND_PATH,
-    },
+    robots: noIndexObject,
   })
 }
 
@@ -28,7 +28,7 @@ export default async function NotFound({ params }: DefaultPageProps) {
 
   return (
     <ClientLayout locale={locale ?? i18nConfig.defaultLocale}>
-      <Main>
+      <Main className={marianne.className}>
         <Route404 locale={locale ?? i18nConfig.defaultLocale} />
       </Main>
     </ClientLayout>

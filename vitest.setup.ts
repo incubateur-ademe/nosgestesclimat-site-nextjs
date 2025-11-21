@@ -67,11 +67,17 @@ vi.mock('next/navigation', () => ({
   redirect: vi.fn(),
   useRouter: vi.fn(() => ({
     push: vi.fn(),
+    replace: vi.fn(),
+    back: vi.fn(),
+    refresh: vi.fn(),
   })),
   useSearchParams: vi.fn(() => ({
     get: vi.fn(),
   })),
   usePathname: vi.fn(() => ''),
+  notFound: vi.fn(() => {
+    throw new Error('NEXT_NOT_FOUND')
+  }),
 }))
 
 // Mock uuid
