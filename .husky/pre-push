@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sh .husky/pre-push-default
+sh -e .husky/pre-push-default
 
 # This allows you to have a custom pre-commit hook that is not shared with the team
 if [ -f ".husky/pre-push-custom" ]; then

@@ -10,6 +10,8 @@ import type {
 import type PublicodesEngine from 'publicodes'
 import type {
   EvaluatedNode,
+  NodeKind,
+  PublicodesExpression,
   ParsedRules as PublicodesParsedRules,
   Situation as PublicodesSituation,
 } from 'publicodes'
@@ -124,3 +126,10 @@ export type Action = {
   dottedName: DottedName
   value: number
 } & (EvaluatedNode & NGCRuleNode)
+
+export type PublicodesValue = string | number | boolean
+
+export type SafeEvaluate = <T extends PublicodesValue = PublicodesValue>(
+  rule: PublicodesExpression,
+  metric?: Metric
+) => EvaluatedNode<NodeKind, T> | null

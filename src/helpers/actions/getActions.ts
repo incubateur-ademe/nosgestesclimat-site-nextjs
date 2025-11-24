@@ -1,5 +1,5 @@
 import getSomme from '@/publicodes-state/helpers/getSomme'
-import type { Action } from '@/publicodes-state/types'
+import type { Action, SafeEvaluate } from '@/publicodes-state/types'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import { sortBy } from '@/utils/sortBy'
 import type {
@@ -8,13 +8,13 @@ import type {
   NGCRuleNode,
   NGCRules,
 } from '@incubateur-ademe/nosgestesclimat'
-import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
+import type { EvaluatedNode } from 'publicodes'
 import { filterIrrelevantActions } from './filterIrrelevantActions'
 
 type Props = {
   rules?: Partial<NGCRules>
   radical: boolean
-  safeEvaluate: (rule: PublicodesExpression) => EvaluatedNode | null
+  safeEvaluate: SafeEvaluate
   getSpecialRuleObject: (dottedName: DottedName) => EvaluatedNode & NGCRuleNode
   actionChoices: any
 }

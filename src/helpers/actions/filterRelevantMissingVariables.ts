@@ -1,8 +1,7 @@
 import { MUST_NOT_ASK_QUESTIONS } from '@/publicodes-state/constants/questions'
 import { checkIfDottedNameShouldNotBeIgnored } from '@/publicodes-state/helpers/checkIfDottedNameShouldNotBeIgnored'
-import type { MissingVariables } from '@/publicodes-state/types'
+import type { MissingVariables, SafeEvaluate } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 
 export const filterRelevantMissingVariables = ({
   missingVariables,
@@ -14,7 +13,7 @@ export const filterRelevantMissingVariables = ({
   missingVariables: DottedName[]
   extendedFoldedSteps: DottedName[]
   everyQuestions: DottedName[]
-  safeEvaluate: (rule: PublicodesExpression) => EvaluatedNode | null
+  safeEvaluate: SafeEvaluate
   rawMissingVariables: MissingVariables
 }) => {
   return missingVariables.filter((dottedName: DottedName) => {

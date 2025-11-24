@@ -4,13 +4,12 @@ import type {
   NGCRuleNode,
   NGCRules,
 } from '@incubateur-ademe/nosgestesclimat'
-import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { createContext } from 'react'
 import type {
   Engine,
-  Metric,
   MissingVariables,
   ParsedRules,
+  SafeEvaluate,
   Situation,
 } from '../../types'
 
@@ -19,10 +18,7 @@ type EngineContextType = {
   engine: Engine | undefined
   pristineEngine?: Engine | null
   safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
-  safeEvaluate: (
-    rule: PublicodesExpression,
-    metric?: Metric
-  ) => EvaluatedNode | null
+  safeEvaluate: SafeEvaluate
   parsedRules?: ParsedRules
   everyRules: DottedName[]
   everyInactiveRules: DottedName[]
