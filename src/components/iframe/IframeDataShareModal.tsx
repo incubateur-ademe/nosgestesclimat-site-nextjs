@@ -1,6 +1,5 @@
 'use client'
 
-import { carboneMetric } from '@/constants/model/metric'
 import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import { shareDataWithIntegrator } from '@/helpers/iframe/shareDataWithIntegrator'
@@ -27,7 +26,7 @@ export default function IframeDataShareModal() {
     if (!isIframeShareData || !isIntegratorAllowedToBypassConsentDataShare)
       return
 
-    shareDataWithIntegrator(computedResults[carboneMetric])
+    shareDataWithIntegrator(computedResults)
   }, [
     isIframeShareData,
     isIntegratorAllowedToBypassConsentDataShare,
@@ -53,7 +52,7 @@ export default function IframeDataShareModal() {
   }
 
   const onAccept = () => {
-    shareDataWithIntegrator(computedResults[carboneMetric])
+    shareDataWithIntegrator(computedResults)
 
     setIsOpen(false)
 
