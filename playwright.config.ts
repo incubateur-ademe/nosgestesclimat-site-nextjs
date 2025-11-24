@@ -1,5 +1,6 @@
-import { defineConfig, devices } from '@playwright/test'
+import { devices } from '@playwright/test'
 import dotenv from 'dotenv'
+import { defineConfig } from 'next/experimental/testmode/playwright.js'
 
 dotenv.config()
 
@@ -42,7 +43,11 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: process.env.CI
-    ? undefined
+    ? {
+        command: 'npm run start',
+        url: 'http://localhost:3000',
+        reuseExistingServer: true,
+      }
     : {
         command: 'npm run dev',
         url: 'http://localhost:3000',

@@ -70,6 +70,7 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
     webpackBuildWorker: true,
+    testProxy: true,
   },
 }
 
