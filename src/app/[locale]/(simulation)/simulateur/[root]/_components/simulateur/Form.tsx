@@ -36,7 +36,7 @@ export default function Form() {
 
   const { goToEndPage } = useEndPage()
 
-  const { isIframe, isIntegratorAllowedToBypassConsentDataShare } = useIframe()
+  const { isIframe } = useIframe()
 
   const { handleUpdateShouldPreventNavigation, shouldPreventNavigation } =
     usePreventNavigation()
