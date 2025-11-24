@@ -6,7 +6,17 @@ import { useTrackIframe } from '@/hooks/tracking/useTrackIframe'
 import { useUser } from '@/publicodes-state'
 import { getIsIframe } from '@/utils/getIsIframe'
 import { useSearchParams } from 'next/navigation'
-import { createContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
+
+const getIsAllowedToBypassConsentDataShare = () => {
+  // https://stackoverflow.com/questions/6531534/document-location-parent-location-can-they-be-blocked
+  const integratorUrl = new URL(
+    window.location != window.parent.location
+      ? document.referrer
+      : document.location.href
+  ).origin
+  return verifyIfIntegratorBypassRights(integratorUrl)
+}
 
 export const IframeOptionsContext = createContext<{
   isIframe?: boolean
@@ -61,16 +71,8 @@ export const IframeOptionsProvider = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isIframe, searchParams])
 
-  const isAllowedToBypassConsentDataShare = useMemo(() => {
-    // https://stackoverflow.com/questions/6531534/document-location-parent-location-can-they-be-blocked
-    const integratorUrl = new URL(
-      window.location != window.parent.location
-        ? document.referrer
-        : document.location.href
-    ).origin
-
-    return verifyIfIntegratorBypassRights(integratorUrl)
-  }, [])
+  const isAllowedToBypassConsentDataShare =
+    getIsAllowedToBypassConsentDataShare()
 
   // Add body classes for iframe styling
   useEffect(() => {

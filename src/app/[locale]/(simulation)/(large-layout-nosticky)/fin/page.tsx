@@ -36,11 +36,7 @@ export default function FinPage() {
 
   const { currentMetric } = useCurrentMetric()
 
-  const {
-    isFrenchRegion,
-    isIframeShareData,
-    isIntegratorAllowedToBypassConsentDataShare,
-  } = useIframe()
+  const { isFrenchRegion } = useIframe()
 
   useEffect(() => {
     const titleTags = document.querySelectorAll('head > title')
