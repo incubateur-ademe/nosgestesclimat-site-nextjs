@@ -1,6 +1,5 @@
 import MDXContent from '@/components/mdx/MDXContent'
 import Trans from '@/components/translation/trans/TransServer'
-import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -11,7 +10,7 @@ import guideNumerique from '@/locales/guide-mode-groupe/fr/guide-numerique.mdx'
 import guideServicesSocietaux from '@/locales/guide-mode-groupe/fr/guide-services-societaux.mdx'
 import guideTransport from '@/locales/guide-mode-groupe/fr/guide-transport.mdx'
 import type { DefaultPageProps } from '@/types'
-import { redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 
 const categories: Record<string, any> = {
   alimentation: guideAlimentation,
@@ -46,7 +45,7 @@ export default async function CategoryGuidePage({
   const { category, locale } = await params
 
   if (!categories[category]) {
-    return redirect(NOT_FOUND_PATH)
+    notFound()
   }
 
   return (
