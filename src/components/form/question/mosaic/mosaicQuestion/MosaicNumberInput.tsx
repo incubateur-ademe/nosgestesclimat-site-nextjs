@@ -3,7 +3,9 @@ import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
+import { useDebounce } from '@/utils/debounce'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { useEffect, useState } from 'react'
 type Props = {
   question: DottedName
   title?: string
@@ -24,16 +26,30 @@ export default function MosaicNumberInput({
   parentMosaic,
   ...props
 }: Props) {
-  const { value, isMissing, plafond } = useRule(question)
+  const { situationValue: value, plafond } = useRule<number>(question)
+  const [currentValue, setCurrentValue] = useState(
+    value === null ? undefined : value
+  )
+  // Update the current value when the value prop changes because it can be changed by side-effect with a click on « Aucun », or on a suggestion.
+  useEffect(() => {
+    if (value !== null && value !== currentValue) {
+      setCurrentValue(value)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value])
+  const debouncedSetValue = useDebounce(setValue, 500)
 
   const { t } = useClientTranslation()
 
   const isPlusDisabled =
-    value !== undefined &&
-    typeof value === 'number' &&
-    plafond !== undefined &&
+    typeof currentValue === 'number' &&
     typeof plafond === 'number' &&
-    value === plafond
+    currentValue >= plafond
+
+  function handleSetValue(value: number) {
+    setCurrentValue(value)
+    debouncedSetValue(value)
+  }
 
   // Model shenanigans for description split...
   return (
@@ -60,8 +76,8 @@ export default function MosaicNumberInput({
       </div>
       <div className="flex items-center gap-1.5 p-2">
         <Button
-          disabled={value === 0 || isMissing}
-          onClick={() => setValue(Number(value) - 1)}
+          disabled={!currentValue}
+          onClick={() => handleSetValue((currentValue ?? 0) - 1)}
           size="sm"
           title={t(
             'simulator.mosaicNumberInput.remove',
@@ -77,16 +93,16 @@ export default function MosaicNumberInput({
           className="focus-within:border-primary-700 focus-within:ring-primary-700 w-8 rounded-sm text-center ring-offset-2 focus-within:ring-2 focus-visible:outline-none"
           type="number"
           inputMode="numeric"
-          value={isMissing ? '' : Number(value)}
+          value={currentValue}
           placeholder={'_'}
-          onChange={(event) => setValue(Number(event.target.value))}
+          onChange={(event) => handleSetValue(Number(event.target.value))}
           data-cypress-id={`${question}---${parentMosaic}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
           {...props}
         />
         <Button
           disabled={isPlusDisabled}
-          onClick={() => setValue(isMissing ? 1 : Number(value) + 1)}
+          onClick={() => handleSetValue((currentValue ?? 0) + 1)}
           title={t(
             'simulator.mosaicNumberInput.add',
             'Ajouter un élément : {{title}}',

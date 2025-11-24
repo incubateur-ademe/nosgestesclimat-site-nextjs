@@ -25,6 +25,7 @@
   },
   "include": [
     "next-env.d.ts",
+    "vitest-globals.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",

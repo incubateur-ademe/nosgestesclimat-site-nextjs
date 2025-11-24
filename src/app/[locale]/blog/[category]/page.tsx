@@ -3,7 +3,6 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import FAQ from '@/components/landing-pages/FAQ'
 import ContentLarge from '@/components/layout/ContentLarge'
 import Footer from '@/components/layout/Footer'
-import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
@@ -17,7 +16,7 @@ import { fetchCategoryPageContent } from '@/services/cms/fetchCategoryPageConten
 import { fetchCategoryPageMetadata } from '@/services/cms/fetchCategoryPageMetadata'
 import type { DefaultPageProps } from '@/types'
 import type { SearchParams } from 'next/dist/server/request/search-params'
-import { redirect } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import AdditionalContent from './_components/AdditionalContent'
 import CategoryHero from './_components/CategoryHero'
 import CategoryJSONLD from './_components/CategoryJSONLD'
@@ -112,11 +111,11 @@ export default async function CategoryPage({
 
   //  If the page is not available in the default locale, redirect to the not found page
   if (locale === i18nConfig.defaultLocale && (!title || !description)) {
-    return redirect(NOT_FOUND_PATH)
+    notFound()
   }
 
   if (!title || !description) {
-    return redirect(NOT_FOUND_PATH)
+    notFound()
   }
 
   const questions = faq?.questions ?? []

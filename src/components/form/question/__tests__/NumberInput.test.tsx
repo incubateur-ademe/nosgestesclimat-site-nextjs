@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
+import { userEvent } from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import NumberInput from '../NumberInput'
-
 // Mock the useLocale hook
 vi.mock('@/hooks/useLocale', () => ({
   useLocale: vi.fn(() => 'fr'),
@@ -16,7 +16,6 @@ vi.mock('@/components/translation/trans/TransClient', () => ({
 
 describe('NumberInput', () => {
   const defaultProps = {
-    isMissing: false,
     setValue: vi.fn(),
   }
 
@@ -39,9 +38,7 @@ describe('NumberInput', () => {
     })
 
     it('should render with initial value', () => {
-      render(
-        <NumberInput {...defaultProps} value={123.45} displayedValue="123,45" />
-      )
+      render(<NumberInput {...defaultProps} value={123.45} />)
 
       const input = screen.getByRole('textbox')
       expect(input).toHaveValue('123,45')
@@ -66,75 +63,9 @@ describe('NumberInput', () => {
       const input = screen.getByRole('textbox')
       expect(input).toHaveAttribute('id', 'custom-id')
     })
-
-    it('should show placeholder when value is provided', () => {
-      render(<NumberInput {...defaultProps} value={1000} />)
-
-      const input = screen.getByRole('textbox')
-      expect(input).toHaveAttribute('placeholder')
-      expect(input.getAttribute('placeholder')).toContain('1')
-      expect(input.getAttribute('placeholder')).toContain('000')
-    })
-  })
-
-  describe('Value handling', () => {
-    it('should call setValue when value changes', () => {
-      const setValue = vi.fn()
-      const setDisplayedValue = vi.fn()
-      const { rerender } = render(
-        <NumberInput
-          {...defaultProps}
-          setValue={setValue}
-          setDisplayedValue={setDisplayedValue}
-        />
-      )
-
-      // Simulate value change from props
-      rerender(
-        <NumberInput
-          {...defaultProps}
-          setValue={setValue}
-          setDisplayedValue={setDisplayedValue}
-          value={123}
-          displayedValue="123"
-        />
-      )
-
-      expect(setValue).toHaveBeenCalledWith(123)
-      expect(setDisplayedValue).toHaveBeenCalledWith('123')
-    })
-
-    it('should not debounce value changes from props', () => {
-      const setValue = vi.fn()
-      const { rerender } = render(
-        <NumberInput {...defaultProps} setValue={setValue} />
-      )
-
-      // Simulate value change from props (not user input)
-      rerender(
-        <NumberInput
-          {...defaultProps}
-          setValue={setValue}
-          value={456}
-          displayedValue="456"
-        />
-      )
-
-      // Should be called immediately without debouncing
-      expect(setValue).toHaveBeenCalledWith(456)
-    })
   })
 
   describe('Number formatting', () => {
-    it('should use correct separators for French locale', () => {
-      render(<NumberInput {...defaultProps} value={1234.56} />)
-
-      const input = screen.getByRole('textbox')
-      expect(input).toHaveAttribute('placeholder')
-      expect(input.getAttribute('placeholder')).toContain('1')
-      expect(input.getAttribute('placeholder')).toContain('235')
-    })
-
     it('should have correct input attributes', () => {
       render(<NumberInput {...defaultProps} />)
 
@@ -144,13 +75,6 @@ describe('NumberInput', () => {
   })
 
   describe('Edge cases', () => {
-    it('should handle empty string value', () => {
-      render(<NumberInput {...defaultProps} value="" displayedValue="" />)
-
-      const input = screen.getByRole('textbox')
-      expect(input).toHaveValue('')
-    })
-
     it('should handle undefined value', () => {
       render(<NumberInput {...defaultProps} value={undefined} />)
 
@@ -159,25 +83,37 @@ describe('NumberInput', () => {
     })
 
     it('should handle zero value', () => {
-      render(<NumberInput {...defaultProps} value={0} displayedValue="0" />)
+      render(<NumberInput {...defaultProps} value={0} />)
 
       const input = screen.getByRole('textbox')
       expect(input).toHaveValue('0')
     })
 
-    it('should handle very large numbers', () => {
-      render(<NumberInput {...defaultProps} value={999999999} />)
-
+    it('should handle number with `,` without removing the decimal separator when not needed', async () => {
+      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
+      render(<NumberInput {...defaultProps} />)
       const input = screen.getByRole('textbox')
-      expect(input).toHaveAttribute('placeholder')
-      expect(input.getAttribute('placeholder')).toContain('999')
+
+      await user.type(input, '4,06')
+      vi.advanceTimersByTime(500)
+
+      expect(defaultProps.setValue).toHaveBeenCalledWith(4.06)
+      expect(input).toHaveValue('4,06')
+
+      await user.type(input, '{backspace}{backspace}')
+      vi.advanceTimersByTime(500)
+      expect(input).toHaveValue('4,')
+      expect(defaultProps.setValue).toHaveBeenCalledWith(4)
     })
 
-    it('should handle decimal numbers', () => {
-      render(<NumberInput {...defaultProps} value={123.456} />)
+    it('should not change value it props is updated but the value is the same', async () => {
+      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
 
+      const { rerender } = render(<NumberInput {...defaultProps} />)
       const input = screen.getByRole('textbox')
-      expect(input).toHaveAttribute('placeholder', '123') // Rounded to 0 decimal places
+      await user.type(input, '4,')
+      rerender(<NumberInput {...defaultProps} value={4} />)
+      expect(input).toHaveValue('4,')
     })
   })
 })

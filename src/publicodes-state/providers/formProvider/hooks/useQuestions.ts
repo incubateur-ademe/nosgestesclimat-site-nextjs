@@ -1,5 +1,4 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { useMemo } from 'react'
 import getIsMissing from '../../../helpers/getIsMissing'
 
@@ -10,11 +9,16 @@ import {
   PRIORITY_QUESTIONS,
 } from '@/publicodes-state/constants/questions'
 import getSortedQuestionsList from '@/publicodes-state/helpers/getSortedQuestionsList'
-import type { Entries, MissingVariables, Situation } from '../../../types'
+import type {
+  Entries,
+  MissingVariables,
+  SafeEvaluate,
+  Situation,
+} from '../../../types'
 
 type Props = {
   root: DottedName
-  safeEvaluate: (rule: PublicodesExpression) => EvaluatedNode | null
+  safeEvaluate: SafeEvaluate
   categories: DottedName[]
   subcategories: DottedName[]
   situation: Situation
