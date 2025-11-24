@@ -4,6 +4,7 @@ import { noIndexObject } from '@/constants/metadata'
 import Main from '@/design-system/layout/Main'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import i18nConfig, { type Locale } from '@/i18nConfig'
+import { Suspense } from 'react'
 import './[locale]/globals.css'
 import { marianne } from './[locale]/layout'
 
@@ -19,10 +20,12 @@ export function generateMetadata() {
 
 export default function NotFound() {
   return (
-    <ClientLayout locale={i18nConfig.defaultLocale as Locale}>
-      <Main className={marianne.className}>
-        <Route404 locale={i18nConfig.defaultLocale as Locale} />
-      </Main>
-    </ClientLayout>
+    <Suspense fallback={<div>Chargement de la page...</div>}>
+      <ClientLayout locale={i18nConfig.defaultLocale as Locale}>
+        <Main className={marianne.className}>
+          <Route404 locale={i18nConfig.defaultLocale as Locale} />
+        </Main>
+      </ClientLayout>
+    </Suspense>
   )
 }

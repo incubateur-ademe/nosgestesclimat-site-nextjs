@@ -6,6 +6,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import i18nConfig from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
+import { Suspense } from 'react'
 import './globals.css'
 import { marianne } from './layout'
 
@@ -27,10 +28,12 @@ export default async function NotFound({ params }: DefaultPageProps) {
   const { locale } = (await params) ?? {}
 
   return (
-    <ClientLayout locale={locale ?? i18nConfig.defaultLocale}>
-      <Main className={marianne.className}>
-        <Route404 locale={locale ?? i18nConfig.defaultLocale} />
-      </Main>
-    </ClientLayout>
+    <Suspense fallback={<div>Chargement de la page...</div>}>
+      <ClientLayout locale={locale ?? i18nConfig.defaultLocale}>
+        <Main className={marianne.className}>
+          <Route404 locale={locale ?? i18nConfig.defaultLocale} />
+        </Main>
+      </ClientLayout>
+    </Suspense>
   )
 }
