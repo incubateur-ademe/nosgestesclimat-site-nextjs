@@ -157,7 +157,7 @@
     "prettier-plugin-tailwindcss": "^0.7.1",
     "puppeteer": "^24.26.1",
     "ramda": "^0.32.0",
-    "storybook": "^9.1.15",
+    "storybook": "^9.1.16",
     "ts-node": "^10.9.2",
     "ts-prune": "^0.10.3",
     "tsx": "^4.20.6",
