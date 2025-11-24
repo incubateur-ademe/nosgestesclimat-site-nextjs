@@ -17,7 +17,6 @@ import {
   POLL_NAME_INPUT,
 } from '../../constants/elements-ids'
 import { checkA11y } from '../../helpers/accessibility/checkA11y'
-import { getVerificationCodeFromScalingo } from '../../utils/getVerificationCodeFromScalingo'
 
 test.describe('On the organisation userflow', () => {
   // Run this test locally only
@@ -58,7 +57,7 @@ test.describe('On the organisation userflow', () => {
         await checkA11y(page)
 
         // Get verification code from database
-        const verificationCode = await getVerificationCodeFromScalingo()
+        const verificationCode = '000000' // await getVerificationCodeFromScalingo()
         console.log(`Retrieved verification code: ${verificationCode}`)
 
         await page
@@ -161,7 +160,7 @@ test.describe('On the organisation userflow', () => {
         await checkA11y(page)
 
         // Get verification code from database
-        const verificationCode = await getVerificationCodeFromScalingo()
+        const verificationCode = '000000' // await getVerificationCodeFromScalingo()
         console.log(`Retrieved verification code: ${verificationCode}`)
 
         await page

@@ -12,6 +12,8 @@ export async function getAuthentifiedUser(): Promise<
     const cookieStore = await cookies()
     const ngcjwt = cookieStore.get('ngcjwt')
 
+    console.log(ngcjwt)
+
     const headers: HeadersInit = {
       'Content-Type': 'application/json',
     }
@@ -24,6 +26,8 @@ export async function getAuthentifiedUser(): Promise<
       method: 'GET',
       headers,
     })
+
+    console.log(response)
 
     if (response.ok) {
       const data = await response.json()

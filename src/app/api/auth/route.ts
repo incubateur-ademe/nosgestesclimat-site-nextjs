@@ -7,6 +7,7 @@ import { AUTHENTICATION_URL } from '@/constants/urls/main'
  * This ensure that the cookie will be added to requests to the Next server.
  */
 export async function POST(request: Request) {
+  console.log('request', request)
   const searchParams = new URL(request.url).searchParams
   const url = new URL(AUTHENTICATION_URL + '/login')
   url.search = searchParams.toString()

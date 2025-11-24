@@ -18,7 +18,7 @@ export default async function MonEspacePage({
     (await searchParams) || {}
 
   const authenticatedUser = await getAuthentifiedUser()
-
+  console.log(authenticatedUser)
   if (!authenticatedUser) {
     redirect(CONNEXION_PATH)
   }
