@@ -5,6 +5,7 @@ import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import { shareDataWithIntegrator } from '@/helpers/iframe/shareDataWithIntegrator'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useIframe } from '@/hooks/useIframe'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { useEffect, useRef, useState } from 'react'
 
@@ -17,6 +18,21 @@ export default function IframeDataShareModal() {
   const [isOpen, setIsOpen] = useState(false)
 
   const { computedResults } = useCurrentSimulation()
+
+  const { isIframeShareData, isIntegratorAllowedToBypassConsentDataShare } =
+    useIframe()
+
+  // Directly share data if allowed to bypass the consent data share
+  useEffect(() => {
+    if (!isIframeShareData || !isIntegratorAllowedToBypassConsentDataShare)
+      return
+
+    shareDataWithIntegrator(computedResults[carboneMetric])
+  }, [
+    isIframeShareData,
+    isIntegratorAllowedToBypassConsentDataShare,
+    computedResults,
+  ])
 
   //To delay the dialog show in to let the animation play
   const timeoutRef = useRef<NodeJS.Timeout>(undefined)
@@ -45,6 +61,9 @@ export default function IframeDataShareModal() {
   }
 
   useEffect(() => {
+    if (!isIframeShareData || isIntegratorAllowedToBypassConsentDataShare)
+      return
+
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
     timeoutRef.current = setTimeout(() => {
       timeoutRef.current = undefined
@@ -55,21 +74,29 @@ export default function IframeDataShareModal() {
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
-  }, [])
+  }, [isIframeShareData, isIntegratorAllowedToBypassConsentDataShare])
 
   useEffect(() => {
+    if (!isIframeShareData || isIntegratorAllowedToBypassConsentDataShare)
+      return
+
     document.body.style.overflow = 'hidden'
 
     return () => {
       resetOverflow()
     }
-  }, [])
+  }, [isIframeShareData, isIntegratorAllowedToBypassConsentDataShare])
 
   const parent = document.referrer
     ? String(new URL(document.referrer).hostname)
     : 'site parent inconnu'
 
-  if (!isOpen) return null
+  if (
+    !isOpen ||
+    !isIframeShareData ||
+    isIntegratorAllowedToBypassConsentDataShare
+  )
+    return null
 
   return (
     <div

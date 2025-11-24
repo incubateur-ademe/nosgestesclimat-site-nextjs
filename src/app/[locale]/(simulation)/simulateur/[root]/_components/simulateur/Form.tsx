@@ -5,9 +5,7 @@ import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import ContentLarge from '@/components/layout/ContentLarge'
 import questions from '@/components/specialQuestions'
-import { carboneMetric } from '@/constants/model/metric'
 import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
-import { shareDataWithIntegrator } from '@/helpers/iframe/shareDataWithIntegrator'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useDebug } from '@/hooks/useDebug'
 import { useIframe } from '@/hooks/useIframe'
@@ -120,10 +118,6 @@ export default function Form() {
                 onComplete={() => {
                   if (shouldPreventNavigation) {
                     handleUpdateShouldPreventNavigation(false)
-                  }
-                  // Share data if allowed
-                  if (isIntegratorAllowedToBypassConsentDataShare) {
-                    shareDataWithIntegrator(computedResults[carboneMetric])
                   }
 
                   handleOnComplete()

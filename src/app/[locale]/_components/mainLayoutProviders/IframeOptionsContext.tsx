@@ -6,7 +6,7 @@ import { useTrackIframe } from '@/hooks/tracking/useTrackIframe'
 import { useUser } from '@/publicodes-state'
 import { getIsIframe } from '@/utils/getIsIframe'
 import { useSearchParams } from 'next/navigation'
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect, useMemo, useState } from 'react'
 
 export const IframeOptionsContext = createContext<{
   isIframe?: boolean
@@ -36,10 +36,6 @@ export const IframeOptionsProvider = ({
   const [isIframeOnlySimulation, setIsIframeOnlySimulation] = useState(false)
   const [iframeLang, setIframeLang] = useState<string | null>(null)
   const [iframeRegion, setIframeRegion] = useState<string | null>(null)
-  const [
-    isAllowedToBypassConsentDataShare,
-    setIsAllowedToBypassConsentDataShare,
-  ] = useState(false)
 
   const containerRef = useTrackIframe(isIframe)
 
@@ -65,23 +61,16 @@ export const IframeOptionsProvider = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isIframe, searchParams])
 
-  // Verify integrator bypass rights
-  useEffect(() => {
-    if (!isIframe || !isIframeShareData) {
-      setIsAllowedToBypassConsentDataShare(false)
-      return
-    }
-
+  const isAllowedToBypassConsentDataShare = useMemo(() => {
+    // https://stackoverflow.com/questions/6531534/document-location-parent-location-can-they-be-blocked
     const integratorUrl = new URL(
       window.location != window.parent.location
         ? document.referrer
         : document.location.href
     ).origin
 
-    verifyIfIntegratorBypassRights(integratorUrl).then((isAllowed) => {
-      setIsAllowedToBypassConsentDataShare(isAllowed)
-    })
-  }, [isIframe, isIframeShareData])
+    return verifyIfIntegratorBypassRights(integratorUrl)
+  }, [])
 
   // Add body classes for iframe styling
   useEffect(() => {

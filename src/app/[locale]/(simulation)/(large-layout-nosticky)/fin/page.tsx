@@ -55,9 +55,7 @@ export default function FinPage() {
 
   return (
     <div className="relative mt-12">
-      {isIframeShareData && !isIntegratorAllowedToBypassConsentDataShare && (
-        <IframeDataShareModal />
-      )}
+      <IframeDataShareModal />
 
       <TallyForm />
 

@@ -3,7 +3,6 @@ import type { ComputedResultsFootprint } from '@/publicodes-state/types'
 export function shareDataWithIntegrator(
   carbonComputedResults: ComputedResultsFootprint
 ) {
-  console.log('Sharing data with integrator', carbonComputedResults)
   const sharedData = {
     t: carbonComputedResults.categories['transport'],
     a: carbonComputedResults.categories['alimentation'],
