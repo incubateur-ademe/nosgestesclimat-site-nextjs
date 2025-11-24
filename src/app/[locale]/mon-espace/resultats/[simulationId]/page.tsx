@@ -1,13 +1,13 @@
 import ContentLarge from '@/components/layout/ContentLarge'
 import ResultsContent from '@/components/results/ResultsContent'
-import { CONNEXION_PATH, NOT_FOUND_PATH } from '@/constants/urls/paths'
+import { CONNEXION_PATH } from '@/constants/urls/paths'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import Title from '@/design-system/layout/Title'
 import { getAuthentifiedUser } from '@/helpers/authentication/getAuthentifiedUser'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { fetchSimulation } from '@/helpers/simulation/fetchSimulation'
 import type { DefaultPageProps } from '@/types'
-import { redirect } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 
 export default async function DetailledResultsPage({
   params,
@@ -28,7 +28,7 @@ export default async function DetailledResultsPage({
   })
 
   if (!simulation) {
-    redirect(NOT_FOUND_PATH)
+    notFound()
   }
 
   return (
