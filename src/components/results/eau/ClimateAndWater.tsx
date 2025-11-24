@@ -22,11 +22,10 @@ export default function ClimateAndWater() {
           <strong className="text-secondary-700">
             le cycle de l'eau est fortement impacté partout dans le monde
           </strong>
-           : accès à l'eau potable, disparition et migration d'espèces (animales
+          : accès à l'eau potable, disparition et migration d'espèces (animales
           et végétales), déplacement de populations.
         </Trans>
       </p>
     </div>
   )
 }
-
