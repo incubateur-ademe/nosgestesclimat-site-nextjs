@@ -1,12 +1,13 @@
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Main from '@/design-system/layout/Main'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import type { Locale } from '@/i18nConfig'
 import Image from 'next/image'
 import Wave from 'react-wavify'
 import Trans from '../translation/trans/TransServer'
 import HeaderServer from './HeaderServer'
 
-export default async function Route404({ locale }: { locale: string }) {
+export default async function Route404({ locale }: { locale: Locale }) {
   const { t } = await getServerTranslation({ locale })
 
   return (

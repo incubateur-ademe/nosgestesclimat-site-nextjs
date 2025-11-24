@@ -1,6 +1,6 @@
+import { useDebounce } from '@/utils/debounce'
 import type { ChangeEventHandler, ForwardedRef } from 'react'
 import { forwardRef } from 'react'
-import { DebounceInput } from 'react-debounce-input'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -16,7 +16,7 @@ export default forwardRef(function EditableToggleField(
 ) {
   const inputId = `editable-toggle-${name}`
   const errorId = `error-${name}`
-
+  const debouncedOnChange = useDebounce(onChange, 500)
   return (
     <>
       <div
@@ -25,10 +25,9 @@ export default forwardRef(function EditableToggleField(
           className
         )}>
         <div className="flex w-full justify-between">
-          <DebounceInput
-            inputRef={ref}
-            onChange={onChange}
-            debounceTimeout={500}
+          <input
+            ref={ref}
+            onChange={debouncedOnChange}
             name={name}
             id={inputId}
             type="text"

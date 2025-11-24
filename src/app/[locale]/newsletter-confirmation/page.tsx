@@ -1,11 +1,10 @@
 import Footer from '@/components/layout/Footer'
 import HeaderServer from '@/components/layout/HeaderServer'
-import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Main from '@/design-system/layout/Main'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import type { DefaultPageProps } from '@/types'
-import { redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import NewsletterErrorMessage from './_components/NewsletterErrorMessage'
 import NewsletterInvalidMessage from './_components/NewsletterInvalidMessage'
 import NewsletterSuccessMessage from './_components/NewsletterSuccessMessage'
@@ -42,7 +41,7 @@ export default async function NewsletterConfirmationPage({
   const { success, status } = searchParams ? await searchParams : {}
 
   if (shouldRedirect404({ success, status })) {
-    return redirect(NOT_FOUND_PATH)
+    notFound()
   }
 
   return (

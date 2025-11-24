@@ -1,12 +1,11 @@
 import HeaderServer from '@/components/layout/HeaderServer'
 import { PARTNER_KEY } from '@/constants/partners'
-import { NOT_FOUND_PATH } from '@/constants/urls/paths'
 import Main from '@/design-system/layout/Main'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { verifyPartner } from '@/services/partners/verifyPartner'
 import type { DefaultPageProps } from '@/types'
-import { redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import AdaptiveMessage from './_components/AdaptiveMessage'
 
 type SearchParams = Record<string, string>
@@ -29,13 +28,13 @@ export default async function PartenairePage({
   const partner = (searchParamsObject[PARTNER_KEY] as string) ?? ''
 
   if (!partner) {
-    return redirect(NOT_FOUND_PATH)
+    notFound()
   }
 
   const partnerInfo = await verifyPartner(partner)
 
   if (!partnerInfo) {
-    return redirect(NOT_FOUND_PATH)
+    notFound()
   }
 
   return (

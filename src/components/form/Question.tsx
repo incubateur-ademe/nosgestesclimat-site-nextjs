@@ -15,20 +15,18 @@ import {
 import { questionChooseAnswer } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
 import { useUpdatePageTitle } from '@/hooks/simulation/useUpdatePageTitle'
+import { useLocale } from '@/hooks/useLocale'
 import { useFormState, useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { useEffect, useRef, useState } from 'react'
+import type { Evaluation } from 'publicodes'
+import { useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/trans/TransClient'
 import Warning from './question/Warning'
 
 type Props = {
   question: DottedName
-  tempValue?: number | undefined
-  setTempValue?: (value: number | undefined) => void
-  displayedValue?: string | undefined
-  setDisplayedValue?: (value: string | undefined) => void
   showInputsLabel?: React.ReactNode | string
   headingLevel?: 1 | 2 | 3
   className?: string
@@ -37,10 +35,6 @@ type Props = {
 
 export default function Question({
   question,
-  tempValue,
-  setTempValue,
-  displayedValue,
-  setDisplayedValue,
   showInputsLabel,
   headingLevel,
   className,
@@ -52,7 +46,7 @@ export default function Question({
     description,
     unit,
     value,
-    numericValue,
+    situationValue,
     setValue,
     isMissing,
     choices,
@@ -67,23 +61,6 @@ export default function Question({
 
   const { questionsByCategories } = useFormState()
 
-  // It should happen only on mount (the component remount every time the question changes)
-  const prevQuestion = useRef('')
-
-  useEffect(() => {
-    if (type !== 'number') {
-      if (setTempValue) setTempValue(undefined)
-      if (setDisplayedValue) setDisplayedValue(undefined)
-      return
-    }
-
-    if (prevQuestion.current !== question) {
-      if (setTempValue) setTempValue(numericValue)
-      if (setDisplayedValue) setDisplayedValue(String(value))
-      prevQuestion.current = question
-    }
-  }, [type, numericValue, setTempValue, question, setDisplayedValue, value])
-
   const currentCategoryQuestions = questionsByCategories[category]
 
   const refCurrentCategoryQuestions = useRef(currentCategoryQuestions)
@@ -97,7 +74,7 @@ export default function Question({
   })
 
   const [isOpen, setIsOpen] = useState(showInputsLabel ? false : true)
-
+  const locale = useLocale()
   return (
     <>
       <div className={twMerge('mb-6 flex flex-col items-start', className)}>
@@ -112,11 +89,6 @@ export default function Question({
         <Suggestions
           question={question}
           setValue={(value) => {
-            if (type === 'number') {
-              if (setTempValue) setTempValue(value as number)
-              if (setDisplayedValue)
-                setDisplayedValue(value?.toString() ?? undefined)
-            }
             setValue(value, { questionDottedName: question })
           }}
         />
@@ -134,17 +106,17 @@ export default function Question({
             {type === 'number' && (
               <NumberInput
                 unit={unit}
-                displayedValue={displayedValue}
-                setDisplayedValue={setDisplayedValue}
-                value={setTempValue ? tempValue : numericValue}
+                value={situationValue as Evaluation<number>}
                 setValue={(value) => {
-                  if (setTempValue) {
-                    setTempValue(value)
-                  }
                   setValue(value, { questionDottedName: question })
                 }}
-                isMissing={isMissing}
-                min={0}
+                placeholder={
+                  isMissing && typeof value === 'number'
+                    ? value.toLocaleString(locale, {
+                        maximumFractionDigits: value < 10 ? 1 : 0,
+                      })
+                    : ''
+                }
                 data-cypress-id={question}
                 id={DEFAULT_FOCUS_ELEMENT_ID}
                 aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content warning-message notification-message`}
@@ -154,7 +126,7 @@ export default function Question({
 
             {type === 'boolean' && (
               <BooleanInput
-                value={value}
+                value={situationValue as Evaluation<boolean>}
                 setValue={(value) => {
                   {
                     setValue(value, { questionDottedName: question })
@@ -176,7 +148,7 @@ export default function Question({
               <ChoicesInput
                 question={question}
                 choices={choices}
-                value={String(value)}
+                value={situationValue as Evaluation<string>}
                 setValue={(value) => {
                   {
                     setValue(value, { questionDottedName: question })
@@ -208,23 +180,19 @@ export default function Question({
           </>
         )}
       </div>
-
-      <Warning
-        type={type}
-        plancher={plancher}
-        plafond={plafond}
-        warning={warning}
-        tempValue={tempValue}
-        unit={unit}
-      />
+      {typeof situationValue === 'number' && (
+        <Warning
+          type={type}
+          plancher={plancher}
+          plafond={plafond}
+          warning={warning}
+          value={situationValue}
+          unit={unit}
+        />
+      )}
 
       {assistance ? (
-        <Assistance
-          question={question}
-          assistance={assistance}
-          setTempValue={setTempValue}
-          setDisplayedValue={setDisplayedValue}
-        />
+        <Assistance question={question} assistance={assistance} />
       ) : null}
 
       {activeNotifications.length > 0 && (

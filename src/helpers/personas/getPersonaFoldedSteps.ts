@@ -1,6 +1,10 @@
-import type { Engine, Entries, Situation } from '@/publicodes-state/types'
+import type {
+  Engine,
+  Entries,
+  SafeEvaluate,
+  Situation,
+} from '@/publicodes-state/types'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
-import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { fixSituationWithPartialMosaic } from './fixSituationWithPartialMosaic'
 
 type Props = {
@@ -10,7 +14,7 @@ type Props = {
   everyRules: DottedName[]
   engine: Engine | null
   safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
-  safeEvaluate: (rule: PublicodesExpression) => EvaluatedNode | null
+  safeEvaluate: SafeEvaluate
 }
 
 export const getPersonaFoldedSteps = ({
