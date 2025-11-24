@@ -3,10 +3,9 @@
 import { carboneMetric } from '@/constants/model/metric'
 import { useEngine } from '@/publicodes-state'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
-import type { EvaluatedNode } from 'publicodes'
 import { utils } from 'publicodes'
 import { useMemo } from 'react'
-import type { Metric } from '../../types'
+import type { Metric, PublicodesValue } from '../../types'
 import useCurrentSimulation from '../useCurrentSimulation/useCurrentSimulation'
 import useChoices from './hooks/useChoices'
 import useContent from './hooks/useContent'
@@ -22,7 +21,7 @@ import useValue from './hooks/useValue'
  *
  * It should ALWAYS be used to access a rule (unless we need to compare mutliples rules with useEngine)
  */
-export default function useRule(
+export default function useRule<T extends PublicodesValue = PublicodesValue>(
   dottedName: DottedName,
   metric: Metric = carboneMetric
 ) {
@@ -40,8 +39,8 @@ export default function useRule(
   const { situation, foldedSteps, updateCurrentSimulation } =
     useCurrentSimulation()
 
-  const evaluation = useMemo<EvaluatedNode | null>(
-    () => safeEvaluate(dottedName, metric),
+  const evaluation = useMemo(
+    () => safeEvaluate<T>(dottedName, metric),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [dottedName, engine, situation, metric]
   )
@@ -124,6 +123,10 @@ export default function useRule(
     rawMissingVariables,
   })
 
+  const situationValue =
+    situation[dottedName] !== undefined
+      ? safeEvaluate<T>(situation[dottedName])?.nodeValue
+      : undefined
   return {
     /**
      * The type of the question (set to "notQuestion" if not a question)
@@ -221,6 +224,10 @@ export default function useRule(
      * The value as a number (0 if the value is not a number)
      */
     numericValue,
+    /**
+     * The value of the rule, before publicodes mechanisms (plafond, arrondi, etc) where applied
+     */
+    situationValue,
     /**
      * True if the question is not answered
      */

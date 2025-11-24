@@ -1,7 +1,7 @@
 import { carboneMetric } from '@/constants/model/metric'
 import { safeEvaluateHelper } from '@/publicodes-state/helpers/safeEvaluateHelper'
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
-import type { Metric } from '@/publicodes-state/types'
+import type { Metric, SafeEvaluate } from '@/publicodes-state/types'
 import type {
   DottedName,
   NGCRuleNode,
@@ -76,7 +76,7 @@ export function useEngine(rules?: Partial<NGCRules>) {
       return safeEvaluateHelper(exprWithContext, engine ?? new Engine())
     },
     [engine]
-  )
+  ) as SafeEvaluate
 
   const safeGetRule = useMemo<
     (ruleName: DottedName) => NGCRuleNode | undefined
