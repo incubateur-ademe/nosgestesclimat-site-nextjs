@@ -3,7 +3,7 @@ import { ClientLayout } from '@/components/layout/ClientLayout'
 import { noIndexObject } from '@/constants/metadata'
 import Main from '@/design-system/layout/Main'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import i18nConfig from '@/i18nConfig'
+import i18nConfig, { type Locale } from '@/i18nConfig'
 import './[locale]/globals.css'
 import { marianne } from './[locale]/layout'
 
@@ -19,9 +19,9 @@ export function generateMetadata() {
 
 export default function NotFound() {
   return (
-    <ClientLayout locale={i18nConfig.defaultLocale}>
+    <ClientLayout locale={i18nConfig.defaultLocale as Locale}>
       <Main className={marianne.className}>
-        <Route404 locale={i18nConfig.defaultLocale} />
+        <Route404 locale={i18nConfig.defaultLocale as Locale} />
       </Main>
     </ClientLayout>
   )
