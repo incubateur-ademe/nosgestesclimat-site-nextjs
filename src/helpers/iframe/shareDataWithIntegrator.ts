@@ -1,17 +1,17 @@
-import type { ComputedResultsFootprint } from '@/publicodes-state/types'
+import { carboneMetric, eauMetric } from '@/constants/model/metric'
+import type { ComputedResults } from '@/publicodes-state/types'
 
-export function shareDataWithIntegrator(
-  carbonComputedResults: ComputedResultsFootprint
-) {
+export function shareDataWithIntegrator(computedResults: ComputedResults) {
   const sharedData = {
-    t: carbonComputedResults.categories['transport'],
-    a: carbonComputedResults.categories['alimentation'],
-    l: carbonComputedResults.categories['logement'],
-    d: carbonComputedResults.categories['divers'],
-    s: carbonComputedResults.categories['services sociétaux'],
-    bilan: carbonComputedResults.bilan,
-    categories: carbonComputedResults.categories,
-    subcategories: carbonComputedResults.subcategories,
+    t: computedResults[carboneMetric].categories['transport'],
+    a: computedResults[carboneMetric].categories['alimentation'],
+    l: computedResults[carboneMetric].categories['logement'],
+    d: computedResults[carboneMetric].categories['divers'],
+    s: computedResults[carboneMetric].categories['services sociétaux'],
+    footprints: {
+      carbon: computedResults[carboneMetric],
+      water: computedResults[eauMetric],
+    },
   }
 
   window.parent.postMessage(
