@@ -22,7 +22,7 @@ export default forwardRef(function PrenomInput(
       )}
       value={value}
       name="prenom"
-      ref={ref as any}
+      ref={ref as React.ForwardedRef<HTMLInputElement>}
       error={error}
       {...props}
     />

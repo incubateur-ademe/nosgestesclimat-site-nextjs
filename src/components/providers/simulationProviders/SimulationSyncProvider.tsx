@@ -39,7 +39,7 @@ export default function SimulationSyncProvider({
 
   const { isInitialized } = useEngine()
 
-  const { saveSimulation, isPending } = useSaveSimulation()
+  const { saveSimulation } = useSaveSimulation()
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 

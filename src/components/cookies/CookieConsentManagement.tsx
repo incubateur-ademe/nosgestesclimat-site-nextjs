@@ -13,7 +13,24 @@ type CookieFormData = {
   [CookieConsentKey.googleAds]: 'accept' | 'refuse'
 }
 
-const Radio = ({ id, name, checked, disabled, label, ...props }: any) => (
+type RadioProps = {
+  id: string
+  name: string
+  checked: boolean
+  disabled?: boolean
+  label: string | React.ReactNode
+  value?: string
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+const Radio = ({
+  id,
+  name,
+  checked,
+  disabled,
+  label,
+  ...props
+}: RadioProps) => (
   <label
     className={`inline-flex cursor-pointer items-center gap-2 select-none ${disabled ? 'opacity-50' : ''}`}
     htmlFor={id}>

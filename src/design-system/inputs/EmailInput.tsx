@@ -35,7 +35,7 @@ export default forwardRef(function EmailInput(
       placeholder="nom@exemple.fr"
       className={className}
       readOnly={readOnly}
-      ref={ref as any}
+      ref={ref as React.ForwardedRef<HTMLInputElement>}
       error={error}
       value={value}
       title={title}

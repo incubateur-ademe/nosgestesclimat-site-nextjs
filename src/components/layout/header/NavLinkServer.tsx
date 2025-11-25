@@ -5,19 +5,15 @@ import { twMerge } from 'tailwind-merge'
 type Props = {
   href: string
   shouldUseDefaultLink?: boolean
-  activeMatches?: string[]
   icon?: ({ className }: { className?: string }) => JSX.Element
   className?: string
-  activeClassName?: string
 }
 
 export default function NavLinkServer({
   children,
   href,
   icon,
-  activeMatches,
   className,
-  activeClassName,
   ...props
 }: PropsWithChildren<Props> & HTMLAttributes<HTMLAnchorElement>) {
   const Tag = DefaultLink

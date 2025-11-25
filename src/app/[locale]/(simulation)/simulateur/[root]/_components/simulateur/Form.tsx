@@ -84,7 +84,8 @@ export default function Form() {
   if (!currentQuestion) {
     return
   }
-  const QuestionComponent = questions[currentQuestion] || Question
+  const SpecialQuestionComponent = questions[currentQuestion]
+  const QuestionComponent = SpecialQuestionComponent || Question
 
   return (
     <>
@@ -93,10 +94,17 @@ export default function Form() {
 
         <div className="relative flex flex-1 flex-col gap-2 md:flex-row md:gap-8 lg:mt-0 lg:gap-12">
           <div className="relative flex flex-1 flex-col">
-            <QuestionComponent
-              question={currentQuestion}
-              key={currentQuestion}
-            />
+            {SpecialQuestionComponent ? (
+              <SpecialQuestionComponent
+                question={currentQuestion}
+                key={currentQuestion}
+              />
+            ) : (
+              <QuestionComponent
+                question={currentQuestion}
+                key={currentQuestion}
+              />
+            )}
 
             {isIframe && (
               <Navigation

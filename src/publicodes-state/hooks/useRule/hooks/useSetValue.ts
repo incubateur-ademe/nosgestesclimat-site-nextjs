@@ -132,15 +132,17 @@ const checkValueValidity = ({
   value,
   type,
 }: {
-  value: any
+  value: unknown
   type: string | undefined
 }): NodeValue => {
   switch (type) {
-    case 'choices':
+    case 'choices': {
       if (!value) {
         return null
       }
-      return value?.startsWith("'") ? value : `'${value}'`
+      const stringValue = typeof value === 'string' ? value : String(value)
+      return stringValue?.startsWith("'") ? stringValue : `'${stringValue}'`
+    }
     case 'boolean':
       if (value === 'oui' || value === true) {
         return 'oui'
@@ -158,6 +160,10 @@ const checkValueValidity = ({
           ? value
           : 0
     default:
-      return !value ? 0 : value
+      return !value
+        ? 0
+        : typeof value === 'number' || typeof value === 'string'
+          ? value
+          : 0
   }
 }

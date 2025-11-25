@@ -101,12 +101,19 @@ export default function CategoryRadarChart({
     return description
   }
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({
+    active,
+    payload,
+    label,
+  }: {
+    active?: boolean
+    payload?: Array<{ dataKey: string; value: number }>
+    label?: string
+  }) => {
     if (active && payload && payload.length) {
-      const userValue =
-        payload.find((p: any) => p.dataKey === 'user')?.value || 0
+      const userValue = payload.find((p) => p.dataKey === 'user')?.value || 0
       const averageValue =
-        payload.find((p: any) => p.dataKey === 'average')?.value || 0
+        payload.find((p) => p.dataKey === 'average')?.value || 0
 
       const userFormatted = formatCarbonFootprint(userValue, {
         maximumFractionDigits: 1,

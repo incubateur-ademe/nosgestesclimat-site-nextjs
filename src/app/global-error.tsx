@@ -18,7 +18,7 @@ export default function GlobalError({ error }: Props) {
       <body style={{ backgroundColor: 'white', fontFamily: 'sans-serif' }}>
         <Error500 />
 
-        <NextError statusCode={undefined as any} />
+        <NextError statusCode={500} />
       </body>
     </html>
   )

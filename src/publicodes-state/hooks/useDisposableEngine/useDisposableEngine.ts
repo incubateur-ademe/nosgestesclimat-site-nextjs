@@ -2,7 +2,7 @@ import { carboneMetric } from '@/constants/model/metric'
 import { useEngine } from '@/publicodes-state'
 import getSomme from '@/publicodes-state/helpers/getSomme'
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import type { PublicodesExpression } from 'publicodes'
 import Engine from 'publicodes'
 import { useCallback, useMemo } from 'react'
@@ -10,7 +10,7 @@ import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
 import type { Metric, Situation } from '../../types'
 
 type Props = {
-  rules?: any
+  rules?: Partial<NGCRules>
   situation: Situation
 }
 /**

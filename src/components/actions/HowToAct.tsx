@@ -5,7 +5,11 @@ import { endClickActions } from '@/constants/tracking/pages/end'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import RecommendedActions from './howToAct/RecommendedActions'
 
-export default function HowToAct({ shouldLeadToTest = true }) {
+export default function HowToAct({
+  shouldLeadToTest = true,
+}: {
+  shouldLeadToTest?: boolean
+}) {
   return (
     <>
       <h2>

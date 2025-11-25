@@ -51,7 +51,7 @@ export const CookieConsentProvider = ({ children }: PropsWithChildren) => {
       try {
         customChoiceFromStorage = JSON.parse(customChoiceFromStorage)
         setCookieCustomChoice(customChoiceFromStorage)
-      } catch (e) {
+      } catch {
         // Do nothing, JSON is invalid
       }
     }

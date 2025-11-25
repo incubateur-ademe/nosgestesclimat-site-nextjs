@@ -6,14 +6,15 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useEngine } from '@/publicodes-state'
 import type { Action } from '@/publicodes-state/types'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
+import type { EvaluatedNode } from 'publicodes'
 import { useState } from 'react'
 import ActionList from './actions/ActionList'
 
 type Props = {
   actions: (Action & { isIrrelevant: boolean })[]
-  rules: any
+  rules: Partial<NGCRules>
   radical: boolean
 }
 
@@ -27,9 +28,16 @@ export default function Actions({
     useState(false)
 
   const { t } = useClientTranslation()
-  const { getValue } = useEngine()
+  const { getValue, safeEvaluate } = useEngine()
 
-  const bilan = { nodeValue: getValue('bilan'), dottedName: 'bilan' }
+  const bilanEvaluation = safeEvaluate('bilan')
+  const bilan = bilanEvaluation
+    ? { ...bilanEvaluation, dottedName: 'bilan' as DottedName }
+    : ({
+        nodeValue: getValue('bilan'),
+        dottedName: 'bilan' as DottedName,
+        missingVariables: {},
+      } as EvaluatedNode & { dottedName: DottedName })
 
   const thresholds: [number, string][] = [
     [10000, t('plus de 10 tonnes')],
@@ -229,7 +237,7 @@ export default function Actions({
       </section>
 
       <ActionList
-        actions={notRejected.filter((a: { value: any }) => a.value < 0)}
+        actions={notRejected.filter((a) => a.value < 0)}
         rules={rules}
         bilan={bilan}
         setActionWithFormOpen={setActionWithFormOpen}

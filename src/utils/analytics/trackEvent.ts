@@ -8,7 +8,7 @@ const shouldLogTracking =
 
 declare global {
   interface Window {
-    _paq: any[]
+    _paq: Array<unknown>
     Matomo: Record<string, unknown>
   }
 }

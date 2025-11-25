@@ -21,7 +21,7 @@ import { formatEmail } from '@/utils/format/formatEmail'
 import { captureException } from '@sentry/nextjs'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useForm as useReactHookForm } from 'react-hook-form'
+import { useForm as useReactHookForm, type Control } from 'react-hook-form'
 
 type Inputs = {
   name: string
@@ -126,7 +126,7 @@ export default function NameForm() {
       />
 
       <GridRadioInputs
-        control={control as any}
+        control={control as unknown as Control<Record<string, string | number>>}
         label={<Trans>Et une illustration</Trans>}
         helperText={<Trans>Pour faire joli et le reconnaitre !</Trans>}
         name="emoji"

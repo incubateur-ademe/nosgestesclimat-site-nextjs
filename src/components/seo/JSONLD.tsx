@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 export default function JSONLD({
   jsonLd,
 }: {
-  jsonLd: Array<Record<string, any>>
+  jsonLd: Array<Record<string, unknown>>
 }) {
   const [mounted, setMounted] = useState(false)
 

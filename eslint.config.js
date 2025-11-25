@@ -8,6 +8,41 @@ import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
 import globals from 'globals'
 
+const commonRules = {
+  ...react.configs.recommended.rules,
+  ...reactHooks.configs.recommended.rules,
+  ...jsxA11y.configs.strict.rules,
+
+  'react/react-in-jsx-scope': 'off',
+  'react/jsx-no-undef': 'error',
+  'react/display-name': 'error',
+  'react/jsx-no-target-blank': 'error',
+  'react/no-unescaped-entities': [
+    'error',
+    {
+      forbid: [
+        {
+          char: '>',
+          alternatives: ['&gt;'],
+        },
+        {
+          char: '}',
+          alternatives: ['&#125;'],
+        },
+      ],
+    },
+  ],
+  'react-hooks/exhaustive-deps': 'error',
+
+  'jsx-a11y/label-has-associated-control': 'error',
+  'jsx-a11y/no-redundant-roles': 'off',
+
+  'no-undef': 'error',
+  'no-redeclare': 'error',
+  'no-unreachable': 'error',
+  'no-irregular-whitespace': 'off',
+}
+
 export default [
   // Base configuration
   js.configs.recommended,
@@ -54,28 +89,9 @@ export default [
 
       // Custom rules from .eslintrc.json
       '@typescript-eslint/consistent-type-imports': 'error',
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-unsafe-member-access': 'off',
-      '@typescript-eslint/no-unsafe-assignment': 'off',
-      '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/require-await': 'error',
 
-      'react/no-unescaped-entities': 'off',
-      'react/react-in-jsx-scope': 'off',
-      'react/prop-types': 'off',
-      'react/jsx-no-undef': 'error',
-      'react/display-name': 'error',
-      'react/jsx-no-target-blank': 'error',
-
-      'react-hooks/exhaustive-deps': 'error',
-
-      'jsx-a11y/label-has-associated-control': 'error',
-      'jsx-a11y/no-redundant-roles': 'off',
-
-      'no-undef': 'error',
-      'no-redeclare': 'error',
-      'no-unreachable': 'error',
-      'no-irregular-whitespace': 'off',
+      ...commonRules,
     },
   },
 
@@ -114,22 +130,7 @@ export default [
       ...reactHooks.configs.recommended.rules,
       ...jsxA11y.configs.strict.rules,
 
-      'react/no-unescaped-entities': 'off',
-      'react/react-in-jsx-scope': 'off',
-      'react/prop-types': 'off',
-      'react/jsx-no-undef': 'error',
-      'react/display-name': 'error',
-      'react/jsx-no-target-blank': 'error',
-
-      'react-hooks/exhaustive-deps': 'error',
-
-      'jsx-a11y/label-has-associated-control': 'error',
-      'jsx-a11y/no-redundant-roles': 'off',
-
-      'no-undef': 'error',
-      'no-redeclare': 'error',
-      'no-unreachable': 'error',
-      'no-irregular-whitespace': 'off',
+      ...commonRules,
     },
   },
 

@@ -127,7 +127,7 @@ export default function Question({
             {type === 'boolean' && (
               <BooleanInput
                 value={situationValue as Evaluation<boolean>}
-                setValue={(value) => {
+                setValue={(value: string) => {
                   {
                     setValue(value, { questionDottedName: question })
                     trackEvent(
@@ -135,12 +135,9 @@ export default function Question({
                     )
                   }
                 }}
-                isMissing={isMissing}
                 data-cypress-id={question}
                 label={label || ''}
                 firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
-                aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content  warning-message notification-message`}
-                aria-labelledby="question-label"
               />
             )}
 
@@ -157,12 +154,9 @@ export default function Question({
                     )
                   }
                 }}
-                isMissing={isMissing}
                 data-cypress-id={question}
                 label={label || ''}
                 firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
-                aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content  warning-message  notification-message`}
-                aria-labelledby="question-label"
               />
             )}
 

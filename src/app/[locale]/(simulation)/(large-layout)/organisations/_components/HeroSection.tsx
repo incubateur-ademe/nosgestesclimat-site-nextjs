@@ -7,13 +7,10 @@ import {
   organisationsAccueilClickDemo,
 } from '@/constants/tracking/pages/organisationsAccueil'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import Image from 'next/image'
 
 export default function HeroSection() {
-  const { t } = useClientTranslation()
-
   return (
     <div className="flex flex-wrap justify-center gap-12 pt-14 lg:flex-nowrap lg:justify-start lg:gap-16">
       <div className="max-w-full md:w-[34rem]">

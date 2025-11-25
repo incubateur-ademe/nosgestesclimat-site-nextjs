@@ -16,7 +16,7 @@ type Props = {
   radical: boolean
   safeEvaluate: SafeEvaluate
   getSpecialRuleObject: (dottedName: DottedName) => EvaluatedNode & NGCRuleNode
-  actionChoices: any
+  actionChoices: Partial<Record<DottedName, boolean>>
 }
 
 export default function getActions({

@@ -136,7 +136,7 @@ export default function MetricSlider({
           isSticky={isSticky}
           tabId="tab-metric-carbone"
           panelId="panel-metric-carbone"
-          onKeyDown={(e: React.KeyboardEvent) => {
+          onKeyDown={() => {
             // Let the tablist parent handle the keydown
           }}>
           <div className="w-full flex-1 px-4">
@@ -160,7 +160,7 @@ export default function MetricSlider({
           isSticky={isSticky}
           tabId="tab-metric-eau"
           panelId="panel-metric-eau"
-          onKeyDown={(e: React.KeyboardEvent) => {
+          onKeyDown={() => {
             // Let the tablist parent handle the keydown
           }}>
           <WaterTotalChart isSmall={isSticky} total={waterTotal} />

@@ -71,7 +71,7 @@ export default function DocumentationServer({
         </p>
       </Card>
 
-      <ButtonLaunch locale={locale} />
+      <ButtonLaunch />
 
       <PagesProches rules={rules} ruleName={ruleName} />
     </div>

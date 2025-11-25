@@ -87,7 +87,7 @@ export default function CreationForm() {
       } else {
         router.push(`/organisations/${organisationUpdated?.slug}`)
       }
-    } catch (error: any) {
+    } catch (error) {
       captureException(error)
     }
   }

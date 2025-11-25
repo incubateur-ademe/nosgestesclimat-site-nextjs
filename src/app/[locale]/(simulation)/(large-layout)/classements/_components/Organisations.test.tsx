@@ -1,3 +1,4 @@
+import type { Organisation, OrganisationPoll } from '@/types/organisations'
 import { render, screen } from '@testing-library/react'
 import { vi } from 'vitest'
 
@@ -60,11 +61,11 @@ describe('Organisations', () => {
     const useFetchOrganisations = (
       await import('@/hooks/organisations/useFetchOrganisations')
     ).default
-    ;(useFetchOrganisations as any).mockReturnValue({
+    vi.mocked(useFetchOrganisations).mockReturnValue({
       data: undefined,
       isLoading: true,
       error: null,
-    })
+    } as unknown as ReturnType<typeof useFetchOrganisations>)
 
     render(<Organisations />)
 
@@ -79,16 +80,16 @@ describe('Organisations', () => {
       '@/hooks/organisations/polls/useFetchPolls'
     )
 
-    ;(useFetchOrganisations as any).mockReturnValue({
-      data: mockOrganisations,
+    vi.mocked(useFetchOrganisations).mockReturnValue({
+      data: mockOrganisations as unknown as Organisation[],
       isLoading: false,
       error: null,
-    })
-    ;(useFetchPolls as any).mockReturnValue({
-      data: mockPolls,
+    } as unknown as ReturnType<typeof useFetchOrganisations>)
+    vi.mocked(useFetchPolls).mockReturnValue({
+      data: mockPolls as unknown as OrganisationPoll[],
       isLoading: false,
       error: null,
-    })
+    } as unknown as ReturnType<typeof useFetchPolls>)
 
     render(<Organisations />)
 
@@ -103,16 +104,16 @@ describe('Organisations', () => {
       '@/hooks/organisations/polls/useFetchPolls'
     )
 
-    ;(useFetchOrganisations as any).mockReturnValue({
+    vi.mocked(useFetchOrganisations).mockReturnValue({
       data: [],
       isLoading: false,
       error: null,
-    })
-    ;(useFetchPolls as any).mockReturnValue({
+    } as unknown as ReturnType<typeof useFetchOrganisations>)
+    vi.mocked(useFetchPolls).mockReturnValue({
       data: undefined,
       isLoading: false,
       error: null,
-    })
+    } as unknown as ReturnType<typeof useFetchPolls>)
 
     render(<Organisations />)
 
@@ -123,11 +124,14 @@ describe('Organisations', () => {
     const useFetchOrganisations = (
       await import('@/hooks/organisations/useFetchOrganisations')
     ).default
-    ;(useFetchOrganisations as any).mockReturnValue({
+    vi.mocked(useFetchOrganisations).mockReturnValue({
       data: undefined,
       isLoading: false,
-      error: { status: 500, message: 'Internal Server Error' },
-    })
+      error: {
+        status: 500,
+        message: 'Internal Server Error',
+      } as unknown as Error,
+    } as unknown as ReturnType<typeof useFetchOrganisations>)
 
     render(<Organisations />)
 
@@ -138,11 +142,11 @@ describe('Organisations', () => {
     const useFetchOrganisations = (
       await import('@/hooks/organisations/useFetchOrganisations')
     ).default
-    ;(useFetchOrganisations as any).mockReturnValue({
+    vi.mocked(useFetchOrganisations).mockReturnValue({
       data: undefined,
       isLoading: false,
-      error: { status: 401, message: 'Unauthorized' },
-    })
+      error: { status: 401, message: 'Unauthorized' } as unknown as Error,
+    } as unknown as ReturnType<typeof useFetchOrganisations>)
 
     render(<Organisations />)
 
@@ -157,16 +161,16 @@ describe('Organisations', () => {
       '@/hooks/organisations/polls/useFetchPolls'
     )
 
-    ;(useFetchOrganisations as any).mockReturnValue({
-      data: mockOrganisations,
+    vi.mocked(useFetchOrganisations).mockReturnValue({
+      data: mockOrganisations as unknown as Organisation[],
       isLoading: false,
       error: null,
-    })
-    ;(useFetchPolls as any).mockReturnValue({
-      data: mockPolls,
+    } as unknown as ReturnType<typeof useFetchOrganisations>)
+    vi.mocked(useFetchPolls).mockReturnValue({
+      data: mockPolls as unknown as OrganisationPoll[],
       isLoading: false,
       error: null,
-    })
+    } as unknown as ReturnType<typeof useFetchPolls>)
 
     render(<Organisations />)
 

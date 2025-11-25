@@ -36,7 +36,7 @@ export async function fetchThematicLandingPages(): Promise<
     return {
       thematicLandingPages: thematicLPResponse.data,
     }
-  } catch (error) {
+  } catch {
     return {
       thematicLandingPages: [],
     }

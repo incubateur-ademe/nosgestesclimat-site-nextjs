@@ -32,7 +32,7 @@ function getOrganisationEspaceItems({
   t,
 }: {
   pathname: string
-  params: any
+  params: { orgaSlug?: string; pollSlug?: string }
   user: User
   isAdmin: boolean
   poll?: PublicOrganisationPoll | null
@@ -91,7 +91,7 @@ export function getOrganisationItems({
   t,
 }: {
   pathname: string
-  params: any
+  params: { orgaSlug?: string; pollSlug?: string }
   user: User
   isAdmin: boolean
   poll?: PublicOrganisationPoll | null

@@ -75,7 +75,15 @@ export default function CategoryDistribution({
     return description
   }
 
-  const CustomLabel = (props: any) => {
+  const CustomLabel = (props: {
+    cx: number
+    cy: number
+    midAngle: number
+    innerRadius: number
+    outerRadius: number
+    name: string
+    formattedValue: { formattedValue: string; unit: string }
+  }) => {
     const { cx, cy, midAngle, innerRadius, outerRadius, name, formattedValue } =
       props
     const RADIAN = Math.PI / 180

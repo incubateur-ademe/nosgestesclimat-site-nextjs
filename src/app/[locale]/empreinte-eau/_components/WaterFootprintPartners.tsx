@@ -9,7 +9,7 @@ export default async function WaterFootprintPartners({
 }: {
   locale: Locale
 }) {
-  const { t } = await getServerTranslation({ locale })
+  await getServerTranslation({ locale })
   return (
     <>
       <Marianne className="h-auto w-12 md:w-auto" />

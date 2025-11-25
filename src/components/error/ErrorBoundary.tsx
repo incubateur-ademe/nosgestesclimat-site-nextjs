@@ -1,5 +1,5 @@
 import { captureException } from '@sentry/nextjs'
-import type { ErrorInfo, ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import React from 'react'
 import ErrorContent from './ErrorContent'
 
@@ -25,7 +25,7 @@ class ErrorBoundary extends React.Component<
     return { hasError: true, error }
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  componentDidCatch(error: Error) {
     // Send error to Sentry
     captureException(error)
   }

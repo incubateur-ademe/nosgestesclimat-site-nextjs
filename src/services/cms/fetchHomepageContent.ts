@@ -43,8 +43,7 @@ export async function fetchHomepageContent({
       return undefined
     }
 
-    const { mainArticle, image, title, description, pageMetadata } =
-      homepageResponse.data
+    const { mainArticle, image, title, description } = homepageResponse.data
 
     const articlesSearchParams: Record<string, string> = {
       locale,

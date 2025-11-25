@@ -183,7 +183,7 @@ export default function NewslettersBlock() {
         email: formattedEmail,
         name: data.name,
       })
-    } catch (error) {
+    } catch {
       // Message is already displayed
     }
   }

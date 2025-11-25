@@ -26,7 +26,7 @@ type Props = {
   isClearable?: boolean
   isSearchable?: boolean
   isAsync?: boolean
-  styles?: any
+  styles?: Record<string, unknown>
 }
 
 export default function ComplexSelect({

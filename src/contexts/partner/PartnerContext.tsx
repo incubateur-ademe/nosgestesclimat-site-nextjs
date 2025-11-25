@@ -70,7 +70,7 @@ export function PartnerProvider({ children }: PropsWithChildren) {
         )
 
       return Object.keys(params).length ? params : undefined
-    } catch (error) {
+    } catch {
       return undefined
     }
   }, [searchParams])

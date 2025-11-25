@@ -21,7 +21,7 @@ export type LangInfos = {
   name: string
   abrv: string
   abrvLocale: string
-  uiTrad: any // The UI translation in YAML
+  uiTrad: Record<string, unknown> // The UI translation in YAML
 }
 
 export type YamlEntry = { entries: { [key: string]: string } }
@@ -35,5 +35,5 @@ export type TransPropsWithInterpolation = TransProps<
   undefined,
   // NOTE(@EmileRolley): hack to be able to use string interpolation in Trans components.
   // However, TransProps<string> should be sufficient.
-  any
+  Record<string, unknown>
 >

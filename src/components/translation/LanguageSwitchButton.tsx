@@ -74,9 +74,7 @@ export default function LanguageSwitchButton({
     updateLangCookie(newLocale)
   }
 
-  if (
-    Object.entries(langButtonsDisplayed ?? {}).every(([_, value]) => !value)
-  ) {
+  if (Object.entries(langButtonsDisplayed ?? {}).every(([, value]) => !value)) {
     return null
   }
 

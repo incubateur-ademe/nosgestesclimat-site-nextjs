@@ -94,7 +94,7 @@ export default function InputGroup({
             'aria-describedby': describedBy,
             disabled,
             required,
-          } as any)
+          } as Record<string, unknown>)
         }
         return child
       })}
