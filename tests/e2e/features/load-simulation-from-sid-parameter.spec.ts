@@ -11,10 +11,6 @@ import { dismissCookieBanner } from '../../helpers/cookies/dismissCookieBanner'
 import { click } from '../../helpers/interactions/click'
 import { type } from '../../helpers/interactions/type'
 
-test.use({
-  storageState: undefined,
-})
-
 test.describe('Loading the simulation from the sid parameter', () => {
   test.describe('given the user saves their simulation after answering a question', () => {
     let simulationId: string | undefined
@@ -32,7 +28,7 @@ test.describe('Loading the simulation from the sid parameter', () => {
       )
       initialValue = (await questionLabel.textContent()) ?? undefined
 
-      page.locator('input').first().click()
+      await page.locator('label[data-cypress-id]').first().click()
       await page.locator(`[data-cypress-id="${NEXT_QUESTION_BUTTON}"]`).click()
       await click(page, BACK_BUTTON)
 

@@ -8,6 +8,7 @@ on:
       - preprod
 jobs:
   e2e:
+    environment: 'Test E2E'
     strategy:
       matrix:
         ab-test: [false, true]
@@ -47,12 +48,15 @@ jobs:
         run: yarn build
         env:
           NEXT_PUBLIC_FORCE_AB_TEST: ${{ matrix.ab-test }}
+          NEXT_PUBLIC_SERVER_URL: ${{ vars.NEXT_PUBLIC_SERVER_URL }}
 
       - name: Run E2E tests
         env:
           PLAYWRIGHT_baseUrl: "${{ github.event.inputs.branch == 'preprod' && 'https://preprod.nosgestesclimat.fr' || 'http://localhost:3000' }}"
           CMS_TOKEN: ${{ secrets.CMS_TOKEN }}
           CMS_URL: ${{ secrets.CMS_URL }}
+          NEXT_PUBLIC_SERVER_URL: ${{ vars.NEXT_PUBLIC_SERVER_URL }}
+
         run: |
           echo "Running tests against ${{ env.PLAYWRIGHT_baseUrl }} (ABTest: ${{ env.NEXT_PUBLIC_FORCE_AB_TEST }})"
           ${{ github.event.inputs.branch != 'preprod' && 'yarn start &' }}
