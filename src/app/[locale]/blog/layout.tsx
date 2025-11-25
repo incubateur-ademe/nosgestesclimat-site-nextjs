@@ -1,7 +1,8 @@
 import HeaderServer from '@/components/layout/HeaderServer'
 import { ServerLayout } from '@/components/layout/ServerLayout'
 import type { DefaultPageProps } from '@/types'
-import type { PropsWithChildren } from 'react'
+import { Suspense, type PropsWithChildren } from 'react'
+import { PageviewTracker } from './_components/PageviewTracker'
 
 type LayoutProps = PropsWithChildren & DefaultPageProps
 
@@ -11,6 +12,10 @@ export default async function BlogLayout({ children, params }: LayoutProps) {
   return (
     <ServerLayout locale={locale}>
       <HeaderServer locale={locale} />
+
+      <Suspense fallback={null}>
+        <PageviewTracker />
+      </Suspense>
 
       <main
         id="main-content"
