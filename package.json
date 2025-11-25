@@ -28,7 +28,6 @@
     "lint:fix": "eslint src/ --fix",
     "lint:types": "tsc --noEmit",
     "e2e": "playwright test --ui",
-    "e2e:ci": "playwright test",
     "e2e:with-db": "WITH_DB=true playwright test",
     "e2e:generate": "npx tsx tests/scripts/generateSpecsFromPersonas.ts",
     "iframe-healthcheck": "node scripts/healthchecks/iframes.js",
