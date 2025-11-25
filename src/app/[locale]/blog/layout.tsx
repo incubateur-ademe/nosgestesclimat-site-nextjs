@@ -1,7 +1,7 @@
 import HeaderServer from '@/components/layout/HeaderServer'
 import { ServerLayout } from '@/components/layout/ServerLayout'
 import type { DefaultPageProps } from '@/types'
-import type { PropsWithChildren } from 'react'
+import { type PropsWithChildren } from 'react'
 
 type LayoutProps = PropsWithChildren & DefaultPageProps
 

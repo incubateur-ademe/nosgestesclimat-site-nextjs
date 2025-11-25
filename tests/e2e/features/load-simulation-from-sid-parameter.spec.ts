@@ -1,7 +1,6 @@
 import { expect, test } from '@playwright/test'
 import {
   BACK_BUTTON,
-  CAR_TYPE_INPUT,
   NEXT_QUESTION_BUTTON,
   QUESTION_LABEL,
   SAVE_MODAL_EMAIL_INPUT,
@@ -11,10 +10,6 @@ import {
 import { dismissCookieBanner } from '../../helpers/cookies/dismissCookieBanner'
 import { click } from '../../helpers/interactions/click'
 import { type } from '../../helpers/interactions/type'
-
-test.use({
-  storageState: undefined,
-})
 
 test.describe('Loading the simulation from the sid parameter', () => {
   test.describe('given the user saves their simulation after answering a question', () => {
@@ -31,10 +26,9 @@ test.describe('Loading the simulation from the sid parameter', () => {
       const questionLabel = page.locator(
         `[data-cypress-id="${QUESTION_LABEL}"]`
       )
-      expect(questionLabel).toBeDefined()
       initialValue = (await questionLabel.textContent()) ?? undefined
 
-      await click(page, CAR_TYPE_INPUT)
+      await page.locator('label[data-cypress-id]').first().click()
       await page.locator(`[data-cypress-id="${NEXT_QUESTION_BUTTON}"]`).click()
       await click(page, BACK_BUTTON)
 

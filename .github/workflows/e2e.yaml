@@ -1,19 +1,19 @@
 name: E2E Tests
 
 on:
+  pull_request:
   push:
     branches:
+      - main
       - preprod
-  workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Branch to test'
-        required: true
-        type: string
-
 jobs:
   e2e:
+    environment: 'Test E2E'
+    strategy:
+      matrix:
+        ab-test: [false, true]
     runs-on: ubuntu-latest
+    name: E2E Tests [AB-test ${{ matrix.ab-test && 'enabled' || 'disabled' }}]
     steps:
       - uses: actions/checkout@v4
 
@@ -21,75 +21,50 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22.14'
+          cache: yarn
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
 
       - name: Install Playwright
         run: yarn playwright install
 
       # - name: Generate E2E test specs from personas
       #   run: yarn e2e:generate
-
-      - name: Get PR number for non-main/preprod branches
-        if: ${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.branch != 'preprod') || (github.event_name == 'push' && github.ref != 'refs/heads/preprod') || (github.event_name == 'pull_request' && github.head_ref != 'preprod') }}
-        id: pr
-        uses: actions/github-script@v7
+      - uses: actions/cache@v4
+        if: github.event.inputs.branch != 'preprod'
+        name: Cache nextJS build
         with:
-          script: |
-            // For workflow_dispatch events, we need to find the PR for the specified branch
-            if (context.eventName === 'workflow_dispatch') {
-              const prs = await github.rest.pulls.list({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                head: context.repo.owner + ':' + '${{ github.event.inputs.branch }}',
-                sort: 'created',
-                direction: 'desc'
-              });
-              if (prs.data.length > 0) {
-                return prs.data[0].number;
-              }
-              return '';
-            }
-            // For pull_request events, we can get the PR number directly
-            if (context.payload.pull_request) {
-              return context.payload.pull_request.number;
-            }
-            // Fallback: try to find PR by current branch
-            const currentBranch = context.ref.replace('refs/heads/', '');
-            const prs = await github.rest.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              head: context.repo.owner + ':' + currentBranch,
-              sort: 'created',
-              direction: 'desc'
-            });
-            if (prs.data.length > 0) {
-              return prs.data[0].number;
-            }
-            return '';
+          path: |
+            ${{ github.workspace }}/.next/cache
+          # Generate a new cache whenever packages or source files change.
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('src/**/*.(js|jsx|ts|tsx)') }}-${{ matrix.ab-test }}
+          # If source files changed but packages didn't, rebuild from a prior cache.
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
 
-      - name: Set test URL
-        id: set-url
-        run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ github.event.inputs.branch }}" = "preprod" ]; then
-            echo "TEST_URL=https://preprod.nosgestesclimat.fr" >> $GITHUB_ENV
-          elif [ "${{ github.event_name }}" = "push" ] && [ "${{ github.ref }}" = "refs/heads/preprod" ]; then
-            echo "TEST_URL=https://preprod.nosgestesclimat.fr" >> $GITHUB_ENV
-          else
-            PR_NUMBER=${{ steps.pr.outputs.result }}
-            if [ -n "$PR_NUMBER" ]; then
-              echo "TEST_URL=https://nosgestesclimat-site-preprod-pr$PR_NUMBER.osc-fr1.scalingo.io" >> $GITHUB_ENV
-            else
-              echo "No PR found for branch ${{ github.event.inputs.branch }}" >&2
-              exit 1
-            fi
-          fi
-
-      - name: Set PLAYWRIGHT_baseUrl
-        run: echo "PLAYWRIGHT_baseUrl=${{ env.TEST_URL }}" >> $GITHUB_ENV
+      - name: Build
+        if: github.event.inputs.branch != 'preprod'
+        run: yarn build
+        env:
+          NEXT_PUBLIC_FORCE_AB_TEST: ${{ matrix.ab-test }}
+          NEXT_PUBLIC_SERVER_URL: ${{ vars.NEXT_PUBLIC_SERVER_URL }}
 
       - name: Run E2E tests
+        env:
+          PLAYWRIGHT_baseUrl: "${{ github.event.inputs.branch == 'preprod' && 'https://preprod.nosgestesclimat.fr' || 'http://localhost:3000' }}"
+          CMS_TOKEN: ${{ secrets.CMS_TOKEN }}
+          CMS_URL: ${{ secrets.CMS_URL }}
+          NEXT_PUBLIC_SERVER_URL: ${{ vars.NEXT_PUBLIC_SERVER_URL }}
+
         run: |
-          echo "Running tests against ${{ env.TEST_URL }}"
-          yarn e2e:ci
+          echo "Running tests against ${{ env.PLAYWRIGHT_baseUrl }} (ABTest: ${{ env.NEXT_PUBLIC_FORCE_AB_TEST }})"
+          ${{ github.event.inputs.branch != 'preprod' && 'yarn start &' }}
+          yarn run playwright test
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report-ab-test-${{ matrix.ab-test && 'enabled' || 'disabled' }}
+          path: playwright-report/
+          retention-days: 30
