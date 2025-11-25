@@ -95,10 +95,7 @@ export default function ActionCard({
   const hasFormula = !!flatRule?.formule
   const isDisabled =
     (flatRule &&
-      getIsActionDisabled({
-        formule:
-          typeof flatRule.formule === 'string' ? flatRule.formule : undefined,
-      }) &&
+      getIsActionDisabled(flatRule as { formule?: string }) &&
       traversedVariables &&
       Object.keys(actionChoices || {}).some((key) => {
         return traversedVariables.includes(key)
