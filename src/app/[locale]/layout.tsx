@@ -6,7 +6,10 @@ import { captureException } from '@sentry/nextjs'
 import { dir } from 'i18next'
 import localFont from 'next/font/local'
 import Script from 'next/script'
+import { Suspense, lazy } from 'react'
 import './globals.css'
+
+const Trackers = lazy(() => import('@/components/tracking/Trackers'))
 
 export const marianne = localFont({
   src: [
@@ -70,6 +73,10 @@ export default async function RootLayout({
           <link rel="manifest" href="/manifest.webmanifest" />
 
           <meta name="theme-color" content="#4949ba" />
+
+          <Suspense fallback={null}>
+            <Trackers locale={locale} />
+          </Suspense>
 
           {
             // Matomo Prod
