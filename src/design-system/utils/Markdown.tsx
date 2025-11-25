@@ -64,7 +64,7 @@ export default function Markdown({
                 type?: string
                 [key: string]: unknown
               }) => {
-                // If type if checkbox, return a dummy checkbox not interactive
+                // If type is checkbox, return a dummy checkbox not interactive
                 if (type === 'checkbox') {
                   return <div className="h-4 w-4 rounded-xs bg-gray-200" />
                 }
