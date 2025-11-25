@@ -12,11 +12,7 @@ const commonRules = {
   ...react.configs.recommended.rules,
   ...reactHooks.configs.recommended.rules,
   ...jsxA11y.configs.strict.rules,
-
   'react/react-in-jsx-scope': 'off',
-  'react/jsx-no-undef': 'error',
-  'react/display-name': 'error',
-  'react/jsx-no-target-blank': 'error',
   'react/no-unescaped-entities': [
     'error',
     {
@@ -33,13 +29,7 @@ const commonRules = {
     },
   ],
   'react-hooks/exhaustive-deps': 'error',
-
-  'jsx-a11y/label-has-associated-control': 'error',
   'jsx-a11y/no-redundant-roles': 'off',
-
-  'no-undef': 'error',
-  'no-redeclare': 'error',
-  'no-unreachable': 'error',
   'no-irregular-whitespace': 'off',
 }
 
