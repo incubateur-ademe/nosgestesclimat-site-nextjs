@@ -11,8 +11,11 @@ import {
 } from '@/publicodes-state'
 import type { Action } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/analytics/trackEvent'
-import type { NGCRuleNode, NGCRules } from '@incubateur-ademe/nosgestesclimat'
-import type { EvaluatedNode } from 'publicodes'
+import type {
+  NGCRuleNode,
+  NGCRules,
+  NodeValue,
+} from '@incubateur-ademe/nosgestesclimat'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import ActionCard from './ActionCard'
 import ActionForm from './ActionForm'
@@ -20,7 +23,7 @@ import ActionForm from './ActionForm'
 type Props = {
   actions: (Action & { isIrrelevant: boolean; value?: number })[]
   rules: Partial<NGCRules>
-  bilan: EvaluatedNode & { dottedName: string }
+  bilan: { nodeValue: NodeValue; dottedName: string }
   actionWithFormOpen: string
   setActionWithFormOpen: (dottedName: string) => void
   shouldUpdatePersistedActions: boolean
