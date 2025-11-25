@@ -160,10 +160,6 @@ const checkValueValidity = ({
           ? value
           : 0
     default:
-      return !value
-        ? 0
-        : typeof value === 'number' || typeof value === 'string'
-          ? value
-          : 0
+      return !value ? 0 : (value as NodeValue)
   }
 }
