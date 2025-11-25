@@ -1,15 +1,8 @@
 import Ademe from '@/components/images/partners/Ademe'
 import Marianne from '@/components/images/partners/Marianne'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
-import type { Locale } from '@/i18nConfig'
 import Image from 'next/image'
 
-export default async function WaterFootprintPartners({
-  locale,
-}: {
-  locale: Locale
-}) {
-  await getServerTranslation({ locale })
+export default function WaterFootprintPartners() {
   return (
     <>
       <Marianne className="h-auto w-12 md:w-auto" />
