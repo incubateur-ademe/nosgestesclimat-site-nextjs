@@ -31,7 +31,7 @@ jobs:
 
       - name: Install and Build 🔧
         run: |
-          yarn
+          yarn --immutable
           yarn storybook:build:github-pages
         env:
           NEXT_PUBLIC_SITE_URL: https://storybook.nosgestesclimat.fr

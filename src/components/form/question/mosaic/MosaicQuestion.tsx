@@ -12,51 +12,46 @@ type Props = {
   parentMosaic: DottedName
   index: number
   firstInputId: string
+  value: number | boolean | undefined | null
+  setValue: (dottedName: DottedName, value: number | boolean) => void
 }
 
 export default function MosaicQuestion({
   question,
   parentMosaic,
   index,
+  value,
+  setValue,
   firstInputId,
-  ...props
 }: Props) {
-  const { type, parent, setValue, questionsOfMosaicFromSibling } =
-    useRule(question)
+  const { type, parent } = useRule(question)
 
   const { title, icons, description } = useRule(parent)
+  const maybeIdFirstInput = { ...(index === 0 ? { id: firstInputId } : {}) }
   return (
     <>
-      {type === 'number' && (
+      {type === 'number' && typeof value !== 'boolean' && (
         <MosaicNumberInput
           question={question}
           title={title}
           icons={icons}
           description={description}
-          setValue={(value) => {
-            setValue(value < 0 ? 0 : value, {
-              questionDottedName: parentMosaic,
-              questionsOfMosaicFromSibling,
-            })
-          }}
           parentMosaic={parentMosaic}
           index={index}
-          {...props}
-          {...(index === 0 ? { id: firstInputId } : {})}
+          value={value}
+          setValue={(value) => setValue(question, value)}
+          {...maybeIdFirstInput}
         />
       )}
-      {type === 'boolean' && (
+      {type === 'boolean' && typeof value !== 'number' && (
         <MosaicBooleanInput
           question={question}
           title={title}
           icons={icons}
           description={description}
+          value={value}
           setValue={(value) => {
-            setValue(value, {
-              questionDottedName: parentMosaic,
-              questionsOfMosaicFromSibling,
-            })
-
+            setValue(question, value)
             trackEvent(
               questionChooseAnswer({
                 question: parent,
@@ -65,8 +60,7 @@ export default function MosaicQuestion({
             )
           }}
           index={index}
-          {...props}
-          {...(index === 0 ? { id: firstInputId } : {})}
+          {...maybeIdFirstInput}
         />
       )}
     </>

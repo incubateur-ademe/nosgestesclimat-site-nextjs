@@ -6,10 +6,8 @@ import Emoji from '@/design-system/utils/Emoji'
 import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
-import { requestIdleCallback } from '@/utils/requestIdleCallback'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -17,7 +15,8 @@ type Props = {
   title?: string
   icons?: string
   description?: string
-  setValue: (value: string) => void
+  setValue: (value: boolean) => void
+  value: boolean | undefined | null
   index: number
 }
 
@@ -40,30 +39,20 @@ export default function MosaicBooleanInput({
   description,
   setValue,
   index,
-  ...props
+  value,
 }: Props) {
-  const { value, isInactive } = useRule<boolean>(question)
-  const [currentValue, setCurrentValue] = useState(value)
+  const { isInactive } = useRule<boolean>(question)
   const { t } = useClientTranslation()
 
   const status = isInactive
     ? 'inactive'
-    : currentValue === true
+    : value === true
       ? 'checked'
       : 'unchecked'
 
   const onClick = () => {
-    setCurrentValue(!currentValue)
-    requestIdleCallback(() => setValue(value ? 'non' : 'oui'))
+    setValue(!value)
   }
-
-  // Update the current value when the value prop changes because it can be changed by side-effect with a click on « Aucun »
-  useEffect(() => {
-    if (value !== currentValue) {
-      setCurrentValue(value as boolean)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value])
 
   return (
     <div>
@@ -78,14 +67,14 @@ export default function MosaicBooleanInput({
           aria-disabled={isInactive}
           aria-describedby={isInactive ? `${title}-soon-available` : undefined}
           className="sr-only"
-          onClick={() => {
+          onChange={() => {
             if (isInactive) return
             onClick()
           }}
           onKeyDown={!isInactive ? onKeyDownHelper(() => onClick()) : undefined}
           data-cypress-id={`${question}-${value}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
-          {...props}
+          checked={!!value}
         />
 
         <span

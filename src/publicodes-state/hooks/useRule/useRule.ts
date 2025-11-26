@@ -117,7 +117,6 @@ export default function useRule<T extends PublicodesValue = PublicodesValue>(
     evaluation,
     type,
     updateCurrentSimulation,
-    situation,
     addToEngineSituation,
     foldedSteps,
     rawMissingVariables,
