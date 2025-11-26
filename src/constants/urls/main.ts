@@ -4,7 +4,6 @@ let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3001'
 if (!serverUrl.startsWith('http')) {
   serverUrl = 'https://' + serverUrl
 }
-export const SERVER_URL = serverUrl
 export const AUTHENTICATION_URL = serverUrl + '/authentication/v1'
 
 export const GROUP_URL = serverUrl + '/groups/v1'
@@ -20,6 +19,8 @@ export const VERIFICATION_CODE_URL = serverUrl + '/verification-codes/v1'
 export const MODELE_URL = serverUrl + '/modele/v1'
 
 export const INTEGRATION_URL = serverUrl + '/integrations/v1'
+
+export const USER_URL = serverUrl + '/users/v1'
 
 export const getPreviewUrl = (PRNumber: string | number) => {
   return `https://nosgestesclimat-dev.s3.fr-par.scw.cloud/model/${PRNumber}`
