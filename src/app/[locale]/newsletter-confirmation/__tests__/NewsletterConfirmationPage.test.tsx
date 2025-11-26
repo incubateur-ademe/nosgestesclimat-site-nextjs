@@ -1,7 +1,6 @@
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { act } from '@testing-library/react'
-import { notFound } from 'next/navigation'
 import { describe, expect, it, vi } from 'vitest'
 import NewsletterErrorMessage from '../_components/NewsletterErrorMessage'
 import NewsletterInvalidMessage from '../_components/NewsletterInvalidMessage'
@@ -23,7 +22,11 @@ vi.mock('../_components/NewsletterInvalidMessage', () => ({
   default: vi.fn(() => null),
 }))
 
-const mockNotFound = vi.mocked(notFound)
+// Mock HeaderServer
+vi.mock('@/components/layout/HeaderServer', () => ({
+  __esModule: true,
+  default: vi.fn(() => null),
+}))
 
 describe('NewsletterConfirmationPage', () => {
   beforeEach(() => {

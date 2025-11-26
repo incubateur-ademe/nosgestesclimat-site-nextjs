@@ -55,19 +55,19 @@ describe('NewslettersBlock', () => {
     // Setup MSW handlers for each test
     mswServer.use(
       // GET /users/v1/:userId/contact - for useGetNewsletterSubscriptions
-      http.get('https://localhost:3001/users/v1/:userId/contact', () => {
+      http.get('*/users/v1/:userId/contact', () => {
         return HttpResponse.json({
           listIds: [],
         })
       }),
 
       // PUT /users/v1/:userId - for useUpdateUserSettings
-      http.put('https://localhost:3001/users/v1/:userId', () => {
+      http.put('*/users/v1/:userId', () => {
         return HttpResponse.json({ success: true })
       }),
 
       // GET /newsletters/v1/:newsletterId - for useMainNewsletter
-      http.get('https://localhost:3001/newsletters/v1/:newsletterId', () => {
+      http.get('*/newsletters/v1/:newsletterId', () => {
         return HttpResponse.json({
           id: LIST_MAIN_NEWSLETTER,
           name: 'Main Newsletter',
@@ -76,11 +76,11 @@ describe('NewslettersBlock', () => {
       }),
 
       // OPTIONS requests for CORS preflight
-      http.options('https://localhost:3001/users/v1/:userId/contact', () => {
+      http.options('*/users/v1/:userId/contact', () => {
         return HttpResponse.json({})
       }),
 
-      http.options('https://localhost:3001/users/v1/:userId', () => {
+      http.options('*/users/v1/:userId', () => {
         return HttpResponse.json({})
       })
     )
