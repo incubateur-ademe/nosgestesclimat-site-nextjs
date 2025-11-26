@@ -9,12 +9,15 @@ import { useSearchParams } from 'next/navigation'
 import { createContext, useEffect, useState } from 'react'
 
 const getIsAllowedToBypassConsentDataShare = () => {
+  console.log('document.referrer', document.referrer)
+  console.log('document.location.href', document.location.href)
   // https://stackoverflow.com/questions/6531534/document-location-parent-location-can-they-be-blocked
   const integratorUrl = new URL(
     window.location != window.parent.location
       ? document.referrer
       : document.location.href
   ).origin
+  console.log('integratorUrl', integratorUrl)
   return verifyIfIntegratorBypassRights(integratorUrl)
 }
 
