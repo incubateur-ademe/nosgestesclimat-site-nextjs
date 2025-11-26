@@ -20,9 +20,6 @@ import { useLocale } from '@/hooks/useLocale'
 import userEvent from '@testing-library/user-event'
 vi.mock('@/hooks/useLocale')
 
-import { useGetAuthentifiedUser } from '@/hooks/authentication/useGetAuthentifiedUser'
-vi.mock('@/hooks/authentication/useGetAuthentifiedUser')
-
 // We need to provide a mock for the Trans component for i18n
 vi.mock('@/components/translation/trans/TransClient', () => ({
   default: ({ children }: { children: React.ReactNode }) => <>{children}</>,
@@ -32,7 +29,6 @@ vi.mock('@/components/translation/trans/TransClient', () => ({
 const mockedUseMainNewsletter = useMainNewsletter as Mock
 const mockedUseLocale = useLocale as Mock
 const mockedUseClientTranslation = useClientTranslation as Mock
-const mockedUseGetAuthentifiedUser = useGetAuthentifiedUser as Mock
 
 describe('NewslettersBlock', () => {
   beforeEach(() => {
@@ -56,27 +52,22 @@ describe('NewslettersBlock', () => {
       },
     })
 
-    // Default to unauthenticated user
-    mockedUseGetAuthentifiedUser.mockReturnValue({
-      data: undefined,
-    })
-
     // Setup MSW handlers for each test
     mswServer.use(
       // GET /users/v1/:userId/contact - for useGetNewsletterSubscriptions
-      http.get('*/users/v1/:userId/contact', () => {
+      http.get('https://localhost:3001/users/v1/:userId/contact', () => {
         return HttpResponse.json({
           listIds: [],
         })
       }),
 
       // PUT /users/v1/:userId - for useUpdateUserSettings
-      http.put('*/users/v1/:userId', () => {
+      http.put('https://localhost:3001/users/v1/:userId', () => {
         return HttpResponse.json({ success: true })
       }),
 
       // GET /newsletters/v1/:newsletterId - for useMainNewsletter
-      http.get('*/newsletters/v1/:newsletterId', () => {
+      http.get('https://localhost:3001/newsletters/v1/:newsletterId', () => {
         return HttpResponse.json({
           id: LIST_MAIN_NEWSLETTER,
           name: 'Main Newsletter',
@@ -85,11 +76,11 @@ describe('NewslettersBlock', () => {
       }),
 
       // OPTIONS requests for CORS preflight
-      http.options('*/users/v1/:userId/contact', () => {
+      http.options('https://localhost:3001/users/v1/:userId/contact', () => {
         return HttpResponse.json({})
       }),
 
-      http.options('*/users/v1/:userId', () => {
+      http.options('https://localhost:3001/users/v1/:userId', () => {
         return HttpResponse.json({})
       })
     )
@@ -130,15 +121,10 @@ describe('NewslettersBlock', () => {
   })
 
   it('should successfully subscribe a user and show a success message', async () => {
-    // Mock authenticated user for this test
-    mockedUseGetAuthentifiedUser.mockReturnValue({
-      data: { id: 'test-user-id', email: 'test@example.com' },
-    })
-
     const user = userEvent.setup()
 
     renderWithWrapper(<NewslettersBlock />, {
-      user: { name: 'Test User', email: 'test@example.com', userId: 'test-user-id' },
+      user: { name: 'Test User', email: 'test@example.com' },
       providers: {
         user: true,
         queryClient: true,
@@ -154,14 +140,13 @@ describe('NewslettersBlock', () => {
       screen.getByTestId('newsletter-email-input'),
       'new@example.com'
     )
-    // Click on a checkbox that is enabled (saisonniere or logement, not transports which requires auth)
-    await user.click(screen.getByTestId('newsletter-saisonniere-checkbox'))
+    await user.click(screen.getByTestId('newsletter-transports-checkbox'))
     await user.click(screen.getByTestId('newsletter-submit-button'))
 
     // Wait for the form submission to complete
     await waitFor(() => {
       expect(screen.getByTestId('success-message')).toBeInTheDocument()
-    }, { timeout: 3000 })
+    })
 
     // After success, the success message should be visible and the form hidden
     expect(screen.getByTestId('success-message')).toBeInTheDocument()
