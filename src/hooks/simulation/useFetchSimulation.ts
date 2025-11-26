@@ -22,12 +22,12 @@ export function useFetchSimulation({ simulationId }: Props) {
           ...res.data,
           situation: unformatSituation(res.data.situation),
         })
-        
+
         // Ensure extendedSituation is always defined (for old simulations that might not have it)
         if (!mappedSimulation.extendedSituation) {
           mappedSimulation.extendedSituation = getInitialExtendedSituation()
         }
-        
+
         return mappedSimulation
       }),
     enabled: simulationId ? true : false,

@@ -117,4 +117,3 @@ export default function CarboneTargetContent({ isOpen, isHedgehog }: Props) {
     </>
   )
 }
-

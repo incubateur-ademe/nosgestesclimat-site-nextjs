@@ -18,8 +18,10 @@ export async function fetchSimulation({
       throw new Error('Failed to fetch simulation')
     }
 
-    const mappedSimulation = mapNewSimulationToOld((await response.json()) ?? {})
-    
+    const mappedSimulation = mapNewSimulationToOld(
+      (await response.json()) ?? {}
+    )
+
     // Ensure extendedSituation is always defined (for old simulations that might not have it)
     if (!mappedSimulation.extendedSituation) {
       mappedSimulation.extendedSituation = getInitialExtendedSituation()

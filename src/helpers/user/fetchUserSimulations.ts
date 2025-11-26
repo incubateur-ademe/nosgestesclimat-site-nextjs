@@ -25,12 +25,12 @@ export async function fetchUserSimulations({
     return Array.isArray(data)
       ? data.map((simulation: any) => {
           const mappedSimulation = mapNewSimulationToOld(simulation)
-          
+
           // Ensure extendedSituation is always defined (for old simulations that might not have it)
           if (!mappedSimulation.extendedSituation) {
             mappedSimulation.extendedSituation = getInitialExtendedSituation()
           }
-          
+
           return mappedSimulation
         })
       : []

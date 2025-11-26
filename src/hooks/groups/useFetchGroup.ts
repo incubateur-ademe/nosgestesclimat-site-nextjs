@@ -28,12 +28,12 @@ export function useFetchGroup(
                 ...participant.simulation,
                 situation: unformatSituation(participant.simulation.situation),
               }
-              
+
               // Ensure extendedSituation is always defined (for old simulations that might not have it)
               if (!simulation.extendedSituation) {
                 simulation.extendedSituation = getInitialExtendedSituation()
               }
-              
+
               return {
                 ...participant,
                 simulation,

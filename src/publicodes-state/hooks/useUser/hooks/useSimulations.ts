@@ -1,7 +1,7 @@
 'use client'
 
-import { generateSimulation } from '@/helpers/simulation/generateSimulation'
 import { getInitialExtendedSituation } from '@/helpers/modelFetching/getInitialExtendedSituation'
+import { generateSimulation } from '@/helpers/simulation/generateSimulation'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import type {
   DottedName,

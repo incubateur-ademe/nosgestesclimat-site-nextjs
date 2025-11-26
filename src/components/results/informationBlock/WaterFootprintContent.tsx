@@ -114,4 +114,3 @@ export default function WaterFootprintContent({ isOpen, isHedgehog }: Props) {
     </>
   )
 }
-
