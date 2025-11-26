@@ -1,26 +1,46 @@
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import i18nConfig, { type Locale } from '@/i18nConfig'
-import { act } from '@testing-library/react'
+import { act, screen } from '@testing-library/react'
 import { notFound } from 'next/navigation'
-import { describe, expect, it, vi } from 'vitest'
-import NewsletterErrorMessage from '../_components/NewsletterErrorMessage'
-import NewsletterInvalidMessage from '../_components/NewsletterInvalidMessage'
-import NewsletterSuccessMessage from '../_components/NewsletterSuccessMessage'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import NewsletterConfirmationPage from '../page'
 
+// Mock HeaderServer to avoid async client component errors
+vi.mock('@/components/layout/HeaderServer', () => ({
+  default: () => <header data-testid="header">Header</header>,
+}))
+
+// Mock Footer
+vi.mock('@/components/layout/Footer', () => ({
+  default: () => <footer data-testid="footer">Footer</footer>,
+}))
+
+// Mock the message components to render test IDs so we can verify they're rendered
 vi.mock('../_components/NewsletterSuccessMessage', () => ({
   __esModule: true,
-  default: vi.fn(() => null),
+  default: ({ locale }: { locale: string }) => (
+    <div data-testid="newsletter-success-message" data-locale={locale}>
+      Success Message
+    </div>
+  ),
 }))
 
 vi.mock('../_components/NewsletterErrorMessage', () => ({
   __esModule: true,
-  default: vi.fn(() => null),
+  default: ({ locale }: { locale: string }) => (
+    <div data-testid="newsletter-error-message" data-locale={locale}>
+      Error Message
+    </div>
+  ),
 }))
 
 vi.mock('../_components/NewsletterInvalidMessage', () => ({
   __esModule: true,
-  default: vi.fn(() => null),
+  default: ({ locale }: { locale: string }) => (
+    <div data-testid="newsletter-invalid-message" data-locale={locale}>
+      Invalid Message
+    </div>
+  ),
 }))
 
 const mockNotFound = vi.mocked(notFound)
@@ -42,12 +62,17 @@ describe('NewsletterConfirmationPage', () => {
     })
 
     // Then
-    expect(NewsletterSuccessMessage).toHaveBeenCalledWith(
-      { locale: i18nConfig.defaultLocale },
-      undefined
+    expect(screen.getByTestId('newsletter-success-message')).toBeInTheDocument()
+    expect(screen.getByTestId('newsletter-success-message')).toHaveAttribute(
+      'data-locale',
+      i18nConfig.defaultLocale
     )
-    expect(NewsletterErrorMessage).not.toHaveBeenCalled()
-    expect(NewsletterInvalidMessage).not.toHaveBeenCalled()
+    expect(
+      screen.queryByTestId('newsletter-error-message')
+    ).not.toBeInTheDocument()
+    expect(
+      screen.queryByTestId('newsletter-invalid-message')
+    ).not.toBeInTheDocument()
   })
 
   it('should render the invalid message when success=false and status=404', async () => {
@@ -66,12 +91,19 @@ describe('NewsletterConfirmationPage', () => {
     })
 
     // Then
-    expect(NewsletterSuccessMessage).not.toHaveBeenCalled()
-    expect(NewsletterErrorMessage).not.toHaveBeenCalled()
-    expect(NewsletterInvalidMessage).toHaveBeenCalledWith(
-      { locale: i18nConfig.defaultLocale },
-      undefined
+    expect(
+      screen.getByTestId('newsletter-invalid-message')
+    ).toBeInTheDocument()
+    expect(screen.getByTestId('newsletter-invalid-message')).toHaveAttribute(
+      'data-locale',
+      i18nConfig.defaultLocale
     )
+    expect(
+      screen.queryByTestId('newsletter-success-message')
+    ).not.toBeInTheDocument()
+    expect(
+      screen.queryByTestId('newsletter-error-message')
+    ).not.toBeInTheDocument()
   })
 
   it('should render the error message when success=false and status=500', async () => {
@@ -90,12 +122,17 @@ describe('NewsletterConfirmationPage', () => {
     })
 
     // Then
-    expect(NewsletterSuccessMessage).not.toHaveBeenCalled()
-    expect(NewsletterErrorMessage).toHaveBeenCalledWith(
-      { locale: i18nConfig.defaultLocale },
-      undefined
+    expect(screen.getByTestId('newsletter-error-message')).toBeInTheDocument()
+    expect(screen.getByTestId('newsletter-error-message')).toHaveAttribute(
+      'data-locale',
+      i18nConfig.defaultLocale
     )
-    expect(NewsletterInvalidMessage).not.toHaveBeenCalled()
+    expect(
+      screen.queryByTestId('newsletter-success-message')
+    ).not.toBeInTheDocument()
+    expect(
+      screen.queryByTestId('newsletter-invalid-message')
+    ).not.toBeInTheDocument()
   })
 
   it('should redirect to the 404 page if wrong success param is passed', async () => {
