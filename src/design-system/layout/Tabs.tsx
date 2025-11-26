@@ -112,7 +112,10 @@ export default function Tabs({
       <nav aria-label={ariaLabel}>
         <ul
           role={isLocked ? undefined : 'tablist'}
-          className="flex items-end justify-between md:justify-start">
+          className={twMerge(
+            'flex items-end justify-between md:justify-start',
+            isLocked ? 'cursor-not-allowed' : ''
+          )}>
           {items.map(({ containerClassName, ...item }) => (
             <li
               key={item.id}

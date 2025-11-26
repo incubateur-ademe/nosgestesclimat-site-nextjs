@@ -57,11 +57,11 @@ export default async function ProfileTab({
       href: MON_ESPACE_PATH,
       isActive: activePath === MON_ESPACE_PATH,
       'data-track-event':
-        activePath !== MON_ESPACE_PATH
+        activePath !== MON_ESPACE_PATH && !isLocked
           ? monEspaceTabTrackEventServer('results')
           : undefined,
       'data-track-posthog':
-        activePath !== MON_ESPACE_PATH
+        activePath !== MON_ESPACE_PATH && !isLocked
           ? captureClickMonEspaceTabServer('results')
           : undefined,
     },
@@ -92,11 +92,11 @@ export default async function ProfileTab({
       href: MON_ESPACE_ACTIONS_PATH,
       isActive: activePath === MON_ESPACE_ACTIONS_PATH,
       'data-track-event':
-        activePath !== MON_ESPACE_ACTIONS_PATH
+        activePath !== MON_ESPACE_ACTIONS_PATH && !isLocked
           ? monEspaceTabTrackEventServer('actions')
           : undefined,
       'data-track-posthog':
-        activePath !== MON_ESPACE_ACTIONS_PATH
+        activePath !== MON_ESPACE_ACTIONS_PATH && !isLocked
           ? captureClickMonEspaceTabServer('actions')
           : undefined,
     },
@@ -127,11 +127,11 @@ export default async function ProfileTab({
       href: MON_ESPACE_GROUPS_PATH,
       isActive: activePath === MON_ESPACE_GROUPS_PATH,
       'data-track-event':
-        activePath !== MON_ESPACE_GROUPS_PATH
+        activePath !== MON_ESPACE_GROUPS_PATH && !isLocked
           ? monEspaceTabTrackEventServer('groups')
           : undefined,
       'data-track-posthog':
-        activePath !== MON_ESPACE_GROUPS_PATH
+        activePath !== MON_ESPACE_GROUPS_PATH && !isLocked
           ? captureClickMonEspaceTabServer('groups')
           : undefined,
     },
@@ -157,11 +157,11 @@ export default async function ProfileTab({
       href: MON_ESPACE_SETTINGS_PATH,
       isActive: activePath === MON_ESPACE_SETTINGS_PATH,
       'data-track-event':
-        activePath !== MON_ESPACE_SETTINGS_PATH
+        activePath !== MON_ESPACE_SETTINGS_PATH && !isLocked
           ? monEspaceTabTrackEventServer('settings')
           : undefined,
       'data-track-posthog':
-        activePath !== MON_ESPACE_SETTINGS_PATH
+        activePath !== MON_ESPACE_SETTINGS_PATH && !isLocked
           ? captureClickMonEspaceTabServer('settings')
           : undefined,
       containerClassName: 'md:ml-auto',

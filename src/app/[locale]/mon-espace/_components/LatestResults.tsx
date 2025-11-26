@@ -8,13 +8,12 @@ import {
   sizeClassNames,
 } from '@/design-system/buttons/Button'
 import Separator from '@/design-system/layout/Separator'
-import { getRules } from '@/helpers/modelFetching/getRules'
 import type { Locale } from '@/i18nConfig'
 import type { Simulation } from '@/publicodes-state/types'
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 
-export default async function LatestResults({
+export default function LatestResults({
   locale,
   simulation,
 }: {
@@ -24,8 +23,6 @@ export default async function LatestResults({
   if (!simulation) {
     return null
   }
-
-  const rules = await getRules({ locale })
 
   return (
     <div className="border-primary-200 rounded-lg border-1 bg-white px-6 py-8">
@@ -98,7 +95,7 @@ export default async function LatestResults({
           baseClassNames,
           colorClassNames.secondary,
           sizeClassNames.md,
-          'mt-20 flex gap-2 md:hidden'
+          'mt-24 flex gap-2 md:hidden'
         )}
         href={MON_ESPACE_RESULTS_DETAIL_PATH.replace(
           ':simulationId',

@@ -57,7 +57,7 @@ export default async function DetailledResultsPage({
         userId={authenticatedUser.id}
         isStatic
         title={
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2" key={simulation.id}>
             <Title
               title={t(
                 'mon-espace.resultsDetail.title',

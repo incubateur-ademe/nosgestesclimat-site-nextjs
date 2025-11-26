@@ -37,7 +37,7 @@ export default async function MySpaceButton({
         <Trans locale={locale} i18nKey="header.monEspace.title">
           Mon Espace
         </Trans>{' '}
-        <span>
+        <span className="hidden md:inline">
           (
           {authenticatedUser.email.length > MAX_EMAIL_LENGTH
             ? `${authenticatedUser.email.substring(0, MAX_EMAIL_LENGTH)}…`

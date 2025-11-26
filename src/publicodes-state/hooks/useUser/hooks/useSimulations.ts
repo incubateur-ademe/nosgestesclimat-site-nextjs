@@ -1,6 +1,7 @@
 'use client'
 
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
+import { getInitialExtendedSituation } from '@/helpers/modelFetching/getInitialExtendedSituation'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import type {
   DottedName,
@@ -106,6 +107,11 @@ export default function useSimulations({
           if (simulation.id !== currentSimulationId) return simulation
 
           const simulationToUpdate = { ...simulation }
+
+          // Ensure extendedSituation is always defined (for old simulations that might not have it)
+          if (!simulationToUpdate.extendedSituation) {
+            simulationToUpdate.extendedSituation = getInitialExtendedSituation()
+          }
 
           if (situation !== undefined) {
             // We sync the extendedSituation with the situation detecting added, modified or removed dottedNames from the updated situation.

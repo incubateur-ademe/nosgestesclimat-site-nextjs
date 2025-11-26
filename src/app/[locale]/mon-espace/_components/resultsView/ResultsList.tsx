@@ -63,7 +63,7 @@ export default async function ResultsList({ locale, simulations }: Props) {
                   </div>
 
                   <Link
-                    className={'text-primary-700 underline'}
+                    className="text-primary-700 underline"
                     href={MON_ESPACE_RESULTS_DETAIL_PATH.replace(
                       ':simulationId',
                       simulation.id
