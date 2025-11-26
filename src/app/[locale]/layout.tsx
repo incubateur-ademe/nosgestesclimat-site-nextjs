@@ -1,4 +1,5 @@
 import ErrorContent from '@/components/error/ErrorContent'
+import TrackersWrapper from '@/components/tracking/TrackersWrapper'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import type { DefaultPageProps } from '@/types'
@@ -70,6 +71,8 @@ export default async function RootLayout({
           <link rel="manifest" href="/manifest.webmanifest" />
 
           <meta name="theme-color" content="#4949ba" />
+
+          <TrackersWrapper locale={locale} />
 
           {
             // Matomo Prod
