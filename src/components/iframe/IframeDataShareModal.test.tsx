@@ -168,15 +168,28 @@ describe('IframeDataShareModal', () => {
           l: 3000,
           d: 4000,
           s: 5000,
-          bilan: 15000,
-          categories: {
-            transport: 1000,
-            alimentation: 2000,
-            logement: 3000,
-            divers: 4000,
-            'services sociétaux': 5000,
+          footprints: {
+            carbon: {
+              bilan: 15000,
+              categories: {
+                transport: 1000,
+                alimentation: 2000,
+                logement: 3000,
+                divers: 4000,
+                'services sociétaux': 5000,
+              },
+            },
+            water: {
+              bilan: 0,
+              categories: {
+                transport: 0,
+                alimentation: 0,
+                logement: 0,
+                divers: 0,
+                'services sociétaux': 0,
+              },
+            },
           },
-          subcategories: undefined,
         },
       },
       '*'
