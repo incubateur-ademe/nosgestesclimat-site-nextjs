@@ -11,7 +11,7 @@ export const useIsTestVersion = (variantKey: string) => {
 
   const flagValue = useFeatureFlagVariantKey(variantKey)
 
-  console.log('AB test: ', flagValue, ' selected for', variantKey)
+  // console.log('AB test: ', flagValue, ' selected for', variantKey)
 
   return flagValue && flagValue === DEFAULT_TEST_VARIANT_KEY
 }
