@@ -37,7 +37,7 @@ export default function MosaicNumberInput({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value])
-  const debouncedSetValue = useDebounce(setValue, 500)
+  const debouncedSetValue = useDebounce(setValue, 600)
 
   const { t } = useClientTranslation()
 

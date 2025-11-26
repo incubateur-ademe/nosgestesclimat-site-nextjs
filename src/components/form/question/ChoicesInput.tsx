@@ -1,7 +1,7 @@
 import { requestIdleCallback } from '@/utils/requestIdleCallback'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Evaluation } from 'publicodes'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Choice from './choicesInput/Choice'
 
 type Props = {
@@ -33,6 +33,17 @@ export default function ChoicesInput(props: Props) {
   const isGrid = choices && choices.length > SHOULD_USE_GRID_THRESHOLD
 
   const [currentValue, setCurrentValue] = useState(value)
+
+  // The choice value can be overriden in the very specific case of divers.textile.volume question,
+  // where a modification in the mosaic can change the answer in the choice question above.
+  // So we need to sync its state with the one from the evaluation
+  useEffect(() => {
+    if (value !== undefined && currentValue !== value) {
+      setCurrentValue(value)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value])
+
   return (
     <fieldset
       className={
