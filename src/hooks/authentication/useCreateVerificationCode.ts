@@ -61,7 +61,7 @@ export function useCreateVerificationCode({
     ((error instanceof AxiosError && error.response?.data) ??
       CREATE_VERIFICATION_CODE_ERROR.UNKNOWN_ERROR)
 
-  const { user } = useUser()
+  const { user, updateEmail } = useUser()
 
   const createVerificationCode = useCallback(
     async (email: string) => {
@@ -83,9 +83,11 @@ export function useCreateVerificationCode({
         console.error(error)
         // Error is handled by the useCreateVerificationCode hook
         return
+      } finally {
+        updateEmail(email)
       }
     },
-    [user.userId, mode, onComplete, postVerificationCode]
+    [user.userId, mode, onComplete, postVerificationCode, updateEmail]
   )
 
   return {
