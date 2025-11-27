@@ -1,18 +1,13 @@
-import i18nConfig, { type Locale } from '@/i18nConfig'
+import i18nConfig from '@/i18nConfig'
 import { headers } from 'next/headers'
 
 export async function getLocale() {
   try {
     const headersList = await headers()
-    const path = headersList.get('x-invoke-path') || ''
-    const locale = path.split('/')[1] // Gets the first path segment after the domain
 
-    // Check if the locale is valid (exists in your i18nConfig)
-    if (i18nConfig.locales.includes(locale as Locale)) {
-      return locale
-    }
+    const locale = headersList.get('x-next-i18n-router-locale') || ''
 
-    return i18nConfig.defaultLocale
+    return locale
   } catch (error) {
     return i18nConfig.defaultLocale
   }
