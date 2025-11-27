@@ -39,15 +39,15 @@ export default function IframeDataShareModal() {
   const resetOverflow = () => (document.body.style.overflow = 'auto')
 
   const onReject = () => {
-    window.parent.postMessage(
-      {
-        messageType: 'ngc-iframe-share',
-        error: 'The user refused to share his result.',
-      },
-      '*'
-    )
+    const message = {
+      messageType: 'ngc-iframe-share',
+      error: 'The user refused to share his result.',
+    }
+    window.parent.postMessage(message, '*')
+    if (window.top && window.top !== window) {
+      window.top.postMessage(message, '*')
+    }
     setIsOpen(false)
-
     resetOverflow()
   }
 
@@ -55,7 +55,6 @@ export default function IframeDataShareModal() {
     shareDataWithIntegrator(computedResults)
 
     setIsOpen(false)
-
     resetOverflow()
   }
 
