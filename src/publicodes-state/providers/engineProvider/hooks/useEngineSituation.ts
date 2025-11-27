@@ -3,15 +3,15 @@ import { checkIfDottedNameShouldNotBeIgnored } from '@/publicodes-state/helpers/
 import type {
   Engine,
   MissingVariables,
+  SafeEvaluate,
   Situation,
 } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { useCallback, useEffect, useState } from 'react'
 
 type Props = {
   engine: Engine | undefined
-  safeEvaluate: (rule: PublicodesExpression) => EvaluatedNode | null
+  safeEvaluate: SafeEvaluate
   rawMissingVariables: MissingVariables
 }
 /**

@@ -6,11 +6,6 @@ import { useInfosPage } from '../../navigation/useInfosPage'
 import { useSaveSimulation } from '../../simulation/useSaveSimulation'
 import { useSaveAndGoNext } from '../useSaveAndGoNext'
 
-// Mock dependencies
-vi.mock('next/navigation', () => ({
-  useRouter: vi.fn(),
-}))
-
 vi.mock('@/publicodes-state', () => ({
   useCurrentSimulation: vi.fn(),
 }))

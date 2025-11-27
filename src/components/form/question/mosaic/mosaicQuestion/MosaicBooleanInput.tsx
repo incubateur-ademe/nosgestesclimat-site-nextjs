@@ -15,7 +15,8 @@ type Props = {
   title?: string
   icons?: string
   description?: string
-  setValue: (value: string) => void
+  setValue: (value: boolean) => void
+  value: boolean | undefined | null
   index: number
 }
 
@@ -38,20 +39,19 @@ export default function MosaicBooleanInput({
   description,
   setValue,
   index,
-  ...props
+  value,
 }: Props) {
-  const { value, isMissing, isInactive } = useRule(question)
-
+  const { isInactive } = useRule<boolean>(question)
   const { t } = useClientTranslation()
 
   const status = isInactive
     ? 'inactive'
-    : !isMissing && value
+    : value === true
       ? 'checked'
       : 'unchecked'
 
   const onClick = () => {
-    setValue(value ? 'non' : 'oui')
+    setValue(!value)
   }
 
   return (
@@ -67,14 +67,14 @@ export default function MosaicBooleanInput({
           aria-disabled={isInactive}
           aria-describedby={isInactive ? `${title}-soon-available` : undefined}
           className="sr-only"
-          onClick={() => {
+          onChange={() => {
             if (isInactive) return
             onClick()
           }}
           onKeyDown={!isInactive ? onKeyDownHelper(() => onClick()) : undefined}
           data-cypress-id={`${question}-${value}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
-          {...props}
+          checked={!!value}
         />
 
         <span

@@ -67,11 +67,17 @@ vi.mock('next/navigation', () => ({
   redirect: vi.fn(),
   useRouter: vi.fn(() => ({
     push: vi.fn(),
+    replace: vi.fn(),
+    back: vi.fn(),
+    refresh: vi.fn(),
   })),
   useSearchParams: vi.fn(() => ({
     get: vi.fn(),
   })),
   usePathname: vi.fn(() => ''),
+  notFound: vi.fn(() => {
+    throw new Error('NEXT_NOT_FOUND')
+  }),
 }))
 
 // Mock uuid
@@ -83,6 +89,12 @@ vi.mock('uuid', () => ({
 vi.mock('@sentry/nextjs', () => ({
   captureException: vi.fn(),
 }))
+
+// In order to be able to use user-event
+// https://github.com/testing-library/user-event/issues/1115#issuecomment-2495876991
+vi.stubGlobal('jest', {
+  advanceTimersByTime: vi.advanceTimersByTime.bind(vi),
+})
 
 // Setup MSW
 beforeAll(() => {

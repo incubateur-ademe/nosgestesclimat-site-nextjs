@@ -81,10 +81,7 @@ export default function CustomQuestion() {
 
       {poll && (
         <>
-          <TextInput
-            label={customQuestion}
-            {...register('custom-answer')}
-          />
+          <TextInput label={customQuestion} {...register('custom-answer')} />
 
           {errorSaveSimulation && <DefaultSubmitErrorMessage />}
 

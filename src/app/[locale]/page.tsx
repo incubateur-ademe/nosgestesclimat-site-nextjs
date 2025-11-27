@@ -66,17 +66,15 @@ export default async function Homepage({ params }: DefaultPageProps) {
         heroIllustration={<InteractiveIllustration />}
         heroTitle={
           <Trans locale={locale}>
-            Connaissez-vous votre empreinte écologique ?
+            Connaissez-vous votre empreinte carbone et eau ?
           </Trans>
         }
         heroDescription={
           <div className="flex flex-col items-center gap-6 md:items-start md:gap-10">
             <p className="mb-0 text-base md:order-1 md:text-2xl">
               <Trans locale={locale}>
-                Calculez votre{' '}
-                <strong className="text-primary-700">empreinte carbone</strong>{' '}
-                et votre{' '}
-                <strong className="text-primary-700">empreinte eau</strong> en{' '}
+                Calculez{' '}
+                <strong className="text-primary-700">vos empreintes</strong> en{' '}
                 <strong className="text-secondary-700">
                   seulement 10 minutes
                 </strong>

@@ -82,7 +82,6 @@ export default function ThreeYearsInput({
         unit={unit}
         value={currentYearValue}
         setValue={(value: number = 0) => setCurrentYearValue(value)}
-        isMissing={currentYearValue ? false : true}
         className="mb-2 justify-start"
       />
       <Label
@@ -94,7 +93,6 @@ export default function ThreeYearsInput({
         unit={unit}
         value={lastYearValue}
         setValue={(value: number = 0) => setLastYearValue(value)}
-        isMissing={lastYearValue ? false : true}
         className="mb-2 justify-start"
       />
       <Label
@@ -106,7 +104,6 @@ export default function ThreeYearsInput({
         unit={unit}
         value={yearBeforeLastValue}
         setValue={(value: number = 0) => setYearBeforeLastValue(value)}
-        isMissing={yearBeforeLastValue ? false : true}
         className="mb-2 justify-start"
       />
       <p className="bg-primary-200 mb-0 rounded-xl p-4 font-bold">

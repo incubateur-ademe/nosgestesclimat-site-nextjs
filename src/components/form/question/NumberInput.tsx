@@ -1,82 +1,59 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { useLocale } from '@/hooks/useLocale'
-import type { HTMLAttributes, SyntheticEvent } from 'react'
-import { useEffect, useRef } from 'react'
+import { useDebounce } from '@/utils/debounce'
+import type { Evaluation } from 'publicodes'
+import { useEffect, useState, type ComponentProps } from 'react'
 import type { NumberFormatValues } from 'react-number-format'
 import { NumericFormat } from 'react-number-format'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
   unit?: string
-  value?: number | string
-  displayedValue?: string
-  setDisplayedValue?: (value: string | undefined) => void
-  isMissing: boolean
+  value?: Evaluation<number>
+  placeholder?: string
   setValue: (value: number | undefined) => void
-  min?: number
   id?: string
   className?: string
-  defaultValue?: string | number | null | undefined
 }
 
 export default function NumberInput({
   unit,
-  value = '',
-  displayedValue = '',
-  setDisplayedValue = () => {},
-  isMissing,
+  value,
+  placeholder,
   setValue,
   className,
   id,
   ...props
-}: HTMLAttributes<HTMLInputElement> & Props) {
-  const locale = useLocale()
+}: ComponentProps<typeof NumericFormat> & Props) {
+  const debouncedSetValue = useDebounce(setValue, 300)
+  const defaultValue: Partial<NumberFormatValues> = {
+    value: undefined,
+    floatValue: value ?? undefined,
+  }
+  const [currentValues, setCurrentValues] = useState(defaultValue)
 
-  const timeoutRef = useRef<NodeJS.Timeout>(undefined)
-
-  const handleValueChange = (
-    values: NumberFormatValues,
-    sourceInfo: { event?: SyntheticEvent; source: 'event' | 'prop' }
-  ) => {
-    // If the value change because we typed something, we debounce it
-    if (sourceInfo.source === 'event') {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
-      }
-      timeoutRef.current = setTimeout(() => {
-        setCorrectValue(values.value)
-      }, 300)
-      return
-    }
-
-    // If not, we set it right away
-    setCorrectValue(values.value)
+  const handleValueChange = (values: NumberFormatValues) => {
+    setCurrentValues(values)
+    debouncedSetValue(values.floatValue)
   }
 
-  useEffect(() => clearTimeout(timeoutRef.current), [])
-
-  const setCorrectValue = (value: number | string) => {
-    if (value === '') {
-      setValue(undefined)
-      setDisplayedValue(undefined)
-    } else {
-      setValue(Number(value))
-      setDisplayedValue(String(value))
+  // La valeur peut être mise à jour depuis l'exterieur (via les boutons de suggestion par exemple)
+  // Quand ça arrive, la valeur de `value` et `currentValues` sont désynchronisées.
+  // Pour reset le champs avec la valeur passée en prop, on reset `currentValues.value` a undefined.
+  useEffect(() => {
+    if (value !== null && value !== 0 && value != currentValues.floatValue) {
+      setCurrentValues(defaultValue)
     }
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value])
 
   return (
     <div
       className={twMerge(`flex items-center justify-start gap-1`, className)}>
       <NumericFormat
-        value={isMissing ? '' : displayedValue}
-        placeholder={
-          value.toLocaleString(locale, {
-            maximumFractionDigits: Number(value) < 10 ? 1 : 0,
-          }) ?? '0'
-        }
+        value={currentValues.value ?? currentValues.floatValue}
+        placeholder={currentValues.value === undefined ? placeholder : ''}
         className={twMerge(
           `max-w-[8rem] rounded-xl border border-solid border-slate-500 bg-white p-4 text-right text-sm transition-colors md:max-w-full`,
           'focus:ring-primary-700! placeholder:text-slate-500! focus:ring-2! focus:ring-offset-3! focus:outline-hidden!',
@@ -87,6 +64,7 @@ export default function NumberInput({
         allowNegative={false}
         autoComplete="off"
         onValueChange={handleValueChange}
+        min={0}
         id={id}
         {...props}
       />

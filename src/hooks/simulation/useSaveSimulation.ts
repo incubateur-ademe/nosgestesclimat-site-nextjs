@@ -1,9 +1,7 @@
-import { ORGANISATION_URL, SIMULATION_URL } from '@/constants/urls/main'
+import { ORGANISATION_URL } from '@/constants/urls/main'
 import { getModelVersion } from '@/helpers/modelFetching/getModelVersion'
-import {
-  mapNewSimulationToOld,
-  mapOldSimulationToNew,
-} from '@/helpers/simulation/mapNewSimulation'
+import { mapOldSimulationToNew } from '@/helpers/simulation/mapNewSimulation'
+import { postSimulation } from '@/helpers/simulation/postSimulation'
 import { useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
 import { updateGroupParticipant } from '@/services/groups/updateGroupParticipant'
@@ -16,6 +14,7 @@ type Props = {
   simulation: Simulation
   sendEmail?: true
 }
+
 export function useSaveSimulation() {
   const {
     user: { userId, name, email },
@@ -80,13 +79,14 @@ export function useSaveSimulation() {
           .then((response) => response.data)
       }
 
-      return axios
-        .post(`${SIMULATION_URL}/${userId}`, payload, {
-          params: { sendEmail },
-        })
-        .then((response) => mapNewSimulationToOld(response.data))
+      return postSimulation({
+        simulation: payload,
+        userId,
+        sendEmail,
+      })
     },
   })
+
   return {
     saveSimulation,
     isPending,

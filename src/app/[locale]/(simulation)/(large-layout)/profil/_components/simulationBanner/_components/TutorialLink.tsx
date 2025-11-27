@@ -20,7 +20,7 @@ export default function TutorialLink({ className }: Props) {
   return (
     <ButtonLink
       color="text"
-      href={getLinkToTutoriel({ locale, currentSearchParams: searchParams })}
+      href={getLinkToTutoriel({ locale, searchParams })}
       className={twMerge('flex w-full justify-center', className)}
       trackingEvent={profilClickTutoriel}>
       <GlassesIcon className="fill-primary-700 mr-2" />

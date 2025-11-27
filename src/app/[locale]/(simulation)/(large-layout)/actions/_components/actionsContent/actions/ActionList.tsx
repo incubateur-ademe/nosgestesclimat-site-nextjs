@@ -136,7 +136,6 @@ export default function ActionList({
                       <ActionForm
                         key={action.dottedName}
                         action={action}
-                        setActionWithFormOpen={setActionWithFormOpen}
                         category={getCategory(action.dottedName)}
                         onComplete={() => {
                           toggleActionChoice(action.dottedName)

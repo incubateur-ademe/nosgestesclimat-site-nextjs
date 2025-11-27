@@ -2,12 +2,12 @@ import { captureSubQuestion } from '@/constants/tracking/posthogTrackers'
 import { openSubQuestion } from '@/constants/tracking/question'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useEngine } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import MosaicQuestion from './mosaic/MosaicQuestion'
+import { useMosaicState } from './mosaic/useMosaicState'
 
 type Props = {
   question: DottedName
@@ -19,28 +19,23 @@ type Props = {
 
 export default function Mosaic({
   question,
-  questionsOfMosaic: questionsOfMosaicFromProps,
-  secondaryQuestionsOfMosaic,
+  questionsOfMosaic,
+  secondaryQuestionsOfMosaic = [],
   firstInputId,
   label,
-  ...props
 }: Props) {
-  const { getValue } = useEngine()
-
-  const isSecondaryQuestionsOfMosaicNotEmpty =
-    secondaryQuestionsOfMosaic && secondaryQuestionsOfMosaic.length > 0
+  const { values, setValue } = useMosaicState({
+    questionsOfMosaic,
+    question,
+  })
 
   const [isMoreOptionsVisible, setIsMoreOptionsVisible] = useState(
-    isSecondaryQuestionsOfMosaicNotEmpty &&
-      secondaryQuestionsOfMosaic.some(
-        (secondaryMosaicChild) => getValue(secondaryMosaicChild) === true
-      )
+    secondaryQuestionsOfMosaic.some((question) => values[question])
   )
   const { t } = useClientTranslation()
 
-  let questionsOfMosaic = [...questionsOfMosaicFromProps]
-
-  if (isSecondaryQuestionsOfMosaicNotEmpty) {
+  // Remove secondary questions from the list of questions of the mosaic
+  if (secondaryQuestionsOfMosaic.length) {
     questionsOfMosaic = questionsOfMosaic.filter((q) => {
       return !secondaryQuestionsOfMosaic.includes(q)
     })
@@ -59,7 +54,8 @@ export default function Mosaic({
                 question={questionOfMosaic}
                 index={index}
                 firstInputId={firstInputId}
-                {...props}
+                value={values[questionOfMosaic]}
+                setValue={setValue}
               />
             ))
           : t(
@@ -68,7 +64,7 @@ export default function Mosaic({
             )}
       </fieldset>
 
-      {isSecondaryQuestionsOfMosaicNotEmpty && (
+      {!!secondaryQuestionsOfMosaic.length && (
         <div className="w-full">
           <Button
             color="link"
@@ -101,7 +97,8 @@ export default function Mosaic({
                     question={questionOfMosaic}
                     index={questionsOfMosaic.length + index}
                     firstInputId={firstInputId}
-                    {...props}
+                    setValue={setValue}
+                    value={values[questionOfMosaic]}
                   />
                 ))}
               </fieldset>

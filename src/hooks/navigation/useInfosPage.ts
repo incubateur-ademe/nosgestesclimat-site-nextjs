@@ -65,12 +65,12 @@ export function useInfosPage() {
     ({ curPage }: Props): string => {
       // if there is no pollSlug in query param, we return the test link
       if (!pollSlug) {
-        return getLinkToSimulateur({ currentSearchParams: searchParams })
+        return getLinkToSimulateur({ searchParams })
       }
 
       // if there in no poll and it is not loading, we return the test link
       if (!poll && !isLoading) {
-        return getLinkToSimulateur({ currentSearchParams: searchParams })
+        return getLinkToSimulateur({ searchParams })
       }
 
       // if there is no poll yet, we return an empty string (it should be handled by the caller component)
@@ -133,7 +133,7 @@ export function useInfosPage() {
       }
       // if we are on the start page, we return the test link
       if (curPage === START_PAGE) {
-        return getLinkToSimulateur({ currentSearchParams: searchParams })
+        return getLinkToSimulateur({ searchParams })
       }
       // if there is no additional question, we return the end page link
       return END_PAGE_PATH

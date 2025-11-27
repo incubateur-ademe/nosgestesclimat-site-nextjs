@@ -1,56 +1,53 @@
 import { SIMULATOR_PATH } from '@/constants/urls/paths'
-import { buildUrlWithPreservedParams } from '@/helpers/iframe/preserveIframeParams'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { ReadonlyURLSearchParams } from 'next/navigation'
 
 type Props = {
   question?: DottedName
   locale?: string
-  currentSearchParams?: ReadonlyURLSearchParams
+  searchParams?: ReadonlyURLSearchParams
 }
 
 type TutorielProps = {
   locale?: string
-  currentSearchParams?: ReadonlyURLSearchParams
+  searchParams?: ReadonlyURLSearchParams
 }
 
+/**
+ * Get the link to the simulateur page with preserved search params
+ */
 export const getLinkToSimulateur = ({
   question,
   locale,
-  currentSearchParams,
+  searchParams,
 }: Props = {}) => {
   const basePath = locale ? `/${locale}` : ''
   const pathname = `${basePath}${SIMULATOR_PATH}`
 
-  // If no question is provided, we return the base path with preserved params
-  if (!question) {
-    if (currentSearchParams) {
-      return buildUrlWithPreservedParams(pathname, currentSearchParams)
-    }
-    return pathname
+  const urlSearchParams = new URLSearchParams(searchParams?.toString() || '')
+
+  if (question) {
+    urlSearchParams.set(
+      'question',
+      question.replaceAll(' . ', '.').replaceAll(' ', '_')
+    )
   }
 
-  // Build URL with question param and preserved iframe params
-  const questionParam = question.replaceAll(' . ', '.').replaceAll(' ', '_')
-
-  if (currentSearchParams) {
-    return buildUrlWithPreservedParams(pathname, currentSearchParams, {
-      question: questionParam,
-    })
-  }
-
-  return `${pathname}?question=${questionParam}`
+  return `${pathname}${urlSearchParams.size > 0 ? `?${urlSearchParams.toString()}` : ''}`
 }
 
+/**
+ * Get the link to the tutoriel page with preserved search params
+ */
 export const getLinkToTutoriel = ({
   locale,
-  currentSearchParams,
+  searchParams,
 }: TutorielProps = {}) => {
   const basePath = locale ? `/${locale}` : ''
   const pathname = `${basePath}/tutoriel`
 
-  if (currentSearchParams) {
-    return buildUrlWithPreservedParams(pathname, currentSearchParams)
+  if (searchParams) {
+    return `${pathname}${searchParams.size > 0 ? `?${searchParams.toString()}` : ''}`
   }
 
   return pathname

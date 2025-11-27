@@ -1,30 +1,18 @@
 'use client'
 
-import { PreventNavigationContext } from '@/app/[locale]/_components/mainLayoutProviders/PreventNavigationProvider'
 import Navigation from '@/components/form/Navigation'
 import Question from '@/components/form/Question'
 import ContentLarge from '@/components/layout/ContentLarge'
 import questions from '@/components/specialQuestions'
-import { captureSimulationCompleted } from '@/constants/tracking/posthogTrackers'
-import {
-  gtmSimulationCompleted,
-  simulationSimulationCompleted,
-} from '@/constants/tracking/simulation'
 import { getBgCategoryColor } from '@/helpers/getCategoryColorClass'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
-import { useTrackTimeOnSimulation } from '@/hooks/tracking/useTrackTimeOnSimulation'
 import { useDebug } from '@/hooks/useDebug'
-import { useGTM } from '@/hooks/useGTM'
 import { useIframe } from '@/hooks/useIframe'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
-import {
-  useCurrentSimulation,
-  useEngine,
-  useFormState,
-} from '@/publicodes-state'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
-import { trackGTMEvent } from '@/utils/analytics/trackGTMEvent'
-import { useCallback, useContext, useEffect, useState } from 'react'
+
+import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
+import { useCurrentSimulation, useFormState } from '@/publicodes-state'
+import { useCallback, useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
 import FunFact from './form/FunFact'
 import ResultsBlocksDesktop from './form/ResultsBlocksDesktop'
@@ -44,97 +32,58 @@ export default function Form() {
     currentCategory,
   } = useFormState()
 
-  const { questionInQueryParams, setQuestionInQueryParams } =
-    useQuestionInQueryParams()
+  const { questionInQueryParams } = useQuestionInQueryParams(currentQuestion)
 
   const { goToEndPage } = useEndPage()
 
   const { isIframe } = useIframe()
 
-  const { isGTMAvailable } = useGTM()
-
-  const [isInitialized, setIsInitialized] = useState(false)
-
-  const { trackTimeOnSimulation } = useTrackTimeOnSimulation()
-  const { getNumericValue } = useEngine()
+  const { handleUpdateShouldPreventNavigation, shouldPreventNavigation } =
+    usePreventNavigation()
 
   const handleOnComplete = useCallback(() => {
+    if (shouldPreventNavigation) {
+      handleUpdateShouldPreventNavigation(false)
+    }
     if (progression === 1) {
-      const timeSpentOnSimulation = trackTimeOnSimulation()
-
-      const bilan = getNumericValue('bilan')
-
-      // Track Matomo event
-      trackEvent(simulationSimulationCompleted(bilan))
-
-      // Track GTM event if available
-      if (isGTMAvailable) {
-        trackGTMEvent(gtmSimulationCompleted)
-      }
-
-      trackPosthogEvent(
-        captureSimulationCompleted({
-          bilanCarbone: getNumericValue('bilan'),
-          bilanEau: getNumericValue('bilan', 'eau'),
-          timeSpentOnSimulation,
-        })
-      )
-
       goToEndPage({
         allowedToGoToGroupDashboard: true,
       })
     }
   }, [
+    shouldPreventNavigation,
     progression,
-    getNumericValue,
-    trackTimeOnSimulation,
-    isGTMAvailable,
+    handleUpdateShouldPreventNavigation,
     goToEndPage,
   ])
 
-  const [tempValue, setTempValue] = useState<number | undefined>(undefined)
-  const [displayedValue, setDisplayedValue] = useState<string | undefined>(
-    undefined
-  )
-
   useEffect(() => {
-    if (!isInitialized) {
-      if (
-        questionInQueryParams &&
-        (relevantAnsweredQuestions.includes(questionInQueryParams) || isDebug)
-      ) {
-        setCurrentQuestion(questionInQueryParams)
-      } else {
-        setCurrentQuestion(remainingQuestions[0])
-      }
-      setIsInitialized(true)
+    if (!relevantAnsweredQuestions || currentQuestion) {
+      return
     }
+    if (
+      questionInQueryParams &&
+      (relevantAnsweredQuestions.includes(questionInQueryParams) || isDebug)
+    ) {
+      setCurrentQuestion(questionInQueryParams)
+    } else {
+      setCurrentQuestion(remainingQuestions[0])
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    isDebug,
-    questionInQueryParams,
-    remainingQuestions,
     relevantAnsweredQuestions,
     setCurrentQuestion,
-    isInitialized,
+    questionInQueryParams,
+    isDebug,
   ])
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [currentQuestion])
 
-  useEffect(() => {
-    if (isInitialized && currentQuestion) {
-      setQuestionInQueryParams(currentQuestion)
-    }
-  }, [setQuestionInQueryParams, currentQuestion, isInitialized])
-
-  const { handleUpdateShouldPreventNavigation, shouldPreventNavigation } =
-    useContext(PreventNavigationContext)
-
-  if (!isInitialized || !currentQuestion) {
+  if (!currentQuestion) {
     return
   }
-
   const QuestionComponent = questions[currentQuestion] || Question
 
   return (
@@ -147,25 +96,14 @@ export default function Form() {
             <QuestionComponent
               question={currentQuestion}
               key={currentQuestion}
-              tempValue={tempValue}
-              setTempValue={setTempValue}
-              displayedValue={displayedValue}
-              setDisplayedValue={setDisplayedValue}
             />
 
             {isIframe && (
               <Navigation
                 key="iframe-navigation"
                 question={currentQuestion}
-                tempValue={tempValue}
                 remainingQuestions={remainingQuestions}
-                onComplete={() => {
-                  if (shouldPreventNavigation) {
-                    handleUpdateShouldPreventNavigation(false)
-                  }
-
-                  handleOnComplete()
-                }}
+                onComplete={handleOnComplete}
               />
             )}
           </div>
@@ -199,14 +137,7 @@ export default function Form() {
           key="default-navigation"
           question={currentQuestion}
           remainingQuestions={remainingQuestions}
-          tempValue={tempValue}
-          onComplete={() => {
-            if (shouldPreventNavigation) {
-              handleUpdateShouldPreventNavigation(false)
-            }
-
-            handleOnComplete()
-          }}
+          onComplete={handleOnComplete}
         />
       )}
     </>

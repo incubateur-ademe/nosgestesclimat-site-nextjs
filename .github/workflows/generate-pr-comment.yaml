@@ -3,7 +3,8 @@
 # TODO: to factorize with the model's CI.
 
 name: Generate PR comment
-
+permissions:
+  pull-requests: write
 on:
   pull_request:
     types: [opened, synchronize]
