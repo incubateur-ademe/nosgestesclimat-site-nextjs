@@ -1,3 +1,9 @@
+import {
+  MON_ESPACE_ACTIONS_PATH,
+  MON_ESPACE_GROUPS_PATH,
+  MON_ESPACE_PATH,
+  MON_ESPACE_SETTINGS_PATH,
+} from '@/constants/urls/paths'
 import { getPosts } from '@/helpers/markdown/getPosts'
 import { fetchAllArticleTitlesAndSlugs } from '@/services/cms/fetchAllArticleTitlesAndSlugs'
 import { fetchThematicLandingPages } from '@/services/cms/fetchThematicLandingPages'
@@ -38,10 +44,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     'questions',
     'questions-frequentes',
     'stats',
-    'mon-espace',
-    'mon-espace/groupes',
-    'mon-espace/actions',
-    'mon-espace/parametres',
+    MON_ESPACE_PATH,
+    MON_ESPACE_GROUPS_PATH,
+    MON_ESPACE_ACTIONS_PATH,
+    MON_ESPACE_SETTINGS_PATH,
   ])
 
   const staticUrls = Array.from(staticPages).map((page) => ({

@@ -2,6 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { endClickActions } from '@/constants/tracking/pages/end'
+import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import RecommendedActions from './howToAct/RecommendedActions'
 
@@ -29,7 +30,7 @@ export default function HowToAct({ shouldLeadToTest = true }) {
 
       <div className="mt-4">
         <ButtonLink
-          href="/actions"
+          href={MON_ESPACE_ACTIONS_PATH}
           color="secondary"
           trackingEvent={endClickActions}>
           <Trans>Voir toutes les actions</Trans>

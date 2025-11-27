@@ -2,6 +2,7 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
+import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import getActions from '@/helpers/actions/getActions'
 import { useEngine, useTempEngine } from '@/publicodes-state'
 import { utils } from 'publicodes'
@@ -37,7 +38,7 @@ export default function Actions() {
           return (
             <li key={action.dottedName}>
               <Link
-                href={`/actions/${utils.encodeRuleName(action.dottedName)}`}>
+                href={`${MON_ESPACE_ACTIONS_PATH}/${utils.encodeRuleName(action.dottedName)}`}>
                 {action.title}
               </Link>
             </li>

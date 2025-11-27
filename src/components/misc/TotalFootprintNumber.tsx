@@ -2,6 +2,7 @@
 
 import Trans from '@/components/translation/trans/TransClient'
 import { defaultMetric } from '@/constants/model/metric'
+import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import Loader from '@/design-system/layout/Loader'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -29,7 +30,7 @@ export default function TotalFootprintNumber({
 
   const pathname = usePathname()
 
-  const isOnActionsPage = pathname.includes('/actions')
+  const isOnActionsPage = pathname.includes(MON_ESPACE_ACTIONS_PATH)
 
   const { isInitialized } = useEngine()
 

@@ -6,6 +6,7 @@ import {
   endClickActions,
   endClickActionsPosthog,
 } from '@/constants/tracking/pages/end'
+import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import { useEngine, useRule } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -74,7 +75,7 @@ export default function Actions({ subcategory, noNumberedFootprint }: Props) {
               trackEvent(endClickActions)
               trackPosthogEvent(endClickActionsPosthog(title ?? ''))
             }}
-            href="/actions"
+            href={MON_ESPACE_ACTIONS_PATH}
             className="text-center text-xs">
             <Trans>Voir tous les gestes</Trans> : {title}
           </Link>
