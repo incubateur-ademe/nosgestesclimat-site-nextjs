@@ -25,7 +25,7 @@ export default async function ShareSimulator({ locale }: Props) {
             'mon-espace.shareSimulator.buttonLabel.desktop',
             'Partager le test Nos Gestes Climat'
           )}
-          buttonColor="secondary"
+          buttonColor="borderless"
           shouldHideTextOnMobile={false}
         />
       </span>

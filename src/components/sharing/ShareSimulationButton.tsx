@@ -23,7 +23,7 @@ export default function ShareSimulationButton({
 }: {
   url: string
   buttonLabel?: string
-  buttonColor?: 'primary' | 'secondary' | 'text'
+  buttonColor?: 'primary' | 'secondary' | 'text' | 'borderless'
   shouldHideTextOnMobile?: boolean
 }) {
   const { t } = useClientTranslation()
