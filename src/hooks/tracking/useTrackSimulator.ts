@@ -1,5 +1,6 @@
 import {
   captureSimulationCompleted,
+  captureSimulationFirstQuestionSeen,
   captureSimulationStarted,
 } from '@/constants/tracking/posthogTrackers'
 import {
@@ -8,6 +9,7 @@ import {
   simulationCategoryCompleted,
   simulationCategoryStarted,
   simulationSimulationCompleted,
+  simulationSimulationFirstQuestionSeen,
   simulationSimulationStarted,
 } from '@/constants/tracking/simulation'
 import {
@@ -22,7 +24,8 @@ import { useEffect } from 'react'
 import { useGTM } from '../useGTM'
 import { useTrackTimeOnSimulation } from './useTrackTimeOnSimulation'
 
-const FIRST_QUESTION = 'first_question'
+const FIRST_QUESTION_SEEN = 'first_question_seen'
+const FIRST_QUESTION_ANSWERED = 'first_question_answered'
 const TEST_COMPLETED = 'test_completed'
 
 const getTrackingKey = (simulationId: string, eventType: string): string => {
@@ -53,6 +56,7 @@ export function useTrackSimulator() {
     isLastQuestionOfCategory,
     currentCategory,
     relevantAnsweredQuestions,
+    remainingQuestions,
   } = useFormState()
 
   const { progression, foldedSteps } = currentSimulation
@@ -63,12 +67,31 @@ export function useTrackSimulator() {
 
   const { trackTimeOnSimulation } = useTrackTimeOnSimulation()
 
+  // Track users that have seen the first question
+  useEffect(() => {
+    if (
+      progression === 0 &&
+      foldedSteps.length === 0 &&
+      !getTrackingState(simulationId, FIRST_QUESTION_SEEN)
+    ) {
+      trackEvent(simulationSimulationFirstQuestionSeen)
+
+      trackPosthogEvent(
+        captureSimulationFirstQuestionSeen({
+          question: remainingQuestions[0],
+        })
+      )
+
+      setTrackingState(simulationId, FIRST_QUESTION_SEEN, true)
+    }
+  }, [remainingQuestions, progression, foldedSteps, simulationId])
+
   // Track users that have answered at first question
   useEffect(() => {
     if (
       progression > 0 &&
       foldedSteps.length === 1 &&
-      !getTrackingState(simulationId, FIRST_QUESTION)
+      !getTrackingState(simulationId, FIRST_QUESTION_ANSWERED)
     ) {
       trackEvent(simulationSimulationStarted)
 
@@ -84,7 +107,7 @@ export function useTrackSimulator() {
         })
       )
 
-      setTrackingState(simulationId, FIRST_QUESTION, true)
+      setTrackingState(simulationId, FIRST_QUESTION_ANSWERED, true)
     }
   }, [
     relevantAnsweredQuestions,
