@@ -26,7 +26,7 @@ export default function Page() {
     enabled: false,
   })
 
-  const { user, updateUserOrganisation } = useUser()
+  const { updateUserOrganisation } = useUser()
 
   // Redirect to the organisation page if the user
   // is already logged in (has a valid cookie stored)
