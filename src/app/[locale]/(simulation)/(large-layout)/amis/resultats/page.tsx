@@ -2,6 +2,7 @@
 
 import GroupLoader from '@/components/groups/GroupLoader'
 import GroupNotFound from '@/components/groups/GroupNotFound'
+import { MON_ESPACE_GROUPS_PATH } from '@/constants/urls/paths'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import { useFetchGroup } from '@/hooks/groups/useFetchGroup'
 import { useGroupIdInQueryParams } from '@/hooks/groups/useGroupIdInQueryParams'
@@ -36,7 +37,7 @@ export default function GroupResultsPage() {
 
   return (
     <div className="pb-8">
-      <GoBackLink href={'/classements'} className="mb-4 font-bold" />
+      <GoBackLink className="mb-4 font-bold" href={MON_ESPACE_GROUPS_PATH} />
 
       <EditableGroupTitle group={group} />
 

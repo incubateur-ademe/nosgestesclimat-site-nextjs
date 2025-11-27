@@ -16,6 +16,11 @@ const redirects = [
     permanent: true,
   },
   {
+    source: '/classements',
+    destination: '/mon-espace/groupes',
+    permanent: true,
+  },
+  {
     source: '/conférence/:path*',
     destination: 'https://sondages.nosgestesclimat.fr/conférence/:path*',
     permanent: true,

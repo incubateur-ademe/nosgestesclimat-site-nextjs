@@ -5,10 +5,10 @@ import {
   amisDashboardOpenDeleteGroup,
   amisDashboardValidateDeleteGroup,
 } from '@/constants/tracking/pages/amisDashboard'
+import { MON_ESPACE_GROUPS_PATH } from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
-import { linkToClassement } from '@/helpers/navigation/classementPages'
 import { useDeleteGroup } from '@/hooks/groups/useDeleteGroup'
 import { useUser } from '@/publicodes-state'
 import type { Group } from '@/types/groups'
@@ -51,7 +51,7 @@ export default function OwnerAdminSection({ group }: Props) {
       })
 
       timeoutRef.current = setTimeout(() => {
-        router.push(linkToClassement)
+        router.push(MON_ESPACE_GROUPS_PATH)
       }, 2000)
     } catch (error) {
       captureException(error)

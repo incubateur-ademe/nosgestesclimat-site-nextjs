@@ -1,6 +1,7 @@
 import StepsDisplay from '@/components/groups/StepsDisplay'
 import { linkToGroupCreation } from '@/constants/group'
 import { amisCreationVosInformationsRetour } from '@/constants/tracking/pages/amisCreation'
+import { MON_ESPACE_GROUPS_PATH } from '@/constants/urls/paths'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -25,7 +26,7 @@ export default async function YourInfoPage({ params }: DefaultPageProps) {
   return (
     <div className="pb-8">
       <GoBackLink
-        href={'/classements'}
+        href={MON_ESPACE_GROUPS_PATH}
         eventTracked={amisCreationVosInformationsRetour}
         className="mb-4 font-bold"
       />
