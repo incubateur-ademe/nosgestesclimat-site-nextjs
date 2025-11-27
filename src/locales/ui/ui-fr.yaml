@@ -1371,7 +1371,7 @@ entries:
   mon-espace.tabs.results: Résultats
   mon-espace.tabs.settings: Paramètres
   mon-espace.welcome.close-banner: Fermer la bannière de bienvenue
-  mon-espace.welcome.description.part1: Ici, vous pourrez
+  mon-espace.welcome.description.part1: Ici, vous pourrez <1>suivre vos résultats</1>, passer à <4>l’action</4>, et <7>embarquer d’autres personnes</7> avec vous.
   mon-espace.welcome.description.part2: suivre vos résultats
   mon-espace.welcome.description.part3: ', passer à '
   mon-espace.welcome.description.part4: l’action
@@ -1530,3 +1530,4 @@ entries:
   landing.carbon.measure.shopping: Vos achats
   Calculez <2>vos empreintes</2> en <5>seulement 10 minutes</5>.: Calculez <2>vos empreintes</2> en <5>seulement 10 minutes</5>.
   Connaissez-vous votre empreinte carbone et eau ?: Connaissez-vous votre empreinte carbone et eau ?
+  la page groupes: la page groupes

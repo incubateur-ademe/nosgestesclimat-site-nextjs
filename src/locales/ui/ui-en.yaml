@@ -1573,7 +1573,7 @@ entries:
   signup.colourBlock.highlight3.title.middle.lock: et
   login.list.login.label: Sign in
   login.list.login.label.lock: Se connecter
-  signup.colourBlock.highlight1.title.strong: your impression results
+  signup.colourBlock.highlight1.title.strong: your footprint results
   signup.colourBlock.highlight1.title.strong.lock: vos résultats d’empreinte
   signup.colourBlock.highlight1.title.prefix: Visit
   signup.colourBlock.highlight1.title.prefix.lock: Retrouvez
@@ -1622,11 +1622,11 @@ entries:
   sur ces 50 dernières années, passant de 23 à 40 m² par habitant, soit: over the last 50 years, from 23 to 40 m² per inhabitant, i.e
   mon-espace.groups.title: My "Friends" and "Family" groups
   mon-espace.groups.title.lock: Mes groupes "Amis" et "Famille"
-  mon-espace.instructions.list.item1.part2: your impression results
+  mon-espace.instructions.list.item1.part2: your footprint results
   mon-espace.instructions.list.item1.part2.lock: vos résultats d'empreinte
-  Derniers résultats d’empreinte: Latest impression results
-  mon-espace.welcome.description.part1: Here you can
-  mon-espace.welcome.description.part1.lock: Ici, vous pourrez
+  Derniers résultats d’empreinte: Latest footprint results
+  mon-espace.welcome.description.part1: Here you can <1>track your results</1>, take <4>action</4> and <7>get other people on board</7>.
+  mon-espace.welcome.description.part1.lock: Ici, vous pourrez <1>suivre vos résultats</1>, passer à <4>l’action</4>, et <7>embarquer d’autres personnes</7> avec vous.
   mon-espace.tabs.actions: Actions
   mon-espace.tabs.actions.lock: Actions
   mon-espace.tabs.groups: Groups
@@ -1710,7 +1710,7 @@ entries:
   mon-espace.resultsList.result.viewDetail.lock: Voir le détail
   mon-espace.resultsList.title: All my results
   mon-espace.resultsList.title.lock: Tous mes résultats
-  mon-espace.latestResults.title: Latest impression results
+  mon-espace.latestResults.title: Latest footprint results
   mon-espace.latestResults.title.lock: Derniers résultats d'empreinte
   mon-espace.shareSimulator.buttonLabel.mobile: Share the test
   mon-espace.shareSimulator.buttonLabel.mobile.lock: Partager le test
@@ -1936,3 +1936,4 @@ entries:
   landing.carbon.understand.description.lock: Réduire efficacement son empreinte sur l'environnement nécessite de <2>s'informer sur les enjeux du réchauffement climatique</2>, s'inspirer des bonnes pratiques et <5>passer à l'action</5>.
   Connaissez-vous votre empreinte carbone et eau ?: Do you know your carbon and water footprint?
   Calculez <2>vos empreintes</2> en <5>seulement 10 minutes</5>.: Calculate <2>your footprints</2> in <5>just 10 minutes</5>.
+  la page groupes: groups page
