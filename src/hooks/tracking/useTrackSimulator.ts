@@ -25,7 +25,7 @@ import { useGTM } from '../useGTM'
 import { useTrackTimeOnSimulation } from './useTrackTimeOnSimulation'
 
 const FIRST_QUESTION_SEEN = 'first_question_seen'
-const FIRST_QUESTION = 'first_question'
+const FIRST_QUESTION_ANSWERED = 'first_question_answered'
 const TEST_COMPLETED = 'test_completed'
 
 const getTrackingKey = (simulationId: string, eventType: string): string => {
@@ -91,7 +91,7 @@ export function useTrackSimulator() {
     if (
       progression > 0 &&
       foldedSteps.length === 1 &&
-      !getTrackingState(simulationId, FIRST_QUESTION)
+      !getTrackingState(simulationId, FIRST_QUESTION_ANSWERED)
     ) {
       trackEvent(simulationSimulationStarted)
 
@@ -107,7 +107,7 @@ export function useTrackSimulator() {
         })
       )
 
-      setTrackingState(simulationId, FIRST_QUESTION, true)
+      setTrackingState(simulationId, FIRST_QUESTION_ANSWERED, true)
     }
   }, [
     relevantAnsweredQuestions,
