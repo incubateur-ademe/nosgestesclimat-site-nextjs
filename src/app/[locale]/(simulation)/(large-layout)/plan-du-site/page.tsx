@@ -34,7 +34,7 @@ export default async function PlanDuSitePage({ params }: DefaultPageProps) {
         href: SIMULATOR_PATH,
       },
     },
-    'Comparez votre empreinte': {
+    'Mobilisez votre entourage': {
       organisation: {
         title: t('Au sein de votre organisation'),
         href: '/organisations',
@@ -139,9 +139,9 @@ export default async function PlanDuSitePage({ params }: DefaultPageProps) {
 
       <section className="mb-2">
         <h2>
-          <Trans locale={locale}>Comparez votre empreinte</Trans>
+          <Trans locale={locale}>Mobilisez votre entourage</Trans>
         </h2>
-        <LinkList entries={links['Comparez votre empreinte']} />
+        <LinkList entries={links['Mobilisez votre entourage']} />
       </section>
 
       <section className="mb-2">

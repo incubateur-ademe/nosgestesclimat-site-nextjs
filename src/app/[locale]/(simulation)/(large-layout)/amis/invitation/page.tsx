@@ -40,7 +40,10 @@ export default function RejoindreGroupePage() {
           </Trans>
         }
         subtitle={t(
-          "Comparez vos résultats avec votre famille ou un groupe d'amis."
+          'Rejoignez le groupe <3>{{groupName}}</3> et passez le test.',
+          {
+            groupName: <span className="text-violet-900">{group?.name}</span>,
+          }
         )}
       />
 

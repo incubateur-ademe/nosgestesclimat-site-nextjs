@@ -35,9 +35,7 @@ export default async function GroupNamePage({ params }: DefaultPageProps) {
 
       <Title
         title={t("Créer un groupe d'amis")}
-        subtitle={t(
-          'Comparez vos résultats avec votre famille ou un groupe d’amis'
-        )}
+        subtitle={t('Invitez vos proches à passer le test')}
       />
 
       <NameForm />
