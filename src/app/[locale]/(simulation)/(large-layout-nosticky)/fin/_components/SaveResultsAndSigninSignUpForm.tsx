@@ -26,6 +26,13 @@ export default function SaveResultsAndSigninSignUpForm({
 
   const { saveSimulation, isPending, isSuccess } = useSaveSimulation()
 
+  useEffect(() => {
+    if (isSuccess && !currentSimulation.savedViaEmail) {
+      // We update the simulation to signify that it has been saved (and not show the form anymore)
+      currentSimulation.update({ savedViaEmail: true })
+    }
+  }, [isSuccess, currentSimulation])
+
   const { data: authenticatedUser } = useGetAuthentifiedUser()
 
   // If the user is authenticated, we don't show the form as all
@@ -53,13 +60,6 @@ export default function SaveResultsAndSigninSignUpForm({
       captureException(error)
     }
   }
-
-  useEffect(() => {
-    if (isSuccess && !currentSimulation.savedViaEmail) {
-      // We update the simulation to signify that it has been saved (and not show the form anymore)
-      currentSimulation.update({ savedViaEmail: true })
-    }
-  }, [isSuccess, currentSimulation])
 
   // If we successfully saved the simulation, we display the confirmation message
   // or if the simulation is already saved
