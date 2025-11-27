@@ -84,13 +84,7 @@ export function useTrackSimulator() {
 
       setTrackingState(simulationId, FIRST_QUESTION_SEEN, true)
     }
-  }, [
-    remainingQuestions,
-    progression,
-    foldedSteps,
-    simulationId,
-    currentSimulation,
-  ])
+  }, [remainingQuestions, progression, foldedSteps, simulationId])
 
   // Track users that have answered at first question
   useEffect(() => {
