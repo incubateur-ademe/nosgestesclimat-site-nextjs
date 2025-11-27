@@ -1,9 +1,11 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import { SIMULATOR_PATH } from '@/constants/urls/paths'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Locale } from '@/i18nConfig'
 import isMobile from 'is-mobile'
+import Link from 'next/link'
 import {
   CartesianGrid,
   Line,
@@ -85,11 +87,13 @@ export default function EvolutionChart({
       {disabled && (
         <div className="border-primary-400 absolute top-1/2 left-1/2 z-10 flex max-w-96 -translate-x-1/2 -translate-y-full items-center justify-center rounded-xl border-2 bg-white p-6">
           <p className="mb-0 text-center">
-            <strong className="text-primary-700">
-              <Trans i18nKey="mon-espace.evolutionGraph.chartDisabledTitle.part1">
-                Faites une nouvelle simulation
-              </Trans>
-            </strong>{' '}
+            <Link href={`${SIMULATOR_PATH}?newsimulation=true`}>
+              <strong className="text-primary-700">
+                <Trans i18nKey="mon-espace.evolutionGraph.chartDisabledTitle.part1">
+                  Faites une nouvelle simulation
+                </Trans>
+              </strong>
+            </Link>{' '}
             <Trans i18nKey="mon-espace.evolutionGraph.chartDisabledTitle.part2">
               pour avoir accès à l’évolution de votre empreinte
             </Trans>
