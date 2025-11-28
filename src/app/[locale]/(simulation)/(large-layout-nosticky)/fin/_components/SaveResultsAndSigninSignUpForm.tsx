@@ -71,7 +71,7 @@ export default function SaveResultsAndSigninSignUpForm({
     <div id="email-block" className="mt-6 mb-6">
       <Card
         className={twMerge(
-          'bg-primary-50 flex flex-col items-start gap-2 rounded-xl border-none px-4 pt-6 pb-4 shadow-none md:flex-row md:gap-8 md:py-6',
+          'flex flex-col items-start gap-2 rounded-xl border-none bg-[#F4F5FB] px-4 pt-6 pb-4 shadow-none md:flex-row md:gap-8 md:py-6',
           className
         )}>
         <div className="flex-1">

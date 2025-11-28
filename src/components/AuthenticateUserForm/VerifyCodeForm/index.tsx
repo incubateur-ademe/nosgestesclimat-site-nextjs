@@ -63,7 +63,7 @@ export default function VerificationForm({
   )
 
   return (
-    <div className="mb-8 rounded-xl bg-[#F0F8FF] p-4 md:p-8">
+    <div className="mb-8 rounded-xl bg-[#F4F5FB] p-4 md:p-8">
       <div>
         <VerificationContent
           email={pendingVerification.email}
