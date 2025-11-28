@@ -1,9 +1,7 @@
 import { SIMULATOR_PATH } from './paths'
 
-let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3001'
-if (!serverUrl.startsWith('http')) {
-  serverUrl = 'https://' + serverUrl
-}
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3001'
+
 export const AUTHENTICATION_URL = serverUrl + '/authentication/v1'
 
 export const GROUP_URL = serverUrl + '/groups/v1'

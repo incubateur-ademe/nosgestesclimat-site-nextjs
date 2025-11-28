@@ -13,7 +13,6 @@ export async function POST(request: Request) {
 
   const newRequest = new Request(url.toString(), request)
   const response = await fetch(newRequest)
-  console.log('response', response)
 
   return response
 }

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -85,14 +86,15 @@ const TabLink = ({
   }
 
   return (
-    <a
+    <Link
       role="tab"
       href={href}
+      prefetch={false}
       className={twMerge(baseClasses, className)}
       {...otherProps}
       {...props}>
       {children}
-    </a>
+    </Link>
   )
 }
 
