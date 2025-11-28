@@ -24,6 +24,7 @@ export async function postSimulation({
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(simulation),
+    credentials: 'include',
   })
 
   if (!response.ok) {

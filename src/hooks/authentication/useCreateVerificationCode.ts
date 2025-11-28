@@ -80,7 +80,6 @@ export function useCreateVerificationCode({
 
         onComplete?.({ email, expirationDate })
       } catch (error) {
-        console.error(error)
         // Error is handled by the useCreateVerificationCode hook
         return
       } finally {
