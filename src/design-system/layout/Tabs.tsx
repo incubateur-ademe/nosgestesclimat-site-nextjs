@@ -90,6 +90,7 @@ const TabLink = ({
       role="tab"
       href={href}
       prefetch={false}
+      scroll={false}
       className={twMerge(baseClasses, className)}
       {...otherProps}
       {...props}>
