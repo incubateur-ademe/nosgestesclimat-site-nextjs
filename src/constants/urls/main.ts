@@ -1,7 +1,11 @@
 import { SIMULATOR_PATH } from './paths'
 
-const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3001'
-
+let serverUrl
+if (process.env.NEXT_PUBLIC_PROXY_SERVER === 'true') {
+  serverUrl = process.env.NEXT_PUBLIC_SITE_URL + '/api/server'
+} else {
+  serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
+}
 export const AUTHENTICATION_URL = serverUrl + '/authentication/v1'
 
 export const GROUP_URL = serverUrl + '/groups/v1'

@@ -71,6 +71,19 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
     webpackBuildWorker: true,
   },
+  async rewrites() {
+    if (process.env.NEXT_PUBLIC_PROXY_SERVER === 'true') {
+      // If API server and nextJS are on different subdomains (development),
+      // we might want to creates a proxy to avoid cookie issues
+      return [
+        {
+          source: '/api/server/:path*',
+          destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/:path*`,
+        },
+      ]
+    }
+    return []
+  },
 }
 
 const sentryConfig = {
