@@ -7,18 +7,16 @@ import {
 } from '@/constants/tracking/user-account'
 import { CONNEXION_PATH, MON_ESPACE_PATH } from '@/constants/urls/paths'
 import ButtonLinkServer from '@/design-system/buttons/ButtonLinkServer'
+import { getAuthentifiedUser } from '@/helpers/authentication/getAuthentifiedUser'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getLocale } from '@/helpers/language/getLocale'
-import type { AuthenticatedUser } from '@/types/authentication'
 
 const MAX_EMAIL_LENGTH = 20
 
-export default async function MySpaceButton({
-  authenticatedUser,
-}: {
-  authenticatedUser?: AuthenticatedUser
-}) {
+export default async function MySpaceButton() {
   const locale = await getLocale()
+
+  const authenticatedUser = await getAuthentifiedUser()
 
   const { t } = await getServerTranslation({ locale })
 
