@@ -15,12 +15,14 @@ export function usePendingVerification({
 }) {
   const { user, updatePendingVerification, updateEmail } = useUser()
   let pendingVerification = user?.pendingVerification
+
   if (
     pendingVerification &&
     dayjs(pendingVerification.expirationDate).isBefore(dayjs())
   ) {
     pendingVerification = undefined
   }
+
   const handleVerificationCompleted = useCallback(async () => {
     if (!pendingVerification) {
       return

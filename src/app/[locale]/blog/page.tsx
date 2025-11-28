@@ -1,13 +1,10 @@
-import { Suspense } from 'react'
-
 import ContentLarge from '@/components/layout/ContentLarge'
 import Footer from '@/components/layout/Footer'
 import JSONLD from '@/components/seo/JSONLD'
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
-import NewslettersBlock from '@/design-system/cms/NewslettersBlock'
-import NewslettersBlockSkeleton from '@/design-system/cms/NewslettersBlockSkeleton'
+import NewslettersBlockServer from '@/design-system/cms/NewslettersBlockServer'
 import { getDynamicPageTitleWithPagination } from '@/helpers/blog/getDynamicPageTitleWithPagination'
 import { getPageNumber } from '@/helpers/blog/getPageNumber'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -169,9 +166,7 @@ export default async function BlogHomePage({
 
         <div className="flex flex-col gap-8 md:flex-row">
           <QueryClientProviderWrapper>
-            <Suspense fallback={<NewslettersBlockSkeleton />}>
-              <NewslettersBlock />
-            </Suspense>
+            <NewslettersBlockServer />
           </QueryClientProviderWrapper>
 
           <GroupBlock locale={locale} />

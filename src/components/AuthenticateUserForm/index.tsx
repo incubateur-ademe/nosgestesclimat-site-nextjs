@@ -1,10 +1,19 @@
 'use client'
 
 import type { AuthenticationMode } from '@/types/authentication'
-import { useCallback, type ReactNode } from 'react'
+import { useCallback, useState, type ReactNode } from 'react'
 
+import {
+  captureClickSubmitEmail,
+  signinTrackEvent,
+} from '@/constants/tracking/pages/signin'
+import Button from '@/design-system/buttons/Button'
+import useLogin from '@/hooks/authentication/useLogin'
 import { usePendingVerification } from '@/hooks/authentication/usePendingVerification'
+import { useUser } from '@/publicodes-state'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useRouter } from 'next/navigation'
+import { Trans } from 'react-i18next'
 import SendVerificationCodeForm from './SendVerificationCodeForm'
 import VerifyCodeForm from './VerifyCodeForm'
 
@@ -26,8 +35,11 @@ export default function AuthenticateUserForm({
   onComplete,
 }: Props) {
   const router = useRouter()
+  const { user } = useUser()
+  const [isRedirecting, setIsRedirecting] = useState(false)
+  const complete = useCallback(() => {
+    setIsRedirecting(true)
 
-  const redirect = useCallback(() => {
     if (redirectURL) {
       router.push(redirectURL)
     }
@@ -40,26 +52,41 @@ export default function AuthenticateUserForm({
     resetVerification,
     completeVerification,
   } = usePendingVerification({
-    onComplete: redirect,
+    onComplete: complete,
   })
 
-  if (pendingVerification) {
+  const login = useLogin()
+
+  if (pendingVerification || isRedirecting) {
     return (
-      <VerifyCodeForm
-        onRegisterNewVerification={registerVerification}
-        onVerificationReset={resetVerification}
-        pendingVerification={pendingVerification}
-        onVerificationCompleted={completeVerification}
-      />
+      <div className="mb-8 rounded-xl bg-[#F4F5FB] p-4 md:p-8">
+        <VerifyCodeForm
+          onRegisterNewVerification={registerVerification}
+          email={pendingVerification?.email ?? user.email ?? ''}
+          onVerificationCompleted={completeVerification}
+          verificationMutation={login}
+        />
+        <Button
+          onClick={resetVerification}
+          color="link"
+          className="mt-2 -ml-2 flex items-center font-normal">
+          <Trans i18nKey="signIn.verificationForm.notReceived.backButton">
+            Retour à la connexion
+          </Trans>
+        </Button>
+      </div>
     )
   }
-
   return (
     <SendVerificationCodeForm
       buttonLabel={buttonLabel}
       buttonColor={buttonColor}
       mode={mode}
-      onCodeSent={registerVerification}
+      onCodeSent={(pendingVerification) => {
+        registerVerification(pendingVerification)
+        trackEvent(signinTrackEvent(mode))
+        trackPosthogEvent(captureClickSubmitEmail({ mode }))
+      }}
       inputLabel={inputLabel}
     />
   )

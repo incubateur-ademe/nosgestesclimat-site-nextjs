@@ -3,10 +3,13 @@ import Trans from '@/components/translation/trans/TransServer'
 import UserEmailForm from '@/components/user/UserEmailForm'
 import UserNewslettersForm from '@/components/user/UserNewslettersForm'
 import { getLocale } from '@/helpers/language/getLocale'
+import { getUser } from '@/helpers/server/model/user'
 import { UserProvider } from '@/publicodes-state'
 
 export default async function UserInfoSection() {
   const locale = await getLocale()
+  const user = await getUser()
+
   return (
     <section aria-labelledby="user-info-title" className="mb-10">
       <h2 id="user-info-title" className="mb-4">
@@ -29,7 +32,7 @@ export default async function UserInfoSection() {
               className="mb-8"
             />
 
-            <UserNewslettersForm />
+            <UserNewslettersForm user={user} />
           </div>
         </UserProvider>
       </QueryClientProviderWrapper>

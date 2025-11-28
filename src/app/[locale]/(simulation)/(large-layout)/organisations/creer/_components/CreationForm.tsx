@@ -30,7 +30,6 @@ type Inputs = {
   administratorLastName: string
   administratorPosition: string
   hasOptedInForCommunications: boolean
-  shouldNavigateToPollForm?: boolean
 }
 
 export default function CreationForm() {
@@ -52,7 +51,6 @@ export default function CreationForm() {
     useCreateOrganisation()
 
   async function onSubmit({
-    shouldNavigateToPollForm = true,
     name,
     administratorFirstName,
     administratorLastName,
@@ -80,13 +78,7 @@ export default function CreationForm() {
         slug: organisationUpdated?.slug,
       })
 
-      if (shouldNavigateToPollForm) {
-        router.push(
-          `/organisations/${organisationUpdated?.slug}/creer-campagne`
-        )
-      } else {
-        router.push(`/organisations/${organisationUpdated?.slug}`)
-      }
+      router.push(`/organisations/${organisationUpdated?.slug}/creer-campagne`)
     } catch (error: any) {
       captureException(error)
     }

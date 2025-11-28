@@ -8,21 +8,6 @@ function formatSlugToName(slug: string) {
   return decodeURIComponent(slug).replaceAll('-', ' ')
 }
 
-function getBaseItems({ pathname, t }: { pathname: string; t: TFunction }) {
-  return [
-    {
-      href: '/',
-      label: t('Accueil'),
-      isActive: pathname === '/',
-    },
-    {
-      href: '/organisations',
-      label: t('Organisations'),
-      isActive: pathname === '/organisations',
-    },
-  ]
-}
-
 function getOrganisationEspaceItems({
   pathname,
   params,
@@ -106,7 +91,7 @@ export function getOrganisationItems({
   }
 
   // These are the items for the organisation page, the connexion and the creation page
-  const items = [...getBaseItems({ pathname, t })]
+  const items = []
 
   if (pathname.includes('demander-demo')) {
     items.push({

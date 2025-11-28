@@ -7,7 +7,6 @@ import { useParams } from 'next/navigation'
 
 export default function useFetchOrganisation() {
   const { orgaSlug } = useParams()
-
   const { user } = useUser()
 
   // Use organisationIdOrSlug or organisationId from the localstate

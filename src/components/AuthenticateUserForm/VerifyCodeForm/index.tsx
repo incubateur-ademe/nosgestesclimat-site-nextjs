@@ -1,27 +1,33 @@
 import { useCreateVerificationCode } from '@/hooks/authentication/useCreateVerificationCode'
-import useLogin from '@/hooks/authentication/useLogin'
-import type { PendingVerification } from '@/hooks/authentication/usePendingVerification'
+import { type PendingVerification } from '@/hooks/authentication/usePendingVerification'
 import useTimeLeft from '@/hooks/organisations/useTimeleft'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import type { UseMutationResult } from '@tanstack/react-query'
 import { useCallback } from 'react'
 import NotReceived from './NotReceived'
 import VerificationContent from './VerificationContent'
 
-type Props = {
-  pendingVerification: PendingVerification
+type Props<T extends object> = {
+  email: string
   onRegisterNewVerification: (newVerification: PendingVerification) => void
   onVerificationCompleted: () => void
-  onVerificationReset: () => void
+  mutationPayload?: T
+  verificationMutation: UseMutationResult<
+    unknown,
+    Error,
+    Partial<{ email: string; code: string }> & T
+  >
 }
 
 const NUM_SECONDS = 30
 
-export default function VerificationForm({
-  pendingVerification,
-  onRegisterNewVerification: onRegisterNew,
+export default function VerificationForm<T extends object>({
+  email,
   onVerificationCompleted,
-  onVerificationReset,
-}: Props) {
+  onRegisterNewVerification,
+  mutationPayload: mutateProps,
+  verificationMutation,
+}: Props<T>) {
   const { timeLeft, setTimeLeft } = useTimeLeft(NUM_SECONDS)
 
   const { t } = useClientTranslation()
@@ -29,15 +35,14 @@ export default function VerificationForm({
   const {
     createVerificationCode,
     // @TODO : handle error when asking for a new verification code
-    createVerificationCodeError,
     createVerificationCodePending,
   } = useCreateVerificationCode({
-    onComplete: (verification) => {
-      onRegisterNew(verification)
+    onComplete: (pendingVerification) => {
+      onRegisterNewVerification(pendingVerification)
       setTimeLeft(NUM_SECONDS)
     },
   })
-  const { isSuccess, isPending, error, mutateAsync: login } = useLogin()
+  const { isSuccess, isPending, error, mutateAsync } = verificationMutation
 
   const isValidationDisabled =
     isPending || isSuccess || createVerificationCodePending
@@ -48,43 +53,43 @@ export default function VerificationForm({
       if (isValidationDisabled) {
         return
       }
-      await login({
-        email: pendingVerification.email,
+      const payload = {
+        email,
         code,
-      })
+        ...mutateProps,
+      } as { email: string; code: string } & T
+
+      await mutateAsync(payload)
+
       onVerificationCompleted?.()
     },
     [
-      pendingVerification.email,
       isValidationDisabled,
+      mutateAsync,
+      email,
+      mutateProps,
       onVerificationCompleted,
-      login,
     ]
   )
 
   return (
-    <div className="mb-8 rounded-xl bg-[#F4F5FB] p-4 md:p-8">
-      <div>
-        <VerificationContent
-          email={pendingVerification.email}
-          inputError={(error && t('Le code est invalide')) ?? undefined}
-          isSuccessValidate={isSuccess}
-          isPendingValidate={isPending}
-          handleValidateVerificationCode={handleValidateVerificationCode}
-        />
+    <div>
+      <VerificationContent
+        email={email}
+        inputError={(error && t('Le code est invalide')) ?? undefined}
+        isSuccessValidate={isSuccess}
+        isPendingValidate={isPending}
+        handleValidateVerificationCode={handleValidateVerificationCode}
+      />
 
-        {!isSuccess && (
-          <NotReceived
-            isRetryButtonDisabled={isRetryButtonDisabled}
-            isErrorResend={!!error}
-            onResendVerificationCode={() =>
-              createVerificationCode(pendingVerification.email)
-            }
-            onReset={onVerificationReset}
-            timeLeft={timeLeft}
-          />
-        )}
-      </div>
+      {!isSuccess && (
+        <NotReceived
+          isRetryButtonDisabled={isRetryButtonDisabled}
+          isErrorResend={!!error}
+          onResendVerificationCode={() => createVerificationCode(email)}
+          timeLeft={timeLeft}
+        />
+      )}
     </div>
   )
 }

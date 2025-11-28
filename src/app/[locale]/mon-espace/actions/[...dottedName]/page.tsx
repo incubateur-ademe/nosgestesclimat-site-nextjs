@@ -1,15 +1,14 @@
 import Trans from '@/components/translation/trans/TransClient'
-import { CONNEXION_PATH, MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
+import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
-import { getAuthentifiedUser } from '@/helpers/authentication/getAuthentifiedUser'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getRules } from '@/helpers/modelFetching/getRules'
+import { getUser } from '@/helpers/server/model/user'
 import { fetchUserSimulations } from '@/helpers/user/fetchUserSimulations'
 import { EngineProvider, UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { redirect } from 'next/navigation'
 import ActionDetail from './_components/ActionDetail'
 
 export async function generateMetadata({
@@ -39,27 +38,19 @@ export default async function ActionDetailPage({
 
   const rules = await getRules()
 
-  const authenticatedUser = await getAuthentifiedUser()
+  const user = await getUser()
 
   const simulations = await fetchUserSimulations({
-    userId: authenticatedUser?.id,
+    userId: user.id,
   })
 
-  const sortedSimulations = simulations?.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  )
-
-  const latestSimulation = sortedSimulations?.[0]
-
-  if (!authenticatedUser) {
-    redirect(CONNEXION_PATH)
-  }
+  const latestSimulation = simulations?.[0]
 
   return (
     <UserProvider
-      initialSimulations={sortedSimulations}
+      initialSimulations={simulations}
       initialCurrentSimulationId={latestSimulation?.id}
-      initialUserId={authenticatedUser.id}>
+      initialUserId={user.id}>
       <EngineProvider rules={rules}>
         <div className="mx-auto my-12 max-w-[600px]">
           <ButtonLink
