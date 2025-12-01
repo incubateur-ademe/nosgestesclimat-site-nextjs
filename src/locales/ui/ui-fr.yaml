@@ -1313,6 +1313,8 @@ entries:
   common.metric.choice: Choix de la métrique
   header.monEspace.title: Mon Espace
   header.monEspace.titleEmail: Mon Espace ({{email}})
+  header.monEspace.access: Accéder à mon espace
+  header.monEspace.logout: Déconnexion
   <0>2 tonnes</0> en 2050 ?: <0>2 tonnes</0> en 2050 ?
   <0>Eau, climat,</0> même combat ?: <0>Eau, climat,</0> même combat ?
   <0>Hérissons</0> en danger ?: <0>Hérissons</0> en danger ?

@@ -1662,6 +1662,10 @@ entries:
   common.metric.choice.lock: Choix de la métrique
   header.monEspace.titleEmail: My Space ({{email}})
   header.monEspace.titleEmail.lock: Mon Espace ({{email}})
+  header.monEspace.access: Access my space
+  header.monEspace.access.lock: Accéder à mon espace
+  header.monEspace.logout: Logout
+  header.monEspace.logout.lock: Déconnexion
   Comment <1>agir</1> ?: What can we <1>do</1>?
   mon-espace.resultsDetail.date: Test performed on {{date}}
   mon-espace.resultsDetail.date.lock: Test effectué le {{date}}
