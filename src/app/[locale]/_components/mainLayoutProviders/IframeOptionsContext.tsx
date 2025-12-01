@@ -9,6 +9,7 @@ import { useSearchParams } from 'next/navigation'
 import { createContext, useEffect, useState } from 'react'
 
 const getIsAllowedToBypassConsentDataShare = () => {
+  if (typeof window === 'undefined') return false
   // https://stackoverflow.com/questions/6531534/document-location-parent-location-can-they-be-blocked
   const integratorUrl = new URL(
     window.location != window.parent.location
