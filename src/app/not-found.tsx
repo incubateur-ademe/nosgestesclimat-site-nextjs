@@ -1,10 +1,12 @@
 import Route404 from '@/components/layout/404'
 import { ClientLayout } from '@/components/layout/ClientLayout'
+import ContentLarge from '@/components/layout/ContentLarge'
+import HeaderServer from '@/components/layout/HeaderServer'
 import { noIndexObject } from '@/constants/metadata'
+import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { Suspense } from 'react'
-import AppLoadingFallback from './[locale]/_components/AppLoadingFallback'
 import './[locale]/globals.css'
 import { marianne } from './[locale]/layout'
 
@@ -24,7 +26,12 @@ export default function NotFound() {
       <body className={`${marianne.className} text-default bg-white`}>
         <Suspense
           fallback={
-            <AppLoadingFallback locale={i18nConfig.defaultLocale as Locale} />
+            <>
+              <HeaderServer locale={i18nConfig.defaultLocale as Locale} />
+              <ContentLarge>
+                <BlockSkeleton className="mt-10" />
+              </ContentLarge>
+            </>
           }>
           <ClientLayout locale={i18nConfig.defaultLocale as Locale}>
             <Route404 locale={i18nConfig.defaultLocale as Locale} />
