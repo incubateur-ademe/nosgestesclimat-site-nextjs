@@ -1,15 +1,13 @@
 import Route404 from '@/components/layout/404'
 import { ClientLayout } from '@/components/layout/ClientLayout'
-import ContentLarge from '@/components/layout/ContentLarge'
-import HeaderServer from '@/components/layout/HeaderServer'
 import { noIndexObject } from '@/constants/metadata'
-import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Main from '@/design-system/layout/Main'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import i18nConfig from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
 import { Suspense } from 'react'
+import AppLoadingFallback from './_components/AppLoadingFallback'
 import './globals.css'
 import { marianne } from './layout'
 
@@ -31,20 +29,19 @@ export default async function NotFound({ params }: DefaultPageProps) {
   const { locale } = (await params) ?? {}
 
   return (
-    <Suspense
-      fallback={
-        <>
-          <HeaderServer locale={locale} />
-          <ContentLarge>
-            <BlockSkeleton className="mt-10" />
-          </ContentLarge>
-        </>
-      }>
-      <ClientLayout locale={locale ?? i18nConfig.defaultLocale}>
-        <Main className={marianne.className}>
-          <Route404 locale={locale ?? i18nConfig.defaultLocale} />
-        </Main>
-      </ClientLayout>
-    </Suspense>
+    <html lang="fr">
+      <body className={`${marianne.className} text-default bg-white`}>
+        <Suspense
+          fallback={
+            <AppLoadingFallback locale={locale ?? i18nConfig.defaultLocale} />
+          }>
+          <ClientLayout locale={locale ?? i18nConfig.defaultLocale}>
+            <Main className={marianne.className}>
+              <Route404 locale={locale ?? i18nConfig.defaultLocale} />
+            </Main>
+          </ClientLayout>
+        </Suspense>
+      </body>
+    </html>
   )
 }

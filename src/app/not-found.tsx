@@ -1,11 +1,11 @@
 import Route404 from '@/components/layout/404'
 import { ClientLayout } from '@/components/layout/ClientLayout'
 import { noIndexObject } from '@/constants/metadata'
-import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Main from '@/design-system/layout/Main'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { Suspense } from 'react'
+import AppLoadingFallback from './[locale]/_components/AppLoadingFallback'
 import './[locale]/globals.css'
 import { marianne } from './[locale]/layout'
 
@@ -21,12 +21,19 @@ export function generateMetadata() {
 
 export default function NotFound() {
   return (
-    <Suspense fallback={<BlockSkeleton />}>
-      <ClientLayout locale={i18nConfig.defaultLocale as Locale}>
-        <Main className={marianne.className}>
-          <Route404 locale={i18nConfig.defaultLocale as Locale} />
-        </Main>
-      </ClientLayout>
-    </Suspense>
+    <html lang="fr">
+      <body className={`${marianne.className} text-default bg-white`}>
+        <Suspense
+          fallback={
+            <AppLoadingFallback locale={i18nConfig.defaultLocale as Locale} />
+          }>
+          <ClientLayout locale={i18nConfig.defaultLocale as Locale}>
+            <Main className={marianne.className}>
+              <Route404 locale={i18nConfig.defaultLocale as Locale} />
+            </Main>
+          </ClientLayout>
+        </Suspense>
+      </body>
+    </html>
   )
 }
