@@ -1,5 +1,6 @@
 'use client'
 
+import { verifyIfIntegratorBypassRights } from '@/helpers/iframe/verifyIntegratorBypassRights'
 import { getIsFrenchRegion } from '@/helpers/regions/getIsFrenchRegion'
 import { useTrackIframe } from '@/hooks/tracking/useTrackIframe'
 import { useUser } from '@/publicodes-state'
@@ -7,11 +8,23 @@ import { getIsIframe } from '@/utils/getIsIframe'
 import { useSearchParams } from 'next/navigation'
 import { createContext, useEffect, useState } from 'react'
 
+const getIsAllowedToBypassConsentDataShare = () => {
+  // https://stackoverflow.com/questions/6531534/document-location-parent-location-can-they-be-blocked
+  const integratorUrl = new URL(
+    window.location != window.parent.location
+      ? document.referrer
+      : document.location.href
+  ).origin
+
+  return verifyIfIntegratorBypassRights(integratorUrl)
+}
+
 export const IframeOptionsContext = createContext<{
   isIframe?: boolean
   isIframeShareData?: boolean
   iframeRegion?: string | null
   isIframeOnlySimulation?: boolean
+  isIntegratorAllowedToBypassConsentDataShare?: boolean
   iframeLang?: string | null
   isFrenchRegion?: boolean
   containerRef?: React.RefObject<HTMLDivElement | null>
@@ -59,6 +72,9 @@ export const IframeOptionsProvider = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isIframe, searchParams])
 
+  const isAllowedToBypassConsentDataShare =
+    getIsAllowedToBypassConsentDataShare()
+
   // Add body classes for iframe styling
   useEffect(() => {
     if (isIframe) {
@@ -82,10 +98,12 @@ export const IframeOptionsProvider = ({
   return (
     <IframeOptionsContext.Provider
       value={{
-        isIframeShareData,
+        isIframeShareData: isIframe && isIframeShareData,
         iframeRegion: regionCode,
         isIframe,
         isIframeOnlySimulation,
+        isIntegratorAllowedToBypassConsentDataShare:
+          isAllowedToBypassConsentDataShare,
         iframeLang,
         isFrenchRegion,
         containerRef,
