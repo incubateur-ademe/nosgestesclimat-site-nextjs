@@ -59,6 +59,15 @@ export default function useQuestions({
           DottedName[],
         ][]
       ).forEach(([mosaicParent, mosaicChildren]) => {
+        const isMosaicParentApplicable = safeEvaluate({
+          'est applicable': mosaicParent,
+        })?.nodeValue
+        if (!isMosaicParentApplicable) {
+          delete tempMissingVariables[mosaicParent]
+          mosaicChildren.forEach((mosaicChild) => {
+            delete tempMissingVariables[mosaicChild]
+          })
+        }
         const maxMissingVariableScoreInMosaic = Math.max(
           ...mosaicChildren.map((child) => {
             return tempMissingVariables[child] || 0
