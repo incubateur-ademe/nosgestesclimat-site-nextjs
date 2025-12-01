@@ -8718,10 +8718,10 @@ markdown-extensions@^2.0.0:
   resolved "https://registry.yarnpkg.com/markdown-extensions/-/markdown-extensions-2.0.0.tgz#34bebc83e9938cae16e0e017e4a9814a8330d3c4"
   integrity sha512-o5vL7aDWatOTX8LzaS1WMoaoxIiLRQJuIKKe2wAw6IeULDHaqbiqiggmx+pKvZDb1Sj+pE46Sn1T7lCqfFtg1Q==
 
-markdown-to-jsx@^7.7.16:
-  version "7.7.16"
-  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-7.7.16.tgz#dc007f6ea0a2fb6646afe96fae027f8c7a016c05"
-  integrity sha512-2YLPWjSAdJqVCTIQtP3zPPYfLUWuu74Ms7E9vr/RqLTWzPT5clZWNIlgxyzUKD/Gv+P12TNgpnRgtaNNj/vn8A==
+markdown-to-jsx@^9.3.0:
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-9.3.0.tgz#a92b24571dc78944b7bb6948f8db34ed2a5aa12d"
+  integrity sha512-IlO9RkgpuCsd41eYLOW03qyh2zhSry7W3IPZNsAstgyd8KtmmW+D98JGyTPcJFQohTu4UVVqtiyg6sjLY4NDOQ==
 
 matcher-collection@^2.0.0:
   version "2.0.1"
