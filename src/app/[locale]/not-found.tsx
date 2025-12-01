@@ -1,6 +1,9 @@
 import Route404 from '@/components/layout/404'
 import { ClientLayout } from '@/components/layout/ClientLayout'
+import ContentLarge from '@/components/layout/ContentLarge'
+import HeaderServer from '@/components/layout/HeaderServer'
 import { noIndexObject } from '@/constants/metadata'
+import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Main from '@/design-system/layout/Main'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
@@ -28,7 +31,15 @@ export default async function NotFound({ params }: DefaultPageProps) {
   const { locale } = (await params) ?? {}
 
   return (
-    <Suspense fallback={<div>Chargement de la page...</div>}>
+    <Suspense
+      fallback={
+        <>
+          <HeaderServer locale={locale} />
+          <ContentLarge>
+            <BlockSkeleton className="mt-10" />
+          </ContentLarge>
+        </>
+      }>
       <ClientLayout locale={locale ?? i18nConfig.defaultLocale}>
         <Main className={marianne.className}>
           <Route404 locale={locale ?? i18nConfig.defaultLocale} />

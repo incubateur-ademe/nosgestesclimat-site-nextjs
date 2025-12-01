@@ -1,6 +1,7 @@
 import Route404 from '@/components/layout/404'
 import { ClientLayout } from '@/components/layout/ClientLayout'
 import { noIndexObject } from '@/constants/metadata'
+import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Main from '@/design-system/layout/Main'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import i18nConfig, { type Locale } from '@/i18nConfig'
@@ -20,7 +21,7 @@ export function generateMetadata() {
 
 export default function NotFound() {
   return (
-    <Suspense fallback={<div>Chargement de la page...</div>}>
+    <Suspense fallback={<BlockSkeleton />}>
       <ClientLayout locale={i18nConfig.defaultLocale as Locale}>
         <Main className={marianne.className}>
           <Route404 locale={i18nConfig.defaultLocale as Locale} />
