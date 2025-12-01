@@ -85,12 +85,12 @@ export default function EvolutionChart({
       }
       id={chartId}>
       {disabled && (
-        <div className="border-primary-400 absolute top-1/2 left-1/2 z-10 flex max-w-96 -translate-x-1/2 -translate-y-full items-center justify-center rounded-xl border-2 bg-white p-6">
+        <div className="border-primary-400 absolute top-6 left-1/2 z-10 flex max-w-96 -translate-x-1/2 -translate-y-full items-center justify-center rounded-xl border-2 bg-white p-6">
           <p className="mb-0 text-center">
             <Link href={`${SIMULATOR_PATH}?newsimulation=true`}>
-              <strong className="text-primary-700">
+              <strong className="text-primary-700 underline">
                 <Trans i18nKey="mon-espace.evolutionGraph.chartDisabledTitle.part1">
-                  Faites une nouvelle simulation
+                  Passez à nouveau le test
                 </Trans>
               </strong>
             </Link>{' '}
@@ -100,7 +100,10 @@ export default function EvolutionChart({
           </p>
         </div>
       )}
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer
+        className={disabled ? 'opacity-50' : ''}
+        width="100%"
+        height="100%">
         <LineChart
           data={chartData}
           margin={{

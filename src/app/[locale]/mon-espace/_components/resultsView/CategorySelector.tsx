@@ -2,6 +2,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import { orderedCategories } from '@/constants/model/orderedCategories'
 import Tabs, { type TabItem } from '@/design-system/layout/Tabs'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { twMerge } from 'tailwind-merge'
 
 type TabId = 'global' | DottedName
 
@@ -45,7 +46,8 @@ export default function CategorySelector({
   ]
 
   return (
-    <div className="mb-6 hidden md:block">
+    <div
+      className={twMerge('mb-6 hidden md:block', disabled ? 'opacity-50' : '')}>
       <Tabs
         items={tabsItems}
         ariaLabel="Navigation par catégorie"
