@@ -1,7 +1,6 @@
 import Route404 from '@/components/layout/404'
 import { ClientLayout } from '@/components/layout/ClientLayout'
 import { noIndexObject } from '@/constants/metadata'
-import Main from '@/design-system/layout/Main'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import i18nConfig, { type Locale } from '@/i18nConfig'
 import { Suspense } from 'react'
@@ -28,9 +27,7 @@ export default function NotFound() {
             <AppLoadingFallback locale={i18nConfig.defaultLocale as Locale} />
           }>
           <ClientLayout locale={i18nConfig.defaultLocale as Locale}>
-            <Main className={marianne.className}>
-              <Route404 locale={i18nConfig.defaultLocale as Locale} />
-            </Main>
+            <Route404 locale={i18nConfig.defaultLocale as Locale} />
           </ClientLayout>
         </Suspense>
       </body>
