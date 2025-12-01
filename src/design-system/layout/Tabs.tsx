@@ -18,6 +18,7 @@ interface TabsProps {
   containerId?: string
   hideBorder?: boolean
   isLocked?: boolean
+  prefetch?: boolean
 }
 
 const TabLink = ({
@@ -89,7 +90,6 @@ const TabLink = ({
     <Link
       role="tab"
       href={href}
-      prefetch={false}
       scroll={false}
       className={twMerge(baseClasses, className)}
       {...otherProps}

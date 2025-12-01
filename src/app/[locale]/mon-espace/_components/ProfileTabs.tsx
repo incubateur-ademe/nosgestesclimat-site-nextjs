@@ -174,6 +174,7 @@ export default async function ProfileTab({
       ariaLabel={t('Navigation de mon espace')}
       containerId="mon-espace-tabs"
       isLocked={isLocked}
+      prefetch={false}
     />
   )
 }
