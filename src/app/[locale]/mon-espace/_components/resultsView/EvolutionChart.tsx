@@ -156,6 +156,25 @@ export default function EvolutionChart({
             strokeWidth={2.5}
             dot={{ r: 5, fill: lineColor }}
             activeDot={{ r: 7, fill: lineColor }}
+            label={(props: { value: number; x: number; y: number }) => {
+              const formattedValue = (props.value / 1000).toLocaleString(
+                locale === 'fr' ? 'fr-FR' : 'en-US',
+                {
+                  minimumFractionDigits: 1,
+                  maximumFractionDigits: 1,
+                }
+              )
+              return (
+                <text
+                  x={props.x}
+                  y={props.y - 10}
+                  fill={lineColor}
+                  fontSize={isMobile() ? 10 : 12}
+                  textAnchor="middle">
+                  {formattedValue}
+                </text>
+              )
+            }}
           />
         </LineChart>
       </ResponsiveContainer>
