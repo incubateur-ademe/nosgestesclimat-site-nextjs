@@ -1,5 +1,6 @@
 import { USER_URL } from '@/constants/urls/main'
 import type { AuthenticatedUser } from '@/types/authentication'
+import { cookies } from 'next/headers'
 import { fetchWithJWTCookie } from './fetchWithJWTCookie'
 
 export function getUser(): Promise<AuthenticatedUser> {
@@ -14,4 +15,14 @@ export async function isUserAuthenticated(): Promise<boolean> {
   } catch (error) {
     return false
   }
+}
+
+export async function logout() {
+  ;(await cookies()).delete({
+    name: 'ngcjwt',
+    httpOnly: true,
+    secure: true,
+    partitioned: true,
+    sameSite: 'lax',
+  })
 }
