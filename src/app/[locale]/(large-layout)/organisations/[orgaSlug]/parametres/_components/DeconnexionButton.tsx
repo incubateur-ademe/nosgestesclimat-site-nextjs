@@ -1,29 +1,16 @@
-'use client'
-
 import LogOutIcon from '@/components/icons/LogOutIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import { organisationsParametersLogout } from '@/constants/tracking/pages/organisationsParameters'
 import Button from '@/design-system/buttons/Button'
-import { useLogout } from '@/hooks/authentication/useLogout'
-import { trackEvent } from '@/utils/analytics/trackEvent'
-import { useQueryClient } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
+import { logout } from '@/helpers/server/model/user'
+import { redirect } from 'next/navigation'
+
+async function handleDisconnect() {
+  'use server'
+  await logout()
+  redirect('/organisation')
+}
 
 export default function DeconnexionButton() {
-  const { mutateAsync: logout } = useLogout()
-
-  const router = useRouter()
-  const queryClient = useQueryClient()
-
-  async function handleDisconnect() {
-    trackEvent(organisationsParametersLogout)
-    await logout()
-
-    queryClient.clear()
-
-    router.push('/organisations')
-  }
-
   return (
     <Button
       color="text"

@@ -13,11 +13,9 @@ import {
 } from '@/constants/tracking/user-account'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
-import { logoutUser } from '@/helpers/authentication/logoutUser'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { type KeyboardEvent, useEffect, useId, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -25,10 +23,10 @@ const MAX_EMAIL_LENGTH = 20
 
 type Props = {
   email: string
-  locale: string
+  onLogout: () => void
 }
 
-export default function MySpaceDropdown({ email, locale }: Props) {
+export default function MySpaceDropdown({ email, onLogout }: Props) {
   const { t } = useClientTranslation()
   const [isOpen, setIsOpen] = useState(false)
   const [isKeyboardNavigation, setIsKeyboardNavigation] = useState(false)
@@ -38,8 +36,6 @@ export default function MySpaceDropdown({ email, locale }: Props) {
   const logoutButtonRef = useRef<HTMLButtonElement>(null)
   const buttonId = useId()
   const menuId = useId()
-
-  const router = useRouter()
 
   const displayEmail =
     email.length > MAX_EMAIL_LENGTH
@@ -181,13 +177,11 @@ export default function MySpaceDropdown({ email, locale }: Props) {
     }
   }
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     trackEvent(headerClickLogoutAuthenticatedServer)
     trackPosthogEvent(captureClickHeaderLogoutAuthenticatedServer)
-    await logoutUser()
-
     setIsOpen(false)
-    router.push('/')
+    onLogout()
   }
 
   const ariaLabelTitle = isOpen

@@ -8,13 +8,21 @@ import {
   UnknownError,
 } from '../error'
 
-export async function fetchWithJWTCookie(url: string) {
-  const ngcCookie = (await cookies()).get('ngcjwt')
+export async function fetchWithJWTCookie(
+  url: string,
+  {
+    method = 'GET',
+    setCookies = false,
+  }: { method?: 'GET' | 'POST'; setCookies?: boolean } = {}
+) {
+  const cookieStore = await cookies()
+  const ngcCookie = cookieStore.get('ngcjwt')
   if (!ngcCookie) {
     throw new UnauthorizedError()
   }
 
   const response = await fetch(url, {
+    method,
     headers: {
       cookie: `${ngcCookie.name}=${ngcCookie.value}`,
     },
@@ -37,5 +45,8 @@ export async function fetchWithJWTCookie(url: string) {
     }
   }
 
+  if (method === 'POST') {
+    return {}
+  }
   return response.json()
 }

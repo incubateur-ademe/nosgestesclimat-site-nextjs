@@ -6,15 +6,24 @@ import {
 import { CONNEXION_PATH } from '@/constants/urls/paths'
 import ButtonLinkServer from '@/design-system/buttons/ButtonLinkServer'
 import { getLocale } from '@/helpers/language/getLocale'
-import { getUser } from '@/helpers/server/model/user'
+import { getUser, logout } from '@/helpers/server/model/user'
+import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
 import MySpaceDropdown from './MySpaceDropdown'
+
+async function logoutAndRedirect() {
+  'use server'
+  await logout()
+  revalidatePath('/')
+  redirect('/')
+}
 
 export default async function MySpaceButton() {
   const locale = await getLocale()
 
   try {
     const user = await getUser()
-    return <MySpaceDropdown email={user.email} locale={locale} />
+    return <MySpaceDropdown email={user.email} onLogout={logoutAndRedirect} />
   } catch (error) {
     return (
       <ButtonLinkServer
