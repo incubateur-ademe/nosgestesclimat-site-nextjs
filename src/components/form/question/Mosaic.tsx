@@ -41,12 +41,15 @@ export default function Mosaic({
     })
   }
 
+  const questionsOfMosaicCount = questionsOfMosaic.length
+
   return (
     <>
-      <fieldset className="grid w-[90%] auto-rows-fr items-stretch gap-2 md:w-full md:grid-cols-2 md:gap-4">
+      <fieldset
+        className={`md:grid-cols-2' grid w-[90%] auto-rows-fr items-stretch gap-2 md:w-full ${questionsOfMosaicCount <= 2 && 'md:max-w-128 md:grid-cols-1'} md:gap-4`}>
         <legend className="sr-only">{label}</legend>
 
-        {questionsOfMosaic
+        {questionsOfMosaicCount
           ? questionsOfMosaic.map((questionOfMosaic, index) => (
               <MosaicQuestion
                 key={questionOfMosaic}
