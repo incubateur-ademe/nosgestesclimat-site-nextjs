@@ -44,7 +44,7 @@ export default function Mosaic({
   return (
     <>
       <fieldset
-        className={`md:grid-cols-2' grid w-[90%] auto-rows-fr items-stretch gap-2 md:w-full ${questionsOfMosaic.length <= 2 && 'md:max-w-128 md:grid-cols-1'} md:gap-4`}>
+        className={`grid w-[90%] auto-rows-fr items-stretch gap-2 md:w-full md:grid-cols-2 ${questionsOfMosaic.length <= 2 && 'md:max-w-128 md:grid-cols-1'} md:gap-4`}>
         <legend className="sr-only">{label}</legend>
 
         {questionsOfMosaic.map((questionOfMosaic, index) => (
