@@ -1,0 +1,41 @@
+export class NotFoundError extends Error {
+  constructor() {
+    super('Not Found')
+    this.name = 'NotFoundError'
+  }
+}
+
+export class UnauthorizedError extends Error {
+  constructor() {
+    super('Unauthorized')
+    this.name = 'UnauthorizedError'
+  }
+}
+
+export class ForbiddenError extends Error {
+  constructor() {
+    super('Forbidden')
+    this.name = 'ForbiddenError'
+  }
+}
+
+export class TooManyRequestsError extends Error {
+  constructor() {
+    super('Too Many Requests')
+    this.name = 'TooManyRequestsError'
+  }
+}
+
+export class InternalServerError extends Error {
+  constructor() {
+    super('Internal Server Error')
+    this.name = 'InternalServerError'
+  }
+}
+
+export class UnknownError extends Error {
+  constructor(statusCode: number, message: string) {
+    super(`Unknown Error requesting server ${statusCode}: ${message}`)
+    this.name = 'UnknownError'
+  }
+}

@@ -6,6 +6,10 @@ if (process.env.NEXT_PUBLIC_PROXY_SERVER === 'true') {
 } else {
   serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
 }
+if (serverUrl && !serverUrl.startsWith('http')) {
+  serverUrl = `https://${serverUrl}`
+}
+
 export const AUTHENTICATION_URL = serverUrl + '/authentication/v1'
 
 export const GROUP_URL = serverUrl + '/groups/v1'
@@ -38,5 +42,3 @@ export const HIDE_CTA_PATHS = [
   '/organisations/creer',
   '/organisations/demander-demo',
 ]
-
-export const CHECK_USER_EXISTS_URL = serverUrl + '/users/v1/me'

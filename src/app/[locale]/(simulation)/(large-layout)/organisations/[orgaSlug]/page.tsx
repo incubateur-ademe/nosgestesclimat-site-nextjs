@@ -1,47 +1,27 @@
-'use client'
-
-import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import SettingsIcon from '@/components/icons/SettingsIcon'
-import OrganisationFetchError from '@/components/organisations/OrganisationFetchError'
 import Trans from '@/components/translation/trans/TransClient'
 import { organisationsDashboardClickParameters } from '@/constants/tracking/pages/organisationsDashboard'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
-import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import { unformatAdministratorName } from '@/helpers/organisations/unformatAdministratorName'
-import { useFetchPolls } from '@/hooks/organisations/polls/useFetchPolls'
-import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
+import {
+  getOrganisation,
+  getOrganisationPolls,
+} from '@/helpers/server/model/organisations'
 import { capitalizeString } from '@/utils/capitalizeString'
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
 import MyPolls from './_components/MyPolls'
 import NousContacter from './_components/NousContacter'
 import OurTools from './_components/OurTools'
 
-export default function OrganisationPage() {
-  const router = useRouter()
+/* global PageProps */
 
-  const { data: organisation, isError, isLoading } = useFetchOrganisation()
-  const {
-    data: polls,
-    isError: isErrorPolls,
-    isLoading: isLoadingPolls,
-  } = useFetchPolls({ enabled: !!organisation })
-
-  useEffect(() => {
-    if (organisation && !organisation.slug) {
-      router.push('/organisations/creer')
-    }
-  }, [organisation, router])
-
-  if (isError && !isLoading && !organisation) {
-    return (
-      <OrganisationFetchError organisation={organisation} isError={isError} />
-    )
-  }
-
-  if (!organisation) {
-    return null
-  }
+export default async function OrganisationPage({
+  params,
+}: PageProps<'/[locale]/organisations/[orgaSlug]'>) {
+  const { orgaSlug } = await params
+  const [organisation, polls] = await Promise.all([
+    getOrganisation(orgaSlug),
+    getOrganisationPolls(orgaSlug),
+  ])
 
   return (
     <>
@@ -80,11 +60,7 @@ export default function OrganisationPage() {
         </ButtonLink>
       </div>
 
-      {isLoadingPolls && <BlockSkeleton />}
-
-      {!!polls && <MyPolls polls={polls} />}
-
-      {isErrorPolls && <DefaultErrorAlert className="mb-12" />}
+      <MyPolls polls={polls} />
 
       <OurTools />
 

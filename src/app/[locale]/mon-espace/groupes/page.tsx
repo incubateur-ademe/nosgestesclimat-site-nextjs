@@ -1,36 +1,24 @@
-import ContentLarge from '@/components/layout/ContentLarge'
-import Trans from '@/components/translation/trans/TransServer'
-import { CONNEXION_PATH, MON_ESPACE_GROUPS_PATH } from '@/constants/urls/paths'
-import { getAuthentifiedUser } from '@/helpers/authentication/getAuthentifiedUser'
-import type { DefaultPageProps } from '@/types'
-import { redirect } from 'next/navigation'
-import ProfileTab from '../_components/ProfileTabs'
-import GroupsDashboard from './_components/GroupsDashboard'
+import Groups from '@/components/results/groups/Groups'
+import Organisations from '@/components/results/groups/Organisations'
+import { getUserGroups } from '@/helpers/server/model/groups'
+import { getUserCurrentOrganisation } from '@/helpers/server/model/organisations'
+import EmptyState from './_components/EmptyState'
 
-export default async function MonEspaceGroupesPage({
-  params,
-}: DefaultPageProps) {
-  const { locale } = await params
+export default async function GroupsDashboard() {
+  const [organisation, groups] = await Promise.all([
+    getUserCurrentOrganisation(),
+    getUserGroups(),
+  ])
 
-  const authenticatedUser = await getAuthentifiedUser()
-
-  if (!authenticatedUser) {
-    redirect(CONNEXION_PATH)
+  if (!organisation || !groups.length) {
+    return <EmptyState />
   }
 
   return (
-    <ContentLarge className="mt-4 px-4 md:mt-10 lg:px-0">
-      <div className="flex flex-col">
-        <h1 className="sr-only mb-6 text-2xl font-bold">
-          <Trans i18nKey="mon-espace.groups.title" locale={locale}>
-            Mes groupes
-          </Trans>
-        </h1>
+    <>
+      <Organisations organisations={[organisation]} />
 
-        <ProfileTab activePath={MON_ESPACE_GROUPS_PATH} />
-
-        <GroupsDashboard userId={authenticatedUser.id} />
-      </div>
-    </ContentLarge>
+      <Groups groups={groups} />
+    </>
   )
 }

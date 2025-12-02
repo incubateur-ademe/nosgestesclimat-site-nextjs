@@ -15,7 +15,6 @@ import {
 } from '@/constants/forms/newsletters'
 import { subscribeToNewsletterBlog } from '@/constants/tracking/pages/newsletter'
 import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
-import { useGetAuthentifiedUser } from '@/hooks/authentication/useGetAuthentifiedUser'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -66,7 +65,11 @@ function SuccessMessage() {
   )
 }
 
-export default function NewslettersBlock() {
+export default function NewslettersBlock({
+  isAuthenticated = false,
+}: {
+  isAuthenticated: boolean
+}) {
   const [isNewsletterError, setIsNewsletterError] = useState(false)
   const { data: mainNewsletter } = useMainNewsletter()
 
@@ -75,9 +78,6 @@ export default function NewslettersBlock() {
   const locale = useLocale()
 
   const { user, updateEmail } = useUser()
-
-  const { data: authenticatedUser } = useGetAuthentifiedUser()
-  const isAuthenticated = !!authenticatedUser
 
   const {
     data: newsletterSubscriptions,

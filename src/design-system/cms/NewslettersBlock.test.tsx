@@ -85,10 +85,9 @@ describe('NewslettersBlock', () => {
       })
     )
   })
-
   it('should not render if locale is not French', () => {
     mockedUseLocale.mockReturnValue('en') // Set locale to English
-    renderWithWrapper(<NewslettersBlock />, {
+    renderWithWrapper(<NewslettersBlock isAuthenticated={true} />, {
       providers: {
         queryClient: true,
       },
@@ -97,7 +96,7 @@ describe('NewslettersBlock', () => {
   })
 
   it('should render the form with all elements', async () => {
-    renderWithWrapper(<NewslettersBlock />, {
+    renderWithWrapper(<NewslettersBlock isAuthenticated={true} />, {
       providers: {
         queryClient: true,
       },
@@ -123,7 +122,7 @@ describe('NewslettersBlock', () => {
   it('should successfully subscribe a user and show a success message', async () => {
     const user = userEvent.setup()
 
-    renderWithWrapper(<NewslettersBlock />, {
+    renderWithWrapper(<NewslettersBlock isAuthenticated={true} />, {
       user: { name: 'Test User', email: 'test@example.com' },
       providers: {
         user: true,
@@ -162,7 +161,7 @@ describe('NewslettersBlock', () => {
     )
 
     const user = userEvent.setup()
-    renderWithWrapper(<NewslettersBlock />, {
+    renderWithWrapper(<NewslettersBlock isAuthenticated={true} />, {
       providers: {
         queryClient: true,
       },
@@ -186,7 +185,7 @@ describe('NewslettersBlock', () => {
   it('should show an error if no newsletter is selected for a new subscription', async () => {
     const user = userEvent.setup()
 
-    renderWithWrapper(<NewslettersBlock />, {
+    renderWithWrapper(<NewslettersBlock isAuthenticated={true} />, {
       providers: {
         queryClient: true,
       },
@@ -215,7 +214,7 @@ describe('NewslettersBlock', () => {
       })
     )
 
-    renderWithWrapper(<NewslettersBlock />, {
+    renderWithWrapper(<NewslettersBlock isAuthenticated={true} />, {
       providers: {
         queryClient: true,
       },

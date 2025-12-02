@@ -17,13 +17,11 @@ import CheckboxInput from '@/design-system/inputs/CheckboxInput'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
-import { useGetAuthentifiedUser } from '@/hooks/authentication/useGetAuthentifiedUser'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import i18nConfig from '@/i18nConfig'
-import { useUser } from '@/publicodes-state'
+import type { AuthenticatedUser } from '@/types/authentication'
 import { captureException } from '@sentry/nextjs'
 import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
@@ -37,22 +35,20 @@ type Inputs = {
 
 type Props = {
   className?: string
+  user?: AuthenticatedUser
 }
 
-export default function UserNewslettersForm({ className }: Props) {
-  const { t } = useClientTranslation()
+export default function UserNewslettersForm({ className, user }: Props) {
   const locale = useLocale()
   const isFrench = locale === i18nConfig.defaultLocale
-  const { user } = useUser()
 
-  const { data: authenticatedUser } = useGetAuthentifiedUser()
-  const isAuthenticated = !!authenticatedUser
+  const isAuthenticated = !!user
 
   const { register, handleSubmit, setValue, getValues } =
     useReactHookForm<Inputs>()
 
   const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
-    user?.userId ?? ''
+    user?.id ?? ''
   )
 
   useEffect(() => {
@@ -92,7 +88,7 @@ export default function UserNewslettersForm({ className }: Props) {
 
       await updateUserSettings({
         newsletterIds: newslettersArray,
-        userId: user?.userId,
+        userId: user!.id,
       })
     } catch (error) {
       captureException(error)

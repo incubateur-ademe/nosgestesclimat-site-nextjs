@@ -1,4 +1,3 @@
-import FilAriane from '@/components/layout/FilAriane'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import type { PropsWithChildren } from 'react'
@@ -14,10 +13,5 @@ export const generateMetadata = getCommonMetadata({
 })
 
 export default function Layout({ children }: PropsWithChildren) {
-  return (
-    <div className="bg-white md:-mt-8">
-      <FilAriane className="-mt-4" />
-      {children}
-    </div>
-  )
+  return <div className="bg-white md:-mt-8">{children}</div>
 }

@@ -7,7 +7,6 @@ import ResendButton from './ResendButton'
 type Props = {
   isRetryButtonDisabled: boolean
   isErrorResend: boolean
-  onReset: () => void
   onResendVerificationCode: () => void
   timeLeft: number
 }
@@ -15,7 +14,6 @@ type Props = {
 export default function NotReceived({
   isRetryButtonDisabled,
   isErrorResend,
-  onReset,
   onResendVerificationCode,
   timeLeft,
 }: Props) {
@@ -65,15 +63,6 @@ export default function NotReceived({
           </div>
         </div>
       )}
-
-      <Button
-        onClick={onReset}
-        color="link"
-        className="mt-2 -ml-2 flex items-center font-normal">
-        <Trans i18nKey="signIn.verificationForm.notReceived.backButton">
-          Retour à la connexion
-        </Trans>
-      </Button>
     </>
   )
 }

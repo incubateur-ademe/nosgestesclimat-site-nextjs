@@ -1,19 +1,20 @@
 'use client'
 
-import EmailVerificationModal from '@/app/[locale]/(simulation)/(large-layout)/organisations/[orgaSlug]/parametres/_components/EmailVerificationModal'
+import VerifyCodeForm from '@/components/AuthenticateUserForm/VerifyCodeForm'
 import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import TextInput from '@/design-system/inputs/TextInput'
 import Loader from '@/design-system/layout/Loader'
+import Modal from '@/design-system/modals/Modal'
 import { useCreateVerificationCode } from '@/hooks/authentication/useCreateVerificationCode'
+import { usePendingVerification } from '@/hooks/authentication/usePendingVerification'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { captureException } from '@sentry/nextjs'
-import type { ReactNode } from 'react'
-import { useState } from 'react'
+import { type ReactNode } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
@@ -28,86 +29,68 @@ type Props = {
 
 export default function UserEmailForm({ submitLabel, className }: Props) {
   const { t } = useClientTranslation()
-  const { user, updateEmail } = useUser()
+  const { user } = useUser()
 
   const { register, handleSubmit } = useReactHookForm<Inputs>({
     defaultValues: { email: user?.email },
   })
 
+  const updateUserSettings = useUpdateUserSettings()
+
   const {
-    mutateAsync: updateUserSettings,
-    isPending,
-    isError,
-    isSuccess,
-    error,
-  } = useUpdateUserSettings()
+    pendingVerification,
+    registerVerification,
+    resetVerification,
+    completeVerification,
+  } = usePendingVerification({})
 
   const { createVerificationCode, createVerificationCodeError } =
-    useCreateVerificationCode()
+    useCreateVerificationCode({ onComplete: registerVerification })
 
-  const [shouldDisplayModal, setShouldDisplayModal] = useState(false)
-  const [pendingEmail, setPendingEmail] = useState<string | undefined>(
-    undefined
-  )
-
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const createCodeIfEmailChanged: SubmitHandler<Inputs> = async (data) => {
     try {
       const nextEmail = formatEmail(data.email)
 
       if (nextEmail && nextEmail !== user.email) {
-        setPendingEmail(nextEmail)
         await createVerificationCode(nextEmail)
-        setShouldDisplayModal(true)
-
-        return
       }
     } catch (error) {
       captureException(error)
     }
   }
 
-  async function handleValidateVerificationCode(verificationCode: string) {
-    if (!pendingEmail || verificationCode.length < 6) return
-
-    try {
-      await updateUserSettings({
-        email: pendingEmail,
-        userId: user.userId,
-        code: verificationCode,
-      })
-
-      updateEmail(pendingEmail)
-      setShouldDisplayModal(false)
-    } catch (err) {
-      captureException(err)
-    }
-  }
-
   return (
     <div className={className}>
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(createCodeIfEmailChanged)}
         className="flex w-full flex-col items-start gap-4">
-        {shouldDisplayModal && (
-          <EmailVerificationModal
-            closeModal={() => setShouldDisplayModal(false)}
-            onSubmit={handleValidateVerificationCode}
-            error={(error as Error) ?? null}
-            isSuccess={isSuccess}
-            isPending={isPending}
-            isErrorSendCode={!!createVerificationCodeError}
-          />
+        {pendingVerification && (
+          <Modal
+            ariaLabel={t(
+              'organisations.emailVerificationModal.title',
+              "Fenêtre modale de confirmation d'email"
+            )}
+            isOpen
+            closeModal={() => resetVerification()}
+            hasAbortCross={false}>
+            <VerifyCodeForm
+              onRegisterNewVerification={registerVerification}
+              email={pendingVerification.email}
+              onVerificationCompleted={completeVerification}
+              verificationMutation={updateUserSettings}
+              mutationPayload={{ userId: user.userId }}
+            />
+          </Modal>
         )}
 
         <TextInput
           label={t('Votre adresse electronique')}
           className="w-full"
-          value={user?.email ?? ''}
           autoComplete="email"
           {...register('email')}
         />
 
-        {isSuccess && (
+        {updateUserSettings.isSuccess && (
           <p
             data-testid="success-message"
             role="status"
@@ -118,7 +101,7 @@ export default function UserEmailForm({ submitLabel, className }: Props) {
           </p>
         )}
 
-        {isError && (
+        {createVerificationCodeError && (
           <div data-testid="error-message">
             <DefaultSubmitErrorMessage />
           </div>
@@ -129,8 +112,8 @@ export default function UserEmailForm({ submitLabel, className }: Props) {
             data-testid="submit-button"
             type="submit"
             className="mt-6 gap-2 self-start"
-            disabled={isPending}>
-            {isPending && <Loader size="sm" color="light" />}
+            disabled={updateUserSettings.isPending}>
+            {updateUserSettings.isPending && <Loader size="sm" color="light" />}
             {submitLabel ? (
               <span data-testid="custom-submit-label">{submitLabel}</span>
             ) : (

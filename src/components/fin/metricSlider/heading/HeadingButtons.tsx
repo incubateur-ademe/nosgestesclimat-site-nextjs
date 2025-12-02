@@ -6,7 +6,6 @@ import Trans from '@/components/translation/trans/TransClient'
 import { endClickSaveShortcut } from '@/constants/tracking/pages/end'
 import { simulationClickSaveShortcut } from '@/constants/tracking/pages/simulateur'
 import Button from '@/design-system/buttons/Button'
-import { useGetAuthentifiedUser } from '@/hooks/authentication/useGetAuthentifiedUser'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useEndPageSharedUrl } from '@/hooks/useEndPageSharedUrl'
 import { trackEvent } from '@/utils/analytics/trackEvent'
@@ -21,12 +20,14 @@ const saveClassNames = {
   md: 'h-6 w-6',
 }
 
-type Props = { size?: 'sm' | 'md'; endPage?: boolean }
+type Props = { size?: 'sm' | 'md'; endPage?: boolean; showSaveButton?: boolean }
 
-export default function HeadingButtons({ size = 'md', endPage }: Props) {
+export default function HeadingButtons({
+  size = 'md',
+  endPage,
+  showSaveButton,
+}: Props) {
   const { sharedUrl } = useEndPageSharedUrl()
-
-  const { data: authenticatedUser } = useGetAuthentifiedUser()
 
   const { t } = useClientTranslation()
 
@@ -37,7 +38,7 @@ export default function HeadingButtons({ size = 'md', endPage }: Props) {
 
   return (
     <div className="mb-1 flex gap-2">
-      {!authenticatedUser && (
+      {showSaveButton && (
         <Button
           color="text"
           size="sm"

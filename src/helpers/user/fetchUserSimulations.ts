@@ -22,7 +22,7 @@ export async function fetchUserSimulations({
     }
 
     // Map from new format to old format
-    return Array.isArray(data)
+    const simulations = Array.isArray(data)
       ? data.map((simulation: any) => {
           const mappedSimulation = mapNewSimulationToOld(simulation)
 
@@ -34,6 +34,11 @@ export async function fetchUserSimulations({
           return mappedSimulation
         })
       : []
+
+    const sortedSimulations = simulations?.sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    )
+    return sortedSimulations
   } catch (error) {
     captureException(error)
     return undefined
