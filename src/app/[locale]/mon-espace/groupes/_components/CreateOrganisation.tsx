@@ -1,0 +1,36 @@
+'use client'
+
+import Baseline from '@/components/organisations/Baseline'
+import Trans from '@/components/translation/trans/TransClient'
+import { classementCreateOrganisation } from '@/constants/tracking/pages/classements'
+import ButtonLink from '@/design-system/buttons/ButtonLink'
+import Title from '@/design-system/layout/Title'
+import { trackEvent } from '@/utils/analytics/trackEvent'
+
+export default function CreateOrganisation() {
+  return (
+    <div className="mt-12">
+      <Title
+        title={
+          <Trans i18nKey="mon-espace.groups.organisation.create.title">
+            Mobiliser mon organisation
+          </Trans>
+        }
+        tag="h2"
+      />
+
+      <div className="max-w-3xl" data-testid="create-organisation">
+        <Baseline />
+      </div>
+
+      <ButtonLink
+        className="font-bold"
+        href="/organisations/connexion"
+        onClick={() => trackEvent(classementCreateOrganisation)}>
+        <Trans i18nKey="mon-espace.groups.organisation.create.button">
+          Créer mon organisation
+        </Trans>
+      </ButtonLink>
+    </div>
+  )
+}
