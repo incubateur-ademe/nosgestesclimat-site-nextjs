@@ -1,3 +1,5 @@
+'use client'
+
 import SaveIcon from '@/components/icons/SaveIcon'
 import ShareSimulationButton from '@/components/sharing/ShareSimulationButton'
 import Trans from '@/components/translation/trans/TransClient'

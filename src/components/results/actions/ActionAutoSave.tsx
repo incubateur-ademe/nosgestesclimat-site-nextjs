@@ -46,8 +46,6 @@ export default function ActionAutoSave() {
 
     // Check if actionChoices have actually changed
     if (currentActionChoicesString !== prevActionChoicesRef.current) {
-      // Only save if user is authenticated
-
       // Clear any pending timeout
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current)
