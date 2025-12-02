@@ -51,9 +51,9 @@ export default async function MonEspaceActionsPage({
 
                 <ActionsTutorial />
 
-                <JagisActionBanner />
-
                 <ActionsContent />
+
+                <JagisActionBanner />
               </FormProvider>
             </EngineProvider>
           </QueryClientProviderWrapper>

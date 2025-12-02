@@ -29,7 +29,7 @@ export default function JagisActionBanner() {
   }, [data, isSuccess])
 
   return (
-    <div className="mb-10 rounded-xl border-2 border-yellow-300 bg-yellow-50 p-4 md:p-6">
+    <div className="mt-10 rounded-xl border-2 border-yellow-300 bg-yellow-50 p-4 md:p-6">
       <div className="flex w-full items-start gap-6">
         <div className="flex-1">
           <h2 className="text-lg font-bold">
