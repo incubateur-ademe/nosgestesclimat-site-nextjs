@@ -70,7 +70,7 @@ export default function MosaicNumberInput({
           <span className="mb-[1px] block">-</span>
         </Button>
         <input
-          className="focus-within:border-primary-700 focus-within:ring-primary-700 w-8 rounded-sm text-center ring-offset-2 focus-within:ring-2 focus-visible:outline-none"
+          className="focus-within:border-primary-700 focus-within:ring-primary-700 w-12 rounded-sm text-center ring-offset-2 focus-within:ring-2 focus-visible:outline-none"
           type="number"
           inputMode="numeric"
           value={value === null ? 0 : value}
