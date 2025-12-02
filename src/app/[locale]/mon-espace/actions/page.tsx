@@ -1,3 +1,4 @@
+import NoResultsBlock from '@/components/dashboard/NoResultsBlock'
 import ContentLarge from '@/components/layout/ContentLarge'
 import ActionAutoSave from '@/components/results/actions/ActionAutoSave'
 import TopBar from '@/components/simulation/TopBar'
@@ -42,21 +43,25 @@ export default async function MonEspaceActionsPage({
           initialSimulations={simulations}
           initialCurrentSimulationId={latestSimulation?.id}
           initialUserId={user.id}>
-          <QueryClientProviderWrapper>
-            <EngineProvider rules={rules}>
-              <FormProvider>
-                <ActionAutoSave />
+          {simulations && simulations?.length <= 0 ? (
+            <NoResultsBlock locale={locale} />
+          ) : (
+            <QueryClientProviderWrapper>
+              <EngineProvider rules={rules}>
+                <FormProvider>
+                  <ActionAutoSave />
 
-                <TopBar className="mb-6" simulationMode={false} showTotal />
+                  <TopBar className="mb-6" simulationMode={false} showTotal />
 
-                <ActionsTutorial />
+                  <ActionsTutorial />
 
-                <ActionsContent />
+                  <ActionsContent />
 
-                <JagisActionBanner />
-              </FormProvider>
-            </EngineProvider>
-          </QueryClientProviderWrapper>
+                  <JagisActionBanner />
+                </FormProvider>
+              </EngineProvider>
+            </QueryClientProviderWrapper>
+          )}
         </UserProvider>
       </div>
     </ContentLarge>
