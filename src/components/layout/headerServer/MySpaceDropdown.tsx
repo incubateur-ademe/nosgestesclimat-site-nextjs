@@ -31,6 +31,7 @@ type Props = {
 export default function MySpaceDropdown({ email, locale }: Props) {
   const { t } = useClientTranslation()
   const [isOpen, setIsOpen] = useState(false)
+  const [isKeyboardNavigation, setIsKeyboardNavigation] = useState(false)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
   const firstMenuItemRef = useRef<HTMLAnchorElement>(null)
@@ -44,6 +45,25 @@ export default function MySpaceDropdown({ email, locale }: Props) {
     email.length > MAX_EMAIL_LENGTH
       ? `${email.substring(0, MAX_EMAIL_LENGTH)}…`
       : email
+
+  // Track keyboard vs mouse navigation
+  useEffect(() => {
+    function handleKeyDown() {
+      setIsKeyboardNavigation(true)
+    }
+
+    function handleMouseDown() {
+      setIsKeyboardNavigation(false)
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    document.addEventListener('mousedown', handleMouseDown)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      document.removeEventListener('mousedown', handleMouseDown)
+    }
+  }, [])
 
   // Close the menu when clicking outside
   useEffect(() => {
@@ -227,7 +247,12 @@ export default function MySpaceDropdown({ email, locale }: Props) {
               ref={firstMenuItemRef}
               href={MON_ESPACE_PATH}
               role="menuitem"
-              className="text-default hover:bg-primary-100 focus:bg-primary-100 focus:ring-primary-700 block px-4 py-2 text-sm underline focus:ring-2 focus:ring-offset-2 focus:outline-none"
+              className={twMerge(
+                'text-default hover:bg-primary-100 block px-4 py-2 text-sm underline focus:outline-none',
+                isKeyboardNavigation
+                  ? 'focus:bg-primary-100 focus:ring-primary-700 focus:ring-2 focus:ring-offset-2'
+                  : 'focus:bg-primary-50 focus:ring-color-transparent! focus:ring-0! focus:ring-offset-0!'
+              )}
               onClick={() => {
                 setIsOpen(false)
                 trackEvent(headerClickAccessMySpaceAuthenticatedServer)
