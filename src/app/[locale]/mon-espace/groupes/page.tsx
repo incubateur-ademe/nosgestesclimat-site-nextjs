@@ -1,12 +1,12 @@
 import Groups from '@/components/results/groups/Groups'
-import Organisations from '@/components/results/groups/Organisations'
+import Organisation from '@/components/results/groups/Organisation'
 import { getUserGroups } from '@/helpers/server/model/groups'
-import { getUserCurrentOrganisation } from '@/helpers/server/model/organisations'
+import { getUserOrganisation } from '@/helpers/server/model/organisations'
 import EmptyState from './_components/EmptyState'
 
 export default async function GroupsDashboard() {
   const [organisation, groups] = await Promise.all([
-    getUserCurrentOrganisation(),
+    getUserOrganisation(),
     getUserGroups(),
   ])
 
@@ -16,7 +16,7 @@ export default async function GroupsDashboard() {
 
   return (
     <>
-      <Organisations organisations={[organisation]} />
+      <Organisation organisation={organisation} />
 
       <Groups groups={groups} />
     </>

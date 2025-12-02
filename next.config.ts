@@ -70,6 +70,7 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
     webpackBuildWorker: true,
+    authInterrupts: true,
   },
   async rewrites() {
     if (process.env.NEXT_PUBLIC_PROXY_SERVER === 'true') {

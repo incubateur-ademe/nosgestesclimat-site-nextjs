@@ -1,30 +1,31 @@
 import SettingsIcon from '@/components/icons/SettingsIcon'
+import OrganisationFilAriane from '@/components/layout/FilAriane'
 import Trans from '@/components/translation/trans/TransClient'
 import { organisationsDashboardClickParameters } from '@/constants/tracking/pages/organisationsDashboard'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { unformatAdministratorName } from '@/helpers/organisations/unformatAdministratorName'
-import {
-  getOrganisation,
-  getOrganisationPolls,
-} from '@/helpers/server/model/organisations'
+import { getOrganisationPolls } from '@/helpers/server/model/organisations'
 import { capitalizeString } from '@/utils/capitalizeString'
 import MyPolls from './_components/MyPolls'
 import NousContacter from './_components/NousContacter'
 import OurTools from './_components/OurTools'
+import { organisationAdminGuard } from './organisation-guard'
 
 /* global PageProps */
 
 export default async function OrganisationPage({
   params,
 }: PageProps<'/[locale]/organisations/[orgaSlug]'>) {
-  const { orgaSlug } = await params
-  const [organisation, polls] = await Promise.all([
-    getOrganisation(orgaSlug),
-    getOrganisationPolls(orgaSlug),
-  ])
+  const { orgaSlug, locale } = await params
+  const { organisation } = await organisationAdminGuard(orgaSlug)
+  const polls = await getOrganisationPolls(orgaSlug)
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <>
+      <OrganisationFilAriane organisation={organisation} t={t} isAdmin />
+
       <div className="mb-4 flex flex-wrap justify-between md:flex-nowrap">
         <div>
           <h1>

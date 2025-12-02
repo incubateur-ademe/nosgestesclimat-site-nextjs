@@ -1,8 +1,7 @@
-import Trans from '@/components/translation/trans/TransClient'
-import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
+import OrganisationFilAriane from '@/components/layout/FilAriane'
+import Trans from '@/components/translation/trans/TransServer'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import { getOrganisationBaseBreadcrumb } from '@/helpers/filAriane/getOrganisationBaseBreadcrumb'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import Script from 'next/script'
 
@@ -13,24 +12,22 @@ export default async function DemanderDemoPage({
 }: PageProps<'/[locale]/organisations/demander-demo'>) {
   const { locale } = await params
   const { t } = await getServerTranslation({ locale })
-  const breadcrumbItems = [
-    ...getOrganisationBaseBreadcrumb(t),
-    {
-      href: '/organisations/demander-demo',
-      label: t('Demander une démo'),
-      isActive: true,
-    },
-  ]
+
   return (
     <>
-      <Breadcrumbs className="-mt-4" items={breadcrumbItems} />
-
+      <OrganisationFilAriane
+        t={t}
+        currentPage={{
+          label: t('Demander une démo'),
+          href: `/organisations/demander-demo`,
+        }}
+      />
       <section className="w-full bg-[#fff]">
         <div className="mx-auto max-w-5xl py-10">
           <Title
-            title={<Trans>Demander une démo</Trans>}
+            title={<Trans locale={locale}>Demander une démo</Trans>}
             subtitle={
-              <Trans>
+              <Trans locale={locale}>
                 Contactez nous afin de convenir d'un temps de démonstration de
                 notre outil pour les organisations.
               </Trans>
