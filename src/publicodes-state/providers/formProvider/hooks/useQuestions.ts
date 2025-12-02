@@ -59,10 +59,11 @@ export default function useQuestions({
           DottedName[],
         ][]
       ).forEach(([mosaicParent, mosaicChildren]) => {
-        const isMosaicParentApplicable = safeEvaluate({
-          'est applicable': mosaicParent,
-        })?.nodeValue
-        if (!isMosaicParentApplicable) {
+        const isMosaicParentNotApplicable =
+          safeEvaluate({
+            'est non applicable': mosaicParent,
+          })?.nodeValue === true
+        if (isMosaicParentNotApplicable) {
           delete tempMissingVariables[mosaicParent]
           mosaicChildren.forEach((mosaicChild) => {
             delete tempMissingVariables[mosaicChild]
