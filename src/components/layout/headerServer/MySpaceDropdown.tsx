@@ -170,6 +170,22 @@ export default function MySpaceDropdown({ email, locale }: Props) {
     router.push('/')
   }
 
+  const ariaLabelTitle = isOpen
+    ? t(
+        'header.monEspace.openMenuButton.open.title',
+        'Mon Espace ({{email}}), ouvrir le menu',
+        {
+          email,
+        }
+      )
+    : t(
+        'header.monEspace.openMenuButton.close.title',
+        'Mon Espace ({{email}}), fermer le menu',
+        {
+          email,
+        }
+      )
+
   return (
     <div className="relative inline-block">
       <Button
@@ -181,12 +197,8 @@ export default function MySpaceDropdown({ email, locale }: Props) {
         aria-expanded={isOpen}
         aria-haspopup="true"
         aria-controls={menuId}
-        aria-label={t('header.monEspace.titleEmail', 'Mon Espace ({{email}})', {
-          email,
-        })}
-        title={t('header.monEspace.titleEmail', 'Mon Espace ({{email}})', {
-          email,
-        })}
+        aria-label={ariaLabelTitle}
+        title={ariaLabelTitle}
         onClick={handleToggleMenu}
         onKeyDown={handleButtonKeyDown}
         data-track-event={headerClickMonEspaceAuthenticatedServer}
