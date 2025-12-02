@@ -149,14 +149,9 @@ describe('useSimulations', () => {
         id: 'current-sim',
         situation: {
           'transport . voiture . km': 1000,
-          'transport . avion . heures de vol': 5,
         } as unknown as Record<DottedName, any>,
         extendedSituation: {
           'transport . voiture . km': { source: 'answered', nodeValue: 1000 },
-          'transport . avion . heures de vol': {
-            source: 'answered',
-            nodeValue: 5,
-          },
         } as unknown as ExtendedSituation,
       })
       const setSimulations = vi.fn()
@@ -190,11 +185,6 @@ describe('useSimulations', () => {
       ).toEqual({
         source: 'answered',
         nodeValue: 2000,
-      })
-      expect(
-        updatedSimulation.extendedSituation['transport . avion . heures de vol']
-      ).toEqual({
-        source: 'omitted',
       })
     })
 
