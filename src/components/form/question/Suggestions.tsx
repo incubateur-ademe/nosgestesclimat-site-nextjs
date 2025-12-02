@@ -12,7 +12,8 @@ import {
   getHoverBorderCategoryColor,
   getTextCategoryColor,
 } from '@/helpers/getCategoryColorClass'
-import { useFormState, useRule } from '@/publicodes-state'
+import { useFormState, useRule, useUser } from '@/publicodes-state'
+import { MUST_HIDE_SUGGESTIONS_I18N } from '@/publicodes-state/constants/questions'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { capitalizeString } from '@/utils/capitalizeString'
 import type { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
@@ -27,6 +28,12 @@ export default function Suggestions({ question, setValue }: Props) {
   const { suggestions } = useRule(question)
 
   const { currentCategory } = useFormState()
+
+  const {
+    user: { region },
+  } = useUser()
+
+  if (region?.code !== 'FR' && MUST_HIDE_SUGGESTIONS_I18N.has(question)) return
 
   if (!suggestions?.length) return
 

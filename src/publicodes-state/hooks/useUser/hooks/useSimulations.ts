@@ -278,13 +278,4 @@ export default function useSimulations({
 
 const resetAideSaisie = () => {
   safeLocalStorage.removeItem('transport . voiture . km')
-  safeLocalStorage.removeItem(
-    'transport . avion . court courrier . heures de vol'
-  )
-  safeLocalStorage.removeItem(
-    'transport . avion . moyen courrier . heures de vol'
-  )
-  safeLocalStorage.removeItem(
-    'transport . avion . long courrier . heures de vol'
-  )
 }
