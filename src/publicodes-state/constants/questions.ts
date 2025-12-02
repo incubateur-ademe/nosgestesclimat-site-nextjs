@@ -55,3 +55,8 @@ export const MUST_SHOW_DESCRIPTION = new Set<DottedName>([
   'divers . animaux domestiques . empreinte',
   'alimentation . local . consommation',
 ])
+
+export const MUST_HIDE_SUGGESTIONS_I18N: Set<DottedName> = new Set([
+  'transport . avion . vols annuels',
+  'transport . avion . vols amortis',
+])
