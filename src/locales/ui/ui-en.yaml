@@ -1575,8 +1575,8 @@ entries:
   mon-espace.shareSimulator.buttonLabel.desktop.lock: Partager le test Nos Gestes Climat
   mon-espace.evolutionGraph.simulationData: 'Test result no.{{simulationNumber}} du {{simulationDate}} : {{simulationValue}} tonnes'
   mon-espace.evolutionGraph.simulationData.lock: 'Résultat de test n°{{simulationNumber}} du {{simulationDate}} : {{simulationValue}} tonnes'
-  mon-espace.evolutionGraph.chartDisabledTitle.part1: Run a new simulation
-  mon-espace.evolutionGraph.chartDisabledTitle.part1.lock: Faites une nouvelle simulation
+  mon-espace.evolutionGraph.chartDisabledTitle.part1: Take the test again
+  mon-espace.evolutionGraph.chartDisabledTitle.part1.lock: Passez à nouveau le test
   Navigation de mon espace: Navigating my space
   navigation.connexionInscription: Login/registration navigation
   navigation.connexionInscription.lock: Navigation connexion/inscription
@@ -1786,3 +1786,11 @@ entries:
   Invitez vos proches à passer le test: Invite your friends and family to take the test
   Créez un groupe avec vos proches et <2>lancez-vous dans un défi collectif</2> pour réduire votre empreinte. Suivez vos progrès et voyez qui parvient à réduire le plus ses émissions de carbone ou sa consommation d’eau.: Create a group with friends and family and <2>embark on a collective challenge</2> to reduce your footprint. Track your progress and see who manages to reduce their carbon emissions or water consumption the most.
   Rejoignez le groupe <3>{{groupName}}</3> et passez le test.: Join the group <3>{{groupName}}</3> and take the test.
+  mon-espace.groups.organisation.create.button: Create my organisation
+  mon-espace.groups.organisation.create.button.lock: Créer mon organisation
+  mon-espace.groups.organisation.create.title: Mobilising my organisation
+  mon-espace.groups.organisation.create.title.lock: Mobiliser mon organisation
+  header.monEspace.openMenuButton.open.title: My Space ({{email}}), open the menu
+  header.monEspace.openMenuButton.open.title.lock: Mon Espace ({{email}}), ouvrir le menu
+  header.monEspace.openMenuButton.close.title: My Space ({{email}}), close the menu
+  header.monEspace.openMenuButton.close.title.lock: Mon Espace ({{email}}), fermer le menu

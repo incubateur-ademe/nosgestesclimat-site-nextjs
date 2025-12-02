@@ -1265,7 +1265,7 @@ entries:
   mon-espace.shareSimulator.buttonLabel.desktop: Partager le test Nos Gestes Climat
   mon-espace.shareSimulator.buttonLabel.mobile: Partager le test
   mon-espace.shareSimulator.title: Vous avez aimé calculer votre empreinte ?
-  mon-espace.evolutionGraph.chartDisabledTitle.part1: Faites une nouvelle simulation
+  mon-espace.evolutionGraph.chartDisabledTitle.part1: Passez à nouveau le test
   mon-espace.evolutionGraph.chartDisabledTitle.part2: pour avoir accès à l’évolution de votre empreinte
   mon-espace.evolutionGraph.simulationData: 'Résultat de test n°{{simulationNumber}} du {{simulationDate}} : {{simulationValue}} tonnes'
   Navigation de mon espace: Navigation de mon espace
@@ -1397,3 +1397,7 @@ entries:
   Invitez vos proches à passer le test: Invitez vos proches à passer le test
   Mobilisez votre entourage: Mobilisez votre entourage
   Rejoignez le groupe <3>{{groupName}}</3> et passez le test.: Rejoignez le groupe <3>{{groupName}}</3> et passez le test.
+  header.monEspace.openMenuButton.close.title: Mon Espace ({{email}}), fermer le menu
+  header.monEspace.openMenuButton.open.title: Mon Espace ({{email}}), ouvrir le menu
+  mon-espace.groups.organisation.create.button: Créer mon organisation
+  mon-espace.groups.organisation.create.title: Mobiliser mon organisation
