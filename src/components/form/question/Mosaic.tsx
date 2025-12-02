@@ -41,30 +41,23 @@ export default function Mosaic({
     })
   }
 
-  const questionsOfMosaicCount = questionsOfMosaic.length
-
   return (
     <>
       <fieldset
-        className={`md:grid-cols-2' grid w-[90%] auto-rows-fr items-stretch gap-2 md:w-full ${questionsOfMosaicCount <= 2 && 'md:max-w-128 md:grid-cols-1'} md:gap-4`}>
+        className={`md:grid-cols-2' grid w-[90%] auto-rows-fr items-stretch gap-2 md:w-full ${questionsOfMosaic.length <= 2 && 'md:max-w-128 md:grid-cols-1'} md:gap-4`}>
         <legend className="sr-only">{label}</legend>
 
-        {questionsOfMosaicCount
-          ? questionsOfMosaic.map((questionOfMosaic, index) => (
-              <MosaicQuestion
-                key={questionOfMosaic}
-                parentMosaic={question}
-                question={questionOfMosaic}
-                index={index}
-                firstInputId={firstInputId}
-                value={values[questionOfMosaic]}
-                setValue={setValue}
-              />
-            ))
-          : t(
-              'simulator.mosaic.noChildren',
-              "Cette mosaique n'a pas d'enfants."
-            )}
+        {questionsOfMosaic.map((questionOfMosaic, index) => (
+          <MosaicQuestion
+            key={questionOfMosaic}
+            parentMosaic={question}
+            question={questionOfMosaic}
+            index={index}
+            firstInputId={firstInputId}
+            value={values[questionOfMosaic]}
+            setValue={setValue}
+          />
+        ))}
       </fieldset>
 
       {!!secondaryQuestionsOfMosaic.length && (
