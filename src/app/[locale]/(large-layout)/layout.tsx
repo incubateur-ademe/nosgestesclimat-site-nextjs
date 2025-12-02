@@ -1,7 +1,7 @@
-import { ClientLayout } from '@/components/layout/ClientLayout'
 import ContentLarge from '@/components/layout/ContentLarge'
 import Footer from '@/components/layout/Footer'
 import HeaderServer from '@/components/layout/HeaderServer'
+import { ServerLayout } from '@/components/layout/ServerLayout'
 import type { DefaultPageProps } from '@/types'
 import type { PropsWithChildren } from 'react'
 
@@ -12,10 +12,12 @@ export default async function LargeLayout({ children, params }: LayoutProps) {
   return (
     <>
       <HeaderServer />
-      <ClientLayout locale={locale}>
-        <ContentLarge>{children}</ContentLarge>
+      <ServerLayout locale={locale}>
+        <ContentLarge className="mt-4 px-4 md:mt-10 lg:px-0">
+          {children}
+        </ContentLarge>
         <Footer />
-      </ClientLayout>
+      </ServerLayout>
     </>
   )
 }

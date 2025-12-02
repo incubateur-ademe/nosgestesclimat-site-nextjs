@@ -1,6 +1,8 @@
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
+import { UserProvider } from '@/publicodes-state'
 import type { PropsWithChildren } from 'react'
+import QueryClientProviderWrapper from '../../_components/mainLayoutProviders/QueryClientProviderWrapper'
 
 export const generateMetadata = getCommonMetadata({
   title: t('Le calculateur Nos Gestes Climat, pour les organisations'),
@@ -13,5 +15,12 @@ export const generateMetadata = getCommonMetadata({
 })
 
 export default function Layout({ children }: PropsWithChildren) {
-  return <div className="bg-white md:-mt-8">{children}</div>
+  // TODO : remove userProvider
+  return (
+    <QueryClientProviderWrapper>
+      <UserProvider>
+        <div className="bg-white md:-mt-8">{children}</div>
+      </UserProvider>
+    </QueryClientProviderWrapper>
+  )
 }

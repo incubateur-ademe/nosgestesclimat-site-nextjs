@@ -2,13 +2,15 @@ import Trans from '@/components/translation/trans/TransClient'
 import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 
+import OrganisationFilAriane from '@/components/layout/FilAriane'
 import { ADMINISTRATOR_SEPARATOR } from '@/constants/organisations/administrator'
 import { OrganisationTypeEnum } from '@/constants/organisations/organisationTypes'
-import { getOrganisation } from '@/helpers/server/model/organisations'
+import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type {
   Organisation,
   OrgaSettingsInputsType,
 } from '@/types/organisations'
+import { organisationAdminGuard } from '../organisation-guard'
 import DeconnexionButton from './_components/DeconnexionButton'
 import OrganisationForm from './_components/OrganisationForm'
 
@@ -16,28 +18,41 @@ import OrganisationForm from './_components/OrganisationForm'
 export default async function ParametresPage({
   params,
 }: PageProps<'/[locale]/organisations/[orgaSlug]/parametres'>) {
-  const { orgaSlug } = await params
-  const organisation = await getOrganisation(orgaSlug)
+  const { orgaSlug, locale } = await params
+  const { organisation } = await organisationAdminGuard(orgaSlug)
+  const { t } = await getServerTranslation({ locale })
   const defaultValues = getFormDefaultValues(organisation)
 
   return (
-    <div className="pb-12">
-      <Title
-        title={
-          <span>
-            <Trans>Paramètres de </Trans>
-            <strong className="text-primary-700">{organisation?.name}</strong>
-          </span>
-        }
+    <>
+      <OrganisationFilAriane
+        organisation={organisation}
+        t={t}
+        isAdmin
+        currentPage={{
+          label: t('Paramètres'),
+          href: `/organisations/${orgaSlug}/parametres`,
+        }}
       />
-      <OrganisationForm
-        slug={organisation.slug}
-        defaultValues={defaultValues}
-      />
-      <Separator className="my-8" />
 
-      <DeconnexionButton />
-    </div>
+      <div className="pb-12">
+        <Title
+          title={
+            <span>
+              <Trans>Paramètres de </Trans>
+              <strong className="text-primary-700">{organisation?.name}</strong>
+            </span>
+          }
+        />
+        <OrganisationForm
+          slug={organisation.slug}
+          defaultValues={defaultValues}
+        />
+        <Separator className="my-8" />
+
+        <DeconnexionButton />
+      </div>
+    </>
   )
 }
 

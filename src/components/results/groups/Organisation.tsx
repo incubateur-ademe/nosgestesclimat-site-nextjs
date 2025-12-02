@@ -4,10 +4,10 @@ import type { Organisation } from '@/types/organisations'
 import CreateOrganisation from './organisations/CreateOrganisation'
 import PollsList from './organisations/PollsList'
 
-export default function Organisations({
-  organisations,
+export default function OrganisationComponent({
+  organisation,
 }: {
-  organisations: Organisation[]
+  organisation: Organisation | undefined
 }) {
   return (
     <div className="mb-10 max-w-[683px]">
@@ -20,10 +20,10 @@ export default function Organisations({
         }
       />
 
-      {!((organisations.length ?? 0) > 0) ? (
+      {!organisation ? (
         <CreateOrganisation />
       ) : (
-        <PollsList organisations={organisations} />
+        <PollsList organisation={organisation} />
       )}
     </div>
   )

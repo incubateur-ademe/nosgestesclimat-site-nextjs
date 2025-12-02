@@ -12,9 +12,7 @@ export function getOrganisationPolls(
   return fetchWithJWTCookie(`${ORGANISATION_URL}/${idOrSlug}/polls`)
 }
 
-export async function getUserCurrentOrganisation(): Promise<
-  Organisation | undefined
-> {
+export async function getUserOrganisation(): Promise<Organisation | undefined> {
   const organisations = await fetchWithJWTCookie(ORGANISATION_URL)
   if (organisations.length === 0) return undefined
   return organisations[0]

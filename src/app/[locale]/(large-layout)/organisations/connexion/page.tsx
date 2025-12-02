@@ -1,18 +1,16 @@
 import AuthenticateUserForm from '@/components/AuthenticateUserForm'
+import OrganisationFilAriane from '@/components/layout/FilAriane'
 import Trans from '@/components/translation/trans/TransServer'
-import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import Separator from '@/design-system/layout/Separator'
-import { getOrganisationBaseBreadcrumb } from '@/helpers/filAriane/getOrganisationBaseBreadcrumb'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getLocale } from '@/helpers/language/getLocale'
 
-import { getUserCurrentOrganisation } from '@/helpers/server/model/organisations'
+import { getUserOrganisation } from '@/helpers/server/model/organisations'
 import { isUserAuthenticated } from '@/helpers/server/model/user'
 import { redirect } from 'next/navigation'
 
 async function redirectAfterLogin() {
   'use server'
-  const organisation = await getUserCurrentOrganisation()
+  const organisation = await getUserOrganisation()
   if (!organisation) {
     redirect('/organisations/creer')
   }
@@ -23,24 +21,22 @@ async function redirectAfterLogin() {
 export default async function Page({
   params,
 }: PageProps<'/[locale]/organisations/connexion'>) {
-  const locale = await getLocale()
+  const { locale } = await params
   if (await isUserAuthenticated()) {
     await redirectAfterLogin()
   }
 
-  const { t } = await getServerTranslation({ locale: (await params).locale })
-  const breadcrumbItems = [
-    ...getOrganisationBaseBreadcrumb(t),
-    {
-      href: '/organisations/connexion',
-      label: t('Connexion'),
-      isActive: true,
-    },
-  ]
+  const { t } = await getServerTranslation({ locale })
 
   return (
     <>
-      <Breadcrumbs className="-mt-4" items={breadcrumbItems} />
+      <OrganisationFilAriane
+        t={t}
+        currentPage={{
+          label: t('Connexion'),
+          href: `/organisations/connexion`,
+        }}
+      />
 
       <section className="w-full bg-[#fff]">
         <div className="max-w-5xl lg:px-0">

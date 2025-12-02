@@ -5,7 +5,7 @@ import EmptyState from '@/app/[locale]/mon-espace/groupes/_components/EmptyState
 import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import Groups from '@/components/results/groups/Groups'
-import Organisations from '@/components/results/groups/Organisations'
+import Organisation from '@/components/results/groups/Organisation'
 import Trans from '@/components/translation/trans/TransClient'
 import { fetchUserGroups } from '@/helpers/groups/fetchUserGroups'
 import { fetchOrganisationsClient } from '@/helpers/organisations/fetchOrganisationsClient'
@@ -89,7 +89,7 @@ export default function GroupsTabContent({
     <QueryClientProviderWrapper>
       {organisations.length > 0 && (
         <div className="mb-10">
-          <Organisations organisations={organisations} />
+          <Organisation organisation={organisations[0]} />
         </div>
       )}
       {groups.length > 0 && <Groups groups={groups} />}

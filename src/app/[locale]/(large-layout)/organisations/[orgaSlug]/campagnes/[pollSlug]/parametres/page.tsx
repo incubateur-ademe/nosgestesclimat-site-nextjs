@@ -1,6 +1,7 @@
 'use client'
 
 import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
+import OrganisationFilAriane from '@/components/layout/FilAriane'
 import MaxWidthContent from '@/components/layout/MaxWidthContent'
 import PollLoader from '@/components/organisations/PollLoader'
 import QuestionsComplementaires from '@/components/organisations/QuestionsComplementaires'
@@ -15,6 +16,7 @@ import {
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useQueryClient } from '@tanstack/react-query'
 import { useParams } from 'next/navigation'
+import { useTranslation } from 'react-i18next'
 import PollNotFound from '../_components/PollNotFound'
 import DeletePollButton from './_components/DeletePollButton'
 import NameForm from './_components/NameForm'
@@ -45,7 +47,7 @@ export default function ParametresPage() {
       })
     },
   })
-
+  const { t } = useTranslation()
   const updateAndRefetchPoll = (data: PollToUpdate) => {
     updatePoll(data)
   }
@@ -59,40 +61,53 @@ export default function ParametresPage() {
   }
 
   return (
-    <MaxWidthContent className="pb-8">
-      <Title
-        title={
-          <span>
-            <Trans>Paramètres de</Trans>{' '}
-            <span className="text-secondary-700">{poll?.name}</span>
-          </span>
-        }
-      />
-
-      {isErrorUpdate && <DefaultSubmitErrorMessage />}
-
-      <NameForm
-        nameValue={poll?.name ?? ''}
-        expectedNumberOfParticipants={
-          poll?.expectedNumberOfParticipants ?? undefined
-        }
-        updatePoll={updateAndRefetchPoll}
-        updatePollStatus={updatePollStatus}
-        refetchPoll={refetchPoll}
-      />
-
-      <Separator />
-
-      <QuestionsComplementaires
-        onChange={updateAndRefetchPoll}
+    <>
+      <OrganisationFilAriane
         organisation={organisation}
-        description={' '}
         poll={poll}
+        currentPage={{
+          label: t('Paramètres'),
+          href: `/organisations/${organisation.slug}/campagnes/${poll.slug}/parametres`,
+        }}
+        t={t}
+        isAdmin
       />
 
-      <Separator className="my-4" />
+      <MaxWidthContent className="pb-8">
+        <Title
+          title={
+            <span>
+              <Trans>Paramètres de</Trans>{' '}
+              <span className="text-secondary-700">{poll?.name}</span>
+            </span>
+          }
+        />
 
-      <DeletePollButton />
-    </MaxWidthContent>
+        {isErrorUpdate && <DefaultSubmitErrorMessage />}
+
+        <NameForm
+          nameValue={poll?.name ?? ''}
+          expectedNumberOfParticipants={
+            poll?.expectedNumberOfParticipants ?? undefined
+          }
+          updatePoll={updateAndRefetchPoll}
+          updatePollStatus={updatePollStatus}
+          refetchPoll={refetchPoll}
+        />
+
+        <Separator />
+
+        <QuestionsComplementaires
+          onChange={updateAndRefetchPoll}
+          organisation={organisation}
+          description={' '}
+          poll={poll}
+        />
+
+        <Separator className="my-4" />
+
+        <DeletePollButton />
+      </MaxWidthContent>
+    </>
   )
 }
