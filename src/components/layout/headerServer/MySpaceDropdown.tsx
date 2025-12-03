@@ -207,7 +207,7 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
         id={buttonId}
         size="sm"
         color="secondary"
-        className="inline-flex"
+        className="inline-flex gap-1 align-baseline"
         aria-expanded={isOpen}
         aria-haspopup="true"
         aria-controls={menuId}
