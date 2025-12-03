@@ -39,10 +39,12 @@ function ResultsContentInner({
   isStatic,
   title,
   containerRef,
+  simulation,
 }: {
   isStatic?: boolean
   title?: string | ReactNode
   containerRef: React.RefObject<HTMLDivElement | null>
+  simulation: Simulation
 }) {
   const { currentMetric } = useCurrentMetric()
 
@@ -67,11 +69,18 @@ function ResultsContentInner({
           {isFrenchRegion && !isStatic && <HeadingButtons />}
         </div>
 
-        <MetricSlider isStatic={isStatic} />
+        <MetricSlider
+          isStatic={isStatic}
+          carboneTotal={simulation.computedResults.carbone.bilan}
+          waterTotal={simulation.computedResults.eau.bilan}
+        />
 
         {currentMetric === carboneMetric && (
           <div className="mb-20 block w-full md:hidden">
-            <CarboneTotalChart shouldShowOnlyGauge />
+            <CarboneTotalChart
+              total={simulation.computedResults.carbone.bilan}
+              shouldShowOnlyGauge
+            />
           </div>
         )}
 
@@ -141,6 +150,7 @@ export default function ResultsContent({
               isStatic={isStatic}
               title={title}
               containerRef={containerRef}
+              simulation={simulation}
             />
           )}
         </IframeOptionsProvider>
