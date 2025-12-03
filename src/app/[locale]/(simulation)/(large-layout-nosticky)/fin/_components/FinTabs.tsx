@@ -141,7 +141,6 @@ export default function FinTabs() {
       ariaLabel={t('Navigation de mon espace')}
       containerId="fin-tabs"
       isLocked={false}
-      prefetch={false}
     />
   )
 }

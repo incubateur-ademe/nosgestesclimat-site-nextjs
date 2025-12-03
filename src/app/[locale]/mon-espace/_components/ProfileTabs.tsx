@@ -62,6 +62,7 @@ export default async function ProfileTab({
         activePath !== MON_ESPACE_PATH
           ? captureClickMonEspaceTabServer('results')
           : undefined,
+      prefetch: false,
     },
     {
       id: 'actions',
@@ -97,6 +98,7 @@ export default async function ProfileTab({
         activePath !== MON_ESPACE_ACTIONS_PATH
           ? captureClickMonEspaceTabServer('actions')
           : undefined,
+      prefetch: false,
     },
     {
       id: 'groups',
@@ -132,6 +134,7 @@ export default async function ProfileTab({
         activePath !== MON_ESPACE_GROUPS_PATH
           ? captureClickMonEspaceTabServer('groups')
           : undefined,
+      prefetch: false,
     },
     {
       id: 'settings',
@@ -163,6 +166,7 @@ export default async function ProfileTab({
           ? captureClickMonEspaceTabServer('settings')
           : undefined,
       containerClassName: 'md:ml-auto',
+      prefetch: false,
     },
   ]
   return (
@@ -171,7 +175,6 @@ export default async function ProfileTab({
       className="mb-8"
       ariaLabel={t('Navigation de mon espace')}
       containerId="mon-espace-tabs"
-      prefetch={false}
     />
   )
 }

@@ -18,7 +18,6 @@ interface TabsProps {
   containerId?: string
   hideBorder?: boolean
   isLocked?: boolean
-  prefetch?: boolean
 }
 
 const TabLink = ({
@@ -38,7 +37,7 @@ const TabLink = ({
   const activeClasses =
     'font-bold px-1 md:px-4 py-3 border-primary-600! border-current text-primary-600'
 
-  const { id, label, href, isActive, className, ...otherProps } = item
+  const { id, label, href, isActive, className, prefetch, ...otherProps } = item
 
   if (isLocked) {
     return (
@@ -93,6 +92,7 @@ const TabLink = ({
       role="tab"
       href={href}
       scroll={scroll}
+      prefetch={prefetch}
       className={twMerge(baseClasses, className)}
       {...otherProps}
       {...props}>

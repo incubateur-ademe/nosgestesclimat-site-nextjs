@@ -33,6 +33,7 @@ export default function SigninSignupTabs({ mode, className }: Props) {
         }
       },
       tab: 'connexion',
+      prefetch: false,
     },
     {
       id: 'inscription',
@@ -46,6 +47,7 @@ export default function SigninSignupTabs({ mode, className }: Props) {
         }
       },
       tab: 'inscription',
+      prefetch: false,
     },
   ]
 
@@ -57,7 +59,6 @@ export default function SigninSignupTabs({ mode, className }: Props) {
           'navigation.connexionInscription',
           'Navigation connexion/inscription'
         )}
-        prefetch={false}
       />
     </div>
   )
