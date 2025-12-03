@@ -35,6 +35,7 @@ export function useUpdateUserSettings() {
             params: {
               code,
             },
+            withCredentials: true,
           }
         )
         .then((res) => res.data)
