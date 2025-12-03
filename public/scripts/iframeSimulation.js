@@ -37,8 +37,16 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
     url.pathname = `/${lang ? lang + '/' : ''}simulateur/bilan`
   }
 
+  // Append iframe and integratorUrl params to allow iframe event to be triggered
   url.searchParams.append('iframe', 'true')
   url.searchParams.append('integratorUrl', integratorUrl)
+
+  // Append matomo tracking params
+  url.searchParams.append(
+    'mtm_campaign',
+    currentParams.get('mtm_campaign') || `relais_${integratorUrl}`
+  )
+  url.searchParams.append('mtm_kwd', currentParams.get('mtm_kwd') || 'iframe')
 
   possibleOptions
     .filter(({ key }) => key !== 'maxHeight')
