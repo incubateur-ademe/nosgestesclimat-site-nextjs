@@ -19,7 +19,6 @@ import { useEndGuard } from '@/hooks/navigation/useEndGuard'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useIframe } from '@/hooks/useIframe'
 import type { Metric } from '@/publicodes-state/types'
-import { getIsIframe } from '@/utils/getIsIframe'
 import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, type ReactElement } from 'react'
@@ -47,9 +46,7 @@ export default function FinPage() {
 
   const { currentMetric } = useCurrentMetric()
 
-  const isIframe = getIsIframe()
-
-  const { isFrenchRegion, isIframeShareData } = useIframe()
+  const { isFrenchRegion } = useIframe()
   const { data: authenticatedUser } = useQuery({
     queryKey: ['user', 'me'],
     queryFn: () => fetchUser(),
@@ -72,7 +69,7 @@ export default function FinPage() {
 
   return (
     <div className="relative mt-4 mb-16 md:mt-10">
-      {isIframe && isIframeShareData && <IframeDataShareModal />}
+      <IframeDataShareModal />
 
       <FinTabs />
 

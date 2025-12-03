@@ -1,9 +1,10 @@
 'use client'
 
-import { defaultMetric } from '@/constants/model/metric'
 import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
+import { shareDataWithIntegrator } from '@/helpers/iframe/shareDataWithIntegrator'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useIframe } from '@/hooks/useIframe'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { useEffect, useRef, useState } from 'react'
 
@@ -17,17 +18,20 @@ export default function IframeDataShareModal() {
 
   const { computedResults } = useCurrentSimulation()
 
-  const categories = computedResults[defaultMetric].categories ?? {}
+  const { isIframeShareData, isIntegratorAllowedToBypassConsentDataShare } =
+    useIframe()
 
-  const data = Object.keys(categories).reduce(
-    (accumulator, categoryName) => ({
-      ...accumulator,
-      [categoryName.charAt(0)]: Math.round(
-        categories[categoryName as keyof typeof categories]
-      ),
-    }),
-    {}
-  )
+  // Directly share data if allowed to bypass the consent data share
+  useEffect(() => {
+    if (!isIframeShareData || !isIntegratorAllowedToBypassConsentDataShare)
+      return
+
+    shareDataWithIntegrator(computedResults)
+  }, [
+    isIframeShareData,
+    isIntegratorAllowedToBypassConsentDataShare,
+    computedResults,
+  ])
 
   //To delay the dialog show in to let the animation play
   const timeoutRef = useRef<NodeJS.Timeout>(undefined)
@@ -35,27 +39,29 @@ export default function IframeDataShareModal() {
   const resetOverflow = () => (document.body.style.overflow = 'auto')
 
   const onReject = () => {
-    window.parent.postMessage(
-      {
-        messageType: 'ngc-iframe-share',
-        error: 'The user refused to share his result.',
-      },
-      '*'
-    )
+    const message = {
+      messageType: 'ngc-iframe-share',
+      error: 'The user refused to share his result.',
+    }
+    window.parent.postMessage(message, '*')
+    if (window.top && window.top !== window) {
+      window.top.postMessage(message, '*')
+    }
     setIsOpen(false)
-
     resetOverflow()
   }
 
   const onAccept = () => {
-    window.parent.postMessage({ messageType: 'ngc-iframe-share', data }, '*')
+    shareDataWithIntegrator(computedResults)
 
     setIsOpen(false)
-
     resetOverflow()
   }
 
   useEffect(() => {
+    if (!isIframeShareData || isIntegratorAllowedToBypassConsentDataShare)
+      return
+
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
     timeoutRef.current = setTimeout(() => {
       timeoutRef.current = undefined
@@ -66,21 +72,29 @@ export default function IframeDataShareModal() {
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
-  }, [])
+  }, [isIframeShareData, isIntegratorAllowedToBypassConsentDataShare])
 
   useEffect(() => {
+    if (!isIframeShareData || isIntegratorAllowedToBypassConsentDataShare)
+      return
+
     document.body.style.overflow = 'hidden'
 
     return () => {
       resetOverflow()
     }
-  }, [])
+  }, [isIframeShareData, isIntegratorAllowedToBypassConsentDataShare])
 
   const parent = document.referrer
     ? String(new URL(document.referrer).hostname)
     : 'site parent inconnu'
 
-  if (!isOpen) return null
+  if (
+    !isOpen ||
+    !isIframeShareData ||
+    isIntegratorAllowedToBypassConsentDataShare
+  )
+    return null
 
   return (
     <div
