@@ -61,7 +61,7 @@ export default function SendVerificationCodeForm({
         shouldUseDebounce={false}
         autoComplete="email"
         data-cypress-id="organisation-connexion-email-input"
-        label={inputLabel ?? <Trans>Votre adresse electronique</Trans>}
+        label={inputLabel ?? <Trans>Votre adresse e-mail</Trans>}
         placeholder="nom.prenom@domaine.fr"
         srOnlyHelperText={
           <Trans i18nKey="organisations.connexion.email.input.helper">
@@ -69,7 +69,7 @@ export default function SendVerificationCodeForm({
           </Trans>
         }
         {...register('email', {
-          required: t('Ce champ est requis'),
+          required: t('Merci de renseigner votre adresse e-mail'),
           validate: (value) =>
             isEmailValid(value) || t("L'adresse e-mail est invalide"),
         })}
