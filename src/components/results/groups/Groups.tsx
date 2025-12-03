@@ -32,32 +32,38 @@ export default function Groups({ groups }: Props) {
           <GroupContent groups={groups} />
         </div>
 
-        {/* Desktop */}
-        <NewItemCardLink
-          href="/mon-espace/groupes/creer"
-          className="hidden md:block"
-          label={
-            <Trans i18nKey="mon-espace.groups.create">Créer un groupe</Trans>
-          }
-          color="secondary"
-          imageAlt=""
-          imageSrc="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_people_raising_arm_fe915601cd.png"
-          icon={<PlusIcon className="stroke-primary-700 min-w-8" />}
-          ctaClassName="min-w-64"
-        />
+        {groups.length > 0 && (
+          <>
+            {/* Desktop */}
+            <NewItemCardLink
+              href="/mon-espace/groupes/creer"
+              className="hidden md:block"
+              label={
+                <Trans i18nKey="mon-espace.groups.create">
+                  Créer un groupe
+                </Trans>
+              }
+              color="secondary"
+              imageAlt=""
+              imageSrc="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/medium_people_raising_arm_fe915601cd.png"
+              icon={<PlusIcon className="stroke-primary-700 min-w-8" />}
+              ctaClassName="min-w-64"
+            />
 
-        {/* Mobile */}
-        <Link
-          href="/mon-espace/groupes/creer"
-          className={twMerge(
-            'block md:hidden',
-            baseClassNames,
-            sizeClassNames.md,
-            colorClassNames.secondary
-          )}>
-          <PlusIcon className="stroke-primary-700 min-w-8" />
-          <Trans i18nKey="mon-espace.groups.create">Créer un groupe</Trans>
-        </Link>
+            {/* Mobile */}
+            <Link
+              href="/mon-espace/groupes/creer"
+              className={twMerge(
+                'block md:hidden',
+                baseClassNames,
+                sizeClassNames.md,
+                colorClassNames.secondary
+              )}>
+              <PlusIcon className="stroke-primary-700 min-w-8" />
+              <Trans i18nKey="mon-espace.groups.create">Créer un groupe</Trans>
+            </Link>
+          </>
+        )}
       </div>
     </>
   )

@@ -3,12 +3,10 @@ import type { Organisation } from '@/types/organisations'
 import OrganisationItem from './pollList/OrganisationItem'
 
 type Props = {
-  organisations?: Organisation[]
+  organisation: Organisation
 }
 
-export default function PollsList({ organisations }: Props) {
-  const [organisation] = organisations || []
-
+export default function PollsList({ organisation }: Props) {
   return (
     <div className="mb-8 flex flex-col gap-3" data-testid="poll-list">
       {!!organisation && (

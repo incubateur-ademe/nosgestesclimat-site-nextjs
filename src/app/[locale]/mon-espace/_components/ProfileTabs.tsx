@@ -21,10 +21,8 @@ import { twMerge } from 'tailwind-merge'
 
 export default async function ProfileTab({
   activePath,
-  isLocked = false,
 }: {
   activePath: string
-  isLocked?: boolean
 }) {
   const locale = await getLocale()
   const { t } = await getServerTranslation({ locale })
@@ -57,11 +55,11 @@ export default async function ProfileTab({
       href: MON_ESPACE_PATH,
       isActive: activePath === MON_ESPACE_PATH,
       'data-track-event':
-        activePath !== MON_ESPACE_PATH && !isLocked
+        activePath !== MON_ESPACE_PATH
           ? monEspaceTabTrackEventServer('results')
           : undefined,
       'data-track-posthog':
-        activePath !== MON_ESPACE_PATH && !isLocked
+        activePath !== MON_ESPACE_PATH
           ? captureClickMonEspaceTabServer('results')
           : undefined,
     },
@@ -92,11 +90,11 @@ export default async function ProfileTab({
       href: MON_ESPACE_ACTIONS_PATH,
       isActive: activePath === MON_ESPACE_ACTIONS_PATH,
       'data-track-event':
-        activePath !== MON_ESPACE_ACTIONS_PATH && !isLocked
+        activePath !== MON_ESPACE_ACTIONS_PATH
           ? monEspaceTabTrackEventServer('actions')
           : undefined,
       'data-track-posthog':
-        activePath !== MON_ESPACE_ACTIONS_PATH && !isLocked
+        activePath !== MON_ESPACE_ACTIONS_PATH
           ? captureClickMonEspaceTabServer('actions')
           : undefined,
     },
@@ -127,11 +125,11 @@ export default async function ProfileTab({
       href: MON_ESPACE_GROUPS_PATH,
       isActive: activePath === MON_ESPACE_GROUPS_PATH,
       'data-track-event':
-        activePath !== MON_ESPACE_GROUPS_PATH && !isLocked
+        activePath !== MON_ESPACE_GROUPS_PATH
           ? monEspaceTabTrackEventServer('groups')
           : undefined,
       'data-track-posthog':
-        activePath !== MON_ESPACE_GROUPS_PATH && !isLocked
+        activePath !== MON_ESPACE_GROUPS_PATH
           ? captureClickMonEspaceTabServer('groups')
           : undefined,
     },
@@ -157,11 +155,11 @@ export default async function ProfileTab({
       href: MON_ESPACE_SETTINGS_PATH,
       isActive: activePath === MON_ESPACE_SETTINGS_PATH,
       'data-track-event':
-        activePath !== MON_ESPACE_SETTINGS_PATH && !isLocked
+        activePath !== MON_ESPACE_SETTINGS_PATH
           ? monEspaceTabTrackEventServer('settings')
           : undefined,
       'data-track-posthog':
-        activePath !== MON_ESPACE_SETTINGS_PATH && !isLocked
+        activePath !== MON_ESPACE_SETTINGS_PATH
           ? captureClickMonEspaceTabServer('settings')
           : undefined,
       containerClassName: 'md:ml-auto',
@@ -173,7 +171,7 @@ export default async function ProfileTab({
       className="mb-8"
       ariaLabel={t('Navigation de mon espace')}
       containerId="mon-espace-tabs"
-      isLocked={isLocked}
+      prefetch={false}
     />
   )
 }

@@ -1,13 +1,12 @@
 import ContentLarge from '@/components/layout/ContentLarge'
 import ResultsContent from '@/components/results/ResultsContent'
-import { CONNEXION_PATH } from '@/constants/urls/paths'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import Title from '@/design-system/layout/Title'
-import { getAuthentifiedUser } from '@/helpers/authentication/getAuthentifiedUser'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
+import { getUser } from '@/helpers/server/model/user'
 import { fetchSimulation } from '@/helpers/simulation/fetchSimulation'
 import type { DefaultPageProps } from '@/types'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 
 export default async function DetailledResultsPage({
   params,
@@ -16,15 +15,11 @@ export default async function DetailledResultsPage({
 
   const { t } = await getServerTranslation({ locale })
 
-  const authenticatedUser = await getAuthentifiedUser()
-
-  if (!authenticatedUser) {
-    redirect(CONNEXION_PATH)
-  }
+  const user = await getUser()
 
   const simulation = await fetchSimulation({
     simulationId,
-    userId: authenticatedUser.id,
+    userId: user.id,
   })
 
   if (!simulation) {
@@ -54,7 +49,7 @@ export default async function DetailledResultsPage({
       />
       <ResultsContent
         simulation={simulation}
-        userId={authenticatedUser.id}
+        userId={user.id}
         isStatic
         title={
           <div className="flex flex-col gap-2" key={simulation.id}>

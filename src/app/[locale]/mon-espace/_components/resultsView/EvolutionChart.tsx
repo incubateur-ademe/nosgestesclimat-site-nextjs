@@ -1,9 +1,11 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import { SIMULATOR_PATH } from '@/constants/urls/paths'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Locale } from '@/i18nConfig'
 import isMobile from 'is-mobile'
+import Link from 'next/link'
 import {
   CartesianGrid,
   Line,
@@ -83,20 +85,25 @@ export default function EvolutionChart({
       }
       id={chartId}>
       {disabled && (
-        <div className="border-primary-400 absolute top-1/2 left-1/2 z-10 flex max-w-96 -translate-x-1/2 -translate-y-full items-center justify-center rounded-xl border-2 bg-white p-6">
+        <div className="border-primary-400 absolute top-6 left-1/2 z-10 flex max-w-96 -translate-x-1/2 -translate-y-full items-center justify-center rounded-xl border-2 bg-white p-6">
           <p className="mb-0 text-center">
-            <strong className="text-primary-700">
-              <Trans i18nKey="mon-espace.evolutionGraph.chartDisabledTitle.part1">
-                Faites une nouvelle simulation
-              </Trans>
-            </strong>{' '}
+            <Link href={`${SIMULATOR_PATH}?newsimulation=true`}>
+              <strong className="text-primary-700 underline">
+                <Trans i18nKey="mon-espace.evolutionGraph.chartDisabledTitle.part1">
+                  Passez à nouveau le test
+                </Trans>
+              </strong>
+            </Link>{' '}
             <Trans i18nKey="mon-espace.evolutionGraph.chartDisabledTitle.part2">
               pour avoir accès à l’évolution de votre empreinte
             </Trans>
           </p>
         </div>
       )}
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer
+        className={disabled ? 'opacity-50' : ''}
+        width="100%"
+        height="100%">
         <LineChart
           data={chartData}
           margin={{
@@ -149,6 +156,25 @@ export default function EvolutionChart({
             strokeWidth={2.5}
             dot={{ r: 5, fill: lineColor }}
             activeDot={{ r: 7, fill: lineColor }}
+            label={(props: { value: number; x: number; y: number }) => {
+              const formattedValue = (props.value / 1000).toLocaleString(
+                locale === 'fr' ? 'fr-FR' : 'en-US',
+                {
+                  minimumFractionDigits: 1,
+                  maximumFractionDigits: 1,
+                }
+              )
+              return (
+                <text
+                  x={props.x}
+                  y={props.y - 10}
+                  fill={lineColor}
+                  fontSize={isMobile() ? 10 : 12}
+                  textAnchor="middle">
+                  {formattedValue}
+                </text>
+              )
+            }}
           />
         </LineChart>
       </ResponsiveContainer>

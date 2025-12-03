@@ -12,6 +12,7 @@ import SigninSignupTabs from '../_components/SigninSignupTabs'
 
 export default async function Connexion({ params }: DefaultPageProps) {
   const { locale } = await params
+
   return (
     <ContentLarge className="px-4 lg:px-0">
       <div className="flex justify-center pb-32 lg:justify-start">

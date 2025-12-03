@@ -18,16 +18,15 @@ export default function ActionsTutorial() {
 
   const { getValue } = useEngine()
 
-  const { hideTutorial } = useUser()
-
   const bilan = { nodeValue: getValue('bilan'), dottedName: 'bilan' }
 
   const [value, unit] = getCarbonFootprint({ t, i18n }, bilan.nodeValue)
 
   const { progression } = useCurrentSimulation()
-  const { tutorials } = useUser()
 
-  if (progression < 0.5 || tutorials.actions) {
+  const { tutorials, hideTutorial } = useUser()
+
+  if (progression < 1 || tutorials.actions || !bilan.nodeValue) {
     return null
   }
 

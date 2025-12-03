@@ -1,17 +1,12 @@
-import {
-  captureClickSubmitEmail,
-  signinTrackEvent,
-} from '@/constants/tracking/pages/signin'
 import { VERIFICATION_CODE_URL } from '@/constants/urls/main'
 import { useUser } from '@/publicodes-state'
 import type { AuthenticationMode } from '@/types/authentication'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { useMutation } from '@tanstack/react-query'
 import axios, { AxiosError } from 'axios'
 import { useCallback } from 'react'
 import { useLocale } from '../useLocale'
-import type { PendingVerification } from './usePendingVerification'
+import { type PendingVerification } from './usePendingVerification'
 
 export const enum CREATE_VERIFICATION_CODE_ERROR {
   SIGNIN_USER_DOES_NOT_EXIST = 'User does not exist',
@@ -27,7 +22,6 @@ export function useCreateVerificationCode({
   onComplete?: (pendingVerification: PendingVerification) => void
 } = {}) {
   const locale = useLocale()
-
   const {
     mutateAsync: postVerificationCode,
     error,
@@ -67,10 +61,6 @@ export function useCreateVerificationCode({
     async (email: string) => {
       try {
         email = formatEmail(email)
-        // Track the email signin form submission
-        // @TODO move
-        trackEvent(signinTrackEvent(mode))
-        trackPosthogEvent(captureClickSubmitEmail({ mode }))
 
         const { expirationDate } = await postVerificationCode({
           email,
@@ -80,12 +70,11 @@ export function useCreateVerificationCode({
 
         onComplete?.({ email, expirationDate })
       } catch (error) {
-        console.error(error)
         // Error is handled by the useCreateVerificationCode hook
         return
       }
     },
-    [user.userId, mode, onComplete, postVerificationCode]
+    [mode, onComplete, postVerificationCode, user.userId]
   )
 
   return {

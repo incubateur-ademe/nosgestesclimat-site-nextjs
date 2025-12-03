@@ -57,6 +57,7 @@ export default function SigninSignupTabs({ mode, className }: Props) {
           'navigation.connexionInscription',
           'Navigation connexion/inscription'
         )}
+        prefetch={false}
       />
     </div>
   )

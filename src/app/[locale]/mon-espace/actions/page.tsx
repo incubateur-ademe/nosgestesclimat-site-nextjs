@@ -1,14 +1,14 @@
+import NoResultsBlock from '@/components/dashboard/NoResultsBlock'
 import ContentLarge from '@/components/layout/ContentLarge'
+import ActionAutoSave from '@/components/results/actions/ActionAutoSave'
 import TopBar from '@/components/simulation/TopBar'
 import Trans from '@/components/translation/trans/TransServer'
-import { CONNEXION_PATH, MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
-import { getAuthentifiedUser } from '@/helpers/authentication/getAuthentifiedUser'
+import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import { getRules } from '@/helpers/modelFetching/getRules'
+import { getUser } from '@/helpers/server/model/user'
 import { fetchUserSimulations } from '@/helpers/user/fetchUserSimulations'
 import { EngineProvider, FormProvider, UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
-import { redirect } from 'next/navigation'
-import ActionAutoSave from '../../../../components/results/actions/ActionAutoSave'
 import ActionsContent from '../../../../components/results/actions/ActionsContent'
 import ActionsTutorial from '../../../../components/results/actions/ActionsTutorial'
 import JagisActionBanner from '../../../../components/results/actions/JagisActionBanner'
@@ -19,24 +19,14 @@ export default async function MonEspaceActionsPage({
   params,
 }: DefaultPageProps) {
   const { locale } = await params
-
   const rules = await getRules()
-
-  const authenticatedUser = await getAuthentifiedUser()
+  const user = await getUser()
 
   const simulations = await fetchUserSimulations({
-    userId: authenticatedUser?.id,
+    userId: user.id,
   })
 
-  const sortedSimulations = simulations?.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  )
-
-  const latestSimulation = sortedSimulations?.[0]
-
-  if (!authenticatedUser) {
-    redirect(CONNEXION_PATH)
-  }
+  const latestSimulation = simulations?.[0]
 
   return (
     <ContentLarge className="mt-4 px-4 md:mt-10 lg:px-0">
@@ -50,24 +40,28 @@ export default async function MonEspaceActionsPage({
         <ProfileTab activePath={MON_ESPACE_ACTIONS_PATH} />
 
         <UserProvider
-          initialSimulations={sortedSimulations}
+          initialSimulations={simulations}
           initialCurrentSimulationId={latestSimulation?.id}
-          initialUserId={authenticatedUser.id}>
-          <QueryClientProviderWrapper>
-            <EngineProvider rules={rules}>
-              <FormProvider>
-                <ActionAutoSave />
+          initialUserId={user.id}>
+          {simulations && simulations?.length <= 0 ? (
+            <NoResultsBlock locale={locale} />
+          ) : (
+            <QueryClientProviderWrapper>
+              <EngineProvider rules={rules}>
+                <FormProvider>
+                  <ActionAutoSave />
 
-                <TopBar className="mb-6" simulationMode={false} showTotal />
+                  <TopBar className="mb-6" simulationMode={false} showTotal />
 
-                <ActionsTutorial />
+                  <ActionsTutorial />
 
-                <JagisActionBanner />
+                  <ActionsContent />
 
-                <ActionsContent />
-              </FormProvider>
-            </EngineProvider>
-          </QueryClientProviderWrapper>
+                  <JagisActionBanner />
+                </FormProvider>
+              </EngineProvider>
+            </QueryClientProviderWrapper>
+          )}
         </UserProvider>
       </div>
     </ContentLarge>

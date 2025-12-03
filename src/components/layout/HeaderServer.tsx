@@ -1,4 +1,4 @@
-import { getAuthentifiedUser } from '@/helpers/authentication/getAuthentifiedUser'
+import { Suspense } from 'react'
 import { twMerge } from 'tailwind-merge'
 import LogoLinkServer from '../misc/LogoLinkServer'
 import MySpaceButton from './headerServer/MySpaceButton'
@@ -7,9 +7,7 @@ type Props = {
   isSticky?: boolean
 }
 
-export default async function HeaderServer({ isSticky = true }: Props) {
-  const authenticatedUser = await getAuthentifiedUser()
-
+export default function HeaderServer({ isSticky = true }: Props) {
   return (
     <header
       id="header-server-container"
@@ -24,7 +22,10 @@ export default async function HeaderServer({ isSticky = true }: Props) {
           </div>
 
           <div className="flex h-full items-center">
-            <MySpaceButton authenticatedUser={authenticatedUser} />
+            <Suspense>
+              {/*Suspense for enabling partial prerendering */}
+              <MySpaceButton />
+            </Suspense>
           </div>
         </div>
       </div>

@@ -40,37 +40,9 @@ export default async function WelcomeBanner({ locale }: { locale: Locale }) {
 
         <p>
           <Trans locale={locale} i18nKey="mon-espace.welcome.description.part1">
-            Ici, vous pourrez
-          </Trans>{' '}
-          <strong>
-            <Trans
-              i18nKey="mon-espace.welcome.description.part2"
-              locale={locale}>
-              suivre vos résultats
-            </Trans>
-          </strong>
-          <Trans locale={locale} i18nKey="mon-espace.welcome.description.part3">
-            , passer à{' '}
-          </Trans>{' '}
-          <strong>
-            <Trans
-              i18nKey="mon-espace.welcome.description.part4"
-              locale={locale}>
-              l’action
-            </Trans>
-          </strong>
-          <Trans locale={locale} i18nKey="mon-espace.welcome.description.part5">
-            , et
-          </Trans>{' '}
-          <strong>
-            <Trans
-              i18nKey="mon-espace.welcome.description.part6"
-              locale={locale}>
-              embarquer d’autres personnes
-            </Trans>
-          </strong>{' '}
-          <Trans locale={locale} i18nKey="mon-espace.welcome.description.part7">
-            avec vous.
+            Ici, vous pourrez <strong>suivre vos résultats</strong>, passer à{' '}
+            <strong>l’action</strong>, et{' '}
+            <strong>embarquer d’autres personnes</strong> avec vous.
           </Trans>
         </p>
       </article>

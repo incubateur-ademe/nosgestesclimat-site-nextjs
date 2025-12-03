@@ -8,8 +8,8 @@ export default function GroupBlock({ locale }: { locale: string }) {
     <div className="bg-heroLightBackground flex w-full flex-col items-start justify-between gap-8 rounded-xl px-8 py-6 md:w-4/12">
       <h2 className="mb-0 text-xl font-medium">
         <Trans locale={locale}>
-          <span>Comparez vos résultats avec</span>{' '}
-          <span className="text-primary-700 font-bold">vos proches</span>
+          <span>Invitez vos proches à</span>{' '}
+          <span className="text-primary-700 font-bold">passer le test</span>
         </Trans>
       </h2>
 

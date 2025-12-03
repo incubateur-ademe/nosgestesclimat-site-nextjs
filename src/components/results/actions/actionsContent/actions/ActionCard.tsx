@@ -10,6 +10,7 @@ import {
   actionsClickYesPosthog,
   actionsOpenAction,
 } from '@/constants/tracking/pages/actions'
+import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import Emoji from '@/design-system/utils/Emoji'
 import { filterRelevantMissingVariables } from '@/helpers/actions/filterRelevantMissingVariables'
 import { getIsActionDisabled } from '@/helpers/actions/getIsActionDisabled'
@@ -150,7 +151,7 @@ export default function ActionCard({
         <Link
           className="z-10 w-full underline"
           onClick={() => trackEvent(actionsOpenAction(dottedName))}
-          href={'/actions/' + encodeRuleName(dottedName)}>
+          href={`${MON_ESPACE_ACTIONS_PATH}/${encodeRuleName(dottedName)}`}>
           {icons && (
             <Emoji className="inline-flex justify-center">{icons}</Emoji>
           )}

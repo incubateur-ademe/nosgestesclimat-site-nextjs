@@ -7,7 +7,6 @@ import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import { useGetAuthentifiedUser } from '@/hooks/authentication/useGetAuthentifiedUser'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
@@ -26,13 +25,12 @@ export default function SaveResultsAndSigninSignUpForm({
 
   const { saveSimulation, isPending, isSuccess } = useSaveSimulation()
 
-  const { data: authenticatedUser } = useGetAuthentifiedUser()
-
-  // If the user is authenticated, we don't show the form as all
-  // simulations are automatically saved to the user's profile
-  if (authenticatedUser) {
-    return null
-  }
+  useEffect(() => {
+    if (isSuccess && !currentSimulation.savedViaEmail) {
+      // We update the simulation to signify that it has been saved (and not show the form anymore)
+      currentSimulation.update({ savedViaEmail: true })
+    }
+  }, [isSuccess, currentSimulation])
 
   const onSubmit = () => {
     // If the mutation is pending, we do nothing
@@ -54,13 +52,6 @@ export default function SaveResultsAndSigninSignUpForm({
     }
   }
 
-  useEffect(() => {
-    if (isSuccess && !currentSimulation.savedViaEmail) {
-      // We update the simulation to signify that it has been saved (and not show the form anymore)
-      currentSimulation.update({ savedViaEmail: true })
-    }
-  }, [isSuccess, currentSimulation])
-
   // If we successfully saved the simulation, we display the confirmation message
   // or if the simulation is already saved
   if (isSuccess || currentSimulation?.savedViaEmail) {
@@ -71,7 +62,7 @@ export default function SaveResultsAndSigninSignUpForm({
     <div id="email-block" className="mt-6 mb-6">
       <Card
         className={twMerge(
-          'bg-primary-50 flex flex-col items-start gap-2 rounded-xl border-none px-4 pt-6 pb-4 shadow-none md:flex-row md:gap-8 md:py-6',
+          'flex flex-col items-start gap-2 rounded-xl border-none bg-[#F4F5FB] px-4 pt-6 pb-4 shadow-none md:flex-row md:gap-8 md:py-6',
           className
         )}>
         <div className="flex-1">

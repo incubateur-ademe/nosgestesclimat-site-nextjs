@@ -14,7 +14,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import type { AuthenticationMode } from '@/types/authentication'
 import { isEmailValid } from '@/utils/isEmailValid'
-import type { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import { useForm } from 'react-hook-form'
 
 type Props = {

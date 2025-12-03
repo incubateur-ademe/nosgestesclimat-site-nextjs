@@ -1,4 +1,4 @@
-import { linkToClassement } from '@/helpers/navigation/classementPages'
+import { MON_ESPACE_GROUPS_PATH } from '@/constants/urls/paths'
 import {
   getLinkToGroupDashboard,
   getLinkToGroupInvitation,
@@ -39,7 +39,7 @@ export function useGroupPagesGuard(
 
     // If there is no groupId in the query params, we redirect to the classement page
     if (!groupIdInQueryParams) {
-      router.replace(linkToClassement)
+      router.replace(MON_ESPACE_GROUPS_PATH)
       setIsGuardRedirecting(true)
       return
     }

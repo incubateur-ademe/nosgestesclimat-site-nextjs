@@ -14,11 +14,13 @@ import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import { FIN_TAB_QUERY_PARAM } from '@/constants/urls/params'
 import Title from '@/design-system/layout/Title'
+import { fetchUser } from '@/helpers/user/fetchUser'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
 import { useIframe } from '@/hooks/useIframe'
 import type { Metric } from '@/publicodes-state/types'
 import { getIsIframe } from '@/utils/getIsIframe'
+import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, type ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -37,6 +39,9 @@ const titles: Record<Metric, ReactElement> = {
 }
 
 export default function FinPage() {
+  // If the user is authenticated, we don't show the form as all
+  // simulations are automatically saved to the user's profile
+
   // Guarding the route and redirecting if necessary
   const { isGuardInit, isGuardRedirecting } = useEndGuard()
 
@@ -45,6 +50,11 @@ export default function FinPage() {
   const isIframe = getIsIframe()
 
   const { isFrenchRegion, isIframeShareData } = useIframe()
+  const { data: authenticatedUser } = useQuery({
+    queryKey: ['user', 'me'],
+    queryFn: () => fetchUser(),
+  })
+  const showSaveResultForm = isFrenchRegion && !authenticatedUser
 
   const searchParams = useSearchParams()
   const activeTab = searchParams?.get(FIN_TAB_QUERY_PARAM) || 'results'
@@ -61,7 +71,7 @@ export default function FinPage() {
   if (!isGuardInit || isGuardRedirecting) return <FinPageSkeleton />
 
   return (
-    <div className="relative mt-10 mb-16">
+    <div className="relative mt-4 mb-16 md:mt-10">
       {isIframe && isIframeShareData && <IframeDataShareModal />}
 
       <FinTabs />
@@ -79,7 +89,9 @@ export default function FinPage() {
               <Trans>Mes empreintes</Trans>
             </Title>
 
-            {isFrenchRegion && <HeadingButtons />}
+            {isFrenchRegion && (
+              <HeadingButtons showSaveButton={!authenticatedUser} />
+            )}
           </div>
 
           <MetricSlider />
@@ -90,7 +102,7 @@ export default function FinPage() {
             </div>
           )}
 
-          {isFrenchRegion && <SaveResultsAndSigninSignUpForm />}
+          {showSaveResultForm && <SaveResultsAndSigninSignUpForm />}
 
           <div className="relative flex gap-8 lg:flex-row lg:gap-10">
             <div className="relative flex flex-1 flex-col gap-16 lg:mt-7">
@@ -140,7 +152,7 @@ export default function FinPage() {
 
       {activeTab === 'actions' && <ActionsTabContent />}
 
-      {activeTab === 'groups' && <GroupsTabContent />}
+      {activeTab === 'groups' && <GroupsTabContent user={authenticatedUser} />}
     </div>
   )
 }

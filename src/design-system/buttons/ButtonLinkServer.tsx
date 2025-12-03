@@ -32,6 +32,8 @@ export default function ButtonLinkServer({
         className
       )}
       target={target}
+      prefetch={false}
+      scroll={false}
       {...props}>
       {children}
     </Link>

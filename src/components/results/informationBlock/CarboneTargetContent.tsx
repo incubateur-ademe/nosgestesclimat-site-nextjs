@@ -3,6 +3,7 @@
 import Link from '@/components/Link'
 import ExternalLinkIcon from '@/components/icons/ExternalLinkIcon'
 import Trans from '@/components/translation/trans/TransClient'
+import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useState } from 'react'
@@ -40,8 +41,8 @@ const questions = [
         <Trans>
           Maintenant que vous avez fait votre bilan carbone et que vous avez
           pris conscience de votre empreinte, vous pouvez découvrir{' '}
-          <Link href="/actions">l'ensemble des gestes</Link> qui vous
-          permettront d'atteindre progressivement l'objectif de 2 tonnes.
+          <Link href={MON_ESPACE_ACTIONS_PATH}>l'ensemble des gestes</Link> qui
+          vous permettront d'atteindre progressivement l'objectif de 2 tonnes.
         </Trans>
       </p>
     ),

@@ -34,7 +34,7 @@ export default function Share({
   shouldHideTextOnMobile = true,
   ...props
 }: {
-  buttonColor?: 'primary' | 'secondary' | 'text'
+  buttonColor?: 'primary' | 'secondary' | 'text' | 'borderless'
   className?: string
   buttonLabel: string
   shareItems: ShareItem[]
