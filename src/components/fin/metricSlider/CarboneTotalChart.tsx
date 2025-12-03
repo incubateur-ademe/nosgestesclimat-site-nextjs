@@ -5,7 +5,6 @@ import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprin
 import { getColorAtPosition } from '@/helpers/getColorOfGradient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
-import { useMemo } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { CountUp } from 'use-count-up'
 import AnimatedArrow from './carboneTotalChart/AnimatedArrow'
@@ -33,15 +32,7 @@ export default function CarboneTotalChart({
 
   const originPosition = (usedValue / 1000 / 12) * 100
 
-  const position = useMemo(() => {
-    if (originPosition <= 0) {
-      return 0
-    }
-    if (originPosition >= 100) {
-      return 100
-    }
-    return originPosition
-  }, [originPosition])
+  const position = Math.min(Math.max(originPosition, 0), 100)
 
   const color = getColorAtPosition(position / 100)
   const cssColor = `rgba(${color['r']},${color['g']},${color['b']},${color['a']})`

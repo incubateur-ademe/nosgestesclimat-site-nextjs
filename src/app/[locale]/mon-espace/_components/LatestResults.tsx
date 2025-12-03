@@ -30,15 +30,7 @@ export default async function LatestResults({
   const originPosition =
     (simulation.computedResults.carbone.bilan / 1000 / 12) * 100
 
-  const position = (() => {
-    if (originPosition <= 0) {
-      return 0
-    }
-    if (originPosition >= 100) {
-      return 100
-    }
-    return originPosition
-  })()
+  const position = Math.min(Math.max(originPosition, 0), 100)
 
   if (!simulation) {
     return null
