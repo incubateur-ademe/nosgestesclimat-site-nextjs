@@ -7,7 +7,7 @@ export const amisCreationEtapeVotreGroupeSuivant = [
   'Step 1 - Click Suivant',
 ]
 
-export const amisCreationVosInformationsRetour = [
+export const amisCreationConnexionRetour = [
   'trackEvent',
   'Amis Creation',
   'Step 1 - Click Retour',
