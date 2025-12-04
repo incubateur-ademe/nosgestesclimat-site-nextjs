@@ -60,3 +60,8 @@ export const MUST_HIDE_SUGGESTIONS_I18N: Set<DottedName> = new Set([
   'transport . avion . vols annuels',
   'transport . avion . vols amortis',
 ])
+
+export const IS_NUMBER_MOSAIC_WITHOUT_BUTTONS: Set<DottedName> = new Set([
+  'transport . avion . vols annuels',
+  'transport . avion . vols amortis',
+])

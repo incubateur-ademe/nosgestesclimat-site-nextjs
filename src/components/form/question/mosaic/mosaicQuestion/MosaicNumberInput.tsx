@@ -15,6 +15,7 @@ interface Props {
   index: number
   value: number | undefined | null
   parentMosaic: string
+  shouldContainButtons?: boolean
 }
 
 export default function MosaicNumberInput({
@@ -26,6 +27,7 @@ export default function MosaicNumberInput({
   index,
   value,
   parentMosaic,
+  shouldContainButtons = true,
 }: Props) {
   const { plafond } = useRule(question)
 
@@ -56,42 +58,53 @@ export default function MosaicNumberInput({
           </>
         ) : null}
       </div>
-      <div className="flex items-center gap-1.5 p-2">
-        <Button
-          disabled={!value}
-          onClick={() => setValue((value ?? 0) - 1)}
-          size="sm"
-          title={t(
-            'simulator.mosaicNumberInput.remove',
-            'Retirer un élémént : {{title}}',
-            {
-              title,
-            }
-          )}
-          className="z-10 h-8 w-8 items-center justify-center p-0">
-          <span className="mb-[1px] block">-</span>
-        </Button>
-        <RawMosaicNumberInput
-          value={value}
-          setValue={setValue}
-          data-cypress-id={`${question}---${parentMosaic}`}
-          id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
-        />
-        <Button
-          disabled={isPlusDisabled}
-          onClick={() => setValue((value ?? 0) + 1)}
-          title={t(
-            'simulator.mosaicNumberInput.add',
-            'Ajouter un élément : {{title}}',
-            {
-              title,
-            }
-          )}
-          size="sm"
-          className="z-10 h-8 w-8 items-center justify-center p-0">
-          <span className="mb-[1px] block">+</span>
-        </Button>
-      </div>
+      {shouldContainButtons ? (
+        <div className="flex items-center gap-1.5 p-2">
+          <Button
+            disabled={!value}
+            onClick={() => setValue((value ?? 0) - 1)}
+            size="sm"
+            title={t(
+              'simulator.mosaicNumberInput.remove',
+              'Retirer un élément : {{title}}',
+              {
+                title,
+              }
+            )}
+            className="z-10 h-8 w-8 items-center justify-center p-0">
+            <span className="mb-[1px] block">-</span>
+          </Button>
+          <RawMosaicNumberInput
+            value={value}
+            setValue={setValue}
+            data-cypress-id={`${question}---${parentMosaic}`}
+            id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
+          />
+          <Button
+            disabled={isPlusDisabled}
+            onClick={() => setValue((value ?? 0) + 1)}
+            title={t(
+              'simulator.mosaicNumberInput.add',
+              'Ajouter un élément : {{title}}',
+              {
+                title,
+              }
+            )}
+            size="sm"
+            className="z-10 h-8 w-8 items-center justify-center p-0">
+            <span className="mb-[1px] block">+</span>
+          </Button>
+        </div>
+      ) : (
+        <div className="flex items-center gap-1.5 p-2 pr-18">
+          <RawMosaicNumberInput
+            value={value}
+            setValue={setValue}
+            data-cypress-id={`${question}---${parentMosaic}`}
+            id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
+          />
+        </div>
+      )}
     </div>
   )
 }

@@ -2,6 +2,7 @@
 
 import { questionChooseAnswer } from '@/constants/tracking/question'
 import { useRule } from '@/publicodes-state'
+import { IS_NUMBER_MOSAIC_WITHOUT_BUTTONS } from '@/publicodes-state/constants/questions'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import MosaicBooleanInput from './mosaicQuestion/MosaicBooleanInput'
@@ -30,7 +31,12 @@ export default function MosaicQuestion({
   const { type, parent } = useRule(question)
 
   const { title, icons, description } = useRule(parent)
+
   const maybeIdFirstInput = { ...(index === 0 ? { id: firstInputId } : {}) }
+
+  const shouldContainButtons =
+    !IS_NUMBER_MOSAIC_WITHOUT_BUTTONS.has(parentMosaic)
+
   return (
     <>
       {type === 'number' && typeof value !== 'boolean' && (
@@ -43,6 +49,7 @@ export default function MosaicQuestion({
           index={index}
           value={value}
           setValue={(value) => setValue(question, value)}
+          shouldContainButtons={shouldContainButtons}
           {...maybeIdFirstInput}
         />
       )}
