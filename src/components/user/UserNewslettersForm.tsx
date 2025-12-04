@@ -12,6 +12,7 @@ import {
   SEASONAL_NEWSLETTER_LABEL,
   TRANSPORTS_NEWSLETTER_LABEL,
 } from '@/constants/forms/newsletters'
+import { clickUpdateUserNewsletters } from '@/constants/tracking/user-account'
 import Button from '@/design-system/buttons/Button'
 import CheckboxInput from '@/design-system/inputs/CheckboxInput'
 import Loader from '@/design-system/layout/Loader'
@@ -22,6 +23,7 @@ import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useLocale } from '@/hooks/useLocale'
 import i18nConfig from '@/i18nConfig'
 import type { AuthenticatedUser } from '@/types/authentication'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { captureException } from '@sentry/nextjs'
 import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
@@ -82,6 +84,8 @@ export default function UserNewslettersForm({ className, user }: Props) {
       [LIST_NOS_GESTES_TRANSPORT_NEWSLETTER]: data['newsletter-transports'],
       [LIST_NOS_GESTES_LOGEMENT_NEWSLETTER]: data['newsletter-logement'],
     }
+
+    trackEvent(clickUpdateUserNewsletters)
 
     try {
       const newslettersArray = formatListIdsFromObject(newsletterIds)

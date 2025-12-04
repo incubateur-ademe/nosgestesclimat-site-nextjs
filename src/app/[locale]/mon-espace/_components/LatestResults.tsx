@@ -1,17 +1,10 @@
 import MetricSlider from '@/components/fin/MetricSlider'
 import CarboneTotalChart from '@/components/fin/metricSlider/CarboneTotalChart'
 import Trans from '@/components/translation/trans/TransServer'
-import { MON_ESPACE_RESULTS_DETAIL_PATH } from '@/constants/urls/paths'
-import {
-  baseClassNames,
-  colorClassNames,
-  sizeClassNames,
-} from '@/design-system/buttons/Button'
 import Separator from '@/design-system/layout/Separator'
 import type { Locale } from '@/i18nConfig'
 import type { Simulation } from '@/publicodes-state/types'
-import Link from 'next/link'
-import { twMerge } from 'tailwind-merge'
+import SeeDetailLink from './latestResults/SeeDetailLink'
 
 export default function LatestResults({
   locale,
@@ -34,26 +27,10 @@ export default function LatestResults({
             </Trans>
           </h2>
 
-          <Link
-            className={twMerge(
-              baseClassNames,
-              colorClassNames.secondary,
-              sizeClassNames.md,
-              'hidden gap-2 md:flex'
-            )}
-            href={MON_ESPACE_RESULTS_DETAIL_PATH.replace(
-              ':simulationId',
-              simulation.id
-            )}>
-            <span aria-hidden className="text-2xl leading-none">
-              →
-            </span>
-            <Trans
-              locale={locale}
-              i18nKey="mon-espace.latestResults.viewDetail">
-              Voir le détail
-            </Trans>
-          </Link>
+          <SeeDetailLink
+            className="hidden md:flex"
+            simulationId={simulation.id}
+          />
         </div>
 
         <Separator className="mt-8 mb-6" />
@@ -92,24 +69,7 @@ export default function LatestResults({
         shouldShowOnlyGauge
       />
 
-      <Link
-        className={twMerge(
-          baseClassNames,
-          colorClassNames.secondary,
-          sizeClassNames.md,
-          'mt-24 flex gap-2 md:hidden'
-        )}
-        href={MON_ESPACE_RESULTS_DETAIL_PATH.replace(
-          ':simulationId',
-          simulation.id
-        )}>
-        <span aria-hidden className="text-2xl leading-none">
-          →
-        </span>
-        <Trans locale={locale} i18nKey="mon-espace.latestResults.viewDetail">
-          Voir le détail
-        </Trans>
-      </Link>
+      <SeeDetailLink className="flex md:hidden" simulationId={simulation.id} />
     </div>
   )
 }

@@ -101,7 +101,7 @@ export default function SaveResultsAndSigninSignUpForm({
           />
         </div>
         <img
-          className="mx-auto w-48 md:mx-0 md:-mt-16 md:w-80"
+          className="ml-auto w-48 md:-mt-16 md:ml-0 md:w-80"
           src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/girl_holding_earth_3373a344b0.svg"
           alt=""
         />

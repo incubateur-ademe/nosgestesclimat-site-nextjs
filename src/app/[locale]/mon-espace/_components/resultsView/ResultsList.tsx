@@ -1,10 +1,9 @@
 import Trans from '@/components/translation/trans/TransServer'
-import { MON_ESPACE_RESULTS_DETAIL_PATH } from '@/constants/urls/paths'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
 import type { Simulation } from '@/publicodes-state/types'
-import Link from 'next/link'
+import SeeListItemDetailLink from './resultsList/SeeListItemDetailLink'
 
 type Props = {
   locale: Locale
@@ -62,18 +61,7 @@ export default async function ResultsList({ locale, simulations }: Props) {
                     </span>
                   </div>
 
-                  <Link
-                    className="text-primary-700 underline"
-                    href={MON_ESPACE_RESULTS_DETAIL_PATH.replace(
-                      ':simulationId',
-                      simulation.id
-                    )}>
-                    <Trans
-                      locale={locale}
-                      i18nKey="mon-espace.resultsList.result.viewDetail">
-                      Voir le détail
-                    </Trans>
-                  </Link>
+                  <SeeListItemDetailLink simulationId={simulation.id} />
                 </article>
               </li>
             )

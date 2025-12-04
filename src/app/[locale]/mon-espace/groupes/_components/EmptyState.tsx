@@ -1,8 +1,7 @@
 import Trans from '@/components/translation/trans/TransClient'
-import { linkToGroupCreation } from '@/constants/group'
-import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
+import CreateGroupButton from './CreateGroupButton'
 import CreateOrganisation from './CreateOrganisation'
 
 export default function EmptyState() {
@@ -38,11 +37,8 @@ export default function EmptyState() {
               Gratuit, 100 % anonyme et surtout sans jugement ni comparaison.
             </Trans>
           </p>
-          <ButtonLink href={linkToGroupCreation}>
-            <Trans i18nKey="mon-espace.groups.empty.button">
-              Créer un groupe
-            </Trans>
-          </ButtonLink>
+
+          <CreateGroupButton />
         </section>
 
         <ul className="hidden flex-col gap-4 lg:flex lg:min-w-[400px] lg:flex-row lg:flex-wrap lg:justify-center">

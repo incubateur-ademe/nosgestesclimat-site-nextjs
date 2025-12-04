@@ -24,6 +24,7 @@ type ShareItem = {
 }
 
 export default function Share({
+  onClick,
   buttonColor,
   className,
   buttonLabel,
@@ -34,6 +35,7 @@ export default function Share({
   shouldHideTextOnMobile = true,
   ...props
 }: {
+  onClick?: () => void
   buttonColor?: 'primary' | 'secondary' | 'text' | 'borderless'
   className?: string
   buttonLabel: string
@@ -61,7 +63,10 @@ export default function Share({
           className
         )}
         data-testid="share-button"
-        onClick={() => setIsModalOpen(true)}
+        onClick={() => {
+          onClick?.()
+          setIsModalOpen(true)
+        }}
         aria-label={buttonLabel}>
         <ShareIcon
           className={twMerge('fill-primary-700 mr-[1px] h-[28px] w-[28px]')}
