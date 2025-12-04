@@ -48,11 +48,11 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
 
   // Append iframe and integratorUrl params to allow iframe event to be triggered
   url.searchParams.append('iframe', 'true')
-  url.searchParams.append('integratorUrl', integratorUrl)
+  url.searchParams.append('integratorUrl', integratorUrl.toString())
 
   // Append matomo tracking params
   const matomoCampaignParam =
-    script.dataset.mtm_campaign ?? `relais_${integratorUrl.origin}`
+    script.dataset.mtm_campaign ?? `relais_${integratorUrl.host}`
 
   const matomoKwdParam =
     script.dataset.mtm_kwd ?? `iframe_${integratorUrl.pathname}`
