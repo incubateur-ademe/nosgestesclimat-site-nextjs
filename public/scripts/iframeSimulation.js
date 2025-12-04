@@ -22,16 +22,23 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
     { key: 'pr' },
     { key: 'withHomepage' },
     { key: 'maxHeight' },
+    { key: 'mtm_campaign' },
+    { key: 'mtm_kwd' },
+    { key: 'orgaPath' },
+    // 'o/orga-de-clem/premiere-campagne'
   ]
 
   const lang = script.dataset.lang
 
   const url = new URL(hostname)
 
-  // Display or not homepage or directly show the simulator
+  // Display or not homepage / orga campaign or directly show the simulator
+  const orgaPath = script.dataset.orgaPath
   const withHomepage = script.dataset.withHomepage
 
-  if (withHomepage) {
+  if (orgaPath) {
+    url.pathname = `/${lang ? lang + '/' : ''}${orgaPath}`
+  } else if (withHomepage) {
     url.pathname = `/${lang ? lang + '/accueil-iframe' : 'accueil-iframe'}`
   } else {
     url.pathname = `/${lang ? lang + '/' : ''}simulateur/bilan`
@@ -42,14 +49,26 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
   url.searchParams.append('integratorUrl', integratorUrl)
 
   // Append matomo tracking params
-  url.searchParams.append(
-    'mtm_campaign',
-    currentParams.get('mtm_campaign') || `relais_${integratorUrl}`
-  )
-  url.searchParams.append('mtm_kwd', currentParams.get('mtm_kwd') || 'iframe')
+  const matomoCampaignParam =
+    script.dataset.mtm_campaign ??
+    (orgaPath
+      ? `Organisation_${orgaPath.split('/')[1]}`
+      : currentParams.get('mtm_campaign') || `relais_${integratorUrl}`)
+
+  const matomoKwdParam =
+    script.dataset.mtm_kwd ??
+    (orgaPath
+      ? orgaPath.split('/')[2]
+      : currentParams.get('mtm_kwd') || 'iframe')
+
+  url.searchParams.append('mtm_campaign', matomoCampaignParam)
+  url.searchParams.append('mtm_kwd', matomoKwdParam)
 
   possibleOptions
-    .filter(({ key }) => key !== 'maxHeight')
+    .filter(
+      ({ key }) =>
+        ['maxHeight', 'mtm_campaign', 'mtm_kwd', 'path'].includes(key) === false
+    )
     .forEach(({ key, legacy }) => {
       const value = script.dataset[key] || script.dataset[legacy]
 
