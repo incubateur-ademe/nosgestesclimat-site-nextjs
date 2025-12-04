@@ -41,7 +41,7 @@ export default function AuthenticateUserForm({
     setIsRedirecting(true)
 
     if (redirectURL) {
-      router.push(redirectURL)
+      router.push(redirectURL, { scroll: false })
     }
     onComplete?.()
   }, [redirectURL, onComplete, router])
