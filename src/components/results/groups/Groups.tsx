@@ -36,7 +36,7 @@ export default function Groups({ groups }: Props) {
           <>
             {/* Desktop */}
             <NewItemCardLink
-              href="/mon-espace/groupes/creer"
+              href="/amis/creer"
               className="hidden md:block"
               label={
                 <Trans i18nKey="mon-espace.groups.create">
@@ -52,7 +52,7 @@ export default function Groups({ groups }: Props) {
 
             {/* Mobile */}
             <Link
-              href="/mon-espace/groupes/creer"
+              href="/amis/creer"
               className={twMerge(
                 'block md:hidden',
                 baseClassNames,
