@@ -18,11 +18,11 @@ import CheckboxInput from '@/design-system/inputs/CheckboxInput'
 import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
 import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
+import type { UserServer } from '@/helpers/server/model/user'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useLocale } from '@/hooks/useLocale'
 import i18nConfig from '@/i18nConfig'
-import type { AuthenticatedUser } from '@/types/authentication'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { captureException } from '@sentry/nextjs'
 import { useEffect } from 'react'
@@ -37,7 +37,7 @@ type Inputs = {
 
 type Props = {
   className?: string
-  user?: AuthenticatedUser
+  user?: UserServer
 }
 
 export default function UserNewslettersForm({ className, user }: Props) {

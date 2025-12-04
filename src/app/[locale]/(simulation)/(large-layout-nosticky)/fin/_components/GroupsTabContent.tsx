@@ -9,14 +9,10 @@ import Organisation from '@/components/results/groups/Organisation'
 import Trans from '@/components/translation/trans/TransClient'
 import { fetchUserGroups } from '@/helpers/groups/fetchUserGroups'
 import { fetchOrganisationsClient } from '@/helpers/organisations/fetchOrganisationsClient'
-import type { AuthenticatedUser } from '@/types/authentication'
+import type { UserServer } from '@/helpers/server/model/user'
 import { useQuery } from '@tanstack/react-query'
 
-export default function GroupsTabContent({
-  user,
-}: {
-  user?: AuthenticatedUser
-}) {
+export default function GroupsTabContent({ user }: { user?: UserServer }) {
   // Fetch groups if authenticated
   const {
     data: groupsData,

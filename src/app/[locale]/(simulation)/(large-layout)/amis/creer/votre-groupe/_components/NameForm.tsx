@@ -3,16 +3,16 @@
 import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
 import { GROUP_EMOJIS } from '@/constants/group'
-import { amisCreationEtapeVosInformationsSuivant } from '@/constants/tracking/pages/amisCreation'
+import { amisCreationEtapeVotreGroupeSuivant } from '@/constants/tracking/pages/amisCreation'
 import Button from '@/design-system/buttons/Button'
 import GridRadioInputs from '@/design-system/inputs/GridRadioInputs'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
 import TextInput from '@/design-system/inputs/TextInput'
+import type { CompleteUserServer } from '@/helpers/server/model/user'
 import { useCreateGroup } from '@/hooks/groups/useCreateGroup'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
-import type { User } from '@/types/organisations'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
@@ -24,7 +24,7 @@ type Inputs = {
   emoji: string
 }
 
-export default function NameForm({ user }: { user: User }) {
+export default function NameForm({ user }: { user: CompleteUserServer }) {
   const { t } = useClientTranslation()
   const {
     register,
@@ -33,7 +33,7 @@ export default function NameForm({ user }: { user: User }) {
     formState: { errors },
   } = useReactHookForm<Inputs>({
     defaultValues: {
-      administratorName: user.name,
+      administratorName: user.name ?? '',
     },
   })
 
@@ -73,7 +73,7 @@ export default function NameForm({ user }: { user: User }) {
         groupToAdd: group.id,
       })
 
-      trackEvent(amisCreationEtapeVosInformationsSuivant)
+      trackEvent(amisCreationEtapeVotreGroupeSuivant)
 
       if (hasCompletedTest) {
         router.push('/amis/resultats?groupId=' + group.id)
