@@ -39,7 +39,7 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
   const withHomepage = script.dataset.withHomepage
 
   if (path) {
-    url.pathname = `/${lang ? lang + '/' : ''}${path}`
+    url.pathname = `/${lang ? lang + '/' : ''}${path.startsWith('/') ? path.slice(1) : path}`
   } else if (withHomepage) {
     url.pathname = `/${lang ? lang + '/accueil-iframe' : 'accueil-iframe'}`
   } else {
