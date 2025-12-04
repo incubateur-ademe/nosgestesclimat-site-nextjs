@@ -1,5 +1,6 @@
 import ContentLarge from '@/components/layout/ContentLarge'
 import ResultsContent from '@/components/results/ResultsContent'
+import { MON_ESPACE_RESULTS_PATH } from '@/constants/urls/paths'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -31,7 +32,7 @@ export default async function DetailledResultsPage({
       <Breadcrumbs
         items={[
           {
-            href: '/mon-espace',
+            href: MON_ESPACE_RESULTS_PATH,
             label: t(
               'mon-espace.resultsDetail.breadcrumb.results',
               'Mes résultats'

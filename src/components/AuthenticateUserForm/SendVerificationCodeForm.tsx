@@ -2,6 +2,7 @@
 
 import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
+import { EMAIL_PENDING_AUTHENTICATION_KEY } from '@/constants/authentication/sessionStorage'
 import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
 import TextInput from '@/design-system/inputs/TextInput'
@@ -13,6 +14,7 @@ import type { PendingVerification } from '@/hooks/authentication/usePendingVerif
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import type { AuthenticationMode } from '@/types/authentication'
+import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { type ReactNode } from 'react'
 import { useForm } from 'react-hook-form'
@@ -40,7 +42,9 @@ export default function SendVerificationCodeForm({
   const { createVerificationCodeError, createVerificationCode } =
     useCreateVerificationCode({ onComplete: onCodeSent, mode })
 
-  const defaultEmail = useUser().user.email
+  const defaultEmail =
+    safeSessionStorage.getItem(EMAIL_PENDING_AUTHENTICATION_KEY) ??
+    useUser().user.email
 
   const {
     register,

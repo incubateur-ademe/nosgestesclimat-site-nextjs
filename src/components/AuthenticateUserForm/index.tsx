@@ -3,6 +3,7 @@
 import type { AuthenticationMode } from '@/types/authentication'
 import { useCallback, useState, type ReactNode } from 'react'
 
+import { EMAIL_PENDING_AUTHENTICATION_KEY } from '@/constants/authentication/sessionStorage'
 import {
   captureClickSubmitEmail,
   signinTrackEvent,
@@ -12,6 +13,7 @@ import useLogin from '@/hooks/authentication/useLogin'
 import { usePendingVerification } from '@/hooks/authentication/usePendingVerification'
 import { useUser } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
 import { useRouter } from 'next/navigation'
 import { Trans } from 'react-i18next'
 import SendVerificationCodeForm from './SendVerificationCodeForm'
@@ -38,6 +40,7 @@ export default function AuthenticateUserForm({
   const { user } = useUser()
   const [isRedirecting, setIsRedirecting] = useState(false)
   const complete = useCallback(() => {
+    safeSessionStorage.removeItem(EMAIL_PENDING_AUTHENTICATION_KEY)
     setIsRedirecting(true)
 
     if (redirectURL) {
