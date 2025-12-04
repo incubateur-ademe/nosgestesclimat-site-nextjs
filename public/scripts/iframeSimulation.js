@@ -9,7 +9,10 @@ if (!script) {
 // Avoid unwanted reloading loop
 const currentParams = new URLSearchParams(window.location.search)
 if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
-  const integratorUrl = window.location.href.toString()
+  const integratorUrl = new URL(window.location.href.toString())
+
+  // Remove all search params from integratorUrl
+  integratorUrl.search = ''
 
   const srcURL = new URL(script.src)
   const hostname = srcURL.origin || 'https://nosgestesclimat.fr'
@@ -24,20 +27,19 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
     { key: 'maxHeight' },
     { key: 'mtm_campaign' },
     { key: 'mtm_kwd' },
-    { key: 'orgaPath' },
-    // 'o/orga-de-clem/premiere-campagne'
+    { key: 'path' },
   ]
 
   const lang = script.dataset.lang
 
   const url = new URL(hostname)
 
-  // Display or not homepage / orga campaign or directly show the simulator
-  const orgaPath = script.dataset.orgaPath
+  // Display or not homepage / specific path or directly show the simulator
+  const path = script.dataset.path
   const withHomepage = script.dataset.withHomepage
 
-  if (orgaPath) {
-    url.pathname = `/${lang ? lang + '/' : ''}${orgaPath}`
+  if (path) {
+    url.pathname = `/${lang ? lang + '/' : ''}${path}`
   } else if (withHomepage) {
     url.pathname = `/${lang ? lang + '/accueil-iframe' : 'accueil-iframe'}`
   } else {
@@ -50,16 +52,10 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
 
   // Append matomo tracking params
   const matomoCampaignParam =
-    script.dataset.mtm_campaign ??
-    (orgaPath
-      ? `Organisation_${orgaPath.split('/')[1]}`
-      : currentParams.get('mtm_campaign') || `relais_${integratorUrl}`)
+    script.dataset.mtm_campaign ?? `relais_${integratorUrl.origin}`
 
   const matomoKwdParam =
-    script.dataset.mtm_kwd ??
-    (orgaPath
-      ? orgaPath.split('/')[2]
-      : currentParams.get('mtm_kwd') || 'iframe')
+    script.dataset.mtm_kwd ?? `iframe_${integratorUrl.pathname}`
 
   url.searchParams.append('mtm_campaign', matomoCampaignParam)
   url.searchParams.append('mtm_kwd', matomoKwdParam)
