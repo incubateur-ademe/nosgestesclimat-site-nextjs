@@ -34,7 +34,8 @@ export default function getActions({
   const actions = somme.reduce(
     (acc: (EvaluatedNode & NGCRuleNode)[], actionDottedName) => {
       if (
-        safeEvaluate({ 'est applicable': actionDottedName })?.nodeValue !== true
+        safeEvaluate({ 'est non applicable': actionDottedName })?.nodeValue ===
+        true
       )
         return acc
 
