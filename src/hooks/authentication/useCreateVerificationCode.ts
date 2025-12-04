@@ -1,10 +1,12 @@
+import { EMAIL_PENDING_AUTHENTICATION_KEY } from '@/constants/authentication/sessionStorage'
 import { VERIFICATION_CODE_URL } from '@/constants/urls/main'
 import { useUser } from '@/publicodes-state'
 import type { AuthenticationMode } from '@/types/authentication'
+import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { useMutation } from '@tanstack/react-query'
 import axios, { AxiosError } from 'axios'
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useLocale } from '../useLocale'
 import { type PendingVerification } from './usePendingVerification'
 
@@ -55,6 +57,8 @@ export function useCreateVerificationCode({
     ((error instanceof AxiosError && error.response?.data) ??
       CREATE_VERIFICATION_CODE_ERROR.UNKNOWN_ERROR)
 
+  useEffect(() => {}, [errorCode])
+
   const { user } = useUser()
 
   const createVerificationCode = useCallback(
@@ -70,6 +74,17 @@ export function useCreateVerificationCode({
 
         onComplete?.({ email, expirationDate })
       } catch (error) {
+        const errorMessage =
+          error && error instanceof AxiosError && error.response?.data
+        // Save e-mail value attempt in the session storage
+        if (
+          errorMessage ===
+            CREATE_VERIFICATION_CODE_ERROR.SIGNIN_USER_DOES_NOT_EXIST ||
+          errorMessage ===
+            CREATE_VERIFICATION_CODE_ERROR.SIGNUP_USER_ALREADY_EXISTS
+        ) {
+          safeSessionStorage.setItem(EMAIL_PENDING_AUTHENTICATION_KEY, email)
+        }
         // Error is handled by the useCreateVerificationCode hook
         return
       }
