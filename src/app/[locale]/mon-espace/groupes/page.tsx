@@ -10,7 +10,7 @@ export default async function GroupsDashboard() {
     getUserGroups(),
   ])
 
-  if (!organisation || !groups.length) {
+  if (!organisation && !groups.length) {
     return <EmptyState />
   }
 
