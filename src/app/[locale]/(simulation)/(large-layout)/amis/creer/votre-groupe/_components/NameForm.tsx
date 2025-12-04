@@ -12,7 +12,7 @@ import { useCreateGroup } from '@/hooks/groups/useCreateGroup'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
-import type { User } from '@/types/organisations'
+import type { AuthenticatedUser } from '@/types/authentication'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
@@ -24,7 +24,7 @@ type Inputs = {
   emoji: string
 }
 
-export default function NameForm({ user }: { user: User }) {
+export default function NameForm({ user }: { user: AuthenticatedUser }) {
   const { t } = useClientTranslation()
   const {
     register,
@@ -33,7 +33,7 @@ export default function NameForm({ user }: { user: User }) {
     formState: { errors },
   } = useReactHookForm<Inputs>({
     defaultValues: {
-      administratorName: user.name,
+      administratorName: '',
     },
   })
 
