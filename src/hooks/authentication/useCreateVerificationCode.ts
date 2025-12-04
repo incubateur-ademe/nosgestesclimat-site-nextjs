@@ -6,7 +6,7 @@ import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { useMutation } from '@tanstack/react-query'
 import axios, { AxiosError } from 'axios'
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 import { useLocale } from '../useLocale'
 import { type PendingVerification } from './usePendingVerification'
 
@@ -56,8 +56,6 @@ export function useCreateVerificationCode({
     error &&
     ((error instanceof AxiosError && error.response?.data) ??
       CREATE_VERIFICATION_CODE_ERROR.UNKNOWN_ERROR)
-
-  useEffect(() => {}, [errorCode])
 
   const { user } = useUser()
 

@@ -1,10 +1,34 @@
 import { USER_URL } from '@/constants/urls/main'
-import type { AuthenticatedUser } from '@/types/authentication'
 import { cookies } from 'next/headers'
 import { fetchWithJWTCookie } from './fetchWithJWTCookie'
 
-export function getUser(): Promise<AuthenticatedUser> {
+export type UserServer = {
+  id: string
+  email: string
+}
+
+type BrevoContact = {
+  id: number
+  email: string
+  listIds: number[]
+}
+
+export type CompleteUserServer = UserServer & {
+  id: string
+  email: string | null
+  name: string | null
+  createdAt: Date
+  updatedAt: Date
+  contact?: BrevoContact
+}
+
+export function getUser(): Promise<UserServer> {
   return fetchWithJWTCookie(USER_URL + '/me')
+}
+
+export async function getCompleteUser(): Promise<CompleteUserServer> {
+  const user = await getUser()
+  return fetchWithJWTCookie(`${USER_URL}/${user.id}`)
 }
 
 export async function isUserAuthenticated(): Promise<boolean> {

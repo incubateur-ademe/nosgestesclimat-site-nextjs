@@ -7,7 +7,10 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
-import { getUser, isUserAuthenticated } from '@/helpers/server/model/user'
+import {
+  getCompleteUser,
+  isUserAuthenticated,
+} from '@/helpers/server/model/user'
 import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
 import NameForm from './_components/NameForm'
@@ -28,7 +31,7 @@ export default async function GroupNamePage({ params }: DefaultPageProps) {
     redirect('/amis/creer/vos-informations')
   }
   const { t } = await getServerTranslation({ locale })
-  const user = await getUser()
+  const user = await getCompleteUser()
 
   return (
     <div className="pb-8">
