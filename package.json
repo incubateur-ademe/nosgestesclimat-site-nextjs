@@ -1,7 +1,7 @@
 {
   "name": "nosgestesclimat-site-nextjs",
   "license": "MIT",
-  "version": "2.45.2",
+  "version": "2.46.0",
   "description": "The leading open source climate footprint calculator",
   "type": "module",
   "repository": {
@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "@incubateur-ademe/legal-pages-react": "^0.5.0",
-    "@incubateur-ademe/nosgestesclimat": "^4.4.0",
+    "@incubateur-ademe/nosgestesclimat": "^4.5.1",
     "@next/mdx": "^15.5.6",
     "@publicodes/react-ui": "^1.10.0",
     "@publicodes/tools": "^1.8.0",
@@ -67,7 +67,7 @@
     "is-mobile": "^5.0.0",
     "jszip": "^3.10.1",
     "markdown-to-jsx": "^7.7.16",
-    "next": "15.5.6",
+    "next": "15.5.7",
     "next-i18n-router": "^5.5.4",
     "postcss": "8.5.6",
     "posthog-js": "^1.276.0",
@@ -92,6 +92,7 @@
     "uuid": "^13.0.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
     "@babel/core": "^7.28.5",
     "@babel/eslint-parser": "^7.28.5",
     "@chromatic-com/storybook": "^4.0.1",
@@ -100,7 +101,6 @@
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
     "@next/bundle-analyzer": "15.5.6",
-    "@axe-core/playwright": "^4.10.2",
     "@playwright/test": "^1.56.1",
     "@storybook/addon-docs": "^9.1.15",
     "@storybook/addon-onboarding": "^9.1.15",

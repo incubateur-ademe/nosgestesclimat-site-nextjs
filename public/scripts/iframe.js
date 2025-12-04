@@ -9,7 +9,10 @@ if (!script) {
 // Avoid unwanted reloading loop
 const currentParams = new URLSearchParams(window.location.search)
 if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
-  const integratorUrl = window.location.href.toString()
+  const integratorUrl = new URL(window.location.href.toString())
+
+  // Remove all search params from integratorUrl
+  integratorUrl.search = ''
 
   const srcURL = new URL(script.src)
   const hostname = srcURL.origin || 'nosgestesclimat.fr'
@@ -20,8 +23,17 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
 
   const url = new URL(hostname)
 
+  // Append iframe and integratorUrl params to allow iframe event to be triggered
   url.searchParams.append('iframe', 'true')
-  url.searchParams.append('integratorUrl', integratorUrl)
+  url.searchParams.append('integratorUrl', integratorUrl.toString())
+
+  // Append matomo tracking params
+  const matomoCampaignParam = `relais_${integratorUrl.host}`
+
+  const matomoKwdParam = `iframe_${integratorUrl.pathname}`
+
+  url.searchParams.append('mtm_campaign', matomoCampaignParam)
+  url.searchParams.append('mtm_kwd', matomoKwdParam)
 
   possibleOptions.forEach(({ key, legacy }) => {
     const value = script.dataset[key] || script.dataset[legacy]
