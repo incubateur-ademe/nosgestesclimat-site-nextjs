@@ -1646,10 +1646,10 @@ entries:
   mon-espace.groups.empty.description2: for
   mon-espace.groups.empty.description2.lock: pour
   Mettre à jour mes abonnements: Update my subscriptions
-  mon-espace.groups.empty.button: Start
-  mon-espace.groups.empty.button.lock: Commencer
-  mon-espace.groups.empty.description3: give the test to your friends
-  mon-espace.groups.empty.description3.lock: faire passer le test à vos amis
+  mon-espace.groups.empty.button: Create a group
+  mon-espace.groups.empty.button.lock: Créer un groupe
+  mon-espace.groups.empty.description3: have your friends and family take the test.
+  mon-espace.groups.empty.description3.lock: faire passer le test à vos proches.
   mon-espace.groups.empty.description5: raise awareness among the members of your organisation.
   mon-espace.groups.empty.description5.lock: sensibilisez les membres de votre organisation.
   mon-espace.groups.empty.title: Invite your friends and family to calculate their footprint
@@ -1794,3 +1794,7 @@ entries:
   header.monEspace.openMenuButton.open.title.lock: Mon Espace ({{email}}), ouvrir le menu
   header.monEspace.openMenuButton.close.title: My Space ({{email}}), close the menu
   header.monEspace.openMenuButton.close.title.lock: Mon Espace ({{email}}), fermer le menu
+  Créer: Create
+  Votre adresse e-mail: Your e-mail address
+  Merci de renseigner votre adresse e-mail: Please enter your e-mail address
+  Oups ! Vous n'êtes pas autorisé à accéder à cette page. Si vous pensez que c'est une erreur, vous pouvez: Oops! You are not authorised to access this page. If you think this is a mistake, you can

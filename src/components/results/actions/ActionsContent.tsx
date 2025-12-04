@@ -45,8 +45,7 @@ export default function ActionsContent() {
   const actionsFilteredCategorically = actions.filter((action) =>
     category ? getCategory(action.dottedName) === category : true
   )
-  console.log('actionsFilteredCategorically', actionsFilteredCategorically)
-  console.log('actionChoices', actionChoices)
+
   const isSimulationWellStarted = progression > 0.5
 
   // Manage tab navigation for all focusable elements

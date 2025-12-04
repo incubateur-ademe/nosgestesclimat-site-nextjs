@@ -1295,13 +1295,13 @@ entries:
   Mettre à jour mes coordonnées: Mettre à jour mes coordonnées
   mon-espace.groups.create: Créer un groupe
   mon-espace.groups.empty.awareness: Sensibiliser mon organisation
-  mon-espace.groups.empty.button: Commencer
+  mon-espace.groups.empty.button: Créer un groupe
   mon-espace.groups.empty.challenge1: Défier mes amis
   mon-espace.groups.empty.challenge2: Challenger ma famille
   mon-espace.groups.empty.description: Gratuit, 100 % anonyme et surtout sans jugement ni comparaison.
   mon-espace.groups.empty.description1: Diffusez un lien collectif
   mon-espace.groups.empty.description2: pour
-  mon-espace.groups.empty.description3: faire passer le test à vos amis
+  mon-espace.groups.empty.description3: faire passer le test à vos proches.
   mon-espace.groups.empty.description4: ou
   mon-espace.groups.empty.description5: sensibilisez les membres de votre organisation.
   mon-espace.groups.empty.title: Invitez votre entourage à calculer leur empreinte
@@ -1401,3 +1401,7 @@ entries:
   header.monEspace.openMenuButton.open.title: Mon Espace ({{email}}), ouvrir le menu
   mon-espace.groups.organisation.create.button: Créer mon organisation
   mon-espace.groups.organisation.create.title: Mobiliser mon organisation
+  Créer: Créer
+  Merci de renseigner votre adresse e-mail: Merci de renseigner votre adresse e-mail
+  Oups ! Vous n'êtes pas autorisé à accéder à cette page. Si vous pensez que c'est une erreur, vous pouvez: Oups ! Vous n'êtes pas autorisé à accéder à cette page. Si vous pensez que c'est une erreur, vous pouvez
+  Votre adresse e-mail: Votre adresse e-mail

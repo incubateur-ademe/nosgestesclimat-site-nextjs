@@ -27,9 +27,14 @@ export default function Actions({
     useState(false)
 
   const { t } = useClientTranslation()
-  const { getValue } = useEngine()
+  const { getValue, isInitialized } = useEngine()
 
   const bilan = { nodeValue: getValue('bilan'), dottedName: 'bilan' }
+
+  // Don't render if engine is not initialized or if bilan is not available
+  if (!isInitialized || bilan.nodeValue == null) {
+    return null
+  }
 
   const thresholds: [number, string][] = [
     [10000, t('plus de 10 tonnes')],
