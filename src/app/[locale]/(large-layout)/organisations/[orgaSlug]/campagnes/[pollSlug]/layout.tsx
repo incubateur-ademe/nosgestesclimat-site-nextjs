@@ -21,5 +21,5 @@ export async function generateMetadata({
 }
 
 export default function Layout({ children }: PropsWithChildren) {
-  return { children }
+  return children
 }
