@@ -1,3 +1,4 @@
+import NumberInput from '@/components/form/question/NumberInput'
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
@@ -12,6 +13,7 @@ type Props = {
   setValue: (value: number) => void
   index: number
   value: number | undefined | null
+  situationValue?: number | undefined | null
   parentMosaic: string
 }
 
@@ -23,6 +25,7 @@ export default function MosaicNumberInput({
   setValue,
   index,
   value,
+  situationValue,
   parentMosaic,
 }: Props) {
   const { plafond } = useRule(question)
@@ -61,7 +64,7 @@ export default function MosaicNumberInput({
           size="sm"
           title={t(
             'simulator.mosaicNumberInput.remove',
-            'Retirer un élémént : {{title}}',
+            'Retirer un élément : {{title}}',
             {
               title,
             }
@@ -69,13 +72,11 @@ export default function MosaicNumberInput({
           className="z-10 h-8 w-8 items-center justify-center p-0">
           <span className="mb-[1px] block">-</span>
         </Button>
-        <input
-          className="focus-within:border-primary-700 focus-within:ring-primary-700 w-12 rounded-sm text-center ring-offset-2 focus-within:ring-2 focus-visible:outline-none"
-          type="number"
-          inputMode="numeric"
-          value={value === null ? 0 : value}
+        <NumberInput
+          className="focus-within:border-primary-700 focus-within:ring-primary-700 max-h-8 w-14 rounded-sm border-none text-center ring-offset-2 focus-within:ring-2 focus-visible:outline-none"
+          value={situationValue}
           placeholder={'_'}
-          onChange={(event) => setValue(Number(event.target.value))}
+          setValue={(value) => setValue(value ?? 0)}
           data-cypress-id={`${question}---${parentMosaic}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
         />

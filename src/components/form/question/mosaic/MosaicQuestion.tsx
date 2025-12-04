@@ -4,8 +4,10 @@ import { questionChooseAnswer } from '@/constants/tracking/question'
 import { useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { Evaluation } from 'publicodes'
 import MosaicBooleanInput from './mosaicQuestion/MosaicBooleanInput'
 import MosaicNumberInput from './mosaicQuestion/MosaicNumberInput'
+import MosaicNumberInputWithoutButtons from './mosaicQuestion/MosaicNumberInputWithoutButtons'
 
 type Props = {
   question: DottedName
@@ -24,7 +26,7 @@ export default function MosaicQuestion({
   setValue,
   firstInputId,
 }: Props) {
-  const { type, parent } = useRule(question)
+  const { type, parent, situationValue } = useRule(question)
 
   const { title, icons, description } = useRule(parent)
   const maybeIdFirstInput = { ...(index === 0 ? { id: firstInputId } : {}) }
@@ -40,6 +42,7 @@ export default function MosaicQuestion({
           index={index}
           value={value}
           setValue={(value) => setValue(question, value)}
+          situationValue={situationValue as Evaluation<number>}
           {...maybeIdFirstInput}
         />
       )}
