@@ -4,7 +4,7 @@ import { questionChooseAnswer } from '@/constants/tracking/question'
 import { useRule } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { Evaluation } from 'publicodes'
+import type { Evaluation } from 'publicodes'
 import MosaicBooleanInput from './mosaicQuestion/MosaicBooleanInput'
 import MosaicNumberInput from './mosaicQuestion/MosaicNumberInput'
 import MosaicNumberInputWithoutButtons from './mosaicQuestion/MosaicNumberInputWithoutButtons'
@@ -30,6 +30,26 @@ export default function MosaicQuestion({
 
   const { title, icons, description } = useRule(parent)
   const maybeIdFirstInput = { ...(index === 0 ? { id: firstInputId } : {}) }
+
+  if (
+    parentMosaic === 'transport . avion . vols annuels' ||
+    parentMosaic === 'transport . avion . vols amortis'
+  )
+    return (
+      <MosaicNumberInputWithoutButtons
+        question={question}
+        title={title}
+        icons={icons}
+        description={description}
+        parentMosaic={parentMosaic}
+        index={index}
+        value={value as number}
+        setValue={(value) => setValue(question, value)}
+        situationValue={situationValue as Evaluation<number>}
+        {...maybeIdFirstInput}
+      />
+    )
+
   return (
     <>
       {type === 'number' && typeof value !== 'boolean' && (
