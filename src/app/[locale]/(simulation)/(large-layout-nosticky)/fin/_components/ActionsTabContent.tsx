@@ -6,39 +6,43 @@ import ActionsContent from '@/components/results/actions/ActionsContent'
 import ActionsTutorial from '@/components/results/actions/ActionsTutorial'
 import JagisActionBanner from '@/components/results/actions/JagisActionBanner'
 import TopBar from '@/components/simulation/TopBar'
+import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import { useRules } from '@/hooks/useRules'
-import { EngineProvider, FormProvider } from '@/publicodes-state'
+import { EngineProvider, FormProvider, UserProvider } from '@/publicodes-state'
+import useUser from '@/publicodes-state/hooks/useUser/useUser'
 
 function ActionsContentInner() {
+  const { isInitialized } = useUser()
+  const { data: rules } = useRules({ isOptim: true })
+
+  if (!isInitialized || !rules) return <BlockSkeleton />
+
   return (
-    <>
-      <ActionAutoSave />
-      <TopBar className="mb-6" simulationMode={false} showTotal />
-      <ActionsTutorial />
-      <JagisActionBanner />
-      <ActionsContent />
-    </>
+    <QueryClientProviderWrapper>
+      <EngineProvider rules={rules}>
+        <FormProvider>
+          <ActionAutoSave />
+
+          <TopBar className="mb-6" simulationMode={false} showTotal />
+
+          <ActionsTutorial />
+
+          <ActionsContent />
+
+          <JagisActionBanner />
+        </FormProvider>
+      </EngineProvider>
+    </QueryClientProviderWrapper>
   )
 }
 
 export default function ActionsTabContent() {
-  const { data: rules } = useRules({ isOptim: true })
-
-  if (!rules) {
-    return null
-  }
-
   return (
     <div className="flex flex-col">
       <h1 className="sr-only mb-6 text-2xl font-bold">Mes actions</h1>
-
-      <QueryClientProviderWrapper>
-        <EngineProvider rules={rules}>
-          <FormProvider>
-            <ActionsContentInner />
-          </FormProvider>
-        </EngineProvider>
-      </QueryClientProviderWrapper>
+      <UserProvider>
+        <ActionsContentInner />
+      </UserProvider>
     </div>
   )
 }

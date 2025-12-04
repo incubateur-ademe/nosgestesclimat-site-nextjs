@@ -30,6 +30,7 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
   const { t } = useClientTranslation()
   const [isOpen, setIsOpen] = useState(false)
   const [isKeyboardNavigation, setIsKeyboardNavigation] = useState(false)
+  const openedWithKeyboardRef = useRef(false)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
   const firstMenuItemRef = useRef<HTMLAnchorElement>(null)
@@ -100,14 +101,14 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
     }
   }, [isOpen])
 
-  // Focus the first item in the menu when the menu is opened
+  // Focus the first item in the menu when the menu is opened with keyboard
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && isKeyboardNavigation) {
       requestAnimationFrame(() => {
         firstMenuItemRef.current?.focus()
       })
     }
-  }, [isOpen])
+  }, [isOpen, isKeyboardNavigation])
 
   // Close the menu on blur
   useEffect(() => {
@@ -142,15 +143,30 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
   const handleToggleMenu = () => {
     trackEvent(headerClickMonEspaceAuthenticatedServer)
     trackPosthogEvent(captureClickHeaderMonEspaceAuthenticatedServer)
-    setIsOpen((prev) => !prev)
+    setIsOpen((prev) => {
+      const willOpen = !prev
+      // If opening with mouse click, reset keyboard navigation flag
+      if (willOpen && !openedWithKeyboardRef.current) {
+        setIsKeyboardNavigation(false)
+      }
+      // Reset the flag after checking
+      if (willOpen) {
+        openedWithKeyboardRef.current = false
+      }
+      return willOpen
+    })
   }
 
   const handleButtonKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
+      openedWithKeyboardRef.current = true
+      setIsKeyboardNavigation(true)
       handleToggleMenu()
     } else if (event.key === 'ArrowDown' && !isOpen) {
       event.preventDefault()
+      openedWithKeyboardRef.current = true
+      setIsKeyboardNavigation(true)
       setIsOpen(true)
     }
   }
@@ -236,54 +252,57 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
           className="absolute top-full right-0 z-50 mt-2 min-w-[200px] rounded-lg border border-gray-200 bg-white shadow-lg"
           onKeyDown={handleMenuKeyDown}
           tabIndex={-1}>
-          <div className="py-1">
-            <Link
-              ref={firstMenuItemRef}
-              href={MON_ESPACE_PATH}
-              role="menuitem"
-              className={twMerge(
-                'text-default hover:bg-primary-100 block px-4 py-2 text-sm underline focus:outline-none',
-                isKeyboardNavigation
-                  ? 'focus:bg-primary-100 focus:ring-primary-700 focus:ring-2 focus:ring-offset-2'
-                  : 'focus:bg-primary-50 focus:ring-color-transparent! focus:ring-0! focus:ring-offset-0!'
-              )}
-              onClick={() => {
-                setIsOpen(false)
-                trackEvent(headerClickAccessMySpaceAuthenticatedServer)
-                trackPosthogEvent(
-                  captureClickHeaderAccessMySpaceAuthenticatedServer
-                )
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
+          <ul>
+            <li>
+              <Link
+                ref={firstMenuItemRef}
+                href={MON_ESPACE_PATH}
+                role="menuitem"
+                className={twMerge(
+                  'text-default hover:bg-primary-100 block min-h-10 px-4 py-2 text-sm no-underline! transition-colors focus:outline-none',
+                  isKeyboardNavigation
+                    ? 'focus:bg-primary-50 focus:ring-primary-700 focus:underline! focus:ring-2 focus:ring-offset-2'
+                    : 'focus:bg-primary-50 hover:bg-primary-50 focus:ring-color-transparent! hover:underline! focus:underline! focus:ring-0! focus:ring-offset-0!'
+                )}
+                onClick={() => {
                   setIsOpen(false)
                   trackEvent(headerClickAccessMySpaceAuthenticatedServer)
                   trackPosthogEvent(
                     captureClickHeaderAccessMySpaceAuthenticatedServer
                   )
-                }
-              }}>
-              <Trans i18nKey="header.monEspace.access">
-                Accéder à mon espace
-              </Trans>
-            </Link>
-
-            <button
-              ref={logoutButtonRef}
-              type="button"
-              role="menuitem"
-              className="text-default hover:bg-primary-100 focus:bg-primary-100 focus:ring-primary-700 flex w-full items-center gap-2 px-4 py-2 text-sm focus:ring-2 focus:ring-offset-2 focus:outline-none"
-              onClick={handleLogout}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault()
-                  handleLogout()
-                }
-              }}>
-              <Trans i18nKey="header.monEspace.logout">Déconnexion</Trans>
-              <LogOutIcon className="fill-default w-4" />
-            </button>
-          </div>
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    setIsOpen(false)
+                    trackEvent(headerClickAccessMySpaceAuthenticatedServer)
+                    trackPosthogEvent(
+                      captureClickHeaderAccessMySpaceAuthenticatedServer
+                    )
+                  }
+                }}>
+                <Trans i18nKey="header.monEspace.access">
+                  Accéder à mon espace
+                </Trans>
+              </Link>
+            </li>
+            <li>
+              <button
+                ref={logoutButtonRef}
+                type="button"
+                role="menuitem"
+                className="text-default hover:bg-primary-50 focus:bg-primary-50 focus:ring-primary-700 flex min-h-10 w-full items-center gap-2 px-4 py-2 text-sm transition-colors hover:underline! focus:underline! focus:ring-2 focus:ring-offset-2 focus:outline-none"
+                onClick={handleLogout}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    handleLogout()
+                  }
+                }}>
+                <Trans i18nKey="header.monEspace.logout">Déconnexion</Trans>
+                <LogOutIcon className="fill-default w-4" />
+              </button>
+            </li>
+          </ul>
         </div>
       )}
     </div>

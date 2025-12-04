@@ -11,11 +11,13 @@ import AnimatedArrow from './carboneTotalChart/AnimatedArrow'
 import Gauge from './carboneTotalChart/Gauge'
 
 type Props = {
+  className?: string
   total?: number
   isSmall?: boolean
   shouldShowOnlyGauge?: boolean
 }
 export default function CarboneTotalChart({
+  className,
   total,
   isSmall,
   shouldShowOnlyGauge = false,
@@ -58,7 +60,8 @@ export default function CarboneTotalChart({
     <div
       className={twMerge(
         'relative mx-auto flex w-full flex-col items-center justify-center',
-        isSmall ? 'mt-2 md:mt-4' : ''
+        isSmall ? 'mt-2 md:mt-4' : '',
+        className
       )}
       role="img"
       aria-label={gaugeDescription}

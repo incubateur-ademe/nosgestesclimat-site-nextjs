@@ -1,6 +1,5 @@
 import MetricSlider from '@/components/fin/MetricSlider'
-import AnimatedArrow from '@/components/fin/metricSlider/carboneTotalChart/AnimatedArrow'
-import Gauge from '@/components/fin/metricSlider/carboneTotalChart/Gauge'
+import CarboneTotalChart from '@/components/fin/metricSlider/CarboneTotalChart'
 import Trans from '@/components/translation/trans/TransServer'
 import { MON_ESPACE_RESULTS_DETAIL_PATH } from '@/constants/urls/paths'
 import {
@@ -9,47 +8,21 @@ import {
   sizeClassNames,
 } from '@/design-system/buttons/Button'
 import Separator from '@/design-system/layout/Separator'
-import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
-import { getColorAtPosition } from '@/helpers/getColorOfGradient'
-import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
 import type { Simulation } from '@/publicodes-state/types'
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 
-export default async function LatestResults({
+export default function LatestResults({
   locale,
   simulation,
 }: {
   locale: Locale
   simulation: Simulation
 }) {
-  const { t } = await getServerTranslation({ locale })
-
-  // @TODO : Refactor this logic to avoid repetition in CarboneTotalChart
-  const originPosition =
-    (simulation.computedResults.carbone.bilan / 1000 / 12) * 100
-
-  const position = Math.min(Math.max(originPosition, 0), 100)
-
   if (!simulation) {
     return null
   }
-
-  const { formattedValue, unit } = formatCarbonFootprint(
-    simulation.computedResults.carbone.bilan,
-    {
-      localize: false,
-    }
-  )
-
-  const percentage = Math.min(
-    (simulation.computedResults.carbone.bilan / 12) * 100,
-    100
-  )
-
-  const color = getColorAtPosition(position / 100)
-  const cssColor = `rgba(${color['r']},${color['g']},${color['b']},${color['a']})`
 
   return (
     <div className="border-primary-200 rounded-lg border-1 bg-white px-6 py-8">
@@ -113,24 +86,11 @@ export default async function LatestResults({
         isStatic
         isSharePage
       />
-      <div
-        className="my-8 w-full"
-        role="progressbar"
-        aria-valuenow={simulation.computedResults.carbone.bilan}
-        aria-valuemin={0}
-        aria-valuemax={12}
-        aria-valuetext={`${formattedValue} ${unit} par an, ${Math.round(percentage)}% de l'échelle maximale`}
-        aria-label={t(
-          'endPage.carboneChart.progressBarLabel',
-          'Barre de progression de votre empreinte carbone'
-        )}>
-        <AnimatedArrow
-          className="-bottom-8"
-          position={position}
-          color={cssColor}
-        />
-        <Gauge total={simulation.computedResults.carbone.bilan} />
-      </div>
+      <CarboneTotalChart
+        className="mt-10 block md:hidden"
+        total={simulation.computedResults.carbone.bilan}
+        shouldShowOnlyGauge
+      />
 
       <Link
         className={twMerge(

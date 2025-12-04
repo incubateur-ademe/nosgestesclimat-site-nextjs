@@ -27,7 +27,7 @@ export default async function DetailledResultsPage({
   }
 
   return (
-    <ContentLarge>
+    <ContentLarge className="mt-4 px-4 md:mt-10 lg:px-0">
       <Breadcrumbs
         items={[
           {

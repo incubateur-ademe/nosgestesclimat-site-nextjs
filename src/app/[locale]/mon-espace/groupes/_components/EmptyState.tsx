@@ -28,13 +28,7 @@ export default function EmptyState() {
             <Trans i18nKey="mon-espace.groups.empty.description2">pour</Trans>{' '}
             <strong>
               <Trans i18nKey="mon-espace.groups.empty.description3">
-                faire passer le test à vos amis
-              </Trans>
-            </strong>{' '}
-            <Trans i18nKey="mon-espace.groups.empty.description4">ou</Trans>{' '}
-            <strong>
-              <Trans i18nKey="mon-espace.groups.empty.description5">
-                sensibilisez les membres de votre organisation.
+                faire passer le test à vos proches.
               </Trans>
             </strong>
           </p>
@@ -45,7 +39,9 @@ export default function EmptyState() {
             </Trans>
           </p>
           <ButtonLink href={linkToGroupCreation}>
-            <Trans i18nKey="mon-espace.groups.empty.button">Commencer</Trans>
+            <Trans i18nKey="mon-espace.groups.empty.button">
+              Créer un groupe
+            </Trans>
           </ButtonLink>
         </section>
 
