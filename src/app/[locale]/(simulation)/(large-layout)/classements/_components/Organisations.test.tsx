@@ -94,6 +94,8 @@ describe('Organisations', () => {
     render(<Organisations />)
 
     await screen.findByTestId('poll-list')
+
+    expect(screen.getByTestId('poll-list')).toBeInTheDocument()
   })
 
   it('should show create organisation when no organisations exist', async () => {

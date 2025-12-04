@@ -1,4 +1,5 @@
 import typescriptParser from '@typescript-eslint/parser'
+import vitest from '@vitest/eslint-plugin'
 import nextVitals from 'eslint-config-next/core-web-vitals'
 import nextTs from 'eslint-config-next/typescript'
 import prettier from 'eslint-config-prettier/flat'
@@ -51,6 +52,15 @@ const eslintConfig = defineConfig([
     rules: {
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/require-await': 'error',
+    },
+  },
+  {
+    files: ['**/*.test.ts', '**/*.test.tsx'],
+    plugins: {
+      vitest,
+    },
+    rules: {
+      ...vitest.configs.recommended.rules,
     },
   },
   globalIgnores([
