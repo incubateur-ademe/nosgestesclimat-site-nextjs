@@ -92,6 +92,7 @@
     "uuid": "^13.0.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
     "@babel/core": "^7.28.5",
     "@babel/eslint-parser": "^7.28.5",
     "@chromatic-com/storybook": "^4.0.1",
@@ -100,7 +101,6 @@
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
     "@next/bundle-analyzer": "15.5.6",
-    "@axe-core/playwright": "^4.10.2",
     "@playwright/test": "^1.56.1",
     "@storybook/addon-docs": "^9.1.15",
     "@storybook/addon-onboarding": "^9.1.15",
@@ -131,8 +131,8 @@
     "core-js": "^3.42.0",
     "deepl-node": "^1.19.1",
     "dotenv": "^17.2.3",
-    "eslint": "^9.38.0",
-    "eslint-config-next": "15.5.6",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "^16.0.7",
     "eslint-config-prettier": "^10.1.5",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.31.0",

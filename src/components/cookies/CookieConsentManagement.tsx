@@ -78,6 +78,8 @@ export default function CookieConsentManagement({
     },
   })
 
+  // @TODO: Remove this eslint-disable-next-line once we have a proper solution for this rule
+  // eslint-disable-next-line react-hooks/incompatible-library
   const googleAdsValue = watch('googleAds')
 
   const onSubmit = (data: CookieFormData) => {
