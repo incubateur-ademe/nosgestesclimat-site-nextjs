@@ -2,44 +2,40 @@
 
 import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  ADMINISTRATOR_EMAIL_KEY,
-  ADMINISTRATOR_NAME_KEY,
-  GROUP_EMOJIS,
-} from '@/constants/group'
+import { GROUP_EMOJIS } from '@/constants/group'
 import { amisCreationEtapeVosInformationsSuivant } from '@/constants/tracking/pages/amisCreation'
 import Button from '@/design-system/buttons/Button'
 import GridRadioInputs from '@/design-system/inputs/GridRadioInputs'
+import PrenomInput from '@/design-system/inputs/PrenomInput'
 import TextInput from '@/design-system/inputs/TextInput'
 import { useCreateGroup } from '@/hooks/groups/useCreateGroup'
-import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { useCurrentSimulation } from '@/publicodes-state'
+import type { User } from '@/types/organisations'
 import { trackEvent } from '@/utils/analytics/trackEvent'
-import { formatEmail } from '@/utils/format/formatEmail'
 import { captureException } from '@sentry/nextjs'
-import { useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
 type Inputs = {
   name: string
+  administratorName: string
   emoji: string
 }
 
-export default function NameForm() {
+export default function NameForm({ user }: { user: User }) {
   const { t } = useClientTranslation()
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
-  } = useReactHookForm<Inputs>()
-
-  const { user } = useUser()
-
-  const searchParams = useSearchParams()
+  } = useReactHookForm<Inputs>({
+    defaultValues: {
+      administratorName: user.name,
+    },
+  })
 
   const {
     mutateAsync: createGroup,
@@ -48,52 +44,27 @@ export default function NameForm() {
     isError,
   } = useCreateGroup()
 
-  const [shouldNavigate, setShouldNavigate] = useState<string | undefined>(
-    undefined
-  )
+  const router = useRouter()
 
   const currentSimulation = useCurrentSimulation()
   const hasCompletedTest = currentSimulation.progression === 1
-
   const { goToSimulateurPage } = useSimulateurPage()
-  const { goToEndPage } = useEndPage()
+  console.log({ hasCompletedTest, currentSimulation })
 
-  useEffect(() => {
-    if (
-      shouldNavigate &&
-      currentSimulation.groups?.includes(shouldNavigate || '')
-    ) {
-      setShouldNavigate(undefined)
-      if (hasCompletedTest) {
-        goToEndPage({ allowedToGoToGroupDashboard: true })
-      } else {
-        goToSimulateurPage()
-      }
-    }
-  }, [
-    currentSimulation.groups,
-    hasCompletedTest,
-    goToEndPage,
-    goToSimulateurPage,
-    shouldNavigate,
-  ])
-
-  async function onSubmit({ name, emoji }: Inputs) {
+  async function onSubmit({ name, emoji, administratorName }: Inputs) {
     try {
-      const administratorEmail = formatEmail(
-        searchParams.get(ADMINISTRATOR_EMAIL_KEY)
-      )
-      const administratorName = searchParams.get(ADMINISTRATOR_NAME_KEY)
-
       const group = await createGroup({
         groupInfo: {
           name: name ?? '',
           emoji: emoji ?? '',
           administrator: {
-            userId: user.userId,
+            userId: user.id,
             name: administratorName ?? '',
-            ...(administratorEmail ? { email: administratorEmail } : {}),
+            email: user.email ?? '',
           },
+          participants: hasCompletedTest
+            ? [{ simulation: currentSimulation }]
+            : [],
         },
       })
 
@@ -104,7 +75,11 @@ export default function NameForm() {
 
       trackEvent(amisCreationEtapeVosInformationsSuivant)
 
-      setShouldNavigate(group.id)
+      if (hasCompletedTest) {
+        router.push('/amis/resultats?groupId=' + group.id)
+      } else {
+        goToSimulateurPage()
+      }
     } catch (e) {
       captureException(e)
     }
@@ -112,6 +87,14 @@ export default function NameForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+      <PrenomInput
+        data-cypress-id="group-input-owner-name"
+        error={errors.administratorName?.message}
+        {...register('administratorName', {
+          required: t('Ce champ est requis.'),
+        })}
+      />
+
       <TextInput
         label={<Trans>Choisissez un nom pour ce groupe</Trans>}
         helperText={
