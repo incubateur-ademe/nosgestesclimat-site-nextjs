@@ -88,7 +88,7 @@ export default function GroupCreationForm() {
             pattern: {
               value:
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              message: 'Veuillez entrer une adresse email valide',
+              message: 'Veuillez entrer une adresse e-mail valide',
             },
           })}
         />

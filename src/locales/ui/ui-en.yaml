@@ -1204,8 +1204,8 @@ entries:
   organisations.polls.settings.confirmDeletion.lock: Fenêtre modale de confirmation de suppression de la campagne
   common.navigation.nextQuestion.next.label: Go to next question
   common.navigation.nextQuestion.next.label.lock: Aller à la question suivante
-  organisations.emailVerificationModal.title: Email confirmation modal window
-  organisations.emailVerificationModal.title.lock: Fenêtre modale de confirmation d'email
+  organisations.emailVerificationModal.title: Modal e-mail confirmation window
+  organisations.emailVerificationModal.title.lock: Fenêtre modale de confirmation d'e-mail
   simulator.topBar.totalButtons.saveButton.ariaLabel: Save and resume later
   simulator.topBar.totalButtons.saveButton.ariaLabel.lock: Enregistrer et reprendre plus tard
   results.informationBlock.carbon.closeButton: Close the water footprint explanation
@@ -1798,3 +1798,14 @@ entries:
   Votre adresse e-mail: Your e-mail address
   Merci de renseigner votre adresse e-mail: Please enter your e-mail address
   Oups ! Vous n'êtes pas autorisé à accéder à cette page. Si vous pensez que c'est une erreur, vous pouvez: Oops! You are not authorised to access this page. If you think this is a mistake, you can
+  Entrez votre adresse e-mail: Enter your e-mail address
+  Laissez votre e-mail pour: Leave your e-mail for
+  Veuillez renseigner un e-mail.: Please enter an e-mail address.
+  Veuillez entrer une adresse e-mail valide.: Please enter a valid e-mail address.
+  Votre e-mail, rejoindre une campagne - Nos Gestes Climat: Your e-mail address, join a campaign - Nos Gestes Climat
+  Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par e-mail.: You can resume it later by clicking on the link you received by e-mail.
+  Vous allez recevoir un e-mail de notre part sous peu, qui vous permettra de la retrouver: You will receive an e-mail from us shortly, enabling you to find it
+  Recevez par e-mail un lien pour reprendre votre test plus tard.: Receive an e-mail with a link to take your test again later.
+  Recevoir ponctuellement par e-mail les nouveaux services Nos Gestes Climat aux organisations: Receive occasional e-mails about new Nos Gestes Climat services for organisations
+  Entrez votre adresse e-mail pour recevoir les infolettres sélectionnées.: Enter your e-mail address to receive the selected newsletters.
+  Pour vous désinscrire, passez par le lien en bas de l'e-mail reçu: To unsubscribe, use the link at the bottom of the e-mail you receive

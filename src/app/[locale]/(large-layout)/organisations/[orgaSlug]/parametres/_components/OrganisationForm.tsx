@@ -75,7 +75,7 @@ export default function OrganisationForm({
         <Modal
           ariaLabel={t(
             'organisations.emailVerificationModal.title',
-            "Fenêtre modale de confirmation d'email"
+            "Fenêtre modale de confirmation d'e-mail"
           )}
           isOpen
           closeModal={() => resetVerification()}

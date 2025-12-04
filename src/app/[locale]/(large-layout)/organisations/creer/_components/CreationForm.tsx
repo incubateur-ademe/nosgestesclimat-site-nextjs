@@ -196,7 +196,7 @@ export default function CreationForm() {
             <span>
               <strong>
                 <Trans>
-                  Recevoir ponctuellement par email les nouveaux services Nos
+                  Recevoir ponctuellement par e-mail les nouveaux services Nos
                   Gestes Climat aux organisations
                 </Trans>
               </strong>{' '}

@@ -1055,7 +1055,7 @@ entries:
   Fenêtre modale de partage: Fenêtre modale de partage
   group.results.rankingMember.delete.modal.ariaLabel: Fenêtre modale de confirmation de suppression du membre du groupe
   organisations.additionalQuestions.deletion.modal.ariaLabel: Fenêtre de confirmation de suppression de la question personnalisée
-  organisations.emailVerificationModal.title: Fenêtre modale de confirmation d'email
+  organisations.emailVerificationModal.title: Fenêtre modale de confirmation d'e-mail
   organisations.polls.settings.confirmDeletion: Fenêtre modale de confirmation de suppression de la campagne
   Ouvrir le menu: Ouvrir le menu
   results.informationBlock.carbon.closeButton: Fermer l'explication sur l'empreinte eau
@@ -1405,3 +1405,14 @@ entries:
   Merci de renseigner votre adresse e-mail: Merci de renseigner votre adresse e-mail
   Oups ! Vous n'êtes pas autorisé à accéder à cette page. Si vous pensez que c'est une erreur, vous pouvez: Oups ! Vous n'êtes pas autorisé à accéder à cette page. Si vous pensez que c'est une erreur, vous pouvez
   Votre adresse e-mail: Votre adresse e-mail
+  Entrez votre adresse e-mail: Entrez votre adresse e-mail
+  Laissez votre e-mail pour: Laissez votre e-mail pour
+  Recevez par e-mail un lien pour reprendre votre test plus tard.: Recevez par e-mail un lien pour reprendre votre test plus tard.
+  Recevoir ponctuellement par e-mail les nouveaux services Nos Gestes Climat aux organisations: Recevoir ponctuellement par e-mail les nouveaux services Nos Gestes Climat aux organisations
+  Veuillez entrer une adresse e-mail valide.: Veuillez entrer une adresse e-mail valide.
+  Veuillez renseigner un e-mail.: Veuillez renseigner un e-mail.
+  Votre e-mail, rejoindre une campagne - Nos Gestes Climat: Votre e-mail, rejoindre une campagne - Nos Gestes Climat
+  Vous allez recevoir un e-mail de notre part sous peu, qui vous permettra de la retrouver: Vous allez recevoir un e-mail de notre part sous peu, qui vous permettra de la retrouver
+  Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par e-mail.: Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par e-mail.
+  Entrez votre adresse e-mail pour recevoir les infolettres sélectionnées.: Entrez votre adresse e-mail pour recevoir les infolettres sélectionnées.
+  Pour vous désinscrire, passez par le lien en bas de l'e-mail reçu: Pour vous désinscrire, passez par le lien en bas de l'e-mail reçu

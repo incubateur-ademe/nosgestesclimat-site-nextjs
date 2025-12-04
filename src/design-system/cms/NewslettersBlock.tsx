@@ -346,13 +346,13 @@ export default function NewslettersBlock({
                     <EmailInput
                       value={user?.email || ''}
                       {...register('email', {
-                        required: t('Veuillez renseigner un email.'),
+                        required: t('Veuillez renseigner un e-mail.'),
                       })}
                       title={t(
                         'common.inputs.email.label',
                         'Entrez votre adresse e-mail'
                       )}
-                      aria-label={t('Entrez votre adresse email')}
+                      aria-label={t('Entrez votre adresse e-mail')}
                       aria-required="true"
                       aria-invalid={errors.email ? 'true' : 'false'}
                       aria-describedby={
@@ -376,8 +376,8 @@ export default function NewslettersBlock({
 
                     <p id="email-help" className="sr-only">
                       <Trans>
-                        Entrez votre adresse email pour recevoir les infolettres
-                        sélectionnées.
+                        Entrez votre adresse e-mail pour recevoir les
+                        infolettres sélectionnées.
                       </Trans>
                     </p>
 

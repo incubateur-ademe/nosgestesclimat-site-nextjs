@@ -119,7 +119,8 @@ export default function UserNewslettersForm({ className, user }: Props) {
               className="text-sm text-gray-600">
               <Emoji>⚠️</Emoji>{' '}
               <Trans>
-                Pour vous désinscrire, passez par le lien en bas de l'email reçu
+                Pour vous désinscrire, passez par le lien en bas de l'e-mail
+                reçu
               </Trans>
             </p>
           )}

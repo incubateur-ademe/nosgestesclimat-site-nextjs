@@ -86,7 +86,7 @@ export default function SaveResultsAndSigninSignUpForm({
             }
             inputLabel={
               <p className="mb-0 font-normal">
-                <Trans>Laissez votre email pour</Trans>{' '}
+                <Trans>Laissez votre e-mail pour</Trans>{' '}
                 <strong>
                   <Trans>sauvegarder</Trans>
                 </strong>{' '}

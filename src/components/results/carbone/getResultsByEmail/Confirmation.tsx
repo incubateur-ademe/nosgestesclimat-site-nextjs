@@ -21,7 +21,7 @@ export default function Confirmation({ className }: { className?: string }) {
       </div>
       <p className="mt-4 max-w-lg text-left">
         <Trans>
-          Vous allez recevoir un email de notre part sous peu, qui vous
+          Vous allez recevoir un e-mail de notre part sous peu, qui vous
           permettra de la retrouver
         </Trans>{' '}
         <strong>
