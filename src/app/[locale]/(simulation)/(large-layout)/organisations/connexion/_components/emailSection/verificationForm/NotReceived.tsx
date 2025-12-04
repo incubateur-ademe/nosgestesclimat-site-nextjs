@@ -13,7 +13,7 @@ import ResendButton from './notReceived/ResendButton'
 type Props = {
   isRetryButtonDisabled: boolean
   isErrorResend: boolean
-  sendVerificationCode: UseMutateAsyncFunction<any, Error, string, unknown>
+  sendVerificationCode: UseMutateAsyncFunction<unknown, Error, string, unknown>
   setTimeLeft: React.Dispatch<React.SetStateAction<number>>
   timeLeft: number
 }

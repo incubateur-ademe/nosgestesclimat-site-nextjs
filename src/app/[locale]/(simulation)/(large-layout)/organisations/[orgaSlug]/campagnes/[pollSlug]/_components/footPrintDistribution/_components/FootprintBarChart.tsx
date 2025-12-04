@@ -161,9 +161,17 @@ export default function FootprintBarChart({
     return description
   }
 
-  const CustomBar = (props: any) => {
-    const { payload, fill, x, y, width, height } = props
+  const CustomBar = (props: {
+    payload?: { formattedValue?: string; name?: string }
+    fill?: string
+    x?: number
+    y?: number
+    width?: number
+    height?: number
+  }) => {
+    const { payload, fill, x = 0, y = 0, width = 0, height = 0 } = props
     const formattedValue = payload?.formattedValue || ''
+    const name = payload?.name || ''
 
     return (
       <g>
@@ -176,7 +184,7 @@ export default function FootprintBarChart({
           rx={4}
           ry={4}
           role="img"
-          aria-label={`${payload?.name}: ${formattedValue}`}
+          aria-label={`${name}: ${formattedValue}`}
         />
         <text
           x={x + width + 8}

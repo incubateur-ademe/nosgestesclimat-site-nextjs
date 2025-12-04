@@ -56,7 +56,7 @@ export default function NameForm({
               ? null
               : undefined,
       })
-    } catch (e) {
+    } catch {
       // Error is caught in the parent component
     }
   }

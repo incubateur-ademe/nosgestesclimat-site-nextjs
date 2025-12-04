@@ -6,7 +6,6 @@ import { useState } from 'react'
 
 type Props = {
   value: NodeValue
-  isMissing: boolean
   setValue: (value: string) => void
   'data-cypress-id': string
   label: string
@@ -15,7 +14,6 @@ type Props = {
 
 export default function BooleanInput({
   value,
-  isMissing,
   setValue,
   label,
   firstInputId,

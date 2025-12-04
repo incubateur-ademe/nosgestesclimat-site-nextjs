@@ -37,7 +37,7 @@ export type User = {
   email?: string
   region?: RegionFromGeolocation
   initialRegion?: RegionFromGeolocation
-  northStarRatings?: any // TODO: should be NorthStartType or something
+  northStarRatings?: Record<string, unknown> // TODO: should be NorthStartType or something
   loginExpirationDate?: Date
   organisation?: UserOrganisationInfo
   administratorEmail?: string
@@ -69,7 +69,7 @@ export type UpdateCurrentSimulationProps = {
     isMosaicParent?: boolean
     isMosaicChild?: boolean
   }
-  actionChoices?: any
+  actionChoices?: Partial<Record<DottedName, boolean>>
   defaultAdditionalQuestionsAnswers?: Record<string, string>
   customAdditionalQuestionsAnswers?: Record<string, string>
   computedResults?: ComputedResults
@@ -87,7 +87,7 @@ export type Simulation = {
   situation: Situation
   extendedSituation: ExtendedSituation
   foldedSteps: DottedName[]
-  actionChoices: any
+  actionChoices: Partial<Record<DottedName, boolean>>
   persona?: string
   computedResults: ComputedResults
   progression: number

@@ -40,7 +40,7 @@ export function useInitializeSimulationWithEngine({
       if (!everyQuestions.includes(foldedStep)) return
       // Check if the foldedStep is a mosaic child
       const parentMosaic = Object.entries(everyMosaicChildrenWithParent).find(
-        ([_, children]) => children.includes(foldedStep)
+        ([, children]) => children.includes(foldedStep)
       )?.[0] as DottedName | undefined
 
       if (parentMosaic) {

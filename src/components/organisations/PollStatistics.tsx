@@ -17,7 +17,6 @@ export default function PollStatistics({
   title,
   simulationsCount,
   computedResults,
-  userComputedResults,
   funFacts,
   poll,
   isAdmin,
@@ -25,7 +24,6 @@ export default function PollStatistics({
   title?: string | ReactNode
   simulationsCount: number
   computedResults?: ComputedResults | null
-  userComputedResults?: ComputedResults | null
   funFacts?: FunFacts | null
   poll: PublicOrganisationPoll
   isAdmin: boolean

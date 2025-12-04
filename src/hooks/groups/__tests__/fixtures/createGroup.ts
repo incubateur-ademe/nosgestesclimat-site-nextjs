@@ -38,7 +38,7 @@ function createSimulation({ persona }: { persona?: string }) {
         ),
         parsedRules: engine.getParsedRules(),
         safeGetRule: (dottedName) =>
-          safeGetRuleHelper(dottedName, engine) as any,
+          safeGetRuleHelper(dottedName, engine) ?? undefined,
       }),
       getNumericValue: (dottedName) =>
         engine.evaluate(dottedName).nodeValue as number,

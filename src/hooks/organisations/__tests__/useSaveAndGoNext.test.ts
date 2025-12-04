@@ -1,5 +1,7 @@
+import { generateSimulation } from '@/helpers/simulation/generateSimulation'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { act, renderHook } from '@testing-library/react'
+import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 import { useRouter } from 'next/navigation'
 import { vi } from 'vitest'
 import { useInfosPage } from '../../navigation/useInfosPage'
@@ -22,17 +24,17 @@ describe('useSaveAndGoNext', () => {
   // Mocks
   const mockRouter = {
     push: vi.fn(),
-  }
+    replace: vi.fn(),
+    prefetch: vi.fn(),
+    back: vi.fn(),
+    forward: vi.fn(),
+    refresh: vi.fn(),
+  } as unknown as AppRouterInstance
 
-  const mockCurrentSimulation = {
+  const mockCurrentSimulation = generateSimulation({
     id: 'test-simulation-id',
-    date: new Date(),
-    situation: {},
-    foldedSteps: [],
-    actionChoices: {},
-    computedResults: {},
     progression: 0.5,
-  }
+  })
 
   const mockSaveSimulation = vi.fn()
   const mockGetLinkToNextInfosPage = vi.fn()
@@ -41,14 +43,23 @@ describe('useSaveAndGoNext', () => {
     vi.clearAllMocks()
 
     // Setup default mocks
-    ;(useRouter as any).mockReturnValue(mockRouter)
-    ;(useCurrentSimulation as any).mockReturnValue(mockCurrentSimulation)
-    ;(useSaveSimulation as any).mockReturnValue({
+    vi.mocked(useRouter).mockReturnValue(mockRouter)
+    vi.mocked(useCurrentSimulation).mockReturnValue({
+      ...mockCurrentSimulation,
+      update: vi.fn(),
+      updateCurrentSimulation: vi.fn(),
+    } as unknown as ReturnType<typeof useCurrentSimulation>)
+    vi.mocked(useSaveSimulation).mockReturnValue({
       saveSimulation: mockSaveSimulation,
-    })
-    ;(useInfosPage as any).mockReturnValue({
+      isPending: false,
+      isSuccess: false,
+      isError: false,
+      error: null,
+    } as unknown as ReturnType<typeof useSaveSimulation>)
+    vi.mocked(useInfosPage).mockReturnValue({
       getLinkToNextInfosPage: mockGetLinkToNextInfosPage,
-    })
+      getLinkToPrevInfosPage: vi.fn(),
+    } as unknown as ReturnType<typeof useInfosPage>)
   })
 
   it('should return correct default values', () => {
@@ -74,7 +85,7 @@ describe('useSaveAndGoNext', () => {
 
     // Verify that saveSimulation was called with correct parameters
     expect(mockSaveSimulation).toHaveBeenCalledWith({
-      simulation: mockCurrentSimulation,
+      simulation: expect.objectContaining(mockCurrentSimulation),
     })
 
     // Verify that getLinkToNextInfosPage was called with the correct page
@@ -119,12 +130,15 @@ describe('useSaveAndGoNext', () => {
 
   it('should use current simulation for save operation', () => {
     const curPage = 'test-page'
-    const customSimulation = {
-      ...mockCurrentSimulation,
+    const customSimulation = generateSimulation({
       id: 'custom-simulation-id',
       progression: 1,
-    }
-    ;(useCurrentSimulation as any).mockReturnValue(customSimulation)
+    })
+    vi.mocked(useCurrentSimulation).mockReturnValue({
+      ...customSimulation,
+      update: vi.fn(),
+      updateCurrentSimulation: vi.fn(),
+    } as unknown as ReturnType<typeof useCurrentSimulation>)
 
     const { result } = renderHook(() => useSaveAndGoNext({ curPage }))
 
@@ -134,7 +148,7 @@ describe('useSaveAndGoNext', () => {
 
     // Verify that saveSimulation was called with the custom simulation
     expect(mockSaveSimulation).toHaveBeenCalledWith({
-      simulation: customSimulation,
+      simulation: expect.objectContaining(customSimulation),
     })
   })
 })

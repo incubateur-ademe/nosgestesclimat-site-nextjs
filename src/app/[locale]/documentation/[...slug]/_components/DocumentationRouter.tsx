@@ -2,13 +2,14 @@
 
 import EngineProviders from '@/components/providers/EngineProviders'
 import { useCurrentSimulation } from '@/publicodes-state'
+import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import type { JSX } from 'react'
 import { useContext, useEffect } from 'react'
 import { IsDocumentationClientContext } from '../../_contexts/DocumentationStateContext'
 import DocumentationClient from './documentationRouter/DocumentationClient'
 
 type Props = {
-  supportedRegions: any
+  supportedRegions: SupportedRegions
   slug: string[]
   serverComponent: JSX.Element
 }

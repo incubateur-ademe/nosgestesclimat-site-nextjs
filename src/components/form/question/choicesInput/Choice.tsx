@@ -7,7 +7,7 @@ type Props = {
   question: DottedName
   choice: string | number
   active: boolean
-  setValue: any
+  setValue: (value: string | number) => void
   id?: string
 }
 

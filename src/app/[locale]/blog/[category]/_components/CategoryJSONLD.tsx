@@ -1,4 +1,18 @@
+import type { QuestionType } from '@/adapters/cmsClient'
 import JSONLD from '@/components/seo/JSONLD'
+
+type BreadcrumbListItem = {
+  '@type': 'ListItem'
+  position: number
+  name: string
+  item: string
+}
+
+type BreadcrumbList = {
+  '@context': string
+  '@type': 'BreadcrumbList'
+  itemListElement: BreadcrumbListItem[]
+}
 
 export default function CategoryJSONLD({
   title,
@@ -6,10 +20,10 @@ export default function CategoryJSONLD({
   categorySlug,
 }: {
   title: string
-  questions: any[]
+  questions: QuestionType[]
   categorySlug: string
 }) {
-  const jsonLd = [
+  const jsonLd: (BreadcrumbList | Record<string, unknown>)[] = [
     {
       '@context': 'https://schema.org/',
       '@type': 'BreadcrumbList',
@@ -33,7 +47,7 @@ export default function CategoryJSONLD({
           item: `https://nosgestesclimat.fr/blog/${categorySlug}?page=1`,
         },
       ],
-    } as Record<string, any>,
+    },
   ]
 
   if (questions?.length > 0) {

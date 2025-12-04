@@ -20,15 +20,7 @@ vi.mock('@/utils/format/encodeDottedNameAsURI', () => ({
 // Mock CategoryFilter component
 vi.mock('../categoryFilters/CategoryFilter', () => ({
   default: vi.fn(
-    ({
-      title,
-      dottedName,
-      count,
-      index,
-      isActive,
-      isSelected,
-      onTabActivate,
-    }) => (
+    ({ title, count, index, isActive, isSelected, onTabActivate }) => (
       <button
         role="tab"
         id={`category-tab-${index}`}
@@ -347,7 +339,14 @@ describe('CategoryTabs', () => {
 
   it('handles undefined categories', () => {
     render(
-      <CategoryTabs categories={undefined as any}>{mockChildren}</CategoryTabs>
+      <CategoryTabs
+        categories={
+          undefined as unknown as Parameters<
+            typeof CategoryTabs
+          >[0]['categories']
+        }>
+        {mockChildren}
+      </CategoryTabs>
     )
 
     expect(screen.queryByRole('tab')).not.toBeInTheDocument()
@@ -355,7 +354,7 @@ describe('CategoryTabs', () => {
   })
 
   it('updates tabpanel when active tab changes', () => {
-    const { rerender } = render(
+    render(
       <CategoryTabs categories={mockCategories}>{mockChildren}</CategoryTabs>
     )
 

@@ -88,7 +88,7 @@ export default function Email() {
 
       // Go to next page
       router.push(linkToNextPage)
-    } catch (e) {
+    } catch {
       setError('email', {
         type: 'validate',
         message: t(

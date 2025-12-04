@@ -5,7 +5,14 @@ import MotivationSection from '../MotivationSection'
 // Mock next/image to render a simple img for testing
 vi.mock('next/image', () => ({
   __esModule: true,
-  default: (props: any) => <img alt="" {...props} />,
+  default: (props: {
+    src?: string
+    alt?: string
+    width?: number
+    height?: number
+    [key: string]: unknown
+    // eslint-disable-next-line @next/next/no-img-element
+  }) => <img alt="" {...props} />,
 }))
 
 describe('MotivationSection', () => {

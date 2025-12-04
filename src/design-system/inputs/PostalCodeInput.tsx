@@ -49,7 +49,7 @@ export default function PostalCodeInput({ postalCode, setPostalCode }: Props) {
           : undefined
       }
       styles={{
-        menu: (baseStyles: any) => ({
+        menu: (baseStyles: { display?: string; cursor?: string }) => ({
           ...baseStyles,
           cursor: 'pointer',
           display: searchValue ? 'block' : 'none',

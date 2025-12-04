@@ -14,7 +14,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 type Props = {
   isRetryButtonDisabled: boolean
-  sendVerificationCode: UseMutateAsyncFunction<any, Error, string, unknown>
+  sendVerificationCode: UseMutateAsyncFunction<unknown, Error, string, unknown>
   setTimeLeft: React.Dispatch<React.SetStateAction<number>>
   timeLeft: number
 }

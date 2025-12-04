@@ -4,7 +4,11 @@ import TextInput from '@/design-system/inputs/TextInput'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import type {
+  DottedName,
+  NGCRule,
+  NGCRules,
+} from '@incubateur-ademe/nosgestesclimat'
 import Fuse, { type FuseResult } from 'fuse.js'
 import { utils } from 'publicodes'
 import { type ChangeEvent, useEffect, useMemo, useRef, useState } from 'react'
@@ -40,9 +44,11 @@ export default function SearchBar({ rules }: { rules: Partial<NGCRules> }) {
   const searchInputRef = useRef<HTMLInputElement>(null)
   const resultsListRef = useRef<HTMLUListElement>(null)
 
-  const rulesList: any[] = Object.entries(rules).map(([dottedName, rule]) => ({
+  const rulesList: Array<NGCRule & { dottedName: DottedName }> = Object.entries(
+    rules
+  ).map(([dottedName, rule]) => ({
     ...rule,
-    dottedName,
+    dottedName: dottedName as DottedName,
   }))
 
   const searchIndex: Array<SearchItem> = useMemo(
@@ -51,8 +57,7 @@ export default function SearchBar({ rules }: { rules: Partial<NGCRules> }) {
         .filter(utils.ruleWithDedicatedDocumentationPage)
         .map((rule) => ({
           title:
-            getRuleTitle(rule as any) +
-            (rule.acronyme ? ` (${rule.acronyme})` : ''),
+            getRuleTitle(rule) + (rule.acronyme ? ` (${rule.acronyme})` : ''),
           dottedName: rule.dottedName,
           espace: rule.dottedName.split(' . ').reverse(),
         })),

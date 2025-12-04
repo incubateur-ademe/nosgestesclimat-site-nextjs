@@ -97,8 +97,7 @@ export default function GetResultsByEmail({
     )
   }, [newsletterSubscriptions, setValue])
 
-  const { saveSimulation, isPending, isSuccess, isError, error } =
-    useSaveSimulation()
+  const { saveSimulation, isPending, isSuccess, isError } = useSaveSimulation()
 
   const { data: mainNewsletter } = useMainNewsletter()
 

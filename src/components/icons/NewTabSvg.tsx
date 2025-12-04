@@ -1,4 +1,4 @@
-export default function NewTabSvg({ className = '' }) {
+export default function NewTabSvg({ className = '' }: { className?: string }) {
   return (
     <svg
       className={`fill-primary-700 ml-2 inline-block h-auto w-3 ${className}`}

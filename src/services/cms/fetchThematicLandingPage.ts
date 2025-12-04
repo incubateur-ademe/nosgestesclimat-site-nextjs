@@ -78,7 +78,7 @@ export async function fetchThematicLandingPage({
     return {
       thematicLandingPage: thematicLP,
     }
-  } catch (error) {
+  } catch {
     return {}
   }
 }

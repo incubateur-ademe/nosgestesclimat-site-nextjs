@@ -1,5 +1,5 @@
 import type { Locale } from '@/i18nConfig'
-import { notFound, redirect } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import CategoryPage from '../page'
 
@@ -24,7 +24,6 @@ const mockFetchCategoryPageContent = vi.mocked(fetchCategoryPageContent)
 const mockFetchCategoryPageMetadata = vi.mocked(fetchCategoryPageMetadata)
 const mockGetLangButtonsDisplayed = vi.mocked(getLangButtonsDisplayed)
 const mockRedirect = vi.mocked(redirect)
-const mockNotFound = vi.mocked(notFound)
 
 describe('CategoryPage', () => {
   beforeEach(() => {

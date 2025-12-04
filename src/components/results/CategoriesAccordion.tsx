@@ -11,7 +11,7 @@ type Props = {
   metric?: Metric
 }
 export default function CategoriesAccordion({ metric = defaultMetric }: Props) {
-  const { sortedCategories } = useSortedCategoriesByFootprint({ metric })
+  const { sortedCategories } = useSortedCategoriesByFootprint()
 
   const { numericValue: maxCategoryValue } = useRule(
     sortedCategories?.[0] ?? '',

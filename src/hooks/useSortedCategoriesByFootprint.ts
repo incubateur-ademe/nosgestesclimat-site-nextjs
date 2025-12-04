@@ -1,14 +1,7 @@
-import { defaultMetric } from '@/constants/model/metric'
 import { useEngine } from '@/publicodes-state'
-import type { Metric } from '@/publicodes-state/types'
 import { useMemo } from 'react'
 
-type Props = {
-  metric?: Metric
-}
-export function useSortedCategoriesByFootprint(
-  { metric }: Props = { metric: defaultMetric }
-) {
+export function useSortedCategoriesByFootprint() {
   const { getNumericValue, categories } = useEngine()
 
   const filteredCategories = useMemo(() => {

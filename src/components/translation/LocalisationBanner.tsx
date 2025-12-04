@@ -38,7 +38,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
   if (!supportedRegions) return null
 
-  const regionParams: any = supportedRegions?.[code]
+  const regionParams = supportedRegions?.[code]
 
   const countryName =
     capitalizeString(regionParams?.[currentLocale]?.nom as string) ||
@@ -46,8 +46,9 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
   const versionName: string = regionParams
     ? (regionParams?.[currentLocale]?.['gentilé'] ??
-      regionParams?.[currentLocale]?.['nom'])
-    : countryName
+      regionParams?.[currentLocale]?.['nom'] ??
+      '')
+    : (countryName ?? '')
 
   if (tutorials.localisationBanner) return null
 

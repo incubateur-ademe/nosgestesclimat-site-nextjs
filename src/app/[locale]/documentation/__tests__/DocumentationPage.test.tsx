@@ -57,9 +57,9 @@ import { getRules } from '@/helpers/modelFetching/getRules'
 import { decodeRuleNameFromPath } from '@/utils/decodeRuleNameFromPath'
 import { redirect } from 'next/navigation'
 
-const mockGetRules = getRules as any
-const mockDecodeRuleNameFromPath = decodeRuleNameFromPath as any
-const mockRedirect = redirect as any
+const mockGetRules = vi.mocked(getRules)
+const mockDecodeRuleNameFromPath = vi.mocked(decodeRuleNameFromPath)
+const mockRedirect = vi.mocked(redirect)
 
 describe('DocumentationPage', () => {
   beforeEach(() => {
@@ -176,7 +176,7 @@ describe('DocumentationPage', () => {
     const slug = ['transport', 'voiture']
     const ruleName = 'transport . voiture' as DottedName
 
-    mockGetRules.mockResolvedValue(null)
+    mockGetRules.mockResolvedValue(null as unknown as Partial<NGCRules>)
     mockDecodeRuleNameFromPath.mockReturnValue(ruleName)
 
     const params = createMockParams(slug)
@@ -196,7 +196,7 @@ describe('DocumentationPage', () => {
     const params = createMockParams(slug)
 
     const result = await DocumentationPage({ params })
-    const { container } = render(result)
+    render(result)
 
     expect(mockDecodeRuleNameFromPath).toHaveBeenCalledWith('')
     expect(screen.getByTestId('documentation-router')).toBeInTheDocument()
@@ -212,7 +212,7 @@ describe('DocumentationPage', () => {
     const params = createMockParams(slug)
 
     const result = await DocumentationPage({ params })
-    const { container } = render(result)
+    render(result)
 
     expect(mockDecodeRuleNameFromPath).toHaveBeenCalledWith(
       'alimentation/plats/avec-espaces'
@@ -231,7 +231,7 @@ describe('DocumentationPage', () => {
     const params = Promise.resolve({ locale: 'en' as Locale, slug })
 
     const result = await DocumentationPage({ params })
-    const { container } = render(result)
+    render(result)
 
     expect(mockGetRules).toHaveBeenCalledWith({
       isOptim: false,

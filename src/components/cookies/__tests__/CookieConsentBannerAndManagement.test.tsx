@@ -201,7 +201,6 @@ describe('CookieConsentBannerAndManagement', () => {
       })
 
       // Submit the form to confirm choices
-      const form = screen.getByTestId('cookie-form')
       await user.click(screen.getByTestId('accept-all-button'))
 
       expect(safeLocalStorage.setItem).toHaveBeenCalledWith(
