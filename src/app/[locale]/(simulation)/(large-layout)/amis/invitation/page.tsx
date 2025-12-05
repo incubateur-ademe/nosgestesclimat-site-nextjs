@@ -7,15 +7,12 @@ import Title from '@/design-system/layout/Title'
 import { useFetchGroup } from '@/hooks/groups/useFetchGroup'
 import { useGroupIdInQueryParams } from '@/hooks/groups/useGroupIdInQueryParams'
 import { useGroupPagesGuard } from '@/hooks/navigation/useGroupPagesGuard'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import InvitationForm from './_components/InvitationForm'
 import LaconicRanking from './_components/LaconicRanking'
 
 export default function RejoindreGroupePage() {
   // Guarding the route and redirecting if necessary
   const { isGuardInit, isGuardRedirecting } = useGroupPagesGuard()
-
-  const { t } = useClientTranslation()
 
   const { groupIdInQueryParams } = useGroupIdInQueryParams()
   const { data: group, isLoading } = useFetchGroup(groupIdInQueryParams)
@@ -39,9 +36,13 @@ export default function RejoindreGroupePage() {
             <span className="text-violet-900">{group?.name}</span>
           </Trans>
         }
-        subtitle={t(
-          "Comparez vos résultats avec votre famille ou un groupe d'amis."
-        )}
+        subtitle={
+          <Trans>
+            Rejoignez le groupe{' '}
+            <span className="text-violet-900">{group?.name}</span> et passez le
+            test.
+          </Trans>
+        }
       />
 
       <InvitationForm group={group} />

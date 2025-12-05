@@ -1,3 +1,9 @@
+import {
+  MON_ESPACE_ACTIONS_PATH,
+  MON_ESPACE_GROUPS_PATH,
+  MON_ESPACE_PATH,
+  MON_ESPACE_SETTINGS_PATH,
+} from '@/constants/urls/paths'
 import { getPosts } from '@/helpers/markdown/getPosts'
 import { fetchAllArticleTitlesAndSlugs } from '@/services/cms/fetchAllArticleTitlesAndSlugs'
 import { fetchThematicLandingPages } from '@/services/cms/fetchThematicLandingPages'
@@ -8,14 +14,11 @@ import { utils } from 'publicodes'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages = new Set([
     '',
-    'actions',
     'accessibilité',
-    'amis',
     'a-propos',
     'blog',
     'budget',
     'cgu',
-    'classements',
     'contact',
     'diffuser',
     'documentation/guide',
@@ -38,10 +41,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     'personas',
     'plan-du-site',
     'politique-de-confidentialite',
-    'profil',
     'questions',
     'questions-frequentes',
     'stats',
+    MON_ESPACE_PATH,
+    MON_ESPACE_GROUPS_PATH,
+    MON_ESPACE_ACTIONS_PATH,
+    MON_ESPACE_SETTINGS_PATH,
   ])
 
   const staticUrls = Array.from(staticPages).map((page) => ({

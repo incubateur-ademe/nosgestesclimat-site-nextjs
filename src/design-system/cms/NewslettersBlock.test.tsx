@@ -55,19 +55,19 @@ describe('NewslettersBlock', () => {
     // Setup MSW handlers for each test
     mswServer.use(
       // GET /users/v1/:userId/contact - for useGetNewsletterSubscriptions
-      http.get('https://localhost:3001/users/v1/:userId/contact', () => {
+      http.get('*/users/v1/:userId/contact', () => {
         return HttpResponse.json({
           listIds: [],
         })
       }),
 
       // PUT /users/v1/:userId - for useUpdateUserSettings
-      http.put('https://localhost:3001/users/v1/:userId', () => {
+      http.put('*/users/v1/:userId', () => {
         return HttpResponse.json({ success: true })
       }),
 
       // GET /newsletters/v1/:newsletterId - for useMainNewsletter
-      http.get('https://localhost:3001/newsletters/v1/:newsletterId', () => {
+      http.get('*/newsletters/v1/:newsletterId', () => {
         return HttpResponse.json({
           id: LIST_MAIN_NEWSLETTER,
           name: 'Main Newsletter',
@@ -76,19 +76,18 @@ describe('NewslettersBlock', () => {
       }),
 
       // OPTIONS requests for CORS preflight
-      http.options('https://localhost:3001/users/v1/:userId/contact', () => {
+      http.options('*/users/v1/:userId/contact', () => {
         return HttpResponse.json({})
       }),
 
-      http.options('https://localhost:3001/users/v1/:userId', () => {
+      http.options('*/users/v1/:userId', () => {
         return HttpResponse.json({})
       })
     )
   })
-
   it('should not render if locale is not French', () => {
     mockedUseLocale.mockReturnValue('en') // Set locale to English
-    renderWithWrapper(<NewslettersBlock />, {
+    renderWithWrapper(<NewslettersBlock isAuthenticated={true} />, {
       providers: {
         queryClient: true,
       },
@@ -97,7 +96,7 @@ describe('NewslettersBlock', () => {
   })
 
   it('should render the form with all elements', async () => {
-    renderWithWrapper(<NewslettersBlock />, {
+    renderWithWrapper(<NewslettersBlock isAuthenticated={true} />, {
       providers: {
         queryClient: true,
       },
@@ -123,7 +122,7 @@ describe('NewslettersBlock', () => {
   it('should successfully subscribe a user and show a success message', async () => {
     const user = userEvent.setup()
 
-    renderWithWrapper(<NewslettersBlock />, {
+    renderWithWrapper(<NewslettersBlock isAuthenticated={true} />, {
       user: { name: 'Test User', email: 'test@example.com' },
       providers: {
         user: true,
@@ -162,7 +161,7 @@ describe('NewslettersBlock', () => {
     )
 
     const user = userEvent.setup()
-    renderWithWrapper(<NewslettersBlock />, {
+    renderWithWrapper(<NewslettersBlock isAuthenticated={true} />, {
       providers: {
         queryClient: true,
       },
@@ -186,7 +185,7 @@ describe('NewslettersBlock', () => {
   it('should show an error if no newsletter is selected for a new subscription', async () => {
     const user = userEvent.setup()
 
-    renderWithWrapper(<NewslettersBlock />, {
+    renderWithWrapper(<NewslettersBlock isAuthenticated={true} />, {
       providers: {
         queryClient: true,
       },
@@ -215,7 +214,7 @@ describe('NewslettersBlock', () => {
       })
     )
 
-    renderWithWrapper(<NewslettersBlock />, {
+    renderWithWrapper(<NewslettersBlock isAuthenticated={true} />, {
       providers: {
         queryClient: true,
       },

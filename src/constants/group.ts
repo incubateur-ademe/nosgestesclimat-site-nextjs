@@ -83,6 +83,3 @@ export const GROUP_EMOJIS = [
 ]
 
 export const linkToGroupCreation = '/amis/creer/vos-informations'
-
-export const ADMINISTRATOR_NAME_KEY = 'administratorName'
-export const ADMINISTRATOR_EMAIL_KEY = 'administratorEmail'

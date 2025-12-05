@@ -2,9 +2,9 @@
 
 import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
+import { MON_ESPACE_GROUPS_PATH } from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
 import Title from '@/design-system/layout/Title'
-import { linkToClassement } from '@/helpers/navigation/classementPages'
 import { useDeleteGroup } from '@/hooks/groups/useDeleteGroup'
 import { useFetchGroup } from '@/hooks/groups/useFetchGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -58,7 +58,7 @@ export default function SupprimerGroupePage({
   }
 
   if (!groupId) {
-    router.push(linkToClassement)
+    router.push(MON_ESPACE_GROUPS_PATH)
     return
   }
 

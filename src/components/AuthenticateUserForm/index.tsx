@@ -1,0 +1,96 @@
+'use client'
+
+import type { AuthenticationMode } from '@/types/authentication'
+import { useCallback, useState, type ReactNode } from 'react'
+
+import { EMAIL_PENDING_AUTHENTICATION_KEY } from '@/constants/authentication/sessionStorage'
+import {
+  captureClickSubmitEmail,
+  signinTrackEvent,
+} from '@/constants/tracking/pages/signin'
+import Button from '@/design-system/buttons/Button'
+import useLogin from '@/hooks/authentication/useLogin'
+import { usePendingVerification } from '@/hooks/authentication/usePendingVerification'
+import { useUser } from '@/publicodes-state'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
+import { useRouter } from 'next/navigation'
+import { Trans } from 'react-i18next'
+import SendVerificationCodeForm from './SendVerificationCodeForm'
+import VerifyCodeForm from './VerifyCodeForm'
+
+type Props = {
+  buttonLabel?: string | ReactNode
+  buttonColor?: 'primary' | 'secondary'
+  inputLabel?: ReactNode | string
+  mode?: AuthenticationMode
+  redirectURL?: string
+  onComplete?: () => void
+}
+
+export default function AuthenticateUserForm({
+  buttonLabel,
+  buttonColor = 'primary',
+  inputLabel,
+  redirectURL,
+  mode,
+  onComplete,
+}: Props) {
+  const router = useRouter()
+  const { user } = useUser()
+  const [isRedirecting, setIsRedirecting] = useState(false)
+  const complete = useCallback(() => {
+    safeSessionStorage.removeItem(EMAIL_PENDING_AUTHENTICATION_KEY)
+    setIsRedirecting(true)
+
+    if (redirectURL) {
+      router.push(redirectURL, { scroll: false })
+    }
+    onComplete?.()
+  }, [redirectURL, onComplete, router])
+
+  const {
+    pendingVerification,
+    registerVerification,
+    resetVerification,
+    completeVerification,
+  } = usePendingVerification({
+    onComplete: complete,
+  })
+
+  const login = useLogin()
+
+  if (pendingVerification || isRedirecting) {
+    return (
+      <div className="mb-8 rounded-xl bg-[#F4F5FB] p-4 md:p-8">
+        <VerifyCodeForm
+          onRegisterNewVerification={registerVerification}
+          email={pendingVerification?.email ?? user.email ?? ''}
+          onVerificationCompleted={completeVerification}
+          verificationMutation={login}
+        />
+        <Button
+          onClick={resetVerification}
+          color="link"
+          className="mt-2 -ml-2 flex items-center font-normal">
+          <Trans i18nKey="signIn.verificationForm.notReceived.backButton">
+            Retour à la connexion
+          </Trans>
+        </Button>
+      </div>
+    )
+  }
+  return (
+    <SendVerificationCodeForm
+      buttonLabel={buttonLabel}
+      buttonColor={buttonColor}
+      mode={mode}
+      onCodeSent={(pendingVerification) => {
+        registerVerification(pendingVerification)
+        trackEvent(signinTrackEvent(mode))
+        trackPosthogEvent(captureClickSubmitEmail({ mode }))
+      }}
+      inputLabel={inputLabel}
+    />
+  )
+}
