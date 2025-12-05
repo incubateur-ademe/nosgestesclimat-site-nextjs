@@ -277,8 +277,6 @@ entries:
   Contactez nous afin de convenir d'un temps de démonstration de notre outil pour les organisations.: Contact us to arrange a demonstration of our tool for organisations.
   Votre code est valide !: Your code is valid!
   Renvoyer le code, désactivé pendant 30 secondes: Resend code, deactivated for 30 seconds
-  Recevoir ponctuellement par email les nouveaux services Nos Gestes Climat aux organisations: Receive occasional emails about new Nos Gestes Climat services for organisations
-  Ce champ n'est pas modifiable: This field cannot be modified
   Accueil: Home
   Exporter les données: Exporting data
   Organisations: Organisations
@@ -316,10 +314,8 @@ entries:
   Accéder au kit: Access the kit
   Partagez le test pour obtenir vos premiers résultats.: Share the test to get your first results.
   Télécharger le kit, ouvrir dans un nouvel onglet: Download the kit, open in a new tab
-  Me connecter: Connect me
   Vous pouvez utiliser vos données existantes, ou recommencer le test.: You can use your existing data, or start the test again.
   Organisez des temps d’animation et d’échanges physiques autour de Nos Gestes Climat pour fédérer et renforcer la compréhension des participants.: Organise events and physical exchanges around Nos Gestes Climat to bring people together and reinforce their understanding.
-  Oups: Oops
   Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}: See {String(group.participants.length - 5)} other{withS} participant{withS}
   Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}.lock: Voir les {String(group.participants.length - 5)} autre{withS} participant{withS}
   Vous avez déjà réalisé le test Nos Gestes Climat !: You've already taken the Nos Gestes Climat test!
@@ -342,7 +338,6 @@ entries:
   sélectionnez celles qui vous intéressent: select those that interest you
   Oups ! Une erreur est survenue.: Oops! An error has occurred.
   Empreinte: Footprint
-  Vous allez recevoir un email de notre part sous peu, qui vous permettra de la retrouver: You will receive an email from us shortly, enabling you to find it
   Annuler: Cancel
   Supprimer le groupe: Delete group
   1 minute: 1 minute
@@ -359,7 +354,6 @@ entries:
   Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personnelle: The heart of Nos Gestes Climat is **the personal climate footprint** assessment
   Lancer le calcul: Run the calculation
   Notes: Notes
-  404 - Nos Gestes Climat: 404 - Nos Gestes Climat
   Comprenez comment calculer votre empreinte sur le climat en 10min chrono.: Find out how to calculate your climate footprint in 10 minutes.
   Informations relatives au budget de Nos Gestes Climat.: Budget information for Nos Gestes Climat.
   À propos - Nos Gestes Climat: About us - Nos Gestes Climat
@@ -374,7 +368,6 @@ entries:
   Mentions légales - Nos Gestes Climat: Legal information - Nos Gestes Climat
   Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.: Find the answers to the most frequently asked questions about Nos Gestes Climat.
   Découvrez le modèle de données de notre calculateur d'empreinte climat: Discover the data model of our climate footprint simulator
-  Oups, vous êtes bien sur Nos Gestes Climat, mais cette page n'existe pas.: Oops, you are on Nos Gestes Climat, but this page does not exist.
   Découvrez les personas d'utilisateurs types qui nous servent à tester le calculateur sous toutes ses coutures.: Discover the typical user personas we use to test the simulator from every angle.
   Observez l'évolution de l'impact de Nos Gestes Climat en mesures chiffrées.: See the evolution of the impact of Nos Gestes Climat in figures.
   Conditions générales d'utilisation du site.: Terms and conditions of use of the site.
@@ -408,15 +401,12 @@ entries:
   Reprendre mon test: Resume my test
   écartez celles qui vous semblent trop ambitieuses ou déplacées.: discard those that seem too ambitious or inappropriate.
   Votre empreinte: Your footprint
-  Reconnectez vous en cliquant sur le bouton ci-dessous.: Reconnect by clicking on the button below.
-  ', vous avez été déconnecté·e de votre espace organisation, ou vous cherchez à y accéder depuis un nouveau navigateur.': you have been logged out of your organisation space, or you are trying to access it from a new browser.
   'Logo, affiches et présentations : retrouvez tous les outils pour partager Nos Gestes Climat dans ce kit.': 'Logo, posters and presentations: find all the tools you need to share Nos Gestes Climat in this kit.'
   Simulation terminée: Completed simulation
   Utiliser mes données existantes: Use my existing data
   International: International
   Diffusion: Broadcast
   Créer mon organisation: Create my organisation
-  Mettre à jour mes informations: Update my information
   Simulations terminées: Completed simulations
   Ce champ est requis.: This field is required.
   Vous pouvez vous désincrire à tout moment: You can unsubscribe at any time
@@ -523,7 +513,6 @@ entries:
   Partager mon résultat: Share my result
   de votre empreinte: your footprint
   "<0>Nos Gestes Logement</0> : informez-vous sur l'impact carbone du logement, en quelques e-mails": '<0>Our Housing Gestures</0>: find out more about the carbon impact of housing, in just a few e-mails'
-  Campagne de: Campaign for
   Un grand-père et sa petite-fille au cinéma, mangeant du pop-corn.: A grandfather and his granddaughter at the cinema, eating popcorn.
   Des enfants sortant de l'école en se tenant la main.: Children leaving school holding hands.
   Une femme préparant un bon petit plat.: A woman preparing a tasty dish.
@@ -546,7 +535,6 @@ entries:
   Vous n'avez pas encore débuté votre test,: You haven't started your test yet,
   Autres actions: Other actions
   sur: on
-  Continuer: Continue
   Et une illustration: And an illustration
   Mentions légales: Legal information
   Étape: Step
@@ -555,7 +543,6 @@ entries:
   Ce champ est obligatoire.: This field is mandatory.
   Pour le retrouver facilement dans votre liste: To find it easily in your list
   Choisissez un nom pour ce groupe: Choose a name for this group
-  Veuillez entrer une adresse email valide.: Please enter a valid email address.
   Pour faire joli et le reconnaitre !: To make it look pretty and recognisable!
   Un bonhomme se demandant où il est: A man wondering where he is
   Rien à l'horizon ! <1></1>La page recherchée n'existe pas.: Nothing on the horizon! <1></1>The page you are looking for does not exist.
@@ -564,11 +551,7 @@ entries:
   Données qualitatives: Qualitative data
   Nos Gestes Climat: Nos Gestes Climat
   'Ils relaient ': 'They relay '
-  Le code n'est pas valide.: The code is invalid.
   Vos informations ont bien été mises à jour.: Your information has been updated.
-  Vous devez valider votre changement d'adresse e-mail.: You must confirm your change of e-mail address.
-  Oups ! Une erreur s'est produite au moment d'envoyer votre code de vérification par email. Vérifiez si votre nouvel e-mail est bien valide et si le problème persiste, n'hésitez pas à <2>nous contacter</2>: Oops! An error occurred when you sent your verification code by email. Please check that your new e-mail is valid and if the problem persists, please <2>contact us</2>
-  Vous allez recevoir sous peu un e-mail de notre part contenant un <2>code de vérification</2> à entrer dans cette fenêtre.: You will shortly receive an e-mail from us containing a <2>verification code</2> to enter in this window.
   la culture du <2>coton</2> que vous portez: the <2>cotton</2> you wear
   carbone: carbon
   Découvre mes empreintes: Discover my footprints
@@ -593,14 +576,12 @@ entries:
   d'eau par jour: of water per day
   Votre région a bien été mise à jour.: Your region has been updated.
   de CO₂e par an: of CO₂e per year
-  Recevez par email un lien pour reprendre votre test plus tard.: Receive an email with a link to take your test again later.
   Liste des questions: List of questions
   Une erreur s'est produite au moment de la sauvegarde.: An error has occurred during backup.
   '{{name}}, supprimer cette participation': '{{name}}cancel this shareholding'
   Supprimer ce participant ? Cette opération est définitive.: Delete this participant? This operation is definitive.
   Une erreur est survenue: An error has occurred
   Non, merci: No, thank you
-  Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par email.: You can resume it later by clicking on the link you received by email.
   Votre test est sauvegardé !: Your test is saved!
   <0>Empreinte eau</0> moyenne: 'Average <0>water footprint</0> '
   Lire l'article: Read the article
@@ -881,7 +862,6 @@ entries:
   Votre date de naissance, rejoindre une campagne - Nos Gestes Climat: Your date of birth, join a campaign - Nos Gestes Climat
   Mes empreintes carbone et eau partagées - Nos Gestes Climat: My shared carbon and water footprints - Nos Gestes Climat
   Nos Gestes Climat, calculez votre empreinte climatique, mode intégré: Nos Gestes Climat, calculate your climate footprint, integrated mode
-  Votre email, rejoindre une campagne - Nos Gestes Climat: Your email, join a campaign - Nos Gestes Climat
   Pied de page: Footer
   Menu: Menu
   Contenu: Content
@@ -1022,14 +1002,11 @@ entries:
   'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'You can contact us via our contact page: <2></2>.'
   Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calculate your carbon and water footprint with Nos Gestes Climat
   Gestion des cookies: Cookie management
-  Entrez votre adresse email: Enter your email address
-  Veuillez renseigner un email.: Please enter an email address.
   Veuillez entrer une adresse email valide: Please enter a valid email address
   Veuillez sélectionner au moins une infolettre.: Please select at least one newsletter.
   Sélectionnez les infolettres auxquelles vous souhaitez vous inscrire: Select the newsletters you wish to subscribe to
   Télécharger le QR Code: Download the QR Code
   Comme 2 millions de personnes, mesurez votre empreinte écologique en 10 minutes. Un outil gratuit pour faire le bilan et réduire vos émissions de CO2.: Like 2 million other people, measure your ecological footprint in 10 minutes. A free tool to take stock and reduce your CO2 emissions.
-  Pour vous désinscrire, passez par le lien en bas de l'email reçu: To unsubscribe, use the link at the bottom of the email you receive
   copyInput.linkCopiedSuccess: Link successfully copied
   copyInput.linkCopiedSuccess.lock: Lien copié avec succès
   copyInput.copyError: Error copying link
@@ -1226,7 +1203,6 @@ entries:
   blog.homepage.defaultTitle.lock: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
   4 infolettres l'impact des transports: 4 newsletters the impact of transport
   5 infolettres sur l'impact du logement: 5 newsletters on the impact of housing
-  Entrez votre adresse email pour recevoir les infolettres sélectionnées.: Enter your email address to receive the selected newsletters.
   documentation.total_category_block.title: of the total, see documentation
   documentation.total_category_block.title.lock: du total, voir la documentation
   Cochez les cases correspondant aux infolettres auxquelles vous souhaitez vous inscrire.: Tick the boxes corresponding to the newsletters you wish to subscribe to.
@@ -1628,7 +1604,6 @@ entries:
   mon-espace.groups.empty.awareness.lock: Sensibiliser mon organisation
   mon-espace.groups.empty.challenge1: Challenge my friends
   mon-espace.groups.empty.challenge1.lock: Défier mes amis
-  Laissez votre email pour: Leave your email for
   sauvegarder: save
   mon-espace.groups.empty.challenge2: Challenging my family
   mon-espace.groups.empty.challenge2.lock: Challenger ma famille
@@ -1641,8 +1616,6 @@ entries:
   mon-espace.settings.userInfos.title.lock: Mes informations
   mon-espace.groups.empty.description1: Distribute a collective link
   mon-espace.groups.empty.description1.lock: Diffusez un lien collectif
-  mon-espace.groups.empty.description4: or
-  mon-espace.groups.empty.description4.lock: ou
   mon-espace.groups.empty.description2: for
   mon-espace.groups.empty.description2.lock: pour
   Mettre à jour mes abonnements: Update my subscriptions
@@ -1650,8 +1623,6 @@ entries:
   mon-espace.groups.empty.button.lock: Créer un groupe
   mon-espace.groups.empty.description3: have your friends and family take the test.
   mon-espace.groups.empty.description3.lock: faire passer le test à vos proches.
-  mon-espace.groups.empty.description5: raise awareness among the members of your organisation.
-  mon-espace.groups.empty.description5.lock: sensibilisez les membres de votre organisation.
   mon-espace.groups.empty.title: Invite your friends and family to calculate their footprint
   mon-espace.groups.empty.title.lock: Invitez votre entourage à calculer leur empreinte
   mon-espace.groups.empty.description: Free, 100% anonymous and, above all, without judgement or comparison.
@@ -1660,8 +1631,6 @@ entries:
   header.monEspace.title.lock: Mon Espace
   common.metric.choice: Choice of metric
   common.metric.choice.lock: Choix de la métrique
-  header.monEspace.titleEmail: My Space ({{email}})
-  header.monEspace.titleEmail.lock: Mon Espace ({{email}})
   header.monEspace.access: Access my space
   header.monEspace.access.lock: Accéder à mon espace
   header.monEspace.logout: Logout
@@ -1785,7 +1754,6 @@ entries:
   Mobilisez votre entourage: Involve those around you
   Invitez vos proches à passer le test: Invite your friends and family to take the test
   Créez un groupe avec vos proches et <2>lancez-vous dans un défi collectif</2> pour réduire votre empreinte. Suivez vos progrès et voyez qui parvient à réduire le plus ses émissions de carbone ou sa consommation d’eau.: Create a group with friends and family and <2>embark on a collective challenge</2> to reduce your footprint. Track your progress and see who manages to reduce their carbon emissions or water consumption the most.
-  Rejoignez le groupe <3>{{groupName}}</3> et passez le test.: Join the group <3>{{groupName}}</3> and take the test.
   mon-espace.groups.organisation.create.button: Create my organisation
   mon-espace.groups.organisation.create.button.lock: Créer mon organisation
   mon-espace.groups.organisation.create.title: Mobilising my organisation
@@ -1809,3 +1777,6 @@ entries:
   Recevoir ponctuellement par e-mail les nouveaux services Nos Gestes Climat aux organisations: Receive occasional e-mails about new Nos Gestes Climat services for organisations
   Entrez votre adresse e-mail pour recevoir les infolettres sélectionnées.: Enter your e-mail address to receive the selected newsletters.
   Pour vous désinscrire, passez par le lien en bas de l'e-mail reçu: To unsubscribe, use the link at the bottom of the e-mail you receive
+  auth.verifyemail: Check my email address
+  auth.verifyemail.lock: Vérifier mon adresse email
+  Rejoignez le groupe <2>{group?.name}</2> et passez le test.: Join the <2>{group?.name}</2> group and take the test.
