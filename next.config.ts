@@ -98,7 +98,6 @@ const sentryConfig = {
   ignore: ['node_modules', '.next', 'cypress'],
 }
 
-module.exports =
-  process.env.NODE_ENV !== 'development'
-    ? withSentryConfig(withMDX(nextConfig), sentryConfig)
-    : withMDX(nextConfig)
+export default process.env.NODE_ENV !== 'development'
+  ? withSentryConfig(withMDX(nextConfig), sentryConfig)
+  : withMDX(nextConfig)

@@ -12,7 +12,7 @@ function isI18n(response: NextResponse): boolean {
   return response.headers.has('x-next-i18n-router-locale')
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const middlewareResponse = i18nMiddleware(request)
 
   if (
