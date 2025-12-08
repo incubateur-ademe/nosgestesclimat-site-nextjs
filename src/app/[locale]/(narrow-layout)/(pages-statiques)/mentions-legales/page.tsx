@@ -309,7 +309,7 @@ export default function MentionsLegalesPage() {
         Le site est protégé par un certificat électronique, matérialisé pour la
         grande majorité des navigateurs par un cadenas. Cette protection
         participe à la confidentialité des échanges. En aucun cas les services
-        associés à la plateforme ne seront à l’origine d’envoi d'emails pour
+        associés à la plateforme ne seront à l’origine d’envoi d'e-mails pour
         demander la saisie d’informations personnelles.
       </p>
       <h2>11. Votre attention</h2>

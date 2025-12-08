@@ -15,7 +15,6 @@ import {
 } from '@/constants/forms/newsletters'
 import { subscribeToNewsletterBlog } from '@/constants/tracking/pages/newsletter'
 import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
-import { getIsUserVerified } from '@/helpers/user/getIsVerified'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -66,7 +65,11 @@ function SuccessMessage() {
   )
 }
 
-export default function NewslettersBlock() {
+export default function NewslettersBlock({
+  isAuthenticated = false,
+}: {
+  isAuthenticated: boolean
+}) {
   const [isNewsletterError, setIsNewsletterError] = useState(false)
   const { data: mainNewsletter } = useMainNewsletter()
 
@@ -75,9 +78,6 @@ export default function NewslettersBlock() {
   const locale = useLocale()
 
   const { user, updateEmail } = useUser()
-
-  // TODO : replace this with a proper check by calling the backend
-  const isVerified = getIsUserVerified()
 
   const {
     data: newsletterSubscriptions,
@@ -261,13 +261,13 @@ export default function NewslettersBlock() {
                       </p>
                     }
                     disabled={
-                      !isVerified && !!getValues(SEASONAL_NEWSLETTER_LABEL)
+                      !isAuthenticated && !!getValues(SEASONAL_NEWSLETTER_LABEL)
                     }
                     {...register(SEASONAL_NEWSLETTER_LABEL)}
                     error={errors[SEASONAL_NEWSLETTER_LABEL]?.message}
                     data-testid="newsletter-saisonniere-checkbox"
                     aria-describedby={
-                      !isVerified && !!getValues(SEASONAL_NEWSLETTER_LABEL)
+                      !isAuthenticated && !!getValues(SEASONAL_NEWSLETTER_LABEL)
                         ? 'verification-required'
                         : undefined
                     }
@@ -283,13 +283,15 @@ export default function NewslettersBlock() {
                       </p>
                     }
                     disabled={
-                      !isVerified && !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
+                      !isAuthenticated &&
+                      !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
                     }
                     {...register(TRANSPORTS_NEWSLETTER_LABEL)}
                     error={errors[TRANSPORTS_NEWSLETTER_LABEL]?.message}
                     data-testid="newsletter-transports-checkbox"
                     aria-describedby={
-                      !isVerified && !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
+                      !isAuthenticated &&
+                      !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
                         ? 'verification-required'
                         : undefined
                     }
@@ -305,13 +307,13 @@ export default function NewslettersBlock() {
                       </p>
                     }
                     disabled={
-                      !isVerified && !!getValues(LOGEMENT_NEWSLETTER_LABEL)
+                      !isAuthenticated && !!getValues(LOGEMENT_NEWSLETTER_LABEL)
                     }
                     {...register(LOGEMENT_NEWSLETTER_LABEL)}
                     error={errors[LOGEMENT_NEWSLETTER_LABEL]?.message}
                     data-testid="newsletter-logement-checkbox"
                     aria-describedby={
-                      !isVerified && !!getValues(LOGEMENT_NEWSLETTER_LABEL)
+                      !isAuthenticated && !!getValues(LOGEMENT_NEWSLETTER_LABEL)
                         ? 'verification-required'
                         : undefined
                     }
@@ -344,13 +346,13 @@ export default function NewslettersBlock() {
                     <EmailInput
                       value={user?.email || ''}
                       {...register('email', {
-                        required: t('Veuillez renseigner un email.'),
+                        required: t('Veuillez renseigner un e-mail.'),
                       })}
                       title={t(
                         'common.inputs.email.label',
                         'Entrez votre adresse e-mail'
                       )}
-                      aria-label={t('Entrez votre adresse email')}
+                      aria-label={t('Entrez votre adresse e-mail')}
                       aria-required="true"
                       aria-invalid={errors.email ? 'true' : 'false'}
                       aria-describedby={
@@ -374,8 +376,8 @@ export default function NewslettersBlock() {
 
                     <p id="email-help" className="sr-only">
                       <Trans>
-                        Entrez votre adresse email pour recevoir les infolettres
-                        sélectionnées.
+                        Entrez votre adresse e-mail pour recevoir les
+                        infolettres sélectionnées.
                       </Trans>
                     </p>
 

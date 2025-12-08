@@ -5,7 +5,10 @@ import CountryFlag from '@/components/misc/CountryFlag'
 import { LOCALISATION_BANNER_ID } from '@/constants/ids'
 import { defaultModelRegionCode } from '@/constants/localisation/translation'
 import { trackingClickRegionBanner } from '@/constants/tracking/misc'
-import { SIMULATOR_PATH } from '@/constants/urls/paths'
+import {
+  MON_ESPACE_SETTINGS_PATH,
+  SIMULATOR_PATH,
+} from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
 import Card from '@/design-system/layout/Card'
 import { useIframe } from '@/hooks/useIframe'
@@ -53,7 +56,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
   if (code === defaultModelRegionCode) return null
 
-  if (pathname === '/profil') return null
+  if (pathname === MON_ESPACE_SETTINGS_PATH) return null
 
   return (
     <Card
@@ -120,7 +123,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
           <p>
             <small>
-              <Link href="/profil">
+              <Link href={MON_ESPACE_SETTINGS_PATH}>
                 <Trans>Choisissez une région parmi celles disponibles !</Trans>
               </Link>
             </small>

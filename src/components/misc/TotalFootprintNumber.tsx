@@ -29,8 +29,6 @@ export default function TotalFootprintNumber({
 
   const pathname = usePathname()
 
-  const isOnActionsPage = pathname.includes('/actions')
-
   const { isInitialized } = useEngine()
 
   const { numericValue: totalFootprintValue } = useRule('bilan', metric)
@@ -51,12 +49,7 @@ export default function TotalFootprintNumber({
   )
 
   const shouldDisplayTotalWithoutActions =
-    isOnActionsPage && totalFootprintValue !== totalFootprintValueMinusActions
-
-  // Only display the difference between the total footprint and the actions if the user is on the actions page
-  const result = isOnActionsPage
-    ? formattedValueMinusActions
-    : formatedTotalFootprintValue
+    totalFootprintValue !== totalFootprintValueMinusActions
 
   return (
     <div
@@ -78,7 +71,7 @@ export default function TotalFootprintNumber({
             'block text-lg leading-0! font-black md:text-2xl',
             size === 'lg' && 'text-xl md:text-4xl'
           )}>
-          {result}{' '}
+          {formattedValueMinusActions}{' '}
           <span
             className={twMerge(
               'text-xs font-medium',

@@ -5,6 +5,7 @@ import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
 import { endClickPoll } from '@/constants/tracking/pages/end'
+import { MON_ESPACE_GROUPS_PATH } from '@/constants/urls/paths'
 import Confirmation from '@/design-system/alerts/Confirmation'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
@@ -53,8 +54,8 @@ export default function Poll() {
           Oups ! Une erreur s'est produite au moment de récupérer les
           informations de votre campagne. Vous pouvez la retrouver depuis{' '}
         </Trans>
-        <Link href="/classements">
-          <Trans>la page classement</Trans>
+        <Link href={MON_ESPACE_GROUPS_PATH}>
+          <Trans>la page groupes</Trans>
         </Link>
       </DefaultErrorAlert>
     )

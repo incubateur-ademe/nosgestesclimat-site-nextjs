@@ -1,12 +1,18 @@
 import StepsDisplay from '@/components/groups/StepsDisplay'
 import { linkToGroupCreation } from '@/constants/group'
 import { amisCreationVotreGroupeRetour } from '@/constants/tracking/pages/amisCreation'
+import { MON_ESPACE_RESULTS_PATH } from '@/constants/urls/paths'
 import GoBackLink from '@/design-system/inputs/GoBackLink'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
+import {
+  getCompleteUser,
+  isUserAuthenticated,
+} from '@/helpers/server/model/user'
 import type { DefaultPageProps } from '@/types'
+import { redirect } from 'next/navigation'
 import NameForm from './_components/NameForm'
 
 export const generateMetadata = getCommonMetadata({
@@ -21,13 +27,17 @@ export const generateMetadata = getCommonMetadata({
 
 export default async function GroupNamePage({ params }: DefaultPageProps) {
   const { locale } = await params
+  if (!(await isUserAuthenticated())) {
+    redirect('/amis/creer/vos-informations')
+  }
   const { t } = await getServerTranslation({ locale })
+  const user = await getCompleteUser()
 
   return (
     <div className="pb-8">
       <GoBackLink
         className="mb-4 font-bold"
-        href={linkToGroupCreation}
+        href={MON_ESPACE_RESULTS_PATH}
         eventTracked={amisCreationVotreGroupeRetour}
       />
 
@@ -35,12 +45,10 @@ export default async function GroupNamePage({ params }: DefaultPageProps) {
 
       <Title
         title={t("Créer un groupe d'amis")}
-        subtitle={t(
-          'Comparez vos résultats avec votre famille ou un groupe d’amis'
-        )}
+        subtitle={t('Invitez vos proches à passer le test')}
       />
 
-      <NameForm />
+      <NameForm user={user} />
     </div>
   )
 }

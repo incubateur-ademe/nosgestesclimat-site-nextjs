@@ -14,6 +14,11 @@ import PartnerPage from '../page'
 
 const mockNotFound = vi.mocked(notFound)
 
+vi.mock('@/components/layout/HeaderServer', () => ({
+  __esModule: true,
+  default: vi.fn(() => null),
+}))
+
 describe('PartnerPage', () => {
   const defaultSearchParams = Promise.resolve({
     [PARTNER_KEY]: PARTNER_JAGIS,

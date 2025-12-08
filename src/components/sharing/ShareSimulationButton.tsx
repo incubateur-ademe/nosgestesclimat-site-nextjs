@@ -1,5 +1,6 @@
 'use client'
 
+import { clickShareSimulationButton } from '@/constants/tracking/user-account'
 import {
   FACEBOOK_SHARE_URL,
   LINKEDIN_SHARE_URL,
@@ -9,18 +10,32 @@ import {
 import Share from '@/design-system/sharing/Share'
 import { getShareTrackEvent } from '@/helpers/tracking/share'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import FacebookIcon from '../icons/share/FacebookIcon'
 import LinkedinIcon from '../icons/share/LinkedinIcon'
 import MailIcon from '../icons/share/MailIcon'
 import MessengerIcon from '../icons/share/MessengerIcon'
 import WhatsappIcon from '../icons/share/WhatsappIcon'
 
-export default function ShareSimulationButton({ url }: { url: string }) {
+export default function ShareSimulationButton({
+  url,
+  buttonLabel,
+  buttonColor,
+  shouldHideTextOnMobile = true,
+}: {
+  url: string
+  buttonLabel?: string
+  buttonColor?: 'primary' | 'secondary' | 'text' | 'borderless'
+  shouldHideTextOnMobile?: boolean
+}) {
   const { t } = useClientTranslation()
 
   return (
     <Share
-      buttonLabel={t('Partager')}
+      onClick={() => trackEvent(clickShareSimulationButton)}
+      buttonLabel={buttonLabel ?? t('Partager')}
+      buttonColor={buttonColor ?? 'text'}
+      shouldHideTextOnMobile={shouldHideTextOnMobile}
       modalTitle={t('Partager le simulateur')}
       modalDescription={t(
         'Envoyez le simulateur à vos proches et faites votre 1ère bonne action !'
