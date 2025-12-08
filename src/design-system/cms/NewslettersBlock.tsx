@@ -25,9 +25,10 @@ import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { isEmailValid } from '@/utils/isEmailValid'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
+import { twMerge } from 'tailwind-merge'
 import Button from '../buttons/Button'
 import CheckboxInput from '../inputs/CheckboxInput'
 import EmailInput from '../inputs/EmailInput'
@@ -67,8 +68,12 @@ function SuccessMessage() {
 
 export default function NewslettersBlock({
   isAuthenticated = false,
+  className,
+  title,
 }: {
   isAuthenticated: boolean
+  className?: string
+  title?: string | ReactNode
 }) {
   const [isNewsletterError, setIsNewsletterError] = useState(false)
   const { data: mainNewsletter } = useMainNewsletter()
@@ -194,7 +199,10 @@ export default function NewslettersBlock({
 
   return (
     <section
-      className="rainbow-border w-full rounded-xl bg-white p-8 md:w-4/6"
+      className={twMerge(
+        'rainbow-border w-full rounded-xl bg-white p-8 md:w-4/6',
+        className
+      )}
       aria-labelledby="newsletter-title"
       aria-describedby="newsletter-description">
       {isFetchingNewsletterSubscriptions && <BlockSkeleton />}
@@ -207,9 +215,11 @@ export default function NewslettersBlock({
             <h2
               id="newsletter-title"
               className="mb-2 text-lg font-semibold text-gray-900">
-              <Trans>
-                Vous souhaitez recevoir nos derniers articles directement ?
-              </Trans>
+              {title ?? (
+                <Trans>
+                  Vous souhaitez recevoir nos derniers articles directement ?
+                </Trans>
+              )}
             </h2>
 
             <p
