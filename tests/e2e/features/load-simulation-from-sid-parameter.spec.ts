@@ -19,6 +19,8 @@ test.describe('Loading the simulation from the sid parameter', () => {
     test.beforeEach(async ({ page }) => {
       await page.goto('/tutoriel')
 
+      await page.waitForLoadState('networkidle')
+
       await dismissCookieBanner(page)
 
       await page.locator(`[data-cypress-id="${SKIP_TUTORIAL_BUTTON}"]`).click()
