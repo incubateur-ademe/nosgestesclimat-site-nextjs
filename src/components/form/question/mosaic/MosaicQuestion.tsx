@@ -2,6 +2,7 @@
 
 import { questionChooseAnswer } from '@/constants/tracking/question'
 import { useRule } from '@/publicodes-state'
+import { IS_NUMBER_MOSAIC_WITHOUT_BUTTONS } from '@/publicodes-state/constants/questions'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Evaluation } from 'publicodes'
@@ -29,26 +30,11 @@ export default function MosaicQuestion({
   const { type, parent, situationValue } = useRule(question)
 
   const { title, icons, description } = useRule(parent)
+
   const maybeIdFirstInput = { ...(index === 0 ? { id: firstInputId } : {}) }
 
-  if (
-    parentMosaic === 'transport . avion . vols annuels' ||
-    parentMosaic === 'transport . avion . vols amortis'
-  )
-    return (
-      <MosaicNumberInputWithoutButtons
-        question={question}
-        title={title}
-        icons={icons}
-        description={description}
-        parentMosaic={parentMosaic}
-        index={index}
-        value={value as number}
-        setValue={(value) => setValue(question, value)}
-        situationValue={situationValue as Evaluation<number>}
-        {...maybeIdFirstInput}
-      />
-    )
+  const shouldContainButtons =
+    !IS_NUMBER_MOSAIC_WITHOUT_BUTTONS.has(parentMosaic)
 
   return (
     <>
@@ -63,6 +49,7 @@ export default function MosaicQuestion({
           value={value}
           setValue={(value) => setValue(question, value)}
           situationValue={situationValue as Evaluation<number>}
+          shouldContainButtons={shouldContainButtons}
           {...maybeIdFirstInput}
         />
       )}
