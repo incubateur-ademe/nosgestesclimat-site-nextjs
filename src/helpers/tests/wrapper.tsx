@@ -112,7 +112,7 @@ const TestWrapper = ({
 
   if (providers.engine) {
     wrapped = (
-      <EngineProviders supportedRegions={getSupportedRegions()} isOptim={false}>
+      <EngineProviders supportedRegions={getSupportedRegions()}>
         {wrapped}
       </EngineProviders>
     )

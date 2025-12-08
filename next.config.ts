@@ -96,7 +96,7 @@ const sentryConfig = {
   authToken: process.env.SENTRY_AUTH_TOKEN,
 
   // Upload a larger set of source maps for prettier stack traces (increases build time)
-  widenClientFileUpload: false,
+  widenClientFileUpload: process.env.NODE_ENV !== 'development',
 
   // Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
   tunnelRoute: '/monitoring',
