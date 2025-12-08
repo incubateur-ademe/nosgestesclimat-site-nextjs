@@ -65,11 +65,16 @@ const nextConfig: NextConfig = {
         loaders: ['@svgr/webpack'],
         as: '*.js',
       },
+      '*.mdx': {
+        loaders: ['@mdx-js/loader'],
+        as: '*.js',
+      },
     },
   },
   experimental: {
     optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
     webpackBuildWorker: true,
+    mdxRs: true,
   },
 }
 

@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,7 +23,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     },
     "forceConsistentCasingInFileNames": true
   },
@@ -32,5 +38,10 @@
     "next.config.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules", "cypress/**/*", "scripts/**/*", ".next/**/*"]
+  "exclude": [
+    "node_modules",
+    "cypress/**/*",
+    "scripts/**/*",
+    ".next/**/*"
+  ]
 }
