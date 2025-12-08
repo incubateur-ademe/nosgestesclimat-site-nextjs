@@ -33,6 +33,9 @@ test.describe('Loading the simulation from the sid parameter', () => {
       await click(page, BACK_BUTTON)
 
       // Enter the email
+      await expect(
+        page.locator(`[data-cypress-id="${SAVE_MODAL_EMAIL_INPUT}"]`)
+      ).toBeVisible()
       await type(page, SAVE_MODAL_EMAIL_INPUT, 'test@test2002.com')
       await click(page, SAVE_MODAL_SUBMIT_BUTTON)
 
