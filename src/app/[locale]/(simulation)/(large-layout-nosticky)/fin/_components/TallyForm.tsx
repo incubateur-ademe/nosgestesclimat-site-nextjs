@@ -13,7 +13,7 @@ import { useEffect, useRef } from 'react'
 declare global {
   interface Window {
     Tally?: {
-      openPopup: (
+      openPopup?: (
         formId: string,
         options: {
           emoji?: {
@@ -57,7 +57,7 @@ export default function TallyForm() {
   }, [isIframe])
 
   const handleOpenForm = () => {
-    if (!window.Tally) return
+    if (!window.Tally || !window.Tally.openPopup) return
 
     window.Tally.openPopup(FORM_ID, {})
     safeLocalStorage.setItem(TALLY_SEEN_KEY, 'true')
