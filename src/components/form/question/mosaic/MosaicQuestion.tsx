@@ -5,10 +5,8 @@ import { useRule } from '@/publicodes-state'
 import { IS_NUMBER_MOSAIC_WITHOUT_BUTTONS } from '@/publicodes-state/constants/questions'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import type { Evaluation } from 'publicodes'
 import MosaicBooleanInput from './mosaicQuestion/MosaicBooleanInput'
 import MosaicNumberInput from './mosaicQuestion/MosaicNumberInput'
-import MosaicNumberInputWithoutButtons from './mosaicQuestion/MosaicNumberInputWithoutButtons'
 
 type Props = {
   question: DottedName
@@ -16,7 +14,10 @@ type Props = {
   index: number
   firstInputId: string
   value: number | boolean | undefined | null
-  setValue: (dottedName: DottedName, value: number | boolean) => void
+  setValue: (
+    dottedName: DottedName,
+    value: number | boolean | undefined
+  ) => void
 }
 
 export default function MosaicQuestion({
@@ -27,7 +28,7 @@ export default function MosaicQuestion({
   setValue,
   firstInputId,
 }: Props) {
-  const { type, parent, situationValue } = useRule(question)
+  const { type, parent } = useRule(question)
 
   const { title, icons, description } = useRule(parent)
 
@@ -48,7 +49,6 @@ export default function MosaicQuestion({
           index={index}
           value={value}
           setValue={(value) => setValue(question, value)}
-          situationValue={situationValue as Evaluation<number>}
           shouldContainButtons={shouldContainButtons}
           {...maybeIdFirstInput}
         />
