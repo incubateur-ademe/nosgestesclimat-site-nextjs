@@ -12,7 +12,7 @@ import { useEffect, useRef } from 'react'
 
 declare global {
   interface Window {
-    Tally: {
+    Tally?: {
       openPopup: (
         formId: string,
         options: {
@@ -57,6 +57,8 @@ export default function TallyForm() {
   }, [isIframe])
 
   const handleOpenForm = () => {
+    if (!window.Tally) return
+
     window.Tally.openPopup(FORM_ID, {})
     safeLocalStorage.setItem(TALLY_SEEN_KEY, 'true')
   }
