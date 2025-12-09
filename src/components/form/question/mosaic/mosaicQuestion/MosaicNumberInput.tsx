@@ -4,12 +4,14 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import RawMosaicNumberInput from './RawMosaicNumberInput'
+
 type Props = {
   question: DottedName
   title?: string
   icons?: string
   description?: string
-  setValue: (value: number) => void
+  setValue: (value: number | undefined) => void
   index: number
   value: number | undefined | null
   parentMosaic: string
@@ -25,7 +27,7 @@ export default function MosaicNumberInput({
   value,
   parentMosaic,
 }: Props) {
-  const { plafond } = useRule(question)
+  const { plafond, unit } = useRule(question)
 
   const { t } = useClientTranslation()
 
@@ -69,13 +71,9 @@ export default function MosaicNumberInput({
           className="z-10 h-8 w-8 items-center justify-center p-0">
           <span className="mb-[1px] block">-</span>
         </Button>
-        <input
-          className="focus-within:border-primary-700 focus-within:ring-primary-700 w-8 rounded-sm text-center ring-offset-2 focus-within:ring-2 focus-visible:outline-none"
-          type="number"
-          inputMode="numeric"
-          value={value === null ? 0 : value}
-          placeholder={'_'}
-          onChange={(event) => setValue(Number(event.target.value))}
+        <RawMosaicNumberInput
+          value={value}
+          setValue={setValue}
           data-cypress-id={`${question}---${parentMosaic}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
         />
