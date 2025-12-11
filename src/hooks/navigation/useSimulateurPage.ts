@@ -64,12 +64,16 @@ export function useSimulateurPage() {
 
       // If the user has seen the tutoriel we redirect him to the test
       if (tutorielSeen) {
-        router.replace(
-          getLinkToSimulateur({
-            locale,
-            searchParams,
-          })
-        )
+        // @TODO: remove this timeout when we have cleaner way to resolve bug
+        // that prevents the navigation from /infos/commencer to /simulateur/bilan
+        setTimeout(() => {
+          router.replace(
+            getLinkToSimulateur({
+              locale,
+              searchParams,
+            })
+          )
+        }, 1)
         return
       }
 
