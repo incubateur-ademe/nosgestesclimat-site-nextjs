@@ -28,7 +28,7 @@ export default function UpdateSimulationUsed({ group, refetchGroup }: Props) {
   >(undefined)
 
   const {
-    user: { userId, name, email },
+    user: { userId, email },
     simulations,
   } = useUser()
 
@@ -66,7 +66,7 @@ export default function UpdateSimulationUsed({ group, refetchGroup }: Props) {
           email,
           simulation: latestSimulation,
           userId,
-          name,
+          name: group.participants.find((p) => p.userId === userId)?.name ?? '',
         })
 
         setIsUpdated(true)
@@ -83,7 +83,7 @@ export default function UpdateSimulationUsed({ group, refetchGroup }: Props) {
     latestSimulation.computedResults.carbone.bilan,
     {
       t,
-      localize: false,
+      localize: true,
     }
   )
 
