@@ -12,7 +12,7 @@ function isI18n(response: NextResponse): boolean {
   return response.headers.has('x-next-i18n-router-locale')
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const middlewareResponse = i18nMiddleware(request)
 
   if (
@@ -44,10 +44,6 @@ export const config = {
     {
       source:
         '/((?!api|_next/static|_next/image|favicon.ico|favicon.png|images|manifest.webmanifest|scripts|demos|misc|videos|robots.txt|datashare).*)',
-      missing: [
-        { type: 'header', key: 'next-router-prefetch' },
-        { type: 'header', key: 'purpose', value: 'prefetch' },
-      ],
     },
   ],
 }
