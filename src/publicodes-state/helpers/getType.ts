@@ -1,7 +1,7 @@
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import type { EvaluatedNode } from 'publicodes'
 
-type Props = {
+interface Props {
   dottedName: DottedName
   rule: NGCRuleNode | undefined
   evaluation: EvaluatedNode | null

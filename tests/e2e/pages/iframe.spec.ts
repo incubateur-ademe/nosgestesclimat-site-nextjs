@@ -5,7 +5,7 @@ test.describe('Our iframe demo', () => {
     await page.goto('/demo-iframe.html')
   })
 
-  test('displays the iframe correctly', async ({ page }) => {
+  test('displays the iframe correctly', ({ page }) => {
     const iframe = page.frameLocator('iframe').first()
     expect(iframe.locator('[data-cypress-id="do-the-test-link"]')).toBeDefined()
   })
@@ -16,7 +16,7 @@ test.describe('Our iframe simulation demo', () => {
     await page.goto('/demo-iframeSimulation.html')
   })
 
-  test('displays the iframe correctly', async ({ page }) => {
+  test('displays the iframe correctly', ({ page }) => {
     const iframe = page.frameLocator('iframe').first()
     expect(
       iframe.locator('[data-cypress-id="skip-tutorial-button"]')

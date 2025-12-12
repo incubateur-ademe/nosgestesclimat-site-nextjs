@@ -5,7 +5,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import { useContext } from 'react'
 
-export default function ButtonLaunch({ locale }: { locale: string }) {
+export default function ButtonLaunch() {
   const { setIsDocumentationClient } = useContext(IsDocumentationClientContext)
 
   return (

@@ -13,7 +13,7 @@ import Image from 'next/image'
 import { useParams } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   hasNoPollsYet?: boolean
 }
 

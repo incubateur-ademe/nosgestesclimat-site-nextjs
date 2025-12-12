@@ -34,7 +34,7 @@ describe('Share component', () => {
     render(<Share {...mockProps} />)
 
     // Then
-    expect(screen.getByTestId('share-button'))
+    expect(screen.getByTestId('share-button')).toBeInTheDocument()
   })
 
   it('should display a modal window upon click on the share button', async () => {
@@ -45,7 +45,7 @@ describe('Share component', () => {
     await userEvent.click(screen.getByTestId('share-button'))
 
     // Then
-    expect(screen.getByTestId('modal-element'))
+    expect(screen.getByTestId('modal-element')).toBeInTheDocument()
   })
 
   it('should share the shared url to network page', async () => {

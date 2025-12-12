@@ -12,7 +12,7 @@ import {
   type PropsWithChildren,
 } from 'react'
 
-type CookieConsentContextType = {
+interface CookieConsentContextType {
   cookieConsent?: CookieChoice
   cookieCustomChoice?: CookieConsentChoices
   triggerConsentDetection: () => void
@@ -51,7 +51,7 @@ export const CookieConsentProvider = ({ children }: PropsWithChildren) => {
       try {
         customChoiceFromStorage = JSON.parse(customChoiceFromStorage)
         setCookieCustomChoice(customChoiceFromStorage)
-      } catch (e) {
+      } catch {
         // Do nothing, JSON is invalid
       }
     }

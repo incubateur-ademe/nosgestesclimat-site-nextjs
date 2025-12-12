@@ -5,7 +5,7 @@ import type { Situation } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 
-type Props = {
+interface Props {
   dottedName: DottedName
   questionsOfMosaicFromParent?: DottedName[]
   situation: Situation
@@ -29,7 +29,7 @@ export default function useMissing({
   )
 
   const isFolded = useMemo(
-    () => foldedSteps.indexOf(dottedName) >= 0,
+    () => foldedSteps.includes(dottedName),
     [dottedName, foldedSteps]
   )
 

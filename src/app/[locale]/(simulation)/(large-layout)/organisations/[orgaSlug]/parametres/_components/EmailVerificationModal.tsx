@@ -6,7 +6,7 @@ import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 
-type Props = {
+interface Props {
   closeModal: () => void
   onSubmit: (verificationCode: string) => void
   error: Error | null

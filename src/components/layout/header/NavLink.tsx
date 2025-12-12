@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation'
 import type { HTMLAttributes, JSX, PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   href: string
   shouldUseDefaultLink?: boolean
   activeMatches?: string[]

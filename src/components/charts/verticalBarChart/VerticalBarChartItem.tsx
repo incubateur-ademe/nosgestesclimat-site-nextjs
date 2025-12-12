@@ -6,7 +6,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprint'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   value: string
   index: number
   percentage: number

@@ -15,7 +15,7 @@ import { twMerge } from 'tailwind-merge'
 
 const colorClassName = ['200', '100', '50']
 
-type Props = {
+interface Props {
   action: DottedName
   index: number
   metric?: Metric

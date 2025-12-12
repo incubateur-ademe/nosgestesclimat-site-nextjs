@@ -10,7 +10,7 @@ import { twMerge } from 'tailwind-merge'
 import TargetQuestions from './carboneTargetContent/AdditionalQuestions'
 import TargetChart from './carboneTargetContent/TargetChart'
 
-type Props = {
+interface Props {
   isOpen: boolean
   isHedgehog: boolean
 }

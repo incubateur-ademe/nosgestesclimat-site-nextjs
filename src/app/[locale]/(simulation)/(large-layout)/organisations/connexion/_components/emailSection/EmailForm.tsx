@@ -11,7 +11,7 @@ import { formatEmail } from '@/utils/format/formatEmail'
 import { isEmailValid } from '@/utils/isEmailValid'
 import { useForm } from 'react-hook-form'
 
-type FormData = {
+interface FormData {
   email: string
 }
 

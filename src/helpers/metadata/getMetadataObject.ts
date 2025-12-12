@@ -1,7 +1,7 @@
 import { noIndexObject } from '@/constants/metadata'
 import i18nConfig from '@/i18nConfig'
 
-type Props = {
+interface Props {
   locale: string
   title?: string
   description: string

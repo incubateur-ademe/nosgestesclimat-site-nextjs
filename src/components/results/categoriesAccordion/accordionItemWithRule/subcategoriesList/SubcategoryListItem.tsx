@@ -8,7 +8,11 @@ import { useRule } from '@/publicodes-state'
 import type { Metric } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
-type Props = { subcategory: DottedName; categoryValue: number; metric?: Metric }
+interface Props {
+  subcategory: DottedName
+  categoryValue: number
+  metric?: Metric
+}
 
 export default function SubcategoryListItem({
   subcategory,

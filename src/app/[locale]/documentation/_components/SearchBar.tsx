@@ -4,23 +4,27 @@ import TextInput from '@/design-system/inputs/TextInput'
 import Card from '@/design-system/layout/Card'
 import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import type {
+  DottedName,
+  NGCRule,
+  NGCRules,
+} from '@incubateur-ademe/nosgestesclimat'
 import Fuse, { type FuseResult } from 'fuse.js'
 import { utils } from 'publicodes'
 import { type ChangeEvent, useEffect, useMemo, useRef, useState } from 'react'
 import RuleListItem from './RuleListIem'
 
-export type SearchItem = {
+export interface SearchItem {
   title: string
   dottedName: DottedName
-  espace: Array<string>
+  espace: string[]
 }
 
-export type Matches = Array<{
+export type Matches = {
   key: string
   value: string
-  indices: Array<[number, number]>
-}>
+  indices: [number, number][]
+}[]
 
 const searchWeights = [
   {
@@ -40,19 +44,20 @@ export default function SearchBar({ rules }: { rules: Partial<NGCRules> }) {
   const searchInputRef = useRef<HTMLInputElement>(null)
   const resultsListRef = useRef<HTMLUListElement>(null)
 
-  const rulesList: any[] = Object.entries(rules).map(([dottedName, rule]) => ({
+  const rulesList: (NGCRule & { dottedName: DottedName })[] = Object.entries(
+    rules
+  ).map(([dottedName, rule]) => ({
     ...rule,
-    dottedName,
+    dottedName: dottedName as DottedName,
   }))
 
-  const searchIndex: Array<SearchItem> = useMemo(
+  const searchIndex: SearchItem[] = useMemo(
     () =>
       Object.values(rulesList)
         .filter(utils.ruleWithDedicatedDocumentationPage)
         .map((rule) => ({
           title:
-            getRuleTitle(rule as any) +
-            (rule.acronyme ? ` (${rule.acronyme})` : ''),
+            getRuleTitle(rule) + (rule.acronyme ? ` (${rule.acronyme})` : ''),
           dottedName: rule.dottedName,
           espace: rule.dottedName.split(' . ').reverse(),
         })),

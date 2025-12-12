@@ -8,10 +8,11 @@ import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useDebug } from '@/hooks/useDebug'
 import { useFormState } from '@/publicodes-state'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 import Question from './summary/Question'
 
-type Props = {
+interface Props {
   toggleQuestionList: () => void
   isQuestionListOpen: boolean
 }
@@ -51,7 +52,7 @@ export default function Summary({
             </span>
           </Button>
         </div>
-        {relevantQuestions.map((question: any, index: number) => (
+        {relevantQuestions.map((question: DottedName, index: number) => (
           <Question
             key={question}
             question={question}

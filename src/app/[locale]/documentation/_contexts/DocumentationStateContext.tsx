@@ -2,7 +2,7 @@
 
 import { createContext, useState } from 'react'
 
-type IsDocumentationClientContextType = {
+interface IsDocumentationClientContextType {
   isDocumentationClient: boolean
   setIsDocumentationClient: (isDocumentationClient: boolean) => void
 }

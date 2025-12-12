@@ -5,7 +5,7 @@ import type { SafeEvaluate, Situation } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 
-type Props = {
+interface Props {
   dottedName: DottedName
   everyNotifications: DottedName[]
   safeEvaluate: SafeEvaluate

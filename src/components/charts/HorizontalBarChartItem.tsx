@@ -2,7 +2,7 @@ import BarChart from '@/design-system/utils/BarChart'
 import Emoji from '@/design-system/utils/Emoji'
 import type { ReactNode } from 'react'
 
-type Props = {
+interface Props {
   title?: string
   icons?: string
   displayValue: ReactNode

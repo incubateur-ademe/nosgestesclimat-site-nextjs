@@ -15,7 +15,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
 import Question from './subcategory/Question'
 
-type Props = {
+interface Props {
   subcategory: DottedName
 }
 

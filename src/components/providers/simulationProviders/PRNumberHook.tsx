@@ -6,7 +6,7 @@
 import { usePRNumber } from '@/hooks/usePRNumber'
 import { useEffect } from 'react'
 
-type Props = {
+interface Props {
   setPRNumber: (PRNumber: string) => void
 }
 

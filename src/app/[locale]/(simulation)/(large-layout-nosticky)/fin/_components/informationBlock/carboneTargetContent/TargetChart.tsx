@@ -8,7 +8,7 @@ import { useRule } from '@/publicodes-state'
 import { motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   isQuestionOpen: boolean
 }
 

@@ -1,17 +1,12 @@
 'use client'
 
-import { carboneMetric } from '@/constants/model/metric'
 import { useCurrentSimulation, useEngine } from '@/publicodes-state'
 import getSomme from '@/publicodes-state/helpers/getSomme'
-import type { Metric } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { captureException } from '@sentry/nextjs'
 import { useMemo } from 'react'
 
-type Props = {
-  metric: Metric
-}
-type ActionObject = {
+interface ActionObject {
   dottedName: DottedName
   value: number
 }
@@ -20,9 +15,7 @@ type ActionObject = {
  *
  * Not really used for now but will be essential when we redo the actions page
  */
-export default function useActions(
-  { metric }: Props = { metric: carboneMetric }
-) {
+export default function useActions() {
   const { getNumericValue, engine } = useEngine()
 
   const { actionChoices } = useCurrentSimulation()
@@ -54,7 +47,7 @@ export default function useActions(
   const { chosenActions, declinedActions } =
     Object.keys(actionChoices ?? {}).reduce(
       (accActions, currentAction) => {
-        const actionChoice = actionChoices[currentAction]
+        const actionChoice = actionChoices[currentAction as DottedName]
 
         if (actionChoice) {
           {

@@ -4,7 +4,7 @@ import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
 import { useMemo } from 'react'
 
-type Props = {
+interface Props {
   engine?: Engine
   root: DottedName
 }
@@ -72,7 +72,7 @@ export function useRules({ engine, root }: Props) {
           if (!mosaicRule.rawNode.mosaique) {
             return accumulator
           }
-          const mosaicChildren = mosaicRule.rawNode.mosaique['options']?.map(
+          const mosaicChildren = mosaicRule.rawNode.mosaique.options?.map(
             (option: string) => {
               return utils.disambiguateReference(
                 parsedRules || {},

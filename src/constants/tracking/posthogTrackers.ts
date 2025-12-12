@@ -1,9 +1,9 @@
 import type { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 
-type Props = {
+interface Props {
   question?: DottedName | null
   label?: string
-  answer?: DottedName | NodeValue | string
+  answer?: NodeValue | string
   timeSpentOnQuestion?: number
   timeSpentOnSimulation?: number
   bilanCarbone?: number

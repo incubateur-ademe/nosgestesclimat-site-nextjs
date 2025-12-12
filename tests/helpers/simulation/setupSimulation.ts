@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test'
+import type { Page } from '@playwright/test'
 import {
   DO_THE_TEST_LINK,
   SKIP_TUTORIAL_BUTTON,

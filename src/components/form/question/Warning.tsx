@@ -6,7 +6,7 @@ import { useLocale } from '@/hooks/useLocale'
 import getValueIsOverFloorOrCeiling from '@/publicodes-state/helpers/getValueIsOverFloorOrCeiling'
 import { motion } from 'framer-motion'
 
-type Props = {
+interface Props {
   type?: string
   plancher?: number
   plafond?: number

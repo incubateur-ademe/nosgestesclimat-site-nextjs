@@ -11,7 +11,9 @@ import { useState } from 'react'
 import PencilIcon from '../icons/PencilIcon'
 import JourneysInput from './voiture/JourneysInput'
 
-type Props = { question: DottedName }
+interface Props {
+  question: DottedName
+}
 export default function Voiture({ question, ...props }: Props) {
   const [isOpen, setIsOpen] = useState(false)
 

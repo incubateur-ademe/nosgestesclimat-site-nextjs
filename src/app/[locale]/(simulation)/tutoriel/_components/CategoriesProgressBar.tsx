@@ -15,7 +15,6 @@ interface CategoriesProgressBarProps {
 
 export default function CategoriesProgressBar({
   className,
-  currentCategory,
 }: CategoriesProgressBarProps) {
   const { t } = useClientTranslation()
 

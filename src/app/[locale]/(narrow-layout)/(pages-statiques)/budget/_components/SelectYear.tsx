@@ -6,13 +6,15 @@ import { useState } from 'react'
 import budget from '../_data/budget.yaml'
 import RessourcesAllocationTable from './RessourcesAllocationTable'
 
-type BudgetType = {
-  [year: string]: {
-    [product: string]: {
+type BudgetType = Record<
+  string,
+  Record<
+    string,
+    {
       description: ReactNode
     }
-  }
-}
+  >
+>
 
 export default function SelectYear() {
   const years = Object.keys(budget as unknown as BudgetType)
@@ -54,10 +56,9 @@ export default function SelectYear() {
         </select>
       </div>
       <p>
-        {
-          (budget[selectedYear as any] as unknown as { description: string })
-            ?.description
-        }
+        {String(
+          (budget as unknown as BudgetType)[selectedYear]?.description ?? ''
+        )}
       </p>
       <RessourcesAllocationTable
         selectedYear={selectedYear}

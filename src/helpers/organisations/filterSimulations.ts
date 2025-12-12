@@ -2,7 +2,7 @@ import type { PublicPollSimulation } from '@/types/organisations'
 import { PollDefaultAdditionalQuestion } from '../../constants/organisations/pollDefaultAdditionalQuestion'
 import { SimulationAdditionalQuestionAnswerType } from '../../constants/organisations/simulationAdditionalQuestionAnswerType'
 
-type Props = {
+interface Props {
   simulations: PublicPollSimulation[]
   ageFilters: { value: [number, number] }[]
   postalCodeFilters: { value: string }[]
@@ -33,7 +33,7 @@ export function filterSimulations({
       const isPassingAgeFilter =
         ageFilters.length === 0 ||
         ageFilters.some((ageFilter) => {
-          const [min, max] = ageFilter.value as [number, number]
+          const [min, max] = ageFilter.value
 
           const age = new Date().getFullYear() - birthYear
 

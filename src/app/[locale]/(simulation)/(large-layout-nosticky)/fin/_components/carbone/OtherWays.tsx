@@ -41,7 +41,7 @@ const text = {
   ),
 }
 
-type Props = {
+interface Props {
   isSmallFootprint?: boolean
 }
 export default function OtherWays({ isSmallFootprint }: Props) {

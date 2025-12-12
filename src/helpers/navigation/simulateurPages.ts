@@ -2,13 +2,13 @@ import { SIMULATOR_PATH } from '@/constants/urls/paths'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { ReadonlyURLSearchParams } from 'next/navigation'
 
-type Props = {
+interface Props {
   question?: DottedName
   locale?: string
   searchParams?: ReadonlyURLSearchParams
 }
 
-type TutorielProps = {
+interface TutorielProps {
   locale?: string
   searchParams?: ReadonlyURLSearchParams
 }

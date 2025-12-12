@@ -3,7 +3,7 @@ import type {
   PointsFortsFaiblesType,
 } from '@/types/groups'
 
-type Props = {
+interface Props {
   currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
 }
 

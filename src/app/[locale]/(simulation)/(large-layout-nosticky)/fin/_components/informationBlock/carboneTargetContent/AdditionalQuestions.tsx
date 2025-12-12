@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from 'react'
 import { useEffect, useState } from 'react'
 
-type Props = {
+interface Props {
   questions: {
     slug: string
     question: React.ReactNode
@@ -25,9 +25,9 @@ export default function AdditionalQuestions({
       {questions.map(({ slug, question, answer }) => (
         <details
           key={slug}
-          onToggle={(e: any) => {
+          onToggle={(e: React.SyntheticEvent<HTMLDetailsElement>) => {
             setQuestionsOpen((prevQuestionsOpen) => {
-              if (e.target.open) {
+              if ((e.target as HTMLDetailsElement).open) {
                 return [
                   ...prevQuestionsOpen.filter((question) => question !== slug),
                   slug,

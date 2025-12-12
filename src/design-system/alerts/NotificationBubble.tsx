@@ -1,13 +1,11 @@
 import type { HTMLAttributes } from 'react'
 
-type Props = {
+interface Props {
   number: number
-  onClick?: () => void
 }
 
 export default function NotificationBubble({
   number,
-  onClick,
   ...props
 }: Props & HTMLAttributes<HTMLDivElement>) {
   return (

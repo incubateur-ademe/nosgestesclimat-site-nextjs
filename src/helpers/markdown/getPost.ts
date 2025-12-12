@@ -10,7 +10,7 @@ export function getPost(folderPath: string, slug: string): Post | null {
     const matterResult = matter(source)
 
     return matterResult
-  } catch (err) {
+  } catch {
     return null
   }
 }

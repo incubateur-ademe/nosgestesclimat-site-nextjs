@@ -8,7 +8,9 @@ import type { Metric } from '@/publicodes-state/types'
 import type { ReactElement } from 'react'
 import MainSubcategory from './mainSubcategories/MainSubcategory'
 
-type Props = { isLink?: boolean }
+interface Props {
+  isLink?: boolean
+}
 
 const titles: Record<Metric, ReactElement> = {
   carbone: <Trans>Mes principaux postes d’émissions</Trans>,

@@ -3,7 +3,7 @@ import { cmsClient } from '@/adapters/cmsClient'
 import i18nConfig from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 
-type Props = {
+interface Props {
   displayOnLandingPage?: boolean
 }
 

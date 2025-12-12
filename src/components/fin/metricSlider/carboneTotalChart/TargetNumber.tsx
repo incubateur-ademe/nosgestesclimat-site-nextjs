@@ -7,7 +7,9 @@ import Arrow from './Arrow'
 
 const position = (2 / 12) * 100
 
-type Props = { isSmall?: boolean }
+interface Props {
+  isSmall?: boolean
+}
 export default function TargetNumber({ isSmall }: Props) {
   return (
     <motion.div

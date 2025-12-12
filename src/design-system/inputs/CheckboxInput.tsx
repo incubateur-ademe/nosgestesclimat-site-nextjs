@@ -7,7 +7,7 @@ import { forwardRef, useId } from 'react'
 import { twMerge } from 'tailwind-merge'
 import InputGroup from './InputGroup'
 
-type Props = {
+interface Props {
   name: string
   label: string | ReactNode
   isInvalid?: boolean

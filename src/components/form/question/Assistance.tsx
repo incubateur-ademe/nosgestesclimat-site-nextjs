@@ -10,7 +10,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect, useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   question: DottedName
   assistance: DottedName
   setTempValue?: (value: number | undefined) => void

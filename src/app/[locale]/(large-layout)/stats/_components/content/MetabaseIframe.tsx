@@ -4,7 +4,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import Loader from '@/design-system/layout/Loader'
 import { useState } from 'react'
 
-type Props = {
+interface Props {
   id: string
   title: string
   src: string

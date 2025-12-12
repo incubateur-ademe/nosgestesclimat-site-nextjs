@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge'
 import Link from '../Link'
 import Logo from './Logo'
 
-type Props = {
+interface Props {
   onClick?: () => void
   className?: string
   size?: 'sm' | 'md'

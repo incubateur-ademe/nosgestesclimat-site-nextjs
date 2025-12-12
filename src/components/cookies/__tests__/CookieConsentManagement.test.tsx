@@ -140,41 +140,33 @@ describe('CookieConsentManagement', () => {
   it('should have accept radio button checked by default', () => {
     render(<CookieConsentManagement {...defaultProps} />)
 
-    const acceptRadio = screen.getByTestId(
-      'google-ads-accept-radio'
-    ) as HTMLInputElement
-    const refuseRadio = screen.getByTestId(
-      'google-ads-refuse-radio'
-    ) as HTMLInputElement
+    const acceptRadio = screen.getByTestId('google-ads-accept-radio')
+    const refuseRadio = screen.getByTestId('google-ads-refuse-radio')
 
-    expect(acceptRadio.checked).toBe(true)
-    expect(refuseRadio.checked).toBe(false)
+    expect((acceptRadio as HTMLInputElement).checked).toBe(true)
+    expect((refuseRadio as HTMLInputElement).checked).toBe(false)
   })
 
   it('should allow switching between accept and refuse options', async () => {
     const user = userEvent.setup()
     render(<CookieConsentManagement {...defaultProps} />)
 
-    const acceptRadio = screen.getByTestId(
-      'google-ads-accept-radio'
-    ) as HTMLInputElement
-    const refuseRadio = screen.getByTestId(
-      'google-ads-refuse-radio'
-    ) as HTMLInputElement
+    const acceptRadio = screen.getByTestId('google-ads-accept-radio')
+    const refuseRadio = screen.getByTestId('google-ads-refuse-radio')
 
     // Initially accept is checked
-    expect(acceptRadio.checked).toBe(true)
-    expect(refuseRadio.checked).toBe(false)
+    expect((acceptRadio as HTMLInputElement).checked).toBe(true)
+    expect((refuseRadio as HTMLInputElement).checked).toBe(false)
 
     // Click refuse
     await user.click(refuseRadio)
-    expect(acceptRadio.checked).toBe(false)
-    expect(refuseRadio.checked).toBe(true)
+    expect((acceptRadio as HTMLInputElement).checked).toBe(false)
+    expect((refuseRadio as HTMLInputElement).checked).toBe(true)
 
     // Click accept again
     await user.click(acceptRadio)
-    expect(acceptRadio.checked).toBe(true)
-    expect(refuseRadio.checked).toBe(false)
+    expect((acceptRadio as HTMLInputElement).checked).toBe(true)
+    expect((refuseRadio as HTMLInputElement).checked).toBe(false)
   })
 
   it('should render the confirm button', () => {
@@ -248,10 +240,8 @@ describe('CookieConsentManagement', () => {
 
     await user.click(screen.getByTestId('refuse-all-button'))
 
-    const refuseRadio = screen.getByTestId(
-      'google-ads-refuse-radio'
-    ) as HTMLInputElement
-    expect(refuseRadio.checked).toBe(true)
+    const refuseRadio = screen.getByTestId('google-ads-refuse-radio')
+    expect((refuseRadio as HTMLInputElement).checked).toBe(true)
   })
 
   it('should set form value to accept when acceptAll is called', async () => {
@@ -262,10 +252,8 @@ describe('CookieConsentManagement', () => {
 
     await user.click(screen.getByTestId('accept-all-button'))
 
-    const acceptRadio = screen.getByTestId(
-      'google-ads-accept-radio'
-    ) as HTMLInputElement
-    expect(acceptRadio.checked).toBe(true)
+    const acceptRadio = screen.getByTestId('google-ads-accept-radio')
+    expect((acceptRadio as HTMLInputElement).checked).toBe(true)
   })
 
   it('should have a close button in the modal', () => {
@@ -300,15 +288,11 @@ describe('CookieConsentManagement', () => {
       />
     )
 
-    const acceptRadio = screen.getByTestId(
-      'google-ads-accept-radio'
-    ) as HTMLInputElement
-    const refuseRadio = screen.getByTestId(
-      'google-ads-refuse-radio'
-    ) as HTMLInputElement
+    const acceptRadio = screen.getByTestId('google-ads-accept-radio')
+    const refuseRadio = screen.getByTestId('google-ads-refuse-radio')
 
-    expect(acceptRadio.checked).toBe(true)
-    expect(refuseRadio.checked).toBe(false)
+    expect((acceptRadio as HTMLInputElement).checked).toBe(true)
+    expect((refuseRadio as HTMLInputElement).checked).toBe(false)
   })
 
   it('should reflect custom choices in radio buttons', () => {
@@ -321,14 +305,10 @@ describe('CookieConsentManagement', () => {
       />
     )
 
-    const acceptRadio = screen.getByTestId(
-      'google-ads-accept-radio'
-    ) as HTMLInputElement
-    const refuseRadio = screen.getByTestId(
-      'google-ads-refuse-radio'
-    ) as HTMLInputElement
+    const acceptRadio = screen.getByTestId('google-ads-accept-radio')
+    const refuseRadio = screen.getByTestId('google-ads-refuse-radio')
 
-    expect(acceptRadio.checked).toBe(false)
-    expect(refuseRadio.checked).toBe(true)
+    expect((acceptRadio as HTMLInputElement).checked).toBe(false)
+    expect((refuseRadio as HTMLInputElement).checked).toBe(true)
   })
 })

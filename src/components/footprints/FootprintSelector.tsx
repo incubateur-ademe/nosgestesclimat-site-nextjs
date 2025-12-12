@@ -3,7 +3,7 @@ import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
-import type { Options } from 'react-select'
+import type { Options, SingleValueProps, StylesConfig } from 'react-select'
 import Select, { components } from 'react-select'
 import Trans from '../translation/trans/TransClient'
 
@@ -27,8 +27,8 @@ export default function FootprintSelector({
     { value: eauMetric, label: t('Eau'), icon: '💧' },
   ]
 
-  const customStyles = {
-    control: (provided: any) => ({
+  const customStyles: StylesConfig<OptionType, false> = {
+    control: (provided) => ({
       ...provided,
       borderRadius: '0.5rem',
       borderWidth: '2px',
@@ -44,26 +44,26 @@ export default function FootprintSelector({
       transition: 'all 0.2s ease-in-out',
     }),
     indicatorSeparator: () => ({ display: 'none' }),
-    indicatorsContainer: (provided: any) => ({
+    indicatorsContainer: (provided) => ({
       ...provided,
       margin: '-0.2rem',
     }),
-    dropdownIndicator: (provided: any) => ({
+    dropdownIndicator: (provided) => ({
       ...provided,
       color: '#3d3f96',
       '&:hover': { color: '#3d3f96' },
     }),
-    singleValue: (provided: any) => ({
+    singleValue: (provided) => ({
       ...provided,
       color: '#3d3f96',
       fontWeight: 'bold',
     }),
-    valueContainer: (provided: any) => ({
+    valueContainer: (provided) => ({
       ...provided,
       padding: '0',
       paddingLeft: '0.5rem',
     }),
-    option: (provided: any, state: any) => ({
+    option: (provided, state) => ({
       ...provided,
       display: 'flex',
       alignItems: 'center',
@@ -73,11 +73,14 @@ export default function FootprintSelector({
       backgroundColor: state.isSelected ? '#737de1' : provided.backgroundColor,
       color: state.isSelected ? 'white' : provided.color,
     }),
-    menu: (provided: any) => ({ ...provided, borderRadius: '0.5rem' }),
+    menu: (provided) => ({ ...provided, borderRadius: '0.5rem' }),
   }
 
   const customComponents = {
-    SingleValue: ({ children, ...props }: any) => (
+    SingleValue: ({
+      children,
+      ...props
+    }: SingleValueProps<OptionType, false>) => (
       <components.SingleValue {...props}>
         <div className="flex flex-col">
           <div

@@ -1,7 +1,7 @@
 import type { UpdateCurrentSimulationProps } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
-type Props = {
+interface Props {
   question: DottedName
   relevantQuestions: DottedName[]
   updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void

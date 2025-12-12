@@ -19,7 +19,7 @@ import type { EvaluatedNode } from 'publicodes'
 import { utils } from 'publicodes'
 import { useCallback } from 'react'
 
-type Props = {
+interface Props {
   dottedName: DottedName
   parsedRules: ParsedRules | undefined
   safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
@@ -71,7 +71,7 @@ export default function useSetValue({
             return {
               ...accumulator,
               [mosaicChildDottedName]: checkValueValidity({
-                value: value && value[partialMosaicChildDottedName],
+                value: value?.[partialMosaicChildDottedName],
                 type: getType({
                   rule,
                   evaluation,
@@ -92,7 +92,7 @@ export default function useSetValue({
 
       const cleanFoldedSteps = foldedSteps.filter((foldedStep) => {
         return checkIfDottedNameShouldNotBeIgnored({
-          dottedName: foldedStep as DottedName,
+          dottedName: foldedStep,
           safeEvaluate,
           rawMissingVariables,
         })
@@ -132,15 +132,17 @@ const checkValueValidity = ({
   value,
   type,
 }: {
-  value: any
+  value: unknown
   type: string | undefined
 }): NodeValue => {
   switch (type) {
-    case 'choices':
+    case 'choices': {
       if (!value) {
         return null
       }
-      return value?.startsWith("'") ? value : `'${value}'`
+      const stringValue = typeof value === 'string' ? value : String(value)
+      return stringValue?.startsWith("'") ? stringValue : `'${stringValue}'`
+    }
     case 'boolean':
       if (value === 'oui' || value === true) {
         return 'oui'
@@ -158,6 +160,6 @@ const checkValueValidity = ({
           ? value
           : 0
     default:
-      return !value ? 0 : value
+      return !value ? 0 : (value as NodeValue)
   }
 }

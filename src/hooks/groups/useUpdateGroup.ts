@@ -4,7 +4,7 @@ import type { Group } from '@/types/groups'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 
-type MutationFnType = {
+interface MutationFnType {
   groupId: string
   name: string
 }

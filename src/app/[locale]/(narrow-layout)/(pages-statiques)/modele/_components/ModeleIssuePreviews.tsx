@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const labelString = ['🖼 exposé'].join(',')
 
-type IssueType = {
+interface IssueType {
   body: string
   id: string
   html_url: string

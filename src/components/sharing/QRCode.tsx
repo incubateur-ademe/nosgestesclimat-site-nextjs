@@ -10,7 +10,7 @@ import { useRef } from 'react'
 import QRCodeLib from 'react-qr-code'
 import { twMerge } from 'tailwind-merge'
 
-type QRCodeProps = {
+interface QRCodeProps {
   value: string
   className?: string
 }

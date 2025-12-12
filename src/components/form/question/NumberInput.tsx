@@ -8,7 +8,7 @@ import type { NumberFormatValues } from 'react-number-format'
 import { NumericFormat } from 'react-number-format'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   unit?: string
   value?: Evaluation<number>
   placeholder?: string

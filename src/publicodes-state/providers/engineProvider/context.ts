@@ -13,7 +13,7 @@ import type {
   Situation,
 } from '../../types'
 
-type EngineContextType = {
+interface EngineContextType {
   rules: Partial<NGCRules> | undefined
   engine: Engine | undefined
   pristineEngine?: Engine | null

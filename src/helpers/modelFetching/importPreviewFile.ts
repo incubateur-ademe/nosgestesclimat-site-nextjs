@@ -2,7 +2,7 @@ import { getPreviewUrl } from '@/constants/urls/main'
 import { captureException } from '@sentry/nextjs'
 import axios from 'axios'
 
-type Props = {
+interface Props {
   fileName: string
   PRNumber: string
 }

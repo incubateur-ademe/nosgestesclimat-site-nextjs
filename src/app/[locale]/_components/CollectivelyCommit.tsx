@@ -8,7 +8,7 @@ export default async function CollectivelyCommit({
 }: {
   locale: string
 }) {
-  const { t } = await getServerTranslation({ locale })
+  await getServerTranslation({ locale })
 
   return (
     <MotivationSection

@@ -4,7 +4,7 @@ import { getFormattedDate } from '@/helpers/date/getFormattedDate'
 import type { Post } from '@/types/posts'
 import Image from 'next/image'
 
-type Props = {
+interface Props {
   item: Post
   path: string
   locale: string

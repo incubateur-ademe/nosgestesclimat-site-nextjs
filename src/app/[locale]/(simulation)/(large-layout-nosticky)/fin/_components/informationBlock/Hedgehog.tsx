@@ -5,7 +5,7 @@ import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   setIsHedgehog: (isHedgehog: boolean) => void
 }
 

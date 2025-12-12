@@ -6,7 +6,10 @@ import type { Organisation } from '@/types/organisations'
 import MaxWidthContent from '../layout/MaxWidthContent'
 import Trans from '../translation/trans/TransClient'
 
-type Props = { organisation: Organisation | undefined; isError: boolean }
+interface Props {
+  organisation: Organisation | undefined
+  isError: boolean
+}
 
 export default function OrganisationFetchError({
   organisation,

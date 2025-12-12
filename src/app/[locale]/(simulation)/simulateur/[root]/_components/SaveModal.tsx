@@ -18,12 +18,14 @@ import { useForm as useReactHookForm } from 'react-hook-form'
 import ConfirmationMessage from './saveModal/ConfirmationMessage'
 import SaveSimulationForm from './saveModal/SaveSimulationForm'
 
-type Props = {
+interface Props {
   isOpen: boolean
   closeModal: () => void
   mode: 'save' | 'backHome'
 }
-type Inputs = { email?: string }
+interface Inputs {
+  email?: string
+}
 
 export default function SaveModal({ isOpen, closeModal, mode }: Props) {
   const [isAlreadySavedSimulationUpdated, setIsAlreadySavedSimulationUpdated] =

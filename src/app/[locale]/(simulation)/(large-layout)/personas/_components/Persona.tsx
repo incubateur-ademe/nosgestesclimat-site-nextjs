@@ -12,7 +12,7 @@ import type {
 } from '@incubateur-ademe/nosgestesclimat'
 import { useRouter } from 'next/navigation'
 
-type Props = {
+interface Props {
   persona: PersonaType
   personaDottedName: string
 }
@@ -47,7 +47,7 @@ export default function Persona({ persona, personaDottedName }: Props) {
       <h2>{persona.nom}</h2>
 
       <p className="text-center text-sm">
-        {persona['résumé'] || persona['description']}
+        {persona['résumé'] || persona.description}
       </p>
 
       {!isCurrentPersonaSelected && (

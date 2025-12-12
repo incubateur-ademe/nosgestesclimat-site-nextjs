@@ -3,7 +3,7 @@ import type { ChangeEventHandler, ForwardedRef } from 'react'
 import { forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   onChange: ChangeEventHandler<HTMLInputElement>
   name: string
   className?: string

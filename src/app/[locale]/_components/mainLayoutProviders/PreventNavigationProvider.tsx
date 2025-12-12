@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useEffect, useState } from 'react'
 
-export type PreventNavigationContextType = {
+export interface PreventNavigationContextType {
   shouldPreventNavigation: boolean
   handleUpdateShouldPreventNavigation: (value: boolean) => void
 }

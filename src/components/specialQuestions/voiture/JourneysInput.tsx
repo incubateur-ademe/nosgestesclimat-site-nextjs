@@ -8,7 +8,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { JourneysInputDesktop } from './journeysInput/JourneysInputDesktop'
 import JourneysInputMobile from './journeysInput/JourneysInputMobile'
 
-type Props = {
+interface Props {
   question: DottedName
   setTempValue?: (value: number | undefined) => void
   setDisplayedValue?: (value: string | undefined) => void
@@ -21,7 +21,7 @@ const periods: Record<string, number> = {
   year: 1,
 }
 
-function roundFloat(value: number, precision: number = 10): number {
+function roundFloat(value: number, precision = 10): number {
   return Math.round(value * precision) / precision
 }
 

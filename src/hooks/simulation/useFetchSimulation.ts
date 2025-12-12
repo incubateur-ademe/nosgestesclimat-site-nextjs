@@ -5,7 +5,7 @@ import { unformatSituation } from '@/utils/formatDataForDB'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
-type Props = {
+interface Props {
   simulationId: string | null
 }
 export function useFetchSimulation({ simulationId }: Props) {

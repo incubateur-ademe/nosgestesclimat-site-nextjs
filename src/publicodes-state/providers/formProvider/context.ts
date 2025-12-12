@@ -3,7 +3,7 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { createContext } from 'react'
 
-type FormContextType = {
+interface FormContextType {
   questionsByCategories: Record<DottedName, DottedName[]>
   relevantQuestions: DottedName[]
   remainingQuestions: DottedName[]

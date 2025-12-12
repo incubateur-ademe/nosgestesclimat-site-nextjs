@@ -45,6 +45,7 @@ export const fetchPollResults = ({
           FETCH_POLL_RESULTS_DELAY_MS
         )
       } catch (e) {
+        // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
         return reject(e)
       }
     }

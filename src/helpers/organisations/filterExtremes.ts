@@ -12,7 +12,7 @@ export function filterExtremes(simulations: PublicPollSimulation[]) {
         ...Object.values(
           simulation.computedResults?.[carboneMetric]?.categories ?? {}
         ),
-      ].some((value) => (value as number) > MAX_VALUE)
+      ].some((value) => value > MAX_VALUE)
     ) {
       return false
     }

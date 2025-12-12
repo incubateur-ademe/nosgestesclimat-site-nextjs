@@ -11,7 +11,7 @@ import type {
 import { twMerge } from 'tailwind-merge'
 import { baseClassNames, colorClassNames, sizeClassNames } from './Button'
 
-type Props = {
+interface Props {
   href: string
   className?: string
   color?: 'primary' | 'secondary' | 'text' | 'success'

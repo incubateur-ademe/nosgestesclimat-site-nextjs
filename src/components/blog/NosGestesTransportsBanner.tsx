@@ -15,7 +15,9 @@ import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import Trans from '../translation/trans/TransClient'
 
-type Inputs = { email: string }
+interface Inputs {
+  email: string
+}
 
 export default function NosGestesTransportsBanner() {
   const { t } = useClientTranslation()

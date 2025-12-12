@@ -25,7 +25,7 @@ export default async function ActionPlus({
 }: DefaultPageProps<{ params: { dottedName: DottedName[] } }>) {
   const { dottedName: dottedNameArray } = await params
 
-  const action = await getPost(
+  const action = getPost(
     `src/locales/actions-plus/fr/`,
     decodeURI(dottedNameArray.join(' . ').replaceAll('-', ' '))
   )

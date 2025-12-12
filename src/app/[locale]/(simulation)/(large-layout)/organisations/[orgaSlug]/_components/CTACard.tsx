@@ -2,7 +2,7 @@ import type { PropsWithChildren } from 'react'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   overLabel: string | React.ReactNode
   title: string | React.ReactNode
   description: string | React.ReactNode

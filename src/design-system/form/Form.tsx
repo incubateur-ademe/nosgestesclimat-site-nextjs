@@ -3,7 +3,7 @@
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '../buttons/Button'
 
-type Props = {
+interface Props {
   children: React.ReactNode
   buttonLabel?: string
   error?: string

@@ -2,11 +2,11 @@ import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { ChangeEventHandler, HTMLAttributes, ReactNode } from 'react'
-import { Controller } from 'react-hook-form'
+import { Controller, type Control, type RegisterOptions } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import { defaultInputStyleClassNames } from './TextInput'
 
-type Props = {
+interface Props {
   name: string
   label?: string | ReactNode
   type?: string
@@ -26,8 +26,8 @@ type Props = {
   required?: boolean
   maxLength?: number
   disabled?: boolean
-  control: any
-  rules?: Record<string, any>
+  control: Control<Record<string, string | number>>
+  rules?: RegisterOptions
   'data-cypress-id'?: string
 }
 

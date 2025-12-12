@@ -8,7 +8,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import CategoryFilter from './categoryFilters/CategoryFilter'
 
-type Props = {
+interface Props {
   categories: {
     title: string
     dottedName: DottedName

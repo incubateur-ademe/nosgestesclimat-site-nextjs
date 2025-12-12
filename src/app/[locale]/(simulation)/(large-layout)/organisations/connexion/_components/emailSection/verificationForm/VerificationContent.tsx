@@ -4,7 +4,7 @@ import MailIcon from '@/components/icons/share/MailIcon'
 import VerificationCodeInput from '@/components/organisations/VerificationCodeInput'
 import Trans from '@/components/translation/trans/TransClient'
 
-type Props = {
+interface Props {
   email: string
   inputError: string | undefined
   isSuccessValidate: boolean

@@ -10,7 +10,7 @@ import { useUser } from '@/publicodes-state'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
-type Props = {
+interface Props {
   isDashboard?: boolean
 }
 export function useGroupPagesGuard(
@@ -60,7 +60,6 @@ export function useGroupPagesGuard(
     // If we are not on the dashboard and the user is a part of the group, we redirect to the dashboard
     if (
       !isDashboard &&
-      group &&
       group?.participants?.some(
         (participant) => participant.userId === user.userId
       )

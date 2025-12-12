@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useLocale } from '../useLocale'
 
-type OrganisationToCreate = {
+interface OrganisationToCreate {
   name: string
   type: OrganisationTypeEnum
   numberOfCollaborators?: number

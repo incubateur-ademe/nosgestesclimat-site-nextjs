@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test'
+import type { Page } from '@playwright/test'
 import { click } from '../interactions/click'
 import { type } from '../interactions/type'
 

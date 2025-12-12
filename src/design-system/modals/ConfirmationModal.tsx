@@ -6,7 +6,7 @@ import Button from '../buttons/Button'
 import Loader from '../layout/Loader'
 import Modal from './Modal'
 
-type Props = {
+interface Props {
   onConfirm: () => void
   closeModal: () => void
   isLoading?: boolean

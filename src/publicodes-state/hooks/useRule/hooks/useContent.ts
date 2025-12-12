@@ -9,7 +9,7 @@ import type {
 } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 
-type Props = {
+interface Props {
   dottedName: DottedName
   rule: NGCRuleNode | undefined
 }
@@ -46,13 +46,13 @@ export default function useContent({ dottedName, rule }: Props) {
   const unit = useMemo<string | undefined>(() => rule?.rawNode['unité'], [rule])
 
   const assistance = useMemo<DottedName | undefined>(
-    () => rule?.rawNode['aide'] as DottedName,
+    () => rule?.rawNode.aide as DottedName,
     [rule]
   )
 
   const plancher = useMemo<number>(() => {
     // By default, the plancher is 0
-    const plancherValue = rule?.rawNode['plancher']
+    const plancherValue = rule?.rawNode.plancher
 
     // TODO: Deal with the case where the plancher needs to be evaluated.
     if (typeof plancherValue === 'string') {
@@ -64,7 +64,7 @@ export default function useContent({ dottedName, rule }: Props) {
 
   const plafond = useMemo<number>(() => {
     // By default, the plafond is 1 000 000
-    const plafondValue = rule?.rawNode['plafond']
+    const plafondValue = rule?.rawNode.plafond
 
     // TODO: Deal with the case where the plafond needs to be evaluated.
     if (typeof plafondValue === 'string') {
@@ -74,12 +74,12 @@ export default function useContent({ dottedName, rule }: Props) {
   }, [rule])
 
   const warning = useMemo<string | undefined>(
-    () => rule?.rawNode['avertissement'],
+    () => rule?.rawNode.avertissement,
     [rule]
   )
 
   const isInactive = useMemo<boolean>(
-    () => rule?.rawNode['inactif'] === 'oui',
+    () => rule?.rawNode.inactif === 'oui',
     [rule]
   )
 
@@ -91,7 +91,7 @@ export default function useContent({ dottedName, rule }: Props) {
           (key) =>
             ({
               label: key,
-              value: suggestionsFolder[key as keyof typeof suggestionsFolder],
+              value: suggestionsFolder[key],
             }) as FormattedSuggestion
         )
       : []
@@ -106,7 +106,7 @@ export default function useContent({ dottedName, rule }: Props) {
 
   // This is only used by "ui . pédagogie" rules
   const actions = useMemo<DottedName[] | undefined>(
-    () => (rule as any)?.rawNode['actions'],
+    () => (rule?.rawNode as { actions?: DottedName[] })?.actions,
     [rule]
   )
 

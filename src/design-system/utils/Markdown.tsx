@@ -35,26 +35,40 @@ export default function Markdown({
             },
             a: Link,
             img: {
-              component: ({ ...props }) => (
+              component: ({
+                ...props
+              }: {
+                width?: number
+                height?: number
+                alt?: string
+                src?: string
+                [key: string]: unknown
+              }) => (
                 <Image
                   sizes="100vw"
                   width={props.width ?? 900}
                   height={props.height ?? 500}
                   style={{ width: '100%', height: 'auto' }}
-                  alt={(props.alt as string) ?? ''}
-                  {...(props as any)}
+                  alt={props.alt! ?? ''}
+                  src={props.src!}
                 />
               ),
             },
             NosGestesTransportsBanner: NosGestesTransportsBanner,
             button: ButtonLink,
             input: {
-              component: ({ ...props }) => {
-                // If type if checkbox, return a dummy checkbox not interactive
-                if (props.type === 'checkbox') {
+              component: ({
+                type,
+                ...props
+              }: {
+                type?: string
+                [key: string]: unknown
+              }) => {
+                // If type is checkbox, return a dummy checkbox not interactive
+                if (type === 'checkbox') {
                   return <div className="h-4 w-4 rounded-xs bg-gray-200" />
                 }
-                return <input type={props.type} {...props} />
+                return <input type={type} {...props} />
               },
             },
           },

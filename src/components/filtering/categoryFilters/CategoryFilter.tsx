@@ -19,7 +19,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useRouter } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   title: string
   dottedName: DottedName
   count: number

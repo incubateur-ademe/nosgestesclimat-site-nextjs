@@ -35,10 +35,6 @@ const meta: Meta<typeof TextInput> = {
       control: 'text',
       description: 'Error message to display',
     },
-    successMessage: {
-      control: 'text',
-      description: 'Success message to display',
-    },
     helperText: {
       control: 'text',
       description: 'Helper text below the label',
@@ -110,7 +106,6 @@ export const WithSuccess: Story = {
     name: 'username',
     label: "Nom d'utilisateur",
     placeholder: "Choisissez un nom d'utilisateur",
-    successMessage: "Ce nom d'utilisateur est disponible",
   },
 }
 

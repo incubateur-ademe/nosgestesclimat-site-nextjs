@@ -1,7 +1,7 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Situation } from '../types'
 
-type Props = {
+interface Props {
   dottedName: DottedName
   situation: Situation
   questionsOfMosaicFromParent?: DottedName[]

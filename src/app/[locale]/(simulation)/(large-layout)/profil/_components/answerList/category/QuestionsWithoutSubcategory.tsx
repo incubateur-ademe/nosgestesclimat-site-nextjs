@@ -6,7 +6,7 @@ import { useEngine, useFormState } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Question from './subcategory/Question'
 
-type Props = {
+interface Props {
   category: DottedName
 }
 

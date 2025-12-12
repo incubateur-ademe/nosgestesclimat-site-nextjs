@@ -2,7 +2,7 @@
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 
-type Props = {
+interface Props {
   className?: string
 }
 

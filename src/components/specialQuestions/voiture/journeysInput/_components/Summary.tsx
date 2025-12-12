@@ -3,7 +3,7 @@
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 
-type Props = {
+interface Props {
   total: number
   averagePassengers: number
   totalForOnePassenger: number

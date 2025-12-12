@@ -31,8 +31,10 @@ const getRawUnitDigitsArray = ({
   }
 }
 
+import type { i18n as I18nType } from 'i18next'
+
 export const getCarbonFootprint = (
-  { t, i18n }: { t: TranslationFunctionType; i18n: any }, // We need to be passed as an argument instead of calling useTranslation inside the body, to avoid 'Rendered more hooks than during the previous render.'
+  { t, i18n }: { t: TranslationFunctionType; i18n: I18nType }, // We need to be passed as an argument instead of calling useTranslation inside the body, to avoid 'Rendered more hooks than during the previous render.'
   possiblyNegativeValue: NodeValue,
   isConcise = false,
   noSign?: boolean

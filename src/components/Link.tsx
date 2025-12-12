@@ -11,7 +11,7 @@ import type {
 import { useContext } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   href: string
   className?: string
   onClick?: MouseEventHandler<HTMLAnchorElement>

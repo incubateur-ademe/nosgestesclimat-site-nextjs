@@ -2,7 +2,7 @@ import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import { useEffect, useState } from 'react'
 import type { Tutorials } from '../../../types'
 
-type Props = {
+interface Props {
   storageKey: string
 }
 export default function usePersistentTutorials({ storageKey }: Props) {

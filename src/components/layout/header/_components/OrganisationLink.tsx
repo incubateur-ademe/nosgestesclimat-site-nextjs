@@ -4,18 +4,11 @@ import OrganisationIcon from '@/components/icons/OrganisationIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import { headerClickOrganisation } from '@/constants/tracking/layout'
 import useFetchOrganisations from '@/hooks/organisations/useFetchOrganisations'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import NavLink from '../NavLink'
 
-export default function OrganisationLink({
-  onClick = () => {},
-}: {
-  onClick?: () => void
-}) {
-  const { t } = useClientTranslation()
-
+export default function OrganisationLink() {
   const { user } = useUser()
 
   const { data: organisations } = useFetchOrganisations()
@@ -40,7 +33,6 @@ export default function OrganisationLink({
       }
       onClick={() => {
         trackEvent(headerClickOrganisation)
-        onClick()
       }}
       icon={OrganisationIcon}>
       {isOrganisationFullyCreated ? (

@@ -5,7 +5,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { formatValue } from 'publicodes'
 import ValueDiff from '../pointsFortsFaibles/pointsListItem/ValueDiff'
 
-type Props = {
+interface Props {
   category: DottedName
   categoryFootprint?: ValueObject
   membersLength: number

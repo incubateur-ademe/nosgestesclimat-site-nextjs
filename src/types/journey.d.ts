@@ -1,4 +1,4 @@
-export type Journey = {
+export interface Journey {
   id: string
   label: string
   distance: number

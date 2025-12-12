@@ -6,7 +6,15 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock react-qr-code
 vi.mock('react-qr-code', () => ({
-  default: ({ value, 'data-testid': testId, fgColor, ...props }: any) => (
+  default: ({
+    value,
+    'data-testid': testId,
+    ...props
+  }: {
+    value: string
+    'data-testid': string
+    [key: string]: unknown
+  }) => (
     <svg data-testid={testId} {...props}>
       <text>QR Code for: {value}</text>
     </svg>
@@ -117,13 +125,13 @@ describe('QRCode', () => {
     // Mock document.createElement
     document.createElement = vi.fn((tagName: string) => {
       if (tagName === 'canvas') {
-        return mockCanvas as any
+        return mockCanvas as unknown as HTMLCanvasElement
       }
       if (tagName === 'a') {
-        return mockDownloadLink as any
+        return mockDownloadLink as unknown as HTMLAnchorElement
       }
       if (tagName === 'img') {
-        return mockImage as any
+        return mockImage as HTMLImageElement
       }
       return originalCreateElement.call(document, tagName)
     })
@@ -131,11 +139,11 @@ describe('QRCode', () => {
     // Mock XMLSerializer
     global.XMLSerializer = vi.fn(() => ({
       serializeToString: vi.fn(() => '<svg>mock-svg</svg>'),
-    })) as any
+    })) as unknown as typeof XMLSerializer
 
     // Mock getBoundingClientRect
     const mockRect = { width: 100, height: 100 }
-    Element.prototype.getBoundingClientRect = vi.fn(() => mockRect as any)
+    Element.prototype.getBoundingClientRect = vi.fn(() => mockRect as DOMRect)
 
     render(<QRCode value="https://example.com" />)
 
@@ -162,7 +170,11 @@ describe('QRCode', () => {
       file: vi.fn(),
       generateAsync: vi.fn().mockResolvedValue(new Blob(['mock-zip-content'])),
     }
-    ;(JSZip as any).mockImplementation(() => mockZipInstance)
+    ;(
+      JSZip as unknown as {
+        mockImplementation: (fn: () => typeof mockZipInstance) => void
+      }
+    ).mockImplementation(() => mockZipInstance)
 
     // Mock the necessary DOM APIs
     const mockCanvas = {
@@ -196,18 +208,20 @@ describe('QRCode', () => {
     const originalCreateElement = document.createElement
 
     document.createElement = vi.fn((tagName: string) => {
-      if (tagName === 'canvas') return mockCanvas as any
-      if (tagName === 'a') return mockDownloadLink as any
-      if (tagName === 'img') return mockImage as any
+      if (tagName === 'canvas')
+        return mockCanvas as unknown as HTMLCanvasElement
+      if (tagName === 'a')
+        return mockDownloadLink as unknown as HTMLAnchorElement
+      if (tagName === 'img') return mockImage as HTMLImageElement
       return originalCreateElement.call(document, tagName)
     })
 
     global.XMLSerializer = vi.fn(() => ({
       serializeToString: vi.fn(() => '<svg>mock-svg</svg>'),
-    })) as any
+    })) as unknown as typeof XMLSerializer
 
     const mockRect = { width: 100, height: 100 }
-    Element.prototype.getBoundingClientRect = vi.fn(() => mockRect as any)
+    Element.prototype.getBoundingClientRect = vi.fn(() => mockRect as DOMRect)
 
     render(<QRCode value="https://example.com" />)
 
@@ -256,13 +270,14 @@ describe('QRCode', () => {
     const originalCreateElement = document.createElement
 
     document.createElement = vi.fn((tagName: string) => {
-      if (tagName === 'canvas') return mockCanvas as any
+      if (tagName === 'canvas')
+        return mockCanvas as unknown as HTMLCanvasElement
       return originalCreateElement.call(document, tagName)
     })
 
     global.XMLSerializer = vi.fn(() => ({
       serializeToString: vi.fn(() => '<svg>mock-svg</svg>'),
-    })) as any
+    })) as unknown as typeof XMLSerializer
 
     render(<QRCode value="https://example.com" />)
 

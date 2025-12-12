@@ -2,7 +2,7 @@ import { getLocalisedMDX } from '@/helpers/getLocalisedMDX'
 import type { MDXProps } from 'mdx/types'
 import type { JSX } from 'react'
 
-type Props = {
+interface Props {
   contentFr: (props: MDXProps) => JSX.Element
   contentEn?: (props: MDXProps) => JSX.Element
   locale: string

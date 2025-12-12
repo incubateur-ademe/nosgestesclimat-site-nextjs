@@ -3,7 +3,7 @@ import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import { useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
-type Props = {
+interface Props {
   storageKey: string
 }
 

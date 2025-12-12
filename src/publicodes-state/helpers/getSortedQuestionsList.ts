@@ -2,7 +2,7 @@ import { getGroupedQuestionsFromSubcat } from '@/helpers/publicodes/getGroupedQu
 import { getSubcatsOfCategory } from '@/helpers/publicodes/getSubcatsOfCategory'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
-type Props = {
+interface Props {
   questions: DottedName[]
   categories: string[]
   subcategories: string[]

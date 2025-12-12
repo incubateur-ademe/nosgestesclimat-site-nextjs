@@ -3,11 +3,11 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
-type Props = {
+interface Props {
   question: DottedName
   choice: string | number
   active: boolean
-  setValue: any
+  setValue: (value: string | number) => void
   id?: string
 }
 

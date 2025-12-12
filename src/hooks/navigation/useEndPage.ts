@@ -7,7 +7,7 @@ import { captureException } from '@sentry/nextjs'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useState } from 'react'
 
-type GoToEndPageProps = {
+interface GoToEndPageProps {
   isAllowedToSave?: boolean
   allowedToGoToGroupDashboard?: boolean
 }
@@ -16,7 +16,7 @@ const goToEndPagePropsDefault = {
   allowedToGoToGroupDashboard: false,
 }
 
-type GetLinkToEndPageProps = {
+interface GetLinkToEndPageProps {
   allowedToGoToGroupDashboard?: boolean
 }
 const GetLinkToEndPagePropsDefault = {

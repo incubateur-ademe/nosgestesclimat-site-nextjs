@@ -7,7 +7,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import MosaicBooleanInput from './mosaicQuestion/MosaicBooleanInput'
 import MosaicNumberInput from './mosaicQuestion/MosaicNumberInput'
 
-type Props = {
+interface Props {
   question: DottedName
   parentMosaic: DottedName
   index: number

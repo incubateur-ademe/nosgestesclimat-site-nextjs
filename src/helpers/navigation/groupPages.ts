@@ -1,6 +1,6 @@
 import type { Group } from '@/types/groups'
 
-type Props = {
+interface Props {
   group?: Group
   groupId?: string
 }

@@ -10,7 +10,7 @@ export default function ContentLarge({
 }: HTMLAttributes<HTMLDivElement> &
   PropsWithChildren<{
     className?: string
-    tag?: React.ElementType | string
+    tag?: React.ElementType
   }>) {
   const Tag = tag
 

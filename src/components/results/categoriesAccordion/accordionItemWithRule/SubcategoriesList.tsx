@@ -4,7 +4,7 @@ import type { Metric } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import SubcategoryListItem from './subcategoriesList/SubcategoryListItem'
 
-type Props = {
+interface Props {
   category: DottedName
   subcategories: DottedName[]
   metric?: Metric

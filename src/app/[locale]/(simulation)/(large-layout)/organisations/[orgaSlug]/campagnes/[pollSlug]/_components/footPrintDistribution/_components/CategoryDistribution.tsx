@@ -7,7 +7,7 @@ import type { Categories } from '@incubateur-ademe/nosgestesclimat'
 import isMobile from 'is-mobile'
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts'
 
-type Props = {
+interface Props {
   categoryValues: Record<Categories, number>
   className?: string
 }
@@ -75,7 +75,15 @@ export default function CategoryDistribution({
     return description
   }
 
-  const CustomLabel = (props: any) => {
+  const CustomLabel = (props: {
+    cx: number
+    cy: number
+    midAngle: number
+    innerRadius: number
+    outerRadius: number
+    name: string
+    formattedValue: { formattedValue: string; unit: string }
+  }) => {
     const { cx, cy, midAngle, innerRadius, outerRadius, name, formattedValue } =
       props
     const RADIAN = Math.PI / 180

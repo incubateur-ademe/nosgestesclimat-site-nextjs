@@ -16,7 +16,7 @@ import { formatEmail } from '@/utils/format/formatEmail'
 import { useRouter } from 'next/navigation'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
-type Inputs = {
+interface Inputs {
   [ADMINISTRATOR_NAME_KEY]: string
   [ADMINISTRATOR_EMAIL_KEY]: string
 }

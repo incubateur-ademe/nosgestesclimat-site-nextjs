@@ -9,7 +9,10 @@ import NewsletterErrorMessage from './_components/NewsletterErrorMessage'
 import NewsletterInvalidMessage from './_components/NewsletterInvalidMessage'
 import NewsletterSuccessMessage from './_components/NewsletterSuccessMessage'
 
-type SearchParams = { success: 'true' | 'false'; status?: '404' | '500' }
+interface SearchParams {
+  success: 'true' | 'false'
+  status?: '404' | '500'
+}
 
 export const generateMetadata = getCommonMetadata({
   title: t("Confirmation d'inscription à nos infolettres - Nos Gestes Climat"),

@@ -6,14 +6,14 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useEngine } from '@/publicodes-state'
 import type { Action } from '@/publicodes-state/types'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
 import { useState } from 'react'
 import ActionList from './actions/ActionList'
 
-type Props = {
+interface Props {
   actions: (Action & { isIrrelevant: boolean })[]
-  rules: any
+  rules: Partial<NGCRules>
   radical: boolean
 }
 
@@ -229,7 +229,7 @@ export default function Actions({
       </section>
 
       <ActionList
-        actions={notRejected.filter((a: { value: any }) => a.value < 0)}
+        actions={notRejected.filter((a) => a.value < 0)}
         rules={rules}
         bilan={bilan}
         setActionWithFormOpen={setActionWithFormOpen}

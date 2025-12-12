@@ -10,7 +10,7 @@ import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPo
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useMemo } from 'react'
+import { useEffect, useState } from 'react'
 
 const TEST_INTRO_TUTO_KEY = 'testIntro'
 
@@ -44,7 +44,7 @@ export default function ButtonStart({
     }
   }, [poll, updateCurrentSimulation, polls])
 
-  const startTime = useMemo(() => Date.now(), [])
+  const [startTime] = useState(() => Date.now())
 
   // Allow user to choose to keep his/her current
   const shouldRedirectToChoicePage = poll && progression === 1

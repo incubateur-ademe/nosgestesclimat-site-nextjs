@@ -11,7 +11,7 @@ const textClassSize = {
   sm: 'ml-1 text-sm',
   md: 'ml-2 text-sm md:text-lg',
 }
-type Props = {
+interface Props {
   onClick?: () => void
   className?: string
   size?: 'xs' | 'sm' | 'md'

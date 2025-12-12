@@ -23,8 +23,8 @@ export default function useTempEngine(): {
   const getSpecialRuleObject = (
     dottedName: DottedName
   ): EvaluatedNode & NGCRuleNode => {
-    const evaluation = safeEvaluate(dottedName) as EvaluatedNode
-    const rule = safeGetRule(dottedName) as NGCRuleNode
+    const evaluation = safeEvaluate(dottedName)!
+    const rule = safeGetRule(dottedName)!
     return {
       ...evaluation,
       ...rule,

@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { usePreventNavigation } from './usePreventNavigation'
 
-type Props = {
+interface Props {
   isError: boolean
   organisation: Organisation | undefined
 }

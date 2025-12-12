@@ -7,7 +7,7 @@ import { getSupportedRegions } from './getSupportedRegions'
 import { importPreviewFile } from './importPreviewFile'
 import { importRulesFromModel } from './importRulesFromModel'
 
-type Props = {
+interface Props {
   isOptim?: boolean
   regionCode?: string
   locale?: string

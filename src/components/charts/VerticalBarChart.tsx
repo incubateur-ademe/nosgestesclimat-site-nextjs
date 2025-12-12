@@ -4,7 +4,7 @@ import Card from '@/design-system/layout/Card'
 import type { PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   className?: string
 }
 export default function VerticalBarChart({

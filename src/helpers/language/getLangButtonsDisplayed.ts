@@ -1,12 +1,12 @@
 import { fetchArticlePageContent } from '@/services/cms/fetchArticlePageContent'
 import { fetchCategoryPageContent } from '@/services/cms/fetchCategoryPageContent'
 
-export type LangButtonsConfigType = {
+export interface LangButtonsConfigType {
   fr: boolean
   en: boolean
 }
 
-type Props = {
+interface Props {
   category?: string
   article?: string
 }
@@ -57,7 +57,7 @@ export async function getLangButtonsDisplayed({
     })
 
     // Si le contenu n'existe pas en anglais, on ne montre pas les boutons de langue
-    if (!result || !result?.article) {
+    if (!result?.article) {
       return ALL_FALSE_VALUE
     } else {
       return FR_EN_ACTIVATED_VALUE

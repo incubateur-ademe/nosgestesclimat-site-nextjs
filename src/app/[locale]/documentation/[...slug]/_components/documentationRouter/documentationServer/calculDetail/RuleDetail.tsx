@@ -13,7 +13,7 @@ const getRuleFormatted = (rule: NGCRule): NGCRule => {
   const ruleFormatted = { ...rule }
 
   for (const key in ruleFormatted) {
-    if (KEYS_TO_OMIT.indexOf(key) >= 0) {
+    if (KEYS_TO_OMIT.includes(key)) {
       delete ruleFormatted[key as keyof typeof ruleFormatted]
     }
   }
@@ -51,7 +51,9 @@ export default function RuleDetail({
 
       const ruleString = utils.disambiguateReference(
         // Should be ParsedRules but not available from server side.
-        context.rules as any,
+        context.rules as unknown as Parameters<
+          typeof utils.disambiguateReference
+        >[0],
         context.dottedName,
         ruleFormatted
       )
@@ -61,7 +63,7 @@ export default function RuleDetail({
           {capitalizeString(ruleFormatted)}
         </Link>
       )
-    } catch (e) {
+    } catch {
       return <span>{capitalizeString(ruleFormatted)}</span>
     }
   }
@@ -77,10 +79,13 @@ export default function RuleDetail({
   if (isArray) {
     return (
       <ul className="list-disc pl-8">
-        {Object.entries(ruleFormatted).map(([key, value]: [string, any]) => {
+        {Object.entries(ruleFormatted).map(([key, value]) => {
           return (
             <li key={key}>
-              <RuleDetail ruleData={value as any} context={context} />
+              <RuleDetail
+                ruleData={value as NGCRule | string | number}
+                context={context}
+              />
             </li>
           )
         })}
@@ -90,12 +95,13 @@ export default function RuleDetail({
 
   return (
     <ul className="mb-0 list-none" role="list">
-      {Object.entries(ruleFormatted).map(([key, value]: [string, any]) => {
-        if (typeof value === 'string' || typeof value === 'number') {
+      {Object.entries(ruleFormatted).map(([key, value]) => {
+        const typedValue = value as NGCRule | string | number
+        if (typeof typedValue === 'string' || typeof typedValue === 'number') {
           return (
             <li key={key} className="list-disc">
               <span className="ml-4">
-                <RuleDetail ruleData={value} context={context} />
+                <RuleDetail ruleData={typedValue} context={context} />
               </span>
             </li>
           )
@@ -105,7 +111,7 @@ export default function RuleDetail({
           <li key={key}>
             <div>{capitalizeString(key)}:</div>
             <div className="ml-4">
-              <RuleDetail ruleData={value as any} context={context} />
+              <RuleDetail ruleData={typedValue} context={context} />
             </div>
           </li>
         )

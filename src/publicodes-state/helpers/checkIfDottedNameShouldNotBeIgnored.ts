@@ -1,7 +1,7 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { MissingVariables, SafeEvaluate } from '../types'
 
-type Props = {
+interface Props {
   dottedName: DottedName
   safeEvaluate: SafeEvaluate
   rawMissingVariables: MissingVariables

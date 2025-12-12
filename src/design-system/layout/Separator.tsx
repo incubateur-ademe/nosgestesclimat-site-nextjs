@@ -1,6 +1,12 @@
 import { twMerge } from 'tailwind-merge'
 
-export default function Separator({ className = '', ...props }) {
+export default function Separator({
+  className = '',
+  ...props
+}: {
+  className?: string
+  [key: string]: unknown
+}) {
   return (
     <div
       className={twMerge(

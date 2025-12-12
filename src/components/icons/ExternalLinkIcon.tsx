@@ -1,4 +1,10 @@
-export default function ExternalLinkIcon({ className = '', ...props }) {
+export default function ExternalLinkIcon({
+  className = '',
+  ...props
+}: {
+  className?: string
+  [key: string]: unknown
+}) {
   return (
     <svg
       width="16px"

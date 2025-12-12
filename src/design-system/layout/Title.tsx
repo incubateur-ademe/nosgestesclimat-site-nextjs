@@ -3,7 +3,7 @@ import type { JSX, PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Separator from './Separator'
 
-export type TitleProps = {
+export interface TitleProps {
   title?: string | JSX.Element
   subtitle?: string | JSX.Element
   tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'

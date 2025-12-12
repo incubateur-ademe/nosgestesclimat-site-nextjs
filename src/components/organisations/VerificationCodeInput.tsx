@@ -8,7 +8,7 @@ import type { DetailedHTMLProps, InputHTMLAttributes } from 'react'
 import VerificationInput from 'react-verification-input'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   inputError: string | undefined
   isSuccessValidate: boolean
   isPendingValidate: boolean

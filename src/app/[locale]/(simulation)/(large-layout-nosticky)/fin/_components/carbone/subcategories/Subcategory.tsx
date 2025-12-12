@@ -11,7 +11,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 import Actions from './subcategory/Actions'
 
-type Props = {
+interface Props {
   subcategory: DottedName
   index: number
 }

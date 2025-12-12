@@ -10,7 +10,7 @@ import { useEngineSituation } from './hooks/useEngineSituation'
 import { useInitializeSimulationWithEngine } from './hooks/useInitializeSimulationWithEngine'
 import { useRules } from './hooks/useRules'
 
-type Props = {
+interface Props {
   rules?: Partial<NGCRules>
   root?: DottedName
   shouldAlwaysDisplayChildren?: boolean

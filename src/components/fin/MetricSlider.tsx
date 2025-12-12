@@ -11,7 +11,7 @@ import CarboneTotalChart from './metricSlider/CarboneTotalChart'
 import MetricCard from './metricSlider/MetricCard'
 import WaterTotalChart from './metricSlider/WaterTotalChart'
 
-type Props = {
+interface Props {
   carboneTotal?: number
   waterTotal?: number
   isStatic?: boolean
@@ -82,7 +82,7 @@ export default function MetricSlider({
         )}
         role="tablist"
         tabIndex={0}
-        aria-label={t('Choix de la métrique') as string}
+        aria-label={t('Choix de la métrique')}
         onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
           const left = 'ArrowLeft'
           const right = 'ArrowRight'
@@ -136,7 +136,7 @@ export default function MetricSlider({
           isSticky={isSticky}
           tabId="tab-metric-carbone"
           panelId="panel-metric-carbone"
-          onKeyDown={(e: React.KeyboardEvent) => {
+          onKeyDown={() => {
             // Let the tablist parent handle the keydown
           }}>
           <div className="w-full flex-1 px-4">
@@ -160,7 +160,7 @@ export default function MetricSlider({
           isSticky={isSticky}
           tabId="tab-metric-eau"
           panelId="panel-metric-eau"
-          onKeyDown={(e: React.KeyboardEvent) => {
+          onKeyDown={() => {
             // Let the tablist parent handle the keydown
           }}>
           <WaterTotalChart isSmall={isSticky} total={waterTotal} />

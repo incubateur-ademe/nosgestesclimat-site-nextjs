@@ -7,7 +7,7 @@ export const updateGroupParticipant = async ({
   email,
   simulation,
   userId,
-  name,
+  name = '',
 }: {
   groupId: string
   email?: string
@@ -19,6 +19,6 @@ export const updateGroupParticipant = async ({
     ...(email ? { email } : {}),
     simulation,
     userId,
-    ...(name ? { name } : {}),
+    name,
   })
 }

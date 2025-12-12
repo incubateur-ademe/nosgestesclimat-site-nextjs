@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge'
 import LogoLinkServer from '../misc/LogoLinkServer'
 import Trans from '../translation/trans/TransServer'
 
-type Props = {
+interface Props {
   isSticky?: boolean
   locale: Locale
 }

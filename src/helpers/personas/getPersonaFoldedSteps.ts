@@ -7,7 +7,7 @@ import type {
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { fixSituationWithPartialMosaic } from './fixSituationWithPartialMosaic'
 
-type Props = {
+interface Props {
   situation: Situation
   everyMosaicChildrenWithParent: Record<DottedName, DottedName[]>
   everyQuestions: DottedName[]

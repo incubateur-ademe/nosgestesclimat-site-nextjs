@@ -16,7 +16,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
  */
 export default function getNamespace(
   rule: DottedName | undefined | null,
-  level: number = 1
+  level = 1
 ): DottedName | undefined {
   if (rule === undefined || rule === null) {
     return undefined

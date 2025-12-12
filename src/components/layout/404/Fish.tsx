@@ -31,7 +31,7 @@ const generateTopPosition = () => {
   return `${Math.floor(Math.random() * 50)}%`
 }
 
-type Props = {
+interface Props {
   numberOfFish: number
 }
 

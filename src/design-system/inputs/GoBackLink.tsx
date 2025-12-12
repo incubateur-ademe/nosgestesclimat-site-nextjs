@@ -4,7 +4,7 @@ import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 
-type Props = {
+interface Props {
   href: string
   className?: string
   eventTracked?: (string | null)[]

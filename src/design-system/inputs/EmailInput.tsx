@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { forwardRef } from 'react'
 import TextInput from './TextInput'
 
-type Props = {
+interface Props {
   label?: ReactNode | string
   helperText?: string
   className?: string
@@ -35,7 +35,7 @@ export default forwardRef(function EmailInput(
       placeholder="nom@exemple.fr"
       className={className}
       readOnly={readOnly}
-      ref={ref as any}
+      ref={ref as React.ForwardedRef<HTMLInputElement>}
       error={error}
       value={value}
       title={title}

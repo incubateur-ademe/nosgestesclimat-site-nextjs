@@ -1,7 +1,7 @@
 import type { MDXProps } from 'mdx/types'
 import type React from 'react'
 
-type Props = {
+interface Props {
   dictionnaries: {
     fr: (props: MDXProps) => React.JSX.Element
     en: (props: MDXProps) => React.JSX.Element

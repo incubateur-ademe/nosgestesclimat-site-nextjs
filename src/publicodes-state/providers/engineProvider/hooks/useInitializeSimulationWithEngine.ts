@@ -7,7 +7,7 @@ import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 
-type Props = {
+interface Props {
   categories: DottedName[]
   subcategories: DottedName[]
   everyQuestions: DottedName[]
@@ -40,7 +40,7 @@ export function useInitializeSimulationWithEngine({
       if (!everyQuestions.includes(foldedStep)) return
       // Check if the foldedStep is a mosaic child
       const parentMosaic = Object.entries(everyMosaicChildrenWithParent).find(
-        ([_, children]) => children.includes(foldedStep)
+        ([, children]) => children.includes(foldedStep)
       )?.[0] as DottedName | undefined
 
       if (parentMosaic) {

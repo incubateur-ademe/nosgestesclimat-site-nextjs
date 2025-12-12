@@ -17,7 +17,7 @@ export const filterRelevantMissingVariables = ({
   rawMissingVariables: MissingVariables
 }) => {
   return missingVariables.filter((dottedName: DottedName) => {
-    const isFolded = extendedFoldedSteps.indexOf(dottedName) >= 0
+    const isFolded = extendedFoldedSteps.includes(dottedName)
     const isMustNotAskQuestion = MUST_NOT_ASK_QUESTIONS?.has(dottedName)
     const isRelevantQuestion = everyQuestions.includes(dottedName)
 

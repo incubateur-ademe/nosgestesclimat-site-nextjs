@@ -11,7 +11,7 @@ import type { KeyboardEvent } from 'react'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   label: string
   value: boolean
   onChange: (value: boolean) => void
@@ -50,9 +50,9 @@ export default function ToggleField({
     }
   }
 
-  async function handleDelete() {
+  function handleDelete() {
     if (onDelete) {
-      await onDelete(label)
+      onDelete(label)
     }
   }
 

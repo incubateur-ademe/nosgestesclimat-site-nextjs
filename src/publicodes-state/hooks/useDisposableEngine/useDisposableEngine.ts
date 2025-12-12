@@ -2,15 +2,15 @@ import { carboneMetric } from '@/constants/model/metric'
 import { useEngine } from '@/publicodes-state'
 import getSomme from '@/publicodes-state/helpers/getSomme'
 import { safeGetRuleHelper } from '@/publicodes-state/helpers/safeGetRuleHelper'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import type { PublicodesExpression } from 'publicodes'
 import Engine from 'publicodes'
 import { useCallback, useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
 import type { Metric, Situation } from '../../types'
 
-type Props = {
-  rules?: any
+interface Props {
+  rules?: Partial<NGCRules>
   situation: Situation
 }
 /**
@@ -23,6 +23,7 @@ export default function useDisposableEngine({ rules, situation }: Props) {
 
   const engine = useMemo(() => {
     return new Engine<DottedName>(rules ?? contextRules, {
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
       logger: { warn: () => {}, error: () => {}, log: () => {} },
       strict: {
         situation: false,

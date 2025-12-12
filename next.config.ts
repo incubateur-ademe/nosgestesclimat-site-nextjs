@@ -1,5 +1,4 @@
 import type { NextConfig } from 'next'
-import type { Configuration } from 'webpack'
 
 import createMDX from '@next/mdx'
 import { withSentryConfig } from '@sentry/nextjs'
@@ -22,30 +21,6 @@ const nextConfig: NextConfig = {
   // eslint-disable-next-line @typescript-eslint/require-await
   async redirects() {
     return redirects
-  },
-  webpack: (
-    config: Configuration,
-    { dev, isServer }: { dev: boolean; isServer: boolean }
-  ) => {
-    // Ignore warnings for all environments
-    config.ignoreWarnings = [
-      { module: /opentelemetry/ },
-      { module: /mdx-js-loader/ },
-      { module: /next\.config\.compiled\.js/ },
-    ]
-
-    // Add a rule for YAML files
-    config.module?.rules?.push({
-      test: /\.ya?ml$/,
-      use: [{ loader: 'yaml-loader' }],
-    })
-
-    // Enable source maps
-    if (!dev && !isServer) {
-      config.devtool = 'hidden-source-map'
-    }
-
-    return config
   },
   productionBrowserSourceMaps: false,
   outputFileTracingExcludes: {
@@ -70,6 +45,7 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
     webpackBuildWorker: true,
+    mdxRs: true,
   },
 }
 
@@ -98,7 +74,6 @@ const sentryConfig = {
   ignore: ['node_modules', '.next', 'cypress'],
 }
 
-module.exports =
-  process.env.NODE_ENV !== 'development'
-    ? withSentryConfig(withMDX(nextConfig), sentryConfig)
-    : withMDX(nextConfig)
+export default process.env.NODE_ENV !== 'development'
+  ? withSentryConfig(withMDX(nextConfig), sentryConfig)
+  : withMDX(nextConfig)

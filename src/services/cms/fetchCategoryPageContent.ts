@@ -91,7 +91,7 @@ export async function fetchCategoryPageContent({
       faq: blogCategory.faq,
       faqDescription: blogCategory.faqDescription,
     }
-  } catch (error) {
+  } catch {
     return undefined
   }
 }

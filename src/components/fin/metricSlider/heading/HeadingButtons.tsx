@@ -20,7 +20,10 @@ const saveClassNames = {
   md: 'h-6 w-6',
 }
 
-type Props = { size?: 'sm' | 'md'; endPage?: boolean }
+interface Props {
+  size?: 'sm' | 'md'
+  endPage?: boolean
+}
 
 export default function HeadingButtons({ size = 'md', endPage }: Props) {
   const { sharedUrl } = useEndPageSharedUrl()

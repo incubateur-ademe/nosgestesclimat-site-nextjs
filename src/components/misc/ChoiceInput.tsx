@@ -5,12 +5,12 @@ import type { HTMLAttributes, JSX, PropsWithChildren } from 'react'
 import { useState } from 'react'
 import QuestionButton from './QuestionButton'
 
-type Props = {
+interface Props {
   label?: string | JSX.Element
   labelText: string
   description?: string
   active: boolean
-  onClick: any
+  onClick: () => void
   id?: string
   'data-cypress-id'?: string
 }

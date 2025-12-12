@@ -3,7 +3,7 @@ import { useRule } from '@/publicodes-state'
 import type { DottedName, FunFacts } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   funFactKey: string
   dottedName: DottedName
   funFacts: FunFacts

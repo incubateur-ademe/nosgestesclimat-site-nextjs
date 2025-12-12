@@ -8,7 +8,7 @@ const personasByLocale: Record<string, Personas> = {
   en: personasEN as Personas,
 }
 
-type Props = {
+interface Props {
   locale?: string
   PRNumber?: string
 }

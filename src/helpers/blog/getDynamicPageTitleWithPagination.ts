@@ -9,7 +9,7 @@ export const getDynamicPageTitleWithPagination = ({
   metaTitle?: string
   pageNumber?: number
   pageCount?: number
-  t: TFunction<any, string>
+  t: TFunction<'translation', string>
 }) => {
   return `${metaTitle ?? ''} ${
     typeof pageCount !== 'undefined' &&

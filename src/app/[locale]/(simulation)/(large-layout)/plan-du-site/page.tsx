@@ -142,14 +142,14 @@ export default async function PlanDuSitePage({ params }: DefaultPageProps) {
         <h2>
           <Trans locale={locale}>Informations</Trans>
         </h2>
-        <LinkList entries={links['Informations']} />
+        <LinkList entries={links.Informations} />
       </section>
 
       <section className="mb-2">
         <h2>
           <Trans locale={locale}>Documentations</Trans>
         </h2>
-        <LinkList entries={links['Documentations']} />
+        <LinkList entries={links.Documentations} />
       </section>
 
       <section>

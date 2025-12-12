@@ -29,7 +29,7 @@ import Image from 'next/image'
 import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   poll: PublicOrganisationPoll
   className?: string
   title?: ReactNode

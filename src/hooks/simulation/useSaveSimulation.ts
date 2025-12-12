@@ -10,7 +10,7 @@ import axios from 'axios'
 import { useLocale } from '../useLocale'
 import { useBackgroundSyncSimulation } from './useBackgroundSyncSimulation'
 
-type Props = {
+interface Props {
   simulation: Simulation
   sendEmail?: true
 }

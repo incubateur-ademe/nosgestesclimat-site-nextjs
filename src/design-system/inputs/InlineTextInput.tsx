@@ -3,7 +3,7 @@ import type { FocusEvent } from 'react'
 import { useRef, useState } from 'react'
 import Button from '../buttons/Button'
 
-type Props = {
+interface Props {
   name: string
   type?: string
   placeholder?: string
@@ -31,7 +31,7 @@ export default function InlineTextInput({
 
   const { t } = useClientTranslation()
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     const inputValue = inputRef.current?.value
 
     if (!inputValue) {
@@ -39,7 +39,7 @@ export default function InlineTextInput({
       return
     }
 
-    await onSubmit(inputValue)
+    onSubmit(inputValue)
 
     onClose()
   }
@@ -76,6 +76,7 @@ export default function InlineTextInput({
           defaultValue={defaultValue}
           // We alert the user when focusing the button that
           // display the input
+
           // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
           disabled={isLoading}

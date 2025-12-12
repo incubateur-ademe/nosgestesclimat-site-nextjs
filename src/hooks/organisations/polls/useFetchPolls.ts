@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useParams } from 'next/navigation'
 
 export function useFetchPolls({ enabled }: { enabled: boolean }) {
-  const { orgaSlug: organisationIdOrSlug } = useParams() as { orgaSlug: string }
+  const { orgaSlug: organisationIdOrSlug } = useParams()
 
   return useQuery({
     queryKey: ['organisations', organisationIdOrSlug, 'polls'],

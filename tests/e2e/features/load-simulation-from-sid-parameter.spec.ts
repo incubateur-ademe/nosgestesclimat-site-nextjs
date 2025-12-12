@@ -19,6 +19,8 @@ test.describe('Loading the simulation from the sid parameter', () => {
     test.beforeEach(async ({ page }) => {
       await page.goto('/tutoriel')
 
+      await page.waitForLoadState('networkidle')
+
       await dismissCookieBanner(page)
 
       await page.locator(`[data-cypress-id="${SKIP_TUTORIAL_BUTTON}"]`).click()
@@ -29,10 +31,13 @@ test.describe('Loading the simulation from the sid parameter', () => {
       initialValue = (await questionLabel.textContent()) ?? undefined
 
       await page.locator('label[data-cypress-id]').first().click()
-      await page.locator(`[data-cypress-id="${NEXT_QUESTION_BUTTON}"]`).click()
+      await click(page, NEXT_QUESTION_BUTTON)
       await click(page, BACK_BUTTON)
 
       // Enter the email
+      await expect(
+        page.locator(`[data-cypress-id="${SAVE_MODAL_EMAIL_INPUT}"]`)
+      ).toBeVisible()
       await type(page, SAVE_MODAL_EMAIL_INPUT, 'test@test2002.com')
       await click(page, SAVE_MODAL_SUBMIT_BUTTON)
 

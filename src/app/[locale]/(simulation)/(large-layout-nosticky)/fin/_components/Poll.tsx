@@ -75,8 +75,7 @@ export default function Poll() {
         {
           // Temp code to remove when info is dynamically stored in CMS
           lastPollSlug &&
-          process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS &&
-          process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS.split(',') &&
+          process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS?.split(',') &&
           process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS.includes(lastPollSlug) ? (
             <Trans>Votre participation au jeu concours est enregistrée.</Trans>
           ) : (

@@ -14,7 +14,7 @@ import { twMerge } from 'tailwind-merge'
 
 const widthClassName = ['w-full', 'w-11/12 md:w-3/4', 'w-10/12 md:w-1/2']
 
-type Props = {
+interface Props {
   subcategory: DottedName
   index: number
   value?: number

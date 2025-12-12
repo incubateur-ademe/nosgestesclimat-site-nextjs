@@ -12,7 +12,7 @@ import { useFormState, useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 
-type Props = {
+interface Props {
   notification: DottedName
 }
 
