@@ -10,7 +10,7 @@ import { useClientTranslation } from '../useClientTranslation'
 import { useLocale } from '../useLocale'
 import { useEndPage } from './useEndPage'
 
-type GoToSimulateurPageProps = {
+interface GoToSimulateurPageProps {
   noNavigation?: boolean
   newSimulation?: Partial<Simulation>
 }
@@ -18,7 +18,7 @@ const goToSimulateurPagePropsDefault = {
   noNavigation: false,
   newSimulation: undefined,
 }
-type GetLinkToSimulateurPageProps = {
+interface GetLinkToSimulateurPageProps {
   newSimulation?: boolean
 }
 const getLinkToSimulateurPagePropsDefault = {
@@ -64,12 +64,16 @@ export function useSimulateurPage() {
 
       // If the user has seen the tutoriel we redirect him to the test
       if (tutorielSeen) {
-        router.replace(
-          getLinkToSimulateur({
-            locale,
-            searchParams,
-          })
-        )
+        // @TODO: remove this timeout when we have cleaner way to resolve bug
+        // that prevents the navigation from /infos/commencer to /simulateur/bilan
+        setTimeout(() => {
+          router.replace(
+            getLinkToSimulateur({
+              locale,
+              searchParams,
+            })
+          )
+        }, 1)
         return
       }
 

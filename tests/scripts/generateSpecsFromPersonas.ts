@@ -23,6 +23,7 @@ test.describe('Persona ${name}', () => {
 })
 `
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 Object.entries(personas).map(([dottedName, data]: [string, any]) => {
   const name = dottedName.split(' . ')[1]
   writeFileSync(

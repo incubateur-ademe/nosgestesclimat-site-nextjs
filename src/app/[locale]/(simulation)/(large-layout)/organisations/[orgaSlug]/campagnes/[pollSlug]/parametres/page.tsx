@@ -24,9 +24,7 @@ export default function ParametresPage() {
 
   const queryClient = useQueryClient()
 
-  const { pollSlug: pollIdOrSlug } = useParams() as {
-    pollSlug: string
-  }
+  const { pollSlug: pollIdOrSlug } = useParams()
 
   const {
     data: poll,

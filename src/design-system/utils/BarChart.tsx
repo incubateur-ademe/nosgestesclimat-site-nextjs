@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-type Props = {
+interface Props {
   type: 'vertical' | 'horizontal'
   value: string
   index?: number

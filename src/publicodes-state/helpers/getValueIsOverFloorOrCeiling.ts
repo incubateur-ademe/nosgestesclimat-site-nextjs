@@ -1,4 +1,4 @@
-type Props = {
+interface Props {
   value?: number | null
   plafond?: number
   plancher?: number

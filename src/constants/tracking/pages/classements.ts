@@ -15,7 +15,7 @@ export const classementCreateOrganisation = [
   'Create Organisation',
 ]
 
-type ClassementClickItem = {
+interface ClassementClickItem {
   isAdministator: boolean
   numParticipants?: number
 }

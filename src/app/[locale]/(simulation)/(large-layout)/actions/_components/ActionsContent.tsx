@@ -93,7 +93,12 @@ export default function ActionsContent() {
       <OptionBar
         setRadical={setRadical}
         radical={radical}
-        actions={actionsFilteredCategorically}
+        actions={
+          actionsFilteredCategorically as (Action & {
+            isIrrelevant: boolean
+            value?: number
+          })[]
+        }
       />
 
       <CategoryTabs
@@ -113,7 +118,7 @@ export default function ActionsContent() {
               isIrrelevant: boolean
             })[]
           }
-          rules={rules}
+          rules={rules ?? {}}
           radical={radical}
           key={`update-key-${category}`}
         />

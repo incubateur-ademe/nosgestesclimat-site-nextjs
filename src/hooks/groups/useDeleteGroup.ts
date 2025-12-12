@@ -5,7 +5,7 @@ import { useUser } from '@/publicodes-state'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 
-type Props = {
+interface Props {
   shouldInvalidateQueries?: boolean
 }
 

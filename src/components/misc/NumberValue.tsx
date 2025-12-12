@@ -1,7 +1,7 @@
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 
-type Props = {
+interface Props {
   displayValue: string | number
   unit?: string
 }

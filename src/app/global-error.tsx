@@ -5,7 +5,7 @@ import * as Sentry from '@sentry/nextjs'
 import NextError from 'next/error'
 import { useEffect } from 'react'
 
-type Props = {
+interface Props {
   error: Error & { digest?: string }
 }
 export default function GlobalError({ error }: Props) {
@@ -18,7 +18,7 @@ export default function GlobalError({ error }: Props) {
       <body style={{ backgroundColor: 'white', fontFamily: 'sans-serif' }}>
         <Error500 />
 
-        <NextError statusCode={undefined as any} />
+        <NextError statusCode={500} />
       </body>
     </html>
   )

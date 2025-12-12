@@ -16,7 +16,7 @@ export const filterIrrelevantActions = ({
   rules,
 }: {
   actions: (EvaluatedNode & NGCRuleNode)[]
-  actionChoices: Record<DottedName, boolean>
+  actionChoices: Partial<Record<DottedName, boolean>>
   rules?: Partial<NGCRules>
 }) => {
   // Create a Map to store modified actions

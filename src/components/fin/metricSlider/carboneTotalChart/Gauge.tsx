@@ -1,4 +1,3 @@
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import { motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
@@ -12,7 +11,6 @@ export default function Gauge({
   total?: number
 }) {
   const { numericValue } = useRule('bilan')
-  const { t } = useClientTranslation()
 
   const isOutOfRange = numericValue > 12000
 

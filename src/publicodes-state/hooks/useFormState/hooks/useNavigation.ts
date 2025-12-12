@@ -2,7 +2,7 @@ import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 
-type Props = {
+interface Props {
   remainingQuestions: DottedName[]
   relevantQuestions: DottedName[]
   currentQuestion: DottedName | null

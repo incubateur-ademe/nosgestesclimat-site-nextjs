@@ -5,7 +5,7 @@ import type { PollToUpdate } from '@/hooks/organisations/polls/useUpdatePoll'
 import type { Organisation, OrganisationPoll } from '@/types/organisations'
 import CustomQuestion from './customQuestions/CustomQuestion'
 
-type Props = {
+interface Props {
   organisation: Organisation
   poll: Pick<
     OrganisationPoll,

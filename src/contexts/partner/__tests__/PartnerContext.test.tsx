@@ -57,7 +57,7 @@ describe('PartnerContext', () => {
       mockUseSearchParams.mockReturnValue({
         entries: () => new Map().entries(),
         get: vi.fn(),
-      } as any)
+      } as unknown as ReturnType<typeof useSearchParams>)
       mockUseVerifyPartner.mockReturnValue(false)
       mockUseExportSituation.mockReturnValue({
         exportSituationAsync: vi.fn().mockResolvedValue({ redirectUrl }),
@@ -94,7 +94,7 @@ describe('PartnerContext', () => {
             ['partner-test', 'test'],
           ]).entries(),
         get: vi.fn(),
-      } as any)
+      } as unknown as ReturnType<typeof useSearchParams>)
       mockUseVerifyPartner.mockReturnValue(true)
       mockUseExportSituation.mockReturnValue({
         exportSituationAsync: vi.fn().mockResolvedValue({ redirectUrl }),
@@ -138,7 +138,7 @@ describe('PartnerContext', () => {
             ['partner-test', 'test'],
           ]).entries(),
         get: vi.fn(),
-      } as any)
+      } as unknown as ReturnType<typeof useSearchParams>)
       mockUseVerifyPartner.mockReturnValue(true)
       mockUseExportSituation.mockReturnValue({
         exportSituationAsync: vi.fn().mockResolvedValue({ redirectUrl }),

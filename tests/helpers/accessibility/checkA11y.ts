@@ -1,5 +1,5 @@
 import AxeBuilder from '@axe-core/playwright'
-import { Page } from '@playwright/test'
+import type { Page } from '@playwright/test'
 import { CHECK_A11Y_ELEMENTS_EXCLUDED } from '../../constants/accessibility'
 
 export const checkA11y = async (page: Page): Promise<void> => {

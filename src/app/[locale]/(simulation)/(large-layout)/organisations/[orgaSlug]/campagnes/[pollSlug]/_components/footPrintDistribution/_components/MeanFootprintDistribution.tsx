@@ -7,7 +7,7 @@ import CategoryDistribution from './CategoryDistribution'
 import CategoryRadarChart from './CategoryRadarChart'
 import FootprintBarChart from './FootprintBarChart'
 
-type Props = {
+interface Props {
   organisationName?: string
   groupComputedResults?: ComputedResults | null
   userComputedResults?: ComputedResults | null

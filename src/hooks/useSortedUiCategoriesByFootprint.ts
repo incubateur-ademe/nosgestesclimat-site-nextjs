@@ -4,7 +4,7 @@ import type { Metric } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 
-type Props = {
+interface Props {
   metric?: Metric
 }
 export function useSortedUiCategoriesByFootprint({ metric }: Props = {}) {
@@ -35,7 +35,7 @@ export function useSortedUiCategoriesByFootprint({ metric }: Props = {}) {
 
         return valueB - valueA
       }
-    ) as DottedName[]
+    )
   }, [everyUiCategoriesWithRepasAjusted, getNumericValue])
 
   return {

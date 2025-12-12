@@ -2,7 +2,7 @@ import { twMerge } from 'tailwind-merge'
 
 type LoaderSizes = 'sm' | 'md' | 'lg'
 
-type Props = {
+interface Props {
   size?: LoaderSizes
   color?: 'light' | 'dark'
   className?: string

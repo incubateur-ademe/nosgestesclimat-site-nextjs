@@ -6,7 +6,10 @@ import { twMerge } from 'tailwind-merge'
 import WaterTotalNumber from './waterTotalChart/WaterTotalNumber'
 import WaveContent from './waterTotalChart/WaveContent'
 
-type Props = { total?: number; isSmall?: boolean }
+interface Props {
+  total?: number
+  isSmall?: boolean
+}
 export default function WaterTotalChart({ total, isSmall }: Props) {
   return (
     <motion.div

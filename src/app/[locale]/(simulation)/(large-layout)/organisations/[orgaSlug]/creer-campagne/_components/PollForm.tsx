@@ -5,6 +5,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import TextInput from '@/design-system/inputs/TextInput'
 import { useCreatePoll } from '@/hooks/organisations/polls/useCreatePoll'
+import type { PollToUpdate } from '@/hooks/organisations/polls/useUpdatePoll'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Organisation } from '@/types/organisations'
 import { captureException } from '@sentry/nextjs'
@@ -12,17 +13,17 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
-type Props = {
+interface Props {
   organisation: Organisation
 }
 
-type Inputs = {
+interface Inputs {
   name: string
   expectedNumberOfParticipants: number
 }
 
 export default function PollForm({ organisation }: Props) {
-  const [pollInfo, setPollInfo] = useState({
+  const [pollInfo, setPollInfo] = useState<PollToUpdate>({
     defaultAdditionalQuestions: [],
     customAdditionalQuestions: [],
   })
@@ -112,7 +113,7 @@ export default function PollForm({ organisation }: Props) {
             réponses à la campagne.
           </Trans>
         }
-        onChange={(updates: Record<string, unknown>) =>
+        onChange={(updates: PollToUpdate) =>
           setPollInfo((prevPollInfo) => ({ ...prevPollInfo, ...updates }))
         }
       />

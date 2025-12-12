@@ -8,10 +8,11 @@ import type { TranslationFunctionType } from '@/types/translation'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { i18n as I18nType } from 'i18next'
 import type { EvaluatedNode } from 'publicodes'
 
 const getFormattedActionValue = (
-  { t, i18n }: { t: TranslationFunctionType; i18n: any },
+  { t, i18n }: { t: TranslationFunctionType; i18n: I18nType },
   actionValue: EvaluatedNode
 ) => {
   const correctedValue = getCorrectedValue(actionValue)

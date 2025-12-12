@@ -6,7 +6,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Journey } from '@/types/journey'
 import type { Dispatch, SetStateAction } from 'react'
 
-type Props = {
+interface Props {
   journey: Journey
   odd: boolean
   setJourneys: Dispatch<SetStateAction<Journey[]>>

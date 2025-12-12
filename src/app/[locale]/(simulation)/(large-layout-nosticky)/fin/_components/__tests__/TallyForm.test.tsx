@@ -19,6 +19,7 @@ vi.mock('@/utils/browser/safeLocalStorage', () => ({
   },
 }))
 
+import { generateSimulation } from '@/helpers/simulation/generateSimulation'
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import userEvent from '@testing-library/user-event'
@@ -59,7 +60,7 @@ describe('TallyForm', () => {
           queryClient: true,
           errorBoundary: true,
         },
-        simulations: [{ id: 'simulation1' } as any],
+        simulations: [generateSimulation({ id: 'simulation1' })],
       })
     })
 
@@ -78,7 +79,7 @@ describe('TallyForm', () => {
           queryClient: true,
           errorBoundary: true,
         },
-        simulations: [{ id: 'simulation1' } as any],
+        simulations: [generateSimulation({ id: 'simulation1' })],
       })
     })
 
@@ -115,7 +116,7 @@ describe('TallyForm', () => {
           queryClient: true,
           errorBoundary: true,
         },
-        simulations: [{ id: 'simulation1' } as any],
+        simulations: [generateSimulation({ id: 'simulation1' })],
       })
     })
 
@@ -148,7 +149,7 @@ describe('TallyForm', () => {
           queryClient: true,
           errorBoundary: true,
         },
-        simulations: [{ id: 'simulation1' } as any],
+        simulations: [generateSimulation({ id: 'simulation1' })],
       })
     })
 
@@ -172,7 +173,7 @@ describe('TallyForm', () => {
           queryClient: true,
           errorBoundary: true,
         },
-        simulations: [{ id: 'simulation1' } as any],
+        simulations: [generateSimulation({ id: 'simulation1' })],
       })
     })
 
@@ -202,7 +203,7 @@ describe('TallyForm', () => {
     // Changer la valeur retournée par useLocale pour ce test
     mockUseLocale.mockReturnValue('en')
 
-    let container: any
+    let container: HTMLElement | null = null
 
     act(() => {
       const result = renderWithWrapper(<TallyForm />, {
@@ -211,7 +212,7 @@ describe('TallyForm', () => {
           queryClient: true,
           errorBoundary: true,
         },
-        simulations: [{ id: 'simulation1' } as any],
+        simulations: [generateSimulation({ id: 'simulation1' })],
       })
       container = result.container
     })
@@ -228,7 +229,7 @@ describe('TallyForm', () => {
     // Temporarily remove the environment variable for this test
     vi.stubEnv('NEXT_PUBLIC_TALLY_FORM_ID', '')
 
-    let container: any
+    let container: HTMLElement | null = null
 
     act(() => {
       const result = renderWithWrapper(<TallyForm />, {
@@ -237,7 +238,7 @@ describe('TallyForm', () => {
           queryClient: true,
           errorBoundary: true,
         },
-        simulations: [{ id: 'simulation1' } as any],
+        simulations: [generateSimulation({ id: 'simulation1' })],
       })
       container = result.container
     })

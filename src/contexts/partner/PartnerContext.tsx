@@ -26,12 +26,12 @@ import {
 } from 'react'
 import SuccessMessage from './_components/SuccessMessage'
 
-type AlertToDisplay = {
+interface AlertToDisplay {
   type: AlertType
   content: ReactNode
 }
 
-type PartnerContextType = {
+interface PartnerContextType {
   alertToDisplay?: AlertToDisplay
   redirectUrl: string
 }
@@ -70,7 +70,7 @@ export function PartnerProvider({ children }: PropsWithChildren) {
         )
 
       return Object.keys(params).length ? params : undefined
-    } catch (error) {
+    } catch {
       return undefined
     }
   }, [searchParams])

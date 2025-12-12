@@ -11,20 +11,22 @@ export enum Lang {
   // It = 'It',
 }
 
-export type Release = {
+export interface Release {
   name: string
   published_at: string
   body: string
 }
 
-export type LangInfos = {
+export interface LangInfos {
   name: string
   abrv: string
   abrvLocale: string
-  uiTrad: any // The UI translation in YAML
+  uiTrad: Record<string, unknown> // The UI translation in YAML
 }
 
-export type YamlEntry = { entries: { [key: string]: string } }
+export interface YamlEntry {
+  entries: Record<string, string>
+}
 
 export type TranslationFunctionType = (key: string) => JSX.Element | string
 
@@ -35,5 +37,5 @@ export type TransPropsWithInterpolation = TransProps<
   undefined,
   // NOTE(@EmileRolley): hack to be able to use string interpolation in Trans components.
   // However, TransProps<string> should be sufficient.
-  any
+  Record<string, unknown>
 >

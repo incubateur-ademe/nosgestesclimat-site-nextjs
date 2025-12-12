@@ -8,7 +8,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { OrgaSettingsInputsType } from '@/types/organisations'
 import type { FieldErrors, UseFormRegister } from 'react-hook-form'
 
-type Props = {
+interface Props {
   defaultValues?: OrgaSettingsInputsType
   register: UseFormRegister<OrgaSettingsInputsType>
   errors: FieldErrors

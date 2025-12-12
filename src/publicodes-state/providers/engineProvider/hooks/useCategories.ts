@@ -9,7 +9,7 @@ import type {
 import * as Sentry from '@sentry/nextjs'
 import { useMemo } from 'react'
 
-type Props = {
+interface Props {
   parsedRules?: NGCRulesNodes
   everyRules: DottedName[]
   root: DottedName

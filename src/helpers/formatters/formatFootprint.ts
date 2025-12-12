@@ -3,7 +3,7 @@ import type { Metric } from '@/publicodes-state/types'
 import { formatCarbonFootprint } from './formatCarbonFootprint'
 import { formatWaterFootprint } from './formatWaterFootprint'
 
-type Options = {
+interface Options {
   localize?: boolean
   locale?: string
   maximumFractionDigits?: number

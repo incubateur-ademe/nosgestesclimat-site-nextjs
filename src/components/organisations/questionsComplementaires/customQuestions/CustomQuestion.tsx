@@ -6,7 +6,7 @@ import { useState } from 'react'
 import CustomQuestionForm from '../CustomQuestionForm'
 import ToggleField from '../ToggleField'
 
-type Props = {
+interface Props {
   organisation: Organisation
   poll: Pick<
     OrganisationPoll,
@@ -91,8 +91,8 @@ export default function CustomQuestion({
       name={question}
       value={isEnabled}
       isCustomQuestion
-      onChange={async (isEnabled: boolean) => {
-        await handleUpdateCustomQuestions({ question, value: isEnabled })
+      onChange={(isEnabled: boolean) => {
+        handleUpdateCustomQuestions({ question, value: isEnabled })
       }}
       onEdit={() => setIsEditing(true)}
       onDelete={handleDeleteQuestion}

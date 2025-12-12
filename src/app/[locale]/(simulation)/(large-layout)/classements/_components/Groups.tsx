@@ -8,14 +8,11 @@ import ButtonLink from '@/design-system/buttons/ButtonLink'
 import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Title from '@/design-system/layout/Title'
 import { useFetchGroupsOfUser } from '@/hooks/groups/useFetchGroupsOfUser'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import Image from 'next/image'
 import GroupContent from './groups/GroupContent'
 
 export default function Groups() {
   const { data: groups, isLoading, isError } = useFetchGroupsOfUser()
-
-  const { t } = useClientTranslation()
 
   return (
     <>

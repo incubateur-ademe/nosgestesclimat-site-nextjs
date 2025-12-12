@@ -24,17 +24,6 @@ test.describe('The End page', () => {
     // TODO: update test after new user account is implemented
     test.skip()
     test.beforeEach(async ({ page }) => {
-      let requestCount = 0
-
-      page.on('request', (request) => {
-        if (
-          request.method() === 'POST' &&
-          request.url().includes('/simulations/v1/')
-        ) {
-          requestCount++
-        }
-      })
-
       await page.goto('/simulateur/bilan')
 
       await dismissCookieBanner(page)

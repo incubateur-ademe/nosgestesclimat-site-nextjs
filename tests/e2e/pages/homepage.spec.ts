@@ -8,7 +8,7 @@ test.describe('check for homepage status', () => {
     await dismissCookieBanner(page)
   })
 
-  test('has a start button', async ({ page }) => {
+  test('has a start button', ({ page }) => {
     expect(page.locator('[data-cypress-id="do-the-test-link"]')).toBeDefined()
   })
 })

@@ -1,16 +1,15 @@
 import { roundValue } from '@/utils/roundValue'
 import { formatValue } from 'publicodes'
-import type { ElementType } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Badge from '../layout/Badge'
 import Card from '../layout/Card'
 import Emoji from '../utils/Emoji'
 
-type Props = {
+interface Props {
   icons: string
   footprintAvoided: number
   title: string
-  tag?: ElementType | string
+  tag?: React.ElementType
   href?: string
   onClick?: () => void
   className?: string

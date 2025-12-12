@@ -2,7 +2,7 @@ import type { UpdateCurrentSimulationProps } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect, useMemo } from 'react'
 
-type Props = {
+interface Props {
   categories: DottedName[]
   remainingQuestions: DottedName[]
   relevantQuestions: DottedName[]

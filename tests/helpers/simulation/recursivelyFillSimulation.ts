@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test'
+import type { Page } from '@playwright/test'
 import { NEXT_QUESTION_BUTTON } from '../../constants/elements-ids'
 import { dismissCookieBanner } from '../cookies/dismissCookieBanner'
 import { click } from '../interactions/click'
@@ -7,6 +7,7 @@ const LAST_QUESTION_ID = 'services sociétaux . question rhétorique-ok'
 
 export async function recursivelyFillSimulation(
   page: Page,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   persona: Record<string, any> = {}
 ): Promise<void> {
   await dismissCookieBanner(page)

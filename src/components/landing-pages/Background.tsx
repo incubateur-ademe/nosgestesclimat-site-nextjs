@@ -1,7 +1,7 @@
 import ColorLine from '@/design-system/layout/ColorLine'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   direction?: 'left' | 'right'
   children?: React.ReactNode
   withColorLine?: boolean

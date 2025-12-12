@@ -6,7 +6,7 @@ const arraySum = (arr: number[]) =>
 const formatValue = (value: number, locale: Intl.LocalesArgument) =>
   !isNaN(value) ? value.toLocaleString(locale) : '-'
 
-type Props = {
+interface Props {
   selectedYear: string
   budget: Record<string, Record<string, Record<string, number>>>
   products: string[]

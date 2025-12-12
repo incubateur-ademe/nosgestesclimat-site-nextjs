@@ -10,7 +10,7 @@ import { twMerge } from 'tailwind-merge'
 import Alert from '../alerts/alert/Alert'
 import Button, { type ButtonProps } from './Button'
 
-type Props = {
+interface Props {
   color?: ButtonProps['color']
   textToCopy: string
   className?: string

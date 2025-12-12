@@ -15,7 +15,7 @@ import { useMemo } from 'react'
 import FunFactsItem from './FunFactsItem'
 import FunFactsPlusCategoryTitle from './FunFactsPlusCategoryTitle'
 
-type Props = {
+interface Props {
   plusFunFactsRules: { [k in keyof Partial<FunFacts>]: DottedName }
   funFacts: FunFacts
 }
@@ -64,7 +64,7 @@ export default function DetailedFunFacts({
                 <FunFactsItem
                   key={funFactKey}
                   funFactKey={funFactKey}
-                  dottedName={dottedName as DottedName}
+                  dottedName={dottedName!}
                   funFacts={funFacts}
                   small={true}
                 />
@@ -82,9 +82,7 @@ export default function DetailedFunFacts({
             trackEvent(organisationsDashboardClickFunFactsDownload)
             trackPosthogEvent(captureDownloadFunFactsPlus())
 
-            const funFactsPlus = document.getElementById(
-              'funFactsPlus'
-            ) as HTMLElement
+            const funFactsPlus = document.getElementById('funFactsPlus')!
 
             toPng(funFactsPlus).then(function (dataUrl) {
               const link = document.createElement('a')

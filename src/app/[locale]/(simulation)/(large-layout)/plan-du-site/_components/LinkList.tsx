@@ -2,7 +2,7 @@
 
 import Link from '@/components/Link'
 
-type LinkListProps = {
+interface LinkListProps {
   entries: Record<string, { title: string; href: string }>
 }
 
