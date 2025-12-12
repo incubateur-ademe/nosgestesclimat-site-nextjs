@@ -9,7 +9,7 @@ import type { OrganisationPoll } from '@/types/organisations'
 import type { QueryObserverResult, RefetchOptions } from '@tanstack/react-query'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
-type Props = {
+interface Props {
   nameValue: string
   expectedNumberOfParticipants?: number
   updatePoll: (pollToUpdate: PollToUpdate) => void

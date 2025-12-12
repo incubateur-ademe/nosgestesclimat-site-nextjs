@@ -6,7 +6,7 @@ import { Controller, type Control, type RegisterOptions } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import { defaultInputStyleClassNames } from './TextInput'
 
-type Props = {
+interface Props {
   name: string
   label?: string | ReactNode
   type?: string

@@ -85,7 +85,7 @@ const defaultState = {
   updateCurrentSimulation: vi.fn(),
 }
 
-type ProviderConfig = {
+interface ProviderConfig {
   errorBoundary?: boolean
   queryClient?: boolean
   user?: boolean

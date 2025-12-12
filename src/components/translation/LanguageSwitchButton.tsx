@@ -63,7 +63,7 @@ export default function LanguageSwitchButton({
     // If the current locale is different than the NEXT_LOCALE cookie, we update it
     if (
       currentLocale &&
-      document.cookie.indexOf(`NEXT_LOCALE=${currentLocale}`) === -1
+      !document.cookie.includes(`NEXT_LOCALE=${currentLocale}`)
     ) {
       updateLangCookie(currentLocale)
     }

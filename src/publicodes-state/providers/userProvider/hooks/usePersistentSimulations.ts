@@ -4,7 +4,7 @@ import type { Migration } from '@publicodes/tools/migration'
 import { useEffect, useState } from 'react'
 import type { Simulation } from '../../../types'
 
-type Props = {
+interface Props {
   storageKey: string
   migrationInstructions: Migration
 }

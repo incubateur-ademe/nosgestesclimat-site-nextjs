@@ -1,6 +1,6 @@
 'use server'
 
-type DataSent = {
+interface DataSent {
   date: string
   time: string
   reasons: string

@@ -32,7 +32,7 @@ import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Confirmation from './carbone/getResultsByEmail/Confirmation'
 
-type Inputs = {
+interface Inputs {
   name: string
   email?: string
   'newsletter-saisonniere': boolean

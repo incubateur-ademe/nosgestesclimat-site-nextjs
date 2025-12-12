@@ -16,7 +16,7 @@ import {
 } from 'recharts'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   userValues: Record<Categories, number>
   averageValues: Record<Categories, number>
   className?: string
@@ -107,10 +107,10 @@ export default function CategoryRadarChart({
     label,
   }: {
     active?: boolean
-    payload?: Array<{ dataKey: string; value: number }>
+    payload?: { dataKey: string; value: number }[]
     label?: string
   }) => {
-    if (active && payload && payload.length) {
+    if (active && payload?.length) {
       const userValue = payload.find((p) => p.dataKey === 'user')?.value || 0
       const averageValue =
         payload.find((p) => p.dataKey === 'average')?.value || 0

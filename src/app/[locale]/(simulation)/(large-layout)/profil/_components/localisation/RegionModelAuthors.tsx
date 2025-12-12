@@ -3,7 +3,7 @@
 import Link from '@/components/Link'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 
-type RegionAuthor = {
+interface RegionAuthor {
   nom: string
   url?: string
 }

@@ -15,7 +15,7 @@ import CalculDetail from './documentationServer/CalculDetail'
 import PagesProches from './documentationServer/PagesProches'
 import QuestionSection from './documentationServer/QuestionSection'
 
-type Props = {
+interface Props {
   rule: NonNullable<NGCRule>
   rules: NGCRules
   locale: string

@@ -8,7 +8,7 @@ const shouldLogTracking =
 
 declare global {
   interface Window {
-    _paq: Array<unknown>
+    _paq: unknown[]
     Matomo: Record<string, unknown>
   }
 }
@@ -36,9 +36,7 @@ export const trackEvent = (args: (string | null)[]) => {
 
 export const trackPosthogEvent = (args: {
   eventName: string
-  properties?: {
-    [key: string]: string | number | boolean | null | undefined
-  }
+  properties?: Record<string, string | number | boolean | null | undefined>
 }) => {
   if (shouldLogTracking) {
     console.log(args)

@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 import ResendButton from './notReceived/ResendButton'
 
-type Props = {
+interface Props {
   isRetryButtonDisabled: boolean
   isErrorResend: boolean
   sendVerificationCode: UseMutateAsyncFunction<unknown, Error, string, unknown>

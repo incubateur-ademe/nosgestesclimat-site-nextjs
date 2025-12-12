@@ -12,7 +12,7 @@ import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { UseMutateAsyncFunction } from '@tanstack/react-query'
 import React, { useEffect, useRef, useState } from 'react'
 
-type Props = {
+interface Props {
   isRetryButtonDisabled: boolean
   sendVerificationCode: UseMutateAsyncFunction<unknown, Error, string, unknown>
   setTimeLeft: React.Dispatch<React.SetStateAction<number>>

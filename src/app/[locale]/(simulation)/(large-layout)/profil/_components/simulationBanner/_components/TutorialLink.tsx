@@ -9,7 +9,7 @@ import { useLocale } from '@/hooks/useLocale'
 import { useSearchParams } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   className?: string
 }
 

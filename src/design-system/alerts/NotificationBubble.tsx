@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from 'react'
 
-type Props = {
+interface Props {
   number: number
 }
 

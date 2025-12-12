@@ -2,7 +2,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { forwardRef } from 'react'
 import TextInput from './TextInput'
 
-type Props = {
+interface Props {
   error?: string
   value?: string
 }

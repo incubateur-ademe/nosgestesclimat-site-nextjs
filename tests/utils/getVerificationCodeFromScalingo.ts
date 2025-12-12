@@ -78,7 +78,7 @@ export async function getVerificationCodeFromScalingo(): Promise<
     throw error
   } finally {
     // Always clean up the tunnel process
-    if (tunnelProcess && tunnelProcess.pid) {
+    if (tunnelProcess?.pid) {
       try {
         process.kill(-tunnelProcess.pid, 'SIGTERM')
         console.log('Tunnel process terminated')

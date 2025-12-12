@@ -1,15 +1,11 @@
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
-import type { DefaultPageProps } from '@/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import type { PropsWithChildren } from 'react'
-
-type Props = { params: { root: DottedName } }
 
 export async function generateMetadata({
   params,
-}: DefaultPageProps<{ params: { root: DottedName } }>) {
+}: LayoutProps<'/[locale]/simulateur/[root]'>) {
   const { root, locale } = await params
   const { t } = await getServerTranslation({ locale })
 
@@ -28,7 +24,7 @@ export async function generateMetadata({
 export default async function Layout({
   params,
   children,
-}: PropsWithChildren<Props>) {
+}: LayoutProps<'/[locale]/simulateur/[root]'>) {
   const { root } = await params
-  return <FormProvider root={root}>{children}</FormProvider>
+  return <FormProvider root={root as DottedName}>{children}</FormProvider>
 }

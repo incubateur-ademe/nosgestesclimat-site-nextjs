@@ -7,7 +7,7 @@ import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import type { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 
-type Props = {
+interface Props {
   categories: DottedName[]
   subcategories: DottedName[]
   everyQuestions: DottedName[]

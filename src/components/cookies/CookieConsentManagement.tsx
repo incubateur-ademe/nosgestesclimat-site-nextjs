@@ -9,11 +9,11 @@ import { type CookieConsentChoices, CookieConsentKey } from '@/types/cookies'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-type CookieFormData = {
+interface CookieFormData {
   [CookieConsentKey.googleAds]: 'accept' | 'refuse'
 }
 
-type RadioProps = {
+interface RadioProps {
   id: string
   name: string
   checked: boolean

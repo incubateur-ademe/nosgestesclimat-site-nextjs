@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test'
+import type { Page } from '@playwright/test'
 
 export async function fillGroupCreationFirstStep(page: Page): Promise<void> {
   await page

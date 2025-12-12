@@ -1,6 +1,6 @@
 import Button from '@/design-system/buttons/Button'
 
-type Props = {
+interface Props {
   onClick: () => void
   color?: 'white' | 'primary'
   title?: string

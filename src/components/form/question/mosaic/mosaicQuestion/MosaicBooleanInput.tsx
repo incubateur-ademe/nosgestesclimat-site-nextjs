@@ -10,7 +10,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   question: DottedName
   title?: string
   icons?: string

@@ -2,7 +2,7 @@ import { useEngine } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
 
-type Props = {
+interface Props {
   withServiceSocietaux?: boolean
 }
 export function useSortedSubcategoriesByFootprint({

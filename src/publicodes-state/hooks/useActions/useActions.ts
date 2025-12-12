@@ -6,7 +6,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { captureException } from '@sentry/nextjs'
 import { useMemo } from 'react'
 
-type ActionObject = {
+interface ActionObject {
   dottedName: DottedName
   value: number
 }

@@ -4,7 +4,7 @@ import { type Locale } from '@/i18nConfig'
 import { captureException } from '@sentry/nextjs'
 import { URLSearchParams } from 'url'
 
-type Props = {
+interface Props {
   locale: Locale
   params: Record<string, string>
 }

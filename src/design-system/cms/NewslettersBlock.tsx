@@ -34,7 +34,7 @@ import CheckboxInput from '../inputs/CheckboxInput'
 import EmailInput from '../inputs/EmailInput'
 import BlockSkeleton from '../layout/BlockSkeleton'
 
-type Inputs = {
+interface Inputs {
   name: string
   email?: string
   [SEASONAL_NEWSLETTER_LABEL]: boolean

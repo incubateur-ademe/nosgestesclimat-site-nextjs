@@ -13,7 +13,10 @@ import { useIframe } from '@/hooks/useIframe'
 import { useCurrentSimulation, useFormState } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 
-type Props = { toggleQuestionList: () => void; toggleSaveModal?: () => void }
+interface Props {
+  toggleQuestionList: () => void
+  toggleSaveModal?: () => void
+}
 
 export default function TotalButtons({
   toggleQuestionList,

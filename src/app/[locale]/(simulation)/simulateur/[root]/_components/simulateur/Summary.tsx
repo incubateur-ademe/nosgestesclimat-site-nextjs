@@ -12,7 +12,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 import Question from './summary/Question'
 
-type Props = {
+interface Props {
   toggleQuestionList: () => void
   isQuestionListOpen: boolean
 }

@@ -5,7 +5,7 @@ import type { UseQueryResult } from '@tanstack/react-query'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useLocale } from './useLocale'
 
-type Props = {
+interface Props {
   isOptim?: boolean
   region?: string
   PRNumber?: string

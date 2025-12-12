@@ -25,7 +25,7 @@ import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/trans/TransClient'
 import Warning from './question/Warning'
 
-type Props = {
+interface Props {
   question: DottedName
   showInputsLabel?: React.ReactNode | string
   headingLevel?: 1 | 2 | 3

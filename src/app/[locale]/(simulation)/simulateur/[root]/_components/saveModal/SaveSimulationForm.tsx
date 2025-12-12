@@ -10,7 +10,7 @@ import type {
   UseFormRegister,
 } from 'react-hook-form'
 
-type Inputs = {
+interface Inputs {
   email?: string
 }
 

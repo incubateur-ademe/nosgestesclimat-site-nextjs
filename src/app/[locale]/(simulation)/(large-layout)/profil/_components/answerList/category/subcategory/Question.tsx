@@ -11,7 +11,7 @@ import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import MosaicQuestion from './question/MosaicQuestion'
 
-type Props = {
+interface Props {
   question: DottedName
 }
 

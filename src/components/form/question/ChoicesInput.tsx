@@ -4,7 +4,7 @@ import type { Evaluation } from 'publicodes'
 import { useEffect, useState } from 'react'
 import Choice from './choicesInput/Choice'
 
-type Props = {
+interface Props {
   question: DottedName
   value: Evaluation<string>
   choices: (string | number)[] | null
@@ -53,24 +53,23 @@ export default function ChoicesInput(props: Props) {
       }>
       <legend className="sr-only">{label}</legend>
 
-      {choices &&
-        choices.map((choice: string | number, index: number) =>
-          choice ? (
-            <Choice
-              key={choice}
-              question={question}
-              choice={choice}
-              active={currentValue === choice}
-              setValue={(choice: string | number) => {
-                setCurrentValue(choice)
-                requestIdleCallback(() => setValue(String(choice)))
-              }}
-              {...otherProps}
-              data-cypress-id={`${props['data-cypress-id']}-${choice}`}
-              {...(index === 0 ? { id: firstInputId } : {})}
-            />
-          ) : null
-        )}
+      {choices?.map((choice: string | number, index: number) =>
+        choice ? (
+          <Choice
+            key={choice}
+            question={question}
+            choice={choice}
+            active={currentValue === choice}
+            setValue={(choice: string | number) => {
+              setCurrentValue(choice)
+              requestIdleCallback(() => setValue(String(choice)))
+            }}
+            {...otherProps}
+            data-cypress-id={`${props['data-cypress-id']}-${choice}`}
+            {...(index === 0 ? { id: firstInputId } : {})}
+          />
+        ) : null
+      )}
     </fieldset>
   )
 }

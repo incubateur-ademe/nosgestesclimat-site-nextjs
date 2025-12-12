@@ -40,7 +40,7 @@ const DynamicCTAButton = dynamic(
   }
 )
 
-type Props = {
+interface Props {
   isSticky?: boolean
 }
 export default function Header({ isSticky = true }: Props) {

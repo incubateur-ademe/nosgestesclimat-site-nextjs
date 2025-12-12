@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { useId, useState } from 'react'
 
-export type AccordionItemType = {
+export interface AccordionItemType {
   title: ReactNode
   name: string
   content: ReactNode

@@ -11,7 +11,7 @@ import CustomQuestionForm from './questionsComplementaires/CustomQuestionForm'
 import CustomQuestions from './questionsComplementaires/CustomQuestions'
 import ToggleField from './questionsComplementaires/ToggleField'
 
-type Props = {
+interface Props {
   organisation: Organisation
   poll: Pick<
     OrganisationPoll,

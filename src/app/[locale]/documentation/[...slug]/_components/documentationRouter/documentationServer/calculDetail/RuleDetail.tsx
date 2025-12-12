@@ -13,7 +13,7 @@ const getRuleFormatted = (rule: NGCRule): NGCRule => {
   const ruleFormatted = { ...rule }
 
   for (const key in ruleFormatted) {
-    if (KEYS_TO_OMIT.indexOf(key) >= 0) {
+    if (KEYS_TO_OMIT.includes(key)) {
       delete ruleFormatted[key as keyof typeof ruleFormatted]
     }
   }

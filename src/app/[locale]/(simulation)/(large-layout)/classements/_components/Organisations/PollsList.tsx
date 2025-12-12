@@ -6,7 +6,7 @@ import type { Organisation } from '@/types/organisations'
 import OrganisationItem from './pollList/OrganisationItem'
 import PollItem from './pollList/PollItem'
 
-type Props = {
+interface Props {
   organisations?: Organisation[]
 }
 

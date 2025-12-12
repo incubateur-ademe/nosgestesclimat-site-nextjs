@@ -1,14 +1,14 @@
 import type { QuestionType } from '@/adapters/cmsClient'
 import JSONLD from '@/components/seo/JSONLD'
 
-type BreadcrumbListItem = {
+interface BreadcrumbListItem {
   '@type': 'ListItem'
   position: number
   name: string
   item: string
 }
 
-type BreadcrumbList = {
+interface BreadcrumbList extends Record<string, unknown> {
   '@context': string
   '@type': 'BreadcrumbList'
   itemListElement: BreadcrumbListItem[]

@@ -3,7 +3,7 @@
 import type { Group } from '@/types/groups'
 import GroupItem from './groupList/GroupItem'
 
-type Props = {
+interface Props {
   groups: Group[]
   className?: string
 }

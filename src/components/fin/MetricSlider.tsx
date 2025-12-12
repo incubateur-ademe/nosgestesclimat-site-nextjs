@@ -11,7 +11,7 @@ import CarboneTotalChart from './metricSlider/CarboneTotalChart'
 import MetricCard from './metricSlider/MetricCard'
 import WaterTotalChart from './metricSlider/WaterTotalChart'
 
-type Props = {
+interface Props {
   carboneTotal?: number
   waterTotal?: number
   isStatic?: boolean
@@ -82,7 +82,7 @@ export default function MetricSlider({
         )}
         role="tablist"
         tabIndex={0}
-        aria-label={t('Choix de la métrique') as string}
+        aria-label={t('Choix de la métrique')}
         onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
           const left = 'ArrowLeft'
           const right = 'ArrowRight'

@@ -17,7 +17,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import Navigation from '../_components/Navigation'
 
-type Inputs = {
+interface Inputs {
   email: string
 }
 
@@ -107,8 +107,7 @@ export default function Email() {
         subtitle={
           <>
             {pollSlug &&
-            process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS &&
-            process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS.split(',') &&
+            process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS?.split(',') &&
             process.env.NEXT_PUBLIC_POLL_CONTEST_SLUGS.includes(pollSlug) ? (
               <span>
                 <Trans>Votre e-mail sera utilisé pour le tirage au sort.</Trans>{' '}

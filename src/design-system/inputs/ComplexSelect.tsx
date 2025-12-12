@@ -9,7 +9,7 @@ import Select from 'react-select'
 import AsyncSelect from 'react-select/async'
 import { defaultInputStyleClassNames } from './TextInput'
 
-type Props = {
+interface Props {
   options: (string | number | GroupBase<string | number>)[]
   name: string
   label?: string

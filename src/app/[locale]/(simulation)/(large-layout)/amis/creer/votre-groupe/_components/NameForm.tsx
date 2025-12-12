@@ -23,7 +23,7 @@ import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm as useReactHookForm, type Control } from 'react-hook-form'
 
-type Inputs = {
+interface Inputs {
   name: string
   emoji: string
 }

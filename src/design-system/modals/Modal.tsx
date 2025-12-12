@@ -16,7 +16,7 @@ if (typeof document !== 'undefined') {
   ReactModal.setAppElement(document.body)
 }
 
-type Props = {
+interface Props {
   closeModal: () => void
   children: ReactNode
   isLoading?: boolean

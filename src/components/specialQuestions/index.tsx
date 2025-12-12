@@ -7,7 +7,7 @@ import Plats from './Plats'
 import Textile from './Textile'
 import Voiture from './Voiture'
 
-type Props = {
+interface Props {
   setDisplayedValue?: (value: string | undefined) => void
   setTempValue?: (value: number | undefined) => void
   tempValue?: number

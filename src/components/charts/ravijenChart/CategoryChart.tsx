@@ -6,7 +6,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import SubcategoryChartBlock from './categoryChart/SubcategoryChartBlock'
 import TotalCategoryBlock from './categoryChart/TotalCategoryBlock'
 
-type Props = {
+interface Props {
   category: DottedName
   subcategories?: DottedName[] | undefined
   maxValue: number

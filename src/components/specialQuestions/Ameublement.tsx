@@ -5,7 +5,9 @@ import { useCurrentSimulation, useEngine, useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect, useState } from 'react'
 
-type Props = { question: DottedName }
+interface Props {
+  question: DottedName
+}
 
 export default function Ameublement({ question }: Props) {
   const [areHiddenMosaicsUpdated, setAreHiddenMosaicsUpdated] = useState(false)

@@ -12,7 +12,7 @@ import {
   type PropsWithChildren,
 } from 'react'
 
-type CookieConsentContextType = {
+interface CookieConsentContextType {
   cookieConsent?: CookieChoice
   cookieCustomChoice?: CookieConsentChoices
   triggerConsentDetection: () => void

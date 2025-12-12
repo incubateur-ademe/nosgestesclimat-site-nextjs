@@ -20,7 +20,7 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 import ActionCard from './ActionCard'
 import ActionForm from './ActionForm'
 
-type Props = {
+interface Props {
   actions: (Action & { isIrrelevant: boolean; value?: number })[]
   rules: Partial<NGCRules>
   bilan: { nodeValue: NodeValue; dottedName: string }

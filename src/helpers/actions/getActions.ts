@@ -11,7 +11,7 @@ import type {
 import type { EvaluatedNode } from 'publicodes'
 import { filterIrrelevantActions } from './filterIrrelevantActions'
 
-type Props = {
+interface Props {
   rules?: Partial<NGCRules>
   radical: boolean
   safeEvaluate: SafeEvaluate
@@ -29,7 +29,7 @@ export default function getActions({
   if (!rules) return []
 
   const actionsObject = rules.actions
-  const somme = (getSomme(actionsObject) ?? []) as DottedName[]
+  const somme = getSomme(actionsObject) ?? []
 
   const actions = somme.reduce(
     (acc: (EvaluatedNode & NGCRuleNode)[], actionDottedName) => {

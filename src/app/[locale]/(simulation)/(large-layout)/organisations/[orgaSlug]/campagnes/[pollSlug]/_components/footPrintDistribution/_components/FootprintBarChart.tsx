@@ -14,7 +14,7 @@ import {
 } from 'recharts'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   groupFootprint: number
   userFootprint?: number
   targetValue?: number

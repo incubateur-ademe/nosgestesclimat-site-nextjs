@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { forwardRef } from 'react'
 import TextInput from './TextInput'
 
-type Props = {
+interface Props {
   label?: ReactNode | string
   helperText?: string
   className?: string

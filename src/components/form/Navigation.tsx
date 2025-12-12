@@ -92,10 +92,9 @@ export default function Navigation({
 
   const isSingleQuestionEmbeddedFinal =
     (isEmbedded &&
-      remainingQuestions &&
-      remainingQuestions.length === 1 &&
+      remainingQuestions?.length === 1 &&
       remainingQuestions[0] === question) ||
-    (remainingQuestions && remainingQuestions.length === 0)
+    remainingQuestions?.length === 0
 
   const finalNoNextQuestion = isSingleQuestionEmbeddedFinal ?? noNextQuestion
 

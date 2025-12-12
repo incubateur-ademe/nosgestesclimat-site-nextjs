@@ -1,6 +1,6 @@
 import type { SVGProps } from 'react'
 
-type Props = {
+interface Props {
   className?: string
 }
 

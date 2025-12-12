@@ -5,17 +5,17 @@ import axios from 'axios'
 import { useState } from 'react'
 import ComplexSelect from './ComplexSelect'
 
-type Props = {
+interface Props {
   postalCode?: string
   setPostalCode: (postalCode: string) => void
 }
 
-type Suggestion = {
+interface Suggestion {
   value: string
   label: string
 }
 
-type City = {
+interface City {
   code: string
   nom: string
   codesPostaux: string[]

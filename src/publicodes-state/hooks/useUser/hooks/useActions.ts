@@ -1,7 +1,7 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Simulation, UpdateCurrentSimulationProps } from '../../../types'
 
-type Props = {
+interface Props {
   currentSimulation: Simulation
   updateCurrentSimulation: (simulation: UpdateCurrentSimulationProps) => void
 }

@@ -14,7 +14,7 @@ import { captureException } from '@sentry/nextjs'
 import dayjs from 'dayjs'
 import { useEffect, useState, useTransition } from 'react'
 
-type Props = {
+interface Props {
   group: Group
   refetchGroup: () => void
 }
@@ -64,7 +64,7 @@ export default function UpdateSimulationUsed({ group, refetchGroup }: Props) {
         await updateGroupParticipant({
           groupId: group.id,
           email,
-          simulation: latestSimulation as Simulation,
+          simulation: latestSimulation,
           userId,
           name,
         })

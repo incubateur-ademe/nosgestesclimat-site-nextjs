@@ -11,7 +11,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import ActionList from './actions/ActionList'
 
-type Props = {
+interface Props {
   actions: (Action & { isIrrelevant: boolean })[]
   rules: Partial<NGCRules>
   radical: boolean

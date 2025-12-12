@@ -3,7 +3,7 @@ import type { Simulation } from '@/publicodes-state/types'
 import { captureException } from '@sentry/nextjs'
 import { mapNewSimulationToOld } from './mapNewSimulation'
 
-type Props = {
+interface Props {
   simulation: Simulation
   sendEmail?: boolean
   userId: string

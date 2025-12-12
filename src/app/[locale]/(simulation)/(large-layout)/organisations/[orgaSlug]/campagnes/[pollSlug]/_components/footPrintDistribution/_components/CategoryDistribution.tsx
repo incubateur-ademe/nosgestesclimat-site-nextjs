@@ -7,7 +7,7 @@ import type { Categories } from '@incubateur-ademe/nosgestesclimat'
 import isMobile from 'is-mobile'
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts'
 
-type Props = {
+interface Props {
   categoryValues: Record<Categories, number>
   className?: string
 }

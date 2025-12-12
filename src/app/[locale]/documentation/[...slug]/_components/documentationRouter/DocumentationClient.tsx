@@ -38,7 +38,7 @@ const DocumentationText = ({ children }: { children: string }) => (
   </>
 )
 
-type Props = {
+interface Props {
   slugs: string[]
 }
 export default function DocumentationClient({ slugs }: Props) {
@@ -73,7 +73,7 @@ export default function DocumentationClient({ slugs }: Props) {
       />
       <RulePage
         language={locale as 'fr' | 'en'}
-        rulePath={(path as string) ?? ''}
+        rulePath={path ?? ''}
         engine={engine as Engine}
         documentationPath={documentationPath}
         searchBar={true}

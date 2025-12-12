@@ -5,7 +5,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { formatValue } from 'publicodes'
 import ValueDiff from './pointsListItem/ValueDiff'
 
-type PointsListItemProps = {
+interface PointsListItemProps {
   name: DottedName
   value: number
   difference: number
@@ -30,7 +30,7 @@ export default function PointsListItem({
       </p>
 
       <Badge>
-        <strong>{formatValue(value as number, { precision: 0 })}</strong> kg
+        <strong>{formatValue(value, { precision: 0 })}</strong> kg
       </Badge>
     </li>
   )

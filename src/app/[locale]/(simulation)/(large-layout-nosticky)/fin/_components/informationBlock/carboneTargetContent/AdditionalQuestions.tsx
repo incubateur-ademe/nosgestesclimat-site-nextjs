@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from 'react'
 import { useEffect, useState } from 'react'
 
-type Props = {
+interface Props {
   questions: {
     slug: string
     question: React.ReactNode

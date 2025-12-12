@@ -10,7 +10,7 @@ import { useTransition } from 'react'
 import DownloadIcon from '../icons/DownloadIcon'
 import Trans from '../translation/trans/TransClient'
 
-type Props = {
+interface Props {
   poll: PublicOrganisationPoll
   color?: 'primary' | 'secondary' | 'borderless'
   onClick?: () => void

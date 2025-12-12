@@ -1,22 +1,22 @@
-import typescriptParser from '@typescript-eslint/parser'
+import nextPlugin from '@next/eslint-plugin-next'
 import vitest from '@vitest/eslint-plugin'
-import nextVitals from 'eslint-config-next/core-web-vitals'
-import nextTs from 'eslint-config-next/typescript'
+import nextVanilla from 'eslint-config-next'
 import prettier from 'eslint-config-prettier/flat'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
 import { defineConfig, globalIgnores } from 'eslint/config'
+import tseslint from 'typescript-eslint'
 
-const eslintConfig = defineConfig([
-  ...nextVitals,
-  ...nextTs,
-  prettier,
+const eslintConfig = defineConfig(
   {
+    // The only way to overload nextJS config with more aggressive ts-eslint rules
+    ...nextVanilla[0],
     rules: {
+      ...nextVanilla[0].rules,
       // @TODO: Remove this eslint-disable-next-line once we have a proper solution for these rules
-      'react-hooks/set-state-in-effect': 'off',
-      'react-hooks/refs': 'off',
-      'react-hooks/error-boundaries': 'off',
-      'react-hooks/static-components': 'off',
+      'react-hooks/set-state-in-effect': 'warn',
+      'react-hooks/refs': 'warn',
+      'react-hooks/error-boundaries': 'warn',
+      'react-hooks/static-components': 'warn',
       'react/no-unescaped-entities': [
         'error',
         {
@@ -33,27 +33,42 @@ const eslintConfig = defineConfig([
         },
       ],
       ...jsxA11y.configs.strict.rules,
-      'jsx-a11y/no-redundant-roles': 'off',
+      'jsx-a11y/no-redundant-roles': 'warn',
     },
   },
+  nextPlugin.configs['core-web-vitals'],
   {
-    files: ['**/*.ts', '**/*.tsx'],
-    languageOptions: {
-      parser: typescriptParser,
-      parserOptions: {
-        project: './tsconfig.json',
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-        ecmaFeatures: {
-          jsx: true,
-        },
-      },
-    },
+    extends: [
+      tseslint.configs.recommendedTypeChecked,
+      tseslint.configs.stylisticTypeChecked,
+    ],
     rules: {
       '@typescript-eslint/consistent-type-imports': 'error',
-      '@typescript-eslint/require-await': 'error',
+
+      '@typescript-eslint/no-unsafe-argument': 'warn',
+      '@typescript-eslint/no-unsafe-member-access': 'warn',
+      '@typescript-eslint/no-unsafe-assignment': 'warn',
+      '@typescript-eslint/no-unsafe-return': 'warn',
+      '@typescript-eslint/no-unsafe-call': 'warn',
+      '@typescript-eslint/prefer-nullish-coalescing': 'warn',
+      '@typescript-eslint/no-empty-function': 'warn',
+      '@typescript-eslint/no-floating-promises': 'warn',
+      '@typescript-eslint/no-misused-promises': 'warn',
+      '@typescript-eslint/no-base-to-string': 'warn',
+      '@typescript-eslint/restrict-template-expressions': 'warn',
+      '@typescript-eslint/unbound-method': 'warn',
+      '@typescript-eslint/no-unsafe-enum-comparison': 'warn',
     },
   },
+  prettier,
+  {
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+      },
+    },
+  },
+
   {
     files: ['**/*.test.ts', '**/*.test.tsx'],
     plugins: {
@@ -68,26 +83,19 @@ const eslintConfig = defineConfig([
     'out/**',
     'build/**',
     'next-env.d.ts',
-    'node_modules/**',
-    'tests/**/*',
-    '.next/**',
-    'dist/**',
-    'build/**',
     'coverage/**',
+    'cypress/**',
     '*.config.js',
     '*.config.ts',
     '*.setup.ts',
     '*.setup.tsx',
     'check-memory.mjs',
-    'scripts/**/*.mjs',
-    'scripts/**/*.cjs',
-    'scripts/**/*.js',
-    'public/mockServiceWorker.js',
-    'next-env.d.ts',
+    'scripts/**/*',
+    'public/**/*.js',
     '**/*.stories.tsx',
     '.storybook/**',
     'playwright-report/**',
-  ]),
-])
+  ])
+)
 
 export default eslintConfig

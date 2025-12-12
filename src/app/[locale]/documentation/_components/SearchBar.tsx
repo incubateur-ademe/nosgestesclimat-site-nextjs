@@ -14,17 +14,17 @@ import { utils } from 'publicodes'
 import { type ChangeEvent, useEffect, useMemo, useRef, useState } from 'react'
 import RuleListItem from './RuleListIem'
 
-export type SearchItem = {
+export interface SearchItem {
   title: string
   dottedName: DottedName
-  espace: Array<string>
+  espace: string[]
 }
 
-export type Matches = Array<{
+export type Matches = {
   key: string
   value: string
-  indices: Array<[number, number]>
-}>
+  indices: [number, number][]
+}[]
 
 const searchWeights = [
   {
@@ -44,14 +44,14 @@ export default function SearchBar({ rules }: { rules: Partial<NGCRules> }) {
   const searchInputRef = useRef<HTMLInputElement>(null)
   const resultsListRef = useRef<HTMLUListElement>(null)
 
-  const rulesList: Array<NGCRule & { dottedName: DottedName }> = Object.entries(
+  const rulesList: (NGCRule & { dottedName: DottedName })[] = Object.entries(
     rules
   ).map(([dottedName, rule]) => ({
     ...rule,
     dottedName: dottedName as DottedName,
   }))
 
-  const searchIndex: Array<SearchItem> = useMemo(
+  const searchIndex: SearchItem[] = useMemo(
     () =>
       Object.values(rulesList)
         .filter(utils.ruleWithDedicatedDocumentationPage)

@@ -5,7 +5,7 @@ import type { HTMLAttributes, JSX, PropsWithChildren } from 'react'
 import { useState } from 'react'
 import QuestionButton from './QuestionButton'
 
-type Props = {
+interface Props {
   label?: string | JSX.Element
   labelText: string
   description?: string

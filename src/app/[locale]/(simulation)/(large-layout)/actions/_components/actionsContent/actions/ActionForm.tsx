@@ -15,7 +15,7 @@ import type { Action, MissingVariables } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect } from 'react'
 
-type Props = {
+interface Props {
   action: Action
   category: DottedName
   onComplete: () => void

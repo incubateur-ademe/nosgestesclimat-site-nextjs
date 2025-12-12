@@ -29,16 +29,12 @@ import {
 import type { Action } from '@/publicodes-state/types'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
-import type {
-  DottedName,
-  NGCRuleNode,
-  NGCRules,
-} from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback } from 'react'
 import { twMerge } from 'tailwind-merge'
 import ActionValue from './ActionValue'
 
-type Props = {
+interface Props {
   action: Action & { isIrrelevant: boolean }
   total: number
   rule: NGCRuleNode | undefined
@@ -59,7 +55,7 @@ export default function ActionCard({
   const { everyQuestions, safeEvaluate, rawMissingVariables } = useEngine()
 
   const { rules, extendedFoldedSteps } = useTempEngine()
-  const typedRules = rules as Partial<NGCRules> | undefined
+  const typedRules = rules
 
   const { toggleActionChoice, rejectAction } = useUser()
 

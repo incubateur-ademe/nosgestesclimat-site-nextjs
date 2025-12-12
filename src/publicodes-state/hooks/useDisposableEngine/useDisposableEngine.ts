@@ -9,7 +9,7 @@ import { useCallback, useMemo } from 'react'
 import { safeEvaluateHelper } from '../../helpers/safeEvaluateHelper'
 import type { Metric, Situation } from '../../types'
 
-type Props = {
+interface Props {
   rules?: Partial<NGCRules>
   situation: Situation
 }
@@ -23,6 +23,7 @@ export default function useDisposableEngine({ rules, situation }: Props) {
 
   const engine = useMemo(() => {
     return new Engine<DottedName>(rules ?? contextRules, {
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
       logger: { warn: () => {}, error: () => {}, log: () => {} },
       strict: {
         situation: false,

@@ -19,7 +19,7 @@ import type { EvaluatedNode } from 'publicodes'
 import { utils } from 'publicodes'
 import { useCallback } from 'react'
 
-type Props = {
+interface Props {
   dottedName: DottedName
   parsedRules: ParsedRules | undefined
   safeGetRule: (rule: DottedName) => NGCRuleNode | undefined
@@ -71,7 +71,7 @@ export default function useSetValue({
             return {
               ...accumulator,
               [mosaicChildDottedName]: checkValueValidity({
-                value: value && value[partialMosaicChildDottedName],
+                value: value?.[partialMosaicChildDottedName],
                 type: getType({
                   rule,
                   evaluation,
@@ -92,7 +92,7 @@ export default function useSetValue({
 
       const cleanFoldedSteps = foldedSteps.filter((foldedStep) => {
         return checkIfDottedNameShouldNotBeIgnored({
-          dottedName: foldedStep as DottedName,
+          dottedName: foldedStep,
           safeEvaluate,
           rawMissingVariables,
         })

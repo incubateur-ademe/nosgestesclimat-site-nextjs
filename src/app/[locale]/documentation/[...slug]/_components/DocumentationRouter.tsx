@@ -8,7 +8,7 @@ import { useContext, useEffect } from 'react'
 import { IsDocumentationClientContext } from '../../_contexts/DocumentationStateContext'
 import DocumentationClient from './documentationRouter/DocumentationClient'
 
-type Props = {
+interface Props {
   supportedRegions: SupportedRegions
   slug: string[]
   serverComponent: JSX.Element

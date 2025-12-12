@@ -4,7 +4,7 @@ import { requestIdleCallback } from '@/utils/requestIdleCallback'
 import type { NodeValue } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
 
-type Props = {
+interface Props {
   value: NodeValue
   setValue: (value: string) => void
   'data-cypress-id': string

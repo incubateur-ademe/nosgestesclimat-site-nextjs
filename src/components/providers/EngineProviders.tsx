@@ -15,7 +15,7 @@ import Error500 from '../layout/500'
 import PRNumberHook from './simulationProviders/PRNumberHook'
 import SimulationSyncProvider from './simulationProviders/SimulationSyncProvider'
 
-type Props = {
+interface Props {
   supportedRegions: SupportedRegions
   isOptim?: boolean
 }

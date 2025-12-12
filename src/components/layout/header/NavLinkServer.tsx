@@ -2,7 +2,7 @@ import DefaultLink from 'next/link'
 import type { HTMLAttributes, JSX, PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   href: string
   shouldUseDefaultLink?: boolean
   icon?: ({ className }: { className?: string }) => JSX.Element

@@ -7,11 +7,7 @@ import { getRuleTitle } from '@/helpers/publicodes/getRuleTitle'
 import type { DefaultPageProps } from '@/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { decodeRuleNameFromPath } from '@/utils/decodeRuleNameFromPath'
-import type {
-  DottedName,
-  NGCRule,
-  NGCRules,
-} from '@incubateur-ademe/nosgestesclimat'
+import type { NGCRule, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import { redirect } from 'next/navigation'
 import DocumentationRouter from './_components/DocumentationRouter'
 import DocumentationServer from './_components/documentationRouter/DocumentationServer'
@@ -30,7 +26,7 @@ export async function generateMetadata({
     regionCode: 'FR',
   })) as NGCRules
 
-  const ruleName = decodeRuleNameFromPath(slug.join('/')) as DottedName
+  const ruleName = decodeRuleNameFromPath(slug.join('/'))
 
   const rule = rules?.[ruleName]
 
@@ -73,7 +69,7 @@ export default async function DocumentationPage({
 
   const rulesSet = new Set(Object.keys(rules ?? {}))
 
-  const ruleName = decodeRuleNameFromPath(slug.join('/')) as DottedName
+  const ruleName = decodeRuleNameFromPath(slug.join('/'))
 
   const shouldRedirectToDocumentationHome = !ruleName || !rulesSet.has(ruleName)
 

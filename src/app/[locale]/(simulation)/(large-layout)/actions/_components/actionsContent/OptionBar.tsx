@@ -14,7 +14,7 @@ import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useState } from 'react'
 import ActionsChosenIndicator from '../ActionsChosenIndicator'
 
-type Props = {
+interface Props {
   actions: (Action & { isIrrelevant: boolean })[]
   setRadical: (radical: boolean) => void
   radical: boolean

@@ -14,7 +14,7 @@ import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { v4 as uuid } from 'uuid'
 
-type Props = {
+interface Props {
   setJourneys: Dispatch<SetStateAction<Journey[]>>
   className?: string
 }

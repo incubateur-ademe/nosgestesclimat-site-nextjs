@@ -11,7 +11,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
 import EnigmaticMoreChartBlock from './subcategoryChartBlock/EnigmaticMoreChartBlock'
 
-type Props = {
+interface Props {
   category: DottedName
   subcategory: DottedName
   maxValue: number

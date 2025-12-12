@@ -68,14 +68,14 @@ export function getCurrentLangInfos(i18n: i18n): LangInfos {
 
 const enTranslation = {
   ...(uiEnYaml as unknown as YamlEntry).entries,
-  ...((unitsYaml as unknown as Record<string, unknown>)['en'] as Record<
+  ...((unitsYaml as unknown as Record<string, unknown>).en as Record<
     string,
     unknown
   >),
 }
 const frTranslation = {
   ...(uiFrYaml as unknown as YamlEntry).entries,
-  ...((unitsYaml as unknown as Record<string, unknown>)['fr'] as Record<
+  ...((unitsYaml as unknown as Record<string, unknown>).fr as Record<
     string,
     unknown
   >),
