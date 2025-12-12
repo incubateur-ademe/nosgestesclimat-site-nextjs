@@ -95,6 +95,7 @@ const eslintConfig = defineConfig(
     '**/*.stories.tsx',
     '.storybook/**',
     'playwright-report/**',
+    'storybook-static/**',
   ])
 )
 
