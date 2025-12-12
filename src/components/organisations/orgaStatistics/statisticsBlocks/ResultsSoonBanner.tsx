@@ -6,7 +6,9 @@ import Card from '@/design-system/layout/Card'
 import { useIsOrganisationAdmin } from '@/hooks/organisations/useIsOrganisationAdmin'
 import Wave from 'react-wavify'
 
-type Props = { hasLessThan3Participants: boolean }
+interface Props {
+  hasLessThan3Participants: boolean
+}
 
 export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
   const { isAdmin } = useIsOrganisationAdmin()

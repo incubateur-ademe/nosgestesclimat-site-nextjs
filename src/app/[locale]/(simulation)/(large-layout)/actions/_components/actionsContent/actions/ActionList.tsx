@@ -11,15 +11,19 @@ import {
 } from '@/publicodes-state'
 import type { Action } from '@/publicodes-state/types'
 import { trackEvent } from '@/utils/analytics/trackEvent'
-import type { NGCRules } from '@incubateur-ademe/nosgestesclimat'
+import type {
+  NGCRuleNode,
+  NGCRules,
+  NodeValue,
+} from '@incubateur-ademe/nosgestesclimat'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import ActionCard from './ActionCard'
 import ActionForm from './ActionForm'
 
-type Props = {
+interface Props {
   actions: (Action & { isIrrelevant: boolean; value?: number })[]
   rules: Partial<NGCRules>
-  bilan: any
+  bilan: { nodeValue: NodeValue; dottedName: string }
   actionWithFormOpen: string
   setActionWithFormOpen: (dottedName: string) => void
   shouldUpdatePersistedActions: boolean
@@ -108,9 +112,13 @@ export default function ActionList({
             <ActionCard
               setActionWithFormOpen={setActionWithFormOpen}
               isFocused={isActionFocused}
-              rule={rules[action.dottedName]}
+              rule={
+                rules[action.dottedName]
+                  ? (rules[action.dottedName] as NGCRuleNode)
+                  : undefined
+              }
               action={action}
-              total={bilan?.nodeValue}
+              total={typeof bilan?.nodeValue === 'number' ? bilan.nodeValue : 0}
               handleUpdatePersistedActions={handleUpdatePersistedActions}
             />
           </div>

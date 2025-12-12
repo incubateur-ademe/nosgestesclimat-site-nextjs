@@ -41,7 +41,7 @@ export default function FoldableMenu() {
 
             {user?.organisation?.administratorEmail && (
               <li>
-                <OrganisationLink onClick={closeMenu} />
+                <OrganisationLink />
               </li>
             )}
 

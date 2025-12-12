@@ -5,15 +5,18 @@ import type { MDXComponents } from 'mdx/types'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title, { type TitleProps } from '@/design-system/layout/Title'
 import Image from 'next/image'
+import type { AnchorHTMLAttributes, PropsWithChildren } from 'react'
 
 // This file is required to use MDX in `app` directory.
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     // Allows customizing built-in components, e.g. to add styling.
     h1: (props: TitleProps) => <Title {...props} />,
-    ButtonLink: (props: any) => (
+    ButtonLink: (
+      props: PropsWithChildren<AnchorHTMLAttributes<HTMLAnchorElement>>
+    ) => (
       <div className="text-center">
-        <ButtonLink href={props.href}>{props.children}</ButtonLink>
+        <ButtonLink href={props.href ?? ''}>{props.children}</ButtonLink>
       </div>
     ),
     img: (props) => (

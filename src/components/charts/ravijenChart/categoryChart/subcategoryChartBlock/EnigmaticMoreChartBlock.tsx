@@ -3,7 +3,10 @@
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
-type Props = { category: DottedName; percentageSquashed: number }
+interface Props {
+  category: DottedName
+  percentageSquashed: number
+}
 
 export default function EnigmaticMoreChartBlock({
   category,

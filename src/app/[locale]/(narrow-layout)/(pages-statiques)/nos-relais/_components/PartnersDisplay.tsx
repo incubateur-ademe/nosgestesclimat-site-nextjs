@@ -7,8 +7,8 @@ import { encodeDottedNameAsURI } from '@/utils/format/encodeDottedNameAsURI'
 import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
 
-type Props = {
-  partnersByCategories: { [key: string]: PartnerType[] }
+interface Props {
+  partnersByCategories: Record<string, PartnerType[]>
   categoryFilter?: string
 }
 

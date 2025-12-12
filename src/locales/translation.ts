@@ -36,7 +36,7 @@ function getLangInfos(lang: Lang): LangInfos {
         name: 'English',
         abrv: 'en',
         abrvLocale: 'en',
-        uiTrad: uiEn.entries,
+        uiTrad: uiEn.entries as Record<string, unknown>,
       }
     }
     case Lang.Fr:
@@ -45,7 +45,7 @@ function getLangInfos(lang: Lang): LangInfos {
         name: 'Français',
         abrv: 'fr',
         abrvLocale: 'fr-FR',
-        uiTrad: uiFr.entries,
+        uiTrad: uiFr.entries as Record<string, unknown>,
       }
     }
   }
@@ -68,13 +68,19 @@ export function getCurrentLangInfos(i18n: i18n): LangInfos {
 
 const enTranslation = {
   ...(uiEnYaml as unknown as YamlEntry).entries,
-  ...(unitsYaml as any)['en'],
+  ...((unitsYaml as unknown as Record<string, unknown>).en as Record<
+    string,
+    unknown
+  >),
 }
 const frTranslation = {
   ...(uiFrYaml as unknown as YamlEntry).entries,
-  ...(unitsYaml as any)['fr'],
+  ...((unitsYaml as unknown as Record<string, unknown>).fr as Record<
+    string,
+    unknown
+  >),
 }
-export const translations: Record<string, any> = {
+export const translations: Record<string, Record<string, unknown>> = {
   en: enTranslation,
   fr: frTranslation,
 }

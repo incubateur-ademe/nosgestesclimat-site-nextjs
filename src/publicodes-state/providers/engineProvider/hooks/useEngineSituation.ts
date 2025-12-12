@@ -9,7 +9,7 @@ import type {
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback, useEffect, useState } from 'react'
 
-type Props = {
+interface Props {
   engine: Engine | undefined
   safeEvaluate: SafeEvaluate
   rawMissingVariables: MissingVariables

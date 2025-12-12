@@ -3,7 +3,7 @@
 import { cmsClient } from '@/adapters/cmsClient'
 import i18nConfig from '@/i18nConfig'
 
-export type ThematicLandingPageSummary = {
+export interface ThematicLandingPageSummary {
   id: string
   title: string
   slug: string
@@ -36,7 +36,7 @@ export async function fetchThematicLandingPages(): Promise<
     return {
       thematicLandingPages: thematicLPResponse.data,
     }
-  } catch (error) {
+  } catch {
     return {
       thematicLandingPages: [],
     }

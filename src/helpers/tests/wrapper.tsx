@@ -85,7 +85,7 @@ const defaultState = {
   updateCurrentSimulation: vi.fn(),
 }
 
-type ProviderConfig = {
+interface ProviderConfig {
   errorBoundary?: boolean
   queryClient?: boolean
   user?: boolean
@@ -131,7 +131,11 @@ const TestWrapper = ({
   if (providers.iframeOptions) {
     wrapped = (
       <IframeOptionsProvider>
-        {(containerRef) => <div ref={containerRef as any}>{wrapped}</div>}
+        {(containerRef) => (
+          <div ref={containerRef as React.RefObject<HTMLDivElement>}>
+            {wrapped}
+          </div>
+        )}
       </IframeOptionsProvider>
     )
   }

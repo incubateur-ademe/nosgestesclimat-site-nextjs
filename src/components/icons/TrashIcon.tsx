@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   className?: string
   width?: string
   height?: string

@@ -23,14 +23,13 @@ import { useFetchPublicPoll } from '../organisations/polls/useFetchPublicPoll'
  * based on the current page and the pollSlug in the query params
  */
 
-type Props = {
-  curPage:
-    | typeof BIRTHDATE_PAGE
-    | typeof EMAIL_PAGE
-    | typeof POSTAL_CODE_PAGE
-    | typeof START_PAGE
-    | typeof TUTORIEL_PAGE
-    | string // Lol
+interface Props {
+  curPage: // | typeof BIRTHDATE_PAGE
+  // | typeof EMAIL_PAGE
+  // | typeof POSTAL_CODE_PAGE
+  // | typeof START_PAGE
+  // | typeof TUTORIEL_PAGE
+  string // Lol
 }
 export function useInfosPage() {
   const searchParams = useSearchParams()
@@ -41,7 +40,7 @@ export function useInfosPage() {
   const { data: poll, isLoading } = useFetchPublicPoll()
 
   const customAdditionalQuestions = (
-    poll?.customAdditionalQuestions || []
+    poll?.customAdditionalQuestions ?? []
   ).filter(({ isEnabled }) => !!isEnabled)
 
   const urlsInfosPages = useMemo(() => {

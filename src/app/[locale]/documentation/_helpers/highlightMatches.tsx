@@ -26,8 +26,8 @@ export default function highlightMatches(str: string, matches: Matches) {
             {currentStr}
           </span>,
         ],
-      ] as [boolean, number, Array<React.ReactNode>]
+      ] as [boolean, number, React.ReactNode[]]
     },
-    [false, 0, []] as [boolean, number, Array<React.ReactNode>]
+    [false, 0, []] as [boolean, number, React.ReactNode[]]
   )[2]
 }

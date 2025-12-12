@@ -4,7 +4,7 @@ import { useDebounce } from '@/utils/debounce'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat/types/dottedNames'
 import { useEffect, useState } from 'react'
 
-function ouiNonToBoolean(value: 'oui' | 'non' | unknown): unknown {
+function ouiNonToBoolean(value: unknown): unknown {
   if (value === 'oui') return true
   if (value === 'non') return false
   return value

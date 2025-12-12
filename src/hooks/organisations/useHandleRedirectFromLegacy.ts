@@ -5,7 +5,7 @@ import { useFetchPolls } from './polls/useFetchPolls'
 // Handles managing the redirection from the previous implementation of the parcours orga
 // /organisations/:orgaSlug/resultats-detailles => /organisations/:orgaSlug/campagnes/:pollSlug
 export function useHandleRedirectFromLegacy() {
-  const { orgaSlug: organisationIdOrSlug } = useParams() as { orgaSlug: string }
+  const { orgaSlug: organisationIdOrSlug } = useParams()
 
   const enabled = Boolean(useSearchParams().get('isRedirectFromLegacy'))
 

@@ -72,7 +72,7 @@ export async function fetchArticlePageContent({
       article,
       otherArticles: otherArticlesResponse?.data ?? [],
     }
-  } catch (error) {
+  } catch {
     return
   }
 }

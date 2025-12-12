@@ -32,7 +32,7 @@ import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import DefaultSubmitErrorMessage from '../error/DefaultSubmitErrorMessage'
 
-type Inputs = {
+interface Inputs {
   name: string
   email?: string
   [SEASONAL_NEWSLETTER_LABEL]: boolean
@@ -40,15 +40,15 @@ type Inputs = {
   [LOGEMENT_NEWSLETTER_LABEL]: boolean
 }
 
-type Props = {
+interface Props {
   title: string | ReactNode
-  inputsDisplayed?: Array<
+  inputsDisplayed?: (
     | 'name'
     | 'email'
     | 'newsletter-saisonniere'
     | 'newsletter-transports'
     | 'newsletter-logement'
-  >
+  )[]
   submitLabel?: string | ReactNode
   onCompleted?: (props: Record<string, unknown>) => void
   className?: string
@@ -146,7 +146,7 @@ export default function UserInformationForm({
         updateName(data.name)
       }
 
-      onCompleted(data)
+      onCompleted(data as unknown as Record<string, unknown>)
     } catch (error) {
       captureException(error)
     }

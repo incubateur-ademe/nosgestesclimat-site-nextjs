@@ -6,15 +6,12 @@ import { STATUS_UNAUTHORISED } from '@/constants/requests/status'
 import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Title from '@/design-system/layout/Title'
 import useFetchOrganisations from '@/hooks/organisations/useFetchOrganisations'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { AxiosError } from 'axios'
 import Image from 'next/image'
 import CreateOrganisation from './Organisations/CreateOrganisation'
 import PollsList from './Organisations/PollsList'
 
 export default function Organisations() {
-  const { t } = useClientTranslation()
-
   const { data: organisations, isLoading, error } = useFetchOrganisations()
 
   return (

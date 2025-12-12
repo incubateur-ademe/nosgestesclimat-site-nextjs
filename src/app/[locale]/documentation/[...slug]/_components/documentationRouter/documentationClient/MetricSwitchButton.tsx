@@ -6,7 +6,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { Metric } from '@/publicodes-state/types'
 
-type Props = {
+interface Props {
   metric: Metric
   setMetric: (metric: Metric) => void
 }

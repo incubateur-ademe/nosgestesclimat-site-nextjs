@@ -9,7 +9,7 @@ import { type ChangeEvent, useMemo, useState } from 'react'
 import AddPollCard from './myPolls/AddPollCard'
 import PollCard from './myPolls/PollCard'
 
-type Props = {
+interface Props {
   polls?: OrganisationPoll[]
 }
 

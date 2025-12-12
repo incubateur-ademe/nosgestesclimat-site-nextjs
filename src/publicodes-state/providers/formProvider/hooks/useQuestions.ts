@@ -16,7 +16,7 @@ import type {
   Situation,
 } from '../../../types'
 
-type Props = {
+interface Props {
   root: DottedName
   safeEvaluate: SafeEvaluate
   categories: DottedName[]
@@ -121,7 +121,7 @@ export default function useQuestions({
             .find((mosaic) => mosaic === question)
       )
       // all that are in folded steps
-      .filter((question) => foldedSteps.indexOf(question) === -1)
+      .filter((question) => !foldedSteps.includes(question))
       // and all that are not missing
       .filter((question) =>
         Object.keys(missingVariables).find((missingVariable) =>

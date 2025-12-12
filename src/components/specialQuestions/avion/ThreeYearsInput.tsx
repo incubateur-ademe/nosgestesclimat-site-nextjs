@@ -8,7 +8,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
-type Props = {
+interface Props {
   question: DottedName
   setTempValue?: (value: number | undefined) => void
   setDisplayedValue?: (value: string | undefined) => void
@@ -81,7 +81,7 @@ export default function ThreeYearsInput({
       <NumberInput
         unit={unit}
         value={currentYearValue}
-        setValue={(value: number = 0) => setCurrentYearValue(value)}
+        setValue={(value = 0) => setCurrentYearValue(value)}
         className="mb-2 justify-start"
       />
       <Label
@@ -92,7 +92,7 @@ export default function ThreeYearsInput({
       <NumberInput
         unit={unit}
         value={lastYearValue}
-        setValue={(value: number = 0) => setLastYearValue(value)}
+        setValue={(value = 0) => setLastYearValue(value)}
         className="mb-2 justify-start"
       />
       <Label
@@ -103,7 +103,7 @@ export default function ThreeYearsInput({
       <NumberInput
         unit={unit}
         value={yearBeforeLastValue}
-        setValue={(value: number = 0) => setYearBeforeLastValue(value)}
+        setValue={(value = 0) => setYearBeforeLastValue(value)}
         className="mb-2 justify-start"
       />
       <p className="bg-primary-200 mb-0 rounded-xl p-4 font-bold">

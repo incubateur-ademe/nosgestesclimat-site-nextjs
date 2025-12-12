@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import React, { useId } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type InputGroupProps = {
+interface InputGroupProps {
   name: string
   label?: string | ReactNode
   error?: string | ReactNode
@@ -94,7 +94,7 @@ export default function InputGroup({
             'aria-describedby': describedBy,
             disabled,
             required,
-          } as any)
+          } as Record<string, unknown>)
         }
         return child
       })}

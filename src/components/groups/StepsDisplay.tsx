@@ -3,7 +3,9 @@
 import { useCurrentSimulation } from '@/publicodes-state'
 import Trans from '../translation/trans/TransClient'
 
-type Props = { currentStep: number }
+interface Props {
+  currentStep: number
+}
 
 export default function StepsDisplay({ currentStep }: Props) {
   const { progression } = useCurrentSimulation()

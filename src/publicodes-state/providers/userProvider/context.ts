@@ -6,7 +6,7 @@ import { createContext } from 'react'
 import { v4 as uuid } from 'uuid'
 import type { Simulation, Tutorials, User } from '../../types'
 
-type UserContextType = {
+interface UserContextType {
   user: User
   setUser: Dispatch<SetStateAction<User>>
   tutorials: Tutorials

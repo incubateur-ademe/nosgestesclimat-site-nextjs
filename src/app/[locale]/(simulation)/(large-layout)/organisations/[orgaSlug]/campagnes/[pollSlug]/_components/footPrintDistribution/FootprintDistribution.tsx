@@ -2,7 +2,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import type { ComputedResults } from '@/publicodes-state/types'
 import MeanFootprintDistribution from './_components/MeanFootprintDistribution'
 
-type Props = {
+interface Props {
   computedResults?: ComputedResults | null
   userComputedResults?: ComputedResults | null
   simulationsCount?: number

@@ -1,6 +1,9 @@
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import { faker } from '@faker-js/faker'
-import type { ExtendedSituation } from '@incubateur-ademe/nosgestesclimat'
+import type {
+  DottedName,
+  ExtendedSituation,
+} from '@incubateur-ademe/nosgestesclimat'
 import { screen, waitFor } from '@testing-library/dom'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
@@ -32,7 +35,7 @@ const mockSimulation = {
   situation: {},
   extendedSituation: {} as ExtendedSituation,
   foldedSteps: [],
-  actionChoices: {},
+  actionChoices: {} as Partial<Record<DottedName, boolean>>,
 }
 
 const mockGroupSimulation = {
@@ -52,7 +55,7 @@ const mockGroupSimulation = {
   situation: {},
   extendedSituation: {} as ExtendedSituation,
   foldedSteps: [],
-  actionChoices: {},
+  actionChoices: {} as Partial<Record<DottedName, boolean>>,
   severity: 1,
 }
 
@@ -117,11 +120,15 @@ describe('UpdateSimulationUsed', () => {
     const { updateGroupParticipant } = await import(
       '@/services/groups/updateGroupParticipant'
     )
-    ;(updateGroupParticipant as any).mockResolvedValue({
+    vi.mocked(updateGroupParticipant).mockResolvedValue({
       data: {
         success: true,
       },
-    })
+      status: 200,
+      statusText: 'OK',
+      headers: {},
+      config: {} as unknown,
+    } as Awaited<ReturnType<typeof updateGroupParticipant>>)
 
     // When
     renderWithWrapper(<UpdateSimulationUsed {...mockProps} />, {
@@ -146,7 +153,7 @@ describe('UpdateSimulationUsed', () => {
     const { updateGroupParticipant } = await import(
       '@/services/groups/updateGroupParticipant'
     )
-    ;(updateGroupParticipant as any).mockRejectedValue(
+    vi.mocked(updateGroupParticipant).mockRejectedValue(
       new Error('Update failed')
     )
 

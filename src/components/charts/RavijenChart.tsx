@@ -10,7 +10,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { toPng } from 'html-to-image'
 import CategoryChart from './ravijenChart/CategoryChart'
 
-type Props = {
+interface Props {
   categories: DottedName[]
   subcategories?: DottedName[] | undefined
   squashLimitPercentage?: number
@@ -58,7 +58,7 @@ export default function RavijenChart({
           onClick={() => {
             trackEvent(trackingDownloadRavijenChart)
 
-            const ravijen = document.getElementById('ravijen') as HTMLElement
+            const ravijen = document.getElementById('ravijen')!
 
             toPng(ravijen).then(function (dataUrl) {
               const link = document.createElement('a')

@@ -68,7 +68,7 @@ export default function ActionDetail({
 
   const { description, icônes: icons } = rules[dottedName] ?? {}
 
-  const flatActions = rules['actions'] as { formule: { somme: DottedName[] } }
+  const flatActions = rules.actions as { formule: { somme: DottedName[] } }
 
   const relatedActions: NGCRuleNode[] = flatActions?.formule?.somme
     ?.filter(

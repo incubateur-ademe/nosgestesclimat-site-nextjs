@@ -1,6 +1,6 @@
 import type { Locale } from '@/i18nConfig'
 import i18nConfig from '@/i18nConfig'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import BlogHomePage from '../page'
 
@@ -26,7 +26,6 @@ import { fetchHomepageMetadata } from '@/services/cms/fetchHomepageMetadata'
 const mockFetchHomepageContent = vi.mocked(fetchHomepageContent)
 const mockFetchHomepageMetadata = vi.mocked(fetchHomepageMetadata)
 const mockGetLangButtonsDisplayed = vi.mocked(getLangButtonsDisplayed)
-const mockRedirect = vi.mocked(redirect)
 const mockNotFound = vi.mocked(notFound)
 
 describe('BlogHomePage', () => {
@@ -220,55 +219,58 @@ describe('BlogHomePage', () => {
       )
     })
 
-    it.skip('should handle fetchHomepageContent returning partial data', async () => {
-      mockFetchHomepageContent.mockResolvedValue({
-        title: 'Test Title',
-        description: 'Test Description',
-        image: undefined,
-        mainArticle: {
-          id: '1',
-          documentId: 'doc-1',
-          title: 'Main Article Title',
-          description: 'Main Article Description',
-          htmlDescription: 'Main Article HTML Description',
-          content: 'Main Article Content',
-          htmlContent: 'Main Article HTML Content',
-          headings: [],
-          duration: 5,
-          slug: 'main-article',
-          image: {
-            url: 'main-article-image.jpg',
-            alternativeText: 'Main Article Image',
-          },
-          blogCategory: {
-            id: 'cat-1',
-            documentId: 'doc-cat-1',
-            title: 'Test Category',
-            slug: 'test-category',
-            description: 'Test Category Description',
-            faqDescription: 'Test FAQ Description',
-            additionalContent: 'Test Additional Content',
-            htmlContent: 'Test HTML Content',
-            htmlTitle: 'Test HTML Title',
+    it.todo(
+      'should handle fetchHomepageContent returning partial data',
+      async () => {
+        mockFetchHomepageContent.mockResolvedValue({
+          title: 'Test Title',
+          description: 'Test Description',
+          image: undefined,
+          mainArticle: {
+            id: '1',
+            documentId: 'doc-1',
+            title: 'Main Article Title',
+            description: 'Main Article Description',
+            htmlDescription: 'Main Article HTML Description',
+            content: 'Main Article Content',
+            htmlContent: 'Main Article HTML Content',
+            headings: [],
+            duration: 5,
+            slug: 'main-article',
+            image: {
+              url: 'main-article-image.jpg',
+              alternativeText: 'Main Article Image',
+            },
+            blogCategory: {
+              id: 'cat-1',
+              documentId: 'doc-cat-1',
+              title: 'Test Category',
+              slug: 'test-category',
+              description: 'Test Category Description',
+              faqDescription: 'Test FAQ Description',
+              additionalContent: 'Test Additional Content',
+              htmlContent: 'Test HTML Content',
+              htmlTitle: 'Test HTML Title',
+              createdAt: '2023-01-01T00:00:00.000Z',
+              updatedAt: '2023-01-01T00:00:00.000Z',
+              publishedAt: '2023-01-01T00:00:00.000Z',
+            },
             createdAt: '2023-01-01T00:00:00.000Z',
             updatedAt: '2023-01-01T00:00:00.000Z',
             publishedAt: '2023-01-01T00:00:00.000Z',
           },
-          createdAt: '2023-01-01T00:00:00.000Z',
-          updatedAt: '2023-01-01T00:00:00.000Z',
-          publishedAt: '2023-01-01T00:00:00.000Z',
-        },
-        articles: [],
-        pageCount: 0,
-      })
+          articles: [],
+          pageCount: 0,
+        })
 
-      const params = Promise.resolve({ locale: 'fr' as Locale })
-      const searchParams = Promise.resolve({ page: '1' })
+        const params = Promise.resolve({ locale: 'fr' as Locale })
+        const searchParams = Promise.resolve({ page: '1' })
 
-      await BlogHomePage({ params, searchParams })
+        await BlogHomePage({ params, searchParams })
 
-      expect(mockNotFound).toHaveBeenCalled()
-    })
+        expect(mockNotFound).toHaveBeenCalled()
+      }
+    )
   })
 
   describe('Locale-specific behavior', () => {

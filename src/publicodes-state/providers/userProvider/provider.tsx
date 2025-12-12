@@ -12,7 +12,7 @@ import usePersistentSimulations from './hooks/usePersistentSimulations'
 import usePersistentTutorials from './hooks/usePersistentTutorials'
 import usePersistentUser from './hooks/usePersistentUser'
 
-type Props = {
+interface Props {
   /**
    * The localstorage key in use
    */

@@ -11,7 +11,9 @@ import { useCallback, useState } from 'react'
 import PencilIcon from '../icons/PencilIcon'
 import ThreeYearsInput from './avion/ThreeYearsInput'
 
-type Props = { question: DottedName }
+interface Props {
+  question: DottedName
+}
 export default function Avion({ question, ...props }: Props) {
   const { t } = useClientTranslation()
   const [isOpen, setIsOpen] = useState(false)

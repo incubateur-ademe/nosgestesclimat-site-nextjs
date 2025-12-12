@@ -1,9 +1,4 @@
-import type {
-  CSSProperties,
-  ElementType,
-  HTMLAttributes,
-  PropsWithChildren,
-} from 'react'
+import type { CSSProperties, HTMLAttributes, PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 export default function Card({
@@ -19,13 +14,13 @@ export default function Card({
     {
       className?: string
       href?: string /* Used only for links */
-      tag?: ElementType | string
+      tag?: React.ElementType
       onClick?: () => void
       style?: CSSProperties
       target?: string
     } & HTMLAttributes<HTMLDivElement>
   >) {
-  const Tag = tag || 'div'
+  const Tag = tag || ('div' as React.ElementType)
   const isInteractive = tag === 'button' || tag === 'a' || !!onClick
 
   return (

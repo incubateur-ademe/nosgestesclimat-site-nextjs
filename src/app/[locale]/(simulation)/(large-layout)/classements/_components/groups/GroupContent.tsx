@@ -2,7 +2,7 @@ import type { Group } from '@/types/groups'
 import CreateFirstGroupSection from './CreateFirstGroupSection'
 import GroupList from './createOtherGroupsSection/GroupList'
 
-type Props = {
+interface Props {
   groups?: Group[]
 }
 
