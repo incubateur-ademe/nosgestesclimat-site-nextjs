@@ -12,8 +12,8 @@ interface Props {
 }
 
 export function useRules(
-  { isOptim = true, region = 'FR', PRNumber }: Props = {
-    isOptim: true,
+  { isOptim, region, PRNumber }: Props = {
+    isOptim: false,
     region: 'FR',
   }
 ): UseQueryResult<Partial<NGCRules>, Error> {

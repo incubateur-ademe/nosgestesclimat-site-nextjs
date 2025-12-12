@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const defaultProps = {
-  isOptim: true,
+  isOptim: false,
   regionCode: 'FR',
   locale: 'fr',
   ABtesting: false,
@@ -26,11 +26,11 @@ export const defaultProps = {
  * This function is used to get the rules. It is used in the useRules hook and can also be called directly from a server component.
  */
 export async function getRules({
-  isOptim = true,
-  regionCode = 'FR',
-  locale = 'fr',
+  isOptim = defaultProps.isOptim,
+  regionCode = defaultProps.regionCode,
+  locale = defaultProps.locale,
   PRNumber,
-  ABtesting = false,
+  ABtesting = defaultProps.ABtesting,
 }: Props = defaultProps): Promise<Partial<NGCRules>> {
   const supportedRegions = getSupportedRegions()
 

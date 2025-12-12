@@ -59,10 +59,25 @@ export default function useQuestions({
           DottedName[],
         ][]
       ).forEach(([mosaicParent, mosaicChildren]) => {
+        const isMosaicParentNotApplicable =
+          safeEvaluate({
+            'est non applicable': mosaicParent,
+          })?.nodeValue === true
+        if (isMosaicParentNotApplicable) {
+          delete tempMissingVariables[mosaicParent]
+          mosaicChildren.forEach((mosaicChild) => {
+            delete tempMissingVariables[mosaicChild]
+          })
+        }
         const maxMissingVariableScoreInMosaic = Math.max(
-          ...mosaicChildren.map((child) => tempMissingVariables[child])
+          ...mosaicChildren.map((child) => {
+            return tempMissingVariables[child] || 0
+          })
         )
-        if (!isNaN(maxMissingVariableScoreInMosaic)) {
+        if (
+          !isNaN(maxMissingVariableScoreInMosaic) &&
+          maxMissingVariableScoreInMosaic > 0
+        ) {
           tempMissingVariables[mosaicParent] = maxMissingVariableScoreInMosaic
           mosaicChildren.forEach((mosaicChild) => {
             delete tempMissingVariables[mosaicChild]
