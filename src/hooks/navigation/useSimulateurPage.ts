@@ -10,7 +10,7 @@ import { useClientTranslation } from '../useClientTranslation'
 import { useLocale } from '../useLocale'
 import { useEndPage } from './useEndPage'
 
-type GoToSimulateurPageProps = {
+interface GoToSimulateurPageProps {
   noNavigation?: boolean
   newSimulation?: Partial<Simulation>
 }
@@ -18,7 +18,7 @@ const goToSimulateurPagePropsDefault = {
   noNavigation: false,
   newSimulation: undefined,
 }
-type GetLinkToSimulateurPageProps = {
+interface GetLinkToSimulateurPageProps {
   newSimulation?: boolean
 }
 const getLinkToSimulateurPagePropsDefault = {

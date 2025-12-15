@@ -10,7 +10,7 @@ import { useUser } from '@/publicodes-state'
 import type { Group } from '@/types/groups'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 
-type Props = {
+interface Props {
   group: Group
   index: number
 }

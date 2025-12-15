@@ -8,7 +8,7 @@ import type {
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 
-type OrganisationToUpdate = {
+interface OrganisationToUpdate {
   name?: string
   type?: OrganisationTypeEnum | null
   numberOfCollaborators?: number | null

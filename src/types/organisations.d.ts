@@ -8,18 +8,18 @@ import type {
   FunFacts,
 } from '@incubateur-ademe/nosgestesclimat'
 
-type CustomAdditionalQuestions = {
+interface CustomAdditionalQuestions {
   question: string
   isEnabled: boolean
 }
 
-type User = {
+interface User {
   id: string
   name?: string
   email?: string
 }
 
-type VerifiedUser = {
+interface VerifiedUser {
   id: string
   email: string
   name?: string | null
@@ -31,7 +31,7 @@ type VerifiedUser = {
   userId: string
 }
 
-type BaseOrganisation = {
+interface BaseOrganisation {
   id: string
   name: string
   slug: string
@@ -56,7 +56,7 @@ type PublicOrganisation = BaseOrganisation & {
   updatedAt?: undefined
 }
 
-type BaseOrganisationPoll = {
+interface BaseOrganisationPoll {
   id: string
   name: string
   slug: string
@@ -106,7 +106,7 @@ export type AdditionalQuestionsAnswer =
       answer: string
     }
 
-export type Simulation = {
+export interface Simulation {
   id: string
   date: Date | string
   situation: Situation
@@ -121,7 +121,7 @@ export type Simulation = {
    * user is defined only for the current user and undefined for others
    */
   user?: User
-  polls?: Array<{ id: string; slug: string }>
+  polls?: { id: string; slug: string }[]
 }
 
 export type PublicPollSimulation = Pick<
@@ -129,7 +129,7 @@ export type PublicPollSimulation = Pick<
   'id' | 'date' | 'user' | 'computedResults' | 'additionalQuestionsAnswers'
 >
 
-export type OrgaSettingsInputsType = {
+export interface OrgaSettingsInputsType {
   name: string
   email: string
   position?: string
@@ -142,10 +142,10 @@ export type OrgaSettingsInputsType = {
   organisationType: OrganisationTypeEnum
 }
 
-export type AcceptedExcelExportType = {
+export interface AcceptedExcelExportType {
   id: string
 }
 
-export type ExcelExportType = {
+export interface ExcelExportType {
   url: string
 }

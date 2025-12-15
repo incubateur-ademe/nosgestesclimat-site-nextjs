@@ -72,7 +72,7 @@ export default function SimulationList() {
                           size="xs"
                           onClick={() => {
                             trackEvent(profilLoadSimulation)
-                            setCurrentSimulationId(simulation.id as string)
+                            setCurrentSimulationId(simulation.id)
                           }}>
                           <Trans>Charger</Trans>
                         </Button>
@@ -82,7 +82,7 @@ export default function SimulationList() {
                           size="xs"
                           onClick={() => {
                             trackEvent(profilDeleteSimulation)
-                            deleteSimulation(simulation.id as string)
+                            deleteSimulation(simulation.id)
                           }}>
                           <Trans>Supprimer</Trans>
                         </Button>

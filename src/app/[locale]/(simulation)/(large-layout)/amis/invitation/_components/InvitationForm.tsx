@@ -13,7 +13,7 @@ import { formatEmail } from '@/utils/format/formatEmail'
 import { useEffect, useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
-type Inputs = {
+interface Inputs {
   guestName: string
   guestEmail: string
 }

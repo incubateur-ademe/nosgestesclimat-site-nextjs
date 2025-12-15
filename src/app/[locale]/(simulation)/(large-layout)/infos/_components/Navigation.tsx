@@ -18,7 +18,7 @@ import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 
-type Props = {
+interface Props {
   linkToPrev: string
   handleSubmit?: (e: React.MouseEvent<HTMLButtonElement>) => void
   submitDisabled?: boolean

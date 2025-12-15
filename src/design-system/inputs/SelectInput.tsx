@@ -18,7 +18,6 @@ export default forwardRef(function SelectInput(
     helperText,
     className,
     containerClassName,
-    labelClassName,
     onChange,
     value,
     required = false,
@@ -32,7 +31,6 @@ export default forwardRef(function SelectInput(
     helperText?: string
     className?: string
     containerClassName?: string
-    labelClassName?: string
     onChange?: (e: ChangeEvent<HTMLSelectElement>) => void
     value?: string | number
     required?: boolean

@@ -1,7 +1,7 @@
 import { useRule } from '@/publicodes-state'
 import type { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 
-type Props = {
+interface Props {
   value: NodeValue
   question: DottedName
 }

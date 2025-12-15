@@ -18,7 +18,7 @@ import { capitalizeString } from '@/utils/capitalizeString'
 import type { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   question: DottedName
   setValue: (value: NodeValue | Record<string, NodeValue>) => void
 }

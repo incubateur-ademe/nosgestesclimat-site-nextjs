@@ -6,7 +6,7 @@ import { useRule } from '@/publicodes-state'
 import { twMerge } from 'tailwind-merge'
 import CategoryChartItem from './categoriesChart/CategoryChartItem'
 
-type Props = {
+interface Props {
   className?: string
 }
 export default function CategoriesChart({ className }: Props) {

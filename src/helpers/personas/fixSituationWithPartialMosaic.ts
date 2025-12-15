@@ -2,7 +2,7 @@ import getType from '@/publicodes-state/helpers/getType'
 import type { SafeEvaluate, Situation } from '@/publicodes-state/types'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 
-type Props = {
+interface Props {
   situation: Situation
   everyMosaicChildrenWithParent: Record<DottedName, DottedName[]>
   safeGetRule: (rule: DottedName) => NGCRuleNode | undefined

@@ -150,7 +150,7 @@ describe('useSimulations', () => {
         situation: {
           'transport . voiture . km': 1000,
           'transport . avion . heures de vol': 5,
-        } as unknown as Record<DottedName, any>,
+        } as unknown as Record<DottedName, number>,
         extendedSituation: {
           'transport . voiture . km': { source: 'answered', nodeValue: 1000 },
           'transport . avion . heures de vol': {
@@ -174,7 +174,7 @@ describe('useSimulations', () => {
       const newSituation = {
         'transport . voiture . km': 2000,
         'logement . surface': 50,
-      } as unknown as Record<DottedName, any>
+      } as unknown as Record<DottedName, number>
 
       act(() => {
         result.current.updateCurrentSimulation({ situation: newSituation })

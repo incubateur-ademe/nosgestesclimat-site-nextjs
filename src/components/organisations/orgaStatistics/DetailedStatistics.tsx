@@ -29,7 +29,10 @@ const plusFunFactsRules: { [k in keyof Partial<FunFacts>]: DottedName } =
     )
   )
 
-type Props = { funFacts?: FunFacts | null; className?: string }
+interface Props {
+  funFacts?: FunFacts | null
+  className?: string
+}
 export default function DetailedStatistics({ funFacts, className }: Props) {
   const [isSectionVisible, setIsSectionVisible] = useState(false)
 

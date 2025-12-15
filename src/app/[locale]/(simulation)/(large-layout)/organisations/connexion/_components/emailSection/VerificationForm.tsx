@@ -17,7 +17,7 @@ export default function VerificationForm({
   isSuccessValidate,
 }: {
   login: UseMutateAsyncFunction<
-    any,
+    unknown,
     Error,
     {
       email: string

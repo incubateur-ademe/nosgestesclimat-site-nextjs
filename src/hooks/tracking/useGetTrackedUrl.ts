@@ -43,7 +43,7 @@ function handlePathnameAnonymisation(pathname: string) {
 
   Object.entries(PARAMS_TO_ANONYMISE).forEach(([param, replacementKey]) => {
     pathnameModified = pathnameModified.replace(
-      encodeURIComponent(urlParams.get(param) as string),
+      encodeURIComponent(urlParams.get(param)!),
       replacementKey
     )
   })

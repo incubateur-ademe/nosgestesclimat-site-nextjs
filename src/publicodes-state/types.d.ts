@@ -23,21 +23,24 @@ export type Entries<T> = [keyof T, T[keyof T]][]
 
 // User and simulation types
 
-export type UserOrganisationInfo = {
+export interface UserOrganisationInfo {
   administratorEmail?: string
   slug?: string
   name?: string
 }
 
-export type RegionFromGeolocation = { code: string; name: string }
+export interface RegionFromGeolocation {
+  code: string
+  name: string
+}
 
-export type User = {
+export interface User {
   userId: string
   name?: string
   email?: string
   region?: RegionFromGeolocation
   initialRegion?: RegionFromGeolocation
-  northStarRatings?: any // TODO: should be NorthStartType or something
+  northStarRatings?: Record<string, unknown> // TODO: should be NorthStartType or something
   loginExpirationDate?: Date
   organisation?: UserOrganisationInfo
   administratorEmail?: string
@@ -45,7 +48,7 @@ export type User = {
 
 export type Tutorials = Record<string, boolean>
 
-export type ComputedResultsSubcategories = {
+export interface ComputedResultsSubcategories {
   transport: Record<DottedName, number>
   logement: Record<DottedName, number>
   alimentation: Record<DottedName, number>
@@ -53,14 +56,14 @@ export type ComputedResultsSubcategories = {
   'services sociétaux': Record<DottedName, number>
 }
 
-export type ComputedResultsFootprint = {
+export interface ComputedResultsFootprint {
   bilan: number
   categories: Record<DottedName, number>
   subcategories?: Record<DottedName, number>
 }
 export type ComputedResults = Record<Metric, ComputedResultsFootprint>
 
-export type UpdateCurrentSimulationProps = {
+export interface UpdateCurrentSimulationProps {
   situation?: Situation
   foldedSteps?: DottedName[]
   foldedStepToAdd?: {
@@ -69,7 +72,7 @@ export type UpdateCurrentSimulationProps = {
     isMosaicParent?: boolean
     isMosaicChild?: boolean
   }
-  actionChoices?: any
+  actionChoices?: Partial<Record<DottedName, boolean>>
   defaultAdditionalQuestionsAnswers?: Record<string, string>
   customAdditionalQuestionsAnswers?: Record<string, string>
   computedResults?: ComputedResults
@@ -81,13 +84,13 @@ export type UpdateCurrentSimulationProps = {
   savedViaEmail?: boolean
 }
 
-export type Simulation = {
+export interface Simulation {
   id: string
   date: Date | string
   situation: Situation
   extendedSituation: ExtendedSituation
   foldedSteps: DottedName[]
-  actionChoices: any
+  actionChoices: Partial<Record<DottedName, boolean>>
   persona?: string
   computedResults: ComputedResults
   progression: number
@@ -99,7 +102,7 @@ export type Simulation = {
   model?: string
 }
 
-export type LocalStorage = {
+export interface LocalStorage {
   user: User
   tutorials: Tutorials
   simulations: Simulation[]
@@ -117,7 +120,7 @@ export type Engine = PublicodesEngine<DottedName>
 
 export type MissingVariables = Record<DottedName, number>
 
-export type FormattedSuggestion = {
+export interface FormattedSuggestion {
   label: string
   value: SuggestionValue | Record<string, SuggestionValue>
 }

@@ -1,6 +1,6 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
-type Props = {
+interface Props {
   everyMosaicChildrenWithParent: Record<DottedName, DottedName[]>
   dottedName: DottedName
 }

@@ -11,7 +11,7 @@ import { CountUp } from 'use-count-up'
 import AnimatedArrow from './carboneTotalChart/AnimatedArrow'
 import Gauge from './carboneTotalChart/Gauge'
 
-type Props = {
+interface Props {
   total?: number
   isSmall?: boolean
   shouldShowOnlyGauge?: boolean
@@ -45,7 +45,7 @@ export default function CarboneTotalChart({
   }, [originPosition])
 
   const color = getColorAtPosition(position / 100)
-  const cssColor = `rgba(${color['r']},${color['g']},${color['b']},${color['a']})`
+  const cssColor = `rgba(${color.r},${color.g},${color.b},${color.a})`
 
   // Calcul des valeurs pour l'accessibilité
   const targetValue = 2 // tonnes par an (objectif 2050)

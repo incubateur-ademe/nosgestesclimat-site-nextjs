@@ -27,7 +27,7 @@ export function useSaveAndGoNext({ curPage }: { curPage: string }) {
 
         // Go to next page
         router.push(getLinkToNextInfosPage({ curPage }))
-      } catch (e) {
+      } catch {
         setError(true)
         return
       }

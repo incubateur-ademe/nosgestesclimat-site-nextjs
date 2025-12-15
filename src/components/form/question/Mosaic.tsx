@@ -9,7 +9,7 @@ import { useState } from 'react'
 import MosaicQuestion from './mosaic/MosaicQuestion'
 import { useMosaicState } from './mosaic/useMosaicState'
 
-type Props = {
+interface Props {
   question: DottedName
   questionsOfMosaic: DottedName[]
   secondaryQuestionsOfMosaic?: DottedName[]

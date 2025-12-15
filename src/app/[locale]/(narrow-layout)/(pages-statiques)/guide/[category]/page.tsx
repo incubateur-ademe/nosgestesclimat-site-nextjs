@@ -10,9 +10,11 @@ import guideNumerique from '@/locales/guide-mode-groupe/fr/guide-numerique.mdx'
 import guideServicesSocietaux from '@/locales/guide-mode-groupe/fr/guide-services-societaux.mdx'
 import guideTransport from '@/locales/guide-mode-groupe/fr/guide-transport.mdx'
 import type { DefaultPageProps } from '@/types'
+import type { MDXProps } from 'mdx/types'
 import { notFound } from 'next/navigation'
+import type { JSX } from 'react'
 
-const categories: Record<string, any> = {
+const categories: Record<string, (props: MDXProps) => JSX.Element> = {
   alimentation: guideAlimentation,
   divers: guideDivers,
   logement: guideLogement,

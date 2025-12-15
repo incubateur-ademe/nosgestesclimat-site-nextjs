@@ -87,7 +87,7 @@ export function useTrackIframe(isIframe: boolean) {
       return
     }
 
-    if (!observed && entry && entry.isIntersecting) {
+    if (!observed && entry?.isIntersecting) {
       // Track the page view
       trackPageView(url, anonymizedUrl)
 
@@ -105,7 +105,7 @@ export function useTrackIframe(isIframe: boolean) {
       return
     }
 
-    if (!observed && entry && entry.isIntersecting) {
+    if (!observed && entry?.isIntersecting) {
       setObserved(true)
 
       const urlInteractor = getIntegratorUrl(isIframe)

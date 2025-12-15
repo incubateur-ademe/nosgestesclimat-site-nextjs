@@ -5,7 +5,7 @@ import Title from '@/design-system/layout/Title'
 import Emoji from '@/design-system/utils/Emoji'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   isOpen: boolean
   isHedgehog: boolean
 }

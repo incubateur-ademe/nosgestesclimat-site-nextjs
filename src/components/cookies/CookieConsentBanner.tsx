@@ -5,6 +5,7 @@ import type { Dispatch, SetStateAction } from 'react'
 import ReactModal from 'react-modal'
 
 // Type assertion to resolve React types version mismatch
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Modal = ReactModal as any
 
 // Set the app element once when the module is loaded

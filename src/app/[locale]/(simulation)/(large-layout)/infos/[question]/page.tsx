@@ -15,7 +15,7 @@ import { useParams } from 'next/navigation'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import Navigation from '../_components/Navigation'
 
-type Inputs = {
+interface Inputs {
   'custom-answer': string
 }
 
@@ -87,12 +87,12 @@ export default function CustomQuestion() {
 
           <Navigation
             linkToPrev={getLinkToPrevInfosPage({
-              curPage: params.question as string,
+              curPage: params.question,
             })}
             submitDisabled={
-              !getLinkToNextInfosPage({ curPage: params.question as string })
+              !getLinkToNextInfosPage({ curPage: params.question })
             }
-            currentPage={params.question as string}
+            currentPage={params.question}
           />
         </>
       )}

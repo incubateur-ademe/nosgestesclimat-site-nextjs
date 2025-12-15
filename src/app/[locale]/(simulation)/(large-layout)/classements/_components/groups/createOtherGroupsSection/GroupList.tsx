@@ -1,9 +1,10 @@
 'use client'
 
+import type { Group } from '@/types/groups'
 import GroupItem from './groupList/GroupItem'
 
-type Props = {
-  groups: any[]
+interface Props {
+  groups: Group[]
   className?: string
 }
 

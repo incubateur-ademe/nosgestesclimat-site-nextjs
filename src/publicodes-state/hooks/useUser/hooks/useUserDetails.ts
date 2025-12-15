@@ -6,7 +6,7 @@ import type {
 import type { Dispatch, SetStateAction } from 'react'
 import { useCallback } from 'react'
 
-type Props = {
+interface Props {
   user: User
   setUser: Dispatch<SetStateAction<User>>
 }

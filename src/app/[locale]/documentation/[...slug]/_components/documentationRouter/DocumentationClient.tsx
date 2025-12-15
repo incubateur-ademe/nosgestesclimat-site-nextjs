@@ -18,7 +18,27 @@ import type Engine from 'publicodes'
 import { useState } from 'react'
 import MetricSwitchButton from './documentationClient/MetricSwitchButton'
 
-type Props = {
+const DocumentationLink = ({
+  children,
+  to,
+}: {
+  children: React.ReactNode
+  to?: string
+}) => <Link href={to || ''}>{children}</Link>
+
+const DocumentationText = ({ children }: { children: string }) => (
+  <>
+    <Markdown>
+      {children
+        .replaceAll('<RavijenChart/>', '')
+        .replaceAll('<RavijenChartSocietaux/>', '')}
+    </Markdown>
+    {children.includes('<RavijenChart/>') && <BilanChart />}
+    {children.includes('<RavijenChartSocietaux/>') && <ServicesChart />}
+  </>
+)
+
+interface Props {
   slugs: string[]
 }
 export default function DocumentationClient({ slugs }: Props) {
@@ -53,27 +73,15 @@ export default function DocumentationClient({ slugs }: Props) {
       />
       <RulePage
         language={locale as 'fr' | 'en'}
-        rulePath={(path as string) ?? ''}
+        rulePath={path ?? ''}
         engine={engine as Engine}
         documentationPath={documentationPath}
         searchBar={true}
         rulesToHide={Array.from(RULES_TO_HIDE)}
         renderers={{
           Head,
-          Link: ({ children, to }) => <Link href={to || ''}>{children}</Link>,
-          Text: ({ children }) => (
-            <>
-              <Markdown>
-                {children
-                  .replaceAll('<RavijenChart/>', '')
-                  .replaceAll('<RavijenChartSocietaux/>', '')}
-              </Markdown>
-              {children.includes('<RavijenChart/>') && <BilanChart />}
-              {children.includes('<RavijenChartSocietaux/>') && (
-                <ServicesChart />
-              )}
-            </>
-          ),
+          Link: DocumentationLink,
+          Text: DocumentationText,
         }}
         mainContentId="main-content"
       />

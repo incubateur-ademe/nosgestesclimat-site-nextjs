@@ -6,7 +6,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import SubcategoryChartBlock from './categoryChart/SubcategoryChartBlock'
 import TotalCategoryBlock from './categoryChart/TotalCategoryBlock'
 
-type Props = {
+interface Props {
   category: DottedName
   subcategories?: DottedName[] | undefined
   maxValue: number
@@ -25,8 +25,6 @@ export default function CategoryChart({
 }: Props) {
   const { getNumericValue, checkIfValid } = useEngine()
 
-  let sumSquashedSubcategoriesPercentage = 0
-
   const sortedSubcategories = subcategories
     ?.filter((subcategory) => checkIfValid(subcategory))
     // Get the value to display in the EnigmaticMoreChartBlock
@@ -37,20 +35,28 @@ export default function CategoryChart({
 
       const subcategoryPercentage = (subcategoryValue / categoryValue) * 100
 
+      return {
+        subcategory,
+        subcategoryPercentage,
+      }
+    })
+    .sort((categoryA, categoryB) => {
+      const valueA = getNumericValue(categoryA.subcategory) ?? 0
+      const valueB = getNumericValue(categoryB.subcategory) ?? 0
+
+      return valueA - valueB
+    })
+
+  const sumSquashedSubcategoriesPercentage =
+    sortedSubcategories?.reduce((sum, { subcategoryPercentage }) => {
       if (
         subcategoryPercentage <
         (squashLimitPercentage ?? DEFAULT_LIMIT_PERCENTAGE_TO_SQUASH)
       ) {
-        sumSquashedSubcategoriesPercentage += subcategoryPercentage
+        return sum + subcategoryPercentage
       }
-      return subcategory
-    })
-    .sort((categoryA, categoryB) => {
-      const valueA = getNumericValue(categoryA) ?? 0
-      const valueB = getNumericValue(categoryB) ?? 0
-
-      return valueA - valueB
-    })
+      return sum
+    }, 0) ?? 0
 
   return (
     <div
@@ -61,7 +67,7 @@ export default function CategoryChart({
         className={`flex h-[calc(100%-7rem)] ${
           isInverted ? 'flex-col-reverse' : 'flex-col'
         } justify-end gap-[1px]`}>
-        {sortedSubcategories?.map((subcategory, index: number) => {
+        {sortedSubcategories?.map(({ subcategory }, index: number) => {
           return (
             <SubcategoryChartBlock
               key={subcategory}

@@ -24,7 +24,7 @@ import getValueIsOverFloorOrCeiling from '@/publicodes-state/helpers/getValueIsO
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { MouseEvent } from 'react'
-import { useCallback, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/trans/TransClient'
 
@@ -92,10 +92,9 @@ export default function Navigation({
 
   const isSingleQuestionEmbeddedFinal =
     (isEmbedded &&
-      remainingQuestions &&
-      remainingQuestions.length === 1 &&
+      remainingQuestions?.length === 1 &&
       remainingQuestions[0] === question) ||
-    (remainingQuestions && remainingQuestions.length === 0)
+    remainingQuestions?.length === 0
 
   const finalNoNextQuestion = isSingleQuestionEmbeddedFinal ?? noNextQuestion
 
@@ -108,12 +107,34 @@ export default function Navigation({
 
   // Start time of the question
   //(we need to use question to update the start time when the question changes, but it is not exactly usefull as a dependency)
-  const startTime = useMemo(() => {
+  const [startTime, setStartTime] = useState(() => Date.now())
+
+  useEffect(() => {
     if (question) {
-      return Date.now()
+      setStartTime(Date.now())
     }
-    return Date.now()
   }, [question])
+
+  const handleMoveFocus = () => {
+    // Focus the question title upon question change
+    setTimeout(() => {
+      const focusedElement =
+        // Default : focus the first element focusable in the modified area of the form
+        document.getElementById(
+          QUESTION_DESCRIPTION_BUTTON_ID
+          // Otherwise focus the first input or field button
+        ) ??
+        document.getElementById(
+          DEFAULT_FOCUS_ELEMENT_ID
+          // Edge case : mosaics
+        ) ??
+        document.getElementById(`${DEFAULT_FOCUS_ELEMENT_ID}-0`)
+
+      if (focusedElement) {
+        focusedElement?.focus()
+      }
+    })
+  }
 
   const handleGoToNextQuestion = useCallback(
     (e: KeyboardEvent | MouseEvent) => {
@@ -267,27 +288,6 @@ export default function Navigation({
   useMagicKey({
     gotToNextQuestion: handleGoToNextQuestion,
   })
-
-  const handleMoveFocus = () => {
-    // Focus the question title upon question change
-    setTimeout(() => {
-      const focusedElement =
-        // Default : focus the first element focusable in the modified area of the form
-        document.getElementById(
-          QUESTION_DESCRIPTION_BUTTON_ID
-          // Otherwise focus the first input or field button
-        ) ??
-        document.getElementById(
-          DEFAULT_FOCUS_ELEMENT_ID
-          // Edge case : mosaics
-        ) ??
-        document.getElementById(`${DEFAULT_FOCUS_ELEMENT_ID}-0`)
-
-      if (focusedElement) {
-        focusedElement?.focus()
-      }
-    })
-  }
 
   const skipText = (
     <span>

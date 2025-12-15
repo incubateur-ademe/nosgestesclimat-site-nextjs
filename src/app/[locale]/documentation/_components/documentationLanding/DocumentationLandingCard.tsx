@@ -13,7 +13,7 @@ import type { DottedName, NGCRule } from '@incubateur-ademe/nosgestesclimat'
 import Markdown from 'markdown-to-jsx'
 import { utils } from 'publicodes'
 
-type Props = {
+interface Props {
   dottedName: DottedName
   summary: string
   rule?: NGCRule

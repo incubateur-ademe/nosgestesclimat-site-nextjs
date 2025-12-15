@@ -3,9 +3,9 @@
 
 import type { DottedName, NodeValue } from '@incubateur-ademe/nosgestesclimat'
 
-type Props = {
+interface Props {
   question: DottedName
-  answer?: DottedName | NodeValue | string
+  answer?: NodeValue | string
   timeSpentOnQuestion?: number
 }
 // Figma comment #45
