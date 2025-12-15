@@ -42,7 +42,10 @@ export function useMosaicState({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [situation])
 
-  const handleSetValue = (dottedName: DottedName, value: boolean | number) => {
+  const handleSetValue = (
+    dottedName: DottedName,
+    value: boolean | number | undefined
+  ) => {
     let newState = { ...state }
     if (
       // Case 1.a If aucun is set

@@ -10,10 +10,9 @@ type Props = {
   title?: string
   icons?: string
   description?: string
-  setValue: (value: number) => void
+  setValue: (value: number | undefined) => void
   index: number
   value: number | undefined | null
-  situationValue?: number | undefined | null
   parentMosaic: string
   shouldContainButtons?: boolean
 }
@@ -26,7 +25,6 @@ export default function MosaicNumberInput({
   setValue,
   index,
   value,
-  situationValue,
   parentMosaic,
   shouldContainButtons = true,
 }: Props) {
@@ -77,9 +75,9 @@ export default function MosaicNumberInput({
           </Button>
           <NumberInput
             className="focus-within:border-primary-700 focus-within:ring-primary-700 max-h-8 w-14 rounded-sm border-none text-center ring-offset-2 focus-within:ring-2 focus-visible:outline-none"
-            value={situationValue}
+            value={value}
             placeholder={'_'}
-            setValue={(value) => setValue(value ?? 0)}
+            setValue={(value) => setValue(value)}
             data-cypress-id={`${question}---${parentMosaic}`}
             id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
           />
@@ -102,10 +100,10 @@ export default function MosaicNumberInput({
         <div className="flex items-center gap-1.5 p-2 pr-18">
           <NumberInput
             className="focus-within:border-primary-700 focus-within:ring-primary-700 max-h-8 w-16 rounded-sm text-center ring-offset-2 focus-within:ring-2 focus-visible:outline-none"
-            value={situationValue}
+            value={value}
             placeholder={'_'}
             unit="h"
-            setValue={(value) => setValue(value ?? 0)}
+            setValue={setValue}
             data-cypress-id={`${question}---${parentMosaic}`}
             id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
           />
