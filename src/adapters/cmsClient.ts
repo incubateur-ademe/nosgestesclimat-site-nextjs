@@ -45,18 +45,18 @@ type Populate<T, KEYS extends OptionalKeys<T>> = Omit<T, OptionalKeys<T>> &
   Required<Pick<T, KEYS>>
 
 // Components
-export type PageMetadataType = {
+export interface PageMetadataType {
   title: string
   description?: string | null
 }
 
-export type HeadingType = {
+export interface HeadingType {
   id: string
   text: string
   level: number
 }
 
-export type ImageType = {
+export interface ImageType {
   url: string
   alternativeText: string
   formats?: {
@@ -72,13 +72,13 @@ export type ImageType = {
   } | null
 }
 
-export type MetaType = {
+export interface MetaType {
   pagination: {
     pageCount: number
   }
 }
 
-type DefaultAttributesType = {
+interface DefaultAttributesType {
   id: string
   documentId: string
   createdAt: string
@@ -121,7 +121,7 @@ export type ArticleType = {
 export type PopulatedArticleType<K extends OptionalKeys<ArticleType>> =
   Populate<ArticleType, K>
 
-export type AuthorType = {
+export interface AuthorType {
   name: string
   description: string
   htmlDescription: string
@@ -182,11 +182,11 @@ export type BannerType = {
   endDate: string
 } & DefaultAttributesType
 
-export type PartnerCategoryType = {
+export interface PartnerCategoryType {
   category: string
 }
 
-export type PartnerType = {
+export interface PartnerType {
   id: string
   documentId: string
   createdAt: string
@@ -200,7 +200,7 @@ export type PartnerType = {
   displayOnLandingPage?: boolean
 }
 
-export type PartnerCampaignType = {
+export interface PartnerCampaignType {
   title: string
   pollSlug: string
   content: string
@@ -212,27 +212,27 @@ export type PartnerCampaignType = {
   faq?: FAQType | null
 }
 
-export type FAQType = {
+export interface FAQType {
   title: string
   order: number
   questions: QuestionType[]
   subTitle?: string
 }
 
-type CarouselItemType = {
+interface CarouselItemType {
   image?: ImageType
   text: string
   htmlText?: string
   pinkText: string
 }
 
-type TitleImageDescription = {
+interface TitleImageDescription {
   title: string
   image?: ImageType
   description?: string
 }
 
-type TitleImageListDescriptionWithHTML = {
+interface TitleImageListDescriptionWithHTML {
   title: string
   image?: ImageType
   description: string
@@ -240,7 +240,7 @@ type TitleImageListDescriptionWithHTML = {
   listItems?: TitleImageDescription[]
 }
 
-export type ThematicLandingPage = {
+export interface ThematicLandingPage {
   id: string
   documentId: string
   publishedAt: string

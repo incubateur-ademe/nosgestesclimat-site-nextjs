@@ -7,7 +7,7 @@ import { capitalizeString } from '@/utils/capitalizeString'
 import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import type { HTMLAttributes } from 'react'
 
-type Props = {
+interface Props {
   supportedRegions: SupportedRegions
   shouldShowButton?: boolean
   selectedRegionCode?: string
@@ -41,7 +41,7 @@ export default function RegionGrid({
             <CountryListItem
               code={code}
               shouldShowButton={shouldShowButton}
-              label={capitalizeString(params[locale]?.nom as string) ?? ''}
+              label={capitalizeString(params[locale]?.nom) ?? ''}
               isSelected={code === selectedRegionCode}
               updateCurrentRegion={updateCurrentRegion}
             />

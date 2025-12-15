@@ -32,12 +32,12 @@ import type { DottedName, NGCRule } from '@incubateur-ademe/nosgestesclimat'
 ]
  */
 
-type subCatWithVariations = Array<{
+type subCatWithVariations = {
   si: string
   alors: {
     somme: DottedName[]
   }
-}>
+}[]
 
 export default function getSomme(rawNode?: NGCRule): DottedName[] | undefined {
   if (!rawNode) return undefined

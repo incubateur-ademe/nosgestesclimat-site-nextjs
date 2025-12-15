@@ -1,6 +1,6 @@
 export function areArraysEqual(
-  array1: Array<string | number>,
-  array2: Array<string | number>
+  array1: (string | number)[],
+  array2: (string | number)[]
 ) {
   return (
     array1.length === array2.length &&

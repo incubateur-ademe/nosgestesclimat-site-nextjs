@@ -3,7 +3,7 @@
 import type { PropsWithChildren } from 'react'
 import { createContext, useState } from 'react'
 
-type InfosContextType = {
+interface InfosContextType {
   postalCode: string
   setPostalCode: (postalCode: string) => void
   birthdate: string

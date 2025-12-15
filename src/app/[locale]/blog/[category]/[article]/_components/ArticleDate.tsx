@@ -2,7 +2,7 @@ import type { ArticleType } from '@/adapters/cmsClient'
 import Trans from '@/components/translation/trans/TransServer'
 import type { Locale } from '@/i18nConfig'
 
-type Props = {
+interface Props {
   article: ArticleType
   locale: Locale
 }

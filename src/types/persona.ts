@@ -1,3 +1,3 @@
-export type Persona = {
+export interface Persona {
   nom: string
 }

@@ -10,9 +10,11 @@ import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import EditableToggleField from './EditableToggleField'
-type Inputs = { question: string }
+interface Inputs {
+  question: string
+}
 
-type Props = {
+interface Props {
   organisation: Organisation
   poll: Pick<
     OrganisationPoll,

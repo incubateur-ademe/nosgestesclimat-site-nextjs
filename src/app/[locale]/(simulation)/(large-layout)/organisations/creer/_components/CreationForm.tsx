@@ -23,7 +23,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
-type Inputs = {
+interface Inputs {
   name: string
   organisationType: OrganisationTypeEnum
   administratorFirstName: string
@@ -87,7 +87,7 @@ export default function CreationForm() {
       } else {
         router.push(`/organisations/${organisationUpdated?.slug}`)
       }
-    } catch (error: any) {
+    } catch (error) {
       captureException(error)
     }
   }

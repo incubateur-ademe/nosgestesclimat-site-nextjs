@@ -36,7 +36,7 @@ const getPartnersByCategory = (partners: PartnerType[]) => {
 
       return acc
     },
-    {} as { [key: string]: PartnerType[] }
+    {} as Record<string, PartnerType[]>
   )
 }
 

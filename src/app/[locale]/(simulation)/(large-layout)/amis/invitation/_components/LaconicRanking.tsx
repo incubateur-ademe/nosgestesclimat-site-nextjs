@@ -5,7 +5,7 @@ import { defaultMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import type { Group } from '@/types/groups'
 
-type Props = {
+interface Props {
   group: Group
 }
 

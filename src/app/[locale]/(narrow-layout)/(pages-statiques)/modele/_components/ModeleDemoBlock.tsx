@@ -20,9 +20,9 @@ const indicatorsKeys = ['bilan', 'transport', 'logement']
 
 export default function ModeleDemoBlock() {
   const [situation, setSituation] = useState<Situation>({})
-  const [indicators, setIndicators] = useState<{
-    [k: (typeof indicatorsKeys)[number]]: Evaluation | null
-  }>(Object.fromEntries(indicatorsKeys.map((el) => [el, null])))
+  const [indicators, setIndicators] = useState<
+    Record<(typeof indicatorsKeys)[number], Evaluation | null>
+  >(Object.fromEntries(indicatorsKeys.map((el) => [el, null])))
 
   const { data: rules } = useRules({ isOptim: false })
 
@@ -110,9 +110,8 @@ export default function ModeleDemoBlock() {
         </span>
 
         <small className="mx-auto block text-center">
-          Dont {Math.round(indicators['transport'] as number)} kg CO₂e de
-          transport et {Math.round(indicators.logement as number)} kg CO₂e de
-          logement.
+          Dont {Math.round(indicators.transport as number)} kg CO₂e de transport
+          et {Math.round(indicators.logement as number)} kg CO₂e de logement.
         </small>
       </div>
     </div>

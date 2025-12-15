@@ -8,7 +8,7 @@ import { getLinkToPollDashboard } from '@/helpers/navigation/pollPages'
 import type { Organisation, OrganisationPoll } from '@/types/organisations'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 
-type Props = {
+interface Props {
   organisation: Organisation
   poll: OrganisationPoll
 }

@@ -1,7 +1,7 @@
 import type { Simulation } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
-export type Participant = {
+export interface Participant {
   id: string
   name: string
   simulation: Simulation
@@ -9,7 +9,7 @@ export type Participant = {
   email?: string
 }
 
-export type Group = {
+export interface Group {
   id: string
   name: string
   emoji: string
@@ -21,7 +21,7 @@ export type Group = {
   }
 }
 
-export type ValueObject = {
+export interface ValueObject {
   name: DottedName
   value: number
   mean?: number
@@ -29,16 +29,17 @@ export type ValueObject = {
   isCategory?: boolean
 }
 
-export type CategoriesAndSubcategoriesFootprintsType = {
-  [key in DottedName]: ValueObject
-}
+export type CategoriesAndSubcategoriesFootprintsType = Record<
+  DottedName,
+  ValueObject
+>
 
-export type PointsFortsFaiblesType = {
+export interface PointsFortsFaiblesType {
   key: string
   resultObject: ValueObject
 }
 
-export type Results = {
+export interface Results {
   currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
   groupCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
   pointsForts: PointsFortsFaiblesType[]

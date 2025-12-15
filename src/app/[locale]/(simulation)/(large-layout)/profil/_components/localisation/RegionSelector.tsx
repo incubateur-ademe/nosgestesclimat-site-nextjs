@@ -18,7 +18,7 @@ import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
 
-type Props = {
+interface Props {
   isOpen?: boolean
   supportedRegions: SupportedRegions
 }

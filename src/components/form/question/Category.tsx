@@ -4,7 +4,7 @@ import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   question: DottedName
 }
 

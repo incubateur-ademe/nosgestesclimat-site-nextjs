@@ -4,9 +4,8 @@ import { requestIdleCallback } from '@/utils/requestIdleCallback'
 import type { NodeValue } from '@incubateur-ademe/nosgestesclimat'
 import { useState } from 'react'
 
-type Props = {
+interface Props {
   value: NodeValue
-  isMissing: boolean
   setValue: (value: string) => void
   'data-cypress-id': string
   label: string
@@ -15,7 +14,6 @@ type Props = {
 
 export default function BooleanInput({
   value,
-  isMissing,
   setValue,
   label,
   firstInputId,

@@ -12,7 +12,7 @@ export default function ShareBlock() {
 
   return (
     <div id="share-block">
-      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+      {/*eslint-disable-next-line jsx-a11y/label-has-associated-control*/}
       <label id="share-block-label">
         <Title tag="h2">
           <Trans>Partager mon résultat</Trans>

@@ -9,11 +9,28 @@ import { type CookieConsentChoices, CookieConsentKey } from '@/types/cookies'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-type CookieFormData = {
+interface CookieFormData {
   [CookieConsentKey.googleAds]: 'accept' | 'refuse'
 }
 
-const Radio = ({ id, name, checked, disabled, label, ...props }: any) => (
+interface RadioProps {
+  id: string
+  name: string
+  checked: boolean
+  disabled?: boolean
+  label: string | React.ReactNode
+  value?: string
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+const Radio = ({
+  id,
+  name,
+  checked,
+  disabled,
+  label,
+  ...props
+}: RadioProps) => (
   <label
     className={`inline-flex cursor-pointer items-center gap-2 select-none ${disabled ? 'opacity-50' : ''}`}
     htmlFor={id}>
@@ -61,6 +78,8 @@ export default function CookieConsentManagement({
     },
   })
 
+  // @TODO: Remove this eslint-disable-next-line once we have a proper solution for this rule
+  // eslint-disable-next-line react-hooks/incompatible-library
   const googleAdsValue = watch('googleAds')
 
   const onSubmit = (data: CookieFormData) => {

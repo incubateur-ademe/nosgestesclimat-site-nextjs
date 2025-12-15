@@ -17,7 +17,7 @@ import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
-type Props = {
+interface Props {
   group: Group
 }
 

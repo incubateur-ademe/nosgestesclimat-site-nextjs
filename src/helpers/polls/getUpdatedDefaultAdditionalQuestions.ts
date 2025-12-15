@@ -1,6 +1,6 @@
 import { PollDefaultAdditionalQuestion } from '@/constants/organisations/pollDefaultAdditionalQuestion'
 
-type Props = {
+interface Props {
   defaultAdditionalQuestions: PollDefaultAdditionalQuestion[]
   questionKey: PollDefaultAdditionalQuestion
   value: boolean

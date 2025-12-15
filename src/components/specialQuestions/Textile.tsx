@@ -13,7 +13,9 @@ import { useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
 import PencilIcon from '../icons/PencilIcon'
 
-type Props = { question: DottedName }
+interface Props {
+  question: DottedName
+}
 
 const POSSIBLE_ANSWERS: Record<string, DottedName> = {
   minimum: 'divers . textile . volume . minimum',
@@ -38,7 +40,7 @@ export default function Textile({ question, ...props }: Props) {
     if (!preciseChoice || totalPiecesTextile === 0) return
 
     if (totalPiecesTextile <= 15) {
-      setValue(utils.nameLeaf(POSSIBLE_ANSWERS['minimum']))
+      setValue(utils.nameLeaf(POSSIBLE_ANSWERS.minimum))
     }
     if (totalPiecesTextile > 15 && totalPiecesTextile <= 35) {
       setValue(utils.nameLeaf(POSSIBLE_ANSWERS['renouvellement occasionnel']))

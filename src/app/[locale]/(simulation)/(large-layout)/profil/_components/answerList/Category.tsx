@@ -18,7 +18,7 @@ import { useState } from 'react'
 import QuestionsWithoutSubcategory from './category/QuestionsWithoutSubcategory'
 import Subcategory from './category/Subcategory'
 
-type Props = {
+interface Props {
   category: DottedName
 }
 

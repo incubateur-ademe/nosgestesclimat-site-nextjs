@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import ReactModal from 'react-modal'
 import { twMerge } from 'tailwind-merge'
 import Button from '../buttons/Button'
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ModalComponent = ReactModal as any
 
 // Set the app element once when the module is loaded
@@ -15,7 +16,7 @@ if (typeof document !== 'undefined') {
   ReactModal.setAppElement(document.body)
 }
 
-type Props = {
+interface Props {
   closeModal: () => void
   children: ReactNode
   isLoading?: boolean

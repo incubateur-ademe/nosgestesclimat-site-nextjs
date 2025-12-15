@@ -13,7 +13,7 @@ export async function getLocale() {
     }
 
     return i18nConfig.defaultLocale
-  } catch (error) {
+  } catch {
     return i18nConfig.defaultLocale
   }
 }

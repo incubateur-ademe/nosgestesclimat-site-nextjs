@@ -6,7 +6,7 @@ import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import RawMosaicNumberInput from './RawMosaicNumberInput'
 
-type Props = {
+interface Props {
   question: DottedName
   title?: string
   icons?: string

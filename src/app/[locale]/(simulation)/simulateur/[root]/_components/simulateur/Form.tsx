@@ -84,6 +84,7 @@ export default function Form() {
   if (!currentQuestion) {
     return
   }
+
   const QuestionComponent = questions[currentQuestion] || Question
 
   return (

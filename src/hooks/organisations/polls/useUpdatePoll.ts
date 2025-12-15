@@ -7,7 +7,7 @@ import { useMutation, type UseMutationOptions } from '@tanstack/react-query'
 import axios from 'axios'
 import { useParams } from 'next/navigation'
 
-export type PollToUpdate = {
+export interface PollToUpdate {
   name?: string
   expectedNumberOfParticipants?: number | null
   defaultAdditionalQuestions?: PollDefaultAdditionalQuestion[]

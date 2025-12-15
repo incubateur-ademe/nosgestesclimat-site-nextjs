@@ -14,7 +14,7 @@ import { captureException } from '@sentry/nextjs'
 import dayjs from 'dayjs'
 import { useEffect, useState, useTransition } from 'react'
 
-type Props = {
+interface Props {
   group: Group
   refetchGroup: () => void
 }
@@ -28,7 +28,7 @@ export default function UpdateSimulationUsed({ group, refetchGroup }: Props) {
   >(undefined)
 
   const {
-    user: { userId, name, email },
+    user: { userId, email },
     simulations,
   } = useUser()
 
@@ -64,9 +64,9 @@ export default function UpdateSimulationUsed({ group, refetchGroup }: Props) {
         await updateGroupParticipant({
           groupId: group.id,
           email,
-          simulation: latestSimulation as Simulation,
+          simulation: latestSimulation,
           userId,
-          name,
+          name: group.participants.find((p) => p.userId === userId)?.name ?? '',
         })
 
         setIsUpdated(true)
@@ -83,7 +83,7 @@ export default function UpdateSimulationUsed({ group, refetchGroup }: Props) {
     latestSimulation.computedResults.carbone.bilan,
     {
       t,
-      localize: false,
+      localize: true,
     }
   )
 

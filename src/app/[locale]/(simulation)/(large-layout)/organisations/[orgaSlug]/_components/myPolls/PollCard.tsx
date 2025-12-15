@@ -6,7 +6,7 @@ import type { OrganisationPoll } from '@/types/organisations'
 import dayjs from 'dayjs'
 import { useParams } from 'next/navigation'
 
-type Props = {
+interface Props {
   poll: OrganisationPoll
   index: number
 }

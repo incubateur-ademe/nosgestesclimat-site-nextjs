@@ -6,7 +6,7 @@ import isMobile from 'is-mobile'
 import { useEffect, useRef, useState } from 'react'
 import Button from '../buttons/Button'
 
-type Props = {
+interface Props {
   textToCopy: string
   textToDisplay?: string
   className?: string

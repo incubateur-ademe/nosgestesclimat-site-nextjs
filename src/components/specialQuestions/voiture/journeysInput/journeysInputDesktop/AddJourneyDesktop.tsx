@@ -14,7 +14,7 @@ import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { v4 as uuid } from 'uuid'
 
-type Props = {
+interface Props {
   setJourneys: Dispatch<SetStateAction<Journey[]>>
   className?: string
 }
@@ -78,7 +78,6 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
           className="mt-0! p-2 text-xs"
           value={period}
           aria-labelledby="label-time"
-          labelClassName="sr-only p-0 m-0"
           name="period"
           onChange={(e) => setPeriod(e.target.value)}>
           {Object.entries(periods).map(([key, period], i) => {

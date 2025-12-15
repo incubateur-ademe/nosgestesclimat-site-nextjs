@@ -3,7 +3,7 @@
 import useEngine from '@/publicodes-state/hooks/useEngine/useEngine'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { useMemo } from 'react'
-type Props = {
+interface Props {
   rule: NGCRuleNode | undefined
   type: string | undefined
 }
