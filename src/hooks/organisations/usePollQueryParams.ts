@@ -1,7 +1,7 @@
-import { useSearchParams } from 'next/navigation'
+import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 
 export function usePollQueryParams() {
-  const searchParams = useSearchParams()
+  const searchParams = getSearchParamsClientSide()
 
   return { pollSlug: searchParams.get('poll') }
 }

@@ -1,10 +1,10 @@
+import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import { useIsClient } from '@/hooks/useIsClient'
 import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
-import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
 export const useDebug = () => {
-  const searchParams = useSearchParams()
+  const searchParams = getSearchParamsClientSide()
 
   const isClient = useIsClient()
 

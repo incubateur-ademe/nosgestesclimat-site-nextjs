@@ -1,9 +1,9 @@
 'use client'
 
 import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
+import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import { encodeDottedNameAsURI } from '@/utils/format/encodeDottedNameAsURI'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import CategoryFilter from './categoryFilters/CategoryFilter'
@@ -24,7 +24,9 @@ export default function CategoryTabs({
   children,
 }: Props) {
   const tablistRef = useRef<HTMLDivElement>(null)
-  const searchParams = useSearchParams()
+
+  const searchParams = getSearchParamsClientSide()
+
   const categorySelected = searchParams.get(FILTER_SEARCH_PARAM_KEY) || ''
 
   // Find the active tab index based on the selected category

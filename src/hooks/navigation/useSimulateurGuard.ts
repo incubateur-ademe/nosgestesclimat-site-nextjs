@@ -1,6 +1,7 @@
+import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import { getLinkToTutoriel } from '@/helpers/navigation/simulateurPages'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useSetCurrentSimulationFromParams } from '../simulation/useSetCurrentSimulationFromParams'
 import { useSimulationIdInQueryParams } from '../simulation/useSimulationIdInQueryParams'
@@ -11,7 +12,7 @@ import { useEndPage } from './useEndPage'
 
 export function useSimulateurGuard() {
   const router = useRouter()
-  const searchParams = useSearchParams()
+  const searchParams = getSearchParamsClientSide()
 
   const locale = useLocale()
 

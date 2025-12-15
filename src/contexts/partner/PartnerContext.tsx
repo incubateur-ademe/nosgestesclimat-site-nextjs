@@ -4,6 +4,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import { PARTNER_KEY } from '@/constants/partners'
 import type { AlertType } from '@/design-system/alerts/alert/Alert'
 import Emoji from '@/design-system/utils/Emoji'
+import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import {
   getPartnerFromStorage,
   removePartnerFromStorage,
@@ -13,7 +14,7 @@ import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
-import { notFound, useRouter, useSearchParams } from 'next/navigation'
+import { notFound, useRouter } from 'next/navigation'
 import {
   createContext,
   type PropsWithChildren,
@@ -47,7 +48,7 @@ export function PartnerProvider({ children }: PropsWithChildren) {
   >(undefined)
   const [redirectUrl, setRedirectUrl] = useState('')
 
-  const searchParams = useSearchParams()
+  const searchParams = getSearchParamsClientSide()
 
   const { progression, situation } = useCurrentSimulation()
 

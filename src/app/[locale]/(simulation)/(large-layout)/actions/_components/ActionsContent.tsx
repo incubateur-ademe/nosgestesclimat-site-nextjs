@@ -3,6 +3,7 @@
 import CategoryTabs from '@/components/filtering/CategoryTabs'
 import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
 import getActions from '@/helpers/actions/getActions'
+import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import {
   useCurrentSimulation,
   useEngine,
@@ -10,7 +11,6 @@ import {
 } from '@/publicodes-state'
 import type { Action } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
-import { useSearchParams } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import Actions from './actionsContent/Actions'
 import AllerPlusLoin from './actionsContent/AllerPlusLoin'
@@ -22,7 +22,7 @@ export default function ActionsContent() {
 
   const [radical, setRadical] = useState(true)
 
-  const searchParams = useSearchParams()
+  const searchParams = getSearchParamsClientSide()
 
   const category = decodeURIComponent(
     searchParams.get(FILTER_SEARCH_PARAM_KEY) ?? ''

@@ -12,9 +12,9 @@ import {
   getLandingClickCTAResume,
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
+import i18nConfig from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
 import dynamic from 'next/dynamic'
-import { headers } from 'next/headers'
 import Partners from '../../components/landing-pages/Partners'
 import { ClientLayout } from '../../components/layout/ClientLayout'
 import CollectivelyCommit from './_components/CollectivelyCommit'
@@ -42,11 +42,14 @@ export const generateMetadata = getCommonMetadata({
   },
 })
 
+export async function generateStaticParams() {
+  return i18nConfig.locales.map((locale: string) => ({
+    locale,
+  }))
+}
+
 export default async function Homepage({ params }: DefaultPageProps) {
   const { locale } = await params
-
-  const headersList = await headers()
-  const pathname = headersList.get('x-pathname') || '/'
 
   return (
     <ClientLayout locale={locale}>
@@ -84,20 +87,14 @@ export default async function Homepage({ params }: DefaultPageProps) {
             <div className="flex flex-col items-center gap-6 md:order-2 md:mt-0 md:items-start">
               <DynamicCTAButtons
                 trackingEvents={{
-                  start: getLandingClickCTAStart(
-                    pathname,
-                    trackingActionClickCTA
-                  ),
-                  resume: getLandingClickCTAResume(
-                    pathname,
-                    trackingActionClickCTA
-                  ),
+                  start: getLandingClickCTAStart('/', trackingActionClickCTA),
+                  resume: getLandingClickCTAResume('/', trackingActionClickCTA),
                   results: getLandingClickCTAResults(
-                    pathname,
+                    '/',
                     trackingActionClickCTA
                   ),
                   restart: getLandingClickCTARestart(
-                    pathname,
+                    '/',
                     trackingActionClickCTA
                   ),
                 }}

@@ -1,4 +1,5 @@
-import { useParams, useSearchParams } from 'next/navigation'
+import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
+import { useParams } from 'next/navigation'
 import { useEffect } from 'react'
 import { useFetchPolls } from './polls/useFetchPolls'
 
@@ -7,7 +8,9 @@ import { useFetchPolls } from './polls/useFetchPolls'
 export function useHandleRedirectFromLegacy() {
   const { orgaSlug: organisationIdOrSlug } = useParams()
 
-  const enabled = Boolean(useSearchParams().get('isRedirectFromLegacy'))
+  const enabled = Boolean(
+    getSearchParamsClientSide().get('isRedirectFromLegacy')
+  )
 
   const { data: polls } = useFetchPolls({
     enabled,

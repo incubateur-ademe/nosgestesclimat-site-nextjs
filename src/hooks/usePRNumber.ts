@@ -1,6 +1,6 @@
+import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import { useIsClient } from '@/hooks/useIsClient'
 import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
-import { useSearchParams } from 'next/navigation'
 
 function getPRNumberFromStorage() {
   return safeSessionStorage.getItem('PR') ?? ''
@@ -15,7 +15,7 @@ export function usePRNumber(): {
   clearPRNumber: () => void
 } {
   const isClient = useIsClient()
-  const searchParams = useSearchParams()
+  const searchParams = getSearchParamsClientSide()
 
   // Don't use sessionStorage on the server
   if (!isClient) {

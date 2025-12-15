@@ -1,10 +1,11 @@
 import { defaultMetric } from '@/constants/model/metric'
 import { END_PAGE_PATH, POLL_EMAIL_STEP } from '@/constants/urls/paths'
+import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 
 interface GoToEndPageProps {
@@ -26,7 +27,7 @@ const GetLinkToEndPagePropsDefault = {
 export function useEndPage() {
   const router = useRouter()
 
-  const searchParams = useSearchParams()
+  const searchParams = getSearchParamsClientSide()
 
   const currentSimulation = useCurrentSimulation()
 

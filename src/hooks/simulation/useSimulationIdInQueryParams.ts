@@ -1,9 +1,9 @@
-import { useSearchParams } from 'next/navigation'
+import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 
 export function useSimulationIdInQueryParams(): {
   simulationIdInQueryParams: string | null
 } {
-  const searchParams = useSearchParams()
+  const searchParams = getSearchParamsClientSide()
 
   const encodedSimulationIdInQueryParams = searchParams.get('sid')
 

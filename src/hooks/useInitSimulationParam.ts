@@ -1,9 +1,9 @@
+import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import { useUser } from '@/publicodes-state'
-import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export const useInitSimulationParam = () => {
-  const searchParams = useSearchParams()
+  const searchParams = getSearchParamsClientSide()
 
   const { simulations, initSimulation } = useUser()
 

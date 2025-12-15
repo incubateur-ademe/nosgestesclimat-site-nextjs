@@ -1,10 +1,11 @@
+import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import {
   getLinkToSimulateur,
   getLinkToTutoriel,
 } from '@/helpers/navigation/simulateurPages'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
 import { useClientTranslation } from '../useClientTranslation'
 import { useLocale } from '../useLocale'
@@ -26,7 +27,7 @@ const getLinkToSimulateurPagePropsDefault = {
 }
 export function useSimulateurPage() {
   const router = useRouter()
-  const searchParams = useSearchParams()
+  const searchParams = getSearchParamsClientSide()
 
   const { t } = useClientTranslation()
 

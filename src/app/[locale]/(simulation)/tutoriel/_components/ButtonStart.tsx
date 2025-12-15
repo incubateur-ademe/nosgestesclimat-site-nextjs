@@ -5,11 +5,11 @@ import { tutorielClickSuivant } from '@/constants/tracking/pages/tutoriel'
 import { POLL_START_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Loader from '@/design-system/layout/Loader'
+import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
-import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 const TEST_INTRO_TUTO_KEY = 'testIntro'
@@ -23,7 +23,7 @@ export default function ButtonStart({
 }) {
   const { hideTutorial, tutorials } = useUser()
 
-  const searchParams = useSearchParams()?.toString()
+  const searchParams = getSearchParamsClientSide()
 
   const { progression, updateCurrentSimulation, polls } = useCurrentSimulation()
 
