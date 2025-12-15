@@ -140,7 +140,6 @@ export default function SimulationSyncProvider({
           defaultAdditionalQuestionsAnswers,
           polls,
           groups,
-          savedViaEmail,
         },
       })
     }, SAVE_DELAY)
