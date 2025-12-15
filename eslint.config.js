@@ -12,6 +12,7 @@ const eslintConfig = defineConfig(
     ...nextVanilla[0],
     rules: {
       ...nextVanilla[0].rules,
+      ...nextPlugin.configs['core-web-vitals'].rules,
       // @TODO: Remove this eslint-disable-next-line once we have a proper solution for these rules
       'react-hooks/set-state-in-effect': 'warn',
       'react-hooks/refs': 'warn',
@@ -36,7 +37,6 @@ const eslintConfig = defineConfig(
       'jsx-a11y/no-redundant-roles': 'warn',
     },
   },
-  nextPlugin.configs['core-web-vitals'],
   {
     extends: [
       tseslint.configs.recommendedTypeChecked,
