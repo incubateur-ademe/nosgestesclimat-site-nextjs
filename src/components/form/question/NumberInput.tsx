@@ -4,9 +4,9 @@ import Trans from '@/components/translation/trans/TransClient'
 import { useDebounce } from '@/utils/debounce'
 import type { Evaluation } from 'publicodes'
 import { useEffect, useState, type ComponentProps } from 'react'
-import type { NumberFormatValues, NumericFormat } from 'react-number-format'
+import type { NumberFormatValues } from 'react-number-format'
+import { NumericFormat } from 'react-number-format'
 import { twMerge } from 'tailwind-merge'
-import RawNumberInput from './numberInput/RawNumberInput'
 
 type Props = {
   unit?: string
@@ -51,10 +51,20 @@ export default function NumberInput({
   return (
     <div
       className={twMerge(`flex items-center justify-start gap-1`, className)}>
-      <RawNumberInput
+      <NumericFormat
         value={currentValues.value ?? currentValues.floatValue}
         placeholder={currentValues.value === undefined ? placeholder : ''}
-        handleValueChange={handleValueChange}
+        className={twMerge(
+          `max-w-[8rem] rounded-xl border border-solid border-slate-500 bg-white p-4 text-right text-sm transition-colors md:max-w-full`,
+          'focus:ring-primary-700! placeholder:text-slate-500! focus:ring-2! focus:ring-offset-3! focus:outline-hidden!',
+          className
+        )}
+        thousandSeparator={' '}
+        decimalSeparator={','}
+        allowNegative={false}
+        autoComplete="off"
+        onValueChange={handleValueChange}
+        min={0}
         id={id}
         {...props}
       />

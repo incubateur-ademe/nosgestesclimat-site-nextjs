@@ -1,19 +1,19 @@
+import NumberInput from '@/components/form/question/NumberInput'
 import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import RawMosaicNumberInput from './RawMosaicNumberInput'
-
 type Props = {
   question: DottedName
   title?: string
   icons?: string
   description?: string
-  setValue: (value: number | undefined) => void
+  setValue: (value: number) => void
   index: number
   value: number | undefined | null
+  situationValue?: number | undefined | null
   parentMosaic: string
   shouldContainButtons?: boolean
 }
@@ -26,10 +26,11 @@ export default function MosaicNumberInput({
   setValue,
   index,
   value,
+  situationValue,
   parentMosaic,
   shouldContainButtons = true,
 }: Props) {
-  const { plafond, unit } = useRule(question)
+  const { plafond } = useRule(question)
 
   const { t } = useClientTranslation()
 
@@ -74,9 +75,11 @@ export default function MosaicNumberInput({
             className="z-10 h-8 w-8 items-center justify-center p-0">
             <span className="mb-[1px] block">-</span>
           </Button>
-          <RawMosaicNumberInput
-            value={value}
-            setValue={(value) => setValue(value)}
+          <NumberInput
+            className="focus-within:border-primary-700 focus-within:ring-primary-700 max-h-8 w-14 rounded-sm border-none text-center ring-offset-2 focus-within:ring-2 focus-visible:outline-none"
+            value={situationValue}
+            placeholder={'_'}
+            setValue={(value) => setValue(value ?? 0)}
             data-cypress-id={`${question}---${parentMosaic}`}
             id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
           />
@@ -97,10 +100,12 @@ export default function MosaicNumberInput({
         </div>
       ) : (
         <div className="flex items-center gap-1.5 p-2 pr-18">
-          <RawMosaicNumberInput
-            value={value}
-            unit={unit}
-            setValue={(value) => setValue(value)}
+          <NumberInput
+            className="focus-within:border-primary-700 focus-within:ring-primary-700 max-h-8 w-16 rounded-sm text-center ring-offset-2 focus-within:ring-2 focus-visible:outline-none"
+            value={situationValue}
+            placeholder={'_'}
+            unit="h"
+            setValue={(value) => setValue(value ?? 0)}
             data-cypress-id={`${question}---${parentMosaic}`}
             id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
           />
