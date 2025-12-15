@@ -70,4 +70,4 @@ coverage
 *.log
 
 /public/mockServiceWorker.js
-./storybook-static
+storybook-static
