@@ -1,6 +1,7 @@
 import { useCurrentSimulation, useRule } from '@/publicodes-state'
 import type { Situation } from '@/publicodes-state/types'
 import { useDebounce } from '@/utils/debounce'
+import type { NodeValue } from '@incubateur-ademe/nosgestesclimat'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat/types/dottedNames'
 import { useEffect, useState } from 'react'
 
@@ -31,14 +32,24 @@ export function useMosaicState({
     Object.fromEntries(
       questionsOfMosaic.map((question) => [
         question,
-        ouiNonToBoolean(situation[question]),
+        situation[question] === null
+          ? undefined
+          : ouiNonToBoolean(situation[question]),
       ])
     )
 
   const [state, setState] = useState(stateFromSituation(situation))
 
   useEffect(() => {
-    setState(stateFromSituation(situation))
+    const newState = Object.fromEntries(
+      Object.entries(stateFromSituation(situation)).map(([key, value]) => {
+        if (state[key as DottedName] === null && value === 0) {
+          return [key, null]
+        }
+        return [key, value]
+      })
+    )
+    setState(newState)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [situation])
 
@@ -72,7 +83,15 @@ export function useMosaicState({
     }
 
     setState(newState)
-    ;(typeof value === 'number' ? setValuesLater : setValuesNow)(newState, {
+
+    const newSituation: Record<string, NodeValue> = newState
+
+    // Case 3 If value is set to undefined (input cleared), it means « non applicable » (0 or false)
+    if (value === undefined) {
+      newSituation[dottedName] = null
+    }
+
+    ;(typeof value === 'number' ? setValuesLater : setValuesNow)(newSituation, {
       questionDottedName: question,
     })
   }
