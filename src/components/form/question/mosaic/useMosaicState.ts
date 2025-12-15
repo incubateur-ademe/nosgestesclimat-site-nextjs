@@ -46,6 +46,7 @@ export function useMosaicState({
     dottedName: DottedName,
     value: boolean | number | undefined
   ) => {
+    console.log(dottedName, value)
     let newState = { ...state }
     if (
       // Case 1.a If aucun is set
