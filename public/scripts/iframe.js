@@ -12,9 +12,6 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
   const href = window.location.href.toString()
   if (!href) {
     console.error('Iframe Nos Gestes Climat: window.location.href is empty')
-    Sentry.captureMessage(
-      `Iframe Nos Gestes Climat: window.location.href is empty`
-    )
   }
   const integratorUrl = new URL(href || 'about:blank')
 
