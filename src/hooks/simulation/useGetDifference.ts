@@ -1,5 +1,5 @@
 import { useCurrentSimulation, useFormState, useRule } from '@/publicodes-state'
-import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, Metrics } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect, useRef, useState } from 'react'
 
 export function useGetDifference({ metric }: { metric: Metrics }): {
@@ -20,6 +20,8 @@ export function useGetDifference({ metric }: { metric: Metrics }): {
   const { foldedSteps } = useCurrentSimulation()
 
   const { currentQuestion } = useFormState()
+
+  const { type } = useRule(currentQuestion as DottedName)
 
   const prevValue = useRef(numericValue)
   const prevQuestion = useRef(currentQuestion)
@@ -70,8 +72,9 @@ export function useGetDifference({ metric }: { metric: Metrics }): {
     prevValue.current = numericValue
   }, [numericValue])
 
+  // The question contains a number input
   // User hasn't updated twice his/her answer
-  if (countValueUpdate <= 1) {
+  if (countValueUpdate <= 1 || type === 'numberMosaic' || type === 'number') {
     return {
       difference: 0,
       updateKey: keyFromNumericValue,
