@@ -24,15 +24,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22.14'
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Setup Pages ⚙️
         uses: actions/configure-pages@v5
 
       - name: Install and Build 🔧
         run: |
-          yarn --immutable
-          yarn storybook:build:github-pages
+          pnpm --immutable
+          pnpm storybook:build:github-pages
         env:
           NEXT_PUBLIC_SITE_URL: https://storybook.nosgestesclimat.fr
 

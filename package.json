@@ -12,6 +12,7 @@
     "node": "22.14"
   },
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest --coverage",
@@ -31,7 +32,7 @@
     "e2e:generate": "npx tsx tests/scripts/generateSpecsFromPersonas.ts",
     "iframe-healthcheck": "node scripts/healthchecks/iframes.js",
     "ui:parse": "node scripts/i18n/generate-ui.js",
-    "ui:check": "yarn run ui:parse && node scripts/i18n/check-ui.js",
+    "ui:check": "pnpm run ui:parse && node scripts/i18n/check-ui.js",
     "ui:translate": "node scripts/i18n/translate-ui.js",
     "ui:clean": "node scripts/i18n/generate-ui.js -r",
     "faq:translate": "node scripts/i18n/translate-faq.js",
@@ -168,7 +169,6 @@
     "yaml-loader": "^0.8.1",
     "yargs": "^18.0.0"
   },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "msw": {
     "workerDirectory": [
       "public"

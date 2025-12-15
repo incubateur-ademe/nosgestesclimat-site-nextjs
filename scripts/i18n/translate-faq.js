@@ -1,7 +1,7 @@
 /*
 	Calls the DeepL API to translate the FAQ Yaml files.
 
-	Command: yarn translate:faq -- [options]
+	Command: pmpm:translate:faq -- [options]
 */
 
 import cli from '@incubateur-ademe/nosgestesclimat-scripts/cli'

@@ -19,15 +19,15 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '22.14'
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: pnpm install --immutable
 
       - name: Run unit tests
         env:
           NEXT_PUBLIC_TALLY_FORM_ID: ${{ vars.NEXT_PUBLIC_TALLY_FORM_ID }}
-        run: yarn test --coverage
+        run: pnpm test --coverage
 
   lint:
     name: Lint
@@ -41,15 +41,15 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '22.14'
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: pnpm install --immutable
 
       - name: Run lint
         run: |
-          yarn next typegen;
-          yarn lint
+          pnpm next typegen;
+          pnpm lint
 
   type:
     name: Typecheck
@@ -63,12 +63,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '22.14'
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: pnpm install --immutable
 
       - name: Run typecheck
         run: |
-          yarn next typegen;
-          yarn lint:types
+          pnpm next typegen;
+          pnpm lint:types

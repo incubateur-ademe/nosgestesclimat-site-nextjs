@@ -27,14 +27,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22.14'
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Install Playwright
         run: npx playwright install chromium
 
       - name: Run iframe healthcheck
         id: healthcheck
-        run: yarn iframe-healthcheck
+        run: pnpm iframe-healthcheck
