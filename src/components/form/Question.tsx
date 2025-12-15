@@ -166,7 +166,7 @@ export default function Question({
               />
             )}
 
-            {type === 'mosaic' && (
+            {(type === 'numberMosaic' || type === 'selectMosaic') && (
               <Mosaic
                 question={question}
                 questionsOfMosaic={questionsOfMosaicFromParent}

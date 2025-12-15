@@ -26,7 +26,7 @@ export default function useValue({ evaluation, type }: Props) {
           ? 'non'
           : ''
     }
-    if (type === 'mosaic') {
+    if (type === 'numberMosaic' || type === 'selectMosaic') {
       return 'mosaic'
     }
     if (Number(value) === value) {

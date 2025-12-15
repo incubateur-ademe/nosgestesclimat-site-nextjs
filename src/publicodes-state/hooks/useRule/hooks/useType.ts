@@ -13,7 +13,13 @@ type Props = {
 
 export default function useType({ dottedName, rule, evaluation }: Props) {
   const type = useMemo<
-    'notQuestion' | 'mosaic' | 'choices' | 'boolean' | 'number' | undefined
+    | 'notQuestion'
+    | 'numberMosaic'
+    | 'selectMosaic'
+    | 'choices'
+    | 'boolean'
+    | 'number'
+    | undefined
   >(() => {
     return getType({ dottedName, rule, evaluation })
   }, [dottedName, rule, evaluation])

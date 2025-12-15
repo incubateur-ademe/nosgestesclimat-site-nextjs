@@ -149,7 +149,8 @@ const checkValueValidity = ({
         return 'non'
       }
       return undefined
-    case 'mosaic':
+    case 'numberMosaic':
+    case 'selectMosaic':
       return 'mosaic'
     case 'number':
       return value === undefined
