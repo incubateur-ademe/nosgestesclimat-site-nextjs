@@ -23,7 +23,7 @@ export default function RawMosaicNumberInput({
     <RawNumberInput
       className="focus-within:border-primary-700 focus-within:ring-primary-700 max-h-8 w-16 rounded-sm text-center ring-offset-2 focus-within:ring-2 focus-visible:outline-none"
       value={value}
-      placeholder={'_'}
+      placeholder={value === null ? '' : '_'}
       unit={unit}
       handleValueChange={({ floatValue, value }) =>
         setValue(value === undefined ? value : floatValue)

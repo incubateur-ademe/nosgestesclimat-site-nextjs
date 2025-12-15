@@ -27,7 +27,7 @@ export default function MosaicNumberInput({
   value,
   parentMosaic,
 }: Props) {
-  const { plafond, unit } = useRule(question)
+  const { plafond } = useRule(question)
 
   const { t } = useClientTranslation()
 
