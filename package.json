@@ -116,6 +116,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/mdx": "^2.0.10",
     "@types/node": "^24.8.1",
+    "@types/pg": "^8.16.0",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "@types/react-modal": "^3.16.3",
@@ -153,6 +154,10 @@
     "next-router-mock": "^1.0.2",
     "pg": "^8.13.3",
     "playwright": "^1.57.0",
+<<<<<<< HEAD
+=======
+    "playwright-core": "^1.57.0",
+>>>>>>> 0a54a0b9b (🔧 Add missing types / packages)
     "postcss-loader": "^8.1.0",
     "prettier": "^3.5.3",
     "prettier-plugin-organize-imports": "^4.3.0",
