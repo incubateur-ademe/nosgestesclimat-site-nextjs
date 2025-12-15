@@ -5,17 +5,15 @@ import { type ComponentProps } from 'react'
 import type { NumericFormat } from 'react-number-format'
 import RawNumberInput from '../../numberInput/RawNumberInput'
 
-type Props = {
+interface Props {
   unit?: string
   value?: Evaluation<number>
-  placeholder?: string
   setValue: (value: number | undefined) => void
 }
 
 export default function RawMosaicNumberInput({
   unit,
   value,
-  placeholder,
   setValue,
   ...props
 }: ComponentProps<typeof NumericFormat> & Props) {

@@ -1,5 +1,5 @@
 import { useCurrentSimulation, useFormState, useRule } from '@/publicodes-state'
-import type { DottedName, Metrics } from '@incubateur-ademe/nosgestesclimat'
+import type { Metrics } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect, useRef, useState } from 'react'
 
 export function useGetDifference({ metric }: { metric: Metrics }): {
@@ -21,7 +21,7 @@ export function useGetDifference({ metric }: { metric: Metrics }): {
 
   const { currentQuestion } = useFormState()
 
-  const { type } = useRule(currentQuestion as DottedName)
+  const { type } = useRule(currentQuestion!)
 
   const prevValue = useRef(numericValue)
   const prevQuestion = useRef(currentQuestion)
