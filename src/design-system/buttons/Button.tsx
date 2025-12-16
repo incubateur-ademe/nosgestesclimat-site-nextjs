@@ -76,6 +76,7 @@ export default function Button({
         baseClassNames,
         sizeClassNames[size],
         colorClassNames[color],
+        disabled && 'cursor-not-allowed opacity-50!',
         className
       )}
       {...props}>
