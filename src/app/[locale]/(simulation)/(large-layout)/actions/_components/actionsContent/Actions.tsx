@@ -12,7 +12,7 @@ import { useState } from 'react'
 import ActionList from './actions/ActionList'
 
 interface Props {
-  actions: (Action & { isIrrelevant: boolean })[]
+  actions: Action[]
   rules: Partial<NGCRules>
   radical: boolean
 }
@@ -44,7 +44,7 @@ export default function Actions({
   const actions = rawActions.map((action) => ({
     ...action,
     value: getCorrectedValue(action),
-  })) as (Action & { isIrrelevant: boolean; value: number | undefined })[]
+  })) as Action[]
 
   const rejected = actions.filter(
     (action) => actionChoices?.[action.dottedName] === false
@@ -59,8 +59,7 @@ export default function Actions({
     {
       value: 0,
       dottedName: '' as DottedName,
-      isIrrelevant: false,
-    } as Action & { isIrrelevant: boolean; value: number | undefined }
+    }
   )
 
   const numberedActions = thresholds.map(([threshold, label], index) => {

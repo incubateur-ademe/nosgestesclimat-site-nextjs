@@ -8,7 +8,6 @@ import {
   useEngine,
   useTempEngine,
 } from '@/publicodes-state'
-import type { Action } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
@@ -93,12 +92,7 @@ export default function ActionsContent() {
       <OptionBar
         setRadical={setRadical}
         radical={radical}
-        actions={
-          actionsFilteredCategorically as (Action & {
-            isIrrelevant: boolean
-            value?: number
-          })[]
-        }
+        actions={actionsFilteredCategorically}
       />
 
       <CategoryTabs
@@ -107,17 +101,11 @@ export default function ActionsContent() {
           dottedName: category,
           count: actions.filter(
             (action) =>
-              action.dottedName.startsWith(category) &&
-              !(action as Action & { isIrrelevant: boolean }).isIrrelevant &&
-              action.nodeValue !== 0
+              action.dottedName.startsWith(category) && action.nodeValue !== 0
           ).length,
         }))}>
         <Actions
-          actions={
-            actionsFilteredCategorically as (Action & {
-              isIrrelevant: boolean
-            })[]
-          }
+          actions={actionsFilteredCategorically}
           rules={rules ?? {}}
           radical={radical}
           key={`update-key-${category}`}

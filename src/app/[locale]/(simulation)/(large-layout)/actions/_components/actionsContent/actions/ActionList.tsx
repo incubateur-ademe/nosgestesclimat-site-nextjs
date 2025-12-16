@@ -21,7 +21,7 @@ import ActionCard from './ActionCard'
 import ActionForm from './ActionForm'
 
 interface Props {
-  actions: (Action & { isIrrelevant: boolean; value?: number })[]
+  actions: Action[]
   rules: Partial<NGCRules>
   bilan: { nodeValue: NodeValue; dottedName: string }
   actionWithFormOpen: string
@@ -100,12 +100,6 @@ export default function ActionList({
       role="list">
       {actionsPersisted.reduce<React.ReactNode[]>((acc, action) => {
         const isActionFocused = actionWithFormOpen === action.dottedName
-        const isIrrelevant = (action as Action & { isIrrelevant: boolean })
-          .isIrrelevant
-
-        if (isIrrelevant) {
-          return acc
-        }
 
         const cardComponent = (
           <div>
