@@ -1,12 +1,12 @@
-'use client'
-
 import type { Locale } from '@/i18nConfig'
 import { fetchBanner } from '@/services/cms/fetchBanner'
-import { use } from 'react'
+import { connection } from 'next/server'
 import { BannerContent } from './BannerContent'
 
-export default function Banner({ locale }: { locale: Locale }) {
-  const banner = use(fetchBanner(locale))
+export default async function Banner({ locale }: { locale: Locale }) {
+  await connection()
+
+  const banner = await fetchBanner(locale)
 
   if (!banner) return null
 
