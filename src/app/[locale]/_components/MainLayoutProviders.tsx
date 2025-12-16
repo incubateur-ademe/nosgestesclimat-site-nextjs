@@ -6,7 +6,7 @@ import { STORAGE_KEY } from '@/constants/storage'
 import { PartnerProvider } from '@/contexts/partner/PartnerContext'
 import { UserProvider } from '@/publicodes-state'
 import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
-import { type PropsWithChildren } from 'react'
+import { Suspense, type PropsWithChildren } from 'react'
 import { IframeOptionsProvider } from '../_components/mainLayoutProviders/IframeOptionsContext'
 import MainHooks from '../_components/mainLayoutProviders/MainHooks'
 import { PreventNavigationProvider } from '../_components/mainLayoutProviders/PreventNavigationProvider'
@@ -24,9 +24,10 @@ export default function MainLayoutProviders({ children }: PropsWithChildren) {
               <IframeOptionsProvider>
                 {(containerRef: React.RefObject<HTMLDivElement | null>) => (
                   <PreventNavigationProvider>
-                    <MainHooks>
-                      <div ref={containerRef}>{children}</div>
-                    </MainHooks>
+                    <Suspense>
+                      <MainHooks />
+                    </Suspense>
+                    <div ref={containerRef}>{children}</div>
                   </PreventNavigationProvider>
                 )}
               </IframeOptionsProvider>

@@ -12,9 +12,9 @@ import {
   POLL_EMAIL_STEP,
   POLL_POSTAL_CODE_STEP,
 } from '@/constants/urls/paths'
-import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { usePollQueryParams } from '@/hooks/organisations/usePollQueryParams'
+import { useSearchParams } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
 import { useFetchPublicPoll } from '../organisations/polls/useFetchPublicPoll'
 
@@ -32,7 +32,7 @@ interface Props {
   string // Lol
 }
 export function useInfosPage() {
-  const searchParams = getSearchParamsClientSide()
+  const searchParams = useSearchParams()
   const queryParamsString = searchParams.toString()
 
   const { pollSlug } = usePollQueryParams()

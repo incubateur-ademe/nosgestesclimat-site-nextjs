@@ -3,9 +3,9 @@
 import type { PartnerType } from '@/adapters/cmsClient'
 import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
 import Card from '@/design-system/layout/Card'
-import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import { encodeDottedNameAsURI } from '@/utils/format/encodeDottedNameAsURI'
 import Image from 'next/image'
+import { useSearchParams } from 'next/navigation'
 
 interface Props {
   partnersByCategories: Record<string, PartnerType[]>
@@ -16,7 +16,7 @@ export default function PartnersDisplay({
   partnersByCategories,
   categoryFilter,
 }: Props) {
-  const searchParams = getSearchParamsClientSide()
+  const searchParams = useSearchParams()
 
   const currentCategoryFilter =
     searchParams?.get(FILTER_SEARCH_PARAM_KEY) || categoryFilter

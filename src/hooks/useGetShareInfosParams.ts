@@ -1,7 +1,7 @@
-import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
+import { useSearchParams } from 'next/navigation'
 
 export const useGetShareInfosParams = () => {
-  const searchParams = getSearchParamsClientSide()
+  const searchParams = useSearchParams()
 
   const carboneTotal = Number(searchParams.get('total'))
 

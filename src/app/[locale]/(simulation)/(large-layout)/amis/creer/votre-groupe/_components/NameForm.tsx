@@ -11,7 +11,6 @@ import { amisCreationEtapeVosInformationsSuivant } from '@/constants/tracking/pa
 import Button from '@/design-system/buttons/Button'
 import GridRadioInputs from '@/design-system/inputs/GridRadioInputs'
 import TextInput from '@/design-system/inputs/TextInput'
-import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import { useCreateGroup } from '@/hooks/groups/useCreateGroup'
 import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
@@ -20,6 +19,7 @@ import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { captureException } from '@sentry/nextjs'
+import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm as useReactHookForm, type Control } from 'react-hook-form'
 
@@ -39,7 +39,7 @@ export default function NameForm() {
 
   const { user } = useUser()
 
-  const searchParams = getSearchParamsClientSide()
+  const searchParams = useSearchParams()
 
   const {
     mutateAsync: createGroup,

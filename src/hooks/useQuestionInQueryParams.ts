@@ -1,7 +1,6 @@
-import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect } from 'react'
 import { useLocale } from './useLocale'
 
@@ -10,7 +9,7 @@ export const useQuestionInQueryParams = (
 ) => {
   const router = useRouter()
 
-  const searchParams = getSearchParamsClientSide()
+  const searchParams = useSearchParams()
 
   const locale = useLocale()
   const question = searchParams.get('question')

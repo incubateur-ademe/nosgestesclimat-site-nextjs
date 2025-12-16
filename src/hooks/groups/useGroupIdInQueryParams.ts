@@ -1,9 +1,9 @@
-import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
+import { useSearchParams } from 'next/navigation'
 
 export function useGroupIdInQueryParams(): {
   groupIdInQueryParams: string | null
 } {
-  const searchParams = getSearchParamsClientSide()
+  const searchParams = useSearchParams()
 
   const groupIdInQueryParams = searchParams.get('groupId')
 

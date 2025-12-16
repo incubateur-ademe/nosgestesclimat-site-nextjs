@@ -1,9 +1,9 @@
 'use client'
 
 import { FILTER_SEARCH_PARAM_KEY } from '@/constants/filtering'
-import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import { encodeDottedNameAsURI } from '@/utils/format/encodeDottedNameAsURI'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import CategoryFilter from './categoryFilters/CategoryFilter'
@@ -25,7 +25,7 @@ export default function CategoryTabs({
 }: Props) {
   const tablistRef = useRef<HTMLDivElement>(null)
 
-  const searchParams = getSearchParamsClientSide()
+  const searchParams = useSearchParams()
 
   const categorySelected = searchParams.get(FILTER_SEARCH_PARAM_KEY) || ''
 

@@ -1,12 +1,11 @@
 'use client'
 
-import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 export function useQueryParams<T>() {
   const router = useRouter()
   const pathname = usePathname()
-  const searchParams = getSearchParamsClientSide()
+  const searchParams = useSearchParams()
 
   const urlSearchParams = new URLSearchParams(searchParams?.toString())
 
