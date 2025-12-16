@@ -5,7 +5,6 @@ import { useDebounce } from '@/utils/debounce'
 import type { Evaluation } from 'publicodes'
 import { useEffect, useState, type ComponentProps } from 'react'
 import type { NumberFormatValues, NumericFormat } from 'react-number-format'
-import { twMerge } from 'tailwind-merge'
 import RawNumberInput from './numberInput/RawNumberInput'
 
 interface Props {
@@ -49,9 +48,9 @@ export default function NumberInput({
   }, [value])
 
   return (
-    <div
-      className={twMerge(`flex items-center justify-start gap-1`, className)}>
+    <div className="flex items-center justify-start gap-1">
       <RawNumberInput
+        className={className}
         value={currentValues.value ?? currentValues.floatValue}
         placeholder={currentValues.value === undefined ? placeholder : ''}
         handleValueChange={handleValueChange}
