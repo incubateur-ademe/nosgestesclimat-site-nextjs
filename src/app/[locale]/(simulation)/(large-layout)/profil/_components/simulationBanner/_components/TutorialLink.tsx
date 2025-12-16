@@ -7,7 +7,6 @@ import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import { getLinkToTutoriel } from '@/helpers/navigation/simulateurPages'
 import { useLocale } from '@/hooks/useLocale'
-import { ReadonlyURLSearchParams } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
 interface Props {
@@ -22,7 +21,7 @@ export default function TutorialLink({ className }: Props) {
       color="text"
       href={getLinkToTutoriel({
         locale,
-        searchParams: searchParams as ReadonlyURLSearchParams,
+        searchParams: searchParams,
       })}
       className={twMerge('flex w-full justify-center', className)}
       trackingEvent={profilClickTutoriel}>

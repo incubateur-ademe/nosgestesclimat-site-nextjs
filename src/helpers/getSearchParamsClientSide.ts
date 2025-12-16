@@ -11,4 +11,3 @@ export function getSearchParamsClientSide(): ReadonlyURLSearchParams {
     typeof window !== 'undefined' ? window.location.search : ''
   ) as ReadonlyURLSearchParams
 }
-
