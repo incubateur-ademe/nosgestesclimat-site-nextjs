@@ -1,6 +1,6 @@
 import { useIsClient } from '@/hooks/useIsClient'
-import { useSearchParams } from 'next/navigation'
 import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
+import { useSearchParams } from 'next/navigation'
 
 function getPRNumberFromStorage() {
   return safeSessionStorage.getItem('PR') ?? ''
