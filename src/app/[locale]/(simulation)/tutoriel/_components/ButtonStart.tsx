@@ -38,12 +38,6 @@ export default function ButtonStart({
 
   const { data: poll, isLoading } = useFetchPublicPoll()
 
-  useEffect(() => {
-    if (poll && !polls?.includes(poll.slug)) {
-      updateCurrentSimulation({ pollToAdd: poll.slug })
-    }
-  }, [poll, updateCurrentSimulation, polls])
-
   const [startTime] = useState(() => Date.now())
 
   // Allow user to choose to keep his/her current
@@ -67,6 +61,12 @@ export default function ButtonStart({
           return
         }
 
+        // Add poll to simulation only when user clicks the button
+        // This triggers saving the simulation with SimulationSyncProvider
+        if (poll && !polls?.includes(poll.slug)) {
+          updateCurrentSimulation({ pollToAdd: poll.slug })
+        }
+
         const endTime = Date.now()
         const timeSpentOnPage = endTime - startTime
         trackEvent(tutorielClickSuivant(timeSpentOnPage))
@@ -77,7 +77,7 @@ export default function ButtonStart({
         label
       ) : (
         <>
-          <Trans>C'est parti !</Trans> <span aria-hidden="true">→</span>
+          <Trans>C'est parti !</Trans> <span aria-hidden="true">→</span>
         </>
       )}
     </ButtonLink>
