@@ -24,7 +24,7 @@ jobs:
           node-version-file: './package.json'
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install
 
       - name: Run unit tests
         env:
@@ -48,7 +48,7 @@ jobs:
           node-version-file: './package.json'
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install
 
       - name: Run lint
         run: |
@@ -72,7 +72,7 @@ jobs:
           node-version-file: './package.json'
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install
 
       - name: Run typecheck
         run: |
