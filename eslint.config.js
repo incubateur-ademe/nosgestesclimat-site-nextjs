@@ -97,6 +97,7 @@ const eslintConfig = defineConfig(
     '.storybook/**',
     'playwright-report/**',
     'storybook-static/**',
+    'pnpm-lock.yaml',
   ])
 )
 
