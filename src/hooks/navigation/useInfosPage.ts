@@ -24,8 +24,7 @@ import { useFetchPublicPoll } from '../organisations/polls/useFetchPublicPoll'
  */
 
 interface Props {
-  curPage: // | typeof BIRTHDATE_PAGE
-  // | typeof EMAIL_PAGE
+  curPage: // | typeof EMAIL_PAGE // | typeof BIRTHDATE_PAGE
   // | typeof POSTAL_CODE_PAGE
   // | typeof START_PAGE
   // | typeof TUTORIEL_PAGE
