@@ -56,6 +56,10 @@ export const filterIrrelevantActions = ({
 
   if (rules) {
     filteredActions = filteredActions.filter((action) => {
+      if (action.isIrrelevant) {
+        return false
+      }
+
       const flatRule = rules[action.dottedName as DottedName] as {
         formule: string
       }

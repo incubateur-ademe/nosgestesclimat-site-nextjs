@@ -23,6 +23,7 @@ interface Props {
 export default function EngineProviders({
   children,
   supportedRegions,
+  isOptim = true,
 }: PropsWithChildren<Props>) {
   const { id } = useCurrentSimulation()
 
@@ -30,7 +31,7 @@ export default function EngineProviders({
 
   const [PRNumber, setPRNumber] = useState<string | undefined>(undefined)
 
-  const { data: rules, isLoading, isFetched } = useRules({ PRNumber })
+  const { data: rules, isLoading, isFetched } = useRules({ isOptim, PRNumber })
 
   if (!isInitialized) {
     return <SimulateurSkeleton />

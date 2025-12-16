@@ -36,7 +36,7 @@ export default function DocumentationRouter({
 
   if (isDocumentationClient)
     return (
-      <EngineProviders supportedRegions={supportedRegions}>
+      <EngineProviders supportedRegions={supportedRegions} isOptim={false}>
         <DocumentationClient slugs={slug} />
       </EngineProviders>
     )
