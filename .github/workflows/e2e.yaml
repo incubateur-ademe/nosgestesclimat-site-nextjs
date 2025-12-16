@@ -15,14 +15,14 @@ jobs:
     runs-on: ubuntu-latest
     name: E2E Tests [AB-test ${{ matrix.ab-test && 'enabled' || 'disabled' }}]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061
         with:
           version: 10
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
@@ -34,7 +34,7 @@ jobs:
 
       # - name: Generate E2E test specs from personas
       #   run: pnpm e2e:generate
-      - uses: actions/cache@v4
+      - uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb
         if: github.event.inputs.branch != 'preprod'
         name: Cache nextJS build
         with:
@@ -65,7 +65,7 @@ jobs:
           ${{ github.event.inputs.branch != 'preprod' && 'pnpm start &' }}
           pnpm run playwright test
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: ${{ !cancelled() }}
         with:
           name: playwright-report-ab-test-${{ matrix.ab-test && 'enabled' || 'disabled' }}
