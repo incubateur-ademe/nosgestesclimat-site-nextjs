@@ -13,7 +13,10 @@ interface Props {
   index: number
   firstInputId: string
   value: number | boolean | undefined | null
-  setValue: (dottedName: DottedName, value: number | boolean) => void
+  setValue: (
+    dottedName: DottedName,
+    value: number | boolean | undefined
+  ) => void
 }
 
 export default function MosaicQuestion({
