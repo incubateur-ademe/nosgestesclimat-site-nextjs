@@ -35,7 +35,7 @@ import { twMerge } from 'tailwind-merge'
 import ActionValue from './ActionValue'
 
 interface Props {
-  action: Action & { isIrrelevant: boolean }
+  action: Action
   total: number
   rule: NGCRuleNode | undefined
   setActionWithFormOpen: (dottedName: DottedName) => void
@@ -90,13 +90,12 @@ export default function ActionCard({
 
   const hasFormula = !!flatRule?.formule
   const isDisabled =
-    (flatRule &&
-      getIsActionDisabled(flatRule as { formule?: string }) &&
-      traversedVariables &&
-      Object.keys(actionChoices || {}).some((key) => {
-        return traversedVariables.includes(key)
-      })) ||
-    action.isIrrelevant
+    flatRule &&
+    getIsActionDisabled(flatRule as { formule?: string }) &&
+    traversedVariables &&
+    Object.keys(actionChoices || {}).some((key) => {
+      return traversedVariables.includes(key)
+    })
 
   const handleChooseAction = useCallback(() => {
     if (isDisabled) return
@@ -107,6 +106,8 @@ export default function ActionCard({
     }
 
     toggleActionChoice(dottedName)
+
+    handleUpdatePersistedActions()
 
     if (!isSelected) {
       trackEvent(actionsClickYes(dottedName))
@@ -119,6 +120,7 @@ export default function ActionCard({
     isSelected,
     setActionWithFormOpen,
     toggleActionChoice,
+    handleUpdatePersistedActions,
   ])
 
   const handleRejectAction = () => {
