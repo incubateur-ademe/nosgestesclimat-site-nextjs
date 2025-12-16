@@ -4,9 +4,7 @@ import { useUser } from '@/publicodes-state'
 import { useEffect } from 'react'
 
 export function useFixedRegion() {
-  const searchParams = getSearchParamsClientSide()
-
-  const fixedRegionCode = searchParams.get('region')
+  const fixedRegionCode = getSearchParamsClientSide()?.get('region')
 
   const { user, updateRegion } = useUser()
 

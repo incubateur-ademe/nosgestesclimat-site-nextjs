@@ -23,7 +23,7 @@ export default function ButtonStart({
 }) {
   const { hideTutorial, tutorials } = useUser()
 
-  const searchParams = getSearchParamsClientSide()
+  const searchParams = getSearchParamsClientSide().toString()
 
   const { progression, updateCurrentSimulation, polls } = useCurrentSimulation()
 

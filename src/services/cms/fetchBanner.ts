@@ -6,12 +6,18 @@ import dayjs from 'dayjs'
 
 export async function fetchBanner(locale: Locale): Promise<BannerType | null> {
   try {
+    const currentDate = dayjs()
+
     const bannerSearchParams = new URLSearchParams({
       locale,
       sort: 'startDate:desc',
       // Get the banner for the current date ; the date needs to be between the start and end date
-      'filters[$and][0][startDate][$lte]': dayjs().endOf('day').toISOString(),
-      'filters[$and][1][endDate][$gte]': dayjs().startOf('day').toISOString(),
+      'filters[$and][0][startDate][$lte]': currentDate
+        .endOf('day')
+        .toISOString(),
+      'filters[$and][1][endDate][$gte]': currentDate
+        .startOf('day')
+        .toISOString(),
       'pagination[limit]': '1',
       populate: '*',
     })
