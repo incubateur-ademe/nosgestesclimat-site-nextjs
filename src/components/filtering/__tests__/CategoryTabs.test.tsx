@@ -113,7 +113,9 @@ describe('CategoryTabs', () => {
   it('sets correct tab as active when category is selected', () => {
     // Mock search params to include the category parameter
     const searchParams = new URLSearchParams('category=alimentation')
-    mockGetSearchParams.mockReturnValue(searchParams as unknown as URLSearchParams)
+    mockGetSearchParams.mockReturnValue(
+      searchParams as unknown as URLSearchParams
+    )
 
     render(
       <CategoryTabs categories={mockCategories}>{mockChildren}</CategoryTabs>
@@ -142,7 +144,9 @@ describe('CategoryTabs', () => {
 
     // Change URL to select second tab
     const searchParams = new URLSearchParams('category=alimentation')
-    mockGetSearchParams.mockReturnValue(searchParams as unknown as URLSearchParams)
+    mockGetSearchParams.mockReturnValue(
+      searchParams as unknown as URLSearchParams
+    )
 
     rerender(
       <CategoryTabs categories={mockCategories}>{mockChildren}</CategoryTabs>

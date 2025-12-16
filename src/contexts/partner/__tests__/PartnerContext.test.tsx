@@ -91,7 +91,9 @@ describe('PartnerContext', () => {
     it("should send the user's situation to the back-end and redirect to the obtained URL", async () => {
       // Mock search params with partner parameters
       const searchParams = new URLSearchParams('partner=test&partner-test=test')
-      mockGetSearchParams.mockReturnValue(searchParams as unknown as URLSearchParams)
+      mockGetSearchParams.mockReturnValue(
+        searchParams as unknown as URLSearchParams
+      )
 
       // Mock exportSituationAsync to return the redirect URL
       const mockExportSituationAsync = vi
@@ -141,7 +143,9 @@ describe('PartnerContext', () => {
         progression: 0,
       })
       const searchParams = new URLSearchParams('partner=test&partner-test=test')
-      mockGetSearchParams.mockReturnValue(searchParams as unknown as URLSearchParams)
+      mockGetSearchParams.mockReturnValue(
+        searchParams as unknown as URLSearchParams
+      )
       mockUseVerifyPartner.mockReturnValue(true)
       mockUseExportSituation.mockReturnValue({
         exportSituationAsync: vi.fn().mockResolvedValue({ redirectUrl }),
