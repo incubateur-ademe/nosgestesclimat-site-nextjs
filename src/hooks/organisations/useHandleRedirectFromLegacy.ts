@@ -6,9 +6,8 @@ import { useFetchPolls } from './polls/useFetchPolls'
 // /organisations/:orgaSlug/resultats-detailles => /organisations/:orgaSlug/campagnes/:pollSlug
 export function useHandleRedirectFromLegacy() {
   const { orgaSlug: organisationIdOrSlug } = useParams()
-  const searchParams = useSearchParams()
 
-  const enabled = Boolean(searchParams.get('isRedirectFromLegacy'))
+  const enabled = Boolean(useSearchParams().get('isRedirectFromLegacy'))
 
   const { data: polls } = useFetchPolls({
     enabled,

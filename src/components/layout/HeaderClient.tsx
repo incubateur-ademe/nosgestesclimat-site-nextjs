@@ -70,7 +70,7 @@ export default function Header({ isSticky = true }: Props) {
         {!isIframeOnlySimulation && (
           <>
             <FoldableMenu />
-            <Suspense fallback={null}>
+            <Suspense fallback={<BlockSkeleton />}>
               <BottomMenu />
             </Suspense>
           </>
