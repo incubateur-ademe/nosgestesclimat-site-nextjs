@@ -9,8 +9,7 @@
     "url": "https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs.git"
   },
   "engines": {
-    "node": "22.14",
-    "pnpm": ">=10"
+    "node": "22.14"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -177,5 +176,6 @@
     "workerDirectory": [
       "public"
     ]
-  }
+  },
+  "packageManager": "pnpm@10.11.0"
 }
