@@ -5,8 +5,13 @@ import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
 import '@testing-library/jest-dom'
 import { act, screen, waitFor } from '@testing-library/react'
-import { useSearchParams } from 'next/navigation'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+// Mock getSearchParamsClientSide
+const mockGetSearchParams = vi.fn()
+vi.mock('@/helpers/getSearchParamsClientSide', () => ({
+  getSearchParamsClientSide: () => mockGetSearchParams(),
+}))
 
 // Mock the hooks
 vi.mock('@/hooks/partners/useExportSituation')
@@ -22,7 +27,6 @@ vi.mock('@sentry/nextjs', () => ({
 // Mock the hooks with proper return values
 const mockUseExportSituation = useExportSituation as ReturnType<typeof vi.fn>
 const mockUseVerifyPartner = useVerifyPartner as ReturnType<typeof vi.fn>
-const mockUseSearchParams = useSearchParams as ReturnType<typeof vi.fn>
 
 // Mock sessionStorage
 const mockSessionStorage = {
@@ -54,10 +58,9 @@ describe('PartnerContext', () => {
   describe('given undefined search params', () => {
     it('should not crash the app', () => {
       // Given
-      mockUseSearchParams.mockReturnValue({
-        entries: () => new Map().entries(),
-        get: vi.fn(),
-      } as unknown as ReturnType<typeof useSearchParams>)
+      mockGetSearchParams.mockReturnValue(
+        new URLSearchParams() as unknown as URLSearchParams
+      )
       mockUseVerifyPartner.mockReturnValue(false)
       mockUseExportSituation.mockReturnValue({
         exportSituationAsync: vi.fn().mockResolvedValue({ redirectUrl }),
@@ -86,18 +89,18 @@ describe('PartnerContext', () => {
 
   describe('given a user with a completed test', () => {
     it("should send the user's situation to the back-end and redirect to the obtained URL", async () => {
-      // Mock hooks
-      mockUseSearchParams.mockReturnValue({
-        entries: () =>
-          new Map([
-            ['partner', 'test'],
-            ['partner-test', 'test'],
-          ]).entries(),
-        get: vi.fn(),
-      } as unknown as ReturnType<typeof useSearchParams>)
+      // Mock search params with partner parameters
+      const searchParams = new URLSearchParams('partner=test&partner-test=test')
+      mockGetSearchParams.mockReturnValue(searchParams as unknown as URLSearchParams)
+
+      // Mock exportSituationAsync to return the redirect URL
+      const mockExportSituationAsync = vi
+        .fn()
+        .mockResolvedValue({ redirectUrl })
+
       mockUseVerifyPartner.mockReturnValue(true)
       mockUseExportSituation.mockReturnValue({
-        exportSituationAsync: vi.fn().mockResolvedValue({ redirectUrl }),
+        exportSituationAsync: mockExportSituationAsync,
         exportSituation: vi.fn(),
         isPending: false,
         isSuccess: false,
@@ -119,9 +122,15 @@ describe('PartnerContext', () => {
         })
       })
 
-      // Then
-      const redirectButton = await screen.findByTestId('button-redirect')
+      // Then - wait for the async export to complete and the button to appear
+      const redirectButton = await waitFor(
+        async () => {
+          return await screen.findByTestId('button-redirect')
+        },
+        { timeout: 3000 }
+      )
       expect(redirectButton).toHaveAttribute('href', redirectUrl)
+      expect(mockExportSituationAsync).toHaveBeenCalled()
     })
   })
 
@@ -131,14 +140,8 @@ describe('PartnerContext', () => {
       const incompleteSimulation = generateSimulation({
         progression: 0,
       })
-      mockUseSearchParams.mockReturnValue({
-        entries: () =>
-          new Map([
-            ['partner', 'test'],
-            ['partner-test', 'test'],
-          ]).entries(),
-        get: vi.fn(),
-      } as unknown as ReturnType<typeof useSearchParams>)
+      const searchParams = new URLSearchParams('partner=test&partner-test=test')
+      mockGetSearchParams.mockReturnValue(searchParams as unknown as URLSearchParams)
       mockUseVerifyPartner.mockReturnValue(true)
       mockUseExportSituation.mockReturnValue({
         exportSituationAsync: vi.fn().mockResolvedValue({ redirectUrl }),
