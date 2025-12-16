@@ -92,6 +92,7 @@ const eslintConfig = defineConfig(
     'check-memory.mjs',
     'scripts/**/*',
     'public/**/*.js',
+    'public/**/*.html',
     '**/*.stories.tsx',
     '.storybook/**',
     'playwright-report/**',
