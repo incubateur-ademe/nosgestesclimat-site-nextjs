@@ -5,6 +5,7 @@ import type {
 } from '@incubateur-ademe/nosgestesclimat'
 import type { Migration } from '@publicodes/tools/migration'
 import { act, renderHook } from '@testing-library/react'
+import type { Situation } from 'publicodes'
 import { vi } from 'vitest'
 import type { Simulation } from '../../../../types'
 import useSimulations from '../useSimulations'
@@ -149,7 +150,7 @@ describe('useSimulations', () => {
         id: 'current-sim',
         situation: {
           'transport . voiture . km': 1000,
-        } as unknown as Record<DottedName, any>,
+        } as unknown as Situation<DottedName>,
         extendedSituation: {
           'transport . voiture . km': { source: 'answered', nodeValue: 1000 },
         } as unknown as ExtendedSituation,

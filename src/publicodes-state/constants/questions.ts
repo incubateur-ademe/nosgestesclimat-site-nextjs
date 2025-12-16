@@ -56,12 +56,12 @@ export const MUST_SHOW_DESCRIPTION = new Set<DottedName>([
   'alimentation . local . consommation',
 ])
 
-export const MUST_HIDE_SUGGESTIONS_I18N: Set<DottedName> = new Set([
+export const MUST_HIDE_SUGGESTIONS_I18N = new Set<DottedName>([
   'transport . avion . vols annuels',
   'transport . avion . vols amortis',
 ])
 
-export const IS_NUMBER_MOSAIC_WITHOUT_BUTTONS: Set<DottedName> = new Set([
+export const IS_NUMBER_MOSAIC_WITHOUT_BUTTONS = new Set<DottedName>([
   'transport . avion . vols annuels',
   'transport . avion . vols amortis',
 ])
