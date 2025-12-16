@@ -61,7 +61,7 @@ jobs:
         run: |
           echo "Running tests against ${{ env.PLAYWRIGHT_baseUrl }} (ABTest: ${{ env.NEXT_PUBLIC_FORCE_AB_TEST }})"
           ${{ github.event.inputs.branch != 'preprod' && 'pnpm start &' }}
-          pnpm run playwright test
+          pnpm exec playwright test
 
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: ${{ !cancelled() }}
