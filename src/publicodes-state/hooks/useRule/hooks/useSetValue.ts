@@ -87,7 +87,6 @@ export default function useSetValue({
           [dottedName]: checkValueValidity({ value, type }),
         }
       }
-      console.log(situationToAdd)
 
       const safeAndCleanSituation = addToEngineSituation(situationToAdd)
 
