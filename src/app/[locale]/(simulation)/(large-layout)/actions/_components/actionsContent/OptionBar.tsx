@@ -15,7 +15,7 @@ import { useState } from 'react'
 import ActionsChosenIndicator from '../ActionsChosenIndicator'
 
 interface Props {
-  actions: (Action & { isIrrelevant: boolean })[]
+  actions: Action[]
   setRadical: (radical: boolean) => void
   radical: boolean
 }

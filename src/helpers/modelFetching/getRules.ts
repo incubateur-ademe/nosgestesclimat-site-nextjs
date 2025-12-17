@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const defaultProps = {
-  isOptim: false,
+  isOptim: true,
   regionCode: 'FR',
   locale: 'fr',
   ABtesting: false,

@@ -42,7 +42,7 @@ export default function ActionValue({
   remainingQuestions,
 }: {
   total: number
-  isDisabled: boolean
+  isDisabled: boolean | null | undefined
   hasFormula: boolean
   dottedName: DottedName
   setActionWithFormOpen: (dottedName: DottedName) => void
