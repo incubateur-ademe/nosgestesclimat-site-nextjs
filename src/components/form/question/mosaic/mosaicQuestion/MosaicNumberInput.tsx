@@ -3,8 +3,9 @@ import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
+import { NUMBER_MOSAIC_WITHOUT_BUTTONS } from '@/publicodes-state/constants/questions'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import RawMosaicNumberInput from './RawMosaicNumberInput'
+import RawNumberInput from '../../numberInput/RawNumberInput'
 
 interface Props {
   question: DottedName
@@ -15,7 +16,6 @@ interface Props {
   index: number
   value: number | undefined | null
   parentMosaic: string
-  shouldContainButtons?: boolean
 }
 
 export default function MosaicNumberInput({
@@ -27,13 +27,16 @@ export default function MosaicNumberInput({
   index,
   value,
   parentMosaic,
-  shouldContainButtons = true,
 }: Props) {
-  const { plafond } = useRule(question)
+  const { plafond, unit } = useRule(question)
 
   const { t } = useClientTranslation()
 
   const isPlusDisabled = !!value && value >= plafond
+
+  const shouldNotContainButtons = NUMBER_MOSAIC_WITHOUT_BUTTONS.has(
+    parentMosaic as DottedName
+  )
 
   // Model shenanigans for description split...
   return (
@@ -58,8 +61,10 @@ export default function MosaicNumberInput({
           </>
         ) : null}
       </div>
-      {shouldContainButtons ? (
-        <div className="flex items-center gap-1.5 p-2">
+
+      <div
+        className={`flex items-center gap-1.5 p-2 ${shouldNotContainButtons && 'pr-18'}`}>
+        {!shouldNotContainButtons && (
           <Button
             disabled={!value}
             onClick={() => setValue((value ?? 0) - 1)}
@@ -74,12 +79,19 @@ export default function MosaicNumberInput({
             className="z-10 h-8 w-8 items-center justify-center p-0">
             <span className="mb-[1px] block">-</span>
           </Button>
-          <RawMosaicNumberInput
-            value={value}
-            setValue={setValue}
-            data-cypress-id={`${question}---${parentMosaic}`}
-            id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
-          />
+        )}
+        <RawNumberInput
+          className="focus-within:border-primary-700 focus-within:ring-primary-700 max-h-8 w-16 rounded-sm text-center ring-offset-2 focus-within:ring-2 focus-visible:outline-none"
+          value={value}
+          placeholder={value === null ? '' : '_'}
+          unit={shouldNotContainButtons ? unit : undefined}
+          handleValueChange={({ floatValue, value }) =>
+            setValue(value === undefined ? value : floatValue)
+          }
+          data-cypress-id={`${question}---${parentMosaic}`}
+          id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
+        />
+        {!shouldNotContainButtons && (
           <Button
             disabled={isPlusDisabled}
             onClick={() => setValue((value ?? 0) + 1)}
@@ -94,17 +106,8 @@ export default function MosaicNumberInput({
             className="z-10 h-8 w-8 items-center justify-center p-0">
             <span className="mb-[1px] block">+</span>
           </Button>
-        </div>
-      ) : (
-        <div className="flex items-center gap-1.5 p-2 pr-18">
-          <RawMosaicNumberInput
-            value={value}
-            setValue={setValue}
-            data-cypress-id={`${question}---${parentMosaic}`}
-            id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
-          />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   )
 }
