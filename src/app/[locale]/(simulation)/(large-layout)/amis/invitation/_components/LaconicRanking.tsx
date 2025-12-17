@@ -1,7 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { defaultMetric } from '@/constants/model/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import Emoji from '@/design-system/utils/Emoji'
 import type { Group } from '@/types/groups'
 
@@ -34,8 +34,8 @@ export default function LaconicRanking({ group }: Props) {
       return 0
     }
 
-    return computedResultsA?.[defaultMetric]?.bilan <
-      computedResultsB?.[defaultMetric]?.bilan
+    return computedResultsA?.[carboneMetric]?.bilan <
+      computedResultsB?.[carboneMetric]?.bilan
       ? -1
       : 1
   })

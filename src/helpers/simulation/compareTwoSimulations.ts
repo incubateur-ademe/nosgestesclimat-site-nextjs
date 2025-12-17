@@ -1,4 +1,4 @@
-import { defaultMetric } from '@/constants/model/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import type { Simulation } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
@@ -45,17 +45,17 @@ export function compareTwoSimulations(
     return true
   }
   if (
-    simulation1.computedResults[defaultMetric].bilan !==
-    simulation2.computedResults[defaultMetric].bilan
+    simulation1.computedResults[carboneMetric].bilan !==
+    simulation2.computedResults[carboneMetric].bilan
   ) {
     return true
   }
-  for (const key in simulation1.computedResults[defaultMetric].categories) {
+  for (const key in simulation1.computedResults[carboneMetric].categories) {
     if (
-      simulation1.computedResults[defaultMetric].categories[
+      simulation1.computedResults[carboneMetric].categories[
         key as DottedName
       ] !==
-      simulation2.computedResults[defaultMetric].categories[key as DottedName]
+      simulation2.computedResults[carboneMetric].categories[key as DottedName]
     ) {
       return true
     }

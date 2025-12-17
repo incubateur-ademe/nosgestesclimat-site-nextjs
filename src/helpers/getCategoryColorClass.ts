@@ -116,23 +116,6 @@ export function getBorderDarkColor(category?: string | null) {
   }
 }
 
-export function getFillColor(category?: string | null) {
-  switch (category) {
-    case 'transport':
-      return `fill-transport-800`
-    case 'alimentation':
-      return `fill-alimentation-800`
-    case 'logement':
-      return `fill-logement-800`
-    case 'divers':
-      return `fill-divers-800`
-    case 'services sociétaux':
-      return `fill-servicessocietaux-800`
-    default:
-      return 'fill-primary-800'
-  }
-}
-
 export function getStrokeColor(category?: string | null) {
   switch (category) {
     case 'transport':

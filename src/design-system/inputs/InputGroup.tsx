@@ -111,5 +111,3 @@ export default function InputGroup({
     </div>
   )
 }
-
-export type { InputGroupProps }

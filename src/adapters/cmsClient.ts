@@ -45,12 +45,12 @@ type Populate<T, KEYS extends OptionalKeys<T>> = Omit<T, OptionalKeys<T>> &
   Required<Pick<T, KEYS>>
 
 // Components
-export interface PageMetadataType {
+interface PageMetadataType {
   title: string
   description?: string | null
 }
 
-export interface HeadingType {
+interface HeadingType {
   id: string
   text: string
   level: number
@@ -87,7 +87,7 @@ interface DefaultAttributesType {
 }
 
 // Single types
-export type HomePageType = {
+type HomePageType = {
   title: string
   htmlTitle: string
   description: string
@@ -182,7 +182,7 @@ export type BannerType = {
   endDate: string
 } & DefaultAttributesType
 
-export interface PartnerCategoryType {
+interface PartnerCategoryType {
   category: string
 }
 
@@ -261,7 +261,3 @@ export interface ThematicLandingPage {
   slug: string
   htmlLegend?: string
 }
-
-export type PopulatedThematicLandingPageType<
-  K extends OptionalKeys<ThematicLandingPage>,
-> = Populate<ThematicLandingPage, K>
