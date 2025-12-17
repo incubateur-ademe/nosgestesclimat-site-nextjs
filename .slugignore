@@ -1,6 +1,6 @@
 /.cache
 /.next/cache
-/cypress
+/tests
 /scripts
 .github
 .husky
@@ -18,3 +18,23 @@ FICHEPRODUIT.md
 jest.config.ts
 README.md
 yarn.lock
+# Tests and mocks
+/src/__mocks__
+/src/__tests__
+playwright.config.ts
+vitest.config.ts
+vitest.setup.ts
+vitest-globals.d.ts
+/test-results
+/playwright-report
+/playwright/.cache
+/coverage
+# Development files
+check-memory.mjs
+i18next-parser.config.js
+tsconfig.tsbuildinfo
+next-env.d.ts
+pnpm-workspace.yaml
+eslint.config.js
+# Licenses
+LICENSE
