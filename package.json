@@ -44,7 +44,7 @@
     "storybook:build": "storybook build",
     "storybook:build:github-pages": "cp .storybook/main.github-pages.ts .storybook/main.ts && cp .storybook/preview.github-pages.ts .storybook/preview.ts && storybook build && git checkout .storybook/main.ts .storybook/preview.ts",
     "build-storybook": "storybook build",
-    "scalingo-postbuild": "pnpm prune --prod"
+    "scalingo-postbuild": "pnpm build && pnpm prune --prod"
   },
   "dependencies": {
     "@incubateur-ademe/legal-pages-react": "^0.5.0",
