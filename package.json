@@ -17,6 +17,7 @@
     "test:coverage": "vitest --coverage",
     "test:ui": "vitest --ui",
     "dev": "next dev",
+    "dev:webpack": "next dev --webpack",
     "build:next": "next build",
     "build": "node ./check-memory.mjs && node --max-old-space-size=4608 node_modules/next/dist/bin/next build",
     "build:analyze": "ANALYZE=true next build",
