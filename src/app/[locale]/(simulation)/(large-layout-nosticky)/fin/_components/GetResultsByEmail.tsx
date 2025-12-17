@@ -7,7 +7,7 @@ import {
   LIST_NOS_GESTES_LOGEMENT_NEWSLETTER,
   LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
 } from '@/constants/brevo'
-import { defaultMetric } from '@/constants/model/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import { endClickSaveSimulation } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/buttons/Button'
 import CheckboxInput from '@/design-system/inputs/CheckboxInput'
@@ -117,11 +117,11 @@ export default function GetResultsByEmail({
 
     updateEmail(formattedEmail)
 
-    if (currentSimulation?.computedResults[defaultMetric].bilan === 0) {
+    if (currentSimulation?.computedResults[carboneMetric].bilan === 0) {
       // Send an error to Sentry
       captureException(
         new Error(
-          'GetResultsByEmail: computedResults[defaultMetric].bilan === 0'
+          'GetResultsByEmail: computedResults[carboneMetric].bilan === 0'
         )
       )
       return

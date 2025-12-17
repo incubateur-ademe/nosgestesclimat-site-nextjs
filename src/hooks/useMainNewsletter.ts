@@ -3,7 +3,7 @@ import axios from 'axios'
 import { LIST_MAIN_NEWSLETTER } from '../constants/brevo'
 import { NEWSLETTER_URL } from '../constants/urls/main'
 
-export interface Newsletter {
+interface Newsletter {
   id: number
   name: string
   totalSubscribers: number

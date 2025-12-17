@@ -1,4 +1,4 @@
-import { defaultMetric, metrics } from '@/constants/model/metric'
+import { carboneMetric, metrics } from '@/constants/model/metric'
 import { useQueryParams } from '@/hooks/useQueryParams'
 import type { Metric } from '@/publicodes-state/types'
 import { useCallback } from 'react'
@@ -17,10 +17,10 @@ export function useCurrentMetric() {
     [setQueryParams]
   )
 
-  let currentMetric = queryParamsMetric || defaultMetric
+  let currentMetric = queryParamsMetric || carboneMetric
 
   if (!metrics.includes(currentMetric)) {
-    currentMetric = defaultMetric
+    currentMetric = carboneMetric
   }
 
   return { currentMetric, setCurrentMetric }

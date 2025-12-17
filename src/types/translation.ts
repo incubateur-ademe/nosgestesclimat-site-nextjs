@@ -11,12 +11,6 @@ export enum Lang {
   // It = 'It',
 }
 
-export interface Release {
-  name: string
-  published_at: string
-  body: string
-}
-
 export interface LangInfos {
   name: string
   abrv: string

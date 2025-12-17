@@ -42,13 +42,6 @@ export const trackingClickRegionBanner = [
   'Click Region Banner',
 ]
 
-export const trackingSplitTesting = (branch: string) => [
-  'trackEvent',
-  'Misc',
-  'Split testing',
-  `User on branch ${branch}`,
-]
-
 // Banner
 export const trackingBannerClick = ['trackEvent', 'Bannière', 'Click lien']
 
@@ -66,17 +59,6 @@ export const trackingCategoryFilterPosthog = (category: DottedName) => ({
     category,
   },
 })
-// User account fake door
-export const trackingUserAccountFakeDoorAccept = [
-  'trackEvent',
-  'Compte utilisateur',
-  'Click Je crée mon compte',
-]
-export const trackingUserAccountFakeDoorRefuse = [
-  'trackEvent',
-  'Compte utilisateur',
-  'Click Je ne préfère pas créer de compte',
-]
 
 // Cookies
 export const trackingCookiesAccept = [

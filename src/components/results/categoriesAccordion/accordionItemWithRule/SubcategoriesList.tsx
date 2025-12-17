@@ -1,4 +1,4 @@
-import { defaultMetric } from '@/constants/model/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import { useEngine, useRule } from '@/publicodes-state'
 import type { Metric } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -12,7 +12,7 @@ interface Props {
 export default function SubcategoriesList({
   category,
   subcategories,
-  metric = defaultMetric,
+  metric = carboneMetric,
 }: Props) {
   const { getNumericValue, checkIfValid } = useEngine()
 

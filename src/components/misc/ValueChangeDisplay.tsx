@@ -1,6 +1,6 @@
 'use client'
 
-import { defaultMetric } from '@/constants/model/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useGetDifference } from '@/hooks/simulation/useGetDifference'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -11,7 +11,7 @@ import { twMerge } from 'tailwind-merge'
 
 export default function ValueChangeDisplay({
   className,
-  metric = defaultMetric,
+  metric = carboneMetric,
   size = 'sm',
 }: {
   className?: string

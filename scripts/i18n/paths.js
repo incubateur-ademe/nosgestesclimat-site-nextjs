@@ -5,8 +5,6 @@
 import utils from '@incubateur-ademe/nosgestesclimat-scripts/utils'
 import path from 'path'
 
-const localesDir = path.resolve('./src/locales')
-const rulesTranslation = path.resolve('./src/locales/rules-en.yaml')
 const staticAnalysisFrRes = path.resolve(
   './src/locales/static-analysis-fr.json'
 )
@@ -30,4 +28,5 @@ const FAQ = Object.fromEntries(
   ])
 )
 
-export { FAQ, UI, localesDir, rulesTranslation, staticAnalysisFrRes }
+export { FAQ, staticAnalysisFrRes, UI }
+

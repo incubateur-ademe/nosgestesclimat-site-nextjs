@@ -5,5 +5,3 @@ export const carboneMetric = 'carbone' as const
 export const eauMetric = 'eau' as const
 
 export const metrics: Metric[] = [carboneMetric, eauMetric]
-
-export const defaultMetric: Metric = carboneMetric

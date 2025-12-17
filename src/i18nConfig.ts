@@ -1,10 +1,10 @@
 import type { Config } from 'next-i18n-router/dist/types'
 import type { NextRequest } from 'next/server'
 
-export const LOCALE_EN_KEY = 'en'
-export const LOCALE_FR_KEY = 'fr'
+const LOCALE_EN_KEY = 'en'
+const LOCALE_FR_KEY = 'fr'
 
-export const NEXT_LOCALE_COOKIE_NAME = 'NEXT_LOCALE'
+const NEXT_LOCALE_COOKIE_NAME = 'NEXT_LOCALE'
 
 export type Locale = 'fr' | 'en'
 

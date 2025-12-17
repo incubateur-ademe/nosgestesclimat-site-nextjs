@@ -1,4 +1,4 @@
-import { defaultMetric } from '@/constants/model/metric'
+import { carboneMetric } from '@/constants/model/metric'
 import { END_PAGE_PATH, POLL_EMAIL_STEP } from '@/constants/urls/paths'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
@@ -76,10 +76,10 @@ export function useEndPage() {
           // to make sure the the latest version is saved
           currentSimulation.savedViaEmail)
       ) {
-        if (currentSimulation.computedResults[defaultMetric].bilan === 0) {
+        if (currentSimulation.computedResults[carboneMetric].bilan === 0) {
           // Send an error to Sentry
           captureException(
-            new Error('useEndPage: computedResults[defaultMetric].bilan === 0')
+            new Error('useEndPage: computedResults[carboneMetric].bilan === 0')
           )
         }
 
