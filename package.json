@@ -44,7 +44,7 @@
     "storybook:build": "storybook build",
     "storybook:build:github-pages": "cp .storybook/main.github-pages.ts .storybook/main.ts && cp .storybook/preview.github-pages.ts .storybook/preview.ts && storybook build && git checkout .storybook/main.ts .storybook/preview.ts",
     "build-storybook": "storybook build",
-    "scalingo-postbuild": "pnpm build && pnpm prune --prod && pnpm add --save-exact --save-prod typescript@^5.9.3"
+    "scalingo-postbuild": "pnpm build && pnpm prune --prod"
   },
   "dependencies": {
     "@incubateur-ademe/legal-pages-react": "^0.5.0",
@@ -90,6 +90,7 @@
     "recharts": "^2.15.1",
     "tailwind-merge": "^3.0.1",
     "tailwindcss": "^4.1.11",
+    "typescript": "^5.9.3",
     "use-count-up": "^3.0.1",
     "uuid": "^13.0.0"
   },
@@ -166,7 +167,6 @@
     "ts-node": "^10.9.2",
     "ts-prune": "^0.10.3",
     "tsx": "^4.20.6",
-    "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.1",
     "vite": "^5.4.21",
     "vitest": "^3.2.4",
