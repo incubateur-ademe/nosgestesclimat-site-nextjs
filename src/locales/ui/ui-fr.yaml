@@ -1283,7 +1283,7 @@ entries:
   simulator.car.addTravel: Ajouter un trajet
   simulator.inputs.choice.questionButton.title: Plus d'informations - {{label}}
   simulator.mosaicNumberInput.add: 'Ajouter un élément : {{title}}'
-  simulator.mosaicNumberInput.remove: 'Retirer un élémént : {{title}}'
+  simulator.mosaicNumberInput.remove: 'Retirer un élément : {{title}}'
   actions.actionCard.actionValue.answerButton.label: Répondre
   actions.actionCard.actionValue.answerButton.title: Répondre aux questions restantes
   Cliquez pour afficher la réponse: Cliquez pour afficher la réponse

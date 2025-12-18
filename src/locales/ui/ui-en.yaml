@@ -1496,7 +1496,7 @@ entries:
   organisations.connexion.email.input.helper.lock: 'Format attendu : nom.prenom@domaine.fr'
   Activé: Activated
   simulator.mosaicNumberInput.remove: 'Remove an item : {{title}}'
-  simulator.mosaicNumberInput.remove.lock: 'Retirer un élémént : {{title}}'
+  simulator.mosaicNumberInput.remove.lock: 'Retirer un élément : {{title}}'
   common.inputs.email.label: Enter your e-mail address
   common.inputs.email.label.lock: Entrez votre adresse e-mail
   simulator.inputs.choice.questionButton.title: For more information, click here {{label}}

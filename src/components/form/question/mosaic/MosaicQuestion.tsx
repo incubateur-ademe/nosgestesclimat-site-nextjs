@@ -30,7 +30,9 @@ export default function MosaicQuestion({
   const { type, parent } = useRule(question)
 
   const { title, icons, description } = useRule(parent)
+
   const maybeIdFirstInput = { ...(index === 0 ? { id: firstInputId } : {}) }
+
   return (
     <>
       {type === 'number' && typeof value !== 'boolean' && (
