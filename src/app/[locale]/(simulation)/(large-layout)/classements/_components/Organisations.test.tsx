@@ -76,8 +76,9 @@ describe('Organisations', () => {
     const useFetchOrganisations = (
       await import('@/hooks/organisations/useFetchOrganisations')
     ).default
-    const { useFetchPolls } =
-      await import('@/hooks/organisations/polls/useFetchPolls')
+    const { useFetchPolls } = await import(
+      '@/hooks/organisations/polls/useFetchPolls'
+    )
 
     vi.mocked(useFetchOrganisations).mockReturnValue({
       data: mockOrganisations as unknown as Organisation[],
@@ -101,8 +102,9 @@ describe('Organisations', () => {
     const useFetchOrganisations = (
       await import('@/hooks/organisations/useFetchOrganisations')
     ).default
-    const { useFetchPolls } =
-      await import('@/hooks/organisations/polls/useFetchPolls')
+    const { useFetchPolls } = await import(
+      '@/hooks/organisations/polls/useFetchPolls'
+    )
 
     vi.mocked(useFetchOrganisations).mockReturnValue({
       data: [],
@@ -157,8 +159,9 @@ describe('Organisations', () => {
     const useFetchOrganisations = (
       await import('@/hooks/organisations/useFetchOrganisations')
     ).default
-    const { useFetchPolls } =
-      await import('@/hooks/organisations/polls/useFetchPolls')
+    const { useFetchPolls } = await import(
+      '@/hooks/organisations/polls/useFetchPolls'
+    )
 
     vi.mocked(useFetchOrganisations).mockReturnValue({
       data: mockOrganisations as unknown as Organisation[],
