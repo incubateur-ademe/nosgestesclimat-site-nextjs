@@ -51,7 +51,7 @@ export default async function International({ params }: DefaultPageProps) {
             <p className="mb-8">
               {t(
                 'international.description',
-                'Où que vous viviez, calculez votre empreinte carbone et votre empreinte eau personnelles en tenant compte des spécifiés de votre pays.'
+                'Où que vous viviez, calculez votre empreinte carbone et eau personnelle en tenant compte des spécificités de votre pays.'
               )}
             </p>
             <div>
@@ -178,7 +178,7 @@ export default async function International({ params }: DefaultPageProps) {
           <Trans locale={locale} i18nKey="international.ensuite.1">
             Si le vôtre n’est pas encore dans la liste, dites-le-nous : nous
             serons ravis d’en tenir compte.{' '}
-            <InlineLink href="/a-propos">Écrivez-nous !</InlineLink>
+            <InlineLink href="/contact">Écrivez-nous !</InlineLink>
           </Trans>
         </p>
       </Container>

@@ -1617,5 +1617,5 @@ entries:
   international.comment.3.lock: Nous l’enrichissons progressivement pour élargir la couverture internationale.
   international.ensuite.2: We add new countries over time, taking great care to reflect their specific characteristics.
   international.ensuite.2.lock: Nous ajoutons de nouveaux pays au fil du temps, avec le plus grand soin pour refléter leurs spécificités.
-  international.description: Wherever you live, calculate your personal carbon footprint and water footprint, taking into account the specifications for your country.
-  international.description.lock: Où que vous viviez, calculez votre empreinte carbone et votre empreinte eau personnelles en tenant compte des spécifiés de votre pays.
+  international.description: Wherever you live, calculate your personal carbon and water footprint, taking into account the specific characteristics of your country.
+  international.description.lock: Où que vous viviez, calculez votre empreinte carbone et eau personnelle en tenant compte des spécificités de votre pays.
