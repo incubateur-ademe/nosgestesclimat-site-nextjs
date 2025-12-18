@@ -1,6 +1,5 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { JSX } from 'react'
-import Ameublement from './Ameublement'
 import Avion from './Avion'
 import Chauffage from './Chauffage'
 import Plats from './Plats'
@@ -24,7 +23,6 @@ const AVION_LONG_RULENAME: DottedName =
   'transport . avion . long courrier . heures de vol'
 const VOITURE_RULENAME: DottedName = 'transport . voiture . km'
 const TEXTILE_RULENAME: DottedName = 'divers . textile . volume'
-const AMEUBLEMENT_RULENAME: DottedName = 'divers . ameublement . préservation'
 const CHAUFFAGE_RULENAME: DottedName = 'logement . chauffage'
 
 const specialQuestions: Record<
@@ -60,13 +58,6 @@ const specialQuestions: Record<
   ),
   [TEXTILE_RULENAME]: (props: Props) => (
     <Textile key={TEXTILE_RULENAME} question={TEXTILE_RULENAME} {...props} />
-  ),
-  [AMEUBLEMENT_RULENAME]: (props: Props) => (
-    <Ameublement
-      key={AMEUBLEMENT_RULENAME}
-      question={AMEUBLEMENT_RULENAME}
-      {...props}
-    />
   ),
   [CHAUFFAGE_RULENAME]: (props: Props) => (
     <Chauffage
