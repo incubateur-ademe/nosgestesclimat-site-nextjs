@@ -1,7 +1,6 @@
 import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
 import Footer from '@/components/layout/Footer'
 import JSONLD from '@/components/seo/JSONLD'
-import Trans from '@/components/translation/trans/TransServer'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { t } from '@/helpers/metadata/fakeMetadataT'
@@ -20,6 +19,9 @@ import { ClientLayout } from '../../components/layout/ClientLayout'
 import CollectivelyCommit from './_components/CollectivelyCommit'
 import DecryptChallenges from './_components/DecryptChallenges'
 import DidYouKnowMainLanding from './_components/DidYouKnowMainLanding'
+import HomePageDescription from './_components/HomePageDescription'
+import HomepageSubCTA from './_components/HomepageSubCTA'
+import HomePageTitle from './_components/HomePageTitle'
 import InteractiveIllustration from './_components/InteractiveIllustration'
 import Mobilise from './_components/Mobilise'
 import ModelInfo from './_components/ModelInfo'
@@ -63,23 +65,10 @@ export default async function Homepage({ params }: DefaultPageProps) {
       />
       <LandingPage
         heroIllustration={<InteractiveIllustration />}
-        heroTitle={
-          <Trans locale={locale}>
-            Connaissez-vous votre empreinte carbone et eau ?
-          </Trans>
-        }
+        heroTitle={<HomePageTitle />}
         heroDescription={
           <div className="flex flex-col items-center gap-6 md:items-start md:gap-10">
-            <p className="mb-0 text-base md:order-1 md:text-2xl">
-              <Trans locale={locale}>
-                Calculez{' '}
-                <strong className="text-primary-700">vos empreintes</strong> en{' '}
-                <strong className="text-secondary-700">
-                  seulement 10 minutes
-                </strong>
-                .
-              </Trans>
-            </p>
+            <HomePageDescription />
 
             <div className="flex flex-col items-center gap-6 md:order-2 md:mt-0 md:items-start">
               <DynamicCTAButtons
@@ -109,20 +98,7 @@ export default async function Homepage({ params }: DefaultPageProps) {
               </div>
 
               {/* Displayed on desktop only */}
-              <p className="md:max-w-[300px]">
-                <strong className="text-primary-700">
-                  <Trans
-                    i18nKey="common.mainLandingPage.numberPersons"
-                    locale={locale}>
-                    2,5 millions de personnes
-                  </Trans>
-                </strong>{' '}
-                <Trans
-                  i18nKey="common.mainLandingPage.tookTheirTest"
-                  locale={locale}>
-                  ont déjà calculé leur empreinte !
-                </Trans>
-              </p>
+              <HomepageSubCTA />
             </div>
           </div>
         }
