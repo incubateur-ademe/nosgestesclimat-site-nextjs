@@ -12,6 +12,7 @@
     "node": "22.14"
   },
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest --coverage",
@@ -31,7 +32,7 @@
     "e2e:generate": "npx tsx tests/scripts/generateSpecsFromPersonas.ts",
     "iframe-healthcheck": "node scripts/healthchecks/iframes.js",
     "ui:parse": "node scripts/i18n/generate-ui.js",
-    "ui:check": "yarn run ui:parse && node scripts/i18n/check-ui.js",
+    "ui:check": "pnpm run ui:parse && node scripts/i18n/check-ui.js",
     "ui:translate": "node scripts/i18n/translate-ui.js",
     "ui:clean": "node scripts/i18n/generate-ui.js -r",
     "faq:translate": "node scripts/i18n/translate-faq.js",
@@ -42,7 +43,8 @@
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "storybook:build:github-pages": "cp .storybook/main.github-pages.ts .storybook/main.ts && cp .storybook/preview.github-pages.ts .storybook/preview.ts && storybook build && git checkout .storybook/main.ts .storybook/preview.ts",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "scalingo-postbuild": "pnpm build && pnpm prune --prod"
   },
   "dependencies": {
     "@incubateur-ademe/legal-pages-react": "^0.5.0",
@@ -88,6 +90,7 @@
     "recharts": "^2.15.1",
     "tailwind-merge": "^3.0.1",
     "tailwindcss": "^4.1.11",
+    "typescript": "^5.9.3",
     "use-count-up": "^3.0.1",
     "uuid": "^13.0.0"
   },
@@ -101,6 +104,7 @@
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
     "@next/bundle-analyzer": "15.5.6",
+    "@next/eslint-plugin-next": "^16.0.10",
     "@playwright/test": "^1.57.0",
     "@storybook/addon-docs": "^10.1.8",
     "@storybook/addon-onboarding": "^10.1.8",
@@ -114,6 +118,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/mdx": "^2.0.10",
     "@types/node": "^24.8.1",
+    "@types/pg": "^8.16.0",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "@types/react-modal": "^3.16.3",
@@ -151,6 +156,7 @@
     "next-router-mock": "^1.0.2",
     "pg": "^8.13.3",
     "playwright": "^1.57.0",
+    "playwright-core": "^1.57.0",
     "postcss-loader": "^8.1.0",
     "prettier": "^3.5.3",
     "prettier-plugin-organize-imports": "^4.3.0",
@@ -161,17 +167,16 @@
     "ts-node": "^10.9.2",
     "ts-prune": "^0.10.3",
     "tsx": "^4.20.6",
-    "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.1",
     "vite": "^5.4.21",
     "vitest": "^3.2.4",
     "yaml-loader": "^0.8.1",
     "yargs": "^18.0.0"
   },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "msw": {
     "workerDirectory": [
       "public"
     ]
-  }
+  },
+  "packageManager": "pnpm@10.11.0"
 }
