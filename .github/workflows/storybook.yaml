@@ -40,7 +40,7 @@ jobs:
           NEXT_PUBLIC_SITE_URL: https://storybook.nosgestesclimat.fr
 
       - name: Upload artifact 📦
-        uses: actions/upload-pages-artifact@v6
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./storybook-static
 
