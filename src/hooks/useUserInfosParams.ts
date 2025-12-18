@@ -1,9 +1,9 @@
+import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import { useUser } from '@/publicodes-state'
-import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
 export const useUserInfosParams = () => {
-  const searchParams = useSearchParams()
+  const searchParams = getSearchParamsClientSide()
 
   const { user, updateName, updateEmail } = useUser()
 

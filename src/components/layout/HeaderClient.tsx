@@ -5,22 +5,21 @@ import {
   headerClickClassements,
   headerClickLogo,
   headerClickProfil,
-  headerClickTest,
 } from '@/constants/tracking/layout'
 import { HIDE_CTA_PATHS } from '@/constants/urls/main'
+import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import { linkToClassement } from '@/helpers/navigation/classementPages'
-import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import dynamic from 'next/dynamic'
 import { usePathname } from 'next/navigation'
+import { Suspense } from 'react'
 import { twMerge } from 'tailwind-merge'
 import CTAButtonsPlaceholder from '../cta/CTAButtonsPlaceholder'
 import ActionsIcon from '../icons/ActionsIcon'
 import AmisIcon from '../icons/AmisIcon'
-import BilanIcon from '../icons/BilanIcon'
 import Logo from '../misc/Logo'
 import LogoLink from '../misc/LogoLink'
 import Trans from '../translation/trans/TransClient'
@@ -31,6 +30,7 @@ import PRIndicator from './header/headerDesktop/PRIndicator'
 import BottomMenu from './header/headerMobile/BottomMenu'
 import FoldableMenu from './header/headerMobile/FoldableMenu'
 import NavLink from './header/NavLink'
+import EmpreinteLink from './headerClient/EmpreinteLink'
 
 const DynamicCTAButton = dynamic(
   () => import('./header/headerDesktop/MenuCTAButton'),
@@ -47,8 +47,6 @@ export default function Header({ isSticky = true }: Props) {
   const { isIframeOnlySimulation } = useIframe()
 
   const { t } = useClientTranslation()
-
-  const { getLinkToSimulateurPage } = useSimulateurPage()
 
   const { user } = useUser()
 
@@ -72,7 +70,9 @@ export default function Header({ isSticky = true }: Props) {
         {!isIframeOnlySimulation && (
           <>
             <FoldableMenu />
-            <BottomMenu />
+            <Suspense fallback={<BlockSkeleton />}>
+              <BottomMenu />
+            </Suspense>
           </>
         )}
       </div>
@@ -102,15 +102,9 @@ export default function Header({ isSticky = true }: Props) {
 
                 <ul className="flex h-full flex-1 justify-start gap-4">
                   <li>
-                    <NavLink
-                      id="nav-first-link"
-                      href={getLinkToSimulateurPage()}
-                      onClick={() => trackEvent(headerClickTest)}
-                      activeMatches={['/tutoriel', '/simulateur', '/fin']}
-                      icon={BilanIcon}
-                      title={t('Mon empreinte')}>
-                      <Trans>Mon empreinte</Trans>
-                    </NavLink>
+                    <Suspense fallback={<BlockSkeleton />}>
+                      <EmpreinteLink />
+                    </Suspense>
                   </li>
 
                   <li>
@@ -138,9 +132,13 @@ export default function Header({ isSticky = true }: Props) {
               </nav>
 
               <div className="flex h-full items-center gap-3">
-                <PRIndicator />
+                <Suspense fallback={<BlockSkeleton />}>
+                  <PRIndicator />
+                </Suspense>
 
-                <DebugIndicator />
+                <Suspense fallback={<BlockSkeleton />}>
+                  <DebugIndicator />
+                </Suspense>
 
                 <NavLink
                   href="/profil"
@@ -158,7 +156,9 @@ export default function Header({ isSticky = true }: Props) {
                     <OrganisationLink />
                   </>
                 ) : !HIDE_CTA_PATHS.find((path) => pathname.includes(path)) ? (
-                  <DynamicCTAButton />
+                  <Suspense fallback={<BlockSkeleton />}>
+                    <DynamicCTAButton />
+                  </Suspense>
                 ) : null}
               </div>
             </>

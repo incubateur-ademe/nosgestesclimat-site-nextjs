@@ -7,13 +7,14 @@ import EmailInput from '@/design-system/inputs/EmailInput'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import Title from '@/design-system/layout/Title'
+import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import { useInfosPage } from '@/hooks/navigation/useInfosPage'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useForm as useReactHookForm } from 'react-hook-form'
 import Navigation from '../_components/Navigation'
 
@@ -22,7 +23,8 @@ interface Inputs {
 }
 
 export default function Email() {
-  const searchParams = useSearchParams()
+  const searchParams = getSearchParamsClientSide()
+
   const fixedEmail = searchParams.get('fixedemail') ? true : false
 
   const { user, updateEmail } = useUser()

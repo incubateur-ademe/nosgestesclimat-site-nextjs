@@ -2,8 +2,8 @@ import {
   ADMINISTRATOR_EMAIL_KEY,
   ADMINISTRATOR_NAME_KEY,
 } from '@/constants/group'
+import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import i18nConfig from '@/i18nConfig'
-import { useSearchParams } from 'next/navigation'
 
 import { usePathname } from 'next/navigation'
 
@@ -53,7 +53,7 @@ function handlePathnameAnonymisation(pathname: string) {
 
 export function useGetTrackedUrl() {
   const pathname = usePathname()
-  const searchParams = useSearchParams()
+  const searchParams = getSearchParamsClientSide()
 
   let pathnameUpdated = String(pathname)
 

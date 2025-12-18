@@ -16,9 +16,8 @@ export default function PartnersDisplay({
   partnersByCategories,
   categoryFilter,
 }: Props) {
-  const searchParams = useSearchParams()
   const currentCategoryFilter =
-    searchParams.get(FILTER_SEARCH_PARAM_KEY) || categoryFilter
+    useSearchParams().get(FILTER_SEARCH_PARAM_KEY) || categoryFilter
 
   // If no category is selected, display all categories
   // Otherwise, display only the selected category

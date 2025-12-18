@@ -3,15 +3,15 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import CategoryTabs from '../CategoryTabs'
 
-// Mock next/navigation
-const mockSearchParams = {
-  get: vi.fn(),
-}
-
-vi.mock('next/navigation', () => ({
-  useSearchParams: () => mockSearchParams,
-}))
-
+// Mock getSearchParamsClientSide
+const mockGetSearchParams = vi.fn()
+vi.mock('next/navigation', async () => {
+  const actual = await vi.importActual('next/navigation')
+  return {
+    ...actual,
+    useSearchParams: () => mockGetSearchParams(),
+  }
+})
 // Mock encodeDottedNameAsURI
 vi.mock('@/utils/format/encodeDottedNameAsURI', () => ({
   encodeDottedNameAsURI: vi.fn((dottedName: string) => dottedName),
@@ -60,7 +60,8 @@ describe('CategoryTabs', () => {
 
   beforeEach(() => {
     vi.clearAllMocks()
-    mockSearchParams.get.mockReturnValue('')
+    // Default: return empty search params
+    mockGetSearchParams.mockReturnValue(new URLSearchParams())
   })
 
   it('renders tablist with correct ARIA attributes', () => {
@@ -111,7 +112,9 @@ describe('CategoryTabs', () => {
   })
 
   it('sets correct tab as active when category is selected', () => {
-    mockSearchParams.get.mockReturnValue('alimentation')
+    // Mock search params to include the category parameter
+    const searchParams = new URLSearchParams('category=alimentation')
+    mockGetSearchParams.mockReturnValue(searchParams)
 
     render(
       <CategoryTabs categories={mockCategories}>{mockChildren}</CategoryTabs>
@@ -123,6 +126,9 @@ describe('CategoryTabs', () => {
   })
 
   it('updates active tab when URL changes', () => {
+    // Initially no category in URL
+    mockGetSearchParams.mockReturnValue(new URLSearchParams())
+
     const { rerender } = render(
       <CategoryTabs categories={mockCategories}>{mockChildren}</CategoryTabs>
     )
@@ -134,7 +140,9 @@ describe('CategoryTabs', () => {
     )
 
     // Change URL to select second tab
-    mockSearchParams.get.mockReturnValue('alimentation')
+    const searchParams = new URLSearchParams('category=alimentation')
+    mockGetSearchParams.mockReturnValue(searchParams)
+
     rerender(
       <CategoryTabs categories={mockCategories}>{mockChildren}</CategoryTabs>
     )
