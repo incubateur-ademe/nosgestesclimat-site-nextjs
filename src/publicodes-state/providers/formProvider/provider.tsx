@@ -48,6 +48,7 @@ function FormProvider({ root = 'bilan', children }: PropsWithChildren<Props>) {
     situation,
     everyQuestions,
     everyMosaicChildrenWithParent,
+    currentQuestion,
   })
 
   const { remainingQuestionsByCategories } = useProgression({
