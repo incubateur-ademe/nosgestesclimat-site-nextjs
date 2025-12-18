@@ -121,7 +121,12 @@ const TestWrapper = ({
   }
 
   if (providers.mainHooks) {
-    wrapped = <MainHooks>{wrapped}</MainHooks>
+    wrapped = (
+      <>
+        <MainHooks />
+        {wrapped}
+      </>
+    )
   }
 
   if (providers.preventNavigation) {
