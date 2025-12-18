@@ -58,7 +58,7 @@ export default function useSetValue({
     ) => {
       let situationToAdd = {}
 
-      if (typeof value === 'object') {
+      if (value && typeof value === 'object') {
         situationToAdd = Object.keys(value || {}).reduce(
           (accumulator: Situation, partialMosaicChildDottedName: string) => {
             const mosaicChildDottedName = utils.disambiguateReference(
@@ -71,7 +71,7 @@ export default function useSetValue({
             return {
               ...accumulator,
               [mosaicChildDottedName]: checkValueValidity({
-                value: value?.[partialMosaicChildDottedName],
+                value: value[partialMosaicChildDottedName],
                 type: getType({
                   rule,
                   evaluation,
@@ -151,7 +151,8 @@ const checkValueValidity = ({
         return 'non'
       }
       return undefined
-    case 'mosaic':
+    case 'numberMosaic':
+    case 'selectMosaic':
       return 'mosaic'
     case 'number':
       return value === undefined

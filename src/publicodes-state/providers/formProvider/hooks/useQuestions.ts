@@ -24,6 +24,7 @@ interface Props {
   foldedSteps: DottedName[]
   everyQuestions: DottedName[]
   everyMosaicChildrenWithParent: Record<DottedName, DottedName[]>
+  currentQuestion: DottedName | null
 }
 
 /**
@@ -38,6 +39,7 @@ export default function useQuestions({
   foldedSteps,
   everyQuestions,
   everyMosaicChildrenWithParent,
+  currentQuestion,
 }: Props) {
   const missingVariables = useMemo(
     () => {
@@ -156,19 +158,36 @@ export default function useQuestions({
     [foldedSteps, everyQuestions]
   )
 
-  const relevantQuestions = useMemo(
-    () =>
-      [
-        /**
-         * We add every answered questions to display and every not answered
-         * questions to display to get every relevant questions
-         */
-        ...relevantAnsweredQuestions,
-        ...remainingQuestions,
-      ].filter((question) => !MUST_NOT_ASK_QUESTIONS.has(question)),
+  const relevantQuestions = useMemo(() => {
+    const unsortedRelevantQuestions = [
+      /**
+       * We add every answered questions to display and every not answered
+       * questions to display to get every relevant questions
+       */
+      ...relevantAnsweredQuestions,
+      ...remainingQuestions,
+    ].filter((question) => !MUST_NOT_ASK_QUESTIONS.has(question))
 
-    [relevantAnsweredQuestions, remainingQuestions]
-  )
+    const currentQuestionIndex = currentQuestion
+      ? unsortedRelevantQuestions.indexOf(currentQuestion)
+      : -1
+
+    if (currentQuestionIndex === -1) {
+      return unsortedRelevantQuestions
+    }
+
+    const preCurrentQuestionList: DottedName[] =
+      unsortedRelevantQuestions.slice(0, currentQuestionIndex + 1)
+
+    const postCurrentQuestionList: DottedName[] = getSortedQuestionsList({
+      questions: unsortedRelevantQuestions.slice(currentQuestionIndex + 1),
+      categories,
+      subcategories,
+      missingVariables,
+    })
+
+    return [...preCurrentQuestionList, ...postCurrentQuestionList]
+  }, [relevantAnsweredQuestions, remainingQuestions, currentQuestion])
 
   const questionsByCategories = useMemo(
     () =>

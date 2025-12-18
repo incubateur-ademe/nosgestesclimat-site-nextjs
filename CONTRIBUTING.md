@@ -23,33 +23,33 @@ Vous pouvez également visiter [notre wiki](https://accelerateur-transition-ecol
 Pour lancer l'app en local, il suffit de cloner ce dépôt et de lancer dans son terminal :
 
 ```bash
-yarn && yarn dev
+pnpm i && pnpm dev
 ```
 
 Le site sera alors basé sur la dernière version publiée du modèle de calcul Nos Gestes Climat.
 
-Pour faire tourner le site avec une version locale du modèle, vous devrez également cloner [le dépôt du modèle](https://github.com/incubateur-ademe/nosgestesclimat) et le lier au site via [`yarn link`](https://classic.yarnpkg.com/lang/en/docs/cli/link/) afin de voir les modifications du site mais aussi du modèle (questions, descriptions, calculs) en temps réel.
+Pour faire tourner le site avec une version locale du modèle, vous devrez également cloner [le dépôt du modèle](https://github.com/incubateur-ademe/nosgestesclimat) et le lier au site via [`pnpm link`](https://pnpm.io/cli/link) afin de voir les modifications du site mais aussi du modèle (questions, descriptions, calculs) en temps réel.
 
 A utiliser, de cette manière, côté modèle :
 
 ```bash
-yarn link
+pnpm link
 ```
 
 Puis, côté site :
 
 ```bash
-yarn link @incubateur-ademe/nosgestesclimat
+pnpm link @incubateur-ademe/nosgestesclimat
 ```
 
 Pour finir, il faut lancer, côté modèle :
 
 ```bash
-yarn compile
+pnpm compile
 ```
 
 Puis, côté site :
 
 ```bash
-yarn dev
+pnpm dev
 ```

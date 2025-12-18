@@ -9,7 +9,11 @@ if (!script) {
 // Avoid unwanted reloading loop
 const currentParams = new URLSearchParams(window.location.search)
 if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
-  const integratorUrl = new URL(window.location.href.toString())
+  const href = window.location.href.toString()
+  if (!href) {
+    console.error('Iframe Nos Gestes Climat: window.location.href is empty')
+  }
+  const integratorUrl = new URL(href || 'about:blank')
 
   // Remove all search params from integratorUrl
   integratorUrl.search = ''
