@@ -30,11 +30,8 @@ export default function SubCategory({ subcategory }: Props) {
 
   const formattedCarbonFootprint = formatCarbonFootprint(numericValue)
 
-  //TODO: Model shenanigans: investigate why subcategory = repas and questions = plats
   const answeredQuestionOfSubcategory = relevantAnsweredQuestions.filter(
-    (question) =>
-      question.includes(subcategory) ||
-      (question.includes('plats') && subcategory.includes('repas'))
+    (question) => question.includes(subcategory)
   )
 
   if (!answeredQuestionOfSubcategory.length) return null
