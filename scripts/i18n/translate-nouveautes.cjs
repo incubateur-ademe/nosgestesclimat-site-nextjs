@@ -1,7 +1,7 @@
 /*
 	Calls the DeepL API to translate the Markdown files.
 
-	Command: yarn translate:md [options]
+	Command: pnpm translate:md [options]
 */
 
 const fs = require('fs')

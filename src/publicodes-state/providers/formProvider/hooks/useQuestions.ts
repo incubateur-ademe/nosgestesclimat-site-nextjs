@@ -1,5 +1,5 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 
 import {
   MUST_ASK_QUESTIONS,
@@ -109,6 +109,17 @@ export default function useQuestions({
     [safeEvaluate, root, everyQuestions, situation]
   )
 
+  const sortQuestions = useCallback(
+    (questions: DottedName[]) =>
+      getSortedQuestionsList({
+        questions,
+        categories,
+        subcategories,
+        missingVariables,
+      }),
+    [categories, subcategories, missingVariables]
+  )
+
   const remainingQuestions = useMemo(() => {
     // We take every questions
     const questionsToSort = everyQuestions
@@ -129,19 +140,13 @@ export default function useQuestions({
       )
       .filter((question) => !MUST_NOT_ASK_QUESTIONS.has(question))
     // then we sort them by category, subcategory and missing variables
-    return getSortedQuestionsList({
-      questions: questionsToSort,
-      categories,
-      subcategories,
-      missingVariables,
-    })
+    return sortQuestions(questionsToSort)
   }, [
-    everyQuestions,
     everyMosaicChildrenWithParent,
+    everyQuestions,
     foldedSteps,
     missingVariables,
-    categories,
-    subcategories,
+    sortQuestions,
   ])
 
   const relevantAnsweredQuestions = useMemo(
@@ -156,18 +161,15 @@ export default function useQuestions({
     [foldedSteps, everyQuestions]
   )
 
-  const relevantQuestions = useMemo(
-    () =>
-      [
-        /**
-         * We add every answered questions to display and every not answered
-         * questions to display to get every relevant questions
-         */
-        ...relevantAnsweredQuestions,
-        ...remainingQuestions,
-      ].filter((question) => !MUST_NOT_ASK_QUESTIONS.has(question)),
-
-    [relevantAnsweredQuestions, remainingQuestions]
+  const relevantQuestions = sortQuestions(
+    [
+      /**
+       * We add every answered questions to display and every not answered
+       * questions to display to get every relevant questions
+       */
+      ...relevantAnsweredQuestions,
+      ...remainingQuestions,
+    ].filter((question) => !MUST_NOT_ASK_QUESTIONS.has(question))
   )
 
   const questionsByCategories = useMemo(

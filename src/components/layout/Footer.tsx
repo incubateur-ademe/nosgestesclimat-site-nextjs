@@ -20,6 +20,7 @@ import {
 } from '@/constants/tracking/layout'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDisplayed'
+import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
 import { trackEvent } from '@/utils/analytics/trackEvent'
@@ -48,6 +49,8 @@ export default function Footer({
 }) {
   const pathname = usePathname()
   const locale = useLocale()
+
+  const { t } = useClientTranslation()
 
   const { setIsBoardOpen } = useCookieConsent()
 
@@ -87,7 +90,10 @@ export default function Footer({
             <ul aria-labelledby="about-section">
               <li>
                 <InlineLink
-                  href="/a-propos"
+                  href="https://beta.gouv.fr/startups/nosgestesclimat.html"
+                  target="_blank"
+                  aria-label={t('Qui sommes-nous - Nouvelle fenêtre')}
+                  rel="noopener noreferrer"
                   onClick={() => trackEvent(footerClickQuiSommesNous)}
                   className="text-default text-sm no-underline hover:underline">
                   <Trans>Qui sommes-nous</Trans>

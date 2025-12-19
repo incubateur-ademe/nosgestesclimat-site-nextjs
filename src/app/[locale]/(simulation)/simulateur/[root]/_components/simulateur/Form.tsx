@@ -115,20 +115,13 @@ export default function Form() {
 
             <FunFact question={currentQuestion} />
 
-            {
-              // TODO : temporary fix to hide the category illustration for first question
-              currentQuestion !== 'transport . voiture . utilisateur' && (
-                <div
-                  className={twMerge(
-                    'mt-auto mb-8 pb-16 md:pb-0',
-                    isIframe && 'hidden'
-                  )}>
-                  <CategoryIllustration
-                    category={currentCategory ?? 'transport'}
-                  />
-                </div>
-              )
-            }
+            <div
+              className={twMerge(
+                'mt-auto mb-8 pb-16 md:pb-0',
+                isIframe && 'hidden'
+              )}>
+              <CategoryIllustration category={currentCategory ?? 'transport'} />
+            </div>
           </div>
         </div>
       </ContentLarge>
