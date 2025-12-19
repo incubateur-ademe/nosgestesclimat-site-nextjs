@@ -26,9 +26,6 @@ export default function QuestionsWithoutSubcategory({ category }: Props) {
           return false
         }
       }
-      if (question.includes('plats')) {
-        return false
-      }
       return true
     })
 
