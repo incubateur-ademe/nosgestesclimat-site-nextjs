@@ -1,0 +1,72 @@
+# To be entered including VAT
+
+# markup: 10% (amount excluding VAT - markup = available amount)
+# reverse markup: (1 / (1 - markup)) - 1 = 11.1% (to go from available to excluding VAT)
+# For this first version, we do not distinguish the carrier's margin in the budget.
+
+2020:
+  description: |
+    In 2020, Datagir (then called Ecolab) launched the Nos Gestes Climat calculator.
+    By the end of the year, 4 people were working in the service (full-time or part-time). The budget presented is that of Datagir, including Datagir's other products.
+  total:
+    Development: 101592
+    Deployment: 0
+    Coaching: 33918
+
+2021:
+  description: |
+    In 2021, Nos Gestes Climat was developed within Datagir. The product continued its acceleration phase and began a consolidation phase within ADEME.
+    By the end of the year, 7 people were working in the service (full-time or part-time). The budget presented is that of Datagir, including Datagir's other products.
+  total:
+    Development: 267161
+    Deployment: 42702
+    Coaching: 13567
+
+2022:
+  description: |
+    In 2022, Nos Gestes Climat was developed within Datagir, and completed the transfer and consolidation phase. The service was made permanent within ADEME.
+    By the end of the year, 9 people were working in the Datagir service (full-time or part-time). The budget presented is that of Datagir, including Datagir's other products.
+  total:
+    Development: 457477
+    Deployment: 60577
+    Product: 60159
+    Coaching: 26783
+
+2023:
+  description: |
+    In 2023, Nos Gestes Climat is a permanent service, led by the Ecological Transition Accelerator within ADEME.
+    Continuous improvement and deployment of the existing calculator continue.
+    By the end of the year, 9 people were working for Nos Gestes Climat (full-time or part-time).
+  total:
+    Development: 430023
+    Deployment: 102804
+    Product: 126827
+    Model: 110945
+    Design: 80531
+    Coaching: 27648
+
+2024:
+  description: |
+    In 2024, Nos Gestes Climat is a permanent service, led by the Ecological Transition Accelerator within ADEME.
+    Continuous improvement and deployment of the existing simulator continue.
+    As of the end of October, 9 people were working for Nos Gestes Climat (full-time or part-time).
+  total:
+    Development: 299644
+    Deployment: 331135
+    Product: 116124
+    Model: 132002
+    Design: 96467
+    Coaching: 27106
+    Communication: 109616
+
+2025:
+  description: |
+    In 2025, Nos Gestes Climat is a permanent service, led by the Ecological Transition Accelerator within ADEME. Continuous improvement and deployment of the existing simulator continue, with a stronger focus on deployment in 2025. The budget presented corresponds to the actual figures for January - October and the forecast for November and December.
+  total:
+    Development: 258010
+    Deployment: 355263
+    Product: 140499
+    Model: 148384
+    Design: 115526
+    Coaching: 45247
+    Communication: 97315
