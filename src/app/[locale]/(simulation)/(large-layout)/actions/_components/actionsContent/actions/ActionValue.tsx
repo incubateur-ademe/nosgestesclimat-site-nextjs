@@ -102,7 +102,7 @@ export default function ActionValue({
 
       {remainingQuestions && remainingQuestions.length > 0 && (
         <>
-          <div className="text-primary-700 mb-1 cursor-pointer text-xs">
+          <div className="text-primary-700 mb-1 text-xs">
             {remainingQuestionsText}
           </div>
           <Button

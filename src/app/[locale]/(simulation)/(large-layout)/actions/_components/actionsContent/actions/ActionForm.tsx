@@ -35,7 +35,12 @@ export default function ActionForm({
     currentCategory,
   } = useFormState()
 
-  const { everyQuestions, rawMissingVariables, safeEvaluate } = useEngine()
+  const {
+    everyQuestions,
+    rawMissingVariables,
+    safeEvaluate,
+    everyMosaicChildrenWithParent,
+  } = useEngine()
 
   const { extendedFoldedSteps } = useTempEngine()
 
@@ -49,6 +54,7 @@ export default function ActionForm({
     extendedFoldedSteps,
     rawMissingVariables,
     safeEvaluate,
+    everyMosaicChildrenWithParent,
   })
 
   const isActionApplicable =

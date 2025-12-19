@@ -52,7 +52,12 @@ export default function ActionCard({
 }: Props) {
   const { t } = useClientTranslation()
 
-  const { everyQuestions, safeEvaluate, rawMissingVariables } = useEngine()
+  const {
+    everyQuestions,
+    safeEvaluate,
+    rawMissingVariables,
+    everyMosaicChildrenWithParent,
+  } = useEngine()
 
   const { rules, extendedFoldedSteps } = useTempEngine()
   const typedRules = rules
@@ -72,6 +77,7 @@ export default function ActionCard({
     extendedFoldedSteps,
     safeEvaluate,
     rawMissingVariables,
+    everyMosaicChildrenWithParent,
   })
 
   const nbRemainingQuestions = remainingQuestions?.length

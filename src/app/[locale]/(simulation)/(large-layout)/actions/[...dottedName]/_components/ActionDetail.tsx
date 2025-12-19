@@ -29,8 +29,13 @@ export default function ActionDetail({
 }: {
   params: { dottedName: DottedName[] }
 }) {
-  const { getCategory, rawMissingVariables, safeEvaluate, everyQuestions } =
-    useEngine()
+  const {
+    getCategory,
+    rawMissingVariables,
+    safeEvaluate,
+    everyQuestions,
+    everyMosaicChildrenWithParent,
+  } = useEngine()
   const pathParamsDottedName = params?.dottedName
 
   const formattedDottedName = pathParamsDottedName
@@ -53,6 +58,7 @@ export default function ActionDetail({
     everyQuestions,
     rawMissingVariables,
     safeEvaluate,
+    everyMosaicChildrenWithParent,
   })
 
   const rule = useRule(dottedName)
