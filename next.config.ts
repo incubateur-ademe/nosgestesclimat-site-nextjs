@@ -68,15 +68,11 @@ const sentryConfig = {
   // Upload a larger set of source maps for prettier stack traces (increases build time)
   widenClientFileUpload: process.env.NODE_ENV !== 'development',
 
-  // Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
-  tunnelRoute: '/monitoring',
-
   // Automatically tree-shake Sentry logger statements to reduce bundle size
   disableLogger: true,
 
   telemetry: process.env.NODE_ENV !== 'development',
 
-  hideSourceMaps: true,
   autoDiscoverRelease: true,
   include: '.',
   ignore: ['node_modules', '.next', 'cypress'],
