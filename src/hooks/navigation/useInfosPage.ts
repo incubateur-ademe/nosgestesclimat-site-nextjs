@@ -24,12 +24,7 @@ import { useFetchPublicPoll } from '../organisations/polls/useFetchPublicPoll'
  */
 
 interface Props {
-  curPage: // | typeof BIRTHDATE_PAGE
-  // | typeof EMAIL_PAGE
-  // | typeof POSTAL_CODE_PAGE
-  // | typeof START_PAGE
-  // | typeof TUTORIEL_PAGE
-  string // Lol
+  curPage: string // | typeof TUTORIEL_PAGE // | typeof START_PAGE // | typeof POSTAL_CODE_PAGE // | typeof EMAIL_PAGE // | typeof BIRTHDATE_PAGE // Lol
 }
 export function useInfosPage() {
   const searchParams = useSearchParams()

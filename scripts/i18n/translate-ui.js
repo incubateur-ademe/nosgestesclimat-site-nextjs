@@ -21,7 +21,7 @@ const srcPath = paths.UI[srcLang].withLock
 
 if (!fs.existsSync(srcPath)) {
   cli.printErr(
-    `ERROR: ${srcPath} does not exist.\nPlease run: 'yarn generate:ui' first.`
+    `ERROR: ${srcPath} does not exist.\nPlease run: 'pnpm generate:ui' first.`
   )
   process.exit(-1)
 }
