@@ -2,7 +2,12 @@
 
 import ActionForm from '@/components/results/actions/actionsContent/actions/ActionForm'
 import Trans from '@/components/translation/trans/TransClient'
-import { actionsClickYes } from '@/constants/tracking/pages/actions'
+import {
+  actionsClickUnderstandCalculation,
+  actionsClickUnderstandCalculationPosthog,
+  actionsClickYes,
+  actionsClickYesPosthog,
+} from '@/constants/tracking/pages/actions'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import Markdown from '@/design-system/utils/Markdown'
@@ -16,7 +21,7 @@ import {
   useUser,
 } from '@/publicodes-state'
 import type { Action } from '@/publicodes-state/types'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { utils } from 'publicodes'
@@ -92,7 +97,13 @@ export default function ActionDetail({
           <div className="mt-8">
             <ButtonLink
               color="secondary"
-              href={'/documentation/' + encodeRuleName(dottedName)}>
+              href={'/documentation/' + encodeRuleName(dottedName)}
+              onClick={() => {
+                trackEvent(actionsClickUnderstandCalculation(dottedName))
+                trackPosthogEvent(
+                  actionsClickUnderstandCalculationPosthog(dottedName)
+                )
+              }}>
               <span role="img" aria-hidden className="mr-3 text-xl">
                 📚
               </span>
@@ -120,6 +131,7 @@ export default function ActionDetail({
 
                   if (!actionChoices[dottedName]) {
                     trackEvent(actionsClickYes(dottedName))
+                    trackPosthogEvent(actionsClickYesPosthog(dottedName))
                   }
                 }}
                 action={{ ...rule, dottedName } as unknown as Action}

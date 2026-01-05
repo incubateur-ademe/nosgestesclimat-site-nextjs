@@ -3,7 +3,10 @@
 import VerifyCodeForm from '@/components/AuthenticateUserForm/VerifyCodeForm'
 import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMessage'
 import Trans from '@/components/translation/trans/TransClient'
-import { clickUpdateUserEmail } from '@/constants/tracking/user-account'
+import {
+  captureClickUpdateUserEmail,
+  clickUpdateUserEmail,
+} from '@/constants/tracking/user-account'
 import Button from '@/design-system/buttons/Button'
 import TextInput from '@/design-system/inputs/TextInput'
 import Loader from '@/design-system/layout/Loader'
@@ -13,7 +16,7 @@ import { usePendingVerification } from '@/hooks/authentication/usePendingVerific
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { captureException } from '@sentry/nextjs'
 import { type ReactNode } from 'react'
@@ -51,6 +54,7 @@ export default function UserEmailForm({ submitLabel, className }: Props) {
 
   const createCodeIfEmailChanged: SubmitHandler<Inputs> = async (data) => {
     trackEvent(clickUpdateUserEmail)
+    trackPosthogEvent(captureClickUpdateUserEmail)
     try {
       const nextEmail = formatEmail(data.email)
 

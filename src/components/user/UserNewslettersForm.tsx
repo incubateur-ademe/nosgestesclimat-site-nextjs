@@ -12,7 +12,10 @@ import {
   SEASONAL_NEWSLETTER_LABEL,
   TRANSPORTS_NEWSLETTER_LABEL,
 } from '@/constants/forms/newsletters'
-import { clickUpdateUserNewsletters } from '@/constants/tracking/user-account'
+import {
+  captureClickUpdateUserNewsletters,
+  clickUpdateUserNewsletters,
+} from '@/constants/tracking/user-account'
 import Button from '@/design-system/buttons/Button'
 import CheckboxInput from '@/design-system/inputs/CheckboxInput'
 import Loader from '@/design-system/layout/Loader'
@@ -23,7 +26,7 @@ import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletter
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useLocale } from '@/hooks/useLocale'
 import i18nConfig from '@/i18nConfig'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { captureException } from '@sentry/nextjs'
 import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
@@ -86,6 +89,7 @@ export default function UserNewslettersForm({ className, user }: Props) {
     }
 
     trackEvent(clickUpdateUserNewsletters)
+    trackPosthogEvent(captureClickUpdateUserNewsletters)
 
     try {
       const newslettersArray = formatListIdsFromObject(newsletterIds)
