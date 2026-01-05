@@ -91,11 +91,8 @@ export const clickDashboardGroupPageCreateOrganisation = [
   'No Groups No Organisation',
 ]
 
-export const clickLatestResultsViewDetail = [
-  'trackEvent',
-  'User Account Results',
-  'Click Latest Results View Detail',
-]
+export const clickLatestResultsViewDetail =
+  'User Account Results|Click Latest Results View Detail'
 
 export const clickResultsListResultViewDetail = [
   'trackEvent',

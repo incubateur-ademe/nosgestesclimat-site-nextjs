@@ -1,6 +1,3 @@
-'use client'
-
-import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
 import { clickLatestResultsViewDetail } from '@/constants/tracking/user-account'
 import { MON_ESPACE_RESULTS_DETAIL_PATH } from '@/constants/urls/paths'
@@ -9,7 +6,7 @@ import {
   colorClassNames,
   sizeClassNames,
 } from '@/design-system/buttons/Button'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 
 export default function SeeDetailLink({
@@ -32,7 +29,7 @@ export default function SeeDetailLink({
         ':simulationId',
         simulationId
       )}
-      onClick={() => trackEvent(clickLatestResultsViewDetail)}>
+      data-track-event={clickLatestResultsViewDetail}>
       <span aria-hidden className="text-2xl leading-none">
         →
       </span>
