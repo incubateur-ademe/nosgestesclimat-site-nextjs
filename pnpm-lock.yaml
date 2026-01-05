@@ -12,8 +12,8 @@ importers:
         specifier: ^0.5.0
         version: 0.5.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@incubateur-ademe/nosgestesclimat':
-        specifier: ^4.5.2
-        version: 4.5.2(publicodes@1.9.1)
+        specifier: ^4.6.0
+        version: 4.6.0(publicodes@1.9.1)
       '@next/mdx':
         specifier: ^16.0.7
         version: 16.0.7(@mdx-js/loader@3.1.1(webpack@5.102.1(@swc/core@1.13.5)(esbuild@0.27.1)))(@mdx-js/react@3.1.1(@types/react@19.2.2)(react@19.2.0))
@@ -1788,8 +1788,8 @@ packages:
   '@incubateur-ademe/nosgestesclimat-scripts@0.8.0':
     resolution: {integrity: sha512-Jc3d3SAWDDBQNLG1d7+ao+5QPMpiEZg2tfY0EDmray0UBpP9lj0LvWG0uwWoA0waeYFroYNuK58yBrbqGRQMLg==}
 
-  '@incubateur-ademe/nosgestesclimat@4.5.2':
-    resolution: {integrity: sha512-f5o3G0oGGQf86ulelfRQmYslyBxKLHVLKSQ+UtAcqtkaqwDL9BKGlwNqwGgOzi3XsN9s6B+6brJfcsYrHf3dZw==}
+  '@incubateur-ademe/nosgestesclimat@4.6.0':
+    resolution: {integrity: sha512-REigKNZ6irip6z3waYzbxcq0mFwdTYVzrt8jEbXapZ0Bgg834MIi4toxH1hgDPH0Sp3KERPxiW/SsTlDW1Y1hQ==}
     engines: {node: '>=22'}
     peerDependencies:
       publicodes: ^1.8.5
@@ -9617,7 +9617,7 @@ snapshots:
       - debug
       - encoding
 
-  '@incubateur-ademe/nosgestesclimat@4.5.2(publicodes@1.9.1)':
+  '@incubateur-ademe/nosgestesclimat@4.6.0(publicodes@1.9.1)':
     dependencies:
       publicodes: 1.9.1
 

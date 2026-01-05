@@ -9,7 +9,6 @@ import { twMerge } from 'tailwind-merge'
 import AutresQuestions from './_components/AutresQuestions'
 import AvantDeCommencer from './_components/AvantDeCommencer'
 import ButtonBack from './_components/ButtonBack'
-import OrganisationMessage from './_components/OrganisationMessage'
 
 export default function Tutoriel() {
   return (
@@ -32,8 +31,6 @@ export default function Tutoriel() {
 
         <div className={twMerge('mb-12 flex w-full gap-4 sm:px-4 md:px-0')}>
           <ButtonBack />
-
-          <OrganisationMessage />
 
           <ButtonStart />
         </div>

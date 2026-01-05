@@ -40,10 +40,24 @@ export default function ButtonStart({
 
   const [startTime] = useState(() => Date.now())
 
-  // Allow user to choose to keep his/her current
-  const shouldRedirectToChoicePage = poll && progression === 1
+  // If user has already participated to the poll and the simulation is finished
+  if (poll?.simulations.hasParticipated && progression === 1) {
+    return (
+      <div className="flex flex-col items-end gap-2">
+        <p className="mb-0 text-sm text-gray-500">
+          <Trans>Vous avez déja participé à ce sondage.</Trans>
+        </p>
 
-  if (poll?.simulations.hasParticipated) return null
+        <ButtonLink
+          href={`/organisations/${poll?.organisation.slug}/campagnes/${poll?.slug}`}>
+          <Trans>Voir mes résultats</Trans>
+        </ButtonLink>
+      </div>
+    )
+  }
+
+  // Allow user to choose to keep his/her current simulation or start a new one
+  const shouldRedirectToChoicePage = poll && progression === 1
 
   return (
     <ButtonLink
@@ -73,12 +87,12 @@ export default function ButtonStart({
       }}>
       {isLoading ? (
         <Loader size="sm" />
-      ) : label ? (
-        label
       ) : (
-        <>
-          <Trans>C'est parti !</Trans> <span aria-hidden="true">→</span>
-        </>
+        (label ?? (
+          <>
+            <Trans>C'est parti !</Trans> <span aria-hidden="true">→</span>
+          </>
+        ))
       )}
     </ButtonLink>
   )

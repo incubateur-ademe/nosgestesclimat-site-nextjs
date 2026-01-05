@@ -1,5 +1,5 @@
 import Link from '@/components/Link'
-import type { PropsWithChildren } from 'react'
+import type { HTMLAttributes, PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -8,7 +8,8 @@ type Props = {
   title?: string
   onClick?: () => void
   target?: string
-} & PropsWithChildren
+} & PropsWithChildren &
+  HTMLAttributes<HTMLAnchorElement>
 
 export default function InlineLink({
   children,

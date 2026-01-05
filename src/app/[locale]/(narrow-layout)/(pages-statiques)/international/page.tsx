@@ -50,7 +50,8 @@ export default async function International({ params }: DefaultPageProps) {
 
             <p className="mb-8">
               {t(
-                'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.'
+                'international.description',
+                'Où que vous viviez, calculez votre empreinte carbone et eau personnelle en tenant compte des spécificités de votre pays.'
               )}
             </p>
             <div>
@@ -84,43 +85,41 @@ export default async function International({ params }: DefaultPageProps) {
           </h2>
           <p>
             <Trans locale={locale} i18nKey="international.pourquoi.1">
-              Les modes de vies ne sont pas les mêmes en fonction du pays dans
-              lequel on vit. Certains pays ont un réseau ferré très développé,
-              d'autres sont insulaires et donc reposent davantage sur le ferry
-              et l'avion.
+              Les modes de vie varient fortement d’un pays à l’autre : réseau
+              ferroviaire plus ou moins développé, dépendance au ferry ou à
+              l’avion, organisation du transport, types de logements, etc.
             </Trans>
           </p>
           <p>
             <Trans locale={locale} i18nKey="international.pourquoi.2">
-              Au fur et à mesure que l'électricité prend une place très
-              importante grâce à la transition énergétique, l'empreinte carbone
-              du mix électrique influence fortement le calcul d'empreinte
-              climat.
+              Avec la transition énergétique, la place croissante de
+              l’électricité rend le mix électrique particulièrement déterminant
+              dans le calcul.
             </Trans>
           </p>
           <p>
             <Trans locale={locale} i18nKey="international.pourquoi.3">
-              Nous utilisons, quand disponible, l'empreinte du mix électrique
-              fournie par :
+              Lorsque c’est possible, nous utilisons les données de{' '}
+              <Link
+                className="inline-block"
+                href="https://app.electricitymaps.com/map"
+                target="_blank"
+                aria-label={t(
+                  'international.electricityMaps.ariaLabel',
+                  "Visiter le site Electricity Maps (s'ouvre dans un nouvel onglet)"
+                )}>
+                <Image
+                  alt="Electricity Maps"
+                  src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/electricitymaps_4108b9d71a.svg"
+                  className="ml-2 h-4"
+                  width="100"
+                  height="100"
+                  aria-hidden="true"
+                />
+              </Link>{' '}
+              pour intégrer l’empreinte carbone réelle de l’électricité du pays.
             </Trans>
              
-            <Link
-              className="inline"
-              href="https://app.electricitymaps.com/map"
-              target="_blank"
-              aria-label={t(
-                'international.electricityMaps.ariaLabel',
-                "Visiter le site Electricity Maps (s'ouvre dans un nouvel onglet)"
-              )}>
-              <Image
-                alt="Electricity Maps"
-                src="https://nosgestesclimat-prod.s3.fr-par.scw.cloud/cms/electricitymaps_4108b9d71a.svg"
-                className="ml-2 h-4"
-                width="100"
-                height="100"
-                aria-hidden="true"
-              />
-            </Link>
           </p>
         </Container>
       </div>
@@ -128,25 +127,26 @@ export default async function International({ params }: DefaultPageProps) {
       <Container maxWidth="3xl" className="pt-8 pb-12">
         <h2>
           <Trans locale={locale} i18nKey="international.comment.titre">
-            Comment ça marche ?
+            Quels régions / pays sont disponibles ?
           </Trans>
         </h2>
         <p>
           <Trans locale={locale} i18nKey="international.comment.1">
-            Pour proposer un modèle pour chaque pays, il nous faut forcément une
-            base. Nos Gestes Climat s'est construit sur le cas de la France. À
-            partir de là, chaque pays décrit ses différences par rapport à la
-            base.
+            Pour chaque pays, nous ajoutons les données locales nécessaires afin
+            de proposer un calcul adapté aux modes de vie et au mix énergétique
+            du territoire.
           </Trans>
         </p>
         <p>
           <Trans locale={locale} i18nKey="international.comment.2">
-            Explorez en détail les spécificités de chaque pays.
+            La liste ci-dessous présente les pays déjà intégrés.
           </Trans>
-          &nbsp;
-          <span className="bg-primary-100 ml-2 rounded-xs px-2 py-1 whitespace-nowrap">
-            ⏳️ <Trans locale={locale}>À venir !</Trans>
-          </span>
+        </p>
+        <p>
+          <Trans locale={locale} i18nKey="international.comment.3">
+            Nous l’enrichissons progressivement pour élargir la couverture
+            internationale.
+          </Trans>
         </p>
       </Container>
 
@@ -169,11 +169,16 @@ export default async function International({ params }: DefaultPageProps) {
           </Trans>
         </h2>
         <p>
+          <Trans locale={locale} i18nKey="international.ensuite.2">
+            Nous ajoutons de nouveaux pays au fil du temps, avec le plus grand
+            soin pour refléter leurs spécificités.
+          </Trans>
+        </p>
+        <p>
           <Trans locale={locale} i18nKey="international.ensuite.1">
-            Nous avons lancé une première version de l'internationalisation qui
-            comprend une douzaine de pays. Nous le faisons pas à pas, pour
-            consolider les particularités de chaque pays. Le votre n'y est pas ?{' '}
-            <InlineLink href="/a-propos">Écrivez-nous !</InlineLink>
+            Si le vôtre n’est pas encore dans la liste, dites-le-nous : nous
+            serons ravis d’en tenir compte.{' '}
+            <InlineLink href="/contact">Écrivez-nous !</InlineLink>
           </Trans>
         </p>
       </Container>

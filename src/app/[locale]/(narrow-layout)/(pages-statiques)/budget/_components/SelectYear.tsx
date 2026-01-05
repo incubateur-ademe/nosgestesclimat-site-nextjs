@@ -3,7 +3,9 @@
 import type { ReactNode } from 'react'
 import { useState } from 'react'
 
-import budget from '../_data/budget.yaml'
+import { useLocale } from '@/hooks/useLocale'
+import budgetFr from '../_data/budget.yaml'
+import budgetEn from '../_data/budgetEn.yaml'
 import RessourcesAllocationTable from './RessourcesAllocationTable'
 
 type BudgetType = Record<
@@ -17,6 +19,9 @@ type BudgetType = Record<
 >
 
 export default function SelectYear() {
+  const locale = useLocale()
+  const budget = locale === 'fr' ? budgetFr : budgetEn
+
   const years = Object.keys(budget as unknown as BudgetType)
   const [selectedYear, setSelectedYear] = useState<string>(
     years[years.length - 1]
