@@ -74,18 +74,18 @@ export default function Modal({
       isOpen={isOpen}
       onRequestClose={!isLoading ? closeDelayed : undefined}
       className={twMerge(
-        'relative bottom-0 left-1/2 my-8 w-[40rem] max-w-[90vw] -translate-x-1/2 rounded-t-xl bg-white p-6 pt-10 transition-all duration-300 ease-out',
+        'relative mx-auto mt-auto md:my-auto w-[40rem] max-w-[90vw] rounded-t-xl bg-white p-6 pt-10 transition-all duration-300 ease-out',
         isVisible
           ? position === 'center'
-            ? 'translate-y-0 opacity-100 md:-translate-y-1/2 md:rounded-xl'
+            ? 'translate-y-0 opacity-100 md:rounded-xl'
             : 'translate-y-0 opacity-100 md:rounded-xl'
           : position === 'center'
-            ? 'translate-y-12 opacity-0 md:-translate-y-[calc(50%-3rem)]'
+            ? 'translate-y-12 opacity-0 md:translate-y-[calc(50%-3rem)]'
             : 'translate-y-12 opacity-0',
         className
       )}
       overlayClassName={twMerge(
-        'fixed overflow-auto top-0 left-0 right-0 bottom-0 bg-black/50 duration-500 z-10000 transition-opacity',
+        'fixed overflow-auto top-0 left-0 right-0 bottom-0 bg-black/50 duration-500 z-10000 transition-opacity flex flex-col',
         isVisible ? 'opacity-100' : 'opacity-0'
       )}
       {...props}>
