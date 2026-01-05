@@ -1,10 +1,10 @@
 import { countries } from '@/constants/localisation/countries'
-import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import { useUser } from '@/publicodes-state'
+import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
 export function useFixedRegion() {
-  const fixedRegionCode = getSearchParamsClientSide()?.get('region')
+  const fixedRegionCode = useSearchParams()?.get('region')
 
   const { user, updateRegion } = useUser()
 

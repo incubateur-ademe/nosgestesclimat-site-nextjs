@@ -1,10 +1,10 @@
-import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import { trackPageView } from '@/utils/analytics/trackEvent'
+import { useSearchParams } from "next/navigation"
 import { useEffect } from 'react'
 import { useGetTrackedUrl } from './useGetTrackedUrl'
 
 export function useTrackPageView() {
-  const searchParams = getSearchParamsClientSide()
+  const searchParams = useSearchParams()
 
   const { url, anonymizedUrl } = useGetTrackedUrl()
 

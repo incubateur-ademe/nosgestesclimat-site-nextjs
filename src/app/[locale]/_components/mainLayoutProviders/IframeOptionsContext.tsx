@@ -1,12 +1,12 @@
 'use client'
 
-import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import { verifyIfIntegratorBypassRights } from '@/helpers/iframe/verifyIntegratorBypassRights'
 import { getIsFrenchRegion } from '@/helpers/regions/getIsFrenchRegion'
 import { useTrackIframe } from '@/hooks/tracking/useTrackIframe'
 import { useUser } from '@/publicodes-state'
 import { getIsIframe } from '@/utils/getIsIframe'
 import * as Sentry from '@sentry/nextjs'
+import { useSearchParams } from "next/navigation"
 import { createContext, useEffect, useState } from 'react'
 
 const getIsAllowedToBypassConsentDataShare = () => {
@@ -59,7 +59,7 @@ export const IframeOptionsProvider = ({
     containerRef: React.RefObject<HTMLDivElement | null>
   ) => React.ReactNode
 }) => {
-  const searchParams = getSearchParamsClientSide()
+  const searchParams = useSearchParams()
 
   const { user } = useUser()
 

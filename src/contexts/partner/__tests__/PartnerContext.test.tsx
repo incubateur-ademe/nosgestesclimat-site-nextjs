@@ -5,17 +5,14 @@ import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
 import '@testing-library/jest-dom'
 import { act, screen, waitFor } from '@testing-library/react'
+import { useSearchParams } from 'next/navigation'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-
-// Mock getSearchParamsClientSide
-const mockGetSearchParams = vi.fn()
-vi.mock('@/helpers/getSearchParamsClientSide', () => ({
-  getSearchParamsClientSide: () => mockGetSearchParams(),
-}))
 
 // Mock the hooks
 vi.mock('@/hooks/partners/useExportSituation')
 vi.mock('@/hooks/partners/useVerifyPartner')
+
+const mockUseSearchParams = useSearchParams as ReturnType<typeof vi.fn>
 
 // Les services API sont maintenant gérés par MSW dans src/__tests__/server.ts
 
@@ -58,7 +55,6 @@ describe('PartnerContext', () => {
   describe('given undefined search params', () => {
     it('should not crash the app', () => {
       // Given
-      mockGetSearchParams.mockReturnValue(new URLSearchParams())
       mockUseVerifyPartner.mockReturnValue(false)
       mockUseExportSituation.mockReturnValue({
         exportSituationAsync: vi.fn().mockResolvedValue({ redirectUrl }),
@@ -89,7 +85,7 @@ describe('PartnerContext', () => {
     it("should send the user's situation to the back-end and redirect to the obtained URL", async () => {
       // Mock search params with partner parameters
       const searchParams = new URLSearchParams('partner=test&partner-test=test')
-      mockGetSearchParams.mockReturnValue(searchParams)
+      mockUseSearchParams.mockReturnValue(searchParams)
 
       // Mock exportSituationAsync to return the redirect URL
       const mockExportSituationAsync = vi
@@ -139,7 +135,7 @@ describe('PartnerContext', () => {
         progression: 0,
       })
       const searchParams = new URLSearchParams('partner=test&partner-test=test')
-      mockGetSearchParams.mockReturnValue(searchParams)
+      mockUseSearchParams.mockReturnValue(searchParams)
       mockUseVerifyPartner.mockReturnValue(true)
       mockUseExportSituation.mockReturnValue({
         exportSituationAsync: vi.fn().mockResolvedValue({ redirectUrl }),

@@ -8,21 +8,20 @@ import { pollDashboardClickParameters } from '@/constants/tracking/pages/pollDas
 import { captureClickPollSettings } from '@/constants/tracking/posthogTrackers'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
-import { getSearchParamsClientSide } from '@/helpers/getSearchParamsClientSide'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedirectFromLegacy'
 import { useUser } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import dayjs from 'dayjs'
-import { useParams } from 'next/navigation'
+import { useParams, useSearchParams } from 'next/navigation'
 import PollNotFound from './_components/PollNotFound'
 import ShareSection from './_components/ShareSection'
 import FootprintDistribution from './_components/footPrintDistribution/FootprintDistribution'
 
 export default function CampagnePage() {
   const { orgaSlug, pollSlug } = useParams()
-  const searchParams = getSearchParamsClientSide()
+  const searchParams = useSearchParams()
   const isRedirectFromLegacy = Boolean(searchParams.get('isRedirectFromLegacy'))
 
   useHandleRedirectFromLegacy()
