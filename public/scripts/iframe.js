@@ -31,13 +31,16 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
   url.searchParams.append('iframe', 'true')
   url.searchParams.append('integratorUrl', integratorUrl.toString())
 
-  // Append matomo tracking params
-  const matomoCampaignParam = `relais_${integratorUrl.host}`
+  // Append tracking utm params
+  const utmSourceParam = `relais_${integratorUrl.host}`
 
-  const matomoKwdParam = `iframe_${integratorUrl.pathname}`
+  const utmMediumParam = `iframe_script`
 
-  url.searchParams.append('mtm_campaign', matomoCampaignParam)
-  url.searchParams.append('mtm_kwd', matomoKwdParam)
+  const utmCampaignParam = 'integration'
+
+  url.searchParams.append('utm_source', utmSourceParam)
+  url.searchParams.append('utm_medium', utmMediumParam)
+  url.searchParams.append('utm_campaign', utmCampaignParam)
 
   possibleOptions.forEach(({ key, legacy }) => {
     const value = script.dataset[key] || script.dataset[legacy]

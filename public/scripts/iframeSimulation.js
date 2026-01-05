@@ -29,8 +29,8 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
     { key: 'pr' },
     { key: 'withHomepage' },
     { key: 'maxHeight' },
-    { key: 'mtm_campaign' },
-    { key: 'mtm_kwd' },
+    { key: 'utm_source' },
+    { key: 'utm_campaign' },
     { key: 'path' },
   ]
 
@@ -55,19 +55,31 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
   url.searchParams.append('integratorUrl', integratorUrl.toString())
 
   // Append matomo tracking params
-  const matomoCampaignParam =
-    script.dataset.mtm_campaign ?? `relais_${integratorUrl.host}`
 
-  const matomoKwdParam =
-    script.dataset.mtm_kwd ?? `iframe_${integratorUrl.pathname}`
+  const utmSourceParam = script.dataset.utm_source
 
-  url.searchParams.append('mtm_campaign', matomoCampaignParam)
-  url.searchParams.append('mtm_kwd', matomoKwdParam)
+  const utmMediumParam = `iframeSimulation_script`
+
+  const utmCampaignParam = script.dataset.utm_campaign ?? 'integration'
+
+  if (utmSourceParam != undefined) {
+    url.searchParams.append('utm_source', utmSourceParam)
+  }
+
+  url.searchParams.append('utm_medium', utmMediumParam)
+
+  url.searchParams.append('utm_campaign', utmCampaignParam)
 
   possibleOptions
     .filter(
       ({ key }) =>
-        ['maxHeight', 'mtm_campaign', 'mtm_kwd', 'path'].includes(key) === false
+        [
+          'maxHeight',
+          'utm_campaign',
+          'utm_source',
+          'utm_medium',
+          'path',
+        ].includes(key) === false
     )
     .forEach(({ key, legacy }) => {
       const value = script.dataset[key] || script.dataset[legacy]
