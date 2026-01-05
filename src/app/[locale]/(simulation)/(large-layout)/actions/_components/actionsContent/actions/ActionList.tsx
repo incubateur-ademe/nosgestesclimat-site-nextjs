@@ -1,106 +1,21 @@
 'use client'
 
-import { actionsClickYes } from '@/constants/tracking/pages/actions'
-import Modal from '@/design-system/modals/Modal'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import {
-  FormProvider,
   useCurrentSimulation,
   useEngine,
-  useFormState,
-  useRule,
-  useUser,
+  useUser
 } from '@/publicodes-state'
 import type { Action } from '@/publicodes-state/types'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import type {
-  DottedName,
   NGCRuleNode,
   NGCRules,
-  NodeValue,
+  NodeValue
 } from '@incubateur-ademe/nosgestesclimat'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import ActionCard from './ActionCard'
-import ActionForm from './ActionForm'
+import ActionModal from "./actionList/ActionModal"
 
-// Component that renders Modal with dynamic positioning based on question type
-function ModalWithDynamicPosition({
-  action,
-  closeModal,
-  ariaLabel,
-  getCategory,
-  toggleActionChoice,
-  actionChoices,
-  setActionWithFormOpen,
-  handleUpdatePersistedActions,
-}: {
-  action: Action
-  closeModal: () => void
-  ariaLabel: string
-  getCategory: (dottedName: DottedName) => DottedName
-  toggleActionChoice: (actionChoiceDottedName: DottedName) => void
-  actionChoices: Record<string, boolean>
-  setActionWithFormOpen: (dottedName: string) => void
-  handleUpdatePersistedActions: () => void
-}) {
-  const [position, setPosition] = useState<'center' | 'top'>('center')
-
-  return (
-    <Modal
-      isOpen
-      ariaLabel={ariaLabel}
-      closeModal={closeModal}
-      hasAbortButton={false}
-      hasAbortCross
-      position={position}>
-      <div className="w-full max-w-[40rem]">
-        <FormProvider root={action.dottedName}>
-          <PositionUpdater
-            setPosition={setPosition}
-            fallbackDottedName={action.dottedName}
-          />
-          <ActionForm
-            key={action.dottedName}
-            action={action}
-            category={getCategory(action.dottedName)}
-            onComplete={() => {
-              toggleActionChoice(action.dottedName)
-
-              if (!actionChoices[action.dottedName]) {
-                trackEvent(actionsClickYes(action.dottedName))
-              }
-              setActionWithFormOpen('')
-            }}
-            handleUpdatePersistedActions={handleUpdatePersistedActions}
-          />
-        </FormProvider>
-      </div>
-    </Modal>
-  )
-}
-
-// Component to detect question type and update modal position
-// Must be used inside FormProvider context
-function PositionUpdater({
-  setPosition,
-  fallbackDottedName,
-}: {
-  setPosition: (position: 'center' | 'top') => void
-  fallbackDottedName: DottedName
-}) {
-  const { currentQuestion } = useFormState()
-  const questionToCheck = currentQuestion || fallbackDottedName
-  const { type } = useRule(questionToCheck)
-
-  useEffect(() => {
-    // Position at top for mosaic questions which have many fields
-    const newPosition: 'center' | 'top' =
-      type === 'numberMosaic' || type === 'selectMosaic' ? 'top' : 'center'
-    setPosition(newPosition)
-  }, [type, setPosition])
-
-  return null
-}
 
 interface Props {
   actions: Action[]
@@ -206,7 +121,7 @@ export default function ActionList({
               {cardComponent}
 
               {isActionFocused && (
-                <ModalWithDynamicPosition
+                <ActionModal
                   action={action}
                   closeModal={() => setActionWithFormOpen('')}
                   ariaLabel={t(
