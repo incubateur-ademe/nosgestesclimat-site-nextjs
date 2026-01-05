@@ -27,7 +27,6 @@ interface Props {
   className?: string
   ariaLabel?: string
   ariaLabelledBy?: string
-  position?: 'center' | 'top'
 }
 
 export default function Modal({
@@ -41,7 +40,6 @@ export default function Modal({
   className,
   ariaLabel,
   ariaLabelledBy,
-  position = 'center',
   ...props
 }: Props) {
   const [isVisible, setIsVisible] = useState(false)
@@ -74,13 +72,9 @@ export default function Modal({
       isOpen={isOpen}
       onRequestClose={!isLoading ? closeDelayed : undefined}
       className={twMerge(
-        'relative mx-auto mt-auto md:my-auto w-[40rem] max-w-[90vw] rounded-t-xl bg-white p-6 pt-10 transition-all duration-300 ease-out',
+        'relative mx-auto mt-auto w-[40rem] max-w-[90vw] rounded-t-xl bg-white p-6 pt-10 transition-all duration-300 ease-out md:my-8',
         isVisible
-          ? position === 'center'
             ? 'translate-y-0 opacity-100 md:rounded-xl'
-            : 'translate-y-0 opacity-100 md:rounded-xl'
-          : position === 'center'
-            ? 'translate-y-12 opacity-0 md:translate-y-[calc(50%-3rem)]'
             : 'translate-y-12 opacity-0',
         className
       )}

@@ -1,21 +1,19 @@
 'use client'
 
+import { actionsClickYes } from "@/constants/tracking/pages/actions"
+import Modal from "@/design-system/modals/Modal"
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import {
-  useCurrentSimulation,
-  useEngine,
-  useUser
-} from '@/publicodes-state'
+import { FormProvider, useCurrentSimulation, useEngine, useUser } from '@/publicodes-state'
 import type { Action } from '@/publicodes-state/types'
+import { trackEvent } from "@/utils/analytics/trackEvent"
 import type {
   NGCRuleNode,
   NGCRules,
-  NodeValue
+  NodeValue,
 } from '@incubateur-ademe/nosgestesclimat'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import ActionCard from './ActionCard'
-import ActionModal from "./actionList/ActionModal"
-
+import ActionForm from "./ActionForm"
 
 interface Props {
   actions: Action[]
@@ -121,19 +119,35 @@ export default function ActionList({
               {cardComponent}
 
               {isActionFocused && (
-                <ActionModal
-                  action={action}
-                  closeModal={() => setActionWithFormOpen('')}
-                  ariaLabel={t(
+                    <Modal
+                      isOpen
+                      ariaLabel={t(
                     'actions.form.modal.ariaLabel',
                     "Fenêtre modale du formulaire d'action"
                   )}
-                  getCategory={getCategory}
-                  toggleActionChoice={toggleActionChoice}
-                  actionChoices={actionChoices}
-                  setActionWithFormOpen={setActionWithFormOpen}
-                  handleUpdatePersistedActions={handleUpdatePersistedActions}
-                />
+                      closeModal={() => setActionWithFormOpen('')}
+                      hasAbortButton={false}
+                      hasAbortCross
+                      >
+                      <div className="w-full max-w-[40rem]">
+                        <FormProvider root={action.dottedName}>
+                          <ActionForm
+                            key={action.dottedName}
+                            action={action}
+                            category={getCategory(action.dottedName)}
+                            onComplete={() => {
+                              toggleActionChoice(action.dottedName)
+                
+                              if (!actionChoices[action.dottedName]) {
+                                trackEvent(actionsClickYes(action.dottedName))
+                              }
+                              setActionWithFormOpen('')
+                            }}
+                            handleUpdatePersistedActions={handleUpdatePersistedActions}
+                          />
+                        </FormProvider>
+                      </div>
+                    </Modal>
               )}
             </li>
           </Fragment>
