@@ -8,10 +8,7 @@ import WhatsappIcon from '@/components/icons/share/WhatsappIcon'
 import Link from '@/components/Link'
 import QRCode from '@/components/sharing/QRCode'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  MATOMO_CAMPAIGN_KEY,
-  MATOMO_KEYWORD_KEY,
-} from '@/constants/urls/matomo'
+import { UTM_MEDIUM_KEY } from '@/constants/urls/matomo'
 import {
   FACEBOOK_SHARE_URL,
   LINKEDIN_SHARE_URL,
@@ -38,22 +35,17 @@ interface Props {
 const buildLink = ({
   orgaSlug,
   pollSlug,
-  orgaName,
-  pollName,
 }: {
   orgaSlug: string
   pollSlug: string
-  orgaName: string
-  pollName: string
 }) => {
-  return `${window.location.origin}/o/${orgaSlug}/${pollSlug}?${MATOMO_CAMPAIGN_KEY}=Organisation_${encodeURIComponent(orgaName)}&${MATOMO_KEYWORD_KEY}=${encodeURIComponent(pollName)}`
+  return `${window.location.origin}/o/${orgaSlug}/${pollSlug}?${UTM_MEDIUM_KEY}=sharelink_orga`
 }
 
 export default function ShareSection({ poll, className, title }: Props) {
   const {
     slug: pollSlug,
-    name: pollName,
-    organisation: { slug: orgaSlug, name: orgaName },
+    organisation: { slug: orgaSlug },
   } = poll
 
   const { t } = useClientTranslation()
@@ -61,8 +53,6 @@ export default function ShareSection({ poll, className, title }: Props) {
   const url = buildLink({
     orgaSlug,
     pollSlug,
-    orgaName,
-    pollName,
   })
 
   return (
@@ -89,8 +79,6 @@ export default function ShareSection({ poll, className, title }: Props) {
             href={buildLink({
               orgaSlug,
               pollSlug,
-              orgaName,
-              pollName,
             })}>
             {`${window.location.origin}/o/${orgaSlug}/${pollSlug}`
               .replace('https://', '')
@@ -101,8 +89,6 @@ export default function ShareSection({ poll, className, title }: Props) {
             textToCopy={buildLink({
               orgaSlug,
               pollSlug,
-              orgaName,
-              pollName,
             })}
             color="primary"
             className="mx-auto mt-4 h-11 w-40"
@@ -121,8 +107,6 @@ export default function ShareSection({ poll, className, title }: Props) {
           value={buildLink({
             orgaSlug,
             pollSlug,
-            orgaName,
-            pollName,
           })}
           className="md:flex-1"
         />
