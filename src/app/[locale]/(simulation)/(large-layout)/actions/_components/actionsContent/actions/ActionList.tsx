@@ -1,11 +1,16 @@
 'use client'
 
-import { actionsClickYes } from "@/constants/tracking/pages/actions"
-import Modal from "@/design-system/modals/Modal"
+import { actionsClickYes } from '@/constants/tracking/pages/actions'
+import Modal from '@/design-system/modals/Modal'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { FormProvider, useCurrentSimulation, useEngine, useUser } from '@/publicodes-state'
+import {
+  FormProvider,
+  useCurrentSimulation,
+  useEngine,
+  useUser,
+} from '@/publicodes-state'
 import type { Action } from '@/publicodes-state/types'
-import { trackEvent } from "@/utils/analytics/trackEvent"
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import type {
   NGCRuleNode,
   NGCRules,
@@ -13,7 +18,7 @@ import type {
 } from '@incubateur-ademe/nosgestesclimat'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import ActionCard from './ActionCard'
-import ActionForm from "./ActionForm"
+import ActionForm from './ActionForm'
 
 interface Props {
   actions: Action[]
@@ -119,35 +124,36 @@ export default function ActionList({
               {cardComponent}
 
               {isActionFocused && (
-                    <Modal
-                      isOpen
-                      ariaLabel={t(
+                <Modal
+                  isOpen
+                  ariaLabel={t(
                     'actions.form.modal.ariaLabel',
                     "Fenêtre modale du formulaire d'action"
                   )}
-                      closeModal={() => setActionWithFormOpen('')}
-                      hasAbortButton={false}
-                      hasAbortCross
-                      >
-                      <div className="w-full max-w-[40rem]">
-                        <FormProvider root={action.dottedName}>
-                          <ActionForm
-                            key={action.dottedName}
-                            action={action}
-                            category={getCategory(action.dottedName)}
-                            onComplete={() => {
-                              toggleActionChoice(action.dottedName)
-                
-                              if (!actionChoices[action.dottedName]) {
-                                trackEvent(actionsClickYes(action.dottedName))
-                              }
-                              setActionWithFormOpen('')
-                            }}
-                            handleUpdatePersistedActions={handleUpdatePersistedActions}
-                          />
-                        </FormProvider>
-                      </div>
-                    </Modal>
+                  closeModal={() => setActionWithFormOpen('')}
+                  hasAbortButton={false}
+                  hasAbortCross>
+                  <div className="w-full max-w-[40rem]">
+                    <FormProvider root={action.dottedName}>
+                      <ActionForm
+                        key={action.dottedName}
+                        action={action}
+                        category={getCategory(action.dottedName)}
+                        onComplete={() => {
+                          toggleActionChoice(action.dottedName)
+
+                          if (!actionChoices[action.dottedName]) {
+                            trackEvent(actionsClickYes(action.dottedName))
+                          }
+                          setActionWithFormOpen('')
+                        }}
+                        handleUpdatePersistedActions={
+                          handleUpdatePersistedActions
+                        }
+                      />
+                    </FormProvider>
+                  </div>
+                </Modal>
               )}
             </li>
           </Fragment>

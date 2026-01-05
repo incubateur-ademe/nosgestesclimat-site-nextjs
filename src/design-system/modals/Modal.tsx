@@ -74,8 +74,8 @@ export default function Modal({
       className={twMerge(
         'relative mx-auto mt-auto w-[40rem] max-w-[90vw] rounded-t-xl bg-white p-6 pt-10 transition-all duration-300 ease-out md:my-8',
         isVisible
-            ? 'translate-y-0 opacity-100 md:rounded-xl'
-            : 'translate-y-12 opacity-0',
+          ? 'translate-y-0 opacity-100 md:rounded-xl'
+          : 'translate-y-12 opacity-0',
         className
       )}
       overlayClassName={twMerge(
