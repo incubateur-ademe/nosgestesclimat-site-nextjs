@@ -6,11 +6,13 @@
 'use client'
 
 import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
+import { useTrackIframe } from '@/hooks/tracking/useTrackIframe'
 import { useTrackRegion } from '@/hooks/tracking/useTrackRegion'
 import { useFixedRegion } from '@/hooks/useFixedRegion'
 import { useInitSimulationParam } from '@/hooks/useInitSimulationParam'
 import { useRedirectIfInAppBrowser } from '@/hooks/useRedirectIfInAppBrowser'
 import { useUserInfosParams } from '@/hooks/useUserInfosParams'
+import { getIsIframe } from '@/utils/getIsIframe'
 
 export default function MainHooks() {
   useSetCurrentSimulationFromParams()
@@ -19,6 +21,7 @@ export default function MainHooks() {
   useUserInfosParams()
   useInitSimulationParam()
   useRedirectIfInAppBrowser()
+  useTrackIframe(getIsIframe())
 
   return null
 }

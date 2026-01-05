@@ -122,6 +122,7 @@ export default async function RootLayout({
           strategy="lazyOnload"></Script>
       </head>
       <body
+        id="nosgestesclimat-body"
         className={`${marianne.className} text-default bg-white transition-colors duration-700`}>
         {children}
       </body>

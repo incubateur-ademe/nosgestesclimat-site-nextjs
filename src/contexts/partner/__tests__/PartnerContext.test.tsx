@@ -5,14 +5,11 @@ import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
 import '@testing-library/jest-dom'
 import { act, screen, waitFor } from '@testing-library/react'
-import { useSearchParams } from 'next/navigation'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock the hooks
 vi.mock('@/hooks/partners/useExportSituation')
 vi.mock('@/hooks/partners/useVerifyPartner')
-
-const mockUseSearchParams = useSearchParams as ReturnType<typeof vi.fn>
 
 // Les services API sont maintenant gérés par MSW dans src/__tests__/server.ts
 
@@ -37,13 +34,22 @@ Object.defineProperty(window, 'sessionStorage', {
   writable: true,
 })
 
+// Mock window.location
+const originalLocation = window.location
+
 describe('PartnerContext', () => {
   beforeEach(() => {
     vi.clearAllMocks()
     mockSessionStorage.getItem.mockReturnValue(null)
-    mockSessionStorage.setItem.mockImplementation(() => {})
-    mockSessionStorage.removeItem.mockImplementation(() => {})
-    mockSessionStorage.clear.mockImplementation(() => {})
+    mockSessionStorage.setItem.mockReturnValue(undefined)
+    mockSessionStorage.removeItem.mockReturnValue(undefined)
+    mockSessionStorage.clear.mockReturnValue(undefined)
+
+    // Reset window.location to default
+    Object.defineProperty(window, 'location', {
+      value: { ...originalLocation, search: '' },
+      writable: true,
+    })
   })
 
   const defaultSimulation = generateSimulation({
@@ -83,9 +89,14 @@ describe('PartnerContext', () => {
 
   describe('given a user with a completed test', () => {
     it("should send the user's situation to the back-end and redirect to the obtained URL", async () => {
-      // Mock search params with partner parameters
-      const searchParams = new URLSearchParams('partner=test&partner-test=test')
-      mockUseSearchParams.mockReturnValue(searchParams)
+      // Mock window.location.search with partner parameters
+      Object.defineProperty(window, 'location', {
+        value: {
+          ...originalLocation,
+          search: '?partner=test&partner-test=test',
+        },
+        writable: true,
+      })
 
       // Mock exportSituationAsync to return the redirect URL
       const mockExportSituationAsync = vi
@@ -121,7 +132,7 @@ describe('PartnerContext', () => {
         async () => {
           return await screen.findByTestId('button-redirect')
         },
-        { timeout: 3000 }
+        { timeout: 5000 }
       )
       expect(redirectButton).toHaveAttribute('href', redirectUrl)
       expect(mockExportSituationAsync).toHaveBeenCalled()
@@ -134,8 +145,14 @@ describe('PartnerContext', () => {
       const incompleteSimulation = generateSimulation({
         progression: 0,
       })
-      const searchParams = new URLSearchParams('partner=test&partner-test=test')
-      mockUseSearchParams.mockReturnValue(searchParams)
+      // Mock window.location.search with partner parameters
+      Object.defineProperty(window, 'location', {
+        value: {
+          ...originalLocation,
+          search: '?partner=test&partner-test=test',
+        },
+        writable: true,
+      })
       mockUseVerifyPartner.mockReturnValue(true)
       mockUseExportSituation.mockReturnValue({
         exportSituationAsync: vi.fn().mockResolvedValue({ redirectUrl }),

@@ -12,15 +12,15 @@ import {
   trackPosthogEvent,
 } from '@/utils/analytics/trackEvent'
 import { usePathname } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useGetTrackedUrl } from './useGetTrackedUrl'
+
 export function useTrackIframe(isIframe: boolean) {
   const path = usePathname()
 
   const { url, anonymizedUrl } = useGetTrackedUrl()
 
   // inspired from https://usehooks-ts.com/react-hook/use-intersection-observer
-  const ref = useRef<HTMLDivElement | null>(null)
   const [entry, setEntry] = useState<IntersectionObserverEntry>()
   const [observed, setObserved] = useState(false)
   const [hasInteracted, setHasInteracted] = useState(false)
@@ -50,7 +50,12 @@ export function useTrackIframe(isIframe: boolean) {
       return
     }
 
-    const node = ref.current
+    const node =
+      typeof window !== 'undefined'
+        ? // Element located in MainLayoutProviders
+          document.getElementById('nosgestesclimat-container')
+        : null
+
     if (!node) return
 
     // Add interaction listeners
@@ -79,7 +84,7 @@ export function useTrackIframe(isIframe: boolean) {
       node.removeEventListener('click', handleInteraction)
       node.removeEventListener('touchstart', handleInteraction)
     }
-  }, [ref, isIframe])
+  }, [isIframe])
 
   // Track the page view when the iframe is visible
   useEffect(() => {
@@ -114,6 +119,4 @@ export function useTrackIframe(isIframe: boolean) {
       trackPosthogEvent(captureIframeInteraction(urlInteractor))
     }
   }, [entry, observed, path, isIframe, hasInteracted])
-
-  return ref
 }

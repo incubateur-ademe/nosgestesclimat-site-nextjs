@@ -13,7 +13,7 @@ import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
-import { notFound, useRouter, useSearchParams } from 'next/navigation'
+import { notFound, useRouter } from 'next/navigation'
 import {
   createContext,
   type PropsWithChildren,
@@ -47,7 +47,9 @@ export function PartnerProvider({ children }: PropsWithChildren) {
   >(undefined)
   const [redirectUrl, setRedirectUrl] = useState('')
 
-  const searchParams = useSearchParams()
+  const searchParams = new URLSearchParams(
+    typeof window !== 'undefined' ? window.location.search : ''
+  )
 
   const { progression, situation } = useCurrentSimulation()
 

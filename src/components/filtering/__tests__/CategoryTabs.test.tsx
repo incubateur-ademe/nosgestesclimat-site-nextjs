@@ -1,6 +1,6 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { fireEvent, render, screen } from '@testing-library/react'
-import { useSearchParams } from "next/navigation"
+import { useSearchParams } from 'next/navigation'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import CategoryTabs from '../CategoryTabs'
 

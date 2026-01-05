@@ -134,15 +134,7 @@ const TestWrapper = ({
   }
 
   if (providers.iframeOptions) {
-    wrapped = (
-      <IframeOptionsProvider>
-        {(containerRef) => (
-          <div ref={containerRef as React.RefObject<HTMLDivElement>}>
-            {wrapped}
-          </div>
-        )}
-      </IframeOptionsProvider>
-    )
+    wrapped = <IframeOptionsProvider>{wrapped}</IframeOptionsProvider>
   }
 
   if (providers.partner) {

@@ -22,14 +22,12 @@ export default function MainLayoutProviders({ children }: PropsWithChildren) {
             migrationInstructions={migrationInstructions}>
             <PartnerProvider>
               <IframeOptionsProvider>
-                {(containerRef: React.RefObject<HTMLDivElement | null>) => (
-                  <PreventNavigationProvider>
-                    <Suspense>
-                      <MainHooks />
-                    </Suspense>
-                    <div ref={containerRef}>{children}</div>
-                  </PreventNavigationProvider>
-                )}
+                <PreventNavigationProvider>
+                  <Suspense>
+                    <MainHooks />
+                  </Suspense>
+                  <div id="nosgestesclimat-container">{children}</div>
+                </PreventNavigationProvider>
               </IframeOptionsProvider>
             </PartnerProvider>
           </UserProvider>
