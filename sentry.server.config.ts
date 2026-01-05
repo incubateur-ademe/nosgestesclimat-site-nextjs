@@ -16,5 +16,5 @@ Sentry.init({
   // Enable Sentry in all environments for debugging
   enabled: process.env.NODE_ENV !== 'development',
 
-  tracesSampleRate: 0.001,
+  tracesSampleRate: 0.005,
 })
