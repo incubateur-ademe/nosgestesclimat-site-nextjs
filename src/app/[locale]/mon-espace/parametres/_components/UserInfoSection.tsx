@@ -20,7 +20,7 @@ export default async function UserInfoSection() {
 
       <QueryClientProviderWrapper>
         <UserProvider>
-          <div className="max-w-[720px]">
+          <div className="flex max-w-[720px] flex-col gap-8">
             <UserEmail />
 
             <UserNewslettersForm user={user} />

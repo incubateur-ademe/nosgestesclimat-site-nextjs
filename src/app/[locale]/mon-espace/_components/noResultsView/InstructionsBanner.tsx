@@ -4,7 +4,7 @@ import {
   captureClickMySpaceNoResultsStartTest,
   clickMySpaceNoResultsStartTest,
 } from '@/constants/tracking/pages/mon-espace'
-import { SIMULATOR_PATH } from '@/constants/urls/paths'
+import { TUTORIAL_PATH } from '@/constants/urls/paths'
 import {
   baseClassNames,
   colorClassNames,
@@ -135,7 +135,7 @@ export default function InstructionsBanner({ locale }: { locale: Locale }) {
 
         <div>
           <Link
-            href={SIMULATOR_PATH}
+            href={TUTORIAL_PATH}
             className={twMerge(
               baseClassNames,
               colorClassNames.primary,

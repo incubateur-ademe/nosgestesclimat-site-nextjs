@@ -21,7 +21,7 @@ export default function AnimatedArrow({
       animate={{ opacity: 1, x: isSmall ? '1rem' : '-50%' }}
       transition={{ duration: 1.5 }}
       className={twMerge(
-        'absolute bottom-10 z-10 transition-transform duration-300',
+        'absolute bottom-8 z-10 transition-transform duration-300 lg:bottom-12',
         className
       )}
       style={{ left: isSmall ? '50%' : `${position}%` }}

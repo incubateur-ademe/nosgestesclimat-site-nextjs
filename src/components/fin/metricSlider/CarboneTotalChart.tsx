@@ -104,7 +104,7 @@ export default function CarboneTotalChart({
 
       <div
         className={twMerge(
-          'mt-4 hidden w-full md:block',
+          'mt-8 hidden w-full md:block',
           shouldShowOnlyGauge && 'block',
           isSmall && 'mt-0'
         )}

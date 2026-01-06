@@ -1,4 +1,5 @@
 export const SIMULATOR_PATH = '/simulateur/bilan'
+export const TUTORIAL_PATH = '/tutoriel'
 export const MON_ESPACE_PATH = '/mon-espace'
 export const FAQ_PATH = '/questions-frequentes'
 export const POLL_START_PATH = '/infos/commencer'
