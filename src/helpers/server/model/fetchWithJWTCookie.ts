@@ -14,6 +14,7 @@ export async function fetchWithJWTCookie(
 ) {
   const cookieStore = await cookies()
   const ngcCookie = cookieStore.get('ngcjwt')
+
   if (!ngcCookie) {
     return null
   }

@@ -36,7 +36,7 @@ export default function Groups({ groups }: Props) {
           <>
             {/* Desktop */}
             <NewItemCardLink
-              href="/amis/creer"
+              href="/amis/creer/vos-informations"
               className="hidden md:block"
               label={
                 <Trans i18nKey="mon-espace.groups.create">
