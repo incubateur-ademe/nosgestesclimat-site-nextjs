@@ -5,6 +5,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import { MON_ESPACE_ACTIONS_PATH } from '@/constants/urls/paths'
 import getActions from '@/helpers/actions/getActions'
 import { useEngine, useTempEngine } from '@/publicodes-state'
+import type { Action } from '@/publicodes-state/types'
 import { utils } from 'publicodes'
 
 export default function Actions() {
@@ -20,7 +21,7 @@ export default function Actions() {
     radical: true,
     safeEvaluate,
     getSpecialRuleObject,
-    actionChoices: [] as any[],
+    actionChoices: {},
   })
 
   if (!actions) {
@@ -34,7 +35,7 @@ export default function Actions() {
       </h2>
 
       <ul className="m-0 list-none p-0">
-        {actions.map((action: any) => {
+        {actions.map((action: Action) => {
           return (
             <li key={action.dottedName}>
               <Link

@@ -4,6 +4,7 @@ export function uuidToNumber(uuid: string) {
 
   // Convert the hexadecimal string to a number
   let number = 0
+  // eslint-disable-next-line @typescript-eslint/prefer-for-of
   for (let i = 0; i < hexString.length; i++) {
     number = number * 16 + parseInt(hexString[i], 16)
   }

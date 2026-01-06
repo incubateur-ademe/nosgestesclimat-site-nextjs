@@ -9,7 +9,7 @@ import { useState } from 'react'
 import MosaicQuestion from './mosaic/MosaicQuestion'
 import { useMosaicState } from './mosaic/useMosaicState'
 
-type Props = {
+interface Props {
   question: DottedName
   questionsOfMosaic: DottedName[]
   secondaryQuestionsOfMosaic?: DottedName[]
@@ -43,25 +43,21 @@ export default function Mosaic({
 
   return (
     <>
-      <fieldset className="grid w-[90%] auto-rows-fr items-stretch gap-2 md:w-full md:grid-cols-2 md:gap-4">
+      <fieldset
+        className={`grid w-[90%] auto-rows-fr items-stretch gap-2 md:w-full ${questionsOfMosaic.length <= 2 ? 'md:max-w-128 md:grid-cols-1' : 'md:grid-cols-2'} md:gap-4`}>
         <legend className="sr-only">{label}</legend>
 
-        {questionsOfMosaic
-          ? questionsOfMosaic.map((questionOfMosaic, index) => (
-              <MosaicQuestion
-                key={questionOfMosaic}
-                parentMosaic={question}
-                question={questionOfMosaic}
-                index={index}
-                firstInputId={firstInputId}
-                value={values[questionOfMosaic]}
-                setValue={setValue}
-              />
-            ))
-          : t(
-              'simulator.mosaic.noChildren',
-              "Cette mosaique n'a pas d'enfants."
-            )}
+        {questionsOfMosaic.map((questionOfMosaic, index) => (
+          <MosaicQuestion
+            key={questionOfMosaic}
+            parentMosaic={question}
+            question={questionOfMosaic}
+            index={index}
+            firstInputId={firstInputId}
+            value={values[questionOfMosaic]}
+            setValue={setValue}
+          />
+        ))}
       </fieldset>
 
       {!!secondaryQuestionsOfMosaic.length && (

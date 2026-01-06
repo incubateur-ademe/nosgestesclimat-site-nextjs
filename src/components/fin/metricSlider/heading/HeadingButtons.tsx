@@ -20,7 +20,11 @@ const saveClassNames = {
   md: 'h-6 w-6',
 }
 
-type Props = { size?: 'sm' | 'md'; endPage?: boolean; showSaveButton?: boolean }
+interface Props {
+  size?: 'sm' | 'md'
+  endPage?: boolean
+  showSaveButton?: boolean
+}
 
 export default function HeadingButtons({
   size = 'md',

@@ -91,6 +91,11 @@ const redirects = [
     permanent: true,
   },
   {
+    source: '/a-propos',
+    destination: 'https://beta.gouv.fr/startups/nosgestesclimat.html',
+    permanent: true,
+  },
+  {
     source: '/groupe/:path*',
     destination: 'https://sondages.nosgestesclimat.fr/',
     permanent: true,

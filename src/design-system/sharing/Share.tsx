@@ -15,7 +15,7 @@ import ButtonLink from '../buttons/ButtonLink'
 import CopyButton from '../buttons/CopyButton'
 import Modal from '../modals/Modal'
 
-type ShareItem = {
+interface ShareItem {
   label: ReactNode
   icon: ReactNode
   link: string

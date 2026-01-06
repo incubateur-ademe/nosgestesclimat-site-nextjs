@@ -4,7 +4,7 @@ import type { NodeValue } from '@incubateur-ademe/nosgestesclimat'
 import type { EvaluatedNode } from 'publicodes'
 import { useMemo } from 'react'
 
-type Props = {
+interface Props {
   evaluation: EvaluatedNode | null
   type: string | undefined
 }
@@ -26,7 +26,7 @@ export default function useValue({ evaluation, type }: Props) {
           ? 'non'
           : ''
     }
-    if (type === 'mosaic') {
+    if (type === 'numberMosaic' || type === 'selectMosaic') {
       return 'mosaic'
     }
     if (Number(value) === value) {

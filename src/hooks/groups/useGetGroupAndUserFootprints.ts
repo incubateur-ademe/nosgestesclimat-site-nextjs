@@ -5,7 +5,7 @@ import type {
 import { getCategoriesObject } from './useGetGroupAndUserFootprints/getCategoriesObject'
 import { getSubcategoriesObject } from './useGetGroupAndUserFootprints/getSubcategoriesObject'
 
-type Props = {
+interface Props {
   groupMembers: Participant[]
   userId: string | null
 }

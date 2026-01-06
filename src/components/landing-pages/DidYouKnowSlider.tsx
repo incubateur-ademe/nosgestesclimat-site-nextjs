@@ -37,7 +37,7 @@ export default function DidYouKnowSlider({
 }) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isPlaying, setIsPlaying] = useState(true)
-  const splideRef = useRef<any>(null)
+  const splideRef = useRef<{ splide: { root: Element } } | null>(null)
 
   const { t } = useClientTranslation()
 

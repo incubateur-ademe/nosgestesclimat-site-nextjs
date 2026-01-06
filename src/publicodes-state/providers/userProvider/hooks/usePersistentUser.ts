@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 import type { RegionFromGeolocation, User } from '../../../types'
 
-type Props = {
+interface Props {
   storageKey: string
   initialRegion?: RegionFromGeolocation
   initialUserId?: string

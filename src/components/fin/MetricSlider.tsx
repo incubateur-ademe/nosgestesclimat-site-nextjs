@@ -1,9 +1,14 @@
 'use client'
 
 import { carboneMetric, eauMetric } from '@/constants/model/metric'
+import {
+  captureClickFootprint,
+  endClickFootprint,
+} from '@/constants/tracking/pages/end'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentMetric } from '@/hooks/useCurrentMetric'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Trans from '../translation/trans/TransClient'
@@ -11,7 +16,7 @@ import CarboneTotalChart from './metricSlider/CarboneTotalChart'
 import MetricCard from './metricSlider/MetricCard'
 import WaterTotalChart from './metricSlider/WaterTotalChart'
 
-type Props = {
+interface Props {
   carboneTotal?: number
   waterTotal?: number
   isStatic?: boolean
@@ -113,6 +118,10 @@ export default function MetricSlider({
           const nextMetric = order[nextIndex]
           if (nextMetric !== currentMetric) {
             setCurrentMetric(nextMetric)
+
+            trackEvent(endClickFootprint(nextMetric))
+            trackPosthogEvent(captureClickFootprint(nextMetric))
+
             const nextTabId =
               nextMetric === carboneMetric
                 ? 'tab-metric-carbone'
@@ -144,8 +153,7 @@ export default function MetricSlider({
           isSticky={isSticky}
           tabId="tab-metric-carbone"
           panelId="panel-metric-carbone"
-          isStatic={isStatic}
-          onKeyDown={(e: React.KeyboardEvent) => {
+          onKeyDown={() => {
             // Let the tablist parent handle the keydown
           }}>
           <div className="w-full flex-1 px-4">
@@ -169,8 +177,7 @@ export default function MetricSlider({
           isSticky={isSticky}
           tabId="tab-metric-eau"
           panelId="panel-metric-eau"
-          isStatic={isStatic}
-          onKeyDown={(e: React.KeyboardEvent) => {
+          onKeyDown={() => {
             // Let the tablist parent handle the keydown
           }}>
           <WaterTotalChart isSmall={isSticky} total={waterTotal} />

@@ -1,7 +1,7 @@
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import type { EvaluatedNode } from 'publicodes'
 
-type Props = {
+interface Props {
   dottedName: DottedName
   rule: NGCRuleNode | undefined
   evaluation: EvaluatedNode | null
@@ -15,7 +15,8 @@ export default function getType({
   evaluation,
 }: Props):
   | 'notQuestion'
-  | 'mosaic'
+  | 'numberMosaic'
+  | 'selectMosaic'
   | 'choices'
   | 'boolean'
   | 'number'
@@ -26,8 +27,12 @@ export default function getType({
     return 'notQuestion'
   }
 
-  if (rule.rawNode.mosaique) {
-    return 'mosaic'
+  if (rule.rawNode.mosaique?.type === 'selection') {
+    return 'selectMosaic'
+  }
+
+  if (rule.rawNode.mosaique?.type === 'nombre') {
+    return 'numberMosaic'
   }
 
   if (

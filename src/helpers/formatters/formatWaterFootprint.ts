@@ -1,6 +1,6 @@
 import { t } from '../metadata/fakeMetadataT'
 
-type Options = {
+interface Options {
   localize?: boolean
   locale?: string
   maximumFractionDigits?: number

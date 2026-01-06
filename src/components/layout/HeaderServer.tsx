@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 import LogoLinkServer from '../misc/LogoLinkServer'
 import MySpaceButton from './headerServer/MySpaceButton'
 
-type Props = {
+interface Props {
   isSticky?: boolean
 }
 

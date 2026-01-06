@@ -37,7 +37,7 @@ export function useEngine(rules?: Partial<NGCRules>) {
           console.error(`[publicodes:error] ${msg}`)
 
           // If it's a situation error, we throw it to sentry
-          if (msg.match(/[ Erreur lors de la mise à jour de la situation ]/)) {
+          if (/[ Erreur lors de la mise à jour de la situation ]/.exec(msg)) {
             captureException(new Error(msg))
           }
         },

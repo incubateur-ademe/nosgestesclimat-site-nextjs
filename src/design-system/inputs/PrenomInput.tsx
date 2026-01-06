@@ -2,7 +2,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { forwardRef } from 'react'
 import TextInput from './TextInput'
 
-type Props = {
+interface Props {
   error?: string
   value?: string
 }
@@ -22,7 +22,7 @@ export default forwardRef(function PrenomInput(
       )}
       value={value}
       name="prenom"
-      ref={ref as any}
+      ref={ref as React.ForwardedRef<HTMLInputElement>}
       error={error}
       {...props}
     />

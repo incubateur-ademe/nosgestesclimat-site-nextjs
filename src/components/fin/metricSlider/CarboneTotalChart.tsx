@@ -10,12 +10,13 @@ import { CountUp } from 'use-count-up'
 import AnimatedArrow from './carboneTotalChart/AnimatedArrow'
 import Gauge from './carboneTotalChart/Gauge'
 
-type Props = {
+interface Props {
   className?: string
   total?: number
   isSmall?: boolean
   shouldShowOnlyGauge?: boolean
 }
+
 export default function CarboneTotalChart({
   className,
   total,
@@ -37,7 +38,7 @@ export default function CarboneTotalChart({
   const position = Math.min(Math.max(originPosition, 0), 100)
 
   const color = getColorAtPosition(position / 100)
-  const cssColor = `rgba(${color['r']},${color['g']},${color['b']},${color['a']})`
+  const cssColor = `rgba(${color.r},${color.g},${color.b},${color.a})`
 
   const targetValue = 2
   const maxValue = 12

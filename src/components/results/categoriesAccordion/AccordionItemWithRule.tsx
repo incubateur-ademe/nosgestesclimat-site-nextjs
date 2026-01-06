@@ -14,7 +14,7 @@ import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import SubcategoriesList from './accordionItemWithRule/SubcategoriesList'
 
-type Props = {
+interface Props {
   dottedName: DottedName
   maxValue: number
   index?: number

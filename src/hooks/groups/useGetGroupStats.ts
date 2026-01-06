@@ -7,12 +7,12 @@ import type {
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useGetGroupAndUserFootprints } from './useGetGroupAndUserFootprints'
 
-type Props = {
+interface Props {
   groupMembers: Participant[]
   userId: string
 }
 
-type ResultsType = {
+interface ResultsType {
   currentUserCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
   groupCategoriesAndSubcategoriesFootprints: CategoriesAndSubcategoriesFootprintsType
   pointsForts: PointsFortsFaiblesType[]

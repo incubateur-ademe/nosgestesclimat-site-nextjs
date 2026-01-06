@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test'
+import type { Page } from '@playwright/test'
 import { AMIS_LINK } from '../../constants/elements-ids'
 
 export async function clickAmisLink(page: Page): Promise<void> {

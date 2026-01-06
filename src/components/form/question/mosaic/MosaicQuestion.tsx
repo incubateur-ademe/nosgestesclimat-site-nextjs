@@ -7,13 +7,16 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import MosaicBooleanInput from './mosaicQuestion/MosaicBooleanInput'
 import MosaicNumberInput from './mosaicQuestion/MosaicNumberInput'
 
-type Props = {
+interface Props {
   question: DottedName
   parentMosaic: DottedName
   index: number
   firstInputId: string
   value: number | boolean | undefined | null
-  setValue: (dottedName: DottedName, value: number | boolean) => void
+  setValue: (
+    dottedName: DottedName,
+    value: number | boolean | undefined
+  ) => void
 }
 
 export default function MosaicQuestion({
@@ -27,7 +30,9 @@ export default function MosaicQuestion({
   const { type, parent } = useRule(question)
 
   const { title, icons, description } = useRule(parent)
+
   const maybeIdFirstInput = { ...(index === 0 ? { id: firstInputId } : {}) }
+
   return (
     <>
       {type === 'number' && typeof value !== 'boolean' && (

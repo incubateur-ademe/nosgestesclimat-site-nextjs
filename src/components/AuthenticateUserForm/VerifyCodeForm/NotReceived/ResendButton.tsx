@@ -9,7 +9,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useState } from 'react'
 
-type Props = {
+interface Props {
   isRetryButtonDisabled: boolean
   onResendVerificationCode: () => void
   timeLeft: number

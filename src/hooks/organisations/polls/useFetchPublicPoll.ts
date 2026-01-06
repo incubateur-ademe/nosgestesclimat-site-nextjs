@@ -15,30 +15,25 @@ export const useFetchPublicPoll = ({
   const params = useParams()
   const searchParams = useSearchParams()
 
-  if (!pollIdOrSlug) {
-    pollIdOrSlug = params.pollSlug
-  }
-
-  if (!pollIdOrSlug) {
-    pollIdOrSlug = searchParams.get('poll')
-  }
+  const localPollIdOrSlug =
+    pollIdOrSlug ?? params.pollSlug ?? searchParams.get('poll')
 
   const {
     user: { userId },
   } = useUser()
 
   return useQuery({
-    queryKey: ['organisations', userId, 'polls', pollIdOrSlug],
+    queryKey: ['organisations', userId, 'polls', localPollIdOrSlug],
     queryFn: () =>
       axios
         .get<PublicOrganisationPoll>(
-          `${ORGANISATION_URL}/${userId}/public-polls/${pollIdOrSlug}`,
+          `${ORGANISATION_URL}/${userId}/public-polls/${localPollIdOrSlug as string}`,
           {
             withCredentials: true,
           }
         )
         .then((res) => res.data),
-    enabled: !!pollIdOrSlug && enabled,
+    enabled: !!localPollIdOrSlug && enabled,
     retry: false,
   })
 }

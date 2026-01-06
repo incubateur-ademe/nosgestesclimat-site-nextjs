@@ -10,13 +10,22 @@ import type {
   Simulation,
 } from '@/publicodes-state/types'
 import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
+import type { Migration } from '@publicodes/tools/migration'
 import UserContext from './context'
 import useUpdateOldLocalStorage from './hooks/useOldLocalStorage'
 import usePersistentSimulations from './hooks/usePersistentSimulations'
 import usePersistentTutorials from './hooks/usePersistentTutorials'
 import usePersistentUser from './hooks/usePersistentUser'
 
-type Props = {
+interface Props {
+  /**
+   * The localstorage key in use
+   */
+  storageKey?: string
+  /**
+   * The migration instructions for old localstorage
+   */
+  migrationInstructions: Migration
   initialSimulations?: Simulation[]
   initialCurrentSimulationId?: string
   initialUserId?: string

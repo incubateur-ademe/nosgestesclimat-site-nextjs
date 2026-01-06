@@ -1,7 +1,9 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import { HERO_SECTION_FLAG_KEY } from '@/constants/ab-test'
 import Emoji from '@/design-system/utils/Emoji'
+import { useIsTestVersion } from '@/hooks/abTesting/useIsTestVersion'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
@@ -12,8 +14,8 @@ import { useEffect, useRef } from 'react'
 
 declare global {
   interface Window {
-    Tally: {
-      openPopup: (
+    Tally?: {
+      openPopup?: (
         formId: string,
         options: {
           emoji?: {
@@ -35,6 +37,8 @@ export default function TallyForm() {
 
   const { isIframe } = useIframe()
 
+  const isTestVersion = useIsTestVersion(HERO_SECTION_FLAG_KEY)
+
   const isFrench = useLocale() === i18nConfig.defaultLocale
   const FORM_ID =
     (isFrench
@@ -46,8 +50,8 @@ export default function TallyForm() {
     const params = new URLSearchParams(window.location.search)
 
     // Uncomment this to pass the feature flag key to Tally
-    // params.set('featureFlagKey', DONT_KNOW_FEATURE_FLAG_KEY)
-    // params.set('abTestVariant', isTestVersion ? 'test' : 'control')
+    params.set('featureFlagKey', HERO_SECTION_FLAG_KEY)
+    params.set('abTestVariant', isTestVersion ? 'test' : 'control')
 
     params.set('deviceType', isMobile() ? 'mobile' : 'desktop')
     params.set('iframe', isIframe ? 'true' : 'false')
@@ -57,6 +61,8 @@ export default function TallyForm() {
   }, [isIframe])
 
   const handleOpenForm = () => {
+    if (!window.Tally?.openPopup) return
+
     window.Tally.openPopup(FORM_ID, {})
     safeLocalStorage.setItem(TALLY_SEEN_KEY, 'true')
   }

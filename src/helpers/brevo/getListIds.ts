@@ -4,7 +4,7 @@ import {
   LIST_NOS_GESTES_TRANSPORT_NEWSLETTER,
 } from '@/constants/brevo'
 
-type Inputs = {
+interface Inputs {
   'newsletter-saisonniere': boolean
   'newsletter-transports': boolean
   'newsletter-logement': boolean

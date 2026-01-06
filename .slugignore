@@ -1,6 +1,6 @@
 /.cache
 /.next/cache
-/cypress
+/tests
 /scripts
 .github
 .husky

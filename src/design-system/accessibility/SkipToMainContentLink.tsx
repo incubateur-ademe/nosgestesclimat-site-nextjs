@@ -5,7 +5,7 @@ import type { SkipLinksDisplayed } from '@/types'
 import { useRef } from 'react'
 import ButtonLink from '../buttons/ButtonLink'
 
-type Props = {
+interface Props {
   skipLinksDisplayed?: SkipLinksDisplayed
 }
 

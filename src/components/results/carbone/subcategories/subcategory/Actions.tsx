@@ -12,12 +12,12 @@ import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import Action from './actions/Action'
 
-type Props = {
+interface Props {
   subcategory: DottedName
   noNumberedFootprint?: boolean
 }
 
-type ActionObject = {
+interface ActionObject {
   dottedName: DottedName
   value: number
 }

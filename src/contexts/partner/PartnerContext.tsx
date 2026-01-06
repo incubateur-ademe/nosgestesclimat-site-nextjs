@@ -13,7 +13,7 @@ import { useExportSituation } from '@/hooks/partners/useExportSituation'
 import { useVerifyPartner } from '@/hooks/partners/useVerifyPartner'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
-import { notFound, useRouter, useSearchParams } from 'next/navigation'
+import { notFound, useRouter } from 'next/navigation'
 import {
   createContext,
   type PropsWithChildren,
@@ -26,12 +26,12 @@ import {
 } from 'react'
 import SuccessMessage from './_components/SuccessMessage'
 
-type AlertToDisplay = {
+interface AlertToDisplay {
   type: AlertType
   content: ReactNode
 }
 
-type PartnerContextType = {
+interface PartnerContextType {
   alertToDisplay?: AlertToDisplay
   redirectUrl: string
 }
@@ -47,7 +47,9 @@ export function PartnerProvider({ children }: PropsWithChildren) {
   >(undefined)
   const [redirectUrl, setRedirectUrl] = useState('')
 
-  const searchParams = useSearchParams()
+  const searchParams = new URLSearchParams(
+    typeof window !== 'undefined' ? window.location.search : ''
+  )
 
   const { progression, situation } = useCurrentSimulation()
 
@@ -70,7 +72,7 @@ export function PartnerProvider({ children }: PropsWithChildren) {
         )
 
       return Object.keys(params).length ? params : undefined
-    } catch (error) {
+    } catch {
       return undefined
     }
   }, [searchParams])

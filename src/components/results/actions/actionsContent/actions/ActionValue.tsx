@@ -8,10 +8,11 @@ import type { TranslationFunctionType } from '@/types/translation'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { i18n as I18nType } from 'i18next'
 import type { EvaluatedNode } from 'publicodes'
 
 const getFormattedActionValue = (
-  { t, i18n }: { t: TranslationFunctionType; i18n: any },
+  { t, i18n }: { t: TranslationFunctionType; i18n: I18nType },
   actionValue: EvaluatedNode
 ) => {
   const correctedValue = getCorrectedValue(actionValue)
@@ -41,7 +42,7 @@ export default function ActionValue({
   remainingQuestions,
 }: {
   total: number
-  isDisabled: boolean
+  isDisabled: boolean | null | undefined
   hasFormula: boolean
   dottedName: DottedName
   setActionWithFormOpen: (dottedName: DottedName) => void
@@ -101,7 +102,7 @@ export default function ActionValue({
 
       {remainingQuestions && remainingQuestions.length > 0 && (
         <>
-          <div className="text-primary-700 mb-1 cursor-pointer text-xs">
+          <div className="text-primary-700 mb-1 text-xs">
             {remainingQuestionsText}
           </div>
           <Button

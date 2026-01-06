@@ -85,3 +85,16 @@ export const captureClickFinTab = ({ tab }: { tab: FinTab }) => ({
   eventName: 'click tab fin',
   properties: { tab },
 })
+
+export const endClickFootprint = (metric: string) => [
+  'trackEvent',
+  'Fin',
+  `Click Empreinte ${metric}`,
+]
+
+export const captureClickFootprint = (metric: string) => ({
+  eventName: 'Fin click empreinte',
+  properties: {
+    metric,
+  },
+})

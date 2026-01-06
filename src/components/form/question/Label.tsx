@@ -1,7 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
@@ -23,7 +19,7 @@ import { useState } from 'react'
 
 import { twMerge } from 'tailwind-merge'
 
-type Props = {
+interface Props {
   question: DottedName
   label?: string
   description?: string
@@ -55,6 +51,7 @@ export default function Label({
   if (!label) return
   return (
     <>
+      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
       <label
         className={twMerge(
           `flex ${sizeClassNames[size]} gap-2 font-semibold`,
@@ -72,6 +69,7 @@ export default function Label({
               'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
               titleClassName
             )}
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
             tabIndex={0}
             id={QUESTION_DESCRIPTION_BUTTON_ID}
             data-cypress-id="question-label">
@@ -83,6 +81,7 @@ export default function Label({
               'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
               titleClassName
             )}
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
             tabIndex={0}
             id={QUESTION_DESCRIPTION_BUTTON_ID}
             data-cypress-id="question-label">
@@ -94,6 +93,7 @@ export default function Label({
               'mb-0 inline flex-1 text-lg md:text-xl [&_p]:mb-0',
               titleClassName
             )}
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
             tabIndex={0}
             id={QUESTION_DESCRIPTION_BUTTON_ID}
             data-cypress-id="question-label">

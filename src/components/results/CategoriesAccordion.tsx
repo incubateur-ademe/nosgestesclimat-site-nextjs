@@ -7,11 +7,11 @@ import { useRule } from '@/publicodes-state'
 import type { Metric } from '@/publicodes-state/types'
 import AccordionItemWithRule from './categoriesAccordion/AccordionItemWithRule'
 
-type Props = {
+interface Props {
   metric?: Metric
 }
 export default function CategoriesAccordion({ metric = defaultMetric }: Props) {
-  const { sortedCategories } = useSortedCategoriesByFootprint({ metric })
+  const { sortedCategories } = useSortedCategoriesByFootprint()
 
   const { numericValue: maxCategoryValue } = useRule(
     sortedCategories?.[0] ?? '',

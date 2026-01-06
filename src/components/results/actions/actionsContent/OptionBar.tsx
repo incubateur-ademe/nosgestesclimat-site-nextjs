@@ -9,13 +9,14 @@ import {
 import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import type { Action } from '@/publicodes-state/types'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useState } from 'react'
 import ActionsChosenIndicator from './ActionsChosenIndicator'
 
-type Props = {
-  actions: any
-  setRadical: any
+interface Props {
+  actions: Action[]
+  setRadical: (radical: boolean) => void
   radical: boolean
 }
 

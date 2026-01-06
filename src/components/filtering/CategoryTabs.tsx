@@ -8,7 +8,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import CategoryFilter from './categoryFilters/CategoryFilter'
 
-type Props = {
+interface Props {
   categories: {
     title: string
     dottedName: DottedName
@@ -24,7 +24,9 @@ export default function CategoryTabs({
   children,
 }: Props) {
   const tablistRef = useRef<HTMLDivElement>(null)
+
   const searchParams = useSearchParams()
+
   const categorySelected = searchParams.get(FILTER_SEARCH_PARAM_KEY) || ''
 
   // Find the active tab index based on the selected category

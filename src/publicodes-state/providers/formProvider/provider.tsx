@@ -11,7 +11,7 @@ import useCurrent from './hooks/useCurrent'
 import useProgression from './hooks/useProgression'
 import useQuestions from './hooks/useQuestions'
 
-type Props = {
+interface Props {
   root?: DottedName
 }
 

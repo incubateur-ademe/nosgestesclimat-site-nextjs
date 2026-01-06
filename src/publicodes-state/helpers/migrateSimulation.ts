@@ -1,13 +1,15 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Migration } from '@publicodes/tools/migration'
 import { migrateSituation } from '@publicodes/tools/migration'
-import type { Simulation } from '../types'
+import type { ComputedResults, Simulation } from '../types'
 
 export function migrateSimulation(
   simulation: Simulation & {
     group?: string
     poll?: string
-    computedResults: any
+    computedResults:
+      | ComputedResults
+      | { bilan?: number; categories?: Record<string, number> }
   },
   migrationInstructions: Migration | undefined
 ): Simulation {
@@ -42,13 +44,16 @@ export function migrateSimulation(
   }
 
   // If the computedResults object does not take multiple metrics into account, we add them
-  if ((simulation.computedResults as any)?.bilan !== undefined) {
-    const newComputedResults = {
-      carbone: simulation.computedResults as any,
+  if (
+    'bilan' in simulation.computedResults &&
+    (simulation.computedResults as { bilan?: number }).bilan !== undefined
+  ) {
+    const newComputedResults: ComputedResults = {
+      carbone: simulation.computedResults as ComputedResults['carbone'],
       eau: {
         bilan: 0,
-        categories: {},
-        subcategories: {},
+        categories: {} as Record<DottedName, number>,
+        subcategories: {} as Record<DottedName, number>,
       },
     }
     simulation.computedResults = newComputedResults

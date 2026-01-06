@@ -1,9 +1,7 @@
-import ErrorContent from '@/components/error/ErrorContent'
 import TrackersWrapper from '@/components/tracking/TrackersWrapper'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import type { DefaultPageProps } from '@/types'
-import { captureException } from '@sentry/nextjs'
 import { dir } from 'i18next'
 import localFont from 'next/font/local'
 import Script from 'next/script'
@@ -55,30 +53,29 @@ export default async function RootLayout({
 } & DefaultPageProps) {
   const { locale } = await params
 
-  try {
-    return (
-      <html lang={locale} dir={dir(locale)}>
-        <head>
-          <link rel="icon" href="/favicon.png" />
+  return (
+    <html lang={locale} dir={dir(locale)}>
+      <head>
+        <link rel="icon" href="/favicon.png" />
 
-          <meta
-            name="google-site-verification"
-            content="oQ9gPKS4kocrCJP6CoguSkdIKKZ6ilZz0aQw_ZIgtVc"
-          />
+        <meta
+          name="google-site-verification"
+          content="oQ9gPKS4kocrCJP6CoguSkdIKKZ6ilZz0aQw_ZIgtVc"
+        />
 
-          <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:card" content="summary_large_image" />
 
-          <link rel="manifest" href="/manifest.webmanifest" />
+        <link rel="manifest" href="/manifest.webmanifest" />
 
-          <meta name="theme-color" content="#4949ba" />
+        <meta name="theme-color" content="#4949ba" />
 
-          <TrackersWrapper locale={locale} />
+        <TrackersWrapper locale={locale} />
 
-          {
-            // Matomo Prod
-            process.env.NEXT_PUBLIC_MATOMO_ID === '1' && (
-              <Script id="matomo">
-                {`
+        {
+          // Matomo Prod
+          process.env.NEXT_PUBLIC_MATOMO_ID === '1' && (
+            <Script id="matomo">
+              {`
                   var _paq = window._paq = window._paq || [];
                   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
                   _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
@@ -94,15 +91,15 @@ export default async function RootLayout({
                     g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
                   })();
                 `}
-              </Script>
-            )
-          }
+            </Script>
+          )
+        }
 
-          {
-            // Matomo Pre-prod
-            process.env.NEXT_PUBLIC_MATOMO_ID === '2' && (
-              <Script id="matomo">
-                {`
+        {
+          // Matomo Pre-prod
+          process.env.NEXT_PUBLIC_MATOMO_ID === '2' && (
+            <Script id="matomo">
+              {`
                 var _paq = window._paq = window._paq || [];
                 /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
                 _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
@@ -117,18 +114,18 @@ export default async function RootLayout({
                   g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
                 })();
               `}
-              </Script>
-            )
-          }
-          <Script
-            src="https://tally.so/widgets/embed.js"
-            strategy="lazyOnload"></Script>
+            </Script>
+          )
+        }
+        <Script
+          src="https://tally.so/widgets/embed.js"
+          strategy="lazyOnload"></Script>
 
-          <Script
-            id="global-tracking"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
+        <Script
+          id="global-tracking"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
             if (!window.globalTrackingAdded) {
               window.globalTrackingAdded = true;
               
@@ -162,25 +159,13 @@ export default async function RootLayout({
               }
             }
           `,
-            }}
-          />
-        </head>
-        <body
-          className={`${marianne.className} text-default bg-white transition-colors duration-700`}>
-          {children}
-        </body>
-      </html>
-    )
-  } catch (error) {
-    captureException(error)
-    return (
-      <html lang="fr">
-        <body className={`${marianne.className} text-default bg-white`}>
-          <div className="flex h-screen flex-col items-center justify-center">
-            <ErrorContent />
-          </div>
-        </body>
-      </html>
-    )
-  }
+          }}
+        />
+      </head>
+      <body
+        className={`${marianne.className} text-default bg-white transition-colors duration-700`}>
+        {children}
+      </body>
+    </html>
+  )
 }

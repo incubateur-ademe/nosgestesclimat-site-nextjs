@@ -22,7 +22,6 @@ import GroupBlock from './_components/GroupBlock'
 
 export async function generateStaticParams({
   params,
-  searchParams,
 }: DefaultPageProps<{
   params: { locale: Locale }
   searchParams: { page: string }

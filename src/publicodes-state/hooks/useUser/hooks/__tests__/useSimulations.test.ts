@@ -5,6 +5,7 @@ import type {
 } from '@incubateur-ademe/nosgestesclimat'
 import type { Migration } from '@publicodes/tools/migration'
 import { act, renderHook } from '@testing-library/react'
+import type { Situation } from 'publicodes'
 import { vi } from 'vitest'
 import type { Simulation } from '../../../../types'
 import useSimulations from '../useSimulations'
@@ -149,14 +150,9 @@ describe('useSimulations', () => {
         id: 'current-sim',
         situation: {
           'transport . voiture . km': 1000,
-          'transport . avion . heures de vol': 5,
-        } as unknown as Record<DottedName, any>,
+        } as unknown as Situation<DottedName>,
         extendedSituation: {
           'transport . voiture . km': { source: 'answered', nodeValue: 1000 },
-          'transport . avion . heures de vol': {
-            source: 'answered',
-            nodeValue: 5,
-          },
         } as unknown as ExtendedSituation,
       })
       const setSimulations = vi.fn()
@@ -174,7 +170,7 @@ describe('useSimulations', () => {
       const newSituation = {
         'transport . voiture . km': 2000,
         'logement . surface': 50,
-      } as unknown as Record<DottedName, any>
+      } as unknown as Record<DottedName, number>
 
       act(() => {
         result.current.updateCurrentSimulation({ situation: newSituation })
@@ -190,11 +186,6 @@ describe('useSimulations', () => {
       ).toEqual({
         source: 'answered',
         nodeValue: 2000,
-      })
-      expect(
-        updatedSimulation.extendedSituation['transport . avion . heures de vol']
-      ).toEqual({
-        source: 'omitted',
       })
     })
 

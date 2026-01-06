@@ -8,7 +8,7 @@ export async function getLocale() {
     const locale = headersList.get('x-next-i18n-router-locale') || ''
 
     return locale
-  } catch (error) {
+  } catch {
     return i18nConfig.defaultLocale
   }
 }

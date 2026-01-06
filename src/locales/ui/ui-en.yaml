@@ -107,23 +107,23 @@ entries:
   À propos: About us
   components.localisation.LocalisationMessage.warnMessage2: We could not detect your country of simulation, the French model is proposed by default
   components.localisation.LocalisationMessage.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut
-  international.comment.titre: How does it work?
-  international.comment.titre.lock: Comment ça marche ?
+  international.comment.titre: Which regions/countries are available?
+  international.comment.titre.lock: Quels régions / pays sont disponibles ?
   À venir !: Coming soon !
   international.ensuite.titre: Can't find your country?
   international.ensuite.titre.lock: Vous ne trouvez pas votre pays ?
   international.pourquoi.titre: Adapted to your country
   international.pourquoi.titre.lock: Adapté à votre pays
-  international.pourquoi.2: As electricity becomes more important due to the energy transition, the carbon footprint of the electricity mix strongly influences the climate footprint calculation.
-  international.pourquoi.2.lock: Au fur et à mesure que l'électricité prend une place très importante grâce à la transition énergétique, l'empreinte carbone du mix électrique influence fortement le calcul d'empreinte climat.
-  international.ensuite.1: We have launched a first version of internationalization that includes a dozen countries. We are doing it step by step, to consolidate the particularities of each country. Is yours not included? <2>Contact us!</2>
-  international.ensuite.1.lock: Nous avons lancé une première version de l'internationalisation qui comprend une douzaine de pays. Nous le faisons pas à pas, pour consolider les particularités de chaque pays. Le votre n'y est pas ? <2>Écrivez-nous !</2>
-  international.pourquoi.1: Lifestyles are not the same depending on the country you live in. Some countries have a highly developed rail network, others are insular and therefore rely more on ferry and air travel.
-  international.pourquoi.1.lock: Les modes de vies ne sont pas les mêmes en fonction du pays dans lequel on vit. Certains pays ont un réseau ferré très développé, d'autres sont insulaires et donc reposent davantage sur le ferry et l'avion.
-  international.comment.1: In order to propose a model for each country, we necessarily need a base. Nos Gestes Climat was built on the case of France. From there, each country describes its differences from the base.
-  international.comment.1.lock: Pour proposer un modèle pour chaque pays, il nous faut forcément une base. Nos Gestes Climat s'est construit sur le cas de la France. À partir de là, chaque pays décrit ses différences par rapport à la base.
-  international.pourquoi.3: 'Where available, we use the electricity mix footprint provided by :'
-  international.pourquoi.3.lock: "Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par :"
+  international.pourquoi.2: With the energy transition, the growing importance of electricity makes the electricity mix a particularly decisive factor in the calculation.
+  international.pourquoi.2.lock: Avec la transition énergétique, la place croissante de l’électricité rend le mix électrique particulièrement déterminant dans le calcul.
+  international.ensuite.1: "If yours is not yet on the list, let us know: we'll be delighted to take it into account. <2>Write to us!</2>"
+  international.ensuite.1.lock: 'Si le vôtre n’est pas encore dans la liste, dites-le-nous : nous serons ravis d’en tenir compte. <2>Écrivez-nous !</2>'
+  international.pourquoi.1: 'Lifestyles vary greatly from one country to another: the rail network is more or less developed, dependence on ferries or planes, transport organisation, types of accommodation, etc.'
+  international.pourquoi.1.lock: 'Les modes de vie varient fortement d’un pays à l’autre : réseau ferroviaire plus ou moins développé, dépendance au ferry ou à l’avion, organisation du transport, types de logements, etc.'
+  international.comment.1: For each country, we add the necessary local data to provide a calculation tailored to the local lifestyle and energy mix.
+  international.comment.1.lock: Pour chaque pays, nous ajoutons les données locales nécessaires afin de proposer un calcul adapté aux modes de vie et au mix énergétique du territoire.
+  international.pourquoi.3: Where possible, we use data from <2><0></0></2> data to integrate the real carbon footprint of the country's electricity.
+  international.pourquoi.3.lock: Lorsque c’est possible, nous utilisons les données de <2><0></0></2> pour intégrer l’empreinte carbone réelle de l’électricité du pays.
   Ce modèle a été conçu par: This model was designed by
   model.questions: Discover the <2>list of questions available in the template</2>.
   model.questions.lock: Découvrez <2>la liste des questions disponibles dans le modèle</2>.
@@ -175,8 +175,8 @@ entries:
   disponibles: available
   Consultez la FAQ: Consult the FAQ
   Avant de commencer: Before you start
-  international.comment.2: Explore the specific features of each country in detail.
-  international.comment.2.lock: Explorez en détail les spécificités de chaque pays.
+  international.comment.2: The list below shows the countries that have already been integrated.
+  international.comment.2.lock: La liste ci-dessous présente les pays déjà intégrés.
   Sélectionner: Select
   Vous: You
   Supprimer: Delete
@@ -1347,7 +1347,7 @@ entries:
   organisations.connexion.email.input.helper.lock: 'Format attendu : nom.prenom@domaine.fr'
   Activé: Activated
   simulator.mosaicNumberInput.remove: 'Remove an item : {{title}}'
-  simulator.mosaicNumberInput.remove.lock: 'Retirer un élémént : {{title}}'
+  simulator.mosaicNumberInput.remove.lock: 'Retirer un élément : {{title}}'
   common.inputs.email.label: Enter your e-mail address
   common.inputs.email.label.lock: Entrez votre adresse e-mail
   simulator.inputs.choice.questionButton.title: For more information, click here {{label}}
@@ -1747,7 +1747,6 @@ entries:
   landing.water.understand.description.lock: Mieux comprendre <2>notre impact sur les ressources en eau</2> est essentiel pour pouvoir agir efficacement. À travers une série d'articles, nous vous proposons des conseils pratiques, des idées inspirantes et des informations clés pour <6>réduire votre empreinte eau</6>.
   landing.carbon.dailyGestures.description.lock: "Pour un mode de vie plus durable, certaines actions <2>ont un impact plus fort que d'autres</2>. En intégrant ces gestes dans votre quotidien, vous pouvez fortement <5>réduire vos émissions de Co2</5>. Voici quelques idées :"
   landing.carbon.understand.description.lock: Réduire efficacement son empreinte sur l'environnement nécessite de <2>s'informer sur les enjeux du réchauffement climatique</2>, s'inspirer des bonnes pratiques et <5>passer à l'action</5>.
-  Connaissez-vous votre empreinte carbone et eau ?: Do you know your carbon and water footprint?
   Calculez <2>vos empreintes</2> en <5>seulement 10 minutes</5>.: Calculate <2>your footprints</2> in <5>just 10 minutes</5>.
   la page groupes: groups page
   <0>Invitez vos proches à</0> <2>passer le test</2>: <0>Invite your friends and family to</0> <2>take the test</2>
@@ -1780,3 +1779,16 @@ entries:
   auth.verifyemail: Check my email address
   auth.verifyemail.lock: Vérifier mon adresse email
   Rejoignez le groupe <2>{group?.name}</2> et passez le test.: Join the <2>{group?.name}</2> group and take the test.
+  Connaissez-vous votre empreinte carbone et eau ?: Do you know your carbon and water footprint?
+  Qui sommes-nous - Nouvelle fenêtre: About us - New window
+  international.comment.3: We are gradually adding to it to extend our international coverage.
+  international.comment.3.lock: Nous l’enrichissons progressivement pour élargir la couverture internationale.
+  international.ensuite.2: We add new countries over time, taking great care to reflect their specific characteristics.
+  international.ensuite.2.lock: Nous ajoutons de nouveaux pays au fil du temps, avec le plus grand soin pour refléter leurs spécificités.
+  international.description: Wherever you live, calculate your personal carbon and water footprint, taking into account the specific characteristics of your country.
+  international.description.lock: Où que vous viviez, calculez votre empreinte carbone et eau personnelle en tenant compte des spécificités de votre pays.
+  Commencer le test: Start test
+  Calculez <1>vos empreintes</1> en <4>seulement 10 minutes</4>.: Calculate <1>your footprints</1> in <4>just 10 minutes</4>.
+  Découvrez votre empreinte carbone: Discover your carbon footprint
+  Résultats immédiats, sans inscription.: Immediate results, no registration required.
+  <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire.: <0>Get your personalised estimate</0> and <3>concrete ways</3> of reducing it.

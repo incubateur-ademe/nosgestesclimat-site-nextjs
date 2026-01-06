@@ -9,15 +9,17 @@ export const filterRelevantMissingVariables = ({
   everyQuestions,
   safeEvaluate,
   rawMissingVariables,
+  everyMosaicChildrenWithParent,
 }: {
   missingVariables: DottedName[]
   extendedFoldedSteps: DottedName[]
   everyQuestions: DottedName[]
   safeEvaluate: SafeEvaluate
   rawMissingVariables: MissingVariables
+  everyMosaicChildrenWithParent: Record<DottedName, DottedName[]>
 }) => {
-  return missingVariables.filter((dottedName: DottedName) => {
-    const isFolded = extendedFoldedSteps.indexOf(dottedName) >= 0
+  let remainingQuestions = missingVariables.filter((dottedName: DottedName) => {
+    const isFolded = extendedFoldedSteps.includes(dottedName)
     const isMustNotAskQuestion = MUST_NOT_ASK_QUESTIONS?.has(dottedName)
     const isRelevantQuestion = everyQuestions.includes(dottedName)
 
@@ -31,4 +33,26 @@ export const filterRelevantMissingVariables = ({
       !isFolded && !isMustNotAskQuestion && isRelevantQuestion && isApplicable
     )
   })
+
+  // Detect if one of the remaining questions is a child of a mosaic
+  const mosaicParentsDottedNamesToAdd: DottedName[] = []
+
+  remainingQuestions = remainingQuestions.filter((question) => {
+    // Find if this question is a child of a mosaic
+    const parentMosaic = Object.entries(everyMosaicChildrenWithParent).find(
+      ([, children]) => children.includes(question)
+    )?.[0] as DottedName | undefined
+
+    if (!parentMosaic) return true
+
+    if (!mosaicParentsDottedNamesToAdd.includes(parentMosaic)) {
+      mosaicParentsDottedNamesToAdd.push(parentMosaic)
+    }
+
+    return false
+  })
+
+  remainingQuestions = [...remainingQuestions, ...mosaicParentsDottedNamesToAdd]
+
+  return remainingQuestions
 }

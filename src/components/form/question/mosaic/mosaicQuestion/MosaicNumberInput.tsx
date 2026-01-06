@@ -3,13 +3,16 @@ import Button from '@/design-system/buttons/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
+import { NUMBER_MOSAIC_WITHOUT_BUTTONS } from '@/publicodes-state/constants/questions'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-type Props = {
+import RawNumberInput from '../../numberInput/RawNumberInput'
+
+interface Props {
   question: DottedName
   title?: string
   icons?: string
   description?: string
-  setValue: (value: number) => void
+  setValue: (value: number | undefined) => void
   index: number
   value: number | undefined | null
   parentMosaic: string
@@ -25,11 +28,15 @@ export default function MosaicNumberInput({
   value,
   parentMosaic,
 }: Props) {
-  const { plafond } = useRule(question)
+  const { plafond, unit } = useRule(question)
 
   const { t } = useClientTranslation()
 
   const isPlusDisabled = !!value && value >= plafond
+
+  const shouldNotContainButtons = NUMBER_MOSAIC_WITHOUT_BUTTONS.has(
+    parentMosaic as DottedName
+  )
 
   // Model shenanigans for description split...
   return (
@@ -54,45 +61,52 @@ export default function MosaicNumberInput({
           </>
         ) : null}
       </div>
-      <div className="flex items-center gap-1.5 p-2">
-        <Button
-          disabled={!value}
-          onClick={() => setValue((value ?? 0) - 1)}
-          size="sm"
-          title={t(
-            'simulator.mosaicNumberInput.remove',
-            'Retirer un élémént : {{title}}',
-            {
-              title,
-            }
-          )}
-          className="z-10 h-8 w-8 items-center justify-center p-0">
-          <span className="mb-[1px] block">-</span>
-        </Button>
-        <input
-          className="focus-within:border-primary-700 focus-within:ring-primary-700 w-8 rounded-sm text-center ring-offset-2 focus-within:ring-2 focus-visible:outline-none"
-          type="number"
-          inputMode="numeric"
-          value={value === null ? 0 : value}
-          placeholder={'_'}
-          onChange={(event) => setValue(Number(event.target.value))}
+
+      <div
+        className={`flex items-center gap-1.5 p-2 ${shouldNotContainButtons && 'pr-18'}`}>
+        {!shouldNotContainButtons && (
+          <Button
+            disabled={!value}
+            onClick={() => setValue((value ?? 0) - 1)}
+            size="sm"
+            title={t(
+              'simulator.mosaicNumberInput.remove',
+              'Retirer un élément : {{title}}',
+              {
+                title,
+              }
+            )}
+            className="z-10 h-8 w-8 items-center justify-center p-0">
+            <span className="mb-[1px] block">-</span>
+          </Button>
+        )}
+        <RawNumberInput
+          className="focus-within:border-primary-700 focus-within:ring-primary-700 max-h-8 w-16 rounded-sm text-center ring-offset-2 focus-within:ring-2 focus-visible:outline-none"
+          value={value}
+          placeholder={value === null ? '' : '_'}
+          unit={shouldNotContainButtons ? unit : undefined}
+          handleValueChange={({ floatValue, value }) =>
+            setValue(value === undefined ? value : floatValue)
+          }
           data-cypress-id={`${question}---${parentMosaic}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
         />
-        <Button
-          disabled={isPlusDisabled}
-          onClick={() => setValue((value ?? 0) + 1)}
-          title={t(
-            'simulator.mosaicNumberInput.add',
-            'Ajouter un élément : {{title}}',
-            {
-              title,
-            }
-          )}
-          size="sm"
-          className="z-10 h-8 w-8 items-center justify-center p-0">
-          <span className="mb-[1px] block">+</span>
-        </Button>
+        {!shouldNotContainButtons && (
+          <Button
+            disabled={isPlusDisabled}
+            onClick={() => setValue((value ?? 0) + 1)}
+            title={t(
+              'simulator.mosaicNumberInput.add',
+              'Ajouter un élément : {{title}}',
+              {
+                title,
+              }
+            )}
+            size="sm"
+            className="z-10 h-8 w-8 items-center justify-center p-0">
+            <span className="mb-[1px] block">+</span>
+          </Button>
+        )}
       </div>
     </div>
   )

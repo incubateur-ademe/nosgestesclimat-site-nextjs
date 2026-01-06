@@ -1,0 +1,80 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    name: Unit test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: './package.json'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run unit tests
+        env:
+          NEXT_PUBLIC_TALLY_FORM_ID: ${{ vars.NEXT_PUBLIC_TALLY_FORM_ID }}
+        run: pnpm test --coverage
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: './package.json'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run lint
+        run: |
+          pnpm next typegen;
+          pnpm lint
+
+  type:
+    name: Typecheck
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: './package.json'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run typecheck
+        run: |
+          pnpm next typegen;
+          pnpm lint:types

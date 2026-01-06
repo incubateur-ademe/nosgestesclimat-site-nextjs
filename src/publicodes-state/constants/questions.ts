@@ -1,6 +1,6 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
-export const MUST_NOT_ASK_QUESTIONS: Set<DottedName> = new Set([
+export const MUST_NOT_ASK_QUESTIONS = new Set<DottedName>([
   // Mosaic "Textile" is hidden but can be answered is "choix précis" is set to "oui".
   'divers . textile . empreinte précise',
   'divers . textile . choix précis',
@@ -26,7 +26,7 @@ export const MUST_NOT_ASK_QUESTIONS: Set<DottedName> = new Set([
 ])
 
 // We use the DottedName type from nosgestesclimat to make sure the build will break when using rules that are not in the model.
-export const PRIORITY_QUESTIONS: Set<DottedName> = new Set([
+export const PRIORITY_QUESTIONS = new Set<DottedName>([
   'alimentation . plats',
   'logement . type',
   'logement . propriétaire',
@@ -38,20 +38,25 @@ export const PRIORITY_QUESTIONS: Set<DottedName> = new Set([
   'divers . numérique . internet . durée journalière',
 ])
 
-export const NON_PRIORITY_QUESTIONS: Set<DottedName> = new Set([
+export const NON_PRIORITY_QUESTIONS = new Set<DottedName>([
   'logement . électricité . réseau . consommation',
   'transport . voiture . thermique . consommation aux 100',
 ])
 
-export const MUST_ASK_QUESTIONS: Set<DottedName> = new Set([
+export const MUST_ASK_QUESTIONS = new Set<DottedName>([
   // With Publicodes >1.8.0, 'services sociétaux . question rhétorique' is not in the missing variable as it's a question "une possibilité" with only on possible answer... So logically,the question is already answered.
   'services sociétaux . question rhétorique',
 ])
 
-export const MUST_SHOW_DESCRIPTION: Set<DottedName> = new Set([
+export const MUST_SHOW_DESCRIPTION = new Set<DottedName>([
   'transport . voiture . utilisateur',
   'logement . âge',
   'logement . surface',
   'divers . animaux domestiques . empreinte',
   'alimentation . local . consommation',
+])
+
+export const NUMBER_MOSAIC_WITHOUT_BUTTONS = new Set<DottedName>([
+  'transport . avion . vols annuels',
+  'transport . avion . vols amortis',
 ])

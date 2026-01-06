@@ -6,9 +6,9 @@ export function useMagicKey({
   gotToNextQuestion: (e: KeyboardEvent) => void
 }) {
   useEffect(() => {
-    const handleMagicKey = async (e: KeyboardEvent) => {
+    const handleMagicKey = (e: KeyboardEvent) => {
       if (e.altKey && (e.key === 'Escape' || e.key === 'Enter')) {
-        await gotToNextQuestion(e)
+        gotToNextQuestion(e)
       }
     }
     document.addEventListener('keydown', handleMagicKey)

@@ -5,26 +5,20 @@ import type { UseQueryResult } from '@tanstack/react-query'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useLocale } from './useLocale'
 
-type Props = {
+interface Props {
   isOptim?: boolean
   region?: string
   PRNumber?: string
 }
 
 export function useRules(
-  { isOptim, region, PRNumber }: Props = {
-    isOptim: false,
+  { isOptim = true, region = 'FR', PRNumber }: Props = {
+    isOptim: true,
     region: 'FR',
   }
 ): UseQueryResult<Partial<NGCRules>, Error> {
   const locale = useLocale()
   const { user } = useUser()
-
-  // This is used to load the rules from the test model in case of AB testing
-  // uncomment when needed
-  const flagValue = undefined /* useFeatureFlagVariantKey(
-    locale === i18nConfig.defaultLocale ? ABTEST_KEY : ''
-  )*/
 
   const regionCode =
     user?.region?.code != undefined && user?.region?.code !== ''

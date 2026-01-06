@@ -83,7 +83,7 @@ const defaultState = {
   updateCurrentSimulation: vi.fn(),
 }
 
-type ProviderConfig = {
+interface ProviderConfig {
   errorBoundary?: boolean
   queryClient?: boolean
   user?: boolean
@@ -112,14 +112,19 @@ const TestWrapper = ({
 
   if (providers.engine) {
     wrapped = (
-      <EngineProviders supportedRegions={getSupportedRegions()}>
+      <EngineProviders supportedRegions={getSupportedRegions()} isOptim={false}>
         {wrapped}
       </EngineProviders>
     )
   }
 
   if (providers.mainHooks) {
-    wrapped = <MainHooks>{wrapped}</MainHooks>
+    wrapped = (
+      <>
+        <MainHooks />
+        {wrapped}
+      </>
+    )
   }
 
   if (providers.preventNavigation) {
@@ -127,11 +132,7 @@ const TestWrapper = ({
   }
 
   if (providers.iframeOptions) {
-    wrapped = (
-      <IframeOptionsProvider>
-        {(containerRef) => <div ref={containerRef as any}>{wrapped}</div>}
-      </IframeOptionsProvider>
-    )
+    wrapped = <IframeOptionsProvider>{wrapped}</IframeOptionsProvider>
   }
 
   if (providers.partner) {

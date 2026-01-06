@@ -4,7 +4,7 @@ import { CookieConsentProvider } from '@/components/cookies/CookieConsentProvide
 import ErrorBoundary from '@/components/error/ErrorBoundary'
 import { PartnerProvider } from '@/contexts/partner/PartnerContext'
 import { UserProvider } from '@/publicodes-state'
-import { type PropsWithChildren } from 'react'
+import { Suspense, type PropsWithChildren } from 'react'
 import { IframeOptionsProvider } from '../_components/mainLayoutProviders/IframeOptionsContext'
 import MainHooks from '../_components/mainLayoutProviders/MainHooks'
 import { PreventNavigationProvider } from '../_components/mainLayoutProviders/PreventNavigationProvider'
@@ -18,13 +18,12 @@ export default function MainLayoutProviders({ children }: PropsWithChildren) {
           <UserProvider>
             <PartnerProvider>
               <IframeOptionsProvider>
-                {(containerRef: React.RefObject<HTMLDivElement | null>) => (
-                  <PreventNavigationProvider>
-                    <MainHooks>
-                      <div ref={containerRef}>{children}</div>
-                    </MainHooks>
-                  </PreventNavigationProvider>
-                )}
+                <PreventNavigationProvider>
+                  <Suspense>
+                    <MainHooks />
+                  </Suspense>
+                  <div id="nosgestesclimat-container">{children}</div>
+                </PreventNavigationProvider>
               </IframeOptionsProvider>
             </PartnerProvider>
           </UserProvider>

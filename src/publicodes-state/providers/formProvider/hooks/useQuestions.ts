@@ -1,6 +1,5 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { useMemo } from 'react'
-import getIsMissing from '../../../helpers/getIsMissing'
+import { useCallback, useMemo } from 'react'
 
 import {
   MUST_ASK_QUESTIONS,
@@ -16,7 +15,7 @@ import type {
   Situation,
 } from '../../../types'
 
-type Props = {
+interface Props {
   root: DottedName
   safeEvaluate: SafeEvaluate
   categories: DottedName[]
@@ -110,6 +109,17 @@ export default function useQuestions({
     [safeEvaluate, root, everyQuestions, situation]
   )
 
+  const sortQuestions = useCallback(
+    (questions: DottedName[]) =>
+      getSortedQuestionsList({
+        questions,
+        categories,
+        subcategories,
+        missingVariables,
+      }),
+    [categories, subcategories, missingVariables]
+  )
+
   const remainingQuestions = useMemo(() => {
     // We take every questions
     const questionsToSort = everyQuestions
@@ -121,7 +131,7 @@ export default function useQuestions({
             .find((mosaic) => mosaic === question)
       )
       // all that are in folded steps
-      .filter((question) => foldedSteps.indexOf(question) === -1)
+      .filter((question) => !foldedSteps.includes(question))
       // and all that are not missing
       .filter((question) =>
         Object.keys(missingVariables).find((missingVariable) =>
@@ -129,21 +139,14 @@ export default function useQuestions({
         )
       )
       .filter((question) => !MUST_NOT_ASK_QUESTIONS.has(question))
-
     // then we sort them by category, subcategory and missing variables
-    return getSortedQuestionsList({
-      questions: questionsToSort,
-      categories,
-      subcategories,
-      missingVariables,
-    })
+    return sortQuestions(questionsToSort)
   }, [
-    everyQuestions,
     everyMosaicChildrenWithParent,
+    everyQuestions,
     foldedSteps,
     missingVariables,
-    categories,
-    subcategories,
+    sortQuestions,
   ])
 
   const relevantAnsweredQuestions = useMemo(
@@ -158,49 +161,16 @@ export default function useQuestions({
     [foldedSteps, everyQuestions]
   )
 
-  const tempRelevantQuestions = useMemo(() => {
-    return [
+  const relevantQuestions = sortQuestions(
+    [
       /**
        * We add every answered questions to display and every not answered
        * questions to display to get every relevant questions
        */
       ...relevantAnsweredQuestions,
-      ...remainingQuestions.filter((dottedName: DottedName) =>
-        // We check again if the question is missing or not to make sure mosaic
-        // are correctly assessed (this is less than ideal)
-        getIsMissing({
-          dottedName,
-          situation,
-          questionsOfMosaicFromParent:
-            everyMosaicChildrenWithParent[dottedName] || [],
-        })
-      ),
+      ...remainingQuestions,
     ].filter((question) => !MUST_NOT_ASK_QUESTIONS.has(question))
-  }, [
-    relevantAnsweredQuestions,
-    remainingQuestions,
-    situation,
-    everyMosaicChildrenWithParent,
-  ])
-
-  /**
-   * There is a small delay between adding a question to the answered questions
-   * and removing it from the missing questions. So we need to check for
-   * duplicates
-   *
-   * (yes, this is shit)
-   */
-  const relevantQuestions = useMemo(() => {
-    const questions = tempRelevantQuestions.filter(
-      (question, index) => tempRelevantQuestions.indexOf(question) === index
-    )
-    return getSortedQuestionsList({
-      questions: questions,
-      categories,
-      subcategories,
-      missingVariables,
-    })
-  }, [categories, missingVariables, subcategories, tempRelevantQuestions])
+  )
 
   const questionsByCategories = useMemo(
     () =>

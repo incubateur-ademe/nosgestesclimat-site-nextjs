@@ -21,7 +21,9 @@ import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 import Trans from './trans/TransClient'
 
-type Props = { supportedRegions: SupportedRegions }
+interface Props {
+  supportedRegions: SupportedRegions
+}
 export default function LocalisationBanner({ supportedRegions }: Props) {
   const { user, tutorials, hideTutorial } = useUser()
 
@@ -30,7 +32,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
   const isTutorialOrTest =
     pathname.includes('/tutoriel') || pathname.startsWith(SIMULATOR_PATH)
 
-  const currentLocale = useLocale() as string
+  const currentLocale = useLocale()
 
   const region = user?.region
   const code = user?.region?.code ?? 'FR'
@@ -41,16 +43,16 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
   if (!supportedRegions) return null
 
-  const regionParams: any = supportedRegions?.[code]
+  const regionParams = supportedRegions?.[code]
 
   const countryName =
-    capitalizeString(regionParams?.[currentLocale]?.nom as string) ||
-    region?.name
+    capitalizeString(regionParams?.[currentLocale]?.nom) || region?.name
 
   const versionName: string = regionParams
     ? (regionParams?.[currentLocale]?.['gentilé'] ??
-      regionParams?.[currentLocale]?.['nom'])
-    : countryName
+      regionParams?.[currentLocale]?.nom ??
+      '')
+    : (countryName ?? '')
 
   if (tutorials.localisationBanner) return null
 

@@ -21,20 +21,21 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v6
         with:
-          node-version: '22.14'
-          cache: 'yarn'
-
+          node-version-file: './package.json'
+          cache: 'pnpm'
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install
 
       - name: Install Playwright
         run: npx playwright install chromium
 
       - name: Run iframe healthcheck
         id: healthcheck
-        run: yarn iframe-healthcheck
+        run: pnpm iframe-healthcheck

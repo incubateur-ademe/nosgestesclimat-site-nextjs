@@ -1,4 +1,4 @@
-import { useOrderedCategoryFromABTest } from '@/hooks/abTesting/useOrderedCategoryFromABTest'
+import { orderedCategories } from '@/constants/model/orderedCategories'
 import getSomme from '@/publicodes-state/helpers/getSomme'
 import { getSubcategories } from '@/publicodes-state/helpers/getSubcategories'
 import type {
@@ -9,7 +9,7 @@ import type {
 import * as Sentry from '@sentry/nextjs'
 import { useMemo } from 'react'
 
-type Props = {
+interface Props {
   parsedRules?: NGCRulesNodes
   everyRules: DottedName[]
   root: DottedName
@@ -22,7 +22,6 @@ export function useCategories({
   root,
   safeGetRule,
 }: Props) {
-  const orderedCategories = useOrderedCategoryFromABTest()
   const categories = useMemo<DottedName[]>(() => {
     const rootRule = safeGetRule?.(root)
     if (!rootRule) {

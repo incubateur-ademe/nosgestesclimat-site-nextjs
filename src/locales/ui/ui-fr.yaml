@@ -85,14 +85,14 @@ entries:
   À propos: À propos
   components.localisation.LocalisationMessage.warnMessage2: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut
   À venir !: À venir !
-  international.comment.1: Pour proposer un modèle pour chaque pays, il nous faut forcément une base. Nos Gestes Climat s'est construit sur le cas de la France. À partir de là, chaque pays décrit ses différences par rapport à la base.
-  international.comment.titre: Comment ça marche ?
-  international.ensuite.1: Nous avons lancé une première version de l'internationalisation qui comprend une douzaine de pays. Nous le faisons pas à pas, pour consolider les particularités de chaque pays. Le votre n'y est pas ? <2>Écrivez-nous !</2>
+  international.comment.1: Pour chaque pays, nous ajoutons les données locales nécessaires afin de proposer un calcul adapté aux modes de vie et au mix énergétique du territoire.
+  international.comment.titre: Quels régions / pays sont disponibles ?
+  international.ensuite.1: 'Si le vôtre n’est pas encore dans la liste, dites-le-nous : nous serons ravis d’en tenir compte. <2>Écrivez-nous !</2>'
   international.ensuite.titre: Vous ne trouvez pas votre pays ?
-  international.pourquoi.1: Les modes de vies ne sont pas les mêmes en fonction du pays dans lequel on vit. Certains pays ont un réseau ferré très développé, d'autres sont insulaires et donc reposent davantage sur le ferry et l'avion.
-  international.pourquoi.2: Au fur et à mesure que l'électricité prend une place très importante grâce à la transition énergétique, l'empreinte carbone du mix électrique influence fortement le calcul d'empreinte climat.
+  international.pourquoi.1: 'Les modes de vie varient fortement d’un pays à l’autre : réseau ferroviaire plus ou moins développé, dépendance au ferry ou à l’avion, organisation du transport, types de logements, etc.'
+  international.pourquoi.2: Avec la transition énergétique, la place croissante de l’électricité rend le mix électrique particulièrement déterminant dans le calcul.
   international.pourquoi.titre: Adapté à votre pays
-  international.pourquoi.3: "Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par :"
+  international.pourquoi.3: Lorsque c’est possible, nous utilisons les données de <2><0></0></2> pour intégrer l’empreinte carbone réelle de l’électricité du pays.
   Ce modèle a été conçu par: Ce modèle a été conçu par
   model.questions: Découvrez <2>la liste des questions disponibles dans le modèle</2>.
   Oups, nous n'avons pas d'article correspondant: Oups, nous n'avons pas d'article correspondant
@@ -138,7 +138,7 @@ entries:
   Consultez la FAQ: Consultez la FAQ
   disponibles: disponibles
   Il concerne votre vie personnelle, et non pas votre activité.: Il concerne votre vie personnelle, et non pas votre activité.
-  international.comment.2: Explorez en détail les spécificités de chaque pays.
+  international.comment.2: La liste ci-dessous présente les pays déjà intégrés.
   Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.: Les personas nous servent à tester le calculateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier.
   publicodes.Tutoriel.slide1.p1: Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?
   publicodes.Tutoriel.slide1.p2: Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer ce qu'on appelle l'empreinte carbone individuelle de consommation.
@@ -1140,7 +1140,7 @@ entries:
   simulator.car.addTravel: Ajouter un trajet
   simulator.inputs.choice.questionButton.title: Plus d'informations - {{label}}
   simulator.mosaicNumberInput.add: 'Ajouter un élément : {{title}}'
-  simulator.mosaicNumberInput.remove: 'Retirer un élémént : {{title}}'
+  simulator.mosaicNumberInput.remove: 'Retirer un élément : {{title}}'
   actions.actionCard.actionValue.answerButton.label: Répondre
   actions.actionCard.actionValue.answerButton.title: Répondre aux questions restantes
   Cliquez pour afficher la réponse: Cliquez pour afficher la réponse
@@ -1389,3 +1389,12 @@ entries:
   Pour vous désinscrire, passez par le lien en bas de l'e-mail reçu: Pour vous désinscrire, passez par le lien en bas de l'e-mail reçu
   auth.verifyemail: Vérifier mon adresse email
   Rejoignez le groupe <2>{group?.name}</2> et passez le test.: Rejoignez le groupe <2>{group?.name}</2> et passez le test.
+  international.comment.3: Nous l’enrichissons progressivement pour élargir la couverture internationale.
+  international.description: Où que vous viviez, calculez votre empreinte carbone et eau personnelle en tenant compte des spécificités de votre pays.
+  international.ensuite.2: Nous ajoutons de nouveaux pays au fil du temps, avec le plus grand soin pour refléter leurs spécificités.
+  Qui sommes-nous - Nouvelle fenêtre: Qui sommes-nous - Nouvelle fenêtre
+  <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire.: <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire.
+  Calculez <1>vos empreintes</1> en <4>seulement 10 minutes</4>.: Calculez <1>vos empreintes</1> en <4>seulement 10 minutes</4>.
+  Commencer le test: Commencer le test
+  Découvrez votre empreinte carbone: Découvrez votre empreinte carbone
+  Résultats immédiats, sans inscription.: Résultats immédiats, sans inscription.

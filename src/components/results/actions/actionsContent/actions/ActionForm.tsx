@@ -15,7 +15,7 @@ import type { Action, MissingVariables } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { useEffect } from 'react'
 
-type Props = {
+interface Props {
   action: Action
   category: DottedName
   onComplete: () => void
@@ -35,7 +35,12 @@ export default function ActionForm({
     currentCategory,
   } = useFormState()
 
-  const { everyQuestions, rawMissingVariables, safeEvaluate } = useEngine()
+  const {
+    everyQuestions,
+    rawMissingVariables,
+    safeEvaluate,
+    everyMosaicChildrenWithParent,
+  } = useEngine()
 
   const { extendedFoldedSteps } = useTempEngine()
 
@@ -49,6 +54,7 @@ export default function ActionForm({
     extendedFoldedSteps,
     rawMissingVariables,
     safeEvaluate,
+    everyMosaicChildrenWithParent,
   })
 
   const isActionApplicable =

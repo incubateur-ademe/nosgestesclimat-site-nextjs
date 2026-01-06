@@ -4,11 +4,8 @@ import {
   getLandingClickModelDocumentation,
   getLandingClickNouveautes,
 } from '@/helpers/tracking/landings'
-import { headers } from 'next/headers'
 
-export default async function ModelInfo({ locale }: { locale: string }) {
-  const pathname = (await headers()).get('x-pathname') || '/'
-
+export default function ModelInfo({ locale }: { locale: string }) {
   return (
     <div className="bg-heroLightBackground px-4 py-12 md:py-20">
       <div className="flex flex-col items-center gap-10 md:mx-auto md:max-w-5xl">
@@ -39,7 +36,7 @@ export default async function ModelInfo({ locale }: { locale: string }) {
               href: '/documentation',
               text: <Trans locale={locale}>Découvrir la documentation</Trans>,
             }}
-            trackingEvent={getLandingClickModelDocumentation(pathname)}
+            trackingEvent={getLandingClickModelDocumentation('/')}
           />
 
           <TitleDescLinkBlock
@@ -60,7 +57,7 @@ export default async function ModelInfo({ locale }: { locale: string }) {
               href: '/nouveautes',
               text: <Trans locale={locale}>Voir les nouveautés</Trans>,
             }}
-            trackingEvent={getLandingClickNouveautes(pathname)}
+            trackingEvent={getLandingClickNouveautes('/')}
           />
         </div>
       </div>

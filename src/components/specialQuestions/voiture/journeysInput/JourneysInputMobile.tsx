@@ -8,7 +8,7 @@ import JourneyItem from './_components/JourneyItem'
 import Summary from './_components/Summary'
 import AddJourneyMobile from './journeysInputMobile/AddJourneyMobile'
 
-type Props = {
+interface Props {
   journeys: Journey[]
   setJourneys: Dispatch<SetStateAction<Journey[]>>
   averagePassengers: number

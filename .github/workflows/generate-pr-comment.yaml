@@ -19,19 +19,23 @@ jobs:
     outputs:
       check-ui-result: ${{ steps.check-ui.outputs.result }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
       - run: git log | head && git status
-      - uses: actions/setup-node@v3
+      - name: Install pnpm
+        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061
+      - name: Use Node.js
+        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f
         with:
-          node-version: '22.14'
-          cache: 'yarn'
-      - run: yarn install --immutable
+          node-version-file: './package.json'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
         shell: bash
-      - run: yarn ui:check
+      - run: pnpm ui:check
       - id: check-ui
         run: |
           # Checks the translation of the UI's texts
-          body="$(yarn ui:check --markdown 2> /dev/null | tail --lines=+7 | head --lines=-1)"
+          body="$(pnpm ui:check --markdown 2> /dev/null | tail --lines=+7 | head --lines=-1)"
           body="${body//'%'/'%25'}"
           body="${body//$'\n'/'%0A'}"
           body="${body//$'\r'/'%0D'}"
@@ -57,7 +61,7 @@ jobs:
           > _You will find more information about the translation in the dedicated file._
           " > result.md
       - name: Updating the PR
-        uses: actions/github-script@v6
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -79,7 +83,7 @@ jobs:
 
             core.info('Found the corresponding PR: #' + triggered_pr.number);
 
-            const marker = 'yarn-compile-result';
+            const marker = 'pnpm-compile-result';
 
             if (!fs.existsSync('result.md')) {
               return core.info("Cannot find 'result.md', skipping")

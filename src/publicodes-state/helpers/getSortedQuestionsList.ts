@@ -1,8 +1,7 @@
-import { getGroupedQuestionsFromSubcat } from '@/helpers/publicodes/getGroupedQuestionsFromSubcat'
 import { getSubcatsOfCategory } from '@/helpers/publicodes/getSubcatsOfCategory'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
-type Props = {
+interface Props {
   questions: DottedName[]
   categories: string[]
   subcategories: string[]
@@ -60,26 +59,6 @@ export default function getSortedQuestionsList({
       subcategoriesOfBothQuestions.indexOf(
         bCategoryAndSubcategory as DottedName
       )
-    ) {
-      return -1
-    }
-
-    // At this point, both questions are in the same subcategory.
-
-    // then we make sure that questions with common 3 level subsubcategory stay together, and are ordered by missing variables score, and answered status
-    const subcatsOrderedQuestions = getGroupedQuestionsFromSubcat(
-      questions,
-      aCategoryAndSubcategory as DottedName,
-      missingVariables
-    )
-
-    if (
-      subcatsOrderedQuestions.indexOf(a) > subcatsOrderedQuestions.indexOf(b)
-    ) {
-      return 1
-    }
-    if (
-      subcatsOrderedQuestions.indexOf(a) < subcatsOrderedQuestions.indexOf(b)
     ) {
       return -1
     }

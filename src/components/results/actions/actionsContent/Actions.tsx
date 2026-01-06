@@ -6,14 +6,14 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useEngine } from '@/publicodes-state'
 import type { Action } from '@/publicodes-state/types'
 import { getCorrectedValue } from '@/utils/getCorrectedValue'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, NGCRules } from '@incubateur-ademe/nosgestesclimat'
 import Image from 'next/image'
 import { useState } from 'react'
 import ActionList from './actions/ActionList'
 
-type Props = {
-  actions: (Action & { isIrrelevant: boolean })[]
-  rules: any
+interface Props {
+  actions: Action[]
+  rules: Partial<NGCRules>
   radical: boolean
 }
 
@@ -49,7 +49,7 @@ export default function Actions({
   const actions = rawActions.map((action) => ({
     ...action,
     value: getCorrectedValue(action),
-  })) as (Action & { isIrrelevant: boolean; value: number | undefined })[]
+  })) as Action[]
 
   const rejected = actions.filter(
     (action) => actionChoices?.[action.dottedName] === false
@@ -64,8 +64,7 @@ export default function Actions({
     {
       value: 0,
       dottedName: '' as DottedName,
-      isIrrelevant: false,
-    } as Action & { isIrrelevant: boolean; value: number | undefined }
+    }
   )
 
   const numberedActions = thresholds.map(([threshold, label], index) => {
@@ -234,7 +233,7 @@ export default function Actions({
       </section>
 
       <ActionList
-        actions={notRejected.filter((a: { value: any }) => a.value < 0)}
+        actions={notRejected.filter((a) => a.value < 0)}
         rules={rules}
         bilan={bilan}
         setActionWithFormOpen={setActionWithFormOpen}

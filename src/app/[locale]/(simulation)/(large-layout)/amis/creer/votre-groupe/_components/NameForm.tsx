@@ -16,9 +16,9 @@ import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
-import { useForm as useReactHookForm } from 'react-hook-form'
+import { useForm as useReactHookForm, type Control } from 'react-hook-form'
 
-type Inputs = {
+interface Inputs {
   name: string
   administratorName: string
   emoji: string
@@ -109,7 +109,7 @@ export default function NameForm({ user }: { user: CompleteUserServer }) {
       />
 
       <GridRadioInputs
-        control={control as any}
+        control={control as unknown as Control<Record<string, string | number>>}
         label={<Trans>Et une illustration</Trans>}
         helperText={<Trans>Pour faire joli et le reconnaitre !</Trans>}
         name="emoji"

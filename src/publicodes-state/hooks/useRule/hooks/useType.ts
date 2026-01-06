@@ -5,7 +5,7 @@ import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import type { EvaluatedNode } from 'publicodes'
 import { useMemo } from 'react'
 
-type Props = {
+interface Props {
   dottedName: DottedName
   rule: NGCRuleNode | undefined
   evaluation: EvaluatedNode | null
@@ -13,7 +13,13 @@ type Props = {
 
 export default function useType({ dottedName, rule, evaluation }: Props) {
   const type = useMemo<
-    'notQuestion' | 'mosaic' | 'choices' | 'boolean' | 'number' | undefined
+    | 'notQuestion'
+    | 'numberMosaic'
+    | 'selectMosaic'
+    | 'choices'
+    | 'boolean'
+    | 'number'
+    | undefined
   >(() => {
     return getType({ dottedName, rule, evaluation })
   }, [dottedName, rule, evaluation])

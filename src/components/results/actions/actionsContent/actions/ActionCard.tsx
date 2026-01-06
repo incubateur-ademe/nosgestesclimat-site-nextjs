@@ -27,17 +27,18 @@ import {
   useTempEngine,
   useUser,
 } from '@/publicodes-state'
+import type { Action } from '@/publicodes-state/types'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback } from 'react'
 import { twMerge } from 'tailwind-merge'
 import ActionValue from './ActionValue'
 
-type Props = {
-  action: any
+interface Props {
+  action: Action
   total: number
-  rule: any
+  rule: NGCRuleNode | undefined
   setActionWithFormOpen: (dottedName: DottedName) => void
   isFocused: boolean
   handleUpdatePersistedActions: () => void
@@ -52,9 +53,15 @@ export default function ActionCard({
 }: Props) {
   const { t } = useClientTranslation()
 
-  const { everyQuestions, safeEvaluate, rawMissingVariables } = useEngine()
+  const {
+    everyQuestions,
+    safeEvaluate,
+    rawMissingVariables,
+    everyMosaicChildrenWithParent,
+  } = useEngine()
 
   const { rules, extendedFoldedSteps } = useTempEngine()
+  const typedRules = rules
 
   const { toggleActionChoice, rejectAction } = useUser()
 
@@ -62,13 +69,16 @@ export default function ActionCard({
 
   const { dottedName, title, traversedVariables, missingVariables } = action
 
-  const { icônes: icons } = rule || action
+  const icons =
+    (rule?.rawNode as { icônes?: string })?.icônes ??
+    (action.rawNode as { icônes?: string })?.icônes
   const remainingQuestions = filterRelevantMissingVariables({
     everyQuestions,
     missingVariables: Object.keys(missingVariables || {}) as DottedName[],
     extendedFoldedSteps,
     safeEvaluate,
     rawMissingVariables,
+    everyMosaicChildrenWithParent,
   })
 
   const nbRemainingQuestions = remainingQuestions?.length
@@ -83,16 +93,16 @@ export default function ActionCard({
     return key === dottedName && actionChoices?.[key]
   })
 
-  const flatRule = (rules as any)?.[dottedName]
+  const flatRule = typedRules?.[dottedName]
 
-  const hasFormula = flatRule?.formule
+  const hasFormula = !!flatRule?.formule
   const isDisabled =
-    (flatRule &&
-      getIsActionDisabled(flatRule) &&
-      Object.keys(actionChoices || {}).some((key) => {
-        return traversedVariables.includes(key)
-      })) ||
-    action.isIrrelevant
+    flatRule &&
+    getIsActionDisabled(flatRule as { formule?: string }) &&
+    traversedVariables &&
+    Object.keys(actionChoices || {}).some((key) => {
+      return traversedVariables.includes(key)
+    })
 
   const handleChooseAction = useCallback(() => {
     if (isDisabled) return
@@ -103,6 +113,8 @@ export default function ActionCard({
     }
 
     toggleActionChoice(dottedName)
+
+    handleUpdatePersistedActions()
 
     if (!isSelected) {
       trackEvent(actionsClickYes(dottedName))
@@ -115,6 +127,7 @@ export default function ActionCard({
     isSelected,
     setActionWithFormOpen,
     toggleActionChoice,
+    handleUpdatePersistedActions,
   ])
 
   const handleRejectAction = () => {
@@ -188,7 +201,7 @@ export default function ActionCard({
             }
             type="button"
             aria-disabled={remainingQuestions?.length > 0}
-            aria-pressed={actionChoices?.[dottedName]}
+            aria-pressed={!!actionChoices?.[dottedName]}
             aria-label={`${title} ${actionChoices?.[dottedName] ? t('actions.chooseAction.ariaLabel.selected', 'Action sélectionnée, annuler la sélection') : t('actions.chooseAction.ariaLabel.unselected', 'Sélectionner cette action')}`}
             className={twMerge(
               hasRemainingQuestions ? 'grayscale' : '',

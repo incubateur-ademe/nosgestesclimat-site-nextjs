@@ -6,7 +6,10 @@ import { formatFootprint } from '@/helpers/formatters/formatFootprint'
 import { useRule } from '@/publicodes-state'
 import { twMerge } from 'tailwind-merge'
 
-type Props = { total?: number; isSmall?: boolean }
+interface Props {
+  total?: number
+  isSmall?: boolean
+}
 export default function WaterTotalNumber({ total, isSmall }: Props) {
   const hookValue = useRule('bilan', eauMetric).numericValue
 

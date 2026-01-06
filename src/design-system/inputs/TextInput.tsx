@@ -11,13 +11,12 @@ import InputGroup from './InputGroup'
 
 export const defaultInputStyleClassNames = `rounded-md border border-solid border-slate-500 bg-white transition-colors placeholder:text-slate-500`
 
-type Props = {
+interface Props {
   name: string
   label?: string | ReactNode
   type?: string
   isInvalid?: boolean
   error?: string | ReactNode
-  successMessage?: ReactNode | string
   helperText?: string | ReactNode
   srOnlyHelperText?: string | ReactNode
   className?: string
@@ -42,7 +41,6 @@ export default forwardRef(function TextInput(
     label,
     type = 'text',
     error,
-    successMessage,
     helperText,
     srOnlyHelperText,
     mention,

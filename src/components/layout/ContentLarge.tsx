@@ -6,7 +6,7 @@ type ContentLargeProps = HTMLAttributes<HTMLDivElement> &
   PropsWithChildren<{
     ref?: React.RefObject<HTMLDivElement | null>
     className?: string
-    tag?: React.ElementType | string
+    tag?: React.ElementType
   }>
 
 export default function ContentLarge({

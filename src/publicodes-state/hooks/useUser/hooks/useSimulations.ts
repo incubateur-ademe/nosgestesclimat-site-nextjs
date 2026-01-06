@@ -13,7 +13,7 @@ import type { Dispatch, SetStateAction } from 'react'
 import { useCallback, useMemo } from 'react'
 import type { Simulation, UpdateCurrentSimulationProps } from '../../../types'
 
-type Props = {
+interface Props {
   simulations: Simulation[]
   setSimulations: Dispatch<SetStateAction<Simulation[]>>
   currentSimulationId: string
@@ -168,7 +168,7 @@ export default function useSimulations({
           if (foldedSteps !== undefined) {
             // We sync the extendedSituation if foldedSteps are removed. If foldedStep is added, it is dealt with foldedStepToAdd.
             const removedDottedNames = simulationToUpdate.foldedSteps.filter(
-              (dottedName) => !foldedSteps.includes(dottedName as DottedName)
+              (dottedName) => !foldedSteps.includes(dottedName)
             )
             removedDottedNames.forEach((dottedName) => {
               simulationToUpdate.extendedSituation[
@@ -284,13 +284,4 @@ export default function useSimulations({
 
 const resetAideSaisie = () => {
   safeLocalStorage.removeItem('transport . voiture . km')
-  safeLocalStorage.removeItem(
-    'transport . avion . court courrier . heures de vol'
-  )
-  safeLocalStorage.removeItem(
-    'transport . avion . moyen courrier . heures de vol'
-  )
-  safeLocalStorage.removeItem(
-    'transport . avion . long courrier . heures de vol'
-  )
 }

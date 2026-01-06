@@ -21,7 +21,7 @@ Le code utilise NextJS / Typescript / React / TailwindCSS, entre autres.
 Pour lancer le site, utilisant le dernier modèle de calcul publié, il suffit de lancer :
 
 ```
-yarn && yarn dev
+pnpm && pnpm dev
 ```
 
 ### Tests
@@ -32,9 +32,9 @@ Nous utilisons [Cypress](https://www.cypress.io/) pour les tests e2e.
 
 Pour lancer les tests:
 
-1. lancez le serveur local : `yarn dev`
-2. générez les fichiers de spécification des personas sur lesquels sont basés les tests : `yarn run e2e:generate`
-3. lancez `yarn run e2e` pour ouvrir l'interface Cypress.
+1. lancez le serveur local : `pnpm dev`
+2. générez les fichiers de spécification des personas sur lesquels sont basés les tests : `pnpm run e2e:generate`
+3. lancez `pnpm run e2e` pour ouvrir l'interface Cypress.
 
 ## Réutilisations de ce code
 

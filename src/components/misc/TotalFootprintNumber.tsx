@@ -13,7 +13,11 @@ import { twMerge } from 'tailwind-merge'
 
 type Sizes = 'md' | 'lg'
 
-type Props = { metric?: Metric; className?: string; size?: Sizes }
+interface Props {
+  metric?: Metric
+  className?: string
+  size?: Sizes
+}
 
 const duration = {
   carbone: <Trans>de CO₂e par an</Trans>,

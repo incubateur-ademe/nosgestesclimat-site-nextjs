@@ -1,6 +1,6 @@
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
-export const RULES_TO_HIDE: Set<DottedName> = new Set([
+export const RULES_TO_HIDE = new Set<DottedName>([
   'commun . mix électrique . empreinte eau',
   'transport . voiture . entretien',
   'transport . voiture . barème construction . barème thermique . empreinte par kg',
