@@ -86,7 +86,7 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
 
   // Close the menu with the Escape key
   useEffect(() => {
-    function handleEscape(event: KeyboardEvent) {
+    function handleEscape(event: globalThis.KeyboardEvent) {
       if (event.key === 'Escape' && isOpen) {
         setIsOpen(false)
         buttonRef.current?.focus()
@@ -94,9 +94,9 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
     }
 
     if (isOpen) {
-      document.addEventListener('keydown', handleEscape as any)
+      document.addEventListener('keydown', handleEscape)
       return () => {
-        document.removeEventListener('keydown', handleEscape as any)
+        document.removeEventListener('keydown', handleEscape)
       }
     }
   }, [isOpen])

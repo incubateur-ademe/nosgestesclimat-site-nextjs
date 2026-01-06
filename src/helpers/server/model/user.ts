@@ -36,7 +36,7 @@ export async function isUserAuthenticated(): Promise<boolean> {
     await fetchWithJWTCookie(USER_URL + '/me')
 
     return true
-  } catch (error) {
+  } catch {
     return false
   }
 }

@@ -42,9 +42,10 @@ export default function SendVerificationCodeForm({
   const { createVerificationCodeError, createVerificationCode } =
     useCreateVerificationCode({ onComplete: onCodeSent, mode })
 
+  const userEmail = useUser().user.email
+
   const defaultEmail =
-    safeSessionStorage.getItem(EMAIL_PENDING_AUTHENTICATION_KEY) ??
-    useUser().user.email
+    safeSessionStorage.getItem(EMAIL_PENDING_AUTHENTICATION_KEY) ?? userEmail
 
   const {
     register,
@@ -62,7 +63,6 @@ export default function SendVerificationCodeForm({
       noValidate>
       <TextInput
         type="email"
-        shouldUseDebounce={false}
         autoComplete="email"
         data-cypress-id="organisation-connexion-email-input"
         label={inputLabel ?? <Trans>Votre adresse e-mail</Trans>}

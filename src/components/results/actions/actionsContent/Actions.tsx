@@ -31,6 +31,8 @@ export default function Actions({
 
   const bilan = { nodeValue: getValue('bilan'), dottedName: 'bilan' }
 
+  const { actionChoices } = useCurrentSimulation()
+
   // Don't render if engine is not initialized or if bilan is not available
   if (!isInitialized || bilan.nodeValue == null) {
     return null
@@ -43,8 +45,6 @@ export default function Actions({
     [10, t('plus de 10 kg')],
     [1, t("plus d'1 kg")],
   ]
-
-  const { actionChoices } = useCurrentSimulation()
 
   const actions = rawActions.map((action) => ({
     ...action,

@@ -32,7 +32,6 @@ interface Props {
   'data-cypress-id'?: string
   autoComplete?: string
   mention?: string
-  shouldUseDebounce?: boolean
 }
 
 export default forwardRef(function TextInput(
@@ -54,7 +53,6 @@ export default forwardRef(function TextInput(
     debounceTimeout = 100,
     readOnly = false,
     autoComplete = 'off',
-    shouldUseDebounce = true,
     ...props
   }: HTMLAttributes<HTMLInputElement> & Props,
   ref: ForwardedRef<HTMLInputElement>

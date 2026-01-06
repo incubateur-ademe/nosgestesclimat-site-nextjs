@@ -45,8 +45,9 @@ export default function OrganisationForm({
   } = usePendingVerification({})
 
   // @TODO : handle error code
-  const { createVerificationCode, createVerificationCodeError } =
-    useCreateVerificationCode({ onComplete: registerVerification })
+  const { createVerificationCode } = useCreateVerificationCode({
+    onComplete: registerVerification,
+  })
 
   const updateOrganisation = useUpdateOrganisation()
 

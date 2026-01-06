@@ -8,7 +8,6 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useLocale } from '@/hooks/useLocale'
 import { useActions, useEngine, useRule } from '@/publicodes-state'
 import type { Metric } from '@/publicodes-state/types'
-import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
 type Sizes = 'md' | 'lg'
@@ -30,8 +29,6 @@ export default function TotalFootprintNumber({
 }: Props) {
   const locale = useLocale()
   const { t } = useClientTranslation()
-
-  const pathname = usePathname()
 
   const { isInitialized } = useEngine()
 

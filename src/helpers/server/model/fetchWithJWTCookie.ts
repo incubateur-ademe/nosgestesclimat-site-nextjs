@@ -10,10 +10,7 @@ import {
 
 export async function fetchWithJWTCookie(
   url: string,
-  {
-    method = 'GET',
-    setCookies = false,
-  }: { method?: 'GET' | 'POST'; setCookies?: boolean } = {}
+  { method = 'GET' }: { method?: 'GET' | 'POST'; setCookies?: boolean } = {}
 ) {
   const cookieStore = await cookies()
   const ngcCookie = cookieStore.get('ngcjwt')

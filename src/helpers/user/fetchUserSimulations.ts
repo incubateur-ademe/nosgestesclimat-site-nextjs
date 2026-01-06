@@ -2,6 +2,7 @@ import { SIMULATION_URL } from '@/constants/urls/main'
 import { getInitialExtendedSituation } from '@/helpers/modelFetching/getInitialExtendedSituation'
 import { mapNewSimulationToOld } from '@/helpers/simulation/mapNewSimulation'
 import type { Simulation } from '@/publicodes-state/types'
+import type { Simulation as NewSimulation } from '@/types/organisations'
 import { captureException } from '@sentry/nextjs'
 
 export async function fetchUserSimulations({
@@ -25,7 +26,7 @@ export async function fetchUserSimulations({
 
     // Map from new format to old format
     const simulations = Array.isArray(data)
-      ? data.map((simulation: any) => {
+      ? data.map((simulation: NewSimulation) => {
           const mappedSimulation = mapNewSimulationToOld(simulation)
 
           // Ensure extendedSituation is always defined (for old simulations that might not have it)

@@ -16,7 +16,7 @@ export async function fetchOrganisationsClient() {
     const data = await response.json()
 
     return { organisations: data, isError: false }
-  } catch (error) {
+  } catch {
     // User may not have any organisations
     return { organisations: [], isError: false }
   }

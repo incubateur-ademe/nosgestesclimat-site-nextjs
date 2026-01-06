@@ -24,7 +24,7 @@ export default async function MySpaceButton() {
   try {
     const user = await getUser()
     return <MySpaceDropdown email={user.email} onLogout={logoutAndRedirect} />
-  } catch (error) {
+  } catch {
     return (
       <ButtonLinkServer
         color="secondary"

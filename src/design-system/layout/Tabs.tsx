@@ -8,7 +8,7 @@ export interface TabItem {
   href?: string
   isActive?: boolean
   className?: string
-  [key: string]: any
+  [key: string]: any // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 interface TabsProps {
@@ -37,7 +37,7 @@ const TabLink = ({
   const activeClasses =
     'font-bold px-1 md:px-4 py-3 border-primary-600! border-current text-primary-600'
 
-  const { id, label, href, isActive, className, prefetch, ...otherProps } = item
+  const { href, isActive, className, prefetch, ...otherProps } = item
 
   if (isLocked) {
     return (

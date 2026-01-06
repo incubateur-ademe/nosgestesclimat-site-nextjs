@@ -37,7 +37,7 @@ export async function fetchThematicLandingPageMetadata({
     return {
       thematicLandingPageMetadata: thematicLPMetadata,
     }
-  } catch (error) {
+  } catch {
     return {}
   }
 }

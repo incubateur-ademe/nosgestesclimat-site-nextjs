@@ -1,12 +1,9 @@
-import { useIframe } from '@/hooks/useIframe'
 import { useSortedSubcategoriesByFootprint } from '@/hooks/useSortedSubcategoriesByFootprint'
 import { useSortedUiCategoriesByFootprint } from '@/hooks/useSortedUiCategoriesByFootprint'
 import OtherWays from './OtherWays'
 import Subcategory from './subcategories/Subcategory'
 
 export default function Subcategories() {
-  const { isFrenchRegion } = useIframe()
-
   const { sortedSubcategories } = useSortedSubcategoriesByFootprint()
 
   const { sortedUiCategories } = useSortedUiCategoriesByFootprint()

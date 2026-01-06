@@ -24,7 +24,6 @@ export async function generateMetadata({
 /* global LayoutProps */
 export default async function Layout({
   children,
-  params,
 }: LayoutProps<'/[locale]/organisations/[orgaSlug]/creer-campagne'>) {
   return children
 }
