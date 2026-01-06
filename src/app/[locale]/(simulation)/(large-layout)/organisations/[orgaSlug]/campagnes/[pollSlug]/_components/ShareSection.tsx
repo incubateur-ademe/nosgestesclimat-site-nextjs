@@ -8,13 +8,13 @@ import WhatsappIcon from '@/components/icons/share/WhatsappIcon'
 import Link from '@/components/Link'
 import QRCode from '@/components/sharing/QRCode'
 import Trans from '@/components/translation/trans/TransClient'
-import { UTM_MEDIUM_KEY } from '@/constants/urls/matomo'
 import {
   FACEBOOK_SHARE_URL,
   LINKEDIN_SHARE_URL,
   MESSENGER_SHARE_MOBILE_URL,
   WHATSAPP_SHARE_URL,
 } from '@/constants/urls/share'
+import { UTM_MEDIUM_KEY, UTM_SOURCE_KEY } from '@/constants/urls/utm'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import CopyButton from '@/design-system/buttons/CopyButton'
 import Card from '@/design-system/layout/Card'
@@ -39,7 +39,7 @@ const buildLink = ({
   orgaSlug: string
   pollSlug: string
 }) => {
-  return `${window.location.origin}/o/${orgaSlug}/${pollSlug}?${UTM_MEDIUM_KEY}=sharelink_orga`
+  return `${window.location.origin}/o/${orgaSlug}/${pollSlug}?${UTM_MEDIUM_KEY}=sharelink&${UTM_SOURCE_KEY}=NGC`
 }
 
 export default function ShareSection({ poll, className, title }: Props) {
