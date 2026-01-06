@@ -15,6 +15,7 @@ import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import Link from 'next/link'
 import { type KeyboardEvent, useEffect, useId, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -197,6 +198,10 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
     trackEvent(headerClickLogoutAuthenticatedServer)
     trackPosthogEvent(captureClickHeaderLogoutAuthenticatedServer)
     setIsOpen(false)
+
+    // Clear the localStorage for the app
+    safeLocalStorage.removeItem('nosgestesclimat::v3')
+
     onLogout()
   }
 

@@ -66,9 +66,7 @@ vi.mock('@/publicodes-state', () => ({
 
 // Wrapper simple pour le test
 const TestWrapper = ({ children }: { children: React.ReactNode }) => (
-  <IframeOptionsProvider>
-    <div id="nosgestesclimat-container">{children}</div>
-  </IframeOptionsProvider>
+  <IframeOptionsProvider>{children}</IframeOptionsProvider>
 )
 
 describe('IframeDataShareModal', () => {
