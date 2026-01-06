@@ -23,7 +23,6 @@ interface Inputs {
 
 export default function Email() {
   const searchParams = useSearchParams()
-
   const fixedEmail = searchParams.get('fixedemail') ? true : false
 
   const { user, updateEmail } = useUser()

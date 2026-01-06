@@ -21,7 +21,7 @@ export default function TutorialLink({ className }: Props) {
       color="text"
       href={getLinkToTutoriel({
         locale,
-        searchParams: searchParams,
+        searchParams,
       })}
       className={twMerge('flex w-full justify-center', className)}
       trackingEvent={profilClickTutoriel}>

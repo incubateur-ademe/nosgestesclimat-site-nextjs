@@ -22,6 +22,7 @@ import FootprintDistribution from './_components/footPrintDistribution/Footprint
 export default function CampagnePage() {
   const { orgaSlug, pollSlug } = useParams()
   const searchParams = useSearchParams()
+
   const isRedirectFromLegacy = Boolean(searchParams.get('isRedirectFromLegacy'))
 
   useHandleRedirectFromLegacy()
