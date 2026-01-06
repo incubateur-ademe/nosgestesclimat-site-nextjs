@@ -3,7 +3,7 @@ import { useUser } from '@/publicodes-state'
 import dayjs from 'dayjs'
 import { useCallback } from 'react'
 
-export type PendingVerification = {
+export interface PendingVerification {
   expirationDate: Date
   email: string
 }

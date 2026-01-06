@@ -2,12 +2,12 @@ import { USER_URL } from '@/constants/urls/main'
 import { cookies } from 'next/headers'
 import { fetchWithJWTCookie } from './fetchWithJWTCookie'
 
-export type UserServer = {
+export interface UserServer {
   id: string
   email: string
 }
 
-type BrevoContact = {
+interface BrevoContact {
   id: number
   email: string
   listIds: number[]

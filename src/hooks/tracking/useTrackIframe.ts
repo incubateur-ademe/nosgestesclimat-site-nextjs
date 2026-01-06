@@ -1,3 +1,4 @@
+import { CONTAINER_ID } from '@/app/[locale]/_components/mainLayoutProviders/IframeOptionsContext'
 import {
   trackingIframeInteraction,
   trackingIframeVisit,
@@ -53,7 +54,7 @@ export function useTrackIframe(isIframe: boolean) {
     const node =
       typeof window !== 'undefined'
         ? // Element located in MainLayoutProviders
-          document.getElementById('nosgestesclimat-container')
+          document.getElementById(CONTAINER_ID)
         : null
 
     if (!node) return

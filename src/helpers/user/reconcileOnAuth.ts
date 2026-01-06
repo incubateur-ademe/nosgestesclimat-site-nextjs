@@ -4,11 +4,11 @@ import { fetchUserSimulations } from '@/helpers/user/fetchUserSimulations'
 import type { LocalStorage, Simulation, User } from '@/publicodes-state/types'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 
-type Params = {
+interface Params {
   serverUserId: string
 }
 
-type Result = {
+interface Result {
   mergedUser: User
   mergedSimulations: Simulation[]
   currentSimulationId: string

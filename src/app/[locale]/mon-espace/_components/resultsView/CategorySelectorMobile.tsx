@@ -14,7 +14,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 type TabId = 'global' | DottedName
 
-type Props = {
+interface Props {
   activeTab: TabId
   setActiveTab: (tab: TabId) => void
   categoryLabels: Partial<Record<DottedName, string>>
@@ -52,9 +52,7 @@ export default function CategorySelectorMobile({
         onChange={(e) => {
           setActiveTab(e.target.value as TabId)
           trackEvent(clickCategorySelectorMobile(e.target.value))
-          trackPosthogEvent(
-            captureClickCategorySelectorMobile(e.target.value)
-          )
+          trackPosthogEvent(captureClickCategorySelectorMobile(e.target.value))
         }}
         disabled={disabled}
         containerClassName="w-full">

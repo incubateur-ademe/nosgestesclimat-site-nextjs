@@ -15,13 +15,13 @@ import {
   YAxis,
 } from 'recharts'
 
-type ChartData = {
+interface ChartData {
   date: Date
   dateStr: string
   value: number
 }
 
-type Props = {
+interface Props {
   locale: Locale
   chartData: ChartData[]
   lineColor: string

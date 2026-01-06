@@ -23,11 +23,11 @@ import { type ReactNode } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
-type Inputs = {
+interface Inputs {
   email?: string
 }
 
-type Props = {
+interface Props {
   submitLabel?: string | ReactNode
   className?: string
 }

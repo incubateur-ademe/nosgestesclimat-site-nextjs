@@ -108,7 +108,7 @@ export default function ActionsContent() {
           actions={actionsFilteredCategorically}
           rules={rules ?? {}}
           radical={radical}
-          key={`update-key-${category}-${actionChoices?.length}`}
+          key={`update-key-${category}-${Object.keys(actionChoices).length}`}
         />
 
         <AllerPlusLoin />

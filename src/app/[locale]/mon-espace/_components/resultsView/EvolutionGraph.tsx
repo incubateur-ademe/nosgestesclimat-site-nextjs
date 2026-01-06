@@ -12,7 +12,7 @@ import EvolutionChart from './EvolutionChart'
 
 type TabId = 'global' | DottedName
 
-type Props = {
+interface Props {
   locale: Locale
   simulations: Simulation[]
   hasSingleSimulation: boolean
@@ -107,7 +107,7 @@ export default function EvolutionGraph({
   const lineColor =
     activeTab === 'global'
       ? '#a60e66'
-      : COLORS[activeTab as DottedName] || '#a60e66'
+      : COLORS[activeTab] || '#a60e66'
 
   // Calculate Y-axis domain
   const values = chartData.map((d) => d.value)

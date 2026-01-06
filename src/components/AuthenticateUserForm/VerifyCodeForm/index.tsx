@@ -7,7 +7,7 @@ import { useCallback } from 'react'
 import NotReceived from './NotReceived'
 import VerificationContent from './VerificationContent'
 
-type Props<T extends object> = {
+interface Props<T extends object> {
   email: string
   onRegisterNewVerification: (newVerification: PendingVerification) => void
   onVerificationCompleted: () => void

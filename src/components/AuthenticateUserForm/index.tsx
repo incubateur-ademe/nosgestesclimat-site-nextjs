@@ -19,7 +19,7 @@ import { Trans } from 'react-i18next'
 import SendVerificationCodeForm from './SendVerificationCodeForm'
 import VerifyCodeForm from './VerifyCodeForm'
 
-type Props = {
+interface Props {
   buttonLabel?: string | ReactNode
   buttonColor?: 'primary' | 'secondary'
   inputLabel?: ReactNode | string

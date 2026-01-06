@@ -4,7 +4,7 @@ import { SIMULATOR_PATH } from '@/constants/urls/paths'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import type { Locale } from '@/i18nConfig'
 
-type Props = {
+interface Props {
   locale: Locale
 }
 

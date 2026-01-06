@@ -7,6 +7,8 @@ import { getIsIframe } from '@/utils/getIsIframe'
 import * as Sentry from '@sentry/nextjs'
 import { createContext, useEffect, useState } from 'react'
 
+export const CONTAINER_ID = 'nosgestesclimat-container'
+
 const getIsAllowedToBypassConsentDataShare = () => {
   if (typeof window === 'undefined') return false
   // https://stackoverflow.com/questions/6531534/document-location-parent-location-can-they-be-blocked
@@ -125,7 +127,7 @@ export const IframeOptionsProvider = ({
         iframeLang,
         isFrenchRegion,
       }}>
-      {children}
+      <div id={CONTAINER_ID}>{children}</div>
     </IframeOptionsContext.Provider>
   )
 }

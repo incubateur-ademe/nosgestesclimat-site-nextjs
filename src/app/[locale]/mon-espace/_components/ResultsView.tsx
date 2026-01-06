@@ -8,7 +8,7 @@ import EvolutionGraph from './resultsView/EvolutionGraph'
 import ResultsList from './resultsView/ResultsList'
 import ShareSimulator from './resultsView/ShareSimulator'
 
-type Props = {
+interface Props {
   locale: Locale
   simulations: Simulation[]
 }

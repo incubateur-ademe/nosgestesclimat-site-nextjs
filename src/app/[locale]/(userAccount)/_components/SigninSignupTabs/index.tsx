@@ -12,7 +12,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import type { AuthenticationMode } from '@/types/authentication'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 
-type Props = {
+interface Props {
   mode: AuthenticationMode
   className?: string
 }

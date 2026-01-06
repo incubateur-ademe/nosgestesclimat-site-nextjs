@@ -21,7 +21,7 @@ import { twMerge } from 'tailwind-merge'
 
 const MAX_EMAIL_LENGTH = 20
 
-type Props = {
+interface Props {
   email: string
   onLogout: () => void
 }

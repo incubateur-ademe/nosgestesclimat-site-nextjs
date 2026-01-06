@@ -11,7 +11,7 @@ import {
 } from '../../design-system/buttons/Button'
 import Card from '../../design-system/layout/Card'
 
-type Props = {
+interface Props {
   href: string
   label: ReactNode
   icon?: ReactNode
@@ -24,7 +24,7 @@ type Props = {
   imageHeight?: number | `${number}`
   imageClassName?: string
   ctaClassName?: string
-  tag?: ElementType | string
+  tag?: ElementType
   target?: string
 }
 

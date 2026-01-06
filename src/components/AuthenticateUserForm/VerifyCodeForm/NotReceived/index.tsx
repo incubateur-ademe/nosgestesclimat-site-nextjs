@@ -4,7 +4,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import ResendButton from './ResendButton'
 
-type Props = {
+interface Props {
   isRetryButtonDisabled: boolean
   isErrorResend: boolean
   onResendVerificationCode: () => void

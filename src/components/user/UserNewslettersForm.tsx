@@ -32,13 +32,13 @@ import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
 
-type Inputs = {
+interface Inputs {
   [SEASONAL_NEWSLETTER_LABEL]: boolean
   [TRANSPORTS_NEWSLETTER_LABEL]: boolean
   [LOGEMENT_NEWSLETTER_LABEL]: boolean
 }
 
-type Props = {
+interface Props {
   className?: string
   user?: UserServer
 }

@@ -12,7 +12,7 @@ import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 import GroupContent from './groups/GroupContent'
 
-type Props = {
+interface Props {
   groups: Group[]
 }
 

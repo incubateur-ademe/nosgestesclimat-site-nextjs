@@ -8,7 +8,7 @@ import type { Simulation } from '@/publicodes-state/types'
 import { captureException } from '@sentry/nextjs'
 import { sanitizeSimulation } from './sanitizeSimulation'
 
-type SaveSimulationParams = {
+interface SaveSimulationParams {
   simulation: Simulation
   userId: string
   email?: string

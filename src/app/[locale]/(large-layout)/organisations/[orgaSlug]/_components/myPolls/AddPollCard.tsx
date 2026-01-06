@@ -5,7 +5,7 @@ import PlusIcon from '@/components/icons/PlusIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import { useParams } from 'next/navigation'
 
-type Props = {
+interface Props {
   hasNoPollsYet?: boolean
 }
 

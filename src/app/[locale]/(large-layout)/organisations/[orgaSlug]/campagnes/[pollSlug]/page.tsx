@@ -29,11 +29,7 @@ export default function CampagnePage() {
 
   useHandleRedirectFromLegacy()
 
-  const {
-    data: poll,
-    isLoading: isLoadingPoll,
-    error: errorPoll,
-  } = useFetchPublicPoll({
+  const { data: poll, isLoading: isLoadingPoll } = useFetchPublicPoll({
     enabled: !isRedirectFromLegacy,
   })
 
@@ -136,7 +132,6 @@ export default function CampagnePage() {
           <PollStatistics
             simulationsCount={simulations?.finished ?? 0}
             computedResults={computedResults}
-            userComputedResults={userComputedResults}
             funFacts={funFacts}
             title={<Trans>Résultats de campagne</Trans>}
             poll={poll}

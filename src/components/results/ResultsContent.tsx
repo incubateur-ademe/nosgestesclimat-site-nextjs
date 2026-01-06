@@ -28,7 +28,7 @@ const titles: Record<Metric, ReactElement> = {
   [eauMetric]: <Trans>eau</Trans>,
 }
 
-type Props = {
+interface Props {
   simulation: Simulation
   userId?: string
   isStatic?: boolean
@@ -38,12 +38,10 @@ type Props = {
 function ResultsContentInner({
   isStatic,
   title,
-  containerRef,
   simulation,
 }: {
   isStatic?: boolean
   title?: string | ReactNode
-  containerRef: React.RefObject<HTMLDivElement | null>
   simulation: Simulation
 }) {
   const { currentMetric } = useCurrentMetric()
@@ -58,7 +56,7 @@ function ResultsContentInner({
 
   return (
     <EngineProvider rules={rules}>
-      <div className="relative" ref={containerRef}>
+      <div className="relative">
         <div className="flex justify-between">
           {title ?? (
             <Title tag="h1">
@@ -145,14 +143,11 @@ export default function ResultsContent({
         initialCurrentSimulationId={simulation.id}
         initialUserId={userId}>
         <IframeOptionsProvider>
-          {(containerRef) => (
-            <ResultsContentInner
-              isStatic={isStatic}
-              title={title}
-              containerRef={containerRef}
-              simulation={simulation}
-            />
-          )}
+          <ResultsContentInner
+            isStatic={isStatic}
+            title={title}
+            simulation={simulation}
+          />
         </IframeOptionsProvider>
       </UserProvider>
     </QueryClientProviderWrapper>

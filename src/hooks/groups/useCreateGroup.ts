@@ -13,9 +13,9 @@ interface MutateAsyncProps {
       name: string
       email?: string
     }
-    participants: Array<{
+    participants: {
       simulation: Simulation
-    }>
+    }[]
   }
 }
 

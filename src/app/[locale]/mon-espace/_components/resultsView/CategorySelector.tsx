@@ -11,7 +11,7 @@ import { twMerge } from 'tailwind-merge'
 
 type TabId = 'global' | DottedName
 
-type Props = {
+interface Props {
   activeTab: TabId
   setActiveTab: (tab: TabId) => void
   categoryLabels: Partial<Record<DottedName, string>>

@@ -5,7 +5,7 @@ import type { Locale } from '@/i18nConfig'
 import type { Simulation } from '@/publicodes-state/types'
 import SeeListItemDetailLink from './resultsList/SeeListItemDetailLink'
 
-type Props = {
+interface Props {
   locale: Locale
   simulations: Simulation[]
 }

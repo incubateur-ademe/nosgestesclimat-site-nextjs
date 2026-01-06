@@ -2,7 +2,7 @@ import Trans from '@/components/translation/trans/TransClient'
 import type { Organisation } from '@/types/organisations'
 import OrganisationItem from './pollList/OrganisationItem'
 
-type Props = {
+interface Props {
   organisation: Organisation
 }
 

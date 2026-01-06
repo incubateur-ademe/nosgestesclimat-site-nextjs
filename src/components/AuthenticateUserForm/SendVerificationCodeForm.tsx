@@ -19,7 +19,7 @@ import { isEmailValid } from '@/utils/isEmailValid'
 import { type ReactNode } from 'react'
 import { useForm } from 'react-hook-form'
 
-type Props = {
+interface Props {
   buttonLabel?: string | ReactNode
   buttonColor?: 'primary' | 'secondary'
   mode?: AuthenticationMode
@@ -27,7 +27,7 @@ type Props = {
   inputLabel?: ReactNode | string
 }
 
-type FormData = {
+interface FormData {
   email: string
 }
 

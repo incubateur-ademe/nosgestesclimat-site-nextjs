@@ -22,7 +22,7 @@ export default function MainLayoutProviders({ children }: PropsWithChildren) {
                   <Suspense>
                     <MainHooks />
                   </Suspense>
-                  <div id="nosgestesclimat-container">{children}</div>
+                  {children}
                 </PreventNavigationProvider>
               </IframeOptionsProvider>
             </PartnerProvider>
