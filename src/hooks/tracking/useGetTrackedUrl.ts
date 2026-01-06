@@ -3,9 +3,8 @@ import {
   ADMINISTRATOR_NAME_KEY,
 } from '@/constants/group'
 import i18nConfig from '@/i18nConfig'
-import { useSearchParams } from 'next/navigation'
 
-import { usePathname } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 
 // Params to anonymise and their replacement in the URL
 const PARAMS_TO_ANONYMISE = {

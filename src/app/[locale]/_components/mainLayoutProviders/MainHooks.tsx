@@ -6,20 +6,22 @@
 'use client'
 
 import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
+import { useTrackIframe } from '@/hooks/tracking/useTrackIframe'
 import { useTrackRegion } from '@/hooks/tracking/useTrackRegion'
 import { useFixedRegion } from '@/hooks/useFixedRegion'
 import { useInitSimulationParam } from '@/hooks/useInitSimulationParam'
 import { useRedirectIfInAppBrowser } from '@/hooks/useRedirectIfInAppBrowser'
 import { useUserInfosParams } from '@/hooks/useUserInfosParams'
-import type { PropsWithChildren } from 'react'
+import { getIsIframe } from '@/utils/getIsIframe'
 
-export default function MainHooks({ children }: PropsWithChildren) {
+export default function MainHooks() {
   useSetCurrentSimulationFromParams()
   useTrackRegion()
   useFixedRegion()
   useUserInfosParams()
   useInitSimulationParam()
   useRedirectIfInAppBrowser()
+  useTrackIframe(getIsIframe())
 
-  return children
+  return null
 }

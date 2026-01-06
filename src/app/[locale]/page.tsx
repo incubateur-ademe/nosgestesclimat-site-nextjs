@@ -1,7 +1,8 @@
-import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
+import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
 import Footer from '@/components/layout/Footer'
 import JSONLD from '@/components/seo/JSONLD'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
+import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
@@ -11,9 +12,9 @@ import {
   getLandingClickCTAResume,
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
+import i18nConfig from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
-import dynamic from 'next/dynamic'
-import { headers } from 'next/headers'
+import { Suspense } from 'react'
 import Partners from '../../components/landing-pages/Partners'
 import { ClientLayout } from '../../components/layout/ClientLayout'
 import CollectivelyCommit from './_components/CollectivelyCommit'
@@ -28,10 +29,6 @@ import ModelInfo from './_components/ModelInfo'
 import TheySpeakAboutUs from './_components/TheySpeakAboutUs'
 import TwoFootprints from './_components/TwoFootprints'
 
-const DynamicCTAButtons = dynamic(
-  () => import('@/components/cta/DynamicCTAButtons'),
-  { loading: () => <CTAButtonsPlaceholder /> }
-)
 export const generateMetadata = getCommonMetadata({
   title: t('Calculez votre empreinte carbone et eau avec Nos Gestes Climat'),
   image:
@@ -44,11 +41,14 @@ export const generateMetadata = getCommonMetadata({
   },
 })
 
+export function generateStaticParams() {
+  return i18nConfig.locales.map((locale: string) => ({
+    locale,
+  }))
+}
+
 export default async function Homepage({ params }: DefaultPageProps) {
   const { locale } = await params
-
-  const headersList = await headers()
-  const pathname = headersList.get('x-pathname') || '/'
 
   return (
     <ClientLayout locale={locale}>
@@ -71,26 +71,25 @@ export default async function Homepage({ params }: DefaultPageProps) {
             <HomePageDescription />
 
             <div className="flex flex-col items-center gap-6 md:order-2 md:mt-0 md:items-start">
-              <DynamicCTAButtons
-                trackingEvents={{
-                  start: getLandingClickCTAStart(
-                    pathname,
-                    trackingActionClickCTA
-                  ),
-                  resume: getLandingClickCTAResume(
-                    pathname,
-                    trackingActionClickCTA
-                  ),
-                  results: getLandingClickCTAResults(
-                    pathname,
-                    trackingActionClickCTA
-                  ),
-                  restart: getLandingClickCTARestart(
-                    pathname,
-                    trackingActionClickCTA
-                  ),
-                }}
-              />
+              <Suspense fallback={<BlockSkeleton />}>
+                <DynamicCTAButtons
+                  trackingEvents={{
+                    start: getLandingClickCTAStart('/', trackingActionClickCTA),
+                    resume: getLandingClickCTAResume(
+                      '/',
+                      trackingActionClickCTA
+                    ),
+                    results: getLandingClickCTAResults(
+                      '/',
+                      trackingActionClickCTA
+                    ),
+                    restart: getLandingClickCTARestart(
+                      '/',
+                      trackingActionClickCTA
+                    ),
+                  }}
+                />
+              </Suspense>
 
               {/* Displayed on mobile only */}
               <div className="mx-auto mt-4 max-w-80 md:mt-0 md:hidden">
