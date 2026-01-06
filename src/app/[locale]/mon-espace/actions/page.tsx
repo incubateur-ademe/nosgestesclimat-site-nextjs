@@ -39,13 +39,13 @@ export default async function MonEspaceActionsPage({
 
         <ProfileTab activePath={MON_ESPACE_ACTIONS_PATH} />
 
-        <UserProvider
-          initialSimulations={simulations}
-          initialCurrentSimulationId={latestSimulation?.id}
-          initialUserId={user.id}>
-          {simulations && simulations?.length <= 0 ? (
-            <NoResultsBlock locale={locale} />
-          ) : (
+        {!simulations || simulations?.length <= 0 ? (
+          <NoResultsBlock locale={locale} />
+        ) : (
+          <UserProvider
+            initialSimulations={simulations}
+            initialCurrentSimulationId={latestSimulation?.id}
+            initialUserId={user.id}>
             <QueryClientProviderWrapper>
               <EngineProvider rules={rules}>
                 <FormProvider>
@@ -61,8 +61,8 @@ export default async function MonEspaceActionsPage({
                 </FormProvider>
               </EngineProvider>
             </QueryClientProviderWrapper>
-          )}
-        </UserProvider>
+          </UserProvider>
+        )}
       </div>
     </ContentLarge>
   )

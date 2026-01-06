@@ -1,10 +1,10 @@
 import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import Trans from '@/components/translation/trans/TransServer'
-import UserEmailForm from '@/components/user/UserEmailForm'
 import UserNewslettersForm from '@/components/user/UserNewslettersForm'
 import { getLocale } from '@/helpers/language/getLocale'
 import { getUser } from '@/helpers/server/model/user'
 import { UserProvider } from '@/publicodes-state'
+import UserEmail from './userInfoSection/UserEmail'
 
 export default async function UserInfoSection() {
   const locale = await getLocale()
@@ -21,16 +21,7 @@ export default async function UserInfoSection() {
       <QueryClientProviderWrapper>
         <UserProvider>
           <div className="max-w-[720px]">
-            <UserEmailForm
-              submitLabel={
-                <Trans
-                  i18nKey="mon-espace.settings.userInfos.submitLabel"
-                  locale={locale}>
-                  Mettre à jour mes informations
-                </Trans>
-              }
-              className="mb-8"
-            />
+            <UserEmail />
 
             <UserNewslettersForm user={user} />
           </div>

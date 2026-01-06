@@ -87,8 +87,8 @@ export default function SendVerificationCodeForm({
           className="mt-4"
           description={
             <Trans i18nKey="signIn.email.error.userDoesNotExist">
-              Ah ! Nous n’avons pas d’e-mail enregistré à cette adresse.
-              Veuillez vous inscrire pour accéder à votre espace.
+              Nous n’avons pas d’e-mail enregistré à cette adresse. Veuillez
+              vous inscrire pour accéder à votre espace.
             </Trans>
           }
         />
@@ -99,8 +99,8 @@ export default function SendVerificationCodeForm({
           className="mt-4"
           description={
             <Trans i18nKey="signIn.email.error.userAlreadyExists">
-              Ah ! Vous avez déjà un compte avec cet e-mail. Merci de vous
-              connecter directement.
+              Vous avez déjà un compte avec cet e-mail. Merci de vous connecter
+              directement.
             </Trans>
           }
         />
