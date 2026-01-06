@@ -49,7 +49,6 @@ export default function NameForm({ user }: { user: CompleteUserServer }) {
   const currentSimulation = useCurrentSimulation()
   const hasCompletedTest = currentSimulation.progression === 1
   const { goToSimulateurPage } = useSimulateurPage()
-  console.log({ hasCompletedTest, currentSimulation })
 
   async function onSubmit({ name, emoji, administratorName }: Inputs) {
     try {
