@@ -24,7 +24,11 @@ interface Inputs {
   emoji: string
 }
 
-export default function NameForm({ user }: { user: CompleteUserServer }) {
+export default function NameForm({
+  user,
+}: {
+  user: CompleteUserServer | null
+}) {
   const { t } = useClientTranslation()
   const {
     register,
@@ -33,7 +37,7 @@ export default function NameForm({ user }: { user: CompleteUserServer }) {
     formState: { errors },
   } = useReactHookForm<Inputs>({
     defaultValues: {
-      administratorName: user.name ?? '',
+      administratorName: user?.name ?? '',
     },
   })
 
@@ -57,9 +61,9 @@ export default function NameForm({ user }: { user: CompleteUserServer }) {
           name: name ?? '',
           emoji: emoji ?? '',
           administrator: {
-            userId: user.id,
+            userId: user?.id ?? '',
             name: administratorName ?? '',
-            email: user.email ?? '',
+            email: user?.email ?? '',
           },
           participants: hasCompletedTest
             ? [{ simulation: currentSimulation }]

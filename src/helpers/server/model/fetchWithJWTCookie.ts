@@ -15,7 +15,7 @@ export async function fetchWithJWTCookie(
   const cookieStore = await cookies()
   const ngcCookie = cookieStore.get('ngcjwt')
   if (!ngcCookie) {
-    throw new UnauthorizedError()
+    return null
   }
 
   const response = await fetch(url, {
