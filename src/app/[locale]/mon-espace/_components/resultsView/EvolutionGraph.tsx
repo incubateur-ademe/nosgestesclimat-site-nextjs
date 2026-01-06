@@ -105,9 +105,7 @@ export default function EvolutionGraph({
 
   // Get line color based on active tab
   const lineColor =
-    activeTab === 'global'
-      ? '#a60e66'
-      : COLORS[activeTab] || '#a60e66'
+    activeTab === 'global' ? '#a60e66' : COLORS[activeTab] || '#a60e66'
 
   // Calculate Y-axis domain
   const values = chartData.map((d) => d.value)
