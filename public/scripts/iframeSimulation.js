@@ -58,17 +58,19 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
 
   const utmSourceParam = script.dataset.utm_source
 
-  const utmMediumParam = `iframe`
+  const utmCampaignParam = script.dataset.utm_campaign
 
-  const utmCampaignParam = script.dataset.utm_campaign ?? 'integration'
+  const utmMediumParam = `iframe`
 
   if (utmSourceParam != undefined) {
     url.searchParams.append('utm_source', utmSourceParam)
   }
 
-  url.searchParams.append('utm_medium', utmMediumParam)
+  if (utmCampaignParam != undefined) {
+    url.searchParams.append('utm_campaign', utmCampaignParam)
+  }
 
-  url.searchParams.append('utm_campaign', utmCampaignParam)
+  url.searchParams.append('utm_medium', utmMediumParam)
 
   possibleOptions
     .filter(

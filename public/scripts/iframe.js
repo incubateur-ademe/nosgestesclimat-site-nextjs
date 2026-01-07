@@ -34,10 +34,8 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
   // Append tracking utm params
 
   const utmMediumParam = `iframe_oldscript`
-  const utmCampaignParam = 'integration'
 
   url.searchParams.append('utm_medium', utmMediumParam)
-  url.searchParams.append('utm_campaign', utmCampaignParam)
 
   possibleOptions.forEach(({ key, legacy }) => {
     const value = script.dataset[key] || script.dataset[legacy]
