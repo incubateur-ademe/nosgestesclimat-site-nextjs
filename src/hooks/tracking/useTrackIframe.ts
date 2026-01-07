@@ -11,7 +11,9 @@ import {
   trackPageView,
   trackPosthogEvent,
 } from '@/utils/analytics/trackEvent'
+import { captureException } from '@sentry/nextjs'
 import { usePathname } from 'next/navigation'
+import posthog from 'posthog-js'
 import { useEffect, useRef, useState } from 'react'
 import { useGetTrackedUrl } from './useGetTrackedUrl'
 export function useTrackIframe(isIframe: boolean) {
@@ -41,7 +43,7 @@ export function useTrackIframe(isIframe: boolean) {
       )
     }
 
-    return urlParams.get('integratorUrl') || "Pas d'URL d'intégration"
+    return urlParams.get('integratorUrl') || 'No integratorUrl'
   }
 
   // Set up the intersection observer
@@ -80,6 +82,36 @@ export function useTrackIframe(isIframe: boolean) {
       node.removeEventListener('touchstart', handleInteraction)
     }
   }, [ref, isIframe])
+
+  // Set the custom referrer when iframe is visible (only once)
+  const [referrerSet, setReferrerSet] = useState(false)
+
+  useEffect(() => {
+    if (!isIframe || referrerSet) {
+      return
+    }
+
+    if (!observed && entry?.isIntersecting) {
+      const customReferrer = getIntegratorUrl(isIframe)
+
+      if (customReferrer) {
+        try {
+          const url = new URL(customReferrer)
+          posthog.register({
+            $referrer: customReferrer,
+            $referring_domain: url.hostname,
+          })
+        } catch (error) {
+          // If the URL is not valid, still register the referrer
+          posthog.register({
+            $referrer: customReferrer,
+          })
+          captureException(error)
+        }
+        setReferrerSet(true)
+      }
+    }
+  }, [entry, observed, isIframe, referrerSet])
 
   // Track the page view when the iframe is visible
   useEffect(() => {
