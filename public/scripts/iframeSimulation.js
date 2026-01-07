@@ -58,7 +58,7 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
 
   const utmSourceParam = script.dataset.utm_source
 
-  const utmMediumParam = `iframeSimulation_script`
+  const utmMediumParam = `iframe`
 
   const utmCampaignParam = script.dataset.utm_campaign ?? 'integration'
 

@@ -32,13 +32,10 @@ if (!currentParams.has('iframe') && !currentParams.has('integratorUrl')) {
   url.searchParams.append('integratorUrl', integratorUrl.toString())
 
   // Append tracking utm params
-  const utmSourceParam = `relais_${integratorUrl.host}`
 
-  const utmMediumParam = `iframe_script`
-
+  const utmMediumParam = `iframe_oldscript`
   const utmCampaignParam = 'integration'
 
-  url.searchParams.append('utm_source', utmSourceParam)
   url.searchParams.append('utm_medium', utmMediumParam)
   url.searchParams.append('utm_campaign', utmCampaignParam)
 
