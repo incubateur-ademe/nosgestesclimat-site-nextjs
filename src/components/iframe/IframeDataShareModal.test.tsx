@@ -67,11 +67,7 @@ vi.mock('@/publicodes-state', () => ({
 // Wrapper simple pour le test
 const TestWrapper = ({ children }: { children: React.ReactNode }) => (
   <IframeOptionsProvider>
-    {(containerRef) => (
-      <div ref={containerRef as React.RefObject<HTMLDivElement>}>
-        {children}
-      </div>
-    )}
+    <div id="nosgestesclimat-container">{children}</div>
   </IframeOptionsProvider>
 )
 

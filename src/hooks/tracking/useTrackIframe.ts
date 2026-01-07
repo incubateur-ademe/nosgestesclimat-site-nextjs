@@ -14,15 +14,15 @@ import {
 import { captureException } from '@sentry/nextjs'
 import { usePathname } from 'next/navigation'
 import posthog from 'posthog-js'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useGetTrackedUrl } from './useGetTrackedUrl'
+
 export function useTrackIframe(isIframe: boolean) {
   const path = usePathname()
 
   const { url, anonymizedUrl } = useGetTrackedUrl()
 
   // inspired from https://usehooks-ts.com/react-hook/use-intersection-observer
-  const ref = useRef<HTMLDivElement | null>(null)
   const [entry, setEntry] = useState<IntersectionObserverEntry>()
   const [observed, setObserved] = useState(false)
   const [hasInteracted, setHasInteracted] = useState(false)
@@ -52,7 +52,12 @@ export function useTrackIframe(isIframe: boolean) {
       return
     }
 
-    const node = ref.current
+    const node =
+      typeof window !== 'undefined'
+        ? // Element located in MainLayoutProviders
+          document.getElementById('nosgestesclimat-container')
+        : null
+
     if (!node) return
 
     // Add interaction listeners
@@ -81,7 +86,7 @@ export function useTrackIframe(isIframe: boolean) {
       node.removeEventListener('click', handleInteraction)
       node.removeEventListener('touchstart', handleInteraction)
     }
-  }, [ref, isIframe])
+  }, [isIframe])
 
   // Set the custom referrer when iframe is visible (only once)
   const [referrerSet, setReferrerSet] = useState(false)
@@ -146,6 +151,4 @@ export function useTrackIframe(isIframe: boolean) {
       trackPosthogEvent(captureIframeInteraction(urlInteractor))
     }
   }, [entry, observed, path, isIframe, hasInteracted])
-
-  return ref
 }
