@@ -34,6 +34,7 @@ export default function Card({
         className
       )}
       href={href}
+      scroll={false}
       style={style}
       {...props}>
       {children}

@@ -15,7 +15,7 @@ import { useUser } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
 import { useRouter } from 'next/navigation'
-import { Trans } from 'react-i18next'
+import Trans from '../translation/trans/TransClient'
 import SendVerificationCodeForm from './SendVerificationCodeForm'
 import VerifyCodeForm from './VerifyCodeForm'
 
@@ -38,7 +38,9 @@ export default function AuthenticateUserForm({
 }: Props) {
   const router = useRouter()
   const { user } = useUser()
+
   const [isRedirecting, setIsRedirecting] = useState(false)
+
   const complete = useCallback(() => {
     safeSessionStorage.removeItem(EMAIL_PENDING_AUTHENTICATION_KEY)
     setIsRedirecting(true)

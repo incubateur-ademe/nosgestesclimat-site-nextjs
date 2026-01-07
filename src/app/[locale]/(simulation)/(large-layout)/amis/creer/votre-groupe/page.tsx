@@ -1,8 +1,7 @@
 import StepsDisplay from '@/components/groups/StepsDisplay'
-import { linkToGroupCreation } from '@/constants/group'
+import { linkToGroupCreation, SHOW_STEP_KEY } from '@/constants/group'
 import { amisCreationVotreGroupeRetour } from '@/constants/tracking/pages/amisCreation'
-import { MON_ESPACE_RESULTS_PATH } from '@/constants/urls/paths'
-import GoBackLink from '@/design-system/inputs/GoBackLink'
+import GoBackButton from '@/design-system/inputs/GoBackButton'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
@@ -25,25 +24,29 @@ export const generateMetadata = getCommonMetadata({
   },
 })
 
-export default async function GroupNamePage({ params }: DefaultPageProps) {
+export default async function GroupNamePage({
+  params,
+  searchParams,
+}: DefaultPageProps<{ searchParams: { [SHOW_STEP_KEY]: string } }>) {
   const { locale } = await params
+  const { [SHOW_STEP_KEY]: showStep } = (await searchParams) ?? {}
 
   if (!(await isUserAuthenticated())) {
     redirect('/mon-espace/groupes')
   }
+  console.log('showStep', showStep)
   const { t } = await getServerTranslation({ locale })
 
   const user = await getCompleteUser()
 
   return (
     <div className="pb-8">
-      <GoBackLink
+      <GoBackButton
         className="mb-4 font-bold"
-        href={MON_ESPACE_RESULTS_PATH}
         eventTracked={amisCreationVotreGroupeRetour}
       />
 
-      <StepsDisplay currentStep={2} />
+      {Boolean(showStep) && <StepsDisplay currentStep={2} />}
 
       <Title
         title={t("Créer un groupe d'amis")}

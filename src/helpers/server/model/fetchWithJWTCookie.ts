@@ -26,6 +26,7 @@ export async function fetchWithJWTCookie(
     },
     credentials: 'include',
   })
+  console.log('response', response)
   if (!response.ok) {
     switch (response.status) {
       case 404:

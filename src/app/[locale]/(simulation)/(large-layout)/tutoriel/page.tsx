@@ -12,7 +12,7 @@ import ButtonBack from './_components/ButtonBack'
 
 export default function Tutoriel() {
   return (
-    <ContentLarge className="mt-10 px-4 lg:px-0">
+    <ContentLarge className="px-4 lg:px-0">
       <div className="mx-auto flex max-w-3xl flex-col overflow-auto">
         <Title
           data-cypress-id="tutoriel-title"

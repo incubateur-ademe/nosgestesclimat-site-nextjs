@@ -1,7 +1,8 @@
+import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import StepsDisplay from '@/components/groups/StepsDisplay'
-import { linkToGroupCreation } from '@/constants/group'
+import { linkToGroupCreation, SHOW_STEP_KEY } from '@/constants/group'
 import { amisCreationConnexionRetour } from '@/constants/tracking/pages/amisCreation'
-import GoBackLink from '@/design-system/inputs/GoBackLink'
+import GoBackButton from '@/design-system/inputs/GoBackButton'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
@@ -9,7 +10,6 @@ import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { isUserAuthenticated } from '@/helpers/server/model/user'
 import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
-import GroupCreationForm from './_components/GroupCreationForm'
 
 export const generateMetadata = getCommonMetadata({
   title: t('Créer un groupe, étape 1 sur 2 - Nos Gestes Climat'),
@@ -21,18 +21,16 @@ export const generateMetadata = getCommonMetadata({
   },
 })
 
-export default async function YourInfoPage({ params }: DefaultPageProps) {
-  console.log('isUserAuthenticated()', await isUserAuthenticated())
-  if (!(await isUserAuthenticated())) {
-    return redirect('/mon-espace/groupes')
+export default async function GroupConnexionPage({ params }: DefaultPageProps) {
+  if (await isUserAuthenticated()) {
+    return redirect('/amis/creer/votre-groupe')
   }
 
   const { t } = await getServerTranslation(params)
 
   return (
     <div className="pb-8">
-      <GoBackLink
-        href="/mon-espace/groupes"
+      <GoBackButton
         eventTracked={amisCreationConnexionRetour}
         className="mb-4 font-bold"
       />
@@ -41,10 +39,13 @@ export default async function YourInfoPage({ params }: DefaultPageProps) {
 
       <Title
         title={t("Créer un groupe d'amis")}
-        subtitle={t('Vos informations')}
+        subtitle={t('Invitez vos proches à passer le test')}
       />
 
-      <GroupCreationForm />
+      <AuthenticateUserForm
+        redirectURL={`/amis/creer/votre-groupe?${SHOW_STEP_KEY}=true`}
+        buttonLabel={t('auth.verifyemail', 'Vérifier mon adresse email')}
+      />
     </div>
   )
 }

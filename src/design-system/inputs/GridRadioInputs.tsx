@@ -54,7 +54,7 @@ export default function GridRadioInputs({
       {label ? (
         <label htmlFor={name} className="w-full">
           <span
-            className={`text-sm font-bold text-slate-900 ${
+            className={`font-bold text-slate-900 ${
               error ? 'text-red-700!' : ''
             }`}>
             {label}
@@ -63,7 +63,7 @@ export default function GridRadioInputs({
       ) : null}
 
       {helperText ? (
-        <span className="mt-1 mb-4 text-xs text-slate-500">{helperText}</span>
+        <span className="mt-1 mb-4 text-sm text-slate-600">{helperText}</span>
       ) : null}
 
       <Controller
