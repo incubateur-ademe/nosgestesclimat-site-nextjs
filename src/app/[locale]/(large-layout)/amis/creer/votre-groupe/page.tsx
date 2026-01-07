@@ -6,10 +6,7 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
-import {
-  getCompleteUser,
-  isUserAuthenticated,
-} from '@/helpers/server/model/user'
+import { getUser, isUserAuthenticated } from '@/helpers/server/model/user'
 import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
 import NameForm from './_components/NameForm'
@@ -34,10 +31,10 @@ export default async function GroupNamePage({
   if (!(await isUserAuthenticated())) {
     redirect('/mon-espace/groupes')
   }
-  console.log('showStep', showStep)
+
   const { t } = await getServerTranslation({ locale })
 
-  const user = await getCompleteUser()
+  const user = await getUser()
 
   return (
     <div className="pb-8">

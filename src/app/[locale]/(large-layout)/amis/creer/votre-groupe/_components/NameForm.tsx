@@ -8,11 +8,11 @@ import Button from '@/design-system/buttons/Button'
 import GridRadioInputs from '@/design-system/inputs/GridRadioInputs'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
 import TextInput from '@/design-system/inputs/TextInput'
-import type { CompleteUserServer } from '@/helpers/server/model/user'
+import type { UserServer } from '@/helpers/server/model/user'
 import { useCreateGroup } from '@/hooks/groups/useCreateGroup'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useCurrentSimulation } from '@/publicodes-state'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { captureException } from '@sentry/nextjs'
 import { useRouter } from 'next/navigation'
@@ -24,12 +24,11 @@ interface Inputs {
   emoji: string
 }
 
-export default function NameForm({
-  user,
-}: {
-  user: CompleteUserServer | null
-}) {
+export default function NameForm({ user }: { user: UserServer | null }) {
   const { t } = useClientTranslation()
+
+  const { user: userFromLocalStorage } = useUser()
+
   const {
     register,
     handleSubmit,
@@ -37,7 +36,7 @@ export default function NameForm({
     formState: { errors },
   } = useReactHookForm<Inputs>({
     defaultValues: {
-      administratorName: user?.name ?? '',
+      administratorName: userFromLocalStorage?.name ?? '',
     },
   })
 
@@ -94,12 +93,12 @@ export default function NameForm({
         data-cypress-id="group-input-owner-name"
         error={errors.administratorName?.message}
         {...register('administratorName', {
-          required: t('Ce champ est requis.'),
+          required: t('Veuillez entrer votre nom.'),
         })}
       />
 
       <TextInput
-        label={<Trans>Choisissez un nom pour ce groupe</Trans>}
+        label={<Trans>Nom du groupe</Trans>}
         helperText={
           <Trans>Pour le retrouver facilement dans votre liste</Trans>
         }
@@ -113,7 +112,7 @@ export default function NameForm({
 
       <GridRadioInputs
         control={control as unknown as Control<Record<string, string | number>>}
-        label={<Trans>Et une illustration</Trans>}
+        label={<Trans>Illustration du groupe</Trans>}
         helperText={<Trans>Pour faire joli et le reconnaitre !</Trans>}
         name="emoji"
         data-cypress-id="group-select-emoji"

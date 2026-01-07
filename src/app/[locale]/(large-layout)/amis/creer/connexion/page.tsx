@@ -23,7 +23,7 @@ export const generateMetadata = getCommonMetadata({
 
 export default async function GroupConnexionPage({ params }: DefaultPageProps) {
   if (await isUserAuthenticated()) {
-    return redirect('/amis/creer/votre-groupe')
+    redirect('/amis/creer/votre-groupe')
   }
 
   const { t } = await getServerTranslation(params)
