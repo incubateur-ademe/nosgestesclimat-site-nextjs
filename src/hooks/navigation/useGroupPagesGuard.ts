@@ -25,7 +25,7 @@ export function useGroupPagesGuard(
   const { groupIdInQueryParams } = useGroupIdInQueryParams()
 
   const { data: group, isFetching } = useFetchGroup(groupIdInQueryParams)
-
+  console.log('group', group)
   const [isGuardInit, setIsGuardInit] = useState(false)
   const [isGuardRedirecting, setIsGuardRedirecting] = useState(false)
 
@@ -48,10 +48,11 @@ export function useGroupPagesGuard(
     if (
       isDashboard &&
       group &&
-      !group?.participants?.some(
+      !group.participants?.some(
         (participant) => participant.userId === user.userId
       )
     ) {
+      console.log('invitation', group, user)
       router.replace(getLinkToGroupInvitation({ group }))
       setIsGuardRedirecting(true)
       return
@@ -64,6 +65,7 @@ export function useGroupPagesGuard(
         (participant) => participant.userId === user.userId
       )
     ) {
+      console.log('dashboard', group, user)
       router.replace(getLinkToGroupDashboard({ group }))
       setIsGuardRedirecting(true)
       return

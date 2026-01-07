@@ -7,6 +7,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { getUser, isUserAuthenticated } from '@/helpers/server/model/user'
+import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import { redirect } from 'next/navigation'
 import NameForm from './_components/NameForm'
@@ -49,8 +50,9 @@ export default async function GroupNamePage({
         title={t("Créer un groupe d'amis")}
         subtitle={t('Invitez vos proches à passer le test')}
       />
-
-      <NameForm user={user} />
+      <UserProvider>
+        <NameForm user={user} />
+      </UserProvider>
     </div>
   )
 }

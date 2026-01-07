@@ -1,5 +1,6 @@
 'use client'
 
+import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
@@ -87,6 +88,7 @@ export default function InvitationForm({ group }: { group: Group }) {
       />
 
       <div className="my-4">
+        <AuthenticateUserForm />
         <EmailInput
           value={user.email ?? ''}
           label={

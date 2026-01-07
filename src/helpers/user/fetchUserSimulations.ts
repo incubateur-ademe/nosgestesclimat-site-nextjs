@@ -16,6 +16,7 @@ export async function fetchUserSimulations({
 
   try {
     const response = await fetch(`${SIMULATION_URL}/${userId}?pageSize=50`)
+
     const data = await response.json()
 
     if (!response.ok) {
