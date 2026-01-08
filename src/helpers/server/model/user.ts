@@ -29,7 +29,7 @@ export function getUser(): Promise<UserServer> {
 
 export async function getCompleteUser(): Promise<CompleteUserServer | null> {
   const user = await getUser()
-  console.log('user', user)
+
   if (!user) {
     return null
   }
