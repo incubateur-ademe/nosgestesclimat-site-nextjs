@@ -12,9 +12,9 @@ cypress/**
 check-memory.mjs
 scripts/**/*
 public/**/*.js
+!public/scripts/*.js
 public/**/*.html
 **/*.stories.tsx
 .storybook/**
 playwright-report/**
 storybook-static/**
-pnpm-lock.yaml

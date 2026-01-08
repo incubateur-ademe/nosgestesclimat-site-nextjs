@@ -6,6 +6,7 @@ export function useQueryParams<T>() {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
+
   const urlSearchParams = new URLSearchParams(searchParams?.toString())
 
   function setQueryParams(params: Partial<T>) {

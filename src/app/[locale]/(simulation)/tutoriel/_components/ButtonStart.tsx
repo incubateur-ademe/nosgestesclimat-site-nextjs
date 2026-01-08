@@ -23,7 +23,7 @@ export default function ButtonStart({
 }) {
   const { hideTutorial, tutorials } = useUser()
 
-  const searchParams = useSearchParams()?.toString()
+  const searchParamsString = useSearchParams().toString()
 
   const { progression, updateCurrentSimulation, polls } = useCurrentSimulation()
 
@@ -63,7 +63,7 @@ export default function ButtonStart({
     <ButtonLink
       href={
         shouldRedirectToChoicePage
-          ? `${POLL_START_PATH}?${searchParams}`
+          ? `${POLL_START_PATH}?${searchParamsString}`
           : getLinkToSimulateurPage()
       }
       data-cypress-id="skip-tutorial-button"

@@ -7,7 +7,7 @@ import {
   organisationsDashboardClickImpactCo2,
   organisationsDashboardDownloadKit,
 } from '@/constants/tracking/pages/organisationsDashboard'
-import { MATOMO_CAMPAIGN_KEY } from '@/constants/urls/matomo'
+import { MATOMO_CAMPAIGN_KEY } from '@/constants/urls/utm'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { useClientTranslation } from '@/hooks/useClientTranslation'

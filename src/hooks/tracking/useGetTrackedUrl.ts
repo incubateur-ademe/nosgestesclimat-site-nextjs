@@ -3,9 +3,8 @@ import {
   ADMINISTRATOR_NAME_KEY,
 } from '@/constants/group'
 import i18nConfig from '@/i18nConfig'
-import { useSearchParams } from 'next/navigation'
 
-import { usePathname } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 
 // Params to anonymise and their replacement in the URL
 const PARAMS_TO_ANONYMISE = {
@@ -17,28 +16,9 @@ const PARAMS_TO_ANONYMISE = {
 }
 
 function handlePathnameAnonymisation(pathname: string) {
-  // Replace the organisation slug by the placeholder
-  const pathNameSegment = pathname
-    .split('/')
-    .filter((segment) => segment !== '')
-
   let pathnameModified = String(pathname)
 
-  if (
-    pathNameSegment[0] === 'organisations' &&
-    !['connexion', 'creer', 'demander-demo', 'creer-campagne'].includes(
-      pathNameSegment[1]
-    )
-  ) {
-    pathnameModified = pathnameModified.replace(pathNameSegment[1], 'orga_slug')
-  }
-
-  // Replace the poll slug by the placeholder
-  if (pathNameSegment[2] === 'campagnes') {
-    pathnameModified = pathnameModified.replace(pathNameSegment[3], 'poll_slug')
-  }
-
-  // Anonymise other params
+  // Anonymise params
   const urlParams = new URLSearchParams(pathnameModified.split('?')[1] ?? '')
 
   Object.entries(PARAMS_TO_ANONYMISE).forEach(([param, replacementKey]) => {
