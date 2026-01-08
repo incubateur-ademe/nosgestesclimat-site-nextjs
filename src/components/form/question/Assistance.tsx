@@ -1,4 +1,4 @@
-import { useFormState, useRule } from '@/publicodes-state'
+import { useEngine, useFormState, useRule } from '@/publicodes-state'
 
 import Label from '@/components/form/question/Label'
 import NumberInput from '@/components/form/question/NumberInput'
@@ -6,8 +6,8 @@ import {
   getBgCategoryColor,
   getBorderCategoryColor,
 } from '@/helpers/getCategoryColorClass'
+import { safeEvaluateHelper } from '@/publicodes-state/helpers/safeEvaluateHelper'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-import { useEffect, useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 interface Props {
@@ -18,36 +18,31 @@ interface Props {
 }
 
 export default function Assistance({ question, assistance }: Props) {
-  const { setValue: setValueOfQuestion, value: valueOfQuestion } =
-    useRule(question)
+  const { setValue: setValueOfQuestion } = useRule(question)
+
+  const { engine } = useEngine()
 
   const { currentCategory } = useFormState()
 
-  const {
-    type,
-    label,
-    description,
-    unit,
-    numericValue: numericValueOfAssistance,
-    setValue: setValueOfAssistance,
-    parent,
-  } = useRule(assistance)
+  const { type, label, description, unit, parent } = useRule(assistance)
 
-  const { numericValue: numericValueOfParent } = useRule(parent)
-
-  // If the assistance value changed and it is not synced with the question value
-  // we update the question value (and the tempValue of the input)
-  const prevNumericValueOfParent = useRef(numericValueOfParent)
-  useEffect(() => {
-    if (
-      numericValueOfParent !== valueOfQuestion &&
-      prevNumericValueOfParent.current !== numericValueOfParent
-    ) {
-      setValueOfQuestion(numericValueOfParent, { questionDottedName: question })
+  function handleSetValueOfAssistance(value: number | undefined) {
+    if (value === undefined) {
+      return
     }
-    prevNumericValueOfParent.current = numericValueOfParent
-  }, [numericValueOfParent, valueOfQuestion, setValueOfQuestion, question])
-
+    // We do a intermediate calculation, where we use the publicodes
+    // rules only to compute the value of the question from the assistance value
+    //
+    // Ideally, this would be handled in the model itself
+    const newEngine = engine!.setSituation(
+      { [assistance]: value },
+      { keepPreviousSituation: true }
+    )
+    const valueOfQuestion = safeEvaluateHelper(parent, newEngine)
+    setValueOfQuestion(valueOfQuestion?.nodeValue, {
+      questionDottedName: question,
+    })
+  }
   return (
     <div
       className={twMerge(
@@ -66,8 +61,7 @@ export default function Assistance({ question, assistance }: Props) {
       {type === 'number' && (
         <NumberInput
           unit={unit ? unit.split('/')[0] : ''}
-          value={numericValueOfAssistance}
-          setValue={setValueOfAssistance}
+          setValue={handleSetValueOfAssistance}
         />
       )}
     </div>
