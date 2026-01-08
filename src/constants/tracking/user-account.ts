@@ -45,12 +45,13 @@ export const headerClickAccessMySpaceAuthenticatedServer = [
   'Click Accéder à mon Espace',
   'Authenticated',
 ]
-export const captureClickHeaderAccessMySpaceAuthenticatedServer = JSON.stringify({
-  eventName: 'click header access my space',
-  properties: {
-    status: 'authenticated',
-  },
-})
+export const captureClickHeaderAccessMySpaceAuthenticatedServer =
+  JSON.stringify({
+    eventName: 'click header access my space',
+    properties: {
+      status: 'authenticated',
+    },
+  })
 
 export const headerClickLogoutAuthenticatedServer = [
   'trackEvent',
