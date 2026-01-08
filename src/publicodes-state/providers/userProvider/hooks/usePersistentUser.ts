@@ -48,6 +48,11 @@ export default function usePersistentUser({
           code: '',
           name: '',
         },
+        initialRegion: {
+          code: '',
+          name: '',
+        },
+        userId: uuid(),
       },
       setUser: () => {},
     }

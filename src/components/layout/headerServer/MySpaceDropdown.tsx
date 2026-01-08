@@ -235,9 +235,7 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
         aria-label={ariaLabelTitle}
         title={ariaLabelTitle}
         onClick={handleToggleMenu}
-        onKeyDown={handleButtonKeyDown}
-        data-track-event={headerClickMonEspaceAuthenticatedServer}
-        data-track-posthog={captureClickHeaderMonEspaceAuthenticatedServer}>
+        onKeyDown={handleButtonKeyDown}>
         <Trans i18nKey="header.monEspace.title">Mon Espace</Trans>{' '}
         <span className="hidden md:inline">({displayEmail})</span>
         <ChevronRight
