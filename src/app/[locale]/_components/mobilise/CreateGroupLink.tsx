@@ -7,7 +7,9 @@ import { trackEvent } from '@/utils/analytics/trackEvent'
 
 export default function CreateGroupLink() {
   return (
-    <ButtonLink href="/amis" onClick={() => trackEvent(createGroupLink)}>
+    <ButtonLink
+      href="/amis/creer/connexion"
+      onClick={() => trackEvent(createGroupLink)}>
       <Trans>Créer un groupe</Trans>
     </ButtonLink>
   )

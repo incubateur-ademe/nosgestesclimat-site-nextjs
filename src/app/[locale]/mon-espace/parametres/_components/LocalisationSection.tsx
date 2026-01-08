@@ -1,11 +1,15 @@
 import Localisation from '@/app/[locale]/mon-espace/parametres/_components/Localisation'
+import EngineProviders from '@/components/providers/EngineProviders'
+import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import { UserProvider } from '@/publicodes-state'
 
 export default function LocalisationSection() {
   return (
     <section className="mt-2">
       <UserProvider>
-        <Localisation />
+        <EngineProviders supportedRegions={getSupportedRegions()}>
+          <Localisation />
+        </EngineProviders>
       </UserProvider>
     </section>
   )

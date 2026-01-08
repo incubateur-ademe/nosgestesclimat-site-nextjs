@@ -67,16 +67,20 @@ export default function UserProvider({
   })
 
   const serverHydrated = typeof initialSimulations !== 'undefined'
+
   // Choose source of truth depending on prop
   const effectiveSimulations = serverHydrated
     ? simulations
     : localSimStorage.simulations
+
   const effectiveSetSimulations = serverHydrated
     ? setSimulations
     : localSimStorage.setSimulations
+
   const effectiveCurrentSimulationId = serverHydrated
     ? currentSimulationId
     : localSimStorage.currentSimulationId
+
   const effectiveSetCurrentSimulationId = serverHydrated
     ? setCurrentSimulationId
     : localSimStorage.setCurrentSimulationId

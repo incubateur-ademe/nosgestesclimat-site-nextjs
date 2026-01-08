@@ -36,7 +36,7 @@ export default async function ShareSimulator({ locale }: Props) {
             'mon-espace.shareSimulator.buttonLabel.mobile',
             'Partager le test'
           )}
-          buttonColor="secondary"
+          buttonColor="borderless"
           shouldHideTextOnMobile={false}
         />
       </span>

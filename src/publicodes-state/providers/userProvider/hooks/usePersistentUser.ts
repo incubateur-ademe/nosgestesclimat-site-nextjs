@@ -40,6 +40,19 @@ export default function usePersistentUser({
     safeLocalStorage.setItem(storageKey, JSON.stringify(updatedStorage))
   }, [storageKey, user])
 
+  // Return a default state while we wait for the initial region to be set
+  if (!initialRegion) {
+    return {
+      user: {
+        region: {
+          code: '',
+          name: '',
+        },
+      },
+      setUser: () => {},
+    }
+  }
+
   return { user, setUser }
 }
 
