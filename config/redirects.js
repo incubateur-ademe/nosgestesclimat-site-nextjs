@@ -149,7 +149,12 @@ const redirects = [
   },
   {
     source: '/blog/campus',
-    destination: '/blog/actualites-et-fonctionnalites/campus',
+    destination: '/classements',
+    permanent: true,
+  },
+  {
+    source: '/blog/actualites-et-fonctionnalites/campus',
+    destination: '/classements',
     permanent: true,
   },
   {
@@ -174,7 +179,12 @@ const redirects = [
   },
   {
     source: '/blog/impact-mobilite',
-    destination: '/blog/mobilites/impact-mobilite',
+    destination: '/classements',
+    permanent: true,
+  },
+  {
+    source: '/blog/mobilites/impact-mobilite',
+    destination: '/classements',
     permanent: true,
   },
   {
