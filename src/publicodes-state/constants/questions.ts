@@ -27,7 +27,7 @@ export const MUST_NOT_ASK_QUESTIONS = new Set<DottedName>([
 
 // We use the DottedName type from nosgestesclimat to make sure the build will break when using rules that are not in the model.
 export const PRIORITY_QUESTIONS = new Set<DottedName>([
-  'alimentation . plats',
+  'alimentation . repas . déjeuner et dîner . par semaine',
   'logement . type',
   'logement . propriétaire',
   'logement . chauffage . précision consommation',
@@ -53,7 +53,7 @@ export const MUST_SHOW_DESCRIPTION = new Set<DottedName>([
   'logement . âge',
   'logement . surface',
   'divers . animaux domestiques . empreinte',
-  'alimentation . local . consommation',
+  'alimentation . repas . local . consommation',
 ])
 
 export const NUMBER_MOSAIC_WITHOUT_BUTTONS = new Set<DottedName>([

@@ -79,8 +79,8 @@ describe('DocumentationPage', () => {
       icônes: '🚗',
       formule: '2 * 3',
     },
-    'alimentation . plats': {
-      titre: 'Plats',
+    'alimentation . repas': {
+      titre: 'Repas',
       description: "Calcul de l'empreinte alimentaire",
       icônes: '🍽️',
       formule: '1 + 1',
@@ -203,8 +203,8 @@ describe('DocumentationPage', () => {
   })
 
   it('should handle complex slug with special characters', async () => {
-    const slug = ['alimentation', 'plats', 'avec-espaces']
-    const ruleName = 'alimentation . plats . avec espaces' as DottedName
+    const slug = ['alimentation', 'repas', 'avec-espaces']
+    const ruleName = 'alimentation . repas . avec espaces' as DottedName
 
     mockGetRules.mockResolvedValue(createMockRules())
     mockDecodeRuleNameFromPath.mockReturnValue(ruleName)
@@ -215,7 +215,7 @@ describe('DocumentationPage', () => {
     render(result)
 
     expect(mockDecodeRuleNameFromPath).toHaveBeenCalledWith(
-      'alimentation/plats/avec-espaces'
+      'alimentation/repas/avec-espaces'
     )
     expect(screen.getByTestId('documentation-router')).toBeInTheDocument()
   })
