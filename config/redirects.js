@@ -127,7 +127,7 @@ const redirects = [
   {
     source: '/blog/fonctionnalite-animateurs-ateliers-sensibilisation',
     destination:
-      'blog/actualites-et-fonctionnalites/fonctionnalite-animateurs-ateliers-sensibilisation',
+      '/blog/actualites-et-fonctionnalites/fonctionnalite-animateurs-ateliers-sensibilisation',
     permanent: true,
   },
   {
@@ -164,7 +164,7 @@ const redirects = [
   },
   {
     source: '/blog/transports-fuir-transports-cherir',
-    destination: 'blog/mobilites/transports-fuir-transports-cherir',
+    destination: '/blog/mobilites/transports-fuir-transports-cherir',
     permanent: true,
   },
   {
