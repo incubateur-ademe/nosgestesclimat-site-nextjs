@@ -7,6 +7,7 @@ const PARAMS_TO_ANONYMISE = {
   email: 'email',
   'partner-token': 'partner_token',
   'partner-fallback': 'partner_fallback',
+  guestName: 'guest_name',
 }
 
 function handlePathnameAnonymisation(pathname: string) {

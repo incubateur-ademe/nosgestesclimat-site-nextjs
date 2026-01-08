@@ -16,7 +16,7 @@ import { useUser } from '@/publicodes-state'
 import type { AuthenticationMode } from '@/types/authentication'
 import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
 import { isEmailValid } from '@/utils/isEmailValid'
-import { type ReactNode } from 'react'
+import { useEffect, type ReactNode } from 'react'
 import { useForm } from 'react-hook-form'
 
 interface Props {
@@ -25,6 +25,10 @@ interface Props {
   mode?: AuthenticationMode
   onCodeSent: (pendingVerification: PendingVerification) => void
   inputLabel?: ReactNode | string
+  required?: boolean
+  onComplete?: () => void
+  onEmailEntered?: (email: string) => void
+  onEmailEmpty?: () => void
 }
 
 interface FormData {
@@ -37,10 +41,17 @@ export default function SendVerificationCodeForm({
   mode,
   inputLabel,
   onCodeSent,
+  required = true,
+  onComplete,
+  onEmailEntered,
+  onEmailEmpty,
 }: Props) {
   const { t } = useClientTranslation()
   const { createVerificationCodeError, createVerificationCode } =
-    useCreateVerificationCode({ onComplete: onCodeSent, mode })
+    useCreateVerificationCode({
+      onComplete: onCodeSent,
+      mode,
+    })
 
   const userEmail = useUser().user.email
 
@@ -51,16 +62,33 @@ export default function SendVerificationCodeForm({
     register,
     handleSubmit,
     formState: { errors: formErrors },
+    watch,
   } = useForm<FormData>({
     defaultValues: {
       email: defaultEmail,
     },
   })
 
+  const onSubmit = ({ email }: FormData) => {
+    if (!required && !email) {
+      onComplete?.()
+    } else {
+      createVerificationCode(email)
+    }
+  }
+
+  const email = watch('email')
+
+  useEffect(() => {
+    if (email) {
+      onEmailEntered?.(email)
+    } else {
+      onEmailEmpty?.()
+    }
+  }, [email, onEmailEntered, onEmailEmpty])
+
   return (
-    <form
-      onSubmit={handleSubmit(({ email }) => createVerificationCode(email))}
-      noValidate>
+    <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <TextInput
         type="email"
         autoComplete="email"
@@ -73,7 +101,9 @@ export default function SendVerificationCodeForm({
           </Trans>
         }
         {...register('email', {
-          required: t('Merci de renseigner votre adresse e-mail'),
+          required: required
+            ? t('Merci de renseigner votre adresse e-mail')
+            : undefined,
           validate: (value) =>
             isEmailValid(value) || t("L'adresse e-mail est invalide"),
         })}

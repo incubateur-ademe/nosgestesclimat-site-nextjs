@@ -1,53 +1,22 @@
-'use client'
+import type { DefaultPageProps } from '@/types'
+import { permanentRedirect } from 'next/navigation'
 
-import GroupLoader from '@/components/groups/GroupLoader'
-import GroupNotFound from '@/components/groups/GroupNotFound'
-import Trans from '@/components/translation/trans/TransClient'
-import Title from '@/design-system/layout/Title'
-import { useFetchGroup } from '@/hooks/groups/useFetchGroup'
-import { useGroupIdInQueryParams } from '@/hooks/groups/useGroupIdInQueryParams'
-import { useGroupPagesGuard } from '@/hooks/navigation/useGroupPagesGuard'
-import InvitationForm from './_components/InvitationForm'
-import LaconicRanking from './_components/LaconicRanking'
+export default async function RejoindreGroupePage({
+  searchParams,
+}: DefaultPageProps) {
+  const searchParamsObject = await searchParams
+  const urlSearchParams = new URLSearchParams(
+    searchParamsObject
+      ? Object.entries(searchParamsObject).map(([key, value]) => [
+          key,
+          String(value),
+        ])
+      : []
+  )
 
-export default function RejoindreGroupePage() {
-  // Guarding the route and redirecting if necessary
-  const { isGuardInit, isGuardRedirecting } = useGroupPagesGuard()
+  const searchParamsString = urlSearchParams.toString()
 
-  const { groupIdInQueryParams } = useGroupIdInQueryParams()
-  const { data: group, isLoading } = useFetchGroup(groupIdInQueryParams)
-
-  // If we are still fetching the group (or we are redirecting the user), we display a loader
-  if (!isGuardInit || isGuardRedirecting || isLoading) {
-    return <GroupLoader />
-  }
-
-  // If the group doesn't exist, we display a 404 page
-  if (!group) {
-    return <GroupNotFound />
-  }
-
-  return (
-    <div className="p-4 md:p-8">
-      <Title
-        title={
-          <Trans>
-            {group?.administrator?.name} vous a invité à rejoindre le groupe{' '}
-            <span className="text-violet-900">{group?.name}</span>
-          </Trans>
-        }
-        subtitle={
-          <Trans>
-            Rejoignez le groupe{' '}
-            <span className="text-violet-900">{group?.name}</span> et passez le
-            test.
-          </Trans>
-        }
-      />
-
-      <InvitationForm group={group} />
-
-      <LaconicRanking group={group} />
-    </div>
+  permanentRedirect(
+    `/amis/invitation/votre-nom${searchParamsString ? `?${searchParamsString}` : ''}`
   )
 }

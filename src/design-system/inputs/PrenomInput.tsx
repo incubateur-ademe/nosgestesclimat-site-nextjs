@@ -1,8 +1,8 @@
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { forwardRef } from 'react'
+import { forwardRef, type HTMLAttributes } from 'react'
 import TextInput from './TextInput'
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLInputElement> {
   error?: string
   value?: string
 }

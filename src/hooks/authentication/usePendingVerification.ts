@@ -11,7 +11,7 @@ export interface PendingVerification {
 export function usePendingVerification({
   onComplete,
 }: {
-  onComplete?: () => void
+  onComplete?: (email?: string) => void
 }) {
   const { user, updatePendingVerification, updateEmail } = useUser()
   let pendingVerification = user?.pendingVerification
@@ -32,7 +32,7 @@ export function usePendingVerification({
       serverUserId: user.userId,
     })
     updatePendingVerification(undefined)
-    onComplete?.()
+    onComplete?.(pendingVerification?.email)
   }, [
     user.userId,
     updatePendingVerification,

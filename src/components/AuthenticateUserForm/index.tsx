@@ -25,7 +25,10 @@ interface Props {
   inputLabel?: ReactNode | string
   mode?: AuthenticationMode
   redirectURL?: string
-  onComplete?: () => void
+  onComplete?: (email?: string) => void
+  onEmailEntered?: (email: string) => void
+  onEmailEmpty?: () => void
+  required?: boolean
 }
 
 export default function AuthenticateUserForm({
@@ -35,21 +38,29 @@ export default function AuthenticateUserForm({
   redirectURL,
   mode,
   onComplete,
+  required = true,
+  onEmailEntered,
+  onEmailEmpty,
 }: Props) {
   const router = useRouter()
   const { user } = useUser()
 
   const [isRedirecting, setIsRedirecting] = useState(false)
 
-  const complete = useCallback(() => {
-    safeSessionStorage.removeItem(EMAIL_PENDING_AUTHENTICATION_KEY)
-    setIsRedirecting(true)
+  // Called upon code verification
+  const complete = useCallback(
+    (email?: string) => {
+      safeSessionStorage.removeItem(EMAIL_PENDING_AUTHENTICATION_KEY)
+      setIsRedirecting(true)
 
-    if (redirectURL) {
-      router.push(redirectURL, { scroll: false })
-    }
-    onComplete?.()
-  }, [redirectURL, onComplete, router])
+      if (redirectURL) {
+        router.push(redirectURL, { scroll: false })
+      }
+
+      onComplete?.(email)
+    },
+    [redirectURL, onComplete, router]
+  )
 
   const {
     pendingVerification,
@@ -93,6 +104,10 @@ export default function AuthenticateUserForm({
         trackPosthogEvent(captureClickSubmitEmail({ mode }))
       }}
       inputLabel={inputLabel}
+      required={required}
+      onComplete={onComplete}
+      onEmailEntered={onEmailEntered}
+      onEmailEmpty={onEmailEmpty}
     />
   )
 }

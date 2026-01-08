@@ -58,7 +58,7 @@ export default function InputGroup({
           )}>
           <span
             className={twMerge(
-              `text-base font-bold text-slate-900`,
+              `w-full text-base font-bold text-slate-900`,
               error ? 'text-red-700' : ''
             )}>
             {label}
