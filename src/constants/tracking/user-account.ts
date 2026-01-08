@@ -32,12 +32,12 @@ export const headerClickMonEspaceAuthenticatedServer = [
   'Click Mon Espace',
   'Authenticated',
 ]
-export const captureClickHeaderMonEspaceAuthenticatedServer = {
+export const captureClickHeaderMonEspaceAuthenticatedServer = JSON.stringify({
   eventName: 'click header mon espace',
   properties: {
     status: 'authenticated',
   },
-}
+})
 
 export const headerClickAccessMySpaceAuthenticatedServer = [
   'trackEvent',
@@ -45,12 +45,12 @@ export const headerClickAccessMySpaceAuthenticatedServer = [
   'Click Accéder à mon Espace',
   'Authenticated',
 ]
-export const captureClickHeaderAccessMySpaceAuthenticatedServer = {
+export const captureClickHeaderAccessMySpaceAuthenticatedServer = JSON.stringify({
   eventName: 'click header access my space',
   properties: {
     status: 'authenticated',
   },
-}
+})
 
 export const headerClickLogoutAuthenticatedServer = [
   'trackEvent',
@@ -58,12 +58,12 @@ export const headerClickLogoutAuthenticatedServer = [
   'Click Déconnexion',
   'Authenticated',
 ]
-export const captureClickHeaderLogoutAuthenticatedServer = {
+export const captureClickHeaderLogoutAuthenticatedServer = JSON.stringify({
   eventName: 'click header logout',
   properties: {
     status: 'authenticated',
   },
-}
+})
 
 /** Server-side tracking */
 export const headerClickMonEspaceUnauthenticatedServer =

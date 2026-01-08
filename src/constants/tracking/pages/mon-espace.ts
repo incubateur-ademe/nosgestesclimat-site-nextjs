@@ -16,10 +16,11 @@ export const captureClickMonEspaceTab = ({ tab }: { tab: MonEspaceTab }) => ({
 export const monEspaceTabTrackEventServer = (tab: MonEspaceTab) =>
   `MonEspace|Click Tab|${tab.charAt(0).toUpperCase() + tab.slice(1)}`
 
-export const captureClickMonEspaceTabServer = (tab: MonEspaceTab) => ({
-  eventName: 'click tab mon espace',
-  properties: { tab },
-})
+export const captureClickMonEspaceTabServer = (tab: MonEspaceTab) =>
+  JSON.stringify({
+    eventName: 'click tab mon espace',
+    properties: { tab },
+  })
 
 export const clickJagisActionBanner = [
   'trackEvent',
@@ -30,6 +31,6 @@ export const clickJagisActionBanner = [
 export const clickMySpaceNoResultsStartTest =
   'MonEspace|Click passer le test pas de résultats'
 
-export const captureClickMySpaceNoResultsStartTest = {
+export const captureClickMySpaceNoResultsStartTest = JSON.stringify({
   eventName: 'click mon espace pas de résultats',
-}
+})

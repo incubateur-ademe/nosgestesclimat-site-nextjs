@@ -142,9 +142,7 @@ export default function InstructionsBanner({ locale }: { locale: Locale }) {
               sizeClassNames.md
             )}
             data-track-event={clickMySpaceNoResultsStartTest}
-            data-track-posthog={JSON.stringify(
-              captureClickMySpaceNoResultsStartTest
-            )}>
+            data-track-posthog={captureClickMySpaceNoResultsStartTest}>
             <Trans locale={locale} i18nKey="mon-espace.instructions.link.text">
               Passer le test
             </Trans>
