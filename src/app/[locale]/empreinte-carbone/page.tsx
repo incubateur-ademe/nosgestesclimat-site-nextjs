@@ -123,12 +123,10 @@ export default async function CarbonFootprintLandingPage({
                 posthogTrackingEvents={{
                   start: getLandingClickCTAStartPosthog('/empreinte-carbone'),
                   resume: getLandingClickCTAResumePosthog('/empreinte-carbone'),
-                  results: getLandingClickCTAResultsPosthog(
-                    '/empreinte-carbone'
-                  ),
-                  restart: getLandingClickCTARestartPosthog(
-                    '/empreinte-carbone'
-                  ),
+                  results:
+                    getLandingClickCTAResultsPosthog('/empreinte-carbone'),
+                  restart:
+                    getLandingClickCTARestartPosthog('/empreinte-carbone'),
                 }}
               />
             </div>

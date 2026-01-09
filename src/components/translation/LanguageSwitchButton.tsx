@@ -1,6 +1,9 @@
 'use client'
 
-import { footerClickLanguage, footerClickLanguagePosthog } from '@/constants/tracking/layout'
+import {
+  footerClickLanguage,
+  footerClickLanguagePosthog,
+} from '@/constants/tracking/layout'
 import ButtonAnchor from '@/design-system/buttons/ButtonAnchor'
 import Emoji from '@/design-system/utils/Emoji'
 import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDisplayed'
