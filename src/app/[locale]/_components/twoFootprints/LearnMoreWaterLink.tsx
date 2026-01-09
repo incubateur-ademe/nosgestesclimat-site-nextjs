@@ -2,10 +2,8 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
-import {
-  learnMoreWaterLink,
-  learnMoreWaterLinkPosthog,
-} from '@/constants/tracking/pages/mainLanding'
+import { learnMoreWaterLink } from '@/constants/tracking/pages/mainLanding'
+import { learnMoreWaterLinkPosthog } from '@/helpers/tracking/landings'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 
 export default function LearnMoreCarbonLink() {

@@ -23,10 +23,22 @@ export default function DynamicCTAButtons({
     restart?: string[]
   }
   posthogTrackingEvents?: {
-    start?: { eventName: string; properties?: Record<string, unknown> }
-    resume?: { eventName: string; properties?: Record<string, unknown> }
-    results?: { eventName: string; properties?: Record<string, unknown> }
-    restart?: { eventName: string; properties?: Record<string, unknown> }
+    start?: {
+      eventName: string
+      properties?: Record<string, string | number | boolean | null | undefined>
+    }
+    resume?: {
+      eventName: string
+      properties?: Record<string, string | number | boolean | null | undefined>
+    }
+    results?: {
+      eventName: string
+      properties?: Record<string, string | number | boolean | null | undefined>
+    }
+    restart?: {
+      eventName: string
+      properties?: Record<string, string | number | boolean | null | undefined>
+    }
   }
   withRestart?: boolean
 }) {
