@@ -3,7 +3,7 @@
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RestartIcon from '../icons/RestartIcon'
@@ -12,6 +12,7 @@ import Trans from '../translation/trans/TransClient'
 export default function DynamicCTAButtons({
   className,
   trackingEvents,
+  posthogTrackingEvents,
   withRestart = true,
 }: {
   className?: string
@@ -20,6 +21,12 @@ export default function DynamicCTAButtons({
     resume: string[]
     results: string[]
     restart?: string[]
+  }
+  posthogTrackingEvents?: {
+    start?: { eventName: string; properties?: Record<string, unknown> }
+    resume?: { eventName: string; properties?: Record<string, unknown> }
+    results?: { eventName: string; properties?: Record<string, unknown> }
+    restart?: { eventName: string; properties?: Record<string, unknown> }
   }
   withRestart?: boolean
 }) {
@@ -62,15 +69,24 @@ export default function DynamicCTAButtons({
           onClick={() => {
             if (progression === 1) {
               trackEvent(trackingEvents?.results)
+              if (posthogTrackingEvents?.results) {
+                trackPosthogEvent(posthogTrackingEvents.results)
+              }
               return
             }
 
             if (progression > 0) {
               trackEvent(trackingEvents?.resume)
+              if (posthogTrackingEvents?.resume) {
+                trackPosthogEvent(posthogTrackingEvents.resume)
+              }
               return
             }
 
             trackEvent(trackingEvents?.start)
+            if (posthogTrackingEvents?.start) {
+              trackPosthogEvent(posthogTrackingEvents.start)
+            }
           }}>
           <span
             className={twMerge(

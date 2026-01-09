@@ -24,3 +24,8 @@ export const amisCreationVotreGroupeRetour = [
   'Amis Creation',
   'Step 2 - Click Retour',
 ]
+
+// Posthog tracking for group creation
+export const amisCreationCreateGroupPosthog = {
+  eventName: 'Classements create group',
+}

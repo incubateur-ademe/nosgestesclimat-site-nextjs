@@ -9,9 +9,13 @@ import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import {
   getLandingClickCTARestart,
+  getLandingClickCTARestartPosthog,
   getLandingClickCTAResults,
+  getLandingClickCTAResultsPosthog,
   getLandingClickCTAResume,
+  getLandingClickCTAResumePosthog,
   getLandingClickCTAStart,
+  getLandingClickCTAStartPosthog,
 } from '@/helpers/tracking/landings'
 import type { DefaultPageProps } from '@/types'
 import dynamic from 'next/dynamic'
@@ -114,6 +118,16 @@ export default async function CarbonFootprintLandingPage({
                   restart: getLandingClickCTARestart(
                     '/empreinte-carbone',
                     trackingActionClickCTA
+                  ),
+                }}
+                posthogTrackingEvents={{
+                  start: getLandingClickCTAStartPosthog('/empreinte-carbone'),
+                  resume: getLandingClickCTAResumePosthog('/empreinte-carbone'),
+                  results: getLandingClickCTAResultsPosthog(
+                    '/empreinte-carbone'
+                  ),
+                  restart: getLandingClickCTARestartPosthog(
+                    '/empreinte-carbone'
                   ),
                 }}
               />

@@ -9,6 +9,7 @@ import {
   actionsClickYes,
   actionsClickYesPosthog,
   actionsOpenAction,
+  actionsOpenActionPosthog,
 } from '@/constants/tracking/pages/actions'
 import Emoji from '@/design-system/utils/Emoji'
 import { filterRelevantMissingVariables } from '@/helpers/actions/filterRelevantMissingVariables'
@@ -162,7 +163,10 @@ export default function ActionCard({
         )}>
         <Link
           className="z-10 w-full underline"
-          onClick={() => trackEvent(actionsOpenAction(dottedName))}
+          onClick={() => {
+            trackEvent(actionsOpenAction(dottedName))
+            trackPosthogEvent(actionsOpenActionPosthog(dottedName))
+          }}
           href={'/actions/' + encodeRuleName(dottedName)}>
           {icons && (
             <Emoji className="inline-flex justify-center">{icons}</Emoji>

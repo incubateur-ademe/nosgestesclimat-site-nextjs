@@ -84,3 +84,16 @@ export const captureClickFootprint = (metric: string) => ({
     metric,
   },
 })
+
+// Posthog tracking for Click Category
+export const endClickCategoryPosthog = (category: DottedName) => ({
+  eventName: 'Fin click category',
+  properties: {
+    category,
+  },
+})
+
+// Posthog tracking for Switch eau
+export const endSwitchEauPosthog = {
+  eventName: 'Fin switch eau',
+}

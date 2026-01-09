@@ -107,3 +107,51 @@ export const breadcrumbClickLink = (href: string) => [
   'Click link',
   href,
 ]
+
+// Posthog tracking for footer
+export const footerClickLanguagePosthog = (locale: string) => ({
+  eventName: 'Footer click language',
+  properties: {
+    locale,
+  },
+})
+
+export const footerClickDocumentationPosthog = {
+  eventName: 'Footer click documentation',
+}
+
+export const footerClickQuiSommesNousPosthog = {
+  eventName: 'Footer click qui sommes-nous',
+}
+
+export const footerClickInternationalPosthog = {
+  eventName: 'Footer click international',
+}
+
+export const footerClickImpactco2Posthog = {
+  eventName: 'Footer click Impact CO2',
+}
+
+export const footerClickFAQPosthog = {
+  eventName: 'Footer click FAQ',
+}
+
+export const footerClickStatsPosthog = {
+  eventName: 'Footer click statistiques',
+}
+
+export const footerClickDiffusionPosthog = {
+  eventName: 'Footer click diffusion',
+}
+
+export const footerClickOrganisationsPosthog = {
+  eventName: 'Footer click organisations',
+}
+
+export const footerClickContactPosthog = {
+  eventName: 'Footer click contact',
+}
+
+export const footerClickBlogPosthog = {
+  eventName: 'Footer click blog',
+}

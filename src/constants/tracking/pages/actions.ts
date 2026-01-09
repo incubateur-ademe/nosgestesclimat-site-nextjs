@@ -67,3 +67,11 @@ export const actionsClickAdeme = [
 export const actionsClickAdemePosthog = {
   eventName: 'Actions click Agir ADEME',
 }
+
+// Posthog tracking for Open Action
+export const actionsOpenActionPosthog = (action: DottedName) => ({
+  eventName: 'Actions open action',
+  properties: {
+    action,
+  },
+})

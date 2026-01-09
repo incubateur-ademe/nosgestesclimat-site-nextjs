@@ -68,3 +68,55 @@ export const getLandingClickNouveautes = (pathname: string) => [
   getLandingCategory(pathname),
   'Click nouveautés',
 ]
+
+// Posthog tracking for homepage/landing pages
+export const getLandingClickCTAStartPosthog = (pathname: string) => ({
+  eventName: 'Landing CTA click',
+  properties: {
+    page: getLandingCategory(pathname),
+    action: 'Passer le test',
+  },
+})
+
+export const getLandingClickCTAResumePosthog = (pathname: string) => ({
+  eventName: 'Landing CTA click',
+  properties: {
+    page: getLandingCategory(pathname),
+    action: 'Reprendre le test',
+  },
+})
+
+export const getLandingClickCTAResultsPosthog = (pathname: string) => ({
+  eventName: 'Landing CTA click',
+  properties: {
+    page: getLandingCategory(pathname),
+    action: 'Voir les résultats',
+  },
+})
+
+export const getLandingClickCTARestartPosthog = (pathname: string) => ({
+  eventName: 'Landing CTA click',
+  properties: {
+    page: getLandingCategory(pathname),
+    action: 'Recommencer',
+  },
+})
+
+export const getLandingDidYouKnowSliderPosthog = (
+  pathname: string,
+  slideNumber: number
+) => ({
+  eventName: 'Landing click bannière le saviez-vous',
+  properties: {
+    page: getLandingCategory(pathname),
+    slide: slideNumber,
+  },
+})
+
+export const learnMoreCarbonLinkPosthog = {
+  eventName: 'Accueil click en savoir plus LP carbone',
+}
+
+export const learnMoreWaterLinkPosthog = {
+  eventName: 'Accueil click en savoir plus LP eau',
+}

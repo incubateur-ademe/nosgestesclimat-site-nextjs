@@ -102,3 +102,20 @@ export const trackingCookiesCustomChoiceSave = [
   'Cookies',
   'Enregistrer choix personnalisés',
 ]
+
+// Posthog tracking for cookies
+export const trackingCookiesAcceptPosthog = {
+  eventName: 'Cookies click accepter tout',
+}
+
+export const trackingCookiesRefusePosthog = {
+  eventName: 'Cookies click tout refuser',
+}
+
+export const trackingCookiesCustomChoicePosthog = {
+  eventName: 'Cookies click choix personnalisés',
+}
+
+export const trackingCookiesCustomChoiceSavePosthog = {
+  eventName: 'Cookies enregistrer choix personnalisés',
+}

@@ -16,3 +16,8 @@ export const trackingActionClickSortingButton = [
 export const trackingActionClickSortingButtonPosthog = {
   eventName: 'Actions click bouton tri',
 }
+
+// Posthog tracking for CTA Menu
+export const trackingActionClickCTAMenuPosthog = {
+  eventName: 'Homepage CTA click menu',
+}
