@@ -60,3 +60,8 @@ export const NUMBER_MOSAIC_WITHOUT_BUTTONS = new Set<DottedName>([
   'transport . avion . vols annuels',
   'transport . avion . vols amortis',
 ])
+
+// Informational questions that should show "Terminer" button and not display input choices
+export const INFORMATIONAL_QUESTIONS = new Set<DottedName>([
+  'services sociétaux . question rhétorique',
+])

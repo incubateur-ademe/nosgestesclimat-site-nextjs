@@ -20,6 +20,7 @@ import {
   useFormState,
   useRule,
 } from '@/publicodes-state'
+import { INFORMATIONAL_QUESTIONS } from '@/publicodes-state/constants/questions'
 import getValueIsOverFloorOrCeiling from '@/publicodes-state/helpers/getValueIsOverFloorOrCeiling'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
@@ -90,6 +91,12 @@ export default function Navigation({
     isNextDisabled = isBelowFloor || isOverCeiling
   }
 
+  // Check if this is an informational question (e.g., rhetorical question)
+  const isInformationalQuestion = INFORMATIONAL_QUESTIONS.has(question)
+
+  // For informational questions, treat them as answered (not missing)
+  const effectiveIsMissing = isInformationalQuestion ? false : isMissing
+
   const isSingleQuestionEmbeddedFinal =
     (isEmbedded &&
       remainingQuestions?.length === 1 &&
@@ -143,7 +150,7 @@ export default function Navigation({
       const endTime = Date.now()
       const timeSpentOnQuestion = endTime - startTime
 
-      if (isMissing) {
+      if (effectiveIsMissing) {
         trackEvent(questionClickPass({ question, timeSpentOnQuestion }))
         trackPosthogEvent(
           captureClickFormNav({
@@ -171,7 +178,7 @@ export default function Navigation({
         )
       }
 
-      if (isMissing) {
+      if (effectiveIsMissing) {
         if (questionsOfMosaicFromParent?.length > 0) {
           questionsOfMosaicFromParent.forEach((question) => {
             updateCurrentSimulation({
@@ -220,7 +227,7 @@ export default function Navigation({
     },
     [
       startTime,
-      isMissing,
+      effectiveIsMissing,
       resetNotification,
       finalNoNextQuestion,
       isEmbedded,
@@ -333,7 +340,7 @@ export default function Navigation({
         </Button>
 
         <Button
-          color={isMissing ? 'secondary' : 'primary'}
+          color={effectiveIsMissing ? 'secondary' : 'primary'}
           disabled={isNextDisabled}
           className="p-3 text-sm"
           size="md"
@@ -344,7 +351,7 @@ export default function Navigation({
                   'common.navigation.nextQuestion.finish.label',
                   'Terminer le test et accéder à la page de résultats'
                 )
-              : isMissing
+              : effectiveIsMissing
                 ? skipTitle
                 : t(
                     'common.navigation.nextQuestion.next.label',
@@ -356,7 +363,7 @@ export default function Navigation({
             <Trans i18nKey="simulator.navigation.nextButton.finished">
               Terminer
             </Trans>
-          ) : isMissing ? (
+          ) : effectiveIsMissing ? (
             skipText
           ) : (
             <span>

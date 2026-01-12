@@ -17,6 +17,7 @@ import Button from '@/design-system/buttons/Button'
 import { useUpdatePageTitle } from '@/hooks/simulation/useUpdatePageTitle'
 import { useLocale } from '@/hooks/useLocale'
 import { useFormState, useRule } from '@/publicodes-state'
+import { INFORMATIONAL_QUESTIONS } from '@/publicodes-state/constants/questions'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Evaluation } from 'publicodes'
@@ -75,6 +76,10 @@ export default function Question({
 
   const [isOpen, setIsOpen] = useState(showInputsLabel ? false : true)
   const locale = useLocale()
+
+  // Check if this is an informational question (e.g., rhetorical question)
+  const isInformationalQuestion = INFORMATIONAL_QUESTIONS.has(question)
+
   return (
     <>
       <div className={twMerge('mb-6 flex flex-col items-start', className)}>
@@ -101,7 +106,7 @@ export default function Question({
             {isOpen ? <Trans>Fermer</Trans> : showInputsLabel}
           </Button>
         ) : null}
-        {isOpen && (
+        {isOpen && !isInformationalQuestion && (
           <>
             {type === 'number' && (
               <NumberInput
