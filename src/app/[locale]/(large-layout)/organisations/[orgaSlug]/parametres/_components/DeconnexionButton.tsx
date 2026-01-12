@@ -7,7 +7,7 @@ import { redirect } from 'next/navigation'
 async function handleDisconnect() {
   'use server'
   await logout()
-  redirect('/organisation')
+  redirect('/organisations')
 }
 
 export default function DeconnexionButton() {
