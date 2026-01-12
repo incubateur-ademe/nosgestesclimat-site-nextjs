@@ -150,14 +150,14 @@ export default function ActionCard({
     <div
       id={dottedName}
       className={twMerge(
-        'relative flex h-[18rem] w-full flex-col items-center justify-center overflow-auto rounded-xl border-2 border-solid p-4',
+        'relative flex h-[19rem] w-full flex-col items-center justify-center overflow-auto rounded-xl border-2 border-solid p-4',
         isSelected
           ? 'border-green-500 bg-green-500/[0.23]'
           : getBorderColor(category)
       )}>
       <div
         className={twMerge(
-          'flex h-[6rem] w-full items-center rounded-xl p-2',
+          'flex h-auto w-full items-center rounded-xl p-2',
           getBackgroundLightColor(category)
         )}>
         <Link
