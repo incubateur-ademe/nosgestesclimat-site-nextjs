@@ -5,11 +5,8 @@ import CloseIcon from '@/components/icons/Close'
 import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import {
   actionsClickNo,
-  actionsClickNoPosthog,
   actionsClickYes,
-  actionsClickYesPosthog,
   actionsOpenAction,
-  actionsOpenActionPosthog,
 } from '@/constants/tracking/pages/actions'
 import Emoji from '@/design-system/utils/Emoji'
 import { filterRelevantMissingVariables } from '@/helpers/actions/filterRelevantMissingVariables'
@@ -28,7 +25,7 @@ import {
   useUser,
 } from '@/publicodes-state'
 import type { Action } from '@/publicodes-state/types'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback } from 'react'
@@ -117,8 +114,8 @@ export default function ActionCard({
     handleUpdatePersistedActions()
 
     if (!isSelected) {
-      trackEvent(actionsClickYes(dottedName))
-      trackPosthogEvent(actionsClickYesPosthog(dottedName))
+      const tracking = actionsClickYes(dottedName)
+      trackEvent(tracking.matomo, tracking.posthog)
     }
   }, [
     dottedName,
@@ -138,8 +135,8 @@ export default function ActionCard({
     handleUpdatePersistedActions()
 
     if (!isSelected) {
-      trackEvent(actionsClickNo(dottedName))
-      trackPosthogEvent(actionsClickNoPosthog(dottedName))
+      const tracking = actionsClickNo(dottedName)
+      trackEvent(tracking.matomo, tracking.posthog)
     }
   }
 
@@ -164,8 +161,8 @@ export default function ActionCard({
         <Link
           className="z-10 w-full underline"
           onClick={() => {
-            trackEvent(actionsOpenAction(dottedName))
-            trackPosthogEvent(actionsOpenActionPosthog(dottedName))
+            const tracking = actionsOpenAction(dottedName)
+            trackEvent(tracking.matomo, tracking.posthog)
           }}
           href={'/actions/' + encodeRuleName(dottedName)}>
           {icons && (

@@ -3,42 +3,31 @@
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RestartIcon from '../icons/RestartIcon'
 import Trans from '../translation/trans/TransClient'
 
+interface TrackingData {
+  matomo: (string | null)[]
+  posthog?: {
+    eventName: string
+    properties?: Record<string, string | number | boolean | null | undefined>
+  }
+}
+
 export default function DynamicCTAButtons({
   className,
   trackingEvents,
-  posthogTrackingEvents,
   withRestart = true,
 }: {
   className?: string
   trackingEvents: {
-    start: string[]
-    resume: string[]
-    results: string[]
-    restart?: string[]
-  }
-  posthogTrackingEvents?: {
-    start?: {
-      eventName: string
-      properties?: Record<string, string | number | boolean | null | undefined>
-    }
-    resume?: {
-      eventName: string
-      properties?: Record<string, string | number | boolean | null | undefined>
-    }
-    results?: {
-      eventName: string
-      properties?: Record<string, string | number | boolean | null | undefined>
-    }
-    restart?: {
-      eventName: string
-      properties?: Record<string, string | number | boolean | null | undefined>
-    }
+    start: TrackingData
+    resume: TrackingData
+    results: TrackingData
+    restart?: TrackingData
   }
   withRestart?: boolean
 }) {
@@ -80,25 +69,25 @@ export default function DynamicCTAButtons({
           onMouseLeave={() => setIsHover(false)}
           onClick={() => {
             if (progression === 1) {
-              trackEvent(trackingEvents?.results)
-              if (posthogTrackingEvents?.results) {
-                trackPosthogEvent(posthogTrackingEvents.results)
-              }
+              trackEvent(
+                trackingEvents.results.matomo,
+                trackingEvents.results.posthog
+              )
               return
             }
 
             if (progression > 0) {
-              trackEvent(trackingEvents?.resume)
-              if (posthogTrackingEvents?.resume) {
-                trackPosthogEvent(posthogTrackingEvents.resume)
-              }
+              trackEvent(
+                trackingEvents.resume.matomo,
+                trackingEvents.resume.posthog
+              )
               return
             }
 
-            trackEvent(trackingEvents?.start)
-            if (posthogTrackingEvents?.start) {
-              trackPosthogEvent(posthogTrackingEvents.start)
-            }
+            trackEvent(
+              trackingEvents.start.matomo,
+              trackingEvents.start.posthog
+            )
           }}>
           <span
             className={twMerge(
@@ -112,14 +101,19 @@ export default function DynamicCTAButtons({
         </ButtonLink>
       </MainButtonContainerTag>
 
-      {withRestart && progression > 0 && (
+      {withRestart && progression > 0 && trackingEvents.restart && (
         <li>
           <ButtonLink
             size="xl"
             color="secondary"
             className="leading-none"
-            trackingEvent={trackingEvents?.restart}
             onClick={() => {
+              if (trackingEvents.restart) {
+                trackEvent(
+                  trackingEvents.restart.matomo,
+                  trackingEvents.restart.posthog
+                )
+              }
               goToSimulateurPage({ noNavigation: true, newSimulation: {} })
             }}
             href={getLinkToSimulateurPage({ newSimulation: true })}>

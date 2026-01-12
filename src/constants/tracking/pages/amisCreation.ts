@@ -1,7 +1,7 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
-type TrackingData = {
+interface TrackingData {
   matomo: (string | null)[]
   posthog?: {
     eventName: string

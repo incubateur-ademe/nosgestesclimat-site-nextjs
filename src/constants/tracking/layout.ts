@@ -1,7 +1,7 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
-type TrackingData = {
+interface TrackingData {
   matomo: (string | null)[]
   posthog?: {
     eventName: string
@@ -136,7 +136,12 @@ export const footerClickImpactco2 = (): TrackingData => ({
 
 // Figma comment #17
 export const footerClickLanguage = (locale: string): TrackingData => ({
-  matomo: ['trackEvent', 'Footer', 'Click Language', `Click Language ${locale}`],
+  matomo: [
+    'trackEvent',
+    'Footer',
+    'Click Language',
+    `Click Language ${locale}`,
+  ],
   posthog: {
     eventName: 'Footer click language',
     properties: { locale },

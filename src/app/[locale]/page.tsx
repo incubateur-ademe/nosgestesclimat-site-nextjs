@@ -8,13 +8,9 @@ import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import {
   getLandingClickCTARestart,
-  getLandingClickCTARestartPosthog,
   getLandingClickCTAResults,
-  getLandingClickCTAResultsPosthog,
   getLandingClickCTAResume,
-  getLandingClickCTAResumePosthog,
   getLandingClickCTAStart,
-  getLandingClickCTAStartPosthog,
 } from '@/helpers/tracking/landings'
 import i18nConfig from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
@@ -91,12 +87,6 @@ export default async function Homepage({ params }: DefaultPageProps) {
                       '/',
                       trackingActionClickCTA
                     ),
-                  }}
-                  posthogTrackingEvents={{
-                    start: getLandingClickCTAStartPosthog('/'),
-                    resume: getLandingClickCTAResumePosthog('/'),
-                    results: getLandingClickCTAResultsPosthog('/'),
-                    restart: getLandingClickCTARestartPosthog('/'),
                   }}
                 />
               </Suspense>

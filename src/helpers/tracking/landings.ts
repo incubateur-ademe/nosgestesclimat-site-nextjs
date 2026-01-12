@@ -1,4 +1,4 @@
-type TrackingData = {
+interface TrackingData {
   matomo: (string | null)[]
   posthog?: {
     eventName: string

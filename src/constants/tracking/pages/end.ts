@@ -2,7 +2,7 @@
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
-type TrackingData = {
+interface TrackingData {
   matomo: (string | null)[]
   posthog?: {
     eventName: string

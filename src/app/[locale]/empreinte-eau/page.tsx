@@ -9,13 +9,9 @@ import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import {
   getLandingClickCTARestart,
-  getLandingClickCTARestartPosthog,
   getLandingClickCTAResults,
-  getLandingClickCTAResultsPosthog,
   getLandingClickCTAResume,
-  getLandingClickCTAResumePosthog,
   getLandingClickCTAStart,
-  getLandingClickCTAStartPosthog,
 } from '@/helpers/tracking/landings'
 import type { DefaultPageProps } from '@/types'
 import dynamic from 'next/dynamic'
@@ -122,12 +118,6 @@ export default async function WaterFootprintLandingPage(
                     '/empreinte-eau',
                     trackingActionClickCTA
                   ),
-                }}
-                posthogTrackingEvents={{
-                  start: getLandingClickCTAStartPosthog('/empreinte-eau'),
-                  resume: getLandingClickCTAResumePosthog('/empreinte-eau'),
-                  results: getLandingClickCTAResultsPosthog('/empreinte-eau'),
-                  restart: getLandingClickCTARestartPosthog('/empreinte-eau'),
                 }}
               />
             </div>

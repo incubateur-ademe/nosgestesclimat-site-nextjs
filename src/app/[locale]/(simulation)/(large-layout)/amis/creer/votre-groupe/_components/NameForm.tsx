@@ -7,10 +7,7 @@ import {
   ADMINISTRATOR_NAME_KEY,
   GROUP_EMOJIS,
 } from '@/constants/group'
-import {
-  amisCreationCreateGroupPosthog,
-  amisCreationEtapeVosInformationsSuivant,
-} from '@/constants/tracking/pages/amisCreation'
+import { amisCreationEtapeVosInformationsSuivant } from '@/constants/tracking/pages/amisCreation'
 import Button from '@/design-system/buttons/Button'
 import GridRadioInputs from '@/design-system/inputs/GridRadioInputs'
 import TextInput from '@/design-system/inputs/TextInput'
@@ -19,7 +16,7 @@ import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { captureException } from '@sentry/nextjs'
 import { useSearchParams } from 'next/navigation'
@@ -105,8 +102,8 @@ export default function NameForm() {
         groupToAdd: group.id,
       })
 
-      trackEvent(amisCreationEtapeVosInformationsSuivant)
-      trackPosthogEvent(amisCreationCreateGroupPosthog)
+      const tracking = amisCreationEtapeVosInformationsSuivant()
+      trackEvent(tracking.matomo, tracking.posthog)
 
       setShouldNavigate(group.id)
     } catch (e) {
