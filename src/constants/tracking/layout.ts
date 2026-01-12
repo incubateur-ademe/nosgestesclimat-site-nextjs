@@ -107,3 +107,13 @@ export const breadcrumbClickLink = (href: string) => [
   'Click link',
   href,
 ]
+
+export const footerNewsletterCTAClick = [
+  'trackEvent',
+  'Footer',
+  'Click Newsletter CTA',
+]
+
+export const captureFooterNewsletterClick = () => ({
+  eventName: 'click footer newsletter cta',
+})
