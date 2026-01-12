@@ -1,3 +1,11 @@
+type TrackingData = {
+  matomo: (string | null)[]
+  posthog?: {
+    eventName: string
+    properties?: Record<string, string | number | boolean | null | undefined>
+  }
+}
+
 function getLandingCategory(pathname: string) {
   switch (pathname) {
     case '/empreinte-eau':
@@ -11,112 +19,138 @@ function getLandingCategory(pathname: string) {
 }
 
 // Click CTA
-export const getLandingClickCTAStart = (pathname: string, action: string) => [
-  'trackEvent',
-  getLandingCategory(pathname),
-  action,
-  'Click Passer le test',
-]
+export const getLandingClickCTAStart = (
+  pathname: string,
+  action: string
+): TrackingData => ({
+  matomo: [
+    'trackEvent',
+    getLandingCategory(pathname),
+    action,
+    'Click Passer le test',
+  ],
+  posthog: {
+    eventName: 'Landing CTA click',
+    properties: {
+      page: getLandingCategory(pathname),
+      action: 'Passer le test',
+    },
+  },
+})
 
-export const getLandingClickCTAResume = (pathname: string, action: string) => [
-  'trackEvent',
-  getLandingCategory(pathname),
-  action,
-  'Click Reprendre le test',
-]
+export const getLandingClickCTAResume = (
+  pathname: string,
+  action: string
+): TrackingData => ({
+  matomo: [
+    'trackEvent',
+    getLandingCategory(pathname),
+    action,
+    'Click Reprendre le test',
+  ],
+  posthog: {
+    eventName: 'Landing CTA click',
+    properties: {
+      page: getLandingCategory(pathname),
+      action: 'Reprendre le test',
+    },
+  },
+})
 
-export const getLandingClickCTAResults = (pathname: string, action: string) => [
-  'trackEvent',
-  getLandingCategory(pathname),
-  action,
-  'Click Voir les résultats',
-]
-export const getLandingClickCTARestart = (pathname: string, action: string) => [
-  'trackEvent',
-  getLandingCategory(pathname),
-  action,
-  'Click Recommencer',
-]
+export const getLandingClickCTAResults = (
+  pathname: string,
+  action: string
+): TrackingData => ({
+  matomo: [
+    'trackEvent',
+    getLandingCategory(pathname),
+    action,
+    'Click Voir les résultats',
+  ],
+  posthog: {
+    eventName: 'Landing CTA click',
+    properties: {
+      page: getLandingCategory(pathname),
+      action: 'Voir les résultats',
+    },
+  },
+})
+
+export const getLandingClickCTARestart = (
+  pathname: string,
+  action: string
+): TrackingData => ({
+  matomo: [
+    'trackEvent',
+    getLandingCategory(pathname),
+    action,
+    'Click Recommencer',
+  ],
+  posthog: {
+    eventName: 'Landing CTA click',
+    properties: {
+      page: getLandingCategory(pathname),
+      action: 'Recommencer',
+    },
+  },
+})
 
 // Did you know slider
 export const getLandingDidYouKnowSliderValue = (number: number) =>
   `Passer le test écran ${number}`
 
-export const getLandingDidYouKnowSlider = (pathname: string, value: string) => [
-  'trackEvent',
-  getLandingCategory(pathname),
-  'Click bannière le saviez vous',
-  value,
-]
+export const getLandingDidYouKnowSlider = (
+  pathname: string,
+  value: string,
+  slideNumber?: number
+): TrackingData => ({
+  matomo: [
+    'trackEvent',
+    getLandingCategory(pathname),
+    'Click bannière le saviez vous',
+    value,
+  ],
+  posthog: slideNumber
+    ? {
+        eventName: 'Landing click bannière le saviez-vous',
+        properties: {
+          page: getLandingCategory(pathname),
+          slide: slideNumber,
+        },
+      }
+    : undefined,
+})
 
 // Post thumbnail
 export const getLandingClickPostThumbnail = (
   pathname: string,
   action: string
-) => ['trackEvent', getLandingCategory(pathname), action]
+): TrackingData => ({
+  matomo: ['trackEvent', getLandingCategory(pathname), action],
+})
 
 // Model info
-export const getLandingClickModelDocumentation = (pathname: string) => [
-  'trackEvent',
-  getLandingCategory(pathname),
-  'Click documentation',
-]
+export const getLandingClickModelDocumentation = (
+  pathname: string
+): TrackingData => ({
+  matomo: ['trackEvent', getLandingCategory(pathname), 'Click documentation'],
+})
 
 // Nouveautés
-export const getLandingClickNouveautes = (pathname: string) => [
-  'trackEvent',
-  getLandingCategory(pathname),
-  'Click nouveautés',
-]
+export const getLandingClickNouveautes = (pathname: string): TrackingData => ({
+  matomo: ['trackEvent', getLandingCategory(pathname), 'Click nouveautés'],
+})
 
-// Posthog tracking for homepage/landing pages
-export const getLandingClickCTAStartPosthog = (pathname: string) => ({
-  eventName: 'Landing CTA click',
-  properties: {
-    page: getLandingCategory(pathname),
-    action: 'Passer le test',
+export const learnMoreCarbonLink = (): TrackingData => ({
+  matomo: ['trackEvent', 'Accueil', 'Click "En savoir plus LP carbone"'],
+  posthog: {
+    eventName: 'Accueil click en savoir plus LP carbone',
   },
 })
 
-export const getLandingClickCTAResumePosthog = (pathname: string) => ({
-  eventName: 'Landing CTA click',
-  properties: {
-    page: getLandingCategory(pathname),
-    action: 'Reprendre le test',
+export const learnMoreWaterLink = (): TrackingData => ({
+  matomo: ['trackEvent', 'Accueil', 'Click "En savoir plus LP eau"'],
+  posthog: {
+    eventName: 'Accueil click en savoir plus LP eau',
   },
 })
-
-export const getLandingClickCTAResultsPosthog = (pathname: string) => ({
-  eventName: 'Landing CTA click',
-  properties: {
-    page: getLandingCategory(pathname),
-    action: 'Voir les résultats',
-  },
-})
-
-export const getLandingClickCTARestartPosthog = (pathname: string) => ({
-  eventName: 'Landing CTA click',
-  properties: {
-    page: getLandingCategory(pathname),
-    action: 'Recommencer',
-  },
-})
-
-export const getLandingDidYouKnowSliderPosthog = (
-  pathname: string,
-  slideNumber: number
-) => ({
-  eventName: 'Landing click bannière le saviez-vous',
-  properties: {
-    page: getLandingCategory(pathname),
-    slide: slideNumber,
-  },
-})
-
-export const learnMoreCarbonLinkPosthog = {
-  eventName: 'Accueil click en savoir plus LP carbone',
-}
-
-export const learnMoreWaterLinkPosthog = {
-  eventName: 'Accueil click en savoir plus LP eau',
-}

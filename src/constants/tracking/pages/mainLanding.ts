@@ -1,19 +1,29 @@
-export const learnMoreCarbonLink = [
-  'trackEvent',
-  'Accueil',
-  'Click "En savoir plus LP carbone"',
-]
+type TrackingData = {
+  matomo: (string | null)[]
+  posthog?: {
+    eventName: string
+    properties?: Record<string, string | number | boolean | null | undefined>
+  }
+}
 
-export const learnMoreWaterLink = [
-  'trackEvent',
-  'Accueil',
-  'Click "En savoir plus LP eau"',
-]
+export const learnMoreCarbonLink = (): TrackingData => ({
+  matomo: ['trackEvent', 'Accueil', 'Click "En savoir plus LP carbone"'],
+  posthog: {
+    eventName: 'Accueil click en savoir plus LP carbone',
+  },
+})
 
-export const createGroupLink = ['trackEvent', 'Accueil', 'Click "Groupes"']
+export const learnMoreWaterLink = (): TrackingData => ({
+  matomo: ['trackEvent', 'Accueil', 'Click "En savoir plus LP eau"'],
+  posthog: {
+    eventName: 'Accueil click en savoir plus LP eau',
+  },
+})
 
-export const createOrganisationLink = [
-  'trackEvent',
-  'Accueil',
-  'Click "Organisations"',
-]
+export const createGroupLink = (): TrackingData => ({
+  matomo: ['trackEvent', 'Accueil', 'Click "Groupes"'],
+})
+
+export const createOrganisationLink = (): TrackingData => ({
+  matomo: ['trackEvent', 'Accueil', 'Click "Organisations"'],
+})

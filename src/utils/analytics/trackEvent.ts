@@ -13,27 +13,48 @@ declare global {
   }
 }
 
-export const trackEvent = (args: (string | null)[]) => {
+/**
+ * Unified tracking function that sends events to both Matomo and Posthog
+ * @param matomoArgs - Array for Matomo tracking: ['trackEvent', 'Category', 'Action', 'Name', 'Value']
+ * @param posthogEvent - Optional object for Posthog tracking: { eventName: string, properties?: Record<...> }
+ */
+export const trackEvent = (
+  matomoArgs: (string | null)[],
+  posthogEvent?: {
+    eventName: string
+    properties?: Record<string, string | number | boolean | null | undefined>
+  }
+) => {
+  // Track to Matomo
   if (shouldLogTracking) {
-    console.log(args)
-    console.debug(args.join(' => '))
+    console.log('Matomo:', matomoArgs)
+    console.debug('Matomo:', matomoArgs.join(' => '))
   }
 
-  if (shouldNotTrack || !window?._paq) {
-    return
+  if (!shouldNotTrack && window?._paq) {
+    window._paq.push([...matomoArgs])
   }
 
-  // Matomo: [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
-  // Exemple : ['trackEvent', 'Misc', 'Region', 'Region used: FR']
-  // Or : ['trackEvent', 'Accueil', 'CTA Click', 'Click Reprendre le test']
-  // Or : ['trackEvent', 'Simulation', 'Simulation Completed', null, '8.9']
-  // Or : ['trackEvent', 'Simulation', 'Simulation Time', null, '3']
-  // Or : ['trackEvent', 'Fin', 'Toggle Target block']
+  // Track to Posthog if provided
+  if (posthogEvent) {
+    if (shouldLogTracking) {
+      console.log('Posthog:', posthogEvent)
+      console.debug(
+        'Posthog:',
+        `"${posthogEvent.eventName}" =>`,
+        posthogEvent.properties
+      )
+    }
 
-  // Pass a copy of the array to avoid mutation
-  window?._paq?.push([...args])
+    if (!shouldNotTrack && window?._paq) {
+      posthog.capture(posthogEvent.eventName, { ...posthogEvent.properties })
+    }
+  }
 }
 
+/**
+ * @deprecated Use trackEvent with posthogEvent parameter instead
+ */
 export const trackPosthogEvent = (args: {
   eventName: string
   properties?: Record<string, string | number | boolean | null | undefined>

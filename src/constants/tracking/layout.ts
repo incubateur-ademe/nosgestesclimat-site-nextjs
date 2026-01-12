@@ -1,157 +1,149 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
+type TrackingData = {
+  matomo: (string | null)[]
+  posthog?: {
+    eventName: string
+    properties?: Record<string, string | number | boolean | null | undefined>
+  }
+}
+
 // Figma comment #1
-export const headerClickLogo = ['trackEvent', 'Header', 'Click Logo']
+export const headerClickLogo = (): TrackingData => ({
+  matomo: ['trackEvent', 'Header', 'Click Logo'],
+})
 
 // Figma comment #2
-export const headerClickTest = ['trackEvent', 'Header', 'Click Test']
+export const headerClickTest = (): TrackingData => ({
+  matomo: ['trackEvent', 'Header', 'Click Test'],
+})
 
 // Figma comment #3
-export const headerClickActions = ['trackEvent', 'Header', 'Click Actions']
+export const headerClickActions = (): TrackingData => ({
+  matomo: ['trackEvent', 'Header', 'Click Actions'],
+})
 
 // Figma comment #4
-export const headerClickClassements = [
-  'trackEvent',
-  'Header',
-  'Click Classements',
-]
+export const headerClickClassements = (): TrackingData => ({
+  matomo: ['trackEvent', 'Header', 'Click Classements'],
+})
 
 // Figma comment #5
-export const headerClickProfil = ['trackEvent', 'Header', 'Click Profil']
+export const headerClickProfil = (): TrackingData => ({
+  matomo: ['trackEvent', 'Header', 'Click Profil'],
+})
 
 // Figma comment #7
-export const headerClickOrganisation = [
-  'trackEvent',
-  'Header',
-  'Click Organisation',
-]
+export const headerClickOrganisation = (): TrackingData => ({
+  matomo: ['trackEvent', 'Header', 'Click Organisation'],
+})
 
 // Figma comment #8
-export const footerClickLogo = ['trackEvent', 'Footer', 'Click Logo']
+export const footerClickLogo = (): TrackingData => ({
+  matomo: ['trackEvent', 'Footer', 'Click Logo'],
+})
 
 // Figma comment #9
-export const footerClickNouveautes = [
-  'trackEvent',
-  'Footer',
-  'Click Nouveautés',
-]
+export const footerClickNouveautes = (): TrackingData => ({
+  matomo: ['trackEvent', 'Footer', 'Click Nouveautés'],
+})
 
 // Figma comment #10
-export const footerClickQuiSommesNous = [
-  'trackEvent',
-  'Footer',
-  'Click Qui sommes-nous',
-]
-
-// Figma comment #11
-export const footerClickBlog = ['trackEvent', 'Footer', 'Click Blog']
-
-// Figma comment #12
-export const footerClickDocumentation = [
-  'trackEvent',
-  'Footer',
-  'Click Documentation',
-]
-
-// Figma comment #13
-export const footerClickAmbassadeurs = [
-  'trackEvent',
-  'Footer',
-  'Click Ambassadeurs',
-]
-
-export const footerClickFAQ = ['trackEvent', 'Footer', 'Click FAQ']
-
-export const footerClickContact = ['trackEvent', 'Footer', 'Click Contact']
-
-export const footerClickDiffusion = ['trackEvent', 'Footer', 'Click Diffusion']
-
-// Figma comment #14
-export const footerClickPlanSite = [
-  'trackEvent',
-  'Footer',
-  'Click Plan du site',
-]
-
-// Figma comment #15
-export const footerClickOrganisations = [
-  'trackEvent',
-  'Footer',
-  'Click Organisations',
-]
-
-// Figma comment #16
-export const footerClickInternational = [
-  'trackEvent',
-  'Footer',
-  'Click International',
-]
-
-export const footerClickStats = ['trackEvent', 'Footer', 'Click Statistiques']
-
-export const footerClickImpactco2 = ['trackEvent', 'Footer', 'Click Impact CO2']
-
-// Figma comment #17
-export const footerClickLanguage = (locale: string) => [
-  'trackEvent',
-  'Footer',
-  'Click Language',
-  `Click Language ${locale}`,
-]
-
-// Figma comment #18
-export const breadcrumbClickLink = (href: string) => [
-  'trackEvent',
-  'Breadcrumb',
-  'Click link',
-  href,
-]
-
-// Posthog tracking for footer
-export const footerClickLanguagePosthog = (locale: string) => ({
-  eventName: 'Footer click language',
-  properties: {
-    locale,
+export const footerClickQuiSommesNous = (): TrackingData => ({
+  matomo: ['trackEvent', 'Footer', 'Click Qui sommes-nous'],
+  posthog: {
+    eventName: 'Footer click qui sommes-nous',
   },
 })
 
-export const footerClickDocumentationPosthog = {
-  eventName: 'Footer click documentation',
-}
+// Figma comment #11
+export const footerClickBlog = (): TrackingData => ({
+  matomo: ['trackEvent', 'Footer', 'Click Blog'],
+  posthog: {
+    eventName: 'Footer click blog',
+  },
+})
 
-export const footerClickQuiSommesNousPosthog = {
-  eventName: 'Footer click qui sommes-nous',
-}
+// Figma comment #12
+export const footerClickDocumentation = (): TrackingData => ({
+  matomo: ['trackEvent', 'Footer', 'Click Documentation'],
+  posthog: {
+    eventName: 'Footer click documentation',
+  },
+})
 
-export const footerClickInternationalPosthog = {
-  eventName: 'Footer click international',
-}
+// Figma comment #13
+export const footerClickAmbassadeurs = (): TrackingData => ({
+  matomo: ['trackEvent', 'Footer', 'Click Ambassadeurs'],
+})
 
-export const footerClickImpactco2Posthog = {
-  eventName: 'Footer click Impact CO2',
-}
+export const footerClickFAQ = (): TrackingData => ({
+  matomo: ['trackEvent', 'Footer', 'Click FAQ'],
+  posthog: {
+    eventName: 'Footer click FAQ',
+  },
+})
 
-export const footerClickFAQPosthog = {
-  eventName: 'Footer click FAQ',
-}
+export const footerClickContact = (): TrackingData => ({
+  matomo: ['trackEvent', 'Footer', 'Click Contact'],
+  posthog: {
+    eventName: 'Footer click contact',
+  },
+})
 
-export const footerClickStatsPosthog = {
-  eventName: 'Footer click statistiques',
-}
+export const footerClickDiffusion = (): TrackingData => ({
+  matomo: ['trackEvent', 'Footer', 'Click Diffusion'],
+  posthog: {
+    eventName: 'Footer click diffusion',
+  },
+})
 
-export const footerClickDiffusionPosthog = {
-  eventName: 'Footer click diffusion',
-}
+// Figma comment #14
+export const footerClickPlanSite = (): TrackingData => ({
+  matomo: ['trackEvent', 'Footer', 'Click Plan du site'],
+})
 
-export const footerClickOrganisationsPosthog = {
-  eventName: 'Footer click organisations',
-}
+// Figma comment #15
+export const footerClickOrganisations = (): TrackingData => ({
+  matomo: ['trackEvent', 'Footer', 'Click Organisations'],
+  posthog: {
+    eventName: 'Footer click organisations',
+  },
+})
 
-export const footerClickContactPosthog = {
-  eventName: 'Footer click contact',
-}
+// Figma comment #16
+export const footerClickInternational = (): TrackingData => ({
+  matomo: ['trackEvent', 'Footer', 'Click International'],
+  posthog: {
+    eventName: 'Footer click international',
+  },
+})
 
-export const footerClickBlogPosthog = {
-  eventName: 'Footer click blog',
-}
+export const footerClickStats = (): TrackingData => ({
+  matomo: ['trackEvent', 'Footer', 'Click Statistiques'],
+  posthog: {
+    eventName: 'Footer click statistiques',
+  },
+})
+
+export const footerClickImpactco2 = (): TrackingData => ({
+  matomo: ['trackEvent', 'Footer', 'Click Impact CO2'],
+  posthog: {
+    eventName: 'Footer click Impact CO2',
+  },
+})
+
+// Figma comment #17
+export const footerClickLanguage = (locale: string): TrackingData => ({
+  matomo: ['trackEvent', 'Footer', 'Click Language', `Click Language ${locale}`],
+  posthog: {
+    eventName: 'Footer click language',
+    properties: { locale },
+  },
+})
+
+// Figma comment #18
+export const breadcrumbClickLink = (href: string): TrackingData => ({
+  matomo: ['trackEvent', 'Breadcrumb', 'Click link', href],
+})

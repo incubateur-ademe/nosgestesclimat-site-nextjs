@@ -6,16 +6,12 @@ import {
 } from '@/constants/state/cookies'
 import {
   trackingCookiesAccept,
-  trackingCookiesAcceptPosthog,
   trackingCookiesCustomChoice,
-  trackingCookiesCustomChoicePosthog,
   trackingCookiesCustomChoiceSave,
-  trackingCookiesCustomChoiceSavePosthog,
   trackingCookiesRefuse,
-  trackingCookiesRefusePosthog,
 } from '@/constants/tracking/misc'
 import { CookieChoice, type CookieConsentChoices } from '@/types/cookies'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import { useEffect, useState } from 'react'
 import CookieConsentBanner from './CookieConsentBanner'
@@ -51,8 +47,8 @@ export default function CookieConsentBannerAndManagement() {
 
     triggerConsentDetection()
 
-    trackEvent(trackingCookiesAccept)
-    trackPosthogEvent(trackingCookiesAcceptPosthog)
+    const tracking = trackingCookiesAccept()
+    trackEvent(tracking.matomo, tracking.posthog)
   }
 
   const refuseAll = () => {
@@ -60,14 +56,14 @@ export default function CookieConsentBannerAndManagement() {
     setIsVisible(false)
     setIsBoardOpen(false)
 
-    trackEvent(trackingCookiesRefuse)
-    trackPosthogEvent(trackingCookiesRefusePosthog)
+    const tracking = trackingCookiesRefuse()
+    trackEvent(tracking.matomo, tracking.posthog)
   }
 
   const openSettings = () => {
     setIsBoardOpen(true)
-    trackEvent(trackingCookiesCustomChoice)
-    trackPosthogEvent(trackingCookiesCustomChoicePosthog)
+    const tracking = trackingCookiesCustomChoice()
+    trackEvent(tracking.matomo, tracking.posthog)
   }
 
   const closeSettings = () => {
@@ -90,8 +86,8 @@ export default function CookieConsentBannerAndManagement() {
 
     triggerConsentDetection()
 
-    trackEvent(trackingCookiesCustomChoiceSave)
-    trackPosthogEvent(trackingCookiesCustomChoiceSavePosthog)
+    const tracking = trackingCookiesCustomChoiceSave()
+    trackEvent(tracking.matomo, tracking.posthog)
   }
 
   return (

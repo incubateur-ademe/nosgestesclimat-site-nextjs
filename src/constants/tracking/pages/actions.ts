@@ -3,75 +3,65 @@
 
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
-// Figma comment #67
-export const actionsClickStart = ['trackEvent', 'Actions', 'Click Démarrer']
-
-export const actionsClickStartPosthog = {
-  eventName: 'Actions click Démarrer',
+type TrackingData = {
+  matomo: (string | null)[]
+  posthog?: {
+    eventName: string
+    properties?: Record<string, string | number | boolean | null | undefined>
+  }
 }
 
-// Figma comment #69
-export const actionsClickYes = (action: DottedName) => [
-  'trackEvent',
-  'Actions',
-  'Click Yes',
-  `Click Yes ${action}`,
-]
+// Figma comment #67
+export const actionsClickStart = (): TrackingData => ({
+  matomo: ['trackEvent', 'Actions', 'Click Démarrer'],
+  posthog: {
+    eventName: 'Actions click Démarrer',
+  },
+})
 
-export const actionsClickYesPosthog = (action: DottedName) => ({
-  eventName: 'Actions click Yes',
-  properties: {
-    action,
+// Figma comment #69
+export const actionsClickYes = (action: DottedName): TrackingData => ({
+  matomo: ['trackEvent', 'Actions', 'Click Yes', `Click Yes ${action}`],
+  posthog: {
+    eventName: 'Actions click Yes',
+    properties: { action },
   },
 })
 
 // Figma comment #70
-export const actionsClickNo = (action: DottedName) => [
-  'trackEvent',
-  'Actions',
-  'Click No',
-  `Click No ${action}`,
-]
-
-export const actionsClickNoPosthog = (action: DottedName) => ({
-  eventName: 'Actions click No',
-  properties: {
-    action,
+export const actionsClickNo = (action: DottedName): TrackingData => ({
+  matomo: ['trackEvent', 'Actions', 'Click No', `Click No ${action}`],
+  posthog: {
+    eventName: 'Actions click No',
+    properties: { action },
   },
 })
 
 // Figma comment #71
-export const actionsClickAdditionalQuestion = (action: DottedName) => [
-  'trackEvent',
-  'Actions',
-  'Click Additional Question',
-  `Click Additional Question ${action}`,
-]
+export const actionsClickAdditionalQuestion = (
+  action: DottedName
+): TrackingData => ({
+  matomo: [
+    'trackEvent',
+    'Actions',
+    'Click Additional Question',
+    `Click Additional Question ${action}`,
+  ],
+})
 
 // Figma comment #112
-export const actionsOpenAction = (action: DottedName) => [
-  'trackEvent',
-  'Actions',
-  'Open Action',
-  `Open Action ${action}`,
-]
+export const actionsOpenAction = (action: DottedName): TrackingData => ({
+  matomo: ['trackEvent', 'Actions', 'Open Action', `Open Action ${action}`],
+  posthog: {
+    eventName: 'Actions open action',
+    properties: { action },
+  },
+})
 
 // Figma comment #114
-export const actionsClickAdeme = [
-  'trackEvent',
-  'Actions',
-  'Click More infos',
-  'Click Agir ADEME',
-]
-
-export const actionsClickAdemePosthog = {
-  eventName: 'Actions click Agir ADEME',
-}
-
-// Posthog tracking for Open Action
-export const actionsOpenActionPosthog = (action: DottedName) => ({
-  eventName: 'Actions open action',
-  properties: {
-    action,
+export const actionsClickAdeme = (): TrackingData => ({
+  matomo: ['trackEvent', 'Actions', 'Click More infos', 'Click Agir ADEME'],
+  posthog: {
+    eventName: 'Actions click Agir ADEME',
   },
 })
