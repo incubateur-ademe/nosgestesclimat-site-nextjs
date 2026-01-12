@@ -3,27 +3,26 @@
 import Ademe from '@/components/images/partners/Ademe'
 import Marianne from '@/components/images/partners/Marianne'
 import {
-  footerClickAmbassadeurs,
-  footerClickBlog,
-  footerClickContact,
-  footerClickDiffusion,
-  footerClickDocumentation,
-  footerClickFAQ,
-  footerClickImpactco2,
-  footerClickInternational,
-  footerClickLogo,
-  footerClickNouveautes,
-  footerClickOrganisations,
-  footerClickPlanSite,
-  footerClickQuiSommesNous,
-  footerClickStats,
+  trackFooterClickAmbassadeurs,
+  trackFooterClickBlog,
+  trackFooterClickContact,
+  trackFooterClickDiffusion,
+  trackFooterClickDocumentation,
+  trackFooterClickFAQ,
+  trackFooterClickImpactco2,
+  trackFooterClickInternational,
+  trackFooterClickLogo,
+  trackFooterClickNouveautes,
+  trackFooterClickOrganisations,
+  trackFooterClickPlanSite,
+  trackFooterClickQuiSommesNous,
+  trackFooterClickStats,
 } from '@/constants/tracking/layout'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDisplayed'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 import { useCookieConsent } from '../cookies/CookieConsentProvider'
@@ -75,13 +74,7 @@ export default function Footer({
         shouldUseWhiteBackground ? 'bg-white' : ''
       )}>
       <div className="md:mx-auto md:max-w-5xl">
-        <LogoLink
-          className="mb-8"
-          onClick={() => {
-            const tracking = footerClickLogo()
-            trackEvent(tracking.matomo, tracking.posthog)
-          }}
-        />
+        <LogoLink className="mb-8" onClick={trackFooterClickLogo} />
 
         <div className="mb-10 flex flex-col flex-wrap justify-start gap-x-16 gap-y-8 pt-4 md:flex-row lg:flex-nowrap">
           <div className="flex flex-col gap-y-2">
@@ -97,10 +90,7 @@ export default function Footer({
                   target="_blank"
                   aria-label={t('Qui sommes-nous - Nouvelle fenêtre')}
                   rel="noopener noreferrer"
-                  onClick={() => {
-                    const tracking = footerClickQuiSommesNous()
-                    trackEvent(tracking.matomo, tracking.posthog)
-                  }}
+                  onClick={trackFooterClickQuiSommesNous}
                   className="text-default text-sm no-underline hover:underline">
                   <Trans>Qui sommes-nous</Trans>
                 </InlineLink>
@@ -108,10 +98,7 @@ export default function Footer({
               <li>
                 <InlineLink
                   href="/plan-du-site"
-                  onClick={() => {
-                    const tracking = footerClickPlanSite()
-                    trackEvent(tracking.matomo, tracking.posthog)
-                  }}
+                  onClick={trackFooterClickPlanSite}
                   className="text-default text-sm no-underline hover:underline">
                   <Trans>Plan du site</Trans>
                 </InlineLink>
@@ -119,10 +106,7 @@ export default function Footer({
               <li>
                 <InlineLink
                   href="/contact"
-                  onClick={() => {
-                    const tracking = footerClickContact()
-                    trackEvent(tracking.matomo, tracking.posthog)
-                  }}
+                  onClick={trackFooterClickContact}
                   className="text-default text-sm no-underline hover:underline">
                   <Trans>Contact</Trans>
                 </InlineLink>
@@ -130,10 +114,7 @@ export default function Footer({
               <li>
                 <InlineLink
                   href="/international"
-                  onClick={() => {
-                    const tracking = footerClickInternational()
-                    trackEvent(tracking.matomo, tracking.posthog)
-                  }}
+                  onClick={trackFooterClickInternational}
                   className="text-default text-sm no-underline hover:underline">
                   <Trans>International</Trans>
                 </InlineLink>
@@ -141,10 +122,7 @@ export default function Footer({
               <li>
                 <InlineLink
                   href="/stats"
-                  onClick={() => {
-                    const tracking = footerClickStats()
-                    trackEvent(tracking.matomo, tracking.posthog)
-                  }}
+                  onClick={trackFooterClickStats}
                   className="text-default text-sm no-underline hover:underline">
                   <Trans>Statistiques</Trans>
                 </InlineLink>
@@ -162,10 +140,7 @@ export default function Footer({
               <li>
                 <InlineLink
                   href="/diffuser"
-                  onClick={() => {
-                    const tracking = footerClickDiffusion()
-                    trackEvent(tracking.matomo, tracking.posthog)
-                  }}
+                  onClick={trackFooterClickDiffusion}
                   className="text-default text-sm no-underline hover:underline">
                   <Trans>Diffuser Nos Gestes Climat</Trans>
                 </InlineLink>
@@ -173,10 +148,7 @@ export default function Footer({
               <li>
                 <InlineLink
                   href="/organisations"
-                  onClick={() => {
-                    const tracking = footerClickOrganisations()
-                    trackEvent(tracking.matomo, tracking.posthog)
-                  }}
+                  onClick={trackFooterClickOrganisations}
                   className="text-default text-sm no-underline hover:underline">
                   <Trans>Organisations</Trans>
                 </InlineLink>
@@ -184,10 +156,7 @@ export default function Footer({
               <li>
                 <InlineLink
                   href="/nos-relais"
-                  onClick={() => {
-                    const tracking = footerClickAmbassadeurs()
-                    trackEvent(tracking.matomo, tracking.posthog)
-                  }}
+                  onClick={trackFooterClickAmbassadeurs}
                   className="text-default text-sm no-underline hover:underline">
                   <Trans>Relais et partenaires</Trans>
                 </InlineLink>
@@ -205,10 +174,7 @@ export default function Footer({
               <li>
                 <InlineLink
                   href="/blog"
-                  onClick={() => {
-                    const tracking = footerClickBlog()
-                    trackEvent(tracking.matomo, tracking.posthog)
-                  }}
+                  onClick={trackFooterClickBlog}
                   className="text-default text-sm no-underline hover:underline">
                   <Trans>Blog</Trans>
                 </InlineLink>
@@ -216,10 +182,7 @@ export default function Footer({
               <li>
                 <InlineLink
                   href="/documentation"
-                  onClick={() => {
-                    const tracking = footerClickDocumentation()
-                    trackEvent(tracking.matomo, tracking.posthog)
-                  }}
+                  onClick={trackFooterClickDocumentation}
                   className="text-default text-sm no-underline hover:underline">
                   <Trans>Documentation</Trans>
                 </InlineLink>
@@ -227,10 +190,7 @@ export default function Footer({
               <li>
                 <InlineLink
                   href="/questions-frequentes"
-                  onClick={() => {
-                    const tracking = footerClickFAQ()
-                    trackEvent(tracking.matomo, tracking.posthog)
-                  }}
+                  onClick={trackFooterClickFAQ}
                   className="text-default text-sm no-underline hover:underline">
                   <Trans>FAQ</Trans>
                 </InlineLink>
@@ -238,10 +198,7 @@ export default function Footer({
               <li>
                 <InlineLink
                   href="/nouveautes"
-                  onClick={() => {
-                    const tracking = footerClickNouveautes()
-                    trackEvent(tracking.matomo, tracking.posthog)
-                  }}
+                  onClick={trackFooterClickNouveautes}
                   className="text-default text-sm no-underline hover:underline">
                   <Trans>Nouveautés</Trans>
                 </InlineLink>
@@ -251,10 +208,7 @@ export default function Footer({
                   href="https://impactco2.fr"
                   target="_blank"
                   className="text-default text-sm no-underline hover:underline"
-                  onClick={() => {
-                    const tracking = footerClickImpactco2()
-                    trackEvent(tracking.matomo, tracking.posthog)
-                  }}>
+                  onClick={trackFooterClickImpactco2}>
                   Impact CO2
                 </InlineLink>
               </li>

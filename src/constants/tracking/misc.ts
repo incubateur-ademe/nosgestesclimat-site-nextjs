@@ -1,8 +1,8 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { trackEvent } from '@/utils/analytics/trackEvent'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 export const trackIframeVisit = (url: string) => {
   trackEvent(['trackEvent', 'Misc', 'Iframe visit', `Iframe visit from ${url}`])
@@ -34,7 +34,12 @@ export const trackClickRegionBanner = () => {
 }
 
 export const trackSplitTesting = (branch: string) => {
-  trackEvent(['trackEvent', 'Misc', 'Split testing', `User on branch ${branch}`])
+  trackEvent([
+    'trackEvent',
+    'Misc',
+    'Split testing',
+    `User on branch ${branch}`,
+  ])
 }
 
 // Banner
@@ -44,10 +49,13 @@ export const trackBannerClick = () => {
 
 // Category filter
 export const trackCategoryFilter = (category: DottedName, path: string) => {
-  trackEvent(['trackEvent', path, 'Category filter', `Click Filter ${category}`], {
-    eventName: 'Actions click category filter',
-    properties: { category },
-  })
+  trackEvent(
+    ['trackEvent', path, 'Category filter', `Click Filter ${category}`],
+    {
+      eventName: 'Actions click category filter',
+      properties: { category },
+    }
+  )
 }
 
 // User account fake door

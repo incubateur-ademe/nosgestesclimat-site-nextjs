@@ -4,8 +4,8 @@ import Button from '@/design-system/buttons/Button'
 import ColorLine from '@/design-system/layout/ColorLine'
 import Separator from '@/design-system/layout/Separator'
 import {
-  getLandingDidYouKnowSlider,
   getLandingDidYouKnowSliderValue,
+  trackLandingDidYouKnowSlider,
 } from '@/helpers/tracking/landings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 // @ts-expect-error package types are wrongly exported
@@ -250,21 +250,24 @@ export default function DidYouKnowSlider({
         <div>
           <DynamicCTAButtons
             trackingEvents={{
-              start: getLandingDidYouKnowSlider(
-                pathname,
-                getLandingDidYouKnowSliderValue(currentSlide + 1),
-                currentSlide + 1
-              ),
-              resume: getLandingDidYouKnowSlider(
-                pathname,
-                getLandingDidYouKnowSliderValue(currentSlide + 1),
-                currentSlide + 1
-              ),
-              results: getLandingDidYouKnowSlider(
-                pathname,
-                getLandingDidYouKnowSliderValue(currentSlide + 1),
-                currentSlide + 1
-              ),
+              start: () =>
+                trackLandingDidYouKnowSlider(
+                  pathname,
+                  getLandingDidYouKnowSliderValue(currentSlide + 1),
+                  currentSlide + 1
+                ),
+              resume: () =>
+                trackLandingDidYouKnowSlider(
+                  pathname,
+                  getLandingDidYouKnowSliderValue(currentSlide + 1),
+                  currentSlide + 1
+                ),
+              results: () =>
+                trackLandingDidYouKnowSlider(
+                  pathname,
+                  getLandingDidYouKnowSliderValue(currentSlide + 1),
+                  currentSlide + 1
+                ),
             }}
             withRestart={false}
           />

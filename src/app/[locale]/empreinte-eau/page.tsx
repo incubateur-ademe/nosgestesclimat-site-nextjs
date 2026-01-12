@@ -8,10 +8,10 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import {
-  getLandingClickCTARestart,
-  getLandingClickCTAResults,
-  getLandingClickCTAResume,
-  getLandingClickCTAStart,
+  trackLandingClickCTARestart,
+  trackLandingClickCTAResults,
+  trackLandingClickCTAResume,
+  trackLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
 import type { DefaultPageProps } from '@/types'
 import dynamic from 'next/dynamic'
@@ -102,22 +102,26 @@ export default async function WaterFootprintLandingPage(
             <div className="flex w-full justify-center md:justify-start">
               <DynamicCTAButtons
                 trackingEvents={{
-                  start: getLandingClickCTAStart(
-                    '/empreinte-eau',
-                    trackingActionClickCTA
-                  ),
-                  resume: getLandingClickCTAResume(
-                    '/empreinte-eau',
-                    trackingActionClickCTA
-                  ),
-                  results: getLandingClickCTAResults(
-                    '/empreinte-eau',
-                    trackingActionClickCTA
-                  ),
-                  restart: getLandingClickCTARestart(
-                    '/empreinte-eau',
-                    trackingActionClickCTA
-                  ),
+                  start: () =>
+                    trackLandingClickCTAStart(
+                      '/empreinte-eau',
+                      trackingActionClickCTA
+                    ),
+                  resume: () =>
+                    trackLandingClickCTAResume(
+                      '/empreinte-eau',
+                      trackingActionClickCTA
+                    ),
+                  results: () =>
+                    trackLandingClickCTAResults(
+                      '/empreinte-eau',
+                      trackingActionClickCTA
+                    ),
+                  restart: () =>
+                    trackLandingClickCTARestart(
+                      '/empreinte-eau',
+                      trackingActionClickCTA
+                    ),
                 }}
               />
             </div>

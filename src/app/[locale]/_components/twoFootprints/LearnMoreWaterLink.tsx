@@ -2,17 +2,13 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/trans/TransClient'
-import { learnMoreWaterLink } from '@/helpers/tracking/landings'
-import { trackEvent } from '@/utils/analytics/trackEvent'
+import { trackLearnMoreWaterLink } from '@/helpers/tracking/landings'
 
 export default function LearnMoreCarbonLink() {
   return (
     <Link
       href="/empreinte-eau"
-      onClick={() => {
-        const tracking = learnMoreWaterLink()
-        trackEvent(tracking.matomo, tracking.posthog)
-      }}
+      onClick={trackLearnMoreWaterLink}
       className="text-[13px] md:text-base">
       <Trans>En savoir plus sur l'empreinte eau</Trans>
     </Link>

@@ -7,9 +7,7 @@ import {
   ADMINISTRATOR_NAME_KEY,
   GROUP_EMOJIS,
 } from '@/constants/group'
-import {
-  trackAmisCreationEtapeVosInformationsSuivant,
-} from '@/constants/tracking/pages/amisCreation'
+import { trackAmisCreationEtapeVosInformationsSuivant } from '@/constants/tracking/pages/amisCreation'
 import Button from '@/design-system/buttons/Button'
 import GridRadioInputs from '@/design-system/inputs/GridRadioInputs'
 import TextInput from '@/design-system/inputs/TextInput'

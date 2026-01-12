@@ -8,10 +8,10 @@ import LandingPage from '@/design-system/layout/LandingPage'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import {
-  getLandingClickCTARestart,
-  getLandingClickCTAResults,
-  getLandingClickCTAResume,
-  getLandingClickCTAStart,
+  trackLandingClickCTARestart,
+  trackLandingClickCTAResults,
+  trackLandingClickCTAResume,
+  trackLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
 import type { DefaultPageProps } from '@/types'
 import dynamic from 'next/dynamic'
@@ -99,22 +99,26 @@ export default async function CarbonFootprintLandingPage({
             <div className="flex w-full justify-center md:justify-start">
               <DynamicCTAButtons
                 trackingEvents={{
-                  start: getLandingClickCTAStart(
-                    '/empreinte-carbone',
-                    trackingActionClickCTA
-                  ),
-                  resume: getLandingClickCTAResume(
-                    '/empreinte-carbone',
-                    trackingActionClickCTA
-                  ),
-                  results: getLandingClickCTAResults(
-                    '/empreinte-carbone',
-                    trackingActionClickCTA
-                  ),
-                  restart: getLandingClickCTARestart(
-                    '/empreinte-carbone',
-                    trackingActionClickCTA
-                  ),
+                  start: () =>
+                    trackLandingClickCTAStart(
+                      '/empreinte-carbone',
+                      trackingActionClickCTA
+                    ),
+                  resume: () =>
+                    trackLandingClickCTAResume(
+                      '/empreinte-carbone',
+                      trackingActionClickCTA
+                    ),
+                  results: () =>
+                    trackLandingClickCTAResults(
+                      '/empreinte-carbone',
+                      trackingActionClickCTA
+                    ),
+                  restart: () =>
+                    trackLandingClickCTARestart(
+                      '/empreinte-carbone',
+                      trackingActionClickCTA
+                    ),
                 }}
               />
             </div>

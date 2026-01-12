@@ -7,10 +7,10 @@ import LandingPage from '@/design-system/layout/LandingPage'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import {
-  getLandingClickCTARestart,
-  getLandingClickCTAResults,
-  getLandingClickCTAResume,
-  getLandingClickCTAStart,
+  trackLandingClickCTARestart,
+  trackLandingClickCTAResults,
+  trackLandingClickCTAResume,
+  trackLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
 import i18nConfig from '@/i18nConfig'
 import type { DefaultPageProps } from '@/types'
@@ -74,19 +74,14 @@ export default async function Homepage({ params }: DefaultPageProps) {
               <Suspense fallback={<BlockSkeleton />}>
                 <DynamicCTAButtons
                   trackingEvents={{
-                    start: getLandingClickCTAStart('/', trackingActionClickCTA),
-                    resume: getLandingClickCTAResume(
-                      '/',
-                      trackingActionClickCTA
-                    ),
-                    results: getLandingClickCTAResults(
-                      '/',
-                      trackingActionClickCTA
-                    ),
-                    restart: getLandingClickCTARestart(
-                      '/',
-                      trackingActionClickCTA
-                    ),
+                    start: () =>
+                      trackLandingClickCTAStart('/', trackingActionClickCTA),
+                    resume: () =>
+                      trackLandingClickCTAResume('/', trackingActionClickCTA),
+                    results: () =>
+                      trackLandingClickCTAResults('/', trackingActionClickCTA),
+                    restart: () =>
+                      trackLandingClickCTARestart('/', trackingActionClickCTA),
                   }}
                 />
               </Suspense>

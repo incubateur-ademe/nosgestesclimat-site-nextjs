@@ -31,7 +31,10 @@ export const trackLandingClickCTAStart = (pathname: string, action: string) => {
   )
 }
 
-export const trackLandingClickCTAResume = (pathname: string, action: string) => {
+export const trackLandingClickCTAResume = (
+  pathname: string,
+  action: string
+) => {
   trackEvent(
     [
       'trackEvent',
@@ -49,7 +52,10 @@ export const trackLandingClickCTAResume = (pathname: string, action: string) => 
   )
 }
 
-export const trackLandingClickCTAResults = (pathname: string, action: string) => {
+export const trackLandingClickCTAResults = (
+  pathname: string,
+  action: string
+) => {
   trackEvent(
     [
       'trackEvent',
@@ -67,14 +73,12 @@ export const trackLandingClickCTAResults = (pathname: string, action: string) =>
   )
 }
 
-export const trackLandingClickCTARestart = (pathname: string, action: string) => {
+export const trackLandingClickCTARestart = (
+  pathname: string,
+  action: string
+) => {
   trackEvent(
-    [
-      'trackEvent',
-      getLandingCategory(pathname),
-      action,
-      'Click Recommencer',
-    ],
+    ['trackEvent', getLandingCategory(pathname), action, 'Click Recommencer'],
     {
       eventName: 'Landing CTA click',
       properties: {
@@ -121,7 +125,11 @@ export const trackLandingClickPostThumbnail = (
 
 // Model info
 export const trackLandingClickModelDocumentation = (pathname: string) => {
-  trackEvent(['trackEvent', getLandingCategory(pathname), 'Click documentation'])
+  trackEvent([
+    'trackEvent',
+    getLandingCategory(pathname),
+    'Click documentation',
+  ])
 }
 
 // Nouveautés

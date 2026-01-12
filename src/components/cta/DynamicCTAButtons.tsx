@@ -3,19 +3,10 @@
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RestartIcon from '../icons/RestartIcon'
 import Trans from '../translation/trans/TransClient'
-
-interface TrackingData {
-  matomo: (string | null)[]
-  posthog?: {
-    eventName: string
-    properties?: Record<string, string | number | boolean | null | undefined>
-  }
-}
 
 export default function DynamicCTAButtons({
   className,
@@ -24,10 +15,10 @@ export default function DynamicCTAButtons({
 }: {
   className?: string
   trackingEvents: {
-    start: TrackingData
-    resume: TrackingData
-    results: TrackingData
-    restart?: TrackingData
+    start: () => void
+    resume: () => void
+    results: () => void
+    restart?: () => void
   }
   withRestart?: boolean
 }) {
@@ -69,25 +60,16 @@ export default function DynamicCTAButtons({
           onMouseLeave={() => setIsHover(false)}
           onClick={() => {
             if (progression === 1) {
-              trackEvent(
-                trackingEvents.results.matomo,
-                trackingEvents.results.posthog
-              )
+              trackingEvents.results()
               return
             }
 
             if (progression > 0) {
-              trackEvent(
-                trackingEvents.resume.matomo,
-                trackingEvents.resume.posthog
-              )
+              trackingEvents.resume()
               return
             }
 
-            trackEvent(
-              trackingEvents.start.matomo,
-              trackingEvents.start.posthog
-            )
+            trackingEvents.start()
           }}>
           <span
             className={twMerge(
@@ -110,7 +92,7 @@ export default function DynamicCTAButtons({
             onClick={() => {
               const restart = trackingEvents.restart
               if (restart) {
-                trackEvent(restart.matomo, restart.posthog)
+                restart()
               }
               goToSimulateurPage({ noNavigation: true, newSimulation: {} })
             }}

@@ -1,8 +1,8 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { trackEvent } from '@/utils/analytics/trackEvent'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 // Figma comment #67
 export const trackActionsClickStart = () => {
@@ -39,15 +39,21 @@ export const trackActionsClickAdditionalQuestion = (action: DottedName) => {
 
 // Figma comment #112
 export const trackActionsOpenAction = (action: DottedName) => {
-  trackEvent(['trackEvent', 'Actions', 'Open Action', `Open Action ${action}`], {
-    eventName: 'Actions open action',
-    properties: { action },
-  })
+  trackEvent(
+    ['trackEvent', 'Actions', 'Open Action', `Open Action ${action}`],
+    {
+      eventName: 'Actions open action',
+      properties: { action },
+    }
+  )
 }
 
 // Figma comment #114
 export const trackActionsClickAdeme = () => {
-  trackEvent(['trackEvent', 'Actions', 'Click More infos', 'Click Agir ADEME'], {
-    eventName: 'Actions click Agir ADEME',
-  })
+  trackEvent(
+    ['trackEvent', 'Actions', 'Click More infos', 'Click Agir ADEME'],
+    {
+      eventName: 'Actions click Agir ADEME',
+    }
+  )
 }

@@ -1,7 +1,7 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
-import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { trackEvent } from '@/utils/analytics/trackEvent'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 // Figma comment #57
 export const trackEndClickPoll = () => {
@@ -27,10 +27,13 @@ export const trackEndClickHedgehog = () => {
 
 // Figma comment #60
 export const trackEndClickCategory = (category: DottedName) => {
-  trackEvent(['trackEvent', 'Fin', 'Click Category', `Click Category ${category}`], {
-    eventName: 'Fin click category',
-    properties: { category },
-  })
+  trackEvent(
+    ['trackEvent', 'Fin', 'Click Category', `Click Category ${category}`],
+    {
+      eventName: 'Fin click category',
+      properties: { category },
+    }
+  )
 }
 
 // Figma comment #62
