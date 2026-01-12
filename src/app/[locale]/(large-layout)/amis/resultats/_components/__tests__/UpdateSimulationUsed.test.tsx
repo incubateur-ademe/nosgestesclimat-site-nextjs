@@ -139,7 +139,9 @@ describe('UpdateSimulationUsed', () => {
         user: true,
       },
     })
-    await userEvent.click(screen.getByTestId('update-button'))
+    // Wait for the update button to appear before clicking
+    const updateButton = await screen.findByTestId('update-button')
+    await userEvent.click(updateButton)
 
     // Then
     await waitFor(() => {
@@ -166,7 +168,9 @@ describe('UpdateSimulationUsed', () => {
         user: true,
       },
     })
-    await userEvent.click(screen.getByTestId('update-button'))
+    // Wait for the update button to appear before clicking
+    const updateButton = await screen.findByTestId('update-button')
+    await userEvent.click(updateButton)
 
     // Then
     await waitFor(() => {

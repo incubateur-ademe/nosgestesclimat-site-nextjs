@@ -52,7 +52,8 @@ export default function usePersistentUser({
           code: '',
           name: '',
         },
-        userId: uuid(),
+        // Use initialUserId or localUser.userId to maintain consistency across renders
+        userId: initialUserId || localUser.userId,
       },
       setUser: () => {},
     }

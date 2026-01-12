@@ -30,9 +30,9 @@ vi.mock('@/hooks/useRules', () => ({
   }),
 }))
 
-// Mock getGeolocation
+// Mock getGeolocation with a valid region to avoid userId issues in usePersistentUser
 vi.mock('@/helpers/api/getGeolocation', () => ({
-  getGeolocation: () => Promise.resolve(undefined),
+  getGeolocation: () => Promise.resolve({ code: 'FR', name: 'France' }),
 }))
 
 // Default mock values
@@ -97,12 +97,20 @@ interface ProviderConfig {
   cookieConsent?: boolean
 }
 
+interface UserProviderProps {
+  initialSimulations?: Simulation[]
+  initialCurrentSimulationId?: string
+  initialUserId?: string
+}
+
 const TestWrapper = ({
   children,
   providers,
+  userProviderProps,
 }: {
   children: ReactElement
   providers: ProviderConfig
+  userProviderProps?: UserProviderProps
 }) => {
   let wrapped = children
 
@@ -140,7 +148,7 @@ const TestWrapper = ({
   }
 
   if (providers.user) {
-    wrapped = <UserProvider>{wrapped}</UserProvider>
+    wrapped = <UserProvider {...userProviderProps}>{wrapped}</UserProvider>
   }
 
   if (providers.queryClient) {
@@ -198,5 +206,20 @@ export const renderWithWrapper = (
     })
   )
 
-  return render(<TestWrapper providers={providers}>{ui}</TestWrapper>, options)
+  // Pass user provider props for server-hydrated mode to avoid async localStorage loading issues
+  const userProviderProps: UserProviderProps | undefined = providers.user
+    ? {
+        initialSimulations: simulations,
+        initialCurrentSimulationId:
+          currentSimulation?.id ?? defaultSimulation?.id,
+        initialUserId: userMerged.userId,
+      }
+    : undefined
+
+  return render(
+    <TestWrapper providers={providers} userProviderProps={userProviderProps}>
+      {ui}
+    </TestWrapper>,
+    options
+  )
 }
