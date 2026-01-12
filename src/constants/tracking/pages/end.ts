@@ -43,7 +43,10 @@ export const trackEndClickSaveSimulation = () => {
 
 // Figma comment #63
 export const trackEndClickAction = (action: DottedName) => {
-  trackEvent(['trackEvent', 'Fin', 'Click Action', `Click Action ${action}`])
+  trackEvent(['trackEvent', 'Fin', 'Click Action', `Click Action ${action}`], {
+    eventName: 'Fin click action',
+    properties: { action },
+  })
 }
 
 // Figma comment #64

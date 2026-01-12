@@ -29,12 +29,18 @@ export const trackActionsClickNo = (action: DottedName) => {
 
 // Figma comment #71
 export const trackActionsClickAdditionalQuestion = (action: DottedName) => {
-  trackEvent([
-    'trackEvent',
-    'Actions',
-    'Click Additional Question',
-    `Click Additional Question ${action}`,
-  ])
+  trackEvent(
+    [
+      'trackEvent',
+      'Actions',
+      'Click Additional Question',
+      `Click Additional Question ${action}`,
+    ],
+    {
+      eventName: 'Actions click Additional Question',
+      properties: { action },
+    }
+  )
 }
 
 // Figma comment #112
