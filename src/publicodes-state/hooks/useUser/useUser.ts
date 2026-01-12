@@ -32,6 +32,7 @@ export default function useUser() {
     updateInitialRegion,
     updatePendingVerification,
     updateUserOrganisation,
+    updateUserId,
   } = useUserDetails({ user, setUser })
 
   const {
@@ -63,6 +64,10 @@ export default function useUser() {
      * All the information about the user (for now: name, email, region and north star rating)
      */
     user,
+    /**
+     * A setter for updating the user ID
+     */
+    updateUserId,
     /**
      * A setter for updating the user name (not used for now)
      */

@@ -12,6 +12,11 @@ interface Props {
   setUser: Dispatch<SetStateAction<User>>
 }
 export default function useUserDetails({ setUser }: Props) {
+  const updateUserId = useCallback(
+    (userId: string) => setUser((prevUser: User) => ({ ...prevUser, userId })),
+    [setUser]
+  )
+
   const updateName = useCallback(
     (name: string) => setUser((prevUser: User) => ({ ...prevUser, name })),
     [setUser]
@@ -72,6 +77,7 @@ export default function useUserDetails({ setUser }: Props) {
   )
 
   return {
+    updateUserId,
     updateName,
     updateEmail,
     updateRegion,
