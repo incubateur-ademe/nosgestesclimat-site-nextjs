@@ -1,29 +1,22 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
-interface TrackingData {
-  matomo: (string | null)[]
-  posthog?: {
-    eventName: string
-    properties?: Record<string, string | number | boolean | null | undefined>
-  }
+import { trackEvent } from '@/utils/analytics/trackEvent'
+
+export const trackAmisCreationEtapeVotreGroupeSuivant = () => {
+  trackEvent(['trackEvent', 'Amis Creation', 'Step 1 - Click Suivant'])
 }
 
-export const amisCreationEtapeVotreGroupeSuivant = (): TrackingData => ({
-  matomo: ['trackEvent', 'Amis Creation', 'Step 1 - Click Suivant'],
-})
+export const trackAmisCreationVosInformationsRetour = () => {
+  trackEvent(['trackEvent', 'Amis Creation', 'Step 1 - Click Retour'])
+}
 
-export const amisCreationVosInformationsRetour = (): TrackingData => ({
-  matomo: ['trackEvent', 'Amis Creation', 'Step 1 - Click Retour'],
-})
-
-export const amisCreationEtapeVosInformationsSuivant = (): TrackingData => ({
-  matomo: ['trackEvent', 'Amis Creation', 'Step 2 - Click Suivant'],
-  posthog: {
+export const trackAmisCreationEtapeVosInformationsSuivant = () => {
+  trackEvent(['trackEvent', 'Amis Creation', 'Step 2 - Click Suivant'], {
     eventName: 'Classements create group',
-  },
-})
+  })
+}
 
-export const amisCreationVotreGroupeRetour = (): TrackingData => ({
-  matomo: ['trackEvent', 'Amis Creation', 'Step 2 - Click Retour'],
-})
+export const trackAmisCreationVotreGroupeRetour = () => {
+  trackEvent(['trackEvent', 'Amis Creation', 'Step 2 - Click Retour'])
+}

@@ -1,10 +1,4 @@
-interface TrackingData {
-  matomo: (string | null)[]
-  posthog?: {
-    eventName: string
-    properties?: Record<string, string | number | boolean | null | undefined>
-  }
-}
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
 export const trackingActionClickCTAMenu = 'CTA Click Menu'
 
@@ -15,9 +9,8 @@ export const trackingActionClickPageBottom = 'Click CTA bas de page'
 // Post thumbnail
 export const trackingActionClickPostThumbnail = 'Click article'
 
-export const trackingActionClickSortingButton = (): TrackingData => ({
-  matomo: ['trackEvent', 'Actions', 'Click bouton tri'],
-  posthog: {
+export const trackActionClickSortingButton = () => {
+  trackEvent(['trackEvent', 'Actions', 'Click bouton tri'], {
     eventName: 'Actions click bouton tri',
-  },
-})
+  })
+}

@@ -1,10 +1,4 @@
-interface TrackingData {
-  matomo: (string | null)[]
-  posthog?: {
-    eventName: string
-    properties?: Record<string, string | number | boolean | null | undefined>
-  }
-}
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
 function getLandingCategory(pathname: string) {
   switch (pathname) {
@@ -19,136 +13,130 @@ function getLandingCategory(pathname: string) {
 }
 
 // Click CTA
-export const getLandingClickCTAStart = (
-  pathname: string,
-  action: string
-): TrackingData => ({
-  matomo: [
-    'trackEvent',
-    getLandingCategory(pathname),
-    action,
-    'Click Passer le test',
-  ],
-  posthog: {
-    eventName: 'Landing CTA click',
-    properties: {
-      page: getLandingCategory(pathname),
-      action: 'Passer le test',
-    },
-  },
-})
+export const trackLandingClickCTAStart = (pathname: string, action: string) => {
+  trackEvent(
+    [
+      'trackEvent',
+      getLandingCategory(pathname),
+      action,
+      'Click Passer le test',
+    ],
+    {
+      eventName: 'Landing CTA click',
+      properties: {
+        page: getLandingCategory(pathname),
+        action: 'Passer le test',
+      },
+    }
+  )
+}
 
-export const getLandingClickCTAResume = (
-  pathname: string,
-  action: string
-): TrackingData => ({
-  matomo: [
-    'trackEvent',
-    getLandingCategory(pathname),
-    action,
-    'Click Reprendre le test',
-  ],
-  posthog: {
-    eventName: 'Landing CTA click',
-    properties: {
-      page: getLandingCategory(pathname),
-      action: 'Reprendre le test',
-    },
-  },
-})
+export const trackLandingClickCTAResume = (pathname: string, action: string) => {
+  trackEvent(
+    [
+      'trackEvent',
+      getLandingCategory(pathname),
+      action,
+      'Click Reprendre le test',
+    ],
+    {
+      eventName: 'Landing CTA click',
+      properties: {
+        page: getLandingCategory(pathname),
+        action: 'Reprendre le test',
+      },
+    }
+  )
+}
 
-export const getLandingClickCTAResults = (
-  pathname: string,
-  action: string
-): TrackingData => ({
-  matomo: [
-    'trackEvent',
-    getLandingCategory(pathname),
-    action,
-    'Click Voir les résultats',
-  ],
-  posthog: {
-    eventName: 'Landing CTA click',
-    properties: {
-      page: getLandingCategory(pathname),
-      action: 'Voir les résultats',
-    },
-  },
-})
+export const trackLandingClickCTAResults = (pathname: string, action: string) => {
+  trackEvent(
+    [
+      'trackEvent',
+      getLandingCategory(pathname),
+      action,
+      'Click Voir les résultats',
+    ],
+    {
+      eventName: 'Landing CTA click',
+      properties: {
+        page: getLandingCategory(pathname),
+        action: 'Voir les résultats',
+      },
+    }
+  )
+}
 
-export const getLandingClickCTARestart = (
-  pathname: string,
-  action: string
-): TrackingData => ({
-  matomo: [
-    'trackEvent',
-    getLandingCategory(pathname),
-    action,
-    'Click Recommencer',
-  ],
-  posthog: {
-    eventName: 'Landing CTA click',
-    properties: {
-      page: getLandingCategory(pathname),
-      action: 'Recommencer',
-    },
-  },
-})
+export const trackLandingClickCTARestart = (pathname: string, action: string) => {
+  trackEvent(
+    [
+      'trackEvent',
+      getLandingCategory(pathname),
+      action,
+      'Click Recommencer',
+    ],
+    {
+      eventName: 'Landing CTA click',
+      properties: {
+        page: getLandingCategory(pathname),
+        action: 'Recommencer',
+      },
+    }
+  )
+}
 
 // Did you know slider
 export const getLandingDidYouKnowSliderValue = (number: number) =>
   `Passer le test écran ${number}`
 
-export const getLandingDidYouKnowSlider = (
+export const trackLandingDidYouKnowSlider = (
   pathname: string,
   value: string,
   slideNumber?: number
-): TrackingData => ({
-  matomo: [
-    'trackEvent',
-    getLandingCategory(pathname),
-    'Click bannière le saviez vous',
-    value,
-  ],
-  posthog: {
-    eventName: 'Landing click bannière le saviez-vous',
-    properties: {
-      page: getLandingCategory(pathname),
-      slide: slideNumber,
-    },
-  },
-})
+) => {
+  trackEvent(
+    [
+      'trackEvent',
+      getLandingCategory(pathname),
+      'Click bannière le saviez vous',
+      value,
+    ],
+    {
+      eventName: 'Landing click bannière le saviez-vous',
+      properties: {
+        page: getLandingCategory(pathname),
+        slide: slideNumber,
+      },
+    }
+  )
+}
 
 // Post thumbnail
-export const getLandingClickPostThumbnail = (
+export const trackLandingClickPostThumbnail = (
   pathname: string,
   action: string
-): TrackingData => ({
-  matomo: ['trackEvent', getLandingCategory(pathname), action],
-})
+) => {
+  trackEvent(['trackEvent', getLandingCategory(pathname), action])
+}
 
 // Model info
-export const getLandingClickModelDocumentation = (
-  pathname: string
-): TrackingData => ({
-  matomo: ['trackEvent', getLandingCategory(pathname), 'Click documentation'],
-})
+export const trackLandingClickModelDocumentation = (pathname: string) => {
+  trackEvent(['trackEvent', getLandingCategory(pathname), 'Click documentation'])
+}
 
 // Nouveautés
-export const getLandingClickNouveautes = (pathname: string): TrackingData => ({
-  matomo: ['trackEvent', getLandingCategory(pathname), 'Click nouveautés'],
-})
+export const trackLandingClickNouveautes = (pathname: string) => {
+  trackEvent(['trackEvent', getLandingCategory(pathname), 'Click nouveautés'])
+}
 
-export const learnMoreCarbonLink = (): TrackingData => ({
-  matomo: ['trackEvent', 'Accueil', 'Click "En savoir plus LP carbone"'],
-  posthog: {
+export const trackLearnMoreCarbonLink = () => {
+  trackEvent(['trackEvent', 'Accueil', 'Click "En savoir plus LP carbone"'], {
     eventName: 'Accueil click en savoir plus LP carbone',
-  },
-})
+  })
+}
 
-export const learnMoreWaterLink = (): TrackingData => ({
-  matomo: ['trackEvent', 'Accueil', 'Click "En savoir plus LP eau"'],
-  posthog: {
+export const trackLearnMoreWaterLink = () => {
+  trackEvent(['trackEvent', 'Accueil', 'Click "En savoir plus LP eau"'], {
     eventName: 'Accueil click en savoir plus LP eau',
-  },
-})
+  })
+}

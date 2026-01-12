@@ -2,103 +2,88 @@
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
-interface TrackingData {
-  matomo: (string | null)[]
-  posthog?: {
-    eventName: string
-    properties?: Record<string, string | number | boolean | null | undefined>
-  }
+export const trackIframeVisit = (url: string) => {
+  trackEvent(['trackEvent', 'Misc', 'Iframe visit', `Iframe visit from ${url}`])
 }
 
-export const trackingIframeVisit = (url: string): TrackingData => ({
-  matomo: ['trackEvent', 'Misc', 'Iframe visit', `Iframe visit from ${url}`],
-})
-
-export const trackingIframeInteraction = (url: string): TrackingData => ({
-  matomo: [
+export const trackIframeInteraction = (url: string) => {
+  trackEvent([
     'trackEvent',
     'Misc',
     'Iframe interaction',
     `Iframe interaction from ${url}`,
-  ],
-})
+  ])
+}
 
-export const trackingLocale = (locale: string): TrackingData => ({
-  matomo: ['trackEvent', 'Misc', 'Language', `Locale used ${locale}`],
-})
+export const trackLocale = (locale: string) => {
+  trackEvent(['trackEvent', 'Misc', 'Language', `Locale used ${locale}`])
+}
 
-export const trackingRegion = (region: string): TrackingData => ({
-  matomo: ['trackEvent', 'Misc', 'Region', `Region used: ${region}`],
-})
+export const trackRegion = (region: string) => {
+  trackEvent(['trackEvent', 'Misc', 'Region', `Region used: ${region}`])
+}
 
-export const trackingDownloadRavijenChart = (): TrackingData => ({
-  matomo: ['trackEvent', 'Misc', 'Download Ravijen chart'],
-})
+export const trackDownloadRavijenChart = () => {
+  trackEvent(['trackEvent', 'Misc', 'Download Ravijen chart'])
+}
 
-export const trackingClickRegionBanner = (): TrackingData => ({
-  matomo: ['trackEvent', 'Misc', 'Click Region Banner'],
-})
+export const trackClickRegionBanner = () => {
+  trackEvent(['trackEvent', 'Misc', 'Click Region Banner'])
+}
 
-export const trackingSplitTesting = (branch: string): TrackingData => ({
-  matomo: ['trackEvent', 'Misc', 'Split testing', `User on branch ${branch}`],
-})
+export const trackSplitTesting = (branch: string) => {
+  trackEvent(['trackEvent', 'Misc', 'Split testing', `User on branch ${branch}`])
+}
 
 // Banner
-export const trackingBannerClick = (): TrackingData => ({
-  matomo: ['trackEvent', 'Bannière', 'Click lien'],
-})
+export const trackBannerClick = () => {
+  trackEvent(['trackEvent', 'Bannière', 'Click lien'])
+}
 
 // Category filter
-export const trackingCategoryFilter = (
-  category: DottedName,
-  path: string
-): TrackingData => ({
-  matomo: ['trackEvent', path, 'Category filter', `Click Filter ${category}`],
-  posthog: {
+export const trackCategoryFilter = (category: DottedName, path: string) => {
+  trackEvent(['trackEvent', path, 'Category filter', `Click Filter ${category}`], {
     eventName: 'Actions click category filter',
     properties: { category },
-  },
-})
+  })
+}
 
 // User account fake door
-export const trackingUserAccountFakeDoorAccept = (): TrackingData => ({
-  matomo: ['trackEvent', 'Compte utilisateur', 'Click Je crée mon compte'],
-})
+export const trackUserAccountFakeDoorAccept = () => {
+  trackEvent(['trackEvent', 'Compte utilisateur', 'Click Je crée mon compte'])
+}
 
-export const trackingUserAccountFakeDoorRefuse = (): TrackingData => ({
-  matomo: [
+export const trackUserAccountFakeDoorRefuse = () => {
+  trackEvent([
     'trackEvent',
     'Compte utilisateur',
     'Click Je ne préfère pas créer de compte',
-  ],
-})
+  ])
+}
 
 // Cookies
-export const trackingCookiesAccept = (): TrackingData => ({
-  matomo: ['trackEvent', 'Cookies', 'Click accepter tout'],
-  posthog: {
+export const trackCookiesAccept = () => {
+  trackEvent(['trackEvent', 'Cookies', 'Click accepter tout'], {
     eventName: 'Cookies click accepter tout',
-  },
-})
+  })
+}
 
-export const trackingCookiesRefuse = (): TrackingData => ({
-  matomo: ['trackEvent', 'Cookies', 'Click tout refuser'],
-  posthog: {
+export const trackCookiesRefuse = () => {
+  trackEvent(['trackEvent', 'Cookies', 'Click tout refuser'], {
     eventName: 'Cookies click tout refuser',
-  },
-})
+  })
+}
 
-export const trackingCookiesCustomChoice = (): TrackingData => ({
-  matomo: ['trackEvent', 'Cookies', 'Click choix personnalisés'],
-  posthog: {
+export const trackCookiesCustomChoice = () => {
+  trackEvent(['trackEvent', 'Cookies', 'Click choix personnalisés'], {
     eventName: 'Cookies click choix personnalisés',
-  },
-})
+  })
+}
 
-export const trackingCookiesCustomChoiceSave = (): TrackingData => ({
-  matomo: ['trackEvent', 'Cookies', 'Enregistrer choix personnalisés'],
-  posthog: {
+export const trackCookiesCustomChoiceSave = () => {
+  trackEvent(['trackEvent', 'Cookies', 'Enregistrer choix personnalisés'], {
     eventName: 'Cookies enregistrer choix personnalisés',
-  },
-})
+  })
+}

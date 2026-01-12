@@ -1,91 +1,83 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
-
-interface TrackingData {
-  matomo: (string | null)[]
-  posthog?: {
-    eventName: string
-    properties?: Record<string, string | number | boolean | null | undefined>
-  }
-}
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
 // Figma comment #57
-export const endClickPoll = (): TrackingData => ({
-  matomo: ['trackEvent', 'Fin', 'Click Poll'],
-})
+export const trackEndClickPoll = () => {
+  trackEvent(['trackEvent', 'Fin', 'Click Poll'])
+}
 
 // Figma comment #58
-export const endClickSaveShortcut = (): TrackingData => ({
-  matomo: ['trackEvent', 'Fin', 'Click Save shortcut'],
-})
+export const trackEndClickSaveShortcut = () => {
+  trackEvent(['trackEvent', 'Fin', 'Click Save shortcut'])
+}
 
-export const endClickShare = (): TrackingData => ({
-  matomo: ['trackEvent', 'Fin', 'Click Share'],
-})
+export const trackEndClickShare = () => {
+  trackEvent(['trackEvent', 'Fin', 'Click Share'])
+}
 
-export const endToggleTargetBlock = (): TrackingData => ({
-  matomo: ['trackEvent', 'Fin', 'Toggle Target block'],
-})
+export const trackEndToggleTargetBlock = () => {
+  trackEvent(['trackEvent', 'Fin', 'Toggle Target block'])
+}
 
-export const endClickHedgehog = (): TrackingData => ({
-  matomo: ['trackEvent', 'Fin', 'Click Hedgehog'],
-})
+export const trackEndClickHedgehog = () => {
+  trackEvent(['trackEvent', 'Fin', 'Click Hedgehog'])
+}
 
 // Figma comment #60
-export const endClickCategory = (category: DottedName): TrackingData => ({
-  matomo: ['trackEvent', 'Fin', 'Click Category', `Click Category ${category}`],
-  posthog: {
+export const trackEndClickCategory = (category: DottedName) => {
+  trackEvent(['trackEvent', 'Fin', 'Click Category', `Click Category ${category}`], {
     eventName: 'Fin click category',
     properties: { category },
-  },
-})
+  })
+}
 
 // Figma comment #62
-export const endClickSaveSimulation = (): TrackingData => ({
-  matomo: ['trackEvent', 'Fin', 'Click Save simulation'],
-})
+export const trackEndClickSaveSimulation = () => {
+  trackEvent(['trackEvent', 'Fin', 'Click Save simulation'])
+}
 
 // Figma comment #63
-export const endClickAction = (action: DottedName): TrackingData => ({
-  matomo: ['trackEvent', 'Fin', 'Click Action', `Click Action ${action}`],
-})
+export const trackEndClickAction = (action: DottedName) => {
+  trackEvent(['trackEvent', 'Fin', 'Click Action', `Click Action ${action}`])
+}
 
 // Figma comment #64
-export const endClickActions = (subcategory?: string): TrackingData => ({
-  matomo: ['trackEvent', 'Fin', 'Click Actions'],
-  posthog: subcategory
-    ? {
-        eventName: 'Fin click Actions',
-        properties: { subcategory },
-      }
-    : undefined,
-})
+export const trackEndClickActions = (subcategory?: string) => {
+  trackEvent(
+    ['trackEvent', 'Fin', 'Click Actions'],
+    subcategory
+      ? {
+          eventName: 'Fin click Actions',
+          properties: { subcategory },
+        }
+      : undefined
+  )
+}
 
 // Figma comment #65
-export const endClickDocumentation = (): TrackingData => ({
-  matomo: ['trackEvent', 'Fin', 'Click Documentation'],
-})
+export const trackEndClickDocumentation = () => {
+  trackEvent(['trackEvent', 'Fin', 'Click Documentation'])
+}
 
-export const endClickDomesticWater = (): TrackingData => ({
-  matomo: ['trackEvent', 'Fin', 'Click Eau domestique'],
-  posthog: {
+export const trackEndClickDomesticWater = () => {
+  trackEvent(['trackEvent', 'Fin', 'Click Eau domestique'], {
     eventName: 'Fin switch eau',
-  },
-})
+  })
+}
 
-export const endClickJagisFirstBlock = (): TrackingData => ({
-  matomo: ['trackEvent', 'Fin', 'Click Jagis premier bloc'],
-})
+export const trackEndClickJagisFirstBlock = () => {
+  trackEvent(['trackEvent', 'Fin', 'Click Jagis premier bloc'])
+}
 
-export const endClickJagisSecondBlock = (): TrackingData => ({
-  matomo: ['trackEvent', 'Fin', 'Click Jagis second bloc'],
-})
+export const trackEndClickJagisSecondBlock = () => {
+  trackEvent(['trackEvent', 'Fin', 'Click Jagis second bloc'])
+}
 
-export const endClickFootprint = (metric: string): TrackingData => ({
-  matomo: ['trackEvent', 'Fin', `Click Empreinte ${metric}`],
-  posthog: {
+export const trackEndClickFootprint = (metric: string) => {
+  trackEvent(['trackEvent', 'Fin', `Click Empreinte ${metric}`], {
     eventName: 'Fin click empreinte',
     properties: { metric },
-  },
-})
+  })
+}
