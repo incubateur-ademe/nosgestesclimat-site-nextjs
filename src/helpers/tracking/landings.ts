@@ -110,15 +110,13 @@ export const getLandingDidYouKnowSlider = (
     'Click bannière le saviez vous',
     value,
   ],
-  posthog: slideNumber
-    ? {
-        eventName: 'Landing click bannière le saviez-vous',
-        properties: {
-          page: getLandingCategory(pathname),
-          slide: slideNumber,
-        },
-      }
-    : undefined,
+  posthog: {
+    eventName: 'Landing click bannière le saviez-vous',
+    properties: {
+      page: getLandingCategory(pathname),
+      slide: slideNumber,
+    },
+  },
 })
 
 // Post thumbnail

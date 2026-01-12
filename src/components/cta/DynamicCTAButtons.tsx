@@ -101,18 +101,16 @@ export default function DynamicCTAButtons({
         </ButtonLink>
       </MainButtonContainerTag>
 
-      {withRestart && progression > 0 && trackingEvents.restart && (
+      {withRestart && progression > 0 && (
         <li>
           <ButtonLink
             size="xl"
             color="secondary"
             className="leading-none"
             onClick={() => {
-              if (trackingEvents.restart) {
-                trackEvent(
-                  trackingEvents.restart.matomo,
-                  trackingEvents.restart.posthog
-                )
+              const restart = trackingEvents.restart
+              if (restart) {
+                trackEvent(restart.matomo, restart.posthog)
               }
               goToSimulateurPage({ noNavigation: true, newSimulation: {} })
             }}

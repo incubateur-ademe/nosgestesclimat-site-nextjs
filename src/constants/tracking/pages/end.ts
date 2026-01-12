@@ -52,18 +52,14 @@ export const endClickAction = (action: DottedName): TrackingData => ({
 })
 
 // Figma comment #64
-export const endClickActions = (): TrackingData => ({
+export const endClickActions = (subcategory?: string): TrackingData => ({
   matomo: ['trackEvent', 'Fin', 'Click Actions'],
-})
-
-export const endClickActionsWithSubcategory = (
-  subcategory: string
-): TrackingData => ({
-  matomo: ['trackEvent', 'Fin', 'Click Actions'],
-  posthog: {
-    eventName: 'Fin click Actions',
-    properties: { subcategory },
-  },
+  posthog: subcategory
+    ? {
+        eventName: 'Fin click Actions',
+        properties: { subcategory },
+      }
+    : undefined,
 })
 
 // Figma comment #65

@@ -46,7 +46,7 @@ export const trackEvent = (
       )
     }
 
-    if (!shouldNotTrack && window?._paq) {
+    if (!shouldNotTrack && typeof window !== 'undefined' && window?._paq) {
       posthog.capture(posthogEvent.eventName, { ...posthogEvent.properties })
     }
   }
