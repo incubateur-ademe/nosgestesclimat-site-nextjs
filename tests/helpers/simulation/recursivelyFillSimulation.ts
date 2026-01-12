@@ -46,8 +46,7 @@ export async function recursivelyFillSimulation(
 
     // Is last question
     if (dottedName === LAST_QUESTION_ID) {
-      // Click twice to go to the end page
-      await page.locator(`[data-cypress-id="${NEXT_QUESTION_BUTTON}"]`).click()
+      // Click once to go to the end page (the OK button is now hidden, just click Terminer)
       await page.locator(`[data-cypress-id="${NEXT_QUESTION_BUTTON}"]`).click()
       return
     }

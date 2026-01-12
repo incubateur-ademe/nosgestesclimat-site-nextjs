@@ -106,8 +106,8 @@ export default function Question({
             {isOpen ? <Trans>Fermer</Trans> : showInputsLabel}
           </Button>
         ) : null}
-        {isOpen && !isInformationalQuestion && (
-          <>
+        {isOpen && (
+          <div className={isInformationalQuestion ? 'sr-only' : ''}>
             {type === 'number' && (
               <NumberInput
                 unit={unit}
@@ -180,7 +180,7 @@ export default function Question({
                 label={label || ''}
               />
             )}
-          </>
+          </div>
         )}
       </div>
       {typeof situationValue === 'number' && (
