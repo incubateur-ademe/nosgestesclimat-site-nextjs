@@ -41,9 +41,7 @@ export default function RawNumberInput({
         allowNegative={false}
         autoComplete="off"
         onValueChange={handleValueChange}
-        // "number" is not a valid type for the NumericFormat component, so we need to cast it to 'text'
-        // but this is required to display the right keyboard on mobile devices
-        type={'number' as unknown as 'text'}
+        inputMode="decimal"
         min={0}
         id={id}
         {...props}
