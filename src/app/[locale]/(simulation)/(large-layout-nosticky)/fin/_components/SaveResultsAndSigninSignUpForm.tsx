@@ -3,6 +3,10 @@
 import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import Confirmation from '@/components/results/carbone/getResultsByEmail/Confirmation'
 import Trans from '@/components/translation/trans/TransClient'
+import {
+  captureSaveResultsAndSigninSignUpComplete,
+  saveResultsAndSigninSignUpComplete,
+} from '@/constants/tracking/pages/end'
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Card from '@/design-system/layout/Card'
@@ -10,6 +14,7 @@ import Title from '@/design-system/layout/Title'
 import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation } from '@/publicodes-state'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { captureException } from '@sentry/nextjs'
 import { useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -37,6 +42,9 @@ export default function SaveResultsAndSigninSignUpForm({
     if (isPending) {
       return
     }
+
+    trackEvent(saveResultsAndSigninSignUpComplete)
+    trackPosthogEvent(captureSaveResultsAndSigninSignUpComplete)
 
     try {
       // Handles saving both completing the user signin / signup and saving the simulation

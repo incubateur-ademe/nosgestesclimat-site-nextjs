@@ -5,8 +5,13 @@ import GroupLoader from '@/components/groups/GroupLoader'
 import GroupNotFound from '@/components/groups/GroupNotFound'
 import StepsDisplay from '@/components/groups/StepsDisplay'
 import Trans from '@/components/translation/trans/TransClient'
+import {
+  amisInvitationConnexionComplete,
+  captureAmisInvitationConnexionComplete,
+} from '@/constants/tracking/pages/amisCreation'
 import Title from '@/design-system/layout/Title'
 import { useCurrentSimulation } from '@/publicodes-state'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { redirect, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 import LaconicRanking from '../_components/LaconicRanking'
@@ -89,7 +94,9 @@ export default function RejoindreGroupeEmailPage() {
           )
         }
         onComplete={(email) => {
-          console.log('email', email)
+          trackEvent(amisInvitationConnexionComplete)
+          trackPosthogEvent(captureAmisInvitationConnexionComplete)
+
           handleSaveParticipation({
             guestName: guestName,
             guestEmail: email ?? '',

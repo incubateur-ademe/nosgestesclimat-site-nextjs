@@ -98,3 +98,23 @@ export const captureClickFootprint = (metric: string) => ({
     metric,
   },
 })
+
+export const groupsLoginComplete = [
+  'trackEvent',
+  'Groups Login',
+  'Verification code validé',
+]
+
+export const captureGroupsLoginComplete = {
+  eventName: 'Groups Login - Verification code validé',
+}
+
+export const saveResultsAndSigninSignUpComplete = [
+  'trackEvent',
+  'Save Results and Signin Sign Up',
+  'Verification code validé',
+]
+
+export const captureSaveResultsAndSigninSignUpComplete = {
+  eventName: 'Save Results and Signin Sign Up - Verification code validé',
+}

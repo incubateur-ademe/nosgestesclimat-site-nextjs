@@ -34,3 +34,23 @@ export const clickMySpaceNoResultsStartTest =
 export const captureClickMySpaceNoResultsStartTest = JSON.stringify({
   eventName: 'click mon espace pas de résultats',
 })
+
+export const loginComplete = [
+  'trackEvent',
+  'Connexion',
+  'Verification code validé',
+]
+
+export const captureLoginComplete = {
+  eventName: 'Connexion - Verification code validé',
+}
+
+export const signupComplete = [
+  'trackEvent',
+  'Mon Espace - Inscription',
+  'Verification code validé',
+]
+
+export const captureSignupComplete = {
+  eventName: 'Mon Espace - Inscription - Verification code validé',
+}

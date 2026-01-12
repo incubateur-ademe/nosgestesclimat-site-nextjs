@@ -2,12 +2,17 @@ import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import ContentLarge from '@/components/layout/ContentLarge'
 import Trans from '@/components/translation/trans/TransServer'
 import { SIGNUP_MODE } from '@/constants/authentication/modes'
+import {
+  captureSignupComplete,
+  signupComplete,
+} from '@/constants/tracking/pages/mon-espace'
 import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import QueryClientProviderWrapper from '../../_components/mainLayoutProviders/QueryClientProviderWrapper'
 import ColourBlock from '../_components/ColourBlocks'
 import SigninSignupTabs from '../_components/SigninSignupTabs'
@@ -16,6 +21,11 @@ export default async function Connexion({ params }: DefaultPageProps) {
   const { locale } = await params
 
   const { t } = await getServerTranslation({ locale })
+
+  const onComplete = () => {
+    trackEvent(signupComplete)
+    trackPosthogEvent(captureSignupComplete)
+  }
 
   return (
     <ContentLarge className="px-4 lg:px-0">
@@ -41,6 +51,7 @@ export default async function Connexion({ params }: DefaultPageProps) {
                 mode="signUp"
                 buttonLabel={t('signup.button.label', "M'inscrire")}
                 redirectURL={`${MON_ESPACE_PATH}?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true`}
+                onComplete={onComplete}
               />
             </UserProvider>
           </QueryClientProviderWrapper>

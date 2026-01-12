@@ -1,7 +1,11 @@
 import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import StepsDisplay from '@/components/groups/StepsDisplay'
 import { linkToGroupCreation, SHOW_STEP_KEY } from '@/constants/group'
-import { amisCreationConnexionRetour } from '@/constants/tracking/pages/amisCreation'
+import {
+  amisCreationConnexionComplete,
+  amisCreationConnexionRetour,
+  captureAmisCreationConnexionComplete,
+} from '@/constants/tracking/pages/amisCreation'
 import GoBackButton from '@/design-system/inputs/GoBackButton'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -9,6 +13,7 @@ import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { isUserAuthenticated } from '@/helpers/server/model/user'
 import type { DefaultPageProps } from '@/types'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { redirect } from 'next/navigation'
 
 export const generateMetadata = getCommonMetadata({
@@ -45,6 +50,10 @@ export default async function GroupConnexionPage({ params }: DefaultPageProps) {
       <AuthenticateUserForm
         redirectURL={`/amis/creer/votre-groupe?${SHOW_STEP_KEY}=true`}
         buttonLabel={t('auth.verifyemail', 'Vérifier mon adresse email')}
+        onComplete={() => {
+          trackEvent(amisCreationConnexionComplete)
+          trackPosthogEvent(captureAmisCreationConnexionComplete)
+        }}
       />
     </div>
   )
