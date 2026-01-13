@@ -39,7 +39,7 @@ export default function FinTabs() {
 
     const search = urlSearchParams.toString()
     const query = search ? `?${search}` : ''
-    router.replace(`${pathname}${query}`, { scroll: false })
+    router.replace(`${pathname}${query}`)
 
     // Track events
     if (tab === 'results') {

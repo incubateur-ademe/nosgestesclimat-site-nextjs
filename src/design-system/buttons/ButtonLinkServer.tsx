@@ -33,7 +33,6 @@ export default function ButtonLinkServer({
       )}
       target={target}
       prefetch={false}
-      scroll={false}
       {...props}>
       {children}
     </Link>
