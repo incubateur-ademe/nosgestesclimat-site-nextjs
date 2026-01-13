@@ -50,7 +50,7 @@ export default function TallyForm() {
 
     // Uncomment this to pass the feature flag key to Tally
     // params.set('featureFlagKey', HERO_SECTION_FLAG_KEY)
-    //params.set('abTestVariant', isTestVersion ? 'test' : 'control')
+    // params.set('abTestVariant', isTestVersion ? 'test' : 'control')
 
     params.set('deviceType', isMobile() ? 'mobile' : 'desktop')
     params.set('iframe', isIframe ? 'true' : 'false')
