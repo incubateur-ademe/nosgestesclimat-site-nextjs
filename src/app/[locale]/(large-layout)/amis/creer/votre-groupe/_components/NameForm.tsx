@@ -66,7 +66,7 @@ export default function NameForm({ user }: { user: UserServer | null }) {
           },
           participants: hasCompletedTest
             ? [{ simulation: currentSimulation }]
-            : [],
+            : undefined,
         },
       })
 
