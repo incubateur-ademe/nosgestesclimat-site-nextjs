@@ -80,7 +80,10 @@ export function useUpdateOrganisation() {
             },
           }
         )
-        .then((response) => response.data)
+        .then((response) => ({
+          ...response.data,
+          userId: response.data.administrators?.[0]?.userId ?? '',
+        }))
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
