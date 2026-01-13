@@ -2,15 +2,21 @@ import LogOutIcon from '@/components/icons/LogOutIcon'
 import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import { logout } from '@/helpers/server/model/user'
+import { resetLocalStorage } from '@/helpers/user/resetLocalStorage'
 import { redirect } from 'next/navigation'
 
-async function handleDisconnect() {
+async function handleLogout() {
   'use server'
   await logout()
   redirect('/organisations')
 }
 
 export default function DeconnexionButton() {
+  const handleDisconnect = async () => {
+    await resetLocalStorage()
+    await handleLogout()
+  }
+
   return (
     <Button
       color="text"
