@@ -29,6 +29,13 @@ interface Props {
   onEmailEntered?: (email: string) => void
   onEmailEmpty?: () => void
   required?: boolean
+  trackers?: {
+    matomo: string[]
+    posthog: {
+      eventName: string
+      properties?: Record<string, string | number | boolean | null | undefined>
+    }
+  }
 }
 
 export default function AuthenticateUserForm({
@@ -41,6 +48,7 @@ export default function AuthenticateUserForm({
   required = true,
   onEmailEntered,
   onEmailEmpty,
+  trackers,
 }: Props) {
   const router = useRouter()
   const { user } = useUser()
@@ -57,9 +65,14 @@ export default function AuthenticateUserForm({
         router.push(redirectURL, { scroll: false })
       }
 
+      if (trackers) {
+        trackEvent(trackers.matomo)
+        trackPosthogEvent(trackers.posthog)
+      }
+
       onComplete?.(email)
     },
-    [redirectURL, onComplete, router]
+    [redirectURL, onComplete, router, trackers]
   )
 
   const {

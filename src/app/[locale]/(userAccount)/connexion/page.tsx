@@ -10,18 +10,12 @@ import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import QueryClientProviderWrapper from '../../_components/mainLayoutProviders/QueryClientProviderWrapper'
 import ColourBlock from '../_components/ColourBlocks'
 import SigninSignupTabs from '../_components/SigninSignupTabs'
 
 export default async function Connexion({ params }: DefaultPageProps) {
   const { locale } = await params
-
-  const onComplete = () => {
-    trackEvent(loginComplete)
-    trackPosthogEvent(captureLoginComplete)
-  }
 
   return (
     <ContentLarge className="px-4 lg:px-0">
@@ -46,7 +40,10 @@ export default async function Connexion({ params }: DefaultPageProps) {
               <AuthenticateUserForm
                 mode="signIn"
                 redirectURL={MON_ESPACE_PATH}
-                onComplete={onComplete}
+                trackers={{
+                  matomo: loginComplete,
+                  posthog: captureLoginComplete,
+                }}
               />
             </UserProvider>
           </QueryClientProviderWrapper>

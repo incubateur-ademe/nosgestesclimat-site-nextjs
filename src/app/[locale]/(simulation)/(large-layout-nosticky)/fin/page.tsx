@@ -158,7 +158,9 @@ export default function FinPage() {
 
       {activeTab === 'actions' && <ActionsTabContent />}
 
-      {activeTab === 'groups' && <GroupsTabContent user={authenticatedUser} />}
+      {activeTab === 'groups' && (
+        <GroupsTabContent user={authenticatedUser ?? undefined} />
+      )}
     </div>
   )
 }

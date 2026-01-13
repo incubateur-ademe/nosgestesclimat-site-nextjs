@@ -274,11 +274,19 @@ export default function useSimulations({
     [currentSimulationId, simulations]
   )
 
+  const updateSimulations = useCallback(
+    (newSimulations: Simulation[]) => {
+      setSimulations(newSimulations)
+    },
+    [setSimulations]
+  )
+
   return {
     initSimulation,
     deleteSimulation,
     currentSimulation,
     updateCurrentSimulation,
+    updateSimulations,
   }
 }
 

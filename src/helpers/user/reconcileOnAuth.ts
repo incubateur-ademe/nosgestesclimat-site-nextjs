@@ -1,23 +1,20 @@
 import { STORAGE_KEY } from '@/constants/storage'
 import { saveSimulation } from '@/helpers/simulation/saveSimulation'
 import { fetchUserSimulations } from '@/helpers/user/fetchUserSimulations'
-import type { LocalStorage, Simulation, User } from '@/publicodes-state/types'
+import type { LocalStorage, Simulation } from '@/publicodes-state/types'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 
 interface Params {
   serverUserId: string
-}
-
-interface Result {
-  mergedUser: User
-  mergedSimulations: Simulation[]
-  currentSimulationId: string
-  simulationsToSync: Simulation[]
+  updateSimulations: (newSimulations: Simulation[]) => void
+  updateCurrentSimulation: ({ id, ...rest }: Partial<Simulation>) => void
 }
 
 export async function reconcileOnAuth({
   serverUserId,
-}: Params): Promise<Result> {
+  updateSimulations,
+  updateCurrentSimulation,
+}: Params) {
   // Read local storage
   let parsed: LocalStorage | undefined = undefined
   try {
@@ -26,7 +23,6 @@ export async function reconcileOnAuth({
     parsed = undefined
   }
 
-  const localUser: User | undefined = parsed?.user
   const localSimulations: Simulation[] = parsed?.simulations || []
   const localCurrentSimulationId: string | undefined =
     parsed?.currentSimulationId
@@ -35,12 +31,6 @@ export async function reconcileOnAuth({
   const serverSimulations = await fetchUserSimulations({
     userId: serverUserId,
   })
-
-  // Build merged user: override userId with server
-  const mergedUser: User = {
-    ...localUser,
-    userId: serverUserId,
-  } as User
 
   // Create a Set of server simulation IDs for deduplication
   const serverSimulationIds = new Set(
@@ -64,8 +54,8 @@ export async function reconcileOnAuth({
         saveSimulation({
           simulation,
           userId: serverUserId,
-          email: mergedUser.email,
-          name: mergedUser.name,
+          email: parsed?.user?.email,
+          name: parsed?.user?.name,
         })
       )
     )
@@ -109,19 +99,6 @@ export async function reconcileOnAuth({
     currentSimulationId = mergedSimulations[0].id
   }
 
-  // Persist locally
-  const updated = {
-    ...parsed,
-    user: mergedUser,
-    simulations: mergedSimulations,
-    currentSimulationId,
-  }
-  safeLocalStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
-
-  return {
-    mergedUser,
-    mergedSimulations,
-    currentSimulationId,
-    simulationsToSync: [], // Already saved, no need to sync
-  }
+  updateSimulations(mergedSimulations)
+  updateCurrentSimulation({ id: currentSimulationId })
 }

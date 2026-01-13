@@ -12,7 +12,6 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import QueryClientProviderWrapper from '../../_components/mainLayoutProviders/QueryClientProviderWrapper'
 import ColourBlock from '../_components/ColourBlocks'
 import SigninSignupTabs from '../_components/SigninSignupTabs'
@@ -21,11 +20,6 @@ export default async function Connexion({ params }: DefaultPageProps) {
   const { locale } = await params
 
   const { t } = await getServerTranslation({ locale })
-
-  const onComplete = () => {
-    trackEvent(signupComplete)
-    trackPosthogEvent(captureSignupComplete)
-  }
 
   return (
     <ContentLarge className="px-4 lg:px-0">
@@ -51,7 +45,10 @@ export default async function Connexion({ params }: DefaultPageProps) {
                 mode="signUp"
                 buttonLabel={t('signup.button.label', "M'inscrire")}
                 redirectURL={`${MON_ESPACE_PATH}?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true`}
-                onComplete={onComplete}
+                trackers={{
+                  matomo: signupComplete,
+                  posthog: captureSignupComplete,
+                }}
               />
             </UserProvider>
           </QueryClientProviderWrapper>

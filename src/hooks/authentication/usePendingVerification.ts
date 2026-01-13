@@ -1,5 +1,6 @@
 import { reconcileOnAuth } from '@/helpers/user/reconcileOnAuth'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { captureException } from '@sentry/nextjs'
 import dayjs from 'dayjs'
 import { useCallback } from 'react'
 
@@ -13,7 +14,16 @@ export function usePendingVerification({
 }: {
   onComplete?: (email?: string) => void
 }) {
-  const { user, updatePendingVerification, updateEmail } = useUser()
+  const {
+    user,
+    updatePendingVerification,
+    updateEmail,
+    updateUserId,
+    updateSimulations,
+  } = useUser()
+
+  const { updateCurrentSimulation } = useCurrentSimulation()
+
   let pendingVerification = user?.pendingVerification
 
   if (
@@ -23,23 +33,39 @@ export function usePendingVerification({
     pendingVerification = undefined
   }
 
-  const handleVerificationCompleted = useCallback(async () => {
-    if (!pendingVerification) {
-      return
-    }
-    updateEmail(pendingVerification?.email)
-    await reconcileOnAuth({
-      serverUserId: user.userId,
-    })
-    updatePendingVerification(undefined)
-    onComplete?.(pendingVerification?.email)
-  }, [
-    user.userId,
-    updatePendingVerification,
-    pendingVerification,
-    updateEmail,
-    onComplete,
-  ])
+  const handleVerificationCompleted = useCallback(
+    async (serverUserId: string) => {
+      if (!pendingVerification) {
+        return
+      }
+
+      try {
+        updateEmail(pendingVerification?.email)
+        updateUserId(serverUserId)
+
+        await reconcileOnAuth({
+          serverUserId,
+          updateSimulations,
+          updateCurrentSimulation,
+        })
+
+        updatePendingVerification(undefined)
+
+        onComplete?.(pendingVerification?.email)
+      } catch (error) {
+        captureException(error)
+      }
+    },
+    [
+      onComplete,
+      pendingVerification,
+      updateCurrentSimulation,
+      updateEmail,
+      updatePendingVerification,
+      updateSimulations,
+      updateUserId,
+    ]
+  )
 
   return {
     pendingVerification,

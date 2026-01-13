@@ -10,10 +10,10 @@ import VerificationContent from './VerificationContent'
 interface Props<T extends object> {
   email: string
   onRegisterNewVerification: (newVerification: PendingVerification) => void
-  onVerificationCompleted: () => void
+  onVerificationCompleted: (serverUserId: string) => void
   mutationPayload?: T
   verificationMutation: UseMutationResult<
-    unknown,
+    { userId: string },
     Error,
     Partial<{ email: string; code: string }> & T
   >
@@ -59,9 +59,9 @@ export default function VerificationForm<T extends object>({
         ...mutateProps,
       } as { email: string; code: string } & T
 
-      await mutateAsync(payload)
+      const { userId } = await mutateAsync(payload)
 
-      onVerificationCompleted?.()
+      onVerificationCompleted?.(userId)
     },
     [
       isValidationDisabled,

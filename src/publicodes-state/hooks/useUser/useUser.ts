@@ -40,6 +40,7 @@ export default function useUser() {
     deleteSimulation,
     currentSimulation,
     updateCurrentSimulation,
+    updateSimulations,
   } = useSimulations({
     simulations,
     setSimulations,
@@ -132,6 +133,10 @@ export default function useUser() {
      * Create a new simulation (with the situation and the persona passed if applicable), set it as current and return its ID
      */
     initSimulation,
+    /**
+     * Update the list of simulations
+     */
+    updateSimulations,
     /**
      * Toggle the action choice of the current simulation
      */
