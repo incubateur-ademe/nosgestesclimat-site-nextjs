@@ -133,7 +133,11 @@ describe('NewslettersBlock', () => {
     // Wait for the form to be rendered
     await screen.findByTestId('newsletter-form')
 
-    // Select a newsletter and submit the form (email is pre-filled from user)
+    // Type the email address and select a newsletter
+    await user.type(
+      screen.getByTestId('newsletter-email-input'),
+      'test@example.com'
+    )
     await user.click(screen.getByTestId('newsletter-transports-checkbox'))
     await user.click(screen.getByTestId('newsletter-submit-button'))
 

@@ -149,7 +149,7 @@ export default function FinPage() {
               <DocumentationBlock />
             </div>
 
-            <div className="short:gap-2 top-40 hidden w-full flex-col gap-4 self-start md:mb-8 md:flex lg:sticky lg:z-30 lg:w-[22rem]">
+            <div className="short:gap-2 top-40 hidden w-full max-w-72 flex-col gap-4 self-start md:mb-8 md:flex lg:sticky lg:z-30 lg:w-[22rem]">
               <InformationBlock />
             </div>
           </div>

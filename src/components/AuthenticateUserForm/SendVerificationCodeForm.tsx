@@ -114,7 +114,7 @@ export default function SendVerificationCodeForm({
       CREATE_VERIFICATION_CODE_ERROR.SIGNIN_USER_DOES_NOT_EXIST ? (
         <Alert
           type="error"
-          className="mt-4"
+          className="mt-4 max-w-[30rem]"
           description={
             <Trans i18nKey="signIn.email.error.userDoesNotExist">
               Nous n’avons pas d’e-mail enregistré à cette adresse. Veuillez
@@ -126,7 +126,7 @@ export default function SendVerificationCodeForm({
         CREATE_VERIFICATION_CODE_ERROR.SIGNUP_USER_ALREADY_EXISTS ? (
         <Alert
           type="error"
-          className="mt-4"
+          className="mt-4 max-w-[30rem]"
           description={
             <Trans i18nKey="signIn.email.error.userAlreadyExists">
               Vous avez déjà un compte avec cet e-mail. Merci de vous connecter
@@ -136,7 +136,7 @@ export default function SendVerificationCodeForm({
         />
       ) : createVerificationCodeError ===
         CREATE_VERIFICATION_CODE_ERROR.UNKNOWN_ERROR ? (
-        <DefaultSubmitErrorMessage className="mt-4" />
+        <DefaultSubmitErrorMessage className="mt-4 max-w-[30rem]" />
       ) : null}
 
       <Button

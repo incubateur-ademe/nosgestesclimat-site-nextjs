@@ -19,7 +19,7 @@ export default async function MonEspaceActionsPage({
   params,
 }: DefaultPageProps) {
   const { locale } = await params
-  const rules = await getRules()
+  const rules = await getRules({ locale })
   const user = await getUser()
   const simulations = await fetchUserSimulations({
     userId: user.id,
