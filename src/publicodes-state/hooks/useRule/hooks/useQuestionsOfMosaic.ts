@@ -22,12 +22,12 @@ export default function useQuestionsOfMosaic({
   }
 
   const questionsOfMosaicFromParent =
-    everyMosaicChildrenWithParent[dottedName] || []
+    everyMosaicChildrenWithParent[dottedName] ?? []
 
   const questionsOfMosaicFromSibling =
     Object.values(everyMosaicChildrenWithParent).find((mosaicChildren) => {
       return mosaicChildren.includes(dottedName)
-    }) || []
+    }) ?? []
 
   const aucunOption = mosaicNode?.['option aucun']
 
