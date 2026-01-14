@@ -32,13 +32,19 @@ export default function Textile({ question, ...props }: Props) {
   const { value: preciseChoice, setValue: setPreciseChoice } = useRule(
     'divers . textile . choix précis'
   )
-  const { value, setValue } = useRule(question)
+  const { isFolded, setValue } = useRule(question)
+
+  const { isMissing: isMissingMosaic } = useRule(
+    'divers . textile . empreinte précise'
+  )
 
   const { updateCurrentSimulation } = useCurrentSimulation()
 
   useEffect(() => {
-    if (!preciseChoice || totalPiecesTextile === 0) return
+    // if mosaic answer is missing, we don't update question
+    if (!preciseChoice || isMissingMosaic) return
 
+    // 0 is considered as minimal (model logic)
     if (totalPiecesTextile <= 15) {
       setValue(utils.nameLeaf(POSSIBLE_ANSWERS.minimum))
     }
@@ -49,17 +55,18 @@ export default function Textile({ question, ...props }: Props) {
       setValue(utils.nameLeaf(POSSIBLE_ANSWERS['accro au shopping']))
     }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [preciseChoice, totalPiecesTextile])
-
-  // When preciseChoice is true (ie 'divers . textile . choix précis' is "oui" in the situation), the question 'divers . textile . empreinte précise' is answered, so as 'divers . textile . volume', so we add it to the foldedSteps
-  useEffect(() => {
-    if (preciseChoice === true) {
+    // Must be after situation update, "parent" question must be folded is precise choice.
+    if (!isFolded) {
       updateCurrentSimulation({
-        foldedStepToAdd: { foldedStep: question },
+        foldedStepToAdd: {
+          foldedStep: question,
+          isMosaicParent: true,
+        },
       })
     }
-  }, [preciseChoice, question, updateCurrentSimulation])
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [preciseChoice, totalPiecesTextile, isFolded, isMissingMosaic])
 
   return (
     <>
@@ -86,10 +93,6 @@ export default function Textile({ question, ...props }: Props) {
                 })
               )
               setPreciseChoice(preciseChoice ? 'non' : 'oui')
-
-              updateCurrentSimulation({
-                foldedStepToAdd: { foldedStep: question, value: value },
-              })
             }}
             className="mt-1 md:mt-0 md:ml-2">
             {preciseChoice ? (
