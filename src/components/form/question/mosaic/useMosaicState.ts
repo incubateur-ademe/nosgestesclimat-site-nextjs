@@ -17,7 +17,20 @@ export function useMosaicState({
 }: {
   questionsOfMosaic: DottedName[]
   question: DottedName
-}) {
+}): {
+  values: Partial<Record<DottedName, boolean | undefined | number>>
+  setValue: (
+    dottedName: DottedName,
+    value: boolean | number | undefined
+  ) => void
+  aucunOption:
+    | {
+        value: boolean
+        setValue: (value: boolean) => void
+        label: 'aucun' | 'non concerné'
+      }
+    | undefined
+} {
   const rule = useRule(question)
 
   const aucunOption = rule.aucunOption
@@ -60,16 +73,15 @@ export function useMosaicState({
     setAucunOptionSelected(selected)
     let newState = { ...state }
     if (
-      // Case 1.a If aucun is set
-      selected === true ||
-      // Case 1.b Or if all values are undefined
-      Object.values(state).every((value) => value === undefined)
+      // If aucun is set
+      selected === true
     ) {
       // Then we initialize all values to null
       newState = Object.fromEntries(
         questionsOfMosaic.map((question) => [question, null])
       )
     }
+
     setState(newState)
 
     // Propagate to the actual situation
@@ -84,33 +96,22 @@ export function useMosaicState({
   ) => {
     let newState = { ...state }
     newState[dottedName] = value
-    if (
-      // Case 1.b Or if all values are undefined
-      Object.values(state).every((value) => value === undefined)
-    ) {
+
+    // If some value is not (null, 0, false or undefined) then aucun is set to false and we propagate null to other values
+    if (Object.entries(newState).some(([, v]) => !!v)) {
+      setAucunOptionSelected(false)
       // Then we initialize all values to null
       newState = Object.fromEntries(
-        questionsOfMosaic.map((question) => [question, null])
+        questionsOfMosaic.map((question) => [
+          question,
+          newState[question] ?? null,
+        ])
       )
-    }
-
-    // Case 2. If some value is not (null, 0, false or undefined) then aucun is set to false
-    if (
-      aucunOption !== undefined &&
-      aucunOptionSelected &&
-      Object.entries(newState).some(([, v]) => !!v)
-    ) {
-      setAucunOptionSelected(false)
     }
 
     setState(newState)
 
     const newSituation: Record<string, NodeValue> = newState
-
-    // Case 3 If value is set to undefined (input cleared), it means « non applicable » (0 or false)
-    if (value === undefined) {
-      newSituation[dottedName] = null
-    }
 
     ;(typeof value === 'number' ? setValuesLater : setValuesNow)(newSituation, {
       questionDottedName: question,
@@ -119,8 +120,12 @@ export function useMosaicState({
   return {
     values: state,
     setValue: handleSetValue,
-    aucunOption,
-    aucunOptionSelected,
-    handleSetAucunOption,
+    aucunOption: aucunOption
+      ? {
+          value: aucunOptionSelected,
+          setValue: handleSetAucunOption,
+          label: aucunOption,
+        }
+      : undefined,
   }
 }

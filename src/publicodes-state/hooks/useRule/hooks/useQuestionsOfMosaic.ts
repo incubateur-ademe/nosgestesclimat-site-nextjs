@@ -29,7 +29,7 @@ export default function useQuestionsOfMosaic({
       return mosaicChildren.includes(dottedName)
     }) || []
 
-  const aucunOption = mosaicNode?.aucun
+  const aucunOption = mosaicNode?.['option aucun']
 
   return {
     questionsOfMosaicFromParent,
