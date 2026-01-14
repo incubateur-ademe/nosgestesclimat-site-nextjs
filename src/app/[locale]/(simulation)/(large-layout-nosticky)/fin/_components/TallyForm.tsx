@@ -1,9 +1,7 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { HERO_SECTION_FLAG_KEY } from '@/constants/ab-test'
 import Emoji from '@/design-system/utils/Emoji'
-import { useIsTestVersion } from '@/hooks/abTesting/useIsTestVersion'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
@@ -37,7 +35,8 @@ export default function TallyForm() {
 
   const { isIframe } = useIframe()
 
-  const isTestVersion = useIsTestVersion(HERO_SECTION_FLAG_KEY)
+  // Uncomment this to pass the feature flag key to Tally
+  // const isTestVersion = useIsTestVersion(HERO_SECTION_FLAG_KEY)
 
   const isFrench = useLocale() === i18nConfig.defaultLocale
   const FORM_ID =
@@ -50,8 +49,8 @@ export default function TallyForm() {
     const params = new URLSearchParams(window.location.search)
 
     // Uncomment this to pass the feature flag key to Tally
-    params.set('featureFlagKey', HERO_SECTION_FLAG_KEY)
-    params.set('abTestVariant', isTestVersion ? 'test' : 'control')
+    // params.set('featureFlagKey', HERO_SECTION_FLAG_KEY)
+    // params.set('abTestVariant', isTestVersion ? 'test' : 'control')
 
     params.set('deviceType', isMobile() ? 'mobile' : 'desktop')
     params.set('iframe', isIframe ? 'true' : 'false')
