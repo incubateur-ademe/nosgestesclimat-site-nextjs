@@ -1,4 +1,3 @@
-import { HERO_SECTION_FLAG_KEY } from '@/constants/ab-test'
 import {
   getLinkToSimulateur,
   getLinkToTutoriel,
@@ -7,7 +6,6 @@ import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
-import { useIsTestVersion } from '../abTesting/useIsTestVersion'
 import { useClientTranslation } from '../useClientTranslation'
 import { useLocale } from '../useLocale'
 import { useEndPage } from './useEndPage'
@@ -116,8 +114,6 @@ export function useSimulateurPage() {
     [progression, tutorielSeen, getLinkToEndPage, locale, searchParams]
   )
 
-  const isTestVersion = useIsTestVersion(HERO_SECTION_FLAG_KEY)
-
   const linkToSimulateurPageLabel = useMemo(() => {
     // If the user has completed the test we return the results page label
     if (progression === 1) {
@@ -130,8 +126,8 @@ export function useSimulateurPage() {
     }
 
     // else we return the tutoriel page label
-    return isTestVersion ? t('Commencer le test') : t('Passer le test')
-  }, [progression, t, isTestVersion])
+    return t('Commencer le test')
+  }, [progression, t])
 
   return {
     goToSimulateurPage,
