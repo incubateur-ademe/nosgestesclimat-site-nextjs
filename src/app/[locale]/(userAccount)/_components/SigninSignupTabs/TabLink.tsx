@@ -50,12 +50,7 @@ export default function TabLink({
     )
   }
   return (
-    <Link
-      href={href}
-      className={baseClasses}
-      scroll={false}
-      onClick={handleClick}
-      {...props}>
+    <Link href={href} className={baseClasses} onClick={handleClick} {...props}>
       {children}
     </Link>
   )
