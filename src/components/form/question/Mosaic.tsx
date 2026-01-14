@@ -7,6 +7,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import MosaicQuestion from './mosaic/MosaicQuestion'
+import MosaicAucunInput from './mosaic/mosaicQuestion/MosaicAucunInput'
 import { useMosaicState } from './mosaic/useMosaicState'
 
 interface Props {
@@ -24,7 +25,13 @@ export default function Mosaic({
   firstInputId,
   label,
 }: Props) {
-  const { values, setValue } = useMosaicState({
+  const {
+    values,
+    setValue,
+    aucunOption,
+    aucunOptionSelected,
+    handleSetAucunOption,
+  } = useMosaicState({
     questionsOfMosaic,
     question,
   })
@@ -58,6 +65,23 @@ export default function Mosaic({
             setValue={setValue}
           />
         ))}
+        {aucunOption && (
+          <MosaicAucunInput
+            question={`${question} . aucun` as DottedName}
+            title={
+              aucunOption === 'not concerned'
+                ? t(
+                    'simulator.mosaic.notConcerned',
+                    'Je ne suis pas concerné·e'
+                  )
+                : t('simulator.mosaic.noneOfTheseOptions', 'Aucun')
+            }
+            icons="❌"
+            value={aucunOptionSelected}
+            setValue={handleSetAucunOption}
+            index={questionsOfMosaic.length}
+          />
+        )}
       </fieldset>
 
       {!!secondaryQuestionsOfMosaic.length && (
