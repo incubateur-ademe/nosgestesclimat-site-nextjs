@@ -7,98 +7,67 @@ import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 interface Params {
   serverUserId: string
   updateSimulations: (newSimulations: Simulation[]) => void
-  updateCurrentSimulation: ({ id, ...rest }: Partial<Simulation>) => void
+  setCurrentSimulationId: (id: string) => void
 }
+
+// This is the date when we started to save all simulations started on the server
+const LIMIT_DATE = new Date('2025-11-27')
 
 export async function reconcileOnAuth({
   serverUserId,
   updateSimulations,
-  updateCurrentSimulation,
+  setCurrentSimulationId,
 }: Params) {
   // Read local storage
-  let parsed: LocalStorage | undefined = undefined
+  let parsedLocalStorage: LocalStorage | undefined = undefined
   try {
-    parsed = JSON.parse(safeLocalStorage.getItem(STORAGE_KEY) || '{}')
+    parsedLocalStorage = JSON.parse(
+      safeLocalStorage.getItem(STORAGE_KEY) ?? '{}'
+    ) as LocalStorage
   } catch {
-    parsed = undefined
+    parsedLocalStorage = undefined
   }
 
-  const localSimulations: Simulation[] = parsed?.simulations || []
+  const localSimulations: Simulation[] = parsedLocalStorage?.simulations ?? []
   const localCurrentSimulationId: string | undefined =
-    parsed?.currentSimulationId
+    parsedLocalStorage?.currentSimulationId
+
+  // Save all simulation started before the LIMIT_DATE
+  const simulationsToSave = localSimulations.filter(
+    (simulation) => new Date(simulation.date) < LIMIT_DATE
+  )
+
+  await Promise.allSettled(
+    simulationsToSave.map((simulation) =>
+      saveSimulation({
+        simulation,
+        userId: serverUserId,
+        email: parsedLocalStorage?.user?.email,
+        name: parsedLocalStorage?.user?.name,
+      })
+    )
+  )
 
   // Fetch simulations from server
   const serverSimulations = await fetchUserSimulations({
     userId: serverUserId,
   })
 
-  // Create a Set of server simulation IDs for deduplication
-  const serverSimulationIds = new Set(
-    serverSimulations?.map((s) => s.id).filter(Boolean) ?? []
-  )
-
-  // Identify local-only simulations (not in server) with progression > 0
-  const localOnlySimulations = localSimulations.filter(
-    (simulation) =>
-      simulation.id &&
-      !serverSimulationIds.has(simulation.id) &&
-      simulation.progression > 0
-  )
-
-  // Save local-only simulations to DB (using Promise.allSettled to handle errors gracefully)
-  const savedSimulations: Simulation[] = []
-
-  if (localOnlySimulations.length > 0) {
-    const saveResults = await Promise.allSettled(
-      localOnlySimulations.map((simulation) =>
-        saveSimulation({
-          simulation,
-          userId: serverUserId,
-          email: parsed?.user?.email,
-          name: parsed?.user?.name,
-        })
-      )
-    )
-
-    // Collect successfully saved simulations
-    saveResults?.forEach((result) => {
-      if (result.status === 'fulfilled' && result.value) {
-        savedSimulations.push(result.value)
-      }
-      // Silently ignore failed saves (best-effort)
-    })
+  if (!serverSimulations) {
+    return
   }
-
-  // Merge server simulations + saved local simulations + remaining local simulations
-  // Use Set to deduplicate by ID
-  const allSimulations = new Map<string, Simulation>()
-
-  ;[
-    ...(serverSimulations ?? []),
-    ...savedSimulations,
-    ...localSimulations,
-  ].forEach((simulation: Simulation) => {
-    allSimulations.set(simulation.id, simulation)
-  })
-
-  // Convert to array and sort by date desc
-  const mergedSimulations = Array.from(allSimulations.values()).sort((a, b) => {
-    const dateA = a.date ? new Date(a.date).getTime() : 0
-    const dateB = b.date ? new Date(b.date).getTime() : 0
-    return dateB - dateA
-  })
 
   // Determine currentSimulationId
   let currentSimulationId = ''
   if (
     localCurrentSimulationId &&
-    mergedSimulations.some((s) => s.id === localCurrentSimulationId)
+    serverSimulations.some((s) => s.id === localCurrentSimulationId)
   ) {
     currentSimulationId = localCurrentSimulationId
-  } else if (mergedSimulations[0]?.id) {
-    currentSimulationId = mergedSimulations[0].id
+  } else if (serverSimulations?.[0]?.id) {
+    currentSimulationId = serverSimulations[0].id
   }
 
-  updateSimulations(mergedSimulations)
-  updateCurrentSimulation({ id: currentSimulationId })
+  updateSimulations(serverSimulations)
+  setCurrentSimulationId(currentSimulationId)
 }

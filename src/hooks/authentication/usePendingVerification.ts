@@ -1,5 +1,5 @@
 import { reconcileOnAuth } from '@/helpers/user/reconcileOnAuth'
-import { useCurrentSimulation, useUser } from '@/publicodes-state'
+import { useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
 import dayjs from 'dayjs'
 import { useCallback } from 'react'
@@ -20,9 +20,8 @@ export function usePendingVerification({
     updateEmail,
     updateUserId,
     updateSimulations,
+    setCurrentSimulationId,
   } = useUser()
-
-  const { updateCurrentSimulation } = useCurrentSimulation()
 
   let pendingVerification = user?.pendingVerification
 
@@ -46,7 +45,7 @@ export function usePendingVerification({
         await reconcileOnAuth({
           serverUserId,
           updateSimulations,
-          updateCurrentSimulation,
+          setCurrentSimulationId,
         })
 
         updatePendingVerification(undefined)
@@ -59,7 +58,7 @@ export function usePendingVerification({
     [
       onComplete,
       pendingVerification,
-      updateCurrentSimulation,
+      setCurrentSimulationId,
       updateEmail,
       updatePendingVerification,
       updateSimulations,
