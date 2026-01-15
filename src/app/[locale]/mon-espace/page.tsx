@@ -5,6 +5,7 @@ import { fetchUserSimulations } from '@/helpers/user/fetchUserSimulations'
 import type { DefaultPageProps } from '@/types'
 import NoResultsView from './_components/NoResultsView'
 import ResultsView from './_components/ResultsView'
+import ScrollToTop from './_components/ScrollToTop'
 import WelcomeBanner from './_components/WelcomeBanner'
 
 export default async function MonEspacePage({
@@ -13,7 +14,7 @@ export default async function MonEspacePage({
 }: DefaultPageProps) {
   const { locale } = await params
   const { [SHOW_WELCOME_BANNER_QUERY_PARAM]: showWelcomeBanner } =
-    (await searchParams) || {}
+    (await searchParams) ?? {}
 
   const user = await getUser()
 
@@ -26,7 +27,10 @@ export default async function MonEspacePage({
   return (
     <ContentLarge className="mt-4 px-3 md:mt-10 lg:px-0">
       {showWelcomeBanner && !!latestSimulation && (
-        <WelcomeBanner locale={locale} />
+        <>
+          <ScrollToTop />
+          <WelcomeBanner locale={locale} />
+        </>
       )}
 
       {!latestSimulation && <NoResultsView locale={locale} />}
