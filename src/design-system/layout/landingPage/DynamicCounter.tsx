@@ -5,12 +5,10 @@ import type { Locale } from '@/i18nConfig'
 export default function DynamicCounter({ locale }: { locale: Locale }) {
   return (
     <p className="mb-0 text-center text-xl md:text-2xl">
-      <strong className="text-primary-700">
-        <Trans locale={locale}>2,7 millions de personnes</Trans>
-      </strong>{' '}
-      <span>
-        <Trans locale={locale}>ont déjà calculé leur empreinte</Trans>
-      </span>
+      <Trans locale={locale}>
+        <strong className="text-primary-700">2,7 millions de personnes</strong>{' '}
+        <span>ont déjà calculé leur empreinte</span>
+      </Trans>
     </p>
   )
 }
