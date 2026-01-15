@@ -25,12 +25,11 @@ export default function RawNumberInput({
   id,
   ...props
 }: ComponentProps<typeof NumericFormat> & Props) {
-  console.log('RawNumberInput value:', value)
   return (
     <div
       className={twMerge(`flex items-center justify-start gap-1`, className)}>
       <NumericFormat
-        value={value ?? ''}
+        value={value}
         placeholder={placeholder}
         className={twMerge(
           `max-w-[8rem] rounded-xl border border-solid border-slate-500 bg-white p-4 text-right text-base transition-colors md:max-w-full`,

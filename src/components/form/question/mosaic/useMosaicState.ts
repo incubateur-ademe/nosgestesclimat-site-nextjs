@@ -18,10 +18,10 @@ export function useMosaicState({
   questionsOfMosaic: DottedName[]
   question: DottedName
 }): {
-  values: Partial<Record<DottedName, boolean | undefined | number>>
+  values: Partial<Record<DottedName, boolean | undefined | number | ''>>
   setValue: (
     dottedName: DottedName,
-    value: boolean | number | undefined
+    value: boolean | number | '' | undefined
   ) => void
   aucunOption:
     | {
@@ -44,7 +44,7 @@ export function useMosaicState({
 
   const stateFromSituation: (
     situation: Situation
-  ) => Partial<Record<DottedName, boolean | undefined | number>> = () =>
+  ) => Partial<Record<DottedName, boolean | undefined | number | ''>> = () =>
     Object.fromEntries(
       questionsOfMosaic.map((question) => [
         question,
@@ -55,18 +55,18 @@ export function useMosaicState({
     )
 
   const [state, setState] = useState(stateFromSituation(situation))
-  console.log('stateFromSituation', stateFromSituation(situation))
 
   useEffect(() => {
-    const newState = Object.fromEntries(
+    const newState: Partial<
+      Record<DottedName, boolean | undefined | number | ''>
+    > = Object.fromEntries(
       Object.entries(stateFromSituation(situation)).map(([key, value]) => {
-        console.log({ state, value })
         if (state[key as DottedName] === null && value === 0) {
           return [key, null]
         }
-        // allow to keep undefined in mosaic state when situation value is 0
-        if (state[key as DottedName] === undefined && value === 0) {
-          return [key, undefined]
+        // allow to keep '' in mosaic state when situation value is 0
+        if (state[key as DottedName] === '' && value === 0) {
+          return [key, '']
         }
         return [key, value]
       })
@@ -97,7 +97,7 @@ export function useMosaicState({
         questionsOfMosaic.map((question) => [question, undefined])
       )
     }
-    console.log('Aucun option changed', newState)
+
     setState(newState)
 
     // Propagate to the actual situation
@@ -108,10 +108,9 @@ export function useMosaicState({
 
   const handleSetValue = (
     dottedName: DottedName,
-    value: boolean | number | undefined
+    value: boolean | number | '' | undefined
   ) => {
     let newState = { ...state }
-    console.log('Setting mosaic value', { dottedName, value })
     // If all values are undefined, then initialize all mosaic to null
     if (Object.values(newState).every((v) => v === undefined)) {
       newState = Object.fromEntries(
@@ -129,8 +128,8 @@ export function useMosaicState({
     setState(newState)
     const newSituation: Record<string, NodeValue> = { ...newState }
 
-    // If value is undefined and all other are not undefined, then situation value is set to null
-    if (value === undefined) {
+    // If value is '' and all other are not '', then situation value is set to null
+    if (value === '') {
       newSituation[dottedName] = null
     }
 
@@ -139,7 +138,6 @@ export function useMosaicState({
     })
   }
 
-  console.log('Mosaic state', state)
   return {
     values: state,
     setValue: handleSetValue,
