@@ -7,7 +7,7 @@ import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import MosaicQuestion from './mosaic/MosaicQuestion'
-import MosaicAucunInput from './mosaic/mosaicQuestion/MosaicAucunInput'
+import MosaicBooleanInput from './mosaic/mosaicQuestion/MosaicBooleanInput'
 import { useMosaicState } from './mosaic/useMosaicState'
 
 interface Props {
@@ -59,7 +59,7 @@ export default function Mosaic({
           />
         ))}
         {aucunOption && (
-          <MosaicAucunInput
+          <MosaicBooleanInput
             question={`${question} . aucun` as DottedName}
             title={
               aucunOption.label === 'non concerné'

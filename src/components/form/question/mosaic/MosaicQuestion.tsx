@@ -27,7 +27,7 @@ export default function MosaicQuestion({
   setValue,
   firstInputId,
 }: Props) {
-  const { type, parent } = useRule(question)
+  const { type, parent, isInactive } = useRule(question)
 
   const { title, icons, description } = useRule(parent)
 
@@ -65,6 +65,7 @@ export default function MosaicQuestion({
             )
           }}
           index={index}
+          isInactive={isInactive}
           {...maybeIdFirstInput}
         />
       )}
