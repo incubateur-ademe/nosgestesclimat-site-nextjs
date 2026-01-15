@@ -12,10 +12,10 @@ interface Props {
   parentMosaic: DottedName
   index: number
   firstInputId: string
-  value: number | boolean | undefined | null
+  value: number | boolean | undefined | '' | null
   setValue: (
     dottedName: DottedName,
-    value: number | boolean | undefined
+    value: number | boolean | '' | undefined
   ) => void
 }
 
@@ -48,7 +48,7 @@ export default function MosaicQuestion({
           {...maybeIdFirstInput}
         />
       )}
-      {type === 'boolean' && typeof value !== 'number' && (
+      {type === 'boolean' && typeof value !== 'number' && value !== '' && (
         <MosaicBooleanInput
           question={question}
           title={title}
