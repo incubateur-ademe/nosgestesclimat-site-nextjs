@@ -56,7 +56,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
 
   if (tutorials.localisationBanner) return null
 
-  if (code === defaultModelRegionCode) return null
+  if (!code || code === defaultModelRegionCode) return null
 
   if (pathname === MON_ESPACE_SETTINGS_PATH) return null
 
