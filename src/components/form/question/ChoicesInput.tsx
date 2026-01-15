@@ -8,7 +8,7 @@ interface Props {
   question: DottedName
   value: Evaluation<string>
   choices: (string | number)[] | null
-  setValue: (value: string) => void
+  setValue: (value: string | undefined) => void
   'data-cypress-id': string
   label: string
   firstInputId?: string
@@ -61,8 +61,13 @@ export default function ChoicesInput(props: Props) {
             choice={choice}
             active={currentValue === choice}
             setValue={(choice: string | number) => {
-              setCurrentValue(choice)
-              requestIdleCallback(() => setValue(String(choice)))
+              if (currentValue === choice) {
+                setCurrentValue(undefined)
+                requestIdleCallback(() => setValue(undefined))
+              } else {
+                setCurrentValue(choice)
+                requestIdleCallback(() => setValue(String(choice)))
+              }
             }}
             {...otherProps}
             data-cypress-id={`${props['data-cypress-id']}-${choice}`}
