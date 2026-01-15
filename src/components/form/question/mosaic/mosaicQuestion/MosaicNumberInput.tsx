@@ -85,9 +85,17 @@ export default function MosaicNumberInput({
           value={value === null ? 0 : value}
           placeholder={value === null ? '' : '_'}
           unit={shouldNotContainButtons ? unit : undefined}
-          handleValueChange={({ floatValue, value }) =>
-            setValue(value === undefined ? value : floatValue)
-          }
+          handleValueChange={({ floatValue, value: inputValue }) => {
+            console.log('MosaicNumberInput handleValueChange:', {
+              floatValue,
+              inputValue,
+            })
+            if (value === undefined && inputValue === '') {
+              // If the input is cleared and the current value is undefined, do nothing
+              return
+            }
+            setValue(inputValue === '' ? undefined : floatValue)
+          }}
           data-cypress-id={`${question}---${parentMosaic}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
         />

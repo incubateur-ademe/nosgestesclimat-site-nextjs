@@ -55,12 +55,18 @@ export function useMosaicState({
     )
 
   const [state, setState] = useState(stateFromSituation(situation))
+  console.log('stateFromSituation', stateFromSituation(situation))
 
   useEffect(() => {
     const newState = Object.fromEntries(
       Object.entries(stateFromSituation(situation)).map(([key, value]) => {
+        console.log({ state, value })
         if (state[key as DottedName] === null && value === 0) {
           return [key, null]
+        }
+        // allow to keep undefined in mosaic state when situation value is 0
+        if (state[key as DottedName] === undefined && value === 0) {
+          return [key, undefined]
         }
         return [key, value]
       })
@@ -82,6 +88,16 @@ export function useMosaicState({
       )
     }
 
+    if (
+      // If aucun is unset
+      selected === false
+    ) {
+      // Then we reinitialize all values to undefined (default state)
+      newState = Object.fromEntries(
+        questionsOfMosaic.map((question) => [question, undefined])
+      )
+    }
+    console.log('Aucun option changed', newState)
     setState(newState)
 
     // Propagate to the actual situation
@@ -95,28 +111,35 @@ export function useMosaicState({
     value: boolean | number | undefined
   ) => {
     let newState = { ...state }
+    console.log('Setting mosaic value', { dottedName, value })
+    // If all values are undefined, then initialize all mosaic to null
+    if (Object.values(newState).every((v) => v === undefined)) {
+      newState = Object.fromEntries(
+        questionsOfMosaic.map((question) => [question, null])
+      )
+    }
+
     newState[dottedName] = value
 
     // If some value is not (null, 0, false or undefined) then aucun is set to false and we propagate null to other values
     if (Object.entries(newState).some(([, v]) => !!v)) {
       setAucunOptionSelected(false)
-      // Then we initialize all values to null
-      newState = Object.fromEntries(
-        questionsOfMosaic.map((question) => [
-          question,
-          newState[question] ?? null,
-        ])
-      )
     }
 
     setState(newState)
+    const newSituation: Record<string, NodeValue> = { ...newState }
 
-    const newSituation: Record<string, NodeValue> = newState
+    // If value is undefined and all other are not undefined, then situation value is set to null
+    if (value === undefined) {
+      newSituation[dottedName] = null
+    }
 
     ;(typeof value === 'number' ? setValuesLater : setValuesNow)(newSituation, {
       questionDottedName: question,
     })
   }
+
+  console.log('Mosaic state', state)
   return {
     values: state,
     setValue: handleSetValue,
