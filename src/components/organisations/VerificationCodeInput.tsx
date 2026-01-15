@@ -59,7 +59,12 @@ export default function VerificationCodeInput({
           characterFilled: 'text-primary-700!',
         }}
         placeholder=""
-        onChange={handleValidateVerificationCode}
+        onChange={(code) => {
+          if (code.length !== 6) {
+            return
+          }
+          handleValidateVerificationCode(code)
+        }}
       />
 
       {inputError && (
