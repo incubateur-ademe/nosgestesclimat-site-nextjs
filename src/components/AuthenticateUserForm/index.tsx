@@ -65,6 +65,9 @@ export default function AuthenticateUserForm({
         router.push(redirectURL)
       }
 
+      // Refresh the server components (header, etc.) to reflect the login state
+      router.refresh()
+
       if (trackers) {
         trackEvent(trackers.matomo)
         trackPosthogEvent(trackers.posthog)
