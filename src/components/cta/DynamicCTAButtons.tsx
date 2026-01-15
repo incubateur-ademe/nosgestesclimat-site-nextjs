@@ -59,7 +59,6 @@ export default function DynamicCTAButtons({
   const showBothButtons =
     withRestart &&
     // Progression 1 > not authenticated user
-    // hasMultipleSimulations > authenticated user
     (progression === 1 || userIsAuthenticatedAndHasMultipleSimulations)
 
   const mainButtonLabel = useMemo(() => {
