@@ -64,6 +64,7 @@ export default async function Homepage({ params }: DefaultPageProps) {
         ]}
       />
       <LandingPage
+        locale={locale}
         heroIllustration={<InteractiveIllustration />}
         heroTitle={
           <Trans locale={locale}>Découvrez votre empreinte carbone</Trans>
