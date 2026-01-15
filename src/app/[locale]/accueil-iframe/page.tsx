@@ -41,6 +41,7 @@ export default async function Homepage({ params }: DefaultPageProps) {
   return (
     <ClientLayout locale={locale}>
       <LandingPage
+        locale={locale}
         heroIllustration={<InteractiveIllustration />}
         heroTitle={
           <Trans locale={locale}>

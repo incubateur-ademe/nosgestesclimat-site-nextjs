@@ -20,7 +20,7 @@ export default function Hero({
     <>
       <div
         className={twMerge(
-          'bg-heroLightBackground flex min-h-[588px] items-center px-4 pt-10 pb-20 md:min-h-full md:py-20',
+          'bg-heroLightBackground flex min-h-[588px] items-center px-4 pt-10 pb-10 md:min-h-full md:py-20',
           className
         )}
         style={style}>
@@ -42,7 +42,7 @@ export default function Hero({
       </div>
       {partners && (
         <div className="-mt-6 flex justify-center md:-mt-10">
-          <div className="relative mb-4 flex items-center justify-center gap-6 rounded-full bg-white px-12 py-4 md:mb-0 md:gap-8 md:px-24 md:py-10">
+          <div className="relative mb-4 flex items-center justify-center gap-6 rounded-full bg-white px-12 pt-4 md:mb-0 md:gap-8 md:px-24 md:pt-10">
             {partners}
           </div>
         </div>
