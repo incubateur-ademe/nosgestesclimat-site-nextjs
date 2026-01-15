@@ -1409,3 +1409,5 @@ entries:
   Veuillez entrer votre nom.: Veuillez entrer votre nom.
   Veuillez renseigner votre prénom.: Veuillez renseigner votre prénom.
   Votre prénom (ou pseudo) dans le groupe: Votre prénom (ou pseudo) dans le groupe
+  '{mainButtonLabel}': '{mainButtonLabel}'
+  'Format attendu : nom.prenom@domaine.fr': 'Format attendu : nom.prenom@domaine.fr'

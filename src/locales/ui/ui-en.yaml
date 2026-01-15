@@ -1807,3 +1807,5 @@ entries:
   fin.newsletters.title: Get advice on how to reduce your footprint
   fin.newsletters.title.lock: Recevez des conseils pour réduire votre empreinte
   Votre prénom (ou pseudo) dans le groupe: Your first name (or nickname) in the group
+  'Format attendu : nom.prenom@domaine.fr': 'Expected format: nom.prenom@domaine.fr'
+  'Format attendu : nom.prenom@domaine.fr.lock': 'Format attendu : nom.prenom@domaine.fr'
