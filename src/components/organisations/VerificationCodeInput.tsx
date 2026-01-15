@@ -60,6 +60,7 @@ export default function VerificationCodeInput({
         }}
         placeholder=""
         onChange={(code) => {
+          // Do not validate if the code is not 6 characters long
           if (code.length !== 6) {
             return
           }
