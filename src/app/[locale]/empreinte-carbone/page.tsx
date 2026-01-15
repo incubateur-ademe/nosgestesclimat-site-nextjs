@@ -76,6 +76,7 @@ export default async function CarbonFootprintLandingPage({
       />
 
       <LandingPage
+        locale={locale}
         heroTitle={
           <Trans i18nKey="empreinte-carbone.heroTitle" locale={locale}>
             L'empreinte carbone, une première étape pour passer à l'action
