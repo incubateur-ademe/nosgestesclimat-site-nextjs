@@ -4,7 +4,6 @@ import Main from '@/design-system/layout/Main'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { verifyPartner } from '@/services/partners/verifyPartner'
-import type { DefaultPageProps } from '@/types'
 import { notFound } from 'next/navigation'
 import AdaptiveMessage from './_components/AdaptiveMessage'
 
@@ -22,7 +21,9 @@ export const generateMetadata = getCommonMetadata({
 
 export default async function PartenairePage({
   searchParams,
-}: DefaultPageProps<{ searchParams: SearchParams }>) {
+  params,
+}: PageProps<'/[locale]/partenaire'>) {
+  const { locale } = await params
   const searchParamsObject = (await searchParams) ?? { partner: '' }
 
   const partner = (searchParamsObject[PARTNER_KEY] as string) ?? ''
@@ -39,7 +40,7 @@ export default async function PartenairePage({
 
   return (
     <>
-      <HeaderServer />
+      <HeaderServer locale={locale} />
 
       <Main>
         <div className="min-h-screen">

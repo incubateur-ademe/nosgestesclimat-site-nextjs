@@ -1,5 +1,6 @@
 import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
 import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
+import { ClientLayout } from '@/components/layout/ClientLayout'
 import Footer from '@/components/layout/Footer'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/trans/TransServer'
@@ -13,11 +14,9 @@ import {
   getLandingClickCTAResume,
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
-import i18nConfig from '@/i18nConfig'
-import type { DefaultPageProps } from '@/types'
+import i18nConfig, { type Locale } from '@/i18nConfig'
 import { Suspense } from 'react'
 import Partners from '../../components/landing-pages/Partners'
-import { ClientLayout } from '../../components/layout/ClientLayout'
 import CollectivelyCommit from './_components/CollectivelyCommit'
 import DecryptChallenges from './_components/DecryptChallenges'
 import DidYouKnowMainLanding from './_components/DidYouKnowMainLanding'
@@ -43,12 +42,12 @@ export const generateMetadata = getCommonMetadata({
 
 export function generateStaticParams() {
   return i18nConfig.locales.map((locale: string) => ({
-    locale,
+    locale: locale as Locale,
   }))
 }
 
-export default async function Homepage({ params }: DefaultPageProps) {
-  const { locale } = await params
+export default async function Homepage({ params }: PageProps<'/[locale]'>) {
+  const locale = (await params).locale as Locale
 
   return (
     <ClientLayout locale={locale}>

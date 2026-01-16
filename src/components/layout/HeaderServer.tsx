@@ -5,9 +5,10 @@ import MySpaceButton from './headerServer/MySpaceButton'
 
 interface Props {
   isSticky?: boolean
+  locale: string
 }
 
-export default function HeaderServer({ isSticky = true }: Props) {
+export default function HeaderServer({ isSticky = true, locale }: Props) {
   return (
     <header
       id="header-server-container"
@@ -24,7 +25,7 @@ export default function HeaderServer({ isSticky = true }: Props) {
           <div className="flex h-full items-center">
             <Suspense>
               {/*Suspense for enabling partial prerendering */}
-              <MySpaceButton />
+              <MySpaceButton locale={locale} />
             </Suspense>
           </div>
         </div>

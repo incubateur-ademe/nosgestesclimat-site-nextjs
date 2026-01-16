@@ -5,7 +5,6 @@ import {
 } from '@/constants/tracking/user-account'
 import { CONNEXION_PATH } from '@/constants/urls/paths'
 import ButtonLinkServer from '@/design-system/buttons/ButtonLinkServer'
-import { getLocale } from '@/helpers/language/getLocale'
 import { getUser, logout } from '@/helpers/server/model/user'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
@@ -18,9 +17,7 @@ async function logoutAndRedirect() {
   redirect('/')
 }
 
-export default async function MySpaceButton() {
-  const locale = await getLocale()
-
+export default async function MySpaceButton({ locale }: { locale: string }) {
   try {
     const user = await getUser()
     return <MySpaceDropdown email={user.email} onLogout={logoutAndRedirect} />
