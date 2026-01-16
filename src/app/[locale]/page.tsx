@@ -1,9 +1,9 @@
+import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
 import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
 import Footer from '@/components/layout/Footer'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/trans/TransServer'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
-import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
@@ -74,7 +74,7 @@ export default async function Homepage({ params }: DefaultPageProps) {
             <HomePageDescription locale={locale} />
 
             <div className="flex flex-col items-center gap-6 md:order-2 md:mt-0 md:items-start">
-              <Suspense fallback={<BlockSkeleton />}>
+              <Suspense fallback={<CTAButtonsPlaceholder />}>
                 <DynamicCTAButtons
                   trackingEvents={{
                     start: getLandingClickCTAStart('/', trackingActionClickCTA),

@@ -1,4 +1,4 @@
-import DidYouKnowSlider from '@/components/landing-pages/DidYouKnowSlider'
+import DidYouKnowSliderServer from '@/components/landing-pages/DidYouKnowSliderServer'
 import Trans from '@/components/translation/trans/TransServer'
 
 export default function DidYouKnowWaterFootprint({
@@ -7,7 +7,7 @@ export default function DidYouKnowWaterFootprint({
   locale: string
 }) {
   return (
-    <DidYouKnowSlider
+    <DidYouKnowSliderServer
       slides={[
         {
           illustration:

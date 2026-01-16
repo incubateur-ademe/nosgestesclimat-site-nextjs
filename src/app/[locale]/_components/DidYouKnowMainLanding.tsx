@@ -1,4 +1,4 @@
-import DidYouKnowSlider from '@/components/landing-pages/DidYouKnowSlider'
+import DidYouKnowSliderServer from '@/components/landing-pages/DidYouKnowSliderServer'
 import Trans from '@/components/translation/trans/TransServer'
 
 export default function DidYouKnowMainLanding({
@@ -11,7 +11,7 @@ export default function DidYouKnowMainLanding({
   titleTag?: 'h2' | 'h3'
 }) {
   return (
-    <DidYouKnowSlider
+    <DidYouKnowSliderServer
       className={className}
       titleTag={titleTag}
       slides={[

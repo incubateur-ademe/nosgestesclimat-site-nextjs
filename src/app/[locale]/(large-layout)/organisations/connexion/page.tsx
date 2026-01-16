@@ -10,7 +10,6 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 
 import { getUserOrganisation } from '@/helpers/server/model/organisations'
 import { isUserAuthenticated } from '@/helpers/server/model/user'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { redirect } from 'next/navigation'
 
 async function redirectAfterLogin() {
@@ -32,13 +31,6 @@ export default async function Page({
   }
 
   const { t } = await getServerTranslation({ locale })
-
-  const onComplete = async () => {
-    trackEvent(organisationsLoginComplete)
-    trackPosthogEvent(captureOrganisationsLoginComplete)
-
-    await redirectAfterLogin()
-  }
 
   return (
     <>
@@ -62,7 +54,13 @@ export default async function Page({
           </p>
           <Separator />
           <div className="max-w-full md:w-[40rem]">
-            <AuthenticateUserForm onComplete={onComplete} />
+            <AuthenticateUserForm
+              onComplete={redirectAfterLogin}
+              trackers={{
+                matomo: organisationsLoginComplete,
+                posthog: captureOrganisationsLoginComplete,
+              }}
+            />
           </div>
         </div>
       </section>
