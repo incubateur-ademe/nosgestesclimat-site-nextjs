@@ -1,4 +1,5 @@
 import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
+import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
 import Partners from '@/components/landing-pages/Partners'
 import Footer from '@/components/layout/Footer'
 import JSONLD from '@/components/seo/JSONLD'
@@ -14,8 +15,8 @@ import {
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
 import type { DefaultPageProps } from '@/types'
-import dynamic from 'next/dynamic'
 import Image from 'next/image'
+import { Suspense } from 'react'
 import { ClientLayout } from '../../../components/layout/ClientLayout'
 import DailyGestureCarbonFootprint from './_components/DailyGestureCarbonFootprint'
 import DidYouKnowCarbon from './_components/DidYouKnowCarbonFootprint'
@@ -26,12 +27,6 @@ import WhatDoWeMeasureCarbon from './_components/WhatDoWeMeasureCarbonFootprint'
 import WhatItIsCarbon from './_components/WhatItIsCarbon'
 import { carbonFAQJsonLd } from './_constants/carbonFAQJsonLd'
 
-const DynamicCTAButtons = dynamic(
-  () => import('@/components/cta/DynamicCTAButtons'),
-  {
-    loading: () => <CTAButtonsPlaceholder />,
-  }
-)
 export const generateMetadata = getCommonMetadata({
   title: t(
     'Empreinte carbone : comprendre, mesurer, réduire son impact - Nos Gestes Climat'
@@ -98,26 +93,28 @@ export default async function CarbonFootprintLandingPage({
               </Trans>
             </p>
             <div className="flex w-full justify-center md:justify-start">
-              <DynamicCTAButtons
-                trackingEvents={{
-                  start: getLandingClickCTAStart(
-                    '/empreinte-carbone',
-                    trackingActionClickCTA
-                  ),
-                  resume: getLandingClickCTAResume(
-                    '/empreinte-carbone',
-                    trackingActionClickCTA
-                  ),
-                  results: getLandingClickCTAResults(
-                    '/empreinte-carbone',
-                    trackingActionClickCTA
-                  ),
-                  restart: getLandingClickCTARestart(
-                    '/empreinte-carbone',
-                    trackingActionClickCTA
-                  ),
-                }}
-              />
+              <Suspense fallback={<CTAButtonsPlaceholder />}>
+                <DynamicCTAButtons
+                  trackingEvents={{
+                    start: getLandingClickCTAStart(
+                      '/empreinte-carbone',
+                      trackingActionClickCTA
+                    ),
+                    resume: getLandingClickCTAResume(
+                      '/empreinte-carbone',
+                      trackingActionClickCTA
+                    ),
+                    results: getLandingClickCTAResults(
+                      '/empreinte-carbone',
+                      trackingActionClickCTA
+                    ),
+                    restart: getLandingClickCTARestart(
+                      '/empreinte-carbone',
+                      trackingActionClickCTA
+                    ),
+                  }}
+                />
+              </Suspense>
             </div>
 
             <div className="mx-auto mt-4 max-w-80 md:mt-0 md:hidden">

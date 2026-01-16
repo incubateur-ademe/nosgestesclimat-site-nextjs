@@ -1,4 +1,7 @@
-import { reconcileOnAuth } from '@/helpers/user/reconcileOnAuth'
+import {
+  loadServerSimulation,
+  syncLocalSimulation,
+} from '@/helpers/user/reconcileOnAuth'
 import { useUser } from '@/publicodes-state'
 import { captureException } from '@sentry/nextjs'
 import dayjs from 'dayjs'
@@ -20,6 +23,7 @@ export function usePendingVerification({
     updateEmail,
     updateUserId,
     updateSimulations,
+    simulations,
     setCurrentSimulationId,
   } = useUser()
 
@@ -33,21 +37,28 @@ export function usePendingVerification({
   }
 
   const handleVerificationCompleted = useCallback(
-    async (serverUserId: string) => {
+    async (userId: string) => {
       if (!pendingVerification) {
         return
       }
 
       try {
-        updateEmail(pendingVerification?.email)
-        updateUserId(serverUserId)
+        if (userId === user.userId) {
+          // We only sync if localuserId is the same as distant userId
+          await syncLocalSimulation({
+            simulations,
+            userId,
+          })
+        }
 
-        await reconcileOnAuth({
-          serverUserId,
+        await loadServerSimulation({
+          userId,
           updateSimulations,
           setCurrentSimulationId,
         })
 
+        updateEmail(pendingVerification?.email)
+        updateUserId(userId)
         updatePendingVerification(undefined)
 
         onComplete?.(pendingVerification?.email)
@@ -59,10 +70,12 @@ export function usePendingVerification({
       onComplete,
       pendingVerification,
       setCurrentSimulationId,
+      simulations,
       updateEmail,
       updatePendingVerification,
       updateSimulations,
       updateUserId,
+      user.userId,
     ]
   )
 

@@ -1,5 +1,6 @@
 import { AUTHENTICATION_URL } from '@/constants/urls/main'
 import { useUser } from '@/publicodes-state'
+import type { VerifiedUser } from '@/types/organisations'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useLocale } from '../useLocale'
@@ -27,6 +28,9 @@ export default function useLogin() {
             withCredentials: true,
           }
         )
-        .then((response) => response.data),
+        .then(
+          (response) =>
+            ({ ...response.data, userId: response.data.id }) as VerifiedUser
+        ),
   })
 }

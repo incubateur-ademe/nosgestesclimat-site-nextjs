@@ -1,4 +1,5 @@
 import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
+import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
 import Footer from '@/components/layout/Footer'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/trans/TransServer'
@@ -14,8 +15,8 @@ import {
   getLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
 import type { DefaultPageProps } from '@/types'
-import dynamic from 'next/dynamic'
 import Image from 'next/image'
+import { Suspense } from 'react'
 import { ClientLayout } from '../../../components/layout/ClientLayout'
 import DailyGestureWaterFootprint from './_components/DailyGestureWaterFootprint'
 import DidYouKnowWaterFootprint from './_components/DidYouKnowWaterFootprint'
@@ -26,13 +27,6 @@ import WaterFootprintPartners from './_components/WaterFootprintPartners'
 import WhatDoWeMeasureWaterFootprint from './_components/WhatDoWeMeasureWaterFootprint'
 import WhatItIsWaterFootprint from './_components/WhatItIsWaterFootprint'
 import { waterFAQJsonLd } from './_constants/waterFAQJsonLd'
-
-const DynamicCTAButtons = dynamic(
-  () => import('@/components/cta/DynamicCTAButtons'),
-  {
-    loading: () => <CTAButtonsPlaceholder />,
-  }
-)
 
 export const generateMetadata = getCommonMetadata({
   title: t(
@@ -101,26 +95,28 @@ export default async function WaterFootprintLandingPage(
               </Trans>
             </p>
             <div className="flex w-full justify-center md:justify-start">
-              <DynamicCTAButtons
-                trackingEvents={{
-                  start: getLandingClickCTAStart(
-                    '/empreinte-eau',
-                    trackingActionClickCTA
-                  ),
-                  resume: getLandingClickCTAResume(
-                    '/empreinte-eau',
-                    trackingActionClickCTA
-                  ),
-                  results: getLandingClickCTAResults(
-                    '/empreinte-eau',
-                    trackingActionClickCTA
-                  ),
-                  restart: getLandingClickCTARestart(
-                    '/empreinte-eau',
-                    trackingActionClickCTA
-                  ),
-                }}
-              />
+              <Suspense fallback={<CTAButtonsPlaceholder />}>
+                <DynamicCTAButtons
+                  trackingEvents={{
+                    start: getLandingClickCTAStart(
+                      '/empreinte-eau',
+                      trackingActionClickCTA
+                    ),
+                    resume: getLandingClickCTAResume(
+                      '/empreinte-eau',
+                      trackingActionClickCTA
+                    ),
+                    results: getLandingClickCTAResults(
+                      '/empreinte-eau',
+                      trackingActionClickCTA
+                    ),
+                    restart: getLandingClickCTARestart(
+                      '/empreinte-eau',
+                      trackingActionClickCTA
+                    ),
+                  }}
+                />
+              </Suspense>
             </div>
 
             <div className="mx-auto mt-4 max-w-80 md:mt-0 md:hidden">

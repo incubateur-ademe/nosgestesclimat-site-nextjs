@@ -11,28 +11,24 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 // @ts-expect-error package types are wrongly exported
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
 import '@splidejs/react-splide/css'
-import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import type { ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import CTAButtonsPlaceholder from '../cta/CTAButtonsPlaceholder'
+import ClientCTAButtons from '../cta/ClientCTAButtons'
 import PlaySignIcon from '../icons/PlaySignIcon'
 import Trans from '../translation/trans/TransClient'
 
-const DynamicCTAButtons = dynamic(
-  () => import('@/components/cta/DynamicCTAButtons'),
-  { ssr: false, loading: () => <CTAButtonsPlaceholder /> }
-)
-
 export default function DidYouKnowSlider({
   slides,
+  isAuthenticated,
   className,
   titleTag = 'h2',
 }: {
   slides: { illustration: string; content: ReactNode; highlight?: ReactNode }[]
   className?: string
+  isAuthenticated: boolean
   titleTag?: 'h2' | 'h3'
 }) {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -248,7 +244,8 @@ export default function DidYouKnowSlider({
           </div>
         </Splide>
         <div>
-          <DynamicCTAButtons
+          <ClientCTAButtons
+            isAuthenticated={isAuthenticated}
             trackingEvents={{
               start: getLandingDidYouKnowSlider(
                 pathname,

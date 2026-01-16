@@ -1,19 +1,9 @@
-'use client'
-
 import Separator from '@/design-system/layout/Separator'
 import type { GesturesType } from '@/types/landing-page'
-import dynamic from 'next/dynamic'
-import type { JSX } from 'react'
+import { Suspense, type JSX } from 'react'
 import CTAButtonsPlaceholder from '../cta/CTAButtonsPlaceholder'
+import DynamicCTAButtons from '../cta/DynamicCTAButtons'
 import GestureSelector from './dailyGestures/GestureSelector'
-
-const DynamicCTAButtons = dynamic(
-  () => import('@/components/cta/DynamicCTAButtons'),
-  {
-    ssr: false,
-    loading: () => <CTAButtonsPlaceholder />,
-  }
-)
 
 export default function DailyGestures({
   title,
@@ -43,10 +33,12 @@ export default function DailyGestures({
       </div>
 
       <div className="mt-10 text-center">
-        <DynamicCTAButtons
-          trackingEvents={trackingEvents}
-          withRestart={false}
-        />
+        <Suspense fallback={<CTAButtonsPlaceholder />}>
+          <DynamicCTAButtons
+            trackingEvents={trackingEvents}
+            withRestart={false}
+          />
+        </Suspense>
       </div>
     </div>
   )

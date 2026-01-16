@@ -1,6 +1,5 @@
 import { EMAIL_PENDING_AUTHENTICATION_KEY } from '@/constants/authentication/sessionStorage'
 import { VERIFICATION_CODE_URL } from '@/constants/urls/main'
-import { useUser } from '@/publicodes-state'
 import type { AuthenticationMode } from '@/types/authentication'
 import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
 import { formatEmail } from '@/utils/format/formatEmail'
@@ -31,11 +30,10 @@ export function useCreateVerificationCode({
   } = useMutation({
     mutationFn: ({
       email,
-      userId,
       mode,
     }: {
       email: string
-      userId: string
+
       mode?: AuthenticationMode
     }) =>
       axios
@@ -43,7 +41,6 @@ export function useCreateVerificationCode({
           `${VERIFICATION_CODE_URL}${mode ? `?mode=${mode}` : ''}`,
           {
             email,
-            userId,
           },
           {
             params: { locale },
@@ -57,8 +54,6 @@ export function useCreateVerificationCode({
     ((error instanceof AxiosError && error.response?.data) ??
       CREATE_VERIFICATION_CODE_ERROR.UNKNOWN_ERROR)
 
-  const { user } = useUser()
-
   const createVerificationCode = useCallback(
     async (email: string) => {
       try {
@@ -66,7 +61,6 @@ export function useCreateVerificationCode({
 
         const { expirationDate } = await postVerificationCode({
           email,
-          userId: user.userId,
           mode,
         })
 
@@ -87,7 +81,7 @@ export function useCreateVerificationCode({
         return
       }
     },
-    [mode, onComplete, postVerificationCode, user.userId]
+    [mode, onComplete, postVerificationCode]
   )
 
   return {
