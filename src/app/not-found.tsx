@@ -27,7 +27,7 @@ export default function NotFound() {
         <Suspense
           fallback={
             <>
-              <HeaderServer />
+              <HeaderServer locale={i18nConfig.defaultLocale as Locale} />
               <ContentLarge>
                 <BlockSkeleton className="mt-10" />
               </ContentLarge>

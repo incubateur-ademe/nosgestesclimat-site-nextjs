@@ -47,6 +47,7 @@ const nextConfig: NextConfig = {
     webpackBuildWorker: true,
     authInterrupts: true,
     mdxRs: true,
+    useCache: true,
   },
   async rewrites() {
     if (process.env.NEXT_PUBLIC_PROXY_SERVER === 'true') {

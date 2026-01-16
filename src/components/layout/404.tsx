@@ -12,7 +12,7 @@ export default async function Route404({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <HeaderServer />
+      <HeaderServer locale={locale} />
 
       <Main>
         <div className="relative h-svh" data-cypress-id="404">
