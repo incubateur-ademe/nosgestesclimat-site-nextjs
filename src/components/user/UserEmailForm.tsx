@@ -81,6 +81,7 @@ export default function UserEmailForm({ submitLabel, className }: Props) {
             closeModal={() => resetVerification()}
             hasAbortCross={false}>
             <VerifyCodeForm
+              key={pendingVerification.email}
               onRegisterNewVerification={registerVerification}
               email={pendingVerification.email}
               onVerificationCompleted={completeVerification}

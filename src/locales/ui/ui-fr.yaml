@@ -1170,7 +1170,7 @@ entries:
   login.list.login.label: Se connecter
   login.list.signin.label: Créer un compte
   login.login.title: Accédez à votre espace Nos Gestes Climat
-  signIn.email.error.userDoesNotExist: Ah ! Nous n’avons pas d’e-mail enregistré à cette adresse. Veuillez vous inscrire pour accéder à votre espace.
+  signIn.email.error.userDoesNotExist: Nous n’avons pas d’e-mail enregistré à cette adresse. Veuillez vous inscrire pour accéder à votre espace.
   signup.button.label: M'inscrire
   signup.colourBlock.highlight1.title.prefix: Retrouvez
   signup.colourBlock.highlight1.title.strong: vos résultats d’empreinte
@@ -1181,7 +1181,7 @@ entries:
   signup.colourBlock.highlight3.title.middle: et
   signup.colourBlock.highlight3.title.strong1: Lancez
   signup.title: Créez votre espace Nos Gestes Climat
-  signIn.email.error.userAlreadyExists: Ah ! Vous avez déjà un compte avec cet e-mail. Merci de vous connecter directement.
+  signIn.email.error.userAlreadyExists: Vous avez déjà un compte avec cet e-mail. Merci de vous connecter directement.
   signIn.verificationForm.email.verificationCode.prefix: Entrez le
   signIn.verificationForm.email.verificationCode.strong: code de vérification
   signIn.verificationForm.email.verificationCode.suffix: 'envoyé à '
@@ -1398,3 +1398,20 @@ entries:
   Commencer le test: Commencer le test
   Découvrez votre empreinte carbone: Découvrez votre empreinte carbone
   Résultats immédiats, sans inscription.: Résultats immédiats, sans inscription.
+  Entrez votre email pour sauvegarder vos résultats: Entrez votre email pour sauvegarder vos résultats
+  fin.newsletters.title: Recevez des conseils pour réduire votre empreinte
+  Illustration du groupe: Illustration du groupe
+  mon-espace.settings.userInfos.editLabel: Modifier
+  Nom du groupe: Nom du groupe
+  Retrouvez vos résultats à tout moment sur votre espace personnel: Retrouvez vos résultats à tout moment sur votre espace personnel
+  Un compte avec cette adresse e-mail existe déjà: Un compte avec cette adresse e-mail existe déjà
+  Vérifier mon email: Vérifier mon email
+  Veuillez entrer votre nom.: Veuillez entrer votre nom.
+  Veuillez renseigner votre prénom.: Veuillez renseigner votre prénom.
+  Votre prénom (ou pseudo) dans le groupe: Votre prénom (ou pseudo) dans le groupe
+  '{mainButtonLabel}': '{mainButtonLabel}'
+  'Format attendu : nom.prenom@domaine.fr': 'Format attendu : nom.prenom@domaine.fr'
+  2,7 millions de personnes: 2,7 millions de personnes
+  ont déjà calculé leur empreinte: ont déjà calculé leur empreinte
+  <0>2,7 millions de personnes</0><1>ont déjà calculé leur empreinte</1>: <0>2,7 millions de personnes</0><1>ont déjà calculé leur empreinte</1>
+  <0>2,7 millions de personnes</0> <2>ont déjà calculé leur empreinte</2>: <0>2,7 millions de personnes</0> <2>ont déjà calculé leur empreinte</2>

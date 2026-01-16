@@ -38,7 +38,7 @@ export function useUpdateUserSettings() {
             withCredentials: true,
           }
         )
-        .then((res) => res.data)
+        .then((res) => ({ ...res.data, userId: res.data.id }))
     },
   })
 }

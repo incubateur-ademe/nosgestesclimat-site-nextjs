@@ -1,5 +1,4 @@
 import Trans from '@/components/translation/trans/TransClient'
-import Separator from '@/design-system/layout/Separator'
 import Title from '@/design-system/layout/Title'
 
 import OrganisationFilAriane from '@/components/layout/FilAriane'
@@ -11,7 +10,6 @@ import type {
   OrgaSettingsInputsType,
 } from '@/types/organisations'
 import { organisationAdminGuard } from '../organisation-guard'
-import DeconnexionButton from './_components/DeconnexionButton'
 import OrganisationForm from './_components/OrganisationForm'
 
 /* global PageProps */
@@ -48,9 +46,6 @@ export default async function ParametresPage({
           slug={organisation.slug}
           defaultValues={defaultValues}
         />
-        <Separator className="my-8" />
-
-        <DeconnexionButton />
       </div>
     </>
   )

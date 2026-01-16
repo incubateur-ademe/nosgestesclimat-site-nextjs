@@ -24,7 +24,6 @@ const TabLink = ({
   item,
   children,
   isLocked,
-  scroll = false,
   ...props
 }: {
   item: TabItem
@@ -91,7 +90,6 @@ const TabLink = ({
     <Link
       role="tab"
       href={href}
-      scroll={scroll}
       prefetch={prefetch}
       className={twMerge(baseClasses, className)}
       {...otherProps}
@@ -127,7 +125,7 @@ export default function Tabs({
                 'flex-1 translate-y-0.5 md:flex-none',
                 containerClassName
               )}>
-              <TabLink scroll={false} item={item} isLocked={isLocked}>
+              <TabLink item={item} isLocked={isLocked}>
                 {item.label}
               </TabLink>
             </li>

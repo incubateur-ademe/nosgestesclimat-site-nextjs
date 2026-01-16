@@ -67,7 +67,8 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
       />
 
       <TextInput
-        label={<Trans>Votre e-mail</Trans>}
+        label={<Trans>Votre adresse e-mail</Trans>}
+        helperText={<Trans>Format attendu : nom.prenom@domaine.fr</Trans>}
         value={defaultValues.email}
         autoComplete="email"
         {...register('email', {

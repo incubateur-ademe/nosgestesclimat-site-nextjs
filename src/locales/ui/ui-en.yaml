@@ -1412,8 +1412,8 @@ entries:
   login.colourBlock.login.highlight3.end.lock: (organisations, famille, amis...)
   signup.button.label: Sign up
   signup.button.label.lock: M'inscrire
-  signIn.email.error.userDoesNotExist: Oh, we don't have an e-mail address registered at this address. Please register to access your space.
-  signIn.email.error.userDoesNotExist.lock: Ah ! Nous n’avons pas d’e-mail enregistré à cette adresse. Veuillez vous inscrire pour accéder à votre espace.
+  signIn.email.error.userDoesNotExist: We do not have an e-mail address registered at this address. Please register to access your space.
+  signIn.email.error.userDoesNotExist.lock: Nous n’avons pas d’e-mail enregistré à cette adresse. Veuillez vous inscrire pour accéder à votre espace.
   signup.colourBlock.highlight3.title.middle: and
   signup.colourBlock.highlight3.title.middle.lock: et
   login.list.login.label: Sign in
@@ -1434,8 +1434,8 @@ entries:
   login.login.title.lock: Accédez à votre espace Nos Gestes Climat
   signup.title: Create your Nos Gestes Climat space
   signup.title.lock: Créez votre espace Nos Gestes Climat
-  signIn.email.error.userAlreadyExists: You already have an account with this email address. Please log in directly.
-  signIn.email.error.userAlreadyExists.lock: Ah ! Vous avez déjà un compte avec cet e-mail. Merci de vous connecter directement.
+  signIn.email.error.userAlreadyExists: You already have an account with this e-mail address. Please log in directly.
+  signIn.email.error.userAlreadyExists.lock: Vous avez déjà un compte avec cet e-mail. Merci de vous connecter directement.
   signIn.verificationForm.email.verificationCode.prefix: Enter the
   signIn.verificationForm.email.verificationCode.prefix.lock: Entrez le
   signIn.verificationForm.email.verificationCode.strong: verification code
@@ -1794,3 +1794,19 @@ entries:
   Découvrez votre empreinte carbone: Discover your carbon footprint
   Résultats immédiats, sans inscription.: Immediate results, no registration required.
   <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire.: <0>Get your personalised estimate</0> and <3>concrete ways</3> of reducing it.
+  mon-espace.settings.userInfos.editLabel: Modify
+  mon-espace.settings.userInfos.editLabel.lock: Modifier
+  Vérifier mon email: Check my email
+  Nom du groupe: Group name
+  Illustration du groupe: Illustration of the group
+  Veuillez entrer votre nom.: Please enter your name.
+  Entrez votre email pour sauvegarder vos résultats: Enter your email address to save your results
+  Veuillez renseigner votre prénom.: Please enter your first name.
+  Retrouvez vos résultats à tout moment sur votre espace personnel: Find your results at any time in your personal space
+  Un compte avec cette adresse e-mail existe déjà: An account with this e-mail address already exists
+  fin.newsletters.title: Get advice on how to reduce your footprint
+  fin.newsletters.title.lock: Recevez des conseils pour réduire votre empreinte
+  Votre prénom (ou pseudo) dans le groupe: Your first name (or nickname) in the group
+  'Format attendu : nom.prenom@domaine.fr': 'Expected format: nom.prenom@domaine.fr'
+  'Format attendu : nom.prenom@domaine.fr.lock': 'Format attendu : nom.prenom@domaine.fr'
+  <0>2,7 millions de personnes</0> <2>ont déjà calculé leur empreinte</2>: <2>Already used by</2> <0>2.7 million people</0>
