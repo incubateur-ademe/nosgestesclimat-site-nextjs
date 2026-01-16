@@ -25,9 +25,9 @@ interface Props {
   inputLabel?: ReactNode | string
   mode?: AuthenticationMode
   redirectURL?: string
-  onComplete?: (email?: string) => void
   onEmailEntered?: (email: string) => void
   onEmailEmpty?: () => void
+  onComplete?: (user: { email: string; userId: string }) => void
   required?: boolean
   trackers?: {
     matomo: string[]
@@ -57,7 +57,7 @@ export default function AuthenticateUserForm({
 
   // Called upon code verification
   const complete = useCallback(
-    (email?: string) => {
+    (user: { email: string; userId: string }) => {
       safeSessionStorage.removeItem(EMAIL_PENDING_AUTHENTICATION_KEY)
       setIsRedirecting(true)
 
@@ -65,15 +65,12 @@ export default function AuthenticateUserForm({
         router.push(redirectURL)
       }
 
-      // Refresh the server components (header, etc.) to reflect the login state
-      router.refresh()
-
       if (trackers) {
         trackEvent(trackers.matomo)
         trackPosthogEvent(trackers.posthog)
       }
 
-      onComplete?.(email)
+      onComplete?.(user)
     },
     [redirectURL, onComplete, router, trackers]
   )

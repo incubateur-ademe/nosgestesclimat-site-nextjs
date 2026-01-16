@@ -62,7 +62,6 @@ export default function useSimulations({
         savedViaEmail,
         migrationInstructions,
       })
-
       setSimulations((prevSimulations: Simulation[]) => {
         if (id && prevSimulations.find((simulation) => simulation.id === id)) {
           return prevSimulations

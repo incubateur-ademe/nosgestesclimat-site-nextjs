@@ -21,15 +21,11 @@ interface Props {
    * The localstorage key in use
    */
   storageKey?: string
-  initialSimulations?: Simulation[]
-  initialCurrentSimulationId?: string
-  initialUserId?: string
+  serverSimulations?: Simulation[]
 }
 export default function UserProvider({
   children,
-  initialSimulations,
-  initialCurrentSimulationId,
-  initialUserId,
+  serverSimulations,
 }: PropsWithChildren<Props>) {
   const [initialRegion, setInitialRegion] = useState<
     RegionFromGeolocation | undefined
@@ -46,48 +42,26 @@ export default function UserProvider({
   const { user, setUser } = usePersistentUser({
     storageKey: STORAGE_KEY,
     initialRegion,
-    initialUserId,
   })
 
   const { tutorials, setTutorials } = usePersistentTutorials({
     storageKey: STORAGE_KEY,
   })
 
-  // Dual mode: server-hydrated (no localStorage) vs localStorage
-  const [simulations, setSimulations] = useState<Simulation[]>(
-    initialSimulations ?? []
-  )
-  const [currentSimulationId, setCurrentSimulationId] = useState<string>(
-    initialCurrentSimulationId ?? ''
-  )
-  // If not provided by props, fallback to persistent localStorage version
-  const localSimStorage = usePersistentSimulations({
+  const {
+    simulations,
+    setSimulations,
+    currentSimulationId,
+    setCurrentSimulationId,
+  } = usePersistentSimulations({
     storageKey: STORAGE_KEY,
     migrationInstructions,
+    serverSimulations,
   })
 
-  const serverHydrated = typeof initialSimulations !== 'undefined'
-
-  // Choose source of truth depending on prop
-  const effectiveSimulations = serverHydrated
-    ? simulations
-    : localSimStorage.simulations
-
-  const effectiveSetSimulations = serverHydrated
-    ? setSimulations
-    : localSimStorage.setSimulations
-
-  const effectiveCurrentSimulationId = serverHydrated
-    ? currentSimulationId
-    : localSimStorage.currentSimulationId
-
-  const effectiveSetCurrentSimulationId = serverHydrated
-    ? setCurrentSimulationId
-    : localSimStorage.setCurrentSimulationId
-
   const isInitialized = useMemo(
-    () => user && !!effectiveSimulations.length,
-    [user, effectiveSimulations]
+    () => user && !!simulations.length,
+    [user, simulations]
   )
 
   return (
@@ -97,10 +71,10 @@ export default function UserProvider({
         setUser,
         tutorials,
         setTutorials,
-        simulations: effectiveSimulations,
-        setSimulations: effectiveSetSimulations,
-        currentSimulationId: effectiveCurrentSimulationId,
-        setCurrentSimulationId: effectiveSetCurrentSimulationId,
+        simulations,
+        setSimulations,
+        currentSimulationId,
+        setCurrentSimulationId,
         migrationInstructions,
         isInitialized,
       }}>

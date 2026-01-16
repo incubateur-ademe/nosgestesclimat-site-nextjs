@@ -12,5 +12,5 @@ export default async function Layout({ children }: LayoutProps) {
     redirect(MON_ESPACE_PATH)
   }
 
-  return { children }
+  return <div className="-mt-6">{children}</div>
 }

@@ -23,9 +23,6 @@ export default async function MonEspaceActionsPage({
   const simulations = await fetchUserSimulations({
     userId: user.id,
   })
-
-  const latestSimulation = simulations?.[0]
-
   return (
     <div className="flex flex-col">
       <h1 className="sr-only mb-6 text-2xl font-bold">
@@ -39,10 +36,7 @@ export default async function MonEspaceActionsPage({
       {!simulations || simulations?.length <= 0 ? (
         <NoResultsBlock locale={locale} />
       ) : (
-        <UserProvider
-          initialSimulations={simulations}
-          initialCurrentSimulationId={latestSimulation?.id}
-          initialUserId={user.id}>
+        <UserProvider serverSimulations={simulations}>
           <QueryClientProviderWrapper>
             <EngineProvider rules={rules}>
               <FormProvider>

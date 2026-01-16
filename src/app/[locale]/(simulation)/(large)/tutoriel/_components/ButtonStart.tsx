@@ -12,7 +12,7 @@ import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
-const TEST_INTRO_TUTO_KEY = 'testIntro'
+export const TEST_INTRO_TUTO_KEY = 'testIntro'
 
 export default function ButtonStart({
   label,

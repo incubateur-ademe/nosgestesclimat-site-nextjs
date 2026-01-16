@@ -11,12 +11,14 @@ import { SHOW_WELCOME_BANNER_QUERY_PARAM } from '@/constants/urls/params'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
-import { useSaveSimulation } from '@/hooks/simulation/useSaveSimulation'
+import { postSimulation } from '@/helpers/simulation/postSimulation'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useLocale } from '@/hooks/useLocale'
+import type { Locale } from '@/i18nConfig'
 import { useCurrentSimulation } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { captureException } from '@sentry/nextjs'
-import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
 export default function SaveResultsAndSigninSignUpForm({
@@ -25,36 +27,27 @@ export default function SaveResultsAndSigninSignUpForm({
   className?: string
 }) {
   const { t } = useClientTranslation()
-
+  const locale = useLocale() as Locale
   const currentSimulation = useCurrentSimulation()
 
-  const { saveSimulation, isPending, isSuccess } = useSaveSimulation()
+  const router = useRouter()
 
-  useEffect(() => {
-    if (isSuccess && !currentSimulation.savedViaEmail) {
-      // We update the simulation to signify that it has been saved (and not show the form anymore)
-      currentSimulation.update({ savedViaEmail: true })
-    }
-  }, [isSuccess, currentSimulation])
-
-  const onSubmit = () => {
-    // If the mutation is pending, we do nothing
-    if (isPending) {
-      return
-    }
-
+  const onSubmit = async ({ userId }: { userId: string }) => {
     trackEvent(saveResultsAndSigninSignUpComplete)
     trackPosthogEvent(captureSaveResultsAndSigninSignUpComplete)
 
     try {
-      // Handles saving both completing the user signin / signup and saving the simulation
-      saveSimulation({
+      await postSimulation({
         simulation: {
           ...currentSimulation,
           savedViaEmail: true,
         },
         sendEmail: true,
+        userId,
+        locale,
       })
+
+      router.push(`${MON_ESPACE_PATH}?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true`)
     } catch (error) {
       captureException(error)
     }
@@ -62,7 +55,7 @@ export default function SaveResultsAndSigninSignUpForm({
 
   // If we successfully saved the simulation, we display the confirmation message
   // or if the simulation is already saved
-  if (isSuccess || currentSimulation?.savedViaEmail) {
+  if (currentSimulation?.savedViaEmail) {
     return <Confirmation className={className} />
   }
 
@@ -105,7 +98,6 @@ export default function SaveResultsAndSigninSignUpForm({
               </p>
             }
             onComplete={onSubmit}
-            redirectURL={`${MON_ESPACE_PATH}?${SHOW_WELCOME_BANNER_QUERY_PARAM}=true`}
           />
         </div>
         <img
