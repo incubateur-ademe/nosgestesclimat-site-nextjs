@@ -1,6 +1,6 @@
 'use client'
 
-import EmptyState from '@/app/[locale]/(server-layout)/(userAccount)/mon-espace/groupes/_components/EmptyState'
+import EmptyState from '@/app/[locale]/(server)/(large)/(user-account)/mon-espace/groupes/_components/EmptyState'
 import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import AuthenticateUserForm from '@/components/AuthenticateUserForm'
 import DefaultErrorAlert from '@/components/error/DefaultErrorAlert'

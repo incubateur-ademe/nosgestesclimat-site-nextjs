@@ -6,7 +6,9 @@ export async function fetchUserSimulations({
 }: {
   userId: string
 }): Promise<Simulation[]> {
-  const response = await fetch(`${SIMULATION_URL}/${userId}?pageSize=50`)
+  const response = await fetch(`${SIMULATION_URL}/${userId}?pageSize=50`, {
+    credentials: 'include',
+  })
 
   if (!response.ok) {
     throw new Error('Failed to fetch user simulations')

@@ -15,7 +15,6 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
-import ButtonBack from '../../../(large-layout)/tutoriel/_components/ButtonBack'
 import ConfirmationMessage from './saveModal/ConfirmationMessage'
 import SaveSimulationForm from './saveModal/SaveSimulationForm'
 
@@ -39,8 +38,6 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
   const { currentQuestion } = useFormState()
 
   const { user, updateEmail } = useUser()
-
-  const router = useRouter()
 
   const { register, handleSubmit, setError } = useReactHookForm<Inputs>({
     defaultValues: { email: user.email },
@@ -108,6 +105,8 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
     saveSimulation,
   ])
 
+  const router = useRouter()
+
   // We do not display the component if we are in an iframeSimulation context
   const { isIframeOnlySimulation } = useIframe()
   if (isIframeOnlySimulation) return null
@@ -128,7 +127,12 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
               <Trans>Non, merci</Trans>
             </Button>
           ) : (
-            <ButtonBack />
+            <Button
+              color="secondary"
+              size="sm"
+              onClick={() => router.push('/')}>
+              <Trans>Revenir à l'accueil</Trans>
+            </Button>
           )}
           {currentSimulation.savedViaEmail ? (
             <Button size="sm" onClick={closeModal}>

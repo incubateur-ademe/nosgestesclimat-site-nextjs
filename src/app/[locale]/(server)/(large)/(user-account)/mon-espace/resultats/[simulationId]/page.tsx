@@ -1,4 +1,3 @@
-import ContentLarge from '@/components/layout/ContentLarge'
 import ResultsContent from '@/components/results/ResultsContent'
 import { MON_ESPACE_RESULTS_PATH } from '@/constants/urls/paths'
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
@@ -28,7 +27,7 @@ export default async function DetailledResultsPage({
   }
 
   return (
-    <ContentLarge className="mt-4 px-4 md:mt-10 lg:px-0">
+    <>
       <Breadcrumbs
         items={[
           {
@@ -50,7 +49,6 @@ export default async function DetailledResultsPage({
       />
       <ResultsContent
         simulation={simulation}
-        userId={user.id}
         isStatic
         title={
           <div className="flex flex-col gap-2" key={simulation.id}>
@@ -73,6 +71,6 @@ export default async function DetailledResultsPage({
           </div>
         }
       />
-    </ContentLarge>
+    </>
   )
 }

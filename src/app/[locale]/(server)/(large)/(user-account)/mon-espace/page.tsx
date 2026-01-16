@@ -4,7 +4,6 @@ import { fetchUserSimulations } from '@/helpers/user/fetchUserSimulations'
 import type { DefaultPageProps } from '@/types'
 import NoResultsView from './_components/NoResultsView'
 import ResultsView from './_components/ResultsView'
-import ScrollToTop from './_components/ScrollToTop'
 import WelcomeBanner from './_components/WelcomeBanner'
 
 export default async function Page({ params, searchParams }: DefaultPageProps) {
@@ -24,7 +23,7 @@ export default async function Page({ params, searchParams }: DefaultPageProps) {
     <>
       {showWelcomeBanner && !!latestSimulation && (
         <>
-          <ScrollToTop />
+          {/*<ScrollToTop />*/}
           <WelcomeBanner locale={locale} />
         </>
       )}

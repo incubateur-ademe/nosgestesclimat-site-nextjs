@@ -35,7 +35,7 @@ export default function ClientCTAButtons({
   const { t } = useClientTranslation()
 
   const { progression } = useCurrentSimulation()
-  const { simulations } = useUser()
+  const { simulations, initSimulation } = useUser()
 
   const [isHover, setIsHover] = useState(false)
 
@@ -91,12 +91,9 @@ export default function ClientCTAButtons({
   }
 
   const handleRestartClick = () => {
-    // Do not create a new simulation if there's an unfinished one
-    if (progression !== 1) {
-      goToSimulateurPage({ newSimulation: undefined, noNavigation: true })
-      return
+    if (progression === 1) {
+      initSimulation()
     }
-    goToSimulateurPage({ noNavigation: true, newSimulation: {} })
   }
 
   const ContainerTag = showBothButtons ? 'ul' : 'div'

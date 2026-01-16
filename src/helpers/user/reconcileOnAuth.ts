@@ -1,11 +1,14 @@
+import { TEST_INTRO_TUTO_KEY } from '@/app/[locale]/(simulation)/(large)/tutoriel/_components/ButtonStart'
 import { saveSimulation } from '@/helpers/simulation/saveSimulation'
 import { fetchUserSimulations } from '@/helpers/user/fetchUserSimulations'
+import type { useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
+import { generateSimulation } from '../simulation/generateSimulation'
 
 // This is the date when we started to save all simulations started on the server
 const LIMIT_DATE = new Date('2025-11-27')
 
-export async function syncLocalSimulation({
+async function uploadLocalSimulations({
   simulations,
   userId,
 }: {
@@ -27,22 +30,66 @@ export async function syncLocalSimulation({
   )
 }
 
-export async function loadServerSimulation({
+async function loadServerSimulation({
   userId,
   updateSimulations,
   setCurrentSimulationId,
+  hideTutorial,
 }: {
   userId: string
   updateSimulations: (simulations: Simulation[]) => void
   setCurrentSimulationId: (simulationId: string) => void
+  hideTutorial: (tutorialId: string) => void
 }) {
   // Fetch simulations from server
-  const simulations = await fetchUserSimulations({
+  let simulations = await fetchUserSimulations({
     userId,
   })
 
-  updateSimulations(simulations)
-  if (simulations.length) {
-    setCurrentSimulationId(simulations[0].id)
+  if (simulations.length === 0) {
+    simulations = [generateSimulation()]
+  } else {
+    hideTutorial(TEST_INTRO_TUTO_KEY)
   }
+  updateSimulations(simulations)
+  setCurrentSimulationId(simulations[0].id)
+}
+
+export async function reconcileUserOnAuth({
+  userId,
+  email,
+  user,
+}: {
+  userId: string
+  email: string
+  user: ReturnType<typeof useUser>
+  twoWaySync?: boolean
+}) {
+  const {
+    user: localUser,
+    updateSimulations,
+    simulations,
+    updateEmail,
+    updateUserId,
+    setCurrentSimulationId,
+    hideTutorial,
+  } = user
+
+  if (userId === localUser.userId) {
+    // We only sync if localuserId is the same as distant userId
+    await uploadLocalSimulations({
+      simulations,
+      userId,
+    })
+  }
+
+  await loadServerSimulation({
+    userId,
+    updateSimulations,
+    setCurrentSimulationId,
+    hideTutorial,
+  })
+
+  updateEmail(email)
+  updateUserId(userId)
 }

@@ -17,9 +17,7 @@ export default function ResultsView({ locale, simulations }: Props) {
   const hasSingleSimulation = simulations.length === 1
 
   return (
-    <UserProvider
-      initialSimulations={simulations}
-      initialCurrentSimulationId={simulations?.[0]?.id ?? ''}>
+    <UserProvider serverSimulations={simulations}>
       <ProfileTab locale={locale} activePath={MON_ESPACE_PATH} />
 
       <LatestResults locale={locale} simulation={simulations[0]} />

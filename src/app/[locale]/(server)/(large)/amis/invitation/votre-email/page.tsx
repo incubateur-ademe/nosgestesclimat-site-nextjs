@@ -93,7 +93,7 @@ export default function RejoindreGroupeEmailPage() {
             <Trans>Rejoindre et passer mon test</Trans>
           )
         }
-        onComplete={(email) => {
+        onComplete={({ email }) => {
           trackEvent(amisInvitationConnexionComplete)
           trackPosthogEvent(captureAmisInvitationConnexionComplete)
 
