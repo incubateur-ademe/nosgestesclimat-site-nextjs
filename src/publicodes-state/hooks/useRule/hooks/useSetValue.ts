@@ -137,8 +137,8 @@ const checkValueValidity = ({
 }): NodeValue => {
   switch (type) {
     case 'choices': {
-      if (!value) {
-        return null
+      if (value === null) {
+        return
       }
       const stringValue = typeof value === 'string' ? value : String(value)
       return stringValue?.startsWith("'") ? stringValue : `'${stringValue}'`
