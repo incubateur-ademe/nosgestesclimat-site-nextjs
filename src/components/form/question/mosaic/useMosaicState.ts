@@ -120,6 +120,14 @@ export function useMosaicState({
 
     newState[dottedName] = value
 
+    // If value is false and all other values are false, then we unset all values (default state)
+    if (value === false && Object.values(newState).every((v) => v === false)) {
+      // Then we reinitialize all values to undefined (default state)
+      newState = Object.fromEntries(
+        questionsOfMosaic.map((question) => [question, undefined])
+      )
+    }
+
     // If some value is not (null, 0, false or undefined) then aucun is set to false and we propagate null to other values
     if (Object.entries(newState).some(([, v]) => !!v)) {
       setAucunOptionSelected(false)
