@@ -1,4 +1,5 @@
 import CookieConsentBannerAndManagement from '@/components/cookies/CookieConsentBannerAndManagement'
+import { CookieConsentProvider } from '@/components/cookies/CookieConsentProvider'
 import { GoogleTagIframe } from '@/components/googleTagManager/GoogleTagIframe'
 import { GoogleTagScript } from '@/components/googleTagManager/GoogleTagScript'
 import Footer from '@/components/layout/Footer'
@@ -14,17 +15,17 @@ export default async function LargeLayout({ children, params }: LayoutProps) {
   const { locale } = await params
   return (
     <>
-      <SkipToMainContentLink />
-      <CookieConsentBannerAndManagement />
-      <Banner locale={locale} />
+      <CookieConsentProvider>
+        <SkipToMainContentLink />
+        <CookieConsentBannerAndManagement />
+        <Banner locale={locale} />
+        <HeaderServer locale={locale} />
+        {children}
 
-      <HeaderServer locale={locale} />
-
-      {children}
-
-      <GoogleTagScript />
-      <GoogleTagIframe />
-      <Footer />
+        <GoogleTagScript />
+        <GoogleTagIframe />
+        <Footer />
+      </CookieConsentProvider>
     </>
   )
 }
