@@ -151,7 +151,7 @@ export default function Label({
             id={`${QUESTION_DESCRIPTION_BUTTON_ID}-content`}
             role="region"
             aria-labelledby={QUESTION_DESCRIPTION_BUTTON_ID}
-            className="my-2 text-xs italic md:text-sm">
+            className="mb-4 text-xs italic md:text-sm">
             <Markdown>{description}</Markdown>
           </div>
         ) : isOpen ? (
