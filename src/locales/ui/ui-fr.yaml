@@ -97,7 +97,6 @@ entries:
   À propos: À propos
   👤 Vous utilisez actuellement le persona: 👤 Vous utilisez actuellement le persona
   components.localisation.LocalisationMessage.warnMessage2: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut
-  À venir !: À venir !
   international.comment.1: Pour chaque pays, nous ajoutons les données locales nécessaires afin de proposer un calcul adapté aux modes de vie et au mix énergétique du territoire.
   international.comment.titre: Quels régions / pays sont disponibles ?
   international.ensuite.1: 'Si le vôtre n’est pas encore dans la liste, dites-le-nous : nous serons ravis d’en tenir compte. <2>Écrivez-nous !</2>'
@@ -185,8 +184,6 @@ entries:
   Label: Label
   Passagers: Passagers
   Télécharger l'image: Télécharger l'image
-  'Total par an :': 'Total par an :'
-  'Total :': 'Total :'
   Comment agir ?: Comment agir ?
   Ajouter: Ajouter
   'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': 'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !'
@@ -347,9 +344,6 @@ entries:
   Un modèle inédit d'empreinte des **déchets**: Un modèle inédit d'empreinte des **déchets**
   Lancer le calcul: Lancer le calcul
   Notes: Notes
-  À propos - Nos Gestes Climat: À propos - Nos Gestes Climat
-  Informations relatives à Nos Gestes Climat.: Informations relatives à Nos Gestes Climat.
-  404 - Nos Gestes Climat: 404 - Nos Gestes Climat
   Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.: Accédez à des services sur mesure pour sensibiliser vos partenaires au sein de votre organisation.
   Accessibilité - Nos Gestes Climat: Accessibilité - Nos Gestes Climat
   Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat: Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat
@@ -382,7 +376,6 @@ entries:
   nouveautés - Nos Gestes Climat: nouveautés - Nos Gestes Climat
   Observez l'évolution de l'impact de Nos Gestes Climat en mesures chiffrées.: Observez l'évolution de l'impact de Nos Gestes Climat en mesures chiffrées.
   Organisations, accéder à mon espace - Nos Gestes Climat: Organisations, accéder à mon espace - Nos Gestes Climat
-  Oups, vous êtes bien sur Nos Gestes Climat, mais cette page n'existe pas.: Oups, vous êtes bien sur Nos Gestes Climat, mais cette page n'existe pas.
   Plan du site - Nos Gestes Climat: Plan du site - Nos Gestes Climat
   Politique de confidentialité - Nos Gestes Climat: Politique de confidentialité - Nos Gestes Climat
   Quelles sont les actions les plus efficaces ?: Quelles sont les actions les plus efficaces ?
@@ -1107,7 +1100,6 @@ entries:
   simulator.customQuestions.voiture.summaryKmPerYear: km sont parcourus par an, avec en moyenne
   simulator.customQuestions.voiture.summaryPassengers: voyageurs, soit
   simulator.customQuestions.voiture.summaryStart: Au total
-  simulator.customQuestions.avion.openThreeYears: Répondre sur les 3 dernières années
   endPage.poll.seeResults.button.label: Voir les résultats
   Carbone, évaluer la métrique carbone: Carbone, évaluer la métrique carbone
   Connexion: Connexion
@@ -1267,8 +1259,6 @@ entries:
   endpage.title.default: Mes empreintes carbone et eau, empreinte carbone sélectionnée - Nos Gestes Climat
   Page {{page}} (page actuelle): Page {{page}} (page actuelle)
   Pourquoi avons-nous ajouté l'empreinte eau ?: Pourquoi avons-nous ajouté l'empreinte eau ?
-  common.mainLandingPage.numberPersons: 2,5 millions de personnes
-  common.mainLandingPage.tookTheirTest: ont déjà calculé leur empreinte !
   Accéder au test: Accéder au test
   Activé: Activé
   common.inputs.email.label: Entrez votre adresse e-mail
@@ -1294,7 +1284,6 @@ entries:
   simulator.navigation.nextButton.finished: Terminer
   simulator.navigation.nextButton.next: Suivant
   simulator.mosaic.closeMoreOptions: Moins d’options
-  simulator.mosaic.noChildren: Cette mosaique n'a pas d'enfants.
   simulator.mosaic.openMoreOptions: Plus d’options
   Annuler la sélection: Annuler la sélection
   Choisir l'action: Choisir l'action
@@ -1340,20 +1329,14 @@ entries:
   landing.carbon.measure.food: Votre régime alimentaire
   landing.carbon.measure.modes: Vos modes de déplacement
   landing.carbon.measure.shopping: Vos achats
-  Calculez <2>vos empreintes</2> en <5>seulement 10 minutes</5>.: Calculez <2>vos empreintes</2> en <5>seulement 10 minutes</5>.
-  Connaissez-vous votre empreinte carbone et eau ?: Connaissez-vous votre empreinte carbone et eau ?
   international.comment.3: Nous l’enrichissons progressivement pour élargir la couverture internationale.
   international.description: Où que vous viviez, calculez votre empreinte carbone et eau personnelle en tenant compte des spécificités de votre pays.
   international.ensuite.2: Nous ajoutons de nouveaux pays au fil du temps, avec le plus grand soin pour refléter leurs spécificités.
   Qui sommes-nous - Nouvelle fenêtre: Qui sommes-nous - Nouvelle fenêtre
-  <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire.: <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire.
-  Calculez <1>vos empreintes</1> en <4>seulement 10 minutes</4>.: Calculez <1>vos empreintes</1> en <4>seulement 10 minutes</4>.
   Commencer le test: Commencer le test
   Découvrez votre empreinte carbone: Découvrez votre empreinte carbone
   Résultats immédiats, sans inscription.: Résultats immédiats, sans inscription.
   simulator.mosaic.noneOfTheseOptions: Aucun
   simulator.mosaic.notConcerned: Je ne suis pas concerné·e
-  2,7 millions de personnes: 2,7 millions de personnes
-  ont déjà calculé leur empreinte: ont déjà calculé leur empreinte
-  <0>2,7 millions de personnes</0><1>ont déjà calculé leur empreinte</1>: <0>2,7 millions de personnes</0><1>ont déjà calculé leur empreinte</1>
   <0>2,7 millions de personnes</0> <2>ont déjà calculé leur empreinte</2>: <0>2,7 millions de personnes</0> <2>ont déjà calculé leur empreinte</2>
+  <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire: <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire
