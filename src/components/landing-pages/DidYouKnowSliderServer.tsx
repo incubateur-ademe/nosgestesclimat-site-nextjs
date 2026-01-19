@@ -6,7 +6,5 @@ export default async function DidYouKnowSliderServer(
   props: Omit<ComponentProps<typeof DidYouKnowSlider>, 'isAuthenticated'>
 ) {
   const isAuthenticated = await isUserAuthenticated()
-  return (
-    <DidYouKnowSlider {...props} isAuthenticated={isAuthenticated} />
-  )
+  return <DidYouKnowSlider {...props} isAuthenticated={isAuthenticated} />
 }
