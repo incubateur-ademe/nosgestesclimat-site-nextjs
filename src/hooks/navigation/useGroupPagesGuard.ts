@@ -12,15 +12,16 @@ import { useEffect, useState } from 'react'
 
 interface Props {
   isDashboard?: boolean
+  // user?: UserServer
 }
 export function useGroupPagesGuard(
   { isDashboard }: Props = { isDashboard: false }
 ) {
   const router = useRouter()
 
-  const { user } = useUser()
-
   const isDebug = useDebug()
+
+  const { user } = useUser()
 
   const { groupIdInQueryParams } = useGroupIdInQueryParams()
 
