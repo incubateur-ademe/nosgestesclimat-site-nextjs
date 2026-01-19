@@ -44,7 +44,7 @@ export default function OrganisationFilAriane({
   }
 
   if (poll) {
-    const pollHref = `/organisations/${organisation?.slug}/polls/${poll.id}`
+    const pollHref = `/organisations/${organisation?.slug}/campagnes/${poll.slug}`
     items.push({
       label: poll.name,
       href: pollHref,
