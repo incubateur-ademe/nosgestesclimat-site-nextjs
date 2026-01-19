@@ -1,5 +1,7 @@
 import DidYouKnowSliderServer from '@/components/landing-pages/DidYouKnowSliderServer'
 import Trans from '@/components/translation/trans/TransServer'
+import BlockSkeleton from "@/design-system/layout/BlockSkeleton"
+import { Suspense } from "react"
 
 export default function DidYouKnowMainLanding({
   locale,
@@ -11,6 +13,7 @@ export default function DidYouKnowMainLanding({
   titleTag?: 'h2' | 'h3'
 }) {
   return (
+    <Suspense fallback={<BlockSkeleton className="h-[583px] md:h-[384px] my-0" />}>
     <DidYouKnowSliderServer
       className={className}
       titleTag={titleTag}
@@ -67,5 +70,6 @@ export default function DidYouKnowMainLanding({
         },
       ]}
     />
+    </Suspense>
   )
 }
