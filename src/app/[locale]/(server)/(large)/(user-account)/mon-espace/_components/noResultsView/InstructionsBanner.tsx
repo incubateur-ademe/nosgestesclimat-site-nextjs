@@ -141,6 +141,7 @@ export default function InstructionsBanner({ locale }: { locale: Locale }) {
               colorClassNames.primary,
               sizeClassNames.md
             )}
+            scroll={false}
             data-track-event={clickMySpaceNoResultsStartTest}
             data-track-posthog={captureClickMySpaceNoResultsStartTest}>
             <Trans locale={locale} i18nKey="mon-espace.instructions.link.text">
