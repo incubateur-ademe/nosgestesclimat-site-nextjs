@@ -22,10 +22,7 @@ export default async function Page({ params, searchParams }: DefaultPageProps) {
   return (
     <>
       {showWelcomeBanner && !!latestSimulation && (
-        <>
-          {/*<ScrollToTop />*/}
-          <WelcomeBanner locale={locale} />
-        </>
+        <WelcomeBanner locale={locale} />
       )}
       {!latestSimulation && <NoResultsView locale={locale} />}
       {latestSimulation && (
