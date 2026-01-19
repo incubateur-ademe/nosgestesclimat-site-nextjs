@@ -59,16 +59,17 @@ export default function AuthenticateUserForm({
       safeSessionStorage.removeItem(EMAIL_PENDING_AUTHENTICATION_KEY)
       setIsRedirecting(true)
 
-      if (redirectURL) {
-        router.push(redirectURL)
-      }
-
       if (trackers) {
         trackEvent(trackers.matomo)
         trackPosthogEvent(trackers.posthog)
       }
-
       onComplete?.(user)
+
+      if (redirectURL) {
+        router.push(redirectURL)
+      }
+
+      router.refresh()
     },
     [redirectURL, onComplete, router, trackers]
   )

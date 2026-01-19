@@ -23,7 +23,7 @@ export type CompleteUserServer = UserServer & {
   contact?: BrevoContact
 }
 
-export function getUser(): Promise<UserServer> {
+export async function getUser(): Promise<UserServer> {
   return fetchWithJWTCookie(USER_URL + '/me')
 }
 

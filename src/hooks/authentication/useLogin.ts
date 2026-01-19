@@ -10,7 +10,6 @@ export default function useLogin() {
     user: { userId },
   } = useUser()
   const locale = useLocale()
-
   return useMutation({
     mutationFn: ({ email, code }: { email: string; code: string }) =>
       axios
@@ -28,9 +27,8 @@ export default function useLogin() {
             withCredentials: true,
           }
         )
-        .then(
-          (response) =>
-            ({ ...response.data, userId: response.data.id }) as VerifiedUser
-        ),
+        .then((response) => {
+          return { ...response.data, userId: response.data.id } as VerifiedUser
+        }),
   })
 }
