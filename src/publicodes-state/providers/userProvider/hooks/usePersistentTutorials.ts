@@ -1,32 +1,30 @@
+import { STORAGE_KEY } from '@/constants/storage'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import { useEffect, useState } from 'react'
 import type { Tutorials } from '../../../types'
 
-interface Props {
-  storageKey: string
-}
-export default function usePersistentTutorials({ storageKey }: Props) {
+export default function usePersistentTutorials() {
   const [initialized, setInitialized] = useState<boolean>(false)
 
   const [tutorials, setTutorials] = useState<Tutorials>({})
 
   useEffect(() => {
     setTutorials(
-      JSON.parse(safeLocalStorage.getItem(storageKey) || '{}').tutorials || {}
+      JSON.parse(safeLocalStorage.getItem(STORAGE_KEY) || '{}').tutorials || {}
     )
 
     setInitialized(true)
-  }, [storageKey])
+  }, [])
 
   useEffect(() => {
     if (initialized) {
       const currentStorage = JSON.parse(
-        safeLocalStorage.getItem(storageKey) || '{}'
+        safeLocalStorage.getItem(STORAGE_KEY) || '{}'
       )
       const updatedStorage = { ...currentStorage, tutorials }
-      safeLocalStorage.setItem(storageKey, JSON.stringify(updatedStorage))
+      safeLocalStorage.setItem(STORAGE_KEY, JSON.stringify(updatedStorage))
     }
-  }, [storageKey, tutorials, initialized])
+  }, [tutorials, initialized])
 
   return { tutorials, setTutorials }
 }

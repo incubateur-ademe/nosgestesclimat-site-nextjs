@@ -40,13 +40,10 @@ export default function UserProvider({
   useUpdateOldLocalStorage({ storageKey: STORAGE_KEY })
 
   const { user, setUser } = usePersistentUser({
-    storageKey: STORAGE_KEY,
     initialRegion,
   })
 
-  const { tutorials, setTutorials } = usePersistentTutorials({
-    storageKey: STORAGE_KEY,
-  })
+  const { tutorials, setTutorials } = usePersistentTutorials()
 
   const {
     simulations,
@@ -54,7 +51,6 @@ export default function UserProvider({
     currentSimulationId,
     setCurrentSimulationId,
   } = usePersistentSimulations({
-    storageKey: STORAGE_KEY,
     migrationInstructions,
     serverSimulations,
   })
