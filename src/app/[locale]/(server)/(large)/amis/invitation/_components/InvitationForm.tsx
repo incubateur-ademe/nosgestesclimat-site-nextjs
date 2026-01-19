@@ -1,16 +1,17 @@
 'use client'
 
+import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
+import EmailInput from '@/design-system/inputs/EmailInput'
 import PrenomInput from '@/design-system/inputs/PrenomInput'
-import { fetchUser } from '@/helpers/user/fetchUser'
+import { useEndPage } from '@/hooks/navigation/useEndPage'
+import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
+import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import type { Group } from '@/types/groups'
-import { useQuery } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
+import { formatEmail } from '@/utils/format/formatEmail'
+import { useEffect, useState } from 'react'
 import { useForm as useReactHookForm } from 'react-hook-form'
-import { useSaveParticipation } from '../_hooks/useSaveParticipation'
-import SubmitSection from './SubmitSection'
 
 interface Inputs {
   guestName: string
@@ -20,14 +21,7 @@ interface Inputs {
 export default function InvitationForm({ group }: { group: Group }) {
   const { t } = useClientTranslation()
 
-  const router = useRouter()
-
-  const { data: authenticatedUser } = useQuery({
-    queryKey: ['user', 'me'],
-    queryFn: () => fetchUser(),
-  })
-
-  const { user } = useUser()
+  const { user, updateName, updateEmail } = useUser()
 
   const {
     register,
@@ -35,48 +29,101 @@ export default function InvitationForm({ group }: { group: Group }) {
     formState: { errors },
   } = useReactHookForm<Inputs>()
 
-  const { handleSaveParticipation } = useSaveParticipation({
-    groupId: group.id,
-  })
+  const currentSimulation = useCurrentSimulation()
+  const hasCompletedTest = currentSimulation.progression === 1
 
-  function onSubmit({ guestName }: Inputs) {
-    if (authenticatedUser) {
-      handleSaveParticipation({
-        guestName: guestName ?? '',
-        guestEmail: authenticatedUser.email,
-      })
-    } else {
-      // Preserve searchParams when redirecting
-      const search = window.location.search
+  const { goToSimulateurPage } = useSimulateurPage()
+  const { goToEndPage } = useEndPage()
 
-      const searchParams = new URLSearchParams(search)
-      searchParams.set('guestName', encodeURIComponent(guestName))
-
-      router.push(`/amis/invitation/votre-email?${searchParams.toString()}`)
+  const [shouldNavigate, setShouldNavigate] = useState(false)
+  useEffect(() => {
+    if (shouldNavigate && currentSimulation.groups?.includes(group.id)) {
+      setShouldNavigate(false)
+      if (hasCompletedTest) {
+        goToEndPage({ allowedToGoToGroupDashboard: true })
+      } else {
+        goToSimulateurPage()
+      }
     }
+  }, [
+    currentSimulation.groups,
+    group.id,
+    hasCompletedTest,
+    goToEndPage,
+    goToSimulateurPage,
+    shouldNavigate,
+  ])
+
+  function onSubmit({ guestName, guestEmail }: Inputs) {
+    // Shouldn't happen but in any case, avoid group joining
+    if (!group) {
+      return
+    }
+
+    const formattedQuestEmail = formatEmail(guestEmail)
+
+    // Update user info
+    updateName(guestName)
+    updateEmail(formattedQuestEmail)
+
+    // Update current simulation with group id (to redirect after test completion)
+    currentSimulation.update({
+      groupToAdd: group.id,
+    })
+
+    // Redirect to simulateur page or end page
+    setShouldNavigate(true)
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      autoComplete="off"
-      className="flex flex-col items-start gap-4">
+    <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <PrenomInput
         data-cypress-id="member-name"
         value={user.name ?? ''}
         error={errors.guestName?.message}
         {...register('guestName', {
-          required: t('Veuillez renseigner votre prénom.'),
+          required: t('Ce champ est requis.'),
         })}
       />
 
-      {authenticatedUser ? (
-        <SubmitSection />
-      ) : (
-        <Button type="submit" data-cypress-id="button-join-group-next">
-          Suivant
-        </Button>
+      <div className="my-4">
+        <EmailInput
+          value={user.email ?? ''}
+          label={
+            <span>
+              {t('Votre adresse electronique')}{' '}
+              <span className="text-secondary-700 italic">
+                {' '}
+                {t('facultatif')}
+              </span>
+            </span>
+          }
+          helperText={t(
+            'Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données'
+          )}
+          {...register('guestEmail', {
+            pattern: {
+              value:
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: t('Veuillez entrer une adresse email valide.'),
+            },
+          })}
+        />
+      </div>
+
+      {!hasCompletedTest && (
+        <p className="mb-2 text-xs">
+          Vous devrez compléter votre test après avoir rejoint le groupe.
+        </p>
       )}
+
+      <Button type="submit" data-cypress-id="button-join-group">
+        {hasCompletedTest ? (
+          <Trans>Rejoindre</Trans>
+        ) : (
+          <Trans>Rejoindre et passer mon test</Trans>
+        )}
+      </Button>
     </form>
   )
 }

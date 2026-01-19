@@ -46,8 +46,6 @@ export default function AuthenticateUserForm({
   mode,
   onComplete,
   required = true,
-  onEmailEntered,
-  onEmailEmpty,
   trackers,
 }: Props) {
   const router = useRouter()
@@ -118,9 +116,6 @@ export default function AuthenticateUserForm({
       }}
       inputLabel={inputLabel}
       required={required}
-      onComplete={onComplete}
-      onEmailEntered={onEmailEntered}
-      onEmailEmpty={onEmailEmpty}
     />
   )
 }

@@ -16,7 +16,7 @@ import { useUser } from '@/publicodes-state'
 import type { AuthenticationMode } from '@/types/authentication'
 import { safeSessionStorage } from '@/utils/browser/safeSessionStorage'
 import { isEmailValid } from '@/utils/isEmailValid'
-import { useEffect, type ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import { useForm } from 'react-hook-form'
 
 interface Props {
@@ -26,7 +26,7 @@ interface Props {
   onCodeSent: (pendingVerification: PendingVerification) => void
   inputLabel?: ReactNode | string
   required?: boolean
-  onComplete?: () => void
+  onComplete?: ({ email, userId }: { email: string; userId: string }) => void
   onEmailEntered?: (email: string) => void
   onEmailEmpty?: () => void
 }
@@ -42,9 +42,6 @@ export default function SendVerificationCodeForm({
   inputLabel,
   onCodeSent,
   required = true,
-  onComplete,
-  onEmailEntered,
-  onEmailEmpty,
 }: Props) {
   const { t } = useClientTranslation()
   const { createVerificationCodeError, createVerificationCode } =
@@ -53,16 +50,15 @@ export default function SendVerificationCodeForm({
       mode,
     })
 
-  const userEmail = useUser().user.email
+  const user = useUser().user
 
   const defaultEmail =
-    safeSessionStorage.getItem(EMAIL_PENDING_AUTHENTICATION_KEY) ?? userEmail
+    safeSessionStorage.getItem(EMAIL_PENDING_AUTHENTICATION_KEY) ?? user.email
 
   const {
     register,
     handleSubmit,
     formState: { errors: formErrors },
-    watch,
   } = useForm<FormData>({
     defaultValues: {
       email: defaultEmail,
@@ -70,22 +66,8 @@ export default function SendVerificationCodeForm({
   })
 
   const onSubmit = ({ email }: FormData) => {
-    if (!required && !email) {
-      onComplete?.()
-    } else {
-      createVerificationCode(email)
-    }
+    createVerificationCode(email)
   }
-
-  const email = watch('email')
-
-  useEffect(() => {
-    if (email) {
-      onEmailEntered?.(email)
-    } else {
-      onEmailEmpty?.()
-    }
-  }, [email, onEmailEntered, onEmailEmpty])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
