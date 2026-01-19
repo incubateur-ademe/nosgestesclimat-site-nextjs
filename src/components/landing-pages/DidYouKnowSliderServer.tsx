@@ -1,6 +1,5 @@
-import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import { isUserAuthenticated } from '@/helpers/server/model/user'
-import { type ComponentProps, Suspense } from 'react'
+import { type ComponentProps } from 'react'
 import DidYouKnowSlider from './DidYouKnowSlider'
 
 export default async function DidYouKnowSliderServer(
@@ -8,8 +7,6 @@ export default async function DidYouKnowSliderServer(
 ) {
   const isAuthenticated = await isUserAuthenticated()
   return (
-    <Suspense fallback={<BlockSkeleton />}>
-      <DidYouKnowSlider {...props} isAuthenticated={isAuthenticated} />
-    </Suspense>
+    <DidYouKnowSlider {...props} isAuthenticated={isAuthenticated} />
   )
 }
