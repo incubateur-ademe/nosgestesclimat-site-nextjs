@@ -63,12 +63,6 @@ export default function useRule<T extends PublicodesValue = PublicodesValue>(
     situation,
   })
 
-  const { questionsOfMosaicFromParent, questionsOfMosaicFromSibling } =
-    useQuestionsOfMosaic({
-      everyMosaicChildrenWithParent,
-      dottedName,
-    })
-
   const parent = useMemo(
     () => utils.ruleParent(dottedName),
     [dottedName]
@@ -93,6 +87,16 @@ export default function useRule<T extends PublicodesValue = PublicodesValue>(
   } = useContent({
     dottedName,
     rule,
+  })
+
+  const {
+    questionsOfMosaicFromParent,
+    questionsOfMosaicFromSibling,
+    aucunOption,
+  } = useQuestionsOfMosaic({
+    mosaicNode: rule?.rawNode.mosaique,
+    everyMosaicChildrenWithParent,
+    dottedName,
   })
 
   const choices = useChoices({ rule, type })
@@ -207,6 +211,10 @@ export default function useRule<T extends PublicodesValue = PublicodesValue>(
      * A list of questions to display inside the mosaic (if the rule is a mosaic child)
      */
     questionsOfMosaicFromSibling,
+    /**
+     * The "aucun" option of the mosaic (if the rule is a mosaic). Undefined otherwise
+     */
+    aucunOption,
     /**
      * The direct parent of the rule
      */
