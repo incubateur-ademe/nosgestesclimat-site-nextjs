@@ -30,6 +30,7 @@
     "typescript",
     "typescriptreact"
   ],
+  "eslint.useFlatConfig": true,
   "eslint.format.enable": true,
   "eslint.lintTask.enable": true
 }
