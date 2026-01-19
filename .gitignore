@@ -71,3 +71,5 @@ coverage
 
 /public/mockServiceWorker.js
 storybook-static
+
+.cursor

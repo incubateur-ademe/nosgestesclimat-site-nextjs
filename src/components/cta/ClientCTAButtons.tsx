@@ -5,10 +5,11 @@ import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RestartIcon from '../icons/RestartIcon'
 import Trans from '../translation/trans/TransClient'
+import CTAButtonsPlaceholder from './CTAButtonsPlaceholder'
 
 export default function ClientCTAButtons({
   className,
@@ -26,6 +27,12 @@ export default function ClientCTAButtons({
   withRestart?: boolean
   isAuthenticated: boolean
 }) {
+  const [isHydrated, setIsHydrated] = useState(false)
+
+  useEffect(() => {
+    setIsHydrated(true)
+  }, [])
+
   const { getLinkToSimulateurPage, linkToSimulateurPageLabel } =
     useSimulateurPage()
 
@@ -71,7 +78,9 @@ export default function ClientCTAButtons({
     isAuthenticated,
   ])
 
-  if (typeof window === 'undefined') return null
+  if (!isHydrated) {
+    return <CTAButtonsPlaceholder className={className} />
+  }
 
   const handleMainButtonClick = () => {
     if (progression === 1 || userIsAuthenticatedAndHasMultipleSimulations) {
