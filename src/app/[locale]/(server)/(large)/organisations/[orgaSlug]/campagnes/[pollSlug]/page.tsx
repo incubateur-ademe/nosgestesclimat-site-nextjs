@@ -4,11 +4,13 @@ import SettingsIcon from '@/components/icons/SettingsIcon'
 import OrganisationFilAriane from '@/components/layout/FilAriane'
 import PollLoader from '@/components/organisations/PollLoader'
 import PollStatistics from '@/components/organisations/PollStatistics'
+import EngineProviders from '@/components/providers/EngineProviders'
 import Trans from '@/components/translation/trans/TransClient'
 import { pollDashboardClickParameters } from '@/constants/tracking/pages/pollDashboard'
 import { captureClickPollSettings } from '@/constants/tracking/posthogTrackers'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
+import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import { useFetchPublicPoll } from '@/hooks/organisations/polls/useFetchPublicPoll'
 import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
 import { useHandleRedirectFromLegacy } from '@/hooks/organisations/useHandleRedirectFromLegacy'
@@ -128,15 +130,16 @@ export default function CampagnePage() {
               }
             />
           )}
-
-          <PollStatistics
-            simulationsCount={simulations?.finished ?? 0}
-            computedResults={computedResults}
-            funFacts={funFacts}
-            title={<Trans>Résultats de campagne</Trans>}
-            poll={poll}
-            isAdmin={isAdmin}
-          />
+          <EngineProviders supportedRegions={getSupportedRegions()}>
+            <PollStatistics
+              simulationsCount={simulations?.finished ?? 0}
+              computedResults={computedResults}
+              funFacts={funFacts}
+              title={<Trans>Résultats de campagne</Trans>}
+              poll={poll}
+              isAdmin={isAdmin}
+            />
+          </EngineProviders>
 
           <FootprintDistribution
             computedResults={computedResults}

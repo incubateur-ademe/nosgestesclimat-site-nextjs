@@ -18,7 +18,7 @@ export default function Layout({ children }: PropsWithChildren) {
   const supportedRegions = getSupportedRegions()
 
   return (
-    <EngineProviders supportedRegions={supportedRegions}>
+    <EngineProviders supportedRegions={getSupportedRegions()}>
       {children}
     </EngineProviders>
   )
