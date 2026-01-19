@@ -1353,3 +1353,7 @@ entries:
   Résultats immédiats, sans inscription.: Résultats immédiats, sans inscription.
   simulator.mosaic.noneOfTheseOptions: Aucun
   simulator.mosaic.notConcerned: Je ne suis pas concerné·e
+  2,7 millions de personnes: 2,7 millions de personnes
+  ont déjà calculé leur empreinte: ont déjà calculé leur empreinte
+  <0>2,7 millions de personnes</0><1>ont déjà calculé leur empreinte</1>: <0>2,7 millions de personnes</0><1>ont déjà calculé leur empreinte</1>
+  <0>2,7 millions de personnes</0> <2>ont déjà calculé leur empreinte</2>: <0>2,7 millions de personnes</0> <2>ont déjà calculé leur empreinte</2>
