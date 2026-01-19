@@ -12,9 +12,9 @@ interface Props {
   title?: string
   icons?: string
   description?: string
-  setValue: (value: number | undefined) => void
+  setValue: (value: number | '' | undefined) => void
   index: number
-  value: number | undefined | null
+  value: number | undefined | '' | null
   parentMosaic: string
 }
 
@@ -67,7 +67,7 @@ export default function MosaicNumberInput({
         {!shouldNotContainButtons && (
           <Button
             disabled={!value}
-            onClick={() => setValue((value ?? 0) - 1)}
+            onClick={() => setValue((!!value ? value : 0) - 1)}
             size="sm"
             title={t(
               'simulator.mosaicNumberInput.remove',
@@ -82,19 +82,23 @@ export default function MosaicNumberInput({
         )}
         <RawNumberInput
           className="focus-within:border-primary-700 focus-within:ring-primary-700 max-h-8 w-16 rounded-sm text-center ring-offset-2 focus-within:ring-2 focus-visible:outline-none"
-          value={value === null ? 0 : value}
+          value={value === null ? 0 : (value ?? '')}
           placeholder={value === null ? '' : '_'}
           unit={shouldNotContainButtons ? unit : undefined}
-          handleValueChange={({ floatValue, value }) =>
-            setValue(value === undefined ? value : floatValue)
-          }
+          handleValueChange={({ floatValue, value: inputValue }) => {
+            if (value === undefined && inputValue === '') {
+              // If the input is cleared and the current value is undefined, do nothing
+              return
+            }
+            setValue(inputValue === '' ? inputValue : floatValue)
+          }}
           data-cypress-id={`${question}---${parentMosaic}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
         />
         {!shouldNotContainButtons && (
           <Button
             disabled={isPlusDisabled}
-            onClick={() => setValue((value ?? 0) + 1)}
+            onClick={() => setValue((!!value ? value : 0) + 1)}
             title={t(
               'simulator.mosaicNumberInput.add',
               'Ajouter un élément : {{title}}',
