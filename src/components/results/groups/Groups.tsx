@@ -27,7 +27,7 @@ export default function Groups({ groups }: Props) {
           </Trans>
         }
       />
-      <div className="flex flex-col gap-6 md:flex-row md:justify-between md:gap-8 mb-8">
+      <div className="mb-8 flex flex-col gap-6 md:flex-row md:justify-between md:gap-8">
         <div className="flex-1">
           <GroupContent groups={groups} />
         </div>
