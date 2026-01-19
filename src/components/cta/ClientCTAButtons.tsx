@@ -26,11 +26,8 @@ export default function ClientCTAButtons({
   withRestart?: boolean
   isAuthenticated: boolean
 }) {
-  const {
-    getLinkToSimulateurPage,
-    goToSimulateurPage,
-    linkToSimulateurPageLabel,
-  } = useSimulateurPage()
+  const { getLinkToSimulateurPage, linkToSimulateurPageLabel } =
+    useSimulateurPage()
 
   const { t } = useClientTranslation()
 

@@ -7,8 +7,6 @@ import { verifyPartner } from '@/services/partners/verifyPartner'
 import { notFound } from 'next/navigation'
 import AdaptiveMessage from './_components/AdaptiveMessage'
 
-type SearchParams = Record<string, string>
-
 export const generateMetadata = getCommonMetadata({
   title: t('Partagez vos résultats avec notre partenaire - Nos Gestes Climat'),
   description: t(
