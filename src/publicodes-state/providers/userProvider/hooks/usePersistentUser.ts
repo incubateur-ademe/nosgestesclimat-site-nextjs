@@ -1,15 +1,14 @@
+import { STORAGE_KEY } from '@/constants/storage'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import { useEffect, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 import type { RegionFromGeolocation, User } from '../../../types'
 
 interface Props {
-  storageKey: string
   initialRegion?: RegionFromGeolocation
   initialUserId?: string
 }
 export default function usePersistentUser({
-  storageKey,
   initialRegion,
   initialUserId,
 }: Props) {
@@ -21,7 +20,7 @@ export default function usePersistentUser({
     userId: initialUserId || uuid(),
   }
   if (typeof window !== 'undefined') {
-    const currentStorage = safeLocalStorage.getItem(storageKey)
+    const currentStorage = safeLocalStorage.getItem(STORAGE_KEY)
     const parsedStorage = JSON.parse(currentStorage || '{}')
 
     if (parsedStorage.user) {
@@ -34,11 +33,11 @@ export default function usePersistentUser({
   // Save the user to local storage after initialization
   useEffect(() => {
     const currentStorage = JSON.parse(
-      safeLocalStorage.getItem(storageKey) || '{}'
+      safeLocalStorage.getItem(STORAGE_KEY) || '{}'
     )
     const updatedStorage = { ...currentStorage, user }
-    safeLocalStorage.setItem(storageKey, JSON.stringify(updatedStorage))
-  }, [storageKey, user])
+    safeLocalStorage.setItem(STORAGE_KEY, JSON.stringify(updatedStorage))
+  }, [user])
 
   // Return a default state while we wait for the initial region to be set
   if (!initialRegion) {
