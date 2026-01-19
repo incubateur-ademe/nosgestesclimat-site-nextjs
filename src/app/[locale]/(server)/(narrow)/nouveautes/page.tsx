@@ -1,3 +1,4 @@
+import QueryClientProviderWrapper from "@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper"
 import SparklesIcon from '@/components/icons/SparklesIcon'
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import List from '@/components/posts/List'
@@ -8,6 +9,7 @@ import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPosts } from '@/helpers/markdown/getPosts'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
+import { UserProvider } from "@/publicodes-state"
 import type { DefaultPageProps } from '@/types'
 import Image from 'next/image'
 
@@ -29,7 +31,12 @@ export default async function Releases({ params }: DefaultPageProps) {
 
   return (
     <>
-      <PasserTestBanner />
+      <QueryClientProviderWrapper>
+        <UserProvider>
+          <PasserTestBanner />
+        </UserProvider>
+      </QueryClientProviderWrapper>
+
 
       <div className="mt-4 flex flex-wrap gap-0 pb-8 md:flex-nowrap md:gap-16">
         <div>
@@ -60,7 +67,8 @@ export default async function Releases({ params }: DefaultPageProps) {
           alt={t('Une femme préparant un bon petit plat.')}
         />
       </div>
-      <List locale={locale} items={releases} path="/nouveautes" />
+
+        <List locale={locale} items={releases} path="/nouveautes" />
     </>
   )
 }

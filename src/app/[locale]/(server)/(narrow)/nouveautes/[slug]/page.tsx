@@ -1,3 +1,4 @@
+import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import Link from '@/components/Link'
 import PasserTestBanner from '@/components/layout/PasserTestBanner'
 import Trans from '@/components/translation/trans/TransServer'
@@ -5,6 +6,7 @@ import Markdown from '@/design-system/utils/Markdown'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getPost } from '@/helpers/markdown/getPost'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
+import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import { capitalizeString } from '@/utils/capitalizeString'
 
@@ -37,7 +39,11 @@ export default async function Release({
         ← <Trans locale={locale}>Retour à la liste des nouveautes</Trans>
       </Link>
 
-      <PasserTestBanner />
+      <QueryClientProviderWrapper>
+        <UserProvider>
+          <PasserTestBanner />
+        </UserProvider>
+      </QueryClientProviderWrapper>
 
       {nouveaute ? (
         <Markdown>{nouveaute?.content}</Markdown>
