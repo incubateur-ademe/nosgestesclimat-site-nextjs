@@ -1,5 +1,6 @@
 'use client'
 
+import { MissingVariables } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { createContext } from 'react'
 
@@ -13,6 +14,7 @@ interface FormContextType {
   currentCategory: DottedName | null
   setCurrentQuestion: (question: DottedName | null) => void
   setCurrentCategory: (category: DottedName | null) => void
+  missingVariables: MissingVariables
 }
 export default createContext<FormContextType>({
   questionsByCategories: {} as Record<DottedName, DottedName[]>,
@@ -24,4 +26,5 @@ export default createContext<FormContextType>({
   currentCategory: null,
   setCurrentQuestion: () => '',
   setCurrentCategory: () => '',
+  missingVariables: {} as MissingVariables,
 })
