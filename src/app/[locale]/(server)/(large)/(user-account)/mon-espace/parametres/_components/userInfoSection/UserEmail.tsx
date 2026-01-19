@@ -3,6 +3,7 @@
 import Trans from '@/components/translation/trans/TransClient'
 import UserEmailForm from '@/components/user/UserEmailForm'
 import Button from '@/design-system/buttons/Button'
+import BlockSkeleton from "@/design-system/layout/BlockSkeleton"
 import { useUser } from '@/publicodes-state'
 import { useState } from 'react'
 
@@ -38,7 +39,10 @@ export default function UserEmail() {
 
   return (
     <div className="flex flex-wrap items-center">
-      <p className="m-0 text-sm md:text-base">{user.email}</p>
+      {
+        user.email ? (<p className="m-0 text-sm md:text-base">{user.email}</p>) : (<BlockSkeleton className="h-6 my-0 w-[200px]" />)
+      }
+      
 
       <Button
         color="link"
