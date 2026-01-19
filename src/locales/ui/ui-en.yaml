@@ -1605,7 +1605,7 @@ entries:
   Commencer le test: Start test
   Découvrez votre empreinte carbone: Discover your carbon footprint
   Résultats immédiats, sans inscription.: Instant results, no sign-up required
-  <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire: <0>Get your personalised estimate</0> and <3>actionable steps</3> to reduce it
+  <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire: <0>Get a personalised estimate</0> and <3>actionable steps</3> to reduce it
   simulator.mosaic.noneOfTheseOptions: No
   simulator.mosaic.noneOfTheseOptions.lock: Aucun
   simulator.mosaic.notConcerned: I am not concerned
