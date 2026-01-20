@@ -54,6 +54,8 @@ export const MUST_SHOW_DESCRIPTION = new Set<DottedName>([
   'logement . surface',
   'divers . animaux domestiques . empreinte',
   'alimentation . local . consommation',
+  'transport . avion . vols annuels',
+  'transport . avion . vols amortis',
 ])
 
 export const NUMBER_MOSAIC_WITHOUT_BUTTONS = new Set<DottedName>([
