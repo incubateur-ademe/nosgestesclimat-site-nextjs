@@ -1,6 +1,6 @@
 'use client'
 
-import { MissingVariables } from '@/publicodes-state/types'
+import type { MissingVariables } from '@/publicodes-state/types'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { createContext } from 'react'
 
