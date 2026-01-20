@@ -93,11 +93,12 @@ export default function MosaicBooleanInput({
         </span>
 
         <div className="flex-1">
-          {title && icons ? (
+          {title ? (
             <span
               aria-label={`${title} ${isInactive ? t('Bientôt disponible') : ''}`}
               className="inline-block align-middle text-sm md:text-base">
-              {title} <Emoji className="leading-tight">{icons ?? null}</Emoji>
+              {title}{' '}
+              {icons && <Emoji className="leading-tight">{icons}</Emoji>}
             </span>
           ) : null}
           {description ? (
