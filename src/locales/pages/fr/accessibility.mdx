@@ -1,109 +1,92 @@
-# Déclaration d’accessibilité
+# Déclaration d'accessibilité
 
-L’ADEME s’engage à rendre ses sites internet accessibles conformément à l’article 47 de la loi n° 2005-102 du 11 février 2005.
-La présente déclaration d’accessibilité s’applique au site Nos Gestes Climat.
+L'ADEME s'engage à rendre ses sites internet accessibles conformément à l'article 47 de la loi n° 2005-102 du 11 février 2005.
+
+La présente déclaration d'accessibilité s'applique au site Nos Gestes Climat.
 
 ## État de conformité
 
-Le site Nos Gestes Climat (https://nosgestesclimat.fr/) est partiellement conforme avec le référentiel général d’amélioration de l’accessibilité, RGAA version 4.1, en raison des non-conformités énumérées dans la section « Résultats des tests ».
+Le site Nos Gestes Climat (https://nosgestesclimat.fr/) est partiellement conforme avec le référentiel général d'amélioration de l'accessibilité, [RGAA version 4.1](https://www.numerique.gouv.fr/publications/rgaa-accessibilite/), en raison des non-conformités énumérées dans la section « Résultats des tests ».
 
 ## Résultats des tests
 
-L’audit de conformité réalisé le 15/06/2022 par la société Access42 révèle que **le site est conforme à 50 % au RGAA version 4.1**.
+L'audit de conformité réalisé par la société Access42 révèle que le site est partiellement conforme à 72,86% au RGAA version 4.1.
 
 ### Contenus inaccessibles
 
 Les contenus listés ci-dessous ne sont pas accessibles pour les raisons suivantes.
 
-#### Non-conformités
+### Non-conformités
 
-- Des images porteuses d’information n’ont pas d’alternative ou pas d’alternative pertinente ;
-- Des images de décoration ne sont pas ignorées des technologies d’assistance ;
-- Des images possèdent des légendes qui ne sont pas correctement reliées ;
-- Des textes et des composants d’interfaces ont des contrastes insuffisants
-- Des liens n'ont pas d’intitulé explicite ;
-- Des fonctionnalités JavaScript ne sont pas compatibles avec les technologies d’assistance (notamment un carrousel, des contenus qui s’affichent et se masquent, des champs en autocomplétion et des fenêtres modales) ;
-- Des changements de contexte se déclenchent sans que l’utilisateur en soit informé ;
-- Des messages de statut ne sont pas restitués par les technologies d’assistance
-- Des pages contiennent des erreurs de code source
-- Des pages n’ont pas de titre de page pertinent ;
-- Des changements de langue dans le texte ne sont pas signalés ;
-- Des pages font usage de balises à des fins de présentation (par exemple des textes non structurés dans des balises de paragraphes) ;
-- Des pages ont une hiérarchie de titres non pertinente (titres manquants ou mal définis)
-- La structure et les zones principales des pages sont mal définies ;
-- Des suites d’éléments ne sont pas structurées avec des listes
-- Certains textes ayant une couleur de police définie n’ont pas de couleur de fond associée ;
-- Des indications visuelles de prise de focus ne sont pas suffisamment contrastées ;
-- Des champs de formulaires n'ont pas d'étiquette correctement liée ou pas d’étiquette pertinente ;
-- Des regroupements de champs de même nature n’ont pas de titre ;
-- Des boutons de formulaire ont un intitulé qui n’est pas pertinent ;
-- Des aides à la saisie ne sont pas reliées à leurs champs respectifs ;
-- Le site ne dispose pas de système de navigation ;
-- Les liens d’accès rapide ne sont pas visibles sur mobile ;
-- Des contenus cryptiques n'ont pas d’alternative ;
-- L’orientation des pages est contrainte en mode portrait ;
-- Les fonctionnalités utilisables au moyen d'un geste complexe n’ont pas d'alternative au moyen d'un gestion simple.
+- [1.2] Des images de décoration ne sont pas ignorées des technologies d'assistance ;
+- [3.2] [3.3] Des textes et des composants d'interfaces ont des contrastes insuffisants ;
+- [7.1] Des fonctionnalités JavaScript ne sont pas compatibles avec les technologies d'assistance (notamment des fenêtres modales, des contenus qui s'affichent et se masquent, des carrousels);
+- [8.7] Des changements de langue dans le texte ne sont pas signalés ;
+- [8.9] Des pages font usage de balises à des fins de présentation (par exemple des paragraphes vides et des textes non structurés dans des balises de paragraphes) ;
+- [9.2 – 12.6] La structure et les zones principales des pages sont mal définies ;
+- [9.3] Des suites d'éléments ne sont pas structurées avec des listes ;
+- [10.1] Des balises ou attributs HTML de présentation sont présents dans certaines pages ;
+- [10.5] Certains textes ayant une couleur de police définie n'ont pas de couleur de fond associée et/ou certains textes ayant une couleur de fond définie n'ont pas de couleur de police associée ;
+- [10.7] Des indications visuelles de prise de focus ne sont pas suffisamment contrastées ;
+- [11.1] Des champs de formulaires n'ont pas d'étiquette correctement liée et/ou pas d'étiquette pertinente ;
+- [11.7] Des champs de même nature ne sont pas correctement regroupés ;
+- [11.10 – 11.11] Des aides à la saisie sont absentes et/ou non pertinentes pour les champs qui attendent un format particulier, et/ou des champs obligatoires ne sont pas correctement indiqués, et/ou des messages d'erreurs ne sont pas reliés aux champs correspondants ;
+- [11.13] Certains formulaires ne permettent pas le remplissage automatique des champs avec les données de l'utilisateur ;
+- [12.8] Des pages présentent des problèmes dans le parcours de tabulation en raison d'éléments masqués et de prise de focus forcée au chargement de pages.
+- [13.8] Des contenus en mouvement ou clignotant ne sont pas contrôlables par l'utilisateur ;
 
-#### Dérogations pour charge disproportionnée
+## Établissement de cette déclaration d'accessibilité
 
-Les pages de documentation utilisent la bibliothèque « Publicodes » qui est essentielle au traitement des informations publiées et qui n'a pas d'équivalent adapté à notre besoin. Cette bibliothèque insère par CSS des éléments d'information (des parenthèses) dans certaines formules de calcul ce qui n'est pas conforme avec le critère 10.2 de RGAA 4.1. Cette bibliothèque gère le titre de certaines pages qui peuvent être non pertinents ce qui n’est pas conforme au critère 8.6 de RGAA 4.1.
-
-La modification de cette bibliothèque pour modifier ce comportement nécessiterait un volume de travail conséquent pour lequel nous n'avons pas les compétences. Néanmoins, conscients du problème, nous avons ouvert une [issue](https://github.com/betagouv/publicodes/issues/226) pour demander la correction de ce problème et nous mettrons à jour la bibliothèque quand ses auteurs auront répercuté la correction. Compte tenu de la teneur du problème, il n'est pas possible de proposer une alternative.
-
-L’équipe Nosgestesclimat utilise des documents bureautiques produits par l’ADEME. Ces documents sont dérogés par l’ADEME, mais il est possible de les contacter pour obtenir des alternatives accessibles : https://agirpourlatransition.ademe.fr/particuliers/accessibilite.
-
-L’équipe Nosgestesclimat utilise des documents bureautiques produits par l’Association Bilan Carbone (ABC). Ces documents sont dérogés par l’ADEME. Il n’y a pas d’alternative.
-
-Les pages « actions » contiennent des graphiques et des tableaux qui ne possèdent pas de descriptions détaillées. Ajouter ces descriptions détaillées représente une charge disproportionnée pour Nosgestesclimat. Il n’y a pas d’alternative.
-
-## Établissement de cette déclaration d’accessibilité
-
-Cette déclaration a été établie le 27/05/2022. Elle a été mise à jour le 15/06/2022.
+Cette déclaration a été établie le 18 juillet 2025 et modifiée le 04 décembre 2025.
 
 ### Technologies utilisées pour la réalisation du site
 
 - HTML5
 - CSS
 - JavaScript
+- Outil de gestion de contenus : Wordpress
 
-### Agents utilisateurs, technologies d’assistance et outils utilisés pour vérifier l’accessibilité
+### Agents utilisateurs, technologies d'assistance et outils utilisés pour vérifier l'accessibilité
 
-Les tests des pages web ont été effectués avec les combinaisons de navigateurs web et lecteurs d’écran suivants :
+Les tests des pages web ont été effectués avec les combinaisons de navigateurs web et lecteurs d'écran suivants :
 
-- Firefox 97 et NVDA 2021.3 ;
-- Firefox 97 et JAWS 2020 ;
-- Safari 15.0 et VoiceOver (macOS Big Sur, version 11.6) ;
-- Chrome 96.0 et TalkBack (Android natif 10.0).
+- Firefox 135.0 et NVDA 2024.4.2
+- Firefox 135.0 et JAWS 2025
+- Safari 17.4.1 et VoiceOver (macOS 14.3.1)
+- Safari 17.4 et VoiceOver (iOS 18.3)
 
-La vérification de l’accessibilité est le résultat de tests manuels, assistés par des outils (feuilles CSS dédiés, extensions HeadingsMaps et WebDeveloper Toolbar, Color Contrast Analyser).
+La vérification de l'accessibilité est le résultat de tests manuels, assistés par des outils (feuilles CSS dédiés, extensions HeadingsMaps et WebDeveloper Toolbar, Color Contrast Analyser).
 
-### Pages du site ayant fait l’objet de la vérification de conformité
+### Pages du site ayant fait l'objet de la vérification de conformité
 
-- Accueil : https://nosgestesclimat.fr/
-- À propos : https://nosgestesclimat.fr/%C3%A0-propos
-- Nouveautés : https://nosgestesclimat.fr/nouveaut%C3%A9s/las-n%C3%A9ous
-- Documentation : https://nosgestesclimat.fr/documentation
-- Contribuer : https://nosgestesclimat.fr/contribuer
-- Diffuser : https://nosgestesclimat.fr/partenaires
-- Tutoriel : https://nosgestesclimat.fr/tutoriel
-- Le test : https://nosgestesclimat.fr/simulateur/bilan
-- Fin : https://nosgestesclimat.fr/fin?details=a2.87t2.81l2.19s1.11d0.64n0.22
-- Agir : https://nosgestesclimat.fr/actions
-- Action : https://nosgestesclimat.fr/actions/alimentation/boisson/eau-en-bouteille/arr%C3%Aater
-- Conférence : https://nosgestesclimat.fr/conf%C3%A9rence
-- Conférence cambrien-bas-hanté : https://nosgestesclimat.fr/conf%C3%A9rence/cambrien-bas-hant%C3%A9
-- Alimentation : https://nosgestesclimat.fr/documentation/alimentation
-- Eteindre mes appareils en veille : https://nosgestesclimat.fr/actions/plus/logement/%C3%A9teindre-appareils
+- Accueil https://nosgestesclimat.fr/
+- Contact https://nosgestesclimat.fr/contact
+- Mentions légales https://nosgestesclimat.fr/mentions-legales
+- Accessibilité https://nosgestesclimat.fr/accessibilite
+- Plan du site https://nosgestesclimat.fr/plan-du-site
+- Calculateur https://nosgestesclimat.fr/simulateur/bilan
+- Page de résultat de simulation - thème carbone https://nosgestesclimat.fr/fin?theme=carbone
+- Landing Organisation https://nosgestesclimat.fr/organisations
+- Parcours de création d'une organisation https://nosgestesclimat.fr/organisations/connexion
+- Page profil https://nosgestesclimat.fr/profil
+- Mes gestes https://nosgestesclimat.fr/actions
+- Demander une démo https://nosgestesclimat.fr/organisations/demander-demo
+- Documentation https://nosgestesclimat.fr/documentation/bilan
+- Blog https://nosgestesclimat.fr/blog
+- Mobilités douces et actives https://nosgestesclimat.fr/blog/mobilites/mobilites-douces-modes-transport-puissants
 
-## Retour d’information et contact
+## Retour d'information et contact
 
-Il est important de rappeler qu’en vertu de l’article 11 de la loi de février 2005 :
+Il est important de rappeler qu'en vertu de l'article 11 de la loi de février 2005&nbsp;:
 
-> « La personne handicapée a droit à la compensation des conséquences de son handicap, quels que soient l’origine et la nature de sa déficience, son âge ou son mode de vie. »
+_«&nbsp;la personne handicapée a droit à la compensation des conséquences de son handicap, quels que soient l'origine et la nature de sa déficience, son âge ou son mode de vie.&nbsp;»_
 
-L’ADEME s'engage à prendre les moyens nécessaires afin de donner accès, dans un délai raisonnable, aux informations et fonctionnalités recherchées par la personne handicapée, que le contenu fasse l'objet d'une dérogation ou non.
+L'ADEME s'engage à prendre les moyens nécessaires afin de donner accès, dans un délai raisonnable, aux informations et fonctionnalités recherchées par la personne handicapée, que le contenu fasse l'objet d'une dérogation ou non.
 
-L’ADEME invite les personnes qui rencontreraient des difficultés à la contacter ([via notre formulaire de contact](/contact) pour contacter directement l'équipe Nos Gestes Climat ou bien via [rgaa@ademe.fr](mailto:rgaa@ademe.fr)) afin qu’une assistance puisse être apportée (alternative accessible, information et contenu donnés sous une autre forme).
+Si vous n'arrivez pas à accéder à un contenu ou à un service, vous pouvez contacter le responsable du site internet pour être orienté vers une alternative accessible ou obtenir le contenu sous une autre forme.
+
+- [Envoyer un message au référent accessibilité de l'ADEME](mailto:rgaa@ademe.fr)
+- Contacter Estelle Ribot, ADEME, DEMTE — 20 avenue du Grésillé BP 90 406 – 49 004 Angers Cedex 01
 
 ## Voies de recours
 
@@ -111,7 +94,6 @@ Si vous constatez un défaut d'accessibilité vous empêchant d'accéder à un c
 
 Plusieurs moyens sont à votre disposition :
 
-- [un formulaire de contact](https://formulaire.defenseurdesdroits.fr/code/afficher.php?ETAPE=accueil_2016) ;
-- la [liste du ou des délégués de votre région](https://www.defenseurdesdroits.fr/office/) avec leurs informations de contact direct ;
+- un [formulaire de contact](https://formulaire.defenseurdesdroits.fr/formulaire_saisine/) ;
 - un numéro de téléphone : 09 69 39 00 00 ;
 - une adresse postale (courrier gratuit, sans affranchissement) : Le Défenseur des droits - Libre réponse 71120 - 75342 Paris CEDEX 07.
