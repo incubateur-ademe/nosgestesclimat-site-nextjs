@@ -8,7 +8,13 @@ if (process.env.NEXT_PUBLIC_POSTHOG_KEY !== undefined) {
     autocapture: false, // Disable automatic event capture, as we capture manually
     capture_pageview: false, // Disable automatic pageview capture, as we capture manually
     capture_pageleave: true, // Enable pageleave capture
-    custom_campaign_params: ['mtm_campaign', 'mtm_kwd', 'mtm_keyword'],
+    custom_campaign_params: [
+      'mtm_campaign',
+      'mtm_kwd',
+      'mtm_keyword',
+      'organisation',
+      'poll',
+    ],
   })
 }
 

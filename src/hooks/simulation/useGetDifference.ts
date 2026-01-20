@@ -17,7 +17,7 @@ export function useGetDifference({ metric }: { metric: Metrics }): {
     boolean | undefined
   >()
 
-  const { foldedSteps } = useCurrentSimulation()
+  const { foldedSteps, situation } = useCurrentSimulation()
 
   const { currentQuestion } = useFormState()
 
@@ -70,7 +70,8 @@ export function useGetDifference({ metric }: { metric: Metrics }): {
     }
 
     prevValue.current = numericValue
-  }, [numericValue])
+    // if the situation change but difference stay at 0, we wan't to hide previous live score. The `useEffect` is triggered but difference is 0.
+  }, [numericValue, situation])
 
   // The question contains a number input
   // User hasn't updated twice his/her answer

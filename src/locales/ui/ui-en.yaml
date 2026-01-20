@@ -128,7 +128,6 @@ entries:
   components.localisation.LocalisationMessage.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut
   international.comment.titre: Which regions/countries are available?
   international.comment.titre.lock: Quels régions / pays sont disponibles ?
-  À venir !: Coming soon !
   international.ensuite.titre: Can't find your country?
   international.ensuite.titre.lock: Vous ne trouvez pas votre pays ?
   international.pourquoi.titre: Adapted to your country
@@ -231,9 +230,7 @@ entries:
   du test: of the test
   Passagers: Passengers
   Télécharger l'image: Download image
-  'Total par an :': 'Total per year :'
   Vous avez terminé le test !: You've completed the test!
-  'Total :': 'Total :'
   Comment agir ?: What can you do?
   Ajouter: Add
   'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': "Of course, some things are shared (in my home with my family, the car with my carpoolers): this will be taken into account when calculating your carbon footprint, so don't worry!"
@@ -402,10 +399,8 @@ entries:
   Le coeur de Nos Gestes Climat, c'est **le bilan** d'empreinte climat personnelle: The heart of Nos Gestes Climat is **the personal climate footprint** assessment
   Lancer le calcul: Run the calculation
   Notes: Notes
-  404 - Nos Gestes Climat: 404 - Nos Gestes Climat
   Comprenez comment calculer votre empreinte sur le climat en 10min chrono.: Find out how to calculate your climate footprint in 10 minutes.
   Informations relatives au budget de Nos Gestes Climat.: Budget information for Nos Gestes Climat.
-  À propos - Nos Gestes Climat: About us - Nos Gestes Climat
   Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.: Check out the new features and latest news from Nos Gestes Climat.
   Nos Statistiques d'utilisation - Nos Gestes Climat: Our usage statistics - Nos Gestes Climat
   Quelles sont les actions les plus efficaces ?: What are the most effective actions?
@@ -418,7 +413,6 @@ entries:
   Mentions légales - Nos Gestes Climat: Legal information - Nos Gestes Climat
   Retrouvez les réponses aux questions les plus fréquentes sur  Nos Gestes Climat.: Find the answers to the most frequently asked questions about Nos Gestes Climat.
   Découvrez le modèle de données de notre calculateur d'empreinte climat: Discover the data model of our climate footprint simulator
-  Oups, vous êtes bien sur Nos Gestes Climat, mais cette page n'existe pas.: Oops, you are on Nos Gestes Climat, but this page does not exist.
   Découvrez les personas d'utilisateurs types qui nous servent à tester le calculateur sous toutes ses coutures.: Discover the typical user personas we use to test the simulator from every angle.
   Observez l'évolution de l'impact de Nos Gestes Climat en mesures chiffrées.: See the evolution of the impact of Nos Gestes Climat in figures.
   Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.: Explore and modify the information you have entered in the nosgestesclimat pathway.
@@ -443,7 +437,6 @@ entries:
   Mentions légales du site Nos Gestes Climat.: Legal information about Nos Gestes Climat.
   Notre documentation détaille les calculs qui nous ont permis de calculer votre bilan carbone personnel.: Our documentation details the calculations we used to calculate your personal carbon footprint.
   Notre modèle de données - Nos Gestes Climat: Our data model - Nos Gestes Climat
-  Informations relatives à Nos Gestes Climat.: Information about Nos Gestes Climat.
   Nos personas d'utilisateurs types - Nos Gestes Climat: Our typical user personas - Nos Gestes Climat
   Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat: Actions following your climate footprint simulation - Nos Gestes Climat
   Supprimer mes données de groupe - Nos Gestes Climat: Delete my group data - Nos Gestes Climat
@@ -1204,8 +1197,6 @@ entries:
   simulator.customQuestions.voiture.summaryKmPerYear.lock: km sont parcourus par an, avec en moyenne
   simulator.customQuestions.voiture.summaryKmPerPerson: km per person
   simulator.customQuestions.voiture.summaryKmPerPerson.lock: km par personne
-  simulator.customQuestions.avion.openThreeYears: Answer for the last 3 years
-  simulator.customQuestions.avion.openThreeYears.lock: Répondre sur les 3 dernières années
   endPage.poll.seeResults.button.label: See the results
   endPage.poll.seeResults.button.label.lock: Voir les résultats
   Page active: Active page
@@ -1347,7 +1338,7 @@ entries:
   blog.homepage.defaultTitle: Blog, discover our articles and advice on the climate - Nos Gestes Climat
   blog.homepage.defaultTitle.lock: Blog, découvrez nos articles et conseils sur le climat - Nos Gestes Climat
   4 infolettres l'impact des transports: 4 newsletters the impact of transport
-  5 infolettres sur l'impact du logement: 5 newsletters on the impact of housing
+  3 infolettres sur l'impact du logement: 3 newsletters on the impact of housing
   Entrez votre adresse email pour recevoir les infolettres sélectionnées.: Enter your email address to receive the selected newsletters.
   documentation.total_category_block.title: of the total, see documentation
   documentation.total_category_block.title.lock: du total, voir la documentation
@@ -1479,10 +1470,6 @@ entries:
   endpage.title.default.lock: Mes empreintes carbone et eau, empreinte carbone sélectionnée - Nos Gestes Climat
   actions.thresholdDescription: Shares with an impact of {{label}} or more
   actions.thresholdDescription.lock: Actions avec un impact de {{label}} ou plus
-  common.mainLandingPage.numberPersons: 2.5 million people
-  common.mainLandingPage.numberPersons.lock: 2,5 millions de personnes
-  common.mainLandingPage.tookTheirTest: have already calculated their footprint!
-  common.mainLandingPage.tookTheirTest.lock: ont déjà calculé leur empreinte !
   Accéder au test: Access the test
   Option sélectionnée: Selected option
   Sélectionner cette option: Select this option
@@ -1528,8 +1515,6 @@ entries:
   simulator.mosaic.openMoreOptions.lock: Plus d’options
   Choisir l'action: Choose action
   Annuler la sélection: Cancel selection
-  simulator.mosaic.noChildren: This mosaic has no children.
-  simulator.mosaic.noChildren.lock: Cette mosaique n'a pas d'enfants.
   Choisir l'action - désactivé: Choose action - disabled
   profile.answers.category.fold: Fold back the questions for this category
   profile.answers.category.fold.lock: Replier les questions pour cette catégorie
@@ -1610,8 +1595,6 @@ entries:
   landing.water.understand.description.lock: Mieux comprendre <2>notre impact sur les ressources en eau</2> est essentiel pour pouvoir agir efficacement. À travers une série d'articles, nous vous proposons des conseils pratiques, des idées inspirantes et des informations clés pour <6>réduire votre empreinte eau</6>.
   landing.carbon.dailyGestures.description.lock: "Pour un mode de vie plus durable, certaines actions <2>ont un impact plus fort que d'autres</2>. En intégrant ces gestes dans votre quotidien, vous pouvez fortement <5>réduire vos émissions de Co2</5>. Voici quelques idées :"
   landing.carbon.understand.description.lock: Réduire efficacement son empreinte sur l'environnement nécessite de <2>s'informer sur les enjeux du réchauffement climatique</2>, s'inspirer des bonnes pratiques et <5>passer à l'action</5>.
-  Calculez <2>vos empreintes</2> en <5>seulement 10 minutes</5>.: Calculate <2>your footprints</2> in <5>just 10 minutes</5>.
-  Connaissez-vous votre empreinte carbone et eau ?: Do you know your carbon and water footprint?
   Qui sommes-nous - Nouvelle fenêtre: About us - New window
   international.comment.3: We are gradually adding to it to extend our international coverage.
   international.comment.3.lock: Nous l’enrichissons progressivement pour élargir la couverture internationale.
@@ -1619,8 +1602,12 @@ entries:
   international.ensuite.2.lock: Nous ajoutons de nouveaux pays au fil du temps, avec le plus grand soin pour refléter leurs spécificités.
   international.description: Wherever you live, calculate your personal carbon and water footprint, taking into account the specific characteristics of your country.
   international.description.lock: Où que vous viviez, calculez votre empreinte carbone et eau personnelle en tenant compte des spécificités de votre pays.
-  Commencer le test: Start test
-  Calculez <1>vos empreintes</1> en <4>seulement 10 minutes</4>.: Calculate <1>your footprints</1> in <4>just 10 minutes</4>.
+  Commencer le test: Start the test
   Découvrez votre empreinte carbone: Discover your carbon footprint
-  Résultats immédiats, sans inscription.: Immediate results, no registration required.
-  <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire.: <0>Get your personalised estimate</0> and <3>concrete ways</3> of reducing it.
+  Résultats immédiats, sans inscription.: Instant results, no sign-up required
+  <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire: <0>Get a personalised estimate</0> and <3>actionable steps</3> to reduce it
+  simulator.mosaic.noneOfTheseOptions: No
+  simulator.mosaic.noneOfTheseOptions.lock: Aucun
+  simulator.mosaic.notConcerned: I am not concerned
+  simulator.mosaic.notConcerned.lock: Je ne suis pas concerné·e
+  <0>2,7 millions de personnes</0> <2>ont déjà calculé leur empreinte</2>: <2>Already used by</2> <0>2.7 million people</0>

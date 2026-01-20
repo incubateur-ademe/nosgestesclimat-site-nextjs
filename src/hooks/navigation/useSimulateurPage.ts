@@ -130,8 +130,8 @@ export function useSimulateurPage() {
     }
 
     // else we return the tutoriel page label
-    return isTestVersion ? t('Commencer le test') : t('Passer le test')
-  }, [progression, t, isTestVersion])
+    return t('Commencer le test')
+  }, [progression, t])
 
   return {
     goToSimulateurPage,
