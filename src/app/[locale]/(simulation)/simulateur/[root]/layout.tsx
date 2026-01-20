@@ -1,3 +1,4 @@
+import { noIndexObject } from '@/constants/metadata'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { FormProvider } from '@/publicodes-state'
@@ -18,6 +19,7 @@ export async function generateMetadata({
     alternates: {
       canonical: `/simulateur/${root}`,
     },
+    robots: noIndexObject,
   })
 }
 

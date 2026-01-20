@@ -32,7 +32,7 @@ export default function RawNumberInput({
         value={value}
         placeholder={placeholder}
         className={twMerge(
-          `max-w-[8rem] rounded-xl border border-solid border-slate-500 bg-white p-4 text-right text-sm transition-colors md:max-w-full`,
+          `max-w-[8rem] rounded-xl border border-solid border-slate-500 bg-white p-4 text-right text-base transition-colors md:max-w-full`,
           'focus:ring-primary-700! placeholder:text-slate-500! focus:ring-2! focus:ring-offset-3! focus:outline-hidden!',
           className
         )}
@@ -41,6 +41,7 @@ export default function RawNumberInput({
         allowNegative={false}
         autoComplete="off"
         onValueChange={handleValueChange}
+        inputMode="decimal"
         min={0}
         id={id}
         {...props}

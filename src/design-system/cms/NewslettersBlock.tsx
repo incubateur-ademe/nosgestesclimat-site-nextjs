@@ -300,7 +300,7 @@ export default function NewslettersBlock() {
                       <p className="mb-0 text-sm">
                         <span>Nos Gestes Logement</span> -{' '}
                         <span className="text-gray-700">
-                          <Trans>5 infolettres sur l'impact du logement</Trans>
+                          <Trans>3 infolettres sur l'impact du logement</Trans>
                         </span>
                       </p>
                     }

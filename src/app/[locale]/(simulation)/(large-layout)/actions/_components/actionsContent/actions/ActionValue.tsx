@@ -84,7 +84,7 @@ export default function ActionValue({
   return (
     <div className="focus:ring-primary-700 focus:ring-2 focus:ring-offset-3 focus:outline-hidden">
       <div
-        className={`border-primary-700 bg-primary-700 mb-6 inline-block rounded-[0.25rem] border-2 border-solid pr-[2px] pl-2 text-white ${
+        className={`border-primary-700 bg-primary-700 mb-2 inline-block rounded-[0.25rem] border-2 border-solid pr-[2px] pl-2 text-white ${
           correctedValue != undefined && correctedValue < 0 ? 'bg-red-500' : ''
         }${remainingQuestions && remainingQuestions.length > 0 ? 'grayscale' : ''}`}>
         <span>
