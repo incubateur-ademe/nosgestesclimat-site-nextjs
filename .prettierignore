@@ -18,4 +18,3 @@ public/**/*.html
 .storybook/**
 playwright-report/**
 storybook-static/**
-pnpm-lock.yaml

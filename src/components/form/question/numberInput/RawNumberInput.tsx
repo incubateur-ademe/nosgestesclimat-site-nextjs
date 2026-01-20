@@ -41,6 +41,7 @@ export default function RawNumberInput({
         allowNegative={false}
         autoComplete="off"
         onValueChange={handleValueChange}
+        inputMode="decimal"
         min={0}
         id={id}
         {...props}

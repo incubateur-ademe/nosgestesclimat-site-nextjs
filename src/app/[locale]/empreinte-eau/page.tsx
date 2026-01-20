@@ -81,6 +81,7 @@ export default async function WaterFootprintLandingPage(
       />
 
       <LandingPage
+        locale={locale}
         heroTitle={
           <Trans locale={locale}>
             Chaque goutte compte : découvrez votre empreinte eau !

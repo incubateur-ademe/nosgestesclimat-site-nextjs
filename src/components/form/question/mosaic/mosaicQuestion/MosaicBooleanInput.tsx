@@ -5,7 +5,6 @@ import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import Emoji from '@/design-system/utils/Emoji'
 import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
@@ -18,6 +17,7 @@ interface Props {
   setValue: (value: boolean) => void
   value: boolean | undefined | null
   index: number
+  isInactive?: boolean
 }
 
 const buttonClassNames = {
@@ -40,8 +40,8 @@ export default function MosaicBooleanInput({
   setValue,
   index,
   value,
+  isInactive,
 }: Props) {
-  const { isInactive } = useRule<boolean>(question)
   const { t } = useClientTranslation()
 
   const status = isInactive
@@ -93,11 +93,12 @@ export default function MosaicBooleanInput({
         </span>
 
         <div className="flex-1">
-          {title && icons ? (
+          {title ? (
             <span
               aria-label={`${title} ${isInactive ? t('Bientôt disponible') : ''}`}
               className="inline-block align-middle text-sm md:text-base">
-              {title} <Emoji className="leading-tight">{icons ?? null}</Emoji>
+              {title}{' '}
+              {icons && <Emoji className="leading-tight">{icons}</Emoji>}
             </span>
           ) : null}
           {description ? (
