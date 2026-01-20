@@ -66,6 +66,10 @@ export default function useUser() {
      */
     user,
     /**
+     * A setter for updating the user
+     */
+    setUser,
+    /**
      * A setter for updating the user ID
      */
     updateUserId,

@@ -1,9 +1,15 @@
+import type { Simulation, User } from "@/publicodes-state/types"
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import { v4 as uuidv4 } from 'uuid'
 import { getGeolocation } from '../api/getGeolocation'
 import { generateSimulation } from '../simulation/generateSimulation'
 
-export async function resetLocalStorage() {
+interface Props {
+  setUser: (user: User) => void
+  updateSimulations: (simulations: Simulation[]) => void
+}
+
+export async function resetLocalState({ setUser, updateSimulations }: Props) {
   const initialRegion = await getGeolocation()
 
   const defaultSimulation = generateSimulation()
@@ -22,4 +28,7 @@ export async function resetLocalStorage() {
       currentSimulationId: defaultSimulation.id,
     })
   )
+
+  setUser(resettedUser)
+  updateSimulations([defaultSimulation])
 }
