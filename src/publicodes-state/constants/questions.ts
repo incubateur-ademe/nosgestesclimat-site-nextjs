@@ -62,8 +62,3 @@ export const NUMBER_MOSAIC_WITHOUT_BUTTONS = new Set<DottedName>([
   'transport . avion . vols annuels',
   'transport . avion . vols amortis',
 ])
-
-export const NUMBER_MOSAIC_WITHOUT_BUTTONS = new Set<DottedName>([
-  'transport . avion . vols annuels',
-  'transport . avion . vols amortis',
-])
