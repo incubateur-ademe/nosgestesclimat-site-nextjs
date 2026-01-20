@@ -58,10 +58,15 @@ export default function useQuestions({
           DottedName[],
         ][]
       ).forEach(([mosaicParent, mosaicChildren]) => {
+        // We avoid considering raw missing variable for mosaic parent but calculate score from children
+        if (tempMissingVariables[mosaicParent]) {
+          delete tempMissingVariables[mosaicParent]
+        }
         const isMosaicParentNotApplicable =
           safeEvaluate({
             'est non applicable': mosaicParent,
           })?.nodeValue === true
+
         if (isMosaicParentNotApplicable) {
           delete tempMissingVariables[mosaicParent]
           mosaicChildren.forEach((mosaicChild) => {
