@@ -1,3 +1,5 @@
+import { trackEvent } from '@/utils/analytics/trackEvent'
+
 function getLandingCategory(pathname: string) {
   switch (pathname) {
     case '/empreinte-eau':
@@ -11,60 +13,138 @@ function getLandingCategory(pathname: string) {
 }
 
 // Click CTA
-export const getLandingClickCTAStart = (pathname: string, action: string) => [
-  'trackEvent',
-  getLandingCategory(pathname),
-  action,
-  'Click Passer le test',
-]
+export const trackLandingClickCTAStart = (pathname: string, action: string) => {
+  trackEvent(
+    [
+      'trackEvent',
+      getLandingCategory(pathname),
+      action,
+      'Click Passer le test',
+    ],
+    {
+      eventName: 'Landing CTA click',
+      properties: {
+        page: getLandingCategory(pathname),
+        action: 'Passer le test',
+      },
+    }
+  )
+}
 
-export const getLandingClickCTAResume = (pathname: string, action: string) => [
-  'trackEvent',
-  getLandingCategory(pathname),
-  action,
-  'Click Reprendre le test',
-]
+export const trackLandingClickCTAResume = (
+  pathname: string,
+  action: string
+) => {
+  trackEvent(
+    [
+      'trackEvent',
+      getLandingCategory(pathname),
+      action,
+      'Click Reprendre le test',
+    ],
+    {
+      eventName: 'Landing CTA click',
+      properties: {
+        page: getLandingCategory(pathname),
+        action: 'Reprendre le test',
+      },
+    }
+  )
+}
 
-export const getLandingClickCTAResults = (pathname: string, action: string) => [
-  'trackEvent',
-  getLandingCategory(pathname),
-  action,
-  'Click Voir les résultats',
-]
-export const getLandingClickCTARestart = (pathname: string, action: string) => [
-  'trackEvent',
-  getLandingCategory(pathname),
-  action,
-  'Click Recommencer',
-]
+export const trackLandingClickCTAResults = (
+  pathname: string,
+  action: string
+) => {
+  trackEvent(
+    [
+      'trackEvent',
+      getLandingCategory(pathname),
+      action,
+      'Click Voir les résultats',
+    ],
+    {
+      eventName: 'Landing CTA click',
+      properties: {
+        page: getLandingCategory(pathname),
+        action: 'Voir les résultats',
+      },
+    }
+  )
+}
+
+export const trackLandingClickCTARestart = (
+  pathname: string,
+  action: string
+) => {
+  trackEvent(
+    ['trackEvent', getLandingCategory(pathname), action, 'Click Recommencer'],
+    {
+      eventName: 'Landing CTA click',
+      properties: {
+        page: getLandingCategory(pathname),
+        action: 'Recommencer',
+      },
+    }
+  )
+}
 
 // Did you know slider
 export const getLandingDidYouKnowSliderValue = (number: number) =>
   `Passer le test écran ${number}`
 
-export const getLandingDidYouKnowSlider = (pathname: string, value: string) => [
-  'trackEvent',
-  getLandingCategory(pathname),
-  'Click bannière le saviez vous',
-  value,
-]
+export const trackLandingDidYouKnowSlider = (
+  pathname: string,
+  value: string,
+  slideNumber?: number
+) => {
+  trackEvent(
+    [
+      'trackEvent',
+      getLandingCategory(pathname),
+      'Click bannière le saviez vous',
+      value,
+    ],
+    {
+      eventName: 'Landing click bannière le saviez-vous',
+      properties: {
+        page: getLandingCategory(pathname),
+        slide: slideNumber,
+      },
+    }
+  )
+}
 
 // Post thumbnail
-export const getLandingClickPostThumbnail = (
+export const trackLandingClickPostThumbnail = (
   pathname: string,
   action: string
-) => ['trackEvent', getLandingCategory(pathname), action]
+) => {
+  trackEvent(['trackEvent', getLandingCategory(pathname), action])
+}
 
 // Model info
-export const getLandingClickModelDocumentation = (pathname: string) => [
-  'trackEvent',
-  getLandingCategory(pathname),
-  'Click documentation',
-]
+export const trackLandingClickModelDocumentation = (pathname: string) => {
+  trackEvent([
+    'trackEvent',
+    getLandingCategory(pathname),
+    'Click documentation',
+  ])
+}
 
 // Nouveautés
-export const getLandingClickNouveautes = (pathname: string) => [
-  'trackEvent',
-  getLandingCategory(pathname),
-  'Click nouveautés',
-]
+export const trackLandingClickNouveautes = (pathname: string) => {
+  trackEvent(['trackEvent', getLandingCategory(pathname), 'Click nouveautés'])
+}
+
+export const trackLearnMoreCarbonLink = () => {
+  trackEvent(['trackEvent', 'Accueil', 'Click "En savoir plus LP carbone"'], {
+    eventName: 'Accueil click en savoir plus LP carbone',
+  })
+}
+
+export const trackLearnMoreWaterLink = () => {
+  trackEvent(['trackEvent', 'Accueil', 'Click "En savoir plus LP eau"'], {
+    eventName: 'Accueil click en savoir plus LP eau',
+  })
+}

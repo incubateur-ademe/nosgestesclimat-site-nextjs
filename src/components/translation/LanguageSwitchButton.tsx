@@ -1,12 +1,10 @@
 'use client'
 
-import { footerClickLanguage } from '@/constants/tracking/layout'
 import ButtonAnchor from '@/design-system/buttons/ButtonAnchor'
 import Emoji from '@/design-system/utils/Emoji'
 import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDisplayed'
 import { updateLangCookie } from '@/helpers/language/updateLangCookie'
 import i18nConfig, { type Locale } from '@/i18nConfig'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useCurrentLocale } from 'next-i18n-router/client'
 import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -70,7 +68,7 @@ export default function LanguageSwitchButton({
   }, [currentLocale])
 
   const handleLanguageClick = (newLocale: Locale) => {
-    trackEvent(footerClickLanguage(newLocale))
+    trackFooterClickLanguage(newLocale)
     updateLangCookie(newLocale)
   }
 

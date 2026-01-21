@@ -4,11 +4,9 @@ import Link from '@/components/Link'
 import CloseIcon from '@/components/icons/Close'
 import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import {
-  actionsClickNo,
-  actionsClickNoPosthog,
-  actionsClickYes,
-  actionsClickYesPosthog,
-  actionsOpenAction,
+  trackActionsClickNo,
+  trackActionsClickYes,
+  trackActionsOpenAction,
 } from '@/constants/tracking/pages/actions'
 import Emoji from '@/design-system/utils/Emoji'
 import { filterRelevantMissingVariables } from '@/helpers/actions/filterRelevantMissingVariables'
@@ -27,7 +25,6 @@ import {
   useUser,
 } from '@/publicodes-state'
 import type { Action } from '@/publicodes-state/types'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import type { DottedName, NGCRuleNode } from '@incubateur-ademe/nosgestesclimat'
 import { useCallback } from 'react'
@@ -116,8 +113,7 @@ export default function ActionCard({
     handleUpdatePersistedActions()
 
     if (!isSelected) {
-      trackEvent(actionsClickYes(dottedName))
-      trackPosthogEvent(actionsClickYesPosthog(dottedName))
+      trackActionsClickYes(dottedName)
     }
   }, [
     dottedName,
@@ -137,8 +133,7 @@ export default function ActionCard({
     handleUpdatePersistedActions()
 
     if (!isSelected) {
-      trackEvent(actionsClickNo(dottedName))
-      trackPosthogEvent(actionsClickNoPosthog(dottedName))
+      trackActionsClickNo(dottedName)
     }
   }
 
@@ -162,7 +157,7 @@ export default function ActionCard({
         )}>
         <Link
           className="z-10 w-full underline"
-          onClick={() => trackEvent(actionsOpenAction(dottedName))}
+          onClick={() => trackActionsOpenAction(dottedName)}
           href={'/actions/' + encodeRuleName(dottedName)}>
           {icons && (
             <Emoji className="inline-flex justify-center">{icons}</Emoji>

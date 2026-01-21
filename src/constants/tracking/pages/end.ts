@@ -1,86 +1,89 @@
 // Return tracking data in format
 // [ 'trackEvent', 'Category', 'Action', 'Name', 'Value' ]
+import { trackEvent } from '@/utils/analytics/trackEvent'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 
 // Figma comment #57
-export const endClickPoll = ['trackEvent', 'Fin', 'Click Poll']
+export const trackEndClickPoll = () => {
+  trackEvent(['trackEvent', 'Fin', 'Click Poll'])
+}
 
 // Figma comment #58
-export const endClickSaveShortcut = ['trackEvent', 'Fin', 'Click Save shortcut']
+export const trackEndClickSaveShortcut = () => {
+  trackEvent(['trackEvent', 'Fin', 'Click Save shortcut'])
+}
 
-export const endClickShare = ['trackEvent', 'Fin', 'Click Share']
+export const trackEndClickShare = () => {
+  trackEvent(['trackEvent', 'Fin', 'Click Share'])
+}
 
-export const endToggleTargetBlock = ['trackEvent', 'Fin', 'Toggle Target block']
+export const trackEndToggleTargetBlock = () => {
+  trackEvent(['trackEvent', 'Fin', 'Toggle Target block'])
+}
 
-export const endClickHedgehog = ['trackEvent', 'Fin', 'Click Hedgehog']
+export const trackEndClickHedgehog = () => {
+  trackEvent(['trackEvent', 'Fin', 'Click Hedgehog'])
+}
 
 // Figma comment #60
-export const endClickCategory = (category: DottedName) => [
-  'trackEvent',
-  'Fin',
-  'Click Category',
-  `Click Category ${category}`,
-]
+export const trackEndClickCategory = (category: DottedName) => {
+  trackEvent(
+    ['trackEvent', 'Fin', 'Click Category', `Click Category ${category}`],
+    {
+      eventName: 'Fin click category',
+      properties: { category },
+    }
+  )
+}
 
 // Figma comment #62
-export const endClickSaveSimulation = [
-  'trackEvent',
-  'Fin',
-  'Click Save simulation',
-]
+export const trackEndClickSaveSimulation = () => {
+  trackEvent(['trackEvent', 'Fin', 'Click Save simulation'])
+}
 
 // Figma comment #63
-export const endClickAction = (action: DottedName) => [
-  'trackEvent',
-  'Fin',
-  'Click Action',
-  `Click Action ${action}`,
-]
+export const trackEndClickAction = (action: DottedName) => {
+  trackEvent(['trackEvent', 'Fin', 'Click Action', `Click Action ${action}`], {
+    eventName: 'Fin click action',
+    properties: { action },
+  })
+}
 
 // Figma comment #64
-export const endClickActions = ['trackEvent', 'Fin', 'Click Actions']
-
-export const endClickActionsPosthog = (subcategory: string) => ({
-  eventName: 'Fin click Actions',
-  properties: {
-    subcategory,
-  },
-})
+export const trackEndClickActions = (subcategory?: string) => {
+  trackEvent(
+    ['trackEvent', 'Fin', 'Click Actions'],
+    subcategory
+      ? {
+          eventName: 'Fin click Actions',
+          properties: { subcategory },
+        }
+      : undefined
+  )
+}
 
 // Figma comment #65
-export const endClickDocumentation = [
-  'trackEvent',
-  'Fin',
-  'Click Documentation',
-]
+export const trackEndClickDocumentation = () => {
+  trackEvent(['trackEvent', 'Fin', 'Click Documentation'])
+}
 
-export const endClickDomesticWater = [
-  'trackEvent',
-  'Fin',
-  'Click Eau domestique',
-]
+export const trackEndClickDomesticWater = () => {
+  trackEvent(['trackEvent', 'Fin', 'Click Eau domestique'], {
+    eventName: 'Fin switch eau',
+  })
+}
 
-export const endClickJagisFirstBlock = [
-  'trackEvent',
-  'Fin',
-  'Click Jagis premier bloc',
-]
+export const trackEndClickJagisFirstBlock = () => {
+  trackEvent(['trackEvent', 'Fin', 'Click Jagis premier bloc'])
+}
 
-export const endClickJagisSecondBlock = [
-  'trackEvent',
-  'Fin',
-  'Click Jagis second bloc',
-]
+export const trackEndClickJagisSecondBlock = () => {
+  trackEvent(['trackEvent', 'Fin', 'Click Jagis second bloc'])
+}
 
-export const endClickFootprint = (metric: string) => [
-  'trackEvent',
-  'Fin',
-  `Click Empreinte ${metric}`,
-]
-
-export const captureClickFootprint = (metric: string) => ({
-  eventName: 'Fin click empreinte',
-  properties: {
-    metric,
-  },
-})
+export const trackEndClickFootprint = (metric: string) => {
+  trackEvent(['trackEvent', 'Fin', `Click Empreinte ${metric}`], {
+    eventName: 'Fin click empreinte',
+    properties: { metric },
+  })
+}

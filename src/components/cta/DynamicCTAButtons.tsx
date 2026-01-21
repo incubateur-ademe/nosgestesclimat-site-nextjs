@@ -3,7 +3,6 @@
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import RestartIcon from '../icons/RestartIcon'
@@ -16,10 +15,10 @@ export default function DynamicCTAButtons({
 }: {
   className?: string
   trackingEvents: {
-    start: string[]
-    resume: string[]
-    results: string[]
-    restart?: string[]
+    start: () => void
+    resume: () => void
+    results: () => void
+    restart?: () => void
   }
   withRestart?: boolean
 }) {
@@ -61,16 +60,16 @@ export default function DynamicCTAButtons({
           onMouseLeave={() => setIsHover(false)}
           onClick={() => {
             if (progression === 1) {
-              trackEvent(trackingEvents?.results)
+              trackingEvents.results()
               return
             }
 
             if (progression > 0) {
-              trackEvent(trackingEvents?.resume)
+              trackingEvents.resume()
               return
             }
 
-            trackEvent(trackingEvents?.start)
+            trackingEvents.start()
           }}>
           <span
             className={twMerge(
@@ -90,8 +89,11 @@ export default function DynamicCTAButtons({
             size="xl"
             color="secondary"
             className="leading-none"
-            trackingEvent={trackingEvents?.restart}
             onClick={() => {
+              const restart = trackingEvents.restart
+              if (restart) {
+                restart()
+              }
               goToSimulateurPage({ noNavigation: true, newSimulation: {} })
             }}
             href={getLinkToSimulateurPage({ newSimulation: true })}>

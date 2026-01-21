@@ -1,19 +1,21 @@
-export const learnMoreCarbonLink = [
-  'trackEvent',
-  'Accueil',
-  'Click "En savoir plus LP carbone"',
-]
+import { trackEvent } from '@/utils/analytics/trackEvent'
 
-export const learnMoreWaterLink = [
-  'trackEvent',
-  'Accueil',
-  'Click "En savoir plus LP eau"',
-]
+export const trackLearnMoreCarbonLink = () => {
+  trackEvent(['trackEvent', 'Accueil', 'Click "En savoir plus LP carbone"'], {
+    eventName: 'Accueil click en savoir plus LP carbone',
+  })
+}
 
-export const createGroupLink = ['trackEvent', 'Accueil', 'Click "Groupes"']
+export const trackLearnMoreWaterLink = () => {
+  trackEvent(['trackEvent', 'Accueil', 'Click "En savoir plus LP eau"'], {
+    eventName: 'Accueil click en savoir plus LP eau',
+  })
+}
 
-export const createOrganisationLink = [
-  'trackEvent',
-  'Accueil',
-  'Click "Organisations"',
-]
+export const trackCreateGroupLink = () => {
+  trackEvent(['trackEvent', 'Accueil', 'Click "Groupes"'])
+}
+
+export const trackCreateOrganisationLink = () => {
+  trackEvent(['trackEvent', 'Accueil', 'Click "Organisations"'])
+}
