@@ -451,7 +451,7 @@ const redirects = [
   },
   {
     source: '/accessibilit%C3%A9',
-    destination: '/',
+    destination: '/accessibilite',
     permanent: true,
   },
   {
