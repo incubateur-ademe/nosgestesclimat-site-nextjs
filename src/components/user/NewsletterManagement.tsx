@@ -110,14 +110,10 @@ const NEWSLETTERS = [
 
 interface Props {
   hasEmailField?: boolean
-  isAuthenticated?: boolean
 }
 
-export default function NewsletterManagement({
-  hasEmailField = true,
-  isAuthenticated = false,
-}: Props) {
-  const { user, updateEmail } = useUser()
+export default function NewsletterManagement({ hasEmailField = true }: Props) {
+  const { user } = useUser()
 
   const { data: authenticatedUser } = useQuery<UserServer | null>({
     queryKey: ['user', 'me'],
@@ -194,24 +190,20 @@ export default function NewsletterManagement({
     trackEvent(clickUpdateUserNewsletters)
     trackPosthogEvent(captureClickUpdateUserNewsletters)
 
-    const selectedIds = getSelectedNewsletterIds(newsletterIds)
+    const selectedIds = getSelectedNewsletterIds(newsletterIds) ?? []
 
     await updateUserSettings({
       email,
       newsletterIds: selectedIds,
-      userId: user?.userId,
+      userId: authenticatedUser?.id ?? user?.userId ?? '',
     })
-
-    if (email && !user?.email) {
-      updateEmail(email)
-    }
   }
 
   return (
     <div className="w-xl max-w-full">
       <form
         onSubmit={
-          isAuthenticated
+          !!authenticatedUser
             ? handleSubmitNewsletterForm(onSubmitSubscriptions)
             : (e) => e.preventDefault()
         }
@@ -274,7 +266,7 @@ export default function NewsletterManagement({
           aria-live="polite"
           className="mt-6"
           description={
-            isAuthenticated ? (
+            !!authenticatedUser ? (
               <div>
                 <p className="font-bold">
                   <Trans i18nKey="newsletterManagement.success.authenticated.title">
@@ -318,7 +310,7 @@ export default function NewsletterManagement({
         />
       )}
 
-      {isAuthenticated ? (
+      {!!authenticatedUser ? (
         <p
           data-testid="verified-message"
           className="mt-4 mb-0 text-sm text-gray-600">
