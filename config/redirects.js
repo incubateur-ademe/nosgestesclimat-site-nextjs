@@ -9,6 +9,12 @@ const redirects = [
     destination: '/mon-espace/actions',
     permanent: true,
   },
+  // Compte U
+  {
+    source: '/profil/:path*',
+    destination: '/mon-espace',
+    permanent: true,
+  },
   // Mode Groupe / amis / classement
   {
     source: '/groupes/:path*',
