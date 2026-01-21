@@ -1,4 +1,3 @@
-import { AUTHENTICATION_COOKIE_NAME } from '@/constants/authentication/cookie'
 import { USER_URL } from '@/constants/urls/main'
 import { captureException } from '@sentry/nextjs'
 import { cookies } from 'next/headers'
@@ -58,7 +57,7 @@ export async function isUserAuthenticated(): Promise<boolean> {
 
 export async function logout() {
   ;(await cookies()).delete({
-    name: AUTHENTICATION_COOKIE_NAME,
+    name: 'ngcjwt',
     httpOnly: true,
     secure: true,
     partitioned: true,
