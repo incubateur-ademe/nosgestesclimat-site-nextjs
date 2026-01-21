@@ -8,10 +8,19 @@ import {
 } from '@/constants/tracking/pages/mon-espace'
 import { MON_ESPACE_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
+import { t } from '@/helpers/metadata/fakeMetadataT'
+import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { UserProvider } from '@/publicodes-state'
 import type { DefaultPageProps } from '@/types'
 import ColourBlock from '../_components/ColourBlocks'
 import SigninSignupTabs from '../_components/SigninSignupTabs'
+
+export const generateMetadata = getCommonMetadata({
+  title: t('Connexion à votre espace - Nos Gestes Climat'),
+  description: t(
+    'Connectez-vous à votre espace Nos Gestes Climat pour accéder à vos résultats et comparer vos empreintes carbone avec vos proches.'
+  ),
+})
 
 export default async function Connexion({ params }: DefaultPageProps) {
   const { locale } = await params
