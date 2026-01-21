@@ -94,7 +94,7 @@ export default async function Homepage({ params }: PageProps<'/[locale]'>) {
               </Suspense>
 
               {/* Displayed on mobile only */}
-              <div className="md:hidden">
+              <div className="mb-8 md:hidden">
                 <HomepageSubtitle locale={locale} />
                 <div className="mx-auto mt-4 max-w-80 md:mt-0">
                   <InteractiveIllustration />
@@ -102,7 +102,9 @@ export default async function Homepage({ params }: PageProps<'/[locale]'>) {
               </div>
 
               {/* Displayed on desktop only */}
-              <HomepageSubtitle locale={locale} />
+              <div className="hidden md:block">
+                <HomepageSubtitle locale={locale} />
+              </div>
             </div>
           </div>
         }

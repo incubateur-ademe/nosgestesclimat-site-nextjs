@@ -1,4 +1,4 @@
-import type { Simulation, User } from "@/publicodes-state/types"
+import type { Simulation, User } from '@/publicodes-state/types'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import { v4 as uuidv4 } from 'uuid'
 import { getGeolocation } from '../api/getGeolocation'

@@ -84,7 +84,6 @@ entries:
   '{unit}': '{unit}'
   À propos: À propos
   components.localisation.LocalisationMessage.warnMessage2: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut
-  À venir !: À venir !
   international.comment.1: Pour chaque pays, nous ajoutons les données locales nécessaires afin de proposer un calcul adapté aux modes de vie et au mix énergétique du territoire.
   international.comment.titre: Quels régions / pays sont disponibles ?
   international.ensuite.1: 'Si le vôtre n’est pas encore dans la liste, dites-le-nous : nous serons ravis d’en tenir compte. <2>Écrivez-nous !</2>'
@@ -162,8 +161,6 @@ entries:
   Label: Label
   Passagers: Passagers
   Télécharger l'image: Télécharger l'image
-  'Total par an :': 'Total par an :'
-  'Total :': 'Total :'
   Comment agir ?: Comment agir ?
   Ajouter: Ajouter
   'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': 'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !'
@@ -968,7 +965,6 @@ entries:
   simulator.customQuestions.voiture.summaryKmPerYear: km sont parcourus par an, avec en moyenne
   simulator.customQuestions.voiture.summaryPassengers: voyageurs, soit
   simulator.customQuestions.voiture.summaryStart: Au total
-  simulator.customQuestions.avion.openThreeYears: Répondre sur les 3 dernières années
   endPage.poll.seeResults.button.label: Voir les résultats
   Carbone, évaluer la métrique carbone: Carbone, évaluer la métrique carbone
   Connexion: Connexion
@@ -1128,6 +1124,7 @@ entries:
   Pourquoi avons-nous ajouté l'empreinte eau ?: Pourquoi avons-nous ajouté l'empreinte eau ?
   common.mainLandingPage.numberPersons: 2,5 millions de personnes
   common.mainLandingPage.tookTheirTest: ont déjà calculé leur empreinte !
+  Accéder au test: Accéder au test
   Activé: Activé
   common.inputs.email.label: Entrez votre adresse e-mail
   Désactivé: Désactivé
@@ -1151,7 +1148,6 @@ entries:
   simulator.navigation.nextButton.finished: Terminer
   simulator.navigation.nextButton.next: Suivant
   simulator.mosaic.closeMoreOptions: Moins d’options
-  simulator.mosaic.noChildren: Cette mosaique n'a pas d'enfants.
   simulator.mosaic.openMoreOptions: Plus d’options
   Annuler la sélection: Annuler la sélection
   Choisir l'action: Choisir l'action
@@ -1393,8 +1389,6 @@ entries:
   international.description: Où que vous viviez, calculez votre empreinte carbone et eau personnelle en tenant compte des spécificités de votre pays.
   international.ensuite.2: Nous ajoutons de nouveaux pays au fil du temps, avec le plus grand soin pour refléter leurs spécificités.
   Qui sommes-nous - Nouvelle fenêtre: Qui sommes-nous - Nouvelle fenêtre
-  <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire.: <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire.
-  Calculez <1>vos empreintes</1> en <4>seulement 10 minutes</4>.: Calculez <1>vos empreintes</1> en <4>seulement 10 minutes</4>.
   Commencer le test: Commencer le test
   Découvrez votre empreinte carbone: Découvrez votre empreinte carbone
   Résultats immédiats, sans inscription.: Résultats immédiats, sans inscription.
@@ -1415,3 +1409,6 @@ entries:
   ont déjà calculé leur empreinte: ont déjà calculé leur empreinte
   <0>2,7 millions de personnes</0><1>ont déjà calculé leur empreinte</1>: <0>2,7 millions de personnes</0><1>ont déjà calculé leur empreinte</1>
   <0>2,7 millions de personnes</0> <2>ont déjà calculé leur empreinte</2>: <0>2,7 millions de personnes</0> <2>ont déjà calculé leur empreinte</2>
+  simulator.mosaic.noneOfTheseOptions: Aucun
+  simulator.mosaic.notConcerned: Je ne suis pas concerné·e
+  <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire: <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire

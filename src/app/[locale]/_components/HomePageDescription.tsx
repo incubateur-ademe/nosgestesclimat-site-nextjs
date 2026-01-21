@@ -8,7 +8,7 @@ export default function HomePageDescription({ locale }: { locale: string }) {
           Obtenez votre estimation personnalisée
         </strong>{' '}
         et des <strong className="text-secondary-700">pistes concrètes</strong>{' '}
-        pour la réduire.
+        pour la réduire
       </Trans>
     </p>
   )

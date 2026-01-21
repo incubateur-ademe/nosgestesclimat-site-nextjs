@@ -15,8 +15,6 @@ export const generateMetadata = getCommonMetadata({
 })
 
 export default function Layout({ children }: PropsWithChildren) {
-  const supportedRegions = getSupportedRegions()
-
   return (
     <EngineProviders supportedRegions={getSupportedRegions()}>
       {children}

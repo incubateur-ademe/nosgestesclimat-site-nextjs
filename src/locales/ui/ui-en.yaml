@@ -109,7 +109,6 @@ entries:
   components.localisation.LocalisationMessage.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut
   international.comment.titre: Which regions/countries are available?
   international.comment.titre.lock: Quels régions / pays sont disponibles ?
-  À venir !: Coming soon !
   international.ensuite.titre: Can't find your country?
   international.ensuite.titre.lock: Vous ne trouvez pas votre pays ?
   international.pourquoi.titre: Adapted to your country
@@ -203,9 +202,7 @@ entries:
   du test: of the test
   Passagers: Passengers
   Télécharger l'image: Download image
-  'Total par an :': 'Total per year :'
   Vous avez terminé le test !: You've completed the test!
-  'Total :': 'Total :'
   Comment agir ?: What can you do?
   Ajouter: Add
   'Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': "Of course, some things are shared (in my home with my family, the car with my carpoolers): this will be taken into account when calculating your carbon footprint, so don't worry!"
@@ -356,7 +353,6 @@ entries:
   Notes: Notes
   Comprenez comment calculer votre empreinte sur le climat en 10min chrono.: Find out how to calculate your climate footprint in 10 minutes.
   Informations relatives au budget de Nos Gestes Climat.: Budget information for Nos Gestes Climat.
-  À propos - Nos Gestes Climat: About us - Nos Gestes Climat
   Consultez les nouvelles fonctionnalités et dernières nouvelles de Nos Gestes Climat.: Check out the new features and latest news from Nos Gestes Climat.
   Nos Statistiques d'utilisation - Nos Gestes Climat: Our usage statistics - Nos Gestes Climat
   Rejoindre un groupe - Nos Gestes Climat: Join a group - Nos Gestes Climat
@@ -391,7 +387,6 @@ entries:
   Mentions légales du site Nos Gestes Climat.: Legal information about Nos Gestes Climat.
   Notre documentation détaille les calculs qui nous ont permis de calculer votre bilan carbone personnel.: Our documentation details the calculations we used to calculate your personal carbon footprint.
   Notre modèle de données - Nos Gestes Climat: Our data model - Nos Gestes Climat
-  Informations relatives à Nos Gestes Climat.: Information about Nos Gestes Climat.
   Nos personas d'utilisateurs types - Nos Gestes Climat: Our typical user personas - Nos Gestes Climat
   Actions, suite à votre simulation d'empreinte climat - Nos Gestes Climat: Actions following your climate footprint simulation - Nos Gestes Climat
   Supprimer mes données de groupe - Nos Gestes Climat: Delete my group data - Nos Gestes Climat
@@ -1060,8 +1055,6 @@ entries:
   simulator.customQuestions.voiture.summaryKmPerYear.lock: km sont parcourus par an, avec en moyenne
   simulator.customQuestions.voiture.summaryKmPerPerson: km per person
   simulator.customQuestions.voiture.summaryKmPerPerson.lock: km par personne
-  simulator.customQuestions.avion.openThreeYears: Answer for the last 3 years
-  simulator.customQuestions.avion.openThreeYears.lock: Répondre sur les 3 dernières années
   endPage.poll.seeResults.button.label: See the results
   endPage.poll.seeResults.button.label.lock: Voir les résultats
   Page active: Active page
@@ -1339,6 +1332,7 @@ entries:
   common.mainLandingPage.numberPersons.lock: 2,5 millions de personnes
   common.mainLandingPage.tookTheirTest: have already calculated their footprint!
   common.mainLandingPage.tookTheirTest.lock: ont déjà calculé leur empreinte !
+  Accéder au test: Access the test
   Option sélectionnée: Selected option
   Sélectionner cette option: Select this option
   Sélectionner cette métrique: Select this metric
@@ -1381,8 +1375,6 @@ entries:
   simulator.mosaic.openMoreOptions.lock: Plus d’options
   Choisir l'action: Choose action
   Annuler la sélection: Cancel selection
-  simulator.mosaic.noChildren: This mosaic has no children.
-  simulator.mosaic.noChildren.lock: Cette mosaique n'a pas d'enfants.
   Choisir l'action - désactivé: Choose action - disabled
   simulator.navigation.nextButton.dontKnow.label: I don't know
   simulator.navigation.nextButton.dontKnow.label.lock: Je ne sais pas
@@ -1789,8 +1781,7 @@ entries:
   international.ensuite.2.lock: Nous ajoutons de nouveaux pays au fil du temps, avec le plus grand soin pour refléter leurs spécificités.
   international.description: Wherever you live, calculate your personal carbon and water footprint, taking into account the specific characteristics of your country.
   international.description.lock: Où que vous viviez, calculez votre empreinte carbone et eau personnelle en tenant compte des spécificités de votre pays.
-  Commencer le test: Start test
-  Calculez <1>vos empreintes</1> en <4>seulement 10 minutes</4>.: Calculate <1>your footprints</1> in <4>just 10 minutes</4>.
+  Commencer le test: Start the test
   Découvrez votre empreinte carbone: Discover your carbon footprint
   Résultats immédiats, sans inscription.: Immediate results, no registration required.
   <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire.: <0>Get your personalised estimate</0> and <3>concrete ways</3> of reducing it.
@@ -1810,3 +1801,13 @@ entries:
   'Format attendu : nom.prenom@domaine.fr': 'Expected format: nom.prenom@domaine.fr'
   'Format attendu : nom.prenom@domaine.fr.lock': 'Format attendu : nom.prenom@domaine.fr'
   <0>2,7 millions de personnes</0> <2>ont déjà calculé leur empreinte</2>: <2>Already used by</2> <0>2.7 million people</0>
+  <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire: <0>Get a personalised estimate</0> and <3>actionable steps</3> to reduce it
+  simulator.mosaic.noneOfTheseOptions: No
+  simulator.mosaic.noneOfTheseOptions.lock: Aucun
+  simulator.mosaic.notConcerned: I am not concerned
+  simulator.mosaic.notConcerned.lock: Je ne suis pas concerné·e
+  ont déjà calculé leur empreinte: have already calculated their footprint
+  2,7 millions de personnes: 2.7 million people
+  À propos - Nos Gestes Climat: About us - Nos Gestes Climat
+  Informations relatives à Nos Gestes Climat.: Information about Nos Gestes Climat.
+  <0>2,7 millions de personnes</0><1>ont déjà calculé leur empreinte</1>: <0>2.7 million people</0><1>have already calculated their footprint</1>
