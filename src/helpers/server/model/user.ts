@@ -1,6 +1,4 @@
-
 import { AUTHENTICATION_COOKIE_NAME } from '@/constants/authentication/cookie'
-
 import { USER_URL } from '@/constants/urls/main'
 import { captureException } from '@sentry/nextjs'
 import { cookies } from 'next/headers'
