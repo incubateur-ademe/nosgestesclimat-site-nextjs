@@ -1,5 +1,6 @@
 import { STORAGE_KEY } from '@/constants/storage'
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
+import { migrateSimulation } from '@/publicodes-state/helpers/migrateSimulation'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import type { Migration } from '@publicodes/tools/migration'
 import { useEffect, useMemo, useState } from 'react'
@@ -21,7 +22,9 @@ export default function usePersistentSimulations({
     let initCurrentSimulationId: string | undefined =
       parsedStorage.currentSimulationId
     if (serverSimulations?.length) {
-      initSimulations = serverSimulations
+      initSimulations = serverSimulations.map((simulation) =>
+        migrateSimulation(simulation, migrationInstructions)
+      )
     } else if (initSimulations && initCurrentSimulationId) {
       initSimulations = initSimulations.map((simulation) =>
         generateSimulation({

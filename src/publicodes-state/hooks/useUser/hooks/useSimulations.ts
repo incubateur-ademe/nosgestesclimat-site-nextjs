@@ -2,6 +2,7 @@
 
 import { getInitialExtendedSituation } from '@/helpers/modelFetching/getInitialExtendedSituation'
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
+import { migrateSimulation } from '@/publicodes-state/helpers/migrateSimulation'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import type {
   DottedName,
@@ -275,9 +276,13 @@ export default function useSimulations({
 
   const updateSimulations = useCallback(
     (newSimulations: Simulation[]) => {
-      setSimulations(newSimulations)
+      setSimulations(
+        newSimulations.map((simulation) =>
+          migrateSimulation(simulation, migrationInstructions)
+        )
+      )
     },
-    [setSimulations]
+    [migrationInstructions, setSimulations]
   )
 
   return {
