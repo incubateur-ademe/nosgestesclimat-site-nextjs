@@ -62,5 +62,6 @@ export async function logout() {
     secure: true,
     partitioned: true,
     sameSite: 'lax',
+    domain: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? '').hostname,
   })
 }
