@@ -1,4 +1,3 @@
-
 import { AUTHENTICATION_COOKIE_NAME } from '@/constants/authentication/cookie'
 
 import { USER_URL } from '@/constants/urls/main'
