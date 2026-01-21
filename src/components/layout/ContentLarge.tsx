@@ -2,16 +2,20 @@ import Main from '@/design-system/layout/Main'
 import type { HTMLAttributes, PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 
+type ContentLargeProps = HTMLAttributes<HTMLDivElement> &
+  PropsWithChildren<{
+    ref?: React.RefObject<HTMLDivElement | null>
+    className?: string
+    tag?: React.ElementType
+  }>
+
 export default function ContentLarge({
+  ref,
   children,
   className,
   tag = Main,
   ...props
-}: HTMLAttributes<HTMLDivElement> &
-  PropsWithChildren<{
-    className?: string
-    tag?: React.ElementType
-  }>) {
+}: ContentLargeProps) {
   const Tag = tag
 
   return (
@@ -20,6 +24,7 @@ export default function ContentLarge({
         'flex w-full max-w-5xl flex-1 flex-col overflow-visible lg:mx-auto',
         className
       )}
+      ref={ref}
       {...props}>
       {children}
     </Tag>

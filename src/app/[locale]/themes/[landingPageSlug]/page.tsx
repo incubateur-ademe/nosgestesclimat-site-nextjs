@@ -1,6 +1,7 @@
+import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
 import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
 import DailyGestures from '@/components/landing-pages/DailyGestures'
-import DidYouKnowSlider from '@/components/landing-pages/DidYouKnowSlider'
+import DidYouKnowSliderServer from '@/components/landing-pages/DidYouKnowSliderServer'
 import FAQ from '@/components/landing-pages/FAQ'
 import Legend from '@/components/landing-pages/Legend'
 import MotivationSection from '@/components/landing-pages/MotivationSection'
@@ -30,6 +31,7 @@ import type { DefaultPageProps } from '@/types'
 import { getArticleHref } from '@/utils/cms/getArticleHref'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import { Suspense } from 'react'
 import { ClientLayout } from '../../../../components/layout/ClientLayout'
 
 export async function generateMetadata({
@@ -125,26 +127,28 @@ export default async function ThematicLandingPage({
                 __html: block1?.htmlDescription ?? '',
               }}></p>
             <div className="flex w-full justify-center md:justify-start">
-              <DynamicCTAButtons
-                trackingEvents={{
-                  start: getLandingClickCTAStart(
-                    `/${landingPageSlug}`,
-                    trackingActionClickCTA
-                  ),
-                  resume: getLandingClickCTAResume(
-                    `/${landingPageSlug}`,
-                    trackingActionClickCTA
-                  ),
-                  results: getLandingClickCTAResults(
-                    `/${landingPageSlug}`,
-                    trackingActionClickCTA
-                  ),
-                  restart: getLandingClickCTARestart(
-                    `/${landingPageSlug}`,
-                    trackingActionClickCTA
-                  ),
-                }}
-              />
+              <Suspense fallback={<CTAButtonsPlaceholder />}>
+                <DynamicCTAButtons
+                  trackingEvents={{
+                    start: getLandingClickCTAStart(
+                      `/${landingPageSlug}`,
+                      trackingActionClickCTA
+                    ),
+                    resume: getLandingClickCTAResume(
+                      `/${landingPageSlug}`,
+                      trackingActionClickCTA
+                    ),
+                    results: getLandingClickCTAResults(
+                      `/${landingPageSlug}`,
+                      trackingActionClickCTA
+                    ),
+                    restart: getLandingClickCTARestart(
+                      `/${landingPageSlug}`,
+                      trackingActionClickCTA
+                    ),
+                  }}
+                />
+              </Suspense>
             </div>
 
             <div className="mx-auto mt-4 max-w-80 md:mt-0 md:hidden">
@@ -196,7 +200,7 @@ export default async function ThematicLandingPage({
         )}
 
         {block4 && (
-          <DidYouKnowSlider
+          <DidYouKnowSliderServer
             slides={block4?.map(({ text, image, pinkText }) => ({
               content: <div dangerouslySetInnerHTML={{ __html: text }} />,
               illustration: image?.url ?? '',

@@ -9,7 +9,7 @@ import type { PropsWithChildren } from 'react'
 import MainLayoutProviders from '../../app/[locale]/_components/MainLayoutProviders'
 
 type RootLayoutProps = PropsWithChildren & {
-  locale: Locale
+  locale: string
   skipLinksDisplayed?: SkipLinksDisplayed
 }
 
@@ -23,7 +23,7 @@ export const ClientLayout = ({
 
     <CookieConsentBannerAndManagement />
 
-    <Banner locale={locale} />
+    <Banner locale={locale as Locale} />
 
     {children}
 

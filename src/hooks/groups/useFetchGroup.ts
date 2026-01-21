@@ -1,4 +1,5 @@
 import { GROUP_URL } from '@/constants/urls/main'
+import { getInitialExtendedSituation } from '@/helpers/modelFetching/getInitialExtendedSituation'
 import { useUser } from '@/publicodes-state'
 import type { Group, Participant } from '@/types/groups'
 import { unformatSituation } from '@/utils/formatDataForDB'
@@ -22,13 +23,22 @@ export function useFetchGroup(
         .then((data) => {
           return {
             ...data,
-            participants: data.participants.map((participant: Participant) => ({
-              ...participant,
-              simulation: {
+            participants: data.participants.map((participant: Participant) => {
+              const simulation = {
                 ...participant.simulation,
                 situation: unformatSituation(participant.simulation.situation),
-              },
-            })),
+              }
+
+              // Ensure extendedSituation is always defined (for old simulations that might not have it)
+              if (!simulation.extendedSituation) {
+                simulation.extendedSituation = getInitialExtendedSituation()
+              }
+
+              return {
+                ...participant,
+                simulation,
+              }
+            }),
           }
         }),
     refetchInterval: 60000,

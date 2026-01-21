@@ -1,5 +1,4 @@
-import Header from '@/components/layout/HeaderClient'
-import type { Locale } from '@/i18nConfig'
+import HeaderServer from '@/components/layout/HeaderServer'
 import type { ReactNode } from 'react'
 import Main from './Main'
 import DynamicCounter from './landingPage/DynamicCounter'
@@ -11,7 +10,7 @@ interface Props {
   heroIllustration: ReactNode
   heroPartners: ReactNode
   children: ReactNode
-  locale: Locale
+  locale: string
 }
 
 export default function LandingPage({
@@ -24,7 +23,7 @@ export default function LandingPage({
 }: Props) {
   return (
     <>
-      <Header />
+      <HeaderServer locale={locale} />
 
       <Main>
         <Hero

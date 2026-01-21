@@ -1,4 +1,5 @@
 import Trans from '@/components/translation/trans/TransServer'
+import { MON_ESPACE_SETTINGS_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import MessageTemplate from '../../../../components/layout/MessageTemplate'
@@ -21,7 +22,7 @@ export default async function NewsletterInvalidMessage({
             <Trans locale={locale}>Revenir à la page d'accueil</Trans>
           </ButtonLink>
 
-          <ButtonLink href="/profil#infolettre">
+          <ButtonLink href={MON_ESPACE_SETTINGS_PATH}>
             <Trans locale={locale}>Recommencer mon inscription</Trans>
           </ButtonLink>
         </>

@@ -5,27 +5,28 @@ import { formatCarbonFootprint } from '@/helpers/formatters/formatCarbonFootprin
 import { getColorAtPosition } from '@/helpers/getColorOfGradient'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useRule } from '@/publicodes-state'
-import { useMemo } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { CountUp } from 'use-count-up'
 import AnimatedArrow from './carboneTotalChart/AnimatedArrow'
 import Gauge from './carboneTotalChart/Gauge'
 
 interface Props {
+  className?: string
   total?: number
   isSmall?: boolean
   shouldShowOnlyGauge?: boolean
 }
+
 export default function CarboneTotalChart({
+  className,
   total,
   isSmall,
   shouldShowOnlyGauge = false,
 }: Props) {
-  const { numericValue } = useRule('bilan')
+  const hookValue = useRule('bilan').numericValue
+  const usedValue = total ?? hookValue
 
   const { t } = useClientTranslation()
-
-  const usedValue = total ?? numericValue
 
   const { formattedValue, unit } = formatCarbonFootprint(usedValue, {
     t,
@@ -34,26 +35,16 @@ export default function CarboneTotalChart({
 
   const originPosition = (usedValue / 1000 / 12) * 100
 
-  const position = useMemo(() => {
-    if (originPosition <= 0) {
-      return 0
-    }
-    if (originPosition >= 100) {
-      return 100
-    }
-    return originPosition
-  }, [originPosition])
+  const position = Math.min(Math.max(originPosition, 0), 100)
 
   const color = getColorAtPosition(position / 100)
   const cssColor = `rgba(${color.r},${color.g},${color.b},${color.a})`
 
-  // Calcul des valeurs pour l'accessibilité
-  const targetValue = 2 // tonnes par an (objectif 2050)
-  const maxValue = 12 // tonnes par an (échelle maximale)
+  const targetValue = 2
+  const maxValue = 12
   const currentValueInTons = usedValue / 1000
   const percentage = Math.min((currentValueInTons / maxValue) * 100, 100)
 
-  // Description pour les lecteurs d'écran
   const gaugeDescription = t(
     'endPage.carboneChart.gaugeDescription',
     `Graphique montrant votre empreinte carbone de ${formattedValue} ${unit} par an, soit ${Math.round(percentage)}% de l'échelle maximale. L'objectif 2050 est de ${targetValue} tonnes par an.`,
@@ -70,7 +61,8 @@ export default function CarboneTotalChart({
     <div
       className={twMerge(
         'relative mx-auto flex w-full flex-col items-center justify-center',
-        isSmall ? 'mt-2 md:mt-4' : ''
+        isSmall ? 'mt-2 md:mt-4' : '',
+        className
       )}
       role="img"
       aria-label={gaugeDescription}
@@ -112,7 +104,7 @@ export default function CarboneTotalChart({
 
       <div
         className={twMerge(
-          'mt-4 hidden w-full md:block',
+          'mt-8 hidden w-full md:block',
           shouldShowOnlyGauge && 'block',
           isSmall && 'mt-0'
         )}
