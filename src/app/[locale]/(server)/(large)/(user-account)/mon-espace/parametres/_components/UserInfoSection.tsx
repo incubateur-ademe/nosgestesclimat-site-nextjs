@@ -24,10 +24,7 @@ export default function UserInfoSection({ locale }: { locale: Locale }) {
                 Inscription à nos contenus
               </Trans>
             </h2>
-            <NewsletterManagement
-              hasEmailField={false}
-              isAuthenticated={true}
-            />
+            <NewsletterManagement hasEmailField={false} />
           </div>
         </UserProvider>
       </QueryClientProviderWrapper>

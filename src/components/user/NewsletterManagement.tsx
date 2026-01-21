@@ -15,12 +15,15 @@ import Button from '@/design-system/buttons/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import Emoji from '@/design-system/utils/Emoji'
 import { t } from '@/helpers/metadata/fakeMetadataT'
+import type { UserServer } from '@/helpers/server/model/user'
+import { fetchUser } from '@/helpers/user/fetchUser'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { isEmailValid } from '@/utils/isEmailValid'
+import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useForm as useReactHookForm, useWatch } from 'react-hook-form'
 import Trans from '../translation/trans/TransClient'
@@ -116,12 +119,17 @@ export default function NewsletterManagement({
 }: Props) {
   const { user, updateEmail } = useUser()
 
+  const { data: authenticatedUser } = useQuery<UserServer | null>({
+    queryKey: ['user', 'me'],
+    queryFn: () => fetchUser(),
+  })
+
   const { t } = useClientTranslation()
 
   const { data: newslettersSubscriptions } = useGetNewsletterSubscriptions(
-    user?.userId ?? ''
+    authenticatedUser?.id ?? ''
   )
-  console.log('newslettersSubscriptions', newslettersSubscriptions)
+
   const {
     mutateAsync: updateUserSettings,
     isSuccess,
@@ -167,10 +175,10 @@ export default function NewsletterManagement({
   })
 
   useEffect(() => {
-    if (user?.email) {
-      resetEmailForm({ email: user.email })
+    if (authenticatedUser?.email) {
+      resetEmailForm({ email: authenticatedUser.email })
     }
-  }, [user?.email, resetEmailForm])
+  }, [authenticatedUser?.email, resetEmailForm])
 
   const newsletterIdsFromWatcher = useWatch({ control, name: 'newsletterIds' })
 
