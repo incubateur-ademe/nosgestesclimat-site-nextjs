@@ -1218,8 +1218,8 @@ entries:
   common.category.logement.lock: Logement
   pollResults.categoryDistribution.accessibleDescription.category: '{{name}}: {{value}} {{unit}}.'
   pollResults.categoryDistribution.accessibleDescription.category.lock: '{{name}}: {{value}} {{unit}}.'
-  common.category.services: Community services
-  common.category.services.lock: Services sociétaux
+  common.category.services: Services
+  common.category.services.lock: Services
   common.category.transport: Transport
   common.category.transport.lock: Transport
   common.category.alimentation: Power supply
@@ -1328,10 +1328,6 @@ entries:
   endpage.title.default.lock: Mes empreintes carbone et eau, empreinte carbone sélectionnée - Nos Gestes Climat
   actions.thresholdDescription: Shares with an impact of {{label}} or more
   actions.thresholdDescription.lock: Actions avec un impact de {{label}} ou plus
-  common.mainLandingPage.numberPersons: 2.5 million people
-  common.mainLandingPage.numberPersons.lock: 2,5 millions de personnes
-  common.mainLandingPage.tookTheirTest: have already calculated their footprint!
-  common.mainLandingPage.tookTheirTest.lock: ont déjà calculé leur empreinte !
   Accéder au test: Access the test
   Option sélectionnée: Selected option
   Sélectionner cette option: Select this option
@@ -1811,3 +1807,7 @@ entries:
   À propos - Nos Gestes Climat: About us - Nos Gestes Climat
   Informations relatives à Nos Gestes Climat.: Information about Nos Gestes Climat.
   <0>2,7 millions de personnes</0><1>ont déjà calculé leur empreinte</1>: <0>2.7 million people</0><1>have already calculated their footprint</1>
+  Mon empreinte: My footprint
+  Mon empreinte: My footprint
+  Veuillez entrer une adresse email valide.: Please enter a valid email address.
+  Comparez vos résultats avec votre famille ou un groupe d'amis.: Compare your results with your family or a group of friends.

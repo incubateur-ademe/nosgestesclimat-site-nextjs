@@ -1061,7 +1061,7 @@ entries:
   common.category.alimentation: Alimentation
   common.category.divers: Divers
   common.category.logement: Logement
-  common.category.services: Services sociétaux
+  common.category.services: Services
   common.category.transport: Transport
   pollResults.categoryDistribution.accessibleDescription.category: '{{name}}: {{value}} {{unit}}.'
   pollResults.categoryDistribution.accessibleDescription.chart: 'Graphique en donut montrant la répartition des émissions par catégorie. '
@@ -1122,8 +1122,6 @@ entries:
   endpage.title.default: Mes empreintes carbone et eau, empreinte carbone sélectionnée - Nos Gestes Climat
   Page {{page}} (page actuelle): Page {{page}} (page actuelle)
   Pourquoi avons-nous ajouté l'empreinte eau ?: Pourquoi avons-nous ajouté l'empreinte eau ?
-  common.mainLandingPage.numberPersons: 2,5 millions de personnes
-  common.mainLandingPage.tookTheirTest: ont déjà calculé leur empreinte !
   Accéder au test: Accéder au test
   Activé: Activé
   common.inputs.email.label: Entrez votre adresse e-mail
@@ -1412,3 +1410,7 @@ entries:
   simulator.mosaic.noneOfTheseOptions: Aucun
   simulator.mosaic.notConcerned: Je ne suis pas concerné·e
   <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire: <0>Obtenez votre estimation personnalisée</0> et des <3>pistes concrètes</3> pour la réduire
+  Comparez vos résultats avec votre famille ou un groupe d'amis.: Comparez vos résultats avec votre famille ou un groupe d'amis.
+  Mon empreinte: Mon empreinte
+  Mon empreinte: Mon empreinte
+  Veuillez entrer une adresse email valide.: Veuillez entrer une adresse email valide.
