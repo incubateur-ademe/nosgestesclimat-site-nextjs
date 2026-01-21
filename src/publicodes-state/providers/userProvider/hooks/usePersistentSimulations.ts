@@ -1,6 +1,5 @@
 import { STORAGE_KEY } from '@/constants/storage'
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
-import { migrateSimulation } from '@/publicodes-state/helpers/migrateSimulation'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import type { Migration } from '@publicodes/tools/migration'
 import { useEffect, useMemo, useState } from 'react'
@@ -21,21 +20,25 @@ export default function usePersistentSimulations({
     let initSimulations: Simulation[] = parsedStorage.simulations
     let initCurrentSimulationId: string | undefined =
       parsedStorage.currentSimulationId
+
     if (serverSimulations?.length) {
-      initSimulations = serverSimulations.map((simulation) =>
-        migrateSimulation(simulation, migrationInstructions)
-      )
-    } else if (initSimulations && initCurrentSimulationId) {
-      initSimulations = initSimulations.map((simulation) =>
-        generateSimulation({
-          ...simulation,
-          migrationInstructions,
-        })
-      )
-    } else {
+      initSimulations = serverSimulations
+    } else if (!initSimulations || !initCurrentSimulationId) {
       initSimulations = [generateSimulation()]
     }
+
     initCurrentSimulationId ??= initSimulations[0].id
+
+    const currentSimulationIndex = initSimulations.findIndex(
+      (simulation) => simulation.id === initCurrentSimulationId
+    )
+
+    // Migrate the current simulation
+    initSimulations[currentSimulationIndex] = generateSimulation({
+      ...initSimulations[currentSimulationIndex],
+      migrationInstructions,
+    })
+
     return [initSimulations, initCurrentSimulationId] as const
   }, [migrationInstructions, serverSimulations])
 
