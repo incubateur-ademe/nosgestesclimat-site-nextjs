@@ -58,7 +58,7 @@ export default function QuestionsComplementaires({
             PollDefaultAdditionalQuestion.postalCode
           ) ?? false
         }
-        data-cypress-id="poll-default-additional-questions-postal-code-toggle"
+        data-testid="poll-default-additional-questions-postal-code-toggle"
         onChange={(isEnabled: boolean) => {
           onChange({
             defaultAdditionalQuestions: getUpdatedDefaultAdditionalQuestions({

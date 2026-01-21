@@ -90,7 +90,7 @@ export default function NameForm({ user }: { user: UserServer | null }) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <PrenomInput
-        data-cypress-id="group-input-owner-name"
+        data-testid="group-input-owner-name"
         error={errors.administratorName?.message}
         {...register('administratorName', {
           required: t('Veuillez entrer votre nom.'),
@@ -102,7 +102,7 @@ export default function NameForm({ user }: { user: UserServer | null }) {
         helperText={
           <Trans>Pour le retrouver facilement dans votre liste</Trans>
         }
-        data-cypress-id="group-name"
+        data-testid="group-name"
         error={errors.name?.message}
         {...register('name', {
           required: t('Ce champ est obligatoire.'),
@@ -115,7 +115,7 @@ export default function NameForm({ user }: { user: UserServer | null }) {
         label={<Trans>Illustration du groupe</Trans>}
         helperText={<Trans>Pour faire joli et le reconnaitre !</Trans>}
         name="emoji"
-        data-cypress-id="group-select-emoji"
+        data-testid="group-select-emoji"
         items={GROUP_EMOJIS.map(({ emoji, label }) => ({
           value: emoji,
           label: emoji,
@@ -129,7 +129,7 @@ export default function NameForm({ user }: { user: UserServer | null }) {
 
       <Button
         type="submit"
-        data-cypress-id="button-validate-create-group"
+        data-testid="button-validate-create-group"
         className="mt-4 self-start"
         disabled={isPending || isSuccess}>
         {hasCompletedTest ? (

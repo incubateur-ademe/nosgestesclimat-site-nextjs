@@ -74,7 +74,7 @@ export default function SendVerificationCodeForm({
       <TextInput
         type="email"
         autoComplete="email"
-        data-cypress-id="organisation-connexion-email-input"
+        data-testid="organisation-connexion-email-input"
         label={inputLabel ?? <Trans>Votre adresse e-mail</Trans>}
         placeholder="nom.prenom@domaine.fr"
         srOnlyHelperText={
@@ -124,7 +124,7 @@ export default function SendVerificationCodeForm({
       <Button
         type="submit"
         color={buttonColor}
-        data-cypress-id="organisation-connexion-submit-button"
+        data-testid="organisation-connexion-submit-button"
         className="mt-8">
         {buttonLabel ?? <Trans>Accéder à mon espace</Trans>}
       </Button>

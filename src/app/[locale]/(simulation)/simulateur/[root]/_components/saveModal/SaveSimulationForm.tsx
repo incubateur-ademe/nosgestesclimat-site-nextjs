@@ -48,7 +48,7 @@ export default function SaveSimulationForm({
           type="email"
           autoComplete="email"
           aria-label="Entrez votre adresse e-mail"
-          data-cypress-id="save-modal-email-input"
+          data-testid="save-modal-email-input"
           aria-describedby={isError ? 'save-error' : undefined}
           aria-invalid={isError ? 'true' : 'false'}
           {...register('email')}

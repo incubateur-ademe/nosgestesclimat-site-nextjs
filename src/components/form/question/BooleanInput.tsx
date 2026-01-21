@@ -7,7 +7,7 @@ import { useState } from 'react'
 interface Props {
   value: NodeValue
   setValue: (value: string) => void
-  'data-cypress-id': string
+  'data-testid': string
   label: string
   firstInputId?: string
 }
@@ -35,7 +35,7 @@ export default function BooleanInput({
           requestIdleCallback(() => setValue('oui'))
         }}
         {...props}
-        data-cypress-id={`${props['data-cypress-id']}-oui`}
+        data-testid={`${props['data-testid']}-oui`}
         id={firstInputId}
       />
 
@@ -48,7 +48,7 @@ export default function BooleanInput({
           requestIdleCallback(() => setValue('non'))
         }}
         {...props}
-        data-cypress-id={`${props['data-cypress-id']}-non`}
+        data-testid={`${props['data-testid']}-non`}
       />
     </fieldset>
   )

@@ -337,7 +337,7 @@ export default function Navigation({
           disabled={isNextDisabled}
           className="p-3 text-sm"
           size="md"
-          data-cypress-id="next-question-button"
+          data-testid="next-question-button"
           title={
             finalNoNextQuestion
               ? t(

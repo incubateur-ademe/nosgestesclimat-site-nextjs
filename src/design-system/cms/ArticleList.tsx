@@ -24,7 +24,7 @@ export default function ArticleList({
       </h2>
       <ul
         className="grid grid-cols-1 gap-8 md:grid-cols-3"
-        data-cypress-id="blog-list"
+        data-testid="blog-list"
         role="list">
         {articles.slice(0, 6).map((article) => (
           <li key={article.documentId} className="h-full">

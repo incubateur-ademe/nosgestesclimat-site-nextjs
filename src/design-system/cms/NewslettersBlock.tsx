@@ -369,7 +369,7 @@ export default function NewslettersBlock({
                         errors.email ? 'email-error' : 'email-help'
                       }
                       error={errors.email?.message}
-                      data-cypress-id="fin-email-input"
+                      data-testid="fin-email-input"
                       data-testid="newsletter-email-input"
                       className="h-full"
                     />

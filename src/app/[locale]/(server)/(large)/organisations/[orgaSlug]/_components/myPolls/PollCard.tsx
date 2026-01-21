@@ -48,7 +48,7 @@ export default function PollCard({ poll }: Props) {
       </div>
 
       <ButtonLink
-        data-cypress-id="poll-card-see-details-button"
+        data-testid="poll-card-see-details-button"
         className="w-full"
         href={`/organisations/${orgaSlug}/campagnes/${poll?.slug}`}>
         <Trans>Voir le détail</Trans>

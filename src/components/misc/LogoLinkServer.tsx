@@ -13,7 +13,7 @@ export default function LogoLinkServer({ className, size = 'md' }: Props) {
     <div className={twMerge('flex items-center', className)}>
       <Link
         href="/"
-        data-cypress-id="home-logo-link"
+        data-testid="home-logo-link"
         className="flex items-center justify-center no-underline">
         <Logo size={size} />
       </Link>
