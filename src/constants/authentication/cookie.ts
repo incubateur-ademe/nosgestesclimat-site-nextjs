@@ -1,1 +1,1 @@
-export const AUTHENTICATION_COOKIE_NAME = 'ngcjwt:v2'
+export const AUTHENTICATION_COOKIE_NAME = 'ngcjwt2'
