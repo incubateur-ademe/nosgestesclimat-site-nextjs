@@ -39,9 +39,7 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
 
   const { user, updateEmail } = useUser()
 
-  const router = useRouter()
-
-  const { register, handleSubmit } = useReactHookForm<Inputs>({
+  const { register, handleSubmit, setError } = useReactHookForm<Inputs>({
     defaultValues: { email: user.email },
   })
 
@@ -55,7 +53,9 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
 
     // Inputs validation
     if (!data.email || !isEmailValid(data.email)) {
-      // setErrorEmail(t('Veuillez renseigner un email valide.'))
+      setError('email', {
+        message: t('Veuillez entrer une adresse e-mail valide.'),
+      })
       return
     }
 
@@ -104,6 +104,8 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
     isSuccess,
     saveSimulation,
   ])
+
+  const router = useRouter()
 
   // We do not display the component if we are in an iframeSimulation context
   const { isIframeOnlySimulation } = useIframe()

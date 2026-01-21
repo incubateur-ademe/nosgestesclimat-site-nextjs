@@ -1,18 +1,17 @@
-import { SIMULATOR_PATH } from '@/constants/urls/paths'
-import ButtonLinkServer from '@/design-system/buttons/ButtonLinkServer'
-import type { Locale } from '@/i18nConfig'
+import { Suspense } from 'react'
 import { twMerge } from 'tailwind-merge'
 import LogoLinkServer from '../misc/LogoLinkServer'
-import Trans from '../translation/trans/TransServer'
+import MySpaceButton from './headerServer/MySpaceButton'
 
 interface Props {
   isSticky?: boolean
-  locale: Locale
+  locale: string
 }
 
 export default function HeaderServer({ isSticky = true, locale }: Props) {
   return (
     <header
+      id="header-server-container"
       className={twMerge(
         'h-20 items-center bg-white shadow-xs',
         isSticky ? 'sticky top-0 z-300' : ''
@@ -24,9 +23,10 @@ export default function HeaderServer({ isSticky = true, locale }: Props) {
           </div>
 
           <div className="flex h-full items-center">
-            <ButtonLinkServer color="secondary" href={SIMULATOR_PATH}>
-              <Trans locale={locale}>Accéder au test</Trans>
-            </ButtonLinkServer>
+            <Suspense>
+              {/*Suspense for enabling partial prerendering */}
+              <MySpaceButton locale={locale} />
+            </Suspense>
           </div>
         </div>
       </div>

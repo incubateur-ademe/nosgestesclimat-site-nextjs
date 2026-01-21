@@ -1,4 +1,4 @@
-import PartnerRedirectionAlert from '@/app/[locale]/(simulation)/(large-layout-nosticky)/fin/_components/PartnerRedirectionAlert'
+import PartnerRedirectionAlert from '@/app/[locale]/(simulation)/(large-nosticky)/fin/_components/PartnerRedirectionAlert'
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
 import { renderWithWrapper } from '@/helpers/tests/wrapper'
 import { useExportSituation } from '@/hooks/partners/useExportSituation'

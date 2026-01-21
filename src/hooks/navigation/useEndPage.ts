@@ -29,7 +29,6 @@ export function useEndPage() {
   const searchParams = useSearchParams()
 
   const currentSimulation = useCurrentSimulation()
-
   const progression = currentSimulation?.progression
 
   const { saveSimulation } = useSaveSimulation()
@@ -98,7 +97,6 @@ export function useEndPage() {
         router.push(getLinkToGroupDashboard({ groupId: lastGroupId }))
         return
       }
-
       // else we redirect to the results page
       router.push(
         `${END_PAGE_PATH}${searchParams.size > 0 ? `?${searchParams.toString()}` : ''}`

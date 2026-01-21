@@ -15,7 +15,6 @@ import {
 } from '@/constants/forms/newsletters'
 import { subscribeToNewsletterBlog } from '@/constants/tracking/pages/newsletter'
 import { formatListIdsFromObject } from '@/helpers/brevo/formatListIdsFromObject'
-import { getIsUserVerified } from '@/helpers/user/getIsVerified'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -26,9 +25,10 @@ import { useUser } from '@/publicodes-state'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { formatEmail } from '@/utils/format/formatEmail'
 import { isEmailValid } from '@/utils/isEmailValid'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm as useReactHookForm } from 'react-hook-form'
+import { twMerge } from 'tailwind-merge'
 import Button from '../buttons/Button'
 import CheckboxInput from '../inputs/CheckboxInput'
 import EmailInput from '../inputs/EmailInput'
@@ -66,7 +66,15 @@ function SuccessMessage() {
   )
 }
 
-export default function NewslettersBlock() {
+export default function NewslettersBlock({
+  isAuthenticated = false,
+  className,
+  title,
+}: {
+  isAuthenticated: boolean
+  className?: string
+  title?: string | ReactNode
+}) {
   const [isNewsletterError, setIsNewsletterError] = useState(false)
   const { data: mainNewsletter } = useMainNewsletter()
 
@@ -75,9 +83,6 @@ export default function NewslettersBlock() {
   const locale = useLocale()
 
   const { user, updateEmail } = useUser()
-
-  // TODO : replace this with a proper check by calling the backend
-  const isVerified = getIsUserVerified()
 
   const {
     data: newsletterSubscriptions,
@@ -194,7 +199,10 @@ export default function NewslettersBlock() {
 
   return (
     <section
-      className="rainbow-border w-full rounded-xl bg-white p-8 md:w-4/6"
+      className={twMerge(
+        'rainbow-border w-full rounded-xl bg-white p-8 md:w-4/6',
+        className
+      )}
       aria-labelledby="newsletter-title"
       aria-describedby="newsletter-description">
       {isFetchingNewsletterSubscriptions && <BlockSkeleton />}
@@ -207,9 +215,11 @@ export default function NewslettersBlock() {
             <h2
               id="newsletter-title"
               className="mb-2 text-lg font-semibold text-gray-900">
-              <Trans>
-                Vous souhaitez recevoir nos derniers articles directement ?
-              </Trans>
+              {title ?? (
+                <Trans>
+                  Vous souhaitez recevoir nos derniers articles directement ?
+                </Trans>
+              )}
             </h2>
 
             <p
@@ -261,13 +271,13 @@ export default function NewslettersBlock() {
                       </p>
                     }
                     disabled={
-                      !isVerified && !!getValues(SEASONAL_NEWSLETTER_LABEL)
+                      !isAuthenticated && !!getValues(SEASONAL_NEWSLETTER_LABEL)
                     }
                     {...register(SEASONAL_NEWSLETTER_LABEL)}
                     error={errors[SEASONAL_NEWSLETTER_LABEL]?.message}
                     data-testid="newsletter-saisonniere-checkbox"
                     aria-describedby={
-                      !isVerified && !!getValues(SEASONAL_NEWSLETTER_LABEL)
+                      !isAuthenticated && !!getValues(SEASONAL_NEWSLETTER_LABEL)
                         ? 'verification-required'
                         : undefined
                     }
@@ -283,13 +293,15 @@ export default function NewslettersBlock() {
                       </p>
                     }
                     disabled={
-                      !isVerified && !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
+                      !isAuthenticated &&
+                      !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
                     }
                     {...register(TRANSPORTS_NEWSLETTER_LABEL)}
                     error={errors[TRANSPORTS_NEWSLETTER_LABEL]?.message}
                     data-testid="newsletter-transports-checkbox"
                     aria-describedby={
-                      !isVerified && !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
+                      !isAuthenticated &&
+                      !!getValues(TRANSPORTS_NEWSLETTER_LABEL)
                         ? 'verification-required'
                         : undefined
                     }
@@ -305,13 +317,13 @@ export default function NewslettersBlock() {
                       </p>
                     }
                     disabled={
-                      !isVerified && !!getValues(LOGEMENT_NEWSLETTER_LABEL)
+                      !isAuthenticated && !!getValues(LOGEMENT_NEWSLETTER_LABEL)
                     }
                     {...register(LOGEMENT_NEWSLETTER_LABEL)}
                     error={errors[LOGEMENT_NEWSLETTER_LABEL]?.message}
                     data-testid="newsletter-logement-checkbox"
                     aria-describedby={
-                      !isVerified && !!getValues(LOGEMENT_NEWSLETTER_LABEL)
+                      !isAuthenticated && !!getValues(LOGEMENT_NEWSLETTER_LABEL)
                         ? 'verification-required'
                         : undefined
                     }
@@ -344,13 +356,13 @@ export default function NewslettersBlock() {
                     <EmailInput
                       value={user?.email || ''}
                       {...register('email', {
-                        required: t('Veuillez renseigner un email.'),
+                        required: t('Veuillez renseigner un e-mail.'),
                       })}
                       title={t(
                         'common.inputs.email.label',
                         'Entrez votre adresse e-mail'
                       )}
-                      aria-label={t('Entrez votre adresse email')}
+                      aria-label={t('Entrez votre adresse e-mail')}
                       aria-required="true"
                       aria-invalid={errors.email ? 'true' : 'false'}
                       aria-describedby={
@@ -374,8 +386,8 @@ export default function NewslettersBlock() {
 
                     <p id="email-help" className="sr-only">
                       <Trans>
-                        Entrez votre adresse email pour recevoir les infolettres
-                        sélectionnées.
+                        Entrez votre adresse e-mail pour recevoir les
+                        infolettres sélectionnées.
                       </Trans>
                     </p>
 

@@ -30,8 +30,9 @@ export default function useUser() {
     updateEmail,
     updateRegion,
     updateInitialRegion,
-    updateLoginExpirationDate,
+    updatePendingVerification,
     updateUserOrganisation,
+    updateUserId,
   } = useUserDetails({ user, setUser })
 
   const {
@@ -39,6 +40,7 @@ export default function useUser() {
     deleteSimulation,
     currentSimulation,
     updateCurrentSimulation,
+    updateSimulations,
   } = useSimulations({
     simulations,
     setSimulations,
@@ -64,6 +66,14 @@ export default function useUser() {
      */
     user,
     /**
+     * A setter for updating the user
+     */
+    setUser,
+    /**
+     * A setter for updating the user ID
+     */
+    updateUserId,
+    /**
      * A setter for updating the user name (not used for now)
      */
     updateName,
@@ -80,14 +90,13 @@ export default function useUser() {
      */
     updateRegion,
     /**
-    /**
      * A setter for updating the user initial region (via the geolocation)
      */
     updateInitialRegion,
     /**
-     * A setter for updating the user login expiration date
+     * A setter for updating the user pending verification information
      */
-    updateLoginExpirationDate,
+    updatePendingVerification,
     /**
      * A list of all tutorials seen by the user (that we do not need to show)
      */
@@ -128,6 +137,10 @@ export default function useUser() {
      * Create a new simulation (with the situation and the persona passed if applicable), set it as current and return its ID
      */
     initSimulation,
+    /**
+     * Update the list of simulations
+     */
+    updateSimulations,
     /**
      * Toggle the action choice of the current simulation
      */

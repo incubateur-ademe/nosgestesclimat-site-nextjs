@@ -1,3 +1,4 @@
+'use client'
 import {
   COOKIE_CONSENT_KEY,
   COOKIE_CUSTOM_CHOICE_KEY,

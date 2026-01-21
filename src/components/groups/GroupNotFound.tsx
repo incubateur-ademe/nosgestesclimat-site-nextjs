@@ -1,8 +1,8 @@
 'use client'
 
+import { MON_ESPACE_GROUPS_PATH } from '@/constants/urls/paths'
 import ButtonLink from '@/design-system/buttons/ButtonLink'
 import Title from '@/design-system/layout/Title'
-import { linkToClassement } from '@/helpers/navigation/classementPages'
 import Trans from '../translation/trans/TransClient'
 
 export default function GroupNotFound() {
@@ -16,7 +16,7 @@ export default function GroupNotFound() {
         <Trans>Ce groupe n'existe pas ou a été supprimé.</Trans>
       </p>
 
-      <ButtonLink href={linkToClassement}>
+      <ButtonLink href={MON_ESPACE_GROUPS_PATH}>
         <Trans>Retour à la liste des groupes</Trans>
       </ButtonLink>
     </div>

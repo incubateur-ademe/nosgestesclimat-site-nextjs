@@ -36,7 +36,7 @@ export default function SaveSimulationForm({
         tag="h2"
         subtitle={
           <Trans>
-            Recevez par email un lien pour reprendre votre test plus tard.
+            Recevez par e-mail un lien pour reprendre votre test plus tard.
           </Trans>
         }>
         {title}
@@ -47,7 +47,7 @@ export default function SaveSimulationForm({
           required
           type="email"
           autoComplete="email"
-          aria-label="Entrez votre adresse email"
+          aria-label="Entrez votre adresse e-mail"
           data-cypress-id="save-modal-email-input"
           aria-describedby={isError ? 'save-error' : undefined}
           aria-invalid={isError ? 'true' : 'false'}

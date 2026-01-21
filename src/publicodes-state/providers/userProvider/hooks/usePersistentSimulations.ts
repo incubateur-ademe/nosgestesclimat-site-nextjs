@@ -1,68 +1,57 @@
+import { STORAGE_KEY } from '@/constants/storage'
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
+import { migrateSimulation } from '@/publicodes-state/helpers/migrateSimulation'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import type { Migration } from '@publicodes/tools/migration'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { Simulation } from '../../../types'
 
 interface Props {
-  storageKey: string
   migrationInstructions: Migration
+  serverSimulations?: Simulation[]
 }
+
 export default function usePersistentSimulations({
-  storageKey,
   migrationInstructions,
+  serverSimulations,
 }: Props) {
-  const [initialized, setInitialized] = useState<boolean>(false)
-  const [simulations, setSimulations] = useState<Simulation[]>([])
-  const [currentSimulationId, setCurrentSimulationId] = useState<string>('')
+  const [initSimulations, initCurrentSimulationId] = useMemo(() => {
+    const parsedStorage = getCurrentStorage()
 
-  // Get simulations from localStorage
-  useEffect(() => {
-    const currentStorage = safeLocalStorage.getItem(storageKey)
-    const parsedStorage = JSON.parse(currentStorage || '{}')
-
-    const localSimulations: Simulation[] = parsedStorage.simulations ?? []
-
-    const localCurrentSimulationId: string | undefined =
+    let initSimulations: Simulation[] = parsedStorage.simulations
+    let initCurrentSimulationId: string | undefined =
       parsedStorage.currentSimulationId
-
-    if (localSimulations && localCurrentSimulationId) {
-      const migratedLocalSimulations = localSimulations.map((simulation) =>
+    if (serverSimulations?.length) {
+      initSimulations = serverSimulations.map((simulation) =>
+        migrateSimulation(simulation, migrationInstructions)
+      )
+    } else if (initSimulations && initCurrentSimulationId) {
+      initSimulations = initSimulations.map((simulation) =>
         generateSimulation({
           ...simulation,
           migrationInstructions,
         })
       )
-      setSimulations(migratedLocalSimulations)
-      setCurrentSimulationId(localCurrentSimulationId)
     } else {
-      const newSimulation = generateSimulation()
-      setSimulations([newSimulation])
-      setCurrentSimulationId(newSimulation.id)
+      initSimulations = [generateSimulation()]
     }
+    initCurrentSimulationId ??= initSimulations[0].id
+    return [initSimulations, initCurrentSimulationId] as const
+  }, [migrationInstructions, serverSimulations])
 
-    setInitialized(true)
-  }, [migrationInstructions, storageKey])
+  const [simulations, setSimulations] = useState<Simulation[]>(initSimulations)
 
-  useEffect(() => {
-    if (initialized) {
-      const currentStorage = JSON.parse(
-        safeLocalStorage.getItem(storageKey) || '{}'
-      )
-      const updatedStorage = { ...currentStorage, simulations }
-      safeLocalStorage.setItem(storageKey, JSON.stringify(updatedStorage))
-    }
-  }, [storageKey, simulations, initialized])
+  const [currentSimulationId, setCurrentSimulationId] = useState<string>(
+    initCurrentSimulationId
+  )
 
   useEffect(() => {
-    if (initialized) {
-      const currentStorage = JSON.parse(
-        safeLocalStorage.getItem(storageKey) || '{}'
-      )
-      const updatedStorage = { ...currentStorage, currentSimulationId }
-      safeLocalStorage.setItem(storageKey, JSON.stringify(updatedStorage))
-    }
-  }, [storageKey, currentSimulationId, initialized])
+    saveSimulations(simulations)
+  }, [simulations])
+
+  useEffect(() => {
+    saveCurrentSimulationId(currentSimulationId)
+  }, [currentSimulationId])
 
   return {
     simulations,
@@ -70,4 +59,29 @@ export default function usePersistentSimulations({
     currentSimulationId,
     setCurrentSimulationId,
   }
+}
+
+function getCurrentStorage(): {
+  simulations: Simulation[]
+  currentSimulationId: string
+} {
+  return JSON.parse(safeLocalStorage.getItem(STORAGE_KEY) || '{}')
+}
+
+function saveSimulations(simulations: Simulation[]) {
+  const storage = getCurrentStorage()
+  const updatedStorage = {
+    ...storage,
+    simulations,
+  }
+  safeLocalStorage.setItem(STORAGE_KEY, JSON.stringify(updatedStorage))
+}
+
+function saveCurrentSimulationId(currentSimulationId: string) {
+  const storage = getCurrentStorage()
+  const updatedStorage = {
+    ...storage,
+    currentSimulationId,
+  }
+  safeLocalStorage.setItem(STORAGE_KEY, JSON.stringify(updatedStorage))
 }

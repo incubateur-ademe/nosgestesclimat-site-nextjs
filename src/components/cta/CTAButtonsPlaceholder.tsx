@@ -1,3 +1,4 @@
+import { baseClassNames, colorClassNames } from '@/design-system/buttons/Button'
 import Loader from '@/design-system/layout/Loader'
 import { twMerge } from 'tailwind-merge'
 
@@ -9,10 +10,12 @@ export default function CTAButtonsPlaceholder({
   return (
     <div
       className={twMerge(
-        'flex h-[56px] w-full items-center justify-center',
-        className
+        'my-0 h-[56px] w-[260px]',
+        className,
+        baseClassNames,
+        colorClassNames.primary
       )}>
-      <Loader color="dark" />
+      <Loader color="light" />
     </div>
   )
 }
