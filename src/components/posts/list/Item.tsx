@@ -10,7 +10,19 @@ interface Props {
   locale: string
 }
 
+function shouldSkipOptimization(url: string): boolean {
+  return (
+    url.includes('wikimedia.org') ||
+    url.includes('wikipedia.org') ||
+    url.includes('user-images.githubusercontent.com') ||
+    url.includes('github.com/incubateur-ademe')
+  )
+}
+
 export default function Item({ item, path, locale }: Props) {
+  const imageUrl = item.data?.image || ''
+  const skipOptimization = shouldSkipOptimization(imageUrl)
+
   return (
     <li>
       <Card
@@ -20,11 +32,12 @@ export default function Item({ item, path, locale }: Props) {
         <div>
           {item.data.image ? (
             <Image
-              src={item.data?.image || ''}
+              src={imageUrl}
               width="400"
               height="200"
               className="mx-auto mb-2 max-h-36 w-full object-cover"
               alt={`Illustration: ${item.data.title}`}
+              unoptimized={skipOptimization}
             />
           ) : null}
           <p className="mt-4 mb-4 text-center text-lg font-bold">
