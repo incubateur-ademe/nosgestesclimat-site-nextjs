@@ -1,4 +1,6 @@
 'use server'
+
+import { AUTHENTICATION_COOKIE_NAME } from '@/constants/authentication/cookie'
 import { cookies } from 'next/headers'
 import {
   InternalServerError,
@@ -13,7 +15,8 @@ export async function fetchWithJWTCookie(
   { method = 'GET' }: { method?: 'GET' | 'POST'; setCookies?: boolean } = {}
 ) {
   const cookieStore = await cookies()
-  const ngcCookie = cookieStore.get('ngcjwt')
+
+  const ngcCookie = cookieStore.get(AUTHENTICATION_COOKIE_NAME)
 
   if (!ngcCookie) {
     return null
