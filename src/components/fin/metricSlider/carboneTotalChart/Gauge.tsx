@@ -1,3 +1,5 @@
+'use client'
+
 import { useRule } from '@/publicodes-state'
 import { motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
@@ -10,9 +12,9 @@ export default function Gauge({
   isSmall?: boolean
   total?: number
 }) {
-  const { numericValue } = useRule('bilan')
-
-  const isOutOfRange = numericValue > 12000
+  const hookValue = useRule('bilan').numericValue
+  const usedValue = typeof total === 'number' ? total : hookValue
+  const isOutOfRange = usedValue > 12000
 
   return (
     <div
@@ -52,7 +54,7 @@ export default function Gauge({
         </div>
       ) : null}
 
-      {!total ? <TargetNumber isSmall={isSmall} /> : null}
+      <TargetNumber isSmall={isSmall} />
     </div>
   )
 }

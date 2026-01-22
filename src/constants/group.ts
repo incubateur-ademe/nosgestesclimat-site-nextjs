@@ -82,7 +82,6 @@ export const GROUP_EMOJIS = [
   { emoji: '🍌', label: t('Banane') },
 ]
 
-export const linkToGroupCreation = '/amis/creer/vos-informations'
+export const linkToGroupCreation = '/amis/creer/connexion'
 
-export const ADMINISTRATOR_NAME_KEY = 'administratorName'
-export const ADMINISTRATOR_EMAIL_KEY = 'administratorEmail'
+export const SHOW_STEP_KEY = 'showStep'

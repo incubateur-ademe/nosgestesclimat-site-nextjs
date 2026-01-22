@@ -24,7 +24,7 @@ export default function Breadcrumbs({
 }) {
   const { t } = useClientTranslation()
 
-  const itemBeforeCurrent = items[items.length - 2]
+  const itemBeforeCurrent = items.at(-2)
 
   return (
     <section

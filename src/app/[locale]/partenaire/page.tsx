@@ -1,14 +1,11 @@
-import Header from '@/components/layout/HeaderClient'
+import HeaderServer from '@/components/layout/HeaderServer'
 import { PARTNER_KEY } from '@/constants/partners'
 import Main from '@/design-system/layout/Main'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
 import { verifyPartner } from '@/services/partners/verifyPartner'
-import type { DefaultPageProps } from '@/types'
 import { notFound } from 'next/navigation'
 import AdaptiveMessage from './_components/AdaptiveMessage'
-
-type SearchParams = Record<string, string>
 
 export const generateMetadata = getCommonMetadata({
   title: t('Partagez vos résultats avec notre partenaire - Nos Gestes Climat'),
@@ -22,7 +19,9 @@ export const generateMetadata = getCommonMetadata({
 
 export default async function PartenairePage({
   searchParams,
-}: DefaultPageProps<{ searchParams: SearchParams }>) {
+  params,
+}: PageProps<'/[locale]/partenaire'>) {
+  const { locale } = await params
   const searchParamsObject = (await searchParams) ?? { partner: '' }
 
   const partner = (searchParamsObject[PARTNER_KEY] as string) ?? ''
@@ -39,7 +38,8 @@ export default async function PartenairePage({
 
   return (
     <>
-      <Header />
+      <HeaderServer locale={locale} />
+
       <Main>
         <div className="min-h-screen">
           <div className="mt-36 text-center">

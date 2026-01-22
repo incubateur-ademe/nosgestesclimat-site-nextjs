@@ -1,4 +1,4 @@
-import { SERVER_URL } from '@/constants/urls/main'
+import { USER_URL } from '@/constants/urls/main'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
@@ -10,24 +10,35 @@ export function useUpdateUserSettings() {
       userId,
       email,
       name,
+      code,
     }: {
       newsletterIds?: number[]
       userId: string
       email?: string
       name?: string
+      code?: string
     }) => {
       return await axios
-        .put(`${SERVER_URL}/users/v1/${userId}`, {
-          email,
-          name,
-          contact:
-            newsletterIds && newsletterIds.length > 0
-              ? {
-                  listIds: newsletterIds,
-                }
-              : undefined,
-        })
-        .then((res) => res.data)
+        .put(
+          `${USER_URL}/${userId}`,
+          {
+            email,
+            name,
+            contact:
+              newsletterIds && newsletterIds.length > 0
+                ? {
+                    listIds: newsletterIds,
+                  }
+                : undefined,
+          },
+          {
+            params: {
+              code,
+            },
+            withCredentials: true,
+          }
+        )
+        .then((res) => ({ ...res.data, userId: res.data.id }))
     },
   })
 }

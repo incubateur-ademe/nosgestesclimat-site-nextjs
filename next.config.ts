@@ -45,7 +45,22 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
     webpackBuildWorker: true,
+    authInterrupts: true,
     mdxRs: true,
+    useCache: true,
+  },
+  async rewrites() {
+    if (process.env.NEXT_PUBLIC_PROXY_SERVER === 'true') {
+      // If API server and nextJS are on different subdomains (development),
+      // we might want to creates a proxy to avoid cookie issues
+      return [
+        {
+          source: '/api/server/:path*',
+          destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/:path*`,
+        },
+      ]
+    }
+    return []
   },
   webpack(config) {
     config.module.rules.push({

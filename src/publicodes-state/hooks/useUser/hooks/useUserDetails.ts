@@ -1,3 +1,4 @@
+import type { PendingVerification } from '@/hooks/authentication/usePendingVerification'
 import type {
   RegionFromGeolocation,
   User,
@@ -11,6 +12,11 @@ interface Props {
   setUser: Dispatch<SetStateAction<User>>
 }
 export default function useUserDetails({ setUser }: Props) {
+  const updateUserId = useCallback(
+    (userId: string) => setUser((prevUser: User) => ({ ...prevUser, userId })),
+    [setUser]
+  )
+
   const updateName = useCallback(
     (name: string) => setUser((prevUser: User) => ({ ...prevUser, name })),
     [setUser]
@@ -33,9 +39,12 @@ export default function useUserDetails({ setUser }: Props) {
     [setUser]
   )
 
-  const updateLoginExpirationDate = useCallback(
-    (loginExpirationDate: Date | undefined) =>
-      setUser((prevUser: User) => ({ ...prevUser, loginExpirationDate })),
+  const updatePendingVerification = useCallback(
+    (pendingVerification: PendingVerification | undefined) =>
+      setUser((prevUser: User) => ({
+        ...prevUser,
+        pendingVerification,
+      })),
     [setUser]
   )
 
@@ -68,11 +77,12 @@ export default function useUserDetails({ setUser }: Props) {
   )
 
   return {
+    updateUserId,
     updateName,
     updateEmail,
     updateRegion,
     updateInitialRegion,
-    updateLoginExpirationDate,
+    updatePendingVerification,
     updateUserOrganisation,
   }
 }

@@ -3,9 +3,13 @@
 import type { PropsWithChildren } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 
+import { STORAGE_KEY } from '@/constants/storage'
 import { getGeolocation } from '@/helpers/api/getGeolocation'
-import type { RegionFromGeolocation } from '@/publicodes-state/types'
-import type { Migration } from '@publicodes/tools/migration'
+import type {
+  RegionFromGeolocation,
+  Simulation,
+} from '@/publicodes-state/types'
+import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
 import UserContext from './context'
 import useUpdateOldLocalStorage from './hooks/useOldLocalStorage'
 import usePersistentSimulations from './hooks/usePersistentSimulations'
@@ -17,15 +21,11 @@ interface Props {
    * The localstorage key in use
    */
   storageKey?: string
-  /**
-   * The migration instructions for old localstorage
-   */
-  migrationInstructions: Migration
+  serverSimulations?: Simulation[]
 }
 export default function UserProvider({
   children,
-  storageKey = 'ngc',
-  migrationInstructions,
+  serverSimulations,
 }: PropsWithChildren<Props>) {
   const [initialRegion, setInitialRegion] = useState<
     RegionFromGeolocation | undefined
@@ -37,18 +37,23 @@ export default function UserProvider({
     })
   }, [])
 
-  useUpdateOldLocalStorage({ storageKey })
+  useUpdateOldLocalStorage({ storageKey: STORAGE_KEY })
 
-  const { user, setUser } = usePersistentUser({ storageKey, initialRegion })
+  const { user, setUser } = usePersistentUser({
+    initialRegion,
+  })
 
-  const { tutorials, setTutorials } = usePersistentTutorials({ storageKey })
+  const { tutorials, setTutorials } = usePersistentTutorials()
 
   const {
     simulations,
     setSimulations,
     currentSimulationId,
     setCurrentSimulationId,
-  } = usePersistentSimulations({ storageKey, migrationInstructions })
+  } = usePersistentSimulations({
+    migrationInstructions,
+    serverSimulations,
+  })
 
   const isInitialized = useMemo(
     () => user && !!simulations.length,

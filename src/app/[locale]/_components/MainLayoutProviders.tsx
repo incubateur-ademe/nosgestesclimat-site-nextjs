@@ -2,10 +2,8 @@
 
 import { CookieConsentProvider } from '@/components/cookies/CookieConsentProvider'
 import ErrorBoundary from '@/components/error/ErrorBoundary'
-import { STORAGE_KEY } from '@/constants/storage'
 import { PartnerProvider } from '@/contexts/partner/PartnerContext'
 import { UserProvider } from '@/publicodes-state'
-import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
 import { Suspense, type PropsWithChildren } from 'react'
 import { IframeOptionsProvider } from '../_components/mainLayoutProviders/IframeOptionsContext'
 import MainHooks from '../_components/mainLayoutProviders/MainHooks'
@@ -17,16 +15,14 @@ export default function MainLayoutProviders({ children }: PropsWithChildren) {
     <ErrorBoundary>
       <CookieConsentProvider>
         <QueryClientProviderWrapper>
-          <UserProvider
-            storageKey={STORAGE_KEY}
-            migrationInstructions={migrationInstructions}>
+          <UserProvider>
             <PartnerProvider>
               <IframeOptionsProvider>
                 <PreventNavigationProvider>
                   <Suspense>
                     <MainHooks />
                   </Suspense>
-                  <div id="nosgestesclimat-container">{children}</div>
+                  {children}
                 </PreventNavigationProvider>
               </IframeOptionsProvider>
             </PartnerProvider>
