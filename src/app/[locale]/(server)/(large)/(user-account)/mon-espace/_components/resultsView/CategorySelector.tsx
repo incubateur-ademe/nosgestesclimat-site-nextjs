@@ -43,19 +43,21 @@ export default function CategorySelector({
       },
       'aria-disabled': disabled,
     },
-    ...orderedCategories.map((category) => ({
-      id: category,
-      label: categoryLabels[category] ?? category,
-      isActive: activeTab === category,
-      onClick: () => {
-        if (!disabled) {
-          setActiveTab(category)
-          trackEvent(clickCategorySelector(category))
-          trackPosthogEvent(captureClickCategorySelector(category))
-        }
-      },
-      'aria-disabled': disabled,
-    })),
+    ...orderedCategories
+      .filter((category) => category !== 'services sociétaux')
+      .map((category) => ({
+        id: category,
+        label: categoryLabels[category] ?? category,
+        isActive: activeTab === category,
+        onClick: () => {
+          if (!disabled) {
+            setActiveTab(category)
+            trackEvent(clickCategorySelector(category))
+            trackPosthogEvent(captureClickCategorySelector(category))
+          }
+        },
+        'aria-disabled': disabled,
+      })),
   ]
 
   return (

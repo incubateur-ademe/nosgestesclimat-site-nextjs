@@ -22,7 +22,6 @@ const COLORS: Partial<Record<DottedName, string>> = {
   transport: '#1e58d7',
   logement: '#296c36',
   alimentation: '#c4430a',
-  'services sociétaux': '#6e42e5',
   divers: '#b1500c',
 }
 
@@ -40,7 +39,6 @@ export default function EvolutionGraph({
     alimentation: t('common.category.alimentation', 'Alimentation'),
     logement: t('common.category.logement', 'Logement'),
     divers: t('common.category.divers', 'Divers'),
-    'services sociétaux': t('common.category.services', 'Services sociétaux'),
   }
 
   // Generate mocked data when there's only one simulation
