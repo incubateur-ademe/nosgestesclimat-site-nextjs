@@ -33,10 +33,12 @@ export default function CategorySelectorMobile({
 
   const options: { value: TabId; label: string }[] = [
     { value: 'global', label: globalLabel },
-    ...orderedCategories.map((category) => ({
-      value: category,
-      label: categoryLabels[category] || category,
-    })),
+    ...orderedCategories
+      .filter((category) => category !== 'services sociétaux')
+      .map((category) => ({
+        value: category,
+        label: categoryLabels[category] ?? category,
+      })),
   ]
 
   return (
