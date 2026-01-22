@@ -4,7 +4,6 @@ import JSONLD from '@/components/seo/JSONLD'
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
-import NewslettersBlockServer from '@/design-system/cms/NewslettersBlockServer'
 import { getDynamicPageTitleWithPagination } from '@/helpers/blog/getDynamicPageTitleWithPagination'
 import { getPageNumber } from '@/helpers/blog/getPageNumber'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -16,7 +15,6 @@ import { fetchHomepageContent } from '@/services/cms/fetchHomepageContent'
 import { fetchHomepageMetadata } from '@/services/cms/fetchHomepageMetadata'
 import type { DefaultPageProps } from '@/types'
 import { notFound } from 'next/navigation'
-import QueryClientProviderWrapper from '../../_components/mainLayoutProviders/QueryClientProviderWrapper'
 import BlogHero from './_components/BlogHero'
 import GroupBlock from './_components/GroupBlock'
 
@@ -164,10 +162,6 @@ export default async function BlogHomePage({
         )}
 
         <div className="flex flex-col gap-8 md:flex-row">
-          <QueryClientProviderWrapper>
-            <NewslettersBlockServer />
-          </QueryClientProviderWrapper>
-
           <GroupBlock locale={locale} />
         </div>
       </ContentLarge>
