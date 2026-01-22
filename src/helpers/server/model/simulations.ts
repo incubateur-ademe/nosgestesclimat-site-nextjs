@@ -1,25 +1,20 @@
 import { SIMULATION_URL } from '@/constants/urls/main'
+import { getInitialExtendedSituation } from '@/helpers/modelFetching/getInitialExtendedSituation'
+import { mapNewSimulationToOld } from '@/helpers/simulation/mapNewSimulation'
 import type { Simulation as ClientSimulation } from '@/publicodes-state/types'
 import type { Simulation as ServerSimulation } from '@/types/organisations'
-import { captureException } from '@sentry/nextjs'
-import { getInitialExtendedSituation } from '../modelFetching/getInitialExtendedSituation'
-import { mapNewSimulationToOld } from '../simulation/mapNewSimulation'
 
-export async function fetchUserSimulations({
+import { fetchWithJWTCookie } from './fetchWithJWTCookie'
+
+export async function getUserSimulations({
   userId,
 }: {
   userId: string
 }): Promise<ClientSimulation[]> {
-  const response = await fetch(`${SIMULATION_URL}/${userId}?pageSize=50`, {
-    credentials: 'include',
-  })
+  const serverSimulations = await fetchWithJWTCookie<ServerSimulation[]>(
+    `${SIMULATION_URL}/${userId}?pageSize=50`
+  )
 
-  if (!response.ok) {
-    captureException(new Error('Failed to fetch user simulations'))
-    return []
-  }
-
-  const serverSimulations = (await response.json()) as ServerSimulation[]
   // Map from server format to client format
   const simulations = serverSimulations.map((simulation) => {
     const mappedSimulation = mapNewSimulationToOld(simulation)
