@@ -57,6 +57,7 @@ export default function MosaicBooleanInput({
   return (
     <div>
       <label
+        data-testid={`${question}-oui-label`}
         className={twMerge(
           `focus-within:ring-primary-700 relative flex h-full items-center gap-2 rounded-xl border! bg-white px-4 py-2 text-left transition-colors focus-within:ring-2 focus-within:ring-offset-2`,
           buttonClassNames[status]
@@ -64,6 +65,7 @@ export default function MosaicBooleanInput({
         title={`${title} - ${status === 'checked' ? t('Sélectionné') : t('Sélectionner cette option')}`}>
         <input
           type="checkbox"
+          data-testid={`${question}-oui`}
           aria-disabled={isInactive}
           aria-describedby={isInactive ? `${title}-soon-available` : undefined}
           className="sr-only"
@@ -93,11 +95,12 @@ export default function MosaicBooleanInput({
         </span>
 
         <div className="flex-1">
-          {title && icons ? (
+          {title ? (
             <span
               aria-label={`${title} ${isInactive ? t('Bientôt disponible') : ''}`}
               className="inline-block align-middle text-sm md:text-base">
-              {title} <Emoji className="leading-tight">{icons ?? null}</Emoji>
+              {title}{' '}
+              {icons && <Emoji className="leading-tight">{icons}</Emoji>}
             </span>
           ) : null}
           {description ? (

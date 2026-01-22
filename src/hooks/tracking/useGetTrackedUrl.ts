@@ -1,18 +1,13 @@
-import {
-  ADMINISTRATOR_EMAIL_KEY,
-  ADMINISTRATOR_NAME_KEY,
-} from '@/constants/group'
 import i18nConfig from '@/i18nConfig'
 
 import { usePathname, useSearchParams } from 'next/navigation'
 
 // Params to anonymise and their replacement in the URL
 const PARAMS_TO_ANONYMISE = {
-  [ADMINISTRATOR_NAME_KEY]: 'administrator_name',
-  [ADMINISTRATOR_EMAIL_KEY]: 'administrator_email',
   email: 'email',
   'partner-token': 'partner_token',
   'partner-fallback': 'partner_fallback',
+  guestName: 'guest_name',
 }
 
 function handlePathnameAnonymisation(pathname: string) {

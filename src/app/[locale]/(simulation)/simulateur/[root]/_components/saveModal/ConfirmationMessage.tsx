@@ -10,7 +10,7 @@ export default function ConfirmationMessage() {
       subtitle={
         <Trans>
           Vous pouvez le reprendre plus tard en cliquant sur le lien que vous
-          avez reçu par email.
+          avez reçu par e-mail.
         </Trans>
       }>
       <Trans>Votre test est sauvegardé !</Trans>

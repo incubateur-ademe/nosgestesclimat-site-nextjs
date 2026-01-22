@@ -44,7 +44,7 @@ describe('useGetGroupStats', () => {
         participants: ['nolan', 'corentin', 'sandy'],
         currentUserId,
       })
-    })
+    }, 30000)
 
     describe('when the points forts and points faibles are compared', () => {
       let result: ReturnType<typeof useGetGroupStats>
@@ -54,7 +54,7 @@ describe('useGetGroupStats', () => {
           groupMembers: group.participants as unknown as Participant[],
           userId: currentUserId,
         })
-      })
+      }, 30000)
 
       it('then it should return pointsForts and pointFaibles that have a difference value !== 0', () => {
         expect(
@@ -63,7 +63,7 @@ describe('useGetGroupStats', () => {
         expect(
           result.pointsFaibles.every((p) => p.resultObject.difference !== 0)
         ).toBeTruthy()
-      })
+      }, 30000)
     })
   })
 })

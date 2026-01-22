@@ -30,7 +30,7 @@ export function useEngineSituation({
     (situationToAdd: Situation): Situation => {
       if (!engine) return situation
 
-      engine.setSituation({ ...situation, ...situationToAdd })
+      engine.setSituation(situationToAdd, { keepPreviousSituation: true })
 
       // The current engine situation might have been filtered with Publicodes filtering logic.
       const safeSituation = engine.getSituation()

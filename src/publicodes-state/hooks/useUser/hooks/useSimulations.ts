@@ -1,6 +1,8 @@
 'use client'
 
+import { getInitialExtendedSituation } from '@/helpers/modelFetching/getInitialExtendedSituation'
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
+import { migrateSimulation } from '@/publicodes-state/helpers/migrateSimulation'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import type {
   DottedName,
@@ -61,7 +63,6 @@ export default function useSimulations({
         savedViaEmail,
         migrationInstructions,
       })
-
       setSimulations((prevSimulations: Simulation[]) => {
         if (id && prevSimulations.find((simulation) => simulation.id === id)) {
           return prevSimulations
@@ -106,6 +107,11 @@ export default function useSimulations({
           if (simulation.id !== currentSimulationId) return simulation
 
           const simulationToUpdate = { ...simulation }
+
+          // Ensure extendedSituation is always defined (for old simulations that might not have it)
+          if (!simulationToUpdate.extendedSituation) {
+            simulationToUpdate.extendedSituation = getInitialExtendedSituation()
+          }
 
           if (situation !== undefined) {
             // We sync the extendedSituation with the situation detecting added, modified or removed dottedNames from the updated situation.
@@ -268,11 +274,23 @@ export default function useSimulations({
     [currentSimulationId, simulations]
   )
 
+  const updateSimulations = useCallback(
+    (newSimulations: Simulation[]) => {
+      setSimulations(
+        newSimulations.map((simulation) =>
+          migrateSimulation(simulation, migrationInstructions)
+        )
+      )
+    },
+    [migrationInstructions, setSimulations]
+  )
+
   return {
     initSimulation,
     deleteSimulation,
     currentSimulation,
     updateCurrentSimulation,
+    updateSimulations,
   }
 }
 

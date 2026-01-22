@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
-export default function useTimeLeft() {
-  const [timeLeft, setTimeLeft] = useState(30)
+export default function useTimeLeft(second = 30) {
+  const [timeLeft, setTimeLeft] = useState(second)
 
   useEffect(() => {
     const interval = setInterval(() => {

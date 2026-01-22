@@ -1,7 +1,7 @@
 {
   "name": "nosgestesclimat-site-nextjs",
   "license": "MIT",
-  "version": "2.48.1",
+  "version": "2.50.0",
   "description": "The leading open source climate footprint calculator",
   "type": "module",
   "repository": {
@@ -23,7 +23,7 @@
     "build": "node ./check-memory.mjs && node --max-old-space-size=4608 node_modules/next/dist/bin/next build",
     "build:analyze": "ANALYZE=true next build",
     "build:debug-memory": "next build --experimental-debug-memory-usage",
-    "format": "prettier --write \"**/*.{js,ts,tsx,md,json}\" && eslint . --fix",
+    "format": "prettier --cache --write \"**/*.{js,ts,tsx,md,json}\" && pnpm lint:fix",
     "start": "next start",
     "lint": "prettier --check --cache  . && eslint --cache --cache-location './node_modules/.cache/eslint' --quiet",
     "lint:fix": "eslint --cache --cache-location './node_modules/.cache/eslint' --fix",
@@ -49,12 +49,13 @@
   },
   "dependencies": {
     "@incubateur-ademe/legal-pages-react": "^0.5.0",
-    "@incubateur-ademe/nosgestesclimat": "https://pkg.pr.new/incubateur-ademe/nosgestesclimat/@incubateur-ademe/nosgestesclimat@60cf8f6",
+    "@incubateur-ademe/nosgestesclimat": "4.8.1",
     "@next/mdx": "^16.0.7",
     "@publicodes/react-ui": "^1.10.0",
     "@publicodes/tools": "^1.8.0",
     "@sentry/nextjs": "^10.22.0",
     "@splidejs/react-splide": "^0.7.12",
+    "@storybook/react": "^10.1.11",
     "@tailwindcss/postcss": "^4.1.14",
     "@tanstack/react-query": "^5.90.5",
     "axios": "^1.12.2",

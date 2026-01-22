@@ -11,9 +11,10 @@ interface Props {
   isSmall?: boolean
 }
 export default function WaterTotalNumber({ total, isSmall }: Props) {
-  const { numericValue } = useRule('bilan', eauMetric)
+  const hookValue = useRule('bilan', eauMetric).numericValue
 
-  const usedValue = total ?? numericValue
+  // Allow forcing the value to be displayed
+  const usedValue = typeof total === 'number' ? total : hookValue
 
   const { formattedValue, unit } = formatFootprint(usedValue, {
     metric: eauMetric,
@@ -32,7 +33,7 @@ export default function WaterTotalNumber({ total, isSmall }: Props) {
         isSmall ? 'md:scale-75 md:pt-4' : 'scale-100'
       )}>
       <div className="text-water text-center leading-0 font-medium whitespace-nowrap">
-        <span className="mb flex items-baseline justify-center gap-1">
+        <span className="mb flex items-baseline justify-center">
           <strong className="text-xl leading-none font-black md:text-4xl lg:text-6xl">
             {realFormattedValue}
           </strong>

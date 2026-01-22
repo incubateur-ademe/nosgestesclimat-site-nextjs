@@ -72,6 +72,20 @@ export const endClickJagisSecondBlock = [
   'Click Jagis second bloc',
 ]
 
+export type FinTab = 'results' | 'actions' | 'groups'
+
+export const finTabTrackEvent = (tab: FinTab) => [
+  'trackEvent',
+  'Fin',
+  'Click Tab',
+  tab.charAt(0).toUpperCase() + tab.slice(1),
+]
+
+export const captureClickFinTab = ({ tab }: { tab: FinTab }) => ({
+  eventName: 'click tab fin',
+  properties: { tab },
+})
+
 export const endClickFootprint = (metric: string) => [
   'trackEvent',
   'Fin',
@@ -84,3 +98,23 @@ export const captureClickFootprint = (metric: string) => ({
     metric,
   },
 })
+
+export const groupsLoginComplete = [
+  'trackEvent',
+  'Groups Login',
+  'Verification code validé',
+]
+
+export const captureGroupsLoginComplete = {
+  eventName: 'Groups Login - Verification code validé',
+}
+
+export const saveResultsAndSigninSignUpComplete = [
+  'trackEvent',
+  'Save Results and Signin Sign Up',
+  'Verification code validé',
+]
+
+export const captureSaveResultsAndSigninSignUpComplete = {
+  eventName: 'Save Results and Signin Sign Up - Verification code validé',
+}

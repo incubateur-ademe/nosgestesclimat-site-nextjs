@@ -20,7 +20,7 @@ export default function Card({
       target?: string
     } & HTMLAttributes<HTMLDivElement>
   >) {
-  const Tag = tag || ('div' as React.ElementType)
+  const Tag = tag ?? ('div' as React.ElementType)
   const isInteractive = tag === 'button' || tag === 'a' || !!onClick
 
   return (
