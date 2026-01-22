@@ -1,0 +1,52 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "tags": ["-lintignore"],
+  "entry": [
+    "sentry.*.config.ts",
+    "tailwind.config.js",
+    "postcss.config.js",
+    "vitest.config.ts",
+    "playwright.config.ts",
+    ".storybook/**/*.{ts,tsx,js,jsx}",
+    "scripts/**/*.{ts,tsx,js,jsx,mjs,cjs}",
+    "src/i18nConfig.ts",
+    "public/scripts/**/*.{ts,tsx,js,jsx}",
+    "check-memory.mjs"
+  ],
+  "ignore": [
+    "**/*.test.{ts,tsx,js,jsx}",
+    "**/*.spec.{ts,tsx,js,jsx}",
+    "**/__tests__/**",
+    "**/__mocks__/**",
+    "tests/**",
+    "src/helpers/tests/**",
+    "**/*.stories.{ts,tsx,js,jsx}",
+    "public/**",
+    ".next/**",
+    "node_modules/**",
+    "vitest.setup.ts",
+    "vitest-globals.d.ts",
+    "src/locales/nouveautes/**",
+    "scripts/check-links-validity.mjs",
+    "src/constants/ab-test.ts"
+  ],
+  "ignoreDependencies": [
+    "@axe-core/playwright",
+    "@chromatic-com/storybook",
+    "@faker-js/faker",
+    "@playwright/test",
+    "/^@storybook\\//",
+    "/^@testing-library\\//",
+    "/^@types\\//",
+    "@vitejs/plugin-react",
+    "/^@vitest\\//",
+    "happy-dom",
+    "jsdom",
+    "msw",
+    "msw-storybook-addon",
+    "playwright",
+    "playwright-core",
+    "puppeteer",
+    "vitest"
+  ]
+}
