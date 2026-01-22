@@ -1,8 +1,8 @@
 import { TEST_INTRO_TUTO_KEY } from '@/app/[locale]/(simulation)/(large)/tutoriel/_components/ButtonStart'
 import { saveSimulation } from '@/helpers/simulation/saveSimulation'
-import { fetchUserSimulations } from '@/helpers/user/fetchUserSimulations'
 import type { useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
+import { getUserSimulations } from '../server/model/simulations'
 import { generateSimulation } from '../simulation/generateSimulation'
 
 // This is the date when we started to save all simulations started on the server
@@ -42,7 +42,7 @@ async function loadServerSimulation({
   hideTutorial: (tutorialId: string) => void
 }) {
   // Fetch simulations from server
-  let simulations = await fetchUserSimulations({
+  let simulations = await getUserSimulations({
     userId,
   })
 
