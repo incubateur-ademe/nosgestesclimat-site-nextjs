@@ -15,9 +15,9 @@ async function uploadLocalSimulations({
   simulations: Simulation[]
   userId: string
 }) {
-  // Save all simulation started after the LIMIT_DATE
+  // Save all simulation started before the LIMIT_DATE
   const simulationsToSave = simulations.filter(
-    (simulation) => new Date(simulation.date) > LIMIT_DATE
+    (simulation) => new Date(simulation.date) < LIMIT_DATE
   )
 
   await Promise.allSettled(
@@ -74,6 +74,7 @@ export async function reconcileUserOnAuth({
     setCurrentSimulationId,
     hideTutorial,
   } = user
+
   if (userId === localUser.userId) {
     // We only sync if localuserId is the same as distant userId
     await uploadLocalSimulations({
