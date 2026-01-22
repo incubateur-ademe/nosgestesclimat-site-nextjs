@@ -13,7 +13,6 @@ import ShareBlock from '@/components/results/ShareBlock'
 import Trans from '@/components/translation/trans/TransClient'
 import { carboneMetric, eauMetric } from '@/constants/model/metric'
 import { FIN_TAB_QUERY_PARAM } from '@/constants/urls/params'
-import NewslettersBlock from '@/design-system/cms/NewslettersBlock'
 import Title from '@/design-system/layout/Title'
 import { fetchUser } from '@/helpers/user/fetchUser'
 import { useEndGuard } from '@/hooks/navigation/useEndGuard'
@@ -121,18 +120,6 @@ export default function FinPage() {
                 )}>
                 {currentMetric === eauMetric && <Eau />}
               </div>
-
-              {isFrenchRegion && (
-                <NewslettersBlock
-                  title={
-                    <Trans i18nKey="fin.newsletters.title">
-                      Recevez des conseils pour réduire votre empreinte
-                    </Trans>
-                  }
-                  className="md:w-full"
-                  isAuthenticated={false}
-                />
-              )}
 
               {isFrenchRegion && <ShareBlock />}
 
