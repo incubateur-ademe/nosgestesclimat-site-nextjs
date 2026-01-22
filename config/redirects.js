@@ -154,7 +154,12 @@ const redirects = [
   },
   {
     source: '/blog/challenge-tes-amis',
-    destination: '/blog/actualites-et-fonctionnalites/challenge-tes-amis',
+    destination: '/classements',
+    permanent: true,
+  },
+  {
+    source: '/blog/actualites-et-fonctionnalites/challenge-tes-amis',
+    destination: '/classements',
     permanent: true,
   },
   {
@@ -200,7 +205,7 @@ const redirects = [
   },
   {
     source: '/blog/mobilites/impact-mobilite',
-    destination: '/classements',
+    destination: '/blog/mobilites/mobilites-douces-modes-transport-puissants',
     permanent: true,
   },
   {
