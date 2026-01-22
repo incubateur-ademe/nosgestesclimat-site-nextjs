@@ -1,8 +1,8 @@
 import { TEST_INTRO_TUTO_KEY } from '@/app/[locale]/(simulation)/(large)/tutoriel/_components/ButtonStart'
 import { saveSimulation } from '@/helpers/simulation/saveSimulation'
-import { fetchUserSimulations } from '@/helpers/user/fetchUserSimulations'
 import type { useUser } from '@/publicodes-state'
 import type { Simulation } from '@/publicodes-state/types'
+import { getUserSimulations } from '../server/model/simulations'
 import { generateSimulation } from '../simulation/generateSimulation'
 
 // This is the date when we started to save all simulations started on the server
@@ -15,9 +15,9 @@ async function uploadLocalSimulations({
   simulations: Simulation[]
   userId: string
 }) {
-  // Save all simulation started before the LIMIT_DATE
+  // Save all simulation started after the LIMIT_DATE
   const simulationsToSave = simulations.filter(
-    (simulation) => new Date(simulation.date) < LIMIT_DATE
+    (simulation) => new Date(simulation.date) > LIMIT_DATE
   )
 
   await Promise.allSettled(
@@ -42,7 +42,7 @@ async function loadServerSimulation({
   hideTutorial: (tutorialId: string) => void
 }) {
   // Fetch simulations from server
-  let simulations = await fetchUserSimulations({
+  let simulations = await getUserSimulations({
     userId,
   })
 
@@ -74,7 +74,6 @@ export async function reconcileUserOnAuth({
     setCurrentSimulationId,
     hideTutorial,
   } = user
-
   if (userId === localUser.userId) {
     // We only sync if localuserId is the same as distant userId
     await uploadLocalSimulations({
