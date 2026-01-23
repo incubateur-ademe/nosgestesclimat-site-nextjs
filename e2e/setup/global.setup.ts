@@ -6,7 +6,7 @@ import { saveContext } from '../helpers/save-context'
 
 import { NEW_VISITOR_STATE, COMPLETED_TEST_STATE, USER_ACCOUNT_STATE, GROUP_ADMIN_STATE, ORGANISATION_ADMIN_STATE } from '../state'
 
-setup.setTimeout(120_000)
+setup.setTimeout(60_000)
 
 
 setup('new visitor', async ({ page, cookieBanner }) => {
@@ -34,7 +34,13 @@ setup('complete test and create group', async ({ page, group, ngcTest, cookieBan
   await page.goto('/')
   await cookieBanner.dismiss()
   await ngcTest.skipAll()
-  await Group.goFromGroupTabs(page)
+
+  // Wait for simulation to be saved
+  await page.waitForTimeout(3000)
+
+  await page.getByTestId("my-groups-tab").click();
+  await page.getByTestId("create-group-button").click()
+
   await expect(page).toHaveURL(new RegExp(Group.CREATION_URL))
   await group.admin.fillEmailAndCompleteVerification()
   await group.create()
@@ -54,8 +60,7 @@ setup('complete test and save its simulation', async ({ page, ngcTest, cookieBan
   await expect(page).toHaveURL(new RegExp(UserSpace.URL))
 
   // User should be greeted
-  // @TODO it should be in viewport (here we need to scroll)
-  await expect(page.getByText('Bienvenue dans votre espace')).toBeVisible()
+  await expect(page.getByText('Bienvenue dans votre espace')).toBeInViewport()
 
   // User should receive an email with a simulation link
   await user.readSavedSimulationEmail()

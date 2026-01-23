@@ -13,14 +13,18 @@ export default defineConfig<FixturesOptions>({
   testDir: './e2e',
   fullyParallel: true,
   retries: process.env.CI ? 1 : 0,
+  workers: process.env.CI ? 2 : undefined,
   use: {
-    baseURL: process.env.PLAYWRIGHT_baseUrl ?? 'http://localhost:3000',
+    baseURL: process.env.NEXT_PUBLIC_SITE_URL,
     trace: 'on-first-retry',
     locale: 'fr-FR',
   },
   expect: {
     timeout: 10_000,
   },
+  reporter: process.env.CI
+    ? [['blob'], ['line']]
+    : [['line'], ['html', { outputFolder: 'playwright-report' }]],
 
 
   /* Configure projects for major browsers */
@@ -28,23 +32,22 @@ export default defineConfig<FixturesOptions>({
     {
       name: 'global setup',
       testMatch: /global\.setup\.ts/,
-      workers: 3,
       use: {
         setup: true, // Custom option passed to fixtures (to launch them in setup mode)
         ...devices['Desktop Chrome'],
       },
     },
     {
-      name: 'chromium',
+      name: 'Chrome',
       dependencies: ['global setup'],
       use: {
-        ...devices['Desktop Chrome'],
+        ...devices['Desktop Chrome HiDPI'],
         storageState: NEW_VISITOR_STATE,
       },
     },
-    ...(process.env.CI ? [
+    // ...(process.env.CI ? [
       {
-        name: 'firefox',
+        name: 'Firefox',
         dependencies: ['global setup'],
         use: {
           ...devices['Desktop Firefox'],
@@ -52,14 +55,14 @@ export default defineConfig<FixturesOptions>({
         },
       },
       {
-        name: 'iPhone',
+        name: 'Mobile Safari',
         dependencies: ['global setup'],
         use: {
-          ...devices['iPhone 11 Pro'],
+          ...devices['iPhone 12'],
           storageState: NEW_VISITOR_STATE,
         },
-      },
-    ] : []),
+       },
+    // ] : []),
   ],
 
   /* Run your local dev server before starting the tests */
@@ -67,8 +70,8 @@ export default defineConfig<FixturesOptions>({
     ? undefined
     : {
         command: 'npm run dev',
-        url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
-        reuseExistingServer: !process.env.CI,
+        url: process.env.NEXT_PUBLIC_SITE_URL,
+        reuseExistingServer: true,
         timeout: 120 * 1000,
         // env: process.env as Record<string, string>,
       },

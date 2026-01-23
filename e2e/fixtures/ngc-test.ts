@@ -1,11 +1,9 @@
 import type { Situation } from '@/publicodes-state/types'
-import { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import type { Page } from '@playwright/test'
 import { type TutorialPage, test as base, expect } from './tutorial'
 
 export class NGCTest {
-  static NEXT_QUESTION_BUTTON = 'next-question-button'
-
   constructor(
     public readonly page: Page,
     public readonly tutorialPage: TutorialPage
@@ -14,22 +12,6 @@ export class NGCTest {
   async goto() {
     await this.tutorialPage.goto()
     await this.tutorialPage.skip()
-  }
-
-  async skipAll() {
-    await this.goto()
-    await this.skipAllQuestions()
-  }
-
-  async answerTest(situation: Situation) {
-    while (
-      (await this.page
-        .getByTestId(NGCTest.NEXT_QUESTION_BUTTON)
-        .textContent()) !== 'Terminer'
-    ) {
-      await this.answerQuestion(situation)
-    }
-    await this.goToNextQuestion()
   }
 
   async answerQuestion(situation: Situation) {
@@ -45,13 +27,13 @@ export class NGCTest {
         continue
       }
       const value = situation[dottedName as DottedName]
-      isAnswered = true
 
       if (
         typeof value === 'string' &&
         (value === `'${answer}'` || value === answer)
       ) {
         await this.page.getByTestId(`${dottedName}-${answer}-label`).click()
+        isAnswered = true
         continue
       }
       if (typeof value === 'number') {
@@ -59,31 +41,44 @@ export class NGCTest {
         await this.page
           .getByTestId(dottedName)
           .fill(String(value).replace('.', ','))
+        isAnswered = true
         continue
       }
-      isAnswered = false
     }
     if (isAnswered) {
-      await this.page.getByRole('button', { name: 'Suivant' }).click()
+      await this.page.getByTestId('next-question-button').click()
     } else {
-      await this.goToNextQuestion()
+      await this.clickOnSkip()
     }
   }
 
-  async goToNextQuestion() {
-    await this.page.getByTestId(NGCTest.NEXT_QUESTION_BUTTON).click()
+  async clickOnSkip() {
+    await this.page.getByTestId('skip-question-button').click()
+  }
+
+  async isLastQuestion() {
+    return this.page
+      .getByTestId('services sociétaux . question rhétorique-ok-label')
+      .isVisible()
+  }
+
+  async skipAll() {
+    await this.goto()
+    await this.skipAllQuestions()
   }
 
   async skipAllQuestions() {
-    while (
-      (await this.page
-        .getByTestId(NGCTest.NEXT_QUESTION_BUTTON)
-        .textContent()) !== 'Terminer'
-    ) {
-      await this.goToNextQuestion()
+    while (!(await this.isLastQuestion())) {
+      await this.clickOnSkip()
     }
+    await this.page.getByTestId('end-test-button').click()
+  }
 
-    await this.goToNextQuestion()
+  async answerTest(situation: Situation) {
+    while (!(await this.isLastQuestion())) {
+      await this.answerQuestion(situation)
+    }
+    await this.page.getByTestId('end-test-button').click()
   }
 }
 

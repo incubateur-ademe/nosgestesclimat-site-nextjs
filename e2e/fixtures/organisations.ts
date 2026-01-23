@@ -64,9 +64,9 @@ export class Organisation {
 
   async goFromLandingPage() {
     await this.page.goto('/')
-    await this.page.getByRole('link', { name: 'Organisations' }).click()
+    await this.page.getByTestId('organisations-link').click()
     await this.page.waitForURL(/organisations/)
-    await this.page.getByRole('link', { name: 'Commencer' }).click()
+    await this.page.getByTestId('start-link').click()
   }
 
   async saveInContext() {

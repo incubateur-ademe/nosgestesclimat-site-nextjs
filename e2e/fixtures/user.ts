@@ -64,9 +64,7 @@ export class User {
       'Retrouvez vos résultats dans votre espace Nos Gestes Climat'
     )
     expect(confirmationEmail).toBeDefined()
-    const simulationUrl = new RegExp(
-      `${process.env.NEXT_PUBLIC_SITE_URL}/fin\\?sid=[^\\s]+`
-    )
+    const simulationUrl = new RegExp(`/fin\\?sid=[^\\s]+`)
     const match = simulationUrl.exec(confirmationEmail!.text!)
     expect(match).not.toBeNull()
     this.data.savedSimulationLink = match![0]

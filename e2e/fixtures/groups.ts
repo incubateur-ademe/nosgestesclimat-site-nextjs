@@ -68,12 +68,10 @@ export class Group {
   async joinWithInviteLink(user: User, { fillEmail = false } = {}) {
     await user.page.goto(this.inviteLink)
     await user.page.getByTestId('member-name').fill(user.firstName)
-    await user.page.getByTestId('button-join-group-next').click()
     if (fillEmail) {
-      await user.fillEmailAndCompleteVerification()
-    } else {
-      await user.page.getByTestId('verification-code-submit-button').click()
+      await user.page.getByTestId('email-input').fill(user.email)
     }
+    await user.page.getByTestId('button-join-group').click()
   }
 
   async leave(user: User) {
@@ -82,9 +80,12 @@ export class Group {
   }
 
   async copyInviteLink() {
-    await this.page
-      .context()
-      .grantPermissions(['clipboard-read', 'clipboard-write'])
+    const browser = this.page.context().browser()
+    if (browser?.browserType().name() === 'chromium') {
+      await this.page
+        .context()
+        .grantPermissions(['clipboard-read', 'clipboard-write'])
+    }
     await this.page.getByTestId('invite-button').click()
     const clipboardContent = await this.page.evaluate(() => {
       return navigator.clipboard.readText()
@@ -93,9 +94,10 @@ export class Group {
     return clipboardContent
   }
 
-  static async goFromGroupTabs(page: Page) {
+  async goFromGroupTabs(page: Page) {
+    await page.waitForTimeout(500)
     await page.getByTestId('my-groups-tab').click()
-    await page.getByRole('link', { name: 'Créer un groupe' }).click()
+    await page.getByText(this.name).click()
   }
 
   async saveInContext() {
@@ -105,6 +107,7 @@ export class Group {
 
   static async fromContext(page: Page) {
     const data = await getPlaywrightState<Data>(page, 'group')
+
     const admin = await User.fromContext(page)
 
     return new Group(page, admin, data)

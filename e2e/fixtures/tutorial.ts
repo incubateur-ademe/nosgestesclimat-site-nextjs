@@ -11,7 +11,9 @@ export class TutorialPage {
   }
 
   async skip() {
+    await this.page.waitForTimeout(500)
     await this.page.getByTestId(TutorialPage.SKIP_TUTORIAL_BUTTON).click()
+    await this.page.waitForURL(new RegExp(`^(?!.*${TutorialPage.URL}).*$`))
   }
 }
 

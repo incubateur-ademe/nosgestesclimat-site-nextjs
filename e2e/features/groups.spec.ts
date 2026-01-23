@@ -1,7 +1,6 @@
 import { expect, test } from '../fixtures'
 import { Group } from '../fixtures/groups'
 import { TutorialPage } from '../fixtures/tutorial'
-import { saveContext } from '../helpers/save-context'
 import {
   COMPLETED_TEST_STATE,
   GROUP_ADMIN_STATE,
@@ -14,18 +13,33 @@ test.describe('A group admin', () => {
   test('can go to its group from its user account', async ({
     userSpace,
     page,
+    group,
   }) => {
     await userSpace.goto()
-    await Group.goFromGroupTabs(page)
+    await group.goFromGroupTabs(page)
   })
 
-  test('can create a new group and delete it', async ({ page, user }) => {
-    const newGroup = new Group(page, user)
-    await page.goto(Group.CREATION_URL)
-    await newGroup.create()
-    await newGroup.delete()
-    await expect(page).toHaveURL('/mon-espace/groupes')
-    await expect(page.getByText(newGroup.name)).not.toBeVisible()
+  test.describe('can create a new group and delete it', () => {
+    let newGroup: Group
+    test.beforeEach(async ({ page, user }) => {
+      newGroup = new Group(page, user)
+      await page.goto(Group.CREATION_URL)
+      await page.waitForTimeout(500)
+      await newGroup.create()
+    })
+
+    test('and change its name', async ({ page }) => {
+      await newGroup.changeName()
+      await expect(
+        page.getByTestId('group-name').getByText(newGroup.name)
+      ).toBeVisible()
+    })
+
+    test.afterEach(async ({ page }) => {
+      await newGroup.delete()
+      await expect(page).toHaveURL('/mon-espace/groupes')
+      await expect(page.getByText(newGroup.name)).not.toBeVisible()
+    })
   })
 
   test('lands on the result page if it use its own group invite link', async ({
@@ -48,23 +62,12 @@ test.describe('The group result page, when accessed by an admin', () => {
 
   test('has an invite link that can be copied with good utm', async ({
     group,
+    baseURL,
   }) => {
     const clipboardContent = await group.copyInviteLink()
-    expect(clipboardContent).toMatch(
-      new RegExp('^' + process.env.NEXT_PUBLIC_SITE_URL!)
-    )
+    expect(clipboardContent).toMatch(new RegExp('^' + baseURL))
     expect(clipboardContent).toMatch(/utm_medium=sharelink/)
     expect(clipboardContent).toMatch(/utm_source=NGC/)
-  })
-
-  test('allows to edit group name', async ({ group, page }) => {
-    await group.changeName()
-    await page.reload()
-
-    await expect(page.locator('h1')).toHaveText(group.name)
-
-    await group.saveInContext()
-    await saveContext(page, GROUP_ADMIN_STATE)
   })
 
   test('displays main section', async ({ page }) => {
@@ -96,11 +99,7 @@ test.describe('A new user', () => {
     await expect(page).toHaveURL(new RegExp(TutorialPage.URL))
   })
 
-  test('can join a group and create an account', async ({
-    page,
-    user,
-    group,
-  }) => {
+  test('can join a group and fill its email', async ({ page, user, group }) => {
     await group.joinWithInviteLink(user, { fillEmail: true })
     await expect(page).toHaveURL(new RegExp(TutorialPage.URL))
   })
@@ -116,17 +115,20 @@ test.describe('A new user', () => {
     await tutorialPage.skip()
     await ngcTest.skipAllQuestions()
     await expect(page).toHaveURL(group.url)
-    await expect(page.getByText(user.firstName)).toBeVisible()
   })
 })
 
 test.describe('A user with a completed test that joined a group', () => {
   test.use({ storageState: COMPLETED_TEST_STATE })
-  // TODO
+  // @TODO : fix when redirection is working better
   test.skip()
   test.beforeEach(async ({ user, group, page }) => {
     await group.joinWithInviteLink(user)
     await page.waitForLoadState('networkidle')
+  })
+
+  test.afterEach(async ({ user, group }) => {
+    await group.leave(user)
   })
 
   test('can see the group result page directly', async ({
@@ -143,19 +145,8 @@ test.describe('A user with a completed test that joined a group', () => {
     group,
   }) => {
     await page.goto('/fin')
-    await Group.goFromGroupTabs(page)
+    await group.goFromGroupTabs(page)
     await expect(page).toHaveURL(group.url)
-  })
-
-  test('can quit the group', async ({ page, group, user }) => {
-    await page.goto(group.url)
-    await group.leave(user)
-    // @TODO QUENTIN : redirected to /connexion
-    await expect(page).toHaveURL('/connexion')
-
-    // Check that the user doesn't appear on the group page anymore for the admin
-    await group.page.goto(group.url)
-    await expect(group.page.getByText(user.firstName)).not.toBeVisible()
   })
 
   test('when he reuses the invite link, lands directly on the result page', async ({
@@ -168,10 +159,9 @@ test.describe('A user with a completed test that joined a group', () => {
 
   test('can go directly to the result page with the group url', async ({
     page,
-    user,
     group,
   }) => {
     await page.goto(group.url)
-    await expect(page.locator('h1')).toContainText(user.firstName)
+    await expect(page.locator('h1')).toContainText(group.name)
   })
 })

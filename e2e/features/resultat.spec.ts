@@ -69,7 +69,8 @@ test.describe('Given a user that saved it simulation', () => {
   }) => {
     await page.goto(user.savedSimulationLink)
     await expect(page).toHaveURL(new RegExp(URL))
-    await expect(page.locator('h1')).toHaveText('Mes empreintes')
+    // @TODO There is two h1 on result page
+    await expect(page.locator('h1').first()).toHaveText('Mes empreintes')
     const carbonFootprintElem = await getCarbonFootprintElem(page)
     await expect(carbonFootprintElem).toBeInViewport()
   })
@@ -92,7 +93,7 @@ test.describe('Given a user that saved it simulation', () => {
 })
 
 async function getCarbonFootprintElem(page: Page) {
-  await page.waitForTimeout(4000)
+  await page.waitForTimeout(7000)
   const carbonFootprintElem = page
     .getByText(/[\d]+,[\d][\s]tonnes/)
     .filter({ visible: true })

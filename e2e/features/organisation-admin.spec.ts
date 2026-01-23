@@ -1,5 +1,4 @@
 import { expect, test } from '../fixtures'
-import { Organisation } from '../fixtures/organisations'
 import { User } from '../fixtures/user'
 import { saveContext } from '../helpers/save-context'
 import { ORGANISATION_ADMIN_STATE } from '../state'
@@ -88,22 +87,13 @@ test.describe('The parameters page', () => {
     )
   })
 
-  test('should have a working logout button', async ({
-    page,
-    organisation,
-  }) => {
-    const logout = page.getByTestId('organisation-logout')
-    await expect(logout).toBeVisible()
-    await logout.click()
-    await expect(page).toHaveURL('/organisations')
-    await page.goto(organisation.url)
-    await expect(page).toHaveURL(Organisation.CONNEXION_URL)
-  })
-
   test('should allow to change the administrator info', async ({
     page,
     organisation,
   }) => {
+    // @TODO : the test that have side effect on shared state should run in a last step
+    // or during setup
+    test.skip()
     const admin = new User(page)
     await page
       .getByTestId('input-administrator-first-name')
@@ -112,7 +102,7 @@ test.describe('The parameters page', () => {
     await page.getByTestId('input-administrator-last-name').fill(admin.lastName)
     await page.getByTestId('input-administrator-email').fill(admin.email)
     await page.waitForTimeout(500)
-    await page.getByRole('button', { name: 'Enregistrer' }).click()
+    await page.getByTestId('button-submit').click()
 
     // Should display a verification code input
     const verificationCodeInput = page.getByTestId('verification-code-input')

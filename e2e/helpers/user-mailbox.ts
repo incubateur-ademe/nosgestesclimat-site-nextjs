@@ -1,6 +1,14 @@
 import { MailiskClient } from 'mailisk'
 
-const mailisk = new MailiskClient({ apiKey: process.env.MAILISK_API_KEY! })
+if (!process.env.MAILISK_NAMESPACE || !process.env.MAILISK_API_KEY) {
+  throw new Error(
+    `MAILISK_NAMESPACE and MAILISK_API_KEY are required.
+    MAILISK_NAMESPACE=${process.env.MAILISK_NAMESPACE}
+    MAILISK_API_KEY=${process.env.MAILISK_API_KEY}`
+  )
+}
+
+const mailisk = new MailiskClient({ apiKey: process.env.MAILISK_API_KEY })
 
 export class UserMailbox {
   constructor(private readonly email: string) {}

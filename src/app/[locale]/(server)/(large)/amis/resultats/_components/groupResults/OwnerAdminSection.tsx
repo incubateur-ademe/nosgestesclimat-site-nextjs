@@ -49,6 +49,7 @@ export default function OwnerAdminSection({ group }: Props) {
         groupId: group.id,
         userId: user.userId,
       })
+      router.refresh()
 
       timeoutRef.current = setTimeout(() => {
         router.push(MON_ESPACE_GROUPS_PATH)

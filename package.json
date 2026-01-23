@@ -20,7 +20,7 @@
     "dev": "next dev",
     "dev:webpack": "next dev --webpack",
     "build:next": "next build",
-    "build": "node ./check-memory.mjs && node --max-old-space-size=4608 node_modules/next/dist/bin/next build",
+    "build": "pnpm next build",
     "build:analyze": "ANALYZE=true next build",
     "build:debug-memory": "next build --experimental-debug-memory-usage",
     "format": "prettier --write \"**/*.{js,ts,tsx,md,json}\" && eslint . --fix",

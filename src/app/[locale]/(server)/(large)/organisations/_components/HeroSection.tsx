@@ -27,6 +27,7 @@ export default function HeroSection() {
           <li>
             <ButtonLink
               href="/organisations/connexion"
+              data-testid="start-link"
               trackingEvent={organisationsAccueilClickCommencer}>
               <Trans>Commencer</Trans>
             </ButtonLink>

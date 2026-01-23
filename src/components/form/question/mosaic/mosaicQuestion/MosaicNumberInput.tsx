@@ -92,7 +92,7 @@ export default function MosaicNumberInput({
             }
             setValue(inputValue === '' ? inputValue : floatValue)
           }}
-          data-testid={`${question}---${parentMosaic}`}
+          data-testid={`${question}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
         />
         {!shouldNotContainButtons && (

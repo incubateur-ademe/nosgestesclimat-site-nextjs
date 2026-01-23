@@ -30,7 +30,7 @@ export default function VerificationCodeInput({
         length={6}
         inputProps={
           {
-            'data-testid': 'organisation-connexion-verification-code-input',
+            'data-testid': 'verification-code-input',
             'aria-label': 'Entrez votre code de vérification pour continuer',
             'aria-describedby':
               [

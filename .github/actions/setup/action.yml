@@ -1,0 +1,38 @@
+name: 'Setup'
+description: 'Setup Node.js, install dependencies, and build the Next.js app'
+
+inputs:
+  build:
+    description: 'Include the build step'
+    required: false
+    default: 'false'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+
+    - name: Use Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version-file: './package.json'
+        cache: 'pnpm'
+
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install
+
+    - name: Cache Next.js build
+      uses: actions/cache@v5
+      with:
+        path: |
+          ${{ github.workspace }}/.next/cache
+        key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('src/**/*.{js,jsx,ts,tsx}') }}
+        restore-keys: |
+          ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
+
+    - name: Build
+      if: ${{ inputs.build == 'true' }}
+      shell: bash
+      run: pnpm build

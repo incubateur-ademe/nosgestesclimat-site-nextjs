@@ -89,6 +89,7 @@ export default function InvitationForm({ group }: { group: Group }) {
       <div className="my-4">
         <EmailInput
           value={user.email ?? ''}
+          data-testid="email-input"
           label={
             <span>
               {t('Votre adresse electronique')}{' '}

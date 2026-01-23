@@ -114,7 +114,7 @@ test.describe('The parameters page', () => {
     await page.getByTestId('input-administrator-last-name').fill(admin.lastName)
     await page.getByTestId('input-administrator-email').fill(admin.email)
 
-    await page.getByRole('button', { name: 'Enregistrer' }).click()
+    await page.getByTestId('button-submit').click()
 
     // Should display a verification code input
     const verificationCodeInput = page.getByTestId('verification-code-input')
