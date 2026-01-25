@@ -86,6 +86,11 @@ export class Group {
         .context()
         .grantPermissions(['clipboard-read', 'clipboard-write'])
     }
+    if (browser?.browserType().name() === 'webkit') {
+      // We cannot use clipboard read with webkit yet
+      // https://github.com/microsoft/playwright/issues/13037
+      test.skip()
+    }
     await this.page.getByTestId('invite-button').click()
     const clipboardContent = await this.page.evaluate(() => {
       return navigator.clipboard.readText()

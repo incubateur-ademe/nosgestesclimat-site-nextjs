@@ -1,0 +1,31 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - preprod
+
+jobs:
+  deploy-preprod:
+    name: Deploy to Scalingo (preprod)
+    runs-on: ubuntu-latest
+    environment: preprod
+
+    steps:
+      - name: Trigger deployment
+        run: |
+          curl --fail-with-body \
+            -H "Accept: application/json" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.SCALINGO_API_TOKEN }}" \
+            -X POST "https://api.osc-fr1.scalingo.com/v1/apps/${{ vars.SCALINGO_APP_NAME }}/deployments" \
+            -d '{
+              "deployment": {
+                "git_ref": "${{ github.sha }}",
+                "source_url": "https://github.com/${{ github.repository }}/archive/${{ github.sha }}.tar.gz"
+              }
+            }'
+
+  e2e-preprod:
+    needs: deploy
+    uses: ./.github/workflows/e2e.yaml

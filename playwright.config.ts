@@ -16,7 +16,7 @@ export default defineConfig<FixturesOptions>({
   workers: process.env.CI ? 2 : undefined,
   use: {
     baseURL: process.env.NEXT_PUBLIC_SITE_URL,
-    trace: 'on-first-retry',
+    trace: process.env.CI ? 'on-first-retry' : 'on',
     locale: 'fr-FR',
   },
   expect: {

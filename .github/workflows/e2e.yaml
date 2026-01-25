@@ -2,16 +2,13 @@ name: E2E Tests
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
-      - preprod
+  workflow_call:
 
 env:
   NEXT_PUBLIC_SERVER_URL: ${{ vars.NEXT_PUBLIC_SERVER_URL }}
   NEXT_PUBLIC_PROXY_SERVER: 'true'
-  LOCAL_TEST: ${{ github.event.inputs.branch != 'preprod' && 'true' || 'false' }}
-  NEXT_PUBLIC_SITE_URL: ${{ github.event.inputs.branch == 'preprod' && 'https://preprod.nosgestesclimat.fr' || 'http://localhost:3000' }}
+  LOCAL_TEST: ${{ github.event_name != 'workflow_call' }}
+  NEXT_PUBLIC_SITE_URL: ${{ github.event_name == 'workflow_call' && 'https://preprod.nosgestesclimat.fr' || 'http://localhost:3000' }}
 
 jobs:
   # Build and setup job - runs on a single machine
@@ -34,8 +31,8 @@ jobs:
         env:
           MAILISK_API_KEY: ${{ secrets.MAILISK_API_KEY }}
           MAILISK_NAMESPACE: ${{ vars.MAILISK_NAMESPACE }}
-          CMS_TOKEN: ${{ secrets.CMS_TOKEN }}
-          CMS_URL: ${{ secrets.CMS_URL }}
+          CMS_TOKEN: ${{ env.LOCAL_TEST && secrets.CMS_TOKEN || '' }}
+          CMS_URL: ${{ env.LOCAL_TEST && secrets.CMS_URL || '' }}
         run: |
           ${{ env.LOCAL_TEST && 'pnpm start &' || '' }}
           pnpm playwright test --project="global setup"
@@ -106,8 +103,8 @@ jobs:
         env:
           MAILISK_API_KEY: ${{ secrets.MAILISK_API_KEY }}
           MAILISK_NAMESPACE: ${{ vars.MAILISK_NAMESPACE }}
-          CMS_TOKEN: ${{ secrets.CMS_TOKEN }}
-          CMS_URL: ${{ secrets.CMS_URL }}
+          CMS_TOKEN: ${{ env.LOCAL_TEST && secrets.CMS_TOKEN || '' }}
+          CMS_URL: ${{ env.LOCAL_TEST && secrets.CMS_URL || '' }}
         run: |
           ${{ env.LOCAL_TEST && 'pnpm start &' || ''}}
           pnpm playwright test --no-deps --project="${{ matrix.project }}"
