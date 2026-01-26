@@ -23,7 +23,7 @@ export default function CreateFirstGroupSection() {
       <ButtonLink
         href={linkToGroupCreation}
         trackingEvent={classementCreateGroup}
-        data-cypress-id="button-create-first-group">
+        data-testid="button-create-first-group">
         <Trans>Commencer</Trans>
       </ButtonLink>
     </section>

@@ -1,0 +1,94 @@
+import type { Situation } from '@/publicodes-state/types'
+import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
+import type { Page } from '@playwright/test'
+import { type TutorialPage, test as base, expect } from './tutorial'
+
+export class NGCTest {
+  constructor(
+    public readonly page: Page,
+    public readonly tutorialPage: TutorialPage
+  ) {}
+
+  async goto() {
+    await this.tutorialPage.goto()
+    await this.tutorialPage.skip()
+  }
+
+  async answerQuestion(situation: Situation) {
+    const inputs = this.page.locator('input')
+    let isAnswered = false
+    for (const input of await inputs.all()) {
+      const testId = await input.getAttribute('data-testid')
+      if (!testId) {
+        continue
+      }
+      const [dottedName, answer] = testId.split('-')
+      if (!(dottedName in situation)) {
+        continue
+      }
+      const value = situation[dottedName as DottedName]
+
+      if (
+        typeof value === 'string' &&
+        (value === `'${answer}'` || value === answer)
+      ) {
+        await this.page.getByTestId(`${dottedName}-${answer}-label`).click()
+        isAnswered = true
+        continue
+      }
+      if (typeof value === 'number') {
+        // @TODO : when copying a number with a "." instead of ",", it removes it
+        await this.page
+          .getByTestId(dottedName)
+          .fill(String(value).replace('.', ','))
+        isAnswered = true
+        continue
+      }
+    }
+    if (isAnswered) {
+      await this.page.getByTestId('next-question-button').click()
+    } else {
+      await this.clickOnSkip()
+    }
+  }
+
+  async clickOnSkip() {
+    await this.page.getByTestId('skip-question-button').click()
+  }
+
+  async isLastQuestion() {
+    return this.page
+      .getByTestId('services sociétaux . question rhétorique-ok-label')
+      .isVisible()
+  }
+
+  async skipAll() {
+    await this.goto()
+    await this.skipAllQuestions()
+  }
+
+  async skipAllQuestions() {
+    while (!(await this.isLastQuestion())) {
+      await this.clickOnSkip()
+    }
+    await this.page.getByTestId('end-test-button').click()
+  }
+
+  async answerTest(situation: Situation) {
+    while (!(await this.isLastQuestion())) {
+      await this.answerQuestion(situation)
+    }
+    await this.page.getByTestId('end-test-button').click()
+  }
+}
+
+interface NGCPageFixtures {
+  ngcTest: NGCTest
+}
+const test = base.extend<NGCPageFixtures>({
+  ngcTest: async ({ page, tutorialPage }, use) => {
+    await use(new NGCTest(page, tutorialPage))
+  },
+})
+
+export { expect, test }

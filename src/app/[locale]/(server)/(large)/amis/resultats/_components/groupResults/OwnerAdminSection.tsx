@@ -49,6 +49,7 @@ export default function OwnerAdminSection({ group }: Props) {
         groupId: group.id,
         userId: user.userId,
       })
+      router.refresh()
 
       timeoutRef.current = setTimeout(() => {
         router.push(MON_ESPACE_GROUPS_PATH)
@@ -94,7 +95,7 @@ export default function OwnerAdminSection({ group }: Props) {
               onClick={handleDelete}
               size="sm"
               color="primary"
-              data-cypress-id="button-confirm-delete-group">
+              data-testid="button-confirm-delete-group">
               <Trans>Supprimer</Trans>
             </Button>
           </div>
@@ -108,7 +109,7 @@ export default function OwnerAdminSection({ group }: Props) {
             trackEvent(amisDashboardValidateDeleteGroup)
             setIsConfirming(true)
           }}
-          data-cypress-id="button-delete-group">
+          data-testid="button-delete-group">
           <Trans>Supprimer le groupe</Trans>
         </Button>
       )}

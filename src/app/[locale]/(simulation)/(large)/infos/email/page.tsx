@@ -101,7 +101,7 @@ export default function Email() {
   return (
     <form>
       <Title
-        data-cypress-id="tutoriel-title"
+        data-testid="tutoriel-title"
         className="text-lg md:text-2xl"
         title={<Trans>Votre adresse electronique</Trans>}
         subtitle={

@@ -35,7 +35,7 @@ export default function DocumentationServer({
         title={`${rule.icônes ?? ''} ${capitalizeString(
           getRuleTitle({ ...rule, dottedName: ruleName })
         )}`}
-        data-cypress-id="documentation-title"
+        data-testid="documentation-title"
       />
 
       {rule.question && <QuestionSection rule={rule} locale={locale} />}

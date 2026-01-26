@@ -134,7 +134,7 @@ export default function LocalisationBanner({ supportedRegions }: Props) {
           <Button
             size="sm"
             className="ml-auto block"
-            data-cypress-id="understood-localisation-button"
+            data-testid="understood-localisation-button"
             onClick={() => {
               hideTutorial('localisationBanner')
 

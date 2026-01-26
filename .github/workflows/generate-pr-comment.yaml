@@ -19,18 +19,11 @@ jobs:
     outputs:
       check-ui-result: ${{ steps.check-ui.outputs.result }}
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
-      - run: git log | head && git status
-      - name: Install pnpm
-        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061
-      - name: Use Node.js
-        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f
-        with:
-          node-version-file: './package.json'
-          cache: 'pnpm'
-      - name: Install dependencies
-        run: pnpm install
-        shell: bash
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup
+        uses: ./.github/actions/setup
       - run: pnpm ui:check
       - id: check-ui
         run: |
