@@ -454,6 +454,51 @@ const redirects = [
       'https://856c23af.sibforms.com/serve/MUIFANYp6c5xdsAuy6IDcikFeb1acMwlG343iU22fjxPSfx0ZCaGTU6WN7PnnSe21HYaHOpyKT0SlpSy9uUFEBV9xSf_N_D-bs37tVyLgGHVm0kCV9yCNDgO3FFvXuUpk7aVWboulQpZ7DcQhk8RuIfiiWOt2JgZOzEfd4JlqynZRDNGcQ9JMpSvziB7Q3J8DHWtLINw7TgNmuGj',
     permanent: true,
   },
+  {
+    source: '/en/empreinte',
+    destination: '/en',
+    permanent: true,
+  },
+  {
+    source: '/accessibilit%C3%A9',
+    destination: '/accessibilite',
+    permanent: true,
+  },
+  {
+    source: '/demo-iframesimulation',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/northstar',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/blog/environnement/journee-mondial-environnement',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/contribuer',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/p%C3%A9trole-et-gaz',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/empreinte',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/partenaire',
+    destination: '/',
+    permanent: true,
+  },
 ]
 
 export default redirects
