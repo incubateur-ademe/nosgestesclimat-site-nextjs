@@ -9,6 +9,16 @@ const redirects = [
     destination: '/mon-espace/actions',
     permanent: true,
   },
+  {
+    source: '/documentation/guide',
+    destination: '/documentation',
+    permanent: true,
+  },
+  {
+    source: '/documentation/modele',
+    destination: '/modele',
+    permanent: true,
+  },
   // Compte U
   {
     source: '/profil/:path*',
