@@ -1,6 +1,9 @@
 'use server'
+
+import { AUTHENTICATION_COOKIE_NAME } from '@/constants/authentication/cookie'
 import { cookies } from 'next/headers'
 import {
+  ForbiddenError,
   InternalServerError,
   NotFoundError,
   TooManyRequestsError,
@@ -8,15 +11,16 @@ import {
   UnknownError,
 } from '../error'
 
-export async function fetchWithJWTCookie(
+export async function fetchWithJWTCookie<T = unknown>(
   url: string,
-  { method = 'GET' }: { method?: 'GET' | 'POST'; setCookies?: boolean } = {}
+  { method = 'GET' }: { method?: 'GET' | 'POST' } = {}
 ) {
   const cookieStore = await cookies()
-  const ngcCookie = cookieStore.get('ngcjwt')
+
+  const ngcCookie = cookieStore.get(AUTHENTICATION_COOKIE_NAME)
 
   if (!ngcCookie) {
-    return null
+    throw new UnauthorizedError()
   }
 
   const response = await fetch(url, {
@@ -34,7 +38,7 @@ export async function fetchWithJWTCookie(
       case 401:
         throw new UnauthorizedError()
       case 403:
-        throw new UnauthorizedError()
+        throw new ForbiddenError()
       case 429:
         throw new TooManyRequestsError()
       case 500:
@@ -45,7 +49,7 @@ export async function fetchWithJWTCookie(
   }
 
   if (method === 'POST') {
-    return {}
+    return {} as Promise<T>
   }
-  return response.json()
+  return response.json() as Promise<T>
 }

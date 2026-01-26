@@ -40,7 +40,7 @@ export default async function Releases({ params }: DefaultPageProps) {
       <div className="mt-4 flex flex-wrap gap-0 pb-8 md:flex-nowrap md:gap-16">
         <div>
           <Title
-            data-cypress-id="news-title"
+            data-testid="news-title"
             title={
               <span className="flex items-center">
                 <Trans locale={locale}>Les nouveautés</Trans>

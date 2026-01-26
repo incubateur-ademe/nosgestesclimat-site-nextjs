@@ -143,7 +143,7 @@ const redirects = [
   {
     source: '/blog/fonctionnalite-animateurs-ateliers-sensibilisation',
     destination:
-      'blog/actualites-et-fonctionnalites/fonctionnalite-animateurs-ateliers-sensibilisation',
+      '/blog/actualites-et-fonctionnalites/fonctionnalite-animateurs-ateliers-sensibilisation',
     permanent: true,
   },
   {
@@ -154,7 +154,12 @@ const redirects = [
   },
   {
     source: '/blog/challenge-tes-amis',
-    destination: '/blog/actualites-et-fonctionnalites/challenge-tes-amis',
+    destination: '/classements',
+    permanent: true,
+  },
+  {
+    source: '/blog/actualites-et-fonctionnalites/challenge-tes-amis',
+    destination: '/classements',
     permanent: true,
   },
   {
@@ -165,7 +170,12 @@ const redirects = [
   },
   {
     source: '/blog/campus',
-    destination: '/blog/actualites-et-fonctionnalites/campus',
+    destination: '/classements',
+    permanent: true,
+  },
+  {
+    source: '/blog/actualites-et-fonctionnalites/campus',
+    destination: '/classements',
     permanent: true,
   },
   {
@@ -175,7 +185,7 @@ const redirects = [
   },
   {
     source: '/blog/transports-fuir-transports-cherir',
-    destination: 'blog/mobilites/transports-fuir-transports-cherir',
+    destination: '/blog/mobilites/transports-fuir-transports-cherir',
     permanent: true,
   },
   {
@@ -190,7 +200,12 @@ const redirects = [
   },
   {
     source: '/blog/impact-mobilite',
-    destination: '/blog/mobilites/impact-mobilite',
+    destination: '/classements',
+    permanent: true,
+  },
+  {
+    source: '/blog/mobilites/impact-mobilite',
+    destination: '/blog/mobilites/mobilites-douces-modes-transport-puissants',
     permanent: true,
   },
   {

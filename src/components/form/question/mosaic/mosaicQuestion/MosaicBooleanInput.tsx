@@ -74,7 +74,6 @@ export default function MosaicBooleanInput({
             onClick()
           }}
           onKeyDown={!isInactive ? onKeyDownHelper(() => onClick()) : undefined}
-          data-cypress-id={`${question}-${value}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
           checked={!!value}
         />

@@ -289,20 +289,6 @@ export default function Navigation({
     gotToNextQuestion: handleGoToNextQuestion,
   })
 
-  const skipText = (
-    <span>
-      <Trans i18nKey="simulator.navigation.nextButton.dontKnow.label">
-        Je ne sais pas
-      </Trans>{' '}
-      <span aria-hidden>→</span>
-    </span>
-  )
-
-  const skipTitle = t(
-    'common.navigation.nextQuestion.dontKnow.title',
-    'Je ne sais pas, passer et aller à la question suivante'
-  )
-
   return (
     <div
       className={twMerge(
@@ -337,7 +323,6 @@ export default function Navigation({
           disabled={isNextDisabled}
           className="p-3 text-sm"
           size="md"
-          data-cypress-id="next-question-button"
           title={
             finalNoNextQuestion
               ? t(
@@ -345,7 +330,10 @@ export default function Navigation({
                   'Terminer le test et accéder à la page de résultats'
                 )
               : isMissing
-                ? skipTitle
+                ? t(
+                    'common.navigation.nextQuestion.dontKnow.title',
+                    'Je ne sais pas, passer et aller à la question suivante'
+                  )
                 : t(
                     'common.navigation.nextQuestion.next.label',
                     'Aller à la question suivante'
@@ -353,13 +341,20 @@ export default function Navigation({
           }
           onClick={handleGoToNextQuestion}>
           {finalNoNextQuestion ? (
-            <Trans i18nKey="simulator.navigation.nextButton.finished">
-              Terminer
-            </Trans>
+            <span data-testid="end-test-button">
+              <Trans i18nKey="simulator.navigation.nextButton.finished">
+                Terminer
+              </Trans>
+            </span>
           ) : isMissing ? (
-            skipText
+            <span data-testid="skip-question-button">
+              <Trans i18nKey="simulator.navigation.nextButton.dontKnow.label">
+                Je ne sais pas
+              </Trans>{' '}
+              <span aria-hidden>→</span>
+            </span>
           ) : (
-            <span>
+            <span data-testid="next-question-button">
               <Trans i18nKey="simulator.navigation.nextButton.next">
                 Suivant
               </Trans>{' '}

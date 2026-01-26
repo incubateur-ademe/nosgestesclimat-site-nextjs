@@ -22,7 +22,9 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
       <TextInput
         label={<Trans>Votre prénom</Trans>}
         autoComplete="given-name"
+        data-testid="input-administrator-first-name"
         value={defaultValues.administratorFirstName}
+        data-tes
         {...register('administratorFirstName', {
           required: t('Ce champ est requis'),
         })}
@@ -31,6 +33,7 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
       <TextInput
         label={<Trans>Votre nom</Trans>}
         autoComplete="family-name"
+        data-testid="input-administrator-last-name"
         value={defaultValues.administratorLastName}
         {...register('administratorLastName', {
           required: t('Ce champ est requis'),
@@ -70,6 +73,7 @@ export default function PersonalInfoFields({ defaultValues, register }: Props) {
         label={<Trans>Votre adresse e-mail</Trans>}
         helperText={<Trans>Format attendu : nom.prenom@domaine.fr</Trans>}
         value={defaultValues.email}
+        data-testid="input-administrator-email"
         autoComplete="email"
         {...register('email', {
           required: t('Ce champ est requis'),

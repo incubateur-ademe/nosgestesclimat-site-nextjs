@@ -76,7 +76,7 @@ export default function PollForm({ organisation }: Props) {
               required: t('Ce champ est requis'),
             })}
             error={errors.name?.message}
-            data-cypress-id="poll-name-input"
+            data-testid="poll-name-input"
           />
 
           <TextInput
@@ -99,7 +99,7 @@ export default function PollForm({ organisation }: Props) {
               },
             })}
             error={errors.expectedNumberOfParticipants?.message}
-            data-cypress-id="poll-expected-number-of-participants-input"
+            data-testid="poll-expected-number-of-participants-input"
           />
         </div>
       </form>
@@ -130,7 +130,7 @@ export default function PollForm({ organisation }: Props) {
       <Button
         type="submit"
         disabled={isPending}
-        data-cypress-id="poll-create-button"
+        data-testid="poll-create-button"
         form="poll-form"
         className="self-start">
         <Trans>Lancer ma campagne</Trans>

@@ -112,7 +112,7 @@ export default function OrganisationForm({
         <PersonalInfoFields defaultValues={defaultValues} register={register} />
 
         {updateOrganisation.isSuccess && (
-          <p className="mt-4 mb-0 text-green-700">
+          <p className="mt-4 mb-0 text-green-700" data-testid="success-message">
             <Trans>Vos informations ont bien été mises à jour.</Trans>
           </p>
         )}

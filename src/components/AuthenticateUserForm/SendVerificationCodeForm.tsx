@@ -4,7 +4,7 @@ import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMess
 import Trans from '@/components/translation/trans/TransClient'
 import { EMAIL_PENDING_AUTHENTICATION_KEY } from '@/constants/authentication/sessionStorage'
 import Alert from '@/design-system/alerts/alert/Alert'
-import Button from '@/design-system/buttons/Button'
+import Form from '@/design-system/form/Form'
 import TextInput from '@/design-system/inputs/TextInput'
 import {
   CREATE_VERIFICATION_CODE_ERROR,
@@ -37,7 +37,6 @@ interface FormData {
 
 export default function SendVerificationCodeForm({
   buttonLabel,
-  buttonColor = 'primary',
   mode,
   inputLabel,
   onCodeSent,
@@ -70,11 +69,13 @@ export default function SendVerificationCodeForm({
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+    <Form
+      onSubmit={handleSubmit(onSubmit)}
+      buttonLabel={buttonLabel ?? t('Accéder à mon espace')}>
       <TextInput
         type="email"
         autoComplete="email"
-        data-cypress-id="organisation-connexion-email-input"
+        data-testid="verification-code-email-input"
         label={inputLabel ?? <Trans>Votre adresse e-mail</Trans>}
         placeholder="nom.prenom@domaine.fr"
         srOnlyHelperText={
@@ -93,7 +94,8 @@ export default function SendVerificationCodeForm({
       />
 
       {createVerificationCodeError ===
-      CREATE_VERIFICATION_CODE_ERROR.SIGNIN_USER_DOES_NOT_EXIST ? (
+      false ? null : createVerificationCodeError ===
+        CREATE_VERIFICATION_CODE_ERROR.SIGNIN_USER_DOES_NOT_EXIST ? (
         <Alert
           type="error"
           className="mt-4 max-w-[30rem]"
@@ -116,18 +118,9 @@ export default function SendVerificationCodeForm({
             </Trans>
           }
         />
-      ) : createVerificationCodeError ===
-        CREATE_VERIFICATION_CODE_ERROR.UNKNOWN_ERROR ? (
+      ) : (
         <DefaultSubmitErrorMessage className="mt-4 max-w-[30rem]" />
-      ) : null}
-
-      <Button
-        type="submit"
-        color={buttonColor}
-        data-cypress-id="organisation-connexion-submit-button"
-        className="mt-8">
-        {buttonLabel ?? <Trans>Accéder à mon espace</Trans>}
-      </Button>
-    </form>
+      )}
+    </Form>
   )
 }

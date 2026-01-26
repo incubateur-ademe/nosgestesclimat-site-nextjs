@@ -10,7 +10,7 @@ export default function ButtonBack() {
 
   return (
     <button
-      data-cypress-id="back-button"
+      data-testid="back-button"
       className="relative block h-8 w-8"
       aria-label={t('Retour')}
       onClick={() => router.push('/')}>
