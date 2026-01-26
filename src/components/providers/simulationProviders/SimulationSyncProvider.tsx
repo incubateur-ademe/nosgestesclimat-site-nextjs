@@ -34,7 +34,6 @@ export default function SimulationSyncProvider({
     defaultAdditionalQuestionsAnswers,
     polls,
     groups,
-    savedViaEmail,
   } = useCurrentSimulation()
 
   const { isInitialized } = useEngine()
@@ -70,16 +69,10 @@ export default function SimulationSyncProvider({
     defaultAdditionalQuestionsAnswers,
     polls,
     groups,
-    savedViaEmail,
   })
 
   useEffect(() => {
-    const simulationToCompare = {
-      ...prevSimulation.current,
-      savedViaEmail: undefined,
-    }
-
-    const hasChanged = compareTwoSimulations(simulationToCompare, {
+    const hasChanged = compareTwoSimulations(prevSimulation.current, {
       id,
       date,
       situation,
@@ -107,7 +100,6 @@ export default function SimulationSyncProvider({
       defaultAdditionalQuestionsAnswers,
       polls,
       groups,
-      savedViaEmail,
     }
 
     // If there is no change, we do not start a save
@@ -156,7 +148,6 @@ export default function SimulationSyncProvider({
     defaultAdditionalQuestionsAnswers,
     polls,
     groups,
-    savedViaEmail,
     saveSimulation,
     shouldSyncWithBackend,
     resetSyncTimer,

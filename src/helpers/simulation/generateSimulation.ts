@@ -29,7 +29,6 @@ export function generateSimulation({
   defaultAdditionalQuestionsAnswers,
   polls,
   groups,
-  savedViaEmail,
   migrationInstructions,
 }: Partial<Simulation> & {
   migrationInstructions?: Migration
@@ -47,7 +46,6 @@ export function generateSimulation({
     defaultAdditionalQuestionsAnswers,
     polls,
     groups,
-    savedViaEmail,
   } as Simulation
 
   try {
