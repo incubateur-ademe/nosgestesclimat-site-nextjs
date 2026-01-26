@@ -124,7 +124,7 @@ export default async function PlanDuSitePage({ params }: DefaultPageProps) {
   const supportedRegions = getSupportedRegions()
 
   return (
-    <div data-cypress-id="plan-links" className="mb-12">
+    <div data-testid="plan-links" className="mb-12">
       <Title
         title={
           <Trans locale={locale} i18nKey="publicodes.planDuSite.title">
@@ -134,7 +134,7 @@ export default async function PlanDuSitePage({ params }: DefaultPageProps) {
       />
 
       <section className="mb-2">
-        <h2 data-cypress-id="plan-outils-title">
+        <h2 data-testid="plan-outils-title">
           <Trans locale={locale}>Nos outils</Trans>
         </h2>
         <LinkList entries={links['Nos outils']} />

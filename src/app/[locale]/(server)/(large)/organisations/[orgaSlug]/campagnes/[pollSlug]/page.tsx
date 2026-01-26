@@ -108,7 +108,7 @@ export default function CampagnePage() {
                 }}
                 color="secondary"
                 size="sm"
-                data-cypress-id="poll-admin-section-see-parameters-button"
+                data-testid="poll-admin-section-see-parameters-button"
                 className="flex items-center">
                 <SettingsIcon className="fill-primary-700 mr-2" />
 

@@ -88,7 +88,7 @@ export default function InlineTextInput({
           onClick={handleSubmit}
           aria-label={t('Ok, sauvegarder la modification')}
           disabled={isLoading}
-          data-cypress-id="button-inline-input">
+          data-testid="button-inline-input">
           Ok
         </Button>
       </div>

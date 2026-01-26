@@ -67,7 +67,7 @@ export default function CustomQuestion() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Title
-        data-cypress-id="tutoriel-title"
+        data-testid="tutoriel-title"
         className="text-lg md:text-2xl"
         title={
           <span>

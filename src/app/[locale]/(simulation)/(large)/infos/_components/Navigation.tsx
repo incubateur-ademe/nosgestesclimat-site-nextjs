@@ -54,7 +54,7 @@ export default function Navigation({
       </ButtonLink>
 
       <Button
-        data-cypress-id="next-button"
+        data-testid="next-button"
         onClick={(event) => {
           if (currentPage === EMAIL_PAGE) {
             trackEvent(infosEmailClickSuivant)

@@ -145,7 +145,7 @@ export default function SaveModal({ isOpen, closeModal, mode }: Props) {
               form={'save-form'}
               disabled={isPending}
               className="inline"
-              data-cypress-id="save-modal-submit-button">
+              data-testid="save-modal-submit-button">
               <Trans>
                 Sauvegarder{' '}
                 <span className="hidden lg:inline">ma progression</span>
