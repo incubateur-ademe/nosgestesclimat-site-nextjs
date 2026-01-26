@@ -15,9 +15,7 @@ export default function PointsFortsFaibles({
     <div>
       {!!pointsForts && pointsForts.length > 0 && (
         <>
-          <h2
-            className="mt-0 text-lg"
-            data-cypress-id="points-fort-faibles-title">
+          <h2 className="mt-0 text-lg" data-testid="points-fort-faibles-title">
             <Trans>Vos points forts</Trans>
           </h2>
           <p className="mb-4 text-gray-500">

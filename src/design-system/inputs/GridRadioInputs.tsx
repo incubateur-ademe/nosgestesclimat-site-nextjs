@@ -28,7 +28,7 @@ interface Props {
   disabled?: boolean
   control: Control<Record<string, string | number>>
   rules?: RegisterOptions
-  'data-cypress-id'?: string
+  'data-testid'?: string
 }
 
 export default function GridRadioInputs({
@@ -41,7 +41,7 @@ export default function GridRadioInputs({
   value,
   control,
   rules,
-  'data-cypress-id': dataCypressId,
+  'data-testid': dataCypressId,
 }: HTMLAttributes<HTMLInputElement> & Props) {
   const { t } = useClientTranslation()
   return (
@@ -84,7 +84,7 @@ export default function GridRadioInputs({
                 return (
                   <label
                     key={item.value}
-                    data-cypress-id={dataCypressId + '-' + item.value}
+                    data-testid={dataCypressId + '-' + item.value}
                     aria-label={item.ariaLabel}
                     title={`${item.ariaLabel} - ${value === item.value ? t('Sélectionné') : t('Sélectionner cette option')}`}
                     className={twMerge(

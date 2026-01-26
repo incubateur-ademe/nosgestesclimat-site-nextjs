@@ -56,7 +56,7 @@ export default function TotalFootprintNumber({
     <div
       className={twMerge('flex flex-col gap-1 md:gap-0', className)}
       aria-live="polite"
-      data-cypress-id="total-footprint-number">
+      data-testid="total-footprint-number">
       {shouldDisplayTotalWithoutActions && (
         <strong
           className={twMerge(

@@ -15,7 +15,7 @@ export default function PostList({ items, path, className, locale }: Props) {
         'grid list-none grid-cols-1 justify-center gap-4 pl-0 sm:grid-cols-2',
         className
       )}
-      data-cypress-id="blog-list"
+      data-testid="blog-list"
       role="list">
       {items
         .sort((itemA, itemB) =>

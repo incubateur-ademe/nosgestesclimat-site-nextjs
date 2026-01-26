@@ -16,6 +16,7 @@ export default function CreateGroupButton() {
         trackEvent(clickDashboardGroupPageNoGroupsCreate)
         trackPosthogEvent(captureClickDashboardGroupPageNoGroupsCreate)
       }}
+      data-testid="create-group-button"
       href={linkToGroupCreation}>
       <Trans i18nKey="mon-espace.groups.empty.button">Créer un groupe</Trans>
     </ButtonLink>

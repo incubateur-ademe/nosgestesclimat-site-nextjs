@@ -54,7 +54,7 @@ export default function Birthdate() {
   return (
     <form>
       <Title
-        data-cypress-id="birthdate-title"
+        data-testid="birthdate-title"
         className="text-lg md:text-2xl"
         title={<Trans>Votre date de naissance</Trans>}
         subtitle={
