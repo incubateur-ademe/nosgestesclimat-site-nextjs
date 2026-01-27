@@ -10,7 +10,6 @@ jobs:
     name: Deploy to Scalingo (preprod)
     runs-on: ubuntu-latest
     environment: Preprod
-
     steps:
       - name: Exchange token for Bearer token
         id: get_bearer_token
@@ -82,5 +81,5 @@ jobs:
   e2e-preprod:
     needs: deploy-preprod
     uses: ./.github/workflows/e2e.yaml
-    with:
+    secrets:
       MAILISK_API_KEY: ${{ secrets.MAILISK_API_KEY }}
