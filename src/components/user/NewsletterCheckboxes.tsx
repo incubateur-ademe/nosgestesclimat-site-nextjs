@@ -1,5 +1,6 @@
 import CheckboxInput from '@/design-system/inputs/CheckboxInput'
 import type { ReactNode } from 'react'
+import { NEWSLETTERS } from './_constants/newsletters'
 
 export interface Newsletter {
   id: number
@@ -7,7 +8,7 @@ export interface Newsletter {
   description: string
 }
 
-export default function NewsletterCheckbox({
+function NewsletterCheckbox({
   newsletter,
   name,
   ...inputProps
@@ -30,5 +31,22 @@ export default function NewsletterCheckbox({
         {newsletter.description}
       </p>
     </div>
+  )
+}
+
+export default function NewsletterCheckBoxes() {
+  return (
+    <section>
+      {(NEWSLETTERS as (Newsletter & { 'data-testid'?: string })[]).map(
+        (newsletter) => (
+          <NewsletterCheckbox
+            name={`newsletterIds.${newsletter.id}`}
+            key={newsletter.id}
+            newsletter={newsletter}
+            data-testid={newsletter['data-testid']}
+          />
+        )
+      )}
+    </section>
   )
 }

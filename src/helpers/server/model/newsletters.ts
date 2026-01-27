@@ -14,7 +14,7 @@ import { getUser } from './user'
 
 export type NewsletterFormState =
   | { success: true }
-  | { errors: { email?: { message: string } } }
+  | { errors: { email?: { message: string }; form?: { message: string } } }
   | { newsletterIds: number[]; email?: string }
 
 function getNewsletterIdsFromFormData(formData: FormData): number[] {
@@ -38,14 +38,22 @@ export default async function updateAuthenticatedUserNewsletters(
   }
 
   const newsletterIds = getNewsletterIdsFromFormData(formData)
-  await fetchWithJWTCookie(`${USER_URL}/${user.id}`, {
-    method: 'PUT',
-    body: JSON.stringify({
-      contact: {
-        listIds: newsletterIds,
+  try {
+    await fetchWithJWTCookie(`${USER_URL}/${user.id}`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        contact: {
+          listIds: newsletterIds,
+        },
+      }),
+    })
+  } catch (error) {
+    return {
+      errors: {
+        form: { message: 'Error updating newsletters' },
       },
-    }),
-  })
+    }
+  }
 
   trackEvent(clickUpdateUserNewsletters)
   trackPosthogEvent(captureClickUpdateUserNewsletters)
@@ -107,9 +115,13 @@ export async function updateUnauthenticatedUserNewsletters(
 }
 
 export async function getNewsletterSubscriptions(userId: string) {
-  const response = (await fetchWithoutJWTCookie(
-    `${USER_URL}/${userId}/contact`
-  )) as { data?: BrevoContact }
+  try {
+    const response = (await fetchWithoutJWTCookie(
+      `${USER_URL}/${userId}/contact`
+    )) as { data?: BrevoContact }
 
-  return response.data?.listIds ?? []
+    return response.data?.listIds ?? []
+  } catch {
+    return []
+  }
 }

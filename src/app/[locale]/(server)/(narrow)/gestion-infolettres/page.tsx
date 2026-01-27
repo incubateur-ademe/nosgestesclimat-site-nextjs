@@ -1,5 +1,5 @@
 import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
-import NewsletterManagement from '@/components/user/NewsletterManagement'
+import NewsletterSettingsUnauthenticated from '@/components/user/NewsletterSettingsUnauthenticated'
 import { MON_ESPACE_SETTINGS_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
@@ -16,26 +16,26 @@ export default async function NewsletterManagementPage({
   const { locale } = await params
   const { t } = await getServerTranslation({ locale })
 
-  const authentifiedUser = await getUser()
+  try {
+    await getUser()
 
-  if (authentifiedUser) {
     redirect(`${MON_ESPACE_SETTINGS_PATH}#infolettres`)
+  } catch {
+    return (
+      <div className="mb-12">
+        <Title
+          title={t(
+            'newsletterManagement.title',
+            'Sélectionnez les infolettres qui vous intéressent'
+          )}
+        />
+
+        <QueryClientProviderWrapper>
+          <UserProvider>
+            <NewsletterSettingsUnauthenticated />
+          </UserProvider>
+        </QueryClientProviderWrapper>
+      </div>
+    )
   }
-
-  return (
-    <div className="mb-12">
-      <Title
-        title={t(
-          'newsletterManagement.title',
-          'Sélectionnez les infolettres qui vous intéressent'
-        )}
-      />
-
-      <QueryClientProviderWrapper>
-        <UserProvider>
-          <NewsletterManagement />
-        </UserProvider>
-      </QueryClientProviderWrapper>
-    </div>
-  )
 }

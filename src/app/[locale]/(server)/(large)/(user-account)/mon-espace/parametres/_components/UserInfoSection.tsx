@@ -1,6 +1,6 @@
 import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import Trans from '@/components/translation/trans/TransServer'
-import NewsletterManagement from '@/components/user/NewsletterManagement'
+import NewsletterManagement from '@/components/user/NewsletterSettingsAuthenticated'
 import type { Locale } from '@/i18nConfig'
 import { UserProvider } from '@/publicodes-state'
 import UserEmail from './userInfoSection/UserEmail'
