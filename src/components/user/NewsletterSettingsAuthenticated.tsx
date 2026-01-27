@@ -3,12 +3,12 @@
 import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
 import updateAuthenticatedUserNewsletters, {
-  getNewsletterSubscriptions,
   type NewsletterFormState,
 } from '@/helpers/server/model/newsletters'
 import type { UserServer } from '@/helpers/server/model/user'
+import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import Form from 'next/form'
-import { use, useActionState } from 'react'
+import { useActionState } from 'react'
 import Trans from '../translation/trans/TransClient'
 import NewsletterCheckBoxes from './NewsletterCheckboxes'
 
@@ -17,7 +17,9 @@ interface Props {
 }
 
 export default function NewsletterManagement({ user }: Props) {
-  const newsletterSubscriptions = use(getNewsletterSubscriptions(user.id))
+  const { data: newsletterSubscriptions = [] } = useGetNewsletterSubscriptions(
+    user.id
+  )
 
   const [state, formAction] = useActionState<
     NewsletterFormState,

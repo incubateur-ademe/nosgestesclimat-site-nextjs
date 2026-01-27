@@ -3,24 +3,26 @@
 import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
+import Loader from '@/design-system/layout/Loader'
 import Emoji from '@/design-system/utils/Emoji'
 import {
-  getNewsletterSubscriptions,
   type NewsletterFormState,
   updateUnauthenticatedUserNewsletters,
 } from '@/helpers/server/model/newsletters'
+import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import { useUser } from '@/publicodes-state'
 import Form from 'next/form'
-import { use, useActionState } from 'react'
+import { useActionState } from 'react'
 import Trans from '../translation/trans/TransClient'
 import NewsletterCheckBoxes from './NewsletterCheckboxes'
 
 export default function NewsletterSettingsUnauthenticated() {
   const { user } = useUser()
+  const { data: newsletterSubscriptions = [] } = useGetNewsletterSubscriptions(
+    user.userId
+  )
 
-  const newsletterSubscriptions = use(getNewsletterSubscriptions(user.userId))
-
-  const [state, formAction] = useActionState<
+  const [state, formAction, pending] = useActionState<
     NewsletterFormState,
     FormData | null
   >(
@@ -30,35 +32,49 @@ export default function NewsletterSettingsUnauthenticated() {
     },
     {
       email: user.email ?? '',
-      newsletterIds: newsletterSubscriptions,
+      newsletterSubscriptions,
     }
   )
 
   return (
     <div className="w-xl max-w-full">
       <Form
+        noValidate
         action={formAction}
         className="mb-8 flex flex-col items-start gap-4">
-        <NewsletterCheckBoxes />
-
-        <EmailInput
-          error={
-            state && 'errors' in state
-              ? state.errors?.email?.message
-              : undefined
+        <NewsletterCheckBoxes
+          newsletterSubscriptions={
+            state && 'newsletterSubscriptions' in state
+              ? state.newsletterSubscriptions
+              : newsletterSubscriptions
           }
         />
 
-        <Button type="submit" className="mt-8">
-          <span data-testid="default-submit-label">
-            <Trans i18nKey="newsletterManagement.saveSubscriptions">
-              Valider mon inscription
-            </Trans>
-          </span>
+        <EmailInput
+          error={
+            state && 'errors' in state ? state.errors?.email?.[0] : undefined
+          }
+          value={
+            state && 'email' in state && state.email !== undefined
+              ? state.email
+              : (user.email ?? '')
+          }
+        />
+
+        <Button type="submit" className="mt-8 h-14 w-60" disabled={pending}>
+          {pending ? (
+            <Loader size="sm" color="light" />
+          ) : (
+            <span data-testid="default-submit-label">
+              <Trans i18nKey="newsletterManagement.saveSubscriptions">
+                Valider mon inscription
+              </Trans>
+            </span>
+          )}
         </Button>
       </Form>
 
-      {state && 'success' in state && state.success && (
+      {!pending && state && 'success' in state && state.success && (
         <Alert
           aria-live="polite"
           className="mt-6"
@@ -80,17 +96,22 @@ export default function NewsletterSettingsUnauthenticated() {
         />
       )}
 
-      {state && 'errors' in state && state.errors && (
-        <Alert
-          aria-live="polite"
-          className="mt-6"
-          description={
-            <Trans i18nKey="newsletterManagement.error.title">
-              Une erreur est survenue lors de la mise à jour des informations.
-            </Trans>
-          }
-        />
-      )}
+      {!pending &&
+        state &&
+        'errors' in state &&
+        state.errors &&
+        'form' in state.errors &&
+        state.errors.form?.[0] && (
+          <Alert
+            aria-live="polite"
+            className="mt-6"
+            description={
+              <Trans i18nKey="newsletterManagement.error.title">
+                Une erreur est survenue lors de la mise à jour des informations.
+              </Trans>
+            }
+          />
+        )}
 
       <p
         data-testid="unverified-message"

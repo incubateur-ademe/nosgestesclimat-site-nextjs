@@ -74,7 +74,9 @@ export async function fetchWithoutJWTCookie(
     body,
   })
 
-  await handleResponseError(response)
+  if (!response.ok) {
+    await handleResponseError(response)
+  }
 
   return response.json()
 }

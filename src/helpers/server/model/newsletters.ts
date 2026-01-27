@@ -9,19 +9,22 @@ import { t } from '@/helpers/metadata/fakeMetadataT'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import { z } from 'zod'
 import { fetchWithJWTCookie, fetchWithoutJWTCookie } from './fetchWithJWTCookie'
-import type { BrevoContact } from './user'
 import { getUser } from './user'
 
 export type NewsletterFormState =
-  | { success: true }
-  | { errors: { email?: { message: string }; form?: { message: string } } }
-  | { newsletterIds: number[]; email?: string }
+  | { success: true; email?: string; newsletterSubscriptions: number[] }
+  | {
+      errors: { email?: string[]; form?: string[] }
+      email?: string
+      newsletterSubscriptions: number[]
+    }
+  | { newsletterSubscriptions: number[]; email?: string }
 
 function getNewsletterIdsFromFormData(formData: FormData): number[] {
   return Array.from(formData.entries())
-    .filter(([key]) => key.startsWith('newsletterIds.'))
+    .filter(([key]) => key.startsWith('newsletterSubscriptions.'))
     .filter(([, value]) => value === 'on' || value === 'true')
-    .map(([key]) => Number(key.replace('newsletterIds.', '')))
+    .map(([key]) => Number(key.replace('newsletterSubscriptions.', '')))
 }
 
 export default async function updateAuthenticatedUserNewsletters(
@@ -29,29 +32,37 @@ export default async function updateAuthenticatedUserNewsletters(
 ): Promise<NewsletterFormState> {
   const user = await getUser()
 
+  const newsletterSubscriptions = getNewsletterIdsFromFormData(formData)
+
   if (!user) {
     return {
       errors: {
-        form: { message: 'User not found' },
+        form: [t('ui.error.userNotFound', "Pas d'utilisateur trouvé")],
       },
+      newsletterSubscriptions: newsletterSubscriptions,
     }
   }
 
-  const newsletterIds = getNewsletterIdsFromFormData(formData)
   try {
     await fetchWithJWTCookie(`${USER_URL}/${user.id}`, {
       method: 'PUT',
       body: JSON.stringify({
         contact: {
-          listIds: newsletterIds,
+          listIds: newsletterSubscriptions,
         },
       }),
     })
-  } catch (error) {
+  } catch {
     return {
       errors: {
-        form: { message: 'Error updating newsletters' },
+        form: [
+          t(
+            'ui.error.errorUpdatingNewsletters',
+            'Erreur lors de la mise à jour des infolettres'
+          ),
+        ],
       },
+      newsletterSubscriptions: newsletterSubscriptions,
     }
   }
 
@@ -60,6 +71,7 @@ export default async function updateAuthenticatedUserNewsletters(
 
   return {
     success: true,
+    newsletterSubscriptions: newsletterSubscriptions,
   }
 }
 
@@ -69,16 +81,16 @@ const schema = z.object({
     .min(1, {
       message: t(
         'ui.emailInput.errors.required',
-        'Veuillez entrer une adresse email valide (format attendu : nom.prenom@domaine.fr)'
+        'Veuillez entrer une adresse e-mail.'
       ),
     })
     .email({
       message: t(
         'ui.emailInput.errors.invalid',
-        'Veuillez entrer une adresse email valide (format attendu : nom.prenom@domaine.fr)'
+        'Veuillez entrer une adresse e-mail valide (format attendu : nom.prenom@domaine.fr)'
       ),
     }),
-  newsletterIds: z.array(z.number()),
+  newsletterSubscriptions: z.array(z.number()),
 })
 
 export async function updateUnauthenticatedUserNewsletters(
@@ -86,23 +98,30 @@ export async function updateUnauthenticatedUserNewsletters(
   userId: string
 ): Promise<NewsletterFormState> {
   const email = formData.get('email')
-  const newsletterIds = getNewsletterIdsFromFormData(formData)
-  const validatedFields = schema.safeParse({ email, newsletterIds })
+
+  const newsletterSubscriptions = getNewsletterIdsFromFormData(formData)
+
+  const validatedFields = schema.safeParse({
+    email,
+    newsletterSubscriptions,
+  })
 
   if (!validatedFields.success) {
     return {
-      errors: validatedFields.error.flatten().fieldErrors as string[],
+      errors: validatedFields.error.flatten().fieldErrors,
+      email: typeof email === 'string' ? email : '',
+      newsletterSubscriptions: newsletterSubscriptions,
     }
   }
 
-  const { email: validEmail, newsletterIds: validNewsletterIds } =
+  const { email: validEmail, newsletterSubscriptions: validNewsletterIds } =
     validatedFields.data
 
   await fetchWithoutJWTCookie(`${USER_URL}/${userId}`, {
     method: 'PUT',
     body: JSON.stringify({
       email: validEmail,
-      newsletterIds: validNewsletterIds,
+      newsletterSubscriptions: validNewsletterIds,
     }),
   })
 
@@ -111,17 +130,7 @@ export async function updateUnauthenticatedUserNewsletters(
 
   return {
     success: true,
-  }
-}
-
-export async function getNewsletterSubscriptions(userId: string) {
-  try {
-    const response = (await fetchWithoutJWTCookie(
-      `${USER_URL}/${userId}/contact`
-    )) as { data?: BrevoContact }
-
-    return response.data?.listIds ?? []
-  } catch {
-    return []
+    newsletterSubscriptions: validNewsletterIds,
+    email: validEmail,
   }
 }

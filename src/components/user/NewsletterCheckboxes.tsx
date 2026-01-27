@@ -11,10 +11,12 @@ export interface Newsletter {
 function NewsletterCheckbox({
   newsletter,
   name,
+  defaultChecked,
   ...inputProps
 }: {
   newsletter: Newsletter
   name: string
+  defaultChecked?: boolean
 }) {
   return (
     <div className="w-xl max-w-full">
@@ -23,6 +25,7 @@ function NewsletterCheckbox({
         label={<span className="text-lg font-bold">{newsletter.title}</span>}
         aria-describedby={`newsletter-${newsletter.id}-description`}
         disableSubmitOnEnter
+        defaultChecked={defaultChecked}
         {...inputProps}
       />
       <p
@@ -34,16 +37,21 @@ function NewsletterCheckbox({
   )
 }
 
-export default function NewsletterCheckBoxes() {
+export default function NewsletterCheckBoxes({
+  newsletterSubscriptions,
+}: {
+  newsletterSubscriptions: number[]
+}) {
   return (
     <section>
       {(NEWSLETTERS as (Newsletter & { 'data-testid'?: string })[]).map(
         (newsletter) => (
           <NewsletterCheckbox
-            name={`newsletterIds.${newsletter.id}`}
+            name={`newsletterSubscriptions.${newsletter.id}`}
             key={newsletter.id}
             newsletter={newsletter}
             data-testid={newsletter['data-testid']}
+            defaultChecked={newsletterSubscriptions.includes(newsletter.id)}
           />
         )
       )}
