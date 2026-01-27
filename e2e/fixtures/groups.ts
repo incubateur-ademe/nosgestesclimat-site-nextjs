@@ -58,11 +58,12 @@ export class Group {
   }
 
   async changeName() {
-    this.data.name = generateName()
+    const newName = generateName()
     await this.page.getByTestId('group-name-edit-button').click()
-    await this.page.getByTestId('group-edit-input-name').fill(this.name)
+    await this.page.getByTestId('group-edit-input-name').fill(newName)
     await this.page.getByTestId('button-inline-input').click()
     await this.page.waitForLoadState('networkidle')
+    this.data.name = newName
   }
 
   async joinWithInviteLink(user: User, { fillEmail = false } = {}) {

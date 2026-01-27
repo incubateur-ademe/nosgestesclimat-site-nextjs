@@ -3,6 +3,12 @@ name: E2E Tests
 on:
   pull_request:
   workflow_call:
+    inputs:
+      is_preprod:
+        description: 'Whether this is a preprod test run'
+        required: false
+        type: boolean
+        default: false
     secrets:
       MAILISK_API_KEY:
         required: true
@@ -10,8 +16,8 @@ on:
 env:
   NEXT_PUBLIC_SERVER_URL: ${{ vars.NEXT_PUBLIC_SERVER_URL }}
   NEXT_PUBLIC_PROXY_SERVER: 'true'
-  LOCAL_TEST: ${{ github.event_name != 'workflow_call' }}
-  NEXT_PUBLIC_SITE_URL: ${{ github.event_name == 'workflow_call' && 'https://preprod.nosgestesclimat.fr' || 'http://localhost:3000' }}
+  LOCAL_TEST: ${{ !inputs.is_preprod }}
+  NEXT_PUBLIC_SITE_URL: ${{ inputs.is_preprod && 'https://preprod.nosgestesclimat.fr' || 'http://localhost:3000' }}
 
 jobs:
   # Build and setup job - runs on a single machine
