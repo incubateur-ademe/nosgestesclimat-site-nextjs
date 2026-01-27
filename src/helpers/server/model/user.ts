@@ -8,7 +8,7 @@ export interface UserServer {
   email: string
 }
 
-interface BrevoContact {
+export interface BrevoContact {
   id: number
   email: string
   listIds: number[]

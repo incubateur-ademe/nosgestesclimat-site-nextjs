@@ -1,188 +1,95 @@
-'use client'
-
-import {
-  captureClickUpdateUserNewsletters,
-  clickUpdateUserNewsletters,
-} from '@/constants/tracking/user-account'
 import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import Emoji from '@/design-system/utils/Emoji'
+import updateAuthenticatedUserNewsletters, {
+  getNewsletterSubscriptions,
+  type NewsletterFormState,
+  updateUnauthenticatedUserNewsletters,
+} from '@/helpers/server/model/newsletters'
 import type { UserServer } from '@/helpers/server/model/user'
-import { fetchUser } from '@/helpers/user/fetchUser'
-import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
-import { useUpdateUserSettings } from '@/hooks/settings/useUpdateUserSettings'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
-import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
-import { isEmailValid } from '@/utils/isEmailValid'
-import { useQuery } from '@tanstack/react-query'
-import { useEffect } from 'react'
-import { useForm as useReactHookForm, useWatch } from 'react-hook-form'
+import Form from 'next/form'
+import { use, useActionState } from 'react'
 import Trans from '../translation/trans/TransClient'
 import { NEWSLETTERS } from './_constants/newsletters'
-import NewsletterCheckbox from './newsletterManagement/NewsletterCheckbox'
+import NewsletterCheckbox, {
+  type Newsletter,
+} from './newsletterManagement/NewsletterCheckbox'
 
-const getSelectedNewsletterIds = (
-  newsletterIds: Record<string, boolean>
-): number[] => {
-  return Object.entries(newsletterIds ?? {})
-    .filter(([, isSelected]) => isSelected)
-    .map(([id]) => Number(id))
-}
+type NewsletterWithTestId = Newsletter & { 'data-testid'?: string }
 
 interface Props {
-  hasEmailField?: boolean
+  mode?: 'authenticated' | 'unauthenticated'
+  user: UserServer
 }
 
-export default function NewsletterManagement({ hasEmailField = true }: Props) {
-  const { user } = useUser()
+export default function NewsletterManagement({
+  mode = 'authenticated',
+  user,
+}: Props) {
+  const newsletterSubscriptions = use(getNewsletterSubscriptions(user.id))
 
-  const { data: authenticatedUser } = useQuery<UserServer | null>({
-    queryKey: ['user', 'me'],
-    queryFn: () => fetchUser(),
-  })
-
-  const { t } = useClientTranslation()
-
-  const { data: newslettersSubscriptions } = useGetNewsletterSubscriptions(
-    authenticatedUser?.id ?? ''
-  )
-
-  const {
-    mutateAsync: updateUserSettings,
-    isSuccess,
-    isError,
-  } = useUpdateUserSettings()
-
-  const {
-    register,
-    control,
-    handleSubmit: handleSubmitNewsletterForm,
-    reset: resetNewsletterForm,
-  } = useReactHookForm<{
-    newsletterIds: Record<string, boolean>
-  }>({
-    defaultValues: {
-      newsletterIds: {},
+  const [state, formAction] = useActionState<
+    NewsletterFormState,
+    FormData | null
+  >(
+    async (_prevState, formData) => {
+      if (!formData) return _prevState
+      return mode === 'authenticated'
+        ? await updateAuthenticatedUserNewsletters(formData)
+        : await updateUnauthenticatedUserNewsletters(formData, user.id)
     },
-  })
-
-  useEffect(() => {
-    if (newslettersSubscriptions) {
-      resetNewsletterForm({
-        newsletterIds: newslettersSubscriptions.reduce(
-          (acc, newsletter) => {
-            acc[String(newsletter)] = true
-            return acc
-          },
-          {} as Record<string, boolean>
-        ),
-      })
+    {
+      ...(mode === 'unauthenticated' ? { email: user.email ?? '' } : {}),
+      newsletterIds: newsletterSubscriptions,
     }
-  }, [newslettersSubscriptions, resetNewsletterForm])
-
-  const {
-    register: registerEmail,
-    handleSubmit: handleSubmitEmail,
-    formState: { errors: emailErrors },
-    reset: resetEmailForm,
-  } = useReactHookForm<{
-    email: string
-  }>({
-    defaultValues: { email: user?.email ?? '' },
-  })
-
-  useEffect(() => {
-    if (authenticatedUser?.email) {
-      resetEmailForm({ email: authenticatedUser.email })
-    }
-  }, [authenticatedUser?.email, resetEmailForm])
-
-  const newsletterIdsFromWatcher = useWatch({ control, name: 'newsletterIds' })
-
-  const onSubmitSubscriptions = async (data?: {
-    email?: string
-    newsletterIds?: Record<string, boolean>
-  }) => {
-    const email = data?.email ?? user?.email
-    const newsletterIds = data?.newsletterIds ?? newsletterIdsFromWatcher
-
-    if (!email) return
-
-    trackEvent(clickUpdateUserNewsletters)
-    trackPosthogEvent(captureClickUpdateUserNewsletters)
-
-    const selectedIds = getSelectedNewsletterIds(newsletterIds) ?? []
-
-    await updateUserSettings({
-      email,
-      newsletterIds: selectedIds,
-      userId: authenticatedUser?.id ?? user?.userId ?? '',
-    })
-  }
+  )
 
   return (
     <div className="w-xl max-w-full">
-      <form
-        onSubmit={
-          !!authenticatedUser
-            ? handleSubmitNewsletterForm(onSubmitSubscriptions)
-            : (e) => e.preventDefault()
-        }
+      <Form
+        action={formAction}
         className="mb-8 flex flex-col items-start gap-4">
-        {NEWSLETTERS.map((newsletter) => (
+        {(NEWSLETTERS as NewsletterWithTestId[]).map((newsletter) => (
           <NewsletterCheckbox
-            {...register(`newsletterIds.${newsletter.id}`)}
+            name={`newsletterIds.${newsletter.id}`}
             key={newsletter.id}
             newsletter={newsletter}
             data-testid={newsletter['data-testid']}
           />
         ))}
-        {!hasEmailField && (
-          <Button type="submit" className="mt-8">
-            <span data-testid="default-submit-label">
-              <Trans>Mettre à jour mes abonnements</Trans>
-            </span>
-          </Button>
-        )}
-      </form>
 
-      {hasEmailField && (
-        <form
-          noValidate
-          onSubmit={(e) => void handleSubmitEmail(onSubmitSubscriptions)(e)}>
+        {mode === 'unauthenticated' && (
           <EmailInput
-            error={emailErrors.email?.message}
-            {...registerEmail('email', {
-              required: t(
-                'ui.emailInput.errors.required',
-                'Veuillez renseigner votre adresse e-mail'
-              ),
-              validate: (value) =>
-                isEmailValid(value) ||
-                t(
-                  'ui.emailInput.errors.invalid',
-                  'Veuillez entrer une adresse email valide (format attendu : nom.prenom@domaine.fr)'
-                ),
-            })}
+            error={
+              state && 'errors' in state
+                ? state.errors?.email?.message
+                : undefined
+            }
           />
-          <Button type="submit" className="mt-8">
+        )}
+
+        <Button type="submit" className="mt-8">
+          {mode === 'unauthenticated' ? (
             <span data-testid="default-submit-label">
               <Trans i18nKey="newsletterManagement.saveSubscriptions">
                 Valider mon inscription
               </Trans>
             </span>
-          </Button>
-        </form>
-      )}
+          ) : (
+            <span data-testid="default-submit-label">
+              <Trans>Mettre à jour mes abonnements</Trans>
+            </span>
+          )}
+        </Button>
+      </Form>
 
-      {isSuccess && (
+      {state && 'success' in state && state.success && (
         <Alert
           aria-live="polite"
           className="mt-6"
           description={
-            !!authenticatedUser ? (
+            mode === 'authenticated' ? (
               <div>
                 <p className="font-bold">
                   <Trans i18nKey="newsletterManagement.success.authenticated.title">
@@ -214,7 +121,7 @@ export default function NewsletterManagement({ hasEmailField = true }: Props) {
         />
       )}
 
-      {isError && (
+      {state && 'errors' in state && state.errors && (
         <Alert
           aria-live="polite"
           className="mt-6"
@@ -226,7 +133,7 @@ export default function NewsletterManagement({ hasEmailField = true }: Props) {
         />
       )}
 
-      {!!authenticatedUser ? (
+      {mode === 'authenticated' ? (
         <p
           data-testid="verified-message"
           className="mt-4 mb-0 text-sm text-gray-600">
