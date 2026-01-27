@@ -52,7 +52,7 @@ test.describe('A group admin', () => {
 })
 
 test.describe('The group result page, when accessed by an admin', () => {
-  test.beforeEach(async ({ group, page }) => {
+  test.beforeEach(async ({ group, page, browser }) => {
     if (browser.browserType().name() === 'webkit') {
       // @TODO it seems that the guard logic on safari mobile does'nt work very well
       test.skip()
