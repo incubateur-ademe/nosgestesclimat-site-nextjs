@@ -153,23 +153,16 @@ export default function NewsletterManagement({ hasEmailField = true }: Props) {
           noValidate
           onSubmit={(e) => void handleSubmitEmail(onSubmitSubscriptions)(e)}>
           <EmailInput
-            label={t(
-              'newsletterManagement.email.label',
-              'Votre adresse e-mail'
-            )}
-            helperText={t(
-              'newsletterManagement.email.helperText',
-              'Format attendu : nom.prenom@domaine.fr'
-            )}
             error={emailErrors.email?.message}
             {...registerEmail('email', {
               required: t(
-                'newsletterManagement.email.required',
-                t('Veuillez renseigner votre adresse e-mail')
+                'ui.emailInput.errors.required',
+                'Veuillez renseigner votre adresse e-mail'
               ),
               validate: (value) =>
                 isEmailValid(value) ||
                 t(
+                  'ui.emailInput.errors.invalid',
                   'Veuillez entrer une adresse email valide (format attendu : nom.prenom@domaine.fr)'
                 ),
             })}
