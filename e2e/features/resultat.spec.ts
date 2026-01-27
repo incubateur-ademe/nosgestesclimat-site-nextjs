@@ -11,7 +11,9 @@ const URL = '/fin'
 test.beforeEach(async ({ page }) => {
   await page.goto(URL)
 })
-// The redirect logic is very shakky and break E2E test very often @TODO fix this when we implement the new result page
+// The redirect logic is very shakky and E2E fail test very often (especially on firefox and safari)
+// Note : This might also happen to real users !
+// @TODO fix this when we implement the new result page
 test.skip()
 
 test('Should redirect to the tutorial if no simulation', async ({ page }) => {
