@@ -26,8 +26,7 @@ export const handleResponseError = async (response: Response) => {
       throw new UnknownError(response.status, await response.text())
   }
 }
-
-export async function fetchWithJWTCookie(
+export async function fetchWithJWTCookie<T = unknown>(
   url: string,
   {
     method = 'GET',
@@ -37,7 +36,7 @@ export async function fetchWithJWTCookie(
     setCookies?: boolean
     body?: string
   } = {}
-) {
+): Promise<T> {
   const cookieStore = await cookies()
 
   const ngcCookie = cookieStore.get(AUTHENTICATION_COOKIE_NAME)
@@ -60,18 +59,18 @@ export async function fetchWithJWTCookie(
   }
 
   if (method === 'POST') {
-    return {}
+    return {} as T
   }
   return response.json()
 }
 
-export async function fetchWithoutJWTCookie(
+export async function fetchWithoutJWTCookie<T = unknown>(
   url: string,
   {
     method = 'GET',
     body,
   }: { method?: 'GET' | 'POST' | 'PUT' | 'DELETE'; body?: string } = {}
-) {
+): Promise<T> {
   const response = await fetch(url, {
     method,
     body,
