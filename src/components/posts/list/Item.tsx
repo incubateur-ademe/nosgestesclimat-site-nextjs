@@ -11,6 +11,8 @@ interface Props {
 }
 
 export default function Item({ item, path, locale }: Props) {
+  const imageUrl = item.data?.image || ''
+
   return (
     <li>
       <Card
@@ -20,7 +22,7 @@ export default function Item({ item, path, locale }: Props) {
         <div>
           {item.data.image ? (
             <Image
-              src={item.data?.image || ''}
+              src={imageUrl}
               width="400"
               height="200"
               className="mx-auto mb-2 max-h-36 w-full object-cover"

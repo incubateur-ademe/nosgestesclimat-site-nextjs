@@ -22,7 +22,8 @@ export async function getUserOrganisation(): Promise<Organisation | undefined> {
   }
 
   try {
-    const organisations = await fetchWithJWTCookie(ORGANISATION_URL)
+    const organisations =
+      await fetchWithJWTCookie<Organisation[]>(ORGANISATION_URL)
 
     if (organisations.length === 0) return undefined
 

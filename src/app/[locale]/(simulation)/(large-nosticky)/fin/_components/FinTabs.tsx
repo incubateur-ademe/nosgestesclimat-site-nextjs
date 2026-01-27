@@ -108,7 +108,9 @@ export default function FinTabs() {
     {
       id: 'groups',
       label: (
-        <span className="flex flex-col items-center gap-1 md:flex-row">
+        <span
+          className="flex flex-col items-center gap-1 md:flex-row"
+          data-testid="my-groups-tab">
           <AmisIcon
             className={twMerge(
               'h-6 w-6',

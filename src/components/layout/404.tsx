@@ -15,7 +15,7 @@ export default async function Route404({ locale }: { locale: Locale }) {
       <HeaderServer locale={locale} />
 
       <Main>
-        <div className="relative h-svh" data-cypress-id="404">
+        <div className="relative h-svh" data-testid="404">
           <div className="absolute top-20 right-0 bottom-0 left-0 bg-[#1617C5] opacity-75 lg:top-20" />
 
           <div className="relative mt-20 flex flex-col items-center lg:mt-20">

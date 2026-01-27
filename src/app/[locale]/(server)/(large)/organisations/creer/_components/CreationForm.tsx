@@ -99,7 +99,7 @@ export default function CreationForm() {
           className="col-span-1"
           label={<Trans>Votre organisation</Trans>}
           autoComplete="organization"
-          data-cypress-id="organisation-name-input"
+          data-testid="organisation-name-input"
           error={formState.errors.name?.message}
           {...register('name', {
             required: t('Ce champ est requis'),
@@ -110,7 +110,7 @@ export default function CreationForm() {
           <SelectInput
             containerClassName="pt-[3px]"
             label={<Trans>Type d'organisation</Trans>}
-            data-cypress-id="organisation-type-select"
+            data-testid="organisation-type-select"
             error={formState.errors.organisationType?.message}
             {...register('organisationType', {
               required: t('Ce champ est requis'),
@@ -155,7 +155,7 @@ export default function CreationForm() {
           className="col-span-1"
           label={<Trans>Votre prénom</Trans>}
           autoComplete="given-name"
-          data-cypress-id="organisation-administrator-first-name-input"
+          data-testid="organisation-administrator-first-name-input"
           error={formState.errors.administratorFirstName?.message}
           {...register('administratorFirstName', {
             required: t('Ce champ est requis'),
@@ -166,7 +166,7 @@ export default function CreationForm() {
           className="col-span-1"
           label={<Trans>Votre nom</Trans>}
           autoComplete="family-name"
-          data-cypress-id="organisation-administrator-last-name-input"
+          data-testid="organisation-administrator-last-name-input"
           error={formState.errors.administratorLastName?.message}
           {...register('administratorLastName', {
             required: t('Ce champ est requis'),
@@ -176,7 +176,7 @@ export default function CreationForm() {
         <TextInput
           className="col-span-1"
           autoComplete="organization-title"
-          data-cypress-id="organisation-administrator-position-input"
+          data-testid="organisation-administrator-position-input"
           label={
             <p className="mb-0 flex items-center justify-between">
               <Trans>Votre poste</Trans>
@@ -210,7 +210,7 @@ export default function CreationForm() {
       {isErrorUpdateOrga && <DefaultSubmitErrorMessage className="mt-4" />}
 
       <div className="mt-12">
-        <Button type="submit" data-cypress-id="create-organisation-button">
+        <Button type="submit" data-testid="create-organisation-button">
           <Trans>Créer ma première campagne</Trans>
         </Button>
       </div>

@@ -78,7 +78,7 @@ export default function InvitationForm({ group }: { group: Group }) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <PrenomInput
-        data-cypress-id="member-name"
+        data-testid="member-name"
         value={user.name ?? ''}
         error={errors.guestName?.message}
         {...register('guestName', {
@@ -89,6 +89,7 @@ export default function InvitationForm({ group }: { group: Group }) {
       <div className="my-4">
         <EmailInput
           value={user.email ?? ''}
+          data-testid="email-input"
           label={
             <span>
               {t('Votre adresse electronique')}{' '}
@@ -117,7 +118,7 @@ export default function InvitationForm({ group }: { group: Group }) {
         </p>
       )}
 
-      <Button type="submit" data-cypress-id="button-join-group">
+      <Button type="submit" data-testid="button-join-group">
         {hasCompletedTest ? (
           <Trans>Rejoindre</Trans>
         ) : (

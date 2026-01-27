@@ -5,11 +5,13 @@ import prettier from 'eslint-config-prettier/flat'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
 import { defineConfig, globalIgnores } from 'eslint/config'
 import tseslint from 'typescript-eslint'
+import playwright from 'eslint-plugin-playwright'
 
 const eslintConfig = defineConfig(
   {
     // The only way to overload nextJS config with more aggressive ts-eslint rules
     ...nextVanilla[0],
+    files: ['{src,config}/**/*.{js,jsx,mjs,ts,tsx,mts,cts}'],
     rules: {
       ...nextVanilla[0].rules,
       ...nextPlugin.configs['core-web-vitals'].rules,
@@ -45,6 +47,7 @@ const eslintConfig = defineConfig(
     rules: {
       '@typescript-eslint/consistent-type-imports': 'error',
 
+      // @TODO : these should be error by default
       '@typescript-eslint/no-unsafe-argument': 'warn',
       '@typescript-eslint/no-unsafe-member-access': 'warn',
       '@typescript-eslint/no-unsafe-assignment': 'warn',
@@ -78,27 +81,25 @@ const eslintConfig = defineConfig(
       ...vitest.configs.recommended.rules,
     },
   },
+  {
+    files: ['tests/e2e/**/*.ts'],
+    extends: [playwright.configs['flat/recommended']],
+  },
   globalIgnores([
-    '.next/**',
-    'out/**',
-    'build/**',
-    'next-env.d.ts',
-    'coverage/**',
-    'cypress/**',
-    '*.config.js',
-    '*.config.ts',
-    '*.setup.ts',
-    '*.setup.tsx',
-    'check-memory.mjs',
-    'scripts/**/*',
-    'public/**/*.js',
-    'public/**/*.html',
-    '**/*.stories.tsx',
-    '.storybook/**',
-    'playwright-report/**',
-    'storybook-static/**',
-    'pnpm-lock.yaml',
-  ])
+      '.next/**',
+      'build/**',
+      'next-env.d.ts',
+      'coverage/**',
+      '*.config.{js,ts}',
+      'check-memory.mjs',
+      'scripts/**/*',
+      'public/**/*',
+      '**/*.stories.tsx',
+      '.storybook/**',
+      'playwright-report/**',
+      'storybook-static/**',
+      'pnpm-lock.yaml',
+    ])
 )
 
 export default eslintConfig

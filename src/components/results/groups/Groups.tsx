@@ -38,6 +38,7 @@ export default function Groups({ groups }: Props) {
             <NewItemCardLink
               href="/amis/creer/votre-groupe"
               className="hidden md:block"
+              data-testid="create-group-button"
               label={
                 <Trans i18nKey="mon-espace.groups.create">
                   Créer un groupe

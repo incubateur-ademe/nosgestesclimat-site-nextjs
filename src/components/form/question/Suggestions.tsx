@@ -35,7 +35,7 @@ export default function Suggestions({ question, setValue }: Props) {
       {suggestions.map((suggestion) => (
         <button
           key={suggestion.label}
-          data-cypress-id={`suggestion-${suggestion.value}`}
+          data-testid={`suggestion-${suggestion.value}`}
           className={twMerge(
             'text-xs font-medium transition-colors md:text-sm',
             baseClassNames,

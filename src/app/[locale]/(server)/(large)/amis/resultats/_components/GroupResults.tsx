@@ -79,7 +79,7 @@ export default function GroupResults({
         // Hide this content when displaying the water footprint for now
         isCarbonFootprintSelected && (
           <>
-            <h2 data-cypress-id="votre-empreinte-title" className="mt-8">
+            <h2 data-testid="votre-empreinte-title" className="mt-8">
               <Trans>Votre empreinte</Trans>
             </h2>
 

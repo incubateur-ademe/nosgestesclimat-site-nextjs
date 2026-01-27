@@ -53,7 +53,7 @@ export default async function OrganisationPage({
           href={`/organisations/${organisation?.slug}/parametres`}
           trackingEvent={organisationsDashboardClickParameters}
           color="text"
-          data-cypress-id="organisation-page-see-parameters-button"
+          data-testid="organisation-page-see-parameters-button"
           className="flex items-center self-start">
           <SettingsIcon className="fill-primary-700 mr-2" />
 
