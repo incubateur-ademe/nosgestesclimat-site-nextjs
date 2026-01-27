@@ -4,7 +4,7 @@ import { fetchArticlePageContent } from '@/services/cms/fetchArticlePageContent'
 import { fetchArticlePageMetadata } from '@/services/cms/fetchArticlePageMetadata'
 
 import Footer from '@/components/layout/Footer'
-import WantToActBlock from '@/components/layout/footer/WantToActBlock'
+import FooterClientShell from '@/components/layout/FooterClientShell'
 import Badge from '@/design-system/layout/Badge'
 import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import type { Locale } from '@/i18nConfig'
@@ -151,7 +151,9 @@ export default async function ArticlePage({
 
       <OtherArticles articles={otherArticles} locale={locale} />
 
-      <Footer wantToActBlock={<WantToActBlock locale={locale} />} />
+      <FooterClientShell>
+        <Footer pathname={`/${locale}/blog/${category}/${articleSlug}`} locale={locale} />
+      </FooterClientShell>
     </>
   )
 }

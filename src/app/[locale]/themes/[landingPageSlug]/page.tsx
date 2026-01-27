@@ -10,7 +10,7 @@ import UnderstandToAct from '@/components/landing-pages/UnderstandToAct'
 import WhatDoWeMeasure from '@/components/landing-pages/WhatDoWeMeasure'
 import WhatItIs from '@/components/landing-pages/WhatItIs'
 import Footer from '@/components/layout/Footer'
-import WantToActBlock from '@/components/layout/footer/WantToActBlock'
+import FooterClientShell from '@/components/layout/FooterClientShell'
 import Link from '@/components/Link'
 import JSONLD from '@/components/seo/JSONLD'
 import {
@@ -297,7 +297,9 @@ export default async function ThematicLandingPage({
         {htmlLegend && <Legend htmlLegend={htmlLegend} />}
       </LandingPage>
 
-      <Footer wantToActBlock={<WantToActBlock locale={locale} />} />
+      <FooterClientShell>
+        <Footer pathname={`/${locale}/themes/${landingPageSlug}`} locale={locale} />
+      </FooterClientShell>
     </ClientLayout>
   )
 }

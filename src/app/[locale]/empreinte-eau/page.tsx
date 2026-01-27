@@ -1,7 +1,7 @@
 import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
 import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
 import Footer from '@/components/layout/Footer'
-import WantToActBlock from '@/components/layout/footer/WantToActBlock'
+import FooterClientShell from '@/components/layout/FooterClientShell'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/trans/TransServer'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
@@ -160,7 +160,9 @@ export default async function WaterFootprintLandingPage(
 
         <FAQWaterFootprint locale={locale} />
       </LandingPage>
-      <Footer wantToActBlock={<WantToActBlock locale={locale} />} />
+      <FooterClientShell>
+        <Footer pathname={`/${locale}/empreinte-eau`} locale={locale} />
+      </FooterClientShell>
     </ClientLayout>
   )
 }

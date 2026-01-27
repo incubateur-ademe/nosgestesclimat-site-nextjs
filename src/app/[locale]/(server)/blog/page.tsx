@@ -1,6 +1,6 @@
 import ContentLarge from '@/components/layout/ContentLarge'
 import Footer from '@/components/layout/Footer'
-import WantToActBlock from '@/components/layout/footer/WantToActBlock'
+import FooterClientShell from '@/components/layout/FooterClientShell'
 import JSONLD from '@/components/seo/JSONLD'
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import ArticleList from '@/design-system/cms/ArticleList'
@@ -169,7 +169,9 @@ export default async function BlogHomePage({
 
       <AllBlogCategories locale={locale} />
 
-      <Footer wantToActBlock={<WantToActBlock locale={locale} />} />
+      <FooterClientShell>
+        <Footer pathname={`/${locale}/blog`} locale={locale} />
+      </FooterClientShell>
     </>
   )
 }

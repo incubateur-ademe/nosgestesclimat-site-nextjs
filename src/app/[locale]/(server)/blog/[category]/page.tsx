@@ -3,13 +3,13 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import FAQ from '@/components/landing-pages/FAQ'
 import ContentLarge from '@/components/layout/ContentLarge'
 import Footer from '@/components/layout/Footer'
+import FooterClientShell from '@/components/layout/FooterClientShell'
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
 import { getDynamicPageTitleWithPagination } from '@/helpers/blog/getDynamicPageTitleWithPagination'
 import { getPageNumber } from '@/helpers/blog/getPageNumber'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import type { Locale } from '@/i18nConfig'
 import i18nConfig from '@/i18nConfig'
 import { fetchCategoryPageContent } from '@/services/cms/fetchCategoryPageContent'
@@ -100,10 +100,6 @@ export default async function CategoryPage({
       locale,
     })) || {}
 
-  const langButtonsDisplayed = await getLangButtonsDisplayed({
-    category,
-  })
-
   //  Firstly redirect to french version if the page is not available in the current locale
   if (locale !== i18nConfig.defaultLocale && (!title || !description)) {
     return redirect(`/fr/blog/${category}`)
@@ -190,7 +186,9 @@ export default async function CategoryPage({
         />
       </div>
 
-      <Footer langButtonsDisplayed={langButtonsDisplayed} />
+      <FooterClientShell>
+        <Footer pathname={`/${locale}/blog/${category}`} locale={locale} />
+      </FooterClientShell>
     </>
   )
 }
