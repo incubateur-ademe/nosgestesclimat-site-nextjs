@@ -2,6 +2,8 @@
 
 import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
+
+import Loader from '@/design-system/layout/Loader'
 import updateAuthenticatedUserNewsletters, {
   type NewsletterFormState,
 } from '@/helpers/server/model/newsletters'
@@ -16,12 +18,12 @@ interface Props {
   user: UserServer
 }
 
-export default function NewsletterManagement({ user }: Props) {
+export default function NewsletterSettingsAuthenticated({ user }: Props) {
   const { data: newsletterSubscriptions = [] } = useGetNewsletterSubscriptions(
     user.id
   )
 
-  const [state, formAction] = useActionState<
+  const [state, formAction, pending] = useActionState<
     NewsletterFormState,
     FormData | null
   >(
@@ -30,7 +32,7 @@ export default function NewsletterManagement({ user }: Props) {
       return await updateAuthenticatedUserNewsletters(formData)
     },
     {
-      newsletterIds: newsletterSubscriptions,
+      newsletterSubscriptions,
     }
   )
 
@@ -39,16 +41,26 @@ export default function NewsletterManagement({ user }: Props) {
       <Form
         action={formAction}
         className="mb-8 flex flex-col items-start gap-4">
-        <NewsletterCheckBoxes />
+        <NewsletterCheckBoxes
+          newsletterSubscriptions={
+            state && 'newsletterSubscriptions' in state
+              ? state.newsletterSubscriptions
+              : newsletterSubscriptions
+          }
+        />
 
-        <Button type="submit" className="mt-8">
-          <span data-testid="default-submit-label">
-            <Trans>Mettre à jour mes abonnements</Trans>
-          </span>
+        <Button type="submit" className="mt-8 h-14 w-60" disabled={pending}>
+          {pending ? (
+            <Loader size="sm" color="light" />
+          ) : (
+            <span data-testid="default-submit-label">
+              <Trans>Mettre à jour mes abonnements</Trans>
+            </span>
+          )}
         </Button>
       </Form>
 
-      {state && 'success' in state && state.success && (
+      {!pending && state && 'success' in state && state.success && (
         <Alert
           aria-live="polite"
           className="mt-6"
@@ -69,7 +81,7 @@ export default function NewsletterManagement({ user }: Props) {
         />
       )}
 
-      {state && 'errors' in state && state.errors && (
+      {!pending && state && 'errors' in state && state.errors && (
         <Alert
           aria-live="polite"
           className="mt-6"

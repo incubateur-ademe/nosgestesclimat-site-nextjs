@@ -1,11 +1,13 @@
 import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import Trans from '@/components/translation/trans/TransServer'
-import NewsletterManagement from '@/components/user/NewsletterSettingsAuthenticated'
+import NewsletterSettingsAuthenticated from '@/components/user/NewsletterSettingsAuthenticated'
+import { getUser } from '@/helpers/server/model/user'
 import type { Locale } from '@/i18nConfig'
 import { UserProvider } from '@/publicodes-state'
 import UserEmail from './userInfoSection/UserEmail'
 
-export default function UserInfoSection({ locale }: { locale: Locale }) {
+export default async function UserInfoSection({ locale }: { locale: Locale }) {
+  const user = await getUser()
   return (
     <section aria-labelledby="user-info-title" className="mb-10">
       <h2 id="user-info-title" className="mb-4">
@@ -24,7 +26,7 @@ export default function UserInfoSection({ locale }: { locale: Locale }) {
                 Inscription à nos contenus
               </Trans>
             </h2>
-            <NewsletterManagement hasEmailField={false} />
+            <NewsletterSettingsAuthenticated user={user} />
           </div>
         </UserProvider>
       </QueryClientProviderWrapper>
