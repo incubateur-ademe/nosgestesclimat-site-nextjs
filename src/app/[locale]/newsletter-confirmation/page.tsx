@@ -1,4 +1,5 @@
 import Footer from '@/components/layout/Footer'
+import WantToActBlock from '@/components/layout/footer/WantToActBlock'
 import Main from '@/design-system/layout/Main'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
@@ -64,7 +65,7 @@ export default async function NewsletterConfirmationPage({
         </div>
       </Main>
 
-      <Footer />
+      <Footer wantToActBlock={<WantToActBlock locale={locale} />} />
     </>
   )
 }

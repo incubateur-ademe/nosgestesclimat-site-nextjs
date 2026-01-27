@@ -4,6 +4,7 @@ import { GoogleTagIframe } from '@/components/googleTagManager/GoogleTagIframe'
 import { GoogleTagScript } from '@/components/googleTagManager/GoogleTagScript'
 import Footer from '@/components/layout/Footer'
 import HeaderServer from '@/components/layout/HeaderServer'
+import WantToActBlock from '@/components/layout/footer/WantToActBlock'
 import SkipToMainContentLink from '@/design-system/accessibility/SkipToMainContentLink'
 import Banner from '@/design-system/cms/Banner'
 import type { DefaultPageProps } from '@/types'
@@ -24,7 +25,7 @@ export default async function LargeLayout({ children, params }: LayoutProps) {
 
         <GoogleTagScript />
         <GoogleTagIframe />
-        <Footer />
+        <Footer wantToActBlock={<WantToActBlock locale={locale} />} />
       </CookieConsentProvider>
     </>
   )

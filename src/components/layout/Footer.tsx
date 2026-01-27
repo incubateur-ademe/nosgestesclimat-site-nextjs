@@ -19,7 +19,6 @@ import {
   footerClickStats,
 } from '@/constants/tracking/layout'
 import InlineLink from '@/design-system/inputs/InlineLink'
-import type { LangButtonsConfigType } from '@/helpers/language/getLangButtonsDisplayed'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import { useLocale } from '@/hooks/useLocale'
@@ -30,7 +29,6 @@ import { useCookieConsent } from '../cookies/CookieConsentProvider'
 import Link from '../Link'
 import LogoLink from '../misc/LogoLink'
 import Trans from '../translation/trans/TransClient'
-import WantToActBlock from './footer/WantToActBlock'
 import ThematicPagesSection from './ThematicPagesSection'
 
 const WHITE_BACKGROUND_PATHS = new Set([
@@ -40,13 +38,12 @@ const WHITE_BACKGROUND_PATHS = new Set([
   '/organisations',
 ])
 
-export default function Footer({
-  className = '',
-  langButtonsDisplayed,
-}: {
+interface Props {
   className?: string
-  langButtonsDisplayed?: LangButtonsConfigType
-}) {
+  wantToActBlock: React.ReactNode
+}
+
+export default function Footer({ className = '', wantToActBlock }: Props) {
   const pathname = usePathname()
   const locale = useLocale()
 
@@ -79,9 +76,7 @@ export default function Footer({
           <LogoLink onClick={() => trackEvent(footerClickLogo)} />
         </div>
 
-        <div className="my-4 block md:hidden">
-          <WantToActBlock />
-        </div>
+        <div className="my-4 block md:hidden">{wantToActBlock}</div>
 
         <div className="flex flex-col md:flex-row">
           <div className="mb-10 flex flex-col flex-wrap justify-start gap-x-16 gap-y-8 pt-4 md:flex-row">
@@ -225,9 +220,7 @@ export default function Footer({
 
             <ThematicPagesSection />
           </div>
-          <div className="hidden md:block">
-            <WantToActBlock />
-          </div>
+          <div className="hidden md:block">{wantToActBlock}</div>
         </div>
 
         <div className="flex flex-wrap justify-between gap-8 border-t border-gray-200 pt-6 md:flex-row md:flex-nowrap">

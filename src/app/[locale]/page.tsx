@@ -2,6 +2,7 @@ import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
 import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
 import { ClientLayout } from '@/components/layout/ClientLayout'
 import Footer from '@/components/layout/Footer'
+import WantToActBlock from '@/components/layout/footer/WantToActBlock'
 import JSONLD from '@/components/seo/JSONLD'
 import Trans from '@/components/translation/trans/TransServer'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
@@ -124,7 +125,7 @@ export default async function Homepage({ params }: PageProps<'/[locale]'>) {
         <TheySpeakAboutUs locale={locale} />
       </LandingPage>
 
-      <Footer />
+      <Footer wantToActBlock={<WantToActBlock locale={locale} />} />
     </ClientLayout>
   )
 }

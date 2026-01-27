@@ -1,4 +1,5 @@
 import Footer from '@/components/layout/Footer'
+import WantToActBlock from '@/components/layout/footer/WantToActBlock'
 import { COOKIE_CONSENT_KEY } from '@/constants/state/cookies'
 import {
   trackingCookiesAccept,
@@ -163,7 +164,8 @@ describe('CookieConsentBannerAndManagement', () => {
 
       renderWithWrapper(
         <>
-          <CookieConsentBannerAndManagement /> <Footer />
+          <CookieConsentBannerAndManagement />{' '}
+          <Footer wantToActBlock={<WantToActBlock locale="fr" />} />
         </>
       )
 

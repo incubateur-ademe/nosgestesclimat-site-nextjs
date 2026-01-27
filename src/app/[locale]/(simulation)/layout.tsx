@@ -1,4 +1,5 @@
 import Footer from '@/components/layout/Footer'
+import WantToActBlock from '@/components/layout/footer/WantToActBlock'
 import EngineProviders from '@/components/providers/EngineProviders'
 import SimulationSyncProvider from '@/components/providers/simulationProviders/SimulationSyncProvider'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
@@ -22,7 +23,7 @@ export default async function SimulateurLayout({
       <EngineProviders supportedRegions={supportedRegions}>
         <SimulationSyncProvider>{children}</SimulationSyncProvider>
 
-        <Footer />
+        <Footer wantToActBlock={<WantToActBlock locale={locale} />} />
       </EngineProviders>
     </ClientLayout>
   )

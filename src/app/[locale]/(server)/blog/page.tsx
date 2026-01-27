@@ -1,5 +1,6 @@
 import ContentLarge from '@/components/layout/ContentLarge'
 import Footer from '@/components/layout/Footer'
+import WantToActBlock from '@/components/layout/footer/WantToActBlock'
 import JSONLD from '@/components/seo/JSONLD'
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import ArticleList from '@/design-system/cms/ArticleList'
@@ -168,7 +169,7 @@ export default async function BlogHomePage({
 
       <AllBlogCategories locale={locale} />
 
-      <Footer langButtonsDisplayed={langButtonsDisplayed} />
+      <Footer wantToActBlock={<WantToActBlock locale={locale} />} />
     </>
   )
 }
