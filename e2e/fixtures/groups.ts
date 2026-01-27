@@ -60,7 +60,7 @@ export class Group {
   async changeName() {
     const newName = generateName()
     await this.page.getByTestId('group-name-edit-button').click()
-    await this.page.getByTestId('group-edit-input-name').fill(this.name)
+    await this.page.getByTestId('group-edit-input-name').fill(newName)
     await this.page.getByTestId('button-inline-input').click()
     await this.page.waitForLoadState('networkidle')
     this.data.name = newName
