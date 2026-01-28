@@ -1,22 +1,22 @@
 import ContentLarge from '@/components/layout/ContentLarge'
-import Footer from "@/components/layout/Footer"
-import FooterClientShell from "@/components/layout/FooterClientShell"
-import type { DefaultPageProps } from '@/types'
-import type { PropsWithChildren } from 'react'
+import Footer from '@/components/layout/Footer'
+import FooterClientShell from '@/components/layout/FooterClientShell'
+import type { Locale } from '@/i18nConfig'
 
-type LayoutProps = PropsWithChildren & DefaultPageProps
-
-export default async function LargeLayout({ children, params }: LayoutProps) {
+export default async function LargeLayout({
+  children,
+  params,
+}: LayoutProps<'/[locale]'>) {
   const { locale } = await params
   return (
     <>
-    <ContentLarge className="mt-4 px-4 md:mt-10 lg:px-0">
-      {children}
-    </ContentLarge>
+      <ContentLarge className="mt-4 px-4 md:mt-10 lg:px-0">
+        {children}
+      </ContentLarge>
 
-    <FooterClientShell>
-      <Footer locale={locale} />
-    </FooterClientShell>
+      <FooterClientShell>
+        <Footer locale={locale as Locale} />
+      </FooterClientShell>
     </>
   )
 }
