@@ -81,5 +81,7 @@ jobs:
   e2e-preprod:
     needs: deploy-preprod
     uses: ./.github/workflows/e2e.yaml
+    with:
+      is_preprod: true
     secrets:
       MAILISK_API_KEY: ${{ secrets.MAILISK_API_KEY }}
