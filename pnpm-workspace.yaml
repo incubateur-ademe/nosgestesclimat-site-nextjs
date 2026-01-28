@@ -4,4 +4,3 @@ minimumReleaseAgeExclude:
   - 'react'
   - 'next'
   - '@next/*'
-  
