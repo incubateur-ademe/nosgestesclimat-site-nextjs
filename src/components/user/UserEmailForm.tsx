@@ -5,6 +5,7 @@ import DefaultSubmitErrorMessage from '@/components/error/DefaultSubmitErrorMess
 import Trans from '@/components/translation/trans/TransClient'
 import {
   captureClickUpdateUserEmail,
+  clickResendCodeUserEmail,
   clickUpdateUserEmail,
 } from '@/constants/tracking/user-account'
 import Button from '@/design-system/buttons/Button'
@@ -87,6 +88,7 @@ export default function UserEmailForm({ submitLabel, className }: Props) {
               onVerificationCompleted={completeVerification}
               verificationMutation={updateUserSettings}
               mutationPayload={{ userId: user.userId }}
+              trackingEvent={clickResendCodeUserEmail}
             />
           </Modal>
         )}

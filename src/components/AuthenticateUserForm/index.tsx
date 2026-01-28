@@ -6,7 +6,9 @@ import { useCallback, useState, type ReactNode } from 'react'
 import { EMAIL_PENDING_AUTHENTICATION_KEY } from '@/constants/authentication/sessionStorage'
 import {
   captureClickSubmitEmail,
+  signinClickResendCode,
   signinTrackEvent,
+  signupClickResendCode,
 } from '@/constants/tracking/pages/signin'
 import Button from '@/design-system/buttons/Button'
 import useLogin from '@/hooks/authentication/useLogin'
@@ -86,6 +88,14 @@ export default function AuthenticateUserForm({
   const login = useLogin()
 
   if (pendingVerification || isRedirecting) {
+    // Determine the tracking event based on mode
+    const resendTrackingEvent =
+      mode === 'signIn'
+        ? signinClickResendCode
+        : mode === 'signUp'
+          ? signupClickResendCode
+          : undefined
+
     return (
       <div className="mb-8 rounded-xl bg-[#F4F5FB] p-4 md:p-8">
         <VerifyCodeForm
@@ -93,6 +103,7 @@ export default function AuthenticateUserForm({
           email={pendingVerification?.email ?? user.email ?? ''}
           onVerificationCompleted={completeVerification}
           verificationMutation={login}
+          trackingEvent={resendTrackingEvent}
         />
         <Button
           onClick={resetVerification}

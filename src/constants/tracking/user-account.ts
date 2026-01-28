@@ -179,3 +179,10 @@ export const clickUpdateUserNewsletters = [
 export const captureClickUpdateUserNewsletters = {
   eventName: 'click update user newsletters',
 }
+
+export const clickResendCodeUserEmail = [
+  'trackEvent',
+  'User Account Settings',
+  'Click Renvoyer le code',
+  'User Email Update',
+]
