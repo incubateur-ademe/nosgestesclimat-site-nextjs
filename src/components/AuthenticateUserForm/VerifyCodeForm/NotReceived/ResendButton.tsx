@@ -13,12 +13,14 @@ interface Props {
   isRetryButtonDisabled: boolean
   onResendVerificationCode: () => void
   timeLeft: number
+  trackingEvent?: string[]
 }
 
 export default function ResendButton({
   isRetryButtonDisabled,
   onResendVerificationCode,
   timeLeft,
+  trackingEvent = organisationsConnexionClickCode,
 }: Props) {
   const [shouldDisplayConfirmation, setShouldDisplayConfirmation] =
     useState(false)
@@ -30,7 +32,7 @@ export default function ResendButton({
       return
     }
 
-    trackEvent(organisationsConnexionClickCode)
+    trackEvent(trackingEvent)
 
     onResendVerificationCode()
     setShouldDisplayConfirmation(true)

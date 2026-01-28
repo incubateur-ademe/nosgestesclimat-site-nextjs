@@ -19,6 +19,7 @@ interface Props<T extends object> {
     Error,
     Partial<{ email: string; code: string }> & T
   >
+  trackingEvent?: string[]
 }
 
 enum ERROR_MESSAGES {
@@ -46,6 +47,7 @@ export default function VerificationForm<T extends object>({
   onRegisterNewVerification,
   mutationPayload: mutateProps,
   verificationMutation,
+  trackingEvent,
 }: Props<T>) {
   const { timeLeft, setTimeLeft } = useTimeLeft(NUM_SECONDS)
 
@@ -106,6 +108,7 @@ export default function VerificationForm<T extends object>({
           isErrorResend={!!error}
           onResendVerificationCode={() => createVerificationCode(email)}
           timeLeft={timeLeft}
+          trackingEvent={trackingEvent}
         />
       )}
     </div>
