@@ -49,7 +49,7 @@ export default function AuthenticateUserForm({
   trackers,
 }: Props) {
   const router = useRouter()
-  const { user } = useUser()
+  const { user, updateEmail } = useUser()
 
   const [isRedirecting, setIsRedirecting] = useState(false)
 
@@ -64,6 +64,8 @@ export default function AuthenticateUserForm({
         trackPosthogEvent(trackers.posthog)
       }
       onComplete?.(user)
+      
+      updateEmail(user.email)
 
       if (redirectURL) {
         router.push(redirectURL)

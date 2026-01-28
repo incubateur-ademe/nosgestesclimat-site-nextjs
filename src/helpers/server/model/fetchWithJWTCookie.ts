@@ -3,7 +3,6 @@
 import { AUTHENTICATION_COOKIE_NAME } from '@/constants/authentication/cookie'
 import { cookies } from 'next/headers'
 import {
-  ForbiddenError,
   InternalServerError,
   NotFoundError,
   TooManyRequestsError,
@@ -11,10 +10,35 @@ import {
   UnknownError,
 } from '../error'
 
+export const handleResponseError = async (response: Response) => {
+  switch (response.status) {
+    case 404:
+      throw new NotFoundError()
+    case 401:
+      throw new UnauthorizedError()
+    case 403:
+      throw new UnauthorizedError()
+    case 429:
+      throw new TooManyRequestsError()
+    case 500:
+      throw new InternalServerError()
+    default:
+      throw new UnknownError(response.status, await response.text())
+  }
+}
 export async function fetchWithJWTCookie<T = unknown>(
   url: string,
-  { method = 'GET' }: { method?: 'GET' | 'POST' } = {}
-) {
+  {
+    method = 'GET',
+    body,
+    headers,
+  }: {
+    method?: 'GET' | 'POST' | 'PUT'
+    setCookies?: boolean
+    body?: string
+    headers?: Record<string, string>
+  } = {}
+): Promise<T> {
   const cookieStore = await cookies()
 
   const ngcCookie = cookieStore.get(AUTHENTICATION_COOKIE_NAME)
@@ -25,31 +49,45 @@ export async function fetchWithJWTCookie<T = unknown>(
 
   const response = await fetch(url, {
     method,
+    body,
     headers: {
       cookie: `${ngcCookie.name}=${ngcCookie.value}`,
+      ...headers,
     },
     credentials: 'include',
   })
 
   if (!response.ok) {
-    switch (response.status) {
-      case 404:
-        throw new NotFoundError()
-      case 401:
-        throw new UnauthorizedError()
-      case 403:
-        throw new ForbiddenError()
-      case 429:
-        throw new TooManyRequestsError()
-      case 500:
-        throw new InternalServerError()
-      default:
-        throw new UnknownError(response.status, await response.text())
-    }
+    await handleResponseError(response)
   }
 
   if (method === 'POST') {
-    return {} as Promise<T>
+    return {} as T
   }
-  return response.json() as Promise<T>
+  return response.json()
+}
+
+export async function fetchWithoutJWTCookie<T = unknown>(
+  url: string,
+  {
+    method = 'GET',
+    body,
+    headers,
+  }: {
+    method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
+    body?: string
+    headers?: Record<string, string>
+  } = {}
+): Promise<T> {
+  const response = await fetch(url, {
+    method,
+    body,
+    headers,
+  })
+
+  if (!response.ok) {
+    await handleResponseError(response)
+  }
+
+  return response.json()
 }

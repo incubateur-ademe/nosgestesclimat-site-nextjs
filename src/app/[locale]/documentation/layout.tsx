@@ -1,6 +1,7 @@
 import { ClientLayout } from '@/components/layout/ClientLayout'
 import ContentLarge from '@/components/layout/ContentLarge'
 import Footer from '@/components/layout/Footer'
+import FooterClientShell from '@/components/layout/FooterClientShell'
 import HeaderServer from '@/components/layout/HeaderServer'
 import type { DefaultPageProps } from '@/types'
 import type { PropsWithChildren } from 'react'
@@ -17,7 +18,9 @@ export default async function Layout({ children, params }: LayoutProps) {
       <ClientLayout locale={locale}>
         <IsDocumentationClientProvider>
           <ContentLarge tag="div">{children}</ContentLarge>
-          <Footer />
+          <FooterClientShell>
+            <Footer pathname={`/${locale}/documentation`} locale={locale} />
+          </FooterClientShell>
         </IsDocumentationClientProvider>
       </ClientLayout>
     </>

@@ -1,3 +1,4 @@
+import { t } from '@/helpers/metadata/fakeMetadataT'
 import type { ReactNode } from 'react'
 import { forwardRef } from 'react'
 import TextInput from './TextInput'
@@ -14,8 +15,11 @@ interface Props {
 
 export default forwardRef(function EmailInput(
   {
-    label,
-    helperText,
+    label = t('ui.emailInput.label', 'Votre adresse e-mail'),
+    helperText = t(
+      'ui.emailInput.helperText',
+      'Format attendu : nom.prenom@domaine.fr'
+    ),
     className,
     readOnly = false,
     error,

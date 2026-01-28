@@ -11,6 +11,6 @@ export function useGetNewsletterSubscriptions(userId: string) {
       }),
     enabled: !!userId,
     retry: false,
-    placeholderData: [],
+    placeholderData: undefined,
   })
 }

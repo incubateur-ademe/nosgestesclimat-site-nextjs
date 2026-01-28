@@ -1,4 +1,5 @@
-import Footer from '@/components/layout/Footer'
+import CookieButton from '@/components/layout/footer/CookieButton'
+import FooterClientShell from '@/components/layout/FooterClientShell'
 import { COOKIE_CONSENT_KEY } from '@/constants/state/cookies'
 import {
   trackingCookiesAccept,
@@ -161,9 +162,24 @@ describe('CookieConsentBannerAndManagement', () => {
       const user = userEvent.setup()
       vi.mocked(safeLocalStorage.getItem).mockReturnValue(CookieChoice.all)
 
+      const MockFooterWithCookieButton = ({
+        pathname,
+        locale,
+      }: {
+        pathname: string
+        locale: string
+      }) => (
+        <li className="block md:inline">
+          <CookieButton />
+        </li>
+      )
+
       renderWithWrapper(
         <>
-          <CookieConsentBannerAndManagement /> <Footer />
+          <CookieConsentBannerAndManagement />
+          <FooterClientShell>
+            <MockFooterWithCookieButton locale="fr" pathname="/" />
+          </FooterClientShell>
         </>
       )
 
