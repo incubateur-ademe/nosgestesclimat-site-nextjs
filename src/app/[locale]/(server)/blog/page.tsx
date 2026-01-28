@@ -17,7 +17,6 @@ import { fetchHomepageMetadata } from '@/services/cms/fetchHomepageMetadata'
 import type { DefaultPageProps } from '@/types'
 import { notFound } from 'next/navigation'
 import BlogHero from './_components/BlogHero'
-import GroupBlock from './_components/GroupBlock'
 
 export async function generateStaticParams({
   params,
@@ -161,10 +160,6 @@ export default async function BlogHomePage({
             currentPage={pageNumber}
           />
         )}
-
-        <div className="flex flex-col gap-8 md:flex-row">
-          <GroupBlock locale={locale} />
-        </div>
       </ContentLarge>
 
       <AllBlogCategories locale={locale} />
