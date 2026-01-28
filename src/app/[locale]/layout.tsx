@@ -161,6 +161,47 @@ export default async function RootLayout({
           `,
           }}
         />
+
+        {/** Clear unused cookies */}
+        <Script
+          id="clear-unused-cookies"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+            if (!window.clearUnusedCookiesAdded) {
+              window.clearUnusedCookiesAdded = true;
+
+              const cookiesStartingWithToRemove = [
+                "crisp-client",
+              ]
+              const cookiesWithDomainToRemove = [
+                "youtube.com",
+              ]
+              
+              // Wait for DOM to be ready
+              const clearUnusedCookies = () => {
+                document.cookie.split(";").forEach((cookie) => {
+                  const cookieName = cookie.split("=")[0].trim();
+                  const cookieValue = cookie.split("=")[1].trim();
+
+                  // Clear unused cookies starting with a prefix in the list or with a domain in the list
+                  if (cookiesStartingWithToRemove.some((prefix) => cookieName.startsWith(prefix)) || cookiesWithDomainToRemove.some((domain) => cookieName.endsWith(domain))) {
+                    document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                    document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + window.location.hostname;
+                    document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=." + window.location.hostname;
+                  }
+                });
+              };
+              
+              if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', clearUnusedCookies);
+              } else {
+                clearUnusedCookies();
+              }
+            }
+          `,
+          }}
+        />
       </head>
       <body
         className={`${marianne.className} text-default bg-white transition-colors duration-700`}>
