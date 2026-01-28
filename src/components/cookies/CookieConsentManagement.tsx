@@ -6,6 +6,7 @@ import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { type CookieConsentChoices, CookieConsentKey } from '@/types/cookies'
+import Link from 'next/link'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -274,6 +275,30 @@ export default function CookieConsentManagement({
             </Button>
           </div>
         </form>
+
+        <div className="px-8 pt-4 pb-8">
+          <h2 className="text-lg font-bold">
+            <Trans i18nKey="cookies.management.audience.title">
+              Mesure d’audience
+            </Trans>
+          </h2>
+          <p>
+            <Trans i18nKey="cookies.management.audience.description">
+              Pour désactiver tous les cookies de mesure d’audience anonymes,
+              cliquez
+            </Trans>{' '}
+            <Link
+              href="/politique-de-confidentialite#cookies"
+              title={t(
+                'cookies.management.audience.linkTitle',
+                'Visiter notre politique de confidentialité'
+              )}
+              className="text-primary-700 underline">
+              <Trans i18nKey="cookies.management.audience.linkText">ici</Trans>
+            </Link>
+            .
+          </p>
+        </div>
       </div>
     </Modal>
   )
