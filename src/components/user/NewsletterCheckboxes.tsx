@@ -40,7 +40,7 @@ function NewsletterCheckbox({
 export default function NewsletterCheckBoxes({
   newsletterSubscriptions,
 }: {
-  newsletterSubscriptions: number[]
+  newsletterSubscriptions?: number[]
 }) {
   return (
     <section>
@@ -51,7 +51,7 @@ export default function NewsletterCheckBoxes({
             key={newsletter.id}
             newsletter={newsletter}
             data-testid={newsletter['data-testid']}
-            defaultChecked={newsletterSubscriptions.includes(newsletter.id)}
+            defaultChecked={newsletterSubscriptions?.includes(newsletter.id)}
           />
         )
       )}

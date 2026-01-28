@@ -31,10 +31,12 @@ export async function fetchWithJWTCookie<T = unknown>(
   {
     method = 'GET',
     body,
+    headers,
   }: {
     method?: 'GET' | 'POST' | 'PUT'
     setCookies?: boolean
     body?: string
+    headers?: Record<string, string>
   } = {}
 ): Promise<T> {
   const cookieStore = await cookies()
@@ -50,6 +52,7 @@ export async function fetchWithJWTCookie<T = unknown>(
     body,
     headers: {
       cookie: `${ngcCookie.name}=${ngcCookie.value}`,
+      ...headers,
     },
     credentials: 'include',
   })
@@ -69,11 +72,17 @@ export async function fetchWithoutJWTCookie<T = unknown>(
   {
     method = 'GET',
     body,
-  }: { method?: 'GET' | 'POST' | 'PUT' | 'DELETE'; body?: string } = {}
+    headers,
+  }: {
+    method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
+    body?: string
+    headers?: Record<string, string>
+  } = {}
 ): Promise<T> {
   const response = await fetch(url, {
     method,
     body,
+    headers,
   })
 
   if (!response.ok) {

@@ -12,13 +12,13 @@ import { fetchWithJWTCookie, fetchWithoutJWTCookie } from './fetchWithJWTCookie'
 import { getUser } from './user'
 
 export type NewsletterFormState =
-  | { success: true; email?: string; newsletterSubscriptions: number[] }
+  | { success: true; email?: string; newsletterSubscriptions?: number[] }
   | {
       errors: { email?: string[]; form?: string[] }
       email?: string
-      newsletterSubscriptions: number[]
+      newsletterSubscriptions?: number[]
     }
-  | { newsletterSubscriptions: number[]; email?: string }
+  | { newsletterSubscriptions?: number[]; email?: string }
 
 function getNewsletterIdsFromFormData(formData: FormData): number[] {
   return Array.from(formData.entries())
@@ -27,9 +27,10 @@ function getNewsletterIdsFromFormData(formData: FormData): number[] {
     .map(([key]) => Number(key.replace('newsletterSubscriptions.', '')))
 }
 
-export default async function updateAuthenticatedUserNewsletters(
+export default async function updateAuthenticatedUserNewsletters(state:NewsletterFormState,
   formData: FormData
 ): Promise<NewsletterFormState> {
+
   const user = await getUser()
 
   const newsletterSubscriptions = getNewsletterIdsFromFormData(formData)
@@ -46,6 +47,9 @@ export default async function updateAuthenticatedUserNewsletters(
   try {
     await fetchWithJWTCookie(`${USER_URL}/${user.id}`, {
       method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         contact: {
           listIds: newsletterSubscriptions,
@@ -119,6 +123,9 @@ export async function updateUnauthenticatedUserNewsletters(
 
   await fetchWithoutJWTCookie(`${USER_URL}/${userId}`, {
     method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify({
       email: validEmail,
       newsletterSubscriptions: validNewsletterIds,

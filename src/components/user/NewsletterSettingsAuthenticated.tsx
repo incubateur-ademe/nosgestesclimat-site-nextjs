@@ -4,9 +4,7 @@ import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
 
 import Loader from '@/design-system/layout/Loader'
-import updateAuthenticatedUserNewsletters, {
-  type NewsletterFormState,
-} from '@/helpers/server/model/newsletters'
+import updateAuthenticatedUserNewsletters from '@/helpers/server/model/newsletters'
 import type { UserServer } from '@/helpers/server/model/user'
 import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
 import Form from 'next/form'
@@ -19,41 +17,41 @@ interface Props {
 }
 
 export default function NewsletterSettingsAuthenticated({ user }: Props) {
-  const { data: newsletterSubscriptions = [] } = useGetNewsletterSubscriptions(
+  const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
     user.id
   )
 
-  const [state, formAction, pending] = useActionState<
-    NewsletterFormState,
-    FormData | null
-  >(
-    async (_prevState, formData) => {
-      if (!formData) return _prevState
-      return await updateAuthenticatedUserNewsletters(formData)
-    },
+  const [state, formAction, pending] = useActionState(
+    updateAuthenticatedUserNewsletters,
     {
       newsletterSubscriptions,
     }
   )
-
   return (
     <div className="w-xl max-w-full">
       <Form
         action={formAction}
         className="mb-8 flex flex-col items-start gap-4">
         <NewsletterCheckBoxes
+          key={JSON.stringify(
+            (state &&
+              'newsletterSubscriptions' in state &&
+              state.newsletterSubscriptions) ||
+              newsletterSubscriptions
+          )}
           newsletterSubscriptions={
-            state && 'newsletterSubscriptions' in state
-              ? state.newsletterSubscriptions
-              : newsletterSubscriptions
+            (state &&
+              'newsletterSubscriptions' in state &&
+              state.newsletterSubscriptions) ||
+            newsletterSubscriptions
           }
         />
 
-        <Button type="submit" className="mt-8 h-14 w-60" disabled={pending}>
+        <Button type="submit" className="mt-8 h-14 w-72" disabled={pending}>
           {pending ? (
             <Loader size="sm" color="light" />
           ) : (
-            <span data-testid="default-submit-label">
+            <span data-testid="default-submit-label" className="text-sm">
               <Trans>Mettre à jour mes abonnements</Trans>
             </span>
           )}
