@@ -1,12 +1,12 @@
 import ContentNarrow from '@/components/layout/ContentNarrow'
-import Footer from "@/components/layout/Footer"
-import FooterClientShell from "@/components/layout/FooterClientShell"
-import type { DefaultPageProps } from '@/types'
-import type { PropsWithChildren } from 'react'
+import Footer from '@/components/layout/Footer'
+import FooterClientShell from '@/components/layout/FooterClientShell'
+import type { Locale } from '@/i18nConfig'
 
-type LayoutProps = PropsWithChildren & DefaultPageProps
-
-export default async function NarrowLayout({ children, params }: LayoutProps) {
+export default async function NarrowLayout({
+  children,
+  params,
+}: LayoutProps<'/[locale]'>) {
   const { locale } = await params
 
   return (
@@ -14,7 +14,7 @@ export default async function NarrowLayout({ children, params }: LayoutProps) {
       <ContentNarrow>{children}</ContentNarrow>
 
       <FooterClientShell>
-        <Footer locale={locale} />
+        <Footer locale={locale as Locale} />
       </FooterClientShell>
     </>
   )
