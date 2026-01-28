@@ -103,6 +103,7 @@ export default function CookieConsentBannerAndManagement() {
         refuseAll={refuseAll}
         acceptAll={acceptAll}
         confirmChoices={confirmChoices}
+        choices={cookieCustomChoice}
       />
     </>
   )

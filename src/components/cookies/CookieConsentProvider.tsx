@@ -16,6 +16,7 @@ import {
 interface CookieConsentContextType {
   cookieConsent?: CookieChoice
   cookieCustomChoice?: CookieConsentChoices
+  setCookieCustomChoice: (cookieCustomChoice: CookieConsentChoices) => void
   triggerConsentDetection: () => void
   isBoardOpen: boolean
   setIsBoardOpen: (isBoardOpen: boolean) => void
@@ -24,6 +25,7 @@ interface CookieConsentContextType {
 const CookieConsentContext = createContext<CookieConsentContextType>({
   cookieConsent: undefined,
   cookieCustomChoice: undefined,
+  setCookieCustomChoice: () => {},
   triggerConsentDetection: () => {},
   isBoardOpen: false,
   setIsBoardOpen: () => {},
@@ -69,6 +71,7 @@ export const CookieConsentProvider = ({ children }: PropsWithChildren) => {
       value={{
         cookieConsent,
         cookieCustomChoice,
+        setCookieCustomChoice,
         triggerConsentDetection,
         isBoardOpen,
         setIsBoardOpen,

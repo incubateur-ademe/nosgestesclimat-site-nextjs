@@ -9,51 +9,15 @@ import { type CookieConsentChoices, CookieConsentKey } from '@/types/cookies'
 import Link from 'next/link'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import {
+  CookieFieldset,
+  CookieRadio,
+} from './cookieConsentManagement/CookieFieldSet'
 
 interface CookieFormData {
   [CookieConsentKey.googleAds]: 'accept' | 'refuse'
+  [CookieConsentKey.posthog]: 'accept' | 'refuse'
 }
-
-interface RadioProps {
-  id: string
-  name: string
-  checked: boolean
-  disabled?: boolean
-  label: string | React.ReactNode
-  value?: string
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
-}
-
-const Radio = ({
-  id,
-  name,
-  checked,
-  disabled,
-  label,
-  ...props
-}: RadioProps) => (
-  <label
-    className={`inline-flex cursor-pointer items-center gap-2 select-none ${disabled ? 'opacity-50' : ''}`}
-    htmlFor={id}>
-    <input
-      type="radio"
-      id={id}
-      name={name}
-      checked={checked}
-      disabled={disabled}
-      className="peer sr-only"
-      {...props}
-    />
-    <span
-      className={`relative flex h-5 w-5 items-center justify-center rounded-full border-2 ${checked ? 'border-blue-800' : 'border-gray-300'} bg-white transition-colors duration-150`}>
-      <span
-        className={`absolute top-1/2 left-1/2 block h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full ${checked ? 'bg-blue-800' : ''}`}></span>
-    </span>
-    <span className="text-sm font-medium text-gray-900 md:text-base">
-      {label}
-    </span>
-  </label>
-)
 
 export default function CookieConsentManagement({
   isBoardOpen,
@@ -76,28 +40,36 @@ export default function CookieConsentManagement({
     defaultValues: {
       [CookieConsentKey.googleAds]:
         choices?.[CookieConsentKey.googleAds] === false ? 'refuse' : 'accept',
+      [CookieConsentKey.posthog]:
+        choices?.[CookieConsentKey.posthog] === false ? 'refuse' : 'accept',
     },
   })
 
   // @TODO: Remove this eslint-disable-next-line once we have a proper solution for this rule
   // eslint-disable-next-line react-hooks/incompatible-library
   const googleAdsValue = watch('googleAds')
+  const posthogValue = watch('posthog')
 
   const onSubmit = (data: CookieFormData) => {
     const choices: CookieConsentChoices = {
       [CookieConsentKey.googleAds]:
         data[CookieConsentKey.googleAds] === 'accept',
+      [CookieConsentKey.posthog]: data[CookieConsentKey.posthog] === 'accept',
     }
     confirmChoices(choices)
   }
 
+  // Sync form values with choices prop
   useEffect(() => {
-    if (choices?.[CookieConsentKey.googleAds] !== undefined) {
-      setValue(
-        CookieConsentKey.googleAds,
-        choices[CookieConsentKey.googleAds] ? 'accept' : 'refuse'
-      )
-    }
+    const cookieKeys = [
+      CookieConsentKey.googleAds,
+      CookieConsentKey.posthog,
+    ] as const
+    cookieKeys.forEach((key) => {
+      if (choices?.[key] !== undefined) {
+        setValue(key, choices[key] ? 'accept' : 'refuse')
+      }
+    })
   }, [choices, setValue])
 
   return (
@@ -184,7 +156,7 @@ export default function CookieConsentManagement({
                   </Trans>
                 </span>
                 <div className="flex gap-6">
-                  <Radio
+                  <CookieRadio
                     id="oblig-accept"
                     name="oblig"
                     checked={true}
@@ -196,7 +168,7 @@ export default function CookieConsentManagement({
                       </Trans>
                     }
                   />
-                  <Radio
+                  <CookieRadio
                     id="oblig-refuse"
                     name="oblig"
                     checked={false}
@@ -214,55 +186,38 @@ export default function CookieConsentManagement({
                 <Trans i18nKey="cookies.management.required.description">
                   Notre site utilise des cookies indispensables à son bon
                   fonctionnement (sécurité, choix de langue, authentification).
-                  Ils ne contiennent aucune donnée personnelle et ne peuvent pas
-                  être désactivés.
+                  Ils ne contiennent aucunes données personnelles et ne peuvent
+                  pas être désactivés.
                 </Trans>
               </p>
             </fieldset>
 
-            <fieldset className="border-t border-gray-200">
-              <legend className="mb-2 flex w-full flex-col justify-between gap-2 sm:flex-row sm:items-center">
-                <span
-                  className="text-base font-bold whitespace-nowrap text-gray-900 md:text-lg"
-                  data-testid="google-ads-title">
-                  <Trans i18nKey="cookies.management.googleAds.title">
-                    Google Ads
-                  </Trans>
-                </span>
-                <div className="flex gap-6">
-                  <Radio
-                    id="googleAds-accept"
-                    value="accept"
-                    checked={googleAdsValue === 'accept'}
-                    data-testid="google-ads-accept-radio"
-                    label={
-                      <Trans i18nKey="cookies.management.accept">
-                        Accepter
-                      </Trans>
-                    }
-                    {...register(CookieConsentKey.googleAds)}
-                  />
-                  <Radio
-                    id="googleAds-refuse"
-                    value="refuse"
-                    checked={googleAdsValue === 'refuse'}
-                    data-testid="google-ads-refuse-radio"
-                    label={
-                      <Trans i18nKey="cookies.management.refuse">Refuser</Trans>
-                    }
-                    {...register(CookieConsentKey.googleAds)}
-                  />
-                </div>
-              </legend>
-              <p
-                className="mt-2 text-base text-gray-700"
-                data-testid="google-ads-description">
-                <Trans i18nKey="cookies.management.googleAds.description">
-                  Nous utilisons des cookies pour mesurer et calibrer
-                  l'efficacité de nos campagnes et publicités en ligne.
-                </Trans>
-              </p>
-            </fieldset>
+            <CookieFieldset
+              id="google-ads"
+              titleI18nKey="cookies.management.googleAds.title"
+              titleDefault="Google Ads"
+              descriptionI18nKey="cookies.management.googleAds.description"
+              descriptionDefault="Nous utilisons des cookies pour mesurer et calibrer l'efficacité de nos campagnes et publicités en ligne. Ces cookies permettent le suivi de votre navigation ainsi que la réalisation de certaines actions."
+              linkHref="https://policies.google.com/technologies/cookies?hl=fr-fr"
+              linkI18nKey="cookies.management.googleAds.link"
+              linkDefault="Voir le site officiel"
+              currentValue={googleAdsValue}
+              register={register(CookieConsentKey.googleAds)}
+            />
+
+            <CookieFieldset
+              id="posthog"
+              titleI18nKey="cookies.management.posthog.title"
+              titleDefault="Posthog"
+              descriptionI18nKey="cookies.management.posthog.description"
+              descriptionDefault="Nous utilisons Posthog pour mesurer l'audience de notre site et améliorer son contenu. Vos données sont stockées sur des serveurs sécurisés et ne sont jamais partagées avec des tiers. Ces cookies peuvent être supprimés automatiquement si vous retirez votre consentement."
+              linkHref="https://posthog.com/docs/privacy"
+              linkI18nKey="cookies.management.posthog.link"
+              linkDefault="Voir le site officiel"
+              currentValue={posthogValue}
+              register={register(CookieConsentKey.posthog)}
+              className="mt-6"
+            />
           </div>
           <div className="flex justify-start border-t border-gray-100 bg-white px-8 pt-4 pb-8">
             <Button
@@ -279,12 +234,12 @@ export default function CookieConsentManagement({
         <div className="px-8 pt-4 pb-8">
           <h2 className="text-lg font-bold">
             <Trans i18nKey="cookies.management.audience.title">
-              Mesure d’audience
+              Mesure d'audience
             </Trans>
           </h2>
           <p>
             <Trans i18nKey="cookies.management.audience.description">
-              Pour désactiver tous les cookies de mesure d’audience anonymes,
+              Pour désactiver tous les cookies de mesure d'audience anonymes,
               cliquez
             </Trans>{' '}
             <Link
