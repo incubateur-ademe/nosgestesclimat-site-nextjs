@@ -6,8 +6,8 @@ import { useEffect, useState } from 'react'
  * This is shared between CookieConsentManagement and useManagePosthogTracking.
  */
 export function useIsPosthogDisabled() {
-  const [isPosthogEnabled, setIsPosthogEnabled] = useState(() =>
-    getPosthogEnabledFromStorage()
+  const [isPosthogEnabled, setIsPosthogEnabled] = useState(
+    getPosthogEnabledFromStorage
   )
 
   // Listen for the politique-de-confidentialite checkbox change event

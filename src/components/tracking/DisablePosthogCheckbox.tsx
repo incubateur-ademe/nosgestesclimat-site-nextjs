@@ -32,8 +32,8 @@ export default function DisablePosthogCheckbox() {
     if (newValue) {
       const currentCustomChoice: CookieConsentChoices =
         getCookieCustomChoiceFromStorage() ?? {
-          [CookieConsentKey.googleAds]: true,
-          [CookieConsentKey.posthog]: true,
+          [CookieConsentKey.googleAds]: false,
+          [CookieConsentKey.posthog]: false,
         }
 
       currentCustomChoice[CookieConsentKey.posthog] = false
