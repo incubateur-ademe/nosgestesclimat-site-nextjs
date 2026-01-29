@@ -11,7 +11,7 @@ import { type CookieConsentChoices, CookieConsentKey } from '@/types/cookies'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import Link from 'next/link'
 import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import {
   CookieFieldset,
   CookieRadio,
@@ -42,19 +42,19 @@ export default function CookieConsentManagement({
   // Check if PostHog is globally disabled via the privacy policy checkbox
   const isPosthogDisabled = useIsPosthogDisabled()
 
-  const { register, handleSubmit, watch, setValue } = useForm<CookieFormData>({
-    defaultValues: {
-      [CookieConsentKey.googleAds]:
-        choices?.[CookieConsentKey.googleAds] === false ? 'refuse' : 'accept',
-      [CookieConsentKey.posthog]:
-        choices?.[CookieConsentKey.posthog] === false ? 'refuse' : 'accept',
-    },
-  })
+  const { register, handleSubmit, control, setValue } = useForm<CookieFormData>(
+    {
+      defaultValues: {
+        [CookieConsentKey.googleAds]:
+          choices?.[CookieConsentKey.googleAds] === false ? 'refuse' : 'accept',
+        [CookieConsentKey.posthog]:
+          choices?.[CookieConsentKey.posthog] === false ? 'refuse' : 'accept',
+      },
+    }
+  )
 
-  // @TODO: Remove this eslint-disable-next-line once we have a proper solution for this rule
-  // eslint-disable-next-line react-hooks/incompatible-library
-  const googleAdsValue = watch('googleAds')
-  const posthogValue = watch('posthog')
+  const googleAdsValue = useWatch({ control, name: CookieConsentKey.googleAds })
+  const posthogValue = useWatch({ control, name: CookieConsentKey.posthog })
 
   const onSubmit = (data: CookieFormData) => {
     // If user accepts PostHog, also re-enable it globally
@@ -231,7 +231,7 @@ export default function CookieConsentManagement({
               titleI18nKey="cookies.management.posthog.title"
               titleDefault="Posthog"
               descriptionI18nKey="cookies.management.posthog.description"
-              descriptionDefault="Nous utilisons Posthog pour mesurer l'audience de notre site et améliorer son contenu. Vos données sont stockées sur des serveurs sécurisés et ne sont jamais partagées avec des tiers. Ces cookies peuvent être supprimés automatiquement si vous retirez votre consentement."
+              descriptionDefault="Nous utilisons Posthog pour mesurer l'audience de notre site et améliorer son contenu. Vos données sont stockées sur des serveurs sécurisés et ne sont jamais partagées avec des tiers."
               linkHref="https://posthog.com/docs/privacy"
               linkI18nKey="cookies.management.posthog.link"
               linkDefault="Voir le site officiel"
@@ -261,7 +261,7 @@ export default function CookieConsentManagement({
           <p>
             <Trans i18nKey="cookies.management.audience.description">
               Pour désactiver tous les cookies de mesure d'audience anonymes,
-              cliquez
+              visitez
             </Trans>{' '}
             <Link
               href="/politique-de-confidentialite#cookies"
@@ -270,7 +270,9 @@ export default function CookieConsentManagement({
                 'Visiter notre politique de confidentialité'
               )}
               className="text-primary-700 underline">
-              <Trans i18nKey="cookies.management.audience.linkText">ici</Trans>
+              <Trans i18nKey="cookies.management.audience.linkText">
+                notre politique de confidentialité
+              </Trans>
             </Link>
             .
           </p>

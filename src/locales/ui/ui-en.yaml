@@ -1815,15 +1815,15 @@ entries:
   Connexion à votre espace - Nos Gestes Climat: Login to your space - Nos Gestes Climat
   Mon espace - Nos Gestes Climat: My space - Nos Gestes Climat
   Connectez-vous à votre espace Nos Gestes Climat pour accéder à vos résultats et comparer vos empreintes carbone avec vos proches.: Log on to your Nos Gestes Climat space to access your results and compare your carbon footprints with others.
-  cookies.management.audience.linkText: here
-  cookies.management.audience.linkText.lock: ici
+  cookies.management.audience.linkText: our privacy policy
+  cookies.management.audience.linkText.lock: notre politique de confidentialité
   cookies.management.audience.title: Audience measurement
   cookies.management.audience.title.lock: Mesure d'audience
   cookies.management.audience.linkTitle: Visit our privacy policy
   cookies.management.audience.linkTitle.lock: Visiter notre politique de confidentialité
   privacyPolicy.posthogCheckboxLabel: Deactivate Posthog tracking
   privacyPolicy.posthogCheckboxLabel.lock: Désactiver le suivi Posthog
-  cookies.management.audience.description: To deactivate all anonymous audience measurement cookies, click
-  cookies.management.audience.description.lock: Pour désactiver tous les cookies de mesure d'audience anonymes, cliquez
+  cookies.management.audience.description: To deactivate all anonymous audience measurement cookies, visit
+  cookies.management.audience.description.lock: Pour désactiver tous les cookies de mesure d'audience anonymes, visitez
   privacyPolicy.posthogCheckboxText: You are not excluded. Uncheck this box to completely disable tracking with Posthog
   privacyPolicy.posthogCheckboxText.lock: Vous n'êtes pas exclu(e). Décochez cette case pour désactiver complètement le suivi avec Posthog

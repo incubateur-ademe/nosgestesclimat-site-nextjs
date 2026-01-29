@@ -1421,8 +1421,8 @@ entries:
   '{descriptionDefault}': '{descriptionDefault}'
   '{linkDefault}': '{linkDefault}'
   '{titleDefault}': '{titleDefault}'
-  cookies.management.audience.description: Pour désactiver tous les cookies de mesure d'audience anonymes, cliquez
-  cookies.management.audience.linkText: ici
+  cookies.management.audience.description: Pour désactiver tous les cookies de mesure d'audience anonymes, visitez
+  cookies.management.audience.linkText: notre politique de confidentialité
   cookies.management.audience.linkTitle: Visiter notre politique de confidentialité
   cookies.management.audience.title: Mesure d'audience
   privacyPolicy.posthogCheckboxLabel: Désactiver le suivi Posthog
