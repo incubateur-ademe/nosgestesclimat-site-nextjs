@@ -63,11 +63,9 @@ export const CookieConsentProvider = ({ children }: PropsWithChildren) => {
   const [isBoardOpen, setIsBoardOpen] = useState(false)
 
   const triggerConsentDetection = () => {
-    const consentFromStorageRaw = safeLocalStorage.getItem(COOKIE_CONSENT_KEY)
-
-    if (!consentFromStorageRaw) return
-
-    const consentFromStorage = consentFromStorageRaw as CookieChoice
+    const consentFromStorage = safeLocalStorage.getItem(
+      COOKIE_CONSENT_KEY
+    ) as CookieChoice
 
     let customChoiceFromStorage
     if (consentFromStorage === CookieChoice.custom) {
