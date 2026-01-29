@@ -915,7 +915,7 @@ entries:
   footer.thematicLandingPages.title: Pages thématiques
   cookies.banner.acceptAll: Tout accepter
   cookies.banner.customize: Personnaliser
-  cookies.banner.description: Nous utilisons des cookies, juste ce qu'il faut pour faire fonctionner le site, améliorer l'expérience et mesurer de manière anonyme l'audience. Avec votre accord, nous activons aussi un suivi simple de nos campagnes pour mieux comprendre ce qui fonctionne et mieux piloter notre budget.
+  cookies.banner.description: Nous utilisons des cookies pour améliorer votre expérience et les services disponibles ainsi que pour mesurer l'audience et piloter notre budget de campagnes. Vous pouvez à tout moment décider d’accepter ou non ces cookies.
   cookies.banner.refuseAll: Tout refuser
   cookies.banner.title: Chez Nos Gestes Climat, votre vie privée compte
   cookies.management.accept: Accepter
@@ -927,7 +927,7 @@ entries:
   cookies.management.privacyLink: Données personnelles et cookies
   cookies.management.refuse: Refuser
   cookies.management.refuseAll: Tout refuser
-  cookies.management.required.description: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucune donnée personnelle et ne peuvent pas être désactivés.
+  cookies.management.required.description: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucunes données personnelles et ne peuvent pas être désactivés.
   cookies.management.required.title: Cookies obligatoires
   cookies.management.title: Panneau de gestion des cookies
   Calculez votre empreinte carbone et eau avec Nos Gestes Climat: Calculez votre empreinte carbone et eau avec Nos Gestes Climat
@@ -1418,3 +1418,12 @@ entries:
   Connexion à votre espace - Nos Gestes Climat: Connexion à votre espace - Nos Gestes Climat
   Création de compte - Nos Gestes Climat: Création de compte - Nos Gestes Climat
   Mon espace - Nos Gestes Climat: Mon espace - Nos Gestes Climat
+  '{descriptionDefault}': '{descriptionDefault}'
+  '{linkDefault}': '{linkDefault}'
+  '{titleDefault}': '{titleDefault}'
+  cookies.management.audience.description: Pour désactiver tous les cookies de mesure d'audience anonymes, cliquez
+  cookies.management.audience.linkText: ici
+  cookies.management.audience.linkTitle: Visiter notre politique de confidentialité
+  cookies.management.audience.title: Mesure d'audience
+  privacyPolicy.posthogCheckboxLabel: Désactiver le suivi Posthog
+  privacyPolicy.posthogCheckboxText: Vous n'êtes pas exclu(e). Décochez cette case pour désactiver complètement le suivi avec Posthog

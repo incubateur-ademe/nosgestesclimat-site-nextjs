@@ -976,8 +976,8 @@ entries:
   cookies.management.confirm.lock: Confirmer mes choix
   cookies.management.preferences: 'Preferences for all services. '
   cookies.management.preferences.lock: 'Préférences pour tous les services. '
-  cookies.banner.description: We use cookies, just enough to keep the site running, improve the experience and measure the audience anonymously. With your agreement, we also activate a simple tracking system for our campaigns to better understand what works and better manage our budget.
-  cookies.banner.description.lock: Nous utilisons des cookies, juste ce qu'il faut pour faire fonctionner le site, améliorer l'expérience et mesurer de manière anonyme l'audience. Avec votre accord, nous activons aussi un suivi simple de nos campagnes pour mieux comprendre ce qui fonctionne et mieux piloter notre budget.
+  cookies.banner.description: We use cookies to improve your experience and the services available to you, as well as to measure our audience and manage our campaign budget. You can decide at any time whether or not to accept these cookies.
+  cookies.banner.description.lock: Nous utilisons des cookies pour améliorer votre expérience et les services disponibles ainsi que pour mesurer l'audience et piloter notre budget de campagnes. Vous pouvez à tout moment décider d’accepter ou non ces cookies.
   cookies.banner.title: At Nos Gestes Climat, your privacy counts
   cookies.banner.title.lock: Chez Nos Gestes Climat, votre vie privée compte
   cookies.management.acceptAll: Accept all
@@ -991,7 +991,7 @@ entries:
   cookies.management.accept: Accept
   cookies.management.accept.lock: Accepter
   cookies.management.required.description: Our site uses cookies, which are essential for its proper operation (security, language selection, authentication). They contain no personal data and cannot be deactivated.
-  cookies.management.required.description.lock: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucune donnée personnelle et ne peuvent pas être désactivés.
+  cookies.management.required.description.lock: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucunes données personnelles et ne peuvent pas être désactivés.
   cookies.management.title: Cookie management panel
   cookies.management.title.lock: Panneau de gestion des cookies
   'Vous pouvez nous contacter via notre page de contact : <2></2>.': 'You can contact us via our contact page: <2></2>.'
@@ -1815,3 +1815,15 @@ entries:
   Connexion à votre espace - Nos Gestes Climat: Login to your space - Nos Gestes Climat
   Mon espace - Nos Gestes Climat: My space - Nos Gestes Climat
   Connectez-vous à votre espace Nos Gestes Climat pour accéder à vos résultats et comparer vos empreintes carbone avec vos proches.: Log on to your Nos Gestes Climat space to access your results and compare your carbon footprints with others.
+  cookies.management.audience.linkText: here
+  cookies.management.audience.linkText.lock: ici
+  cookies.management.audience.title: Audience measurement
+  cookies.management.audience.title.lock: Mesure d'audience
+  cookies.management.audience.linkTitle: Visit our privacy policy
+  cookies.management.audience.linkTitle.lock: Visiter notre politique de confidentialité
+  privacyPolicy.posthogCheckboxLabel: Deactivate Posthog tracking
+  privacyPolicy.posthogCheckboxLabel.lock: Désactiver le suivi Posthog
+  cookies.management.audience.description: To deactivate all anonymous audience measurement cookies, click
+  cookies.management.audience.description.lock: Pour désactiver tous les cookies de mesure d'audience anonymes, cliquez
+  privacyPolicy.posthogCheckboxText: You are not excluded. Uncheck this box to completely disable tracking with Posthog
+  privacyPolicy.posthogCheckboxText.lock: Vous n'êtes pas exclu(e). Décochez cette case pour désactiver complètement le suivi avec Posthog
