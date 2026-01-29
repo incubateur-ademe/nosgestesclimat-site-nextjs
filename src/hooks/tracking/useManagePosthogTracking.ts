@@ -1,7 +1,7 @@
-import { useCookieConsent } from '@/components/cookies/CookieConsentProvider'
 import { POSTHOG_ENABLED_KEY } from '@/constants/state/cookies'
 import { deleteCookiesWithPrefix } from '@/helpers/tracking/deleteCookiesWithPrefix'
 import { useUser } from '@/publicodes-state'
+import type { CookieConsentChoices } from '@/types/cookies'
 import { CookieChoice, CookieConsentKey } from '@/types/cookies'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import posthog from 'posthog-js'
@@ -13,8 +13,13 @@ declare global {
   }
 }
 
-export function useManagePosthogTracking() {
-  const { cookieConsent, cookieCustomChoice } = useCookieConsent()
+export function useManagePosthogTracking({
+  cookieConsent,
+  cookieCustomChoice,
+}: {
+  cookieConsent?: CookieChoice
+  cookieCustomChoice?: CookieConsentChoices
+}) {
   const { user } = useUser()
 
   const [isPosthogDisabled, setIsPosthogDisabled] = useState(() => {
@@ -52,6 +57,8 @@ export function useManagePosthogTracking() {
     posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
       api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
       person_profiles: 'identified_only',
+      // @TODO: update this date when able to install a newer version of posthog-js
+      defaults: '2025-05-24',
       autocapture: false,
       capture_pageview: false,
       capture_pageleave: true,
@@ -76,6 +83,12 @@ export function useManagePosthogTracking() {
 
     if (isPosthogDisabled) {
       posthog.opt_out_capturing()
+      posthog.set_config({
+        cookieless_mode: 'always',
+        disable_persistence: true,
+        disable_session_recording: true,
+        opt_out_capturing_by_default: true,
+      })
       posthog.reset()
       deleteCookiesWithPrefix('ph_')
     } else if (posthog.has_opted_out_capturing()) {
@@ -83,7 +96,7 @@ export function useManagePosthogTracking() {
     }
   }, [isPosthogDisabled])
 
-  // Handle user identification
+  // Handle user identification upon consent change
   useEffect(() => {
     if (!process.env.NEXT_PUBLIC_POSTHOG_KEY || isPosthogDisabled) return
 

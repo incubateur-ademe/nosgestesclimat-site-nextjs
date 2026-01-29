@@ -1,5 +1,7 @@
+import { useCookieConsent } from '@/components/cookies/CookieConsentProvider'
 import { reconcileUserOnAuth } from '@/helpers/user/reconcileOnAuth'
 import { useUser } from '@/publicodes-state'
+import { CookieChoice, CookieConsentKey } from '@/types/cookies'
 import { captureException } from '@sentry/nextjs'
 import dayjs from 'dayjs'
 import { useCallback } from 'react'
@@ -15,6 +17,8 @@ export function usePendingVerification({
   onComplete?: (user: { email: string; userId: string }) => void
 }) {
   const user = useUser()
+
+  const { cookieConsent, cookieCustomChoice } = useCookieConsent()
 
   let pendingVerification = user.user.pendingVerification
 
@@ -36,6 +40,9 @@ export function usePendingVerification({
           userId,
           email: pendingVerification.email,
           user,
+          hasPosthogConsent:
+            cookieConsent === CookieChoice.all ||
+            cookieCustomChoice?.[CookieConsentKey.posthog] === true,
         })
 
         user.updatePendingVerification(undefined)
@@ -44,7 +51,7 @@ export function usePendingVerification({
         captureException(error)
       }
     },
-    [onComplete, pendingVerification, user]
+    [onComplete, pendingVerification, user, cookieConsent, cookieCustomChoice]
   )
 
   return {

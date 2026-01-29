@@ -18,6 +18,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import Link from 'next/link'
+import posthog from 'posthog-js'
 import { type KeyboardEvent, useEffect, useId, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -203,6 +204,9 @@ export default function MySpaceDropdown({ email, onLogout }: Props) {
     setIsOpen(false)
 
     await resetLocalState({ setUser, updateSimulations })
+
+    posthog.reset()
+
     onLogout()
   }
 

@@ -13,13 +13,16 @@ import {
 import { CookieChoice, type CookieConsentChoices } from '@/types/cookies'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import CookieConsentBanner from './CookieConsentBanner'
 import CookieConsentManagement from './CookieConsentManagement'
 import { useCookieConsent } from './CookieConsentProvider'
 
 export default function CookieConsentBannerAndManagement() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(() => {
+    const hasConsent = safeLocalStorage.getItem(COOKIE_CONSENT_KEY)
+    return !hasConsent
+  })
 
   const {
     triggerConsentDetection,
@@ -28,14 +31,6 @@ export default function CookieConsentBannerAndManagement() {
     cookieConsent,
     cookieCustomChoice,
   } = useCookieConsent()
-
-  useEffect(() => {
-    const hasConsent = safeLocalStorage.getItem(COOKIE_CONSENT_KEY)
-
-    if (!hasConsent) {
-      setIsVisible(true)
-    }
-  }, [])
 
   const setConsent = (consent: CookieChoice) =>
     safeLocalStorage.setItem(COOKIE_CONSENT_KEY, consent)
