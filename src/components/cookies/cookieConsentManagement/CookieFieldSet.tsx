@@ -1,6 +1,6 @@
 import Trans from '@/components/translation/trans/TransClient'
 import Link from 'next/link'
-import { UseFormRegisterReturn } from 'react-hook-form'
+import type { UseFormRegisterReturn } from 'react-hook-form'
 
 interface RadioProps {
   id: string
