@@ -8,7 +8,6 @@ interface Props {
 }
 
 export default function FooterClientShell({ children }: Props) {
-
   const { isIframeOnlySimulation } = useIframe()
 
   if (isIframeOnlySimulation) return null

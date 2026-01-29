@@ -60,12 +60,12 @@ export default async function Footer({
 }: Props) {
   const { t } = await getServerTranslation({ locale })
 
-  const shouldUseWhiteBackground = pathname && (
-    pathname === '/' ||
-    pathname === `/${locale}` ||
-    WHITE_BACKGROUND_PATHS.has(pathname ?? '') ||
-    (pathname ?? '').includes('/blog')
-  )
+  const shouldUseWhiteBackground =
+    pathname &&
+    (pathname === '/' ||
+      pathname === `/${locale}` ||
+      WHITE_BACKGROUND_PATHS.has(pathname ?? '') ||
+      (pathname ?? '').includes('/blog'))
 
   return (
     <footer
@@ -172,6 +172,7 @@ export default async function Footer({
                 <li>
                   <InlineLink
                     href="/organisations"
+                    data-testid="organisations-link"
                     data-track-event={footerClickOrganisationsServer}
                     data-track-posthog={captureFooterClickOrganisations()}
                     className="text-default text-sm no-underline hover:underline">

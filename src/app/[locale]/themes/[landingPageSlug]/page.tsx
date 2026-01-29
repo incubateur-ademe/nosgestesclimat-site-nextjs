@@ -298,7 +298,10 @@ export default async function ThematicLandingPage({
       </LandingPage>
 
       <FooterClientShell>
-        <Footer pathname={`/${locale}/themes/${landingPageSlug}`} locale={locale} />
+        <Footer
+          pathname={`/${locale}/themes/${landingPageSlug}`}
+          locale={locale}
+        />
       </FooterClientShell>
     </ClientLayout>
   )

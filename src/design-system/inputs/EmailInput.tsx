@@ -1,17 +1,12 @@
 import { t } from '@/helpers/metadata/fakeMetadataT'
-import type { ReactNode } from 'react'
+import type { ComponentProps } from 'react'
 import { forwardRef } from 'react'
 import TextInput from './TextInput'
 
-interface Props {
-  label?: ReactNode | string
-  helperText?: string
-  className?: string
-  readOnly?: boolean
-  error?: string
-  value?: string
-  title?: string
-}
+type Props = Omit<
+  ComponentProps<typeof TextInput>,
+  'type' | 'autoComplete' | 'placeholder' | 'name'
+>
 
 export default forwardRef(function EmailInput(
   {
@@ -20,11 +15,6 @@ export default forwardRef(function EmailInput(
       'ui.emailInput.helperText',
       'Format attendu : nom.prenom@domaine.fr'
     ),
-    className,
-    readOnly = false,
-    error,
-    value,
-    title,
     ...props
   }: Props,
   ref
@@ -37,12 +27,7 @@ export default forwardRef(function EmailInput(
       type="email"
       autoComplete="email"
       placeholder="nom@exemple.fr"
-      className={className}
-      readOnly={readOnly}
       ref={ref as React.ForwardedRef<HTMLInputElement>}
-      error={error}
-      value={value}
-      title={title}
       {...props}
     />
   )

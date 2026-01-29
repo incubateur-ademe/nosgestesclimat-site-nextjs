@@ -2,7 +2,7 @@ import { AUTHENTICATION_COOKIE_NAME } from '@/constants/authentication/cookie'
 
 import { USER_URL } from '@/constants/urls/main'
 import { cookies } from 'next/headers'
-import { fetchWithJWTCookie } from './fetchWithJWTCookie'
+import { fetchServer } from './fetchServer'
 
 export interface UserServer {
   id: string
@@ -25,12 +25,12 @@ export type CompleteUserServer = UserServer & {
 }
 
 export async function getUser(): Promise<UserServer> {
-  return fetchWithJWTCookie(USER_URL + '/me')
+  return fetchServer(USER_URL + '/me')
 }
 
 export async function isUserAuthenticated(): Promise<boolean> {
   try {
-    const user = await fetchWithJWTCookie<UserServer>(USER_URL + '/me')
+    const user = await fetchServer<UserServer>(USER_URL + '/me')
     return !!user
   } catch {
     return false
@@ -38,12 +38,15 @@ export async function isUserAuthenticated(): Promise<boolean> {
 }
 
 export async function logout() {
+  const domain = new URL(process.env.NEXT_PUBLIC_SITE_URL!).hostname
+  const secure = domain !== 'localhost'
+
   ;(await cookies()).delete({
     name: AUTHENTICATION_COOKIE_NAME,
     httpOnly: true,
-    secure: true,
-    partitioned: true,
-    sameSite: 'lax',
-    domain: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? '').hostname,
+    secure,
+    sameSite: 'strict',
+    partitioned: secure,
+    domain,
   })
 }

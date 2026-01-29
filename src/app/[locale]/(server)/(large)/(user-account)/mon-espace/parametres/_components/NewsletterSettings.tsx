@@ -1,53 +1,60 @@
 'use client'
 
+import NewsletterCheckBoxes from '@/components/newsletter/NewsletterCheckboxes'
+import {
+  type NewsletterFormState,
+  postNewsletterFormAction,
+} from '@/components/newsletter/postNewsletterFormAction'
+import {
+  captureClickUpdateUserNewsletters,
+  clickUpdateUserNewsletters,
+} from '@/constants/tracking/user-account'
 import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
 
 import Loader from '@/design-system/layout/Loader'
-import updateAuthenticatedUserNewsletters from '@/helpers/server/model/newsletters'
-import type { UserServer } from '@/helpers/server/model/user'
-import { useGetNewsletterSubscriptions } from '@/hooks/settings/useGetNewsletterSubscriptions'
+import type { ListIds, Newsletters } from '@/helpers/server/model/newsletter'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
 import Form from 'next/form'
 import { useActionState } from 'react'
-import Trans from '../translation/trans/TransClient'
-import NewsletterCheckBoxes from './NewsletterCheckboxes'
+import { Trans } from 'react-i18next'
 
 interface Props {
-  user: UserServer
+  subscriptions: {
+    email: string
+    listIds: ListIds
+  }
+  newsletters: Newsletters
 }
 
-export default function NewsletterSettingsAuthenticated({ user }: Props) {
-  const { data: newsletterSubscriptions } = useGetNewsletterSubscriptions(
-    user.id
-  )
-
-  const [state, formAction, pending] = useActionState(
-    updateAuthenticatedUserNewsletters,
-    {
-      newsletterSubscriptions,
-    }
-  )
+export default function NewsletterSettings({
+  subscriptions,
+  newsletters,
+}: Props) {
+  const [state, formAction, pending] = useActionState<
+    NewsletterFormState,
+    FormData
+  >(postNewsletterFormAction, subscriptions)
   return (
     <div className="w-xl max-w-full">
       <Form
         action={formAction}
+        noValidate
         className="mb-8 flex flex-col items-start gap-4">
+        <input type="hidden" name="email" value={state.email} />
         <NewsletterCheckBoxes
-          key={JSON.stringify(
-            (state &&
-              'newsletterSubscriptions' in state &&
-              state.newsletterSubscriptions) ||
-              newsletterSubscriptions
-          )}
-          newsletterSubscriptions={
-            (state &&
-              'newsletterSubscriptions' in state &&
-              state.newsletterSubscriptions) ||
-            newsletterSubscriptions
-          }
+          newsletters={newsletters}
+          defaultListIds={state.listIds}
         />
 
-        <Button type="submit" className="mt-8 h-14 w-72" disabled={pending}>
+        <Button
+          type="submit"
+          className="mt-8 h-14 w-72"
+          disabled={pending}
+          onClick={() => {
+            trackEvent(clickUpdateUserNewsletters)
+            trackPosthogEvent(captureClickUpdateUserNewsletters)
+          }}>
           {pending ? (
             <Loader size="sm" color="light" />
           ) : (
@@ -58,7 +65,7 @@ export default function NewsletterSettingsAuthenticated({ user }: Props) {
         </Button>
       </Form>
 
-      {!pending && state && 'success' in state && state.success && (
+      {!pending && state.success && (
         <Alert
           aria-live="polite"
           className="mt-6"
@@ -79,7 +86,7 @@ export default function NewsletterSettingsAuthenticated({ user }: Props) {
         />
       )}
 
-      {!pending && state && 'errors' in state && state.errors && (
+      {!pending && state.error && (
         <Alert
           aria-live="polite"
           className="mt-6"

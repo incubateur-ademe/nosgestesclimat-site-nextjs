@@ -8,7 +8,6 @@ import MainArticle from '@/design-system/cms/MainArticle'
 import { getDynamicPageTitleWithPagination } from '@/helpers/blog/getDynamicPageTitleWithPagination'
 import { getPageNumber } from '@/helpers/blog/getPageNumber'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
-import { getLangButtonsDisplayed } from '@/helpers/language/getLangButtonsDisplayed'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import type { Locale } from '@/i18nConfig'
 import i18nConfig from '@/i18nConfig'
@@ -106,8 +105,6 @@ export default async function BlogHomePage({
       page: pageNumber,
       locale,
     })) ?? {}
-
-  const langButtonsDisplayed = await getLangButtonsDisplayed()
 
   if (!title || !description || !articles) {
     notFound()

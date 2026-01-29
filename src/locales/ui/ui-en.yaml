@@ -1845,3 +1845,17 @@ entries:
   Connexion à votre espace - Nos Gestes Climat: Login to your space - Nos Gestes Climat
   Mon espace - Nos Gestes Climat: My space - Nos Gestes Climat
   Connectez-vous à votre espace Nos Gestes Climat pour accéder à vos résultats et comparer vos empreintes carbone avec vos proches.: Log on to your Nos Gestes Climat space to access your results and compare your carbon footprints with others.
+  ui.emailInput.helperText: 'Expected format: nom.prenom@domaine.fr'
+  ui.emailInput.helperText.lock: 'Format attendu : nom.prenom@domaine.fr'
+  footer.wantToAct.button: I choose my newsletters
+  footer.wantToAct.button.lock: Je choisis mes infolettres
+  ui.emailInput.error.invalid: 'Please enter a valid e-mail address (expected format: nom.prenom@domaine.fr)'
+  ui.emailInput.error.invalid.lock: 'Veuillez entrer une adresse e-mail valide (format attendu : nom.prenom@domaine.fr)'
+  footer.wantToAct.title: Want to take action, step by step?
+  footer.wantToAct.title.lock: Envie d'agir, pas à pas ?
+  footer.wantToAct.description: Receive our newsletters to help you understand, learn and take action.
+  footer.wantToAct.description.lock: Recevez nos infolettres pour comprendre, apprendre et passer à l'action simplement.
+  ui.emailInput.label: Your e-mail address
+  ui.emailInput.label.lock: Votre adresse e-mail
+  ui.emailInput.error.required: Please enter an e-mail address
+  ui.emailInput.error.required.lock: Veuillez entrer une adresse e-mail

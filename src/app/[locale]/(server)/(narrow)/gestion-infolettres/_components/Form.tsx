@@ -1,0 +1,133 @@
+'use client'
+
+import NewsletterCheckBoxes from '@/components/newsletter/NewsletterCheckboxes'
+import { postNewsletterFormAction } from '@/components/newsletter/postNewsletterFormAction'
+import { FORM_ERROR } from '@/components/newsletter/postNewsletterFormError'
+import Trans from '@/components/translation/trans/TransClient'
+import {
+  captureClickUpdateUserNewsletters,
+  clickUpdateUserNewsletters,
+} from '@/constants/tracking/user-account'
+import Alert from '@/design-system/alerts/alert/Alert'
+import Button from '@/design-system/buttons/Button'
+import EmailInput from '@/design-system/inputs/EmailInput'
+import Loader from '@/design-system/layout/Loader'
+import Emoji from '@/design-system/utils/Emoji'
+import {
+  type ListIds,
+  type Newsletters,
+} from '@/helpers/server/model/newsletter'
+import { trackEvent, trackPosthogEvent } from '@/utils/analytics/trackEvent'
+import Form from 'next/form'
+import { useActionState } from 'react'
+import { useTranslation } from 'react-i18next'
+
+interface NewsletterFormProps {
+  newsletters: Newsletters
+  listIds?: ListIds
+}
+
+export default function NewsletterForm({ newsletters }: NewsletterFormProps) {
+  const { t } = useTranslation()
+  const [state, formAction, pending] = useActionState(
+    postNewsletterFormAction,
+    {
+      email: '',
+      listIds: [],
+    }
+  )
+
+  return (
+    <div className="w-xl max-w-full">
+      <Form
+        action={formAction}
+        noValidate
+        className="mb-8 flex flex-col items-start gap-4">
+        <NewsletterCheckBoxes
+          newsletters={newsletters}
+          defaultListIds={state.listIds}
+        />
+
+        <EmailInput
+          required
+          value={state.email}
+          error={
+            state.error === FORM_ERROR.EMAIL_INVALID
+              ? t(
+                  'ui.emailInput.error.invalid',
+                  'Veuillez entrer une adresse e-mail valide (format attendu : nom.prenom@domaine.fr)'
+                )
+              : state.error === FORM_ERROR.EMAIL_REQUIRED
+                ? t(
+                    'ui.emailInput.error.required',
+                    'Veuillez entrer une adresse e-mail'
+                  )
+                : undefined
+          }
+        />
+
+        <Button
+          type="submit"
+          className="mt-8 h-14 w-60"
+          disabled={pending}
+          onClick={() => {
+            trackEvent(clickUpdateUserNewsletters)
+            trackPosthogEvent(captureClickUpdateUserNewsletters)
+          }}>
+          {pending ? (
+            <Loader size="sm" color="light" />
+          ) : (
+            <span data-testid="default-submit-label">
+              <Trans i18nKey="newsletterManagement.saveSubscriptions">
+                Valider mon inscription
+              </Trans>
+            </span>
+          )}
+        </Button>
+      </Form>
+
+      {!pending && state.success && (
+        <Alert
+          aria-live="polite"
+          className="mt-6"
+          description={
+            <div>
+              <p className="font-bold">
+                <Trans i18nKey="newsletterManagement.success.unauthenticated.title">
+                  Un e-mail vient de vous être envoyé
+                </Trans>
+              </p>
+              <p className="mb-0">
+                <Trans i18nKey="newsletterManagement.success.unauthenticated.description">
+                  Consultez votre boîte de réception et confirmez votre adresse
+                  pour recevoir nos e-mails.
+                </Trans>
+              </p>
+            </div>
+          }
+        />
+      )}
+
+      {!pending && state.error === FORM_ERROR.SERVER_ERROR && (
+        <Alert
+          aria-live="polite"
+          className="mt-6"
+          description={
+            <Trans i18nKey="newsletterManagement.error.title">
+              Une erreur est survenue lors de la mise à jour des informations.
+            </Trans>
+          }
+        />
+      )}
+
+      <p
+        data-testid="unverified-message"
+        className="mt-4 mb-0 text-sm text-gray-600">
+        <Emoji>⚠️</Emoji>{' '}
+        <Trans i18nKey="newsletterManagement.message.unauthenticated">
+          Pour vous désinscrire, passez par le lien en bas de l'e-mail reçu
+        </Trans>
+      </p>
+    </div>
+  )
+}

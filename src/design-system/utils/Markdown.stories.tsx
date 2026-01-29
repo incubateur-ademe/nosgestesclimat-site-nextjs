@@ -61,9 +61,6 @@ Ceci est un texte normal.
 
 <button href="#">Ceci est un bouton</button>
 
-Ci-dessous, la bannière pour Nos Gestes Transports :
-
-<NosGestesTransportsBanner />
 `,
   },
 }
