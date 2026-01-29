@@ -191,6 +191,7 @@ describe('CookieConsentManagement', () => {
     expect(confirmChoices).toHaveBeenCalledTimes(1)
     expect(confirmChoices).toHaveBeenCalledWith({
       googleAds: true,
+      posthog: true,
     })
   })
 
@@ -214,6 +215,7 @@ describe('CookieConsentManagement', () => {
     expect(confirmChoices).toHaveBeenCalledTimes(1)
     expect(confirmChoices).toHaveBeenCalledWith({
       googleAds: false,
+      posthog: true,
     })
   })
 
@@ -284,6 +286,7 @@ describe('CookieConsentManagement', () => {
         {...defaultProps}
         choices={{
           googleAds: true,
+          posthog: true,
         }}
       />
     )
@@ -301,6 +304,7 @@ describe('CookieConsentManagement', () => {
         {...defaultProps}
         choices={{
           googleAds: false,
+          posthog: false,
         }}
       />
     )
