@@ -1,11 +1,10 @@
-import { POSTHOG_ENABLED_KEY } from '@/constants/state/cookies'
 import { deleteCookiesWithPrefix } from '@/helpers/tracking/deleteCookiesWithPrefix'
 import { useUser } from '@/publicodes-state'
 import type { CookieConsentChoices } from '@/types/cookies'
 import { CookieChoice, CookieConsentKey } from '@/types/cookies'
-import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import posthog from 'posthog-js'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useIsPosthogDisabled } from './useIsPosthogDisabled'
 
 declare global {
   interface Window {
@@ -22,28 +21,11 @@ export function useManagePosthogTracking({
 }) {
   const { user } = useUser()
 
-  const [isPosthogDisabled, setIsPosthogDisabled] = useState(() => {
-    const storedValue = safeLocalStorage.getItem(POSTHOG_ENABLED_KEY)
-    return storedValue !== 'true'
-  })
+  const isPosthogDisabled = useIsPosthogDisabled()
 
   const hasConsent =
     cookieConsent === CookieChoice.all ||
     cookieCustomChoice?.[CookieConsentKey.posthog]
-
-  // Listen for the politique-de-confidentialite checkbox change event
-  useEffect(() => {
-    const handleEnabledChange = () => {
-      const storedValue = safeLocalStorage.getItem(POSTHOG_ENABLED_KEY)
-      setIsPosthogDisabled(storedValue !== 'true')
-    }
-
-    window.addEventListener('posthog-enabled-change', handleEnabledChange)
-
-    return () => {
-      window.removeEventListener('posthog-enabled-change', handleEnabledChange)
-    }
-  }, [])
 
   // Init Posthog
   useEffect(() => {
@@ -80,7 +62,6 @@ export function useManagePosthogTracking({
   // Handle opt-out/opt-in
   useEffect(() => {
     if (!process.env.NEXT_PUBLIC_POSTHOG_KEY) return
-
     if (isPosthogDisabled) {
       posthog.opt_out_capturing()
       posthog.set_config({
@@ -92,7 +73,9 @@ export function useManagePosthogTracking({
       posthog.reset()
       deleteCookiesWithPrefix('ph_')
     } else if (posthog.has_opted_out_capturing()) {
-      posthog.opt_in_capturing()
+      // Re-enable PostHog exempted mode
+      // Need to reload the page to properly restore persistence
+      window.location.reload()
     }
   }, [isPosthogDisabled])
 

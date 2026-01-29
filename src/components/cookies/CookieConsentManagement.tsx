@@ -1,11 +1,14 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
+import { POSTHOG_ENABLED_KEY } from '@/constants/state/cookies'
 import Button from '@/design-system/buttons/Button'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
+import { useIsPosthogDisabled } from '@/hooks/tracking/useIsPosthogDisabled'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { type CookieConsentChoices, CookieConsentKey } from '@/types/cookies'
+import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import Link from 'next/link'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
@@ -36,6 +39,9 @@ export default function CookieConsentManagement({
 }) {
   const { t } = useClientTranslation()
 
+  // Check if PostHog is globally disabled via the privacy policy checkbox
+  const isPosthogDisabled = useIsPosthogDisabled()
+
   const { register, handleSubmit, watch, setValue } = useForm<CookieFormData>({
     defaultValues: {
       [CookieConsentKey.googleAds]:
@@ -51,6 +57,12 @@ export default function CookieConsentManagement({
   const posthogValue = watch('posthog')
 
   const onSubmit = (data: CookieFormData) => {
+    // If user accepts PostHog, also re-enable it globally
+    if (data[CookieConsentKey.posthog] === 'accept' && isPosthogDisabled) {
+      safeLocalStorage.setItem(POSTHOG_ENABLED_KEY, 'true')
+      window.dispatchEvent(new CustomEvent('posthog-enabled-change'))
+    }
+
     const choices: CookieConsentChoices = {
       [CookieConsentKey.googleAds]:
         data[CookieConsentKey.googleAds] === 'accept',
@@ -71,6 +83,13 @@ export default function CookieConsentManagement({
       }
     })
   }, [choices, setValue])
+
+  // When PostHog is globally disabled, sync the form to show 'refuse'
+  useEffect(() => {
+    if (isPosthogDisabled) {
+      setValue(CookieConsentKey.posthog, 'refuse')
+    }
+  }, [isPosthogDisabled, setValue])
 
   return (
     <Modal

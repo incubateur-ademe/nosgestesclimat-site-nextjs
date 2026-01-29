@@ -1,5 +1,3 @@
-import MainHooks from '@/app/[locale]/_components/mainLayoutProviders/MainHooks'
-import QueryClientProviderWrapper from '@/app/[locale]/_components/mainLayoutProviders/QueryClientProviderWrapper'
 import MDXContent from '@/components/mdx/MDXContent'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
@@ -21,9 +19,6 @@ export default async function ViePriveePage({ params }: DefaultPageProps) {
   const { locale } = await params
   return (
     <div className="markdown">
-      <QueryClientProviderWrapper>
-        <MainHooks />
-      </QueryClientProviderWrapper>
       <MDXContent contentEn={policy_en} contentFr={policy_fr} locale={locale} />
     </div>
   )
