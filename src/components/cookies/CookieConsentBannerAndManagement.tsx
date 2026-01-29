@@ -1,18 +1,18 @@
 'use client'
 
 import {
-  COOKIE_CONSENT_KEY,
-  COOKIE_CUSTOM_CHOICE_KEY,
-} from '@/constants/state/cookies'
-import {
   trackingCookiesAccept,
   trackingCookiesCustomChoice,
   trackingCookiesCustomChoiceSave,
   trackingCookiesRefuse,
 } from '@/constants/tracking/misc'
+import {
+  getCookieConsentFromStorage,
+  setCookieConsentInStorage,
+  setCookieCustomChoiceInStorage,
+} from '@/helpers/cookies/cookieConsentStorage'
 import { CookieChoice, type CookieConsentChoices } from '@/types/cookies'
 import { trackEvent } from '@/utils/analytics/trackEvent'
-import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import { useState } from 'react'
 import CookieConsentBanner from './CookieConsentBanner'
 import CookieConsentManagement from './CookieConsentManagement'
@@ -20,7 +20,7 @@ import { useCookieConsent } from './CookieConsentProvider'
 
 export default function CookieConsentBannerAndManagement() {
   const [isVisible, setIsVisible] = useState(() => {
-    const hasConsent = safeLocalStorage.getItem(COOKIE_CONSENT_KEY)
+    const hasConsent = getCookieConsentFromStorage()
     return !hasConsent
   })
 
@@ -33,7 +33,7 @@ export default function CookieConsentBannerAndManagement() {
   } = useCookieConsent()
 
   const setConsent = (consent: CookieChoice) =>
-    safeLocalStorage.setItem(COOKIE_CONSENT_KEY, consent)
+    setCookieConsentInStorage(consent)
 
   const acceptAll = () => {
     setConsent(CookieChoice.all)
@@ -68,10 +68,7 @@ export default function CookieConsentBannerAndManagement() {
 
   const confirmChoices = (choices: CookieConsentChoices) => {
     setConsent(CookieChoice.custom)
-    safeLocalStorage.setItem(
-      COOKIE_CUSTOM_CHOICE_KEY,
-      JSON.stringify({ ...choices })
-    )
+    setCookieCustomChoiceInStorage(choices)
 
     setIsBoardOpen(false)
     setIsVisible(false)

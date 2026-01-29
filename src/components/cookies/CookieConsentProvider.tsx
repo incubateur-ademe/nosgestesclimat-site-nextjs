@@ -1,12 +1,12 @@
 'use client'
 import {
-  COOKIE_CONSENT_KEY,
-  COOKIE_CUSTOM_CHOICE_KEY,
-} from '@/constants/state/cookies'
+  getCookieConsentFromStorage,
+  getCookieCustomChoiceFromStorage,
+} from '@/helpers/cookies/cookieConsentStorage'
 import { useManageGoogleTracking } from '@/hooks/tracking/useManageGoogleTracking'
 import { useManagePosthogTracking } from '@/hooks/tracking/useManagePosthogTracking'
-import { CookieChoice, type CookieConsentChoices } from '@/types/cookies'
-import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
+import type { CookieChoice } from '@/types/cookies'
+import { type CookieConsentChoices } from '@/types/cookies'
 import {
   createContext,
   useContext,
@@ -35,22 +35,8 @@ const CookieConsentContext = createContext<CookieConsentContextType>({
   setIsBoardOpen: noop,
 })
 
-const getInitialCookieConsent = (): CookieChoice | undefined => {
-  const consentFromStorage = safeLocalStorage.getItem(COOKIE_CONSENT_KEY)
-  return consentFromStorage ? (consentFromStorage as CookieChoice) : undefined
-}
-const getInitialCustomChoice = (): CookieConsentChoices | undefined => {
-  const consentFromStorage = safeLocalStorage.getItem(COOKIE_CONSENT_KEY)
-  if (consentFromStorage !== CookieChoice.custom) return undefined
-
-  const customChoiceFromStorage =
-    safeLocalStorage.getItem(COOKIE_CUSTOM_CHOICE_KEY) ?? ''
-  try {
-    return JSON.parse(customChoiceFromStorage) as CookieConsentChoices
-  } catch {
-    return undefined
-  }
-}
+const getInitialCookieConsent = getCookieConsentFromStorage
+const getInitialCustomChoice = getCookieCustomChoiceFromStorage
 
 export const CookieConsentProvider = ({ children }: PropsWithChildren) => {
   const [cookieConsent, setCookieConsent] = useState<CookieChoice | undefined>(
@@ -63,23 +49,11 @@ export const CookieConsentProvider = ({ children }: PropsWithChildren) => {
   const [isBoardOpen, setIsBoardOpen] = useState(false)
 
   const triggerConsentDetection = () => {
-    const consentFromStorage = safeLocalStorage.getItem(
-      COOKIE_CONSENT_KEY
-    ) as CookieChoice
+    const consentFromStorage = getCookieConsentFromStorage()
+    const customChoiceFromStorage = getCookieCustomChoiceFromStorage()
 
-    let customChoiceFromStorage
-    if (consentFromStorage === CookieChoice.custom) {
-      customChoiceFromStorage =
-        safeLocalStorage.getItem(COOKIE_CUSTOM_CHOICE_KEY) ?? ''
-
-      try {
-        customChoiceFromStorage = JSON.parse(
-          customChoiceFromStorage
-        ) as CookieConsentChoices
-        setCookieCustomChoice(customChoiceFromStorage)
-      } catch {
-        // Do nothing, JSON is invalid
-      }
+    if (customChoiceFromStorage) {
+      setCookieCustomChoice(customChoiceFromStorage)
     }
 
     setCookieConsent(consentFromStorage)

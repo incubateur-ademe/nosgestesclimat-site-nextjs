@@ -1,14 +1,13 @@
 'use client'
 
 import Trans from '@/components/translation/trans/TransClient'
-import { POSTHOG_ENABLED_KEY } from '@/constants/state/cookies'
 import Button from '@/design-system/buttons/Button'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
+import { setPosthogEnabledInStorage } from '@/helpers/cookies/cookieConsentStorage'
 import { useIsPosthogDisabled } from '@/hooks/tracking/useIsPosthogDisabled'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { type CookieConsentChoices, CookieConsentKey } from '@/types/cookies'
-import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import Link from 'next/link'
 import { useEffect } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
@@ -59,8 +58,7 @@ export default function CookieConsentManagement({
   const onSubmit = (data: CookieFormData) => {
     // If user accepts PostHog, also re-enable it globally
     if (data[CookieConsentKey.posthog] === 'accept' && isPosthogDisabled) {
-      safeLocalStorage.setItem(POSTHOG_ENABLED_KEY, 'true')
-      window.dispatchEvent(new CustomEvent('posthog-enabled-change'))
+      setPosthogEnabledInStorage(true)
     }
 
     const choices: CookieConsentChoices = {

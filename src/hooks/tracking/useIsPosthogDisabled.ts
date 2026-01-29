@@ -1,5 +1,4 @@
-import { POSTHOG_ENABLED_KEY } from '@/constants/state/cookies'
-import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
+import { getPosthogEnabledFromStorage } from '@/helpers/cookies/cookieConsentStorage'
 import { useEffect, useState } from 'react'
 
 /**
@@ -7,16 +6,14 @@ import { useEffect, useState } from 'react'
  * This is shared between CookieConsentManagement and useManagePosthogTracking.
  */
 export function useIsPosthogDisabled() {
-  const [isPosthogDisabled, setIsPosthogDisabled] = useState(() => {
-    const storedValue = safeLocalStorage.getItem(POSTHOG_ENABLED_KEY)
-    return storedValue === 'false'
-  })
+  const [isPosthogEnabled, setIsPosthogEnabled] = useState(() =>
+    getPosthogEnabledFromStorage()
+  )
 
   // Listen for the politique-de-confidentialite checkbox change event
   useEffect(() => {
     const handleEnabledChange = () => {
-      const storedValue = safeLocalStorage.getItem(POSTHOG_ENABLED_KEY)
-      setIsPosthogDisabled(storedValue === 'false')
+      setIsPosthogEnabled(getPosthogEnabledFromStorage())
     }
 
     window.addEventListener('posthog-enabled-change', handleEnabledChange)
@@ -26,5 +23,5 @@ export function useIsPosthogDisabled() {
     }
   }, [])
 
-  return isPosthogDisabled
+  return !isPosthogEnabled
 }
