@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test'
 import dotenv from 'dotenv'
-import { NEW_VISITOR_STATE } from './e2e/state'
 import { FixturesOptions } from './e2e/fixtures/options'
+import { NEW_VISITOR_STATE } from './e2e/state'
 
 dotenv.config({quiet: true})
 
@@ -63,6 +63,13 @@ export default defineConfig<FixturesOptions>({
         },
        },
     // ] : []),
+    {
+      name: 'Cookies',
+      testMatch: /cookies\.spec\.ts/,
+      use: {
+        ...devices['Desktop Chrome HiDPI'],
+      },
+    },
   ],
 
   /* Run your local dev server before starting the tests */
