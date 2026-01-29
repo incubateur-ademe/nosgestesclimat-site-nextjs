@@ -45,6 +45,9 @@ export default function DisablePosthogCheckbox() {
       if (!currentConsent || currentConsent === CookieChoice.all) {
         setCookieConsentInStorage(CookieChoice.custom)
       }
+
+      // Reloading the page to apply the changes
+      window.location.reload()
     }
   }
 
