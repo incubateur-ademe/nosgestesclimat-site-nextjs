@@ -3,6 +3,8 @@ import {
   COOKIE_CONSENT_KEY,
   COOKIE_CUSTOM_CHOICE_KEY,
 } from '@/constants/state/cookies'
+import { useManageGoogleTracking } from '@/hooks/tracking/useManageGoogleTracking'
+import { useManagePosthogTracking } from '@/hooks/tracking/useManagePosthogTracking'
 import { CookieChoice, type CookieConsentChoices } from '@/types/cookies'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import {
@@ -65,6 +67,10 @@ export const CookieConsentProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     triggerConsentDetection()
   }, [])
+
+  useManageGoogleTracking()
+
+  useManagePosthogTracking()
 
   return (
     <CookieConsentContext

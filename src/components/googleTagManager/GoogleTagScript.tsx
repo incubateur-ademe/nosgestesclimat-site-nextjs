@@ -1,6 +1,6 @@
 'use client'
 
-import { CookieConsentKey } from '@/types/cookies'
+import { CookieChoice, CookieConsentKey } from '@/types/cookies'
 import Script from 'next/script'
 import { useCookieConsent } from '../cookies/CookieConsentProvider'
 
@@ -8,7 +8,8 @@ export function GoogleTagScript() {
   const { cookieConsent, cookieCustomChoice } = useCookieConsent()
 
   const hasConsent =
-    cookieConsent === 'all' || cookieCustomChoice?.[CookieConsentKey.googleAds]
+    cookieConsent === CookieChoice.all ||
+    cookieCustomChoice?.[CookieConsentKey.googleAds]
 
   if (!hasConsent) {
     return null

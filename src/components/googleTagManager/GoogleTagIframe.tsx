@@ -1,7 +1,7 @@
 'use client'
 
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { CookieConsentKey } from '@/types/cookies'
+import { CookieChoice, CookieConsentKey } from '@/types/cookies'
 import { useCookieConsent } from '../cookies/CookieConsentProvider'
 
 export function GoogleTagIframe() {
@@ -9,7 +9,8 @@ export function GoogleTagIframe() {
   const { cookieConsent, cookieCustomChoice } = useCookieConsent()
 
   const hasConsent =
-    cookieConsent === 'all' || cookieCustomChoice?.[CookieConsentKey.googleAds]
+    cookieConsent === CookieChoice.all ||
+    cookieCustomChoice?.[CookieConsentKey.googleAds]
 
   if (!hasConsent) {
     return null

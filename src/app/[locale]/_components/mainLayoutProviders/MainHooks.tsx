@@ -6,7 +6,6 @@
 'use client'
 
 import { useSetCurrentSimulationFromParams } from '@/hooks/simulation/useSetCurrentSimulationFromParams'
-import { useManagePosthogTracking } from '@/hooks/tracking/useManagePosthogTracking'
 import { useTrackIframe } from '@/hooks/tracking/useTrackIframe'
 import { useTrackRegion } from '@/hooks/tracking/useTrackRegion'
 import { useFixedRegion } from '@/hooks/useFixedRegion'
@@ -23,7 +22,6 @@ export default function MainHooks() {
   useInitSimulationParam()
   useRedirectIfInAppBrowser()
   useTrackIframe(getIsIframe())
-  useManagePosthogTracking()
 
   return null
 }
