@@ -1,7 +1,11 @@
 import { SIMULATOR_PATH } from './paths'
 
 let serverUrl
-if (process.env.NEXT_PUBLIC_PROXY_SERVER === 'true') {
+
+const serverOrigin = new URL(process.env.NEXT_PUBLIC_SERVER_URL!).origin
+const clientOrigin = new URL(process.env.NEXT_PUBLIC_SITE_URL!).origin
+
+if (!serverOrigin.endsWith(clientOrigin)) {
   serverUrl = process.env.NEXT_PUBLIC_SITE_URL + '/api/server'
 } else {
   serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
