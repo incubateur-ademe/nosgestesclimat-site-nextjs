@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: DefaultPageProps) {
     description: t('Découvre mon bilan carbone sur Nos Gestes Climat.'),
     robots: noIndexObject,
     alternates: {
-      canonical: '/empreinte',
+      canonical: '/partage',
     },
   })
 }
