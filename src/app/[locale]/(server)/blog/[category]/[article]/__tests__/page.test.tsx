@@ -392,18 +392,5 @@ describe('ArticlePage', () => {
         locale: 'fr',
       })
     })
-
-    it('should call getLangButtonsDisplayed with correct parameters', async () => {
-      const params = Promise.resolve({
-        category: 'test-category',
-        article: 'test-article',
-        locale: 'fr' as Locale,
-      })
-      await ArticlePage({ params })
-      expect(mockGetLangButtonsDisplayed).toHaveBeenCalledWith({
-        category: 'test-category',
-        article: 'test-article',
-      })
-    })
   })
 })

@@ -39,3 +39,10 @@ export class UnknownError extends Error {
     this.name = 'UnknownError'
   }
 }
+
+export class InvalidInputError extends Error {
+  constructor(public errorObject: unknown) {
+    super('Invalid Input')
+    this.name = 'InvalidInputError'
+  }
+}

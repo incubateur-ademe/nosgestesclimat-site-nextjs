@@ -162,13 +162,7 @@ describe('CookieConsentBannerAndManagement', () => {
       const user = userEvent.setup()
       vi.mocked(safeLocalStorage.getItem).mockReturnValue(CookieChoice.all)
 
-      const MockFooterWithCookieButton = ({
-        pathname,
-        locale,
-      }: {
-        pathname: string
-        locale: string
-      }) => (
+      const MockFooterWithCookieButton = () => (
         <li className="block md:inline">
           <CookieButton />
         </li>
@@ -178,7 +172,7 @@ describe('CookieConsentBannerAndManagement', () => {
         <>
           <CookieConsentBannerAndManagement />
           <FooterClientShell>
-            <MockFooterWithCookieButton locale="fr" pathname="/" />
+            <MockFooterWithCookieButton />
           </FooterClientShell>
         </>
       )

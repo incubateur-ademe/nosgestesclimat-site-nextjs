@@ -1,7 +1,6 @@
 'use client'
 
 import Link from '@/components/Link'
-import NosGestesTransportsBanner from '@/components/blog/NosGestesTransportsBanner'
 import type { MarkdownToJSX } from 'markdown-to-jsx'
 import MarkdownToJsx from 'markdown-to-jsx'
 import Image from 'next/image'
@@ -54,7 +53,6 @@ export default function Markdown({
                 />
               ),
             },
-            NosGestesTransportsBanner: NosGestesTransportsBanner,
             button: ButtonLink,
             input: {
               component: ({
