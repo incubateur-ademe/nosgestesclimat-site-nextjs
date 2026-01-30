@@ -40,16 +40,8 @@ export const tabTrackEvent = (tab: 'connexion' | 'inscription') => [
   tab === 'connexion' ? 'Connexion' : 'Inscription',
 ]
 
-export const signinClickResendCode = [
+export const clickResendCode = [
   'trackEvent',
   'Authentication',
   'Click Renvoyer le code',
-  'Connexion',
-]
-
-export const signupClickResendCode = [
-  'trackEvent',
-  'Authentication',
-  'Click Renvoyer le code',
-  'Inscription',
 ]

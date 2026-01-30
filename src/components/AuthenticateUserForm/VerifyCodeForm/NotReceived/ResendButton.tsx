@@ -3,7 +3,7 @@
 import LockIcon from '@/components/icons/LockIcon'
 import CheckCircleIcon from '@/components/icons/status/CheckCircleIcon'
 import Trans from '@/components/translation/trans/TransClient'
-import { organisationsConnexionClickCode } from '@/constants/tracking/pages/organisationsConnexion'
+import { clickResendCode } from '@/constants/tracking/pages/signin'
 import Button from '@/design-system/buttons/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { trackEvent } from '@/utils/analytics/trackEvent'
@@ -13,14 +13,12 @@ interface Props {
   isRetryButtonDisabled: boolean
   onResendVerificationCode: () => void
   timeLeft: number
-  trackingEvent?: string[]
 }
 
 export default function ResendButton({
   isRetryButtonDisabled,
   onResendVerificationCode,
   timeLeft,
-  trackingEvent = organisationsConnexionClickCode,
 }: Props) {
   const [shouldDisplayConfirmation, setShouldDisplayConfirmation] =
     useState(false)
@@ -32,7 +30,7 @@ export default function ResendButton({
       return
     }
 
-    trackEvent(trackingEvent)
+    trackEvent(clickResendCode)
 
     onResendVerificationCode()
     setShouldDisplayConfirmation(true)

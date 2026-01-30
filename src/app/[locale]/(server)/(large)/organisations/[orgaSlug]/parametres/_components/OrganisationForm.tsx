@@ -1,7 +1,6 @@
 'use client'
 import VerifyCodeForm from '@/components/AuthenticateUserForm/VerifyCodeForm'
 import Trans from '@/components/translation/trans/TransClient'
-import { organisationsParametersClickResendCode } from '@/constants/tracking/pages/organisationsParameters'
 import Form from '@/design-system/form/Form'
 import Separator from '@/design-system/layout/Separator'
 import Modal from '@/design-system/modals/Modal'
@@ -88,7 +87,6 @@ export default function OrganisationForm({
             onVerificationCompleted={completeVerification}
             verificationMutation={updateOrganisation}
             mutationPayload={{ organisationIdOrSlug: slug, formData }}
-            trackingEvent={organisationsParametersClickResendCode}
           />
         </Modal>
       )}

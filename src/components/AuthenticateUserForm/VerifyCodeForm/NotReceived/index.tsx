@@ -9,7 +9,6 @@ interface Props {
   isErrorResend: boolean
   onResendVerificationCode: () => void
   timeLeft: number
-  trackingEvent?: string[]
 }
 
 export default function NotReceived({
@@ -17,7 +16,6 @@ export default function NotReceived({
   isErrorResend,
   onResendVerificationCode,
   timeLeft,
-  trackingEvent,
 }: Props) {
   return (
     <>
@@ -40,7 +38,6 @@ export default function NotReceived({
           isRetryButtonDisabled={isRetryButtonDisabled}
           onResendVerificationCode={onResendVerificationCode}
           timeLeft={timeLeft}
-          trackingEvent={trackingEvent}
         />
       )}
 

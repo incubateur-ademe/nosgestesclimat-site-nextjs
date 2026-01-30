@@ -14,9 +14,3 @@ export const organisationsParametersLogout = [
   'Organisations Paramètres',
   'Logout',
 ]
-
-export const organisationsParametersClickResendCode = [
-  'trackEvent',
-  'Organisations Paramètres',
-  'Click Renvoyer le code',
-]
