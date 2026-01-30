@@ -11,6 +11,18 @@ const withMDX = createMDX({
   extension: /\.mdx$/,
 })
 
+
+// Use rewrite rules to proxy requests from the client to the server when both are on different domain (preview app / local)
+const serverOrigin = new URL(process.env.NEXT_PUBLIC_SERVER_URL!).origin
+const clientOrigin = new URL(process.env.NEXT_PUBLIC_SITE_URL!).origin
+const rewrites = !serverOrigin.endsWith(clientOrigin) ? {
+  rewrites: () => [{
+    source: '/api/server/:path*',
+    destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/:path*`,
+  }]
+} : {}
+
+
 const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
@@ -49,18 +61,15 @@ const nextConfig: NextConfig = {
     mdxRs: true,
     useCache: true,
   },
-  async rewrites() {
-    if (process.env.NEXT_PUBLIC_PROXY_SERVER === 'true') {
-      // If API server and nextJS are on different subdomains (development),
-      // we might want to creates a proxy to avoid cookie issues
-      return [
-        {
-          source: '/api/server/:path*',
-          destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/:path*`,
-        },
-      ]
-    }
-    return []
+
+  ...rewrites,
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.ya?ml$/,
+      use: 'yaml-loader',
+    })
+
+    return config
   },
 }
 
