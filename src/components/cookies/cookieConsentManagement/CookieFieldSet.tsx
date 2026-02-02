@@ -62,42 +62,45 @@ export const CookieFieldset = ({
   currentValue,
   register,
   className = '',
-}: CookieFieldsetProps) => (
-  <fieldset className={`border-t border-gray-200 ${className}`}>
-    <legend className="mb-2 flex w-full flex-col justify-between gap-2 sm:flex-row sm:items-center">
-      <span
-        className="text-base font-bold whitespace-nowrap text-gray-900 md:text-lg"
-        data-testid={`${id}-title`}>
-        <Trans i18nKey={titleI18nKey}>{titleDefault}</Trans>
-      </span>
-      <div className="flex gap-6">
-        <CookieRadio
-          id={`${id}-accept`}
-          value="accept"
-          checked={currentValue === 'accepted'}
-          data-testid={`${id}-accept-radio`}
-          label={<Trans i18nKey="cookies.management.accept">Accepter</Trans>}
-          {...register}
-        />
-        <CookieRadio
-          id={`${id}-refuse`}
-          value="refuse"
-          checked={
-            currentValue === 'refused' || currentValue === 'do_not_track'
-          }
-          data-testid={`${id}-refuse-radio`}
-          label={<Trans i18nKey="cookies.management.refuse">Refuser</Trans>}
-          {...register}
-        />
-      </div>
-    </legend>
-    <p
-      className="mt-2 text-base text-gray-700"
-      data-testid={`${id}-description`}>
-      <Trans i18nKey={descriptionI18nKey}>{descriptionDefault}</Trans>
-    </p>
-    <Link className="text-primary-700 underline" href={linkHref}>
-      <Trans i18nKey={linkI18nKey}>{linkDefault}</Trans>
-    </Link>
-  </fieldset>
-)
+}: CookieFieldsetProps) => {
+  console.log(currentValue)
+  return (
+    <fieldset className={`border-t border-gray-200 ${className}`}>
+      <legend className="mb-2 flex w-full flex-col justify-between gap-2 sm:flex-row sm:items-center">
+        <span
+          className="text-base font-bold whitespace-nowrap text-gray-900 md:text-lg"
+          data-testid={`${id}-title`}>
+          <Trans i18nKey={titleI18nKey}>{titleDefault}</Trans>
+        </span>
+        <div className="flex gap-6">
+          <CookieRadio
+            id={`${id}-accept`}
+            value="accepted"
+            checked={currentValue === 'accepted'}
+            data-testid={`${id}-accept-radio`}
+            label={<Trans i18nKey="cookies.management.accept">Accepter</Trans>}
+            {...register}
+          />
+          <CookieRadio
+            id={`${id}-refuse`}
+            value="refused"
+            checked={
+              currentValue === 'refused' || currentValue === 'do_not_track'
+            }
+            data-testid={`${id}-refuse-radio`}
+            label={<Trans i18nKey="cookies.management.refuse">Refuser</Trans>}
+            {...register}
+          />
+        </div>
+      </legend>
+      <p
+        className="mt-2 text-base text-gray-700"
+        data-testid={`${id}-description`}>
+        <Trans i18nKey={descriptionI18nKey}>{descriptionDefault}</Trans>
+      </p>
+      <Link className="text-primary-700 underline" href={linkHref}>
+        <Trans i18nKey={linkI18nKey}>{linkDefault}</Trans>
+      </Link>
+    </fieldset>
+  )
+}

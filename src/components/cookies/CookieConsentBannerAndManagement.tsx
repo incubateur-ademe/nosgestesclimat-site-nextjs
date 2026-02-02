@@ -12,10 +12,12 @@ import {
 import { CookieChoice } from '@/types/cookies'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useState } from 'react'
+import Trans from '../translation/trans/TransClient'
 import CookieConsentBanner from './CookieConsentBanner'
 import CookieConsentManagement from './CookieConsentManagement'
 import { useCookieConsent } from './CookieConsentProvider'
-import { CookieState, useCookieManagement } from './useCookieManagement'
+import type { CookieState } from './useCookieManagement'
+import { useCookieManagement } from './useCookieManagement'
 
 export default function CookieConsentBannerAndManagement() {
   const [isVisible, setIsVisible] = useState(() => {
@@ -65,7 +67,8 @@ export default function CookieConsentBannerAndManagement() {
     }
   }
 
-  const { state, onChange } = useCookieManagement()
+  const { state, onChange, bannerDisplayState, setBannerDisplayState } =
+    useCookieManagement()
 
   const confirmChoices = (choices: CookieState) => {
     onChange(choices)
@@ -85,7 +88,7 @@ export default function CookieConsentBannerAndManagement() {
     <>
       <CookieConsentBanner
         isBoardOpen={isBoardOpen}
-        isVisible={isVisible}
+        isVisible={bannerDisplayState === 'banner'}
         setIsVisible={setIsVisible}
         openSettings={openSettings}
         refuseAll={refuseAll}
@@ -98,8 +101,17 @@ export default function CookieConsentBannerAndManagement() {
         refuseAll={refuseAll}
         acceptAll={acceptAll}
         defaultChoices={state}
-        // confirmChoices={confirmChoices}
+        confirmChoices={confirmChoices}
       />
+
+      <button
+        data-testid="cookie-footer-button"
+        className="text-primary-700 focus:ring-primary-700 text-xs underline focus:ring-2 focus:ring-offset-3 focus:outline-hidden"
+        onClick={() => setIsBoardOpen(true)}>
+        <Trans i18nKey="cookies.management.openSettings">
+          Gestion des cookies
+        </Trans>
+      </button>
     </>
   )
 }

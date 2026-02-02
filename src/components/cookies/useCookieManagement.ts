@@ -1,17 +1,21 @@
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import posthog from 'posthog-js'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 
 export interface CookieState {
   posthog: 'accepted' | 'refused' | 'do_not_track'
   googleAds: 'accepted' | 'refused'
 }
 
+type BannerDisplayState = 'hidden' | 'banner' | 'form'
+
 const key = 'COOKIE'
 
 export function useCookieManagement(): {
   state: CookieState
   onChange: (state: CookieState) => void
+  bannerDisplayState: BannerDisplayState
+  setBannerDisplayState: (state: BannerDisplayState) => void
 } {
   const json = safeLocalStorage.getItem(key)
   const state: CookieState = json
@@ -21,8 +25,12 @@ export function useCookieManagement(): {
         googleAds: 'refused',
       } as const)
 
+  const [bannerDisplayState, setBannerDisplayState] =
+    useState<BannerDisplayState>(json === undefined ? 'banner' : 'hidden')
+
   const onChange = useCallback((cookieState: CookieState) => {
     safeLocalStorage.setItem(key, JSON.stringify(cookieState))
+    setBannerDisplayState('hidden')
 
     // Posthog
     if (cookieState.posthog === 'accepted') {
@@ -64,6 +72,8 @@ export function useCookieManagement(): {
 
   return {
     state,
+    bannerDisplayState,
+    setBannerDisplayState,
     onChange,
   }
 }
