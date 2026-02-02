@@ -90,10 +90,11 @@ export default async function FooterServer({
             <Logo size="md" />
           </Link>
         </div>
-
-        <div className="my-4 block md:hidden">
-          <WantToActBlock locale={locale} />
-        </div>
+        {locale === 'fr' ? (
+          <div className="my-4 block md:hidden">
+            <WantToActBlock locale={locale} />
+          </div>
+        ) : null}
 
         <div className="flex flex-col md:flex-row">
           <div className="mb-10 flex flex-col flex-wrap justify-start gap-x-16 gap-y-8 pt-4 md:flex-row">
@@ -252,9 +253,11 @@ export default async function FooterServer({
               <ThematicPagesSection />
             </div>
           </div>
-          <div className="hidden md:block">
-            <WantToActBlock locale={locale} />
-          </div>
+          {locale === 'fr' ? (
+            <div className="hidden md:block">
+              <WantToActBlock locale={locale} />
+            </div>
+          ) : null}
         </div>
         <LanguageSwitchButton />
 
