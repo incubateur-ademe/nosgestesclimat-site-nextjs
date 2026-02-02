@@ -30,7 +30,6 @@ export const PRIORITY_QUESTIONS = new Set<DottedName>([
   'alimentation . plats',
   'logement . type',
   'logement . propriétaire',
-  'logement . chauffage . précision consommation',
   'logement . chauffage . bois . type',
   'logement . électricité . réseau . consommation',
   'transport . voiture . km',
