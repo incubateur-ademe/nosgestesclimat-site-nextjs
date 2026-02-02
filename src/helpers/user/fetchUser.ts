@@ -1,5 +1,4 @@
 import { USER_URL } from '@/constants/urls/main'
-import { captureException } from '@sentry/nextjs'
 
 export async function fetchUser() {
   try {
@@ -14,8 +13,7 @@ export async function fetchUser() {
     const data = await response.json()
 
     return data
-  } catch (error) {
-    captureException(error)
+  } catch {
     return null
   }
 }
