@@ -27,41 +27,10 @@ export function useManagePosthogTracking({
     cookieConsent === CookieChoice.all ||
     cookieCustomChoice?.[CookieConsentKey.posthog]
 
-  // Init Posthog
-  useEffect(() => {
-    if (
-      !process.env.NEXT_PUBLIC_POSTHOG_KEY ||
-      isPosthogDisabled ||
-      !posthog.is_capturing()
-    )
-      return
-
-    posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
-      api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
-      person_profiles: 'identified_only',
-      // @TODO: update this date when able to install a newer version of posthog-js
-      defaults: '2025-05-24',
-      autocapture: false,
-      capture_pageview: false,
-      capture_pageleave: true,
-      custom_campaign_params: [
-        'mtm_campaign',
-        'mtm_kwd',
-        'mtm_keyword',
-        'organisation',
-        'poll',
-      ],
-    })
-
-    // Expose posthog globally for inline scripts
-    if (typeof window !== 'undefined') {
-      window.posthog = posthog
-    }
-  }, [isPosthogDisabled])
-
   // Handle opt-out/opt-in
   useEffect(() => {
     if (!process.env.NEXT_PUBLIC_POSTHOG_KEY) return
+
     if (isPosthogDisabled) {
       posthog.opt_out_capturing()
       posthog.set_config({
