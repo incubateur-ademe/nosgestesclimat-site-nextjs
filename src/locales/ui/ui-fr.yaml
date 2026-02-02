@@ -516,14 +516,10 @@ entries:
   d'eau par jour: d'eau par jour
   de CO₂e par an: de CO₂e par an
   Liste des questions: Liste des questions
-  Reprendre plus tard: Reprendre plus tard
-  Sauvegarder <2>ma progression</2>: Sauvegarder <2>ma progression</2>
   Votre région a bien été mise à jour.: Votre région a bien été mise à jour.
   '{{name}}, supprimer cette participation': '{{name}}, supprimer cette participation'
   Supprimer ce participant ? Cette opération est définitive.: Supprimer ce participant ? Cette opération est définitive.
   Une erreur est survenue: Une erreur est survenue
-  Non, merci: Non, merci
-  Votre test est sauvegardé !: Votre test est sauvegardé !
   <0>Empreinte eau</0> moyenne: <0>Empreinte eau</0> moyenne
   Lire l'article: Lire l'article
   Carbone: Carbone
@@ -532,7 +528,6 @@ entries:
   Oups ! Une erreur est survenue: Oups ! Une erreur est survenue
   Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.: Une erreur s'est produite ; veuillez recharger la page ou réessayer plus tard.
   litres: litres
-  Une erreur s'est produite au moment de la sauvegarde.: Une erreur s'est produite au moment de la sauvegarde.
   Accepter: Accepter
   Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais pas le détail question par question (vos km en voiture, les m² de votre logement...).: Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais pas le détail question par question (vos km en voiture, les m² de votre logement...).
   Refuser: Refuser
@@ -1372,13 +1367,11 @@ entries:
   Votre adresse e-mail: Votre adresse e-mail
   Entrez votre adresse e-mail: Entrez votre adresse e-mail
   Laissez votre e-mail pour: Laissez votre e-mail pour
-  Recevez par e-mail un lien pour reprendre votre test plus tard.: Recevez par e-mail un lien pour reprendre votre test plus tard.
   Recevoir ponctuellement par e-mail les nouveaux services Nos Gestes Climat aux organisations: Recevoir ponctuellement par e-mail les nouveaux services Nos Gestes Climat aux organisations
   Veuillez entrer une adresse e-mail valide.: Veuillez entrer une adresse e-mail valide.
   Veuillez renseigner un e-mail.: Veuillez renseigner un e-mail.
   Votre e-mail, rejoindre une campagne - Nos Gestes Climat: Votre e-mail, rejoindre une campagne - Nos Gestes Climat
   Vous allez recevoir un e-mail de notre part sous peu, qui vous permettra de la retrouver: Vous allez recevoir un e-mail de notre part sous peu, qui vous permettra de la retrouver
-  Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par e-mail.: Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par e-mail.
   Entrez votre adresse e-mail pour recevoir les infolettres sélectionnées.: Entrez votre adresse e-mail pour recevoir les infolettres sélectionnées.
   Pour vous désinscrire, passez par le lien en bas de l'e-mail reçu: Pour vous désinscrire, passez par le lien en bas de l'e-mail reçu
   auth.verifyemail: Vérifier mon adresse email
