@@ -1,7 +1,11 @@
 import { USER_URL } from '@/constants/urls/main'
 import { captureException } from '@sentry/nextjs'
 
-export async function fetchUser() {
+export async function fetchUser({
+  shouldCaptureException = true,
+}: {
+  shouldCaptureException?: boolean
+}) {
   try {
     const response = await fetch(`${USER_URL}/me`, {
       credentials: 'include',
@@ -15,7 +19,9 @@ export async function fetchUser() {
 
     return data
   } catch (error) {
-    captureException(error)
+    if (shouldCaptureException) {
+      captureException(error)
+    }
     return null
   }
 }
