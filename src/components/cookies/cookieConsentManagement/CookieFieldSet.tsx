@@ -1,23 +1,18 @@
 import Trans from '@/components/translation/trans/TransClient'
 import Link from 'next/link'
+import type { ComponentPropsWithoutRef } from 'react'
 import type { UseFormRegisterReturn } from 'react-hook-form'
+import type { CookieState } from '../useCookieManagement'
 
-interface RadioProps {
-  id: string
-  name: string
-  checked: boolean
-  disabled?: boolean
+interface RadioProps extends ComponentPropsWithoutRef<'input'> {
   label: string | React.ReactNode
-  value?: string
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const CookieRadio = ({
-  id,
-  name,
-  checked,
-  disabled,
   label,
+  disabled,
+  id,
+  checked,
   ...props
 }: RadioProps) => (
   <label
@@ -25,11 +20,9 @@ export const CookieRadio = ({
     htmlFor={id}>
     <input
       type="radio"
-      id={id}
-      name={name}
-      checked={checked}
-      disabled={disabled}
       className="peer sr-only"
+      disabled={disabled}
+      id={id}
       {...props}
     />
     <span
@@ -52,7 +45,7 @@ interface CookieFieldsetProps {
   linkHref: string
   linkI18nKey: string
   linkDefault: string
-  currentValue: 'accept' | 'refuse'
+  currentValue: CookieState[keyof CookieState]
   register: UseFormRegisterReturn
   className?: string
 }
@@ -81,7 +74,7 @@ export const CookieFieldset = ({
         <CookieRadio
           id={`${id}-accept`}
           value="accept"
-          checked={currentValue === 'accept'}
+          checked={currentValue === 'accepted'}
           data-testid={`${id}-accept-radio`}
           label={<Trans i18nKey="cookies.management.accept">Accepter</Trans>}
           {...register}
@@ -89,7 +82,9 @@ export const CookieFieldset = ({
         <CookieRadio
           id={`${id}-refuse`}
           value="refuse"
-          checked={currentValue === 'refuse'}
+          checked={
+            currentValue === 'refused' || currentValue === 'do_not_track'
+          }
           data-testid={`${id}-refuse-radio`}
           label={<Trans i18nKey="cookies.management.refuse">Refuser</Trans>}
           {...register}

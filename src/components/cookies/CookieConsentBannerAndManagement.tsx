@@ -3,21 +3,19 @@
 import {
   trackingCookiesAccept,
   trackingCookiesCustomChoice,
-  trackingCookiesCustomChoiceSave,
   trackingCookiesRefuse,
 } from '@/constants/tracking/misc'
 import {
   getCookieConsentFromStorage,
   setCookieConsentInStorage,
-  setCookieCustomChoiceInStorage,
 } from '@/helpers/cookies/cookieConsentStorage'
-import { CookieChoice, type CookieConsentChoices } from '@/types/cookies'
+import { CookieChoice } from '@/types/cookies'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { useState } from 'react'
 import CookieConsentBanner from './CookieConsentBanner'
 import CookieConsentManagement from './CookieConsentManagement'
 import { useCookieConsent } from './CookieConsentProvider'
-import { useCookieManagement } from './useCookieManagement'
+import { CookieState, useCookieManagement } from './useCookieManagement'
 
 export default function CookieConsentBannerAndManagement() {
   const [isVisible, setIsVisible] = useState(() => {
@@ -69,21 +67,18 @@ export default function CookieConsentBannerAndManagement() {
 
   const { state, onChange } = useCookieManagement()
 
-  const confirmChoices = (choices: CookieConsentChoices) => {
-    onChange({
-      posthog: choices.posthog ? 'accepted' : 'refused',
-      googleAds: choices.googleAds ? 'accepted' : 'refused',
-    })
+  const confirmChoices = (choices: CookieState) => {
+    onChange(choices)
 
-    setConsent(CookieChoice.custom)
-    setCookieCustomChoiceInStorage(choices)
+    // setConsent(CookieChoice.custom)
+    // setCookieCustomChoiceInStorage(choices)
 
     setIsBoardOpen(false)
     setIsVisible(false)
 
-    triggerConsentDetection()
+    // triggerConsentDetection()
 
-    trackEvent(trackingCookiesCustomChoiceSave)
+    // trackEvent(trackingCookiesCustomChoiceSave)
   }
 
   return (
@@ -102,8 +97,8 @@ export default function CookieConsentBannerAndManagement() {
         closeSettings={closeSettings}
         refuseAll={refuseAll}
         acceptAll={acceptAll}
-        confirmChoices={confirmChoices}
-        choices={cookieCustomChoice}
+        defaultChoices={state}
+        // confirmChoices={confirmChoices}
       />
     </>
   )

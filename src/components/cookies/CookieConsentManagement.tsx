@@ -4,89 +4,48 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
-import { useIsPosthogDisabled } from '@/hooks/tracking/useIsPosthogDisabled'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { type CookieConsentChoices, CookieConsentKey } from '@/types/cookies'
+import { CookieConsentKey } from '@/types/cookies'
 import Link from 'next/link'
-import { useEffect } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import {
   CookieFieldset,
   CookieRadio,
 } from './cookieConsentManagement/CookieFieldSet'
-
-interface CookieFormData {
-  [CookieConsentKey.googleAds]: 'accept' | 'refuse'
-  [CookieConsentKey.posthog]: 'accept' | 'refuse'
-}
+import type { CookieState } from './useCookieManagement'
 
 export default function CookieConsentManagement({
   isBoardOpen,
   closeSettings,
   refuseAll,
   acceptAll,
+  defaultChoices: defaultValues,
   confirmChoices,
-  choices,
 }: {
   isBoardOpen: boolean
   closeSettings: () => void
   refuseAll: () => void
   acceptAll: () => void
-  confirmChoices: (data: CookieConsentChoices) => void
-  choices?: CookieConsentChoices
+  confirmChoices: (data: CookieState) => void
+  defaultChoices?: CookieState
 }) {
   const { t } = useClientTranslation()
 
-  // Check if PostHog is globally disabled via the privacy policy checkbox
-  const isPosthogDisabled = useIsPosthogDisabled()
-
-  const { register, handleSubmit, control, setValue } = useForm<CookieFormData>(
-    {
-      defaultValues: {
-        [CookieConsentKey.googleAds]:
-          choices?.[CookieConsentKey.googleAds] === false ? 'refuse' : 'accept',
-        [CookieConsentKey.posthog]:
-          choices?.[CookieConsentKey.posthog] === false ? 'refuse' : 'accept',
-      },
-    }
-  )
+  const { register, handleSubmit, control } = useForm<CookieState>({
+    defaultValues,
+  })
 
   const googleAdsValue = useWatch({ control, name: CookieConsentKey.googleAds })
   const posthogValue = useWatch({ control, name: CookieConsentKey.posthog })
 
-  const onSubmit = (data: CookieFormData) => {
+  const onSubmit = (choices: CookieState) => {
     // // If user accepts PostHog, also re-enable it globally
     // if (data[CookieConsentKey.posthog] === 'accept' && isPosthogDisabled) {
     //   setPosthogEnabledInStorage(true)
     // }
 
-    const choices: CookieConsentChoices = {
-      [CookieConsentKey.googleAds]:
-        data[CookieConsentKey.googleAds] === 'accept',
-      [CookieConsentKey.posthog]: data[CookieConsentKey.posthog] === 'accept',
-    }
     confirmChoices(choices)
   }
-
-  // Sync form values with choices prop
-  useEffect(() => {
-    const cookieKeys = [
-      CookieConsentKey.googleAds,
-      CookieConsentKey.posthog,
-    ] as const
-    cookieKeys.forEach((key) => {
-      if (choices?.[key] !== undefined) {
-        setValue(key, choices[key] ? 'accept' : 'refuse')
-      }
-    })
-  }, [choices, setValue])
-
-  // When PostHog is globally disabled, sync the form to show 'refuse'
-  useEffect(() => {
-    if (isPosthogDisabled) {
-      setValue(CookieConsentKey.posthog, 'refuse')
-    }
-  }, [isPosthogDisabled, setValue])
 
   return (
     <Modal
@@ -135,10 +94,7 @@ export default function CookieConsentManagement({
                   <Button
                     type="button"
                     color="secondary"
-                    onClick={() => {
-                      setValue(CookieConsentKey.googleAds, 'refuse')
-                      refuseAll()
-                    }}
+                    onClick={refuseAll}
                     size="sm"
                     data-testid="refuse-all-button">
                     <Trans i18nKey="cookies.management.refuseAll">
@@ -150,10 +106,7 @@ export default function CookieConsentManagement({
                   <Button
                     type="button"
                     color="primary"
-                    onClick={() => {
-                      setValue(CookieConsentKey.googleAds, 'accept')
-                      acceptAll()
-                    }}
+                    onClick={acceptAll}
                     size="sm"
                     data-testid="accept-all-button">
                     <Trans i18nKey="cookies.management.acceptAll">
