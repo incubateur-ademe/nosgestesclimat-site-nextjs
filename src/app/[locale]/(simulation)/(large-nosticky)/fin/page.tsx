@@ -46,7 +46,7 @@ export default function FinPage() {
   const { isFrenchRegion } = useIframe()
   const { data: authenticatedUser } = useQuery({
     queryKey: ['user', 'me'],
-    queryFn: () => fetchUser({ shouldCaptureException: false }),
+    queryFn: () => fetchUser(),
   })
   const showSaveResultForm = isFrenchRegion && !authenticatedUser
 
