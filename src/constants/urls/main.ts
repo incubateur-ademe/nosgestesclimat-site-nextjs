@@ -1,18 +1,11 @@
 import { SIMULATOR_PATH } from './paths'
 
+let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL ?? 'http://localhost:3001'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
+const sameOrigin = new URL(serverUrl).origin.endsWith(new URL(siteUrl).origin)
 
-let serverUrl
-
-const serverOrigin = new URL(process.env.NEXT_PUBLIC_SERVER_URL!).origin
-const clientOrigin = new URL(process.env.NEXT_PUBLIC_SITE_URL!).origin
-
-if (!serverOrigin.endsWith(clientOrigin)) {
-  serverUrl = process.env.NEXT_PUBLIC_SITE_URL + '/api/server'
-} else {
-  serverUrl = process.env.NEXT_PUBLIC_SERVER_URL!
-}
-if (serverUrl && !serverUrl.startsWith('http')) {
-  serverUrl = `https://${serverUrl}`
+if (!sameOrigin) {
+  serverUrl = siteUrl + '/api/server'
 }
 
 export const SERVER_URL = serverUrl

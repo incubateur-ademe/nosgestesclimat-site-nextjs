@@ -13,9 +13,11 @@ const withMDX = createMDX({
 
 
 // Use rewrite rules to proxy requests from the client to the server when both are on different domain (preview app / local)
-const serverOrigin = new URL(process.env.NEXT_PUBLIC_SERVER_URL!).origin
-const clientOrigin = new URL(process.env.NEXT_PUBLIC_SITE_URL!).origin
-const rewrites = !serverOrigin.endsWith(clientOrigin) ? {
+let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL ?? 'https://localhost:3001'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://localhost:3000'
+const sameOrigin = new URL(serverUrl).origin.endsWith(new URL(siteUrl).origin)
+
+const rewrites = !sameOrigin ? {
   rewrites: () => [{
     source: '/api/server/:path*',
     destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/:path*`,

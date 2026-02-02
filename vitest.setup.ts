@@ -4,6 +4,7 @@ import React from 'react'
 import { vi } from 'vitest'
 import { mswServer } from './src/__tests__/server'
 
+
 // Mock next-i18n-router/client
 vi.mock('next-i18n-router/client', () => ({
   useCurrentLocale: vi.fn(() => 'fr'),
