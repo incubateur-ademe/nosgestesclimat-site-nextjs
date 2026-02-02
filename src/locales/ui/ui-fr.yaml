@@ -916,7 +916,7 @@ entries:
   cookies.banner.acceptAll: Tout accepter
   cookies.banner.customize: Personnaliser
   cookies.banner.description: Nous utilisons des cookies pour améliorer votre expérience et les services disponibles ainsi que pour mesurer l'audience et piloter notre budget de campagnes. Vous pouvez à tout moment décider d’accepter ou non ces cookies.
-  cookies.banner.refuseAll: Tout refuser
+  cookies.banner.rejectAll: Tout refuser
   cookies.banner.title: Chez Nos Gestes Climat, votre vie privée compte
   cookies.management.accept: Accepter
   cookies.management.acceptAll: Tout accepter
@@ -926,7 +926,7 @@ entries:
   cookies.management.preferences: 'Préférences pour tous les services. '
   cookies.management.privacyLink: Données personnelles et cookies
   cookies.management.refuse: Refuser
-  cookies.management.refuseAll: Tout refuser
+  cookies.management.rejectAll: Tout refuser
   cookies.management.required.description: Notre site utilise des cookies indispensables à son bon fonctionnement (sécurité, choix de langue, authentification). Ils ne contiennent aucunes données personnelles et ne peuvent pas être désactivés.
   cookies.management.required.title: Cookies obligatoires
   cookies.management.title: Panneau de gestion des cookies

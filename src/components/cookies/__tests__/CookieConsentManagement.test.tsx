@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import CookieConsentManagement from '../CookieConsentManagement'
+import CookieConsentForm from '../CookieConsentManagement'
 
 // Mock Modal component
 vi.mock('@/design-system/modals/Modal', () => {
@@ -38,7 +38,7 @@ describe('CookieConsentManagement', () => {
   const defaultProps = {
     isBoardOpen: true,
     closeSettings: vi.fn(),
-    refuseAll: vi.fn(),
+    rejectAll: vi.fn(),
     acceptAll: vi.fn(),
     confirmChoices: vi.fn(),
   }
@@ -48,26 +48,26 @@ describe('CookieConsentManagement', () => {
   })
 
   it('should render when board is open', () => {
-    render(<CookieConsentManagement {...defaultProps} />)
+    render(<CookieConsentForm {...defaultProps} />)
 
     expect(screen.getByTestId('modal')).toBeInTheDocument()
     expect(screen.getByTestId('cookie-management-title')).toBeInTheDocument()
   })
 
   it('should not render when board is not open', () => {
-    render(<CookieConsentManagement {...defaultProps} isBoardOpen={false} />)
+    render(<CookieConsentForm {...defaultProps} isBoardOpen={false} />)
 
     expect(screen.queryByTestId('modal')).not.toBeInTheDocument()
   })
 
   it('should render the title correctly', () => {
-    render(<CookieConsentManagement {...defaultProps} />)
+    render(<CookieConsentForm {...defaultProps} />)
 
     expect(screen.getByTestId('cookie-management-title')).toBeInTheDocument()
   })
 
   it('should render the preferences section', () => {
-    render(<CookieConsentManagement {...defaultProps} />)
+    render(<CookieConsentForm {...defaultProps} />)
 
     expect(screen.getByTestId('preferences-text')).toBeInTheDocument()
     expect(screen.getByTestId('privacy-link')).toHaveAttribute(
@@ -77,7 +77,7 @@ describe('CookieConsentManagement', () => {
   })
 
   it('should render the privacy policy link', () => {
-    render(<CookieConsentManagement {...defaultProps} />)
+    render(<CookieConsentForm {...defaultProps} />)
 
     const privacyLink = screen.getByTestId('privacy-link')
     expect(privacyLink).toBeInTheDocument()
@@ -88,34 +88,34 @@ describe('CookieConsentManagement', () => {
   })
 
   it('should render the refuse all and accept all buttons', () => {
-    render(<CookieConsentManagement {...defaultProps} />)
+    render(<CookieConsentForm {...defaultProps} />)
 
     expect(screen.getByTestId('refuse-all-button')).toBeInTheDocument()
     expect(screen.getByTestId('accept-all-button')).toBeInTheDocument()
   })
 
-  it('should call refuseAll when Tout refuser button is clicked', async () => {
+  it('should call rejectAll when Tout refuser button is clicked', async () => {
     const user = userEvent.setup()
-    const refuseAll = vi.fn()
+    const rejectAll = vi.fn()
 
-    render(<CookieConsentManagement {...defaultProps} refuseAll={refuseAll} />)
+    render(<CookieConsentForm {...defaultProps} rejectAll={rejectAll} />)
 
     await user.click(screen.getByTestId('refuse-all-button'))
-    expect(refuseAll).toHaveBeenCalledTimes(1)
+    expect(rejectAll).toHaveBeenCalledTimes(1)
   })
 
   it('should call acceptAll when Tout accepter button is clicked', async () => {
     const user = userEvent.setup()
     const acceptAll = vi.fn()
 
-    render(<CookieConsentManagement {...defaultProps} acceptAll={acceptAll} />)
+    render(<CookieConsentForm {...defaultProps} acceptAll={acceptAll} />)
 
     await user.click(screen.getByTestId('accept-all-button'))
     expect(acceptAll).toHaveBeenCalledTimes(1)
   })
 
   it('should render required cookies section', () => {
-    render(<CookieConsentManagement {...defaultProps} />)
+    render(<CookieConsentForm {...defaultProps} />)
 
     expect(screen.getByTestId('required-cookies-title')).toBeInTheDocument()
     expect(
@@ -124,21 +124,21 @@ describe('CookieConsentManagement', () => {
   })
 
   it('should render Google Ads section', () => {
-    render(<CookieConsentManagement {...defaultProps} />)
+    render(<CookieConsentForm {...defaultProps} />)
 
     expect(screen.getByTestId('google-ads-title')).toBeInTheDocument()
     expect(screen.getByTestId('google-ads-description')).toBeInTheDocument()
   })
 
   it('should render radio buttons for Google Ads', () => {
-    render(<CookieConsentManagement {...defaultProps} />)
+    render(<CookieConsentForm {...defaultProps} />)
 
     expect(screen.getByTestId('google-ads-accept-radio')).toBeInTheDocument()
     expect(screen.getByTestId('google-ads-refuse-radio')).toBeInTheDocument()
   })
 
   it('should have accept radio button checked by default', () => {
-    render(<CookieConsentManagement {...defaultProps} />)
+    render(<CookieConsentForm {...defaultProps} />)
 
     const acceptRadio = screen.getByTestId('google-ads-accept-radio')
     const refuseRadio = screen.getByTestId('google-ads-refuse-radio')
@@ -149,7 +149,7 @@ describe('CookieConsentManagement', () => {
 
   it('should allow switching between accept and refuse options', async () => {
     const user = userEvent.setup()
-    render(<CookieConsentManagement {...defaultProps} />)
+    render(<CookieConsentForm {...defaultProps} />)
 
     const acceptRadio = screen.getByTestId('google-ads-accept-radio')
     const refuseRadio = screen.getByTestId('google-ads-refuse-radio')
@@ -170,7 +170,7 @@ describe('CookieConsentManagement', () => {
   })
 
   it('should render the confirm button', () => {
-    render(<CookieConsentManagement {...defaultProps} />)
+    render(<CookieConsentForm {...defaultProps} />)
 
     expect(screen.getByTestId('confirm-choices-button')).toBeInTheDocument()
   })
@@ -180,10 +180,7 @@ describe('CookieConsentManagement', () => {
     const confirmChoices = vi.fn()
 
     render(
-      <CookieConsentManagement
-        {...defaultProps}
-        confirmChoices={confirmChoices}
-      />
+      <CookieConsentForm {...defaultProps} confirmChoices={confirmChoices} />
     )
 
     await user.click(screen.getByTestId('confirm-choices-button'))
@@ -200,10 +197,7 @@ describe('CookieConsentManagement', () => {
     const confirmChoices = vi.fn()
 
     render(
-      <CookieConsentManagement
-        {...defaultProps}
-        confirmChoices={confirmChoices}
-      />
+      <CookieConsentForm {...defaultProps} confirmChoices={confirmChoices} />
     )
 
     // Change to refuse
@@ -224,21 +218,18 @@ describe('CookieConsentManagement', () => {
     const closeSettings = vi.fn()
 
     render(
-      <CookieConsentManagement
-        {...defaultProps}
-        closeSettings={closeSettings}
-      />
+      <CookieConsentForm {...defaultProps} closeSettings={closeSettings} />
     )
 
     await user.click(screen.getByTestId('close-button'))
     expect(closeSettings).toHaveBeenCalledTimes(1)
   })
 
-  it('should set form value to refuse when refuseAll is called', async () => {
+  it('should set form value to refuse when rejectAll is called', async () => {
     const user = userEvent.setup()
-    const refuseAll = vi.fn()
+    const rejectAll = vi.fn()
 
-    render(<CookieConsentManagement {...defaultProps} refuseAll={refuseAll} />)
+    render(<CookieConsentForm {...defaultProps} rejectAll={rejectAll} />)
 
     await user.click(screen.getByTestId('refuse-all-button'))
 
@@ -250,7 +241,7 @@ describe('CookieConsentManagement', () => {
     const user = userEvent.setup()
     const acceptAll = vi.fn()
 
-    render(<CookieConsentManagement {...defaultProps} acceptAll={acceptAll} />)
+    render(<CookieConsentForm {...defaultProps} acceptAll={acceptAll} />)
 
     await user.click(screen.getByTestId('accept-all-button'))
 
@@ -259,7 +250,7 @@ describe('CookieConsentManagement', () => {
   })
 
   it('should have a close button in the modal', () => {
-    render(<CookieConsentManagement {...defaultProps} />)
+    render(<CookieConsentForm {...defaultProps} />)
 
     expect(screen.getByTestId('close-button')).toBeInTheDocument()
   })
@@ -268,10 +259,10 @@ describe('CookieConsentManagement', () => {
     const closeSettings = vi.fn()
     const emptyFunction = () => {}
     render(
-      <CookieConsentManagement
+      <CookieConsentForm
         isBoardOpen={true}
         closeSettings={closeSettings}
-        refuseAll={emptyFunction}
+        rejectAll={emptyFunction}
         acceptAll={emptyFunction}
         confirmChoices={emptyFunction}
       />
@@ -282,7 +273,7 @@ describe('CookieConsentManagement', () => {
 
   it('should have correct default choices for radio buttons', () => {
     render(
-      <CookieConsentManagement
+      <CookieConsentForm
         {...defaultProps}
         choices={{
           googleAds: true,
@@ -300,7 +291,7 @@ describe('CookieConsentManagement', () => {
 
   it('should reflect custom choices in radio buttons', () => {
     render(
-      <CookieConsentManagement
+      <CookieConsentForm
         {...defaultProps}
         choices={{
           googleAds: false,

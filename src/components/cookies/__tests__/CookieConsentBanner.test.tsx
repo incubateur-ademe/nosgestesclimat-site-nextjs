@@ -52,7 +52,7 @@ describe('CookieConsentBanner', () => {
     setIsVisible: vi.fn(),
     isBoardOpen: false,
     openSettings: vi.fn(),
-    refuseAll: vi.fn(),
+    rejectAll: vi.fn(),
     acceptAll: vi.fn(),
   }
 
@@ -99,21 +99,21 @@ describe('CookieConsentBanner', () => {
     const openSettings = vi.fn()
 
     render(
-      <CookieConsentBanner {...defaultProps} openSettings={openSettings} />
+      <CookieConsentBanner {...defaultProps} onOpenSettings={openSettings} />
     )
 
     await user.click(screen.getByTestId('cookie-banner-customize-button'))
     expect(openSettings).toHaveBeenCalledTimes(1)
   })
 
-  it('should call refuseAll when Tout refuser button is clicked', async () => {
+  it('should call rejectAll when Tout refuser button is clicked', async () => {
     const user = userEvent.setup()
-    const refuseAll = vi.fn()
+    const rejectAll = vi.fn()
 
-    render(<CookieConsentBanner {...defaultProps} refuseAll={refuseAll} />)
+    render(<CookieConsentBanner {...defaultProps} rejectAll={rejectAll} />)
 
     await user.click(screen.getByTestId('cookie-banner-refuse-button'))
-    expect(refuseAll).toHaveBeenCalledTimes(1)
+    expect(rejectAll).toHaveBeenCalledTimes(1)
   })
 
   it('should call acceptAll when Tout accepter button is clicked', async () => {
@@ -169,14 +169,14 @@ describe('CookieConsentBanner', () => {
   it('should handle multiple button clicks correctly', async () => {
     const user = userEvent.setup()
     const openSettings = vi.fn()
-    const refuseAll = vi.fn()
+    const rejectAll = vi.fn()
     const acceptAll = vi.fn()
 
     render(
       <CookieConsentBanner
         {...defaultProps}
-        openSettings={openSettings}
-        refuseAll={refuseAll}
+        onOpenSettings={openSettings}
+        rejectAll={rejectAll}
         acceptAll={acceptAll}
       />
     )
@@ -186,7 +186,7 @@ describe('CookieConsentBanner', () => {
     await user.click(screen.getByTestId('cookie-banner-accept-button'))
 
     expect(openSettings).toHaveBeenCalledTimes(1)
-    expect(refuseAll).toHaveBeenCalledTimes(1)
+    expect(rejectAll).toHaveBeenCalledTimes(1)
     expect(acceptAll).toHaveBeenCalledTimes(1)
   })
 
@@ -232,8 +232,8 @@ describe('CookieConsentBanner', () => {
     render(
       <CookieConsentBanner
         {...defaultProps}
-        openSettings={emptyFunction}
-        refuseAll={emptyFunction}
+        onOpenSettings={emptyFunction}
+        rejectAll={emptyFunction}
         acceptAll={emptyFunction}
       />
     )

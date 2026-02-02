@@ -14,17 +14,15 @@ import {
 } from './cookieConsentManagement/CookieFieldSet'
 import type { CookieState } from './useCookieManagement'
 
-export default function CookieConsentManagement({
-  isBoardOpen,
-  closeSettings,
-  refuseAll,
+export default function CookieConsentForm({
+  onClose,
+  rejectAll,
   acceptAll,
   defaultChoices: defaultValues,
   confirmChoices,
 }: {
-  isBoardOpen: boolean
-  closeSettings: () => void
-  refuseAll: () => void
+  onClose: () => void
+  rejectAll: () => void
   acceptAll: () => void
   confirmChoices: (data: CookieState) => void
   defaultChoices?: CookieState
@@ -49,12 +47,12 @@ export default function CookieConsentManagement({
 
   return (
     <Modal
-      isOpen={isBoardOpen}
+      isOpen={true}
       ariaLabel={t(
         'cookieConsent.banner.title',
         'Fenêtre modale de gestion des cookies'
       )}
-      closeModal={closeSettings}
+      closeModal={onClose}
       hasAbortCross={true}
       hasAbortButton={false}
       className="!w-3xl max-w-screen overflow-hidden !rounded-2xl !p-0 !shadow-2xl">
@@ -94,10 +92,10 @@ export default function CookieConsentManagement({
                   <Button
                     type="button"
                     color="secondary"
-                    onClick={refuseAll}
+                    onClick={rejectAll}
                     size="sm"
                     data-testid="refuse-all-button">
-                    <Trans i18nKey="cookies.management.refuseAll">
+                    <Trans i18nKey="cookies.management.rejectAll">
                       Tout refuser
                     </Trans>
                   </Button>

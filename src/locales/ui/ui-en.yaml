@@ -960,16 +960,16 @@ entries:
   <0>L'empreinte eau</0> correspond à l'ensemble de l'eau douce utilisée pour produire, distribuer et traiter en fin de vie des produits, biens ou services, que nous consommons au quotidien.: <0>The water footprint</0> is the total amount of freshwater used to produce, distribute and end-of-life treat the products, goods and services we consume every day.
   L'empreinte eau, <2>calculée en milliers de litres par jour</2>, tient compte de <5>l'eau nécessaire</5> à la production, la distribution et au traitement des biens et services consommés. Ce calcul prend également en considération <8>le stress hydrique</8> et pondère les consommations d'eau en fonction de <12>la rareté de la ressource</12> dans les territoires concernés.: The water footprint, <2>calculated in thousands of litres per day</2>, takes into account the <5>water needed</5> to produce, distribute and process the goods and services consumed. This calculation also takes into account <8>water stress</8> and weights water consumption according to <12>the scarcity of the resource</12> in the areas concerned.
   "Depuis le siècle dernier, <2>la concentration du carbone dans l'atmosphère augmente</2>, si bien que le climat subit de graves bouleversements : montée des eaux, destruction du vivant, augmentation des températures, etc.": 'Since the last century, <2>the concentration of carbon in the atmosphere has been rising</2>, causing serious upheavals in the climate: rising sea levels, destruction of living organisms, rising temperatures, and so on.'
-  cookies.banner.refuseAll: Refuse everything
-  cookies.banner.refuseAll.lock: Tout refuser
+  cookies.banner.rejectAll: Refuse everything
+  cookies.banner.rejectAll.lock: Tout refuser
   cookies.banner.customize: Customise
   cookies.banner.customize.lock: Personnaliser
   cookies.management.googleAds.title: Google Ads
   cookies.management.googleAds.title.lock: Google Ads
   cookies.management.googleAds.description: We use cookies to measure and calibrate the effectiveness of our online campaigns and advertising.
   cookies.management.googleAds.description.lock: Nous utilisons des cookies pour mesurer et calibrer l'efficacité de nos campagnes et publicités en ligne.
-  cookies.management.refuseAll: Refuse everything
-  cookies.management.refuseAll.lock: Tout refuser
+  cookies.management.rejectAll: Refuse everything
+  cookies.management.rejectAll.lock: Tout refuser
   cookies.management.privacyLink: Personal data and cookies
   cookies.management.privacyLink.lock: Données personnelles et cookies
   cookies.management.confirm: Confirm my choices

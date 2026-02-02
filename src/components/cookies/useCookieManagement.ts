@@ -11,11 +11,25 @@ type BannerDisplayState = 'hidden' | 'banner' | 'form'
 
 const key = 'COOKIE'
 
+/*
+@TODO
+1. Utiliser un Provider pour l'état bannerDisplayState
+2. Utiliser ce hook dans vie privée pour do_not_track de posthog
+3. Fix la logique onChange
+4. Vérifier que le do_not_track fonctionne (rien n'est envoyé à posthog)
+5. Clean clean (si ça marche)
+6. Test E2E
+  - Vérifier que rien n'est envoyé à posthog si DNT (pas de requete réseau)
+  - Si DNT, vérifier que le bandeau cookie est passé à « refuser »
+*/
+
 export function useCookieManagement(): {
   state: CookieState
   onChange: (state: CookieState) => void
   bannerDisplayState: BannerDisplayState
   setBannerDisplayState: (state: BannerDisplayState) => void
+  rejectAll: () => void
+  acceptAll: () => void
 } {
   const json = safeLocalStorage.getItem(key)
   const state: CookieState = json
@@ -31,7 +45,7 @@ export function useCookieManagement(): {
   const onChange = useCallback((cookieState: CookieState) => {
     safeLocalStorage.setItem(key, JSON.stringify(cookieState))
     setBannerDisplayState('hidden')
-
+    // @TODO fix this logic to handle modification of g
     // Posthog
     if (cookieState.posthog === 'accepted') {
       posthog.opt_in_capturing()
@@ -70,10 +84,26 @@ export function useCookieManagement(): {
     }
   }, [])
 
+  const rejectAll = useCallback(() => {
+    onChange({
+      posthog: 'refused',
+      googleAds: 'refused',
+    })
+  }, [onChange])
+
+  const acceptAll = useCallback(() => {
+    onChange({
+      posthog: 'accepted',
+      googleAds: 'accepted',
+    })
+  }, [onChange])
+
   return {
     state,
     bannerDisplayState,
     setBannerDisplayState,
     onChange,
+    rejectAll,
+    acceptAll,
   }
 }
