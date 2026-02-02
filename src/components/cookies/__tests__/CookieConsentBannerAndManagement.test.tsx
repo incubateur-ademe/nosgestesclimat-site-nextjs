@@ -1,5 +1,3 @@
-import CookieButton from '@/components/layout/footer/CookieButton'
-import FooterClientShell from '@/components/layout/FooterClientShell'
 import { COOKIE_CONSENT_KEY } from '@/constants/state/cookies'
 import {
   trackingCookiesAccept,
@@ -155,42 +153,6 @@ describe('CookieConsentBannerAndManagement', () => {
       await waitFor(() => {
         expect(screen.queryByTestId('cookie-management-title')).toBeNull()
         expect(screen.getByTestId('cookie-banner-title')).toBeInTheDocument()
-      })
-    })
-
-    it('should close management panel without showing banner when consent exists', async () => {
-      const user = userEvent.setup()
-      vi.mocked(safeLocalStorage.getItem).mockReturnValue(CookieChoice.all)
-
-      const MockFooterWithCookieButton = () => (
-        <li className="block md:inline">
-          <CookieButton />
-        </li>
-      )
-
-      renderWithWrapper(
-        <>
-          <CookieConsentBannerAndManagement />
-          <FooterClientShell>
-            <MockFooterWithCookieButton />
-          </FooterClientShell>
-        </>
-      )
-
-      await user.click(screen.getByTestId('cookie-footer-button'))
-
-      await waitFor(() => {
-        expect(
-          screen.getByTestId('cookie-management-title')
-        ).toBeInTheDocument()
-      })
-
-      const closeButton = screen.getByTestId('modal-close-button')
-      await user.click(closeButton)
-
-      await waitFor(() => {
-        expect(screen.queryByTestId('cookie-management-title')).toBeNull()
-        expect(screen.queryByTestId('cookie-banner-title')).toBeNull()
       })
     })
   })

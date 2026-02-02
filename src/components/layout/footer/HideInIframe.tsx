@@ -1,13 +1,9 @@
 'use client'
 
 import { useIframe } from '@/hooks/useIframe'
-import type { ReactNode } from 'react'
+import type { PropsWithChildren } from 'react'
 
-interface Props {
-  children?: ReactNode
-}
-
-export default function FooterClientShell({ children }: Props) {
+export default function HideInIframe({ children }: PropsWithChildren) {
   const { isIframeOnlySimulation } = useIframe()
 
   if (isIframeOnlySimulation) return null

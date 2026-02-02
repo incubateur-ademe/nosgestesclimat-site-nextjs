@@ -4,7 +4,6 @@ import { fetchArticlePageContent } from '@/services/cms/fetchArticlePageContent'
 import { fetchArticlePageMetadata } from '@/services/cms/fetchArticlePageMetadata'
 
 import Footer from '@/components/layout/Footer'
-import FooterClientShell from '@/components/layout/FooterClientShell'
 import Badge from '@/design-system/layout/Badge'
 import type { Locale } from '@/i18nConfig'
 import i18nConfig from '@/i18nConfig'
@@ -145,12 +144,10 @@ export default async function ArticlePage({
 
       <OtherArticles articles={otherArticles} locale={locale} />
 
-      <FooterClientShell>
-        <Footer
-          pathname={`/${locale}/blog/${category}/${articleSlug}`}
-          locale={locale}
-        />
-      </FooterClientShell>
+      <Footer
+        pathname={`/${locale}/blog/${category}/${articleSlug}`}
+        locale={locale}
+      />
     </>
   )
 }

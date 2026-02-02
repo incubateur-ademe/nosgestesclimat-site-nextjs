@@ -1,5 +1,4 @@
 import Footer from '@/components/layout/Footer'
-import FooterClientShell from '@/components/layout/FooterClientShell'
 import Main from '@/design-system/layout/Main'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
@@ -65,12 +64,7 @@ export default async function NewsletterConfirmationPage({
         </div>
       </Main>
 
-      <FooterClientShell>
-        <Footer
-          pathname={`/${locale}/newsletter-confirmation`}
-          locale={locale}
-        />
-      </FooterClientShell>
+      <Footer pathname={`/${locale}/newsletter-confirmation`} locale={locale} />
     </>
   )
 }

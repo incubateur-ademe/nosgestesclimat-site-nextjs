@@ -2,7 +2,6 @@ import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
 import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
 import Partners from '@/components/landing-pages/Partners'
 import Footer from '@/components/layout/Footer'
-import FooterClientShell from '@/components/layout/FooterClientShell'
 import Trans from '@/components/translation/trans/TransServer'
 import { noIndexObject } from '@/constants/metadata'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
@@ -112,9 +111,7 @@ export default async function Homepage({ params }: DefaultPageProps) {
         <></>
       </LandingPage>
 
-      <FooterClientShell>
-        <Footer pathname={`/${locale}/accueil-iframe`} locale={locale} />
-      </FooterClientShell>
+      <Footer pathname={`/${locale}/accueil-iframe`} locale={locale} />
     </ClientLayout>
   )
 }

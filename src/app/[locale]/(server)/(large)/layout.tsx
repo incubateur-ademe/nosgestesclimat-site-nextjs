@@ -1,6 +1,5 @@
 import ContentLarge from '@/components/layout/ContentLarge'
 import Footer from '@/components/layout/Footer'
-import FooterClientShell from '@/components/layout/FooterClientShell'
 import type { Locale } from '@/i18nConfig'
 
 export default async function LargeLayout({
@@ -14,9 +13,7 @@ export default async function LargeLayout({
         {children}
       </ContentLarge>
 
-      <FooterClientShell>
-        <Footer locale={locale as Locale} />
-      </FooterClientShell>
+      <Footer locale={locale as Locale} />
     </>
   )
 }

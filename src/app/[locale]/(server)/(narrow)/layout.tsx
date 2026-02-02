@@ -1,6 +1,5 @@
 import ContentNarrow from '@/components/layout/ContentNarrow'
 import Footer from '@/components/layout/Footer'
-import FooterClientShell from '@/components/layout/FooterClientShell'
 import type { Locale } from '@/i18nConfig'
 
 export default async function NarrowLayout({
@@ -13,9 +12,7 @@ export default async function NarrowLayout({
     <>
       <ContentNarrow>{children}</ContentNarrow>
 
-      <FooterClientShell>
-        <Footer locale={locale as Locale} />
-      </FooterClientShell>
+      <Footer locale={locale as Locale} />
     </>
   )
 }

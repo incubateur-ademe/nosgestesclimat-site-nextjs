@@ -3,7 +3,6 @@ import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import FAQ from '@/components/landing-pages/FAQ'
 import ContentLarge from '@/components/layout/ContentLarge'
 import Footer from '@/components/layout/Footer'
-import FooterClientShell from '@/components/layout/FooterClientShell'
 import AllBlogCategories from '@/design-system/cms/AllBlogCategories'
 import ArticleList from '@/design-system/cms/ArticleList'
 import MainArticle from '@/design-system/cms/MainArticle'
@@ -186,9 +185,7 @@ export default async function CategoryPage({
         />
       </div>
 
-      <FooterClientShell>
-        <Footer pathname={`/${locale}/blog/${category}`} locale={locale} />
-      </FooterClientShell>
+      <Footer pathname={`/${locale}/blog/${category}`} locale={locale} />
     </>
   )
 }
