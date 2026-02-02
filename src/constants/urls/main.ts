@@ -1,13 +1,11 @@
 import { SIMULATOR_PATH } from './paths'
 
-let serverUrl
-if (process.env.NEXT_PUBLIC_PROXY_SERVER === 'true') {
-  serverUrl = process.env.NEXT_PUBLIC_SITE_URL + '/api/server'
-} else {
-  serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
-}
-if (serverUrl && !serverUrl.startsWith('http')) {
-  serverUrl = `https://${serverUrl}`
+let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL ?? 'https://localhost:3001'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://localhost:3000'
+const sameOrigin = new URL(serverUrl).origin.endsWith(new URL(siteUrl).origin)
+
+if (!sameOrigin) {
+  serverUrl = siteUrl + '/api/server'
 }
 
 export const AUTHENTICATION_URL = serverUrl + '/authentication/v1'

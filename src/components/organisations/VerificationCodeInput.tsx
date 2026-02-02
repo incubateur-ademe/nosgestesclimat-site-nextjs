@@ -30,6 +30,7 @@ export default function VerificationCodeInput({
         length={6}
         inputProps={
           {
+            autoComplete: 'one-time-code webauthn',
             'data-testid': 'verification-code-input',
             'aria-label': 'Entrez votre code de vérification pour continuer',
             'aria-describedby':
