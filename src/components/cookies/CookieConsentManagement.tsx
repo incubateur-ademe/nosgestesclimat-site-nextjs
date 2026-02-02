@@ -4,7 +4,6 @@ import Trans from '@/components/translation/trans/TransClient'
 import Button from '@/design-system/buttons/Button'
 import InlineLink from '@/design-system/inputs/InlineLink'
 import Modal from '@/design-system/modals/Modal'
-import { setPosthogEnabledInStorage } from '@/helpers/cookies/cookieConsentStorage'
 import { useIsPosthogDisabled } from '@/hooks/tracking/useIsPosthogDisabled'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { type CookieConsentChoices, CookieConsentKey } from '@/types/cookies'
@@ -56,10 +55,10 @@ export default function CookieConsentManagement({
   const posthogValue = useWatch({ control, name: CookieConsentKey.posthog })
 
   const onSubmit = (data: CookieFormData) => {
-    // If user accepts PostHog, also re-enable it globally
-    if (data[CookieConsentKey.posthog] === 'accept' && isPosthogDisabled) {
-      setPosthogEnabledInStorage(true)
-    }
+    // // If user accepts PostHog, also re-enable it globally
+    // if (data[CookieConsentKey.posthog] === 'accept' && isPosthogDisabled) {
+    //   setPosthogEnabledInStorage(true)
+    // }
 
     const choices: CookieConsentChoices = {
       [CookieConsentKey.googleAds]:

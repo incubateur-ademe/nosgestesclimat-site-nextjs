@@ -17,6 +17,7 @@ import { useState } from 'react'
 import CookieConsentBanner from './CookieConsentBanner'
 import CookieConsentManagement from './CookieConsentManagement'
 import { useCookieConsent } from './CookieConsentProvider'
+import { useCookieManagement } from './useCookieManagement'
 
 export default function CookieConsentBannerAndManagement() {
   const [isVisible, setIsVisible] = useState(() => {
@@ -66,7 +67,14 @@ export default function CookieConsentBannerAndManagement() {
     }
   }
 
+  const { state, onChange } = useCookieManagement()
+
   const confirmChoices = (choices: CookieConsentChoices) => {
+    onChange({
+      posthog: choices.posthog ? 'accepted' : 'refused',
+      googleAds: choices.googleAds ? 'accepted' : 'refused',
+    })
+
     setConsent(CookieChoice.custom)
     setCookieCustomChoiceInStorage(choices)
 

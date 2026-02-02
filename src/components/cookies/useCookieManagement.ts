@@ -2,12 +2,13 @@ import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import posthog from 'posthog-js'
 import { useCallback } from 'react'
 
-interface CookieState {
+export interface CookieState {
   posthog: 'accepted' | 'refused' | 'do_not_track'
   googleAds: 'accepted' | 'refused'
 }
 
 const key = 'COOKIE'
+
 export function useCookieManagement(): {
   state: CookieState
   onChange: (state: CookieState) => void
@@ -21,14 +22,15 @@ export function useCookieManagement(): {
       } as const)
 
   const onChange = useCallback((cookieState: CookieState) => {
+    safeLocalStorage.setItem(key, JSON.stringify(cookieState))
+
+    // Posthog
     if (cookieState.posthog === 'accepted') {
       posthog.opt_in_capturing()
-      safeLocalStorage.setItem(key, JSON.stringify(cookieState))
       return
     }
     if (cookieState.posthog === 'refused') {
       posthog.opt_out_capturing()
-      safeLocalStorage.setItem(key, JSON.stringify(cookieState))
       return
     }
     if (cookieState.posthog === 'do_not_track') {
@@ -38,7 +40,24 @@ export function useCookieManagement(): {
         opt_out_capturing_by_default: true,
       })
       posthog.opt_out_capturing()
-      // @TOFIX Question ouverte : doit-on supprimer le cookie ?
+      return
+    }
+
+    // Google ads
+    if (cookieState.googleAds === 'accepted') {
+      window.gtag?.('consent', 'update', {
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted',
+      })
+      return
+    }
+    if (cookieState.googleAds === 'refused') {
+      window.gtag?.('consent', 'update', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+      })
       return
     }
   }, [])
