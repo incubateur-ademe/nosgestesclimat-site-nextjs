@@ -26,11 +26,11 @@ import { useLocale } from '@/hooks/useLocale'
 import { trackEvent } from '@/utils/analytics/trackEvent'
 import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
-import { useCookieConsent } from '../cookies/CookieConsentProvider'
 import Link from '../Link'
 import LogoLink from '../misc/LogoLink'
 import LanguageSwitchButton from '../translation/LanguageSwitchButton'
 import Trans from '../translation/trans/TransClient'
+import CookieButton from './footer/CookieButton'
 import ThematicPagesSection from './ThematicPagesSection'
 
 const WHITE_BACKGROUND_PATHS = new Set([
@@ -51,8 +51,6 @@ export default function Footer({
   const locale = useLocale()
 
   const { t } = useClientTranslation()
-
-  const { setIsBoardOpen } = useCookieConsent()
 
   const { isIframeOnlySimulation } = useIframe()
 
@@ -258,12 +256,7 @@ export default function Footer({
                   </span>
                 </li>
                 <li className="block md:inline">
-                  <button
-                    data-testid="cookie-footer-button"
-                    className="text-primary-700 focus:ring-primary-700 text-xs underline focus:ring-2 focus:ring-offset-3 focus:outline-hidden"
-                    onClick={() => setIsBoardOpen(true)}>
-                    <Trans>Gestion des cookies</Trans>
-                  </button>
+                  <CookieButton />
                 </li>
               </ul>
             </div>

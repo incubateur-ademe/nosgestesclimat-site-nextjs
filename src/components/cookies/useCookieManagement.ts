@@ -1,15 +1,27 @@
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import posthog from 'posthog-js'
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
+import { COOKIE_STATE_KEY, useCookieBanner } from './CookieBannerProvider'
 
 export interface CookieState {
   posthog: 'accepted' | 'refused' | 'do_not_track'
-  googleAds: 'accepted' | 'refused'
+  googleTag: 'accepted' | 'refused'
 }
 
-type BannerDisplayState = 'hidden' | 'banner' | 'form'
+type CookieBannerDisplayState = 'hidden' | 'banner' | 'form'
 
-const key = 'COOKIE'
+const getCookieLocalStorageState = () => {
+  const json = safeLocalStorage.getItem(COOKIE_STATE_KEY)
+
+  const cookieLocalStorageState: CookieState = json
+    ? (JSON.parse(json) as CookieState)
+    : ({
+        posthog: 'refused',
+        googleTag: 'refused',
+      } as const)
+
+  return { cookieLocalStorageState, cookieStateJson: json }
+}
 
 /*
 @TODO
@@ -24,84 +36,90 @@ const key = 'COOKIE'
 */
 
 export function useCookieManagement(): {
-  state: CookieState
+  cookieState: CookieState
+  cookieStateJson: string | null
   onChange: (state: CookieState) => void
-  bannerDisplayState: BannerDisplayState
-  setBannerDisplayState: (state: BannerDisplayState) => void
+  cookieBannerDisplayState: CookieBannerDisplayState
+  setCookieBannerDisplayState: (state: CookieBannerDisplayState) => void
   rejectAll: () => void
   acceptAll: () => void
 } {
-  const json = safeLocalStorage.getItem(key)
-  const state: CookieState = json
-    ? (JSON.parse(json) as CookieState)
-    : ({
-        posthog: 'refused',
-        googleAds: 'refused',
-      } as const)
+  const { cookieBannerDisplayState, setCookieBannerDisplayState } =
+    useCookieBanner()
 
-  const [bannerDisplayState, setBannerDisplayState] =
-    useState<BannerDisplayState>(json === undefined ? 'banner' : 'hidden')
+  const { cookieLocalStorageState, cookieStateJson } =
+    getCookieLocalStorageState()
 
-  const onChange = useCallback((cookieState: CookieState) => {
-    safeLocalStorage.setItem(key, JSON.stringify(cookieState))
-    setBannerDisplayState('hidden')
-    // @TODO fix this logic to handle modification of g
-    // Posthog
-    if (cookieState.posthog === 'accepted') {
-      posthog.opt_in_capturing()
-      return
-    }
-    if (cookieState.posthog === 'refused') {
-      posthog.opt_out_capturing()
-      return
-    }
-    if (cookieState.posthog === 'do_not_track') {
-      posthog.set_config({
-        disable_persistence: true,
-        disable_session_recording: true,
-        opt_out_capturing_by_default: true,
-      })
-      posthog.opt_out_capturing()
-      return
-    }
-
-    // Google ads
-    if (cookieState.googleAds === 'accepted') {
-      window.gtag?.('consent', 'update', {
-        ad_storage: 'granted',
-        ad_user_data: 'granted',
-        ad_personalization: 'granted',
-      })
-      return
-    }
-    if (cookieState.googleAds === 'refused') {
-      window.gtag?.('consent', 'update', {
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-      })
-      return
+  const handleUpdatePosthog = useCallback((cookieState: CookieState) => {
+    switch (cookieState.posthog) {
+      case 'accepted':
+        posthog.opt_in_capturing()
+        break
+      case 'refused':
+        posthog.opt_out_capturing()
+        break
+      case 'do_not_track':
+        posthog.set_config({
+          disable_persistence: true,
+          disable_session_recording: true,
+          opt_out_capturing_by_default: true,
+        })
+        posthog.opt_out_capturing()
+        break
     }
   }, [])
+
+  const handleUpdateGoogleTag = useCallback((cookieState: CookieState) => {
+    switch (cookieState.googleTag) {
+      case 'accepted':
+        window.gtag?.('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+        })
+        break
+      case 'refused':
+        window.gtag?.('consent', 'update', {
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+        })
+        break
+    }
+  }, [])
+
+  const onChange = useCallback(
+    (cookieState: CookieState) => {
+      setCookieBannerDisplayState('hidden')
+
+      handleUpdatePosthog(cookieState)
+
+      handleUpdateGoogleTag(cookieState)
+
+      safeLocalStorage.setItem(COOKIE_STATE_KEY, JSON.stringify(cookieState))
+    },
+    [handleUpdateGoogleTag, handleUpdatePosthog, setCookieBannerDisplayState]
+  )
 
   const rejectAll = useCallback(() => {
     onChange({
       posthog: 'refused',
-      googleAds: 'refused',
+      googleTag: 'refused',
     })
   }, [onChange])
 
   const acceptAll = useCallback(() => {
     onChange({
       posthog: 'accepted',
-      googleAds: 'accepted',
+      googleTag: 'accepted',
     })
   }, [onChange])
 
   return {
-    state,
-    bannerDisplayState,
-    setBannerDisplayState,
+    cookieState: cookieLocalStorageState,
+    cookieStateJson,
+    cookieBannerDisplayState,
+    setCookieBannerDisplayState,
     onChange,
     rejectAll,
     acceptAll,

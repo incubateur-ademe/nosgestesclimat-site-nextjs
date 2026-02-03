@@ -1,4 +1,4 @@
-import TrackersWrapper from '@/components/tracking/TrackersWrapper'
+import Trackers from '@/components/tracking/Trackers'
 import '@/locales/initClient'
 import '@/locales/initServer'
 import type { DefaultPageProps } from '@/types'
@@ -69,7 +69,7 @@ export default async function RootLayout({
 
         <meta name="theme-color" content="#4949ba" />
 
-        <TrackersWrapper locale={locale} />
+        <Trackers locale={locale} />
 
         {
           // Matomo Prod

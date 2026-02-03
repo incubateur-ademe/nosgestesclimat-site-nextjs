@@ -1,13 +1,11 @@
-import { useCookieConsent } from '@/components/cookies/CookieConsentProvider'
-import { CookieConsentKey } from '@/types/cookies'
+import { useCookieManagement } from '@/components/cookies/useCookieManagement'
 import { useEffect, useState } from 'react'
 
 export const useGTM = () => {
-  const { cookieConsent, cookieCustomChoice } = useCookieConsent()
+  const { cookieState } = useCookieManagement()
   const [isGTMLoaded, setIsGTMLoaded] = useState(false)
 
-  const hasConsent =
-    cookieConsent === 'all' || cookieCustomChoice?.[CookieConsentKey.googleAds]
+  const hasConsent = cookieState.googleTag === 'accepted'
 
   useEffect(() => {
     if (!hasConsent) {

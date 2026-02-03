@@ -5,7 +5,7 @@ export enum CookieChoice {
 }
 
 export enum CookieConsentKey {
-  googleAds = 'googleAds',
+  googleTag = 'googleTag',
   posthog = 'posthog',
 }
 

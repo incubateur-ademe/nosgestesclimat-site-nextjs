@@ -1,6 +1,6 @@
 'use client'
 
-import { CookieConsentProvider } from '@/components/cookies/CookieConsentProvider'
+import { CookieBannerProvider } from '@/components/cookies/CookieBannerProvider'
 import ErrorBoundary from '@/components/error/ErrorBoundary'
 import { PartnerProvider } from '@/contexts/partner/PartnerContext'
 import { UserProvider } from '@/publicodes-state'
@@ -13,7 +13,7 @@ import QueryClientProviderWrapper from '../_components/mainLayoutProviders/Query
 export default function MainLayoutProviders({ children }: PropsWithChildren) {
   return (
     <ErrorBoundary>
-      <CookieConsentProvider>
+      <CookieBannerProvider>
         <QueryClientProviderWrapper>
           <UserProvider>
             <PartnerProvider>
@@ -28,7 +28,7 @@ export default function MainLayoutProviders({ children }: PropsWithChildren) {
             </PartnerProvider>
           </UserProvider>
         </QueryClientProviderWrapper>
-      </CookieConsentProvider>
+      </CookieBannerProvider>
     </ErrorBoundary>
   )
 }

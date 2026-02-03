@@ -1,16 +1,17 @@
 'use client'
 
 import CookieConsentBanner from './CookieConsentBanner'
-import CookieConsentForm from './CookieConsentManagement'
+import CookieConsentForm from './CookieConsentForm'
 import type { CookieState } from './useCookieManagement'
 import { useCookieManagement } from './useCookieManagement'
 
 export default function CookieConsentBannerAndManagement() {
   const {
-    state,
+    cookieState,
+    cookieStateJson,
     onChange,
-    bannerDisplayState,
-    setBannerDisplayState,
+    cookieBannerDisplayState,
+    setCookieBannerDisplayState,
     rejectAll,
     acceptAll,
   } = useCookieManagement()
@@ -21,19 +22,20 @@ export default function CookieConsentBannerAndManagement() {
 
   return (
     <>
-      {bannerDisplayState === 'banner' ? (
+      {cookieBannerDisplayState === 'banner' ? (
         <CookieConsentBanner
-          onClose={() => setBannerDisplayState('hidden')}
-          onOpenForm={() => setBannerDisplayState('form')}
+          onOpenForm={() => setCookieBannerDisplayState('form')}
           rejectAll={rejectAll}
           acceptAll={acceptAll}
         />
-      ) : bannerDisplayState === 'form' ? (
+      ) : cookieBannerDisplayState === 'form' ? (
         <CookieConsentForm
-          onClose={() => setBannerDisplayState('banner')}
+          onCancel={() =>
+            setCookieBannerDisplayState(!cookieStateJson ? 'banner' : 'hidden')
+          }
           rejectAll={rejectAll}
           acceptAll={acceptAll}
-          defaultChoices={state}
+          defaultChoices={cookieState}
           confirmChoices={confirmChoices}
         />
       ) : null}

@@ -15,13 +15,13 @@ import {
 import type { CookieState } from './useCookieManagement'
 
 export default function CookieConsentForm({
-  onClose,
+  onCancel,
   rejectAll,
   acceptAll,
   defaultChoices: defaultValues,
   confirmChoices,
 }: {
-  onClose: () => void
+  onCancel: () => void
   rejectAll: () => void
   acceptAll: () => void
   confirmChoices: (data: CookieState) => void
@@ -33,15 +33,10 @@ export default function CookieConsentForm({
     defaultValues,
   })
 
-  const googleAdsValue = useWatch({ control, name: CookieConsentKey.googleAds })
+  const googleTagValue = useWatch({ control, name: CookieConsentKey.googleTag })
   const posthogValue = useWatch({ control, name: CookieConsentKey.posthog })
 
   const onSubmit = (choices: CookieState) => {
-    // // If user accepts PostHog, also re-enable it globally
-    // if (data[CookieConsentKey.posthog] === 'accept' && isPosthogDisabled) {
-    //   setPosthogEnabledInStorage(true)
-    // }
-
     confirmChoices(choices)
   }
 
@@ -52,7 +47,7 @@ export default function CookieConsentForm({
         'cookieConsent.banner.title',
         'Fenêtre modale de gestion des cookies'
       )}
-      closeModal={onClose}
+      closeModal={onCancel}
       hasAbortCross={true}
       hasAbortButton={false}
       className="!w-3xl max-w-screen overflow-hidden !rounded-2xl !p-0 !shadow-2xl">
@@ -170,8 +165,8 @@ export default function CookieConsentForm({
               linkHref="https://policies.google.com/technologies/cookies?hl=fr-fr"
               linkI18nKey="cookies.management.googleAds.link"
               linkDefault="Voir le site officiel"
-              currentValue={googleAdsValue}
-              register={register(CookieConsentKey.googleAds)}
+              currentValue={googleTagValue}
+              register={register(CookieConsentKey.googleTag)}
             />
 
             <CookieFieldset

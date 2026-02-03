@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import CookieConsentForm from '../CookieConsentManagement'
+import CookieConsentForm from '../CookieConsentForm'
 
 // Mock Modal component
 vi.mock('@/design-system/modals/Modal', () => {
