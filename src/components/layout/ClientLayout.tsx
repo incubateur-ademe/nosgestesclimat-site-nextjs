@@ -1,4 +1,4 @@
-import CookieConsentBannerAndManagement from '@/components/cookies/CookieConsentBannerAndManagement'
+import CookieConsentBannerAndManagement from '@/components/cookies/CookieConsent'
 import { GoogleTagIframe } from '@/components/googleTagManager/GoogleTagIframe'
 import { GoogleTagScript } from '@/components/googleTagManager/GoogleTagScript'
 import SkipToMainContentLink from '@/design-system/accessibility/SkipToMainContentLink'

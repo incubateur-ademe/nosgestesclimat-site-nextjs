@@ -8,10 +8,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { CookieConsentKey } from '@/types/cookies'
 import Link from 'next/link'
 import { useForm, useWatch } from 'react-hook-form'
-import {
-  CookieFieldset,
-  CookieRadio,
-} from './cookieConsentManagement/CookieFieldSet'
+import { CookieFieldset, CookieRadio } from './cookieConsentForm/CookieFieldSet'
 import type { CookieState } from './useCookieManagement'
 
 export default function CookieConsentForm({

@@ -1,6 +1,12 @@
 import * as Sentry from '@sentry/nextjs'
 import posthog from 'posthog-js'
 
+declare global {
+  interface Window {
+    posthog?: typeof posthog
+  }
+}
+
 Sentry.init({
   dsn: 'https://75dcf9dfe74c4439977a517be2805122@sentry.incubateur.net/118',
 
