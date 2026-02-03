@@ -50,7 +50,7 @@ export async function getNewsletters({ locale }: { locale: string }) {
       emoji: '🌱',
       description: t(
         'newsletterManagement.mainNewsletter.description',
-        "Nos dernières évolutions et nos recommandations d'actions, les articles récents, les nouvelles formations, et plus encore. Une fois par mois"
+        "Nos dernières évolutions et nos recommandations d'actions, les articles récents, les contenus du moment, et plus encore. Une fois par mois."
       ),
       id: 'newsletter-actu',
     },
@@ -63,7 +63,7 @@ export async function getNewsletters({ locale }: { locale: string }) {
       emoji: '🚗',
       description: t(
         'newsletterManagement.transportNewsletter.description',
-        "4 infolettres (sur 4 semaines), pour comprendre l'impact de nos déplacements et agir concrètement. Pour avancer vers des trajets plus légers"
+        "4 infolettres (sur 4 semaines), pour comprendre l'impact de nos déplacements et agir concrètement. Pour avancer vers des trajets plus légers."
       ),
       id: 'newsletter-transports',
     },
