@@ -43,7 +43,6 @@ export default function useSimulations({
       defaultAdditionalQuestionsAnswers,
       polls,
       groups,
-      savedViaEmail,
     }: Partial<Simulation> = {}) => {
       resetAideSaisie()
 
@@ -60,7 +59,6 @@ export default function useSimulations({
         defaultAdditionalQuestionsAnswers,
         polls,
         groups,
-        savedViaEmail,
         migrationInstructions,
       })
       setSimulations((prevSimulations: Simulation[]) => {
@@ -100,7 +98,6 @@ export default function useSimulations({
       pollToDelete,
       groupToAdd,
       groupToDelete,
-      savedViaEmail,
     }: UpdateCurrentSimulationProps) => {
       setSimulations((prevSimulations: Simulation[]) =>
         prevSimulations.map((simulation) => {
@@ -253,10 +250,6 @@ export default function useSimulations({
             simulationToUpdate.groups = simulationToUpdate.groups.filter(
               (group) => group !== groupToDelete
             )
-          }
-
-          if (savedViaEmail !== undefined) {
-            simulationToUpdate.savedViaEmail = savedViaEmail
           }
 
           return simulationToUpdate
