@@ -1,54 +1,29 @@
 'use client'
 
-import {
-  getCookieConsentFromStorage,
-  getCookieCustomChoiceFromStorage,
-  getPosthogEnabledFromStorage,
-  setCookieConsentInStorage,
-  setCookieCustomChoiceInStorage,
-  setPosthogEnabledInStorage,
-} from '@/helpers/cookies/cookieConsentStorage'
+import CheckboxInput from '@/design-system/inputs/CheckboxInput'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import {
-  CookieChoice,
-  CookieConsentKey,
-  type CookieConsentChoices,
-} from '@/types/cookies'
-import { useState } from 'react'
-import Trans from '../translation/trans/TransClient'
+import { useEffect, useState } from 'react'
+import { useCookieManagement } from '../cookies/useCookieManagement'
 
 export default function DisablePosthogCheckbox() {
-  // Use lazy initialization to avoid reading from localStorage on every render
-  const [isEnabled, setIsEnabled] = useState(getPosthogEnabledFromStorage)
+  const { cookieState, onChange } = useCookieManagement()
+
+  // Hydration fix: Initialize with server default (true) to match SSR
+  const [isEnabled, setIsEnabled] = useState(true)
+
+  useEffect(() => {
+    setIsEnabled(cookieState.posthog !== 'do_not_track')
+  }, [cookieState.posthog])
 
   const { t } = useClientTranslation()
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.checked
     setIsEnabled(newValue)
-    setPosthogEnabledInStorage(newValue)
-
-    // When re-enabling PostHog, reset to exempted mode
-    if (newValue) {
-      const currentCustomChoice: CookieConsentChoices =
-        getCookieCustomChoiceFromStorage() ?? {
-          [CookieConsentKey.googleAds]: false,
-          [CookieConsentKey.posthog]: false,
-        }
-
-      currentCustomChoice[CookieConsentKey.posthog] = false
-
-      setCookieCustomChoiceInStorage(currentCustomChoice)
-
-      // Set consent mode to custom if not already set
-      const currentConsent = getCookieConsentFromStorage()
-      if (!currentConsent || currentConsent === CookieChoice.all) {
-        setCookieConsentInStorage(CookieChoice.custom)
-      }
-
-      // Reloading the page to apply the changes
-      window.location.reload()
-    }
+    onChange({
+      ...cookieState,
+      posthog: newValue ? 'refused' : 'do_not_track',
+    })
   }
 
   return (
@@ -59,18 +34,16 @@ export default function DisablePosthogCheckbox() {
         'Désactiver le suivi Posthog'
       )}
       className="mb-6 flex cursor-pointer items-center gap-2">
-      <input
+      <CheckboxInput
         id="posthog-checkbox"
         type="checkbox"
-        checked={isEnabled}
+        value={isEnabled}
         onChange={handleCheckboxChange}
+        label={t(
+          'privacyPolicy.posthogCheckboxText',
+          "Vous n'êtes pas exclu(e). Décochez cette case pour désactiver complètement le suivi avec Posthog"
+        )}
       />
-      <span>
-        <Trans i18nKey="privacyPolicy.posthogCheckboxText">
-          Vous n'êtes pas exclu(e). Décochez cette case pour désactiver
-          complètement le suivi avec Posthog
-        </Trans>
-      </span>
     </label>
   )
 }
