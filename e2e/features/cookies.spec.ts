@@ -3,6 +3,8 @@ import { expect, test } from '@playwright/test'
 const COOKIE_BANNER_TITLE_TEST_ID = 'cookie-banner-title'
 const COOKIE_MANAGEMENT_TITLE_TEST_ID = 'cookie-management-title'
 
+test.use({ storageState: { cookies: [], origins: [] } })
+
 test.describe('Cookie Consent Management', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
