@@ -1612,8 +1612,8 @@ entries:
   mon-espace.groups.empty.title.lock: Invitez votre entourage à calculer leur empreinte
   mon-espace.groups.empty.description: Free, 100% anonymous and, above all, without judgement or comparison.
   mon-espace.groups.empty.description.lock: Gratuit, 100 % anonyme et surtout sans jugement ni comparaison.
-  header.monEspace.title: My Space
-  header.monEspace.title.lock: Mon Espace
+  header.monEspace.title: My space
+  header.monEspace.title.lock: Mon espace
   common.metric.choice: Choice of metric
   common.metric.choice.lock: Choix de la métrique
   header.monEspace.access: Access my space
@@ -1742,10 +1742,10 @@ entries:
   mon-espace.groups.organisation.create.button.lock: Créer mon organisation
   mon-espace.groups.organisation.create.title: Mobilising my organisation
   mon-espace.groups.organisation.create.title.lock: Mobiliser mon organisation
-  header.monEspace.openMenuButton.open.title: My Space ({{email}}), open the menu
-  header.monEspace.openMenuButton.open.title.lock: Mon Espace ({{email}}), ouvrir le menu
-  header.monEspace.openMenuButton.close.title: My Space ({{email}}), close the menu
-  header.monEspace.openMenuButton.close.title.lock: Mon Espace ({{email}}), fermer le menu
+  header.monEspace.openMenuButton.open.title: My space ({{email}}), open the menu
+  header.monEspace.openMenuButton.open.title.lock: Mon espace ({{email}}), ouvrir le menu
+  header.monEspace.openMenuButton.close.title: My space ({{email}}), close the menu
+  header.monEspace.openMenuButton.close.title.lock: Mon espace ({{email}}), fermer le menu
   Créer: Create
   Votre adresse e-mail: Your e-mail address
   Merci de renseigner votre adresse e-mail: Please enter your e-mail address
