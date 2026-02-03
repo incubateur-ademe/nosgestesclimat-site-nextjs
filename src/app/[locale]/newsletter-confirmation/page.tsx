@@ -64,7 +64,7 @@ export default async function NewsletterConfirmationPage({
         </div>
       </Main>
 
-      <Footer pathname={`/${locale}/newsletter-confirmation`} locale={locale} />
+      <Footer locale={locale} />
     </>
   )
 }

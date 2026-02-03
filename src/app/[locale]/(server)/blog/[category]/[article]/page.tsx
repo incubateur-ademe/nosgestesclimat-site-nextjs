@@ -144,10 +144,7 @@ export default async function ArticlePage({
 
       <OtherArticles articles={otherArticles} locale={locale} />
 
-      <Footer
-        pathname={`/${locale}/blog/${category}/${articleSlug}`}
-        locale={locale}
-      />
+      <Footer backgroundColor="white" locale={locale} />
     </>
   )
 }

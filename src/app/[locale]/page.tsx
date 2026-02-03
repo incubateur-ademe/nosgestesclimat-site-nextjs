@@ -124,7 +124,7 @@ export default async function Homepage({ params }: PageProps<'/[locale]'>) {
         <TheySpeakAboutUs locale={locale} />
       </LandingPage>
 
-      <Footer pathname={`/${locale}`} locale={locale} />
+      <Footer backgroundColor="white" locale={locale} />
     </ClientLayout>
   )
 }

@@ -14,7 +14,7 @@ export default async function LargeLayout({ children, params }: LayoutProps) {
         <HeaderServer locale={locale} />
         {children}
       </ClientLayout>
-      <Footer pathname={`/${locale}`} locale={locale} />
+      <Footer backgroundColor="white" locale={locale} />
     </>
   )
 }

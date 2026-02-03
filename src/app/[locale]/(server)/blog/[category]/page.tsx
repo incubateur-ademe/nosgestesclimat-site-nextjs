@@ -185,7 +185,7 @@ export default async function CategoryPage({
         />
       </div>
 
-      <Footer pathname={`/${locale}/blog/${category}`} locale={locale} />
+      <Footer backgroundColor="white" locale={locale} />
     </>
   )
 }

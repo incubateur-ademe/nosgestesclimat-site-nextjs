@@ -160,7 +160,7 @@ export default async function BlogHomePage({
 
       <AllBlogCategories locale={locale} />
 
-      <Footer pathname={`/${locale}/blog`} locale={locale} />
+      <Footer backgroundColor="white" locale={locale} />
     </>
   )
 }

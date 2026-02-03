@@ -22,7 +22,7 @@ export default async function SimulateurLayout({
       <EngineProviders supportedRegions={supportedRegions}>
         <SimulationSyncProvider>{children}</SimulationSyncProvider>
 
-        <Footer pathname={`/${locale}/simulateur/bilan`} locale={locale} />
+        <Footer locale={locale} />
       </EngineProviders>
     </ClientLayout>
   )

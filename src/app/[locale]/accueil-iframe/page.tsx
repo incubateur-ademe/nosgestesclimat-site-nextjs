@@ -111,7 +111,7 @@ export default async function Homepage({ params }: DefaultPageProps) {
         <></>
       </LandingPage>
 
-      <Footer pathname={`/${locale}/accueil-iframe`} locale={locale} />
+      <Footer locale={locale} />
     </ClientLayout>
   )
 }

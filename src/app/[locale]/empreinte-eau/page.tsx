@@ -159,7 +159,7 @@ export default async function WaterFootprintLandingPage(
 
         <FAQWaterFootprint locale={locale} />
       </LandingPage>
-      <Footer pathname={`/${locale}/empreinte-eau`} locale={locale} />
+      <Footer backgroundColor="white" locale={locale} />
     </ClientLayout>
   )
 }

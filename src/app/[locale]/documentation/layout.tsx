@@ -17,7 +17,7 @@ export default async function Layout({ children, params }: LayoutProps) {
       <ClientLayout locale={locale}>
         <IsDocumentationClientProvider>
           <ContentLarge tag="div">{children}</ContentLarge>
-          <Footer pathname={`/${locale}/documentation`} locale={locale} />
+          <Footer locale={locale} />
         </IsDocumentationClientProvider>
       </ClientLayout>
     </>

@@ -42,32 +42,18 @@ import ThematicPagesSection from '../ThematicPagesSection'
 import CookieButton from './CookieButton'
 import WantToActBlock from './WantToActBlock'
 
-const WHITE_BACKGROUND_PATHS = new Set([
-  '/empreinte-eau',
-  '/empreinte-carbone',
-  '/blog',
-  '/organisations',
-])
-
 interface Props {
-  pathname?: string
+  backgroundColor?: 'default' | 'white'
   locale: Locale
   className?: string
 }
 
 export default async function FooterServer({
-  pathname,
+  backgroundColor = 'default',
   locale,
   className = '',
 }: Props) {
   const { t } = await getServerTranslation({ locale })
-
-  const shouldUseWhiteBackground =
-    pathname &&
-    (pathname === '/' ||
-      pathname === `/${locale}` ||
-      WHITE_BACKGROUND_PATHS.has(pathname ?? '') ||
-      (pathname ?? '').includes('/blog'))
 
   return (
     <footer
@@ -77,7 +63,7 @@ export default async function FooterServer({
       className={twMerge(
         'relative bg-gray-100 p-4 pb-32! sm:p-8',
         className,
-        shouldUseWhiteBackground ? 'bg-white' : ''
+        backgroundColor === 'white' ? 'bg-white' : ''
       )}>
       <div className="md:mx-auto md:max-w-5xl">
         <div className="mb-8 flex items-center justify-between">

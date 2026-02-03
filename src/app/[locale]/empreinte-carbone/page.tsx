@@ -156,7 +156,7 @@ export default async function CarbonFootprintLandingPage({
         <FAQCarbonFootprint locale={locale} />
       </LandingPage>
 
-      <Footer pathname={`/${locale}/empreinte-carbone`} locale={locale} />
+      <Footer backgroundColor="white" locale={locale} />
     </ClientLayout>
   )
 }
