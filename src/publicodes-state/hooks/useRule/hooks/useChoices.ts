@@ -29,7 +29,7 @@ export default function useChoices({ rule, type }: Props) {
               })?.nodeValue === true
 
             if (isPossibilityApplicable) {
-              acc.push(nodeValue as string | number)
+              acc.push(nodeValue)
             }
             return acc
           },
@@ -39,7 +39,7 @@ export default function useChoices({ rule, type }: Props) {
       return possibilities ?? []
     }
     return null
-  }, [rule, type, engine])
+  }, [rule, type, engine, safeEvaluate])
 
   return choices
 }
