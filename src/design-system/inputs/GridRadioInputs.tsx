@@ -28,7 +28,7 @@ interface Props {
   disabled?: boolean
   control: Control<Record<string, string | number>>
   rules?: RegisterOptions
-  'data-cypress-id'?: string
+  'data-testid'?: string
 }
 
 export default function GridRadioInputs({
@@ -41,7 +41,7 @@ export default function GridRadioInputs({
   value,
   control,
   rules,
-  'data-cypress-id': dataCypressId,
+  'data-testid': dataCypressId,
 }: HTMLAttributes<HTMLInputElement> & Props) {
   const { t } = useClientTranslation()
   return (
@@ -54,7 +54,7 @@ export default function GridRadioInputs({
       {label ? (
         <label htmlFor={name} className="w-full">
           <span
-            className={`text-sm font-bold text-slate-900 ${
+            className={`font-bold text-slate-900 ${
               error ? 'text-red-700!' : ''
             }`}>
             {label}
@@ -63,7 +63,7 @@ export default function GridRadioInputs({
       ) : null}
 
       {helperText ? (
-        <span className="mt-1 mb-4 text-xs text-slate-500">{helperText}</span>
+        <span className="mt-1 mb-4 text-sm text-slate-600">{helperText}</span>
       ) : null}
 
       <Controller
@@ -84,7 +84,7 @@ export default function GridRadioInputs({
                 return (
                   <label
                     key={item.value}
-                    data-cypress-id={dataCypressId + '-' + item.value}
+                    data-testid={dataCypressId + '-' + item.value}
                     aria-label={item.ariaLabel}
                     title={`${item.ariaLabel} - ${value === item.value ? t('Sélectionné') : t('Sélectionner cette option')}`}
                     className={twMerge(

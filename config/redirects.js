@@ -4,6 +4,27 @@ const redirects = [
     destination: '/actions',
     permanent: true,
   },
+  {
+    source: '/actions',
+    destination: '/mon-espace/actions',
+    permanent: true,
+  },
+  {
+    source: '/documentation/guide',
+    destination: '/documentation',
+    permanent: true,
+  },
+  {
+    source: '/documentation/modele',
+    destination: '/modele',
+    permanent: true,
+  },
+  // Compte U
+  {
+    source: '/profil/:path*',
+    destination: '/mon-espace',
+    permanent: true,
+  },
   // Mode Groupe / amis / classement
   {
     source: '/groupes/:path*',
@@ -13,6 +34,11 @@ const redirects = [
   {
     source: '/amis',
     destination: '/classements',
+    permanent: true,
+  },
+  {
+    source: '/classements',
+    destination: '/mon-espace/groupes',
     permanent: true,
   },
   {
@@ -127,7 +153,7 @@ const redirects = [
   {
     source: '/blog/fonctionnalite-animateurs-ateliers-sensibilisation',
     destination:
-      'blog/actualites-et-fonctionnalites/fonctionnalite-animateurs-ateliers-sensibilisation',
+      '/blog/actualites-et-fonctionnalites/fonctionnalite-animateurs-ateliers-sensibilisation',
     permanent: true,
   },
   {
@@ -138,7 +164,12 @@ const redirects = [
   },
   {
     source: '/blog/challenge-tes-amis',
-    destination: '/blog/actualites-et-fonctionnalites/challenge-tes-amis',
+    destination: '/classements',
+    permanent: true,
+  },
+  {
+    source: '/blog/actualites-et-fonctionnalites/challenge-tes-amis',
+    destination: '/classements',
     permanent: true,
   },
   {
@@ -149,7 +180,12 @@ const redirects = [
   },
   {
     source: '/blog/campus',
-    destination: '/blog/actualites-et-fonctionnalites/campus',
+    destination: '/classements',
+    permanent: true,
+  },
+  {
+    source: '/blog/actualites-et-fonctionnalites/campus',
+    destination: '/classements',
     permanent: true,
   },
   {
@@ -159,7 +195,7 @@ const redirects = [
   },
   {
     source: '/blog/transports-fuir-transports-cherir',
-    destination: 'blog/mobilites/transports-fuir-transports-cherir',
+    destination: '/blog/mobilites/transports-fuir-transports-cherir',
     permanent: true,
   },
   {
@@ -174,7 +210,12 @@ const redirects = [
   },
   {
     source: '/blog/impact-mobilite',
-    destination: '/blog/mobilites/impact-mobilite',
+    destination: '/classements',
+    permanent: true,
+  },
+  {
+    source: '/blog/mobilites/impact-mobilite',
+    destination: '/blog/mobilites/mobilites-douces-modes-transport-puissants',
     permanent: true,
   },
   {
@@ -411,6 +452,51 @@ const redirects = [
     source: '/infolettres',
     destination:
       'https://856c23af.sibforms.com/serve/MUIFANYp6c5xdsAuy6IDcikFeb1acMwlG343iU22fjxPSfx0ZCaGTU6WN7PnnSe21HYaHOpyKT0SlpSy9uUFEBV9xSf_N_D-bs37tVyLgGHVm0kCV9yCNDgO3FFvXuUpk7aVWboulQpZ7DcQhk8RuIfiiWOt2JgZOzEfd4JlqynZRDNGcQ9JMpSvziB7Q3J8DHWtLINw7TgNmuGj',
+    permanent: true,
+  },
+  {
+    source: '/en/empreinte',
+    destination: '/en',
+    permanent: true,
+  },
+  {
+    source: '/accessibilit%C3%A9',
+    destination: '/accessibilite',
+    permanent: true,
+  },
+  {
+    source: '/demo-iframesimulation',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/northstar',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/blog/environnement/journee-mondial-environnement',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/contribuer',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/p%C3%A9trole-et-gaz',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/empreinte',
+    destination: '/',
+    permanent: true,
+  },
+  {
+    source: '/partenaire',
+    destination: '/',
     permanent: true,
   },
 ]

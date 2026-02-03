@@ -117,7 +117,7 @@ export default function Question({
                       })
                     : ''
                 }
-                data-cypress-id={question}
+                data-testid={question}
                 id={DEFAULT_FOCUS_ELEMENT_ID}
                 aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content warning-message notification-message`}
                 aria-labelledby="question-label"
@@ -135,7 +135,7 @@ export default function Question({
                     )
                   }
                 }}
-                data-cypress-id={question}
+                data-testid={question}
                 label={label || ''}
                 firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
                 aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content warning-message notification-message`}
@@ -156,7 +156,7 @@ export default function Question({
                     )
                   }
                 }}
-                data-cypress-id={question}
+                data-testid={question}
                 label={label || ''}
                 firstInputId={DEFAULT_FOCUS_ELEMENT_ID}
                 aria-describedby={`${QUESTION_DESCRIPTION_BUTTON_ID}-content warning-message notification-message`}

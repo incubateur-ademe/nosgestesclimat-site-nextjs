@@ -1,53 +1,59 @@
-'use client'
-
 import Breadcrumbs from '@/design-system/layout/Breadcrumbs'
-import { getOrganisationItems } from '@/helpers/filAriane/getOrganisationItems'
-import useFetchOrganisation from '@/hooks/organisations/useFetchOrganisation'
-import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useUser } from '@/publicodes-state'
-import { useParams, usePathname } from 'next/navigation'
-import type { ReactNode } from 'react'
-import { useFetchPublicPoll } from '../../hooks/organisations/polls/useFetchPublicPoll'
+import type {
+  Organisation,
+  OrganisationPoll,
+  PublicOrganisationPoll,
+} from '@/types/organisations'
+import type { TFunction } from 'i18next'
+import type { ComponentProps } from 'react'
 
-const TARGETED_PATHS = ['/organisations']
+type Item = ComponentProps<typeof Breadcrumbs>['items'][number]
+export default function OrganisationFilAriane({
+  className,
+  organisation,
+  isAdmin,
+  poll,
+  currentPage,
+  t,
+}: {
+  className?: string
+  organisation?: Organisation
+  isAdmin?: boolean
+  poll?: OrganisationPoll | PublicOrganisationPoll
+  currentPage?: Item
+  t: TFunction
+}) {
+  const items: Item[] = [
+    {
+      href: '/',
+      label: t('Accueil'),
+    },
+    {
+      href: '/organisations',
+      label: t('Organisations'),
+    },
+  ]
 
-export default function FilAriane({ className }: { className?: string }) {
-  const pathname = usePathname()
-
-  const { t } = useClientTranslation()
-
-  const params = useParams()
-
-  const { user } = useUser()
-
-  // Handles fetching the organisation data if the user is an administrator
-  const { data: organisation } = useFetchOrganisation()
-
-  const isAdmin = organisation?.slug === params.orgaSlug
-
-  const { data: poll } = useFetchPublicPoll()
-
-  if (!TARGETED_PATHS.some((path) => pathname.includes(path))) return null
-
-  const getBreadcrumbsItems = (): {
-    href: string
-    label: string | ReactNode
-    isActive: boolean
-  }[] => {
-    // Organisation path
-    if (pathname.includes('/organisations')) {
-      return getOrganisationItems({
-        pathname,
-        params,
-        user,
-        isAdmin,
-        poll: poll,
-        t,
-      })
-    }
-
-    return []
+  if (organisation) {
+    const organisationHref = `/organisations/${organisation.slug}`
+    items.push({
+      label: organisation.name,
+      href: organisationHref,
+      isDisabled: !isAdmin,
+    })
   }
 
-  return <Breadcrumbs className={className} items={getBreadcrumbsItems()} />
+  if (poll) {
+    const pollHref = `/organisations/${organisation?.slug}/campagnes/${poll.slug}`
+    items.push({
+      label: poll.name,
+      href: pollHref,
+    })
+  }
+  if (currentPage) {
+    items.push(currentPage)
+  }
+  items.at(-1)!.isActive = true
+
+  return <Breadcrumbs className={className} items={items} />
 }

@@ -5,7 +5,7 @@ import Button from '../buttons/Button'
 
 interface Props {
   children: React.ReactNode
-  buttonLabel?: string
+  buttonLabel?: React.ReactNode
   error?: string
   onSubmit?: () => void
   className?: string
@@ -34,7 +34,7 @@ export default function Form({
         </p>
       )}
 
-      <Button className="mt-8" type="submit">
+      <Button className="mt-8" type="submit" data-testid="button-submit">
         {buttonLabel ?? <Trans>Enregistrer</Trans>}
       </Button>
     </form>

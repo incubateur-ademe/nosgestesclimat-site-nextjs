@@ -22,6 +22,12 @@ vi.mock('../_components/NewsletterInvalidMessage', () => ({
   default: vi.fn(() => null),
 }))
 
+// Mock HeaderServer
+vi.mock('@/components/layout/HeaderServer', () => ({
+  __esModule: true,
+  default: vi.fn(() => null),
+}))
+
 describe('NewsletterConfirmationPage', () => {
   beforeEach(() => {
     vi.clearAllMocks()

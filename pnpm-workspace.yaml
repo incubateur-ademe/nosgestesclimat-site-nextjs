@@ -1,3 +1,7 @@
 minimumReleaseAge: 10080 # 7 days
 minimumReleaseAgeExclude:
   - '@incubateur-ademe/nosgestesclimat'
+  - 'react'
+  - 'react-dom'
+  - 'next'
+  - '@next/*'

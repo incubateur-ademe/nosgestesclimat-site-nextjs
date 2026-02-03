@@ -1,7 +1,17 @@
-import Header from '@/components/layout/HeaderClient'
+import HeaderServer from '@/components/layout/HeaderServer'
 import type { ReactNode } from 'react'
 import Main from './Main'
+import DynamicCounter from './landingPage/DynamicCounter'
 import Hero from './landingPage/Hero'
+
+interface Props {
+  heroTitle: ReactNode
+  heroDescription: ReactNode
+  heroIllustration: ReactNode
+  heroPartners: ReactNode
+  children: ReactNode
+  locale: string
+}
 
 export default function LandingPage({
   heroTitle,
@@ -9,16 +19,11 @@ export default function LandingPage({
   heroIllustration,
   heroPartners,
   children,
-}: {
-  heroTitle: ReactNode
-  heroDescription: ReactNode
-  heroIllustration: ReactNode
-  heroPartners: ReactNode
-  children: ReactNode
-}) {
+  locale,
+}: Props) {
   return (
     <>
-      <Header />
+      <HeaderServer locale={locale} />
 
       <Main>
         <Hero
@@ -27,6 +32,8 @@ export default function LandingPage({
           description={heroDescription}
           partners={heroPartners}
         />
+
+        <DynamicCounter locale={locale} />
 
         {children}
       </Main>

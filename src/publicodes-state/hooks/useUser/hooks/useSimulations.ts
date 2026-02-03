@@ -1,6 +1,8 @@
 'use client'
 
+import { getInitialExtendedSituation } from '@/helpers/modelFetching/getInitialExtendedSituation'
 import { generateSimulation } from '@/helpers/simulation/generateSimulation'
+import { migrateSimulation } from '@/publicodes-state/helpers/migrateSimulation'
 import { safeLocalStorage } from '@/utils/browser/safeLocalStorage'
 import type {
   DottedName,
@@ -41,7 +43,6 @@ export default function useSimulations({
       defaultAdditionalQuestionsAnswers,
       polls,
       groups,
-      savedViaEmail,
     }: Partial<Simulation> = {}) => {
       resetAideSaisie()
 
@@ -58,10 +59,8 @@ export default function useSimulations({
         defaultAdditionalQuestionsAnswers,
         polls,
         groups,
-        savedViaEmail,
         migrationInstructions,
       })
-
       setSimulations((prevSimulations: Simulation[]) => {
         if (id && prevSimulations.find((simulation) => simulation.id === id)) {
           return prevSimulations
@@ -99,13 +98,17 @@ export default function useSimulations({
       pollToDelete,
       groupToAdd,
       groupToDelete,
-      savedViaEmail,
     }: UpdateCurrentSimulationProps) => {
       setSimulations((prevSimulations: Simulation[]) =>
         prevSimulations.map((simulation) => {
           if (simulation.id !== currentSimulationId) return simulation
 
           const simulationToUpdate = { ...simulation }
+
+          // Ensure extendedSituation is always defined (for old simulations that might not have it)
+          if (!simulationToUpdate.extendedSituation) {
+            simulationToUpdate.extendedSituation = getInitialExtendedSituation()
+          }
 
           if (situation !== undefined) {
             // We sync the extendedSituation with the situation detecting added, modified or removed dottedNames from the updated situation.
@@ -249,10 +252,6 @@ export default function useSimulations({
             )
           }
 
-          if (savedViaEmail !== undefined) {
-            simulationToUpdate.savedViaEmail = savedViaEmail
-          }
-
           return simulationToUpdate
         })
       )
@@ -268,11 +267,23 @@ export default function useSimulations({
     [currentSimulationId, simulations]
   )
 
+  const updateSimulations = useCallback(
+    (newSimulations: Simulation[]) => {
+      setSimulations(
+        newSimulations.map((simulation) =>
+          migrateSimulation(simulation, migrationInstructions)
+        )
+      )
+    },
+    [migrationInstructions, setSimulations]
+  )
+
   return {
     initSimulation,
     deleteSimulation,
     currentSimulation,
     updateCurrentSimulation,
+    updateSimulations,
   }
 }
 

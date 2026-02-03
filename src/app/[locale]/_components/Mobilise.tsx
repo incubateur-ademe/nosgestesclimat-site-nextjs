@@ -27,9 +27,9 @@ export default async function Mobilise({ locale }: { locale: string }) {
               <strong className="text-primary-600">
                 lancez-vous dans un défi collectif
               </strong>{' '}
-              pour réduire votre empreinte. Comparez vos résultats, suivez vos
-              progrès et voyez qui parvient à réduire le plus ses émissions de
-              carbone ou sa consommation d’eau.
+              pour réduire votre empreinte. Suivez vos progrès et voyez qui
+              parvient à réduire le plus ses émissions de carbone ou sa
+              consommation d’eau.
             </Trans>
           </p>
 

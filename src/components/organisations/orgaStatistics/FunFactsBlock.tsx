@@ -17,6 +17,7 @@ export default function FunFactsBlock({
   funFacts?: FunFacts | null
   className?: string
 }) {
+  console.log(funFacts)
   if (!funFacts) return null
 
   return (

@@ -148,6 +148,7 @@ export default function Footer({
               <li>
                 <InlineLink
                   href="/organisations"
+                  data-testid="organisations-link"
                   onClick={trackFooterClickOrganisations}
                   className="text-default text-sm no-underline hover:underline">
                   <Trans>Organisations</Trans>

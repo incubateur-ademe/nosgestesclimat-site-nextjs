@@ -18,6 +18,7 @@ export default function useFormState() {
     remainingQuestions,
     relevantAnsweredQuestions,
     remainingQuestionsByCategories,
+    missingVariables,
   } = useContext(formContext)
 
   const {
@@ -100,5 +101,9 @@ export default function useFormState() {
      * Advancement of the test between 0 and 1. This is different from "progression" which it is based on the current question index here and not on the number of answered questions.
      */
     testAdvancement,
+    /**
+     * Missing variables and score with the current situation
+     */
+    missingVariables,
   }
 }

@@ -11,6 +11,20 @@ const withMDX = createMDX({
   extension: /\.mdx$/,
 })
 
+
+// Use rewrite rules to proxy requests from the client to the server when both are on different domain (preview app / local)
+let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL ?? 'https://localhost:3001'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://localhost:3000'
+const sameOrigin = new URL(serverUrl).origin.endsWith(new URL(siteUrl).origin)
+
+const rewrites = !sameOrigin ? {
+  rewrites: () => [{
+    source: '/api/server/:path*',
+    destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/:path*`,
+  }]
+} : {}
+
+
 const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
@@ -45,8 +59,11 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
     webpackBuildWorker: true,
+    authInterrupts: true,
     mdxRs: true,
+    useCache: true,
   },
+  ...rewrites,
   webpack(config) {
     config.module.rules.push({
       test: /\.ya?ml$/,

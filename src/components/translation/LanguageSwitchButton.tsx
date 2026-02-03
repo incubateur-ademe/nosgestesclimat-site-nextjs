@@ -102,7 +102,7 @@ export default function LanguageSwitchButton({
               : 'FR - Sélectionner la langue française'
           }
           className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
-          data-cypress-id="language-switch-button-fr">
+          data-testid="language-switch-button-fr">
           <span>FR</span> <Emoji>🇫🇷</Emoji>
         </ButtonAnchor>
       )}
@@ -127,7 +127,7 @@ export default function LanguageSwitchButton({
               : 'EN - Select English language'
           }
           className="flex items-center gap-2 px-2 py-2 sm:px-4 sm:py-3"
-          data-cypress-id="language-switch-button-en">
+          data-testid="language-switch-button-en">
           <span>EN</span> <Emoji>🇬🇧</Emoji>
         </ButtonAnchor>
       )}

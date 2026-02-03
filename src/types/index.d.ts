@@ -5,7 +5,7 @@ declare module '@getbrevo/brevo'
 export interface DefaultPageProps<
   T = {
     params: Record<string, string | string[]>
-    searchParams?: Record<string, string | string[]>
+    searchParams?: Record<string, string | string[] | undefined>
   },
 > {
   params: Promise<{ locale: Locale } & T['params']>

@@ -5,7 +5,6 @@ import { DEFAULT_FOCUS_ELEMENT_ID } from '@/constants/accessibility'
 import Emoji from '@/design-system/utils/Emoji'
 import { onKeyDownHelper } from '@/helpers/accessibility/onKeyDownHelper'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
-import { useRule } from '@/publicodes-state'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import { motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
@@ -18,6 +17,7 @@ interface Props {
   setValue: (value: boolean) => void
   value: boolean | undefined | null
   index: number
+  isInactive?: boolean
 }
 
 const buttonClassNames = {
@@ -40,8 +40,8 @@ export default function MosaicBooleanInput({
   setValue,
   index,
   value,
+  isInactive,
 }: Props) {
-  const { isInactive } = useRule<boolean>(question)
   const { t } = useClientTranslation()
 
   const status = isInactive
@@ -57,6 +57,7 @@ export default function MosaicBooleanInput({
   return (
     <div>
       <label
+        data-testid={`${question}-oui-label`}
         className={twMerge(
           `focus-within:ring-primary-700 relative flex h-full items-center gap-2 rounded-xl border! bg-white px-4 py-2 text-left transition-colors focus-within:ring-2 focus-within:ring-offset-2`,
           buttonClassNames[status]
@@ -64,6 +65,7 @@ export default function MosaicBooleanInput({
         title={`${title} - ${status === 'checked' ? t('Sélectionné') : t('Sélectionner cette option')}`}>
         <input
           type="checkbox"
+          data-testid={`${question}-oui`}
           aria-disabled={isInactive}
           aria-describedby={isInactive ? `${title}-soon-available` : undefined}
           className="sr-only"
@@ -72,7 +74,6 @@ export default function MosaicBooleanInput({
             onClick()
           }}
           onKeyDown={!isInactive ? onKeyDownHelper(() => onClick()) : undefined}
-          data-cypress-id={`${question}-${value}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
           checked={!!value}
         />
@@ -93,11 +94,12 @@ export default function MosaicBooleanInput({
         </span>
 
         <div className="flex-1">
-          {title && icons ? (
+          {title ? (
             <span
               aria-label={`${title} ${isInactive ? t('Bientôt disponible') : ''}`}
               className="inline-block align-middle text-sm md:text-base">
-              {title} <Emoji className="leading-tight">{icons ?? null}</Emoji>
+              {title}{' '}
+              {icons && <Emoji className="leading-tight">{icons}</Emoji>}
             </span>
           ) : null}
           {description ? (

@@ -1,8 +1,10 @@
+import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
 import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
+import { ClientLayout } from '@/components/layout/ClientLayout'
 import Footer from '@/components/layout/Footer'
 import JSONLD from '@/components/seo/JSONLD'
+import Trans from '@/components/translation/trans/TransServer'
 import { trackingActionClickCTA } from '@/constants/tracking/actions'
-import BlockSkeleton from '@/design-system/layout/BlockSkeleton'
 import LandingPage from '@/design-system/layout/LandingPage'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import { getCommonMetadata } from '@/helpers/metadata/getCommonMetadata'
@@ -12,17 +14,14 @@ import {
   trackLandingClickCTAResume,
   trackLandingClickCTAStart,
 } from '@/helpers/tracking/landings'
-import i18nConfig from '@/i18nConfig'
-import type { DefaultPageProps } from '@/types'
+import i18nConfig, { type Locale } from '@/i18nConfig'
 import { Suspense } from 'react'
 import Partners from '../../components/landing-pages/Partners'
-import { ClientLayout } from '../../components/layout/ClientLayout'
 import CollectivelyCommit from './_components/CollectivelyCommit'
 import DecryptChallenges from './_components/DecryptChallenges'
 import DidYouKnowMainLanding from './_components/DidYouKnowMainLanding'
 import HomePageDescription from './_components/HomePageDescription'
-import HomepageSubCTA from './_components/HomepageSubCTA'
-import HomePageTitle from './_components/HomePageTitle'
+import HomepageSubtitle from './_components/HomepageSubtitle'
 import InteractiveIllustration from './_components/InteractiveIllustration'
 import Mobilise from './_components/Mobilise'
 import ModelInfo from './_components/ModelInfo'
@@ -43,12 +42,12 @@ export const generateMetadata = getCommonMetadata({
 
 export function generateStaticParams() {
   return i18nConfig.locales.map((locale: string) => ({
-    locale,
+    locale: locale as Locale,
   }))
 }
 
-export default async function Homepage({ params }: DefaultPageProps) {
-  const { locale } = await params
+export default async function Homepage({ params }: PageProps<'/[locale]'>) {
+  const locale = (await params).locale as Locale
 
   return (
     <ClientLayout locale={locale}>
@@ -64,14 +63,17 @@ export default async function Homepage({ params }: DefaultPageProps) {
         ]}
       />
       <LandingPage
+        locale={locale}
         heroIllustration={<InteractiveIllustration />}
-        heroTitle={<HomePageTitle />}
+        heroTitle={
+          <Trans locale={locale}>Découvrez votre empreinte carbone</Trans>
+        }
         heroDescription={
           <div className="flex flex-col items-center gap-6 md:items-start md:gap-10">
-            <HomePageDescription />
+            <HomePageDescription locale={locale} />
 
             <div className="flex flex-col items-center gap-6 md:order-2 md:mt-0 md:items-start">
-              <Suspense fallback={<BlockSkeleton />}>
+              <Suspense fallback={<CTAButtonsPlaceholder />}>
                 <DynamicCTAButtons
                   trackingEvents={{
                     start: () =>
@@ -87,12 +89,17 @@ export default async function Homepage({ params }: DefaultPageProps) {
               </Suspense>
 
               {/* Displayed on mobile only */}
-              <div className="mx-auto mt-4 max-w-80 md:mt-0 md:hidden">
-                <InteractiveIllustration />
+              <div className="mb-8 md:hidden">
+                <HomepageSubtitle locale={locale} />
+                <div className="mx-auto mt-4 max-w-80 md:mt-0">
+                  <InteractiveIllustration />
+                </div>
               </div>
 
               {/* Displayed on desktop only */}
-              <HomepageSubCTA />
+              <div className="hidden md:block">
+                <HomepageSubtitle locale={locale} />
+              </div>
             </div>
           </div>
         }

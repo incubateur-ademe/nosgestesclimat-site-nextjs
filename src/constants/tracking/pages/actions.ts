@@ -63,3 +63,20 @@ export const trackActionsClickAdeme = () => {
     }
   )
 }
+
+// Click on "Comprendre le calcul" link in action detail
+export const actionsClickUnderstandCalculation = (action: DottedName) => [
+  'trackEvent',
+  'Actions',
+  'Click Understand Calculation',
+  `Click Understand Calculation ${action}`,
+]
+
+export const actionsClickUnderstandCalculationPosthog = (
+  action: DottedName
+) => ({
+  eventName: 'Actions click understand calculation',
+  properties: {
+    action,
+  },
+})

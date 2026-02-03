@@ -7,7 +7,6 @@ import ErrorBoundary from '@/components/error/ErrorBoundary'
 import EngineProviders from '@/components/providers/EngineProviders'
 import PRNumberHook from '@/components/providers/simulationProviders/PRNumberHook'
 import SimulationSyncProvider from '@/components/providers/simulationProviders/SimulationSyncProvider'
-import { STORAGE_KEY } from '@/constants/storage'
 import { PartnerProvider } from '@/contexts/partner/PartnerContext'
 import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import UserProvider from '@/publicodes-state/providers/userProvider/provider'
@@ -15,7 +14,6 @@ import type { Simulation } from '@/publicodes-state/types'
 import { faker } from '@faker-js/faker'
 import type { DottedName } from '@incubateur-ademe/nosgestesclimat'
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json'
-import migrationInstructions from '@incubateur-ademe/nosgestesclimat/public/migration.json'
 import '@testing-library/jest-dom'
 import type { RenderOptions } from '@testing-library/react'
 import { render } from '@testing-library/react'
@@ -32,9 +30,9 @@ vi.mock('@/hooks/useRules', () => ({
   }),
 }))
 
-// Mock getGeolocation
+// Mock getGeolocation with a valid region to avoid userId issues in usePersistentUser
 vi.mock('@/helpers/api/getGeolocation', () => ({
-  getGeolocation: () => Promise.resolve(undefined),
+  getGeolocation: () => Promise.resolve({ code: 'FR', name: 'France' }),
 }))
 
 // Default mock values
@@ -99,12 +97,20 @@ interface ProviderConfig {
   cookieConsent?: boolean
 }
 
+interface UserProviderProps {
+  initialSimulations?: Simulation[]
+  initialCurrentSimulationId?: string
+  initialUserId?: string
+}
+
 const TestWrapper = ({
   children,
   providers,
+  userProviderProps,
 }: {
   children: ReactElement
   providers: ProviderConfig
+  userProviderProps?: UserProviderProps
 }) => {
   let wrapped = children
 
@@ -142,13 +148,7 @@ const TestWrapper = ({
   }
 
   if (providers.user) {
-    wrapped = (
-      <UserProvider
-        storageKey={STORAGE_KEY}
-        migrationInstructions={migrationInstructions}>
-        {wrapped}
-      </UserProvider>
-    )
+    wrapped = <UserProvider {...userProviderProps}>{wrapped}</UserProvider>
   }
 
   if (providers.queryClient) {
@@ -206,5 +206,20 @@ export const renderWithWrapper = (
     })
   )
 
-  return render(<TestWrapper providers={providers}>{ui}</TestWrapper>, options)
+  // Pass user provider props for server-hydrated mode to avoid async localStorage loading issues
+  const userProviderProps: UserProviderProps | undefined = providers.user
+    ? {
+        initialSimulations: simulations,
+        initialCurrentSimulationId:
+          currentSimulation?.id ?? defaultSimulation?.id,
+        initialUserId: userMerged.userId,
+      }
+    : undefined
+
+  return render(
+    <TestWrapper providers={providers} userProviderProps={userProviderProps}>
+      {ui}
+    </TestWrapper>,
+    options
+  )
 }

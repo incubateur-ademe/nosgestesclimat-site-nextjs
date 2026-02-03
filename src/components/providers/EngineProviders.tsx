@@ -13,7 +13,6 @@ import type { PropsWithChildren } from 'react'
 import { Suspense, useState } from 'react'
 import Error500 from '../layout/500'
 import PRNumberHook from './simulationProviders/PRNumberHook'
-import SimulationSyncProvider from './simulationProviders/SimulationSyncProvider'
 
 interface Props {
   supportedRegions: SupportedRegions
@@ -54,7 +53,7 @@ export default function EngineProviders({
 
         <LocalisationBanner supportedRegions={supportedRegions} />
 
-        <SimulationSyncProvider>{children}</SimulationSyncProvider>
+        {children}
       </EngineProvider>
     </div>
   )

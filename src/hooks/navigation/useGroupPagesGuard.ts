@@ -1,4 +1,4 @@
-import { linkToClassement } from '@/helpers/navigation/classementPages'
+import { MON_ESPACE_GROUPS_PATH } from '@/constants/urls/paths'
 import {
   getLinkToGroupDashboard,
   getLinkToGroupInvitation,
@@ -12,20 +12,20 @@ import { useEffect, useState } from 'react'
 
 interface Props {
   isDashboard?: boolean
+  // user?: UserServer
 }
 export function useGroupPagesGuard(
   { isDashboard }: Props = { isDashboard: false }
 ) {
   const router = useRouter()
 
-  const { user } = useUser()
-
   const isDebug = useDebug()
+
+  const { user } = useUser()
 
   const { groupIdInQueryParams } = useGroupIdInQueryParams()
 
   const { data: group, isFetching } = useFetchGroup(groupIdInQueryParams)
-
   const [isGuardInit, setIsGuardInit] = useState(false)
   const [isGuardRedirecting, setIsGuardRedirecting] = useState(false)
 
@@ -39,7 +39,7 @@ export function useGroupPagesGuard(
 
     // If there is no groupId in the query params, we redirect to the classement page
     if (!groupIdInQueryParams) {
-      router.replace(linkToClassement)
+      router.replace(MON_ESPACE_GROUPS_PATH)
       setIsGuardRedirecting(true)
       return
     }
@@ -48,7 +48,7 @@ export function useGroupPagesGuard(
     if (
       isDashboard &&
       group &&
-      !group?.participants?.some(
+      !group.participants?.some(
         (participant) => participant.userId === user.userId
       )
     ) {

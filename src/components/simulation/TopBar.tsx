@@ -1,8 +1,7 @@
 'use client'
 
 import { useIframe } from '@/hooks/useIframe'
-import { useCurrentSimulation, useFormState } from '@/publicodes-state'
-import { useRouter } from 'next/navigation'
+import { useFormState } from '@/publicodes-state'
 import { twMerge } from 'tailwind-merge'
 import TotalFootprintNumber from '../misc/TotalFootprintNumber'
 import ButtonBack from './topBar/ButtonBack'
@@ -12,30 +11,25 @@ import TotalButtons from './topBar/TotalButtons'
 
 export default function TopBar({
   toggleQuestionList,
-  toggleBackHomeModal,
-  toggleSaveModal,
   simulationMode = true,
   showTotal = false,
+  className,
 }: {
   toggleQuestionList?: () => void
-  toggleBackHomeModal?: () => void
-  toggleSaveModal?: () => void
   simulationMode?: boolean
   showTotal?: boolean
+  className?: string
 }) {
   const { isIframe, isIframeOnlySimulation } = useIframe()
 
   const { currentCategory } = useFormState()
 
-  const currentSimulation = useCurrentSimulation()
-
-  const router = useRouter()
-
   return (
     <header
       className={twMerge(
         'sticky top-0 z-50 h-16 w-full bg-white',
-        !simulationMode && 'static z-0 bg-white'
+        !simulationMode && 'static z-0 bg-white',
+        className
       )}>
       <div
         className={twMerge(
@@ -47,13 +41,7 @@ export default function TopBar({
         <div className="mb-0 flex w-full max-w-5xl justify-between overflow-visible pr-4 pl-1 lg:mx-auto lg:px-4">
           <div className="relative flex items-center gap-1 lg:gap-4">
             {simulationMode && !isIframe && !isIframeOnlySimulation && (
-              <ButtonBack
-                onClick={
-                  !currentSimulation.savedViaEmail
-                    ? toggleBackHomeModal
-                    : () => router.push('/')
-                }
-              />
+              <ButtonBack />
             )}
             {showTotal ? (
               <TotalFootprintNumber
@@ -65,10 +53,7 @@ export default function TopBar({
             )}
           </div>
           {toggleQuestionList ? (
-            <TotalButtons
-              toggleQuestionList={toggleQuestionList}
-              toggleSaveModal={toggleSaveModal}
-            />
+            <TotalButtons toggleQuestionList={toggleQuestionList} />
           ) : null}
         </div>
       </div>

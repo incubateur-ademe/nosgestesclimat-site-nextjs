@@ -6,6 +6,9 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "files.associations": {
     ".env*": "dotenv"
   },
@@ -30,6 +33,7 @@
     "typescript",
     "typescriptreact"
   ],
+  "eslint.useFlatConfig": true,
   "eslint.format.enable": true,
   "eslint.lintTask.enable": true
 }

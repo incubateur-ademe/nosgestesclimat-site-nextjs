@@ -8,8 +8,8 @@ interface Props {
   question: DottedName
   value: Evaluation<string>
   choices: (string | number)[] | null
-  setValue: (value: string) => void
-  'data-cypress-id': string
+  setValue: (value: string | undefined) => void
+  'data-testid': string
   label: string
   firstInputId?: string
 }
@@ -44,6 +44,21 @@ export default function ChoicesInput(props: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value])
 
+  // If there's only one choice and no value is selected yet, select it automatically
+  useEffect(() => {
+    if (
+      choices?.length === 1 &&
+      choices[0] &&
+      value === undefined &&
+      currentValue === undefined
+    ) {
+      const singleChoice = choices[0]
+      setCurrentValue(singleChoice)
+      requestIdleCallback(() => setValue(String(singleChoice)))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [choices, value])
+
   return (
     <fieldset
       className={
@@ -61,11 +76,16 @@ export default function ChoicesInput(props: Props) {
             choice={choice}
             active={currentValue === choice}
             setValue={(choice: string | number) => {
-              setCurrentValue(choice)
-              requestIdleCallback(() => setValue(String(choice)))
+              if (currentValue === choice) {
+                setCurrentValue(undefined)
+                requestIdleCallback(() => setValue(undefined))
+              } else {
+                setCurrentValue(choice)
+                requestIdleCallback(() => setValue(String(choice)))
+              }
             }}
             {...otherProps}
-            data-cypress-id={`${props['data-cypress-id']}-${choice}`}
+            data-testid={`${props['data-testid']}-${choice}`}
             {...(index === 0 ? { id: firstInputId } : {})}
           />
         ) : null

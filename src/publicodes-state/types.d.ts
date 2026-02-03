@@ -42,6 +42,7 @@ export interface User {
   initialRegion?: RegionFromGeolocation
   northStarRatings?: Record<string, unknown> // TODO: should be NorthStartType or something
   loginExpirationDate?: Date
+  pendingVerification?: { expirationDate: Date; email: string }
   organisation?: UserOrganisationInfo
   administratorEmail?: string
 }
@@ -81,7 +82,6 @@ export interface UpdateCurrentSimulationProps {
   pollToDelete?: string | null
   groupToAdd?: string | null
   groupToDelete?: string | null
-  savedViaEmail?: boolean
 }
 
 export interface Simulation {
@@ -98,7 +98,6 @@ export interface Simulation {
   customAdditionalQuestionsAnswers?: Record<string, string>
   polls?: string[] | null
   groups?: string[] | null
-  savedViaEmail?: boolean
   model?: string
 }
 

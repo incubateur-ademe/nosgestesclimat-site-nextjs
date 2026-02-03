@@ -1,3 +1,4 @@
+import CTAButtonsPlaceholder from '@/components/cta/CTAButtonsPlaceholder'
 import DynamicCTAButtons from '@/components/cta/DynamicCTAButtons'
 import Partners from '@/components/landing-pages/Partners'
 import Footer from '@/components/layout/Footer'
@@ -15,6 +16,7 @@ import {
 } from '@/helpers/tracking/landings'
 import type { DefaultPageProps } from '@/types'
 import { headers } from 'next/headers'
+import { Suspense } from 'react'
 import { ClientLayout } from '../../../components/layout/ClientLayout'
 import InteractiveIllustration from '../_components/InteractiveIllustration'
 
@@ -41,6 +43,7 @@ export default async function Homepage({ params }: DefaultPageProps) {
   return (
     <ClientLayout locale={locale}>
       <LandingPage
+        locale={locale}
         heroIllustration={<InteractiveIllustration />}
         heroTitle={
           <Trans locale={locale}>
@@ -63,27 +66,29 @@ export default async function Homepage({ params }: DefaultPageProps) {
             </p>
 
             <div className="flex flex-col items-center gap-6 md:order-2 md:mt-0 md:max-w-[300px] md:items-start">
-              <DynamicCTAButtons
-                trackingEvents={{
-                  start: getLandingClickCTAStart(
-                    pathname,
-                    trackingActionClickCTA
-                  ),
-                  resume: getLandingClickCTAResume(
-                    pathname,
-                    trackingActionClickCTA
-                  ),
-                  results: getLandingClickCTAResults(
-                    pathname,
-                    trackingActionClickCTA
-                  ),
-                  restart: getLandingClickCTARestart(
-                    pathname,
-                    trackingActionClickCTA
-                  ),
-                }}
-                className="w-full"
-              />
+              <Suspense fallback={<CTAButtonsPlaceholder />}>
+                <DynamicCTAButtons
+                  trackingEvents={{
+                    start: getLandingClickCTAStart(
+                      pathname,
+                      trackingActionClickCTA
+                    ),
+                    resume: getLandingClickCTAResume(
+                      pathname,
+                      trackingActionClickCTA
+                    ),
+                    results: getLandingClickCTAResults(
+                      pathname,
+                      trackingActionClickCTA
+                    ),
+                    restart: getLandingClickCTARestart(
+                      pathname,
+                      trackingActionClickCTA
+                    ),
+                  }}
+                  className="w-full"
+                />
+              </Suspense>
 
               {/* Displayed on mobile only */}
               <div className="mx-auto mt-4 max-w-80 md:mt-0 md:hidden">

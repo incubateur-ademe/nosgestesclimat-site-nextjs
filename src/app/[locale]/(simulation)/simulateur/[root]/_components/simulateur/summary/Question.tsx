@@ -38,8 +38,12 @@ export default function Question({
 
   const { updateCurrentSimulation, foldedSteps } = useCurrentSimulation()
 
-  const { currentQuestion, setCurrentQuestion, relevantQuestions } =
-    useFormState()
+  const {
+    currentQuestion,
+    setCurrentQuestion,
+    relevantQuestions,
+    missingVariables,
+  } = useFormState()
 
   const isDebug = useDebug()
 
@@ -85,7 +89,7 @@ export default function Question({
       <div className={twMerge('text-sm md:w-2/3 md:text-base')}>
         {isDebug ? (
           <>
-            {question} ({type})
+            {question} ({type}, {missingVariables[question] ?? 0})
           </>
         ) : (
           label

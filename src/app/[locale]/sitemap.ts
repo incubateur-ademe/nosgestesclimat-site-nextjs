@@ -1,6 +1,13 @@
+import {
+  MON_ESPACE_ACTIONS_PATH,
+  MON_ESPACE_GROUPS_PATH,
+  MON_ESPACE_PATH,
+  MON_ESPACE_SETTINGS_PATH,
+} from '@/constants/urls/paths'
 import { getPosts } from '@/helpers/markdown/getPosts'
 import { fetchAllArticleTitlesAndSlugs } from '@/services/cms/fetchAllArticleTitlesAndSlugs'
 import { fetchThematicLandingPages } from '@/services/cms/fetchThematicLandingPages'
+import type { NGCRule } from '@incubateur-ademe/nosgestesclimat'
 import rules from '@incubateur-ademe/nosgestesclimat/public/co2-model.FR-lang.fr-opti.json'
 import type { MetadataRoute } from 'next'
 import { utils } from 'publicodes'
@@ -8,40 +15,31 @@ import { utils } from 'publicodes'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages = new Set([
     '',
-    'actions',
-    'accessibilité',
-    'amis',
-    'a-propos',
     'blog',
     'budget',
     'cgu',
-    'classements',
     'contact',
     'diffuser',
-    'documentation/guide',
-    'documentation/modele',
     'documentation',
     'empreinte-carbone',
     'empreinte-eau',
-    'fin',
-    'guide',
     'international',
     'mentions-legales',
     'mentions-legales-base-empreinte',
     'modele',
     'nos-relais',
     'nouveautes',
-    'northstar',
     'organisations',
-    'partage',
-    'partenaire',
     'personas',
     'plan-du-site',
     'politique-de-confidentialite',
-    'profil',
     'questions',
     'questions-frequentes',
     'stats',
+    MON_ESPACE_PATH,
+    MON_ESPACE_GROUPS_PATH,
+    MON_ESPACE_ACTIONS_PATH,
+    MON_ESPACE_SETTINGS_PATH,
   ])
 
   const staticUrls = Array.from(staticPages).map((page) => ({
@@ -50,13 +48,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }))
 
-  const documentationUrls = Object.keys(rules).map((dottedName) => ({
-    url: `https://nosgestesclimat.fr/documentation/${utils.encodeRuleName(
-      dottedName
-    )}`,
-    lastModified: new Date(),
-    priority: 0.8,
-  }))
+  const documentationUrls = (
+    Object.entries(rules) as [string, NGCRule | null | undefined][]
+  ).reduce(
+    (acc, [dottedName, rule]) => {
+      if (rule?.titre) {
+        acc.push({
+          url: `https://nosgestesclimat.fr/documentation/${utils.encodeRuleName(
+            dottedName
+          )}`,
+          lastModified: new Date(),
+          priority: 0.8,
+        })
+      }
+      return acc
+    },
+    [] as { url: string; lastModified: Date; priority: number }[]
+  )
 
   const blogPosts = await fetchAllArticleTitlesAndSlugs({ locale: 'fr' })
 
