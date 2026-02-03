@@ -8,13 +8,14 @@ import type { Locale } from '@/i18nConfig'
 
 export default function WantToActBlock({ locale }: { locale: Locale }) {
   return (
-    <section className="border-primary-700 flex w-96 max-w-full flex-col items-start gap-4 rounded-xl border p-4">
-      <p className="text-primary-700 mb-0 font-bold">
+    <section className="border-primary-700 flex w-96 max-w-full flex-col items-start rounded-xl border p-6">
+      <p className="text-primary-700 mb-2 font-bold">
         <Trans locale={locale} i18nKey="footer.wantToAct.title">
           Envie d'agir, pas à pas ?
         </Trans>
       </p>
-      <p className="mb-0">
+
+      <p className="mb-4">
         <Trans locale={locale} i18nKey="footer.wantToAct.description">
           Recevez nos infolettres pour comprendre, apprendre et passer à
           l'action simplement.

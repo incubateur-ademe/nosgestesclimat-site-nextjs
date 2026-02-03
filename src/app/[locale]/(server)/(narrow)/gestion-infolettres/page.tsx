@@ -1,4 +1,4 @@
-import NewsletterForm from '@/app/[locale]/(server)/(narrow)/gestion-infolettres/_components/Form'
+import NewsletterForm from '@/app/[locale]/(server)/(narrow)/gestion-infolettres/_components/NewsletterForm'
 import { MON_ESPACE_SETTINGS_PATH } from '@/constants/urls/paths'
 import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'

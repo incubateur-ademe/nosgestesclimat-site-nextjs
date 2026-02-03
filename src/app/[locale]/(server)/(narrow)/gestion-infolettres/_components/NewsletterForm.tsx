@@ -12,7 +12,6 @@ import Alert from '@/design-system/alerts/alert/Alert'
 import Button from '@/design-system/buttons/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import Loader from '@/design-system/layout/Loader'
-import Emoji from '@/design-system/utils/Emoji'
 import {
   type ListIds,
   type Newsletters,
@@ -39,10 +38,7 @@ export default function NewsletterForm({ newsletters }: NewsletterFormProps) {
 
   return (
     <div className="w-xl max-w-full">
-      <Form
-        action={formAction}
-        noValidate
-        className="mb-8 flex flex-col items-start gap-4">
+      <Form action={formAction} noValidate>
         <NewsletterCheckBoxes
           newsletters={newsletters}
           defaultListIds={state.listIds}
@@ -50,12 +46,13 @@ export default function NewsletterForm({ newsletters }: NewsletterFormProps) {
 
         <EmailInput
           required
+          containerClassName="my-8"
           value={state.email}
           error={
             state.error === FORM_ERROR.EMAIL_INVALID
               ? t(
                   'ui.emailInput.error.invalid',
-                  'Veuillez entrer une adresse e-mail valide (format attendu : nom.prenom@domaine.fr)'
+                  'Veuillez entrer une adresse e-mail valide (format attendu : nom@exemple.org)'
                 )
               : state.error === FORM_ERROR.EMAIL_REQUIRED
                 ? t(
@@ -68,7 +65,7 @@ export default function NewsletterForm({ newsletters }: NewsletterFormProps) {
 
         <Button
           type="submit"
-          className="mt-8 h-14 w-60"
+          className="mb-8 h-14 w-60"
           disabled={pending}
           onClick={() => {
             trackEvent(clickUpdateUserNewsletters)
@@ -89,7 +86,7 @@ export default function NewsletterForm({ newsletters }: NewsletterFormProps) {
       {!pending && state.success && (
         <Alert
           aria-live="polite"
-          className="mt-6"
+          className="mb-6"
           description={
             <div>
               <p className="font-bold">
@@ -111,7 +108,7 @@ export default function NewsletterForm({ newsletters }: NewsletterFormProps) {
       {!pending && state.error === FORM_ERROR.SERVER_ERROR && (
         <Alert
           aria-live="polite"
-          className="mt-6"
+          className="mb-6"
           description={
             <Trans i18nKey="newsletterManagement.error.title">
               Une erreur est survenue lors de la mise à jour des informations.
@@ -122,8 +119,7 @@ export default function NewsletterForm({ newsletters }: NewsletterFormProps) {
 
       <p
         data-testid="unverified-message"
-        className="mt-4 mb-0 text-sm text-gray-600">
-        <Emoji>⚠️</Emoji>{' '}
+        className="mb-0 text-sm text-gray-600">
         <Trans i18nKey="newsletterManagement.message.unauthenticated">
           Pour vous désinscrire, passez par le lien en bas de l'e-mail reçu
         </Trans>

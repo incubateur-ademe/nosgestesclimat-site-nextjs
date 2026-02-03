@@ -10,7 +10,7 @@ export default function NewsletterCheckBoxes({
   newsletters: Newsletters
 }) {
   return (
-    <section>
+    <section className="flex flex-col gap-4">
       {newsletters.map(({ id, title, description, brevoId, emoji }) => (
         <div className="w-xl max-w-full" key={id}>
           <CheckboxInput

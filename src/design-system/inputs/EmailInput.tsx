@@ -1,3 +1,4 @@
+import Trans from '@/components/translation/trans/TransClient'
 import { t } from '@/helpers/metadata/fakeMetadataT'
 import type { ComponentProps } from 'react'
 import { forwardRef } from 'react'
@@ -11,10 +12,7 @@ type Props = Omit<
 export default forwardRef(function EmailInput(
   {
     label = t('ui.emailInput.label', 'Votre adresse e-mail'),
-    helperText = t(
-      'ui.emailInput.helperText',
-      'Format attendu : nom.prenom@domaine.fr'
-    ),
+
     ...props
   }: Props,
   ref
@@ -22,11 +20,15 @@ export default forwardRef(function EmailInput(
   return (
     <TextInput
       label={label}
-      helperText={helperText}
+      srOnlyHelperText={
+        <Trans i18nKey="email.input.helper">
+          Format attendu : nom@exemple.org
+        </Trans>
+      }
       name="email"
       type="email"
       autoComplete="email"
-      placeholder="nom@exemple.fr"
+      placeholder="nom@exemple.org"
       ref={ref as React.ForwardedRef<HTMLInputElement>}
       {...props}
     />
