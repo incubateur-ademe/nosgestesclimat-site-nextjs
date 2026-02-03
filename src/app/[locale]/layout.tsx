@@ -5,6 +5,7 @@ import type { DefaultPageProps } from '@/types'
 import { dir } from 'i18next'
 import localFont from 'next/font/local'
 import Script from 'next/script'
+import { Suspense } from 'react'
 import './globals.css'
 
 export const marianne = localFont({
@@ -69,7 +70,9 @@ export default async function RootLayout({
 
         <meta name="theme-color" content="#4949ba" />
 
-        <Trackers locale={locale} />
+        <Suspense>
+          <Trackers locale={locale} />
+        </Suspense>
 
         {
           // Matomo Prod
