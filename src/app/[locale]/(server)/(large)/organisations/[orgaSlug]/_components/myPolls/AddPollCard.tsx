@@ -15,6 +15,7 @@ export default function AddPollCard({ hasNoPollsYet }: Props) {
   return (
     <li>
       <NewItemCardLink
+        data-testid="add-poll-card"
         href={`/organisations/${orgaSlug}/creer-campagne`}
         highlight={!!hasNoPollsYet}
         color={hasNoPollsYet ? 'primary' : 'secondary'}

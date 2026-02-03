@@ -566,18 +566,13 @@ entries:
   Les activités humaines menacent les équilibres naturels de notre planète.: Human activities are threatening the natural balance of our planet.
   '*La moyenne française est de': '*The French average is'
   litres par jour: litres per day
-  Reprendre plus tard: Resume later
-  Sauvegarder <2>ma progression</2>: Save <2>my progress</2>
   d'eau par jour: of water per day
   Votre région a bien été mise à jour.: Your region has been updated.
   de CO₂e par an: of CO₂e per year
   Liste des questions: List of questions
-  Une erreur s'est produite au moment de la sauvegarde.: An error has occurred during backup.
   '{{name}}, supprimer cette participation': '{{name}}cancel this shareholding'
   Supprimer ce participant ? Cette opération est définitive.: Delete this participant? This operation is definitive.
   Une erreur est survenue: An error has occurred
-  Non, merci: No, thank you
-  Votre test est sauvegardé !: Your test is saved!
   <0>Empreinte eau</0> moyenne: 'Average <0>water footprint</0> '
   Lire l'article: Read the article
   Carbone: Carbon
@@ -1617,8 +1612,8 @@ entries:
   mon-espace.groups.empty.title.lock: Invitez votre entourage à calculer leur empreinte
   mon-espace.groups.empty.description: Free, 100% anonymous and, above all, without judgement or comparison.
   mon-espace.groups.empty.description.lock: Gratuit, 100 % anonyme et surtout sans jugement ni comparaison.
-  header.monEspace.title: My Space
-  header.monEspace.title.lock: Mon Espace
+  header.monEspace.title: My space
+  header.monEspace.title.lock: Mon espace
   common.metric.choice: Choice of metric
   common.metric.choice.lock: Choix de la métrique
   header.monEspace.access: Access my space
@@ -1747,10 +1742,10 @@ entries:
   mon-espace.groups.organisation.create.button.lock: Créer mon organisation
   mon-espace.groups.organisation.create.title: Mobilising my organisation
   mon-espace.groups.organisation.create.title.lock: Mobiliser mon organisation
-  header.monEspace.openMenuButton.open.title: My Space ({{email}}), open the menu
-  header.monEspace.openMenuButton.open.title.lock: Mon Espace ({{email}}), ouvrir le menu
-  header.monEspace.openMenuButton.close.title: My Space ({{email}}), close the menu
-  header.monEspace.openMenuButton.close.title.lock: Mon Espace ({{email}}), fermer le menu
+  header.monEspace.openMenuButton.open.title: My space ({{email}}), open the menu
+  header.monEspace.openMenuButton.open.title.lock: Mon espace ({{email}}), ouvrir le menu
+  header.monEspace.openMenuButton.close.title: My space ({{email}}), close the menu
+  header.monEspace.openMenuButton.close.title.lock: Mon espace ({{email}}), fermer le menu
   Créer: Create
   Votre adresse e-mail: Your e-mail address
   Merci de renseigner votre adresse e-mail: Please enter your e-mail address
@@ -1760,9 +1755,7 @@ entries:
   Veuillez renseigner un e-mail.: Please enter an e-mail address.
   Veuillez entrer une adresse e-mail valide.: Please enter a valid e-mail address.
   Votre e-mail, rejoindre une campagne - Nos Gestes Climat: Your e-mail address, join a campaign - Nos Gestes Climat
-  Vous pouvez le reprendre plus tard en cliquant sur le lien que vous avez reçu par e-mail.: You can resume it later by clicking on the link you received by e-mail.
   Vous allez recevoir un e-mail de notre part sous peu, qui vous permettra de la retrouver: You will receive an e-mail from us shortly, enabling you to find it
-  Recevez par e-mail un lien pour reprendre votre test plus tard.: Receive an e-mail with a link to take your test again later.
   Recevoir ponctuellement par e-mail les nouveaux services Nos Gestes Climat aux organisations: Receive occasional e-mails about new Nos Gestes Climat services for organisations
   Entrez votre adresse e-mail pour recevoir les infolettres sélectionnées.: Enter your e-mail address to receive the selected newsletters.
   Pour vous désinscrire, passez par le lien en bas de l'e-mail reçu: To unsubscribe, use the link at the bottom of the e-mail you receive

@@ -30,7 +30,8 @@ export default function VerificationCodeInput({
         length={6}
         inputProps={
           {
-            'data-cypress-id': 'organisation-connexion-verification-code-input',
+            autoComplete: 'one-time-code webauthn',
+            'data-testid': 'verification-code-input',
             'aria-label': 'Entrez votre code de vérification pour continuer',
             'aria-describedby':
               [

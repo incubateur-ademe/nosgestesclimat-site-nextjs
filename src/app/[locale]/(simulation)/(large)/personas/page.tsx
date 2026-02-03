@@ -12,7 +12,7 @@ export default function Personas() {
 
   return (
     <>
-      <Title title={<Trans>Personas</Trans>} data-cypress-id="personas-title" />
+      <Title title={<Trans>Personas</Trans>} data-testid="personas-title" />
 
       <p>
         <Trans>

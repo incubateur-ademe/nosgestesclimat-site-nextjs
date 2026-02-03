@@ -19,7 +19,7 @@ export default function LogoLink({
       <Link
         href="/"
         onClick={onClick}
-        data-cypress-id="home-logo-link"
+        data-testid="home-logo-link"
         className="flex items-center justify-center no-underline">
         <Logo size={size} />
       </Link>

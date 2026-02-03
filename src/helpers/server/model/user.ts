@@ -1,7 +1,6 @@
 import { AUTHENTICATION_COOKIE_NAME } from '@/constants/authentication/cookie'
 
 import { USER_URL } from '@/constants/urls/main'
-import { captureException } from '@sentry/nextjs'
 import { cookies } from 'next/headers'
 import { fetchWithJWTCookie } from './fetchWithJWTCookie'
 
@@ -29,28 +28,9 @@ export async function getUser(): Promise<UserServer> {
   return fetchWithJWTCookie(USER_URL + '/me')
 }
 
-export async function getCompleteUser(): Promise<CompleteUserServer | null> {
-  const user = await getUser()
-
-  if (!user) {
-    return null
-  }
-  try {
-    return (await fetchWithJWTCookie(
-      `${USER_URL}/${user.id}`
-    )) as Promise<CompleteUserServer>
-  } catch (error) {
-    console.error('Error fetching complete user', error)
-    captureException(error)
-    return null
-  }
-}
-
 export async function isUserAuthenticated(): Promise<boolean> {
   try {
-    const user = (await fetchWithJWTCookie(
-      USER_URL + '/me'
-    )) as UserServer | null
+    const user = await fetchWithJWTCookie<UserServer>(USER_URL + '/me')
     return !!user
   } catch {
     return false

@@ -72,7 +72,7 @@ export default function Label({
             // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
             tabIndex={0}
             id={QUESTION_DESCRIPTION_BUTTON_ID}
-            data-cypress-id="question-label">
+            data-testid="question-label">
             {label}
           </h1>
         ) : headingLevel === 2 ? (
@@ -84,7 +84,7 @@ export default function Label({
             // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
             tabIndex={0}
             id={QUESTION_DESCRIPTION_BUTTON_ID}
-            data-cypress-id="question-label">
+            data-testid="question-label">
             {label}
           </h2>
         ) : headingLevel === 3 ? (
@@ -96,7 +96,7 @@ export default function Label({
             // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
             tabIndex={0}
             id={QUESTION_DESCRIPTION_BUTTON_ID}
-            data-cypress-id="question-label">
+            data-testid="question-label">
             {label}
           </h3>
         ) : (
